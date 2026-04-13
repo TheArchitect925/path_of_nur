@@ -1,0 +1,1 @@
+add a completion checkbox, on the main theme page add filter options to show The ones the user has not reviewed, is reviewing (mark when a hadith is opened) and complete (add checkmark on hadith) so that its easier to filter and find later

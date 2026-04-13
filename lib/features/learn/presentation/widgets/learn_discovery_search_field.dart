@@ -10,6 +10,7 @@ class LearnDiscoverySearchField extends StatelessWidget {
     this.onTap,
     this.onSubmitted,
     this.readOnly = false,
+    this.autofocus = false,
   });
 
   final TextEditingController controller;
@@ -19,12 +20,14 @@ class LearnDiscoverySearchField extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final String hintText;
   final bool readOnly;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
     final query = controller.text.trim();
     return TextField(
       controller: controller,
+      autofocus: autofocus,
       readOnly: readOnly,
       onChanged: onChanged,
       textInputAction: TextInputAction.search,

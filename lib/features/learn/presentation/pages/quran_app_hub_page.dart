@@ -8,12 +8,14 @@ import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_sacred_block_chrome.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../quran/application/quran_hub_recommendations_provider.dart';
@@ -46,11 +48,14 @@ class QuranAppHubPage extends ConsumerStatefulWidget {
 }
 
 class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
-  bool _discoverQuranExpanded = true;
+  bool _discoverQuranExpanded = false;
+  bool _dailyReflectionExpanded = false;
+  late final QuranQuote _entryQuote;
 
   @override
   void initState() {
     super.initState();
+    _entryQuote = buildMessengerGuidanceQuoteForAccess();
   }
 
   @override
@@ -86,7 +91,6 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
 
     return LearnHubPageScaffold(
       ownsBackground: false,
-      showDefaultQuote: false,
       headerIcon: IslamicIcons.quran,
       title: l10n.quranAppHubTitle,
       subtitle: localizedAppPageDescription(
@@ -94,6 +98,7 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         AppPageDescriptionKey.quranHub,
         kidsMode: isKidsMode,
       ),
+      quote: _entryQuote,
       floatingBottom: MainPageShortcutStack(
         items: buildQuranPageShortcuts(l10n),
         openLabel: l10n.learnShortcutOpen,
@@ -101,9 +106,10 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
       ),
       children: [
         MainPageSearchLauncher(
+          hintText: l10n.quranAppHubSearchHint,
           destinations: [
             MainPageSearchDestination(
-              title: l10n.searchSurahHint,
+              title: l10n.quranAppHubSearchHint,
               subtitle: l10n.quranExplorerSubtitle,
               icon: Icons.search_rounded,
               keywords: ['search', 'surah', 'ayah', 'reader'],
@@ -172,7 +178,6 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
               ),
             ),
           ],
-          hintText: l10n.searchSurahHint,
           supplementalBuilder: (context, query, updateQuery) {
             if (query.trim().isEmpty) return null;
             return QuranCompactSearchResultsSection(
@@ -265,7 +270,17 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 10),
         SectionHubActionGrid(actions: studyActions),
         const SizedBox(height: 12),
-        const QuranDailyReflectionCard(showSecondaryActions: false),
+        _QuranDiscoverCard(
+          title: l10n.quranDailyReflectionTitle,
+          subtitle: l10n.quranDailyReflectionSubtitle,
+          isExpanded: _dailyReflectionExpanded,
+          onToggle: () {
+            setState(
+              () => _dailyReflectionExpanded = !_dailyReflectionExpanded,
+            );
+          },
+          child: const QuranDailyReflectionCard(showSecondaryActions: false),
+        ),
         const SizedBox(height: 12),
         if (recommendations.isNotEmpty)
           _QuranRecommendationSection(recommendations: recommendations),

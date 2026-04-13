@@ -1,0 +1,18 @@
+# Temporary reviewed exceptions for current Flutter runtime PNG assets.
+# Runtime imagery should migrate to WebP over time. Keep this list small and
+# remove entries as each area completes conversion and reference migration.
+
+# Explicit icon PNG exceptions still pending a dedicated follow-up pass.
+path:assets/icons/app_icondarkv2.png
+path:assets/icons/app_iconv2.png
+path:assets/icons/creative_palette.png
+path:assets/icons/journey_tree_cropped.png
+path:assets/icons/knowledge_globe.png
+path:assets/icons/map_location.png
+path:assets/icons/notification_bell.png
+path:assets/icons/quran_moon.png
+path:assets/icons/secure_lock.png
+path:assets/icons/worship_hands_cropped.png
+
+# Explicit runtime holdout retained on PNG pending separate visual review.
+path:assets/images/backgrounds/Loading.png

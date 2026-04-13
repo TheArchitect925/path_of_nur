@@ -258,5 +258,44 @@ void main() {
         contains('patient'),
       );
     });
+
+    test(
+      'source search reuses canonical narrator aliases and chapter labels',
+      () {
+        final aliasedNarratorEntry = seededHadithEntries.firstWhere(
+          (entry) => entry.id == 'leave_what_not_concern',
+        );
+        final chapterIndexedEntry = seededHadithEntries
+            .firstWhere((entry) => entry.id == 'intentions_core')
+            .copyWith(
+              sourceChapterId: 'foundations_of_intention',
+              sourceChapterTitle: 'Foundations of Intention',
+              sourceChapterNumber: 7,
+            );
+
+        final aliasResults = searchHadithEntries(
+          entries: <HadithEntry>[aliasedNarratorEntry],
+          request: const HadithSearchRequest(
+            query: 'Hurairah',
+            filter: HadithSearchFilter.source,
+          ),
+        );
+        final chapterResults = searchHadithEntries(
+          entries: <HadithEntry>[chapterIndexedEntry],
+          request: const HadithSearchRequest(
+            query: 'Foundations of Intention',
+            filter: HadithSearchFilter.source,
+          ),
+        );
+
+        expect(aliasResults, isNotEmpty);
+        expect(aliasResults.first.result.matchedField, HadithSearchMatchField.narrator);
+        expect(aliasResults.first.entry.id, aliasedNarratorEntry.id);
+
+        expect(chapterResults, isNotEmpty);
+        expect(chapterResults.first.result.matchedField, HadithSearchMatchField.chapter);
+        expect(chapterResults.first.entry.id, chapterIndexedEntry.id);
+      },
+    );
   });
 }

@@ -34,6 +34,7 @@ class LearnQuranHubPage extends ConsumerStatefulWidget {
 
 class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
   late LearnQuranHubTab _tab;
+  bool _quranCompanionExpanded = false;
 
   @override
   void initState() {
@@ -95,7 +96,32 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
           ),
         ),
         const SizedBox(height: 10),
-        const QuranLearningPersonalizationSection(),
+        PremiumCard(
+          child: Theme(
+            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              childrenPadding: EdgeInsets.zero,
+              initiallyExpanded: _quranCompanionExpanded,
+              onExpansionChanged: (expanded) {
+                setState(() => _quranCompanionExpanded = expanded);
+              },
+              title: Text(
+                l10n.quranCompanionSectionTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              subtitle: Text(l10n.quranCompanionSectionSubtitle),
+              children: const [
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: QuranLearningPersonalizationSection(wrapInCard: false),
+                ),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(height: 10),
         SegmentedPillControl<LearnQuranHubTab>(
           items: LearnQuranHubTab.values,

@@ -15,6 +15,9 @@ class LearnHubPageScaffold extends StatelessWidget {
     required this.subtitle,
     required this.children,
     this.headerIcon,
+    this.headerIconSize = 24,
+    this.headerIconSpacing = 12,
+    this.headerAlignment = AppPageHeaderAlignment.start,
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
     this.quote,
@@ -30,6 +33,9 @@ class LearnHubPageScaffold extends StatelessWidget {
   final String title;
   final String subtitle;
   final IconData? headerIcon;
+  final double headerIconSize;
+  final double headerIconSpacing;
+  final AppPageHeaderAlignment headerAlignment;
   final String? backgroundAssetPath;
   final Color? backgroundOverlayColor;
   final List<Widget> children;
@@ -47,10 +53,14 @@ class LearnHubPageScaffold extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return SectionHubScaffold(
       headerIcon: headerIcon,
+      headerIconSize: headerIconSize,
+      headerIconSpacing: headerIconSpacing,
+      headerAlignment: headerAlignment,
       title: title,
       subtitle: subtitle,
       quote: showDefaultQuote ? (quote ?? buildLearningCompactQuote()) : quote,
       quoteHeader: quoteHeader,
+      quoteUseOuterChrome: false,
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
       shortcutActions: shortcutActions,

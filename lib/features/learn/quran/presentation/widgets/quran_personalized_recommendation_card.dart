@@ -20,12 +20,14 @@ class QuranPersonalizedRecommendationCard extends ConsumerStatefulWidget {
     required this.surface,
     this.allowDismiss = false,
     this.useHeroGlassShell = false,
+    this.onDismissed,
   });
 
   final QuranRecommendationBundle bundle;
   final QuranPersonalizationSurface surface;
   final bool allowDismiss;
   final bool useHeroGlassShell;
+  final VoidCallback? onDismissed;
 
   @override
   ConsumerState<QuranPersonalizedRecommendationCard> createState() =>
@@ -124,6 +126,7 @@ class _QuranPersonalizedRecommendationCardState
                         surface: widget.surface,
                         ayahKey: recommendation.ayahKey,
                       );
+                  widget.onDismissed?.call();
                 },
                 icon: const Icon(Icons.close_rounded),
               ),

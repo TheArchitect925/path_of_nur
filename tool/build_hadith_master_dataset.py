@@ -13,7 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 SEED_PATH = ROOT / "lib/features/learn/hadith/data/seeded_hadith_foundation_data.dart"
 RAW_INPUT_PATH = ROOT / "data/hadith/raw/hadith_source_records.json"
 EDITORIAL_INPUT_PATH = ROOT / "data/hadith/editorial/hadith_editorial_enrichment.json"
+TRANSLITERATION_INPUT_PATH = ROOT / "data/hadith/raw/hadith_transliteration_records.json"
 OUTPUT_JSON_PATH = ROOT / "data/hadith/hadith_master_dataset.json"
+TRANSLITERATION_REPORT_PATH = ROOT / "data/hadith/hadith_transliteration_ingestion_report.json"
+TRANSLITERATION_REVIEW_QUEUE_PATH = ROOT / "data/hadith/hadith_transliteration_review_queue.json"
+TRANSLITERATION_REVIEW_QUEUE_CSV_PATH = ROOT / "data/hadith/hadith_transliteration_review_queue.csv"
 OUTPUT_DART_PATH = (
     ROOT / "lib/features/learn/hadith/data/generated_hadith_foundation_data.dart"
 )
@@ -104,6 +108,18 @@ class RawHadithRecord:
 
 
 @dataclass(frozen=True)
+class TransliterationImportRecord:
+    source_reference_key: str
+    source_collection: str
+    source_reference: str
+    transliteration_text: str
+    transliteration_source: str
+    quality_status: str
+    review_status: str | None
+    reviewed_at: str | None
+
+
+@dataclass(frozen=True)
 class EditorialQuranConnection:
     surah_name: str
     surah_number: int
@@ -150,6 +166,24 @@ class ReleaseDecision:
     source_record_id: str
     included: bool
     reasons: list[str]
+
+
+@dataclass(frozen=True)
+class TransliterationIngestionReport:
+    matched_entries: int
+    matched_reference_groups: int
+    derivative_entries_reused: int
+    runtime_reference_groups: int
+    import_reference_groups: int
+    unmatched_runtime_references: list[str]
+    unmatched_import_records: list[str]
+    duplicate_reference_groups: dict[str, list[str]]
+    duplicate_import_records: dict[str, list[str]]
+    conflicting_import_records: dict[str, list[dict[str, str]]]
+    review_required_records: list[str]
+    rejected_records: list[str]
+    manual_review_records: list[str]
+    review_queue: list[dict[str, Any]]
 
 
 def _read(path: Path) -> str:
@@ -358,12 +392,49 @@ def normalize_narrator(value: str | None) -> str | None:
     return normalized or None
 
 
+def normalize_transliteration_status(value: str | None, text: str | None) -> str:
+    normalized = (normalize_spacing(value) or "").lower()
+    if not normalize_spacing(text):
+        return "missing"
+    if normalized in {"trusted", "verified"}:
+        return "trusted"
+    if normalized in {"review_required", "review required", "needs_review", "needs review"}:
+        return "reviewRequired"
+    if normalized in {"unverified", "imported_unverified"}:
+        return "unverified"
+    return "unverified"
+
+
+def normalize_transliteration_review_status(value: str | None) -> str:
+    normalized = (normalize_spacing(value) or "").lower()
+    if normalized in {"rejected", "reject"}:
+        return "rejected"
+    if normalized in {"approved", "reviewed", "verified"}:
+        return "approved"
+    if normalized in {"pending", "needs_review", "needs review", "review_required"}:
+        return "pending"
+    return "notReviewed"
+
+
 def slugify(value: str) -> str:
     slug = value.lower()
     slug = re.sub(r"[‘’']", "", slug)
     slug = re.sub(r"[^\w]+", "_", slug, flags=re.UNICODE)
     slug = re.sub(r"_+", "_", slug).strip("_")
     return slug
+
+
+def build_source_reference_key(source_collection: str | None, source_reference: str | None) -> str:
+    collection_titles = split_collection_titles(source_collection or "")
+    primary_collection_id = normalize_collection_id(collection_titles[0]) if collection_titles else ""
+    normalized_reference = slugify(normalize_spacing(source_reference) or "")
+    if not primary_collection_id and not normalized_reference:
+        return ""
+    if not primary_collection_id:
+        return normalized_reference
+    if not normalized_reference:
+        return primary_collection_id
+    return f"{primary_collection_id}__{normalized_reference}"
 
 
 def split_collection_titles(value: str) -> list[str]:
@@ -455,7 +526,11 @@ def generate_entry_id(raw: RawHadithRecord, editorial: EditorialHadithRecord) ->
     return slugify(basis)
 
 
-def build_canonical_record(raw: RawHadithRecord, editorial: EditorialHadithRecord) -> CanonicalHadithRecord:
+def build_canonical_record(
+    raw: RawHadithRecord,
+    editorial: EditorialHadithRecord,
+    transliteration_record: TransliterationImportRecord | None = None,
+) -> CanonicalHadithRecord:
     collection_titles = split_collection_titles(raw.source_collection)
     source_collection_ids = [normalize_collection_id(title) for title in collection_titles]
     primary_collection_title = collection_titles[0] if collection_titles else normalize_spacing(raw.source_collection)
@@ -467,6 +542,28 @@ def build_canonical_record(raw: RawHadithRecord, editorial: EditorialHadithRecor
     chapter_id = slugify(chapter_title) if chapter_title else None
     hadith_numbers = [item for item in raw.hadith_numbers if normalize_spacing(item)] or extract_hadith_numbers(raw.source_reference)
     narrator = normalize_narrator(raw.narrator)
+    reference_key = build_source_reference_key(raw.source_collection, raw.source_reference)
+    transliteration_text = normalize_spacing(
+        transliteration_record.transliteration_text if transliteration_record else raw.transliteration
+    )
+    transliteration_source = normalize_spacing(
+        transliteration_record.transliteration_source if transliteration_record else None
+    )
+    transliteration_status = normalize_transliteration_status(
+        transliteration_record.quality_status if transliteration_record else None,
+        transliteration_text,
+    )
+    transliteration_review_status = normalize_transliteration_review_status(
+        transliteration_record.review_status if transliteration_record else None
+    )
+    transliteration_reviewed_at = normalize_spacing(
+        transliteration_record.reviewed_at if transliteration_record else None
+    )
+    transliteration_verified = (
+        raw.verification.is_verified_transliteration
+        if transliteration_record is None
+        else transliteration_status == "trusted"
+    )
     category_id = editorial.category_id
     category_title = editorial.category_title
     subcategory_id = editorial.subcategory_id
@@ -487,11 +584,16 @@ def build_canonical_record(raw: RawHadithRecord, editorial: EditorialHadithRecor
         "hadithText": raw.translation_text.strip(),
         "englishText": raw.translation_text.strip(),
         "arabicText": raw.arabic_text.strip(),
-        "transliteration": normalize_spacing(raw.transliteration),
+        "transliteration": transliteration_text,
+        "sourceReferenceKey": reference_key,
+        "transliterationSource": transliteration_source,
+        "transliterationStatus": transliteration_status,
+        "transliterationReviewStatus": transliteration_review_status,
+        "transliterationReviewedAt": transliteration_reviewed_at,
         "sourceUrl": normalize_spacing(raw.source_url),
         "translationSourceVerified": raw.verification.is_verified_translation,
         "arabicMatnSourceVerified": raw.verification.is_verified_text,
-        "transliterationSourceVerified": raw.verification.is_verified_transliteration,
+        "transliterationSourceVerified": transliteration_verified,
         "source": f"{normalize_spacing(raw.source_collection) or ''} {source_reference or ''}".strip(),
         "sourceCollection": normalize_spacing(raw.source_collection),
         "sourceReference": source_reference,
@@ -646,6 +748,7 @@ def write_bootstrap_inputs() -> None:
     raw_records, editorial_records = bootstrap_inputs_from_seed()
     RAW_INPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     EDITORIAL_INPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    TRANSLITERATION_INPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     RAW_INPUT_PATH.write_text(
         json.dumps(
             {
@@ -734,6 +837,24 @@ def write_bootstrap_inputs() -> None:
         + "\n",
         encoding="utf-8",
     )
+    if not TRANSLITERATION_INPUT_PATH.exists():
+        TRANSLITERATION_INPUT_PATH.write_text(
+            json.dumps(
+                {
+                    "metadata": {
+                        "generatedAt": datetime.now(timezone.utc).isoformat(),
+                        "source": "trusted_transliteration_import_placeholder",
+                        "recordCount": 0,
+                        "notes": "Populate only with trusted human-curated transliteration exports matched by canonical source reference.",
+                    },
+                    "entries": [],
+                },
+                indent=2,
+                ensure_ascii=False,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
 
 
 def load_raw_records(path: Path) -> list[RawHadithRecord]:
@@ -804,13 +925,125 @@ def load_editorial_records(path: Path) -> list[EditorialHadithRecord]:
     return records
 
 
+def load_transliteration_records(path: Path) -> list[TransliterationImportRecord]:
+    if not path.exists():
+        return []
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    records: list[TransliterationImportRecord] = []
+    for item in payload.get("entries", []):
+        source_collection = item.get("sourceCollection", "")
+        source_reference = item.get("sourceReference", "")
+        derived_key = build_source_reference_key(source_collection, source_reference)
+        source_reference_key = normalize_spacing(item.get("sourceReferenceKey")) or derived_key
+        records.append(
+            TransliterationImportRecord(
+                source_reference_key=source_reference_key,
+                source_collection=normalize_spacing(source_collection) or "",
+                source_reference=normalize_spacing(source_reference) or "",
+                transliteration_text=item.get("transliterationText", ""),
+                transliteration_source=item.get("transliterationSource", ""),
+                quality_status=item.get("qualityStatus", ""),
+                review_status=item.get("reviewStatus"),
+                reviewed_at=item.get("reviewedAt"),
+            )
+        )
+    return records
+
+
+def _index_transliteration_records(
+    records: list[TransliterationImportRecord],
+) -> tuple[
+    dict[str, TransliterationImportRecord],
+    dict[str, list[str]],
+    dict[str, list[dict[str, str]]],
+    list[str],
+    list[str],
+]:
+    indexed: dict[str, TransliterationImportRecord] = {}
+    duplicate_imports: dict[str, list[str]] = {}
+    conflicting_imports: dict[str, list[dict[str, str]]] = {}
+    manual_review_records: list[str] = []
+    rejected_records: list[str] = []
+    grouped: dict[str, list[TransliterationImportRecord]] = {}
+    for record in records:
+        grouped.setdefault(record.source_reference_key, []).append(record)
+    for key, items in grouped.items():
+        if not key:
+            duplicate_imports[key or "<missing_key>"] = [
+                item.source_reference or item.source_collection
+                for item in items
+            ]
+            manual_review_records.append(key or "<missing_key>")
+            continue
+        normalized_texts = {
+            normalize_spacing(item.transliteration_text) or ""
+            for item in items
+        }
+        if len(items) > 1:
+            duplicate_imports[key] = [
+                item.source_reference or item.source_collection
+                for item in items
+            ]
+            if len(normalized_texts) > 1:
+                conflicting_imports[key] = [
+                    {
+                        "sourceReference": item.source_reference,
+                        "transliterationSource": item.transliteration_source,
+                        "qualityStatus": item.quality_status,
+                        "reviewStatus": item.review_status or "",
+                        "transliterationText": normalize_spacing(
+                            item.transliteration_text
+                        )
+                        or "",
+                    }
+                    for item in items
+                ]
+            manual_review_records.append(key)
+            continue
+        item = items[0]
+        if not normalize_spacing(item.transliteration_text):
+            manual_review_records.append(key)
+            continue
+        if normalize_transliteration_review_status(item.review_status) == "rejected":
+            rejected_records.append(key)
+            manual_review_records.append(key)
+            continue
+        indexed[key] = item
+        if (
+            normalize_transliteration_status(item.quality_status, item.transliteration_text)
+            == "reviewRequired"
+        ):
+            manual_review_records.append(key)
+    return (
+        indexed,
+        duplicate_imports,
+        conflicting_imports,
+        sorted(set(manual_review_records)),
+        sorted(set(rejected_records)),
+    )
+
+
 def build_dataset(
     raw_records: list[RawHadithRecord],
     editorial_records: list[EditorialHadithRecord],
-) -> tuple[list[dict[str, Any]], list[ReleaseDecision]]:
+    transliteration_records: list[TransliterationImportRecord],
+) -> tuple[list[dict[str, Any]], list[ReleaseDecision], TransliterationIngestionReport]:
     editorial_by_id = {record.source_record_id: record for record in editorial_records}
+    (
+        transliteration_by_key,
+        duplicate_import_records,
+        conflicting_import_records,
+        manual_review_records,
+        rejected_records,
+    ) = _index_transliteration_records(transliteration_records)
+    for raw in raw_records:
+        reference_key = build_source_reference_key(raw.source_collection, raw.source_reference)
+    runtime_reference_groups: dict[str, list[str]] = {}
     entries: list[dict[str, Any]] = []
     decisions: list[ReleaseDecision] = []
+    matched_entry_count = 0
+    matched_reference_keys: set[str] = set()
+    review_queue: list[dict[str, Any]] = []
     for raw in raw_records:
         editorial = editorial_by_id.get(raw.source_record_id)
         if editorial is None:
@@ -822,7 +1055,12 @@ def build_dataset(
                 )
             )
             continue
-        canonical = build_canonical_record(raw, editorial)
+        reference_key = build_source_reference_key(raw.source_collection, raw.source_reference)
+        transliteration_record = transliteration_by_key.get(reference_key)
+        if transliteration_record is not None:
+            matched_entry_count += 1
+            matched_reference_keys.add(reference_key)
+        canonical = build_canonical_record(raw, editorial, transliteration_record)
         reasons = release_gate_failures(canonical)
         decisions.append(
             ReleaseDecision(
@@ -833,12 +1071,135 @@ def build_dataset(
         )
         if not reasons:
             entries.append(canonical.payload)
+            if reference_key:
+                runtime_reference_groups.setdefault(reference_key, []).append(
+                    canonical.payload["id"]
+                )
     entries.sort(key=lambda item: item["id"])
     decisions.sort(key=lambda item: item.source_record_id)
-    return entries, decisions
+    duplicate_reference_groups = {
+        key: ids
+        for key, ids in runtime_reference_groups.items()
+        if len(ids) > 1
+    }
+    unmatched_import_records = sorted(
+        key for key in transliteration_by_key.keys() if key not in matched_reference_keys
+    )
+    unmatched_runtime_references = sorted(
+        key for key in runtime_reference_groups.keys() if key not in transliteration_by_key
+    )
+    derivative_entries_reused = sum(
+        max(0, len(ids) - 1)
+        for key, ids in duplicate_reference_groups.items()
+        if key in matched_reference_keys
+    )
+    for key in unmatched_runtime_references:
+        review_queue.append(
+            {
+                "referenceKey": key,
+                "status": "unmatched",
+                "reason": "runtime_reference_missing_trusted_import",
+                "runtimeEntryIds": runtime_reference_groups.get(key, []),
+                "importCandidates": [],
+            }
+        )
+    for key in sorted(conflicting_import_records.keys()):
+        review_queue.append(
+            {
+                "referenceKey": key,
+                "status": "needs_review",
+                "reason": "conflicting_import_payloads",
+                "runtimeEntryIds": runtime_reference_groups.get(key, []),
+                "importCandidates": conflicting_import_records[key],
+            }
+        )
+    for key in sorted(rejected_records):
+        record = transliteration_by_key.get(key)
+        review_queue.append(
+            {
+                "referenceKey": key,
+                "status": "rejected",
+                "reason": "curator_marked_rejected",
+                "runtimeEntryIds": runtime_reference_groups.get(key, []),
+                "importCandidates": []
+                if record is None
+                else [
+                    {
+                        "sourceReference": record.source_reference,
+                        "transliterationSource": record.transliteration_source,
+                        "qualityStatus": record.quality_status,
+                        "reviewStatus": record.review_status or "",
+                        "transliterationText": normalize_spacing(
+                            record.transliteration_text
+                        )
+                        or "",
+                    }
+                ],
+            }
+        )
+    for key in sorted(manual_review_records):
+        if key in conflicting_import_records or key in rejected_records:
+            continue
+        record = transliteration_by_key.get(key)
+        review_queue.append(
+            {
+                "referenceKey": key,
+                "status": "needs_review",
+                "reason": "import_record_requires_manual_review",
+                "runtimeEntryIds": runtime_reference_groups.get(key, []),
+                "importCandidates": []
+                if record is None
+                else [
+                    {
+                        "sourceReference": record.source_reference,
+                        "transliterationSource": record.transliteration_source,
+                        "qualityStatus": record.quality_status,
+                        "reviewStatus": record.review_status or "",
+                        "transliterationText": normalize_spacing(
+                            record.transliteration_text
+                        )
+                        or "",
+                    }
+                ],
+            }
+        )
+    for key in unmatched_import_records:
+        review_queue.append(
+            {
+                "referenceKey": key,
+                "status": "unmatched",
+                "reason": "trusted_import_missing_runtime_reference",
+                "runtimeEntryIds": [],
+                "importCandidates": [],
+            }
+        )
+    review_queue.sort(key=lambda item: (item["status"], item["referenceKey"]))
+    report = TransliterationIngestionReport(
+        matched_entries=matched_entry_count,
+        matched_reference_groups=len(matched_reference_keys),
+        derivative_entries_reused=derivative_entries_reused,
+        runtime_reference_groups=len(runtime_reference_groups),
+        import_reference_groups=len(transliteration_by_key),
+        unmatched_runtime_references=unmatched_runtime_references,
+        unmatched_import_records=unmatched_import_records,
+        duplicate_reference_groups=duplicate_reference_groups,
+        duplicate_import_records=duplicate_import_records,
+        conflicting_import_records=conflicting_import_records,
+        review_required_records=sorted(
+            key for key in manual_review_records if key not in rejected_records
+        ),
+        rejected_records=rejected_records,
+        manual_review_records=manual_review_records,
+        review_queue=review_queue,
+    )
+    return entries, decisions, report
 
 
-def build_master_dataset_json(entries: list[dict[str, Any]], decisions: list[ReleaseDecision]) -> str:
+def build_master_dataset_json(
+    entries: list[dict[str, Any]],
+    decisions: list[ReleaseDecision],
+    transliteration_report: TransliterationIngestionReport,
+) -> str:
     return json.dumps(
         {
             "metadata": {
@@ -855,6 +1216,20 @@ def build_master_dataset_json(entries: list[dict[str, Any]], decisions: list[Rel
                     "verified_translation",
                     "verified_transliteration_when_present",
                 ],
+                "transliterationIngestion": {
+                    "matchedEntries": transliteration_report.matched_entries,
+                    "matchedReferenceGroups": transliteration_report.matched_reference_groups,
+                    "runtimeReferenceGroups": transliteration_report.runtime_reference_groups,
+                    "importReferenceGroups": transliteration_report.import_reference_groups,
+                    "unmatchedRuntimeReferences": len(
+                        transliteration_report.unmatched_runtime_references
+                    ),
+                    "unmatchedImportRecords": len(
+                        transliteration_report.unmatched_import_records
+                    ),
+                    "derivativeEntriesReused": transliteration_report.derivative_entries_reused,
+                    "manualReviewRecords": len(transliteration_report.manual_review_records),
+                },
             },
             "excludedEntries": [
                 {
@@ -869,6 +1244,62 @@ def build_master_dataset_json(entries: list[dict[str, Any]], decisions: list[Rel
         indent=2,
         ensure_ascii=False,
     ) + "\n"
+
+
+def build_transliteration_report_json(report: TransliterationIngestionReport) -> str:
+    return json.dumps(
+        {
+            "metadata": {
+                "generatedAt": datetime.now(timezone.utc).isoformat(),
+                "source": "trusted_hadith_transliteration_ingestion_foundation",
+            },
+            "summary": {
+                "matchedEntries": report.matched_entries,
+                "matchedReferenceGroups": report.matched_reference_groups,
+                "derivativeEntriesReused": report.derivative_entries_reused,
+                "runtimeReferenceGroups": report.runtime_reference_groups,
+                "importReferenceGroups": report.import_reference_groups,
+                "unmatchedRuntimeReferences": len(report.unmatched_runtime_references),
+                "unmatchedImportRecords": len(report.unmatched_import_records),
+                "duplicateReferenceGroups": len(report.duplicate_reference_groups),
+                "duplicateImportRecords": len(report.duplicate_import_records),
+                "conflictingImportRecords": len(report.conflicting_import_records),
+                "reviewRequiredRecords": len(report.review_required_records),
+                "rejectedRecords": len(report.rejected_records),
+                "manualReviewRecords": len(report.manual_review_records),
+            },
+            "unmatchedRuntimeReferences": report.unmatched_runtime_references,
+            "unmatchedImportRecords": report.unmatched_import_records,
+            "duplicateReferenceGroups": report.duplicate_reference_groups,
+            "duplicateImportRecords": report.duplicate_import_records,
+            "conflictingImportRecords": report.conflicting_import_records,
+            "reviewRequiredRecords": report.review_required_records,
+            "rejectedRecords": report.rejected_records,
+            "manualReviewRecords": report.manual_review_records,
+            "reviewQueue": report.review_queue,
+        },
+        indent=2,
+        ensure_ascii=False,
+    ) + "\n"
+
+
+def build_transliteration_review_queue_csv(report: TransliterationIngestionReport) -> str:
+    lines = [
+        "referenceKey,status,reason,runtimeEntryCount,importCandidateCount,runtimeEntryIds"
+    ]
+    for item in report.review_queue:
+        runtime_entry_ids = "|".join(item.get("runtimeEntryIds", []))
+        row = [
+            item.get("referenceKey", ""),
+            item.get("status", ""),
+            item.get("reason", ""),
+            str(len(item.get("runtimeEntryIds", []))),
+            str(len(item.get("importCandidates", []))),
+            runtime_entry_ids,
+        ]
+        escaped = ['"' + value.replace('"', '""') + '"' for value in row]
+        lines.append(",".join(escaped))
+    return "\n".join(lines) + "\n"
 
 
 def build_generated_dart(entries: list[dict[str, Any]]) -> str:
@@ -899,6 +1330,12 @@ def _emit_dart_entry(entry: dict[str, Any]) -> list[str]:
         f"    englishText: {_dart_nullable_string(entry.get('englishText'))},",
         f"    arabicText: {_dart_nullable_string(entry.get('arabicText'))},",
         f"    transliteration: {_dart_nullable_string(entry.get('transliteration'))},",
+        f"    sourceReferenceKey: {_dart_nullable_string(entry.get('sourceReferenceKey'))},",
+        f"    transliterationSource: {_dart_nullable_string(entry.get('transliterationSource'))},",
+        f"    transliterationStatus: HadithTransliterationStatus.{entry['transliterationStatus']},",
+        "    transliterationReviewStatus: "
+        f"HadithTransliterationReviewStatus.{entry['transliterationReviewStatus']},",
+        f"    transliterationReviewedAt: {_dart_nullable_string(entry.get('transliterationReviewedAt'))},",
         f"    sourceUrl: {_dart_nullable_string(entry.get('sourceUrl'))},",
         f"    translationSourceVerified: {str(entry['translationSourceVerified']).lower()},",
         f"    arabicMatnSourceVerified: {str(entry['arabicMatnSourceVerified']).lower()},",
@@ -938,7 +1375,18 @@ def _emit_dart_entry(entry: dict[str, Any]) -> list[str]:
 
 
 def _dart_string(value: str) -> str:
-    return json.dumps(value, ensure_ascii=False)
+    rendered = json.dumps(value, ensure_ascii=False)
+    return (
+        rendered.replace("\u202a", "\\u202A")
+        .replace("\u202b", "\\u202B")
+        .replace("\u202c", "\\u202C")
+        .replace("\u202d", "\\u202D")
+        .replace("\u202e", "\\u202E")
+        .replace("\u2066", "\\u2066")
+        .replace("\u2067", "\\u2067")
+        .replace("\u2068", "\\u2068")
+        .replace("\u2069", "\\u2069")
+    )
 
 
 def _dart_nullable_string(value: str | None) -> str:
@@ -947,7 +1395,7 @@ def _dart_nullable_string(value: str | None) -> str:
 
 def _dart_string_list(values: list[str]) -> str:
     if not values:
-        return "const <String>[]"
+        return "[]"
     return "[" + ", ".join(_dart_string(value) for value in values) + "]"
 
 
@@ -957,7 +1405,7 @@ def _dart_nullable_int(value: int | None) -> str:
 
 def _emit_quran_connections(values: list[dict[str, Any]]) -> str:
     if not values:
-        return "const <QuranConnection>[]"
+        return "[]"
     rendered = []
     for item in values:
         rendered.append(
@@ -985,7 +1433,12 @@ def main() -> int:
 
     raw_records = load_raw_records(RAW_INPUT_PATH)
     editorial_records = load_editorial_records(EDITORIAL_INPUT_PATH)
-    entries, decisions = build_dataset(raw_records, editorial_records)
+    transliteration_records = load_transliteration_records(TRANSLITERATION_INPUT_PATH)
+    entries, decisions, transliteration_report = build_dataset(
+        raw_records,
+        editorial_records,
+        transliteration_records,
+    )
 
     duplicates = sorted(
         entry_id
@@ -1002,11 +1455,37 @@ def main() -> int:
             print(f"Release gate excluded {len(excluded)} records.")
             for item in excluded[:20]:
                 print(f" - {item.source_record_id}: {', '.join(item.reasons)}")
+        print(
+            "Transliteration ingestion:"
+            f" matched {transliteration_report.matched_entries} entries across"
+            f" {transliteration_report.matched_reference_groups} reference groups;"
+            f" unmatched runtime {len(transliteration_report.unmatched_runtime_references)};"
+            f" unmatched imports {len(transliteration_report.unmatched_import_records)};"
+            f" review required {len(transliteration_report.review_required_records)};"
+            f" rejected {len(transliteration_report.rejected_records)}."
+        )
         print(f"Hadith pipeline validation passed for {len(entries)} entries.")
         return 0
 
     OUTPUT_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_JSON_PATH.write_text(build_master_dataset_json(entries, decisions), encoding="utf-8")
+    OUTPUT_JSON_PATH.write_text(
+        build_master_dataset_json(entries, decisions, transliteration_report),
+        encoding="utf-8",
+    )
+    TRANSLITERATION_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    TRANSLITERATION_REPORT_PATH.write_text(
+        build_transliteration_report_json(transliteration_report),
+        encoding="utf-8",
+    )
+    TRANSLITERATION_REVIEW_QUEUE_PATH.write_text(
+        json.dumps(transliteration_report.review_queue, indent=2, ensure_ascii=False)
+        + "\n",
+        encoding="utf-8",
+    )
+    TRANSLITERATION_REVIEW_QUEUE_CSV_PATH.write_text(
+        build_transliteration_review_queue_csv(transliteration_report),
+        encoding="utf-8",
+    )
     OUTPUT_DART_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_DART_PATH.write_text(build_generated_dart(entries), encoding="utf-8")
     excluded = [item for item in decisions if not item.included]
@@ -1014,6 +1493,15 @@ def main() -> int:
         print(f"Release gate excluded {len(excluded)} records from the public runtime dataset.")
         for item in excluded[:20]:
             print(f" - {item.source_record_id}: {', '.join(item.reasons)}")
+    print(
+        "Transliteration ingestion report:"
+        f" matched {transliteration_report.matched_entries} entries across"
+        f" {transliteration_report.matched_reference_groups} reference groups;"
+        f" unmatched runtime {len(transliteration_report.unmatched_runtime_references)};"
+        f" unmatched imports {len(transliteration_report.unmatched_import_records)};"
+        f" review required {len(transliteration_report.review_required_records)};"
+        f" rejected {len(transliteration_report.rejected_records)}."
+    )
     print(f"Built Hadith dataset with {len(entries)} verified entries.")
     return 0
 

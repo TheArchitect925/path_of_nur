@@ -1,23 +1,23 @@
 const _gardenLevelArt = <int, String>{
-  1: 'assets/images/backgrounds/glv1.PNG',
-  3: 'assets/images/backgrounds/glv3.PNG',
-  4: 'assets/images/backgrounds/glv4.PNG',
-  5: 'assets/images/backgrounds/glv5.PNG',
-  6: 'assets/images/backgrounds/glv6.PNG',
-  7: 'assets/images/backgrounds/glv7.PNG',
+  1: 'assets/images/backgrounds/glv1.webp',
+  3: 'assets/images/backgrounds/glv3.webp',
+  4: 'assets/images/backgrounds/glv4.webp',
+  5: 'assets/images/backgrounds/glv5.webp',
+  6: 'assets/images/backgrounds/glv6.webp',
+  7: 'assets/images/backgrounds/glv7.webp',
 };
 
 const Map<String, String> gardenImageAssetPaths = <String, String>{
-  'garden/first_seed': 'assets/images/backgrounds/glv1.PNG',
-  'garden/gentle_rain': 'assets/images/backgrounds/glv1.PNG',
-  'garden/olive_shoot': 'assets/images/backgrounds/glv3.PNG',
-  'garden/morning_path': 'assets/images/backgrounds/glv4.PNG',
-  'garden/quiet_fountain': 'assets/images/backgrounds/glv5.PNG',
-  'garden/olive_courtyard': 'assets/images/backgrounds/glv6.PNG',
-  'garden/lamp_walk': 'assets/images/backgrounds/glv7.PNG',
-  'garden/mercy_rain': 'assets/images/backgrounds/glv7.PNG',
-  'garden/star_reflection': 'assets/images/backgrounds/glv7.PNG',
-  'garden/path_of_nur': 'assets/images/backgrounds/glv7.PNG',
+  'garden/first_seed': 'assets/images/backgrounds/glv1.webp',
+  'garden/gentle_rain': 'assets/images/backgrounds/glv1.webp',
+  'garden/olive_shoot': 'assets/images/backgrounds/glv3.webp',
+  'garden/morning_path': 'assets/images/backgrounds/glv4.webp',
+  'garden/quiet_fountain': 'assets/images/backgrounds/glv5.webp',
+  'garden/olive_courtyard': 'assets/images/backgrounds/glv6.webp',
+  'garden/lamp_walk': 'assets/images/backgrounds/glv7.webp',
+  'garden/mercy_rain': 'assets/images/backgrounds/glv7.webp',
+  'garden/star_reflection': 'assets/images/backgrounds/glv7.webp',
+  'garden/path_of_nur': 'assets/images/backgrounds/glv7.webp',
 };
 
 String gardenImageAssetPath(String imageAsset) {

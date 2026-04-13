@@ -20,28 +20,28 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get notificationsPrayerNotificationOnlyChannelName =>
-      'Salah Reminders (Notification)';
+      'ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀਆਂ (ਨੋਟੀਫਿਕੇਸ਼ਨ)';
 
   @override
   String get notificationsPrayerNotificationOnlyChannelDescription =>
-      'Salah reminder notifications without adhan audio';
+      'ਅਜ਼ਾਨ ਆਡੀਓ ਤੋਂ ਬਿਨਾਂ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀ ਨੋਟੀਫਿਕੇਸ਼ਨ';
 
   @override
   String notificationsPrayerAdhanChannelName(String adhanTitle) {
-    return 'Salah Reminders ($adhanTitle)';
+    return 'ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀਆਂ ($adhanTitle)';
   }
 
   @override
   String get notificationsPrayerAdhanChannelDescription =>
-      'Salah reminder notifications with adhan audio';
+      'ਅਜ਼ਾਨ ਆਡੀਓ ਨਾਲ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀ ਨੋਟੀਫਿਕੇਸ਼ਨ';
 
   @override
   String get notificationsPrayerBeforeQazaChannelName =>
-      'Salah Reminders (Before Qaza)';
+      'ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀਆਂ (ਕਜ਼ਾ ਤੋਂ ਪਹਿਲਾਂ)';
 
   @override
   String get notificationsPrayerBeforeQazaChannelDescription =>
-      'Salah reminder notifications before qada';
+      'ਕਜ਼ਾ ਤੋਂ ਪਹਿਲਾਂ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਣੀ ਨੋਟੀਫਿਕੇਸ਼ਨ';
 
   @override
   String get notificationsDailyRemindersChannelName => 'ਰੋਜ਼ਾਨਾ ਯਾਦ ਦਿਹਾਨੀਆਂ';
@@ -63,7 +63,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String notificationsPrayerAtTimeTitle(String prayerName) {
-    return '$prayerName Salah';
+    return '$prayerName ਨਮਾਜ਼';
   }
 
   @override
@@ -84,25 +84,25 @@ class AppLocalizationsPa extends AppLocalizations {
   String get notificationsFastingTitle => 'ਰੋਜ਼ੇ ਦੀ ਯਾਦ ਦਿਹਾਨੀ';
 
   @override
-  String get notificationsOnThisDayTitle => 'On This Day';
+  String get notificationsOnThisDayTitle => 'ਅੱਜ ਦੇ ਦਿਨ';
 
   @override
   String get notificationsCycleCheckTitle => 'ਚੱਕਰ ਜਾਂਚ';
 
   @override
-  String get notificationsMoonriseTitle => 'Moonrise';
+  String get notificationsMoonriseTitle => 'ਚੰਦ ਚੜ੍ਹਨਾ';
 
   @override
-  String get notificationsMoonsetTitle => 'Moonset';
+  String get notificationsMoonsetTitle => 'ਚੰਦ ਡੁੱਬਣਾ';
 
   @override
   String notificationsPrayerAtTimeBody(String prayerName) {
-    return 'It is time for $prayerName Salah. Stay connected with your salah.';
+    return 'ਹੁਣ $prayerName ਨਮਾਜ਼ ਦਾ ਸਮਾਂ ਹੈ। ਆਪਣੀ ਨਮਾਜ਼ ਨਾਲ ਜੁੜੇ ਰਹੋ।';
   }
 
   @override
   String notificationsPrayerAtTimeFajrBody(String prayerName) {
-    return 'It is time for $prayerName Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
+    return 'ਹੁਣ $prayerName ਨਮਾਜ਼ ਦਾ ਸਮਾਂ ਹੈ।\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
   }
 
   @override
@@ -125,17 +125,17 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get notificationsOnThisDayBody =>
-      'Open today’s historical reflection and revisit a meaningful moment from Islamic history.';
+      'ਅੱਜ ਦੀ ਇਤਿਹਾਸਕ ਚਿੰਤਨ ਝਲਕ ਖੋਲ੍ਹੋ ਅਤੇ ਇਸਲਾਮੀ ਇਤਿਹਾਸ ਦੇ ਕਿਸੇ ਅਰਥਪੂਰਨ ਪਲ ਨੂੰ ਫਿਰ ਵੇਖੋ।';
 
   @override
   String get notificationsCycleCheckBody =>
       'ਆਪਣੀ ਹਾਲਤ ਵੇਖੋ ਅਤੇ ਤਿਆਰ ਹੋਣ ਤੇ ਨਮਾਜ਼ ਯਾਦ ਦਿਹਾਨੀਆਂ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
-  String get notificationsMoonriseBody => 'The moon is rising now.';
+  String get notificationsMoonriseBody => 'ਚੰਦ ਹੁਣ ਚੜ੍ਹ ਰਿਹਾ ਹੈ।';
 
   @override
-  String get notificationsMoonsetBody => 'The moon is setting now.';
+  String get notificationsMoonsetBody => 'ਚੰਦ ਹੁਣ ਡੁੱਬ ਰਿਹਾ ਹੈ।';
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -143,44 +143,48 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get notificationsPrayerActionMarkPrayed => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkPrayed =>
+      'ਨਮਾਜ਼ ਅਦਾ ਹੋਈ ਵਜੋਂ ਨਿਸ਼ਾਨ ਲਗਾਓ';
 
   @override
   String get notificationsPrayerActionMarkPrayedLate =>
-      'Mark Salah as offered late';
+      'ਨਮਾਜ਼ ਦੇਰ ਨਾਲ ਅਦਾ ਹੋਈ ਵਜੋਂ ਨਿਸ਼ਾਨ ਲਗਾਓ';
 
   @override
-  String get notificationsPrayerActionSnooze => 'Snooze';
+  String get notificationsPrayerActionSnooze => 'ਥੋੜ੍ਹੀ ਦੇਰ ਲਈ ਰੋਕੋ';
 
   @override
-  String get notificationsPrayerActionSnooze5 => 'Remind me in 5 min';
+  String get notificationsPrayerActionSnooze5 => 'ਮੈਨੂੰ 5 ਮਿੰਟ ਵਿੱਚ ਯਾਦ ਦਿਵਾਓ';
 
   @override
-  String get notificationsPrayerActionSnooze10 => 'Remind me in 10 min';
+  String get notificationsPrayerActionSnooze10 =>
+      'ਮੈਨੂੰ 10 ਮਿੰਟ ਵਿੱਚ ਯਾਦ ਦਿਵਾਓ';
 
   @override
-  String get notificationsPrayerActionMarkOffered => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkOffered =>
+      'ਨਮਾਜ਼ ਅਦਾ ਹੋਈ ਵਜੋਂ ਨਿਸ਼ਾਨ ਲਗਾਓ';
 
   @override
-  String get notificationsPrayerActionDismiss => 'Dismiss';
+  String get notificationsPrayerActionDismiss => 'ਬੰਦ ਕਰੋ';
 
   @override
-  String get notificationsPrayerActionOpen => 'Open';
+  String get notificationsPrayerActionOpen => 'ਖੋਲ੍ਹੋ';
 
   @override
-  String get notificationsReflectionActionWrite => 'Write Reflection';
+  String get notificationsReflectionActionWrite => 'ਚਿੰਤਨ ਲਿਖੋ';
 
   @override
-  String get notificationsReflectionActionRemind10 => 'Remind me in 10 min';
+  String get notificationsReflectionActionRemind10 =>
+      'ਮੈਨੂੰ 10 ਮਿੰਟ ਵਿੱਚ ਯਾਦ ਦਿਵਾਓ';
 
   @override
-  String get notificationsReflectionActionDismiss => 'Dismiss';
+  String get notificationsReflectionActionDismiss => 'ਬੰਦ ਕਰੋ';
 
   @override
   String get notificationsPrayerNameTahajjud => 'ਤਹੱਜੁਦ';
 
   @override
-  String get notificationsGenericPrayerName => 'Salah';
+  String get notificationsGenericPrayerName => 'ਨਮਾਜ਼';
 
   @override
   String get notificationsFastingBeginsNowTitle => 'ਰੋਜ਼ਾ ਹੁਣ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ';
@@ -249,113 +253,112 @@ class AppLocalizationsPa extends AppLocalizations {
   String get notificationsFastingLiveJustEntered => 'ਹੁਣੇ ਹੀ ਸ਼ੁਰੂ ਹੋਇਆ';
 
   @override
-  String get historyAdditionalMatchesTitle => 'More moments for today';
+  String get historyAdditionalMatchesTitle => 'ਅੱਜ ਲਈ ਹੋਰ ਪਲ';
 
   @override
-  String get historyArchiveAllCategories => 'All categories';
+  String get historyArchiveAllCategories => 'ਸਾਰੀਆਂ ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
-  String get historyArchiveAllGregorianMonths => 'All Gregorian months';
+  String get historyArchiveAllGregorianMonths => 'ਸਾਰੇ Gregorian ਮਹੀਨੇ';
 
   @override
-  String get historyArchiveAllHijriMonths => 'All Hijri months';
+  String get historyArchiveAllHijriMonths => 'ਸਾਰੇ Hijri ਮਹੀਨੇ';
 
   @override
-  String get historyArchiveCategoryLabel => 'Category';
+  String get historyArchiveCategoryLabel => 'ਸ਼੍ਰੇਣੀ';
 
   @override
   String get historyArchiveEmptyFilters =>
-      'No historical events match these filters yet.';
+      'ਹਾਲੇ ਤੱਕ ਕੋਈ ਇਤਿਹਾਸਕ ਘਟਨਾ ਇਨ੍ਹਾਂ ਫਿਲਟਰਾਂ ਨਾਲ ਨਹੀਂ ਮਿਲਦੀ।';
 
   @override
-  String get historyArchiveFiltersTitle => 'Browse the archive';
+  String get historyArchiveFiltersTitle => 'ਅਰਕਾਈਵ ਵੇਖੋ';
 
   @override
-  String get historyArchiveGregorianMonthLabel => 'Gregorian month';
+  String get historyArchiveGregorianMonthLabel => 'Gregorian ਮਹੀਨਾ';
 
   @override
-  String get historyArchiveHijriMonthLabel => 'Hijri month';
+  String get historyArchiveHijriMonthLabel => 'Hijri ਮਹੀਨਾ';
 
   @override
   String get historyArchiveLoadError =>
-      'Historical events could not be loaded right now.';
+      'ਇਤਿਹਾਸਕ ਘਟਨਾਵਾਂ ਇਸ ਵੇਲੇ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ।';
 
   @override
   String historyArchiveResultsCount(int count) {
-    return '$count events';
+    return '$count ਘਟਨਾਵਾਂ';
   }
 
   @override
   String get historyArchiveSubtitle =>
-      'Browse curated Islamic historical moments by date and category.';
+      'ਤਾਰੀਖ ਅਤੇ ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਚੁਣੇ ਹੋਏ ਇਸਲਾਮੀ ਇਤਿਹਾਸਕ ਪਲ ਵੇਖੋ।';
 
   @override
-  String get historyArchiveTitle => 'Historical Calendar';
+  String get historyArchiveTitle => 'ਇਤਿਹਾਸਕ ਕੈਲੰਡਰ';
 
   @override
-  String get historyCategoryBattles => 'Battles';
+  String get historyCategoryBattles => 'ਜੰਗਾਂ';
 
   @override
-  String get historyCategoryBirths => 'Births';
+  String get historyCategoryBirths => 'ਜਨਮ';
 
   @override
-  String get historyCategoryDeaths => 'Deaths';
+  String get historyCategoryDeaths => 'ਵਫ਼ਾਤਾਂ';
 
   @override
-  String get historyCategoryIslamicHistory => 'Islamic History';
+  String get historyCategoryIslamicHistory => 'ਇਸਲਾਮੀ ਇਤਿਹਾਸ';
 
   @override
   String get historyCategoryKhulafa => 'Khulafa';
 
   @override
-  String get historyCategoryProphets => 'Prophets';
+  String get historyCategoryProphets => 'ਨਬੀ';
 
   @override
-  String get historyCategoryRevelation => 'Revelation';
+  String get historyCategoryRevelation => 'ਵਹੀ';
 
   @override
-  String get historyCategorySacredPlaces => 'Sacred Places';
+  String get historyCategorySacredPlaces => 'ਪਵਿੱਤਰ ਥਾਵਾਂ';
 
   @override
-  String get historyCategoryScholars => 'Scholars';
+  String get historyCategoryScholars => 'ਵਿਦਵਾਨ';
 
   @override
   String get historyCategorySeerah => 'Seerah';
 
   @override
-  String get historyCategoryWorldHistory => 'World History';
+  String get historyCategoryWorldHistory => 'ਵਿਸ਼ਵ ਇਤਿਹਾਸ';
 
   @override
-  String get historyDateConfidenceApproximate => 'Approximate date';
+  String get historyDateConfidenceApproximate => 'ਅਨੁਮਾਨਿਤ ਤਾਰੀਖ';
 
   @override
-  String get historyDateConfidenceDisputed => 'Date differs across sources';
+  String get historyDateConfidenceDisputed => 'ਤਾਰੀਖ ਸਰੋਤਾਂ ਵਿੱਚ ਵੱਖਰੀ ਹੈ';
 
   @override
-  String get historyDateConfidenceExact => 'Widely cited date';
+  String get historyDateConfidenceExact => 'ਵਿਆਪਕ ਤੌਰ \'ਤੇ ਦੱਸੀ ਤਾਰੀਖ';
 
   @override
-  String get historyDateUnavailable => 'Not available in this V1 record';
+  String get historyDateUnavailable => 'ਇਸ V1 ਰਿਕਾਰਡ ਵਿੱਚ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
-  String get historyDateUnknown => 'Date not available';
+  String get historyDateUnknown => 'ਤਾਰੀਖ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get historyDetailLoadingSubtitle =>
-      'Loading the historical event details.';
+      'ਇਤਿਹਾਸਕ ਘਟਨਾ ਦੇ ਵੇਰਵੇ ਲੋਡ ਹੋ ਰਹੇ ਹਨ।';
 
   @override
-  String get historyDetailLoadingTitle => 'Historical Event';
+  String get historyDetailLoadingTitle => 'ਇਤਿਹਾਸਕ ਘਟਨਾ';
 
   @override
-  String get historyDetailNotFoundSubtitle =>
-      'This historical event could not be found.';
+  String get historyDetailNotFoundSubtitle => 'ਇਹ ਇਤਿਹਾਸਕ ਘਟਨਾ ਨਹੀਂ ਮਿਲੀ।';
 
   @override
-  String get historyDetailNotFoundTitle => 'Event not found';
+  String get historyDetailNotFoundTitle => 'ਘਟਨਾ ਨਹੀਂ ਮਿਲੀ';
 
   @override
-  String get historyGregorianDateLabel => 'Gregorian date';
+  String get historyGregorianDateLabel => 'Gregorian ਤਾਰੀਖ';
 
   @override
   String historyGregorianDateValue(String day, String month, String year) {
@@ -363,7 +366,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get historyHijriDateLabel => 'Hijri date';
+  String get historyHijriDateLabel => 'Hijri ਤਾਰੀਖ';
 
   @override
   String historyHijriDateValue(String day, String month, String year) {
@@ -372,72 +375,72 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get historyLearnIslandSubtitle =>
-      'On this day moments and a browsable archive of Islamic history.';
+      'ਅੱਜ ਦੇ ਪਲ ਅਤੇ ਇਸਲਾਮੀ ਇਤਿਹਾਸ ਦਾ ਵੇਖਣ ਯੋਗ ਅਰਕਾਈਵ।';
 
   @override
-  String get historyLessonsTitle => 'Lessons & Reflection';
+  String get historyLessonsTitle => 'ਸਬਕ ਅਤੇ ਮਨਨ';
 
   @override
-  String get historyLocationLabel => 'Location';
+  String get historyLocationLabel => 'ਥਾਂ';
 
   @override
-  String get historyMatchBadgeBoth => 'Gregorian and Hijri match';
+  String get historyMatchBadgeBoth => 'Gregorian ਅਤੇ Hijri ਮੇਲ';
 
   @override
-  String get historyMatchBadgeGregorian => 'Gregorian today';
+  String get historyMatchBadgeGregorian => 'ਅੱਜ ਦਾ Gregorian';
 
   @override
-  String get historyMatchBadgeHijri => 'Hijri today';
+  String get historyMatchBadgeHijri => 'ਅੱਜ ਦਾ Hijri';
 
   @override
   String get historyOnThisDayMatchesSubtitle =>
-      'See the historical moments that match today’s Gregorian and Hijri anniversaries.';
+      'ਉਹ ਇਤਿਹਾਸਕ ਪਲ ਵੇਖੋ ਜੋ ਅੱਜ ਦੀ Gregorian ਅਤੇ Hijri ਵਰ੍ਹੇਗੰਢ ਨਾਲ ਮਿਲਦੇ ਹਨ।';
 
   @override
-  String get historyOnThisDayMatchesTitle => 'On This Day';
+  String get historyOnThisDayMatchesTitle => 'ਇਸ ਦਿਨ';
 
   @override
   String get historyOnThisDaySubtitle =>
-      'A gentle historical reflection for today’s Gregorian and Hijri dates.';
+      'ਅੱਜ ਦੀ Gregorian ਅਤੇ Hijri ਤਾਰੀਖਾਂ ਲਈ ਨਰਮ ਇਤਿਹਾਸਕ ਮਨਨ।';
 
   @override
-  String get historyOnThisDayTitle => 'On This Day';
+  String get historyOnThisDayTitle => 'ਇਸ ਦਿਨ';
 
   @override
-  String get historyOpenArchiveAction => 'Open archive';
+  String get historyOpenArchiveAction => 'ਅਰਕਾਈਵ ਖੋਲ੍ਹੋ';
 
   @override
-  String get historyNextUpcomingEventLabel => 'Next event';
+  String get historyNextUpcomingEventLabel => 'ਅਗਲੀ ਘਟਨਾ';
 
   @override
-  String get historyOverviewTitle => 'Overview';
+  String get historyOverviewTitle => 'ਝਲਕ';
 
   @override
-  String get contextualLinksRelatedTitle => 'Related';
+  String get contextualLinksRelatedTitle => 'ਸੰਬੰਧਤ';
 
   @override
-  String get contextualLinksTypeEvent => 'Event';
+  String get contextualLinksTypeEvent => 'ਘਟਨਾ';
 
   @override
   String get contextualLinksTypeHadith => 'Hadith';
 
   @override
-  String get contextualLinksTypeJourney => 'Journey';
+  String get contextualLinksTypeJourney => 'ਯਾਤਰਾ';
 
   @override
-  String get contextualLinksTypeLearn => 'Learn';
+  String get contextualLinksTypeLearn => 'ਸਿੱਖੋ';
 
   @override
-  String get historyRelatedContentTitle => 'Related learning';
+  String get historyRelatedContentTitle => 'ਸੰਬੰਧਤ ਸਿੱਖਿਆ';
 
   @override
-  String get historyRelatedPeopleTitle => 'Related people & entities';
+  String get historyRelatedPeopleTitle => 'ਸੰਬੰਧਤ ਲੋਕ ਅਤੇ ਇਕਾਈਆਂ';
 
   @override
-  String get historySignificanceTitle => 'Why it matters';
+  String get historySignificanceTitle => 'ਇਹ ਕਿਉਂ ਮਹੱਤਵ ਰੱਖਦਾ ਹੈ';
 
   @override
-  String get historySourcesTitle => 'Sources';
+  String get historySourcesTitle => 'ਸਰੋਤ';
 
   @override
   String historyTodayGregorianValue(String day, String month, String year) {
@@ -450,34 +453,34 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get historyTodayShortcutAction => 'Today’s matches';
+  String get historyTodayShortcutAction => 'ਅੱਜ ਦੇ ਮੇਲ';
 
   @override
   String get historyEmptyTodaySubtitle =>
-      'Historical moments for this day are still being added. You can still browse the archive.';
+      'ਇਸ ਦਿਨ ਲਈ ਇਤਿਹਾਸਕ ਪਲ ਹਾਲੇ ਜੋੜੇ ਜਾ ਰਹੇ ਹਨ। ਤੁਸੀਂ ਅਰਕਾਈਵ ਫਿਰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get historyEmptyTodayTitle => 'More moments are on the way';
+  String get historyEmptyTodayTitle => 'ਹੋਰ ਪਲ ਰਾਹ ਵਿੱਚ ਹਨ';
 
   @override
   String historyViewAllCount(int count) {
-    return 'View all ($count)';
+    return 'ਸਭ ਵੇਖੋ ($count)';
   }
 
   @override
   String get navDhikr => 'Ibadah';
 
   @override
-  String get navLearning => 'Learn';
+  String get navLearning => 'ਸਿੱਖੋ';
 
   @override
-  String get navHome => 'Home';
+  String get navHome => 'ਮੁੱਖ ਪੰਨਾ';
 
   @override
-  String get navPrayer => 'Growth';
+  String get navPrayer => 'ਵਿਕਾਸ';
 
   @override
-  String get navGarden => 'Profile';
+  String get navGarden => 'ਪ੍ਰੋਫ਼ਾਈਲ';
 
   @override
   String get greetingArabic => 'السلام عليكم ورحمة الله وبركاته';
@@ -510,6 +513,9 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranAppHubTitle => 'ਪਵਿੱਤਰ ਕੁਰਆਨ';
 
   @override
+  String get quranAppHubSearchHint => 'Search the Holy Qur\'an';
+
+  @override
   String get quranDiscoverSectionTitle => 'Discover the Qur’an';
 
   @override
@@ -531,317 +537,354 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranHubJourneyOfQuranTitle => 'Journey of the Qur’an';
 
   @override
-  String get hadithArabicMatnLabel => 'Arabic matn';
+  String get hadithArabicMatnLabel => 'ਅਰਬੀ ਮਤਨ';
 
   @override
   String get hadithArabicMatnUnavailable =>
-      'Arabic matn is not available in the current verified dataset for this hadith yet.';
+      'ਇਸ ਹਦੀਸ ਲਈ ਮੌਜੂਦਾ ਤਸਦੀਕਸ਼ੁਦਾ ਡਾਟਾ-ਸੈੱਟ ਵਿੱਚ ਅਰਬੀ ਮਤਨ ਹਾਲੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get hadithTransliterationLabel => 'Transliteration';
+  String get hadithTransliterationLabel => 'ਲਿਪਿਆੰਤਰਨ';
 
   @override
   String get hadithTransliterationUnavailable =>
-      'Transliteration is not available in the current verified dataset for this hadith yet.';
+      'ਇਸ ਹਦੀਸ ਲਈ ਮੌਜੂਦਾ ਤਸਦੀਕਸ਼ੁਦਾ ਡਾਟਾ-ਸੈੱਟ ਵਿੱਚ ਲਿਪਿਆੰਤਰਨ ਹਾਲੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get hadithTranslationLabel => 'Translation';
+  String get hadithTranslationLabel => 'ਅਨੁਵਾਦ';
 
   @override
-  String get hadithSourceLabel => 'Source';
+  String get hadithSourceLabel => 'ਸਰੋਤ';
 
   @override
-  String get hadithReferenceLabel => 'Reference';
+  String get hadithSourceChapterLabel => 'ਅਧਿਆਇ';
+
+  @override
+  String get hadithReferenceLabel => 'ਹਵਾਲਾ';
 
   @override
   String hadithReferenceHadithNumber(String number) {
-    return 'Hadith $number';
+    return 'ਹਦੀਸ $number';
   }
 
   @override
-  String get hadithGradeShortLabel => 'Grade';
+  String get hadithGradeShortLabel => 'ਦਰਜਾ';
 
   @override
-  String get hadithNarratorLabel => 'Narrated by';
+  String get hadithNarratorLabel => 'ਰਿਵਾਇਤ ਕਰਨ ਵਾਲੇ';
 
   @override
-  String get hadithPageTitle => 'Hadith';
+  String get hadithPageTitle => 'ਹਦੀਸ';
 
   @override
   String get hadithPageSubtitle =>
-      'Teachings of the Prophet ﷺ organized by theme and connected to the Qur’an.';
+      'ਨਬੀ ﷺ ਦੀਆਂ ਤਾਲੀਮਾਤ ਜੋ ਵਿਸ਼ਿਆਂ ਮੁਤਾਬਕ ਮੁਰੱਤਬ ਹਨ ਅਤੇ ਕੁਰਆਨ ਨਾਲ ਜੋੜੀਆਂ ਗਈਆਂ ਹਨ।';
 
   @override
-  String get hadithThemeLabel => 'Theme';
+  String get hadithThemeLabel => 'ਵਿਸ਼ਾ';
 
   @override
-  String get hadithCollectionLabel => 'Collection';
+  String get hadithCollectionLabel => 'ਸੰਗ੍ਰਹਿ';
 
   @override
-  String get hadithSectionRelatedTitle => 'Related hadith';
+  String get hadithSectionRelatedTitle => 'ਸੰਬੰਧਿਤ ਹਦੀਸਾਂ';
 
   @override
-  String get hadithSectionText => 'Hadith text';
+  String get hadithSectionText => 'ਹਦੀਸ ਮਤਨ';
 
   @override
-  String get hadithSectionMeaning => 'Meaning';
+  String get hadithSectionMeaning => 'ਅਰਥ';
 
   @override
-  String get hadithSectionLessons => 'Lessons';
+  String get hadithSectionLessons => 'ਸਬਕ';
 
   @override
-  String get hadithSectionReflection => 'Reflection';
+  String get hadithSectionReflection => 'ਚਿੰਤਨ';
 
   @override
-  String get hadithSectionQuranConnection => 'Qur’an connection';
+  String get hadithSectionQuranConnection => 'ਕੁਰਆਨ ਨਾਲ ਜੋੜ';
 
   @override
-  String get hadithSectionReflectionPrompts => 'Reflection prompts';
+  String get hadithSectionReflectionPrompts => 'ਚਿੰਤਨ ਪ੍ਰੇਰਕ';
 
   @override
-  String get hadithSectionPracticeAction => 'Practice action';
+  String get hadithSectionPracticeAction => 'ਅਮਲੀ ਕਦਮ';
 
   @override
-  String get hadithSectionRelatedVerses => 'Related verses';
+  String get hadithSectionRelatedVerses => 'ਸੰਬੰਧਿਤ ਆਯਤਾਂ';
 
   @override
-  String get hadithSectionRelatedQuranAnchors => 'Related Qur’an anchors';
+  String get hadithSectionRelatedQuranAnchors => 'ਸੰਬੰਧਿਤ ਕੁਰਆਨੀ ਹਵਾਲੇ';
 
   @override
-  String get hadithSectionThemeEntries => 'Hadith in this theme';
+  String get hadithSectionThemeEntries => 'ਇਸ ਵਿਸ਼ੇ ਦੀਆਂ ਹਦੀਸਾਂ';
 
   @override
-  String get hadithSectionCollectionEntries => 'Hadith in this collection';
+  String get hadithSectionCollectionEntries => 'ਇਸ ਸੰਗ੍ਰਹਿ ਦੀਆਂ ਹਦੀਸਾਂ';
 
   @override
-  String get hadithActionOpenDetail => 'Open hadith detail';
+  String get hadithActionOpenDetail => 'ਹਦੀਸ ਦੀ ਤਫ਼ਸੀਲ ਖੋਲ੍ਹੋ';
 
   @override
-  String get hadithTabThemes => 'Themes';
+  String get hadithTabThemes => 'ਵਿਸ਼ੇ';
 
   @override
-  String get hadithTabCollections => 'Collections';
+  String get hadithTabCollections => 'ਸੰਗ੍ਰਹਿ';
 
   @override
-  String get hadithTabSaved => 'Saved';
+  String get hadithTabSaved => 'ਸੰਭਾਲਿਆ ਹੋਇਆ';
 
   @override
-  String get hadithTabDaily => 'Daily';
+  String get hadithTabDaily => 'ਰੋਜ਼ਾਨਾ';
 
   @override
-  String get hadithTabReview => 'Review';
+  String get hadithTabReview => 'ਮੁੜ ਵੇਖੋ';
 
   @override
-  String get hadithTabPaths => 'Paths';
+  String get hadithTabPaths => 'ਰਾਹ';
 
   @override
-  String get hadithActionAddToReflectionJournal => 'Add to Reflection Journal';
+  String get hadithActionAddToReflectionJournal => 'ਚਿੰਤਨ ਜਰਨਲ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ';
 
   @override
-  String get hadithActionSave => 'Save';
+  String get hadithActionSave => 'ਸੰਭਾਲੋ';
 
   @override
-  String get hadithActionSaved => 'Saved';
+  String get hadithActionSaved => 'ਸੰਭਾਲਿਆ ਗਿਆ';
 
   @override
-  String get hadithActionRemoveSaved => 'Remove saved';
+  String get hadithActionRemoveSaved => 'ਸੰਭਾਲੀਆਂ ਵਿੱਚੋਂ ਹਟਾਓ';
 
   @override
-  String get hadithActionCopy => 'Copy';
+  String get hadithActionCopy => 'ਨਕਲ ਕਰੋ';
 
   @override
-  String get hadithActionShare => 'Share';
+  String get hadithActionShare => 'ਸਾਂਝਾ ਕਰੋ';
 
   @override
-  String get hadithActionMarkLessonComplete => 'Mark lesson complete';
+  String get hadithActionMarkLessonComplete => 'ਪਾਠ ਪੂਰਾ ਨਿਸ਼ਾਨਿਤ ਕਰੋ';
 
   @override
-  String get hadithActionLessonCompleted => 'Lesson completed';
+  String get hadithActionLessonCompleted => 'ਪਾਠ ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get hadithActionCompletedToday => 'Completed today';
+  String get hadithActionCompletedToday => 'ਅੱਜ ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get hadithActionCompleteReflection => 'Complete reflection';
+  String get hadithActionCompleteReflection => 'ਚਿੰਤਨ ਪੂਰਾ ਕਰੋ';
 
   @override
-  String get hadithActionRandomReview => 'Random review';
+  String get hadithActionRandomReview => 'ਬੇਤਰਤੀਬ ਮੁੜ-ਜਾਇਜ਼ਾ';
 
   @override
-  String get hadithActionWeeklyKnowledgeCheck => 'Weekly knowledge check';
+  String get hadithActionWeeklyKnowledgeCheck => 'ਹਫ਼ਤਾਵਾਰ ਗਿਆਨ ਜਾਂਚ';
 
   @override
-  String get hadithActionReviewByTheme => 'Review by theme';
+  String get hadithActionReviewByTheme => 'ਵਿਸ਼ੇ ਮੁਤਾਬਕ ਮੁੜ ਵੇਖੋ';
 
   @override
-  String get hadithActionReviewByLearningPath => 'Review by learning path';
+  String get hadithActionReviewByLearningPath => 'ਸਿੱਖਣ ਦੇ ਰਾਹ ਮੁਤਾਬਕ ਮੁੜ ਵੇਖੋ';
 
   @override
-  String get hadithActionStartEssential => 'Start with Essential Hadith';
+  String get hadithActionStartEssential => 'ਅਹਿਮ ਹਦੀਸ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get hadithActionStartChapterQuiz => 'Start chapter quiz';
+  String get hadithActionStartChapterQuiz => 'ਅਧਿਆਇ ਕਵਿਜ਼ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get hadithActionRetakeChapterQuiz => 'Retake chapter quiz';
+  String get hadithActionRetakeChapterQuiz => 'ਅਧਿਆਇ ਕਵਿਜ਼ ਮੁੜ ਦਿਓ';
 
   @override
   String get hadithActionUnlockQuiz =>
-      'Complete all chapter lessons to unlock quiz';
+      'ਕਵਿਜ਼ ਖੋਲ੍ਹਣ ਲਈ ਅਧਿਆਇ ਦੇ ਸਾਰੇ ਪਾਠ ਪੂਰੇ ਕਰੋ';
 
   @override
-  String get hadithTitleEssentialStarter => 'Start with Essential Hadith';
+  String get hadithTitleEssentialStarter => 'ਅਹਿਮ ਹਦੀਸ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get hadithSubtitleEssentialStarter =>
-      'Begin with a curated starter path focused on foundations of faith, worship, and character.';
+      'ਇਮਾਨ, ਇਬਾਦਤ ਅਤੇ ਅਖ਼ਲਾਕ ਦੀਆਂ ਬੁਨਿਆਦਾਂ ‘ਤੇ ਕੇਂਦਰਿਤ ਚੁਣੇ ਹੋਏ ਸ਼ੁਰੂਆਤੀ ਰਾਹ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
-  String get hadithTitleFeaturedThemes => 'Featured themes';
+  String get hadithTitleFeaturedThemes => 'ਚੁਣੇ ਹੋਏ ਵਿਸ਼ੇ';
 
   @override
-  String get hadithTitleCollections => 'Collections';
+  String get hadithTitleCollections => 'ਸੰਗ੍ਰਹਿ';
 
   @override
   String get hadithSubtitleCollections =>
-      'Curated hadith sets for focused reading and future phased expansion.';
+      'ਧਿਆਨ ਨਾਲ ਪੜ੍ਹਨ ਅਤੇ ਅਗਲੇ ਮਰਹਲਾਵਾਰ ਵਿਸਤਾਰ ਲਈ ਚੁਣੇ ਹੋਏ ਹਦੀਸ ਸੰਗ੍ਰਹਿ।';
 
   @override
-  String get hadithTitleSaved => 'Saved';
+  String get hadithTitleSaved => 'ਸੰਭਾਲਿਆ ਹੋਇਆ';
 
   @override
   String get hadithSubtitleSaved =>
-      'Keep important hadith close for repeated reading and reflection.';
+      'ਮੁੜ-ਮੁੜ ਪੜ੍ਹਨ ਅਤੇ ਗੌਰ-ਫਿਕਰ ਲਈ ਅਹਿਮ ਹਦੀਸ ਆਪਣੇ ਨੇੜੇ ਰੱਖੋ।';
 
   @override
-  String get hadithEmptySavedTitle => 'No saved hadith yet';
+  String get hadithEmptySavedTitle => 'ਹਾਲੇ ਕੋਈ ਸੰਭਾਲੀ ਹੋਈ ਹਦੀਸ ਨਹੀਂ';
 
   @override
   String get hadithEmptySavedSubtitle =>
-      'Save hadith from theme and detail pages to build your personal reflection set.';
+      'ਆਪਣਾ ਨਿੱਜੀ ਚਿੰਤਨ-ਸੰਗ੍ਰਹਿ ਬਣਾਉਣ ਲਈ ਵਿਸ਼ਾ ਅਤੇ ਤਫ਼ਸੀਲੀ ਸਫ਼ਿਆਂ ਤੋਂ ਹਦੀਸਾਂ ਸੰਭਾਲੋ।';
 
   @override
-  String get hadithAddedToSaved => 'Added to saved hadith.';
+  String get hadithAddedToSaved => 'ਹਦੀਸ ਸੰਭਾਲੀਆਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤੀ ਗਈ।';
 
   @override
-  String get hadithRemovedFromSaved => 'Removed from saved hadith.';
+  String get hadithRemovedFromSaved => 'ਹਦੀਸ ਸੰਭਾਲੀਆਂ ਵਿੱਚੋਂ ਹਟਾਈ ਗਈ।';
 
   @override
-  String get hadithCopiedToClipboard => 'Hadith copied to clipboard.';
+  String get hadithCopiedToClipboard => 'ਹਦੀਸ ਕਲਿਪਬੋਰਡ ਤੇ ਨਕਲ ਕੀਤੀ ਗਈ।';
 
   @override
-  String get hadithTitleDailyReflection => 'Daily Hadith Reflection';
+  String get hadithProvenanceLabel => 'ਸਰੋਤ ਦਾ ਮੂਲ';
 
   @override
-  String get hadithEmptyDaily => 'No daily hadith is available right now.';
+  String get hadithProvenanceSeeded => 'ਸੰਪਾਦਿਤ ਬੁਨਿਆਦੀ ਰਿਕਾਰਡ';
+
+  @override
+  String get hadithProvenanceEditorialOverride => 'ਸੰਪਾਦਕੀ ਸਮੀਖਿਆ ਕੀਤਾ ਰਿਕਾਰਡ';
+
+  @override
+  String get hadithProvenanceImported => 'ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਤੋਂ ਆਯਾਤ ਕੀਤਾ ਰਿਕਾਰਡ';
+
+  @override
+  String get hadithProvenanceUnknown => 'ਸਰੋਤ ਪਾਈਪਲਾਈਨ ਮੈਟਾਡਾਟਾ ਬਾਕੀ ਹੈ';
+
+  @override
+  String hadithProvenancePipelineValue(String pipeline) {
+    return 'ਪਾਈਪਲਾਈਨ: $pipeline';
+  }
+
+  @override
+  String get hadithProvenanceInfoTitle => 'ਇਸ ਸਰੋਤ ਤੇ ਭਰੋਸਾ ਕਿਉਂ ਹੈ';
+
+  @override
+  String get hadithProvenanceInfoBody =>
+      'ਇਹ ਰੀਡਰ ਸਰੋਤ-ਸੰਗ੍ਰਹਿ, ਅਧਿਆਇ, ਹਵਾਲਾ, ਦਰਜਾ ਅਤੇ ਸਰੋਤ-ਉਤਪੱਤੀ ਮੈਟਾਡਾਟਾ ਨੂੰ ਇਕੱਠੇ ਰੱਖਦਾ ਹੈ, ਤਾਂ ਜੋ ਜਨਤਕ ਹਦੀਸ ਐਂਟਰੀਆਂ ਸਮੀਖਿਆਯੋਗ ਭਰੋਸੇਯੋਗ ਸਰੋਤ-ਸੰਦਰਭ ਨਾਲ ਜੁੜੀਆਂ ਰਹਿਣ।';
+
+  @override
+  String get hadithProvenanceInfoStatusTitle => 'ਮੌਜੂਦਾ ਰਿਕਾਰਡ ਦੀ ਸਥਿਤੀ';
+
+  @override
+  String get hadithProvenanceInfoPipelineBody =>
+      'ਪਾਈਪਲਾਈਨ ਲਾਈਨ ਦਿਖਾਉਂਦੀ ਹੈ ਕਿ ਕਿਹੜੇ ਇੰਪੋਰਟ ਜਾਂ ਸੰਪਾਦਕੀ ਮਾਰਗ ਨੇ ਇਸ ਰਿਕਾਰਡ ਨੂੰ ਐਪ ਲਈ ਤਿਆਰ ਕੀਤਾ।';
+
+  @override
+  String get hadithTitleDailyReflection => 'ਰੋਜ਼ਾਨਾ ਹਦੀਸ ਚਿੰਤਨ';
+
+  @override
+  String get hadithEmptyDaily => 'ਇਸ ਵੇਲੇ ਕੋਈ ਰੋਜ਼ਾਨਾ ਹਦੀਸ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
   String hadithGradeLabel(String grade) {
-    return 'Grade: $grade';
+    return 'ਦਰਜਾ: $grade';
   }
 
   @override
   String hadithCurrentStreakLabel(int days, String suffix) {
-    return 'Current streak: $days day$suffix';
+    return 'ਮੌਜੂਦਾ ਲੜੀ: $days ਦਿਨ$suffix';
   }
 
   @override
   String hadithBestStreakLabel(int days, String suffix) {
-    return 'Best streak: $days day$suffix';
+    return 'ਸਭ ਤੋਂ ਵਧੀਆ ਲੜੀ: $days ਦਿਨ$suffix';
   }
 
   @override
   String hadithReflectionCompletedXp(int xp) {
-    return 'Reflection completed • +$xp XP';
+    return 'ਚਿੰਤਨ ਪੂਰਾ ਹੋਇਆ • +$xp XP';
   }
 
   @override
-  String get hadithReflectionAlreadyCompletedToday => 'Already completed today';
+  String get hadithReflectionAlreadyCompletedToday =>
+      'ਅੱਜ ਪਹਿਲਾਂ ਹੀ ਪੂਰਾ ਹੋ ਚੁੱਕਾ ਹੈ';
 
   @override
-  String get hadithTitleReview => 'Review';
+  String get hadithTitleReview => 'ਮੁੜ-ਜਾਇਜ਼ਾ';
 
   @override
   String get hadithSubtitleReview =>
-      'Revisit chapter quizzes and strengthen retention with spaced review.';
+      'ਅਧਿਆਇ ਕਵਿਜ਼ਾਂ ਨੂੰ ਦੁਬਾਰਾ ਵੇਖੋ ਅਤੇ ਵਕਫ਼ਿਆਂ ਵਾਲੇ ਮੁੜ-ਜਾਇਜ਼ੇ ਨਾਲ ਯਾਦਦਾਸ਼ਤ ਮਜ਼ਬੂਤ ਕਰੋ।';
 
   @override
   String hadithCompletedChapterQuizzes(int count) {
-    return 'Completed chapter quizzes: $count';
+    return 'ਪੂਰੇ ਕੀਤੇ ਅਧਿਆਇ ਕਵਿਜ਼: $count';
   }
 
   @override
-  String get hadithTitleSpacedRepetition => 'Spaced repetition';
+  String get hadithTitleSpacedRepetition => 'ਵਕਫ਼ਿਆਂ ਵਾਲੀ ਦੁਹਰਾਈ';
 
   @override
   String get hadithNoLessonsDueReview =>
-      'No lessons are due today. Complete more lessons to build your review queue.';
+      'ਅੱਜ ਲਈ ਕੋਈ ਪਾਠ ਮੁੜ-ਜਾਇਜ਼ੇ ਲਈ ਬਾਕੀ ਨਹੀਂ। ਆਪਣੀ ਮੁੜ-ਜਾਇਜ਼ਾ ਲੜੀ ਬਣਾਉਣ ਲਈ ਹੋਰ ਪਾਠ ਪੂਰੇ ਕਰੋ।';
 
   @override
   String hadithLessonsDueReview(int count) {
-    return '$count lessons are due for review today.';
+    return 'ਅੱਜ $count ਪਾਠ ਮੁੜ-ਜਾਇਜ਼ੇ ਲਈ ਬਾਕੀ ਹਨ।';
   }
 
   @override
-  String get hadithTitleLearningPaths => 'Hadith Learning Paths';
+  String get hadithTitleLearningPaths => 'ਹਦੀਸ ਸਿੱਖਣ ਦੇ ਰਾਹ';
 
   @override
   String get hadithSubtitleLearningPaths =>
-      'Follow curated paths to study hadith in a structured sequence with steady progress.';
+      'ਮੁਨਜ਼ਜ਼ਮ ਤਰਤੀਬ ਅਤੇ ਲਗਾਤਾਰ ਤਰੱਕੀ ਨਾਲ ਹਦੀਸ ਪੜ੍ਹਨ ਲਈ ਚੁਣੇ ਹੋਏ ਰਾਹਾਂ ਦਾ ਪਾਲਣ ਕਰੋ।';
 
   @override
   String hadithPathStreakLabel(int current, String suffix, int best) {
-    return 'Path streak: $current day$suffix • Best: $best';
+    return 'ਰਾਹ ਲੜੀ: $current ਦਿਨ$suffix • ਸਭ ਤੋਂ ਵਧੀਆ: $best';
   }
 
   @override
   String hadithThemeCardCounts(int hadithCount, int anchorCount) {
-    return '$hadithCount hadith • $anchorCount anchors';
+    return '$hadithCount ਹਦੀਸ • $anchorCount ਹਵਾਲੇ';
   }
 
   @override
   String hadithThemeCardProgress(int savedCount, int totalCount) {
-    return 'Progress: $savedCount / $totalCount';
+    return 'ਤਰੱਕੀ: $savedCount / $totalCount';
   }
 
   @override
-  String get hadithThemeCardStart => 'Start theme';
+  String get hadithThemeCardStart => 'ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String hadithAllThemesTitle(int count) {
-    return 'All themes ($count)';
+    return 'ਸਾਰੇ ਵਿਸ਼ੇ ($count)';
   }
 
   @override
   String hadithCollectionCardSummary(String subtitle, int count) {
-    return '$subtitle\n$count hadith';
+    return '$subtitle\n$count ਹਦੀਸ';
   }
 
   @override
   String hadithThemeChipCount(int count) {
-    return '$count hadith';
+    return '$count ਹਦੀਸ';
   }
 
   @override
   String hadithCollectionChipCount(int count) {
-    return '$count hadith';
+    return '$count ਹਦੀਸ';
   }
 
   @override
-  String get hadithThemeNotFoundSubtitle => 'Theme not found';
+  String get hadithThemeNotFoundSubtitle => 'ਵਿਸ਼ਾ ਨਹੀਂ ਮਿਲਿਆ';
 
   @override
-  String get hadithThemeNotFoundBody => 'The requested theme was not found.';
+  String get hadithThemeNotFoundBody => 'ਮੰਗਿਆ ਗਿਆ ਵਿਸ਼ਾ ਨਹੀਂ ਮਿਲਿਆ।';
 
   @override
-  String get hadithCollectionPageTitle => 'Collections';
+  String get hadithCollectionPageTitle => 'ਸੰਗ੍ਰਹਿ';
 
   @override
-  String get hadithCollectionNotFoundSubtitle => 'Collection not found';
+  String get hadithCollectionNotFoundSubtitle => 'ਸੰਗ੍ਰਹਿ ਨਹੀਂ ਮਿਲਿਆ';
 
   @override
-  String get hadithCollectionNotFoundBody =>
-      'The requested collection was not found.';
+  String get hadithCollectionNotFoundBody => 'ਮੰਗਿਆ ਗਿਆ ਸੰਗ੍ਰਹਿ ਨਹੀਂ ਮਿਲਿਆ।';
 
   @override
   String hadithCollectionEntrySubtitle(String source, String grading) {
@@ -849,78 +892,260 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get hadithLessonNotFoundSubtitle => 'Content not found';
+  String get hadithCollectionSubcategoriesTitle =>
+      'ਇਸ ਸੰਗ੍ਰਹਿ ਦੀਆਂ ਉਪ-ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
-  String get hadithLessonNotFoundBody =>
-      'The requested hadith could not be found.';
-
-  @override
-  String hadithLessonCompletedXp(int xp) {
-    return 'Lesson completed • +$xp XP';
+  String hadithCollectionSubcategoryCount(int count) {
+    return '$count ਹਦੀਸ';
   }
 
   @override
-  String get hadithLessonAlreadyCompleted => 'Lesson already completed';
+  String get hadithBrowseControlsTitle => 'ਇਸ ਸੂਚੀ ਨੂੰ ਸੰਕੁਚਿਤ ਕਰੋ';
 
   @override
-  String get hadithPathPageTitle => 'Hadith Paths';
+  String get hadithBrowseSortLabel => 'ਲੜੀਬੱਧ';
 
   @override
-  String get hadithPathNotFoundSubtitle => 'Path not found';
+  String get hadithBrowseSortRecommended => 'ਸਿਫ਼ਾਰਿਸ਼ ਕੀਤੀ';
 
   @override
-  String get hadithPathNotFoundBody =>
-      'The requested learning path was not found.';
+  String get hadithBrowseSortTitle => 'ਸਿਰਲੇਖ';
 
   @override
-  String get hadithPathDefaultSubtitle => 'Hadith Learning Path';
+  String get hadithBrowseSortSource => 'ਸਰੋਤ';
 
   @override
-  String get hadithPathProgressTitle => 'Progress';
+  String get hadithBrowseSortGrade => 'ਗ੍ਰੇਡ';
 
   @override
-  String get hadithPathMilestonesTitle => 'Milestones';
+  String get hadithBrowseResetAll => 'ਸਭ ਰੀਸੈਟ ਕਰੋ';
 
   @override
-  String get hadithPathLessonsTitle => 'Lessons';
+  String get hadithBrowseAllSources => 'ਸਾਰੇ ਸਰੋਤ';
 
   @override
-  String get hadithPathChaptersTitle => 'Chapters';
+  String get hadithBrowseAllGrades => 'ਸਾਰੇ ਗ੍ਰੇਡ';
+
+  @override
+  String get hadithBrowseAllSubcategories => 'ਸਾਰੀਆਂ ਉਪ-ਸ਼੍ਰੇਣੀਆਂ';
+
+  @override
+  String get hadithBrowseQuickStartTitle => 'ਇੱਥੇ ਸ਼ੁਰੂ ਕਰੋ';
+
+  @override
+  String hadithBrowseMatchingEntriesTitle(int count) {
+    return 'ਇਸ ਸੂਚੀ ਵਿੱਚ $count ਹਦੀਸ';
+  }
+
+  @override
+  String get hadithBrowseNoMatchesTitle =>
+      'ਕੋਈ ਹਦੀਸ ਇਹਨਾਂ ਫਿਲਟਰਾਂ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ';
+
+  @override
+  String get hadithBrowseNoMatchesSubtitle =>
+      'ਸੂਚੀ ਨੂੰ ਦੁਬਾਰਾ ਖੋਲ੍ਹਣ ਲਈ ਇੱਕ ਵਿਸ਼ਾਲ ਸਰੋਤ, ਗ੍ਰੇਡ, ਜਾਂ ਉਪ-ਸ਼੍ਰੇਣੀ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get hadithLessonNotFoundSubtitle => 'ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ';
+
+  @override
+  String get hadithLessonNotFoundBody => 'ਮੰਗੀ ਗਈ ਹਦੀਸ ਨਹੀਂ ਮਿਲੀ।';
+
+  @override
+  String get hadithReaderDisplaySettingsAction => 'ਰੀਡਰ ਡਿਸਪਲੇ ਸੈਟਿੰਗਜ਼';
+
+  @override
+  String get hadithReaderDisplaySettingsTitle => 'ਰੀਡਰ ਦਿੱਖ';
+
+  @override
+  String get hadithReaderDisplaySettingsSubtitle =>
+      'ਚੁਣੋ ਕਿ ਪੜ੍ਹਦੇ ਸਮੇਂ ਹਦੀਸ ਦੀਆਂ ਕਿਹੜੀਆਂ ਪਾਠ ਪਰਤਾਂ ਦਿਖਾਈ ਦੇਣ।';
+
+  @override
+  String get hadithGradeInfoTitle => 'ਹਦੀਸ ਦੇ ਦਰਜੇ';
+
+  @override
+  String hadithGradeInfoSubtitle(String grade) {
+    return 'ਇਸ ਹਦੀਸ ਨੂੰ $grade ਦਰਜਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।';
+  }
+
+  @override
+  String get hadithGradeInfoDisclaimer =>
+      'ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਵਰਤੇ ਗਏ ਲੇਬਲਾਂ ਨੂੰ ਸਮਝਣ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਨ ਲਈ ਇਹ ਛੋਟੀਆਂ ਰੀਡਿੰਗ ਏਡਜ਼ ਹਨ। ਵਿਸਤ੍ਰਿਤ ਹਦੀਸ ਗਰੇਡਿੰਗ ਚਰਚਾ ਵਿਦਵਾਨਾਂ ਅਤੇ ਸਰੋਤ-ਵਿਸ਼ੇਸ਼ ਅਧਿਐਨ ਨਾਲ ਸਬੰਧਤ ਹੈ।';
+
+  @override
+  String get hadithGradeInfoCurrentBadge => 'ਵਰਤਮਾਨ';
+
+  @override
+  String get hadithGradeInfoMuttafaqunAlayh =>
+      'ਆਮ ਤੌਰ \'ਤੇ ਇਮਾਮ ਅਲ-ਬੁਖਾਰੀ ਅਤੇ ਇਮਾਮ ਮੁਸਲਿਮ ਦੋਵਾਂ ਦੁਆਰਾ ਇਕੱਤਰ ਕੀਤੀਆਂ ਰਿਪੋਰਟਾਂ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਪਾਠਕ ਅਕਸਰ ਇਸਨੂੰ ਆਮ ਅਧਿਐਨ ਵਰਤੋਂ ਵਿੱਚ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ​​ਗਰੇਡਿੰਗ ਲੇਬਲਾਂ ਵਿੱਚੋਂ ਇੱਕ ਮੰਨਦੇ ਹਨ।';
+
+  @override
+  String get hadithGradeInfoSahih =>
+      'ਆਮ ਤੌਰ \'ਤੇ ਇੱਥੇ ਇਸ ਨਾਲ ਜੁੜੇ ਗਰੇਡਿੰਗ ਨਿਰਣੇ ਦੇ ਅਨੁਸਾਰ ਪ੍ਰਮਾਣਿਕ ​​ਅਤੇ ਭਰੋਸੇਮੰਦ ਮੰਨੀ ਜਾਂਦੀ ਰਿਪੋਰਟ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।';
+
+  @override
+  String get hadithGradeInfoHasanSahih =>
+      'ਉਦੋਂ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਜਦੋਂ ਵਿਦਵਾਨ ਹਸਨ ਸਾਹੀਹ ਵਰਗੇ ਸ਼ਬਦਾਂ ਨਾਲ ਇੱਕ ਰਿਪੋਰਟ ਦਾ ਵਰਣਨ ਕਰਦੇ ਹਨ। ਇਹ ਸਰੋਤ ਜਾਂ ਵਿਦਵਾਨਾਂ ਦੁਆਰਾ ਵਰਤੀ ਗਈ ਗਰੇਡਿੰਗ ਭਾਸ਼ਾ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹੋਏ, ਇੱਕ ਮਜ਼ਬੂਤ ​​​​ਰਿਪੋਰਟ ਵੱਲ ਇਸ਼ਾਰਾ ਕਰਦਾ ਹੈ।';
+
+  @override
+  String get hadithGradeInfoHasan =>
+      'ਆਮ ਤੌਰ \'ਤੇ ਇੱਕ ਰਿਪੋਰਟ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਜਿਸ ਨੂੰ ਸਹੀ ਅਤੇ ਸਵੀਕਾਰਯੋਗ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ, ਹਾਲਾਂਕਿ ਆਮ ਤੌਰ \'ਤੇ ਆਮ ਅਧਿਐਨ ਦੇ ਸਾਰਾਂਸ਼ਾਂ ਵਿੱਚ ਸਾਹੀਹ ਦੇ ਹੇਠਾਂ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ।';
+
+  @override
+  String get hadithGradeInfoWeak =>
+      'ਅਜਿਹੀ ਰਿਪੋਰਟ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ ਜਿਸ ਨੂੰ ਇੱਥੇ ਨੱਥੀ ਕੀਤੀ ਗਰੇਡਿੰਗ ਵਿੱਚ ਸਾਹੀਹ ਜਾਂ ਹਸਨ ਦੇ ਪੱਧਰ \'ਤੇ ਖੜ੍ਹਾ ਕਰਨ ਲਈ ਇੰਨਾ ਮਜ਼ਬੂਤ ​​ਨਹੀਂ ਮੰਨਿਆ ਜਾਂਦਾ ਹੈ।';
+
+  @override
+  String get hadithGradeInfoBalagh =>
+      'ਕੁਝ ਸਰੋਤ ਪਰੰਪਰਾਵਾਂ ਵਿੱਚ ਇੱਕ ਛੋਟੇ ਜਾਂ ਅਸਿੱਧੇ ਰੂਪ ਵਿੱਚ ਪ੍ਰਸਾਰਿਤ ਕੀਤੀ ਗਈ ਰਿਪੋਰਟ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ, ਇਸ ਲਈ ਪਾਠਕਾਂ ਨੂੰ ਇਸ ਨੂੰ ਵਾਧੂ ਦੇਖਭਾਲ ਅਤੇ ਸਰੋਤ ਜਾਗਰੂਕਤਾ ਨਾਲ ਪੇਸ਼ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।';
+
+  @override
+  String get hadithGradeInfoOtherTitle => 'ਹੋਰ ਗਰੇਡਿੰਗ ਲੇਬਲ';
+
+  @override
+  String get hadithGradeInfoOther =>
+      'ਕੁਝ ਰਿਪੋਰਟਾਂ ਸਰੋਤ-ਵਿਸ਼ੇਸ਼ ਗਰੇਡਿੰਗ ਸ਼ਬਦਾਂ ਜਾਂ ਸੰਪਾਦਕੀ ਨੋਟਸ ਦੀ ਵਰਤੋਂ ਕਰਦੀਆਂ ਹਨ ਜੋ ਉਪਰੋਕਤ ਮੁੱਖ ਸਰਲ ਸ਼੍ਰੇਣੀਆਂ ਵਿੱਚ ਫਿੱਟ ਨਹੀਂ ਹੁੰਦੀਆਂ ਹਨ।';
+
+  @override
+  String get hadithNarratorPageSubtitle =>
+      'ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਰਾਵੀ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ';
+
+  @override
+  String get hadithNarratorNotFoundSubtitle => 'ਰਾਵੀ ਨਹੀਂ ਮਿਲਿਆ';
+
+  @override
+  String get hadithNarratorNotFoundBody =>
+      'ਮੰਗਿਆ ਗਿਆ ਰਾਵੀ ਇਸ ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਨਹੀਂ ਮਿਲਿਆ।';
+
+  @override
+  String get hadithNarratorFallbackSummary =>
+      'ਇਹ ਕਥਾਵਾਚਕ ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਦਿਖਾਈ ਦਿੰਦਾ ਹੈ। ਇਹ ਪੰਨਾ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਦਾ ਵਿਸਤਾਰ ਕੀਤੇ ਜਾਣ ਦੌਰਾਨ ਉਹਨਾਂ ਦੇ ਕਥਾਵਾਂ ਨੂੰ ਇੱਥੇ ਟਰੇਸ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।';
+
+  @override
+  String get hadithNarratorAliasesTitle => 'ਵਜੋਂ ਵੀ ਦਿਖਾਇਆ ਗਿਆ ਹੈ';
+
+  @override
+  String get hadithNarratorInLibraryTitle => 'ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ';
+
+  @override
+  String get hadithNarratorStatHadith => 'ਹਦੀਸ';
+
+  @override
+  String get hadithNarratorStatSources => 'ਸਰੋਤ';
+
+  @override
+  String get hadithNarratorStatThemes => 'ਥੀਮ';
+
+  @override
+  String get hadithNarratorStatCollections => 'ਸੰਗ੍ਰਹਿ';
+
+  @override
+  String hadithNarratorHadithSectionTitle(int count) {
+    return 'ਇਸ ਰਾਵੀ ਤੋਂ $count ਹਦੀਸ';
+  }
+
+  @override
+  String get hadithNarratorRoleCompanion => 'ਪੈਗੰਬਰ ਦੇ ਸਾਥੀ';
+
+  @override
+  String get hadithNarratorRoleMotherOfBelievers =>
+      'ਵਿਸ਼ਵਾਸੀ ਅਤੇ ਵਿਦਵਾਨ ਦੀ ਮਾਤਾ';
+
+  @override
+  String get hadithNarratorRoleScholarCompanion =>
+      'ਗਿਆਨ ਅਤੇ ਉਪਦੇਸ਼ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਸਾਥੀ';
+
+  @override
+  String get hadithNarratorSummaryAbuHurairah =>
+      'ਅਬੂ ਹੁਰੈਰਾ ਪੈਗੰਬਰ ਦਾ ਇੱਕ ਸਾਥੀ ਸੀ ਜੋ ਅੱਲ੍ਹਾ ਦੇ ਮੈਸੇਂਜਰ ਦੇ ਨੇੜੇ ਰਹਿਣ ਅਤੇ ਵੱਡੀ ਗਿਣਤੀ ਵਿੱਚ ਹਦੀਸ ਪ੍ਰਸਾਰਿਤ ਕਰਨ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਸੀ। ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ, ਉਹ ਅਕਸਰ ਪੂਜਾ, ਚਰਿੱਤਰ, ਤੋਬਾ, ਅਤੇ ਰੋਜ਼ਾਨਾ ਮੁਸਲਮਾਨ ਜੀਵਨ ਬਾਰੇ ਕਥਾਵਾਂ ਵਿੱਚ ਪ੍ਰਗਟ ਹੁੰਦਾ ਹੈ।';
+
+  @override
+  String get hadithNarratorSummaryAishah =>
+      'ਆਇਸ਼ਾ ਬਿਨਤ ਅਬੀ ਬਕਰ, ਅੱਲ੍ਹਾ ਉਸ ਤੋਂ ਖੁਸ਼ ਹੋ ਸਕਦਾ ਹੈ, ਪੈਗੰਬਰ ਦੀ ਪਤਨੀ ਸੀ ਅਤੇ ਸੁੰਨਤ ਦੇ ਸਭ ਤੋਂ ਵੱਧ ਗਿਆਨਵਾਨ ਅਧਿਆਪਕਾਂ ਵਿੱਚੋਂ ਇੱਕ ਸੀ। ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਉਸਦੇ ਬਿਰਤਾਂਤ ਅਕਸਰ ਨਬੀ ਦੇ ਘਰ ਵਿੱਚ ਪੂਜਾ, ਕੁਰਾਨ, ਚਰਿੱਤਰ ਅਤੇ ਜੀਵਨ ਬਾਰੇ ਸੇਧ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਦੇ ਹਨ।';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnUmar =>
+      'ਅਬਦੁੱਲਾ ਇਬਨ ਉਮਰ ਇੱਕ ਸਾਥੀ ਸੀ ਜੋ ਸੁੰਨਤ ਦੀ ਸਾਵਧਾਨੀ ਨਾਲ ਪਾਲਣਾ ਕਰਨ ਅਤੇ ਪੂਜਾ ਪ੍ਰਤੀ ਆਪਣੀ ਸ਼ਰਧਾ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਸੀ। ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਉਸਦੇ ਬਿਰਤਾਂਤ ਅਕਸਰ ਪ੍ਰਾਰਥਨਾ, ਯਾਤਰਾ, ਸੰਜਮ, ਅਤੇ ਪਰਲੋਕ ਦੀ ਜਾਗਰੂਕਤਾ ਨਾਲ ਜੀਉਣ \'ਤੇ ਕੇਂਦਰਿਤ ਹੁੰਦੇ ਹਨ।';
+
+  @override
+  String get hadithNarratorSummaryAnasIbnMalik =>
+      'ਅਨਸ ਇਬਨ ਮਲਿਕ ਨੇ ਮਦੀਨਾ ਵਿੱਚ ਪੈਗੰਬਰ ਦੀ ਸੇਵਾ ਕੀਤੀ ਅਤੇ ਪੈਗੰਬਰ ਦੇ ਚਾਲ-ਚਲਣ, ਦਇਆ ਅਤੇ ਰੋਜ਼ਾਨਾ ਉਦਾਹਰਣ ਬਾਰੇ ਬਹੁਤ ਸਾਰੀਆਂ ਹਦੀਸ ਪ੍ਰਸਾਰਿਤ ਕੀਤੀਆਂ। ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ, ਉਸਦੇ ਬਿਰਤਾਂਤ ਅਕਸਰ ਨਜ਼ਦੀਕੀ ਸੰਗਤ ਅਤੇ ਸੇਵਾ ਵਿੱਚ ਜੜ੍ਹਾਂ ਵਾਲੇ ਵਿਹਾਰਕ ਮਾਰਗਦਰਸ਼ਨ ਕਰਦੇ ਹਨ।';
+
+  @override
+  String get hadithNarratorSummaryJabirIbnAbdullah =>
+      'ਜਬੀਰ ਇਬਨ ਅਬਦੁੱਲਾ ਅੰਸਾਰ ਦਾ ਇੱਕ ਸਾਥੀ ਸੀ ਜਿਸਨੇ ਪੂਜਾ, ਸ਼ਿਸ਼ਟਾਚਾਰ ਅਤੇ ਭਾਈਚਾਰਕ ਜੀਵਨ ਵਿੱਚ ਹਦੀਸ ਦਾ ਵਰਣਨ ਕੀਤਾ। ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਉਸਦੇ ਕਥਨ ਅਕਸਰ ਸੇਧ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਦੇ ਹਨ ਜੋ ਸ਼ਰਧਾ ਨੂੰ ਰੋਜ਼ਾਨਾ ਦੇ ਵਿਹਾਰ ਨਾਲ ਜੋੜਦਾ ਹੈ।';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnAbbas =>
+      'ਅਬਦੁੱਲਾ ਇਬਨ ਅੱਬਾਸ, ਪੈਗੰਬਰ ਦਾ ਚਚੇਰਾ ਭਰਾ, ਗਿਆਨ, ਸਮਝ ਅਤੇ ਸਿੱਖਿਆ ਲਈ ਵਿਆਪਕ ਤੌਰ \'ਤੇ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ। ਇਸ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ, ਉਸਦੇ ਬਿਰਤਾਂਤ ਅਕਸਰ ਪ੍ਰਗਟ ਹੁੰਦੇ ਹਨ ਜਿੱਥੇ ਹਦੀਸ ਪੂਜਾ ਨੂੰ ਪ੍ਰਤੀਬਿੰਬ, ਸਮਝ ਅਤੇ ਵਿਆਪਕ ਸਮਝ ਨਾਲ ਜੋੜਦੀ ਹੈ।';
+
+  @override
+  String hadithLessonCompletedXp(int xp) {
+    return 'ਪਾਠ ਪੂਰਾ ਹੋਇਆ • +$xp XP';
+  }
+
+  @override
+  String get hadithLessonAlreadyCompleted => 'ਪਾਠ ਪਹਿਲਾਂ ਹੀ ਪੂਰਾ ਹੋ ਚੁੱਕਾ ਹੈ';
+
+  @override
+  String get hadithPathPageTitle => 'ਹਦੀਸ ਰਾਹ';
+
+  @override
+  String get hadithPathNotFoundSubtitle => 'ਰਾਹ ਨਹੀਂ ਮਿਲਿਆ';
+
+  @override
+  String get hadithPathNotFoundBody => 'ਮੰਗਿਆ ਗਿਆ ਸਿੱਖਣ ਰਾਹ ਨਹੀਂ ਮਿਲਿਆ।';
+
+  @override
+  String get hadithPathDefaultSubtitle => 'ਹਦੀਸ ਸਿੱਖਣ ਰਾਹ';
+
+  @override
+  String get hadithPathProgressTitle => 'ਤਰੱਕੀ';
+
+  @override
+  String get hadithPathMilestonesTitle => 'ਮੁੱਖ ਪੜਾਅ';
+
+  @override
+  String get hadithPathLessonsTitle => 'ਪਾਠ';
+
+  @override
+  String get hadithPathChaptersTitle => 'ਅਧਿਆਇ';
 
   @override
   String hadithPathHeaderLessons(int count) {
-    return '$count lessons';
+    return '$count ਪਾਠ';
   }
 
   @override
   String hadithPathHeaderCompleted(int count) {
-    return '$count completed';
+    return '$count ਪੂਰੇ ਹੋਏ';
   }
 
   @override
   String hadithPathProgressSummary(int completed, int total) {
-    return '$completed / $total completed';
+    return '$completed / $total ਪੂਰੇ ਹੋਏ';
   }
 
   @override
   String hadithPathLessonCount(int completed, int total) {
-    return '$completed / $total lessons';
+    return '$completed / $total ਪਾਠ';
   }
 
   @override
   String hadithPathLastScore(int score, int total) {
-    return ' • Last score: $score/$total';
+    return ' • ਆਖਰੀ ਅੰਕ: $score/$total';
   }
 
   @override
   String hadithPathQuranConnections(int count) {
-    return 'Qur’an connections: $count';
+    return 'ਕੁਰਆਨ ਨਾਲ ਜੋੜ: $count';
   }
 
   @override
   String hadithPathNextLesson(String title) {
-    return 'Next: $title';
+    return 'ਅਗਲਾ: $title';
   }
 
   @override
@@ -978,7 +1203,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get quranMemorizationReviewOpenListAction =>
-      'Open memorization review';
+      'ਓਪਨ ਮੈਮੋਰਾਈਜ਼ੇਸ਼ਨ ਸਮੀਖਿਆ';
 
   @override
   String get quranHubWordsTitle => 'Words';
@@ -1050,11 +1275,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonGuidedPath =>
-      'This best matches your current focus on following a guided path.';
+      'ਇਹ ਇੱਕ ਮਾਰਗਦਰਸ਼ਨ ਮਾਰਗ \'ਤੇ ਚੱਲਣ \'ਤੇ ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਫੋਕਸ ਨਾਲ ਸਭ ਤੋਂ ਵਧੀਆ ਮੇਲ ਖਾਂਦਾ ਹੈ।';
 
   @override
   String get quranHubRecommendationReasonDaily =>
-      'Keep one ayah, one meaning cue, and one calm next step close today.';
+      'ਅੱਜ ਇੱਕ ਆਇਤ, ਇੱਕ ਅਰਥ ਸੰਕੇਤ, ਅਤੇ ਇੱਕ ਸ਼ਾਂਤ ਅਗਲਾ ਕਦਮ ਰੱਖੋ।';
 
   @override
   String quranHubRecommendationReasonDailyJourney(Object journey) {
@@ -1074,11 +1299,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonMemorizationFocus =>
-      'Keep repetition and review close while memorization is your main focus.';
+      'ਦੁਹਰਾਓ ਅਤੇ ਸਮੀਖਿਆ ਨੂੰ ਨੇੜੇ ਰੱਖੋ ਜਦੋਂ ਕਿ ਯਾਦ ਕਰਨਾ ਤੁਹਾਡਾ ਮੁੱਖ ਫੋਕਸ ਹੈ।';
 
   @override
   String get quranHubRecommendationReasonRecentStudy =>
-      'Return to the surah you were studying most recently.';
+      'ਉਸ ਸੂਰਤ ਤੇ ਵਾਪਸ ਜਾਓ ਜਿਸਦਾ ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਅਧਿਐਨ ਕਰ ਰਹੇ ਸੀ।';
 
   @override
   String get quranHubRecommendationReasonTheme =>
@@ -1102,128 +1327,129 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get quranCompanionSectionTitle => 'Your Qur’an Companion';
+  String get quranCompanionSectionTitle => 'ਤੁਹਾਡਾ ਕੁਰਾਨ ਸਾਥੀ';
 
   @override
   String get quranCompanionSectionSubtitle =>
-      'A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.';
+      'ਤੁਹਾਡੇ ਹਾਲੀਆ ਪੜ੍ਹਣ, ਵਰਤਮਾਨ ਮਾਰਗ, ਅਤੇ ਜਿਸ ਪਲ ਤੁਸੀਂ ਅੰਦਰ ਹੋ, ਦੁਆਰਾ ਆਕਾਰ ਦਿੱਤੇ ਸੁਝਾਵਾਂ ਦਾ ਇੱਕ ਸ਼ਾਂਤ ਸਮੂਹ।';
 
   @override
   String quranCompanionResumePathTitle(Object path) {
-    return 'Continue $path';
+    return 'ਜਾਰੀ ਰੱਖੋ $path';
   }
 
   @override
   String get quranCompanionResumePathDescription =>
-      'Pick up your guided journey where it last felt most alive.';
+      'ਆਪਣੀ ਮਾਰਗਦਰਸ਼ਨ ਯਾਤਰਾ ਨੂੰ ਚੁਣੋ ਜਿੱਥੇ ਇਹ ਆਖਰੀ ਵਾਰ ਸਭ ਤੋਂ ਵੱਧ ਜੀਵਿਤ ਮਹਿਸੂਸ ਹੋਇਆ ਸੀ।';
 
   @override
-  String get quranCompanionResumeBadge => 'Resume';
+  String get quranCompanionResumeBadge => 'ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String quranCompanionContinueSurahTitle(Object surah) {
-    return 'Continue Surah $surah';
+    return 'ਸੂਰਾ $surah ਜਾਰੀ ਰੱਖੋ';
   }
 
   @override
   String get quranCompanionContinueSurahDescription =>
-      'Return to the ayah where your reading thread was already open.';
+      'ਅਯਾਹ \'ਤੇ ਵਾਪਸ ਜਾਓ ਜਿੱਥੇ ਤੁਹਾਡਾ ਰੀਡਿੰਗ ਥ੍ਰੈਡ ਪਹਿਲਾਂ ਹੀ ਖੁੱਲ੍ਹਾ ਸੀ।';
 
   @override
   String quranCompanionExploreThemeTitle(Object theme) {
-    return 'Explore $theme';
+    return '$theme ਦੀ ਪੜਚੋਲ ਕਰੋ';
   }
 
   @override
   String get quranCompanionThemeDescription =>
-      'Follow one Qur’anic theme across connected surahs, ayat, and reflections.';
+      'ਜੁੜੀਆਂ ਸੁਰਾਂ, ਆਇਤਾਂ ਅਤੇ ਪ੍ਰਤੀਬਿੰਬਾਂ ਵਿੱਚ ਇੱਕ ਕੁਰਾਨ ਦੇ ਥੀਮ ਦੀ ਪਾਲਣਾ ਕਰੋ।';
 
   @override
   String get quranCompanionRelatedThemeDescription =>
-      'A connected theme to keep your recent Qur’an exploration moving gently forward.';
+      'ਤੁਹਾਡੀ ਹਾਲੀਆ ਕੁਰਾਨ ਖੋਜ ਨੂੰ ਹੌਲੀ-ਹੌਲੀ ਅੱਗੇ ਵਧਾਉਣ ਲਈ ਇੱਕ ਜੁੜਿਆ ਹੋਇਆ ਥੀਮ।';
 
   @override
   String quranCompanionPathwayTitle(Object path) {
-    return 'Walk through $path';
+    return '$path ਰਾਹੀਂ ਚੱਲੋ';
   }
 
   @override
   String get quranCompanionPathwayDescription =>
-      'A guided pathway that keeps the next step clear and spiritually grounded.';
+      'ਇੱਕ ਮਾਰਗਦਰਸ਼ਨ ਮਾਰਗ ਜੋ ਅਗਲੇ ਕਦਮ ਨੂੰ ਸਪਸ਼ਟ ਅਤੇ ਅਧਿਆਤਮਿਕ ਤੌਰ \'ਤੇ ਆਧਾਰਿਤ ਰੱਖਦਾ ਹੈ।';
 
   @override
   String quranCompanionStartHereTitle(Object surah) {
-    return 'Start with Surah $surah';
+    return 'ਸੂਰਾ $surah ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
   }
 
   @override
   String get quranCompanionStartHereDescription =>
-      'A gentle starting point when you want something foundational and clear.';
+      'ਇੱਕ ਕੋਮਲ ਸ਼ੁਰੂਆਤੀ ਬਿੰਦੂ ਜਦੋਂ ਤੁਸੀਂ ਕੁਝ ਬੁਨਿਆਦੀ ਅਤੇ ਸਪਸ਼ਟ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
-  String get quranCompanionTimeOfDayTitle => 'A reflection for this moment';
+  String get quranCompanionTimeOfDayTitle => 'ਇਸ ਪਲ ਲਈ ਇੱਕ ਪ੍ਰਤੀਬਿੰਬ';
 
   @override
   String get quranCompanionTimeOfDayDescription =>
-      'Keep one ayah, one meaning cue, and one calm next step close right now.';
+      'ਇੱਕ ਆਇਤ, ਇੱਕ ਅਰਥ ਸੰਕੇਤ, ਅਤੇ ਇੱਕ ਸ਼ਾਂਤ ਅਗਲਾ ਕਦਮ ਇਸ ਸਮੇਂ ਨੇੜੇ ਰੱਖੋ।';
 
   @override
   String quranCompanionFridayTitle(Object surah) {
-    return 'Friday reflection: $surah';
+    return 'ਸ਼ੁੱਕਰਵਾਰ ਪ੍ਰਤੀਬਿੰਬ: $surah';
   }
 
   @override
   String get quranCompanionFridayDescription =>
-      'A soft Friday nudge toward a widely loved surah for reflection and recitation.';
+      'ਪ੍ਰਤੀਬਿੰਬ ਅਤੇ ਪਾਠ ਲਈ ਇੱਕ ਵਿਆਪਕ ਤੌਰ \'ਤੇ ਪਿਆਰੀ ਸੂਰਤ ਵੱਲ ਇੱਕ ਨਰਮ ਸ਼ੁੱਕਰਵਾਰ ਨੂੰ ਝੁਕਣਾ।';
 
   @override
-  String get quranCompanionFocusBadge => 'Growth focus';
+  String get quranCompanionFocusBadge => 'ਵਿਕਾਸ ਫੋਕਸ';
 
   @override
-  String get quranCompanionMomentBadge => 'For this moment';
+  String get quranCompanionMomentBadge => 'ਇਸ ਪਲ ਲਈ';
 
   @override
-  String get quranCompanionFridayBadge => 'Friday';
+  String get quranCompanionFridayBadge => 'ਸ਼ੁੱਕਰਵਾਰ';
 
   @override
-  String get quranCompanionMomentumBadge => 'Keep going';
+  String get quranCompanionMomentumBadge => 'ਚੱਲਦੇ ਰਹੋ';
 
   @override
-  String get quranCompanionReasonContinue => 'Continue where you left off';
+  String get quranCompanionReasonContinue =>
+      'ਜਿੱਥੇ ਤੁਸੀਂ ਛੱਡਿਆ ਸੀ ਉੱਥੇ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranCompanionReasonMorning => 'For this morning';
+  String get quranCompanionReasonMorning => 'ਇਸ ਸਵੇਰ ਲਈ';
 
   @override
-  String get quranCompanionReasonAfternoon => 'For this afternoon';
+  String get quranCompanionReasonAfternoon => 'ਇਸ ਦੁਪਹਿਰ ਲਈ';
 
   @override
-  String get quranCompanionReasonEvening => 'For this evening';
+  String get quranCompanionReasonEvening => 'ਇਸ ਸ਼ਾਮ ਲਈ';
 
   @override
-  String get quranCompanionReasonNight => 'For tonight';
+  String get quranCompanionReasonNight => 'ਅੱਜ ਰਾਤ ਲਈ';
 
   @override
-  String get quranCompanionReasonRecent => 'Based on your recent reading';
+  String get quranCompanionReasonRecent => 'ਤੁਹਾਡੀ ਹਾਲੀਆ ਰੀਡਿੰਗ ਦੇ ਆਧਾਰ \'ਤੇ';
 
   @override
-  String get quranCompanionReasonFocus => 'Based on your growth focus';
+  String get quranCompanionReasonFocus => 'ਤੁਹਾਡੇ ਵਿਕਾਸ ਫੋਕਸ ਦੇ ਆਧਾਰ \'ਤੇ';
 
   @override
-  String get quranCompanionReasonFriday => 'Friday reflection';
+  String get quranCompanionReasonFriday => 'ਸ਼ੁੱਕਰਵਾਰ ਪ੍ਰਤੀਬਿੰਬ';
 
   @override
-  String get quranCompanionReasonJourney => 'Connected to your journey';
+  String get quranCompanionReasonJourney => 'ਤੁਹਾਡੀ ਯਾਤਰਾ ਨਾਲ ਜੁੜਿਆ ਹੋਇਆ ਹੈ';
 
   @override
-  String get quranCompanionReasonMomentum => 'Keep your rhythm';
+  String get quranCompanionReasonMomentum => 'ਆਪਣੀ ਲੈਅ ਬਣਾਈ ਰੱਖੋ';
 
   @override
-  String get quranCompanionReasonStart => 'Start here';
+  String get quranCompanionReasonStart => 'ਇੱਥੇ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String quranCompanionProgressLabel(int completed, int total) {
-    return '$completed of $total stops completed';
+    return '$total ਸਟਾਪਾਂ ਦਾ $completed ਪੂਰਾ ਹੋਇਆ';
   }
 
   @override
@@ -1262,10 +1488,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get duaHubSearchHint => 'Search duas, sources, categories, tags...';
 
   @override
-  String get searchDuasHint => 'Search duas...';
+  String get searchDuasHint => 'ਦੁਆਵਾਂ ਖੋਜੋ...';
 
   @override
-  String get searchHadithHint => 'Search hadith themes, lessons, or anchors...';
+  String get searchHadithHint => 'ਹਦੀਸ ਦੇ ਵਿਸ਼ੇ, ਸਬਕ ਜਾਂ ਜੁੜਾਵ ਖੋਜੋ...';
 
   @override
   String get duaHubOverviewTitle => 'Dataset overview';
@@ -1383,26 +1609,26 @@ class AppLocalizationsPa extends AppLocalizations {
   String get allSalahTimes => 'All Salah Times';
 
   @override
-  String get homePrayerSectionTitle => 'Salah Timings';
+  String get homePrayerSectionTitle => 'ਸਲਾਹ ਦੇ ਵਕਤ';
 
   @override
-  String get homePrayerDateToday => 'Today';
+  String get homePrayerDateToday => 'ਅੱਜ';
 
   @override
-  String get homePrayerDateYesterday => 'Yesterday';
+  String get homePrayerDateYesterday => 'ਕੱਲ੍ਹ';
 
   @override
-  String get homePrayerDateTomorrow => 'Tomorrow';
+  String get homePrayerDateTomorrow => 'ਭਲਕੇ';
 
   @override
-  String get homePrayerPreviousDayTooltip => 'Previous day';
+  String get homePrayerPreviousDayTooltip => 'ਪਿਛਲਾ ਦਿਨ';
 
   @override
-  String get homePrayerNextDayTooltip => 'Next day';
+  String get homePrayerNextDayTooltip => 'ਅਗਲਾ ਦਿਨ';
 
   @override
   String homePrayerCompletedCountValue(String completed, String total) {
-    return '$completed of $total salah entries offered';
+    return '$total ਵਿੱਚੋਂ $completed ਸਲਾਹ ਐਂਟਰੀਆਂ ਅਦਾ ਕੀਤੀਆਂ ਗਈਆਂ';
   }
 
   @override
@@ -1427,36 +1653,34 @@ class AppLocalizationsPa extends AppLocalizations {
   String get salahStreak => 'Salah Streak';
 
   @override
-  String get homeSectionDailyNurTitle => 'Daily Nur Progress';
+  String get homeSectionDailyNurTitle => 'ਰੋਜ਼ਾਨਾ ਨੂਰ ਤਰੱਕੀ';
 
   @override
-  String get homeSectionDailyNurSubtitle =>
-      'A high-level snapshot for reflection.';
+  String get homeSectionDailyNurSubtitle => 'ਮਨਨ ਲਈ ਇੱਕ ਉੱਚ-ਪੱਧਰੀ ਝਲਕ।';
 
   @override
-  String get homePrayerSummaryTitle => 'Salah Summary';
+  String get homePrayerSummaryTitle => 'ਸਲਾਹ ਸੰਖੇਪ';
 
   @override
-  String get homePrayerSummarySubtitle =>
-      'Quick view into todays salah rhythm.';
+  String get homePrayerSummarySubtitle => 'ਅੱਜ ਦੀ ਸਲਾਹ ਲਹਿਰ ਉੱਤੇ ਤੇਜ਼ ਨਜ਼ਰ।';
 
   @override
-  String get homeDhikrLearningTitle => 'Dhikr and Learning';
+  String get homeDhikrLearningTitle => 'ਜ਼ਿਕਰ ਅਤੇ ਸਿੱਖਿਆ';
 
   @override
-  String get homeDhikrLearningSubtitle => 'Fast access to spiritual practices.';
+  String get homeDhikrLearningSubtitle => 'ਰੂਹਾਨੀ ਅਮਲਾਂ ਤੱਕ ਤੇਜ਼ ਪਹੁੰਚ।';
 
   @override
-  String get homeReflectionTitle => 'Reflection / Reminder';
+  String get homeReflectionTitle => 'ਮਨਨ / ਯਾਦ ਦਿਹਾਨੀ';
 
   @override
-  String get homeReflectionSubtitle => 'Centerpiece message for the day.';
+  String get homeReflectionSubtitle => 'ਅੱਜ ਦੇ ਦਿਨ ਦਾ ਕੇਂਦਰੀ ਸੁਨੇਹਾ।';
 
   @override
-  String get homeLevelStreakTitle => 'Level and Streak';
+  String get homeLevelStreakTitle => 'ਲੈਵਲ ਅਤੇ ਸਿਲਸਿਲਾ';
 
   @override
-  String get homeLevelStreakSubtitle => 'Growth signals without pressure.';
+  String get homeLevelStreakSubtitle => 'ਬਿਨਾਂ ਦਬਾਅ ਦੇ ਤਰੱਕੀ ਦੇ ਸੰਕੇਤ।';
 
   @override
   String get homeOverviewHeroTitle => 'ਰੋਜ਼ਾਨਾ ਨੂਰ ਦੀ ਸੰਖੇਪ ਜਾਣਕਾਰੀ';
@@ -1466,53 +1690,53 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਪੂਜਾ, ਸਿੱਖਣ ਅਤੇ ਵਿਕਾਸ ਦਾ ਸੰਖੇਪ ਸੰਖੇਪ।';
 
   @override
-  String get homePrayerProgressTitle => 'Salah progress';
+  String get homePrayerProgressTitle => 'ਸਲਾਹ ਤਰੱਕੀ';
 
   @override
-  String get homeDhikrProgressTitle => 'Dhikr progress';
+  String get homeDhikrProgressTitle => 'ਜ਼ਿਕਰ ਤਰੱਕੀ';
 
   @override
-  String get homeCurrentStreakTitle => 'Current streak';
+  String get homeCurrentStreakTitle => 'ਮੌਜੂਦਾ ਸਿਲਸਿਲਾ';
 
   @override
-  String get homeXpLevelTitle => 'Level and XP';
+  String get homeXpLevelTitle => 'ਲੈਵਲ ਅਤੇ ਐਕਸਪੀ';
 
   @override
-  String get homeDaysLabel => 'days';
+  String get homeDaysLabel => 'ਦਿਨ';
 
   @override
   String get homeXpToNextLevel => 'ਅਗਲੇ ਪੱਧਰ ਲਈ XP';
 
   @override
-  String get homeWorshipSummaryTitle => 'Ibadah Summary';
+  String get homeWorshipSummaryTitle => 'ਇਬਾਦਤ ਸੰਖੇਪ';
 
   @override
   String get homeWorshipSummarySubtitle =>
-      'Salah, dhikr, fasting, and Khusu in one place.';
+      'ਸਲਾਹ, ਜ਼ਿਕਰ, ਰੋਜ਼ਾ ਅਤੇ ਖ਼ੁਸ਼ੂ ਇਕੋ ਥਾਂ ਉੱਤੇ।';
 
   @override
-  String get homeFastingStatusTitle => 'Fasting status';
+  String get homeFastingStatusTitle => 'ਰੋਜ਼ੇ ਦੀ ਹਾਲਤ';
 
   @override
-  String get homeKhusuQuickEntryTitle => 'Khusu quick entry';
+  String get homeKhusuQuickEntryTitle => 'ਖੁਸ਼ੂ ਤੁਰੰਤ ਦਾਖਲਾ';
 
   @override
-  String get homeKhusuQuickEntryValue => 'Enter focus mode';
+  String get homeKhusuQuickEntryValue => 'ਧਿਆਨ ਮੋਡ ਵਿੱਚ ਜਾਓ';
 
   @override
-  String get homeKhusuQuickEntryShort => 'Khusu';
+  String get homeKhusuQuickEntryShort => 'ਖੁਸ਼ੂ';
 
   @override
-  String get homeFastingNotFasting => 'Not fasting';
+  String get homeFastingNotFasting => 'ਰੋਜ਼ਾ ਨਹੀਂ';
 
   @override
-  String get homeFastingIntending => 'Intending to fast';
+  String get homeFastingIntending => 'ਰੋਜ਼ਾ ਰੱਖਣ ਦੀ ਨੀਅਤ ਹੈ';
 
   @override
-  String get homeFastingCompleted => 'Completed';
+  String get homeFastingCompleted => 'ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get homeFastingBroken => 'Missed / Broken';
+  String get homeFastingBroken => 'ਛੁੱਟਿਆ / ਟੁੱਟਿਆ';
 
   @override
   String get worshipPrayerHubTitle => 'ਸਲਾਹ ਹਬ';
@@ -1550,7 +1774,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get worshipPrayerAutoAdjustRemindersSubtitle =>
-      'Pauses salah and fasting reminders and keeps gentle alternatives.';
+      'ਸਲਾਹ ਅਤੇ ਰੋਜ਼ੇ ਦੀਆਂ ਯਾਦ ਦਿਹਾਨੀਆਂ ਰੋਕਦਾ ਹੈ ਅਤੇ ਨਰਮ ਵਿਕਲਪ ਜਾਰੀ ਰੱਖਦਾ ਹੈ।';
 
   @override
   String get worshipPrayerPurityCheckReminderTitle => 'ਪਾਕੀ ਦੀ ਜਾਂਚ ਯਾਦ ਦਿਹਾਨੀ';
@@ -1564,7 +1788,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String worshipPrayerHijriDateValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year ਹਿ.';
   }
 
   @override
@@ -1693,7 +1917,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String worshipPrayerPercentValue(String value) {
-    return '$value%';
+    return '$value٪';
   }
 
   @override
@@ -1804,7 +2028,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String worshipPrayerOverlayLabel(String prayerName, String time) {
-    return '$prayerName $time';
+    return '$prayerName • $time';
   }
 
   @override
@@ -1817,7 +2041,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get worshipPrayerCadenceQueueClear =>
-      'Queue clear. Maintain on-time salah.';
+      'ਕਤਾਰ ਸਾਫ਼ ਹੈ। ਸਲਾਹ ਨੂੰ ਸਮੇਂ ਤੇ ਕਾਇਮ ਰੱਖੋ।';
 
   @override
   String get worshipPrayerCadenceLight =>
@@ -1853,18 +2077,18 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get worshipPrayerNoQueuedQadaLeft =>
-      'No queued qada left. Keep todays salah protected.';
+      'ਹੁਣ ਕੋਈ ਕਤਾਰਬੱਧ ਕਜ਼ਾ ਨਹੀਂ ਬਚੀ। ਅੱਜ ਦੀ ਸਲਾਹ ਨੂੰ ਸੰਭਾਲ ਕੇ ਰੱਖੋ।';
 
   @override
   String get worshipPrayerNoRecordsThisMonth =>
-      'No salah records yet for this month.';
+      'ਇਸ ਮਹੀਨੇ ਲਈ ਹਾਲੇ ਕੋਈ ਸਲਾਹ ਰਿਕਾਰਡ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get worshipPrayerHeatmapTitle => 'Salah-by-Salah Heatmap';
+  String get worshipPrayerHeatmapTitle => 'ਸਲਾਹ-ਵਾਰ ਹੀਟਮੈਪ';
 
   @override
   String get worshipPrayerHeatmapSubtitle =>
-      'Each row is one salah. Green offered, yellow missed, soft gray pending.';
+      'ਹਰ ਕਤਾਰ ਇੱਕ ਸਲਾਹ ਹੈ। ਹਰਾ ਅਦਾ ਕੀਤੀ, ਪੀਲਾ ਛੁੱਟੀ ਹੋਈ, ਨਰਮ ਸਲੇਟੀ ਬਾਕੀ।';
 
   @override
   String get worshipPrayerGregorianCalendarTitle => 'ਆਮ ਕੈਲੰਡਰ (ਗ੍ਰੇਗੋਰੀਅਨ)';
@@ -1932,324 +2156,325 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਇਸ ਵੇਲੇ ਸਥਾਨ ਨਹੀਂ ਮਿਲ ਰਹੇ।';
 
   @override
-  String get homeLearnSummaryTitle => 'Learn Summary';
+  String get homeLearnSummaryTitle => 'ਸਿੱਖਣ ਦਾ ਸੰਖੇਪ';
 
   @override
   String get homeLearnSummarySubtitle =>
-      'Continue your knowledge path with focused previews.';
+      'ਕੇਂਦਰਿਤ ਝਲਕਾਂ ਨਾਲ ਆਪਣੇ ਗਿਆਨ ਦੇ ਰਾਹ ਨੂੰ ਜਾਰੀ ਰੱਖੋ।';
 
   @override
-  String get homeLearnContinueQuran => 'Continue Quran';
+  String get homeLearnContinueQuran => 'ਕੁਰਆਨ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get homeLearnContinueQuranValue => 'Resume last reading';
+  String get homeLearnContinueQuranValue => 'ਆਖਰੀ ਪੜ੍ਹਾਈ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get homeLearnFeaturedLife => 'Featured Life topic';
+  String get homeLearnFeaturedLife => 'ਖ਼ਾਸ ਜ਼ਿੰਦਗੀ ਵਿਸ਼ਾ';
 
   @override
-  String get homeLearnFeaturedLifeValue => 'Patience';
+  String get homeLearnFeaturedLifeValue => 'ਸਬਰ';
 
   @override
-  String get homeLearnFeaturedWorld => 'Featured World topic';
+  String get homeLearnFeaturedWorld => 'ਖ਼ਾਸ ਦੁਨਿਆਵੀ ਵਿਸ਼ਾ';
 
   @override
-  String get homeLearnFeaturedWorldValue => 'Mountains';
+  String get homeLearnFeaturedWorldValue => 'ਪਹਾੜ';
 
   @override
-  String get homeLearnFeaturedHadith => 'Featured Hadith topic';
+  String get homeLearnFeaturedHadith => 'ਖ਼ਾਸ ਹਦੀਸ ਵਿਸ਼ਾ';
 
   @override
-  String get homeLearnFeaturedHadithValue => 'Character and Manners';
+  String get homeLearnFeaturedHadithValue => 'ਅਖ਼ਲਾਕ ਅਤੇ ਅਦਬ';
 
   @override
-  String get homeLearnResumeNotes => 'Notes and reflection';
+  String get homeLearnResumeNotes => 'ਨੋਟਸ ਅਤੇ ਮਨਨ';
 
   @override
-  String get homeLearnResumeNotesValue => 'Resume your latest note';
+  String get homeLearnResumeNotesValue => 'ਆਪਣਾ ਤਾਜ਼ਾ ਨੋਟ ਮੁੜ ਖੋਲ੍ਹੋ';
 
   @override
-  String get homeJourneySummaryTitle => 'Journey Summary';
+  String get homeJourneySummaryTitle => 'ਸਫ਼ਰ ਦਾ ਸੰਖੇਪ';
 
   @override
   String get homeJourneySummarySubtitle =>
-      'Track progression, rings, and next unlocks.';
+      'ਤਰੱਕੀ, ਰਿੰਗਾਂ ਅਤੇ ਅਗਲੇ ਅਨਲੌਕਾਂ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ।';
 
   @override
-  String get homeJourneyXpProgressTitle => 'XP progress';
+  String get homeJourneyXpProgressTitle => 'XP ਤਰੱਕੀ';
 
   @override
-  String get homeJourneyDailyRingsTitle => 'Daily rings';
+  String get homeJourneyDailyRingsTitle => 'ਰੋਜ਼ਾਨਾ ਰਿੰਗਾਂ';
 
   @override
-  String get homeJourneyNextUnlockTitle => 'Next unlock';
+  String get homeJourneyNextUnlockTitle => 'ਅਗਲਾ ਅਨਲੌਕ';
 
   @override
-  String get homeJourneyNextUnlockValue => 'Wallpaper reward preview';
+  String get homeJourneyNextUnlockValue => 'ਵਾਲਪੇਪਰ ਇਨਾਮ ਝਲਕ';
 
   @override
-  String get homeQuickActionsTitle => 'Quick Actions';
+  String get homeQuickActionsTitle => 'ਤੇਜ਼ ਕਾਰਵਾਈਆਂ';
 
   @override
-  String get homeQuickActionsSubtitle =>
-      'Jump into your core sections quickly.';
+  String get homeQuickActionsSubtitle => 'ਆਪਣੇ ਮੁੱਖ ਭਾਗਾਂ ਵਿੱਚ ਤੇਜ਼ੀ ਨਾਲ ਜਾਓ।';
 
   @override
-  String get appQuickActionOpenToday => 'Open Today';
+  String get appQuickActionOpenToday => 'ਅੱਜ ਖੋਲ੍ਹੋ';
 
   @override
-  String get appQuickActionReadQuran => 'Read Qur’an';
+  String get appQuickActionReadQuran => 'ਕੁਰਆਨ ਪੜ੍ਹੋ';
 
   @override
-  String get appQuickActionDailyLearning => 'Daily Learning';
+  String get appQuickActionDailyLearning => 'ਰੋਜ਼ਾਨਾ ਸਿੱਖਿਆ';
 
   @override
   String get homeReflectionReminder =>
-      '\"Return softly to your intention. Small sincere acts build lasting light.\"';
+      '\"ਆਪਣੀ ਨੀਅਤ ਵੱਲ ਨਰਮੀ ਨਾਲ ਵਾਪਸ ਆਓ। ਛੋਟੇ ਖ਼ਾਲਿਸ ਅਮਲ ਟਿਕਾਉ ਰੌਸ਼ਨੀ ਬਣਾਉਂਦੇ ਹਨ।\"';
 
   @override
-  String get homeWelcomeDailyIntentionTitle => 'Daily Intention';
+  String get homeWelcomeDailyIntentionTitle => 'ਰੋਜ਼ਾਨਾ ਨੀਅਤ';
 
   @override
   String get homeWelcomeDailyIntentionSubtitle =>
-      'Start the day with gentle focus, reflection, and consistency.';
+      'ਦਿਨ ਦੀ ਸ਼ੁਰੂਆਤ ਨਰਮ ਧਿਆਨ, ਮਨਨ ਅਤੇ ਪਾਬੰਦੀ ਨਾਲ ਕਰੋ।';
 
   @override
-  String get homeWelcomePrayerRhythmTitle => 'Salah Rhythm';
+  String get homeWelcomePrayerRhythmTitle => 'ਸਲਾਹ ਦੀ ਲਹਿਰ';
 
   @override
   String get homeWelcomePrayerRhythmSubtitle =>
-      'Today\'s next salah and guidance are synced and visible below.';
+      'ਅੱਜ ਦੀ ਅਗਲੀ ਸਲਾਹ ਅਤੇ ਰਹਿਨੁਮਾਈ ਹੇਠਾਂ ਮਿਲੀ-ਜੁਲੀ ਅਤੇ ਦਿੱਖ ਰਹੀ ਹੈ।';
 
   @override
-  String get homeWelcomeDhikrQuietTitle => 'Dhikr and Quiet';
+  String get homeWelcomeDhikrQuietTitle => 'ਜ਼ਿਕਰ ਅਤੇ ਖ਼ਾਮੋਸ਼ੀ';
 
   @override
   String get homeWelcomeDhikrQuietSubtitle =>
-      'Choose calm moments to track reminders and intention.';
+      'ਯਾਦ ਦਿਹਾਨੀਆਂ ਅਤੇ ਨੀਅਤ ਨੂੰ ਟ੍ਰੈਕ ਕਰਨ ਲਈ ਸ਼ਾਂਤ ਪਲ ਚੁਣੋ।';
 
   @override
-  String get homeLocationPromptTitle => 'Use location while using app?';
+  String get homeLocationPromptTitle => 'ਐਪ ਵਰਤਦੇ ਸਮੇਂ ਟਿਕਾਣਾ ਵਰਤਣਾ ਹੈ?';
 
   @override
   String get homeLocationPromptSubtitle =>
-      'Enable foreground location for accurate salah times.';
+      'ਸਹੀ ਸਲਾਹ ਸਮਿਆਂ ਲਈ ਅੱਗੇਲੇ-ਪੱਧਰ ਦਾ ਟਿਕਾਣਾ ਚਾਲੂ ਕਰੋ।';
 
   @override
   String get homeLocationEnabledWhileUsing =>
-      'Location access is enabled while you use the app.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਐਪ ਵਰਤਦੇ ਹੋ, ਟਿਕਾਣੇ ਦੀ ਪਹੁੰਚ ਚਾਲੂ ਹੈ।';
 
   @override
   String get homeLocationAllowWhileUsingForPrayer =>
-      'Allow location only while using the app for accurate salah times.';
+      'ਸਹੀ ਸਲਾਹ ਸਮਿਆਂ ਲਈ ਕੇਵਲ ਐਪ ਵਰਤਦੇ ਸਮੇਂ ਟਿਕਾਣੇ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।';
 
   @override
   String get homeLocationBlockedOpenSettings =>
-      'Location access is blocked. Open settings to enable while using app.';
+      'ਟਿਕਾਣੇ ਦੀ ਪਹੁੰਚ ਰੋਕੀ ਹੋਈ ਹੈ। ਐਪ ਵਰਤਦੇ ਸਮੇਂ ਇਸਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ।';
 
   @override
   String get homeLocationStatusCanUpdate =>
-      'Location permission status can be updated anytime.';
+      'ਟਿਕਾਣੇ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਹਾਲਤ ਕਿਸੇ ਵੀ ਵੇਲੇ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get worshipQiblaFinderTitle => 'Qibla Finder';
+  String get worshipQiblaFinderTitle => 'ਕਿਬਲਾ ਲੱਭਣ ਵਾਲਾ';
 
   @override
   String get worshipQiblaFinderSubtitle =>
-      'Find the direction of the Kaaba with calm, clear guidance.';
+      'ਸ਼ਾਂਤ ਅਤੇ ਸਾਫ਼ ਰਹਿਨੁਮਾਈ ਨਾਲ ਕਾਬਾ ਦੀ ਦਿਸ਼ਾ ਲੱਭੋ।';
 
   @override
-  String get worshipQiblaCompassDirectionTitle => 'Qibla direction';
+  String get worshipQiblaCompassDirectionTitle => 'ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ';
 
   @override
-  String get worshipQiblaDetectingLocation => 'Detecting your location...';
+  String get worshipQiblaDetectingLocation =>
+      'ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ...';
 
   @override
   String get worshipQiblaUnableToDetermineLocation =>
-      'Unable to determine your location right now.';
+      'ਇਸ ਵੇਲੇ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਨਿਰਧਾਰਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।';
 
   @override
-  String get worshipQiblaArOptionTitle => 'AR mode';
+  String get worshipQiblaArOptionTitle => 'ਅਗਮੈਂਟਿਡ ਰਿਯਾਲਟੀ ਮੋਡ';
 
   @override
   String get worshipQiblaArOptionSubtitle =>
-      'Use a larger directional view for easier alignment.';
+      'ਹੋਰ ਆਸਾਨ ਮਿਲਾਣ ਲਈ ਵੱਡਾ ਦਿਸ਼ਾ-ਦ੍ਰਿਸ਼ ਵਰਤੋ।';
 
   @override
-  String get worshipQiblaDisableArMode => 'Disable AR mode';
+  String get worshipQiblaDisableArMode => 'ਅਗਮੈਂਟਿਡ ਰਿਯਾਲਟੀ ਮੋਡ ਬੰਦ ਕਰੋ';
 
   @override
-  String get worshipQiblaEnableArMode => 'Enable AR mode';
+  String get worshipQiblaEnableArMode => 'ਅਗਮੈਂਟਿਡ ਰਿਯਾਲਟੀ ਮੋਡ ਚਾਲੂ ਕਰੋ';
 
   @override
   String get worshipQiblaArModeBetaHint =>
-      'AR mode is still lightweight and may vary by device.';
+      'ਅਗਮੈਂਟਿਡ ਰਿਯਾਲਟੀ ਮੋਡ ਹਾਲੇ ਸ਼ੁਰੂਆਤੀ ਰੂਪ ਵਿੱਚ ਹੈ ਅਤੇ ਡਿਵਾਈਸ ਮੁਤਾਬਕ ਬਦਲ ਸਕਦਾ ਹੈ।';
 
   @override
-  String get worshipQiblaArLiveTitle => 'Live camera guidance';
+  String get worshipQiblaArLiveTitle => 'ਲਾਈਵ ਕੈਮਰਾ ਰਹਿਨੁਮਾਈ';
 
   @override
   String get worshipQiblaArLiveSubtitle =>
-      'Hold your phone up. Keep the Qibla marker above the horizon and align the prayer mat toward the floor.';
+      'ਆਪਣਾ ਫੋਨ ਉੱਪਰ ਰੱਖੋ। ਕਿਬਲਾ ਨਿਸ਼ਾਨ ਨੂੰ ਦਿੱਖ-ਰੇਖਾ ਤੋਂ ਉੱਪਰ ਰੱਖੋ ਅਤੇ ਨਮਾਜ਼ ਦੀ ਜਾਇਨਾਮਾਜ਼ ਨੂੰ ਫਰਸ਼ ਵੱਲ ਸਿੱਧਾ ਕਰੋ।';
 
   @override
   String get worshipQiblaArPrayerMatHint =>
-      'Place your prayer mat so its top edge points in the same direction as the Qibla marker.';
+      'ਆਪਣੀ ਜਾਇਨਾਮਾਜ਼ ਇਸ ਤਰ੍ਹਾਂ ਰੱਖੋ ਕਿ ਇਸਦਾ ਉੱਪਰਲਾ ਕਿਨਾਰਾ ਕਿਬਲਾ ਨਿਸ਼ਾਨ ਵਾਲੀ ਹੀ ਦਿਸ਼ਾ ਵੱਲ ਹੋਵੇ।';
 
   @override
-  String get worshipQiblaArOverlayTitle => 'Move until the marker centers';
+  String get worshipQiblaArOverlayTitle =>
+      'ਹਿਲਦੇ ਰਹੋ ਜਦ ਤੱਕ ਨਿਸ਼ਾਨ ਕੇਂਦਰ ਵਿੱਚ ਨਾ ਆ ਜਾਵੇ';
 
   @override
-  String get worshipQiblaArHorizonLineLabel => 'Horizon';
+  String get worshipQiblaArHorizonLineLabel => 'ਦਿੱਖ-ਰੇਖਾ';
 
   @override
-  String get worshipQiblaArKaabaLabel => 'Qibla';
+  String get worshipQiblaArKaabaLabel => 'ਕਿਬਲਾ';
 
   @override
-  String get worshipQiblaArCameraUnavailableTitle => 'Camera unavailable';
+  String get worshipQiblaArCameraUnavailableTitle => 'ਕੈਮਰਾ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get worshipQiblaArCameraPermissionBody =>
-      'Allow camera access to use AR mode and view the Qibla over your surroundings.';
+      'ਅਗਮੈਂਟਿਡ ਰਿਯਾਲਟੀ ਮੋਡ ਵਰਤਣ ਅਤੇ ਆਪਣੇ ਆਲੇ-ਦੁਆਲੇ ਕਿਬਲਾ ਵੇਖਣ ਲਈ ਕੈਮਰੇ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।';
 
   @override
   String get worshipQiblaArCameraUnavailableBody =>
-      'AR mode could not start the camera on this device right now.';
+      'ਇਸ ਵੇਲੇ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਅਗਮੈਂਟਿਡ ਰਿਯਾਲਟੀ ਮੋਡ ਕੈਮਰਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕਰ ਸਕਿਆ।';
 
   @override
   String get worshipQiblaArCameraLoadingBody =>
-      'Starting the camera for live Qibla guidance...';
+      'ਲਾਈਵ ਕਿਬਲਾ ਰਹਿਨੁਮਾਈ ਲਈ ਕੈਮਰਾ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...';
 
   @override
-  String get worshipQiblaArRetryCameraAction => 'Retry camera';
+  String get worshipQiblaArRetryCameraAction => 'ਕੈਮਰਾ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ';
 
   @override
   String get worshipQiblaLocationServicesDisabled =>
-      'Location services are disabled. Enable them to use the Qibla finder.';
+      'ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ ਬੰਦ ਹਨ। ਕਿਬਲਾ ਲੱਭਣ ਵਾਲਾ ਵਰਤਣ ਲਈ ਉਹਨਾਂ ਨੂੰ ਚਾਲੂ ਕਰੋ।';
 
   @override
   String get worshipQiblaLocationPermissionRequired =>
-      'Location permission is required to determine the Qibla from where you are.';
+      'ਤੁਸੀਂ ਜਿੱਥੇ ਹੋ, ਉੱਥੋਂ ਕਿਬਲਾ ਨਿਰਧਾਰਤ ਕਰਨ ਲਈ ਟਿਕਾਣੇ ਦੀ ਇਜਾਜ਼ਤ ਲੋੜੀਂਦੀ ਹੈ।';
 
   @override
   String get worshipQiblaUnableToReadLocation =>
-      'Unable to read your location right now.';
+      'ਇਸ ਵੇਲੇ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।';
 
   @override
   String get worshipQiblaCompassUnavailable =>
-      'Compass data is unavailable on this device right now.';
+      'ਇਸ ਵੇਲੇ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ ਕੰਪਾਸ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get worshipQiblaCardinalNorth => 'N';
+  String get worshipQiblaCardinalNorth => 'ਉੱ';
 
   @override
-  String get worshipQiblaCardinalSouth => 'S';
+  String get worshipQiblaCardinalSouth => 'ਦੱ';
 
   @override
-  String get worshipQiblaCardinalWest => 'W';
+  String get worshipQiblaCardinalWest => 'ਪੱ';
 
   @override
-  String get worshipQiblaCardinalEast => 'E';
+  String get worshipQiblaCardinalEast => 'ਪੂ';
 
   @override
   String worshipQiblaBearingValue(Object degrees) {
-    return 'Qibla bearing: $degrees°';
+    return 'ਕਿਬਲਾ ਰੁਖ: $degrees°';
   }
 
   @override
   String worshipQiblaDeviceHeadingValue(Object degrees) {
-    return 'Device heading: $degrees°';
+    return 'ਡਿਵਾਈਸ ਦਾ ਰੁਖ: $degrees°';
   }
 
   @override
   String worshipQiblaAlignmentOffsetValue(Object degrees) {
-    return 'Alignment offset: $degrees°';
+    return 'ਮਿਲਾਣ ਅੰਤਰ: $degrees°';
   }
 
   @override
-  String get worshipQiblaAlignedMessage => 'You are aligned with the Qibla.';
+  String get worshipQiblaAlignedMessage => 'ਤੁਸੀਂ ਕਿਬਲੇ ਨਾਲ ਮਿਲੇ ਹੋਏ ਹੋ।';
 
   @override
   String get worshipQiblaRotateMessage =>
-      'Rotate gently until the arrow aligns.';
+      'ਹੌਲੇ-ਹੌਲੇ ਘੁੰਮੋ ਜਦ ਤੱਕ ਤੀਰ ਮਿਲ ਨਾ ਜਾਵੇ।';
 
   @override
   String get worshipQiblaCalibrationHint =>
-      'Move your phone gently in a figure-eight if the compass feels stuck.';
+      'ਜੇ ਕੰਪਾਸ ਅਟਕਿਆ ਲੱਗੇ, ਤਾਂ ਆਪਣੇ ਫੋਨ ਨੂੰ ਹੌਲੇ-ਹੌਲੇ ਅੱਠ ਦੇ ਆਕਾਰ ਵਿੱਚ ਹਿਲਾਓ।';
 
   @override
-  String get worshipQiblaCurrentHeadingLabel => 'Current heading';
+  String get worshipQiblaCurrentHeadingLabel => 'ਮੌਜੂਦਾ ਰੁਖ';
 
   @override
   String worshipQiblaDirectionValue(Object degrees) {
-    return 'Qibla direction $degrees°';
+    return 'ਕਿਬਲੇ ਦੀ ਦਿਸ਼ਾ $degrees°';
   }
 
   @override
   String worshipQiblaTurnRightValue(Object degrees) {
-    return 'Turn $degrees° right';
+    return '$degrees° ਸੱਜੇ ਮੁੜੋ';
   }
 
   @override
   String worshipQiblaTurnLeftValue(Object degrees) {
-    return 'Turn $degrees° left';
+    return '$degrees° ਖੱਬੇ ਮੁੜੋ';
   }
 
   @override
-  String get worshipQiblaFacingQibla => 'Facing Qibla';
+  String get worshipQiblaFacingQibla => 'ਕਿਬਲੇ ਵੱਲ ਰੁਖ';
 
   @override
-  String get worshipQiblaLocationLabel => 'Current location';
+  String get worshipQiblaLocationLabel => 'ਮੌਜੂਦਾ ਟਿਕਾਣਾ';
 
   @override
-  String get worshipQiblaLocationUnknown => 'Location unavailable';
+  String get worshipQiblaLocationUnknown => 'ਟਿਕਾਣਾ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
-  String get worshipQiblaRefreshLocation => 'Refresh location';
+  String get worshipQiblaRefreshLocation => 'ਟਿਕਾਣਾ ਤਾਜ਼ਾ ਕਰੋ';
 
   @override
-  String get worshipQiblaMajorSitesTitle => 'Distance to major Islamic sites';
+  String get worshipQiblaMajorSitesTitle => 'ਮਹੱਤਵਪੂਰਨ ਇਸਲਾਮੀ ਥਾਵਾਂ ਤੱਕ ਦੂਰੀ';
 
   @override
   String worshipQiblaDistanceKmValue(String distance) {
-    return '$distance km';
+    return '$distance ਕਿ.ਮੀ.';
   }
 
   @override
-  String get worshipQiblaSiteMasjidAlHaram => 'Masjid al-Haram';
+  String get worshipQiblaSiteMasjidAlHaram => 'ਮਸਜਿਦ ਅਲ-ਹਰਮ';
 
   @override
-  String get worshipQiblaSiteProphetsMosque => 'Al-Masjid an-Nabawi';
+  String get worshipQiblaSiteProphetsMosque => 'ਅਲ-ਮਸਜਿਦ ਅਨ-ਨਬਵੀ';
 
   @override
-  String get worshipQiblaSiteAlAqsa => 'Al-Aqsa Mosque';
+  String get worshipQiblaSiteAlAqsa => 'ਮਸਜਿਦ ਅਲ-ਅਕਸਾ';
 
   @override
-  String get worshipQiblaSiteQubaMosque => 'Masjid Quba';
+  String get worshipQiblaSiteQubaMosque => 'ਮਸਜਿਦ ਕੁਬਾ';
 
   @override
-  String get worshipQiblaLocationMakkah => 'Makkah';
+  String get worshipQiblaLocationMakkah => 'ਮੱਕਾ';
 
   @override
-  String get worshipQiblaLocationMadinah => 'Madinah';
+  String get worshipQiblaLocationMadinah => 'ਮਦੀਨਾ';
 
   @override
-  String get worshipQiblaLocationJerusalem => 'Jerusalem';
+  String get worshipQiblaLocationJerusalem => 'ਯਰੂਸ਼ਲਮ';
 
   @override
-  String get homeSearchTooltip => 'Search the app';
+  String get homeSearchTooltip => 'ਐਪ ਵਿੱਚ ਖੋਜੋ';
 
   @override
-  String get homeSearchHint => 'Search pages, features, and sections';
+  String get homeSearchHint => 'ਸਫ਼ੇ, ਫੀਚਰ ਅਤੇ ਭਾਗ ਖੋਜੋ';
 
   @override
-  String get homeSearchNoResults => 'No matching section found.';
+  String get homeSearchNoResults => 'ਕੋਈ ਮਿਲਦਾ-ਜੁਲਦਾ ਭਾਗ ਨਹੀਂ ਮਿਲਿਆ।';
 
   @override
-  String get homeSearchClearTooltip => 'Clear search';
+  String get homeSearchClearTooltip => 'ਖੋਜ ਸਾਫ਼ ਕਰੋ';
 
   @override
-  String get homeSearchCloseTooltip => 'Close search';
+  String get homeSearchCloseTooltip => 'ਖੋਜ ਬੰਦ ਕਰੋ';
 
   @override
   String get homeStartWelcomeCarousel => 'ਵੈਲਕਮ ਕੈਰੋਸਲ ਸ਼ੁਰੂ ਕਰੋ';
@@ -2297,7 +2522,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String homeTimeRemainingToOffer(Object prayerName) {
-    return 'Time remaining to offer $prayerName salah';
+    return '$prayerName ਸਲਾਹ ਅਦਾ ਕਰਨ ਲਈ ਬਚਿਆ ਸਮਾਂ';
   }
 
   @override
@@ -2328,13 +2553,16 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get homePrayerForbiddenSunrise => 'Salah not allowed now • Sunrise';
+  String get homePrayerForbiddenSunrise =>
+      'ਇਸ ਵੇਲੇ ਸਲਾਹ ਅਦਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ • ਸੂਰਜ ਚੜ੍ਹਨਾ';
 
   @override
-  String get homePrayerForbiddenZenith => 'Salah not allowed now • Zenith';
+  String get homePrayerForbiddenZenith =>
+      'ਇਸ ਵੇਲੇ ਸਲਾਹ ਅਦਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ • ਜ਼ਵਾਲ';
 
   @override
-  String get homePrayerForbiddenSunset => 'Salah not allowed now • Sunset';
+  String get homePrayerForbiddenSunset =>
+      'ਇਸ ਵੇਲੇ ਸਲਾਹ ਅਦਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ • ਸੂਰਜ ਡੁੱਬਣਾ';
 
   @override
   String homeLevelValue(Object level, Object value) {
@@ -2419,13 +2647,15 @@ class AppLocalizationsPa extends AppLocalizations {
   String get homePrayerOfferedStatus => 'ਅਦਾ ਕੀਤੀ';
 
   @override
-  String get homePrayerCompletedTapHint => 'Tap to update prayer details';
+  String get homePrayerCompletedTapHint =>
+      'ਸਲਾਹ ਦੇ ਵੇਰਵੇ ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ';
 
   @override
-  String get homePrayerPostSalahDhikrAction => 'Post-salah dhikr';
+  String get homePrayerPostSalahDhikrAction => 'ਸਲਾਹ ਤੋਂ ਬਾਅਦ ਦਾ ਜ਼ਿਕਰ';
 
   @override
-  String get homePrayerPostSalahDhikrLogged => 'Post-salah dhikr logged';
+  String get homePrayerPostSalahDhikrLogged =>
+      'ਸਲਾਹ ਤੋਂ ਬਾਅਦ ਦਾ ਜ਼ਿਕਰ ਦਰਜ ਹੋ ਗਿਆ';
 
   @override
   String homePrayerBeginsAt(Object time) {
@@ -2488,7 +2718,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get homeDailyLearningReviewMistakes => 'ਗਲਤੀਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get homeTapVerseCardHint => 'Tap this card to change verse';
+  String get homeTapVerseCardHint => 'ਆਯਤ ਬਦਲਣ ਲਈ ਇਸ ਕਾਰਡ ਉੱਤੇ ਟੈਪ ਕਰੋ';
 
   @override
   String get prayerHistory => 'Salah history';
@@ -2528,11 +2758,11 @@ class AppLocalizationsPa extends AppLocalizations {
   String get sevenDays => '7 days';
 
   @override
-  String get worshipTitle => 'Ibadah';
+  String get worshipTitle => 'ਇਬਾਦਤ';
 
   @override
   String get worshipSubtitle =>
-      'Daily acts of ibadah centered into a calm, intentional flow.';
+      'ਰੋਜ਼ਾਨਾ ਦੀਆਂ ਇਬਾਦਤਾਂ ਨੂੰ ਇੱਕ ਸ਼ਾਂਤ ਅਤੇ ਸੋਚ-ਵਿਚਾਰ ਵਾਲੇ ਪ੍ਰਵਾਹ ਵਿੱਚ ਇਕੱਠਾ ਕੀਤਾ ਗਿਆ ਹੈ।';
 
   @override
   String get learnTitle => 'Learn';
@@ -2542,7 +2772,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'A focused knowledge path for reflection and deeper understanding.';
 
   @override
-  String get homeTitle => 'Home';
+  String get homeTitle => 'ਹੋਮ';
 
   @override
   String get journeyTitle => 'Growth';
@@ -2551,18 +2781,18 @@ class AppLocalizationsPa extends AppLocalizations {
   String get journeySubtitle => 'Long-term growth, light by light.';
 
   @override
-  String get profileTitle => 'Profile';
+  String get profileTitle => 'ਪਰੋਫਾਈਲ';
 
   @override
-  String get profileSubtitle => 'Intention, preferences, and personalization.';
+  String get profileSubtitle => 'ਨੀਆਤ, ਪਸੰਦਾਂ ਅਤੇ ਨਿੱਜੀਕਰਨ।';
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of الله is guided toward balance and intention.';
+      'ਜੋ الله ਨੂੰ ਯਾਦ ਰੱਖਦਾ ਹੈ, ਉਹ ਸੰਤੁਲਨ ਅਤੇ ਸਹੀ ਨੀਆਤ ਵੱਲ ਰਹਿਨੁਮਾਈ ਹੁੰਦਾ ਹੈ।';
 
   @override
   String get profileSummarySubtitle =>
-      'Keep your intention steady and your settings aligned with ease.';
+      'ਆਪਣੀ ਨੀਆਤ ਨੂੰ ਮਜ਼ਬੂਤ ਰੱਖੋ ਅਤੇ ਆਪਣੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਹਮਆਹੰਗ ਰੱਖੋ।';
 
   @override
   String get profileDisplayNameLabel => 'ਦਿਖਾਇਆ ਹੋਇਆ ਨਾਮ';
@@ -2602,13 +2832,13 @@ class AppLocalizationsPa extends AppLocalizations {
   String get profileThemeModeLabel => 'ਥੀਮ ਮੋਡ';
 
   @override
-  String get profileThemeSystem => 'System';
+  String get profileThemeSystem => 'ਸਿਸਟਮ';
 
   @override
   String get profileThemeDark => 'ਹਨੇਰਾ';
 
   @override
-  String get profileThemeLight => 'Light';
+  String get profileThemeLight => 'ਹਲਕਾ';
 
   @override
   String get profileReduceMotion => 'ਮੋਸ਼ਨ ਪ੍ਰਭਾਵਾਂ ਨੂੰ ਘਟਾਓ';
@@ -2617,11 +2847,11 @@ class AppLocalizationsPa extends AppLocalizations {
   String get profileHighContrastText => 'ਉੱਚ ਕੰਟ੍ਰਾਸਟ ਟੈਕਸਟ';
 
   @override
-  String get profileModesTitle => 'Modes';
+  String get profileModesTitle => 'ਮੋਡ';
 
   @override
   String get profileModesSubtitle =>
-      'Mode presets to support focus and consistency.';
+      'ਧਿਆਨ ਅਤੇ ਇਕਸਾਰਤਾ ਨੂੰ ਸਹਾਰਾ ਦੇਣ ਲਈ ਪਹਿਲਾਂ ਤੋਂ ਤਿਆਰ ਮੋਡ।';
 
   @override
   String get profileRamadanModeTitle => 'ਰਮਜ਼ਾਨ ਮੋਡ';
@@ -2697,11 +2927,11 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਰੀਮਾਈਂਡਰ ਅਤੇ ਨੋਟਸ ਨੂੰ ਤਰੱਕੀ ਵਿਜ਼ੁਅਲਸ ਨਾਲੋਂ ਤਰਜੀਹ ਦਿਓ।';
 
   @override
-  String get profileEntrustDeedsTitle => 'Entrust deeds';
+  String get profileEntrustDeedsTitle => 'ਅਮਲ الله ਦੇ ਸਪੁਰਦ ਕਰੋ';
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with الله.';
+      'ਇੱਕ ਨਰਮ ਯਾਦ ਦਿਹਾਨੀ: ਖ਼ਾਲਿਸ ਅਮਲ الله ਕੋਲ ਹੁੰਦੇ ਹਨ।';
 
   @override
   String get profileNotificationsTitle => 'ਸੂਚਨਾਵਾਂ ਅਤੇ ਰੀਮਾਈਂਡਰ';
@@ -2726,11 +2956,11 @@ class AppLocalizationsPa extends AppLocalizations {
   String get profileFastingReminders => 'ਵਰਤ ਰੱਖਣ ਦੀਆਂ ਯਾਦ-ਦਹਾਨੀਆਂ';
 
   @override
-  String get profileOnThisDayReminders => 'On This Day reminders';
+  String get profileOnThisDayReminders => 'ਅੱਜ ਦੇ ਦਿਨ ਦੀਆਂ ਯਾਦ ਦਿਹਾਨੀਆਂ';
 
   @override
   String get profileOnThisDayRemindersSubtitle =>
-      'Notify me when today has a historical Islamic event to reflect on.';
+      'ਜਦੋਂ ਅੱਜ ਕਿਸੇ ਇਸਲਾਮੀ ਇਤਿਹਾਸਕ ਘਟਨਾ ਉੱਤੇ ਗੌਰ ਕਰਨ ਦਾ ਮੌਕਾ ਹੋਵੇ ਤਾਂ ਮੈਨੂੰ ਸੁਚੇਤ ਕਰੋ।';
 
   @override
   String get profileMoonriseReminders => 'ਚੰਦਰਮਾ ਦੀਆਂ ਸੂਚਨਾਵਾਂ';
@@ -2760,10 +2990,10 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get profileMissionLine =>
-      'A calm spiritual companion built for consistent, sincere growth.';
+      'ਇੱਕ ਸ਼ਾਂਤ ਰੂਹਾਨੀ ਸਾਥੀ ਜੋ ਲਗਾਤਾਰ ਅਤੇ ਖ਼ਾਲਿਸ ਵਿਕਾਸ ਲਈ ਬਣਾਇਆ ਗਿਆ ਹੈ।';
 
   @override
-  String get profileVersionPlaceholder => 'Version 0.1.7 (placeholder)';
+  String get profileVersionPlaceholder => 'ਵਰਜਨ 0.1.7 (ਅਸਥਾਈ)';
 
   @override
   String profilePlannedRemindersToday(int count) {
@@ -3120,141 +3350,140 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnShortcutClose => 'ਸ਼ਾਰਟਕੱਟ ਬੰਦ ਕਰੋ';
 
   @override
-  String get majorPageShortcutContinueJourneyLabel => 'Continue Journey';
+  String get majorPageShortcutContinueJourneyLabel => 'ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get majorPageShortcutQuickLessonLabel => 'Quick Lesson';
+  String get majorPageShortcutQuickLessonLabel => 'ਝੱਟ ਪਾਠ';
 
   @override
-  String get majorPageShortcutContinueReadingLabel => 'Continue Reading';
+  String get majorPageShortcutContinueReadingLabel => 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get majorPageShortcutContinueListeningLabel => 'Continue Listening';
+  String get majorPageShortcutContinueListeningLabel => 'ਸੁਣਨਾ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get majorPageShortcutSurahListLabel => 'Surah List';
+  String get majorPageShortcutSurahListLabel => 'ਸੂਰਹ ਸੂਚੀ';
 
   @override
   String get learnSectionLandingSubtitle =>
-      'Follow a clearer path through foundations, belief, Prophets, Quran learning, ibadah, and character.';
+      'ਬੁਨਿਆਦਾਂ, ਅਕੀਦਾ, ਅੰਬੀਆ, ਕੁਰਆਨ ਸਿੱਖਿਆ, ਇਬਾਦਤ ਅਤੇ ਅਖਲਾਕ ਰਾਹੀਂ ਹੋਰ ਸਾਫ਼ ਰਸਤਾ ਅਪਣਾਓ।';
 
   @override
-  String get learningSectionLandingShortcutJourneys => 'Open journeys';
+  String get learningSectionLandingShortcutJourneys => 'ਯਾਤਰਾਵਾਂ ਖੋਲ੍ਹੋ';
 
   @override
-  String get learningSectionLandingFoundationsTitle => 'Foundations';
+  String get learningSectionLandingFoundationsTitle => 'ਬੁਨਿਆਦਾਂ';
 
   @override
   String get learningSectionLandingFoundationsSubtitle =>
-      'Start with the essential building blocks of Islam.';
+      'ਇਸਲਾਮ ਦੀਆਂ ਜ਼ਰੂਰੀ ਬੁਨਿਆਦੀ ਇੱਟਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
-  String get learningSectionLandingBeliefTitle => 'Who is Allah?';
+  String get learningSectionLandingBeliefTitle => 'ਅੱਲਾਹ ਕੌਣ ਹੈ?';
 
   @override
   String get learningSectionLandingBeliefSubtitle =>
-      'Belief basics and the first questions of faith.';
+      'ਅਕੀਦੇ ਦੀਆਂ ਬੁਨਿਆਦਾਂ ਅਤੇ ਇਮਾਨ ਦੇ ਪਹਿਲੇ ਸਵਾਲ।';
 
   @override
-  String get learningSectionLandingProphetsTitle => 'Prophets';
+  String get learningSectionLandingProphetsTitle => 'ਅੰਬੀਆ';
 
   @override
   String get learningSectionLandingProphetsSubtitle =>
-      'Learn from the lives, tests, and examples of the Prophets.';
+      'ਅੰਬੀਆ ਦੀਆਂ ਜ਼ਿੰਦਗੀਆਂ, ਆਜ਼ਮਾਇਸ਼ਾਂ ਅਤੇ ਉਦਾਹਰਣਾਂ ਤੋਂ ਸਿੱਖੋ।';
 
   @override
-  String get learningSectionLandingQuranTitle => 'Qur\'an Learning';
+  String get learningSectionLandingQuranTitle => 'ਕੁਰਆਨ ਸਿੱਖਿਆ';
 
   @override
   String get learningSectionLandingQuranSubtitle =>
-      'Study recitation, themes, and Qur\'anic understanding.';
+      'ਤਿਲਾਵਤ, ਵਿਸ਼ਿਆਂ ਅਤੇ ਕੁਰਆਨੀ ਸਮਝ ਦਾ ਅਧਿਐਨ ਕਰੋ।';
 
   @override
-  String get learningSectionLandingWorshipTitle => 'Ibadah Learning';
+  String get learningSectionLandingWorshipTitle => 'ਇਬਾਦਤ ਸਿੱਖਿਆ';
 
   @override
   String get learningSectionLandingWorshipSubtitle =>
-      'Learn salah, wudu, dhikr, and practical ibadah guidance.';
+      'ਸਲਾਹ, ਵੁਜ਼ੂ, ਜ਼ਿਕਰ ਅਤੇ ਇਬਾਦਤ ਬਾਰੇ ਅਮਲੀ ਰਹਿਨੁਮਾਈ ਸਿੱਖੋ।';
 
   @override
-  String get learningSectionLandingCharacterTitle => 'Character & Adab';
+  String get learningSectionLandingCharacterTitle => 'ਅਖਲਾਕ ਅਤੇ ਅਦਬ';
 
   @override
   String get learningSectionLandingCharacterSubtitle =>
-      'Grow mercy, manners, sincerity, and everyday adab.';
+      'ਰਹਿਮ, ਅਦਬ, ਖ਼ਲੂਸ ਅਤੇ ਰੋਜ਼ਮਰਹਾ ਦੇ ਅਦਬ ਵਿੱਚ ਵਾਧਾ ਕਰੋ।';
 
   @override
-  String get learningSectionLandingBrowseAllTitle => 'Browse All Knowledge';
+  String get learningSectionLandingBrowseAllTitle => 'ਸਾਰਾ ਗਿਆਨ ਵੇਖੋ';
 
   @override
   String get learningSectionLandingBrowseAllSubtitle =>
-      'Explore every learning island in one place.';
+      'ਹਰ ਸਿੱਖਣੀ ਖੇਤਰ ਨੂੰ ਇੱਕੋ ਥਾਂ ਖੋਜੋ।';
 
   @override
   String get worshipSectionLandingPrayerShortcut =>
-      'Times, tracking, and guidance';
+      'ਵਕਤ, ਟ੍ਰੈਕਿੰਗ ਅਤੇ ਰਹਿਨੁਮਾਈ';
 
   @override
-  String get worshipSectionLandingDhikrShortcut =>
-      'Counter, sessions, and calm remembrance';
+  String get worshipSectionLandingDhikrShortcut => 'ਕਾਊਂਟਰ, ਸੈਸ਼ਨ ਅਤੇ ਸ਼ਾਂਤ ਯਾਦ';
 
   @override
-  String get worshipSectionLandingPrayerTitle => 'Salah';
+  String get worshipSectionLandingPrayerTitle => 'ਸਲਾਹ';
 
   @override
   String get worshipSectionLandingPrayerSubtitle =>
-      'Salah times, tracking, qada, and practical guidance.';
+      'ਸਲਾਹ ਦੇ ਵਕਤ, ਟ੍ਰੈਕਿੰਗ, ਕਜ਼ਾ ਅਤੇ ਅਮਲੀ ਰਹਿਨੁਮਾਈ।';
 
   @override
-  String get worshipSectionLandingDhikrTitle => 'Dhikr';
+  String get worshipSectionLandingDhikrTitle => 'ਜ਼ਿਕਰ';
 
   @override
   String get worshipSectionLandingDhikrSubtitle =>
-      'Keep remembrance close with guided and manual sessions.';
+      'ਰਾਹਦਰਸ਼ਿਤ ਅਤੇ ਹੱਥੋਂ ਚਲਾਏ ਜਾਣ ਵਾਲੇ ਸੈਸ਼ਨਾਂ ਨਾਲ ਯਾਦ ਨੂੰ ਨੇੜੇ ਰੱਖੋ।';
 
   @override
-  String get worshipSectionLandingDuasTitle => 'Duas';
+  String get worshipSectionLandingDuasTitle => 'ਦੁਆਵਾਂ';
 
   @override
   String get worshipSectionLandingDuasSubtitle =>
-      'Open the dua collection and find what fits the moment.';
+      'ਦੁਆ ਸੰਗ੍ਰਹਿ ਖੋਲ੍ਹੋ ਅਤੇ ਉਹ ਲੱਭੋ ਜੋ ਇਸ ਵੇਲੇ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ।';
 
   @override
   String get worshipSectionLandingFastingSubtitle =>
-      'Review your fasting status, intention, and key moments.';
+      'ਆਪਣੀ ਰੋਜ਼ੇ ਦੀ ਹਾਲਤ, ਨੀਅਤ ਅਤੇ ਮੁੱਖ ਪਲ ਵੇਖੋ।';
 
   @override
-  String get worshipTrackingPageTitle => 'Tracking & History';
+  String get worshipTrackingPageTitle => 'ਟ੍ਰੈਕਿੰਗ ਅਤੇ ਇਤਿਹਾਸ';
 
   @override
   String get worshipTrackingPageSubtitle =>
-      'See salah, dhikr, and fasting records without crowding the main Ibadah hub.';
+      'ਮੁੱਖ ਇਬਾਦਤ ਕੇਂਦਰ ਨੂੰ ਭਾਰੇ ਬਿਨਾਂ ਸਲਾਹ, ਜ਼ਿਕਰ ਅਤੇ ਰੋਜ਼ੇ ਦੇ ਰਿਕਾਰਡ ਵੇਖੋ।';
 
   @override
   String worshipTrackingPrayerSummary(int count, String date) {
-    return '$count salah entries recorded. Reviewing $date.';
+    return '$count ਸਲਾਹ ਐਂਟਰੀਆਂ ਦਰਜ ਹਨ। $date ਦੀ ਸਮੀਖਿਆ ਹੋ ਰਹੀ ਹੈ।';
   }
 
   @override
   String worshipTrackingDhikrSummary(int current, int target, int sessions) {
-    return '$current of $target today, with $sessions recent sessions saved.';
+    return 'ਅੱਜ $target ਵਿੱਚੋਂ $current, ਅਤੇ $sessions ਹਾਲੀਆ ਸੈਸ਼ਨ ਸੰਭਾਲੇ ਹੋਏ ਹਨ।';
   }
 
   @override
   String worshipTrackingFastingSummary(String status) {
-    return 'Today\'s fasting status: $status.';
+    return 'ਅੱਜ ਦੇ ਰੋਜ਼ੇ ਦੀ ਹਾਲਤ: $status.';
   }
 
   @override
-  String get worshipRemindersPageTitle => 'Reminders';
+  String get worshipRemindersPageTitle => 'ਰੀਮਾਈਂਡਰ';
 
   @override
   String get worshipRemindersPageSubtitle =>
-      'Keep salah and Ibadah reminders together without overloading the main Ibadah page.';
+      'ਮੁੱਖ ਇਬਾਦਤ ਸਫ਼ੇ ਨੂੰ ਭਾਰੇ ਬਿਨਾਂ ਸਲਾਹ ਅਤੇ ਇਬਾਦਤ ਦੇ ਰੀਮਾਈਂਡਰ ਇਕੱਠੇ ਰੱਖੋ।';
 
   @override
   String worshipRemindersPrayerSummary(int count) {
-    return '$count salah reminder types are currently active.';
+    return '$count ਕਿਸਮ ਦੇ ਸਲਾਹ ਰੀਮਾਈਂਡਰ ਇਸ ਵੇਲੇ ਚਾਲੂ ਹਨ।';
   }
 
   @override
@@ -3263,25 +3492,25 @@ class AppLocalizationsPa extends AppLocalizations {
     String quran,
     String reflection,
   ) {
-    return 'Dhikr: $dhikr, Qur\'an: $quran, Reflection: $reflection.';
+    return 'ਜ਼ਿਕਰ: $dhikr, ਕੁਰਆਨ: $quran, ਮਨਨ: $reflection.';
   }
 
   @override
   String get worshipRemindersDevicesSummary =>
-      'Manage widget, lock screen, and watch-related Ibadah surfaces.';
+      'ਵਿਜੇਟ, ਲੌਕ ਸਕ੍ਰੀਨ ਅਤੇ ਘੜੀ ਨਾਲ ਸਬੰਧਤ ਇਬਾਦਤ ਸਤਹਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।';
 
   @override
-  String get settingsReminderStateOn => 'On';
+  String get settingsReminderStateOn => 'ਚਾਲੂ';
 
   @override
-  String get settingsReminderStateOff => 'Off';
+  String get settingsReminderStateOff => 'ਬੰਦ';
 
   @override
   String get settingsLandingTitle => 'ਸੈਟਿੰਗਾਂ';
 
   @override
   String get settingsLandingSubtitle =>
-      'Choose a focused settings area instead of browsing one long page.';
+      'ਇੱਕ ਲੰਮਾ ਸਫ਼ਾ ਵੇਖਣ ਦੀ ਬਜਾਇ ਧਿਆਨਕੇਂਦ੍ਰਿਤ settings ਖੇਤਰ ਚੁਣੋ।';
 
   @override
   String get settingsCategoryAccountSyncSubtitle =>
@@ -3312,11 +3541,11 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਲੌਕ ਸਕ੍ਰੀਨ, ਡਾਇਨਾਮਿਕ ਆਈਲੈਂਡ, ਅਤੇ ਕਨੈਕਟ ਕੀਤੀਆਂ ਘੜੀ ਦੀਆਂ ਸਤਹਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।';
 
   @override
-  String get settingsWidgetsEnabledTitle => 'Enable widgets';
+  String get settingsWidgetsEnabledTitle => 'ਵਿਜੇਟ ਚਾਲੂ ਕਰੋ';
 
   @override
   String get settingsWidgetsEnabledSubtitle =>
-      'Turn widget and live activity surfaces on or off from one place.';
+      'ਇੱਕੇ ਥਾਂ ਤੋਂ widget ਅਤੇ live activity ਸਤਹਾਂ ਨੂੰ ਚਾਲੂ ਜਾਂ ਬੰਦ ਕਰੋ।';
 
   @override
   String get settingsCategoryLanguageDownloadsSubtitle =>
@@ -3338,7 +3567,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get settingsHelpGuideSubtitle =>
-      'Short practical guides for using the app\'s main features with confidence.';
+      'ਐਪ ਦੀਆਂ ਮੁੱਖ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਵਿਸ਼ਵਾਸ ਨਾਲ ਵਰਤਣ ਲਈ ਛੋਟੀਆਂ ਵਿਹਾਰਕ ਗਾਈਡਾਂ।';
 
   @override
   String get settingsCategoryHelpGuideSubtitle =>
@@ -3349,175 +3578,175 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਸੰਸਕਰਣ ਨੋਟਸ, ਸਹਾਇਤਾ, ਕਾਨੂੰਨੀ ਵੇਰਵੇ, ਅਤੇ ਅੱਗੇ ਕੀ ਆ ਰਿਹਾ ਹੈ।';
 
   @override
-  String get settingsHelpGuideSearchHint => 'Search guides';
+  String get settingsHelpGuideSearchHint => 'ਗਾਈਡਾਂ ਖੋਜੋ';
 
   @override
-  String get settingsHelpGuideBrowseTitle => 'Guide Categories';
+  String get settingsHelpGuideBrowseTitle => 'ਗਾਈਡ ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
   String get settingsHelpGuideBrowseSubtitle =>
-      'Open a topic to see a short explanation and simple steps.';
+      'ਛੋਟੀ ਵਿਆਖਿਆ ਅਤੇ ਸਧਾਰਨ ਕਦਮ ਵੇਖਣ ਲਈ ਕੋਈ ਵਿਸ਼ਾ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get settingsHelpGuideSearchResultsTitle => 'Search Results';
+  String get settingsHelpGuideSearchResultsTitle => 'ਖੋਜ ਨਤੀਜੇ';
 
   @override
   String get settingsHelpGuideSearchResultsSubtitle =>
-      'Guide topics update as you type.';
+      'ਜਿਵੇਂ ਹੀ ਤੁਸੀਂ ਲਿਖਦੇ ਹੋ, ਗਾਈਡ ਵਿਸ਼ੇ ਅਪਡੇਟ ਹੁੰਦੇ ਹਨ।';
 
   @override
-  String get settingsHelpGuideSearchEmptyTitle => 'No matching guides found';
+  String get settingsHelpGuideSearchEmptyTitle => 'ਮਿਲਦੀਆਂ ਗਾਈਡਾਂ ਨਹੀਂ ਮਿਲੀਆਂ';
 
   @override
   String get settingsHelpGuideSearchEmptySubtitle =>
-      'Try a simpler keyword or clear your search to browse all guide categories.';
+      'ਸੌਖਾ keyword ਅਜ਼ਮਾਓ ਜਾਂ ਸਾਰੀਆਂ ਗਾਈਡ ਸ਼੍ਰੇਣੀਆਂ ਵੇਖਣ ਲਈ ਆਪਣੀ ਖੋਜ ਸਾਫ਼ ਕਰੋ।';
 
   @override
-  String get settingsHelpGuideStepsTitle => 'How to Use It';
+  String get settingsHelpGuideStepsTitle => 'ਇਸ ਨੂੰ ਕਿਵੇਂ ਵਰਤਣਾ ਹੈ';
 
   @override
   String get settingsHelpGuideStepsSubtitle =>
-      'Keep each step simple and use only what helps you right now.';
+      'ਹਰ ਕਦਮ ਸਧਾਰਨ ਰੱਖੋ ਅਤੇ ਸਿਰਫ਼ ਉਹੀ ਵਰਤੋ ਜੋ ਹੁਣ ਤੁਹਾਡੀ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
-  String get settingsHelpGuideNotFoundTitle => 'Guide not found';
+  String get settingsHelpGuideNotFoundTitle => 'ਗਾਈਡ ਨਹੀਂ ਮਿਲੀ';
 
   @override
   String get settingsHelpGuideNotFoundSubtitle =>
-      'This guide could not be opened right now. Return to Help & Guide and try another topic.';
+      'ਇਹ ਗਾਈਡ ਇਸ ਵੇਲੇ ਨਹੀਂ ਖੁੱਲ ਸਕੀ। Help & Guide \'ਤੇ ਵਾਪਸ ਜਾਓ ਅਤੇ ਹੋਰ ਵਿਸ਼ਾ ਅਜ਼ਮਾਓ।';
 
   @override
-  String get helpGuideGettingStartedTitle => 'Getting Started';
+  String get helpGuideGettingStartedTitle => 'ਸ਼ੁਰੂਆਤ';
 
   @override
   String get helpGuideGettingStartedDescription =>
-      'Set up the basics so the app feels useful from the first day.';
+      'ਬੁਨਿਆਦੀ ਚੀਜ਼ਾਂ ਸੈੱਟ ਕਰੋ ਤਾਂ ਜੋ ਐਪ ਪਹਿਲੇ ਦਿਨ ਤੋਂ ਹੀ ਲਾਭਦਾਇਕ ਮਹਿਸੂਸ ਹੋਵੇ।';
 
   @override
   String get helpGuideGettingStartedStep1 =>
-      'Open Settings to choose your location, language, and appearance preferences.';
+      'ਆਪਣਾ ਟਿਕਾਣਾ, ਭਾਸ਼ਾ ਅਤੇ ਦਿੱਖ ਦੀਆਂ ਪਸੰਦਾਂ ਚੁਣਨ ਲਈ Settings ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideGettingStartedStep2 =>
-      'Check your Salah times and reminder mode so the daily schedule matches your routine.';
+      'ਆਪਣੇ Salah ਸਮੇਂ ਅਤੇ ਰੀਮਾਈਂਡਰ ਮੋਡ ਦੀ ਜਾਂਚ ਕਰੋ ਤਾਂ ਜੋ ਰੋਜ਼ਾਨਾ ਸਮਾਂ-ਸਾਰਣੀ ਤੁਹਾਡੀ ਰੁਟੀਨ ਨਾਲ ਮੇਲ ਖਾਏ।';
 
   @override
   String get helpGuideGettingStartedStep3 =>
-      'Use Home for today\'s overview, then visit Learn or Worship for deeper practice.';
+      'ਅੱਜ ਦੇ ਸਾਰ ਲਈ Home ਵਰਤੋ, ਫਿਰ ਹੋਰ ਡੂੰਘੀ ਅਭਿਆਸ ਲਈ Learn ਜਾਂ Worship \'ਤੇ ਜਾਓ।';
 
   @override
-  String get helpGuideSalahRemindersTitle => 'Salah & Reminders';
+  String get helpGuideSalahRemindersTitle => 'Salah ਅਤੇ ਰੀਮਾਈਂਡਰ';
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'Keep prayer times, reminders, and quick follow-up actions in one flow.';
+      'ਨਮਾਜ਼ ਦੇ ਸਮੇਂ, ਰੀਮਾਈਂਡਰ ਅਤੇ ਤੇਜ਼ ਅਗਲੇ ਕਦਮ ਇੱਕ ਹੀ ਫ਼ਲੋ ਵਿੱਚ ਰੱਖੋ।';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
-      'Open Settings > Salah Notifications to turn reminders on and choose how each prayer should alert you.';
+      'ਰੀਮਾਈਂਡਰ ਚਾਲੂ ਕਰਨ ਅਤੇ ਹਰ ਨਮਾਜ਼ ਲਈ ਅਲਰਟ ਦੀ ਕਿਸਮ ਚੁਣਨ ਲਈ Settings > Salah Notifications ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideSalahRemindersStep2 =>
-      'Review Salah times in Settings > Prayer & Worship if you need manual times, adjustments, or Jumu\'ah changes.';
+      'ਜੇ ਤੁਹਾਨੂੰ ਹੱਥੋਂ ਸਮੇਂ, ਸੋਧਾਂ ਜਾਂ Jumu\'ah ਤਬਦੀਲੀਆਂ ਦੀ ਲੋੜ ਹੋਵੇ ਤਾਂ Settings > Prayer & Worship ਵਿੱਚ Salah ਸਮਿਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ।';
 
   @override
   String get helpGuideSalahRemindersStep3 =>
-      'When a reminder appears, you can open the app, snooze, or mark the prayer as offered if that option is available.';
+      'ਜਦੋਂ ਰੀਮਾਈਂਡਰ ਆਵੇ, ਤੁਸੀਂ ਐਪ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ, snooze ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਜੇ ਚੋਣ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਨਮਾਜ਼ ਅਦਾ ਹੋਈ ਮਾਰਕ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get helpGuideQuranTitle => 'Qur\'an';
+  String get helpGuideQuranTitle => 'ਕੁਰਆਨ';
 
   @override
   String get helpGuideQuranDescription =>
-      'Read, search, bookmark, and return to the Qur\'an without losing your place.';
+      'ਆਪਣੀ ਜਗ੍ਹਾ ਗੁਆਏ ਬਿਨਾ ਕੁਰਆਨ ਪੜ੍ਹੋ, ਖੋਜੋ, ਬੁੱਕਮਾਰਕ ਕਰੋ ਅਤੇ ਮੁੜ ਵਾਪਸ ਆਓ।';
 
   @override
   String get helpGuideQuranStep1 =>
-      'Open Learn and enter the Qur\'an section to browse surahs, topics, bookmarks, and notes.';
+      'surah, topic, bookmark ਅਤੇ note ਵੇਖਣ ਲਈ Learn ਖੋਲ੍ਹੋ ਅਤੇ ਕੁਰਆਨ ਭਾਗ ਵਿੱਚ ਜਾਓ।';
 
   @override
   String get helpGuideQuranStep2 =>
-      'Use the search field to find a surah, ayah, or topic, then open the result you want.';
+      'surah, ayah ਜਾਂ topic ਲੱਭਣ ਲਈ ਖੋਜ ਖੇਤਰ ਵਰਤੋ, ਫਿਰ ਆਪਣੀ ਮਨਚਾਹੀ ਨਤੀਜੇ ਨੂੰ ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideQuranStep3 =>
-      'Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.';
+      'ਜੇ ਤੁਹਾਨੂੰ ਵੱਖਰੀ ਪੜ੍ਹਨ ਲੇਆਉਟ ਦੀ ਲੋੜ ਹੋਵੇ ਤਾਂ Settings > Learning ਤੋਂ Arabic, transliteration ਅਤੇ translation ਸੈਟਿੰਗਾਂ ਸੋਧੋ।';
 
   @override
-  String get helpGuideLearningTitle => 'Learning';
+  String get helpGuideLearningTitle => 'ਸਿੱਖਿਆ';
 
   @override
   String get helpGuideLearningDescription =>
-      'Use the learning hub to move between guided topics, lessons, and review tools.';
+      'guided topic, lesson ਅਤੇ review tool ਦਰਮਿਆਨ ਜਾਣ ਲਈ learning hub ਵਰਤੋ।';
 
   @override
   String get helpGuideLearningStep1 =>
-      'Open Learn to choose a section such as Qur\'an, Hadith, Life, World, Prophets, or Quizzes.';
+      'ਕੁਰਆਨ, Hadith, Life, World, Prophets ਜਾਂ Quizzes ਵਰਗਾ ਭਾਗ ਚੁਣਨ ਲਈ Learn ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideLearningStep2 =>
-      'Tap a category card to enter that section, then open a lesson, collection, or path that fits your goal.';
+      'ਉਸ ਭਾਗ ਵਿੱਚ ਜਾਣ ਲਈ category card \'ਤੇ ਟੈਪ ਕਰੋ, ਫਿਰ ਆਪਣੇ ਮਕਸਦ ਦੇ ਅਨੁਸਾਰ lesson, collection ਜਾਂ path ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideLearningStep3 =>
-      'Use search when you want a faster route to a topic, prophet, glossary term, or lesson.';
+      'ਜੇ ਤੁਸੀਂ ਕਿਸੇ topic, prophet, glossary term ਜਾਂ lesson ਤੱਕ ਤੇਜ਼ ਰਸਤਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ search ਵਰਤੋ।';
 
   @override
-  String get helpGuideDhikrAdhkarTitle => 'Dhikr & Adhkar';
+  String get helpGuideDhikrAdhkarTitle => 'Dhikr ਅਤੇ Adhkar';
 
   @override
   String get helpGuideDhikrAdhkarDescription =>
-      'Keep daily remembrance simple with counters, guided sets, and saved routines.';
+      'counter, guided set ਅਤੇ save ਕੀਤੀਆਂ routine ਨਾਲ ਰੋਜ਼ਾਨਾ ਯਾਦ ਆਸਾਨ ਰੱਖੋ।';
 
   @override
   String get helpGuideDhikrAdhkarStep1 =>
-      'Open Worship to find daily Dhikr, counters, and adhkar collections.';
+      'ਰੋਜ਼ਾਨਾ Dhikr, counter ਅਤੇ adhkar collection ਲੱਭਣ ਲਈ Worship ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideDhikrAdhkarStep2 =>
-      'Choose a set that matches your moment, then use the built-in counter or reading flow at your own pace.';
+      'ਆਪਣੇ ਸਮੇਂ ਦੇ ਅਨੁਕੂਲ set ਚੁਣੋ, ਫਿਰ built-in counter ਜਾਂ reading flow ਨੂੰ ਆਪਣੇ ਰਫ਼ਤਾਰ ਅਨੁਸਾਰ ਵਰਤੋ।';
 
   @override
   String get helpGuideDhikrAdhkarStep3 =>
-      'Return to Home or Worship later to continue your rhythm and review your daily progress.';
+      'ਆਪਣੀ ਲਯ ਜਾਰੀ ਰੱਖਣ ਅਤੇ ਰੋਜ਼ਾਨਾ ਤਰੱਕੀ ਵੇਖਣ ਲਈ ਬਾਅਦ ਵਿੱਚ Home ਜਾਂ Worship \'ਤੇ ਵਾਪਸ ਆਓ।';
 
   @override
-  String get helpGuideGrowthProgressTitle => 'Growth & Progress';
+  String get helpGuideGrowthProgressTitle => 'ਵਿਕਾਸ ਅਤੇ ਤਰੱਕੀ';
 
   @override
   String get helpGuideGrowthProgressDescription =>
-      'Track steady habits, streaks, XP, and focused paths without making the app feel heavy.';
+      'ਐਪ ਨੂੰ ਭਾਰੀ ਮਹਿਸੂਸ ਕਰਾਏ ਬਿਨਾ ਆਦਤਾਂ, streak, XP ਅਤੇ focus path ਨੂੰ ਲਗਾਤਾਰ ਟ੍ਰੈਕ ਕਰੋ।';
 
   @override
   String get helpGuideGrowthProgressStep1 =>
-      'Open Journey to see your current streak, XP, growth paths, and today\'s focus areas.';
+      'ਆਪਣੀ ਮੌਜੂਦਾ streak, XP, growth path ਅਤੇ ਅੱਜ ਦੇ focus area ਵੇਖਣ ਲਈ Journey ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideGrowthProgressStep2 =>
-      'Use the path or habit sections to continue one small area of growth instead of trying to do everything at once.';
+      'ਇੱਕ ਵਾਰ ਵਿੱਚ ਸਭ ਕੁਝ ਕਰਨ ਦੀ ਬਜਾਏ growth ਦੇ ਇੱਕ ਛੋਟੇ ਹਿੱਸੇ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ path ਜਾਂ habit section ਵਰਤੋ।';
 
   @override
   String get helpGuideGrowthProgressStep3 =>
-      'Check Home for a quick summary when you only need to see what is pending today.';
+      'ਜੇ ਤੁਹਾਨੂੰ ਸਿਰਫ਼ ਇਹ ਵੇਖਣਾ ਹੋਵੇ ਕਿ ਅੱਜ ਕੀ ਬਾਕੀ ਹੈ ਤਾਂ ਤੇਜ਼ ਸਾਰ ਲਈ Home ਵੇਖੋ।';
 
   @override
-  String get helpGuideNotificationsSettingsTitle => 'Notifications & Settings';
+  String get helpGuideNotificationsSettingsTitle => 'ਨੋਟੀਫਿਕੇਸ਼ਨ ਅਤੇ ਸੈਟਿੰਗਾਂ';
 
   @override
   String get helpGuideNotificationsSettingsDescription =>
-      'Adjust reminders, visuals, widgets, language, and account preferences in one place.';
+      'ਰੀਮਾਈਂਡਰ, visual, widget, ਭਾਸ਼ਾ ਅਤੇ account ਪਸੰਦਾਂ ਇੱਕ ਹੀ ਥਾਂ \'ਤੇ ਸੋਧੋ।';
 
   @override
   String get helpGuideNotificationsSettingsStep1 =>
-      'Open Settings from the main app to browse reminders, appearance, learning, privacy, and family options.';
+      'ਰੀਮਾਈਂਡਰ, appearance, learning, privacy ਅਤੇ family ਵਿਕਲਪ ਵੇਖਣ ਲਈ ਮੁੱਖ ਐਪ ਤੋਂ Settings ਖੋਲ੍ਹੋ।';
 
   @override
   String get helpGuideNotificationsSettingsStep2 =>
-      'Use the notification and widget sections when you want calmer alerts, live activity behavior, or lock screen changes.';
+      'ਜੇ ਤੁਸੀਂ ਹੋਰ ਸ਼ਾਂਤ alert, live activity ਵਿਹਾਰ ਜਾਂ lock screen ਤਬਦੀਲੀਆਂ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ notification ਅਤੇ widget section ਵਰਤੋ।';
 
   @override
   String get helpGuideNotificationsSettingsStep3 =>
-      'Use Account Sync and Privacy & Data when you need backup, connected-device, or sync-related controls.';
+      'ਜੇ ਤੁਹਾਨੂੰ backup, connected-device ਜਾਂ sync ਨਾਲ ਸੰਬੰਧਿਤ control ਦੀ ਲੋੜ ਹੋਵੇ ਤਾਂ Account Sync ਅਤੇ Privacy & Data ਵਰਤੋ।';
 
   @override
   String get settingsLearningHubSubtitle =>
@@ -4297,222 +4526,222 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnQuranHubStageMastered => 'Mastered';
 
   @override
-  String get quranTopicsTitle => 'Qur’an Topics';
+  String get quranTopicsTitle => 'ਕੁਰਾਨ ਵਿਸ਼ੇ';
 
   @override
   String get quranThemeMapBrowseSubtitle =>
-      'Browse a curated set of Qur’anic themes and begin from representative ayahs, surahs, and related learning paths.';
+      'ਕੁਰਾਨ ਦੇ ਥੀਮਾਂ ਦੇ ਇੱਕ ਚੁਣੇ ਹੋਏ ਸਮੂਹ ਨੂੰ ਬ੍ਰਾਊਜ਼ ਕਰੋ ਅਤੇ ਪ੍ਰਤੀਨਿਧ ਆਇਤਾਂ, ਸੁਰਾਂ ਅਤੇ ਸੰਬੰਧਿਤ ਸਿੱਖਣ ਮਾਰਗਾਂ ਤੋਂ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
   String quranThemeMapStarterAyahCount(int count) {
-    return '$count starter ayahs';
+    return '$count ਸਟਾਰਟਰ ਆਇਯਾਹ';
   }
 
   @override
-  String get quranThemeMapTopicNotFound =>
-      'This theme could not be found right now.';
+  String get quranThemeMapTopicNotFound => 'ਇਹ ਥੀਮ ਹੁਣੇ ਨਹੀਂ ਲੱਭੀ ਜਾ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get quranThemeMapAyahsLabel => 'Ayahs';
+  String get quranThemeMapAyahsLabel => 'ਅਯਾਹ';
 
   @override
-  String get quranThemeMapSurahsLabel => 'Surahs';
+  String get quranThemeMapSurahsLabel => 'ਸੁਰਾਂ';
 
   @override
-  String get quranThemeMapLearningLinksLabel => 'Learning links';
+  String get quranThemeMapLearningLinksLabel => 'ਸਿੱਖਣ ਦੇ ਲਿੰਕ';
 
   @override
-  String get quranThemeMapBestModeLabel => 'Best mode';
+  String get quranThemeMapBestModeLabel => 'ਵਧੀਆ ਮੋਡ';
 
   @override
-  String get quranThemeMapRepresentativeAyahsTitle => 'Representative ayahs';
+  String get quranThemeMapRepresentativeAyahsTitle => 'ਪ੍ਰਤੀਨਿਧ ਆਇਤਾਂ';
 
   @override
-  String get quranThemeMapWhyItMattersTitle => 'Why this theme matters';
+  String get quranThemeMapWhyItMattersTitle => 'ਇਹ ਥੀਮ ਕਿਉਂ ਮਹੱਤਵਪੂਰਨ ਹੈ';
 
   @override
-  String get quranThemeMapStudyFocusTitle => 'What to notice';
+  String get quranThemeMapStudyFocusTitle => 'ਕੀ ਧਿਆਨ ਦੇਣਾ ਹੈ';
 
   @override
-  String get quranThemeMapStudyThemeAction => 'Study this theme in the Qur’an';
+  String get quranThemeMapStudyThemeAction =>
+      'ਕੁਰਾਨ ਵਿੱਚ ਇਸ ਵਿਸ਼ੇ ਦਾ ਅਧਿਐਨ ਕਰੋ';
 
   @override
-  String get quranThemeMapOpenPathAction => 'Open related path';
+  String get quranThemeMapOpenPathAction => 'ਸੰਬੰਧਿਤ ਮਾਰਗ ਖੋਲ੍ਹੋ';
 
   @override
-  String get quranThemeMapRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeMapRelatedSurahsTitle => 'ਸਬੰਧਤ ਸੂਰਾ';
 
   @override
-  String get quranThemeMapRelatedLearningTitle => 'Related learning';
+  String get quranThemeMapRelatedLearningTitle => 'ਸੰਬੰਧਿਤ ਸਿੱਖਿਆ';
 
   @override
-  String get quranThemePatienceTitle => 'Patience';
+  String get quranThemePatienceTitle => 'ਧੀਰਜ';
 
   @override
   String get quranThemePatienceDescription =>
       'Begin with ayahs that connect hardship to prayer, trust, and a steadier response.';
 
   @override
-  String get quranThemeGratitudeTitle => 'Gratitude';
+  String get quranThemeGratitudeTitle => 'ਸ਼ੁਕਰਗੁਜ਼ਾਰ';
 
   @override
   String get quranThemeGratitudeDescription =>
       'Follow ayahs that teach thankfulness as worship, wisdom, and careful use of blessings.';
 
   @override
-  String get quranThemeMercyTitle => 'Mercy';
+  String get quranThemeMercyTitle => 'ਦਇਆ';
 
   @override
   String get quranThemeMercyDescription =>
       'Explore mercy through gentleness, reconciliation, and the way believers carry other people’s weakness.';
 
   @override
-  String get quranThemeFamilyTitle => 'Family';
+  String get quranThemeFamilyTitle => 'ਪਰਿਵਾਰ';
 
   @override
   String get quranThemeFamilyDescription =>
       'Start with ayahs that place family responsibility, care, and counsel inside the life of faith.';
 
   @override
-  String get quranThemeAkhirahTitle => 'Akhirah';
+  String get quranThemeAkhirahTitle => 'ਅਖੀਰਾ';
 
   @override
   String get quranThemeAkhirahDescription =>
-      'Study accountability, return, and the way the Hereafter reshapes urgency, hope, and moral seriousness.';
+      'ਜਵਾਬਦੇਹੀ ਦਾ ਅਧਿਐਨ ਕਰੋ, ਵਾਪਸੀ, ਅਤੇ ਜਿਸ ਤਰੀਕੇ ਨਾਲ ਪਰਲੋਕ ਤਾਕੀਦ, ਉਮੀਦ ਅਤੇ ਨੈਤਿਕ ਗੰਭੀਰਤਾ ਨੂੰ ਮੁੜ ਆਕਾਰ ਦਿੰਦਾ ਹੈ।';
 
   @override
-  String get quranThemeSignsInCreationTitle => 'Signs in Creation';
+  String get quranThemeSignsInCreationTitle => 'ਰਚਨਾ ਵਿੱਚ ਸਾਈਨ';
 
   @override
   String get quranThemeSignsInCreationDescription =>
-      'Gather ayahs that turn the natural world into reflection, remembrance, and clearer awareness of Allah’s wisdom.';
+      'ਅਜਿਹੀਆਂ ਆਇਤਾਂ ਨੂੰ ਇਕੱਠਾ ਕਰੋ ਜੋ ਕੁਦਰਤੀ ਸੰਸਾਰ ਨੂੰ ਪ੍ਰਤੀਬਿੰਬ, ਯਾਦ ਅਤੇ ਅੱਲ੍ਹਾ ਦੀ ਬੁੱਧੀ ਬਾਰੇ ਸਪਸ਼ਟ ਜਾਗਰੂਕਤਾ ਵਿੱਚ ਬਦਲਦੀਆਂ ਹਨ।';
 
   @override
-  String get quranThemeProphetsTitle => 'Prophets';
+  String get quranThemeProphetsTitle => 'ਨਬੀ';
 
   @override
   String get quranThemeProphetsDescription =>
-      'Use prophetic examples to see how revelation becomes lived patience, da’wah, reliance, and leadership.';
+      'ਇਹ ਵੇਖਣ ਲਈ ਭਵਿੱਖਬਾਣੀ ਦੀਆਂ ਉਦਾਹਰਣਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ ਕਿ ਪ੍ਰਕਾਸ਼ ਕਿਵੇਂ ਸਬਰ, ਦਾਵਾ, ਭਰੋਸਾ ਅਤੇ ਅਗਵਾਈ ਬਣ ਜਾਂਦਾ ਹੈ।';
 
   @override
-  String get quranThemeTrustInAllahTitle => 'Trust in Allah';
+  String get quranThemeTrustInAllahTitle => 'ਅੱਲ੍ਹਾ ਵਿੱਚ ਭਰੋਸਾ ਰੱਖੋ';
 
   @override
   String get quranThemeTrustInAllahDescription =>
       'Begin with ayahs where reliance on Allah appears together with effort, consultation, and patient action.';
 
   @override
-  String get quranThemeRepentanceTitle => 'Repentance';
+  String get quranThemeRepentanceTitle => 'ਤੋਬਾ';
 
   @override
   String get quranThemeRepentanceDescription =>
       'Follow ayahs that keep the door of return open through hope, reform, and renewed obedience.';
 
   @override
-  String get quranThemeRemembranceTitle => 'Remembrance';
+  String get quranThemeRemembranceTitle => 'ਯਾਦ';
 
   @override
   String get quranThemeRemembranceDescription =>
-      'Trace how dhikr steadies the heart, shapes action, and keeps revelation close during ordinary life.';
+      'ਪਤਾ ਲਗਾਓ ਕਿ ਕਿਵੇਂ ਧਿਆਨ ਦਿਲ ਨੂੰ ਸਥਿਰ ਕਰਦਾ ਹੈ, ਕਿਰਿਆ ਨੂੰ ਆਕਾਰ ਦਿੰਦਾ ਹੈ, ਅਤੇ ਸਾਧਾਰਨ ਜੀਵਨ ਦੌਰਾਨ ਪ੍ਰਗਟਾਵੇ ਨੂੰ ਨੇੜੇ ਰੱਖਦਾ ਹੈ।';
 
   @override
-  String get quranThemeSincerityTitle => 'Sincerity';
+  String get quranThemeSincerityTitle => 'ਇਮਾਨਦਾਰੀ';
 
   @override
   String get quranThemeSincerityDescription =>
-      'Study ayahs that purify worship, intention, and inward devotion so acts belong to Allah alone.';
+      'ਆਇਤਾਂ ਦਾ ਅਧਿਐਨ ਕਰੋ ਜੋ ਪੂਜਾ, ਇਰਾਦੇ ਅਤੇ ਅੰਦਰੂਨੀ ਭਗਤੀ ਨੂੰ ਸ਼ੁੱਧ ਕਰਦੇ ਹਨ ਇਸ ਲਈ ਕੰਮ ਸਿਰਫ਼ ਅੱਲ੍ਹਾ ਦੇ ਹਨ।';
 
   @override
-  String get quranThemePrayerTitle => 'Prayer';
+  String get quranThemePrayerTitle => 'ਪ੍ਰਾਰਥਨਾ';
 
   @override
   String get quranThemePrayerDescription =>
-      'Start with ayahs that show salah as protection, help in hardship, and an anchor between revelation and daily conduct.';
+      'ਆਇਤਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਸਲਾਹ ਨੂੰ ਸੁਰੱਖਿਆ, ਮੁਸ਼ਕਲਾਂ ਵਿੱਚ ਸਹਾਇਤਾ, ਅਤੇ ਪ੍ਰਕਾਸ਼ ਅਤੇ ਰੋਜ਼ਾਨਾ ਆਚਰਣ ਦੇ ਵਿਚਕਾਰ ਇੱਕ ਲੰਗਰ ਵਜੋਂ ਦਰਸਾਉਂਦੇ ਹਨ।';
 
   @override
-  String get quranThemeCharityTitle => 'Charity';
+  String get quranThemeCharityTitle => 'ਚੈਰਿਟੀ';
 
   @override
   String get quranThemeCharityDescription =>
-      'Gather ayahs that frame spending as sincerity, sacrifice, and care for people in need.';
+      'ਆਇਤਾਂ ਨੂੰ ਇਕੱਠਾ ਕਰੋ ਜੋ ਲੋੜਵੰਦ ਲੋਕਾਂ ਦੀ ਇਮਾਨਦਾਰੀ, ਕੁਰਬਾਨੀ ਅਤੇ ਦੇਖਭਾਲ ਦੇ ਰੂਪ ਵਿੱਚ ਖਰਚਿਆਂ ਨੂੰ ਫਰੇਮ ਕਰਦੇ ਹਨ।';
 
   @override
-  String get quranThemeJusticeTitle => 'Justice';
+  String get quranThemeJusticeTitle => 'ਨਿਆਂ';
 
   @override
   String get quranThemeJusticeDescription =>
-      'Study ayahs that hold justice together with truthfulness, restraint, and responsibility before Allah.';
+      'ਉਨ੍ਹਾਂ ਆਇਤਾਂ ਦਾ ਅਧਿਐਨ ਕਰੋ ਜੋ ਅੱਲ੍ਹਾ ਦੇ ਸਾਹਮਣੇ ਸੱਚਾਈ, ਸੰਜਮ ਅਤੇ ਜ਼ਿੰਮੇਵਾਰੀ ਦੇ ਨਾਲ ਨਿਆਂ ਰੱਖਦੇ ਹਨ।';
 
   @override
-  String get quranThemeHumilityTitle => 'Humility';
+  String get quranThemeHumilityTitle => 'ਨਿਮਰਤਾ';
 
   @override
   String get quranThemeHumilityDescription =>
-      'Begin with ayahs that correct pride and teach humble conduct, quiet strength, and self-purification.';
+      'ਉਨ੍ਹਾਂ ਆਇਤਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਹੰਕਾਰ ਨੂੰ ਠੀਕ ਕਰਦੇ ਹਨ ਅਤੇ ਨਿਮਰ ਆਚਰਣ, ਸ਼ਾਂਤ ਤਾਕਤ ਅਤੇ ਸਵੈ-ਸ਼ੁੱਧੀਕਰਨ ਸਿਖਾਉਂਦੇ ਹਨ।';
 
   @override
   String get quranThemePatienceWhyItMatters =>
-      'Patience in the Qur’an is not passive waiting. It is worshipful steadiness that keeps the believer praying, hoping, and acting rightly when hardship stretches the soul.';
+      'ਕੁਰਾਨ ਵਿੱਚ ਧੀਰਜ ਅਸਥਾਈ ਉਡੀਕ ਨਹੀਂ ਹੈ। ਇਹ ਪੂਜਣਯੋਗ ਸਥਿਰਤਾ ਹੈ ਜੋ ਵਿਸ਼ਵਾਸੀ ਨੂੰ ਪ੍ਰਾਰਥਨਾ, ਉਮੀਦ ਅਤੇ ਸਹੀ ਕੰਮ ਕਰਨ ਲਈ ਰੱਖਦੀ ਹੈ ਜਦੋਂ ਕਠਿਨਾਈ ਆਤਮਾ ਨੂੰ ਖਿੱਚਦੀ ਹੈ।';
 
   @override
   String get quranThemePatienceStudyFocus =>
-      'Notice how sabr is paired with prayer, hope, forgiveness, and disciplined restraint. The theme is about staying upright under pressure, not becoming numb.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਪ੍ਰਾਰਥਨਾ, ਉਮੀਦ, ਮਾਫੀ, ਅਤੇ ਅਨੁਸ਼ਾਸਿਤ ਸੰਜਮ ਨਾਲ ਸਬਰ ਕਿਵੇਂ ਜੋੜਿਆ ਜਾਂਦਾ ਹੈ। ਥੀਮ ਦਬਾਅ ਹੇਠ ਸਿੱਧੇ ਰਹਿਣ ਬਾਰੇ ਹੈ, ਸੁੰਨ ਨਾ ਹੋਣ ਬਾਰੇ।';
 
   @override
   String get quranThemeGratitudeWhyItMatters =>
-      'Gratitude protects blessings from becoming heedlessness. The Qur’an presents shukr as worship, wisdom, and a way of using what Allah gives in a better direction.';
+      'ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਬਖਸ਼ਿਸ਼ਾਂ ਨੂੰ ਬੇਪਰਵਾਹ ਹੋਣ ਤੋਂ ਬਚਾਉਂਦੀ ਹੈ। ਕੁਰਆਨ ਸ਼ੁਕਰ ਨੂੰ ਪੂਜਾ, ਬੁੱਧੀ ਅਤੇ ਅੱਲ੍ਹਾ ਦੁਆਰਾ ਦਿੱਤੀ ਗਈ ਇੱਕ ਬਿਹਤਰ ਦਿਸ਼ਾ ਵਿੱਚ ਵਰਤਣ ਦਾ ਇੱਕ ਤਰੀਕਾ ਪੇਸ਼ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranThemeGratitudeStudyFocus =>
-      'Notice that gratitude is more than praise on the tongue. It appears with remembrance, reflection on signs, and wiser use of time, provision, and daily opportunities.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਧੰਨਵਾਦ ਜੀਭ \'ਤੇ ਉਸਤਤ ਨਾਲੋਂ ਵੱਧ ਹੈ. ਇਹ ਯਾਦ, ਚਿੰਨ੍ਹਾਂ \'ਤੇ ਪ੍ਰਤੀਬਿੰਬ, ਅਤੇ ਸਮੇਂ, ਪ੍ਰਬੰਧ ਅਤੇ ਰੋਜ਼ਾਨਾ ਮੌਕਿਆਂ ਦੀ ਸਮਝਦਾਰੀ ਨਾਲ ਵਰਤੋਂ ਨਾਲ ਪ੍ਰਗਟ ਹੁੰਦਾ ਹੈ।';
 
   @override
   String get quranThemeMercyWhyItMatters =>
-      'Mercy in the Qur’an is both something hoped for from Allah and something practiced with people. It reshapes correction, pardon, speech, and how a believer carries weakness.';
+      'ਕੁਰਾਨ ਵਿਚ ਰਹਿਮ ਉਹ ਚੀਜ਼ ਹੈ ਜਿਸਦੀ ਅੱਲ੍ਹਾ ਤੋਂ ਉਮੀਦ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਅਤੇ ਲੋਕਾਂ ਨਾਲ ਅਭਿਆਸ ਕੀਤਾ ਜਾਂਦਾ ਹੈ। ਇਹ ਸੁਧਾਰ, ਮਾਫ਼ੀ, ਭਾਸ਼ਣ, ਅਤੇ ਕਿਵੇਂ ਇੱਕ ਵਿਸ਼ਵਾਸੀ ਕਮਜ਼ੋਰੀ ਨੂੰ ਚੁੱਕਦਾ ਹੈ, ਨੂੰ ਮੁੜ ਆਕਾਰ ਦਿੰਦਾ ਹੈ।';
 
   @override
   String get quranThemeMercyStudyFocus =>
-      'Notice how mercy appears through gentleness, forgiveness, calm responses, and open doors of return. This theme becomes stronger when you read it through conduct as well as emotion.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਕੋਮਲਤਾ, ਮਾਫੀ, ਸ਼ਾਂਤ ਜਵਾਬ, ਅਤੇ ਵਾਪਸੀ ਦੇ ਖੁੱਲ੍ਹੇ ਦਰਵਾਜ਼ੇ ਦੁਆਰਾ ਦਇਆ ਕਿਵੇਂ ਦਿਖਾਈ ਦਿੰਦੀ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਇਸ ਨੂੰ ਆਚਰਣ ਦੇ ਨਾਲ-ਨਾਲ ਭਾਵਨਾ ਦੁਆਰਾ ਪੜ੍ਹਦੇ ਹੋ ਤਾਂ ਇਹ ਥੀਮ ਮਜ਼ਬੂਤ ​​​​ਬਣ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get quranThemeFamilyWhyItMatters =>
-      'Family is one of the clearest places where faith becomes visible. The Qur’an ties worship to parents’ rights, counsel, restraint, and daily care inside the home.';
+      'ਪਰਿਵਾਰ ਸਭ ਤੋਂ ਸਪੱਸ਼ਟ ਸਥਾਨਾਂ ਵਿੱਚੋਂ ਇੱਕ ਹੈ ਜਿੱਥੇ ਵਿਸ਼ਵਾਸ ਦਿਖਾਈ ਦਿੰਦਾ ਹੈ। ਕੁਰਾਨ ਪੂਜਾ ਨੂੰ ਮਾਪਿਆਂ ਦੇ ਅਧਿਕਾਰਾਂ, ਸਲਾਹ, ਸੰਜਮ ਅਤੇ ਘਰ ਦੇ ਅੰਦਰ ਰੋਜ਼ਾਨਾ ਦੇਖਭਾਲ ਨਾਲ ਜੋੜਦਾ ਹੈ।';
 
   @override
   String get quranThemeFamilyStudyFocus =>
-      'Notice that family guidance here is practical. It is about speech, respect, burden-sharing, and wisdom in ordinary relationships, not only abstract affection.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਇੱਥੇ ਪਰਿਵਾਰਕ ਮਾਰਗਦਰਸ਼ਨ ਵਿਹਾਰਕ ਹੈ। ਇਹ ਆਮ ਰਿਸ਼ਤਿਆਂ ਵਿੱਚ ਬੋਲੀ, ਸਤਿਕਾਰ, ਬੋਝ-ਵੰਡ ਅਤੇ ਬੁੱਧੀ ਬਾਰੇ ਹੈ, ਨਾ ਸਿਰਫ ਅਮੂਰਤ ਪਿਆਰ।';
 
   @override
   String get quranThemeTrustInAllahWhyItMatters =>
-      'Trust in Allah steadies the believer when outcomes feel uncertain. The Qur’an links tawakkul to obedience, consultation, and hope after sincere effort rather than escape from responsibility.';
+      'ਅੱਲ੍ਹਾ ਵਿੱਚ ਭਰੋਸਾ ਵਿਸ਼ਵਾਸੀ ਨੂੰ ਸਥਿਰ ਕਰਦਾ ਹੈ ਜਦੋਂ ਨਤੀਜੇ ਅਨਿਸ਼ਚਿਤ ਮਹਿਸੂਸ ਕਰਦੇ ਹਨ। ਕੁਰਆਨ ਜ਼ਿੰਮੇਵਾਰੀ ਤੋਂ ਭੱਜਣ ਦੀ ਬਜਾਏ ਇਮਾਨਦਾਰੀ ਨਾਲ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਤੋਂ ਬਾਅਦ ਤਵਾੱਕੁਲ ਨੂੰ ਆਗਿਆਕਾਰੀ, ਸਲਾਹ ਅਤੇ ਉਮੀਦ ਨਾਲ ਜੋੜਦਾ ਹੈ।';
 
   @override
   String get quranThemeTrustInAllahStudyFocus =>
-      'Notice that tawakkul never removes action. The theme becomes clearer when you read reliance together with patience, obedience, and refusal to despair.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਤਵਾੱਕੁਲ ਕਦੇ ਵੀ ਕਿਰਿਆ ਨੂੰ ਨਹੀਂ ਹਟਾਉਂਦਾ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਧੀਰਜ, ਆਗਿਆਕਾਰੀ, ਅਤੇ ਨਿਰਾਸ਼ਾ ਤੋਂ ਇਨਕਾਰ ਦੇ ਨਾਲ ਭਰੋਸੇ ਨੂੰ ਪੜ੍ਹਦੇ ਹੋ ਤਾਂ ਥੀਮ ਸਪੱਸ਼ਟ ਹੋ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get quranThemeRepentanceWhyItMatters =>
-      'Repentance keeps the servant moving back toward Allah instead of freezing in guilt or delay. The Qur’an frames tawbah as hopeful return joined to reform and renewed obedience.';
+      'ਪਸ਼ਚਾਤਾਪ ਨੌਕਰ ਨੂੰ ਦੋਸ਼ ਜਾਂ ਦੇਰੀ ਵਿੱਚ ਰੁਕਣ ਦੀ ਬਜਾਏ ਅੱਲ੍ਹਾ ਵੱਲ ਮੁੜਦਾ ਰਹਿੰਦਾ ਹੈ। ਕੁਰਾਨ ਤੌਬਾ ਨੂੰ ਸੁਧਾਰ ਅਤੇ ਨਵੀਂ ਆਗਿਆਕਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਉਮੀਦ ਦੇ ਰੂਪ ਵਿੱਚ ਫਰੇਮ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranThemeRepentanceStudyFocus =>
-      'Notice how repentance appears with mercy, hope, and practical change. The theme is about turning back honestly, not only feeling regret.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਕਿਵੇਂ ਪਸ਼ਚਾਤਾਪ ਦਇਆ, ਉਮੀਦ ਅਤੇ ਵਿਹਾਰਕ ਤਬਦੀਲੀ ਨਾਲ ਪ੍ਰਗਟ ਹੁੰਦਾ ਹੈ। ਥੀਮ ਇਮਾਨਦਾਰੀ ਨਾਲ ਵਾਪਸ ਮੁੜਨ ਬਾਰੇ ਹੈ, ਨਾ ਸਿਰਫ਼ ਪਛਤਾਵਾ ਮਹਿਸੂਸ ਕਰਨਾ।';
 
   @override
   String get quranThemeRemembranceWhyItMatters =>
-      'Remembrance keeps revelation close during ordinary life. The Qur’an presents dhikr as something that settles the heart, shapes worship, and keeps the believer from living heedlessly.';
+      'ਯਾਦ ਆਮ ਜੀਵਨ ਦੌਰਾਨ ਪ੍ਰਕਾਸ਼ ਨੂੰ ਨੇੜੇ ਰੱਖਦੀ ਹੈ। ਕੁਰਆਨ ਧਿਆਨ ਨੂੰ ਅਜਿਹੀ ਚੀਜ਼ ਵਜੋਂ ਪੇਸ਼ ਕਰਦਾ ਹੈ ਜੋ ਦਿਲ ਨੂੰ ਸ਼ਾਂਤ ਕਰਦਾ ਹੈ, ਪੂਜਾ ਨੂੰ ਆਕਾਰ ਦਿੰਦਾ ਹੈ, ਅਤੇ ਵਿਸ਼ਵਾਸੀ ਨੂੰ ਅਣਗਹਿਲੀ ਨਾਲ ਰਹਿਣ ਤੋਂ ਰੋਕਦਾ ਹੈ।';
 
   @override
   String get quranThemeRemembranceStudyFocus =>
-      'Notice that dhikr is not only repetition. It appears with prayer, gratitude, reflection on signs, and a heart that stays oriented toward Allah throughout the day.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਧਿਆਨ ਸਿਰਫ ਦੁਹਰਾਓ ਨਹੀਂ ਹੈ। ਇਹ ਪ੍ਰਾਰਥਨਾ, ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ, ਸੰਕੇਤਾਂ \'ਤੇ ਪ੍ਰਤੀਬਿੰਬ, ਅਤੇ ਇੱਕ ਦਿਲ ਨਾਲ ਪ੍ਰਗਟ ਹੁੰਦਾ ਹੈ ਜੋ ਸਾਰਾ ਦਿਨ ਅੱਲ੍ਹਾ ਵੱਲ ਰਹਿੰਦਾ ਹੈ।';
 
   @override
   String get quranThemeSincerityWhyItMatters =>
-      'Sincerity protects worship from becoming image, routine, or divided intention. The Qur’an treats ikhlas as a foundation of devotion, not a small extra refinement.';
+      'ਇਮਾਨਦਾਰੀ ਪੂਜਾ ਨੂੰ ਮੂਰਤ, ਰੁਟੀਨ, ਜਾਂ ਵੰਡੇ ਇਰਾਦੇ ਬਣਨ ਤੋਂ ਬਚਾਉਂਦੀ ਹੈ। ਕੁਰਾਨ ਇਖਲਾਸ ਨੂੰ ਸ਼ਰਧਾ ਦੀ ਬੁਨਿਆਦ ਵਜੋਂ ਮੰਨਦਾ ਹੈ, ਨਾ ਕਿ ਇੱਕ ਛੋਟਾ ਜਿਹਾ ਵਾਧੂ ਸੁਧਾਰ।';
 
   @override
   String get quranThemeSincerityStudyFocus =>
-      'Notice how sincerity is tied to worship, dependence, and quality of deeds. This theme becomes stronger when you read intention together with obedience and inward honesty.';
+      'ਧਿਆਨ ਦਿਓ ਕਿ ਇਮਾਨਦਾਰੀ ਭਗਤੀ, ਨਿਰਭਰਤਾ ਅਤੇ ਕੰਮਾਂ ਦੀ ਗੁਣਵੱਤਾ ਨਾਲ ਕਿਵੇਂ ਜੁੜੀ ਹੋਈ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਆਗਿਆਕਾਰੀ ਅਤੇ ਅੰਦਰੂਨੀ ਇਮਾਨਦਾਰੀ ਨਾਲ ਇਰਾਦੇ ਨੂੰ ਪੜ੍ਹਦੇ ਹੋ ਤਾਂ ਇਹ ਥੀਮ ਮਜ਼ਬੂਤ ​​​​ਬਣ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learnHubClearSearchTooltip => 'ਖੋਜ ਸਾਫ਼ ਕਰੋ';
@@ -4700,123 +4929,123 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranReferenceViewerRelatedJourneys => 'ਸੰਬੰਧਤ ਯਾਤਰਾਵਾਂ';
 
   @override
-  String get quranReferenceDetailCategoryQuranReference => 'Qur’an reference';
+  String get quranReferenceDetailCategoryQuranReference => 'ਕੁਰਾਨ ਦਾ ਹਵਾਲਾ';
 
   @override
-  String get quranReferenceDetailCategoryQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailCategoryQuranInsight => 'ਕੁਰਾਨ ਦੀ ਸਮਝ';
 
   @override
-  String get quranReferenceDetailCategoryWorldLesson => 'Signs & creation';
+  String get quranReferenceDetailCategoryWorldLesson => 'ਚਿੰਨ੍ਹ ਅਤੇ ਰਚਨਾ';
 
   @override
-  String get quranReferenceDetailCategoryWorshipLesson => 'Worship lesson';
+  String get quranReferenceDetailCategoryWorshipLesson => 'ਪੂਜਾ ਪਾਠ';
 
   @override
-  String get quranReferenceDetailCategoryCharacterLesson => 'Character lesson';
+  String get quranReferenceDetailCategoryCharacterLesson => 'ਅੱਖਰ ਸਬਕ';
 
   @override
-  String get quranReferenceDetailCategoryHadith => 'Hadith';
+  String get quranReferenceDetailCategoryHadith => 'ਹਦੀਸ';
 
   @override
-  String get quranReferenceDetailCategoryDivineLife => 'Divine Life';
+  String get quranReferenceDetailCategoryDivineLife => 'ਬ੍ਰਹਮ ਜੀਵਨ';
 
   @override
-  String get quranReferenceDetailCategoryProphet => 'Prophet reference';
+  String get quranReferenceDetailCategoryProphet => 'ਨਬੀ ਦਾ ਹਵਾਲਾ';
 
   @override
-  String get quranReferenceDetailCategoryLearningPath => 'Learning path';
+  String get quranReferenceDetailCategoryLearningPath => 'ਸਿੱਖਣ ਦਾ ਮਾਰਗ';
 
   @override
-  String get quranReferenceDetailCategoryLearningJourney => 'Journey lesson';
+  String get quranReferenceDetailCategoryLearningJourney => 'ਯਾਤਰਾ ਦਾ ਪਾਠ';
 
   @override
   String quranReferenceDetailCurrentAnchorChip(Object anchor) {
-    return 'From $anchor';
+    return '$anchor ਤੋਂ';
   }
 
   @override
-  String get quranReferenceDetailWhyRelatedTitle => 'Why this is related';
+  String get quranReferenceDetailWhyRelatedTitle => 'ਇਹ ਕਿਉਂ ਸੰਬੰਧਿਤ ਹੈ';
 
   @override
-  String get quranReferenceDetailPreviewTitle => 'What you will open';
+  String get quranReferenceDetailPreviewTitle => 'ਜੋ ਤੁਸੀਂ ਖੋਲ੍ਹੋਗੇ';
 
   @override
-  String get quranReferenceDetailSourceOwnerTitle => 'Source owner';
+  String get quranReferenceDetailSourceOwnerTitle => 'ਸਰੋਤ ਮਾਲਕ';
 
   @override
   String quranReferenceDetailOpenDestination(Object destination) {
-    return 'Open $destination';
+    return '$destination ਖੋਲ੍ਹੋ';
   }
 
   @override
-  String get quranReferenceDetailOpenQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailOpenQuranInsight => 'ਕੁਰਾਨ ਦੀ ਸਮਝ';
 
   @override
-  String get quranReferenceDetailOpenWorldLesson => 'world lesson';
+  String get quranReferenceDetailOpenWorldLesson => 'ਸੰਸਾਰ ਸਬਕ';
 
   @override
-  String get quranReferenceDetailOpenWorshipLesson => 'worship lesson';
+  String get quranReferenceDetailOpenWorshipLesson => 'ਪੂਜਾ ਪਾਠ';
 
   @override
-  String get quranReferenceDetailOpenCharacterLesson => 'Character companion';
+  String get quranReferenceDetailOpenCharacterLesson => 'ਅੱਖਰ ਸਾਥੀ';
 
   @override
-  String get quranReferenceDetailOpenHadithLesson => 'Hadith lesson';
+  String get quranReferenceDetailOpenHadithLesson => 'ਹਦੀਸ ਸਬਕ';
 
   @override
-  String get quranReferenceDetailOpenDivineLifeLesson => 'Divine Life lesson';
+  String get quranReferenceDetailOpenDivineLifeLesson => 'ਬ੍ਰਹਮ ਜੀਵਨ ਸਬਕ';
 
   @override
-  String get quranReferenceDetailOpenProphetStory => 'Prophet story';
+  String get quranReferenceDetailOpenProphetStory => 'ਨਬੀ ਦੀ ਕਹਾਣੀ';
 
   @override
-  String get quranReferenceDetailOpenLearningPath => 'learning path';
+  String get quranReferenceDetailOpenLearningPath => 'ਸਿੱਖਣ ਦਾ ਮਾਰਗ';
 
   @override
-  String get quranReferenceDetailOpenLearningJourney => 'journey lesson';
+  String get quranReferenceDetailOpenLearningJourney => 'ਯਾਤਰਾ ਸਬਕ';
 
   @override
   String get quranReferenceDetailReasonQuranReferenceLinked =>
-      'This Qur’an reference is surfaced because it strengthens the current ayah with a closely connected passage.';
+      'ਇਹ ਕੁਰਾਨ ਦਾ ਹਵਾਲਾ ਸਾਹਮਣੇ ਆਇਆ ਹੈ ਕਿਉਂਕਿ ਇਹ ਮੌਜੂਦਾ ਆਇਤ ਨੂੰ ਨਜ਼ਦੀਕੀ ਨਾਲ ਜੁੜੇ ਬੀਤਣ ਨਾਲ ਮਜ਼ਬੂਤ ​​ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonQuranInsight =>
-      'This insight expands one of the clearest study directions already connected to the current ayah.';
+      'ਇਹ ਸੂਝ ਮੌਜੂਦਾ ਅਯਾਹ ਨਾਲ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਜੁੜੇ ਸਪਸ਼ਟ ਅਧਿਐਨ ਦਿਸ਼ਾਵਾਂ ਵਿੱਚੋਂ ਇੱਕ ਦਾ ਵਿਸਤਾਰ ਕਰਦੀ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonWorldLesson =>
-      'This lesson helps you reflect on signs, creation, or the natural world already tied to the current ayah.';
+      'ਇਹ ਪਾਠ ਤੁਹਾਨੂੰ ਚਿੰਨ੍ਹ, ਰਚਨਾ, ਜਾਂ ਮੌਜੂਦਾ ਅਯਾਹ ਨਾਲ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਜੁੜੇ ਹੋਏ ਕੁਦਰਤੀ ਸੰਸਾਰ \'ਤੇ ਵਿਚਾਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonWorshipLesson =>
-      'This lesson extends the ayah into worship, remembrance, or a practical act of devotion.';
+      'ਇਹ ਪਾਠ ਅਯਾਹ ਨੂੰ ਪੂਜਾ, ਯਾਦ, ਜਾਂ ਸ਼ਰਧਾ ਦੇ ਇੱਕ ਅਮਲੀ ਕਾਰਜ ਵਿੱਚ ਵਧਾਉਂਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonCharacterLesson =>
-      'This lesson carries the ayah into conduct, restraint, speech, or another lived character response.';
+      'ਇਹ ਪਾਠ ਅਯਾਹ ਨੂੰ ਆਚਰਣ, ਸੰਜਮ, ਭਾਸ਼ਣ, ਜਾਂ ਕਿਸੇ ਹੋਰ ਜੀਵਿਤ ਚਰਿੱਤਰ ਪ੍ਰਤੀਕਿਰਿਆ ਵਿੱਚ ਲੈ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonHadith =>
-      'This Hadith is surfaced because it reinforces a lesson already present in the current ayah.';
+      'ਇਹ ਹਦੀਸ ਸਾਹਮਣੇ ਆਈ ਹੈ ਕਿਉਂਕਿ ਇਹ ਮੌਜੂਦਾ ਆਇਤ ਵਿੱਚ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਇੱਕ ਸਬਕ ਨੂੰ ਮਜ਼ਬੂਤ ​​​​ਕਰਦੀ ਹੈ.';
 
   @override
   String get quranReferenceDetailReasonDivineLife =>
-      'This Divine Life lesson broadens the ayah into a fuller everyday topic or practical life setting.';
+      'ਇਹ ਬ੍ਰਹਮ ਜੀਵਨ ਪਾਠ ਅਯਾਹ ਨੂੰ ਇੱਕ ਪੂਰੇ ਰੋਜ਼ਾਨਾ ਵਿਸ਼ੇ ਜਾਂ ਵਿਹਾਰਕ ਜੀਵਨ ਸੈਟਿੰਗ ਵਿੱਚ ਵਿਸਤਾਰ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonProphet =>
-      'This prophetic reference helps frame the ayah through a lived example from revelation and sacred history.';
+      'ਇਹ ਭਵਿੱਖਬਾਣੀ ਦਾ ਹਵਾਲਾ ਪ੍ਰਕਾਸ਼ ਅਤੇ ਪਵਿੱਤਰ ਇਤਿਹਾਸ ਤੋਂ ਇੱਕ ਜੀਵਿਤ ਉਦਾਹਰਣ ਦੁਆਰਾ ਆਇਤ ਨੂੰ ਫਰੇਮ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonLearningPath =>
-      'This path gathers nearby ayahs and lessons so you can study the same theme in a calmer sequence.';
+      'ਇਹ ਮਾਰਗ ਨੇੜੇ ਦੀਆਂ ਆਇਤਾਂ ਅਤੇ ਪਾਠਾਂ ਨੂੰ ਇਕੱਠਾ ਕਰਦਾ ਹੈ ਤਾਂ ਜੋ ਤੁਸੀਂ ਇੱਕ ਸ਼ਾਂਤ ਕ੍ਰਮ ਵਿੱਚ ਇੱਕੋ ਥੀਮ ਦਾ ਅਧਿਐਨ ਕਰ ਸਕੋ।';
 
   @override
   String get quranReferenceDetailReasonLearningJourney =>
-      'This journey lesson studies the same Qur’anic passage in a guided sequence, so you can move from reading into a calmer lesson flow.';
+      'ਇਹ ਯਾਤਰਾ ਪਾਠ ਇੱਕ ਮਾਰਗਦਰਸ਼ਿਤ ਕ੍ਰਮ ਵਿੱਚ ਉਸੇ ਕੁਰਾਨ ਦੇ ਹਵਾਲੇ ਦਾ ਅਧਿਐਨ ਕਰਦਾ ਹੈ, ਤਾਂ ਜੋ ਤੁਸੀਂ ਪੜ੍ਹਨ ਤੋਂ ਇੱਕ ਸ਼ਾਂਤ ਪਾਠ ਪ੍ਰਵਾਹ ਵਿੱਚ ਜਾ ਸਕੋ।';
 
   @override
-  String get quranThemeMapRelatedThemesTitle => 'Themes';
+  String get quranThemeMapRelatedThemesTitle => 'ਥੀਮ';
 
   @override
   String get quranReaderJourneyContextTitle => 'Journey context';
@@ -5576,7 +5805,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get quranSurahInsightWhyItMattersAliImran =>
-      'Ali Imran matters because it trains belief under pressure. It joins reflection on Allahs signs with restraint, mercy, and steadiness when the heart is tested.';
+      'Ali \'Imran matters because it trains belief under pressure. It joins reflection on Allah\'s signs with restraint, mercy, and steadiness when the heart is tested.';
 
   @override
   String get quranSurahInsightWhyItMattersTaHa =>
@@ -6181,10 +6410,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnQuizzesSearchHint => 'Search quiz titles, modules, topics...';
 
   @override
-  String get searchQuizzesHint => 'Search quizzes...';
+  String get searchQuizzesHint => 'ਕੁਇਜ਼ ਖੋਜੋ...';
 
   @override
-  String get searchLifeLessonsHint => 'Search lessons, themes, and topics...';
+  String get searchLifeLessonsHint => 'ਸਬਕ, ਵਿਸ਼ੇ ਅਤੇ ਮੌਜ਼ੂਆਂ ਖੋਜੋ...';
 
   @override
   String get learnQuizzesNoMatchTitle => 'No quizzes match this filter.';
@@ -6916,11 +7145,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranSearchMatchSurah => 'Surah';
 
   @override
-  String get searchSurahHint => 'Search surahs...';
+  String get searchSurahHint => 'ਸੂਰਤਾਂ ਖੋਜੋ...';
 
   @override
-  String get searchQuranTeachingHint =>
-      'Search letters, rules, words, or surahs...';
+  String get searchQuranTeachingHint => 'ਅੱਖਰ, ਕਾਇਦੇ, ਸ਼ਬਦ ਜਾਂ ਸੂਰਤਾਂ ਖੋਜੋ...';
 
   @override
   String get quranAyahsLabel => 'ayahs';
@@ -7043,10 +7271,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get salahNotificationOff => 'ਬੰਦ';
 
   @override
-  String get worshipPrayerNextPrefix => 'Next';
+  String get worshipPrayerNextPrefix => 'ਅਗਲੀ';
 
   @override
-  String get worshipPrayerUpcomingPrefix => 'Upcoming';
+  String get worshipPrayerUpcomingPrefix => 'ਆਉਣ ਵਾਲੀ';
 
   @override
   String get salahDailyGuideNote =>
@@ -7369,27 +7597,27 @@ class AppLocalizationsPa extends AppLocalizations {
       'Reduce pressure and focus on calm consistency.';
 
   @override
-  String get profileRamadanDateRangeTitle => 'Ramadan date range';
+  String get profileRamadanDateRangeTitle => 'ਰਮਜ਼ਾਨ ਦੀ ਮਿਤੀ ਸੀਮਾ';
 
   @override
-  String get profileRamadanStartDate => 'Start date';
+  String get profileRamadanStartDate => 'ਸ਼ੁਰੂ ਮਿਤੀ';
 
   @override
-  String get profileRamadanEndDate => 'End date';
+  String get profileRamadanEndDate => 'ਅੰਤ ਮਿਤੀ';
 
   @override
   String get profileRamadanDateWindowActive =>
-      'Today falls inside your Ramadan date window.';
+      'ਅੱਜ ਤੁਹਾਡੀ ਰਮਜ਼ਾਨ ਮਿਤੀ ਸੀਮਾ ਦੇ ਅੰਦਰ ਆਉਂਦਾ ਹੈ।';
 
   @override
   String get profileRamadanDateWindowInactive =>
-      'Today is outside your Ramadan date window.';
+      'ਅੱਜ ਤੁਹਾਡੀ ਰਮਜ਼ਾਨ ਮਿਤੀ ਸੀਮਾ ਤੋਂ ਬਾਹਰ ਹੈ।';
 
   @override
-  String get profileRamadanSetDates => 'Set dates';
+  String get profileRamadanSetDates => 'ਮਿਤੀਆਂ ਸੈੱਟ ਕਰੋ';
 
   @override
-  String get profileRamadanClearDates => 'Clear dates';
+  String get profileRamadanClearDates => 'ਮਿਤੀਆਂ ਸਾਫ਼ ਕਰੋ';
 
   @override
   String get learnContentTopicLabel => 'Topic';
@@ -7720,76 +7948,78 @@ class AppLocalizationsPa extends AppLocalizations {
       'Set both range edges to enable loop playback.';
 
   @override
-  String get quranMemorizationTitle => 'Memorization (Hifz)';
+  String get quranMemorizationTitle => 'ਯਾਦ (Hifz)';
 
   @override
-  String get quranMemorizationMarkAction => 'Mark for memorization';
+  String get quranMemorizationMarkAction => 'ਯਾਦ ਕਰਨ ਲਈ ਨਿਸ਼ਾਨ ਲਗਾਓ';
 
   @override
-  String get quranMemorizationRemoveAction => 'Remove from memorization';
+  String get quranMemorizationRemoveAction => 'ਯਾਦ ਤੋਂ ਹਟਾਓ';
 
   @override
-  String get quranMemorizationReviewTitle => 'Memorization Review';
+  String get quranMemorizationReviewTitle => 'ਮੈਮੋਰਾਈਜ਼ੇਸ਼ਨ ਸਮੀਖਿਆ';
 
   @override
   String get quranMemorizationReviewSubtitle =>
-      'Return to the ayahs you want to retain with meaning, themes, and light related study.';
+      'ਉਹਨਾਂ ਆਇਤਾਂ \'ਤੇ ਵਾਪਸ ਜਾਓ ਜਿਨ੍ਹਾਂ ਨੂੰ ਤੁਸੀਂ ਅਰਥ, ਥੀਮਾਂ ਅਤੇ ਰੌਸ਼ਨੀ ਨਾਲ ਸਬੰਧਤ ਅਧਿਐਨ ਨਾਲ ਬਰਕਰਾਰ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
   String quranMemorizationReviewSummary(int count, int dueCount) {
-    return 'Saved: $count ayahs • Due today: $dueCount';
+    return 'ਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ: $count ਆਇਤਾਂ • ਅੱਜ ਨਿਯਤ: $dueCount';
   }
 
   @override
   String get quranMemorizationReviewEmpty =>
-      'No ayahs are marked for memorization yet. Mark one from the reader to begin a calm review list.';
+      'ਅਜੇ ਤੱਕ ਯਾਦ ਕਰਨ ਲਈ ਕੋਈ ਆਇਤਾਂ ਚਿੰਨ੍ਹਿਤ ਨਹੀਂ ਹਨ। ਇੱਕ ਸ਼ਾਂਤ ਸਮੀਖਿਆ ਸੂਚੀ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਪਾਠਕ ਵਿੱਚੋਂ ਇੱਕ ਨੂੰ ਚਿੰਨ੍ਹਿਤ ਕਰੋ।';
 
   @override
-  String get quranMemorizationReviewDueTitle => 'Due for review';
+  String get quranMemorizationReviewDueTitle => 'ਸਮੀਖਿਆ ਲਈ ਬਕਾਇਆ';
 
   @override
-  String get quranMemorizationReviewSavedTitle => 'Saved for memorization';
+  String get quranMemorizationReviewSavedTitle =>
+      'ਯਾਦ ਰੱਖਣ ਲਈ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ';
 
   @override
-  String get quranMemorizationReviewContinueTitle => 'Continue review';
+  String get quranMemorizationReviewContinueTitle => 'ਸਮੀਖਿਆ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranMemorizationReviewTodayTitle => 'Review today';
+  String get quranMemorizationReviewTodayTitle => 'ਅੱਜ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get quranMemorizationReviewRecentTitle => 'Recently memorized';
+  String get quranMemorizationReviewRecentTitle => 'ਹਾਲ ਹੀ ਵਿੱਚ ਯਾਦ ਕੀਤਾ';
 
   @override
-  String get quranMemorizationReviewNeedsRevisionTitle => 'Needs revision';
+  String get quranMemorizationReviewNeedsRevisionTitle => 'ਸੋਧ ਦੀ ਲੋੜ ਹੈ';
 
   @override
-  String get quranMemorizationReviewAllTitle => 'All memorized';
+  String get quranMemorizationReviewAllTitle => 'ਸਭ ਯਾਦ ਹੈ';
 
   @override
   String get quranMemorizationReviewMeaningFallback =>
-      'Translation is not available for this ayah right now.';
+      'ਇਸ ਆਇਤ ਦਾ ਅਨੁਵਾਦ ਇਸ ਸਮੇਂ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
   String quranMemorizationReviewNextReview(Object dateLabel) {
-    return 'Next review: $dateLabel';
+    return 'ਅਗਲੀ ਸਮੀਖਿਆ: $dateLabel';
   }
 
   @override
   String quranMemorizationReviewRhythmMeta(int count, Object dateLabel) {
-    return 'Reviewed $count times • Last reviewed: $dateLabel';
+    return '$count ਵਾਰ ਸਮੀਖਿਆ ਕੀਤੀ ਗਈ • ਪਿਛਲੀ ਵਾਰ ਸਮੀਖਿਆ ਕੀਤੀ ਗਈ: $dateLabel';
   }
 
   @override
-  String get quranMemorizationReviewNeverReviewed => 'Not reviewed yet';
+  String get quranMemorizationReviewNeverReviewed =>
+      'ਅਜੇ ਤੱਕ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ';
 
   @override
-  String get quranMemorizationReviewThemesTitle => 'Key theme';
+  String get quranMemorizationReviewThemesTitle => 'ਮੁੱਖ ਥੀਮ';
 
   @override
-  String get quranMemorizationReviewRelatedStudyTitle => 'Related study';
+  String get quranMemorizationReviewRelatedStudyTitle => 'ਸਬੰਧਤ ਅਧਿਐਨ';
 
   @override
-  String get quranMemorizationReviewOpenReaderAction => 'Open in reader';
+  String get quranMemorizationReviewOpenReaderAction => 'ਪਾਠਕ ਵਿੱਚ ਖੋਲ੍ਹੋ';
 
   @override
   String get quranHifzRevealModeFull => 'Reveal';
@@ -8202,18 +8432,18 @@ class AppLocalizationsPa extends AppLocalizations {
   String get kidsJourneyPlaceholderActionMarkComplete => 'I did this';
 
   @override
-  String get assistantTitle => 'Nur Assistant';
+  String get assistantTitle => 'ਨੂਰ ਸਹਾਇਕ';
 
   @override
   String get assistantSubtitle =>
-      'A calm companion for guidance, reflection, and app navigation.';
+      'ਰਾਹਨੁਮਾਈ, ਮਨਨ ਅਤੇ ਐਪ ਨੈਵੀਗੇਸ਼ਨ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਸਾਥੀ।';
 
   @override
   String get assistantEmptyState =>
-      'Ask for a focus suggestion, reflection prompt, or where to go next.';
+      'ਧਿਆਨ ਲਈ ਸੁਝਾਅ, ਮਨਨ ਲਈ ਪ੍ਰੇਰਣਾ ਜਾਂ ਅੱਗੇ ਕਿੱਥੇ ਜਾਣਾ ਹੈ ਇਹ ਪੁੱਛੋ।';
 
   @override
-  String get assistantInputHint => 'Type your message';
+  String get assistantInputHint => 'ਆਪਣਾ ਸੁਨੇਹਾ ਲਿਖੋ';
 
   @override
   String get circlesTitle => 'Community Circles';
@@ -8437,13 +8667,13 @@ class AppLocalizationsPa extends AppLocalizations {
   String get journalDetailSavedMessage => 'Journal entry updated.';
 
   @override
-  String get assistantQuickPromptsTitle => 'Suggestions';
+  String get assistantQuickPromptsTitle => 'ਸੁਝਾਅ';
 
   @override
-  String get assistantRecentPromptsTitle => 'Recent prompts';
+  String get assistantRecentPromptsTitle => 'ਹਾਲੀਆ ਪ੍ਰੋਂਪਟ';
 
   @override
-  String get assistantQuickActionsTitle => 'Quick actions';
+  String get assistantQuickActionsTitle => 'ਤੁਰੰਤ ਕਾਰਵਾਈਆਂ';
 
   @override
   String get circlesJoinedPageTitle => 'Joined circles';
@@ -8621,11 +8851,11 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get homeEcosystemSummaryTitle => 'Growth ecosystem';
+  String get homeEcosystemSummaryTitle => 'ਤਰੱਕੀ ਦਾ ਪਰਿਸਰ';
 
   @override
   String get homeEcosystemSummarySubtitle =>
-      'Ocean, rewards, circles, journal, and assistant previews.';
+      'ਓਸ਼ਨ, ਇਨਾਮ, ਘੇਰੇ, ਜਰਨਲ ਅਤੇ ਅਸਿਸਟੈਂਟ ਝਲਕਾਂ।';
 
   @override
   String get learnTrackSelectorTitle => 'ਸੁਝਾਇਆ ਗਿਆ ਸਿੱਖਣ ਟਰੈਕ';
@@ -8966,7 +9196,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get onboardingDisclaimerBody =>
-      'This app is a companion for guidance and consistency. It does not replace local mosque community, scholars, or real-world support.';
+      'ਇਹ ਐਪ ਰਹਿਨੁਮਾਈ ਅਤੇ ਪੱਕੇਪਣ ਲਈ ਇੱਕ ਸਾਥੀ ਹੈ। ਇਹ ਸਥਾਨਕ ਮਸਜਿਦ ਭਾਈਚਾਰੇ, ਉਲਮਾ ਜਾਂ ਅਸਲ ਦੁਨਿਆ ਦੇ ਸਹਾਰੇ ਦੀ ਥਾਂ ਨਹੀਂ ਲੈਂਦੀ।';
 
   @override
   String get legalPrivacyBody =>
@@ -8997,536 +9227,535 @@ class AppLocalizationsPa extends AppLocalizations {
   String get routerNotFoundTitle => 'Route not found';
 
   @override
-  String get learningJourneyLessonSectionIntroduction => 'Introduction';
+  String get learningJourneyLessonSectionIntroduction => 'ਭੂਮਿਕਾ';
 
   @override
-  String get learningJourneyLessonSectionArabicMeaning => 'Arabic and meaning';
+  String get learningJourneyLessonSectionArabicMeaning => 'ਅਰਬੀ ਅਤੇ ਅਰਥ';
 
   @override
-  String get learningJourneyLessonSectionTakeaways => 'Key takeaways';
+  String get learningJourneyLessonSectionTakeaways => 'ਮੁੱਖ ਸਿੱਖਿਆਵਾਂ';
 
   @override
-  String get learningJourneyLessonSectionReflection => 'Reflection prompt';
+  String get learningJourneyLessonSectionReflection => 'ਮਨਨ ਸੰਕੇਤ';
 
   @override
-  String get learningJourneyLessonSectionReferences => 'References';
+  String get learningJourneyLessonSectionReferences => 'ਹਵਾਲੇ';
 
   @override
-  String get learningJourneyLessonSectionExploreNow => 'Explore now';
+  String get learningJourneyLessonSectionExploreNow => 'ਹੁਣੇ ਵੇਖੋ';
 
   @override
   String get learningJourneyLessonActionStudyInQuran =>
-      'Study this in the Qur’an';
+      'ਇਸਨੂੰ ਕੁਰਆਨ ਵਿੱਚ ਪੜ੍ਹੋ';
 
   @override
   String learningJourneyLessonActionStudyInQuranSubtitle(
     Object referenceLabel,
   ) {
-    return 'Start with $referenceLabel and keep this lesson’s study context with you in the reader.';
+    return '$referenceLabel ਤੋਂ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਇਸ ਪਾਠ ਦਾ ਅਧਿਐਨ ਸੰਦਰਭ ਰੀਡਰ ਵਿੱਚ ਆਪਣੇ ਨਾਲ ਰੱਖੋ।';
   }
 
   @override
   String get learningJourneyLessonActionOpenDhikrCounter =>
-      'Open Dhikr Counter';
+      'ਜ਼ਿਕਰ ਕਾਊਂਟਰ ਖੋਲ੍ਹੋ';
 
   @override
-  String get learningJourneyLessonActionCompleted => 'Completed';
+  String get learningJourneyLessonActionCompleted => 'ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get learningJourneyLessonActionMarkComplete => 'Mark as Complete';
+  String get learningJourneyLessonActionMarkComplete => 'ਪੂਰਾ ਨਿਸ਼ਾਨ ਲਗਾਓ';
 
   @override
-  String get learningJourneyLessonActionNextLesson => 'Next Lesson';
+  String get learningJourneyLessonActionNextLesson => 'ਅਗਲਾ ਪਾਠ';
 
   @override
-  String get learningJourneyLessonActionReturnToJourney => 'Return to Journey';
+  String get learningJourneyLessonActionReturnToJourney => 'ਯਾਤਰਾ ਵੱਲ ਵਾਪਸ ਜਾਓ';
 
   @override
-  String get learningJourneyToolQuranReaderTitle => 'Qur’an Reader';
+  String get learningJourneyToolQuranReaderTitle => 'ਕੁਰਆਨ ਰੀਡਰ';
 
   @override
   String get learningJourneyToolQuranReaderSubtitle =>
-      'Open the reader and continue slowly.';
+      'ਰੀਡਰ ਖੋਲ੍ਹੋ ਅਤੇ ਹੌਲੀ-ਹੌਲੀ ਜਾਰੀ ਰੱਖੋ।';
 
   @override
-  String get learningJourneyToolQuranStudyTitle => 'Qur’an Study';
+  String get learningJourneyToolQuranStudyTitle => 'ਕੁਰਆਨ ਅਧਿਐਨ';
 
   @override
   String get learningJourneyToolQuranStudySubtitle =>
-      'Use the study hub for connected practice.';
+      'ਜੁੜੀ ਹੋਈ ਅਭਿਆਸ ਲਈ ਅਧਿਐਨ ਹਬ ਵਰਤੋ।';
 
   @override
-  String get learningJourneyToolQuranArabicTitle => 'Qur’anic Arabic';
+  String get learningJourneyToolQuranArabicTitle => 'ਕੁਰਆਨੀ ਅਰਬੀ';
 
   @override
   String get learningJourneyToolQuranArabicSubtitle =>
-      'Return to the Arabic learning path.';
+      'ਅਰਬੀ ਸਿੱਖਣ ਦੇ ਰਸਤੇ ਵੱਲ ਵਾਪਸ ਜਾਓ।';
 
   @override
-  String get learningJourneyToolSalahHubTitle => 'Salah Hub';
+  String get learningJourneyToolSalahHubTitle => 'ਸਲਾਹ ਹਬ';
 
   @override
   String get learningJourneyToolSalahHubSubtitle =>
-      'Reconnect these phrases to worship practice.';
+      'ਇਨ੍ਹਾਂ ਵਾਕਾਂ ਨੂੰ ਇਬਾਦਤ ਦੀ ਅਭਿਆਸ ਨਾਲ ਮੁੜ ਜੋੜੋ।';
 
   @override
   String get learningJourneyStageReciteFatihahLessonTitle =>
-      'Understanding Al-Fatihah';
+      'ਸੂਰਹ ਫਾਤਿਹਾ ਨੂੰ ਸਮਝਣਾ';
 
   @override
   String get learningJourneyStageReciteFatihahIntro =>
-      'Al-Fatihah is the surah you repeat most often in salah. Learning its core meaning turns familiar recitation into conscious worship.';
+      'ਅਲ-ਫਾਤਿਹਾ ਉਹ ਸੂਰਹ ਹੈ ਜੋ ਤੁਸੀਂ ਸਲਾਹ ਵਿੱਚ ਸਭ ਤੋਂ ਵੱਧ ਦੁਹਰਾਉਂਦੇ ਹੋ। ਇਸਦਾ ਬੁਨਿਆਦੀ ਅਰਥ ਸਿੱਖਣ ਨਾਲ ਜਾਣ-ਪਹਿਚਾਣ ਵਾਲੀ ਤਿਲਾਵਤ ਸਚੇਤ ਇਬਾਦਤ ਬਣ ਜਾਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteFatihahSection1Title =>
-      'A simple map of the surah';
+      'ਸੂਰਹ ਦਾ ਸੌਖਾ ਨਕਸ਼ਾ';
 
   @override
   String get learningJourneyStageReciteFatihahSection1Body =>
-      'Al-Fatihah begins with praise of Allah, then reminds you that He is Lord, Master of the Day of Judgment, and the One alone you worship and ask for help. It ends as a dua for guidance to the straight path.';
+      'ਅਲ-ਫਾਤਿਹਾ ਅੱਲਾਹ ਦੀ ਹਮਦ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ, ਫਿਰ ਇਹ ਯਾਦ ਦਿਵਾਉਂਦੀ ਹੈ ਕਿ ਉਹ ਰੱਬ ਹੈ, ਯੌਮ-ਏ-ਜਜ਼ਾ ਦਾ ਮਾਲਕ ਹੈ, ਅਤੇ ਉਹੀ ਇੱਕ ਹੈ ਜਿਸਦੀ ਤੁਸੀਂ ਇਬਾਦਤ ਕਰਦੇ ਹੋ ਅਤੇ ਜਿਸ ਕੋਲ ਮਦਦ ਮੰਗਦੇ ਹੋ। ਅੰਤ ਵਿੱਚ ਇਹ ਸਿੱਧੇ ਰਾਹ ਦੀ ਹਿਦਾਇਤ ਲਈ ਇੱਕ ਦੁਆ ਬਣ ਜਾਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteFatihahSection2Title =>
-      'How to carry it into prayer';
+      'ਇਸਨੂੰ ਨਮਾਜ਼ ਵਿੱਚ ਕਿਵੇਂ ਨਾਲ ਲੈ ਕੇ ਜਾਵੋ';
 
   @override
   String get learningJourneyStageReciteFatihahSection2Body =>
-      'When you recite Al-Fatihah, slow down enough to feel the movement of the surah: praise, dependence, and asking to be guided.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਅਲ-ਫਾਤਿਹਾ ਪੜ੍ਹੋ, ਇੰਨਾ ਹੌਲੀ ਪੜ੍ਹੋ ਕਿ ਸੂਰਹ ਦੀ ਚਾਲ ਮਹਿਸੂਸ ਹੋਵੇ: ਹਮਦ, ਮੁਹਤਾਜ਼ੀ ਅਤੇ ਹਿਦਾਇਤ ਦੀ ਅਰਜ਼।';
 
   @override
   String get learningJourneyStageReciteFatihahSection2Bullet1 =>
-      'Praise Allah before asking for anything.';
+      'ਕੁਝ ਵੀ ਮੰਗਣ ਤੋਂ ਪਹਿਲਾਂ ਅੱਲਾਹ ਦੀ ਹਮਦ ਕਰੋ।';
 
   @override
   String get learningJourneyStageReciteFatihahSection2Bullet2 =>
-      'Remember that worship and help both belong to Him alone.';
+      'ਯਾਦ ਰੱਖੋ ਕਿ ਇਬਾਦਤ ਵੀ ਅਤੇ ਮਦਦ ਵੀ ਕੇਵਲ ਉਸੀ ਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteFatihahSection2Bullet3 =>
-      'Treat the last verses as a living dua for guidance.';
+      'ਆਖ਼ਰੀ ਆਇਤਾਂ ਨੂੰ ਹਿਦਾਇਤ ਲਈ ਜੀਵੰਤ ਦੁਆ ਵਾਂਗ ਪੜ੍ਹੋ।';
 
   @override
   String get learningJourneyStageReciteFatihahTakeaway1 =>
-      'Al-Fatihah is both praise and dua.';
+      'ਅਲ-ਫਾਤਿਹਾ ਹਮਦ ਵੀ ਹੈ ਅਤੇ ਦੁਆ ਵੀ।';
 
   @override
   String get learningJourneyStageReciteFatihahTakeaway2 =>
-      'Its meaning can make every rak‘ah more attentive.';
+      'ਇਸਦਾ ਅਰਥ ਹਰ ਰਕਅਤ ਨੂੰ ਹੋਰ ਸਚੇਤ ਬਣਾ ਸਕਦਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteFatihahTakeaway3 =>
-      'Understanding a little well is better than reciting without thought.';
+      'ਥੋੜ੍ਹਾ ਪਰ ਚੰਗੀ ਤਰ੍ਹਾਂ ਸਮਝਣਾ ਬੇ-ਧਿਆਨੀ ਨਾਲ ਪੜ੍ਹਨ ਤੋਂ ਬਿਹਤਰ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteFatihahReflection =>
-      'Which line of Al-Fatihah do you want to recite more consciously in your next prayer?';
+      'ਅਗਲੀ ਨਮਾਜ਼ ਵਿੱਚ ਅਲ-ਫਾਤਿਹਾ ਦੀ ਕਿਹੜੀ ਲਾਈਨ ਤੁਸੀਂ ਹੋਰ ਸਚੇਤ ਹੋ ਕੇ ਪੜ੍ਹਨਾ ਚਾਹੁੰਦੇ ਹੋ?';
 
   @override
-  String get learningJourneyStageReciteFatihahInvocation1Title =>
-      'Opening praise';
+  String get learningJourneyStageReciteFatihahInvocation1Title => 'ਸ਼ੁਰੂਆਤੀ ਹਮਦ';
 
   @override
   String get learningJourneyStageReciteFatihahInvocation1Meaning =>
-      'All praise belongs to Allah, Lord of all worlds.';
+      'ਸਾਰੀ ਹਮਦ ਅੱਲਾਹ ਲਈ ਹੈ, ਜੋ ਸਾਰੇ ਜਹਾਨਾਂ ਦਾ ਰੱਬ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteFatihahInvocation1Context =>
-      'This phrase reminds you that praise comes before requests.';
+      'ਇਹ ਜੁਮਲਾ ਯਾਦ ਦਿਵਾਉਂਦਾ ਹੈ ਕਿ ਮੰਗਾਂ ਤੋਂ ਪਹਿਲਾਂ ਹਮਦ ਆਉਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsLessonTitle =>
-      'Common Phrases in Salah';
+      'ਸਲਾਹ ਦੀਆਂ ਆਮ ਪੰਗਤੀਆਂ';
 
   @override
   String get learningJourneyStageReciteShortSurahsIntro =>
-      'Salah includes short repeated phrases that shape humility, praise, and reverence. Knowing their meaning helps the body and heart move together.';
+      'ਸਲਾਹ ਵਿੱਚ ਛੋਟੀਆਂ ਦੁਹਰਾਈਆਂ ਜਾਣ ਵਾਲੀਆਂ ਪੰਗਤੀਆਂ ਹੁੰਦੀਆਂ ਹਨ ਜੋ ਨਿਮਰਤਾ, ਹਮਦ ਅਤੇ ਤਅਜ਼ੀਮ ਪੈਦਾ ਕਰਦੀਆਂ ਹਨ। ਉਨ੍ਹਾਂ ਦਾ ਅਰਥ ਜਾਣਨ ਨਾਲ ਸਰੀਰ ਅਤੇ ਦਿਲ ਇਕੱਠੇ ਚਲਦੇ ਹਨ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsSection1Title =>
-      'What these phrases are doing';
+      'ਇਹ ਪੰਗਤੀਆਂ ਕੀ ਕਰ ਰਹੀਆਂ ਹਨ';
 
   @override
   String get learningJourneyStageReciteShortSurahsSection1Body =>
-      'Takbir magnifies Allah. Tasbih in ruku and sujud glorifies Him. These short phrases are not filler between positions. They are part of the inner life of salah.';
+      'ਤਕਬੀਰ ਅੱਲਾਹ ਦੀ ਬੜਾਈ ਬਿਆਨ ਕਰਦੀ ਹੈ। ਰੁਕੂ ਅਤੇ ਸਜਦੇ ਦੀ ਤਸਬੀਹ ਉਸਦੀ ਪਾਕੀ ਬਿਆਨ ਕਰਦੀ ਹੈ। ਇਹ ਛੋਟੀਆਂ ਪੰਗਤੀਆਂ ਅੰਗ-ਬਦਲਾਅ ਵਿਚਕਾਰ ਦੀ ਖਾਲੀ ਭਰਾਈ ਨਹੀਂ ਹਨ। ਇਹ ਸਲਾਹ ਦੀ ਅੰਦਰੂਨੀ ਜ਼ਿੰਦਗੀ ਦਾ ਹਿੱਸਾ ਹਨ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsSection2Title =>
-      'How to begin using them with understanding';
+      'ਉਨ੍ਹਾਂ ਨੂੰ ਸਮਝ ਦੇ ਨਾਲ ਵਰਤਣਾ ਕਿਵੇਂ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get learningJourneyStageReciteShortSurahsSection2Body =>
-      'Choose one phrase to pay attention to in your next prayer. Repeat it slowly enough that the meaning stays present for at least one moment.';
+      'ਆਪਣੀ ਅਗਲੀ ਨਮਾਜ਼ ਵਿੱਚ ਇੱਕ ਪੰਗਤੀ ਚੁਣੋ ਜਿਸ ਉੱਤੇ ਧਿਆਨ ਦੇਣਾ ਹੈ। ਇਸਨੂੰ ਇੰਨਾ ਹੌਲੀ ਦੁਹਰਾਓ ਕਿ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਲਹਿਰ ਲਈ ਅਰਥ ਦਿਲ ਵਿੱਚ ਮੌਜੂਦ ਰਹੇ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsTakeaway1 =>
-      'Short phrases can carry deep meaning inside prayer.';
+      'ਛੋਟੀਆਂ ਪੰਗਤੀਆਂ ਨਮਾਜ਼ ਦੇ ਅੰਦਰ ਡੂੰਘਾ ਅਰਥ ਰੱਖ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsTakeaway2 =>
-      'Understanding grows khushu more naturally than forcing emotion.';
+      'ਸਮਝ ਖੁਸ਼ੂਅ ਨੂੰ ਜਜ਼ਬਾਤ ਮਜ਼ਬੂਰ ਕਰਨ ਨਾਲੋਂ ਵਧੇਰੇ ਕੁਦਰਤੀ ਤਰੀਕੇ ਨਾਲ ਵਧਾਉਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsTakeaway3 =>
-      'One attentive phrase is a strong place to begin.';
+      'ਇੱਕ ਸਚੇਤ ਪੰਗਤੀ ਸ਼ੁਰੂਆਤ ਲਈ ਮਜ਼ਬੂਤ ਥਾਂ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsReflection =>
-      'Which phrase in salah do you want to stop rushing past?';
+      'ਸਲਾਹ ਦੀ ਕਿਹੜੀ ਪੰਗਤੀ ਹੈ ਜਿਸਨੂੰ ਤੁਸੀਂ ਜਲਦੀ-ਜਲਦੀ ਲੰਘਾਉਣਾ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
 
   @override
-  String get learningJourneyStageReciteShortSurahsInvocation1Title => 'Takbir';
+  String get learningJourneyStageReciteShortSurahsInvocation1Title => 'ਤਕਬੀਰ';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation1Meaning =>
-      'Allah is greater than everything competing for your attention.';
+      'ਅੱਲਾਹ ਹਰ ਉਸ ਚੀਜ਼ ਨਾਲੋਂ ਵੱਡਾ ਹੈ ਜੋ ਤੁਹਾਡੇ ਧਿਆਨ ਲਈ ਮੁਕਾਬਲਾ ਕਰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation1Context =>
-      'Said when moving into major parts of the prayer.';
+      'ਨਮਾਜ਼ ਦੇ ਵੱਡੇ ਹਿੱਸਿਆਂ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਸਮੇਂ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation2Title =>
-      'Tasbih in bowing';
+      'ਰੁਕੂ ਦੀ ਤਸਬੀਹ';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation2Meaning =>
-      'Glory be to my Lord, the Most Great.';
+      'ਮੇਰਾ ਰੱਬ, ਸਭ ਤੋਂ ਅਜ਼ੀਮ, ਪਾਕ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation2Context =>
-      'Said in ruku to glorify Allah with humility.';
+      'ਰੁਕੂ ਵਿੱਚ ਨਿਮਰਤਾ ਨਾਲ ਅੱਲਾਹ ਦੀ ਪਾਕੀ ਬਿਆਨ ਕਰਨ ਲਈ ਕਿਹਾ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation3Title =>
-      'Tasbih in prostration';
+      'ਸਜਦੇ ਦੀ ਤਸਬੀਹ';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation3Meaning =>
-      'Glory be to my Lord, the Most High.';
+      'ਮੇਰਾ ਰੱਬ, ਸਭ ਤੋਂ ਬੁਲੰਦ, ਪਾਕ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteShortSurahsInvocation3Context =>
-      'Said in sujud while you are physically lowest before Allah.';
+      'ਸਜਦੇ ਵਿੱਚ ਕਿਹਾ ਜਾਂਦਾ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਸਰੀਰਕ ਤੌਰ ‘ਤੇ ਅੱਲਾਹ ਦੇ ਸਾਹਮਣੇ ਸਭ ਤੋਂ ਨਿਵੇਂ ਹੁੰਦੇ ਹੋ।';
 
   @override
   String get learningJourneyStageReciteMeaningLessonTitle =>
-      'Simple Dhikr Meanings';
+      'ਸੌਖੇ ਜ਼ਿਕਰਾਂ ਦੇ ਅਰਥ';
 
   @override
   String get learningJourneyStageReciteMeaningIntro =>
-      'A few short phrases appear again and again in Muslim life. When you understand them, dhikr becomes lighter to carry and easier to keep.';
+      'ਕੁਝ ਛੋਟੀਆਂ ਪੰਗਤੀਆਂ ਮੁਸਲਮਾਨੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਵਾਰ-ਵਾਰ ਆਉਂਦੀਆਂ ਹਨ। ਜਦੋਂ ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਨੂੰ ਸਮਝ ਲੈਂਦੇ ਹੋ, ਜ਼ਿਕਰ ਨਾਲੇ ਰੱਖਣਾ ਹੌਲਾ ਅਤੇ ਜਾਰੀ ਰੱਖਣਾ ਆਸਾਨ ਹੋ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteMeaningSection1Title =>
-      'Start with the smallest phrases';
+      'ਸਭ ਤੋਂ ਛੋਟੀਆਂ ਪੰਗਤੀਆਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get learningJourneyStageReciteMeaningSection1Body =>
-      'SubhanAllah clears Allah of نقص and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.';
+      'ਸੁਭਾਨਅੱਲਾਹ ਅੱਲਾਹ ਨੂੰ ਹਰ ਕਮੀ ਅਤੇ ਨਾਕਾਮੀ ਤੋਂ ਪਾਕ ਕਰਾਰ ਦਿੰਦਾ ਹੈ। ਅਲਹਮਦੁਲਿੱਲਾਹ ਦਿਲ ਨੂੰ ਹਮਦ ਅਤੇ ਸ਼ੁਕਰ ਨਾਲ ਭਰ ਦਿੰਦਾ ਹੈ। ਛੋਟਾ ਜ਼ਿਕਰ ਇਸ ਲਈ ਕਾਰਗਰ ਹੁੰਦਾ ਹੈ ਕਿਉਂਕਿ ਉਹ ਰੋਜ਼ਮਰਰਾ ਦੇ ਲਹਿਰਿਆਂ ਵਿੱਚ ਤੁਹਾਡੇ ਨਾਲ ਰਹਿ ਸਕਦਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Title =>
-      'Bridge meaning into daily rhythm';
+      'ਅਰਥ ਨੂੰ ਰੋਜ਼ਾਨਾ ਲਹਿਰ ਨਾਲ ਜੋੜੋ';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Body =>
-      'Use one phrase after prayer, one during a quiet walk, and one when something good happens. That is enough to start a sincere daily rhythm.';
+      'ਇੱਕ ਪੰਗਤੀ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਵਰਤੋ, ਇੱਕ ਖਾਮੋਸ਼ ਟਹਿਲ ਦੌਰਾਨ, ਅਤੇ ਇੱਕ ਜਦੋਂ ਕੋਈ ਚੰਗੀ ਗੱਲ ਹੋਵੇ। ਸੱਚੀ ਰੋਜ਼ਾਨਾ ਲਹਿਰ ਦੀ ਸ਼ੁਰੂਆਤ ਲਈ ਇਹ ਕਾਫ਼ੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Bullet1 =>
-      'Say SubhanAllah when you want to remember Allah’s perfection.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਅੱਲਾਹ ਦੀ ਪੂਰਨਤਾ ਯਾਦ ਕਰਨਾ ਚਾਹੋ ਤਾਂ ਸੁਭਾਨਅੱਲਾਹ ਕਹੋ।';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Bullet2 =>
-      'Say Alhamdulillah when you notice a blessing.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨੇਅਮਤ ਵੇਖੋ ਤਾਂ ਅਲਹਮਦੁਲਿੱਲਾਹ ਕਹੋ।';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Bullet3 =>
-      'Keep the phrases short enough to remain present and sincere.';
+      'ਪੰਗਤੀਆਂ ਨੂੰ ਇੰਨੀਆਂ ਛੋਟੀਆਂ ਰੱਖੋ ਕਿ ਤੁਸੀਂ ਹਾਜ਼ਰ ਅਤੇ ਸੱਚੇ ਰਹੋ।';
 
   @override
   String get learningJourneyStageReciteMeaningTakeaway1 =>
-      'Short dhikr becomes stronger when you understand it.';
+      'ਛੋਟਾ ਜ਼ਿਕਰ ਉਸ ਵੇਲੇ ਮਜ਼ਬੂਤ ਹੁੰਦਾ ਹੈ ਜਦੋਂ ਤੁਸੀਂ ਉਸਨੂੰ ਸਮਝਦੇ ਹੋ।';
 
   @override
   String get learningJourneyStageReciteMeaningTakeaway2 =>
-      'Meaning makes repetition more alive, not less simple.';
+      'ਅਰਥ ਦੁਹਰਾਈ ਨੂੰ ਹੋਰ ਜੀਵੰਤ ਬਣਾਉਂਦਾ ਹੈ, ਘੱਟ ਸੌਖਾ ਨਹੀਂ।';
 
   @override
   String get learningJourneyStageReciteMeaningTakeaway3 =>
-      'Daily remembrance grows best through small steady anchors.';
+      'ਰੋਜ਼ਾਨਾ ਯਾਦ ਸਭ ਤੋਂ ਵਧੀਆ ਛੋਟੇ ਪਰ ਠੋਸ ਆਧਾਰਾਂ ਨਾਲ ਵਧਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteMeaningReflection =>
-      'Which short phrase do you want to carry more intentionally through your day?';
+      'ਕਿਹੜੀ ਛੋਟੀ ਪੰਗਤੀ ਹੈ ਜਿਸਨੂੰ ਤੁਸੀਂ ਆਪਣੇ ਦਿਨ ਭਰ ਹੋਰ ਇਰਾਦੇ ਨਾਲ ਨਾਲ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
 
   @override
-  String get learningJourneyStageReciteMeaningInvocation1Title => 'Tasbih';
+  String get learningJourneyStageReciteMeaningInvocation1Title => 'ਤਸਬੀਹ';
 
   @override
   String get learningJourneyStageReciteMeaningInvocation1Meaning =>
-      'Glory be to Allah.';
+      'ਅੱਲਾਹ ਪਾਕ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteMeaningInvocation1Context =>
-      'Use when remembering Allah’s perfection and greatness.';
+      'ਅੱਲਾਹ ਦੀ ਪੂਰਨਤਾ ਅਤੇ ਬੜਾਈ ਯਾਦ ਕਰਦੇ ਸਮੇਂ ਵਰਤੋ।';
 
   @override
-  String get learningJourneyStageReciteMeaningInvocation2Title => 'Hamd';
+  String get learningJourneyStageReciteMeaningInvocation2Title => 'ਹਮਦ';
 
   @override
   String get learningJourneyStageReciteMeaningInvocation2Meaning =>
-      'All praise belongs to Allah.';
+      'ਸਾਰੀ ਹਮਦ ਅੱਲਾਹ ਲਈ ਹੈ।';
 
   @override
   String get learningJourneyStageReciteMeaningInvocation2Context =>
-      'Use when you notice mercy, provision, or any blessing.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਰਹਿਮਤ, ਰਿਜ਼ਕ ਜਾਂ ਕੋਈ ਵੀ ਨੇਅਮਤ ਵੇਖੋ ਤਾਂ ਵਰਤੋ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenLessonTitle =>
-      'Harakat and Reading Clues';
+      'ਹਰਕਾਤ ਅਤੇ ਪੜ੍ਹਨ ਦੇ ਇਸ਼ਾਰੇ';
 
   @override
   String get learningJourneyStageReadingBasicsOpenIntro =>
-      'Before smooth reading comes a smaller skill: seeing the marks around the letters clearly enough to know how the sound should move.';
+      'ਰਵਾਂ ਪੜ੍ਹਾਈ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਛੋਟੀ ਕਾਬਲੀਅਤ ਆਉਂਦੀ ਹੈ: ਅੱਖਰਾਂ ਦੇ ਆਲੇ-ਦੁਆਲੇ ਦੇ ਨਿਸ਼ਾਨ ਇੰਨੇ ਸਾਫ਼ ਦੇਖਣਾ ਕਿ ਸਮਝ ਆ ਜਾਵੇ ਕਿ ਆਵਾਜ਼ ਕਿਵੇਂ ਚਲਣੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Title =>
-      'What to notice first';
+      'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਕੀ ਵੇਖਣਾ ਹੈ';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Body =>
-      'Harakat are the short vowel signs that tell you whether the sound opens, lowers, or rounds. Start by noticing the mark before worrying about speed.';
+      'ਹਰਕਾਤ ਛੋਟੇ ਸਵਰੀ ਨਿਸ਼ਾਨ ਹੁੰਦੇ ਹਨ ਜੋ ਦੱਸਦੇ ਹਨ ਕਿ ਆਵਾਜ਼ ਖੁਲ੍ਹਦੀ ਹੈ, ਹੇਠਾਂ ਆਉਂਦੀ ਹੈ ਜਾਂ ਗੋਲ ਹੁੰਦੀ ਹੈ। ਰਫ਼ਤਾਰ ਦੀ ਫਿਕਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਨਿਸ਼ਾਨ ਨੂੰ ਪਛਾਣੋ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Bullet1 =>
-      'Fathah usually gives a light “a” sound.';
+      'ਜ਼ਬਰ ਆਮ ਤੌਰ ‘ਤੇ ਹੌਲੀ “ਅ” ਦੀ ਆਵਾਜ਼ ਦਿੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Bullet2 =>
-      'Kasrah usually gives a light “i” sound.';
+      'ਜ਼ੇਰ ਆਮ ਤੌਰ ‘ਤੇ ਹੌਲੀ “ਇ” ਦੀ ਆਵਾਜ਼ ਦਿੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Bullet3 =>
-      'Dammah usually gives a light “u” sound.';
+      'ਪੇਸ਼ ਆਮ ਤੌਰ ‘ਤੇ ਹੌਲੀ “ਉ” ਦੀ ਆਵਾਜ਼ ਦਿੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection2Title =>
-      'A gentle way to practice';
+      'ਅਭਿਆਸ ਦਾ ਨਰਮ ਤਰੀਕਾ';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection2Body =>
-      'Read one letter at a time, say the sound, then repeat the same pattern across two or three examples. Accuracy first. Speed later.';
+      'ਇੱਕ ਵਾਰ ਵਿੱਚ ਇੱਕ ਅੱਖਰ ਪੜ੍ਹੋ, ਆਵਾਜ਼ ਕਹੋ, ਫਿਰ ਦੋ ਜਾਂ ਤਿੰਨ ਉਦਾਹਰਣਾਂ ਵਿੱਚ ਉਹੀ ਢੰਗ ਦੁਹਰਾਓ। ਪਹਿਲਾਂ ਸਹੀਪਣ। ਰਫ਼ਤਾਰ ਬਾਅਦ ਵਿੱਚ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenTakeaway1 =>
-      'Reading improves when your eye sees the mark before your tongue rushes ahead.';
+      'ਪੜ੍ਹਾਈ ਉਸ ਵੇਲੇ ਸੁਧਰਦੀ ਹੈ ਜਦੋਂ ਤੁਹਾਡੀ ਅੱਖ ਨਿਸ਼ਾਨ ਨੂੰ ਵੇਖ ਲੈਂਦੀ ਹੈ, ਜੀਭ ਦੇ ਜਲਦੀ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenTakeaway2 =>
-      'Small accurate repetition is more useful than fast guessing.';
+      'ਛੋਟੀ ਪਰ ਸਹੀ ਦੁਹਰਾਈ ਤੇਜ਼ ਅਨੁਮਾਨ ਨਾਲੋਂ ਵਧੇਰੇ ਲਾਭਦਾਇਕ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenTakeaway3 =>
-      'Harakat are a doorway into confidence, not a burden.';
+      'ਹਰਕਾਤ ਭਰੋਸੇ ਵੱਲ ਜਾਣ ਦਾ ਦਰਵਾਜ਼ਾ ਹਨ, ਬੋਝ ਨਹੀਂ।';
 
   @override
   String get learningJourneyStageReadingBasicsOpenReflection =>
-      'Which sound pattern still feels least stable for you right now?';
+      'ਇਸ ਵੇਲੇ ਤੁਹਾਨੂੰ ਕਿਹੜਾ ਆਵਾਜ਼ੀ ਢੰਗ ਸਭ ਤੋਂ ਘੱਟ ਮਜ਼ਬੂਤ ਲੱਗਦਾ ਹੈ?';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeLessonTitle =>
-      'Joining Letters into Reading';
+      'ਅੱਖਰਾਂ ਨੂੰ ਜੋੜ ਕੇ ਪੜ੍ਹਨਾ';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeIntro =>
-      'After letter recognition, the next step is learning to stay calm when letters change shape and join together inside words.';
+      'ਅੱਖਰਾਂ ਦੀ ਪਛਾਣ ਤੋਂ ਬਾਅਦ ਅਗਲਾ ਕਦਮ ਇਹ ਸਿੱਖਣਾ ਹੈ ਕਿ ਜਦੋਂ ਅੱਖਰ ਰੂਪ ਬਦਲਦੇ ਹਨ ਅਤੇ ਸ਼ਬਦਾਂ ਦੇ ਅੰਦਰ ਆਪਸ ਵਿੱਚ ਜੁੜਦੇ ਹਨ ਤਾਂ ਵੀ ਦਿਲ ਸ਼ਾਂਤ ਰਹੇ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection1Title =>
-      'Why joined letters feel harder';
+      'ਜੁੜੇ ਅੱਖਰ ਔਖੇ ਕਿਉਂ ਲੱਗਦੇ ਹਨ';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection1Body =>
-      'Arabic letters can look different at the beginning, middle, or end of a word. That is normal. The goal is not instant mastery. The goal is learning to recognize the same letter in more than one form.';
+      'ਅਰਬੀ ਅੱਖਰ ਸ਼ਬਦ ਦੇ ਸ਼ੁਰੂ, ਵਿਚਕਾਰ ਜਾਂ ਅੰਤ ਵਿੱਚ ਵੱਖਰੇ ਦਿੱਖ ਸਕਦੇ ਹਨ। ਇਹ ਸਧਾਰਣ ਗੱਲ ਹੈ। ਮਕਸਦ ਫੌਰੀ ਮਾਹਰ ਹੋਣਾ ਨਹੀਂ। ਮਕਸਦ ਇੱਕੋ ਅੱਖਰ ਨੂੰ ਇੱਕ ਤੋਂ ਵੱਧ ਰੂਪ ਵਿੱਚ ਪਛਾਣਣਾ ਸਿੱਖਣਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Title =>
-      'How to practice without overload';
+      'ਬਿਨਾ ਬੋਝ ਪਾਏ ਅਭਿਆਸ ਕਿਵੇਂ ਕਰੀਏ';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Body =>
-      'Work with short groups of letters and simple words. Trace the sound from one letter to the next instead of trying to swallow the whole word at once.';
+      'ਛੋਟੇ ਅੱਖਰੀ ਸਮੂਹਾਂ ਅਤੇ ਸੌਖੇ ਸ਼ਬਦਾਂ ਨਾਲ ਕੰਮ ਕਰੋ। ਪੂਰਾ ਸ਼ਬਦ ਇੱਕੋ ਵਾਰ ਨਿਗਲਣ ਦੀ ਥਾਂ ਇੱਕ ਅੱਖਰ ਤੋਂ ਦੂਜੇ ਤੱਕ ਆਵਾਜ਼ ਦਾ ਪਤਾ ਲਗਾਓ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Bullet1 =>
-      'Pause when a familiar letter looks unfamiliar.';
+      'ਜਦੋਂ ਜਾਣਿਆ-ਪਛਾਣਿਆ ਅੱਖਰ ਅਜਿਹਾ ਲੱਗੇ ਕਿ ਅਣਜਾਣਾ ਹੋ ਗਿਆ ਹੈ, ਠਹਿਰੋ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Bullet2 =>
-      'Break the word into smaller sound groups.';
+      'ਸ਼ਬਦ ਨੂੰ ਛੋਟੇ ਆਵਾਜ਼ੀ ਹਿੱਸਿਆਂ ਵਿੱਚ ਤੋੜੋ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Bullet3 =>
-      'Repeat one short line several times before moving on.';
+      'ਅੱਗੇ ਵੱਧਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਛੋਟੀ ਲਾਈਨ ਕਈ ਵਾਰ ਦੁਹਰਾਓ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeTakeaway1 =>
-      'Joined letters become easier through pattern recognition, not force.';
+      'ਜੁੜੇ ਅੱਖਰ ਜ਼ੋਰ ਨਾਲ ਨਹੀਂ, ਬਲਕਿ ਨਮੂਨਿਆਂ ਦੀ ਪਛਾਣ ਨਾਲ ਆਸਾਨ ਹੁੰਦੇ ਹਨ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeTakeaway2 =>
-      'Short words are enough for real progress.';
+      'ਅਸਲ ਤਰੱਕੀ ਲਈ ਛੋਟੇ ਸ਼ਬਦ ਹੀ ਕਾਫ਼ੀ ਹਨ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeTakeaway3 =>
-      'Calm repetition helps more than pushing for speed.';
+      'ਸ਼ਾਂਤ ਦੁਹਰਾਈ ਰਫ਼ਤਾਰ ਲਈ ਜ਼ੋਰ ਪਾਉਣ ਨਾਲੋਂ ਵਧੇਰੇ ਮਦਦ ਕਰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeReflection =>
-      'Do you need more patience with letter shapes or with sounding out words?';
+      'ਕੀ ਤੁਹਾਨੂੰ ਅੱਖਰਾਂ ਦੇ ਰੂਪਾਂ ਨਾਲ ਹੋਰ ਸਬਰ ਦੀ ਲੋੜ ਹੈ ਜਾਂ ਸ਼ਬਦਾਂ ਦੀ ਆਵਾਜ਼ ਕੱਢਣ ਨਾਲ?';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointLessonTitle =>
-      'Reading Checkpoint';
+      'ਪੜ੍ਹਾਈ ਦੀ ਜਾਂਚ-ਪੜਤਾਲ';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointIntro =>
-      'A checkpoint is not a final exam. It is a quiet pause to notice what is becoming easier and what still needs one more calm pass.';
+      'ਜਾਂਚ-ਪੜਤਾਲ ਕੋਈ ਅੰਤਿਮ ਇਮਤਿਹਾਨ ਨਹੀਂ ਹੁੰਦੀ। ਇਹ ਇਕ ਖਾਮੋਸ਼ ਠਹਿਰਾਓ ਹੁੰਦੀ ਹੈ, ਤਾਂ ਜੋ ਵੇਖਿਆ ਜਾ ਸਕੇ ਕਿ ਕੀ ਆਸਾਨ ਹੋ ਰਿਹਾ ਹੈ ਅਤੇ ਕਿਸਨੂੰ ਹੋਰ ਇੱਕ ਸ਼ਾਂਤ ਕੋਸ਼ਿਸ਼ ਦੀ ਲੋੜ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Title =>
-      'Simple self-checks';
+      'ਸੌਖੀਆਂ ਆਪਣੀ-ਜਾਂਚਾਂ';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Body =>
-      'Use a few short checks before moving forward. You do not need perfection. You need enough clarity to keep building without confusion.';
+      'ਅੱਗੇ ਵਧਣ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਛੋਟੀਆਂ ਜਾਂਚਾਂ ਵਰਤੋ। ਤੁਹਾਨੂੰ ਪੂਰਨਤਾ ਨਹੀਂ ਚਾਹੀਦੀ। ਤੁਹਾਨੂੰ ਇੰਨੀ ਸਪਸ਼ਟਤਾ ਚਾਹੀਦੀ ਹੈ ਕਿ ਤੁਸੀਂ ਉਲਝਣ ਤੋਂ ਬਿਨਾ ਅੱਗੇ ਤਿਆਰ ਕਰ ਸਕੋ।';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Bullet1 =>
-      'Can you identify the basic harakat without panic?';
+      'ਕੀ ਤੁਸੀਂ ਬੁਨਿਆਦੀ ਹਰਕਾਤ ਘਬਰਾਏ ਬਿਨਾ ਪਛਾਣ ਸਕਦੇ ਹੋ?';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Bullet2 =>
-      'Can you follow a short joined word more slowly and correctly?';
+      'ਕੀ ਤੁਸੀਂ ਇੱਕ ਛੋਟਾ ਜੁੜਿਆ ਸ਼ਬਦ ਹੋਰ ਹੌਲੀ ਅਤੇ ਠੀਕ ਤਰੀਕੇ ਨਾਲ ਪੜ੍ਹ ਸਕਦੇ ਹੋ?';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Bullet3 =>
-      'Do you know which sound or shape still needs extra review?';
+      'ਕੀ ਤੁਹਾਨੂੰ ਪਤਾ ਹੈ ਕਿ ਕਿਹੜੀ ਆਵਾਜ਼ ਜਾਂ ਰੂਪ ਨੂੰ ਹੋਰ ਸਮੀਖਿਆ ਦੀ ਲੋੜ ਹੈ?';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection2Title =>
-      'What to do next';
+      'ਅਗਲਾ ਕੀ ਕਰਨਾ ਹੈ';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection2Body =>
-      'If one area still feels weak, return to that area on purpose. Steady loops build reading confidence better than pretending you are ready for everything.';
+      'ਜੇ ਇੱਕ ਖੇਤਰ ਅਜੇ ਵੀ ਕਮਜ਼ੋਰ ਲੱਗਦਾ ਹੈ ਤਾਂ ਸੋਚ-ਸਮਝ ਕੇ ਉਸੇ ਵੱਲ ਵਾਪਸ ਜਾਓ। ਠੋਸ ਮੁੜ-ਚੱਕਰ ਪੜ੍ਹਾਈ ਦਾ ਭਰੋਸਾ ਉਸ ਨਾਲੋਂ ਵਧੀਆ ਬਣਾਉਂਦੇ ਹਨ ਜਦੋਂ ਤੁਸੀਂ ਆਪਣੇ ਆਪ ਨੂੰ ਤਿਆਰ ਦਿਖਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹੋ।';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointTakeaway1 =>
-      'Checkpoints are for clarity, not discouragement.';
+      'ਜਾਂਚ-ਪੜਤਾਲ ਹੌਸਲਾ ਤੋੜਨ ਲਈ ਨਹੀਂ, ਸਪਸ਼ਟਤਾ ਲਈ ਹੁੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointTakeaway2 =>
-      'Knowing your weak spot is part of progress.';
+      'ਆਪਣੀ ਕਮਜ਼ੋਰ ਥਾਂ ਜਾਣਨਾ ਵੀ ਤਰੱਕੀ ਦਾ ਹਿੱਸਾ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointTakeaway3 =>
-      'A calm return to basics is often the fastest way forward.';
+      'ਬੁਨਿਆਦਾਂ ਵੱਲ ਸ਼ਾਂਤ ਵਾਪਸੀ ਅਕਸਰ ਸਭ ਤੋਂ ਤੇਜ਼ ਅੱਗੇ ਵਧਣ ਦਾ ਤਰੀਕਾ ਹੁੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointReflection =>
-      'Which small reading skill needs another week of focused attention before you move on?';
+      'ਕਿਹੜੀ ਛੋਟੀ ਪੜ੍ਹਾਈ ਕਾਬਲੀਅਤ ਨੂੰ ਅੱਗੇ ਵਧਣ ਤੋਂ ਪਹਿਲਾਂ ਹੋਰ ਇੱਕ ਹਫ਼ਤਾ ਕੇਂਦਰਤ ਧਿਆਨ ਦੀ ਲੋੜ ਹੈ?';
 
   @override
-  String get learningJourneyHomeTitle => 'Learning';
+  String get learningJourneyHomeTitle => 'ਸਿੱਖਿਆ';
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'A calmer learning home built around journeys, today’s guidance, and five clear islands.';
+      'ਯਾਤਰਾਵਾਂ, ਅੱਜ ਦੀ ਰਹਿਨੁਮਾਈ ਅਤੇ ਪੰਜ ਸਾਫ਼ ਟਾਪੂਆਂ ਦੇ ਆਲੇ-ਦੁਆਲੇ ਬਣਿਆ ਇੱਕ ਹੋਰ ਸ਼ਾਂਤ ਸਿੱਖਣ ਘਰ।';
 
   @override
-  String get learningJourneyHomeContinueBadge => 'Continue';
+  String get learningJourneyHomeContinueBadge => 'ਜਾਰੀ';
 
   @override
-  String get learningJourneyHomeContinueAction => 'Continue';
+  String get learningJourneyHomeContinueAction => 'ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get learningJourneyHomeCompletedBadge => 'Completed';
+  String get learningJourneyHomeCompletedBadge => 'ਪੂਰਾ';
 
   @override
-  String get learningJourneyHomeCompletedSuffix => 'completed';
+  String get learningJourneyHomeCompletedSuffix => 'ਪੂਰਾ';
 
   @override
   String get learningJourneyHomeCompletedMessage =>
-      'Great work—marking your journey complete and ready for what comes next.';
+      'ਬਹੁਤ ਵਧੀਆ ਕੰਮ — ਤੁਹਾਡੀ ਯਾਤਰਾ ਪੂਰੀ ਨਿਸ਼ਾਨਬੱਧ ਹੋ ਗਈ ਹੈ ਅਤੇ ਅਗਲੇ ਕਦਮ ਲਈ ਤਿਆਰ ਹੈ।';
 
   @override
-  String get learningJourneyHomeExploreNextAction => 'Open next';
+  String get learningJourneyHomeExploreNextAction => 'ਅਗਲਾ ਖੋਲ੍ਹੋ';
 
   @override
   String learningJourneyHomeSuggestedNextIntro(String journeyTitle) {
-    return 'Next suggestion: $journeyTitle';
+    return 'ਅਗਲਾ ਸੁਝਾਅ: $journeyTitle';
   }
 
   @override
   String get learningJourneyHomeStartFirstJourneyTitle =>
-      'Start Your First Journey';
+      'ਆਪਣੀ ਪਹਿਲੀ ਯਾਤਰਾ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get learningJourneyHomeStartFirstJourneySubtitle =>
-      'Begin with a simple guided path instead of browsing everything at once.';
+      'ਇੱਕੋ ਵਾਰ ਸਭ ਕੁਝ ਵੇਖਣ ਦੀ ਥਾਂ ਸਧਾਰਣ ਰਹਿਨੁਮਾਈ ਵਾਲੇ ਰਾਹ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
-  String get learningJourneyHomeExploreJourneys => 'Explore Journeys';
+  String get learningJourneyHomeExploreJourneys => 'ਯਾਤਰਾਵਾਂ ਵੇਖੋ';
 
   @override
-  String get learningJourneyHomeRecommendedTitle => 'Recommended Journeys';
+  String get learningJourneyHomeRecommendedTitle => 'ਸਿਫ਼ਾਰਸ਼ ਕੀਤੀਆਂ ਯਾਤਰਾਵਾਂ';
 
   @override
   String get learningJourneyHomeRecommendedReasonDefault =>
-      'A small set of paths that fit what you have already opened or completed.';
+      'ਕੁਝ ਚੁਣੇ ਹੋਏ ਰਾਹ ਜੋ ਤੁਹਾਡੇ ਪਹਿਲਾਂ ਖੋਲ੍ਹੇ ਜਾਂ ਪੂਰੇ ਕੀਤੇ ਹਿੱਸਿਆਂ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਹਨ।';
 
   @override
   String get learningJourneyHomeRecommendedReasonWorship =>
-      'Try an ibadah-focused path to build consistency from what you already started.';
+      'ਇਬਾਦਤ-ਕੇਂਦਰਿਤ ਰਾਹ ਅਜ਼ਮਾਓ ਤਾਂ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਸ਼ੁਰੂ ਕੀਤੀ ਲੜੀ ਨੂੰ ਪੱਕਾ ਕਰ ਸਕੋ।';
 
   @override
   String get learningJourneyHomeRecommendedReasonArabic =>
-      'Try an Arabic path next to strengthen understanding as you continue.';
+      'ਅੱਗੇ ਵਧਦੇ ਹੋਏ ਸਮਝ ਮਜ਼ਬੂਤ ਕਰਨ ਲਈ ਅਗਲਾ ਇੱਕ ਅਰਬੀ ਰਾਹ ਅਜ਼ਮਾਓ।';
 
   @override
   String get learningJourneyHomeRecommendedReasonNearCompletion =>
-      'You’re close to a completion point—continue with the next journey.';
+      'ਤੁਸੀਂ ਪੂਰਾ ਕਰਨ ਦੇ ਬਿੰਦੂ ਦੇ ਨੇੜੇ ਹੋ — ਅਗਲੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ।';
 
   @override
   String get learningJourneyHomeRecommendedReasonCompleted =>
-      'You have completed this phase, so here is a thoughtful next step.';
+      'ਤੁਸੀਂ ਇਹ ਮਰਹਲਾ ਪੂਰਾ ਕਰ ਲਿਆ ਹੈ, ਇਸ ਲਈ ਇੱਥੇ ਸੋਚ-ਸਮਝ ਕੇ ਦਿੱਤਾ ਅਗਲਾ ਕਦਮ ਹੈ।';
 
   @override
   String get learningJourneyHomeRecommendedReasonFallback =>
-      'Try one of these paths to keep your learning rhythm steady.';
+      'ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਲਹਿਰ ਨੂੰ ਸਥਿਰ ਰੱਖਣ ਲਈ ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ ਕੋਈ ਇੱਕ ਰਾਹ ਅਜ਼ਮਾਓ।';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '5 Islands';
+  String get learningJourneyHomeIslandsTitle => '5 ਟਾਪੂ';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
-      'Start from the island that fits what you want to learn now. Each island leads into real journeys and staged content.';
+      'ਉਸ ਟਾਪੂ ਤੋਂ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਇਸ ਵੇਲੇ ਤੁਹਾਡੇ ਸਿੱਖਣ ਦੇ ਮਨਸੂਬੇ ਨਾਲ ਮਿਲਦਾ ਹੈ। ਹਰ ਟਾਪੂ ਅਸਲ ਯਾਤਰਾਵਾਂ ਅਤੇ ਮਰਹਲਾਵਾਰ ਸਮੱਗਰੀ ਵੱਲ ਲੈ ਜਾਂਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyHomeBrowseAllTitle => 'Browse All Knowledge';
+  String get learningJourneyHomeBrowseAllTitle => 'ਸਾਰਾ ਗਿਆਨ ਵੇਖੋ';
 
   @override
   String get learningJourneyHomeBrowseAllSubtitle =>
-      'Open the wider map of islands, tools, collections, and secondary exploration.';
+      'ਟਾਪੂਆਂ, ਸੰਦਾਂ, ਕਲੇਕਸ਼ਨਾਂ ਅਤੇ ਦੂਜੇ ਖੋਜੀ ਹਿੱਸਿਆਂ ਦਾ ਵੱਡਾ ਨਕਸ਼ਾ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get learningJourneyHomeLegacyTitle => 'Legacy Learning Material';
+  String get learningJourneyHomeLegacyTitle => 'ਪੁਰਾਣੀ ਸਿੱਖਣ ਸਮੱਗਰੀ';
 
   @override
   String get learningJourneyHomeLegacySubtitle =>
-      'Explore the original learning library while the journey architecture continues to grow.';
+      'ਜਦੋਂ ਯਾਤਰਾ ਢਾਂਚਾ ਅੱਗੇ ਵਧ ਰਿਹਾ ਹੈ, ਉਦੋਂ ਅਸਲ ਸਿੱਖਣ ਲਾਇਬ੍ਰੇਰੀ ਵੀ ਵੇਖੋ।';
 
   @override
   String get learningJourneyTodayLightOpenAction => 'Open';
@@ -9555,49 +9784,49 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get learningJourneyTodayLightProphetSubtitleFallback =>
-      'Open the Prophet daily reflection for today.';
+      'ਅੱਜ ਲਈ ਨਬੀ ਨਾਲ ਸਬੰਧਿਤ ਰੋਜ਼ਾਨਾ ਤਦੱਬੁਰ ਖੋਲ੍ਹੋ।';
 
   @override
   String get learningJourneyTodayLightHadithTitleFallback =>
-      'Today’s Hadith Reflection';
+      'ਅੱਜ ਦਾ ਹਦੀਸ ਤਦੱਬੁਰ';
 
   @override
   String get learningJourneyTodayLightHadithSubtitleFallback =>
-      'Open the current daily hadith reflection.';
+      'ਮੌਜੂਦਾ ਰੋਜ਼ਾਨਾ ਹਦੀਸ ਤਦੱਬੁਰ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get learningJourneyTodayLightVerseTitleFallback => 'Daily Verse';
+  String get learningJourneyTodayLightVerseTitleFallback => 'ਰੋਜ਼ਾਨਾ ਆਇਤ';
 
   @override
   String get learningJourneyTodayLightVerseSubtitleFallback =>
-      'Read today\'s selected verse with meaning and reflection.';
+      'ਅੱਜ ਦੀ ਚੁਣੀ ਹੋਈ ਆਇਤ ਅਰਥ ਅਤੇ ਤਦੱਬੁਰ ਨਾਲ ਪੜ੍ਹੋ।';
 
   @override
   String get learningJourneyTodayLightReflectionTitleFallback =>
-      'Creation Reflection';
+      'ਮਖਲੂਕਾਤ ਉੱਤੇ ਤਦੱਬੁਰ';
 
   @override
   String get learningJourneyTodayLightReflectionSubtitleFallback =>
-      'Reflect on the short prompt and carry it into your day.';
+      'ਛੋਟੇ ਵਿਚਾਰ-ਬਿੰਦੂ ਉੱਤੇ ਤਦੱਬੁਰ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਆਪਣੇ ਦਿਨ ਨਾਲ ਜੋੜੋ।';
 
   @override
   String get learningJourneyTodayLightTriviaTitleFallback =>
-      'Today’s Trivia Round';
+      'ਅੱਜ ਦਾ ਟ੍ਰਿਵੀਆ ਦੌਰ';
 
   @override
   String get learningJourneyTodayLightTriviaSubtitleFallback =>
-      'Open a short trivia session and keep learning in motion.';
+      'ਇੱਕ ਛੋਟਾ ਟ੍ਰਿਵੀਆ ਸੈਸ਼ਨ ਖੋਲ੍ਹੋ ਅਤੇ ਸਿੱਖਣ ਨੂੰ ਜਾਰੀ ਰੱਖੋ।';
 
   @override
-  String get learningJourneyTodayLightDhikrTitleFallback => 'Dhikr Focus';
+  String get learningJourneyTodayLightDhikrTitleFallback => 'ਜ਼ਿਕਰ ਧਿਆਨ';
 
   @override
   String get learningJourneyTodayLightDhikrSubtitleFallback =>
-      'Open the Daily Dhikr journey and continue with a short remembrance rhythm.';
+      'ਰੋਜ਼ਾਨਾ ਜ਼ਿਕਰ ਯਾਤਰਾ ਖੋਲ੍ਹੋ ਅਤੇ ਛੋਟੀ ਯਾਦ-ਇ-ਇਲਾਹੀ ਲਹਿਰ ਨਾਲ ਜਾਰੀ ਰੱਖੋ।';
 
   @override
   String learningJourneyTodayLightStreakFallback(int days) {
-    return 'You are on a $days day learning streak.';
+    return 'ਤੁਹਾਡੀ $days ਦਿਨਾਂ ਦੀ ਸਿੱਖਣ ਲੜੀ ਚੱਲ ਰਹੀ ਹੈ।';
   }
 
   @override
@@ -9680,61 +9909,61 @@ class AppLocalizationsPa extends AppLocalizations {
       'Explore lighter entry points that still lead into real understanding and reflection.';
 
   @override
-  String get learningJourneyIslandKidsLearningTitle => 'Kids Learning';
+  String get learningJourneyIslandKidsLearningTitle => 'ਬੱਚਿਆਂ ਦੀ ਸਿੱਖਿਆ';
 
   @override
   String get learningJourneyIslandKidsLearningSubtitle =>
-      'Stories, habits, memorization, and guided learning for children.';
+      'ਬੱਚਿਆਂ ਲਈ ਕਹਾਣੀਆਂ, ਆਦਤਾਂ, ਹਿਫ਼ਜ਼ ਅਤੇ ਰਹਿਨੁਮਾਈ ਵਾਲੀ ਸਿੱਖਿਆ।';
 
   @override
   String get learningJourneyIslandKidsLearningDescription =>
-      'Keep children’s learning in one dedicated island so future kids journeys, tools, and activities have a clear home.';
+      'ਬੱਚਿਆਂ ਦੀ ਸਿੱਖਿਆ ਨੂੰ ਇੱਕ ਖ਼ਾਸ ਟਾਪੂ ਵਿੱਚ ਰੱਖੋ ਤਾਂ ਜੋ ਭਵਿੱਖ ਦੀਆਂ ਬੱਚਿਆਂ ਵਾਲੀਆਂ ਯਾਤਰਾਵਾਂ, ਸੰਦਾਂ ਅਤੇ ਸਰਗਰਮੀਆਂ ਲਈ ਸਪਸ਼ਟ ਥਾਂ ਹੋਵੇ।';
 
   @override
-  String get learningJourneyIslandBrowseAllTitle => 'Browse All';
+  String get learningJourneyIslandBrowseAllTitle => 'ਸਭ ਕੁਝ ਵੇਖੋ';
 
   @override
   String get learningJourneyIslandBrowseAllSubtitle =>
-      'See the wider map of journeys, tools, collections, and exploration.';
+      'ਯਾਤਰਾਵਾਂ, ਸੰਦਾਂ, ਕਲੇਕਸ਼ਨਾਂ ਅਤੇ ਖੋਜ ਦਾ ਵੱਡਾ ਨਕਸ਼ਾ ਵੇਖੋ।';
 
   @override
   String get learningJourneyIslandBrowseAllDescription =>
-      'Use one island as the front door to the full learning map when you want everything available in one place.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਸਭ ਕੁਝ ਇੱਕ ਥਾਂ ਉੱਤੇ ਵੇਖਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਇੱਕ ਟਾਪੂ ਨੂੰ ਪੂਰੇ ਸਿੱਖਣ ਨਕਸ਼ੇ ਦੇ ਦਰਵਾਜ਼ੇ ਵਾਂਗ ਵਰਤੋ।';
 
   @override
-  String get learningJourneyIslandToolsOtherTitle => 'Tools & Other';
+  String get learningJourneyIslandToolsOtherTitle => 'ਸੰਦ ਅਤੇ ਹੋਰ';
 
   @override
   String get learningJourneyIslandToolsOtherSubtitle =>
-      'Utilities, family tools, and supporting learning spaces.';
+      'ਯੂਟਿਲਿਟੀਆਂ, ਪਰਿਵਾਰਕ ਸੰਦ ਅਤੇ ਸਹਾਇਕ ਸਿੱਖਣ ਜਗ੍ਹਾਂ।';
 
   @override
   String get learningJourneyIslandToolsOtherDescription =>
-      'Keep non-journey utilities and supporting spaces in one dedicated island instead of scattering them across the legacy learning hub.';
+      'ਯਾਤਰਾ ਤੋਂ ਬਾਹਰ ਵਾਲੀਆਂ ਯੂਟਿਲਿਟੀਆਂ ਅਤੇ ਸਹਾਇਕ ਜਗ੍ਹਾਂ ਨੂੰ ਇੱਕ ਹੀ ਟਾਪੂ ਵਿੱਚ ਰੱਖੋ, ਤਾਂ ਜੋ ਉਹ legacy learning hub ਵਿੱਚ ਇਧਰ-ਉਧਰ ਨਾ ਫੈਲਣ।';
 
   @override
-  String get learningJourneyIslandLegacyLearningTitle => 'Legacy Learning';
+  String get learningJourneyIslandLegacyLearningTitle => 'ਪੁਰਾਣੀ ਸਿੱਖਿਆ';
 
   @override
   String get learningJourneyIslandLegacyLearningSubtitle =>
-      'Older learning surfaces and migrated sections that still remain in use.';
+      'ਪੁਰਾਣੀਆਂ ਸਿੱਖਣ ਸਤ੍ਹਾਂ ਅਤੇ ਮਾਈਗ੍ਰੇਟ ਕੀਤੇ ਹਿੱਸੇ ਜੋ ਅਜੇ ਵੀ ਵਰਤੋਂ ਵਿੱਚ ਹਨ।';
 
   @override
   String get learningJourneyIslandLegacyLearningDescription =>
-      'Keep the legacy learning library in one explicit island while the newer journey structure continues to absorb and replace it over time.';
+      'Legacy learning ਲਾਇਬ੍ਰੇਰੀ ਨੂੰ ਇੱਕ ਸਪਸ਼ਟ ਟਾਪੂ ਵਿੱਚ ਰੱਖੋ ਜਦੋਂ ਕਿ ਨਵਾਂ ਯਾਤਰਾ ਢਾਂਚਾ ਹੌਲੀ-ਹੌਲੀ ਇਸਨੂੰ ਆਪਣੇ ਵਿੱਚ ਸਮੇਟਦਾ ਅਤੇ ਬਦਲਦਾ ਜਾ ਰਿਹਾ ਹੈ।';
 
   @override
   String get learningJourneyFeedbackFirstStageOpened =>
-      'Learning started. Stay present and take just one meaningful step.';
+      'ਸਿੱਖਣ ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਹੈ। ਹਾਜ਼ਰ ਰਹੋ ਅਤੇ ਸਿਰਫ਼ ਇੱਕ ਮਾਇਨੇਦਾਰ ਕਦਮ ਚੁੱਕੋ।';
 
   @override
   String learningJourneyFeedbackStageCompleted(int streak) {
-    return 'Stage complete. You’re on a $streak day streak.';
+    return 'ਮਰਹਲਾ ਪੂਰਾ ਹੋ ਗਿਆ। ਤੁਹਾਡੀ $streak ਦਿਨਾਂ ਦੀ ਲੜੀ ਚੱਲ ਰਹੀ ਹੈ।';
   }
 
   @override
   String learningJourneyHomeStreakMessage(int days) {
-    return 'You’re on a $days day learning streak.';
+    return 'ਤੁਹਾਡੀ $days ਦਿਨਾਂ ਦੀ ਸਿੱਖਣ ਲੜੀ ਚੱਲ ਰਹੀ ਹੈ।';
   }
 
   @override
@@ -9742,83 +9971,82 @@ class AppLocalizationsPa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count stages',
-      one: '$count stage',
+      other: '$count ਮਰਹਲੇ',
+      one: '$count ਮਰਹਲਾ',
     );
     return '$_temp0';
   }
 
   @override
   String learningJourneyCardProgressLabel(int complete, int total) {
-    return '$complete of $total complete';
+    return '$total ਵਿੱਚੋਂ $complete ਪੂਰੇ';
   }
 
   @override
-  String get learningJourneyCardActionStart => 'Start';
+  String get learningJourneyCardActionStart => 'ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get learningJourneyCardActionContinue => 'Continue';
+  String get learningJourneyCardActionContinue => 'ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get learningJourneyStageCurrentBadge => 'Current';
+  String get learningJourneyStageCurrentBadge => 'ਮੌਜੂਦਾ';
 
   @override
-  String get learningJourneyStagePreviewBadge => 'Preview';
+  String get learningJourneyStagePreviewBadge => 'ਝਲਕ';
 
   @override
-  String get learningJourneyStageStatusReady => 'Ready';
+  String get learningJourneyStageStatusReady => 'ਤਿਆਰ';
 
   @override
-  String get learningJourneyStageStatusPartial => 'Partial';
+  String get learningJourneyStageStatusPartial => 'ਅੰਸ਼ਿਕ';
 
   @override
-  String get learningJourneyStageStatusPlanned => 'Planned';
+  String get learningJourneyStageStatusPlanned => 'ਯੋਜਿਤ';
 
   @override
   String get learningJourneyPlaceholderBuiltTitle =>
-      'This lesson is being built';
+      'ਇਹ ਸਬਕ ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ';
 
   @override
-  String get learningJourneyPlaceholderExploreTitle => 'Explore now';
+  String get learningJourneyPlaceholderExploreTitle => 'ਹੁਣੇ ਵੇਖੋ';
 
   @override
   String get learningJourneyPlaceholderExploreSubtitle =>
-      'Use the available real content below while this stage is still being finished.';
+      'ਜਦ ਤੱਕ ਇਹ ਮਰਹਲਾ ਪੂਰਾ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ, ਹੇਠਾਂ ਮੌਜੂਦ ਅਸਲ ਸਮੱਗਰੀ ਵਰਤੋ।';
 
   @override
-  String get learningJourneyPlaceholderBackAction => 'Back to Journey';
+  String get learningJourneyPlaceholderBackAction => 'ਯਾਤਰਾ ਵੱਲ ਵਾਪਸ';
 
   @override
-  String get learningJourneyIslandNotFoundTitle => 'Island not found';
+  String get learningJourneyIslandNotFoundTitle => 'ਟਾਪੂ ਨਹੀਂ ਮਿਲਿਆ';
 
   @override
   String get learningJourneyIslandNotFoundSubtitle =>
-      'This learning island could not be located.';
+      'ਇਹ ਸਿੱਖਣ ਟਾਪੂ ਨਹੀਂ ਲੱਭਿਆ ਜਾ ਸਕਿਆ।';
 
   @override
   String get learningJourneyIslandNotFoundBody =>
-      'Return to the Learning Journey home and choose another path.';
+      'Learning Journey ਦੇ ਮੁੱਖ ਘਰ ਵੱਲ ਵਾਪਸ ਜਾਓ ਅਤੇ ਹੋਰ ਰਾਹ ਚੁਣੋ।';
 
   @override
-  String get learningJourneyIslandActionStart => 'Start';
+  String get learningJourneyIslandActionStart => 'ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get learningJourneyIslandActionContinue => 'Continue';
 
   @override
-  String get learningJourneyIslandJourneysTitle => 'Journeys';
+  String get learningJourneyIslandJourneysTitle => 'ਯਾਤਰਾਵਾਂ';
 
   @override
   String get learningJourneyIslandJourneysSubtitle =>
-      'Structured paths come first here. Related tools stay available below when you need them.';
+      'ਇੱਥੇ ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਢਾਂਚਾਬੱਧ ਰਾਹ ਆਉਂਦੇ ਹਨ। ਜਦੋਂ ਲੋੜ ਪਵੇ, ਸਬੰਧਤ ਸੰਦ ਹੇਠਾਂ ਉਪਲਬਧ ਰਹਿੰਦੇ ਹਨ।';
 
   @override
-  String get learningJourneyIslandRelatedToolsTitle =>
-      'Related Tools & Exploration';
+  String get learningJourneyIslandRelatedToolsTitle => 'ਸਬੰਧਤ ਸੰਦ ਅਤੇ ਖੋਜ';
 
   @override
   String get learningJourneyIslandRelatedToolsSubtitle =>
-      'Use these as supporting paths when you want to explore outside the main staged journeys.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਮੁੱਖ ਮਰਹਲਾਵਾਰ ਯਾਤਰਾਵਾਂ ਤੋਂ ਬਾਹਰ ਵੇਖਣਾ ਚਾਹੋ, ਇਨ੍ਹਾਂ ਨੂੰ ਸਹਾਇਕ ਰਾਹਾਂ ਵਾਂਗ ਵਰਤੋ।';
 
   @override
   String get learningJourneyIslandWhyCoreKnowledge =>
@@ -10748,1219 +10976,1215 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get learningJourneyDetailRelatedToolsTitle => 'Related Tools';
+  String get learningJourneyDetailRelatedToolsTitle => 'ਸਬੰਧਤ ਸੰਦ';
 
   @override
   String get learningJourneyDetailRelatedToolsSubtitle =>
-      'These stay secondary to the stages, but they are useful when you want to branch out.';
+      'ਇਹ ਮਰਹਲਿਆਂ ਤੋਂ ਬਾਅਦ ਆਉਂਦੇ ਹਨ, ਪਰ ਜਦੋਂ ਤੁਸੀਂ ਹੋਰ ਸ਼ਾਖਾਵਾਂ ਵੱਲ ਜਾਣਾ ਚਾਹੋ ਤਾਂ ਲਾਭਦਾਇਕ ਹਨ।';
 
   @override
-  String get learningJourneyDetailCurrentMappingTitle => 'Current mapping';
+  String get learningJourneyDetailCurrentMappingTitle => 'ਮੌਜੂਦਾ ਨਕਸ਼ਾਬੰਦੀ';
 
   @override
-  String get learningJourneyDetailStagesTitle => 'Stages';
+  String get learningJourneyDetailStagesTitle => 'ਮਰਹਲੇ';
 
   @override
   String get learningJourneyDetailStagesSubtitle =>
-      'Move one stage at a time. Current and completed stages are highlighted gently.';
+      'ਇੱਕ ਸਮੇਂ ਇੱਕ ਮਰਹਲਾ ਚੱਲੋ। ਮੌਜੂਦਾ ਅਤੇ ਪੂਰੇ ਕੀਤੇ ਮਰਹਲੇ ਨਰਮੀ ਨਾਲ ਉਭਾਰੇ ਜਾਂਦੇ ਹਨ।';
 
   @override
-  String get learningJourneyDetailActionStart => 'Start Journey';
+  String get learningJourneyDetailActionStart => 'ਯਾਤਰਾ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get learningJourneyDetailActionContinue => 'Continue';
+  String get learningJourneyDetailActionContinue => 'ਆਪਣੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get learningJourneyDetailActionNextLesson => 'Next Lesson';
+  String get learningJourneyDetailActionNextLesson => 'ਅਗਲਾ ਸਬਕ';
 
   @override
-  String get learningJourneyDetailMissingTitle => 'Journey not found';
+  String get learningJourneyDetailMissingTitle => 'ਯਾਤਰਾ ਨਹੀਂ ਮਿਲੀ';
 
   @override
   String get learningJourneyDetailMissingSubtitle =>
-      'This learning journey could not be located.';
+      'ਇਹ ਸਿੱਖਣ ਯਾਤਰਾ ਨਹੀਂ ਲੱਭੀ ਜਾ ਸਕੀ।';
 
   @override
   String get learningJourneyDetailMissingBody =>
-      'Return to the island page and choose another journey.';
+      'ਟਾਪੂ ਵਾਲੇ ਸਫ਼ੇ ਵੱਲ ਵਾਪਸ ਜਾਓ ਅਤੇ ਹੋਰ ਯਾਤਰਾ ਚੁਣੋ।';
 
   @override
-  String get learningJourneyPlaceholderLearnLabel => 'What you’ll learn';
+  String get learningJourneyPlaceholderLearnLabel => 'ਤੁਸੀਂ ਕੀ ਸਿੱਖੋਗੇ';
 
   @override
   String get learningJourneyPlaceholderMessage =>
-      'This lesson is being built with the same structure as the rest of the journey so it feels coherent when it opens.';
+      'ਇਹ ਸਬਕ ਯਾਤਰਾ ਦੇ ਬਾਕੀ ਹਿੱਸਿਆਂ ਵਰਗੇ ਹੀ ਢਾਂਚੇ ਨਾਲ ਤਿਆਰ ਹੋ ਰਿਹਾ ਹੈ ਤਾਂ ਜੋ ਖੁੱਲ੍ਹਣ ‘ਤੇ ਇਕਸਾਰ ਮਹਿਸੂਸ ਹੋਵੇ।';
 
   @override
   String get learningJourneyPlaceholderPlannedIncludesTitle =>
-      'What this lesson will include later';
+      'ਇਸ ਸਬਕ ਵਿੱਚ ਬਾਅਦ ਵਿੱਚ ਕੀ ਸ਼ਾਮਲ ਹੋਵੇਗਾ';
 
   @override
-  String get learningJourneyPlaceholderActionCompleted => 'Completed';
+  String get learningJourneyPlaceholderActionCompleted => 'ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get learningJourneyPlaceholderActionMarkComplete => 'Mark as Complete';
+  String get learningJourneyPlaceholderActionMarkComplete =>
+      'ਪੂਰਾ ਨਿਸ਼ਾਨਬੱਧ ਕਰੋ';
 
   @override
-  String get learningJourneyBrowseAllTitle => 'Browse All';
+  String get learningJourneyBrowseAllTitle => 'ਸਭ ਕੁਝ ਵੇਖੋ';
 
   @override
   String get learningJourneyBrowseAllSubtitle =>
-      'Browse the journey architecture first, then reach for related tools, collections, and the original learning library where needed.';
+      'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਯਾਤਰਾ ਢਾਂਚਾ ਵੇਖੋ, ਫਿਰ ਲੋੜ ਪਏ ਤਾਂ ਸਬੰਧਤ ਸੰਦਾਂ, ਕਲੇਕਸ਼ਨਾਂ ਅਤੇ ਅਸਲ ਸਿੱਖਣ ਲਾਇਬ੍ਰੇਰੀ ਵੱਲ ਜਾਓ।';
 
   @override
-  String get learningJourneyBrowseIslandsTitle => 'Journey Islands';
+  String get learningJourneyBrowseIslandsTitle => 'ਯਾਤਰਾ ਟਾਪੂ';
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'The five islands remain the primary browse model. Everything else here is secondary exploration.';
+      'ਪੰਜ ਟਾਪੂ ਅਜੇ ਵੀ ਮੁੱਖ ਵੇਖਣ ਮਾਡਲ ਹਨ। ਇੱਥੇ ਬਾਕੀ ਸਭ ਕੁਝ ਦੂਸਰਾ ਖੋਜੀ ਹਿੱਸਾ ਹੈ।';
 
   @override
-  String get learningJourneyBrowseToolsTitle => 'Tools & Collections';
+  String get learningJourneyBrowseToolsTitle => 'ਸੰਦ ਅਤੇ ਕਲੇਕਸ਼ਨ';
 
   @override
   String get learningJourneyBrowseToolsSubtitle =>
-      'Secondary tools and utility surfaces live here without replacing the journey-first structure.';
+      'ਦੂਸਰੇ ਸੰਦ ਅਤੇ ਯੂਟਿਲਟੀ ਹਿੱਸੇ ਇੱਥੇ ਹਨ, ਬਿਨਾ ਯਾਤਰਾ-ਪਹਿਲਾਂ ਢਾਂਚੇ ਨੂੰ ਬਦਲੇ।';
 
   @override
-  String get learningJourneyBrowseQuranTitle => 'Qur’an';
+  String get learningJourneyBrowseQuranTitle => 'ਕੁਰਆਨ';
 
   @override
   String get learningJourneyBrowseQuranSubtitle =>
-      'Open the primary Qur’an home for journeys, modes, and related tools.';
+      'ਯਾਤਰਾਵਾਂ, ਮੋਡਾਂ ਅਤੇ ਸਬੰਧਤ ਸੰਦਾਂ ਲਈ ਮੁੱਖ ਕੁਰਆਨ ਘਰ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get learningJourneyBrowseQuranStudyTitle => 'Qur’an Study';
+  String get learningJourneyBrowseQuranStudyTitle => 'ਕੁਰਆਨ ਅਧਿਐਨ';
 
   @override
   String get learningJourneyBrowseQuranStudySubtitle =>
-      'Open the study-focused layer for understanding, reflection, and memorization support.';
+      'ਸਮਝ, ਤਦੱਬੁਰ ਅਤੇ ਹਿਫ਼ਜ਼ ਦੀ ਮਦਦ ਲਈ ਅਧਿਐਨ-ਕੇਂਦਰਿਤ ਪਰਤ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get learningJourneyBrowseQuranArabicTitle => 'Qur’anic Arabic';
+  String get learningJourneyBrowseQuranArabicTitle => 'ਕੁਰਆਨੀ ਅਰਬੀ';
 
   @override
   String get learningJourneyBrowseQuranArabicSubtitle =>
-      'Keep the dedicated Arabic path available as a secondary Qur’an tool.';
+      'ਖ਼ਾਸ ਅਰਬੀ ਰਾਹ ਨੂੰ ਇੱਕ ਦੂਸਰੇ ਕੁਰਆਨ ਸੰਦ ਵਜੋਂ ਉਪਲਬਧ ਰੱਖੋ।';
 
   @override
-  String get learningJourneyBrowseQuranUniverseTitle => 'Qur’an Universe';
+  String get learningJourneyBrowseQuranUniverseTitle => 'ਕੁਰਆਨ ਯੂਨੀਵਰਸ';
 
   @override
   String get learningJourneyBrowseQuranUniverseSubtitle =>
-      'Explore connected themes, concepts, and verse-linked relationships.';
+      'ਜੁੜੇ ਹੋਏ ਵਿਸ਼ਿਆਂ, ਧਾਰਣਾਵਾਂ ਅਤੇ ਆਯਤ-ਸਬੰਧਤ ਰਿਸ਼ਤਿਆਂ ਨੂੰ ਵੇਖੋ।';
 
   @override
-  String get learningJourneyBrowseBabyNamesTitle => 'Baby Names';
+  String get learningJourneyBrowseBabyNamesTitle => 'ਬੱਚਿਆਂ ਦੇ ਨਾਮ';
 
   @override
   String get learningJourneyBrowseBabyNamesSubtitle =>
-      'Browse names, meanings, favorites, and comparison tools from the current system.';
+      'ਮੌਜੂਦਾ ਸਿਸਟਮ ਤੋਂ ਨਾਮ, ਅਰਥ, ਮਨਪਸੰਦ ਅਤੇ ਤੁਲਨਾ ਸੰਦ ਵੇਖੋ।';
 
   @override
-  String get learningJourneyBrowseNotesTitle => 'Notes';
+  String get learningJourneyBrowseNotesTitle => 'ਨੋਟਸ';
 
   @override
   String get learningJourneyBrowseNotesSubtitle =>
-      'Open the existing Learn notes landing page.';
+      'ਮੌਜੂਦਾ Learn notes ਲੈਂਡਿੰਗ ਪੇਜ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get learningJourneyBrowseQuranBookmarksTitle => 'Qur’an Bookmarks';
+  String get learningJourneyBrowseQuranBookmarksTitle => 'ਕੁਰਆਨ ਬੁੱਕਮਾਰਕ';
 
   @override
   String get learningJourneyBrowseQuranBookmarksSubtitle =>
-      'Return to saved Qur’an locations and reading marks.';
+      'ਸੰਭਾਲੇ ਹੋਏ ਕੁਰਆਨ ਥਾਵਾਂ ਅਤੇ ਪੜ੍ਹਨ ਨਿਸ਼ਾਨਾਂ ਵੱਲ ਮੁੜ ਜਾਓ।';
 
   @override
-  String get learningJourneyBrowseQuranNotesTitle => 'Qur’an Notes';
+  String get learningJourneyBrowseQuranNotesTitle => 'ਕੁਰਆਨ ਨੋਟਸ';
 
   @override
   String get learningJourneyBrowseQuranNotesSubtitle =>
-      'Review saved verse notes and highlights.';
+      'ਸੰਭਾਲੇ ਹੋਏ ਆਯਤ ਨੋਟਸ ਅਤੇ ਹਾਈਲਾਈਟਸ ਦੀ ਸਮੀਖਿਆ ਕਰੋ।';
 
   @override
   String get learningJourneyBrowseKnowledgeConstellationTitle =>
-      'Knowledge Constellation';
+      'ਗਿਆਨ ਨਕਸ਼ਤਰਮਾਲਾ';
 
   @override
   String get learningJourneyBrowseKnowledgeConstellationSubtitle =>
-      'Explore existing cross-domain relationships and learning links.';
+      'ਮੌਜੂਦਾ ਅੰਤਰ-ਖੇਤਰੀ ਰਿਸ਼ਤਿਆਂ ਅਤੇ ਸਿੱਖਣ ਲਿੰਕਾਂ ਨੂੰ ਵੇਖੋ।';
 
   @override
   String get learningJourneyBrowseLegacySubtitle =>
-      'Explore the original learning library while the new journey architecture continues to mature.';
+      'ਜਦੋਂ ਨਵਾਂ ਯਾਤਰਾ ਢਾਂਚਾ ਹੋਰ ਪੱਕਾ ਹੋ ਰਿਹਾ ਹੈ, ਉਦੋਂ ਅਸਲ ਸਿੱਖਣ ਲਾਇਬ੍ਰੇਰੀ ਵੀ ਵੇਖੋ।';
 
   @override
-  String get learningJourneyStageNotFoundTitle => 'Stage not found';
+  String get learningJourneyStageNotFoundTitle => 'ਮਰਹਲਾ ਨਹੀਂ ਮਿਲਿਆ';
 
   @override
   String get learningJourneyStageNotFoundSubtitle =>
-      'This learning stage could not be located.';
+      'ਇਹ ਸਿੱਖਣ ਮਰਹਲਾ ਨਹੀਂ ਲੱਭਿਆ ਜਾ ਸਕਿਆ।';
 
   @override
   String get learningJourneyStageNotFoundBody =>
-      'Return to the journey page and choose another stage.';
+      'ਯਾਤਰਾ ਸਫ਼ੇ ਵੱਲ ਵਾਪਸ ਜਾਓ ਅਤੇ ਹੋਰ ਮਰਹਲਾ ਚੁਣੋ।';
 
   @override
   String get learningJourneyStageOpeningSubtitle =>
-      'Opening available content for this stage.';
+      'ਇਸ ਮਰਹਲੇ ਲਈ ਉਪਲਬਧ ਸਮੱਗਰੀ ਖੋਲ੍ਹੀ ਜਾ ਰਹੀ ਹੈ।';
 
   @override
-  String get learningJourneyStageLaunchingBody => 'Launching stage content…';
+  String get learningJourneyStageLaunchingBody =>
+      'ਮਰਹਲੇ ਦੀ ਸਮੱਗਰੀ ਸ਼ੁਰੂ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…';
 
   @override
-  String get learningJourneyToolSearchTitle => 'Search';
+  String get learningJourneyToolSearchTitle => 'ਖੋਜ';
 
   @override
-  String get learningJourneyToolBookmarksTitle => 'Bookmarks';
+  String get learningJourneyToolBookmarksTitle => 'ਬੁੱਕਮਾਰਕ';
 
   @override
-  String get learningJourneyToolNotesTitle => 'Notes';
+  String get learningJourneyToolNotesTitle => 'ਨੋਟਸ';
 
   @override
-  String get learningJourneyToolExplorerTitle => 'Explorer';
+  String get learningJourneyToolExplorerTitle => 'ਐਕਸਪਲੋਰਰ';
 
   @override
-  String get learningJourneyToolWuduGuideTitle => 'Wudu Guide';
+  String get learningJourneyToolWuduGuideTitle => 'ਵੁਜ਼ੂ ਗਾਈਡ';
 
   @override
-  String get learningJourneyToolWuduTrainerTitle => 'Wudu Trainer';
+  String get learningJourneyToolWuduTrainerTitle => 'ਵੁਜ਼ੂ ਟ੍ਰੇਨਰ';
 
   @override
-  String get learningJourneyToolDuaHubTitle => 'Dua Hub';
+  String get learningJourneyToolDuaHubTitle => 'ਦੁਆ ਹੱਬ';
 
   @override
-  String get learningJourneyToolNamesOfAllahTitle => 'Names of Allah';
+  String get learningJourneyToolNamesOfAllahTitle => 'ਅੱਲਾਹ ਦੇ ਨਾਮ';
 
   @override
-  String get learningJourneyToolProphetsTitle => 'Prophets';
+  String get learningJourneyToolProphetsTitle => 'ਅੰਬਿਆ';
 
   @override
-  String get learningJourneyToolProphetsTimelineTitle => 'Prophets Timeline';
+  String get learningJourneyToolProphetsTimelineTitle => 'ਅੰਬਿਆ ਟਾਈਮਲਾਈਨ';
 
   @override
-  String get learningJourneyToolProphetsMapTitle => 'Prophets Map';
+  String get learningJourneyToolProphetsMapTitle => 'ਅੰਬਿਆ ਨਕਸ਼ਾ';
 
   @override
-  String get learningJourneyToolFamilyTreeTitle => 'Family Tree';
+  String get learningJourneyToolFamilyTreeTitle => 'ਪਰਿਵਾਰਕ ਰੁੱਖ';
 
   @override
-  String get learningJourneyToolWordsTitle => 'Words';
+  String get learningJourneyToolWordsTitle => 'ਸ਼ਬਦ';
 
   @override
-  String get learningJourneyToolWordReviewTitle => 'Word Review';
+  String get learningJourneyToolWordReviewTitle => 'ਸ਼ਬਦ ਸਮੀਖਿਆ';
 
   @override
-  String get learningJourneyToolGuidedPrayerTitle => 'Guided Salah';
+  String get learningJourneyToolGuidedPrayerTitle => 'ਰਹਿਨੁਮਾਈ ਵਾਲੀ ਸਲਾਹ';
 
   @override
-  String get learningJourneyToolHadithHubTitle => 'Hadith Hub';
+  String get learningJourneyToolHadithHubTitle => 'ਹਦੀਸ ਹੱਬ';
 
   @override
-  String get learningJourneyToolEssentialHadithTitle => 'Essential Hadith';
+  String get learningJourneyToolEssentialHadithTitle => 'ਜ਼ਰੂਰੀ ਹਦੀਸ';
 
   @override
-  String get learningJourneyToolHadithReviewTitle => 'Hadith Review';
+  String get learningJourneyToolHadithReviewTitle => 'ਹਦੀਸ ਸਮੀਖਿਆ';
 
   @override
-  String get learningJourneyToolTriviaPathsTitle => 'Trivia Paths';
+  String get learningJourneyToolTriviaPathsTitle => 'ਟ੍ਰਿਵੀਆ ਰਾਹ';
 
   @override
-  String get learningJourneyToolTriviaReviewTitle => 'Trivia Review';
+  String get learningJourneyToolTriviaReviewTitle => 'ਟ੍ਰਿਵੀਆ ਸਮੀਖਿਆ';
 
   @override
-  String get learningJourneyToolWorldCreationTitle => 'World & Creation';
+  String get learningJourneyToolWorldCreationTitle => 'ਦੁਨੀਆ ਅਤੇ ਮਖਲੂਕਾਤ';
 
   @override
-  String get learningJourneyToolExploreCreationTitle => 'Explore Creation';
+  String get learningJourneyToolExploreCreationTitle => 'ਮਖਲੂਕਾਤ ਵੇਖੋ';
 
   @override
-  String get learningJourneyToolSignsExplorerTitle => 'Signs Explorer';
+  String get learningJourneyToolSignsExplorerTitle => 'ਨਿਸ਼ਾਨੀਆਂ ਐਕਸਪਲੋਰਰ';
 
   @override
-  String get learningJourneyToolReflectionModeTitle => 'Reflection Mode';
+  String get learningJourneyToolReflectionModeTitle => 'ਤਦੱਬੁਰ ਮੋਡ';
 
   @override
-  String get learningJourneyToolLearnNotesTitle => 'Learn Notes';
+  String get learningJourneyToolLearnNotesTitle => 'ਸਿੱਖਣ ਨੋਟਸ';
 
   @override
   String get learningJourneyToolKnowledgeConstellationTitle =>
-      'Knowledge Constellation';
+      'ਗਿਆਨ ਨਕਸ਼ਤਰਮਾਲਾ';
 
   @override
   String get learningJourneyToolProphetsSubtitle =>
-      'Open the current Prophets system.';
+      'ਮੌਜੂਦਾ ਅੰਬਿਆ ਸਿਸਟਮ ਖੋਲ੍ਹੋ।';
 
   @override
   String get learningJourneyToolWordsSubtitle =>
-      'Browse recurring Qur’anic vocabulary.';
+      'ਕੁਰਆਨ ਵਿੱਚ ਮੁੜ-ਮੁੜ ਆਉਣ ਵਾਲੀ ਸ਼ਬਦਾਵਲੀ ਵੇਖੋ।';
 
   @override
   String get learningJourneyToolWordReviewSubtitle =>
-      'Review saved and repeated word sets.';
+      'ਸੰਭਾਲੇ ਅਤੇ ਦੁਹਰਾਏ ਗਏ ਸ਼ਬਦ ਸਮੂਹਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ।';
 
   @override
-  String get learningJourneySeerahEarlyLifeTitle =>
-      'Early Life of the Prophet ﷺ';
+  String get learningJourneySeerahEarlyLifeTitle => 'ਨਬੀ ﷺ ਦੀ ਸ਼ੁਰੂਆਤੀ ਜ਼ਿੰਦਗੀ';
 
   @override
   String get learningJourneySeerahEarlyLifeIntro =>
-      'The early life of the Prophet Muhammad ﷺ teaches trust in Allah, quiet preparation, and noble character before public prophethood.';
+      'ਨਬੀ ਮੁਹੰਮਦ ﷺ ਦੀ ਸ਼ੁਰੂਆਤੀ ਜ਼ਿੰਦਗੀ ਅੱਲਾਹ ਉੱਤੇ ਭਰੋਸਾ, ਖਾਮੋਸ਼ ਤਿਆਰੀ ਅਤੇ ਸਰਵਜਨਕ ਨਬੂਵਤ ਤੋਂ ਪਹਿਲਾਂ ਉੱਚੇ ਅਖ਼ਲਾਕ ਦੀ ਸਿੱਖਿਆ ਦਿੰਦੀ ਹੈ।';
 
   @override
-  String get learningJourneySeerahEarlyLifeSection1Title => 'Key events';
+  String get learningJourneySeerahEarlyLifeSection1Title => 'ਅਹਿਮ ਵਾਕਿਆਤ';
 
   @override
   String get learningJourneySeerahEarlyLifeSection1Body =>
-      'He ﷺ was born in Makkah, lost his father before birth, lost his mother in childhood, and was then cared for by his grandfather and uncle. These early losses did not diminish him. Allah cared for him and prepared him.';
+      'ਤੁਹਾਡਾ ਜਨਮ ਮੱਕਾ ਵਿੱਚ ਹੋਇਆ, ਪੈਦਾਇਸ਼ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਪਿਤਾ ਦਾ ਇੰਤਿਕਾਲ ਹੋ ਗਿਆ, ਬਚਪਨ ਵਿੱਚ ਮਾਤਾ ਨੂੰ ਖੋ ਦਿੱਤਾ, ਅਤੇ ਫਿਰ ਦਾਦਾ ਅਤੇ ਚਾਚਾ ਨੇ ਪਰਵਰਿਸ਼ ਕੀਤੀ। ਇਹ ਸ਼ੁਰੂਆਤੀ ਘਾਟਾਂ ਤੁਹਾਨੂੰ ਘਟਾ ਨਾ ਸਕੀਆਂ। ਅੱਲਾਹ ਨੇ ਤੁਹਾਡੀ ਦੇਖਭਾਲ ਕੀਤੀ ਅਤੇ ਤਿਆਰ ਕੀਤਾ।';
 
   @override
   String get learningJourneySeerahEarlyLifeSection2Title =>
-      'Lessons from the early years';
+      'ਸ਼ੁਰੂਆਤੀ ਸਾਲਾਂ ਤੋਂ ਸਬਕ';
 
   @override
   String get learningJourneySeerahEarlyLifeSection2Body =>
-      'Before revelation, people already knew him as truthful and trustworthy. The early Seerah shows that prophetic character was visible long before public mission.';
+      'ਵਹੀ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਲੋਕ ਤੁਹਾਨੂੰ ਸੱਚੇ ਅਤੇ ਭਰੋਸੇਯੋਗ ਵਜੋਂ ਜਾਣਦੇ ਸਨ। ਸ਼ੁਰੂਆਤੀ ਸੀਰਤ ਦਿਖਾਉਂਦੀ ਹੈ ਕਿ ਨਬਵੀ ਅਖ਼ਲਾਕ ਸਰਵਜਨਕ ਮਿਸ਼ਨ ਤੋਂ ਕਾਫ਼ੀ ਪਹਿਲਾਂ ਹੀ ਨਜ਼ਰ ਆ ਰਹੇ ਸਨ।';
 
   @override
   String get learningJourneySeerahEarlyLifeBullet1 =>
-      'Hardship can refine a person instead of destroying them.';
+      'ਮੁਸ਼ਕਲ ਇਨਸਾਨ ਨੂੰ ਤਬਾਹ ਕਰਨ ਦੀ ਥਾਂ ਉਸਨੂੰ ਨਿਖਾਰ ਵੀ ਸਕਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahEarlyLifeBullet2 =>
-      'Truthfulness and trust are foundations of da‘wah.';
+      'ਸਚਾਈ ਅਤੇ ਅਮਾਨਤਦਾਰੀ ਦਾਅਵਤ ਦੀਆਂ ਬੁਨਿਆਦਾਂ ਹਨ।';
 
   @override
   String get learningJourneySeerahEarlyLifeBullet3 =>
-      'Allah prepares people long before a visible mission begins.';
+      'ਅੱਲਾਹ ਲੋਕਾਂ ਨੂੰ ਦਿੱਖਦੇ ਮਿਸ਼ਨ ਦੇ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਕਾਫ਼ੀ ਪਹਿਲਾਂ ਤਿਆਰ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahEarlyLifeTakeaway1 =>
-      'The Prophet ﷺ grew under Allah’s care through hardship and dignity.';
+      'ਨਬੀ ﷺ ਮੁਸ਼ਕਲ ਅਤੇ ਇਜ਼ਤ ਦੇ ਦਰਮਿਆਨ ਅੱਲਾਹ ਦੀ ਨਿਗਰਾਨੀ ਹੇਠ ਪਲੇ।';
 
   @override
   String get learningJourneySeerahEarlyLifeTakeaway2 =>
-      'Character is part of preparation for leadership.';
+      'ਅਖ਼ਲਾਕ ਕਿਆਦਤ ਲਈ ਤਿਆਰੀ ਦਾ ਹਿੱਸਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahEarlyLifeTakeaway3 =>
-      'The early Seerah teaches patience without self-pity.';
+      'ਸ਼ੁਰੂਆਤੀ ਸੀਰਤ ਤਰਸ-ਏ-ਨਫ਼ਸ ਤੋਂ ਬਿਨਾ ਸਬਰ ਸਿਖਾਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahEarlyLifeReflection =>
-      'Which quality from the Prophet’s early life would most strengthen your own character right now?';
+      'ਨਬੀ ﷺ ਦੀ ਸ਼ੁਰੂਆਤੀ ਜ਼ਿੰਦਗੀ ਦਾ ਕਿਹੜਾ ਗੁਣ ਇਸ ਵੇਲੇ ਤੁਹਾਡੇ ਆਪਣੇ ਅਖ਼ਲਾਕ ਨੂੰ ਸਭ ਤੋਂ ਵੱਧ ਮਜ਼ਬੂਤ ਕਰ ਸਕਦਾ ਹੈ?';
 
   @override
-  String get learningJourneySeerahFirstRevelationTitle => 'First Revelation';
+  String get learningJourneySeerahFirstRevelationTitle => 'ਪਹਿਲੀ ਵਹੀ';
 
   @override
   String get learningJourneySeerahFirstRevelationIntro =>
-      'The first revelation opened the mission of prophethood with a call to read in the name of Allah.';
+      'ਪਹਿਲੀ ਵਹੀ ਨੇ ਨਬੂਵਤ ਦੇ ਮਿਸ਼ਨ ਨੂੰ ਅੱਲਾਹ ਦੇ ਨਾਮ ਨਾਲ ਪੜ੍ਹਨ ਦੀ ਪੁਕਾਰ ਨਾਲ ਖੋਲ੍ਹਿਆ।';
 
   @override
   String get learningJourneySeerahFirstRevelationSection1Title =>
-      'What happened in Hira';
+      'ਹਿਰਾ ਵਿੱਚ ਕੀ ਹੋਇਆ';
 
   @override
   String get learningJourneySeerahFirstRevelationSection1Body =>
-      'The Prophet ﷺ sought quiet reflection in the cave of Hira. There Jibril came with the first revelation and the command to read in the name of the Lord who created.';
+      'ਨਬੀ ﷺ ਗਾਰ-ਏ-ਹਿਰਾ ਵਿੱਚ ਖਾਮੋਸ਼ ਤਦੱਬੁਰ ਲਈ ਜਾਂਦੇ ਸਨ। ਓਥੇ ਜਿਬਰੀਲ ਪਹਿਲੀ ਵਹੀ ਅਤੇ ਉਸ ਰੱਬ ਦੇ ਨਾਮ ਨਾਲ ਪੜ੍ਹਨ ਦੇ ਹੁਕਮ ਨਾਲ ਆਏ ਜਿਸ ਨੇ ਪੈਦਾ ਕੀਤਾ।';
 
   @override
   String get learningJourneySeerahFirstRevelationSection2Title =>
-      'Why this moment matters';
+      'ਇਹ ਲਹਿਰ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneySeerahFirstRevelationSection2Body =>
-      'The beginning of revelation joined knowledge, worship, humility, and awe. It was a heavy moment, yet it became mercy for the world.';
+      'ਵਹੀ ਦੀ ਸ਼ੁਰੂਆਤ ਨੇ ਗਿਆਨ, ਇਬਾਦਤ, ਨਿਮਰਤਾ ਅਤੇ ਹੈਬਤ ਨੂੰ ਇਕੱਠਾ ਕਰ ਦਿੱਤਾ। ਇਹ ਭਾਰੀ ਲਹਿਰ ਸੀ, ਫਿਰ ਵੀ ਦੁਨੀਆ ਲਈ ਰਹਿਮਤ ਬਣ ਗਈ।';
 
   @override
   String get learningJourneySeerahFirstRevelationBullet1 =>
-      'Revelation began with knowledge connected to Allah.';
+      'ਵਹੀ ਦੀ ਸ਼ੁਰੂਆਤ ਅੱਲਾਹ ਨਾਲ ਜੁੜੇ ਗਿਆਨ ਨਾਲ ਹੋਈ।';
 
   @override
   String get learningJourneySeerahFirstRevelationBullet2 =>
-      'The Prophet ﷺ felt the weight of responsibility, not pride.';
+      'ਨਬੀ ﷺ ਨੇ ਜ਼ਿੰਮੇਵਾਰੀ ਦਾ ਭਾਰ ਮਹਿਸੂਸ ਕੀਤਾ, ਘਮੰਡ ਨਹੀਂ।';
 
   @override
   String get learningJourneySeerahFirstRevelationBullet3 =>
-      'The Qur’an entered history gradually and purposefully.';
+      'ਕੁਰਆਨ ਇਤਿਹਾਸ ਵਿੱਚ ਤਦਰੀਜੀ ਅਤੇ ਮਕਸਦ ਨਾਲ ਦਾਖ਼ਲ ਹੋਇਆ।';
 
   @override
   String get learningJourneySeerahFirstRevelationTakeaway1 =>
-      'Knowledge in Islam begins in the name of Allah.';
+      'ਇਸਲਾਮ ਵਿੱਚ ਗਿਆਨ ਅੱਲਾਹ ਦੇ ਨਾਮ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahFirstRevelationTakeaway2 =>
-      'The first revelation teaches humility before responsibility.';
+      'ਪਹਿਲੀ ਵਹੀ ਜ਼ਿੰਮੇਵਾਰੀ ਤੋਂ ਪਹਿਲਾਂ ਨਿਮਰਤਾ ਸਿਖਾਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahFirstRevelationTakeaway3 =>
-      'The Qur’an is revelation, not human wisdom.';
+      'ਕੁਰਆਨ ਵਹੀ ਹੈ, ਮਨੁੱਖੀ ਹੁਸ਼ਿਆਰੀ ਨਹੀਂ।';
 
   @override
   String get learningJourneySeerahFirstRevelationReflection =>
-      'How would your approach to learning change if you began it consciously in the name of Allah?';
+      'ਜੇ ਤੁਸੀਂ ਸਿੱਖਣ ਦੀ ਸ਼ੁਰੂਆਤ ਸਚੇਤ ਤੌਰ ‘ਤੇ ਅੱਲਾਹ ਦੇ ਨਾਮ ਨਾਲ ਕਰੋ ਤਾਂ ਤੁਹਾਡਾ ਢੰਗ ਕਿਵੇਂ ਬਦਲੇਗਾ?';
 
   @override
-  String get learningJourneySeerahMakkahTitle => 'Makkah Period';
+  String get learningJourneySeerahMakkahTitle => 'ਮੱਕਾ ਦਾ ਦੌਰ';
 
   @override
   String get learningJourneySeerahMakkahIntro =>
-      'The Makkan years were years of tawheed, patience, sacrifice, and steady calling under pressure.';
+      'ਮੱਕੇ ਦੇ ਸਾਲ ਤੌਹੀਦ, ਸਬਰ, ਕੁਰਬਾਨੀ ਅਤੇ ਦਬਾਅ ਦੇ ਵਿਚਕਾਰ ਅਡੋਲ ਦਾਅਵਤ ਦੇ ਸਾਲ ਸਨ।';
 
   @override
-  String get learningJourneySeerahMakkahSection1Title => 'The Makkan call';
+  String get learningJourneySeerahMakkahSection1Title => 'ਮੱਕੇ ਦੀ ਦਾਅਵਤ';
 
   @override
   String get learningJourneySeerahMakkahSection1Body =>
-      'In Makkah the Prophet ﷺ called people to worship Allah alone while facing mockery, pressure, and persecution. The early believers were formed in a difficult environment.';
+      'ਮੱਕੇ ਵਿੱਚ ਨਬੀ ﷺ ਨੇ ਲੋਕਾਂ ਨੂੰ ਸਿਰਫ਼ ਅੱਲਾਹ ਦੀ ਇਬਾਦਤ ਵੱਲ ਬੁਲਾਇਆ, ਜਦਕਿ ਉਹ ਮਜ਼ਾਕ, ਦਬਾਅ ਅਤੇ ਜ਼ੁਲਮ ਦਾ ਸਾਹਮਣਾ ਕਰ ਰਹੇ ਸਨ। ਪਹਿਲੇ ਈਮਾਨ ਵਾਲੇ ਮੁਸ਼ਕਲ ਮਾਹੌਲ ਵਿੱਚ ਤਿਆਰ ਹੋਏ।';
 
   @override
-  String get learningJourneySeerahMakkahSection2Title => 'What Makkah built';
+  String get learningJourneySeerahMakkahSection2Title => 'ਮੱਕੇ ਨੇ ਕੀ ਤਿਆਰ ਕੀਤਾ';
 
   @override
   String get learningJourneySeerahMakkahSection2Body =>
-      'The Makkan Qur’an built belief first: who Allah is, what the Hereafter means, why worship matters, and how patience steadies the heart.';
+      'ਮੱਕੀ ਕੁਰਆਨ ਨੇ ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਅਕੀਦਾ ਬਣਾਇਆ: ਅੱਲਾਹ ਕੌਣ ਹੈ, ਆਖਿਰਤ ਦਾ ਕੀ ਮਤਲਬ ਹੈ, ਇਬਾਦਤ ਕਿਉਂ ਅਹਿਮ ਹੈ, ਅਤੇ ਸਬਰ ਕਿਵੇਂ ਦਿਲ ਨੂੰ ਮਜ਼ਬੂਤ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMakkahBullet1 =>
-      'Belief is strengthened before public power arrives.';
+      'ਜਨਤਕ ਤਾਕਤ ਆਉਣ ਤੋਂ ਪਹਿਲਾਂ ਅਕੀਦਾ ਮਜ਼ਬੂਤ ਹੁੰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMakkahBullet2 =>
-      'Patience in truth is part of the prophetic path.';
+      'ਸੱਚਾਈ ਉੱਤੇ ਸਬਰ ਨਬੂਵੀ ਰਾਹ ਦਾ ਹਿੱਸਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMakkahBullet3 =>
-      'The Qur’an shaped hearts before society was reshaped.';
+      'ਸਮਾਜ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਕੁਰਆਨ ਨੇ ਦਿਲਾਂ ਨੂੰ ਬਦਲਿਆ।';
 
   @override
   String get learningJourneySeerahMakkahTakeaway1 =>
-      'The Makkan years centered tawheed and endurance.';
+      'ਮੱਕੇ ਦੇ ਸਾਲ ਤੌਹੀਦ ਅਤੇ ਡਟੇ ਰਹਿਣ ‘ਤੇ ਕੇਂਦਰਿਤ ਸਨ।';
 
   @override
   String get learningJourneySeerahMakkahTakeaway2 =>
-      'Strong worship often begins in difficult conditions.';
+      'ਮਜ਼ਬੂਤ ਇਬਾਦਤ ਅਕਸਰ ਮੁਸ਼ਕਲ ਹਾਲਾਤਾਂ ਵਿੱਚ ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahMakkahTakeaway3 =>
-      'Early believers were trained through pressure and sincerity.';
+      'ਪਹਿਲੇ ਮੋਮਿਨਾਂ ਨੂੰ ਦਬਾਅ ਅਤੇ ਖ਼ਲੂਸ ਰਾਹੀਂ ਤਿਆਰ ਕੀਤਾ ਗਿਆ।';
 
   @override
   String get learningJourneySeerahMakkahReflection =>
-      'When your beliefs feel tested, what helps you stay gentle and steady instead of reactive?';
+      'ਜਦੋਂ ਤੁਹਾਡੇ ਅਕੀਦੇ ਦੀ ਅਜ਼ਮਾਇਸ਼ ਹੁੰਦੀ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਨਰਮ ਅਤੇ ਅਡੋਲ ਰੱਖਣ ਵਿੱਚ ਕੀ ਮਦਦ ਕਰਦਾ ਹੈ, ਨਾ ਕਿ ਤੁਰੰਤ ਪ੍ਰਤੀਕ੍ਰਿਆ ਵਾਲਾ?';
 
   @override
-  String get learningJourneySeerahHijrahTitle => 'Hijrah';
+  String get learningJourneySeerahHijrahTitle => 'ਹਿਜਰਤ';
 
   @override
   String get learningJourneySeerahHijrahIntro =>
-      'Hijrah was a move for worship, safety, and the future of the Muslim community.';
+      'ਹਿਜਰਤ ਇਬਾਦਤ, ਸੁਰੱਖਿਆ ਅਤੇ ਮੁਸਲਿਮ ਭਾਈਚਾਰੇ ਦੇ ਭਵਿੱਖ ਲਈ ਕੀਤਾ ਗਿਆ ਇਕ ਕੂਚ ਸੀ।';
 
   @override
-  String get learningJourneySeerahHijrahSection1Title => 'What hijrah required';
+  String get learningJourneySeerahHijrahSection1Title => 'ਹਿਜਰਤ ਲਈ ਕੀ ਲੋੜ ਸੀ';
 
   @override
   String get learningJourneySeerahHijrahSection1Body =>
-      'The migration to Madinah required planning, secrecy, courage, sacrifice, and complete reliance on Allah. It was not escape for comfort, but movement for faith.';
+      'ਮਦੀਨਾ ਵੱਲ ਹਿਜਰਤ ਲਈ ਯੋਜਨਾ, ਰਾਜਦਾਰੀ, ਹਿੰਮਤ, ਕੁਰਬਾਨੀ ਅਤੇ ਅੱਲਾਹ ‘ਤੇ ਪੂਰਾ ਭਰੋਸਾ ਲੋੜੀਂਦਾ ਸੀ। ਇਹ ਆਰਾਮ ਲਈ ਭੱਜਣਾ ਨਹੀਂ ਸੀ, ਸਗੋਂ ਈਮਾਨ ਲਈ ਅੱਗੇ ਵਧਣਾ ਸੀ।';
 
   @override
   String get learningJourneySeerahHijrahSection2Title =>
-      'Trust and planning together';
+      'ਭਰੋਸਾ ਅਤੇ ਯੋਜਨਾ ਇਕੱਠੇ';
 
   @override
   String get learningJourneySeerahHijrahSection2Body =>
-      'Hijrah teaches that tawakkul is not passive. The Prophet ﷺ trusted Allah completely while still taking wise practical means.';
+      'ਹਿਜਰਤ ਸਿਖਾਂਦੀ ਹੈ ਕਿ ਤਵੱਕੁਲ ਨਿਸ਼ਕ੍ਰਿਆ ਨਹੀਂ ਹੁੰਦਾ। ਨਬੀ ﷺ ਨੇ ਅੱਲਾਹ ‘ਤੇ ਪੂਰਾ ਭਰੋਸਾ ਕੀਤਾ, ਫਿਰ ਵੀ ਸਮਝਦਾਰ ਅਮਲੀ ਅਸਬਾਬ ਅਖ਼ਤਿਆਰ ਕੀਤੇ।';
 
   @override
   String get learningJourneySeerahHijrahBullet1 =>
-      'Trust in Allah includes responsible action.';
+      'ਅੱਲਾਹ ‘ਤੇ ਭਰੋਸੇ ਵਿੱਚ ਜ਼ਿੰਮੇਵਾਰ ਅਮਲ ਵੀ ਸ਼ਾਮਲ ਹੈ।';
 
   @override
   String get learningJourneySeerahHijrahBullet2 =>
-      'Leaving something for Allah can become a mercy.';
+      'ਅੱਲਾਹ ਲਈ ਕੁਝ ਛੱਡਣਾ ਰਹਿਮਤ ਬਣ ਸਕਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahHijrahBullet3 =>
-      'Major transitions can open entirely new doors of good.';
+      'ਵੱਡੀਆਂ ਤਬਦੀਲੀਆਂ ਭਲਾਈ ਦੇ ਬਿਲਕੁਲ ਨਵੇਂ ਦਰਵਾਜ਼ੇ ਖੋਲ੍ਹ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneySeerahHijrahTakeaway1 =>
-      'Hijrah joined courage with careful preparation.';
+      'ਹਿਜਰਤ ਨੇ ਹਿੰਮਤ ਨੂੰ ਸੋਚੀ-ਸਮਝੀ ਤਿਆਰੀ ਨਾਲ ਜੋੜਿਆ।';
 
   @override
   String get learningJourneySeerahHijrahTakeaway2 =>
-      'Faithfulness sometimes requires hard transitions.';
+      'ਵਫ਼ਾਦਾਰੀ ਕਈ ਵਾਰ ਔਖੀਆਂ ਤਬਦੀਲੀਆਂ ਮੰਗਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahHijrahTakeaway3 =>
-      'Tawakkul means trust plus effort.';
+      'ਤਵੱਕੁਲ ਦਾ ਮਤਲਬ ਭਰੋਸਾ ਅਤੇ ਕੋਸ਼ਿਸ਼ ਦੋਵੇਂ ਹਨ।';
 
   @override
   String get learningJourneySeerahHijrahReflection =>
-      'What important decision in your life needs both better planning and deeper trust in Allah?';
+      'ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਦਾ ਕਿਹੜਾ ਅਹਿਮ ਫੈਸਲਾ ਐਸਾ ਹੈ ਜਿਸਨੂੰ ਹੋਰ ਚੰਗੀ ਯੋਜਨਾ ਅਤੇ ਅੱਲਾਹ ‘ਤੇ ਹੋਰ ਡੂੰਘੇ ਭਰੋਸੇ ਦੋਵੇਂ ਦੀ ਲੋੜ ਹੈ?';
 
   @override
-  String get learningJourneySeerahMadinahTitle => 'Madinah Society';
+  String get learningJourneySeerahMadinahTitle => 'ਮਦੀਨਾ ਦਾ ਸਮਾਜ';
 
   @override
   String get learningJourneySeerahMadinahIntro =>
-      'In Madinah, Islam was lived as worship, community, justice, brotherhood, and responsibility.';
+      'ਮਦੀਨੇ ਵਿੱਚ ਇਸਲਾਮ ਇਬਾਦਤ, ਭਾਈਚਾਰੇ, ਇਨਸਾਫ਼, ਭਰਾਤਰਤਾ ਅਤੇ ਜ਼ਿੰਮੇਵਾਰੀ ਦੇ ਰੂਪ ਵਿੱਚ ਜੀਅਾ ਗਿਆ।';
 
   @override
   String get learningJourneySeerahMadinahSection1Title =>
-      'What was built in Madinah';
+      'ਮਦੀਨੇ ਵਿੱਚ ਕੀ ਬਣਾਇਆ ਗਿਆ';
 
   @override
   String get learningJourneySeerahMadinahSection1Body =>
-      'The Prophet ﷺ established a masjid-centered community with worship, learning, brotherhood, agreements, teaching, family life, and leadership during peace and difficulty.';
+      'ਨਬੀ ﷺ ਨੇ ਮਸਜਿਦ-ਕੇਂਦ੍ਰਿਤ ਸਮਾਜ ਕਾਇਮ ਕੀਤਾ ਜਿਸ ਵਿੱਚ ਇਬਾਦਤ, ਤਾਲੀਮ, ਭਰਾਤਰਤਾ, ਮਆਹਿਦੇ, ਸਿੱਖਿਆ, ਖਾਨਦਾਨੀ ਜੀਵਨ ਅਤੇ ਅਮਨ ਤੇ ਮੁਸ਼ਕਲ ਦੋਵੇਂ ਵੇਲਿਆਂ ਦੀ ਕਿਆਦਤ ਸ਼ਾਮਲ ਸੀ।';
 
   @override
   String get learningJourneySeerahMadinahSection2Title =>
-      'Why this stage matters';
+      'ਇਹ ਪੜਾਅ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneySeerahMadinahSection2Body =>
-      'The Madinan period shows that Islam is not only personal belief. It also shapes society, relationships, public responsibility, and mutual care.';
+      'ਮਦੀਨੇ ਦਾ ਦੌਰ ਦਿਖਾਉਂਦਾ ਹੈ ਕਿ ਇਸਲਾਮ ਸਿਰਫ਼ ਨਿੱਜੀ ਅਕੀਦਾ ਨਹੀਂ। ਇਹ ਸਮਾਜ, ਰਿਸ਼ਤੇ, ਜਨਤਕ ਜ਼ਿੰਮੇਵਾਰੀ ਅਤੇ ਆਪਸੀ ਖ਼ਿਆਲਦਾਰੀ ਨੂੰ ਵੀ ਰੂਪ ਦਿੰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMadinahBullet1 =>
-      'Islam builds individuals and community together.';
+      'ਇਸਲਾਮ ਵਿਅਕਤੀ ਅਤੇ ਸਮਾਜ ਦੋਵੇਂ ਨੂੰ ਇਕੱਠੇ ਤਿਆਰ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMadinahBullet2 =>
-      'The masjid is a center of worship, learning, and service.';
+      'ਮਸਜਿਦ ਇਬਾਦਤ, ਤਾਲੀਮ ਅਤੇ ਖ਼ਿਦਮਤ ਦਾ ਕੇਂਦਰ ਹੈ।';
 
   @override
   String get learningJourneySeerahMadinahBullet3 =>
-      'Brotherhood and justice are part of lived faith.';
+      'ਭਰਾਤਰਤਾ ਅਤੇ ਇਨਸਾਫ਼ ਜੀਵੰਤ ਈਮਾਨ ਦਾ ਹਿੱਸਾ ਹਨ।';
 
   @override
   String get learningJourneySeerahMadinahTakeaway1 =>
-      'Madinah shows Islam lived collectively, not privately alone.';
+      'ਮਦੀਨਾ ਦਿਖਾਉਂਦਾ ਹੈ ਕਿ ਇਸਲਾਮ ਸਿਰਫ਼ ਨਿੱਜੀ ਨਹੀਂ, ਸਾਂਝੇ ਤੌਰ ‘ਤੇ ਵੀ ਜੀਅਾ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMadinahTakeaway2 =>
-      'Community life is part of Islamic growth.';
+      'ਸਮਾਜਕ ਜੀਵਨ ਇਸਲਾਮੀ ਤਰੱਕੀ ਦਾ ਹਿੱਸਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahMadinahTakeaway3 =>
-      'Ibadah and public responsibility belong together.';
+      'ਇਬਾਦਤ ਅਤੇ ਜਨਤਕ ਜ਼ਿੰਮੇਵਾਰੀ ਇਕੱਠੇ ਚਲਦੇ ਹਨ।';
 
   @override
   String get learningJourneySeerahMadinahReflection =>
-      'How can your worship become more connected to service, relationships, and community life?';
+      'ਤੁਹਾਡੀ ਇਬਾਦਤ ਖ਼ਿਦਮਤ, ਰਿਸ਼ਤਿਆਂ ਅਤੇ ਸਮਾਜਕ ਜੀਵਨ ਨਾਲ ਹੋਰ ਕਿਵੇਂ ਜੁੜ ਸਕਦੀ ਹੈ?';
 
   @override
-  String get learningJourneySeerahLeadershipTitle => 'Leadership and Character';
+  String get learningJourneySeerahLeadershipTitle => 'ਕਿਆਦਤ ਅਤੇ ਅਖ਼ਲਾਕ';
 
   @override
   String get learningJourneySeerahLeadershipIntro =>
-      'The Prophet ﷺ led through mercy, truth, patience, courage, and concern for people.';
+      'ਨਬੀ ﷺ ਨੇ ਰਹਿਮ, ਸੱਚਾਈ, ਸਬਰ, ਹਿੰਮਤ ਅਤੇ ਲੋਕਾਂ ਦੀ ਫਿਕਰ ਨਾਲ ਕਿਆਦਤ ਕੀਤੀ।';
 
   @override
   String get learningJourneySeerahLeadershipSection1Title =>
-      'What prophetic leadership looked like';
+      'ਨਬਵੀ ਕਿਆਦਤ ਕਿਹੋ ਜਿਹੀ ਸੀ';
 
   @override
   String get learningJourneySeerahLeadershipSection1Body =>
-      'He ﷺ listened, forgave, consulted, showed courage when needed, and remained gentle with people while firm on truth. His leadership never became self-promotion.';
+      'ਉਹ ﷺ ਸੁਣਦੇ ਸਨ, ਮਾਫ਼ ਕਰਦੇ ਸਨ, ਮਸ਼ਵਰਾ ਕਰਦੇ ਸਨ, ਲੋੜ ਪੈਣ ‘ਤੇ ਹਿੰਮਤ ਦਿਖਾਉਂਦੇ ਸਨ ਅਤੇ ਸੱਚ ‘ਤੇ ਡਟੇ ਰਹਿੰਦੇ ਹੋਏ ਵੀ ਲੋਕਾਂ ਨਾਲ ਨਰਮੀ ਨਾਲ ਪੇਸ਼ ਆਉਂਦੇ ਸਨ। ਉਨ੍ਹਾਂ ਦੀ ਕਿਆਦਤ ਕਦੇ ਵੀ ਖੁਦ-ਨੁਮਾਇਸ਼ ਨਹੀਂ ਬਣੀ।';
 
   @override
   String get learningJourneySeerahLeadershipSection2Title =>
-      'Character as leadership';
+      'ਅਖ਼ਲਾਕ ਹੀ ਕਿਆਦਤ ਹੈ';
 
   @override
   String get learningJourneySeerahLeadershipSection2Body =>
-      'Mercy, patience, and trustworthiness were not separate from his leadership. They were the very way he led.';
+      'ਰਹਿਮ, ਸਬਰ ਅਤੇ ਅਮਾਨਤਦਾਰੀ ਉਨ੍ਹਾਂ ਦੀ ਕਿਆਦਤ ਤੋਂ ਵੱਖ ਨਹੀਂ ਸਨ। ਇਹੀ ਉਹ ਤਰੀਕਾ ਸੀ ਜਿਸ ਨਾਲ ਉਨ੍ਹਾਂ ਨੇ ਕਿਆਦਤ ਕੀਤੀ।';
 
   @override
   String get learningJourneySeerahLeadershipBullet1 =>
-      'Mercy strengthens leadership rather than weakening it.';
+      'ਰਹਿਮ ਕਿਆਦਤ ਨੂੰ ਕਮਜ਼ੋਰ ਨਹੀਂ, ਸਗੋਂ ਮਜ਼ਬੂਤ ਕਰਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahLeadershipBullet2 =>
-      'Consultation and patience are prophetic habits.';
+      'ਮਸ਼ਵਰਾ ਅਤੇ ਸਬਰ ਨਬਵੀ ਆਦਤਾਂ ਹਨ।';
 
   @override
   String get learningJourneySeerahLeadershipBullet3 =>
-      'Character gives da‘wah its credibility.';
+      'ਅਖ਼ਲਾਕ ਦਾਅਵਤ ਨੂੰ ਭਰੋਸੇਯੋਗ ਬਣਾਉਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahLeadershipTakeaway1 =>
-      'Prophetic leadership is worshipful, not ego-driven.';
+      'ਨਬਵੀ ਕਿਆਦਤ ਇਬਾਦਤ ਭਰੀ ਹੁੰਦੀ ਹੈ, ਅਹੰਕਾਰ-ਚਲਿਤ ਨਹੀਂ।';
 
   @override
   String get learningJourneySeerahLeadershipTakeaway2 =>
-      'Character and influence cannot be separated.';
+      'ਅਖ਼ਲਾਕ ਅਤੇ ਅਸਰ ਨੂੰ ਵੱਖ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।';
 
   @override
   String get learningJourneySeerahLeadershipTakeaway3 =>
-      'Mercy and firmness both have their proper place.';
+      'ਰਹਿਮ ਅਤੇ ਮਜ਼ਬੂਤੀ ਦੋਵਾਂ ਦੀ ਆਪਣੀ ਠੀਕ ਜਗ੍ਹਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahLeadershipReflection =>
-      'Which prophetic quality would most improve the way you influence family, friends, or colleagues?';
+      'ਨਬਵੀ ਗੁਣਾਂ ਵਿੱਚੋਂ ਕਿਹੜਾ ਗੁਣ ਤੁਹਾਡੇ ਪਰਿਵਾਰ, ਦੋਸਤਾਂ ਜਾਂ ਸਾਥੀਆਂ ਉੱਤੇ ਤੁਹਾਡੇ ਅਸਰ ਨੂੰ ਸਭ ਤੋਂ ਵੱਧ ਸੁਧਾਰ ਸਕਦਾ ਹੈ?';
 
   @override
-  String get learningJourneySeerahFinalSermonTitle => 'Final Sermon';
+  String get learningJourneySeerahFinalSermonTitle => 'ਆਖ਼ਰੀ ਖੁਤਬਾ';
 
   @override
   String get learningJourneySeerahFinalSermonIntro =>
-      'The Farewell Sermon gathered major principles of dignity, justice, trust, and faithfulness near the end of the Prophet’s mission.';
+      'ਵਿਦਾਈ ਖੁਤਬੇ ਨੇ ਨਬੀ ﷺ ਦੀ ਮਿਸ਼ਨ ਦੇ ਅੰਤ ਦੇ ਨੇੜੇ ਇਜ਼ਜ਼ਤ, ਇਨਸਾਫ਼, ਅਮਾਨਤ ਅਤੇ ਵਫ਼ਾਦਾਰੀ ਦੇ ਵੱਡੇ ਅਸੂਲ ਇਕੱਠੇ ਕੀਤੇ।';
 
   @override
   String get learningJourneySeerahFinalSermonSection1Title =>
-      'Key themes of the sermon';
+      'ਖੁਤਬੇ ਦੇ ਮੁੱਖ ਵਿਸ਼ੇ';
 
   @override
   String get learningJourneySeerahFinalSermonSection1Body =>
-      'The Prophet ﷺ emphasized the sanctity of life, wealth, and honor, the rights people owe one another, and the obligation to hold firmly to divine guidance.';
+      'ਨਬੀ ﷺ ਨੇ ਜਾਨ, ਮਾਲ ਅਤੇ ਇਜ਼ਜ਼ਤ ਦੀ ਪਵਿੱਤਰਤਾ, ਇਕ-ਦੂਜੇ ਉੱਤੇ ਲੋਕਾਂ ਦੇ ਹੱਕ ਅਤੇ ਦਿਵਿਆ ਹਿਦਾਇਤ ਨੂੰ ਮਜ਼ਬੂਤੀ ਨਾਲ ਫੜੇ ਰੱਖਣ ਦੀ ਲਾਜ਼ਮੀਅਤ ਉੱਤੇ ਜ਼ੋਰ ਦਿੱਤਾ।';
 
   @override
   String get learningJourneySeerahFinalSermonSection2Title =>
-      'Why it remains urgent';
+      'ਇਹ ਅੱਜ ਵੀ ਕਿਉਂ ਤੁਰੰਤ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneySeerahFinalSermonSection2Body =>
-      'The Farewell Sermon gives a closing frame for the Seerah: worship Allah, honor people, protect trust, and remain faithful to revelation.';
+      'ਵਿਦਾਈ ਖੁਤਬਾ ਸੀਰਤ ਲਈ ਇਕ ਸਮਾਪਤੀ ਰੂਪ-ਰੇਖਾ ਦਿੰਦਾ ਹੈ: ਅੱਲਾਹ ਦੀ ਇਬਾਦਤ ਕਰੋ, ਲੋਕਾਂ ਦੀ ਇਜ਼ਜ਼ਤ ਕਰੋ, ਅਮਾਨਤ ਦੀ ਹਿਫ਼ਾਜ਼ਤ ਕਰੋ ਅਤੇ ਵਹੀ ਨਾਲ ਵਫ਼ਾਦਾਰ ਰਹੋ।';
 
   @override
   String get learningJourneySeerahFinalSermonBullet1 =>
-      'Human dignity and trust are sacred in Islam.';
+      'ਇਨਸਾਨੀ ਇਜ਼ਜ਼ਤ ਅਤੇ ਅਮਾਨਤ ਇਸਲਾਮ ਵਿੱਚ ਪਵਿੱਤਰ ਹਨ।';
 
   @override
   String get learningJourneySeerahFinalSermonBullet2 =>
-      'The Prophetic mission joined worship with justice and responsibility.';
+      'ਨਬਵੀ ਮਿਸ਼ਨ ਨੇ ਇਬਾਦਤ ਨੂੰ ਇਨਸਾਫ਼ ਅਤੇ ਜ਼ਿੰਮੇਵਾਰੀ ਨਾਲ ਜੋੜਿਆ।';
 
   @override
   String get learningJourneySeerahFinalSermonBullet3 =>
-      'Guidance must remain central after the Prophet ﷺ has passed on.';
+      'ਨਬੀ ﷺ ਦੇ ਵਿਸਾਲ ਤੋਂ ਬਾਅਦ ਵੀ ਹਿਦਾਇਤ ਕੇਂਦਰੀ ਰਹਿਣੀ ਚਾਹੀਦੀ ਹੈ।';
 
   @override
   String get learningJourneySeerahFinalSermonTakeaway1 =>
-      'The Final Sermon summarizes core prophetic values.';
+      'ਆਖ਼ਰੀ ਖੁਤਬਾ ਨਬਵੀ ਮੁੱਲਾਂ ਦਾ ਨਿਸ਼ਕਰਸ਼ ਪੇਸ਼ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahFinalSermonTakeaway2 =>
-      'Justice and mercy are public Islamic responsibilities.';
+      'ਇਨਸਾਫ਼ ਅਤੇ ਰਹਿਮ ਜਨਤਕ ਇਸਲਾਮੀ ਜ਼ਿੰਮੇਵਾਰੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneySeerahFinalSermonTakeaway3 =>
-      'The Seerah ends by pointing believers back to revelation.';
+      'ਸੀਰਤ ਦਾ ਅੰਤ ਮੋਮਿਨਾਂ ਨੂੰ ਮੁੜ ਵਹੀ ਵੱਲ ਲੈ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneySeerahFinalSermonReflection =>
-      'Which principle from the Final Sermon feels most urgent for the time you live in?';
+      'ਆਖ਼ਰੀ ਖੁਤਬੇ ਦਾ ਕਿਹੜਾ ਅਸੂਲ ਉਸ ਦੌਰ ਲਈ ਸਭ ਤੋਂ ਵੱਧ ਤੁਰੰਤ ਲੱਗਦਾ ਹੈ ਜਿਸ ਵਿੱਚ ਤੁਸੀਂ ਜੀ ਰਹੇ ਹੋ?';
 
   @override
-  String get learningJourneyDhikrWhatIsTitle => 'What Is Dhikr?';
+  String get learningJourneyDhikrWhatIsTitle => 'ਜ਼ਿਕਰ ਕੀ ਹੈ?';
 
   @override
   String get learningJourneyDhikrWhatIsIntro =>
-      'Dhikr is remembering Allah with the heart, tongue, and life through praise, gratitude, repentance, and returning to Him often.';
+      'ਜ਼ਿਕਰ ਦਿਲ, ਜ਼ਬਾਨ ਅਤੇ ਜੀਵਨ ਨਾਲ ਅੱਲਾਹ ਨੂੰ ਯਾਦ ਕਰਨਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਹਮਦ, ਸ਼ੁਕਰ, ਤੌਬਾ ਅਤੇ ਵਾਰ-ਵਾਰ ਉਸ ਵੱਲ ਰੁਜੂ ਕਰਨਾ ਸ਼ਾਮਲ ਹੈ।';
 
   @override
-  String get learningJourneyDhikrWhatIsSection1Title =>
-      'A simple understanding';
+  String get learningJourneyDhikrWhatIsSection1Title => 'ਇਕ ਸਧਾਰਣ ਸਮਝ';
 
   @override
   String get learningJourneyDhikrWhatIsSection1Body =>
-      'Dhikr is not only repeating words. It is keeping Allah present in awareness through truthful phrases that soften the heart and direct the day.';
+      'ਜ਼ਿਕਰ ਸਿਰਫ਼ ਸ਼ਬਦ ਦੁਹਰਾਉਣਾ ਨਹੀਂ। ਇਹ ਸੱਚੀਆਂ ਯਾਦਾਂ ਰਾਹੀਂ ਅੱਲਾਹ ਨੂੰ ਹੋਸ਼ ਵਿੱਚ ਜ਼ਿੰਦਾ ਰੱਖਣਾ ਹੈ, ਜੋ ਦਿਲ ਨੂੰ ਨਰਮ ਕਰਦੀਆਂ ਅਤੇ ਦਿਨ ਨੂੰ ਸਹੀ ਦਿਸ਼ਾ ਦਿੰਦੀਆਂ ਹਨ।';
 
   @override
-  String get learningJourneyDhikrWhatIsSection2Title => 'How to begin a habit';
+  String get learningJourneyDhikrWhatIsSection2Title => 'ਆਦਤ ਕਿਵੇਂ ਸ਼ੁਰੂ ਕਰੀਏ';
 
   @override
   String get learningJourneyDhikrWhatIsSection2Body =>
-      'Begin with a few short remembrances that you understand and can keep consistently. Small steady dhikr is better than overload that disappears.';
+      'ਕੁਝ ਛੋਟੀਆਂ ਯਾਦਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਜਿਨ੍ਹਾਂ ਦਾ ਮਤਲਬ ਤੁਸੀਂ ਸਮਝਦੇ ਹੋ ਅਤੇ ਜਿਨ੍ਹਾਂ ਨੂੰ ਤੁਸੀਂ ਲਗਾਤਾਰ ਨਿਭਾ ਸਕਦੇ ਹੋ। ਛੋਟਾ ਪਰ ਸਥਿਰ ਜ਼ਿਕਰ ਉਸ ਵੱਧ ਭਾਰ ਤੋਂ ਬਿਹਤਰ ਹੈ ਜੋ ਜਲਦੀ ਗਾਇਬ ਹੋ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrWhatIsBullet1 =>
-      'Choose short authentic phrases first.';
+      'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਛੋਟੇ ਅਸਲ ਅਜ਼ਕਾਰ ਚੁਣੋ।';
 
   @override
   String get learningJourneyDhikrWhatIsBullet2 =>
-      'Attach remembrance to existing parts of your day.';
+      'ਜ਼ਿਕਰ ਨੂੰ ਆਪਣੇ ਦਿਨ ਦੇ ਮੌਜੂਦਾ ਹਿੱਸਿਆਂ ਨਾਲ ਜੋੜੋ।';
 
   @override
   String get learningJourneyDhikrWhatIsBullet3 =>
-      'Understanding meaning keeps dhikr sincere.';
+      'ਮਤਲਬ ਸਮਝਣਾ ਜ਼ਿਕਰ ਨੂੰ ਖ਼ਲੂਸ ਵਾਲਾ ਰੱਖਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrWhatIsTakeaway1 =>
-      'Dhikr is remembrance with meaning, not empty repetition.';
+      'ਜ਼ਿਕਰ ਮਤਲਬ ਵਾਲੀ ਯਾਦ ਹੈ, ਖਾਲੀ ਦੁਹਰਾਈ ਨਹੀਂ।';
 
   @override
   String get learningJourneyDhikrWhatIsTakeaway2 =>
-      'Consistency matters more than size at the beginning.';
+      'ਸ਼ੁਰੂ ਵਿੱਚ ਮਾਤਰਾ ਨਾਲੋਂ ਲਗਾਤਾਰਤਾ ਵੱਧ ਮਹੱਤਵ ਰੱਖਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrWhatIsTakeaway3 =>
-      'The heart becomes calmer when Allah is remembered often.';
+      'ਜਦੋਂ ਅੱਲਾਹ ਨੂੰ ਵਾਰ-ਵਾਰ ਯਾਦ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਦਿਲ ਹੋਰ ਠੰਢਾ ਹੋ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrWhatIsReflection =>
-      'Which daily moment could most easily become a steady remembrance anchor for you?';
+      'ਤੁਹਾਡੇ ਦਿਨ ਦਾ ਕਿਹੜਾ ਪਲ ਸਭ ਤੋਂ ਆਸਾਨੀ ਨਾਲ ਸਥਿਰ ਜ਼ਿਕਰ ਦਾ ਆਸਰਾ ਬਣ ਸਕਦਾ ਹੈ?';
 
   @override
-  String get learningJourneyDhikrMorningTitle => 'Morning Adhkar';
+  String get learningJourneyDhikrMorningTitle => 'ਸਵੇਰ ਦੇ ਅਜ਼ਕਾਰ';
 
   @override
   String get learningJourneyDhikrMorningIntro =>
-      'Morning adhkar begin the day with dependence on Allah, gratitude, and spiritual protection.';
+      'ਸਵੇਰ ਦੇ ਅਜ਼ਕਾਰ ਦਿਨ ਦੀ ਸ਼ੁਰੂਆਤ ਅੱਲਾਹ ਉੱਤੇ ਨਿਰਭਰਤਾ, ਸ਼ੁਕਰ ਅਤੇ ਰੂਹਾਨੀ ਹਿਫ਼ਾਜ਼ਤ ਨਾਲ ਕਰਦੇ ਹਨ।';
 
   @override
-  String get learningJourneyDhikrMorningSection1Title => 'When to say them';
+  String get learningJourneyDhikrMorningSection1Title => 'ਇਹ ਕਦੋਂ ਪੜ੍ਹੇ ਜਾਣ';
 
   @override
   String get learningJourneyDhikrMorningSection1Body =>
-      'Morning adhkar are best read after Fajr or in the early part of the day. A beginner can start with one or two authentic remembrances and keep them steady.';
+      'ਸਵੇਰ ਦੇ ਅਜ਼ਕਾਰ ਫਜਰ ਤੋਂ ਬਾਅਦ ਜਾਂ ਦਿਨ ਦੇ ਸ਼ੁਰੂਆਤੀ ਹਿੱਸੇ ਵਿੱਚ ਪੜ੍ਹਣੇ ਸਭ ਤੋਂ ਵਧੀਆ ਹਨ। ਇਕ ਨਵਾਂ ਵਿਅਕਤੀ ਇੱਕ ਜਾਂ ਦੋ ਅਸਲ ਅਜ਼ਕਾਰ ਨਾਲ ਸ਼ੁਰੂ ਕਰ ਸਕਦਾ ਹੈ ਅਤੇ ਉਨ੍ਹਾਂ ਨੂੰ ਪੱਕਾ ਰੱਖ ਸਕਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyDhikrMorningSection2Title => 'Building the habit';
+  String get learningJourneyDhikrMorningSection2Title => 'ਆਦਤ ਬਣਾਉਣਾ';
 
   @override
   String get learningJourneyDhikrMorningSection2Body =>
-      'Keep the morning set small at first. Tie it to a clear moment such as after prayer, before leaving the house, or before opening your phone.';
+      'ਸ਼ੁਰੂ ਵਿੱਚ ਸਵੇਰ ਦਾ ਵਿਰਦ ਛੋਟਾ ਰੱਖੋ। ਇਸ ਨੂੰ ਕਿਸੇ ਸਾਫ਼ ਪਲ ਨਾਲ ਜੋੜੋ, ਜਿਵੇਂ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ, ਘਰੋਂ ਨਿਕਲਣ ਤੋਂ ਪਹਿਲਾਂ ਜਾਂ ਆਪਣਾ ਫੋਨ ਖੋਲ੍ਹਣ ਤੋਂ ਪਹਿਲਾਂ।';
 
   @override
   String get learningJourneyDhikrMorningBullet1 =>
-      'Begin with a short authentic opening remembrance.';
+      'ਇੱਕ ਛੋਟੀ ਅਸਲ ਸਵੇਰ ਦੀ ਯਾਦ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
   String get learningJourneyDhikrMorningBullet2 =>
-      'Use the same moment each day so the habit becomes easier.';
+      'ਹਰ ਦਿਨ ਉਹੀ ਪਲ ਵਰਤੋ ਤਾਂ ਜੋ ਆਦਤ ਆਸਾਨ ਬਣੇ।';
 
   @override
   String get learningJourneyDhikrMorningBullet3 =>
-      'Read with understanding, not rush.';
+      'ਸਮਝ ਨਾਲ ਪੜ੍ਹੋ, ਜਲਦੀ ਵਿੱਚ ਨਹੀਂ।';
 
   @override
   String get learningJourneyDhikrMorningTakeaway1 =>
-      'Morning adhkar set the tone of the day around Allah.';
+      'ਸਵੇਰ ਦੇ ਅਜ਼ਕਾਰ ਦਿਨ ਦਾ ਰੁਖ ਅੱਲਾਹ ਦੇ ਆਲੇ-ਦੁਆਲੇ ਰੱਖਦੇ ਹਨ।';
 
   @override
   String get learningJourneyDhikrMorningTakeaway2 =>
-      'A short protected routine is better than an abandoned long list.';
+      'ਇੱਕ ਛੋਟੀ ਮਹਫ਼ੂਜ਼ ਰੁਟੀਨ ਉਸ ਲੰਮੀ ਸੂਚੀ ਨਾਲੋਂ ਚੰਗੀ ਹੈ ਜੋ ਛੱਡ ਦਿੱਤੀ ਜਾਏ।';
 
   @override
   String get learningJourneyDhikrMorningTakeaway3 =>
-      'The day begins more calmly when remembrance comes before distraction.';
+      'ਜਦੋਂ ਧਿਆਨਭੰਗ ਤੋਂ ਪਹਿਲਾਂ ਯਾਦ ਆ ਜਾਂਦੀ ਹੈ, ਦਿਨ ਹੋਰ ਸਕੂਨ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrMorningReflection =>
-      'What would change in your mornings if remembrance came before hurry?';
+      'ਜੇ ਜਲਦੀ ਤੋਂ ਪਹਿਲਾਂ ਯਾਦ ਆ ਜਾਏ ਤਾਂ ਤੁਹਾਡੀਆਂ ਸਵੇਰਾਂ ਵਿੱਚ ਕੀ ਬਦਲ ਸਕਦਾ ਹੈ?';
 
   @override
   String get learningJourneyDhikrMorningInvocationTitle =>
-      'Morning opening remembrance';
+      'ਸਵੇਰ ਦੀ ਸ਼ੁਰੂਆਤੀ ਦੁਆ';
 
   @override
   String get learningJourneyDhikrMorningInvocationMeaning =>
-      'O Allah, by You we enter the morning, by You we enter the evening, by You we live, by You we die, and to You is the resurrection.';
+      'ਏ ਅੱਲਾਹ, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸਵੇਰ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ, ਤੇਰੇ ਨਾਲ ਸ਼ਾਮ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ, ਤੇਰੇ ਨਾਲ ਜੀਉਂਦੇ ਹਾਂ, ਤੇਰੇ ਨਾਲ ਮਰਦੇ ਹਾਂ ਅਤੇ ਤੇਰੀ ਵੱਲ ਹੀ ਦੁਬਾਰਾ ਉਠਣਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrMorningInvocationContext =>
-      'Read in the morning to begin the day with trust in Allah.';
+      'ਅੱਲਾਹ ਉੱਤੇ ਭਰੋਸੇ ਨਾਲ ਦਿਨ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਇਹ ਸਵੇਰ ਵਿੱਚ ਪੜ੍ਹੋ।';
 
   @override
-  String get learningJourneyDhikrEveningTitle => 'Evening Adhkar';
+  String get learningJourneyDhikrEveningTitle => 'ਸ਼ਾਮ ਦੇ ਅਜ਼ਕਾਰ';
 
   @override
   String get learningJourneyDhikrEveningIntro =>
-      'Evening adhkar close the day with reliance on Allah, gratitude, and calm before night.';
+      'ਸ਼ਾਮ ਦੇ ਅਜ਼ਕਾਰ ਦਿਨ ਦਾ ਅੰਤ ਅੱਲਾਹ ਉੱਤੇ ਭਰੋਸੇ, ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਅਤੇ ਰਾਤ ਤੋਂ ਪਹਿਲਾਂ ਸਕੂਨ ਨਾਲ ਕਰਦੇ ਹਨ।';
 
   @override
-  String get learningJourneyDhikrEveningSection1Title => 'When to say them';
+  String get learningJourneyDhikrEveningSection1Title => 'ਇਹ ਕਦੋਂ ਪੜ੍ਹੇ ਜਾਣ';
 
   @override
   String get learningJourneyDhikrEveningSection1Body =>
-      'Evening adhkar are read after Asr or around sunset. They help the heart leave the noise of the day and return to Allah before sleep.';
+      'ਸ਼ਾਮ ਦੇ ਅਜ਼ਕਾਰ ਅਸਰ ਤੋਂ ਬਾਅਦ ਜਾਂ ਸੂਰਜ ਡੁੱਬਣ ਦੇ ਵੇਲੇ ਪੜ੍ਹੇ ਜਾਂਦੇ ਹਨ। ਇਹ ਦਿਲ ਨੂੰ ਦਿਨ ਦੇ ਸ਼ੋਰ ਤੋਂ ਕੱਢ ਕੇ ਨੀਂਦ ਤੋਂ ਪਹਿਲਾਂ ਅੱਲਾਹ ਵੱਲ ਵਾਪਸ ਲਿਆਉਂਦੇ ਹਨ।';
 
   @override
-  String get learningJourneyDhikrEveningSection2Title => 'How they help';
+  String get learningJourneyDhikrEveningSection2Title => 'ਇਹ ਕਿਵੇਂ ਮਦਦ ਕਰਦੇ ਹਨ';
 
   @override
   String get learningJourneyDhikrEveningSection2Body =>
-      'A short evening routine creates spiritual closure. It is a gentle way to end the day with remembrance instead of heaviness or heedlessness.';
+      'ਇੱਕ ਛੋਟੀ ਸ਼ਾਮ ਦੀ ਰੁਟੀਨ ਰੂਹਾਨੀ ਪੂਰਨਤਾ ਪੈਦਾ ਕਰਦੀ ਹੈ। ਇਹ ਭਾਰਪਨ ਜਾਂ ਗ਼ਫ਼ਲਤ ਦੀ ਬਜਾਏ ਯਾਦ ਨਾਲ ਦਿਨ ਖਤਮ ਕਰਨ ਦਾ ਨਰਮ ਤਰੀਕਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrEveningBullet1 =>
-      'Choose one or two evening remembrances first.';
+      'ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਜਾਂ ਦੋ ਸ਼ਾਮ ਦੀਆਂ ਯਾਦਾਂ ਚੁਣੋ।';
 
   @override
   String get learningJourneyDhikrEveningBullet2 =>
-      'Keep the routine light enough to survive tired days.';
+      'ਰੁਟੀਨ ਨੂੰ ਇੰਨਾ ਹਲਕਾ ਰੱਖੋ ਕਿ ਥੱਕੇ ਹੋਏ ਦਿਨਾਂ ਵਿੱਚ ਵੀ ਨਿਭ ਜਾਵੇ।';
 
   @override
   String get learningJourneyDhikrEveningBullet3 =>
-      'Treat the evening set as a return, not a burden.';
+      'ਸ਼ਾਮ ਦੇ ਵਿਰਦ ਨੂੰ ਵਾਪਸੀ ਸਮਝੋ, ਬੋਝ ਨਹੀਂ।';
 
   @override
   String get learningJourneyDhikrEveningTakeaway1 =>
-      'Evening adhkar settle the heart before night.';
+      'ਸ਼ਾਮ ਦੇ ਅਜ਼ਕਾਰ ਰਾਤ ਤੋਂ ਪਹਿਲਾਂ ਦਿਲ ਨੂੰ ਠਹਿਰਾਉਂਦੇ ਹਨ।';
 
   @override
   String get learningJourneyDhikrEveningTakeaway2 =>
-      'A short evening habit can be built gradually.';
+      'ਛੋਟੀ ਸ਼ਾਮ ਦੀ ਆਦਤ ਹੌਲੇ-ਹੌਲੇ ਬਣਾਈ ਜਾ ਸਕਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrEveningTakeaway3 =>
-      'Closing the day with dhikr changes how you carry its weight.';
+      'ਜ਼ਿਕਰ ਨਾਲ ਦਿਨ ਮੁਕਾਉਣਾ ਇਸ ਦਾ ਭਾਰ ਝੱਲਣ ਦੇ ਢੰਗ ਨੂੰ ਬਦਲ ਦਿੰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrEveningReflection =>
-      'What usually fills the end of your day, and how can remembrance reclaim part of it?';
+      'ਅਕਸਰ ਤੁਹਾਡੇ ਦਿਨ ਦੇ ਅਖੀਰ ਨੂੰ ਕੀ ਭਰ ਦਿੰਦਾ ਹੈ, ਅਤੇ ਯਾਦ ਇਸ ਦਾ ਕੁਝ ਹਿੱਸਾ ਕਿਵੇਂ ਮੁੜ ਹਾਸਲ ਕਰ ਸਕਦੀ ਹੈ?';
 
   @override
   String get learningJourneyDhikrEveningInvocationTitle =>
-      'Evening opening remembrance';
+      'ਸ਼ਾਮ ਦੀ ਸ਼ੁਰੂਆਤੀ ਦੁਆ';
 
   @override
   String get learningJourneyDhikrEveningInvocationMeaning =>
-      'O Allah, by You we enter the evening, by You we enter the morning, by You we live, by You we die, and to You is the final return.';
+      'ਏ ਅੱਲਾਹ, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸ਼ਾਮ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ, ਤੇਰੇ ਨਾਲ ਸਵੇਰ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ, ਤੇਰੇ ਨਾਲ ਜੀਉਂਦੇ ਹਾਂ, ਤੇਰੇ ਨਾਲ ਮਰਦੇ ਹਾਂ ਅਤੇ ਆਖ਼ਰੀ ਵਾਪਸੀ ਤੇਰੀ ਵੱਲ ਹੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrEveningInvocationContext =>
-      'Read in the evening to close the day with remembrance.';
+      'ਦਿਨ ਦਾ ਅੰਤ ਯਾਦ ਨਾਲ ਕਰਨ ਲਈ ਇਹ ਸ਼ਾਮ ਵਿੱਚ ਪੜ੍ਹੋ।';
 
   @override
-  String get learningJourneyDhikrAfterSalahTitle => 'After Salah Dhikr';
+  String get learningJourneyDhikrAfterSalahTitle => 'ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਦਾ ਜ਼ਿਕਰ';
 
   @override
   String get learningJourneyDhikrAfterSalahIntro =>
-      'After each prayer, a simple set of adhkar helps protect the prayer and extend its effect into the rest of the day.';
+      'ਹਰ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਅਜ਼ਕਾਰ ਦਾ ਇੱਕ ਸਾਦਾ ਮਜਮੂਆ ਨਮਾਜ਼ ਦੀ ਹਿਫ਼ਾਜ਼ਤ ਕਰਨ ਅਤੇ ਇਸ ਦੇ ਅਸਰ ਨੂੰ ਬਾਕੀ ਦਿਨ ਤੱਕ ਵਧਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrAfterSalahSection1Title =>
-      'Why post-prayer dhikr matters';
+      'ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਦਾ ਜ਼ਿਕਰ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneyDhikrAfterSalahSection1Body =>
-      'Because salah already gathers the heart, the moments after salam are one of the easiest places to build a stable dhikr habit.';
+      'ਕਿਉਂਕਿ ਨਮਾਜ਼ ਪਹਿਲਾਂ ਹੀ ਦਿਲ ਨੂੰ ਇਕੱਠਾ ਕਰ ਲੈਂਦੀ ਹੈ, ਇਸ ਲਈ ਸਲਾਮ ਤੋਂ ਬਾਅਦ ਦੇ ਪਲ ਸਥਿਰ ਜ਼ਿਕਰ ਦੀ ਆਦਤ ਬਣਾਉਣ ਲਈ ਸਭ ਤੋਂ ਆਸਾਨ ਥਾਵਾਂ ਵਿੱਚੋਂ ਹਨ।';
 
   @override
   String get learningJourneyDhikrAfterSalahSection2Title =>
-      'How to keep it steady';
+      'ਇਸਨੂੰ ਕਿਵੇਂ ਸਥਿਰ ਰੱਖਣਾ ਹੈ';
 
   @override
   String get learningJourneyDhikrAfterSalahSection2Body =>
-      'Start after one prayer each day if needed. Keep the rhythm calm and attentive instead of turning it into a rushed formula.';
+      'ਲੋੜ ਪਏ ਤਾਂ ਹਰ ਦਿਨ ਇੱਕ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਸ਼ੁਰੂ ਕਰੋ। ਇਸ ਲਯ ਨੂੰ ਸਕੂਨ ਅਤੇ ਧਿਆਨ ਵਾਲਾ ਰੱਖੋ, ਇਸਨੂੰ ਜਲਦੀ-ਜਲਦੀ ਦਾ ਫਾਰਮੂਲਾ ਨਾ ਬਣਾਓ।';
 
   @override
   String get learningJourneyDhikrAfterSalahBullet1 =>
-      'Choose one prayer if all five feel too much at first.';
+      'ਜੇ ਪਹਿਲਾਂ ਸਾਰੀਆਂ ਪੰਜ ਨਮਾਜ਼ਾਂ ਬਹੁਤ ਲੱਗਦੀਆਂ ਹਨ, ਤਾਂ ਇੱਕ ਨਮਾਜ਼ ਚੁਣੋ।';
 
   @override
   String get learningJourneyDhikrAfterSalahBullet2 =>
-      'Understand the praise and glorification you are saying.';
+      'ਜੋ ਹਮਦ ਅਤੇ ਤਸਬੀਹ ਤੁਸੀਂ ਪੜ੍ਹ ਰਹੇ ਹੋ, ਉਸ ਨੂੰ ਸਮਝੋ।';
 
   @override
   String get learningJourneyDhikrAfterSalahBullet3 =>
-      'Let the dhikr extend the calm of salah.';
+      'ਜ਼ਿਕਰ ਨੂੰ ਨਮਾਜ਼ ਦੇ ਸਕੂਨ ਨੂੰ ਹੋਰ ਲੰਮਾ ਕਰਨ ਦਿਓ।';
 
   @override
   String get learningJourneyDhikrAfterSalahTakeaway1 =>
-      'Post-salah dhikr is one of the easiest daily anchors for remembrance.';
+      'ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਦਾ ਜ਼ਿਕਰ ਰੋਜ਼ਾਨਾ ਯਾਦ ਦੇ ਸਭ ਤੋਂ ਆਸਾਨ ਆਸਰਿਆਂ ਵਿੱਚੋਂ ਇਕ ਹੈ।';
 
   @override
   String get learningJourneyDhikrAfterSalahTakeaway2 =>
-      'Short formulas can carry deep meaning when done with attention.';
+      'ਛੋਟੇ ਫਾਰਮੂਲੇ ਵੀ ਡੂੰਘਾ ਮਤਲਬ ਲੈ ਸਕਦੇ ਹਨ ਜਦੋਂ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੇ ਜਾਣ।';
 
   @override
   String get learningJourneyDhikrAfterSalahTakeaway3 =>
-      'Salah becomes more continuous when remembrance follows it.';
+      'ਜਦੋਂ ਜ਼ਿਕਰ ਨਮਾਜ਼ ਦੇ ਪਿੱਛੇ ਆਉਂਦਾ ਹੈ ਤਾਂ ਨਮਾਜ਼ ਹੋਰ ਲਗਾਤਾਰ ਬਣ ਜਾਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrAfterSalahReflection =>
-      'Which prayer is the easiest place for you to begin a stable after-salah dhikr habit?';
+      'ਤੁਹਾਡੇ ਲਈ ਕਿਹੜੀ ਨਮਾਜ਼ ਸਥਿਰ ਨਮਾਜ਼-ਬਾਅਦ ਜ਼ਿਕਰ ਦੀ ਆਦਤ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਭ ਤੋਂ ਆਸਾਨ ਥਾਂ ਹੈ?';
 
   @override
   String get learningJourneyDhikrAfterSalahInvocationTitle =>
-      'Post-prayer glorification';
+      'ਨਮਾਜ਼-ਬਾਅਦ ਤਸਬੀਹ';
 
   @override
   String get learningJourneyDhikrAfterSalahInvocationMeaning =>
-      'Glory be to Allah, praise be to Allah, Allah is the Greatest.';
+      'ਅੱਲਾਹ ਪਾਕ ਹੈ, ਸਾਰੀ ਤਾਰੀਫ਼ ਅੱਲਾਹ ਲਈ ਹੈ, ਅੱਲਾਹ ਸਭ ਤੋਂ ਵੱਡਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrAfterSalahInvocationContext =>
-      'A simple dhikr set read after salah.';
+      'ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਪੜ੍ਹਿਆ ਜਾਣ ਵਾਲਾ ਇਕ ਸਾਦਾ ਜ਼ਿਕਰ ਮਜਮੂਆ।';
 
   @override
-  String get learningJourneyDhikrRoutineTitle => 'Simple Daily Routine';
+  String get learningJourneyDhikrRoutineTitle => 'ਸਾਦੀ ਰੋਜ਼ਾਨਾ ਰੁਟੀਨ';
 
   @override
   String get learningJourneyDhikrRoutineIntro =>
-      'A beginner dhikr routine should be small, clear, and sustainable.';
+      'ਜ਼ਿਕਰ ਦੀ ਇੱਕ ਸ਼ੁਰੂਆਤੀ ਰੁਟੀਨ ਛੋਟੀ, ਸਾਫ਼ ਅਤੇ ਲੰਮੇ ਸਮੇਂ ਤੱਕ ਚੱਲਣ ਵਾਲੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।';
 
   @override
-  String get learningJourneyDhikrRoutineSection1Title => 'A workable routine';
+  String get learningJourneyDhikrRoutineSection1Title => 'ਇੱਕ ਕਾਬਲ-ਅਮਲ ਰੁਟੀਨ';
 
   @override
   String get learningJourneyDhikrRoutineSection1Body =>
-      'Choose three anchor moments: morning, after one prayer, and before sleep. Attach one short remembrance to each moment and keep it for a week before adding more.';
+      'ਤਿੰਨ ਆਸਰੇ ਦੇ ਪਲ ਚੁਣੋ: ਸਵੇਰ, ਇੱਕ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ, ਅਤੇ ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ। ਹਰ ਪਲ ਨਾਲ ਇੱਕ ਛੋਟੀ ਯਾਦ ਜੋੜੋ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਸਨੂੰ ਇੱਕ ਹਫ਼ਤਾ ਨਿਭਾਓ।';
 
   @override
   String get learningJourneyDhikrRoutineSection2Title =>
-      'What keeps the routine alive';
+      'ਰੁਟੀਨ ਨੂੰ ਕੀ ਜਿਊਂਦਾ ਰੱਖਦਾ ਹੈ';
 
   @override
   String get learningJourneyDhikrRoutineSection2Body =>
-      'Clarity matters more than intensity. A small routine that survives real life will benefit you more than a large routine that collapses quickly.';
+      'ਤੀਬਰਤਾ ਨਾਲੋਂ ਸਪਸ਼ਟਤਾ ਵੱਧ ਮਹੱਤਵਪੂਰਨ ਹੈ। ਇੱਕ ਛੋਟੀ ਰੁਟੀਨ ਜੋ ਅਸਲੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਚੱਲਦੀ ਰਹੇ, ਉਸ ਵੱਡੀ ਰੁਟੀਨ ਨਾਲੋਂ ਵੱਧ ਫਾਇਦਾ ਦੇਵੇਗੀ ਜੋ ਜਲਦੀ ਟੁੱਟ ਜਾਵੇ।';
 
   @override
-  String get learningJourneyDhikrRoutineBullet1 =>
-      'Morning: one opening remembrance.';
+  String get learningJourneyDhikrRoutineBullet1 => 'ਸਵੇਰ: ਇੱਕ ਸ਼ੁਰੂਆਤੀ ਯਾਦ।';
 
   @override
   String get learningJourneyDhikrRoutineBullet2 =>
-      'After salah: one short fixed set.';
+      'ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ: ਇੱਕ ਛੋਟਾ ਤੈਅ ਮਜਮੂਆ।';
 
   @override
   String get learningJourneyDhikrRoutineBullet3 =>
-      'Night: one closing remembrance before sleep.';
+      'ਰਾਤ: ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਸਮਾਪਤੀ ਯਾਦ।';
 
   @override
   String get learningJourneyDhikrRoutineTakeaway1 =>
-      'Tie dhikr to moments that already exist in your day.';
+      'ਜ਼ਿਕਰ ਨੂੰ ਉਹਨਾਂ ਪਲਾਂ ਨਾਲ ਜੋੜੋ ਜੋ ਪਹਿਲਾਂ ਹੀ ਤੁਹਾਡੇ ਦਿਨ ਵਿੱਚ ਮੌਜੂਦ ਹਨ।';
 
   @override
   String get learningJourneyDhikrRoutineTakeaway2 =>
-      'Build slowly enough that the habit survives difficulty.';
+      'ਇੰਨਾ ਹੌਲੇ ਬਣਾਓ ਕਿ ਆਦਤ ਮੁਸ਼ਕਲ ਵੇਲੇ ਵੀ ਬਚੀ ਰਹੇ।';
 
   @override
   String get learningJourneyDhikrRoutineTakeaway3 =>
-      'Steady remembrance is formed by clarity, not pressure.';
+      'ਸਥਿਰ ਯਾਦ ਸਪਸ਼ਟਤਾ ਨਾਲ ਬਣਦੀ ਹੈ, ਦਬਾਅ ਨਾਲ ਨਹੀਂ।';
 
   @override
   String get learningJourneyDhikrRoutineReflection =>
-      'Which three moments could become your personal remembrance anchors this week?';
+      'ਇਸ ਹਫ਼ਤੇ ਤੁਹਾਡੇ ਲਈ ਕਿਹੜੇ ਤਿੰਨ ਪਲ ਨਿੱਜੀ ਯਾਦ ਦੇ ਆਸਰੇ ਬਣ ਸਕਦੇ ਹਨ?';
 
   @override
-  String get learningJourneyDhikrIstighfarTitle => 'Istighfar';
+  String get learningJourneyDhikrIstighfarTitle => 'ਇਸਤਿਗ਼ਫਾਰ';
 
   @override
   String get learningJourneyDhikrIstighfarIntro =>
-      'Istighfar is seeking Allah’s forgiveness with humility, honesty, and hope in His mercy.';
+      'ਇਸਤਿਗ਼ਫਾਰ ਨਿਮਰਤਾ, ਸੱਚਾਈ ਅਤੇ ਅੱਲਾਹ ਦੀ ਰਹਿਮਤ ਵਿੱਚ ਉਮੀਦ ਨਾਲ ਉਸ ਤੋਂ ਮਾਫ਼ੀ ਮੰਗਣਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrIstighfarSection1Title =>
-      'Why istighfar matters daily';
+      'ਇਸਤਿਗ਼ਫਾਰ ਰੋਜ਼ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneyDhikrIstighfarSection1Body =>
-      'A believer returns often to Allah, not only after major mistakes. Istighfar softens pride, cleans the heart, and keeps the servant close to mercy.';
+      'ਇੱਕ ਮੋਮਿਨ ਸਿਰਫ਼ ਵੱਡੀਆਂ ਗਲਤੀਆਂ ਤੋਂ ਬਾਅਦ ਨਹੀਂ, ਬਲਕਿ ਵਾਰ-ਵਾਰ ਅੱਲਾਹ ਵੱਲ ਮੁੜਦਾ ਹੈ। ਇਸਤਿਗ਼ਫਾਰ ਅਹੰਕਾਰ ਨੂੰ ਨਰਮ ਕਰਦਾ, ਦਿਲ ਨੂੰ ਸਾਫ਼ ਕਰਦਾ ਅਤੇ ਬੰਦੇ ਨੂੰ ਰਹਿਮਤ ਦੇ ਨੇੜੇ ਰੱਖਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyDhikrIstighfarSection2Title =>
-      'How to build the habit';
+  String get learningJourneyDhikrIstighfarSection2Title => 'ਇਹ ਆਦਤ ਕਿਵੇਂ ਬਣਾਈਏ';
 
   @override
   String get learningJourneyDhikrIstighfarSection2Body =>
-      'Use istighfar after a sin, after heedlessness, after prayer, or whenever the heart feels dry and needs to return to Allah.';
+      'ਗੁਨਾਹ ਤੋਂ ਬਾਅਦ, ਗ਼ਫ਼ਲਤ ਤੋਂ ਬਾਅਦ, ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਜਾਂ ਜਦੋਂ ਵੀ ਦਿਲ ਸੁੱਕਾ ਮਹਿਸੂਸ ਕਰੇ ਅਤੇ ਅੱਲਾਹ ਵੱਲ ਵਾਪਸੀ ਦੀ ਲੋੜ ਹੋਵੇ, ਇਸਤਿਗ਼ਫਾਰ ਕਰੋ।';
 
   @override
   String get learningJourneyDhikrIstighfarBullet1 =>
-      'Repent quickly instead of delaying return.';
+      'ਵਾਪਸੀ ਨੂੰ ਟਾਲਣ ਦੀ ਬਜਾਏ ਜਲਦੀ ਤੌਬਾ ਕਰੋ।';
 
   @override
   String get learningJourneyDhikrIstighfarBullet2 =>
-      'Treat forgiveness as a daily need, not a rare emergency.';
+      'ਮਾਫ਼ੀ ਨੂੰ ਕਦੇ-ਕਦੇ ਦੀ ਐਮਰਜੰਸੀ ਨਹੀਂ, ਰੋਜ਼ਾਨਾ ਦੀ ਲੋੜ ਸਮਝੋ।';
 
   @override
   String get learningJourneyDhikrIstighfarBullet3 =>
-      'Say it with awareness of both weakness and hope.';
+      'ਇਸਨੂੰ ਕਮਜ਼ੋਰੀ ਅਤੇ ਉਮੀਦ ਦੋਵੇਂ ਦੀ ਹੋਸ਼ ਨਾਲ ਕਹੋ।';
 
   @override
   String get learningJourneyDhikrIstighfarTakeaway1 =>
-      'Istighfar is a daily spiritual need.';
+      'ਇਸਤਿਗ਼ਫਾਰ ਰੋਜ਼ਾਨਾ ਦੀ ਰੂਹਾਨੀ ਲੋੜ ਹੈ।';
 
   @override
   String get learningJourneyDhikrIstighfarTakeaway2 =>
-      'Repentance joins honesty about sin with hope in mercy.';
+      'ਤੌਬਾ ਗੁਨਾਹ ਬਾਰੇ ਸੱਚਾਈ ਨੂੰ ਰਹਿਮਤ ਦੀ ਉਮੀਦ ਨਾਲ ਜੋੜਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrIstighfarTakeaway3 =>
-      'Short sincere repentance is better than thoughtless repetition.';
+      'ਛੋਟੀ ਪਰ ਖ਼ਲੂਸ ਵਾਲੀ ਤੌਬਾ ਬੇਧਿਆਨੀ ਵਾਲੀ ਦੁਹਰਾਈ ਨਾਲੋਂ ਬਿਹਤਰ ਹੈ।';
 
   @override
   String get learningJourneyDhikrIstighfarReflection =>
-      'What would change if repentance became one of your daily habits instead of a rare reaction?';
+      'ਜੇ ਤੌਬਾ ਤੁਹਾਡੀਆਂ ਰੋਜ਼ਾਨਾ ਦੀਆਂ ਆਦਤਾਂ ਵਿੱਚੋਂ ਇੱਕ ਬਣ ਜਾਵੇ, ਨਾਕਿ ਕਦੇ-ਕਦੇ ਦੀ ਪ੍ਰਤੀਕ੍ਰਿਆ, ਤਾਂ ਕੀ ਬਦਲੇਗਾ?';
 
   @override
-  String get learningJourneyDhikrIstighfarInvocationTitle => 'Simple istighfar';
+  String get learningJourneyDhikrIstighfarInvocationTitle => 'ਸਾਦਾ ਇਸਤਿਗ਼ਫਾਰ';
 
   @override
   String get learningJourneyDhikrIstighfarInvocationMeaning =>
-      'I seek Allah’s forgiveness and I turn to Him in repentance.';
+      'ਮੈਂ ਅੱਲਾਹ ਤੋਂ ਮਾਫ਼ੀ ਮੰਗਦਾ ਹਾਂ ਅਤੇ ਤੌਬਾ ਕਰਦਿਆਂ ਉਸ ਵੱਲ ਮੁੜਦਾ ਹਾਂ।';
 
   @override
   String get learningJourneyDhikrIstighfarInvocationContext =>
-      'A short daily formula of repentance and return.';
+      'ਤੌਬਾ ਅਤੇ ਵਾਪਸੀ ਦਾ ਇਕ ਛੋਟਾ ਰੋਜ਼ਾਨਾ ਫਾਰਮੂਲਾ।';
 
   @override
-  String get learningJourneyDhikrSalawatTitle => 'Salawat';
+  String get learningJourneyDhikrSalawatTitle => 'ਸਲਾਵਾਤ';
 
   @override
   String get learningJourneyDhikrSalawatIntro =>
-      'Sending prayers upon the Prophet ﷺ is an act of love, gratitude, and obedience to Allah.';
+      'ਨਬੀ ﷺ ਉੱਤੇ ਦੁਆ ਭੇਜਣਾ ਮੁਹੱਬਤ, ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਅਤੇ ਅੱਲਾਹ ਦੀ ਫ਼ਰਮਾਬਰਦਾਰੀ ਦਾ ਇੱਕ ਅਮਲ ਹੈ।';
 
   @override
-  String get learningJourneyDhikrSalawatSection1Title => 'Why salawat matters';
+  String get learningJourneyDhikrSalawatSection1Title => 'ਸਲਾਵਾਤ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneyDhikrSalawatSection1Body =>
-      'Salawat keeps the heart connected to the Messenger ﷺ and reminds you that your path to Allah is shaped by following him with love and respect.';
+      'ਸਲਾਵਾਤ ਦਿਲ ਨੂੰ ਰਸੂਲ ﷺ ਨਾਲ ਜੋੜੀ ਰੱਖਦੀ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਯਾਦ ਦਿਲਾਂਦੀ ਹੈ ਕਿ ਅੱਲਾਹ ਵੱਲ ਤੁਹਾਡਾ ਰਸਤਾ ਉਨ੍ਹਾਂ ਦੀ ਪੈਰਵੀ ਮੁਹੱਬਤ ਅਤੇ ਅਦਬ ਨਾਲ ਕਰਨ ਰਾਹੀਂ ਸੂਰਤ ਲੈਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDhikrSalawatSection2Title =>
-      'How to make it steady';
+      'ਇਸਨੂੰ ਸਥਿਰ ਕਿਵੇਂ ਬਣਾਈਏ';
 
   @override
   String get learningJourneyDhikrSalawatSection2Body =>
-      'Use a short form daily, after hearing the Prophet’s name ﷺ, on Fridays, and in quiet moments when you want to renew love for his guidance.';
+      'ਇੱਕ ਛੋਟਾ ਸਿਗ਼ਾ ਰੋਜ਼ ਵਰਤੋ, ਨਬੀ ﷺ ਦਾ ਨਾਮ ਸੁਣਨ ਤੋਂ ਬਾਅਦ, ਜੁਮ੍ਹੇ ਦੇ ਦਿਨ, ਅਤੇ ਉਹਨਾਂ ਖਾਮੋਸ਼ ਪਲਾਂ ਵਿੱਚ ਜਦੋਂ ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦੀ ਹਿਦਾਇਤ ਲਈ ਮੁਹੱਬਤ ਨੂੰ ਨਵੀਂ ਕਰਨਾ ਚਾਹੋ।';
 
   @override
   String get learningJourneyDhikrSalawatBullet1 =>
-      'Keep a short form ready for frequent repetition.';
+      'ਵਾਰ-ਵਾਰ ਪੜ੍ਹਨ ਲਈ ਇੱਕ ਛੋਟਾ ਸਿਗ਼ਾ ਤਿਆਰ ਰੱਖੋ।';
 
   @override
   String get learningJourneyDhikrSalawatBullet2 =>
-      'Let salawat renew love, not become empty habit.';
+      'ਸਲਾਵਾਤ ਨੂੰ ਮੁਹੱਬਤ ਤਾਜ਼ਾ ਕਰਨ ਦਿਓ, ਖਾਲੀ ਆਦਤ ਨਾ ਬਣਨ ਦਿਓ।';
 
   @override
   String get learningJourneyDhikrSalawatBullet3 =>
-      'Use it often enough that gratitude becomes natural.';
+      'ਇਸਨੂੰ ਇੰਨਾ ਵਰਤੋ ਕਿ ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਫ਼ਿਤਰੀ ਬਣ ਜਾਵੇ।';
 
   @override
   String get learningJourneyDhikrSalawatTakeaway1 =>
-      'Salawat grows love for the Prophet ﷺ in daily life.';
+      'ਸਲਾਵਾਤ ਰੋਜ਼ਾਨਾ ਜੀਵਨ ਵਿੱਚ ਨਬੀ ﷺ ਲਈ ਮੁਹੱਬਤ ਵਧਾਉਂਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrSalawatTakeaway2 =>
-      'A short form used often is better than a long form rarely used.';
+      'ਵਾਰ-ਵਾਰ ਵਰਤਿਆ ਗਿਆ ਇੱਕ ਛੋਟਾ ਸਿਗ਼ਾ ਉਸ ਲੰਮੇ ਸਿਗ਼ੇ ਨਾਲੋਂ ਬਿਹਤਰ ਹੈ ਜੋ ਕਦੇ-ਕਦੇ ਵਰਤਿਆ ਜਾਵੇ।';
 
   @override
   String get learningJourneyDhikrSalawatTakeaway3 =>
-      'This remembrance connects worship to gratitude for guidance.';
+      'ਇਹ ਯਾਦ ਇਬਾਦਤ ਨੂੰ ਹਿਦਾਇਤ ਲਈ ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਨਾਲ ਜੋੜਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDhikrSalawatReflection =>
-      'How can you make salawat part of your day in a way that feels sincere and frequent?';
+      'ਤੁਸੀਂ ਸਲਾਵਾਤ ਨੂੰ ਆਪਣੇ ਦਿਨ ਦਾ ਹਿੱਸਾ ਉਸ ਤਰੀਕੇ ਨਾਲ ਕਿਵੇਂ ਬਣਾ ਸਕਦੇ ਹੋ ਜੋ ਖ਼ਲੂਸ ਭਰਿਆ ਅਤੇ ਵਾਰੰਵਾਰ ਹੋਵੇ?';
 
   @override
-  String get learningJourneyDhikrSalawatInvocationTitle => 'Short salawat';
+  String get learningJourneyDhikrSalawatInvocationTitle => 'ਛੋਟੀ ਸਲਾਵਾਤ';
 
   @override
   String get learningJourneyDhikrSalawatInvocationMeaning =>
-      'O Allah, send prayers upon Muhammad.';
+      'ਏ ਅੱਲਾਹ, ਮੁਹੰਮਦ ਉੱਤੇ ਰਹਿਮਤਾਂ ਨਾਜ਼ਿਲ ਫ਼ਰਮਾ।';
 
   @override
   String get learningJourneyDhikrSalawatInvocationContext =>
-      'A short form for daily remembrance and frequent salawat.';
+      'ਰੋਜ਼ਾਨਾ ਯਾਦ ਅਤੇ ਵਾਰ-ਵਾਰ ਸਲਾਵਾਤ ਲਈ ਇੱਕ ਛੋਟਾ ਸਿਗ਼ਾ।';
 
   @override
-  String get learningJourneyFaithBooksTitle => 'Books';
+  String get learningJourneyFaithBooksTitle => 'ਕਿਤਾਬਾਂ';
 
   @override
   String get learningJourneyFaithBooksIntro =>
-      'Allah sent revelation for guidance, mercy, and truth. Muslims believe in the revealed books and hold the Qur’an as the final preserved revelation.';
+      'ਅੱਲਾਹ ਨੇ ਇਨਸਾਨੀਅਤ ਲਈ ਹਿਦਾਇਤ, ਰਹਿਮਤ ਅਤੇ ਸੱਚਾਈ ਦੇ ਰੂਪ ਵਿੱਚ ਵਹੀ ਨਾਜ਼ਿਲ ਕੀਤੀ। ਮੁਸਲਮਾਨ ਉਤਾਰੀ ਗਈਆਂ ਕਿਤਾਬਾਂ ‘ਤੇ ਈਮਾਨ ਰੱਖਦੇ ਹਨ ਅਤੇ ਕੁਰਆਨ ਨੂੰ ਆਖ਼ਰੀ ਮਹਫ਼ੂਜ਼ ਵਹੀ ਮੰਨਦੇ ਹਨ।';
 
   @override
-  String get learningJourneyFaithBooksSection1Title => 'Why revelation matters';
+  String get learningJourneyFaithBooksSection1Title => 'ਵਹੀ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneyFaithBooksSection1Body =>
-      'Allah did not leave humanity without guidance. He sent scriptures and messages so people could know truth, worship correctly, and live with justice and mercy.';
+      'ਅੱਲਾਹ ਨੇ ਇਨਸਾਨੀਅਤ ਨੂੰ ਬਿਨਾ ਹਿਦਾਇਤ ਨਹੀਂ ਛੱਡਿਆ। ਉਸ ਨੇ ਕਿਤਾਬਾਂ ਅਤੇ ਪੈਗ਼ਾਮ ਭੇਜੇ ਤਾਂ ਜੋ ਲੋਕ ਸੱਚ ਨੂੰ ਜਾਣ ਸਕਣ, ਠੀਕ ਤਰੀਕੇ ਨਾਲ ਇਬਾਦਤ ਕਰ ਸਕਣ ਅਤੇ ਇਨਸਾਫ਼ ਤੇ ਰਹਿਮ ਨਾਲ ਜੀ ਸਕਣ।';
 
   @override
-  String get learningJourneyFaithBooksSection2Title => 'How the Qur’an fits';
+  String get learningJourneyFaithBooksSection2Title => 'ਕੁਰਆਨ ਦੀ ਜਗ੍ਹਾ ਕੀ ਹੈ';
 
   @override
   String get learningJourneyFaithBooksSection2Body =>
-      'Belief in the books deepens gratitude for the Qur’an. It is the final revelation, preserved and sufficient as guidance for the Ummah.';
+      'ਕਿਤਾਬਾਂ ‘ਤੇ ਈਮਾਨ ਕੁਰਆਨ ਲਈ ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਨੂੰ ਡੂੰਘਾ ਕਰਦਾ ਹੈ। ਇਹ ਆਖ਼ਰੀ ਵਹੀ ਹੈ, ਜੋ ਮਹਫ਼ੂਜ਼ ਹੈ ਅਤੇ ਉਮਤ ਲਈ ਹਿਦਾਇਤ ਵਜੋਂ ਕਾਫ਼ੀ ਹੈ।';
 
   @override
-  String get learningJourneyFaithBooksBullet1 =>
-      'Revelation is a mercy from Allah.';
+  String get learningJourneyFaithBooksBullet1 => 'ਵਹੀ ਅੱਲਾਹ ਵੱਲੋਂ ਇਕ ਰਹਿਮਤ ਹੈ।';
 
   @override
   String get learningJourneyFaithBooksBullet2 =>
-      'The Qur’an confirms truth and stands as final guidance.';
+      'ਕੁਰਆਨ ਸੱਚ ਦੀ ਤਸਦੀਕ ਕਰਦਾ ਹੈ ਅਤੇ ਆਖ਼ਰੀ ਹਿਦਾਇਤ ਵਜੋਂ ਕਾਇਮ ਹੈ।';
 
   @override
   String get learningJourneyFaithBooksBullet3 =>
-      'Belief in the books makes the Qur’an feel even more precious.';
+      'ਕਿਤਾਬਾਂ ‘ਤੇ ਈਮਾਨ ਕੁਰਆਨ ਨੂੰ ਹੋਰ ਵੀ ਕੀਮਤੀ ਮਹਿਸੂਸ ਕਰਵਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithBooksTakeaway1 =>
-      'Guidance is one of Allah’s great mercies to humanity.';
+      'ਹਿਦਾਇਤ ਇਨਸਾਨੀਅਤ ਉੱਤੇ ਅੱਲਾਹ ਦੀਆਂ ਵੱਡੀਆਂ ਰਹਿਮਤਾਂ ਵਿੱਚੋਂ ਇੱਕ ਹੈ।';
 
   @override
   String get learningJourneyFaithBooksTakeaway2 =>
-      'The Qur’an holds a unique place as final revelation.';
+      'ਕੁਰਆਨ ਨੂੰ ਆਖ਼ਰੀ ਵਹੀ ਵਜੋਂ ਇੱਕ ਅਨੋਖੀ ਜਗ੍ਹਾ ਹਾਸਲ ਹੈ।';
 
   @override
   String get learningJourneyFaithBooksTakeaway3 =>
-      'A believer should receive the Qur’an with gratitude and seriousness.';
+      'ਇੱਕ ਮੋਮਿਨ ਨੂੰ ਕੁਰਆਨ ਨੂੰ ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ ਅਤੇ ਗੰਭੀਰਤਾ ਨਾਲ ਕਬੂਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithBooksReflection =>
-      'How would you treat the Qur’an differently if you saw it as direct guidance from Allah to you?';
+      'ਜੇ ਤੁਸੀਂ ਕੁਰਆਨ ਨੂੰ ਅੱਲਾਹ ਵੱਲੋਂ ਸਿੱਧੀ ਹਿਦਾਇਤ ਸਮਝੋ, ਤਾਂ ਤੁਸੀਂ ਇਸ ਨਾਲ ਕਿਵੇਂ ਵੱਖਰਾ ਸਲੂਕ ਕਰੋਗੇ?';
 
   @override
-  String get learningJourneyFaithProphetsTitle => 'Prophets';
+  String get learningJourneyFaithProphetsTitle => 'ਪੈਗ਼ੰਬਰ';
 
   @override
   String get learningJourneyFaithProphetsIntro =>
-      'Allah sent prophets to teach truth, model obedience, and call people back to worshipping Him alone.';
+      'ਅੱਲਾਹ ਨੇ ਪੈਗ਼ੰਬਰ ਸੱਚ ਸਿਖਾਉਣ, ਫ਼ਰਮਾਬਰਦਾਰੀ ਦਾ ਨਮੂਨਾ ਬਣਨ ਅਤੇ ਲੋਕਾਂ ਨੂੰ ਸਿਰਫ਼ ਉਸ ਦੀ ਇਬਾਦਤ ਵੱਲ ਵਾਪਸ ਬੁਲਾਉਣ ਲਈ ਭੇਜੇ।';
 
   @override
   String get learningJourneyFaithProphetsSection1Title =>
-      'Why Allah sent prophets';
+      'ਅੱਲਾਹ ਨੇ ਪੈਗ਼ੰਬਰ ਕਿਉਂ ਭੇਜੇ';
 
   @override
   String get learningJourneyFaithProphetsSection1Body =>
-      'Prophets were chosen by Allah to deliver His message, teach His worship, and model what obedience looks like in real life.';
+      'ਪੈਗ਼ੰਬਰਾਂ ਨੂੰ ਅੱਲਾਹ ਨੇ ਆਪਣਾ ਪੈਗ਼ਾਮ ਪਹੁੰਚਾਉਣ, ਆਪਣੀ ਇਬਾਦਤ ਸਿਖਾਉਣ ਅਤੇ ਅਸਲੀ ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਫ਼ਰਮਾਬਰਦਾਰੀ ਕਿਹੋ ਜਿਹੀ ਹੁੰਦੀ ਹੈ, ਇਹ ਦਿਖਾਉਣ ਲਈ ਚੁਣਿਆ।';
 
   @override
   String get learningJourneyFaithProphetsSection2Title =>
-      'How prophets shape faith';
+      'ਪੈਗ਼ੰਬਰ ਈਮਾਨ ਨੂੰ ਕਿਵੇਂ ਰੂਪ ਦਿੰਦੇ ਹਨ';
 
   @override
   String get learningJourneyFaithProphetsSection2Body =>
-      'Their stories teach patience, trust, courage, mercy, repentance, and steadfastness. Belief becomes easier to live when it is seen in prophetic examples.';
+      'ਉਨ੍ਹਾਂ ਦੀਆਂ ਕਹਾਣੀਆਂ ਸਬਰ, ਭਰੋਸਾ, ਹਿੰਮਤ, ਰਹਿਮ, ਤੌਬਾ ਅਤੇ ਡਟੇ ਰਹਿਣਾ ਸਿਖਾਉਂਦੀਆਂ ਹਨ। ਜਦੋਂ ਈਮਾਨ ਨੂੰ ਨਬਵੀ ਉਦਾਹਰਣਾਂ ਵਿੱਚ ਦੇਖਿਆ ਜਾਂਦਾ ਹੈ, ਤਾਂ ਇਸ ‘ਤੇ ਅਮਲ ਕਰਨਾ ਆਸਾਨ ਹੋ ਜਾਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithProphetsBullet1 =>
-      'Prophets carry revelation and model obedience.';
+      'ਪੈਗ਼ੰਬਰ ਵਹੀ ਲਿਆਉਂਦੇ ਹਨ ਅਤੇ ਫ਼ਰਮਾਬਰਦਾਰੀ ਦਾ ਨਮੂਨਾ ਦਿੰਦੇ ਹਨ।';
 
   @override
   String get learningJourneyFaithProphetsBullet2 =>
-      'Their stories teach faith through real human examples.';
+      'ਉਨ੍ਹਾਂ ਦੀਆਂ ਕਹਾਣੀਆਂ ਅਸਲੀ ਇਨਸਾਨੀ ਮਿਸਾਲਾਂ ਰਾਹੀਂ ਈਮਾਨ ਸਿਖਾਉਂਦੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneyFaithProphetsBullet3 =>
-      'Love and respect for the prophets are part of faith.';
+      'ਪੈਗ਼ੰਬਰਾਂ ਨਾਲ ਮੁਹੱਬਤ ਅਤੇ ਅਦਬ ਈਮਾਨ ਦਾ ਹਿੱਸਾ ਹਨ।';
 
   @override
   String get learningJourneyFaithProphetsTakeaway1 =>
-      'Prophets connect revelation to lived example.';
+      'ਪੈਗ਼ੰਬਰ ਵਹੀ ਨੂੰ ਜੀਵੰਤ ਮਿਸਾਲ ਨਾਲ ਜੋੜਦੇ ਹਨ।';
 
   @override
   String get learningJourneyFaithProphetsTakeaway2 =>
-      'Their stories teach both belief and character.';
+      'ਉਨ੍ਹਾਂ ਦੀਆਂ ਕਹਾਣੀਆਂ ਅਕੀਦਾ ਅਤੇ ਅਖ਼ਲਾਕ ਦੋਵੇਂ ਸਿਖਾਉਂਦੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneyFaithProphetsTakeaway3 =>
-      'Respect for all prophets is part of Muslim faith.';
+      'ਸਾਰੇ ਪੈਗ਼ੰਬਰਾਂ ਦਾ ਅਦਬ ਮੁਸਲਮਾਨ ਦੇ ਈਮਾਨ ਦਾ ਹਿੱਸਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithProphetsReflection =>
-      'Which prophetic quality feels most necessary for your own growth right now?';
+      'ਇਸ ਵੇਲੇ ਤੁਹਾਡੇ ਆਪਣੇ ਰੂਹਾਨੀ ਵਾਧੇ ਲਈ ਕਿਹੜਾ ਨਬਵੀ ਗੁਣ ਸਭ ਤੋਂ ਵੱਧ ਲੋੜੀਂਦਾ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ?';
 
   @override
-  String get learningJourneyFaithJudgmentTitle => 'Day of Judgment';
+  String get learningJourneyFaithJudgmentTitle => 'ਯੌਮੁਲ ਹਿਸਾਬ';
 
   @override
   String get learningJourneyFaithJudgmentIntro =>
-      'Muslims believe that life has an end, people will be raised, and every soul will stand before Allah.';
+      'ਕਿਆਮਤ ਦਾ ਦਿਨ ਸਾਨੂੰ ਯਾਦ ਦਿਵਾਂਦਾ ਹੈ ਕਿ ਜ਼ਿੰਦਗੀ ਮਾਇਨੇ ਰੱਖਦੀ ਹੈ, ਅਮਲਾਂ ਦੀ ਕਦਰ ਹੈ, ਅਤੇ ਹਰ ਇਨਸਾਨ ਨੇ ਆਖ਼ਿਰਕਾਰ ਅੱਲਾਹ ਕੋਲ ਵਾਪਸ ਜਾਣਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentSection1Title =>
-      'Why the Last Day matters';
+      'ਆਖ਼ਰੀ ਦਿਨ ਕਿਉਂ ਅਹਿਮ ਹੈ';
 
   @override
   String get learningJourneyFaithJudgmentSection1Body =>
-      'Belief in the Hereafter means life is meaningful, deeds matter, and justice belongs fully to Allah even when the world feels unfair.';
+      'ਇਸਲਾਮ ਸਿਖਾਂਦਾ ਹੈ ਕਿ ਇਹ ਦੁਨਿਆ ਆਖ਼ਰੀ ਠਿਕਾਣਾ ਨਹੀਂ। ਅੱਲਾਹ ਮਖਲੂਕ ਨੂੰ ਦੁਬਾਰਾ ਜਿਉਂਦਾ ਕਰੇਗਾ, ਪੂਰੇ ਇਨਸਾਫ਼ ਨਾਲ ਹਿਸਾਬ ਲਏਗਾ, ਅਤੇ ਪੂਰੀ ਇਨਸਾਫ਼ੀ ਨਾਲ ਸਵਾਬ ਜਾਂ ਸਜ਼ਾ ਦੇਵੇਗਾ।';
 
   @override
   String get learningJourneyFaithJudgmentSection2Title =>
-      'How it changes daily life';
+      'ਇਹ ਰੋਜ਼ਾਨਾ ਜ਼ਿੰਦਗੀ ਕਿਵੇਂ ਬਦਲਦਾ ਹੈ';
 
   @override
   String get learningJourneyFaithJudgmentSection2Body =>
-      'Remembering the Last Day encourages honesty, repentance, patience, and responsibility even when nobody else is watching.';
+      'ਆਖ਼ਿਰਤ ਨੂੰ ਯਾਦ ਰੱਖਣਾ ਦਿਲ ਨੂੰ ਨਰਮ ਕਰ ਸਕਦਾ ਹੈ, ਘਮੰਡ ਘਟਾ ਸਕਦਾ ਹੈ, ਅਤੇ ਰੋਜ਼ਾਨਾ ਚੋਣਾਂ ਨੂੰ ਹੋਰ ਖ਼ਲੂਸ ਵਾਲਾ ਬਣਾ ਸਕਦਾ ਹੈ, ਕਿਉਂਕਿ ਇਨਸਾਨ ਜਵਾਬਦੇਹੀ ਅਤੇ ਉਮੀਦ ਨਾਲ ਜੀਊਣਾ ਸ਼ੁਰੂ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentBullet1 =>
-      'The Hereafter gives seriousness to daily choices.';
+      'ਆਖ਼ਿਰਤ ਰੋਜ਼ਾਨਾ ਚੋਣਾਂ ਨੂੰ ਗੰਭੀਰਤਾ ਦਿੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentBullet2 =>
-      'Allah’s judgment is perfect and just.';
+      'ਅੱਲਾਹ ਦਾ ਫ਼ੈਸਲਾ ਕਾਮਿਲ ਅਤੇ ਇਨਸਾਫ਼ੀ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentBullet3 =>
-      'Remembering the Last Day encourages repentance and integrity.';
+      'ਆਖ਼ਰੀ ਦਿਨ ਦੀ ਯਾਦ ਤੌਬਾ ਅਤੇ ਸੱਚਾਈ ਨੂੰ ਮਜ਼ਬੂਤ ਕਰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentTakeaway1 =>
-      'The Last Day gives life moral weight and hope.';
+      'ਜ਼ਿੰਦਗੀ ਵਿੱਚ ਜਵਾਬਦੇਹੀ ਅਤੇ ਮਕਸਦ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentTakeaway2 =>
-      'Justice ultimately belongs to Allah.';
+      'ਅੱਲਾਹ ਦਾ ਫ਼ੈਸਲਾ ਪੂਰੀ ਤਰ੍ਹਾਂ ਇਨਸਾਫ਼ੀ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentTakeaway3 =>
-      'Accountability changes how a believer acts in private and public.';
+      'ਆਖ਼ਿਰਤ ਨੂੰ ਯਾਦ ਰੱਖਣਾ ਰੋਜ਼ਾਨਾ ਚੋਣਾਂ ਨੂੰ ਸੁਧਾਰ ਸਕਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithJudgmentReflection =>
-      'What daily habit would change if your meeting with Allah felt more present in your mind?';
+      'ਜੇ ਆਖ਼ਿਰਤ ਤੁਹਾਡੇ ਜ਼ਹਨ ਵਿੱਚ ਹੋਰ ਸਾਫ਼ ਰਹਿੰਦੀ, ਤਾਂ ਤੁਸੀਂ ਸਭ ਤੋਂ ਪਹਿਲਾਂ ਕਿਹੜੀ ਆਦਤ ਬਦਲਦੇ?';
 
   @override
-  String get learningJourneyFaithQadrTitle => 'Qadr';
+  String get learningJourneyFaithQadrTitle => 'ਕ਼ਦਰ';
 
   @override
   String get learningJourneyFaithQadrIntro =>
-      'Qadr means Allah knows, writes, and wills all things with perfect wisdom, while people still make real choices and remain responsible.';
+      'ਕ਼ਦਰ ਦਾ ਮਤਲਬ ਹੈ ਕਿ ਮਖਲੂਕ ਵਿੱਚ ਜੋ ਕੁਝ ਵੀ ਹੁੰਦਾ ਹੈ ਉਹ ਅੱਲਾਹ ਦੇ ਕਾਮਿਲ ਇਲਮ, ਫ਼ੈਸਲੇ ਅਤੇ ਹਿਕਮਤ ਅੰਦਰ ਹੈ।';
 
   @override
-  String get learningJourneyFaithQadrSection1Title => 'A simple understanding';
+  String get learningJourneyFaithQadrSection1Title => 'ਇੱਕ ਸਾਦੀ ਸਮਝ';
 
   @override
   String get learningJourneyFaithQadrSection1Body =>
-      'Nothing escapes Allah’s knowledge or power. At the same time, a believer is still commanded to choose obedience, make effort, and repent when they fall short.';
+      'ਅੱਲਾਹ ਹਰ ਚੀਜ਼ ਨੂੰ ਜਾਣਦਾ ਹੈ ਅਤੇ ਕੋਈ ਵੀ ਗੱਲ ਉਸ ਦੀ ਹਿਕਮਤ ਤੋਂ ਬਾਹਰ ਨਹੀਂ। ਕ਼ਦਰ \'ਤੇ ਈਮਾਨ ਇਨਸਾਨੀ ਜ਼ਿੰਮੇਵਾਰੀ ਨੂੰ ਖਤਮ ਨਹੀਂ ਕਰਦਾ। ਇਹ ਸਿਖਾਂਦਾ ਹੈ ਕਿ ਇਨਸਾਨ ਖ਼ਲੂਸ ਨਾਲ ਅਮਲ ਕਰੇ ਅਤੇ ਜੋ ਕੁਝ ਅੱਲਾਹ ਹੋਣ ਦੇਵੇ ਉਸ \'ਤੇ ਭਰੋਸਾ ਰੱਖੇ।';
 
   @override
-  String get learningJourneyFaithQadrSection2Title =>
-      'A common misunderstanding';
+  String get learningJourneyFaithQadrSection2Title => 'ਇੱਕ ਆਮ ਗਲਤਫ਼ਹਮੀ';
 
   @override
   String get learningJourneyFaithQadrSection2Body =>
-      'Qadr is not an excuse for laziness or sin. Trust in Allah’s decree should increase patience and effort, not passivity.';
+      'ਇਹ ਈਮਾਨ ਦਿਲ ਨੂੰ ਠਹਿਰਾਓ ਦਿੰਦਾ ਹੈ। ਨੇਅਮਤ ਵਿੱਚ ਇਹ ਘਮੰਡ ਤੋਂ ਬਚਾਉਂਦਾ ਹੈ, ਅਤੇ ਮੁਸੀਬਤ ਵਿੱਚ ਨਿਰਾਸ਼ਾ ਤੋਂ। ਇਨਸਾਨ ਫਿਰ ਵੀ ਕੋਸ਼ਿਸ਼ ਕਰਦਾ ਹੈ, ਤੌਬਾ ਕਰਦਾ ਹੈ, ਅਤੇ ਦੁਆ ਮੰਗਦਾ ਹੈ, ਨਾਲ ਹੀ ਅੱਲਾਹ ਦੀ ਹਿਕਮਤ \'ਤੇ ਭਰੋਸਾ ਰੱਖਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithQadrBullet1 =>
-      'Allah’s decree is wise even when you do not understand it.';
+      'ਅੱਲਾਹ ਦਾ ਫ਼ੈਸਲਾ ਹਿਕਮਤ ਵਾਲਾ ਹੈ, ਭਾਵੇਂ ਤੁਸੀਂ ਉਸਨੂੰ ਸਮਝ ਨਾ ਸਕੋ।';
 
   @override
   String get learningJourneyFaithQadrBullet2 =>
-      'Trust in qadr brings calm without removing effort.';
+      'ਕ਼ਦਰ \'ਤੇ ਭਰੋਸਾ ਕੋਸ਼ਿਸ਼ ਖਤਮ ਕੀਤੇ ਬਿਨਾ ਸੂਕੂਨ ਲਿਆਉਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithQadrBullet3 =>
-      'Belief in qadr should increase tawakkul, not passivity.';
+      'ਕ਼ਦਰ \'ਤੇ ਈਮਾਨ ਤਵੱਕੁਲ ਵਧਾਉਣਾ ਚਾਹੀਦਾ ਹੈ, ਸੁਸਤੀ ਨਹੀਂ।';
 
   @override
   String get learningJourneyFaithQadrTakeaway1 =>
-      'Allah’s decree is perfect and wise.';
+      'ਅੱਲਾਹ ਦਾ ਫ਼ੈਸਲਾ ਹਿਕਮਤ ਵਾਲਾ ਅਤੇ ਪੂਰਾ ਹੈ।';
 
   @override
   String get learningJourneyFaithQadrTakeaway2 =>
-      'Human effort and divine decree are not opposites.';
+      'ਕ਼ਦਰ \'ਤੇ ਈਮਾਨ ਇਨਸਾਨੀ ਜ਼ਿੰਮੇਵਾਰੀ ਨਹੀਂ ਹਟਾਉਂਦਾ।';
 
   @override
   String get learningJourneyFaithQadrTakeaway3 =>
-      'A believer trusts Allah while still acting responsibly.';
+      'ਕ਼ਦਰ ਦਿਲ ਨੂੰ ਆਸਾਨੀ ਅਤੇ ਮੁਸ਼ਕਲ ਦੋਵਾਂ ਵਿੱਚ ਸੰਤੁਲਿਤ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyFaithQadrReflection =>
-      'Where do you most need trust in Allah’s decree while still doing your part well?';
+      'ਤੁਹਾਨੂੰ ਕਿੱਥੇ ਆਪਣੀ ਕੋਸ਼ਿਸ਼ ਦੇ ਨਾਲ ਅੱਲਾਹ ਦੀ ਹਿਕਮਤ \'ਤੇ ਹੋਰ ਡੂੰਘਾ ਭਰੋਸਾ ਜੋੜਣ ਦੀ ਲੋੜ ਹੈ?';
 
   @override
   String get learningJourneyWordsTopTitle => 'Open top Qur’anic words';
@@ -12839,7 +13063,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrRoutineActionStep =>
-      'Choose one dhikr for the morning, one for the evening, and one after salah so your routine stays small and sustainable.';
+      'ਸਵੇਰ ਲਈ ਇੱਕ ਜ਼ਿਕਰ, ਸ਼ਾਮ ਲਈ ਇੱਕ, ਅਤੇ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਇੱਕ ਚੁਣੋ ਤਾਂ ਜੋ ਤੁਹਾਡੀ ਰੁਟੀਨ ਛੋਟੀ ਅਤੇ ਕਾਇਮ ਰਹਿਣ ਵਾਲੀ ਰਹੇ।';
 
   @override
   String get learningJourneyHadithEssentialsTitle => 'Hadith Essentials';
@@ -13135,55 +13359,55 @@ class AppLocalizationsPa extends AppLocalizations {
       'Finish by connecting confident wudu to calmer prayer preparation and steady worship.';
 
   @override
-  String get learningJourneyStageRamadanWhatIsTitle => 'What is Ramadan';
+  String get learningJourneyStageRamadanWhatIsTitle => 'ਰਮਜ਼ਾਨ ਕੀ ਹੈ';
 
   @override
   String get learningJourneyStageRamadanWhatIsSummary =>
-      'Begin with what Ramadan is, why it is honored, and how it becomes a month of worship and mercy.';
+      'ਰਮਜ਼ਾਨ ਕੀ ਹੈ, ਇਹ ਕਿਉਂ ਆਦਰਯੋਗ ਹੈ, ਅਤੇ ਇਹ ਇਬਾਦਤ ਤੇ ਰਹਿਮਤ ਦਾ ਮਹੀਨਾ ਕਿਵੇਂ ਬਣਦਾ ਹੈ, ਇਸ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageRamadanWhyFastTitle => 'Why we fast';
+  String get learningJourneyStageRamadanWhyFastTitle =>
+      'ਅਸੀਂ ਰੋਜ਼ਾ ਕਿਉਂ ਰੱਖਦੇ ਹਾਂ';
 
   @override
   String get learningJourneyStageRamadanWhyFastSummary =>
-      'Learn the purpose of fasting and how it trains taqwa, gratitude, and restraint.';
+      'ਰੋਜ਼ੇ ਦਾ ਮਕਸਦ ਸਿੱਖੋ ਅਤੇ ਵੇਖੋ ਕਿ ਇਹ ਤਕਵਾ, ਸ਼ੁਕਰ ਅਤੇ ਸੰਜਮ ਦੀ ਤਰਬੀਅਤ ਕਿਵੇਂ ਦਿੰਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageRamadanSuhoorIftarTitle => 'Suhoor and iftar';
+  String get learningJourneyStageRamadanSuhoorIftarTitle => 'ਸਹਿਰੀ ਅਤੇ ਇਫਤਾਰ';
 
   @override
   String get learningJourneyStageRamadanSuhoorIftarSummary =>
-      'Build a practical daily rhythm from pre-dawn preparation to breaking the fast with gratitude.';
+      'ਸਵੇਰ ਤੋਂ ਪਹਿਲਾਂ ਦੀ ਤਿਆਰੀ ਤੋਂ ਲੈ ਕੇ ਸ਼ੁਕਰ ਨਾਲ ਰੋਜ਼ਾ ਖੋਲ੍ਹਣ ਤੱਕ ਇੱਕ ਅਮਲੀ ਰੋਜ਼ਾਨਾ ਲਯ ਬਣਾਓ।';
 
   @override
   String get learningJourneyStageRamadanBreaksFastTitle =>
-      'What breaks the fast';
+      'ਕੀ ਚੀਜ਼ ਰੋਜ਼ਾ ਤੋੜਦੀ ਹੈ';
 
   @override
   String get learningJourneyStageRamadanBreaksFastSummary =>
-      'Learn the common things that break the fast and how to avoid anxious uncertainty.';
+      'ਉਹ ਆਮ ਗੱਲਾਂ ਸਿੱਖੋ ਜੋ ਰੋਜ਼ਾ ਤੋੜਦੀਆਂ ਹਨ ਅਤੇ ਘਬਰਾਹਟ ਭਰੀ ਅਣਸ਼ਚਿਤਤਾ ਤੋਂ ਕਿਵੇਂ ਬਚਣਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageRamadanLaylatTitle => 'Laylat al-Qadr';
+  String get learningJourneyStageRamadanLaylatTitle => 'ਲੈਲਤੁਲ ਕ਼ਦਰ';
 
   @override
   String get learningJourneyStageRamadanLaylatSummary =>
-      'Understand the weight of the last nights and how to seek Laylat al-Qadr with sincerity.';
+      'ਆਖ਼ਰੀ ਰਾਤਾਂ ਦੀ ਅਹਿਮੀਅਤ ਸਮਝੋ ਅਤੇ ਸੱਚਾਈ ਨਾਲ ਲੈਲਤੁਲ ਕ਼ਦਰ ਦੀ ਤਲਾਸ਼ ਕਿਵੇਂ ਕਰਨੀ ਹੈ।';
 
   @override
-  String get learningJourneyStageRamadanSpiritualGoalsTitle =>
-      'Spiritual goals';
+  String get learningJourneyStageRamadanSpiritualGoalsTitle => 'ਰੂਹਾਨੀ ਮਕਸਦ';
 
   @override
   String get learningJourneyStageRamadanSpiritualGoalsSummary =>
-      'Set simple spiritual goals so Ramadan changes more than your meal schedule.';
+      'ਸੌਖੇ ਰੂਹਾਨੀ ਮਕਸਦ ਰੱਖੋ ਤਾਂ ਜੋ ਰਮਜ਼ਾਨ ਸਿਰਫ਼ ਤੁਹਾਡੀ ਖਾਣ-ਪੀਣ ਦੀ ਰੁਟੀਨ ਹੀ ਨਾ ਬਦਲੇ।';
 
   @override
-  String get learningJourneyStageRamadanMistakesTitle => 'Common mistakes';
+  String get learningJourneyStageRamadanMistakesTitle => 'ਆਮ ਗਲਤੀਆਂ';
 
   @override
   String get learningJourneyStageRamadanMistakesSummary =>
-      'Finish with practical reminders that protect fasting from confusion, burnout, and distraction.';
+      'ਉਹ ਅਮਲੀ ਯਾਦ ਦਿਹਾਣੀਆਂ ਨਾਲ ਪੂਰਾ ਕਰੋ ਜੋ ਰੋਜ਼ੇ ਨੂੰ ਉਲਝਣ, ਥਕਾਵਟ ਅਤੇ ਧਿਆਨ-ਭੰਗ ਤੋਂ ਬਚਾਉਂਦੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneyStageAlphabetOpenTitle => 'Meet the letters';
@@ -13209,55 +13433,54 @@ class AppLocalizationsPa extends AppLocalizations {
       'Use short review loops so the alphabet stays stable before you move into harakat and words.';
 
   @override
-  String get learningJourneyStageReadingFathahTitle => 'Fathah';
+  String get learningJourneyStageReadingFathahTitle => 'ਜ਼ਬਰ';
 
   @override
   String get learningJourneyStageReadingFathahSummary =>
-      'Begin reading with the short a sound and learn how it opens the mouth gently.';
+      'ਛੋਟੀ “ਅ” ਆਵਾਜ਼ ਨਾਲ ਪੜ੍ਹਨਾ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਸਿੱਖੋ ਕਿ ਇਹ ਮੂੰਹ ਨੂੰ ਕਿਵੇਂ ਨਰਮੀ ਨਾਲ ਖੋਲ੍ਹਦੀ ਹੈ।';
 
   @override
-  String get learningJourneyStageReadingKasrahTitle => 'Kasrah';
+  String get learningJourneyStageReadingKasrahTitle => 'ਜ਼ੇਰ';
 
   @override
   String get learningJourneyStageReadingKasrahSummary =>
-      'Learn the short i sound and how it changes the feel of a letter when reading.';
+      'ਛੋਟੀ “ਇ” ਆਵਾਜ਼ ਸਿੱਖੋ ਅਤੇ ਵੇਖੋ ਕਿ ਪੜ੍ਹਦੇ ਵੇਲੇ ਇਹ ਅੱਖਰ ਦੇ ਅਹਿਸਾਸ ਨੂੰ ਕਿਵੇਂ ਬਦਲਦੀ ਹੈ।';
 
   @override
-  String get learningJourneyStageReadingDammahTitle => 'Dammah';
+  String get learningJourneyStageReadingDammahTitle => 'ਪੇਸ਼';
 
   @override
   String get learningJourneyStageReadingDammahSummary =>
-      'Practice the short u sound and notice how rounded reading stays calm and precise.';
+      'ਛੋਟੀ “ਉ” ਆਵਾਜ਼ ਦਾ ਅਭਿਆਸ ਕਰੋ ਅਤੇ ਧਿਆਨ ਕਰੋ ਕਿ ਗੋਲਾਈ ਵਾਲੀ ਪੜ੍ਹਾਈ ਕਿਵੇਂ ਸ਼ਾਂਤ ਤੇ ਸਹੀ ਰਹਿੰਦੀ ਹੈ।';
 
   @override
-  String get learningJourneyStageReadingSukunTitle => 'Sukun';
+  String get learningJourneyStageReadingSukunTitle => 'ਜਜ਼ਮ';
 
   @override
   String get learningJourneyStageReadingSukunSummary =>
-      'Understand how a resting letter sounds when there is no vowel movement attached to it.';
+      'ਸਮਝੋ ਕਿ ਜਦੋਂ ਕਿਸੇ ਅੱਖਰ ਨਾਲ ਕੋਈ ਸਵਰੀ ਹਰਕਤ ਨਾ ਜੁੜੀ ਹੋਵੇ ਤਾਂ ਠਹਿਰਿਆ ਹੋਇਆ ਅੱਖਰ ਕਿਵੇਂ ਸੁਣਾਈ ਦਿੰਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageReadingShaddahTitle => 'Shaddah';
+  String get learningJourneyStageReadingShaddahTitle => 'ਤਸ਼ਦੀਦ';
 
   @override
   String get learningJourneyStageReadingShaddahSummary =>
-      'Learn how doubled letters sound and how to slow down enough to pronounce them clearly.';
+      'ਸਿੱਖੋ ਕਿ ਦੋਹਰੇ ਅੱਖਰ ਕਿਵੇਂ ਸੁਣਾਈ ਦਿੰਦੇ ਹਨ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਸਾਫ਼ ਉਚਾਰਨ ਕਰਨ ਲਈ ਕਿਵੇਂ ਹੌਲਾ ਹੋਣਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageReadingJoiningLettersTitle =>
-      'Joining letters';
+  String get learningJourneyStageReadingJoiningLettersTitle => 'ਅੱਖਰ ਜੋੜਨਾ';
 
   @override
   String get learningJourneyStageReadingJoiningLettersSummary =>
-      'Move from single sounds into joined letters and short words without rushing.';
+      'ਇੱਕਲੀਆਂ ਆਵਾਜ਼ਾਂ ਤੋਂ ਜੁੜੇ ਅੱਖਰਾਂ ਅਤੇ ਛੋਟੇ ਸ਼ਬਦਾਂ ਤੱਕ ਬਿਨਾ ਘਬਰਾਏ ਪਹੁੰਚੋ।';
 
   @override
   String get learningJourneyStageReadingCheckpointTitle =>
-      'Review and checkpoint';
+      'ਸਮੀਖਿਆ ਅਤੇ ਜਾਂਚ-ਪੜਤਾਲ';
 
   @override
   String get learningJourneyStageReadingCheckpointSummary =>
-      'Pause, review, and notice which reading skill is ready and which one still needs another calm pass.';
+      'ਠਹਿਰੋ, ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਵੇਖੋ ਕਿ ਕਿਹੜੀ ਪੜ੍ਹਾਈ ਕਾਬਲੀਅਤ ਤਿਆਰ ਹੈ ਅਤੇ ਕਿਸਨੂੰ ਹੋਰ ਇੱਕ ਸ਼ਾਂਤ ਕੋਸ਼ਿਸ਼ ਦੀ ਲੋੜ ਹੈ।';
 
   @override
   String get learningJourneyStageTriviaPathsTitle => 'Choose a knowledge path';
@@ -15015,11 +15238,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingCompletionTitle =>
-      'Move into recitation understanding';
+      'ਤਿਲਾਵਤ ਦੀ ਸਮਝ ਵੱਲ ਵਧੋ';
 
   @override
   String get learningJourneyStageReadingCompletionSummary =>
-      'Finish by linking your new reading confidence to Qur’an meaning and familiar recitation.';
+      'ਆਪਣੇ ਨਵੇਂ ਪੜ੍ਹਾਈ-ਭਰੋਸੇ ਨੂੰ ਕੁਰਆਨ ਦੇ ਅਰਥ ਅਤੇ ਜਾਣ-ਪਛਾਣ ਵਾਲੀ ਤਿਲਾਵਤ ਨਾਲ ਜੋੜ ਕੇ ਇਹ ਪੜਾਅ ਪੂਰਾ ਕਰੋ।';
 
   @override
   String get learningJourneyStageReciteCompletionTitle =>
@@ -15939,156 +16162,153 @@ class AppLocalizationsPa extends AppLocalizations {
       'Gather the core beliefs together and decide what to study next.';
 
   @override
-  String get learningJourneyStageFiqhHalalTitle => 'Halal and Haram';
+  String get learningJourneyStageFiqhHalalTitle => 'ਹਲਾਲ ਅਤੇ ਹਰਾਮ';
 
   @override
   String get learningJourneyStageFiqhHalalSummary =>
-      'Learn a simple way to think about what is allowed, forbidden, and doubtful.';
+      'ਇਹ ਸਮਝਣ ਦਾ ਇਕ ਸੌਖਾ ਤਰੀਕਾ ਸਿੱਖੋ ਕਿ ਕੀ ਜਾਇਜ਼ ਹੈ, ਕੀ ਮਨਾਹੀ ਹੈ ਅਤੇ ਕਿਸ ਗੱਲ ਵਿੱਚ ਸ਼ੱਕ ਹੋ ਸਕਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageFiqhCleanlinessTitle => 'Cleanliness';
+  String get learningJourneyStageFiqhCleanlinessTitle => 'ਪਾਕੀਜ਼ਗੀ';
 
   @override
   String get learningJourneyStageFiqhCleanlinessSummary =>
-      'See why purity and cleanliness matter in worship and daily living.';
+      'ਵੇਖੋ ਕਿ ਇਬਾਦਤ ਅਤੇ ਰੋਜ਼ਾਨਾ ਜੀਵਨ ਵਿੱਚ ਪਾਕੀ ਅਤੇ ਸਫ਼ਾਈ ਕਿਉਂ ਅਹਿਮ ਹਨ।';
 
   @override
-  String get learningJourneyStageFiqhPrayerTitle => 'Salah Basics';
+  String get learningJourneyStageFiqhPrayerTitle => 'ਨਮਾਜ਼ ਦੀਆਂ ਬੁਨਿਆਦਾਂ';
 
   @override
   String get learningJourneyStageFiqhPrayerSummary =>
-      'Understand the core rules that frame salah without getting lost in detail.';
+      'ਉਹ ਅਸਾਸੀ ਕਾਇਦੇ ਸਮਝੋ ਜੋ ਨਮਾਜ਼ ਦਾ ਡਾਂਚਾ ਬਣਾਉਂਦੇ ਹਨ, ਬਿਨਾ ਇਹਦੇ ਕਿ ਤੁਸੀਂ ਵਧੇਰੇ ਵੇਰਵਿਆਂ ਵਿੱਚ ਖੋ ਜਾਓ।';
 
   @override
-  String get learningJourneyStageFiqhFastingTitle => 'Fasting Basics';
+  String get learningJourneyStageFiqhFastingTitle => 'ਰੋਜ਼ੇ ਦੀਆਂ ਬੁਨਿਆਦਾਂ';
 
   @override
   String get learningJourneyStageFiqhFastingSummary =>
-      'Learn the foundations of fasting, intention, and common misunderstandings.';
+      'ਰੋਜ਼ੇ, ਨੀਅਤ ਅਤੇ ਆਮ ਗਲਤਫਹਿਮੀਆਂ ਦੀਆਂ ਬੁਨਿਆਦਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get learningJourneyStageFiqhZakatTitle => 'Zakat Basics';
+  String get learningJourneyStageFiqhZakatTitle => 'ਜ਼ਕਾਤ ਦੀਆਂ ਬੁਨਿਆਦਾਂ';
 
   @override
   String get learningJourneyStageFiqhZakatSummary =>
-      'Understand the purpose of zakat and when it becomes important to learn more.';
+      'ਜ਼ਕਾਤ ਦਾ ਮਕਸਦ ਸਮਝੋ ਅਤੇ ਇਹ ਵੀ ਕਿ ਕਦੋਂ ਇਸ ਬਾਰੇ ਹੋਰ ਸਿੱਖਣਾ ਜ਼ਰੂਰੀ ਹੋ ਜਾਂਦਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageFiqhDailyLifeTitle => 'Daily Life Scenarios';
+  String get learningJourneyStageFiqhDailyLifeTitle => 'ਰੋਜ਼ਾਨਾ ਜੀਵਨ ਦੇ ਹਾਲਾਤ';
 
   @override
   String get learningJourneyStageFiqhDailyLifeSummary =>
-      'Apply simple fiqh thinking to ordinary questions and choices.';
+      'ਸੌਖੀ ਫਿਕਹੀ ਸੋਚ ਨੂੰ ਆਮ ਸਵਾਲਾਂ ਅਤੇ ਚੋਣਾਂ ‘ਤੇ ਲਾਗੂ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageFiqhCompletionTitle => 'Practical Review';
+  String get learningJourneyStageFiqhCompletionTitle => 'ਅਮਲੀ ਸਮੀਖਿਆ';
 
   @override
   String get learningJourneyStageFiqhCompletionSummary =>
-      'Review the essentials and choose the next ibadah journey to strengthen.';
+      'ਜ਼ਰੂਰੀ ਗੱਲਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਅਗਲੀ ਕਿਹੜੀ ਇਬਾਦਤ-ਯਾਤਰਾ ਮਜ਼ਬੂਤ ਕਰਨੀ ਹੈ, ਇਹ ਚੁਣੋ।';
 
   @override
   String get learningJourneyStageTimelineEarlyProphetsTitle =>
-      'Early Prophets Overview';
+      'ਸ਼ੁਰੂਆਤੀ ਅੰਬੀਆ ਦਾ ਸਰਵੇਖਣ';
 
   @override
   String get learningJourneyStageTimelineEarlyProphetsSummary =>
-      'Start with the earliest prophetic stories and the pattern they establish.';
+      'ਸਭ ਤੋਂ ਪਹਿਲੀਆਂ ਨਬੀਆਂ ਦੀਆਂ ਕਹਾਣੀਆਂ ਅਤੇ ਉਹਨਾਂ ਦੇ ਕਾਇਮ ਕੀਤੇ ਹੋਏ ਢੰਗ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
   String get learningJourneyStageTimelineProphetEraTitle =>
-      'The Era of Prophet Muhammad';
+      'ਹਜ਼ਰਤ ਮੁਹੰਮਦ ਦਾ ਦੌਰ';
 
   @override
   String get learningJourneyStageTimelineProphetEraSummary =>
-      'See how revelation transformed a community during the life of the Prophet.';
+      'ਵੇਖੋ ਕਿ ਨਬੀ ਦੀ ਜ਼ਿੰਦਗੀ ਦੌਰਾਨ ਵਹੀ ਨੇ ਇੱਕ ਕੌਮ ਨੂੰ ਕਿਵੇਂ ਬਦਲ ਦਿੱਤਾ।';
 
   @override
-  String get learningJourneyStageTimelineKhulafaTitle =>
-      'The Rightly Guided Caliphs';
+  String get learningJourneyStageTimelineKhulafaTitle => 'ਖੁਲਫ਼ਾ-ਏ-ਰਾਸ਼ਿਦੀਨ';
 
   @override
   String get learningJourneyStageTimelineKhulafaSummary =>
-      'Learn how leadership continued after the Prophet with service and responsibility.';
+      'ਸਿੱਖੋ ਕਿ ਨਬੀ ਤੋਂ ਬਾਅਦ ਨੇਤ੍ਰਿਤਵ ਖਿਦਮਤ ਅਤੇ ਜ਼ਿੰਮੇਵਾਰੀ ਨਾਲ ਕਿਵੇਂ ਜਾਰੀ ਰਿਹਾ।';
 
   @override
-  String get learningJourneyStageTimelineExpansionTitle => 'Expansion of Islam';
+  String get learningJourneyStageTimelineExpansionTitle => 'ਇਸਲਾਮ ਦਾ ਫੈਲਾਅ';
 
   @override
   String get learningJourneyStageTimelineExpansionSummary =>
-      'Understand how Islam spread across lands, peoples, and cultures.';
+      'ਸਮਝੋ ਕਿ ਇਸਲਾਮ ਕਿਵੇਂ ਜ਼ਮੀਨਾਂ, ਲੋਕਾਂ ਅਤੇ ਸਭਿਆਚਾਰਾਂ ਵਿੱਚ ਫੈਲਿਆ।';
 
   @override
-  String get learningJourneyStageTimelineGoldenAgeTitle => 'The Golden Age';
+  String get learningJourneyStageTimelineGoldenAgeTitle => 'ਸੁਨਹਿਰਾ ਦੌਰ';
 
   @override
   String get learningJourneyStageTimelineGoldenAgeSummary =>
-      'See how knowledge, scholarship, and civilization developed over time.';
+      'ਵੇਖੋ ਕਿ ਸਮੇਂ ਦੇ ਨਾਲ ਗਿਆਨ, ਇਲਮ ਅਤੇ ਤਹਜ਼ੀਬ ਕਿਵੇਂ ਵਿਕਸਤ ਹੋਏ।';
 
   @override
-  String get learningJourneyStageTimelineModernTitle => 'Modern Context';
+  String get learningJourneyStageTimelineModernTitle => 'ਆਧੁਨਿਕ ਪ੍ਰਸੰਗ';
 
   @override
   String get learningJourneyStageTimelineModernSummary =>
-      'Reflect on the modern Muslim world with humility and perspective.';
+      'ਨਿਮਰਤਾ ਅਤੇ ਡੂੰਘੀ ਸਮਝ ਨਾਲ ਆਧੁਨਿਕ ਮੁਸਲਿਮ ਦੁਨੀਆ ਬਾਰੇ ਸੋਚੋ।';
 
   @override
-  String get learningJourneyStageTimelineCompletionTitle =>
-      'Timeline Reflection';
+  String get learningJourneyStageTimelineCompletionTitle => 'ਟਾਈਮਲਾਈਨ ਮਨਨ';
 
   @override
   String get learningJourneyStageTimelineCompletionSummary =>
-      'Pull the major eras together and choose where to go deeper next.';
+      'ਵੱਡੇ ਦੌਰਾਂ ਨੂੰ ਇਕੱਠੇ ਕਰੋ ਅਤੇ ਚੁਣੋ ਕਿ ਹੁਣ ਹੋਰ ਡੂੰਘਾਈ ਵਿੱਚ ਕਿੱਥੇ ਜਾਣਾ ਹੈ।';
 
   @override
-  String get learningJourneyStageStoriesSkyTitle => 'Sky and Stars';
+  String get learningJourneyStageStoriesSkyTitle => 'ਆਕਾਸ਼ ਅਤੇ ਤਾਰੇ';
 
   @override
   String get learningJourneyStageStoriesSkySummary =>
-      'Reflect on the order, beauty, and signs in the heavens.';
+      'ਆਸਮਾਨਾਂ ਵਿੱਚ ਮੌਜੂਦ ਨਿਯਮ, ਖੂਬਸੂਰਤੀ ਅਤੇ ਨਿਸ਼ਾਨੀਆਂ ‘ਤੇ ਮਨਨ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageStoriesOceanTitle => 'Ocean';
+  String get learningJourneyStageStoriesOceanTitle => 'ਸਮੁੰਦਰ';
 
   @override
   String get learningJourneyStageStoriesOceanSummary =>
-      'Reflect on power, provision, and dependence through the sea.';
+      'ਸਮੁੰਦਰ ਰਾਹੀਂ ਤਾਕਤ, ਰਿਜ਼ਕ ਅਤੇ ਨਿਰਭਰਤਾ ‘ਤੇ ਵਿਚਾਰ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageStoriesMountainsTitle => 'Mountains';
+  String get learningJourneyStageStoriesMountainsTitle => 'ਪਹਾੜ';
 
   @override
   String get learningJourneyStageStoriesMountainsSummary =>
-      'Reflect on stability, scale, and quiet signs of Allah\'s wisdom.';
+      'ਥਿਰਤਾ, ਵਿਸ਼ਾਲਤਾ ਅਤੇ ਅੱਲ੍ਹਾ ਦੀ ਹਿਕਮਤ ਦੀਆਂ ਖ਼ਾਮੋਸ਼ ਨਿਸ਼ਾਨੀਆਂ ‘ਤੇ ਮਨਨ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageStoriesAnimalsTitle => 'Animals';
+  String get learningJourneyStageStoriesAnimalsTitle => 'ਜਾਨਵਰ';
 
   @override
   String get learningJourneyStageStoriesAnimalsSummary =>
-      'Notice mercy, design, and benefit in the creatures around us.';
+      'ਆਪਣੇ ਆਲੇ-ਦੁਆਲੇ ਮਖਲੂਕ ਵਿੱਚ ਰਹਿਮ, ਬਣਤਰ ਅਤੇ ਫ਼ਾਇਦੇ ਨੂੰ ਨੋਟ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageStoriesHumanCreationTitle => 'Human Creation';
+  String get learningJourneyStageStoriesHumanCreationTitle => 'ਇਨਸਾਨੀ ਪੈਦਾਇਸ਼';
 
   @override
   String get learningJourneyStageStoriesHumanCreationSummary =>
-      'Reflect on origin, purpose, and the dignity Allah gave human beings.';
+      'ਮੂਲ, ਮਕਸਦ ਅਤੇ ਉਸ ਇਜ਼ਤ ‘ਤੇ ਮਨਨ ਕਰੋ ਜੋ ਅੱਲ੍ਹਾ ਨੇ ਇਨਸਾਨਾਂ ਨੂੰ ਬਖ਼ਸ਼ੀ।';
 
   @override
-  String get learningJourneyStageStoriesDayNightTitle => 'Day and Night';
+  String get learningJourneyStageStoriesDayNightTitle => 'ਦਿਨ ਅਤੇ ਰਾਤ';
 
   @override
   String get learningJourneyStageStoriesDayNightSummary =>
-      'Reflect on rhythm, rest, and the passage of life through time.';
+      'ਲਯ, ਆਰਾਮ ਅਤੇ ਵੇਲੇ ਦੇ ਨਾਲ ਜ਼ਿੰਦਗੀ ਦੇ ਲੰਘਣ ‘ਤੇ ਮਨਨ ਕਰੋ।';
 
   @override
-  String get learningJourneyStageStoriesCompletionTitle =>
-      'Reflection and Next Steps';
+  String get learningJourneyStageStoriesCompletionTitle => 'ਮਨਨ ਅਤੇ ਅਗਲੇ ਕਦਮ';
 
   @override
   String get learningJourneyStageStoriesCompletionSummary =>
-      'Gather the signs you noticed and carry them into deeper learning.';
+      'ਜਿਹੜੀਆਂ ਨਿਸ਼ਾਨੀਆਂ ਤੁਸੀਂ ਵੇਖੀਆਂ ਉਹਨਾਂ ਨੂੰ ਇਕੱਠਾ ਕਰੋ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਹੋਰ ਡੂੰਘੀ ਸਿੱਖਿਆ ਵਿੱਚ ਨਾਲ ਲੈ ਜਾਓ।';
 
   @override
   String get learningJourneyFaithSection1Title => 'What this teaches';
@@ -17219,21 +17439,21 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get onboardingLearningAgeGroupTitle =>
-      'Which learning path fits you best?';
+      'ਕਿਹੜਾ ਸਿੱਖਣ ਵਾਲਾ ਰਾਹ ਤੁਹਾਡੇ ਲਈ ਸਭ ਤੋਂ ਢੁੱਕਵਾਂ ਹੈ?';
 
   @override
   String get onboardingLearningAgeGroupSubtitle =>
-      'We use this to adapt lesson wording and the kinds of journeys surfaced first, while keeping the experience calm and supportive.';
+      'ਅਸੀਂ ਇਸਦਾ ਇਸਤੇਮਾਲ ਪਾਠਾਂ ਦੀ ਭਾਸ਼ਾ ਅਤੇ ਪਹਿਲਾਂ ਦਿਖਾਈ ਜਾਣ ਵਾਲੀਆਂ ਯਾਤਰਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਲਈ ਢਾਲਣ ਲਈ ਕਰਦੇ ਹਾਂ, ਤਾਂ ਜੋ ਅਨੁਭਵ ਸ਼ਾਂਤ ਅਤੇ ਸਹਾਇਕ ਰਹੇ।';
 
   @override
   String get onboardingLearningAgeGroupKids =>
-      'I’m a child / learning with family';
+      'ਮੈਂ ਬੱਚਾ ਹਾਂ / ਪਰਿਵਾਰ ਨਾਲ ਸਿੱਖ ਰਿਹਾ ਹਾਂ';
 
   @override
-  String get onboardingLearningAgeGroupTeens => 'I’m a teenager';
+  String get onboardingLearningAgeGroupTeens => 'ਮੈਂ ਕਿਸ਼ੋਰ ਹਾਂ';
 
   @override
-  String get onboardingLearningAgeGroupAdults => 'I’m an adult';
+  String get onboardingLearningAgeGroupAdults => 'ਮੈਂ ਵੱਡਾ ਹਾਂ';
 
   @override
   String get learningJourneyIslamFoundationsTitle => 'What Is Islam?';
@@ -17263,31 +17483,31 @@ class AppLocalizationsPa extends AppLocalizations {
       'Beginners need one clear first path before they are exposed to the rest of the learning library.';
 
   @override
-  String get learningJourneyDailyRoutinesTitle => 'Daily Routines';
+  String get learningJourneyDailyRoutinesTitle => 'ਰੋਜ਼ਾਨਾ ਦਿਨਚਰਿਆ';
 
   @override
   String get learningJourneyDailyRoutinesSubtitle =>
-      'A gentle rhythm for prayer, Qur\'an, dhikr, and steadiness.';
+      'ਨਮਾਜ਼, ਕੁਰਆਨ, ਜ਼ਿਕਰ ਅਤੇ ਸਥਿਰਤਾ ਲਈ ਇੱਕ ਨਰਮ ਲਹਿਰ।';
 
   @override
   String get learningJourneyDailyRoutinesDescription =>
-      'Build a realistic daily Muslim routine that begins small, anchors itself to salah, and stays sustainable.';
+      'ਇੱਕ ਹਕੀਕਤੀ ਦਿਨਚਰਿਆ ਬਣਾਓ ਜੋ ਛੋਟੇ ਤੋਂ ਸ਼ੁਰੂ ਹੋਵੇ, ਨਮਾਜ਼ ਤੇ ਟਿਕੀ ਹੋਵੇ ਅਤੇ ਟਿਕਾਊ ਰਹੇ।';
 
   @override
   String get learningJourneyDailyRoutinesOutcome1 =>
-      'Create a simple daily worship rhythm without overwhelm.';
+      'ਬਿਨਾਂ ਬਹੁਤ ਜ਼ਿਆਦਾ ਭਾਰ ਦੇ ਇੱਕ ਸੌਖੀ ਰੋਜ਼ਾਨਾ ਇਬਾਦਤੀ ਲਯ ਬਣਾਓ।';
 
   @override
   String get learningJourneyDailyRoutinesOutcome2 =>
-      'Use salah as the anchor for Qur\'an, dhikr, and duas.';
+      'ਕੁਰਆਨ, ਜ਼ਿਕਰ ਅਤੇ ਦੁਆਵਾਂ ਲਈ ਨਮਾਜ਼ ਨੂੰ ਕੇਂਦਰ ਬਣਾਓ।';
 
   @override
   String get learningJourneyDailyRoutinesOutcome3 =>
-      'Build habits through small, repeatable actions.';
+      'ਛੋਟੇ, ਵਾਰੰ-ਵਾਰ ਦੁਹਰਾਏ ਜਾਣ ਵਾਲੇ ਕਦਮਾਂ ਨਾਲ ਆਦਤਾਂ ਬਣਾਓ।';
 
   @override
   String get learningJourneyDailyRoutinesWhyThisMatters =>
-      'Many users do not need more information first. They need a realistic structure they can actually live.';
+      'ਜ਼ਿਆਦਾਤਰ ਲੋਕਾਂ ਨੂੰ ਪਹਿਲਾਂ ਹੋਰ ਜਾਣਕਾਰੀ ਨਹੀਂ, ਇੱਕ ਅਮਲੀ ਢਾਂਚੇ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ ਜੋ ਉਹ ਜੀ ਸਕਣ।';
 
   @override
   String get learningJourneyStageIslamWhatIsIslamTitle => 'What is Islam?';
@@ -17530,190 +17750,190 @@ class AppLocalizationsPa extends AppLocalizations {
       'Choose salah or Al-Fatihah as your next steady step.';
 
   @override
-  String get learningJourneyDailyRoutinesSection1Title => 'Choose the anchor';
+  String get learningJourneyDailyRoutinesSection1Title => 'ਐਂਕਰ ਚੁਣੋ';
 
   @override
-  String get learningJourneyDailyRoutinesSection2Title => 'Keep it sustainable';
+  String get learningJourneyDailyRoutinesSection2Title => 'ਇਸਨੂੰ ਟਿਕਾਊ ਰੱਖੋ';
 
   @override
   String get learningJourneyDailyRoutinesStartDayIntro =>
-      'A daily routine becomes easier when the day starts with intention rather than reacting to whatever comes first.';
+      'ਦਿਨਾਨੁਸਾਰ ਰੁਟੀਨ ਆਸਾਨ ਹੋ ਜਾਂਦੀ ਹੈ ਜੇ ਦਿਨ ਦੀ ਸ਼ੁਰੂਆਤ ਇਰਾਦੇ ਨਾਲ ਹੋਵੇ, ਨਾ ਕਿ ਆਉਂਦੇ ਪਹਿਲੇ ਕੰਮ ਨਾਲ।';
 
   @override
   String get learningJourneyDailyRoutinesStartDaySection1Body =>
-      'Begin with one small act that reminds you why the day matters: a short dua, a moment of dhikr, or opening the Qur\'an for even a few verses.';
+      'ਇੱਕ ਛੋਟੇ ਜਿਹੇ ਕਰਮ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਤੁਹਾਨੂੰ ਯਾਦ ਦਿਵਾਏ ਕਿ ਇਹ ਦਿਨ ਕਿਉਂ ਮਹੱਤਵਪੂਰਨ ਹੈ: ਇਕ ਛੋਟੀ ਦੁਆ, ਜ਼ਿਕਰ ਦਾ ਇਕ ਪਲ ਜਾਂ ਕੁਰਆਨ ਦੀਆਂ ਦੋ ਤਿੰਨ ਆਇਤਾਂ ਦਾ ਅਧਿਐਨ।';
 
   @override
   String get learningJourneyDailyRoutinesStartDaySection2Body =>
-      'The goal is not a perfect morning routine. The goal is a repeatable opening that points your heart back to Allah and makes the next good action easier.';
+      'ਮਕਸਦ ਇਹ ਨਹੀਂ ਕਿ ਸਵੇਰ ਦੀ ਰੁਟੀਨ ਬਿਲਕੁਲ ਪਰਫੈਕਟ ਹੋਵੇ; ਮਕਸਦ ਇਹ ਹੈ ਕਿ ਇੱਕ ਦੁਹਰਾਉਣਯੋਗ ਸ਼ੁਰੂਆਤ ਬਣੇ ਜੋ ਦਿਲ ਨੂੰ ਫਿਰ ਅੱਲਾਹ ਵੱਲ ਮੋੜੇ ਅਤੇ ਅਗਲਾ ਭਲਾ ਕੰਮ ਆਸਾਨ ਕਰੇ।';
 
   @override
   String get learningJourneyDailyRoutinesStartDayTakeaway1 =>
-      'Start small enough that you can repeat it.';
+      'ਇੰਨਾ ਛੋਟਾ ਸ਼ੁਰੂ ਕਰੋ ਕਿ ਤੁਸੀਂ ਰੋਜ਼ ਕਰ ਸਕੋ।';
 
   @override
   String get learningJourneyDailyRoutinesStartDayTakeaway2 =>
-      'Intention changes the tone of the day.';
+      'ਇਰਾਦਾ ਸਾਰੇ ਦਿਨ ਦਾ ਰੁਝਾਨ ਬਦਲ ਦਿੰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesStartDayTakeaway3 =>
-      'One opening act can lead to the rest.';
+      'ਇੱਕ ਛੋਟੀ ਸ਼ੁਰੂਆਤੀ ਆਦਤ ਬਾਕੀ ਸਭ ਕੁਝ ਖੋਲ੍ਹ ਸਕਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesStartDayReflection =>
-      'What is one opening practice you could realistically repeat tomorrow morning?';
+      'ਕੱਲ੍ਹ ਸਵੇਰੇ ਤੁਸੀਂ ਕਿਹੜਾ ਇਕ ਸ਼ੁਰੂਆਤੀ ਅਮਲ ਹਕੀਕਤ ਵਿੱਚ ਦੁਹਰਾ ਸਕਦੇ ਹੋ?';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorIntro =>
-      'Salah is the strongest daily structure a Muslim has. When prayer becomes the anchor, the rest of the routine stops floating.';
+      'ਸਲਾਤ ਇਕ ਮੁਸਲਿਮ ਦੀ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ਰੋਜ਼ਾਨਾ ਢਾਂਚਾ ਹੈ। ਜਦੋਂ ਨਮਾਜ਼ ਕੇਂਦਰ ਬਣਦੀ ਹੈ ਤਾਂ ਬਾਕੀ ਰੁਟੀਨ ਡੋਲਦੀ ਨਹੀਂ ਰਹਿੰਦੀ।';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorSection1Body =>
-      'Instead of treating prayer as one more task, build your day around it. Let prayer times shape when you pause, reset, and return to what matters.';
+      'ਨਮਾਜ਼ ਨੂੰ ਹੋਰ ਇਕ ਕੰਮ ਵਾਂਗ ਨਾ ਦੇਖੋ; ਆਪਣੇ ਦਿਨ ਨੂੰ ਇਸਦੇ ਆਲੇ ਦੁਆਲੇ ਬਣਾਓ। ਨਮਾਜ਼ ਦੇ ਸਮੇਂ ਦੱਸਦੇ ਹਨ ਕਦੋਂ ਰੁਕਣਾ ਹੈ, ਮੁੜਕੇ ਸੋਚਣਾ ਹੈ ਅਤੇ ਮਹੱਤਵਪੂਰਣ ਵੱਲ ਵਾਪਸ ਆਉਣਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorSection2Body =>
-      'This also makes other habits easier. A small Qur\'an reading after Fajr, dhikr after salah, or a dua before leaving home becomes attached to something already fixed.';
+      'ਇਸ ਨਾਲ ਹੋਰ ਅਭਿਆਸ ਵੀ ਆਸਾਨ ਹੋ ਜਾਂਦੇ ਹਨ। ਫਜਰ ਤੋਂ ਬਾਅਦ ਥੋੜ੍ਹਾ ਕੁਰਆਨ, ਸਲਾਤ ਤੋਂ ਬਾਅਦ ਜ਼ਿਕਰ, ਜਾਂ ਘਰੋਂ ਨਿਕਲਣ ਤੋਂ ਪਹਿਲਾਂ ਇਕ ਦੁਆ—ਇਹ ਸਭ ਪਹਿਲਾਂ ਤੋਂ ਪੱਕੇ ਸਮੇਂ ਨਾਲ ਜੁੜ ਜਾਂਦੇ ਹਨ।';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorTakeaway1 =>
-      'Salah gives the day its structure.';
+      'ਸਲਾਤ ਦਿਨ ਨੂੰ ਢਾਂਚਾ ਦਿੰਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorTakeaway2 =>
-      'Attach small habits to salah.';
+      'ਛੋਟੀਆਂ ਆਦਤਾਂ ਸਲਾਤ ਨਾਲ ਜੋੜੋ।';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorTakeaway3 =>
-      'Returning to prayer helps the rest stay steady.';
+      'ਨਮਾਜ਼ ਵੱਲ ਵਾਪਸੀ ਬਾਕੀ ਜੀਵਨ ਨੂੰ ਸਥਿਰ ਰੱਖਦੀ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorReflection =>
-      'Which prayer is the easiest place for you to attach one small habit right now?';
+      'ਹੁਣ ਤੁਹਾਡੇ ਲਈ ਕਿਹੜੀ ਨਮਾਜ਼ ਨਾਲ ਇੱਕ ਛੋਟੀ ਆਦਤ ਜੋੜਨਾ ਸਭ ਤੋਂ ਅਸਾਨ ਹੈ?';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorIntro =>
-      'A daily Qur\'an rhythm should feel possible, not heavy. Even a small amount can keep the relationship alive.';
+      'ਰੋਜ਼ਾਨਾ ਕੁਰਆਨ ਦੀ ਰੁਟੀਨ ਭਾਰੀ ਨਹੀਂ, ਸੰਭਵ ਲੱਗਣੀ ਚਾਹੀਦੀ ਹੈ। ਥੋੜ੍ਹਾ ਵੀ ਰਿਸ਼ਤਾ ਜ਼ਿੰਦਾ ਰੱਖ ਸਕਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorSection1Body =>
-      'Choose a form you can keep: a few verses after Fajr, reading one page, listening during a walk, or opening a note and writing one reflection.';
+      'ਅਪਣੀ ਹਕੀਕਤੀ ਰੁਟੀਨ ਲਈ ਇੱਕ ਰੂਪ ਚੁਣੋ: ਫਜਰ ਤੋਂ ਬਾਅਦ ਕੁਝ ਆਇਤਾਂ, ਇੱਕ ਪੰਨਾ, ਤੁਰਦੇ ਸਮੇਂ ਸੁਣਨਾ, ਜਾਂ ਇੱਕ ਨੋਟ ਲਿਖ ਕੇ ਮਨਨ ਕਰਨਾ।';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorSection2Body =>
-      'The point is consistency with presence. A short steady relationship with the Qur\'an is better than waiting for rare ideal moments.';
+      'ਮਕਸਦ ਇਹ ਹੈ ਕਿ ਮੌਜੂਦ ਰਹੋ। ਕੁਝ ਪਲ ਦੀ ਲਗਾਤਾਰ ਕੁਰਆਨ-ਮੁਹੱਬਤ, ਕਦੇ-ਕਦੇ ਆਦਰਸ਼ ਮੌਕਿਆਂ ਦੀ ਉਡੀਕ ਤੋਂ ਬਿਹਤਰ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorTakeaway1 =>
-      'A small Qur\'an habit is still meaningful.';
+      'ਛੋਟੀ ਕੁਰਆਨ ਆਦਤ ਵੀ ਮਹੱਤਵਪੂਰਣ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorTakeaway2 =>
-      'Use the form that fits your real day.';
+      'ਉਹ ਢੰਗ ਵਰਤੋ ਜੋ ਤੁਹਾਡੇ ਅਸਲ ਦਿਨ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੋਵੇ।';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorTakeaway3 =>
-      'Presence matters more than volume.';
+      'ਹਾਜ਼ਰੀ ਮਾਤਰਾ ਤੋਂ ਵਧ ਕੇ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorReflection =>
-      'What Qur\'an rhythm fits your current day without creating pressure?';
+      'ਦਬਾਅ ਬਿਨਾਂ ਅੱਜ ਤੁਹਾਡੇ ਦਿਨ ਵਿੱਚ ਕਿਹੜੀ ਕੁਰਆਨ-ਰੁਟੀਨ ਫਿੱਟ ਬੈਠਦੀ ਹੈ?';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetIntro =>
-      'Evening can either scatter the heart or gently gather it again. A short reset helps the day end with remembrance.';
+      'ਸ਼ਾਮ ਦਿਲ ਨੂੰ ਬਿਖੇਰ ਸਕਦੀ ਹੈ ਜਾਂ ਧੀਰੇ-ਧੀਰੇ ਇਕੱਠਾ ਕਰ ਸਕਦੀ ਹੈ। ਥੋੜ੍ਹਾ ਰੀਸੈੱਟ ਦਿਨ ਨੂੰ ਯਾਦ ਨਾਲ ਖਤਮ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection1Body =>
-      'Use evening adhkar, a bedtime dua, or one quiet moment of gratitude and istighfar to close the day with intention rather than exhaustion alone.';
+      'ਸੰਝ ਦੇ ਅਸਰ ਤੋਂ ਪਹਿਲਾਂ ਸ਼ਾਮੀ ਅਧਕਾਰ, ਸੋਂਣ ਤੋਂ ਪਹਿਲਾਂ ਦੁਆ, ਜਾਂ ਇਕ ਸ਼ੁਕਰ ਤੇ ਇਸਤਿਗਫ਼ਾਰ ਦਾ ਪਲ ਵਰਤੋ।';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection2Body =>
-      'This kind of reset is also a mercy after imperfect days. Instead of guilt taking over, remembrance helps you return and begin again tomorrow.';
+      'ਇਹ ਰੀਸੈੱਟ ਅਧੂਰੇ ਦਿਨਾਂ ਲਈ ਰਹਿਮਤ ਵੀ ਹੈ. ਸ਼ਰਮ ਤੇ ਗਿਲਟੀ ਤੋਂ ਬਿਨਾਂ, ਯਾਦ ਦਿਲਾਉਂਦੀ ਹੈ ਕਿ ਅੱਲਾਹ ਵੱਲ ਮੁੜਕੇ ਕੱਲ੍ਹ ਮੁੜ ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetTakeaway1 =>
-      'Evening remembrance closes the day with calm.';
+      'ਸ਼ਾਮੀ ਯਾਦ ਦਿਲਾਉਣ ਨਾਲ ਦਿਨ ਸ਼ਾਂਤੀ ਨਾਲ ਮੁੱਕਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetTakeaway2 =>
-      'A reset helps after imperfect days.';
+      'ਰੀਸੈੱਟ ਅਧੂਰੇ ਦਿਨਾਂ ਤੋਂ ਬਾਅਦ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetTakeaway3 =>
-      'Closing well supports starting well tomorrow.';
+      'ਚੰਗੀ ਤਰ੍ਹਾਂ ਖਤਮ ਕਰਨਾ ਕੱਲ੍ਹ ਸਵੇਰ ਚੰਗੀ ਸ਼ੁਰੂਆਤ ਬਣਾਉਂਦਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetReflection =>
-      'What would help your evenings feel more like a return than a drift?';
+      'ਕਿਹੜੀ ਚੀਜ਼ ਨਾਲ ਤੁਹਾਡੀ ਸ਼ਾਮ ਵਾਪਸੀ ਵਰਗੀ ਮਹਿਸੂਸ ਹੋਵੇਗੀ, ਭਟਕਾਅ ਵਰਗੀ ਨਹੀਂ?';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingIntro =>
-      'Good routines last when they stay merciful, realistic, and tied to purpose rather than pressure.';
+      'ਚੰਗੀਆਂ ਰੁਟੀਨਾਂ ਤਦ ਹੀ ਕਾਇਮ ਰਹਿੰਦੀਆਂ ਹਨ ਜਦੋਂ ਉਹ ਰਹਿਮਤ ਭਰੀਆਂ, ਹਕੀਕਤੀ ਅਤੇ ਮਕਸਦ ਨਾਲ ਜੁੜੀਆਂ ਹੋਣ, ਨਾ ਕਿ ਸਿਰਫ਼ ਦਬਾਅ ਨਾਲ।';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingSection1Body =>
-      'Keep habits small at first. Repeat them in the same place or after the same prayer. Review them gently instead of treating one missed day as failure.';
+      'ਸ਼ੁਰੂ ਵਿੱਚ ਆਦਤਾਂ ਛੋਟੀ ਰੱਖੋ। ਇੱਕੋ ਥਾਂ ਜਾਂ ਇੱਕੋ ਨਮਾਜ਼ ਤੋਂ ਬਾਅਦ ਉਹਨਾਂ ਨੂੰ ਦੁਹਰਾਓ। ਇਕ ਦਿਨ ਦੀ ਗਲਤੀ ਨੂੰ ਨਾਕਾਮੀ ਨਾ ਮਾਨੋ; ਨਰਮ ਸਮੀਖਿਆ ਕਰੋ।';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingSection2Body =>
-      'Habit building in worship is not about control. It is about building doors back to Allah that are easy to open again and again.';
+      'ਇਬਾਦਤ ਵਿੱਚ ਆਦਤ ਬਣਾਉਣਾ ਕਾਬੂ ਬਾਰੇ ਨਹੀਂ ਹੈ। ਇਹ ਵਾਰ-ਵਾਰ ਖੁਲ੍ਹਣ ਵਾਲੀਆਂ ਦਰਵਾਜ਼ਿਆਂ ਦੀ ਬਣਤ ਹੈ, ਜੋ ਤੁਹਾਨੂੰ ਅੱਲਾਹ ਵੱਲ ਮੁੜਣ ਦਾ ਰਸਤਾ ਦਿੰਦੀਆਂ ਹਨ।';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingTakeaway1 =>
-      'Small repeated acts build stronger habits.';
+      'ਛੋਟੇ ਦੁਹਰਾਏ ਕੰਮ ਮਜ਼ਬੂਤ ਆਦਤ ਬਣਾਉਂਦੇ ਹਨ।';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingTakeaway2 =>
-      'Tie habits to existing anchors.';
+      'ਆਦਤਾਂ ਨੂੰ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਐਂਕਰਾਂ ਨਾਲ ਜੋੜੋ।';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingTakeaway3 =>
-      'Missing once should not break the whole path.';
+      'ਇੱਕ ਦਿਨ ਦਾ ਛੋਟਾ ਵੱਖਰਾ ਹੋਣਾ ਸਾਰੀ ਯਾਤਰਾ ਨਹੀਂ ਤੋੜਦਾ।';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingReflection =>
-      'Which one habit should stay small for now so it can actually last?';
+      'ਕਿਹੜੀ ਇਕ ਆਦਤ ਹੁਣੇ ਲਈ ਛੋਟੀ ਰੱਖਣੀ ਚਾਹੀਦੀ ਹੈ ਤਾਂ ਜੋ ਅਸਲੀਅਤ ਵਿੱਚ ਕਾਇਮ ਰਹੇ?';
 
   @override
   String get learningJourneyDailyRoutinesCompletionIntro =>
-      'You now have a simple daily rhythm. The next step is to keep deepening it without adding clutter or pressure.';
+      'ਹੁਣ ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਸੌਖਾ ਰੋਜ਼ਾਨਾ ਰਿਥਮ ਹੈ। ਅਗਲਾ ਕਦਮ ਇਸਨੂੰ ਬਿਨਾਂ ਬੋਝ ਜੋੜੇ ਹੋਰ ਡੂੰਘਾ ਕਰਨਾ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesCompletionSection1Title =>
-      'What you now have';
+      'ਹੁਣ ਤੁਹਾਡੇ ਕੋਲ ਕੀ ਹੈ';
 
   @override
   String get learningJourneyDailyRoutinesCompletionSection1Body =>
-      'You have a practical frame for mornings, prayer anchors, Qur\'an connection, evening reset, and habit-building through small repeated actions.';
+      'ਤੁਹਾਡੇ ਕੋਲ ਸਵੇਰ, ਨਮਾਜ਼ ਐਂਕਰ, ਕੁਰਆਨ ਜੁੜਾਅ, ਸ਼ਾਮੀ ਰੀਸੈੱਟ ਅਤੇ ਛੋਟੀਆਂ ਦੁਹਰਾਈਆਂ ਨਾਲ ਆਦਤ ਨਿਰਮਾਣ ਦਾ ਇੱਕ ਪ੍ਰਯੋਗਯੋਗ ਫਰੇਮ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesCompletionSection2Title =>
-      'What to deepen next';
+      'ਅਗਲੀ ਡੂੰਘਾਈ ਕੀ ਹੋਵੇ';
 
   @override
   String get learningJourneyDailyRoutinesCompletionSection2Body =>
-      'Choose the next journey that strengthens what you are already doing, such as dhikr, Ramadan preparation, or beautiful character.';
+      'ਅਗਲੀ ਯਾਤਰਾ ਉਹ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਅਭਿਆਸ ਨੂੰ ਮਜ਼ਬੂਤ ਕਰਦੀ ਹੈ, ਜਿਵੇਂ ਜ਼ਿਕਰ, ਰਮਜ਼ਾਨ ਦੀ ਤਿਆਰੀ ਜਾਂ ਸੁੰਦਰ ਸੁਭਾਅ।';
 
   @override
   String get learningJourneyDailyRoutinesCompletionTakeaway1 =>
-      'A calm rhythm is better than an overloaded plan.';
+      'ਤਣਾਅ-ਭਰਿਆ ਪਲਾਨ ਨਾਲੋਂ ਇੱਕ ਸ਼ਾਂਤ ਲਯ ਵਧੀਆ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesCompletionTakeaway2 =>
-      'The next journey should deepen what is already working.';
+      'ਅਗਲੀ ਯਾਤਰਾ ਉਹੀ ਚੀਜ਼ ਗਹਿਰੀ ਕਰੇ ਜੋ ਪਹਿਲਾਂ ਤੋਂ ਚੱਲ ਰਹੀ ਹੈ।';
 
   @override
   String get learningJourneyDailyRoutinesCompletionTakeaway3 =>
-      'Routine becomes worship when it stays connected to Allah.';
+      'ਰੁਟੀਨ ਇਬਾਦਤ ਵੀ ਬਣਦੀ ਹੈ ਜਦੋਂ ਉਹ ਅੱਲਾਹ ਨਾਲ ਜੁੜੀ ਰਹੇ।';
 
   @override
   String get learningJourneyDailyRoutinesCompletionReflection =>
-      'Which practice from this journey feels most ready to become part of your normal day?';
+      'ਇਸ ਯਾਤਰਾ ਵਿੱਚੋਂ ਕਿਹੜਾ ਅਭਿਆਸ ਤੁਹਾਡੇ ਆਮ ਦਿਨ ਦਾ ਹਿੱਸਾ ਬਣਨ ਲਈ ਸਭ ਤੋਂ ਤਿਆਰ ਹੈ?';
 
   @override
   String get learningJourneyDailyRoutinesCompletionActionStep =>
-      'Choose one habit to protect this week and one journey to deepen it.';
+      'ਇਸ ਹਫ਼ਤੇ ਇੱਕ ਆਦਤ ਚੁਣੋ ਅਤੇ ਇੱਕ ਯਾਤਰਾ ਚੁਣ ਕੇ ਉਸਨੂੰ ਡੂੰਘੀ ਕਰੋ।';
 
   @override
   String get familyLearningManagementTitle => 'Family Learning';
@@ -18160,7 +18380,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String settingsProfileDisplayNameSummary(String title, String name) {
-    return '$title $name';
+    return '$title — $name';
   }
 
   @override
@@ -18172,7 +18392,7 @@ class AppLocalizationsPa extends AppLocalizations {
     Object streak,
     Object streakDays,
   ) {
-    return '$levelSummary • $streakSummary';
+    return '$levelSummary · $streakSummary';
   }
 
   @override
@@ -18462,7 +18682,7 @@ class AppLocalizationsPa extends AppLocalizations {
     Object profileName,
     Object status,
   ) {
-    return '$profileType • $syncMode';
+    return '$profileType · $syncMode';
   }
 
   @override
@@ -18681,7 +18901,7 @@ class AppLocalizationsPa extends AppLocalizations {
     Object account,
     Object profiles,
   ) {
-    return '$provider • $identifier • $syncMode';
+    return '$provider · $identifier · $syncMode';
   }
 
   @override
@@ -18701,242 +18921,241 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncAddAccountAction => 'ਖਾਤਾ ਜੋੜੋ';
 
   @override
-  String get accountsSyncStatusCardTitle => 'Accounts, Profile & Sync';
+  String get accountsSyncStatusCardTitle => 'ਅਕਾਊਂਟ, ਪ੍ਰੋਫ਼ਾਈਲ ਅਤੇ Sync';
 
   @override
   String get accountsSyncStatusCardLocalOnlyBody =>
-      'You can keep using Path of Nūr fully offline. Sign in only if you want account identity and backup readiness.';
+      'ਤੁਸੀਂ Path of Nūr ਨੂੰ ਪੂਰੀ ਤਰ੍ਹਾਂ ਆਫਲਾਈਨ ਵਰਤਦੇ ਰਹਿ ਸਕਦੇ ਹੋ। ਸਾਈਨ ਇਨ ਸਿਰਫ਼ ਤਦ ਕਰੋ ਜੇ ਤੁਸੀਂ ਅਕਾਊਂਟ ਪਛਾਣ ਅਤੇ ਬੈਕਅਪ ਤਿਆਰੀ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
   String accountsSyncStatusCardSignedInBody(String accountName) {
-    return '$accountName is connected on this device. Backup and restore are available, but cloud backup still needs platform or backend setup.';
+    return '$accountName ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਜੁੜਿਆ ਹੋਇਆ ਹੈ। ਬੈਕਅਪ ਅਤੇ ਰੀਸਟੋਰ ਉਪਲਬਧ ਹਨ, ਪਰ ਕਲਾਊਡ ਬੈਕਅਪ ਲਈ ਹਾਲੇ ਵੀ ਪਲੇਟਫਾਰਮ ਜਾਂ ਬੈਕਐਂਡ ਸੈਟਅਪ ਦੀ ਲੋੜ ਹੈ।';
   }
 
   @override
   String get accountsSyncStatusCardBackupReadyBody =>
-      'A recent backup is available. You can keep learning locally and still export or restore safely.';
+      'ਇੱਕ ਹਾਲੀਆ ਬੈਕਅਪ ਉਪਲਬਧ ਹੈ। ਤੁਸੀਂ ਲੋਕਲ ਤੌਰ \'ਤੇ ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ ਅਤੇ ਫਿਰ ਵੀ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਐਕਸਪੋਰਟ ਜਾਂ ਰੀਸਟੋਰ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
   String get accountsSyncStatusCardBackupRunningBody =>
-      'Backup preparation is in progress.';
+      'ਬੈਕਅਪ ਦੀ ਤਿਆਰੀ ਚੱਲ ਰਹੀ ਹੈ।';
 
   @override
   String get accountsSyncStatusCardRestoreReadyBody =>
-      'A restorable backup is available for this journey.';
+      'ਇਸ ਸਫ਼ਰ ਲਈ ਰੀਸਟੋਰ ਕੀਤਾ ਜਾ ਸਕਣ ਵਾਲਾ ਬੈਕਅਪ ਉਪਲਬਧ ਹੈ।';
 
   @override
   String get accountsSyncStatusCardSyncErrorBody =>
-      'Something needs attention before backup or sync can continue safely.';
+      'ਬੈਕਅਪ ਜਾਂ sync ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਜਾਰੀ ਰੱਖਣ ਤੋਂ ਪਹਿਲਾਂ ਕਿਸੇ ਚੀਜ਼ \'ਤੇ ਧਿਆਨ ਦੀ ਲੋੜ ਹੈ।';
 
   @override
-  String get accountsSyncCurrentModeLabel => 'Current mode';
+  String get accountsSyncCurrentModeLabel => 'ਮੌਜੂਦਾ ਮੋਡ';
 
   @override
   String accountsSyncCurrentModeValue(String value) {
-    return 'Current mode: $value';
+    return 'ਮੌਜੂਦਾ ਮੋਡ: $value';
   }
 
   @override
   String accountsSyncProviderValue(String value) {
-    return 'Provider: $value';
+    return 'ਪਰਦਾਤਾ: $value';
   }
 
   @override
-  String get accountsSyncProviderNone => 'None';
+  String get accountsSyncProviderNone => 'ਕੋਈ ਨਹੀਂ';
 
   @override
   String accountsSyncLastBackupValue(String time) {
-    return 'Last backup $time';
+    return 'ਆਖਰੀ ਬੈਕਅਪ $time';
   }
 
   @override
-  String get accountsSyncBackupNeverBackedUp => 'Never backed up';
+  String get accountsSyncBackupNeverBackedUp => 'ਕਦੇ ਬੈਕਅਪ ਨਹੀਂ ਕੀਤਾ ਗਿਆ';
 
   @override
-  String get accountsSyncModeLocalOnly => 'Local only';
+  String get accountsSyncModeLocalOnly => 'ਕੇਵਲ ਲੋਕਲ';
 
   @override
-  String get accountsSyncModeSignedInNoBackup => 'Connected, no backup yet';
+  String get accountsSyncModeSignedInNoBackup => 'ਜੁੜਿਆ ਹੋਇਆ, ਹਾਲੇ ਬੈਕਅਪ ਨਹੀਂ';
 
   @override
-  String get accountsSyncModeBackupAvailable => 'Backup available';
+  String get accountsSyncModeBackupAvailable => 'ਬੈਕਅਪ ਉਪਲਬਧ';
 
   @override
-  String get accountsSyncModeBackupInProgress => 'Backup in progress';
+  String get accountsSyncModeBackupInProgress => 'ਬੈਕਅਪ ਜਾਰੀ ਹੈ';
 
   @override
-  String get accountsSyncModeRestoreAvailable => 'Restore available';
+  String get accountsSyncModeRestoreAvailable => 'ਰੀਸਟੋਰ ਉਪਲਬਧ';
 
   @override
-  String get accountsSyncModeSyncError => 'Needs attention';
+  String get accountsSyncModeSyncError => 'ਧਿਆਨ ਦੀ ਲੋੜ';
 
   @override
-  String get accountsSyncAccountSectionTitle => 'Account';
+  String get accountsSyncAccountSectionTitle => 'ਅਕਾਊਂਟ';
 
   @override
   String accountsSyncConnectedAccountBody(String accountName) {
-    return '$accountName is connected on this device.';
+    return '$accountName ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਜੁੜਿਆ ਹੋਇਆ ਹੈ।';
   }
 
   @override
   String get accountsSyncLocalOnlyBody =>
-      'You are using Path of Nūr locally on this device. Your progress stays here unless you export or connect backup later.';
+      'ਤੁਸੀਂ ਇਸ ਡਿਵਾਈਸ ਤੇ Path of Nūr ਨੂੰ ਲੋਕਲ ਤੌਰ ਤੇ ਵਰਤ ਰਹੇ ਹੋ। ਤੁਹਾਡੀ ਤਰੱਕੀ ਇੱਥੇ ਹੀ ਰਹੇਗੀ ਜਦ ਤੱਕ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਐਕਸਪੋਰਟ ਜਾਂ ਬੈਕਅਪ ਨਾਲ ਜੁੜਦੇ ਨਹੀਂ।';
 
   @override
-  String get accountsSyncBackupStatusTitle => 'Backup status';
+  String get accountsSyncBackupStatusTitle => 'ਬੈਕਅਪ ਸਥਿਤੀ';
 
   @override
-  String get accountsSyncContinueWithAppleAction => 'Continue with Apple';
+  String get accountsSyncContinueWithAppleAction => 'Apple ਨਾਲ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get accountsSyncContinueWithGoogleAction => 'Continue with Google';
+  String get accountsSyncContinueWithGoogleAction => 'Google ਨਾਲ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get accountsSyncContinueWithEmailAction => 'Continue with Email';
+  String get accountsSyncContinueWithEmailAction => 'ਈਮੇਲ ਨਾਲ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get accountsSyncContinueLocalOnlyAction => 'Continue Local Only';
+  String get accountsSyncContinueLocalOnlyAction => 'ਕੇਵਲ ਲੋਕਲ ਹੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
   String get accountsSyncEmailComingNextBody =>
-      'Email sign-in architecture is ready, but backend delivery is not connected yet.';
+      'ਈਮੇਲ ਸਾਈਨ-ਇਨ ਢਾਂਚਾ ਤਿਆਰ ਹੈ, ਪਰ ਬੈਕਐਂਡ ਡਿਲਿਵਰੀ ਹਾਲੇ ਨਹੀਂ ਜੁੜੀ।';
 
   @override
-  String get accountsSyncSignOutAction => 'Sign out';
+  String get accountsSyncSignOutAction => 'ਸਾਈਨ ਆਉਟ';
 
   @override
   String accountsSyncAccountConnectedResult(String name) {
-    return '$name is connected on this device.';
+    return '$name ਇਸ ਡਿਵਾਈਸ ਨਾਲ ਜੁੜਿਆ ਹੋਇਆ ਹੈ।';
   }
 
   @override
-  String get accountsSyncAuthCancelledResult => 'Sign-in was cancelled.';
+  String get accountsSyncAuthCancelledResult => 'ਸਾਈਨ-ਇਨ ਰੱਦ ਕਰ ਦਿੱਤਾ ਗਿਆ।';
 
   @override
   String get accountsSyncAuthUnavailableResult =>
-      'This sign-in option is not available on this device.';
+      'ਇਹ ਸਾਈਨ-ਇਨ ਵਿਕਲਪ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
   String get accountsSyncAuthNotConfiguredResult =>
-      'This sign-in option still needs platform or backend setup.';
+      'ਇਸ ਸਾਈਨ-ਇਨ ਵਿਕਲਪ ਲਈ ਹਾਲੇ ਵੀ ਪਲੇਟਫਾਰਮ ਜਾਂ ਬੈਕਐਂਡ ਸੈਟਅਪ ਦੀ ਲੋੜ ਹੈ।';
 
   @override
   String get accountsSyncAuthFailedResult =>
-      'We could not complete sign-in safely.';
+      'ਅਸੀਂ ਸਾਈਨ-ਇਨ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਪੂਰਾ ਨਹੀਂ ਕਰ ਸਕੇ।';
 
   @override
   String get accountsSyncContinueLocalOnlyResult =>
-      'Local-only mode is still available. Your device progress was not changed.';
+      'ਕੇਵਲ-ਲੋਕਲ ਮੋਡ ਹਾਲੇ ਵੀ ਉਪਲਬਧ ਹੈ। ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤਰੱਕੀ ਨਹੀਂ ਬਦਲੀ ਗਈ।';
 
   @override
   String get accountsSyncSignedOutResult =>
-      'You are now using local-only mode on this device. Local progress was preserved.';
+      'ਤੁਸੀਂ ਹੁਣ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਕੇਵਲ-ਲੋਕਲ ਮੋਡ ਵਰਤ ਰਹੇ ਹੋ। ਲੋਕਲ ਤਰੱਕੀ ਸੰਭਾਲੀ ਗਈ ਹੈ।';
 
   @override
-  String get accountsSyncSyncPreferencesTitle => 'Sync preferences';
+  String get accountsSyncSyncPreferencesTitle => 'Sync ਪਸੰਦਾਂ';
 
   @override
-  String get accountsSyncPreferManualBackupTitle => 'Prefer manual backup';
+  String get accountsSyncPreferManualBackupTitle => 'ਹੱਥੋਂ ਬੈਕਅਪ ਨੂੰ ਤਰਜੀਹ ਦਿਓ';
 
   @override
   String get accountsSyncAllowRestoreSuggestionsTitle =>
-      'Allow restore suggestions';
+      'ਰੀਸਟੋਰ ਸੁਝਾਵਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ';
 
   @override
   String get accountsSyncRemoteBackupNotConfiguredBody =>
-      'Remote backup foundations are ready, but cloud backup is not active yet. Manual export and import remain available.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਦੀ ਬੁਨਿਆਦ ਤਿਆਰ ਹੈ, ਪਰ ਕਲਾਊਡ ਬੈਕਅਪ ਹਾਲੇ ਸਰਗਰਮ ਨਹੀਂ ਹੈ। ਮੈਨੁਅਲ ਐਕਸਪੋਰਟ ਅਤੇ ਇੰਪੋਰਟ ਅਜੇ ਵੀ ਉਪਲਬਧ ਹਨ।';
 
   @override
-  String get accountsSyncRemoteBackupSectionTitle => 'Remote backup';
+  String get accountsSyncRemoteBackupSectionTitle => 'ਰਿਮੋਟ ਬੈਕਅਪ';
 
   @override
   String get accountsSyncRemoteBackupReadyBody =>
-      'A connected provider can back up this device safely and restore it later.';
+      'ਜੁੜਿਆ ਹੋਇਆ ਪਰਦਾਤਾ ਇਸ ਡਿਵਾਈਸ ਦਾ ਸੁਰੱਖਿਅਤ ਬੈਕਅਪ ਲੈ ਸਕਦਾ ਹੈ ਅਤੇ ਬਾਅਦ ਵਿੱਚ ਇਸਨੂੰ ਰੀਸਟੋਰ ਕਰ ਸਕਦਾ ਹੈ।';
 
   @override
   String get accountsSyncRemoteBackupUnavailableBody =>
-      'Remote backup is optional. You can stay local-only or use manual export until a supported provider is ready.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਚੋਣਵਾਂ ਹੈ। ਤੁਸੀਂ ਕੇਵਲ ਲੋਕਲ ਰਹਿ ਸਕਦੇ ਹੋ ਜਾਂ ਜਦ ਤੱਕ ਸਹਾਇਤਾਪ੍ਰਾਪਤ ਪਰਦਾਤਾ ਤਿਆਰ ਨਾ ਹੋਵੇ, ਮੈਨੁਅਲ ਐਕਸਪੋਰਟ ਵਰਤ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get accountsSyncRemoteRestorePreviewTitle => 'Restore comparison';
+  String get accountsSyncRemoteRestorePreviewTitle => 'ਰੀਸਟੋਰ ਤੁਲਨਾ';
 
   @override
   String get accountsSyncRemoteRestorePreviewSubtitle =>
-      'Review the remote backup against this device before you restore anything.';
+      'ਕਿਸੇ ਵੀ ਚੀਜ਼ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਰਿਮੋਟ ਬੈਕਅਪ ਦੀ ਇਸ ਡਿਵਾਈਸ ਨਾਲ ਤੁਲਨਾ ਵੇਖੋ।';
 
   @override
-  String get accountsSyncRemoteProviderTitle => 'Remote provider';
+  String get accountsSyncRemoteProviderTitle => 'ਰਿਮੋਟ ਪਰਦਾਤਾ';
 
   @override
-  String get accountsSyncRemoteLastBackupTitle => 'Remote last backup';
+  String get accountsSyncRemoteLastBackupTitle => 'ਰਿਮੋਟ ਆਖਰੀ ਬੈਕਅਪ';
 
   @override
-  String get accountsSyncRemoteStatusIssueTitle => 'Remote status';
+  String get accountsSyncRemoteStatusIssueTitle => 'ਰਿਮੋਟ ਸਥਿਤੀ';
 
   @override
-  String get accountsSyncBackUpNowAction => 'Back up now';
+  String get accountsSyncBackUpNowAction => 'ਹੁਣੇ ਬੈਕਅਪ ਕਰੋ';
 
   @override
-  String get accountsSyncCheckBackupStatusAction => 'Check backup status';
+  String get accountsSyncCheckBackupStatusAction => 'ਬੈਕਅਪ ਸਥਿਤੀ ਵੇਖੋ';
 
   @override
   String get accountsSyncRestoreFromRemoteAction =>
-      'Restore from remote backup';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਤੋਂ ਰੀਸਟੋਰ ਕਰੋ';
 
   @override
-  String get accountsSyncRemoteRestoreTitle => 'Restore remote backup';
+  String get accountsSyncRemoteRestoreTitle => 'ਰਿਮੋਟ ਬੈਕਅਪ ਰੀਸਟੋਰ ਕਰੋ';
 
   @override
   String get accountsSyncRemoteRestoreNewerBody =>
-      'The remote backup looks newer than this device. Restoring will replace the current local set after a safety snapshot is created.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਇਸ ਡਿਵਾਈਸ ਨਾਲੋਂ ਨਵਾਂ ਲੱਗਦਾ ਹੈ। ਸੁਰੱਖਿਆ ਸਨੈਪਸ਼ਾਟ ਬਣਨ ਤੋਂ ਬਾਅਦ ਰੀਸਟੋਰ ਮੌਜੂਦਾ ਲੋਕਲ ਸੈੱਟ ਨੂੰ ਬਦਲ ਦੇਵੇਗਾ।';
 
   @override
   String get accountsSyncRemoteRestoreOlderBody =>
-      'The remote backup looks older than this device. Restoring may replace newer local progress on this device.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਇਸ ਡਿਵਾਈਸ ਨਾਲੋਂ ਪੁਰਾਣਾ ਲੱਗਦਾ ਹੈ। ਰੀਸਟੋਰ ਇਸ ਡਿਵਾਈਸ ਦੀ ਨਵੀਨ ਲੋਕਲ ਤਰੱਕੀ ਨੂੰ ਬਦਲ ਸਕਦਾ ਹੈ।';
 
   @override
   String get accountsSyncRemoteRestoreEqualBody =>
-      'The remote backup and local device look close in time. Restoring will still create a safety snapshot first.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਅਤੇ ਲੋਕਲ ਡਿਵਾਈਸ ਸਮੇਂ ਵਿੱਚ ਕਾਫ਼ੀ ਨੇੜੇ ਲੱਗਦੇ ਹਨ। ਰੀਸਟੋਰ ਫਿਰ ਵੀ ਪਹਿਲਾਂ ਇੱਕ ਸੁਰੱਖਿਆ ਸਨੈਪਸ਼ਾਟ ਬਣਾਵੇਗਾ।';
 
   @override
   String accountsSyncRemotePreviewLocalUpdatedValue(Object time) {
-    return 'Local data updated $time';
+    return 'ਲੋਕਲ ਡਾਟਾ $time \'ਤੇ ਅਪਡੇਟ ਹੋਇਆ';
   }
 
   @override
-  String get accountsSyncRemotePreviewComparisonTitle =>
-      'Per-domain comparison';
+  String get accountsSyncRemotePreviewComparisonTitle => 'ਹਰ ਡੋਮੇਨ ਦੀ ਤੁਲਨਾ';
 
   @override
-  String get accountsSyncRemotePreviewWarningsTitle => 'Warnings';
+  String get accountsSyncRemotePreviewWarningsTitle => 'ਚੇਤਾਵਨੀਆਂ';
 
   @override
   String get accountsSyncRemotePreviewNoWarnings =>
-      'No additional warnings were detected for this restore preview.';
+      'ਇਸ ਰੀਸਟੋਰ ਪ੍ਰੀਵਿਊ ਲਈ ਕੋਈ ਵਾਧੂ ਚੇਤਾਵਨੀ ਨਹੀਂ ਮਿਲੀ।';
 
   @override
-  String get accountsSyncRemotePreviewActionsTitle => 'Choose what to do';
+  String get accountsSyncRemotePreviewActionsTitle => 'ਚੁਣੋ ਕਿ ਕੀ ਕਰਨਾ ਹੈ';
 
   @override
   String get accountsSyncRemotePreviewReplaceAction =>
-      'Replace local with remote';
+      'ਲੋਕਲ ਨੂੰ ਰਿਮੋਟ ਨਾਲ ਬਦਲੋ';
 
   @override
-  String get accountsSyncRemotePreviewMergeAction => 'Merge safe domains';
+  String get accountsSyncRemotePreviewMergeAction => 'ਸੁਰੱਖਿਅਤ ਡੋਮੇਨ ਮਿਲਾਓ';
 
   @override
-  String get accountsSyncRemotePreviewKeepLocalAction => 'Keep local data';
+  String get accountsSyncRemotePreviewKeepLocalAction => 'ਲੋਕਲ ਡਾਟਾ ਰੱਖੋ';
 
   @override
   String get accountsSyncRemotePreviewMergeConfirmBody =>
-      'Safe merge will keep remote data as the baseline and merge only the domains with deterministic rules. A safety snapshot will still be created first.';
+      'ਸੁਰੱਖਿਅਤ ਮਰਜ ਰਿਮੋਟ ਡਾਟੇ ਨੂੰ ਅਧਾਰ ਵਜੋਂ ਰੱਖੇਗਾ ਅਤੇ ਸਿਰਫ਼ ਉਹੀ ਡੋਮੇਨ ਮਿਲਾਏਗਾ ਜਿਨ੍ਹਾਂ ਲਈ ਨਿਸ਼ਚਿਤ ਨਿਯਮ ਹਨ। ਸੁਰੱਖਿਆ ਸਨੈਪਸ਼ਾਟ ਫਿਰ ਵੀ ਪਹਿਲਾਂ ਬਣਾਇਆ ਜਾਵੇਗਾ।';
 
   @override
   String get accountsSyncRemotePreviewReplaceConfirmBody =>
-      'This will replace current local data with the remote backup after a safety snapshot is created.';
+      'ਇਹ ਸੁਰੱਖਿਆ ਸਨੈਪਸ਼ਾਟ ਬਣਨ ਤੋਂ ਬਾਅਦ ਮੌਜੂਦਾ ਲੋਕਲ ਡਾਟੇ ਨੂੰ ਰਿਮੋਟ ਬੈਕਅਪ ਨਾਲ ਬਦਲ ਦੇਵੇਗਾ।';
 
   @override
-  String get accountsSyncRemotePreviewResultTitle => 'Restore summary';
+  String get accountsSyncRemotePreviewResultTitle => 'ਰੀਸਟੋਰ ਸੰਖੇਪ';
 
   @override
   String accountsSyncRemotePreviewResultBody(
@@ -18945,16 +19164,16 @@ class AppLocalizationsPa extends AppLocalizations {
     Object replaced,
     Object snapshot,
   ) {
-    return '$action finished. Merged: $merged. Replaced: $replaced. Safety snapshot: $snapshot.';
+    return '$action ਪੂਰਾ ਹੋਇਆ। ਮਿਲਾਏ ਗਏ: $merged. ਬਦਲੇ ਗਏ: $replaced. ਸੁਰੱਖਿਆ ਸਨੈਪਸ਼ਾਟ: $snapshot.';
   }
 
   @override
   String get accountsSyncRemotePreviewNoMergedDomains =>
-      'No domains were merged';
+      'ਕੋਈ ਡੋਮੇਨ ਨਹੀਂ ਮਿਲਾਇਆ ਗਿਆ';
 
   @override
   String get accountsSyncRemotePreviewNoReplacedDomains =>
-      'No domains were replaced';
+      'ਕੋਈ ਡੋਮੇਨ ਨਹੀਂ ਬਦਲਿਆ ਗਿਆ';
 
   @override
   String accountsSyncRemotePreviewDomainSummary(
@@ -18963,374 +19182,371 @@ class AppLocalizationsPa extends AppLocalizations {
     Object remoteCount,
     Object merge,
   ) {
-    return '$conflict. Local items: $localCount. Remote items: $remoteCount. Merge: $merge.';
+    return '$conflict. ਲੋਕਲ ਆਈਟਮਾਂ: $localCount. ਰਿਮੋਟ ਆਈਟਮਾਂ: $remoteCount. ਮਰਜ: $merge.';
   }
 
   @override
   String get accountsSyncRemotePreviewProviderMismatchBody =>
-      'The remote backup is tied to a different sign-in provider than the current device session.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਮੌਜੂਦਾ ਡਿਵਾਈਸ ਸੈਸ਼ਨ ਨਾਲੋਂ ਵੱਖਰੇ ਸਾਈਨ-ਇਨ ਪਰਦਾਤੇ ਨਾਲ ਜੁੜਿਆ ਹੋਇਆ ਹੈ।';
 
   @override
   String get accountsSyncRemotePreviewAccountMismatchBody =>
-      'The remote backup appears to belong to a different account identity than the one currently connected on this device.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਉਸ ਅਕਾਊਂਟ ਪਛਾਣ ਨਾਲ ਜੁੜਿਆ ਲੱਗਦਾ ਹੈ ਜੋ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਮੌਜੂਦਾ ਜੁੜੀ ਪਛਾਣ ਤੋਂ ਵੱਖਰੀ ਹੈ।';
 
   @override
   String get accountsSyncRemotePreviewSchemaMismatchBody =>
-      'This remote backup uses a newer schema than this build can restore safely.';
+      'ਇਹ ਰਿਮੋਟ ਬੈਕਅਪ ਇਸ ਬਿਲਡ ਨਾਲੋਂ ਨਵੇਂ ਸਕੀਮਾ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ ਜਿਸਨੂੰ ਇਹ ਬਿਲਡ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਰੀਸਟੋਰ ਨਹੀਂ ਕਰ ਸਕਦੀ।';
 
   @override
   String get accountsSyncRemotePreviewLocalOnlyWarning =>
-      'This device contains local-only data that is not clearly present in the remote backup.';
+      'ਇਸ ਡਿਵਾਈਸ ਵਿੱਚ ਕੇਵਲ ਲੋਕਲ ਡਾਟਾ ਹੈ ਜੋ ਰਿਮੋਟ ਬੈਕਅਪ ਵਿੱਚ ਸਪੱਸ਼ਟ ਤੌਰ \'ਤੇ ਮੌਜੂਦ ਨਹੀਂ ਲੱਗਦਾ।';
 
   @override
   String get accountsSyncRemotePreviewRemoteOnlyWarning =>
-      'The remote backup contains data that is not clearly present on this device yet.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਵਿੱਚ ਉਹ ਡਾਟਾ ਹੈ ਜੋ ਇਸ ਡਿਵਾਈਸ ਤੇ ਹਾਲੇ ਸਪੱਸ਼ਟ ਤੌਰ ਤੇ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।';
 
   @override
   String get accountsSyncRemotePreviewUncertainWarning =>
-      'Some domains differ, but the app cannot compare them precisely enough to promise a safe merge.';
+      'ਕੁਝ ਡੋਮੇਨ ਵੱਖਰੇ ਹਨ, ਪਰ ਐਪ ਉਨ੍ਹਾਂ ਦੀ ਇੰਨੀ ਸਹੀ ਤਰ੍ਹਾਂ ਤੁਲਨਾ ਨਹੀਂ ਕਰ ਸਕਦੀ ਕਿ ਸੁਰੱਖਿਅਤ ਮਰਜ ਦਾ ਯਕੀਨ ਦਿਵਾ ਸਕੇ।';
 
   @override
-  String get accountsSyncRemoteDomainProfileBasics => 'Profile basics';
+  String get accountsSyncRemoteDomainProfileBasics => 'ਪ੍ਰੋਫ਼ਾਈਲ ਬੁਨਿਆਦਾਂ';
 
   @override
-  String get accountsSyncRemoteDomainSettings => 'Settings and preferences';
+  String get accountsSyncRemoteDomainSettings => 'ਸੈਟਿੰਗਾਂ ਅਤੇ ਪਸੰਦਾਂ';
 
   @override
-  String get accountsSyncRemoteDomainPrayer => 'Prayer tracking';
+  String get accountsSyncRemoteDomainPrayer => 'ਨਮਾਜ਼ ਟ੍ਰੈਕਿੰਗ';
 
   @override
-  String get accountsSyncRemoteDomainDhikr => 'Dhikr progress and history';
+  String get accountsSyncRemoteDomainDhikr => 'ਜ਼ਿਕਰ ਤਰੱਕੀ ਅਤੇ ਇਤਿਹਾਸ';
 
   @override
-  String get accountsSyncRemoteDomainQuran => 'Qur’an progress and recents';
+  String get accountsSyncRemoteDomainQuran => 'Qur’an ਤਰੱਕੀ ਅਤੇ ਹਾਲੀਆ ਪੜ੍ਹਾਈ';
 
   @override
-  String get accountsSyncRemoteDomainGrowth => 'XP, drops, and ocean progress';
+  String get accountsSyncRemoteDomainGrowth => 'XP, ਡਰਾਪਸ, ਅਤੇ ਸਮੁੰਦਰੀ ਤਰੱਕੀ';
 
   @override
-  String get accountsSyncRemoteDomainLearning => 'Learning progress';
+  String get accountsSyncRemoteDomainLearning => 'ਸਿੱਖਣ ਦੀ ਤਰੱਕੀ';
 
   @override
-  String get accountsSyncRemoteDomainJournal => 'Journal and notes';
+  String get accountsSyncRemoteDomainJournal => 'ਜਰਨਲ ਅਤੇ ਨੋਟਸ';
 
   @override
   String get accountsSyncRemoteDomainReminders =>
-      'Reminders and prayer preferences';
+      'ਯਾਦ-ਦਿਹਾਨੀਆਂ ਅਤੇ ਨਮਾਜ਼ ਪਸੰਦਾਂ';
 
   @override
-  String get accountsSyncRemoteDomainTheme => 'Theme and accessibility';
+  String get accountsSyncRemoteDomainTheme => 'ਥੀਮ ਅਤੇ ਐਕਸੇਸਬਿਲਿਟੀ';
 
   @override
-  String get accountsSyncRemoteConflictIdentical => 'Matches this device';
+  String get accountsSyncRemoteConflictIdentical =>
+      'ਇਸ ਡਿਵਾਈਸ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ';
 
   @override
-  String get accountsSyncRemoteConflictRemoteNewer => 'Remote looks newer';
+  String get accountsSyncRemoteConflictRemoteNewer => 'ਰਿਮੋਟ ਹੋਰ ਨਵਾਂ ਲੱਗਦਾ ਹੈ';
 
   @override
-  String get accountsSyncRemoteConflictLocalNewer => 'This device looks newer';
+  String get accountsSyncRemoteConflictLocalNewer =>
+      'ਇਹ ਡਿਵਾਈਸ ਹੋਰ ਨਵਾਂ ਲੱਗਦਾ ਹੈ';
 
   @override
-  String get accountsSyncRemoteConflictRemoteOnly =>
-      'Remote-only data detected';
+  String get accountsSyncRemoteConflictRemoteOnly => 'ਸਿਰਫ਼ ਰਿਮੋਟ ਡਾਟਾ ਮਿਲਿਆ';
 
   @override
-  String get accountsSyncRemoteConflictLocalOnly => 'Local-only data detected';
+  String get accountsSyncRemoteConflictLocalOnly => 'ਸਿਰਫ਼ ਲੋਕਲ ਡਾਟਾ ਮਿਲਿਆ';
 
   @override
-  String get accountsSyncRemoteConflictSchema => 'Schema mismatch';
+  String get accountsSyncRemoteConflictSchema => 'ਸਕੀਮਾ ਅਣਮੇਲ';
 
   @override
   String get accountsSyncRemoteConflictUncertain =>
-      'Difference could not be compared safely';
+      'ਫ਼ਰਕ ਦੀ ਸੁਰੱਖਿਅਤ ਤੁਲਨਾ ਨਹੀਂ ਹੋ ਸਕੀ';
 
   @override
-  String get accountsSyncRemoteConflictAccountMismatch =>
-      'Different account detected';
+  String get accountsSyncRemoteConflictAccountMismatch => 'ਵੱਖਰਾ ਅਕਾਊਂਟ ਮਿਲਿਆ';
 
   @override
-  String get accountsSyncRemoteConflictProviderMismatch =>
-      'Different provider detected';
+  String get accountsSyncRemoteConflictProviderMismatch => 'ਵੱਖਰਾ ਪਰਦਾਤਾ ਮਿਲਿਆ';
 
   @override
-  String get accountsSyncRemoteMergeSafe => 'Safe to merge';
+  String get accountsSyncRemoteMergeSafe => 'ਮਰਜ ਲਈ ਸੁਰੱਖਿਅਤ';
 
   @override
-  String get accountsSyncRemoteMergeReplaceOnly => 'Replace only';
+  String get accountsSyncRemoteMergeReplaceOnly => 'ਕੇਵਲ ਬਦਲੋ';
 
   @override
-  String get accountsSyncRemoteMergeUnsafe => 'Unsafe to merge';
+  String get accountsSyncRemoteMergeUnsafe => 'ਮਰਜ ਲਈ ਅਸੁਰੱਖਿਅਤ';
 
   @override
-  String get accountsSyncRemoteMergeUnsupported => 'Merge not supported';
+  String get accountsSyncRemoteMergeUnsupported => 'ਮਰਜ ਸਮਰਥਿਤ ਨਹੀਂ';
 
   @override
-  String get accountsSyncAutoBackupSectionTitle => 'Auto-backup';
+  String get accountsSyncAutoBackupSectionTitle => 'ਆਟੋ-ਬੈਕਅਪ';
 
   @override
   String get accountsSyncAutoBackupSectionSubtitle =>
-      'Back up your journey automatically when meaningful progress changes. Manual backup stays available anytime.';
+      'ਜਦੋਂ ਅਰਥਪੂਰਨ ਤਰੱਕੀ ਬਦਲਦੀ ਹੈ ਤਾਂ ਆਪਣੀ ਯਾਤਰਾ ਦਾ ਆਪਣੇ ਆਪ ਬੈਕਅਪ ਕਰੋ। ਹੱਥੋਂ ਬੈਕਅਪ ਹਰ ਵੇਲੇ ਉਪਲਬਧ ਰਹਿੰਦਾ ਹੈ।';
 
   @override
-  String get accountsSyncAutoBackupEnabledTitle => 'Enable auto-backup';
+  String get accountsSyncAutoBackupEnabledTitle => 'ਆਟੋ-ਬੈਕਅਪ ਚਾਲੂ ਕਰੋ';
 
   @override
   String get accountsSyncAutoBackupOnBody =>
-      'Automatic backup is on when the provider is available and the app decides a new backup is worth sending.';
+      'ਜਦੋਂ ਪ੍ਰੋਵਾਈਡਰ ਉਪਲਬਧ ਹੋਵੇ ਅਤੇ ਐਪ ਇਹ ਨਿਰਣਾ ਕਰੇ ਕਿ ਨਵਾਂ ਬੈਕਅਪ ਭੇਜਣਾ ਠੀਕ ਹੈ, ਤਦ ਆਟੋਮੈਟਿਕ ਬੈਕਅਪ ਚਾਲੂ ਰਹਿੰਦਾ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupOffBody =>
-      'Automatic backup is off. Your data stays local until you choose to back it up.';
+      'ਆਟੋਮੈਟਿਕ ਬੈਕਅਪ ਬੰਦ ਹੈ। ਤੁਹਾਡਾ ਡਾਟਾ ਲੋਕਲ ਹੀ ਰਹੇਗਾ ਜਦ ਤੱਕ ਤੁਸੀਂ ਆਪ ਬੈਕਅਪ ਨਹੀਂ ਚੁਣਦੇ।';
 
   @override
-  String get accountsSyncAutoBackupFrequencyTitle => 'Backup frequency';
+  String get accountsSyncAutoBackupFrequencyTitle => 'ਬੈਕਅਪ ਦੀ ਆਵਰਤੀ';
 
   @override
-  String get accountsSyncAutoBackupFrequencySmart => 'Smart';
+  String get accountsSyncAutoBackupFrequencySmart => 'ਸਮਾਰਟ';
 
   @override
-  String get accountsSyncAutoBackupFrequencyDaily => 'Daily';
+  String get accountsSyncAutoBackupFrequencyDaily => 'ਰੋਜ਼ਾਨਾ';
 
   @override
-  String get accountsSyncAutoBackupFrequencyWeekly => 'Weekly';
+  String get accountsSyncAutoBackupFrequencyWeekly => 'ਹਫ਼ਤਾਵਾਰੀ';
 
   @override
-  String get accountsSyncAutoBackupFrequencyManual => 'Manual only';
+  String get accountsSyncAutoBackupFrequencyManual => 'ਕੇਵਲ ਹੱਥੋਂ';
 
   @override
   String get accountsSyncAutoBackupMeaningfulChangeTitle =>
-      'Back up on meaningful progress changes';
+      'ਅਹਿਮ ਤਰੱਕੀ ਬਦਲਣ \'ਤੇ ਬੈਕਅਪ ਕਰੋ';
 
   @override
   String get accountsSyncAutoBackupBackgroundTitle =>
-      'Back up when the app is backgrounded if eligible';
+      'ਜੇ ਯੋਗ ਹੋਵੇ ਤਾਂ ਐਪ ਬੈਕਗ੍ਰਾਊਂਡ ਵਿੱਚ ਹੋਣ ਵੇਲੇ ਬੈਕਅਪ ਕਰੋ';
 
   @override
-  String get accountsSyncAutoBackupStatusTitle => 'Auto-backup status';
+  String get accountsSyncAutoBackupStatusTitle => 'ਆਟੋ-ਬੈਕਅਪ ਦੀ ਸਥਿਤੀ';
 
   @override
-  String get accountsSyncAutoBackupStatusOff => 'Auto-backup is off.';
+  String get accountsSyncAutoBackupStatusOff => 'ਆਟੋ-ਬੈਕਅਪ ਬੰਦ ਹੈ।';
 
   @override
-  String get accountsSyncAutoBackupStatusRunning => 'A backup is running now.';
+  String get accountsSyncAutoBackupStatusRunning =>
+      'ਇਸ ਵੇਲੇ ਇੱਕ ਬੈਕਅਪ ਚੱਲ ਰਿਹਾ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupStatusFailed =>
-      'The last auto-backup attempt failed.';
+      'ਪਿਛਲੀ ਆਟੋ-ਬੈਕਅਪ ਕੋਸ਼ਿਸ਼ ਅਸਫਲ ਰਹੀ।';
 
   @override
   String get accountsSyncAutoBackupStatusPending =>
-      'New progress is waiting to be backed up.';
+      'ਨਵੀਂ ਤਰੱਕੀ ਬੈਕਅਪ ਹੋਣ ਦੀ ਉਡੀਕ ਵਿੱਚ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupStatusReady =>
-      'Your latest tracked progress is backed up.';
+      'ਤੁਹਾਡੀ ਸਭ ਤੋਂ ਨਵੀਂ ਟਰੈਕ ਕੀਤੀ ਤਰੱਕੀ ਬੈਕਅਪ ਹੋ ਚੁੱਕੀ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupStatusWaiting =>
-      'Auto-backup is ready and waiting for the next eligible moment.';
+      'ਆਟੋ-ਬੈਕਅਪ ਤਿਆਰ ਹੈ ਅਤੇ ਅਗਲੇ ਯੋਗ ਸਮੇਂ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupLastAttemptTitle =>
-      'Last auto-backup attempt';
+      'ਪਿਛਲੀ ਆਟੋ-ਬੈਕਅਪ ਕੋਸ਼ਿਸ਼';
 
   @override
-  String get accountsSyncAutoBackupLastSuccessTitle =>
-      'Last successful auto-backup';
+  String get accountsSyncAutoBackupLastSuccessTitle => 'ਪਿਛਲਾ ਸਫਲ ਆਟੋ-ਬੈਕਅਪ';
 
   @override
-  String get accountsSyncAutoBackupFailureTitle => 'Last auto-backup issue';
+  String get accountsSyncAutoBackupFailureTitle => 'ਪਿਛਲੀ ਆਟੋ-ਬੈਕਅਪ ਸਮੱਸਿਆ';
 
   @override
-  String get accountsSyncAutoBackupRetryAction => 'Run auto-backup now';
+  String get accountsSyncAutoBackupRetryAction => 'ਹੁਣ ਆਟੋ-ਬੈਕਅਪ ਚਲਾਓ';
 
   @override
-  String get accountsSyncAutoBackupReasonMeaningfulChange =>
-      'Meaningful progress changed';
+  String get accountsSyncAutoBackupReasonMeaningfulChange => 'ਅਹਿਮ ਤਰੱਕੀ ਬਦਲੀ';
 
   @override
-  String get accountsSyncAutoBackupReasonOverdue => 'Backup is overdue';
+  String get accountsSyncAutoBackupReasonOverdue => 'ਬੈਕਅਪ ਦੇਰ ਨਾਲ ਹੈ';
 
   @override
   String get accountsSyncAutoBackupReasonSignedIn =>
-      'Signed in to a backup-capable provider';
+      'ਬੈਕਅਪ-ਸਮਰੱਥ ਪ੍ਰੋਵਾਈਡਰ ਵਿੱਚ ਸਾਇਨ ਇਨ ਕੀਤਾ ਗਿਆ';
 
   @override
   String get accountsSyncAutoBackupReasonManualRetry =>
-      'Manual retry requested';
+      'ਹੱਥੋਂ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਮੰਗੀ ਗਈ';
 
   @override
-  String get accountsSyncAutoBackupEligibilityReady => 'Auto-backup is ready.';
+  String get accountsSyncAutoBackupEligibilityReady => 'ਆਟੋ-ਬੈਕਅਪ ਤਿਆਰ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityDisabled =>
-      'Auto-backup is turned off.';
+      'ਆਟੋ-ਬੈਕਅਪ ਬੰਦ ਕੀਤਾ ਗਿਆ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityManualOnly =>
-      'Backup frequency is set to manual only.';
+      'ਬੈਕਅਪ ਦੀ ਆਵਰਤੀ ਕੇਵਲ ਹੱਥੋਂ \'ਤੇ ਸੈੱਟ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupEligibilitySignInRequired =>
-      'Sign in to a backup-capable provider first.';
+      'ਪਹਿਲਾਂ ਕਿਸੇ ਬੈਕਅਪ-ਸਮਰੱਥ ਪ੍ਰੋਵਾਈਡਰ ਵਿੱਚ ਸਾਇਨ ਇਨ ਕਰੋ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityProviderUnavailable =>
-      'The current backup provider is unavailable right now.';
+      'ਮੌਜੂਦਾ ਬੈਕਅਪ ਪ੍ਰੋਵਾਈਡਰ ਇਸ ਵੇਲੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityNoChanges =>
-      'No meaningful new changes need backup yet.';
+      'ਹਾਲੇ ਤੱਕ ਬੈਕਅਪ ਲਈ ਕੋਈ ਨਵਾਂ ਅਹਿਮ ਬਦਲਾਵ ਨਹੀਂ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityThrottled =>
-      'The last backup attempt was too recent. Please wait a little before trying again.';
+      'ਪਿਛਲੀ ਬੈਕਅਪ ਕੋਸ਼ਿਸ਼ ਬਹੁਤ ਹੀ ਹਾਲ ਹੀ ਵਿੱਚ ਹੋਈ ਸੀ। ਕਿਰਪਾ ਕਰਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਥੋੜ੍ਹਾ ਇੰਤਜ਼ਾਰ ਕਰੋ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityRunning =>
-      'An auto-backup is already running.';
+      'ਆਟੋ-ਬੈਕਅਪ ਪਹਿਲਾਂ ਹੀ ਚੱਲ ਰਿਹਾ ਹੈ।';
 
   @override
   String get accountsSyncAutoBackupEligibilityWaiting =>
-      'Auto-backup is waiting for the next scheduled or eligible window.';
+      'ਆਟੋ-ਬੈਕਅਪ ਅਗਲੀ ਨਿਯਤ ਜਾਂ ਯੋਗ ਮਿਆਦ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ।';
 
   @override
-  String get accountsSyncScopeSectionTitle => 'Sync scope';
+  String get accountsSyncScopeSectionTitle => 'Sync ਦਾ ਦਾਇਰਾ';
 
   @override
   String get accountsSyncScopeSectionSubtitle =>
-      'Choose which categories future remote backups include. Excluded categories stay on this device unless you export them manually.';
+      'ਚੁਣੋ ਕਿ ਭਵਿੱਖ ਦੇ ਰਿਮੋਟ ਬੈਕਅਪ ਵਿੱਚ ਕਿਹੜੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਸ਼ਾਮਲ ਹੋਣ। ਜਿਹੜੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਬਾਹਰ ਰੱਖੀਆਂ ਗਈਆਂ ਹਨ ਉਹ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਹੀ ਰਹਿਣਗੀਆਂ ਜਦ ਤੱਕ ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਨੂੰ ਹੱਥੋਂ ਐਕਸਪੋਰਟ ਨਾ ਕਰੋ।';
 
   @override
-  String get accountsSyncScopeCurrentSummaryTitle => 'Current backup scope';
+  String get accountsSyncScopeCurrentSummaryTitle => 'ਮੌਜੂਦਾ ਬੈਕਅਪ ਦਾਇਰਾ';
 
   @override
-  String get accountsSyncScopeEssentialTitle => 'Essential progress';
+  String get accountsSyncScopeEssentialTitle => 'ਜ਼ਰੂਰੀ ਤਰੱਕੀ';
 
   @override
   String get accountsSyncScopeEssentialSubtitle =>
-      'These categories stay in backup because they keep your learning and worship progress coherent across restore.';
+      'ਇਹ ਸ਼੍ਰੇਣੀਆਂ ਬੈਕਅਪ ਵਿੱਚ ਰਹਿੰਦੀਆਂ ਹਨ ਕਿਉਂਕਿ ਇਹ ਰੀਸਟੋਰ ਦੌਰਾਨ ਤੁਹਾਡੀ ਸਿੱਖਣ ਅਤੇ ਇਬਾਦਤ ਤਰੱਕੀ ਨੂੰ ਇਕਸਾਰ ਰੱਖਦੀਆਂ ਹਨ।';
 
   @override
-  String get accountsSyncScopeOptionalTitle =>
-      'Personal content and preferences';
+  String get accountsSyncScopeOptionalTitle => 'ਨਿੱਜੀ ਸਮੱਗਰੀ ਅਤੇ ਪਸੰਦਾਂ';
 
   @override
   String get accountsSyncScopeOptionalSubtitle =>
-      'These categories can stay local-only if you prefer more privacy on this device.';
+      'ਜੇ ਤੁਸੀਂ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਹੋਰ ਗੋਪਨੀਯਤਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਇਹ ਸ਼੍ਰੇਣੀਆਂ ਕੇਵਲ-ਲੋਕਲ ਰਹਿ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
-  String get accountsSyncScopeConfirmTitle => 'Update backup scope?';
+  String get accountsSyncScopeConfirmTitle => 'ਬੈਕਅਪ ਦਾਇਰਾ ਅਪਡੇਟ ਕਰਨਾ ਹੈ?';
 
   @override
-  String get accountsSyncScopeConfirmAction => 'Update scope';
+  String get accountsSyncScopeConfirmAction => 'ਦਾਇਰਾ ਅਪਡੇਟ ਕਰੋ';
 
   @override
   String get accountsSyncScopeManualExportNote =>
-      'Manual export still includes full local data by default, even if future remote backups are partial.';
+      'ਹੱਥੋਂ ਐਕਸਪੋਰਟ ਹਾਲੇ ਵੀ ਮੂਲ ਰੂਪ ਵਿੱਚ ਪੂਰਾ ਲੋਕਲ ਡਾਟਾ ਸ਼ਾਮਲ ਕਰਦਾ ਹੈ, ਭਾਵੇਂ ਭਵਿੱਖ ਦੇ ਰਿਮੋਟ ਬੈਕਅਪ ਅਧੂਰੇ ਹੋਣ।';
 
   @override
   String get accountsSyncScopeRestoreDefaultsAction =>
-      'Restore recommended defaults';
+      'ਸਿਫ਼ਾਰਸ਼ ਕੀਤੇ ਡਿਫਾਲਟ ਮੁੜ ਲਾਗੂ ਕਰੋ';
 
   @override
-  String get accountsSyncScopePreviewTitle => 'Backup scope';
+  String get accountsSyncScopePreviewTitle => 'ਬੈਕਅਪ ਦਾਇਰਾ';
 
   @override
   String accountsSyncScopePreviewRemoteValue(Object value) {
-    return 'Remote backup: $value';
+    return 'ਰਿਮੋਟ ਬੈਕਅਪ: $value';
   }
 
   @override
   String accountsSyncScopePreviewCurrentValue(Object value) {
-    return 'Current device setting: $value';
+    return 'ਮੌਜੂਦਾ ਡਿਵਾਈਸ ਸੈਟਿੰਗ: $value';
   }
 
   @override
   String accountsSyncScopePreviewExcludedDomain(Object domain) {
-    return 'This backup does not include $domain.';
+    return 'ਇਸ ਬੈਕਅਪ ਵਿੱਚ $domain ਸ਼ਾਮਲ ਨਹੀਂ ਹੈ।';
   }
 
   @override
   String accountsSyncScopePreviewValue(Object value) {
-    return 'Backup scope: $value';
+    return 'ਬੈਕਅਪ ਦਾਇਰਾ: $value';
   }
 
   @override
   String get accountsSyncScopeSettingsDescription =>
-      'App settings and family/device preferences can stay local if you do not want them in remote backup.';
+      'ਜੇ ਤੁਸੀਂ ਨਹੀਂ ਚਾਹੁੰਦੇ ਕਿ ਐਪ ਸੈਟਿੰਗਾਂ ਅਤੇ ਪਰਿਵਾਰ/ਡਿਵਾਈਸ ਪਸੰਦਾਂ ਰਿਮੋਟ ਬੈਕਅਪ ਵਿੱਚ ਜਾਣ, ਤਾਂ ਉਹ ਲੋਕਲ ਰਹਿ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
   String get accountsSyncScopeJournalDescription =>
-      'Private notes and journal entries can remain only on this device.';
+      'ਨਿੱਜੀ ਨੋਟਸ ਅਤੇ ਜਰਨਲ ਐਂਟਰੀਆਂ ਕੇਵਲ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਹੀ ਰਹਿ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
   String get accountsSyncScopeRemindersDescription =>
-      'Reminder and notification choices can remain local if you prefer to reconfigure them per device.';
+      'ਜੇ ਤੁਸੀਂ ਹਰ ਡਿਵਾਈਸ ਲਈ ਉਨ੍ਹਾਂ ਨੂੰ ਮੁੜ ਸੈਟ ਕਰਨਾ ਪਸੰਦ ਕਰਦੇ ਹੋ ਤਾਂ ਰਿਮਾਈਂਡਰ ਅਤੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਚੋਣਾਂ ਲੋਕਲ ਰਹਿ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
   String get accountsSyncScopeThemeDescription =>
-      'Theme, language, and accessibility preferences can stay local to this device.';
+      'ਥੀਮ, ਭਾਸ਼ਾ ਅਤੇ ਐਕਸੈਸਬਿਲਟੀ ਪਸੰਦਾਂ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਲੋਕਲ ਹੀ ਰਹਿ ਸਕਦੀਆਂ ਹਨ।';
 
   @override
   String get accountsSyncScopeSummaryFull =>
-      'Full backup. All supported categories are included.';
+      'ਪੂਰਾ ਬੈਕਅਪ। ਸਾਰੀਆਂ ਸਮਰਥਿਤ ਸ਼੍ਰੇਣੀਆਂ ਸ਼ਾਮਲ ਹਨ।';
 
   @override
   String accountsSyncScopeSummaryPartial(Object domains) {
-    return 'Partial backup. Local-only categories: $domains.';
+    return 'ਅਧੂਰਾ ਬੈਕਅਪ। ਕੇਵਲ-ਲੋਕਲ ਸ਼੍ਰੇਣੀਆਂ: $domains.';
   }
 
   @override
   String accountsSyncScopeIncludeImpactBody(Object domain) {
-    return '$domain will be included in future remote backups. Existing local data stays intact.';
+    return '$domain ਭਵਿੱਖ ਦੇ ਰਿਮੋਟ ਬੈਕਅਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੇਗਾ। ਮੌਜੂਦਾ ਲੋਕਲ ਡਾਟਾ ਸੁਰੱਖਿਅਤ ਰਹੇਗਾ।';
   }
 
   @override
   String accountsSyncScopeExcludeImpactBody(Object domain) {
-    return '$domain will stay only on this device in future remote backups. Existing local data is not deleted, and older backups may still contain it.';
+    return '$domain ਭਵਿੱਖ ਦੇ ਰਿਮੋਟ ਬੈਕਅਪ ਵਿੱਚ ਕੇਵਲ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਹੀ ਰਹੇਗਾ। ਮੌਜੂਦਾ ਲੋਕਲ ਡਾਟਾ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾਵੇਗਾ, ਅਤੇ ਪੁਰਾਣੇ ਬੈਕਅਪ ਵਿੱਚ ਇਹ ਹਾਲੇ ਵੀ ਹੋ ਸਕਦਾ ਹੈ।';
   }
 
   @override
   String accountsSyncScopePreviewMismatchDomain(Object domain) {
-    return 'Your current settings include $domain, but this backup did not.';
+    return 'ਤੁਹਾਡੀਆਂ ਮੌਜੂਦਾ ਸੈਟਿੰਗਾਂ ਵਿੱਚ $domain ਸ਼ਾਮਲ ਹੈ, ਪਰ ਇਸ ਬੈਕਅਪ ਵਿੱਚ ਨਹੀਂ ਸੀ।';
   }
 
   @override
   String get accountsSyncNoRemoteBackupFound =>
-      'No remote backup was found for this account yet.';
+      'ਇਸ ਖਾਤੇ ਲਈ ਹਾਲੇ ਤੱਕ ਕੋਈ ਰਿਮੋਟ ਬੈਕਅਪ ਨਹੀਂ ਮਿਲਿਆ।';
 
   @override
   String get accountsSyncRemoteBackupFoundResult =>
-      'Remote backup metadata is available.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਮੈਟਾਡਾਟਾ ਉਪਲਬਧ ਹੈ।';
 
   @override
   String get accountsSyncRemoteBackupSuccessResult =>
-      'Remote backup completed successfully.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਸਫਲਤਾਪੂਰਵਕ ਪੂਰਾ ਹੋ ਗਿਆ।';
 
   @override
   String get accountsSyncRemoteRestoreSuccessResult =>
-      'Remote backup restored successfully.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਸਫਲਤਾਪੂਰਵਕ ਰੀਸਟੋਰ ਹੋ ਗਿਆ।';
 
   @override
   String get accountsSyncRemoteProviderNeedsSetupBody =>
-      'This provider still needs platform or credential setup before remote backup can work.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਕੰਮ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਸ ਪ੍ਰੋਵਾਈਡਰ ਨੂੰ ਹਾਲੇ ਵੀ ਪਲੇਟਫਾਰਮ ਜਾਂ ਪ੍ਰਮਾਣਿਕਤਾ ਸੈਟਅਪ ਦੀ ਲੋੜ ਹੈ।';
 
   @override
   String get accountsSyncRemoteAuthExpiredBody =>
-      'The signed-in session needs attention before remote backup can continue.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਜਾਰੀ ਰਹਿਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਈਨ-ਇਨ ਸੈਸ਼ਨ ਨੂੰ ਧਿਆਨ ਦੀ ਲੋੜ ਹੈ।';
 
   @override
   String get accountsSyncRemoteICloudUnavailableBody =>
-      'iCloud is unavailable on this device or account right now.';
+      'iCloud ਇਸ ਵੇਲੇ ਇਸ ਡਿਵਾਈਸ ਜਾਂ ਖਾਤੇ \'ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
   String get accountsSyncRemoteEmailUnavailableBody =>
-      'Email-linked remote backup is not connected yet.';
+      'ਈਮੇਲ ਨਾਲ ਜੁੜਿਆ ਰਿਮੋਟ ਬੈਕਅਪ ਹਾਲੇ ਕਨੈਕਟ ਨਹੀਂ ਹੋਇਆ।';
 
   @override
   String get accountsSyncRemoteBackupFailedBody =>
-      'Remote backup could not be completed safely.';
+      'ਰਿਮੋਟ ਬੈਕਅਪ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।';
 
   @override
   String get accountsSyncRequireProfileSelectionOnLaunch =>
@@ -19410,14 +19626,14 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncExportNowAction => 'ਹੁਣੇ ਐਕਸਪੋਰਟ ਕਰੋ';
 
   @override
-  String get accountsSyncExportCreatedResult => 'Backup export created.';
+  String get accountsSyncExportCreatedResult => 'ਬੈਕਅਪ ਐਕਸਪੋਰਟ ਤਿਆਰ ਹੋ ਗਿਆ।';
 
   @override
   String get accountsSyncExportReadyBody =>
-      'Your backup file is ready. Keep it in Files or share it to a safe location.';
+      'ਤੁਹਾਡੀ ਬੈਕਅਪ ਫਾਇਲ ਤਿਆਰ ਹੈ। ਇਸਨੂੰ Files ਵਿੱਚ ਰੱਖੋ ਜਾਂ ਕਿਸੇ ਸੁਰੱਖਿਅਤ ਥਾਂ \'ਤੇ ਸਾਂਝਾ ਕਰੋ।';
 
   @override
-  String get accountsSyncShareBackupAction => 'Share backup';
+  String get accountsSyncShareBackupAction => 'ਬੈਕਅਪ ਸਾਂਝਾ ਕਰੋ';
 
   @override
   String get accountsSyncImportBackupPageSubtitle =>
@@ -19431,18 +19647,18 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਐਕਸਪੋਰਟ ਕੀਤਾ JSON ਜਾਂ encoded backup ਇੱਥੇ ਪੇਸਟ ਕਰੋ।';
 
   @override
-  String get accountsSyncImportChooseFileTitle => 'Choose backup file';
+  String get accountsSyncImportChooseFileTitle => 'ਬੈਕਅਪ ਫਾਇਲ ਚੁਣੋ';
 
   @override
   String get accountsSyncImportChooseFileSubtitle =>
-      'Select a backup file before anything is restored.';
+      'ਕਿਸੇ ਵੀ ਚੀਜ਼ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅਪ ਫਾਇਲ ਚੁਣੋ।';
 
   @override
   String get accountsSyncImportFileLoadedSubtitle =>
-      'Backup file loaded. Review it before restoring.';
+      'ਬੈਕਅਪ ਫਾਇਲ ਲੋਡ ਹੋ ਗਈ ਹੈ। ਰੀਸਟੋਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਸਦੀ ਸਮੀਖਿਆ ਕਰੋ।';
 
   @override
-  String get accountsSyncChooseBackupFileAction => 'Choose backup file';
+  String get accountsSyncChooseBackupFileAction => 'ਬੈਕਅਪ ਫਾਇਲ ਚੁਣੋ';
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ payload';
@@ -19458,73 +19674,73 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncBackupImported => 'ਬੈਕਅੱਪ ਇਮਪੋਰਟ ਹੋ ਗਿਆ';
 
   @override
-  String get accountsSyncImportModeMerge => 'Merge';
+  String get accountsSyncImportModeMerge => 'ਮਿਲਾਓ';
 
   @override
-  String get accountsSyncImportModeReplace => 'Replace';
+  String get accountsSyncImportModeReplace => 'ਬਦਲੋ';
 
   @override
-  String get accountsSyncImportPreviewTitle => 'Import preview';
+  String get accountsSyncImportPreviewTitle => 'ਇੰਪੋਰਟ ਝਲਕ';
 
   @override
   String accountsSyncImportPreviewSummary(int profiles, int accounts) {
     String _temp0 = intl.Intl.pluralLogic(
       profiles,
       locale: localeName,
-      other: '$profiles profiles',
-      one: '1 profile',
-      zero: '0 profiles',
+      other: '$profiles ਪ੍ਰੋਫ਼ਾਈਲਾਂ',
+      one: '1 ਪ੍ਰੋਫ਼ਾਈਲ',
+      zero: '0 ਪ੍ਰੋਫ਼ਾਈਲ',
     );
     String _temp1 = intl.Intl.pluralLogic(
       accounts,
       locale: localeName,
-      other: '$accounts accounts',
-      one: '1 account',
-      zero: '0 accounts',
+      other: '$accounts ਖਾਤੇ',
+      one: '1 ਖਾਤਾ',
+      zero: '0 ਖਾਤੇ',
     );
     return '$_temp0 • $_temp1';
   }
 
   @override
   String accountsSyncImportPreviewModeValue(String mode) {
-    return 'Restore mode: $mode';
+    return 'ਰੀਸਟੋਰ ਮੋਡ: $mode';
   }
 
   @override
   String accountsSyncImportPreviewExportedAtValue(String time) {
-    return 'Exported $time';
+    return '$time \'ਤੇ ਐਕਸਪੋਰਟ ਕੀਤਾ ਗਿਆ';
   }
 
   @override
-  String get accountsSyncImportConfirmTitle => 'Confirm restore';
+  String get accountsSyncImportConfirmTitle => 'ਰੀਸਟੋਰ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ';
 
   @override
   String get accountsSyncImportConfirmMergeBody =>
-      'This will merge the imported backup with your current local data. Existing local progress will be kept where possible, and a safety snapshot will be created first.';
+      'ਇਹ ਇੰਪੋਰਟ ਕੀਤਾ ਬੈਕਅਪ ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਲੋਕਲ ਡਾਟੇ ਨਾਲ ਮਿਲਾਏਗਾ। ਜਿੱਥੇ ਸੰਭਵ ਹੋਵੇ ਮੌਜੂਦਾ ਲੋਕਲ ਤਰੱਕੀ ਰੱਖੀ ਜਾਵੇਗੀ, ਅਤੇ ਪਹਿਲਾਂ ਇੱਕ ਸੇਫਟੀ ਸਨੈਪਸ਼ਾਟ ਬਣਾਇਆ ਜਾਵੇਗਾ।';
 
   @override
   String get accountsSyncImportConfirmReplaceBody =>
-      'This will replace the current local set with the imported backup. A safety snapshot will be created first so you can recover if needed.';
+      'ਇਹ ਮੌਜੂਦਾ ਲੋਕਲ ਸੈੱਟ ਨੂੰ ਇੰਪੋਰਟ ਕੀਤੇ ਬੈਕਅਪ ਨਾਲ ਬਦਲ ਦੇਵੇਗਾ। ਜੇ ਲੋੜ ਪਏ ਤਾਂ ਤੁਸੀਂ ਮੁੜ ਹਾਸਲ ਕਰ ਸਕੋ, ਇਸ ਲਈ ਪਹਿਲਾਂ ਸੇਫਟੀ ਸਨੈਪਸ਼ਾਟ ਬਣਾਇਆ ਜਾਵੇਗਾ।';
 
   @override
   String get accountsSyncImportErrorEmpty =>
-      'Choose a backup file before restoring.';
+      'ਰੀਸਟੋਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅਪ ਫਾਇਲ ਚੁਣੋ।';
 
   @override
   String get accountsSyncImportErrorInvalid =>
-      'This backup file could not be validated safely.';
+      'ਇਹ ਬੈਕਅਪ ਫਾਇਲ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।';
 
   @override
   String get accountsSyncImportErrorFutureSchema =>
-      'This backup was created by a newer version of the app and cannot be restored safely yet.';
+      'ਇਹ ਬੈਕਅਪ ਐਪ ਦੇ ਹੋਰ ਨਵੇਂ ਵਰਜਨ ਨਾਲ ਬਣਾਇਆ ਗਿਆ ਸੀ ਅਤੇ ਹਾਲੇ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਰੀਸਟੋਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।';
 
   @override
   String get accountsSyncImportWarningStructuredDataMissing =>
-      'Some structured progress data is missing from this backup, so part of the journey may not restore.';
+      'ਇਸ ਬੈਕਅਪ ਵਿੱਚ ਕੁਝ ਸੰਰਚਿਤ ਤਰੱਕੀ ਡਾਟਾ ਗੁੰਮ ਹੈ, ਇਸ ਲਈ ਯਾਤਰਾ ਦਾ ਕੁਝ ਹਿੱਸਾ ਰੀਸਟੋਰ ਨਾ ਹੋ ਸਕੇ।';
 
   @override
   String get accountsSyncImportFailedResult =>
-      'Restore could not be completed. Your current local data was preserved.';
+      'ਰੀਸਟੋਰ ਪੂਰਾ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਤੁਹਾਡਾ ਮੌਜੂਦਾ ਲੋਕਲ ਡਾਟਾ ਸੁਰੱਖਿਅਤ ਰੱਖਿਆ ਗਿਆ।';
 
   @override
   String get accountsSyncRestoreBackupAction => 'ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕਰੋ';
@@ -19545,7 +19761,7 @@ class AppLocalizationsPa extends AppLocalizations {
     String transport,
     Object provider,
   ) {
-    return '$syncMode • $transport';
+    return '$syncMode · $transport';
   }
 
   @override
@@ -19555,16 +19771,16 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncLastResultTitle => 'ਆਖ਼ਰੀ ਨਤੀਜਾ';
 
   @override
-  String get accountsSyncPendingUploadsTitle => 'Pending uploads';
+  String get accountsSyncPendingUploadsTitle => 'ਬਾਕੀ ਅੱਪਲੋਡ';
 
   @override
   String accountsSyncPendingChangesCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count pending changes',
-      one: '1 pending change',
-      zero: '0 pending changes',
+      other: '$count ਬਦਲਾਅ ਬਾਕੀ',
+      one: '1 ਬਦਲਾਅ ਬਾਕੀ',
+      zero: '0 ਬਦਲਾਅ ਬਾਕੀ',
     );
     return '$_temp0';
   }
@@ -19589,7 +19805,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String accountsSyncRecentSyncEventBullet(String event) {
-    return '• $event';
+    return '· $event';
   }
 
   @override
@@ -19599,26 +19815,26 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncLastSyncTitle => 'ਆਖ਼ਰੀ sync';
 
   @override
-  String get accountsSyncPendingChangesTitle => 'Pending changes';
+  String get accountsSyncPendingChangesTitle => 'ਬਾਕੀ ਬਦਲਾਅ';
 
   @override
   String accountsSyncPendingChangesWaiting(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count changes waiting',
-      one: '1 change waiting',
-      zero: '0 changes waiting',
+      other: '$count ਬਦਲਾਅ ਉਡੀਕ ਵਿੱਚ',
+      one: '1 ਬਦਲਾਅ ਉਡੀਕ ਵਿੱਚ',
+      zero: '0 ਬਦਲਾਅ ਉਡੀਕ ਵਿੱਚ',
     );
     return '$_temp0';
   }
 
   @override
-  String get accountsSyncTransportTitle => 'Transport';
+  String get accountsSyncTransportTitle => 'ਟ੍ਰਾਂਸਪੋਰਟ';
 
   @override
   String accountsSyncTransportSummary(String transport, String status) {
-    return '$transport • $status';
+    return '$transport · $status';
   }
 
   @override
@@ -19655,7 +19871,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncProviderSignInWithApple => 'Apple ਨਾਲ ਸਾਇਨ ਇਨ ਕਰੋ';
 
   @override
-  String get accountsSyncProviderGoogle => 'Google';
+  String get accountsSyncProviderGoogle => 'ਗੂਗਲ';
 
   @override
   String get accountsSyncProviderEmailMagicLink => 'ਈਮੇਲ magic link';
@@ -19673,16 +19889,16 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncExperienceModeLearningFocused => 'ਸਿੱਖਣ ਕੇਂਦਰਿਤ';
 
   @override
-  String get accountsSyncExperienceModePrayerFocused => 'Salah focused';
+  String get accountsSyncExperienceModePrayerFocused => 'ਸਲਾਹ-ਕੇਂਦ੍ਰਿਤ';
 
   @override
-  String get accountsSyncDevicePlatformIPhone => 'iPhone';
+  String get accountsSyncDevicePlatformIPhone => 'iPhone ਫੋਨ';
 
   @override
-  String get accountsSyncDevicePlatformIPad => 'iPad';
+  String get accountsSyncDevicePlatformIPad => 'iPad ਟੈਬਲੈਟ';
 
   @override
-  String get accountsSyncDevicePlatformAppleWatch => 'Apple Watch';
+  String get accountsSyncDevicePlatformAppleWatch => 'Apple Watch ਘੜੀ';
 
   @override
   String get accountsSyncDevicePlatformAppleDevice => 'Apple ਡਿਵਾਈਸ';
@@ -19697,7 +19913,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncDevicePlatformWearOsWatch => 'Wear OS ਵਾਚ';
 
   @override
-  String get accountsSyncDevicePlatformAndroidTv => 'Android TV';
+  String get accountsSyncDevicePlatformAndroidTv => 'ਐਂਡਰਾਇਡ ਟੀਵੀ';
 
   @override
   String get settingsAdhanTitle => 'ਅਧਾਨ';
@@ -19724,7 +19940,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String settingsPercentValue(String value) {
-    return '$value%';
+    return '$value٪';
   }
 
   @override
@@ -19789,7 +20005,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get settingsCalculationMethodEgyptian => 'ਮਿਸਰੀ';
 
   @override
-  String get settingsCalculationMethodIsna => 'ISNA';
+  String get settingsCalculationMethodIsna => 'ਆਈਐਸਐਨਏ';
 
   @override
   String get settingsCalculationMethodKarachi => 'ਕਰਾਚੀ';
@@ -20042,7 +20258,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get settingsPrayerNameFajr => 'ਫਜਰ';
 
   @override
-  String get settingsPrayerNameJumuah => 'Jumu‘ah';
+  String get settingsPrayerNameJumuah => 'ਜੁਮੁਆ';
 
   @override
   String get settingsPrayerNameDhuhr => 'ਧੂਹਰ';
@@ -20072,7 +20288,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get settingsSyncModePathOfNurCloud => 'ਨੂਰ ਬੱਦਲ ਦਾ ਮਾਰਗ';
 
   @override
-  String get settingsSyncModeICloud => 'iCloud';
+  String get settingsSyncModeICloud => 'ਆਈਕਲਾਊਡ';
 
   @override
   String get settingsSyncModeLocalOnly => 'ਸਿਰਫ਼ ਸਥਾਨਕ';
@@ -20116,7 +20332,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String settingsCurrentProfileSummary(String name, String syncMode) {
-    return '$name • $syncMode';
+    return '$name · $syncMode';
   }
 
   @override
@@ -20183,7 +20399,7 @@ class AppLocalizationsPa extends AppLocalizations {
     Object prayer,
     Object value,
   ) {
-    return '$prayerName: $currentValue → $suggestedValue';
+    return '$prayerName: $currentValue ਤੋਂ $suggestedValue';
   }
 
   @override
@@ -22142,11 +22358,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get prophetsSearchHint => 'Search prophets, eras, or regions';
 
   @override
-  String get searchProphetsHint => 'Search prophets...';
+  String get searchProphetsHint => 'ਨਬੀ ਖੋਜੋ...';
 
   @override
-  String get searchDivineLessonsHint =>
-      'Search lessons, themes, and situations...';
+  String get searchDivineLessonsHint => 'ਸਬਕ, ਵਿਸ਼ੇ ਅਤੇ ਹਾਲਾਤ ਖੋਜੋ...';
 
   @override
   String get prophetsFilterAll => 'All';
@@ -24116,235 +24331,237 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get accessibilityReminderHelp => 'Reminder help';
+  String get accessibilityReminderHelp => 'ਯਾਦ ਦਿਹਾਣੀ ਮਦਦ';
 
   @override
-  String get accessibilityIncreaseDhikrCount => 'Increase dhikr count';
+  String get accessibilityIncreaseDhikrCount => 'ਜ਼ਿਕਰ ਦੀ ਗਿਣਤੀ ਵਧਾਓ';
 
   @override
-  String get accessibilityJumpToCurrentSalah => 'Jump to current salah';
+  String get accessibilityJumpToCurrentSalah => 'ਮੌਜੂਦਾ ਸਲਾਹ \'ਤੇ ਜਾਓ';
 
   @override
-  String get accessibilityReadQadaRule => 'Read qada rule';
+  String get accessibilityReadQadaRule => 'ਕਜ਼ਾ ਨਿਯਮ ਪੜ੍ਹੋ';
 
   @override
-  String get accessibilityRefreshCamera => 'Refresh camera';
+  String get accessibilityRefreshCamera => 'ਕੈਮਰਾ ਤਾਜ਼ਾ ਕਰੋ';
 
   @override
   String get accessibilityCreationCategoryNotDetected =>
-      'No stable creation category detected yet';
+      'ਹਾਲੇ ਤੱਕ ਕੋਈ ਸਥਿਰ ਮਖਲੂਕ ਸ਼੍ਰੇਣੀ ਨਹੀਂ ਮਿਲੀ';
 
   @override
   String accessibilityCreationCategoryDetected(String category) {
-    return '$category detected. Open reflection card.';
+    return '$category ਮਿਲੀ। ਮਨਨ ਕਾਰਡ ਖੋਲ੍ਹੋ।';
   }
 
   @override
-  String get accessibilityRemoveFavorite => 'Remove favorite';
+  String get accessibilityRemoveFavorite => 'ਮਨਪਸੰਦ ਤੋਂ ਹਟਾਓ';
 
   @override
-  String get accessibilitySaveFavorite => 'Save favorite';
+  String get accessibilitySaveFavorite => 'ਮਨਪਸੰਦ ਵਿੱਚ ਸੰਭਾਲੋ';
 
   @override
-  String get accessibilityDeleteObservation => 'Delete observation';
+  String get accessibilityDeleteObservation => 'ਨਿਰੀਖਣ ਮਿਟਾਓ';
 
   @override
-  String get accessibilityRemoveFromSaved => 'Remove from saved';
+  String get accessibilityRemoveFromSaved => 'ਸੰਭਾਲੀਆਂ ਚੀਜ਼ਾਂ ਵਿੱਚੋਂ ਹਟਾਓ';
 
   @override
-  String get accessibilitySaveHadith => 'Save hadith';
+  String get accessibilitySaveHadith => 'ਹਦੀਸ ਸੰਭਾਲੋ';
 
   @override
-  String get accessibilityPlayAudio => 'Play audio';
+  String get accessibilityPlayAudio => 'ਆਡੀਓ ਚਲਾਓ';
 
   @override
-  String get accessibilityAudioNotAddedYet => 'Audio not added yet';
+  String get accessibilityAudioNotAddedYet => 'ਆਡੀਓ ਹਾਲੇ ਨਹੀਂ ਜੋੜੀ ਗਈ';
 
   @override
-  String get accessibilitySavedForReview => 'Saved for review';
+  String get accessibilitySavedForReview => 'ਸਮੀਖਿਆ ਲਈ ਸੰਭਾਲਿਆ ਗਿਆ';
 
   @override
-  String get accessibilityReviewLater => 'Review later';
+  String get accessibilityReviewLater => 'ਬਾਅਦ ਵਿੱਚ ਵੇਖੋ';
 
   @override
-  String get accessibilityLearningSettings => 'Learning settings';
+  String get accessibilityLearningSettings => 'ਸਿੱਖਣ ਦੀਆਂ ਸੈਟਿੰਗਾਂ';
 
   @override
-  String get accessibilitySourcesAndLicensing => 'Sources and licensing';
+  String get accessibilitySourcesAndLicensing => 'ਸਰੋਤ ਅਤੇ ਲਾਇਸੈਂਸਿੰਗ';
 
   @override
-  String get accessibilityClosePlayer => 'Close player';
+  String get accessibilityClosePlayer => 'ਪਲੇਅਰ ਬੰਦ ਕਰੋ';
 
   @override
-  String get accessibilityBack15Seconds => 'Back 15 seconds';
+  String get accessibilityBack15Seconds => '15 ਸਕਿੰਟ ਪਿੱਛੇ';
 
   @override
-  String get accessibilityForward15Seconds => 'Forward 15 seconds';
+  String get accessibilityForward15Seconds => '15 ਸਕਿੰਟ ਅੱਗੇ';
 
   @override
-  String get accessibilityPreparingPlayback => 'Preparing playback';
+  String get accessibilityPreparingPlayback => 'ਚਲਾਉਣ ਦੀ ਤਿਆਰੀ ਹੋ ਰਹੀ ਹੈ';
 
   @override
-  String get accessibilityPause => 'Pause';
+  String get accessibilityPause => 'ਰੋਕੋ';
 
   @override
-  String get accessibilityPlay => 'Play';
+  String get accessibilityPlay => 'ਚਲਾਓ';
 
   @override
-  String get accessibilityRemoveFromFavorites => 'Remove from favorites';
+  String get accessibilityRemoveFromFavorites => 'ਮਨਪਸੰਦਾਂ ਵਿੱਚੋਂ ਹਟਾਓ';
 
   @override
-  String get accessibilitySaveNameToFavorites => 'Save name to favorites';
+  String get accessibilitySaveNameToFavorites => 'ਨਾਮ ਮਨਪਸੰਦਾਂ ਵਿੱਚ ਸੰਭਾਲੋ';
 
   @override
-  String get creationExplorerTitle => 'Creation Explorer';
+  String get creationExplorerTitle => 'ਮਖਲੂਕ ਖੋਜੀ';
 
   @override
   String get creationExplorerSubtitle =>
-      'Observe the world, notice a sign, and connect it with Qur’anic reflection.';
+      'ਦੁਨੀਆ ਨੂੰ ਵੇਖੋ, ਇੱਕ ਨਿਸ਼ਾਨੀ ਮਹਿਸੂਸ ਕਰੋ, ਅਤੇ ਉਸਨੂੰ Qur’ani ਮਨਨ ਨਾਲ ਜੋੜੋ।';
 
   @override
-  String get creationExplorerMetricObservations => 'Observations';
+  String get creationExplorerMetricObservations => 'ਨਿਰੀਖਣ';
 
   @override
-  String get creationExplorerMetricCategories => 'Categories';
+  String get creationExplorerMetricCategories => 'ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
-  String get creationExplorerMetricVerses => 'Verses';
+  String get creationExplorerMetricVerses => 'ਆਯਤਾਂ';
 
   @override
-  String get creationExplorerMetricCamera => 'Camera';
+  String get creationExplorerMetricCamera => 'ਕੈਮਰਾ';
 
   @override
-  String get creationExplorerMetricCameraDeviceOnly => 'Device only';
+  String get creationExplorerMetricCameraDeviceOnly => 'ਸਿਰਫ਼ ਡਿਵਾਈਸ';
 
   @override
-  String get creationExplorerMetricCameraOff => 'Off';
+  String get creationExplorerMetricCameraOff => 'ਬੰਦ';
 
   @override
-  String get creationExplorerMetricCameraReady => 'Ready';
+  String get creationExplorerMetricCameraReady => 'ਤਿਆਰ';
 
   @override
-  String get creationExplorerMetricCameraPending => 'Pending';
+  String get creationExplorerMetricCameraPending => 'ਉਡੀਕ ਵਿੱਚ';
 
   @override
-  String get creationExplorerTodaysChallenge => 'Today’s challenge';
+  String get creationExplorerTodaysChallenge => 'ਅੱਜ ਦੀ ਚੁਣੌਤੀ';
 
   @override
-  String get creationExplorerHistoryAction => 'History';
+  String get creationExplorerHistoryAction => 'ਇਤਿਹਾਸ';
 
   @override
-  String get creationExplorerOpenAction => 'Open';
+  String get creationExplorerOpenAction => 'ਖੋਲ੍ਹੋ';
 
   @override
   String get creationExplorerDeviceOnlyTitle =>
-      'Image labeling runs on device only';
+      'ਚਿੱਤਰ ਲੇਬਲਿੰਗ ਸਿਰਫ਼ ਡਿਵਾਈਸ \'ਤੇ ਚਲਦੀ ਹੈ';
 
   @override
   String get creationExplorerDeviceOnlyBody =>
-      'Use a physical iPhone or iPad to explore with the camera.';
+      'ਕੈਮਰੇ ਨਾਲ ਖੋਜ ਕਰਨ ਲਈ ਅਸਲੀ iPhone ਜਾਂ iPad ਵਰਤੋ।';
 
   @override
-  String get creationExplorerCameraAccessTitle => 'Camera access is needed';
+  String get creationExplorerCameraAccessTitle => 'ਕੈਮਰੇ ਦੀ ਪਹੁੰਚ ਲੋੜੀਂਦੀ ਹੈ';
 
   @override
   String get creationExplorerCameraAccessBody =>
-      'Creation Explorer runs entirely on-device. Camera access lets the app detect broad categories like birds, plants, water, and sky without uploading images.';
+      'ਮਖਲੂਕ ਖੋਜੀ ਪੂਰੀ ਤਰ੍ਹਾਂ ਡਿਵਾਈਸ \'ਤੇ ਚਲਦਾ ਹੈ। ਕੈਮਰੇ ਦੀ ਪਹੁੰਚ ਐਪ ਨੂੰ ਪੰਛੀਆਂ, ਪੌਦਿਆਂ, ਪਾਣੀ ਅਤੇ ਅਸਮਾਨ ਵਰਗੀਆਂ ਵਿਸ਼ਾਲ ਸ਼੍ਰੇਣੀਆਂ ਨੂੰ ਬਿਨਾਂ ਚਿੱਤਰ ਅੱਪਲੋਡ ਕੀਤੇ ਪਛਾਣਣ ਦਿੰਦੀ ਹੈ।';
 
   @override
-  String get creationExplorerAllowCameraAction => 'Allow camera';
+  String get creationExplorerAllowCameraAction => 'ਕੈਮਰੇ ਨੂੰ ਆਗਿਆ ਦਿਓ';
 
   @override
-  String get creationExplorerOpenSettingsAction => 'Open settings';
+  String get creationExplorerOpenSettingsAction => 'ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ';
 
   @override
-  String get creationExplorerCameraUnavailable => 'Camera unavailable';
+  String get creationExplorerCameraUnavailable => 'ਕੈਮਰਾ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get creationExplorerCameraUnavailableBody =>
-      'Creation Explorer could not start the camera right now.';
+      'ਮਖਲੂਕ ਖੋਜੀ ਇਸ ਵੇਲੇ ਕੈਮਰਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕਰ ਸਕਿਆ।';
 
   @override
-  String get creationExplorerRetryAction => 'Retry';
+  String get creationExplorerRetryAction => 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ';
 
   @override
-  String get creationExplorerOnDeviceDetection => 'On-device detection';
+  String get creationExplorerOnDeviceDetection => 'ਡਿਵਾਈਸ \'ਤੇ ਪਛਾਣ';
 
   @override
   String get creationExplorerDetectionPromptTitle =>
-      'Look at a plant, animal, bird, or landscape.';
+      'ਕਿਸੇ ਪੌਦੇ, ਜਾਨਵਰ, ਪੰਛੀ ਜਾਂ ਦ੍ਰਿਸ਼ ਨੂੰ ਵੇਖੋ।';
 
   @override
   String get creationExplorerDetectionPromptSubtitle =>
-      'Labels appear only when the signal is stable.';
+      'ਲੇਬਲ ਸਿਰਫ਼ ਤਦੋਂ ਦਿਖਦੇ ਹਨ ਜਦੋਂ ਸੰਕੇਤ ਸਥਿਰ ਹੋਵੇ।';
 
   @override
-  String get creationExplorerTapToReflect => 'Tap to reflect';
+  String get creationExplorerTapToReflect => 'ਮਨਨ ਲਈ ਟੈਪ ਕਰੋ';
 
   @override
-  String get creationExplorerHowItWorksTitle => 'How it works';
+  String get creationExplorerHowItWorksTitle => 'ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ';
 
   @override
   String get creationExplorerHowItWorksBody =>
-      'Creation Explorer uses on-device labeling to detect broad categories only. It waits for a stable signal before showing a label, then offers a Qur’anic reflection connected to what you are seeing.';
+      'ਮਖਲੂਕ ਖੋਜੀ ਸਿਰਫ਼ ਵਿਸ਼ਾਲ ਸ਼੍ਰੇਣੀਆਂ ਦੀ ਪਛਾਣ ਲਈ ਡਿਵਾਈਸ \'ਤੇ ਲੇਬਲਿੰਗ ਵਰਤਦਾ ਹੈ। ਇਹ ਲੇਬਲ ਦਿਖਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਸਥਿਰ ਸੰਕੇਤ ਦੀ ਉਡੀਕ ਕਰਦਾ ਹੈ, ਫਿਰ ਜੋ ਤੁਸੀਂ ਦੇਖ ਰਹੇ ਹੋ ਉਸ ਨਾਲ ਜੁੜਿਆ Qur’ani ਮਨਨ ਪੇਸ਼ ਕਰਦਾ ਹੈ।';
 
   @override
-  String get creationExplorerCurrentDetectedSign => 'Current detected sign';
+  String get creationExplorerCurrentDetectedSign => 'ਮੌਜੂਦਾ ਪਛਾਣਿਆ ਗਿਆ ਨਿਸ਼ਾਨ';
 
   @override
-  String get creationExplorerReflectAction => 'Reflect';
+  String get creationExplorerReflectAction => 'ਮਨਨ ਕਰੋ';
 
   @override
-  String get creationExplorerAlsoExploreSkyTitle => 'Also explore the sky';
+  String get creationExplorerAlsoExploreSkyTitle => 'ਅਸਮਾਨ ਵੀ ਖੋਜੋ';
 
   @override
   String get creationExplorerAlsoExploreSkySubtitle =>
-      'Creation Explorer and Sky Explorer are complementary: one notices what is around you, the other what is above you.';
+      'ਮਖਲੂਕ ਖੋਜੀ ਅਤੇ Sky Explorer ਇਕ ਦੂਜੇ ਨੂੰ ਪੂਰਾ ਕਰਦੇ ਹਨ: ਇੱਕ ਤੁਹਾਡੇ ਆਲੇ ਦੁਆਲੇ ਨੂੰ ਵੇਖਦਾ ਹੈ, ਦੂਜਾ ਤੁਹਾਡੇ ਉੱਪਰ ਨੂੰ।';
 
   @override
   String get creationExplorerSkyExplorerAction => 'Sky Explorer';
 
   @override
-  String get creationExplorerNoObservationsTitle => 'No observations saved yet';
+  String get creationExplorerNoObservationsTitle =>
+      'ਹਾਲੇ ਕੋਈ ਨਿਰੀਖਣ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ';
 
   @override
   String get creationExplorerNoObservationsBody =>
-      'Save a moment from the camera view and it will appear here with its verse, category, and your reflection.';
+      'ਕੈਮਰਾ ਦਰਸ਼ਨ ਤੋਂ ਇੱਕ ਪਲ ਸੰਭਾਲੋ ਅਤੇ ਇਹ ਇੱਥੇ ਆਪਣੀ ਆਯਤ, ਸ਼੍ਰੇਣੀ ਅਤੇ ਤੁਹਾਡੇ ਮਨਨ ਨਾਲ ਦਿਖੇਗਾ।';
 
   @override
-  String get creationExplorerOpenCameraExploreAction => 'Open camera explore';
+  String get creationExplorerOpenCameraExploreAction => 'ਕੈਮਰਾ ਖੋਜ ਖੋਲ੍ਹੋ';
 
   @override
-  String get creationExplorerYourReflectionLabel => 'Your reflection';
+  String get creationExplorerYourReflectionLabel => 'ਤੁਹਾਡਾ ਮਨਨ';
 
   @override
   String get creationExplorerYourReflectionHint =>
-      'What did you notice? What did it remind you of?';
+      'ਤੁਸੀਂ ਕੀ ਵੇਖਿਆ? ਇਸ ਨੇ ਤੁਹਾਨੂੰ ਕਿਸ ਗੱਲ ਦੀ ਯਾਦ ਦਿਵਾਈ?';
 
   @override
-  String get creationExplorerCloseAction => 'Close';
+  String get creationExplorerCloseAction => 'ਬੰਦ ਕਰੋ';
 
   @override
-  String get creationExplorerSaveObservationAction => 'Save observation';
+  String get creationExplorerSaveObservationAction => 'ਨਿਰੀਖਣ ਸੰਭਾਲੋ';
 
   @override
-  String get creationExplorerNoReflectionSaved => 'No reflection saved yet.';
+  String get creationExplorerNoReflectionSaved =>
+      'ਹਾਲੇ ਕੋਈ ਮਨਨ ਸੰਭਾਲਿਆ ਨਹੀਂ ਗਿਆ।';
 
   @override
-  String get creationExplorerEditReflectionAction => 'Edit reflection';
+  String get creationExplorerEditReflectionAction => 'ਮਨਨ ਸੋਧੋ';
 
   @override
   String get creationExplorerEditReflectionHint =>
-      'Write what this observation reminded you of.';
+      'ਲਿਖੋ ਕਿ ਇਸ ਨਿਰੀਖਣ ਨੇ ਤੁਹਾਨੂੰ ਕਿਸ ਗੱਲ ਦੀ ਯਾਦ ਦਿਵਾਈ।';
 
   @override
-  String get creationExplorerTabCamera => 'Camera';
+  String get creationExplorerTabCamera => 'ਕੈਮਰਾ';
 
   @override
-  String get creationExplorerTabDiscover => 'Discover';
+  String get creationExplorerTabDiscover => 'ਖੋਜੋ';
 
   @override
-  String get creationExplorerTabJournal => 'Journal';
+  String get creationExplorerTabJournal => 'ਜਰਨਲ';
 
   @override
   String get fastingSectionTitle => 'ਰੋਜ਼ਾ';
@@ -24534,7 +24751,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncThisDeviceIPad => 'ਇਹ iPad';
 
   @override
-  String get accountsSyncThisDeviceAppleWatch => 'ਇਹ Apple Watch';
+  String get accountsSyncThisDeviceAppleWatch => 'ਇਹ ਐਪਲ ਵਾਚ';
 
   @override
   String get accountsSyncThisDeviceAppleTv => 'ਇਹ Apple ਡਿਵਾਈਸ';
@@ -24549,7 +24766,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncThisDeviceAndroidWatch => 'ਇਹ Wear OS ਵਾਚ';
 
   @override
-  String get accountsSyncThisDeviceAndroidTv => 'ਇਹ Android TV';
+  String get accountsSyncThisDeviceAndroidTv => 'ਇਹ ਐਂਡਰਾਇਡ ਟੀਵੀ';
 
   @override
   String get accountsSyncThisDeviceApple => 'ਇਹ Apple ਡਿਵਾਈਸ';
@@ -24614,128 +24831,128 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncErrorTransportFailure => 'Transport ਨਾਕਾਮੀ';
 
   @override
-  String get kidsDuaLandingTitle => 'Kids Dua Learning';
+  String get kidsDuaLandingTitle => 'ਬੱਚਿਆਂ ਲਈ ਦੁਆ ਸਿੱਖਣਾ';
 
   @override
   String get kidsDuaLandingSubtitle =>
-      'Learn small duas with calm steps, kind repetition, and gentle rewards.';
+      'ਸਕੂਨ ਭਰੇ ਕਦਮਾਂ, ਪਿਆਰੀ ਦੁਹਰਾਈ ਅਤੇ ਨਰਮ ਇਨਾਮਾਂ ਨਾਲ ਛੋਟੀਆਂ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaContinueTitle => 'Continue learning';
+  String get kidsDuaContinueTitle => 'ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaTodayTitle => 'Today’s dua';
+  String get kidsDuaTodayTitle => 'ਅੱਜ ਦੀ ਦੁਆ';
 
   @override
-  String get kidsDuaCategoriesTitle => 'Dua categories';
+  String get kidsDuaCategoriesTitle => 'ਦੁਆ ਦੀਆਂ ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
   String get kidsDuaCategoriesSubtitle =>
-      'Pick a small moment and learn one dua at a time.';
+      'ਇੱਕ ਛੋਟਾ ਪਲ ਚੁਣੋ ਅਤੇ ਇੱਕ ਵਾਰ ਵਿੱਚ ਇੱਕ ਦੁਆ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaContinueAction => 'Continue lesson';
+  String get kidsDuaContinueAction => 'ਪਾਠ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaLearnSmallDuaAction => 'Let’s learn a small dua';
+  String get kidsDuaLearnSmallDuaAction => 'ਚਲੋ ਇੱਕ ਛੋਟੀ ਦੁਆ ਸਿੱਖੀਏ';
 
   @override
-  String get kidsDuaStatusNotStarted => 'Not started';
+  String get kidsDuaStatusNotStarted => 'ਅਜੇ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ';
 
   @override
-  String get kidsDuaStatusInProgress => 'In progress';
+  String get kidsDuaStatusInProgress => 'ਚੱਲ ਰਹੀ ਹੈ';
 
   @override
-  String get kidsDuaStatusLearned => 'Learned';
+  String get kidsDuaStatusLearned => 'ਸਿੱਖ ਲਈ';
 
   @override
-  String get kidsDuaPracticeTitle => 'Quick practice';
+  String get kidsDuaPracticeTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';
 
   @override
-  String get kidsDuaPracticeModeMatchSituation => 'Match the dua to the moment';
+  String get kidsDuaPracticeModeMatchSituation => 'ਦੁਆ ਨੂੰ ਮੌਕੇ ਨਾਲ ਮਿਲਾਓ';
 
   @override
-  String get kidsDuaPracticeModeMeaning => 'Meaning match';
+  String get kidsDuaPracticeModeMeaning => 'ਅਰਥ ਮਿਲਾਓ';
 
   @override
-  String get kidsDuaPracticeModeBehavior => 'What should you do?';
+  String get kidsDuaPracticeModeBehavior => 'ਤੁਹਾਨੂੰ ਕੀ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ?';
 
   @override
-  String get kidsDuaPracticeCheckAction => 'Check answer';
+  String get kidsDuaPracticeCheckAction => 'ਜਵਾਬ ਚੈੱਕ ਕਰੋ';
 
   @override
-  String get kidsDuaPracticeNextAction => 'Next one';
+  String get kidsDuaPracticeNextAction => 'ਅਗਲਾ';
 
   @override
-  String get kidsDuaPracticeRetryAction => 'Try again';
+  String get kidsDuaPracticeRetryAction => 'ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ';
 
   @override
-  String get kidsDuaPracticeAgainAction => 'Practice again';
+  String get kidsDuaPracticeAgainAction => 'ਫਿਰ ਅਭਿਆਸ ਕਰੋ';
 
   @override
-  String get kidsDuaPracticeNiceWork => 'Nice work';
+  String get kidsDuaPracticeNiceWork => 'ਵਧੀਆ ਕੰਮ';
 
   @override
   String get kidsDuaPracticeMashaAllah => 'MashaAllah!';
 
   @override
-  String get kidsDuaPracticeTryAgain => 'Let’s try again together';
+  String get kidsDuaPracticeTryAgain => 'ਚਲੋ ਇਹਨੂੰ ਇਕੱਠੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੀਏ';
 
   @override
   String get kidsDuaPracticeEmpty =>
-      'Learn a few duas first, then come back to practice.';
+      'ਪਹਿਲਾਂ ਕੁਝ ਦੁਆਵਾਂ ਸਿੱਖੋ, ਫਿਰ ਅਭਿਆਸ ਲਈ ਵਾਪਸ ਆਓ।';
 
   @override
-  String get kidsDuaPracticeSummaryTitle => 'Practice complete';
+  String get kidsDuaPracticeSummaryTitle => 'ਅਭਿਆਸ ਪੂਰਾ ਹੋਇਆ';
 
   @override
   String kidsDuaPracticeSummaryBody(int correct, int total) {
-    return 'You got $correct out of $total right today.';
+    return 'ਅੱਜ ਤੁਸੀਂ $total ਵਿਚੋਂ $correct ਠੀਕ ਕੀਤੇ।';
   }
 
   @override
-  String get kidsDuaRewardsTitle => 'My rewards';
+  String get kidsDuaRewardsTitle => 'ਮੇਰੇ ਇਨਾਮ';
 
   @override
   String get kidsDuaRewardsEncouragement =>
-      'Each small dua grows into a beautiful habit.';
+      'ਹਰ ਛੋਟੀ ਦੁਆ ਇੱਕ ਸੁੰਦਰ ਆਦਤ ਬਣਦੀ ਹੈ।';
 
   @override
-  String get kidsDuaMeaningSection => 'Meaning';
+  String get kidsDuaMeaningSection => 'ਅਰਥ';
 
   @override
-  String get kidsDuaWhenSection => 'When to say it';
+  String get kidsDuaWhenSection => 'ਇਸਨੂੰ ਕਦੋਂ ਪੜ੍ਹਣਾ ਹੈ';
 
   @override
-  String get kidsDuaMiniLessonSection => 'Small lesson';
+  String get kidsDuaMiniLessonSection => 'ਛੋਟਾ ਪਾਠ';
 
   @override
-  String get kidsDuaRepeatAfterMeSection => 'Repeat after me';
+  String get kidsDuaRepeatAfterMeSection => 'ਮੇਰੇ ਪਿੱਛੇ ਦੁਹਰਾਓ';
 
   @override
-  String get kidsDuaMiniChallengeSection => 'Mini challenge';
+  String get kidsDuaMiniChallengeSection => 'ਛੋਟੀ ਚੁਣੌਤੀ';
 
   @override
-  String get kidsDuaSourceSection => 'Source';
+  String get kidsDuaSourceSection => 'ਸਰੋਤ';
 
   @override
-  String get kidsDuaPlayAudioAction => 'Play audio';
+  String get kidsDuaPlayAudioAction => 'ਆਡੀਓ ਚਲਾਓ';
 
   @override
-  String get kidsDuaAudioComingSoon => 'Audio will come here';
+  String get kidsDuaAudioComingSoon => 'ਆਡੀਓ ਇੱਥੇ ਆਵੇਗੀ';
 
   @override
-  String get kidsDuaCompleteLessonAction => 'I learned this dua';
+  String get kidsDuaCompleteLessonAction => 'ਮੈਂ ਇਹ ਦੁਆ ਸਿੱਖ ਲਈ ਹੈ';
 
   @override
-  String get kidsDuaCompleteAgainAction => 'Practice again';
+  String get kidsDuaCompleteAgainAction => 'ਫਿਰ ਅਭਿਆਸ ਕਰੋ';
 
   @override
-  String get kidsDuaCompletionTitle => 'Beautiful work';
+  String get kidsDuaCompletionTitle => 'ਬਹੁਤ ਸੋਹਣਾ ਕੰਮ';
 
   @override
   String kidsDuaCompletionBody(String duaTitle) {
-    return 'You finished $duaTitle.';
+    return 'ਤੁਸੀਂ $duaTitle ਪੂਰੀ ਕਰ ਲਈ ਹੈ।';
   }
 
   @override
@@ -24745,37 +24962,37 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String kidsDuaCompletionDropsValue(int drops) {
-    return '+$drops Ocean Drop';
+    return '+$drops ਓਸ਼ਨ ਡ੍ਰਾਪ';
   }
 
   @override
   String kidsDuaCompletionRewardsValue(int count) {
-    return '+$count reward';
+    return '+$count ਇਨਾਮ';
   }
 
   @override
   String kidsDuaLearnedCountValue(int count) {
-    return '$count learned';
+    return '$count ਸਿੱਖੀਆਂ';
   }
 
   @override
   String kidsDuaPracticeCountValue(int count) {
-    return '$count practices';
+    return '$count ਅਭਿਆਸ';
   }
 
   @override
   String kidsDuaRewardsCountValue(int count) {
-    return '$count rewards';
+    return '$count ਇਨਾਮ';
   }
 
   @override
   String kidsDuaDropsCountValue(int count) {
-    return '$count drops';
+    return '$count ਡ੍ਰਾਪ';
   }
 
   @override
   String kidsDuaCategoryProgressValue(int completed, int total) {
-    return '$completed of $total learned';
+    return '$total ਵਿਚੋਂ $completed ਸਿੱਖੀਆਂ';
   }
 
   @override
@@ -24814,725 +25031,732 @@ class AppLocalizationsPa extends AppLocalizations {
       'Ask Allah for knowledge and mercy for parents.';
 
   @override
-  String get kidsDuaBeforeEatingTitle => 'Before eating';
+  String get kidsDuaBeforeEatingTitle => 'ਖਾਣ ਤੋਂ ਪਹਿਲਾਂ';
 
   @override
-  String get kidsDuaBeforeEatingMeaning => 'In the name of Allah.';
+  String get kidsDuaBeforeEatingMeaning => 'ਅੱਲ੍ਹਾਹ ਦੇ ਨਾਮ ਨਾਲ।';
 
   @override
-  String get kidsDuaBeforeEatingWhen => 'Say it before your first bite.';
+  String get kidsDuaBeforeEatingWhen =>
+      'ਆਪਣਾ ਪਹਿਲਾ ਨਿਵਾਲਾ ਲੈਣ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaBeforeEatingLesson =>
-      'We begin with Allah’s name before we eat.';
+      'ਅਸੀਂ ਖਾਣ ਤੋਂ ਪਹਿਲਾਂ ਅੱਲ੍ਹਾਹ ਦੇ ਨਾਮ ਨਾਲ ਸ਼ੁਰੂ ਕਰਦੇ ਹਾਂ।';
 
   @override
   String get kidsDuaBeforeEatingSituation =>
-      'You are about to start your meal.';
+      'ਤੁਸੀਂ ਆਪਣਾ ਭੋਜਨ ਸ਼ੁਰੂ ਕਰਨ ਵਾਲੇ ਹੋ।';
 
   @override
-  String get kidsDuaAfterEatingTitle => 'After eating';
+  String get kidsDuaAfterEatingTitle => 'ਖਾਣ ਤੋਂ ਬਾਅਦ';
 
   @override
   String get kidsDuaAfterEatingMeaning =>
-      'All praise is for Allah who fed me and gave it to me without my own power.';
+      'ਸਾਰੀ ਤਾਰੀਫ਼ ਅੱਲ੍ਹਾਹ ਲਈ ਹੈ ਜਿਸ ਨੇ ਮੈਨੂੰ ਖਵਾਇਆ ਅਤੇ ਮੈਨੂੰ ਇਹ ਮੇਰੀ ਆਪਣੀ ਤਾਕਤ ਤੋਂ ਬਿਨਾਂ ਦਿੱਤਾ।';
 
   @override
-  String get kidsDuaAfterEatingWhen => 'Say it after you finish eating.';
+  String get kidsDuaAfterEatingWhen => 'ਜਦੋਂ ਤੁਸੀਂ ਖਾਣਾ ਮੁਕਾ ਲਓ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaAfterEatingLesson =>
-      'After a meal, we thank Allah for every bite.';
+      'ਭੋਜਨ ਤੋਂ ਬਾਅਦ ਅਸੀਂ ਹਰ ਨਿਵਾਲੇ ਲਈ ਅੱਲ੍ਹਾਹ ਦਾ ਸ਼ੁਕਰ ਕਰਦੇ ਹਾਂ।';
 
   @override
   String get kidsDuaAfterEatingSituation =>
-      'You finished your food and want to say thank you.';
+      'ਤੁਸੀਂ ਆਪਣਾ ਖਾਣਾ ਮੁਕਾ ਲਿਆ ਹੈ ਅਤੇ ਸ਼ੁਕਰ ਅਦਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
-  String get kidsDuaBeforeSleepTitle => 'Before sleep';
+  String get kidsDuaBeforeSleepTitle => 'ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ';
 
   @override
   String get kidsDuaBeforeSleepMeaning =>
-      'In Your name, O Allah, I die and I live.';
+      'ਏ ਅੱਲ੍ਹਾਹ, ਤੇਰੇ ਨਾਮ ਨਾਲ ਮੈਂ ਮਰਦਾ ਹਾਂ ਅਤੇ ਜੀਉਂਦਾ ਹਾਂ।';
 
   @override
-  String get kidsDuaBeforeSleepWhen => 'Say it when you are getting into bed.';
+  String get kidsDuaBeforeSleepWhen =>
+      'ਜਦੋਂ ਤੁਸੀਂ ਬਿਸਤਰ ਵਿਚ ਜਾਣ ਲੱਗੋ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaBeforeSleepLesson =>
-      'We sleep while trusting Allah’s care.';
+      'ਅਸੀਂ ਅੱਲ੍ਹਾਹ ਦੀ ਹਿਫ਼ਾਜ਼ਤ ਤੇ ਭਰੋਸਾ ਕਰਦੇ ਹੋਏ ਸੌਂਦੇ ਹਾਂ।';
 
   @override
   String get kidsDuaBeforeSleepSituation =>
-      'It is bedtime and you are ready to rest.';
+      'ਸੌਣ ਦਾ ਸਮਾਂ ਹੈ ਅਤੇ ਤੁਸੀਂ ਆਰਾਮ ਲਈ ਤਿਆਰ ਹੋ।';
 
   @override
-  String get kidsDuaAfterWakingTitle => 'After waking up';
+  String get kidsDuaAfterWakingTitle => 'ਜਾਗਣ ਤੋਂ ਬਾਅਦ';
 
   @override
   String get kidsDuaAfterWakingMeaning =>
-      'All praise is for Allah who gave us life after sleep, and to Him is the return.';
+      'ਸਾਰੀ ਤਾਰੀਫ਼ ਅੱਲ੍ਹਾਹ ਲਈ ਹੈ ਜਿਸ ਨੇ ਸਾਨੂੰ ਨੀਂਦ ਤੋਂ ਬਾਅਦ ਜ਼ਿੰਦਗੀ ਦਿੱਤੀ, ਅਤੇ ਉਸੇ ਵੱਲ ਵਾਪਸੀ ਹੈ।';
 
   @override
-  String get kidsDuaAfterWakingWhen => 'Say it when you wake up.';
+  String get kidsDuaAfterWakingWhen => 'ਜਦੋਂ ਤੁਸੀਂ ਜਾਗੋ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
-  String get kidsDuaAfterWakingLesson => 'A new morning is a gift from Allah.';
+  String get kidsDuaAfterWakingLesson =>
+      'ਨਵੀਂ ਸਵੇਰ ਅੱਲ੍ਹਾਹ ਵੱਲੋਂ ਇੱਕ ਤੋਹਫ਼ਾ ਹੈ।';
 
   @override
   String get kidsDuaAfterWakingSituation =>
-      'You just woke up and want to begin with thanks.';
+      'ਤੁਸੀਂ ਹੁਣੇ ਜਾਗੇ ਹੋ ਅਤੇ ਸ਼ੁਕਰ ਨਾਲ ਸ਼ੁਰੂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
-  String get kidsDuaEnteringWashroomTitle => 'Entering the washroom';
+  String get kidsDuaEnteringWashroomTitle => 'ਵਾਸ਼ਰੂਮ ਵਿਚ ਦਾਖ਼ਲ ਹੋਣ ਵੇਲੇ';
 
   @override
   String get kidsDuaEnteringWashroomMeaning =>
-      'O Allah, I seek Your protection from impurity and harm.';
+      'ਏ ਅੱਲ੍ਹਾਹ, ਮੈਂ ਨਾਪਾਕੀ ਅਤੇ ਨੁਕਸਾਨ ਤੋਂ ਤੇਰੀ ਪਨਾਹ ਮੰਗਦਾ ਹਾਂ।';
 
   @override
   String get kidsDuaEnteringWashroomWhen =>
-      'Say it before entering the washroom.';
+      'ਵਾਸ਼ਰੂਮ ਵਿੱਚ ਦਾਖ਼ਲ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaEnteringWashroomLesson =>
-      'Even private moments can begin with a small dua.';
+      'ਨਿੱਜੀ ਪਲ ਵੀ ਇੱਕ ਛੋਟੀ ਦੁਆ ਨਾਲ ਸ਼ੁਰੂ ਹੋ ਸਕਦੇ ਹਨ।';
 
   @override
   String get kidsDuaEnteringWashroomSituation =>
-      'You are about to enter the washroom.';
+      'ਤੁਸੀਂ ਵਾਸ਼ਰੂਮ ਵਿਚ ਜਾਣ ਵਾਲੇ ਹੋ।';
 
   @override
-  String get kidsDuaLeavingWashroomTitle => 'Leaving the washroom';
+  String get kidsDuaLeavingWashroomTitle => 'ਵਾਸ਼ਰੂਮ ਤੋਂ ਨਿਕਲਣ ਵੇਲੇ';
 
   @override
-  String get kidsDuaLeavingWashroomMeaning => 'I ask for Your forgiveness.';
+  String get kidsDuaLeavingWashroomMeaning => 'ਮੈਂ ਤੇਰੀ ਮਾਫ਼ੀ ਮੰਗਦਾ ਹਾਂ।';
 
   @override
-  String get kidsDuaLeavingWashroomWhen => 'Say it when you come out.';
+  String get kidsDuaLeavingWashroomWhen =>
+      'ਜਦੋਂ ਤੁਸੀਂ ਬਾਹਰ ਨਿਕਲੋ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaLeavingWashroomLesson =>
-      'A very short dua can still be full of adab.';
+      'ਬਹੁਤ ਛੋਟੀ ਦੁਆ ਵੀ ਅਦਬ ਨਾਲ ਭਰੀ ਹੋ ਸਕਦੀ ਹੈ।';
 
   @override
   String get kidsDuaLeavingWashroomSituation =>
-      'You have come out of the washroom.';
+      'ਤੁਸੀਂ ਵਾਸ਼ਰੂਮ ਤੋਂ ਬਾਹਰ ਆ ਗਏ ਹੋ।';
 
   @override
-  String get kidsDuaLeavingHomeTitle => 'Leaving home';
+  String get kidsDuaLeavingHomeTitle => 'ਘਰੋਂ ਨਿਕਲਣ ਵੇਲੇ';
 
   @override
   String get kidsDuaLeavingHomeMeaning =>
-      'In the name of Allah, I trust in Allah, and there is no power except with Allah.';
+      'ਅੱਲ੍ਹਾਹ ਦੇ ਨਾਮ ਨਾਲ, ਮੈਂ ਅੱਲ੍ਹਾਹ ਤੇ ਭਰੋਸਾ ਕਰਦਾ ਹਾਂ, ਅਤੇ ਅੱਲ੍ਹਾਹ ਦੇ ਬਿਨਾਂ ਕੋਈ ਤਾਕਤ ਨਹੀਂ।';
 
   @override
-  String get kidsDuaLeavingHomeWhen => 'Say it when you step out of the house.';
+  String get kidsDuaLeavingHomeWhen =>
+      'ਜਦੋਂ ਤੁਸੀਂ ਘਰ ਤੋਂ ਬਾਹਰ ਕਦਮ ਰੱਖੋ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
-  String get kidsDuaLeavingHomeLesson => 'We leave home with trust in Allah.';
+  String get kidsDuaLeavingHomeLesson =>
+      'ਅਸੀਂ ਘਰ ਤੋਂ ਅੱਲ੍ਹਾਹ ਉੱਤੇ ਭਰੋਸੇ ਨਾਲ ਨਿਕਲਦੇ ਹਾਂ।';
 
   @override
-  String get kidsDuaLeavingHomeSituation => 'You are heading outside.';
+  String get kidsDuaLeavingHomeSituation => 'ਤੁਸੀਂ ਬਾਹਰ ਜਾ ਰਹੇ ਹੋ।';
 
   @override
-  String get kidsDuaEnteringHomeTitle => 'Entering home';
+  String get kidsDuaEnteringHomeTitle => 'ਘਰ ਵਿਚ ਦਾਖ਼ਲ ਹੋਣ ਵੇਲੇ';
 
   @override
   String get kidsDuaEnteringHomeMeaning =>
-      'O Allah, I ask You for a good entrance and a good exit. In Allah’s name we enter and leave, and in Allah we trust.';
+      'ਏ ਅੱਲ੍ਹਾਹ, ਮੈਂ ਤੈਥੋਂ ਚੰਗਾ ਦਾਖ਼ਲਾ ਅਤੇ ਚੰਗਾ ਨਿਕਾਸ ਮੰਗਦਾ ਹਾਂ। ਅੱਲ੍ਹਾਹ ਦੇ ਨਾਮ ਨਾਲ ਅਸੀਂ ਦਾਖ਼ਲ ਹੁੰਦੇ ਅਤੇ ਨਿਕਲਦੇ ਹਾਂ, ਅਤੇ ਅੱਲ੍ਹਾਹ ਉੱਤੇ ਭਰੋਸਾ ਕਰਦੇ ਹਾਂ।';
 
   @override
-  String get kidsDuaEnteringHomeWhen => 'Say it when you come into your home.';
+  String get kidsDuaEnteringHomeWhen =>
+      'ਜਦੋਂ ਤੁਸੀਂ ਆਪਣੇ ਘਰ ਵਿਚ ਆਓ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaEnteringHomeLesson =>
-      'Our homes feel warmer when we enter with Allah’s name.';
+      'ਜਦੋਂ ਅਸੀਂ ਅੱਲ੍ਹਾਹ ਦੇ ਨਾਮ ਨਾਲ ਘਰ ਵਿਚ ਆਉਂਦੇ ਹਾਂ ਤਾਂ ਸਾਡੇ ਘਰ ਹੋਰ ਵੀ ਗਰਮਜੋਸ਼ੀ ਵਾਲੇ ਮਹਿਸੂਸ ਹੁੰਦੇ ਹਨ।';
 
   @override
-  String get kidsDuaEnteringHomeSituation => 'You are coming back home.';
+  String get kidsDuaEnteringHomeSituation => 'ਤੁਸੀਂ ਘਰ ਵਾਪਸ ਆ ਰਹੇ ਹੋ।';
 
   @override
-  String get kidsDuaRabbiZidniIlmaTitle => 'Rabbi zidni ilma';
+  String get kidsDuaRabbiZidniIlmaTitle => 'ਰੱਬੀ ਜ਼ਿਦਨੀ ਇਲਮਾ';
 
   @override
   String get kidsDuaRabbiZidniIlmaMeaning =>
-      'My Lord, increase me in knowledge.';
+      'ਮੇਰੇ ਰੱਬ, ਮੇਰੇ ਗਿਆਨ ਵਿੱਚ ਵਾਧਾ ਕਰ।';
 
   @override
   String get kidsDuaRabbiZidniIlmaWhen =>
-      'Say it before learning, reading, or studying.';
+      'ਸਿੱਖਣ, ਪੜ੍ਹਨ ਜਾਂ ਅਧਿਐਨ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaRabbiZidniIlmaLesson =>
-      'We ask Allah to open our minds and hearts to learning.';
+      'ਅਸੀਂ ਅੱਲ੍ਹਾਹ ਤੋਂ ਦੁਆ ਕਰਦੇ ਹਾਂ ਕਿ ਉਹ ਸਾਡੇ ਮਨ ਅਤੇ ਦਿਲ ਸਿੱਖਣ ਲਈ ਖੋਲ੍ਹ ਦੇਵੇ।';
 
   @override
-  String get kidsDuaRabbiZidniIlmaSituation =>
-      'You are about to learn something new.';
+  String get kidsDuaRabbiZidniIlmaSituation => 'ਤੁਸੀਂ ਕੁਝ ਨਵਾਂ ਸਿੱਖਣ ਵਾਲੇ ਹੋ।';
 
   @override
-  String get kidsDuaForParentsTitle => 'Dua for parents';
+  String get kidsDuaForParentsTitle => 'ਮਾਤਾ-ਪਿਤਾ ਲਈ ਦੁਆ';
 
   @override
   String get kidsDuaForParentsMeaning =>
-      'My Lord, have mercy on them as they raised me when I was small.';
+      'ਮੇਰੇ ਰੱਬ, ਉਨ੍ਹਾਂ ਉੱਤੇ ਰਹਿਮ ਕਰ ਜਿਵੇਂ ਉਨ੍ਹਾਂ ਨੇ ਮੈਨੂੰ ਛੋਟੇ ਹੋਣ ਵੇਲੇ ਪਾਲਿਆ ਸੀ।';
 
   @override
   String get kidsDuaForParentsWhen =>
-      'Say it when you want to pray for your parents.';
+      'ਜਦੋਂ ਤੁਸੀਂ ਆਪਣੇ ਮਾਤਾ-ਪਿਤਾ ਲਈ ਦੁਆ ਕਰਨੀ ਚਾਹੋ ਤਾਂ ਇਹ ਪੜ੍ਹੋ।';
 
   @override
   String get kidsDuaForParentsLesson =>
-      'A small dua can be a beautiful gift for parents.';
+      'ਇੱਕ ਛੋਟੀ ਦੁਆ ਮਾਤਾ-ਪਿਤਾ ਲਈ ਸੁੰਦਰ ਤੋਹਫ਼ਾ ਹੋ ਸਕਦੀ ਹੈ।';
 
   @override
   String get kidsDuaForParentsSituation =>
-      'You want to make a kind dua for your parents.';
+      'ਤੁਸੀਂ ਆਪਣੇ ਮਾਤਾ-ਪਿਤਾ ਲਈ ਪਿਆਰ ਭਰੀ ਦੁਆ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
-  String get kidsDuaRewardFirstDuaTitle => 'First dua star';
+  String get kidsDuaRewardFirstDuaTitle => 'ਪਹਿਲੀ ਦੁਆ ਦਾ ਤਾਰਾ';
 
   @override
   String get kidsDuaRewardFirstDuaSubtitle =>
-      'Unlocked after your first learned dua.';
+      'ਤੁਹਾਡੀ ਪਹਿਲੀ ਸਿੱਖੀ ਹੋਈ ਦੁਆ ਤੋਂ ਬਾਅਦ ਖੁੱਲ੍ਹਦਾ ਹੈ।';
 
   @override
-  String get kidsDuaRewardMealSmileTitle => 'Meal smile';
+  String get kidsDuaRewardMealSmileTitle => 'ਭੋਜਨ ਦੀ ਮੁਸਕਾਨ';
 
   @override
   String get kidsDuaRewardMealSmileSubtitle =>
-      'Learn the duas around food time.';
+      'ਖਾਣੇ ਦੇ ਸਮੇਂ ਵਾਲੀਆਂ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaRewardNightStarTitle => 'Night star';
+  String get kidsDuaRewardNightStarTitle => 'ਰਾਤ ਦਾ ਤਾਰਾ';
 
   @override
   String get kidsDuaRewardNightStarSubtitle =>
-      'Learn the duas for sleep and waking.';
+      'ਸੌਣ ਅਤੇ ਜਾਗਣ ਦੀਆਂ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaRewardCleanStartTitle => 'Clean start';
+  String get kidsDuaRewardCleanStartTitle => 'ਸਾਫ਼ ਸ਼ੁਰੂਆਤ';
 
   @override
   String get kidsDuaRewardCleanStartSubtitle =>
-      'Learn the duas for entering and leaving the washroom.';
+      'ਵਾਸ਼ਰੂਮ ਵਿਚ ਦਾਖ਼ਲ ਹੋਣ ਅਤੇ ਨਿਕਲਣ ਦੀਆਂ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaRewardHomeLightTitle => 'Home light';
+  String get kidsDuaRewardHomeLightTitle => 'ਘਰ ਦੀ ਰੌਸ਼ਨੀ';
 
   @override
   String get kidsDuaRewardHomeLightSubtitle =>
-      'Learn the duas for leaving and entering home.';
+      'ਘਰੋਂ ਨਿਕਲਣ ਅਤੇ ਘਰ ਵਿਚ ਦਾਖ਼ਲ ਹੋਣ ਦੀਆਂ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaRewardLearningLanternTitle => 'Learning lantern';
+  String get kidsDuaRewardLearningLanternTitle => 'ਸਿੱਖਣ ਦੀ ਲਾਲਟੇਨ';
 
   @override
   String get kidsDuaRewardLearningLanternSubtitle =>
-      'Learn the duas for knowledge and parents.';
+      'ਗਿਆਨ ਅਤੇ ਮਾਤਾ-ਪਿਤਾ ਲਈ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaRewardPracticeBloomTitle => 'Practice bloom';
+  String get kidsDuaRewardPracticeBloomTitle => 'ਅਭਿਆਸ ਦੀ ਕਲੀ';
 
   @override
-  String get kidsDuaRewardPracticeBloomSubtitle =>
-      'Complete a few practice rounds.';
+  String get kidsDuaRewardPracticeBloomSubtitle => 'ਕੁਝ ਅਭਿਆਸ ਰਾਊਂਡ ਪੂਰੇ ਕਰੋ।';
 
   @override
-  String get kidsDuaRewardAllStarterTitle => 'Starter garden';
+  String get kidsDuaRewardAllStarterTitle => 'ਸ਼ੁਰੂਆਤੀ ਬਾਗ਼';
 
   @override
-  String get kidsDuaRewardAllStarterSubtitle => 'Learn all 10 starter duas.';
+  String get kidsDuaRewardAllStarterSubtitle =>
+      'ਸਾਰੀਆਂ 10 ਸ਼ੁਰੂਆਤੀ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaRewardMorningBloomTitle => 'Morning bloom';
+  String get kidsDuaRewardMorningBloomTitle => 'ਸਵੇਰ ਦੀ ਕਲੀ';
 
   @override
   String get kidsDuaRewardMorningBloomSubtitle =>
-      'Keep growing through your early lessons.';
+      'ਆਪਣੇ ਪਹਿਲੇ ਪਾਠਾਂ ਰਾਹੀਂ ਵਧਦੇ ਰਹੋ।';
 
   @override
-  String get kidsDuaRewardParentHeartTitle => 'Parent heart';
+  String get kidsDuaRewardParentHeartTitle => 'ਮਾਪਿਆਂ ਦਾ ਦਿਲ';
 
   @override
   String get kidsDuaRewardParentHeartSubtitle =>
-      'Reach the family duas with love and care.';
+      'ਪਿਆਰ ਅਤੇ ਖਿਆਲ ਨਾਲ ਪਰਿਵਾਰ ਵਾਲੀਆਂ ਦੁਆਵਾਂ ਤੱਕ ਪਹੁੰਚੋ।';
 
   @override
   String kidsDuaLibraryCountValue(int count) {
-    return '$count duas';
+    return '$count ਦੁਆਵਾਂ';
   }
 
   @override
   String kidsDuaCategoryCountValue(int count) {
-    return '$count categories';
+    return '$count ਸ਼੍ਰੇਣੀਆਂ';
   }
 
   @override
-  String get kidsDuaHeroTitle => 'My daily life with Allah';
+  String get kidsDuaHeroTitle => 'ਅੱਲ੍ਹਾਹ ਨਾਲ ਮੇਰੀ ਰੋਜ਼ਾਨਾ ਜ਼ਿੰਦਗੀ';
 
   @override
   String get kidsDuaHeroSubtitle =>
-      'Learn small duas for meals, sleep, home, feelings, and family life.';
+      'ਭੋਜਨ, ਨੀਂਦ, ਘਰ, ਭਾਵਨਾਵਾਂ ਅਤੇ ਪਰਿਵਾਰਕ ਜੀਵਨ ਲਈ ਛੋਟੀਆਂ ਦੁਆਵਾਂ ਸਿੱਖੋ।';
 
   @override
   String get kidsDuaCompletionCelebrateTitle => 'MashaAllah!';
 
   @override
   String kidsDuaCompletionCelebrateBody(String duaTitle) {
-    return 'You learned $duaTitle.';
+    return 'ਤੁਸੀਂ $duaTitle ਸਿੱਖ ਲਈ ਹੈ।';
   }
 
   @override
-  String get kidsDuaNextDuaAction => 'Next dua';
+  String get kidsDuaNextDuaAction => 'ਅਗਲੀ ਦੁਆ';
 
   @override
-  String get kidsDuaBackToCategoryAction => 'Back to library';
+  String get kidsDuaBackToCategoryAction => 'ਲਾਇਬ੍ਰੇਰੀ ਵੱਲ ਵਾਪਸ';
 
   @override
-  String get kidsDuaLearnTodayAction => 'Learn today\'s dua';
+  String get kidsDuaLearnTodayAction => 'ਅੱਜ ਦੀ ਦੁਆ ਸਿੱਖੋ';
 
   @override
-  String get kidsDuaContinueTodayAction => 'Continue today\'s dua';
+  String get kidsDuaContinueTodayAction => 'ਅੱਜ ਦੀ ਦੁਆ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaPracticeTodayAction => 'Practice today\'s dua';
+  String get kidsDuaPracticeTodayAction => 'ਅੱਜ ਦੀ ਦੁਆ ਦਾ ਅਭਿਆਸ ਕਰੋ';
 
   @override
-  String get kidsDuaStickerCollectionTitle => 'Sticker collection';
+  String get kidsDuaStickerCollectionTitle => 'ਸਟਿਕਰ ਸੰਗ੍ਰਹਿ';
 
   @override
   String get kidsDuaStickerCollectionEmpty =>
-      'Learn a full category to unlock your first sticker.';
+      'ਆਪਣਾ ਪਹਿਲਾ ਸਟਿਕਰ ਖੋਲ੍ਹਣ ਲਈ ਇੱਕ ਪੂਰੀ ਸ਼੍ਰੇਣੀ ਸਿੱਖੋ।';
 
   @override
-  String get kidsDuaStickerLockedLabel => 'Locked';
+  String get kidsDuaStickerLockedLabel => 'ਲਾਕ ਹੈ';
 
   @override
   String kidsDuaStickerUnlockedValue(int count) {
-    return '$count sticker';
+    return '$count ਸਟਿਕਰ';
   }
 
   @override
-  String get kidsDuaStickerDailyBasics => 'Daily basics star';
+  String get kidsDuaStickerDailyBasics => 'ਰੋਜ਼ਾਨਾ ਬੁਨਿਆਦਾਂ ਦਾ ਤਾਰਾ';
 
   @override
-  String get kidsDuaStickerFoodDrink => 'Food and drink lantern';
+  String get kidsDuaStickerFoodDrink => 'ਖਾਣ-ਪੀਣ ਦੀ ਲਾਲਟੇਨ';
 
   @override
-  String get kidsDuaStickerSleep => 'Sleep moon';
+  String get kidsDuaStickerSleep => 'ਨੀਂਦ ਦਾ ਚੰਦ';
 
   @override
-  String get kidsDuaStickerHomeDaily => 'Home light';
+  String get kidsDuaStickerHomeDaily => 'ਘਰ ਦੀ ਰੌਸ਼ਨੀ';
 
   @override
-  String get kidsDuaStickerMannersSocial => 'Kind manners heart';
+  String get kidsDuaStickerMannersSocial => 'ਚੰਗੇ ਅਖ਼ਲਾਕ ਦਾ ਦਿਲ';
 
   @override
-  String get kidsDuaStickerFeelingsProtection => 'Protection shield';
+  String get kidsDuaStickerFeelingsProtection => 'ਹਿਫ਼ਾਜ਼ਤ ਦੀ ਢਾਲ';
 
   @override
-  String get kidsDuaStickerLearningFamily => 'Learning book';
+  String get kidsDuaStickerLearningFamily => 'ਸਿੱਖਣ ਦੀ ਕਿਤਾਬ';
 
   @override
-  String get kidsDuaStickerTravelNature => 'Travel garden';
+  String get kidsDuaStickerTravelNature => 'ਸਫ਼ਰ ਦਾ ਬਾਗ਼';
 
   @override
-  String get kidsDuaMyDayTitle => 'My Day With Duas';
+  String get kidsDuaMyDayTitle => 'ਦੁਆਵਾਂ ਨਾਲ ਮੇਰਾ ਦਿਨ';
 
   @override
   String get kidsDuaMyDaySubtitle =>
-      'Walk through a few small moments and remember Allah through your day.';
+      'ਦਿਨ ਦੇ ਕੁਝ ਛੋਟੇ ਪਲਾਂ ਵਿਚੋਂ ਲੰਘੋ ਅਤੇ ਆਪਣੇ ਦਿਨ ਭਰ ਅੱਲ੍ਹਾਹ ਨੂੰ ਯਾਦ ਕਰੋ।';
 
   @override
-  String get kidsDuaMyDayStartAction => 'Start my day';
+  String get kidsDuaMyDayStartAction => 'ਮੇਰਾ ਦਿਨ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get kidsDuaMyDayContinueAction => 'Continue my day';
+  String get kidsDuaMyDayContinueAction => 'ਮੇਰਾ ਦਿਨ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaMyDayReviewAction => 'Review my day';
+  String get kidsDuaMyDayReviewAction => 'ਮੇਰੇ ਦਿਨ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get kidsDuaMyDayDoneTitle => 'Day complete';
+  String get kidsDuaMyDayDoneTitle => 'ਦਿਨ ਪੂਰਾ ਹੋ ਗਿਆ';
 
   @override
   String get kidsDuaMyDayCompleteBody =>
-      'You remembered Allah throughout your day';
+      'ਤੁਸੀਂ ਆਪਣੇ ਦਿਨ ਭਰ ਅੱਲ੍ਹਾਹ ਨੂੰ ਯਾਦ ਕੀਤਾ';
 
   @override
-  String get kidsDuaMyDayMorningTitle => 'Morning';
+  String get kidsDuaMyDayMorningTitle => 'ਸਵੇਰ';
 
   @override
-  String get kidsDuaMyDayMealsTitle => 'Meals';
+  String get kidsDuaMyDayMealsTitle => 'ਭੋਜਨ';
 
   @override
-  String get kidsDuaMyDayGoingOutTitle => 'Going out';
+  String get kidsDuaMyDayGoingOutTitle => 'ਬਾਹਰ ਜਾਣਾ';
 
   @override
-  String get kidsDuaMyDayNightTitle => 'Night';
+  String get kidsDuaMyDayNightTitle => 'ਰਾਤ';
 
   @override
-  String get kidsDuaMyDaySectionOpenLabel => 'Open';
+  String get kidsDuaMyDaySectionOpenLabel => 'ਖੁੱਲ੍ਹਾ';
 
   @override
-  String get kidsDuaMyDaySectionNowLabel => 'Now';
+  String get kidsDuaMyDaySectionNowLabel => 'ਹੁਣ';
 
   @override
-  String get kidsDuaMyDaySectionNextLabel => 'Next';
+  String get kidsDuaMyDaySectionNextLabel => 'ਅਗਲਾ';
 
   @override
-  String get kidsDuaMyDaySectionDoneLabel => 'Done';
+  String get kidsDuaMyDaySectionDoneLabel => 'ਹੋ ਗਿਆ';
 
   @override
-  String get kidsDuaMyDayPendingTodayLabel => 'Not done today';
+  String get kidsDuaMyDayPendingTodayLabel => 'ਅੱਜ ਨਹੀਂ ਕੀਤਾ';
 
   @override
-  String get kidsDuaMyDayCompletedTodayLabel => 'Done today';
+  String get kidsDuaMyDayCompletedTodayLabel => 'ਅੱਜ ਹੋ ਗਿਆ';
 
   @override
-  String get kidsDuaMyDayRightNowTitle => 'Right now';
+  String get kidsDuaMyDayRightNowTitle => 'ਇਸ ਵੇਲੇ';
 
   @override
-  String get kidsDuaMyDayNextUpTitle => 'Next up';
+  String get kidsDuaMyDayNextUpTitle => 'ਅਗਲਾ';
 
   @override
-  String get kidsDuaMyDayNextUpAction => 'See what comes next';
+  String get kidsDuaMyDayNextUpAction => 'ਵੇਖੋ ਅਗਲਾ ਕੀ ਆਉਂਦਾ ਹੈ';
 
   @override
-  String get kidsDuaMyDayUseNowAction => 'Use now';
+  String get kidsDuaMyDayUseNowAction => 'ਹੁਣ ਵਰਤੋ';
 
   @override
-  String get kidsDuaMyDayJourneyTitle => 'Today’s journey';
+  String get kidsDuaMyDayJourneyTitle => 'ਅੱਜ ਦਾ ਸਫ਼ਰ';
 
   @override
   String get kidsDuaMyDayJourneySubtitle =>
-      'See what fits now, what comes next, and how your day is going.';
+      'ਵੇਖੋ ਇਸ ਵੇਲੇ ਕੀ ਢੁੱਕਵਾਂ ਹੈ, ਅਗਲਾ ਕੀ ਹੈ, ਅਤੇ ਤੁਹਾਡਾ ਦਿਨ ਕਿਵੇਂ ਚੱਲ ਰਿਹਾ ਹੈ।';
 
   @override
-  String get kidsDuaMyDayQuestionTitle => 'One small question';
+  String get kidsDuaMyDayQuestionTitle => 'ਇੱਕ ਛੋਟਾ ਸਵਾਲ';
 
   @override
-  String get kidsDuaMyDayQuestionRecapTitle => 'A short day recap';
+  String get kidsDuaMyDayQuestionRecapTitle => 'ਦਿਨ ਦੀ ਛੋਟੀ ਸਮੀਖਿਆ';
 
   @override
-  String get kidsDuaMyDayQuestionContinueAction => 'Keep going';
+  String get kidsDuaMyDayQuestionContinueAction => 'ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaMyDayQuestionTryAction => 'Let’s try again';
+  String get kidsDuaMyDayQuestionTryAction => 'ਚਲੋ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੀਏ';
 
   @override
-  String get kidsDuaMyDayQuestionBackToDayAction => 'Back to My Day';
+  String get kidsDuaMyDayQuestionBackToDayAction => 'ਮੇਰੇ ਦਿਨ ਵੱਲ ਵਾਪਸ';
 
   @override
-  String get kidsDuaMyDayQuestionMashaAllah => 'MashaAllah!';
+  String get kidsDuaMyDayQuestionMashaAllah => 'ਮਾਸ਼ਾ ਅੱਲ੍ਹਾਹ!';
 
   @override
-  String get kidsDuaMyDayQuestionTryAgain => 'Let’s try again.';
+  String get kidsDuaMyDayQuestionTryAgain => 'ਚਲੋ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੀਏ।';
 
   @override
   String kidsDuaMyDayMatchPrompt(Object situation) {
-    return 'What do you say $situation?';
+    return '$situation ਵੇਲੇ ਤੁਸੀਂ ਕੀ ਕਹਿੰਦੇ ਹੋ?';
   }
 
   @override
   String kidsDuaMyDayMeaningPrompt(Object duaTitle) {
-    return 'What does $duaTitle mean?';
+    return '$duaTitle ਦਾ ਕੀ ਅਰਥ ਹੈ?';
   }
 
   @override
-  String get kidsDuaMyDayRecapCompleteTitle =>
-      'You remembered through your day';
+  String get kidsDuaMyDayRecapCompleteTitle => 'ਤੁਸੀਂ ਆਪਣੇ ਦਿਨ ਭਰ ਯਾਦ ਕੀਤਾ';
 
   @override
   String kidsDuaMyDayRecapCompleteBody(Object correct, Object total) {
-    return 'You answered $correct of $total recap questions and kept your day moving with Allah.';
+    return 'ਤੁਸੀਂ ਸਮੀਖਿਆ ਦੇ $total ਵਿਚੋਂ $correct ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਦਿੱਤੇ ਅਤੇ ਆਪਣਾ ਦਿਨ ਅੱਲ੍ਹਾਹ ਦੀ ਯਾਦ ਨਾਲ ਅੱਗੇ ਵਧਾਇਆ।';
   }
 
   @override
   String kidsDuaMyDayRecapBonusValue(Object xp, Object drops) {
-    return '+$xp XP and +$drops Ocean Drop';
+    return '+$xp XP ਅਤੇ +$drops ਓਸ਼ਨ ਡ੍ਰਾਪ';
   }
 
   @override
   String get kidsDuaMyDayRightNowMorningReason =>
-      'A gentle morning start with Allah.';
+      'ਅੱਲ੍ਹਾਹ ਨਾਲ ਨਰਮ ਸਵੇਰੇ ਦੀ ਸ਼ੁਰੂਆਤ।';
 
   @override
   String get kidsDuaMyDayRightNowMealsReason =>
-      'A small dua for food and thankfulness.';
+      'ਖਾਣੇ ਅਤੇ ਸ਼ੁਕਰ ਲਈ ਇੱਕ ਛੋਟੀ ਦੁਆ।';
 
   @override
   String get kidsDuaMyDayRightNowGoingOutReason =>
-      'A good moment to remember Allah before going out.';
+      'ਬਾਹਰ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਅੱਲ੍ਹਾਹ ਨੂੰ ਯਾਦ ਕਰਨ ਦਾ ਚੰਗਾ ਸਮਾਂ।';
 
   @override
   String get kidsDuaMyDayRightNowNightReason =>
-      'A calm evening and night reminder with Allah.';
+      'ਅੱਲ੍ਹਾਹ ਨਾਲ ਸ਼ਾਂਤ ਸ਼ਾਮ ਅਤੇ ਰਾਤ ਦੀ ਯਾਦ।';
 
   @override
   String kidsDuaMyDayLandingDetail(String reason, String nextTitle) {
-    return '$reason Next up: $nextTitle.';
+    return '$reason ਅਗਲਾ: $nextTitle।';
   }
 
   @override
   String kidsDuaMyDayCompleteRewardValue(int xp, int drops) {
-    return '+$xp XP and +$drops drop';
+    return '+$xp XP ਅਤੇ +$drops ਡ੍ਰਾਪ';
   }
 
   @override
-  String get kidsDuaSuggestedTitle => 'Suggested right now';
+  String get kidsDuaSuggestedTitle => 'ਇਸ ਵੇਲੇ ਲਈ ਸੁਝਾਅ';
 
   @override
-  String get kidsDuaSuggestedLearnNow => 'Learn now';
+  String get kidsDuaSuggestedLearnNow => 'ਹੁਣ ਸਿੱਖੋ';
 
   @override
-  String get kidsDuaSuggestedPracticeNow => 'Practice now';
+  String get kidsDuaSuggestedPracticeNow => 'ਹੁਣ ਅਭਿਆਸ ਕਰੋ';
 
   @override
   String get kidsDuaSuggestedReasonMorning =>
-      'A gentle way to begin the morning with Allah.';
+      'ਅੱਲ੍ਹਾਹ ਨਾਲ ਸਵੇਰ ਸ਼ੁਰੂ ਕਰਨ ਦਾ ਨਰਮ ਤਰੀਕਾ।';
 
   @override
   String get kidsDuaSuggestedReasonLearning =>
-      'A beautiful dua before learning something new.';
+      'ਕੁਝ ਨਵਾਂ ਸਿੱਖਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਸੁੰਦਰ ਦੁਆ।';
 
   @override
-  String get kidsDuaSuggestedReasonMeals => 'A helpful dua for meal time.';
+  String get kidsDuaSuggestedReasonMeals => 'ਖਾਣੇ ਦੇ ਵੇਲੇ ਲਈ ਮਦਦਗਾਰ ਦੁਆ।';
 
   @override
   String get kidsDuaSuggestedReasonGratitude =>
-      'A small way to thank Allah right now.';
+      'ਇਸ ਵੇਲੇ ਅੱਲ੍ਹਾਹ ਦਾ ਸ਼ੁਕਰ ਕਰਨ ਦਾ ਇੱਕ ਛੋਟਾ ਤਰੀਕਾ।';
 
   @override
   String get kidsDuaSuggestedReasonGoingOut =>
-      'A good dua for going out and meeting people.';
+      'ਬਾਹਰ ਜਾਣ ਅਤੇ ਲੋਕਾਂ ਨੂੰ ਮਿਲਣ ਲਈ ਚੰਗੀ ਦੁਆ।';
 
   @override
   String get kidsDuaSuggestedReasonPeople =>
-      'A kind dua for being with others.';
+      'ਦੂਜਿਆਂ ਨਾਲ ਹੋਣ ਵੇਲੇ ਇੱਕ ਮਿਹਰਬਾਨ ਦੁਆ।';
 
   @override
-  String get kidsDuaSuggestedReasonFamily => 'A loving dua for family time.';
+  String get kidsDuaSuggestedReasonFamily => 'ਪਰਿਵਾਰ ਨਾਲ ਸਮੇਂ ਲਈ ਪਿਆਰ ਭਰੀ ਦੁਆ।';
 
   @override
-  String get kidsDuaSuggestedReasonCalm =>
-      'A calm dua for this part of the day.';
+  String get kidsDuaSuggestedReasonCalm => 'ਦਿਨ ਦੇ ਇਸ ਹਿੱਸੇ ਲਈ ਸ਼ਾਂਤ ਦੁਆ।';
 
   @override
-  String get kidsDuaSuggestedReasonNight => 'A peaceful dua for the night.';
+  String get kidsDuaSuggestedReasonNight => 'ਰਾਤ ਲਈ ਸੁਕੂਨ ਭਰੀ ਦੁਆ।';
 
   @override
-  String get kidsDuaLightCardTitle => 'Keep your light shining';
+  String get kidsDuaLightCardTitle => 'ਆਪਣੀ ਰੌਸ਼ਨੀ ਚਮਕਦੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaMyDayLightTitle => 'Your light today';
+  String get kidsDuaMyDayLightTitle => 'ਅੱਜ ਤੁਹਾਡੀ ਰੌਸ਼ਨੀ';
 
   @override
   String kidsDuaLightValue(Object light) {
-    return 'Your light: $light';
+    return 'ਤੁਹਾਡੀ ਰੌਸ਼ਨੀ: $light';
   }
 
   @override
   String kidsDuaStreakValue(Object days) {
-    return 'Streak: $days days';
+    return 'ਲੜੀ: $days ਦਿਨ';
   }
 
   @override
-  String get kidsDuaLightSeedLabel => 'Gentle Seed';
+  String get kidsDuaLightSeedLabel => 'ਨਰਮ ਬੀਜ';
 
   @override
-  String get kidsDuaLightGlowLabel => 'Soft Glow';
+  String get kidsDuaLightGlowLabel => 'ਹੌਲੀ ਚਮਕ';
 
   @override
-  String get kidsDuaLightLanternLabel => 'Bright Lantern';
+  String get kidsDuaLightLanternLabel => 'ਚਮਕੀਲੀ ਲਾਲਟੇਨ';
 
   @override
-  String get kidsDuaLightMoonLabel => 'Calm Moon';
+  String get kidsDuaLightMoonLabel => 'ਸ਼ਾਂਤ ਚੰਦ';
 
   @override
-  String get kidsDuaLightStarLabel => 'Steady Star';
+  String get kidsDuaLightStarLabel => 'ਥਿਰ ਤਾਰਾ';
 
   @override
-  String get kidsDuaLightRadiantLabel => 'Radiant Light';
+  String get kidsDuaLightRadiantLabel => 'ਰੌਸ਼ਨ ਚਾਨਣ';
 
   @override
-  String get kidsDuaLightStartMessage => 'One small dua can brighten your day.';
+  String get kidsDuaLightStartMessage =>
+      'ਇੱਕ ਛੋਟੀ ਦੁਆ ਤੁਹਾਡਾ ਦਿਨ ਰੋਸ਼ਨ ਕਰ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get kidsDuaLightBuildMessage => 'Let’s keep your light shining today.';
+  String get kidsDuaLightBuildMessage => 'ਆਓ ਅੱਜ ਤੁਹਾਡੀ ਰੌਸ਼ਨੀ ਚਮਕਦੀ ਰੱਖੀਏ।';
 
   @override
   String get kidsDuaLightSteadyMessage =>
-      'Your light is growing with each small dua.';
+      'ਹਰ ਛੋਟੀ ਦੁਆ ਨਾਲ ਤੁਹਾਡੀ ਰੌਸ਼ਨੀ ਵਧ ਰਹੀ ਹੈ।';
 
   @override
-  String get kidsDuaLightRadiantMessage => 'Your light is shining beautifully.';
+  String get kidsDuaLightRadiantMessage =>
+      'ਤੁਹਾਡੀ ਰੌਸ਼ਨੀ ਬਹੁਤ ਸੋਹਣੀ ਚਮਕ ਰਹੀ ਹੈ।';
 
   @override
   String get kidsDuaLightRecoveryMessage =>
-      'Come back today to brighten your light again.';
+      'ਅੱਜ ਮੁੜ ਆਓ ਤਾਂ ਜੋ ਆਪਣੀ ਰੌਸ਼ਨੀ ਫਿਰ ਚਮਕਾ ਸਕੋ।';
 
   @override
   String get kidsDuaLightCompleteTodayMessage =>
-      'You kept your light shining today.';
+      'ਅੱਜ ਤੁਸੀਂ ਆਪਣੀ ਰੌਸ਼ਨੀ ਚਮਕਦੀ ਰੱਖੀ।';
 
   @override
   String get kidsDuaMyDayLightContinue =>
-      'One small dua can brighten your day.';
+      'ਇੱਕ ਛੋਟੀ ਦੁਆ ਤੁਹਾਡਾ ਦਿਨ ਰੋਸ਼ਨ ਕਰ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get kidsDuaMyDayLightComplete => 'You kept your light shining today.';
+  String get kidsDuaMyDayLightComplete => 'ਅੱਜ ਤੁਸੀਂ ਆਪਣੀ ਰੌਸ਼ਨੀ ਚਮਕਦੀ ਰੱਖੀ।';
 
   @override
-  String get kidsDuaReminderMorningTitle => 'A gentle morning dua';
+  String get kidsDuaReminderMorningTitle => 'ਸਵੇਰ ਦੀ ਨਰਮ ਦੁਆ';
 
   @override
-  String get kidsDuaReminderMorningBody => 'A small dua can brighten your day.';
+  String get kidsDuaReminderMorningBody =>
+      'ਇੱਕ ਛੋਟੀ ਦੁਆ ਤੁਹਾਡਾ ਦਿਨ ਰੋਸ਼ਨ ਕਰ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get kidsDuaReminderMiddayTitle => 'A dua for this moment';
+  String get kidsDuaReminderMiddayTitle => 'ਇਸ ਪਲ ਲਈ ਇੱਕ ਦੁਆ';
 
   @override
-  String get kidsDuaReminderMiddayBody => 'Let’s do one small dua together.';
+  String get kidsDuaReminderMiddayBody => 'ਆਓ ਇਕੱਠੇ ਇੱਕ ਛੋਟੀ ਦੁਆ ਕਰੀਏ।';
 
   @override
-  String get kidsDuaReminderEveningTitle => 'A calm return to Allah';
+  String get kidsDuaReminderEveningTitle => 'ਅੱਲ੍ਹਾਹ ਵੱਲ ਸ਼ਾਂਤ ਵਾਪਸੀ';
 
   @override
-  String get kidsDuaReminderEveningBody => 'Keep your light shining today.';
+  String get kidsDuaReminderEveningBody => 'ਅੱਜ ਆਪਣੀ ਰੌਸ਼ਨੀ ਚਮਕਦੀ ਰੱਖੋ।';
 
   @override
-  String get kidsDuaReminderBedtimeTitle => 'A peaceful bedtime dua';
+  String get kidsDuaReminderBedtimeTitle => 'ਸੁਕੂਨ ਭਰੀ ਸੌਣ ਵੇਲੇ ਦੀ ਦੁਆ';
 
   @override
   String get kidsDuaReminderBedtimeBody =>
-      'It’s bedtime. Let’s remember Allah before sleep.';
+      'ਸੌਣ ਦਾ ਸਮਾਂ ਹੈ। ਆਓ ਨੀਂਦ ਤੋਂ ਪਹਿਲਾਂ ਅੱਲ੍ਹਾਹ ਨੂੰ ਯਾਦ ਕਰੀਏ।';
 
   @override
-  String get kidsDuaReminderRecoveryTitle => 'Your light is waiting';
+  String get kidsDuaReminderRecoveryTitle => 'ਤੁਹਾਡੀ ਰੌਸ਼ਨੀ ਉਡੀਕ ਰਹੀ ਹੈ';
 
   @override
-  String get kidsDuaReminderRecoveryBody =>
-      'Come back for one small dua today.';
+  String get kidsDuaReminderRecoveryBody => 'ਅੱਜ ਇੱਕ ਛੋਟੀ ਦੁਆ ਲਈ ਵਾਪਸ ਆਓ।';
 
   @override
-  String get kidsDuaDrawAction => 'Draw this dua';
+  String get kidsDuaDrawAction => 'ਇਸ ਦੁਆ ਦੀ ਤਸਵੀਰ ਬਣਾਓ';
 
   @override
-  String get kidsDuaDrawTitle => 'Draw your dua';
+  String get kidsDuaDrawTitle => 'ਆਪਣੀ ਦੁਆ ਬਣਾਓ';
 
   @override
-  String get kidsDuaDrawHint => 'Draw what this dua reminds you of.';
+  String get kidsDuaDrawHint =>
+      'ਜੋ ਇਹ ਦੁਆ ਤੁਹਾਨੂੰ ਯਾਦ ਕਰਵਾਂਦੀ ਹੈ, ਉਸਦੀ ਤਸਵੀਰ ਬਣਾਓ।';
 
   @override
-  String get kidsDuaDrawBrushSmall => 'Small';
+  String get kidsDuaDrawBrushSmall => 'ਛੋਟਾ';
 
   @override
-  String get kidsDuaDrawBrushMedium => 'Medium';
+  String get kidsDuaDrawBrushMedium => 'ਦਰਮਿਆਨਾ';
 
   @override
-  String get kidsDuaDrawBrushLarge => 'Large';
+  String get kidsDuaDrawBrushLarge => 'ਵੱਡਾ';
 
   @override
-  String get kidsDuaDrawEraseAction => 'Erase';
+  String get kidsDuaDrawEraseAction => 'ਮਿਟਾਓ';
 
   @override
-  String get kidsDuaDrawClearAction => 'Clear';
+  String get kidsDuaDrawClearAction => 'ਸਾਫ਼ ਕਰੋ';
 
   @override
-  String get kidsDuaDrawUndoAction => 'Undo';
+  String get kidsDuaDrawUndoAction => 'ਵਾਪਸ ਕਰੋ';
 
   @override
-  String get kidsDuaDrawSaveAction => 'Save drawing';
+  String get kidsDuaDrawSaveAction => 'ਤਸਵੀਰ ਸੰਭਾਲੋ';
 
   @override
-  String get kidsDuaDrawSavingAction => 'Saving...';
+  String get kidsDuaDrawSavingAction => 'ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ...';
 
   @override
-  String get kidsDuaDrawDeleteAction => 'Delete drawing';
+  String get kidsDuaDrawDeleteAction => 'ਤਸਵੀਰ ਮਿਟਾਓ';
 
   @override
-  String get kidsDuaDrawingsTitle => 'My drawings';
+  String get kidsDuaDrawingsTitle => 'ਮੇਰੀਆਂ ਤਸਵੀਰਾਂ';
 
   @override
-  String get kidsDuaDrawingsEmpty => 'No drawings yet.';
+  String get kidsDuaDrawingsEmpty => 'ਹਾਲੇ ਕੋਈ ਤਸਵੀਰ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get kidsDuaDrawingsUntitled => 'Dua drawing';
+  String get kidsDuaDrawingsUntitled => 'ਦੁਆ ਦੀ ਤਸਵੀਰ';
 
   @override
   String kidsDuaDrawingsLandingSubtitle(Object count) {
-    return '$count saved drawings';
+    return '$count ਸੰਭਾਲੀਆਂ ਤਸਵੀਰਾਂ';
   }
 
   @override
-  String get kidsDuaParentTitle => 'Parent view';
+  String get kidsDuaParentTitle => 'ਮਾਤਾ-ਪਿਤਾ ਦਰਸ਼ਨ';
 
   @override
-  String get kidsDuaParentViewToggleTitle => 'Show parent view';
+  String get kidsDuaParentViewToggleTitle => 'ਮਾਤਾ-ਪਿਤਾ ਦਰਸ਼ਨ ਵੇਖਾਓ';
 
   @override
   String get kidsDuaParentViewToggleBody =>
-      'Use a calm shared view of learning, activity, and drawings.';
+      'ਸਿੱਖਣ, ਸਰਗਰਮੀ ਅਤੇ ਤਸਵੀਰਾਂ ਦਾ ਇੱਕ ਸ਼ਾਂਤ ਸਾਂਝਾ ਦਰਸ਼ਨ ਵਰਤੋ।';
 
   @override
-  String get kidsDuaParentLandingEnabled => 'Progress, activity, and drawings';
+  String get kidsDuaParentLandingEnabled => 'ਤਰੱਕੀ, ਸਰਗਰਮੀ ਅਤੇ ਤਸਵੀਰਾਂ';
 
   @override
-  String get kidsDuaParentLandingDisabled => 'Turn on the shared parent view';
+  String get kidsDuaParentLandingDisabled => 'ਸਾਂਝਾ ਮਾਤਾ-ਪਿਤਾ ਦਰਸ਼ਨ ਚਾਲੂ ਕਰੋ';
 
   @override
-  String get kidsDuaParentOverviewTitle => 'Overview';
+  String get kidsDuaParentOverviewTitle => 'ਸੰਖੇਪ ਦਰਸ਼ਨ';
 
   @override
-  String get kidsDuaParentTodayDone => 'Today complete';
+  String get kidsDuaParentTodayDone => 'ਅੱਜ ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get kidsDuaParentTodayPending => 'Today in progress';
+  String get kidsDuaParentTodayPending => 'ਅੱਜ ਚੱਲ ਰਿਹਾ ਹੈ';
 
   @override
-  String get kidsDuaParentLearningTitle => 'Learning progress';
+  String get kidsDuaParentLearningTitle => 'ਸਿੱਖਣ ਦੀ ਤਰੱਕੀ';
 
   @override
   String kidsDuaParentCategoryProgress(Object learned, Object total) {
-    return '$learned of $total learned';
+    return '$total ਵਿਚੋਂ $learned ਸਿੱਖੀਆਂ';
   }
 
   @override
-  String get kidsDuaParentActivityTitle => 'Daily activity';
+  String get kidsDuaParentActivityTitle => 'ਰੋਜ਼ਾਨਾ ਸਰਗਰਮੀ';
 
   @override
-  String get kidsDuaParentActivityEmpty => 'No activity yet today.';
+  String get kidsDuaParentActivityEmpty => 'ਅੱਜ ਹਾਲੇ ਕੋਈ ਸਰਗਰਮੀ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get kidsDuaParentActivityLessonDone => 'Completed a dua lesson';
+  String get kidsDuaParentActivityLessonDone => 'ਇੱਕ ਦੁਆ ਪਾਠ ਪੂਰਾ ਕੀਤਾ';
 
   @override
-  String get kidsDuaParentActivityMyDayDone => 'Completed My Day With Duas';
+  String get kidsDuaParentActivityMyDayDone => 'ਦੁਆਵਾਂ ਨਾਲ ਮੇਰਾ ਦਿਨ ਪੂਰਾ ਕੀਤਾ';
 
   @override
-  String get kidsDuaParentActivityStepDone => 'Completed a My Day step';
+  String get kidsDuaParentActivityStepDone => 'ਮੇਰੇ ਦਿਨ ਦਾ ਇੱਕ ਕਦਮ ਪੂਰਾ ਕੀਤਾ';
 
   @override
   String get kidsDuaParentActivityPracticeDone =>
-      'Answered a practice question correctly';
+      'ਅਭਿਆਸ ਦਾ ਇੱਕ ਸਵਾਲ ਠੀਕ ਜਵਾਬ ਦਿੱਤਾ';
 
   @override
-  String get kidsDuaParentActivityDrawingSaved => 'Saved a dua drawing';
+  String get kidsDuaParentActivityDrawingSaved => 'ਦੁਆ ਦੀ ਇੱਕ ਤਸਵੀਰ ਸੰਭਾਲੀ';
 
   @override
-  String get kidsDuaParentActivityStoryDone => 'Finished a dua story';
+  String get kidsDuaParentActivityStoryDone => 'ਦੁਆ ਦੀ ਇੱਕ ਕਹਾਣੀ ਪੂਰੀ ਕੀਤੀ';
 
   @override
-  String get kidsDuaParentDrawingsTitle => 'Drawings';
+  String get kidsDuaParentDrawingsTitle => 'ਤਸਵੀਰਾਂ';
 
   @override
-  String get kidsDuaParentDrawingsEmpty => 'No saved drawings yet.';
+  String get kidsDuaParentDrawingsEmpty => 'ਹਾਲੇ ਕੋਈ ਸੰਭਾਲੀ ਹੋਈ ਤਸਵੀਰ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get kidsDuaParentOpenGalleryAction => 'Open gallery';
+  String get kidsDuaParentOpenGalleryAction => 'ਗੈਲਰੀ ਖੋਲ੍ਹੋ';
 
   @override
   String get kidsDuaStoriesTitle => 'Dua Stories';
@@ -25542,81 +25766,82 @@ class AppLocalizationsPa extends AppLocalizations {
       'Short calm stories that help a child feel a dua in real life.';
 
   @override
-  String get kidsDuaStoriesAction => 'Listen to story';
+  String get kidsDuaStoriesAction => 'ਕਹਾਣੀ ਸੁਣੋ';
 
   @override
   String kidsDuaStoriesLandingSubtitle(Object count) {
-    return '$count gentle stories';
+    return '$count ਨਰਮ ਕਹਾਣੀਆਂ';
   }
 
   @override
   String kidsDuaStoriesDurationValue(Object minutes) {
-    return '$minutes min story';
+    return '$minutes ਮਿੰਟ ਦੀ ਕਹਾਣੀ';
   }
 
   @override
-  String get kidsDuaStoriesFeaturedTitle => 'Featured story';
+  String get kidsDuaStoriesFeaturedTitle => 'ਖਾਸ ਕਹਾਣੀ';
 
   @override
-  String get kidsDuaStoriesContinueTitle => 'Continue story';
+  String get kidsDuaStoriesContinueTitle => 'ਕਹਾਣੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get kidsDuaStoriesBrowseTitle => 'Story categories';
+  String get kidsDuaStoriesBrowseTitle => 'ਕਹਾਣੀ ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
-  String get kidsDuaStoriesBrowseAllAction => 'Browse all stories';
+  String get kidsDuaStoriesBrowseAllAction => 'ਸਾਰੀਆਂ ਕਹਾਣੀਆਂ ਵੇਖੋ';
 
   @override
-  String get kidsDuaStoriesBrowseAllTitle => 'All stories';
+  String get kidsDuaStoriesBrowseAllTitle => 'ਸਾਰੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
-  String get kidsDuaStoriesCategoryBedtime => 'Bedtime Stories';
+  String get kidsDuaStoriesCategoryBedtime => 'ਸੌਣ ਵੇਲੇ ਦੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
-  String get kidsDuaStoriesCategoryDailyLife => 'Daily Life Stories';
+  String get kidsDuaStoriesCategoryDailyLife => 'ਰੋਜ਼ਾਨਾ ਜ਼ਿੰਦਗੀ ਦੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
-  String get kidsDuaStoriesCategoryFeelings => 'Feelings Stories';
+  String get kidsDuaStoriesCategoryFeelings => 'ਭਾਵਨਾਵਾਂ ਦੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
-  String get kidsDuaStoriesCategoryLearning => 'Learning Stories';
+  String get kidsDuaStoriesCategoryLearning => 'ਸਿੱਖਣ ਦੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
-  String get kidsDuaStoriesCategoryTravelNature => 'Travel & Nature Stories';
+  String get kidsDuaStoriesCategoryTravelNature =>
+      'ਸਫ਼ਰ ਅਤੇ ਕੁਦਰਤ ਦੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
   String kidsDuaStoriesSceneValue(Object current, Object total) {
-    return 'Scene $current of $total';
+    return '$total ਵਿਚੋਂ ਦ੍ਰਿਸ਼ $current';
   }
 
   @override
-  String get kidsDuaStoriesBackAction => 'Back';
+  String get kidsDuaStoriesBackAction => 'ਵਾਪਸ';
 
   @override
-  String get kidsDuaStoriesAutoplayAction => 'Auto play';
+  String get kidsDuaStoriesAutoplayAction => 'ਆਪਣੇ ਆਪ ਚਲਾਓ';
 
   @override
-  String get kidsDuaStoriesPauseAction => 'Pause';
+  String get kidsDuaStoriesPauseAction => 'ਰੋਕੋ';
 
   @override
-  String get kidsDuaStoriesNextAction => 'Next scene';
+  String get kidsDuaStoriesNextAction => 'ਅਗਲਾ ਦ੍ਰਿਸ਼';
 
   @override
-  String get kidsDuaStoriesCompleteTitle => 'A gentle story ending';
+  String get kidsDuaStoriesCompleteTitle => 'ਨਰਮ ਕਹਾਣੀ ਦਾ ਅੰਤ';
 
   @override
-  String get kidsDuaStoriesSayDuaAction => 'Now let’s say the dua';
+  String get kidsDuaStoriesSayDuaAction => 'ਹੁਣ ਆਓ ਦੁਆ ਪੜ੍ਹੀਏ';
 
   @override
-  String get kidsDuaStoriesBackToStoriesAction => 'Back to stories';
+  String get kidsDuaStoriesBackToStoriesAction => 'ਕਹਾਣੀਆਂ ਵੱਲ ਵਾਪਸ';
 
   @override
   String kidsDuaStoriesLessonHint(Object title) {
-    return 'Next: learn $title';
+    return 'ਅਗਲਾ: $title ਸਿੱਖੋ';
   }
 
   @override
-  String get kidsDuaStoriesMyDayDetail => 'A calm story for this moment.';
+  String get kidsDuaStoriesMyDayDetail => 'ਇਸ ਪਲ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਕਹਾਣੀ।';
 
   @override
   String get xpLevelTitle1 => 'Niyyah';
@@ -26566,7 +26791,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnGlossarySearchHint => 'Search terms or meanings';
 
   @override
-  String get searchTermsHint => 'Search terms...';
+  String get searchTermsHint => 'ਸ਼ਬਦਾਵਲੀ ਖੋਜੋ...';
 
   @override
   String get learnGlossaryCategoryAll => 'All';
@@ -26790,18 +27015,18 @@ class AppLocalizationsPa extends AppLocalizations {
       'This lesson will open after the previous step is completed. Taking you to the next available lesson now.';
 
   @override
-  String get learningJourneyBrowseFeaturedTitle => 'Featured journeys';
+  String get learningJourneyBrowseFeaturedTitle => 'ਚੁਣੀਆਂ ਹੋਈਆਂ ਯਾਤਰਾਵਾਂ';
 
   @override
   String get learningJourneyBrowseFeaturedSubtitle =>
-      'Start with the guided paths most suited for steady progress.';
+      'ਉਨ੍ਹਾਂ ਰਹਿਨੁਮਾਈ ਵਾਲੇ ਰਾਹਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਠੋਸ ਤਰੱਕੀ ਲਈ ਸਭ ਤੋਂ ਉਚਿਤ ਹਨ।';
 
   @override
-  String get learningJourneyBrowseAllJourneysTitle => 'All journeys';
+  String get learningJourneyBrowseAllJourneysTitle => 'ਸਾਰੀਆਂ ਯਾਤਰਾਵਾਂ';
 
   @override
   String get learningJourneyBrowseAllJourneysSubtitle =>
-      'Browse every guided path and continue where you left off.';
+      'ਹਰ ਰਹਿਨੁਮਾਈ ਵਾਲੇ ਰਾਹ ਨੂੰ ਵੇਖੋ ਅਤੇ ਓਥੋਂ ਜਾਰੀ ਰੱਖੋ ਜਿੱਥੇ ਤੁਸੀਂ ਰੁਕੇ ਸੀ।';
 
   @override
   String get crosswordHomeTitle => 'Crossword Puzzles';
@@ -28412,77 +28637,76 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnQuizzesOpenAyahCompletion => 'Open Ayah Completion';
 
   @override
-  String get hadithReflectionHomeTitle => 'Hadith Reflection';
+  String get hadithReflectionHomeTitle => 'ਹਦੀਸ ਚਿੰਤਨ';
 
   @override
   String get hadithReflectionHomeSubtitle =>
-      'Reflect on authentic Hadith teachings through gentle real-life decisions.';
+      'ਨਰਮ ਅਸਲ-ਜ਼ਿੰਦਗੀ ਦੇ ਫੈਸਲਿਆਂ ਰਾਹੀਂ ਮੌਤਬਰ ਹਦੀਸ ਤਾਲੀਮਾਂ ‘ਤੇ ਚਿੰਤਨ ਕਰੋ।';
 
   @override
-  String get hadithReflectionLoadErrorTitle =>
-      'Hadith reflections could not load';
+  String get hadithReflectionLoadErrorTitle => 'ਹਦੀਸ ਚਿੰਤਨ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ';
 
   @override
   String get hadithReflectionLoadErrorSubtitle =>
-      'Try again in a moment. The local reflection library should remain available offline.';
+      'ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ। ਸਥਾਨਕ ਚਿੰਤਨ ਲਾਇਬ੍ਰੇਰੀ ਆਫਲਾਈਨ ਉਪਲਬਧ ਰਹਿਣੀ ਚਾਹੀਦੀ ਹੈ।';
 
   @override
   String get hadithReflectionLoadingSubtitle =>
-      'Preparing reflection prompts and scenario sets.';
+      'ਚਿੰਤਨ ਪ੍ਰੇਰਕ ਅਤੇ ਹਾਲਾਤੀ ਸੈੱਟ ਤਿਆਰ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ।';
 
   @override
-  String get hadithReflectionNotFoundTitle => 'Reflection not found';
+  String get hadithReflectionNotFoundTitle => 'ਚਿੰਤਨ ਨਹੀਂ ਮਿਲਿਆ';
 
   @override
   String get hadithReflectionNotFoundSubtitle =>
-      'This reflection could not be found in the current set.';
+      'ਇਹ ਚਿੰਤਨ ਮੌਜੂਦਾ ਸੈੱਟ ਵਿੱਚ ਨਹੀਂ ਮਿਲਿਆ।';
 
   @override
   String get hadithReflectionKidsOnlyTitle =>
-      'This reflection is not available in the current kids profile.';
+      'ਇਹ ਚਿੰਤਨ ਮੌਜੂਦਾ ਬੱਚਿਆਂ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਵਿੱਚ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get hadithReflectionDailyModeTitle => 'Daily Hadith Reflection';
+  String get hadithReflectionDailyModeTitle => 'ਰੋਜ਼ਾਨਾ ਹਦੀਸ ਚਿੰਤਨ';
 
   @override
   String get hadithReflectionDailyModeSubtitle =>
-      'One grounded Hadith scenario each day, with a calm reflection flow.';
+      'ਹਰ ਰੋਜ਼ ਇੱਕ ਹਕੀਕਤੀ ਹਦੀਸੀ ਹਾਲਤ, ਇਕ ਸਕੂਨ-ਭਰੇ ਚਿੰਤਨ ਪ੍ਰਵਾਹ ਨਾਲ।';
 
   @override
   String hadithReflectionDailyThemeLabel(Object theme) {
-    return 'Today\'s theme: $theme';
+    return 'ਅੱਜ ਦਾ ਵਿਸ਼ਾ: $theme';
   }
 
   @override
-  String get hadithReflectionDailyCompleteBadge => 'Daily reflection completed';
+  String get hadithReflectionDailyCompleteBadge => 'ਰੋਜ਼ਾਨਾ ਚਿੰਤਨ ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get hadithReflectionKidsModeTitle => 'Kids Reflection';
+  String get hadithReflectionKidsModeTitle => 'ਬੱਚਿਆਂ ਲਈ ਚਿੰਤਨ';
 
   @override
   String get hadithReflectionKidsModeSubtitle =>
-      'Shorter scenarios about kindness, honesty, patience, and respect.';
+      'ਦਇਆ, ਸੱਚਾਈ, ਸਬਰ ਅਤੇ ਆਦਰ ਬਾਰੇ ਛੋਟੀਆਂ ਹਾਲਾਤਾਂ।';
 
   @override
-  String get hadithReflectionAdultModeTitle => 'Adult Reflection';
+  String get hadithReflectionAdultModeTitle => 'ਬਾਲਗ ਚਿੰਤਨ';
 
   @override
   String get hadithReflectionAdultModeSubtitle =>
-      'More nuanced scenarios about intention, speech, accountability, and service.';
+      'ਨੀਅਤ, ਗੱਲਬਾਤ, ਜਵਾਬਦੇਹੀ ਅਤੇ ਖ਼ਿਦਮਤ ਬਾਰੇ ਹੋਰ ਬਾਰਿਕ ਹਾਲਾਤਾਂ।';
 
   @override
   String hadithReflectionPuzzleCountLabel(Object count) {
-    return '$count reflections';
+    return '$count ਚਿੰਤਨ';
   }
 
   @override
   String hadithReflectionCompletedCountLabel(Object count) {
-    return '$count completed';
+    return '$count ਪੂਰੇ ਹੋਏ';
   }
 
   @override
   String hadithReflectionBestChoiceCountLabel(Object count) {
-    return '$count best-aligned choices';
+    return '$count ਸਭ ਤੋਂ ਉਚਿਤ ਚੋਣਾਂ';
   }
 
   @override
@@ -28492,285 +28716,286 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String hadithReflectionDropsLabel(Object count) {
-    return '$count drops';
+    return '$count ਬੂੰਦਾਂ';
   }
 
   @override
   String hadithReflectionDailyStreakLabel(Object count) {
-    return '$count-day streak';
+    return '$count-ਦਿਨੀ ਲੜੀ';
   }
 
   @override
-  String get hadithReflectionContinueSectionTitle => 'Continue reflecting';
+  String get hadithReflectionContinueSectionTitle => 'ਚਿੰਤਨ ਜਾਰੀ ਰੱਖੋ';
 
   @override
   String get hadithReflectionContinueSectionSubtitle =>
-      'Resume the most recent scenario you started.';
+      'ਸਭ ਤੋਂ ਹਾਲੀਆ ਹਾਲਤ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਤੁਸੀਂ ਖੋਲੀ ਸੀ।';
 
   @override
-  String get hadithReflectionDailyHistoryTitle => 'Recent daily reflections';
+  String get hadithReflectionDailyHistoryTitle => 'ਹਾਲੀਆ ਰੋਜ਼ਾਨਾ ਚਿੰਤਨ';
 
   @override
   String get hadithReflectionDailyHistorySubtitle =>
-      'A short look back at the reflections you opened this week.';
+      'ਇਸ ਹਫ਼ਤੇ ਖੋਲੇ ਗਏ ਚਿੰਤਨਾਂ ਉੱਤੇ ਇੱਕ ਛੋਟੀ ਨਿਗਾਹ।';
 
   @override
-  String get hadithReflectionFeaturedPacksTitle => 'Featured packs';
+  String get hadithReflectionFeaturedPacksTitle => 'ਖ਼ਾਸ ਪੈਕ';
 
   @override
   String get hadithReflectionFeaturedPacksSubtitle =>
-      'Curated reflection sets for character, adab, and daily life.';
+      'ਅਖ਼ਲਾਕ, ਆਦਾਬ ਅਤੇ ਰੋਜ਼ਾਨਾ ਜ਼ਿੰਦਗੀ ਲਈ ਚੁਣੇ ਹੋਏ ਚਿੰਤਨ-ਸੈੱਟ।';
 
   @override
-  String get hadithReflectionThemesTitle => 'Themes';
+  String get hadithReflectionThemesTitle => 'ਵਿਸ਼ੇ';
 
   @override
   String get hadithReflectionThemesSubtitle =>
-      'Browse reflections by the teaching being practiced.';
+      'ਅਮਲ ਕੀਤੀ ਜਾ ਰਹੀ ਤਾਲੀਮ ਦੇ ਅਧਾਰ ‘ਤੇ ਚਿੰਤਨ ਵੇਖੋ।';
 
   @override
   String hadithReflectionPackDifficultyLabel(Object min, Object max) {
-    return 'Difficulty $min–$max';
+    return 'ਮੁਸ਼ਕਲਤਾ $min–$max';
   }
 
   @override
   String hadithReflectionPackProgressLabel(Object completed, Object total) {
-    return '$completed of $total completed';
+    return '$total ਵਿਚੋਂ $completed ਪੂਰੇ ਹੋਏ';
   }
 
   @override
   String hadithReflectionPackBestChoiceLabel(Object count) {
-    return '$count best-aligned';
+    return '$count ਸਭ ਤੋਂ ਉਚਿਤ';
   }
 
   @override
-  String get hadithReflectionContinueAction => 'Continue reflection';
+  String get hadithReflectionContinueAction => 'ਚਿੰਤਨ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get hadithReflectionRecommendedAction => 'Recommended next reflection';
+  String get hadithReflectionRecommendedAction => 'ਅਗਲਾ ਸਿਫ਼ਾਰਿਸ਼ੀ ਚਿੰਤਨ';
 
   @override
-  String get hadithReflectionResumeBadge => 'Resume';
+  String get hadithReflectionResumeBadge => 'ਮੁੜ ਸ਼ੁਰੂ';
 
   @override
-  String get hadithReflectionBestChoiceBadge => 'Best aligned';
+  String get hadithReflectionBestChoiceBadge => 'ਸਭ ਤੋਂ ਉਚਿਤ';
 
   @override
-  String get hadithReflectionCompletedBadge => 'Completed';
+  String get hadithReflectionCompletedBadge => 'ਪੂਰਾ ਹੋਇਆ';
 
   @override
-  String get hadithReflectionPuzzleTitleKids => 'Kids Hadith Reflection';
+  String get hadithReflectionPuzzleTitleKids => 'ਬੱਚਿਆਂ ਲਈ ਹਦੀਸ ਚਿੰਤਨ';
 
   @override
-  String get hadithReflectionPuzzleTitleAdult => 'Hadith Reflection';
+  String get hadithReflectionPuzzleTitleAdult => 'ਹਦੀਸ ਚਿੰਤਨ';
 
   @override
   String hadithReflectionDailyPuzzleSubtitle(Object category) {
-    return 'Daily reflection for $category';
+    return '$category ਲਈ ਰੋਜ਼ਾਨਾ ਚਿੰਤਨ';
   }
 
   @override
   String hadithReflectionPuzzleSubtitle(Object category) {
-    return 'Scenario practice in $category';
+    return '$category ਵਿੱਚ ਹਾਲਾਤੀ ਅਭਿਆਸ';
   }
 
   @override
-  String get hadithReflectionScenarioTitle => 'Scenario';
+  String get hadithReflectionScenarioTitle => 'ਹਾਲਤ';
 
   @override
-  String get hadithReflectionTeachingSummaryTitle => 'Teaching summary';
+  String get hadithReflectionTeachingSummaryTitle => 'ਤਾਲੀਮ ਦਾ ਸਾਰ';
 
   @override
-  String get hadithReflectionReflectionPromptTitle => 'Reflection prompt';
+  String get hadithReflectionReflectionPromptTitle => 'ਚਿੰਤਨ ਪ੍ਰੇਰਕ';
 
   @override
-  String get hadithReflectionHelpAction => 'View help';
+  String get hadithReflectionHelpAction => 'ਮਦਦ ਵੇਖੋ';
 
   @override
-  String get hadithReflectionHelpViewedAction => 'Help viewed';
+  String get hadithReflectionHelpViewedAction => 'ਮਦਦ ਵੇਖੀ ਗਈ';
 
   @override
-  String get hadithReflectionHelpDialogTitle => 'Helpful reminder';
+  String get hadithReflectionHelpDialogTitle => 'ਫ਼ਾਇਦਾਮੰਦ ਯਾਦਦਿਹਾਨੀ';
 
   @override
-  String get hadithReflectionChoiceSectionTitle => 'What would you do?';
+  String get hadithReflectionChoiceSectionTitle => 'ਤੁਸੀਂ ਕੀ ਕਰੋਗੇ?';
 
   @override
-  String get hadithReflectionOutcomeBest => 'Best aligned';
+  String get hadithReflectionOutcomeBest => 'ਸਭ ਤੋਂ ਉਚਿਤ';
 
   @override
   String get hadithReflectionOutcomeAcceptable =>
-      'Acceptable, but not strongest';
+      'ਕਬੂਲਯੋਗ, ਪਰ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ਨਹੀਂ';
 
   @override
-  String get hadithReflectionOutcomeNeedsReflection => 'Needs reflection';
+  String get hadithReflectionOutcomeNeedsReflection => 'ਹੋਰ ਚਿੰਤਨ ਦੀ ਲੋੜ ਹੈ';
 
   @override
-  String get hadithReflectionFeedbackTitle => 'Feedback';
+  String get hadithReflectionFeedbackTitle => 'ਰਾਇ';
 
   @override
-  String get hadithReflectionCompletionTitle => 'Reflection complete';
+  String get hadithReflectionCompletionTitle => 'ਚਿੰਤਨ ਪੂਰਾ ਹੋਇਆ';
 
   @override
   String get hadithReflectionCompletionSubtitle =>
-      'You completed this reflection and reviewed its teaching.';
+      'ਤੁਸੀਂ ਇਹ ਚਿੰਤਨ ਪੂਰਾ ਕੀਤਾ ਅਤੇ ਇਸ ਦੀ ਤਾਲੀਮ ਨੂੰ ਮੁੜ ਵੇਖਿਆ।';
 
   @override
   String get hadithReflectionCompletionBestSubtitle =>
-      'You chose the response most closely aligned with the Hadith\'s teaching.';
+      'ਤੁਸੀਂ ਉਹ ਜਵਾਬ ਚੁਣਿਆ ਜੋ ਹਦੀਸ ਦੀ ਤਾਲੀਮ ਨਾਲ ਸਭ ਤੋਂ ਨੇੜੇ ਮਿਲਦਾ ਸੀ।';
 
   @override
-  String get hadithReflectionTakeawayTitle => 'Takeaway';
+  String get hadithReflectionTakeawayTitle => 'ਸਿੱਖਿਆ';
 
   @override
   String hadithReflectionCompletionXpReward(Object count) {
-    return '+$count XP awarded';
+    return '+$count XP ਮਿਲੇ';
   }
 
   @override
   String hadithReflectionCompletionDropReward(Object count) {
-    return 'This reflection added $count Ocean Drop';
+    return 'ਇਸ ਚਿੰਤਨ ਨੇ $count Ocean Drop ਸ਼ਾਮਲ ਕੀਤਾ';
   }
 
   @override
   String hadithReflectionBestChoiceReward(Object count) {
-    return 'Best-choice bonus +$count XP';
+    return 'ਸਭ ਤੋਂ ਉਚਿਤ ਚੋਣ ਬੋਨਸ +$count XP';
   }
 
   @override
-  String get hadithReflectionNextPuzzleAction => 'Next reflection';
+  String get hadithReflectionNextPuzzleAction => 'ਅਗਲਾ ਚਿੰਤਨ';
 
   @override
-  String get hadithReflectionReturnToPackAction => 'Back to pack';
+  String get hadithReflectionReturnToPackAction => 'ਪੈਕ ਵੱਲ ਵਾਪਸ';
 
   @override
-  String get hadithReflectionBackHomeAction => 'Back home';
+  String get hadithReflectionBackHomeAction => 'ਘਰ ਵਾਪਸ';
 
   @override
-  String get hadithReflectionDifficultyGentle => 'Gentle';
+  String get hadithReflectionDifficultyGentle => 'ਨਰਮ';
 
   @override
-  String get hadithReflectionDifficultySteady => 'Steady';
+  String get hadithReflectionDifficultySteady => 'ਥਿਰ';
 
   @override
-  String get hadithReflectionDifficultyReflective => 'Reflective';
+  String get hadithReflectionDifficultyReflective => 'ਚਿੰਤਨਸ਼ੀਲ';
 
   @override
-  String get hadithReflectionDifficultyDeep => 'Deep';
+  String get hadithReflectionDifficultyDeep => 'ਗਹਿਰਾ';
 
   @override
-  String get hadithReflectionCategoryKindness => 'Kindness';
+  String get hadithReflectionCategoryKindness => 'ਮੇਹਰਬਾਨੀ';
 
   @override
-  String get hadithReflectionCategoryHonesty => 'Honesty';
+  String get hadithReflectionCategoryHonesty => 'ਇਮਾਨਦਾਰੀ';
 
   @override
-  String get hadithReflectionCategoryPatience => 'Patience';
+  String get hadithReflectionCategoryPatience => 'ਸਬਰ';
 
   @override
-  String get hadithReflectionCategoryAnger => 'Anger control';
+  String get hadithReflectionCategoryAnger => 'ਗੁੱਸੇ ਉੱਤੇ ਕਾਬੂ';
 
   @override
-  String get hadithReflectionCategoryFamily => 'Family';
+  String get hadithReflectionCategoryFamily => 'ਪਰਿਵਾਰ';
 
   @override
-  String get hadithReflectionCategoryCommunity => 'Community';
+  String get hadithReflectionCategoryCommunity => 'ਭਾਈਚਾਰਾ';
 
   @override
-  String get hadithReflectionCategoryRepentance => 'Repentance';
+  String get hadithReflectionCategoryRepentance => 'ਤੌਬਾ';
 
   @override
-  String get hadithReflectionCategorySpeech => 'Adab in speech';
+  String get hadithReflectionCategorySpeech => 'ਗੱਲਬਾਤ ਵਿੱਚ ਆਦਾਬ';
 
   @override
-  String get hadithReflectionCategorySincerity => 'Sincerity';
+  String get hadithReflectionCategorySincerity => 'ਇਖ਼ਲਾਸ਼';
 
   @override
-  String get hadithReflectionCategoryRespect => 'Respect';
+  String get hadithReflectionCategoryRespect => 'ਆਦਰ';
 
   @override
-  String get hadithReflectionCategoryJustice => 'Justice';
+  String get hadithReflectionCategoryJustice => 'ਇਨਸਾਫ਼';
 
   @override
-  String get hadithReflectionCategoryAccountability => 'Accountability';
+  String get hadithReflectionCategoryAccountability => 'ਜਵਾਬਦੇਹੀ';
 
   @override
-  String get hadithReflectionCategoryIntegrity => 'Integrity';
+  String get hadithReflectionCategoryIntegrity => 'ਸਿਧਾਈ';
 
   @override
-  String get hadithReflectionCategoryService => 'Service';
+  String get hadithReflectionCategoryService => 'ਖ਼ਿਦਮਤ';
 
   @override
-  String get hadithReflectionCategoryFocus => 'Focus';
+  String get hadithReflectionCategoryFocus => 'ਧਿਆਨ';
 
   @override
-  String get hadithReflectionCategoryResilience => 'Resilience';
+  String get hadithReflectionCategoryResilience => 'ਡਟੇ ਰਹਿਣਾ';
 
   @override
-  String get hadithReflectionCategoryMixed => 'Mixed';
+  String get hadithReflectionCategoryMixed => 'ਮਿਲੇ-ਜੁਲੇ';
 
   @override
-  String get hadithReflectionPackKidsKindnessTitle => 'Kids Kindness Basics';
+  String get hadithReflectionPackKidsKindnessTitle =>
+      'ਬੱਚਿਆਂ ਲਈ ਮੇਹਰਬਾਨੀ ਦੀ ਬੁਨਿਆਦ';
 
   @override
   String get hadithReflectionPackKidsKindnessSubtitle =>
-      'Simple reflection scenarios for kindness, sharing, and warm adab.';
+      'ਮੇਹਰਬਾਨੀ, ਸਾਂਝਾ ਕਰਨ ਅਤੇ ਗਰਮਜੋਸ਼ ਆਦਾਬ ਲਈ ਸਧਾਰਣ ਚਿੰਤਨ ਹਾਲਾਤ।';
 
   @override
-  String get hadithReflectionPackHonestyTitle => 'Honesty & Trust';
+  String get hadithReflectionPackHonestyTitle => 'ਇਮਾਨਦਾਰੀ ਅਤੇ ਭਰੋਸਾ';
 
   @override
   String get hadithReflectionPackHonestySubtitle =>
-      'Scenarios about truthfulness, amanah, and integrity in daily choices.';
+      'ਸੱਚਾਈ, ਅਮਾਨਤ ਅਤੇ ਰੋਜ਼ਾਨਾ ਚੋਣਾਂ ਵਿੱਚ ਸਿਧਾਈ ਬਾਰੇ ਹਾਲਾਤ।';
 
   @override
-  String get hadithReflectionPackPatienceTitle => 'Patience & Resilience';
+  String get hadithReflectionPackPatienceTitle => 'ਸਬਰ ਅਤੇ ਡਟੇ ਰਹਿਣਾ';
 
   @override
   String get hadithReflectionPackPatienceSubtitle =>
-      'Reflect on sabr, self-control, and staying steady when tested.';
+      'ਸਬਰ, ਆਪਣੇ ਉੱਤੇ ਕਾਬੂ ਅਤੇ ਅਜ਼ਮਾਇਸ਼ ਵੇਲੇ ਥਿਰ ਰਹਿਣ ‘ਤੇ ਚਿੰਤਨ ਕਰੋ।';
 
   @override
-  String get hadithReflectionPackAngerTitle => 'Anger Control';
+  String get hadithReflectionPackAngerTitle => 'ਗੁੱਸੇ ਉੱਤੇ ਕਾਬੂ';
 
   @override
   String get hadithReflectionPackAngerSubtitle =>
-      'Practice calmer decisions when frustration and sharp speech appear.';
+      'ਜਦੋਂ ਨਿਰਾਸ਼ਾ ਅਤੇ ਤਿੱਖੀ ਗੱਲ ਸਾਹਮਣੇ ਆਵੇ, ਹੋਰ ਸੰਤੁਲਿਤ ਫ਼ੈਸਲੇ ਦੀ ਮਸ਼ਕ ਕਰੋ।';
 
   @override
-  String get hadithReflectionPackFamilyTitle => 'Family & Respect';
+  String get hadithReflectionPackFamilyTitle => 'ਪਰਿਵਾਰ ਅਤੇ ਆਦਰ';
 
   @override
   String get hadithReflectionPackFamilySubtitle =>
-      'Serving family, honoring trust, and carrying home responsibilities well.';
+      'ਪਰਿਵਾਰ ਦੀ ਖ਼ਿਦਮਤ, ਭਰੋਸੇ ਦੀ ਹਿਫ਼ਾਜ਼ਤ ਅਤੇ ਘਰੇਲੂ ਜ਼ਿੰਮੇਵਾਰੀਆਂ ਨੂੰ ਚੰਗੀ ਤਰ੍ਹਾਂ ਨਿਭਾਉਣਾ।';
 
   @override
-  String get hadithReflectionPackCommunityTitle => 'Community & Service';
+  String get hadithReflectionPackCommunityTitle => 'ਭਾਈਚਾਰਾ ਅਤੇ ਖ਼ਿਦਮਤ';
 
   @override
   String get hadithReflectionPackCommunitySubtitle =>
-      'Advice, service, and helping others with sincerity and benefit.';
+      'ਨਸੀਹਤ, ਖ਼ਿਦਮਤ ਅਤੇ ਹੋਰਨਾਂ ਦੀ ਇਖ਼ਲਾਸ਼ ਅਤੇ ਫ਼ਾਇਦੇ ਨਾਲ ਮਦਦ ਕਰਨਾ।';
 
   @override
-  String get hadithReflectionPackRepentanceTitle => 'Repentance & Hope';
+  String get hadithReflectionPackRepentanceTitle => 'ਤੌਬਾ ਅਤੇ ਉਮੀਦ';
 
   @override
   String get hadithReflectionPackRepentanceSubtitle =>
-      'Scenarios that keep the heart open to tawbah, mercy, and return.';
+      'ਅਜਿਹੇ ਹਾਲਾਤ ਜੋ ਦਿਲ ਨੂੰ ਤੌਬਾ, ਰਹਿਮਤ ਅਤੇ ਵਾਪਸੀ ਵਾਸਤੇ ਖੁੱਲ੍ਹਾ ਰੱਖਣ।';
 
   @override
-  String get hadithReflectionPackSpeechTitle => 'Adab in Speech';
+  String get hadithReflectionPackSpeechTitle => 'ਗੱਲਬਾਤ ਵਿੱਚ ਆਦਾਬ';
 
   @override
   String get hadithReflectionPackSpeechSubtitle =>
-      'Choose words with restraint, gentleness, and beneficial intention.';
+      'ਸੰਯਮ, ਨਰਮੀ ਅਤੇ ਲਾਭਦਾਇਕ ਨੀਅਤ ਨਾਲ ਸ਼ਬਦ ਚੁਣੋ।';
 
   @override
-  String get hadithReflectionPackDailyTitle => 'Daily Mixed Reflections';
+  String get hadithReflectionPackDailyTitle => 'ਰੋਜ਼ਾਨਾ ਮਿਲੇ-ਜੁਲੇ ਚਿੰਤਨ';
 
   @override
   String get hadithReflectionPackDailySubtitle =>
-      'A rotating pool prepared for daily Hadith reflection.';
+      'ਰੋਜ਼ਾਨਾ ਹਦੀਸ ਚਿੰਤਨ ਲਈ ਤਿਆਰ ਕੀਤਾ ਗਿਆ ਬਦਲਦਾ ਹੋਇਆ ਸੰਗ੍ਰਹਿ।';
 
   @override
   String get learnQuizzesHadithReflectionSectionTitle => 'Hadith Reflection';
@@ -30966,75 +31191,75 @@ class AppLocalizationsPa extends AppLocalizations {
   String get bedtimeParentRecommendationTonightStory => 'Tonight\'s story';
 
   @override
-  String get kidsDuaLearningModesTitle => 'Choose a learning mode';
+  String get kidsDuaLearningModesTitle => 'ਸਿੱਖਣ ਦਾ ਇੱਕ ਢੰਗ ਚੁਣੋ';
 
   @override
-  String get kidsDuaModeListen => 'Listen';
+  String get kidsDuaModeListen => 'ਸੁਣੋ';
 
   @override
-  String get kidsDuaModeReadAlong => 'Read Along';
+  String get kidsDuaModeReadAlong => 'ਨਾਲ ਨਾਲ ਪੜ੍ਹੋ';
 
   @override
-  String get kidsDuaModeTapRepeat => 'Tap to Repeat';
+  String get kidsDuaModeTapRepeat => 'ਛੂਹ ਕੇ ਦੁਹਰਾਓ';
 
   @override
-  String get kidsDuaModeGentlePractice => 'Gentle Practice';
+  String get kidsDuaModeGentlePractice => 'ਨਰਮ ਅਭਿਆਸ';
 
   @override
-  String get kidsDuaPracticeSavedSnack => 'Practice saved for this dua.';
+  String get kidsDuaPracticeSavedSnack => 'ਇਸ ਦੁਆ ਲਈ ਅਭਿਆਸ ਸੰਭਾਲਿਆ ਗਿਆ ਹੈ।';
 
   @override
-  String get kidsDuaGentlePracticeTitle => 'Gentle practice';
+  String get kidsDuaGentlePracticeTitle => 'ਨਰਮ ਅਭਿਆਸ';
 
   @override
   String get kidsDuaGentlePracticeSubtitle =>
-      'Listen, read, and repeat at a calm pace. There is no rush.';
+      'ਸ਼ਾਂਤ ਰਫ਼ਤਾਰ ਨਾਲ ਸੁਣੋ, ਪੜ੍ਹੋ ਅਤੇ ਦੁਹਰਾਓ। ਕੋਈ ਜਲਦੀ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get kidsDuaListenThenReadAction => 'Listen then read';
+  String get kidsDuaListenThenReadAction => 'ਪਹਿਲਾਂ ਸੁਣੋ ਫਿਰ ਪੜ੍ਹੋ';
 
   @override
-  String get kidsDuaTapRepeatAction => 'Tap to repeat';
+  String get kidsDuaTapRepeatAction => 'ਛੂਹ ਕੇ ਦੁਹਰਾਓ';
 
   @override
-  String get kidsDuaMarkPracticedAction => 'I practiced this';
+  String get kidsDuaMarkPracticedAction => 'ਮੈਂ ਇਸਦਾ ਅਭਿਆਸ ਕੀਤਾ';
 
   @override
-  String get kidsDuaLearningBuddyLabel => 'little learner';
+  String get kidsDuaLearningBuddyLabel => 'ਛੋਟਾ ਸਿੱਖਣ ਵਾਲਾ';
 
   @override
   String kidsDuaLessonHeroSubtitle(String learnerName, String category) {
-    return '$learnerName is learning a $category dua gently tonight.';
+    return '$learnerName ਅੱਜ ਰਾਤ ਹੌਲੇ ਹੌਲੇ $category ਦੀ ਦੁਆ ਸਿੱਖ ਰਿਹਾ ਹੈ।';
   }
 
   @override
-  String get kidsDuaAudioUnavailableTitle => 'Read along is ready';
+  String get kidsDuaAudioUnavailableTitle => 'ਨਾਲ ਨਾਲ ਪੜ੍ਹਨਾ ਤਿਆਰ ਹੈ';
 
   @override
   String get kidsDuaAudioUnavailableSubtitle =>
-      'Audio is not available for this dua yet, but the Arabic, transliteration, and meaning are all ready to learn with.';
+      'ਇਸ ਦੁਆ ਲਈ ਆਡੀਓ ਹਾਲੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ, ਪਰ ਅਰਬੀ, ਟ੍ਰਾਂਸਲਿਟਰੇਸ਼ਨ ਅਤੇ ਅਰਥ ਸਭ ਸਿੱਖਣ ਲਈ ਤਿਆਰ ਹਨ।';
 
   @override
-  String get kidsDuaAudioSectionTitle => 'Listen to the dua';
+  String get kidsDuaAudioSectionTitle => 'ਦੁਆ ਸੁਣੋ';
 
   @override
   String get kidsDuaAudioSectionSubtitle =>
-      'Hear the dua calmly, then read or repeat it together.';
+      'ਦੁਆ ਨੂੰ ਸ਼ਾਂਤੀ ਨਾਲ ਸੁਣੋ, ਫਿਰ ਇਸਨੂੰ ਇਕੱਠੇ ਪੜ੍ਹੋ ਜਾਂ ਦੁਹਰਾਓ।';
 
   @override
-  String get kidsDuaPauseAction => 'Pause';
+  String get kidsDuaPauseAction => 'ਰੋਕੋ';
 
   @override
-  String get kidsDuaResumeAction => 'Resume';
+  String get kidsDuaResumeAction => 'ਮੁੜ ਚਲਾਓ';
 
   @override
-  String get kidsDuaPlayWholeAction => 'Play full dua';
+  String get kidsDuaPlayWholeAction => 'ਪੂਰੀ ਦੁਆ ਚਲਾਓ';
 
   @override
-  String get kidsDuaRestartAction => 'Restart';
+  String get kidsDuaRestartAction => 'ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get kidsDuaRepeatWholeAction => 'Repeat whole dua';
+  String get kidsDuaRepeatWholeAction => 'ਪੂਰੀ ਦੁਆ ਦੁਹਰਾਓ';
 
   @override
   String kidsDuaPlaybackProgressLabel(String current, String total) {
@@ -31042,63 +31267,62 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get kidsDuaAudioLoadingLabel => 'Checking audio...';
+  String get kidsDuaAudioLoadingLabel => 'ਆਡੀਓ ਚੈੱਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...';
 
   @override
-  String get kidsDuaReadAlongModeTitle => 'Read-along view';
+  String get kidsDuaReadAlongModeTitle => 'ਨਾਲ ਨਾਲ ਪੜ੍ਹਨ ਦਾ ਦਰਸ਼ਨ';
 
   @override
-  String get kidsDuaReadAlongArabicOnly => 'Arabic';
+  String get kidsDuaReadAlongArabicOnly => 'ਅਰਬੀ';
 
   @override
-  String get kidsDuaReadAlongArabicTransliteration =>
-      'Arabic + Transliteration';
+  String get kidsDuaReadAlongArabicTransliteration => 'ਅਰਬੀ + ਟ੍ਰਾਂਸਲਿਟਰੇਸ਼ਨ';
 
   @override
-  String get kidsDuaReadAlongFullView => 'Full View';
+  String get kidsDuaReadAlongFullView => 'ਪੂਰਾ ਦਰਸ਼ਨ';
 
   @override
-  String get kidsDuaReadAlongSectionTitle => 'Read along';
+  String get kidsDuaReadAlongSectionTitle => 'ਨਾਲ ਨਾਲ ਪੜ੍ਹੋ';
 
   @override
-  String get kidsDuaTapRepeatSectionTitle => 'Tap to repeat';
+  String get kidsDuaTapRepeatSectionTitle => 'ਛੂਹ ਕੇ ਦੁਹਰਾਓ';
 
   @override
   String get kidsDuaTapRepeatBody =>
-      'Tap any line to hear it again and practice it slowly.';
+      'ਕਿਸੇ ਵੀ ਲਾਈਨ ਨੂੰ ਦੁਬਾਰਾ ਸੁਣਨ ਅਤੇ ਹੌਲੇ ਹੌਲੇ ਅਭਿਆਸ ਕਰਨ ਲਈ ਉਸਨੂੰ ਛੂਹੋ।';
 
   @override
   String get kidsDuaTapRepeatFallbackWholeAudio =>
-      'Tap any line to focus it. Full-dua audio will replay until segment audio is ready.';
+      'ਕਿਸੇ ਵੀ ਲਾਈਨ ਉੱਤੇ ਧਿਆਨ ਲਈ ਉਸਨੂੰ ਛੂਹੋ। ਜਦ ਤੱਕ ਹਿੱਸਾਵਾਰ ਆਡੀਓ ਤਿਆਰ ਨਹੀਂ ਹੁੰਦੀ, ਪੂਰੀ ਦੁਆ ਦੀ ਆਡੀਓ ਮੁੜ ਚੱਲੇਗੀ।';
 
   @override
   String get kidsDuaTapRepeatNoAudioBody =>
-      'Tap any line to focus on reading it slowly. Audio is not ready for this dua yet.';
+      'ਕਿਸੇ ਵੀ ਲਾਈਨ ਨੂੰ ਹੌਲੇ ਹੌਲੇ ਪੜ੍ਹਨ ਲਈ ਉਸ ਉੱਤੇ ਧਿਆਨ ਦਿਓ। ਇਸ ਦੁਆ ਲਈ ਆਡੀਓ ਹਾਲੇ ਤਿਆਰ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get kidsDuaBedtimeLinkTitle => 'Works beautifully at bedtime';
+  String get kidsDuaBedtimeLinkTitle => 'ਸੌਣ ਵੇਲੇ ਬਹੁਤ ਸੋਹਣਾ ਕੰਮ ਕਰਦੀ ਹੈ';
 
   @override
   String get kidsDuaBedtimeLinkSubtitle =>
-      'This dua is already part of the bedtime companion flow, so you can revisit it there tonight.';
+      'ਇਹ ਦੁਆ ਪਹਿਲਾਂ ਹੀ ਸੌਣ ਵੇਲੇ ਦੇ ਸਾਥੀ ਦੇ ਰਸਤੇ ਦਾ ਹਿੱਸਾ ਹੈ, ਇਸ ਲਈ ਤੁਸੀਂ ਅੱਜ ਰਾਤ ਉੱਥੇ ਇਸਨੂੰ ਮੁੜ ਵੇਖ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get kidsDuaBedtimeLinkAction => 'Open bedtime companion';
+  String get kidsDuaBedtimeLinkAction => 'ਸੌਣ ਵੇਲੇ ਵਾਲਾ ਸਾਥੀ ਖੋਲ੍ਹੋ';
 
   @override
-  String get kidsDuaLearningProgressTitle => 'Learning progress';
+  String get kidsDuaLearningProgressTitle => 'ਸਿੱਖਣ ਦੀ ਤਰੱਕੀ';
 
   @override
-  String get kidsDuaListenCountLabel => 'Listens';
+  String get kidsDuaListenCountLabel => 'ਸੁਣਨੀਆਂ';
 
   @override
-  String get kidsDuaRepeatCountLabel => 'Line repeats';
+  String get kidsDuaRepeatCountLabel => 'ਲਾਈਨ ਦੁਹਰਾਈਆਂ';
 
   @override
-  String get kidsDuaViewsCountLabel => 'Views';
+  String get kidsDuaViewsCountLabel => 'ਵੇਖਣੀਆਂ';
 
   @override
-  String get kidsDuaSourceTapSubtitle => 'Tap to open in the Qur\'an reader';
+  String get kidsDuaSourceTapSubtitle => 'ਕੁਰਆਨ ਰੀਡਰ ਵਿੱਚ ਖੋਲ੍ਹਣ ਲਈ ਛੂਹੋ';
 
   @override
   String get bedtimeCompanionEntryTitle => 'Bedtime companion';
@@ -32385,70 +32609,70 @@ class AppLocalizationsPa extends AppLocalizations {
       'Return to today\'s ayah and continue your reflection.';
 
   @override
-  String get quranDailyCompanionTitle => 'Daily Qur\'an companion';
+  String get quranDailyCompanionTitle => 'ਰੋਜ਼ਾਨਾ ਕੁਰਾਨ ਸਾਥੀ';
 
   @override
   String get quranDailyCompanionSubtitle =>
-      'One ayah, one meaning cue, one small next step for today.';
+      'ਅੱਜ ਲਈ ਇੱਕ ਅਯਾਹ, ਇੱਕ ਅਰਥ ਸੰਕੇਤ, ਇੱਕ ਛੋਟਾ ਅਗਲਾ ਕਦਮ।';
 
   @override
   String get quranDailyCompanionCardSubtitle =>
-      'Return to today\'s ayah with one clear reflection and one calm next step.';
+      'ਇੱਕ ਸਪੱਸ਼ਟ ਪ੍ਰਤੀਬਿੰਬ ਅਤੇ ਇੱਕ ਸ਼ਾਂਤ ਅਗਲੇ ਕਦਮ ਦੇ ਨਾਲ ਅੱਜ ਦੀ ਆਇਤ \'ਤੇ ਵਾਪਸ ਜਾਓ।';
 
   @override
-  String get quranDailyCompanionOpenAction => 'Open companion';
+  String get quranDailyCompanionOpenAction => 'ਖੁੱਲ੍ਹਾ ਸਾਥੀ';
 
   @override
-  String get quranDailyCompanionTodayTitle => 'Today\'s ayah';
+  String get quranDailyCompanionTodayTitle => 'ਅੱਜ ਦੀ ਆਇਤ';
 
   @override
-  String get quranDailyCompanionMeaningTitle => 'Meaning and reflection';
+  String get quranDailyCompanionMeaningTitle => 'ਅਰਥ ਅਤੇ ਪ੍ਰਤੀਬਿੰਬ';
 
   @override
-  String get quranDailyCompanionThemeTitle => 'Theme connection';
+  String get quranDailyCompanionThemeTitle => 'ਥੀਮ ਕਨੈਕਸ਼ਨ';
 
   @override
-  String get quranDailyCompanionRelatedInsightTitle => 'Related insight';
+  String get quranDailyCompanionRelatedInsightTitle => 'ਸੰਬੰਧਿਤ ਸੂਝ';
 
   @override
-  String get quranDailyCompanionJourneyTitle => 'Journey connection';
+  String get quranDailyCompanionJourneyTitle => 'ਯਾਤਰਾ ਕਨੈਕਸ਼ਨ';
 
   @override
   String get quranDailyCompanionJourneyAlignedLabel =>
-      'Aligned with your journey';
+      'ਤੁਹਾਡੀ ਯਾਤਰਾ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ';
 
   @override
   String quranDailyCompanionJourneyBody(Object theme) {
-    return 'Today\'s ayah follows your current journey theme: $theme.';
+    return 'ਅੱਜ ਦੀ ਆਇਤ ਤੁਹਾਡੀ ਮੌਜੂਦਾ ਯਾਤਰਾ ਦੇ ਥੀਮ ਦੀ ਪਾਲਣਾ ਕਰਦੀ ਹੈ: $theme।';
   }
 
   @override
   String get quranDailyCompanionJourneyBodyNoTheme =>
-      'Today\'s ayah follows the strongest Qur\'anic connection for the journey stage you are already working through.';
+      'ਅੱਜ ਦੀ ਆਇਤ ਉਸ ਯਾਤਰਾ ਦੇ ਪੜਾਅ ਲਈ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ​​ਕੁਰਾਨਿਕ ਕਨੈਕਸ਼ਨ ਦੀ ਪਾਲਣਾ ਕਰਦੀ ਹੈ ਜਿਸ \'ਤੇ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਕੰਮ ਕਰ ਰਹੇ ਹੋ।';
 
   @override
-  String get quranDailyCompanionJourneyAction => 'Continue journey';
+  String get quranDailyCompanionJourneyAction => 'ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranDailyCompanionTakeawayTitle => 'Practical takeaway';
+  String get quranDailyCompanionTakeawayTitle => 'ਵਿਹਾਰਕ ਉਪਾਅ';
 
   @override
-  String get quranDailyCompanionContinueTitle => 'Continue today';
+  String get quranDailyCompanionContinueTitle => 'ਅੱਜ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranDailyCompanionOpenReaderAction => 'Open full reader';
+  String get quranDailyCompanionOpenReaderAction => 'ਪੂਰਾ ਪਾਠਕ ਖੋਲ੍ਹੋ';
 
   @override
-  String get quranDailyCompanionOpenThemeAction => 'Explore theme';
+  String get quranDailyCompanionOpenThemeAction => 'ਥੀਮ ਦੀ ਪੜਚੋਲ ਕਰੋ';
 
   @override
-  String get quranDailyCompanionReviewMemoryAction => 'Review memorization';
+  String get quranDailyCompanionReviewMemoryAction => 'ਯਾਦਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get quranDailyCompanionPathAction => 'Start path';
+  String get quranDailyCompanionPathAction => 'ਮਾਰਗ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranDailyCompanionMemorizedLabel => 'Memorized';
+  String get quranDailyCompanionMemorizedLabel => 'ਯਾਦ ਕੀਤਾ';
 
   @override
   String get quranUserIntentTitle => 'Your Qur\'an focus';
@@ -35058,86 +35282,84 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get quranReferenceDetailReasonKnowledgeQuran =>
-      'This is a direct Qur\'anic connection to the same meaning or passage.';
+      'ਇਹ ਉਸੇ ਅਰਥ ਜਾਂ ਹਵਾਲੇ ਨਾਲ ਸਿੱਧਾ ਕੁਰਾਨ ਦਾ ਸਬੰਧ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeHadith =>
-      'This hadith helps explain or reinforce a meaning carried in this ayah.';
+      'ਇਹ ਹਦੀਸ ਇਸ ਆਇਤ ਵਿਚ ਕੀਤੇ ਗਏ ਅਰਥ ਨੂੰ ਸਮਝਾਉਣ ਜਾਂ ਮਜ਼ਬੂਤ ​​ਕਰਨ ਵਿਚ ਮਦਦ ਕਰਦੀ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeTheme =>
-      'This theme highlights a recurring Qur\'anic idea connected to this ayah.';
+      'ਇਹ ਥੀਮ ਇਸ ਆਇਤ ਨਾਲ ਜੁੜੇ ਇੱਕ ਆਵਰਤੀ ਕੁਰਾਨ ਦੇ ਵਿਚਾਰ ਨੂੰ ਉਜਾਗਰ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeCharacter =>
-      'This character lesson applies a value or behavior connected to this ayah.';
+      'ਇਹ ਅੱਖਰ ਪਾਠ ਇਸ ਆਇਤ ਨਾਲ ਜੁੜੇ ਮੁੱਲ ਜਾਂ ਵਿਹਾਰ ਨੂੰ ਲਾਗੂ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSeerah =>
-      'This Seerah context helps place the ayah in a prophetic or historical frame.';
+      'ਇਹ ਸੀਰਾਹ ਸੰਦਰਭ ਅਯਾਹ ਨੂੰ ਭਵਿੱਖਬਾਣੀ ਜਾਂ ਇਤਿਹਾਸਕ ਫਰੇਮ ਵਿੱਚ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeJourney =>
-      'This guided lesson revisits a connected Qur\'anic idea through a structured learning path.';
+      'ਇਹ ਮਾਰਗਦਰਸ਼ਨ ਪਾਠ ਇੱਕ ਸੰਰਚਿਤ ਸਿੱਖਣ ਮਾਰਗ ਦੁਆਰਾ ਇੱਕ ਜੁੜੇ ਕੁਰਾਨ ਦੇ ਵਿਚਾਰ ਨੂੰ ਮੁੜ ਵਿਚਾਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSignsWorld =>
-      'This signs lesson reflects on the created world in a way connected to this ayah.';
+      'ਇਹ ਚਿੰਨ੍ਹ ਸਬਕ ਇਸ ਆਇਤ ਨਾਲ ਜੁੜੇ ਤਰੀਕੇ ਨਾਲ ਬਣਾਏ ਗਏ ਸੰਸਾਰ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeReflection =>
-      'This reflective insight helps the ayah open into contemplation, interpretation, or practical thought.';
+      'ਇਹ ਪ੍ਰਤੀਬਿੰਬਤ ਸਮਝ ਅਯਾਹ ਨੂੰ ਚਿੰਤਨ, ਵਿਆਖਿਆ, ਜਾਂ ਵਿਹਾਰਕ ਵਿਚਾਰ ਵਿੱਚ ਖੋਲ੍ਹਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeWorship =>
-      'This worship lesson strengthens a devotional practice connected to this ayah.';
+      'ਇਹ ਪੂਜਾ ਪਾਠ ਇਸ ਆਇਤ ਨਾਲ ਜੁੜੇ ਇੱਕ ਸ਼ਰਧਾ ਅਭਿਆਸ ਨੂੰ ਮਜ਼ਬੂਤ ​​ਕਰਦਾ ਹੈ।';
 
   @override
   String get quranReferenceDetailReasonKnowledgeLifeLesson =>
-      'This life lesson applies the ayah through broader daily guidance.';
+      'ਇਹ ਜੀਵਨ ਸਬਕ ਵਿਆਪਕ ਰੋਜ਼ਾਨਾ ਮਾਰਗਦਰਸ਼ਨ ਦੁਆਰਾ ਅਯਾਹ ਨੂੰ ਲਾਗੂ ਕਰਦਾ ਹੈ.';
 
   @override
-  String get arabicLearningPlaybackModeLabel => 'Playback';
+  String get arabicLearningPlaybackModeLabel => 'ਚਲਾਉਣਾ';
 
   @override
-  String get arabicLearningPlaybackModeNormal => 'Normal';
+  String get arabicLearningPlaybackModeNormal => 'ਸਧਾਰਣ';
 
   @override
-  String get arabicLearningPlaybackModeSlow => 'Slow';
+  String get arabicLearningPlaybackModeSlow => 'ਹੌਲੀ';
 
   @override
-  String get quranReadinessKidsPageTitle => 'Qur’an readiness';
+  String get quranReadinessKidsPageTitle => 'ਕੁਰਆਨ ਤਿਆਰੀ';
 
   @override
   String get quranReadinessKidsPageSubtitle =>
-      'Spot very short real Qur’an phrases you already know.';
+      'ਉਹ ਬਹੁਤ ਛੋਟੇ ਅਸਲੀ ਕੁਰਆਨੀ ਵਾਕਾਂਸ਼ ਪਛਾਣੋ ਜਿਨ੍ਹਾਂ ਨੂੰ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹੋ।';
 
   @override
-  String get quranReadinessAdultPageTitle => 'Qur’an readiness';
+  String get quranReadinessAdultPageTitle => 'ਕੁਰਆਨ ਤਿਆਰੀ';
 
   @override
   String get quranReadinessAdultPageSubtitle =>
-      'Use familiar Arabic phrases to recognize real Qur’anic verses calmly.';
+      'ਜਾਣ-ਪਛਾਣ ਵਾਲੇ ਅਰਬੀ ਵਾਕਾਂਸ਼ਾਂ ਨਾਲ ਅਸਲੀ ਕੁਰਆਨੀ ਆਯਤਾਂ ਨੂੰ ਸ਼ਾਂਤੀ ਨਾਲ ਪਛਾਣੋ।';
 
   @override
-  String get quranReadinessKidsIntroTitle =>
-      'A gentle bridge into Qur’an reading';
+  String get quranReadinessKidsIntroTitle => 'ਕੁਰਆਨ ਪੜ੍ਹਨ ਵੱਲ ਇੱਕ ਨਰਮ ਪੁਲ';
 
   @override
   String get quranReadinessKidsIntroSubtitle =>
-      'These are real Qur’an phrases. Listen, look closely, and notice what already feels familiar.';
+      'ਇਹ ਅਸਲੀ ਕੁਰਆਨੀ ਵਾਕਾਂਸ਼ ਹਨ। ਸੁਣੋ, ਧਿਆਨ ਨਾਲ ਵੇਖੋ, ਅਤੇ ਨੋਟ ਕਰੋ ਕਿ ਕੀ ਪਹਿਲਾਂ ਤੋਂ ਜਾਣ-ਪਛਾਣ ਵਾਲਾ ਲੱਗਦਾ ਹੈ।';
 
   @override
-  String get quranReadinessAdultIntroTitle =>
-      'A calm bridge into Qur’anic recognition';
+  String get quranReadinessAdultIntroTitle => 'ਕੁਰਆਨੀ ਪਛਾਣ ਵੱਲ ਇੱਕ ਸ਼ਾਂਤ ਪੁਲ';
 
   @override
   String get quranReadinessAdultIntroSubtitle =>
-      'Start with very short real Qur’anic phrases, then notice how they sit inside the full ayah.';
+      'ਬਹੁਤ ਛੋਟੇ ਅਸਲੀ ਕੁਰਆਨੀ ਵਾਕਾਂਸ਼ਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਵੇਖੋ ਕਿ ਉਹ ਪੂਰੀ ਆਯਤ ਵਿੱਚ ਕਿਵੇਂ ਬੈਠਦੇ ਹਨ।';
 
   @override
   String quranReadinessCountValue(Object opened, Object total) {
-    return '$opened of $total snippets opened';
+    return '$total ਵਿੱਚੋਂ $opened ਟੁਕੜੇ ਖੁੱਲੇ';
   }
 
   @override
@@ -35146,258 +35368,257 @@ class AppLocalizationsPa extends AppLocalizations {
     Object opened,
     Object total,
   ) {
-    return '$level: $opened of $total';
+    return '$level: $total ਵਿੱਚੋਂ $opened';
   }
 
   @override
-  String get quranReadinessReadyFromArabic => 'Built from your Arabic practice';
+  String get quranReadinessReadyFromArabic => 'ਤੁਹਾਡੇ ਅਰਬੀ ਅਭਿਆਸ ਤੋਂ ਬਣਿਆ';
 
   @override
-  String get quranReadinessStartGently => 'Start gently';
+  String get quranReadinessStartGently => 'ਹੌਲੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranReadinessPlaySnippetAction => 'Play snippet';
+  String get quranReadinessPlaySnippetAction => 'ਟੁਕੜਾ ਚਲਾਓ';
 
   @override
-  String get quranReadinessProgressionTitle =>
-      'Step-by-step Qur’an recognition';
+  String get quranReadinessProgressionTitle => 'ਕਦਮ-ਦਰ-ਕਦਮ ਕੁਰਆਨ ਪਛਾਣ';
 
   @override
   String get quranReadinessProgressionSubtitle =>
-      'Move through short snippets in a calm order. You can still open any snippet at any time.';
+      'ਛੋਟੇ ਟੁਕੜਿਆਂ ਰਾਹੀਂ ਸ਼ਾਂਤ ਕ੍ਰਮ ਵਿੱਚ ਅੱਗੇ ਵਧੋ। ਤੁਸੀਂ ਫਿਰ ਵੀ ਕਿਸੇ ਵੀ ਵੇਲੇ ਕੋਈ ਵੀ ਟੁਕੜਾ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get quranReadinessLevelOneTitle => 'Level 1: First recognition';
+  String get quranReadinessLevelOneTitle => 'ਪੱਧਰ 1: ਪਹਿਲੀ ਪਛਾਣ';
 
   @override
   String get quranReadinessLevelOneSubtitle =>
-      'Very short phrases that are easiest to spot and repeat.';
+      'ਬਹੁਤ ਛੋਟੀਆਂ ਪੰਗਤੀਆਂ ਜੋ ਵੇਖਣ ਅਤੇ ਦੁਹਰਾਉਣ ਲਈ ਸਭ ਤੋਂ ਆਸਾਨ ਹਨ।';
 
   @override
-  String get quranReadinessLevelTwoTitle => 'Level 2: Familiar ayah phrases';
+  String get quranReadinessLevelTwoTitle => 'ਪੱਧਰ 2: ਜਾਣੂ ਆਯਤ ਪੰਗਤੀਆਂ';
 
   @override
   String get quranReadinessLevelTwoSubtitle =>
-      'Slightly longer pieces from Al-Fatihah that build confidence.';
+      'ਅਲ-ਫਾਤਿਹਾ ਦੇ ਕੁਝ ਹੋਰ ਲੰਬੇ ਹਿੱਸੇ ਜੋ ਭਰੋਸਾ ਬਣਾਉਂਦੇ ਹਨ।';
 
   @override
-  String get quranReadinessLevelThreeTitle => 'Level 3: Ayah confidence';
+  String get quranReadinessLevelThreeTitle => 'ਪੱਧਰ 3: ਆਯਤ ਦਾ ਭਰੋਸਾ';
 
   @override
   String get quranReadinessLevelThreeSubtitle =>
-      'A small step into short whole-ayah recognition from Surah Al-Ikhlas.';
+      'ਸੂਰਹ ਅਲ-ਇਖਲਾਸ ਤੋਂ ਪੂਰੀ ਛੋਟੀ ਆਯਤ ਨੂੰ ਪਛਾਣਣ ਵੱਲ ਇੱਕ ਛੋਟਾ ਕਦਮ।';
 
   @override
-  String get quranReadinessKnownPhraseKidsTitle => 'You already know this part';
+  String get quranReadinessKnownPhraseKidsTitle =>
+      'ਤੁਸੀਂ ਇਹ ਹਿੱਸਾ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹੋ';
 
   @override
   String get quranReadinessKnownPhraseKidsSubtitle =>
-      'This short phrase is one you have already heard in Arabic learning.';
+      'ਇਹ ਛੋਟੀ ਪੰਗਤੀ ਉਹ ਹੈ ਜੋ ਤੁਸੀਂ ਅਰਬੀ ਸਿੱਖਣ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਸੁਣੀ ਹੈ।';
 
   @override
   String get quranReadinessKnownPhraseAdultTitle =>
-      'What you already recognize';
+      'ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਪਛਾਣਦੇ ਹੋ';
 
   @override
   String get quranReadinessKnownPhraseAdultSubtitle =>
-      'This phrase connects directly to your earlier Arabic work, so the verse feels less unfamiliar.';
+      'ਇਹ ਪੰਗਤੀ ਤੁਹਾਡੇ ਪਹਿਲਾਂ ਦੇ ਅਰਬੀ ਅਭਿਆਸ ਨਾਲ ਸਿੱਧੀ ਜੁੜਦੀ ਹੈ, ਇਸ ਕਰਕੇ ਆਯਤ ਘੱਟ ਅਜਣਬੀ ਲੱਗਦੀ ਹੈ।';
 
   @override
-  String get quranReadinessRecognitionKidsTitle => 'Notice what feels familiar';
+  String get quranReadinessRecognitionKidsTitle =>
+      'ਧਿਆਨ ਕਰੋ ਕਿ ਕੀ ਜਾਣੂ ਲੱਗਦਾ ਹੈ';
 
   @override
   String get quranReadinessRecognitionKidsSubtitle =>
-      'Even if this is a new snippet, some of its sounds and words will start to feel easier to spot.';
+      'ਭਾਵੇਂ ਇਹ ਨਵਾਂ ਟੁਕੜਾ ਹੋਵੇ, ਇਸ ਦੇ ਕੁਝ ਸੁਰ ਅਤੇ ਸ਼ਬਦ ਤੁਹਾਨੂੰ ਆਸਾਨੀ ਨਾਲ ਪਛਾਣ ਆਉਣ ਲੱਗਣਗੇ।';
 
   @override
-  String get quranReadinessRecognitionAdultTitle => 'Build recognition calmly';
+  String get quranReadinessRecognitionAdultTitle => 'ਸ਼ਾਂਤੀ ਨਾਲ ਪਛਾਣ ਬਣਾਓ';
 
   @override
   String get quranReadinessRecognitionAdultSubtitle =>
-      'This snippet extends what you already know without needing full reader complexity.';
+      'ਇਹ ਟੁਕੜਾ ਪੂਰੇ ਰੀਡਰ ਦੀ ਜਟਿਲਤਾ ਤੋਂ ਬਿਨਾਂ ਉਸ ਜਾਣ-ਪਛਾਣ ਨੂੰ ਅੱਗੇ ਵਧਾਉਂਦਾ ਹੈ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਰੱਖਦੇ ਹੋ।';
 
   @override
-  String get quranReadinessPronunciationHintsTitle =>
-      'Light pronunciation hints';
+  String get quranReadinessPronunciationHintsTitle => 'ਹਲਕੇ ਉਚਾਰਣ ਸੰਕੇਤ';
 
   @override
   String get quranReadinessPronunciationHintsSubtitle =>
-      'Use these small cues to notice careful recitation without turning this into a full tajweed lesson.';
+      'ਇਨ੍ਹਾਂ ਛੋਟੇ ਇਸ਼ਾਰਿਆਂ ਨਾਲ ਧਿਆਨਪੂਰਵਕ ਤਿਲਾਵਤ ਨੂੰ ਨੋਟ ਕਰੋ, ਬਿਨਾਂ ਇਸ ਨੂੰ ਪੂਰਾ ਤਜਵੀਦ ਪਾਠ ਬਣਾਏ।';
 
   @override
-  String get quranReadinessPronunciationHintsOpenAction => 'Open lesson';
+  String get quranReadinessPronunciationHintsOpenAction => 'ਪਾਠ ਖੋਲ੍ਹੋ';
 
   @override
-  String get quranReadinessHintClearLabel => 'Clear sound';
+  String get quranReadinessHintClearLabel => 'ਸਾਫ਼ ਆਵਾਜ਼';
 
   @override
   String quranReadinessHintClearDescription(Object focus) {
-    return 'Read $focus clearly and calmly before moving on.';
+    return '$focus ਨੂੰ ਅੱਗੇ ਵਧਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਫ਼ ਅਤੇ ਸ਼ਾਂਤੀ ਨਾਲ ਪੜ੍ਹੋ।';
   }
 
   @override
-  String get quranReadinessHintStretchLabel => 'Stretch gently';
+  String get quranReadinessHintStretchLabel => 'ਹੌਲੇ ਨਾਲ ਖਿੱਚੋ';
 
   @override
   String quranReadinessHintStretchDescription(Object focus) {
-    return 'Stretch $focus a little longer so the sound stays steady.';
+    return '$focus ਨੂੰ ਥੋੜ੍ਹਾ ਹੋਰ ਲੰਮਾ ਖਿੱਚੋ ਤਾਂ ਜੋ ਆਵਾਜ਼ ਠੀਕ ਟਿਕੀ ਰਹੇ।';
   }
 
   @override
-  String get quranReadinessHintBounceLabel => 'Light bounce';
+  String get quranReadinessHintBounceLabel => 'ਹਲਕਾ ਝਟਕਾ';
 
   @override
   String quranReadinessHintBounceDescription(Object focus) {
-    return 'Give $focus a light bounce instead of cutting it off too sharply.';
+    return '$focus ਨੂੰ ਬਹੁਤ ਤੇਜ਼ੀ ਨਾਲ ਕੱਟਣ ਦੀ ਬਜਾਏ ਹਲਕਾ ਝਟਕਾ ਦਿਓ।';
   }
 
   @override
-  String get quranReadinessHintNasalLabel => 'Soft nasal sound';
+  String get quranReadinessHintNasalLabel => 'ਨਰਮ ਨਾਕੀ ਸੁਰ';
 
   @override
   String quranReadinessHintNasalDescription(Object focus) {
-    return 'Let $focus carry a soft nasal sound here.';
+    return 'ਇੱਥੇ $focus ਨੂੰ ਨਰਮ ਨਾਕੀ ਸੁਰ ਨਾਲ ਆਉਣ ਦਿਓ।';
   }
 
   @override
-  String get quranReadinessAyahContextKidsTitle => 'See it inside the ayah';
+  String get quranReadinessAyahContextKidsTitle => 'ਇਸ ਨੂੰ ਆਯਤ ਦੇ ਅੰਦਰ ਵੇਖੋ';
 
   @override
   String get quranReadinessAyahContextAdultTitle =>
-      'See the phrase inside the ayah';
+      'ਪੰਗਤੀ ਨੂੰ ਆਯਤ ਦੇ ਅੰਦਰ ਵੇਖੋ';
 
   @override
   String get quranReadinessOpenFullAyahHint =>
-      'Open the full ayah in the Qur’an reader.';
+      'ਪੂਰੀ ਆਯਤ ਕੁਰਆਨ ਰੀਡਰ ਵਿੱਚ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get quranReadinessPreviousAction => 'Previous';
+  String get quranReadinessPreviousAction => 'ਪਿਛਲਾ';
 
   @override
-  String get quranReadinessNextAction => 'Next snippet';
+  String get quranReadinessNextAction => 'ਅਗਲਾ ਟੁਕੜਾ';
 
   @override
-  String get quranReadinessReviewAgainAction => 'Review again';
+  String get quranReadinessReviewAgainAction => 'ਫਿਰ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get quranReadinessAudioUnavailable =>
-      'Audio is not available right now.';
+  String get quranReadinessAudioUnavailable => 'ਆਡੀਓ ਇਸ ਵੇਲੇ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get quranReadinessKidsCardTitle => 'First Qur’an reading';
+  String get quranReadinessKidsCardTitle => 'ਕੁਰਆਨ ਦੀ ਪਹਿਲੀ ਪੜ੍ਹਾਈ';
 
   @override
   String quranReadinessKidsCardSubtitle(Object phrase) {
-    return 'Try this real Qur’an phrase next: $phrase';
+    return 'ਅਗਲੀ ਵਾਰੀ ਇਹ ਅਸਲੀ ਕੁਰਆਨੀ ਪੰਗਤੀ ਅਜ਼ਮਾਓ: $phrase';
   }
 
   @override
   String get quranReadinessKidsCardStartSubtitle =>
-      'When a few Arabic sounds feel familiar, these tiny Qur’an phrases help children say, “I know this.”';
+      'ਜਦੋਂ ਕੁਝ ਅਰਬੀ ਸੁਰ ਜਾਣੂ ਲੱਗਣ ਲੱਗਦੇ ਹਨ, ਇਹ ਛੋਟੀਆਂ ਕੁਰਆਨੀ ਪੰਗਤੀਆਂ ਬੱਚਿਆਂ ਨੂੰ ਕਹਿਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀਆਂ ਹਨ, “ਮੈਂ ਇਹ ਜਾਣਦਾ/ਜਾਣਦੀ ਹਾਂ।”';
 
   @override
-  String get quranReadinessKidsStartAction => 'Start Qur’an readiness';
+  String get quranReadinessKidsStartAction => 'ਕੁਰਆਨ ਤਿਆਰੀ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranReadinessKidsContinueAction => 'Continue Qur’an readiness';
+  String get quranReadinessKidsContinueAction => 'ਕੁਰਆਨ ਤਿਆਰੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranReadinessKidsReviewAction => 'Review Qur’an phrases';
+  String get quranReadinessKidsReviewAction => 'ਕੁਰਆਨੀ ਪੰਗਤੀਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get quranReadinessAdultCardTitle => 'Qur’an readiness bridge';
+  String get quranReadinessAdultCardTitle => 'ਕੁਰਆਨ ਤਿਆਰੀ ਪੁਲ';
 
   @override
   String quranReadinessAdultCardSubtitle(Object phrase) {
-    return 'Continue with the familiar phrase $phrase.';
+    return 'ਇਸ ਜਾਣੂ ਪੰਗਤੀ ਨਾਲ ਜਾਰੀ ਰੱਖੋ: $phrase';
   }
 
   @override
   String get quranReadinessAdultCardStartSubtitle =>
-      'After some Arabic letters and beginner words, these short Qur’anic phrases make recognition feel real.';
+      'ਕੁਝ ਅਰਬੀ ਅੱਖਰਾਂ ਅਤੇ ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਾਂ ਤੋਂ ਬਾਅਦ, ਇਹ ਛੋਟੀਆਂ ਕੁਰਆਨੀ ਪੰਗਤੀਆਂ ਪਛਾਣ ਨੂੰ ਹਕੀਕਤੀ ਮਹਿਸੂਸ ਕਰਵਾਉਂਦੀਆਂ ਹਨ।';
 
   @override
-  String get quranReadinessAdultStartAction => 'Start Qur’an readiness';
+  String get quranReadinessAdultStartAction => 'ਕੁਰਆਨ ਤਿਆਰੀ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranReadinessAdultContinueAction => 'Continue Qur’an readiness';
+  String get quranReadinessAdultContinueAction => 'ਕੁਰਆਨ ਤਿਆਰੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranReadinessAdultReviewAction => 'Review Qur’an phrases';
+  String get quranReadinessAdultReviewAction => 'ਕੁਰਆਨੀ ਪੰਗਤੀਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get quranShortSurahsKidsPageTitle => 'First short surahs';
+  String get quranShortSurahsKidsPageTitle => 'ਪਹਿਲੀਆਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ';
 
   @override
   String get quranShortSurahsKidsPageSubtitle =>
-      'Move from tiny Qur’an snippets into full short surahs, one calm step at a time.';
+      'ਛੋਟੇ ਕੁਰਆਨੀ ਟੁਕੜਿਆਂ ਤੋਂ ਪੂਰੀਆਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਵੱਲ ਇੱਕ ਸ਼ਾਂਤ ਕਦਮ ਨਾਲ ਵਧੋ।';
 
   @override
-  String get quranShortSurahsAdultPageTitle => 'Short surah reading';
+  String get quranShortSurahsAdultPageTitle => 'ਛੋਟੀ ਸੂਰਹ ਪੜ੍ਹਾਈ';
 
   @override
   String get quranShortSurahsAdultPageSubtitle =>
-      'Use a beginner-friendly path from short snippets into complete short surahs.';
+      'ਛੋਟੇ ਟੁਕੜਿਆਂ ਤੋਂ ਪੂਰੀਆਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਵੱਲ ਇੱਕ ਸ਼ੁਰੂਆਤੀ-ਅਨੁਕੂਲ ਰਾਹ ਵਰਤੋ।';
 
   @override
-  String get quranShortSurahsKidsIntroTitle => 'Your first full short surahs';
+  String get quranShortSurahsKidsIntroTitle =>
+      'ਤੁਹਾਡੀਆਂ ਪਹਿਲੀਆਂ ਪੂਰੀਆਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ';
 
   @override
   String get quranShortSurahsKidsIntroSubtitle =>
-      'Start with one very short surah, listen carefully, and notice how the whole surah begins to feel familiar.';
+      'ਇੱਕ ਬਹੁਤ ਛੋਟੀ ਸੂਰਹ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਧਿਆਨ ਨਾਲ ਸੁਣੋ ਅਤੇ ਵੇਖੋ ਕਿ ਪੂਰੀ ਸੂਰਹ ਕਿਵੇਂ ਜਾਣ-ਪਛਾਣ ਵਾਲੀ ਲੱਗਣ ਲੱਗਦੀ ਹੈ।';
 
   @override
   String get quranShortSurahsAdultIntroTitle =>
-      'A gentle step into complete short surahs';
+      'ਪੂਰੀਆਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਵੱਲ ਇੱਕ ਨਰਮ ਕਦਮ';
 
   @override
   String get quranShortSurahsAdultIntroSubtitle =>
-      'These short surahs let you move from phrase recognition into full reading without opening the full reader first.';
+      'ਇਹ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੁਹਾਨੂੰ ਪੂਰਾ ਰੀਡਰ ਖੋਲ੍ਹਣ ਤੋਂ ਪਹਿਲਾਂ ਵਾਕਾਂਸ਼ ਪਛਾਣ ਤੋਂ ਪੂਰੀ ਪੜ੍ਹਾਈ ਵੱਲ ਲੈ ਜਾਂਦੀਆਂ ਹਨ।';
 
   @override
   String quranShortSurahsCountValue(int opened, int total) {
-    return '$opened of $total short surahs opened';
+    return '$total ਵਿੱਚੋਂ $opened ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਖੁੱਲੀਆਂ';
   }
 
   @override
   String quranShortSurahsAyahCountValue(int count) {
-    return '$count ayahs';
+    return '$count ਆਯਤਾਂ';
   }
 
   @override
-  String get quranShortSurahsReadyFromBridge =>
-      'Built from your snippet practice';
+  String get quranShortSurahsReadyFromBridge => 'ਤੁਹਾਡੇ ਟੁਕੜਾ ਅਭਿਆਸ ਤੋਂ ਬਣਿਆ';
 
   @override
-  String get quranShortSurahsStartGently => 'Start with one short surah';
+  String get quranShortSurahsStartGently => 'ਇੱਕ ਛੋਟੀ ਸੂਰਹ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranShortSurahsProgressionTitle => 'Step-by-step short surahs';
+  String get quranShortSurahsProgressionTitle => 'ਕਦਮ-ਦਰ-ਕਦਮ ਛੋਟੀਆਂ ਸੂਰਹਾਂ';
 
   @override
   String get quranShortSurahsProgressionSubtitle =>
-      'Begin with the most familiar complete surah, then move into other very short surahs at your own pace.';
+      'ਸਭ ਤੋਂ ਜਾਣ-ਪਛਾਣ ਵਾਲੀ ਪੂਰੀ ਸੂਰਹ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਆਪਣੇ ਹੀ ਰਫ਼ਤਾਰ ਨਾਲ ਹੋਰ ਬਹੁਤ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਵੱਲ ਵਧੋ।';
 
   @override
-  String get quranShortSurahsStageOneTitle => 'Stage 1: First full surah';
+  String get quranShortSurahsStageOneTitle => 'ਪੜਾਅ 1: ਪਹਿਲੀ ਪੂਰੀ ਸੂਰਹ';
 
   @override
   String get quranShortSurahsStageOneSubtitle =>
-      'Start with a complete short surah that already overlaps your earlier snippet work.';
+      'ਉਸ ਪੂਰੀ ਛੋਟੀ ਸੂਰਹ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਜੋ ਪਹਿਲਾਂ ਦੇ ਟੁਕੜਿਆਂ ਨਾਲ ਪਹਿਲਾਂ ਹੀ ਮਿਲਦੀ ਹੈ।';
 
   @override
-  String get quranShortSurahsStageTwoTitle => 'Stage 2: Gentle expansion';
+  String get quranShortSurahsStageTwoTitle => 'ਪੜਾਅ 2: ਨਰਮ ਵਿਸਥਾਰ';
 
   @override
   String get quranShortSurahsStageTwoSubtitle =>
-      'Add another very short surah so reading a full passage starts to feel natural.';
+      'ਇੱਕ ਹੋਰ ਬਹੁਤ ਛੋਟੀ ਸੂਰਹ ਸ਼ਾਮਲ ਕਰੋ ਤਾਂ ਜੋ ਪੂਰਾ ਹਿੱਸਾ ਪੜ੍ਹਨਾ ਕੁਦਰਤੀ ਲੱਗਣ ਲੱਗੇ।';
 
   @override
-  String get quranShortSurahsStageThreeTitle => 'Stage 3: Protection surahs';
+  String get quranShortSurahsStageThreeTitle => 'ਪੜਾਅ 3: ਹਿਫ਼ਾਜ਼ਤੀ ਸੂਰਹਾਂ';
 
   @override
   String get quranShortSurahsStageThreeSubtitle =>
-      'Read familiar protection surahs with calm ayah-by-ayah support.';
+      'ਆਯਤ-ਦਰ-ਆਯਤ ਸਹਾਇਤਾ ਨਾਲ ਜਾਣ-ਪਛਾਣ ਵਾਲੀਆਂ ਹਿਫ਼ਾਜ਼ਤੀ ਸੂਰਹਾਂ ਪੜ੍ਹੋ।';
 
   @override
   String quranShortSurahsSurahMeta(Object surahName, int ayahCount) {
@@ -35405,28 +35626,28 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get quranShortSurahsPlayAction => 'Play surah';
+  String get quranShortSurahsPlayAction => 'ਸੂਰਹ ਚਲਾਓ';
 
   @override
-  String get quranShortSurahsPauseAction => 'Pause';
+  String get quranShortSurahsPauseAction => 'ਰੋਕੋ';
 
   @override
   String get quranShortSurahsOpenReaderAction => 'Open in Qur’an reader';
 
   @override
   String get quranShortSurahsKnownSnippetsTitle =>
-      'Already familiar from snippets';
+      'ਟੁਕੜਿਆਂ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਜਾਣ-ਪਛਾਣ ਵਾਲੇ';
 
   @override
   String get quranShortSurahsKnownSnippetsSubtitle =>
       'These are pieces you have already seen in the earlier Qur’an readiness bridge.';
 
   @override
-  String get quranShortSurahsKidsCardTitle => 'First short surahs';
+  String get quranShortSurahsKidsCardTitle => 'ਪਹਿਲੀਆਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ';
 
   @override
   String quranShortSurahsKidsCardSubtitle(Object surahName) {
-    return 'Try the full short surah $surahName next.';
+    return 'ਅਗਲੇ ਇਸ ਪੂਰੀ ਛੋਟੀ ਸੂਰਹ ਨੂੰ ਅਜ਼ਮਾਓ: $surahName';
   }
 
   @override
@@ -35434,20 +35655,20 @@ class AppLocalizationsPa extends AppLocalizations {
       'After tiny Qur’an snippets, this is a calm next step into reading a whole short surah.';
 
   @override
-  String get quranShortSurahsKidsStartAction => 'Start short surahs';
+  String get quranShortSurahsKidsStartAction => 'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranShortSurahsKidsContinueAction => 'Continue short surahs';
+  String get quranShortSurahsKidsContinueAction => 'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranShortSurahsKidsReviewAction => 'Review short surahs';
+  String get quranShortSurahsKidsReviewAction => 'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਦਾ ਦੁਹਰਾਵਾ ਕਰੋ';
 
   @override
-  String get quranShortSurahsAdultCardTitle => 'Beginner short surahs';
+  String get quranShortSurahsAdultCardTitle => 'ਸ਼ੁਰੂਆਤੀ ਛੋਟੀਆਂ ਸੂਰਹਾਂ';
 
   @override
   String quranShortSurahsAdultCardSubtitle(Object surahName) {
-    return 'Continue with the short surah $surahName.';
+    return 'ਇਸ ਛੋਟੀ ਸੂਰਹ ਨਾਲ ਜਾਰੀ ਰੱਖੋ: $surahName';
   }
 
   @override
@@ -35455,13 +35676,14 @@ class AppLocalizationsPa extends AppLocalizations {
       'After phrase-level Qur’an recognition, this is the next calm step into complete short surah reading.';
 
   @override
-  String get quranShortSurahsAdultStartAction => 'Start short surahs';
+  String get quranShortSurahsAdultStartAction => 'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranShortSurahsAdultContinueAction => 'Continue short surahs';
+  String get quranShortSurahsAdultContinueAction => 'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranShortSurahsAdultReviewAction => 'Review short surahs';
+  String get quranShortSurahsAdultReviewAction =>
+      'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਦਾ ਦੁਹਰਾਵਾ ਕਰੋ';
 
   @override
   String quranShortSurahsBridgeKidsSubtitle(Object surahName) {
@@ -35470,477 +35692,477 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String quranShortSurahsBridgeAdultSubtitle(Object surahName) {
-    return 'After short snippet recognition, continue into the full short surah $surahName.';
+    return 'ਛੋਟੇ ਟੁਕੜਿਆਂ ਦੀ ਪਛਾਣ ਤੋਂ ਬਾਅਦ, ਪੂਰੀ ਛੋਟੀ ਸੂਰਹ $surahName ਵੱਲ ਜਾਰੀ ਰੱਖੋ।';
   }
 
   @override
   String quranShortSurahsAyahLabel(int number) {
-    return 'Ayah $number';
+    return 'ਆਯਤ $number';
   }
 
   @override
-  String get arabicLearningSearchKidsTitle => 'Find Arabic practice';
+  String get arabicLearningSearchKidsTitle => 'ਅਰਬੀ ਅਭਿਆਸ ਲੱਭੋ';
 
   @override
   String get arabicLearningSearchKidsSubtitle =>
-      'Search letters, words, phrases, and gentle review ideas.';
+      'ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ, ਵਾਕਾਂਸ਼ਾਂ ਅਤੇ ਹੌਲੇ ਦੁਹਰਾਵੇ ਵਾਲੇ ਵਿਚਾਰਾਂ ਨੂੰ ਖੋਜੋ।';
 
   @override
-  String get arabicLearningSearchKidsHint => 'Search Arabic learning...';
+  String get arabicLearningSearchKidsHint => 'ਅਰਬੀ ਸਿੱਖਿਆ ਖੋਜੋ...';
 
   @override
-  String get arabicLearningSearchAdultTitle => 'Find Arabic learning';
+  String get arabicLearningSearchAdultTitle => 'ਅਰਬੀ ਸਿੱਖਿਆ ਲੱਭੋ';
 
   @override
   String get arabicLearningSearchAdultSubtitle =>
-      'Search letters, words, phrases, review, and Qur’an bridge snippets.';
+      'ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ, ਵਾਕਾਂਸ਼ਾਂ, ਦੁਹਰਾਵੇ ਅਤੇ ਕੁਰਆਨ ਪੁਲ ਟੁਕੜਿਆਂ ਨੂੰ ਖੋਜੋ।';
 
   @override
   String get arabicLearningSearchAdultHint =>
-      'Search Arabic letters, words, phrases, or review...';
+      'ਅਰਬੀ ਅੱਖਰ, ਸ਼ਬਦ, ਵਾਕਾਂਸ਼ ਜਾਂ ਦੁਹਰਾਵਾ ਖੋਜੋ...';
 
   @override
-  String get arabicLearningSearchFilterLetters => 'Letters';
+  String get arabicLearningSearchFilterLetters => 'ਅੱਖਰ';
 
   @override
-  String get arabicLearningSearchFilterWords => 'Words';
+  String get arabicLearningSearchFilterWords => 'ਸ਼ਬਦ';
 
   @override
-  String get arabicLearningSearchFilterPhrases => 'Phrases';
+  String get arabicLearningSearchFilterPhrases => 'ਵਾਕਾਂਸ਼';
 
   @override
-  String get arabicLearningSearchFilterReview => 'Review';
+  String get arabicLearningSearchFilterReview => 'ਦੁਹਰਾਵਾ';
 
   @override
-  String get arabicLearningSearchFilterContinue => 'Continue';
+  String get arabicLearningSearchFilterContinue => 'ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicLearningSearchFilterQuranBridge => 'Qur’an bridge';
+  String get arabicLearningSearchFilterQuranBridge => 'ਕੁਰਆਨ ਪੁਲ';
 
   @override
   String get arabicLearningSearchNoResultsBody =>
-      'Try a simpler Arabic word, another filter, or open your next recommended step.';
+      'ਕੋਈ ਹੋਰ ਸੌਖਾ ਅਰਬੀ ਸ਼ਬਦ, ਹੋਰ ਫਿਲਟਰ ਅਜ਼ਮਾਓ ਜਾਂ ਆਪਣਾ ਅਗਲਾ ਸਿਫ਼ਾਰਸ਼ ਕੀਤਾ ਕਦਮ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get arabicLearningSearchLockedLabel => 'Locked';
+  String get arabicLearningSearchLockedLabel => 'ਲਾਕ ਕੀਤਾ';
 
   @override
-  String get arabicLearningSearchOpenAction => 'Open';
+  String get arabicLearningSearchOpenAction => 'ਖੋਲ੍ਹੋ';
 
   @override
-  String get arabicLearningSearchTypeLetter => 'Letter';
+  String get arabicLearningSearchTypeLetter => 'ਅੱਖਰ';
 
   @override
-  String get arabicLearningSearchTypeWord => 'Word';
+  String get arabicLearningSearchTypeWord => 'ਸ਼ਬਦ';
 
   @override
-  String get arabicLearningSearchTypePhrase => 'Phrase';
+  String get arabicLearningSearchTypePhrase => 'ਵਾਕਾਂਸ਼';
 
   @override
-  String get arabicLearningSearchTypeReview => 'Review';
+  String get arabicLearningSearchTypeReview => 'ਦੁਹਰਾਵਾ';
 
   @override
-  String get arabicLearningSearchTypeContinue => 'Continue';
+  String get arabicLearningSearchTypeContinue => 'ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicLearningSearchTypeQuranBridge => 'Qur’an bridge';
+  String get arabicLearningSearchTypeQuranBridge => 'ਕੁਰਆਨ ਪੁਲ';
 
   @override
-  String get arabicLearningProgressKidsTitle => 'Arabic progress';
+  String get arabicLearningProgressKidsTitle => 'ਅਰਬੀ ਤਰੱਕੀ';
 
   @override
   String get arabicLearningProgressKidsSubtitle =>
-      'A calm look at what your child has explored so far.';
+      'ਤੁਹਾਡੇ ਬੱਚੇ ਨੇ ਹੁਣ ਤੱਕ ਕੀ ਖੋਜਿਆ ਹੈ, ਉਸ ਤੇ ਇੱਕ ਸ਼ਾਂਤ ਨਜ਼ਰ।';
 
   @override
   String get arabicLearningProgressKidsStartSubtitle =>
-      'Start gently with letters, words, and short phrases.';
+      'ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ ਅਤੇ ਛੋਟੇ ਵਾਕਾਂਸ਼ਾਂ ਨਾਲ ਹੌਲੇ ਤਰੀਕੇ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ।';
 
   @override
   String arabicLearningProgressKidsLettersValue(Object count) {
-    return '$count letters learned';
+    return '$count ਅੱਖਰ ਸਿੱਖੇ';
   }
 
   @override
   String arabicLearningProgressKidsWordsValue(Object count) {
-    return '$count words practiced';
+    return '$count ਸ਼ਬਦਾਂ ਦਾ ਅਭਿਆਸ ਕੀਤਾ';
   }
 
   @override
   String arabicLearningProgressKidsPhrasesValue(Object count) {
-    return '$count phrases heard';
+    return '$count ਵਾਕਾਂਸ਼ ਸੁਣੇ';
   }
 
   @override
   String arabicLearningProgressKidsStreakValue(Object count) {
-    return '$count day streak';
+    return '$count ਦਿਨਾਂ ਦੀ ਲੜੀ';
   }
 
   @override
   String arabicLearningProgressKidsHighlight(Object title) {
-    return 'Latest milestone: $title';
+    return 'ਤਾਜ਼ਾ ਮਾਈਲਸਟੋਨ: $title';
   }
 
   @override
   String arabicLearningProgressKidsRecentValue(Object title) {
-    return 'Recent: $title';
+    return 'ਹਾਲ ਹੀ: $title';
   }
 
   @override
   String arabicLearningProgressKidsNextValue(Object title) {
-    return 'Next: $title';
+    return 'ਅਗਲਾ: $title';
   }
 
   @override
-  String get arabicLearningProgressKidsStartAction => 'Start Arabic';
+  String get arabicLearningProgressKidsStartAction => 'ਅਰਬੀ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get arabicLearningProgressKidsContinueAction => 'Continue Arabic';
+  String get arabicLearningProgressKidsContinueAction => 'ਅਰਬੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicLearningProgressKidsReviewAction => 'Review';
+  String get arabicLearningProgressKidsReviewAction => 'ਦੁਹਰਾਵਾ';
 
   @override
-  String get arabicLearningProgressAdultTitle => 'Arabic progress';
+  String get arabicLearningProgressAdultTitle => 'ਅਰਬੀ ਤਰੱਕੀ';
 
   @override
   String get arabicLearningProgressAdultSubtitle =>
-      'A simple summary of what you have covered, opened, and should continue next.';
+      'ਤੁਸੀਂ ਕੀ ਕਵਰ ਕੀਤਾ ਹੈ, ਕੀ ਖੋਲ੍ਹਿਆ ਹੈ ਅਤੇ ਅਗੇ ਕੀ ਜਾਰੀ ਰੱਖਣਾ ਹੈ, ਇਸ ਦਾ ਸਧਾਰਣ ਸਾਰ।';
 
   @override
   String get arabicLearningProgressAdultStartSubtitle =>
-      'Start with the alphabet, then move into words and short Qur’anic recognition.';
+      'ਅੱਖਰਮਾਲਾ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਸ਼ਬਦਾਂ ਅਤੇ ਛੋਟੀ ਕੁਰਆਨੀ ਪਛਾਣ ਵੱਲ ਵਧੋ।';
 
   @override
   String arabicLearningProgressAdultLettersValue(Object current, Object total) {
-    return '$current of $total letters covered';
+    return '$total ਵਿੱਚੋਂ $current ਅੱਖਰ ਕਵਰ ਕੀਤੇ';
   }
 
   @override
   String arabicLearningProgressAdultWordsValue(Object count) {
-    return '$count words opened';
+    return '$count ਸ਼ਬਦ ਖੋਲ੍ਹੇ';
   }
 
   @override
   String arabicLearningProgressAdultPhrasesValue(Object count) {
-    return '$count bridge phrases explored';
+    return '$count ਪੁਲ ਵਾਲੇ ਵਾਕਾਂਸ਼ ਖੋਜੇ';
   }
 
   @override
   String arabicLearningProgressAdultLessonsValue(Object current, Object total) {
-    return '$current of $total lessons completed';
+    return '$total ਵਿੱਚੋਂ $current ਪਾਠ ਪੂਰੇ ਹੋਏ';
   }
 
   @override
   String arabicLearningProgressAdultRecentValue(Object title) {
-    return 'Recent: $title';
+    return 'ਹਾਲ ਹੀ: $title';
   }
 
   @override
   String arabicLearningProgressAdultNextValue(Object title) {
-    return 'Next: $title';
+    return 'ਅਗਲਾ: $title';
   }
 
   @override
-  String get arabicLearningProgressAdultStartAction => 'Start Arabic';
+  String get arabicLearningProgressAdultStartAction => 'ਅਰਬੀ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get arabicLearningProgressAdultContinueAction => 'Resume Arabic';
+  String get arabicLearningProgressAdultContinueAction => 'ਅਰਬੀ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get arabicLearningProgressAdultReviewAction => 'Review';
+  String get arabicLearningProgressAdultReviewAction => 'ਦੁਹਰਾਵਾ';
 
   @override
-  String get arabicLearningSearchFilterPacks => 'Packs';
+  String get arabicLearningSearchFilterPacks => 'ਪੈਕ';
 
   @override
-  String get arabicLearningSearchTypeLessonPack => 'Lesson pack';
+  String get arabicLearningSearchTypeLessonPack => 'ਪਾਠ ਪੈਕ';
 
   @override
-  String get arabicLearningLessonPacksKidsTitle => 'Lesson packs';
+  String get arabicLearningLessonPacksKidsTitle => 'ਪਾਠ ਪੈਕ';
 
   @override
   String get arabicLearningLessonPacksKidsSubtitle =>
-      'Grouped paths that keep new Arabic lessons easy to find from home.';
+      'ਗਰੁੱਪ ਕੀਤੇ ਰਾਹ ਜੋ ਘਰ ਤੋਂ ਨਵੇਂ ਅਰਬੀ ਪਾਠ ਆਸਾਨੀ ਨਾਲ ਲੱਭਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ।';
 
   @override
-  String get arabicLearningLessonPacksAdultTitle => 'Lesson packs';
+  String get arabicLearningLessonPacksAdultTitle => 'ਪਾਠ ਪੈਕ';
 
   @override
   String get arabicLearningLessonPacksAdultSubtitle =>
-      'Curated grouped paths for letters, words, reading, review, and bridge work.';
+      'ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ, ਪੜ੍ਹਾਈ, ਦੁਹਰਾਵੇ ਅਤੇ ਪੁਲ ਵਾਲੇ ਕੰਮ ਲਈ ਚੁਣੇ ਹੋਏ ਗਰੁੱਪ ਰਾਹ।';
 
   @override
-  String get arabicLearningLessonPacksOpenAction => 'Open pack';
+  String get arabicLearningLessonPacksOpenAction => 'ਪੈਕ ਖੋਲ੍ਹੋ';
 
   @override
-  String get arabicLearningLessonPacksContinueAction => 'Continue pack';
+  String get arabicLearningLessonPacksContinueAction => 'ਪੈਕ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicLearningLessonPacksRecommended => 'Recommended';
+  String get arabicLearningLessonPacksRecommended => 'ਸਿਫ਼ਾਰਸ਼ੀ';
 
   @override
-  String get arabicLearningPackTypeLetters => 'Letters';
+  String get arabicLearningPackTypeLetters => 'ਅੱਖਰ';
 
   @override
-  String get arabicLearningPackTypeWords => 'Words';
+  String get arabicLearningPackTypeWords => 'ਸ਼ਬਦ';
 
   @override
-  String get arabicLearningPackTypePhrases => 'Phrases';
+  String get arabicLearningPackTypePhrases => 'ਵਾਕਾਂਸ਼';
 
   @override
-  String get arabicLearningPackTypeTheme => 'Theme';
+  String get arabicLearningPackTypeTheme => 'ਥੀਮ';
 
   @override
-  String get arabicLearningPackTypeReading => 'Reading';
+  String get arabicLearningPackTypeReading => 'ਪੜ੍ਹਾਈ';
 
   @override
-  String get arabicLearningPackTypeReview => 'Review';
+  String get arabicLearningPackTypeReview => 'ਦੁਹਰਾਵਾ';
 
   @override
-  String get arabicLearningPackTypeBridge => 'Qur’an bridge';
+  String get arabicLearningPackTypeBridge => 'ਕੁਰਆਨ ਪੁਲ';
 
   @override
-  String get arabicLearningPackTypeTajweed => 'Tajweed support';
+  String get arabicLearningPackTypeTajweed => 'ਤਜਵੀਦ ਸਹਾਇਤਾ';
 
   @override
-  String get arabicLearningPackKidsBeginnerLettersTitle => 'Beginner letters';
+  String get arabicLearningPackKidsBeginnerLettersTitle => 'ਸ਼ੁਰੂਆਤੀ ਅੱਖਰ';
 
   @override
   String get arabicLearningPackKidsBeginnerLettersSubtitle =>
-      'Start with the first tracing letters and keep moving in the same calm order.';
+      'ਪਹਿਲੇ ਟ੍ਰੇਸ ਕਰਨ ਵਾਲੇ ਅੱਖਰਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਉਸੇ ਸ਼ਾਂਤ ਕ੍ਰਮ ਵਿੱਚ ਅੱਗੇ ਵਧਦੇ ਰਹੋ।';
 
   @override
-  String get arabicLearningPackKidsFirstWordsTitle => 'First words';
+  String get arabicLearningPackKidsFirstWordsTitle => 'ਪਹਿਲੇ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackKidsFirstWordsSubtitle =>
-      'Open the early shared Arabic words without leaving the main Kids flow.';
+      'ਮੁੱਖ Kids ਫ਼ਲੋ ਨੂੰ ਛੱਡੇ ਬਿਨਾਂ ਪਹਿਲੇ ਸਾਂਝੇ ਅਰਬੀ ਸ਼ਬਦ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get arabicLearningPackKidsMiniPhrasesTitle => 'Mini phrases';
+  String get arabicLearningPackKidsMiniPhrasesTitle => 'ਛੋਟੇ ਵਾਕਾਂਸ਼';
 
   @override
   String get arabicLearningPackKidsMiniPhrasesSubtitle =>
-      'Replay the short familiar phrases that connect Arabic learning to daily remembrance.';
+      'ਉਨ੍ਹਾਂ ਛੋਟੇ ਜਾਣ-ਪਛਾਣ ਵਾਲੇ ਵਾਕਾਂਸ਼ਾਂ ਨੂੰ ਮੁੜ ਚਲਾਓ ਜੋ ਅਰਬੀ ਸਿੱਖਣ ਨੂੰ ਰੋਜ਼ਾਨਾ ਜ਼ਿਕਰ ਨਾਲ ਜੋੜਦੇ ਹਨ।';
 
   @override
-  String get arabicLearningPackKidsDailyWordsThemeTitle => 'Daily words';
+  String get arabicLearningPackKidsDailyWordsThemeTitle => 'ਰੋਜ਼ਾਨਾ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackKidsDailyWordsThemeSubtitle =>
-      'Keep a small set of everyday Arabic words and phrases together in one gentle place.';
+      'ਰੋਜ਼ਾਨਾ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਅਰਬੀ ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਦਾ ਛੋਟਾ ਸੈੱਟ ਇੱਕ ਨਰਮ ਜਗ੍ਹਾ ਵਿੱਚ ਇਕੱਠਾ ਰੱਖੋ।';
 
   @override
-  String get arabicLearningPackKidsPrayerWordsThemeTitle => 'Prayer words';
+  String get arabicLearningPackKidsPrayerWordsThemeTitle => 'ਨਮਾਜ਼ ਦੇ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackKidsPrayerWordsThemeSubtitle =>
-      'Revisit familiar words and phrases that already connect to salah, dhikr, and the opening surah.';
+      'ਉਨ੍ਹਾਂ ਜਾਣ-ਪਛਾਣ ਵਾਲੇ ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਨੂੰ ਦੁਬਾਰਾ ਵੇਖੋ ਜੋ ਪਹਿਲਾਂ ਹੀ ਸਲਾਹ, ਜ਼ਿਕਰ ਅਤੇ ਸ਼ੁਰੂਆਤੀ ਸੂਰਹ ਨਾਲ ਜੁੜਦੇ ਹਨ।';
 
   @override
   String get arabicLearningPackKidsQuranLinkedWordsThemeTitle =>
-      'Seen in Qur’an';
+      'ਕੁਰਆਨ ਵਿੱਚ ਵੇਖੇ';
 
   @override
   String get arabicLearningPackKidsQuranLinkedWordsThemeSubtitle =>
-      'Open the words and snippets that help the Qur’an bridge feel more familiar.';
+      'ਉਹ ਸ਼ਬਦ ਅਤੇ ਟੁਕੜੇ ਖੋਲ੍ਹੋ ਜੋ ਕੁਰਆਨ ਪੁਲ ਨੂੰ ਹੋਰ ਜਾਣ-ਪਛਾਣ ਵਾਲਾ ਬਣਾਉਂਦੇ ਹਨ।';
 
   @override
-  String get arabicLearningPackKidsReviewTitle => 'Gentle review';
+  String get arabicLearningPackKidsReviewTitle => 'ਹੌਲਾ ਦੁਹਰਾਵਾ';
 
   @override
   String get arabicLearningPackKidsReviewSubtitle =>
-      'Return to letters and practice targets that already live in the Kids review surface.';
+      'ਉਨ੍ਹਾਂ ਅੱਖਰਾਂ ਅਤੇ ਅਭਿਆਸ ਨਿਸ਼ਾਨਿਆਂ ਵੱਲ ਮੁੜੋ ਜੋ ਪਹਿਲਾਂ ਹੀ ਬੱਚਿਆਂ ਦੀ ਸਮੀਖਿਆ ਸਤ੍ਹਾ ਵਿੱਚ ਹਨ।';
 
   @override
   String get arabicLearningPackKidsQuranReadinessTitle =>
-      'First Qur’an reading';
+      'ਕੁਰਆਨ ਦੀ ਪਹਿਲੀ ਪੜ੍ਹਾਈ';
 
   @override
   String get arabicLearningPackKidsQuranReadinessSubtitle =>
-      'Step from Arabic learning into short real Qur’an snippets through the existing bridge.';
+      'ਮੌਜੂਦਾ ਪੁਲ ਰਾਹੀਂ ਅਰਬੀ ਸਿੱਖਣ ਤੋਂ ਛੋਟੇ ਅਸਲੀ ਕੁਰਆਨੀ ਟੁਕੜਿਆਂ ਵੱਲ ਕਦਮ ਰੱਖੋ।';
 
   @override
   String get arabicLearningPackAdultBeginnerLettersTitle =>
-      'Alphabet foundations';
+      'ਅੱਖਰਮਾਲਾ ਦੀ ਬੁਨਿਆਦ';
 
   @override
   String get arabicLearningPackAdultBeginnerLettersSubtitle =>
-      'Keep the adult letter path, forms, and first recognition lessons grouped under one calm start point.';
+      'ਵੱਡਿਆਂ ਲਈ ਅੱਖਰਾਂ ਵਾਲਾ ਰਾਹ, ਰੂਪ ਅਤੇ ਪਹਿਲੇ ਪਛਾਣ ਪਾਠ ਇੱਕ ਹੀ ਸ਼ਾਂਤ ਸ਼ੁਰੂਆਤੀ ਥਾਂ ਹੇਠ ਇਕੱਠੇ ਰੱਖੋ।';
 
   @override
-  String get arabicLearningPackAdultFirstWordsTitle => 'First words';
+  String get arabicLearningPackAdultFirstWordsTitle => 'ਪਹਿਲੇ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackAdultFirstWordsSubtitle =>
-      'Move through the shared beginner words with joined-letter reading help and audio.';
+      'ਜੁੜੇ ਅੱਖਰਾਂ ਦੀ ਪੜ੍ਹਨ ਸਹਾਇਤਾ ਅਤੇ ਆਡੀਓ ਨਾਲ ਸਾਂਝੇ ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਾਂ ਰਾਹੀਂ ਅੱਗੇ ਵਧੋ।';
 
   @override
-  String get arabicLearningPackAdultPhraseReadingTitle => 'Phrase reading';
+  String get arabicLearningPackAdultPhraseReadingTitle => 'ਵਾਕਾਂਸ਼ ਪੜ੍ਹਾਈ';
 
   @override
   String get arabicLearningPackAdultPhraseReadingSubtitle =>
-      'Continue into connected reading through the existing adult phrase-reading module.';
+      'ਮੌਜੂਦਾ ਬਾਲਗ ਵਾਕਾਂਸ਼-ਪੜ੍ਹਾਈ ਮੋਡੀਊਲ ਰਾਹੀਂ ਜੁੜੀ ਪੜ੍ਹਾਈ ਵੱਲ ਅੱਗੇ ਵਧੋ।';
 
   @override
-  String get arabicLearningPackAdultDailyWordsThemeTitle => 'Daily words';
+  String get arabicLearningPackAdultDailyWordsThemeTitle => 'ਰੋਜ਼ਾਨਾ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackAdultDailyWordsThemeSubtitle =>
-      'Browse a calm set of shared beginner words and phrases used in everyday Arabic.';
+      'ਰੋਜ਼ਾਨਾ ਅਰਬੀ ਵਿੱਚ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਸਾਂਝੇ ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਦਾ ਇੱਕ ਸ਼ਾਂਤ ਸੈੱਟ ਵੇਖੋ।';
 
   @override
-  String get arabicLearningPackAdultPrayerWordsThemeTitle => 'Prayer words';
+  String get arabicLearningPackAdultPrayerWordsThemeTitle => 'ਨਮਾਜ਼ ਦੇ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackAdultPrayerWordsThemeSubtitle =>
-      'Keep familiar salah and dhikr vocabulary grouped without adding a separate learning flow.';
+      'ਅਲੱਗ ਸਿੱਖਣ ਦੇ ਰਾਹ ਤੋਂ ਬਿਨਾਂ ਜਾਣ-ਪਛਾਣ ਵਾਲੇ ਸਲਾਹ ਅਤੇ ਜ਼ਿਕਰ ਦੇ ਸ਼ਬਦ ਇਕੱਠੇ ਰੱਖੋ।';
 
   @override
   String get arabicLearningPackAdultQuranLinkedWordsThemeTitle =>
-      'Qur’an-linked words';
+      'ਕੁਰਆਨ ਨਾਲ ਜੁੜੇ ਸ਼ਬਦ';
 
   @override
   String get arabicLearningPackAdultQuranLinkedWordsThemeSubtitle =>
-      'Group the beginner words and phrases that appear again in the Qur’an bridge and short reading steps.';
+      'ਉਨ੍ਹਾਂ ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਨੂੰ ਇਕੱਠਾ ਰੱਖੋ ਜੋ ਕੁਰਆਨ ਪੁਲ ਅਤੇ ਛੋਟੇ ਪੜ੍ਹਨ ਦੇ ਕਦਮਾਂ ਵਿੱਚ ਮੁੜ ਆਉਂਦੇ ਹਨ।';
 
   @override
-  String get arabicLearningPackAdultReviewTitle => 'Daily review';
+  String get arabicLearningPackAdultReviewTitle => 'ਰੋਜ਼ਾਨਾ ਦੁਹਰਾਵਾ';
 
   @override
   String get arabicLearningPackAdultReviewSubtitle =>
-      'Return to weak spots and gentle repetition without leaving the adult Arabic hub.';
+      'ਬਾਲਗ ਅਰਬੀ ਕੇਂਦਰ ਨੂੰ ਛੱਡੇ ਬਿਨਾਂ ਕਮਜ਼ੋਰ ਹਿੱਸਿਆਂ ਅਤੇ ਹੌਲੇ ਦੁਹਰਾਵੇ ਵੱਲ ਵਾਪਸ ਜਾਓ।';
 
   @override
-  String get arabicLearningPackAdultQuranReadinessTitle => 'Qur’an readiness';
+  String get arabicLearningPackAdultQuranReadinessTitle => 'ਕੁਰਆਨ ਤਿਆਰੀ';
 
   @override
   String get arabicLearningPackAdultQuranReadinessSubtitle =>
-      'Use the existing bridge to recognize short real Qur’anic snippets with confidence.';
+      'ਮੌਜੂਦਾ ਪੁਲ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਵਿਸ਼ਵਾਸ ਨਾਲ ਛੋਟੇ ਅਸਲੀ ਕੁਰਆਨੀ ਟੁਕੜਿਆਂ ਨੂੰ ਪਛਾਣੋ।';
 
   @override
-  String get arabicLearningPackAdultTajweedSupportTitle => 'Tajweed support';
+  String get arabicLearningPackAdultTajweedSupportTitle => 'ਤਜਵੀਦ ਸਹਾਇਤਾ';
 
   @override
   String get arabicLearningPackAdultTajweedSupportSubtitle =>
-      'Open the current beginner-safe pronunciation guidance without adding a separate search island.';
+      'ਅਲੱਗ ਖੋਜ ਟਾਪੂ ਬਣਾਏ ਬਿਨਾਂ ਮੌਜੂਦਾ ਸ਼ੁਰੂਆਤੀ-ਸੁਰੱਖਿਅਤ ਉਚਾਰਣ ਮਾਰਗਦਰਸ਼ਨ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get arabicQuickActionAdultContinue => 'Continue Arabic';
+  String get arabicQuickActionAdultContinue => 'ਅਰਬੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicQuickActionAdultReview => 'Review Arabic';
+  String get arabicQuickActionAdultReview => 'ਅਰਬੀ ਦਾ ਦੁਹਰਾਵਾ ਕਰੋ';
 
   @override
-  String get arabicQuickActionKidsContinue => 'Continue Kids Arabic';
+  String get arabicQuickActionKidsContinue => 'Kids Arabic ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicQuickResumeWidgetTitle => 'Arabic quick resume';
+  String get arabicQuickResumeWidgetTitle => 'ਅਰਬੀ ਤੁਰੰਤ ਮੁੜ ਸ਼ੁਰੂ';
 
   @override
   String get arabicQuickResumeWidgetSubtitle =>
-      'Open the next calm Arabic step in one tap.';
+      'ਇੱਕ ਟੈਪ ਨਾਲ ਅਗਲਾ ਸ਼ਾਂਤ ਅਰਬੀ ਕਦਮ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get arabicQuickResumeKidsSectionTitle => 'Quick continue';
+  String get arabicQuickResumeKidsSectionTitle => 'ਤੁਰੰਤ ਜਾਰੀ';
 
   @override
   String get arabicQuickResumeKidsSectionSubtitle =>
-      'Open the next Kids Arabic step without searching through the full home.';
+      'ਪੂਰਾ ਹੋਮ ਖੰਗਾਲਣ ਤੋਂ ਬਿਨਾਂ ਅਗਲਾ Kids Arabic ਕਦਮ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get arabicQuickResumeAdultSectionTitle => 'Quick resume';
+  String get arabicQuickResumeAdultSectionTitle => 'ਤੁਰੰਤ ਮੁੜ ਸ਼ੁਰੂ';
 
   @override
   String get arabicQuickResumeAdultSectionSubtitle =>
-      'Return to the clearest next adult Arabic step or open review right away.';
+      'ਵੱਡਿਆਂ ਵਾਲੇ ਅਗਲੇ ਸਭ ਤੋਂ ਸਾਫ਼ ਅਰਬੀ ਕਦਮ ਤੇ ਵਾਪਸ ਜਾਓ ਜਾਂ ਤੁਰੰਤ ਦੁਹਰਾਵਾ ਖੋਲ੍ਹੋ।';
 
   @override
-  String get arabicQuickResumeStartAction => 'Start Arabic';
+  String get arabicQuickResumeStartAction => 'ਅਰਬੀ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get arabicQuickResumeContinueAction => 'Continue Arabic';
+  String get arabicQuickResumeContinueAction => 'ਅਰਬੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicQuickResumeReviewAction => 'Review Arabic';
+  String get arabicQuickResumeReviewAction => 'ਅਰਬੀ ਦਾ ਦੁਹਰਾਵਾ ਕਰੋ';
 
   @override
-  String get kidsArabicMiniAssessmentCardTitle => 'Quick practice';
+  String get kidsArabicMiniAssessmentCardTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';
 
   @override
   String kidsArabicMiniAssessmentCardSubtitle(Object count) {
-    return '$count calm questions from recent letters, words, or phrases.';
+    return 'ਹਾਲੀਆ ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ ਜਾਂ ਵਾਕਾਂਸ਼ਾਂ ਵਿੱਚੋਂ $count ਸ਼ਾਂਤ ਸਵਾਲ।';
   }
 
   @override
-  String get kidsArabicMiniAssessmentCardAction => 'Let’s practice';
+  String get kidsArabicMiniAssessmentCardAction => 'ਆਓ ਅਭਿਆਸ ਕਰੀਏ';
 
   @override
-  String get kidsArabicMiniAssessmentPageTitle => 'Quick practice';
+  String get kidsArabicMiniAssessmentPageTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';
 
   @override
   String get kidsArabicMiniAssessmentPageSubtitle =>
-      'A short, calm check to help letters, words, and phrases feel more familiar.';
+      'ਇੱਕ ਛੋਟੀ, ਸ਼ਾਂਤ ਜਾਂਚ ਜੋ ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਨੂੰ ਹੋਰ ਜਾਣ-ਪਛਾਣ ਵਾਲਾ ਬਣਾਏ।';
 
   @override
-  String get quranTeachingMiniAssessmentCardTitle => 'Quick practice';
+  String get quranTeachingMiniAssessmentCardTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';
 
   @override
   String quranTeachingMiniAssessmentCardSubtitle(Object count) {
-    return '$count brief recognition questions from your recent Arabic learning.';
+    return 'ਤੁਹਾਡੀ ਹਾਲੀਆ ਅਰਬੀ ਸਿੱਖਿਆ ਵਿੱਚੋਂ $count ਛੋਟੇ ਪਛਾਣ ਸਵਾਲ।';
   }
 
   @override
-  String get quranTeachingMiniAssessmentCardAction => 'Start practice';
+  String get quranTeachingMiniAssessmentCardAction => 'ਅਭਿਆਸ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranTeachingAdultOverviewTitle => 'Arabic overview';
+  String get quranTeachingAdultOverviewTitle => 'ਅਰਬੀ ਝਲਕ';
 
   @override
   String get quranTeachingAdultOverviewStartBody =>
-      'Begin with the foundations, then move into words, phrases, and short Qur\'anic recognition at a steady pace.';
+      'ਬੁਨਿਆਦ ਤੋਂ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਸ਼ਬਦਾਂ, ਵਾਕਾਂਸ਼ਾਂ ਅਤੇ ਛੋਟੀ ਕੁਰਆਨੀ ਪਛਾਣ ਵੱਲ ਸਥਿਰ ਰਫ਼ਤਾਰ ਨਾਲ ਵਧੋ।';
 
   @override
   String get quranTeachingAdultOverviewProgressBody =>
-      'A calm summary of what you have covered recently and the clearest next step to continue.';
+      'ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਕੀ ਕਵਰ ਕੀਤਾ ਹੈ ਅਤੇ ਅਗਲਾ ਸਭ ਤੋਂ ਸਾਫ਼ ਕਦਮ ਕੀ ਹੈ, ਇਸ ਦਾ ਸ਼ਾਂਤ ਸਾਰ।';
 
   @override
   String get quranTeachingAdultOverviewCompletedBody =>
-      'You have reached the end of the current starter path. Gentle review keeps the foundations steady.';
+      'ਤੁਸੀਂ ਮੌਜੂਦਾ ਸ਼ੁਰੂਆਤੀ ਰਾਹ ਦੇ ਅੰਤ ਤੇ ਪਹੁੰਚ ਗਏ ਹੋ। ਹੌਲਾ ਦੁਹਰਾਵਾ ਬੁਨਿਆਦ ਨੂੰ ਮਜ਼ਬੂਤ ਰੱਖਦਾ ਹੈ।';
 
   @override
   String quranTeachingAdultOverviewLastStudiedValue(Object title) {
-    return 'Last studied: $title';
+    return 'ਆਖ਼ਰੀ ਵਾਰ ਪੜ੍ਹਿਆ: $title';
   }
 
   @override
   String quranTeachingAdultOverviewNextStepValue(Object title) {
-    return 'Next step: $title';
+    return 'ਅਗਲਾ ਕਦਮ: $title';
   }
 
   @override
   String quranTeachingAdultOverviewMilestoneValue(Object count) {
-    return '$count lessons completed so far';
+    return 'ਹੁਣ ਤੱਕ $count ਪਾਠ ਪੂਰੇ ਹੋਏ';
   }
 
   @override
   String get quranTeachingAdultOverviewReviewPrimaryAction =>
-      'Continue with review';
+      'ਦੁਹਰਾਵੇ ਨਾਲ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranTeachingMiniAssessmentPageTitle => 'Quick practice';
+  String get quranTeachingMiniAssessmentPageTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';
 
   @override
   String get quranTeachingMiniAssessmentPageSubtitle =>
-      'A short recognition check to reinforce recent letters, words, and phrases.';
+      'ਹਾਲੀਆ ਅੱਖਰਾਂ, ਸ਼ਬਦਾਂ ਅਤੇ ਵਾਕਾਂਸ਼ਾਂ ਨੂੰ ਮਜ਼ਬੂਤ ਕਰਨ ਲਈ ਇੱਕ ਛੋਟੀ ਪਛਾਣ ਜਾਂਚ।';
 
   @override
-  String get arabicLearningMiniAssessmentIntroTitle => 'Let’s practice gently';
+  String get arabicLearningMiniAssessmentIntroTitle => 'ਆਓ ਹੌਲੇ ਅਭਿਆਸ ਕਰੀਏ';
 
   @override
   String arabicLearningMiniAssessmentIntroBody(Object count) {
-    return '$count quick questions. No scores, no timers, and you can leave any time.';
+    return '$count ਛੋਟੇ ਸਵਾਲ। ਨਾ ਸਕੋਰ, ਨਾ ਟਾਈਮਰ, ਅਤੇ ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੇਲੇ ਬਾਹਰ ਨਿਕਲ ਸਕਦੇ ਹੋ।';
   }
 
   @override
@@ -35948,163 +36170,160 @@ class AppLocalizationsPa extends AppLocalizations {
     Object current,
     Object total,
   ) {
-    return 'Question $current of $total';
+    return 'ਸਵਾਲ $total ਵਿੱਚੋਂ $current';
   }
 
   @override
   String arabicLearningMiniAssessmentSeeChoosePrompt(Object contentType) {
-    return 'Which $contentType is this?';
+    return 'ਇਹ ਕਿਹੜਾ $contentType ਹੈ?';
   }
 
   @override
   String arabicLearningMiniAssessmentHearChoosePrompt(Object contentType) {
-    return 'Tap the $contentType you hear.';
+    return 'ਜੋ $contentType ਤੁਸੀਂ ਸੁਣਦੇ ਹੋ, ਉਸ ਤੇ ਟੈਪ ਕਰੋ।';
   }
 
   @override
-  String get arabicLearningMiniAssessmentReplayAudioAction => 'Play again';
+  String get arabicLearningMiniAssessmentReplayAudioAction => 'ਫਿਰ ਚਲਾਓ';
 
   @override
   String get arabicLearningMiniAssessmentHearChooseHint =>
-      'Listen, then choose the matching card.';
+      'ਸੁਣੋ, ਫਿਰ ਮਿਲਦਾ ਕਾਰਡ ਚੁਣੋ।';
 
   @override
   String get arabicLearningMiniAssessmentCorrectFeedback =>
-      'That’s right. Keep going.';
+      'ਇਹ ਠੀਕ ਹੈ। ਅੱਗੇ ਵਧੋ।';
 
   @override
   String get arabicLearningMiniAssessmentRetryFeedback =>
-      'Try again. A gentle second look is enough.';
+      'ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ। ਇੱਕ ਹੌਲੀ ਦੂਜੀ ਨਜ਼ਰ ਕਾਫ਼ੀ ਹੈ।';
 
   @override
-  String get arabicLearningMiniAssessmentNextAction => 'Next question';
+  String get arabicLearningMiniAssessmentNextAction => 'ਅਗਲਾ ਸਵਾਲ';
 
   @override
-  String get arabicLearningMiniAssessmentFinishAction => 'Finish practice';
+  String get arabicLearningMiniAssessmentFinishAction => 'ਅਭਿਆਸ ਸਮਾਪਤ ਕਰੋ';
 
   @override
-  String get arabicLearningMiniAssessmentContinueAction => 'Continue Arabic';
+  String get arabicLearningMiniAssessmentContinueAction => 'ਅਰਬੀ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get arabicLearningMiniAssessmentReviewAction => 'Review gently';
+  String get arabicLearningMiniAssessmentReviewAction => 'ਹੌਲਾ ਦੁਹਰਾਵਾ';
 
   @override
-  String get arabicLearningMiniAssessmentCompleteTitle => 'Practice complete';
+  String get arabicLearningMiniAssessmentCompleteTitle => 'ਅਭਿਆਸ ਪੂਰਾ ਹੋਇਆ';
 
   @override
   String get arabicLearningMiniAssessmentCompleteContinueBody =>
-      'You’re ready to keep moving. Continue with your next Arabic step.';
+      'ਤੁਸੀਂ ਅੱਗੇ ਵਧਣ ਲਈ ਤਿਆਰ ਹੋ। ਆਪਣੇ ਅਗਲੇ ਅਰਬੀ ਕਦਮ ਨਾਲ ਜਾਰੀ ਰੱਖੋ।';
 
   @override
   String get arabicLearningMiniAssessmentCompleteReviewBody =>
-      'A gentle review would help before moving on. You can continue after that if you want.';
+      'ਅੱਗੇ ਵਧਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਹੌਲਾ ਦੁਹਰਾਵਾ ਮਦਦ ਕਰੇਗਾ। ਜੇ ਤੁਸੀਂ ਚਾਹੋ ਤਾਂ ਉਸ ਤੋਂ ਬਾਅਦ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get arabicLearningMiniAssessmentContentLetter => 'letter';
+  String get arabicLearningMiniAssessmentContentLetter => 'ਅੱਖਰ';
 
   @override
-  String get arabicLearningMiniAssessmentContentWord => 'word';
+  String get arabicLearningMiniAssessmentContentWord => 'ਸ਼ਬਦ';
 
   @override
-  String get arabicLearningMiniAssessmentContentPhrase => 'phrase';
+  String get arabicLearningMiniAssessmentContentPhrase => 'ਵਾਕਾਂਸ਼';
 
   @override
-  String get quranGuidedPassagesKidsPageTitle => 'Longer Qur’an passages';
+  String get quranGuidedPassagesKidsPageTitle => 'ਲੰਮੇ ਕੁਰਆਨੀ ਹਿੱਸੇ';
 
   @override
   String get quranGuidedPassagesKidsPageSubtitle =>
-      'Take one more calm step from very short surahs into slightly longer Qur’an reading.';
+      'ਬਹੁਤ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੋਂ ਕੁਝ ਹੋਰ ਲੰਬੀ ਕੁਰਆਨ ਪੜ੍ਹਾਈ ਵੱਲ ਇੱਕ ਹੋਰ ਸ਼ਾਂਤ ਕਦਮ ਚੁੱਕੋ।';
 
   @override
-  String get quranGuidedPassagesAdultPageTitle => 'Guided Qur’an passages';
+  String get quranGuidedPassagesAdultPageTitle => 'ਰਾਹਦਰਸ਼ਿਤ ਕੁਰਆਨੀ ਹਿੱਸੇ';
 
   @override
   String get quranGuidedPassagesAdultPageSubtitle =>
-      'Move from short surahs into slightly longer guided passages without leaving the beginner bridge.';
+      'ਸ਼ੁਰੂਆਤੀ ਪੁਲ ਨੂੰ ਛੱਡੇ ਬਿਨਾਂ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੋਂ ਕੁਝ ਹੋਰ ਲੰਬੇ ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸਿਆਂ ਵੱਲ ਵਧੋ।';
 
   @override
-  String get quranGuidedPassagesKidsIntroTitle => 'A gentle next reading step';
+  String get quranGuidedPassagesKidsIntroTitle => 'ਪੜ੍ਹਾਈ ਦਾ ਇੱਕ ਨਰਮ ਅਗਲਾ ਕਦਮ';
 
   @override
   String get quranGuidedPassagesKidsIntroSubtitle =>
-      'These passages stay short enough to feel safe, but long enough to help full Qur’an reading feel more real.';
+      'ਇਹ ਹਿੱਸੇ ਇੰਨੇ ਛੋਟੇ ਹਨ ਕਿ ਸੁਰੱਖਿਅਤ ਮਹਿਸੂਸ ਹੋਣ, ਪਰ ਇੰਨੇ ਲੰਬੇ ਵੀ ਹਨ ਕਿ ਪੂਰੀ ਕੁਰਆਨ ਪੜ੍ਹਾਈ ਹੋਰ ਹਕੀਕਤੀ ਲੱਗੇ।';
 
   @override
   String get quranGuidedPassagesAdultIntroTitle =>
-      'A calm step into longer guided passages';
+      'ਲੰਬੇ ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸਿਆਂ ਵੱਲ ਇੱਕ ਸ਼ਾਂਤ ਕਦਮ';
 
   @override
   String get quranGuidedPassagesAdultIntroSubtitle =>
-      'These selections extend the bridge beyond very short surahs while keeping ayah-by-ayah support, replay, and simple highlighting.';
+      'ਇਹ ਚੋਣਾਂ ਬਹੁਤ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੋਂ ਆਗੇ ਪੁਲ ਨੂੰ ਵਧਾਉਂਦੀਆਂ ਹਨ, ਨਾਲ ਹੀ ਆਯਤ-ਦਰ-ਆਯਤ ਸਹਾਇਤਾ, ਦੁਹਰਾਵਾ ਅਤੇ ਸੌਖੀ ਹਾਈਲਾਈਟਿੰਗ ਬਣਾਈ ਰੱਖਦੀਆਂ ਹਨ।';
 
   @override
   String quranGuidedPassagesCountValue(Object opened, Object total) {
-    return '$opened of $total guided passages opened';
+    return '$total ਵਿੱਚੋਂ $opened ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ ਖੁੱਲੇ';
   }
 
   @override
   String quranGuidedPassagesAyahCountValue(Object count) {
-    return '$count ayahs in focus';
+    return 'ਧਿਆਨ ਵਿੱਚ $count ਆਯਤਾਂ';
   }
 
   @override
   String get quranGuidedPassagesReadyFromShortSurahs =>
-      'Built from your short-surah practice';
+      'ਤੁਹਾਡੇ ਛੋਟੀ-ਸੂਰਹ ਅਭਿਆਸ ਤੋਂ ਬਣਿਆ';
 
   @override
-  String get quranGuidedPassagesStartGently => 'Start with a familiar opening';
+  String get quranGuidedPassagesStartGently => 'ਇੱਕ ਜਾਣੂ ਸ਼ੁਰੂਆਤ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get quranGuidedPassagesProgressionTitle =>
-      'Step-by-step guided passages';
+  String get quranGuidedPassagesProgressionTitle => 'ਕਦਮ-ਦਰ-ਕਦਮ ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ';
 
   @override
   String get quranGuidedPassagesProgressionSubtitle =>
-      'Begin with a familiar opening from Al-Fatihah, then complete the rest, then read the full surah with calm support.';
+      'ਅਲ-ਫਾਤਿਹਾ ਦੀ ਇੱਕ ਜਾਣੂ ਸ਼ੁਰੂਆਤ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਫਿਰ ਬਾਕੀ ਪੂਰਾ ਕਰੋ, ਫਿਰ ਪੂਰੀ ਸੂਰਹ ਨੂੰ ਸ਼ਾਂਤ ਸਹਾਇਤਾ ਨਾਲ ਪੜ੍ਹੋ।';
 
   @override
-  String get quranGuidedPassagesStageOneTitle => 'Stage 1: Familiar opening';
+  String get quranGuidedPassagesStageOneTitle => 'ਪੜਾਅ 1: ਜਾਣੂ ਸ਼ੁਰੂਆਤ';
 
   @override
   String get quranGuidedPassagesStageOneSubtitle =>
-      'Read the opening ayahs of Al-Fatihah using phrases you already know from the earlier bridge.';
+      'ਅਲ-ਫਾਤਿਹਾ ਦੀਆਂ ਸ਼ੁਰੂਆਤੀ ਆਯਤਾਂ ਉਹਨਾਂ ਪੰਗਤੀਆਂ ਨਾਲ ਪੜ੍ਹੋ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਦੇ ਪੁਲ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹੋ।';
 
   @override
-  String get quranGuidedPassagesStageTwoTitle =>
-      'Stage 2: Complete the response';
+  String get quranGuidedPassagesStageTwoTitle => 'ਪੜਾਅ 2: ਜਵਾਬ ਪੂਰਾ ਕਰੋ';
 
   @override
   String get quranGuidedPassagesStageTwoSubtitle =>
-      'Add the closing ayahs so Al-Fatihah feels like one connected reading instead of separate snippets.';
+      'ਅੰਤ ਵਾਲੀਆਂ ਆਯਤਾਂ ਜੋੜੋ ਤਾਂ ਜੋ ਅਲ-ਫਾਤਿਹਾ ਵੱਖਰੇ ਟੁਕੜਿਆਂ ਦੀ ਥਾਂ ਇੱਕ ਜੁੜੀ ਹੋਈ ਪੜ੍ਹਾਈ ਜਾਪੇ।';
 
   @override
-  String get quranGuidedPassagesStageThreeTitle =>
-      'Stage 3: Full surah confidence';
+  String get quranGuidedPassagesStageThreeTitle => 'ਪੜਾਅ 3: ਪੂਰੀ ਸੂਰਹ ਦਾ ਭਰੋਸਾ';
 
   @override
   String get quranGuidedPassagesStageThreeSubtitle =>
-      'Read the whole of Al-Fatihah in one guided flow with replay and highlighting.';
+      'ਦੁਹਰਾਵੇ ਅਤੇ ਹਾਈਲਾਈਟਿੰਗ ਨਾਲ ਅਲ-ਫਾਤਿਹਾ ਨੂੰ ਇੱਕ ਰਾਹਦਰਸ਼ਿਤ ਪ੍ਰਵਾਹ ਵਿੱਚ ਪੂਰਾ ਪੜ੍ਹੋ।';
 
   @override
-  String get quranGuidedPassagesOpeningTitle => 'Al-Fatihah opening';
+  String get quranGuidedPassagesOpeningTitle => 'ਅਲ-ਫਾਤਿਹਾ ਦੀ ਸ਼ੁਰੂਆਤ';
 
   @override
   String get quranGuidedPassagesOpeningSubtitle =>
-      'The opening ayahs that already overlap your first recognition snippets.';
+      'ਸ਼ੁਰੂਆਤੀ ਆਯਤਾਂ ਜੋ ਤੁਹਾਡੇ ਪਹਿਲੇ ਪਛਾਣ-ਟੁਕੜਿਆਂ ਨਾਲ ਪਹਿਲਾਂ ਹੀ ਮਿਲਦੀਆਂ ਹਨ।';
 
   @override
-  String get quranGuidedPassagesResponseTitle => 'Al-Fatihah closing';
+  String get quranGuidedPassagesResponseTitle => 'ਅਲ-ਫਾਤਿਹਾ ਦਾ ਅੰਤ';
 
   @override
   String get quranGuidedPassagesResponseSubtitle =>
-      'The answering and guiding ayahs that complete the core prayer passage.';
+      'ਜਵਾਬ ਅਤੇ ਹਿਦਾਇਤ ਵਾਲੀਆਂ ਆਯਤਾਂ ਜੋ ਨਮਾਜ਼ ਦੇ ਮੁੱਖ ਹਿੱਸੇ ਨੂੰ ਪੂਰਾ ਕਰਦੀਆਂ ਹਨ।';
 
   @override
-  String get quranGuidedPassagesFullTitle => 'Full Al-Fatihah';
+  String get quranGuidedPassagesFullTitle => 'ਪੂਰੀ ਅਲ-ਫਾਤਿਹਾ';
 
   @override
   String get quranGuidedPassagesFullSubtitle =>
-      'Read the whole surah calmly from beginning to end with guided support.';
+      'ਰਾਹਦਰਸ਼ਿਤ ਸਹਾਇਤਾ ਨਾਲ ਸ਼ੁਰੂ ਤੋਂ ਅੰਤ ਤੱਕ ਪੂਰੀ ਸੂਰਹ ਸ਼ਾਂਤੀ ਨਾਲ ਪੜ੍ਹੋ।';
 
   @override
   String quranGuidedPassagesPassageMeta(
@@ -36112,85 +36331,87 @@ class AppLocalizationsPa extends AppLocalizations {
     Object startAyah,
     Object endAyah,
   ) {
-    return '$surahName • Ayahs $startAyah-$endAyah';
+    return '$surahName • ਆਯਤਾਂ $startAyah-$endAyah';
   }
 
   @override
-  String get quranGuidedPassagesPlayAction => 'Play passage';
+  String get quranGuidedPassagesPlayAction => 'ਹਿੱਸਾ ਚਲਾਓ';
 
   @override
-  String get quranGuidedPassagesPauseAction => 'Pause';
+  String get quranGuidedPassagesPauseAction => 'ਰੋਕੋ';
 
   @override
-  String get quranGuidedPassagesOpenReaderAction => 'Open in Qur’an reader';
+  String get quranGuidedPassagesOpenReaderAction => 'ਕੁਰਆਨ ਰੀਡਰ ਵਿੱਚ ਖੋਲ੍ਹੋ';
 
   @override
   String get quranGuidedPassagesKnownSnippetsTitle =>
-      'Already familiar from earlier bridge steps';
+      'ਪਹਿਲਾਂ ਦੇ ਪੁਲ ਕਦਮਾਂ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਜਾਣੂ';
 
   @override
   String get quranGuidedPassagesKnownSnippetsSubtitle =>
-      'These are the shorter phrases you have already recognized before moving into this longer passage.';
+      'ਇਹ ਉਹ ਛੋਟੀਆਂ ਪੰਗਤੀਆਂ ਹਨ ਜਿਨ੍ਹਾਂ ਨੂੰ ਤੁਸੀਂ ਇਸ ਲੰਬੇ ਹਿੱਸੇ ਵਿੱਚ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਪਛਾਣ ਚੁੱਕੇ ਹੋ।';
 
   @override
   String get quranGuidedPassagesFlowHint =>
-      'Let the audio and highlighting carry you through the passage one ayah at a time.';
+      'ਆਡੀਓ ਅਤੇ ਹਾਈਲਾਈਟਿੰਗ ਨੂੰ ਤੁਹਾਨੂੰ ਹਿੱਸੇ ਵਿੱਚ ਇੱਕ ਵਾਰ ਇੱਕ ਆਯਤ ਰਾਹੀਂ ਲੰਘਣ ਦਿਓ।';
 
   @override
-  String get quranGuidedPassagesNextAction => 'Next passage';
+  String get quranGuidedPassagesNextAction => 'ਅਗਲਾ ਹਿੱਸਾ';
 
   @override
-  String get quranGuidedPassagesKidsCardTitle => 'Guided longer passages';
+  String get quranGuidedPassagesKidsCardTitle => 'ਰਾਹਦਰਸ਼ਿਤ ਲੰਮੇ ਹਿੱਸੇ';
 
   @override
   String quranGuidedPassagesKidsCardSubtitle(Object passageTitle) {
-    return 'Keep reading with the passage $passageTitle.';
+    return 'ਹਿੱਸੇ $passageTitle ਨਾਲ ਪੜ੍ਹਾਈ ਜਾਰੀ ਰੱਖੋ।';
   }
 
   @override
   String get quranGuidedPassagesKidsCardStartSubtitle =>
-      'After short surahs, these slightly longer passages help children feel, “I can keep reading.”';
+      'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੋਂ ਬਾਅਦ, ਇਹ ਕੁਝ ਹੋਰ ਲੰਬੇ ਹਿੱਸੇ ਬੱਚਿਆਂ ਨੂੰ ਇਹ ਮਹਿਸੂਸ ਕਰਵਾਉਂਦੇ ਹਨ, “ਮੈਂ ਪੜ੍ਹਾਈ ਜਾਰੀ ਰੱਖ ਸਕਦਾ/ਸਕਦੀ ਹਾਂ।”';
 
   @override
-  String get quranGuidedPassagesKidsStartAction => 'Start guided passages';
+  String get quranGuidedPassagesKidsStartAction => 'ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get quranGuidedPassagesKidsContinueAction =>
-      'Continue guided passages';
+      'ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranGuidedPassagesKidsReviewAction => 'Review guided passages';
+  String get quranGuidedPassagesKidsReviewAction =>
+      'ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸਿਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
-  String get quranGuidedPassagesAdultCardTitle => 'Guided longer passages';
+  String get quranGuidedPassagesAdultCardTitle => 'ਰਾਹਦਰਸ਼ਿਤ ਲੰਮੇ ਹਿੱਸੇ';
 
   @override
   String quranGuidedPassagesAdultCardSubtitle(Object passageTitle) {
-    return 'Continue with the passage $passageTitle.';
+    return 'ਹਿੱਸੇ $passageTitle ਨਾਲ ਜਾਰੀ ਰੱਖੋ।';
   }
 
   @override
   String get quranGuidedPassagesAdultCardStartSubtitle =>
-      'After snippets and very short surahs, this is the next calm step into slightly longer Qur’anic reading.';
+      'ਟੁਕੜਿਆਂ ਅਤੇ ਬਹੁਤ ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੋਂ ਬਾਅਦ, ਇਹ ਕੁਝ ਹੋਰ ਲੰਬੀ ਕੁਰਆਨੀ ਪੜ੍ਹਾਈ ਵੱਲ ਅਗਲਾ ਸ਼ਾਂਤ ਕਦਮ ਹੈ।';
 
   @override
-  String get quranGuidedPassagesAdultStartAction => 'Start guided passages';
+  String get quranGuidedPassagesAdultStartAction => 'ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
   String get quranGuidedPassagesAdultContinueAction =>
-      'Continue guided passages';
+      'ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ ਜਾਰੀ ਰੱਖੋ';
 
   @override
-  String get quranGuidedPassagesAdultReviewAction => 'Review guided passages';
+  String get quranGuidedPassagesAdultReviewAction =>
+      'ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸਿਆਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ';
 
   @override
   String quranGuidedPassagesBridgeKidsSubtitle(Object passageTitle) {
-    return 'You have reached the next reading step. Continue with the guided passage $passageTitle.';
+    return 'ਤੁਸੀਂ ਪੜ੍ਹਾਈ ਦੇ ਅਗਲੇ ਕਦਮ ਤੱਕ ਪਹੁੰਚ ਗਏ ਹੋ। ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ $passageTitle ਨਾਲ ਜਾਰੀ ਰੱਖੋ।';
   }
 
   @override
   String quranGuidedPassagesBridgeAdultSubtitle(Object passageTitle) {
-    return 'After short surahs, continue into the guided passage $passageTitle.';
+    return 'ਛੋਟੀਆਂ ਸੂਰਹਾਂ ਤੋਂ ਬਾਅਦ, ਰਾਹਦਰਸ਼ਿਤ ਹਿੱਸੇ $passageTitle ਵੱਲ ਜਾਰੀ ਰੱਖੋ।';
   }
 
   @override
@@ -36709,7 +36930,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get onboardingSkipAction => 'Skip';
+  String get onboardingSkipAction => 'ਛੱਡੋ';
 
   @override
   String onboardingProgressValue(Object current, Object total) {
@@ -36718,45 +36939,45 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get onboardingSettingsHintBody =>
-      'You can change this anytime in Settings.';
+      'ਤੁਸੀਂ ਇਹ ਕਿਸੇ ਵੀ ਵੇਲੇ Settings ਵਿੱਚ ਬਦਲ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get onboardingBeginJourneyAction => 'Begin your journey';
+  String get onboardingBeginJourneyAction => 'ਆਪਣਾ ਸਫ਼ਰ ਸ਼ੁਰੂ ਕਰੋ';
 
   @override
-  String get onboardingContinueAction => 'Continue';
+  String get onboardingContinueAction => 'ਜਾਰੀ ਰੱਖੋ';
 
   @override
   String get onboardingShahadaMeaningBody =>
-      'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.';
+      'ਮੈਂ ਗਵਾਹੀ ਦਿੰਦਾ ਹਾਂ ਕਿ ਅੱਲਾਹ ਤੋਂ ਬਿਨਾ ਕੋਈ ਮਾਬੂਦ ਨਹੀਂ,\nਅਤੇ ਮੈਂ ਗਵਾਹੀ ਦਿੰਦਾ ਹਾਂ ਕਿ ਮੁਹੰਮਦ ﷺ ਅੱਲਾਹ ਦੇ ਰਸੂਲ ਹਨ।';
 
   @override
   String get onboardingBismillahTransliteration => 'Bismillahir-Rahmanir-Rahim';
 
   @override
   String get onboardingBismillahMeaningBody =>
-      'In the name of Allah, the Most Compassionate, the Most Merciful.';
+      'ਅੱਲਾਹ ਦੇ ਨਾਮ ਨਾਲ, ਜੋ ਸਭ ਤੋਂ ਵਧ ਕਿਰਪਾਲੂ ਅਤੇ ਰਹਿਮ ਵਾਲਾ ਹੈ।';
 
   @override
   String get onboardingOpeningBlessingBody =>
-      'May this journey bring khayr, consistency, and closeness to Allah.';
+      'ਅੱਲਾਹ ਕਰੇ ਇਹ ਸਫਰ ਖੈਰ, ਪੱਕੇਪਣ ਅਤੇ ਅੱਲਾਹ ਦੇ ਨੇੜੇਪਣ ਦਾ ਸਬਬ ਬਣੇ।';
 
   @override
-  String get onboardingLanguageTitle => 'Choose your language';
+  String get onboardingLanguageTitle => 'ਆਪਣੀ ਭਾਸ਼ਾ ਚੁਣੋ';
 
   @override
   String get onboardingLanguageSubtitle =>
-      'Select the language you would like to use in the app.';
+      'ਉਹ ਭਾਸ਼ਾ ਚੁਣੋ ਜੋ ਤੁਸੀਂ ਐਪ ਵਿੱਚ ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
-  String get onboardingAgeRangeTitle => 'Which age range are you in?';
+  String get onboardingAgeRangeTitle => 'ਤੁਸੀਂ ਕਿਹੜੇ ਉਮਰ ਸਮੂਹ ਵਿੱਚ ਹੋ?';
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'This helps us keep examples and recommendations relevant to your stage of life.';
+      'ਇਹ ਸਾਨੂੰ ਉਦਾਹਰਨਾਂ ਅਤੇ ਸੁਝਾਵਾਂ ਨੂੰ ਤੁਹਾਡੀ ਜ਼ਿੰਦਗੀ ਦੇ ਮੰਚ ਨਾਲ ਸਬੰਧਿਤ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।';
 
   @override
-  String get onboardingAgeRangeUnder18 => 'Under 18';
+  String get onboardingAgeRangeUnder18 => '18 ਤੋਂ ਘੱਟ';
 
   @override
   String get onboardingAgeRange18To24 => '18-24';
@@ -36775,58 +36996,63 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get onboardingExperienceTitle =>
-      'Which description fits your journey with Islam best?';
+      'ਕਿਹੜੀ ਵਰਣਨਾ ਤੁਹਾਡੀ ਇਸਲਾਮ ਨਾਲ ਯਾਤਰਾ ਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਦਰਸਾਉਂਦੀ ਹੈ?';
 
   @override
   String get onboardingExperienceSubtitle =>
-      'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.';
+      'ਅਸੀਂ ਇਸਦਾ ਇਸਤੇਮਾਲ ਤੁਹਾਡੇ ਅਨੁਭਵ ਲਈ ਵਧੀਆ ਸ਼ੁਰੂਆਤੀ ਲਹਿਜ਼ਾ, ਗਤੀ ਅਤੇ ਸਿੱਖਣ ਦੀ ਗਹਿਰਾਈ ਤੈਅ ਕਰਨ ਲਈ ਕਰਦੇ ਹਾਂ। ਤੁਹਾਡੀ ਚੋਣ ਸੰਭਾਲੀ ਜਾਂਦੀ ਹੈ ਅਤੇ ਪੂਰੇ ਐਪ ਵਿੱਚ ਮਦਦਗਾਰ ਰਾਹਨੁਮਾਈ ਬਣਾਉਣ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।';
 
   @override
-  String get onboardingExperienceExploring => 'Exploring Islam';
+  String get onboardingExperienceExploring => 'ਇਸਲਾਮ ਨੂੰ ਸਮਝ ਰਿਹਾ/ਰਹੀ ਹਾਂ';
 
   @override
-  String get onboardingExperienceNewToIslam => 'New to Islam';
+  String get onboardingExperienceNewToIslam => 'ਇਸਲਾਮ ਵਿੱਚ ਨਵਾਂ/ਨਵੀਂ ਹਾਂ';
 
   @override
   String get onboardingExperienceBornStillLearning =>
-      'Born Muslim, still learning';
+      'ਮੁਸਲਮਾਨ ਘਰ ਵਿੱਚ ਜਨਮਿਆ/ਜਨਮੀ, ਹਾਲੇ ਵੀ ਸਿੱਖ ਰਿਹਾ/ਰਹੀ ਹਾਂ';
 
   @override
-  String get onboardingExperiencePracticingRegularly => 'Practicing regularly';
+  String get onboardingExperiencePracticingRegularly =>
+      'ਨਿਯਮਿਤ ਅਮਲ ਕਰਦਾ/ਕਰਦੀ ਹਾਂ';
 
   @override
-  String get onboardingExperienceAdvanced => 'Experienced / advanced';
+  String get onboardingExperienceAdvanced => 'ਤਜਰਬੇਕਾਰ / ਅੱਗੇ ਵਧਿਆ ਹੋਇਆ';
 
   @override
   String get onboardingSalahConsistencyTitle =>
-      'How consistent is your Salah currently?';
+      'ਇਸ ਵੇਲੇ ਤੁਹਾਡੀ ਸਲਾਹ ਕਿੰਨੀ ਨਿਯਮਿਤ ਹੈ?';
 
   @override
   String get onboardingSalahConsistencySubtitle =>
-      'Choose the option that best reflects where you are right now.';
+      'ਉਹ ਵਿਕਲਪ ਚੁਣੋ ਜੋ ਇਸ ਵੇਲੇ ਤੁਹਾਡੀ ਹਾਲਤ ਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਦਰਸਾਉਂਦਾ ਹੋਵੇ।';
 
   @override
-  String get onboardingSalahConsistencyAll => 'I pray all prayers consistently';
+  String get onboardingSalahConsistencyAll =>
+      'ਮੈਂ ਸਾਰੀਆਂ ਨਮਾਜ਼ਾਂ ਨਿਯਮਿਤ ਪੜ੍ਹਦਾ/ਪੜ੍ਹਦੀ ਹਾਂ';
 
   @override
-  String get onboardingSalahConsistencyMost => 'I pray most prayers';
+  String get onboardingSalahConsistencyMost =>
+      'ਮੈਂ ਜ਼ਿਆਦਾਤਰ ਨਮਾਜ਼ਾਂ ਪੜ੍ਹਦਾ/ਪੜ੍ਹਦੀ ਹਾਂ';
 
   @override
-  String get onboardingSalahConsistencySometimes => 'I pray sometimes';
+  String get onboardingSalahConsistencySometimes =>
+      'ਮੈਂ ਕਦੇ-ਕਦੇ ਨਮਾਜ਼ ਪੜ੍ਹਦਾ/ਪੜ੍ਹਦੀ ਹਾਂ';
 
   @override
-  String get onboardingSalahConsistencyRarely => 'I rarely pray';
+  String get onboardingSalahConsistencyRarely =>
+      'ਮੈਂ ਬਹੁਤ ਘੱਟ ਨਮਾਜ਼ ਪੜ੍ਹਦਾ/ਪੜ੍ਹਦੀ ਹਾਂ';
 
   @override
   String get onboardingSalahConsistencyJustStarted =>
-      'I am just getting started';
+      'ਮੈਂ ਹੁਣੇ ਹੀ ਸ਼ੁਰੂ ਕੀਤਾ ਹੈ';
 
   @override
-  String get onboardingPrayerMethodTitle => 'Salah time calculation method';
+  String get onboardingPrayerMethodTitle => 'ਸਲਾਹ ਦੇ ਸਮੇਂ ਗਿਣਣ ਦੀ ਵਿਧੀ';
 
   @override
   String get onboardingPrayerMethodSubtitle =>
-      'Choose how salah times should be calculated for your location.';
+      'ਚੁਣੋ ਕਿ ਤੁਹਾਡੇ ਸਥਾਨ ਲਈ ਸਲਾਹ ਦੇ ਸਮੇਂ ਕਿਵੇਂ ਗਿਣੇ ਜਾਣ।';
 
   @override
   String get onboardingPrayerMethodMuslimWorldLeague => 'Muslim World League';
@@ -36850,11 +37076,11 @@ class AppLocalizationsPa extends AppLocalizations {
   String get onboardingPrayerMethodMoonsighting => 'Moonsighting Committee';
 
   @override
-  String get onboardingMadhabTitle => 'Which Madhab do you follow?';
+  String get onboardingMadhabTitle => 'ਤੁਸੀਂ ਕਿਹੜੇ ਮਜ਼ਹਬ ਦੀ ਪਾਲਣਾ ਕਰਦੇ ਹੋ?';
 
   @override
   String get onboardingMadhabSubtitle =>
-      'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.';
+      'ਇਸ ਨਾਲ ਅਸਰ ਦੀ ਸਲਾਹ ਦਾ ਸਮਾਂ ਕਿਵੇਂ ਗਿਣਿਆ ਜਾਂਦਾ ਹੈ, ਉਸ ਉੱਤੇ ਅਸਰ ਪੈਂਦਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਨਿਸ਼ਚਿਤ ਨਹੀਂ ਹੋ, ਤਾਂ ਮੂਲ ਚੋਣ ਨੂੰ ਹੀ ਰੱਖ ਸਕਦੇ ਹੋ।';
 
   @override
   String get onboardingMadhabHanafi => 'Hanafi';
@@ -36870,194 +37096,193 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get onboardingGrowthInterestsTitle =>
-      'What would you like to grow in?';
+      'ਤੁਸੀਂ ਕਿਸ ਖੇਤਰ ਵਿੱਚ ਅੱਗੇ ਵਧਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
 
   @override
   String get onboardingGrowthInterestsSubtitle =>
-      'Select the areas you would like Path of Nur to help you with. You can choose multiple.';
+      'ਉਹ ਖੇਤਰ ਚੁਣੋ ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਤੁਸੀਂ Path of Nur ਤੋਂ ਮਦਦ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋ। ਤੁਸੀਂ ਇੱਕ ਤੋਂ ਵੱਧ ਚੋਣ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
   String get onboardingArabicReadModeTitle =>
-      'What is your Qur’an reading preference?';
+      'ਤੁਹਾਡੀ Qur’an ਪੜ੍ਹਨ ਦੀ ਪਸੰਦ ਕੀ ਹੈ?';
 
   @override
   String get onboardingArabicReadModeSubtitle =>
-      'Choose the reading setup that feels most comfortable for you when reading the Qur’an.';
+      'ਉਹ ਪੜ੍ਹਨ ਵਾਲੀ ਸੈਟਿੰਗ ਚੁਣੋ ਜੋ Qur’an ਪੜ੍ਹਦੇ ਸਮੇਂ ਤੁਹਾਨੂੰ ਸਭ ਤੋਂ ਆਰਾਮਦਾਇਕ ਲੱਗੇ।';
 
   @override
   String get onboardingArabicReadModeNoArabicYet =>
-      'I do not know any Arabic yet';
+      'ਮੈਨੂੰ ਹਾਲੇ ਕੋਈ ਅਰਬੀ ਨਹੀਂ ਆਉਂਦੀ';
 
   @override
-  String get onboardingArabicReadModeArabicOnly => 'Arabic only';
+  String get onboardingArabicReadModeArabicOnly => 'ਕੇਵਲ ਅਰਬੀ';
 
   @override
   String get onboardingArabicReadModeArabicTransliteration =>
-      'Arabic + Transliteration';
+      'ਅਰਬੀ + ਲਿਪਿਆਂਤਰਣ';
 
   @override
-  String get onboardingArabicReadModeArabicTranslation =>
-      'Arabic + Translation';
+  String get onboardingArabicReadModeArabicTranslation => 'ਅਰਬੀ + ਅਨੁਵਾਦ';
 
   @override
   String get onboardingArabicReadModeArabicTransliterationTranslation =>
-      'Arabic + Transliteration + Translation';
+      'ਅਰਬੀ + ਲਿਪਿਆਂਤਰਣ + ਅਨੁਵਾਦ';
 
   @override
-  String get onboardingHarakatTitle => 'Harakat / pronunciation marks';
+  String get onboardingHarakatTitle => 'ਹਰਕਾਤ / ਉਚਾਰਣ ਨਿਸ਼ਾਨ';
 
   @override
-  String get onboardingHarakatFull => 'Full harakat';
+  String get onboardingHarakatFull => 'ਪੂਰੀ ਹਰਕਾਤ';
 
   @override
-  String get onboardingHarakatMinimal => 'Minimal harakat';
+  String get onboardingHarakatMinimal => 'ਘੱਟ ਹਰਕਾਤ';
 
   @override
-  String get onboardingHarakatNone => 'None';
+  String get onboardingHarakatNone => 'ਕੋਈ ਨਹੀਂ';
 
   @override
-  String get onboardingTextSizeTitle => 'Text size';
+  String get onboardingTextSizeTitle => 'ਲਿਖਤ ਦਾ ਆਕਾਰ';
 
   @override
-  String get onboardingRemindersTitle => 'How would you like to be reminded?';
+  String get onboardingRemindersTitle =>
+      'ਤੁਸੀਂ ਕਿਵੇਂ ਯਾਦ ਦਿਵਾਇਆ ਜਾਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
 
   @override
   String get onboardingRemindersSubtitle =>
-      'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.';
+      'ਸਲਾਹ ਅਤੇ ਰੋਜ਼ਾਨਾ ਰੁਟੀਨ ਲਈ ਹਲਕੀ ਯਾਦ-ਦਿਹਾਨੀ ਸੈਟਿੰਗ ਚੁਣੋ। ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਸਭ ਕੁਝ ਸੋਧ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get onboardingReminderNotificationOnly => 'Notification only';
+  String get onboardingReminderNotificationOnly => 'ਕੇਵਲ ਨੋਟੀਫਿਕੇਸ਼ਨ';
 
   @override
-  String get onboardingReminderAdhanNotification => 'Adhan notification';
+  String get onboardingReminderAdhanNotification => 'ਅਜ਼ਾਨ ਨੋਟੀਫਿਕੇਸ਼ਨ';
 
   @override
   String get onboardingDailyQuranReminderTitle =>
-      'Daily Qur\'an reading reminder';
+      'ਰੋਜ਼ਾਨਾ Qur\'an ਪੜ੍ਹਨ ਦੀ ਯਾਦ-ਦਿਹਾਨੀ';
 
   @override
-  String get onboardingDailyLessonReminderTitle => 'Daily lesson reminder';
+  String get onboardingDailyLessonReminderTitle => 'ਰੋਜ਼ਾਨਾ ਪਾਠ ਦੀ ਯਾਦ-ਦਿਹਾਨੀ';
 
   @override
-  String get onboardingTrackingTitle => 'What would you like to keep in view?';
+  String get onboardingTrackingTitle =>
+      'ਤੁਸੀਂ ਕਿਹੜੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਨਜ਼ਰ ਵਿੱਚ ਰੱਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
 
   @override
   String get onboardingTrackingSubtitle =>
-      'Pick the areas you would like Path of Nur to gently keep in view as you grow. You can choose multiple.';
+      'ਉਹ ਖੇਤਰ ਚੁਣੋ ਜਿਨ੍ਹਾਂ ਨੂੰ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਕਿ Path of Nur ਤੁਹਾਡੇ ਵਿਕਾਸ ਦੌਰਾਨ ਨਰਮੀ ਨਾਲ ਨਜ਼ਰ ਵਿੱਚ ਰੱਖੇ। ਤੁਸੀਂ ਇੱਕ ਤੋਂ ਵੱਧ ਚੋਣ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get onboardingFamilyTitle => 'Grow together with family';
+  String get onboardingFamilyTitle => 'ਪਰਿਵਾਰ ਨਾਲ ਇਕੱਠੇ ਵਧੋ';
 
   @override
   String get onboardingFamilySubtitle =>
-      'Path of Nur can support individual journeys while also helping families grow together.';
+      'Path of Nur ਵਿਅਕਤੀਗਤ ਸਫ਼ਰਾਂ ਨੂੰ ਸਹਾਰਾ ਦੇ ਸਕਦਾ ਹੈ ਅਤੇ ਨਾਲ ਹੀ ਪਰਿਵਾਰਾਂ ਨੂੰ ਇਕੱਠੇ ਅੱਗੇ ਵਧਣ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹੈ।';
 
   @override
-  String get onboardingFamilyProfilesTitle => 'Family profiles';
+  String get onboardingFamilyProfilesTitle => 'ਪਰਿਵਾਰਕ ਪ੍ਰੋਫ਼ਾਈਲ';
 
   @override
   String get onboardingFamilyProfilesSubtitle =>
-      'Create profiles for family members from the Profiles page.';
+      'Profiles ਪੇਜ ਤੋਂ ਪਰਿਵਾਰਕ ਮੈਂਬਰਾਂ ਲਈ ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਓ।';
 
   @override
-  String get onboardingFamilyPrivateJourneysTitle =>
-      'Private journeys for each member';
+  String get onboardingFamilyPrivateJourneysTitle => 'ਹਰ ਮੈਂਬਰ ਲਈ ਨਿੱਜੀ ਸਫ਼ਰ';
 
   @override
   String get onboardingFamilyPrivateJourneysSubtitle =>
-      'Each profile can keep separate progress and reminders.';
+      'ਹਰ ਪ੍ਰੋਫ਼ਾਈਲ ਆਪਣੀ ਵੱਖਰੀ ਤਰੱਕੀ ਅਤੇ ਯਾਦ-ਦਿਹਾਨੀਆਂ ਰੱਖ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get onboardingFamilyAgeAppropriateTitle => 'Age-appropriate learning';
+  String get onboardingFamilyAgeAppropriateTitle => 'ਉਮਰ ਅਨੁਸਾਰ ਸਿੱਖਿਆ';
 
   @override
   String get onboardingFamilyAgeAppropriateSubtitle =>
-      'Content can adapt to stage and experience level.';
+      'ਸਮੱਗਰੀ ਉਮਰ ਅਤੇ ਤਜਰਬੇ ਦੇ ਪੱਧਰ ਦੇ ਅਨੁਸਾਰ ਢਲ ਸਕਦੀ ਹੈ।';
 
   @override
-  String get onboardingFamilySharedGrowthTitle =>
-      'Shared encouragement and growth';
+  String get onboardingFamilySharedGrowthTitle => 'ਸਾਂਝਾ ਹੌਸਲਾ ਅਤੇ ਵਿਕਾਸ';
 
   @override
   String get onboardingFamilySharedGrowthSubtitle =>
-      'Build consistency together over time.';
+      'ਸਮੇਂ ਦੇ ਨਾਲ ਇਕੱਠੇ ਨਿਯਮਿਤਤਾ ਬਣਾਓ।';
 
   @override
-  String get onboardingDhikrFeedbackTitle => 'Dhikr counter feedback';
+  String get onboardingDhikrFeedbackTitle => 'ਜ਼ਿਕਰ ਕਾਊਂਟਰ ਫੀਡਬੈਕ';
 
   @override
   String get onboardingDhikrFeedbackSubtitle =>
-      'Choose how the dhikr counter should respond when you tap.';
+      'ਚੁਣੋ ਕਿ ਜਦੋਂ ਤੁਸੀਂ ਟੈਪ ਕਰੋ ਤਾਂ ਜ਼ਿਕਰ ਕਾਊਂਟਰ ਕਿਵੇਂ ਜਵਾਬ ਦੇਵੇ।';
 
   @override
-  String get onboardingDhikrHapticTitle => 'Haptic feedback';
+  String get onboardingDhikrHapticTitle => 'ਹੈਪਟਿਕ ਫੀਡਬੈਕ';
 
   @override
-  String get onboardingOptionOff => 'Off';
+  String get onboardingOptionOff => 'ਬੰਦ';
 
   @override
-  String get onboardingOptionLight => 'Light';
+  String get onboardingOptionLight => 'ਹਲਕਾ';
 
   @override
-  String get onboardingOptionMedium => 'Medium';
+  String get onboardingOptionMedium => 'ਦਰਮਿਆਨਾ';
 
   @override
-  String get onboardingOptionStrong => 'Strong';
+  String get onboardingOptionStrong => 'ਮਜ਼ਬੂਤ';
 
   @override
-  String get onboardingDhikrSoundTitle => 'Sound feedback';
+  String get onboardingDhikrSoundTitle => 'ਆਵਾਜ਼ ਫੀਡਬੈਕ';
 
   @override
-  String get onboardingDhikrSoundSoftClick => 'Soft click';
+  String get onboardingDhikrSoundSoftClick => 'ਹੌਲਾ ਕਲਿੱਕ';
 
   @override
-  String get onboardingDhikrSoundTasbih => 'Tasbih bead sound';
+  String get onboardingDhikrSoundTasbih => 'ਤਸਬੀਹ ਦੇ ਦਾਣਿਆਂ ਦੀ ਧੁਨ';
 
   @override
-  String get onboardingDhikrVisualTitle => 'Visual feedback';
+  String get onboardingDhikrVisualTitle => 'ਦ੍ਰਿਸ਼ਟੀਗਤ ਫੀਡਬੈਕ';
 
   @override
-  String get onboardingDhikrVisualSubtleGlow => 'Subtle glow';
+  String get onboardingDhikrVisualSubtleGlow => 'ਹੌਲੀ ਚਮਕ';
 
   @override
-  String get onboardingDhikrVisualPulseAnimation => 'Pulse animation';
+  String get onboardingDhikrVisualPulseAnimation => 'ਧੜਕਣ ਐਨੀਮੇਸ਼ਨ';
 
   @override
   String onboardingDhikrPreviewCount(int count) {
-    return 'Preview count: $count';
+    return 'ਪ੍ਰੀਵਿਊ ਗਿਣਤੀ: $count';
   }
 
   @override
-  String get onboardingIdentityTitle => 'How should we address you?';
+  String get onboardingIdentityTitle => 'ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਸੰਬੋਧਨ ਕਰੀਏ?';
 
   @override
   String get onboardingIdentitySubtitle =>
-      'Choose your greeting and add your name if you would like a more personal welcome.';
+      'ਆਪਣਾ ਸਲਾਮ ਚੁਣੋ ਅਤੇ ਜੇ ਤੁਸੀਂ ਹੋਰ ਨਿੱਜੀ ਸਵਾਗਤ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਆਪਣਾ ਨਾਮ ਸ਼ਾਮਲ ਕਰੋ।';
 
   @override
-  String get onboardingGreetingTitle => 'Greeting';
+  String get onboardingGreetingTitle => 'ਸਲਾਮ';
 
   @override
-  String get onboardingNameTitle => 'Name';
+  String get onboardingNameTitle => 'ਨਾਮ';
 
   @override
-  String get onboardingOptionalHint => 'Optional';
+  String get onboardingOptionalHint => 'ਚੋਣਵਾਂ';
 
   @override
   String get onboardingNameHelperBody =>
-      'Your name is optional and only used to personalize your experience within the app.';
+      'ਤੁਹਾਡਾ ਨਾਮ ਚੋਣਵਾਂ ਹੈ ਅਤੇ ਐਪ ਦੇ ਅੰਦਰ ਤੁਹਾਡੇ ਅਨੁਭਵ ਨੂੰ ਨਿੱਜੀ ਬਣਾਉਣ ਲਈ ਹੀ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।';
 
   @override
-  String get onboardingDefaultNameFallback => 'Friend';
+  String get onboardingDefaultNameFallback => 'ਦੋਸਤ';
 
   @override
-  String get onboardingFocusSalahConsistency => 'Salah consistency';
+  String get onboardingFocusSalahConsistency => 'ਸਲਾਹ ਦੀ ਨਿਯਮਿਤਤਾ';
 
   @override
-  String get onboardingFocusSalahReminders => 'Salah reminders';
+  String get onboardingFocusSalahReminders => 'ਸਲਾਹ ਯਾਦ-ਦਿਹਾਨੀਆਂ';
 
   @override
-  String get onboardingFinalWelcomeTitle => 'Welcome to Path of Nur';
+  String get onboardingFinalWelcomeTitle => 'Path of Nur ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ';
 
   @override
   String onboardingWelcomeGreeting(String name) {
@@ -37066,109 +37291,108 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get onboardingFinalWelcomeBody =>
-      'Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.';
+      'ਤੁਹਾਡਾ ਸਫ਼ਰ ਨੀਅਤ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ ਛੋਟੇ ਨਿਯਮਿਤ ਕਦਮਾਂ ਨਾਲ ਵਧਦਾ ਹੈ। Path of Nur ਤੁਹਾਡੀ ਸਿੱਖਿਆ, ਯਾਦ, ਮਨਨ ਅਤੇ ਰੋਜ਼ਾਨਾ ਤਰੱਕੀ ਵਿੱਚ ਸਹਾਇਤਾ ਲਈ ਇੱਥੇ ਹੈ।';
 
   @override
-  String get onboardingFocusListTitle => 'Your chosen focus areas:';
+  String get onboardingFocusListTitle => 'ਤੁਹਾਡੇ ਚੁਣੇ ਹੋਏ ਧਿਆਨ ਖੇਤਰ:';
 
   @override
   String get onboardingKnowledgeDuaMeaning =>
-      'My Lord, increase me in knowledge.';
+      'ਮੇਰੇ ਰੱਬ, ਮੇਰੇ ਗਿਆਨ ਵਿੱਚ ਵਾਧਾ ਕਰ।';
 
   @override
-  String get onboardingLanguageSystemDefault => 'System Default';
+  String get onboardingLanguageSystemDefault => 'ਸਿਸਟਮ ਡਿਫਾਲਟ';
 
   @override
-  String get onboardingLanguageEnglish => 'English';
+  String get onboardingLanguageEnglish => 'ਅੰਗਰੇਜ਼ੀ';
 
   @override
-  String get onboardingLanguageArabic => 'Arabic (العربية)';
+  String get onboardingLanguageArabic => 'ਅਰਬੀ (العربية)';
 
   @override
-  String get onboardingLanguageGerman => 'German (Deutsch)';
+  String get onboardingLanguageGerman => 'ਜਰਮਨ (Deutsch)';
 
   @override
-  String get onboardingLanguageUrdu => 'Urdu (اردو)';
+  String get onboardingLanguageUrdu => 'ਉਰਦੂ (اردو)';
 
   @override
-  String get onboardingLanguageHindi => 'Hindi (हिंदी)';
+  String get onboardingLanguageHindi => 'ਹਿੰਦੀ (हिंदी)';
 
   @override
-  String get onboardingLanguageIndonesian => 'Indonesian';
+  String get onboardingLanguageIndonesian => 'ਇੰਡੋਨੇਸ਼ੀਆਈ';
 
   @override
-  String get onboardingLanguageMalay => 'Malay';
+  String get onboardingLanguageMalay => 'ਮਲਯ';
 
   @override
-  String get onboardingLanguageTurkish => 'Turkish';
+  String get onboardingLanguageTurkish => 'ਤੁਰਕੀ';
 
   @override
-  String get onboardingLanguageBengali => 'Bengali';
+  String get onboardingLanguageBengali => 'ਬੰਗਾਲੀ';
 
   @override
-  String get onboardingInterestUnderstandingQuran => 'Understanding the Qur’an';
+  String get onboardingInterestUnderstandingQuran => 'ਕੁਰਆਨ ਨੂੰ ਸਮਝਣਾ';
 
   @override
-  String get onboardingInterestLearningHadith => 'Learning Hadith';
+  String get onboardingInterestLearningHadith => 'ਹਦੀਸ ਸਿੱਖਣਾ';
 
   @override
-  String get onboardingInterestStoriesProphets => 'Stories of the Prophets';
+  String get onboardingInterestStoriesProphets => 'ਅੰਬਿਆ ਦੀਆਂ ਕਹਾਣੀਆਂ';
 
   @override
-  String get onboardingInterestStrengtheningSalah => 'Strengthening my Salah';
+  String get onboardingInterestStrengtheningSalah => 'ਆਪਣੀ ਨਮਾਜ਼ ਮਜ਼ਬੂਤ ਕਰਨੀ';
 
   @override
-  String get onboardingInterestDhikrRemembrance => 'Dhikr and remembrance';
+  String get onboardingInterestDhikrRemembrance => 'ਜ਼ਿਕਰ ਅਤੇ ਯਾਦ';
 
   @override
-  String get onboardingInterestBetterHabits => 'Building better habits';
+  String get onboardingInterestBetterHabits => 'ਵਧੀਆ ਆਦਤਾਂ ਬਣਾਉਣਾ';
 
   @override
   String get onboardingInterestWorldThroughQuran =>
-      'Learning about the world through the Qur’an';
+      'ਕੁਰਆਨ ਰਾਹੀਂ ਦੁਨਿਆ ਬਾਰੇ ਸਿੱਖਣਾ';
 
   @override
-  String get onboardingInterestIslamicKnowledge => 'Islamic knowledge';
+  String get onboardingInterestIslamicKnowledge => 'ਇਸਲਾਮੀ ਇਲਮ';
 
   @override
-  String get onboardingInterestPersonalGrowth =>
-      'Personal growth and discipline';
+  String get onboardingInterestPersonalGrowth => 'ਨਿੱਜੀ ਵਿਕਾਸ ਅਤੇ ਅਨੁਸ਼ਾਸਨ';
 
   @override
-  String get onboardingInterestDailyInspiration => 'Daily inspiration';
+  String get onboardingInterestDailyInspiration => 'ਰੋਜ਼ਾਨਾ ਪ੍ਰੇਰਣਾ';
 
   @override
-  String get onboardingTrackingSalah => 'Salah tracking';
+  String get onboardingTrackingSalah => 'ਸਲਾਹ ਟ੍ਰੈਕਿੰਗ';
 
   @override
-  String get onboardingTrackingDhikr => 'Dhikr tracking';
+  String get onboardingTrackingDhikr => 'ਜ਼ਿਕਰ ਟ੍ਰੈਕਿੰਗ';
 
   @override
-  String get onboardingTrackingQuranReading => 'Qur’an reading progress';
+  String get onboardingTrackingQuranReading => 'Qur’an ਪੜ੍ਹਨ ਦੀ ਤਰੱਕੀ';
 
   @override
-  String get onboardingTrackingLearning => 'Learning progress';
+  String get onboardingTrackingLearning => 'ਸਿੱਖਣ ਦੀ ਤਰੱਕੀ';
 
   @override
-  String get onboardingTrackingHabitBuilding => 'Habit building';
+  String get onboardingTrackingHabitBuilding => 'ਆਦਤ ਬਣਾਉਣਾ';
 
   @override
-  String get onboardingTrackingReflection => 'Reflection / journaling';
+  String get onboardingTrackingReflection => 'ਚਿੰਤਨ / ਜਰਨਲਿੰਗ';
 
   @override
-  String get onboardingSizeSmall => 'Small';
+  String get onboardingSizeSmall => 'ਛੋਟਾ';
 
   @override
-  String get onboardingSizeLarge => 'Large';
+  String get onboardingSizeLarge => 'ਵੱਡਾ';
 
   @override
-  String get onboardingSizeExtraLarge => 'Extra large';
+  String get onboardingSizeExtraLarge => 'ਬਹੁਤ ਵੱਡਾ';
 
   @override
-  String get accountsSyncTransportUnknown => 'Unknown transport';
+  String get accountsSyncTransportUnknown => 'ਅਣਜਾਣ ਟ੍ਰਾਂਸਪੋਰਟ';
 
   @override
-  String get accountsSyncStatusUnknown => 'Status not available';
+  String get accountsSyncStatusUnknown => 'ਸਥਿਤੀ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get worldLandingTitle => 'World & Creation';
@@ -37666,106 +37890,105 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranSummaryThemeParadiseAndHell => 'Paradise and Hell';
 
   @override
-  String get quranThemeDiscoveryIslandTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryIslandTitle => 'ਵਿਸ਼ੇ ਮੁਤਾਬਕ ਬ੍ਰਾਊਜ਼ ਕਰੋ';
 
   @override
   String get quranThemeDiscoveryIslandSubtitle =>
-      'Explore the Qur\'an through themes like mercy, patience, prophets, guidance, and the hereafter.';
+      'ਦਇਆ, ਧੀਰਜ, ਪੈਗੰਬਰਾਂ, ਮਾਰਗਦਰਸ਼ਨ ਅਤੇ ਭਵਿੱਖ ਵਰਗੇ ਵਿਸ਼ਿਆਂ ਰਾਹੀਂ ਕੁਰਾਨ ਦੀ ਪੜਚੋਲ ਕਰੋ।';
 
   @override
-  String get quranThemeDiscoveryPageTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryPageTitle => 'ਵਿਸ਼ੇ ਮੁਤਾਬਕ ਬ੍ਰਾਊਜ਼ ਕਰੋ';
 
   @override
   String get quranThemeDiscoveryPageSubtitle =>
-      'Discover the Qur\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.';
+      'ਕਿਉਰੇਟਿਡ ਥੀਮਾਂ, ਸੰਬੰਧਿਤ ਸੁਰਾਂ, ਮੁੱਖ ਆਇਤ ਐਂਕਰਾਂ ਅਤੇ ਕੋਮਲ ਅਧਿਐਨ ਮਾਰਗਾਂ ਰਾਹੀਂ ਕੁਰਾਨ ਦੀ ਖੋਜ ਕਰੋ।';
 
   @override
-  String get quranThemeDiscoveryHeroEyebrow => 'Thematic Discovery';
+  String get quranThemeDiscoveryHeroEyebrow => 'ਥੀਮੈਟਿਕ ਖੋਜ';
 
   @override
   String get quranThemeDiscoveryHeroTitle =>
-      'Explore the Qur\'an through themes that shape the heart';
+      'ਦਿਲ ਨੂੰ ਆਕਾਰ ਦੇਣ ਵਾਲੇ ਵਿਸ਼ਿਆਂ ਰਾਹੀਂ ਕੁਰਾਨ ਦੀ ਪੜਚੋਲ ਕਰੋ';
 
   @override
   String get quranThemeDiscoveryHeroSubtitle =>
-      'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.';
+      'ਦਇਆ, ਧੀਰਜ, ਨਬੀਆਂ, ਮਾਰਗਦਰਸ਼ਨ, ਨਿਆਂ, ਅਤੇ ਸੰਬੰਧਿਤ ਸੁਰਾਂ ਵਿੱਚ ਸ੍ਰਿਸ਼ਟੀ ਦੇ ਚਿੰਨ੍ਹ ਦੀ ਪਾਲਣਾ ਕਰਨ ਦਾ ਇੱਕ ਸ਼ਾਂਤ ਤਰੀਕਾ.';
 
   @override
   String get quranThemeDiscoverySearchHint =>
-      'Search topics, prophets, events, or surahs...';
+      'ਵਿਸ਼ਿਆਂ, ਨਬੀਆਂ, ਘਟਨਾਵਾਂ, ਜਾਂ ਸੁਰਾਂ ਦੀ ਖੋਜ ਕਰੋ...';
 
   @override
-  String get quranThemeDiscoveryFeaturedThemesTitle => 'Featured themes';
+  String get quranThemeDiscoveryFeaturedThemesTitle => 'ਫੀਚਰਡ ਥੀਮ';
 
   @override
-  String get quranThemeDiscoveryBrowseByCategoryTitle => 'Browse by category';
+  String get quranThemeDiscoveryBrowseByCategoryTitle =>
+      'ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਬ੍ਰਾਊਜ਼ ਕਰੋ';
 
   @override
-  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'Key ayah references';
+  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'ਮੁੱਖ ਆਇਤ ਹਵਾਲੇ';
 
   @override
-  String get quranThemeDiscoveryRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeDiscoveryRelatedSurahsTitle => 'ਸਬੰਧਤ ਸੂਰਾ';
 
   @override
-  String get quranThemeDiscoveryReflectionTitle => 'Reflection';
+  String get quranThemeDiscoveryReflectionTitle => 'ਪ੍ਰਤੀਬਿੰਬ';
 
   @override
-  String get quranThemeDiscoveryMoreThemesTitle => 'More themes';
+  String get quranThemeDiscoveryMoreThemesTitle => 'ਹੋਰ ਥੀਮ';
 
   @override
-  String get quranThemeDiscoveryExploreThemeAction => 'Explore theme';
+  String get quranThemeDiscoveryExploreThemeAction => 'ਥੀਮ ਦੀ ਪੜਚੋਲ ਕਰੋ';
 
   @override
-  String get quranThemeDiscoveryBrowseMoreThemesAction => 'Browse more themes';
+  String get quranThemeDiscoveryBrowseMoreThemesAction => 'ਹੋਰ ਥੀਮ ਬ੍ਰਾਊਜ਼ ਕਰੋ';
 
   @override
   String get quranThemeDiscoveryNoResultsTitle =>
-      'No themes matched your search';
+      'ਕੋਈ ਥੀਮ ਤੁਹਾਡੀ ਖੋਜ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ';
 
   @override
   String get quranThemeDiscoveryNoResultsSubtitle =>
-      'Try another topic, prophet, event, or category.';
+      'ਕੋਈ ਹੋਰ ਵਿਸ਼ਾ, ਪੈਗੰਬਰ, ਘਟਨਾ, ਜਾਂ ਸ਼੍ਰੇਣੀ ਅਜ਼ਮਾਓ।';
 
   @override
-  String get quranThemeDiscoveryMissingThemeTitle =>
-      'This theme is not available';
+  String get quranThemeDiscoveryMissingThemeTitle => 'ਇਹ ਥੀਮ ਉਪਲਬਧ ਨਹੀਂ ਹੈ';
 
   @override
   String get quranThemeDiscoveryMissingThemeSubtitle =>
-      'Return to Browse by Topic and choose another Qur\'an theme.';
+      'ਵਿਸ਼ੇ ਦੁਆਰਾ ਬ੍ਰਾਊਜ਼ \'ਤੇ ਵਾਪਸ ਜਾਓ ਅਤੇ ਹੋਰ ਕੁਰਾਨ ਥੀਮ ਚੁਣੋ।';
 
   @override
   String quranThemeDiscoveryThemeCountLabel(int count) {
-    return '$count themes';
+    return '$count ਥੀਮ';
   }
 
   @override
   String quranThemeDiscoverySurahCountLabel(int count) {
-    return '$count surahs';
+    return '$count ਸੂਰਤਾਂ';
   }
 
   @override
-  String get quranThemeDiscoveryCategoryBelief => 'Belief';
+  String get quranThemeDiscoveryCategoryBelief => 'ਵਿਸ਼ਵਾਸ';
 
   @override
-  String get quranThemeDiscoveryCategoryWorship => 'Worship';
+  String get quranThemeDiscoveryCategoryWorship => 'ਪੂਜਾ';
 
   @override
-  String get quranThemeDiscoveryCategoryCharacter => 'Character';
+  String get quranThemeDiscoveryCategoryCharacter => 'ਅੱਖਰ';
 
   @override
-  String get quranThemeDiscoveryCategoryStoriesProphets =>
-      'Stories and Prophets';
+  String get quranThemeDiscoveryCategoryStoriesProphets => 'ਕਹਾਣੀਆਂ ਅਤੇ ਨਬੀ';
 
   @override
-  String get quranThemeDiscoveryCategoryAkhirah => 'Akhirah';
+  String get quranThemeDiscoveryCategoryAkhirah => 'ਅਖੀਰਾ';
 
   @override
-  String get quranThemeDiscoveryCategorySocietyEthics => 'Society and Ethics';
+  String get quranThemeDiscoveryCategorySocietyEthics => 'ਸਮਾਜ ਅਤੇ ਨੈਤਿਕਤਾ';
 
   @override
   String get quranThemeDiscoveryCategorySignsReflection =>
-      'Signs and Reflection';
+      'ਚਿੰਨ੍ਹ ਅਤੇ ਪ੍ਰਤੀਬਿੰਬ';
 
   @override
   String get quranPathwaysIslandTitle => 'Qur\'an Pathways';
@@ -39354,7 +39577,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnQuranBeginnerSoftBridgeBeginAction => 'Let’s begin';
 
   @override
-  String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';
+  String get settingsThemeChoiceMidnightManuscript => 'ਅੱਧੀ ਰਾਤ ਦੀ ਪਾਂਡੁਲਿਪੀ';
 
   @override
   String get settingsThemeChoiceNoorGlass => 'Noor Glass';
@@ -39393,7 +39616,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
-      'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.';
+      'ਗੂੜ੍ਹੇ ਸਿਆਹੀ ਰੰਗ, ਗਰਮ ਸੁਨਹਿਰੀ ਛੋਹਾਂ ਅਤੇ ਸ਼ਾਂਤ ਪਾਂਡੁਲਿਪੀ ਵਾਲਾ ਮਾਹੌਲ।';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptDescription =>
@@ -39405,19 +39628,19 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get settingsThemeModePickerHelper =>
-      'Choose the atmosphere that feels most at home in your journey.';
+      'ਉਹ ਮਾਹੌਲ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਸਫਰ ਵਿੱਚ ਸਭ ਤੋਂ ਵੱਧ ਆਪਣਾਪਨ ਦੇਵੇ।';
 
   @override
   String get settingsThemeModeDefaultBestFor =>
-      'Best for everyday calm and balanced use.';
+      'ਰੋਜ਼ਾਨਾ ਸਾਕਤ ਅਤੇ ਸੰਤੁਲਿਤ ਵਰਤੋਂ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeCalmBeautifulBestFor =>
-      'Best if you prefer the earlier soft Path of Nūr atmosphere.';
+      'ਸਭ ਤੋਂ ਵਧੀਆ ਜੇ ਤੁਹਾਨੂੰ Path of Nūr ਦਾ ਪਹਿਲਾਂ ਵਾਲਾ ਨਰਮ ਮਾਹੌਲ ਪਸੰਦ ਹੈ।';
 
   @override
   String get settingsThemeModeEasyReadBestFor =>
-      'Best for longer reading and clearer contrast.';
+      'ਲੰਬੀ ਪੜ੍ਹਾਈ ਅਤੇ ਹੋਰ ਸਾਫ਼ ਕਨਟ੍ਰਾਸਟ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeNoorGlassBestFor =>
@@ -39425,31 +39648,31 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDarkBestFor =>
-      'Best for evening use when you want the same Noor surfaces in a darker atmosphere.';
+      'ਸ਼ਾਮ ਦੀ ਵਰਤੋਂ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ ਜਦੋਂ ਤੁਸੀਂ ਉਹੀ Noor ਸਤਹਾਂ ਹੋਰ ਗੂੜ੍ਹੇ ਮਾਹੌਲ ਵਿੱਚ ਚਾਹੁੰਦੇ ਹੋ।';
 
   @override
   String get settingsThemeModeNoGlassBestFor =>
-      'Best for a stable, opaque look with less visual transparency.';
+      'ਘੱਟ ਵਿਜ਼ੂਅਲ ਪਾਰਦਰਸ਼ਤਾ ਨਾਲ ਸਥਿਰ ਅਤੇ ਠੋਸ ਦਿੱਖ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeNoGlassDarkBestFor =>
-      'Best for dark solid surfaces without glass effects.';
+      'ਕੱਚ ਦੇ ਅਸਰ ਤੋਂ ਬਿਨਾ ਗੂੜ੍ਹੀਆਂ ਠੋਸ ਸਤਹਾਂ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeDarkBestFor =>
-      'Best for low-light reading and quieter evenings.';
+      'ਘੱਟ ਰੋਸ਼ਨੀ ਵਿੱਚ ਪੜ੍ਹਨ ਅਤੇ ਹੋਰ ਸਾਕਤ ਸ਼ਾਮਾਂ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
-      'Best for evening reflection and Qur’an study.';
+      'ਸ਼ਾਮ ਦੇ ਗੌਰ-ਫਿਕਰ ਅਤੇ ਕੁਰਆਨ ਅਧਿਐਨ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptBestFor =>
-      'Best for rich night reading with manuscript warmth and Noor glow.';
+      'ਪਾਂਡੁਲਿਪੀ ਦੀ ਗਰਮਾਹਟ ਅਤੇ Noor ਦੀ ਚਮਕ ਨਾਲ ਭਰਪੂਰ ਰਾਤ ਦੀ ਪੜ੍ਹਾਈ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ।';
 
   @override
   String get settingsThemeModeNoorKidsBestFor =>
-      'Best for families who want a lighter, warmer, more playful Noor feel.';
+      'ਉਨ੍ਹਾਂ ਪਰਿਵਾਰਾਂ ਲਈ ਸਭ ਤੋਂ ਵਧੀਆ ਜੋ Noor ਦਾ ਹੋਰ ਹਲਕਾ, ਗਰਮ ਅਤੇ ਖੇਡਾਂ ਭਰਿਆ ਅਹਿਸਾਸ ਚਾਹੁੰਦੇ ਹਨ।';
 
   @override
   String get editorialDashboardTitle => 'Editorial Dashboard';
@@ -40278,216 +40501,218 @@ class AppLocalizationsPa extends AppLocalizations {
   String get editorialDashboardVersionUnknown => 'Version unavailable';
 
   @override
-  String get homeGlassVariantSectionTitle => 'Glass Variants';
+  String get homeGlassVariantSectionTitle => 'ਗਲਾਸ ਰੂਪ';
 
   @override
   String get homeGlassVariantSectionSubtitle =>
-      'Temporary homepage comparison of calm glass island styles inspired by the Learning Hub.';
+      'Learning Hub ਤੋਂ ਪ੍ਰੇਰਿਤ ਸ਼ਾਂਤ ਗਲਾਸ ਆਇਲੈਂਡ ਅੰਦਾਜ਼ਾਂ ਦੀ ਹੋਮਪੇਜ ਲਈ ਅਸਥਾਈ ਤੁਲਨਾ।';
 
   @override
   String get homeGlassVariantSectionFootnote =>
-      'Temporary comparison band only. This section is isolated and safe to remove once a homepage glass direction is chosen.';
+      'ਸਿਰਫ਼ ਅਸਥਾਈ ਤੁਲਨਾਤਮਕ ਪੱਟੀ। ਜਦੋਂ ਹੋਮਪੇਜ ਲਈ ਗਲਾਸ ਦੀ ਦਿਸ਼ਾ ਚੁਣ ਲਈ ਜਾਵੇ, ਇਹ ਭਾਗ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਹਟਾਇਆ ਜਾ ਸਕਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantWarmTitle => 'Warm Glass';
+  String get homeGlassVariantWarmTitle => 'ਗਰਮ ਗਲਾਸ';
 
   @override
   String get homeGlassVariantWarmSubtitle =>
-      'Parchment warmth with soft gold edges';
+      'ਪਰਚਮੈਂਟ ਵਰਗੀ ਗਰਮੀ ਅਤੇ ਨਰਮ ਸੁਨਹਿਰੀ ਕਿਨਾਰੇ';
 
   @override
   String get homeGlassVariantWarmBody =>
-      'A welcoming devotional surface with gentle ivory warmth. It keeps text easy to settle into while still feeling luminous and home-like.';
+      'ਹੌਲੀ ਦੰਦਾਸੀ ਗਰਮੀ ਵਾਲੀ ਇੱਕ ਸਵਾਗਤੀ ਰੂਹਾਨੀ ਸਤ੍ਹਾ। ਇਹ ਲਿਖਤ ਨੂੰ ਆਰਾਮ ਨਾਲ ਪੜ੍ਹਨਯੋਗ ਰੱਖਦੀ ਹੈ ਅਤੇ ਨਾਲ ਹੀ ਚਮਕਦਾਰ ਤੇ ਘਰ-ਵਾਂਗ ਅਹਿਸਾਸ ਦਿੰਦੀ ਹੈ।';
 
   @override
-  String get homeGlassVariantWarmFooter => 'Best for welcoming home content';
+  String get homeGlassVariantWarmFooter => 'ਸਵਾਗਤੀ ਹੋਮ ਸਮੱਗਰੀ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantWarmMicro => 'Soft warmth · calm depth';
+  String get homeGlassVariantWarmMicro => 'ਨਰਮ ਗਰਮੀ · ਸ਼ਾਂਤ ਗਹਿਰਾਈ';
 
   @override
-  String get homeGlassVariantMilkyTitle => 'Milky Glass';
+  String get homeGlassVariantMilkyTitle => 'ਮਿਲਕੀ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantMilkySubtitle => 'Cloudy ivory diffusion';
+  String get homeGlassVariantMilkySubtitle => 'ਬੱਦਲੀਆ ਦੰਦਾਸੀ ਫੈਲਾਅ';
 
   @override
   String get homeGlassVariantMilkyBody =>
-      'This denser veil softens whatever sits behind it. It feels serene, readable, and especially safe for text-first spiritual moments.';
+      'ਇਹ ਘਣਾ ਪਰਦਾ ਪਿੱਛੇ ਮੌਜੂਦ ਕਿਸੇ ਵੀ ਚੀਜ਼ ਨੂੰ ਨਰਮ ਕਰ ਦਿੰਦਾ ਹੈ। ਇਹ ਖਾਸ ਤੌਰ \'ਤੇ ਲਿਖਤ-ਕੇਂਦਰਤ ਰੂਹਾਨੀ ਪਲਾਂ ਲਈ ਸ਼ਾਂਤ, ਪੜ੍ਹਨਯੋਗ ਅਤੇ ਸੁਰੱਖਿਅਤ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantMilkyFooter => 'Best for serene reading';
+  String get homeGlassVariantMilkyFooter => 'ਸ਼ਾਂਤ ਪਾਠ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantMilkyMicro => 'Clouded veil · high comfort';
+  String get homeGlassVariantMilkyMicro => 'ਧੁੰਦਲਾ ਪਰਦਾ · ਉੱਚ ਸੁਖਾਲਾਪਣ';
 
   @override
-  String get homeGlassVariantCrystalTitle => 'Crystal Glass';
+  String get homeGlassVariantCrystalTitle => 'ਕ੍ਰਿਸਟਲ ਗਲਾਸ';
 
   @override
   String get homeGlassVariantCrystalSubtitle =>
-      'Clearer, brighter transparency';
+      'ਹੋਰ ਸਾਫ਼, ਹੋਰ ਚਮਕੀਲੀ ਪਾਰਦਰਸ਼ਤਾ';
 
   @override
   String get homeGlassVariantCrystalBody =>
-      'A lighter treatment that lets more atmosphere show through. It feels polished and airy while still protecting titles and body text.';
+      'ਇਹ ਹਲਕਾ ਇਲਾਜ ਹੋਰ ਮਾਹੌਲ ਨੂੰ ਅੰਦਰੋਂ ਦਿੱਖਣ ਦਿੰਦਾ ਹੈ। ਇਹ ਸਿਰਲੇਖਾਂ ਅਤੇ ਮੁੱਖ ਲਿਖਤ ਦੀ ਰੱਖਿਆ ਕਰਦਿਆਂ ਚਮਕਦਾਰ ਅਤੇ ਹਵਾਦਾਰ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantCrystalFooter => 'Best for premium highlights';
+  String get homeGlassVariantCrystalFooter => 'ਪ੍ਰੀਮੀਅਮ ਹਾਈਲਾਈਟ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantCrystalMicro => 'Brighter lift · open clarity';
+  String get homeGlassVariantCrystalMicro => 'ਚਮਕੀਲਾ ਉਠਾਅ · ਖੁੱਲ੍ਹੀ ਸਾਫ਼ਗੀ';
 
   @override
-  String get homeGlassVariantNightTitle => 'Night Glass';
+  String get homeGlassVariantNightTitle => 'ਨਾਈਟ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantNightSubtitle => 'Smoky dusk elegance';
+  String get homeGlassVariantNightSubtitle => 'ਧੂੰਏਂਦਾਰ ਸ਼ਾਮੀ ਨਫ਼ਾਸਤ';
 
   @override
   String get homeGlassVariantNightBody =>
-      'A darker island for quiet evening depth. It stays soft and readable instead of turning into a hard black panel.';
+      'ਸ਼ਾਂਤ ਸ਼ਾਮੀ ਗਹਿਰਾਈ ਲਈ ਇੱਕ ਹੋਰ ਗੂੜ੍ਹਾ ਆਇਲੈਂਡ। ਇਹ ਕਠੋਰ ਕਾਲੇ ਪੈਨਲ ਵਿੱਚ ਬਦਲਣ ਦੀ ਬਜਾਏ ਨਰਮ ਅਤੇ ਪੜ੍ਹਨਯੋਗ ਰਹਿੰਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantNightFooter => 'Best for evening reflection';
+  String get homeGlassVariantNightFooter => 'ਸ਼ਾਮ ਦੇ ਮਨਨ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantNightMicro => 'Low light · calm contrast';
+  String get homeGlassVariantNightMicro => 'ਘੱਟ ਰੌਸ਼ਨੀ · ਸ਼ਾਂਤ ਵਿਰੋਧ';
 
   @override
-  String get homeGlassVariantTintedTitle => 'Tinted Glass';
+  String get homeGlassVariantTintedTitle => 'ਟਿੰਟਿਡ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantTintedSubtitle => 'Gentle app-colored wash';
+  String get homeGlassVariantTintedSubtitle => 'ਐਪ ਦੇ ਰੰਗਾਂ ਦੀ ਹੌਲੀ ਛਾਪ';
 
   @override
   String get homeGlassVariantTintedBody =>
-      'This version adds a subtle personality tint without becoming loud. It still feels grounded in Path of Nūr’s warm palette.';
+      'ਇਹ ਰੂਪ ਹੌਲੀ ਜਿਹੀ ਵਿਅਕਤਿਤਾ-ਭਰੀ ਰੰਗਤ ਜੋੜਦਾ ਹੈ ਬਿਨਾਂ ਉੱਚੀ ਆਵਾਜ਼ ਬਣੇ। ਇਹ ਫਿਰ ਵੀ Path of Nūr ਦੀ ਗਰਮ ਰੰਗ-ਸੁਰਤ ਨਾਲ ਜੁੜਿਆ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantTintedFooter => 'Best for curated accents';
+  String get homeGlassVariantTintedFooter => 'ਚੁਣੇ ਹੋਏ ਐਕਸੈਂਟ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantTintedMicro => 'Editorial wash · soft color';
+  String get homeGlassVariantTintedMicro => 'ਸੰਪਾਦਕੀ ਰੰਗਤ · ਨਰਮ ਰੰਗ';
 
   @override
-  String get homeGlassVariantFrostedTitle => 'Frosted Glass';
+  String get homeGlassVariantFrostedTitle => 'ਫ੍ਰੌਸਟਿਡ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantFrostedSubtitle => 'Classic diffuse blur';
+  String get homeGlassVariantFrostedSubtitle => 'ਰਵਾਇਤੀ ਫੈਲਿਆ ਹੋਇਆ ਧੁੰਦਲਾਪਣ';
 
   @override
   String get homeGlassVariantFrostedBody =>
-      'A practical blur-first surface that protects readability. It is dependable when content should lead and the material should stay quiet.';
+      'ਇਹ ਇੱਕ ਵਰਤੋਂਯੋਗ blur-ਪਹਿਲਾਂ ਸਤ੍ਹਾ ਹੈ ਜੋ ਪੜ੍ਹਨਯੋਗਤਾ ਦੀ ਰੱਖਿਆ ਕਰਦੀ ਹੈ। ਜਦੋਂ ਸਮੱਗਰੀ ਨੂੰ ਅੱਗੇ ਰਹਿਣਾ ਹੋਵੇ ਅਤੇ ਸਮੱਗਰੀ ਦਾ ਮਾਦਾ ਪਿੱਛੇ ਸ਼ਾਂਤ ਰਹਿਣਾ ਹੋਵੇ, ਇਹ ਭਰੋਸੇਯੋਗ ਹੈ।';
 
   @override
-  String get homeGlassVariantFrostedFooter => 'Best for utility islands';
+  String get homeGlassVariantFrostedFooter => 'ਉਪਯੋਗੀ ਆਇਲੈਂਡ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantFrostedMicro => 'Diffuse blur · readability first';
+  String get homeGlassVariantFrostedMicro =>
+      'ਫੈਲਿਆ ਧੁੰਦਲਾਪਣ · ਪਹਿਲਾਂ ਪੜ੍ਹਨਯੋਗਤਾ';
 
   @override
-  String get homeGlassVariantLayeredTitle => 'Layered Glass';
+  String get homeGlassVariantLayeredTitle => 'ਪਰਤਦਾਰ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantLayeredSubtitle => 'Subtle inner depth';
+  String get homeGlassVariantLayeredSubtitle => 'ਹੌਲੀ ਅੰਦਰੂਨੀ ਗਹਿਰਾਈ';
 
   @override
   String get homeGlassVariantLayeredBody =>
-      'A calm outer island with a nested inner veil. It helps the surface feel dimensional without turning into a busy showcase.';
+      'ਬਾਹਰੀ ਸ਼ਾਂਤ ਆਇਲੈਂਡ ਦੇ ਅੰਦਰ ਇਕ ਹੋਰ ਨਰਮ ਅੰਦਰੂਨੀ ਪਰਦਾ। ਇਹ ਸਤ੍ਹਾ ਨੂੰ ਬਿਨਾਂ ਬੇਹਦ ਨੁਮਾਇਸ਼ੀ ਬਣੇ ਕੁਝ ਅਕਾਰ ਦਿੰਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantLayeredFooter => 'Best for nested hierarchy';
+  String get homeGlassVariantLayeredFooter => 'ਪਰਤਦਾਰ ਹਿਰਾਰਕੀ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantLayeredMicro => 'Inner panel · gentle structure';
+  String get homeGlassVariantLayeredMicro => 'ਅੰਦਰਲਾ ਪੈਨਲ · ਨਰਮ ਬਣਤਰ';
 
   @override
-  String get homeGlassVariantEdgeLitTitle => 'Edge-lit Glass';
+  String get homeGlassVariantEdgeLitTitle => 'ਐਜ-ਲਿਟ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantEdgeLitSubtitle => 'Delicate rim light';
+  String get homeGlassVariantEdgeLitSubtitle => 'ਹੌਲੀ ਚਮਕਦਾਰ ਕਿਨਾਰੀ';
 
   @override
   String get homeGlassVariantEdgeLitBody =>
-      'A quieter featured treatment with a soft luminous edge. It adds presence around the perimeter while keeping the center calm.';
+      'ਹੌਲੀ ਚਮਕਦਾਰ ਕਿਨਾਰੇ ਵਾਲਾ ਇੱਕ ਹੋਰ ਸ਼ਾਂਤ ਨੁਮਾਇਸ਼ੀ ਇਲਾਜ। ਇਹ ਵਿਚਕਾਰਲੇ ਹਿੱਸੇ ਨੂੰ ਸ਼ਾਂਤ ਰੱਖਦਿਆਂ ਘੇਰੇ ਦੇ ਆਲੇ-ਦੁਆਲੇ ਹਾਜ਼ਰੀ ਜੋੜਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantEdgeLitFooter => 'Best for featured destinations';
+  String get homeGlassVariantEdgeLitFooter =>
+      'ਨੁਮਾਇਸ਼ੀ ਮੰਜ਼ਿਲਾਂ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantEdgeLitMicro => 'Rim light · subtle emphasis';
+  String get homeGlassVariantEdgeLitMicro => 'ਕਿਨਾਰੀ ਰੌਸ਼ਨੀ · ਹੌਲਾ ਜ਼ੋਰ';
 
   @override
-  String get homeGlassVariantAdaptiveTitle => 'Adaptive Glass';
+  String get homeGlassVariantAdaptiveTitle => 'ਐਡੈਪਟਿਵ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantAdaptiveSubtitle => 'Balanced and practical';
+  String get homeGlassVariantAdaptiveSubtitle => 'ਸੰਤੁਲਿਤ ਅਤੇ ਵਰਤੋਂਯੋਗ';
 
   @override
   String get homeGlassVariantAdaptiveBody =>
-      'This version tries to stay steady across warmer and deeper surroundings. It feels usable, calm, and flexible for everyday home surfaces.';
+      'ਇਹ ਰੂਪ ਹੋਰ ਗਰਮ ਅਤੇ ਹੋਰ ਗਹਿਰੇ ਮਾਹੌਲਾਂ ਵਿੱਚ ਵੀ ਸੰਤੁਲਿਤ ਰਹਿਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦਾ ਹੈ। ਇਹ ਰੋਜ਼ਾਨਾ ਹੋਮ ਸਤ੍ਹਾਂ ਲਈ ਵਰਤੋਂਯੋਗ, ਸ਼ਾਂਤ ਅਤੇ ਲਚਕੀਲਾ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ।';
 
   @override
-  String get homeGlassVariantAdaptiveFooter => 'Best for default balance';
+  String get homeGlassVariantAdaptiveFooter => 'ਮੂਲ ਸੰਤੁਲਨ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantAdaptiveMicro => 'Stable blend · everyday fit';
+  String get homeGlassVariantAdaptiveMicro => 'ਸਥਿਰ ਮਿਲਾਪ · ਰੋਜ਼ਾਨਾ ਫਿੱਟ';
 
   @override
-  String get homeGlassVariantSoftMatteTitle => 'Soft Matte Glass';
+  String get homeGlassVariantSoftMatteTitle => 'ਸਾਫਟ ਮੈਟ ਗਲਾਸ';
 
   @override
-  String get homeGlassVariantSoftMatteSubtitle =>
-      'Muted shine with lower sparkle';
+  String get homeGlassVariantSoftMatteSubtitle => 'ਘੱਟ ਚਮਕ ਨਾਲ ਮੰਦ ਤਮਕ';
 
   @override
   String get homeGlassVariantSoftMatteBody =>
-      'Less glossy and more grounded, this surface leans toward restfulness. It keeps the glass mood while reducing reflective energy.';
+      'ਘੱਟ ਚਮਕੀਲਾ ਅਤੇ ਹੋਰ ਜ਼ਮੀਨੀ, ਇਹ ਸਤ੍ਹਾ ਆਰਾਮ ਵੱਲ ਝੁਕਦੀ ਹੈ। ਇਹ ਗਲਾਸ ਵਾਲਾ ਮੂਡ ਕਾਇਮ ਰੱਖਦੀ ਹੈ ਪਰ ਚਮਕਦਾਰ ਊਰਜਾ ਘਟਾਉਂਦੀ ਹੈ।';
 
   @override
-  String get homeGlassVariantSoftMatteFooter => 'Best for restful content';
+  String get homeGlassVariantSoftMatteFooter =>
+      'ਆਰਾਮਦਾਇਕ ਸਮੱਗਰੀ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
-  String get homeGlassVariantSoftMatteMicro => 'Muted sheen · grounded calm';
+  String get homeGlassVariantSoftMatteMicro => 'ਮੰਦ ਚਮਕ · ਜ਼ਮੀਨੀ ਸ਼ਾਂਤੀ';
 
   @override
-  String get homeGlassVariantDenseSanctuaryTitle => 'Dense Sanctuary Glass';
+  String get homeGlassVariantDenseSanctuaryTitle => 'ਘਣਾ ਸੈਂਕਚੁਅਰੀ ਗਲਾਸ';
 
   @override
   String get homeGlassVariantDenseSanctuarySubtitle =>
-      'Sacred calm ivory density';
+      'ਪਵਿੱਤਰ ਸ਼ਾਂਤ ਦੰਦਾਸੀ ਘਣਤਾ';
 
   @override
   String get homeGlassVariantDenseSanctuaryBody =>
-      'The strongest protective veil in the set. It feels especially suited to sacred, text-heavy moments that need shelter from background noise.';
+      'ਇਸ ਸੈਟ ਵਿੱਚ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ਸੁਰੱਖਿਅਤੀ ਪਰਦਾ। ਇਹ ਖ਼ਾਸ ਤੌਰ \'ਤੇ ਉਹਨਾਂ ਪਵਿੱਤਰ, ਲਿਖਤ-ਭਰੇ ਪਲਾਂ ਲਈ موزੂੰ ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੂੰ ਪਿਛੋਕੜੀ ਸ਼ੋਰ ਤੋਂ ਪਨਾਹ ਚਾਹੀਦੀ ਹੈ।';
 
   @override
   String get homeGlassVariantDenseSanctuaryFooter =>
-      'Best for sacred text focus';
+      'ਪਵਿੱਤਰ ਲਿਖਤ ਉੱਤੇ ਧਿਆਨ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
   String get homeGlassVariantDenseSanctuaryMicro =>
-      'Sanctuary veil · strongest cover';
+      'ਪਨਾਹਦਾਇਕ ਪਰਦਾ · ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ ਢੱਕਣ';
 
   @override
-  String get homeGlassVariantClearShowcaseTitle => 'Clear Showcase Glass';
+  String get homeGlassVariantClearShowcaseTitle => 'ਕਲੀਅਰ ਸ਼ੋਕੇਸ ਗਲਾਸ';
 
   @override
   String get homeGlassVariantClearShowcaseSubtitle =>
-      'Most transparent showcase feel';
+      'ਸਭ ਤੋਂ ਵੱਧ ਪਾਰਦਰਸ਼ੀ ਨੁਮਾਇਸ਼ੀ ਅਹਿਸਾਸ';
 
   @override
   String get homeGlassVariantClearShowcaseBody =>
-      'The most open option in the set, with more atmosphere visible beneath the surface. It still stays within the app’s calm language rather than turning flashy.';
+      'ਇਸ ਸੈਟ ਵਿੱਚ ਸਭ ਤੋਂ ਖੁੱਲ੍ਹਾ ਵਿਕਲਪ, ਜਿਸ ਵਿੱਚ ਸਤ੍ਹਾ ਹੇਠਾਂ ਹੋਰ ਮਾਹੌਲ ਦਿੱਖਦਾ ਹੈ। ਫਿਰ ਵੀ ਇਹ ਚਮਕੀਲਾ ਹੋਣ ਦੀ ਬਜਾਏ ਐਪ ਦੀ ਸ਼ਾਂਤ ਭਾਸ਼ਾ ਦੇ ਅੰਦਰ ਹੀ ਰਹਿੰਦਾ ਹੈ।';
 
   @override
   String get homeGlassVariantClearShowcaseFooter =>
-      'Best for visual comparison';
+      'ਦ੍ਰਿਸ਼ ਤੁਲਨਾ ਲਈ ਸਭ ਤੋਂ ਚੰਗਾ';
 
   @override
   String get homeGlassVariantClearShowcaseMicro =>
-      'Most open · careful contrast';
+      'ਸਭ ਤੋਂ ਖੁੱਲ੍ਹਾ · ਸੰਭਾਲਿਆ ਵਿਰੋਧ';
 
   @override
   String get loadingHeadlineAllahAkbar => 'اللَّهُ أَكْبَرُ';
@@ -40497,143 +40722,143 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get loadingGreetingMorningTranslation =>
-      'O Allah, by You we enter the morning';
+      'ਏ الله, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸਵੇਰ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ';
 
   @override
   String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
 
   @override
   String get loadingGreetingEveningTranslation =>
-      'O Allah, by You we enter the evening';
+      'ਏ الله, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸ਼ਾਮ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ';
 
   @override
-  String get loadingWelcomeBack => 'Welcome Back';
+  String get loadingWelcomeBack => 'ਮੁੜ ਸੁਆਗਤ ਹੈ';
 
   @override
-  String get loadingRestoringProgress => 'Restoring your progress';
+  String get loadingRestoringProgress => 'ਤੁਹਾਡੀ ਤਰੱਕੀ ਮੁੜ ਬਹਾਲ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ';
 
   @override
-  String get loadingStatusPreparing => 'Preparing your space…';
+  String get loadingStatusPreparing => 'ਤੁਹਾਡੀ ਜਗ੍ਹਾ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…';
 
   @override
-  String get loadingStatusRestoring => 'Restoring your progress…';
+  String get loadingStatusRestoring => 'ਤੁਹਾਡੀ ਤਰੱਕੀ ਮੁੜ ਬਹਾਲ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…';
 
   @override
-  String get loadingStatusSyncing => 'Syncing your journey…';
+  String get loadingStatusSyncing => 'ਤੁਹਾਡਾ ਸਫਰ ਸਮਕਾਲੀ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…';
 
   @override
-  String get loadingStatusFinalizing => 'Finalizing…';
+  String get loadingStatusFinalizing => 'ਅੰਤਿਮ ਰੂਪ ਦਿੱਤਾ ਜਾ ਰਿਹਾ ਹੈ…';
 
   @override
-  String get homeTestOnboardingPill => 'Test Onboarding';
+  String get homeTestOnboardingPill => 'ਆਨਬੋਰਡਿੰਗ ਟੈਸਟ ਕਰੋ';
 
   @override
-  String get homeTestLoadingScreenPill => 'Test Loading Screen';
+  String get homeTestLoadingScreenPill => 'ਲੋਡਿੰਗ ਸਕ੍ਰੀਨ ਟੈਸਟ ਕਰੋ';
 
   @override
-  String get onboardingOpeningTitle => 'A Journey Rooted in Knowledge';
+  String get onboardingOpeningTitle => 'ਇੱਕ ਸਫਰ ਜੋ ਇਲਮ \'ਤੇ ਆਧਾਰਿਤ ਹੈ';
 
   @override
-  String get onboardingOpeningHadithLead => 'The Messenger of Allah ﷺ said:';
+  String get onboardingOpeningHadithLead => 'ਰਸੂਲੁੱਲਾਹ ﷺ ਨੇ ਫਰਮਾਇਆ:';
 
   @override
   String get onboardingOpeningHadithQuote =>
-      '“Seeking knowledge is obligatory upon every Muslim.”';
+      '“ਇਲਮ ਹਾਸਲ ਕਰਨਾ ਹਰ ਮੁਸਲਮਾਨ ਉੱਤੇ ਫਰਜ਼ ਹੈ।”';
 
   @override
   String get onboardingOpeningHadithSource => 'Sunan Ibn Majah';
 
   @override
   String get onboardingOpeningMissionBodyOne =>
-      'In Islam, knowledge is not a luxury. It is a responsibility. And what is obligatory should be within reach for everyone.';
+      'ਇਸਲਾਮ ਵਿੱਚ ਇਲਮ ਕੋਈ ਆਰਾਮ ਦੀ ਚੀਜ਼ ਨਹੀਂ। ਇਹ ਇੱਕ ਜ਼ਿੰਮੇਵਾਰੀ ਹੈ। ਅਤੇ ਜੋ ਫਰਜ਼ ਹੈ, ਉਹ ਹਰ ਕਿਸੇ ਦੀ ਪਹੁੰਚ ਵਿੱਚ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।';
 
   @override
   String get onboardingOpeningMissionBodyTwo =>
-      'Path of Nur was created with that belief at its core — to help keep learning, remembrance, and growth free and accessible for all.';
+      'Path of Nur ਇਸੀ ਯਕੀਨ ਨਾਲ ਬਣਾਇਆ ਗਿਆ ਹੈ ਤਾਂ ਜੋ ਸਿੱਖਣਾ, ਯਾਦ-ਏ-ਇਲਾਹੀ ਅਤੇ ਰੂਹਾਨੀ ਵਾਧਾ ਸਭ ਲਈ ਮੁਫ਼ਤ ਅਤੇ ਆਸਾਨ ਰਹੇ।';
 
   @override
   String get onboardingOpeningMissionBodyThree =>
-      'Whether you are beginning, returning, or trying to stay consistent, the app should feel like a calm companion for worship, reflection, and daily progress.';
+      'ਚਾਹੇ ਤੁਸੀਂ ਸ਼ੁਰੂ ਕਰ ਰਹੇ ਹੋ, ਮੁੜ ਵਾਪਸ ਆ ਰਹੇ ਹੋ ਜਾਂ ਲਗਾਤਾਰ ਬਣੇ ਰਹਿਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਹੇ ਹੋ, ਇਹ ਐਪ ਇਬਾਦਤ, ਗੌਰ-ਫਿਕਰ ਅਤੇ ਰੋਜ਼ਾਨਾ ਤਰੱਕੀ ਲਈ ਇੱਕ ਸਾਕਤ ਸਾਥੀ ਵਾਂਗ ਮਹਿਸੂਸ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।';
 
   @override
   String get onboardingOpeningSupportLine =>
-      'This short setup will personalize your experience.';
+      'ਇਹ ਛੋਟੀ ਸੈਟਅਪ ਤੁਹਾਡਾ ਤਜਰਬਾ ਨਿੱਜੀ ਬਣਾਏਗੀ।';
 
   @override
   String get onboardingOpeningPlatformFooter =>
-      'Available across iPhone, iPad, Apple Watch, Mac, Apple TV, Windows, and Android.';
+      'iPhone, iPad, Apple Watch, Mac, Apple TV, Windows ਅਤੇ Android \'ਤੇ ਉਪਲਬਧ।';
 
   @override
   String get onboardingFinalWelcomeClosingBody =>
-      'Take it one sincere step at a time. Meaningful progress is built through small, steady acts.';
+      'ਇੱਕ ਵੇਲੇ ਇੱਕ ਸੱਚਾ ਕਦਮ ਚੁੱਕੋ। ਮਾਇਨੇਦਾਰ ਤਰੱਕੀ ਛੋਟੇ ਪਰ ਲਗਾਤਾਰ ਅਮਲਾਂ ਨਾਲ ਬਣਦੀ ਹੈ।';
 
   @override
   String get onboardingDisclaimerTitle => 'A Gentle Note Before You Begin';
 
   @override
   String get onboardingDisclaimerIntroBody =>
-      'Path of Nur is not a fatwa app.\nIt is a companion for learning, reflection, worship, and growth.';
+      'Path of Nur ਕੋਈ ਫਤਵਾ ਐਪ ਨਹੀਂ ਹੈ।\nਇਹ ਸਿੱਖਣ, ਗੌਰ-ਫਿਕਰ, ਇਬਾਦਤ ਅਤੇ ਰੂਹਾਨੀ ਵਾਧੇ ਲਈ ਇੱਕ ਸਾਥੀ ਹੈ।';
 
   @override
   String get onboardingDisclaimerSourcesBody =>
-      'The app draws from the Qur’an and Hadith, which are the primary sources of Islamic guidance, along with widely accepted foundational material.';
+      'ਇਹ ਐਪ ਕੁਰਆਨ ਅਤੇ ਹਦੀਸ ਤੋਂ ਮਾਦਾ ਲੈਂਦੀ ਹੈ, ਜੋ ਇਸਲਾਮੀ ਰਹਿਨੁਮਾਈ ਦੇ ਅਸਲ ਸਰੋਤ ਹਨ, ਅਤੇ ਨਾਲ ਹੀ ਉਹ ਬੁਨਿਆਦੀ ਮਾਦਾ ਵੀ ਜਿਨ੍ਹਾਂ ਨੂੰ ਵਿਆਪਕ ਤੌਰ \'ਤੇ ਕਬੂਲਿਆ ਗਿਆ ਹੈ।';
 
   @override
   String get onboardingDisclaimerNeutralBody =>
-      'Content is presented in a broad and neutral way, rather than as personal guidance from a specific scholar or imam.';
+      'ਸਮੱਗਰੀ ਨੂੰ ਵਿਸ਼ਾਲ ਅਤੇ ਗੈਰ-ਪੱਖਪਾਤੀ ਢੰਗ ਨਾਲ ਪੇਸ਼ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਨਾ ਕਿ ਕਿਸੇ ਖਾਸ ਆਲਿਮ ਜਾਂ ਇਮਾਮ ਦੀ ਨਿੱਜੀ ਰਹਿਨੁਮਾਈ ਵਜੋਂ।';
 
   @override
   String get onboardingDisclaimerNotRulingBody =>
-      'It does not replace guidance from a qualified scholar, imam, or mufti, and it does not provide personal religious rulings.';
+      'ਇਹ ਕਿਸੇ ਯੋਗ ਆਲਿਮ, ਇਮਾਮ ਜਾਂ ਮੁਫ਼ਤੀ ਦੀ ਰਹਿਨੁਮਾਈ ਦੀ ਥਾਂ ਨਹੀਂ ਲੈਂਦੀ ਅਤੇ ਨਾ ਹੀ ਨਿੱਜੀ ਦਿਨੀ ਫੈਸਲੇ ਦਿੰਦੀ ਹੈ।';
 
   @override
   String get onboardingDisclaimerSeekScholarBody =>
-      'For personal, sensitive, or complex matters, users should seek guidance from a qualified person of knowledge.';
+      'ਨਿੱਜੀ, ਨਾਜੁਕ ਜਾਂ ਪੇਚੀਦਾ ਮਸਲਿਆਂ ਲਈ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਕਿਸੇ ਯੋਗ ਅਹਲ-ਏ-ਇਲਮ ਤੋਂ ਰਹਿਨੁਮਾਈ ਲੈਣੀ ਚਾਹੀਦੀ ਹੈ।';
 
   @override
   String get onboardingDisclaimerFeedbackBody =>
-      'Feedback, corrections, and enhancement requests are always welcome and help Path of Nur improve over time.';
+      'ਫੀਡਬੈਕ, ਸੋਧਾਂ ਅਤੇ ਸੁਧਾਰ ਲਈ ਬੇਨਤੀਆਂ ਹਮੇਸ਼ਾ ਸਵਾਗਤਯੋਗ ਹਨ ਅਤੇ Path of Nur ਨੂੰ ਸਮੇਂ ਨਾਲ ਹੋਰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀਆਂ ਹਨ।';
 
   @override
   String get onboardingDisclaimerFooter =>
-      'Built to support your journey, not replace scholarship.';
+      'ਤੁਹਾਡੇ ਸਫਰ ਦੇ ਸਹਾਰੇ ਲਈ ਬਣਾਇਆ ਗਿਆ ਹੈ, ਇਲਮੀ ਰਹਿਨੁਮਾਈ ਦੀ ਥਾਂ ਲਈ ਨਹੀਂ।';
 
   @override
-  String get onboardingThemeTitle => 'Choose your theme';
+  String get onboardingThemeTitle => 'ਆਪਣਾ ਥੀਮ ਚੁਣੋ';
 
   @override
   String get onboardingThemeSubtitle =>
-      'Pick the atmosphere that feels most at home in your journey. Changes apply instantly as you explore the previews below.';
+      'ਉਹ ਮਾਹੌਲ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਸਫਰ ਲਈ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਉਚਿਤ ਮਹਿਸੂਸ ਹੋਵੇ। ਹੇਠਾਂ ਦਿੱਤੇ ਨਮੂਨੇ ਵੇਖਦੇ ਹੀ ਤਬਦੀਲੀਆਂ ਤੁਰੰਤ ਲਾਗੂ ਹੋ ਜਾਣਗੀਆਂ।';
 
   @override
-  String get onboardingThemePreviewTitle => 'Live preview';
+  String get onboardingThemePreviewTitle => 'ਜੀਵੰਤ ਝਲਕ';
 
   @override
   String get onboardingThemePreviewSubtitle =>
-      'Use this sample text and card layout to compare readability, warmth, and card depth before you continue.';
+      'ਅੱਗੇ ਵਧਣ ਤੋਂ ਪਹਿਲਾਂ ਪੜ੍ਹਨ ਦੀ ਸਹੂਲਤ, ਗਰਮਾਹਟ ਅਤੇ ਕਾਰਡ ਦੀ ਗਹਿਰਾਈ ਦੀ ਤੁਲਨਾ ਕਰਨ ਲਈ ਇਸ ਨਮੂਨੇ ਵਾਲੇ ਲਿਖਤ ਅਤੇ ਕਾਰਡ ਲੇਆਉਟ ਨੂੰ ਵਰਤੋ।';
 
   @override
-  String get onboardingThemeSampleTitle => 'A calm companion for your day';
+  String get onboardingThemeSampleTitle => 'ਤੁਹਾਡੇ ਦਿਨ ਲਈ ਇੱਕ ਸਾਕਤ ਸਾਥੀ';
 
   @override
   String get onboardingThemeSampleBody =>
-      'Your theme affects how reading, reflection, and daily guidance feel across the app. Choose the one that feels steady and comfortable to return to.';
+      'ਤੁਹਾਡਾ ਥੀਮ ਇਸ ਗੱਲ \'ਤੇ ਅਸਰ ਪਾਂਦਾ ਹੈ ਕਿ ਐਪ ਵਿੱਚ ਪੜ੍ਹਨਾ, ਗੌਰ-ਫਿਕਰ ਅਤੇ ਰੋਜ਼ਾਨਾ ਰਹਿਨੁਮਾਈ ਕਿਵੇਂ ਮਹਿਸੂਸ ਹੁੰਦੀ ਹੈ। ਉਹ ਚੁਣੋ ਜੋ ਮੁੜ-ਮੁੜ ਵਰਤਣ ਲਈ ਠਹਿਰਿਆ ਹੋਇਆ ਅਤੇ ਆਰਾਮਦਾਇਕ ਲੱਗੇ।';
 
   @override
-  String get onboardingThemeSampleChipPrayer => 'Prayer';
+  String get onboardingThemeSampleChipPrayer => 'ਨਮਾਜ਼';
 
   @override
-  String get onboardingThemeSampleChipReading => 'Reading';
+  String get onboardingThemeSampleChipReading => 'ਪੜ੍ਹਨਾ';
 
   @override
-  String get onboardingThemeSampleChipReflection => 'Reflection';
+  String get onboardingThemeSampleChipReflection => 'ਗੌਰ-ਫਿਕਰ';
 
   @override
-  String get onboardingThemeSampleCardTitle => 'Today’s gentle focus';
+  String get onboardingThemeSampleCardTitle => 'ਅੱਜ ਦਾ ਨਰਮ ਧਿਆਨ';
 
   @override
   String get onboardingThemeSampleCardBody =>
-      'A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.';
+      'ਹੌਲੀ ਦਿੱਖ ਪੜ੍ਹਨ ਅਤੇ ਗੌਰ-ਫਿਕਰ ਨੂੰ ਹੋਰ ਸਾਕਤ ਬਣਾ ਸਕਦੀ ਹੈ। ਵਧੇਰੇ ਕਨਟ੍ਰਾਸਟ ਵਾਲਾ ਥੀਮ ਲੰਬੀਆਂ ਬੈਠਕਾਂ ਨੂੰ ਆਸਾਨ ਬਣਾ ਸਕਦਾ ਹੈ।';
 
   @override
   String get mainPageSearchHint => 'Search sections and tools';
@@ -40658,75 +40883,74 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnPathLevelDeepDiveTitle => 'Deep Dive';
 
   @override
-  String get settingsPageTransitionsTitle => 'Page transitions';
+  String get settingsPageTransitionsTitle => 'ਸਫ਼ਾ ਤਬਦੀਲੀਆਂ';
 
   @override
   String get settingsPageTransitionsSubtitle =>
-      'Choose how pages move through the app.';
+      'ਚੁਣੋ ਕਿ ਐਪ ਵਿੱਚ ਸਫ਼ੇ ਕਿਵੇਂ ਹਿਲਦੇ ਹਨ।';
 
   @override
   String get settingsReduceMotionTransitionOverrideSubtitle =>
-      'Reduce Motion turns off extra transition effects across the app.';
+      'Reduce Motion ਐਪ ਭਰ ਵਿੱਚ ਵਾਧੂ ਤਬਦੀਲੀ ਪ੍ਰਭਾਵ ਬੰਦ ਕਰ ਦਿੰਦਾ ਹੈ।';
 
   @override
-  String get settingsLearningLevelTitle => 'Learning level';
+  String get settingsLearningLevelTitle => 'ਸਿੱਖਣ ਦਾ ਪੱਧਰ';
 
   @override
-  String get settingsRunOnboardingTitle => 'Run onboarding again';
+  String get settingsRunOnboardingTitle => 'Onboarding ਮੁੜ ਚਲਾਓ';
 
   @override
   String get settingsRunOnboardingSubtitle =>
-      'Review and update your setup choices.';
+      'ਆਪਣੀਆਂ ਸੈਟਅੱਪ ਚੋਣਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰੋ।';
 
   @override
-  String get settingsPageTransitionStyleDefault => 'Default';
+  String get settingsPageTransitionStyleDefault => 'ਮੂਲ';
 
   @override
-  String get settingsPageTransitionStyleGentleFade => 'Gentle fade';
+  String get settingsPageTransitionStyleGentleFade => 'ਨਰਮ ਧੁੰਦਲਾਪਨ';
 
   @override
-  String get settingsPageTransitionStyleIos => 'iOS-style';
+  String get settingsPageTransitionStyleIos => 'iOS-ਸਟਾਈਲ';
 
   @override
-  String get settingsPageTransitionStyleNone => 'None';
+  String get settingsPageTransitionStyleNone => 'ਕੋਈ ਨਹੀਂ';
 
   @override
-  String get onboardingRemindersDisableAllAction =>
-      'Turn off all notifications';
+  String get onboardingRemindersDisableAllAction => 'ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ ਬੰਦ ਕਰੋ';
 
   @override
-  String get onboardingReminderNone => 'No notification';
+  String get onboardingReminderNone => 'ਕੋਈ ਸੂਚਨਾ ਨਹੀਂ';
 
   @override
-  String get onboardingAccountOptionsTitle => 'Optional sign in and backup';
+  String get onboardingAccountOptionsTitle => 'ਵਿਕਲਪੀ ਸਾਇਨ ਇਨ ਅਤੇ ਬੈਕਅੱਪ';
 
   @override
   String get onboardingAccountOptionsBody =>
-      'Path of Nūr does not collect your learning data by default. Sign in is only for backup, restore, and cross-device sync where available.';
+      'Path of Nūr ਮੂਲ ਰੂਪ ਵਿੱਚ ਤੁਹਾਡਾ ਸਿੱਖਣ ਡਾਟਾ ਇਕੱਠਾ ਨਹੀਂ ਕਰਦਾ। ਸਾਇਨ ਇਨ ਸਿਰਫ਼ ਬੈਕਅੱਪ, ਬਹਾਲੀ ਅਤੇ ਜਿੱਥੇ ਉਪਲਬਧ ਹੋਵੇ ਉੱਥੇ ਡਿਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਿੰਕ ਲਈ ਹੈ।';
 
   @override
   String get onboardingAccountOptionsManualBackupBody =>
-      'You can also back up your data manually later from Settings.';
+      'ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ Settings ਤੋਂ ਆਪਣਾ ਡਾਟਾ ਹੱਥੋਂ ਵੀ ਬੈਕਅੱਪ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
-  String get historyNoEventsForThisDate => 'There are no events for this date.';
+  String get historyNoEventsForThisDate => 'ਇਸ ਤਾਰੀਖ ਲਈ ਕੋਈ ਘਟਨਾ ਨਹੀਂ ਹੈ।';
 
   @override
   String get worshipQiblaUnavailableOnIpadTitle =>
-      'Qibla finder unavailable on iPad';
+      'ਕਿਬਲਾ ਲੱਭਣ ਵਾਲਾ ਆਈਪੈਡ ਉੱਤੇ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get worshipQiblaUnavailableOnIpadBody =>
-      'Qibla finder does not correctly work on iPad due to hardware limitations.';
+      'ਹਾਰਡਵੇਅਰ ਸੀਮਾਵਾਂ ਕਰਕੇ ਕਿਬਲਾ ਲੱਭਣ ਵਾਲਾ ਆਈਪੈਡ ਉੱਤੇ ਠੀਕ ਤਰੀਕੇ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰਦਾ।';
 
   @override
   String get gardenPageRecentGrowthTracked => 'Tracked';
 
   @override
-  String get hadithReflectionCompletedQuiet => 'Reflection completed.';
+  String get hadithReflectionCompletedQuiet => 'ਚਿੰਤਨ ਪੂਰਾ ਹੋ ਗਿਆ।';
 
   @override
-  String get hadithLessonCompletedQuiet => 'Lesson completed.';
+  String get hadithLessonCompletedQuiet => 'ਪਾਠ ਪੂਰਾ ਹੋ ਗਿਆ।';
 
   @override
   String get bedtimeStoriesCompletionSnackQuiet => 'Story completed.';
@@ -40770,98 +40994,97 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get homeWidgetsNextPrayerTitle => 'Next Prayer';
+  String get homeWidgetsNextPrayerTitle => 'ਅਗਲੀ ਸਲਾਹ';
 
   @override
-  String get homeWidgetsPrayerOverviewTitle => 'Prayer Overview';
+  String get homeWidgetsPrayerOverviewTitle => 'ਸਲਾਹ ਸੰਖੇਪ';
 
   @override
-  String get homeWidgetsDhikrTitle => 'Daily Dhikr';
+  String get homeWidgetsDhikrTitle => 'ਰੋਜ਼ਾਨਾ ਜ਼ਿਕਰ';
 
   @override
-  String get homeWidgetsJourneyTitle => 'Journey Progress';
+  String get homeWidgetsJourneyTitle => 'ਸਫ਼ਰ ਦੀ ਤਰੱਕੀ';
 
   @override
-  String get homeWidgetsCurrentPrayerLabel => 'Current prayer';
+  String get homeWidgetsCurrentPrayerLabel => 'ਮੌਜੂਦਾ ਸਲਾਹ';
 
   @override
-  String get homeWidgetsNextPrayerLabel => 'Next prayer';
+  String get homeWidgetsNextPrayerLabel => 'ਅਗਲੀ ਸਲਾਹ';
 
   @override
-  String get homeWidgetsNoPrayerTimesTitle => 'Prayer times unavailable';
+  String get homeWidgetsNoPrayerTimesTitle => 'ਸਲਾਹ ਸਮੇਂ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get homeWidgetsNoPrayerTimesBody =>
-      'Open Path of Nūr to refresh prayer times for today.';
+      'ਅੱਜ ਦੇ ਸਲਾਹ ਸਮੇਂ ਤਾਜ਼ਾ ਕਰਨ ਲਈ Path of Nūr ਖੋਲ੍ਹੋ।';
 
   @override
-  String get homeWidgetsDhikrTodayLabel => 'Today';
+  String get homeWidgetsDhikrTodayLabel => 'ਅੱਜ';
 
   @override
-  String get homeWidgetsTargetLabel => 'Target';
+  String get homeWidgetsTargetLabel => 'ਹਦਫ਼';
 
   @override
-  String get homeWidgetsStreakLabel => 'Streak';
+  String get homeWidgetsStreakLabel => 'ਲਗਾਤਾਰ ਦਿਨ';
 
   @override
-  String get homeWidgetsLevelLabel => 'Level';
+  String get homeWidgetsLevelLabel => 'ਲੈਵਲ';
 
   @override
-  String get homeWidgetsTodayXpLabel => 'Today XP';
+  String get homeWidgetsTodayXpLabel => 'ਅੱਜ ਦਾ XP';
 
   @override
-  String get homeWidgetsNoSpiritualContentTitle =>
-      'Spiritual content unavailable';
+  String get homeWidgetsNoSpiritualContentTitle => 'ਰੂਹਾਨੀ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ';
 
   @override
   String get homeWidgetsNoSpiritualContentBody =>
-      'Open Path of Nūr to refresh today’s spiritual content.';
+      'ਅੱਜ ਦੀ ਰੂਹਾਨੀ ਸਮੱਗਰੀ ਤਾਜ਼ਾ ਕਰਨ ਲਈ Path of Nūr ਖੋਲ੍ਹੋ।';
 
   @override
-  String get homeWidgetsDuaTitle => 'Daily Dua';
+  String get homeWidgetsDuaTitle => 'ਰੋਜ਼ਾਨਾ ਦੁਆ';
 
   @override
-  String get homeWidgetsMorningDuaReady => 'Morning dua ready';
+  String get homeWidgetsMorningDuaReady => 'ਸਵੇਰ ਦੀ ਦੁਆ ਤਿਆਰ ਹੈ';
 
   @override
-  String get homeWidgetsDailyDuaReady => 'Daily dua ready';
+  String get homeWidgetsDailyDuaReady => 'ਅੱਜ ਦੀ ਦੁਆ ਤਿਆਰ ਹੈ';
 
   @override
-  String get homeWidgetsEveningDuaReady => 'Evening dua ready';
+  String get homeWidgetsEveningDuaReady => 'ਸ਼ਾਮ ਦੀ ਦੁਆ ਤਿਆਰ ਹੈ';
 
   @override
-  String get homeWidgetsNightDuaReady => 'Night dua ready';
+  String get homeWidgetsNightDuaReady => 'ਰਾਤ ਦੀ ਦੁਆ ਤਿਆਰ ਹੈ';
 
   @override
-  String get homeWidgetsHadithTitle => 'Hadith';
+  String get homeWidgetsHadithTitle => 'ਹਦੀਸ';
 
   @override
-  String get homeWidgetsHadithTodayInline => 'Hadith today';
+  String get homeWidgetsHadithTodayInline => 'ਅੱਜ ਦੀ ਹਦੀਸ';
 
   @override
-  String get homeWidgetsAyahTitle => 'Ayah';
+  String get homeWidgetsAyahTitle => 'ਆਯਤ';
 
   @override
-  String get homeWidgetsAyahTodayInline => 'Ayah today';
+  String get homeWidgetsAyahTodayInline => 'ਅੱਜ ਦੀ ਆਯਤ';
 
   @override
-  String get homeWidgetsReflectionTitle => 'Reflection';
+  String get homeWidgetsReflectionTitle => 'ਮਨਨ';
 
   @override
-  String get homeWidgetsReflectionInline => 'Reflection today';
+  String get homeWidgetsReflectionInline => 'ਅੱਜ ਦਾ ਮਨਨ';
 
   @override
-  String get homeWidgetsNameOfAllahTitle => 'Name of Allah';
+  String get homeWidgetsNameOfAllahTitle => 'ਅੱਲਾਹ ਦਾ ਨਾਮ';
 
   @override
-  String get homeWidgetsNameOfAllahInline => 'Name of Allah';
+  String get homeWidgetsNameOfAllahInline => 'ਅੱਲਾਹ ਦਾ ਨਾਮ';
 
   @override
-  String get homeWidgetsPrayerCountdownSoon => 'Soon';
+  String get homeWidgetsPrayerCountdownSoon => 'ਜਲਦੀ';
 
   @override
   String homeWidgetsPrayerCountdownInMinutes(Object minutes) {
-    return 'in ${minutes}m';
+    return '$minutesਮਿੰ ਵਿੱਚ';
   }
 
   @override
@@ -40869,7 +41092,7 @@ class AppLocalizationsPa extends AppLocalizations {
     Object hours,
     Object minutes,
   ) {
-    return 'in ${hours}h ${minutes}m';
+    return '$hoursਘੰ $minutesਮਿੰ ਵਿੱਚ';
   }
 
   @override
@@ -40917,192 +41140,196 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String get hadithSearchTitle => 'Search Hadith';
+  String get hadithSearchTitle => 'ਹਦੀਸ ਦੀ ਖੋਜ ਕਰੋ';
 
   @override
   String get hadithSearchSubtitle =>
-      'Search the trusted hadith library by text, source, or category.';
+      'ਟੈਕਸਟ, ਸਰੋਤ ਜਾਂ ਸ਼੍ਰੇਣੀ ਦੁਆਰਾ ਭਰੋਸੇਯੋਗ ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਦੀ ਖੋਜ ਕਰੋ।';
 
   @override
-  String get hadithSearchOpenAction => 'Open search';
+  String get hadithSearchOpenAction => 'ਖੋਜ ਖੋਲ੍ਹੋ';
 
   @override
-  String get hadithSearchFilterAll => 'All';
+  String get hadithSearchFilterAll => 'ਸਾਰੇ';
 
   @override
-  String get hadithSearchFilterSource => 'Source';
+  String get hadithSearchFilterSource => 'ਸਰੋਤ';
 
   @override
-  String get hadithSearchFilterCategory => 'Category';
+  String get hadithSearchFilterCategory => 'ਸ਼੍ਰੇਣੀ';
 
   @override
-  String get hadithSearchFilterSubcategory => 'Subcategory';
+  String get hadithSearchFilterSubcategory => 'ਉਪਸ਼੍ਰੇਣੀ';
 
   @override
-  String get hadithSearchFilterGrade => 'Grade';
+  String get hadithSearchFilterGrade => 'ਗ੍ਰੇਡ';
 
   @override
-  String get hadithSearchEmptyQueryTitle => 'Search the hadith library';
+  String get hadithSearchEmptyQueryTitle => 'ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਦੀ ਖੋਜ ਕਰੋ';
 
   @override
   String get hadithSearchEmptyQuerySubtitle =>
-      'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.';
+      'ਅਨੁਵਾਦ, ਅਰਬੀ, ਸਰੋਤ ਕਿਤਾਬ, ਕਥਾਵਾਚਕ, ਸ਼੍ਰੇਣੀ, ਉਪ-ਸ਼੍ਰੇਣੀ, ਜਾਂ ਸੰਦਰਭ ਦੁਆਰਾ ਖੋਜ ਕਰੋ।';
 
   @override
-  String get hadithSearchSuggestedSourcesTitle => 'Suggested sources';
+  String get hadithSearchSuggestedSourcesTitle => 'ਸੁਝਾਏ ਸਰੋਤ';
 
   @override
-  String get hadithSearchSuggestedCategoriesTitle => 'Suggested categories';
+  String get hadithSearchSuggestedCategoriesTitle => 'ਸੁਝਾਈਆਂ ਗਈਆਂ ਸ਼੍ਰੇਣੀਆਂ';
 
   @override
-  String get hadithSearchNoResultsTitle => 'No hadith found';
+  String get hadithSearchNoResultsTitle => 'ਕੋਈ ਹਦੀਸ ਨਹੀਂ ਮਿਲੀ';
 
   @override
   String get hadithSearchNoResultsSubtitle =>
-      'Try a different phrase, source book, or category.';
+      'ਕੋਈ ਵੱਖਰਾ ਵਾਕਾਂਸ਼, ਸਰੋਤ ਕਿਤਾਬ, ਜਾਂ ਸ਼੍ਰੇਣੀ ਅਜ਼ਮਾਓ।';
 
   @override
   String hadithSearchResultsCount(int count) {
-    return '$count results';
+    return '$count ਨਤੀਜੇ';
   }
 
   @override
-  String get hadithSearchMatchTitle => 'Title match';
+  String get hadithSearchMatchTitle => 'ਟਾਈਟਲ ਮੈਚ';
 
   @override
-  String get hadithSearchMatchExcerpt => 'Excerpt match';
+  String get hadithSearchMatchExcerpt => 'ਅੰਸ਼ ਮੈਚ';
 
   @override
-  String get hadithSearchMatchTranslation => 'Translation match';
+  String get hadithSearchMatchTranslation => 'ਅਨੁਵਾਦ ਮੇਲ';
 
   @override
-  String get hadithSearchMatchArabic => 'Arabic match';
+  String get hadithSearchMatchArabic => 'ਅਰਬੀ ਮੈਚ';
 
   @override
-  String get hadithSearchMatchTransliteration => 'Transliteration match';
+  String get hadithSearchMatchTransliteration => 'ਲਿਪੀਅੰਤਰਨ ਮੇਲ';
 
   @override
-  String get hadithSearchMatchSource => 'Source match';
+  String get hadithSearchMatchSource => 'ਸਰੋਤ ਮੇਲ';
 
   @override
-  String get hadithSearchMatchReference => 'Reference match';
+  String get hadithSearchMatchReference => 'ਹਵਾਲਾ ਮੈਚ';
 
   @override
-  String get hadithSearchMatchNarrator => 'Narrator match';
+  String get hadithSearchMatchNarrator => 'ਕਥਾਵਾਚਕ ਮੇਲ';
 
   @override
-  String get hadithSearchMatchCategory => 'Category match';
+  String get hadithSearchMatchChapter => 'ਅਧਿਆਇ ਮੇਲ';
 
   @override
-  String get hadithSearchMatchSubcategory => 'Subcategory match';
+  String get hadithSearchMatchCategory => 'ਸ਼੍ਰੇਣੀ ਮੇਲ';
 
   @override
-  String get hadithSearchMatchGrade => 'Grade match';
+  String get hadithSearchMatchSubcategory => 'ਉਪ-ਸ਼੍ਰੇਣੀ ਮੇਲ';
 
   @override
-  String get hadithSearchSuggestionsTitle => 'Suggestions';
+  String get hadithSearchMatchGrade => 'ਗ੍ਰੇਡ ਮੈਚ';
 
   @override
-  String get hadithSearchRecentTitle => 'Recent searches';
+  String get hadithSearchSuggestionsTitle => 'ਸੁਝਾਅ';
 
   @override
-  String get hadithSearchClearRecents => 'Clear';
+  String get hadithSearchRecentTitle => 'ਹਾਲੀਆ ਖੋਜਾਂ';
 
   @override
-  String get hadithSearchNoRecent => 'No recent searches yet.';
+  String get hadithSearchClearRecents => 'ਸਾਫ਼';
 
   @override
-  String get hadithSearchNoResultsTryBroader => 'Try a broader phrase.';
+  String get hadithSearchNoRecent => 'ਅਜੇ ਤੱਕ ਕੋਈ ਹਾਲੀਆ ਖੋਜਾਂ ਨਹੀਂ ਹਨ।';
+
+  @override
+  String get hadithSearchNoResultsTryBroader =>
+      'ਇੱਕ ਵਿਸ਼ਾਲ ਵਾਕਾਂਸ਼ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
 
   @override
   String get hadithSearchNoResultsTrySource =>
-      'Try a source book like Riyad as-Salihin.';
+      'ਰਿਆਦ ਅਸ-ਸਾਲੀਹੀਨ ਵਰਗੀ ਇੱਕ ਸਰੋਤ ਕਿਤਾਬ ਅਜ਼ਮਾਓ।';
 
   @override
   String get hadithSearchNoResultsTryCategory =>
-      'Try a category such as Character.';
+      'ਇੱਕ ਸ਼੍ਰੇਣੀ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਿਵੇਂ ਕਿ ਅੱਖਰ।';
 
   @override
-  String get hadithSearchGroupText => 'Text matches';
+  String get hadithSearchGroupText => 'ਟੈਕਸਟ ਮੇਲ ਖਾਂਦਾ ਹੈ';
 
   @override
-  String get hadithSearchGroupSource => 'Source and reference matches';
+  String get hadithSearchGroupSource => 'ਸਰੋਤ ਅਤੇ ਹਵਾਲਾ ਮੇਲ ਖਾਂਦੇ ਹਨ';
 
   @override
-  String get hadithSearchGroupTopical => 'Category and topic matches';
+  String get hadithSearchGroupTopical => 'ਸ਼੍ਰੇਣੀ ਅਤੇ ਵਿਸ਼ੇ ਮੇਲ ਖਾਂਦੇ ਹਨ';
 
   @override
-  String get hadithSearchGroupGrade => 'Grade matches';
+  String get hadithSearchGroupGrade => 'ਗ੍ਰੇਡ ਮੈਚ';
 
   @override
-  String get hadithSearchSuggestionIntentions => 'intentions';
+  String get hadithSearchSuggestionIntentions => 'ਇਰਾਦੇ';
 
   @override
-  String get hadithSearchSuggestionSincerity => 'sincerity';
+  String get hadithSearchSuggestionSincerity => 'ਇਮਾਨਦਾਰੀ';
 
   @override
-  String get hadithSearchSuggestionMercy => 'mercy';
+  String get hadithSearchSuggestionMercy => 'ਦਇਆ';
 
   @override
-  String get hadithSearchSuggestionRepentance => 'repentance';
+  String get hadithSearchSuggestionRepentance => 'ਤੋਬਾ';
 
   @override
-  String get hadithSearchSuggestionDua => 'dua';
+  String get hadithSearchSuggestionDua => 'ਦੁਆ';
 
   @override
-  String get hadithSearchSuggestionCharacter => 'character';
+  String get hadithSearchSuggestionCharacter => 'ਅੱਖਰ';
 
   @override
-  String get hadithSearchSuggestionJustice => 'justice';
+  String get hadithSearchSuggestionJustice => 'ਨਿਆਂ';
 
   @override
-  String get hadithSearchSuggestionGratitude => 'gratitude';
+  String get hadithSearchSuggestionGratitude => 'ਧੰਨਵਾਦ';
 
   @override
-  String get hadithActionBrowseSources => 'Browse by source';
+  String get hadithActionBrowseSources => 'ਸਰੋਤ ਮੁਤਾਬਕ ਵੇਖੋ';
 
   @override
-  String get hadithSourceBrowseTitle => 'Browse by source';
+  String get hadithSourceBrowseTitle => 'ਸਰੋਤ ਦੁਆਰਾ ਬ੍ਰਾਊਜ਼ ਕਰੋ';
 
   @override
   String get hadithSourceBrowseSubtitle =>
-      'Explore trusted hadith by source collection and chapter where metadata exists.';
+      'ਸਰੋਤ ਸੰਗ੍ਰਹਿ ਅਤੇ ਅਧਿਆਇ ਦੁਆਰਾ ਭਰੋਸੇਯੋਗ ਹਦੀਸ ਦੀ ਪੜਚੋਲ ਕਰੋ ਜਿੱਥੇ ਮੈਟਾਡੇਟਾ ਮੌਜੂਦ ਹੈ।';
 
   @override
   String get hadithSourceBrowseNoSources =>
-      'No source collections are available yet.';
+      'ਅਜੇ ਤੱਕ ਕੋਈ ਸਰੋਤ ਸੰਗ੍ਰਹਿ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।';
 
   @override
   String get hadithSourceBrowseNotFoundSubtitle =>
-      'This source could not be found.';
+      'ਇਹ ਸਰੋਤ ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ।';
 
   @override
   String get hadithSourceBrowseNotFoundBody =>
-      'Try another trusted source collection from the browse list.';
+      'ਬ੍ਰਾਊਜ਼ ਸੂਚੀ ਵਿੱਚੋਂ ਇੱਕ ਹੋਰ ਭਰੋਸੇਯੋਗ ਸਰੋਤ ਸੰਗ੍ਰਹਿ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
 
   @override
   String hadithSourceBrowseCollectionSummary(int entryCount, int chapterCount) {
-    return '$entryCount hadith across $chapterCount chapters';
+    return '$chapterCount ਅਧਿਆਵਾਂ ਵਿੱਚ $entryCount ਹਦੀਸ';
   }
 
   @override
   String hadithSourceBrowseCollectionCountOnly(int count) {
-    return '$count hadith';
+    return '$count ਹਦੀਸ';
   }
 
   @override
-  String get hadithSourceBrowseChaptersTitle => 'Chapters';
+  String get hadithSourceBrowseChaptersTitle => 'ਅਧਿਆਏ';
 
   @override
   String hadithSourceBrowseChapterSummary(Object chapterLabel, int count) {
-    return '$chapterLabel • $count hadith';
+    return '$chapterLabel • $count ਹਦੀਸ';
   }
 
   @override
-  String get hadithSourceBrowseEntriesTitle => 'Entries';
+  String get hadithSourceBrowseEntriesTitle => 'ਇੰਦਰਾਜ਼';
 
   @override
-  String get hadithSourceBrowseEntryPreviewTitle => 'Entry preview';
+  String get hadithSourceBrowseEntryPreviewTitle => 'ਐਂਟਰੀ ਝਲਕ';
 
   @override
   String hadithSourceBrowseChapterPageSubtitle(
@@ -41110,7 +41337,7 @@ class AppLocalizationsPa extends AppLocalizations {
     Object chapterLabel,
     int count,
   ) {
-    return '$sourceTitle • $chapterLabel • $count hadith';
+    return '$sourceTitle • $chapterLabel • $count ਹਦੀਸ';
   }
 
   @override
@@ -41120,17 +41347,17 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String hadithSourceBrowseChapterNumber(int number) {
-    return 'Chapter $number';
+    return 'ਅਧਿਆਇ $number';
   }
 
   @override
-  String get hadithSourceBrowseChapterFallback => 'Chapter';
+  String get hadithSourceBrowseChapterFallback => 'ਅਧਿਆਇ';
 
   @override
-  String get hadithSourceBrowseGeneralChapter => 'General chapter';
+  String get hadithSourceBrowseGeneralChapter => 'ਆਮ ਅਧਿਆਇ';
 
   @override
-  String get hadithSourceBrowseUncategorized => 'Uncategorized';
+  String get hadithSourceBrowseUncategorized => 'ਅਨਸ਼੍ਰੇਣੀਯ';
 
   @override
   String get editorialRelationTypeExplains => 'Explains';
@@ -41158,13 +41385,13 @@ class AppLocalizationsPa extends AppLocalizations {
   String get editorialRelationTypeReaderFollowUp => 'Reader follow-up';
 
   @override
-  String get hadithSectionRelatedQuran => 'Related Qur’an';
+  String get hadithSectionRelatedQuran => 'ਸੰਬੰਧਿਤ ਕੁਰਆਨ';
 
   @override
-  String get hadithSectionRelatedDuas => 'Related Duas';
+  String get hadithSectionRelatedDuas => 'ਸੰਬੰਧਿਤ ਦੁਆਵਾਂ';
 
   @override
-  String get hadithSectionRelatedCanonical => 'Related hadith';
+  String get hadithSectionRelatedCanonical => 'ਸੰਬੰਧਿਤ ਹਦੀਸਾਂ';
 
   @override
   String get quranReaderRelatedHadithTitle => 'Related Hadith';
@@ -41173,47 +41400,48 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranReaderRelatedDuasTitle => 'Related Duas';
 
   @override
-  String get allSearchTitle => 'All Search';
+  String get allSearchTitle => 'ਪੂਰੀ ਖੋਜ';
 
   @override
   String get allSearchSubtitle =>
-      'Search Qur’an, hadith, duas, and learning content together.';
+      'Qur’an, Hadith, ਦੁਆਵਾਂ ਅਤੇ ਸਿੱਖਣ ਵਾਲੀ ਸਮੱਗਰੀ ਨੂੰ ਇਕੱਠੇ ਖੋਜੋ।';
 
   @override
-  String get allSearchHint => 'Search across Path of Nur';
+  String get allSearchHint => 'Path of Nur ਵਿੱਚ ਖੋਜੋ';
 
   @override
-  String get allSearchEmptyTitle => 'Search across the app';
+  String get allSearchEmptyTitle => 'ਐਪ ਵਿੱਚ ਖੋਜੋ';
 
   @override
   String get allSearchEmptySubtitle =>
-      'We’ll group results by domain so it stays calm and easy to trust.';
+      'ਅਸੀਂ ਨਤੀਜਿਆਂ ਨੂੰ ਖੇਤਰਾਂ ਅਨੁਸਾਰ ਵੰਡਾਂਗੇ ਤਾਂ ਜੋ ਇਹ ਸ਼ਾਂਤ ਅਤੇ ਆਸਾਨੀ ਨਾਲ ਭਰੋਸੇਯੋਗ ਰਹੇ।';
 
   @override
-  String get allSearchSuggestionsTitle => 'Suggestions';
+  String get allSearchSuggestionsTitle => 'ਸੁਝਾਅ';
 
   @override
-  String get allSearchRecentTitle => 'Recent searches';
+  String get allSearchRecentTitle => 'ਹਾਲੀਆ ਖੋਜਾਂ';
 
   @override
-  String get allSearchClearRecent => 'Clear';
+  String get allSearchClearRecent => 'ਸਾਫ਼ ਕਰੋ';
 
   @override
-  String get allSearchNoRecent => 'No recent searches yet.';
+  String get allSearchNoRecent => 'ਹਾਲੇ ਕੋਈ ਹਾਲੀਆ ਖੋਜ ਨਹੀਂ ਹੈ।';
 
   @override
-  String get allSearchNoResultsTitle => 'No results yet';
+  String get allSearchNoResultsTitle => 'ਹਾਲੇ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ';
 
   @override
   String get allSearchNoResultsSubtitle =>
-      'We could not find a strong match across Qur’an, hadith, duas, or learn content.';
+      'ਸਾਨੂੰ Qur’an, hadith, ਦੁਆਵਾਂ ਜਾਂ ਸਿੱਖਣ ਵਾਲੀ ਸਮੱਗਰੀ ਵਿੱਚ ਕੋਈ ਮਜ਼ਬੂਤ ਮਿਲਾਪ ਨਹੀਂ ਮਿਲਿਆ।';
 
   @override
-  String get allSearchNoResultsTipBroader => 'Try a shorter or broader phrase.';
+  String get allSearchNoResultsTipBroader =>
+      'ਹੋਰ ਛੋਟਾ ਜਾਂ ਵੱਧ ਵਿਆਪਕ ਵਾਕ ਅਜ਼ਮਾਓ।';
 
   @override
   String get allSearchNoResultsTipDomain =>
-      'You can also jump into a domain search for more depth.';
+      'ਤੁਸੀਂ ਹੋਰ ਡੂੰਘਾਈ ਲਈ ਕਿਸੇ ਖਾਸ ਖੇਤਰ ਦੀ ਖੋਜ \'ਚ ਵੀ ਜਾ ਸਕਦੇ ਹੋ।';
 
   @override
   String get allSearchDomainQuran => 'Qur’an';
@@ -41222,54 +41450,147 @@ class AppLocalizationsPa extends AppLocalizations {
   String get allSearchDomainHadith => 'Hadith';
 
   @override
-  String get allSearchDomainDua => 'Duas';
+  String get allSearchDomainDua => 'ਦੁਆਵਾਂ';
 
   @override
-  String get allSearchDomainLearn => 'Learn';
+  String get allSearchDomainLearn => 'ਸਿੱਖੋ';
 
   @override
-  String get allSearchViewAllQuran => 'View all in Qur’an';
+  String get allSearchViewAllQuran => 'Qur’an ਵਿੱਚ ਸਭ ਦੇਖੋ';
 
   @override
-  String get allSearchViewAllHadith => 'View all in Hadith';
+  String get allSearchViewAllHadith => 'Hadith ਵਿੱਚ ਸਭ ਦੇਖੋ';
 
   @override
-  String get allSearchViewAllDua => 'View all in Duas';
+  String get allSearchViewAllDua => 'ਦੁਆਵਾਂ ਵਿੱਚ ਸਭ ਦੇਖੋ';
 
   @override
-  String get allSearchViewAllLearn => 'View all in Learn';
+  String get allSearchViewAllLearn => 'ਸਿੱਖੋ ਵਿੱਚ ਸਭ ਦੇਖੋ';
 
   @override
-  String get allSearchSuggestionMercy => 'mercy';
+  String get allSearchSuggestionMercy => 'ਰਹਿਮ';
 
   @override
-  String get allSearchSuggestionPatience => 'patience';
+  String get allSearchSuggestionPatience => 'ਸਬਰ';
 
   @override
-  String get allSearchSuggestionIntentions => 'intentions';
+  String get allSearchSuggestionIntentions => 'ਨੀਆਂ';
 
   @override
-  String get allSearchSuggestionRepentance => 'repentance';
+  String get allSearchSuggestionRepentance => 'ਤੌਬਾ';
 
   @override
   String get allSearchSuggestionDua => 'dua';
 
   @override
-  String get allSearchSuggestionProphets => 'prophets';
+  String get allSearchSuggestionProphets => 'ਨਬੀ';
 
   @override
-  String get allSearchSuggestionGratitude => 'gratitude';
+  String get allSearchSuggestionGratitude => 'ਸ਼ੁਕਰਗੁਜ਼ਾਰੀ';
 
   @override
-  String get allSearchSuggestionJustice => 'justice';
+  String get allSearchSuggestionJustice => 'ਇਨਸਾਫ਼';
 
   @override
   String allSearchResultsFor(Object query) {
-    return 'Results for \"$query\"';
+    return '\"$query\" ਲਈ ਨਤੀਜੇ';
   }
 
   @override
   String allSearchError(Object message) {
-    return 'Search unavailable: $message';
+    return 'ਖੋਜ ਉਪਲਬਧ ਨਹੀਂ: $message';
   }
+
+  @override
+  String get hadithReaderContinueTitle => 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ';
+
+  @override
+  String hadithReaderBackToLane(String lane) {
+    return '$lane ਵੱਲ ਵਾਪਸ';
+  }
+
+  @override
+  String get hadithReaderBackToResults => 'ਨਤੀਜਿਆਂ \'ਤੇ ਵਾਪਸ ਜਾਓ';
+
+  @override
+  String get hadithReaderPrevious => 'ਪਿਛਲਾ';
+
+  @override
+  String get hadithReaderNext => 'ਅਗਲਾ';
+
+  @override
+  String hadithReaderPosition(int current, int total) {
+    return 'ਹਦੀਸ $current / $total';
+  }
+
+  @override
+  String hadithReaderChapterPosition(int current, int total) {
+    return 'ਇਸ ਅਧਿਆਇ ਵਿੱਚ ਹਦੀਸ $current / $total';
+  }
+
+  @override
+  String get hadithBrowseProgressLabel => 'ਸਥਿਤੀ';
+
+  @override
+  String get hadithBrowseProgressAll => 'ਸਾਰੀਆਂ ਐਂਟਰੀਆਂ';
+
+  @override
+  String get hadithBrowseProgressNotReviewed => 'ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ';
+
+  @override
+  String get hadithBrowseProgressReviewing => 'ਸਮੀਖਿਆ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ';
+
+  @override
+  String get hadithBrowseProgressComplete => 'ਸੰਪੂਰਨ';
+
+  @override
+  String get hadithActionMarkCompleteForBrowse => 'ਪੂਰਾ ਨਿਸ਼ਾਨਿਤ ਕਰੋ';
+
+  @override
+  String get hadithActionCompletedForBrowse => 'ਪੂਰਾ ਹੋਇਆ';
+
+  @override
+  String get hadithActionMarkIncomplete => 'ਅਧੂਰਾ ਨਿਸ਼ਾਨਿਤ ਕਰੋ';
+
+  @override
+  String get hadithMarkedComplete => 'ਹਦੀਸ ਪੂਰੀ ਨਿਸ਼ਾਨਿਤ ਕੀਤੀ ਗਈ।';
+
+  @override
+  String get hadithMarkedIncomplete => 'ਹਦੀਸ ਅਧੂਰੀ ਨਿਸ਼ਾਨਿਤ ਕੀਤੀ ਗਈ।';
+
+  @override
+  String get hadithBrowsePageTitle => 'ਹਦੀਸ ਬ੍ਰਾਊਜ਼ ਕਰੋ';
+
+  @override
+  String get hadithBrowsePageSubtitle =>
+      'ਵਿਆਪਕ ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਦੀ ਪੜਚੋਲ ਕਰਨ ਦਾ ਇੱਕ ਸ਼ਾਂਤ, ਫਿਲਟਰ ਕਰਨ ਯੋਗ ਤਰੀਕਾ।';
+
+  @override
+  String get hadithBrowseIntroTitle => 'ਇੱਕ ਸ਼ਾਂਤ ਲੇਨ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ';
+
+  @override
+  String get hadithBrowseIntroBody =>
+      'ਰੀਡਿੰਗ ਲੇਨ ਖੋਲ੍ਹਣ ਤੋਂ ਪਹਿਲਾਂ ਸਰੋਤ, ਸੰਗ੍ਰਹਿ, ਗ੍ਰੇਡ, ਜਾਂ ਅਧਿਐਨ ਸਥਿਤੀ ਦੁਆਰਾ ਵਿਆਪਕ ਹਦੀਸ ਲਾਇਬ੍ਰੇਰੀ ਨੂੰ ਸੰਕੁਚਿਤ ਕਰਨ ਲਈ ਇਸ ਪੰਨੇ ਦੀ ਵਰਤੋਂ ਕਰੋ।';
+
+  @override
+  String hadithBrowseSummary(
+    int entries,
+    int sources,
+    int collections,
+    int subcategories,
+  ) {
+    return '$sources ਸਰੋਤਾਂ, $collections ਸੰਗ੍ਰਹਿ, ਅਤੇ $subcategories ਉਪ-ਸ਼੍ਰੇਣੀਆਂ ਵਿੱਚ $entries ਹਦੀਸ।';
+  }
+
+  @override
+  String get hadithBrowseActiveFiltersTitle => 'ਕਿਰਿਆਸ਼ੀਲ ਫਿਲਟਰ';
+
+  @override
+  String get hadithBrowseCollectionLabel => 'ਸੰਗ੍ਰਹਿ';
+
+  @override
+  String get hadithBrowseAllCollections => 'ਸਾਰੇ ਸੰਗ੍ਰਹਿ';
+
+  @override
+  String get hadithActionBrowseAllHadith => 'ਸਾਰੀਆਂ ਹਦੀਸਾਂ ਵੇਖੋ';
 }

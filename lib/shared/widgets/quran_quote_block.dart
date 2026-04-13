@@ -62,6 +62,7 @@ class QuranQuoteBlock extends ConsumerWidget {
     required this.quote,
     this.compact = false,
     this.center = true,
+    this.useOuterChrome = true,
     this.onTap,
     this.showReference = true,
     this.margin = const EdgeInsets.only(bottom: 16),
@@ -76,6 +77,7 @@ class QuranQuoteBlock extends ConsumerWidget {
   final QuranQuote quote;
   final bool compact;
   final bool center;
+  final bool useOuterChrome;
   final VoidCallback? onTap;
   final bool showReference;
   final EdgeInsetsGeometry margin;
@@ -88,45 +90,46 @@ class QuranQuoteBlock extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final card = QuranSacredBlockChrome(
-      margin: margin,
-      child: SizedBox(
-        width: double.infinity,
-        child: AppHeroGlassShell(
-          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-          tintColor: const Color(0xFFE7C98C),
-          surfaceAlphaOverride: 0.2,
-          radius: 36,
-          borderColor: const Color(0x42FFFFFF),
-          highlightGradientColors: const [
-            Color(0x24FFFFFF),
-            Colors.transparent,
-            Color(0x16E8C98F),
-          ],
-          onTap: onTap,
-          child: QuranVerseContent(
-            source: QuranVerseSource(
-              ref: quote.ref,
-              referenceText: quote.locationText,
-            ),
-            dense: compact,
-            center: center,
-            showReference: showReference,
-            arabicBaseSize: compact ? 30 : 32,
-            transliterationBaseSize: 13.5,
-            translationBaseSize: 12.8,
-            referenceBaseSize: compact ? 13 : 13.5,
-            arabicTransform: arabicTransform,
-            transliterationTransform: transliterationTransform,
-            translationTransform: translationTransform,
-            arabicTextAlign: arabicTextAlign,
-            supportTextAlign: supportTextAlign,
-            referenceTextAlign: referenceTextAlign,
+    final content = SizedBox(
+      width: double.infinity,
+      child: AppHeroGlassShell(
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+        tintColor: const Color(0xFFE7C98C),
+        surfaceAlphaOverride: 0.2,
+        radius: 36,
+        borderColor: const Color(0x42FFFFFF),
+        highlightGradientColors: const [
+          Color(0x24FFFFFF),
+          Colors.transparent,
+          Color(0x16E8C98F),
+        ],
+        onTap: onTap,
+        child: QuranVerseContent(
+          source: QuranVerseSource(
+            ref: quote.ref,
+            referenceText: quote.locationText,
           ),
+          dense: compact,
+          center: center,
+          showReference: showReference,
+          arabicBaseSize: compact ? 30 : 32,
+          transliterationBaseSize: 13.5,
+          translationBaseSize: 12.8,
+          referenceBaseSize: compact ? 13 : 13.5,
+          arabicTransform: arabicTransform,
+          transliterationTransform: transliterationTransform,
+          translationTransform: translationTransform,
+          arabicTextAlign: arabicTextAlign,
+          supportTextAlign: supportTextAlign,
+          referenceTextAlign: referenceTextAlign,
         ),
       ),
     );
 
-    return card;
+    if (useOuterChrome) {
+      return QuranSacredBlockChrome(margin: margin, child: content);
+    }
+
+    return Padding(padding: margin, child: content);
   }
 }

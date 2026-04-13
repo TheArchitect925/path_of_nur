@@ -20,28 +20,28 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get notificationsPrayerNotificationOnlyChannelName =>
-      'Salah Reminders (Notification)';
+      'یادآوری نماز (اعلان)';
 
   @override
   String get notificationsPrayerNotificationOnlyChannelDescription =>
-      'Salah reminder notifications without adhan audio';
+      'اعلان‌های یادآوری نماز بدون صدای اذان';
 
   @override
   String notificationsPrayerAdhanChannelName(String adhanTitle) {
-    return 'Salah Reminders ($adhanTitle)';
+    return 'یادآوری نماز ($adhanTitle)';
   }
 
   @override
   String get notificationsPrayerAdhanChannelDescription =>
-      'Salah reminder notifications with adhan audio';
+      'اعلان‌های یادآوری نماز همراه با صدای اذان';
 
   @override
   String get notificationsPrayerBeforeQazaChannelName =>
-      'Salah Reminders (Before Qaza)';
+      'یادآوری نماز (پیش از قضا)';
 
   @override
   String get notificationsPrayerBeforeQazaChannelDescription =>
-      'Salah reminder notifications before qada';
+      'اعلان‌های یادآوری نماز پیش از قضا شدن';
 
   @override
   String get notificationsDailyRemindersChannelName => 'یادآوری‌های روزانه';
@@ -63,7 +63,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String notificationsPrayerAtTimeTitle(String prayerName) {
-    return '$prayerName Salah';
+    return 'نماز $prayerName';
   }
 
   @override
@@ -84,25 +84,25 @@ class AppLocalizationsFa extends AppLocalizations {
   String get notificationsFastingTitle => 'یادآوری روزه';
 
   @override
-  String get notificationsOnThisDayTitle => 'On This Day';
+  String get notificationsOnThisDayTitle => 'در چنین روزی';
 
   @override
   String get notificationsCycleCheckTitle => 'وضعیت امروز را بررسی کنید';
 
   @override
-  String get notificationsMoonriseTitle => 'Moonrise';
+  String get notificationsMoonriseTitle => 'طلوع ماه';
 
   @override
-  String get notificationsMoonsetTitle => 'Moonset';
+  String get notificationsMoonsetTitle => 'غروب ماه';
 
   @override
   String notificationsPrayerAtTimeBody(String prayerName) {
-    return 'It is time for $prayerName Salah. Stay connected with your salah.';
+    return 'وقت نماز $prayerName است. با نمازت پیوسته بمان.';
   }
 
   @override
   String notificationsPrayerAtTimeFajrBody(String prayerName) {
-    return 'It is time for $prayerName Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
+    return 'وقت نماز $prayerName است.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
   }
 
   @override
@@ -126,17 +126,17 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get notificationsOnThisDayBody =>
-      'Open today’s historical reflection and revisit a meaningful moment from Islamic history.';
+      'بازتاب تاریخی امروز را باز کن و لحظه‌ای معنادار از تاریخ اسلام را دوباره مرور کن.';
 
   @override
   String get notificationsCycleCheckBody =>
       'اگر لازم است وضعیت فعلی خود را به‌روزرسانی کنید.';
 
   @override
-  String get notificationsMoonriseBody => 'The moon is rising now.';
+  String get notificationsMoonriseBody => 'اکنون ماه در حال طلوع است.';
 
   @override
-  String get notificationsMoonsetBody => 'The moon is setting now.';
+  String get notificationsMoonsetBody => 'اکنون ماه در حال غروب است.';
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -144,29 +144,31 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String get notificationsPrayerActionMarkPrayed => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkPrayed =>
+      'نماز را اقامه‌شده علامت بزن';
 
   @override
   String get notificationsPrayerActionMarkPrayedLate =>
-      'Mark Salah as offered late';
+      'نماز را با تأخیر اقامه‌شده علامت بزن';
 
   @override
-  String get notificationsPrayerActionSnooze => 'Snooze';
+  String get notificationsPrayerActionSnooze => 'تعویق';
 
   @override
-  String get notificationsPrayerActionSnooze5 => 'Remind me in 5 min';
+  String get notificationsPrayerActionSnooze5 => '۵ دقیقه دیگر یادآوری کن';
 
   @override
-  String get notificationsPrayerActionSnooze10 => 'Remind me in 10 min';
+  String get notificationsPrayerActionSnooze10 => '۱۰ دقیقه دیگر یادآوری کن';
 
   @override
-  String get notificationsPrayerActionMarkOffered => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkOffered =>
+      'نماز را اقامه‌شده علامت بزن';
 
   @override
-  String get notificationsPrayerActionDismiss => 'Dismiss';
+  String get notificationsPrayerActionDismiss => 'بستن';
 
   @override
-  String get notificationsPrayerActionOpen => 'Open';
+  String get notificationsPrayerActionOpen => 'باز کردن';
 
   @override
   String get notificationsReflectionActionWrite => 'Write Reflection';
@@ -181,7 +183,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get notificationsPrayerNameTahajjud => 'تهجد';
 
   @override
-  String get notificationsGenericPrayerName => 'Salah';
+  String get notificationsGenericPrayerName => 'نماز';
 
   @override
   String get notificationsFastingBeginsNowTitle => 'روزه اکنون آغاز می‌شود';
@@ -249,195 +251,194 @@ class AppLocalizationsFa extends AppLocalizations {
   String get notificationsFastingLiveJustEntered => 'همین الآن وارد شد';
 
   @override
-  String get historyAdditionalMatchesTitle => 'More moments for today';
+  String get historyAdditionalMatchesTitle => 'رویدادهای بیشتر برای امروز';
 
   @override
-  String get historyArchiveAllCategories => 'All categories';
+  String get historyArchiveAllCategories => 'همه دسته‌ها';
 
   @override
-  String get historyArchiveAllGregorianMonths => 'All Gregorian months';
+  String get historyArchiveAllGregorianMonths => 'همه ماه‌های میلادی';
 
   @override
-  String get historyArchiveAllHijriMonths => 'All Hijri months';
+  String get historyArchiveAllHijriMonths => 'همه ماه‌های هجری';
 
   @override
-  String get historyArchiveCategoryLabel => 'Category';
+  String get historyArchiveCategoryLabel => 'دسته';
 
   @override
   String get historyArchiveEmptyFilters =>
-      'No historical events match these filters yet.';
+      'هنوز هیچ رویداد تاریخی با این فیلترها هم‌خوانی ندارد.';
 
   @override
-  String get historyArchiveFiltersTitle => 'Browse the archive';
+  String get historyArchiveFiltersTitle => 'مرور بایگانی';
 
   @override
-  String get historyArchiveGregorianMonthLabel => 'Gregorian month';
+  String get historyArchiveGregorianMonthLabel => 'ماه میلادی';
 
   @override
-  String get historyArchiveHijriMonthLabel => 'Hijri month';
+  String get historyArchiveHijriMonthLabel => 'ماه هجری';
 
   @override
   String get historyArchiveLoadError =>
-      'Historical events could not be loaded right now.';
+      'در حال حاضر رویدادهای تاریخی بارگیری نشدند.';
 
   @override
   String historyArchiveResultsCount(int count) {
-    return '$count events';
+    return '$count رویداد';
   }
 
   @override
   String get historyArchiveSubtitle =>
-      'Browse curated Islamic historical moments by date and category.';
+      'لحظه‌های برگزیده تاریخ اسلامی را بر پایه تاریخ و دسته مرور کنید.';
 
   @override
-  String get historyArchiveTitle => 'Historical Calendar';
+  String get historyArchiveTitle => 'تقویم تاریخی';
 
   @override
-  String get historyCategoryBattles => 'Battles';
+  String get historyCategoryBattles => 'نبردها';
 
   @override
-  String get historyCategoryBirths => 'Births';
+  String get historyCategoryBirths => 'ولادت‌ها';
 
   @override
-  String get historyCategoryDeaths => 'Deaths';
+  String get historyCategoryDeaths => 'وفات‌ها';
 
   @override
-  String get historyCategoryIslamicHistory => 'Islamic History';
+  String get historyCategoryIslamicHistory => 'تاریخ اسلام';
 
   @override
-  String get historyCategoryKhulafa => 'Khulafa';
+  String get historyCategoryKhulafa => 'خلفا';
 
   @override
-  String get historyCategoryProphets => 'Prophets';
+  String get historyCategoryProphets => 'پیامبران';
 
   @override
-  String get historyCategoryRevelation => 'Revelation';
+  String get historyCategoryRevelation => 'وحی';
 
   @override
-  String get historyCategorySacredPlaces => 'Sacred Places';
+  String get historyCategorySacredPlaces => 'مکان‌های مقدس';
 
   @override
-  String get historyCategoryScholars => 'Scholars';
+  String get historyCategoryScholars => 'عالمان';
 
   @override
-  String get historyCategorySeerah => 'Seerah';
+  String get historyCategorySeerah => 'سیره';
 
   @override
-  String get historyCategoryWorldHistory => 'World History';
+  String get historyCategoryWorldHistory => 'تاریخ جهان';
 
   @override
-  String get historyDateConfidenceApproximate => 'Approximate date';
+  String get historyDateConfidenceApproximate => 'تاریخ تقریبی';
 
   @override
-  String get historyDateConfidenceDisputed => 'Date differs across sources';
+  String get historyDateConfidenceDisputed => 'تاریخ در منابع متفاوت است';
 
   @override
-  String get historyDateConfidenceExact => 'Widely cited date';
+  String get historyDateConfidenceExact => 'تاریخ مشهور در منابع';
 
   @override
-  String get historyDateUnavailable => 'Not available in this V1 record';
+  String get historyDateUnavailable => 'در این رکورد نسخه V1 در دسترس نیست';
 
   @override
-  String get historyDateUnknown => 'Date not available';
+  String get historyDateUnknown => 'تاریخ در دسترس نیست';
 
   @override
   String get historyDetailLoadingSubtitle =>
-      'Loading the historical event details.';
+      'جزئیات رویداد تاریخی در حال بارگیری است.';
 
   @override
-  String get historyDetailLoadingTitle => 'Historical Event';
+  String get historyDetailLoadingTitle => 'رویداد تاریخی';
 
   @override
-  String get historyDetailNotFoundSubtitle =>
-      'This historical event could not be found.';
+  String get historyDetailNotFoundSubtitle => 'این رویداد تاریخی پیدا نشد.';
 
   @override
-  String get historyDetailNotFoundTitle => 'Event not found';
+  String get historyDetailNotFoundTitle => 'رویداد پیدا نشد';
 
   @override
-  String get historyGregorianDateLabel => 'Gregorian date';
+  String get historyGregorianDateLabel => 'تاریخ میلادی';
 
   @override
   String historyGregorianDateValue(String day, String month, String year) {
-    return '$day $month $year CE';
+    return '$day $month $year میلادی';
   }
 
   @override
-  String get historyHijriDateLabel => 'Hijri date';
+  String get historyHijriDateLabel => 'تاریخ هجری';
 
   @override
   String historyHijriDateValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year هجری';
   }
 
   @override
   String get historyLearnIslandSubtitle =>
-      'On this day moments and a browsable archive of Islamic history.';
+      'لحظه‌های امروز در تاریخ و بایگانی قابل مرور تاریخ اسلامی.';
 
   @override
-  String get historyLessonsTitle => 'Lessons & Reflection';
+  String get historyLessonsTitle => 'درس‌ها و تأمل';
 
   @override
-  String get historyLocationLabel => 'Location';
+  String get historyLocationLabel => 'مکان';
 
   @override
-  String get historyMatchBadgeBoth => 'Gregorian and Hijri match';
+  String get historyMatchBadgeBoth => 'تطبیق هم‌زمان میلادی و هجری';
 
   @override
-  String get historyMatchBadgeGregorian => 'Gregorian today';
+  String get historyMatchBadgeGregorian => 'امروز در تقویم میلادی';
 
   @override
-  String get historyMatchBadgeHijri => 'Hijri today';
+  String get historyMatchBadgeHijri => 'امروز در تقویم هجری';
 
   @override
   String get historyOnThisDayMatchesSubtitle =>
-      'See the historical moments that match today’s Gregorian and Hijri anniversaries.';
+      'لحظه‌های تاریخی‌ای را ببینید که با سالگردهای امروز در تقویم‌های میلادی و هجری هماهنگ‌اند.';
 
   @override
-  String get historyOnThisDayMatchesTitle => 'On This Day';
+  String get historyOnThisDayMatchesTitle => 'در چنین روزی';
 
   @override
   String get historyOnThisDaySubtitle =>
-      'A gentle historical reflection for today’s Gregorian and Hijri dates.';
+      'یک تأمل آرام تاریخی برای تاریخ‌های میلادی و هجری امروز.';
 
   @override
-  String get historyOnThisDayTitle => 'On This Day';
+  String get historyOnThisDayTitle => 'در چنین روزی';
 
   @override
-  String get historyOpenArchiveAction => 'Open archive';
+  String get historyOpenArchiveAction => 'باز کردن بایگانی';
 
   @override
-  String get historyNextUpcomingEventLabel => 'Next event';
+  String get historyNextUpcomingEventLabel => 'رویداد بعدی';
 
   @override
-  String get historyOverviewTitle => 'Overview';
+  String get historyOverviewTitle => 'نمای کلی';
 
   @override
-  String get contextualLinksRelatedTitle => 'Related';
+  String get contextualLinksRelatedTitle => 'مرتبط';
 
   @override
-  String get contextualLinksTypeEvent => 'Event';
+  String get contextualLinksTypeEvent => 'رویداد';
 
   @override
-  String get contextualLinksTypeHadith => 'Hadith';
+  String get contextualLinksTypeHadith => 'حدیث';
 
   @override
-  String get contextualLinksTypeJourney => 'Journey';
+  String get contextualLinksTypeJourney => 'مسیر';
 
   @override
-  String get contextualLinksTypeLearn => 'Learn';
+  String get contextualLinksTypeLearn => 'یادگیری';
 
   @override
-  String get historyRelatedContentTitle => 'Related learning';
+  String get historyRelatedContentTitle => 'یادگیری مرتبط';
 
   @override
-  String get historyRelatedPeopleTitle => 'Related people & entities';
+  String get historyRelatedPeopleTitle => 'اشخاص و موجودیت‌های مرتبط';
 
   @override
-  String get historySignificanceTitle => 'Why it matters';
+  String get historySignificanceTitle => 'چرا مهم است';
 
   @override
-  String get historySourcesTitle => 'Sources';
+  String get historySourcesTitle => 'منابع';
 
   @override
   String historyTodayGregorianValue(String day, String month, String year) {
@@ -446,38 +447,38 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String historyTodayHijriValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year هجری';
   }
 
   @override
-  String get historyTodayShortcutAction => 'Today’s matches';
+  String get historyTodayShortcutAction => 'مطابقت‌های امروز';
 
   @override
   String get historyEmptyTodaySubtitle =>
-      'Historical moments for this day are still being added. You can still browse the archive.';
+      'لحظه‌های تاریخی این روز هنوز در حال افزوده شدن‌اند. با این حال می‌توانید بایگانی را مرور کنید.';
 
   @override
-  String get historyEmptyTodayTitle => 'More moments are on the way';
+  String get historyEmptyTodayTitle => 'لحظه‌های بیشتری در راه است';
 
   @override
   String historyViewAllCount(int count) {
-    return 'View all ($count)';
+    return 'مشاهده همه ($count)';
   }
 
   @override
-  String get navDhikr => 'Ibadah';
+  String get navDhikr => 'عبادت';
 
   @override
-  String get navLearning => 'Learn';
+  String get navLearning => 'یادگیری';
 
   @override
-  String get navHome => 'Home';
+  String get navHome => 'خانه';
 
   @override
-  String get navPrayer => 'Growth';
+  String get navPrayer => 'رشد';
 
   @override
-  String get navGarden => 'Profile';
+  String get navGarden => 'باغ';
 
   @override
   String get greetingArabic => 'السلام عليكم ورحمة الله وبركاته';
@@ -508,6 +509,9 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranAppHubTitle => 'قرآن کریم';
+
+  @override
+  String get quranAppHubSearchHint => 'Search the Holy Qur\'an';
 
   @override
   String get quranDiscoverSectionTitle => 'Discover the Qur’an';
@@ -549,6 +553,9 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get hadithSourceLabel => 'Source';
+
+  @override
+  String get hadithSourceChapterLabel => 'فصل';
 
   @override
   String get hadithReferenceLabel => 'Reference';
@@ -730,6 +737,40 @@ class AppLocalizationsFa extends AppLocalizations {
   String get hadithCopiedToClipboard => 'Hadith copied to clipboard.';
 
   @override
+  String get hadithProvenanceLabel => 'خاستگاه منبع';
+
+  @override
+  String get hadithProvenanceSeeded => 'رکورد پایه گزینش‌شده';
+
+  @override
+  String get hadithProvenanceEditorialOverride => 'رکورد بازبینی‌شده تحریری';
+
+  @override
+  String get hadithProvenanceImported => 'رکورد واردشده از منبع معتبر';
+
+  @override
+  String get hadithProvenanceUnknown => 'فراداده خط لوله منبع در انتظار است';
+
+  @override
+  String hadithProvenancePipelineValue(String pipeline) {
+    return 'خط لوله: $pipeline';
+  }
+
+  @override
+  String get hadithProvenanceInfoTitle => 'چرا این منبع قابل اعتماد است';
+
+  @override
+  String get hadithProvenanceInfoBody =>
+      'این بخش خواندن، مجموعه منبع، فصل، مرجع، درجه و فراداده خاستگاه را کنار هم نگه می‌دارد تا مدخل‌های عمومی حدیث به زمینه‌ای قابل‌بررسی از منبعی قابل اعتماد متصل بمانند.';
+
+  @override
+  String get hadithProvenanceInfoStatusTitle => 'وضعیت فعلی رکورد';
+
+  @override
+  String get hadithProvenanceInfoPipelineBody =>
+      'خط پایپ‌لاین نشان می‌دهد کدام مسیر ورود یا ویرایشی این رکورد را برای برنامه آماده کرده است.';
+
+  @override
   String get hadithTitleDailyReflection => 'Daily Hadith Reflection';
 
   @override
@@ -849,11 +890,193 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get hadithCollectionSubcategoriesTitle => 'زیرموضوع‌های این مجموعه';
+
+  @override
+  String hadithCollectionSubcategoryCount(int count) {
+    return '$count حدیث';
+  }
+
+  @override
+  String get hadithBrowseControlsTitle => 'این لیست را محدود کنید';
+
+  @override
+  String get hadithBrowseSortLabel => 'مرتب کردن';
+
+  @override
+  String get hadithBrowseSortRecommended => 'توصیه می شود';
+
+  @override
+  String get hadithBrowseSortTitle => 'عنوان';
+
+  @override
+  String get hadithBrowseSortSource => 'منبع';
+
+  @override
+  String get hadithBrowseSortGrade => 'درجه';
+
+  @override
+  String get hadithBrowseResetAll => 'همه را بازنشانی کنید';
+
+  @override
+  String get hadithBrowseAllSources => 'همه منابع';
+
+  @override
+  String get hadithBrowseAllGrades => 'همه نمرات';
+
+  @override
+  String get hadithBrowseAllSubcategories => 'همه زیر مجموعه ها';
+
+  @override
+  String get hadithBrowseQuickStartTitle => 'از اینجا شروع کنید';
+
+  @override
+  String hadithBrowseMatchingEntriesTitle(int count) {
+    return '$count حدیث در این فهرست است';
+  }
+
+  @override
+  String get hadithBrowseNoMatchesTitle =>
+      'هیچ حدیثی با این فیلترها مطابقت ندارد';
+
+  @override
+  String get hadithBrowseNoMatchesSubtitle =>
+      'برای باز کردن مجدد فهرست، منبع، درجه یا زیرمجموعه گسترده‌تری را امتحان کنید.';
+
+  @override
   String get hadithLessonNotFoundSubtitle => 'Content not found';
 
   @override
   String get hadithLessonNotFoundBody =>
       'The requested hadith could not be found.';
+
+  @override
+  String get hadithReaderDisplaySettingsAction => 'تنظیمات نمایش خواننده';
+
+  @override
+  String get hadithReaderDisplaySettingsTitle => 'نمایش خوانش';
+
+  @override
+  String get hadithReaderDisplaySettingsSubtitle =>
+      'انتخاب کنید هنگام مطالعه کدام لایه‌های متن حدیث دیده شوند.';
+
+  @override
+  String get hadithGradeInfoTitle => 'Hadith grades';
+
+  @override
+  String hadithGradeInfoSubtitle(String grade) {
+    return 'This hadith is marked as $grade.';
+  }
+
+  @override
+  String get hadithGradeInfoDisclaimer =>
+      'اینها کمک های خواندنی کوتاهی هستند که به شما در درک برچسب های استفاده شده در این کتابخانه کمک می کنند. بحث های تفصیلی درجه بندی حدیث متعلق به علما و مطالعه منبع خاص است.';
+
+  @override
+  String get hadithGradeInfoCurrentBadge => 'فعلی';
+
+  @override
+  String get hadithGradeInfoMuttafaqunAlayh =>
+      'معمولاً برای گزارش های جمع آوری شده توسط امام بخاری و امام مسلم استفاده می شود. خوانندگان اغلب این را به عنوان یکی از قوی‌ترین برچسب‌های درجه‌بندی در استفاده معمول مطالعه می‌دانند.';
+
+  @override
+  String get hadithGradeInfoSahih =>
+      'معمولاً برای گزارشی استفاده می‌شود که طبق قضاوت درجه‌بندی پیوست شده به آن در اینجا معتبر و قابل اعتماد تلقی می‌شود.';
+
+  @override
+  String get hadithGradeInfoHasanSahih =>
+      'هنگامی که محققان گزارشی را با عباراتی مانند حسن صحیح توصیف می کنند استفاده می شود. این به یک گزارش قوی اشاره می کند، در حالی که منعکس کننده زبان درجه بندی استفاده شده توسط منبع یا محققان است.';
+
+  @override
+  String get hadithGradeInfoHasan =>
+      'معمولاً برای گزارشی که به عنوان گزارشی معتبر و قابل قبول تلقی می‌شود، استفاده می‌شود، اگرچه معمولاً در خلاصه‌های مطالعه رایج در زیر صحیح قرار می‌گیرد.';
+
+  @override
+  String get hadithGradeInfoWeak =>
+      'برای گزارشی استفاده می شود که به اندازه کافی قوی نیست که در درجه صحیح یا حسن در درجه بندی پیوست شده در اینجا بایستد.';
+
+  @override
+  String get hadithGradeInfoBalagh =>
+      'برای گزارشی که در برخی از روایات منبع به شکل کوتاه شده یا غیرمستقیم مخابره می شود، استفاده می شود، بنابراین خوانندگان باید با دقت بیشتری و آگاهی از منبع با آن برخورد کنند.';
+
+  @override
+  String get hadithGradeInfoOtherTitle => 'برچسب درجه بندی دیگر';
+
+  @override
+  String get hadithGradeInfoOther =>
+      'برخی گزارش‌ها از جمله‌بندی درجه‌بندی خاص منبع یا یادداشت‌های سرمقاله استفاده می‌کنند که با دسته‌های ساده‌شده اصلی بالا مطابقت ندارند.';
+
+  @override
+  String get hadithNarratorPageSubtitle =>
+      'Narrator profile in the Hadith library';
+
+  @override
+  String get hadithNarratorNotFoundSubtitle => 'Narrator not found';
+
+  @override
+  String get hadithNarratorNotFoundBody =>
+      'The requested narrator could not be found in this Hadith library.';
+
+  @override
+  String get hadithNarratorFallbackSummary =>
+      'این راوی در سراسر کتابخانه حدیث ظاهر می شود. این صفحه به شما کمک می کند تا روایت های آنها را در اینجا ردیابی کنید، در حالی که نمایه در حال گسترش است.';
+
+  @override
+  String get hadithNarratorAliasesTitle => 'همچنین به عنوان نشان داده شده است';
+
+  @override
+  String get hadithNarratorInLibraryTitle => 'در این کتابخانه';
+
+  @override
+  String get hadithNarratorStatHadith => 'حدیث';
+
+  @override
+  String get hadithNarratorStatSources => 'منابع';
+
+  @override
+  String get hadithNarratorStatThemes => 'تم ها';
+
+  @override
+  String get hadithNarratorStatCollections => 'مجموعه ها';
+
+  @override
+  String hadithNarratorHadithSectionTitle(int count) {
+    return '$count hadith from this narrator';
+  }
+
+  @override
+  String get hadithNarratorRoleCompanion => 'صحابی پیامبر ﷺ';
+
+  @override
+  String get hadithNarratorRoleMotherOfBelievers => 'مادر مؤمنان و عالم';
+
+  @override
+  String get hadithNarratorRoleScholarCompanion =>
+      'همراهی که به علم و تدریس معروف است';
+
+  @override
+  String get hadithNarratorSummaryAbuHurairah =>
+      'ابوهریره از صحابی پیامبر اکرم صلی الله علیه و آله و سلم بود که به نزدیکی به رسول خدا صلی الله علیه و آله و سلم و نقل احادیث بسیار معروف بود. او در این کتابخانه غالباً در روایات مربوط به عبادت و شخصیت و توبه و زندگی روزمره مسلمانان حضور دارد.';
+
+  @override
+  String get hadithNarratorSummaryAishah =>
+      'عایشه بنت ابی بکر رضی الله عنها همسر پیامبر اکرم صلی الله علیه و آله و از داناترین معلمان سنت بود. روایات او در این کتابخانه غالباً رهنمودهایی درباره عبادت، قرآن، سیرت و زندگی در خاندان پیامبر(ص) حفظ کرده است.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnUmar =>
+      'عبدالله بن عمر از صحابی بود که به پیروی دقیق از سنت و عبادتش معروف بود. روایات او در این کتابخانه غالباً بر نماز، سفر، خویشتن داری و زندگی با آگاهی از آخرت است.';
+
+  @override
+  String get hadithNarratorSummaryAnasIbnMalik =>
+      'انس بن مالک در مدینه خدمت پیامبر اکرم صلی الله علیه و آله و سلم رسید و احادیث زیادی در مورد سیره و رحمت و سرمشق روزانه آن حضرت نقل کرده است. در این کتابخانه، روایات ایشان غالباً حاوی رهنمودهای عملی است که ریشه در مصاحبت و خدمت نزدیک دارد.';
+
+  @override
+  String get hadithNarratorSummaryJabirIbnAbdullah =>
+      'جابر بن عبدالله صحابی از انصار بود که در عبادات و آداب و زندگی اجتماعی حدیث نقل می کرد. روایات او در این کتابخانه اغلب راهنمایی هایی را حفظ می کند که عبادت را با رفتار روزمره پیوند می دهد.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnAbbas =>
+      'عبدالله بن عباس پسر عموی پیامبر اکرم صلی الله علیه و آله و سلم به علم و فهم و تعلیم شهرت یافت. در این کتابخانه، روایات او غالباً در جایی ظاهر می شود که حدیث عبادت را با تأمل، فهم و بینش گسترده تر پیوند می دهد.';
 
   @override
   String hadithLessonCompletedXp(int xp) {
@@ -977,8 +1200,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'Review and strengthen recall through the current memorization tools.';
 
   @override
-  String get quranMemorizationReviewOpenListAction =>
-      'Open memorization review';
+  String get quranMemorizationReviewOpenListAction => 'مرور حفظ را باز کنید';
 
   @override
   String get quranHubWordsTitle => 'Words';
@@ -1050,11 +1272,11 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonGuidedPath =>
-      'This best matches your current focus on following a guided path.';
+      'این به بهترین وجه با تمرکز فعلی شما برای دنبال کردن یک مسیر هدایت شده مطابقت دارد.';
 
   @override
   String get quranHubRecommendationReasonDaily =>
-      'Keep one ayah, one meaning cue, and one calm next step close today.';
+      'یک آیه، یکی به معنای نشانه و یکی آرام قدم بعدی را همین امروز نزدیک نگه دارید.';
 
   @override
   String quranHubRecommendationReasonDailyJourney(Object journey) {
@@ -1074,11 +1296,11 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonMemorizationFocus =>
-      'Keep repetition and review close while memorization is your main focus.';
+      'در حالی که حفظ کردن تمرکز اصلی شماست، تکرار و مرور را نزدیک نگه دارید.';
 
   @override
   String get quranHubRecommendationReasonRecentStudy =>
-      'Return to the surah you were studying most recently.';
+      'به سوره ای که اخیراً مطالعه می کردید برگردید.';
 
   @override
   String get quranHubRecommendationReasonTheme =>
@@ -1102,128 +1324,129 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String get quranCompanionSectionTitle => 'Your Qur’an Companion';
+  String get quranCompanionSectionTitle => 'همنشین قرآن شما';
 
   @override
   String get quranCompanionSectionSubtitle =>
-      'A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.';
+      'مجموعه ای آرام از پیشنهادات که بر اساس مطالعه اخیر شما، مسیر فعلی و لحظه ای که در آن هستید شکل گرفته است.';
 
   @override
   String quranCompanionResumePathTitle(Object path) {
-    return 'Continue $path';
+    return '$path را ادامه دهید';
   }
 
   @override
   String get quranCompanionResumePathDescription =>
-      'Pick up your guided journey where it last felt most alive.';
+      'سفر هدایت‌شده‌تان را از جایی که آخرین بار احساس می‌کردید زنده بودید، انتخاب کنید.';
 
   @override
-  String get quranCompanionResumeBadge => 'Resume';
+  String get quranCompanionResumeBadge => 'رزومه';
 
   @override
   String quranCompanionContinueSurahTitle(Object surah) {
-    return 'Continue Surah $surah';
+    return 'ادامه سوره $surah';
   }
 
   @override
   String get quranCompanionContinueSurahDescription =>
-      'Return to the ayah where your reading thread was already open.';
+      'به آیه ای بازگردید که تاپیک خواندن شما قبلاً باز بود.';
 
   @override
   String quranCompanionExploreThemeTitle(Object theme) {
-    return 'Explore $theme';
+    return 'کاوش $theme';
   }
 
   @override
   String get quranCompanionThemeDescription =>
-      'Follow one Qur’anic theme across connected surahs, ayat, and reflections.';
+      'از یک موضوع قرآنی در سوره‌ها، آیات و تأملات مرتبط پیروی کنید.';
 
   @override
   String get quranCompanionRelatedThemeDescription =>
-      'A connected theme to keep your recent Qur’an exploration moving gently forward.';
+      'یک موضوع مرتبط برای اینکه کاوش اخیر شما در قرآن به آرامی به جلو حرکت کند.';
 
   @override
   String quranCompanionPathwayTitle(Object path) {
-    return 'Walk through $path';
+    return 'از طریق $path قدم بزنید';
   }
 
   @override
   String get quranCompanionPathwayDescription =>
-      'A guided pathway that keeps the next step clear and spiritually grounded.';
+      'مسیر هدایت شده ای که قدم بعدی را روشن و از نظر معنوی مستقر نگه می دارد.';
 
   @override
   String quranCompanionStartHereTitle(Object surah) {
-    return 'Start with Surah $surah';
+    return 'با سوره $surah شروع کنید';
   }
 
   @override
   String get quranCompanionStartHereDescription =>
-      'A gentle starting point when you want something foundational and clear.';
+      'یک نقطه شروع ملایم زمانی که شما چیزی اساسی و واضح می خواهید.';
 
   @override
-  String get quranCompanionTimeOfDayTitle => 'A reflection for this moment';
+  String get quranCompanionTimeOfDayTitle => 'بازتابی برای این لحظه';
 
   @override
   String get quranCompanionTimeOfDayDescription =>
-      'Keep one ayah, one meaning cue, and one calm next step close right now.';
+      'یک آیه، یکی به معنای نشانه و یکی آرام قدم بعدی را همین الان نزدیک نگه دارید.';
 
   @override
   String quranCompanionFridayTitle(Object surah) {
-    return 'Friday reflection: $surah';
+    return 'بازتاب جمعه: $surah';
   }
 
   @override
   String get quranCompanionFridayDescription =>
-      'A soft Friday nudge toward a widely loved surah for reflection and recitation.';
+      'تلنگر ملایم جمعه به سوی سوره ای که بسیار محبوب است برای تأمل و تلاوت.';
 
   @override
-  String get quranCompanionFocusBadge => 'Growth focus';
+  String get quranCompanionFocusBadge => 'تمرکز رشد';
 
   @override
-  String get quranCompanionMomentBadge => 'For this moment';
+  String get quranCompanionMomentBadge => 'برای این لحظه';
 
   @override
-  String get quranCompanionFridayBadge => 'Friday';
+  String get quranCompanionFridayBadge => 'جمعه';
 
   @override
-  String get quranCompanionMomentumBadge => 'Keep going';
+  String get quranCompanionMomentumBadge => 'ادامه بده';
 
   @override
-  String get quranCompanionReasonContinue => 'Continue where you left off';
+  String get quranCompanionReasonContinue =>
+      'از همان جایی که متوقف کردید ادامه دهید';
 
   @override
-  String get quranCompanionReasonMorning => 'For this morning';
+  String get quranCompanionReasonMorning => 'برای امروز صبح';
 
   @override
-  String get quranCompanionReasonAfternoon => 'For this afternoon';
+  String get quranCompanionReasonAfternoon => 'برای امروز بعد از ظهر';
 
   @override
-  String get quranCompanionReasonEvening => 'For this evening';
+  String get quranCompanionReasonEvening => 'برای این عصر';
 
   @override
-  String get quranCompanionReasonNight => 'For tonight';
+  String get quranCompanionReasonNight => 'برای امشب';
 
   @override
-  String get quranCompanionReasonRecent => 'Based on your recent reading';
+  String get quranCompanionReasonRecent => 'بر اساس مطالعه اخیر شما';
 
   @override
-  String get quranCompanionReasonFocus => 'Based on your growth focus';
+  String get quranCompanionReasonFocus => 'بر اساس تمرکز رشد شما';
 
   @override
-  String get quranCompanionReasonFriday => 'Friday reflection';
+  String get quranCompanionReasonFriday => 'بازتاب جمعه';
 
   @override
-  String get quranCompanionReasonJourney => 'Connected to your journey';
+  String get quranCompanionReasonJourney => 'به سفر شما متصل است';
 
   @override
-  String get quranCompanionReasonMomentum => 'Keep your rhythm';
+  String get quranCompanionReasonMomentum => 'ریتم خود را حفظ کنید';
 
   @override
-  String get quranCompanionReasonStart => 'Start here';
+  String get quranCompanionReasonStart => 'از اینجا شروع کنید';
 
   @override
   String quranCompanionProgressLabel(int completed, int total) {
-    return '$completed of $total stops completed';
+    return '$completed از $total توقف تکمیل شد';
   }
 
   @override
@@ -2520,18 +2743,18 @@ class AppLocalizationsFa extends AppLocalizations {
   String get journeySubtitle => 'Long-term growth, light by light.';
 
   @override
-  String get profileTitle => 'Profile';
+  String get profileTitle => 'نمایه';
 
   @override
-  String get profileSubtitle => 'Intention, preferences, and personalization.';
+  String get profileSubtitle => 'نیت، ترجیحات و شخصی‌سازی.';
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of الله is guided toward balance and intention.';
+      'هر کس مراقب الله باشد، به سوی تعادل و نیت درست هدایت می‌شود.';
 
   @override
   String get profileSummarySubtitle =>
-      'Keep your intention steady and your settings aligned with ease.';
+      'نیت خود را استوار نگه دارید و تنظیماتتان را با آرامش هماهنگ کنید.';
 
   @override
   String get profileDisplayNameLabel => 'نام نمایشی';
@@ -2571,13 +2794,13 @@ class AppLocalizationsFa extends AppLocalizations {
   String get profileThemeModeLabel => 'حالت تم';
 
   @override
-  String get profileThemeSystem => 'System';
+  String get profileThemeSystem => 'سیستم';
 
   @override
   String get profileThemeDark => 'تاریک';
 
   @override
-  String get profileThemeLight => 'Light';
+  String get profileThemeLight => 'روشن';
 
   @override
   String get profileReduceMotion => 'کاهش اثرات حرکتی';
@@ -2586,11 +2809,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get profileHighContrastText => 'متن با کنتراست بالا';
 
   @override
-  String get profileModesTitle => 'Modes';
+  String get profileModesTitle => 'حالت‌ها';
 
   @override
   String get profileModesSubtitle =>
-      'Mode presets to support focus and consistency.';
+      'حالت‌های آماده برای پشتیبانی از تمرکز و ثبات.';
 
   @override
   String get profileRamadanModeTitle => 'حالت رمضان';
@@ -2666,11 +2889,11 @@ class AppLocalizationsFa extends AppLocalizations {
       'یادآوری‌ها و یادداشت‌ها را بر جلوه‌های بصری اولویت دهید.';
 
   @override
-  String get profileEntrustDeedsTitle => 'Entrust deeds';
+  String get profileEntrustDeedsTitle => 'اعمال را به خدا بسپار';
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with الله.';
+      'یادآوری آرام: اعمال خالصانه نزد الله است.';
 
   @override
   String get profileNotificationsTitle => 'اعلان ها و یادآوری ها';
@@ -2695,11 +2918,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get profileFastingReminders => 'یادآوری روزه';
 
   @override
-  String get profileOnThisDayReminders => 'On This Day reminders';
+  String get profileOnThisDayReminders => 'یادآورهای در چنین روزی';
 
   @override
   String get profileOnThisDayRemindersSubtitle =>
-      'Notify me when today has a historical Islamic event to reflect on.';
+      'وقتی امروز رویداد تاریخی اسلامی برای تأمل دارد به من اطلاع بده.';
 
   @override
   String get profileMoonriseReminders => 'اعلان های طلوع ماه';
@@ -2729,10 +2952,10 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get profileMissionLine =>
-      'A calm spiritual companion built for consistent, sincere growth.';
+      'همراهی روحی و آرام که برای رشد پیوسته و صادقانه ساخته شده است.';
 
   @override
-  String get profileVersionPlaceholder => 'Version 0.1.7 (placeholder)';
+  String get profileVersionPlaceholder => 'نسخه 0.1.7 (موقت)';
 
   @override
   String profilePlannedRemindersToday(int count) {
@@ -3089,19 +3312,19 @@ class AppLocalizationsFa extends AppLocalizations {
   String get learnShortcutClose => 'بستن میانبرها';
 
   @override
-  String get majorPageShortcutContinueJourneyLabel => 'Continue Journey';
+  String get majorPageShortcutContinueJourneyLabel => 'ادامه مسیر';
 
   @override
-  String get majorPageShortcutQuickLessonLabel => 'Quick Lesson';
+  String get majorPageShortcutQuickLessonLabel => 'درس سریع';
 
   @override
-  String get majorPageShortcutContinueReadingLabel => 'Continue Reading';
+  String get majorPageShortcutContinueReadingLabel => 'ادامه خواندن';
 
   @override
-  String get majorPageShortcutContinueListeningLabel => 'Continue Listening';
+  String get majorPageShortcutContinueListeningLabel => 'ادامه شنیدن';
 
   @override
-  String get majorPageShortcutSurahListLabel => 'Surah List';
+  String get majorPageShortcutSurahListLabel => 'فهرست سوره‌ها';
 
   @override
   String get learnSectionLandingSubtitle =>
@@ -3240,17 +3463,17 @@ class AppLocalizationsFa extends AppLocalizations {
       'Manage widget, lock screen, and watch-related Ibadah surfaces.';
 
   @override
-  String get settingsReminderStateOn => 'On';
+  String get settingsReminderStateOn => 'روشن';
 
   @override
-  String get settingsReminderStateOff => 'Off';
+  String get settingsReminderStateOff => 'خاموش';
 
   @override
   String get settingsLandingTitle => 'تنظیمات';
 
   @override
   String get settingsLandingSubtitle =>
-      'Choose a focused settings area instead of browsing one long page.';
+      'به‌جای مرور یک صفحه بلند، یک بخش متمرکز از تنظیمات را انتخاب کنید.';
 
   @override
   String get settingsCategoryAccountSyncSubtitle =>
@@ -3281,11 +3504,11 @@ class AppLocalizationsFa extends AppLocalizations {
       'صفحه قفل، جزیره پویا، و سطوح ساعت متصل را مدیریت کنید.';
 
   @override
-  String get settingsWidgetsEnabledTitle => 'Enable widgets';
+  String get settingsWidgetsEnabledTitle => 'فعال کردن ویجت‌ها';
 
   @override
   String get settingsWidgetsEnabledSubtitle =>
-      'Turn widget and live activity surfaces on or off from one place.';
+      'ویجت‌ها و سطوح Live Activity را از یک‌جا روشن یا خاموش کنید.';
 
   @override
   String get settingsCategoryLanguageDownloadsSubtitle =>
@@ -3307,7 +3530,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settingsHelpGuideSubtitle =>
-      'Short practical guides for using the app\'s main features with confidence.';
+      'راهنماهای کوتاه و کاربردی برای استفاده مطمئن از قابلیت‌های اصلی برنامه.';
 
   @override
   String get settingsCategoryHelpGuideSubtitle =>
@@ -3318,175 +3541,175 @@ class AppLocalizationsFa extends AppLocalizations {
       'یادداشت های نسخه، پشتیبانی، جزئیات حقوقی، و آنچه در آینده در راه است.';
 
   @override
-  String get settingsHelpGuideSearchHint => 'Search guides';
+  String get settingsHelpGuideSearchHint => 'جست‌وجوی راهنماها';
 
   @override
-  String get settingsHelpGuideBrowseTitle => 'Guide Categories';
+  String get settingsHelpGuideBrowseTitle => 'دسته‌های راهنما';
 
   @override
   String get settingsHelpGuideBrowseSubtitle =>
-      'Open a topic to see a short explanation and simple steps.';
+      'موضوعی را باز کنید تا توضیحی کوتاه و گام‌های ساده را ببینید.';
 
   @override
-  String get settingsHelpGuideSearchResultsTitle => 'Search Results';
+  String get settingsHelpGuideSearchResultsTitle => 'نتایج جست‌وجو';
 
   @override
   String get settingsHelpGuideSearchResultsSubtitle =>
-      'Guide topics update as you type.';
+      'موضوعات راهنما هنگام تایپ شما به‌روزرسانی می‌شوند.';
 
   @override
-  String get settingsHelpGuideSearchEmptyTitle => 'No matching guides found';
+  String get settingsHelpGuideSearchEmptyTitle => 'راهنمای مطابقی پیدا نشد';
 
   @override
   String get settingsHelpGuideSearchEmptySubtitle =>
-      'Try a simpler keyword or clear your search to browse all guide categories.';
+      'یک کلیدواژه ساده‌تر را امتحان کنید یا جست‌وجو را پاک کنید تا همه دسته‌های راهنما را ببینید.';
 
   @override
-  String get settingsHelpGuideStepsTitle => 'How to Use It';
+  String get settingsHelpGuideStepsTitle => 'روش استفاده';
 
   @override
   String get settingsHelpGuideStepsSubtitle =>
-      'Keep each step simple and use only what helps you right now.';
+      'هر گام را ساده نگه دارید و فقط از چیزی استفاده کنید که همین حالا به کارتان می‌آید.';
 
   @override
-  String get settingsHelpGuideNotFoundTitle => 'Guide not found';
+  String get settingsHelpGuideNotFoundTitle => 'راهنما پیدا نشد';
 
   @override
   String get settingsHelpGuideNotFoundSubtitle =>
-      'This guide could not be opened right now. Return to Help & Guide and try another topic.';
+      'فعلاً این راهنما باز نشد. به راهنما و کمک برگردید و موضوع دیگری را امتحان کنید.';
 
   @override
-  String get helpGuideGettingStartedTitle => 'Getting Started';
+  String get helpGuideGettingStartedTitle => 'شروع کار';
 
   @override
   String get helpGuideGettingStartedDescription =>
-      'Set up the basics so the app feels useful from the first day.';
+      'اصول اولیه را تنظیم کنید تا برنامه از همان روز نخست برایتان مفید باشد.';
 
   @override
   String get helpGuideGettingStartedStep1 =>
-      'Open Settings to choose your location, language, and appearance preferences.';
+      'تنظیمات را باز کنید تا مکان، زبان و ترجیحات ظاهری خود را انتخاب کنید.';
 
   @override
   String get helpGuideGettingStartedStep2 =>
-      'Check your Salah times and reminder mode so the daily schedule matches your routine.';
+      'اوقات نماز و حالت یادآورها را بررسی کنید تا برنامه روزانه با روال شما هماهنگ باشد.';
 
   @override
   String get helpGuideGettingStartedStep3 =>
-      'Use Home for today\'s overview, then visit Learn or Worship for deeper practice.';
+      'برای نمای کلی امروز از خانه استفاده کنید، سپس برای تمرین عمیق‌تر به یادگیری یا عبادت بروید.';
 
   @override
-  String get helpGuideSalahRemindersTitle => 'Salah & Reminders';
+  String get helpGuideSalahRemindersTitle => 'نماز و یادآورها';
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'Keep prayer times, reminders, and quick follow-up actions in one flow.';
+      'اوقات نماز، یادآورها و اقدام‌های سریع بعدی را در یک جریان نگه دارید.';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
-      'Open Settings > Salah Notifications to turn reminders on and choose how each prayer should alert you.';
+      'تنظیمات > اعلان‌های نماز را باز کنید تا یادآورها را روشن کنید و شیوه هشدار هر نماز را برگزینید.';
 
   @override
   String get helpGuideSalahRemindersStep2 =>
-      'Review Salah times in Settings > Prayer & Worship if you need manual times, adjustments, or Jumu\'ah changes.';
+      'اگر به زمان‌های دستی، تنظیمات بیشتر یا تغییرات جمعه نیاز دارید، اوقات نماز را در تنظیمات > نماز و عبادت مرور کنید.';
 
   @override
   String get helpGuideSalahRemindersStep3 =>
-      'When a reminder appears, you can open the app, snooze, or mark the prayer as offered if that option is available.';
+      'وقتی یادآوری ظاهر شد، می‌توانید برنامه را باز کنید، آن را به تعویق بیندازید یا اگر آن گزینه موجود است نماز را خوانده‌شده علامت بزنید.';
 
   @override
-  String get helpGuideQuranTitle => 'Qur\'an';
+  String get helpGuideQuranTitle => 'قرآن';
 
   @override
   String get helpGuideQuranDescription =>
-      'Read, search, bookmark, and return to the Qur\'an without losing your place.';
+      'قرآن را بخوانید، جست‌وجو کنید، نشان‌گذاری کنید و بدون از دست دادن جای خود به آن بازگردید.';
 
   @override
   String get helpGuideQuranStep1 =>
-      'Open Learn and enter the Qur\'an section to browse surahs, topics, bookmarks, and notes.';
+      'بخش یادگیری را باز کنید و وارد بخش قرآن شوید تا سوره‌ها، موضوعات، نشانک‌ها و یادداشت‌ها را مرور کنید.';
 
   @override
   String get helpGuideQuranStep2 =>
-      'Use the search field to find a surah, ayah, or topic, then open the result you want.';
+      'از فیلد جست‌وجو برای یافتن سوره، آیه یا موضوع استفاده کنید، سپس نتیجه دلخواهتان را باز کنید.';
 
   @override
   String get helpGuideQuranStep3 =>
-      'Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.';
+      'هرگاه به چیدمان خواندن متفاوتی نیاز داشتید، تنظیمات عربی، آوانویسی و ترجمه را از تنظیمات > یادگیری تغییر دهید.';
 
   @override
-  String get helpGuideLearningTitle => 'Learning';
+  String get helpGuideLearningTitle => 'یادگیری';
 
   @override
   String get helpGuideLearningDescription =>
-      'Use the learning hub to move between guided topics, lessons, and review tools.';
+      'از مرکز یادگیری برای جابه‌جایی میان موضوعات هدایت‌شده، درس‌ها و ابزارهای مرور استفاده کنید.';
 
   @override
   String get helpGuideLearningStep1 =>
-      'Open Learn to choose a section such as Qur\'an, Hadith, Life, World, Prophets, or Quizzes.';
+      'یادگیری را باز کنید تا بخشی مانند قرآن، حدیث، زندگی، جهان، پیامبران یا آزمون‌ها را انتخاب کنید.';
 
   @override
   String get helpGuideLearningStep2 =>
-      'Tap a category card to enter that section, then open a lesson, collection, or path that fits your goal.';
+      'روی کارت یک دسته بزنید تا وارد آن بخش شوید، سپس درسی، مجموعه‌ای یا مسیری را که با هدفتان سازگار است باز کنید.';
 
   @override
   String get helpGuideLearningStep3 =>
-      'Use search when you want a faster route to a topic, prophet, glossary term, or lesson.';
+      'وقتی مسیر سریع‌تری به سوی یک موضوع، پیامبر، واژه‌نامه یا درس می‌خواهید از جست‌وجو استفاده کنید.';
 
   @override
-  String get helpGuideDhikrAdhkarTitle => 'Dhikr & Adhkar';
+  String get helpGuideDhikrAdhkarTitle => 'ذکر و اذکار';
 
   @override
   String get helpGuideDhikrAdhkarDescription =>
-      'Keep daily remembrance simple with counters, guided sets, and saved routines.';
+      'یاد خدا را با شمارنده‌ها، مجموعه‌های هدایت‌شده و روال‌های ذخیره‌شده ساده نگه دارید.';
 
   @override
   String get helpGuideDhikrAdhkarStep1 =>
-      'Open Worship to find daily Dhikr, counters, and adhkar collections.';
+      'عبادت را باز کنید تا ذکر روزانه، شمارنده‌ها و مجموعه‌های اذکار را پیدا کنید.';
 
   @override
   String get helpGuideDhikrAdhkarStep2 =>
-      'Choose a set that matches your moment, then use the built-in counter or reading flow at your own pace.';
+      'مجموعه‌ای را که با حال و لحظه شما سازگار است برگزینید، سپس با سرعت خودتان از شمارنده داخلی یا جریان خواندن استفاده کنید.';
 
   @override
   String get helpGuideDhikrAdhkarStep3 =>
-      'Return to Home or Worship later to continue your rhythm and review your daily progress.';
+      'بعداً به خانه یا عبادت بازگردید تا ریتم خود را ادامه دهید و پیشرفت روزانه‌تان را مرور کنید.';
 
   @override
-  String get helpGuideGrowthProgressTitle => 'Growth & Progress';
+  String get helpGuideGrowthProgressTitle => 'رشد و پیشرفت';
 
   @override
   String get helpGuideGrowthProgressDescription =>
-      'Track steady habits, streaks, XP, and focused paths without making the app feel heavy.';
+      'عادت‌های پایدار، تداوم، XP و مسیرهای متمرکز را پیگیری کنید، بی‌آنکه برنامه سنگین به نظر برسد.';
 
   @override
   String get helpGuideGrowthProgressStep1 =>
-      'Open Journey to see your current streak, XP, growth paths, and today\'s focus areas.';
+      'مسیر را باز کنید تا تداوم فعلی، XP، مسیرهای رشد و بخش‌های تمرکز امروز را ببینید.';
 
   @override
   String get helpGuideGrowthProgressStep2 =>
-      'Use the path or habit sections to continue one small area of growth instead of trying to do everything at once.';
+      'به‌جای انجام همه‌چیز به‌صورت هم‌زمان، از بخش مسیر یا عادت برای ادامه یک حوزه کوچک رشد استفاده کنید.';
 
   @override
   String get helpGuideGrowthProgressStep3 =>
-      'Check Home for a quick summary when you only need to see what is pending today.';
+      'وقتی فقط می‌خواهید ببینید امروز چه چیزهایی باقی مانده است، خانه را برای یک خلاصه سریع بررسی کنید.';
 
   @override
-  String get helpGuideNotificationsSettingsTitle => 'Notifications & Settings';
+  String get helpGuideNotificationsSettingsTitle => 'اعلان‌ها و تنظیمات';
 
   @override
   String get helpGuideNotificationsSettingsDescription =>
-      'Adjust reminders, visuals, widgets, language, and account preferences in one place.';
+      'یادآورها، جلوه‌های بصری، ویجت‌ها، زبان و ترجیحات حساب را در یک‌جا تنظیم کنید.';
 
   @override
   String get helpGuideNotificationsSettingsStep1 =>
-      'Open Settings from the main app to browse reminders, appearance, learning, privacy, and family options.';
+      'تنظیمات را از برنامه اصلی باز کنید تا یادآورها، ظاهر، یادگیری، حریم خصوصی و گزینه‌های خانواده را مرور کنید.';
 
   @override
   String get helpGuideNotificationsSettingsStep2 =>
-      'Use the notification and widget sections when you want calmer alerts, live activity behavior, or lock screen changes.';
+      'هر زمان هشدارهای آرام‌تر، رفتار Live Activity یا تغییرات صفحه قفل می‌خواهید از بخش‌های اعلان و ویجت استفاده کنید.';
 
   @override
   String get helpGuideNotificationsSettingsStep3 =>
-      'Use Account Sync and Privacy & Data when you need backup, connected-device, or sync-related controls.';
+      'وقتی به پشتیبان‌گیری، دستگاه‌های متصل یا کنترل‌های مرتبط با همگام‌سازی نیاز دارید از همگام‌سازی حساب و حریم خصوصی و داده‌ها استفاده کنید.';
 
   @override
   String get settingsLearningHubSubtitle =>
@@ -4261,222 +4484,222 @@ class AppLocalizationsFa extends AppLocalizations {
   String get learnQuranHubStageMastered => 'Mastered';
 
   @override
-  String get quranTopicsTitle => 'Qur’an Topics';
+  String get quranTopicsTitle => 'مباحث قرآن';
 
   @override
   String get quranThemeMapBrowseSubtitle =>
-      'Browse a curated set of Qur’anic themes and begin from representative ayahs, surahs, and related learning paths.';
+      'مجموعه‌ای از مضامین قرآنی را مرور کنید و از آیات، سوره‌ها و مسیرهای آموزشی مرتبط شروع کنید.';
 
   @override
   String quranThemeMapStarterAyahCount(int count) {
-    return '$count starter ayahs';
+    return '$count آیه آغازین';
   }
 
   @override
-  String get quranThemeMapTopicNotFound =>
-      'This theme could not be found right now.';
+  String get quranThemeMapTopicNotFound => 'این موضوع در حال حاضر یافت نشد.';
 
   @override
-  String get quranThemeMapAyahsLabel => 'Ayahs';
+  String get quranThemeMapAyahsLabel => 'آیات';
 
   @override
-  String get quranThemeMapSurahsLabel => 'Surahs';
+  String get quranThemeMapSurahsLabel => 'سوره ها';
 
   @override
-  String get quranThemeMapLearningLinksLabel => 'Learning links';
+  String get quranThemeMapLearningLinksLabel => 'لینک های آموزشی';
 
   @override
-  String get quranThemeMapBestModeLabel => 'Best mode';
+  String get quranThemeMapBestModeLabel => 'بهترین حالت';
 
   @override
-  String get quranThemeMapRepresentativeAyahsTitle => 'Representative ayahs';
+  String get quranThemeMapRepresentativeAyahsTitle => 'آیات نماینده';
 
   @override
-  String get quranThemeMapWhyItMattersTitle => 'Why this theme matters';
+  String get quranThemeMapWhyItMattersTitle => 'چرا این موضوع مهم است';
 
   @override
-  String get quranThemeMapStudyFocusTitle => 'What to notice';
+  String get quranThemeMapStudyFocusTitle => 'به چه چیزی توجه کنید';
 
   @override
-  String get quranThemeMapStudyThemeAction => 'Study this theme in the Qur’an';
+  String get quranThemeMapStudyThemeAction =>
+      'این موضوع را در قرآن مطالعه کنید';
 
   @override
-  String get quranThemeMapOpenPathAction => 'Open related path';
+  String get quranThemeMapOpenPathAction => 'مسیر مربوطه را باز کنید';
 
   @override
-  String get quranThemeMapRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeMapRelatedSurahsTitle => 'سوره های مرتبط';
 
   @override
-  String get quranThemeMapRelatedLearningTitle => 'Related learning';
+  String get quranThemeMapRelatedLearningTitle => 'یادگیری مرتبط';
 
   @override
-  String get quranThemePatienceTitle => 'Patience';
+  String get quranThemePatienceTitle => 'صبر';
 
   @override
   String get quranThemePatienceDescription =>
       'Begin with ayahs that connect hardship to prayer, trust, and a steadier response.';
 
   @override
-  String get quranThemeGratitudeTitle => 'Gratitude';
+  String get quranThemeGratitudeTitle => 'سپاسگزاری';
 
   @override
   String get quranThemeGratitudeDescription =>
       'Follow ayahs that teach thankfulness as worship, wisdom, and careful use of blessings.';
 
   @override
-  String get quranThemeMercyTitle => 'Mercy';
+  String get quranThemeMercyTitle => 'رحمت';
 
   @override
   String get quranThemeMercyDescription =>
       'Explore mercy through gentleness, reconciliation, and the way believers carry other people’s weakness.';
 
   @override
-  String get quranThemeFamilyTitle => 'Family';
+  String get quranThemeFamilyTitle => 'خانواده';
 
   @override
   String get quranThemeFamilyDescription =>
       'Start with ayahs that place family responsibility, care, and counsel inside the life of faith.';
 
   @override
-  String get quranThemeAkhirahTitle => 'Akhirah';
+  String get quranThemeAkhirahTitle => 'اخیرا';
 
   @override
   String get quranThemeAkhirahDescription =>
-      'Study accountability, return, and the way the Hereafter reshapes urgency, hope, and moral seriousness.';
+      'پاسخگویی، بازگشت، و روشی را که آخرت اضطرار، امید و جدیت اخلاقی را تغییر می دهد، مطالعه کنید.';
 
   @override
-  String get quranThemeSignsInCreationTitle => 'Signs in Creation';
+  String get quranThemeSignsInCreationTitle => 'علائم در خلقت';
 
   @override
   String get quranThemeSignsInCreationDescription =>
-      'Gather ayahs that turn the natural world into reflection, remembrance, and clearer awareness of Allah’s wisdom.';
+      'آیاتی را جمع آوری کنید که جهان طبیعت را به تأمل، یادآوری و آگاهی واضح تر از حکمت خداوند تبدیل می کند.';
 
   @override
-  String get quranThemeProphetsTitle => 'Prophets';
+  String get quranThemeProphetsTitle => 'پیامبران';
 
   @override
   String get quranThemeProphetsDescription =>
-      'Use prophetic examples to see how revelation becomes lived patience, da’wah, reliance, and leadership.';
+      'از مثال های نبوی استفاده کنید تا ببینید چگونه وحی تبدیل به صبر، دعوت، توکل و رهبری می شود.';
 
   @override
-  String get quranThemeTrustInAllahTitle => 'Trust in Allah';
+  String get quranThemeTrustInAllahTitle => 'به خدا توکل کن';
 
   @override
   String get quranThemeTrustInAllahDescription =>
       'Begin with ayahs where reliance on Allah appears together with effort, consultation, and patient action.';
 
   @override
-  String get quranThemeRepentanceTitle => 'Repentance';
+  String get quranThemeRepentanceTitle => 'توبه';
 
   @override
   String get quranThemeRepentanceDescription =>
       'Follow ayahs that keep the door of return open through hope, reform, and renewed obedience.';
 
   @override
-  String get quranThemeRemembranceTitle => 'Remembrance';
+  String get quranThemeRemembranceTitle => 'خاطره';
 
   @override
   String get quranThemeRemembranceDescription =>
-      'Trace how dhikr steadies the heart, shapes action, and keeps revelation close during ordinary life.';
+      'ردیابی کنید که ذکر چگونه در زندگی عادی قلب را استوار می کند، عمل را شکل می دهد و وحی را نزدیک نگه می دارد.';
 
   @override
-  String get quranThemeSincerityTitle => 'Sincerity';
+  String get quranThemeSincerityTitle => 'اخلاص';
 
   @override
   String get quranThemeSincerityDescription =>
-      'Study ayahs that purify worship, intention, and inward devotion so acts belong to Allah alone.';
+      'آیاتی را مطالعه کن که عبادت و نیت و عبادت باطنی را پاک می کند، پس اعمال تنها از آن خداست.';
 
   @override
-  String get quranThemePrayerTitle => 'Prayer';
+  String get quranThemePrayerTitle => 'دعا';
 
   @override
   String get quranThemePrayerDescription =>
-      'Start with ayahs that show salah as protection, help in hardship, and an anchor between revelation and daily conduct.';
+      'با آیاتی شروع کنید که نماز را به عنوان محافظت، کمک در سختی ها، و لنگر بین وحی و رفتار روزانه نشان می دهد.';
 
   @override
-  String get quranThemeCharityTitle => 'Charity';
+  String get quranThemeCharityTitle => 'خیریه';
 
   @override
   String get quranThemeCharityDescription =>
-      'Gather ayahs that frame spending as sincerity, sacrifice, and care for people in need.';
+      'آیاتی را جمع آوری کنید که خرج کردن را به عنوان اخلاص، فداکاری و مراقبت از افراد نیازمند تعریف می کند.';
 
   @override
-  String get quranThemeJusticeTitle => 'Justice';
+  String get quranThemeJusticeTitle => 'عدالت';
 
   @override
   String get quranThemeJusticeDescription =>
-      'Study ayahs that hold justice together with truthfulness, restraint, and responsibility before Allah.';
+      'آیاتی را که عدالت را همراه با صداقت، خویشتن داری و مسئولیت در پیشگاه خداوند حفظ می کند، مطالعه کنید.';
 
   @override
-  String get quranThemeHumilityTitle => 'Humility';
+  String get quranThemeHumilityTitle => 'فروتنی';
 
   @override
   String get quranThemeHumilityDescription =>
-      'Begin with ayahs that correct pride and teach humble conduct, quiet strength, and self-purification.';
+      'با آیاتی شروع کنید که غرور را اصلاح می کند و رفتار فروتنانه، قدرت آرام و تهذیب نفس را می آموزد.';
 
   @override
   String get quranThemePatienceWhyItMatters =>
-      'Patience in the Qur’an is not passive waiting. It is worshipful steadiness that keeps the believer praying, hoping, and acting rightly when hardship stretches the soul.';
+      'صبر در قرآن انتظار انفعالی نیست. این استواری عبادی است که مؤمن را در هنگام سختی و سختی، در حال دعا و امیدواری و عمل صالح نگه می دارد.';
 
   @override
   String get quranThemePatienceStudyFocus =>
-      'Notice how sabr is paired with prayer, hope, forgiveness, and disciplined restraint. The theme is about staying upright under pressure, not becoming numb.';
+      'توجه کنید که چگونه صبر با دعا، امید، بخشش و خویشتن داری منظم همراه است. موضوع در مورد ایستادن تحت فشار است، نه بی حس شدن.';
 
   @override
   String get quranThemeGratitudeWhyItMatters =>
-      'Gratitude protects blessings from becoming heedlessness. The Qur’an presents shukr as worship, wisdom, and a way of using what Allah gives in a better direction.';
+      'شکر نعمت ها را از غفلت شدن حفظ می کند. قرآن شکر را به عنوان عبادت، حکمت و روشی برای استفاده بهتر از آنچه خداوند عطا کرده معرفی می کند.';
 
   @override
   String get quranThemeGratitudeStudyFocus =>
-      'Notice that gratitude is more than praise on the tongue. It appears with remembrance, reflection on signs, and wiser use of time, provision, and daily opportunities.';
+      'توجه داشته باشید که شکرگزاری بیش از ستایش بر زبان است. با یادآوری، تأمل در نشانه‌ها و استفاده عاقلانه‌تر از زمان، امکانات و فرصت‌های روزانه ظاهر می‌شود.';
 
   @override
   String get quranThemeMercyWhyItMatters =>
-      'Mercy in the Qur’an is both something hoped for from Allah and something practiced with people. It reshapes correction, pardon, speech, and how a believer carries weakness.';
+      'رحمت در قرآن هم امری است که از جانب خداوند به آن امید می رود و هم چیزی است که با مردم انجام می شود. تصحیح، عفو، گفتار و اینکه چگونه یک مؤمن ضعف را حمل می کند، دوباره شکل می دهد.';
 
   @override
   String get quranThemeMercyStudyFocus =>
-      'Notice how mercy appears through gentleness, forgiveness, calm responses, and open doors of return. This theme becomes stronger when you read it through conduct as well as emotion.';
+      'توجه کنید که چگونه رحمت از طریق ملایمت، بخشش، پاسخ های آرام و درهای باز بازگشت ظاهر می شود. این موضوع زمانی قوی‌تر می‌شود که آن را از طریق رفتار و همچنین احساسات بخوانید.';
 
   @override
   String get quranThemeFamilyWhyItMatters =>
-      'Family is one of the clearest places where faith becomes visible. The Qur’an ties worship to parents’ rights, counsel, restraint, and daily care inside the home.';
+      'خانواده یکی از واضح ترین مکان هایی است که ایمان در آن نمایان می شود. قرآن عبادت را به حقوق والدین، مشاوره، خویشتن داری و مراقبت روزانه در خانه گره می زند.';
 
   @override
   String get quranThemeFamilyStudyFocus =>
-      'Notice that family guidance here is practical. It is about speech, respect, burden-sharing, and wisdom in ordinary relationships, not only abstract affection.';
+      'توجه داشته باشید که راهنمایی خانواده در اینجا عملی است. این در مورد گفتار، احترام، تقسیم بار، و خرد در روابط عادی است، نه فقط محبت انتزاعی.';
 
   @override
   String get quranThemeTrustInAllahWhyItMatters =>
-      'Trust in Allah steadies the believer when outcomes feel uncertain. The Qur’an links tawakkul to obedience, consultation, and hope after sincere effort rather than escape from responsibility.';
+      'توکل بر خدا مؤمن را در مواقعی که نتیجه نامطمئن باشد، استوار می کند. قرآن توکل را پس از تلاش خالصانه به جای فرار از مسئولیت به اطاعت، مشورت و امید پیوند می دهد.';
 
   @override
   String get quranThemeTrustInAllahStudyFocus =>
-      'Notice that tawakkul never removes action. The theme becomes clearer when you read reliance together with patience, obedience, and refusal to despair.';
+      'توجه داشته باشید که توکل هرگز عمل را حذف نمی کند. وقتی توکل را همراه با صبر، اطاعت و امتناع از ناامیدی بخوانید، موضوع واضح تر می شود.';
 
   @override
   String get quranThemeRepentanceWhyItMatters =>
-      'Repentance keeps the servant moving back toward Allah instead of freezing in guilt or delay. The Qur’an frames tawbah as hopeful return joined to reform and renewed obedience.';
+      'توبه باعث می شود که بنده به جای یخ زدن در گناه یا تاخیر، به سوی خدا برگردد. قرآن توبه را به عنوان بازگشت امیدبخشی که به اصلاح و اطاعت مجدد پیوند خورده است.';
 
   @override
   String get quranThemeRepentanceStudyFocus =>
-      'Notice how repentance appears with mercy, hope, and practical change. The theme is about turning back honestly, not only feeling regret.';
+      'توجه کنید که چگونه توبه همراه با رحمت، امید و تغییر عملی ظاهر می شود. موضوع در مورد بازگشت صادقانه است، نه تنها احساس پشیمانی.';
 
   @override
   String get quranThemeRemembranceWhyItMatters =>
-      'Remembrance keeps revelation close during ordinary life. The Qur’an presents dhikr as something that settles the heart, shapes worship, and keeps the believer from living heedlessly.';
+      'یادآوری وحی را در طول زندگی عادی نزدیک نگه می دارد. قرآن ذکر را چیزی معرفی می‌کند که قلب را آرام می‌کند و عبادت را شکل می‌دهد و مؤمن را از غفلت باز می‌دارد.';
 
   @override
   String get quranThemeRemembranceStudyFocus =>
-      'Notice that dhikr is not only repetition. It appears with prayer, gratitude, reflection on signs, and a heart that stays oriented toward Allah throughout the day.';
+      'توجه کنید که ذکر فقط تکرار نیست. با دعا، شکرگزاری، تأمل در نشانه ها و قلبی که در تمام طول روز به سوی خدا معطوف می شود ظاهر می شود.';
 
   @override
   String get quranThemeSincerityWhyItMatters =>
-      'Sincerity protects worship from becoming image, routine, or divided intention. The Qur’an treats ikhlas as a foundation of devotion, not a small extra refinement.';
+      'اخلاص، عبادت را از تبدیل شدن به تصویر، روتین یا قصد تقسیمی محافظت می کند. قرآن اخلاص را اساس عبادت می داند نه تهذیب جزئی.';
 
   @override
   String get quranThemeSincerityStudyFocus =>
-      'Notice how sincerity is tied to worship, dependence, and quality of deeds. This theme becomes stronger when you read intention together with obedience and inward honesty.';
+      'توجه کنید که چگونه اخلاص با عبادت، وابستگی و کیفیت اعمال گره خورده است. این مضمون زمانی قوی تر می شود که نیت را همراه با اطاعت و صداقت درونی بخوانید.';
 
   @override
   String get learnHubClearSearchTooltip => 'پاک کردن جست‌وجو';
@@ -4663,123 +4886,123 @@ class AppLocalizationsFa extends AppLocalizations {
   String get quranReferenceViewerRelatedJourneys => 'مسیرهای مرتبط';
 
   @override
-  String get quranReferenceDetailCategoryQuranReference => 'Qur’an reference';
+  String get quranReferenceDetailCategoryQuranReference => 'مرجع قرآن';
 
   @override
-  String get quranReferenceDetailCategoryQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailCategoryQuranInsight => 'بینش قرآن';
 
   @override
-  String get quranReferenceDetailCategoryWorldLesson => 'Signs & creation';
+  String get quranReferenceDetailCategoryWorldLesson => 'نشانه ها و خلقت';
 
   @override
-  String get quranReferenceDetailCategoryWorshipLesson => 'Worship lesson';
+  String get quranReferenceDetailCategoryWorshipLesson => 'درس عبادت';
 
   @override
-  String get quranReferenceDetailCategoryCharacterLesson => 'Character lesson';
+  String get quranReferenceDetailCategoryCharacterLesson => 'درس شخصیت';
 
   @override
-  String get quranReferenceDetailCategoryHadith => 'Hadith';
+  String get quranReferenceDetailCategoryHadith => 'حدیث';
 
   @override
-  String get quranReferenceDetailCategoryDivineLife => 'Divine Life';
+  String get quranReferenceDetailCategoryDivineLife => 'زندگی الهی';
 
   @override
-  String get quranReferenceDetailCategoryProphet => 'Prophet reference';
+  String get quranReferenceDetailCategoryProphet => 'مرجع پیامبر';
 
   @override
-  String get quranReferenceDetailCategoryLearningPath => 'Learning path';
+  String get quranReferenceDetailCategoryLearningPath => 'مسیر یادگیری';
 
   @override
-  String get quranReferenceDetailCategoryLearningJourney => 'Journey lesson';
+  String get quranReferenceDetailCategoryLearningJourney => 'درس سفر';
 
   @override
   String quranReferenceDetailCurrentAnchorChip(Object anchor) {
-    return 'From $anchor';
+    return 'از $anchor';
   }
 
   @override
-  String get quranReferenceDetailWhyRelatedTitle => 'Why this is related';
+  String get quranReferenceDetailWhyRelatedTitle => 'چرا این مربوط است';
 
   @override
-  String get quranReferenceDetailPreviewTitle => 'What you will open';
+  String get quranReferenceDetailPreviewTitle => 'آنچه را که باز خواهید کرد';
 
   @override
-  String get quranReferenceDetailSourceOwnerTitle => 'Source owner';
+  String get quranReferenceDetailSourceOwnerTitle => 'مالک منبع';
 
   @override
   String quranReferenceDetailOpenDestination(Object destination) {
-    return 'Open $destination';
+    return '$destination را باز کنید';
   }
 
   @override
-  String get quranReferenceDetailOpenQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailOpenQuranInsight => 'بینش قرآن';
 
   @override
-  String get quranReferenceDetailOpenWorldLesson => 'world lesson';
+  String get quranReferenceDetailOpenWorldLesson => 'درس جهان';
 
   @override
-  String get quranReferenceDetailOpenWorshipLesson => 'worship lesson';
+  String get quranReferenceDetailOpenWorshipLesson => 'درس عبادت';
 
   @override
-  String get quranReferenceDetailOpenCharacterLesson => 'Character companion';
+  String get quranReferenceDetailOpenCharacterLesson => 'همراه شخصیت';
 
   @override
-  String get quranReferenceDetailOpenHadithLesson => 'Hadith lesson';
+  String get quranReferenceDetailOpenHadithLesson => 'درس حدیث';
 
   @override
-  String get quranReferenceDetailOpenDivineLifeLesson => 'Divine Life lesson';
+  String get quranReferenceDetailOpenDivineLifeLesson => 'درس زندگی الهی';
 
   @override
-  String get quranReferenceDetailOpenProphetStory => 'Prophet story';
+  String get quranReferenceDetailOpenProphetStory => 'داستان پیامبر';
 
   @override
-  String get quranReferenceDetailOpenLearningPath => 'learning path';
+  String get quranReferenceDetailOpenLearningPath => 'مسیر یادگیری';
 
   @override
-  String get quranReferenceDetailOpenLearningJourney => 'journey lesson';
+  String get quranReferenceDetailOpenLearningJourney => 'درس سفر';
 
   @override
   String get quranReferenceDetailReasonQuranReferenceLinked =>
-      'This Qur’an reference is surfaced because it strengthens the current ayah with a closely connected passage.';
+      'این مرجع قرآن به این دلیل ظاهر شده است که آیه فعلی را با یک قطعه متصل نزدیک تقویت می کند.';
 
   @override
   String get quranReferenceDetailReasonQuranInsight =>
-      'This insight expands one of the clearest study directions already connected to the current ayah.';
+      'این بینش یکی از واضح‌ترین جهت‌های مطالعه را که قبلاً به آیه فعلی مرتبط است، گسترش می‌دهد.';
 
   @override
   String get quranReferenceDetailReasonWorldLesson =>
-      'This lesson helps you reflect on signs, creation, or the natural world already tied to the current ayah.';
+      'این درس به شما کمک می‌کند تا در مورد نشانه‌ها، خلقت یا جهان طبیعی که قبلاً به آیه فعلی گره خورده است فکر کنید.';
 
   @override
   String get quranReferenceDetailReasonWorshipLesson =>
-      'This lesson extends the ayah into worship, remembrance, or a practical act of devotion.';
+      'این درس آیه را به عبادت، ذکر یا یک عمل عملی از عبادت تعمیم می دهد.';
 
   @override
   String get quranReferenceDetailReasonCharacterLesson =>
-      'This lesson carries the ayah into conduct, restraint, speech, or another lived character response.';
+      'این درس آیه را به رفتار، خویشتن داری، گفتار یا پاسخ شخصیت زنده دیگری می برد.';
 
   @override
   String get quranReferenceDetailReasonHadith =>
-      'This Hadith is surfaced because it reinforces a lesson already present in the current ayah.';
+      'این حدیث به این دلیل است که درسی را که قبلاً در آیه فعلی وجود دارد، تقویت می کند.';
 
   @override
   String get quranReferenceDetailReasonDivineLife =>
-      'This Divine Life lesson broadens the ayah into a fuller everyday topic or practical life setting.';
+      'این درس زندگی الهی آیه را به یک موضوع روزمره کاملتر یا محیط زندگی عملی گسترش می دهد.';
 
   @override
   String get quranReferenceDetailReasonProphet =>
-      'This prophetic reference helps frame the ayah through a lived example from revelation and sacred history.';
+      'این مرجع نبوی کمک می کند تا آیه را از طریق نمونه ای زنده از وحی و تاریخ مقدس شکل دهد.';
 
   @override
   String get quranReferenceDetailReasonLearningPath =>
-      'This path gathers nearby ayahs and lessons so you can study the same theme in a calmer sequence.';
+      'این مسیر آیه ها و درس های نزدیک را جمع آوری می کند تا بتوانید همان موضوع را در یک توالی آرام تر مطالعه کنید.';
 
   @override
   String get quranReferenceDetailReasonLearningJourney =>
-      'This journey lesson studies the same Qur’anic passage in a guided sequence, so you can move from reading into a calmer lesson flow.';
+      'این درس سفر همان آیه قرآن را در یک توالی هدایت شده مطالعه می کند، بنابراین شما می توانید از خواندن به یک جریان درس آرام تر بروید.';
 
   @override
-  String get quranThemeMapRelatedThemesTitle => 'Themes';
+  String get quranThemeMapRelatedThemesTitle => 'تم ها';
 
   @override
   String get quranReaderJourneyContextTitle => 'Journey context';
@@ -5538,7 +5761,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranSurahInsightWhyItMattersAliImran =>
-      'Ali Imran matters because it trains belief under pressure. It joins reflection on Allahs signs with restraint, mercy, and steadiness when the heart is tested.';
+      'Ali \'Imran matters because it trains belief under pressure. It joins reflection on Allah\'s signs with restraint, mercy, and steadiness when the heart is tested.';
 
   @override
   String get quranSurahInsightWhyItMattersTaHa =>
@@ -7333,27 +7556,27 @@ class AppLocalizationsFa extends AppLocalizations {
       'Reduce pressure and focus on calm consistency.';
 
   @override
-  String get profileRamadanDateRangeTitle => 'Ramadan date range';
+  String get profileRamadanDateRangeTitle => 'بازه تاریخ رمضان';
 
   @override
-  String get profileRamadanStartDate => 'Start date';
+  String get profileRamadanStartDate => 'تاریخ شروع';
 
   @override
-  String get profileRamadanEndDate => 'End date';
+  String get profileRamadanEndDate => 'تاریخ پایان';
 
   @override
   String get profileRamadanDateWindowActive =>
-      'Today falls inside your Ramadan date window.';
+      'امروز در بازه تاریخی رمضان شما قرار می‌گیرد.';
 
   @override
   String get profileRamadanDateWindowInactive =>
-      'Today is outside your Ramadan date window.';
+      'امروز بیرون از بازه تاریخی رمضان شماست.';
 
   @override
-  String get profileRamadanSetDates => 'Set dates';
+  String get profileRamadanSetDates => 'تنظیم تاریخ‌ها';
 
   @override
-  String get profileRamadanClearDates => 'Clear dates';
+  String get profileRamadanClearDates => 'پاک کردن تاریخ‌ها';
 
   @override
   String get learnContentTopicLabel => 'Topic';
@@ -7687,73 +7910,74 @@ class AppLocalizationsFa extends AppLocalizations {
   String get quranMemorizationTitle => 'حفظ (Hifz)';
 
   @override
-  String get quranMemorizationMarkAction => 'Mark for memorization';
+  String get quranMemorizationMarkAction => 'برای حفظ کردن علامت بزنید';
 
   @override
-  String get quranMemorizationRemoveAction => 'Remove from memorization';
+  String get quranMemorizationRemoveAction => 'حذف از حفظ';
 
   @override
-  String get quranMemorizationReviewTitle => 'Memorization Review';
+  String get quranMemorizationReviewTitle => 'مرور حفظ';
 
   @override
   String get quranMemorizationReviewSubtitle =>
-      'Return to the ayahs you want to retain with meaning, themes, and light related study.';
+      'به آیاتی که می خواهید با معنا، مضامین و مطالعه مرتبط با نور حفظ کنید، بازگردید.';
 
   @override
   String quranMemorizationReviewSummary(int count, int dueCount) {
-    return 'Saved: $count ayahs • Due today: $dueCount';
+    return 'ذخیره شده: $count آیه • سررسید امروز: $dueCount';
   }
 
   @override
   String get quranMemorizationReviewEmpty =>
-      'No ayahs are marked for memorization yet. Mark one from the reader to begin a calm review list.';
+      'هنوز هیچ آیه ای برای حفظ علامت گذاری نشده است. برای شروع یک فهرست مرور آرام، یکی از خواننده را علامت بزنید.';
 
   @override
-  String get quranMemorizationReviewDueTitle => 'Due for review';
+  String get quranMemorizationReviewDueTitle => 'موعد بررسی';
 
   @override
-  String get quranMemorizationReviewSavedTitle => 'Saved for memorization';
+  String get quranMemorizationReviewSavedTitle => 'برای حفظ ذخیره شده است';
 
   @override
-  String get quranMemorizationReviewContinueTitle => 'Continue review';
+  String get quranMemorizationReviewContinueTitle => 'ادامه بررسی';
 
   @override
-  String get quranMemorizationReviewTodayTitle => 'Review today';
+  String get quranMemorizationReviewTodayTitle => 'امروز مرور کنید';
 
   @override
-  String get quranMemorizationReviewRecentTitle => 'Recently memorized';
+  String get quranMemorizationReviewRecentTitle => 'اخیراً حفظ شده است';
 
   @override
-  String get quranMemorizationReviewNeedsRevisionTitle => 'Needs revision';
+  String get quranMemorizationReviewNeedsRevisionTitle =>
+      'نیاز به بازنگری دارد';
 
   @override
-  String get quranMemorizationReviewAllTitle => 'All memorized';
+  String get quranMemorizationReviewAllTitle => 'همه حفظ شده است';
 
   @override
   String get quranMemorizationReviewMeaningFallback =>
-      'Translation is not available for this ayah right now.';
+      'ترجمه برای این آیه در حال حاضر در دسترس نیست.';
 
   @override
   String quranMemorizationReviewNextReview(Object dateLabel) {
-    return 'Next review: $dateLabel';
+    return 'بررسی بعدی: $dateLabel';
   }
 
   @override
   String quranMemorizationReviewRhythmMeta(int count, Object dateLabel) {
-    return 'Reviewed $count times • Last reviewed: $dateLabel';
+    return '$count بار مرور شد • آخرین بازبینی: $dateLabel';
   }
 
   @override
-  String get quranMemorizationReviewNeverReviewed => 'Not reviewed yet';
+  String get quranMemorizationReviewNeverReviewed => 'هنوز بررسی نشده است';
 
   @override
-  String get quranMemorizationReviewThemesTitle => 'Key theme';
+  String get quranMemorizationReviewThemesTitle => 'موضوع کلیدی';
 
   @override
-  String get quranMemorizationReviewRelatedStudyTitle => 'Related study';
+  String get quranMemorizationReviewRelatedStudyTitle => 'مطالعه مرتبط';
 
   @override
-  String get quranMemorizationReviewOpenReaderAction => 'Open in reader';
+  String get quranMemorizationReviewOpenReaderAction => 'باز کردن در خواننده';
 
   @override
   String get quranHifzRevealModeFull => 'نمایش';
@@ -8166,18 +8390,18 @@ class AppLocalizationsFa extends AppLocalizations {
   String get kidsJourneyPlaceholderActionMarkComplete => 'I did this';
 
   @override
-  String get assistantTitle => 'Nur Assistant';
+  String get assistantTitle => 'دستیار نور';
 
   @override
   String get assistantSubtitle =>
-      'A calm companion for guidance, reflection, and app navigation.';
+      'همراهی آرام برای راهنمایی، تأمل و مسیریابی در برنامه.';
 
   @override
   String get assistantEmptyState =>
-      'Ask for a focus suggestion, reflection prompt, or where to go next.';
+      'برای پیشنهاد تمرکز، پرسش تأملی یا قدم بعدی بپرسید.';
 
   @override
-  String get assistantInputHint => 'Type your message';
+  String get assistantInputHint => 'پیام خود را بنویسید';
 
   @override
   String get circlesTitle => 'Community Circles';
@@ -8401,13 +8625,13 @@ class AppLocalizationsFa extends AppLocalizations {
   String get journalDetailSavedMessage => 'Journal entry updated.';
 
   @override
-  String get assistantQuickPromptsTitle => 'Suggestions';
+  String get assistantQuickPromptsTitle => 'پیشنهادها';
 
   @override
-  String get assistantRecentPromptsTitle => 'Recent prompts';
+  String get assistantRecentPromptsTitle => 'درخواست‌های اخیر';
 
   @override
-  String get assistantQuickActionsTitle => 'Quick actions';
+  String get assistantQuickActionsTitle => 'اقدام‌های سریع';
 
   @override
   String get circlesJoinedPageTitle => 'Joined circles';
@@ -18644,242 +18868,247 @@ class AppLocalizationsFa extends AppLocalizations {
   String get accountsSyncAddAccountAction => 'افزودن حساب';
 
   @override
-  String get accountsSyncStatusCardTitle => 'Accounts, Profile & Sync';
+  String get accountsSyncStatusCardTitle => 'حساب‌ها، نمایه و همگام‌سازی';
 
   @override
   String get accountsSyncStatusCardLocalOnlyBody =>
-      'You can keep using Path of Nūr fully offline. Sign in only if you want account identity and backup readiness.';
+      'می‌توانید Path of Nūr را کاملاً آفلاین ادامه دهید. فقط زمانی وارد شوید که هویت حساب و آمادگی پشتیبان برایتان مهم است.';
 
   @override
   String accountsSyncStatusCardSignedInBody(String accountName) {
-    return '$accountName is connected on this device. Backup and restore are available, but cloud backup still needs platform or backend setup.';
+    return '$accountName در این دستگاه متصل است. پشتیبان‌گیری و بازیابی در دسترس است، اما پشتیبان ابری هنوز به راه‌اندازی پلتفرم یا بک‌اند نیاز دارد.';
   }
 
   @override
   String get accountsSyncStatusCardBackupReadyBody =>
-      'A recent backup is available. You can keep learning locally and still export or restore safely.';
+      'یک پشتیبان تازه در دسترس است. می‌توانید به‌صورت محلی به یادگیری ادامه دهید و همچنان با خیال راحت برون‌ریزی یا بازیابی انجام دهید.';
 
   @override
   String get accountsSyncStatusCardBackupRunningBody =>
-      'Backup preparation is in progress.';
+      'آماده‌سازی پشتیبان در حال انجام است.';
 
   @override
   String get accountsSyncStatusCardRestoreReadyBody =>
-      'A restorable backup is available for this journey.';
+      'یک پشتیبان قابل‌بازیابی برای این مسیر در دسترس است.';
 
   @override
   String get accountsSyncStatusCardSyncErrorBody =>
-      'Something needs attention before backup or sync can continue safely.';
+      'پیش از آن‌که پشتیبان‌گیری یا همگام‌سازی با خیال راحت ادامه یابد، چیزی نیاز به توجه دارد.';
 
   @override
-  String get accountsSyncCurrentModeLabel => 'Current mode';
+  String get accountsSyncCurrentModeLabel => 'حالت فعلی';
 
   @override
   String accountsSyncCurrentModeValue(String value) {
-    return 'Current mode: $value';
+    return 'حالت فعلی: $value';
   }
 
   @override
   String accountsSyncProviderValue(String value) {
-    return 'Provider: $value';
+    return 'ارائه‌دهنده: $value';
   }
 
   @override
-  String get accountsSyncProviderNone => 'None';
+  String get accountsSyncProviderNone => 'هیچ‌کدام';
 
   @override
   String accountsSyncLastBackupValue(String time) {
-    return 'Last backup $time';
+    return 'آخرین پشتیبان $time';
   }
 
   @override
-  String get accountsSyncBackupNeverBackedUp => 'Never backed up';
+  String get accountsSyncBackupNeverBackedUp =>
+      'هنوز هیچ پشتیبانی انجام نشده است';
 
   @override
-  String get accountsSyncModeLocalOnly => 'Local only';
+  String get accountsSyncModeLocalOnly => 'فقط محلی';
 
   @override
-  String get accountsSyncModeSignedInNoBackup => 'Connected, no backup yet';
+  String get accountsSyncModeSignedInNoBackup =>
+      'متصل است، هنوز پشتیبانی ندارد';
 
   @override
-  String get accountsSyncModeBackupAvailable => 'Backup available';
+  String get accountsSyncModeBackupAvailable => 'پشتیبان در دسترس است';
 
   @override
-  String get accountsSyncModeBackupInProgress => 'Backup in progress';
+  String get accountsSyncModeBackupInProgress =>
+      'پشتیبان‌گیری در حال انجام است';
 
   @override
-  String get accountsSyncModeRestoreAvailable => 'Restore available';
+  String get accountsSyncModeRestoreAvailable => 'بازیابی در دسترس است';
 
   @override
-  String get accountsSyncModeSyncError => 'Needs attention';
+  String get accountsSyncModeSyncError => 'نیازمند توجه';
 
   @override
-  String get accountsSyncAccountSectionTitle => 'Account';
+  String get accountsSyncAccountSectionTitle => 'حساب';
 
   @override
   String accountsSyncConnectedAccountBody(String accountName) {
-    return '$accountName is connected on this device.';
+    return '$accountName در این دستگاه متصل است.';
   }
 
   @override
   String get accountsSyncLocalOnlyBody =>
-      'You are using Path of Nūr locally on this device. Your progress stays here unless you export or connect backup later.';
+      'شما در این دستگاه از Path of Nūr به‌صورت محلی استفاده می‌کنید. پیشرفت شما همین‌جا می‌ماند، مگر آن‌که بعداً برون‌ریزی کنید یا پشتیبان را متصل نمایید.';
 
   @override
-  String get accountsSyncBackupStatusTitle => 'Backup status';
+  String get accountsSyncBackupStatusTitle => 'وضعیت پشتیبان';
 
   @override
-  String get accountsSyncContinueWithAppleAction => 'Continue with Apple';
+  String get accountsSyncContinueWithAppleAction => 'ادامه با اپل';
 
   @override
-  String get accountsSyncContinueWithGoogleAction => 'Continue with Google';
+  String get accountsSyncContinueWithGoogleAction => 'ادامه با گوگل';
 
   @override
-  String get accountsSyncContinueWithEmailAction => 'Continue with Email';
+  String get accountsSyncContinueWithEmailAction => 'ادامه با ایمیل';
 
   @override
-  String get accountsSyncContinueLocalOnlyAction => 'Continue Local Only';
+  String get accountsSyncContinueLocalOnlyAction => 'ادامه فقط به‌صورت محلی';
 
   @override
   String get accountsSyncEmailComingNextBody =>
-      'Email sign-in architecture is ready, but backend delivery is not connected yet.';
+      'زیرساخت ورود با ایمیل آماده است، اما تحویل سمت سرور هنوز متصل نشده است.';
 
   @override
-  String get accountsSyncSignOutAction => 'Sign out';
+  String get accountsSyncSignOutAction => 'خروج';
 
   @override
   String accountsSyncAccountConnectedResult(String name) {
-    return '$name is connected on this device.';
+    return '$name روی این دستگاه متصل است.';
   }
 
   @override
-  String get accountsSyncAuthCancelledResult => 'Sign-in was cancelled.';
+  String get accountsSyncAuthCancelledResult => 'ورود لغو شد.';
 
   @override
   String get accountsSyncAuthUnavailableResult =>
-      'This sign-in option is not available on this device.';
+      'این گزینه ورود روی این دستگاه در دسترس نیست.';
 
   @override
   String get accountsSyncAuthNotConfiguredResult =>
-      'This sign-in option still needs platform or backend setup.';
+      'این گزینه ورود هنوز به راه‌اندازی پلتفرم یا بک‌اند نیاز دارد.';
 
   @override
   String get accountsSyncAuthFailedResult =>
-      'We could not complete sign-in safely.';
+      'نتوانستیم ورود را به‌صورت ایمن کامل کنیم.';
 
   @override
   String get accountsSyncContinueLocalOnlyResult =>
-      'Local-only mode is still available. Your device progress was not changed.';
+      'حالت فقط-محلی همچنان در دسترس است. پیشرفت این دستگاه تغییر نکرد.';
 
   @override
   String get accountsSyncSignedOutResult =>
-      'You are now using local-only mode on this device. Local progress was preserved.';
+      'اکنون روی این دستگاه از حالت فقط-محلی استفاده می‌کنید. پیشرفت محلی حفظ شد.';
 
   @override
-  String get accountsSyncSyncPreferencesTitle => 'Sync preferences';
+  String get accountsSyncSyncPreferencesTitle => 'ترجیحات همگام‌سازی';
 
   @override
-  String get accountsSyncPreferManualBackupTitle => 'Prefer manual backup';
+  String get accountsSyncPreferManualBackupTitle =>
+      'پشتیبان‌گیری دستی را ترجیح بده';
 
   @override
   String get accountsSyncAllowRestoreSuggestionsTitle =>
-      'Allow restore suggestions';
+      'پیشنهادهای بازیابی را مجاز کن';
 
   @override
   String get accountsSyncRemoteBackupNotConfiguredBody =>
-      'Remote backup foundations are ready, but cloud backup is not active yet. Manual export and import remain available.';
+      'زیرساخت پشتیبان راه‌دور آماده است، اما پشتیبان ابری هنوز فعال نشده است. برون‌ریزی و درون‌ریزی دستی همچنان در دسترس هستند.';
 
   @override
-  String get accountsSyncRemoteBackupSectionTitle => 'Remote backup';
+  String get accountsSyncRemoteBackupSectionTitle => 'پشتیبان راه‌دور';
 
   @override
   String get accountsSyncRemoteBackupReadyBody =>
-      'A connected provider can back up this device safely and restore it later.';
+      'یک ارائه‌دهنده متصل می‌تواند با خیال راحت از این دستگاه پشتیبان بگیرد و بعداً آن را بازیابی کند.';
 
   @override
   String get accountsSyncRemoteBackupUnavailableBody =>
-      'Remote backup is optional. You can stay local-only or use manual export until a supported provider is ready.';
+      'پشتیبان راه‌دور اختیاری است. می‌توانید در حالت فقط‌محلی بمانید یا تا زمان آماده‌شدن یک ارائه‌دهنده پشتیبانی‌شده از برون‌ریزی دستی استفاده کنید.';
 
   @override
-  String get accountsSyncRemoteRestorePreviewTitle => 'Restore comparison';
+  String get accountsSyncRemoteRestorePreviewTitle => 'مقایسه بازیابی';
 
   @override
   String get accountsSyncRemoteRestorePreviewSubtitle =>
-      'Review the remote backup against this device before you restore anything.';
+      'پیش از آن‌که چیزی را بازیابی کنید، پشتیبان راه‌دور را با این دستگاه بررسی کنید.';
 
   @override
-  String get accountsSyncRemoteProviderTitle => 'Remote provider';
+  String get accountsSyncRemoteProviderTitle => 'ارائه‌دهنده راه‌دور';
 
   @override
-  String get accountsSyncRemoteLastBackupTitle => 'Remote last backup';
+  String get accountsSyncRemoteLastBackupTitle => 'آخرین پشتیبان راه‌دور';
 
   @override
-  String get accountsSyncRemoteStatusIssueTitle => 'Remote status';
+  String get accountsSyncRemoteStatusIssueTitle => 'وضعیت راه‌دور';
 
   @override
-  String get accountsSyncBackUpNowAction => 'Back up now';
+  String get accountsSyncBackUpNowAction => 'اکنون پشتیبان بگیر';
 
   @override
-  String get accountsSyncCheckBackupStatusAction => 'Check backup status';
+  String get accountsSyncCheckBackupStatusAction => 'وضعیت پشتیبان را بررسی کن';
 
   @override
   String get accountsSyncRestoreFromRemoteAction =>
-      'Restore from remote backup';
+      'بازیابی از پشتیبان راه‌دور';
 
   @override
-  String get accountsSyncRemoteRestoreTitle => 'Restore remote backup';
+  String get accountsSyncRemoteRestoreTitle => 'بازیابی پشتیبان راه‌دور';
 
   @override
   String get accountsSyncRemoteRestoreNewerBody =>
-      'The remote backup looks newer than this device. Restoring will replace the current local set after a safety snapshot is created.';
+      'پشتیبان راه‌دور از این دستگاه جدیدتر به نظر می‌رسد. بازیابی، پس از ساخت یک snapshot ایمنی، مجموعه محلی فعلی را جایگزین خواهد کرد.';
 
   @override
   String get accountsSyncRemoteRestoreOlderBody =>
-      'The remote backup looks older than this device. Restoring may replace newer local progress on this device.';
+      'پشتیبان راه‌دور از این دستگاه قدیمی‌تر به نظر می‌رسد. بازیابی ممکن است پیشرفت محلی جدیدتر این دستگاه را جایگزین کند.';
 
   @override
   String get accountsSyncRemoteRestoreEqualBody =>
-      'The remote backup and local device look close in time. Restoring will still create a safety snapshot first.';
+      'پشتیبان راه‌دور و دستگاه محلی از نظر زمانی نزدیک به هم به نظر می‌رسند. بازیابی همچنان ابتدا یک snapshot ایمنی ایجاد خواهد کرد.';
 
   @override
   String accountsSyncRemotePreviewLocalUpdatedValue(Object time) {
-    return 'Local data updated $time';
+    return 'داده محلی در $time به‌روزرسانی شد';
   }
 
   @override
   String get accountsSyncRemotePreviewComparisonTitle =>
-      'Per-domain comparison';
+      'مقایسه بر پایه هر دامنه';
 
   @override
-  String get accountsSyncRemotePreviewWarningsTitle => 'Warnings';
+  String get accountsSyncRemotePreviewWarningsTitle => 'هشدارها';
 
   @override
   String get accountsSyncRemotePreviewNoWarnings =>
-      'No additional warnings were detected for this restore preview.';
+      'هیچ هشدار اضافه‌ای برای این پیش‌نمایش بازیابی شناسایی نشد.';
 
   @override
-  String get accountsSyncRemotePreviewActionsTitle => 'Choose what to do';
+  String get accountsSyncRemotePreviewActionsTitle =>
+      'انتخاب کنید چه کاری انجام شود';
 
   @override
   String get accountsSyncRemotePreviewReplaceAction =>
-      'Replace local with remote';
+      'جایگزینی داده محلی با راه‌دور';
 
   @override
-  String get accountsSyncRemotePreviewMergeAction => 'Merge safe domains';
+  String get accountsSyncRemotePreviewMergeAction => 'ادغام دامنه‌های امن';
 
   @override
-  String get accountsSyncRemotePreviewKeepLocalAction => 'Keep local data';
+  String get accountsSyncRemotePreviewKeepLocalAction => 'نگه‌داشتن داده محلی';
 
   @override
   String get accountsSyncRemotePreviewMergeConfirmBody =>
-      'Safe merge will keep remote data as the baseline and merge only the domains with deterministic rules. A safety snapshot will still be created first.';
+      'ادغام امن، داده راه‌دور را به‌عنوان مبنا نگه می‌دارد و فقط دامنه‌هایی را که قواعد قطعی دارند ادغام می‌کند. با این حال ابتدا یک snapshot ایمنی ایجاد خواهد شد.';
 
   @override
   String get accountsSyncRemotePreviewReplaceConfirmBody =>
-      'This will replace current local data with the remote backup after a safety snapshot is created.';
+      'این کار پس از ایجاد یک snapshot ایمنی، داده محلی فعلی را با پشتیبان راه‌دور جایگزین خواهد کرد.';
 
   @override
-  String get accountsSyncRemotePreviewResultTitle => 'Restore summary';
+  String get accountsSyncRemotePreviewResultTitle => 'خلاصه بازیابی';
 
   @override
   String accountsSyncRemotePreviewResultBody(
@@ -18888,16 +19117,16 @@ class AppLocalizationsFa extends AppLocalizations {
     Object replaced,
     Object snapshot,
   ) {
-    return '$action finished. Merged: $merged. Replaced: $replaced. Safety snapshot: $snapshot.';
+    return '$action به پایان رسید. ادغام‌شده: $merged. جایگزین‌شده: $replaced. snapshot ایمنی: $snapshot.';
   }
 
   @override
   String get accountsSyncRemotePreviewNoMergedDomains =>
-      'No domains were merged';
+      'هیچ دامنه‌ای ادغام نشد';
 
   @override
   String get accountsSyncRemotePreviewNoReplacedDomains =>
-      'No domains were replaced';
+      'هیچ دامنه‌ای جایگزین نشد';
 
   @override
   String accountsSyncRemotePreviewDomainSummary(
@@ -18906,374 +19135,381 @@ class AppLocalizationsFa extends AppLocalizations {
     Object remoteCount,
     Object merge,
   ) {
-    return '$conflict. Local items: $localCount. Remote items: $remoteCount. Merge: $merge.';
+    return '$conflict. موارد محلی: $localCount. موارد راه‌دور: $remoteCount. ادغام: $merge.';
   }
 
   @override
   String get accountsSyncRemotePreviewProviderMismatchBody =>
-      'The remote backup is tied to a different sign-in provider than the current device session.';
+      'پشتیبان راه‌دور به یک ارائه‌دهنده ورود متفاوت از نشست فعلی دستگاه متصل است.';
 
   @override
   String get accountsSyncRemotePreviewAccountMismatchBody =>
-      'The remote backup appears to belong to a different account identity than the one currently connected on this device.';
+      'به نظر می‌رسد پشتیبان راه‌دور متعلق به هویت حسابی متفاوت از حسابی است که اکنون روی این دستگاه متصل است.';
 
   @override
   String get accountsSyncRemotePreviewSchemaMismatchBody =>
-      'This remote backup uses a newer schema than this build can restore safely.';
+      'این پشتیبان راه‌دور از schema جدیدتری استفاده می‌کند که این نسخه نمی‌تواند آن را با خیال راحت بازیابی کند.';
 
   @override
   String get accountsSyncRemotePreviewLocalOnlyWarning =>
-      'This device contains local-only data that is not clearly present in the remote backup.';
+      'این دستگاه حاوی داده‌های فقط‌محلی است که به‌وضوح در پشتیبان راه‌دور دیده نمی‌شود.';
 
   @override
   String get accountsSyncRemotePreviewRemoteOnlyWarning =>
-      'The remote backup contains data that is not clearly present on this device yet.';
+      'پشتیبان راه‌دور حاوی داده‌ای است که هنوز به‌وضوح روی این دستگاه وجود ندارد.';
 
   @override
   String get accountsSyncRemotePreviewUncertainWarning =>
-      'Some domains differ, but the app cannot compare them precisely enough to promise a safe merge.';
+      'برخی دامنه‌ها متفاوت‌اند، اما برنامه نمی‌تواند آن‌ها را به‌اندازه کافی دقیق مقایسه کند تا یک ادغام امن را تضمین نماید.';
 
   @override
-  String get accountsSyncRemoteDomainProfileBasics => 'Profile basics';
+  String get accountsSyncRemoteDomainProfileBasics => 'اطلاعات پایه نمایه';
 
   @override
-  String get accountsSyncRemoteDomainSettings => 'Settings and preferences';
+  String get accountsSyncRemoteDomainSettings => 'تنظیمات و ترجیحات';
 
   @override
-  String get accountsSyncRemoteDomainPrayer => 'Prayer tracking';
+  String get accountsSyncRemoteDomainPrayer => 'پیگیری نماز';
 
   @override
-  String get accountsSyncRemoteDomainDhikr => 'Dhikr progress and history';
+  String get accountsSyncRemoteDomainDhikr => 'پیشرفت و سابقه ذکر';
 
   @override
-  String get accountsSyncRemoteDomainQuran => 'Qur’an progress and recents';
+  String get accountsSyncRemoteDomainQuran => 'پیشرفت و موارد اخیر قرآن';
 
   @override
-  String get accountsSyncRemoteDomainGrowth => 'XP, drops, and ocean progress';
+  String get accountsSyncRemoteDomainGrowth => 'XP، قطره‌ها و پیشرفت اقیانوس';
 
   @override
-  String get accountsSyncRemoteDomainLearning => 'Learning progress';
+  String get accountsSyncRemoteDomainLearning => 'پیشرفت یادگیری';
 
   @override
-  String get accountsSyncRemoteDomainJournal => 'Journal and notes';
+  String get accountsSyncRemoteDomainJournal => 'دفترچه و یادداشت‌ها';
 
   @override
-  String get accountsSyncRemoteDomainReminders =>
-      'Reminders and prayer preferences';
+  String get accountsSyncRemoteDomainReminders => 'یادآورها و ترجیحات نماز';
 
   @override
-  String get accountsSyncRemoteDomainTheme => 'Theme and accessibility';
+  String get accountsSyncRemoteDomainTheme => 'تم و دسترس‌پذیری';
 
   @override
-  String get accountsSyncRemoteConflictIdentical => 'Matches this device';
+  String get accountsSyncRemoteConflictIdentical => 'با این دستگاه یکسان است';
 
   @override
-  String get accountsSyncRemoteConflictRemoteNewer => 'Remote looks newer';
+  String get accountsSyncRemoteConflictRemoteNewer =>
+      'راه‌دور جدیدتر به نظر می‌رسد';
 
   @override
-  String get accountsSyncRemoteConflictLocalNewer => 'This device looks newer';
+  String get accountsSyncRemoteConflictLocalNewer =>
+      'این دستگاه جدیدتر به نظر می‌رسد';
 
   @override
   String get accountsSyncRemoteConflictRemoteOnly =>
-      'Remote-only data detected';
+      'داده فقط راه‌دور شناسایی شد';
 
   @override
-  String get accountsSyncRemoteConflictLocalOnly => 'Local-only data detected';
+  String get accountsSyncRemoteConflictLocalOnly => 'داده فقط محلی شناسایی شد';
 
   @override
-  String get accountsSyncRemoteConflictSchema => 'Schema mismatch';
+  String get accountsSyncRemoteConflictSchema => 'ناسازگاری schema';
 
   @override
   String get accountsSyncRemoteConflictUncertain =>
-      'Difference could not be compared safely';
+      'تفاوت را نمی‌شد با خیال راحت مقایسه کرد';
 
   @override
   String get accountsSyncRemoteConflictAccountMismatch =>
-      'Different account detected';
+      'حساب متفاوتی شناسایی شد';
 
   @override
   String get accountsSyncRemoteConflictProviderMismatch =>
-      'Different provider detected';
+      'ارائه‌دهنده متفاوتی شناسایی شد';
 
   @override
-  String get accountsSyncRemoteMergeSafe => 'Safe to merge';
+  String get accountsSyncRemoteMergeSafe => 'ادغام امن است';
 
   @override
-  String get accountsSyncRemoteMergeReplaceOnly => 'Replace only';
+  String get accountsSyncRemoteMergeReplaceOnly => 'فقط جایگزینی';
 
   @override
-  String get accountsSyncRemoteMergeUnsafe => 'Unsafe to merge';
+  String get accountsSyncRemoteMergeUnsafe => 'ادغام ناامن است';
 
   @override
-  String get accountsSyncRemoteMergeUnsupported => 'Merge not supported';
+  String get accountsSyncRemoteMergeUnsupported => 'ادغام پشتیبانی نمی‌شود';
 
   @override
-  String get accountsSyncAutoBackupSectionTitle => 'Auto-backup';
+  String get accountsSyncAutoBackupSectionTitle => 'پشتیبان‌گیری خودکار';
 
   @override
   String get accountsSyncAutoBackupSectionSubtitle =>
-      'Back up your journey automatically when meaningful progress changes. Manual backup stays available anytime.';
+      'وقتی پیشرفت معناداری رخ می‌دهد، به‌طور خودکار از مسیر شما پشتیبان بگیر. پشتیبان‌گیری دستی همیشه در دسترس می‌ماند.';
 
   @override
-  String get accountsSyncAutoBackupEnabledTitle => 'Enable auto-backup';
+  String get accountsSyncAutoBackupEnabledTitle =>
+      'فعال‌سازی پشتیبان‌گیری خودکار';
 
   @override
   String get accountsSyncAutoBackupOnBody =>
-      'Automatic backup is on when the provider is available and the app decides a new backup is worth sending.';
+      'وقتی ارائه‌دهنده در دسترس باشد و برنامه تشخیص دهد پشتیبان تازه ارزش ارسال دارد، پشتیبان‌گیری خودکار فعال است.';
 
   @override
   String get accountsSyncAutoBackupOffBody =>
-      'Automatic backup is off. Your data stays local until you choose to back it up.';
+      'پشتیبان‌گیری خودکار خاموش است. داده‌های شما محلی می‌ماند تا زمانی که خودتان انتخاب کنید از آن پشتیبان بگیرید.';
 
   @override
-  String get accountsSyncAutoBackupFrequencyTitle => 'Backup frequency';
+  String get accountsSyncAutoBackupFrequencyTitle => 'بسامد پشتیبان‌گیری';
 
   @override
-  String get accountsSyncAutoBackupFrequencySmart => 'Smart';
+  String get accountsSyncAutoBackupFrequencySmart => 'هوشمند';
 
   @override
-  String get accountsSyncAutoBackupFrequencyDaily => 'Daily';
+  String get accountsSyncAutoBackupFrequencyDaily => 'روزانه';
 
   @override
-  String get accountsSyncAutoBackupFrequencyWeekly => 'Weekly';
+  String get accountsSyncAutoBackupFrequencyWeekly => 'هفتگی';
 
   @override
-  String get accountsSyncAutoBackupFrequencyManual => 'Manual only';
+  String get accountsSyncAutoBackupFrequencyManual => 'فقط دستی';
 
   @override
   String get accountsSyncAutoBackupMeaningfulChangeTitle =>
-      'Back up on meaningful progress changes';
+      'در صورت تغییرات معنادار از پیشرفت پشتیبان بگیر';
 
   @override
   String get accountsSyncAutoBackupBackgroundTitle =>
-      'Back up when the app is backgrounded if eligible';
+      'اگر شرایط مناسب بود هنگام رفتن برنامه به پس‌زمینه پشتیبان بگیر';
 
   @override
-  String get accountsSyncAutoBackupStatusTitle => 'Auto-backup status';
+  String get accountsSyncAutoBackupStatusTitle => 'وضعیت پشتیبان‌گیری خودکار';
 
   @override
-  String get accountsSyncAutoBackupStatusOff => 'Auto-backup is off.';
+  String get accountsSyncAutoBackupStatusOff =>
+      'پشتیبان‌گیری خودکار خاموش است.';
 
   @override
-  String get accountsSyncAutoBackupStatusRunning => 'A backup is running now.';
+  String get accountsSyncAutoBackupStatusRunning =>
+      'اکنون یک پشتیبان در حال اجراست.';
 
   @override
   String get accountsSyncAutoBackupStatusFailed =>
-      'The last auto-backup attempt failed.';
+      'آخرین تلاش پشتیبان‌گیری خودکار شکست خورد.';
 
   @override
   String get accountsSyncAutoBackupStatusPending =>
-      'New progress is waiting to be backed up.';
+      'پیشرفت جدید در انتظار پشتیبان‌گیری است.';
 
   @override
   String get accountsSyncAutoBackupStatusReady =>
-      'Your latest tracked progress is backed up.';
+      'از آخرین پیشرفت ثبت‌شده شما پشتیبان گرفته شده است.';
 
   @override
   String get accountsSyncAutoBackupStatusWaiting =>
-      'Auto-backup is ready and waiting for the next eligible moment.';
+      'پشتیبان‌گیری خودکار آماده است و منتظر لحظه مناسب بعدی است.';
 
   @override
   String get accountsSyncAutoBackupLastAttemptTitle =>
-      'Last auto-backup attempt';
+      'آخرین تلاش پشتیبان‌گیری خودکار';
 
   @override
   String get accountsSyncAutoBackupLastSuccessTitle =>
-      'Last successful auto-backup';
+      'آخرین پشتیبان‌گیری خودکار موفق';
 
   @override
-  String get accountsSyncAutoBackupFailureTitle => 'Last auto-backup issue';
+  String get accountsSyncAutoBackupFailureTitle =>
+      'آخرین مشکل پشتیبان‌گیری خودکار';
 
   @override
-  String get accountsSyncAutoBackupRetryAction => 'Run auto-backup now';
+  String get accountsSyncAutoBackupRetryAction =>
+      'اکنون پشتیبان‌گیری خودکار را اجرا کن';
 
   @override
   String get accountsSyncAutoBackupReasonMeaningfulChange =>
-      'Meaningful progress changed';
+      'پیشرفت معنادار تغییر کرد';
 
   @override
-  String get accountsSyncAutoBackupReasonOverdue => 'Backup is overdue';
+  String get accountsSyncAutoBackupReasonOverdue =>
+      'زمان پشتیبان‌گیری گذشته است';
 
   @override
   String get accountsSyncAutoBackupReasonSignedIn =>
-      'Signed in to a backup-capable provider';
+      'به یک ارائه‌دهنده پشتیبان‌پذیر وارد شده‌اید';
 
   @override
   String get accountsSyncAutoBackupReasonManualRetry =>
-      'Manual retry requested';
+      'تلاش دوباره دستی درخواست شد';
 
   @override
-  String get accountsSyncAutoBackupEligibilityReady => 'Auto-backup is ready.';
+  String get accountsSyncAutoBackupEligibilityReady =>
+      'پشتیبان‌گیری خودکار آماده است.';
 
   @override
   String get accountsSyncAutoBackupEligibilityDisabled =>
-      'Auto-backup is turned off.';
+      'پشتیبان‌گیری خودکار خاموش است.';
 
   @override
   String get accountsSyncAutoBackupEligibilityManualOnly =>
-      'Backup frequency is set to manual only.';
+      'بسامد پشتیبان‌گیری روی فقط دستی تنظیم شده است.';
 
   @override
   String get accountsSyncAutoBackupEligibilitySignInRequired =>
-      'Sign in to a backup-capable provider first.';
+      'ابتدا به یک ارائه‌دهنده پشتیبان‌پذیر وارد شوید.';
 
   @override
   String get accountsSyncAutoBackupEligibilityProviderUnavailable =>
-      'The current backup provider is unavailable right now.';
+      'ارائه‌دهنده فعلی پشتیبان هم‌اکنون در دسترس نیست.';
 
   @override
   String get accountsSyncAutoBackupEligibilityNoChanges =>
-      'No meaningful new changes need backup yet.';
+      'هنوز هیچ تغییر معنادار تازه‌ای برای پشتیبان‌گیری وجود ندارد.';
 
   @override
   String get accountsSyncAutoBackupEligibilityThrottled =>
-      'The last backup attempt was too recent. Please wait a little before trying again.';
+      'آخرین تلاش پشتیبان‌گیری بیش از حد نزدیک بوده است. لطفاً کمی صبر کنید و سپس دوباره تلاش نمایید.';
 
   @override
   String get accountsSyncAutoBackupEligibilityRunning =>
-      'An auto-backup is already running.';
+      'یک پشتیبان‌گیری خودکار از قبل در حال اجراست.';
 
   @override
   String get accountsSyncAutoBackupEligibilityWaiting =>
-      'Auto-backup is waiting for the next scheduled or eligible window.';
+      'پشتیبان‌گیری خودکار در انتظار پنجره زمان‌بندی‌شده یا شرایط مناسب بعدی است.';
 
   @override
-  String get accountsSyncScopeSectionTitle => 'Sync scope';
+  String get accountsSyncScopeSectionTitle => 'دامنه همگام‌سازی';
 
   @override
   String get accountsSyncScopeSectionSubtitle =>
-      'Choose which categories future remote backups include. Excluded categories stay on this device unless you export them manually.';
+      'انتخاب کنید پشتیبان‌های راه‌دور آینده شامل کدام دسته‌ها باشند. دسته‌های حذف‌شده روی این دستگاه باقی می‌مانند مگر این‌که آن‌ها را دستی صادر کنید.';
 
   @override
-  String get accountsSyncScopeCurrentSummaryTitle => 'Current backup scope';
+  String get accountsSyncScopeCurrentSummaryTitle => 'دامنه فعلی پشتیبان';
 
   @override
-  String get accountsSyncScopeEssentialTitle => 'Essential progress';
+  String get accountsSyncScopeEssentialTitle => 'پیشرفت ضروری';
 
   @override
   String get accountsSyncScopeEssentialSubtitle =>
-      'These categories stay in backup because they keep your learning and worship progress coherent across restore.';
+      'این دسته‌ها در پشتیبان باقی می‌مانند زیرا پیشرفت یادگیری و عبادت شما را در بازیابی منسجم نگه می‌دارند.';
 
   @override
-  String get accountsSyncScopeOptionalTitle =>
-      'Personal content and preferences';
+  String get accountsSyncScopeOptionalTitle => 'محتوا و ترجیحات شخصی';
 
   @override
   String get accountsSyncScopeOptionalSubtitle =>
-      'These categories can stay local-only if you prefer more privacy on this device.';
+      'اگر در این دستگاه حریم خصوصی بیشتری ترجیح می‌دهید، این دسته‌ها می‌توانند فقط محلی بمانند.';
 
   @override
-  String get accountsSyncScopeConfirmTitle => 'Update backup scope?';
+  String get accountsSyncScopeConfirmTitle => 'دامنه پشتیبان به‌روزرسانی شود؟';
 
   @override
-  String get accountsSyncScopeConfirmAction => 'Update scope';
+  String get accountsSyncScopeConfirmAction => 'به‌روزرسانی دامنه';
 
   @override
   String get accountsSyncScopeManualExportNote =>
-      'Manual export still includes full local data by default, even if future remote backups are partial.';
+      'برون‌ریزی دستی همچنان به‌طور پیش‌فرض همه داده محلی را شامل می‌شود، حتی اگر پشتیبان‌های راه‌دور آینده جزئی باشند.';
 
   @override
   String get accountsSyncScopeRestoreDefaultsAction =>
-      'Restore recommended defaults';
+      'بازگرداندن پیش‌فرض‌های پیشنهادی';
 
   @override
-  String get accountsSyncScopePreviewTitle => 'Backup scope';
+  String get accountsSyncScopePreviewTitle => 'دامنه پشتیبان';
 
   @override
   String accountsSyncScopePreviewRemoteValue(Object value) {
-    return 'Remote backup: $value';
+    return 'پشتیبان راه‌دور: $value';
   }
 
   @override
   String accountsSyncScopePreviewCurrentValue(Object value) {
-    return 'Current device setting: $value';
+    return 'تنظیم فعلی دستگاه: $value';
   }
 
   @override
   String accountsSyncScopePreviewExcludedDomain(Object domain) {
-    return 'This backup does not include $domain.';
+    return 'این پشتیبان شامل $domain نیست.';
   }
 
   @override
   String accountsSyncScopePreviewValue(Object value) {
-    return 'Backup scope: $value';
+    return 'دامنه پشتیبان: $value';
   }
 
   @override
   String get accountsSyncScopeSettingsDescription =>
-      'App settings and family/device preferences can stay local if you do not want them in remote backup.';
+      'اگر نمی‌خواهید تنظیمات برنامه و ترجیحات خانواده/دستگاه در پشتیبان راه‌دور باشند، می‌توانند محلی بمانند.';
 
   @override
   String get accountsSyncScopeJournalDescription =>
-      'Private notes and journal entries can remain only on this device.';
+      'یادداشت‌های خصوصی و نوشته‌های دفترچه می‌توانند فقط روی این دستگاه باقی بمانند.';
 
   @override
   String get accountsSyncScopeRemindersDescription =>
-      'Reminder and notification choices can remain local if you prefer to reconfigure them per device.';
+      'اگر ترجیح می‌دهید آن‌ها را برای هر دستگاه جداگانه تنظیم کنید، انتخاب‌های یادآور و اعلان می‌توانند محلی بمانند.';
 
   @override
   String get accountsSyncScopeThemeDescription =>
-      'Theme, language, and accessibility preferences can stay local to this device.';
+      'ترجیحات تم، زبان و دسترس‌پذیری می‌توانند محلی این دستگاه باقی بمانند.';
 
   @override
   String get accountsSyncScopeSummaryFull =>
-      'Full backup. All supported categories are included.';
+      'پشتیبان کامل. همه دسته‌های پشتیبانی‌شده شامل می‌شوند.';
 
   @override
   String accountsSyncScopeSummaryPartial(Object domains) {
-    return 'Partial backup. Local-only categories: $domains.';
+    return 'پشتیبان جزئی. دسته‌های فقط‌محلی: $domains.';
   }
 
   @override
   String accountsSyncScopeIncludeImpactBody(Object domain) {
-    return '$domain will be included in future remote backups. Existing local data stays intact.';
+    return '$domain در پشتیبان‌های راه‌دور آینده لحاظ خواهد شد. داده محلی موجود دست‌نخورده می‌ماند.';
   }
 
   @override
   String accountsSyncScopeExcludeImpactBody(Object domain) {
-    return '$domain will stay only on this device in future remote backups. Existing local data is not deleted, and older backups may still contain it.';
+    return '$domain در پشتیبان‌های راه‌دور آینده فقط روی این دستگاه می‌ماند. داده محلی موجود حذف نمی‌شود و پشتیبان‌های قدیمی‌تر ممکن است هنوز آن را داشته باشند.';
   }
 
   @override
   String accountsSyncScopePreviewMismatchDomain(Object domain) {
-    return 'Your current settings include $domain, but this backup did not.';
+    return 'تنظیمات فعلی شما $domain را شامل می‌شود، اما این پشتیبان آن را نداشت.';
   }
 
   @override
   String get accountsSyncNoRemoteBackupFound =>
-      'No remote backup was found for this account yet.';
+      'هنوز برای این حساب هیچ پشتیبان راه‌دوری پیدا نشده است.';
 
   @override
   String get accountsSyncRemoteBackupFoundResult =>
-      'Remote backup metadata is available.';
+      'فراداده پشتیبان راه‌دور در دسترس است.';
 
   @override
   String get accountsSyncRemoteBackupSuccessResult =>
-      'Remote backup completed successfully.';
+      'پشتیبان راه‌دور با موفقیت کامل شد.';
 
   @override
   String get accountsSyncRemoteRestoreSuccessResult =>
-      'Remote backup restored successfully.';
+      'پشتیبان راه‌دور با موفقیت بازیابی شد.';
 
   @override
   String get accountsSyncRemoteProviderNeedsSetupBody =>
-      'This provider still needs platform or credential setup before remote backup can work.';
+      'این ارائه‌دهنده هنوز پیش از کارکردن پشتیبان راه‌دور به راه‌اندازی پلتفرم یا اعتبارنامه نیاز دارد.';
 
   @override
   String get accountsSyncRemoteAuthExpiredBody =>
-      'The signed-in session needs attention before remote backup can continue.';
+      'نشست واردشده پیش از ادامه پشتیبان راه‌دور نیاز به رسیدگی دارد.';
 
   @override
   String get accountsSyncRemoteICloudUnavailableBody =>
-      'iCloud is unavailable on this device or account right now.';
+      'iCloud اکنون روی این دستگاه یا این حساب در دسترس نیست.';
 
   @override
   String get accountsSyncRemoteEmailUnavailableBody =>
-      'Email-linked remote backup is not connected yet.';
+      'پشتیبان راه‌دورِ پیوندخورده با ایمیل هنوز متصل نشده است.';
 
   @override
   String get accountsSyncRemoteBackupFailedBody =>
-      'Remote backup could not be completed safely.';
+      'پشتیبان راه‌دور نتوانست به‌صورت ایمن کامل شود.';
 
   @override
   String get accountsSyncRequireProfileSelectionOnLaunch =>
@@ -19353,14 +19589,14 @@ class AppLocalizationsFa extends AppLocalizations {
   String get accountsSyncExportNowAction => 'همین حالا صادر کن';
 
   @override
-  String get accountsSyncExportCreatedResult => 'Backup export created.';
+  String get accountsSyncExportCreatedResult => 'برون‌ریزی پشتیبان ساخته شد.';
 
   @override
   String get accountsSyncExportReadyBody =>
-      'Your backup file is ready. Keep it in Files or share it to a safe location.';
+      'فایل پشتیبان شما آماده است. آن را در Files نگه دارید یا به یک جای امن هم‌رسانی کنید.';
 
   @override
-  String get accountsSyncShareBackupAction => 'Share backup';
+  String get accountsSyncShareBackupAction => 'هم‌رسانی پشتیبان';
 
   @override
   String get accountsSyncImportBackupPageSubtitle =>
@@ -19373,18 +19609,19 @@ class AppLocalizationsFa extends AppLocalizations {
   String get accountsSyncBackupPayloadHint => 'متن پشتیبان را اینجا قرار دهید';
 
   @override
-  String get accountsSyncImportChooseFileTitle => 'Choose backup file';
+  String get accountsSyncImportChooseFileTitle => 'فایل پشتیبان را انتخاب کنید';
 
   @override
   String get accountsSyncImportChooseFileSubtitle =>
-      'Select a backup file before anything is restored.';
+      'پیش از بازیابی هر چیزی، یک فایل پشتیبان انتخاب کنید.';
 
   @override
   String get accountsSyncImportFileLoadedSubtitle =>
-      'Backup file loaded. Review it before restoring.';
+      'فایل پشتیبان بارگذاری شد. پیش از بازیابی آن را بررسی کنید.';
 
   @override
-  String get accountsSyncChooseBackupFileAction => 'Choose backup file';
+  String get accountsSyncChooseBackupFileAction =>
+      'فایل پشتیبان را انتخاب کنید';
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'محتوای رمزگذاری‌شده';
@@ -19400,73 +19637,73 @@ class AppLocalizationsFa extends AppLocalizations {
   String get accountsSyncBackupImported => 'پشتیبان درون‌ریزی شد';
 
   @override
-  String get accountsSyncImportModeMerge => 'Merge';
+  String get accountsSyncImportModeMerge => 'ادغام';
 
   @override
-  String get accountsSyncImportModeReplace => 'Replace';
+  String get accountsSyncImportModeReplace => 'جایگزینی';
 
   @override
-  String get accountsSyncImportPreviewTitle => 'Import preview';
+  String get accountsSyncImportPreviewTitle => 'پیش‌نمایش درون‌ریزی';
 
   @override
   String accountsSyncImportPreviewSummary(int profiles, int accounts) {
     String _temp0 = intl.Intl.pluralLogic(
       profiles,
       locale: localeName,
-      other: '$profiles profiles',
-      one: '1 profile',
-      zero: '0 profiles',
+      other: '$profiles پروفایل',
+      one: '1 پروفایل',
+      zero: '0 پروفایل',
     );
     String _temp1 = intl.Intl.pluralLogic(
       accounts,
       locale: localeName,
-      other: '$accounts accounts',
-      one: '1 account',
-      zero: '0 accounts',
+      other: '$accounts حساب',
+      one: '1 حساب',
+      zero: '0 حساب',
     );
     return '$_temp0 • $_temp1';
   }
 
   @override
   String accountsSyncImportPreviewModeValue(String mode) {
-    return 'Restore mode: $mode';
+    return 'حالت بازیابی: $mode';
   }
 
   @override
   String accountsSyncImportPreviewExportedAtValue(String time) {
-    return 'Exported $time';
+    return 'برون‌ریزی‌شده در $time';
   }
 
   @override
-  String get accountsSyncImportConfirmTitle => 'Confirm restore';
+  String get accountsSyncImportConfirmTitle => 'بازیابی را تأیید کنید';
 
   @override
   String get accountsSyncImportConfirmMergeBody =>
-      'This will merge the imported backup with your current local data. Existing local progress will be kept where possible, and a safety snapshot will be created first.';
+      'این کار پشتیبان درون‌ریزی‌شده را با داده محلی فعلی شما ادغام می‌کند. تا جای ممکن پیشرفت محلی موجود حفظ می‌شود و نخست یک عکس فوری ایمنی ساخته خواهد شد.';
 
   @override
   String get accountsSyncImportConfirmReplaceBody =>
-      'This will replace the current local set with the imported backup. A safety snapshot will be created first so you can recover if needed.';
+      'این کار مجموعه محلی فعلی را با پشتیبان درون‌ریزی‌شده جایگزین می‌کند. نخست یک عکس فوری ایمنی ساخته می‌شود تا اگر لازم شد بتوانید بازیابی کنید.';
 
   @override
   String get accountsSyncImportErrorEmpty =>
-      'Choose a backup file before restoring.';
+      'پیش از بازیابی یک فایل پشتیبان انتخاب کنید.';
 
   @override
   String get accountsSyncImportErrorInvalid =>
-      'This backup file could not be validated safely.';
+      'اعتبارسنجی ایمن این فایل پشتیبان ممکن نشد.';
 
   @override
   String get accountsSyncImportErrorFutureSchema =>
-      'This backup was created by a newer version of the app and cannot be restored safely yet.';
+      'این پشتیبان با نسخه جدیدتری از برنامه ساخته شده است و هنوز نمی‌توان آن را با ایمنی بازیابی کرد.';
 
   @override
   String get accountsSyncImportWarningStructuredDataMissing =>
-      'Some structured progress data is missing from this backup, so part of the journey may not restore.';
+      'بخشی از داده ساخت‌یافته پیشرفت در این پشتیبان وجود ندارد، بنابراین ممکن است بخشی از مسیر بازیابی نشود.';
 
   @override
   String get accountsSyncImportFailedResult =>
-      'Restore could not be completed. Your current local data was preserved.';
+      'بازیابی کامل نشد. داده محلی فعلی شما حفظ شد.';
 
   @override
   String get accountsSyncRestoreBackupAction => 'بازیابی پشتیبان';
@@ -19525,7 +19762,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String accountsSyncRecentSyncEventBullet(String event) {
-    return '• $event';
+    return '• رویداد: $event';
   }
 
   @override
@@ -19602,7 +19839,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get accountsSyncExperienceModeLearningFocused => 'متمرکز بر یادگیری';
 
   @override
-  String get accountsSyncExperienceModePrayerFocused => 'Salah focused';
+  String get accountsSyncExperienceModePrayerFocused => 'متمرکز بر نماز';
 
   @override
   String get accountsSyncDevicePlatformIPhone => 'آیفون';
@@ -24036,235 +24273,239 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String get accessibilityReminderHelp => 'Reminder help';
+  String get accessibilityReminderHelp => 'راهنمای یادآور';
 
   @override
-  String get accessibilityIncreaseDhikrCount => 'Increase dhikr count';
+  String get accessibilityIncreaseDhikrCount => 'شمار ذکر را افزایش بده';
 
   @override
-  String get accessibilityJumpToCurrentSalah => 'Jump to current salah';
+  String get accessibilityJumpToCurrentSalah => 'به نماز فعلی برو';
 
   @override
-  String get accessibilityReadQadaRule => 'Read qada rule';
+  String get accessibilityReadQadaRule => 'حکم قضای نماز را بخوان';
 
   @override
-  String get accessibilityRefreshCamera => 'Refresh camera';
+  String get accessibilityRefreshCamera => 'دوربین را تازه‌سازی کن';
 
   @override
   String get accessibilityCreationCategoryNotDetected =>
-      'No stable creation category detected yet';
+      'هنوز هیچ دستهٔ پایداری از نشانه‌های آفرینش شناسایی نشده است';
 
   @override
   String accessibilityCreationCategoryDetected(String category) {
-    return '$category detected. Open reflection card.';
+    return '$category شناسایی شد. کارت تأمل را باز کن.';
   }
 
   @override
-  String get accessibilityRemoveFavorite => 'Remove favorite';
+  String get accessibilityRemoveFavorite => 'از علاقه‌مندی‌ها بردار';
 
   @override
-  String get accessibilitySaveFavorite => 'Save favorite';
+  String get accessibilitySaveFavorite => 'در علاقه‌مندی‌ها ذخیره کن';
 
   @override
-  String get accessibilityDeleteObservation => 'Delete observation';
+  String get accessibilityDeleteObservation => 'مشاهده را حذف کن';
 
   @override
-  String get accessibilityRemoveFromSaved => 'Remove from saved';
+  String get accessibilityRemoveFromSaved => 'از ذخیره‌شده‌ها بردار';
 
   @override
-  String get accessibilitySaveHadith => 'Save hadith';
+  String get accessibilitySaveHadith => 'حدیث را ذخیره کن';
 
   @override
-  String get accessibilityPlayAudio => 'Play audio';
+  String get accessibilityPlayAudio => 'صوت را پخش کن';
 
   @override
-  String get accessibilityAudioNotAddedYet => 'Audio not added yet';
+  String get accessibilityAudioNotAddedYet => 'صوت هنوز افزوده نشده است';
 
   @override
-  String get accessibilitySavedForReview => 'Saved for review';
+  String get accessibilitySavedForReview => 'برای مرور ذخیره شد';
 
   @override
-  String get accessibilityReviewLater => 'Review later';
+  String get accessibilityReviewLater => 'بعداً مرور کن';
 
   @override
-  String get accessibilityLearningSettings => 'Learning settings';
+  String get accessibilityLearningSettings => 'تنظیمات یادگیری';
 
   @override
-  String get accessibilitySourcesAndLicensing => 'Sources and licensing';
+  String get accessibilitySourcesAndLicensing => 'منابع و مجوزها';
 
   @override
-  String get accessibilityClosePlayer => 'Close player';
+  String get accessibilityClosePlayer => 'پخش‌کننده را ببند';
 
   @override
-  String get accessibilityBack15Seconds => 'Back 15 seconds';
+  String get accessibilityBack15Seconds => '۱۵ ثانیه به عقب برو';
 
   @override
-  String get accessibilityForward15Seconds => 'Forward 15 seconds';
+  String get accessibilityForward15Seconds => '۱۵ ثانیه به جلو برو';
 
   @override
-  String get accessibilityPreparingPlayback => 'Preparing playback';
+  String get accessibilityPreparingPlayback => 'در حال آماده‌سازی پخش';
 
   @override
-  String get accessibilityPause => 'Pause';
+  String get accessibilityPause => 'مکث';
 
   @override
-  String get accessibilityPlay => 'Play';
+  String get accessibilityPlay => 'پخش';
 
   @override
-  String get accessibilityRemoveFromFavorites => 'Remove from favorites';
+  String get accessibilityRemoveFromFavorites => 'از علاقه‌مندی‌ها حذف کن';
 
   @override
-  String get accessibilitySaveNameToFavorites => 'Save name to favorites';
+  String get accessibilitySaveNameToFavorites =>
+      'نام را در علاقه‌مندی‌ها ذخیره کن';
 
   @override
-  String get creationExplorerTitle => 'Creation Explorer';
+  String get creationExplorerTitle => 'کاوشگر آفرینش';
 
   @override
   String get creationExplorerSubtitle =>
-      'Observe the world, notice a sign, and connect it with Qur’anic reflection.';
+      'به جهان بنگرید، نشانه‌ای را ببینید و آن را با تأملی قرآنی پیوند دهید.';
 
   @override
-  String get creationExplorerMetricObservations => 'Observations';
+  String get creationExplorerMetricObservations => 'مشاهده‌ها';
 
   @override
-  String get creationExplorerMetricCategories => 'Categories';
+  String get creationExplorerMetricCategories => 'دسته‌ها';
 
   @override
-  String get creationExplorerMetricVerses => 'Verses';
+  String get creationExplorerMetricVerses => 'آیات';
 
   @override
-  String get creationExplorerMetricCamera => 'Camera';
+  String get creationExplorerMetricCamera => 'دوربین';
 
   @override
-  String get creationExplorerMetricCameraDeviceOnly => 'Device only';
+  String get creationExplorerMetricCameraDeviceOnly => 'فقط روی دستگاه';
 
   @override
-  String get creationExplorerMetricCameraOff => 'Off';
+  String get creationExplorerMetricCameraOff => 'خاموش';
 
   @override
-  String get creationExplorerMetricCameraReady => 'Ready';
+  String get creationExplorerMetricCameraReady => 'آماده';
 
   @override
-  String get creationExplorerMetricCameraPending => 'Pending';
+  String get creationExplorerMetricCameraPending => 'در انتظار';
 
   @override
-  String get creationExplorerTodaysChallenge => 'Today’s challenge';
+  String get creationExplorerTodaysChallenge => 'چالش امروز';
 
   @override
-  String get creationExplorerHistoryAction => 'History';
+  String get creationExplorerHistoryAction => 'تاریخچه';
 
   @override
-  String get creationExplorerOpenAction => 'Open';
+  String get creationExplorerOpenAction => 'باز کردن';
 
   @override
   String get creationExplorerDeviceOnlyTitle =>
-      'Image labeling runs on device only';
+      'برچسب‌گذاری تصویر فقط روی دستگاه انجام می‌شود';
 
   @override
   String get creationExplorerDeviceOnlyBody =>
-      'Use a physical iPhone or iPad to explore with the camera.';
+      'برای کاوش با دوربین از یک iPhone یا iPad واقعی استفاده کنید.';
 
   @override
-  String get creationExplorerCameraAccessTitle => 'Camera access is needed';
+  String get creationExplorerCameraAccessTitle => 'دسترسی به دوربین لازم است';
 
   @override
   String get creationExplorerCameraAccessBody =>
-      'Creation Explorer runs entirely on-device. Camera access lets the app detect broad categories like birds, plants, water, and sky without uploading images.';
+      'کاوشگر آفرینش کاملاً روی خود دستگاه اجرا می‌شود. دسترسی به دوربین به برنامه اجازه می‌دهد بدون بارگذاری تصویرها، دسته‌های کلی مانند پرندگان، گیاهان، آب و آسمان را تشخیص دهد.';
 
   @override
-  String get creationExplorerAllowCameraAction => 'Allow camera';
+  String get creationExplorerAllowCameraAction => 'اجازه دادن به دوربین';
 
   @override
-  String get creationExplorerOpenSettingsAction => 'Open settings';
+  String get creationExplorerOpenSettingsAction => 'باز کردن تنظیمات';
 
   @override
-  String get creationExplorerCameraUnavailable => 'Camera unavailable';
+  String get creationExplorerCameraUnavailable => 'دوربین در دسترس نیست';
 
   @override
   String get creationExplorerCameraUnavailableBody =>
-      'Creation Explorer could not start the camera right now.';
+      'کاوشگر آفرینش در حال حاضر نتوانست دوربین را راه‌اندازی کند.';
 
   @override
-  String get creationExplorerRetryAction => 'Retry';
+  String get creationExplorerRetryAction => 'تلاش دوباره';
 
   @override
-  String get creationExplorerOnDeviceDetection => 'On-device detection';
+  String get creationExplorerOnDeviceDetection => 'تشخیص روی دستگاه';
 
   @override
   String get creationExplorerDetectionPromptTitle =>
-      'Look at a plant, animal, bird, or landscape.';
+      'به یک گیاه، حیوان، پرنده یا منظره نگاه کنید.';
 
   @override
   String get creationExplorerDetectionPromptSubtitle =>
-      'Labels appear only when the signal is stable.';
+      'برچسب‌ها فقط زمانی ظاهر می‌شوند که سیگنال پایدار باشد.';
 
   @override
-  String get creationExplorerTapToReflect => 'Tap to reflect';
+  String get creationExplorerTapToReflect => 'برای تأمل ضربه بزنید';
 
   @override
-  String get creationExplorerHowItWorksTitle => 'How it works';
+  String get creationExplorerHowItWorksTitle => 'چگونه کار می‌کند';
 
   @override
   String get creationExplorerHowItWorksBody =>
-      'Creation Explorer uses on-device labeling to detect broad categories only. It waits for a stable signal before showing a label, then offers a Qur’anic reflection connected to what you are seeing.';
+      'کاوشگر آفرینش از برچسب‌گذاری روی دستگاه برای تشخیص فقط دسته‌های کلی استفاده می‌کند. تا پایدار شدن سیگنال صبر می‌کند، سپس یک برچسب نشان می‌دهد و بعد تأملی قرآنی مرتبط با چیزی که می‌بینید ارائه می‌کند.';
 
   @override
-  String get creationExplorerCurrentDetectedSign => 'Current detected sign';
+  String get creationExplorerCurrentDetectedSign =>
+      'نشانه تشخیص‌داده‌شده کنونی';
 
   @override
-  String get creationExplorerReflectAction => 'Reflect';
+  String get creationExplorerReflectAction => 'تأمل';
 
   @override
-  String get creationExplorerAlsoExploreSkyTitle => 'Also explore the sky';
+  String get creationExplorerAlsoExploreSkyTitle => 'آسمان را هم کاوش کنید';
 
   @override
   String get creationExplorerAlsoExploreSkySubtitle =>
-      'Creation Explorer and Sky Explorer are complementary: one notices what is around you, the other what is above you.';
+      'کاوشگر آفرینش و کاوشگر آسمان مکمل یکدیگرند: یکی آنچه را پیرامون شماست می‌بیند و دیگری آنچه را بالای سر شماست.';
 
   @override
-  String get creationExplorerSkyExplorerAction => 'Sky Explorer';
+  String get creationExplorerSkyExplorerAction => 'کاوشگر آسمان';
 
   @override
-  String get creationExplorerNoObservationsTitle => 'No observations saved yet';
+  String get creationExplorerNoObservationsTitle =>
+      'هنوز هیچ مشاهده‌ای ذخیره نشده است';
 
   @override
   String get creationExplorerNoObservationsBody =>
-      'Save a moment from the camera view and it will appear here with its verse, category, and your reflection.';
+      'لحظه‌ای را از نمای دوربین ذخیره کنید تا همراه با آیه، دسته‌بندی و تأمل شما در اینجا دیده شود.';
 
   @override
-  String get creationExplorerOpenCameraExploreAction => 'Open camera explore';
+  String get creationExplorerOpenCameraExploreAction => 'باز کردن کاوش دوربین';
 
   @override
-  String get creationExplorerYourReflectionLabel => 'Your reflection';
+  String get creationExplorerYourReflectionLabel => 'تأمل شما';
 
   @override
   String get creationExplorerYourReflectionHint =>
-      'What did you notice? What did it remind you of?';
+      'چه چیزی دیدید؟ شما را به یاد چه چیزی انداخت؟';
 
   @override
-  String get creationExplorerCloseAction => 'Close';
+  String get creationExplorerCloseAction => 'بستن';
 
   @override
-  String get creationExplorerSaveObservationAction => 'Save observation';
+  String get creationExplorerSaveObservationAction => 'ذخیره مشاهده';
 
   @override
-  String get creationExplorerNoReflectionSaved => 'No reflection saved yet.';
+  String get creationExplorerNoReflectionSaved =>
+      'هنوز هیچ تأملی ذخیره نشده است.';
 
   @override
-  String get creationExplorerEditReflectionAction => 'Edit reflection';
+  String get creationExplorerEditReflectionAction => 'ویرایش تأمل';
 
   @override
   String get creationExplorerEditReflectionHint =>
-      'Write what this observation reminded you of.';
+      'بنویسید این مشاهده شما را به یاد چه چیزی انداخت.';
 
   @override
-  String get creationExplorerTabCamera => 'Camera';
+  String get creationExplorerTabCamera => 'دوربین';
 
   @override
-  String get creationExplorerTabDiscover => 'Discover';
+  String get creationExplorerTabDiscover => 'کشف';
 
   @override
-  String get creationExplorerTabJournal => 'Journal';
+  String get creationExplorerTabJournal => 'یادداشت‌ها';
 
   @override
   String get fastingSectionTitle => 'روزه';
@@ -32295,70 +32536,69 @@ class AppLocalizationsFa extends AppLocalizations {
       'Return to today\'s ayah and continue your reflection.';
 
   @override
-  String get quranDailyCompanionTitle => 'Daily Qur\'an companion';
+  String get quranDailyCompanionTitle => 'همنشین قرآن روزانه';
 
   @override
   String get quranDailyCompanionSubtitle =>
-      'One ayah, one meaning cue, one small next step for today.';
+      'یک آیه، یکی به معنای نشانه، یک قدم کوچک بعدی برای امروز.';
 
   @override
   String get quranDailyCompanionCardSubtitle =>
-      'Return to today\'s ayah with one clear reflection and one calm next step.';
+      'با یک تأمل روشن و یک قدم بعدی آرام به آیه امروز بازگرد.';
 
   @override
-  String get quranDailyCompanionOpenAction => 'Open companion';
+  String get quranDailyCompanionOpenAction => 'همدم باز';
 
   @override
-  String get quranDailyCompanionTodayTitle => 'Today\'s ayah';
+  String get quranDailyCompanionTodayTitle => 'آیه امروز';
 
   @override
-  String get quranDailyCompanionMeaningTitle => 'Meaning and reflection';
+  String get quranDailyCompanionMeaningTitle => 'معنا و تأمل';
 
   @override
-  String get quranDailyCompanionThemeTitle => 'Theme connection';
+  String get quranDailyCompanionThemeTitle => 'اتصال تم';
 
   @override
-  String get quranDailyCompanionRelatedInsightTitle => 'Related insight';
+  String get quranDailyCompanionRelatedInsightTitle => 'بینش مرتبط';
 
   @override
-  String get quranDailyCompanionJourneyTitle => 'Journey connection';
+  String get quranDailyCompanionJourneyTitle => 'اتصال سفر';
 
   @override
-  String get quranDailyCompanionJourneyAlignedLabel =>
-      'Aligned with your journey';
+  String get quranDailyCompanionJourneyAlignedLabel => 'هماهنگ با سفر شما';
 
   @override
   String quranDailyCompanionJourneyBody(Object theme) {
-    return 'Today\'s ayah follows your current journey theme: $theme.';
+    return 'آیه امروز از موضوع سفر فعلی شما پیروی می کند: $theme.';
   }
 
   @override
   String get quranDailyCompanionJourneyBodyNoTheme =>
-      'Today\'s ayah follows the strongest Qur\'anic connection for the journey stage you are already working through.';
+      'آیه امروز قوی ترین ارتباط قرآنی را برای مرحله سفری که قبلاً در حال انجام آن هستید دنبال می کند.';
 
   @override
-  String get quranDailyCompanionJourneyAction => 'Continue journey';
+  String get quranDailyCompanionJourneyAction => 'ادامه سفر';
 
   @override
-  String get quranDailyCompanionTakeawayTitle => 'Practical takeaway';
+  String get quranDailyCompanionTakeawayTitle => 'غذای آماده عملی';
 
   @override
-  String get quranDailyCompanionContinueTitle => 'Continue today';
+  String get quranDailyCompanionContinueTitle => 'امروز ادامه دهید';
 
   @override
-  String get quranDailyCompanionOpenReaderAction => 'Open full reader';
+  String get quranDailyCompanionOpenReaderAction => 'خواننده کامل را باز کنید';
 
   @override
-  String get quranDailyCompanionOpenThemeAction => 'Explore theme';
+  String get quranDailyCompanionOpenThemeAction => 'کاوش موضوع';
 
   @override
-  String get quranDailyCompanionReviewMemoryAction => 'Review memorization';
+  String get quranDailyCompanionReviewMemoryAction => 'مرور حفظ کردن';
 
   @override
-  String get quranDailyCompanionPathAction => 'Start path';
+  String get quranDailyCompanionPathAction => 'مسیر شروع';
 
   @override
-  String get quranDailyCompanionMemorizedLabel => 'Memorized';
+  String get quranDailyCompanionMemorizedLabel => 'حفظ شد';
 
   @override
   String get quranUserIntentTitle => 'Your Qur\'an focus';
@@ -34968,43 +35208,43 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranReferenceDetailReasonKnowledgeQuran =>
-      'This is a direct Qur\'anic connection to the same meaning or passage.';
+      'این ارتباط مستقیم قرآنی با همان معنا یا قطعه است.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeHadith =>
-      'This hadith helps explain or reinforce a meaning carried in this ayah.';
+      'این حدیث به توضیح یا تقویت معنایی که در این آیه آمده است کمک می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeTheme =>
-      'This theme highlights a recurring Qur\'anic idea connected to this ayah.';
+      'این مضمون یک ایده قرآنی مکرر مرتبط با این آیه را برجسته می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeCharacter =>
-      'This character lesson applies a value or behavior connected to this ayah.';
+      'این درس شخصیت یک ارزش یا رفتار مرتبط با این آیه را اعمال می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSeerah =>
-      'This Seerah context helps place the ayah in a prophetic or historical frame.';
+      'این زمینه سیره به قرار دادن آیه در یک چارچوب نبوی یا تاریخی کمک می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeJourney =>
-      'This guided lesson revisits a connected Qur\'anic idea through a structured learning path.';
+      'این درس هدایت‌شده یک ایده قرآنی مرتبط را از طریق یک مسیر یادگیری ساختاریافته بازبینی می‌کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSignsWorld =>
-      'This signs lesson reflects on the created world in a way connected to this ayah.';
+      'این درس نشانه ها به گونه ای در ارتباط با این آیه بر جهان خلقت منعکس می شود.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeReflection =>
-      'This reflective insight helps the ayah open into contemplation, interpretation, or practical thought.';
+      'این بینش انعکاسی به آیه کمک می کند تا به تفکر، تفسیر یا تفکر عملی باز شود.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeWorship =>
-      'This worship lesson strengthens a devotional practice connected to this ayah.';
+      'این درس عبادی یک عمل عبادی مرتبط با این آیه را تقویت می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeLifeLesson =>
-      'This life lesson applies the ayah through broader daily guidance.';
+      'این درس زندگی، آیه را از طریق راهنمایی روزانه گسترده تر به کار می برد.';
 
   @override
   String get arabicLearningPlaybackModeLabel => 'Playback';
@@ -36631,39 +36871,39 @@ class AppLocalizationsFa extends AppLocalizations {
       'You can change this anytime in Settings.';
 
   @override
-  String get onboardingBeginJourneyAction => 'Begin your journey';
+  String get onboardingBeginJourneyAction => 'سفر خود را آغاز کنید';
 
   @override
-  String get onboardingContinueAction => 'Continue';
+  String get onboardingContinueAction => 'ادامه';
 
   @override
   String get onboardingShahadaMeaningBody =>
-      'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.';
+      'گواهی می‌دهم که هیچ معبودی جز الله نیست،\nو گواهی می‌دهم که محمد ﷺ فرستاده الله است.';
 
   @override
-  String get onboardingBismillahTransliteration => 'Bismillahir-Rahmanir-Rahim';
+  String get onboardingBismillahTransliteration => 'بسم الله الرحمن الرحیم';
 
   @override
   String get onboardingBismillahMeaningBody =>
-      'In the name of Allah, the Most Compassionate, the Most Merciful.';
+      'به نام الله، بخشاینده‌ترین، مهربان‌ترین.';
 
   @override
   String get onboardingOpeningBlessingBody =>
-      'May this journey bring khayr, consistency, and closeness to Allah.';
+      'امید که این مسیر برای شما خیر، پایداری و نزدیکی به الله بیاورد.';
 
   @override
-  String get onboardingLanguageTitle => 'Choose your language';
+  String get onboardingLanguageTitle => 'زبان خود را انتخاب کنید';
 
   @override
   String get onboardingLanguageSubtitle =>
-      'Select the language you would like to use in the app.';
+      'زبانی را انتخاب کنید که می‌خواهید در برنامه از آن استفاده کنید.';
 
   @override
-  String get onboardingAgeRangeTitle => 'Which age range are you in?';
+  String get onboardingAgeRangeTitle => 'در کدام بازه سنی هستید؟';
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'This helps us keep examples and recommendations relevant to your stage of life.';
+      'این به ما کمک می‌کند مثال‌ها و پیشنهادها را با مرحله زندگی شما هماهنگ نگه داریم.';
 
   @override
   String get onboardingAgeRangeUnder18 => 'Under 18';
@@ -36685,400 +36925,390 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get onboardingExperienceTitle =>
-      'Which description fits your journey with Islam best?';
+      'کدام گزینه بهترین توصیف از مسیر شما با اسلام است؟';
 
   @override
   String get onboardingExperienceSubtitle =>
-      'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.';
+      'از این برای تنظیم لحن آغاز، سرعت و عمق یادگیری مناسب‌تر برای تجربه شما استفاده می‌کنیم. انتخاب شما ذخیره می‌شود و در سراسر برنامه برای شکل‌دادن به راهنمایی‌ها به کار می‌رود.';
 
   @override
-  String get onboardingExperienceExploring => 'Exploring Islam';
+  String get onboardingExperienceExploring => 'در حال آشنایی با اسلام';
 
   @override
-  String get onboardingExperienceNewToIslam => 'New to Islam';
+  String get onboardingExperienceNewToIslam => 'تازه‌مسلمان';
 
   @override
   String get onboardingExperienceBornStillLearning =>
-      'Born Muslim, still learning';
+      'مسلمان‌زاده‌ام و هنوز در حال یادگیری هستم';
 
   @override
-  String get onboardingExperiencePracticingRegularly => 'Practicing regularly';
+  String get onboardingExperiencePracticingRegularly =>
+      'به‌طور منظم عمل می‌کنم';
 
   @override
-  String get onboardingExperienceAdvanced => 'Experienced / advanced';
+  String get onboardingExperienceAdvanced => 'باتجربه / پیشرفته';
 
   @override
   String get onboardingSalahConsistencyTitle =>
-      'How consistent is your Salah currently?';
+      'در حال حاضر نماز شما چقدر منظم است؟';
 
   @override
   String get onboardingSalahConsistencySubtitle =>
-      'Choose the option that best reflects where you are right now.';
+      'گزینه‌ای را انتخاب کنید که بهترین بازتاب وضعیت فعلی شما باشد.';
 
   @override
-  String get onboardingSalahConsistencyAll => 'I pray all prayers consistently';
+  String get onboardingSalahConsistencyAll => 'همه نمازها را منظم می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencyMost => 'I pray most prayers';
+  String get onboardingSalahConsistencyMost => 'بیشتر نمازها را می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencySometimes => 'I pray sometimes';
+  String get onboardingSalahConsistencySometimes => 'گاهی نماز می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencyRarely => 'I rarely pray';
+  String get onboardingSalahConsistencyRarely => 'به‌ندرت نماز می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencyJustStarted =>
-      'I am just getting started';
+  String get onboardingSalahConsistencyJustStarted => 'تازه شروع کرده‌ام';
 
   @override
-  String get onboardingPrayerMethodTitle => 'Salah time calculation method';
+  String get onboardingPrayerMethodTitle => 'روش محاسبه اوقات نماز';
 
   @override
   String get onboardingPrayerMethodSubtitle =>
-      'Choose how salah times should be calculated for your location.';
+      'انتخاب کنید اوقات نماز برای مکان شما چگونه محاسبه شود.';
 
   @override
-  String get onboardingPrayerMethodMuslimWorldLeague => 'Muslim World League';
+  String get onboardingPrayerMethodMuslimWorldLeague => 'لیگ جهانی مسلمانان';
 
   @override
-  String get onboardingPrayerMethodIsna =>
-      'Islamic Society of North America (ISNA)';
+  String get onboardingPrayerMethodIsna => 'انجمن اسلامی آمریکای شمالی (ISNA)';
 
   @override
-  String get onboardingPrayerMethodUmmAlQura => 'Umm Al-Qura University';
+  String get onboardingPrayerMethodUmmAlQura => 'دانشگاه ام‌القری';
 
   @override
-  String get onboardingPrayerMethodEgyptian =>
-      'Egyptian General Authority of Survey';
+  String get onboardingPrayerMethodEgyptian => 'هیئت عمومی نقشه‌برداری مصر';
 
   @override
-  String get onboardingPrayerMethodKarachi =>
-      'University of Islamic Sciences, Karachi';
+  String get onboardingPrayerMethodKarachi => 'دانشگاه علوم اسلامی کراچی';
 
   @override
-  String get onboardingPrayerMethodMoonsighting => 'Moonsighting Committee';
+  String get onboardingPrayerMethodMoonsighting => 'کمیته رؤیت هلال';
 
   @override
-  String get onboardingMadhabTitle => 'Which Madhab do you follow?';
+  String get onboardingMadhabTitle => 'از کدام مذهب پیروی می‌کنید؟';
 
   @override
   String get onboardingMadhabSubtitle =>
-      'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.';
+      'این بر محاسبه وقت نماز عصر اثر می‌گذارد. اگر مطمئن نیستید، می‌توانید گزینه پیش‌فرض را نگه دارید.';
 
   @override
-  String get onboardingMadhabHanafi => 'Hanafi';
+  String get onboardingMadhabHanafi => 'حنفی';
 
   @override
-  String get onboardingMadhabShafii => 'Shafi\'i';
+  String get onboardingMadhabShafii => 'شافعی';
 
   @override
-  String get onboardingMadhabMaliki => 'Maliki';
+  String get onboardingMadhabMaliki => 'مالکی';
 
   @override
-  String get onboardingMadhabHanbali => 'Hanbali';
+  String get onboardingMadhabHanbali => 'حنبلی';
 
   @override
   String get onboardingGrowthInterestsTitle =>
-      'What would you like to grow in?';
+      'دوست دارید در چه زمینه‌هایی رشد کنید؟';
 
   @override
   String get onboardingGrowthInterestsSubtitle =>
-      'Select the areas you would like Path of Nur to help you with. You can choose multiple.';
+      'زمینه‌هایی را انتخاب کنید که می‌خواهید Path of Nur در آن‌ها به شما کمک کند. می‌توانید چند مورد را انتخاب کنید.';
 
   @override
   String get onboardingArabicReadModeTitle =>
-      'What is your Qur’an reading preference?';
+      'ترجیح شما برای خواندن قرآن چیست؟';
 
   @override
   String get onboardingArabicReadModeSubtitle =>
-      'Choose the reading setup that feels most comfortable for you when reading the Qur’an.';
+      'چیدمان خواندنی را انتخاب کنید که هنگام خواندن قرآن برای شما راحت‌تر است.';
 
   @override
-  String get onboardingArabicReadModeNoArabicYet =>
-      'I do not know any Arabic yet';
+  String get onboardingArabicReadModeNoArabicYet => 'هنوز عربی نمی‌دانم';
 
   @override
-  String get onboardingArabicReadModeArabicOnly => 'Arabic only';
+  String get onboardingArabicReadModeArabicOnly => 'فقط عربی';
 
   @override
-  String get onboardingArabicReadModeArabicTransliteration =>
-      'Arabic + Transliteration';
+  String get onboardingArabicReadModeArabicTransliteration => 'عربی + آوانویسی';
 
   @override
-  String get onboardingArabicReadModeArabicTranslation =>
-      'Arabic + Translation';
+  String get onboardingArabicReadModeArabicTranslation => 'عربی + ترجمه';
 
   @override
   String get onboardingArabicReadModeArabicTransliterationTranslation =>
-      'Arabic + Transliteration + Translation';
+      'عربی + آوانویسی + ترجمه';
 
   @override
-  String get onboardingHarakatTitle => 'Harakat / pronunciation marks';
+  String get onboardingHarakatTitle => 'حرکات / نشانه‌های تلفظ';
 
   @override
-  String get onboardingHarakatFull => 'Full harakat';
+  String get onboardingHarakatFull => 'حرکات کامل';
 
   @override
-  String get onboardingHarakatMinimal => 'Minimal harakat';
+  String get onboardingHarakatMinimal => 'حداقل حرکات';
 
   @override
-  String get onboardingHarakatNone => 'None';
+  String get onboardingHarakatNone => 'بدون حرکات';
 
   @override
-  String get onboardingTextSizeTitle => 'Text size';
+  String get onboardingTextSizeTitle => 'اندازه متن';
 
   @override
-  String get onboardingRemindersTitle => 'How would you like to be reminded?';
+  String get onboardingRemindersTitle => 'دوست دارید چگونه یادآوری شوید؟';
 
   @override
   String get onboardingRemindersSubtitle =>
-      'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.';
+      'یک تنظیم یادآوری سبک برای نماز و برنامه‌های روزانه انتخاب کنید. بعداً می‌توانید همه‌چیز را دقیق‌تر تنظیم کنید.';
 
   @override
-  String get onboardingReminderNotificationOnly => 'Notification only';
+  String get onboardingReminderNotificationOnly => 'فقط اعلان';
 
   @override
-  String get onboardingReminderAdhanNotification => 'Adhan notification';
+  String get onboardingReminderAdhanNotification => 'اعلان با اذان';
 
   @override
-  String get onboardingDailyQuranReminderTitle =>
-      'Daily Qur\'an reading reminder';
+  String get onboardingDailyQuranReminderTitle => 'یادآور روزانه خواندن قرآن';
 
   @override
-  String get onboardingDailyLessonReminderTitle => 'Daily lesson reminder';
+  String get onboardingDailyLessonReminderTitle => 'یادآور درس روزانه';
 
   @override
-  String get onboardingTrackingTitle => 'What would you like to keep in view?';
+  String get onboardingTrackingTitle =>
+      'دوست دارید چه چیزهایی را در دید نگه دارید؟';
 
   @override
   String get onboardingTrackingSubtitle =>
-      'Pick the areas you would like Path of Nur to gently keep in view as you grow. You can choose multiple.';
+      'زمینه‌هایی را انتخاب کنید که می‌خواهید Path of Nur با ملایمت در مسیر رشد شما در دید نگه دارد. می‌توانید چند مورد را انتخاب کنید.';
 
   @override
-  String get onboardingFamilyTitle => 'Grow together with family';
+  String get onboardingFamilyTitle => 'همراه خانواده رشد کنید';
 
   @override
   String get onboardingFamilySubtitle =>
-      'Path of Nur can support individual journeys while also helping families grow together.';
+      'Path of Nur می‌تواند از مسیرهای فردی پشتیبانی کند و هم‌زمان به رشد خانواده‌ها در کنار هم کمک کند.';
 
   @override
-  String get onboardingFamilyProfilesTitle => 'Family profiles';
+  String get onboardingFamilyProfilesTitle => 'نمایه‌های خانواده';
 
   @override
   String get onboardingFamilyProfilesSubtitle =>
-      'Create profiles for family members from the Profiles page.';
+      'از صفحه نمایه‌ها برای اعضای خانواده نمایه بسازید.';
 
   @override
   String get onboardingFamilyPrivateJourneysTitle =>
-      'Private journeys for each member';
+      'مسیرهای خصوصی برای هر عضو';
 
   @override
   String get onboardingFamilyPrivateJourneysSubtitle =>
-      'Each profile can keep separate progress and reminders.';
+      'هر نمایه می‌تواند پیشرفت و یادآورهای جداگانه خود را داشته باشد.';
 
   @override
-  String get onboardingFamilyAgeAppropriateTitle => 'Age-appropriate learning';
+  String get onboardingFamilyAgeAppropriateTitle => 'یادگیری متناسب با سن';
 
   @override
   String get onboardingFamilyAgeAppropriateSubtitle =>
-      'Content can adapt to stage and experience level.';
+      'محتوا می‌تواند با مرحله سنی و سطح تجربه سازگار شود.';
 
   @override
-  String get onboardingFamilySharedGrowthTitle =>
-      'Shared encouragement and growth';
+  String get onboardingFamilySharedGrowthTitle => 'تشویق و رشد مشترک';
 
   @override
   String get onboardingFamilySharedGrowthSubtitle =>
-      'Build consistency together over time.';
+      'در گذر زمان با هم پایداری بسازید.';
 
   @override
-  String get onboardingDhikrFeedbackTitle => 'Dhikr counter feedback';
+  String get onboardingDhikrFeedbackTitle => 'بازخورد شمارنده ذکر';
 
   @override
   String get onboardingDhikrFeedbackSubtitle =>
-      'Choose how the dhikr counter should respond when you tap.';
+      'انتخاب کنید شمارنده ذکر هنگام لمس چگونه واکنش نشان دهد.';
 
   @override
-  String get onboardingDhikrHapticTitle => 'Haptic feedback';
+  String get onboardingDhikrHapticTitle => 'بازخورد لرزشی';
 
   @override
-  String get onboardingOptionOff => 'Off';
+  String get onboardingOptionOff => 'خاموش';
 
   @override
-  String get onboardingOptionLight => 'Light';
+  String get onboardingOptionLight => 'کم';
 
   @override
-  String get onboardingOptionMedium => 'Medium';
+  String get onboardingOptionMedium => 'متوسط';
 
   @override
-  String get onboardingOptionStrong => 'Strong';
+  String get onboardingOptionStrong => 'زیاد';
 
   @override
-  String get onboardingDhikrSoundTitle => 'Sound feedback';
+  String get onboardingDhikrSoundTitle => 'بازخورد صوتی';
 
   @override
-  String get onboardingDhikrSoundSoftClick => 'Soft click';
+  String get onboardingDhikrSoundSoftClick => 'کلیک ملایم';
 
   @override
-  String get onboardingDhikrSoundTasbih => 'Tasbih bead sound';
+  String get onboardingDhikrSoundTasbih => 'صدای دانه‌های تسبیح';
 
   @override
-  String get onboardingDhikrVisualTitle => 'Visual feedback';
+  String get onboardingDhikrVisualTitle => 'بازخورد دیداری';
 
   @override
-  String get onboardingDhikrVisualSubtleGlow => 'Subtle glow';
+  String get onboardingDhikrVisualSubtleGlow => 'درخشش ملایم';
 
   @override
-  String get onboardingDhikrVisualPulseAnimation => 'Pulse animation';
+  String get onboardingDhikrVisualPulseAnimation => 'انیمیشن تپش';
 
   @override
   String onboardingDhikrPreviewCount(int count) {
-    return 'Preview count: $count';
+    return 'شمارش پیش‌نمایش: $count';
   }
 
   @override
-  String get onboardingIdentityTitle => 'How should we address you?';
+  String get onboardingIdentityTitle => 'دوست دارید چگونه شما را خطاب کنیم؟';
 
   @override
   String get onboardingIdentitySubtitle =>
-      'Choose your greeting and add your name if you would like a more personal welcome.';
+      'سلام خود را انتخاب کنید و اگر مایلید برای خوشامدگویی شخصی‌تر نامتان را اضافه کنید.';
 
   @override
-  String get onboardingGreetingTitle => 'Greeting';
+  String get onboardingGreetingTitle => 'سلام';
 
   @override
-  String get onboardingNameTitle => 'Name';
+  String get onboardingNameTitle => 'نام';
 
   @override
-  String get onboardingOptionalHint => 'Optional';
+  String get onboardingOptionalHint => 'اختیاری';
 
   @override
   String get onboardingNameHelperBody =>
-      'Your name is optional and only used to personalize your experience within the app.';
+      'نام شما اختیاری است و فقط برای شخصی‌سازی تجربه شما درون برنامه استفاده می‌شود.';
 
   @override
-  String get onboardingDefaultNameFallback => 'Friend';
+  String get onboardingDefaultNameFallback => 'دوست';
 
   @override
-  String get onboardingFocusSalahConsistency => 'Salah consistency';
+  String get onboardingFocusSalahConsistency => 'پایداری در نماز';
 
   @override
-  String get onboardingFocusSalahReminders => 'Salah reminders';
+  String get onboardingFocusSalahReminders => 'یادآورهای نماز';
 
   @override
-  String get onboardingFinalWelcomeTitle => 'Welcome to Path of Nur';
+  String get onboardingFinalWelcomeTitle => 'به Path of Nur خوش آمدید';
 
   @override
   String onboardingWelcomeGreeting(String name) {
-    return 'Assalamu Alaikum, $name.';
+    return 'السلام علیکم، $name.';
   }
 
   @override
   String get onboardingFinalWelcomeBody =>
-      'Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.';
+      'سفر شما با نیت آغاز می‌شود و با گام‌های کوچک و پیوسته رشد می‌کند. Path of Nur اینجاست تا از یادگیری، یاد خدا، تأمل و پیشرفت روزانه شما پشتیبانی کند.';
 
   @override
-  String get onboardingFocusListTitle => 'Your chosen focus areas:';
+  String get onboardingFocusListTitle => 'زمینه‌های تمرکز انتخاب‌شده شما:';
 
   @override
-  String get onboardingKnowledgeDuaMeaning =>
-      'My Lord, increase me in knowledge.';
+  String get onboardingKnowledgeDuaMeaning => 'پروردگارا، دانش مرا افزون کن.';
 
   @override
-  String get onboardingLanguageSystemDefault => 'System Default';
+  String get onboardingLanguageSystemDefault => 'پیش‌فرض سیستم';
 
   @override
-  String get onboardingLanguageEnglish => 'English';
+  String get onboardingLanguageEnglish => 'انگلیسی';
 
   @override
-  String get onboardingLanguageArabic => 'Arabic (العربية)';
+  String get onboardingLanguageArabic => 'عربی (العربية)';
 
   @override
-  String get onboardingLanguageGerman => 'German (Deutsch)';
+  String get onboardingLanguageGerman => 'آلمانی (Deutsch)';
 
   @override
-  String get onboardingLanguageUrdu => 'Urdu (اردو)';
+  String get onboardingLanguageUrdu => 'اردو (اردو)';
 
   @override
-  String get onboardingLanguageHindi => 'Hindi (हिंदी)';
+  String get onboardingLanguageHindi => 'هندی (हिंदी)';
 
   @override
-  String get onboardingLanguageIndonesian => 'Indonesian';
+  String get onboardingLanguageIndonesian => 'اندونزیایی';
 
   @override
-  String get onboardingLanguageMalay => 'Malay';
+  String get onboardingLanguageMalay => 'مالایی';
 
   @override
-  String get onboardingLanguageTurkish => 'Turkish';
+  String get onboardingLanguageTurkish => 'ترکی';
 
   @override
-  String get onboardingLanguageBengali => 'Bengali';
+  String get onboardingLanguageBengali => 'بنگالی';
 
   @override
-  String get onboardingInterestUnderstandingQuran => 'Understanding the Qur’an';
+  String get onboardingInterestUnderstandingQuran => 'فهم قرآن';
 
   @override
-  String get onboardingInterestLearningHadith => 'Learning Hadith';
+  String get onboardingInterestLearningHadith => 'آموختن حدیث';
 
   @override
-  String get onboardingInterestStoriesProphets => 'Stories of the Prophets';
+  String get onboardingInterestStoriesProphets => 'داستان‌های پیامبران';
 
   @override
-  String get onboardingInterestStrengtheningSalah => 'Strengthening my Salah';
+  String get onboardingInterestStrengtheningSalah => 'تقویت نمازم';
 
   @override
-  String get onboardingInterestDhikrRemembrance => 'Dhikr and remembrance';
+  String get onboardingInterestDhikrRemembrance => 'ذکر و یاد الله';
 
   @override
-  String get onboardingInterestBetterHabits => 'Building better habits';
+  String get onboardingInterestBetterHabits => 'ساختن عادت‌های بهتر';
 
   @override
-  String get onboardingInterestWorldThroughQuran =>
-      'Learning about the world through the Qur’an';
+  String get onboardingInterestWorldThroughQuran => 'شناخت جهان از دریچه قرآن';
 
   @override
-  String get onboardingInterestIslamicKnowledge => 'Islamic knowledge';
+  String get onboardingInterestIslamicKnowledge => 'دانش اسلامی';
 
   @override
-  String get onboardingInterestPersonalGrowth =>
-      'Personal growth and discipline';
+  String get onboardingInterestPersonalGrowth => 'رشد شخصی و انضباط';
 
   @override
-  String get onboardingInterestDailyInspiration => 'Daily inspiration';
+  String get onboardingInterestDailyInspiration => 'الهام روزانه';
 
   @override
-  String get onboardingTrackingSalah => 'Salah tracking';
+  String get onboardingTrackingSalah => 'پیگیری نماز';
 
   @override
-  String get onboardingTrackingDhikr => 'Dhikr tracking';
+  String get onboardingTrackingDhikr => 'پیگیری ذکر';
 
   @override
-  String get onboardingTrackingQuranReading => 'Qur’an reading progress';
+  String get onboardingTrackingQuranReading => 'پیشرفت خواندن قرآن';
 
   @override
-  String get onboardingTrackingLearning => 'Learning progress';
+  String get onboardingTrackingLearning => 'پیشرفت یادگیری';
 
   @override
-  String get onboardingTrackingHabitBuilding => 'Habit building';
+  String get onboardingTrackingHabitBuilding => 'عادت‌سازی';
 
   @override
-  String get onboardingTrackingReflection => 'Reflection / journaling';
+  String get onboardingTrackingReflection => 'تأمل / یادداشت‌نگاری';
 
   @override
-  String get onboardingSizeSmall => 'Small';
+  String get onboardingSizeSmall => 'کوچک';
 
   @override
-  String get onboardingSizeLarge => 'Large';
+  String get onboardingSizeLarge => 'بزرگ';
 
   @override
-  String get onboardingSizeExtraLarge => 'Extra large';
+  String get onboardingSizeExtraLarge => 'بسیار بزرگ';
 
   @override
-  String get accountsSyncTransportUnknown => 'Unknown transport';
+  String get accountsSyncTransportUnknown => 'انتقال نامشخص';
 
   @override
-  String get accountsSyncStatusUnknown => 'Status not available';
+  String get accountsSyncStatusUnknown => 'وضعیت در دسترس نیست';
 
   @override
   String get worldLandingTitle => 'World & Creation';
@@ -37576,106 +37806,106 @@ class AppLocalizationsFa extends AppLocalizations {
   String get quranSummaryThemeParadiseAndHell => 'Paradise and Hell';
 
   @override
-  String get quranThemeDiscoveryIslandTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryIslandTitle => 'مرور بر اساس موضوع';
 
   @override
   String get quranThemeDiscoveryIslandSubtitle =>
-      'Explore the Qur\'an through themes like mercy, patience, prophets, guidance, and the hereafter.';
+      'قرآن را از طریق موضوعاتی مانند رحمت، صبر، پیامبران، هدایت و آخرت کاوش کنید.';
 
   @override
-  String get quranThemeDiscoveryPageTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryPageTitle => 'مرور بر اساس موضوع';
 
   @override
   String get quranThemeDiscoveryPageSubtitle =>
-      'Discover the Qur\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.';
+      'قرآن را از طریق مضامین تنظیم شده، سوره های مرتبط، لنگرهای کلیدی آیات، و مسیرهای مطالعه ملایم کشف کنید.';
 
   @override
-  String get quranThemeDiscoveryHeroEyebrow => 'Thematic Discovery';
+  String get quranThemeDiscoveryHeroEyebrow => 'کشف موضوعی';
 
   @override
   String get quranThemeDiscoveryHeroTitle =>
-      'Explore the Qur\'an through themes that shape the heart';
+      'قرآن را از طریق مضامینی که قلب را شکل می دهد کاوش کنید';
 
   @override
   String get quranThemeDiscoveryHeroSubtitle =>
-      'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.';
+      'راهی آرام برای پیروی از رحمت، صبر، پیامبران، هدایت، عدالت و نشانه های خلقت در سوره های مرتبط.';
 
   @override
   String get quranThemeDiscoverySearchHint =>
-      'Search topics, prophets, events, or surahs...';
+      'جستجو در موضوعات، پیامبران، وقایع یا سوره ها...';
 
   @override
-  String get quranThemeDiscoveryFeaturedThemesTitle => 'Featured themes';
+  String get quranThemeDiscoveryFeaturedThemesTitle => 'تم های ویژه';
 
   @override
-  String get quranThemeDiscoveryBrowseByCategoryTitle => 'Browse by category';
+  String get quranThemeDiscoveryBrowseByCategoryTitle =>
+      'بر اساس دسته بندی مرور کنید';
 
   @override
-  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'Key ayah references';
+  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'مراجع کلیدی آیه';
 
   @override
-  String get quranThemeDiscoveryRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeDiscoveryRelatedSurahsTitle => 'سوره های مرتبط';
 
   @override
-  String get quranThemeDiscoveryReflectionTitle => 'Reflection';
+  String get quranThemeDiscoveryReflectionTitle => 'انعکاس';
 
   @override
-  String get quranThemeDiscoveryMoreThemesTitle => 'More themes';
+  String get quranThemeDiscoveryMoreThemesTitle => 'تم های بیشتر';
 
   @override
-  String get quranThemeDiscoveryExploreThemeAction => 'Explore theme';
+  String get quranThemeDiscoveryExploreThemeAction => 'کاوش موضوع';
 
   @override
-  String get quranThemeDiscoveryBrowseMoreThemesAction => 'Browse more themes';
+  String get quranThemeDiscoveryBrowseMoreThemesAction =>
+      'تم های بیشتر را مرور کنید';
 
   @override
   String get quranThemeDiscoveryNoResultsTitle =>
-      'No themes matched your search';
+      'هیچ موضوعی با جستجوی شما مطابقت نداشت';
 
   @override
   String get quranThemeDiscoveryNoResultsSubtitle =>
-      'Try another topic, prophet, event, or category.';
+      'موضوع، پیامبر، رویداد یا مقوله دیگری را امتحان کنید.';
 
   @override
-  String get quranThemeDiscoveryMissingThemeTitle =>
-      'This theme is not available';
+  String get quranThemeDiscoveryMissingThemeTitle => 'این تم در دسترس نیست';
 
   @override
   String get quranThemeDiscoveryMissingThemeSubtitle =>
-      'Return to Browse by Topic and choose another Qur\'an theme.';
+      'به مرور بر اساس موضوع برگردید و موضوع قرآن دیگری را انتخاب کنید.';
 
   @override
   String quranThemeDiscoveryThemeCountLabel(int count) {
-    return '$count themes';
+    return '$count موضوع';
   }
 
   @override
   String quranThemeDiscoverySurahCountLabel(int count) {
-    return '$count surahs';
+    return 'سوره های $count';
   }
 
   @override
-  String get quranThemeDiscoveryCategoryBelief => 'Belief';
+  String get quranThemeDiscoveryCategoryBelief => 'باور';
 
   @override
-  String get quranThemeDiscoveryCategoryWorship => 'Worship';
+  String get quranThemeDiscoveryCategoryWorship => 'عبادت کنید';
 
   @override
-  String get quranThemeDiscoveryCategoryCharacter => 'Character';
+  String get quranThemeDiscoveryCategoryCharacter => 'شخصیت';
 
   @override
   String get quranThemeDiscoveryCategoryStoriesProphets =>
-      'Stories and Prophets';
+      'داستان ها و پیامبران';
 
   @override
-  String get quranThemeDiscoveryCategoryAkhirah => 'Akhirah';
+  String get quranThemeDiscoveryCategoryAkhirah => 'اخیرا';
 
   @override
-  String get quranThemeDiscoveryCategorySocietyEthics => 'Society and Ethics';
+  String get quranThemeDiscoveryCategorySocietyEthics => 'جامعه و اخلاق';
 
   @override
-  String get quranThemeDiscoveryCategorySignsReflection =>
-      'Signs and Reflection';
+  String get quranThemeDiscoveryCategorySignsReflection => 'نشانه ها و بازتاب';
 
   @override
   String get quranPathwaysIslandTitle => 'Qur\'an Pathways';
@@ -39264,7 +39494,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get learnQuranBeginnerSoftBridgeBeginAction => 'Let’s begin';
 
   @override
-  String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';
+  String get settingsThemeChoiceMidnightManuscript => 'دست‌نوشته نیمه‌شب';
 
   @override
   String get settingsThemeChoiceNoorGlass => 'Noor Glass';
@@ -39303,7 +39533,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
-      'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.';
+      'رنگ‌های عمیق مرکبی با رگه‌های طلایی گرم و فضایی آرام همچون نسخه‌ای خطی.';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptDescription =>
@@ -39315,19 +39545,19 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settingsThemeModePickerHelper =>
-      'Choose the atmosphere that feels most at home in your journey.';
+      'فضایی را انتخاب کنید که در مسیر شما بیش از همه حس آشنایی دارد.';
 
   @override
   String get settingsThemeModeDefaultBestFor =>
-      'Best for everyday calm and balanced use.';
+      'بهترین گزینه برای آرامش روزمره و استفاده متعادل.';
 
   @override
   String get settingsThemeModeCalmBeautifulBestFor =>
-      'Best if you prefer the earlier soft Path of Nūr atmosphere.';
+      'بهترین گزینه اگر فضای نرم و پیشین Path of Nūr را ترجیح می‌دهید.';
 
   @override
   String get settingsThemeModeEasyReadBestFor =>
-      'Best for longer reading and clearer contrast.';
+      'بهترین گزینه برای مطالعه طولانی‌تر و کنتراست روشن‌تر.';
 
   @override
   String get settingsThemeModeNoorGlassBestFor =>
@@ -39335,31 +39565,31 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDarkBestFor =>
-      'Best for evening use when you want the same Noor surfaces in a darker atmosphere.';
+      'بهترین گزینه برای استفاده عصرگاهی وقتی همان سطوح Noor را در فضایی تیره‌تر می‌خواهید.';
 
   @override
   String get settingsThemeModeNoGlassBestFor =>
-      'Best for a stable, opaque look with less visual transparency.';
+      'بهترین گزینه برای ظاهری پایدار و مات با شفافیت بصری کمتر.';
 
   @override
   String get settingsThemeModeNoGlassDarkBestFor =>
-      'Best for dark solid surfaces without glass effects.';
+      'بهترین گزینه برای سطوح تیره و یک‌دست، بدون جلوه‌های شیشه‌ای.';
 
   @override
   String get settingsThemeModeDarkBestFor =>
-      'Best for low-light reading and quieter evenings.';
+      'بهترین گزینه برای مطالعه در نور کم و شب‌های آرام‌تر.';
 
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
-      'Best for evening reflection and Qur’an study.';
+      'بهترین گزینه برای تأمل شبانه و مطالعه قرآن.';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptBestFor =>
-      'Best for rich night reading with manuscript warmth and Noor glow.';
+      'بهترین گزینه برای مطالعه غنی شبانه با گرمای نسخه خطی و درخشش Noor.';
 
   @override
   String get settingsThemeModeNoorKidsBestFor =>
-      'Best for families who want a lighter, warmer, more playful Noor feel.';
+      'بهترین گزینه برای خانواده‌هایی که حس Noor روشن‌تر، گرم‌تر و بازیگوش‌تر می‌خواهند.';
 
   @override
   String get editorialDashboardTitle => 'Editorial Dashboard';
@@ -40407,32 +40637,32 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get loadingGreetingMorningTranslation =>
-      'O Allah, by You we enter the morning';
+      'ای الله، به یاری تو به صبح وارد می‌شویم';
 
   @override
   String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
 
   @override
   String get loadingGreetingEveningTranslation =>
-      'O Allah, by You we enter the evening';
+      'ای الله، به یاری تو به شام وارد می‌شویم';
 
   @override
-  String get loadingWelcomeBack => 'Welcome Back';
+  String get loadingWelcomeBack => 'خوش برگشتید';
 
   @override
-  String get loadingRestoringProgress => 'Restoring your progress';
+  String get loadingRestoringProgress => 'در حال بازیابی پیشرفت شما';
 
   @override
-  String get loadingStatusPreparing => 'Preparing your space…';
+  String get loadingStatusPreparing => 'در حال آماده‌سازی فضای شما…';
 
   @override
-  String get loadingStatusRestoring => 'Restoring your progress…';
+  String get loadingStatusRestoring => 'در حال بازیابی پیشرفت شما…';
 
   @override
-  String get loadingStatusSyncing => 'Syncing your journey…';
+  String get loadingStatusSyncing => 'در حال همگام‌سازی مسیر شما…';
 
   @override
-  String get loadingStatusFinalizing => 'Finalizing…';
+  String get loadingStatusFinalizing => 'در حال نهایی‌سازی…';
 
   @override
   String get homeTestOnboardingPill => 'Test Onboarding';
@@ -40475,7 +40705,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get onboardingFinalWelcomeClosingBody =>
-      'Take it one sincere step at a time. Meaningful progress is built through small, steady acts.';
+      'هر بار یک گام صادقانه بردارید. پیشرفت معنادار با کارهای کوچک و پیوسته ساخته می‌شود.';
 
   @override
   String get onboardingDisclaimerTitle => 'A Gentle Note Before You Begin';
@@ -40568,44 +40798,43 @@ class AppLocalizationsFa extends AppLocalizations {
   String get learnPathLevelDeepDiveTitle => 'Deep Dive';
 
   @override
-  String get settingsPageTransitionsTitle => 'Page transitions';
+  String get settingsPageTransitionsTitle => 'انتقال‌های صفحه';
 
   @override
   String get settingsPageTransitionsSubtitle =>
-      'Choose how pages move through the app.';
+      'انتخاب کنید صفحه‌ها چگونه در برنامه جابه‌جا شوند.';
 
   @override
   String get settingsReduceMotionTransitionOverrideSubtitle =>
-      'Reduce Motion turns off extra transition effects across the app.';
+      'Reduce Motion جلوه‌های انتقالی اضافی را در سراسر برنامه خاموش می‌کند.';
 
   @override
-  String get settingsLearningLevelTitle => 'Learning level';
+  String get settingsLearningLevelTitle => 'سطح یادگیری';
 
   @override
-  String get settingsRunOnboardingTitle => 'Run onboarding again';
+  String get settingsRunOnboardingTitle => 'اجرای دوباره ورود آغازین';
 
   @override
   String get settingsRunOnboardingSubtitle =>
-      'Review and update your setup choices.';
+      'انتخاب‌های راه‌اندازی خود را مرور و به‌روزرسانی کنید.';
 
   @override
-  String get settingsPageTransitionStyleDefault => 'Default';
+  String get settingsPageTransitionStyleDefault => 'پیش‌فرض';
 
   @override
-  String get settingsPageTransitionStyleGentleFade => 'Gentle fade';
+  String get settingsPageTransitionStyleGentleFade => 'محو شدن ملایم';
 
   @override
-  String get settingsPageTransitionStyleIos => 'iOS-style';
+  String get settingsPageTransitionStyleIos => 'سبک iOS';
 
   @override
-  String get settingsPageTransitionStyleNone => 'None';
+  String get settingsPageTransitionStyleNone => 'هیچ‌کدام';
 
   @override
-  String get onboardingRemindersDisableAllAction =>
-      'Turn off all notifications';
+  String get onboardingRemindersDisableAllAction => 'همه اعلان‌ها را خاموش کن';
 
   @override
-  String get onboardingReminderNone => 'No notification';
+  String get onboardingReminderNone => 'بدون اعلان';
 
   @override
   String get onboardingAccountOptionsTitle => 'Optional sign in and backup';
@@ -40619,7 +40848,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'You can also back up your data manually later from Settings.';
 
   @override
-  String get historyNoEventsForThisDate => 'There are no events for this date.';
+  String get historyNoEventsForThisDate => 'برای این تاریخ رویدادی وجود ندارد.';
 
   @override
   String get worshipQiblaUnavailableOnIpadTitle =>
@@ -40633,10 +40862,10 @@ class AppLocalizationsFa extends AppLocalizations {
   String get gardenPageRecentGrowthTracked => 'Tracked';
 
   @override
-  String get hadithReflectionCompletedQuiet => 'Reflection completed.';
+  String get hadithReflectionCompletedQuiet => 'تأمل کامل شد.';
 
   @override
-  String get hadithLessonCompletedQuiet => 'Lesson completed.';
+  String get hadithLessonCompletedQuiet => 'درس کامل شد.';
 
   @override
   String get bedtimeStoriesCompletionSnackQuiet => 'Story completed.';
@@ -40827,192 +41056,195 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String get hadithSearchTitle => 'Search Hadith';
+  String get hadithSearchTitle => 'جستجو در حدیث';
 
   @override
   String get hadithSearchSubtitle =>
-      'Search the trusted hadith library by text, source, or category.';
+      'کتابخانه حدیث مورد اعتماد را بر اساس متن، منبع یا دسته جستجو کنید.';
 
   @override
-  String get hadithSearchOpenAction => 'Open search';
+  String get hadithSearchOpenAction => 'جستجو را باز کنید';
 
   @override
-  String get hadithSearchFilterAll => 'All';
+  String get hadithSearchFilterAll => 'همه';
 
   @override
-  String get hadithSearchFilterSource => 'Source';
+  String get hadithSearchFilterSource => 'منبع';
 
   @override
-  String get hadithSearchFilterCategory => 'Category';
+  String get hadithSearchFilterCategory => 'دسته بندی';
 
   @override
-  String get hadithSearchFilterSubcategory => 'Subcategory';
+  String get hadithSearchFilterSubcategory => 'زیرمجموعه';
 
   @override
-  String get hadithSearchFilterGrade => 'Grade';
+  String get hadithSearchFilterGrade => 'درجه';
 
   @override
-  String get hadithSearchEmptyQueryTitle => 'Search the hadith library';
+  String get hadithSearchEmptyQueryTitle => 'در کتابخانه احادیث جستجو کنید';
 
   @override
   String get hadithSearchEmptyQuerySubtitle =>
-      'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.';
+      'جستجو بر اساس ترجمه، عربی، کتاب منبع، راوی، دسته بندی، زیرمجموعه یا مرجع.';
 
   @override
-  String get hadithSearchSuggestedSourcesTitle => 'Suggested sources';
+  String get hadithSearchSuggestedSourcesTitle => 'منابع پیشنهادی';
 
   @override
-  String get hadithSearchSuggestedCategoriesTitle => 'Suggested categories';
+  String get hadithSearchSuggestedCategoriesTitle => 'دسته بندی های پیشنهادی';
 
   @override
-  String get hadithSearchNoResultsTitle => 'No hadith found';
+  String get hadithSearchNoResultsTitle => 'حدیثی پیدا نشد';
 
   @override
   String get hadithSearchNoResultsSubtitle =>
-      'Try a different phrase, source book, or category.';
+      'عبارت، کتاب منبع یا دسته بندی دیگری را امتحان کنید.';
 
   @override
   String hadithSearchResultsCount(int count) {
-    return '$count results';
+    return '$count نتیجه';
   }
 
   @override
-  String get hadithSearchMatchTitle => 'Title match';
+  String get hadithSearchMatchTitle => 'مسابقه عنوان';
 
   @override
-  String get hadithSearchMatchExcerpt => 'Excerpt match';
+  String get hadithSearchMatchExcerpt => 'گزیده مسابقه';
 
   @override
-  String get hadithSearchMatchTranslation => 'Translation match';
+  String get hadithSearchMatchTranslation => 'مطابقت ترجمه';
 
   @override
-  String get hadithSearchMatchArabic => 'Arabic match';
+  String get hadithSearchMatchArabic => 'کبریت عربی';
 
   @override
-  String get hadithSearchMatchTransliteration => 'Transliteration match';
+  String get hadithSearchMatchTransliteration => 'مطابقت نویسه‌گردانی';
 
   @override
-  String get hadithSearchMatchSource => 'Source match';
+  String get hadithSearchMatchSource => 'مطابقت منبع';
 
   @override
-  String get hadithSearchMatchReference => 'Reference match';
+  String get hadithSearchMatchReference => 'مطابقت مرجع';
 
   @override
-  String get hadithSearchMatchNarrator => 'Narrator match';
+  String get hadithSearchMatchNarrator => 'مسابقه راوی';
 
   @override
-  String get hadithSearchMatchCategory => 'Category match';
+  String get hadithSearchMatchChapter => 'تطبیق فصل';
 
   @override
-  String get hadithSearchMatchSubcategory => 'Subcategory match';
+  String get hadithSearchMatchCategory => 'مطابقت رده';
 
   @override
-  String get hadithSearchMatchGrade => 'Grade match';
+  String get hadithSearchMatchSubcategory => 'مطابقت زیر مجموعه';
 
   @override
-  String get hadithSearchSuggestionsTitle => 'Suggestions';
+  String get hadithSearchMatchGrade => 'مطابقت درجه';
 
   @override
-  String get hadithSearchRecentTitle => 'Recent searches';
+  String get hadithSearchSuggestionsTitle => 'پیشنهادات';
 
   @override
-  String get hadithSearchClearRecents => 'Clear';
+  String get hadithSearchRecentTitle => 'جستجوهای اخیر';
 
   @override
-  String get hadithSearchNoRecent => 'No recent searches yet.';
+  String get hadithSearchClearRecents => 'پاک کردن';
 
   @override
-  String get hadithSearchNoResultsTryBroader => 'Try a broader phrase.';
+  String get hadithSearchNoRecent => 'هنوز جستجوی اخیر انجام نشده است.';
+
+  @override
+  String get hadithSearchNoResultsTryBroader =>
+      'یک عبارت گسترده تر را امتحان کنید.';
 
   @override
   String get hadithSearchNoResultsTrySource =>
-      'Try a source book like Riyad as-Salihin.';
+      'یک کتاب منبع مانند ریاض الصالحین را امتحان کنید.';
 
   @override
   String get hadithSearchNoResultsTryCategory =>
-      'Try a category such as Character.';
+      'دسته بندی مانند شخصیت را امتحان کنید.';
 
   @override
-  String get hadithSearchGroupText => 'Text matches';
+  String get hadithSearchGroupText => 'مطابقت متن';
 
   @override
-  String get hadithSearchGroupSource => 'Source and reference matches';
+  String get hadithSearchGroupSource => 'مطابقت منبع و مرجع';
 
   @override
-  String get hadithSearchGroupTopical => 'Category and topic matches';
+  String get hadithSearchGroupTopical => 'مطابقت دسته و موضوع';
 
   @override
-  String get hadithSearchGroupGrade => 'Grade matches';
+  String get hadithSearchGroupGrade => 'مسابقات درجه';
 
   @override
-  String get hadithSearchSuggestionIntentions => 'intentions';
+  String get hadithSearchSuggestionIntentions => 'نیات';
 
   @override
-  String get hadithSearchSuggestionSincerity => 'sincerity';
+  String get hadithSearchSuggestionSincerity => 'صداقت';
 
   @override
-  String get hadithSearchSuggestionMercy => 'mercy';
+  String get hadithSearchSuggestionMercy => 'رحمت';
 
   @override
-  String get hadithSearchSuggestionRepentance => 'repentance';
+  String get hadithSearchSuggestionRepentance => 'توبه';
 
   @override
-  String get hadithSearchSuggestionDua => 'dua';
+  String get hadithSearchSuggestionDua => 'دعا';
 
   @override
-  String get hadithSearchSuggestionCharacter => 'character';
+  String get hadithSearchSuggestionCharacter => 'شخصیت';
 
   @override
-  String get hadithSearchSuggestionJustice => 'justice';
+  String get hadithSearchSuggestionJustice => 'عدالت';
 
   @override
-  String get hadithSearchSuggestionGratitude => 'gratitude';
+  String get hadithSearchSuggestionGratitude => 'سپاسگزاری';
 
   @override
   String get hadithActionBrowseSources => 'Browse by source';
 
   @override
-  String get hadithSourceBrowseTitle => 'Browse by source';
+  String get hadithSourceBrowseTitle => 'بر اساس منبع مرور کنید';
 
   @override
   String get hadithSourceBrowseSubtitle =>
-      'Explore trusted hadith by source collection and chapter where metadata exists.';
+      'احادیث مورد اعتماد را بر اساس مجموعه منبع و فصلی که ابرداده وجود دارد کاوش کنید.';
 
   @override
   String get hadithSourceBrowseNoSources =>
-      'No source collections are available yet.';
+      'هنوز هیچ مجموعه منبعی در دسترس نیست.';
 
   @override
-  String get hadithSourceBrowseNotFoundSubtitle =>
-      'This source could not be found.';
+  String get hadithSourceBrowseNotFoundSubtitle => 'این منبع یافت نشد.';
 
   @override
   String get hadithSourceBrowseNotFoundBody =>
-      'Try another trusted source collection from the browse list.';
+      'مجموعه منبع قابل اعتماد دیگری را از فهرست مرور امتحان کنید.';
 
   @override
   String hadithSourceBrowseCollectionSummary(int entryCount, int chapterCount) {
-    return '$entryCount hadith across $chapterCount chapters';
+    return '$entryCount حدیث در سر فصل $chapterCount';
   }
 
   @override
   String hadithSourceBrowseCollectionCountOnly(int count) {
-    return '$count hadith';
+    return 'حدیث $count';
   }
 
   @override
-  String get hadithSourceBrowseChaptersTitle => 'Chapters';
+  String get hadithSourceBrowseChaptersTitle => 'فصل ها';
 
   @override
   String hadithSourceBrowseChapterSummary(Object chapterLabel, int count) {
-    return '$chapterLabel • $count hadith';
+    return '$chapterLabel • $count حدیث';
   }
 
   @override
-  String get hadithSourceBrowseEntriesTitle => 'Entries';
+  String get hadithSourceBrowseEntriesTitle => 'ورودی ها';
 
   @override
-  String get hadithSourceBrowseEntryPreviewTitle => 'Entry preview';
+  String get hadithSourceBrowseEntryPreviewTitle => 'پیش نمایش ورودی';
 
   @override
   String hadithSourceBrowseChapterPageSubtitle(
@@ -41020,7 +41252,7 @@ class AppLocalizationsFa extends AppLocalizations {
     Object chapterLabel,
     int count,
   ) {
-    return '$sourceTitle • $chapterLabel • $count hadith';
+    return '$sourceTitle • $chapterLabel • $count حدیث';
   }
 
   @override
@@ -41030,17 +41262,17 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String hadithSourceBrowseChapterNumber(int number) {
-    return 'Chapter $number';
+    return 'فصل $number';
   }
 
   @override
-  String get hadithSourceBrowseChapterFallback => 'Chapter';
+  String get hadithSourceBrowseChapterFallback => 'فصل';
 
   @override
-  String get hadithSourceBrowseGeneralChapter => 'General chapter';
+  String get hadithSourceBrowseGeneralChapter => 'فصل عمومی';
 
   @override
-  String get hadithSourceBrowseUncategorized => 'Uncategorized';
+  String get hadithSourceBrowseUncategorized => 'دسته بندی نشده';
 
   @override
   String get editorialRelationTypeExplains => 'Explains';
@@ -41083,105 +41315,199 @@ class AppLocalizationsFa extends AppLocalizations {
   String get quranReaderRelatedDuasTitle => 'Related Duas';
 
   @override
-  String get allSearchTitle => 'All Search';
+  String get allSearchTitle => 'جست‌وجوی سراسری';
 
   @override
   String get allSearchSubtitle =>
-      'Search Qur’an, hadith, duas, and learning content together.';
+      'قرآن، حدیث، دعاها و محتوای آموزشی را یکجا جست‌وجو کنید.';
 
   @override
-  String get allSearchHint => 'Search across Path of Nur';
+  String get allSearchHint => 'در سراسر Path of Nur جست‌وجو کنید';
 
   @override
-  String get allSearchEmptyTitle => 'Search across the app';
+  String get allSearchEmptyTitle => 'در سراسر برنامه جست‌وجو کنید';
 
   @override
   String get allSearchEmptySubtitle =>
-      'We’ll group results by domain so it stays calm and easy to trust.';
+      'نتیجه‌ها را بر اساس بخش گروه‌بندی می‌کنیم تا فضا آرام و قابل اعتماد بماند.';
 
   @override
-  String get allSearchSuggestionsTitle => 'Suggestions';
+  String get allSearchSuggestionsTitle => 'پیشنهادها';
 
   @override
-  String get allSearchRecentTitle => 'Recent searches';
+  String get allSearchRecentTitle => 'جست‌وجوهای اخیر';
 
   @override
-  String get allSearchClearRecent => 'Clear';
+  String get allSearchClearRecent => 'پاک کردن';
 
   @override
-  String get allSearchNoRecent => 'No recent searches yet.';
+  String get allSearchNoRecent => 'هنوز جست‌وجوی اخیری وجود ندارد.';
 
   @override
-  String get allSearchNoResultsTitle => 'No results yet';
+  String get allSearchNoResultsTitle => 'هنوز نتیجه‌ای نیست';
 
   @override
   String get allSearchNoResultsSubtitle =>
-      'We could not find a strong match across Qur’an, hadith, duas, or learn content.';
+      'در قرآن، حدیث، دعاها یا محتوای آموزشی، مطابقت نیرومندی پیدا نکردیم.';
 
   @override
-  String get allSearchNoResultsTipBroader => 'Try a shorter or broader phrase.';
+  String get allSearchNoResultsTipBroader =>
+      'یک عبارت کوتاه‌تر یا گسترده‌تر را امتحان کنید.';
 
   @override
   String get allSearchNoResultsTipDomain =>
-      'You can also jump into a domain search for more depth.';
+      'همچنین می‌توانید برای عمق بیشتر به جست‌وجوی یک بخش بروید.';
 
   @override
   String get allSearchDomainQuran => 'Qur’an';
 
   @override
-  String get allSearchDomainHadith => 'Hadith';
+  String get allSearchDomainHadith => 'حدیث';
 
   @override
-  String get allSearchDomainDua => 'Duas';
+  String get allSearchDomainDua => 'دعاها';
 
   @override
-  String get allSearchDomainLearn => 'Learn';
+  String get allSearchDomainLearn => 'آموزش';
 
   @override
-  String get allSearchViewAllQuran => 'View all in Qur’an';
+  String get allSearchViewAllQuran => 'همه را در قرآن ببین';
 
   @override
-  String get allSearchViewAllHadith => 'View all in Hadith';
+  String get allSearchViewAllHadith => 'همه را در حدیث ببین';
 
   @override
-  String get allSearchViewAllDua => 'View all in Duas';
+  String get allSearchViewAllDua => 'همه را در دعاها ببین';
 
   @override
-  String get allSearchViewAllLearn => 'View all in Learn';
+  String get allSearchViewAllLearn => 'همه را در آموزش ببین';
 
   @override
-  String get allSearchSuggestionMercy => 'mercy';
+  String get allSearchSuggestionMercy => 'رحمت';
 
   @override
-  String get allSearchSuggestionPatience => 'patience';
+  String get allSearchSuggestionPatience => 'صبر';
 
   @override
-  String get allSearchSuggestionIntentions => 'intentions';
+  String get allSearchSuggestionIntentions => 'نیت‌ها';
 
   @override
-  String get allSearchSuggestionRepentance => 'repentance';
+  String get allSearchSuggestionRepentance => 'توبه';
 
   @override
-  String get allSearchSuggestionDua => 'dua';
+  String get allSearchSuggestionDua => 'دعا';
 
   @override
-  String get allSearchSuggestionProphets => 'prophets';
+  String get allSearchSuggestionProphets => 'پیامبران';
 
   @override
-  String get allSearchSuggestionGratitude => 'gratitude';
+  String get allSearchSuggestionGratitude => 'سپاسگزاری';
 
   @override
-  String get allSearchSuggestionJustice => 'justice';
+  String get allSearchSuggestionJustice => 'عدالت';
 
   @override
   String allSearchResultsFor(Object query) {
-    return 'Results for \"$query\"';
+    return 'نتیجه‌ها برای «$query»';
   }
 
   @override
   String allSearchError(Object message) {
-    return 'Search unavailable: $message';
+    return 'جست‌وجو در دسترس نیست: $message';
   }
+
+  @override
+  String get hadithReaderContinueTitle => 'به خواندن ادامه دهید';
+
+  @override
+  String hadithReaderBackToLane(String lane) {
+    return 'بازگشت به $lane';
+  }
+
+  @override
+  String get hadithReaderBackToResults => 'بازگشت به نتایج';
+
+  @override
+  String get hadithReaderPrevious => 'قبلی';
+
+  @override
+  String get hadithReaderNext => 'بعدی';
+
+  @override
+  String hadithReaderPosition(int current, int total) {
+    return 'حدیث $current از $total';
+  }
+
+  @override
+  String hadithReaderChapterPosition(int current, int total) {
+    return 'حدیث $current از $total در این فصل';
+  }
+
+  @override
+  String get hadithBrowseProgressLabel => 'وضعیت';
+
+  @override
+  String get hadithBrowseProgressAll => 'همه ورودی ها';
+
+  @override
+  String get hadithBrowseProgressNotReviewed => 'بررسی نشده است';
+
+  @override
+  String get hadithBrowseProgressReviewing => 'در حال بررسی';
+
+  @override
+  String get hadithBrowseProgressComplete => 'کامل';
+
+  @override
+  String get hadithActionMarkCompleteForBrowse => 'Mark complete';
+
+  @override
+  String get hadithActionCompletedForBrowse => 'Completed';
+
+  @override
+  String get hadithActionMarkIncomplete => 'Mark incomplete';
+
+  @override
+  String get hadithMarkedComplete => 'Hadith marked complete.';
+
+  @override
+  String get hadithMarkedIncomplete => 'Hadith marked incomplete.';
+
+  @override
+  String get hadithBrowsePageTitle => 'حدیث را مرور کنید';
+
+  @override
+  String get hadithBrowsePageSubtitle =>
+      'راهی آرام و قابل فیلتر برای کاوش در کتابخانه وسیعتر حدیث.';
+
+  @override
+  String get hadithBrowseIntroTitle => 'با یک مسیر آرام تر شروع کنید';
+
+  @override
+  String get hadithBrowseIntroBody =>
+      'از این صفحه برای محدود کردن کتابخانه گسترده‌تر حدیث بر اساس منبع، مجموعه، درجه یا وضعیت مطالعه استفاده کنید تا قبل از باز کردن مسیر مطالعه.';
+
+  @override
+  String hadithBrowseSummary(
+    int entries,
+    int sources,
+    int collections,
+    int subcategories,
+  ) {
+    return 'حدیث $entries در منابع $sources، مجموعه‌های $collections و زیر مجموعه‌های $subcategories.';
+  }
+
+  @override
+  String get hadithBrowseActiveFiltersTitle => 'فیلترهای فعال';
+
+  @override
+  String get hadithBrowseCollectionLabel => 'مجموعه';
+
+  @override
+  String get hadithBrowseAllCollections => 'همه مجموعه ها';
+
+  @override
+  String get hadithActionBrowseAllHadith => 'Browse all hadith';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -41200,28 +41526,28 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get notificationsPrayerNotificationOnlyChannelName =>
-      'Salah Reminders (Notification)';
+      'یادآوری نماز (اعلان)';
 
   @override
   String get notificationsPrayerNotificationOnlyChannelDescription =>
-      'Salah reminder notifications without adhan audio';
+      'اعلان‌های یادآوری نماز بدون صدای اذان';
 
   @override
   String notificationsPrayerAdhanChannelName(String adhanTitle) {
-    return 'Salah Reminders ($adhanTitle)';
+    return 'یادآوری نماز ($adhanTitle)';
   }
 
   @override
   String get notificationsPrayerAdhanChannelDescription =>
-      'Salah reminder notifications with adhan audio';
+      'اعلان‌های یادآوری نماز همراه با صدای اذان';
 
   @override
   String get notificationsPrayerBeforeQazaChannelName =>
-      'Salah Reminders (Before Qaza)';
+      'یادآوری نماز (پیش از قضا)';
 
   @override
   String get notificationsPrayerBeforeQazaChannelDescription =>
-      'Salah reminder notifications before qada';
+      'اعلان‌های یادآوری نماز پیش از قضا شدن';
 
   @override
   String get notificationsDailyRemindersChannelName => 'یادآوری‌های روزانه';
@@ -41243,7 +41569,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String notificationsPrayerAtTimeTitle(String prayerName) {
-    return '$prayerName Salah';
+    return 'نماز $prayerName';
   }
 
   @override
@@ -41264,25 +41590,25 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get notificationsFastingTitle => 'یادآوری روزه';
 
   @override
-  String get notificationsOnThisDayTitle => 'On This Day';
+  String get notificationsOnThisDayTitle => 'در چنین روزی';
 
   @override
   String get notificationsCycleCheckTitle => 'وضعیت امروز را بررسی کنید';
 
   @override
-  String get notificationsMoonriseTitle => 'Moonrise';
+  String get notificationsMoonriseTitle => 'طلوع ماه';
 
   @override
-  String get notificationsMoonsetTitle => 'Moonset';
+  String get notificationsMoonsetTitle => 'غروب ماه';
 
   @override
   String notificationsPrayerAtTimeBody(String prayerName) {
-    return 'It is time for $prayerName Salah. Stay connected with your salah.';
+    return 'وقت نماز $prayerName است. با نمازت پیوسته بمان.';
   }
 
   @override
   String notificationsPrayerAtTimeFajrBody(String prayerName) {
-    return 'It is time for $prayerName Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
+    return 'وقت نماز $prayerName است.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
   }
 
   @override
@@ -41306,17 +41632,17 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get notificationsOnThisDayBody =>
-      'Open today’s historical reflection and revisit a meaningful moment from Islamic history.';
+      'بازتاب تاریخی امروز را باز کن و لحظه‌ای معنادار از تاریخ اسلام را دوباره مرور کن.';
 
   @override
   String get notificationsCycleCheckBody =>
       'اگر لازم است وضعیت فعلی خود را به‌روزرسانی کنید.';
 
   @override
-  String get notificationsMoonriseBody => 'The moon is rising now.';
+  String get notificationsMoonriseBody => 'اکنون ماه در حال طلوع است.';
 
   @override
-  String get notificationsMoonsetBody => 'The moon is setting now.';
+  String get notificationsMoonsetBody => 'اکنون ماه در حال غروب است.';
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -41324,29 +41650,31 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
-  String get notificationsPrayerActionMarkPrayed => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkPrayed =>
+      'نماز را اقامه‌شده علامت بزن';
 
   @override
   String get notificationsPrayerActionMarkPrayedLate =>
-      'Mark Salah as offered late';
+      'نماز را با تأخیر اقامه‌شده علامت بزن';
 
   @override
-  String get notificationsPrayerActionSnooze => 'Snooze';
+  String get notificationsPrayerActionSnooze => 'تعویق';
 
   @override
-  String get notificationsPrayerActionSnooze5 => 'Remind me in 5 min';
+  String get notificationsPrayerActionSnooze5 => '۵ دقیقه دیگر یادآوری کن';
 
   @override
-  String get notificationsPrayerActionSnooze10 => 'Remind me in 10 min';
+  String get notificationsPrayerActionSnooze10 => '۱۰ دقیقه دیگر یادآوری کن';
 
   @override
-  String get notificationsPrayerActionMarkOffered => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkOffered =>
+      'نماز را اقامه‌شده علامت بزن';
 
   @override
-  String get notificationsPrayerActionDismiss => 'Dismiss';
+  String get notificationsPrayerActionDismiss => 'بستن';
 
   @override
-  String get notificationsPrayerActionOpen => 'Open';
+  String get notificationsPrayerActionOpen => 'باز کردن';
 
   @override
   String get notificationsReflectionActionWrite => 'Write Reflection';
@@ -41361,7 +41689,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get notificationsPrayerNameTahajjud => 'تهجد';
 
   @override
-  String get notificationsGenericPrayerName => 'Salah';
+  String get notificationsGenericPrayerName => 'نماز';
 
   @override
   String get notificationsFastingBeginsNowTitle => 'روزه اکنون آغاز می‌شود';
@@ -41429,195 +41757,193 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get notificationsFastingLiveJustEntered => 'همین الآن وارد شد';
 
   @override
-  String get historyAdditionalMatchesTitle => 'More moments for today';
+  String get historyAdditionalMatchesTitle => 'رویدادهای بیشتر برای امروز';
 
   @override
-  String get historyArchiveAllCategories => 'All categories';
+  String get historyArchiveAllCategories => 'همه کتگوری‌ها';
 
   @override
-  String get historyArchiveAllGregorianMonths => 'All Gregorian months';
+  String get historyArchiveAllGregorianMonths => 'همه ماه‌های میلادی';
 
   @override
-  String get historyArchiveAllHijriMonths => 'All Hijri months';
+  String get historyArchiveAllHijriMonths => 'همه ماه‌های هجری';
 
   @override
-  String get historyArchiveCategoryLabel => 'Category';
+  String get historyArchiveCategoryLabel => 'کتگوری';
 
   @override
   String get historyArchiveEmptyFilters =>
-      'No historical events match these filters yet.';
+      'هنوز هیچ رویداد تاریخی با این فلترها برابر نیست.';
 
   @override
-  String get historyArchiveFiltersTitle => 'Browse the archive';
+  String get historyArchiveFiltersTitle => 'مرور آرشیف';
 
   @override
-  String get historyArchiveGregorianMonthLabel => 'Gregorian month';
+  String get historyArchiveGregorianMonthLabel => 'ماه میلادی';
 
   @override
-  String get historyArchiveHijriMonthLabel => 'Hijri month';
+  String get historyArchiveHijriMonthLabel => 'ماه هجری';
 
   @override
-  String get historyArchiveLoadError =>
-      'Historical events could not be loaded right now.';
+  String get historyArchiveLoadError => 'رویدادهای تاریخی فعلاً بارگیری نشدند.';
 
   @override
   String historyArchiveResultsCount(int count) {
-    return '$count events';
+    return '$count رویداد';
   }
 
   @override
   String get historyArchiveSubtitle =>
-      'Browse curated Islamic historical moments by date and category.';
+      'لحظه‌های برگزیده تاریخ اسلامی را بر بنیاد تاریخ و کتگوری مرور کنید.';
 
   @override
-  String get historyArchiveTitle => 'Historical Calendar';
+  String get historyArchiveTitle => 'تقویم تاریخی';
 
   @override
-  String get historyCategoryBattles => 'Battles';
+  String get historyCategoryBattles => 'نبردها';
 
   @override
-  String get historyCategoryBirths => 'Births';
+  String get historyCategoryBirths => 'ولادت‌ها';
 
   @override
-  String get historyCategoryDeaths => 'Deaths';
+  String get historyCategoryDeaths => 'وفات‌ها';
 
   @override
-  String get historyCategoryIslamicHistory => 'Islamic History';
+  String get historyCategoryIslamicHistory => 'تاریخ اسلامی';
 
   @override
-  String get historyCategoryKhulafa => 'Khulafa';
+  String get historyCategoryKhulafa => 'خلفا';
 
   @override
-  String get historyCategoryProphets => 'Prophets';
+  String get historyCategoryProphets => 'پیامبران';
 
   @override
-  String get historyCategoryRevelation => 'Revelation';
+  String get historyCategoryRevelation => 'وحی';
 
   @override
-  String get historyCategorySacredPlaces => 'Sacred Places';
+  String get historyCategorySacredPlaces => 'مکان‌های مقدس';
 
   @override
-  String get historyCategoryScholars => 'Scholars';
+  String get historyCategoryScholars => 'عالمان';
 
   @override
-  String get historyCategorySeerah => 'Seerah';
+  String get historyCategorySeerah => 'سیره';
 
   @override
-  String get historyCategoryWorldHistory => 'World History';
+  String get historyCategoryWorldHistory => 'تاریخ جهان';
 
   @override
-  String get historyDateConfidenceApproximate => 'Approximate date';
+  String get historyDateConfidenceApproximate => 'تاریخ تقریبی';
 
   @override
-  String get historyDateConfidenceDisputed => 'Date differs across sources';
+  String get historyDateConfidenceDisputed => 'تاریخ در منابع متفاوت است';
 
   @override
-  String get historyDateConfidenceExact => 'Widely cited date';
+  String get historyDateConfidenceExact => 'تاریخ مشهور در منابع';
 
   @override
-  String get historyDateUnavailable => 'Not available in this V1 record';
+  String get historyDateUnavailable => 'در این رکورد V1 موجود نیست';
 
   @override
-  String get historyDateUnknown => 'Date not available';
+  String get historyDateUnknown => 'تاریخ موجود نیست';
 
   @override
   String get historyDetailLoadingSubtitle =>
-      'Loading the historical event details.';
+      'جزئیات رویداد تاریخی در حال بارگیری است.';
 
   @override
-  String get historyDetailLoadingTitle => 'Historical Event';
+  String get historyDetailLoadingTitle => 'رویداد تاریخی';
 
   @override
-  String get historyDetailNotFoundSubtitle =>
-      'This historical event could not be found.';
+  String get historyDetailNotFoundSubtitle => 'این رویداد تاریخی پیدا نشد.';
 
   @override
-  String get historyDetailNotFoundTitle => 'Event not found';
+  String get historyDetailNotFoundTitle => 'رویداد پیدا نشد';
 
   @override
-  String get historyGregorianDateLabel => 'Gregorian date';
+  String get historyGregorianDateLabel => 'تاریخ میلادی';
 
   @override
   String historyGregorianDateValue(String day, String month, String year) {
-    return '$day $month $year CE';
+    return '$day $month $year میلادی';
   }
 
   @override
-  String get historyHijriDateLabel => 'Hijri date';
+  String get historyHijriDateLabel => 'تاریخ هجری';
 
   @override
   String historyHijriDateValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year هجری';
   }
 
   @override
   String get historyLearnIslandSubtitle =>
-      'On this day moments and a browsable archive of Islamic history.';
+      'لحظه‌های امروز در تاریخ و آرشیف قابل مرور تاریخ اسلامی.';
 
   @override
-  String get historyLessonsTitle => 'Lessons & Reflection';
+  String get historyLessonsTitle => 'درس‌ها و تأمل';
 
   @override
-  String get historyLocationLabel => 'Location';
+  String get historyLocationLabel => 'مکان';
 
   @override
-  String get historyMatchBadgeBoth => 'Gregorian and Hijri match';
+  String get historyMatchBadgeBoth => 'هم‌زمانی میلادی و هجری';
 
   @override
-  String get historyMatchBadgeGregorian => 'Gregorian today';
+  String get historyMatchBadgeGregorian => 'امروز در میلادی';
 
   @override
-  String get historyMatchBadgeHijri => 'Hijri today';
+  String get historyMatchBadgeHijri => 'امروز در هجری';
 
   @override
   String get historyOnThisDayMatchesSubtitle =>
-      'See the historical moments that match today’s Gregorian and Hijri anniversaries.';
+      'لحظه‌های تاریخی‌ای را ببینید که با سالگردهای امروز در تقویم میلادی و هجری برابر می‌شوند.';
 
   @override
-  String get historyOnThisDayMatchesTitle => 'On This Day';
+  String get historyOnThisDayMatchesTitle => 'در چنین روزی';
 
   @override
   String get historyOnThisDaySubtitle =>
-      'A gentle historical reflection for today’s Gregorian and Hijri dates.';
+      'یک تأمل آرام تاریخی برای تاریخ‌های میلادی و هجری امروز.';
 
   @override
-  String get historyOnThisDayTitle => 'On This Day';
+  String get historyOnThisDayTitle => 'در چنین روزی';
 
   @override
-  String get historyOpenArchiveAction => 'Open archive';
+  String get historyOpenArchiveAction => 'باز کردن آرشیف';
 
   @override
-  String get historyNextUpcomingEventLabel => 'Next event';
+  String get historyNextUpcomingEventLabel => 'رویداد بعدی';
 
   @override
-  String get historyOverviewTitle => 'Overview';
+  String get historyOverviewTitle => 'نمای کلی';
 
   @override
-  String get contextualLinksRelatedTitle => 'Related';
+  String get contextualLinksRelatedTitle => 'مرتبط';
 
   @override
-  String get contextualLinksTypeEvent => 'Event';
+  String get contextualLinksTypeEvent => 'رویداد';
 
   @override
-  String get contextualLinksTypeHadith => 'Hadith';
+  String get contextualLinksTypeHadith => 'حدیث';
 
   @override
-  String get contextualLinksTypeJourney => 'Journey';
+  String get contextualLinksTypeJourney => 'مسیر';
 
   @override
-  String get contextualLinksTypeLearn => 'Learn';
+  String get contextualLinksTypeLearn => 'یادگیری';
 
   @override
-  String get historyRelatedContentTitle => 'Related learning';
+  String get historyRelatedContentTitle => 'یادگیری مرتبط';
 
   @override
-  String get historyRelatedPeopleTitle => 'Related people & entities';
+  String get historyRelatedPeopleTitle => 'افراد و موجودیت‌های مرتبط';
 
   @override
-  String get historySignificanceTitle => 'Why it matters';
+  String get historySignificanceTitle => 'چرا مهم است';
 
   @override
-  String get historySourcesTitle => 'Sources';
+  String get historySourcesTitle => 'منابع';
 
   @override
   String historyTodayGregorianValue(String day, String month, String year) {
@@ -41626,38 +41952,38 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String historyTodayHijriValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year هجری';
   }
 
   @override
-  String get historyTodayShortcutAction => 'Today’s matches';
+  String get historyTodayShortcutAction => 'مطابقت‌های امروز';
 
   @override
   String get historyEmptyTodaySubtitle =>
-      'Historical moments for this day are still being added. You can still browse the archive.';
+      'لحظه‌های تاریخی این روز هنوز در حال افزوده شدن‌اند. با این حال می‌توانید آرشیف را مرور کنید.';
 
   @override
-  String get historyEmptyTodayTitle => 'More moments are on the way';
+  String get historyEmptyTodayTitle => 'لحظه‌های بیشتری در راه است';
 
   @override
   String historyViewAllCount(int count) {
-    return 'View all ($count)';
+    return 'مشاهده همه ($count)';
   }
 
   @override
-  String get navDhikr => 'Ibadah';
+  String get navDhikr => 'عبادت';
 
   @override
-  String get navLearning => 'Learn';
+  String get navLearning => 'یادگیری';
 
   @override
-  String get navHome => 'Home';
+  String get navHome => 'خانه';
 
   @override
-  String get navPrayer => 'Growth';
+  String get navPrayer => 'رشد';
 
   @override
-  String get navGarden => 'Profile';
+  String get navGarden => 'باغ';
 
   @override
   String get greetingArabic => 'السلام عليكم ورحمة الله وبركاته';
@@ -41688,6 +42014,9 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranAppHubTitle => 'قرآن کریم';
+
+  @override
+  String get quranAppHubSearchHint => 'Search the Holy Qur\'an';
 
   @override
   String get quranDiscoverSectionTitle => 'Discover the Qur’an';
@@ -41729,6 +42058,9 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get hadithSourceLabel => 'Source';
+
+  @override
+  String get hadithSourceChapterLabel => 'فصل';
 
   @override
   String get hadithReferenceLabel => 'Reference';
@@ -41910,6 +42242,40 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get hadithCopiedToClipboard => 'Hadith copied to clipboard.';
 
   @override
+  String get hadithProvenanceLabel => 'خاستگاه منبع';
+
+  @override
+  String get hadithProvenanceSeeded => 'رکورد پایه گزینش‌شده';
+
+  @override
+  String get hadithProvenanceEditorialOverride => 'رکورد بازبینی‌شده تحریری';
+
+  @override
+  String get hadithProvenanceImported => 'رکورد واردشده از منبع معتبر';
+
+  @override
+  String get hadithProvenanceUnknown => 'فراداده خط لوله منبع در انتظار است';
+
+  @override
+  String hadithProvenancePipelineValue(String pipeline) {
+    return 'خط لوله: $pipeline';
+  }
+
+  @override
+  String get hadithProvenanceInfoTitle => 'چرا این منبع قابل اعتماد است';
+
+  @override
+  String get hadithProvenanceInfoBody =>
+      'این بخش خواندن، مجموعه منبع، فصل، مرجع، درجه و فراداده خاستگاه را کنار هم نگه می‌دارد تا مدخل‌های عمومی حدیث با زمینه‌ای قابل بازبینی از منبعی قابل اعتماد پیوسته بمانند.';
+
+  @override
+  String get hadithProvenanceInfoStatusTitle => 'وضعیت فعلی ریکارد';
+
+  @override
+  String get hadithProvenanceInfoPipelineBody =>
+      'خط پایپ‌لاین نشان می‌دهد که کدام مسیر واردسازی یا ویرایشی این ریکارد را برای برنامه آماده کرده است.';
+
+  @override
   String get hadithTitleDailyReflection => 'Daily Hadith Reflection';
 
   @override
@@ -42029,11 +42395,193 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
+  String get hadithCollectionSubcategoriesTitle => 'زیرموضوع‌های این مجموعه';
+
+  @override
+  String hadithCollectionSubcategoryCount(int count) {
+    return '$count حدیث';
+  }
+
+  @override
+  String get hadithBrowseControlsTitle => 'این لیست را محدود کنید';
+
+  @override
+  String get hadithBrowseSortLabel => 'مرتب کردن';
+
+  @override
+  String get hadithBrowseSortRecommended => 'توصیه می شود';
+
+  @override
+  String get hadithBrowseSortTitle => 'عنوان';
+
+  @override
+  String get hadithBrowseSortSource => 'منبع';
+
+  @override
+  String get hadithBrowseSortGrade => 'درجه';
+
+  @override
+  String get hadithBrowseResetAll => 'همه را بازنشانی کنید';
+
+  @override
+  String get hadithBrowseAllSources => 'همه منابع';
+
+  @override
+  String get hadithBrowseAllGrades => 'همه نمرات';
+
+  @override
+  String get hadithBrowseAllSubcategories => 'همه زیر مجموعه ها';
+
+  @override
+  String get hadithBrowseQuickStartTitle => 'از اینجا شروع کنید';
+
+  @override
+  String hadithBrowseMatchingEntriesTitle(int count) {
+    return '$count حدیث در این فهرست است';
+  }
+
+  @override
+  String get hadithBrowseNoMatchesTitle =>
+      'هیچ حدیثی با این فیلترها مطابقت ندارد';
+
+  @override
+  String get hadithBrowseNoMatchesSubtitle =>
+      'برای باز کردن مجدد فهرست، منبع، درجه یا زیرمجموعه گسترده‌تری را امتحان کنید.';
+
+  @override
   String get hadithLessonNotFoundSubtitle => 'Content not found';
 
   @override
   String get hadithLessonNotFoundBody =>
       'The requested hadith could not be found.';
+
+  @override
+  String get hadithReaderDisplaySettingsAction => 'تنظیمات نمایش خواننده';
+
+  @override
+  String get hadithReaderDisplaySettingsTitle => 'نمایش خوانش';
+
+  @override
+  String get hadithReaderDisplaySettingsSubtitle =>
+      'انتخاب کنید هنگام مطالعه کدام لایه‌های متن حدیث دیده شوند.';
+
+  @override
+  String get hadithGradeInfoTitle => 'Hadith grades';
+
+  @override
+  String hadithGradeInfoSubtitle(String grade) {
+    return 'This hadith is marked as $grade.';
+  }
+
+  @override
+  String get hadithGradeInfoDisclaimer =>
+      'اینها کمک های خواندنی کوتاهی هستند که به شما در درک برچسب های استفاده شده در این کتابخانه کمک می کنند. بحث های تفصیلی درجه بندی حدیث متعلق به علما و مطالعه منبع خاص است.';
+
+  @override
+  String get hadithGradeInfoCurrentBadge => 'فعلی';
+
+  @override
+  String get hadithGradeInfoMuttafaqunAlayh =>
+      'معمولاً برای گزارش های جمع آوری شده توسط امام بخاری و امام مسلم استفاده می شود. خوانندگان اغلب این را به عنوان یکی از قوی‌ترین برچسب‌های درجه‌بندی در استفاده معمول مطالعه می‌دانند.';
+
+  @override
+  String get hadithGradeInfoSahih =>
+      'معمولاً برای گزارشی استفاده می‌شود که طبق قضاوت درجه‌بندی پیوست شده به آن در اینجا معتبر و قابل اعتماد تلقی می‌شود.';
+
+  @override
+  String get hadithGradeInfoHasanSahih =>
+      'هنگامی که محققان گزارشی را با عباراتی مانند حسن صحیح توصیف می کنند استفاده می شود. این به یک گزارش قوی اشاره می کند، در حالی که منعکس کننده زبان درجه بندی استفاده شده توسط منبع یا محققان است.';
+
+  @override
+  String get hadithGradeInfoHasan =>
+      'معمولاً برای گزارشی که به عنوان گزارشی معتبر و قابل قبول تلقی می‌شود، استفاده می‌شود، اگرچه معمولاً در خلاصه‌های مطالعه رایج در زیر صحیح قرار می‌گیرد.';
+
+  @override
+  String get hadithGradeInfoWeak =>
+      'برای گزارشی استفاده می شود که به اندازه کافی قوی نیست که در درجه صحیح یا حسن در درجه بندی پیوست شده در اینجا بایستد.';
+
+  @override
+  String get hadithGradeInfoBalagh =>
+      'برای گزارشی که در برخی از روایات منبع به شکل کوتاه شده یا غیرمستقیم مخابره می شود، استفاده می شود، بنابراین خوانندگان باید با دقت بیشتری و آگاهی از منبع با آن برخورد کنند.';
+
+  @override
+  String get hadithGradeInfoOtherTitle => 'برچسب درجه بندی دیگر';
+
+  @override
+  String get hadithGradeInfoOther =>
+      'برخی گزارش‌ها از جمله‌بندی درجه‌بندی خاص منبع یا یادداشت‌های سرمقاله استفاده می‌کنند که با دسته‌های ساده‌شده اصلی بالا مطابقت ندارند.';
+
+  @override
+  String get hadithNarratorPageSubtitle =>
+      'Narrator profile in the Hadith library';
+
+  @override
+  String get hadithNarratorNotFoundSubtitle => 'Narrator not found';
+
+  @override
+  String get hadithNarratorNotFoundBody =>
+      'The requested narrator could not be found in this Hadith library.';
+
+  @override
+  String get hadithNarratorFallbackSummary =>
+      'این راوی در سراسر کتابخانه حدیث ظاهر می شود. این صفحه به شما کمک می کند تا روایت های آنها را در اینجا ردیابی کنید، در حالی که نمایه در حال گسترش است.';
+
+  @override
+  String get hadithNarratorAliasesTitle => 'همچنین به عنوان نشان داده شده است';
+
+  @override
+  String get hadithNarratorInLibraryTitle => 'در این کتابخانه';
+
+  @override
+  String get hadithNarratorStatHadith => 'حدیث';
+
+  @override
+  String get hadithNarratorStatSources => 'منابع';
+
+  @override
+  String get hadithNarratorStatThemes => 'تم ها';
+
+  @override
+  String get hadithNarratorStatCollections => 'مجموعه ها';
+
+  @override
+  String hadithNarratorHadithSectionTitle(int count) {
+    return '$count hadith from this narrator';
+  }
+
+  @override
+  String get hadithNarratorRoleCompanion => 'صحابی پیامبر ﷺ';
+
+  @override
+  String get hadithNarratorRoleMotherOfBelievers => 'مادر مؤمنان و عالم';
+
+  @override
+  String get hadithNarratorRoleScholarCompanion =>
+      'همراهی که به علم و تدریس معروف است';
+
+  @override
+  String get hadithNarratorSummaryAbuHurairah =>
+      'ابوهریره از صحابی پیامبر اکرم صلی الله علیه و آله و سلم بود که به نزدیکی به رسول خدا صلی الله علیه و آله و سلم و نقل احادیث بسیار معروف بود. او در این کتابخانه غالباً در روایات مربوط به عبادت و شخصیت و توبه و زندگی روزمره مسلمانان حضور دارد.';
+
+  @override
+  String get hadithNarratorSummaryAishah =>
+      'عایشه بنت ابی بکر رضی الله عنها همسر پیامبر اکرم صلی الله علیه و آله و از داناترین معلمان سنت بود. روایات او در این کتابخانه غالباً رهنمودهایی درباره عبادت، قرآن، سیرت و زندگی در خاندان پیامبر(ص) حفظ کرده است.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnUmar =>
+      'عبدالله بن عمر از صحابی بود که به پیروی دقیق از سنت و عبادتش معروف بود. روایات او در این کتابخانه غالباً بر نماز، سفر، خویشتن داری و زندگی با آگاهی از آخرت است.';
+
+  @override
+  String get hadithNarratorSummaryAnasIbnMalik =>
+      'انس بن مالک در مدینه خدمت پیامبر اکرم صلی الله علیه و آله و سلم رسید و احادیث زیادی در مورد سیره و رحمت و سرمشق روزانه آن حضرت نقل کرده است. در این کتابخانه، روایات ایشان غالباً حاوی رهنمودهای عملی است که ریشه در مصاحبت و خدمت نزدیک دارد.';
+
+  @override
+  String get hadithNarratorSummaryJabirIbnAbdullah =>
+      'جابر بن عبدالله صحابی از انصار بود که در عبادات و آداب و زندگی اجتماعی حدیث نقل می کرد. روایات او در این کتابخانه اغلب راهنمایی هایی را حفظ می کند که عبادت را با رفتار روزمره پیوند می دهد.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnAbbas =>
+      'عبدالله بن عباس پسر عموی پیامبر اکرم صلی الله علیه و آله و سلم به علم و فهم و تعلیم شهرت یافت. در این کتابخانه، روایات او غالباً در جایی ظاهر می شود که حدیث عبادت را با تأمل، فهم و بینش گسترده تر پیوند می دهد.';
 
   @override
   String hadithLessonCompletedXp(int xp) {
@@ -42157,8 +42705,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Review and strengthen recall through the current memorization tools.';
 
   @override
-  String get quranMemorizationReviewOpenListAction =>
-      'Open memorization review';
+  String get quranMemorizationReviewOpenListAction => 'مرور حفظ را باز کنید';
 
   @override
   String get quranHubWordsTitle => 'Words';
@@ -42230,11 +42777,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranHubRecommendationReasonGuidedPath =>
-      'This best matches your current focus on following a guided path.';
+      'این به بهترین وجه با تمرکز فعلی شما برای دنبال کردن یک مسیر هدایت شده مطابقت دارد.';
 
   @override
   String get quranHubRecommendationReasonDaily =>
-      'Keep one ayah, one meaning cue, and one calm next step close today.';
+      'یک آیه، یکی به معنای نشانه و یکی آرام قدم بعدی را همین امروز نزدیک نگه دارید.';
 
   @override
   String quranHubRecommendationReasonDailyJourney(Object journey) {
@@ -42254,11 +42801,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranHubRecommendationReasonMemorizationFocus =>
-      'Keep repetition and review close while memorization is your main focus.';
+      'در حالی که حفظ کردن تمرکز اصلی شماست، تکرار و مرور را نزدیک نگه دارید.';
 
   @override
   String get quranHubRecommendationReasonRecentStudy =>
-      'Return to the surah you were studying most recently.';
+      'به سوره ای که اخیراً مطالعه می کردید برگردید.';
 
   @override
   String get quranHubRecommendationReasonTheme =>
@@ -42282,128 +42829,129 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
-  String get quranCompanionSectionTitle => 'Your Qur’an Companion';
+  String get quranCompanionSectionTitle => 'همنشین قرآن شما';
 
   @override
   String get quranCompanionSectionSubtitle =>
-      'A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.';
+      'مجموعه ای آرام از پیشنهادات که بر اساس مطالعه اخیر شما، مسیر فعلی و لحظه ای که در آن هستید شکل گرفته است.';
 
   @override
   String quranCompanionResumePathTitle(Object path) {
-    return 'Continue $path';
+    return '$path را ادامه دهید';
   }
 
   @override
   String get quranCompanionResumePathDescription =>
-      'Pick up your guided journey where it last felt most alive.';
+      'سفر هدایت‌شده‌تان را از جایی که آخرین بار احساس می‌کردید زنده بودید، انتخاب کنید.';
 
   @override
-  String get quranCompanionResumeBadge => 'Resume';
+  String get quranCompanionResumeBadge => 'رزومه';
 
   @override
   String quranCompanionContinueSurahTitle(Object surah) {
-    return 'Continue Surah $surah';
+    return 'ادامه سوره $surah';
   }
 
   @override
   String get quranCompanionContinueSurahDescription =>
-      'Return to the ayah where your reading thread was already open.';
+      'به آیه ای بازگردید که تاپیک خواندن شما قبلاً باز بود.';
 
   @override
   String quranCompanionExploreThemeTitle(Object theme) {
-    return 'Explore $theme';
+    return 'کاوش $theme';
   }
 
   @override
   String get quranCompanionThemeDescription =>
-      'Follow one Qur’anic theme across connected surahs, ayat, and reflections.';
+      'از یک موضوع قرآنی در سوره‌ها، آیات و تأملات مرتبط پیروی کنید.';
 
   @override
   String get quranCompanionRelatedThemeDescription =>
-      'A connected theme to keep your recent Qur’an exploration moving gently forward.';
+      'یک موضوع مرتبط برای اینکه کاوش اخیر شما در قرآن به آرامی به جلو حرکت کند.';
 
   @override
   String quranCompanionPathwayTitle(Object path) {
-    return 'Walk through $path';
+    return 'از طریق $path قدم بزنید';
   }
 
   @override
   String get quranCompanionPathwayDescription =>
-      'A guided pathway that keeps the next step clear and spiritually grounded.';
+      'مسیر هدایت شده ای که قدم بعدی را روشن و از نظر معنوی مستقر نگه می دارد.';
 
   @override
   String quranCompanionStartHereTitle(Object surah) {
-    return 'Start with Surah $surah';
+    return 'با سوره $surah شروع کنید';
   }
 
   @override
   String get quranCompanionStartHereDescription =>
-      'A gentle starting point when you want something foundational and clear.';
+      'یک نقطه شروع ملایم زمانی که شما چیزی اساسی و واضح می خواهید.';
 
   @override
-  String get quranCompanionTimeOfDayTitle => 'A reflection for this moment';
+  String get quranCompanionTimeOfDayTitle => 'بازتابی برای این لحظه';
 
   @override
   String get quranCompanionTimeOfDayDescription =>
-      'Keep one ayah, one meaning cue, and one calm next step close right now.';
+      'یک آیه، یکی به معنای نشانه و یکی آرام قدم بعدی را همین الان نزدیک نگه دارید.';
 
   @override
   String quranCompanionFridayTitle(Object surah) {
-    return 'Friday reflection: $surah';
+    return 'بازتاب جمعه: $surah';
   }
 
   @override
   String get quranCompanionFridayDescription =>
-      'A soft Friday nudge toward a widely loved surah for reflection and recitation.';
+      'تلنگر ملایم جمعه به سوی سوره ای که بسیار محبوب است برای تأمل و تلاوت.';
 
   @override
-  String get quranCompanionFocusBadge => 'Growth focus';
+  String get quranCompanionFocusBadge => 'تمرکز رشد';
 
   @override
-  String get quranCompanionMomentBadge => 'For this moment';
+  String get quranCompanionMomentBadge => 'برای این لحظه';
 
   @override
-  String get quranCompanionFridayBadge => 'Friday';
+  String get quranCompanionFridayBadge => 'جمعه';
 
   @override
-  String get quranCompanionMomentumBadge => 'Keep going';
+  String get quranCompanionMomentumBadge => 'ادامه بده';
 
   @override
-  String get quranCompanionReasonContinue => 'Continue where you left off';
+  String get quranCompanionReasonContinue =>
+      'از همان جایی که متوقف کردید ادامه دهید';
 
   @override
-  String get quranCompanionReasonMorning => 'For this morning';
+  String get quranCompanionReasonMorning => 'برای امروز صبح';
 
   @override
-  String get quranCompanionReasonAfternoon => 'For this afternoon';
+  String get quranCompanionReasonAfternoon => 'برای امروز بعد از ظهر';
 
   @override
-  String get quranCompanionReasonEvening => 'For this evening';
+  String get quranCompanionReasonEvening => 'برای این عصر';
 
   @override
-  String get quranCompanionReasonNight => 'For tonight';
+  String get quranCompanionReasonNight => 'برای امشب';
 
   @override
-  String get quranCompanionReasonRecent => 'Based on your recent reading';
+  String get quranCompanionReasonRecent => 'بر اساس مطالعه اخیر شما';
 
   @override
-  String get quranCompanionReasonFocus => 'Based on your growth focus';
+  String get quranCompanionReasonFocus => 'بر اساس تمرکز رشد شما';
 
   @override
-  String get quranCompanionReasonFriday => 'Friday reflection';
+  String get quranCompanionReasonFriday => 'بازتاب جمعه';
 
   @override
-  String get quranCompanionReasonJourney => 'Connected to your journey';
+  String get quranCompanionReasonJourney => 'به سفر شما متصل است';
 
   @override
-  String get quranCompanionReasonMomentum => 'Keep your rhythm';
+  String get quranCompanionReasonMomentum => 'ریتم خود را حفظ کنید';
 
   @override
-  String get quranCompanionReasonStart => 'Start here';
+  String get quranCompanionReasonStart => 'از اینجا شروع کنید';
 
   @override
   String quranCompanionProgressLabel(int completed, int total) {
-    return '$completed of $total stops completed';
+    return '$completed از $total توقف تکمیل شد';
   }
 
   @override
@@ -43700,18 +44248,18 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get journeySubtitle => 'Long-term growth, light by light.';
 
   @override
-  String get profileTitle => 'Profile';
+  String get profileTitle => 'پروفایل';
 
   @override
-  String get profileSubtitle => 'Intention, preferences, and personalization.';
+  String get profileSubtitle => 'نیت، ترجیحات و شخصی‌سازی.';
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of الله is guided toward balance and intention.';
+      'هر کس مراقب الله باشد، به سوی تعادل و نیت درست رهنمون می‌شود.';
 
   @override
   String get profileSummarySubtitle =>
-      'Keep your intention steady and your settings aligned with ease.';
+      'نیت خود را استوار نگه دارید و تنظیمات‌تان را با آرامش هماهنگ سازید.';
 
   @override
   String get profileDisplayNameLabel => 'نام نمایشی';
@@ -43751,13 +44299,13 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get profileThemeModeLabel => 'حالت تم';
 
   @override
-  String get profileThemeSystem => 'System';
+  String get profileThemeSystem => 'سیستم';
 
   @override
   String get profileThemeDark => 'تاریک';
 
   @override
-  String get profileThemeLight => 'Light';
+  String get profileThemeLight => 'روشن';
 
   @override
   String get profileReduceMotion => 'کاهش اثرات حرکتی';
@@ -43766,11 +44314,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get profileHighContrastText => 'متن با کنتراست بالا';
 
   @override
-  String get profileModesTitle => 'Modes';
+  String get profileModesTitle => 'حالت‌ها';
 
   @override
   String get profileModesSubtitle =>
-      'Mode presets to support focus and consistency.';
+      'حالت‌های آماده برای پشتیبانی از تمرکز و پایداری.';
 
   @override
   String get profileRamadanModeTitle => 'حالت رمضان';
@@ -43846,11 +44394,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'یادآوری‌ها و یادداشت‌ها را بر جلوه‌های بصری اولویت دهید.';
 
   @override
-  String get profileEntrustDeedsTitle => 'Entrust deeds';
+  String get profileEntrustDeedsTitle => 'اعمال را به الله بسپار';
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with الله.';
+      'یادآوری آرام: اعمال خالصانه نزد الله است.';
 
   @override
   String get profileNotificationsTitle => 'اعلان ها و یادآوری ها';
@@ -43875,11 +44423,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get profileFastingReminders => 'یادآوری روزه';
 
   @override
-  String get profileOnThisDayReminders => 'On This Day reminders';
+  String get profileOnThisDayReminders => 'یادآورهای در چنین روزی';
 
   @override
   String get profileOnThisDayRemindersSubtitle =>
-      'Notify me when today has a historical Islamic event to reflect on.';
+      'وقتی امروز رویداد تاریخی اسلامی برای تأمل دارد مرا آگاه ساز.';
 
   @override
   String get profileMoonriseReminders => 'اعلان های طلوع ماه';
@@ -43909,10 +44457,10 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get profileMissionLine =>
-      'A calm spiritual companion built for consistent, sincere growth.';
+      'همراه معنوی آرام که برای رشد پیوسته و صادقانه ساخته شده است.';
 
   @override
-  String get profileVersionPlaceholder => 'Version 0.1.7 (placeholder)';
+  String get profileVersionPlaceholder => 'نسخه 0.1.7 (موقت)';
 
   @override
   String profilePlannedRemindersToday(int count) {
@@ -44269,19 +44817,19 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get learnShortcutClose => 'بستن میانبرها';
 
   @override
-  String get majorPageShortcutContinueJourneyLabel => 'Continue Journey';
+  String get majorPageShortcutContinueJourneyLabel => 'ادامه مسیر';
 
   @override
-  String get majorPageShortcutQuickLessonLabel => 'Quick Lesson';
+  String get majorPageShortcutQuickLessonLabel => 'درس سریع';
 
   @override
-  String get majorPageShortcutContinueReadingLabel => 'Continue Reading';
+  String get majorPageShortcutContinueReadingLabel => 'ادامه خواندن';
 
   @override
-  String get majorPageShortcutContinueListeningLabel => 'Continue Listening';
+  String get majorPageShortcutContinueListeningLabel => 'ادامه شنیدن';
 
   @override
-  String get majorPageShortcutSurahListLabel => 'Surah List';
+  String get majorPageShortcutSurahListLabel => 'فهرست سوره‌ها';
 
   @override
   String get learnSectionLandingSubtitle =>
@@ -44420,17 +44968,17 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Manage widget, lock screen, and watch-related Ibadah surfaces.';
 
   @override
-  String get settingsReminderStateOn => 'On';
+  String get settingsReminderStateOn => 'روشن';
 
   @override
-  String get settingsReminderStateOff => 'Off';
+  String get settingsReminderStateOff => 'خاموش';
 
   @override
   String get settingsLandingTitle => 'تنظیمات';
 
   @override
   String get settingsLandingSubtitle =>
-      'Choose a focused settings area instead of browsing one long page.';
+      'به‌جای دیدن یک صفحه دراز، یک بخش متمرکز از تنظیمات را انتخاب کنید.';
 
   @override
   String get settingsCategoryAccountSyncSubtitle =>
@@ -44461,6 +45009,13 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'صفحه قفل، جزیره پویا، و سطوح ساعت متصل را مدیریت کنید.';
 
   @override
+  String get settingsWidgetsEnabledTitle => 'فعال‌سازی ویجت‌ها';
+
+  @override
+  String get settingsWidgetsEnabledSubtitle =>
+      'ویجت‌ها و سطوح Live Activity را از یک‌جا روشن یا خاموش کنید.';
+
+  @override
   String get settingsCategoryLanguageDownloadsSubtitle =>
       'انتخاب زبان و تنظیمات محتوای آماده دانلود.';
 
@@ -44480,7 +45035,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get settingsHelpGuideSubtitle =>
-      'Short practical guides for using the app\'s main features with confidence.';
+      'راهنماهای کوتاه و کاربردی برای استفاده با اطمینان از قابلیت‌های اصلی برنامه.';
 
   @override
   String get settingsCategoryHelpGuideSubtitle =>
@@ -44491,175 +45046,175 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'یادداشت های نسخه، پشتیبانی، جزئیات حقوقی، و آنچه در آینده در راه است.';
 
   @override
-  String get settingsHelpGuideSearchHint => 'Search guides';
+  String get settingsHelpGuideSearchHint => 'جست‌وجوی راهنماها';
 
   @override
-  String get settingsHelpGuideBrowseTitle => 'Guide Categories';
+  String get settingsHelpGuideBrowseTitle => 'کتگوری‌های راهنما';
 
   @override
   String get settingsHelpGuideBrowseSubtitle =>
-      'Open a topic to see a short explanation and simple steps.';
+      'موضوعی را باز کنید تا توضیح کوتاه و گام‌های ساده را ببینید.';
 
   @override
-  String get settingsHelpGuideSearchResultsTitle => 'Search Results';
+  String get settingsHelpGuideSearchResultsTitle => 'نتایج جست‌وجو';
 
   @override
   String get settingsHelpGuideSearchResultsSubtitle =>
-      'Guide topics update as you type.';
+      'موضوعات راهنما هنگام تایپ شما تازه می‌شوند.';
 
   @override
-  String get settingsHelpGuideSearchEmptyTitle => 'No matching guides found';
+  String get settingsHelpGuideSearchEmptyTitle => 'هیچ راهنمای مطابق پیدا نشد';
 
   @override
   String get settingsHelpGuideSearchEmptySubtitle =>
-      'Try a simpler keyword or clear your search to browse all guide categories.';
+      'یک کلیدواژه ساده‌تر را امتحان کنید یا جست‌وجو را پاک کنید تا همه کتگوری‌های راهنما را ببینید.';
 
   @override
-  String get settingsHelpGuideStepsTitle => 'How to Use It';
+  String get settingsHelpGuideStepsTitle => 'شیوه استفاده';
 
   @override
   String get settingsHelpGuideStepsSubtitle =>
-      'Keep each step simple and use only what helps you right now.';
+      'هر گام را ساده نگه دارید و فقط از چیزی استفاده کنید که همین حالا کمکتان می‌کند.';
 
   @override
-  String get settingsHelpGuideNotFoundTitle => 'Guide not found';
+  String get settingsHelpGuideNotFoundTitle => 'راهنما پیدا نشد';
 
   @override
   String get settingsHelpGuideNotFoundSubtitle =>
-      'This guide could not be opened right now. Return to Help & Guide and try another topic.';
+      'این راهنما فعلاً باز نشد. به راهنما و کمک برگردید و موضوع دیگری را امتحان کنید.';
 
   @override
-  String get helpGuideGettingStartedTitle => 'Getting Started';
+  String get helpGuideGettingStartedTitle => 'شروع کار';
 
   @override
   String get helpGuideGettingStartedDescription =>
-      'Set up the basics so the app feels useful from the first day.';
+      'بنیادها را تنظیم کنید تا برنامه از همان روز اول برایتان مفید احساس شود.';
 
   @override
   String get helpGuideGettingStartedStep1 =>
-      'Open Settings to choose your location, language, and appearance preferences.';
+      'تنظیمات را باز کنید تا موقعیت، زبان و ترجیحات ظاهری خود را برگزینید.';
 
   @override
   String get helpGuideGettingStartedStep2 =>
-      'Check your Salah times and reminder mode so the daily schedule matches your routine.';
+      'اوقات نماز و حالت یادآورها را بررسی کنید تا برنامه روزانه با روال شما برابر باشد.';
 
   @override
   String get helpGuideGettingStartedStep3 =>
-      'Use Home for today\'s overview, then visit Learn or Worship for deeper practice.';
+      'برای نمای کلی امروز از خانه استفاده کنید، سپس برای تمرین عمیق‌تر به یادگیری یا عبادت بروید.';
 
   @override
-  String get helpGuideSalahRemindersTitle => 'Salah & Reminders';
+  String get helpGuideSalahRemindersTitle => 'نماز و یادآورها';
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'Keep prayer times, reminders, and quick follow-up actions in one flow.';
+      'اوقات نماز، یادآورها و اقدام‌های سریع بعدی را در یک جریان نگه دارید.';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
-      'Open Settings > Salah Notifications to turn reminders on and choose how each prayer should alert you.';
+      'تنظیمات > اعلان‌های نماز را باز کنید تا یادآورها را روشن کنید و شیوه هشدار هر نماز را برگزینید.';
 
   @override
   String get helpGuideSalahRemindersStep2 =>
-      'Review Salah times in Settings > Prayer & Worship if you need manual times, adjustments, or Jumu\'ah changes.';
+      'اگر به زمان‌های دستی، تنظیمات بیشتر یا تغییرات جمعه نیاز دارید، اوقات نماز را در تنظیمات > نماز و عبادت مرور کنید.';
 
   @override
   String get helpGuideSalahRemindersStep3 =>
-      'When a reminder appears, you can open the app, snooze, or mark the prayer as offered if that option is available.';
+      'وقتی یادآوری ظاهر شد، می‌توانید برنامه را باز کنید، آن را به تعویق بیندازید یا اگر آن گزینه موجود است نماز را اداشده علامت بزنید.';
 
   @override
-  String get helpGuideQuranTitle => 'Qur\'an';
+  String get helpGuideQuranTitle => 'قرآن';
 
   @override
   String get helpGuideQuranDescription =>
-      'Read, search, bookmark, and return to the Qur\'an without losing your place.';
+      'قرآن را بخوانید، جست‌وجو کنید، نشان‌گذاری کنید و بدون از دست دادن جای خود به آن بازگردید.';
 
   @override
   String get helpGuideQuranStep1 =>
-      'Open Learn and enter the Qur\'an section to browse surahs, topics, bookmarks, and notes.';
+      'یادگیری را باز کنید و وارد بخش قرآن شوید تا سوره‌ها، موضوعات، نشانک‌ها و یادداشت‌ها را مرور کنید.';
 
   @override
   String get helpGuideQuranStep2 =>
-      'Use the search field to find a surah, ayah, or topic, then open the result you want.';
+      'از بخش جست‌وجو برای یافتن سوره، آیه یا موضوع استفاده کنید، سپس نتیجه دلخواهتان را باز کنید.';
 
   @override
   String get helpGuideQuranStep3 =>
-      'Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.';
+      'هرگاه به چیدمان متفاوتی برای خواندن نیاز داشتید، تنظیمات عربی، آوانویسی و ترجمه را از تنظیمات > یادگیری تغییر دهید.';
 
   @override
-  String get helpGuideLearningTitle => 'Learning';
+  String get helpGuideLearningTitle => 'یادگیری';
 
   @override
   String get helpGuideLearningDescription =>
-      'Use the learning hub to move between guided topics, lessons, and review tools.';
+      'از مرکز یادگیری برای رفت‌وآمد میان موضوعات هدایت‌شده، درس‌ها و ابزارهای مرور استفاده کنید.';
 
   @override
   String get helpGuideLearningStep1 =>
-      'Open Learn to choose a section such as Qur\'an, Hadith, Life, World, Prophets, or Quizzes.';
+      'یادگیری را باز کنید تا بخشی مانند قرآن، حدیث، زندگی، جهان، پیامبران یا آزمون‌ها را برگزینید.';
 
   @override
   String get helpGuideLearningStep2 =>
-      'Tap a category card to enter that section, then open a lesson, collection, or path that fits your goal.';
+      'روی کارت یک کتگوری بزنید تا وارد آن بخش شوید، سپس درسی، مجموعه‌ای یا مسیری را که با هدفتان برابر است باز کنید.';
 
   @override
   String get helpGuideLearningStep3 =>
-      'Use search when you want a faster route to a topic, prophet, glossary term, or lesson.';
+      'وقتی راه سریع‌تری به سوی یک موضوع، پیامبر، واژه‌نامه یا درس می‌خواهید از جست‌وجو استفاده کنید.';
 
   @override
-  String get helpGuideDhikrAdhkarTitle => 'Dhikr & Adhkar';
+  String get helpGuideDhikrAdhkarTitle => 'ذکر و اذکار';
 
   @override
   String get helpGuideDhikrAdhkarDescription =>
-      'Keep daily remembrance simple with counters, guided sets, and saved routines.';
+      'یاد خدا را با شمارنده‌ها، مجموعه‌های هدایت‌شده و روال‌های ذخیره‌شده ساده نگه دارید.';
 
   @override
   String get helpGuideDhikrAdhkarStep1 =>
-      'Open Worship to find daily Dhikr, counters, and adhkar collections.';
+      'عبادت را باز کنید تا ذکر روزانه، شمارنده‌ها و مجموعه‌های اذکار را پیدا کنید.';
 
   @override
   String get helpGuideDhikrAdhkarStep2 =>
-      'Choose a set that matches your moment, then use the built-in counter or reading flow at your own pace.';
+      'مجموعه‌ای را که با حال شما برابر است برگزینید، سپس با سرعت خودتان از شمارنده داخلی یا جریان خواندن استفاده کنید.';
 
   @override
   String get helpGuideDhikrAdhkarStep3 =>
-      'Return to Home or Worship later to continue your rhythm and review your daily progress.';
+      'بعداً به خانه یا عبادت برگردید تا ریتم خود را ادامه دهید و پیشرفت روزانه‌تان را مرور کنید.';
 
   @override
-  String get helpGuideGrowthProgressTitle => 'Growth & Progress';
+  String get helpGuideGrowthProgressTitle => 'رشد و پیشرفت';
 
   @override
   String get helpGuideGrowthProgressDescription =>
-      'Track steady habits, streaks, XP, and focused paths without making the app feel heavy.';
+      'عادت‌های پایدار، تداوم، XP و مسیرهای متمرکز را پیگیری کنید، بدون اینکه برنامه سنگین احساس شود.';
 
   @override
   String get helpGuideGrowthProgressStep1 =>
-      'Open Journey to see your current streak, XP, growth paths, and today\'s focus areas.';
+      'مسیر را باز کنید تا تداوم فعلی، XP، مسیرهای رشد و بخش‌های تمرکز امروز را ببینید.';
 
   @override
   String get helpGuideGrowthProgressStep2 =>
-      'Use the path or habit sections to continue one small area of growth instead of trying to do everything at once.';
+      'به‌جای انجام همه‌چیز به‌صورت هم‌زمان، از بخش مسیر یا عادت برای ادامه یک حوزه کوچک رشد استفاده کنید.';
 
   @override
   String get helpGuideGrowthProgressStep3 =>
-      'Check Home for a quick summary when you only need to see what is pending today.';
+      'وقتی فقط می‌خواهید ببینید امروز چه چیزهایی باقی مانده است، خانه را برای یک خلاصه سریع بررسی کنید.';
 
   @override
-  String get helpGuideNotificationsSettingsTitle => 'Notifications & Settings';
+  String get helpGuideNotificationsSettingsTitle => 'اعلان‌ها و تنظیمات';
 
   @override
   String get helpGuideNotificationsSettingsDescription =>
-      'Adjust reminders, visuals, widgets, language, and account preferences in one place.';
+      'یادآورها، جلوه‌های بصری، ویجت‌ها، زبان و ترجیحات حساب را در یک‌جا تنظیم کنید.';
 
   @override
   String get helpGuideNotificationsSettingsStep1 =>
-      'Open Settings from the main app to browse reminders, appearance, learning, privacy, and family options.';
+      'تنظیمات را از برنامه اصلی باز کنید تا یادآورها، ظاهر، یادگیری، حریم خصوصی و گزینه‌های خانواده را مرور کنید.';
 
   @override
   String get helpGuideNotificationsSettingsStep2 =>
-      'Use the notification and widget sections when you want calmer alerts, live activity behavior, or lock screen changes.';
+      'هر زمان هشدارهای آرام‌تر، رفتار Live Activity یا تغییرات صفحه قفل می‌خواهید از بخش‌های اعلان و ویجت استفاده کنید.';
 
   @override
   String get helpGuideNotificationsSettingsStep3 =>
-      'Use Account Sync and Privacy & Data when you need backup, connected-device, or sync-related controls.';
+      'وقتی به پشتیبان‌گیری، دستگاه‌های متصل یا کنترل‌های مربوط به همگام‌سازی نیاز دارید از همگام‌سازی حساب و حریم خصوصی و داده‌ها استفاده کنید.';
 
   @override
   String get settingsLearningHubSubtitle =>
@@ -44769,6 +45324,9 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get learnHubDailyLearningLandingSubtitle =>
       'A gentle next step for today.';
+
+  @override
+  String get learnHubStartJourneyTitle => 'Start A Journey';
 
   @override
   String get learnHubVisibleIslandsTitle => 'Choose a focus';
@@ -45085,6 +45643,41 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get learnHubMainIslandGamesTitle => 'Games';
 
   @override
+  String get learnHubMainIslandLearningPathTitle => 'Learning Path';
+
+  @override
+  String get learnHubMainIslandLearningPathSubtitle =>
+      'All journey and guided path content in one place.';
+
+  @override
+  String get learnHubMainIslandSelfLearningTitle => 'Self Learning';
+
+  @override
+  String get learnHubMainIslandSelfLearningSubtitle =>
+      'All learning content and focus areas in one place.';
+
+  @override
+  String get learnSelfLearningModulesTitle => 'Learning Modules';
+
+  @override
+  String get learnSelfLearningModulesSubtitle =>
+      'Open any of the 9 learning modules and study at your own pace.';
+
+  @override
+  String get learnHubMainIslandQuizzesGamesTitle => 'Games & Quizzes';
+
+  @override
+  String get learnHubMainIslandQuizzesGamesSubtitle =>
+      'All quizzes, challenges, and review games in one place.';
+
+  @override
+  String get learnHubMainIslandKidsLearningTitle => 'Kids Learning';
+
+  @override
+  String get learnHubMainIslandKidsLearningSubtitle =>
+      'Stories, Qur\'an, Arabic, and kid-friendly learning in one place.';
+
+  @override
   String get learnHubCategoryArabicLanguageTitle => 'Arabic & Language';
 
   @override
@@ -45396,222 +45989,222 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get learnQuranHubStageMastered => 'Mastered';
 
   @override
-  String get quranTopicsTitle => 'Qur’an Topics';
+  String get quranTopicsTitle => 'مباحث قرآن';
 
   @override
   String get quranThemeMapBrowseSubtitle =>
-      'Browse a curated set of Qur’anic themes and begin from representative ayahs, surahs, and related learning paths.';
+      'مجموعه‌ای از مضامین قرآنی را مرور کنید و از آیات، سوره‌ها و مسیرهای آموزشی مرتبط شروع کنید.';
 
   @override
   String quranThemeMapStarterAyahCount(int count) {
-    return '$count starter ayahs';
+    return '$count آیه آغازین';
   }
 
   @override
-  String get quranThemeMapTopicNotFound =>
-      'This theme could not be found right now.';
+  String get quranThemeMapTopicNotFound => 'این موضوع در حال حاضر یافت نشد.';
 
   @override
-  String get quranThemeMapAyahsLabel => 'Ayahs';
+  String get quranThemeMapAyahsLabel => 'آیات';
 
   @override
-  String get quranThemeMapSurahsLabel => 'Surahs';
+  String get quranThemeMapSurahsLabel => 'سوره ها';
 
   @override
-  String get quranThemeMapLearningLinksLabel => 'Learning links';
+  String get quranThemeMapLearningLinksLabel => 'لینک های آموزشی';
 
   @override
-  String get quranThemeMapBestModeLabel => 'Best mode';
+  String get quranThemeMapBestModeLabel => 'بهترین حالت';
 
   @override
-  String get quranThemeMapRepresentativeAyahsTitle => 'Representative ayahs';
+  String get quranThemeMapRepresentativeAyahsTitle => 'آیات نماینده';
 
   @override
-  String get quranThemeMapWhyItMattersTitle => 'Why this theme matters';
+  String get quranThemeMapWhyItMattersTitle => 'چرا این موضوع مهم است';
 
   @override
-  String get quranThemeMapStudyFocusTitle => 'What to notice';
+  String get quranThemeMapStudyFocusTitle => 'به چه چیزی توجه کنید';
 
   @override
-  String get quranThemeMapStudyThemeAction => 'Study this theme in the Qur’an';
+  String get quranThemeMapStudyThemeAction =>
+      'این موضوع را در قرآن مطالعه کنید';
 
   @override
-  String get quranThemeMapOpenPathAction => 'Open related path';
+  String get quranThemeMapOpenPathAction => 'مسیر مربوطه را باز کنید';
 
   @override
-  String get quranThemeMapRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeMapRelatedSurahsTitle => 'سوره های مرتبط';
 
   @override
-  String get quranThemeMapRelatedLearningTitle => 'Related learning';
+  String get quranThemeMapRelatedLearningTitle => 'یادگیری مرتبط';
 
   @override
-  String get quranThemePatienceTitle => 'Patience';
+  String get quranThemePatienceTitle => 'صبر';
 
   @override
   String get quranThemePatienceDescription =>
       'Begin with ayahs that connect hardship to prayer, trust, and a steadier response.';
 
   @override
-  String get quranThemeGratitudeTitle => 'Gratitude';
+  String get quranThemeGratitudeTitle => 'سپاسگزاری';
 
   @override
   String get quranThemeGratitudeDescription =>
       'Follow ayahs that teach thankfulness as worship, wisdom, and careful use of blessings.';
 
   @override
-  String get quranThemeMercyTitle => 'Mercy';
+  String get quranThemeMercyTitle => 'رحمت';
 
   @override
   String get quranThemeMercyDescription =>
       'Explore mercy through gentleness, reconciliation, and the way believers carry other people’s weakness.';
 
   @override
-  String get quranThemeFamilyTitle => 'Family';
+  String get quranThemeFamilyTitle => 'خانواده';
 
   @override
   String get quranThemeFamilyDescription =>
       'Start with ayahs that place family responsibility, care, and counsel inside the life of faith.';
 
   @override
-  String get quranThemeAkhirahTitle => 'Akhirah';
+  String get quranThemeAkhirahTitle => 'اخیرا';
 
   @override
   String get quranThemeAkhirahDescription =>
-      'Study accountability, return, and the way the Hereafter reshapes urgency, hope, and moral seriousness.';
+      'پاسخگویی، بازگشت، و روشی را که آخرت اضطرار، امید و جدیت اخلاقی را تغییر می دهد، مطالعه کنید.';
 
   @override
-  String get quranThemeSignsInCreationTitle => 'Signs in Creation';
+  String get quranThemeSignsInCreationTitle => 'علائم در خلقت';
 
   @override
   String get quranThemeSignsInCreationDescription =>
-      'Gather ayahs that turn the natural world into reflection, remembrance, and clearer awareness of Allah’s wisdom.';
+      'آیاتی را جمع آوری کنید که جهان طبیعت را به تأمل، یادآوری و آگاهی واضح تر از حکمت خداوند تبدیل می کند.';
 
   @override
-  String get quranThemeProphetsTitle => 'Prophets';
+  String get quranThemeProphetsTitle => 'پیامبران';
 
   @override
   String get quranThemeProphetsDescription =>
-      'Use prophetic examples to see how revelation becomes lived patience, da’wah, reliance, and leadership.';
+      'از مثال های نبوی استفاده کنید تا ببینید چگونه وحی تبدیل به صبر، دعوت، توکل و رهبری می شود.';
 
   @override
-  String get quranThemeTrustInAllahTitle => 'Trust in Allah';
+  String get quranThemeTrustInAllahTitle => 'به خدا توکل کن';
 
   @override
   String get quranThemeTrustInAllahDescription =>
       'Begin with ayahs where reliance on Allah appears together with effort, consultation, and patient action.';
 
   @override
-  String get quranThemeRepentanceTitle => 'Repentance';
+  String get quranThemeRepentanceTitle => 'توبه';
 
   @override
   String get quranThemeRepentanceDescription =>
       'Follow ayahs that keep the door of return open through hope, reform, and renewed obedience.';
 
   @override
-  String get quranThemeRemembranceTitle => 'Remembrance';
+  String get quranThemeRemembranceTitle => 'خاطره';
 
   @override
   String get quranThemeRemembranceDescription =>
-      'Trace how dhikr steadies the heart, shapes action, and keeps revelation close during ordinary life.';
+      'ردیابی کنید که ذکر چگونه در زندگی عادی قلب را استوار می کند، عمل را شکل می دهد و وحی را نزدیک نگه می دارد.';
 
   @override
-  String get quranThemeSincerityTitle => 'Sincerity';
+  String get quranThemeSincerityTitle => 'اخلاص';
 
   @override
   String get quranThemeSincerityDescription =>
-      'Study ayahs that purify worship, intention, and inward devotion so acts belong to Allah alone.';
+      'آیاتی را مطالعه کن که عبادت و نیت و عبادت باطنی را پاک می کند، پس اعمال تنها از آن خداست.';
 
   @override
-  String get quranThemePrayerTitle => 'Prayer';
+  String get quranThemePrayerTitle => 'دعا';
 
   @override
   String get quranThemePrayerDescription =>
-      'Start with ayahs that show salah as protection, help in hardship, and an anchor between revelation and daily conduct.';
+      'با آیاتی شروع کنید که نماز را به عنوان محافظت، کمک در سختی ها، و لنگر بین وحی و رفتار روزانه نشان می دهد.';
 
   @override
-  String get quranThemeCharityTitle => 'Charity';
+  String get quranThemeCharityTitle => 'خیریه';
 
   @override
   String get quranThemeCharityDescription =>
-      'Gather ayahs that frame spending as sincerity, sacrifice, and care for people in need.';
+      'آیاتی را جمع آوری کنید که خرج کردن را به عنوان اخلاص، فداکاری و مراقبت از افراد نیازمند تعریف می کند.';
 
   @override
-  String get quranThemeJusticeTitle => 'Justice';
+  String get quranThemeJusticeTitle => 'عدالت';
 
   @override
   String get quranThemeJusticeDescription =>
-      'Study ayahs that hold justice together with truthfulness, restraint, and responsibility before Allah.';
+      'آیاتی را که عدالت را همراه با صداقت، خویشتن داری و مسئولیت در پیشگاه خداوند حفظ می کند، مطالعه کنید.';
 
   @override
-  String get quranThemeHumilityTitle => 'Humility';
+  String get quranThemeHumilityTitle => 'فروتنی';
 
   @override
   String get quranThemeHumilityDescription =>
-      'Begin with ayahs that correct pride and teach humble conduct, quiet strength, and self-purification.';
+      'با آیاتی شروع کنید که غرور را اصلاح می کند و رفتار فروتنانه، قدرت آرام و تهذیب نفس را می آموزد.';
 
   @override
   String get quranThemePatienceWhyItMatters =>
-      'Patience in the Qur’an is not passive waiting. It is worshipful steadiness that keeps the believer praying, hoping, and acting rightly when hardship stretches the soul.';
+      'صبر در قرآن انتظار انفعالی نیست. این استواری عبادی است که مؤمن را در هنگام سختی و سختی، در حال دعا و امیدواری و عمل صالح نگه می دارد.';
 
   @override
   String get quranThemePatienceStudyFocus =>
-      'Notice how sabr is paired with prayer, hope, forgiveness, and disciplined restraint. The theme is about staying upright under pressure, not becoming numb.';
+      'توجه کنید که چگونه صبر با دعا، امید، بخشش و خویشتن داری منظم همراه است. موضوع در مورد ایستادن تحت فشار است، نه بی حس شدن.';
 
   @override
   String get quranThemeGratitudeWhyItMatters =>
-      'Gratitude protects blessings from becoming heedlessness. The Qur’an presents shukr as worship, wisdom, and a way of using what Allah gives in a better direction.';
+      'شکر نعمت ها را از غفلت شدن حفظ می کند. قرآن شکر را به عنوان عبادت، حکمت و روشی برای استفاده بهتر از آنچه خداوند عطا کرده معرفی می کند.';
 
   @override
   String get quranThemeGratitudeStudyFocus =>
-      'Notice that gratitude is more than praise on the tongue. It appears with remembrance, reflection on signs, and wiser use of time, provision, and daily opportunities.';
+      'توجه داشته باشید که شکرگزاری بیش از ستایش بر زبان است. با یادآوری، تأمل در نشانه‌ها و استفاده عاقلانه‌تر از زمان، امکانات و فرصت‌های روزانه ظاهر می‌شود.';
 
   @override
   String get quranThemeMercyWhyItMatters =>
-      'Mercy in the Qur’an is both something hoped for from Allah and something practiced with people. It reshapes correction, pardon, speech, and how a believer carries weakness.';
+      'رحمت در قرآن هم امری است که از جانب خداوند به آن امید می رود و هم چیزی است که با مردم انجام می شود. تصحیح، عفو، گفتار و اینکه چگونه یک مؤمن ضعف را حمل می کند، دوباره شکل می دهد.';
 
   @override
   String get quranThemeMercyStudyFocus =>
-      'Notice how mercy appears through gentleness, forgiveness, calm responses, and open doors of return. This theme becomes stronger when you read it through conduct as well as emotion.';
+      'توجه کنید که چگونه رحمت از طریق ملایمت، بخشش، پاسخ های آرام و درهای باز بازگشت ظاهر می شود. این موضوع زمانی قوی‌تر می‌شود که آن را از طریق رفتار و همچنین احساسات بخوانید.';
 
   @override
   String get quranThemeFamilyWhyItMatters =>
-      'Family is one of the clearest places where faith becomes visible. The Qur’an ties worship to parents’ rights, counsel, restraint, and daily care inside the home.';
+      'خانواده یکی از واضح ترین مکان هایی است که ایمان در آن نمایان می شود. قرآن عبادت را به حقوق والدین، مشاوره، خویشتن داری و مراقبت روزانه در خانه گره می زند.';
 
   @override
   String get quranThemeFamilyStudyFocus =>
-      'Notice that family guidance here is practical. It is about speech, respect, burden-sharing, and wisdom in ordinary relationships, not only abstract affection.';
+      'توجه داشته باشید که راهنمایی خانواده در اینجا عملی است. این در مورد گفتار، احترام، تقسیم بار، و خرد در روابط عادی است، نه فقط محبت انتزاعی.';
 
   @override
   String get quranThemeTrustInAllahWhyItMatters =>
-      'Trust in Allah steadies the believer when outcomes feel uncertain. The Qur’an links tawakkul to obedience, consultation, and hope after sincere effort rather than escape from responsibility.';
+      'توکل بر خدا مؤمن را در مواقعی که نتیجه نامطمئن باشد، استوار می کند. قرآن توکل را پس از تلاش خالصانه به جای فرار از مسئولیت به اطاعت، مشورت و امید پیوند می دهد.';
 
   @override
   String get quranThemeTrustInAllahStudyFocus =>
-      'Notice that tawakkul never removes action. The theme becomes clearer when you read reliance together with patience, obedience, and refusal to despair.';
+      'توجه داشته باشید که توکل هرگز عمل را حذف نمی کند. وقتی توکل را همراه با صبر، اطاعت و امتناع از ناامیدی بخوانید، موضوع واضح تر می شود.';
 
   @override
   String get quranThemeRepentanceWhyItMatters =>
-      'Repentance keeps the servant moving back toward Allah instead of freezing in guilt or delay. The Qur’an frames tawbah as hopeful return joined to reform and renewed obedience.';
+      'توبه باعث می شود که بنده به جای یخ زدن در گناه یا تاخیر، به سوی خدا برگردد. قرآن توبه را به عنوان بازگشت امیدبخشی که به اصلاح و اطاعت مجدد پیوند خورده است.';
 
   @override
   String get quranThemeRepentanceStudyFocus =>
-      'Notice how repentance appears with mercy, hope, and practical change. The theme is about turning back honestly, not only feeling regret.';
+      'توجه کنید که چگونه توبه همراه با رحمت، امید و تغییر عملی ظاهر می شود. موضوع در مورد بازگشت صادقانه است، نه تنها احساس پشیمانی.';
 
   @override
   String get quranThemeRemembranceWhyItMatters =>
-      'Remembrance keeps revelation close during ordinary life. The Qur’an presents dhikr as something that settles the heart, shapes worship, and keeps the believer from living heedlessly.';
+      'یادآوری وحی را در طول زندگی عادی نزدیک نگه می دارد. قرآن ذکر را چیزی معرفی می‌کند که قلب را آرام می‌کند و عبادت را شکل می‌دهد و مؤمن را از غفلت باز می‌دارد.';
 
   @override
   String get quranThemeRemembranceStudyFocus =>
-      'Notice that dhikr is not only repetition. It appears with prayer, gratitude, reflection on signs, and a heart that stays oriented toward Allah throughout the day.';
+      'توجه کنید که ذکر فقط تکرار نیست. با دعا، شکرگزاری، تأمل در نشانه ها و قلبی که در تمام طول روز به سوی خدا معطوف می شود ظاهر می شود.';
 
   @override
   String get quranThemeSincerityWhyItMatters =>
-      'Sincerity protects worship from becoming image, routine, or divided intention. The Qur’an treats ikhlas as a foundation of devotion, not a small extra refinement.';
+      'اخلاص، عبادت را از تبدیل شدن به تصویر، روتین یا قصد تقسیمی محافظت می کند. قرآن اخلاص را اساس عبادت می داند نه تهذیب جزئی.';
 
   @override
   String get quranThemeSincerityStudyFocus =>
-      'Notice how sincerity is tied to worship, dependence, and quality of deeds. This theme becomes stronger when you read intention together with obedience and inward honesty.';
+      'توجه کنید که چگونه اخلاص با عبادت، وابستگی و کیفیت اعمال گره خورده است. این مضمون زمانی قوی تر می شود که نیت را همراه با اطاعت و صداقت درونی بخوانید.';
 
   @override
   String get learnHubClearSearchTooltip => 'پاک کردن جست‌وجو';
@@ -45798,123 +46391,123 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get quranReferenceViewerRelatedJourneys => 'مسیرهای مرتبط';
 
   @override
-  String get quranReferenceDetailCategoryQuranReference => 'Qur’an reference';
+  String get quranReferenceDetailCategoryQuranReference => 'مرجع قرآن';
 
   @override
-  String get quranReferenceDetailCategoryQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailCategoryQuranInsight => 'بینش قرآن';
 
   @override
-  String get quranReferenceDetailCategoryWorldLesson => 'Signs & creation';
+  String get quranReferenceDetailCategoryWorldLesson => 'نشانه ها و خلقت';
 
   @override
-  String get quranReferenceDetailCategoryWorshipLesson => 'Worship lesson';
+  String get quranReferenceDetailCategoryWorshipLesson => 'درس عبادت';
 
   @override
-  String get quranReferenceDetailCategoryCharacterLesson => 'Character lesson';
+  String get quranReferenceDetailCategoryCharacterLesson => 'درس شخصیت';
 
   @override
-  String get quranReferenceDetailCategoryHadith => 'Hadith';
+  String get quranReferenceDetailCategoryHadith => 'حدیث';
 
   @override
-  String get quranReferenceDetailCategoryDivineLife => 'Divine Life';
+  String get quranReferenceDetailCategoryDivineLife => 'زندگی الهی';
 
   @override
-  String get quranReferenceDetailCategoryProphet => 'Prophet reference';
+  String get quranReferenceDetailCategoryProphet => 'مرجع پیامبر';
 
   @override
-  String get quranReferenceDetailCategoryLearningPath => 'Learning path';
+  String get quranReferenceDetailCategoryLearningPath => 'مسیر یادگیری';
 
   @override
-  String get quranReferenceDetailCategoryLearningJourney => 'Journey lesson';
+  String get quranReferenceDetailCategoryLearningJourney => 'درس سفر';
 
   @override
   String quranReferenceDetailCurrentAnchorChip(Object anchor) {
-    return 'From $anchor';
+    return 'از $anchor';
   }
 
   @override
-  String get quranReferenceDetailWhyRelatedTitle => 'Why this is related';
+  String get quranReferenceDetailWhyRelatedTitle => 'چرا این مربوط است';
 
   @override
-  String get quranReferenceDetailPreviewTitle => 'What you will open';
+  String get quranReferenceDetailPreviewTitle => 'آنچه را که باز خواهید کرد';
 
   @override
-  String get quranReferenceDetailSourceOwnerTitle => 'Source owner';
+  String get quranReferenceDetailSourceOwnerTitle => 'مالک منبع';
 
   @override
   String quranReferenceDetailOpenDestination(Object destination) {
-    return 'Open $destination';
+    return '$destination را باز کنید';
   }
 
   @override
-  String get quranReferenceDetailOpenQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailOpenQuranInsight => 'بینش قرآن';
 
   @override
-  String get quranReferenceDetailOpenWorldLesson => 'world lesson';
+  String get quranReferenceDetailOpenWorldLesson => 'درس جهان';
 
   @override
-  String get quranReferenceDetailOpenWorshipLesson => 'worship lesson';
+  String get quranReferenceDetailOpenWorshipLesson => 'درس عبادت';
 
   @override
-  String get quranReferenceDetailOpenCharacterLesson => 'Character companion';
+  String get quranReferenceDetailOpenCharacterLesson => 'همراه شخصیت';
 
   @override
-  String get quranReferenceDetailOpenHadithLesson => 'Hadith lesson';
+  String get quranReferenceDetailOpenHadithLesson => 'درس حدیث';
 
   @override
-  String get quranReferenceDetailOpenDivineLifeLesson => 'Divine Life lesson';
+  String get quranReferenceDetailOpenDivineLifeLesson => 'درس زندگی الهی';
 
   @override
-  String get quranReferenceDetailOpenProphetStory => 'Prophet story';
+  String get quranReferenceDetailOpenProphetStory => 'داستان پیامبر';
 
   @override
-  String get quranReferenceDetailOpenLearningPath => 'learning path';
+  String get quranReferenceDetailOpenLearningPath => 'مسیر یادگیری';
 
   @override
-  String get quranReferenceDetailOpenLearningJourney => 'journey lesson';
+  String get quranReferenceDetailOpenLearningJourney => 'درس سفر';
 
   @override
   String get quranReferenceDetailReasonQuranReferenceLinked =>
-      'This Qur’an reference is surfaced because it strengthens the current ayah with a closely connected passage.';
+      'این مرجع قرآن به این دلیل ظاهر شده است که آیه فعلی را با یک قطعه متصل نزدیک تقویت می کند.';
 
   @override
   String get quranReferenceDetailReasonQuranInsight =>
-      'This insight expands one of the clearest study directions already connected to the current ayah.';
+      'این بینش یکی از واضح‌ترین جهت‌های مطالعه را که قبلاً به آیه فعلی مرتبط است، گسترش می‌دهد.';
 
   @override
   String get quranReferenceDetailReasonWorldLesson =>
-      'This lesson helps you reflect on signs, creation, or the natural world already tied to the current ayah.';
+      'این درس به شما کمک می‌کند تا در مورد نشانه‌ها، خلقت یا جهان طبیعی که قبلاً به آیه فعلی گره خورده است فکر کنید.';
 
   @override
   String get quranReferenceDetailReasonWorshipLesson =>
-      'This lesson extends the ayah into worship, remembrance, or a practical act of devotion.';
+      'این درس آیه را به عبادت، ذکر یا یک عمل عملی از عبادت تعمیم می دهد.';
 
   @override
   String get quranReferenceDetailReasonCharacterLesson =>
-      'This lesson carries the ayah into conduct, restraint, speech, or another lived character response.';
+      'این درس آیه را به رفتار، خویشتن داری، گفتار یا پاسخ شخصیت زنده دیگری می برد.';
 
   @override
   String get quranReferenceDetailReasonHadith =>
-      'This Hadith is surfaced because it reinforces a lesson already present in the current ayah.';
+      'این حدیث به این دلیل است که درسی را که قبلاً در آیه فعلی وجود دارد، تقویت می کند.';
 
   @override
   String get quranReferenceDetailReasonDivineLife =>
-      'This Divine Life lesson broadens the ayah into a fuller everyday topic or practical life setting.';
+      'این درس زندگی الهی آیه را به یک موضوع روزمره کاملتر یا محیط زندگی عملی گسترش می دهد.';
 
   @override
   String get quranReferenceDetailReasonProphet =>
-      'This prophetic reference helps frame the ayah through a lived example from revelation and sacred history.';
+      'این مرجع نبوی کمک می کند تا آیه را از طریق نمونه ای زنده از وحی و تاریخ مقدس شکل دهد.';
 
   @override
   String get quranReferenceDetailReasonLearningPath =>
-      'This path gathers nearby ayahs and lessons so you can study the same theme in a calmer sequence.';
+      'این مسیر آیه ها و درس های نزدیک را جمع آوری می کند تا بتوانید همان موضوع را در یک توالی آرام تر مطالعه کنید.';
 
   @override
   String get quranReferenceDetailReasonLearningJourney =>
-      'This journey lesson studies the same Qur’anic passage in a guided sequence, so you can move from reading into a calmer lesson flow.';
+      'این درس سفر همان آیه قرآن را در یک توالی هدایت شده مطالعه می کند، بنابراین شما می توانید از خواندن به یک جریان درس آرام تر بروید.';
 
   @override
-  String get quranThemeMapRelatedThemesTitle => 'Themes';
+  String get quranThemeMapRelatedThemesTitle => 'تم ها';
 
   @override
   String get quranReaderJourneyContextTitle => 'Journey context';
@@ -46673,7 +47266,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranSurahInsightWhyItMattersAliImran =>
-      'Ali Imran matters because it trains belief under pressure. It joins reflection on Allahs signs with restraint, mercy, and steadiness when the heart is tested.';
+      'Ali \'Imran matters because it trains belief under pressure. It joins reflection on Allah\'s signs with restraint, mercy, and steadiness when the heart is tested.';
 
   @override
   String get quranSurahInsightWhyItMattersTaHa =>
@@ -48468,27 +49061,27 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Reduce pressure and focus on calm consistency.';
 
   @override
-  String get profileRamadanDateRangeTitle => 'Ramadan date range';
+  String get profileRamadanDateRangeTitle => 'بازه تاریخ رمضان';
 
   @override
-  String get profileRamadanStartDate => 'Start date';
+  String get profileRamadanStartDate => 'تاریخ آغاز';
 
   @override
-  String get profileRamadanEndDate => 'End date';
+  String get profileRamadanEndDate => 'تاریخ پایان';
 
   @override
   String get profileRamadanDateWindowActive =>
-      'Today falls inside your Ramadan date window.';
+      'امروز در بازه تاریخی رمضان شما قرار دارد.';
 
   @override
   String get profileRamadanDateWindowInactive =>
-      'Today is outside your Ramadan date window.';
+      'امروز بیرون از بازه تاریخی رمضان شما قرار دارد.';
 
   @override
-  String get profileRamadanSetDates => 'Set dates';
+  String get profileRamadanSetDates => 'تنظیم تاریخ‌ها';
 
   @override
-  String get profileRamadanClearDates => 'Clear dates';
+  String get profileRamadanClearDates => 'پاک کردن تاریخ‌ها';
 
   @override
   String get learnContentTopicLabel => 'Topic';
@@ -48822,73 +49415,74 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get quranMemorizationTitle => 'حفظ (Hifz)';
 
   @override
-  String get quranMemorizationMarkAction => 'Mark for memorization';
+  String get quranMemorizationMarkAction => 'برای حفظ کردن علامت بزنید';
 
   @override
-  String get quranMemorizationRemoveAction => 'Remove from memorization';
+  String get quranMemorizationRemoveAction => 'حذف از حفظ';
 
   @override
-  String get quranMemorizationReviewTitle => 'Memorization Review';
+  String get quranMemorizationReviewTitle => 'مرور حفظ';
 
   @override
   String get quranMemorizationReviewSubtitle =>
-      'Return to the ayahs you want to retain with meaning, themes, and light related study.';
+      'به آیاتی که می خواهید با معنا، مضامین و مطالعه مرتبط با نور حفظ کنید، بازگردید.';
 
   @override
   String quranMemorizationReviewSummary(int count, int dueCount) {
-    return 'Saved: $count ayahs • Due today: $dueCount';
+    return 'ذخیره شده: $count آیه • سررسید امروز: $dueCount';
   }
 
   @override
   String get quranMemorizationReviewEmpty =>
-      'No ayahs are marked for memorization yet. Mark one from the reader to begin a calm review list.';
+      'هنوز هیچ آیه ای برای حفظ علامت گذاری نشده است. برای شروع یک فهرست مرور آرام، یکی از خواننده را علامت بزنید.';
 
   @override
-  String get quranMemorizationReviewDueTitle => 'Due for review';
+  String get quranMemorizationReviewDueTitle => 'موعد بررسی';
 
   @override
-  String get quranMemorizationReviewSavedTitle => 'Saved for memorization';
+  String get quranMemorizationReviewSavedTitle => 'برای حفظ ذخیره شده است';
 
   @override
-  String get quranMemorizationReviewContinueTitle => 'Continue review';
+  String get quranMemorizationReviewContinueTitle => 'ادامه بررسی';
 
   @override
-  String get quranMemorizationReviewTodayTitle => 'Review today';
+  String get quranMemorizationReviewTodayTitle => 'امروز مرور کنید';
 
   @override
-  String get quranMemorizationReviewRecentTitle => 'Recently memorized';
+  String get quranMemorizationReviewRecentTitle => 'اخیراً حفظ شده است';
 
   @override
-  String get quranMemorizationReviewNeedsRevisionTitle => 'Needs revision';
+  String get quranMemorizationReviewNeedsRevisionTitle =>
+      'نیاز به بازنگری دارد';
 
   @override
-  String get quranMemorizationReviewAllTitle => 'All memorized';
+  String get quranMemorizationReviewAllTitle => 'همه حفظ شده است';
 
   @override
   String get quranMemorizationReviewMeaningFallback =>
-      'Translation is not available for this ayah right now.';
+      'ترجمه برای این آیه در حال حاضر در دسترس نیست.';
 
   @override
   String quranMemorizationReviewNextReview(Object dateLabel) {
-    return 'Next review: $dateLabel';
+    return 'بررسی بعدی: $dateLabel';
   }
 
   @override
   String quranMemorizationReviewRhythmMeta(int count, Object dateLabel) {
-    return 'Reviewed $count times • Last reviewed: $dateLabel';
+    return '$count بار مرور شد • آخرین بازبینی: $dateLabel';
   }
 
   @override
-  String get quranMemorizationReviewNeverReviewed => 'Not reviewed yet';
+  String get quranMemorizationReviewNeverReviewed => 'هنوز بررسی نشده است';
 
   @override
-  String get quranMemorizationReviewThemesTitle => 'Key theme';
+  String get quranMemorizationReviewThemesTitle => 'موضوع کلیدی';
 
   @override
-  String get quranMemorizationReviewRelatedStudyTitle => 'Related study';
+  String get quranMemorizationReviewRelatedStudyTitle => 'مطالعه مرتبط';
 
   @override
-  String get quranMemorizationReviewOpenReaderAction => 'Open in reader';
+  String get quranMemorizationReviewOpenReaderAction => 'باز کردن در خواننده';
 
   @override
   String get quranHifzRevealModeFull => 'نمایش';
@@ -49301,18 +49895,18 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get kidsJourneyPlaceholderActionMarkComplete => 'I did this';
 
   @override
-  String get assistantTitle => 'Nur Assistant';
+  String get assistantTitle => 'دستیار نور';
 
   @override
   String get assistantSubtitle =>
-      'A calm companion for guidance, reflection, and app navigation.';
+      'همراهی آرام برای راهنمایی، تأمل و مسیریابی در برنامه.';
 
   @override
   String get assistantEmptyState =>
-      'Ask for a focus suggestion, reflection prompt, or where to go next.';
+      'برای پیشنهاد تمرکز، پرسش تأملی یا قدم بعدی بپرسید.';
 
   @override
-  String get assistantInputHint => 'Type your message';
+  String get assistantInputHint => 'پیام خود را بنویسید';
 
   @override
   String get circlesTitle => 'Community Circles';
@@ -49536,13 +50130,13 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get journalDetailSavedMessage => 'Journal entry updated.';
 
   @override
-  String get assistantQuickPromptsTitle => 'Suggestions';
+  String get assistantQuickPromptsTitle => 'پیشنهادها';
 
   @override
-  String get assistantRecentPromptsTitle => 'Recent prompts';
+  String get assistantRecentPromptsTitle => 'درخواست‌های اخیر';
 
   @override
-  String get assistantQuickActionsTitle => 'Quick actions';
+  String get assistantQuickActionsTitle => 'اقدام‌های سریع';
 
   @override
   String get circlesJoinedPageTitle => 'Joined circles';
@@ -59779,242 +60373,245 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get accountsSyncAddAccountAction => 'افزودن حساب';
 
   @override
-  String get accountsSyncStatusCardTitle => 'Accounts, Profile & Sync';
+  String get accountsSyncStatusCardTitle => 'حساب‌ها، پروفایل و همگام‌سازی';
 
   @override
   String get accountsSyncStatusCardLocalOnlyBody =>
-      'You can keep using Path of Nūr fully offline. Sign in only if you want account identity and backup readiness.';
+      'می‌توانید Path of Nūr را کاملاً آفلاین ادامه دهید. فقط زمانی وارد شوید که هویت حساب و آمادگی پشتیبان برایتان مهم باشد.';
 
   @override
   String accountsSyncStatusCardSignedInBody(String accountName) {
-    return '$accountName is connected on this device. Backup and restore are available, but cloud backup still needs platform or backend setup.';
+    return '$accountName در این دستگاه وصل است. پشتیبان‌گیری و بازیابی در دسترس است، اما پشتیبان ابری هنوز به آماده‌سازی پلتفرم یا بک‌اند نیاز دارد.';
   }
 
   @override
   String get accountsSyncStatusCardBackupReadyBody =>
-      'A recent backup is available. You can keep learning locally and still export or restore safely.';
+      'یک پشتیبان تازه در دسترس است. می‌توانید به‌گونه محلی به یادگیری ادامه دهید و همچنان با اطمینان برون‌ریزی یا بازیابی انجام دهید.';
 
   @override
   String get accountsSyncStatusCardBackupRunningBody =>
-      'Backup preparation is in progress.';
+      'آماده‌سازی پشتیبان در جریان است.';
 
   @override
   String get accountsSyncStatusCardRestoreReadyBody =>
-      'A restorable backup is available for this journey.';
+      'یک پشتیبان قابل‌بازیابی برای این مسیر در دسترس است.';
 
   @override
   String get accountsSyncStatusCardSyncErrorBody =>
-      'Something needs attention before backup or sync can continue safely.';
+      'پیش از آن‌که پشتیبان‌گیری یا همگام‌سازی با اطمینان ادامه یابد، چیزی نیاز به توجه دارد.';
 
   @override
-  String get accountsSyncCurrentModeLabel => 'Current mode';
+  String get accountsSyncCurrentModeLabel => 'حالت فعلی';
 
   @override
   String accountsSyncCurrentModeValue(String value) {
-    return 'Current mode: $value';
+    return 'حالت فعلی: $value';
   }
 
   @override
   String accountsSyncProviderValue(String value) {
-    return 'Provider: $value';
+    return 'ارائه‌دهنده: $value';
   }
 
   @override
-  String get accountsSyncProviderNone => 'None';
+  String get accountsSyncProviderNone => 'هیچ‌کدام';
 
   @override
   String accountsSyncLastBackupValue(String time) {
-    return 'Last backup $time';
+    return 'آخرین پشتیبان $time';
   }
 
   @override
-  String get accountsSyncBackupNeverBackedUp => 'Never backed up';
+  String get accountsSyncBackupNeverBackedUp =>
+      'هنوز هیچ پشتیبانی انجام نشده است';
 
   @override
-  String get accountsSyncModeLocalOnly => 'Local only';
+  String get accountsSyncModeLocalOnly => 'فقط محلی';
 
   @override
-  String get accountsSyncModeSignedInNoBackup => 'Connected, no backup yet';
+  String get accountsSyncModeSignedInNoBackup => 'وصل است، هنوز پشتیبان ندارد';
 
   @override
-  String get accountsSyncModeBackupAvailable => 'Backup available';
+  String get accountsSyncModeBackupAvailable => 'پشتیبان در دسترس است';
 
   @override
-  String get accountsSyncModeBackupInProgress => 'Backup in progress';
+  String get accountsSyncModeBackupInProgress => 'پشتیبان‌گیری در جریان است';
 
   @override
-  String get accountsSyncModeRestoreAvailable => 'Restore available';
+  String get accountsSyncModeRestoreAvailable => 'بازیابی در دسترس است';
 
   @override
-  String get accountsSyncModeSyncError => 'Needs attention';
+  String get accountsSyncModeSyncError => 'نیازمند توجه';
 
   @override
-  String get accountsSyncAccountSectionTitle => 'Account';
+  String get accountsSyncAccountSectionTitle => 'حساب';
 
   @override
   String accountsSyncConnectedAccountBody(String accountName) {
-    return '$accountName is connected on this device.';
+    return '$accountName در این دستگاه وصل است.';
   }
 
   @override
   String get accountsSyncLocalOnlyBody =>
-      'You are using Path of Nūr locally on this device. Your progress stays here unless you export or connect backup later.';
+      'شما در این دستگاه از Path of Nūr به‌گونه محلی استفاده می‌کنید. پیشرفت شما همین‌جا می‌ماند، مگر آن‌که بعداً برون‌ریزی کنید یا پشتیبان را وصل نمایید.';
 
   @override
-  String get accountsSyncBackupStatusTitle => 'Backup status';
+  String get accountsSyncBackupStatusTitle => 'وضعیت پشتیبان';
 
   @override
-  String get accountsSyncContinueWithAppleAction => 'Continue with Apple';
+  String get accountsSyncContinueWithAppleAction => 'ادامه با اپل';
 
   @override
-  String get accountsSyncContinueWithGoogleAction => 'Continue with Google';
+  String get accountsSyncContinueWithGoogleAction => 'ادامه با گوگل';
 
   @override
-  String get accountsSyncContinueWithEmailAction => 'Continue with Email';
+  String get accountsSyncContinueWithEmailAction => 'ادامه با ایمیل';
 
   @override
-  String get accountsSyncContinueLocalOnlyAction => 'Continue Local Only';
+  String get accountsSyncContinueLocalOnlyAction => 'ادامه فقط به‌گونه محلی';
 
   @override
   String get accountsSyncEmailComingNextBody =>
-      'Email sign-in architecture is ready, but backend delivery is not connected yet.';
+      'زیرساخت ورود با ایمیل آماده است، اما رساندن سمت سرور هنوز وصل نشده است.';
 
   @override
-  String get accountsSyncSignOutAction => 'Sign out';
+  String get accountsSyncSignOutAction => 'خروج';
 
   @override
   String accountsSyncAccountConnectedResult(String name) {
-    return '$name is connected on this device.';
+    return '$name در این دستگاه وصل است.';
   }
 
   @override
-  String get accountsSyncAuthCancelledResult => 'Sign-in was cancelled.';
+  String get accountsSyncAuthCancelledResult => 'ورود لغو شد.';
 
   @override
   String get accountsSyncAuthUnavailableResult =>
-      'This sign-in option is not available on this device.';
+      'این گزینه ورود در این دستگاه در دسترس نیست.';
 
   @override
   String get accountsSyncAuthNotConfiguredResult =>
-      'This sign-in option still needs platform or backend setup.';
+      'این گزینه ورود هنوز به تنظیم پلتفرم یا بک‌اند نیاز دارد.';
 
   @override
   String get accountsSyncAuthFailedResult =>
-      'We could not complete sign-in safely.';
+      'نتوانستیم ورود را به‌گونه امن کامل کنیم.';
 
   @override
   String get accountsSyncContinueLocalOnlyResult =>
-      'Local-only mode is still available. Your device progress was not changed.';
+      'حالت فقط-محلی هنوز در دسترس است. پیشرفت این دستگاه تغییر نکرد.';
 
   @override
   String get accountsSyncSignedOutResult =>
-      'You are now using local-only mode on this device. Local progress was preserved.';
+      'اکنون در این دستگاه از حالت فقط-محلی استفاده می‌کنید. پیشرفت محلی حفظ شد.';
 
   @override
-  String get accountsSyncSyncPreferencesTitle => 'Sync preferences';
+  String get accountsSyncSyncPreferencesTitle => 'ترجیحات همگام‌سازی';
 
   @override
-  String get accountsSyncPreferManualBackupTitle => 'Prefer manual backup';
+  String get accountsSyncPreferManualBackupTitle =>
+      'پشتیبان‌گیری دستی را ترجیح بده';
 
   @override
   String get accountsSyncAllowRestoreSuggestionsTitle =>
-      'Allow restore suggestions';
+      'پیشنهادهای بازیابی را مجاز کن';
 
   @override
   String get accountsSyncRemoteBackupNotConfiguredBody =>
-      'Remote backup foundations are ready, but cloud backup is not active yet. Manual export and import remain available.';
+      'بنیادهای پشتیبان راه‌دور آماده است، اما پشتیبان ابری هنوز فعال نشده است. برون‌ریزی و درون‌ریزی دستی همچنان در دسترس می‌ماند.';
 
   @override
-  String get accountsSyncRemoteBackupSectionTitle => 'Remote backup';
+  String get accountsSyncRemoteBackupSectionTitle => 'پشتیبان راه‌دور';
 
   @override
   String get accountsSyncRemoteBackupReadyBody =>
-      'A connected provider can back up this device safely and restore it later.';
+      'یک ارائه‌دهنده وصل‌شده می‌تواند با اطمینان از این دستگاه پشتیبان بگیرد و بعداً آن را بازیابی کند.';
 
   @override
   String get accountsSyncRemoteBackupUnavailableBody =>
-      'Remote backup is optional. You can stay local-only or use manual export until a supported provider is ready.';
+      'پشتیبان راه‌دور اختیاری است. می‌توانید در حالت فقط‌محلی بمانید یا تا زمان آماده‌شدن یک ارائه‌دهنده پشتیبانی‌شده از برون‌ریزی دستی استفاده کنید.';
 
   @override
-  String get accountsSyncRemoteRestorePreviewTitle => 'Restore comparison';
+  String get accountsSyncRemoteRestorePreviewTitle => 'مقایسه بازیابی';
 
   @override
   String get accountsSyncRemoteRestorePreviewSubtitle =>
-      'Review the remote backup against this device before you restore anything.';
+      'پیش از آن‌که چیزی را بازیابی کنید، پشتیبان راه‌دور را در برابر این دستگاه مرور کنید.';
 
   @override
-  String get accountsSyncRemoteProviderTitle => 'Remote provider';
+  String get accountsSyncRemoteProviderTitle => 'ارائه‌دهنده راه‌دور';
 
   @override
-  String get accountsSyncRemoteLastBackupTitle => 'Remote last backup';
+  String get accountsSyncRemoteLastBackupTitle => 'آخرین پشتیبان راه‌دور';
 
   @override
-  String get accountsSyncRemoteStatusIssueTitle => 'Remote status';
+  String get accountsSyncRemoteStatusIssueTitle => 'وضعیت راه‌دور';
 
   @override
-  String get accountsSyncBackUpNowAction => 'Back up now';
+  String get accountsSyncBackUpNowAction => 'همین حالا پشتیبان بگیر';
 
   @override
-  String get accountsSyncCheckBackupStatusAction => 'Check backup status';
+  String get accountsSyncCheckBackupStatusAction => 'وضعیت پشتیبان را بررسی کن';
 
   @override
   String get accountsSyncRestoreFromRemoteAction =>
-      'Restore from remote backup';
+      'بازیابی از پشتیبان راه‌دور';
 
   @override
-  String get accountsSyncRemoteRestoreTitle => 'Restore remote backup';
+  String get accountsSyncRemoteRestoreTitle => 'بازیابی پشتیبان راه‌دور';
 
   @override
   String get accountsSyncRemoteRestoreNewerBody =>
-      'The remote backup looks newer than this device. Restoring will replace the current local set after a safety snapshot is created.';
+      'پشتیبان راه‌دور از این دستگاه جدیدتر به نظر می‌رسد. بازیابی، پس از ساخته‌شدن یک snapshot ایمنی، مجموعه محلی فعلی را جایگزین خواهد کرد.';
 
   @override
   String get accountsSyncRemoteRestoreOlderBody =>
-      'The remote backup looks older than this device. Restoring may replace newer local progress on this device.';
+      'پشتیبان راه‌دور از این دستگاه قدیمی‌تر به نظر می‌رسد. بازیابی ممکن است پیشرفت محلی جدیدتر این دستگاه را جایگزین کند.';
 
   @override
   String get accountsSyncRemoteRestoreEqualBody =>
-      'The remote backup and local device look close in time. Restoring will still create a safety snapshot first.';
+      'پشتیبان راه‌دور و دستگاه محلی از نگاه زمان به هم نزدیک‌اند. بازیابی باز هم نخست یک snapshot ایمنی خواهد ساخت.';
 
   @override
   String accountsSyncRemotePreviewLocalUpdatedValue(Object time) {
-    return 'Local data updated $time';
+    return 'داده محلی در $time به‌روزرسانی شد';
   }
 
   @override
   String get accountsSyncRemotePreviewComparisonTitle =>
-      'Per-domain comparison';
+      'مقایسه بر بنیاد هر دامنه';
 
   @override
-  String get accountsSyncRemotePreviewWarningsTitle => 'Warnings';
+  String get accountsSyncRemotePreviewWarningsTitle => 'هشدارها';
 
   @override
   String get accountsSyncRemotePreviewNoWarnings =>
-      'No additional warnings were detected for this restore preview.';
+      'برای این پیش‌نمایش بازیابی هیچ هشدار اضافی شناسایی نشد.';
 
   @override
-  String get accountsSyncRemotePreviewActionsTitle => 'Choose what to do';
+  String get accountsSyncRemotePreviewActionsTitle =>
+      'انتخاب کنید چه کاری انجام شود';
 
   @override
   String get accountsSyncRemotePreviewReplaceAction =>
-      'Replace local with remote';
+      'جایگزینی داده محلی با راه‌دور';
 
   @override
-  String get accountsSyncRemotePreviewMergeAction => 'Merge safe domains';
+  String get accountsSyncRemotePreviewMergeAction => 'ادغام دامنه‌های امن';
 
   @override
-  String get accountsSyncRemotePreviewKeepLocalAction => 'Keep local data';
+  String get accountsSyncRemotePreviewKeepLocalAction => 'نگه‌داشتن داده محلی';
 
   @override
   String get accountsSyncRemotePreviewMergeConfirmBody =>
-      'Safe merge will keep remote data as the baseline and merge only the domains with deterministic rules. A safety snapshot will still be created first.';
+      'ادغام امن، داده راه‌دور را به‌عنوان مبنا نگه می‌دارد و فقط دامنه‌هایی را که قواعد قطعی دارند ادغام می‌کند. با آن‌هم، نخست یک snapshot ایمنی ساخته خواهد شد.';
 
   @override
   String get accountsSyncRemotePreviewReplaceConfirmBody =>
-      'This will replace current local data with the remote backup after a safety snapshot is created.';
+      'این کار پس از ساخته‌شدن یک snapshot ایمنی، داده محلی فعلی را با پشتیبان راه‌دور جایگزین خواهد کرد.';
 
   @override
-  String get accountsSyncRemotePreviewResultTitle => 'Restore summary';
+  String get accountsSyncRemotePreviewResultTitle => 'خلاصه بازیابی';
 
   @override
   String accountsSyncRemotePreviewResultBody(
@@ -60023,16 +60620,16 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
     Object replaced,
     Object snapshot,
   ) {
-    return '$action finished. Merged: $merged. Replaced: $replaced. Safety snapshot: $snapshot.';
+    return '$action پایان یافت. ادغام‌شده: $merged. جایگزین‌شده: $replaced. snapshot ایمنی: $snapshot.';
   }
 
   @override
   String get accountsSyncRemotePreviewNoMergedDomains =>
-      'No domains were merged';
+      'هیچ دامنه‌ای ادغام نشد';
 
   @override
   String get accountsSyncRemotePreviewNoReplacedDomains =>
-      'No domains were replaced';
+      'هیچ دامنه‌ای جایگزین نشد';
 
   @override
   String accountsSyncRemotePreviewDomainSummary(
@@ -60041,374 +60638,381 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
     Object remoteCount,
     Object merge,
   ) {
-    return '$conflict. Local items: $localCount. Remote items: $remoteCount. Merge: $merge.';
+    return '$conflict. موارد محلی: $localCount. موارد راه‌دور: $remoteCount. ادغام: $merge.';
   }
 
   @override
   String get accountsSyncRemotePreviewProviderMismatchBody =>
-      'The remote backup is tied to a different sign-in provider than the current device session.';
+      'پشتیبان راه‌دور به یک ارائه‌دهنده ورود متفاوت از نشست فعلی دستگاه بسته است.';
 
   @override
   String get accountsSyncRemotePreviewAccountMismatchBody =>
-      'The remote backup appears to belong to a different account identity than the one currently connected on this device.';
+      'به نظر می‌رسد پشتیبان راه‌دور مربوط به هویت حسابی متفاوت از حسابی است که فعلاً در این دستگاه وصل است.';
 
   @override
   String get accountsSyncRemotePreviewSchemaMismatchBody =>
-      'This remote backup uses a newer schema than this build can restore safely.';
+      'این پشتیبان راه‌دور از schema تازه‌تری استفاده می‌کند که این build نمی‌تواند آن را با اطمینان بازیابی کند.';
 
   @override
   String get accountsSyncRemotePreviewLocalOnlyWarning =>
-      'This device contains local-only data that is not clearly present in the remote backup.';
+      'این دستگاه دارای داده‌های فقط‌محلی است که به‌گونه روشن در پشتیبان راه‌دور دیده نمی‌شود.';
 
   @override
   String get accountsSyncRemotePreviewRemoteOnlyWarning =>
-      'The remote backup contains data that is not clearly present on this device yet.';
+      'پشتیبان راه‌دور حاوی داده‌ای است که هنوز به‌گونه روشن در این دستگاه موجود نیست.';
 
   @override
   String get accountsSyncRemotePreviewUncertainWarning =>
-      'Some domains differ, but the app cannot compare them precisely enough to promise a safe merge.';
+      'برخی دامنه‌ها تفاوت دارند، اما برنامه نمی‌تواند آن‌ها را به اندازه کافی دقیق مقایسه کند تا یک ادغام امن را تضمین نماید.';
 
   @override
-  String get accountsSyncRemoteDomainProfileBasics => 'Profile basics';
+  String get accountsSyncRemoteDomainProfileBasics => 'اطلاعات پایه پروفایل';
 
   @override
-  String get accountsSyncRemoteDomainSettings => 'Settings and preferences';
+  String get accountsSyncRemoteDomainSettings => 'تنظیمات و ترجیحات';
 
   @override
-  String get accountsSyncRemoteDomainPrayer => 'Prayer tracking';
+  String get accountsSyncRemoteDomainPrayer => 'پیگیری نماز';
 
   @override
-  String get accountsSyncRemoteDomainDhikr => 'Dhikr progress and history';
+  String get accountsSyncRemoteDomainDhikr => 'پیشرفت و سابقه ذکر';
 
   @override
-  String get accountsSyncRemoteDomainQuran => 'Qur’an progress and recents';
+  String get accountsSyncRemoteDomainQuran => 'پیشرفت و موارد اخیر قرآن';
 
   @override
-  String get accountsSyncRemoteDomainGrowth => 'XP, drops, and ocean progress';
+  String get accountsSyncRemoteDomainGrowth => 'XP، قطره‌ها و پیشرفت اقیانوس';
 
   @override
-  String get accountsSyncRemoteDomainLearning => 'Learning progress';
+  String get accountsSyncRemoteDomainLearning => 'پیشرفت یادگیری';
 
   @override
-  String get accountsSyncRemoteDomainJournal => 'Journal and notes';
+  String get accountsSyncRemoteDomainJournal => 'دفترچه و یادداشت‌ها';
 
   @override
-  String get accountsSyncRemoteDomainReminders =>
-      'Reminders and prayer preferences';
+  String get accountsSyncRemoteDomainReminders => 'یادآورها و ترجیحات نماز';
 
   @override
-  String get accountsSyncRemoteDomainTheme => 'Theme and accessibility';
+  String get accountsSyncRemoteDomainTheme => 'تم و دسترس‌پذیری';
 
   @override
-  String get accountsSyncRemoteConflictIdentical => 'Matches this device';
+  String get accountsSyncRemoteConflictIdentical => 'با این دستگاه برابر است';
 
   @override
-  String get accountsSyncRemoteConflictRemoteNewer => 'Remote looks newer';
+  String get accountsSyncRemoteConflictRemoteNewer =>
+      'راه‌دور جدیدتر به نظر می‌رسد';
 
   @override
-  String get accountsSyncRemoteConflictLocalNewer => 'This device looks newer';
+  String get accountsSyncRemoteConflictLocalNewer =>
+      'این دستگاه جدیدتر به نظر می‌رسد';
 
   @override
   String get accountsSyncRemoteConflictRemoteOnly =>
-      'Remote-only data detected';
+      'داده فقط راه‌دور شناسایی شد';
 
   @override
-  String get accountsSyncRemoteConflictLocalOnly => 'Local-only data detected';
+  String get accountsSyncRemoteConflictLocalOnly => 'داده فقط محلی شناسایی شد';
 
   @override
-  String get accountsSyncRemoteConflictSchema => 'Schema mismatch';
+  String get accountsSyncRemoteConflictSchema => 'ناسازگاری schema';
 
   @override
   String get accountsSyncRemoteConflictUncertain =>
-      'Difference could not be compared safely';
+      'تفاوت را نمی‌شد با اطمینان مقایسه کرد';
 
   @override
   String get accountsSyncRemoteConflictAccountMismatch =>
-      'Different account detected';
+      'حساب متفاوتی شناسایی شد';
 
   @override
   String get accountsSyncRemoteConflictProviderMismatch =>
-      'Different provider detected';
+      'ارائه‌دهنده متفاوتی شناسایی شد';
 
   @override
-  String get accountsSyncRemoteMergeSafe => 'Safe to merge';
+  String get accountsSyncRemoteMergeSafe => 'ادغام امن است';
 
   @override
-  String get accountsSyncRemoteMergeReplaceOnly => 'Replace only';
+  String get accountsSyncRemoteMergeReplaceOnly => 'فقط جایگزینی';
 
   @override
-  String get accountsSyncRemoteMergeUnsafe => 'Unsafe to merge';
+  String get accountsSyncRemoteMergeUnsafe => 'ادغام ناامن است';
 
   @override
-  String get accountsSyncRemoteMergeUnsupported => 'Merge not supported';
+  String get accountsSyncRemoteMergeUnsupported => 'ادغام پشتیبانی نمی‌شود';
 
   @override
-  String get accountsSyncAutoBackupSectionTitle => 'Auto-backup';
+  String get accountsSyncAutoBackupSectionTitle => 'پشتیبان‌گیری خودکار';
 
   @override
   String get accountsSyncAutoBackupSectionSubtitle =>
-      'Back up your journey automatically when meaningful progress changes. Manual backup stays available anytime.';
+      'هرگاه پیشرفت معناداری رخ دهد، از مسیر شما به‌گونه خودکار پشتیبان بگیرد. پشتیبان‌گیری دستی همیشه در دسترس می‌ماند.';
 
   @override
-  String get accountsSyncAutoBackupEnabledTitle => 'Enable auto-backup';
+  String get accountsSyncAutoBackupEnabledTitle =>
+      'فعال‌سازی پشتیبان‌گیری خودکار';
 
   @override
   String get accountsSyncAutoBackupOnBody =>
-      'Automatic backup is on when the provider is available and the app decides a new backup is worth sending.';
+      'وقتی ارائه‌دهنده در دسترس باشد و برنامه تصمیم بگیرد که یک پشتیبان تازه ارزش فرستادن دارد، پشتیبان‌گیری خودکار روشن است.';
 
   @override
   String get accountsSyncAutoBackupOffBody =>
-      'Automatic backup is off. Your data stays local until you choose to back it up.';
+      'پشتیبان‌گیری خودکار خاموش است. داده‌های شما محلی می‌ماند تا زمانی که خودتان انتخاب کنید از آن پشتیبان بگیرید.';
 
   @override
-  String get accountsSyncAutoBackupFrequencyTitle => 'Backup frequency';
+  String get accountsSyncAutoBackupFrequencyTitle => 'بسامد پشتیبان‌گیری';
 
   @override
-  String get accountsSyncAutoBackupFrequencySmart => 'Smart';
+  String get accountsSyncAutoBackupFrequencySmart => 'هوشمند';
 
   @override
-  String get accountsSyncAutoBackupFrequencyDaily => 'Daily';
+  String get accountsSyncAutoBackupFrequencyDaily => 'روزانه';
 
   @override
-  String get accountsSyncAutoBackupFrequencyWeekly => 'Weekly';
+  String get accountsSyncAutoBackupFrequencyWeekly => 'هفتگی';
 
   @override
-  String get accountsSyncAutoBackupFrequencyManual => 'Manual only';
+  String get accountsSyncAutoBackupFrequencyManual => 'فقط دستی';
 
   @override
   String get accountsSyncAutoBackupMeaningfulChangeTitle =>
-      'Back up on meaningful progress changes';
+      'در صورت تغییرات معنادار از پیشرفت پشتیبان بگیر';
 
   @override
   String get accountsSyncAutoBackupBackgroundTitle =>
-      'Back up when the app is backgrounded if eligible';
+      'اگر واجد شرایط بود، هنگام پس‌زمینه‌شدن برنامه پشتیبان بگیر';
 
   @override
-  String get accountsSyncAutoBackupStatusTitle => 'Auto-backup status';
+  String get accountsSyncAutoBackupStatusTitle => 'وضعیت پشتیبان‌گیری خودکار';
 
   @override
-  String get accountsSyncAutoBackupStatusOff => 'Auto-backup is off.';
+  String get accountsSyncAutoBackupStatusOff =>
+      'پشتیبان‌گیری خودکار خاموش است.';
 
   @override
-  String get accountsSyncAutoBackupStatusRunning => 'A backup is running now.';
+  String get accountsSyncAutoBackupStatusRunning =>
+      'همین اکنون یک پشتیبان در حال اجراست.';
 
   @override
   String get accountsSyncAutoBackupStatusFailed =>
-      'The last auto-backup attempt failed.';
+      'آخرین تلاش پشتیبان‌گیری خودکار ناکام شد.';
 
   @override
   String get accountsSyncAutoBackupStatusPending =>
-      'New progress is waiting to be backed up.';
+      'پیشرفت تازه در انتظار پشتیبان‌گیری است.';
 
   @override
   String get accountsSyncAutoBackupStatusReady =>
-      'Your latest tracked progress is backed up.';
+      'از آخرین پیشرفت ثبت‌شده شما پشتیبان گرفته شده است.';
 
   @override
   String get accountsSyncAutoBackupStatusWaiting =>
-      'Auto-backup is ready and waiting for the next eligible moment.';
+      'پشتیبان‌گیری خودکار آماده است و منتظر لحظه واجد شرایط بعدی است.';
 
   @override
   String get accountsSyncAutoBackupLastAttemptTitle =>
-      'Last auto-backup attempt';
+      'آخرین تلاش پشتیبان‌گیری خودکار';
 
   @override
   String get accountsSyncAutoBackupLastSuccessTitle =>
-      'Last successful auto-backup';
+      'آخرین پشتیبان‌گیری خودکار موفق';
 
   @override
-  String get accountsSyncAutoBackupFailureTitle => 'Last auto-backup issue';
+  String get accountsSyncAutoBackupFailureTitle =>
+      'آخرین مشکل پشتیبان‌گیری خودکار';
 
   @override
-  String get accountsSyncAutoBackupRetryAction => 'Run auto-backup now';
+  String get accountsSyncAutoBackupRetryAction =>
+      'اکنون پشتیبان‌گیری خودکار را اجرا کن';
 
   @override
   String get accountsSyncAutoBackupReasonMeaningfulChange =>
-      'Meaningful progress changed';
+      'پیشرفت معنادار تغییر کرد';
 
   @override
-  String get accountsSyncAutoBackupReasonOverdue => 'Backup is overdue';
+  String get accountsSyncAutoBackupReasonOverdue =>
+      'زمان پشتیبان‌گیری گذشته است';
 
   @override
   String get accountsSyncAutoBackupReasonSignedIn =>
-      'Signed in to a backup-capable provider';
+      'به یک ارائه‌دهنده پشتیبان‌پذیر وارد شده‌اید';
 
   @override
   String get accountsSyncAutoBackupReasonManualRetry =>
-      'Manual retry requested';
+      'تلاش دوباره دستی درخواست شد';
 
   @override
-  String get accountsSyncAutoBackupEligibilityReady => 'Auto-backup is ready.';
+  String get accountsSyncAutoBackupEligibilityReady =>
+      'پشتیبان‌گیری خودکار آماده است.';
 
   @override
   String get accountsSyncAutoBackupEligibilityDisabled =>
-      'Auto-backup is turned off.';
+      'پشتیبان‌گیری خودکار خاموش است.';
 
   @override
   String get accountsSyncAutoBackupEligibilityManualOnly =>
-      'Backup frequency is set to manual only.';
+      'بسامد پشتیبان‌گیری روی فقط دستی تنظیم شده است.';
 
   @override
   String get accountsSyncAutoBackupEligibilitySignInRequired =>
-      'Sign in to a backup-capable provider first.';
+      'نخست به یک ارائه‌دهنده پشتیبان‌پذیر وارد شوید.';
 
   @override
   String get accountsSyncAutoBackupEligibilityProviderUnavailable =>
-      'The current backup provider is unavailable right now.';
+      'ارائه‌دهنده فعلی پشتیبان هم‌اکنون در دسترس نیست.';
 
   @override
   String get accountsSyncAutoBackupEligibilityNoChanges =>
-      'No meaningful new changes need backup yet.';
+      'هنوز هیچ تغییر معنادار تازه‌ای برای پشتیبان‌گیری وجود ندارد.';
 
   @override
   String get accountsSyncAutoBackupEligibilityThrottled =>
-      'The last backup attempt was too recent. Please wait a little before trying again.';
+      'آخرین تلاش پشتیبان‌گیری بسیار نزدیک بوده است. لطفاً اندکی صبر کنید و سپس دوباره کوشش نمایید.';
 
   @override
   String get accountsSyncAutoBackupEligibilityRunning =>
-      'An auto-backup is already running.';
+      'یک پشتیبان‌گیری خودکار از پیش در حال اجراست.';
 
   @override
   String get accountsSyncAutoBackupEligibilityWaiting =>
-      'Auto-backup is waiting for the next scheduled or eligible window.';
+      'پشتیبان‌گیری خودکار در انتظار پنجره زمان‌بندی‌شده یا لحظه واجد شرایط بعدی است.';
 
   @override
-  String get accountsSyncScopeSectionTitle => 'Sync scope';
+  String get accountsSyncScopeSectionTitle => 'دامنه همگام‌سازی';
 
   @override
   String get accountsSyncScopeSectionSubtitle =>
-      'Choose which categories future remote backups include. Excluded categories stay on this device unless you export them manually.';
+      'انتخاب کنید پشتیبان‌های راه‌دور آینده شامل کدام دسته‌ها باشند. دسته‌های حذف‌شده در این دستگاه باقی می‌مانند مگر آن‌که آن‌ها را دستی صادر کنید.';
 
   @override
-  String get accountsSyncScopeCurrentSummaryTitle => 'Current backup scope';
+  String get accountsSyncScopeCurrentSummaryTitle => 'دامنه فعلی پشتیبان';
 
   @override
-  String get accountsSyncScopeEssentialTitle => 'Essential progress';
+  String get accountsSyncScopeEssentialTitle => 'پیشرفت ضروری';
 
   @override
   String get accountsSyncScopeEssentialSubtitle =>
-      'These categories stay in backup because they keep your learning and worship progress coherent across restore.';
+      'این دسته‌ها در پشتیبان می‌مانند چون پیشرفت یادگیری و عبادت شما را هنگام بازیابی منسجم نگه می‌دارند.';
 
   @override
-  String get accountsSyncScopeOptionalTitle =>
-      'Personal content and preferences';
+  String get accountsSyncScopeOptionalTitle => 'محتوا و ترجیحات شخصی';
 
   @override
   String get accountsSyncScopeOptionalSubtitle =>
-      'These categories can stay local-only if you prefer more privacy on this device.';
+      'اگر در این دستگاه حریم خصوصی بیشتری ترجیح می‌دهید، این دسته‌ها می‌توانند فقط محلی بمانند.';
 
   @override
-  String get accountsSyncScopeConfirmTitle => 'Update backup scope?';
+  String get accountsSyncScopeConfirmTitle => 'دامنه پشتیبان به‌روزرسانی شود؟';
 
   @override
-  String get accountsSyncScopeConfirmAction => 'Update scope';
+  String get accountsSyncScopeConfirmAction => 'به‌روزرسانی دامنه';
 
   @override
   String get accountsSyncScopeManualExportNote =>
-      'Manual export still includes full local data by default, even if future remote backups are partial.';
+      'برون‌ریزی دستی همچنان به‌گونه پیش‌فرض همه داده محلی را شامل می‌شود، حتی اگر پشتیبان‌های راه‌دور آینده جزئی باشند.';
 
   @override
   String get accountsSyncScopeRestoreDefaultsAction =>
-      'Restore recommended defaults';
+      'بازگرداندن پیش‌فرض‌های پیشنهادی';
 
   @override
-  String get accountsSyncScopePreviewTitle => 'Backup scope';
+  String get accountsSyncScopePreviewTitle => 'دامنه پشتیبان';
 
   @override
   String accountsSyncScopePreviewRemoteValue(Object value) {
-    return 'Remote backup: $value';
+    return 'پشتیبان راه‌دور: $value';
   }
 
   @override
   String accountsSyncScopePreviewCurrentValue(Object value) {
-    return 'Current device setting: $value';
+    return 'تنظیم فعلی دستگاه: $value';
   }
 
   @override
   String accountsSyncScopePreviewExcludedDomain(Object domain) {
-    return 'This backup does not include $domain.';
+    return 'این پشتیبان شامل $domain نیست.';
   }
 
   @override
   String accountsSyncScopePreviewValue(Object value) {
-    return 'Backup scope: $value';
+    return 'دامنه پشتیبان: $value';
   }
 
   @override
   String get accountsSyncScopeSettingsDescription =>
-      'App settings and family/device preferences can stay local if you do not want them in remote backup.';
+      'اگر نمی‌خواهید تنظیمات برنامه و ترجیحات خانواده/دستگاه در پشتیبان راه‌دور باشد، می‌تواند محلی بماند.';
 
   @override
   String get accountsSyncScopeJournalDescription =>
-      'Private notes and journal entries can remain only on this device.';
+      'یادداشت‌های خصوصی و نوشته‌های دفترچه می‌تواند فقط در این دستگاه باقی بماند.';
 
   @override
   String get accountsSyncScopeRemindersDescription =>
-      'Reminder and notification choices can remain local if you prefer to reconfigure them per device.';
+      'اگر ترجیح می‌دهید آن‌ها را برای هر دستگاه جداگانه تنظیم کنید، انتخاب‌های یادآور و اعلان می‌تواند محلی بماند.';
 
   @override
   String get accountsSyncScopeThemeDescription =>
-      'Theme, language, and accessibility preferences can stay local to this device.';
+      'ترجیحات تم، زبان، و دسترس‌پذیری می‌تواند محلی این دستگاه باقی بماند.';
 
   @override
   String get accountsSyncScopeSummaryFull =>
-      'Full backup. All supported categories are included.';
+      'پشتیبان کامل. همه دسته‌های پشتیبانی‌شده شامل است.';
 
   @override
   String accountsSyncScopeSummaryPartial(Object domains) {
-    return 'Partial backup. Local-only categories: $domains.';
+    return 'پشتیبان جزئی. دسته‌های فقط‌محلی: $domains.';
   }
 
   @override
   String accountsSyncScopeIncludeImpactBody(Object domain) {
-    return '$domain will be included in future remote backups. Existing local data stays intact.';
+    return '$domain در پشتیبان‌های راه‌دور آینده شامل خواهد شد. داده محلی موجود دست‌نخورده می‌ماند.';
   }
 
   @override
   String accountsSyncScopeExcludeImpactBody(Object domain) {
-    return '$domain will stay only on this device in future remote backups. Existing local data is not deleted, and older backups may still contain it.';
+    return '$domain در پشتیبان‌های راه‌دور آینده فقط در این دستگاه می‌ماند. داده محلی موجود حذف نمی‌شود و پشتیبان‌های قدیمی‌تر ممکن است هنوز آن را داشته باشند.';
   }
 
   @override
   String accountsSyncScopePreviewMismatchDomain(Object domain) {
-    return 'Your current settings include $domain, but this backup did not.';
+    return 'تنظیمات فعلی شما $domain را شامل می‌شود، اما این پشتیبان آن را نداشت.';
   }
 
   @override
   String get accountsSyncNoRemoteBackupFound =>
-      'No remote backup was found for this account yet.';
+      'هنوز برای این حساب هیچ پشتیبان دوردستی پیدا نشده است.';
 
   @override
   String get accountsSyncRemoteBackupFoundResult =>
-      'Remote backup metadata is available.';
+      'فراداده پشتیبان دوردست در دسترس است.';
 
   @override
   String get accountsSyncRemoteBackupSuccessResult =>
-      'Remote backup completed successfully.';
+      'پشتیبان دوردست با موفقیت کامل شد.';
 
   @override
   String get accountsSyncRemoteRestoreSuccessResult =>
-      'Remote backup restored successfully.';
+      'پشتیبان دوردست با موفقیت بازگردانده شد.';
 
   @override
   String get accountsSyncRemoteProviderNeedsSetupBody =>
-      'This provider still needs platform or credential setup before remote backup can work.';
+      'این فراهم‌کننده هنوز پیش از کارکردن پشتیبان دوردست به تنظیم پلتفرم یا اعتبارنامه نیاز دارد.';
 
   @override
   String get accountsSyncRemoteAuthExpiredBody =>
-      'The signed-in session needs attention before remote backup can continue.';
+      'نشست واردشده پیش از ادامه پشتیبان دوردست نیاز به رسیدگی دارد.';
 
   @override
   String get accountsSyncRemoteICloudUnavailableBody =>
-      'iCloud is unavailable on this device or account right now.';
+      'iCloud اکنون در این دستگاه یا این حساب در دسترس نیست.';
 
   @override
   String get accountsSyncRemoteEmailUnavailableBody =>
-      'Email-linked remote backup is not connected yet.';
+      'پشتیبان دوردستِ پیوندشده با ایمیل هنوز وصل نشده است.';
 
   @override
   String get accountsSyncRemoteBackupFailedBody =>
-      'Remote backup could not be completed safely.';
+      'پشتیبان دوردست نتوانست به‌گونه امن کامل شود.';
 
   @override
   String get accountsSyncRequireProfileSelectionOnLaunch =>
@@ -60488,14 +61092,14 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get accountsSyncExportNowAction => 'همین حالا صادر کن';
 
   @override
-  String get accountsSyncExportCreatedResult => 'Backup export created.';
+  String get accountsSyncExportCreatedResult => 'برون‌ریزی پشتیبان ساخته شد.';
 
   @override
   String get accountsSyncExportReadyBody =>
-      'Your backup file is ready. Keep it in Files or share it to a safe location.';
+      'فایل پشتیبان شما آماده است. آن را در Files نگه دارید یا به یک جای امن شریک سازید.';
 
   @override
-  String get accountsSyncShareBackupAction => 'Share backup';
+  String get accountsSyncShareBackupAction => 'شریک‌سازی پشتیبان';
 
   @override
   String get accountsSyncImportBackupPageSubtitle =>
@@ -60508,18 +61112,19 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get accountsSyncBackupPayloadHint => 'متن پشتیبان را اینجا قرار دهید';
 
   @override
-  String get accountsSyncImportChooseFileTitle => 'Choose backup file';
+  String get accountsSyncImportChooseFileTitle => 'فایل پشتیبان را انتخاب کنید';
 
   @override
   String get accountsSyncImportChooseFileSubtitle =>
-      'Select a backup file before anything is restored.';
+      'پیش از آن‌که چیزی بازیابی شود، یک فایل پشتیبان انتخاب کنید.';
 
   @override
   String get accountsSyncImportFileLoadedSubtitle =>
-      'Backup file loaded. Review it before restoring.';
+      'فایل پشتیبان بارگذاری شد. پیش از بازیابی آن را مرور کنید.';
 
   @override
-  String get accountsSyncChooseBackupFileAction => 'Choose backup file';
+  String get accountsSyncChooseBackupFileAction =>
+      'فایل پشتیبان را انتخاب کنید';
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'محتوای رمزگذاری‌شده';
@@ -60535,73 +61140,73 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get accountsSyncBackupImported => 'پشتیبان درون‌ریزی شد';
 
   @override
-  String get accountsSyncImportModeMerge => 'Merge';
+  String get accountsSyncImportModeMerge => 'ادغام';
 
   @override
-  String get accountsSyncImportModeReplace => 'Replace';
+  String get accountsSyncImportModeReplace => 'جایگزینی';
 
   @override
-  String get accountsSyncImportPreviewTitle => 'Import preview';
+  String get accountsSyncImportPreviewTitle => 'پیش‌نمایش درون‌ریزی';
 
   @override
   String accountsSyncImportPreviewSummary(int profiles, int accounts) {
     String _temp0 = intl.Intl.pluralLogic(
       profiles,
       locale: localeName,
-      other: '$profiles profiles',
-      one: '1 profile',
-      zero: '0 profiles',
+      other: '$profiles پروفایل',
+      one: '1 پروفایل',
+      zero: '0 پروفایل',
     );
     String _temp1 = intl.Intl.pluralLogic(
       accounts,
       locale: localeName,
-      other: '$accounts accounts',
-      one: '1 account',
-      zero: '0 accounts',
+      other: '$accounts حساب',
+      one: '1 حساب',
+      zero: '0 حساب',
     );
     return '$_temp0 • $_temp1';
   }
 
   @override
   String accountsSyncImportPreviewModeValue(String mode) {
-    return 'Restore mode: $mode';
+    return 'حالت بازیابی: $mode';
   }
 
   @override
   String accountsSyncImportPreviewExportedAtValue(String time) {
-    return 'Exported $time';
+    return 'برون‌ریزی‌شده در $time';
   }
 
   @override
-  String get accountsSyncImportConfirmTitle => 'Confirm restore';
+  String get accountsSyncImportConfirmTitle => 'بازیابی را تأیید کنید';
 
   @override
   String get accountsSyncImportConfirmMergeBody =>
-      'This will merge the imported backup with your current local data. Existing local progress will be kept where possible, and a safety snapshot will be created first.';
+      'این کار پشتیبان درون‌ریزی‌شده را با داده محلی فعلی شما ادغام می‌کند. تا جای ممکن پیشرفت محلی موجود حفظ می‌شود و نخست یک عکس فوری ایمنی ساخته خواهد شد.';
 
   @override
   String get accountsSyncImportConfirmReplaceBody =>
-      'This will replace the current local set with the imported backup. A safety snapshot will be created first so you can recover if needed.';
+      'این کار مجموعه محلی فعلی را با پشتیبان درون‌ریزی‌شده جایگزین می‌کند. نخست یک عکس فوری ایمنی ساخته می‌شود تا اگر لازم شد بتوانید آن را بازیابی کنید.';
 
   @override
   String get accountsSyncImportErrorEmpty =>
-      'Choose a backup file before restoring.';
+      'پیش از بازیابی یک فایل پشتیبان انتخاب کنید.';
 
   @override
   String get accountsSyncImportErrorInvalid =>
-      'This backup file could not be validated safely.';
+      'اعتبارسنجی ایمن این فایل پشتیبان ممکن نشد.';
 
   @override
   String get accountsSyncImportErrorFutureSchema =>
-      'This backup was created by a newer version of the app and cannot be restored safely yet.';
+      'این پشتیبان با نسخه تازه‌تری از برنامه ساخته شده است و هنوز نمی‌توان آن را به‌گونه امن بازیابی کرد.';
 
   @override
   String get accountsSyncImportWarningStructuredDataMissing =>
-      'Some structured progress data is missing from this backup, so part of the journey may not restore.';
+      'بخشی از داده ساخت‌یافته پیشرفت در این پشتیبان موجود نیست، بنابراین ممکن است بخشی از مسیر بازیابی نشود.';
 
   @override
   String get accountsSyncImportFailedResult =>
-      'Restore could not be completed. Your current local data was preserved.';
+      'بازیابی کامل نشد. داده محلی فعلی شما حفظ شد.';
 
   @override
   String get accountsSyncRestoreBackupAction => 'بازیابی پشتیبان';
@@ -60660,7 +61265,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String accountsSyncRecentSyncEventBullet(String event) {
-    return '• $event';
+    return '• رویداد: $event';
   }
 
   @override
@@ -60737,7 +61342,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get accountsSyncExperienceModeLearningFocused => 'متمرکز بر یادگیری';
 
   @override
-  String get accountsSyncExperienceModePrayerFocused => 'Salah focused';
+  String get accountsSyncExperienceModePrayerFocused => 'متمرکز بر نماز';
 
   @override
   String get accountsSyncDevicePlatformIPhone => 'آیفون';
@@ -65171,235 +65776,238 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
-  String get accessibilityReminderHelp => 'Reminder help';
+  String get accessibilityReminderHelp => 'راهنمای یادآور';
 
   @override
-  String get accessibilityIncreaseDhikrCount => 'Increase dhikr count';
+  String get accessibilityIncreaseDhikrCount => 'شمار ذکر را افزایش بده';
 
   @override
-  String get accessibilityJumpToCurrentSalah => 'Jump to current salah';
+  String get accessibilityJumpToCurrentSalah => 'به نماز فعلی برو';
 
   @override
-  String get accessibilityReadQadaRule => 'Read qada rule';
+  String get accessibilityReadQadaRule => 'حکم قضای نماز را بخوان';
 
   @override
-  String get accessibilityRefreshCamera => 'Refresh camera';
+  String get accessibilityRefreshCamera => 'دوربین را تازه‌سازی کن';
 
   @override
   String get accessibilityCreationCategoryNotDetected =>
-      'No stable creation category detected yet';
+      'هنوز هیچ دستهٔ پایداری از نشانه‌های آفرینش شناسایی نشده است';
 
   @override
   String accessibilityCreationCategoryDetected(String category) {
-    return '$category detected. Open reflection card.';
+    return '$category شناسایی شد. کارت تأمل را باز کن.';
   }
 
   @override
-  String get accessibilityRemoveFavorite => 'Remove favorite';
+  String get accessibilityRemoveFavorite => 'از علاقه‌مندی‌ها بردار';
 
   @override
-  String get accessibilitySaveFavorite => 'Save favorite';
+  String get accessibilitySaveFavorite => 'در علاقه‌مندی‌ها ذخیره کن';
 
   @override
-  String get accessibilityDeleteObservation => 'Delete observation';
+  String get accessibilityDeleteObservation => 'مشاهده را حذف کن';
 
   @override
-  String get accessibilityRemoveFromSaved => 'Remove from saved';
+  String get accessibilityRemoveFromSaved => 'از ذخیره‌شده‌ها بردار';
 
   @override
-  String get accessibilitySaveHadith => 'Save hadith';
+  String get accessibilitySaveHadith => 'حدیث را ذخیره کن';
 
   @override
-  String get accessibilityPlayAudio => 'Play audio';
+  String get accessibilityPlayAudio => 'صوت را پخش کن';
 
   @override
-  String get accessibilityAudioNotAddedYet => 'Audio not added yet';
+  String get accessibilityAudioNotAddedYet => 'صوت هنوز افزوده نشده است';
 
   @override
-  String get accessibilitySavedForReview => 'Saved for review';
+  String get accessibilitySavedForReview => 'برای مرور ذخیره شد';
 
   @override
-  String get accessibilityReviewLater => 'Review later';
+  String get accessibilityReviewLater => 'بعداً مرور کن';
 
   @override
-  String get accessibilityLearningSettings => 'Learning settings';
+  String get accessibilityLearningSettings => 'تنظیمات یادگیری';
 
   @override
-  String get accessibilitySourcesAndLicensing => 'Sources and licensing';
+  String get accessibilitySourcesAndLicensing => 'منابع و مجوزها';
 
   @override
-  String get accessibilityClosePlayer => 'Close player';
+  String get accessibilityClosePlayer => 'پخش‌کننده را ببند';
 
   @override
-  String get accessibilityBack15Seconds => 'Back 15 seconds';
+  String get accessibilityBack15Seconds => '۱۵ ثانیه به عقب برو';
 
   @override
-  String get accessibilityForward15Seconds => 'Forward 15 seconds';
+  String get accessibilityForward15Seconds => '۱۵ ثانیه به جلو برو';
 
   @override
-  String get accessibilityPreparingPlayback => 'Preparing playback';
+  String get accessibilityPreparingPlayback => 'در حال آماده‌سازی پخش';
 
   @override
-  String get accessibilityPause => 'Pause';
+  String get accessibilityPause => 'مکث';
 
   @override
-  String get accessibilityPlay => 'Play';
+  String get accessibilityPlay => 'پخش';
 
   @override
-  String get accessibilityRemoveFromFavorites => 'Remove from favorites';
+  String get accessibilityRemoveFromFavorites => 'از علاقه‌مندی‌ها حذف کن';
 
   @override
-  String get accessibilitySaveNameToFavorites => 'Save name to favorites';
+  String get accessibilitySaveNameToFavorites =>
+      'نام را در علاقه‌مندی‌ها ذخیره کن';
 
   @override
-  String get creationExplorerTitle => 'Creation Explorer';
+  String get creationExplorerTitle => 'سپړونکی د مخلوقاتو';
 
   @override
   String get creationExplorerSubtitle =>
-      'Observe the world, notice a sign, and connect it with Qur’anic reflection.';
+      'نړۍ ته وګورئ، یوه نښه ووینئ، او هغه د قرآني تأمل سره وتړئ.';
 
   @override
-  String get creationExplorerMetricObservations => 'Observations';
+  String get creationExplorerMetricObservations => 'کتنې';
 
   @override
-  String get creationExplorerMetricCategories => 'Categories';
+  String get creationExplorerMetricCategories => 'کټګورۍ';
 
   @override
-  String get creationExplorerMetricVerses => 'Verses';
+  String get creationExplorerMetricVerses => 'آیتونه';
 
   @override
-  String get creationExplorerMetricCamera => 'Camera';
+  String get creationExplorerMetricCamera => 'کمره';
 
   @override
-  String get creationExplorerMetricCameraDeviceOnly => 'Device only';
+  String get creationExplorerMetricCameraDeviceOnly => 'یوازې په آله کې';
 
   @override
-  String get creationExplorerMetricCameraOff => 'Off';
+  String get creationExplorerMetricCameraOff => 'بنده';
 
   @override
-  String get creationExplorerMetricCameraReady => 'Ready';
+  String get creationExplorerMetricCameraReady => 'چمتو';
 
   @override
-  String get creationExplorerMetricCameraPending => 'Pending';
+  String get creationExplorerMetricCameraPending => 'په تمه';
 
   @override
-  String get creationExplorerTodaysChallenge => 'Today’s challenge';
+  String get creationExplorerTodaysChallenge => 'د نن ننګونه';
 
   @override
-  String get creationExplorerHistoryAction => 'History';
+  String get creationExplorerHistoryAction => 'تاریخچه';
 
   @override
-  String get creationExplorerOpenAction => 'Open';
+  String get creationExplorerOpenAction => 'پرانیستل';
 
   @override
   String get creationExplorerDeviceOnlyTitle =>
-      'Image labeling runs on device only';
+      'د انځور پېژندنه یوازې په آله کې چلېږي';
 
   @override
   String get creationExplorerDeviceOnlyBody =>
-      'Use a physical iPhone or iPad to explore with the camera.';
+      'د کمرې له لارې د سپړنې لپاره یو ریښتینی iPhone یا iPad وکاروئ.';
 
   @override
-  String get creationExplorerCameraAccessTitle => 'Camera access is needed';
+  String get creationExplorerCameraAccessTitle => 'د کمرې لاسرسی پکار دی';
 
   @override
   String get creationExplorerCameraAccessBody =>
-      'Creation Explorer runs entirely on-device. Camera access lets the app detect broad categories like birds, plants, water, and sky without uploading images.';
+      'سپړونکی د مخلوقاتو په بشپړه توګه په خپله آله کې چلېږي. د کمرې لاسرسی اپ ته اجازه ورکوي چې انځورونه له پورته کولو پرته د مرغانو، بوټو، اوبو او آسمان په څېر عمومي کټګورۍ وپېژني.';
 
   @override
-  String get creationExplorerAllowCameraAction => 'Allow camera';
+  String get creationExplorerAllowCameraAction => 'کمرې ته اجازه ورکړئ';
 
   @override
-  String get creationExplorerOpenSettingsAction => 'Open settings';
+  String get creationExplorerOpenSettingsAction => 'تنظیمات پرانیزئ';
 
   @override
-  String get creationExplorerCameraUnavailable => 'Camera unavailable';
+  String get creationExplorerCameraUnavailable => 'کمره نه ده شته';
 
   @override
   String get creationExplorerCameraUnavailableBody =>
-      'Creation Explorer could not start the camera right now.';
+      'سپړونکی د مخلوقاتو اوس کمره نشي چالانولای.';
 
   @override
-  String get creationExplorerRetryAction => 'Retry';
+  String get creationExplorerRetryAction => 'بیا هڅه';
 
   @override
-  String get creationExplorerOnDeviceDetection => 'On-device detection';
+  String get creationExplorerOnDeviceDetection => 'په آله کې پېژندنه';
 
   @override
   String get creationExplorerDetectionPromptTitle =>
-      'Look at a plant, animal, bird, or landscape.';
+      'یوه بوټي، حیوان، مرغه یا منظره ته وګورئ.';
 
   @override
   String get creationExplorerDetectionPromptSubtitle =>
-      'Labels appear only when the signal is stable.';
+      'نښې یوازې هغه وخت ښکاري چې سیګنال ثابت وي.';
 
   @override
-  String get creationExplorerTapToReflect => 'Tap to reflect';
+  String get creationExplorerTapToReflect => 'د تأمل لپاره ټک وکړئ';
 
   @override
-  String get creationExplorerHowItWorksTitle => 'How it works';
+  String get creationExplorerHowItWorksTitle => 'څنګه کار کوي';
 
   @override
   String get creationExplorerHowItWorksBody =>
-      'Creation Explorer uses on-device labeling to detect broad categories only. It waits for a stable signal before showing a label, then offers a Qur’anic reflection connected to what you are seeing.';
+      'سپړونکی د مخلوقاتو د عمومي کټګوریو د پېژندلو لپاره یوازې په آله کې برچسب‌ګذاري کاروي. تر هغې صبر کوي چې سیګنال ثابت شي، بیا یو برچسب ښکاره کوي او وروسته د هغه څه سره تړلی قرآني تأمل وړاندې کوي چې تاسو یې وینئ.';
 
   @override
-  String get creationExplorerCurrentDetectedSign => 'Current detected sign';
+  String get creationExplorerCurrentDetectedSign => 'اوسنۍ پېژندل شوې نښه';
 
   @override
-  String get creationExplorerReflectAction => 'Reflect';
+  String get creationExplorerReflectAction => 'تأمل';
 
   @override
-  String get creationExplorerAlsoExploreSkyTitle => 'Also explore the sky';
+  String get creationExplorerAlsoExploreSkyTitle => 'آسمان هم وپلټئ';
 
   @override
   String get creationExplorerAlsoExploreSkySubtitle =>
-      'Creation Explorer and Sky Explorer are complementary: one notices what is around you, the other what is above you.';
+      'سپړونکی د مخلوقاتو او د آسمان سپړونکی یو بل بشپړوي: یو هغه څه ویني چې ستاسو شاوخوا دي او بل هغه څه چې ستاسو له پاسه دي.';
 
   @override
-  String get creationExplorerSkyExplorerAction => 'Sky Explorer';
+  String get creationExplorerSkyExplorerAction => 'د آسمان سپړونکی';
 
   @override
-  String get creationExplorerNoObservationsTitle => 'No observations saved yet';
+  String get creationExplorerNoObservationsTitle =>
+      'تر اوسه هېڅ کتنه نه ده خوندي شوې';
 
   @override
   String get creationExplorerNoObservationsBody =>
-      'Save a moment from the camera view and it will appear here with its verse, category, and your reflection.';
+      'د کمرې له لید څخه یوه شېبه خوندي کړئ، نو دلته به له آیت، کټګورۍ او ستاسو له تأمل سره ښکاره شي.';
 
   @override
-  String get creationExplorerOpenCameraExploreAction => 'Open camera explore';
+  String get creationExplorerOpenCameraExploreAction => 'د کمرې سپړنه پرانیزئ';
 
   @override
-  String get creationExplorerYourReflectionLabel => 'Your reflection';
+  String get creationExplorerYourReflectionLabel => 'ستاسو تأمل';
 
   @override
   String get creationExplorerYourReflectionHint =>
-      'What did you notice? What did it remind you of?';
+      'تاسو څه ولیدل؟ دا مو د څه شي یاد ته راوست؟';
 
   @override
-  String get creationExplorerCloseAction => 'Close';
+  String get creationExplorerCloseAction => 'بندول';
 
   @override
-  String get creationExplorerSaveObservationAction => 'Save observation';
+  String get creationExplorerSaveObservationAction => 'کتنه خوندي کړئ';
 
   @override
-  String get creationExplorerNoReflectionSaved => 'No reflection saved yet.';
+  String get creationExplorerNoReflectionSaved =>
+      'تر اوسه هېڅ تأمل نه دی خوندي شوی.';
 
   @override
-  String get creationExplorerEditReflectionAction => 'Edit reflection';
+  String get creationExplorerEditReflectionAction => 'تأمل سمول';
 
   @override
   String get creationExplorerEditReflectionHint =>
-      'Write what this observation reminded you of.';
+      'ولیکئ چې دې کتنې تاسو د څه شي یاد ته راوستئ.';
 
   @override
-  String get creationExplorerTabCamera => 'Camera';
+  String get creationExplorerTabCamera => 'کمره';
 
   @override
-  String get creationExplorerTabDiscover => 'Discover';
+  String get creationExplorerTabDiscover => 'سپړل';
 
   @override
-  String get creationExplorerTabJournal => 'Journal';
+  String get creationExplorerTabJournal => 'یادښتونه';
 
   @override
   String get fastingSectionTitle => 'روزه';
@@ -73430,70 +74038,69 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Return to today\'s ayah and continue your reflection.';
 
   @override
-  String get quranDailyCompanionTitle => 'Daily Qur\'an companion';
+  String get quranDailyCompanionTitle => 'همنشین قرآن روزانه';
 
   @override
   String get quranDailyCompanionSubtitle =>
-      'One ayah, one meaning cue, one small next step for today.';
+      'یک آیه، یکی به معنای نشانه، یک قدم کوچک بعدی برای امروز.';
 
   @override
   String get quranDailyCompanionCardSubtitle =>
-      'Return to today\'s ayah with one clear reflection and one calm next step.';
+      'با یک تأمل روشن و یک قدم بعدی آرام به آیه امروز بازگرد.';
 
   @override
-  String get quranDailyCompanionOpenAction => 'Open companion';
+  String get quranDailyCompanionOpenAction => 'همدم باز';
 
   @override
-  String get quranDailyCompanionTodayTitle => 'Today\'s ayah';
+  String get quranDailyCompanionTodayTitle => 'آیه امروز';
 
   @override
-  String get quranDailyCompanionMeaningTitle => 'Meaning and reflection';
+  String get quranDailyCompanionMeaningTitle => 'معنا و تأمل';
 
   @override
-  String get quranDailyCompanionThemeTitle => 'Theme connection';
+  String get quranDailyCompanionThemeTitle => 'اتصال تم';
 
   @override
-  String get quranDailyCompanionRelatedInsightTitle => 'Related insight';
+  String get quranDailyCompanionRelatedInsightTitle => 'بینش مرتبط';
 
   @override
-  String get quranDailyCompanionJourneyTitle => 'Journey connection';
+  String get quranDailyCompanionJourneyTitle => 'اتصال سفر';
 
   @override
-  String get quranDailyCompanionJourneyAlignedLabel =>
-      'Aligned with your journey';
+  String get quranDailyCompanionJourneyAlignedLabel => 'هماهنگ با سفر شما';
 
   @override
   String quranDailyCompanionJourneyBody(Object theme) {
-    return 'Today\'s ayah follows your current journey theme: $theme.';
+    return 'آیه امروز از موضوع سفر فعلی شما پیروی می کند: $theme.';
   }
 
   @override
   String get quranDailyCompanionJourneyBodyNoTheme =>
-      'Today\'s ayah follows the strongest Qur\'anic connection for the journey stage you are already working through.';
+      'آیه امروز قوی ترین ارتباط قرآنی را برای مرحله سفری که قبلاً در حال انجام آن هستید دنبال می کند.';
 
   @override
-  String get quranDailyCompanionJourneyAction => 'Continue journey';
+  String get quranDailyCompanionJourneyAction => 'ادامه سفر';
 
   @override
-  String get quranDailyCompanionTakeawayTitle => 'Practical takeaway';
+  String get quranDailyCompanionTakeawayTitle => 'غذای آماده عملی';
 
   @override
-  String get quranDailyCompanionContinueTitle => 'Continue today';
+  String get quranDailyCompanionContinueTitle => 'امروز ادامه دهید';
 
   @override
-  String get quranDailyCompanionOpenReaderAction => 'Open full reader';
+  String get quranDailyCompanionOpenReaderAction => 'خواننده کامل را باز کنید';
 
   @override
-  String get quranDailyCompanionOpenThemeAction => 'Explore theme';
+  String get quranDailyCompanionOpenThemeAction => 'کاوش موضوع';
 
   @override
-  String get quranDailyCompanionReviewMemoryAction => 'Review memorization';
+  String get quranDailyCompanionReviewMemoryAction => 'مرور حفظ کردن';
 
   @override
-  String get quranDailyCompanionPathAction => 'Start path';
+  String get quranDailyCompanionPathAction => 'مسیر شروع';
 
   @override
-  String get quranDailyCompanionMemorizedLabel => 'Memorized';
+  String get quranDailyCompanionMemorizedLabel => 'حفظ شد';
 
   @override
   String get quranUserIntentTitle => 'Your Qur\'an focus';
@@ -76103,43 +76710,43 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranReferenceDetailReasonKnowledgeQuran =>
-      'This is a direct Qur\'anic connection to the same meaning or passage.';
+      'این ارتباط مستقیم قرآنی با همان معنا یا قطعه است.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeHadith =>
-      'This hadith helps explain or reinforce a meaning carried in this ayah.';
+      'این حدیث به توضیح یا تقویت معنایی که در این آیه آمده است کمک می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeTheme =>
-      'This theme highlights a recurring Qur\'anic idea connected to this ayah.';
+      'این مضمون یک ایده قرآنی مکرر مرتبط با این آیه را برجسته می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeCharacter =>
-      'This character lesson applies a value or behavior connected to this ayah.';
+      'این درس شخصیت یک ارزش یا رفتار مرتبط با این آیه را اعمال می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSeerah =>
-      'This Seerah context helps place the ayah in a prophetic or historical frame.';
+      'این زمینه سیره به قرار دادن آیه در یک چارچوب نبوی یا تاریخی کمک می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeJourney =>
-      'This guided lesson revisits a connected Qur\'anic idea through a structured learning path.';
+      'این درس هدایت‌شده یک ایده قرآنی مرتبط را از طریق یک مسیر یادگیری ساختاریافته بازبینی می‌کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSignsWorld =>
-      'This signs lesson reflects on the created world in a way connected to this ayah.';
+      'این درس نشانه ها به گونه ای در ارتباط با این آیه بر جهان خلقت منعکس می شود.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeReflection =>
-      'This reflective insight helps the ayah open into contemplation, interpretation, or practical thought.';
+      'این بینش انعکاسی به آیه کمک می کند تا به تفکر، تفسیر یا تفکر عملی باز شود.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeWorship =>
-      'This worship lesson strengthens a devotional practice connected to this ayah.';
+      'این درس عبادی یک عمل عبادی مرتبط با این آیه را تقویت می کند.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeLifeLesson =>
-      'This life lesson applies the ayah through broader daily guidance.';
+      'این درس زندگی، آیه را از طریق راهنمایی روزانه گسترده تر به کار می برد.';
 
   @override
   String get arabicLearningPlaybackModeLabel => 'Playback';
@@ -77766,39 +78373,39 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'You can change this anytime in Settings.';
 
   @override
-  String get onboardingBeginJourneyAction => 'Begin your journey';
+  String get onboardingBeginJourneyAction => 'سفر خود را آغاز کنید';
 
   @override
-  String get onboardingContinueAction => 'Continue';
+  String get onboardingContinueAction => 'ادامه';
 
   @override
   String get onboardingShahadaMeaningBody =>
-      'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.';
+      'گواهی می‌دهم که هیچ معبودی جز الله نیست،\nو گواهی می‌دهم که محمد ﷺ فرستاده الله است.';
 
   @override
-  String get onboardingBismillahTransliteration => 'Bismillahir-Rahmanir-Rahim';
+  String get onboardingBismillahTransliteration => 'بسم الله الرحمن الرحیم';
 
   @override
   String get onboardingBismillahMeaningBody =>
-      'In the name of Allah, the Most Compassionate, the Most Merciful.';
+      'به نام الله، بخشاینده‌ترین، مهربان‌ترین.';
 
   @override
   String get onboardingOpeningBlessingBody =>
-      'May this journey bring khayr, consistency, and closeness to Allah.';
+      'امید که این مسیر برای شما خیر، پایداری و نزدیکی به الله بیاورد.';
 
   @override
-  String get onboardingLanguageTitle => 'Choose your language';
+  String get onboardingLanguageTitle => 'زبان خود را انتخاب کنید';
 
   @override
   String get onboardingLanguageSubtitle =>
-      'Select the language you would like to use in the app.';
+      'زبانی را انتخاب کنید که می‌خواهید در برنامه از آن استفاده کنید.';
 
   @override
-  String get onboardingAgeRangeTitle => 'Which age range are you in?';
+  String get onboardingAgeRangeTitle => 'در کدام بازه سنی قرار دارید؟';
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'This helps us keep examples and recommendations relevant to your stage of life.';
+      'این کمک می‌کند مثال‌ها و پیشنهادها با مرحله زندگی شما متناسب بماند.';
 
   @override
   String get onboardingAgeRangeUnder18 => 'Under 18';
@@ -77820,400 +78427,389 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get onboardingExperienceTitle =>
-      'Which description fits your journey with Islam best?';
+      'کدام گزینه مسیر شما با اسلام را بهتر توصیف می‌کند؟';
 
   @override
   String get onboardingExperienceSubtitle =>
-      'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.';
+      'از این برای تنظیم لحن آغاز، سرعت و ژرفای مناسب‌تر یادگیری برای تجربه شما استفاده می‌کنیم. انتخاب شما ذخیره می‌شود و در سراسر برنامه برای شکل‌دادن راهنمایی‌ها به کار می‌رود.';
 
   @override
-  String get onboardingExperienceExploring => 'Exploring Islam';
+  String get onboardingExperienceExploring => 'در حال آشنایی با اسلام';
 
   @override
-  String get onboardingExperienceNewToIslam => 'New to Islam';
+  String get onboardingExperienceNewToIslam => 'تازه‌مسلمان';
 
   @override
   String get onboardingExperienceBornStillLearning =>
-      'Born Muslim, still learning';
+      'مسلمان‌زاده‌ام و هنوز در حال یادگیری هستم';
 
   @override
-  String get onboardingExperiencePracticingRegularly => 'Practicing regularly';
+  String get onboardingExperiencePracticingRegularly =>
+      'به‌گونه منظم عمل می‌کنم';
 
   @override
-  String get onboardingExperienceAdvanced => 'Experienced / advanced';
+  String get onboardingExperienceAdvanced => 'باتجربه / پیشرفته';
 
   @override
   String get onboardingSalahConsistencyTitle =>
-      'How consistent is your Salah currently?';
+      'در حال حاضر نماز شما چقدر منظم است؟';
 
   @override
   String get onboardingSalahConsistencySubtitle =>
-      'Choose the option that best reflects where you are right now.';
+      'گزینه‌ای را انتخاب کنید که بهترین بازتاب وضعیت فعلی شما باشد.';
 
   @override
-  String get onboardingSalahConsistencyAll => 'I pray all prayers consistently';
+  String get onboardingSalahConsistencyAll => 'همه نمازها را منظم می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencyMost => 'I pray most prayers';
+  String get onboardingSalahConsistencyMost => 'بیشتر نمازها را می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencySometimes => 'I pray sometimes';
+  String get onboardingSalahConsistencySometimes => 'گاهی نماز می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencyRarely => 'I rarely pray';
+  String get onboardingSalahConsistencyRarely => 'به‌ندرت نماز می‌خوانم';
 
   @override
-  String get onboardingSalahConsistencyJustStarted =>
-      'I am just getting started';
+  String get onboardingSalahConsistencyJustStarted => 'تازه شروع کرده‌ام';
 
   @override
-  String get onboardingPrayerMethodTitle => 'Salah time calculation method';
+  String get onboardingPrayerMethodTitle => 'روش محاسبه اوقات نماز';
 
   @override
   String get onboardingPrayerMethodSubtitle =>
-      'Choose how salah times should be calculated for your location.';
+      'انتخاب کنید اوقات نماز برای مکان شما چگونه محاسبه شود.';
 
   @override
-  String get onboardingPrayerMethodMuslimWorldLeague => 'Muslim World League';
+  String get onboardingPrayerMethodMuslimWorldLeague => 'لیگ جهانی مسلمانان';
 
   @override
-  String get onboardingPrayerMethodIsna =>
-      'Islamic Society of North America (ISNA)';
+  String get onboardingPrayerMethodIsna => 'انجمن اسلامی آمریکای شمالی (ISNA)';
 
   @override
-  String get onboardingPrayerMethodUmmAlQura => 'Umm Al-Qura University';
+  String get onboardingPrayerMethodUmmAlQura => 'دانشگاه ام‌القری';
 
   @override
-  String get onboardingPrayerMethodEgyptian =>
-      'Egyptian General Authority of Survey';
+  String get onboardingPrayerMethodEgyptian => 'هیئت عمومی نقشه‌برداری مصر';
 
   @override
-  String get onboardingPrayerMethodKarachi =>
-      'University of Islamic Sciences, Karachi';
+  String get onboardingPrayerMethodKarachi => 'دانشگاه علوم اسلامی کراچی';
 
   @override
-  String get onboardingPrayerMethodMoonsighting => 'Moonsighting Committee';
+  String get onboardingPrayerMethodMoonsighting => 'کمیته رؤیت هلال';
 
   @override
-  String get onboardingMadhabTitle => 'Which Madhab do you follow?';
+  String get onboardingMadhabTitle => 'از کدام مذهب پیروی می‌کنید؟';
 
   @override
   String get onboardingMadhabSubtitle =>
-      'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.';
+      'این بر محاسبه وقت نماز عصر اثر می‌گذارد. اگر مطمئن نیستید، می‌توانید گزینه پیش‌فرض را نگه دارید.';
 
   @override
-  String get onboardingMadhabHanafi => 'Hanafi';
+  String get onboardingMadhabHanafi => 'حنفی';
 
   @override
-  String get onboardingMadhabShafii => 'Shafi\'i';
+  String get onboardingMadhabShafii => 'شافعی';
 
   @override
-  String get onboardingMadhabMaliki => 'Maliki';
+  String get onboardingMadhabMaliki => 'مالکی';
 
   @override
-  String get onboardingMadhabHanbali => 'Hanbali';
+  String get onboardingMadhabHanbali => 'حنبلی';
 
   @override
   String get onboardingGrowthInterestsTitle =>
-      'What would you like to grow in?';
+      'دوست دارید در چه بخش‌هایی رشد کنید؟';
 
   @override
   String get onboardingGrowthInterestsSubtitle =>
-      'Select the areas you would like Path of Nur to help you with. You can choose multiple.';
+      'بخش‌هایی را انتخاب کنید که می‌خواهید Path of Nur در آن‌ها به شما کمک کند. می‌توانید چند مورد را برگزینید.';
 
   @override
   String get onboardingArabicReadModeTitle =>
-      'What is your Qur’an reading preference?';
+      'ترجیح شما برای خواندن قرآن چیست؟';
 
   @override
   String get onboardingArabicReadModeSubtitle =>
-      'Choose the reading setup that feels most comfortable for you when reading the Qur’an.';
+      'چیدمان خواندن را انتخاب کنید که هنگام تلاوت قرآن برای شما راحت‌تر است.';
 
   @override
-  String get onboardingArabicReadModeNoArabicYet =>
-      'I do not know any Arabic yet';
+  String get onboardingArabicReadModeNoArabicYet => 'هنوز عربی نمی‌دانم';
 
   @override
-  String get onboardingArabicReadModeArabicOnly => 'Arabic only';
+  String get onboardingArabicReadModeArabicOnly => 'فقط عربی';
 
   @override
-  String get onboardingArabicReadModeArabicTransliteration =>
-      'Arabic + Transliteration';
+  String get onboardingArabicReadModeArabicTransliteration => 'عربی + آوانویسی';
 
   @override
-  String get onboardingArabicReadModeArabicTranslation =>
-      'Arabic + Translation';
+  String get onboardingArabicReadModeArabicTranslation => 'عربی + ترجمه';
 
   @override
   String get onboardingArabicReadModeArabicTransliterationTranslation =>
-      'Arabic + Transliteration + Translation';
+      'عربی + آوانویسی + ترجمه';
 
   @override
-  String get onboardingHarakatTitle => 'Harakat / pronunciation marks';
+  String get onboardingHarakatTitle => 'اعراب / نشانه‌های تلفظ';
 
   @override
-  String get onboardingHarakatFull => 'Full harakat';
+  String get onboardingHarakatFull => 'اعراب کامل';
 
   @override
-  String get onboardingHarakatMinimal => 'Minimal harakat';
+  String get onboardingHarakatMinimal => 'حداقل اعراب';
 
   @override
-  String get onboardingHarakatNone => 'None';
+  String get onboardingHarakatNone => 'بدون اعراب';
 
   @override
-  String get onboardingTextSizeTitle => 'Text size';
+  String get onboardingTextSizeTitle => 'اندازه متن';
 
   @override
-  String get onboardingRemindersTitle => 'How would you like to be reminded?';
+  String get onboardingRemindersTitle => 'دوست دارید چگونه به شما یادآوری شود؟';
 
   @override
   String get onboardingRemindersSubtitle =>
-      'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.';
+      'یک تنظیم سبک یادآوری برای نماز و برنامه‌های روزانه انتخاب کنید. بعداً می‌توانید همه‌چیز را دقیق‌تر تنظیم کنید.';
 
   @override
-  String get onboardingReminderNotificationOnly => 'Notification only';
+  String get onboardingReminderNotificationOnly => 'فقط اعلان';
 
   @override
-  String get onboardingReminderAdhanNotification => 'Adhan notification';
+  String get onboardingReminderAdhanNotification => 'اعلان با اذان';
 
   @override
-  String get onboardingDailyQuranReminderTitle =>
-      'Daily Qur\'an reading reminder';
+  String get onboardingDailyQuranReminderTitle => 'یادآور روزانه خواندن قرآن';
 
   @override
-  String get onboardingDailyLessonReminderTitle => 'Daily lesson reminder';
+  String get onboardingDailyLessonReminderTitle => 'یادآور درس روزانه';
 
   @override
-  String get onboardingTrackingTitle => 'What would you like to keep in view?';
+  String get onboardingTrackingTitle => 'دوست دارید چه چیزهایی در دید بماند؟';
 
   @override
   String get onboardingTrackingSubtitle =>
-      'Pick the areas you would like Path of Nur to gently keep in view as you grow. You can choose multiple.';
+      'بخش‌هایی را انتخاب کنید که می‌خواهید Path of Nur در مسیر رشد شما با نرمی در دید نگه دارد. می‌توانید چند مورد را برگزینید.';
 
   @override
-  String get onboardingFamilyTitle => 'Grow together with family';
+  String get onboardingFamilyTitle => 'با خانواده یک‌جا رشد کنید';
 
   @override
   String get onboardingFamilySubtitle =>
-      'Path of Nur can support individual journeys while also helping families grow together.';
+      'Path of Nur می‌تواند از مسیرهای فردی پشتیبانی کند و در عین حال به خانواده‌ها کمک کند تا باهم رشد کنند.';
 
   @override
-  String get onboardingFamilyProfilesTitle => 'Family profiles';
+  String get onboardingFamilyProfilesTitle => 'پروفایل‌های خانواده';
 
   @override
   String get onboardingFamilyProfilesSubtitle =>
-      'Create profiles for family members from the Profiles page.';
+      'از صفحه پروفایل‌ها برای اعضای خانواده پروفایل بسازید.';
 
   @override
   String get onboardingFamilyPrivateJourneysTitle =>
-      'Private journeys for each member';
+      'مسیرهای خصوصی برای هر عضو';
 
   @override
   String get onboardingFamilyPrivateJourneysSubtitle =>
-      'Each profile can keep separate progress and reminders.';
+      'هر پروفایل می‌تواند پیشرفت و یادآورهای جداگانه خود را نگه دارد.';
 
   @override
-  String get onboardingFamilyAgeAppropriateTitle => 'Age-appropriate learning';
+  String get onboardingFamilyAgeAppropriateTitle => 'یادگیری متناسب با سن';
 
   @override
   String get onboardingFamilyAgeAppropriateSubtitle =>
-      'Content can adapt to stage and experience level.';
+      'محتوا می‌تواند با مرحله سنی و سطح تجربه سازگار شود.';
 
   @override
-  String get onboardingFamilySharedGrowthTitle =>
-      'Shared encouragement and growth';
+  String get onboardingFamilySharedGrowthTitle => 'تشویق و رشد مشترک';
 
   @override
   String get onboardingFamilySharedGrowthSubtitle =>
-      'Build consistency together over time.';
+      'در گذر زمان با هم پایداری بسازید.';
 
   @override
-  String get onboardingDhikrFeedbackTitle => 'Dhikr counter feedback';
+  String get onboardingDhikrFeedbackTitle => 'بازخورد شمارنده ذکر';
 
   @override
   String get onboardingDhikrFeedbackSubtitle =>
-      'Choose how the dhikr counter should respond when you tap.';
+      'انتخاب کنید شمارنده ذکر هنگام لمس چگونه پاسخ دهد.';
 
   @override
-  String get onboardingDhikrHapticTitle => 'Haptic feedback';
+  String get onboardingDhikrHapticTitle => 'بازخورد لرزشی';
 
   @override
-  String get onboardingOptionOff => 'Off';
+  String get onboardingOptionOff => 'خاموش';
 
   @override
-  String get onboardingOptionLight => 'Light';
+  String get onboardingOptionLight => 'کم';
 
   @override
-  String get onboardingOptionMedium => 'Medium';
+  String get onboardingOptionMedium => 'متوسط';
 
   @override
-  String get onboardingOptionStrong => 'Strong';
+  String get onboardingOptionStrong => 'زیاد';
 
   @override
-  String get onboardingDhikrSoundTitle => 'Sound feedback';
+  String get onboardingDhikrSoundTitle => 'بازخورد صوتی';
 
   @override
-  String get onboardingDhikrSoundSoftClick => 'Soft click';
+  String get onboardingDhikrSoundSoftClick => 'کلیک نرم';
 
   @override
-  String get onboardingDhikrSoundTasbih => 'Tasbih bead sound';
+  String get onboardingDhikrSoundTasbih => 'صدای دانه‌های تسبیح';
 
   @override
-  String get onboardingDhikrVisualTitle => 'Visual feedback';
+  String get onboardingDhikrVisualTitle => 'بازخورد دیداری';
 
   @override
-  String get onboardingDhikrVisualSubtleGlow => 'Subtle glow';
+  String get onboardingDhikrVisualSubtleGlow => 'درخشش ملایم';
 
   @override
-  String get onboardingDhikrVisualPulseAnimation => 'Pulse animation';
+  String get onboardingDhikrVisualPulseAnimation => 'انیمیشن تپش';
 
   @override
   String onboardingDhikrPreviewCount(int count) {
-    return 'Preview count: $count';
+    return 'شمارش پیش‌نمایش: $count';
   }
 
   @override
-  String get onboardingIdentityTitle => 'How should we address you?';
+  String get onboardingIdentityTitle => 'دوست دارید چگونه شما را صدا کنیم؟';
 
   @override
   String get onboardingIdentitySubtitle =>
-      'Choose your greeting and add your name if you would like a more personal welcome.';
+      'سلام خود را انتخاب کنید و اگر خواستید برای خوش‌آمدگویی شخصی‌تر نام خود را نیز اضافه کنید.';
 
   @override
-  String get onboardingGreetingTitle => 'Greeting';
+  String get onboardingGreetingTitle => 'سلام';
 
   @override
-  String get onboardingNameTitle => 'Name';
+  String get onboardingNameTitle => 'نام';
 
   @override
-  String get onboardingOptionalHint => 'Optional';
+  String get onboardingOptionalHint => 'اختیاری';
 
   @override
   String get onboardingNameHelperBody =>
-      'Your name is optional and only used to personalize your experience within the app.';
+      'نام شما اختیاری است و فقط برای شخصی‌سازی تجربه شما در درون برنامه استفاده می‌شود.';
 
   @override
-  String get onboardingDefaultNameFallback => 'Friend';
+  String get onboardingDefaultNameFallback => 'دوست';
 
   @override
-  String get onboardingFocusSalahConsistency => 'Salah consistency';
+  String get onboardingFocusSalahConsistency => 'پایداری در نماز';
 
   @override
-  String get onboardingFocusSalahReminders => 'Salah reminders';
+  String get onboardingFocusSalahReminders => 'یادآورهای نماز';
 
   @override
-  String get onboardingFinalWelcomeTitle => 'Welcome to Path of Nur';
+  String get onboardingFinalWelcomeTitle => 'به Path of Nur خوش آمدید';
 
   @override
   String onboardingWelcomeGreeting(String name) {
-    return 'Assalamu Alaikum, $name.';
+    return 'السلام علیکم، $name.';
   }
 
   @override
   String get onboardingFinalWelcomeBody =>
-      'Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.';
+      'سفر شما با نیت آغاز می‌شود و با گام‌های کوچک و پیوسته رشد می‌کند. Path of Nur اینجاست تا از یادگیری، یاد خدا، تأمل و پیشرفت روزانه شما پشتیبانی کند.';
 
   @override
-  String get onboardingFocusListTitle => 'Your chosen focus areas:';
+  String get onboardingFocusListTitle => 'زمینه‌های تمرکز انتخاب‌شده شما:';
 
   @override
-  String get onboardingKnowledgeDuaMeaning =>
-      'My Lord, increase me in knowledge.';
+  String get onboardingKnowledgeDuaMeaning => 'پروردگارا، دانش مرا بیشتر کن.';
 
   @override
-  String get onboardingLanguageSystemDefault => 'System Default';
+  String get onboardingLanguageSystemDefault => 'پیش‌فرض سیستم';
 
   @override
-  String get onboardingLanguageEnglish => 'English';
+  String get onboardingLanguageEnglish => 'انگلیسی';
 
   @override
-  String get onboardingLanguageArabic => 'Arabic (العربية)';
+  String get onboardingLanguageArabic => 'عربی (العربية)';
 
   @override
-  String get onboardingLanguageGerman => 'German (Deutsch)';
+  String get onboardingLanguageGerman => 'آلمانی (Deutsch)';
 
   @override
-  String get onboardingLanguageUrdu => 'Urdu (اردو)';
+  String get onboardingLanguageUrdu => 'اردو (اردو)';
 
   @override
-  String get onboardingLanguageHindi => 'Hindi (हिंदी)';
+  String get onboardingLanguageHindi => 'هندی (हिंदी)';
 
   @override
-  String get onboardingLanguageIndonesian => 'Indonesian';
+  String get onboardingLanguageIndonesian => 'اندونیزیایی';
 
   @override
-  String get onboardingLanguageMalay => 'Malay';
+  String get onboardingLanguageMalay => 'مالایی';
 
   @override
-  String get onboardingLanguageTurkish => 'Turkish';
+  String get onboardingLanguageTurkish => 'ترکی';
 
   @override
-  String get onboardingLanguageBengali => 'Bengali';
+  String get onboardingLanguageBengali => 'بنگالی';
 
   @override
-  String get onboardingInterestUnderstandingQuran => 'Understanding the Qur’an';
+  String get onboardingInterestUnderstandingQuran => 'فهم قرآن';
 
   @override
-  String get onboardingInterestLearningHadith => 'Learning Hadith';
+  String get onboardingInterestLearningHadith => 'آموختن حدیث';
 
   @override
-  String get onboardingInterestStoriesProphets => 'Stories of the Prophets';
+  String get onboardingInterestStoriesProphets => 'داستان‌های پیامبران';
 
   @override
-  String get onboardingInterestStrengtheningSalah => 'Strengthening my Salah';
+  String get onboardingInterestStrengtheningSalah => 'تقویت نماز من';
 
   @override
-  String get onboardingInterestDhikrRemembrance => 'Dhikr and remembrance';
+  String get onboardingInterestDhikrRemembrance => 'ذکر و یاد الله';
 
   @override
-  String get onboardingInterestBetterHabits => 'Building better habits';
+  String get onboardingInterestBetterHabits => 'ساختن عادت‌های بهتر';
 
   @override
-  String get onboardingInterestWorldThroughQuran =>
-      'Learning about the world through the Qur’an';
+  String get onboardingInterestWorldThroughQuran => 'شناخت جهان از دریچه قرآن';
 
   @override
-  String get onboardingInterestIslamicKnowledge => 'Islamic knowledge';
+  String get onboardingInterestIslamicKnowledge => 'دانش اسلامی';
 
   @override
-  String get onboardingInterestPersonalGrowth =>
-      'Personal growth and discipline';
+  String get onboardingInterestPersonalGrowth => 'رشد شخصی و انضباط';
 
   @override
-  String get onboardingInterestDailyInspiration => 'Daily inspiration';
+  String get onboardingInterestDailyInspiration => 'الهام روزانه';
 
   @override
-  String get onboardingTrackingSalah => 'Salah tracking';
+  String get onboardingTrackingSalah => 'پیگیری نماز';
 
   @override
-  String get onboardingTrackingDhikr => 'Dhikr tracking';
+  String get onboardingTrackingDhikr => 'پیگیری ذکر';
 
   @override
-  String get onboardingTrackingQuranReading => 'Qur’an reading progress';
+  String get onboardingTrackingQuranReading => 'پیشرفت خواندن قرآن';
 
   @override
-  String get onboardingTrackingLearning => 'Learning progress';
+  String get onboardingTrackingLearning => 'پیشرفت یادگیری';
 
   @override
-  String get onboardingTrackingHabitBuilding => 'Habit building';
+  String get onboardingTrackingHabitBuilding => 'عادت‌سازی';
 
   @override
-  String get onboardingTrackingReflection => 'Reflection / journaling';
+  String get onboardingTrackingReflection => 'تأمل / یادداشت‌برداری';
 
   @override
-  String get onboardingSizeSmall => 'Small';
+  String get onboardingSizeSmall => 'کوچک';
 
   @override
-  String get onboardingSizeLarge => 'Large';
+  String get onboardingSizeLarge => 'بزرگ';
 
   @override
-  String get onboardingSizeExtraLarge => 'Extra large';
+  String get onboardingSizeExtraLarge => 'بسیار بزرگ';
 
   @override
-  String get accountsSyncTransportUnknown => 'Unknown transport';
+  String get accountsSyncTransportUnknown => 'ترانسپورت نامشخص';
 
   @override
-  String get accountsSyncStatusUnknown => 'Status not available';
+  String get accountsSyncStatusUnknown => 'وضعیت در دسترس نیست';
 
   @override
   String get worldLandingTitle => 'World & Creation';
@@ -78711,106 +79307,106 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get quranSummaryThemeParadiseAndHell => 'Paradise and Hell';
 
   @override
-  String get quranThemeDiscoveryIslandTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryIslandTitle => 'مرور بر اساس موضوع';
 
   @override
   String get quranThemeDiscoveryIslandSubtitle =>
-      'Explore the Qur\'an through themes like mercy, patience, prophets, guidance, and the hereafter.';
+      'قرآن را از طریق موضوعاتی مانند رحمت، صبر، پیامبران، هدایت و آخرت کاوش کنید.';
 
   @override
-  String get quranThemeDiscoveryPageTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryPageTitle => 'مرور بر اساس موضوع';
 
   @override
   String get quranThemeDiscoveryPageSubtitle =>
-      'Discover the Qur\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.';
+      'قرآن را از طریق مضامین تنظیم شده، سوره های مرتبط، لنگرهای کلیدی آیات، و مسیرهای مطالعه ملایم کشف کنید.';
 
   @override
-  String get quranThemeDiscoveryHeroEyebrow => 'Thematic Discovery';
+  String get quranThemeDiscoveryHeroEyebrow => 'کشف موضوعی';
 
   @override
   String get quranThemeDiscoveryHeroTitle =>
-      'Explore the Qur\'an through themes that shape the heart';
+      'قرآن را از طریق مضامینی که قلب را شکل می دهد کاوش کنید';
 
   @override
   String get quranThemeDiscoveryHeroSubtitle =>
-      'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.';
+      'راهی آرام برای پیروی از رحمت، صبر، پیامبران، هدایت، عدالت و نشانه های خلقت در سوره های مرتبط.';
 
   @override
   String get quranThemeDiscoverySearchHint =>
-      'Search topics, prophets, events, or surahs...';
+      'جستجو در موضوعات، پیامبران، وقایع یا سوره ها...';
 
   @override
-  String get quranThemeDiscoveryFeaturedThemesTitle => 'Featured themes';
+  String get quranThemeDiscoveryFeaturedThemesTitle => 'تم های ویژه';
 
   @override
-  String get quranThemeDiscoveryBrowseByCategoryTitle => 'Browse by category';
+  String get quranThemeDiscoveryBrowseByCategoryTitle =>
+      'بر اساس دسته بندی مرور کنید';
 
   @override
-  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'Key ayah references';
+  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'مراجع کلیدی آیه';
 
   @override
-  String get quranThemeDiscoveryRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeDiscoveryRelatedSurahsTitle => 'سوره های مرتبط';
 
   @override
-  String get quranThemeDiscoveryReflectionTitle => 'Reflection';
+  String get quranThemeDiscoveryReflectionTitle => 'انعکاس';
 
   @override
-  String get quranThemeDiscoveryMoreThemesTitle => 'More themes';
+  String get quranThemeDiscoveryMoreThemesTitle => 'تم های بیشتر';
 
   @override
-  String get quranThemeDiscoveryExploreThemeAction => 'Explore theme';
+  String get quranThemeDiscoveryExploreThemeAction => 'کاوش موضوع';
 
   @override
-  String get quranThemeDiscoveryBrowseMoreThemesAction => 'Browse more themes';
+  String get quranThemeDiscoveryBrowseMoreThemesAction =>
+      'تم های بیشتر را مرور کنید';
 
   @override
   String get quranThemeDiscoveryNoResultsTitle =>
-      'No themes matched your search';
+      'هیچ موضوعی با جستجوی شما مطابقت نداشت';
 
   @override
   String get quranThemeDiscoveryNoResultsSubtitle =>
-      'Try another topic, prophet, event, or category.';
+      'موضوع، پیامبر، رویداد یا مقوله دیگری را امتحان کنید.';
 
   @override
-  String get quranThemeDiscoveryMissingThemeTitle =>
-      'This theme is not available';
+  String get quranThemeDiscoveryMissingThemeTitle => 'این تم در دسترس نیست';
 
   @override
   String get quranThemeDiscoveryMissingThemeSubtitle =>
-      'Return to Browse by Topic and choose another Qur\'an theme.';
+      'به مرور بر اساس موضوع برگردید و موضوع قرآن دیگری را انتخاب کنید.';
 
   @override
   String quranThemeDiscoveryThemeCountLabel(int count) {
-    return '$count themes';
+    return '$count موضوع';
   }
 
   @override
   String quranThemeDiscoverySurahCountLabel(int count) {
-    return '$count surahs';
+    return 'سوره های $count';
   }
 
   @override
-  String get quranThemeDiscoveryCategoryBelief => 'Belief';
+  String get quranThemeDiscoveryCategoryBelief => 'باور';
 
   @override
-  String get quranThemeDiscoveryCategoryWorship => 'Worship';
+  String get quranThemeDiscoveryCategoryWorship => 'عبادت کنید';
 
   @override
-  String get quranThemeDiscoveryCategoryCharacter => 'Character';
+  String get quranThemeDiscoveryCategoryCharacter => 'شخصیت';
 
   @override
   String get quranThemeDiscoveryCategoryStoriesProphets =>
-      'Stories and Prophets';
+      'داستان ها و پیامبران';
 
   @override
-  String get quranThemeDiscoveryCategoryAkhirah => 'Akhirah';
+  String get quranThemeDiscoveryCategoryAkhirah => 'اخیرا';
 
   @override
-  String get quranThemeDiscoveryCategorySocietyEthics => 'Society and Ethics';
+  String get quranThemeDiscoveryCategorySocietyEthics => 'جامعه و اخلاق';
 
   @override
-  String get quranThemeDiscoveryCategorySignsReflection =>
-      'Signs and Reflection';
+  String get quranThemeDiscoveryCategorySignsReflection => 'نشانه ها و بازتاب';
 
   @override
   String get quranPathwaysIslandTitle => 'Qur\'an Pathways';
@@ -80399,7 +80995,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get learnQuranBeginnerSoftBridgeBeginAction => 'Let’s begin';
 
   @override
-  String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';
+  String get settingsThemeChoiceMidnightManuscript => 'نسخه نیمه‌شب';
 
   @override
   String get settingsThemeChoiceNoorGlass => 'Noor Glass';
@@ -80438,7 +81034,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
-      'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.';
+      'رنگ‌های عمیق مرکبی با رگه‌های طلایی گرم و فضای آرام یک نسخه خطی.';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptDescription =>
@@ -80450,19 +81046,19 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get settingsThemeModePickerHelper =>
-      'Choose the atmosphere that feels most at home in your journey.';
+      'فضایی را انتخاب کنید که در مسیر شما بیش از همه احساس آشنایی می‌دهد.';
 
   @override
   String get settingsThemeModeDefaultBestFor =>
-      'Best for everyday calm and balanced use.';
+      'بهترین گزینه برای آرامش روزمره و استفاده متعادل.';
 
   @override
   String get settingsThemeModeCalmBeautifulBestFor =>
-      'Best if you prefer the earlier soft Path of Nūr atmosphere.';
+      'بهترین گزینه اگر فضای نرم و پیشین Path of Nūr را ترجیح می‌دهید.';
 
   @override
   String get settingsThemeModeEasyReadBestFor =>
-      'Best for longer reading and clearer contrast.';
+      'بهترین گزینه برای مطالعه طولانی‌تر و کنتراست روشن‌تر.';
 
   @override
   String get settingsThemeModeNoorGlassBestFor =>
@@ -80470,31 +81066,31 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get settingsThemeModeNoorGlassDarkBestFor =>
-      'Best for evening use when you want the same Noor surfaces in a darker atmosphere.';
+      'بهترین گزینه برای استفاده شبانه وقتی همان سطوح Noor را در فضایی تیره‌تر می‌خواهید.';
 
   @override
   String get settingsThemeModeNoGlassBestFor =>
-      'Best for a stable, opaque look with less visual transparency.';
+      'بهترین گزینه برای ظاهری پایدار و مات با شفافیت بصری کمتر.';
 
   @override
   String get settingsThemeModeNoGlassDarkBestFor =>
-      'Best for dark solid surfaces without glass effects.';
+      'بهترین گزینه برای سطوح تیره و یک‌دست، بدون جلوه‌های شیشه‌ای.';
 
   @override
   String get settingsThemeModeDarkBestFor =>
-      'Best for low-light reading and quieter evenings.';
+      'بهترین گزینه برای مطالعه در نور کم و شب‌های آرام‌تر.';
 
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
-      'Best for evening reflection and Qur’an study.';
+      'بهترین گزینه برای تأمل شبانه و مطالعه قرآن.';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptBestFor =>
-      'Best for rich night reading with manuscript warmth and Noor glow.';
+      'بهترین گزینه برای مطالعه غنی شبانه با گرمای نسخه خطی و درخشش Noor.';
 
   @override
   String get settingsThemeModeNoorKidsBestFor =>
-      'Best for families who want a lighter, warmer, more playful Noor feel.';
+      'بهترین گزینه برای خانواده‌هایی که حس Noor روشن‌تر، گرم‌تر و بازیگوش‌تر می‌خواهند.';
 
   @override
   String get editorialDashboardTitle => 'Editorial Dashboard';
@@ -81542,32 +82138,32 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get loadingGreetingMorningTranslation =>
-      'O Allah, by You we enter the morning';
+      'ای الله، به یاری تو به صبح وارد می‌شویم';
 
   @override
   String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
 
   @override
   String get loadingGreetingEveningTranslation =>
-      'O Allah, by You we enter the evening';
+      'ای الله، به یاری تو به شام وارد می‌شویم';
 
   @override
-  String get loadingWelcomeBack => 'Welcome Back';
+  String get loadingWelcomeBack => 'خوش آمدید دوباره';
 
   @override
-  String get loadingRestoringProgress => 'Restoring your progress';
+  String get loadingRestoringProgress => 'در حال بازیابی پیشرفت شما';
 
   @override
-  String get loadingStatusPreparing => 'Preparing your space…';
+  String get loadingStatusPreparing => 'در حال آماده‌سازی فضای شما…';
 
   @override
-  String get loadingStatusRestoring => 'Restoring your progress…';
+  String get loadingStatusRestoring => 'در حال بازیابی پیشرفت شما…';
 
   @override
-  String get loadingStatusSyncing => 'Syncing your journey…';
+  String get loadingStatusSyncing => 'در حال همگام‌سازی مسیر شما…';
 
   @override
-  String get loadingStatusFinalizing => 'Finalizing…';
+  String get loadingStatusFinalizing => 'در حال نهایی‌سازی…';
 
   @override
   String get homeTestOnboardingPill => 'Test Onboarding';
@@ -81610,7 +82206,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get onboardingFinalWelcomeClosingBody =>
-      'Take it one sincere step at a time. Meaningful progress is built through small, steady acts.';
+      'هر بار یک گام صادقانه بردارید. پیشرفت معنادار با کارهای کوچک و پیوسته ساخته می‌شود.';
 
   @override
   String get onboardingDisclaimerTitle => 'A Gentle Note Before You Begin';
@@ -81691,6 +82287,232 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Try another word or browse the main sections.';
 
   @override
+  String get learnHubLearningPathCardSubtitleNoPath => 'Find your guided path';
+
+  @override
+  String get learnPathLevelFoundationsTitle => 'Foundations';
+
+  @override
+  String get learnPathLevelGrowingTitle => 'Growing';
+
+  @override
+  String get learnPathLevelDeepDiveTitle => 'Deep Dive';
+
+  @override
+  String get settingsPageTransitionsTitle => 'انتقال‌های صفحه';
+
+  @override
+  String get settingsPageTransitionsSubtitle =>
+      'انتخاب کنید صفحه‌ها چگونه در برنامه جابه‌جا شوند.';
+
+  @override
+  String get settingsReduceMotionTransitionOverrideSubtitle =>
+      'Reduce Motion جلوه‌های انتقالی اضافی را در سراسر برنامه خاموش می‌کند.';
+
+  @override
+  String get settingsLearningLevelTitle => 'سطح یادگیری';
+
+  @override
+  String get settingsRunOnboardingTitle => 'اجرای دوباره آغاز کار';
+
+  @override
+  String get settingsRunOnboardingSubtitle =>
+      'انتخاب‌های راه‌اندازی خود را مرور و تازه کنید.';
+
+  @override
+  String get settingsPageTransitionStyleDefault => 'پیش‌فرض';
+
+  @override
+  String get settingsPageTransitionStyleGentleFade => 'محو شدن ملایم';
+
+  @override
+  String get settingsPageTransitionStyleIos => 'سبک iOS';
+
+  @override
+  String get settingsPageTransitionStyleNone => 'هیچ‌کدام';
+
+  @override
+  String get onboardingRemindersDisableAllAction => 'همه اعلان‌ها را خاموش کن';
+
+  @override
+  String get onboardingReminderNone => 'بدون اعلان';
+
+  @override
+  String get onboardingAccountOptionsTitle => 'Optional sign in and backup';
+
+  @override
+  String get onboardingAccountOptionsBody =>
+      'Path of Nūr does not collect your learning data by default. Sign in is only for backup, restore, and cross-device sync where available.';
+
+  @override
+  String get onboardingAccountOptionsManualBackupBody =>
+      'You can also back up your data manually later from Settings.';
+
+  @override
+  String get historyNoEventsForThisDate => 'برای این تاریخ رویدادی وجود ندارد.';
+
+  @override
+  String get worshipQiblaUnavailableOnIpadTitle =>
+      'Qibla finder unavailable on iPad';
+
+  @override
+  String get worshipQiblaUnavailableOnIpadBody =>
+      'Qibla finder does not correctly work on iPad due to hardware limitations.';
+
+  @override
+  String get gardenPageRecentGrowthTracked => 'Tracked';
+
+  @override
+  String get hadithReflectionCompletedQuiet => 'تأمل کامل شد.';
+
+  @override
+  String get hadithLessonCompletedQuiet => 'درس کامل شد.';
+
+  @override
+  String get bedtimeStoriesCompletionSnackQuiet => 'Story completed.';
+
+  @override
+  String get bedtimeStoryLearningCompletionSnackQuiet => 'Activity completed.';
+
+  @override
+  String get kidsArabicTraceCompletionSubtitleQuiet =>
+      'Your progress has been saved.';
+
+  @override
+  String get learningJourneyLessonSectionProgressSubtitle =>
+      'Complete this section to save your progress.';
+
+  @override
+  String get rewardQuietProgressSaved => 'Progress saved.';
+
+  @override
+  String triviaHomeRecentPerformanceSummaryQuiet(
+    Object category,
+    Object correct,
+    Object total,
+  ) {
+    return '$category · $correct of $total correct';
+  }
+
+  @override
+  String rewardQuietCompletionSummaryXpDrops(Object xp, Object drops) {
+    return '$xp XP · $drops drops saved';
+  }
+
+  @override
+  String rewardQuietCompletionSummaryXpOnly(Object xp) {
+    return '$xp XP saved';
+  }
+
+  @override
+  String rewardQuietCompletionSummaryDropsOnly(Object drops) {
+    return '$drops drops saved';
+  }
+
+  @override
+  String get homeWidgetsNextPrayerTitle => 'Next Prayer';
+
+  @override
+  String get homeWidgetsPrayerOverviewTitle => 'Prayer Overview';
+
+  @override
+  String get homeWidgetsDhikrTitle => 'Daily Dhikr';
+
+  @override
+  String get homeWidgetsJourneyTitle => 'Journey Progress';
+
+  @override
+  String get homeWidgetsCurrentPrayerLabel => 'Current prayer';
+
+  @override
+  String get homeWidgetsNextPrayerLabel => 'Next prayer';
+
+  @override
+  String get homeWidgetsNoPrayerTimesTitle => 'Prayer times unavailable';
+
+  @override
+  String get homeWidgetsNoPrayerTimesBody =>
+      'Open Path of Nūr to refresh prayer times for today.';
+
+  @override
+  String get homeWidgetsDhikrTodayLabel => 'Today';
+
+  @override
+  String get homeWidgetsTargetLabel => 'Target';
+
+  @override
+  String get homeWidgetsStreakLabel => 'Streak';
+
+  @override
+  String get homeWidgetsLevelLabel => 'Level';
+
+  @override
+  String get homeWidgetsTodayXpLabel => 'Today XP';
+
+  @override
+  String get homeWidgetsNoSpiritualContentTitle =>
+      'Spiritual content unavailable';
+
+  @override
+  String get homeWidgetsNoSpiritualContentBody =>
+      'Open Path of Nūr to refresh today’s spiritual content.';
+
+  @override
+  String get homeWidgetsDuaTitle => 'Daily Dua';
+
+  @override
+  String get homeWidgetsMorningDuaReady => 'Morning dua ready';
+
+  @override
+  String get homeWidgetsDailyDuaReady => 'Daily dua ready';
+
+  @override
+  String get homeWidgetsEveningDuaReady => 'Evening dua ready';
+
+  @override
+  String get homeWidgetsNightDuaReady => 'Night dua ready';
+
+  @override
+  String get homeWidgetsHadithTitle => 'Hadith';
+
+  @override
+  String get homeWidgetsHadithTodayInline => 'Hadith today';
+
+  @override
+  String get homeWidgetsAyahTitle => 'Ayah';
+
+  @override
+  String get homeWidgetsAyahTodayInline => 'Ayah today';
+
+  @override
+  String get homeWidgetsReflectionTitle => 'Reflection';
+
+  @override
+  String get homeWidgetsReflectionInline => 'Reflection today';
+
+  @override
+  String get homeWidgetsNameOfAllahTitle => 'Name of Allah';
+
+  @override
+  String get homeWidgetsNameOfAllahInline => 'Name of Allah';
+
+  @override
+  String get homeWidgetsPrayerCountdownSoon => 'Soon';
+
+  @override
+  String homeWidgetsPrayerCountdownInMinutes(Object minutes) {
+    return 'in ${minutes}m';
+  }
+
+  @override
+  String homeWidgetsPrayerCountdownInHoursMinutes(
+    Object hours,
+    Object minutes,
+  ) {
+    return 'in ${hours}h ${minutes}m';
+  }
+
+  @override
   String get quranReaderSearchPillLabel => 'Search';
 
   @override
@@ -81735,192 +82557,195 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
-  String get hadithSearchTitle => 'Search Hadith';
+  String get hadithSearchTitle => 'جستجو در حدیث';
 
   @override
   String get hadithSearchSubtitle =>
-      'Search the trusted hadith library by text, source, or category.';
+      'کتابخانه حدیث مورد اعتماد را بر اساس متن، منبع یا دسته جستجو کنید.';
 
   @override
-  String get hadithSearchOpenAction => 'Open search';
+  String get hadithSearchOpenAction => 'جستجو را باز کنید';
 
   @override
-  String get hadithSearchFilterAll => 'All';
+  String get hadithSearchFilterAll => 'همه';
 
   @override
-  String get hadithSearchFilterSource => 'Source';
+  String get hadithSearchFilterSource => 'منبع';
 
   @override
-  String get hadithSearchFilterCategory => 'Category';
+  String get hadithSearchFilterCategory => 'دسته بندی';
 
   @override
-  String get hadithSearchFilterSubcategory => 'Subcategory';
+  String get hadithSearchFilterSubcategory => 'زیرمجموعه';
 
   @override
-  String get hadithSearchFilterGrade => 'Grade';
+  String get hadithSearchFilterGrade => 'درجه';
 
   @override
-  String get hadithSearchEmptyQueryTitle => 'Search the hadith library';
+  String get hadithSearchEmptyQueryTitle => 'در کتابخانه احادیث جستجو کنید';
 
   @override
   String get hadithSearchEmptyQuerySubtitle =>
-      'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.';
+      'جستجو بر اساس ترجمه، عربی، کتاب منبع، راوی، دسته بندی، زیرمجموعه یا مرجع.';
 
   @override
-  String get hadithSearchSuggestedSourcesTitle => 'Suggested sources';
+  String get hadithSearchSuggestedSourcesTitle => 'منابع پیشنهادی';
 
   @override
-  String get hadithSearchSuggestedCategoriesTitle => 'Suggested categories';
+  String get hadithSearchSuggestedCategoriesTitle => 'دسته بندی های پیشنهادی';
 
   @override
-  String get hadithSearchNoResultsTitle => 'No hadith found';
+  String get hadithSearchNoResultsTitle => 'حدیثی پیدا نشد';
 
   @override
   String get hadithSearchNoResultsSubtitle =>
-      'Try a different phrase, source book, or category.';
+      'عبارت، کتاب منبع یا دسته بندی دیگری را امتحان کنید.';
 
   @override
   String hadithSearchResultsCount(int count) {
-    return '$count results';
+    return '$count نتیجه';
   }
 
   @override
-  String get hadithSearchMatchTitle => 'Title match';
+  String get hadithSearchMatchTitle => 'مسابقه عنوان';
 
   @override
-  String get hadithSearchMatchExcerpt => 'Excerpt match';
+  String get hadithSearchMatchExcerpt => 'گزیده مسابقه';
 
   @override
-  String get hadithSearchMatchTranslation => 'Translation match';
+  String get hadithSearchMatchTranslation => 'مطابقت ترجمه';
 
   @override
-  String get hadithSearchMatchArabic => 'Arabic match';
+  String get hadithSearchMatchArabic => 'کبریت عربی';
 
   @override
-  String get hadithSearchMatchTransliteration => 'Transliteration match';
+  String get hadithSearchMatchTransliteration => 'مطابقت نویسه‌گردانی';
 
   @override
-  String get hadithSearchMatchSource => 'Source match';
+  String get hadithSearchMatchSource => 'مطابقت منبع';
 
   @override
-  String get hadithSearchMatchReference => 'Reference match';
+  String get hadithSearchMatchReference => 'مطابقت مرجع';
 
   @override
-  String get hadithSearchMatchNarrator => 'Narrator match';
+  String get hadithSearchMatchNarrator => 'مسابقه راوی';
 
   @override
-  String get hadithSearchMatchCategory => 'Category match';
+  String get hadithSearchMatchChapter => 'مطابقت فصل';
 
   @override
-  String get hadithSearchMatchSubcategory => 'Subcategory match';
+  String get hadithSearchMatchCategory => 'مطابقت رده';
 
   @override
-  String get hadithSearchMatchGrade => 'Grade match';
+  String get hadithSearchMatchSubcategory => 'مطابقت زیر مجموعه';
 
   @override
-  String get hadithSearchSuggestionsTitle => 'Suggestions';
+  String get hadithSearchMatchGrade => 'مطابقت درجه';
 
   @override
-  String get hadithSearchRecentTitle => 'Recent searches';
+  String get hadithSearchSuggestionsTitle => 'پیشنهادات';
 
   @override
-  String get hadithSearchClearRecents => 'Clear';
+  String get hadithSearchRecentTitle => 'جستجوهای اخیر';
 
   @override
-  String get hadithSearchNoRecent => 'No recent searches yet.';
+  String get hadithSearchClearRecents => 'پاک کردن';
 
   @override
-  String get hadithSearchNoResultsTryBroader => 'Try a broader phrase.';
+  String get hadithSearchNoRecent => 'هنوز جستجوی اخیر انجام نشده است.';
+
+  @override
+  String get hadithSearchNoResultsTryBroader =>
+      'یک عبارت گسترده تر را امتحان کنید.';
 
   @override
   String get hadithSearchNoResultsTrySource =>
-      'Try a source book like Riyad as-Salihin.';
+      'یک کتاب منبع مانند ریاض الصالحین را امتحان کنید.';
 
   @override
   String get hadithSearchNoResultsTryCategory =>
-      'Try a category such as Character.';
+      'دسته بندی مانند شخصیت را امتحان کنید.';
 
   @override
-  String get hadithSearchGroupText => 'Text matches';
+  String get hadithSearchGroupText => 'مطابقت متن';
 
   @override
-  String get hadithSearchGroupSource => 'Source and reference matches';
+  String get hadithSearchGroupSource => 'مطابقت منبع و مرجع';
 
   @override
-  String get hadithSearchGroupTopical => 'Category and topic matches';
+  String get hadithSearchGroupTopical => 'مطابقت دسته و موضوع';
 
   @override
-  String get hadithSearchGroupGrade => 'Grade matches';
+  String get hadithSearchGroupGrade => 'مسابقات درجه';
 
   @override
-  String get hadithSearchSuggestionIntentions => 'intentions';
+  String get hadithSearchSuggestionIntentions => 'نیات';
 
   @override
-  String get hadithSearchSuggestionSincerity => 'sincerity';
+  String get hadithSearchSuggestionSincerity => 'صداقت';
 
   @override
-  String get hadithSearchSuggestionMercy => 'mercy';
+  String get hadithSearchSuggestionMercy => 'رحمت';
 
   @override
-  String get hadithSearchSuggestionRepentance => 'repentance';
+  String get hadithSearchSuggestionRepentance => 'توبه';
 
   @override
-  String get hadithSearchSuggestionDua => 'dua';
+  String get hadithSearchSuggestionDua => 'دعا';
 
   @override
-  String get hadithSearchSuggestionCharacter => 'character';
+  String get hadithSearchSuggestionCharacter => 'شخصیت';
 
   @override
-  String get hadithSearchSuggestionJustice => 'justice';
+  String get hadithSearchSuggestionJustice => 'عدالت';
 
   @override
-  String get hadithSearchSuggestionGratitude => 'gratitude';
+  String get hadithSearchSuggestionGratitude => 'سپاسگزاری';
 
   @override
   String get hadithActionBrowseSources => 'Browse by source';
 
   @override
-  String get hadithSourceBrowseTitle => 'Browse by source';
+  String get hadithSourceBrowseTitle => 'بر اساس منبع مرور کنید';
 
   @override
   String get hadithSourceBrowseSubtitle =>
-      'Explore trusted hadith by source collection and chapter where metadata exists.';
+      'احادیث مورد اعتماد را بر اساس مجموعه منبع و فصلی که ابرداده وجود دارد کاوش کنید.';
 
   @override
   String get hadithSourceBrowseNoSources =>
-      'No source collections are available yet.';
+      'هنوز هیچ مجموعه منبعی در دسترس نیست.';
 
   @override
-  String get hadithSourceBrowseNotFoundSubtitle =>
-      'This source could not be found.';
+  String get hadithSourceBrowseNotFoundSubtitle => 'این منبع یافت نشد.';
 
   @override
   String get hadithSourceBrowseNotFoundBody =>
-      'Try another trusted source collection from the browse list.';
+      'مجموعه منبع قابل اعتماد دیگری را از فهرست مرور امتحان کنید.';
 
   @override
   String hadithSourceBrowseCollectionSummary(int entryCount, int chapterCount) {
-    return '$entryCount hadith across $chapterCount chapters';
+    return '$entryCount حدیث در سر فصل $chapterCount';
   }
 
   @override
   String hadithSourceBrowseCollectionCountOnly(int count) {
-    return '$count hadith';
+    return 'حدیث $count';
   }
 
   @override
-  String get hadithSourceBrowseChaptersTitle => 'Chapters';
+  String get hadithSourceBrowseChaptersTitle => 'فصل ها';
 
   @override
   String hadithSourceBrowseChapterSummary(Object chapterLabel, int count) {
-    return '$chapterLabel • $count hadith';
+    return '$chapterLabel • $count حدیث';
   }
 
   @override
-  String get hadithSourceBrowseEntriesTitle => 'Entries';
+  String get hadithSourceBrowseEntriesTitle => 'ورودی ها';
 
   @override
-  String get hadithSourceBrowseEntryPreviewTitle => 'Entry preview';
+  String get hadithSourceBrowseEntryPreviewTitle => 'پیش نمایش ورودی';
 
   @override
   String hadithSourceBrowseChapterPageSubtitle(
@@ -81928,7 +82753,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
     Object chapterLabel,
     int count,
   ) {
-    return '$sourceTitle • $chapterLabel • $count hadith';
+    return '$sourceTitle • $chapterLabel • $count حدیث';
   }
 
   @override
@@ -81938,17 +82763,17 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String hadithSourceBrowseChapterNumber(int number) {
-    return 'Chapter $number';
+    return 'فصل $number';
   }
 
   @override
-  String get hadithSourceBrowseChapterFallback => 'Chapter';
+  String get hadithSourceBrowseChapterFallback => 'فصل';
 
   @override
-  String get hadithSourceBrowseGeneralChapter => 'General chapter';
+  String get hadithSourceBrowseGeneralChapter => 'فصل عمومی';
 
   @override
-  String get hadithSourceBrowseUncategorized => 'Uncategorized';
+  String get hadithSourceBrowseUncategorized => 'دسته بندی نشده';
 
   @override
   String get editorialRelationTypeExplains => 'Explains';
@@ -81991,103 +82816,197 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get quranReaderRelatedDuasTitle => 'Related Duas';
 
   @override
-  String get allSearchTitle => 'All Search';
+  String get allSearchTitle => 'جست‌وجوی سراسری';
 
   @override
   String get allSearchSubtitle =>
-      'Search Qur’an, hadith, duas, and learning content together.';
+      'قرآن، حدیث، دعاها و محتوای آموزشی را یکجا جست‌وجو کنید.';
 
   @override
-  String get allSearchHint => 'Search across Path of Nur';
+  String get allSearchHint => 'در سراسر Path of Nur جست‌وجو کنید';
 
   @override
-  String get allSearchEmptyTitle => 'Search across the app';
+  String get allSearchEmptyTitle => 'در سراسر برنامه جست‌وجو کنید';
 
   @override
   String get allSearchEmptySubtitle =>
-      'We’ll group results by domain so it stays calm and easy to trust.';
+      'نتیجه‌ها را بر اساس بخش گروه‌بندی می‌کنیم تا فضا آرام و قابل اعتماد بماند.';
 
   @override
-  String get allSearchSuggestionsTitle => 'Suggestions';
+  String get allSearchSuggestionsTitle => 'پیشنهادها';
 
   @override
-  String get allSearchRecentTitle => 'Recent searches';
+  String get allSearchRecentTitle => 'جست‌وجوهای اخیر';
 
   @override
-  String get allSearchClearRecent => 'Clear';
+  String get allSearchClearRecent => 'پاک کردن';
 
   @override
-  String get allSearchNoRecent => 'No recent searches yet.';
+  String get allSearchNoRecent => 'هنوز جست‌وجوی اخیری وجود ندارد.';
 
   @override
-  String get allSearchNoResultsTitle => 'No results yet';
+  String get allSearchNoResultsTitle => 'هنوز نتیجه‌ای نیست';
 
   @override
   String get allSearchNoResultsSubtitle =>
-      'We could not find a strong match across Qur’an, hadith, duas, or learn content.';
+      'در قرآن، حدیث، دعاها یا محتوای آموزشی، مطابقت نیرومندی پیدا نکردیم.';
 
   @override
-  String get allSearchNoResultsTipBroader => 'Try a shorter or broader phrase.';
+  String get allSearchNoResultsTipBroader =>
+      'یک عبارت کوتاه‌تر یا گسترده‌تر را امتحان کنید.';
 
   @override
   String get allSearchNoResultsTipDomain =>
-      'You can also jump into a domain search for more depth.';
+      'همچنین می‌توانید برای عمق بیشتر به جست‌وجوی یک بخش بروید.';
 
   @override
   String get allSearchDomainQuran => 'Qur’an';
 
   @override
-  String get allSearchDomainHadith => 'Hadith';
+  String get allSearchDomainHadith => 'حدیث';
 
   @override
-  String get allSearchDomainDua => 'Duas';
+  String get allSearchDomainDua => 'دعاها';
 
   @override
-  String get allSearchDomainLearn => 'Learn';
+  String get allSearchDomainLearn => 'آموزش';
 
   @override
-  String get allSearchViewAllQuran => 'View all in Qur’an';
+  String get allSearchViewAllQuran => 'همه را در قرآن ببین';
 
   @override
-  String get allSearchViewAllHadith => 'View all in Hadith';
+  String get allSearchViewAllHadith => 'همه را در حدیث ببین';
 
   @override
-  String get allSearchViewAllDua => 'View all in Duas';
+  String get allSearchViewAllDua => 'همه را در دعاها ببین';
 
   @override
-  String get allSearchViewAllLearn => 'View all in Learn';
+  String get allSearchViewAllLearn => 'همه را در آموزش ببین';
 
   @override
-  String get allSearchSuggestionMercy => 'mercy';
+  String get allSearchSuggestionMercy => 'رحمت';
 
   @override
-  String get allSearchSuggestionPatience => 'patience';
+  String get allSearchSuggestionPatience => 'صبر';
 
   @override
-  String get allSearchSuggestionIntentions => 'intentions';
+  String get allSearchSuggestionIntentions => 'نیت‌ها';
 
   @override
-  String get allSearchSuggestionRepentance => 'repentance';
+  String get allSearchSuggestionRepentance => 'توبه';
 
   @override
-  String get allSearchSuggestionDua => 'dua';
+  String get allSearchSuggestionDua => 'دعا';
 
   @override
-  String get allSearchSuggestionProphets => 'prophets';
+  String get allSearchSuggestionProphets => 'پیامبران';
 
   @override
-  String get allSearchSuggestionGratitude => 'gratitude';
+  String get allSearchSuggestionGratitude => 'سپاسگزاری';
 
   @override
-  String get allSearchSuggestionJustice => 'justice';
+  String get allSearchSuggestionJustice => 'عدالت';
 
   @override
   String allSearchResultsFor(Object query) {
-    return 'Results for \"$query\"';
+    return 'نتیجه‌ها برای «$query»';
   }
 
   @override
   String allSearchError(Object message) {
-    return 'Search unavailable: $message';
+    return 'جست‌وجو در دسترس نیست: $message';
   }
+
+  @override
+  String get hadithReaderContinueTitle => 'به خواندن ادامه دهید';
+
+  @override
+  String hadithReaderBackToLane(String lane) {
+    return 'بازگشت به $lane';
+  }
+
+  @override
+  String get hadithReaderBackToResults => 'بازگشت به نتایج';
+
+  @override
+  String get hadithReaderPrevious => 'قبلی';
+
+  @override
+  String get hadithReaderNext => 'بعدی';
+
+  @override
+  String hadithReaderPosition(int current, int total) {
+    return 'حدیث $current از $total';
+  }
+
+  @override
+  String hadithReaderChapterPosition(int current, int total) {
+    return 'حدیث $current از $total در این فصل';
+  }
+
+  @override
+  String get hadithBrowseProgressLabel => 'وضعیت';
+
+  @override
+  String get hadithBrowseProgressAll => 'همه ورودی ها';
+
+  @override
+  String get hadithBrowseProgressNotReviewed => 'بررسی نشده است';
+
+  @override
+  String get hadithBrowseProgressReviewing => 'در حال بررسی';
+
+  @override
+  String get hadithBrowseProgressComplete => 'کامل';
+
+  @override
+  String get hadithActionMarkCompleteForBrowse => 'Mark complete';
+
+  @override
+  String get hadithActionCompletedForBrowse => 'Completed';
+
+  @override
+  String get hadithActionMarkIncomplete => 'Mark incomplete';
+
+  @override
+  String get hadithMarkedComplete => 'Hadith marked complete.';
+
+  @override
+  String get hadithMarkedIncomplete => 'Hadith marked incomplete.';
+
+  @override
+  String get hadithBrowsePageTitle => 'حدیث را مرور کنید';
+
+  @override
+  String get hadithBrowsePageSubtitle =>
+      'راهی آرام و قابل فیلتر برای کاوش در کتابخانه وسیعتر حدیث.';
+
+  @override
+  String get hadithBrowseIntroTitle => 'با یک مسیر آرام تر شروع کنید';
+
+  @override
+  String get hadithBrowseIntroBody =>
+      'از این صفحه برای محدود کردن کتابخانه گسترده‌تر حدیث بر اساس منبع، مجموعه، درجه یا وضعیت مطالعه استفاده کنید تا قبل از باز کردن مسیر مطالعه.';
+
+  @override
+  String hadithBrowseSummary(
+    int entries,
+    int sources,
+    int collections,
+    int subcategories,
+  ) {
+    return 'حدیث $entries در منابع $sources، مجموعه‌های $collections و زیر مجموعه‌های $subcategories.';
+  }
+
+  @override
+  String get hadithBrowseActiveFiltersTitle => 'فیلترهای فعال';
+
+  @override
+  String get hadithBrowseCollectionLabel => 'مجموعه';
+
+  @override
+  String get hadithBrowseAllCollections => 'همه مجموعه ها';
+
+  @override
+  String get hadithActionBrowseAllHadith => 'Browse all hadith';
 }

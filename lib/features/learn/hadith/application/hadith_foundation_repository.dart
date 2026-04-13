@@ -4,6 +4,7 @@ import '../../../../shared/persistence/local_store.dart';
 import '../../../editorial_dashboard/application/editorial_content_versions_provider.dart';
 import '../data/hadith_taxonomy.dart';
 import '../data/seeded_hadith_foundation_data.dart';
+import '../domain/hadith_collection_browse_models.dart';
 import '../domain/hadith_foundation_models.dart';
 import '../domain/hadith_source_browse_models.dart';
 import 'hadith_public_content_policy.dart';
@@ -46,6 +47,79 @@ final hadithCollectionsProvider = Provider<List<HadithCollection>>((ref) {
       .where((collection) => collection.hadithIds.any(publicIds.contains))
       .toList(growable: false);
 });
+
+final hadithCollectionBrowseSummariesProvider =
+    Provider<List<HadithCollectionBrowseSummary>>((ref) {
+      final entries = ref.watch(hadithEntriesProvider);
+      final subcategoryTitlesById = {
+        for (final subcategory in seededHadithSubcategories)
+          subcategory.id: subcategory.title,
+      };
+
+      return seededHadithCollections
+          .map((collection) {
+            final collectionEntries = entries
+                .where((entry) => entry.collectionIds.contains(collection.id))
+                .toList(growable: false);
+            if (collectionEntries.isEmpty) {
+              return null;
+            }
+
+            final subcategoryCounts = <String, int>{};
+            final subcategoryTitles = <String, String>{};
+            for (final entry in collectionEntries) {
+              final subcategoryId = entry.normalizedSubcategoryId;
+              final subcategoryTitle = entry.displaySubcategoryTitle;
+              if (subcategoryId == null || subcategoryTitle == null) continue;
+              subcategoryCounts.update(
+                subcategoryId,
+                (value) => value + 1,
+                ifAbsent: () => 1,
+              );
+              subcategoryTitles[subcategoryId] =
+                  subcategoryTitlesById[subcategoryId] ?? subcategoryTitle;
+            }
+
+            final subcategories =
+                subcategoryCounts.entries
+                    .map(
+                      (entry) => HadithCollectionSubcategorySummary(
+                        id: entry.key,
+                        title: subcategoryTitles[entry.key] ?? entry.key,
+                        entryCount: entry.value,
+                      ),
+                    )
+                    .toList(growable: false)
+                  ..sort((a, b) {
+                    final countCompare = b.entryCount.compareTo(a.entryCount);
+                    if (countCompare != 0) return countCompare;
+                    return a.title.compareTo(b.title);
+                  });
+
+            return HadithCollectionBrowseSummary(
+              id: collection.id,
+              title: collection.title,
+              subtitle: collection.subtitle,
+              description: collection.description,
+              entryCount: collectionEntries.length,
+              subcategories: subcategories,
+            );
+          })
+          .whereType<HadithCollectionBrowseSummary>()
+          .toList(growable: false);
+    });
+
+final hadithCollectionBrowseSummaryByIdProvider =
+    Provider.family<HadithCollectionBrowseSummary?, String>((
+      ref,
+      collectionId,
+    ) {
+      final collections = ref.watch(hadithCollectionBrowseSummariesProvider);
+      for (final collection in collections) {
+        if (collection.id == collectionId) return collection;
+      }
+      return null;
+    });
 
 final hadithCategoriesProvider = Provider<List<HadithCategory>>((ref) {
   final usedCategoryIds = ref
@@ -172,22 +246,27 @@ final hadithSourceBrowseCollectionsProvider =
         groups.putIfAbsent(sourceId, () => <HadithEntry>[]).add(entry);
       }
 
-      final collections = groups.entries.map((entry) {
-        final sortedEntries = _sortHadithEntriesForBrowse(entry.value);
-        final title = sortedEntries.first.primarySourceCollectionTitle;
-        final chapterCount = _buildSourceBrowseChapters(sortedEntries).length;
-        return HadithSourceBrowseCollection(
-          id: entry.key,
-          title: title,
-          entryCount: sortedEntries.length,
-          chapterCount: chapterCount,
-        );
-      }).toList(growable: false)
-        ..sort((a, b) {
-          final countCompare = b.entryCount.compareTo(a.entryCount);
-          if (countCompare != 0) return countCompare;
-          return a.title.compareTo(b.title);
-        });
+      final collections =
+          groups.entries
+              .map((entry) {
+                final sortedEntries = _sortHadithEntriesForBrowse(entry.value);
+                final title = sortedEntries.first.primarySourceCollectionTitle;
+                final chapterCount = _buildSourceBrowseChapters(
+                  sortedEntries,
+                ).length;
+                return HadithSourceBrowseCollection(
+                  id: entry.key,
+                  title: title,
+                  entryCount: sortedEntries.length,
+                  chapterCount: chapterCount,
+                );
+              })
+              .toList(growable: false)
+            ..sort((a, b) {
+              final countCompare = b.entryCount.compareTo(a.entryCount);
+              if (countCompare != 0) return countCompare;
+              return a.title.compareTo(b.title);
+            });
       return collections;
     });
 
@@ -212,16 +291,20 @@ final hadithEntriesForSourceCollectionProvider =
 
 final hadithSourceBrowseChaptersProvider =
     Provider.family<List<HadithSourceBrowseChapter>, String>((ref, sourceId) {
-      final entries = ref.watch(hadithEntriesForSourceCollectionProvider(sourceId));
+      final entries = ref.watch(
+        hadithEntriesForSourceCollectionProvider(sourceId),
+      );
       return _buildSourceBrowseChapters(entries);
     });
 
 final hadithSourceBrowseChapterByIdProvider =
-    Provider.family<HadithSourceBrowseChapter?, ({String sourceId, String chapterId})>((
-      ref,
-      args,
-    ) {
-      final chapters = ref.watch(hadithSourceBrowseChaptersProvider(args.sourceId));
+    Provider.family<
+      HadithSourceBrowseChapter?,
+      ({String sourceId, String chapterId})
+    >((ref, args) {
+      final chapters = ref.watch(
+        hadithSourceBrowseChaptersProvider(args.sourceId),
+      );
       for (final chapter in chapters) {
         if (chapter.id == args.chapterId) return chapter;
       }
@@ -233,16 +316,20 @@ final hadithEntriesForSourceChapterProvider =
       ref,
       args,
     ) {
-      final entries = ref.watch(hadithEntriesForSourceCollectionProvider(args.sourceId));
+      final entries = ref.watch(
+        hadithEntriesForSourceCollectionProvider(args.sourceId),
+      );
       final hasMeaningfulChapters = entries.any(_hasMeaningfulChapterMetadata);
       return _sortHadithEntriesForBrowse(
-        entries.where((entry) {
-          final bucket = _browseChapterBucketForEntry(
-            entry,
-            hasMeaningfulChapters: hasMeaningfulChapters,
-          );
-          return bucket.id == args.chapterId;
-        }).toList(growable: false),
+        entries
+            .where((entry) {
+              final bucket = _browseChapterBucketForEntry(
+                entry,
+                hasMeaningfulChapters: hasMeaningfulChapters,
+              );
+              return bucket.id == args.chapterId;
+            })
+            .toList(growable: false),
       );
     });
 
@@ -325,7 +412,9 @@ List<HadithEntry> _sortHadithEntriesForBrowse(List<HadithEntry> entries) {
   return List<HadithEntry>.unmodifiable(next);
 }
 
-List<HadithSourceBrowseChapter> _buildSourceBrowseChapters(List<HadithEntry> entries) {
+List<HadithSourceBrowseChapter> _buildSourceBrowseChapters(
+  List<HadithEntry> entries,
+) {
   if (entries.isEmpty) {
     return const <HadithSourceBrowseChapter>[];
   }
@@ -349,28 +438,33 @@ List<HadithSourceBrowseChapter> _buildSourceBrowseChapters(List<HadithEntry> ent
     );
   }
 
-  final chapters = groups.values.map((bucket) {
-    return HadithSourceBrowseChapter(
-      id: bucket.id,
-      title: bucket.title,
-      number: bucket.number,
-      entryCount: bucket.entryCount,
-      kind: bucket.kind,
-    );
-  }).toList(growable: false)
-    ..sort((a, b) {
-      if (a.kind != b.kind) {
-        if (a.kind == HadithSourceBrowseChapterKind.canonical) return -1;
-        if (b.kind == HadithSourceBrowseChapterKind.canonical) return 1;
-        if (a.kind == HadithSourceBrowseChapterKind.uncategorized) return -1;
-        if (b.kind == HadithSourceBrowseChapterKind.uncategorized) return 1;
-      }
-      final aNumber = a.number ?? 1 << 30;
-      final bNumber = b.number ?? 1 << 30;
-      final numberCompare = aNumber.compareTo(bNumber);
-      if (numberCompare != 0) return numberCompare;
-      return a.title.compareTo(b.title);
-    });
+  final chapters =
+      groups.values
+          .map((bucket) {
+            return HadithSourceBrowseChapter(
+              id: bucket.id,
+              title: bucket.title,
+              number: bucket.number,
+              entryCount: bucket.entryCount,
+              kind: bucket.kind,
+            );
+          })
+          .toList(growable: false)
+        ..sort((a, b) {
+          if (a.kind != b.kind) {
+            if (a.kind == HadithSourceBrowseChapterKind.canonical) return -1;
+            if (b.kind == HadithSourceBrowseChapterKind.canonical) return 1;
+            if (a.kind == HadithSourceBrowseChapterKind.uncategorized) {
+              return -1;
+            }
+            if (b.kind == HadithSourceBrowseChapterKind.uncategorized) return 1;
+          }
+          final aNumber = a.number ?? 1 << 30;
+          final bNumber = b.number ?? 1 << 30;
+          final numberCompare = aNumber.compareTo(bNumber);
+          if (numberCompare != 0) return numberCompare;
+          return a.title.compareTo(b.title);
+        });
   return List<HadithSourceBrowseChapter>.unmodifiable(chapters);
 }
 

@@ -155,6 +155,13 @@ class QuranPersonalizationController
       ...state.lastPresentedBundleKeyBySurface,
       surfaceKey: bundleKey,
     };
+    if (surface == QuranPersonalizationSurface.growth ||
+        surface == QuranPersonalizationSurface.reader) {
+      state = state.copyWith(lastPresentedBundleKeyBySurface: nextPresented);
+      _persist();
+      return;
+    }
+
     final nextRecent = <String>[ayahKey];
     for (final existing in state.recentPrimaryAyahKeys) {
       if (existing == ayahKey) continue;

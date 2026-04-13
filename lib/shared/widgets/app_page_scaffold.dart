@@ -17,6 +17,8 @@ class PageLayoutConfig {
   static const immersive = PageLayoutConfig(extendBehindBottomNav: true);
 }
 
+enum AppPageHeaderAlignment { start, center }
+
 class AppPageScaffold extends ConsumerWidget {
   static const double _homeMatchedBottomContentPadding = 136;
   static const double _homeMatchedFloatingBottomOffset = 92;
@@ -28,7 +30,11 @@ class AppPageScaffold extends ConsumerWidget {
     this.quote,
     this.quoteHeader,
     this.quotePool,
+    this.quoteUseOuterChrome = true,
     this.headerIcon,
+    this.headerIconSize = 24,
+    this.headerIconSpacing = 12,
+    this.headerAlignment = AppPageHeaderAlignment.start,
     this.onQuoteTap,
     this.scrollController,
     this.headerActions,
@@ -47,7 +53,11 @@ class AppPageScaffold extends ConsumerWidget {
   final QuranQuote? quote;
   final Widget? quoteHeader;
   final List<QuranQuote>? quotePool;
+  final bool quoteUseOuterChrome;
   final IconData? headerIcon;
+  final double headerIconSize;
+  final double headerIconSpacing;
+  final AppPageHeaderAlignment headerAlignment;
   final ValueChanged<QuranQuote>? onQuoteTap;
   final ScrollController? scrollController;
   final List<Widget>? headerActions;
@@ -79,10 +89,14 @@ class AppPageScaffold extends ConsumerWidget {
     final bottomInset = layoutConfig.extendBehindBottomNav
         ? 0.0
         : _homeMatchedBottomContentPadding;
+    final headerCrossAxisAlignment =
+        headerAlignment == AppPageHeaderAlignment.center
+        ? CrossAxisAlignment.center
+        : CrossAxisAlignment.start;
     final headerContent = <Widget>[
       if (canPop || headerIcon != null)
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: headerCrossAxisAlignment,
           children: [
             if (canPop)
               IconButton(
@@ -92,8 +106,9 @@ class AppPageScaffold extends ConsumerWidget {
                 color: foreground,
               ),
             if (canPop && headerIcon != null) const SizedBox(width: 4),
-            if (headerIcon != null) Icon(headerIcon, color: foreground, size: 24),
-            if (headerIcon != null) const SizedBox(width: 12),
+            if (headerIcon != null)
+              Icon(headerIcon, color: foreground, size: headerIconSize),
+            if (headerIcon != null) SizedBox(width: headerIconSpacing),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,6 +169,7 @@ class AppPageScaffold extends ConsumerWidget {
           style: pageTransitionStyle,
           child: QuranQuoteBlock(
             quote: resolvedQuote,
+            useOuterChrome: quoteUseOuterChrome,
             onTap: () {
               if (onQuoteTap != null) {
                 onQuoteTap!(resolvedQuote);
@@ -202,10 +218,7 @@ class AppPageScaffold extends ConsumerWidget {
                       SliverPadding(
                         padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
                         sliver: SliverList.list(
-                          children: [
-                            ...headerContent,
-                            ...children,
-                          ],
+                          children: [...headerContent, ...children],
                         ),
                       ),
                       ...bodySlivers!,
@@ -219,10 +232,7 @@ class AppPageScaffold extends ConsumerWidget {
                     controller: scrollController,
                     physics: const BouncingScrollPhysics(),
                     padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
-                    children: [
-                      ...headerContent,
-                      ...children,
-                    ],
+                    children: [...headerContent, ...children],
                   ),
           ),
           if (floatingBottom != null)

@@ -29,25 +29,42 @@ class DhikrSessionState {
 
   bool get hasTargetReached => currentCount >= target;
 
-  DhikrSummary get summary {
-    final totals = recentSessions.fold<int>(
-      0,
-      (acc, session) => acc + session.count,
+  DhikrSession? get activeSession {
+    final startedAt = currentSessionStartedAt;
+    if (currentCount <= 0 || startedAt == null) return null;
+    final finishedAt = DateTime.now();
+    return DhikrSession(
+      phraseLabel: selectedPreset.label,
+      count: currentCount,
+      target: target,
+      startedAt: startedAt,
+      finishedAt: finishedAt.isBefore(startedAt) ? startedAt : finishedAt,
     );
-    final top = _favoriteLabel();
+  }
+
+  List<DhikrSession> get allSessions {
+    final active = activeSession;
+    if (active == null) return recentSessions;
+    return <DhikrSession>[active, ...recentSessions];
+  }
+
+  DhikrSummary get summary {
+    final sessions = allSessions;
+    final totals = sessions.fold<int>(0, (acc, session) => acc + session.count);
+    final top = _favoriteLabel(sessions);
     return DhikrSummary(
       totalCount: totals,
-      sessionsCompleted: recentSessions.length,
+      sessionsCompleted: sessions.length,
       favoritePhrase: top,
     );
   }
 
-  String _favoriteLabel() {
-    if (recentSessions.isEmpty) {
+  String _favoriteLabel(List<DhikrSession> sessions) {
+    if (sessions.isEmpty) {
       return 'Alhamdulillah';
     }
     final counts = <String, int>{};
-    for (final session in recentSessions) {
+    for (final session in sessions) {
       counts.update(
         session.phraseLabel,
         (value) => value + session.count,
@@ -107,11 +124,13 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
 
   void selectPreset(DhikrPreset preset) {
     _antiRushDetector.reset();
+    final archivedSessions = _archiveCurrentSessionIfNeeded();
     state = state.copyWith(
       selectedPreset: preset,
       showAntiRushReminder: false,
       currentCount: 0,
       clearCurrentSessionStartedAt: true,
+      recentSessions: archivedSessions,
     );
     _save();
   }
@@ -119,11 +138,13 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
   void setTarget(int target) {
     if (target <= 0) return;
     _antiRushDetector.reset();
+    final archivedSessions = _archiveCurrentSessionIfNeeded();
     state = state.copyWith(
       target: target,
       currentCount: 0,
       showAntiRushReminder: false,
       clearCurrentSessionStartedAt: true,
+      recentSessions: archivedSessions,
     );
     _save();
   }
@@ -166,10 +187,12 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
 
   void reset() {
     _antiRushDetector.reset();
+    final archivedSessions = _archiveCurrentSessionIfNeeded();
     state = state.copyWith(
       currentCount: 0,
       showAntiRushReminder: false,
       clearCurrentSessionStartedAt: true,
+      recentSessions: archivedSessions,
     );
     _save();
   }
@@ -180,23 +203,19 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
   }
 
   void finishSession() {
-    if (state.currentCount <= 0) return;
+    if (state.currentCount <= 0 || state.currentSessionStartedAt == null) {
+      return;
+    }
     _antiRushDetector.reset();
 
     final now = DateTime.now();
-    final startedAt = state.currentSessionStartedAt ?? now;
-    final completed = DhikrSession(
-      phraseLabel: state.selectedPreset.label,
-      count: state.currentCount,
-      target: state.target,
-      startedAt: startedAt.isAfter(now) ? now : startedAt,
-      finishedAt: now,
-    );
+    final completed = _activeSessionSnapshot(finishedAt: now);
+    if (completed == null) return;
 
     state = state.copyWith(
       currentCount: 0,
       clearCurrentSessionStartedAt: true,
-      recentSessions: [completed, ...state.recentSessions],
+      recentSessions: _prependSession(completed),
       showAntiRushReminder: false,
     );
     _save();
@@ -263,6 +282,39 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       metadata: <String, Object?>{'target': target, 'phraseLabel': phraseLabel},
     );
     return true;
+  }
+
+  DhikrSession? _activeSessionSnapshot({DateTime? finishedAt}) {
+    final startedAt = state.currentSessionStartedAt;
+    if (state.currentCount <= 0 || startedAt == null) return null;
+    final endedAt = finishedAt ?? DateTime.now();
+    return DhikrSession(
+      phraseLabel: state.selectedPreset.label,
+      count: state.currentCount,
+      target: state.target,
+      startedAt: startedAt,
+      finishedAt: endedAt.isBefore(startedAt) ? startedAt : endedAt,
+    );
+  }
+
+  List<DhikrSession> _archiveCurrentSessionIfNeeded() {
+    final snapshot = _activeSessionSnapshot();
+    if (snapshot == null) return state.recentSessions;
+    return _prependSession(snapshot);
+  }
+
+  List<DhikrSession> _prependSession(DhikrSession session) {
+    return <DhikrSession>[
+      session,
+      ...state.recentSessions.where(
+        (item) =>
+            item.startedAt != session.startedAt ||
+            item.finishedAt != session.finishedAt ||
+            item.count != session.count ||
+            item.target != session.target ||
+            item.phraseLabel != session.phraseLabel,
+      ),
+    ];
   }
 
   bool logPostSalahDhikrBundle({

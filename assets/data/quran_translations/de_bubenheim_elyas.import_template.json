@@ -1,0 +1,9 @@
+{
+  "code": "de.quran_foundation_candidate",
+  "translatorName": "Frank Bubenheim and Nadeem Elyas",
+  "sourceProvider": "Quran Foundation",
+  "sourceResourceId": null,
+  "notes": "Populate this file only with reviewed German Qur'an translation text after the exact Quran Foundation resource is confirmed.",
+  "versesByVerseKey": {
+  }
+}

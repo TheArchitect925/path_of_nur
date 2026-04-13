@@ -89,6 +89,12 @@ List<MainPageShortcutItem> buildHomePageShortcuts(
       progressText: dhikrProgressText,
     ),
     MainPageShortcutItem(
+      label: l10n.hadithPageTitle,
+      icon: Icons.format_quote_rounded,
+      routeName: 'learnHadithLanding',
+      style: MainPageShortcutPalettes.rose,
+    ),
+    MainPageShortcutItem(
       label: l10n.homeShortcutQiblaLabel,
       icon: IslamicIcons.qibla,
       routeName: 'qiblaFinder',

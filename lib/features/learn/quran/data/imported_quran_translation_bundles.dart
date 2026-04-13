@@ -1,0 +1,1 @@
+export 'generated_imported_quran_translation_bundles.dart';

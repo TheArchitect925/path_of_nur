@@ -18,7 +18,7 @@ void main() {
 
     expect(
       service.getSceneAsset(scene),
-      'assets/images/kids_dua_stories/scene_bedroom_night_calm.png',
+      'assets/images/kids_dua_stories/scene_bedroom_night_calm.webp',
     );
   });
 
@@ -31,7 +31,7 @@ void main() {
 
     expect(
       service.getSceneAssetForVisual(visual),
-      'assets/images/kids_dua_stories/scene_emotional_day_sad.png',
+      'assets/images/kids_dua_stories/scene_emotional_day_sad.webp',
     );
   });
 
@@ -49,11 +49,11 @@ void main() {
 
     expect(
       service.getSceneAssetForVisual(typeOnly),
-      'assets/images/kids_dua_stories/scene_learning_day_calm.png',
+      'assets/images/kids_dua_stories/scene_learning_day_calm.webp',
     );
     expect(
       service.getSceneAssetForVisual(defaultVisual),
-      'assets/images/kids_dua_stories/scene_sky_day_happy.png',
+      'assets/images/kids_dua_stories/scene_sky_day_happy.webp',
     );
   });
 }

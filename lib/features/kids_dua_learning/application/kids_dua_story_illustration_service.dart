@@ -14,18 +14,18 @@ class KidsDuaStoryIllustrationService {
   static const String _basePath = 'assets/images/kids_dua_stories';
 
   static const Set<String> _availableAssets = <String>{
-    '$_basePath/scene_bedroom_night_calm.png',
-    '$_basePath/scene_bedroom_morning_happy.png',
-    '$_basePath/scene_table_day_happy.png',
-    '$_basePath/scene_table_day_neutral.png',
-    '$_basePath/scene_sky_night_wonder.png',
-    '$_basePath/scene_sky_day_happy.png',
-    '$_basePath/scene_home_day_neutral.png',
-    '$_basePath/scene_home_evening_calm.png',
-    '$_basePath/scene_learning_day_calm.png',
-    '$_basePath/scene_emotional_day_sad.png',
-    '$_basePath/scene_emotional_day_calm.png',
-    '$_basePath/scene_default_day_neutral.png',
+    '$_basePath/scene_bedroom_night_calm.webp',
+    '$_basePath/scene_bedroom_morning_happy.webp',
+    '$_basePath/scene_table_day_happy.webp',
+    '$_basePath/scene_table_day_neutral.webp',
+    '$_basePath/scene_sky_night_wonder.webp',
+    '$_basePath/scene_sky_day_happy.webp',
+    '$_basePath/scene_home_day_neutral.webp',
+    '$_basePath/scene_home_evening_calm.webp',
+    '$_basePath/scene_learning_day_calm.webp',
+    '$_basePath/scene_emotional_day_sad.webp',
+    '$_basePath/scene_emotional_day_calm.webp',
+    '$_basePath/scene_default_day_neutral.webp',
   };
 
   String getSceneAsset(KidsDuaStoryScene scene) {
@@ -47,7 +47,7 @@ class KidsDuaStoryIllustrationService {
             .where(
               (path) =>
                   path.contains('/scene_${type}_') &&
-                  path.endsWith('_$mood.png'),
+                  path.endsWith('_$mood.webp'),
             )
             .toList(growable: false)
           ..sort();
@@ -64,7 +64,7 @@ class KidsDuaStoryIllustrationService {
       return typeOnly.first;
     }
 
-    return '$_basePath/scene_default_day_neutral.png';
+    return '$_basePath/scene_default_day_neutral.webp';
   }
 
   IconData fallbackIconForVisual(KidsDuaStorySceneVisual visual) {
@@ -85,7 +85,7 @@ class KidsDuaStoryIllustrationService {
   }
 
   String _assetPath(String type, String time, String mood) {
-    return '$_basePath/scene_${type}_${time}_$mood.png';
+    return '$_basePath/scene_${type}_${time}_$mood.webp';
   }
 }
 

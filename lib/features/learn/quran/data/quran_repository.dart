@@ -6,15 +6,23 @@ import '../application/quran_search_normalization.dart';
 import '../application/quran_search_support.dart';
 import '../domain/quran_ayah.dart';
 import '../domain/quran_daily_verse.dart';
+import '../domain/imported_quran_translation_bundle.dart';
 import '../domain/quran_surah.dart';
+import '../domain/quran_translation_resource.dart';
+import 'imported_quran_translation_bundles.dart';
+import 'quran_translation_registry.dart';
 import 'quran_transliteration_local_data.dart';
 
 class QuranRepository {
-  QuranRepository();
+  QuranRepository({
+    Map<String, ImportedQuranTranslationBundle> importedBundles =
+        importedQuranTranslationBundles,
+  }) : _importedBundles = importedBundles;
 
   final Map<String, List<QuranAyah>> _ayahCache = {};
   List<QuranSurah>? _surahCache;
   final Map<String, List<_VerseSearchRow>> _searchIndexByTranslation = {};
+  final Map<String, ImportedQuranTranslationBundle> _importedBundles;
 
   List<QuranSurah> getSurahs() {
     if (_surahCache != null) return _surahCache!;
@@ -41,7 +49,6 @@ class QuranRepository {
     if (cached != null) return cached;
 
     final count = q.getVerseCount(surahNumber);
-    final translation = _translationForCode(translationCode);
     final transliterationRows = quranTransliterationLocalData[surahNumber];
 
     final rows = List<QuranAyah>.generate(count, (index) {
@@ -50,10 +57,10 @@ class QuranRepository {
         surahNumber: surahNumber,
         ayahNumber: ayahNumber,
         arabic: q.getVerse(surahNumber, ayahNumber),
-        translation: q.getVerseTranslation(
+        translation: _translationTextForAyah(
           surahNumber,
           ayahNumber,
-          translation: translation,
+          translationCode: translationCode,
         ),
         transliteration: index < (transliterationRows?.length ?? 0)
             ? transliterationRows![index]
@@ -72,7 +79,6 @@ class QuranRepository {
     final dayIndex = date.difference(DateTime(date.year, 1, 1)).inDays;
     final globalVerseIndex = dayIndex % q.totalVerseCount;
     final location = _verseLocationFromGlobalIndex(globalVerseIndex);
-    final translation = _translationForCode(translationCode);
 
     final surahNumber = location.$1;
     final ayahNumber = location.$2;
@@ -82,10 +88,10 @@ class QuranRepository {
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
       arabic: q.getVerse(surahNumber, ayahNumber),
-      translation: q.getVerseTranslation(
+      translation: _translationTextForAyah(
         surahNumber,
         ayahNumber,
-        translation: translation,
+        translationCode: translationCode,
       ),
       transliteration: ayahNumber - 1 < (transliterationRows?.length ?? 0)
           ? transliterationRows![ayahNumber - 1]
@@ -221,7 +227,6 @@ class QuranRepository {
   }
 
   List<_VerseSearchRow> _buildSearchIndex(String translationCode) {
-    final translation = _translationForCode(translationCode);
     final rows = <_VerseSearchRow>[];
     for (var surah = 1; surah <= q.totalSurahCount; surah++) {
       final count = q.getVerseCount(surah);
@@ -234,10 +239,10 @@ class QuranRepository {
       final transliterationRows = quranTransliterationLocalData[surah];
       for (var ayah = 1; ayah <= count; ayah++) {
         final arabic = q.getVerse(surah, ayah);
-        final translated = q.getVerseTranslation(
+        final translated = _translationTextForAyah(
           surah,
           ayah,
-          translation: translation,
+          translationCode: translationCode,
         );
         final transliteration = ayah - 1 < (transliterationRows?.length ?? 0)
             ? transliterationRows![ayah - 1]
@@ -299,7 +304,38 @@ class QuranRepository {
     return (1, 1);
   }
 
-  q.Translation _translationForCode(String code) {
+  String _translationTextForAyah(
+    int surahNumber,
+    int ayahNumber, {
+    required String translationCode,
+  }) {
+    final resource = quranTranslationResourceForCode(translationCode);
+    if (resource?.sourceType == QuranTranslationSourceType.quranFoundationApi) {
+      final bundle = _importedBundles[translationCode];
+      if (bundle == null || !bundle.hasAnyVerses) {
+        throw StateError(
+          'No imported Qur\'an translation bundle is available for '
+          '$translationCode.',
+        );
+      }
+      final verseKey = '$surahNumber:$ayahNumber';
+      final translated = bundle.translationForVerseKey(verseKey);
+      if (translated == null || translated.trim().isEmpty) {
+        throw StateError(
+          'Imported Qur\'an translation bundle $translationCode is missing '
+          'verse $verseKey.',
+        );
+      }
+      return translated;
+    }
+    return q.getVerseTranslation(
+      surahNumber,
+      ayahNumber,
+      translation: _bundledTranslationForCode(translationCode),
+    );
+  }
+
+  q.Translation _bundledTranslationForCode(String code) {
     switch (code) {
       case 'en.sahih':
         return q.Translation.enSaheeh;

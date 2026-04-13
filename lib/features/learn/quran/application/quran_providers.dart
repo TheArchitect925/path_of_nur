@@ -13,6 +13,7 @@ import 'quran_note_enrichment.dart';
 import '../data/quran_audio_repository.dart';
 import '../data/quran_content_repository.dart';
 import '../data/quran_repository.dart';
+import '../data/quran_translation_registry.dart';
 import '../data/quran_transliteration_repository.dart';
 import '../data/quran_word_timing_repository.dart';
 import '../domain/bismillah_playback_mode.dart';
@@ -62,16 +63,6 @@ const _hifzSettingsKey = 'learn.quran.hifzSettings';
 const _notesFilterFolderKey = 'learn.quran.notesFilterFolder';
 const _notesFilterTagKey = 'learn.quran.notesFilterTag';
 const _recitationSessionKey = 'learn.quran.recitationSession';
-
-const quranTranslationCodes = <String>[
-  'en.sahih',
-  'en.clear',
-  'ur.urdu',
-  'bn.bengali',
-  'id.indonesian',
-  'tr.saheeh',
-  'fa.dari',
-];
 
 final quranAudioFunctionEnabledProvider = Provider<bool>((ref) => true);
 

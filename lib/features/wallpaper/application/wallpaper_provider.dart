@@ -35,7 +35,7 @@ const stagedWallpapers = <AppWallpaper>[
   AppWallpaper(
     id: 'parchment-default',
     title: 'Parchment Dawn',
-    assetPath: 'assets/images/backgrounds/bg_v1.png',
+    assetPath: 'assets/images/backgrounds/bg_v1.webp',
     minLevel: 1,
     category: 'default',
     rewardHint: 'Starter unlock',
@@ -43,7 +43,7 @@ const stagedWallpapers = <AppWallpaper>[
   AppWallpaper(
     id: 'mist-field',
     title: 'Misty Field',
-    assetPath: 'assets/images/backgrounds/bg_v1.png',
+    assetPath: 'assets/images/backgrounds/bg_v1.webp',
     minLevel: 2,
     category: 'nature',
     rewardHint: 'Level 2 growth',
@@ -51,7 +51,7 @@ const stagedWallpapers = <AppWallpaper>[
   AppWallpaper(
     id: 'ramadan-lantern',
     title: 'Lantern Glow',
-    assetPath: 'assets/images/backgrounds/bg_v1.png',
+    assetPath: 'assets/images/backgrounds/bg_v1.webp',
     minLevel: 4,
     category: 'seasonal',
     rewardHint: 'Ramadan reflection path',
@@ -61,7 +61,7 @@ const stagedWallpapers = <AppWallpaper>[
   AppWallpaper(
     id: 'ocean-drops',
     title: 'Ocean Serenity',
-    assetPath: 'assets/images/backgrounds/bg_v1.png',
+    assetPath: 'assets/images/backgrounds/bg_v1.webp',
     minLevel: 6,
     category: 'journey',
     rewardHint: 'Learning consistency reward',
@@ -71,7 +71,7 @@ const stagedWallpapers = <AppWallpaper>[
   AppWallpaper(
     id: 'kids-sunrise',
     title: 'Sunrise Spark',
-    assetPath: 'assets/images/backgrounds/bg_v1.png',
+    assetPath: 'assets/images/backgrounds/bg_v1.webp',
     minLevel: 1,
     category: 'kids',
     rewardHint: 'Kids mode friendly unlock',
@@ -80,7 +80,7 @@ const stagedWallpapers = <AppWallpaper>[
   AppWallpaper(
     id: 'night-study',
     title: 'Night Study',
-    assetPath: 'assets/images/backgrounds/bg_v1.png',
+    assetPath: 'assets/images/backgrounds/bg_v1.webp',
     minLevel: 8,
     category: 'learning',
     rewardHint: 'Complete 5 learn topics',

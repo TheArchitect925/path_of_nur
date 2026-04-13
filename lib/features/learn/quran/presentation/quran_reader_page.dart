@@ -38,6 +38,7 @@ import '../application/quran_player_controller.dart';
 import '../application/quran_spiritual_moment_provider.dart';
 import '../application/quran_reader_follow_mode_coordinator.dart';
 import '../application/quran_reader_playback_controller.dart';
+import '../data/quran_translation_registry.dart';
 import '../application/quran_reader_playback_state.dart';
 import '../application/quran_reader_transport.dart';
 import '../application/quran_search_normalization.dart';
@@ -312,7 +313,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         ayahNumber: effectiveAyah,
       )),
     );
-    final editorialVerseRelations = editorialVerseRelationsAsync.valueOrNull ??
+    final editorialVerseRelations =
+        editorialVerseRelationsAsync.valueOrNull ??
         const <EditorialResolvedRelationLink>[];
     final editorialVerseHadithLinks = editorialVerseRelations
         .where((item) => item.domain == EditorialRelationDomain.hadith)
@@ -590,8 +592,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                           surahNumber: ayah.surahNumber,
                           ayahNumber: ayah.ayahNumber,
                         ),
-                    onTap:
-                        quranAudioEnabled ? () => _handleAyahPlay(ayah) : null,
+                    onTap: quranAudioEnabled
+                        ? () => _handleAyahPlay(ayah)
+                        : null,
                     onPlayWord: (word) => _onWordTap(context, ref, word),
                     onMistakeCheckpoint: () {
                       ref
@@ -2519,7 +2522,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     (code) => DropdownMenuItem(
                       value: code,
                       child: Text(
-                        _translationLabelForCode(l10n, code),
+                        quranTranslationLabelForCode(l10n, code),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -6223,27 +6226,6 @@ class _ScaleControl extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-String _translationLabelForCode(AppLocalizations l10n, String code) {
-  switch (code) {
-    case 'en.sahih':
-      return l10n.quranTranslationSahih;
-    case 'en.clear':
-      return l10n.quranTranslationClearQuran;
-    case 'ur.urdu':
-      return l10n.quranTranslationUrdu;
-    case 'bn.bengali':
-      return l10n.quranTranslationBengali;
-    case 'id.indonesian':
-      return l10n.quranTranslationIndonesian;
-    case 'tr.saheeh':
-      return l10n.quranTranslationTurkish;
-    case 'fa.dari':
-      return l10n.quranTranslationDari;
-    default:
-      return code;
   }
 }
 

@@ -28,12 +28,6 @@ class GrowthHomePage extends ConsumerWidget {
     final quote = buildGrowthReflectionQuote();
     final snapshot = ref.watch(journeyActivitySnapshotProvider);
     final progress = ref.watch(journeyComputedProgressProvider);
-    final quranBundle = ref.watch(
-      quranPersonalizedRecommendationBundleProvider((
-        QuranPersonalizationSurface.growth,
-        false,
-      )),
-    );
     final locale = Localizations.localeOf(context).toLanguageTag();
     final percentFormat = NumberFormat.decimalPercentPattern(
       locale: locale,
@@ -125,14 +119,7 @@ class GrowthHomePage extends ConsumerWidget {
             ),
           ],
         ),
-        if (quranBundle != null) ...[
-          const SizedBox(height: 12),
-          QuranPersonalizedRecommendationCard(
-            bundle: quranBundle,
-            surface: QuranPersonalizationSurface.growth,
-            allowDismiss: true,
-          ),
-        ],
+        const _GrowthSuggestedSpiritualFocusSection(),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,6 +285,52 @@ class GrowthHomePage extends ConsumerWidget {
               onTap: () => context.pushNamed('growthBrowseAllPage'),
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class _GrowthSuggestedSpiritualFocusSection extends ConsumerStatefulWidget {
+  const _GrowthSuggestedSpiritualFocusSection();
+
+  @override
+  ConsumerState<_GrowthSuggestedSpiritualFocusSection> createState() =>
+      _GrowthSuggestedSpiritualFocusSectionState();
+}
+
+class _GrowthSuggestedSpiritualFocusSectionState
+    extends ConsumerState<_GrowthSuggestedSpiritualFocusSection> {
+  String? _dismissedDateKey;
+
+  @override
+  Widget build(BuildContext context) {
+    final quranBundle = ref.watch(
+      quranPersonalizedRecommendationBundleProvider((
+        QuranPersonalizationSurface.growth,
+        false,
+      )),
+    );
+    if (quranBundle == null) {
+      return const SizedBox.shrink();
+    }
+    if (_dismissedDateKey == quranBundle.generatedDateKey) {
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      children: [
+        const SizedBox(height: 12),
+        QuranPersonalizedRecommendationCard(
+          bundle: quranBundle,
+          surface: QuranPersonalizationSurface.growth,
+          allowDismiss: true,
+          onDismissed: () {
+            if (!mounted) return;
+            setState(() {
+              _dismissedDateKey = quranBundle.generatedDateKey;
+            });
+          },
         ),
       ],
     );

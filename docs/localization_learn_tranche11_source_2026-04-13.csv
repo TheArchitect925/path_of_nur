@@ -1,0 +1,121 @@
+key,english_source,same_as_english_locale_count,missing_locale_count
+learnQuizzesCrosswordSectionSubtitle,Knowledge games that reuse the app’s learning content in a calm puzzle format.,11,0
+learnQuizzesCrosswordSectionTitle,Crossword puzzles,11,0
+learnQuizzesDailyKnowledgeSectionSubtitle,A single daily hub that ties together all five knowledge game experiences.,11,0
+learnQuizzesDailyKnowledgeSectionTitle,Daily Knowledge Challenge,11,0
+learnQuizzesFilterReview,Review,11,0
+learnQuizzesHadithChapterCount,{count} hadith chapter quizzes,11,0
+learnQuizzesHadithReflectionSectionSubtitle,Reflect on authentic Hadith teachings through practical scenario decisions.,11,0
+learnQuizzesHadithReflectionSectionTitle,Hadith Reflection,11,0
+learnQuizzesHadithSectionSubtitle,Path and chapter quizzes from the Hadith module.,11,0
+learnQuizzesHadithSectionTitle,Hadith Chapter Quizzes,11,0
+learnQuizzesHubSubtitle,Practice what you have learned across the different learning sections with one organized quiz hub.,11,0
+learnQuizzesLearningModulesLive,{count} learning modules live,11,0
+learnQuizzesMatchingSectionSubtitle,"Match words, meanings, and lessons in calm study sets.",11,0
+learnQuizzesMatchingSectionTitle,Matching Game,11,0
+learnQuizzesModeQuizGroup,Mode Quiz,11,0
+learnQuizzesNoMatchSubtitle,Try a broader keyword or switch categories.,11,0
+learnQuizzesNoMatchTitle,No quizzes match this filter.,11,0
+learnQuizzesOpenAyahCompletion,Open Ayah Completion,11,0
+learnQuizzesOpenCrossword,Open crossword,11,0
+learnQuizzesOpenDailyKnowledge,Open daily challenge,11,0
+learnQuizzesOpenHadithReflection,Open Hadith Reflection,11,0
+learnQuizzesOpenIslamicTrivia,Open Islamic Trivia,11,0
+learnQuizzesOpenMatching,Open Matching Game,11,0
+learnQuizzesOpenProphetQuiz,Open prophet quiz,11,0
+learnQuizzesOpenWordSearch,Open Word Search,11,0
+learnQuizzesProphetModeCount,{count} prophet quiz modes,11,0
+learnQuizzesProphetModeIdentification,Prophet Identification,11,0
+learnQuizzesProphetModeIdentificationSubtitle,"Recognize prophets through names, roles, and core traits.",11,0
+learnQuizzesProphetModeLessonRecognition,Lesson Recognition,11,0
+learnQuizzesProphetModeLessonRecognitionSubtitle,Identify the life lessons each prophetic story teaches.,11,0
+learnQuizzesProphetModeQuranReference,Qur’an Reference,11,0
+learnQuizzesProphetModeQuranReferenceSubtitle,Connect prophets with their Qur’anic references and contexts.,11,0
+learnQuizzesProphetModeStoryMatching,Story Matching,11,0
+learnQuizzesProphetModeStoryMatchingSubtitle,"Match prophets to events, tests, and story details.",11,0
+learnQuizzesProphetModeTimeline,Timeline Order,11,0
+learnQuizzesProphetModeTimelineSubtitle,Practice chronology and placement across prophetic history.,11,0
+learnQuizzesProphetsSectionSubtitle,Mode-based quizzes from the Prophets module.,11,0
+learnQuizzesProphetsSectionTitle,Prophets Quizzes,11,0
+learnQuizzesRandomHadithReviewSubtitle,Mixed review from completed or available hadith lessons.,11,0
+learnQuizzesReviewSectionSubtitle,Review-style quizzes from your Hadith learning.,11,0
+learnQuizzesReviewSectionTitle,Hadith Review Quizzes,11,0
+learnQuizzesSearchHint,"Search quiz titles, modules, topics...",11,0
+learnQuizzesStartChapterQuiz,Start chapter quiz,11,0
+learnQuizzesStartWeeklyQuiz,Start weekly quiz,11,0
+learnQuizzesStartsAtEasy,Starts at Easy,11,0
+learnQuizzesWeeklyKnowledgeCheck,Weekly Knowledge Check,11,0
+learnQuizzesWeeklyKnowledgeCheckSubtitle,A weekly hadith check-in pulled from learned material.,11,0
+learnQuizzesWordSearchSectionSubtitle,Find meaningful Islamic words in themed grids.,11,0
+learnQuizzesWordSearchSectionTitle,Word Search,11,0
+learnQuranHubDailyVerseTitle,Today''s Verse,11,0
+learnQuranHubOpenReaderAction,Open in Reader,11,0
+learnQuranHubWriteJournalAction,Write in Journal,11,0
+learnSalahHubGuidanceNoticeAcknowledge,"By continuing, I acknowledge that this trainer is for guidance and learning, and I intend to memorize the recitations used in Salah.",11,0
+learnSalahHubGuidanceNoticeBody1,The Salah Trainer in Path of Nūr is designed to help you learn the structure of salah and practice the recitations used during Salah.,11,0
+learnSalahHubGuidanceNoticeBody2,It is intended as a learning aid and guided practice tool. It should not be relied upon as a permanent substitute for memorizing the recitations of salah.,11,0
+learnSalahHubGuidanceNoticeBody3,You are encouraged to gradually memorize the Qur’anic verses and supplications used in Salah so that you may perform your salah independently without relying on the app.,11,0
+learnSalahHubGuidanceNoticeTitle,Salah Trainer Guidance Notice,11,0
+learnSalahHubLearnStructureAction,Learn Salah Structure,11,0
+learnSalahHubStartGuidedSalahAction,Start Guided Salah,11,0
+learnSalahHubStepByStepMovementsAction,Step-by-Step Movements,11,0
+learnSalahHubSubtitle,"Learn the structure of salah, practice with guidance, and build a calm memorization path for surahs and recitations.",11,0
+learnTogetherChildHomeSubtitle,Open the current lesson with shared prompts and talk through it together.,11,0
+learnTogetherDiscussionTitle,Talk about this together,11,0
+learnTogetherFamilyPromptCharacter,Pick one character trait from this lesson and practice it together once before the day ends.,11,0
+learnTogetherFamilyPromptDhikr,Practice this dhikr together tonight and talk about what its meaning gives the heart.,11,0
+learnTogetherFamilyPromptDua,Use this dua together at the next real moment it applies so the words become part of daily life.,11,0
+learnTogetherFamilyPromptStory,"Tonight, ask your child to retell this story in their own words and choose one lesson to carry into tomorrow.",11,0
+learnTogetherFamilyPromptTitle,Try this together,11,0
+learnTogetherGuidanceCharacter,This lesson is strongest when it becomes a small action. Let your child pick one simple behavior to practice before the day ends.,11,0
+learnTogetherGuidanceDhikr,Focus more on meaning than quantity. One calm repetition with understanding is better than rushing through many repetitions.,11,0
+learnTogetherGuidanceDua,"Read the dua slowly together, explain when it is used, and repeat it once more in the real situation if possible.",11,0
+learnTogetherGuidancePatience,"Keep the explanation short, then ask your child to retell the lesson in their own words. If the story teaches patience or trust, invite one real-life example from today.",11,0
+learnTogetherGuidanceSigns,Help your child connect the lesson to something visible around them so the reflection feels real and not abstract.,11,0
+learnTogetherHomeContinueSubtitle,Continue a shared lesson or open a new one together.,11,0
+learnTogetherHomeSubtitle,"Open shared lessons, use guided prompts, and review what your child is learning.",11,0
+learnTogetherJourneyIntro,Choose a child profile and open this journey together with discussion prompts and parent guidance.,11,0
+learnTogetherLearnedTogetherLabel,Learned together,11,0
+learnTogetherLessonIntro,Open this lesson together so the story or teaching can become a calm conversation.,11,0
+learnTogetherParentGuidanceTitle,Parent guidance,11,0
+learnTogetherPromptCharacter1,Which part of good character feels hardest sometimes?,11,0
+learnTogetherPromptCharacter2,What is one small way we can practice this today?,11,0
+learnTogetherPromptDhikr2,When would be a calm time for us to say this together?,11,0
+learnTogetherPromptDua1,When can we say this dua together today?,11,0
+learnTogetherPromptDua2,What does this dua help us remember?,11,0
+learnTogetherPromptSigns2,What does this make us want to notice more carefully today?,11,0
+learnTogetherPromptStory1,What did you learn from this story?,11,0
+learnTogetherPromptStory2,How can we live this lesson today?,11,0
+learnTogetherPromptStoryKids1,What happened in this story that you want to remember?,11,0
+learnTogetherPromptStoryKids2,What good thing can we try after this lesson?,11,0
+learnTogetherReviewTogetherAction,Review together,11,0
+learnTogetherStartWithChild,Start with {name},11,0
+learnTogetherTitle,Learn Together,11,0
+learningAgeGroupHintAdults,"Age mode: full explanations, deeper connections, and the full learning map.",11,0
+learningAgeGroupHintKids,"Age mode: simpler lessons, story-first guidance, and lighter next steps.",11,0
+learningAgeGroupHintTeens,"Age mode: practical examples, identity-focused guidance, and relatable next steps.",11,0
+learningAgeKidsActionStep,Try one small step with family or a trusted adult today.,11,0
+learningAgeKidsLessonIntro,{lessonTitle} is being shown in a simpler child-friendly format.,11,0
+learningAgeKidsReviewSuggestion,Come back later and tell someone what you learned.,11,0
+learningAgeTeensActionStep,Think about one place in real life where you can use this today.,11,0
+learningAgeTeensLessonIntro,"{lessonTitle} is being shown with a shorter, more relatable teen-friendly focus.",11,0
+learningAgeTeensReviewSuggestion,Review this again after salah or later today and connect it to your own routine.,11,0
+learningCommunityFeedbackJourneyBonus,This completed journey added an extra drop to the shared good.,11,0
+learningCommunityFeedbackPhaseBonus,This phase milestone added another drop to the Ocean.,11,0
+learningCommunityFeedbackSharedAdult,Learning together added to the Ocean.,11,0
+learningCommunityFeedbackSharedKids,You learned together and added a drop.,11,0
+learningCommunityFeedbackStageAdult,Your learning added a drop to the Ocean.,11,0
+learningCommunityFeedbackStageKids,You added a drop. Your lesson helped the Ocean grow.,11,0
+learningCommunityFeedbackTodayLightAdult,Today’s learning added a quiet drop to the Ocean.,11,0
+learningCommunityFeedbackTodayLightKids,Today’s light helped the Ocean grow.,11,0
+learningCommunitySummaryEmpty,Every lesson adds to shared good. Your next learning step can begin a new ripple.,11,0
+learningCommunitySummaryFamilySubtitle,Your family’s learning this week added {count} drops to the Ocean.,11,0
+learningCommunitySummaryKidsSubtitle,You added {count} drops this week. The Ocean is growing.,11,0
+learningCommunitySummarySubtitle,Your learning this week added {count} drops to the Ocean.,11,0
+learningCommunitySummaryTitle,Learning and the Ocean,11,0
+learningCommunitySummaryTogetherNote,{count} shared learning moments added family drops.,11,0
+learningJourneyAlphabetCompletionActionStep,Open Reading Basics next and carry one short alphabet review session with you this week.,11,0
+learningJourneyAlphabetCompletionBullet1,Move forward with workable confidence.,11,0
+learningJourneyAlphabetCompletionBullet2,Keep short review loops alive.,11,0
+learningJourneyAlphabetCompletionBullet3,Let reading basics build on what you now know.,11,0
+learningJourneyAlphabetCompletionIntro,You now have a foundation in letter recognition and sound repetition. The next step is learning how those letters behave inside reading.,11,0

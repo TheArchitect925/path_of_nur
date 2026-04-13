@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 
 enum HadithDifficultyLevel { beginner, intermediate }
 
+enum HadithTransliterationStatus {
+  missing,
+  trusted,
+  unverified,
+  reviewRequired,
+}
+
+enum HadithTransliterationReviewStatus { notReviewed, pending, approved }
+
 enum HadithGradeCategory {
   muttafaqunAlayh,
   sahih,
@@ -62,6 +71,7 @@ class HadithSourceMetadata {
     required this.normalizedCollectionTitle,
     required this.referenceLabel,
     required this.normalizedReferenceLabel,
+    required this.referenceKey,
     required this.hadithNumbers,
     required this.grade,
     required this.provenance,
@@ -78,6 +88,7 @@ class HadithSourceMetadata {
   final HadithSourceChapterInfo? chapter;
   final String? referenceLabel;
   final String? normalizedReferenceLabel;
+  final String referenceKey;
   final List<String> hadithNumbers;
   final String? normalizedNarrator;
   final HadithGradeInfo grade;
@@ -85,6 +96,30 @@ class HadithSourceMetadata {
   final String? importSource;
 
   bool get hasPrimaryCollection => primaryCollectionId != null;
+}
+
+class HadithTransliterationMetadata {
+  const HadithTransliterationMetadata({
+    required this.text,
+    required this.source,
+    required this.status,
+    required this.reviewStatus,
+    required this.reviewedAt,
+    required this.referenceKey,
+    required this.sourceVerified,
+  });
+
+  final String? text;
+  final String? source;
+  final HadithTransliterationStatus status;
+  final HadithTransliterationReviewStatus reviewStatus;
+  final String? reviewedAt;
+  final String referenceKey;
+  final bool sourceVerified;
+
+  bool get hasText => (text ?? '').trim().isNotEmpty;
+  bool get isTrusted =>
+      status == HadithTransliterationStatus.trusted && hasText;
 }
 
 class HadithCategory {
@@ -150,6 +185,12 @@ class HadithEntry {
     this.englishText,
     this.arabicText,
     this.transliteration,
+    this.sourceReferenceKey,
+    this.transliterationSource,
+    this.transliterationStatus = HadithTransliterationStatus.missing,
+    this.transliterationReviewStatus =
+        HadithTransliterationReviewStatus.notReviewed,
+    this.transliterationReviewedAt,
     this.sourceUrl,
     this.translationSourceVerified = false,
     this.arabicMatnSourceVerified = false,
@@ -195,6 +236,11 @@ class HadithEntry {
   final String? englishText;
   final String? arabicText;
   final String? transliteration;
+  final String? sourceReferenceKey;
+  final String? transliterationSource;
+  final HadithTransliterationStatus transliterationStatus;
+  final HadithTransliterationReviewStatus transliterationReviewStatus;
+  final String? transliterationReviewedAt;
   final String? sourceUrl;
   final bool translationSourceVerified;
   final bool arabicMatnSourceVerified;
@@ -245,6 +291,12 @@ class HadithEntry {
   String get translation => displayEnglishText;
   String? get arabicMatn => arabicText;
   String? get transliteratedText => transliteration;
+  String get canonicalSourceReferenceKey =>
+      _normalizeSpacing(sourceReferenceKey) ??
+      _buildCanonicalSourceReferenceKey(
+        collectionId: primarySourceCollectionId,
+        reference: normalizedSourceReference,
+      );
   String get normalizedSourceCollection => normalizedSourceCollectionTitle;
   String get normalizedSourceCollectionTitle =>
       _normalizeSpacing(displaySourceCollection)!;
@@ -406,12 +458,26 @@ class HadithEntry {
           ),
     referenceLabel: displaySourceReference,
     normalizedReferenceLabel: normalizedSourceReference,
+    referenceKey: canonicalSourceReferenceKey,
     hadithNumbers: normalizedSourceHadithNumbers,
     normalizedNarrator: normalizedNarratorName,
     grade: standardizedGrade,
     provenance: sourceProvenance,
     importSource: effectiveSourceImportSource,
   );
+
+  HadithTransliterationMetadata get transliterationMetadata =>
+      HadithTransliterationMetadata(
+        text: transliteratedText,
+        source: _normalizeSpacing(transliterationSource),
+        status: hasTransliteration
+            ? transliterationStatus
+            : HadithTransliterationStatus.missing,
+        reviewStatus: transliterationReviewStatus,
+        reviewedAt: _normalizeSpacing(transliterationReviewedAt),
+        referenceKey: canonicalSourceReferenceKey,
+        sourceVerified: transliterationSourceVerified,
+      );
 
   String? get effectiveSourceImportSource {
     final explicit = _normalizeSpacing(sourceImportSource);
@@ -483,6 +549,11 @@ class HadithEntry {
       englishText: englishText,
       arabicText: arabicText,
       transliteration: transliteration,
+      sourceReferenceKey: sourceReferenceKey,
+      transliterationSource: transliterationSource,
+      transliterationStatus: transliterationStatus,
+      transliterationReviewStatus: transliterationReviewStatus,
+      transliterationReviewedAt: transliterationReviewedAt,
       sourceUrl: sourceUrl,
       translationSourceVerified: translationSourceVerified,
       arabicMatnSourceVerified: arabicMatnSourceVerified,
@@ -718,4 +789,22 @@ String _slugify(String raw) {
       .replaceAll(RegExp(r'[^a-z0-9]+'), '_')
       .replaceAll(RegExp(r'_+'), '_')
       .replaceAll(RegExp(r'^_|_$'), '');
+}
+
+String _buildCanonicalSourceReferenceKey({
+  required String? collectionId,
+  required String? reference,
+}) {
+  final normalizedCollection = _normalizeCollectionId(collectionId);
+  final normalizedReference = _slugify(_normalizeSpacing(reference) ?? '');
+  if (normalizedCollection.isEmpty && normalizedReference.isEmpty) {
+    return '';
+  }
+  if (normalizedCollection.isEmpty) {
+    return normalizedReference;
+  }
+  if (normalizedReference.isEmpty) {
+    return normalizedCollection;
+  }
+  return [normalizedCollection, normalizedReference].join('__');
 }

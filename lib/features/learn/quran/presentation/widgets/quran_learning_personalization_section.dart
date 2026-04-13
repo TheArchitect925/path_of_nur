@@ -9,152 +9,165 @@ import '../../application/quran_learning_personalization_provider.dart';
 import '../../domain/quran_ayah_enrichment_models.dart';
 
 class QuranLearningPersonalizationSection extends ConsumerWidget {
-  const QuranLearningPersonalizationSection({super.key});
+  const QuranLearningPersonalizationSection({
+    super.key,
+    this.wrapInCard = true,
+  });
+
+  final bool wrapInCard;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final summary = ref.watch(quranLearningPersonalizationSummaryProvider);
 
+    final content = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.quranLearningContinueTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 8),
+        if (summary.hasSignals) ...[
+          FilledButton.tonalIcon(
+            onPressed: () => openQuranAt(
+              context,
+              surahNumber: summary.continueAyah.surahNumber,
+              ayahNumber: summary.continueAyah.ayahNumber,
+            ),
+            icon: const Icon(Icons.play_circle_outline_rounded),
+            label: Text(l10n.quranLearningContinueLastAyahAction),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            summary.continueAyah.locationLabel,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ] else
+          Text(
+            l10n.quranLearningContinueEmptySubtitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        if (summary.hasSignals &&
+            (summary.continuePath != null || summary.continueDomain != null)) ...[
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if (summary.continuePath != null)
+                ActionChip(
+                  avatar: const Icon(Icons.route_rounded, size: 18),
+                  label: Text(l10n.quranLearningResumePathAction),
+                  onPressed: () => context.pushNamed(
+                    'quranAyahInsightsPathDetail',
+                    pathParameters: {'pathId': summary.continuePath!.path.id},
+                  ),
+                ),
+              if (summary.continueDomain != null)
+                ActionChip(
+                  avatar: const Icon(Icons.auto_awesome_outlined, size: 18),
+                  label: Text(l10n.quranLearningReturnToDomainAction),
+                  onPressed: () => context.pushNamed(
+                    'quranAyahInsightsDomain',
+                    pathParameters: {'domainId': summary.continueDomain!.id},
+                  ),
+                ),
+            ],
+          ),
+        ],
+        const SizedBox(height: 14),
+        Text(
+          l10n.quranLearningSuggestedTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 8),
+        if (summary.hasSignals) ...[
+          if (summary.nextPathEntry != null)
+            _SuggestionTile(
+              icon: Icons.skip_next_rounded,
+              title: l10n.quranLearningNextInPathTitle,
+              subtitle:
+                  '${summary.nextPathEntry!.ref.locationLabel} • ${summary.nextPathEntry!.title}',
+              onTap: () {
+                ref
+                    .read(quranLearningPersonalizationStateProvider.notifier)
+                    .markPathOpened(
+                      pathId: summary.continuePath!.path.id,
+                      entryId: summary.nextPathEntry!.id,
+                    );
+                openQuranReferenceLocation(
+                  context,
+                  ref: summary.nextPathEntry!.ref,
+                );
+              },
+            ),
+          if (summary.suggestedDomain != null)
+            _SuggestionTile(
+              icon: Icons.explore_outlined,
+              title: l10n.quranLearningMoreInDomainTitle,
+              subtitle: _categoryTitle(l10n, summary.suggestedDomain!.id),
+              onTap: () {
+                ref
+                    .read(quranLearningPersonalizationStateProvider.notifier)
+                    .markDomainOpened(summary.suggestedDomain!.id);
+                context.pushNamed(
+                  'quranAyahInsightsDomain',
+                  pathParameters: {'domainId': summary.suggestedDomain!.id},
+                );
+              },
+            ),
+          if (summary.suggestedTag != null)
+            _SuggestionTile(
+              icon: Icons.search_rounded,
+              title: l10n.quranLearningExploreThemeTitle,
+              subtitle: _tagLabel(l10n, summary.suggestedTag!),
+              onTap: () => context.pushNamed(
+                'quranKnowledgeSearch',
+                queryParameters: {
+                  'q': _tagLabel(l10n, summary.suggestedTag!),
+                },
+              ),
+            ),
+        ] else ...[
+          Text(
+            l10n.quranLearningSuggestedEmptySubtitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('quranAyahInsightsPaths'),
+                icon: const Icon(Icons.route_rounded),
+                label: Text(l10n.quranLearningStartPathAction),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('quranAyahInsightsBrowse'),
+                icon: const Icon(Icons.auto_awesome_outlined),
+                label: Text(l10n.quranAyahInsightsBrowseAction),
+              ),
+            ],
+          ),
+        ],
+      ],
+    );
+
+    if (!wrapInCard) {
+      return content;
+    }
+
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.quranLearningContinueTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          if (summary.hasSignals) ...[
-            FilledButton.tonalIcon(
-              onPressed: () => openQuranAt(
-                context,
-                surahNumber: summary.continueAyah.surahNumber,
-                ayahNumber: summary.continueAyah.ayahNumber,
-              ),
-              icon: const Icon(Icons.play_circle_outline_rounded),
-              label: Text(l10n.quranLearningContinueLastAyahAction),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              summary.continueAyah.locationLabel,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ] else
-            Text(
-              l10n.quranLearningContinueEmptySubtitle,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          if (summary.hasSignals &&
-              (summary.continuePath != null ||
-                  summary.continueDomain != null)) ...[
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                if (summary.continuePath != null)
-                  ActionChip(
-                    avatar: const Icon(Icons.route_rounded, size: 18),
-                    label: Text(l10n.quranLearningResumePathAction),
-                    onPressed: () => context.pushNamed(
-                      'quranAyahInsightsPathDetail',
-                      pathParameters: {'pathId': summary.continuePath!.path.id},
-                    ),
-                  ),
-                if (summary.continueDomain != null)
-                  ActionChip(
-                    avatar: const Icon(Icons.auto_awesome_outlined, size: 18),
-                    label: Text(l10n.quranLearningReturnToDomainAction),
-                    onPressed: () => context.pushNamed(
-                      'quranAyahInsightsDomain',
-                      pathParameters: {'domainId': summary.continueDomain!.id},
-                    ),
-                  ),
-              ],
-            ),
-          ],
-          const SizedBox(height: 14),
-          Text(
-            l10n.quranLearningSuggestedTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          if (summary.hasSignals) ...[
-            if (summary.nextPathEntry != null)
-              _SuggestionTile(
-                icon: Icons.skip_next_rounded,
-                title: l10n.quranLearningNextInPathTitle,
-                subtitle:
-                    '${summary.nextPathEntry!.ref.locationLabel} • ${summary.nextPathEntry!.title}',
-                onTap: () {
-                  ref
-                      .read(quranLearningPersonalizationStateProvider.notifier)
-                      .markPathOpened(
-                        pathId: summary.continuePath!.path.id,
-                        entryId: summary.nextPathEntry!.id,
-                      );
-                  openQuranReferenceLocation(
-                    context,
-                    ref: summary.nextPathEntry!.ref,
-                  );
-                },
-              ),
-            if (summary.suggestedDomain != null)
-              _SuggestionTile(
-                icon: Icons.explore_outlined,
-                title: l10n.quranLearningMoreInDomainTitle,
-                subtitle: _categoryTitle(l10n, summary.suggestedDomain!.id),
-                onTap: () {
-                  ref
-                      .read(quranLearningPersonalizationStateProvider.notifier)
-                      .markDomainOpened(summary.suggestedDomain!.id);
-                  context.pushNamed(
-                    'quranAyahInsightsDomain',
-                    pathParameters: {'domainId': summary.suggestedDomain!.id},
-                  );
-                },
-              ),
-            if (summary.suggestedTag != null)
-              _SuggestionTile(
-                icon: Icons.search_rounded,
-                title: l10n.quranLearningExploreThemeTitle,
-                subtitle: _tagLabel(l10n, summary.suggestedTag!),
-                onTap: () => context.pushNamed(
-                  'quranKnowledgeSearch',
-                  queryParameters: {
-                    'q': _tagLabel(l10n, summary.suggestedTag!),
-                  },
-                ),
-              ),
-          ] else ...[
-            Text(
-              l10n.quranLearningSuggestedEmptySubtitle,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                FilledButton.tonalIcon(
-                  onPressed: () => context.pushNamed('quranAyahInsightsPaths'),
-                  icon: const Icon(Icons.route_rounded),
-                  label: Text(l10n.quranLearningStartPathAction),
-                ),
-                FilledButton.tonalIcon(
-                  onPressed: () => context.pushNamed('quranAyahInsightsBrowse'),
-                  icon: const Icon(Icons.auto_awesome_outlined),
-                  label: Text(l10n.quranAyahInsightsBrowseAction),
-                ),
-              ],
-            ),
-          ],
-        ],
+        children: [content],
       ),
     );
   }

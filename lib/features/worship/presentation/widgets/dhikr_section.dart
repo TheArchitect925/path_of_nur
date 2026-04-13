@@ -3,14 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' as intl;
 
-import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../features/profile/application/profile_settings_provider.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/utils/compact_duration_formatter.dart';
+import '../../../../shared/widgets/noor_glass_card.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../shared/widgets/section_title.dart';
@@ -25,10 +26,16 @@ class DhikrSection extends ConsumerStatefulWidget {
   ConsumerState<DhikrSection> createState() => _DhikrSectionState();
 }
 
-class _DhikrSectionState extends ConsumerState<DhikrSection> {
+class _DhikrSectionState extends ConsumerState<DhikrSection>
+    with SingleTickerProviderStateMixin {
   bool _antiRushDialogVisible = false;
+  bool _counterPressed = false;
 
   static const _dailyDhikrGoal = 500;
+
+  late final AnimationController _counterPulseController;
+  late final Animation<double> _counterScale;
+  late final Animation<double> _counterGlow;
 
   Future<void> _confirmReset(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context);
@@ -137,6 +144,36 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
   @override
   void initState() {
     super.initState();
+    _counterPulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 220),
+    );
+    _counterScale =
+        TweenSequence<double>([
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 1, end: 1.04),
+            weight: 40,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 1.04, end: 0.985),
+            weight: 25,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0.985, end: 1),
+            weight: 35,
+          ),
+        ]).animate(
+          CurvedAnimation(
+            parent: _counterPulseController,
+            curve: Curves.easeOutCubic,
+          ),
+        );
+    _counterGlow = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _counterPulseController,
+        curve: Curves.easeOutCubic,
+      ),
+    );
     ref.listenManual<DhikrSessionState>(dhikrControllerProvider, (
       previous,
       next,
@@ -149,6 +186,34 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
       }
       _showAntiRushReminder();
     });
+  }
+
+  @override
+  void dispose() {
+    _counterPulseController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleCounterTap({
+    required DhikrController notifier,
+    required bool reduceMotion,
+  }) async {
+    await HapticFeedback.selectionClick();
+    if (mounted) {
+      setState(() => _counterPressed = true);
+    }
+    if (!reduceMotion) {
+      _counterPulseController.forward(from: 0);
+    }
+    notifier.increment();
+    if (reduceMotion) {
+      await Future<void>.delayed(const Duration(milliseconds: 90));
+    } else {
+      await Future<void>.delayed(const Duration(milliseconds: 140));
+    }
+    if (mounted) {
+      setState(() => _counterPressed = false);
+    }
   }
 
   Future<void> _showAntiRushReminder() async {
@@ -317,6 +382,9 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
     );
+    final reduceMotion = ref.watch(
+      profileSettingsProvider.select((value) => value.reduceMotion),
+    );
     final state = ref.watch(dhikrControllerProvider);
     final notifier = ref.read(dhikrControllerProvider.notifier);
     final progress = (state.currentCount / state.target).clamp(0, 1).toDouble();
@@ -340,29 +408,272 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
           subtitle: l10n.dhikrSectionSubtitle,
         ),
         PremiumCard(
+          surfaceTintColor: AppColors.accentGold,
+          surfaceAlphaOverride: 0.18,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 state.selectedPreset.label,
-                style: Theme.of(context).textTheme.titleSmall,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.onSurface,
+                ),
               ),
               const SizedBox(height: 4),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: Text(
+                  state.selectedPreset.phrase,
+                  textAlign: TextAlign.center,
+                  style: QuranPresentationStyle.translucentTextStyle(
+                    context,
+                    Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.onSurface,
+                          height: 1.35,
+                        ) ??
+                        const TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.onSurface,
+                          height: 1.35,
+                        ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
               Text(
                 state.selectedPreset.transliteration,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
+              const SizedBox(height: 6),
               Text(
                 state.selectedPreset.translation,
-                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
-              const SizedBox(height: 14),
-              LinearProgressIndicator(
-                value: progress,
-                backgroundColor: AppColors.surfaceSoft,
-                minHeight: 8,
+              const SizedBox(height: 22),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final maxWidth = constraints.maxWidth.isFinite
+                      ? constraints.maxWidth
+                      : MediaQuery.sizeOf(context).width;
+                  final orbSize = maxWidth < 420 ? maxWidth * 0.64 : 248.0;
+                  final displayScale =
+                      (_counterPressed && !reduceMotion ? 0.985 : 1.0) *
+                      (reduceMotion ? 1.0 : _counterScale.value);
+                  final glowStrength = reduceMotion ? 0.16 : _counterGlow.value;
+                  final reachedTarget = state.hasTargetReached;
+
+                  return AnimatedBuilder(
+                    animation: _counterPulseController,
+                    builder: (context, child) {
+                      return Transform.scale(scale: displayScale, child: child);
+                    },
+                    child: Semantics(
+                      button: true,
+                      label: l10n.dhikrTapToCountSemantics,
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () => _handleCounterTap(
+                            notifier: notifier,
+                            reduceMotion: reduceMotion,
+                          ),
+                          borderRadius: BorderRadius.circular(999),
+                          splashColor: AppColors.accentGold.withValues(
+                            alpha: 0.08,
+                          ),
+                          highlightColor: AppColors.accentGold.withValues(
+                            alpha: 0.04,
+                          ),
+                          child: AnimatedContainer(
+                            duration: Duration(
+                              milliseconds: reduceMotion ? 80 : 180,
+                            ),
+                            curve: Curves.easeOutCubic,
+                            width: orbSize,
+                            height: orbSize,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(
+                                center: const Alignment(-0.12, -0.22),
+                                radius: 0.92,
+                                colors: reachedTarget
+                                    ? <Color>[
+                                        const Color(0xFFFFF6D8),
+                                        const Color(0xFFF7D985),
+                                        const Color(0xFFE4B95B),
+                                      ]
+                                    : <Color>[
+                                        const Color(0xFFFFFBEE),
+                                        const Color(0xFFF4DF9A),
+                                        const Color(0xFFE7C56B),
+                                      ],
+                              ),
+                              border: Border.all(
+                                color: AppColors.accentGold.withValues(
+                                  alpha: reachedTarget ? 0.86 : 0.62,
+                                ),
+                                width: reachedTarget ? 2.2 : 1.4,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.accentGold.withValues(
+                                    alpha: 0.18 + (glowStrength * 0.18),
+                                  ),
+                                  blurRadius: 22 + (glowStrength * 18),
+                                  spreadRadius: 1 + (glowStrength * 2),
+                                  offset: const Offset(0, 8),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FittedBox(
+                                      child: Text(
+                                        _formatCount(
+                                          context,
+                                          state.currentCount,
+                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w800,
+                                              height: 1,
+                                              color: AppColors.onSurface,
+                                            ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      l10n.homeFractionValue(
+                                        _formatCount(
+                                          context,
+                                          state.currentCount,
+                                        ),
+                                        _formatCount(context, state.target),
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.onSurface,
+                                          ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      l10n.dhikrTapToCount,
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge
+                                          ?.copyWith(
+                                            color: AppColors.onSurfaceSubtle,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 18),
+              if (state.hasTargetReached)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    isKidsMode
+                        ? l10n.kidsDhikrTargetReachedMessage
+                        : l10n.dhikrTargetReachedMessage,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: AppColors.success,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 10,
+                runSpacing: 10,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  _DhikrActionPill(
+                    icon: Icons.add_rounded,
+                    label: isKidsMode
+                        ? l10n.kidsDhikrAddManuallyAction
+                        : l10n.dhikrAddManuallyAction,
+                    onTap: () => _addManualCount(context, ref),
+                  ),
+                  _DhikrActionPill(
+                    icon: Icons.remove_rounded,
+                    label: isKidsMode
+                        ? l10n.kidsDhikrUndoOneTooltip
+                        : l10n.dhikrUndoOneTooltip,
+                    onTap: notifier.undo,
+                  ),
+                  _DhikrActionPill(
+                    icon: Icons.refresh_rounded,
+                    label: isKidsMode
+                        ? l10n.kidsDhikrResetAction
+                        : l10n.dhikrResetAction,
+                    onTap: () => _confirmReset(context, ref),
+                  ),
+                  _DhikrActionPill(
+                    icon: Icons.check_rounded,
+                    emphasize: true,
+                    label: isKidsMode
+                        ? l10n.kidsDhikrFinishSessionAction
+                        : l10n.dhikrFinishSessionAction,
+                    onTap: notifier.finishSession,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 18),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: LinearProgressIndicator(
+                  value: progress,
+                  minHeight: 10,
+                  backgroundColor: AppSurfaceTheme.adaptiveColor(
+                    context,
+                    AppColors.accentGoldSoft,
+                    alpha: 0.20,
+                    solidAlphaWhenDisabled: 0.24,
+                  ),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    AppSurfaceTheme.adaptiveColor(
+                      context,
+                      AppColors.accentGold,
+                      alpha: 0.92,
+                      solidAlphaWhenDisabled: 0.92,
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               Text(
@@ -370,104 +681,11 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
                   _formatCount(context, state.currentCount),
                   _formatCount(context, state.target),
                 ),
-                style: const TextStyle(
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
-                  fontSize: 28,
-                  height: 1,
-                  color: AppColors.onSurface,
+                  color: AppColors.onSurfaceSubtle,
                 ),
-              ),
-              const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.center,
-                child: Semantics(
-                  button: true,
-                  label: l10n.dhikrTapToCountSemantics,
-                  child: GestureDetector(
-                    onTap: notifier.increment,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 140),
-                      height: 96,
-                      width: 96,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppSurfaceTheme.adaptiveColor(
-                          context,
-                          AppColors.homeAccent,
-                          alpha: 0.22,
-                          solidAlphaWhenDisabled: 0.30,
-                        ),
-                        border: Border.all(
-                          color: AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.homeAccent,
-                            alpha: 0.7,
-                            solidAlphaWhenDisabled: 0.78,
-                          ),
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        l10n.dhikrTapToCount,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.onSurface,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              if (state.hasTargetReached)
-                Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    isKidsMode
-                        ? l10n.kidsDhikrTargetReachedMessage
-                        : l10n.dhikrTargetReachedMessage,
-                    style: TextStyle(color: AppColors.success),
-                  ),
-                ),
-              Wrap(
-                spacing: AppSpacing.s,
-                runSpacing: AppSpacing.s,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: notifier.undo,
-                    icon: const Icon(Icons.undo_rounded),
-                    tooltip: isKidsMode
-                        ? l10n.kidsDhikrUndoOneTooltip
-                        : l10n.dhikrUndoOneTooltip,
-                  ),
-                  TextButton.icon(
-                    onPressed: () => _addManualCount(context, ref),
-                    icon: const Icon(Icons.edit_note_rounded),
-                    label: Text(
-                      isKidsMode
-                          ? l10n.kidsDhikrAddManuallyAction
-                          : l10n.dhikrAddManuallyAction,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () => _confirmReset(context, ref),
-                    child: Text(
-                      isKidsMode
-                          ? l10n.kidsDhikrResetAction
-                          : l10n.dhikrResetAction,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: notifier.finishSession,
-                    child: Text(
-                      isKidsMode
-                          ? l10n.kidsDhikrFinishSessionAction
-                          : l10n.dhikrFinishSessionAction,
-                    ),
-                  ),
-                ],
               ),
             ],
           ),
@@ -604,6 +822,56 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
             ),
           ),
       ],
+    );
+  }
+}
+
+class _DhikrActionPill extends StatelessWidget {
+  const _DhikrActionPill({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.emphasize = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool emphasize;
+
+  @override
+  Widget build(BuildContext context) {
+    final tint = emphasize ? AppColors.accentGold : AppColors.accentGoldSoft;
+    return NoorGlassCard(
+      padding: EdgeInsets.zero,
+      surfaceVariant: AppSurfaceVariant.pill,
+      surfaceTintColor: tint,
+      surfaceAlphaOverride: emphasize ? 0.24 : 0.18,
+      includeShadow: false,
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(999),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 20, color: AppColors.onSurface),
+                const SizedBox(width: 10),
+                Text(
+                  label,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.onSurface,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:path_of_nur/app/routes/learn/learn_content_domain_routes.dart';
 import 'package:path_of_nur/features/editorial_dashboard/application/editorial_content_versions_provider.dart';
+import 'package:path_of_nur/features/learn/hadith/domain/hadith_foundation_models.dart';
 import 'package:path_of_nur/features/learn/hadith/data/seeded_hadith_foundation_data.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
@@ -185,6 +186,51 @@ void main() {
 
       expect(find.text('Text matches'), findsOneWidget);
       expect(find.text('Source'), findsWidgets);
+    },
+  );
+
+  testWidgets(
+    'search page surfaces chapter metadata matches through the canonical source filter',
+    (tester) async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final router = GoRouter(
+        initialLocation:
+            '/learn/hadith/search?q=Foundations%20of%20Intention&filter=source',
+        routes: buildLearnContentDomainRoutes(),
+      );
+      final chapterIndexedEntry = seededHadithEntries
+          .firstWhere((entry) => entry.id == 'intentions_core')
+          .copyWith(
+            sourceChapterId: 'foundations_of_intention',
+            sourceChapterTitle: 'Foundations of Intention',
+            sourceChapterNumber: 7,
+          );
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            editorialHadithEntriesProvider.overrideWith(
+              (ref) => <HadithEntry>[chapterIndexedEntry],
+            ),
+          ],
+          child: MaterialApp.router(
+            routerConfig: router,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Chapter match'), findsOneWidget);
+      expect(find.text('Actions Are by Intentions'), findsWidgets);
     },
   );
 }

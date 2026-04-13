@@ -1,0 +1,14 @@
+# 2026-04-13 Localization Audit — Quran Tranche 4 Handoff
+
+Continuation prompt for the large-family localization audit pass.
+
+User intent:
+- Continue with the next queued tranche for `quran` after tranche 3.
+- Keep queue and backlog artifacts synchronized for immediate human/translation workflow handoff.
+- Re-run quick validation snapshots for audit continuity.
+
+Expected deliverable:
+1. New tranche source + tranche file for the next 120 keys:
+   - `docs/localization_quran_tranche4_source_2026-04-13.csv`
+   - `docs/localization_quran_batch_tranche4_2026-04-13.md`
+2. Update execution/backlog docs so tranche 4 is visible as the next handoff item.

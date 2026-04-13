@@ -1,0 +1,2423 @@
+# Localization Audit Backlog
+
+Date: 2026-04-12
+
+## Progress logged in this pass
+
+- Completed a first translation-quality batch for `ar`, `de`, `ur`, and `hi` on the newly live Hadith browse/reader/narrator and Qur'an hub/companion strings.
+- The scoped batch covered search/discovery labels, browse controls, reader display copy, grade headers, narrator not-found copy, recommendation titles, companion badges, and companion progress text.
+- Validation completed with JSON parsing plus `flutter gen-l10n`.
+- For the scoped key batch, same-as-English fallback count is now `0` in:
+  - `lib/l10n/app_ar.arb`
+  - `lib/l10n/app_de.arb`
+  - `lib/l10n/app_ur.arb`
+  - `lib/l10n/app_hi.arb`
+
+## Recommended next options
+
+- Finish the shared batch of 78 missing keys across every non-English locale first, since that removes the same visible gaps everywhere in one pass.
+- Prioritize the highest-coverage locales next: Arabic, German, Urdu, then Hindi, because they deliver the most visible quality gain with the least remaining translation volume.
+- After that, choose whether to fully complete one low-coverage locale at a time or translate only high-traffic product areas first, such as Home, Learn, Qur'an, Worship, widgets, and onboarding.
+- Next recommended slice: translate the remaining long-form Hadith grade explanations and narrator summaries in `ar`, `de`, `ur`, and `hi`, then move to the rest of the Qur'an companion reason/descriptive strings still falling back in those locales.
+
+## Follow-up audit on 2026-04-12
+
+- A second audit of the recent Hadith and Qur'an translation work found two categories of remaining work:
+  - direct misses inside the recent translation footprint
+  - broader adjacent Hadith/Qur'an localization debt that still sits outside the recent scoped passes
+- Confirmed direct misses:
+  - Completed 2026-04-12: `hadithReflectionCompletedQuiet` was added to every non-English locale file
+  - Completed 2026-04-12: `hadithLessonCompletedQuiet` was added to every non-English locale file
+- Confirmed priority-locale fallback clusters in `ar`, `de`, `ur`, and `hi`:
+  - Completed 2026-04-12: Hadith grade explainer
+  - Completed 2026-04-12: Hadith narrator profile/stat/summary copy
+  - Completed 2026-04-12: Hadith reader display-settings action
+  - Completed 2026-04-12: Qur'an hub recommendation reasons
+  - Completed 2026-04-12: Qur'an daily companion descriptions/reason copy
+  - Completed 2026-04-12: Qur'an memorization review labels
+  - Completed 2026-04-12: Qur'an reference-detail sheet labels and relation reasons
+  - Completed 2026-04-12: Qur'an themes/topic-map titles and descriptive copy
+- Confirmed lower-coverage locale fallback clusters still same-as-English across `bn`, `fa`, `fa_AF`, `ha`, `id`, `ku`, `ms`, `pa`, `ps`, `tg`, and `tr`:
+  - Completed 2026-04-12: the same Hadith narrator / grade / companion / theme-map clusters above
+  - Completed 2026-04-12: the additional recently touched reader and hub labels that were still English in those locale files
+- Completed 2026-04-12: broader adjacent Hadith/Qur'an localization debt by surface:
+  - Hadith browse/search
+  - Hadith source browse and reader continuity
+  - Qur'an memorization review
+  - Qur'an daily companion and recommendation continuity
+  - Qur'an themes/topic discovery
+  - Qur'an reference-detail and handoff copy
+- Phase 4 audit result:
+  - no remaining meaningful same-as-English fallback text in the targeted surface set across `ar`, `de`, `ur`, `hi`, `bn`, `fa`, `fa_AF`, `ha`, `id`, `ku`, `ms`, `pa`, `ps`, `tg`, and `tr`
+  - one intentionally neutral exact-match string remains: `hadithSourceBrowseEntrySubtitle`, which is only `{reference} • {grade}` and contains no English wording
+- Validation note:
+  - machine-assisted translation briefly corrupted some ICU placeholder identifiers during this pass
+  - those placeholders were repaired against the English ARB contract before the final `flutter gen-l10n` run
+- Recommended handling order now lives in `docs/localization_followup_phase_plan_2026-04-12.md`.
+
+## Release-readiness audit on 2026-04-12
+
+- Full-locale audit result:
+  - missing-key count is `0` in every non-English locale
+  - same-as-English fallback count is still high across the broader app
+- The newest active-scope misses now are concentrated in the just-added Hadith reader/search keys:
+  - `hadithSearchMatchChapter`
+  - `hadithProvenanceInfoTitle`
+  - `hadithProvenanceInfoBody`
+  - `hadithProvenanceInfoStatusTitle`
+  - `hadithProvenanceInfoPipelineBody`
+  - `hadithReaderBackToLane`
+  - `hadithReaderChapterPosition`
+  - `hadithReaderPosition`
+  - plus `hadithReaderDisplaySettingsTitle` / `hadithReaderDisplaySettingsSubtitle` in lower-coverage locales
+- Highest remaining surface families by fallback volume:
+  - Learn
+  - Qur'an
+  - Kids
+  - Growth
+  - Hadith
+  - Onboarding
+  - Accounts / backup / restore
+  - Home
+  - Arabic learning
+  - Worship / Wudu / Salah
+- Release-focused planning now lives in:
+  - `docs/localization_release_readiness_phase_plan_2026-04-12.md`
+  - `docs/localization_release_readiness_backlog_2026-04-12.md`
+
+## Release-readiness Phase 1 completion on 2026-04-12
+
+- Completed the fresh Hadith/Qur'an fallback cleanup across all non-English locales for:
+  - `hadithSearchMatchChapter`
+  - `hadithProvenanceInfoTitle`
+  - `hadithProvenanceInfoBody`
+  - `hadithProvenanceInfoStatusTitle`
+  - `hadithProvenanceInfoPipelineBody`
+  - `hadithReaderBackToLane`
+  - `hadithReaderChapterPosition`
+  - `hadithReaderPosition`
+  - `hadithReaderDisplaySettingsTitle`
+  - `hadithReaderDisplaySettingsSubtitle`
+- Validation result:
+  - `dart run tool/localization_surface_audit.dart --group broader_hadith_quran --group hadith_reader_phase3` now reports `0` same-as-English fallbacks in every non-English locale for both groups
+
+## Release-readiness Phase 2 progress on 2026-04-12
+
+- Completed the Tier A notification/system copy batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This batch covered:
+  - prayer reminder channel labels and descriptions
+  - prayer-at-time titles and bodies
+  - `On This Day` notification copy
+  - generic prayer naming and `Tahajjud`
+  - iftar notification body/title copy
+  - fasting live Arabic-title / dua display strings
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+
+- Completed the Tier A core onboarding setup copy batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This onboarding batch covered:
+  - learning-path framing
+  - skip / continue / begin journey actions
+  - Shahada meaning
+  - Bismillah transliteration and meaning
+  - opening blessing
+  - language choice
+  - age range
+  - experience level
+  - salah consistency
+  - prayer time calculation method
+  - madhab selection
+- Remaining exact-English carryovers inside this targeted onboarding batch are only:
+  - placeholder-only formatting such as `onboardingProgressValue`
+  - transliteration/proper-name carryovers such as `Bismillahir-Rahmanir-Rahim`, `Muslim World League`, `ISNA`, and madhab names where we intentionally preserved the recognized form
+
+- Completed the Tier A settings shell/theme batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This settings batch covered:
+  - widget enablement copy
+  - Midnight Manuscript theme naming and description
+  - theme mode helper / “best for” guidance
+  - page transition settings
+  - learning level label
+  - run-onboarding-again labels
+- Remaining exact-English carryovers inside this targeted settings batch are mostly:
+  - structural placeholder summaries such as profile summary rows
+  - recognized product/terminology carryovers such as `iCloud`, `Adhan`, prayer names, madhab names, and calculation-method short labels
+
+- Completed the Tier A accounts shell batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This accounts batch covered:
+  - status card states
+  - current mode / provider / last backup labels
+  - local-only and connected-account summaries
+  - sign-in and sign-out actions/results
+  - sync preference labels
+  - top-level remote backup and restore comparison copy
+- Targeted batch result:
+  - the selected Tier A account shell keys now have `0` same-as-English carryovers in `ar`, `de`, `ur`, and `hi`
+
+- Completed the Tier A visible home shell and launch batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This home batch covered:
+  - daily Nur / worship / learn / journey summary cards
+  - home search, welcome, and location prompt copy
+  - visible prayer-state helper strings
+  - widget labels and prayer countdown text
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the visible `home*` launch/dashboard set now has `0` same-as-English fallbacks in `ar`, `de`, `ur`, and `hi` after excluding experimental/test-only keys such as `homeGlassVariant*`
+
+- Completed the Tier A accounts restore-preview and auto-backup batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This accounts batch covered:
+  - remote restore preview comparison strings
+  - remote conflict and merge labels
+  - remote warning/explanation copy
+  - auto-backup titles, statuses, reasons, and eligibility copy
+  - exact-English placeholder-summary rows for account/profile status
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected restore-preview and auto-backup accounts keys now have `0` same-as-English fallbacks in `ar`, `de`, `ur`, and `hi`
+
+- Completed the Tier A onboarding completion batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This onboarding batch covered:
+  - growth/interest selection copy
+  - Qur'an reading preference and harakat copy
+  - family and dhikr feedback sections
+  - identity, final welcome, mission, and disclaimer copy
+  - theme preview and optional account/backup onboarding copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - Tier A onboarding exact-English matches are now reduced to intentional carryovers like:
+    - `onboardingProgressValue`
+    - transliteration/source labels
+    - recognized prayer-method and madhab names
+    - language labels that intentionally keep the native language name
+
+- Completed the Tier A settings/accounts scope-import-export batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This settings/accounts batch covered:
+  - profile/settings summary formatting rows
+  - sync-scope section copy
+  - remote backup found/success/failure and provider-status result strings
+  - export/share backup copy
+  - import file-picking, merge/replace, confirmation, and restore-error strings
+  - transport/status fallback labels
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier A settings/accounts tail now has `0` same-as-English fallbacks in `ar`, `de`, `ur`, and `hi`
+
+- Completed the Tier A home preview/debug batch for:
+  - `app_ar.arb`
+  - `app_de.arb`
+  - `app_ur.arb`
+  - `app_hi.arb`
+- This home batch covered:
+  - `homeGlassPreview*` comparison copy
+  - `homeGlassVariant*` comparison copy
+  - visible home test pills used by preview tooling
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier A home preview/debug keys now have `0` same-as-English fallbacks in `ar`, `de`, `ur`, and `hi`
+
+## Tier C learning journey stage reading audit on 2026-04-13
+
+- Completed the Tier C `learningJourneyStageReading*` batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - Fathah, Kasrah, Dammah, Sukun, and Shaddah stage titles and summaries
+  - joining-letters and checkpoint stage card copy
+  - recitation-understanding completion handoff copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted audit result:
+  - `learningJourneyStageReading*` now has `0` exact-English matches in `pa`, `ps`, and `tg`
+
+## Tier C learning journey stage Ramadan audit on 2026-04-13
+
+- Completed the Tier C `learningJourneyStageRamadan*` batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - Ramadan overview, why-fast, suhoor/iftar, breaks-fast, Laylat al-Qadr, spiritual-goals, and common-mistakes stage cards
+  - localized titles and summaries across the full Ramadan stage family
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted audit result:
+  - `learningJourneyStageRamadan*` now has `0` exact-English matches in `pa`, `ps`, and `tg`
+
+## Tier C learning journey stage fiqh audit on 2026-04-13
+
+- Completed the Tier C `learningJourneyStageFiqh*` batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - halal/haram, cleanliness, salah basics, fasting basics, zakat basics, daily-life scenarios, and practical-review stage cards
+  - localized titles and summaries across the full fiqh stage family
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted audit result:
+  - `learningJourneyStageFiqh*` now has `0` exact-English matches in `pa`, `ps`, and `tg`
+
+## Tier C learning journey stage timeline audit on 2026-04-13
+
+- Completed the Tier C `learningJourneyStageTimeline*` batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - early-prophets, Prophet-era, khulafa, expansion, golden-age, modern-context, and completion stage cards
+  - localized titles and summaries across the full timeline stage family
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted audit result:
+  - `learningJourneyStageTimeline*` now has `0` exact-English matches in `pa`, `ps`, and `tg`
+
+## Tier C learning journey stage stories audit on 2026-04-13
+
+- Completed the Tier C `learningJourneyStageStories*` batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - sky, ocean, mountains, animals, human-creation, day-and-night, and completion stage cards
+  - localized titles and summaries across the full stories stage family
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted audit result:
+  - `learningJourneyStageStories*` now has `0` exact-English matches in `pa`, `ps`, and `tg`
+
+- Completed the Tier C notifications/system copy batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - prayer reminder channel labels and descriptions
+  - prayer-at-time titles and bodies
+  - `On This Day` notification copy
+  - moonrise/moonset notification copy
+  - prayer and reflection action labels
+  - generic prayer naming
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - remaining exact-English `notifications*` matches in `ku`, `ms`, `pa`, `ps`, and `tg` are now limited to intentional canonical/source-text rows:
+    - `notificationsFastingLiveFastBeginsArabicTitle`
+    - `notificationsFastingLiveRenewIntentionArabic`
+    - `notificationsFastingLiveFastEndsArabicTitle`
+    - `notificationsFastingLiveIftarDuaArabic`
+    - `notificationsFastingLiveIftarArabicTitle`
+  - `app_ku.arb` also intentionally preserves `notificationsFastingLiveIftarTitle` as `Iftar`
+
+- Completed the Tier C shared `allSearch*` shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - all-search title, subtitle, and search hint
+  - empty-state and no-results guidance
+  - recent-search and suggestions headings
+  - domain jump actions
+  - suggestion chips
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the translated `allSearch*` prose is cleared for `ku`, `ms`, `pa`, `ps`, and `tg`
+  - the only remaining exact-English carryovers in this batch are intentional canonical/shared terms:
+    - `Qur’an`
+    - `Hadith`
+    - `dua`
+
+- Completed the Tier C shared `assistant*` shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - assistant title and subtitle
+  - empty-state guidance
+  - message input hint
+  - quick prompts, recent prompts, and quick actions headings
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the `assistant*` block now has `0` exact-English matches in `ku`, `ms`, `pa`, `ps`, and `tg`
+
+- Completed the Tier C shared `accessibility*` shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - reminder/help and playback-control labels
+  - dhikr, salah, qada, camera, and reflection accessibility labels
+  - favorite/save/review actions
+  - learning-settings and sources/licensing accessibility copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the `accessibility*` block now has `0` exact-English matches in `ku`, `ms`, `pa`, `ps`, and `tg`
+
+- Completed the Tier C shared `creationExplorer*` shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - Creation Explorer title, subtitle, tabs, and metrics
+  - camera-access, on-device detection, and stable-label guidance
+  - saved observation and reflection journal copy
+  - the companion sky-explorer explainer
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - translated `creationExplorer*` prose is cleared for `ku` and `ms`
+  - the only remaining exact-English carryovers in `pa`, `ps`, and `tg` are the intentional proper-name action label:
+    - `creationExplorerSkyExplorerAction`
+
+- Completed the Tier C shared `history*`, `contextualLinks*`, `nav*`, and `majorPageShortcut*` shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This batch covered:
+  - On This Day and archive titles, filters, states, categories, and metadata labels
+  - contextual related-link types
+  - shared nav labels
+  - major page shortcut labels
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - translated prose in this history/contextual/nav slice is cleared
+  - remaining exact-English carryovers are intentional canonical/shared or format-only rows:
+    - `historyCategoryKhulafa`
+    - `historyCategorySeerah`
+    - `contextualLinksTypeHadith`
+    - `navDhikr`
+    - `historyGregorianDateValue`
+    - `historyHijriDateValue`
+    - `historyTodayGregorianValue`
+    - `historyTodayHijriValue`
+
+- Completed the Tier B notification/system batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - prayer reminder channel labels/descriptions
+  - prayer-at-time title/body copy
+  - `On This Day` notification copy
+  - generic prayer naming
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B notification/system keys now have `0` same-as-English fallbacks in `tr`, `id`, and `bn`
+- Intentional note:
+  - `notificationsFastingLiveIftarArabicTitle` remains `الإفطار` across locales because it is shared canonical Arabic display text rather than English fallback
+
+- Completed the Tier B onboarding core batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - begin/continue onboarding actions
+  - Shahada meaning and Bismillah meaning copy
+  - opening blessing copy
+  - age-range title/subtitle
+  - experience title/subtitle and the core experience choices
+  - salah consistency title/subtitle and the core consistency choices
+  - prayer-method title/subtitle
+  - madhab title/subtitle
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B onboarding core keys now have `0` same-as-English fallbacks in `tr`, `id`, and `bn`
+- ICU note:
+  - Turkish apostrophes were escaped in the translated strings so the ARB files remain valid for `flutter gen-l10n`
+
+- Completed the Tier B onboarding personalization batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - onboarding disclaimer and learning-path framing copy
+  - language choice copy
+  - growth-interest selection copy
+  - Qur'an reading-mode and harakat preferences
+  - reminder and tracking setup copy
+  - family growth setup copy
+  - dhikr feedback and preview copy
+  - identity, greeting, and final welcome copy
+  - onboarding disclaimer and theme-preview explanatory copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B onboarding personalization keys now have `0` same-as-English fallbacks in `tr`, `id`, and `bn` after excluding intentional carryovers like `onboardingWelcomeGreeting` and native-script language labels
+- ICU note:
+  - Turkish and Indonesian apostrophes were escaped where needed so the ARB files remain valid for `flutter gen-l10n`
+
+- Completed the Tier B settings shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - reminder on/off state copy
+  - settings landing helper copy
+  - widget enablement copy
+  - Help & Guide search/browse/empty/not-found/steps copy
+  - Midnight Manuscript theme naming and description
+  - theme-picker helper and “best for” guidance copy
+  - page-transition titles, subtitles, and transition style labels
+  - learning-level and rerun-onboarding labels
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B settings shell keys now have `0` same-as-English fallbacks in `tr`, `id`, and `bn`
+- ICU note:
+  - Turkish apostrophes were escaped where needed so the ARB files remain valid for `flutter gen-l10n`
+
+- Completed the Tier B notification actions batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - before-qaza reminder channel copy
+  - moonrise and moonset titles/bodies
+  - Fajr prayer-time body copy
+  - prayer notification action labels
+  - reflection notification action labels
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B notification action keys now have `0` same-as-English fallbacks in `tr`, `id`, and `bn`
+- Intentional note:
+  - canonical Arabic fasting/iftar strings were intentionally left unchanged in this batch because they are canonical Arabic display text rather than English fallback
+
+- Completed the Tier B accounts shell partial batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - avatar label cleanup
+  - prayer-focused experience-mode label
+  - shared device-platform labels
+  - unknown transport and unavailable-status labels
+  - Bangla provider label cleanup for Google
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected shared account-status label batch now reports `0` same-as-English fallbacks in `bn`
+  - in `tr` and `id`, the only remaining exact-English matches inside this shared label slice are intentional carryovers such as `Google`, `iPhone`, `iPad`, `Apple Watch`, and `Android TV`
+- Remaining note:
+  - Bangla still retains a much larger deeper accounts/backup/restore translation backlog after this shared shell-label cleanup
+
+- Completed the first deeper Bangla accounts batch for:
+  - `app_bn.arb`
+- This batch covered:
+  - account status card title and state bodies
+  - current mode, provider, and last-backup summary copy
+  - local-only and connected-account explainer copy
+  - sign-in and sign-out action/result copy
+  - sync preference labels
+  - top-level remote-backup and remote-restore entry copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Bangla deep accounts batch now has `0` same-as-English fallbacks for the translated key set
+- Remaining note:
+  - Bangla still retains deeper restore-preview, merge/conflict, auto-backup, scope, and import/export account copy after this batch
+
+- Completed the second deeper Bangla accounts batch for:
+  - `app_bn.arb`
+- This batch covered:
+  - restore comparison bodies
+  - restore-preview warnings and action copy
+  - per-domain summary labels
+  - merge/conflict status labels
+  - remote backup-found, backup-success, and restore-success result copy
+  - provider setup, auth-expired, unavailable, and remote-failure bodies
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Bangla restore-preview and remote-status batch now has `0` same-as-English fallbacks for the translated key set
+- Remaining note:
+  - Bangla still retains deeper auto-backup, scope, and import/export account copy after this batch
+
+- Completed the third deeper Bangla accounts batch for:
+  - `app_bn.arb`
+- This batch covered:
+  - auto-backup section, frequency, status, and eligibility copy
+  - sync-scope section, summaries, impacts, and mismatch copy
+  - export/share backup result and helper copy
+  - import file-picking, mode, preview, confirmation, and error copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Bangla auto-backup, scope, and import/export batch now has `0` same-as-English fallback prose
+  - the only exact-match left in the targeted set is the placeholder-only neutral bullet row `• {event}`
+- Remaining note:
+  - Bangla still retains some lower-priority accounts wording outside this batch, but the major auto-backup, scope, and import/export release copy is now translated
+
+- Completed the Tier B home shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - prayer timing header labels and day navigation copy
+  - Daily Nur, salah summary, dhikr, reflection, and streak card copy
+  - worship summary, fasting status, and Khusu quick-entry copy
+  - welcome-carousel intention and salah-rhythm helper copy
+  - home location-permission and search helper copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B home shell batch now has `0` same-as-English fallbacks for the translated key set in `tr`, `id`, and `bn`
+- Remaining note:
+  - broader Tier B home and shell work still remains outside this visible dashboard batch
+
+- Completed the Tier B home learning/journey batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - learning summary and featured-topic card copy
+  - journey summary and unlock-progress card copy
+  - quick-action labels
+  - reflection reminder copy
+  - prayer follow-up helper text
+  - home ecosystem summary copy
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B home learning/journey batch now has `0` same-as-English fallbacks for the translated key set in `tr`, `id`, and `bn`
+- Remaining note:
+  - broader Tier B home and shell work still remains outside this learning/journey slice
+
+- Completed the Tier B home prayer/widget batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - prayer-forbidden-state helper copy
+  - widget prayer and progress titles
+  - widget empty-state helper copy
+  - widget dua, hadith, ayah, reflection, and Name of Allah labels
+  - widget prayer countdown labels
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B home prayer/widget batch now has `0` same-as-English fallbacks for the translated key set in `tr`, `id`, and `bn`
+- Remaining note:
+  - broader Tier B home and shell work still remains outside this prayer/widget slice
+
+- Completed the Tier B home glass-preview batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This batch covered:
+  - the temporary home glass-variant comparison section
+  - all glass-variant titles, subtitles, bodies, footers, and micro labels
+  - the temporary onboarding/loading test pills
+- Validation completed with:
+  - `flutter gen-l10n`
+  - `flutter test test/app/localization_arb_regression_test.dart`
+- Targeted batch result:
+  - the selected Tier B home glass-preview batch now has `0` same-as-English fallbacks for the translated key set in `tr`, `id`, and `bn`
+- Remaining note:
+  - broader Tier B home and shell work still remains outside this glass-preview slice
+
+- Completed the Tier B settings/accounts polish batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B polish batch covered:
+  - remaining visible account shell labels such as avatar and transport title
+  - Tier B theme-choice labels that were still left in English
+  - locale-appropriate Jumu'ah prayer-name carryovers
+  - the remaining Turkish suggested-adjustment row formatting match
+
+- Completed the Tier B onboarding opening/theme/account-options batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B onboarding batch covered:
+  - opening mission copy and hadith lead-in
+  - theme preview title, body, chips, and sample card copy
+  - optional sign-in, backup, and reminder-off onboarding copy
+
+- Completed the Tier B onboarding terminology polish batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B onboarding terminology batch covered:
+  - greeting and language labels still left in English carryover form
+  - prayer method labels shown during onboarding setup
+  - madhab labels shown during onboarding setup
+
+- Completed the Tier B search-hints and loading batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B shell/discovery batch covered:
+  - search hint copy across dua, hadith, prophets, Qur'an, quizzes, lessons, and term discovery
+  - launch/loading status text and morning/evening translation lines
+
+- Completed the Tier B profile/help shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B shell/help batch covered:
+  - profile shell headings, summaries, mode labels, mission line, and Ramadan date-window copy
+  - help-guide getting-started and salah-reminder sections
+
+- Completed the Tier B help-guide completion batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B help batch covered:
+  - Qur'an, learning, dhikr/adhkar, growth/progress, and notifications/settings help-guide sections
+
+- Completed the Tier B shared all-search shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B search-shell batch covered:
+  - the shared All Search title, subtitle, and empty-state copy
+  - recent-search and suggestions headings
+  - no-results guidance and domain jump helper text
+  - shared domain labels, "view all" actions, and suggestion chips
+
+- Completed the Tier B accessibility shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B accessibility batch covered:
+  - reminder/help and playback control labels
+  - dhikr, salah, qada, camera, and reflection-card accessibility labels
+  - favorite/save/review accessibility actions
+  - learning settings plus sources/licensing accessibility copy
+
+- Completed the Tier B assistant shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B assistant batch covered:
+  - the assistant title, subtitle, and empty-state guidance
+  - the message input hint
+  - quick prompts, recent prompts, and quick actions headings
+
+- Completed the Tier B history/contextual/nav shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B shell/navigation batch covered:
+  - remaining history date and archive shell labels in Turkish, Indonesian, and Bangla
+  - contextual related-link type labels
+  - nav labels for dhikr, learning, home, and growth
+  - major page shortcut labels like continue journey, quick lesson, and surah list
+
+- Completed the Tier B Creation Explorer shell batch for:
+  - `app_tr.arb`
+  - `app_id.arb`
+  - `app_bn.arb`
+- This Tier B Creation Explorer batch covered:
+  - the creation explorer title, subtitle, tabs, and action labels
+  - on-device camera access and detection helper text
+  - saved observation and reflection journal copy
+  - the “also explore the sky” companion explainer
+
+- Completed the Tier C notifications/system copy batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C notifications batch covered:
+  - prayer reminder channel names and descriptions
+  - prayer-at-time notification title and body copy
+  - On This Day, moonrise, and moonset notification copy
+  - prayer notification action labels and the generic prayer naming label
+
+- Completed the Tier C shared all-search shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C search-shell batch covered:
+  - the shared All Search title, subtitle, and empty-state copy
+  - recent-search and suggestions headings
+  - no-results guidance and domain jump helper text
+  - domain labels, "view all" actions, and suggestion chips
+
+- Completed the Tier C assistant shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C assistant batch covered:
+  - the assistant title, subtitle, and empty-state guidance
+  - the message input hint
+  - quick prompts, recent prompts, and quick actions headings
+
+- Completed the Tier C accessibility shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accessibility batch covered:
+  - reminder/help and playback control labels
+  - dhikr, salah, qada, camera, and reflection-card accessibility labels
+  - favorite/save/review accessibility actions
+  - learning settings plus sources/licensing accessibility copy
+
+- Completed the Tier C Creation Explorer shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C Creation Explorer batch covered:
+  - the Creation Explorer title, subtitle, tabs, and action labels
+  - on-device camera access and detection helper text
+  - saved observation and reflection journal copy
+  - the "also explore the sky" companion explainer
+
+- Completed the Tier C history/contextual/nav shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C history/contextual/nav batch covered:
+  - On This Day and archive titles, filters, states, categories, and metadata labels
+  - contextual related-link type labels
+  - shared nav labels and major page shortcut labels
+  - history empty states, significance/source copy, and date-confidence text
+
+- Completed the Tier C profile/loading shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C profile/loading batch covered:
+  - remaining profile headings, guidance, mode labels, and reminder labels still showing in English
+  - Ramadan date-window helper copy and version/mission text
+  - loading greeting translations and launch/loading status lines
+
+- Completed the Tier C help-guide shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C help-guide batch covered:
+  - getting-started guidance
+  - salah/reminder help steps
+  - Qur'an, learning, dhikr, growth, and notifications/settings help sections
+
+- Completed the Tier C settings shell batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C settings batch covered:
+  - settings landing/helper copy
+  - guide-search and guide-state copy inside settings
+  - theme guidance, transition labels, and rerun-onboarding text
+  - remaining Hausa settings labels for adhan, prayer names, and theme choice text
+
+- Completed the Tier C onboarding core batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C onboarding core batch covered:
+  - begin/continue setup actions
+  - Shahada and Bismillah meaning copy plus the opening blessing
+  - age-range prompts and salah-consistency prompts
+  - prayer-method and madhab prompts
+  - shared onboarding option labels such as off/light/medium/strong and the optional hint
+- Audit note:
+  - `fa` and `fa_AF` now have `0` exact-English matches in this onboarding-core slice
+  - remaining Hausa matches in this slice are intentional proper-name or canonical carryovers: `Bismillahir-Rahmanir-Rahim`, `Islamic Society of North America (ISNA)`, `Hanafi`, `Shafi''i`, `Maliki`, and `Hanbali`
+
+- Completed the Tier C onboarding personalization batch 1 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C onboarding personalization batch 1 covered:
+  - language picker title, helper copy, and supported language labels
+  - experience-level title, helper copy, and experience options
+  - growth-interest title, helper copy, and interest options
+  - Qur'an reading preference, harakat, and text-size labels
+  - reminder setup labels including notification-only, adhan, daily Qur'an, daily lesson, and disable-all options
+  - tracking title, helper copy, and the main tracking-area labels
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this personalization-batch-1 slice
+
+- Completed the Tier C onboarding personalization batch 2 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C onboarding personalization batch 2 covered:
+  - family onboarding copy and family-profile setup guidance
+  - dhikr feedback labels across haptic, sound, and visual responses
+  - identity/name personalization copy
+  - final welcome title, body, focus labels, closing copy, and the knowledge dua meaning
+- Audit note:
+  - `fa` and `fa_AF` now have `0` exact-English matches in this personalization-batch-2 slice
+  - the only remaining Hausa same-as-English match in this slice is the intentional canonical greeting `onboardingWelcomeGreeting`
+
+- Completed the Tier C accounts core batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts core batch covered:
+  - accounts status-card title and state bodies
+  - current-mode, provider, and last-backup summary labels
+  - mode labels, account section title, and local-only/connected-account helper text
+  - backup-status title, sign-in actions, sign-out action, sync-preferences title, and remote-restore entry copy
+- Audit note:
+  - `fa` and `fa_AF` now have `0` exact-English matches in this accounts-core slice
+  - the only remaining Hausa same-as-English match in this slice is the intentional provider proper noun `Google`
+
+- Completed the Tier C accounts remote-backup batch 1 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts remote-backup batch 1 covered:
+  - remote-backup availability and not-configured explainer copy
+  - remote-backup section title and primary actions
+  - restore-comparison title/subtitle and remote provider/status headings
+  - the newer/older/equal remote-restore state bodies
+  - local-updated timestamp labeling in the remote preview
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this remote-backup-batch-1 slice
+
+- Completed the Tier C accounts restore-preview batch 1 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts restore-preview batch 1 covered:
+  - per-domain comparison and warnings titles
+  - restore-preview action labels for replace, merge, and keep-local flows
+  - merge/replace confirmation bodies
+  - restore result title/body and merged/replaced fallback labels
+  - domain summary copy and provider/account mismatch warnings
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this restore-preview-batch-1 slice
+
+- Completed the Tier C accounts restore-preview warning cleanup for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C restore-preview warning cleanup covered:
+  - schema-mismatch warning copy
+  - local-only and remote-only warning copy
+  - the uncertain-merge warning copy
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this warning-cleanup slice
+
+- Completed the Tier C accounts remote-domain batch 1 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts remote-domain batch 1 covered:
+  - remote backup domain labels
+  - conflict-state labels across identical/newer/local-only/remote-only/schema/uncertain/account/provider cases
+  - merge-safety labels for safe, replace-only, unsafe, and unsupported states
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this remote-domain-batch-1 slice
+
+- Completed the Tier C accounts auto-backup batch 1 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts auto-backup batch 1 covered:
+  - auto-backup section title and subtitle
+  - enabled/off state copy and backup frequency labels
+  - meaningful-change and background-trigger labels
+  - auto-backup status, last-attempt/last-success/failure labels, and retry action
+  - auto-backup reason and eligibility-state labels
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this auto-backup-batch-1 slice
+
+- Completed the Tier C accounts scope batch 1 for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts scope batch 1 covered:
+  - sync-scope section title, subtitle, and current-summary copy
+  - essential vs optional scope framing and confirmation actions
+  - scope preview labels and excluded-domain copy
+  - settings/journal/reminders/theme scope descriptions
+  - full vs partial scope summaries and include/exclude impact messaging
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this scope-batch-1 slice
+
+- Completed the Tier C accounts auth/results batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts auth/results batch covered:
+  - local-only continuation action and result copy
+  - email sign-in not-yet-connected explainer text
+  - account-connected and sign-in result states
+  - manual-backup and restore-suggestions preference titles
+  - remote-backup found/success/restore-success result copy
+  - remote provider/auth/unavailable/failure warning bodies
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this auth/results slice
+
+- Completed the Tier C accounts import/export batch for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts import/export batch covered:
+  - backup export created/ready/share copy
+  - backup payload label
+  - choose-file and file-loaded restore copy
+  - merge vs replace labels and import preview text
+  - restore confirmation bodies
+  - import error, warning, and failed-result copy
+- Audit note:
+  - `fa`, `fa_AF`, and `ha` now have `0` exact-English matches in this import/export slice
+
+- Completed the Tier C accounts tail cleanup for:
+  - `app_fa.arb`
+  - `app_fa_AF.arb`
+  - `app_ha.arb`
+- This Tier C accounts tail cleanup covered:
+  - recent sync event bullet copy
+  - prayer-focused experience label
+  - unknown transport and unknown status labels
+  - Hausa profile/account/provider summary wrappers
+  - Hausa transport title/summary copy
+  - Hausa device-platform labels for iPhone, iPad, Apple Watch, and Android TV
+- Audit note:
+  - `fa` and `fa_AF` now have `0` exact-English `accountsSync*` matches
+  - `ha` is reduced to one intentional proper-noun carryover: `accountsSyncProviderGoogle`
+
+- Completed the Tier C profile/loading shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C profile/loading shell batch covered:
+  - profile titles, subtitles, and summary framing
+  - theme, mode, and entrust-deeds labels
+  - On This Day reminder labels and supporting helper copy
+  - mission/version placeholder copy
+  - Ramadan date-range labels and status lines
+  - loading greeting translations and loading status copy
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this `profile*` slice
+  - the only remaining exact-English `loading*` matches in this slice are the intentional canonical Arabic devotional source strings:
+    - `loadingHeadlineAllahAkbar`
+    - `loadingGreetingMorning`
+    - `loadingGreetingEvening`
+
+- Completed the Tier C help-guide shell batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C help-guide shell batch covered:
+  - getting-started guidance
+  - salah/reminder helper steps
+  - Qur'an usage guidance
+  - learning-hub guidance
+  - dhikr/adhkar helper steps
+  - growth/progress guidance
+  - notifications/settings helper copy
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this `helpGuide*` slice
+
+- Completed the Tier C settings shell helper/transition batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C settings shell helper/transition batch covered:
+  - reminder on/off state labels
+  - settings landing helper subtitle
+  - widget/live activity enable labels
+  - settings-side Help & Guide shell search/browse/empty/not-found copy
+  - page-transition labels and styles
+  - learning-level title
+  - rerun-onboarding title and subtitle
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this targeted settings shell helper/transition slice
+  - broader `settings*` prayer/accounts/theme-description long-tail still remains outside this pass
+
+- Completed the Tier C onboarding setup-core batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C onboarding setup-core batch covered:
+  - learning-path age-group selector copy
+  - skip / continue / begin-journey onboarding actions
+  - settings-hint helper copy
+  - language and age-range setup copy
+  - experience-level setup copy
+  - salah-consistency setup copy
+  - prayer-method and madhab titles/subtitles
+- Audit note:
+  - the translated onboarding setup-core prose is cleared for `ku`, `ms`, `pa`, `ps`, and `tg`
+  - the only remaining exact-English carryovers in this slice are the intentional shared proper-name labels for prayer methods and madhabs
+  - later onboarding personalization and welcome/family copy for `ku`, `ms`, `pa`, `ps`, and `tg` still remains outside this pass
+
+- Completed the Tier C onboarding personalization batch 1 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C onboarding personalization batch 1 covered:
+  - growth-interest titles and helper copy
+  - Qur'an reading preference labels
+  - harakat and text-size labels
+  - reminder setup titles, subtitles, and reminder-mode labels
+  - daily Qur'an and lesson reminder labels
+  - tracking titles, helper copy, and tracking-category labels
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this onboarding personalization batch 1 slice
+  - later family, dhikr feedback, identity/name, and final welcome onboarding copy still remains outside this pass
+
+- Completed the Tier C onboarding personalization batch 2 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C onboarding personalization batch 2 covered:
+  - family onboarding guidance and family-profile helper copy
+  - dhikr feedback labels across haptic, sound, and visual response modes
+  - identity, greeting, name, and optional-helper copy
+  - final welcome title, body, focus-list, and closing copy
+  - the knowledge dua meaning
+- Audit note:
+  - the translated onboarding personalization batch 2 prose is cleared for `ku`, `ms`, `pa`, `ps`, and `tg`
+  - the only remaining exact-English carryover in this slice is the intentional canonical greeting template `onboardingWelcomeGreeting`
+
+- Completed the Tier C accounts core batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts core batch covered:
+  - accounts status-card title and mode bodies
+  - current-mode, provider, and last-backup summary labels
+  - mode labels
+  - account section title and connected/local-only helper copy
+  - backup-status title
+  - sign-in continuation actions
+  - sign-out action
+  - sync-preferences title
+  - remote-restore entry action
+- Audit note:
+  - the translated accounts core prose is cleared for this slice in `ku`, `ms`, `pa`, `ps`, and `tg`
+  - the only remaining exact-English carryover in this slice is the intentional proper noun `accountsSyncProviderGoogle` in `ku`, `ms`, `pa`, and `tg`
+
+- Completed the Tier C accounts remote-backup batch 1 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts remote-backup batch 1 covered:
+  - remote-backup availability and not-configured explainer copy
+  - remote-backup section title and primary actions
+  - restore-comparison title and subtitle
+  - remote provider / last-backup / remote-status headings
+  - newer / older / equal remote-restore state bodies
+  - local-updated timestamp label in the remote preview
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this remote-backup-batch-1 slice
+
+- Completed the Tier C accounts restore-preview batch 1 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts restore-preview batch 1 covered:
+  - per-domain comparison and warnings titles
+  - restore-preview action labels for replace / merge / keep-local flows
+  - merge and replace confirmation bodies
+  - restore result title and summary body
+  - no-merged / no-replaced fallback labels
+  - domain summary copy
+  - provider and account mismatch warning copy
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this restore-preview-batch-1 slice
+
+- Completed the Tier C accounts restore-preview warning cleanup for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts restore-preview warning cleanup covered:
+  - schema-mismatch warning copy
+  - local-only warning copy
+  - remote-only warning copy
+  - uncertain-merge warning copy
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this warning-cleanup slice
+
+- Completed the Tier C accounts remote-domain batch 1 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts remote-domain batch 1 covered:
+  - remote backup domain labels
+  - conflict-state labels across identical / newer / local-only / remote-only / schema / uncertain / account / provider cases
+  - merge-safety labels for safe / replace-only / unsafe / unsupported states
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this remote-domain-batch-1 slice
+
+- Completed the Tier C accounts auto-backup batch 1 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts auto-backup batch 1 covered:
+  - auto-backup section title and subtitle
+  - enabled/off explainer copy
+  - backup frequency labels
+  - meaningful-change and background-trigger labels
+  - auto-backup status labels
+  - last-attempt / last-success / failure labels
+  - retry action
+  - trigger-reason and eligibility-state labels
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this auto-backup-batch-1 slice
+
+- Completed the Tier C accounts auth/results batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts auth/results batch covered:
+  - account-connected result copy
+  - sign-in cancelled / unavailable / not-configured / failed result states
+  - local-only continuation and signed-out result states
+  - manual-backup and restore-suggestions titles
+  - remote-backup found / success / restore-success result copy
+  - provider-setup, auth-expired, iCloud unavailable, email unavailable, and remote-backup failed warning copy
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this auth/results slice
+
+- Completed the Tier C accounts scope batch 1 for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts scope batch 1 covered:
+  - sync-scope section title and subtitle
+  - current-summary, essential, and optional scope framing
+  - scope confirm actions and manual-export note
+  - scope preview labels and mismatch/excluded-domain messaging
+  - settings, journal, reminders, and theme descriptions
+  - full/partial scope summaries and include/exclude impact messaging
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this scope-batch-1 slice
+
+- Completed the Tier C accounts import/export batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts import/export batch covered:
+  - export created/ready/share copy
+  - choose-file and file-loaded restore copy
+  - import preview title plus restore mode/exported-at values
+  - restore confirmation bodies
+  - import error/warning/failure result messages
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` now have `0` exact-English matches in this import/export slice
+
+- Completed the Tier C accounts tail cleanup for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C accounts tail cleanup covered:
+  - import mode merge/replace labels
+  - import preview summary plural copy
+  - prayer-focused experience label
+  - iPhone / iPad / Apple Watch device-platform labels
+  - unknown transport and unknown-status labels
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` are reduced to two intentional exact-English carryovers in this tail slice:
+    - `accountsSyncRecentSyncEventBullet`
+    - `accountsSyncDevicePlatformAndroidTv`
+
+- Completed the Tier C onboarding opening/theme/account-options batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C onboarding opening/theme/account-options batch covered:
+  - opening blessing, title, hadith lead and quote, mission body copy, support line, and platform footer
+  - disclaimer body plus the fatwa/sources/neutrality/not-a-ruling/seek-scholar/feedback/footer copy
+  - theme chooser title and subtitle, live-preview labels, sample card copy, and prayer/reading/reflection chips
+  - reminders disable-all and no-notification labels
+  - optional sign-in and manual-backup onboarding account-option copy
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` are reduced to three intentional exact-English carryovers in this onboarding slice:
+    - `onboardingProgressValue`
+    - `onboardingBismillahTransliteration`
+    - `onboardingOpeningHadithSource`
+
+- Completed the Tier C onboarding terminology/preferences batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C onboarding terminology/preferences batch covered:
+  - family heading copy
+  - language picker labels for system default plus the localized language names
+  - growth-interest labels across Qur’an, Hadith, prophets, salah, dhikr, habits, knowledge, growth, and daily inspiration
+  - shared size labels for small, large, and extra large
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` are reduced to intentional exact-English carryovers in this terminology slice:
+    - `onboardingProgressValue`
+    - `onboardingBismillahTransliteration`
+    - `onboardingOpeningHadithSource`
+    - prayer-method proper names
+    - madhhab proper names
+    - `onboardingWelcomeGreeting`
+
+- Completed the Tier C settings theme-guidance batch for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C settings theme-guidance batch covered:
+  - Midnight Manuscript description copy
+  - theme picker helper copy
+  - the default, calm, easy-read, dark, no-glass, Noor dark, manuscript, and kids “best for” helper lines
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` are reduced to five intentional exact-English carryovers in this settings slice:
+    - `settingsCurrentProfileSummary`
+    - `settingsPercentValue`
+    - `settingsPrayerNameJumuah`
+    - `settingsSyncModeICloud`
+    - `settingsThemeChoiceMidnightManuscript`
+
+- Completed the Tier C settings theme-label cleanup for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C settings theme-label cleanup covered:
+  - localized the `Jumu‘ah` prayer-name label
+  - localized the `Midnight Manuscript` theme label
+  - localized the `Noor Midnight Manuscript` and `Noor Kids` theme labels where those variants were still English
+- Audit note:
+  - `ku`, `ms`, `pa`, `ps`, and `tg` are reduced to three intentional exact-English carryovers in this targeted settings slice:
+    - `settingsCurrentProfileSummary`
+    - `settingsPercentValue`
+    - `settingsSyncModeICloud`
+
+- Completed the Tier C Malay settings prayer-label cleanup for:
+  - `app_ms.arb`
+- This Tier C Malay settings prayer-label cleanup covered:
+  - localized the manual salah-times title
+  - localized the `Isha` prayer-name label
+  - localized the masjid-time summary label
+- Audit note:
+  - `app_ms.arb` is reduced to intentional exact-English carryovers in this targeted slice:
+    - `settingsPrayerNameMaghrib`
+    - `settingsCalculationMethodIsna`
+    - `settingsCalculationMethodKarachi`
+    - `settingsCurrentProfileSummary`
+    - `settingsPercentValue`
+    - `settingsSyncModeICloud`
+
+- Completed the Tier C fresh settings audit pass for:
+  - `app_ku.arb`
+  - `app_ms.arb`
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C fresh settings audit pass confirmed:
+  - `app_ku.arb` still has the only large remaining real `settings*` translation backlog, spanning settings shell, prayer/admin, and visual-preference families
+  - `app_ms.arb` is down to a small mixed tail:
+    - likely intentional/proper labels: `settingsPrayerNameMaghrib`, `settingsCalculationMethodIsna`, `settingsCalculationMethodKarachi`, `settingsSyncModeICloud`
+    - format wrappers: `settingsCurrentProfileSummary`, `settingsPercentValue`
+  - `app_pa.arb` and `app_ps.arb` are down to:
+    - format wrappers: `settingsProfileDisplayNameSummary`, `settingsProfileLevelStreakSummary`, `settingsPercentValue`, `settingsCurrentProfileSummary`, `settingsSuggestedAdjustmentChangeRow`
+    - likely proper/service labels: `settingsCalculationMethodIsna`, `settingsSyncModeICloud`
+  - `app_tg.arb` is down to:
+    - format wrappers: `settingsProfileDisplayNameSummary`, `settingsProfileLevelStreakSummary`, `settingsPercentValue`, `settingsCurrentProfileSummary`, `settingsSuggestedAdjustmentChangeRow`
+    - likely proper/service label: `settingsSyncModeICloud`
+- Audit conclusion:
+  - the next meaningful settings work should be locale-specific, led by a dedicated `ku` settings batch rather than another mixed shared pass
+
+- Completed the Tier C Kurdish settings shell batch 1 for:
+  - `app_ku.arb`
+- This Tier C Kurdish settings shell batch covered:
+  - settings landing and category shell subtitles
+  - widgets/watch, language/downloads, privacy, kids/family, and help/about shell copy
+  - learning hub and Qur’an/Arabic display-preference helper copy
+  - current-location, profile/personalization, what’s new, coming soon, and accounts/sync entry copy
+- Audit note:
+  - `app_ku.arb` now has `0` exact-English matches in this targeted settings shell slice
+
+- Completed the Tier C Kurdish settings prayer/admin batch 2 for:
+  - `app_ku.arb`
+- This Tier C Kurdish settings prayer/admin batch covered:
+  - adhan and preview/audio settings copy
+  - stable widget/display labels and visual-preference controls
+  - prayer notification, prayer-time mode, adjustment, manual-times, and masjid-comparison copy
+  - Jumu’ah settings, notification-mode labels, and settings adjustment summary labels
+- Audit note:
+  - `app_ku.arb` now has `0` exact-English matches in this targeted Kurdish settings prayer/admin slice
+
+- Completed the Tier C Kurdish settings tail cleanup for:
+  - `app_ku.arb`
+- This Tier C Kurdish settings tail cleanup covered:
+  - calendar-display title and subtitle
+  - remaining sync-mode and sync-state helper labels
+- Audit note:
+  - `app_ku.arb` is now reduced to intentional exact-English `settings*` carryovers only:
+    - format wrappers: `settingsProfileDisplayNameSummary`, `settingsProfileLevelStreakSummary`, `settingsPercentValue`, `settingsCurrentProfileSummary`
+    - proper labels: madhhab names, calculation-method names, prayer names, `settingsSyncModePathOfNurCloud`, `settingsSyncModeICloud`
+
+- Completed the Tier C `pa` / `ps` / `tg` settings-onboarding tail audit for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C tail audit confirmed:
+  - targeted `settings*` carryovers are now limited to format wrappers and proper/service labels
+  - targeted `onboarding*` carryovers are now limited to:
+    - `onboardingProgressValue`
+    - `onboardingBismillahTransliteration`
+    - `onboardingOpeningHadithSource`
+    - prayer-method proper names
+    - madhhab proper names
+    - `onboardingWelcomeGreeting`
+- Audit conclusion:
+  - no additional shared `pa` / `ps` / `tg` cleanup batch is justified in these targeted settings/onboarding tails
+  - the next meaningful pass should move to a different untranslated surface family instead of forcing wrapper/proper-name edits
+
+- Completed the Tier C Hadith shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith shell batch covered:
+  - the Hadith page title and subtitle
+  - tabs for themes, collections, saved, daily, review, and paths
+  - core actions for open detail, save, saved, copy, share, random review, review by theme, and review by learning path
+  - top section titles/subtitles for essential starter, featured themes, collections, saved, review, spaced repetition, and learning paths
+  - browse sources and browse all Hadith actions
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith shell slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith shell slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith shell slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move deeper into collections, reader continuity, or reflection/content families rather than revisiting this shell slice
+
+- Completed the Tier C Hadith reader-metadata and empty-state batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - reader metadata labels for Arabic matn, transliteration, translation, source, reference, grade, narrator, theme, and collection
+  - reader section headings for related hadith, text, meaning, lessons, reflection, Qur’an connection, prompts, practice action, related verses, and collection/theme entries
+  - saved-state and clipboard feedback copy
+  - theme / collection / lesson / narrator not-found copy
+  - collection page title, subcategory heading/count, and the grade-info title
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith reader-metadata and empty-state slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith reader-metadata and empty-state slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith reader-metadata and empty-state slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into the remaining path, reflection, grade-info body, and narrator/detail placeholder families
+
+- Completed the Tier C Hadith path/progress batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - lesson-completed feedback
+  - path page title and not-found copy
+  - default path subtitle
+  - progress, milestone, lesson, and chapter headings
+  - lesson/completed/progress counters
+  - last-score, Qur’an-connections, and next-lesson labels
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith path/progress slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith path/progress slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith path/progress slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into reflection-home, review-due, quiz-unlock, and longer narrator/detail placeholder families
+
+- Completed the Tier C Hadith reflection-home and review-due batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - daily reflection title and empty state
+  - completed chapter quizzes and lessons-due-for-review copy
+  - reflection-home titles, subtitles, load/loading/not-found states, and kids-profile restriction copy
+  - daily mode, kids mode, and adult mode labels/subtitles
+  - featured-pack, history, continue, theme, and reflection stat labels
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith reflection-home and review-due slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith reflection-home and review-due slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith reflection-home and review-due slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into quiz-unlock, theme-card/path-streak summaries, and the remaining longer narrator/detail placeholder families
+
+- Completed the Tier C Hadith quiz/theme-card/path-streak batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - lesson-completion and reflection-completion action labels
+  - weekly knowledge check and chapter-quiz actions
+  - quiz-unlock guidance
+  - path-streak summary
+  - theme-card counts/progress/start labels
+  - all-themes title and collection-card summary
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith quiz/theme-card/path-streak slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith quiz/theme-card/path-streak slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith quiz/theme-card/path-streak slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into the remaining grade-label/streak labels and longer narrator/detail placeholder families
+
+- Completed the Tier C Hadith short labels and narrator-count batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - grade label
+  - current and best streak labels
+  - reflection completed XP and already-completed-today feedback
+  - theme and collection chip counts
+  - narrator hadith-section count title
+- Audit note:
+  - `app_pa.arb` is reduced to one intentional same-as-English carryover in this slice: `hadithCollectionEntrySubtitle`
+  - `app_ps.arb` is reduced to one intentional same-as-English carryover in this slice: `hadithCollectionEntrySubtitle`
+  - `app_tg.arb` is reduced to one intentional same-as-English carryover in this slice: `hadithCollectionEntrySubtitle`
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into the longer narrator/detail placeholder families and any remaining deeper explanatory copy
+
+- Completed the Tier C Hadith reflection interaction batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - reflection theme subtitle
+  - pack difficulty, progress, and best-choice labels
+  - continue/recommended/resume/completed badges and actions
+  - kids/adult puzzle titles and puzzle subtitles
+  - scenario, teaching summary, prompt, help, choice, outcome, and feedback labels
+  - completion titles/subtitles and XP/drop/best-choice rewards
+  - next puzzle, back to pack, and back home actions
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith reflection interaction slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith reflection interaction slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith reflection interaction slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into the remaining reflection difficulty/category taxonomy, pack titles/subtitles, source-browse subtitles, and the deeper explanatory families that remain
+
+- Completed the Tier C Hadith reflection taxonomy and pack-title batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - reflection difficulty labels
+  - reflection category labels
+  - kids kindness, honesty, patience, anger, family, community, repentance, speech, and daily pack titles/subtitles
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches in this targeted Hadith reflection taxonomy and pack-title slice
+  - `app_ps.arb` now has `0` exact-English matches in this targeted Hadith reflection taxonomy and pack-title slice
+  - `app_tg.arb` now has `0` exact-English matches in this targeted Hadith reflection taxonomy and pack-title slice
+- Audit conclusion:
+  - the next meaningful Hadith work for these locales should move into the remaining source-browse subtitles and any deeper explanatory or adjacent reflection families
+
+- Completed the Tier C Hadith source-browse and completion-status batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Hadith batch covered:
+  - the grade-info subtitle
+  - related Qur’an / duas / canonical hadith section labels
+  - mark complete / completed / mark incomplete actions
+  - complete / incomplete confirmation feedback
+- Audit note:
+  - `app_pa.arb` is reduced to three intentional same-as-English format wrappers in this narrowed Hadith slice:
+    - `hadithCollectionEntrySubtitle`
+    - `hadithReflectionXpLabel`
+    - `hadithSourceBrowseEntrySubtitle`
+  - `app_ps.arb` is reduced to the same three intentional format wrappers in this narrowed Hadith slice
+  - `app_tg.arb` is reduced to the same three intentional format wrappers in this narrowed Hadith slice
+- Audit conclusion:
+  - the remaining shared Hadith tail for these locales is now effectively down to format-only wrappers rather than real untranslated prose
+
+- Completed the Tier C Hadith fresh audit checkpoint for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This audit confirmed the remaining exact-English `hadith*` carryovers are limited to:
+  - `hadithCollectionEntrySubtitle`
+  - `hadithReflectionXpLabel`
+  - `hadithSourceBrowseEntrySubtitle`
+- Audit conclusion:
+  - all three remaining values are format-only wrappers rather than untranslated user-facing prose
+  - no further shared Hadith translation batch is justified for `pa`, `ps`, and `tg` until a new real prose surface appears or a locale-specific review surfaces a non-wrapper issue
+
+- Completed the Tier C kids dua My Day batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua batch covered:
+  - the My Day title/subtitle and start/continue/review actions
+  - section status labels, right-now / next-up / journey labels, and question/recap prompts
+  - recap reward text, right-now reason text, landing-detail text, and completion reward text
+  - the suggested-dua title/actions/reason labels
+  - the light-card title, today-light title, and light value label
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted kids dua My Day slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted kids dua My Day slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted kids dua My Day slice
+- Audit conclusion:
+  - this shared kids dua My Day slice is now fully localized across `pa`, `ps`, and `tg`
+
+- Completed the Tier C kids dua library/practice shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua shell batch covered:
+  - the landing/continue/today/category shell labels and learning-state labels
+  - the quick-practice labels, empty state, and summary body
+  - rewards/meaning/when/source/audio/complete shell labels
+  - reward/count/progress labels, hero title/subtitle, next/back/today actions, and sticker collection labels
+- Audit note:
+  - `app_pa.arb` is reduced to three intentional same-as-English carryovers in this targeted shell slice:
+    - `kidsDuaPracticeMashaAllah`
+    - `kidsDuaCompletionXpValue`
+    - `kidsDuaCompletionCelebrateTitle`
+  - `app_ps.arb` is reduced to the same three intentional carryovers in this targeted shell slice
+  - `app_tg.arb` is reduced to the same three intentional carryovers in this targeted shell slice
+- Audit conclusion:
+  - the remaining same-as-English values in this narrowed kids dua shell slice are a praise expression and two format/proper-style carryovers rather than broader untranslated prose
+
+- Completed the Tier C kids dua starter-lessons and reward batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua lesson batch covered:
+  - the starter lesson rows for meals, sleep/waking, washroom, home, knowledge, and parents
+  - the first reward family titles/subtitles from first-dua star through parent-heart
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted starter-lessons and reward slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted starter-lessons and reward slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted starter-lessons and reward slice
+- Audit conclusion:
+  - this shared kids dua starter-lessons and reward slice is now fully localized across `pa`, `ps`, and `tg`
+
+- Completed the Tier C kids dua stickers/light/reminders batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua support batch covered:
+  - sticker lock/count labels and sticker family names
+  - streak value, light-stage labels, and light-state messages
+  - My Day light continuation/completion copy
+  - morning, midday, evening, bedtime, and recovery reminder titles/bodies
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted stickers/light/reminders slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted stickers/light/reminders slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted stickers/light/reminders slice
+- Audit conclusion:
+  - this shared kids dua support slice is now fully localized across `pa`, `ps`, and `tg`
+
+- Completed the Tier C kids dua stories batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua story batch covered:
+  - story action, landing subtitle, and duration value
+  - featured/continue/browse/all stories labels
+  - story category titles, scene value, and story playback/navigation actions
+  - the story complete title, say-dua/back-to-stories actions, lesson hint, and My Day detail
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted stories slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted stories slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted stories slice
+- Audit conclusion:
+  - this shared kids dua stories slice is now fully localized across `pa`, `ps`, and `tg`
+
+- Completed the Tier C kids dua interaction/tools batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua interaction batch covered:
+  - learning mode labels and gentle-practice / tap-repeat actions
+  - audio-unavailable/audio-section copy and playback actions
+  - read-along and tap-repeat instructional copy
+  - bedtime-link copy, progress labels, and source-tap subtitle
+- Audit note:
+  - `app_pa.arb` is reduced to one intentional same-as-English carryover in this targeted interaction slice:
+    - `kidsDuaPlaybackProgressLabel`
+  - `app_ps.arb` is reduced to the same one intentional carryover
+  - `app_tg.arb` is reduced to the same one intentional carryover
+- Audit conclusion:
+  - the remaining same-as-English value in this narrowed kids dua interaction slice is a format-only progress wrapper rather than untranslated prose
+
+- Completed the Tier C kids dua drawing/parent-view batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C kids dua tail batch covered:
+  - drawing actions, brush-size labels, save/delete/undo states, and drawings titles/empty-state labels
+  - parent-view titles, toggle body, landing labels, overview/today/progress labels
+  - parent activity labels and activity event rows
+  - parent drawings titles/empty state and gallery action
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted drawing/parent-view slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted drawing/parent-view slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted drawing/parent-view slice
+- Audit conclusion:
+  - the shared kids dua prose tail is now effectively cleared for `pa`, `ps`, and `tg`, aside from intentional format-only wrappers and non-kids-dua families
+
+- Completed the Tier C `pa` / `ps` / `tg` fresh audit checkpoint after the kids dua completion run.
+- This audit confirmed:
+  - the shared kids-dua prose tail is now effectively cleared for `app_pa.arb`, `app_ps.arb`, and `app_tg.arb`
+  - remaining same-as-English kids-dua carryovers are limited to intentional wrappers or tiny isolated labels, not another worthwhile shared prose batch
+  - the next real shared backlog has shifted away from kids-dua into broader non-kids families, with `arabicLearning*` now the clearest large surface
+- Audit conclusion:
+  - no additional shared kids-dua prose batch is justified right now for `pa`, `ps`, and `tg`
+  - use the next pass to pivot into the next major untranslated family instead of continuing tiny cleanup work
+
+- Completed the Tier C `arabicLearning` shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C `arabicLearning` batch covered:
+  - playback mode labels
+  - kids/adult search shell copy, filters, type labels, and empty-state controls
+  - kids/adult progress shell copy, counters, milestone/recent/next summaries, and start/continue/review actions
+  - lesson-pack titles, subtitles, actions, recommended badge, pack-type labels, and kids/adult pack titles plus subtitles
+  - mini-assessment intro, prompts, feedback, actions, completion copy, and content-type labels
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `arabicLearning` shell slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `arabicLearning` shell slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `arabicLearning` shell slice
+- Audit conclusion:
+  - the first shared `arabicLearning` shell/progress/pack/mini-assessment slice is now cleared for `pa`, `ps`, and `tg`
+  - the remaining `arabicLearning*` backlog is now deeper family content outside this shell batch rather than these high-visibility exact-English entries
+
+- Completed the Tier C `arabicLearning` quick-resume and mini-practice batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Arabic-learning continuation batch covered:
+  - quick-continue / quick-review actions
+  - Arabic quick-resume widget titles, subtitles, section labels, and actions
+  - kids Arabic mini-assessment card/page copy
+  - adult `quranTeaching` mini-assessment card/page copy
+  - adult Arabic overview title, summary bodies, value rows, and review action
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted quick-resume / mini-practice slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted quick-resume / mini-practice slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted quick-resume / mini-practice slice
+- Audit conclusion:
+  - the remaining shared Arabic-learning tail has shifted further into the larger Qur’an bridge families rather than these quick-resume and mini-practice surfaces
+
+- Completed the Tier C Qur’an bridge opening batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C Qur’an-learning bridge opening batch covered:
+  - `quranReadiness` kids/adult page titles and subtitles
+  - `quranReadiness` kids/adult intro titles and subtitles
+  - `quranShortSurahs` kids/adult page titles and subtitles
+  - `quranShortSurahs` kids/adult intro titles and subtitles
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted Qur’an bridge opening slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted Qur’an bridge opening slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted Qur’an bridge opening slice
+- Audit conclusion:
+  - the opening Qur’an bridge shell is now cleared for `pa`, `ps`, and `tg`
+  - the remaining shared bridge backlog is now in the deeper action, progression, and guidance rows rather than the opening shell copy
+
+- Completed the Tier C short-surah action/card batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C `quranShortSurahs` continuation batch covered:
+  - play/pause actions
+  - known-snippets heading
+  - kids/adult card titles and subtitles
+  - kids/adult start/continue/review actions
+  - adult bridge subtitle
+  - ayah label
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted short-surah action/card slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted short-surah action/card slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted short-surah action/card slice
+- Audit conclusion:
+  - the short-surah family is now reduced further, with the remaining shared bridge backlog sitting more in the readiness and progression/helper rows than these surface actions/cards
+
+- Completed the Tier C Qur’an bridge progression/help batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C deeper bridge batch covered:
+  - `quranReadiness` count/progress values and Arabic-built/start/play helper rows
+  - `quranShortSurahs` count and ayah-count values
+  - `quranShortSurahs` built-from-bridge/start helper rows
+  - `quranShortSurahs` progression subtitle plus stage 1-3 titles and subtitles
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted progression/help slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted progression/help slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted progression/help slice
+- Audit conclusion:
+  - the shared bridge backlog has been pushed further down into the remaining readiness-specific descriptive rows and later guided-passage families
+
+- Completed the Tier C Qur’an readiness descriptive/help batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C deeper readiness batch covered:
+  - progression title/subtitle and level 1-3 titles/subtitles
+  - known-phrase and recognition helper titles/subtitles
+  - pronunciation-hint title/subtitle, open action, and hint labels/descriptions
+  - ayah-context titles plus open-full-ayah, previous, next, review-again, and audio-unavailable helper rows
+  - kids/adult card titles, subtitles, start subtitles, and start/continue/review actions
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted readiness descriptive/help slice after placeholder stripping
+  - `app_ps.arb` has `0` exact-English matches in this targeted readiness descriptive/help slice after placeholder stripping
+  - `app_tg.arb` has `0` exact-English matches in this targeted readiness descriptive/help slice after placeholder stripping
+- Audit conclusion:
+  - the shared Qur’an bridge backlog now sits more in later guided-passage families than in the readiness helper and continuity rows
+
+- Completed the Tier C Qur’an guided-passage batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C guided-passage batch covered:
+  - kids/adult page titles, subtitles, and intro copy
+  - count/ayah-count values plus short-surah-built/start helper rows
+  - progression title/subtitle and stage 1-3 titles/subtitles
+  - opening, response, and full Al-Fatihah titles/subtitles plus passage meta
+  - play/pause/open-reader actions, known-snippets labels, flow hint, and next action
+  - kids/adult card titles, subtitles, start subtitles, start/continue/review actions, and bridge subtitles
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted guided-passage slice after placeholder stripping
+  - `app_ps.arb` has `0` exact-English matches in this targeted guided-passage slice after placeholder stripping
+  - `app_tg.arb` has `0` exact-English matches in this targeted guided-passage slice after placeholder stripping
+- Audit conclusion:
+  - the shared Qur’an guided-passage family is now cleared for `pa`, `ps`, and `tg`, shifting the next worthwhile shared batch into deeper adjacent `arabicLearning*` or later Qur’an-learning tails
+
+- Completed the Tier C `arabicLearning` pack-tail cleanup for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C small `arabicLearning` tail batch covered:
+  - `arabicLearningPackKidsReviewSubtitle`
+  - `arabicLearningPackAdultPhraseReadingSubtitle`
+  - `arabicLearningPackAdultReviewSubtitle`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English embedded carryovers in this targeted `arabicLearningPack*` subtitle slice
+  - `app_ps.arb` has `0` exact-English embedded carryovers in this targeted `arabicLearningPack*` subtitle slice
+  - `app_tg.arb` has `0` exact-English embedded carryovers in this targeted `arabicLearningPack*` subtitle slice
+- Audit conclusion:
+  - this shared `arabicLearningPack*` subtitle tail is now cleared, leaving later `arabicLearning*` work to any remaining deeper family clusters rather than these embedded English labels
+
+- Completed the Tier C `arabicLearning` fresh audit checkpoint for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- Audit note:
+  - `app_pa.arb` has `0` meaningful exact-English prose carryovers in the shared `arabicLearning*` family after placeholder-safe filtering
+  - `app_ps.arb` has `0` meaningful exact-English prose carryovers in the shared `arabicLearning*` family after placeholder-safe filtering
+  - `app_tg.arb` has `0` meaningful exact-English prose carryovers in the shared `arabicLearning*` family after placeholder-safe filtering
+- Audit conclusion:
+  - there is no longer a worthwhile shared `arabicLearning*` translation batch for `pa`, `ps`, and `tg`; the next pass should move to a different real untranslated family
+
+- Completed the Tier C learning landing-shell opening batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C `learningSectionLanding*` opening batch covered:
+  - journeys shortcut action
+  - foundations title/subtitle
+  - belief title/subtitle
+  - Qur’an learning title/subtitle
+  - worship learning title/subtitle
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted learning landing-shell opening slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted learning landing-shell opening slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted learning landing-shell opening slice
+- Audit conclusion:
+  - the `learning*` family is now opened with a clean shared shell slice, while the broader family still remains the largest real untranslated backlog for `pa`, `ps`, and `tg`
+
+- Completed the Tier C learning landing-shell continuation batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent learning landing batch covered:
+  - landing subtitle
+  - Prophets title/subtitle
+  - Character & Adab title/subtitle
+  - Browse All title/subtitle
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted learning landing-shell continuation slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted learning landing-shell continuation slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted learning landing-shell continuation slice
+- Audit conclusion:
+  - the landing shell is closing in coherent chunks, while the wider `learning*` family still remains the largest shared backlog for these locales
+
+- Completed the Tier C worship landing-shell opening batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent `worshipSectionLanding*` shell batch covered:
+  - prayer shortcut/title/subtitle
+  - dhikr shortcut/title/subtitle
+  - duas title/subtitle
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship landing-shell opening slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship landing-shell opening slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship landing-shell opening slice
+- Audit conclusion:
+  - the landing-adjacent worship shell is now opened in a clean shared slice, while the deeper `worship*` family still remains beyond this first pass
+
+- Completed the Tier C worship tracking/fasting handoff batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent worship batch covered:
+  - fasting landing subtitle
+  - tracking page title/subtitle
+  - prayer, dhikr, and fasting summary rows
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship tracking/fasting handoff slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship tracking/fasting handoff slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship tracking/fasting handoff slice
+- Audit conclusion:
+  - the worship landing-to-tracking handoff is now clean, while the broader `worship*` family still remains for later deeper batches
+
+- Completed the Tier C worship reminders mini-shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent worship reminders batch covered:
+  - reminders page title/subtitle
+  - prayer reminders summary
+  - general reminders summary
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship reminders mini-shell slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship reminders mini-shell slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship reminders mini-shell slice
+- Audit conclusion:
+  - the worship reminders shell is now clean in this shared slice, while deeper reminders/device and broader worship families remain for later passes
+
+- Completed the Tier C worship reminders devices-tail cleanup for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C tiny worship reminders tail batch covered:
+  - `worshipRemindersDevicesSummary`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `worshipReminders*` tail slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `worshipReminders*` tail slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `worshipReminders*` tail slice
+- Audit conclusion:
+  - the shared `worshipReminders*` family is now effectively cleared for `pa`, `ps`, and `tg`, leaving later work to deeper adjacent `worship*` surfaces
+
+- Completed the Tier C worship Qibla shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent `worshipQibla*` shell batch covered:
+  - qibla finder title/subtitle
+  - compass direction and location detection/unavailable copy
+  - augmented-reality mode title/subtitle, enable/disable, and beta hint
+  - live camera guidance title/subtitle and prayer-mat hint
+  - overlay title, horizon line label, and Kaaba label
+  - camera unavailable, permission, loading, and retry rows
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship Qibla shell slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship Qibla shell slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship Qibla shell slice
+- Audit conclusion:
+  - the shared worship Qibla shell and core status copy is now clean for `pa`, `ps`, and `tg`, while deeper adjacent `worship*` families still remain for later passes
+
+- Completed the Tier C worship Qibla direction/location batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent `worshipQibla*` batch covered:
+  - location-services, permission, and location-read failure copy
+  - compass-unavailable and cardinal-direction labels
+  - qibla/device/alignment degree values
+  - aligned/rotate/calibration guidance
+  - heading, direction, turn, facing, and current-location rows
+  - major-sites title, distance unit, and the Makkah, Madinah, Jerusalem, Masjid al-Haram, Prophet's Mosque, Al-Aqsa, and Quba labels
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship Qibla direction/location slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship Qibla direction/location slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship Qibla direction/location slice
+- Audit conclusion:
+  - the shared Qibla direction and location guidance is now clean for `pa`, `ps`, and `tg`, while smaller adjacent Qibla/device and broader worship families still remain
+
+- Completed the Tier C worship Qibla iPad-availability tail cleanup for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C tiny `worshipQibla*` tail batch covered:
+  - `worshipQiblaUnavailableOnIpadTitle`
+  - `worshipQiblaUnavailableOnIpadBody`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship Qibla iPad-availability tail slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship Qibla iPad-availability tail slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship Qibla iPad-availability tail slice
+- Audit conclusion:
+  - the shared `worshipQibla*` family is now effectively cleared for `pa`, `ps`, and `tg`, leaving later work to broader adjacent `worship*` families
+
+- Completed the Tier C worship shell/prayer-tracking cleanup batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent non-Qibla `worship*` batch covered:
+  - worship title/subtitle shell copy
+  - next/upcoming prayer prefixes
+  - auto-adjust reminders subtitle
+  - Hijri date/unit formatting row
+  - percent and prayer-overlay value rows
+  - qada queue clear and no-queued/no-records status rows
+  - the prayer heatmap title/subtitle
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted worship shell/prayer-tracking cleanup slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted worship shell/prayer-tracking cleanup slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted worship shell/prayer-tracking cleanup slice
+- Audit conclusion:
+  - the remaining shared shell-level and prayer-tracking worship tail is now smaller, and later work can move into deeper adjacent `worship*` families instead of these generic rows
+
+- Completed the Tier C worship fresh audit checkpoint for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- Audit note:
+  - no exact-English shared `worship*` prose rows remain that justify another coherent batch for these locales
+- Audit conclusion:
+  - the shared `worship*` family is effectively cleared for `pa`, `ps`, and `tg`
+  - the next worthwhile work should move into another untranslated family instead of forcing additional worship micro-batches
+
+- Completed the Tier C search hints batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C shared `search*` hint batch covered:
+  - dua search hint
+  - hadith hint
+  - quizzes hint
+  - life lessons hint
+  - surah hint
+  - Qur'an teaching hint
+  - prophets hint
+  - divine lessons hint
+  - terms hint
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted search-hint slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted search-hint slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted search-hint slice
+- Audit conclusion:
+  - the remaining shared search placeholder tail is smaller after this pass, and future work can either continue with adjacent search/account/settings micro-clusters or move into a larger untranslated family
+
+- Completed the Tier C settings/accounts summary-tail batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C shared settings/accounts micro-tail batch covered:
+  - profile display-name and level/streak summary rows
+  - percent and iCloud/ISNA summary values
+  - current-profile and suggested-adjustment summary rows
+  - account/profile status and account/provider summary rows
+  - pending-uploads, pending-changes, transport, and recent-event summary rows
+  - Google and Android TV provider/device labels plus Apple Watch/Android TV current-device labels
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted settings/accounts summary-tail slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted settings/accounts summary-tail slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted settings/accounts summary-tail slice
+- Audit conclusion:
+  - the remaining shared settings/accounts tail is smaller after this pass, leaving future work either to continue adjacent micro-cleanups or to move into a larger untranslated family
+
+- Completed the Tier C home opening shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C opening `home*` shell batch covered:
+  - prayer section title and day-navigation labels
+  - prayer completed-count summary
+  - Daily Nur title/subtitle
+  - prayer summary title/subtitle
+  - dhikr and learning title/subtitle
+  - reflection title/subtitle
+  - level/streak title/subtitle
+  - prayer progress, dhikr progress, and current streak labels
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted home opening shell slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted home opening shell slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted home opening shell slice
+- Audit conclusion:
+  - the shared home shell is now opening in coherent chunks, while the broader `home*` family still remains a substantial backlog for these locales
+
+- Completed the Tier C home summary labels batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent `home*` summary-label batch covered:
+  - level and XP title
+  - days label
+  - worship summary title/subtitle
+  - fasting status title
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted home summary-label slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted home summary-label slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted home summary-label slice
+- Audit conclusion:
+  - the shared home shell is continuing to clear in coherent chunks, while the broader `home*` family still remains substantial for these locales
+
+- Completed the Tier C home journey/learn/welcome batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent `home*` continuity batch covered:
+  - Khusu quick-entry labels
+  - learn summary title/subtitle and continue/resume rows
+  - featured life/world/hadith topic labels and values
+  - journey summary title/subtitle plus XP/daily-rings/next-unlock rows
+  - quick-actions title/subtitle and the adjacent app quick-action labels
+  - reflection reminder quote
+  - Daily Intention, Salah Rhythm, and Dhikr and Quiet welcome-card titles/subtitles
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted home journey/learn/welcome slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted home journey/learn/welcome slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted home journey/learn/welcome slice
+- Audit conclusion:
+  - the shared home shell is continuing to clear in meaningful continuity chunks, while broader `home*` families still remain for later passes
+
+- Completed the Tier C home helpers batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C adjacent `home*` helper batch covered:
+  - growth ecosystem title/subtitle
+  - fasting state labels
+  - location prompt and permission-state helper copy
+  - prayer detail and forbidden-time helper rows
+  - post-salah dhikr action/status labels
+  - home search tooltips, hint, and no-results copy
+  - verse-card tap hint, time-remaining helper, home title, and the two test pills
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted home helpers slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted home helpers slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted home helpers slice
+- Audit conclusion:
+  - the shared home family is continuing to clear in coherent non-widget slices, leaving widgets, glass-preview copy, and a smaller formatting tail for later passes
+
+- Completed the Tier C home widgets batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C shared `homeWidgets*` batch covered:
+  - widget titles and inline labels for ayah, hadith, reflection, dua, dhikr, journey progress, and the name of Allah
+  - current and next prayer labels
+  - ready-state labels for daily, morning, evening, and night dua widgets
+  - level, streak, target, and today XP labels
+  - prayer-times and spiritual-content unavailable titles/bodies
+  - countdown formats and the prayer overview title
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `homeWidgets*` slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `homeWidgets*` slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `homeWidgets*` slice
+- Audit conclusion:
+  - the shared home family is continuing to clear in substantial user-facing chunks, leaving glass-preview copy and small format-only tails as the main remaining home work
+
+- Completed the Tier C home glass-preview batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C shared `homeGlassVariant*` batch covered:
+  - the glass-preview section title, subtitle, and footnote
+  - all warm / milky / crystal / night / tinted / frosted / layered / edge-lit / adaptive / soft-matte / dense-sanctuary / clear-showcase titles, subtitles, body copy, footer labels, and micro-labels
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `homeGlassVariant*` slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `homeGlassVariant*` slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `homeGlassVariant*` slice
+- Audit conclusion:
+  - the meaningful shared `home*` prose tail is now effectively cleared for these locales, aside from small format-style wrappers
+
+- Completed the Tier C home fresh audit checkpoint for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- Audit note:
+  - all three locales are now down to the same five intentional format-style wrappers in the shared `home*` family:
+    - `homeContinueQuranValue`
+    - `homeCountAndLabel`
+    - `homeFractionValue`
+    - `homeJourneyRingsValue`
+    - `homeXpValue`
+- Audit conclusion:
+  - no worthwhile shared `home*` prose batch remains for `pa`, `ps`, and `tg`
+  - the next pass should move to a different real untranslated family rather than forcing more Home micro-cleanup
+
+- Completed the Tier C learning journey shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourney*` shell batch covered:
+  - lesson section labels for introduction, Arabic/meaning, takeaways, reflection, references, and explore-now
+  - lesson action labels for Qur’an study, dhikr counter, complete flow, next lesson, and return to journey
+  - Qur’an reader / study / Arabic / salah tool-card titles and subtitles
+- Completed the Tier C learning journey browse/home batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourney*` browse/home batch covered:
+  - home continuation and recommendation copy
+  - islands / browse-all / legacy home cards
+  - journey-card stage-count, progress, and action labels
+  - browse-all, featured, all-journeys, islands, tools, Qur'an, notes, bookmarks, and knowledge-constellation browse labels
+  - Learning Journey home title, subtitle, continue/completed badges, completed message, and next-action label
+- Completed the Tier C learning journey islands/detail/tool shell batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourney*` islands/detail/tool shell batch covered:
+  - island home cards plus legacy/tools/browse-all rows
+  - stage badges and island/detail missing-state and placeholder rows
+  - detail-page action and helper rows
+  - learning-journey tool titles and short subtitles
+- Completed the Tier C learning journey Today Light batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyTodayLight*` batch covered:
+  - prophet fallback subtitle
+  - daily hadith / verse / reflection / trivia / dhikr fallback titles and subtitles
+  - the Today Light streak fallback row
+- Completed the Tier C learning journey recitation-meanings prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyStageRecite*` prose batch covered:
+  - the Al-Fatihah understanding lesson
+  - the common salah phrases lesson
+  - the simple dhikr meanings lesson
+- Completed the Tier C learning journey reading-basics prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyStageReadingBasics*` prose batch covered:
+  - the harakat and reading-clues lesson
+  - the joining-letters reading lesson
+  - the reading checkpoint lesson
+- Completed the Tier C learning journey Seerah opening prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneySeerah*` opening prose batch covered:
+  - the early life of the Prophet ﷺ lesson
+  - the first revelation lesson
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourney*` shell slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourney*` shell slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourney*` shell slice
+- Completed the Tier C learning journey Seerah Makkah/Hijrah prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneySeerah*` prose batch covered:
+  - the Makkah-period lesson
+  - the Hijrah lesson
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneySeerah*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneySeerah*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneySeerah*` prose slice
+- Completed the Tier C learning journey Seerah Madinah/leadership prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneySeerah*` prose batch covered:
+  - the Madinah-society lesson
+  - the leadership-and-character lesson
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneySeerah*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneySeerah*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneySeerah*` prose slice
+- Completed the Tier C learning journey Seerah final-sermon prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneySeerahFinalSermon*` prose batch covered:
+  - the final-sermon lesson
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneySeerahFinalSermon*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneySeerahFinalSermon*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneySeerahFinalSermon*` prose slice
+- Completed the Tier C learning journey Dhikr opening/morning prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyDhikr*` prose batch covered:
+  - `learningJourneyDhikrWhatIs*`
+  - `learningJourneyDhikrMorning*`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+- Completed the Tier C learning journey Dhikr evening/after-salah prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyDhikr*` prose batch covered:
+  - `learningJourneyDhikrEvening*`
+  - `learningJourneyDhikrAfterSalah*`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+- Completed the Tier C learning journey Dhikr routine/istighfar prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyDhikr*` prose batch covered:
+  - `learningJourneyDhikrRoutine*`
+  - `learningJourneyDhikrIstighfar*`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneyDhikr*` prose slice
+- Completed the Tier C learning journey Dhikr salawat prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyDhikrSalawat*` prose batch covered:
+  - the `Salawat` lesson
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneyDhikrSalawat*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneyDhikrSalawat*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneyDhikrSalawat*` prose slice
+- Completed the Tier C learning journey Dhikr fresh audit checkpoint for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This audit rechecked the remaining shared `learningJourneyDhikr*` values and cleared:
+  - `learningJourneyDhikrRoutineActionStep`
+- Audit note:
+  - `app_pa.arb` now has `0` exact-English matches across the shared `learningJourneyDhikr*` family
+  - `app_ps.arb` now has `0` exact-English matches across the shared `learningJourneyDhikr*` family
+  - `app_tg.arb` now has `0` exact-English matches across the shared `learningJourneyDhikr*` family
+- Completed the Tier C learning journey faith books/prophets prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyFaith*` prose batch covered:
+  - `learningJourneyFaithBooks*`
+  - `learningJourneyFaithProphets*`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneyFaith*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneyFaith*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneyFaith*` prose slice
+- Completed the Tier C learning journey faith judgment/qadr prose batch for:
+  - `app_pa.arb`
+  - `app_ps.arb`
+  - `app_tg.arb`
+- This Tier C targeted `learningJourneyFaith*` prose batch covered:
+  - `learningJourneyFaithJudgment*`
+  - `learningJourneyFaithQadr*`
+- Audit note:
+  - `app_pa.arb` has `0` exact-English matches in this targeted `learningJourneyFaith*` prose slice
+  - `app_ps.arb` has `0` exact-English matches in this targeted `learningJourneyFaith*` prose slice
+  - `app_tg.arb` has `0` exact-English matches in this targeted `learningJourneyFaith*` prose slice
+- Audit conclusion:
+  - the larger `learning*` family still remains substantial, but the visible Learning Journey shell is now moving in coherent chunks

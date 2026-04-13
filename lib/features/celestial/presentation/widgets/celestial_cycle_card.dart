@@ -13,7 +13,6 @@ import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
 import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/state/location_permission_state.dart';
-import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/home_feature_card_header.dart';
 import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/noor_glass_card.dart';
@@ -131,18 +130,10 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
             onToggleExpanded: () => setState(() => _expanded = !_expanded),
           )
         : null;
+    final shellState = snapshotAsync.asData?.value.solarData.state;
 
-    return AppHeroGlassShell(
-      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-      tintColor: const Color(0xFFE7C98C),
-      surfaceAlphaOverride: 0.2,
-      radius: 36,
-      borderColor: const Color(0x42FFFFFF),
-      highlightGradientColors: const [
-        Color(0x24FFFFFF),
-        Colors.transparent,
-        Color(0x16E8C98F),
-      ],
+    return _CelestialGlassShell(
+      state: shellState,
       onTap: widget.collapsible
           ? null
           : () async {
@@ -272,62 +263,20 @@ class _CelestialCardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final moonVisual = moonPhaseVisualForDate(snapshot.timestamp, l10n);
-    final backgroundGradient = _resolveSkyCardGradient(
-      snapshot.solarData.state,
-    );
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF7EC).withValues(alpha: 0.22),
-        gradient: backgroundGradient,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: const Color(0xFFE2C288).withValues(alpha: 0.44),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF8E6E46).withValues(alpha: 0.08),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (showOverviewHeader) ...[
-              HomeFeatureCardHeader(
-                icon: Icons.wb_twilight_rounded,
-                iconTint: const Color(0xFF9AB7FF),
-                title: l10n.celestialHomeCardTitle,
-                subtitle: snapshot.locationLabel,
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      onPressed: onPickLocation,
-                      tooltip: l10n.worshipPrayerChooseLocationTitle,
-                      splashRadius: 20,
-                      icon: const Icon(Icons.location_on_outlined),
-                    ),
-                    _SkyStateChip(state: snapshot.solarData.state),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-            ] else ...[
-              Row(
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (showOverviewHeader) ...[
+            HomeFeatureCardHeader(
+              icon: Icons.wb_twilight_rounded,
+              iconTint: const Color(0xFF9AB7FF),
+              title: l10n.celestialHomeCardTitle,
+              subtitle: snapshot.locationLabel,
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Text(
-                      snapshot.locationLabel,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.onSurface,
-                      ),
-                    ),
-                  ),
                   IconButton(
                     onPressed: onPickLocation,
                     tooltip: l10n.worshipPrayerChooseLocationTitle,
@@ -337,22 +286,14 @@ class _CelestialCardBody extends StatelessWidget {
                   _SkyStateChip(state: snapshot.solarData.state),
                 ],
               ),
-              const SizedBox(height: 8),
-            ],
+            ),
+            const SizedBox(height: 12),
+          ] else ...[
             Row(
               children: [
-                IconButton(
-                  onPressed: onPreviousDay,
-                  icon: const Icon(
-                    Icons.chevron_left_rounded,
-                    color: Color(0xFF7A5A33),
-                  ),
-                  tooltip: l10n.homePrayerPreviousDayTooltip,
-                ),
                 Expanded(
                   child: Text(
-                    dateLabel,
-                    textAlign: TextAlign.center,
+                    snapshot.locationLabel,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.onSurface,
@@ -360,184 +301,299 @@ class _CelestialCardBody extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: onNextDay,
-                  icon: const Icon(
-                    Icons.chevron_right_rounded,
-                    color: Color(0xFF7A5A33),
-                  ),
-                  tooltip: l10n.homePrayerNextDayTooltip,
+                  onPressed: onPickLocation,
+                  tooltip: l10n.worshipPrayerChooseLocationTitle,
+                  splashRadius: 20,
+                  icon: const Icon(Icons.location_on_outlined),
                 ),
+                _SkyStateChip(state: snapshot.solarData.state),
               ],
             ),
-            const SizedBox(height: 16),
-            _HorizonProgress(snapshot: snapshot, reduceMotion: reduceMotion),
-            const SizedBox(height: 16),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: _InfoPill(
-                    label: l10n.celestialSunriseLabel,
-                    value: DateFormat.jm().format(snapshot.solarData.sunrise),
-                    shellTint: const Color(0xFFE7C259),
-                    tint: _resolveSolarTint(
-                      kind: _SolarPillKind.sunrise,
-                      now: snapshot.timestamp,
-                      eventTime: snapshot.solarData.sunrise,
-                    ),
-                  ),
+            const SizedBox(height: 8),
+          ],
+          Row(
+            children: [
+              IconButton(
+                onPressed: onPreviousDay,
+                icon: const Icon(
+                  Icons.chevron_left_rounded,
+                  color: Color(0xFF7A5A33),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _InfoPill(
-                    label: l10n.celestialSunsetLabel,
-                    value: DateFormat.jm().format(snapshot.solarData.sunset),
-                    shellTint: const Color(0xFFE7C259),
-                    tint: _resolveSolarTint(
-                      kind: _SolarPillKind.sunset,
-                      now: snapshot.timestamp,
-                      eventTime: snapshot.solarData.sunset,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: _InfoPill(
-                    label: l10n.celestialMoonriseLabel,
-                    value: snapshot.lunarData.moonrise == null
-                        ? l10n.celestialUnavailableLabel
-                        : DateFormat.jm().format(snapshot.lunarData.moonrise!),
-                    shellTint: const Color(0xFFC2C5CC),
-                    footnote: snapshot.lunarData.riseSetApproximate
-                        ? l10n.celestialApproximateLabel
-                        : null,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _InfoPill(
-                    label: l10n.celestialMoonsetLabel,
-                    value: snapshot.lunarData.moonset == null
-                        ? l10n.celestialUnavailableLabel
-                        : DateFormat.jm().format(snapshot.lunarData.moonset!),
-                    shellTint: const Color(0xFFC2C5CC),
-                    footnote: snapshot.lunarData.riseSetApproximate
-                        ? l10n.celestialApproximateLabel
-                        : null,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: _InfoPill(
-                    label: l10n.celestialMoonPhaseLabel,
-                    value: snapshot.lunarData.phaseName,
-                    footnote: l10n.celestialIlluminationPercentLabel(
-                      snapshot.lunarData.illuminationPercent,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _InfoPill(
-                    label: l10n.celestialNextEventLabel,
-                    value: l10n.celestialNextEventValue(
-                      snapshot.nextEvent.label,
-                      DateFormat.jm().format(snapshot.nextEvent.time),
-                    ),
-                    footnote: snapshot.nextEvent.relativeDescription,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Center(
-              child: NoorGlassCard(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 18,
-                  vertical: 10,
-                ),
-                surfaceVariant: AppSurfaceVariant.panel,
-                surfaceTintColor: const Color(0xFFD5D7DD),
-                surfaceAlphaOverride: 0.10,
-                includeShadow: false,
-                mode: NoorLiquidGlassMode.fake,
-                borderRadius: 20,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Center(
-                    child: MoonPhaseVisual(moon: moonVisual, size: 136),
+                tooltip: l10n.homePrayerPreviousDayTooltip,
+              ),
+              Expanded(
+                child: Text(
+                  dateLabel,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.onSurface,
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 14),
-            NoorGlassCard(
-              padding: const EdgeInsets.all(15),
+              IconButton(
+                onPressed: onNextDay,
+                icon: const Icon(
+                  Icons.chevron_right_rounded,
+                  color: Color(0xFF7A5A33),
+                ),
+                tooltip: l10n.homePrayerNextDayTooltip,
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          _HorizonProgress(snapshot: snapshot, reduceMotion: reduceMotion),
+          const SizedBox(height: 16),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: _InfoPill(
+                  label: l10n.celestialSunriseLabel,
+                  value: DateFormat.jm().format(snapshot.solarData.sunrise),
+                  shellTint: const Color(0xFFE7C259),
+                  tint: _resolveSolarTint(
+                    kind: _SolarPillKind.sunrise,
+                    now: snapshot.timestamp,
+                    eventTime: snapshot.solarData.sunrise,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _InfoPill(
+                  label: l10n.celestialSunsetLabel,
+                  value: DateFormat.jm().format(snapshot.solarData.sunset),
+                  shellTint: const Color(0xFFE7C259),
+                  tint: _resolveSolarTint(
+                    kind: _SolarPillKind.sunset,
+                    now: snapshot.timestamp,
+                    eventTime: snapshot.solarData.sunset,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: _InfoPill(
+                  label: l10n.celestialMoonriseLabel,
+                  value: snapshot.lunarData.moonrise == null
+                      ? l10n.celestialUnavailableLabel
+                      : DateFormat.jm().format(snapshot.lunarData.moonrise!),
+                  shellTint: const Color(0xFFC2C5CC),
+                  footnote: snapshot.lunarData.riseSetApproximate
+                      ? l10n.celestialApproximateLabel
+                      : null,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _InfoPill(
+                  label: l10n.celestialMoonsetLabel,
+                  value: snapshot.lunarData.moonset == null
+                      ? l10n.celestialUnavailableLabel
+                      : DateFormat.jm().format(snapshot.lunarData.moonset!),
+                  shellTint: const Color(0xFFC2C5CC),
+                  footnote: snapshot.lunarData.riseSetApproximate
+                      ? l10n.celestialApproximateLabel
+                      : null,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: _InfoPill(
+                  label: l10n.celestialMoonPhaseLabel,
+                  value: snapshot.lunarData.phaseName,
+                  footnote: l10n.celestialIlluminationPercentLabel(
+                    snapshot.lunarData.illuminationPercent,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _InfoPill(
+                  label: l10n.celestialNextEventLabel,
+                  value: l10n.celestialNextEventValue(
+                    snapshot.nextEvent.label,
+                    DateFormat.jm().format(snapshot.nextEvent.time),
+                  ),
+                  footnote: snapshot.nextEvent.relativeDescription,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Center(
+            child: NoorGlassCard(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
               surfaceVariant: AppSurfaceVariant.panel,
-              surfaceTintColor: const Color(0xFFF1D8AE),
-              surfaceAlphaOverride: 0.12,
+              surfaceTintColor: const Color(0xFFD5D7DD),
+              surfaceAlphaOverride: 0.10,
               includeShadow: false,
               mode: NoorLiquidGlassMode.fake,
               borderRadius: 20,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  QuranVerseContent(
-                    source: QuranVerseSource(
-                      referenceText: snapshot.verseOfMoment.ayahReference,
-                      arabicText: snapshot.verseOfMoment.arabicText,
-                      translation: snapshot.verseOfMoment.translation,
-                    ),
-                    center: false,
-                    dense: true,
-                    arabicBaseSize: 24,
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    snapshot.verseOfMoment.shortReflection,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
+              child: SizedBox(
+                width: double.infinity,
+                child: Center(
+                  child: MoonPhaseVisual(moon: moonVisual, size: 136),
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 14),
+          NoorGlassCard(
+            padding: const EdgeInsets.all(15),
+            surfaceVariant: AppSurfaceVariant.panel,
+            surfaceTintColor: const Color(0xFFF1D8AE),
+            surfaceAlphaOverride: 0.12,
+            includeShadow: false,
+            mode: NoorLiquidGlassMode.fake,
+            borderRadius: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                QuranVerseContent(
+                  source: QuranVerseSource(
+                    referenceText: snapshot.verseOfMoment.ayahReference,
+                    arabicText: snapshot.verseOfMoment.arabicText,
+                    translation: snapshot.verseOfMoment.translation,
+                  ),
+                  center: false,
+                  dense: true,
+                  arabicBaseSize: 24,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  snapshot.verseOfMoment.shortReflection,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-LinearGradient _resolveSkyCardGradient(CelestialSkyState state) {
+class _CelestialGlassShell extends StatelessWidget {
+  const _CelestialGlassShell({
+    required this.child,
+    this.state,
+    this.onTap,
+  });
+
+  final Widget child;
+  final CelestialSkyState? state;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final shellStyle = _resolveSkyShellStyle(state);
+    final glass = NoorLiquidGlassContainer(
+      spec: NoorLiquidGlassSpec.card(
+        mode: NoorLiquidGlassMode.liquid,
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+        fallbackTreatment: AppSurfaceTreatment.standard,
+        tintColor: shellStyle.tintColor,
+        surfaceAlphaOverride: shellStyle.surfaceAlpha,
+        includeShadow: true,
+        borderColor: shellStyle.borderColor,
+        highlightGradientColors: shellStyle.highlightGradientColors,
+        highlightGradientStops: const [0.0, 0.3, 1.0],
+      ).copyWith(borderRadius: 36, borderWidth: 1),
+      child: child,
+    );
+
+    if (onTap == null) {
+      return glass;
+    }
+
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(36),
+        child: glass,
+      ),
+    );
+  }
+}
+
+class _SkyShellStyle {
+  const _SkyShellStyle({
+    required this.tintColor,
+    required this.surfaceAlpha,
+    required this.borderColor,
+    required this.highlightGradientColors,
+  });
+
+  final Color tintColor;
+  final double surfaceAlpha;
+  final Color borderColor;
+  final List<Color> highlightGradientColors;
+}
+
+_SkyShellStyle _resolveSkyShellStyle(CelestialSkyState? state) {
   return switch (state) {
-    CelestialSkyState.dawn => const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[Color(0xFFF7E0BB), Color(0xFFEFC6A8), Color(0xFFD8CFE7)],
+    CelestialSkyState.dawn => const _SkyShellStyle(
+      tintColor: Color(0xFFF1CAA2),
+      surfaceAlpha: 0.26,
+      borderColor: Color(0x52FFF3E0),
+      highlightGradientColors: <Color>[
+        Color(0x34FFF6EA),
+        Color(0x14F7D2B6),
+        Color(0x14D7C7F2),
+      ],
     ),
-    CelestialSkyState.day => const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[Color(0xFFF5E7BC), Color(0xFFEED7A2), Color(0xFFD6E7F2)],
+    CelestialSkyState.day => const _SkyShellStyle(
+      tintColor: Color(0xFFE8D2A1),
+      surfaceAlpha: 0.24,
+      borderColor: Color(0x52FFF7E8),
+      highlightGradientColors: <Color>[
+        Color(0x30FFF9EA),
+        Color(0x12F4E0B7),
+        Color(0x16D2E7FA),
+      ],
     ),
-    CelestialSkyState.dusk => const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[Color(0xFFE2B493), Color(0xFFB88892), Color(0xFF5A597F)],
+    CelestialSkyState.dusk => const _SkyShellStyle(
+      tintColor: Color(0xFFBD8B8A),
+      surfaceAlpha: 0.28,
+      borderColor: Color(0x52F8DED7),
+      highlightGradientColors: <Color>[
+        Color(0x26FFE7D8),
+        Color(0x16D9A5AA),
+        Color(0x1A766592),
+      ],
     ),
-    CelestialSkyState.night => const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[Color(0xFFDCEBFA), Color(0xFFCFE3F8), Color(0xFFBFD8F1)],
+    CelestialSkyState.night => const _SkyShellStyle(
+      tintColor: Color(0xFFC4D8F3),
+      surfaceAlpha: 0.24,
+      borderColor: Color(0x4AF6FBFF),
+      highlightGradientColors: <Color>[
+        Color(0x2EF5FAFF),
+        Color(0x10D7EAF9),
+        Color(0x14C1D9F1),
+      ],
+    ),
+    null => const _SkyShellStyle(
+      tintColor: Color(0xFFE7C98C),
+      surfaceAlpha: 0.2,
+      borderColor: Color(0x42FFFFFF),
+      highlightGradientColors: <Color>[
+        Color(0x24FFFFFF),
+        Colors.transparent,
+        Color(0x16E8C98F),
+      ],
     ),
   };
 }

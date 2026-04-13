@@ -6,7 +6,7 @@ void main() {
   test('profile logo assets resolve to the canonical bundled paths', () {
     expect(resolveProfileLogoAsset(UserSex.brother), brotherProfileLogoAsset);
     expect(resolveProfileLogoAsset(UserSex.sister), sisterProfileLogoAsset);
-    expect(brotherProfileLogoAsset, 'assets/icons/brotherlogo.PNG');
-    expect(sisterProfileLogoAsset, 'assets/icons/sisterlogo.png');
+    expect(brotherProfileLogoAsset, 'assets/icons/brotherlogo.webp');
+    expect(sisterProfileLogoAsset, 'assets/icons/sisterlogo.webp');
   });
 }

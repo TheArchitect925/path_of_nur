@@ -291,9 +291,13 @@ Last updated: 2026-04-11
   - `/learn/world/muslim-scientists`
 - Hadith:
   - `/learn/hadith`
+  - `/learn/hadith/browse`
   - `/learn/hadith/search`
+  - `/learn/hadith/narrator/:narratorId`
   - `/learn/hadith/theme/:themeId`
+  - `/learn/hadith/collection/:collectionId`
   - `/learn/hadith/subcategory/:subcategoryId`
+    - compatibility alias for the collection-owned detail page
   - `/learn/hadith/lesson/:lessonId`
   - `/learn/hadith/important`
   - `/learn/hadith/important/:number`

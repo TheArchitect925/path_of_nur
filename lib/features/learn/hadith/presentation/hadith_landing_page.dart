@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../../journey/application/journey_progression_provider.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_discovery_search_field.dart';
@@ -33,11 +35,12 @@ class HadithLandingPage extends ConsumerStatefulWidget {
 class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
   _HadithTab _selectedTab = _HadithTab.themes;
   final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
+  late final QuranQuote _entryQuote;
 
   @override
   void initState() {
     super.initState();
+    _entryQuote = buildMessengerGuidanceQuoteForAccess();
     // trigger an assignment once after the first frame; the bundle provider no
     // longer performs this side effect itself.
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -81,8 +84,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final themes = ref.watch(hadithThemesProvider);
-    final entries = ref.watch(hadithEntriesProvider);
-    final collections = ref.watch(hadithCollectionsProvider);
+    final collections = ref.watch(hadithCollectionBrowseSummariesProvider);
     final savedEntries = ref.watch(savedHadithEntriesProvider);
     final savedIds = ref.watch(hadithSavedIdsProvider);
     final dailyBundle = ref.watch(hadithDailyReflectionBundleProvider);
@@ -92,29 +94,11 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     final dueReviewEntries = ref.watch(hadithDueReviewEntriesProvider);
     final reviewState = ref.watch(hadithQuizReviewControllerProvider);
 
-    final normalizedQuery = _searchQuery.trim().toLowerCase();
-    final filteredThemes = normalizedQuery.isEmpty
-        ? themes
-        : themes
-              .where(
-                (theme) => _matchesThemeSearch(
-                  theme: theme,
-                  entries: entries,
-                  normalizedQuery: normalizedQuery,
-                ),
-              )
-              .toList();
-    final featuredThemes = normalizedQuery.isEmpty
-        ? filteredThemes.where((theme) => theme.isFeatured).toList()
-        : <HadithTheme>[];
-    final allThemes = normalizedQuery.isEmpty
-        ? filteredThemes.where((theme) => !theme.isFeatured).toList()
-        : filteredThemes;
-
     return LearnHubPageScaffold(
       headerIcon: Icons.menu_book_rounded,
       title: l10n.hadithPageTitle,
       subtitle: l10n.hadithPageSubtitle,
+      quote: _entryQuote,
       children: [
         SegmentedPillControl<_HadithTab>(
           items: _HadithTab.values,
@@ -149,13 +133,16 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             ),
           ),
           const SizedBox(height: 12),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: FilledButton.tonalIcon(
-              onPressed: () => context.pushNamed('hadithSearch'),
-              icon: const Icon(Icons.search_rounded),
-              label: Text(l10n.hadithSearchOpenAction),
-            ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('hadithBrowse'),
+                icon: const Icon(Icons.tune_rounded),
+                label: Text(l10n.hadithActionBrowseAllHadith),
+              ),
+            ],
           ),
           const SizedBox(height: 12),
           PremiumCard(
@@ -163,37 +150,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             child: LearnDiscoverySearchField(
               controller: _searchController,
               hintText: l10n.searchHadithHint,
-              onChanged: (value) => setState(() => _searchQuery = value),
-              onClear: () {
-                _searchController.clear();
-                setState(() => _searchQuery = '');
-              },
+              readOnly: true,
+              onTap: () => context.pushNamed('hadithSearch'),
             ),
           ),
           const SizedBox(height: 10),
-          if (normalizedQuery.isNotEmpty) ...[
-            ..._buildThemeRows(context, filteredThemes, savedIds),
-          ] else ...[
-            if (featuredThemes.isNotEmpty) ...[
-              Text(
-                l10n.hadithTitleFeaturedThemes,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 8),
-              ..._buildThemeRows(context, featuredThemes, savedIds),
-              const SizedBox(height: 12),
-            ],
-            Text(
-              l10n.hadithAllThemesTitle(allThemes.length),
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 8),
-            ..._buildThemeRows(context, allThemes, savedIds),
-          ],
+          ..._buildThemeRows(context, themes, savedIds),
         ],
         if (_selectedTab == _HadithTab.collections) ...[
           PremiumCard(
@@ -215,13 +177,21 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             ),
           ),
           const SizedBox(height: 12),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: FilledButton.tonalIcon(
-              onPressed: () => context.pushNamed('hadithSourceBrowse'),
-              icon: const Icon(Icons.library_books_rounded),
-              label: Text(l10n.hadithActionBrowseSources),
-            ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('hadithBrowse'),
+                icon: const Icon(Icons.tune_rounded),
+                label: Text(l10n.hadithActionBrowseAllHadith),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('hadithSourceBrowse'),
+                icon: const Icon(Icons.library_books_rounded),
+                label: Text(l10n.hadithActionBrowseSources),
+              ),
+            ],
           ),
           const SizedBox(height: 12),
           ...collections.map(
@@ -234,13 +204,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                   subtitle: Text(
                     l10n.hadithCollectionCardSummary(
                       collection.subtitle,
-                      collection.hadithIds.length,
+                      collection.entryCount,
                     ),
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
-                    'hadithSubcategoryDetail',
-                    pathParameters: {'subcategoryId': collection.id},
+                    'hadithCollectionDetail',
+                    pathParameters: {'collectionId': collection.id},
                   ),
                 ),
               ),
@@ -290,7 +259,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                     contentPadding: EdgeInsets.zero,
                     title: Text(entry.title),
                     subtitle: Text('${entry.source} • ${entry.grading}'),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'hadithLessonDetail',
                       pathParameters: {'lessonId': entry.id},
@@ -567,7 +535,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                     subtitle: Text(
                       '${entry.displaySourceCollection} • ${entry.grading}',
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'hadithLessonDetail',
                       pathParameters: {'lessonId': entry.id},
@@ -682,52 +649,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     );
   }
 
-  bool _matchesThemeSearch({
-    required HadithTheme theme,
-    required List<HadithEntry> entries,
-    required String normalizedQuery,
-  }) {
-    final directHaystack = [
-      theme.title,
-      theme.subtitle,
-      theme.description,
-      ...theme.quranAnchors.map(
-        (anchor) =>
-            '${anchor.surahName} ${anchor.surahNumber}:${anchor.verseRange} ${anchor.label}',
-      ),
-    ].join(' ').toLowerCase();
-    if (directHaystack.contains(normalizedQuery)) {
-      return true;
-    }
-
-    for (final entry in entries) {
-      if (entry.themeId != theme.id) continue;
-      final entryHaystack = [
-        entry.title,
-        entry.excerpt,
-        entry.translation,
-        entry.arabicMatn ?? '',
-        entry.transliteratedText ?? '',
-        entry.displaySourceCollection,
-        entry.displaySourceReference ?? '',
-        entry.sourceLabel,
-        entry.narrator ?? '',
-        entry.meaning,
-        ...entry.tags,
-        ...entry.lessons,
-        ...entry.quranConnections.map(
-          (connection) =>
-              '${connection.surahName} ${connection.surahNumber}:${connection.verseRange} ${connection.label}',
-        ),
-      ].join(' ').toLowerCase();
-      if (entryHaystack.contains(normalizedQuery)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
   List<Widget> _buildThemeRows(
     BuildContext context,
     List<HadithTheme> themes,
@@ -753,35 +674,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
       ];
     }
 
-    final rows = <Widget>[];
-    var index = 0;
-    while (index < themes.length) {
-      final left = themes[index];
-      final right = index + 1 < themes.length ? themes[index + 1] : null;
-      rows.add(
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: _ThemeCard(theme: left, savedIds: savedIds),
-            ),
-            if (right != null) ...[
-              const SizedBox(width: 10),
-              Expanded(
-                child: _ThemeCard(theme: right, savedIds: savedIds),
-              ),
-            ],
-            if (right == null) const Expanded(child: SizedBox.shrink()),
-          ],
-        ),
-      );
-      index += 2;
-      if (index < themes.length) {
-        rows.add(const SizedBox(height: 10));
-      }
-    }
-
-    return rows;
+    return [
+      for (var index = 0; index < themes.length; index += 1) ...[
+        _ThemeCard(theme: themes[index], savedIds: savedIds),
+        if (index < themes.length - 1) const SizedBox(height: 10),
+      ],
+    ];
   }
 
   String _tabLabel(_HadithTab tab, AppLocalizations l10n) {
@@ -919,6 +817,31 @@ class _ThemeCard extends ConsumerWidget {
     final savedInTheme = entries
         .where((entry) => savedIds.contains(entry.id))
         .length;
+    final accent = _hadithThemeAccentColor(theme.id);
+    final iconBase = _hadithThemeIconBaseColor(theme.id);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.island,
+      tintColor: accent,
+    );
+    final statusStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: accent,
+    );
+    final innerCardTop =
+        Color.lerp(iconBase, Colors.white, 0.38) ?? Colors.white;
+    final innerCardBottom = Color.lerp(iconBase, accent, 0.16) ?? accent;
+    final innerBorderColor =
+        Color.lerp(
+          Colors.white.withValues(alpha: 0.88),
+          accent.withValues(alpha: 0.30),
+          0.36,
+        ) ??
+        Colors.white.withValues(alpha: 0.88);
+    final progressRatio = entries.isEmpty
+        ? 0.0
+        : (savedInTheme / entries.length).clamp(0.0, 1.0);
 
     return InkWell(
       borderRadius: BorderRadius.circular(20),
@@ -927,49 +850,169 @@ class _ThemeCard extends ConsumerWidget {
         pathParameters: {'themeId': theme.id},
       ),
       child: PremiumCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(theme.icon, size: 20, color: AppColors.onSurface),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    theme.title,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
+        padding: const EdgeInsets.all(4),
+        surfaceVariant: AppSurfaceVariant.island,
+        surfaceTintColor: accent,
+        includeShadow: true,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: innerBorderColor),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                innerCardTop.withValues(alpha: 0.94),
+                innerCardBottom.withValues(alpha: 0.88),
               ],
             ),
-            const SizedBox(height: 6),
-            Text(theme.subtitle, maxLines: 2, overflow: TextOverflow.ellipsis),
-            const SizedBox(height: 8),
-            Text(
-              AppLocalizations.of(context).hadithThemeCardCounts(
-                entries.length,
-                theme.quranAnchors.length,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 46,
+                    height: 46,
+                    decoration: BoxDecoration(
+                      color: Color.alphaBlend(
+                        iconBase.withValues(alpha: 0.88),
+                        surfaceStyle.iconBackgroundColor,
+                      ),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: surfaceStyle.borderColor),
+                    ),
+                    child: Icon(theme.icon, color: accent),
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+                    decoration: statusStyle.decoration(
+                      radius: 999,
+                      includeShadow: false,
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context).hadithThemeCardCounts(
+                        entries.length,
+                        theme.quranAnchors.length,
+                      ),
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: accent,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              savedInTheme > 0
-                  ? AppLocalizations.of(
-                      context,
-                    ).hadithThemeCardProgress(savedInTheme, entries.length)
-                  : AppLocalizations.of(context).hadithThemeCardStart,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-            ),
-          ],
+              const SizedBox(height: 14),
+              Text(
+                theme.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: accent,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                theme.subtitle,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                  height: 1.35,
+                ),
+              ),
+              const SizedBox(height: 12),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: LinearProgressIndicator(
+                  value: progressRatio,
+                  minHeight: 7,
+                  backgroundColor: surfaceStyle.iconBackgroundColor,
+                  valueColor: AlwaysStoppedAnimation<Color>(accent),
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                savedInTheme > 0
+                    ? AppLocalizations.of(
+                        context,
+                      ).hadithThemeCardProgress(savedInTheme, entries.length)
+                    : AppLocalizations.of(context).hadithThemeCardStart,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: accent,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+}
+
+Color _hadithThemeAccentColor(String themeId) {
+  switch (themeId) {
+    case 'faith_intention':
+      return const Color(0xFF8A5A44);
+    case 'prayer':
+      return const Color(0xFF2A7A78);
+    case 'character_manners':
+      return const Color(0xFF7A5C33);
+    case 'mercy_compassion':
+      return const Color(0xFF2F8F76);
+    case 'knowledge':
+      return const Color(0xFF2C6E5B);
+    case 'dua_remembrance':
+      return const Color(0xFF4B7A52);
+    case 'family':
+      return const Color(0xFF8B6B44);
+    case 'justice_trust':
+      return const Color(0xFF6A5A9A);
+    case 'repentance':
+      return const Color(0xFF9A5A52);
+    case 'patience_gratitude':
+      return const Color(0xFFA06A2C);
+    case 'death_hereafter':
+      return const Color(0xFF5B617A);
+    default:
+      return const Color(0xFF8B6B44);
+  }
+}
+
+Color _hadithThemeIconBaseColor(String themeId) {
+  switch (themeId) {
+    case 'faith_intention':
+      return const Color(0xFFF2E2D7);
+    case 'prayer':
+      return const Color(0xFFE1ECEA);
+    case 'character_manners':
+      return const Color(0xFFF1E6D7);
+    case 'mercy_compassion':
+      return const Color(0xFFE2F0EB);
+    case 'knowledge':
+      return const Color(0xFFE2ECE8);
+    case 'dua_remembrance':
+      return const Color(0xFFE8F1E3);
+    case 'family':
+      return const Color(0xFFF0E7DA);
+    case 'justice_trust':
+      return const Color(0xFFE7E4F4);
+    case 'repentance':
+      return const Color(0xFFF3E1DE);
+    case 'patience_gratitude':
+      return const Color(0xFFF4E8D6);
+    case 'death_hereafter':
+      return const Color(0xFFE4E7EE);
+    default:
+      return const Color(0xFFECE5D7);
   }
 }

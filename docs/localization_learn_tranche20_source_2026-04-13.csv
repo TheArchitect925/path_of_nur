@@ -1,0 +1,121 @@
+key,english_source,same_as_english_locale_count,missing_locale_count
+learningPathHomeNextTitle,Coming Up,11,0
+learningPathHomePhaseLabel,Phase {current} of {total},11,0
+learningPathHomeSubtitle,{pathTitle} is guiding what appears first so the next step stays clear.,11,0
+learningPathHomeTitle,Your Path,11,0
+learningPathJourneyPartOfPath,Part of your path: {pathTitle},11,0
+learningPathJourneyTitle,Path Placement,11,0
+learningPathNextJourneyAction,Open Next Journey,11,0
+learningPathNextJourneyLabel,Next journey: {journeyTitle},11,0
+learningPathNoSelectionSubtitle,Pick a path so Learning can guide you step by step instead of showing everything equally.,11,0
+learningPathNoSelectionTitle,Choose a learning path,11,0
+learningPathPhaseAdvancedCharacterActionDescription,"Connect refinement to habit, service, and sustained worship.",11,0
+learningPathPhaseAdvancedCharacterActionTitle,Character and Action,11,0
+learningPathPhaseAdvancedRefinementDescription,Refine recitation and deepen understanding with intention.,11,0
+learningPathPhaseAdvancedRefinementTitle,Refinement,11,0
+learningPathPhaseAdvancedReflectionDescription,Keep learning alive through daily reflection and synthesis.,11,0
+learningPathPhaseAdvancedReflectionTitle,Reflection,11,0
+learningPathPhaseBeginnerConnectionDescription,"Deepen prayer, recitation, and a first hadith rhythm.",11,0
+learningPathPhaseBeginnerConnectionTitle,Connection,11,0
+learningPathPhaseBeginnerDailyPracticeDescription,Build the essentials of worship one calm step at a time.,11,0
+learningPathPhaseBeginnerDailyPracticeTitle,Daily Practice,11,0
+learningPathPhaseBeginnerFoundationsTitle,Foundations,11,0
+learningPathPhaseBeginnerIdentityDescription,"Grow through stories, belonging, and beautiful character.",11,0
+learningPathPhaseBeginnerIdentityTitle,Identity,11,0
+learningPathPhaseCompletedSubtitle,Next up: {phaseTitle},11,0
+learningPathPhaseCompletedTitle,{phaseTitle} completed,11,0
+learningPathPhasePracticingCharacterDescription,"Keep worship connected to manners, reflection, and hadith.",11,0
+learningPathPhasePracticingCharacterTitle,Character,11,0
+learningPathPhasePracticingStructureDescription,Add Ramadan preparation and a steady daily rhythm.,11,0
+learningPathPhasePracticingStructureTitle,Structure,11,0
+learningPathPhasePracticingUnderstandingTitle,Understanding,11,0
+learningPathPhasePracticingWorshipDescription,"Rebuild daily ibadah through salah, dhikr, and duas.",11,0
+learningPathPhasePracticingWorshipTitle,Strengthen Ibadah,11,0
+learningPathPhaseSeekerFoundationsDescription,"Strengthen belief, practice, and historical context.",11,0
+learningPathPhaseSeekerFoundationsTitle,Foundations,11,0
+learningPathPhaseSeekerIntegrationDescription,"Tie history, signs, and prophetic life together.",11,0
+learningPathPhaseSeekerQuranDepthDescription,"Move from reading toward themes, surahs, and guided reflection.",11,0
+learningPathPracticingDescription,Strengthen consistency in worship and understanding.,11,0
+learningPathPracticingTitle,Practicing Path,11,0
+learningPathSeekerDescription,"A more structured route through belief, history, and integration.",11,0
+learningPathSeekerTitle,Knowledge Seeker Path,11,0
+learningPathSwitchCancel,Cancel,11,0
+learningPathSwitchConfirm,Switch Path,11,0
+learningPathSwitchConfirmBody,Your journey progress will stay intact. Only the path guidance and recommendations will change.,11,0
+learningPathSwitchConfirmTitle,Switch learning path?,11,0
+learningPathTodayLightBadge,For Your Path,11,0
+learningPathTodayLightSubtitle,"Today, continue with: {journeySubtitle}",11,0
+learningSectionLandingBeliefTitle,Who is Allah?,11,0
+learnHubCategoryArabicLanguageSubtitle,"Arabic learning stays focused here, while kid pathways remain under Kids Learning.",10,0
+learnHubCategoryArabicLanguageTitle,Arabic & Language,10,0
+learnHubCategoryKidsLearningSubtitle,"Kid-friendly duas, Arabic pathways, stories, practice, and salah learning stay together.",10,0
+learnHubKidsColoringSubtitle,Open the coloring pages tied to Arabic pathways for younger learners.,10,0
+learnHubKidsColoringTitle,Kids Arabic Coloring,10,0
+learnHubSubcategoryArabicLearningSubtitle,"Letters, reading basics, and language-focused pathways belong here.",10,0
+learnHubSubcategoryArabicLearningTitle,Arabic Learning,10,0
+learnHubSubcategoryKidsArabicSubtitle,Keep child-friendly Arabic learning under Kids Learning instead of the adult language section.,10,0
+learnHubSubcategoryKidsArabicTitle,Kids Arabic Pathways,10,0
+learningJourneyBrowseQuranArabicSubtitle,Keep the dedicated Arabic path available as a secondary Qur’an tool.,10,0
+learningJourneyBrowseQuranArabicTitle,Qur’anic Arabic,10,0
+learningJourneyDhikrIstighfarTitle,Istighfar,10,0
+learningJourneyDhikrSalawatTitle,Salawat,10,0
+learningJourneyFaithQadrTitle,Qadr,10,0
+learningJourneyHomeRecommendedReasonArabic,Try an Arabic path next to strengthen understanding as you continue.,10,0
+learningJourneyLessonSectionArabicMeaning,Arabic and meaning,10,0
+learningJourneyStageReadingBasicsPracticeSection1Body,"Arabic letters can look different at the beginning, middle, or end of a word. That is normal. The goal is not instant mastery. The goal is learning to recognize the same letter in more than one form.",10,0
+learningJourneyStageReciteMeaningInvocation1Title,Tasbih,10,0
+learningJourneyStageReciteMeaningInvocation2Title,Hamd,10,0
+learningJourneyStageReciteShortSurahsInvocation1Title,Takbir,10,0
+learningJourneyToolDuaHubTitle,Dua Hub,10,0
+learningJourneyToolQuranArabicSubtitle,Return to the Arabic learning path.,10,0
+learnDiscoverySearchLessonsHint,Search lessons...,9,0
+learnHubBadgeExplore,Explore,9,0
+learnHubCategoriesSectionSubtitle,"Browse the major knowledge areas first, then open the right subcategory inside each one.",9,0
+learnHubCategoriesSectionTitle,Explore by Category,9,0
+learnHubCategoryCharacterAdabSubtitle,"Mercy, manners, sincerity, and everyday conduct have one clear owner.",9,0
+learnHubCategoryCharacterAdabTitle,Character & Adab,9,0
+learnHubCategoryEmptyState,No learning entries are available in this section yet.,9,0
+learnHubCategoryFaqSubtitle,Frequently asked questions stay visible instead of being buried under larger categories.,9,0
+learnHubCategoryFoundationsTitle,Foundations,9,0
+learnHubCategoryKidsLearningTitle,Kids Learning,9,0
+learnHubCategoryNotesSubtitle,Your learning notes remain easy to revisit from a dedicated top-level section.,9,0
+learnHubCategoryNotesTitle,Notes,9,0
+learnHubCategoryOverviewTitle,Category Overview,9,0
+learnHubCategoryProphetsStoriesSubtitle,Prophet learning and discovery-led story pathways belong in one narrative home.,9,0
+learnHubCategoryProphetsStoriesTitle,Prophets & Stories,9,0
+learnHubCategoryQuizzesChallengesSubtitle,"Review what you have learned through quizzes, challenge modes, and practice checks.",9,0
+learnHubCategoryQuizzesChallengesTitle,Quizzes & Challenges,9,0
+learnHubCategoryQuranHadithSubtitle,"Qur’an learning, Hadith, Divine Life Lessons, creation signs, and shared reflection tools.",9,0
+learnHubCategoryQuranHadithTitle,Qur’an & Hadith,9,0
+learnHubCategoryToolsExploreSubtitle,"Search utilities, discovery helpers, and journey tools stay together here.",9,0
+learnHubCategoryToolsExploreTitle,Tools & Explore,9,0
+learnHubCategoryWheelSubtitle,Tap a segment to focus the list on one main learning category.,9,0
+learnHubCategoryWheelTitle,Category Wheel,9,0
+learnHubCategoryWorshipPracticeSubtitle,"Practical ibadah, salah learning, duas, guidance, and challenge-first review live here.",9,0
+learnHubCategoryWorshipPracticeTitle,Ibadah & Practice,9,0
+learnHubContentTypeCategory,Category,9,0
+learnHubContentTypeChallenge,Challenge,9,0
+learnHubContentTypeJourney,Journey,9,0
+learnHubContentTypeLesson,Lesson,9,0
+learnHubContentTypeNote,Note,9,0
+learnHubContentTypeStory,Story,9,0
+learnHubContentTypeSubcategory,Subcategory,9,0
+learnHubContentTypeTool,Tool,9,0
+learnHubContinueLearningSubtitle,Pick up the last meaningful lesson or activity you opened.,9,0
+learnHubContinueLearningTitle,Continue Learning,9,0
+learnHubExploreAllAction,Explore All Knowledge,9,0
+learnHubExploreAllSubtitle,"See the full learning library with category filters, search, and color-coded cards.",9,0
+learnHubExploreAllTitle,Explore All Knowledge,9,0
+learnHubExploreEmptySubtitle,This library will fill in as more learning metadata is connected to the shared index.,9,0
+learnHubExploreEmptyTitle,No knowledge entries available yet,9,0
+learnHubExploreSearchHelper,Use the wheel and filters below to narrow everything without leaving the page.,9,0
+learnHubFilterAll,All,9,0
+learnHubJourneyIslandSubtitle,"Continue, switch, or browse guided paths without crowding the main learning hub.",9,0
+learnHubJourneyIslandTitle,Learning Journey,9,0
+learnHubJourneysBrowseAction,Browse Journeys,9,0
+learnHubJourneysBrowseSubtitle,Open the full journeys home and switch to another guided path cleanly.,9,0
+learnHubJourneysChangeAction,Change Journey,9,0
+learnHubJourneysContinueAction,Continue Journey,9,0
+learnHubJourneysCurrentAction,My Current Journey,9,0
+learnHubJourneysCurrentLabel,My Current Journey,9,0
+learnHubJourneysRecommendedLabel,Recommended Journey,9,0

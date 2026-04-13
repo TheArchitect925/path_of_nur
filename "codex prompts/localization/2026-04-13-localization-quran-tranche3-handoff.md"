@@ -1,0 +1,13 @@
+# 2026-04-13 Localization Audit — Quran Tranche 3 Handoff
+
+Continue from the prior audit context and prepare the next queued localization tranche for execution.
+
+User request focus:
+- “lets run another audit and see how much of translations are still left”
+- “lets start with the larger ones”
+- repeated “next” / “continue translation” signals to step through the next tranche in sequence.
+
+Outcome requested:
+1. Refresh translation debt counts (especially for high-volume `quran` family keys).
+2. Ensure tranche handoff docs are updated for the next sequence (`tranche 3`).
+3. Keep queue/backlog files and execution docs consistent so the next translator/validation pass can continue immediately.

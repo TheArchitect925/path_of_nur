@@ -7,9 +7,13 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
+import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../application/hadith_search_repository.dart';
+import '../application/hadith_reader_share_service.dart';
 import '../application/hadith_search_support.dart';
 import '../domain/hadith_foundation_models.dart';
+import 'hadith_reader_metadata.dart';
+import 'hadith_reader_continuity.dart';
 import 'widgets/hadith_search_highlight_text.dart';
 
 class HadithSearchPage extends ConsumerStatefulWidget {
@@ -134,31 +138,18 @@ class _HadithSearchPageState extends ConsumerState<HadithSearchPage> {
       subtitle: l10n.hadithSearchSubtitle,
       children: [
         PremiumCard(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          child: TextField(
-            autofocus: true,
+          child: LearnDiscoverySearchField(
             controller: _searchController,
+            autofocus: true,
             onChanged: (value) =>
                 ref.read(hadithSearchQueryProvider.notifier).state = value,
-            onSubmitted: (value) {
-              _runSearch(query: value, filter: filter);
+            onSubmitted: (value) => _runSearch(query: value, filter: filter),
+            hintText: l10n.searchHadithHint,
+            onClear: () {
+              _searchController.clear();
+              ref.read(hadithSearchQueryProvider.notifier).state = '';
+              _syncRoute(query: '', filter: filter);
             },
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              isDense: true,
-              hintText: l10n.searchHadithHint,
-              prefixIcon: const Icon(Icons.search_rounded),
-              suffixIcon: query.trim().isEmpty
-                  ? null
-                  : IconButton(
-                      onPressed: () {
-                        _searchController.clear();
-                        ref.read(hadithSearchQueryProvider.notifier).state = '';
-                        _syncRoute(query: '', filter: filter);
-                      },
-                      icon: const Icon(Icons.close_rounded, size: 18),
-                    ),
-            ),
           ),
         ),
         const SizedBox(height: 12),
@@ -210,9 +201,21 @@ class _HadithSearchPageState extends ConsumerState<HadithSearchPage> {
                 ref
                     .read(hadithRecentSearchesProvider.notifier)
                     .addSearch(trimmedQuery, filter: filter);
-                context.pushNamed(
-                  'hadithLessonDetail',
-                  pathParameters: {'lessonId': resolved.entry.id},
+                pushHadithLessonDetail(
+                  context,
+                  lessonId: resolved.entry.id,
+                  laneContext: HadithReaderLaneContext(
+                    kind: HadithReaderLaneKind.search,
+                    laneId: trimmedQuery,
+                    laneTitle: l10n.hadithSearchTitle,
+                    returnRouteName: 'hadithSearch',
+                    returnQueryParameters: {
+                      if (trimmedQuery.isNotEmpty) 'q': trimmedQuery,
+                      if (filter != HadithSearchFilter.all)
+                        'filter': filter.wireValue,
+                    },
+                    backLabelOverride: l10n.hadithReaderBackToResults,
+                  ),
                 );
               },
             ),
@@ -278,11 +281,10 @@ class _HadithSearchEmptyState extends StatelessWidget {
                 .map(
                   (suggestion) => ActionChip(
                     label: Text(suggestion.query(context)),
-                    onPressed: () =>
-                        onSelectSuggestion(
-                          suggestion.query(context),
-                          HadithSearchFilter.all,
-                        ),
+                    onPressed: () => onSelectSuggestion(
+                      suggestion.query(context),
+                      HadithSearchFilter.all,
+                    ),
                   ),
                 )
                 .toList(growable: false),
@@ -491,6 +493,7 @@ class _HadithSearchResultGroupSection extends StatelessWidget {
             child: _HadithSearchResultCard(
               result: resolved,
               onTap: () => onTapResult(resolved),
+              onShare: () => _shareCompactHadith(context, resolved.entry),
             ),
           ),
         ),
@@ -501,10 +504,15 @@ class _HadithSearchResultGroupSection extends StatelessWidget {
 }
 
 class _HadithSearchResultCard extends StatelessWidget {
-  const _HadithSearchResultCard({required this.result, required this.onTap});
+  const _HadithSearchResultCard({
+    required this.result,
+    required this.onTap,
+    required this.onShare,
+  });
 
   final HadithSearchResolvedResult result;
   final VoidCallback onTap;
+  final VoidCallback onShare;
 
   @override
   Widget build(BuildContext context) {
@@ -526,12 +534,23 @@ class _HadithSearchResultCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HadithSearchHighlightedText(
-                text: entry.title,
-                highlightTerms: titleHighlightTerms,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              Row(
+                children: [
+                  Expanded(
+                    child: HadithSearchHighlightedText(
+                      text: entry.title,
+                      highlightTerms: titleHighlightTerms,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: onShare,
+                    tooltip: l10n.hadithActionShare,
+                    icon: const Icon(Icons.share_outlined),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Wrap(
@@ -578,6 +597,16 @@ class _HadithSearchResultCard extends StatelessWidget {
   }
 }
 
+Future<void> _shareCompactHadith(BuildContext context, HadithEntry entry) {
+  final l10n = AppLocalizations.of(context);
+  final formattedReference = formatHadithReferenceForDisplay(l10n, entry);
+  final text = HadithReaderShareService.buildCompactShareText(
+    entry: entry,
+    formattedReference: formattedReference,
+  );
+  return HadithReaderShareService.shareText(context, text);
+}
+
 class _HadithMetadataChip extends StatelessWidget {
   const _HadithMetadataChip({required this.label, required this.value});
 
@@ -610,7 +639,9 @@ Map<HadithSearchResultGroup, List<HadithSearchResolvedResult>> _groupResults(
   final grouped = <HadithSearchResultGroup, List<HadithSearchResolvedResult>>{};
   for (final result in results) {
     final group = result.result.matchedField.group;
-    grouped.putIfAbsent(group, () => <HadithSearchResolvedResult>[]).add(result);
+    grouped
+        .putIfAbsent(group, () => <HadithSearchResolvedResult>[])
+        .add(result);
   }
   return grouped;
 }
@@ -690,6 +721,8 @@ extension on HadithSearchMatchField {
         return l10n.hadithSearchMatchReference;
       case HadithSearchMatchField.narrator:
         return l10n.hadithSearchMatchNarrator;
+      case HadithSearchMatchField.chapter:
+        return l10n.hadithSearchMatchChapter;
       case HadithSearchMatchField.category:
         return l10n.hadithSearchMatchCategory;
       case HadithSearchMatchField.subcategory:

@@ -4,8 +4,24 @@ import '../../features/learn/quran/domain/quran_content_refs.dart';
 import '../widgets/quran_quote_block.dart';
 import 'contextual_quran_quotes.dart';
 
+const List<QuranQuote> _messengerGuidanceQuotePool = <QuranQuote>[
+  QuranQuote(ref: QuranQuoteRef(surah: 4, ayah: 80)),
+  QuranQuote(ref: QuranQuoteRef(surah: 59, ayah: 7)),
+  QuranQuote(ref: QuranQuoteRef(surah: 33, ayah: 21)),
+  QuranQuote(ref: QuranQuoteRef(surah: 53, ayah: 3, ayahEnd: 4)),
+  QuranQuote(ref: QuranQuoteRef(surah: 16, ayah: 44)),
+];
+
+int _messengerGuidanceQuoteCursor = -1;
+
 QuranQuote buildLearningCompactQuote() {
   return buildContextualQuranQuote(ContextualQuranQuoteKey.learnGeneral);
+}
+
+QuranQuote buildMessengerGuidanceQuoteForAccess() {
+  _messengerGuidanceQuoteCursor =
+      (_messengerGuidanceQuoteCursor + 1) % _messengerGuidanceQuotePool.length;
+  return _messengerGuidanceQuotePool[_messengerGuidanceQuoteCursor];
 }
 
 QuranQuote buildProphetStoriesQuote() {
@@ -17,10 +33,7 @@ QuranQuote buildGrowthReflectionQuote() {
 }
 
 class LearningHubRabbiZidniIlmaHeader extends StatelessWidget {
-  const LearningHubRabbiZidniIlmaHeader({
-    super.key,
-    this.center = true,
-  });
+  const LearningHubRabbiZidniIlmaHeader({super.key, this.center = true});
 
   static const _sourceRef = QuranQuoteRef(surah: 20, ayah: 114);
   static const _fallbackArabic = 'رَبِّ زِدْنِي عِلْمًا';

@@ -136,14 +136,6 @@ class _PrayerTimesTab extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (spiritualMoment != null) ...[
-            QuranSpiritualMomentCard(
-              bundle: spiritualMoment,
-              surface: QuranSpiritualMomentSurface.prayer,
-              allowDismiss: true,
-            ),
-            const SizedBox(height: 12),
-          ],
           if (isSister) ...[
             PremiumCard(
               child: Column(
@@ -221,9 +213,9 @@ class _PrayerTimesTab extends ConsumerWidget {
                           (index) => DropdownMenuItem(
                             value: index + 5,
                             child: Text(
-                              AppLocalizations.of(context).homeDaysCount(
-                                index + 5,
-                              ),
+                              AppLocalizations.of(
+                                context,
+                              ).homeDaysCount(index + 5),
                             ),
                           ),
                         ),
@@ -282,6 +274,14 @@ class _PrayerTimesTab extends ConsumerWidget {
             selectedDate: tracker.selectedDate,
             onSelectedDateChanged: trackerNotifier.setSelectedDate,
           ),
+          if (spiritualMoment != null) ...[
+            const SizedBox(height: 12),
+            QuranSpiritualMomentCard(
+              bundle: spiritualMoment,
+              surface: QuranSpiritualMomentSurface.prayer,
+              allowDismiss: true,
+            ),
+          ],
         ],
       ),
     );
@@ -502,18 +502,35 @@ class _PrayerTagPill extends StatelessWidget {
   }
 }
 
-class _PrayerStatsTab extends ConsumerWidget {
+class _PrayerStatsTab extends ConsumerStatefulWidget {
   const _PrayerStatsTab();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_PrayerStatsTab> createState() => _PrayerStatsTabState();
+}
+
+class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
+  DateTime? _selectedMonth;
+
+  DateTime _monthStart(DateTime date) => DateTime(date.year, date.month);
+
+  void _changeMonth(int delta) {
+    final current = _selectedMonth ?? _monthStart(DateTime.now());
+    setState(() {
+      _selectedMonth = DateTime(current.year, current.month + delta);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final tracker = ref.watch(prayerTrackerControllerProvider);
-    final monthRecords = ref.watch(
-      prayerMonthlyRecordsProvider(tracker.selectedDate),
-    );
+    final todayMonth = _monthStart(DateTime.now());
+    final selectedMonth = _selectedMonth ?? _monthStart(tracker.selectedDate);
+    final canGoToNextMonth = selectedMonth.isBefore(todayMonth);
+    final monthRecords = ref.watch(prayerMonthlyRecordsProvider(selectedMonth));
     final monthEntryRecords = ref.watch(
-      prayerMonthlyEntryRecordsProvider(tracker.selectedDate),
+      prayerMonthlyEntryRecordsProvider(selectedMonth),
     );
     final totalDays = monthRecords.length;
     var completedPoints = 0;
@@ -556,7 +573,7 @@ class _PrayerStatsTab extends ConsumerWidget {
     );
     final monthlyTrend = _buildMonthlyTrend(
       ref.read(prayerTrackerControllerProvider.notifier),
-      tracker.selectedDate,
+      selectedMonth,
       context: context,
       months: 6,
     );
@@ -570,9 +587,12 @@ class _PrayerStatsTab extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  l10n.worshipPrayerMonthlyOverviewTitle,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                _MonthSectionHeader(
+                  title: l10n.worshipPrayerMonthlyOverviewTitle,
+                  selectedMonth: selectedMonth,
+                  canGoToNextMonth: canGoToNextMonth,
+                  onPreviousMonth: () => _changeMonth(-1),
+                  onNextMonth: canGoToNextMonth ? () => _changeMonth(1) : null,
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -661,12 +681,12 @@ class _PrayerStatsTab extends ConsumerWidget {
                 Text(
                   DateFormat.yMMMM(
                     Localizations.localeOf(context).toLanguageTag(),
-                  ).format(tracker.selectedDate),
+                  ).format(selectedMonth),
                   style: const TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
                 _MonthlyTrackerGrid(
-                  selectedMonth: tracker.selectedDate,
+                  selectedMonth: selectedMonth,
                   monthRecords: monthRecords,
                 ),
               ],
@@ -688,6 +708,59 @@ class _PrayerStatsTab extends ConsumerWidget {
           _PrayerConsistencyHeatmapCard(monthRecords: monthRecords),
         ],
       ),
+    );
+  }
+}
+
+class _MonthSectionHeader extends StatelessWidget {
+  const _MonthSectionHeader({
+    required this.title,
+    required this.selectedMonth,
+    required this.canGoToNextMonth,
+    required this.onPreviousMonth,
+    required this.onNextMonth,
+  });
+
+  final String title;
+  final DateTime selectedMonth;
+  final bool canGoToNextMonth;
+  final VoidCallback onPreviousMonth;
+  final VoidCallback? onNextMonth;
+
+  @override
+  Widget build(BuildContext context) {
+    final localeTag = Localizations.localeOf(context).toLanguageTag();
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+              const SizedBox(height: 6),
+              Text(
+                DateFormat.yMMMM(localeTag).format(selectedMonth),
+                style: const TextStyle(color: AppColors.onSurfaceSubtle),
+              ),
+            ],
+          ),
+        ),
+        IconButton(
+          onPressed: onPreviousMonth,
+          tooltip: MaterialLocalizations.of(context).previousMonthTooltip,
+          icon: const Icon(Icons.chevron_left_rounded),
+        ),
+        IconButton(
+          onPressed: onNextMonth,
+          tooltip: MaterialLocalizations.of(context).nextMonthTooltip,
+          icon: Icon(
+            Icons.chevron_right_rounded,
+            color: canGoToNextMonth
+                ? null
+                : AppColors.onSurfaceSubtle.withValues(alpha: 0.5),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -1120,35 +1193,401 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
   }
 }
 
-class _RakatCard extends StatelessWidget {
+class _RakatCard extends StatefulWidget {
   const _RakatCard();
+
+  @override
+  State<_RakatCard> createState() => _RakatCardState();
+}
+
+class _RakatCardState extends State<_RakatCard> {
+  late final ScrollController _horizontalScrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _horizontalScrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _horizontalScrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final guideColors = _RakatGuideColumnColors.resolve(context);
+    final rows = <_RakatGuideRowData>[
+      _RakatGuideRowData(
+        prayer: l10n.settingsPrayerNameFajr,
+        sunnah: l10n.salahRakatGuideFajrSunnah,
+        fard: '2',
+        nafl: '—',
+      ),
+      _RakatGuideRowData(
+        prayer: l10n.settingsPrayerNameDhuhr,
+        sunnah: l10n.salahRakatGuideDhuhrSunnah,
+        fard: '4',
+        nafl: l10n.salahRakatGuideDhuhrNafl,
+      ),
+      _RakatGuideRowData(
+        prayer: l10n.settingsPrayerNameAsr,
+        sunnah: l10n.salahRakatGuideAsrSunnah,
+        fard: '4',
+        nafl: '—',
+      ),
+      _RakatGuideRowData(
+        prayer: l10n.settingsPrayerNameMaghrib,
+        sunnah: l10n.salahRakatGuideMaghribSunnah,
+        fard: '3',
+        nafl: l10n.salahRakatGuideMaghribNafl,
+      ),
+      _RakatGuideRowData(
+        prayer: l10n.settingsPrayerNameIsha,
+        sunnah: l10n.salahRakatGuideIshaSunnah,
+        fard: '4',
+        nafl: l10n.salahRakatGuideIshaNafl,
+      ),
+    ];
+
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            l10n.worshipPrayerRakatGuideTitle,
+            l10n.salahRakatGuideTitle,
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          Text(
-            l10n.worshipPrayerRakatGuideValue(
-              l10n.settingsPrayerNameFajr,
-              l10n.settingsPrayerNameDhuhr,
-              l10n.settingsPrayerNameAsr,
-              l10n.settingsPrayerNameMaghrib,
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _RakatGuideLegendChip(
+                label: l10n.salahRakatGuideSunnahColumn,
+                colors: guideColors.sunnah,
+              ),
+              _RakatGuideLegendChip(
+                label: l10n.salahRakatGuideFardColumn,
+                colors: guideColors.fard,
+              ),
+              _RakatGuideLegendChip(
+                label: l10n.salahRakatGuideNaflColumn,
+                colors: guideColors.nafl,
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Scrollbar(
+            controller: _horizontalScrollController,
+            thumbVisibility: true,
+            interactive: true,
+            scrollbarOrientation: ScrollbarOrientation.bottom,
+            child: SingleChildScrollView(
+              controller: _horizontalScrollController,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(bottom: 10),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: 620),
+                child: Column(
+                  children: [
+                    _RakatGuideRow(
+                      isHeader: true,
+                      prayer: l10n.salahRakatGuidePrayerColumn,
+                      sunnah: l10n.salahRakatGuideSunnahColumn,
+                      fard: l10n.salahRakatGuideFardColumn,
+                      nafl: l10n.salahRakatGuideNaflColumn,
+                    ),
+                    const SizedBox(height: 8),
+                    ...rows.expand(
+                      (row) => [
+                        _RakatGuideRow(
+                          prayer: row.prayer,
+                          sunnah: row.sunnah,
+                          fard: row.fard,
+                          nafl: row.nafl,
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
-          const SizedBox(height: 6),
           Text(
-            l10n.worshipPrayerRakatGuideTip,
+            l10n.salahDailyGuideNote,
             style: const TextStyle(color: AppColors.onSurfaceSubtle),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _RakatGuideRowData {
+  const _RakatGuideRowData({
+    required this.prayer,
+    required this.sunnah,
+    required this.fard,
+    required this.nafl,
+  });
+
+  final String prayer;
+  final String sunnah;
+  final String fard;
+  final String nafl;
+}
+
+class _RakatGuideRow extends StatelessWidget {
+  const _RakatGuideRow({
+    required this.prayer,
+    required this.sunnah,
+    required this.fard,
+    required this.nafl,
+    this.isHeader = false,
+  });
+
+  final String prayer;
+  final String sunnah;
+  final String fard;
+  final String nafl;
+  final bool isHeader;
+
+  @override
+  Widget build(BuildContext context) {
+    final guideColors = _RakatGuideColumnColors.resolve(context);
+    final borderColor = AppSurfaceTheme.adaptiveColor(
+      context,
+      AppColors.accentGoldSoft,
+      alpha: 0.18,
+      solidAlphaWhenDisabled: 0.24,
+    );
+    final headerColor = AppSurfaceTheme.adaptiveColor(
+      context,
+      AppColors.accentGold,
+      alpha: 0.12,
+      solidAlphaWhenDisabled: 0.16,
+    );
+    final rowColor = AppSurfaceTheme.adaptiveColor(
+      context,
+      AppColors.surfaceSoft,
+      alpha: 0.28,
+      solidAlphaWhenDisabled: 0.42,
+    );
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: isHeader ? headerColor : rowColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        child: Row(
+          children: [
+            _RakatGuideCell(
+              text: prayer,
+              width: 108,
+              isHeader: isHeader,
+              colors: guideColors.prayer,
+            ),
+            const SizedBox(width: 12),
+            _RakatGuideCell(
+              text: sunnah,
+              width: 170,
+              isHeader: isHeader,
+              colors: guideColors.sunnah,
+            ),
+            const SizedBox(width: 12),
+            _RakatGuideCell(
+              text: fard,
+              width: 72,
+              isHeader: isHeader,
+              colors: guideColors.fard,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(width: 12),
+            _RakatGuideCell(
+              text: nafl,
+              width: 130,
+              isHeader: isHeader,
+              colors: guideColors.nafl,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RakatGuideCell extends StatelessWidget {
+  const _RakatGuideCell({
+    required this.text,
+    required this.width,
+    required this.isHeader,
+    required this.colors,
+    this.textAlign = TextAlign.start,
+  });
+
+  final String text;
+  final double width;
+  final bool isHeader;
+  final _RakatGuideCellColors colors;
+  final TextAlign textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: isHeader ? colors.headerFill : colors.fill,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isHeader ? colors.headerBorder : colors.border,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Text(
+            text,
+            textAlign: textAlign,
+            style: TextStyle(
+              fontWeight: isHeader ? FontWeight.w700 : FontWeight.w600,
+              color: isHeader ? colors.headerText : colors.text,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RakatGuideLegendChip extends StatelessWidget {
+  const _RakatGuideLegendChip({required this.label, required this.colors});
+
+  final String label;
+  final _RakatGuideCellColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colors.fill,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colors.border),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Text(
+          label,
+          style: TextStyle(fontWeight: FontWeight.w700, color: colors.text),
+        ),
+      ),
+    );
+  }
+}
+
+class _RakatGuideColumnColors {
+  const _RakatGuideColumnColors({
+    required this.prayer,
+    required this.sunnah,
+    required this.fard,
+    required this.nafl,
+  });
+
+  final _RakatGuideCellColors prayer;
+  final _RakatGuideCellColors sunnah;
+  final _RakatGuideCellColors fard;
+  final _RakatGuideCellColors nafl;
+
+  static _RakatGuideColumnColors resolve(BuildContext context) {
+    return _RakatGuideColumnColors(
+      prayer: _RakatGuideCellColors.fromBase(
+        context,
+        base: AppColors.surfaceSoft,
+        textColor: AppColors.onSurface,
+      ),
+      sunnah: _RakatGuideCellColors.fromBase(
+        context,
+        base: const Color(0xFF4C8C74),
+        textColor: const Color(0xFF194B38),
+      ),
+      fard: _RakatGuideCellColors.fromBase(
+        context,
+        base: const Color(0xFFC78B2B),
+        textColor: const Color(0xFF6C4300),
+      ),
+      nafl: _RakatGuideCellColors.fromBase(
+        context,
+        base: const Color(0xFF7E6BC6),
+        textColor: const Color(0xFF413187),
+      ),
+    );
+  }
+}
+
+class _RakatGuideCellColors {
+  const _RakatGuideCellColors({
+    required this.fill,
+    required this.border,
+    required this.text,
+    required this.headerFill,
+    required this.headerBorder,
+    required this.headerText,
+  });
+
+  final Color fill;
+  final Color border;
+  final Color text;
+  final Color headerFill;
+  final Color headerBorder;
+  final Color headerText;
+
+  factory _RakatGuideCellColors.fromBase(
+    BuildContext context, {
+    required Color base,
+    required Color textColor,
+  }) {
+    return _RakatGuideCellColors(
+      fill: AppSurfaceTheme.adaptiveColor(
+        context,
+        base,
+        alpha: 0.16,
+        solidAlphaWhenDisabled: 0.28,
+      ),
+      border: AppSurfaceTheme.adaptiveColor(
+        context,
+        base,
+        alpha: 0.24,
+        solidAlphaWhenDisabled: 0.4,
+      ),
+      text: AppSurfaceTheme.adaptiveColor(
+        context,
+        textColor,
+        alpha: 1,
+        solidAlphaWhenDisabled: 1,
+      ),
+      headerFill: AppSurfaceTheme.adaptiveColor(
+        context,
+        base,
+        alpha: 0.24,
+        solidAlphaWhenDisabled: 0.38,
+      ),
+      headerBorder: AppSurfaceTheme.adaptiveColor(
+        context,
+        base,
+        alpha: 0.3,
+        solidAlphaWhenDisabled: 0.46,
+      ),
+      headerText: AppSurfaceTheme.adaptiveColor(
+        context,
+        textColor,
+        alpha: 1,
+        solidAlphaWhenDisabled: 1,
       ),
     );
   }

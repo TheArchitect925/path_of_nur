@@ -992,7 +992,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran'**
+  /// **'Holy Qur\'\'an'**
   String get quranTitle;
 
   /// No description provided for @quranSubtitle.
@@ -1012,6 +1012,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The Holy Qur\'\'an'**
   String get quranAppHubTitle;
+
+  /// No description provided for @quranAppHubSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search the Holy Qur\'\'an'**
+  String get quranAppHubSearchHint;
 
   /// No description provided for @quranDiscoverSectionTitle.
   ///
@@ -1084,6 +1090,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Source'**
   String get hadithSourceLabel;
+
+  /// No description provided for @hadithSourceChapterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter'**
+  String get hadithSourceChapterLabel;
 
   /// No description provided for @hadithReferenceLabel.
   ///
@@ -1427,6 +1439,66 @@ abstract class AppLocalizations {
   /// **'Hadith copied to clipboard.'**
   String get hadithCopiedToClipboard;
 
+  /// No description provided for @hadithProvenanceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source provenance'**
+  String get hadithProvenanceLabel;
+
+  /// No description provided for @hadithProvenanceSeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Curated foundation record'**
+  String get hadithProvenanceSeeded;
+
+  /// No description provided for @hadithProvenanceEditorialOverride.
+  ///
+  /// In en, this message translates to:
+  /// **'Editorially reviewed record'**
+  String get hadithProvenanceEditorialOverride;
+
+  /// No description provided for @hadithProvenanceImported.
+  ///
+  /// In en, this message translates to:
+  /// **'Imported trusted-source record'**
+  String get hadithProvenanceImported;
+
+  /// No description provided for @hadithProvenanceUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Source pipeline metadata pending'**
+  String get hadithProvenanceUnknown;
+
+  /// No description provided for @hadithProvenancePipelineValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Pipeline: {pipeline}'**
+  String hadithProvenancePipelineValue(String pipeline);
+
+  /// No description provided for @hadithProvenanceInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why this source is trusted'**
+  String get hadithProvenanceInfoTitle;
+
+  /// No description provided for @hadithProvenanceInfoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This reader keeps source collection, chapter, reference, grade, and provenance metadata together so public hadith entries stay tied to reviewable trusted-source context.'**
+  String get hadithProvenanceInfoBody;
+
+  /// No description provided for @hadithProvenanceInfoStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current record status'**
+  String get hadithProvenanceInfoStatusTitle;
+
+  /// No description provided for @hadithProvenanceInfoPipelineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The pipeline line shows which import or editorial path prepared this record for the app.'**
+  String get hadithProvenanceInfoPipelineBody;
+
   /// No description provided for @hadithTitleDailyReflection.
   ///
   /// In en, this message translates to:
@@ -1601,6 +1673,102 @@ abstract class AppLocalizations {
   /// **'{source} • {grading}'**
   String hadithCollectionEntrySubtitle(String source, String grading);
 
+  /// No description provided for @hadithCollectionSubcategoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subcategories in this collection'**
+  String get hadithCollectionSubcategoriesTitle;
+
+  /// No description provided for @hadithCollectionSubcategoryCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hadith'**
+  String hadithCollectionSubcategoryCount(int count);
+
+  /// No description provided for @hadithBrowseControlsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrow this list'**
+  String get hadithBrowseControlsTitle;
+
+  /// No description provided for @hadithBrowseSortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get hadithBrowseSortLabel;
+
+  /// No description provided for @hadithBrowseSortRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get hadithBrowseSortRecommended;
+
+  /// No description provided for @hadithBrowseSortTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get hadithBrowseSortTitle;
+
+  /// No description provided for @hadithBrowseSortSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get hadithBrowseSortSource;
+
+  /// No description provided for @hadithBrowseSortGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get hadithBrowseSortGrade;
+
+  /// No description provided for @hadithBrowseResetAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all'**
+  String get hadithBrowseResetAll;
+
+  /// No description provided for @hadithBrowseAllSources.
+  ///
+  /// In en, this message translates to:
+  /// **'All sources'**
+  String get hadithBrowseAllSources;
+
+  /// No description provided for @hadithBrowseAllGrades.
+  ///
+  /// In en, this message translates to:
+  /// **'All grades'**
+  String get hadithBrowseAllGrades;
+
+  /// No description provided for @hadithBrowseAllSubcategories.
+  ///
+  /// In en, this message translates to:
+  /// **'All subcategories'**
+  String get hadithBrowseAllSubcategories;
+
+  /// No description provided for @hadithBrowseQuickStartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start here'**
+  String get hadithBrowseQuickStartTitle;
+
+  /// No description provided for @hadithBrowseMatchingEntriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hadith in this list'**
+  String hadithBrowseMatchingEntriesTitle(int count);
+
+  /// No description provided for @hadithBrowseNoMatchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No hadith match these filters'**
+  String get hadithBrowseNoMatchesTitle;
+
+  /// No description provided for @hadithBrowseNoMatchesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a broader source, grade, or subcategory to reopen the list.'**
+  String get hadithBrowseNoMatchesSubtitle;
+
   /// No description provided for @hadithLessonNotFoundSubtitle.
   ///
   /// In en, this message translates to:
@@ -1612,6 +1780,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The requested hadith could not be found.'**
   String get hadithLessonNotFoundBody;
+
+  /// No description provided for @hadithReaderDisplaySettingsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader display settings'**
+  String get hadithReaderDisplaySettingsAction;
+
+  /// No description provided for @hadithReaderDisplaySettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader display'**
+  String get hadithReaderDisplaySettingsTitle;
+
+  /// No description provided for @hadithReaderDisplaySettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose which Hadith text layers stay visible while you read.'**
+  String get hadithReaderDisplaySettingsSubtitle;
+
+  /// No description provided for @hadithGradeInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith grades'**
+  String get hadithGradeInfoTitle;
+
+  /// No description provided for @hadithGradeInfoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This hadith is marked as {grade}.'**
+  String hadithGradeInfoSubtitle(String grade);
+
+  /// No description provided for @hadithGradeInfoDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'These are short reading aids to help you understand the labels used in this library. Detailed hadith grading discussions belong to scholars and source-specific study.'**
+  String get hadithGradeInfoDisclaimer;
+
+  /// No description provided for @hadithGradeInfoCurrentBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get hadithGradeInfoCurrentBadge;
+
+  /// No description provided for @hadithGradeInfoMuttafaqunAlayh.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually used for reports collected by both Imam al-Bukhari and Imam Muslim. Readers often treat this as one of the strongest grading labels in common study use.'**
+  String get hadithGradeInfoMuttafaqunAlayh;
+
+  /// No description provided for @hadithGradeInfoSahih.
+  ///
+  /// In en, this message translates to:
+  /// **'Generally used for a report regarded as authentic and reliable according to the grading judgment attached to it here.'**
+  String get hadithGradeInfoSahih;
+
+  /// No description provided for @hadithGradeInfoHasanSahih.
+  ///
+  /// In en, this message translates to:
+  /// **'Used when scholars describe a report with wording such as Hasan Sahih. It points to a strong report, while reflecting the grading language used by the source or scholars.'**
+  String get hadithGradeInfoHasanSahih;
+
+  /// No description provided for @hadithGradeInfoHasan.
+  ///
+  /// In en, this message translates to:
+  /// **'Generally used for a report regarded as sound and acceptable, though usually placed below Sahih in common study summaries.'**
+  String get hadithGradeInfoHasan;
+
+  /// No description provided for @hadithGradeInfoWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Used for a report that is not treated as strong enough to stand at the level of Sahih or Hasan in the grading attached here.'**
+  String get hadithGradeInfoWeak;
+
+  /// No description provided for @hadithGradeInfoBalagh.
+  ///
+  /// In en, this message translates to:
+  /// **'Used for a report transmitted in a shortened or indirect form in some source traditions, so readers should treat it with extra care and source awareness.'**
+  String get hadithGradeInfoBalagh;
+
+  /// No description provided for @hadithGradeInfoOtherTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Other grading label'**
+  String get hadithGradeInfoOtherTitle;
+
+  /// No description provided for @hadithGradeInfoOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Some reports use source-specific grading wording or editorial notes that do not fit the main simplified categories above.'**
+  String get hadithGradeInfoOther;
+
+  /// No description provided for @hadithNarratorPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrator profile in the Hadith library'**
+  String get hadithNarratorPageSubtitle;
+
+  /// No description provided for @hadithNarratorNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrator not found'**
+  String get hadithNarratorNotFoundSubtitle;
+
+  /// No description provided for @hadithNarratorNotFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The requested narrator could not be found in this Hadith library.'**
+  String get hadithNarratorNotFoundBody;
+
+  /// No description provided for @hadithNarratorFallbackSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'This narrator appears across the Hadith library. This page helps you trace their narrations here while the profile is being expanded.'**
+  String get hadithNarratorFallbackSummary;
+
+  /// No description provided for @hadithNarratorAliasesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Also shown as'**
+  String get hadithNarratorAliasesTitle;
+
+  /// No description provided for @hadithNarratorInLibraryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'In this library'**
+  String get hadithNarratorInLibraryTitle;
+
+  /// No description provided for @hadithNarratorStatHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get hadithNarratorStatHadith;
+
+  /// No description provided for @hadithNarratorStatSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get hadithNarratorStatSources;
+
+  /// No description provided for @hadithNarratorStatThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get hadithNarratorStatThemes;
+
+  /// No description provided for @hadithNarratorStatCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Collections'**
+  String get hadithNarratorStatCollections;
+
+  /// No description provided for @hadithNarratorHadithSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hadith from this narrator'**
+  String hadithNarratorHadithSectionTitle(int count);
+
+  /// No description provided for @hadithNarratorRoleCompanion.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion of the Prophet ﷺ'**
+  String get hadithNarratorRoleCompanion;
+
+  /// No description provided for @hadithNarratorRoleMotherOfBelievers.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother of the Believers and scholar'**
+  String get hadithNarratorRoleMotherOfBelievers;
+
+  /// No description provided for @hadithNarratorRoleScholarCompanion.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion known for knowledge and teaching'**
+  String get hadithNarratorRoleScholarCompanion;
+
+  /// No description provided for @hadithNarratorSummaryAbuHurairah.
+  ///
+  /// In en, this message translates to:
+  /// **'Abu Hurairah was a Companion of the Prophet ﷺ known for staying close to the Messenger of Allah ﷺ and transmitting a large number of hadith. In this library, he appears often in narrations about worship, character, repentance, and daily Muslim life.'**
+  String get hadithNarratorSummaryAbuHurairah;
+
+  /// No description provided for @hadithNarratorSummaryAishah.
+  ///
+  /// In en, this message translates to:
+  /// **'Aishah bint Abi Bakr, may Allah be pleased with her, was the wife of the Prophet ﷺ and one of the most knowledgeable teachers of the Sunnah. Her narrations in this library often preserve guidance about worship, Qur\'\'an, character, and life within the Prophet\'\'s household.'**
+  String get hadithNarratorSummaryAishah;
+
+  /// No description provided for @hadithNarratorSummaryAbdullahIbnUmar.
+  ///
+  /// In en, this message translates to:
+  /// **'Abdullah ibn Umar was a Companion known for his careful following of the Sunnah and his devotion to worship. His narrations in this library often center on prayer, travel, restraint, and living with awareness of the Hereafter.'**
+  String get hadithNarratorSummaryAbdullahIbnUmar;
+
+  /// No description provided for @hadithNarratorSummaryAnasIbnMalik.
+  ///
+  /// In en, this message translates to:
+  /// **'Anas ibn Malik served the Prophet ﷺ in Madinah and transmitted many hadith about the Prophet\'\'s conduct, mercy, and daily example. In this library, his narrations often carry practical guidance rooted in close companionship and service.'**
+  String get hadithNarratorSummaryAnasIbnMalik;
+
+  /// No description provided for @hadithNarratorSummaryJabirIbnAbdullah.
+  ///
+  /// In en, this message translates to:
+  /// **'Jabir ibn Abdullah was a Companion from the Ansar who narrated hadith across worship, manners, and community life. His narrations in this library often preserve guidance that connects devotion with everyday conduct.'**
+  String get hadithNarratorSummaryJabirIbnAbdullah;
+
+  /// No description provided for @hadithNarratorSummaryAbdullahIbnAbbas.
+  ///
+  /// In en, this message translates to:
+  /// **'Abdullah ibn Abbas, cousin of the Prophet ﷺ, became widely known for knowledge, understanding, and teaching. In this library, his narrations often appear where hadith connects worship with reflection, understanding, and broader insight.'**
+  String get hadithNarratorSummaryAbdullahIbnAbbas;
 
   /// No description provided for @hadithLessonCompletedXp.
   ///
@@ -2423,7 +2801,7 @@ abstract class AppLocalizations {
   /// No description provided for @duaDetailOpenInQuranReader.
   ///
   /// In en, this message translates to:
-  /// **'Open in Quran reader'**
+  /// **'Open in the Holy Qur\'\'an reader'**
   String get duaDetailOpenInQuranReader;
 
   /// No description provided for @duaDetailTagsTitle.
@@ -3376,7 +3754,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeLearnContinueQuran.
   ///
   /// In en, this message translates to:
-  /// **'Continue Quran'**
+  /// **'Continue the Holy Qur\'\'an'**
   String get homeLearnContinueQuran;
 
   /// No description provided for @homeLearnContinueQuranValue.
@@ -3940,13 +4318,13 @@ abstract class AppLocalizations {
   /// No description provided for @homeSearchQuranTopWordsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Top Words'**
+  /// **'Holy Qur\'\'an Top Words'**
   String get homeSearchQuranTopWordsTitle;
 
   /// No description provided for @homeSearchQuranTopWordsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn frequent Quran words from your source document.'**
+  /// **'Learn frequent Holy Qur\'\'an words from your source document.'**
   String get homeSearchQuranTopWordsSubtitle;
 
   /// No description provided for @homeSearchNamesOfAllahTitle.
@@ -3976,7 +4354,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeSearchQuranLessonsMappingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran 50 Lessons Mapping'**
+  /// **'Holy Qur\'\'an 50 Lessons Mapping'**
   String get homeSearchQuranLessonsMappingTitle;
 
   /// No description provided for @homeSearchQuranLessonsMappingSubtitle.
@@ -4894,7 +5272,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnTabQuran.
   ///
   /// In en, this message translates to:
-  /// **'Quran'**
+  /// **'Holy Qur\'\'an'**
   String get learnTabQuran;
 
   /// No description provided for @learnTabLife.
@@ -4924,7 +5302,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnQuranSectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Hub'**
+  /// **'Holy Qur\'\'an Hub'**
   String get learnQuranSectionTitle;
 
   /// No description provided for @learnQuranSectionSubtitle.
@@ -4996,7 +5374,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnLifeSectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'Life through the Quran'**
+  /// **'Life through the Holy Qur\'\'an'**
   String get learnLifeSectionTitle;
 
   /// No description provided for @learnLifeSectionSubtitle.
@@ -5056,7 +5434,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnWorldSectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'World through the Quran'**
+  /// **'World through the Holy Qur\'\'an'**
   String get learnWorldSectionTitle;
 
   /// No description provided for @learnWorldSectionSubtitle.
@@ -5278,7 +5656,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCategoryHolyQuranTitle.
   ///
   /// In en, this message translates to:
-  /// **'Holy Quran'**
+  /// **'Holy Qur\'\'an'**
   String get learnCategoryHolyQuranTitle;
 
   /// No description provided for @learnCategoryQuranLearningTitle.
@@ -5464,7 +5842,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSectionLandingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow a clearer path through foundations, belief, Prophets, Quran learning, ibadah, and character.'**
+  /// **'Follow a clearer path through foundations, belief, Prophets, Holy Qur\'\'an learning, ibadah, and character.'**
   String get learnSectionLandingSubtitle;
 
   /// No description provided for @learningSectionLandingShortcutJourneys.
@@ -11657,7 +12035,7 @@ abstract class AppLocalizations {
   /// No description provided for @journeyRingQuran.
   ///
   /// In en, this message translates to:
-  /// **'Quran'**
+  /// **'Holy Qur\'\'an'**
   String get journeyRingQuran;
 
   /// No description provided for @journeyRingReflection.
@@ -11849,7 +12227,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSearchTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Search'**
+  /// **'Holy Qur\'\'an Search'**
   String get quranSearchTitle;
 
   /// No description provided for @quranSearchSubtitle.
@@ -12005,7 +12383,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranNotesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Notes'**
+  /// **'Holy Qur\'\'an Notes'**
   String get quranNotesTitle;
 
   /// No description provided for @quranNotesSubtitle.
@@ -12239,7 +12617,7 @@ abstract class AppLocalizations {
   /// No description provided for @salahOpenInQuranAction.
   ///
   /// In en, this message translates to:
-  /// **'Open in Quran'**
+  /// **'Open in the Holy Qur\'\'an'**
   String get salahOpenInQuranAction;
 
   /// No description provided for @salahTrackSalahTitle.
@@ -12605,7 +12983,7 @@ abstract class AppLocalizations {
   /// No description provided for @modeRamadanHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Center today on fasting, Quran, and gentle reflection.'**
+  /// **'Center today on fasting, the Holy Qur\'\'an, and gentle reflection.'**
   String get modeRamadanHomeSubtitle;
 
   /// No description provided for @modeRamadanActionFasting.
@@ -12617,7 +12995,7 @@ abstract class AppLocalizations {
   /// No description provided for @modeRamadanActionQuran.
   ///
   /// In en, this message translates to:
-  /// **'Quran'**
+  /// **'Holy Qur\'\'an'**
   String get modeRamadanActionQuran;
 
   /// No description provided for @modeRamadanActionReflect.
@@ -12725,7 +13103,7 @@ abstract class AppLocalizations {
   /// No description provided for @modeRamadanLearnSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Prioritize Quran recitation and short reflection sessions.'**
+  /// **'Prioritize Holy Qur\'\'an recitation and short reflection sessions.'**
   String get modeRamadanLearnSubtitle;
 
   /// No description provided for @modeLossLearnTitle.
@@ -13691,13 +14069,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranTopWordsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Top Words'**
+  /// **'Holy Qur\'\'an Top Words'**
   String get quranTopWordsTitle;
 
   /// No description provided for @quranTopWordsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Study frequent Quran vocabulary with transliteration and meaning.'**
+  /// **'Study frequent Holy Qur\'\'an vocabulary with transliteration and meaning.'**
   String get quranTopWordsSubtitle;
 
   /// No description provided for @quranWordReviewTitle.
@@ -28110,7 +28488,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathPhasePracticingUnderstandingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Connect Quran reading, meaning, and recurring words.'**
+  /// **'Connect Holy Qur\'\'an reading, meaning, and recurring words.'**
   String get learningPathPhasePracticingUnderstandingDescription;
 
   /// No description provided for @learningPathPhasePracticingCharacterTitle.
@@ -28152,7 +28530,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathPhaseSeekerQuranDepthTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Depth'**
+  /// **'Holy Qur\'\'an Depth'**
   String get learningPathPhaseSeekerQuranDepthTitle;
 
   /// No description provided for @learningPathPhaseSeekerQuranDepthDescription.
@@ -33374,7 +33752,7 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrAntiRushVerseTranslation.
   ///
   /// In en, this message translates to:
-  /// **'Be patient, and your patience is only through الله. (Quran 16:127)'**
+  /// **'Be patient, and your patience is only through الله. (Holy Qur\'\'an 16:127)'**
   String get dhikrAntiRushVerseTranslation;
 
   /// No description provided for @dhikrAntiRushBody.
@@ -33674,7 +34052,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthHomeJourneyDepthQuranLabel.
   ///
   /// In en, this message translates to:
-  /// **'Quran'**
+  /// **'Holy Qur\'\'an'**
   String get growthHomeJourneyDepthQuranLabel;
 
   /// No description provided for @growthHomeJourneyDepthReflectionLabel.
@@ -39481,7 +39859,7 @@ abstract class AppLocalizations {
   /// No description provided for @batch9QuranWordsLoadError.
   ///
   /// In en, this message translates to:
-  /// **'Unable to load Quran words: {error}'**
+  /// **'Unable to load Holy Qur\'\'an words: {error}'**
   String batch9QuranWordsLoadError(String error);
 
   /// No description provided for @batch9NamesOfAllahTitle.
@@ -62239,7 +62617,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSummaryIslandTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Summary'**
+  /// **'Holy Qur\'\'an Summary'**
   String get quranSummaryIslandTitle;
 
   /// No description provided for @quranSummaryIslandSubtitle.
@@ -62251,7 +62629,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSummaryPageTitle.
   ///
   /// In en, this message translates to:
-  /// **'Quran Summary'**
+  /// **'Holy Qur\'\'an Summary'**
   String get quranSummaryPageTitle;
 
   /// No description provided for @quranSummaryPageSubtitle.
@@ -62305,7 +62683,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSummaryHeroTitle.
   ///
   /// In en, this message translates to:
-  /// **'Read the flow of the Quran one surah at a time'**
+  /// **'Read the flow of the Holy Qur\'\'an one surah at a time'**
   String get quranSummaryHeroTitle;
 
   /// No description provided for @quranSummaryHeroSubtitle.
@@ -62341,7 +62719,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSummaryDetailMissingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to the Quran Summary list and choose another surah.'**
+  /// **'Return to the Holy Qur\'\'an Summary list and choose another surah.'**
   String get quranSummaryDetailMissingSubtitle;
 
   /// No description provided for @quranSummaryDetailPageSubtitle.
@@ -63709,7 +64087,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsLibrarySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Revisit the notes and insights you wanted to keep from your Quran journey.'**
+  /// **'Revisit the notes and insights you wanted to keep from your Holy Qur\'\'an journey.'**
   String get quranReflectionsLibrarySubtitle;
 
   /// No description provided for @quranReflectionsSearchHint.
@@ -63745,7 +64123,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsSavedInsightSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A saved insight from your Quran journey'**
+  /// **'A saved insight from your Holy Qur\'\'an journey'**
   String get quranReflectionsSavedInsightSubtitle;
 
   /// No description provided for @quranReflectionsYourReflectionTitle.
@@ -68240,6 +68618,12 @@ abstract class AppLocalizations {
   /// **'Narrator match'**
   String get hadithSearchMatchNarrator;
 
+  /// No description provided for @hadithSearchMatchChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter match'**
+  String get hadithSearchMatchChapter;
+
   /// No description provided for @hadithSearchMatchCategory.
   ///
   /// In en, this message translates to:
@@ -68747,6 +69131,167 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search unavailable: {message}'**
   String allSearchError(Object message);
+
+  /// Section title for calm reader continuity controls on the hadith reader page.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reading'**
+  String get hadithReaderContinueTitle;
+
+  /// Return action label from the hadith reader back to the current deterministic browse lane.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to {lane}'**
+  String hadithReaderBackToLane(String lane);
+
+  /// Return action label from the hadith reader back to hadith search results.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to results'**
+  String get hadithReaderBackToResults;
+
+  /// Previous hadith action in a deterministic reader continuity lane.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get hadithReaderPrevious;
+
+  /// Next hadith action in a deterministic reader continuity lane.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get hadithReaderNext;
+
+  /// Current position of the open hadith within a deterministic reader continuity lane.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith {current} of {total}'**
+  String hadithReaderPosition(int current, int total);
+
+  /// Current position of the open hadith within its canonical source chapter when chapter metadata is available.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith {current} of {total} in this chapter'**
+  String hadithReaderChapterPosition(int current, int total);
+
+  /// Label for hadith browse progress status filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get hadithBrowseProgressLabel;
+
+  /// Option to show all hadith entries regardless of reading status.
+  ///
+  /// In en, this message translates to:
+  /// **'All entries'**
+  String get hadithBrowseProgressAll;
+
+  /// Option to show hadith entries the user has not opened yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not reviewed'**
+  String get hadithBrowseProgressNotReviewed;
+
+  /// Option to show hadith entries that were opened but not marked complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewing'**
+  String get hadithBrowseProgressReviewing;
+
+  /// Option to show hadith entries marked complete by the user.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get hadithBrowseProgressComplete;
+
+  /// Action label to mark a hadith complete for personal browse progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark complete'**
+  String get hadithActionMarkCompleteForBrowse;
+
+  /// Action label shown when a hadith is already marked complete for personal browse progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get hadithActionCompletedForBrowse;
+
+  /// Tooltip or action label to clear a hadith completion mark.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark incomplete'**
+  String get hadithActionMarkIncomplete;
+
+  /// Snackbar text shown after marking a hadith complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith marked complete.'**
+  String get hadithMarkedComplete;
+
+  /// Snackbar text shown after clearing a hadith completion mark.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith marked incomplete.'**
+  String get hadithMarkedIncomplete;
+
+  /// Title for the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Hadith'**
+  String get hadithBrowsePageTitle;
+
+  /// Subtitle for the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm, filterable way to explore the wider hadith library.'**
+  String get hadithBrowsePageSubtitle;
+
+  /// Orientation heading at the top of the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a calmer lane'**
+  String get hadithBrowseIntroTitle;
+
+  /// Orientation body copy at the top of the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this page to narrow the wider hadith library by source, collection, grade, or study status before opening a reading lane.'**
+  String get hadithBrowseIntroBody;
+
+  /// Corpus summary shown near the top of the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'{entries} hadith across {sources} sources, {collections} collections, and {subcategories} subcategories.'**
+  String hadithBrowseSummary(
+    int entries,
+    int sources,
+    int collections,
+    int subcategories,
+  );
+
+  /// Heading for active filter chips on the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'Active filters'**
+  String get hadithBrowseActiveFiltersTitle;
+
+  /// Label for the collection filter on the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'Collection'**
+  String get hadithBrowseCollectionLabel;
+
+  /// Option to show every collection on the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'All collections'**
+  String get hadithBrowseAllCollections;
+
+  /// Action label to open the canonical hadith browse page.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse all hadith'**
+  String get hadithActionBrowseAllHadith;
 }
 
 class _AppLocalizationsDelegate

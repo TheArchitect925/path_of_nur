@@ -146,7 +146,7 @@ class _AppLoadingScreenState extends ConsumerState<AppLoadingScreen> {
                                 Center(
                                   child: _StartupLogoHalo(
                                     child: Image.asset(
-                                      'assets/icons/home_lantern_cropped.png',
+                                      'assets/icons/home_lantern_cropped.webp',
                                       width: 100,
                                       height: 100,
                                     ),

@@ -6,6 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../../shared/widgets/main_page_shortcut_stack.dart';
@@ -55,6 +56,8 @@ class _LearningSectionLandingPageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final headerIconSize =
+        (Theme.of(context).textTheme.titleLarge?.fontSize ?? 22) * 1.2;
     final discoveryIndex = ref.watch(learnDiscoveryIndexProvider);
     final visibilityPolicy = ref.watch(learnHubVisibilityPolicyProvider);
     final visibleActions = visibilityPolicy.isChildProfile
@@ -68,6 +71,9 @@ class _LearningSectionLandingPageState
             .toList(growable: false);
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
+      headerIconSize: headerIconSize,
+      headerIconSpacing: 10,
+      headerAlignment: AppPageHeaderAlignment.center,
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
@@ -165,11 +171,14 @@ class _LearningSectionLandingPageState
   }
 }
 
-final learnHubVisibilityPolicyProvider = Provider<FamilyLearningVisibilityPolicy>(
-  (ref) => ref.watch(
-    activeFamilyLearningContextProvider.select((value) => value.visibilityPolicy),
-  ),
-);
+final learnHubVisibilityPolicyProvider =
+    Provider<FamilyLearningVisibilityPolicy>(
+      (ref) => ref.watch(
+        activeFamilyLearningContextProvider.select(
+          (value) => value.visibilityPolicy,
+        ),
+      ),
+    );
 
 class _SectionHeader extends StatelessWidget {
   const _SectionHeader({required this.title, required this.subtitle});

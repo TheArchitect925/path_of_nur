@@ -1,4 +1,5 @@
 import '../domain/hadith_foundation_models.dart';
+import 'hadith_narrator_repository.dart';
 
 enum HadithSearchFilter { all, source, category, subcategory, grade }
 
@@ -13,6 +14,7 @@ enum HadithSearchMatchField {
   sourceCollection,
   reference,
   narrator,
+  chapter,
   category,
   subcategory,
   grade,
@@ -114,6 +116,20 @@ class HadithSearchPresentationMetadata {
   final List<String> highlightTerms;
 }
 
+class HadithSearchIndexMetadata {
+  const HadithSearchIndexMetadata({
+    required this.narratorLabel,
+    required this.narratorSearchText,
+    required this.chapterLabel,
+    required this.chapterSearchText,
+  });
+
+  final String? narratorLabel;
+  final String narratorSearchText;
+  final String? chapterLabel;
+  final String chapterSearchText;
+}
+
 extension HadithSearchMatchFieldX on HadithSearchMatchField {
   HadithSearchResultGroup get group {
     switch (this) {
@@ -126,6 +142,7 @@ extension HadithSearchMatchFieldX on HadithSearchMatchField {
       case HadithSearchMatchField.sourceCollection:
       case HadithSearchMatchField.reference:
       case HadithSearchMatchField.narrator:
+      case HadithSearchMatchField.chapter:
         return HadithSearchResultGroup.source;
       case HadithSearchMatchField.category:
       case HadithSearchMatchField.subcategory:
@@ -172,6 +189,39 @@ List<HadithSearchResolvedResult> searchHadithEntries({
   );
 }
 
+HadithSearchIndexMetadata buildHadithSearchIndexMetadata(HadithEntry entry) {
+  final narratorId = resolveHadithNarratorId(entry.narrator);
+  final narratorProfile = narratorId == null
+      ? null
+      : hadithNarratorProfileForId(narratorId);
+  final narratorLabel =
+      resolveHadithNarratorDisplayName(entry.narrator) ??
+      entry.normalizedNarratorName;
+  final narratorSearchText = _joinUniqueSearchTerms(<String>[
+    if ((narratorLabel ?? '').trim().isNotEmpty) narratorLabel!,
+    ...?narratorProfile?.aliases,
+    ...?narratorProfile?.matchAliases,
+    if ((entry.normalizedNarratorName ?? '').trim().isNotEmpty)
+      entry.normalizedNarratorName!,
+  ]);
+
+  final chapterLabel =
+      entry.sourceMetadata.chapter?.title ?? entry.normalizedSourceChapterTitle;
+  final chapterNumber = entry.normalizedSourceChapterNumber;
+  final chapterSearchText = _joinUniqueSearchTerms(<String>[
+    if ((chapterLabel ?? '').trim().isNotEmpty) chapterLabel!,
+    if (chapterNumber != null) 'Chapter $chapterNumber',
+    if (chapterNumber != null) 'Book $chapterNumber',
+  ]);
+
+  return HadithSearchIndexMetadata(
+    narratorLabel: narratorLabel,
+    narratorSearchText: narratorSearchText,
+    chapterLabel: chapterLabel,
+    chapterSearchText: chapterSearchText,
+  );
+}
+
 HadithSearchResult? _searchEntry({
   required HadithEntry entry,
   required String query,
@@ -200,6 +250,8 @@ Iterable<_HadithSearchCandidate> _candidatesForFilter(
   HadithEntry entry,
   HadithSearchFilter filter,
 ) sync* {
+  final metadata = buildHadithSearchIndexMetadata(entry);
+
   Iterable<_HadithSearchCandidate> buildAll() sync* {
     yield _HadithSearchCandidate(HadithSearchMatchField.title, entry.title);
     yield _HadithSearchCandidate(HadithSearchMatchField.excerpt, entry.excerpt);
@@ -225,7 +277,11 @@ Iterable<_HadithSearchCandidate> _candidatesForFilter(
     );
     yield _HadithSearchCandidate(
       HadithSearchMatchField.narrator,
-      entry.normalizedNarratorName ?? '',
+      metadata.narratorSearchText,
+    );
+    yield _HadithSearchCandidate(
+      HadithSearchMatchField.chapter,
+      metadata.chapterSearchText,
     );
     yield _HadithSearchCandidate(
       HadithSearchMatchField.category,
@@ -255,7 +311,11 @@ Iterable<_HadithSearchCandidate> _candidatesForFilter(
       );
       yield _HadithSearchCandidate(
         HadithSearchMatchField.narrator,
-        entry.normalizedNarratorName ?? '',
+        metadata.narratorSearchText,
+      );
+      yield _HadithSearchCandidate(
+        HadithSearchMatchField.chapter,
+        metadata.chapterSearchText,
       );
       yield _HadithSearchCandidate(
         HadithSearchMatchField.grade,
@@ -570,6 +630,7 @@ String _normalizeForField(HadithSearchMatchField field, String value) {
     case HadithSearchMatchField.sourceCollection:
     case HadithSearchMatchField.reference:
     case HadithSearchMatchField.narrator:
+    case HadithSearchMatchField.chapter:
     case HadithSearchMatchField.category:
     case HadithSearchMatchField.subcategory:
     case HadithSearchMatchField.grade:
@@ -593,6 +654,7 @@ List<String> _tokenizeForField(HadithSearchMatchField field, String value) {
     case HadithSearchMatchField.sourceCollection:
     case HadithSearchMatchField.reference:
     case HadithSearchMatchField.narrator:
+    case HadithSearchMatchField.chapter:
     case HadithSearchMatchField.category:
     case HadithSearchMatchField.subcategory:
     case HadithSearchMatchField.grade:
@@ -622,6 +684,7 @@ bool _isHighlightWordMatch({
     case HadithSearchMatchField.sourceCollection:
     case HadithSearchMatchField.reference:
     case HadithSearchMatchField.narrator:
+    case HadithSearchMatchField.chapter:
     case HadithSearchMatchField.category:
     case HadithSearchMatchField.subcategory:
     case HadithSearchMatchField.grade:
@@ -648,3 +711,16 @@ bool _isSafeGenericHighlightMatch(
 
 bool _containsArabicLetters(String value) =>
     RegExp(r'[\u0600-\u06FF]').hasMatch(value);
+
+String _joinUniqueSearchTerms(List<String> values) {
+  final seen = <String>{};
+  final deduped = <String>[];
+  for (final value in values) {
+    final trimmed = value.trim();
+    if (trimmed.isEmpty) continue;
+    final normalized = normalizeHadithSearchText(trimmed);
+    if (normalized.isEmpty || !seen.add(normalized)) continue;
+    deduped.add(trimmed);
+  }
+  return deduped.join(' ');
+}

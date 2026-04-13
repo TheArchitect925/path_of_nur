@@ -501,7 +501,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ayahTranslation => 'Seek help through patience and prayer. (2:45)';
 
   @override
-  String get quranTitle => 'Quran';
+  String get quranTitle => 'Holy Qur\'an';
 
   @override
   String get quranSubtitle => 'Read • Search • Notes';
@@ -511,6 +511,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranAppHubTitle => 'The Holy Qur\'an';
+
+  @override
+  String get quranAppHubSearchHint => 'Search the Holy Qur\'an';
 
   @override
   String get quranDiscoverSectionTitle => 'Discover the Qur’an';
@@ -552,6 +555,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hadithSourceLabel => 'Source';
+
+  @override
+  String get hadithSourceChapterLabel => 'Chapter';
 
   @override
   String get hadithReferenceLabel => 'Reference';
@@ -733,6 +739,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hadithCopiedToClipboard => 'Hadith copied to clipboard.';
 
   @override
+  String get hadithProvenanceLabel => 'Source provenance';
+
+  @override
+  String get hadithProvenanceSeeded => 'Curated foundation record';
+
+  @override
+  String get hadithProvenanceEditorialOverride => 'Editorially reviewed record';
+
+  @override
+  String get hadithProvenanceImported => 'Imported trusted-source record';
+
+  @override
+  String get hadithProvenanceUnknown => 'Source pipeline metadata pending';
+
+  @override
+  String hadithProvenancePipelineValue(String pipeline) {
+    return 'Pipeline: $pipeline';
+  }
+
+  @override
+  String get hadithProvenanceInfoTitle => 'Why this source is trusted';
+
+  @override
+  String get hadithProvenanceInfoBody =>
+      'This reader keeps source collection, chapter, reference, grade, and provenance metadata together so public hadith entries stay tied to reviewable trusted-source context.';
+
+  @override
+  String get hadithProvenanceInfoStatusTitle => 'Current record status';
+
+  @override
+  String get hadithProvenanceInfoPipelineBody =>
+      'The pipeline line shows which import or editorial path prepared this record for the app.';
+
+  @override
   String get hadithTitleDailyReflection => 'Daily Hadith Reflection';
 
   @override
@@ -852,11 +892,194 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get hadithCollectionSubcategoriesTitle =>
+      'Subcategories in this collection';
+
+  @override
+  String hadithCollectionSubcategoryCount(int count) {
+    return '$count hadith';
+  }
+
+  @override
+  String get hadithBrowseControlsTitle => 'Narrow this list';
+
+  @override
+  String get hadithBrowseSortLabel => 'Sort';
+
+  @override
+  String get hadithBrowseSortRecommended => 'Recommended';
+
+  @override
+  String get hadithBrowseSortTitle => 'Title';
+
+  @override
+  String get hadithBrowseSortSource => 'Source';
+
+  @override
+  String get hadithBrowseSortGrade => 'Grade';
+
+  @override
+  String get hadithBrowseResetAll => 'Reset all';
+
+  @override
+  String get hadithBrowseAllSources => 'All sources';
+
+  @override
+  String get hadithBrowseAllGrades => 'All grades';
+
+  @override
+  String get hadithBrowseAllSubcategories => 'All subcategories';
+
+  @override
+  String get hadithBrowseQuickStartTitle => 'Start here';
+
+  @override
+  String hadithBrowseMatchingEntriesTitle(int count) {
+    return '$count hadith in this list';
+  }
+
+  @override
+  String get hadithBrowseNoMatchesTitle => 'No hadith match these filters';
+
+  @override
+  String get hadithBrowseNoMatchesSubtitle =>
+      'Try a broader source, grade, or subcategory to reopen the list.';
+
+  @override
   String get hadithLessonNotFoundSubtitle => 'Content not found';
 
   @override
   String get hadithLessonNotFoundBody =>
       'The requested hadith could not be found.';
+
+  @override
+  String get hadithReaderDisplaySettingsAction => 'Reader display settings';
+
+  @override
+  String get hadithReaderDisplaySettingsTitle => 'Reader display';
+
+  @override
+  String get hadithReaderDisplaySettingsSubtitle =>
+      'Choose which Hadith text layers stay visible while you read.';
+
+  @override
+  String get hadithGradeInfoTitle => 'Hadith grades';
+
+  @override
+  String hadithGradeInfoSubtitle(String grade) {
+    return 'This hadith is marked as $grade.';
+  }
+
+  @override
+  String get hadithGradeInfoDisclaimer =>
+      'These are short reading aids to help you understand the labels used in this library. Detailed hadith grading discussions belong to scholars and source-specific study.';
+
+  @override
+  String get hadithGradeInfoCurrentBadge => 'Current';
+
+  @override
+  String get hadithGradeInfoMuttafaqunAlayh =>
+      'Usually used for reports collected by both Imam al-Bukhari and Imam Muslim. Readers often treat this as one of the strongest grading labels in common study use.';
+
+  @override
+  String get hadithGradeInfoSahih =>
+      'Generally used for a report regarded as authentic and reliable according to the grading judgment attached to it here.';
+
+  @override
+  String get hadithGradeInfoHasanSahih =>
+      'Used when scholars describe a report with wording such as Hasan Sahih. It points to a strong report, while reflecting the grading language used by the source or scholars.';
+
+  @override
+  String get hadithGradeInfoHasan =>
+      'Generally used for a report regarded as sound and acceptable, though usually placed below Sahih in common study summaries.';
+
+  @override
+  String get hadithGradeInfoWeak =>
+      'Used for a report that is not treated as strong enough to stand at the level of Sahih or Hasan in the grading attached here.';
+
+  @override
+  String get hadithGradeInfoBalagh =>
+      'Used for a report transmitted in a shortened or indirect form in some source traditions, so readers should treat it with extra care and source awareness.';
+
+  @override
+  String get hadithGradeInfoOtherTitle => 'Other grading label';
+
+  @override
+  String get hadithGradeInfoOther =>
+      'Some reports use source-specific grading wording or editorial notes that do not fit the main simplified categories above.';
+
+  @override
+  String get hadithNarratorPageSubtitle =>
+      'Narrator profile in the Hadith library';
+
+  @override
+  String get hadithNarratorNotFoundSubtitle => 'Narrator not found';
+
+  @override
+  String get hadithNarratorNotFoundBody =>
+      'The requested narrator could not be found in this Hadith library.';
+
+  @override
+  String get hadithNarratorFallbackSummary =>
+      'This narrator appears across the Hadith library. This page helps you trace their narrations here while the profile is being expanded.';
+
+  @override
+  String get hadithNarratorAliasesTitle => 'Also shown as';
+
+  @override
+  String get hadithNarratorInLibraryTitle => 'In this library';
+
+  @override
+  String get hadithNarratorStatHadith => 'Hadith';
+
+  @override
+  String get hadithNarratorStatSources => 'Sources';
+
+  @override
+  String get hadithNarratorStatThemes => 'Themes';
+
+  @override
+  String get hadithNarratorStatCollections => 'Collections';
+
+  @override
+  String hadithNarratorHadithSectionTitle(int count) {
+    return '$count hadith from this narrator';
+  }
+
+  @override
+  String get hadithNarratorRoleCompanion => 'Companion of the Prophet ﷺ';
+
+  @override
+  String get hadithNarratorRoleMotherOfBelievers =>
+      'Mother of the Believers and scholar';
+
+  @override
+  String get hadithNarratorRoleScholarCompanion =>
+      'Companion known for knowledge and teaching';
+
+  @override
+  String get hadithNarratorSummaryAbuHurairah =>
+      'Abu Hurairah was a Companion of the Prophet ﷺ known for staying close to the Messenger of Allah ﷺ and transmitting a large number of hadith. In this library, he appears often in narrations about worship, character, repentance, and daily Muslim life.';
+
+  @override
+  String get hadithNarratorSummaryAishah =>
+      'Aishah bint Abi Bakr, may Allah be pleased with her, was the wife of the Prophet ﷺ and one of the most knowledgeable teachers of the Sunnah. Her narrations in this library often preserve guidance about worship, Qur\'an, character, and life within the Prophet\'s household.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnUmar =>
+      'Abdullah ibn Umar was a Companion known for his careful following of the Sunnah and his devotion to worship. His narrations in this library often center on prayer, travel, restraint, and living with awareness of the Hereafter.';
+
+  @override
+  String get hadithNarratorSummaryAnasIbnMalik =>
+      'Anas ibn Malik served the Prophet ﷺ in Madinah and transmitted many hadith about the Prophet\'s conduct, mercy, and daily example. In this library, his narrations often carry practical guidance rooted in close companionship and service.';
+
+  @override
+  String get hadithNarratorSummaryJabirIbnAbdullah =>
+      'Jabir ibn Abdullah was a Companion from the Ansar who narrated hadith across worship, manners, and community life. His narrations in this library often preserve guidance that connects devotion with everyday conduct.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnAbbas =>
+      'Abdullah ibn Abbas, cousin of the Prophet ﷺ, became widely known for knowledge, understanding, and teaching. In this library, his narrations often appear where hadith connects worship with reflection, understanding, and broader insight.';
 
   @override
   String hadithLessonCompletedXp(int xp) {
@@ -1367,7 +1590,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get duaDetailMarkReflected => 'Mark reflected';
 
   @override
-  String get duaDetailOpenInQuranReader => 'Open in Quran reader';
+  String get duaDetailOpenInQuranReader => 'Open in the Holy Qur\'an reader';
 
   @override
   String get duaDetailTagsTitle => 'Tags';
@@ -1944,7 +2167,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Continue your knowledge path with focused previews.';
 
   @override
-  String get homeLearnContinueQuran => 'Continue Quran';
+  String get homeLearnContinueQuran => 'Continue the Holy Qur\'an';
 
   @override
   String get homeLearnContinueQuranValue => 'Resume last reading';
@@ -2267,11 +2490,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Compass guidance toward the Kaaba';
 
   @override
-  String get homeSearchQuranTopWordsTitle => 'Quran Top Words';
+  String get homeSearchQuranTopWordsTitle => 'Holy Qur\'an Top Words';
 
   @override
   String get homeSearchQuranTopWordsSubtitle =>
-      'Learn frequent Quran words from your source document.';
+      'Learn frequent Holy Qur\'an words from your source document.';
 
   @override
   String get homeSearchNamesOfAllahTitle => '99 Names of Allah';
@@ -2288,7 +2511,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hajj, Umrah, New/Revert Muslim support and practice guides.';
 
   @override
-  String get homeSearchQuranLessonsMappingTitle => 'Quran 50 Lessons Mapping';
+  String get homeSearchQuranLessonsMappingTitle =>
+      'Holy Qur\'an 50 Lessons Mapping';
 
   @override
   String get homeSearchQuranLessonsMappingSubtitle =>
@@ -2831,7 +3055,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageKurdish => 'Kurdish';
 
   @override
-  String get learnTabQuran => 'Quran';
+  String get learnTabQuran => 'Holy Qur\'an';
 
   @override
   String get learnTabLife => 'Life';
@@ -2846,7 +3070,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learnTabNotes => 'Notes';
 
   @override
-  String get learnQuranSectionTitle => 'Quran Hub';
+  String get learnQuranSectionTitle => 'Holy Qur\'an Hub';
 
   @override
   String get learnQuranSectionSubtitle =>
@@ -2886,7 +3110,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Track consistency and growth with balance.';
 
   @override
-  String get learnLifeSectionTitle => 'Life through the Quran';
+  String get learnLifeSectionTitle => 'Life through the Holy Qur\'an';
 
   @override
   String get learnLifeSectionSubtitle =>
@@ -2917,7 +3141,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learnLifeGratitude => 'Gratitude';
 
   @override
-  String get learnWorldSectionTitle => 'World through the Quran';
+  String get learnWorldSectionTitle => 'World through the Holy Qur\'an';
 
   @override
   String get learnWorldSectionSubtitle =>
@@ -3041,7 +3265,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learnCommonNewBadge => 'New';
 
   @override
-  String get learnCategoryHolyQuranTitle => 'Holy Quran';
+  String get learnCategoryHolyQuranTitle => 'Holy Qur\'an';
 
   @override
   String get learnCategoryQuranLearningTitle => 'Qur’an Learning';
@@ -3141,7 +3365,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learnSectionLandingSubtitle =>
-      'Follow a clearer path through foundations, belief, Prophets, Quran learning, ibadah, and character.';
+      'Follow a clearer path through foundations, belief, Prophets, Holy Qur\'an learning, ibadah, and character.';
 
   @override
   String get learningSectionLandingShortcutJourneys => 'Open journeys';
@@ -6763,7 +6987,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get journeyRingDhikr => 'Dhikr';
 
   @override
-  String get journeyRingQuran => 'Quran';
+  String get journeyRingQuran => 'Holy Qur\'an';
 
   @override
   String get journeyRingReflection => 'Reflection';
@@ -6868,7 +7092,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Browse surahs and open your reading flow.';
 
   @override
-  String get quranSearchTitle => 'Quran Search';
+  String get quranSearchTitle => 'Holy Qur\'an Search';
 
   @override
   String get quranSearchSubtitle => 'Find surahs and verses quickly.';
@@ -6957,7 +7181,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quranRemoveBookmark => 'Remove bookmark';
 
   @override
-  String get quranNotesTitle => 'Quran Notes';
+  String get quranNotesTitle => 'Holy Qur\'an Notes';
 
   @override
   String get quranNotesSubtitle => 'Your saved reflections and highlights.';
@@ -7088,7 +7312,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Pinned as the spiritual header for this section.';
 
   @override
-  String get salahOpenInQuranAction => 'Open in Quran';
+  String get salahOpenInQuranAction => 'Open in the Holy Qur\'an';
 
   @override
   String get salahTrackSalahTitle => 'Track Salah';
@@ -7282,13 +7506,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get modeRamadanHomeSubtitle =>
-      'Center today on fasting, Quran, and gentle reflection.';
+      'Center today on fasting, the Holy Qur\'an, and gentle reflection.';
 
   @override
   String get modeRamadanActionFasting => 'Fasting';
 
   @override
-  String get modeRamadanActionQuran => 'Quran';
+  String get modeRamadanActionQuran => 'Holy Qur\'an';
 
   @override
   String get modeRamadanActionReflect => 'Reflect';
@@ -7348,7 +7572,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get modeRamadanLearnSubtitle =>
-      'Prioritize Quran recitation and short reflection sessions.';
+      'Prioritize Holy Qur\'an recitation and short reflection sessions.';
 
   @override
   String get modeLossLearnTitle => 'Supportive Learning';
@@ -7880,11 +8104,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quranUnknownDateLabel => 'Unknown date';
 
   @override
-  String get quranTopWordsTitle => 'Quran Top Words';
+  String get quranTopWordsTitle => 'Holy Qur\'an Top Words';
 
   @override
   String get quranTopWordsSubtitle =>
-      'Study frequent Quran vocabulary with transliteration and meaning.';
+      'Study frequent Holy Qur\'an vocabulary with transliteration and meaning.';
 
   @override
   String get quranWordReviewTitle => 'Word Review Deck';
@@ -16987,7 +17211,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningPathPhasePracticingUnderstandingDescription =>
-      'Connect Quran reading, meaning, and recurring words.';
+      'Connect Holy Qur\'an reading, meaning, and recurring words.';
 
   @override
   String get learningPathPhasePracticingCharacterTitle => 'Character';
@@ -17011,7 +17235,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Strengthen belief, practice, and historical context.';
 
   @override
-  String get learningPathPhaseSeekerQuranDepthTitle => 'Quran Depth';
+  String get learningPathPhaseSeekerQuranDepthTitle => 'Holy Qur\'an Depth';
 
   @override
   String get learningPathPhaseSeekerQuranDepthDescription =>
@@ -20257,7 +20481,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dhikrAntiRushVerseTranslation =>
-      'Be patient, and your patience is only through الله. (Quran 16:127)';
+      'Be patient, and your patience is only through الله. (Holy Qur\'an 16:127)';
 
   @override
   String get dhikrAntiRushBody =>
@@ -20442,7 +20666,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get growthHomeJourneyDepthDhikrLabel => 'Dhikr';
 
   @override
-  String get growthHomeJourneyDepthQuranLabel => 'Quran';
+  String get growthHomeJourneyDepthQuranLabel => 'Holy Qur\'an';
 
   @override
   String get growthHomeJourneyDepthReflectionLabel => 'Reflection';
@@ -23989,7 +24213,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String batch9QuranWordsLoadError(String error) {
-    return 'Unable to load Quran words: $error';
+    return 'Unable to load Holy Qur\'an words: $error';
   }
 
   @override
@@ -37501,14 +37725,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wuduGuideImportantRemindersTitle => 'Important reminders';
 
   @override
-  String get quranSummaryIslandTitle => 'Quran Summary';
+  String get quranSummaryIslandTitle => 'Holy Qur\'an Summary';
 
   @override
   String get quranSummaryIslandSubtitle =>
       'Explore all 114 surahs with short overviews, revelation type, and key themes.';
 
   @override
-  String get quranSummaryPageTitle => 'Quran Summary';
+  String get quranSummaryPageTitle => 'Holy Qur\'an Summary';
 
   @override
   String get quranSummaryPageSubtitle =>
@@ -37539,7 +37763,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranSummaryHeroTitle =>
-      'Read the flow of the Quran one surah at a time';
+      'Read the flow of the Holy Qur\'an one surah at a time';
 
   @override
   String get quranSummaryHeroSubtitle =>
@@ -37560,7 +37784,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranSummaryDetailMissingSubtitle =>
-      'Return to the Quran Summary list and choose another surah.';
+      'Return to the Holy Qur\'an Summary list and choose another surah.';
 
   @override
   String quranSummaryDetailPageSubtitle(Object surahNumber) {
@@ -38378,7 +38602,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranReflectionsLibrarySubtitle =>
-      'Revisit the notes and insights you wanted to keep from your Quran journey.';
+      'Revisit the notes and insights you wanted to keep from your Holy Qur\'an journey.';
 
   @override
   String get quranReflectionsSearchHint => 'Search reflections...';
@@ -38399,7 +38623,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranReflectionsSavedInsightSubtitle =>
-      'A saved insight from your Quran journey';
+      'A saved insight from your Holy Qur\'an journey';
 
   @override
   String get quranReflectionsYourReflectionTitle => 'Your reflection';
@@ -41013,6 +41237,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hadithSearchMatchNarrator => 'Narrator match';
 
   @override
+  String get hadithSearchMatchChapter => 'Chapter match';
+
+  @override
   String get hadithSearchMatchCategory => 'Category match';
 
   @override
@@ -41294,4 +41521,97 @@ class AppLocalizationsEn extends AppLocalizations {
   String allSearchError(Object message) {
     return 'Search unavailable: $message';
   }
+
+  @override
+  String get hadithReaderContinueTitle => 'Continue reading';
+
+  @override
+  String hadithReaderBackToLane(String lane) {
+    return 'Back to $lane';
+  }
+
+  @override
+  String get hadithReaderBackToResults => 'Back to results';
+
+  @override
+  String get hadithReaderPrevious => 'Previous';
+
+  @override
+  String get hadithReaderNext => 'Next';
+
+  @override
+  String hadithReaderPosition(int current, int total) {
+    return 'Hadith $current of $total';
+  }
+
+  @override
+  String hadithReaderChapterPosition(int current, int total) {
+    return 'Hadith $current of $total in this chapter';
+  }
+
+  @override
+  String get hadithBrowseProgressLabel => 'Status';
+
+  @override
+  String get hadithBrowseProgressAll => 'All entries';
+
+  @override
+  String get hadithBrowseProgressNotReviewed => 'Not reviewed';
+
+  @override
+  String get hadithBrowseProgressReviewing => 'Reviewing';
+
+  @override
+  String get hadithBrowseProgressComplete => 'Complete';
+
+  @override
+  String get hadithActionMarkCompleteForBrowse => 'Mark complete';
+
+  @override
+  String get hadithActionCompletedForBrowse => 'Completed';
+
+  @override
+  String get hadithActionMarkIncomplete => 'Mark incomplete';
+
+  @override
+  String get hadithMarkedComplete => 'Hadith marked complete.';
+
+  @override
+  String get hadithMarkedIncomplete => 'Hadith marked incomplete.';
+
+  @override
+  String get hadithBrowsePageTitle => 'Browse Hadith';
+
+  @override
+  String get hadithBrowsePageSubtitle =>
+      'A calm, filterable way to explore the wider hadith library.';
+
+  @override
+  String get hadithBrowseIntroTitle => 'Start with a calmer lane';
+
+  @override
+  String get hadithBrowseIntroBody =>
+      'Use this page to narrow the wider hadith library by source, collection, grade, or study status before opening a reading lane.';
+
+  @override
+  String hadithBrowseSummary(
+    int entries,
+    int sources,
+    int collections,
+    int subcategories,
+  ) {
+    return '$entries hadith across $sources sources, $collections collections, and $subcategories subcategories.';
+  }
+
+  @override
+  String get hadithBrowseActiveFiltersTitle => 'Active filters';
+
+  @override
+  String get hadithBrowseCollectionLabel => 'Collection';
+
+  @override
+  String get hadithBrowseAllCollections => 'All collections';
+
+  @override
+  String get hadithActionBrowseAllHadith => 'Browse all hadith';
 }

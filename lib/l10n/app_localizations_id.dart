@@ -20,28 +20,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get notificationsPrayerNotificationOnlyChannelName =>
-      'Salah Reminders (Notification)';
+      'Pengingat Salat (Notifikasi)';
 
   @override
   String get notificationsPrayerNotificationOnlyChannelDescription =>
-      'Salah reminder notifications without adhan audio';
+      'Notifikasi pengingat salat tanpa audio azan';
 
   @override
   String notificationsPrayerAdhanChannelName(String adhanTitle) {
-    return 'Salah Reminders ($adhanTitle)';
+    return 'Pengingat Salat ($adhanTitle)';
   }
 
   @override
   String get notificationsPrayerAdhanChannelDescription =>
-      'Salah reminder notifications with adhan audio';
+      'Notifikasi pengingat salat dengan audio azan';
 
   @override
   String get notificationsPrayerBeforeQazaChannelName =>
-      'Salah Reminders (Before Qaza)';
+      'Pengingat Salah (Sebelum Qadha)';
 
   @override
   String get notificationsPrayerBeforeQazaChannelDescription =>
-      'Salah reminder notifications before qada';
+      'Notifikasi pengingat salah sebelum menjadi qadha';
 
   @override
   String get notificationsDailyRemindersChannelName => 'Pengingat harian';
@@ -63,7 +63,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String notificationsPrayerAtTimeTitle(String prayerName) {
-    return '$prayerName Salah';
+    return 'Salat $prayerName';
   }
 
   @override
@@ -84,25 +84,25 @@ class AppLocalizationsId extends AppLocalizations {
   String get notificationsFastingTitle => 'Puasa hari ini';
 
   @override
-  String get notificationsOnThisDayTitle => 'On This Day';
+  String get notificationsOnThisDayTitle => 'Hari Ini dalam Sejarah';
 
   @override
   String get notificationsCycleCheckTitle => 'Pemeriksaan siklus';
 
   @override
-  String get notificationsMoonriseTitle => 'Moonrise';
+  String get notificationsMoonriseTitle => 'Bulan terbit';
 
   @override
-  String get notificationsMoonsetTitle => 'Moonset';
+  String get notificationsMoonsetTitle => 'Bulan terbenam';
 
   @override
   String notificationsPrayerAtTimeBody(String prayerName) {
-    return 'It is time for $prayerName Salah. Stay connected with your salah.';
+    return 'Sekarang waktu salat $prayerName. Tetaplah terhubung dengan salatmu.';
   }
 
   @override
   String notificationsPrayerAtTimeFajrBody(String prayerName) {
-    return 'It is time for $prayerName Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
+    return 'Waktunya salah $prayerName.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
   }
 
   @override
@@ -127,17 +127,17 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get notificationsOnThisDayBody =>
-      'Open today’s historical reflection and revisit a meaningful moment from Islamic history.';
+      'Buka refleksi sejarah hari ini dan kenang kembali momen bermakna dari sejarah Islam.';
 
   @override
   String get notificationsCycleCheckBody =>
       'Jika perlu, periksa dan perbarui status siklus Anda.';
 
   @override
-  String get notificationsMoonriseBody => 'The moon is rising now.';
+  String get notificationsMoonriseBody => 'Bulan sedang terbit sekarang.';
 
   @override
-  String get notificationsMoonsetBody => 'The moon is setting now.';
+  String get notificationsMoonsetBody => 'Bulan sedang terbenam sekarang.';
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -145,44 +145,48 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get notificationsPrayerActionMarkPrayed => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkPrayed =>
+      'Tandai salah sudah dikerjakan';
 
   @override
   String get notificationsPrayerActionMarkPrayedLate =>
-      'Mark Salah as offered late';
+      'Tandai salah dikerjakan terlambat';
 
   @override
-  String get notificationsPrayerActionSnooze => 'Snooze';
+  String get notificationsPrayerActionSnooze => 'Tunda';
 
   @override
-  String get notificationsPrayerActionSnooze5 => 'Remind me in 5 min';
+  String get notificationsPrayerActionSnooze5 => 'Ingatkan saya dalam 5 menit';
 
   @override
-  String get notificationsPrayerActionSnooze10 => 'Remind me in 10 min';
+  String get notificationsPrayerActionSnooze10 =>
+      'Ingatkan saya dalam 10 menit';
 
   @override
-  String get notificationsPrayerActionMarkOffered => 'Mark Salah as offered';
+  String get notificationsPrayerActionMarkOffered =>
+      'Tandai salah sudah dikerjakan';
 
   @override
-  String get notificationsPrayerActionDismiss => 'Dismiss';
+  String get notificationsPrayerActionDismiss => 'Tutup';
 
   @override
-  String get notificationsPrayerActionOpen => 'Open';
+  String get notificationsPrayerActionOpen => 'Buka';
 
   @override
-  String get notificationsReflectionActionWrite => 'Write Reflection';
+  String get notificationsReflectionActionWrite => 'Tulis refleksi';
 
   @override
-  String get notificationsReflectionActionRemind10 => 'Remind me in 10 min';
+  String get notificationsReflectionActionRemind10 =>
+      'Ingatkan saya dalam 10 menit';
 
   @override
-  String get notificationsReflectionActionDismiss => 'Dismiss';
+  String get notificationsReflectionActionDismiss => 'Tutup';
 
   @override
   String get notificationsPrayerNameTahajjud => 'Tahajud';
 
   @override
-  String get notificationsGenericPrayerName => 'Salah';
+  String get notificationsGenericPrayerName => 'Salat';
 
   @override
   String get notificationsFastingBeginsNowTitle => 'Puasa dimulai sekarang';
@@ -249,10 +253,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get notificationsFastingLiveJustEntered => 'Baru saja dimulai';
 
   @override
-  String get historyAdditionalMatchesTitle => 'More moments for today';
+  String get historyAdditionalMatchesTitle =>
+      'Lebih banyak momen untuk hari ini';
 
   @override
-  String get historyArchiveAllCategories => 'All categories';
+  String get historyArchiveAllCategories => 'Semua kategori';
 
   @override
   String get historyArchiveAllGregorianMonths => 'Semua bulan Gregorian';
@@ -366,7 +371,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String historyHijriDateValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year H';
   }
 
   @override
@@ -406,25 +411,25 @@ class AppLocalizationsId extends AppLocalizations {
   String get historyOpenArchiveAction => 'Buka arsip';
 
   @override
-  String get historyNextUpcomingEventLabel => 'Next event';
+  String get historyNextUpcomingEventLabel => 'Peristiwa berikutnya';
 
   @override
   String get historyOverviewTitle => 'Ringkasan';
 
   @override
-  String get contextualLinksRelatedTitle => 'Related';
+  String get contextualLinksRelatedTitle => 'Terkait';
 
   @override
-  String get contextualLinksTypeEvent => 'Event';
+  String get contextualLinksTypeEvent => 'Peristiwa';
 
   @override
   String get contextualLinksTypeHadith => 'Hadith';
 
   @override
-  String get contextualLinksTypeJourney => 'Journey';
+  String get contextualLinksTypeJourney => 'Perjalanan';
 
   @override
-  String get contextualLinksTypeLearn => 'Learn';
+  String get contextualLinksTypeLearn => 'Belajar';
 
   @override
   String get historyRelatedContentTitle => 'Pembelajaran terkait';
@@ -445,7 +450,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String historyTodayHijriValue(String day, String month, String year) {
-    return '$day $month $year AH';
+    return '$day $month $year H';
   }
 
   @override
@@ -467,13 +472,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get navDhikr => 'Ibadah';
 
   @override
-  String get navLearning => 'Learn';
+  String get navLearning => 'Belajar';
 
   @override
-  String get navHome => 'Home';
+  String get navHome => 'Beranda';
 
   @override
-  String get navPrayer => 'Growth';
+  String get navPrayer => 'Pertumbuhan';
 
   @override
   String get navGarden => 'Profile';
@@ -507,6 +512,9 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quranAppHubTitle => 'Al-Qur’an Mulia';
+
+  @override
+  String get quranAppHubSearchHint => 'Search the Holy Qur\'an';
 
   @override
   String get quranDiscoverSectionTitle => 'Discover the Qur’an';
@@ -548,6 +556,9 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get hadithSourceLabel => 'Source';
+
+  @override
+  String get hadithSourceChapterLabel => 'Bab';
 
   @override
   String get hadithReferenceLabel => 'Reference';
@@ -729,6 +740,41 @@ class AppLocalizationsId extends AppLocalizations {
   String get hadithCopiedToClipboard => 'Hadith copied to clipboard.';
 
   @override
+  String get hadithProvenanceLabel => 'Asal sumber';
+
+  @override
+  String get hadithProvenanceSeeded => 'Rekaman dasar terkurasi';
+
+  @override
+  String get hadithProvenanceEditorialOverride =>
+      'Rekaman yang ditinjau editorial';
+
+  @override
+  String get hadithProvenanceImported => 'Rekaman impor dari sumber tepercaya';
+
+  @override
+  String get hadithProvenanceUnknown => 'Metadata alur sumber tertunda';
+
+  @override
+  String hadithProvenancePipelineValue(String pipeline) {
+    return 'Alur: $pipeline';
+  }
+
+  @override
+  String get hadithProvenanceInfoTitle => 'Mengapa sumber ini tepercaya';
+
+  @override
+  String get hadithProvenanceInfoBody =>
+      'Tampilan ini menyatukan metadata koleksi sumber, bab, referensi, derajat, dan asal-usul sehingga entri hadith publik tetap terhubung dengan konteks sumber tepercaya yang dapat ditinjau.';
+
+  @override
+  String get hadithProvenanceInfoStatusTitle => 'Status rekaman saat ini';
+
+  @override
+  String get hadithProvenanceInfoPipelineBody =>
+      'Baris alur menunjukkan jalur impor atau editorial mana yang menyiapkan rekaman ini untuk aplikasi.';
+
+  @override
   String get hadithTitleDailyReflection => 'Daily Hadith Reflection';
 
   @override
@@ -848,11 +894,195 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get hadithCollectionSubcategoriesTitle =>
+      'Subkategori dalam koleksi ini';
+
+  @override
+  String hadithCollectionSubcategoryCount(int count) {
+    return '$count hadith';
+  }
+
+  @override
+  String get hadithBrowseControlsTitle => 'Persempit daftar ini';
+
+  @override
+  String get hadithBrowseSortLabel => 'Menyortir';
+
+  @override
+  String get hadithBrowseSortRecommended => 'Direkomendasikan';
+
+  @override
+  String get hadithBrowseSortTitle => 'Judul';
+
+  @override
+  String get hadithBrowseSortSource => 'Sumber';
+
+  @override
+  String get hadithBrowseSortGrade => 'Nilai';
+
+  @override
+  String get hadithBrowseResetAll => 'Setel ulang semua';
+
+  @override
+  String get hadithBrowseAllSources => 'Semua sumber';
+
+  @override
+  String get hadithBrowseAllGrades => 'Semua nilai';
+
+  @override
+  String get hadithBrowseAllSubcategories => 'Semua subkategori';
+
+  @override
+  String get hadithBrowseQuickStartTitle => 'Mulai di sini';
+
+  @override
+  String hadithBrowseMatchingEntriesTitle(int count) {
+    return '$count hadits dalam daftar ini';
+  }
+
+  @override
+  String get hadithBrowseNoMatchesTitle =>
+      'Tidak ada hadis yang cocok dengan filter ini';
+
+  @override
+  String get hadithBrowseNoMatchesSubtitle =>
+      'Coba sumber, kelas, atau subkategori yang lebih luas untuk membuka kembali daftar.';
+
+  @override
   String get hadithLessonNotFoundSubtitle => 'Content not found';
 
   @override
   String get hadithLessonNotFoundBody =>
       'The requested hadith could not be found.';
+
+  @override
+  String get hadithReaderDisplaySettingsAction => 'Pengaturan tampilan pembaca';
+
+  @override
+  String get hadithReaderDisplaySettingsTitle => 'Tampilan pembaca';
+
+  @override
+  String get hadithReaderDisplaySettingsSubtitle =>
+      'Pilih lapisan teks Hadith mana yang tetap terlihat saat Anda membaca.';
+
+  @override
+  String get hadithGradeInfoTitle => 'Hadith grades';
+
+  @override
+  String hadithGradeInfoSubtitle(String grade) {
+    return 'This hadith is marked as $grade.';
+  }
+
+  @override
+  String get hadithGradeInfoDisclaimer =>
+      'Ini adalah alat bantu membaca singkat untuk membantu Anda memahami label yang digunakan di perpustakaan ini. Pembahasan penilaian hadis secara rinci adalah milik para ulama dan kajian khusus sumber.';
+
+  @override
+  String get hadithGradeInfoCurrentBadge => 'Saat ini';
+
+  @override
+  String get hadithGradeInfoMuttafaqunAlayh =>
+      'Biasanya digunakan untuk laporan yang dikumpulkan oleh Imam al-Bukhari dan Imam Muslim. Pembaca sering kali menganggap ini sebagai salah satu label penilaian terkuat yang umum digunakan dalam penelitian.';
+
+  @override
+  String get hadithGradeInfoSahih =>
+      'Umumnya digunakan untuk laporan yang dianggap autentik dan dapat diandalkan menurut penilaian penilaian yang dilampirkan di sini.';
+
+  @override
+  String get hadithGradeInfoHasanSahih =>
+      'Digunakan ketika ulama mendeskripsikan suatu riwayat dengan kata-kata seperti Hasan Sahih. Laporan ini menunjukkan laporan yang kuat, sekaligus mencerminkan bahasa penilaian yang digunakan oleh sumber atau pakar.';
+
+  @override
+  String get hadithGradeInfoHasan =>
+      'Umumnya digunakan untuk laporan yang dianggap masuk akal dan dapat diterima, meskipun biasanya ditempatkan di bawah Sahih dalam ringkasan pelajaran umum.';
+
+  @override
+  String get hadithGradeInfoWeak =>
+      'Digunakan untuk laporan yang tidak dianggap cukup kuat untuk berdiri di tingkat Sahih atau Hasan dalam penilaian yang terlampir di sini.';
+
+  @override
+  String get hadithGradeInfoBalagh =>
+      'Digunakan untuk laporan yang dikirimkan dalam bentuk singkat atau tidak langsung dalam beberapa tradisi sumber, sehingga pembaca harus memperlakukannya dengan ekstra hati-hati dan kesadaran sumber.';
+
+  @override
+  String get hadithGradeInfoOtherTitle => 'Label penilaian lainnya';
+
+  @override
+  String get hadithGradeInfoOther =>
+      'Beberapa laporan menggunakan kata-kata penilaian atau catatan editorial khusus sumber yang tidak sesuai dengan kategori utama yang disederhanakan di atas.';
+
+  @override
+  String get hadithNarratorPageSubtitle =>
+      'Narrator profile in the Hadith library';
+
+  @override
+  String get hadithNarratorNotFoundSubtitle => 'Narrator not found';
+
+  @override
+  String get hadithNarratorNotFoundBody =>
+      'The requested narrator could not be found in this Hadith library.';
+
+  @override
+  String get hadithNarratorFallbackSummary =>
+      'Narator ini muncul di perpustakaan Hadis. Halaman ini membantu Anda menelusuri narasi mereka di sini saat profil diperluas.';
+
+  @override
+  String get hadithNarratorAliasesTitle => 'Juga ditampilkan sebagai';
+
+  @override
+  String get hadithNarratorInLibraryTitle => 'Di perpustakaan ini';
+
+  @override
+  String get hadithNarratorStatHadith => 'hadis';
+
+  @override
+  String get hadithNarratorStatSources => 'Sumber';
+
+  @override
+  String get hadithNarratorStatThemes => 'Tema';
+
+  @override
+  String get hadithNarratorStatCollections => 'Koleksi';
+
+  @override
+  String hadithNarratorHadithSectionTitle(int count) {
+    return '$count hadith from this narrator';
+  }
+
+  @override
+  String get hadithNarratorRoleCompanion => 'Sahabat Nabi ﷺ';
+
+  @override
+  String get hadithNarratorRoleMotherOfBelievers =>
+      'Bunda Orang-orang Mukmin dan Ulama';
+
+  @override
+  String get hadithNarratorRoleScholarCompanion =>
+      'Sahabat yang dikenal karena ilmu dan pengajarannya';
+
+  @override
+  String get hadithNarratorSummaryAbuHurairah =>
+      'Abu Hurairah merupakan salah satu sahabat Nabi ﷺ yang dikenal dekat dengan Rasulullah ﷺ dan meriwayatkan hadis dalam jumlah besar. Di perpustakaan ini, beliau sering muncul dalam narasi-narasi tentang ibadah, akhlak, taubat, dan kehidupan sehari-hari umat Islam.';
+
+  @override
+  String get hadithNarratorSummaryAishah =>
+      'Aishah binti Abi Bakar radhiyallahu \'anhu adalah istri Nabi ﷺ dan salah satu guru Sunnah yang paling berpengetahuan. Narasi-narasinya di perpustakaan ini kerap menyimpan tuntunan tentang ibadah, Al-Qur\'an, akhlak, dan kehidupan di rumah Nabi.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnUmar =>
+      'Abdullah bin Umar adalah seorang Sahabat yang dikenal karena kehati-hatiannya dalam mengikuti Sunnah dan ketaatannya pada ibadah. Narasinya di perpustakaan ini sering kali berpusat pada doa, perjalanan, pengendalian diri, dan hidup dengan kesadaran akan akhirat.';
+
+  @override
+  String get hadithNarratorSummaryAnasIbnMalik =>
+      'Anas bin Malik mengabdi kepada Nabi ﷺ di Madinah dan meriwayatkan banyak hadits tentang perilaku Nabi, rahmat, dan teladan sehari-hari. Di perpustakaan ini, narasi-narasinya seringkali membawa bimbingan praktis yang berakar pada persahabatan dan pengabdian yang erat.';
+
+  @override
+  String get hadithNarratorSummaryJabirIbnAbdullah =>
+      'Jabir bin Abdullah adalah seorang sahabat dari kaum Ansar yang meriwayatkan hadis seputar ibadah, adab, dan kehidupan bermasyarakat. Narasinya di perpustakaan ini kerap menyimpan tuntunan yang menghubungkan ketaqwaan dengan perilaku sehari-hari.';
+
+  @override
+  String get hadithNarratorSummaryAbdullahIbnAbbas =>
+      'Abdullah bin Abbas, sepupu Nabi ﷺ, dikenal luas karena ilmu, pemahaman, dan pengajarannya. Di perpustakaan ini sering muncul riwayat-riwayatnya yang hadisnya menghubungkan ibadah dengan renungan, pemahaman, dan wawasan yang lebih luas.';
 
   @override
   String hadithLessonCompletedXp(int xp) {
@@ -976,8 +1206,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Review and strengthen recall through the current memorization tools.';
 
   @override
-  String get quranMemorizationReviewOpenListAction =>
-      'Open memorization review';
+  String get quranMemorizationReviewOpenListAction => 'Buka ulasan hafalan';
 
   @override
   String get quranHubWordsTitle => 'Words';
@@ -1049,11 +1278,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonGuidedPath =>
-      'This best matches your current focus on following a guided path.';
+      'Ini paling sesuai dengan fokus Anda saat ini dalam mengikuti jalur yang dipandu.';
 
   @override
   String get quranHubRecommendationReasonDaily =>
-      'Keep one ayah, one meaning cue, and one calm next step close today.';
+      'Simpan satu ayat, satu isyarat makna, dan satu langkah tenang berikutnya hari ini.';
 
   @override
   String quranHubRecommendationReasonDailyJourney(Object journey) {
@@ -1073,11 +1302,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonMemorizationFocus =>
-      'Keep repetition and review close while memorization is your main focus.';
+      'Pertahankan pengulangan dan peninjauan kembali sementara menghafal adalah fokus utama Anda.';
 
   @override
   String get quranHubRecommendationReasonRecentStudy =>
-      'Return to the surah you were studying most recently.';
+      'Kembali ke surah yang terakhir Anda pelajari.';
 
   @override
   String get quranHubRecommendationReasonTheme =>
@@ -1101,128 +1330,129 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get quranCompanionSectionTitle => 'Your Qur’an Companion';
+  String get quranCompanionSectionTitle => 'Sahabat Al-Qur\'an Anda';
 
   @override
   String get quranCompanionSectionSubtitle =>
-      'A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.';
+      'Serangkaian saran tenang yang dibentuk oleh bacaan terkini Anda, jalur saat ini, dan momen yang Anda jalani.';
 
   @override
   String quranCompanionResumePathTitle(Object path) {
-    return 'Continue $path';
+    return 'Lanjutkan $path';
   }
 
   @override
   String get quranCompanionResumePathDescription =>
-      'Pick up your guided journey where it last felt most alive.';
+      'Lanjutkan perjalanan terpandu Anda di tempat yang terakhir terasa paling hidup.';
 
   @override
-  String get quranCompanionResumeBadge => 'Resume';
+  String get quranCompanionResumeBadge => 'Melanjutkan';
 
   @override
   String quranCompanionContinueSurahTitle(Object surah) {
-    return 'Continue Surah $surah';
+    return 'Lanjutkan Surah $surah';
   }
 
   @override
   String get quranCompanionContinueSurahDescription =>
-      'Return to the ayah where your reading thread was already open.';
+      'Kembali ke ayat di mana thread bacaan Anda sudah terbuka.';
 
   @override
   String quranCompanionExploreThemeTitle(Object theme) {
-    return 'Explore $theme';
+    return 'Jelajahi $theme';
   }
 
   @override
   String get quranCompanionThemeDescription =>
-      'Follow one Qur’anic theme across connected surahs, ayat, and reflections.';
+      'Ikuti satu tema Al-Qur\'an di seluruh surah, ayat, dan renungan yang terhubung.';
 
   @override
   String get quranCompanionRelatedThemeDescription =>
-      'A connected theme to keep your recent Qur’an exploration moving gently forward.';
+      'Tema yang terhubung untuk menjaga eksplorasi Al-Qur\'an Anda tetap berjalan maju.';
 
   @override
   String quranCompanionPathwayTitle(Object path) {
-    return 'Walk through $path';
+    return 'Berjalan melalui $path';
   }
 
   @override
   String get quranCompanionPathwayDescription =>
-      'A guided pathway that keeps the next step clear and spiritually grounded.';
+      'Jalur terpandu yang menjaga langkah berikutnya tetap jelas dan berlandaskan spiritual.';
 
   @override
   String quranCompanionStartHereTitle(Object surah) {
-    return 'Start with Surah $surah';
+    return 'Mulailah dengan Surah $surah';
   }
 
   @override
   String get quranCompanionStartHereDescription =>
-      'A gentle starting point when you want something foundational and clear.';
+      'Titik awal yang lembut ketika Anda menginginkan sesuatu yang mendasar dan jelas.';
 
   @override
-  String get quranCompanionTimeOfDayTitle => 'A reflection for this moment';
+  String get quranCompanionTimeOfDayTitle => 'Sebuah refleksi untuk saat ini';
 
   @override
   String get quranCompanionTimeOfDayDescription =>
-      'Keep one ayah, one meaning cue, and one calm next step close right now.';
+      'Simpan satu ayat, satu isyarat makna, dan satu langkah tenang berikutnya sekarang juga.';
 
   @override
   String quranCompanionFridayTitle(Object surah) {
-    return 'Friday reflection: $surah';
+    return 'Renungan Jumat: $surah';
   }
 
   @override
   String get quranCompanionFridayDescription =>
-      'A soft Friday nudge toward a widely loved surah for reflection and recitation.';
+      'Dorongan Jumat yang lembut menuju surah yang sangat dicintai untuk refleksi dan bacaan.';
 
   @override
-  String get quranCompanionFocusBadge => 'Growth focus';
+  String get quranCompanionFocusBadge => 'Fokus pertumbuhan';
 
   @override
-  String get quranCompanionMomentBadge => 'For this moment';
+  String get quranCompanionMomentBadge => 'Untuk saat ini';
 
   @override
-  String get quranCompanionFridayBadge => 'Friday';
+  String get quranCompanionFridayBadge => 'Jumat';
 
   @override
-  String get quranCompanionMomentumBadge => 'Keep going';
+  String get quranCompanionMomentumBadge => 'Terus berlanjut';
 
   @override
-  String get quranCompanionReasonContinue => 'Continue where you left off';
+  String get quranCompanionReasonContinue =>
+      'Lanjutkan dari bagian terakhir yang Anda tinggalkan';
 
   @override
-  String get quranCompanionReasonMorning => 'For this morning';
+  String get quranCompanionReasonMorning => 'Untuk pagi ini';
 
   @override
-  String get quranCompanionReasonAfternoon => 'For this afternoon';
+  String get quranCompanionReasonAfternoon => 'Untuk sore ini';
 
   @override
-  String get quranCompanionReasonEvening => 'For this evening';
+  String get quranCompanionReasonEvening => 'Untuk malam ini';
 
   @override
-  String get quranCompanionReasonNight => 'For tonight';
+  String get quranCompanionReasonNight => 'Untuk malam ini';
 
   @override
-  String get quranCompanionReasonRecent => 'Based on your recent reading';
+  String get quranCompanionReasonRecent => 'Berdasarkan bacaan terakhir Anda';
 
   @override
-  String get quranCompanionReasonFocus => 'Based on your growth focus';
+  String get quranCompanionReasonFocus => 'Berdasarkan fokus pertumbuhan Anda';
 
   @override
-  String get quranCompanionReasonFriday => 'Friday reflection';
+  String get quranCompanionReasonFriday => 'Refleksi hari Jumat';
 
   @override
-  String get quranCompanionReasonJourney => 'Connected to your journey';
+  String get quranCompanionReasonJourney => 'Terhubung dengan perjalanan Anda';
 
   @override
-  String get quranCompanionReasonMomentum => 'Keep your rhythm';
+  String get quranCompanionReasonMomentum => 'Pertahankan ritme Anda';
 
   @override
-  String get quranCompanionReasonStart => 'Start here';
+  String get quranCompanionReasonStart => 'Mulai di sini';
 
   @override
   String quranCompanionProgressLabel(int completed, int total) {
-    return '$completed of $total stops completed';
+    return '$completed dari pemberhentian $total selesai';
   }
 
   @override
@@ -1261,10 +1491,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get duaHubSearchHint => 'Search duas, sources, categories, tags...';
 
   @override
-  String get searchDuasHint => 'Search duas...';
+  String get searchDuasHint => 'Cari doa...';
 
   @override
-  String get searchHadithHint => 'Search hadith themes, lessons, or anchors...';
+  String get searchHadithHint => 'Cari tema, pelajaran, atau penanda hadis...';
 
   @override
   String get duaHubOverviewTitle => 'Dataset overview';
@@ -1382,26 +1612,26 @@ class AppLocalizationsId extends AppLocalizations {
   String get allSalahTimes => 'All Salah Times';
 
   @override
-  String get homePrayerSectionTitle => 'Salah Timings';
+  String get homePrayerSectionTitle => 'Waktu Salat';
 
   @override
-  String get homePrayerDateToday => 'Today';
+  String get homePrayerDateToday => 'Hari ini';
 
   @override
-  String get homePrayerDateYesterday => 'Yesterday';
+  String get homePrayerDateYesterday => 'Kemarin';
 
   @override
-  String get homePrayerDateTomorrow => 'Tomorrow';
+  String get homePrayerDateTomorrow => 'Besok';
 
   @override
-  String get homePrayerPreviousDayTooltip => 'Previous day';
+  String get homePrayerPreviousDayTooltip => 'Hari sebelumnya';
 
   @override
-  String get homePrayerNextDayTooltip => 'Next day';
+  String get homePrayerNextDayTooltip => 'Hari berikutnya';
 
   @override
   String homePrayerCompletedCountValue(String completed, String total) {
-    return '$completed of $total salah entries offered';
+    return '$completed dari $total catatan salat telah ditunaikan';
   }
 
   @override
@@ -1426,36 +1656,34 @@ class AppLocalizationsId extends AppLocalizations {
   String get salahStreak => 'Salah Streak';
 
   @override
-  String get homeSectionDailyNurTitle => 'Daily Nur Progress';
+  String get homeSectionDailyNurTitle => 'Progress Nur Harian';
 
   @override
-  String get homeSectionDailyNurSubtitle =>
-      'A high-level snapshot for reflection.';
+  String get homeSectionDailyNurSubtitle => 'Gambaran ringkas untuk refleksi.';
 
   @override
-  String get homePrayerSummaryTitle => 'Salah Summary';
+  String get homePrayerSummaryTitle => 'Ringkasan Salat';
 
   @override
-  String get homePrayerSummarySubtitle =>
-      'Quick view into todays salah rhythm.';
+  String get homePrayerSummarySubtitle => 'Lihat cepat ritme salat hari ini.';
 
   @override
-  String get homeDhikrLearningTitle => 'Dhikr and Learning';
+  String get homeDhikrLearningTitle => 'Zikir dan Pembelajaran';
 
   @override
-  String get homeDhikrLearningSubtitle => 'Fast access to spiritual practices.';
+  String get homeDhikrLearningSubtitle => 'Akses cepat ke amalan ruhani.';
 
   @override
-  String get homeReflectionTitle => 'Reflection / Reminder';
+  String get homeReflectionTitle => 'Refleksi / Pengingat';
 
   @override
-  String get homeReflectionSubtitle => 'Centerpiece message for the day.';
+  String get homeReflectionSubtitle => 'Pesan utama untuk hari ini.';
 
   @override
-  String get homeLevelStreakTitle => 'Level and Streak';
+  String get homeLevelStreakTitle => 'Level dan Streak';
 
   @override
-  String get homeLevelStreakSubtitle => 'Growth signals without pressure.';
+  String get homeLevelStreakSubtitle => 'Sinyal pertumbuhan tanpa tekanan.';
 
   @override
   String get homeOverviewHeroTitle => 'Ikhtisar Nur Harian';
@@ -1465,53 +1693,53 @@ class AppLocalizationsId extends AppLocalizations {
       'Ringkasan singkat tentang ibadah, pembelajaran, dan pertumbuhan.';
 
   @override
-  String get homePrayerProgressTitle => 'Salah progress';
+  String get homePrayerProgressTitle => 'Progress salat';
 
   @override
-  String get homeDhikrProgressTitle => 'Dhikr progress';
+  String get homeDhikrProgressTitle => 'Progress zikir';
 
   @override
-  String get homeCurrentStreakTitle => 'Current streak';
+  String get homeCurrentStreakTitle => 'Streak saat ini';
 
   @override
-  String get homeXpLevelTitle => 'Level and XP';
+  String get homeXpLevelTitle => 'Level dan XP';
 
   @override
-  String get homeDaysLabel => 'days';
+  String get homeDaysLabel => 'hari';
 
   @override
   String get homeXpToNextLevel => 'XP ke level berikutnya';
 
   @override
-  String get homeWorshipSummaryTitle => 'Ibadah Summary';
+  String get homeWorshipSummaryTitle => 'Ringkasan Ibadah';
 
   @override
   String get homeWorshipSummarySubtitle =>
-      'Salah, dhikr, fasting, and Khusu in one place.';
+      'Salat, zikir, puasa, dan khusyuk di satu tempat.';
 
   @override
-  String get homeFastingStatusTitle => 'Fasting status';
+  String get homeFastingStatusTitle => 'Status puasa';
 
   @override
-  String get homeKhusuQuickEntryTitle => 'Khusu quick entry';
+  String get homeKhusuQuickEntryTitle => 'Akses cepat khusyuk';
 
   @override
-  String get homeKhusuQuickEntryValue => 'Enter focus mode';
+  String get homeKhusuQuickEntryValue => 'Masuk ke mode fokus';
 
   @override
-  String get homeKhusuQuickEntryShort => 'Khusu';
+  String get homeKhusuQuickEntryShort => 'Khusyuk';
 
   @override
-  String get homeFastingNotFasting => 'Not fasting';
+  String get homeFastingNotFasting => 'Tidak berpuasa';
 
   @override
-  String get homeFastingIntending => 'Intending to fast';
+  String get homeFastingIntending => 'Berniat puasa';
 
   @override
-  String get homeFastingCompleted => 'Completed';
+  String get homeFastingCompleted => 'Selesai';
 
   @override
-  String get homeFastingBroken => 'Missed / Broken';
+  String get homeFastingBroken => 'Terlewat / Batal';
 
   @override
   String get worshipPrayerHubTitle => 'Salat';
@@ -1922,124 +2150,124 @@ class AppLocalizationsId extends AppLocalizations {
       'Pencarian lokasi tidak tersedia.';
 
   @override
-  String get homeLearnSummaryTitle => 'Learn Summary';
+  String get homeLearnSummaryTitle => 'Ringkasan Belajar';
 
   @override
   String get homeLearnSummarySubtitle =>
-      'Continue your knowledge path with focused previews.';
+      'Lanjutkan jalur ilmu Anda dengan pratinjau yang terarah.';
 
   @override
-  String get homeLearnContinueQuran => 'Continue Quran';
+  String get homeLearnContinueQuran => 'Lanjutkan Al-Qur’an';
 
   @override
-  String get homeLearnContinueQuranValue => 'Resume last reading';
+  String get homeLearnContinueQuranValue => 'Lanjutkan bacaan terakhir';
 
   @override
-  String get homeLearnFeaturedLife => 'Featured Life topic';
+  String get homeLearnFeaturedLife => 'Topik Kehidupan unggulan';
 
   @override
-  String get homeLearnFeaturedLifeValue => 'Patience';
+  String get homeLearnFeaturedLifeValue => 'Kesabaran';
 
   @override
-  String get homeLearnFeaturedWorld => 'Featured World topic';
+  String get homeLearnFeaturedWorld => 'Topik Dunia unggulan';
 
   @override
-  String get homeLearnFeaturedWorldValue => 'Mountains';
+  String get homeLearnFeaturedWorldValue => 'Gunung-gunung';
 
   @override
-  String get homeLearnFeaturedHadith => 'Featured Hadith topic';
+  String get homeLearnFeaturedHadith => 'Topik Hadis unggulan';
 
   @override
-  String get homeLearnFeaturedHadithValue => 'Character and Manners';
+  String get homeLearnFeaturedHadithValue => 'Akhlak dan Adab';
 
   @override
-  String get homeLearnResumeNotes => 'Notes and reflection';
+  String get homeLearnResumeNotes => 'Catatan dan refleksi';
 
   @override
-  String get homeLearnResumeNotesValue => 'Resume your latest note';
+  String get homeLearnResumeNotesValue => 'Lanjutkan catatan terakhir Anda';
 
   @override
-  String get homeJourneySummaryTitle => 'Journey Summary';
+  String get homeJourneySummaryTitle => 'Ringkasan Perjalanan';
 
   @override
   String get homeJourneySummarySubtitle =>
-      'Track progression, rings, and next unlocks.';
+      'Pantau progres, lingkaran, dan pembukaan berikutnya.';
 
   @override
-  String get homeJourneyXpProgressTitle => 'XP progress';
+  String get homeJourneyXpProgressTitle => 'Progress XP';
 
   @override
-  String get homeJourneyDailyRingsTitle => 'Daily rings';
+  String get homeJourneyDailyRingsTitle => 'Lingkaran harian';
 
   @override
-  String get homeJourneyNextUnlockTitle => 'Next unlock';
+  String get homeJourneyNextUnlockTitle => 'Pembukaan berikutnya';
 
   @override
-  String get homeJourneyNextUnlockValue => 'Wallpaper reward preview';
+  String get homeJourneyNextUnlockValue => 'Pratinjau hadiah wallpaper';
 
   @override
-  String get homeQuickActionsTitle => 'Quick Actions';
+  String get homeQuickActionsTitle => 'Aksi Cepat';
 
   @override
   String get homeQuickActionsSubtitle =>
-      'Jump into your core sections quickly.';
+      'Langsung masuk ke bagian inti Anda dengan cepat.';
 
   @override
-  String get appQuickActionOpenToday => 'Open Today';
+  String get appQuickActionOpenToday => 'Buka Hari Ini';
 
   @override
-  String get appQuickActionReadQuran => 'Read Qur’an';
+  String get appQuickActionReadQuran => 'Baca Al-Qur’an';
 
   @override
-  String get appQuickActionDailyLearning => 'Daily Learning';
+  String get appQuickActionDailyLearning => 'Pembelajaran Harian';
 
   @override
   String get homeReflectionReminder =>
-      '\"Return softly to your intention. Small sincere acts build lasting light.\"';
+      '\"Kembalilah dengan lembut pada niat Anda. Amal kecil yang tulus membangun cahaya yang bertahan lama.\"';
 
   @override
-  String get homeWelcomeDailyIntentionTitle => 'Daily Intention';
+  String get homeWelcomeDailyIntentionTitle => 'Niat Harian';
 
   @override
   String get homeWelcomeDailyIntentionSubtitle =>
-      'Start the day with gentle focus, reflection, and consistency.';
+      'Mulai hari dengan fokus yang lembut, refleksi, dan konsistensi.';
 
   @override
-  String get homeWelcomePrayerRhythmTitle => 'Salah Rhythm';
+  String get homeWelcomePrayerRhythmTitle => 'Ritme Salat';
 
   @override
   String get homeWelcomePrayerRhythmSubtitle =>
-      'Today\'s next salah and guidance are synced and visible below.';
+      'Salat berikutnya dan panduan hari ini tersinkron serta terlihat di bawah.';
 
   @override
-  String get homeWelcomeDhikrQuietTitle => 'Dhikr and Quiet';
+  String get homeWelcomeDhikrQuietTitle => 'Zikir dan Hening';
 
   @override
   String get homeWelcomeDhikrQuietSubtitle =>
-      'Choose calm moments to track reminders and intention.';
+      'Pilih momen tenang untuk menandai pengingat dan niat.';
 
   @override
-  String get homeLocationPromptTitle => 'Use location while using app?';
+  String get homeLocationPromptTitle => 'Gunakan lokasi saat memakai aplikasi?';
 
   @override
   String get homeLocationPromptSubtitle =>
-      'Enable foreground location for accurate salah times.';
+      'Aktifkan lokasi latar depan untuk waktu salat yang akurat.';
 
   @override
   String get homeLocationEnabledWhileUsing =>
-      'Location access is enabled while you use the app.';
+      'Akses lokasi aktif saat Anda menggunakan aplikasi.';
 
   @override
   String get homeLocationAllowWhileUsingForPrayer =>
-      'Allow location only while using the app for accurate salah times.';
+      'Izinkan lokasi hanya saat memakai aplikasi untuk waktu salat yang akurat.';
 
   @override
   String get homeLocationBlockedOpenSettings =>
-      'Location access is blocked. Open settings to enable while using app.';
+      'Akses lokasi diblokir. Buka pengaturan untuk mengaktifkannya saat memakai aplikasi.';
 
   @override
   String get homeLocationStatusCanUpdate =>
-      'Location permission status can be updated anytime.';
+      'Status izin lokasi dapat diperbarui kapan saja.';
 
   @override
   String get worshipQiblaFinderTitle => 'Qibla Finder';
@@ -2227,19 +2455,19 @@ class AppLocalizationsId extends AppLocalizations {
   String get worshipQiblaLocationJerusalem => 'Jerusalem';
 
   @override
-  String get homeSearchTooltip => 'Search the app';
+  String get homeSearchTooltip => 'Cari di aplikasi';
 
   @override
-  String get homeSearchHint => 'Search pages, features, and sections';
+  String get homeSearchHint => 'Cari halaman, fitur, dan bagian';
 
   @override
-  String get homeSearchNoResults => 'No matching section found.';
+  String get homeSearchNoResults => 'Bagian yang cocok tidak ditemukan.';
 
   @override
-  String get homeSearchClearTooltip => 'Clear search';
+  String get homeSearchClearTooltip => 'Hapus pencarian';
 
   @override
-  String get homeSearchCloseTooltip => 'Close search';
+  String get homeSearchCloseTooltip => 'Tutup pencarian';
 
   @override
   String get homeStartWelcomeCarousel => 'Mulai';
@@ -2289,7 +2517,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String homeTimeRemainingToOffer(Object prayerName) {
-    return 'Time remaining to offer $prayerName salah';
+    return 'Sisa waktu untuk menunaikan salat $prayerName';
   }
 
   @override
@@ -2313,13 +2541,16 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get homePrayerForbiddenSunrise => 'Salah not allowed now • Sunrise';
+  String get homePrayerForbiddenSunrise =>
+      'Salat tidak dapat ditunaikan sekarang • Matahari terbit';
 
   @override
-  String get homePrayerForbiddenZenith => 'Salah not allowed now • Zenith';
+  String get homePrayerForbiddenZenith =>
+      'Salat tidak dapat ditunaikan sekarang • Waktu istiwa';
 
   @override
-  String get homePrayerForbiddenSunset => 'Salah not allowed now • Sunset';
+  String get homePrayerForbiddenSunset =>
+      'Salat tidak dapat ditunaikan sekarang • Matahari terbenam';
 
   @override
   String homeLevelValue(Object level, Object value) {
@@ -2397,13 +2628,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get homePrayerOfferedStatus => 'Sudah ditunaikan';
 
   @override
-  String get homePrayerCompletedTapHint => 'Tap to update prayer details';
+  String get homePrayerCompletedTapHint =>
+      'Ketuk untuk memperbarui rincian salat';
 
   @override
-  String get homePrayerPostSalahDhikrAction => 'Post-salah dhikr';
+  String get homePrayerPostSalahDhikrAction => 'Zikir setelah salat';
 
   @override
-  String get homePrayerPostSalahDhikrLogged => 'Post-salah dhikr logged';
+  String get homePrayerPostSalahDhikrLogged =>
+      'Zikir setelah salat telah dicatat';
 
   @override
   String homePrayerBeginsAt(Object time) {
@@ -2466,7 +2699,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeDailyLearningReviewMistakes => 'Tinjau kesalahan';
 
   @override
-  String get homeTapVerseCardHint => 'Tap this card to change verse';
+  String get homeTapVerseCardHint => 'Ketuk kartu ini untuk mengganti ayat';
 
   @override
   String get prayerHistory => 'Salah history';
@@ -2520,7 +2753,7 @@ class AppLocalizationsId extends AppLocalizations {
       'A focused knowledge path for reflection and deeper understanding.';
 
   @override
-  String get homeTitle => 'Home';
+  String get homeTitle => 'Beranda';
 
   @override
   String get journeyTitle => 'Growth';
@@ -2529,18 +2762,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get journeySubtitle => 'Long-term growth, light by light.';
 
   @override
-  String get profileTitle => 'Profile';
+  String get profileTitle => 'Profil';
 
   @override
-  String get profileSubtitle => 'Intention, preferences, and personalization.';
+  String get profileSubtitle => 'Niat, preferensi, dan personalisasi.';
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of الله is guided toward balance and intention.';
+      'Siapa pun yang sadar akan الله akan dibimbing menuju keseimbangan dan niat yang lurus.';
 
   @override
   String get profileSummarySubtitle =>
-      'Keep your intention steady and your settings aligned with ease.';
+      'Jaga niat Anda tetap teguh dan selaraskan pengaturan dengan tenang.';
 
   @override
   String get profileDisplayNameLabel => 'Nama tampilan';
@@ -2580,13 +2813,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get profileThemeModeLabel => 'Modus tema';
 
   @override
-  String get profileThemeSystem => 'System';
+  String get profileThemeSystem => 'Sistem';
 
   @override
   String get profileThemeDark => 'Gelap';
 
   @override
-  String get profileThemeLight => 'Light';
+  String get profileThemeLight => 'Terang';
 
   @override
   String get profileReduceMotion => 'Kurangi efek gerakan';
@@ -2595,11 +2828,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get profileHighContrastText => 'Teks kontras tinggi';
 
   @override
-  String get profileModesTitle => 'Modes';
+  String get profileModesTitle => 'Mode';
 
   @override
   String get profileModesSubtitle =>
-      'Mode presets to support focus and consistency.';
+      'Preset mode untuk mendukung fokus dan konsistensi.';
 
   @override
   String get profileRamadanModeTitle => 'Modus Ramadhan';
@@ -2675,11 +2908,11 @@ class AppLocalizationsId extends AppLocalizations {
       'Prioritaskan pengingat dan catatan daripada visual kemajuan.';
 
   @override
-  String get profileEntrustDeedsTitle => 'Entrust deeds';
+  String get profileEntrustDeedsTitle => 'Titipkan amal kepada Allah';
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with الله.';
+      'Pengingat lembut: amal yang tulus berada di sisi الله.';
 
   @override
   String get profileNotificationsTitle => 'Pemberitahuan & Pengingat';
@@ -2704,11 +2937,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get profileFastingReminders => 'Pengingat puasa';
 
   @override
-  String get profileOnThisDayReminders => 'On This Day reminders';
+  String get profileOnThisDayReminders => 'Pengingat Hari Ini dalam Sejarah';
 
   @override
   String get profileOnThisDayRemindersSubtitle =>
-      'Notify me when today has a historical Islamic event to reflect on.';
+      'Beri tahu saya saat hari ini memiliki peristiwa sejarah Islam untuk direnungi.';
 
   @override
   String get profileMoonriseReminders => 'Pemberitahuan bulan terbit';
@@ -2738,10 +2971,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get profileMissionLine =>
-      'A calm spiritual companion built for consistent, sincere growth.';
+      'Pendamping spiritual yang tenang untuk pertumbuhan yang konsisten dan tulus.';
 
   @override
-  String get profileVersionPlaceholder => 'Version 0.1.7 (placeholder)';
+  String get profileVersionPlaceholder => 'Versi 0.1.7 (placeholder)';
 
   @override
   String profilePlannedRemindersToday(int count) {
@@ -3098,19 +3331,20 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnShortcutClose => 'Tutup pintasan';
 
   @override
-  String get majorPageShortcutContinueJourneyLabel => 'Continue Journey';
+  String get majorPageShortcutContinueJourneyLabel => 'Lanjutkan perjalanan';
 
   @override
-  String get majorPageShortcutQuickLessonLabel => 'Quick Lesson';
+  String get majorPageShortcutQuickLessonLabel => 'Pelajaran cepat';
 
   @override
-  String get majorPageShortcutContinueReadingLabel => 'Continue Reading';
+  String get majorPageShortcutContinueReadingLabel => 'Lanjutkan membaca';
 
   @override
-  String get majorPageShortcutContinueListeningLabel => 'Continue Listening';
+  String get majorPageShortcutContinueListeningLabel =>
+      'Lanjutkan mendengarkan';
 
   @override
-  String get majorPageShortcutSurahListLabel => 'Surah List';
+  String get majorPageShortcutSurahListLabel => 'Daftar surah';
 
   @override
   String get learnSectionLandingSubtitle =>
@@ -3249,17 +3483,17 @@ class AppLocalizationsId extends AppLocalizations {
       'Manage widget, lock screen, and watch-related Ibadah surfaces.';
 
   @override
-  String get settingsReminderStateOn => 'On';
+  String get settingsReminderStateOn => 'Aktif';
 
   @override
-  String get settingsReminderStateOff => 'Off';
+  String get settingsReminderStateOff => 'Nonaktif';
 
   @override
   String get settingsLandingTitle => 'Pengaturan';
 
   @override
   String get settingsLandingSubtitle =>
-      'Choose a focused settings area instead of browsing one long page.';
+      'Pilih area pengaturan yang fokus daripada menelusuri satu halaman panjang.';
 
   @override
   String get settingsCategoryAccountSyncSubtitle =>
@@ -3290,11 +3524,11 @@ class AppLocalizationsId extends AppLocalizations {
       'Kelola layar kunci, Pulau Dinamis, dan permukaan jam tangan yang terhubung.';
 
   @override
-  String get settingsWidgetsEnabledTitle => 'Enable widgets';
+  String get settingsWidgetsEnabledTitle => 'Aktifkan widget';
 
   @override
   String get settingsWidgetsEnabledSubtitle =>
-      'Turn widget and live activity surfaces on or off from one place.';
+      'Nyalakan atau matikan widget dan permukaan aktivitas langsung dari satu tempat.';
 
   @override
   String get settingsCategoryLanguageDownloadsSubtitle =>
@@ -3316,7 +3550,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsHelpGuideSubtitle =>
-      'Short practical guides for using the app\'s main features with confidence.';
+      'Panduan praktis singkat untuk menggunakan fitur utama aplikasi dengan yakin.';
 
   @override
   String get settingsCategoryHelpGuideSubtitle =>
@@ -3327,175 +3561,176 @@ class AppLocalizationsId extends AppLocalizations {
       'Catatan versi, dukungan, detail hukum, dan apa yang akan terjadi selanjutnya.';
 
   @override
-  String get settingsHelpGuideSearchHint => 'Search guides';
+  String get settingsHelpGuideSearchHint => 'Cari panduan';
 
   @override
-  String get settingsHelpGuideBrowseTitle => 'Guide Categories';
+  String get settingsHelpGuideBrowseTitle => 'Kategori Panduan';
 
   @override
   String get settingsHelpGuideBrowseSubtitle =>
-      'Open a topic to see a short explanation and simple steps.';
+      'Buka topik untuk melihat penjelasan singkat dan langkah-langkah sederhana.';
 
   @override
-  String get settingsHelpGuideSearchResultsTitle => 'Search Results';
+  String get settingsHelpGuideSearchResultsTitle => 'Hasil Pencarian';
 
   @override
   String get settingsHelpGuideSearchResultsSubtitle =>
-      'Guide topics update as you type.';
+      'Topik panduan diperbarui saat kamu mengetik.';
 
   @override
-  String get settingsHelpGuideSearchEmptyTitle => 'No matching guides found';
+  String get settingsHelpGuideSearchEmptyTitle =>
+      'Tidak ada panduan yang cocok';
 
   @override
   String get settingsHelpGuideSearchEmptySubtitle =>
-      'Try a simpler keyword or clear your search to browse all guide categories.';
+      'Coba kata kunci yang lebih sederhana atau hapus pencarian untuk menelusuri semua kategori panduan.';
 
   @override
-  String get settingsHelpGuideStepsTitle => 'How to Use It';
+  String get settingsHelpGuideStepsTitle => 'Cara Menggunakannya';
 
   @override
   String get settingsHelpGuideStepsSubtitle =>
-      'Keep each step simple and use only what helps you right now.';
+      'Buat tiap langkah tetap sederhana dan gunakan hanya yang membantu saat ini.';
 
   @override
-  String get settingsHelpGuideNotFoundTitle => 'Guide not found';
+  String get settingsHelpGuideNotFoundTitle => 'Panduan tidak ditemukan';
 
   @override
   String get settingsHelpGuideNotFoundSubtitle =>
-      'This guide could not be opened right now. Return to Help & Guide and try another topic.';
+      'Panduan ini tidak dapat dibuka saat ini. Kembali ke Bantuan & Panduan dan coba topik lain.';
 
   @override
-  String get helpGuideGettingStartedTitle => 'Getting Started';
+  String get helpGuideGettingStartedTitle => 'Memulai';
 
   @override
   String get helpGuideGettingStartedDescription =>
-      'Set up the basics so the app feels useful from the first day.';
+      'Atur dasar-dasarnya agar aplikasi terasa berguna sejak hari pertama.';
 
   @override
   String get helpGuideGettingStartedStep1 =>
-      'Open Settings to choose your location, language, and appearance preferences.';
+      'Buka Pengaturan untuk memilih lokasi, bahasa, dan preferensi tampilan Anda.';
 
   @override
   String get helpGuideGettingStartedStep2 =>
-      'Check your Salah times and reminder mode so the daily schedule matches your routine.';
+      'Periksa waktu Salah dan mode pengingat agar jadwal harian sesuai dengan rutinitas Anda.';
 
   @override
   String get helpGuideGettingStartedStep3 =>
-      'Use Home for today\'s overview, then visit Learn or Worship for deeper practice.';
+      'Gunakan Home untuk ringkasan hari ini, lalu kunjungi Learn atau Worship untuk praktik yang lebih mendalam.';
 
   @override
-  String get helpGuideSalahRemindersTitle => 'Salah & Reminders';
+  String get helpGuideSalahRemindersTitle => 'Salah & Pengingat';
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'Keep prayer times, reminders, and quick follow-up actions in one flow.';
+      'Simpan waktu salat, pengingat, dan tindakan lanjutan cepat dalam satu alur.';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
-      'Open Settings > Salah Notifications to turn reminders on and choose how each prayer should alert you.';
+      'Buka Pengaturan > Notifikasi Salah untuk menyalakan pengingat dan memilih bagaimana setiap salat memberi tahu Anda.';
 
   @override
   String get helpGuideSalahRemindersStep2 =>
-      'Review Salah times in Settings > Prayer & Worship if you need manual times, adjustments, or Jumu\'ah changes.';
+      'Tinjau waktu Salah di Pengaturan > Prayer & Worship jika Anda memerlukan waktu manual, penyesuaian, atau perubahan Jumu\'ah.';
 
   @override
   String get helpGuideSalahRemindersStep3 =>
-      'When a reminder appears, you can open the app, snooze, or mark the prayer as offered if that option is available.';
+      'Saat pengingat muncul, Anda bisa membuka aplikasi, menundanya, atau menandai salat sebagai sudah ditunaikan jika opsi itu tersedia.';
 
   @override
-  String get helpGuideQuranTitle => 'Qur\'an';
+  String get helpGuideQuranTitle => 'Al-Qur\'an';
 
   @override
   String get helpGuideQuranDescription =>
-      'Read, search, bookmark, and return to the Qur\'an without losing your place.';
+      'Baca, cari, beri penanda, dan kembali ke Al-Qur\'an tanpa kehilangan tempat Anda.';
 
   @override
   String get helpGuideQuranStep1 =>
-      'Open Learn and enter the Qur\'an section to browse surahs, topics, bookmarks, and notes.';
+      'Buka Learn lalu masuk ke bagian Al-Qur\'an untuk menelusuri surah, topik, penanda, dan catatan.';
 
   @override
   String get helpGuideQuranStep2 =>
-      'Use the search field to find a surah, ayah, or topic, then open the result you want.';
+      'Gunakan kolom pencarian untuk menemukan surah, ayah, atau topik, lalu buka hasil yang Anda inginkan.';
 
   @override
   String get helpGuideQuranStep3 =>
-      'Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.';
+      'Sesuaikan pengaturan Arab, transliterasi, dan terjemahan dari Settings > Learning saat Anda memerlukan tata letak baca yang berbeda.';
 
   @override
-  String get helpGuideLearningTitle => 'Learning';
+  String get helpGuideLearningTitle => 'Belajar';
 
   @override
   String get helpGuideLearningDescription =>
-      'Use the learning hub to move between guided topics, lessons, and review tools.';
+      'Gunakan pusat pembelajaran untuk berpindah di antara topik terpandu, pelajaran, dan alat tinjauan.';
 
   @override
   String get helpGuideLearningStep1 =>
-      'Open Learn to choose a section such as Qur\'an, Hadith, Life, World, Prophets, or Quizzes.';
+      'Buka Learn untuk memilih bagian seperti Al-Qur\'an, Hadis, Kehidupan, Dunia, Para Nabi, atau Kuis.';
 
   @override
   String get helpGuideLearningStep2 =>
-      'Tap a category card to enter that section, then open a lesson, collection, or path that fits your goal.';
+      'Ketuk kartu kategori untuk masuk ke bagian itu, lalu buka pelajaran, koleksi, atau jalur yang sesuai dengan tujuan Anda.';
 
   @override
   String get helpGuideLearningStep3 =>
-      'Use search when you want a faster route to a topic, prophet, glossary term, or lesson.';
+      'Gunakan pencarian saat Anda ingin rute yang lebih cepat ke topik, nabi, istilah glosarium, atau pelajaran.';
 
   @override
-  String get helpGuideDhikrAdhkarTitle => 'Dhikr & Adhkar';
+  String get helpGuideDhikrAdhkarTitle => 'Dzikir & Adzkar';
 
   @override
   String get helpGuideDhikrAdhkarDescription =>
-      'Keep daily remembrance simple with counters, guided sets, and saved routines.';
+      'Jaga dzikir harian tetap sederhana dengan penghitung, set terpandu, dan rutinitas tersimpan.';
 
   @override
   String get helpGuideDhikrAdhkarStep1 =>
-      'Open Worship to find daily Dhikr, counters, and adhkar collections.';
+      'Buka Worship untuk menemukan dzikir harian, penghitung, dan koleksi adzkar.';
 
   @override
   String get helpGuideDhikrAdhkarStep2 =>
-      'Choose a set that matches your moment, then use the built-in counter or reading flow at your own pace.';
+      'Pilih set yang sesuai dengan momen Anda, lalu gunakan penghitung bawaan atau alur bacaan sesuai tempo Anda.';
 
   @override
   String get helpGuideDhikrAdhkarStep3 =>
-      'Return to Home or Worship later to continue your rhythm and review your daily progress.';
+      'Kembali ke Home atau Worship nanti untuk melanjutkan ritme Anda dan meninjau progres harian.';
 
   @override
-  String get helpGuideGrowthProgressTitle => 'Growth & Progress';
+  String get helpGuideGrowthProgressTitle => 'Pertumbuhan & Progres';
 
   @override
   String get helpGuideGrowthProgressDescription =>
-      'Track steady habits, streaks, XP, and focused paths without making the app feel heavy.';
+      'Lacak kebiasaan, streak, XP, dan jalur fokus secara mantap tanpa membuat aplikasi terasa berat.';
 
   @override
   String get helpGuideGrowthProgressStep1 =>
-      'Open Journey to see your current streak, XP, growth paths, and today\'s focus areas.';
+      'Buka Journey untuk melihat streak saat ini, XP, jalur pertumbuhan, dan area fokus hari ini.';
 
   @override
   String get helpGuideGrowthProgressStep2 =>
-      'Use the path or habit sections to continue one small area of growth instead of trying to do everything at once.';
+      'Gunakan bagian jalur atau kebiasaan untuk melanjutkan satu area pertumbuhan kecil alih-alih mencoba melakukan semuanya sekaligus.';
 
   @override
   String get helpGuideGrowthProgressStep3 =>
-      'Check Home for a quick summary when you only need to see what is pending today.';
+      'Periksa Home untuk ringkasan cepat saat Anda hanya perlu melihat apa yang masih tertunda hari ini.';
 
   @override
-  String get helpGuideNotificationsSettingsTitle => 'Notifications & Settings';
+  String get helpGuideNotificationsSettingsTitle => 'Notifikasi & Pengaturan';
 
   @override
   String get helpGuideNotificationsSettingsDescription =>
-      'Adjust reminders, visuals, widgets, language, and account preferences in one place.';
+      'Atur pengingat, tampilan, widget, bahasa, dan preferensi akun di satu tempat.';
 
   @override
   String get helpGuideNotificationsSettingsStep1 =>
-      'Open Settings from the main app to browse reminders, appearance, learning, privacy, and family options.';
+      'Buka Settings dari aplikasi utama untuk menelusuri pengingat, tampilan, pembelajaran, privasi, dan opsi keluarga.';
 
   @override
   String get helpGuideNotificationsSettingsStep2 =>
-      'Use the notification and widget sections when you want calmer alerts, live activity behavior, or lock screen changes.';
+      'Gunakan bagian notifikasi dan widget saat Anda menginginkan peringatan yang lebih tenang, perilaku live activity, atau perubahan layar kunci.';
 
   @override
   String get helpGuideNotificationsSettingsStep3 =>
-      'Use Account Sync and Privacy & Data when you need backup, connected-device, or sync-related controls.';
+      'Gunakan Sinkronisasi Akun dan Privasi & Data saat Anda memerlukan kontrol terkait cadangan, perangkat terhubung, atau sinkronisasi.';
 
   @override
   String get settingsLearningHubSubtitle =>
@@ -4273,222 +4508,223 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnQuranHubStageMastered => 'Mastered';
 
   @override
-  String get quranTopicsTitle => 'Qur’an Topics';
+  String get quranTopicsTitle => 'Topik Al-Qur\'an';
 
   @override
   String get quranThemeMapBrowseSubtitle =>
-      'Browse a curated set of Qur’anic themes and begin from representative ayahs, surahs, and related learning paths.';
+      'Jelajahi serangkaian tema Al-Qur\'an yang dikurasi dan mulai dari ayah, surah, dan jalur pembelajaran terkait yang representatif.';
 
   @override
   String quranThemeMapStarterAyahCount(int count) {
-    return '$count starter ayahs';
+    return '$count ayah pemula';
   }
 
   @override
   String get quranThemeMapTopicNotFound =>
-      'This theme could not be found right now.';
+      'Tema ini tidak dapat ditemukan saat ini.';
 
   @override
-  String get quranThemeMapAyahsLabel => 'Ayahs';
+  String get quranThemeMapAyahsLabel => 'Ayah';
 
   @override
-  String get quranThemeMapSurahsLabel => 'Surahs';
+  String get quranThemeMapSurahsLabel => 'Surat';
 
   @override
-  String get quranThemeMapLearningLinksLabel => 'Learning links';
+  String get quranThemeMapLearningLinksLabel => 'Tautan pembelajaran';
 
   @override
-  String get quranThemeMapBestModeLabel => 'Best mode';
+  String get quranThemeMapBestModeLabel => 'Modus terbaik';
 
   @override
-  String get quranThemeMapRepresentativeAyahsTitle => 'Representative ayahs';
+  String get quranThemeMapRepresentativeAyahsTitle => 'Ayah yang representatif';
 
   @override
-  String get quranThemeMapWhyItMattersTitle => 'Why this theme matters';
+  String get quranThemeMapWhyItMattersTitle => 'Mengapa tema ini penting';
 
   @override
-  String get quranThemeMapStudyFocusTitle => 'What to notice';
+  String get quranThemeMapStudyFocusTitle => 'Apa yang harus diperhatikan';
 
   @override
-  String get quranThemeMapStudyThemeAction => 'Study this theme in the Qur’an';
+  String get quranThemeMapStudyThemeAction =>
+      'Pelajarilah tema ini dalam Al-Qur\'an';
 
   @override
-  String get quranThemeMapOpenPathAction => 'Open related path';
+  String get quranThemeMapOpenPathAction => 'Buka jalur terkait';
 
   @override
-  String get quranThemeMapRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeMapRelatedSurahsTitle => 'Surat terkait';
 
   @override
-  String get quranThemeMapRelatedLearningTitle => 'Related learning';
+  String get quranThemeMapRelatedLearningTitle => 'Pembelajaran terkait';
 
   @override
-  String get quranThemePatienceTitle => 'Patience';
+  String get quranThemePatienceTitle => 'Kesabaran';
 
   @override
   String get quranThemePatienceDescription =>
       'Begin with ayahs that connect hardship to prayer, trust, and a steadier response.';
 
   @override
-  String get quranThemeGratitudeTitle => 'Gratitude';
+  String get quranThemeGratitudeTitle => 'Rasa syukur';
 
   @override
   String get quranThemeGratitudeDescription =>
       'Follow ayahs that teach thankfulness as worship, wisdom, and careful use of blessings.';
 
   @override
-  String get quranThemeMercyTitle => 'Mercy';
+  String get quranThemeMercyTitle => 'Belas kasihan';
 
   @override
   String get quranThemeMercyDescription =>
       'Explore mercy through gentleness, reconciliation, and the way believers carry other people’s weakness.';
 
   @override
-  String get quranThemeFamilyTitle => 'Family';
+  String get quranThemeFamilyTitle => 'Keluarga';
 
   @override
   String get quranThemeFamilyDescription =>
       'Start with ayahs that place family responsibility, care, and counsel inside the life of faith.';
 
   @override
-  String get quranThemeAkhirahTitle => 'Akhirah';
+  String get quranThemeAkhirahTitle => 'Akhirat';
 
   @override
   String get quranThemeAkhirahDescription =>
-      'Study accountability, return, and the way the Hereafter reshapes urgency, hope, and moral seriousness.';
+      'Pelajari akuntabilitas, pengembalian, dan cara Akhirat membentuk kembali urgensi, harapan, dan keseriusan moral.';
 
   @override
-  String get quranThemeSignsInCreationTitle => 'Signs in Creation';
+  String get quranThemeSignsInCreationTitle => 'Tanda-tanda dalam Penciptaan';
 
   @override
   String get quranThemeSignsInCreationDescription =>
-      'Gather ayahs that turn the natural world into reflection, remembrance, and clearer awareness of Allah’s wisdom.';
+      'Kumpulkan ayat-ayat yang mengubah alam menjadi refleksi, ingatan, dan kesadaran yang lebih jelas akan kebijaksanaan Allah.';
 
   @override
-  String get quranThemeProphetsTitle => 'Prophets';
+  String get quranThemeProphetsTitle => 'Nabi';
 
   @override
   String get quranThemeProphetsDescription =>
-      'Use prophetic examples to see how revelation becomes lived patience, da’wah, reliance, and leadership.';
+      'Gunakan contoh-contoh kenabian untuk melihat bagaimana wahyu menjadi kesabaran, dakwah, ketergantungan, dan kepemimpinan yang dijalani.';
 
   @override
-  String get quranThemeTrustInAllahTitle => 'Trust in Allah';
+  String get quranThemeTrustInAllahTitle => 'Percayalah pada Allah';
 
   @override
   String get quranThemeTrustInAllahDescription =>
       'Begin with ayahs where reliance on Allah appears together with effort, consultation, and patient action.';
 
   @override
-  String get quranThemeRepentanceTitle => 'Repentance';
+  String get quranThemeRepentanceTitle => 'Tobat';
 
   @override
   String get quranThemeRepentanceDescription =>
       'Follow ayahs that keep the door of return open through hope, reform, and renewed obedience.';
 
   @override
-  String get quranThemeRemembranceTitle => 'Remembrance';
+  String get quranThemeRemembranceTitle => 'Ingatan';
 
   @override
   String get quranThemeRemembranceDescription =>
-      'Trace how dhikr steadies the heart, shapes action, and keeps revelation close during ordinary life.';
+      'Telusuri bagaimana dzikir memantapkan hati, membentuk tindakan, dan mendekatkan wahyu dalam kehidupan sehari-hari.';
 
   @override
-  String get quranThemeSincerityTitle => 'Sincerity';
+  String get quranThemeSincerityTitle => 'Kejujuran';
 
   @override
   String get quranThemeSincerityDescription =>
-      'Study ayahs that purify worship, intention, and inward devotion so acts belong to Allah alone.';
+      'Pelajarilah ayat-ayat yang menyucikan ibadah, niat, dan pengabdian batin sehingga amal hanya milik Allah.';
 
   @override
-  String get quranThemePrayerTitle => 'Prayer';
+  String get quranThemePrayerTitle => 'Doa';
 
   @override
   String get quranThemePrayerDescription =>
-      'Start with ayahs that show salah as protection, help in hardship, and an anchor between revelation and daily conduct.';
+      'Mulailah dengan ayat-ayat yang menunjukkan shalat sebagai perlindungan, bantuan dalam kesulitan, dan jangkar antara wahyu dan perilaku sehari-hari.';
 
   @override
-  String get quranThemeCharityTitle => 'Charity';
+  String get quranThemeCharityTitle => 'Amal';
 
   @override
   String get quranThemeCharityDescription =>
-      'Gather ayahs that frame spending as sincerity, sacrifice, and care for people in need.';
+      'Kumpulkan ayat-ayat yang menggambarkan pengeluaran sebagai ketulusan, pengorbanan, dan kepedulian terhadap orang yang membutuhkan.';
 
   @override
-  String get quranThemeJusticeTitle => 'Justice';
+  String get quranThemeJusticeTitle => 'Keadilan';
 
   @override
   String get quranThemeJusticeDescription =>
-      'Study ayahs that hold justice together with truthfulness, restraint, and responsibility before Allah.';
+      'Pelajarilah ayat-ayat yang menyatukan keadilan dengan kebenaran, pengendalian diri, dan tanggung jawab di hadapan Allah.';
 
   @override
-  String get quranThemeHumilityTitle => 'Humility';
+  String get quranThemeHumilityTitle => 'Kerendahhatian';
 
   @override
   String get quranThemeHumilityDescription =>
-      'Begin with ayahs that correct pride and teach humble conduct, quiet strength, and self-purification.';
+      'Mulailah dengan ayat-ayat yang mengoreksi kesombongan dan mengajarkan perilaku rendah hati, kekuatan tenang, dan penyucian diri.';
 
   @override
   String get quranThemePatienceWhyItMatters =>
-      'Patience in the Qur’an is not passive waiting. It is worshipful steadiness that keeps the believer praying, hoping, and acting rightly when hardship stretches the soul.';
+      'Kesabaran dalam Al-Qur’an bukanlah menunggu secara pasif. Kemantapan ibadah itulah yang membuat mukmin tetap berdoa, berharap, dan berbuat benar ketika kesukaran menggerogoti jiwa.';
 
   @override
   String get quranThemePatienceStudyFocus =>
-      'Notice how sabr is paired with prayer, hope, forgiveness, and disciplined restraint. The theme is about staying upright under pressure, not becoming numb.';
+      'Perhatikan bagaimana sabr dipadukan dengan doa, harapan, pengampunan, dan disiplin menahan diri. Temanya adalah tetap tegak di bawah tekanan, tidak menjadi mati rasa.';
 
   @override
   String get quranThemeGratitudeWhyItMatters =>
-      'Gratitude protects blessings from becoming heedlessness. The Qur’an presents shukr as worship, wisdom, and a way of using what Allah gives in a better direction.';
+      'Syukur melindungi nikmat agar tidak menjadi kelalaian. Al-Qur’an menyajikan syukr sebagai ibadah, hikmah, dan cara memanfaatkan apa yang Allah berikan ke arah yang lebih baik.';
 
   @override
   String get quranThemeGratitudeStudyFocus =>
-      'Notice that gratitude is more than praise on the tongue. It appears with remembrance, reflection on signs, and wiser use of time, provision, and daily opportunities.';
+      'Perhatikan bahwa rasa syukur lebih dari sekedar pujian di lidah. Hal itu muncul dengan mengingat, merenungkan tanda-tanda, dan menggunakan waktu, rezeki, dan kesempatan sehari-hari dengan lebih bijaksana.';
 
   @override
   String get quranThemeMercyWhyItMatters =>
-      'Mercy in the Qur’an is both something hoped for from Allah and something practiced with people. It reshapes correction, pardon, speech, and how a believer carries weakness.';
+      'Rahmat dalam Al-Qur’an adalah sesuatu yang diharapkan dari Allah dan sesuatu yang diamalkan kepada manusia. Ini membentuk kembali koreksi, pengampunan, ucapan, dan bagaimana seorang mukmin membawa kelemahan.';
 
   @override
   String get quranThemeMercyStudyFocus =>
-      'Notice how mercy appears through gentleness, forgiveness, calm responses, and open doors of return. This theme becomes stronger when you read it through conduct as well as emotion.';
+      'Perhatikan bagaimana belas kasihan muncul melalui kelembutan, pengampunan, respons yang tenang, dan pintu kembali yang terbuka. Tema ini menjadi lebih kuat ketika Anda membacanya melalui tingkah laku dan juga emosi.';
 
   @override
   String get quranThemeFamilyWhyItMatters =>
-      'Family is one of the clearest places where faith becomes visible. The Qur’an ties worship to parents’ rights, counsel, restraint, and daily care inside the home.';
+      'Keluarga adalah salah satu tempat paling jelas di mana iman terlihat. Al-Qur\'an menghubungkan ibadah dengan hak-hak orang tua, nasihat, pengendalian diri, dan perawatan sehari-hari di dalam rumah.';
 
   @override
   String get quranThemeFamilyStudyFocus =>
-      'Notice that family guidance here is practical. It is about speech, respect, burden-sharing, and wisdom in ordinary relationships, not only abstract affection.';
+      'Perhatikan bahwa bimbingan keluarga di sini praktis. Ini tentang ucapan, rasa hormat, pembagian beban, dan kebijaksanaan dalam hubungan biasa, bukan hanya kasih sayang yang abstrak.';
 
   @override
   String get quranThemeTrustInAllahWhyItMatters =>
-      'Trust in Allah steadies the believer when outcomes feel uncertain. The Qur’an links tawakkul to obedience, consultation, and hope after sincere effort rather than escape from responsibility.';
+      'Kepercayaan kepada Allah menguatkan orang beriman ketika hasilnya terasa tidak menentu. Al-Qur’an mengkaitkan tawakkul dengan ketaatan, musyawarah, dan harapan setelah usaha yang ikhlas daripada lari dari tanggung jawab.';
 
   @override
   String get quranThemeTrustInAllahStudyFocus =>
-      'Notice that tawakkul never removes action. The theme becomes clearer when you read reliance together with patience, obedience, and refusal to despair.';
+      'Perhatikan bahwa tawakkal tidak pernah menghilangkan perbuatan. Temanya menjadi lebih jelas ketika Anda membaca ketergantungan bersama dengan kesabaran, ketaatan, dan penolakan terhadap keputusasaan.';
 
   @override
   String get quranThemeRepentanceWhyItMatters =>
-      'Repentance keeps the servant moving back toward Allah instead of freezing in guilt or delay. The Qur’an frames tawbah as hopeful return joined to reform and renewed obedience.';
+      'Pertobatan membuat hamba terus bergerak kembali kepada Allah dan bukannya berdiam diri dalam rasa bersalah atau penundaan. Al-Qur\'an membingkai taubah sebagai harapan kembalinya mereka ke dalam reformasi dan pembaharuan ketaatan.';
 
   @override
   String get quranThemeRepentanceStudyFocus =>
-      'Notice how repentance appears with mercy, hope, and practical change. The theme is about turning back honestly, not only feeling regret.';
+      'Perhatikan bagaimana pertobatan muncul dengan belas kasihan, harapan, dan perubahan praktis. Temanya adalah tentang berbalik jujur, bukan sekedar rasa penyesalan.';
 
   @override
   String get quranThemeRemembranceWhyItMatters =>
-      'Remembrance keeps revelation close during ordinary life. The Qur’an presents dhikr as something that settles the heart, shapes worship, and keeps the believer from living heedlessly.';
+      'Mengingat menjadikan wahyu tetap dekat dalam kehidupan sehari-hari. Al-Qur’an menyajikan dzikir sebagai sesuatu yang menenangkan hati, membentuk ibadah, dan menjaga orang beriman agar tidak hidup lengah.';
 
   @override
   String get quranThemeRemembranceStudyFocus =>
-      'Notice that dhikr is not only repetition. It appears with prayer, gratitude, reflection on signs, and a heart that stays oriented toward Allah throughout the day.';
+      'Perhatikan bahwa dzikir bukan sekedar pengulangan. Itu tampak dengan doa, rasa syukur, renungan terhadap tanda-tanda, dan hati yang tetap berorientasi kepada Allah sepanjang hari.';
 
   @override
   String get quranThemeSincerityWhyItMatters =>
-      'Sincerity protects worship from becoming image, routine, or divided intention. The Qur’an treats ikhlas as a foundation of devotion, not a small extra refinement.';
+      'Ikhlas menjaga ibadah agar tidak menjadi gambaran, rutinitas, atau niat yang terbagi-bagi. Al-Qur’an memperlakukan ikhlas sebagai landasan ketaatan, bukan sekedar penyempurnaan tambahan.';
 
   @override
   String get quranThemeSincerityStudyFocus =>
-      'Notice how sincerity is tied to worship, dependence, and quality of deeds. This theme becomes stronger when you read intention together with obedience and inward honesty.';
+      'Perhatikan bagaimana keikhlasan dikaitkan dengan ibadah, ketergantungan, dan kualitas amal. Tema ini semakin kuat ketika membaca niat disertai dengan ketaatan dan kejujuran batin.';
 
   @override
   String get learnHubClearSearchTooltip => 'Hapus pencarian';
@@ -4676,123 +4912,128 @@ class AppLocalizationsId extends AppLocalizations {
   String get quranReferenceViewerRelatedJourneys => 'Perjalanan terkait';
 
   @override
-  String get quranReferenceDetailCategoryQuranReference => 'Qur’an reference';
+  String get quranReferenceDetailCategoryQuranReference =>
+      'Referensi Al-Qur\'an';
 
   @override
-  String get quranReferenceDetailCategoryQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailCategoryQuranInsight => 'wawasan Al-Qur\'an';
 
   @override
-  String get quranReferenceDetailCategoryWorldLesson => 'Signs & creation';
+  String get quranReferenceDetailCategoryWorldLesson => 'Tanda & penciptaan';
 
   @override
-  String get quranReferenceDetailCategoryWorshipLesson => 'Worship lesson';
+  String get quranReferenceDetailCategoryWorshipLesson => 'Pelajaran ibadah';
 
   @override
-  String get quranReferenceDetailCategoryCharacterLesson => 'Character lesson';
+  String get quranReferenceDetailCategoryCharacterLesson =>
+      'Pelajaran karakter';
 
   @override
-  String get quranReferenceDetailCategoryHadith => 'Hadith';
+  String get quranReferenceDetailCategoryHadith => 'hadis';
 
   @override
-  String get quranReferenceDetailCategoryDivineLife => 'Divine Life';
+  String get quranReferenceDetailCategoryDivineLife => 'Kehidupan Ilahi';
 
   @override
-  String get quranReferenceDetailCategoryProphet => 'Prophet reference';
+  String get quranReferenceDetailCategoryProphet => 'Referensi Nabi';
 
   @override
-  String get quranReferenceDetailCategoryLearningPath => 'Learning path';
+  String get quranReferenceDetailCategoryLearningPath => 'Jalur pembelajaran';
 
   @override
-  String get quranReferenceDetailCategoryLearningJourney => 'Journey lesson';
+  String get quranReferenceDetailCategoryLearningJourney =>
+      'Pelajaran perjalanan';
 
   @override
   String quranReferenceDetailCurrentAnchorChip(Object anchor) {
-    return 'From $anchor';
+    return 'Dari $anchor';
   }
 
   @override
-  String get quranReferenceDetailWhyRelatedTitle => 'Why this is related';
+  String get quranReferenceDetailWhyRelatedTitle =>
+      'Mengapa hal ini berhubungan';
 
   @override
-  String get quranReferenceDetailPreviewTitle => 'What you will open';
+  String get quranReferenceDetailPreviewTitle => 'Apa yang akan Anda buka';
 
   @override
-  String get quranReferenceDetailSourceOwnerTitle => 'Source owner';
+  String get quranReferenceDetailSourceOwnerTitle => 'Pemilik sumber';
 
   @override
   String quranReferenceDetailOpenDestination(Object destination) {
-    return 'Open $destination';
+    return 'Buka $destination';
   }
 
   @override
-  String get quranReferenceDetailOpenQuranInsight => 'Qur’an insight';
+  String get quranReferenceDetailOpenQuranInsight => 'wawasan Al-Qur\'an';
 
   @override
-  String get quranReferenceDetailOpenWorldLesson => 'world lesson';
+  String get quranReferenceDetailOpenWorldLesson => 'pelajaran dunia';
 
   @override
-  String get quranReferenceDetailOpenWorshipLesson => 'worship lesson';
+  String get quranReferenceDetailOpenWorshipLesson => 'pelajaran ibadah';
 
   @override
-  String get quranReferenceDetailOpenCharacterLesson => 'Character companion';
+  String get quranReferenceDetailOpenCharacterLesson => 'Pendamping karakter';
 
   @override
-  String get quranReferenceDetailOpenHadithLesson => 'Hadith lesson';
+  String get quranReferenceDetailOpenHadithLesson => 'Pelajaran hadis';
 
   @override
-  String get quranReferenceDetailOpenDivineLifeLesson => 'Divine Life lesson';
+  String get quranReferenceDetailOpenDivineLifeLesson =>
+      'Pelajaran Kehidupan Ilahi';
 
   @override
-  String get quranReferenceDetailOpenProphetStory => 'Prophet story';
+  String get quranReferenceDetailOpenProphetStory => 'Kisah Nabi';
 
   @override
-  String get quranReferenceDetailOpenLearningPath => 'learning path';
+  String get quranReferenceDetailOpenLearningPath => 'jalur pembelajaran';
 
   @override
-  String get quranReferenceDetailOpenLearningJourney => 'journey lesson';
+  String get quranReferenceDetailOpenLearningJourney => 'pelajaran perjalanan';
 
   @override
   String get quranReferenceDetailReasonQuranReferenceLinked =>
-      'This Qur’an reference is surfaced because it strengthens the current ayah with a closely connected passage.';
+      'Referensi Al-Qur’an ini mengemuka karena memperkuat ayat saat ini dengan ayat yang berkaitan erat.';
 
   @override
   String get quranReferenceDetailReasonQuranInsight =>
-      'This insight expands one of the clearest study directions already connected to the current ayah.';
+      'Wawasan ini memperluas salah satu arah studi paling jelas yang sudah terhubung dengan ayat ini.';
 
   @override
   String get quranReferenceDetailReasonWorldLesson =>
-      'This lesson helps you reflect on signs, creation, or the natural world already tied to the current ayah.';
+      'Pelajaran ini membantu Anda merenungkan tanda-tanda, penciptaan, atau alam yang telah dikaitkan dengan ayat ini.';
 
   @override
   String get quranReferenceDetailReasonWorshipLesson =>
-      'This lesson extends the ayah into worship, remembrance, or a practical act of devotion.';
+      'Pelajaran ini memperluas ayat tersebut menjadi ibadah, zikir, atau tindakan pengabdian praktis.';
 
   @override
   String get quranReferenceDetailReasonCharacterLesson =>
-      'This lesson carries the ayah into conduct, restraint, speech, or another lived character response.';
+      'Pelajaran ini membawa ayat tersebut ke dalam tingkah laku, pengendalian diri, ucapan, atau respons karakter lain yang dijalani.';
 
   @override
   String get quranReferenceDetailReasonHadith =>
-      'This Hadith is surfaced because it reinforces a lesson already present in the current ayah.';
+      'Hadits ini dimunculkan karena memperkuat pelajaran yang sudah ada dalam ayat ini.';
 
   @override
   String get quranReferenceDetailReasonDivineLife =>
-      'This Divine Life lesson broadens the ayah into a fuller everyday topic or practical life setting.';
+      'Pelajaran Kehidupan Ilahi ini memperluas ayat ini ke dalam topik sehari-hari atau situasi kehidupan praktis yang lebih lengkap.';
 
   @override
   String get quranReferenceDetailReasonProphet =>
-      'This prophetic reference helps frame the ayah through a lived example from revelation and sacred history.';
+      'Referensi kenabian ini membantu membingkai ayat tersebut melalui contoh nyata dari wahyu dan sejarah suci.';
 
   @override
   String get quranReferenceDetailReasonLearningPath =>
-      'This path gathers nearby ayahs and lessons so you can study the same theme in a calmer sequence.';
+      'Jalur ini mengumpulkan ayat-ayat dan pelajaran-pelajaran terdekat sehingga Anda dapat mempelajari tema yang sama dalam urutan yang lebih tenang.';
 
   @override
   String get quranReferenceDetailReasonLearningJourney =>
-      'This journey lesson studies the same Qur’anic passage in a guided sequence, so you can move from reading into a calmer lesson flow.';
+      'Pelajaran perjalanan ini mempelajari ayat Alquran yang sama secara berurutan, sehingga Anda dapat beralih dari membaca ke alur pelajaran yang lebih tenang.';
 
   @override
-  String get quranThemeMapRelatedThemesTitle => 'Themes';
+  String get quranThemeMapRelatedThemesTitle => 'Tema';
 
   @override
   String get quranReaderJourneyContextTitle => 'Journey context';
@@ -5555,7 +5796,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quranSurahInsightWhyItMattersAliImran =>
-      'Ali Imran matters because it trains belief under pressure. It joins reflection on Allahs signs with restraint, mercy, and steadiness when the heart is tested.';
+      'Ali \'Imran matters because it trains belief under pressure. It joins reflection on Allah\'s signs with restraint, mercy, and steadiness when the heart is tested.';
 
   @override
   String get quranSurahInsightWhyItMattersTaHa =>
@@ -6169,10 +6410,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnQuizzesSearchHint => 'Search quiz titles, modules, topics...';
 
   @override
-  String get searchQuizzesHint => 'Search quizzes...';
+  String get searchQuizzesHint => 'Cari kuis...';
 
   @override
-  String get searchLifeLessonsHint => 'Search lessons, themes, and topics...';
+  String get searchLifeLessonsHint => 'Cari pelajaran, tema, dan topik...';
 
   @override
   String get learnQuizzesNoMatchTitle => 'No quizzes match this filter.';
@@ -6904,11 +7145,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get quranSearchMatchSurah => 'Surah';
 
   @override
-  String get searchSurahHint => 'Search surahs...';
+  String get searchSurahHint => 'Cari surah...';
 
   @override
   String get searchQuranTeachingHint =>
-      'Search letters, rules, words, or surahs...';
+      'Cari huruf, hukum, kata, atau surah...';
 
   @override
   String get quranAyahsLabel => 'ayahs';
@@ -7357,27 +7598,27 @@ class AppLocalizationsId extends AppLocalizations {
       'Reduce pressure and focus on calm consistency.';
 
   @override
-  String get profileRamadanDateRangeTitle => 'Ramadan date range';
+  String get profileRamadanDateRangeTitle => 'Rentang tanggal Ramadan';
 
   @override
-  String get profileRamadanStartDate => 'Start date';
+  String get profileRamadanStartDate => 'Tanggal mulai';
 
   @override
-  String get profileRamadanEndDate => 'End date';
+  String get profileRamadanEndDate => 'Tanggal selesai';
 
   @override
   String get profileRamadanDateWindowActive =>
-      'Today falls inside your Ramadan date window.';
+      'Hari ini berada dalam rentang tanggal Ramadan Anda.';
 
   @override
   String get profileRamadanDateWindowInactive =>
-      'Today is outside your Ramadan date window.';
+      'Hari ini berada di luar rentang tanggal Ramadan Anda.';
 
   @override
-  String get profileRamadanSetDates => 'Set dates';
+  String get profileRamadanSetDates => 'Atur tanggal';
 
   @override
-  String get profileRamadanClearDates => 'Clear dates';
+  String get profileRamadanClearDates => 'Hapus tanggal';
 
   @override
   String get learnContentTopicLabel => 'Topic';
@@ -7708,76 +7949,76 @@ class AppLocalizationsId extends AppLocalizations {
       'Set both range edges to enable loop playback.';
 
   @override
-  String get quranMemorizationTitle => 'Memorization (Hifz)';
+  String get quranMemorizationTitle => 'Hafalan (Hifz)';
 
   @override
-  String get quranMemorizationMarkAction => 'Mark for memorization';
+  String get quranMemorizationMarkAction => 'Tandai untuk dihafal';
 
   @override
-  String get quranMemorizationRemoveAction => 'Remove from memorization';
+  String get quranMemorizationRemoveAction => 'Hapus dari hafalan';
 
   @override
-  String get quranMemorizationReviewTitle => 'Memorization Review';
+  String get quranMemorizationReviewTitle => 'Ulasan Hafalan';
 
   @override
   String get quranMemorizationReviewSubtitle =>
-      'Return to the ayahs you want to retain with meaning, themes, and light related study.';
+      'Kembalilah ke ayat-ayat yang ingin Anda pertahankan beserta makna, tema, dan kajian terkait ringan.';
 
   @override
   String quranMemorizationReviewSummary(int count, int dueCount) {
-    return 'Saved: $count ayahs • Due today: $dueCount';
+    return 'Tersimpan: $count ayahs • Batas waktu hari ini: $dueCount';
   }
 
   @override
   String get quranMemorizationReviewEmpty =>
-      'No ayahs are marked for memorization yet. Mark one from the reader to begin a calm review list.';
+      'Belum ada ayah yang ditandai untuk dihafal. Tandai satu dari pembaca untuk memulai daftar ulasan yang tenang.';
 
   @override
-  String get quranMemorizationReviewDueTitle => 'Due for review';
+  String get quranMemorizationReviewDueTitle => 'Karena untuk ditinjau';
 
   @override
-  String get quranMemorizationReviewSavedTitle => 'Saved for memorization';
+  String get quranMemorizationReviewSavedTitle => 'Disimpan untuk dihafal';
 
   @override
-  String get quranMemorizationReviewContinueTitle => 'Continue review';
+  String get quranMemorizationReviewContinueTitle => 'Lanjutkan peninjauan';
 
   @override
-  String get quranMemorizationReviewTodayTitle => 'Review today';
+  String get quranMemorizationReviewTodayTitle => 'Tinjau hari ini';
 
   @override
-  String get quranMemorizationReviewRecentTitle => 'Recently memorized';
+  String get quranMemorizationReviewRecentTitle => 'Baru-baru ini dihafal';
 
   @override
-  String get quranMemorizationReviewNeedsRevisionTitle => 'Needs revision';
+  String get quranMemorizationReviewNeedsRevisionTitle => 'Perlu revisi';
 
   @override
-  String get quranMemorizationReviewAllTitle => 'All memorized';
+  String get quranMemorizationReviewAllTitle => 'Semua hafal';
 
   @override
   String get quranMemorizationReviewMeaningFallback =>
-      'Translation is not available for this ayah right now.';
+      'Terjemahan tidak tersedia untuk ayat ini saat ini.';
 
   @override
   String quranMemorizationReviewNextReview(Object dateLabel) {
-    return 'Next review: $dateLabel';
+    return 'Ulasan berikutnya: $dateLabel';
   }
 
   @override
   String quranMemorizationReviewRhythmMeta(int count, Object dateLabel) {
-    return 'Reviewed $count times • Last reviewed: $dateLabel';
+    return 'Ditinjau $count kali • Terakhir ditinjau: $dateLabel';
   }
 
   @override
-  String get quranMemorizationReviewNeverReviewed => 'Not reviewed yet';
+  String get quranMemorizationReviewNeverReviewed => 'Belum ditinjau';
 
   @override
-  String get quranMemorizationReviewThemesTitle => 'Key theme';
+  String get quranMemorizationReviewThemesTitle => 'Tema utama';
 
   @override
-  String get quranMemorizationReviewRelatedStudyTitle => 'Related study';
+  String get quranMemorizationReviewRelatedStudyTitle => 'Studi terkait';
 
   @override
-  String get quranMemorizationReviewOpenReaderAction => 'Open in reader';
+  String get quranMemorizationReviewOpenReaderAction => 'Buka di pembaca';
 
   @override
   String get quranHifzRevealModeFull => 'Reveal';
@@ -8190,18 +8431,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get kidsJourneyPlaceholderActionMarkComplete => 'I did this';
 
   @override
-  String get assistantTitle => 'Nur Assistant';
+  String get assistantTitle => 'Asisten Nur';
 
   @override
   String get assistantSubtitle =>
-      'A calm companion for guidance, reflection, and app navigation.';
+      'Pendamping yang tenang untuk arahan, refleksi, dan navigasi aplikasi.';
 
   @override
   String get assistantEmptyState =>
-      'Ask for a focus suggestion, reflection prompt, or where to go next.';
+      'Minta saran fokus, pertanyaan refleksi, atau arah langkah berikutnya.';
 
   @override
-  String get assistantInputHint => 'Type your message';
+  String get assistantInputHint => 'Ketik pesan Anda';
 
   @override
   String get circlesTitle => 'Community Circles';
@@ -8425,13 +8666,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get journalDetailSavedMessage => 'Journal entry updated.';
 
   @override
-  String get assistantQuickPromptsTitle => 'Suggestions';
+  String get assistantQuickPromptsTitle => 'Saran';
 
   @override
-  String get assistantRecentPromptsTitle => 'Recent prompts';
+  String get assistantRecentPromptsTitle => 'Prompt terbaru';
 
   @override
-  String get assistantQuickActionsTitle => 'Quick actions';
+  String get assistantQuickActionsTitle => 'Tindakan cepat';
 
   @override
   String get circlesJoinedPageTitle => 'Joined circles';
@@ -8609,11 +8850,11 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get homeEcosystemSummaryTitle => 'Growth ecosystem';
+  String get homeEcosystemSummaryTitle => 'Ekosistem pertumbuhan';
 
   @override
   String get homeEcosystemSummarySubtitle =>
-      'Ocean, rewards, circles, journal, and assistant previews.';
+      'Pratinjau Ocean, hadiah, lingkaran, jurnal, dan asisten.';
 
   @override
   String get learnTrackSelectorTitle => 'Jalur belajar yang disarankan';
@@ -8954,7 +9195,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get onboardingDisclaimerBody =>
-      'This app is a companion for guidance and consistency. It does not replace local mosque community, scholars, or real-world support.';
+      'Aplikasi ini adalah pendamping untuk bimbingan dan istiqamah. Ini tidak menggantikan komunitas masjid setempat, para ulama, atau dukungan di dunia nyata.';
 
   @override
   String get legalPrivacyBody =>
@@ -17211,21 +17452,21 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get onboardingLearningAgeGroupTitle =>
-      'Which learning path fits you best?';
+      'Jalur belajar mana yang paling cocok untukmu?';
 
   @override
   String get onboardingLearningAgeGroupSubtitle =>
-      'We use this to adapt lesson wording and the kinds of journeys surfaced first, while keeping the experience calm and supportive.';
+      'Kami menggunakannya untuk menyesuaikan bahasa pelajaran dan jenis perjalanan yang ditampilkan lebih dulu, sambil menjaga pengalaman tetap tenang dan mendukung.';
 
   @override
   String get onboardingLearningAgeGroupKids =>
-      'I’m a child / learning with family';
+      'Saya anak-anak / belajar bersama keluarga';
 
   @override
-  String get onboardingLearningAgeGroupTeens => 'I’m a teenager';
+  String get onboardingLearningAgeGroupTeens => 'Saya remaja';
 
   @override
-  String get onboardingLearningAgeGroupAdults => 'I’m an adult';
+  String get onboardingLearningAgeGroupAdults => 'Saya dewasa';
 
   @override
   String get learningJourneyIslamFoundationsTitle => 'What Is Islam?';
@@ -18620,7 +18861,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountsSyncDisplayNameLabel => 'Nama tampilan';
 
   @override
-  String get accountsSyncAvatarLabel => 'Avatar';
+  String get accountsSyncAvatarLabel => 'Foto profil';
 
   @override
   String get accountsSyncProfileTypeLabel => 'Jenis profil';
@@ -19592,7 +19833,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get accountsSyncTransportTitle => 'Transport';
+  String get accountsSyncTransportTitle => 'Metode transfer';
 
   @override
   String accountsSyncTransportSummary(String transport, String status) {
@@ -19651,7 +19892,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountsSyncExperienceModeLearningFocused => 'Fokus belajar';
 
   @override
-  String get accountsSyncExperienceModePrayerFocused => 'Salah focused';
+  String get accountsSyncExperienceModePrayerFocused => 'Fokus pada salah';
 
   @override
   String get accountsSyncDevicePlatformIPhone => 'iPhone';
@@ -20020,7 +20261,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsPrayerNameFajr => 'Subuh';
 
   @override
-  String get settingsPrayerNameJumuah => 'Jumu‘ah';
+  String get settingsPrayerNameJumuah => 'Jumat';
 
   @override
   String get settingsPrayerNameDhuhr => 'Dhuhur';
@@ -22122,11 +22363,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get prophetsSearchHint => 'Search prophets, eras, or regions';
 
   @override
-  String get searchProphetsHint => 'Search prophets...';
+  String get searchProphetsHint => 'Cari nabi...';
 
   @override
-  String get searchDivineLessonsHint =>
-      'Search lessons, themes, and situations...';
+  String get searchDivineLessonsHint => 'Cari pelajaran, tema, dan situasi...';
 
   @override
   String get prophetsFilterAll => 'All';
@@ -24102,235 +24342,239 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get accessibilityReminderHelp => 'Reminder help';
+  String get accessibilityReminderHelp => 'Bantuan pengingat';
 
   @override
-  String get accessibilityIncreaseDhikrCount => 'Increase dhikr count';
+  String get accessibilityIncreaseDhikrCount => 'Tambahkan hitungan zikir';
 
   @override
-  String get accessibilityJumpToCurrentSalah => 'Jump to current salah';
+  String get accessibilityJumpToCurrentSalah => 'Buka salat saat ini';
 
   @override
-  String get accessibilityReadQadaRule => 'Read qada rule';
+  String get accessibilityReadQadaRule => 'Baca aturan qada';
 
   @override
-  String get accessibilityRefreshCamera => 'Refresh camera';
+  String get accessibilityRefreshCamera => 'Muat ulang kamera';
 
   @override
   String get accessibilityCreationCategoryNotDetected =>
-      'No stable creation category detected yet';
+      'Belum ada kategori ciptaan yang stabil terdeteksi';
 
   @override
   String accessibilityCreationCategoryDetected(String category) {
-    return '$category detected. Open reflection card.';
+    return '$category terdeteksi. Buka kartu refleksi.';
   }
 
   @override
-  String get accessibilityRemoveFavorite => 'Remove favorite';
+  String get accessibilityRemoveFavorite => 'Hapus dari favorit';
 
   @override
-  String get accessibilitySaveFavorite => 'Save favorite';
+  String get accessibilitySaveFavorite => 'Simpan ke favorit';
 
   @override
-  String get accessibilityDeleteObservation => 'Delete observation';
+  String get accessibilityDeleteObservation => 'Hapus pengamatan';
 
   @override
-  String get accessibilityRemoveFromSaved => 'Remove from saved';
+  String get accessibilityRemoveFromSaved => 'Hapus dari tersimpan';
 
   @override
-  String get accessibilitySaveHadith => 'Save hadith';
+  String get accessibilitySaveHadith => 'Simpan hadith';
 
   @override
-  String get accessibilityPlayAudio => 'Play audio';
+  String get accessibilityPlayAudio => 'Putar audio';
 
   @override
-  String get accessibilityAudioNotAddedYet => 'Audio not added yet';
+  String get accessibilityAudioNotAddedYet => 'Audio belum ditambahkan';
 
   @override
-  String get accessibilitySavedForReview => 'Saved for review';
+  String get accessibilitySavedForReview => 'Disimpan untuk ditinjau';
 
   @override
-  String get accessibilityReviewLater => 'Review later';
+  String get accessibilityReviewLater => 'Tinjau nanti';
 
   @override
-  String get accessibilityLearningSettings => 'Learning settings';
+  String get accessibilityLearningSettings => 'Pengaturan belajar';
 
   @override
-  String get accessibilitySourcesAndLicensing => 'Sources and licensing';
+  String get accessibilitySourcesAndLicensing => 'Sumber dan lisensi';
 
   @override
-  String get accessibilityClosePlayer => 'Close player';
+  String get accessibilityClosePlayer => 'Tutup pemutar';
 
   @override
-  String get accessibilityBack15Seconds => 'Back 15 seconds';
+  String get accessibilityBack15Seconds => 'Mundur 15 detik';
 
   @override
-  String get accessibilityForward15Seconds => 'Forward 15 seconds';
+  String get accessibilityForward15Seconds => 'Maju 15 detik';
 
   @override
-  String get accessibilityPreparingPlayback => 'Preparing playback';
+  String get accessibilityPreparingPlayback => 'Menyiapkan pemutaran';
 
   @override
-  String get accessibilityPause => 'Pause';
+  String get accessibilityPause => 'Jeda';
 
   @override
-  String get accessibilityPlay => 'Play';
+  String get accessibilityPlay => 'Putar';
 
   @override
-  String get accessibilityRemoveFromFavorites => 'Remove from favorites';
+  String get accessibilityRemoveFromFavorites => 'Hapus dari favorit';
 
   @override
-  String get accessibilitySaveNameToFavorites => 'Save name to favorites';
+  String get accessibilitySaveNameToFavorites => 'Simpan nama ke favorit';
 
   @override
-  String get creationExplorerTitle => 'Creation Explorer';
+  String get creationExplorerTitle => 'Penjelajah Ciptaan';
 
   @override
   String get creationExplorerSubtitle =>
-      'Observe the world, notice a sign, and connect it with Qur’anic reflection.';
+      'Amati dunia, perhatikan sebuah tanda, lalu hubungkan dengan refleksi Qur’ani.';
 
   @override
-  String get creationExplorerMetricObservations => 'Observations';
+  String get creationExplorerMetricObservations => 'Pengamatan';
 
   @override
-  String get creationExplorerMetricCategories => 'Categories';
+  String get creationExplorerMetricCategories => 'Kategori';
 
   @override
-  String get creationExplorerMetricVerses => 'Verses';
+  String get creationExplorerMetricVerses => 'Ayat';
 
   @override
-  String get creationExplorerMetricCamera => 'Camera';
+  String get creationExplorerMetricCamera => 'Kamera';
 
   @override
-  String get creationExplorerMetricCameraDeviceOnly => 'Device only';
+  String get creationExplorerMetricCameraDeviceOnly => 'Hanya di perangkat';
 
   @override
-  String get creationExplorerMetricCameraOff => 'Off';
+  String get creationExplorerMetricCameraOff => 'Mati';
 
   @override
-  String get creationExplorerMetricCameraReady => 'Ready';
+  String get creationExplorerMetricCameraReady => 'Siap';
 
   @override
-  String get creationExplorerMetricCameraPending => 'Pending';
+  String get creationExplorerMetricCameraPending => 'Menunggu';
 
   @override
-  String get creationExplorerTodaysChallenge => 'Today’s challenge';
+  String get creationExplorerTodaysChallenge => 'Tantangan hari ini';
 
   @override
-  String get creationExplorerHistoryAction => 'History';
+  String get creationExplorerHistoryAction => 'Riwayat';
 
   @override
-  String get creationExplorerOpenAction => 'Open';
+  String get creationExplorerOpenAction => 'Buka';
 
   @override
   String get creationExplorerDeviceOnlyTitle =>
-      'Image labeling runs on device only';
+      'Pelabelan gambar hanya berjalan di perangkat';
 
   @override
   String get creationExplorerDeviceOnlyBody =>
-      'Use a physical iPhone or iPad to explore with the camera.';
+      'Gunakan iPhone atau iPad fisik untuk menjelajah dengan kamera.';
 
   @override
-  String get creationExplorerCameraAccessTitle => 'Camera access is needed';
+  String get creationExplorerCameraAccessTitle => 'Akses kamera diperlukan';
 
   @override
   String get creationExplorerCameraAccessBody =>
-      'Creation Explorer runs entirely on-device. Camera access lets the app detect broad categories like birds, plants, water, and sky without uploading images.';
+      'Penjelajah Ciptaan berjalan sepenuhnya di perangkat. Akses kamera memungkinkan aplikasi mendeteksi kategori luas seperti burung, tumbuhan, air, dan langit tanpa mengunggah gambar.';
 
   @override
-  String get creationExplorerAllowCameraAction => 'Allow camera';
+  String get creationExplorerAllowCameraAction => 'Izinkan kamera';
 
   @override
-  String get creationExplorerOpenSettingsAction => 'Open settings';
+  String get creationExplorerOpenSettingsAction => 'Buka pengaturan';
 
   @override
-  String get creationExplorerCameraUnavailable => 'Camera unavailable';
+  String get creationExplorerCameraUnavailable => 'Kamera tidak tersedia';
 
   @override
   String get creationExplorerCameraUnavailableBody =>
-      'Creation Explorer could not start the camera right now.';
+      'Penjelajah Ciptaan tidak dapat memulai kamera sekarang.';
 
   @override
-  String get creationExplorerRetryAction => 'Retry';
+  String get creationExplorerRetryAction => 'Coba lagi';
 
   @override
-  String get creationExplorerOnDeviceDetection => 'On-device detection';
+  String get creationExplorerOnDeviceDetection => 'Deteksi di perangkat';
 
   @override
   String get creationExplorerDetectionPromptTitle =>
-      'Look at a plant, animal, bird, or landscape.';
+      'Lihat tumbuhan, hewan, burung, atau pemandangan.';
 
   @override
   String get creationExplorerDetectionPromptSubtitle =>
-      'Labels appear only when the signal is stable.';
+      'Label hanya muncul saat sinyal sudah stabil.';
 
   @override
-  String get creationExplorerTapToReflect => 'Tap to reflect';
+  String get creationExplorerTapToReflect => 'Ketuk untuk refleksi';
 
   @override
-  String get creationExplorerHowItWorksTitle => 'How it works';
+  String get creationExplorerHowItWorksTitle => 'Cara kerjanya';
 
   @override
   String get creationExplorerHowItWorksBody =>
-      'Creation Explorer uses on-device labeling to detect broad categories only. It waits for a stable signal before showing a label, then offers a Qur’anic reflection connected to what you are seeing.';
+      'Penjelajah Ciptaan menggunakan pelabelan di perangkat untuk mendeteksi kategori luas saja. Ia menunggu sinyal yang stabil sebelum menampilkan label, lalu menawarkan refleksi Qur’ani yang terhubung dengan apa yang Anda lihat.';
 
   @override
-  String get creationExplorerCurrentDetectedSign => 'Current detected sign';
+  String get creationExplorerCurrentDetectedSign =>
+      'Tanda yang sedang terdeteksi';
 
   @override
-  String get creationExplorerReflectAction => 'Reflect';
+  String get creationExplorerReflectAction => 'Refleksi';
 
   @override
-  String get creationExplorerAlsoExploreSkyTitle => 'Also explore the sky';
+  String get creationExplorerAlsoExploreSkyTitle => 'Jelajahi langit juga';
 
   @override
   String get creationExplorerAlsoExploreSkySubtitle =>
-      'Creation Explorer and Sky Explorer are complementary: one notices what is around you, the other what is above you.';
+      'Penjelajah Ciptaan dan Penjelajah Langit saling melengkapi: yang satu memperhatikan apa yang ada di sekitar Anda, yang lain apa yang ada di atas Anda.';
 
   @override
-  String get creationExplorerSkyExplorerAction => 'Sky Explorer';
+  String get creationExplorerSkyExplorerAction => 'Penjelajah Langit';
 
   @override
-  String get creationExplorerNoObservationsTitle => 'No observations saved yet';
+  String get creationExplorerNoObservationsTitle =>
+      'Belum ada pengamatan yang disimpan';
 
   @override
   String get creationExplorerNoObservationsBody =>
-      'Save a moment from the camera view and it will appear here with its verse, category, and your reflection.';
+      'Simpan satu momen dari tampilan kamera dan itu akan muncul di sini bersama ayat, kategori, dan refleksi Anda.';
 
   @override
-  String get creationExplorerOpenCameraExploreAction => 'Open camera explore';
+  String get creationExplorerOpenCameraExploreAction =>
+      'Buka penjelajahan kamera';
 
   @override
-  String get creationExplorerYourReflectionLabel => 'Your reflection';
+  String get creationExplorerYourReflectionLabel => 'Refleksi Anda';
 
   @override
   String get creationExplorerYourReflectionHint =>
-      'What did you notice? What did it remind you of?';
+      'Apa yang Anda perhatikan? Mengingatkan Anda pada apa?';
 
   @override
-  String get creationExplorerCloseAction => 'Close';
+  String get creationExplorerCloseAction => 'Tutup';
 
   @override
-  String get creationExplorerSaveObservationAction => 'Save observation';
+  String get creationExplorerSaveObservationAction => 'Simpan pengamatan';
 
   @override
-  String get creationExplorerNoReflectionSaved => 'No reflection saved yet.';
+  String get creationExplorerNoReflectionSaved =>
+      'Belum ada refleksi yang disimpan.';
 
   @override
-  String get creationExplorerEditReflectionAction => 'Edit reflection';
+  String get creationExplorerEditReflectionAction => 'Ubah refleksi';
 
   @override
   String get creationExplorerEditReflectionHint =>
-      'Write what this observation reminded you of.';
+      'Tulis apa yang diingatkan oleh pengamatan ini kepada Anda.';
 
   @override
-  String get creationExplorerTabCamera => 'Camera';
+  String get creationExplorerTabCamera => 'Kamera';
 
   @override
-  String get creationExplorerTabDiscover => 'Discover';
+  String get creationExplorerTabDiscover => 'Jelajah';
 
   @override
-  String get creationExplorerTabJournal => 'Journal';
+  String get creationExplorerTabJournal => 'Jurnal';
 
   @override
   String get fastingSectionTitle => 'Puasa';
@@ -26549,7 +26793,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnGlossarySearchHint => 'Search terms or meanings';
 
   @override
-  String get searchTermsHint => 'Search terms...';
+  String get searchTermsHint => 'Cari istilah...';
 
   @override
   String get learnGlossaryCategoryAll => 'All';
@@ -32368,70 +32612,70 @@ class AppLocalizationsId extends AppLocalizations {
       'Return to today\'s ayah and continue your reflection.';
 
   @override
-  String get quranDailyCompanionTitle => 'Daily Qur\'an companion';
+  String get quranDailyCompanionTitle => 'Sahabat Al-Qur\'an Sehari-hari';
 
   @override
   String get quranDailyCompanionSubtitle =>
-      'One ayah, one meaning cue, one small next step for today.';
+      'Satu ayat, satu isyarat makna, satu langkah kecil selanjutnya untuk hari ini.';
 
   @override
   String get quranDailyCompanionCardSubtitle =>
-      'Return to today\'s ayah with one clear reflection and one calm next step.';
+      'Kembalilah pada ayat hari ini dengan satu refleksi jernih dan satu langkah tenang berikutnya.';
 
   @override
-  String get quranDailyCompanionOpenAction => 'Open companion';
+  String get quranDailyCompanionOpenAction => 'Buka pendamping';
 
   @override
-  String get quranDailyCompanionTodayTitle => 'Today\'s ayah';
+  String get quranDailyCompanionTodayTitle => 'Ayat hari ini';
 
   @override
-  String get quranDailyCompanionMeaningTitle => 'Meaning and reflection';
+  String get quranDailyCompanionMeaningTitle => 'Makna dan refleksi';
 
   @override
-  String get quranDailyCompanionThemeTitle => 'Theme connection';
+  String get quranDailyCompanionThemeTitle => 'Koneksi tema';
 
   @override
-  String get quranDailyCompanionRelatedInsightTitle => 'Related insight';
+  String get quranDailyCompanionRelatedInsightTitle => 'Wawasan terkait';
 
   @override
-  String get quranDailyCompanionJourneyTitle => 'Journey connection';
+  String get quranDailyCompanionJourneyTitle => 'Koneksi perjalanan';
 
   @override
   String get quranDailyCompanionJourneyAlignedLabel =>
-      'Aligned with your journey';
+      'Selaras dengan perjalanan Anda';
 
   @override
   String quranDailyCompanionJourneyBody(Object theme) {
-    return 'Today\'s ayah follows your current journey theme: $theme.';
+    return 'Ayat hari ini mengikuti tema perjalanan Anda saat ini: $theme.';
   }
 
   @override
   String get quranDailyCompanionJourneyBodyNoTheme =>
-      'Today\'s ayah follows the strongest Qur\'anic connection for the journey stage you are already working through.';
+      'Ayat hari ini mengikuti koneksi Al-Qur\'an yang paling kuat untuk tahap perjalanan yang sedang Anda lalui.';
 
   @override
-  String get quranDailyCompanionJourneyAction => 'Continue journey';
+  String get quranDailyCompanionJourneyAction => 'Lanjutkan perjalanan';
 
   @override
-  String get quranDailyCompanionTakeawayTitle => 'Practical takeaway';
+  String get quranDailyCompanionTakeawayTitle => 'Kesimpulan praktis';
 
   @override
-  String get quranDailyCompanionContinueTitle => 'Continue today';
+  String get quranDailyCompanionContinueTitle => 'Lanjutkan hari ini';
 
   @override
-  String get quranDailyCompanionOpenReaderAction => 'Open full reader';
+  String get quranDailyCompanionOpenReaderAction => 'Buka pembaca penuh';
 
   @override
-  String get quranDailyCompanionOpenThemeAction => 'Explore theme';
+  String get quranDailyCompanionOpenThemeAction => 'Jelajahi tema';
 
   @override
-  String get quranDailyCompanionReviewMemoryAction => 'Review memorization';
+  String get quranDailyCompanionReviewMemoryAction => 'Tinjau hafalan';
 
   @override
-  String get quranDailyCompanionPathAction => 'Start path';
+  String get quranDailyCompanionPathAction => 'Mulai jalan';
 
   @override
-  String get quranDailyCompanionMemorizedLabel => 'Memorized';
+  String get quranDailyCompanionMemorizedLabel => 'Hafal';
 
   @override
   String get quranUserIntentTitle => 'Your Qur\'an focus';
@@ -35041,43 +35285,43 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quranReferenceDetailReasonKnowledgeQuran =>
-      'This is a direct Qur\'anic connection to the same meaning or passage.';
+      'Ini adalah hubungan langsung Al-Qur\'an dengan makna atau ayat yang sama.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeHadith =>
-      'This hadith helps explain or reinforce a meaning carried in this ayah.';
+      'Hadits ini membantu menjelaskan atau memperkuat makna yang terkandung dalam ayat ini.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeTheme =>
-      'This theme highlights a recurring Qur\'anic idea connected to this ayah.';
+      'Tema ini menyoroti gagasan Al-Qur\'an yang berulang kali dikaitkan dengan ayat ini.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeCharacter =>
-      'This character lesson applies a value or behavior connected to this ayah.';
+      'Pelajaran karakter ini menerapkan suatu nilai atau perilaku yang berhubungan dengan ayat ini.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSeerah =>
-      'This Seerah context helps place the ayah in a prophetic or historical frame.';
+      'Konteks Seerah ini membantu menempatkan ayat tersebut dalam bingkai kenabian atau sejarah.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeJourney =>
-      'This guided lesson revisits a connected Qur\'anic idea through a structured learning path.';
+      'Pembelajaran terbimbing ini meninjau kembali ide Al-Qur\'an yang terhubung melalui jalur pembelajaran terstruktur.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeSignsWorld =>
-      'This signs lesson reflects on the created world in a way connected to this ayah.';
+      'Pelajaran tanda-tanda ini merefleksikan dunia ciptaan dengan cara yang terhubung dengan ayat ini.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeReflection =>
-      'This reflective insight helps the ayah open into contemplation, interpretation, or practical thought.';
+      'Wawasan reflektif ini membantu ayat tersebut membuka diri pada kontemplasi, penafsiran, atau pemikiran praktis.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeWorship =>
-      'This worship lesson strengthens a devotional practice connected to this ayah.';
+      'Pelajaran ibadah ini memperkuat praktik kebaktian yang terkait dengan ayat ini.';
 
   @override
   String get quranReferenceDetailReasonKnowledgeLifeLesson =>
-      'This life lesson applies the ayah through broader daily guidance.';
+      'Pelajaran hidup ini mengaplikasikan ayat tersebut melalui tuntunan sehari-hari yang lebih luas.';
 
   @override
   String get arabicLearningPlaybackModeLabel => 'Playback';
@@ -36701,7 +36945,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get onboardingSkipAction => 'Skip';
+  String get onboardingSkipAction => 'Lewati';
 
   @override
   String onboardingProgressValue(Object current, Object total) {
@@ -36710,42 +36954,42 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get onboardingSettingsHintBody =>
-      'You can change this anytime in Settings.';
+      'Kamu bisa mengubah ini kapan saja di Pengaturan.';
 
   @override
-  String get onboardingBeginJourneyAction => 'Begin your journey';
+  String get onboardingBeginJourneyAction => 'Mulai perjalananmu';
 
   @override
-  String get onboardingContinueAction => 'Continue';
+  String get onboardingContinueAction => 'Lanjutkan';
 
   @override
   String get onboardingShahadaMeaningBody =>
-      'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.';
+      'Aku bersaksi bahwa tidak ada ilah selain Allah,\ndan aku bersaksi bahwa Muhammad ﷺ adalah Utusan Allah.';
 
   @override
   String get onboardingBismillahTransliteration => 'Bismillahir-Rahmanir-Rahim';
 
   @override
   String get onboardingBismillahMeaningBody =>
-      'In the name of Allah, the Most Compassionate, the Most Merciful.';
+      'Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang.';
 
   @override
   String get onboardingOpeningBlessingBody =>
-      'May this journey bring khayr, consistency, and closeness to Allah.';
+      'Semoga perjalanan ini membawamu kepada kebaikan, istiqamah, dan kedekatan dengan Allah.';
 
   @override
-  String get onboardingLanguageTitle => 'Choose your language';
+  String get onboardingLanguageTitle => 'Pilih bahasa';
 
   @override
   String get onboardingLanguageSubtitle =>
-      'Select the language you would like to use in the app.';
+      'Pilih bahasa yang ingin kamu gunakan di aplikasi.';
 
   @override
-  String get onboardingAgeRangeTitle => 'Which age range are you in?';
+  String get onboardingAgeRangeTitle => 'Kamu berada di rentang usia berapa?';
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'This helps us keep examples and recommendations relevant to your stage of life.';
+      'Ini membantu kami menjaga agar contoh dan rekomendasi tetap relevan dengan tahap hidupmu.';
 
   @override
   String get onboardingAgeRangeUnder18 => 'Under 18';
@@ -36767,400 +37011,401 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get onboardingExperienceTitle =>
-      'Which description fits your journey with Islam best?';
+      'Deskripsi mana yang paling sesuai dengan perjalananmu bersama Islam?';
 
   @override
   String get onboardingExperienceSubtitle =>
-      'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.';
+      'Kami menggunakan ini untuk menetapkan nada awal, tempo, dan kedalaman belajar yang lebih sesuai untuk pengalamanmu. Pilihanmu disimpan dan digunakan untuk membentuk panduan di seluruh aplikasi.';
 
   @override
-  String get onboardingExperienceExploring => 'Exploring Islam';
+  String get onboardingExperienceExploring => 'Sedang mengenal Islam';
 
   @override
-  String get onboardingExperienceNewToIslam => 'New to Islam';
+  String get onboardingExperienceNewToIslam => 'Baru mengenal Islam';
 
   @override
   String get onboardingExperienceBornStillLearning =>
-      'Born Muslim, still learning';
+      'Lahir Muslim, masih belajar';
 
   @override
-  String get onboardingExperiencePracticingRegularly => 'Practicing regularly';
+  String get onboardingExperiencePracticingRegularly =>
+      'Beribadah secara rutin';
 
   @override
-  String get onboardingExperienceAdvanced => 'Experienced / advanced';
+  String get onboardingExperienceAdvanced => 'Berpengalaman / tingkat lanjut';
 
   @override
   String get onboardingSalahConsistencyTitle =>
-      'How consistent is your Salah currently?';
+      'Seberapa konsisten salatmu saat ini?';
 
   @override
   String get onboardingSalahConsistencySubtitle =>
-      'Choose the option that best reflects where you are right now.';
+      'Pilih opsi yang paling menggambarkan keadaanmu saat ini.';
 
   @override
-  String get onboardingSalahConsistencyAll => 'I pray all prayers consistently';
+  String get onboardingSalahConsistencyAll =>
+      'Saya salat semua waktu secara konsisten';
 
   @override
-  String get onboardingSalahConsistencyMost => 'I pray most prayers';
+  String get onboardingSalahConsistencyMost =>
+      'Saya salat sebagian besar waktu';
 
   @override
-  String get onboardingSalahConsistencySometimes => 'I pray sometimes';
+  String get onboardingSalahConsistencySometimes => 'Saya kadang-kadang salat';
 
   @override
-  String get onboardingSalahConsistencyRarely => 'I rarely pray';
+  String get onboardingSalahConsistencyRarely => 'Saya jarang salat';
 
   @override
-  String get onboardingSalahConsistencyJustStarted =>
-      'I am just getting started';
+  String get onboardingSalahConsistencyJustStarted => 'Saya baru mulai';
 
   @override
-  String get onboardingPrayerMethodTitle => 'Salah time calculation method';
+  String get onboardingPrayerMethodTitle => 'Metode perhitungan waktu salat';
 
   @override
   String get onboardingPrayerMethodSubtitle =>
-      'Choose how salah times should be calculated for your location.';
+      'Pilih bagaimana waktu salat harus dihitung untuk lokasimu.';
 
   @override
-  String get onboardingPrayerMethodMuslimWorldLeague => 'Muslim World League';
+  String get onboardingPrayerMethodMuslimWorldLeague => 'Liga Muslim Dunia';
 
   @override
   String get onboardingPrayerMethodIsna =>
-      'Islamic Society of North America (ISNA)';
+      'Perhimpunan Islam Amerika Utara (ISNA)';
 
   @override
-  String get onboardingPrayerMethodUmmAlQura => 'Umm Al-Qura University';
+  String get onboardingPrayerMethodUmmAlQura => 'Universitas Umm Al-Qura';
 
   @override
-  String get onboardingPrayerMethodEgyptian =>
-      'Egyptian General Authority of Survey';
+  String get onboardingPrayerMethodEgyptian => 'Otoritas Survei Umum Mesir';
 
   @override
   String get onboardingPrayerMethodKarachi =>
-      'University of Islamic Sciences, Karachi';
+      'Universitas Ilmu-Ilmu Islam, Karachi';
 
   @override
-  String get onboardingPrayerMethodMoonsighting => 'Moonsighting Committee';
+  String get onboardingPrayerMethodMoonsighting => 'Komite Rukyatul Hilal';
 
   @override
-  String get onboardingMadhabTitle => 'Which Madhab do you follow?';
+  String get onboardingMadhabTitle => 'Madhab mana yang kamu ikuti?';
 
   @override
   String get onboardingMadhabSubtitle =>
-      'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.';
+      'Ini memengaruhi cara waktu salat Asar dihitung. Jika kamu tidak yakin, kamu bisa tetap menggunakan pilihan bawaan.';
 
   @override
-  String get onboardingMadhabHanafi => 'Hanafi';
+  String get onboardingMadhabHanafi => 'Mazhab Hanafi';
 
   @override
-  String get onboardingMadhabShafii => 'Shafi\'i';
+  String get onboardingMadhabShafii => 'Mazhab Syafi\'i';
 
   @override
-  String get onboardingMadhabMaliki => 'Maliki';
+  String get onboardingMadhabMaliki => 'Mazhab Maliki';
 
   @override
-  String get onboardingMadhabHanbali => 'Hanbali';
+  String get onboardingMadhabHanbali => 'Mazhab Hanbali';
 
   @override
   String get onboardingGrowthInterestsTitle =>
-      'What would you like to grow in?';
+      'Dalam hal apa kamu ingin bertumbuh?';
 
   @override
   String get onboardingGrowthInterestsSubtitle =>
-      'Select the areas you would like Path of Nur to help you with. You can choose multiple.';
+      'Pilih area yang kamu ingin Path of Nur bantu. Kamu bisa memilih lebih dari satu.';
 
   @override
   String get onboardingArabicReadModeTitle =>
-      'What is your Qur’an reading preference?';
+      'Apa preferensi bacaan Qur\'anmu?';
 
   @override
   String get onboardingArabicReadModeSubtitle =>
-      'Choose the reading setup that feels most comfortable for you when reading the Qur’an.';
+      'Pilih pengaturan baca yang paling nyaman untukmu saat membaca Qur\'an.';
 
   @override
   String get onboardingArabicReadModeNoArabicYet =>
-      'I do not know any Arabic yet';
+      'Saya belum tahu bahasa Arab sama sekali';
 
   @override
-  String get onboardingArabicReadModeArabicOnly => 'Arabic only';
+  String get onboardingArabicReadModeArabicOnly => 'Bahasa Arab saja';
 
   @override
   String get onboardingArabicReadModeArabicTransliteration =>
-      'Arabic + Transliteration';
+      'Arab + Transliterasi';
 
   @override
-  String get onboardingArabicReadModeArabicTranslation =>
-      'Arabic + Translation';
+  String get onboardingArabicReadModeArabicTranslation => 'Arab + Terjemahan';
 
   @override
   String get onboardingArabicReadModeArabicTransliterationTranslation =>
-      'Arabic + Transliteration + Translation';
+      'Arab + Transliterasi + Terjemahan';
 
   @override
-  String get onboardingHarakatTitle => 'Harakat / pronunciation marks';
+  String get onboardingHarakatTitle => 'Harakat / tanda pelafalan';
 
   @override
-  String get onboardingHarakatFull => 'Full harakat';
+  String get onboardingHarakatFull => 'Harakat penuh';
 
   @override
-  String get onboardingHarakatMinimal => 'Minimal harakat';
+  String get onboardingHarakatMinimal => 'Harakat minimal';
 
   @override
-  String get onboardingHarakatNone => 'None';
+  String get onboardingHarakatNone => 'Tanpa harakat';
 
   @override
-  String get onboardingTextSizeTitle => 'Text size';
+  String get onboardingTextSizeTitle => 'Ukuran teks';
 
   @override
-  String get onboardingRemindersTitle => 'How would you like to be reminded?';
+  String get onboardingRemindersTitle => 'Bagaimana kamu ingin diingatkan?';
 
   @override
   String get onboardingRemindersSubtitle =>
-      'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.';
+      'Pilih pengaturan pengingat ringan untuk salah dan rutinitas harian. Kamu bisa menyesuaikan semuanya nanti.';
 
   @override
-  String get onboardingReminderNotificationOnly => 'Notification only';
+  String get onboardingReminderNotificationOnly => 'Notifikasi saja';
 
   @override
-  String get onboardingReminderAdhanNotification => 'Adhan notification';
+  String get onboardingReminderAdhanNotification => 'Notifikasi adzan';
 
   @override
   String get onboardingDailyQuranReminderTitle =>
-      'Daily Qur\'an reading reminder';
+      'Pengingat harian membaca Qur\'an';
 
   @override
-  String get onboardingDailyLessonReminderTitle => 'Daily lesson reminder';
+  String get onboardingDailyLessonReminderTitle => 'Pengingat pelajaran harian';
 
   @override
-  String get onboardingTrackingTitle => 'What would you like to keep in view?';
+  String get onboardingTrackingTitle => 'Apa yang ingin kamu tetap lihat?';
 
   @override
   String get onboardingTrackingSubtitle =>
-      'Pick the areas you would like Path of Nur to gently keep in view as you grow. You can choose multiple.';
+      'Pilih area yang kamu ingin Path of Nur jaga tetap terlihat dengan lembut seiring kamu bertumbuh. Kamu bisa memilih lebih dari satu.';
 
   @override
-  String get onboardingFamilyTitle => 'Grow together with family';
+  String get onboardingFamilyTitle => 'Bertumbuh bersama keluarga';
 
   @override
   String get onboardingFamilySubtitle =>
-      'Path of Nur can support individual journeys while also helping families grow together.';
+      'Path of Nur dapat mendukung perjalanan pribadi sekaligus membantu keluarga bertumbuh bersama.';
 
   @override
-  String get onboardingFamilyProfilesTitle => 'Family profiles';
+  String get onboardingFamilyProfilesTitle => 'Profil keluarga';
 
   @override
   String get onboardingFamilyProfilesSubtitle =>
-      'Create profiles for family members from the Profiles page.';
+      'Buat profil untuk anggota keluarga dari halaman Profil.';
 
   @override
   String get onboardingFamilyPrivateJourneysTitle =>
-      'Private journeys for each member';
+      'Perjalanan pribadi untuk tiap anggota';
 
   @override
   String get onboardingFamilyPrivateJourneysSubtitle =>
-      'Each profile can keep separate progress and reminders.';
+      'Setiap profil dapat menyimpan progres dan pengingat secara terpisah.';
 
   @override
-  String get onboardingFamilyAgeAppropriateTitle => 'Age-appropriate learning';
+  String get onboardingFamilyAgeAppropriateTitle => 'Pembelajaran sesuai usia';
 
   @override
   String get onboardingFamilyAgeAppropriateSubtitle =>
-      'Content can adapt to stage and experience level.';
+      'Konten dapat menyesuaikan dengan tahap usia dan tingkat pengalaman.';
 
   @override
   String get onboardingFamilySharedGrowthTitle =>
-      'Shared encouragement and growth';
+      'Semangat dan pertumbuhan bersama';
 
   @override
   String get onboardingFamilySharedGrowthSubtitle =>
-      'Build consistency together over time.';
+      'Bangun istiqamah bersama seiring waktu.';
 
   @override
-  String get onboardingDhikrFeedbackTitle => 'Dhikr counter feedback';
+  String get onboardingDhikrFeedbackTitle => 'Umpan balik penghitung zikir';
 
   @override
   String get onboardingDhikrFeedbackSubtitle =>
-      'Choose how the dhikr counter should respond when you tap.';
+      'Pilih bagaimana penghitung zikir merespons saat kamu mengetuknya.';
 
   @override
-  String get onboardingDhikrHapticTitle => 'Haptic feedback';
+  String get onboardingDhikrHapticTitle => 'Umpan balik haptik';
 
   @override
-  String get onboardingOptionOff => 'Off';
+  String get onboardingOptionOff => 'Mati';
 
   @override
-  String get onboardingOptionLight => 'Light';
+  String get onboardingOptionLight => 'Ringan';
 
   @override
-  String get onboardingOptionMedium => 'Medium';
+  String get onboardingOptionMedium => 'Sedang';
 
   @override
-  String get onboardingOptionStrong => 'Strong';
+  String get onboardingOptionStrong => 'Kuat';
 
   @override
-  String get onboardingDhikrSoundTitle => 'Sound feedback';
+  String get onboardingDhikrSoundTitle => 'Umpan balik suara';
 
   @override
-  String get onboardingDhikrSoundSoftClick => 'Soft click';
+  String get onboardingDhikrSoundSoftClick => 'Klik lembut';
 
   @override
-  String get onboardingDhikrSoundTasbih => 'Tasbih bead sound';
+  String get onboardingDhikrSoundTasbih => 'Suara butiran tasbih';
 
   @override
-  String get onboardingDhikrVisualTitle => 'Visual feedback';
+  String get onboardingDhikrVisualTitle => 'Umpan balik visual';
 
   @override
-  String get onboardingDhikrVisualSubtleGlow => 'Subtle glow';
+  String get onboardingDhikrVisualSubtleGlow => 'Cahaya lembut';
 
   @override
-  String get onboardingDhikrVisualPulseAnimation => 'Pulse animation';
+  String get onboardingDhikrVisualPulseAnimation => 'Animasi denyut';
 
   @override
   String onboardingDhikrPreviewCount(int count) {
-    return 'Preview count: $count';
+    return 'Hitungan pratinjau: $count';
   }
 
   @override
-  String get onboardingIdentityTitle => 'How should we address you?';
+  String get onboardingIdentityTitle => 'Bagaimana kami sebaiknya menyapamu?';
 
   @override
   String get onboardingIdentitySubtitle =>
-      'Choose your greeting and add your name if you would like a more personal welcome.';
+      'Pilih sapaanmu dan tambahkan namamu jika kamu ingin sambutan yang lebih personal.';
 
   @override
-  String get onboardingGreetingTitle => 'Greeting';
+  String get onboardingGreetingTitle => 'Sapaan';
 
   @override
-  String get onboardingNameTitle => 'Name';
+  String get onboardingNameTitle => 'Nama';
 
   @override
-  String get onboardingOptionalHint => 'Optional';
+  String get onboardingOptionalHint => 'Opsional';
 
   @override
   String get onboardingNameHelperBody =>
-      'Your name is optional and only used to personalize your experience within the app.';
+      'Namamu bersifat opsional dan hanya digunakan untuk mempersonalisasi pengalamanmu di dalam aplikasi.';
 
   @override
-  String get onboardingDefaultNameFallback => 'Friend';
+  String get onboardingDefaultNameFallback => 'Teman';
 
   @override
-  String get onboardingFocusSalahConsistency => 'Salah consistency';
+  String get onboardingFocusSalahConsistency => 'Konsistensi salah';
 
   @override
-  String get onboardingFocusSalahReminders => 'Salah reminders';
+  String get onboardingFocusSalahReminders => 'Pengingat salah';
 
   @override
-  String get onboardingFinalWelcomeTitle => 'Welcome to Path of Nur';
+  String get onboardingFinalWelcomeTitle => 'Selamat datang di Path of Nur';
 
   @override
   String onboardingWelcomeGreeting(String name) {
-    return 'Assalamu Alaikum, $name.';
+    return 'Assalamu\'alaikum, $name.';
   }
 
   @override
   String get onboardingFinalWelcomeBody =>
-      'Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.';
+      'Perjalananmu dimulai dengan niat, lalu tumbuh melalui langkah-langkah kecil yang konsisten. Path of Nur hadir untuk mendukung pembelajaran, zikir, refleksi, dan progres harianmu.';
 
   @override
-  String get onboardingFocusListTitle => 'Your chosen focus areas:';
+  String get onboardingFocusListTitle => 'Area fokus yang kamu pilih:';
 
   @override
   String get onboardingKnowledgeDuaMeaning =>
-      'My Lord, increase me in knowledge.';
+      'Ya Tuhanku, tambahkanlah ilmuku.';
 
   @override
-  String get onboardingLanguageSystemDefault => 'System Default';
+  String get onboardingLanguageSystemDefault => 'Bawaan sistem';
 
   @override
-  String get onboardingLanguageEnglish => 'English';
+  String get onboardingLanguageEnglish => 'Inggris';
 
   @override
-  String get onboardingLanguageArabic => 'Arabic (العربية)';
+  String get onboardingLanguageArabic => 'Arab (العربية)';
 
   @override
-  String get onboardingLanguageGerman => 'German (Deutsch)';
+  String get onboardingLanguageGerman => 'Jerman (Deutsch)';
 
   @override
-  String get onboardingLanguageUrdu => 'Urdu (اردو)';
+  String get onboardingLanguageUrdu => 'Bahasa Urdu (اردو)';
 
   @override
-  String get onboardingLanguageHindi => 'Hindi (हिंदी)';
+  String get onboardingLanguageHindi => 'Bahasa Hindi (हिंदी)';
 
   @override
-  String get onboardingLanguageIndonesian => 'Indonesian';
+  String get onboardingLanguageIndonesian => 'Indonesia';
 
   @override
-  String get onboardingLanguageMalay => 'Malay';
+  String get onboardingLanguageMalay => 'Melayu';
 
   @override
-  String get onboardingLanguageTurkish => 'Turkish';
+  String get onboardingLanguageTurkish => 'Turki';
 
   @override
-  String get onboardingLanguageBengali => 'Bengali';
+  String get onboardingLanguageBengali => 'Bahasa Bengali (বাংলা)';
 
   @override
-  String get onboardingInterestUnderstandingQuran => 'Understanding the Qur’an';
+  String get onboardingInterestUnderstandingQuran => 'Memahami Qur\'an';
 
   @override
-  String get onboardingInterestLearningHadith => 'Learning Hadith';
+  String get onboardingInterestLearningHadith => 'Mempelajari Hadith';
 
   @override
-  String get onboardingInterestStoriesProphets => 'Stories of the Prophets';
+  String get onboardingInterestStoriesProphets => 'Kisah para nabi';
 
   @override
-  String get onboardingInterestStrengtheningSalah => 'Strengthening my Salah';
+  String get onboardingInterestStrengtheningSalah => 'Menguatkan salah saya';
 
   @override
-  String get onboardingInterestDhikrRemembrance => 'Dhikr and remembrance';
+  String get onboardingInterestDhikrRemembrance => 'Zikir dan mengingat Allah';
 
   @override
-  String get onboardingInterestBetterHabits => 'Building better habits';
+  String get onboardingInterestBetterHabits =>
+      'Membangun kebiasaan yang lebih baik';
 
   @override
   String get onboardingInterestWorldThroughQuran =>
-      'Learning about the world through the Qur’an';
+      'Mempelajari dunia melalui Qur\'an';
 
   @override
-  String get onboardingInterestIslamicKnowledge => 'Islamic knowledge';
+  String get onboardingInterestIslamicKnowledge => 'Ilmu Islam';
 
   @override
   String get onboardingInterestPersonalGrowth =>
-      'Personal growth and discipline';
+      'Pertumbuhan pribadi dan disiplin';
 
   @override
-  String get onboardingInterestDailyInspiration => 'Daily inspiration';
+  String get onboardingInterestDailyInspiration => 'Inspirasi harian';
 
   @override
-  String get onboardingTrackingSalah => 'Salah tracking';
+  String get onboardingTrackingSalah => 'Pelacakan salah';
 
   @override
-  String get onboardingTrackingDhikr => 'Dhikr tracking';
+  String get onboardingTrackingDhikr => 'Pelacakan zikir';
 
   @override
-  String get onboardingTrackingQuranReading => 'Qur’an reading progress';
+  String get onboardingTrackingQuranReading => 'Progres membaca Qur\'an';
 
   @override
-  String get onboardingTrackingLearning => 'Learning progress';
+  String get onboardingTrackingLearning => 'Progres belajar';
 
   @override
-  String get onboardingTrackingHabitBuilding => 'Habit building';
+  String get onboardingTrackingHabitBuilding => 'Membangun kebiasaan';
 
   @override
-  String get onboardingTrackingReflection => 'Reflection / journaling';
+  String get onboardingTrackingReflection => 'Refleksi / jurnal';
 
   @override
-  String get onboardingSizeSmall => 'Small';
+  String get onboardingSizeSmall => 'Kecil';
 
   @override
-  String get onboardingSizeLarge => 'Large';
+  String get onboardingSizeLarge => 'Besar';
 
   @override
-  String get onboardingSizeExtraLarge => 'Extra large';
+  String get onboardingSizeExtraLarge => 'Sangat besar';
 
   @override
-  String get accountsSyncTransportUnknown => 'Unknown transport';
+  String get accountsSyncTransportUnknown => 'Transport tidak dikenal';
 
   @override
-  String get accountsSyncStatusUnknown => 'Status not available';
+  String get accountsSyncStatusUnknown => 'Status tidak tersedia';
 
   @override
   String get worldLandingTitle => 'World & Creation';
@@ -37658,106 +37903,106 @@ class AppLocalizationsId extends AppLocalizations {
   String get quranSummaryThemeParadiseAndHell => 'Paradise and Hell';
 
   @override
-  String get quranThemeDiscoveryIslandTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryIslandTitle => 'Jelajahi berdasarkan Topik';
 
   @override
   String get quranThemeDiscoveryIslandSubtitle =>
-      'Explore the Qur\'an through themes like mercy, patience, prophets, guidance, and the hereafter.';
+      'Jelajahi Al-Qur\'an melalui tema-tema seperti rahmat, kesabaran, nabi, bimbingan, dan akhirat.';
 
   @override
-  String get quranThemeDiscoveryPageTitle => 'Browse by Topic';
+  String get quranThemeDiscoveryPageTitle => 'Jelajahi berdasarkan Topik';
 
   @override
   String get quranThemeDiscoveryPageSubtitle =>
-      'Discover the Qur\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.';
+      'Temukan Al-Qur\'an melalui tema-tema yang dikurasi, surat-surat terkait, jangkar ayat utama, dan jalur belajar yang lembut.';
 
   @override
-  String get quranThemeDiscoveryHeroEyebrow => 'Thematic Discovery';
+  String get quranThemeDiscoveryHeroEyebrow => 'Penemuan Tematik';
 
   @override
   String get quranThemeDiscoveryHeroTitle =>
-      'Explore the Qur\'an through themes that shape the heart';
+      'Jelajahi Al-Qur\'an melalui tema-tema yang membentuk hati';
 
   @override
   String get quranThemeDiscoveryHeroSubtitle =>
-      'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.';
+      'Cara tenang untuk mengikuti rahmat, kesabaran, nabi, bimbingan, keadilan, dan tanda-tanda penciptaan di seluruh surah terkait.';
 
   @override
   String get quranThemeDiscoverySearchHint =>
-      'Search topics, prophets, events, or surahs...';
+      'Cari topik, nabi, peristiwa, atau surah...';
 
   @override
-  String get quranThemeDiscoveryFeaturedThemesTitle => 'Featured themes';
+  String get quranThemeDiscoveryFeaturedThemesTitle => 'Tema unggulan';
 
   @override
-  String get quranThemeDiscoveryBrowseByCategoryTitle => 'Browse by category';
+  String get quranThemeDiscoveryBrowseByCategoryTitle =>
+      'Telusuri berdasarkan kategori';
 
   @override
-  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'Key ayah references';
+  String get quranThemeDiscoveryKeyAyahReferencesTitle =>
+      'Referensi ayat kunci';
 
   @override
-  String get quranThemeDiscoveryRelatedSurahsTitle => 'Related surahs';
+  String get quranThemeDiscoveryRelatedSurahsTitle => 'Surat terkait';
 
   @override
-  String get quranThemeDiscoveryReflectionTitle => 'Reflection';
+  String get quranThemeDiscoveryReflectionTitle => 'Cerminan';
 
   @override
-  String get quranThemeDiscoveryMoreThemesTitle => 'More themes';
+  String get quranThemeDiscoveryMoreThemesTitle => 'Lebih banyak tema';
 
   @override
-  String get quranThemeDiscoveryExploreThemeAction => 'Explore theme';
+  String get quranThemeDiscoveryExploreThemeAction => 'Jelajahi tema';
 
   @override
-  String get quranThemeDiscoveryBrowseMoreThemesAction => 'Browse more themes';
+  String get quranThemeDiscoveryBrowseMoreThemesAction =>
+      'Telusuri lebih banyak tema';
 
   @override
   String get quranThemeDiscoveryNoResultsTitle =>
-      'No themes matched your search';
+      'Tidak ada tema yang cocok dengan pencarian Anda';
 
   @override
   String get quranThemeDiscoveryNoResultsSubtitle =>
-      'Try another topic, prophet, event, or category.';
+      'Coba topik, nabi, peristiwa, atau kategori lain.';
 
   @override
-  String get quranThemeDiscoveryMissingThemeTitle =>
-      'This theme is not available';
+  String get quranThemeDiscoveryMissingThemeTitle => 'Tema ini tidak tersedia';
 
   @override
   String get quranThemeDiscoveryMissingThemeSubtitle =>
-      'Return to Browse by Topic and choose another Qur\'an theme.';
+      'Kembali ke Telusuri menurut Topik dan pilih tema Al-Qur\'an yang lain.';
 
   @override
   String quranThemeDiscoveryThemeCountLabel(int count) {
-    return '$count themes';
+    return '$count tema';
   }
 
   @override
   String quranThemeDiscoverySurahCountLabel(int count) {
-    return '$count surahs';
+    return '$count surah';
   }
 
   @override
-  String get quranThemeDiscoveryCategoryBelief => 'Belief';
+  String get quranThemeDiscoveryCategoryBelief => 'Keyakinan';
 
   @override
-  String get quranThemeDiscoveryCategoryWorship => 'Worship';
+  String get quranThemeDiscoveryCategoryWorship => 'Memuja';
 
   @override
-  String get quranThemeDiscoveryCategoryCharacter => 'Character';
+  String get quranThemeDiscoveryCategoryCharacter => 'Karakter';
 
   @override
-  String get quranThemeDiscoveryCategoryStoriesProphets =>
-      'Stories and Prophets';
+  String get quranThemeDiscoveryCategoryStoriesProphets => 'Cerita dan Nabi';
 
   @override
-  String get quranThemeDiscoveryCategoryAkhirah => 'Akhirah';
+  String get quranThemeDiscoveryCategoryAkhirah => 'Akhirat';
 
   @override
-  String get quranThemeDiscoveryCategorySocietyEthics => 'Society and Ethics';
+  String get quranThemeDiscoveryCategorySocietyEthics => 'Masyarakat dan Etika';
 
   @override
-  String get quranThemeDiscoveryCategorySignsReflection =>
-      'Signs and Reflection';
+  String get quranThemeDiscoveryCategorySignsReflection => 'Tanda dan Refleksi';
 
   @override
   String get quranPathwaysIslandTitle => 'Qur\'an Pathways';
@@ -39346,7 +39591,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnQuranBeginnerSoftBridgeBeginAction => 'Let’s begin';
 
   @override
-  String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';
+  String get settingsThemeChoiceMidnightManuscript => 'Manuskrip Tengah Malam';
 
   @override
   String get settingsThemeChoiceNoorGlass => 'Noor Glass';
@@ -39362,10 +39607,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsThemeChoiceNoorMidnightManuscript =>
-      'Noor Midnight Manuscript';
+      'Manuskrip Tengah Malam Noor';
 
   @override
-  String get settingsThemeChoiceNoorKids => 'Noor Kids';
+  String get settingsThemeChoiceNoorKids => 'Noor Anak';
 
   @override
   String get settingsThemeModeNoorGlassDescription =>
@@ -39385,7 +39630,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
-      'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.';
+      'Nuansa tinta gelap dengan aksen emas hangat dan suasana manuskrip yang tenang.';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptDescription =>
@@ -39397,19 +39642,19 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsThemeModePickerHelper =>
-      'Choose the atmosphere that feels most at home in your journey.';
+      'Pilih suasana yang terasa paling cocok untuk perjalananmu.';
 
   @override
   String get settingsThemeModeDefaultBestFor =>
-      'Best for everyday calm and balanced use.';
+      'Terbaik untuk penggunaan harian yang tenang dan seimbang.';
 
   @override
   String get settingsThemeModeCalmBeautifulBestFor =>
-      'Best if you prefer the earlier soft Path of Nūr atmosphere.';
+      'Terbaik jika kamu menyukai suasana Path of Nūr yang lembut seperti sebelumnya.';
 
   @override
   String get settingsThemeModeEasyReadBestFor =>
-      'Best for longer reading and clearer contrast.';
+      'Terbaik untuk membaca lebih lama dan kontras yang lebih jelas.';
 
   @override
   String get settingsThemeModeNoorGlassBestFor =>
@@ -39417,31 +39662,31 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDarkBestFor =>
-      'Best for evening use when you want the same Noor surfaces in a darker atmosphere.';
+      'Terbaik untuk penggunaan malam saat kamu ingin permukaan Noor yang sama dalam suasana yang lebih gelap.';
 
   @override
   String get settingsThemeModeNoGlassBestFor =>
-      'Best for a stable, opaque look with less visual transparency.';
+      'Terbaik untuk tampilan stabil dan opak dengan transparansi visual yang lebih sedikit.';
 
   @override
   String get settingsThemeModeNoGlassDarkBestFor =>
-      'Best for dark solid surfaces without glass effects.';
+      'Terbaik untuk permukaan gelap solid tanpa efek kaca.';
 
   @override
   String get settingsThemeModeDarkBestFor =>
-      'Best for low-light reading and quieter evenings.';
+      'Terbaik untuk membaca dalam cahaya rendah dan malam yang lebih tenang.';
 
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
-      'Best for evening reflection and Qur’an study.';
+      'Terbaik untuk refleksi malam dan kajian Qur\'an.';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptBestFor =>
-      'Best for rich night reading with manuscript warmth and Noor glow.';
+      'Terbaik untuk membaca malam yang kaya dengan kehangatan manuskrip dan cahaya Noor.';
 
   @override
   String get settingsThemeModeNoorKidsBestFor =>
-      'Best for families who want a lighter, warmer, more playful Noor feel.';
+      'Terbaik untuk keluarga yang menginginkan nuansa Noor yang lebih ringan, hangat, dan ceria.';
 
   @override
   String get editorialDashboardTitle => 'Editorial Dashboard';
@@ -40270,216 +40515,224 @@ class AppLocalizationsId extends AppLocalizations {
   String get editorialDashboardVersionUnknown => 'Version unavailable';
 
   @override
-  String get homeGlassVariantSectionTitle => 'Glass Variants';
+  String get homeGlassVariantSectionTitle => 'Varian Kaca';
 
   @override
   String get homeGlassVariantSectionSubtitle =>
-      'Temporary homepage comparison of calm glass island styles inspired by the Learning Hub.';
+      'Perbandingan sementara di beranda untuk gaya pulau kaca tenang yang terinspirasi dari Learning Hub.';
 
   @override
   String get homeGlassVariantSectionFootnote =>
-      'Temporary comparison band only. This section is isolated and safe to remove once a homepage glass direction is chosen.';
+      'Hanya pita perbandingan sementara. Bagian ini terpisah dan aman dihapus setelah arah kaca beranda dipilih.';
 
   @override
-  String get homeGlassVariantWarmTitle => 'Warm Glass';
+  String get homeGlassVariantWarmTitle => 'Kaca Hangat';
 
   @override
   String get homeGlassVariantWarmSubtitle =>
-      'Parchment warmth with soft gold edges';
+      'Kehangatan perkamen dengan tepi emas lembut';
 
   @override
   String get homeGlassVariantWarmBody =>
-      'A welcoming devotional surface with gentle ivory warmth. It keeps text easy to settle into while still feeling luminous and home-like.';
+      'Permukaan devosional yang ramah dengan kehangatan gading lembut. Teks tetap nyaman dibaca sambil tetap terasa terang dan akrab seperti rumah.';
 
   @override
-  String get homeGlassVariantWarmFooter => 'Best for welcoming home content';
+  String get homeGlassVariantWarmFooter =>
+      'Terbaik untuk konten beranda yang menyambut';
 
   @override
-  String get homeGlassVariantWarmMicro => 'Soft warmth · calm depth';
+  String get homeGlassVariantWarmMicro => 'Hangat lembut · kedalaman tenang';
 
   @override
-  String get homeGlassVariantMilkyTitle => 'Milky Glass';
+  String get homeGlassVariantMilkyTitle => 'Kaca Susu';
 
   @override
-  String get homeGlassVariantMilkySubtitle => 'Cloudy ivory diffusion';
+  String get homeGlassVariantMilkySubtitle => 'Difusi gading berkabut';
 
   @override
   String get homeGlassVariantMilkyBody =>
-      'This denser veil softens whatever sits behind it. It feels serene, readable, and especially safe for text-first spiritual moments.';
+      'Lapisan yang lebih padat ini melembutkan apa pun di belakangnya. Rasanya hening, mudah dibaca, dan sangat aman untuk momen ruhani yang berfokus pada teks.';
 
   @override
-  String get homeGlassVariantMilkyFooter => 'Best for serene reading';
+  String get homeGlassVariantMilkyFooter => 'Terbaik untuk bacaan yang hening';
 
   @override
-  String get homeGlassVariantMilkyMicro => 'Clouded veil · high comfort';
+  String get homeGlassVariantMilkyMicro =>
+      'Lapisan berkabut · kenyamanan tinggi';
 
   @override
-  String get homeGlassVariantCrystalTitle => 'Crystal Glass';
+  String get homeGlassVariantCrystalTitle => 'Kaca Kristal';
 
   @override
   String get homeGlassVariantCrystalSubtitle =>
-      'Clearer, brighter transparency';
+      'Transparansi yang lebih jernih dan terang';
 
   @override
   String get homeGlassVariantCrystalBody =>
-      'A lighter treatment that lets more atmosphere show through. It feels polished and airy while still protecting titles and body text.';
+      'Tampilan yang lebih ringan ini membiarkan lebih banyak atmosfer terlihat. Rasanya rapi dan lapang sambil tetap melindungi judul dan teks utama.';
 
   @override
-  String get homeGlassVariantCrystalFooter => 'Best for premium highlights';
+  String get homeGlassVariantCrystalFooter => 'Terbaik untuk sorotan premium';
 
   @override
-  String get homeGlassVariantCrystalMicro => 'Brighter lift · open clarity';
+  String get homeGlassVariantCrystalMicro =>
+      'Angkat lebih terang · kejernihan terbuka';
 
   @override
-  String get homeGlassVariantNightTitle => 'Night Glass';
+  String get homeGlassVariantNightTitle => 'Kaca Malam';
 
   @override
-  String get homeGlassVariantNightSubtitle => 'Smoky dusk elegance';
+  String get homeGlassVariantNightSubtitle => 'Keanggunan senja berasap';
 
   @override
   String get homeGlassVariantNightBody =>
-      'A darker island for quiet evening depth. It stays soft and readable instead of turning into a hard black panel.';
+      'Pulau yang lebih gelap untuk kedalaman malam yang tenang. Tetap lembut dan terbaca tanpa berubah menjadi panel hitam yang keras.';
 
   @override
-  String get homeGlassVariantNightFooter => 'Best for evening reflection';
+  String get homeGlassVariantNightFooter => 'Terbaik untuk refleksi malam';
 
   @override
-  String get homeGlassVariantNightMicro => 'Low light · calm contrast';
+  String get homeGlassVariantNightMicro => 'Cahaya rendah · kontras tenang';
 
   @override
-  String get homeGlassVariantTintedTitle => 'Tinted Glass';
+  String get homeGlassVariantTintedTitle => 'Kaca Berwarna';
 
   @override
-  String get homeGlassVariantTintedSubtitle => 'Gentle app-colored wash';
+  String get homeGlassVariantTintedSubtitle =>
+      'Sapuan warna aplikasi yang lembut';
 
   @override
   String get homeGlassVariantTintedBody =>
-      'This version adds a subtle personality tint without becoming loud. It still feels grounded in Path of Nūr’s warm palette.';
+      'Versi ini menambahkan nuansa kepribadian yang halus tanpa menjadi mencolok. Tetap terasa membumi dalam palet hangat Path of Nur.';
 
   @override
-  String get homeGlassVariantTintedFooter => 'Best for curated accents';
+  String get homeGlassVariantTintedFooter =>
+      'Terbaik untuk aksen yang dikurasi';
 
   @override
-  String get homeGlassVariantTintedMicro => 'Editorial wash · soft color';
+  String get homeGlassVariantTintedMicro => 'Sapuan editorial · warna lembut';
 
   @override
-  String get homeGlassVariantFrostedTitle => 'Frosted Glass';
+  String get homeGlassVariantFrostedTitle => 'Kaca Buram';
 
   @override
-  String get homeGlassVariantFrostedSubtitle => 'Classic diffuse blur';
+  String get homeGlassVariantFrostedSubtitle => 'Blur difus klasik';
 
   @override
   String get homeGlassVariantFrostedBody =>
-      'A practical blur-first surface that protects readability. It is dependable when content should lead and the material should stay quiet.';
+      'Permukaan praktis yang mengutamakan blur dan menjaga keterbacaan. Andal saat konten harus memimpin dan material tetap tenang.';
 
   @override
-  String get homeGlassVariantFrostedFooter => 'Best for utility islands';
+  String get homeGlassVariantFrostedFooter => 'Terbaik untuk pulau utilitas';
 
   @override
-  String get homeGlassVariantFrostedMicro => 'Diffuse blur · readability first';
+  String get homeGlassVariantFrostedMicro => 'Blur difus · keterbacaan utama';
 
   @override
-  String get homeGlassVariantLayeredTitle => 'Layered Glass';
+  String get homeGlassVariantLayeredTitle => 'Kaca Berlapis';
 
   @override
-  String get homeGlassVariantLayeredSubtitle => 'Subtle inner depth';
+  String get homeGlassVariantLayeredSubtitle => 'Kedalaman dalam yang halus';
 
   @override
   String get homeGlassVariantLayeredBody =>
-      'A calm outer island with a nested inner veil. It helps the surface feel dimensional without turning into a busy showcase.';
+      'Pulau luar yang tenang dengan lapisan dalam yang bertumpuk. Membantu permukaan terasa berdimensi tanpa berubah menjadi tampilan yang ramai.';
 
   @override
-  String get homeGlassVariantLayeredFooter => 'Best for nested hierarchy';
+  String get homeGlassVariantLayeredFooter =>
+      'Terbaik untuk hierarki bertingkat';
 
   @override
-  String get homeGlassVariantLayeredMicro => 'Inner panel · gentle structure';
+  String get homeGlassVariantLayeredMicro => 'Panel dalam · struktur lembut';
 
   @override
-  String get homeGlassVariantEdgeLitTitle => 'Edge-lit Glass';
+  String get homeGlassVariantEdgeLitTitle => 'Kaca Bertepi Cahaya';
 
   @override
-  String get homeGlassVariantEdgeLitSubtitle => 'Delicate rim light';
+  String get homeGlassVariantEdgeLitSubtitle => 'Cahaya tepi yang halus';
 
   @override
   String get homeGlassVariantEdgeLitBody =>
-      'A quieter featured treatment with a soft luminous edge. It adds presence around the perimeter while keeping the center calm.';
+      'Tampilan unggulan yang lebih tenang dengan tepi bercahaya lembut. Menambah kehadiran di pinggiran sambil menjaga bagian tengah tetap tenang.';
 
   @override
-  String get homeGlassVariantEdgeLitFooter => 'Best for featured destinations';
+  String get homeGlassVariantEdgeLitFooter => 'Terbaik untuk tujuan unggulan';
 
   @override
-  String get homeGlassVariantEdgeLitMicro => 'Rim light · subtle emphasis';
+  String get homeGlassVariantEdgeLitMicro => 'Cahaya tepi · penekanan halus';
 
   @override
-  String get homeGlassVariantAdaptiveTitle => 'Adaptive Glass';
+  String get homeGlassVariantAdaptiveTitle => 'Kaca Adaptif';
 
   @override
-  String get homeGlassVariantAdaptiveSubtitle => 'Balanced and practical';
+  String get homeGlassVariantAdaptiveSubtitle => 'Seimbang dan praktis';
 
   @override
   String get homeGlassVariantAdaptiveBody =>
-      'This version tries to stay steady across warmer and deeper surroundings. It feels usable, calm, and flexible for everyday home surfaces.';
+      'Versi ini berusaha tetap stabil di latar yang lebih hangat maupun lebih dalam. Terasa berguna, tenang, dan fleksibel untuk permukaan beranda sehari-hari.';
 
   @override
-  String get homeGlassVariantAdaptiveFooter => 'Best for default balance';
+  String get homeGlassVariantAdaptiveFooter =>
+      'Terbaik untuk keseimbangan default';
 
   @override
-  String get homeGlassVariantAdaptiveMicro => 'Stable blend · everyday fit';
+  String get homeGlassVariantAdaptiveMicro => 'Campuran stabil · cocok harian';
 
   @override
-  String get homeGlassVariantSoftMatteTitle => 'Soft Matte Glass';
+  String get homeGlassVariantSoftMatteTitle => 'Kaca Matte Lembut';
 
   @override
   String get homeGlassVariantSoftMatteSubtitle =>
-      'Muted shine with lower sparkle';
+      'Kilau lembut dengan pantulan lebih rendah';
 
   @override
   String get homeGlassVariantSoftMatteBody =>
-      'Less glossy and more grounded, this surface leans toward restfulness. It keeps the glass mood while reducing reflective energy.';
+      'Kurang mengilap dan lebih membumi, permukaan ini cenderung terasa menenangkan. Menjaga suasana kaca sambil mengurangi energi pantulan.';
 
   @override
-  String get homeGlassVariantSoftMatteFooter => 'Best for restful content';
+  String get homeGlassVariantSoftMatteFooter =>
+      'Terbaik untuk konten yang menenangkan';
 
   @override
-  String get homeGlassVariantSoftMatteMicro => 'Muted sheen · grounded calm';
+  String get homeGlassVariantSoftMatteMicro => 'Kilau redup · tenang membumi';
 
   @override
-  String get homeGlassVariantDenseSanctuaryTitle => 'Dense Sanctuary Glass';
+  String get homeGlassVariantDenseSanctuaryTitle => 'Kaca Suaka Padat';
 
   @override
   String get homeGlassVariantDenseSanctuarySubtitle =>
-      'Sacred calm ivory density';
+      'Kepadatan gading yang hening dan sakral';
 
   @override
   String get homeGlassVariantDenseSanctuaryBody =>
-      'The strongest protective veil in the set. It feels especially suited to sacred, text-heavy moments that need shelter from background noise.';
+      'Lapisan pelindung paling kuat dalam set ini. Sangat cocok untuk momen sakral dan padat teks yang membutuhkan perlindungan dari kebisingan latar.';
 
   @override
   String get homeGlassVariantDenseSanctuaryFooter =>
-      'Best for sacred text focus';
+      'Terbaik untuk fokus pada teks sakral';
 
   @override
   String get homeGlassVariantDenseSanctuaryMicro =>
-      'Sanctuary veil · strongest cover';
+      'Lapisan suaka · perlindungan terkuat';
 
   @override
-  String get homeGlassVariantClearShowcaseTitle => 'Clear Showcase Glass';
+  String get homeGlassVariantClearShowcaseTitle => 'Kaca Vitrin Jernih';
 
   @override
   String get homeGlassVariantClearShowcaseSubtitle =>
-      'Most transparent showcase feel';
+      'Nuansa vitrin paling transparan';
 
   @override
   String get homeGlassVariantClearShowcaseBody =>
-      'The most open option in the set, with more atmosphere visible beneath the surface. It still stays within the app’s calm language rather than turning flashy.';
+      'Pilihan paling terbuka dalam set ini, dengan lebih banyak atmosfer terlihat di balik permukaan. Tetap berada dalam bahasa visual aplikasi yang tenang, bukan menjadi mencolok.';
 
   @override
   String get homeGlassVariantClearShowcaseFooter =>
-      'Best for visual comparison';
+      'Terbaik untuk perbandingan visual';
 
   @override
   String get homeGlassVariantClearShowcaseMicro =>
-      'Most open · careful contrast';
+      'Paling terbuka · kontras terjaga';
 
   @override
   String get loadingHeadlineAllahAkbar => 'اللَّهُ أَكْبَرُ';
@@ -40489,143 +40742,143 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get loadingGreetingMorningTranslation =>
-      'O Allah, by You we enter the morning';
+      'Ya Allah, dengan-Mu kami memasuki pagi';
 
   @override
   String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
 
   @override
   String get loadingGreetingEveningTranslation =>
-      'O Allah, by You we enter the evening';
+      'Ya Allah, dengan-Mu kami memasuki petang';
 
   @override
-  String get loadingWelcomeBack => 'Welcome Back';
+  String get loadingWelcomeBack => 'Selamat datang kembali';
 
   @override
-  String get loadingRestoringProgress => 'Restoring your progress';
+  String get loadingRestoringProgress => 'Memulihkan progres Anda';
 
   @override
-  String get loadingStatusPreparing => 'Preparing your space…';
+  String get loadingStatusPreparing => 'Menyiapkan ruang Anda…';
 
   @override
-  String get loadingStatusRestoring => 'Restoring your progress…';
+  String get loadingStatusRestoring => 'Memulihkan progres Anda…';
 
   @override
-  String get loadingStatusSyncing => 'Syncing your journey…';
+  String get loadingStatusSyncing => 'Menyinkronkan perjalanan Anda…';
 
   @override
-  String get loadingStatusFinalizing => 'Finalizing…';
+  String get loadingStatusFinalizing => 'Menyelesaikan tahap akhir…';
 
   @override
-  String get homeTestOnboardingPill => 'Test Onboarding';
+  String get homeTestOnboardingPill => 'Uji Onboarding';
 
   @override
-  String get homeTestLoadingScreenPill => 'Test Loading Screen';
+  String get homeTestLoadingScreenPill => 'Uji Layar Muat';
 
   @override
-  String get onboardingOpeningTitle => 'A Journey Rooted in Knowledge';
+  String get onboardingOpeningTitle => 'Perjalanan yang Berakar pada Ilmu';
 
   @override
-  String get onboardingOpeningHadithLead => 'The Messenger of Allah ﷺ said:';
+  String get onboardingOpeningHadithLead => 'Rasulullah ﷺ bersabda:';
 
   @override
   String get onboardingOpeningHadithQuote =>
-      '“Seeking knowledge is obligatory upon every Muslim.”';
+      '\"Menuntut ilmu wajib bagi setiap Muslim.\"';
 
   @override
-  String get onboardingOpeningHadithSource => 'Sunan Ibn Majah';
+  String get onboardingOpeningHadithSource => 'Sunan Ibnu Majah';
 
   @override
   String get onboardingOpeningMissionBodyOne =>
-      'In Islam, knowledge is not a luxury. It is a responsibility. And what is obligatory should be within reach for everyone.';
+      'Dalam Islam, ilmu bukanlah kemewahan. Ia adalah tanggung jawab. Dan sesuatu yang wajib seharusnya dapat dijangkau oleh semua orang.';
 
   @override
   String get onboardingOpeningMissionBodyTwo =>
-      'Path of Nur was created with that belief at its core — to help keep learning, remembrance, and growth free and accessible for all.';
+      'Path of Nur dibangun dengan keyakinan itu di intinya, untuk membantu menjaga belajar, dzikir, dan pertumbuhan tetap gratis dan mudah diakses oleh semua orang.';
 
   @override
   String get onboardingOpeningMissionBodyThree =>
-      'Whether you are beginning, returning, or trying to stay consistent, the app should feel like a calm companion for worship, reflection, and daily progress.';
+      'Baik Anda baru memulai, kembali lagi, atau sedang berusaha tetap konsisten, aplikasi ini seharusnya terasa seperti pendamping yang tenang untuk ibadah, refleksi, dan kemajuan harian.';
 
   @override
   String get onboardingOpeningSupportLine =>
-      'This short setup will personalize your experience.';
+      'Pengaturan singkat ini akan mempersonalisasi pengalaman Anda.';
 
   @override
   String get onboardingOpeningPlatformFooter =>
-      'Available across iPhone, iPad, Apple Watch, Mac, Apple TV, Windows, and Android.';
+      'Tersedia di iPhone, iPad, Apple Watch, Mac, Apple TV, Windows, dan Android.';
 
   @override
   String get onboardingFinalWelcomeClosingBody =>
-      'Take it one sincere step at a time. Meaningful progress is built through small, steady acts.';
+      'Jalani satu langkah tulus setiap kali. Kemajuan yang bermakna dibangun melalui amal kecil yang konsisten.';
 
   @override
-  String get onboardingDisclaimerTitle => 'A Gentle Note Before You Begin';
+  String get onboardingDisclaimerTitle => 'Catatan Lembut Sebelum Kamu Memulai';
 
   @override
   String get onboardingDisclaimerIntroBody =>
-      'Path of Nur is not a fatwa app.\nIt is a companion for learning, reflection, worship, and growth.';
+      'Path of Nur bukan aplikasi fatwa.\nIni adalah pendamping untuk belajar, refleksi, ibadah, dan pertumbuhan.';
 
   @override
   String get onboardingDisclaimerSourcesBody =>
-      'The app draws from the Qur’an and Hadith, which are the primary sources of Islamic guidance, along with widely accepted foundational material.';
+      'Aplikasi ini mengambil rujukan dari Qur\'an dan Hadith, yang merupakan sumber utama bimbingan Islam, bersama materi dasar yang diterima luas.';
 
   @override
   String get onboardingDisclaimerNeutralBody =>
-      'Content is presented in a broad and neutral way, rather than as personal guidance from a specific scholar or imam.';
+      'Konten disajikan secara luas dan netral, bukan sebagai bimbingan pribadi dari seorang ulama atau imam tertentu.';
 
   @override
   String get onboardingDisclaimerNotRulingBody =>
-      'It does not replace guidance from a qualified scholar, imam, or mufti, and it does not provide personal religious rulings.';
+      'Ini tidak menggantikan bimbingan dari ulama, imam, atau mufti yang berkualifikasi, dan tidak memberikan fatwa pribadi.';
 
   @override
   String get onboardingDisclaimerSeekScholarBody =>
-      'For personal, sensitive, or complex matters, users should seek guidance from a qualified person of knowledge.';
+      'Untuk persoalan pribadi, sensitif, atau rumit, pengguna sebaiknya mencari bimbingan dari orang berilmu yang berkualifikasi.';
 
   @override
   String get onboardingDisclaimerFeedbackBody =>
-      'Feedback, corrections, and enhancement requests are always welcome and help Path of Nur improve over time.';
+      'Masukan, koreksi, dan permintaan peningkatan selalu diterima dan membantu Path of Nur berkembang dari waktu ke waktu.';
 
   @override
   String get onboardingDisclaimerFooter =>
-      'Built to support your journey, not replace scholarship.';
+      'Dibangun untuk mendukung perjalananmu, bukan menggantikan keilmuan.';
 
   @override
-  String get onboardingThemeTitle => 'Choose your theme';
+  String get onboardingThemeTitle => 'Pilih tema';
 
   @override
   String get onboardingThemeSubtitle =>
-      'Pick the atmosphere that feels most at home in your journey. Changes apply instantly as you explore the previews below.';
+      'Pilih suasana yang terasa paling sesuai untuk perjalananmu. Perubahan diterapkan seketika saat kamu menjelajahi pratinjau di bawah.';
 
   @override
-  String get onboardingThemePreviewTitle => 'Live preview';
+  String get onboardingThemePreviewTitle => 'Pratinjau langsung';
 
   @override
   String get onboardingThemePreviewSubtitle =>
-      'Use this sample text and card layout to compare readability, warmth, and card depth before you continue.';
+      'Gunakan contoh teks dan tata letak kartu ini untuk membandingkan keterbacaan, kehangatan, dan kedalaman kartu sebelum melanjutkan.';
 
   @override
-  String get onboardingThemeSampleTitle => 'A calm companion for your day';
+  String get onboardingThemeSampleTitle => 'Pendamping tenang untuk hari Anda';
 
   @override
   String get onboardingThemeSampleBody =>
-      'Your theme affects how reading, reflection, and daily guidance feel across the app. Choose the one that feels steady and comfortable to return to.';
+      'Tema Anda memengaruhi bagaimana bacaan, refleksi, dan bimbingan harian terasa di seluruh aplikasi. Pilih yang terasa stabil dan nyaman untuk selalu Anda kembali.';
 
   @override
-  String get onboardingThemeSampleChipPrayer => 'Prayer';
+  String get onboardingThemeSampleChipPrayer => 'Ibadah';
 
   @override
-  String get onboardingThemeSampleChipReading => 'Reading';
+  String get onboardingThemeSampleChipReading => 'Membaca';
 
   @override
-  String get onboardingThemeSampleChipReflection => 'Reflection';
+  String get onboardingThemeSampleChipReflection => 'Refleksi';
 
   @override
-  String get onboardingThemeSampleCardTitle => 'Today’s gentle focus';
+  String get onboardingThemeSampleCardTitle => 'Fokus lembut hari ini';
 
   @override
   String get onboardingThemeSampleCardBody =>
-      'A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.';
+      'Tampilan yang lebih lembut dapat membuat membaca dan refleksi terasa lebih tenang. Tema dengan kontras yang lebih kuat dapat memudahkan sesi yang lebih panjang.';
 
   @override
   String get mainPageSearchHint => 'Search sections and tools';
@@ -40650,58 +40903,58 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnPathLevelDeepDiveTitle => 'Deep Dive';
 
   @override
-  String get settingsPageTransitionsTitle => 'Page transitions';
+  String get settingsPageTransitionsTitle => 'Transisi halaman';
 
   @override
   String get settingsPageTransitionsSubtitle =>
-      'Choose how pages move through the app.';
+      'Pilih bagaimana halaman bergerak di dalam aplikasi.';
 
   @override
   String get settingsReduceMotionTransitionOverrideSubtitle =>
-      'Reduce Motion turns off extra transition effects across the app.';
+      'Kurangi Gerakan mematikan efek transisi tambahan di seluruh aplikasi.';
 
   @override
-  String get settingsLearningLevelTitle => 'Learning level';
+  String get settingsLearningLevelTitle => 'Tingkat pembelajaran';
 
   @override
-  String get settingsRunOnboardingTitle => 'Run onboarding again';
+  String get settingsRunOnboardingTitle => 'Jalankan onboarding lagi';
 
   @override
   String get settingsRunOnboardingSubtitle =>
-      'Review and update your setup choices.';
+      'Tinjau dan perbarui pilihan pengaturanmu.';
 
   @override
-  String get settingsPageTransitionStyleDefault => 'Default';
+  String get settingsPageTransitionStyleDefault => 'Bawaan';
 
   @override
-  String get settingsPageTransitionStyleGentleFade => 'Gentle fade';
+  String get settingsPageTransitionStyleGentleFade => 'Pudar lembut';
 
   @override
-  String get settingsPageTransitionStyleIos => 'iOS-style';
+  String get settingsPageTransitionStyleIos => 'Gaya iOS';
 
   @override
-  String get settingsPageTransitionStyleNone => 'None';
+  String get settingsPageTransitionStyleNone => 'Tidak ada';
 
   @override
-  String get onboardingRemindersDisableAllAction =>
-      'Turn off all notifications';
+  String get onboardingRemindersDisableAllAction => 'Matikan semua notifikasi';
 
   @override
-  String get onboardingReminderNone => 'No notification';
+  String get onboardingReminderNone => 'Tanpa notifikasi';
 
   @override
-  String get onboardingAccountOptionsTitle => 'Optional sign in and backup';
+  String get onboardingAccountOptionsTitle => 'Masuk dan cadangan opsional';
 
   @override
   String get onboardingAccountOptionsBody =>
-      'Path of Nūr does not collect your learning data by default. Sign in is only for backup, restore, and cross-device sync where available.';
+      'Path of Nūr tidak mengumpulkan data belajar Anda secara default. Masuk hanya digunakan untuk cadangan, pemulihan, dan sinkronisasi lintas perangkat jika tersedia.';
 
   @override
   String get onboardingAccountOptionsManualBackupBody =>
-      'You can also back up your data manually later from Settings.';
+      'Anda juga dapat mencadangkan data secara manual nanti dari Pengaturan.';
 
   @override
-  String get historyNoEventsForThisDate => 'There are no events for this date.';
+  String get historyNoEventsForThisDate =>
+      'Tidak ada peristiwa untuk tanggal ini.';
 
   @override
   String get worshipQiblaUnavailableOnIpadTitle =>
@@ -40715,10 +40968,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get gardenPageRecentGrowthTracked => 'Tracked';
 
   @override
-  String get hadithReflectionCompletedQuiet => 'Reflection completed.';
+  String get hadithReflectionCompletedQuiet => 'Refleksi selesai.';
 
   @override
-  String get hadithLessonCompletedQuiet => 'Lesson completed.';
+  String get hadithLessonCompletedQuiet => 'Pelajaran selesai.';
 
   @override
   String get bedtimeStoriesCompletionSnackQuiet => 'Story completed.';
@@ -40762,98 +41015,98 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get homeWidgetsNextPrayerTitle => 'Next Prayer';
+  String get homeWidgetsNextPrayerTitle => 'Salat Berikutnya';
 
   @override
-  String get homeWidgetsPrayerOverviewTitle => 'Prayer Overview';
+  String get homeWidgetsPrayerOverviewTitle => 'Ringkasan Salat';
 
   @override
-  String get homeWidgetsDhikrTitle => 'Daily Dhikr';
+  String get homeWidgetsDhikrTitle => 'Zikir Harian';
 
   @override
-  String get homeWidgetsJourneyTitle => 'Journey Progress';
+  String get homeWidgetsJourneyTitle => 'Progress Perjalanan';
 
   @override
-  String get homeWidgetsCurrentPrayerLabel => 'Current prayer';
+  String get homeWidgetsCurrentPrayerLabel => 'Salat saat ini';
 
   @override
-  String get homeWidgetsNextPrayerLabel => 'Next prayer';
+  String get homeWidgetsNextPrayerLabel => 'Salat berikutnya';
 
   @override
-  String get homeWidgetsNoPrayerTimesTitle => 'Prayer times unavailable';
+  String get homeWidgetsNoPrayerTimesTitle => 'Waktu salat tidak tersedia';
 
   @override
   String get homeWidgetsNoPrayerTimesBody =>
-      'Open Path of Nūr to refresh prayer times for today.';
+      'Buka Path of Nur untuk menyegarkan waktu salat hari ini.';
 
   @override
-  String get homeWidgetsDhikrTodayLabel => 'Today';
+  String get homeWidgetsDhikrTodayLabel => 'Hari ini';
 
   @override
-  String get homeWidgetsTargetLabel => 'Target';
+  String get homeWidgetsTargetLabel => 'Sasaran';
 
   @override
-  String get homeWidgetsStreakLabel => 'Streak';
+  String get homeWidgetsStreakLabel => 'Rangkaian';
 
   @override
-  String get homeWidgetsLevelLabel => 'Level';
+  String get homeWidgetsLevelLabel => 'Tingkat';
 
   @override
-  String get homeWidgetsTodayXpLabel => 'Today XP';
+  String get homeWidgetsTodayXpLabel => 'XP hari ini';
 
   @override
   String get homeWidgetsNoSpiritualContentTitle =>
-      'Spiritual content unavailable';
+      'Konten ruhani tidak tersedia';
 
   @override
   String get homeWidgetsNoSpiritualContentBody =>
-      'Open Path of Nūr to refresh today’s spiritual content.';
+      'Buka Path of Nur untuk menyegarkan konten ruhani hari ini.';
 
   @override
-  String get homeWidgetsDuaTitle => 'Daily Dua';
+  String get homeWidgetsDuaTitle => 'Dua Harian';
 
   @override
-  String get homeWidgetsMorningDuaReady => 'Morning dua ready';
+  String get homeWidgetsMorningDuaReady => 'Dua pagi siap';
 
   @override
-  String get homeWidgetsDailyDuaReady => 'Daily dua ready';
+  String get homeWidgetsDailyDuaReady => 'Dua harian siap';
 
   @override
-  String get homeWidgetsEveningDuaReady => 'Evening dua ready';
+  String get homeWidgetsEveningDuaReady => 'Dua petang siap';
 
   @override
-  String get homeWidgetsNightDuaReady => 'Night dua ready';
+  String get homeWidgetsNightDuaReady => 'Dua malam siap';
 
   @override
-  String get homeWidgetsHadithTitle => 'Hadith';
+  String get homeWidgetsHadithTitle => 'Hadis';
 
   @override
-  String get homeWidgetsHadithTodayInline => 'Hadith today';
+  String get homeWidgetsHadithTodayInline => 'Hadis hari ini';
 
   @override
-  String get homeWidgetsAyahTitle => 'Ayah';
+  String get homeWidgetsAyahTitle => 'Ayat';
 
   @override
-  String get homeWidgetsAyahTodayInline => 'Ayah today';
+  String get homeWidgetsAyahTodayInline => 'Ayat hari ini';
 
   @override
-  String get homeWidgetsReflectionTitle => 'Reflection';
+  String get homeWidgetsReflectionTitle => 'Refleksi';
 
   @override
-  String get homeWidgetsReflectionInline => 'Reflection today';
+  String get homeWidgetsReflectionInline => 'Refleksi hari ini';
 
   @override
-  String get homeWidgetsNameOfAllahTitle => 'Name of Allah';
+  String get homeWidgetsNameOfAllahTitle => 'Nama Allah';
 
   @override
-  String get homeWidgetsNameOfAllahInline => 'Name of Allah';
+  String get homeWidgetsNameOfAllahInline => 'Nama Allah';
 
   @override
-  String get homeWidgetsPrayerCountdownSoon => 'Soon';
+  String get homeWidgetsPrayerCountdownSoon => 'Segera';
 
   @override
   String homeWidgetsPrayerCountdownInMinutes(Object minutes) {
-    return 'in ${minutes}m';
+    return '$minutes mnt lagi';
   }
 
   @override
@@ -40861,7 +41114,7 @@ class AppLocalizationsId extends AppLocalizations {
     Object hours,
     Object minutes,
   ) {
-    return 'in ${hours}h ${minutes}m';
+    return '$hours jam $minutes mnt lagi';
   }
 
   @override
@@ -40909,192 +41162,196 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get hadithSearchTitle => 'Search Hadith';
+  String get hadithSearchTitle => 'Cari Hadits';
 
   @override
   String get hadithSearchSubtitle =>
-      'Search the trusted hadith library by text, source, or category.';
+      'Cari pustaka hadis terpercaya berdasarkan teks, sumber, atau kategori.';
 
   @override
-  String get hadithSearchOpenAction => 'Open search';
+  String get hadithSearchOpenAction => 'Buka pencarian';
 
   @override
-  String get hadithSearchFilterAll => 'All';
+  String get hadithSearchFilterAll => 'Semua';
 
   @override
-  String get hadithSearchFilterSource => 'Source';
+  String get hadithSearchFilterSource => 'Sumber';
 
   @override
-  String get hadithSearchFilterCategory => 'Category';
+  String get hadithSearchFilterCategory => 'Kategori';
 
   @override
-  String get hadithSearchFilterSubcategory => 'Subcategory';
+  String get hadithSearchFilterSubcategory => 'Subkategori';
 
   @override
-  String get hadithSearchFilterGrade => 'Grade';
+  String get hadithSearchFilterGrade => 'Nilai';
 
   @override
-  String get hadithSearchEmptyQueryTitle => 'Search the hadith library';
+  String get hadithSearchEmptyQueryTitle => 'Cari di perpustakaan hadis';
 
   @override
   String get hadithSearchEmptyQuerySubtitle =>
-      'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.';
+      'Cari berdasarkan terjemahan, bahasa Arab, buku sumber, narator, kategori, subkategori, atau referensi.';
 
   @override
-  String get hadithSearchSuggestedSourcesTitle => 'Suggested sources';
+  String get hadithSearchSuggestedSourcesTitle => 'Sumber yang disarankan';
 
   @override
-  String get hadithSearchSuggestedCategoriesTitle => 'Suggested categories';
+  String get hadithSearchSuggestedCategoriesTitle => 'Kategori yang disarankan';
 
   @override
-  String get hadithSearchNoResultsTitle => 'No hadith found';
+  String get hadithSearchNoResultsTitle => 'Tidak ada hadis yang ditemukan';
 
   @override
   String get hadithSearchNoResultsSubtitle =>
-      'Try a different phrase, source book, or category.';
+      'Cobalah frasa, buku sumber, atau kategori lain.';
 
   @override
   String hadithSearchResultsCount(int count) {
-    return '$count results';
+    return 'Hasil $count';
   }
 
   @override
-  String get hadithSearchMatchTitle => 'Title match';
+  String get hadithSearchMatchTitle => 'Pertandingan judul';
 
   @override
-  String get hadithSearchMatchExcerpt => 'Excerpt match';
+  String get hadithSearchMatchExcerpt => 'Pertandingan kutipan';
 
   @override
-  String get hadithSearchMatchTranslation => 'Translation match';
+  String get hadithSearchMatchTranslation => 'Pertandingan terjemahan';
 
   @override
-  String get hadithSearchMatchArabic => 'Arabic match';
+  String get hadithSearchMatchArabic => 'Pertandingan Arab';
 
   @override
-  String get hadithSearchMatchTransliteration => 'Transliteration match';
+  String get hadithSearchMatchTransliteration => 'Pertandingan transliterasi';
 
   @override
-  String get hadithSearchMatchSource => 'Source match';
+  String get hadithSearchMatchSource => 'Sumber pertandingan';
 
   @override
-  String get hadithSearchMatchReference => 'Reference match';
+  String get hadithSearchMatchReference => 'Pertandingan referensi';
 
   @override
-  String get hadithSearchMatchNarrator => 'Narrator match';
+  String get hadithSearchMatchNarrator => 'Pertandingan narator';
 
   @override
-  String get hadithSearchMatchCategory => 'Category match';
+  String get hadithSearchMatchChapter => 'Kecocokan bab';
 
   @override
-  String get hadithSearchMatchSubcategory => 'Subcategory match';
+  String get hadithSearchMatchCategory => 'Kecocokan kategori';
 
   @override
-  String get hadithSearchMatchGrade => 'Grade match';
+  String get hadithSearchMatchSubcategory => 'Pertandingan subkategori';
 
   @override
-  String get hadithSearchSuggestionsTitle => 'Suggestions';
+  String get hadithSearchMatchGrade => 'Pertandingan kelas';
 
   @override
-  String get hadithSearchRecentTitle => 'Recent searches';
+  String get hadithSearchSuggestionsTitle => 'Saran';
 
   @override
-  String get hadithSearchClearRecents => 'Clear';
+  String get hadithSearchRecentTitle => 'Pencarian terkini';
 
   @override
-  String get hadithSearchNoRecent => 'No recent searches yet.';
+  String get hadithSearchClearRecents => 'Jernih';
 
   @override
-  String get hadithSearchNoResultsTryBroader => 'Try a broader phrase.';
+  String get hadithSearchNoRecent => 'Belum ada pencarian terkini.';
+
+  @override
+  String get hadithSearchNoResultsTryBroader =>
+      'Cobalah frasa yang lebih luas.';
 
   @override
   String get hadithSearchNoResultsTrySource =>
-      'Try a source book like Riyad as-Salihin.';
+      'Cobalah buku sumber seperti Riyad as-Salihin.';
 
   @override
   String get hadithSearchNoResultsTryCategory =>
-      'Try a category such as Character.';
+      'Coba kategori seperti Karakter.';
 
   @override
-  String get hadithSearchGroupText => 'Text matches';
+  String get hadithSearchGroupText => 'Teks cocok';
 
   @override
-  String get hadithSearchGroupSource => 'Source and reference matches';
+  String get hadithSearchGroupSource => 'Sumber dan referensi cocok';
 
   @override
-  String get hadithSearchGroupTopical => 'Category and topic matches';
+  String get hadithSearchGroupTopical => 'Kecocokan kategori dan topik';
 
   @override
-  String get hadithSearchGroupGrade => 'Grade matches';
+  String get hadithSearchGroupGrade => 'Pertandingan kelas';
 
   @override
-  String get hadithSearchSuggestionIntentions => 'intentions';
+  String get hadithSearchSuggestionIntentions => 'niat';
 
   @override
-  String get hadithSearchSuggestionSincerity => 'sincerity';
+  String get hadithSearchSuggestionSincerity => 'kejujuran';
 
   @override
-  String get hadithSearchSuggestionMercy => 'mercy';
+  String get hadithSearchSuggestionMercy => 'belas kasihan';
 
   @override
-  String get hadithSearchSuggestionRepentance => 'repentance';
+  String get hadithSearchSuggestionRepentance => 'tobat';
 
   @override
-  String get hadithSearchSuggestionDua => 'dua';
+  String get hadithSearchSuggestionDua => 'Doa';
 
   @override
-  String get hadithSearchSuggestionCharacter => 'character';
+  String get hadithSearchSuggestionCharacter => 'karakter';
 
   @override
-  String get hadithSearchSuggestionJustice => 'justice';
+  String get hadithSearchSuggestionJustice => 'keadilan';
 
   @override
-  String get hadithSearchSuggestionGratitude => 'gratitude';
+  String get hadithSearchSuggestionGratitude => 'rasa syukur';
 
   @override
   String get hadithActionBrowseSources => 'Browse by source';
 
   @override
-  String get hadithSourceBrowseTitle => 'Browse by source';
+  String get hadithSourceBrowseTitle => 'Telusuri berdasarkan sumber';
 
   @override
   String get hadithSourceBrowseSubtitle =>
-      'Explore trusted hadith by source collection and chapter where metadata exists.';
+      'Jelajahi hadis tepercaya berdasarkan kumpulan sumber dan bab di mana metadata berada.';
 
   @override
   String get hadithSourceBrowseNoSources =>
-      'No source collections are available yet.';
+      'Belum ada koleksi sumber yang tersedia.';
 
   @override
   String get hadithSourceBrowseNotFoundSubtitle =>
-      'This source could not be found.';
+      'Sumber ini tidak dapat ditemukan.';
 
   @override
   String get hadithSourceBrowseNotFoundBody =>
-      'Try another trusted source collection from the browse list.';
+      'Coba koleksi sumber tepercaya lainnya dari daftar jelajah.';
 
   @override
   String hadithSourceBrowseCollectionSummary(int entryCount, int chapterCount) {
-    return '$entryCount hadith across $chapterCount chapters';
+    return '$entryCount hadits di $chapterCount bab';
   }
 
   @override
   String hadithSourceBrowseCollectionCountOnly(int count) {
-    return '$count hadith';
+    return 'hadis $count';
   }
 
   @override
-  String get hadithSourceBrowseChaptersTitle => 'Chapters';
+  String get hadithSourceBrowseChaptersTitle => 'bab';
 
   @override
   String hadithSourceBrowseChapterSummary(Object chapterLabel, int count) {
-    return '$chapterLabel • $count hadith';
+    return '$chapterLabel • $count hadis';
   }
 
   @override
-  String get hadithSourceBrowseEntriesTitle => 'Entries';
+  String get hadithSourceBrowseEntriesTitle => 'Entri';
 
   @override
-  String get hadithSourceBrowseEntryPreviewTitle => 'Entry preview';
+  String get hadithSourceBrowseEntryPreviewTitle => 'Pratinjau entri';
 
   @override
   String hadithSourceBrowseChapterPageSubtitle(
@@ -41102,7 +41359,7 @@ class AppLocalizationsId extends AppLocalizations {
     Object chapterLabel,
     int count,
   ) {
-    return '$sourceTitle • $chapterLabel • $count hadith';
+    return '$sourceTitle • $chapterLabel • $count hadis';
   }
 
   @override
@@ -41112,17 +41369,17 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String hadithSourceBrowseChapterNumber(int number) {
-    return 'Chapter $number';
+    return 'Bab $number';
   }
 
   @override
-  String get hadithSourceBrowseChapterFallback => 'Chapter';
+  String get hadithSourceBrowseChapterFallback => 'Bab';
 
   @override
-  String get hadithSourceBrowseGeneralChapter => 'General chapter';
+  String get hadithSourceBrowseGeneralChapter => 'Bab Umum';
 
   @override
-  String get hadithSourceBrowseUncategorized => 'Uncategorized';
+  String get hadithSourceBrowseUncategorized => 'Tidak dikategorikan';
 
   @override
   String get editorialRelationTypeExplains => 'Explains';
@@ -41165,47 +41422,48 @@ class AppLocalizationsId extends AppLocalizations {
   String get quranReaderRelatedDuasTitle => 'Related Duas';
 
   @override
-  String get allSearchTitle => 'All Search';
+  String get allSearchTitle => 'Pencarian Global';
 
   @override
   String get allSearchSubtitle =>
-      'Search Qur’an, hadith, duas, and learning content together.';
+      'Cari Qur’an, hadith, doa, dan konten belajar sekaligus.';
 
   @override
-  String get allSearchHint => 'Search across Path of Nur';
+  String get allSearchHint => 'Cari di seluruh Path of Nur';
 
   @override
-  String get allSearchEmptyTitle => 'Search across the app';
+  String get allSearchEmptyTitle => 'Cari di seluruh aplikasi';
 
   @override
   String get allSearchEmptySubtitle =>
-      'We’ll group results by domain so it stays calm and easy to trust.';
+      'Kami akan mengelompokkan hasil berdasarkan domain agar tetap tenang dan mudah dipercaya.';
 
   @override
-  String get allSearchSuggestionsTitle => 'Suggestions';
+  String get allSearchSuggestionsTitle => 'Saran';
 
   @override
-  String get allSearchRecentTitle => 'Recent searches';
+  String get allSearchRecentTitle => 'Pencarian terbaru';
 
   @override
-  String get allSearchClearRecent => 'Clear';
+  String get allSearchClearRecent => 'Hapus';
 
   @override
-  String get allSearchNoRecent => 'No recent searches yet.';
+  String get allSearchNoRecent => 'Belum ada pencarian terbaru.';
 
   @override
-  String get allSearchNoResultsTitle => 'No results yet';
+  String get allSearchNoResultsTitle => 'Belum ada hasil';
 
   @override
   String get allSearchNoResultsSubtitle =>
-      'We could not find a strong match across Qur’an, hadith, duas, or learn content.';
+      'Kami tidak menemukan kecocokan kuat di Qur’an, hadith, doa, atau konten belajar.';
 
   @override
-  String get allSearchNoResultsTipBroader => 'Try a shorter or broader phrase.';
+  String get allSearchNoResultsTipBroader =>
+      'Coba frasa yang lebih singkat atau lebih umum.';
 
   @override
   String get allSearchNoResultsTipDomain =>
-      'You can also jump into a domain search for more depth.';
+      'Anda juga bisa membuka pencarian domain untuk hasil yang lebih mendalam.';
 
   @override
   String get allSearchDomainQuran => 'Qur’an';
@@ -41214,54 +41472,148 @@ class AppLocalizationsId extends AppLocalizations {
   String get allSearchDomainHadith => 'Hadith';
 
   @override
-  String get allSearchDomainDua => 'Duas';
+  String get allSearchDomainDua => 'Doa';
 
   @override
-  String get allSearchDomainLearn => 'Learn';
+  String get allSearchDomainLearn => 'Belajar';
 
   @override
-  String get allSearchViewAllQuran => 'View all in Qur’an';
+  String get allSearchViewAllQuran => 'Lihat semua di Qur’an';
 
   @override
-  String get allSearchViewAllHadith => 'View all in Hadith';
+  String get allSearchViewAllHadith => 'Lihat semua di Hadith';
 
   @override
-  String get allSearchViewAllDua => 'View all in Duas';
+  String get allSearchViewAllDua => 'Lihat semua di Doa';
 
   @override
-  String get allSearchViewAllLearn => 'View all in Learn';
+  String get allSearchViewAllLearn => 'Lihat semua di Belajar';
 
   @override
-  String get allSearchSuggestionMercy => 'mercy';
+  String get allSearchSuggestionMercy => 'rahmat';
 
   @override
-  String get allSearchSuggestionPatience => 'patience';
+  String get allSearchSuggestionPatience => 'kesabaran';
 
   @override
-  String get allSearchSuggestionIntentions => 'intentions';
+  String get allSearchSuggestionIntentions => 'niat';
 
   @override
-  String get allSearchSuggestionRepentance => 'repentance';
+  String get allSearchSuggestionRepentance => 'tobat';
 
   @override
-  String get allSearchSuggestionDua => 'dua';
+  String get allSearchSuggestionDua => 'doa';
 
   @override
-  String get allSearchSuggestionProphets => 'prophets';
+  String get allSearchSuggestionProphets => 'para nabi';
 
   @override
-  String get allSearchSuggestionGratitude => 'gratitude';
+  String get allSearchSuggestionGratitude => 'syukur';
 
   @override
-  String get allSearchSuggestionJustice => 'justice';
+  String get allSearchSuggestionJustice => 'keadilan';
 
   @override
   String allSearchResultsFor(Object query) {
-    return 'Results for \"$query\"';
+    return 'Hasil untuk \"$query\"';
   }
 
   @override
   String allSearchError(Object message) {
-    return 'Search unavailable: $message';
+    return 'Pencarian tidak tersedia: $message';
   }
+
+  @override
+  String get hadithReaderContinueTitle => 'Lanjutkan membaca';
+
+  @override
+  String hadithReaderBackToLane(String lane) {
+    return 'Kembali ke $lane';
+  }
+
+  @override
+  String get hadithReaderBackToResults => 'Kembali ke hasil';
+
+  @override
+  String get hadithReaderPrevious => 'Sebelumnya';
+
+  @override
+  String get hadithReaderNext => 'Berikutnya';
+
+  @override
+  String hadithReaderPosition(int current, int total) {
+    return 'Hadis $current dari $total';
+  }
+
+  @override
+  String hadithReaderChapterPosition(int current, int total) {
+    return 'Hadis $current dari $total di bab ini';
+  }
+
+  @override
+  String get hadithBrowseProgressLabel => 'Kemajuan';
+
+  @override
+  String get hadithBrowseProgressAll => 'Semua entri';
+
+  @override
+  String get hadithBrowseProgressNotReviewed => 'Tidak ditinjau';
+
+  @override
+  String get hadithBrowseProgressReviewing => 'Meninjau';
+
+  @override
+  String get hadithBrowseProgressComplete => 'Menyelesaikan';
+
+  @override
+  String get hadithActionMarkCompleteForBrowse => 'Mark complete';
+
+  @override
+  String get hadithActionCompletedForBrowse => 'Completed';
+
+  @override
+  String get hadithActionMarkIncomplete => 'Mark incomplete';
+
+  @override
+  String get hadithMarkedComplete => 'Hadith marked complete.';
+
+  @override
+  String get hadithMarkedIncomplete => 'Hadith marked incomplete.';
+
+  @override
+  String get hadithBrowsePageTitle => 'Telusuri Hadits';
+
+  @override
+  String get hadithBrowsePageSubtitle =>
+      'Cara yang tenang dan dapat disaring untuk menjelajahi perpustakaan hadis yang lebih luas.';
+
+  @override
+  String get hadithBrowseIntroTitle =>
+      'Mulailah dengan jalur yang lebih tenang';
+
+  @override
+  String get hadithBrowseIntroBody =>
+      'Gunakan halaman ini untuk mempersempit pustaka hadis yang lebih luas berdasarkan sumber, koleksi, kelas, atau status kajian sebelum membuka jalur baca.';
+
+  @override
+  String hadithBrowseSummary(
+    int entries,
+    int sources,
+    int collections,
+    int subcategories,
+  ) {
+    return '$entries hadits di seluruh $sources sumber, $collections koleksi, dan $subcategories subkategori.';
+  }
+
+  @override
+  String get hadithBrowseActiveFiltersTitle => 'Filter aktif';
+
+  @override
+  String get hadithBrowseCollectionLabel => 'Koleksi';
+
+  @override
+  String get hadithBrowseAllCollections => 'Semua koleksi';
+
+  @override
+  String get hadithActionBrowseAllHadith => 'Browse all hadith';
 }

@@ -12,6 +12,7 @@ import '../application/hadith_learning_paths_service.dart';
 import '../application/hadith_path_quiz_service.dart';
 import '../domain/hadith_foundation_models.dart';
 import '../domain/hadith_learning_path.dart';
+import 'hadith_reader_continuity.dart';
 
 class HadithLearningPathPage extends ConsumerWidget {
   const HadithLearningPathPage({super.key, required this.pathId});
@@ -152,6 +153,16 @@ class HadithLearningPathPage extends ConsumerWidget {
   }) {
     final l10n = AppLocalizations.of(context);
     final entryById = {for (final entry in entries) entry.id: entry};
+    final laneContext = HadithReaderLaneContext(
+      kind: HadithReaderLaneKind.path,
+      laneId: path.id,
+      laneTitle: path.title,
+      orderedLessonIds: entries
+          .map((entry) => entry.id)
+          .toList(growable: false),
+      returnRouteName: 'hadithPathDetail',
+      returnPathParameters: {'pathId': path.id},
+    );
     return Column(
       children: path.chapters
           .map((chapter) {
@@ -246,6 +257,7 @@ class HadithLearningPathPage extends ConsumerWidget {
                           completed: completed,
                           unlocked: unlocked,
                           nextTeaser: nextTeaser,
+                          laneContext: laneContext,
                         ),
                       );
                     }),
@@ -315,6 +327,16 @@ class HadithLearningPathPage extends ConsumerWidget {
     required List<HadithEntry> entries,
     required HadithLearningPathsProgressState progressState,
   }) {
+    final laneContext = HadithReaderLaneContext(
+      kind: HadithReaderLaneKind.path,
+      laneId: path.id,
+      laneTitle: path.title,
+      orderedLessonIds: entries
+          .map((entry) => entry.id)
+          .toList(growable: false),
+      returnRouteName: 'hadithPathDetail',
+      returnPathParameters: {'pathId': path.id},
+    );
     return Column(
       children: entries
           .asMap()
@@ -338,6 +360,7 @@ class HadithLearningPathPage extends ConsumerWidget {
                 completed: completed,
                 unlocked: unlocked,
                 nextTeaser: _nextLessonTeaser(path, entries, index),
+                laneContext: laneContext,
               ),
             );
           })
@@ -351,6 +374,7 @@ class HadithLearningPathPage extends ConsumerWidget {
     required bool completed,
     required bool unlocked,
     required String? nextTeaser,
+    required HadithReaderLaneContext laneContext,
   }) {
     final l10n = AppLocalizations.of(context);
     return PremiumCard(
@@ -362,18 +386,21 @@ class HadithLearningPathPage extends ConsumerWidget {
           '${l10n.hadithPathQuranConnections(entry.quranConnections.length)}'
           '${nextTeaser == null ? '' : '\n${l10n.hadithPathNextLesson(nextTeaser)}'}',
         ),
-        trailing: Icon(
-          completed
-              ? Icons.check_circle_rounded
-              : (unlocked
-                    ? Icons.chevron_right_rounded
-                    : Icons.lock_outline_rounded),
-          color: completed ? AppColors.onSurface : AppColors.onSurfaceSubtle,
-        ),
+        trailing: completed || !unlocked
+            ? Icon(
+                completed
+                    ? Icons.check_circle_rounded
+                    : Icons.lock_outline_rounded,
+                color: completed
+                    ? AppColors.onSurface
+                    : AppColors.onSurfaceSubtle,
+              )
+            : null,
         onTap: unlocked
-            ? () => context.pushNamed(
-                'hadithLessonDetail',
-                pathParameters: {'lessonId': entry.id},
+            ? () => pushHadithLessonDetail(
+                context,
+                lessonId: entry.id,
+                laneContext: laneContext,
               )
             : null,
       ),

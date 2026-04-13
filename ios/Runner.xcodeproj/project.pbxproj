@@ -1092,13 +1092,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1128,13 +1124,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1386,7 +1378,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = "PathOfNurWatch Watch App Extension/PathOfNurWatchWatchExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App Extension/Info.plist";
@@ -1395,7 +1387,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1416,7 +1408,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = PathOfNurWatchComplications/PathOfNurWatchComplications.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurWatchComplications/Info.plist;
@@ -1425,7 +1417,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1444,7 +1436,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = "PathOfNurWatch Watch App Extension/PathOfNurWatchWatchExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App Extension/Info.plist";
@@ -1453,7 +1445,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1539,7 +1531,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1548,7 +1540,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1567,7 +1559,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PrayerLiveActivityExtension/Info.plist;
@@ -1577,7 +1569,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				NSSUPPORTSLIVEACTIVITIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_LIVE_ACTIVITY_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1595,10 +1587,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1614,10 +1606,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1631,10 +1623,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1648,7 +1640,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = "PathOfNurWatch Watch App Extension/PathOfNurWatchWatchExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App Extension/Info.plist";
@@ -1657,7 +1649,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1679,7 +1671,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PrayerLiveActivityExtension/Info.plist;
@@ -1689,7 +1681,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				NSSUPPORTSLIVEACTIVITIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_LIVE_ACTIVITY_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1706,11 +1698,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App/Info.plist";
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1732,7 +1724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -1742,7 +1734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TV_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1760,11 +1752,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App/Info.plist";
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1920,7 +1912,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1929,7 +1921,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1950,7 +1942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
@@ -1959,7 +1951,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1978,7 +1970,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = PathOfNurWatchComplications/PathOfNurWatchComplications.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurWatchComplications/Info.plist;
@@ -1987,7 +1979,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2008,7 +2000,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = PathOfNurHomeWidgets/PathOfNurHomeWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurHomeWidgets/Info.plist;
@@ -2018,7 +2010,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE).homewidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2038,7 +2030,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = PathOfNurHomeWidgets/PathOfNurHomeWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurHomeWidgets/Info.plist;
@@ -2048,7 +2040,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE).homewidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2068,7 +2060,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = PathOfNurHomeWidgets/PathOfNurHomeWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurHomeWidgets/Info.plist;
@@ -2078,7 +2070,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE).homewidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -2097,7 +2089,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PrayerLiveActivityExtension/Info.plist;
@@ -2107,7 +2099,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				NSSUPPORTSLIVEACTIVITIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_LIVE_ACTIVITY_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2125,7 +2117,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -2135,7 +2127,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TV_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -2154,7 +2146,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = PathOfNurWatchComplications/PathOfNurWatchComplications.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurWatchComplications/Info.plist;
@@ -2163,7 +2155,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2182,11 +2174,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App/Info.plist";
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2207,7 +2199,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -2217,7 +2209,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.18;
+				MARKETING_VERSION = 1.2.20;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;

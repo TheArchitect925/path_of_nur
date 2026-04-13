@@ -11,10 +11,13 @@ import '../../../features/learn/divine_life_lessons/presentation/divine_life_les
 import '../../../features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart';
 import '../../../features/learn/divine_life_lessons/presentation/divine_life_reflection_page.dart';
 import '../../../features/learn/hadith/application/hadith_path_quiz_service.dart';
+import '../../../features/learn/hadith/presentation/hadith_browse_page.dart';
 import '../../../features/learn/hadith/presentation/hadith_landing_page.dart';
 import '../../../features/learn/hadith/presentation/hadith_learning_path_page.dart';
 import '../../../features/learn/hadith/presentation/hadith_lesson_page.dart';
+import '../../../features/learn/hadith/presentation/hadith_narrator_page.dart';
 import '../../../features/learn/hadith/presentation/hadith_quiz_session_page.dart';
+import '../../../features/learn/hadith/presentation/hadith_reader_continuity.dart';
 import '../../../features/learn/hadith/presentation/hadith_search_page.dart';
 import '../../../features/learn/hadith/presentation/hadith_source_browse_page.dart';
 import '../../../features/learn/hadith/presentation/hadith_subcategory_page.dart';
@@ -320,6 +323,12 @@ List<RouteBase> buildLearnContentDomainRoutes() {
           const MaterialPage(child: HadithLandingPage()),
     ),
     GoRoute(
+      path: '/learn/hadith/browse',
+      name: 'hadithBrowse',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: HadithBrowsePage()),
+    ),
+    GoRoute(
       path: '/learn/hadith/search',
       name: 'hadithSearch',
       pageBuilder: (context, state) => MaterialPage(
@@ -377,6 +386,19 @@ List<RouteBase> buildLearnContentDomainRoutes() {
       },
     ),
     GoRoute(
+      path: '/learn/hadith/collection/:collectionId',
+      name: 'hadithCollectionDetail',
+      pageBuilder: (context, state) {
+        final collectionId = state.pathParameters['collectionId'] ?? '';
+        if (collectionId.isEmpty) {
+          return const MaterialPage(child: HadithLandingPage());
+        }
+        return MaterialPage(
+          child: HadithCollectionPage(collectionId: collectionId),
+        );
+      },
+    ),
+    GoRoute(
       path: '/learn/hadith/subcategory/:subcategoryId',
       name: 'hadithSubcategoryDetail',
       pageBuilder: (context, state) {
@@ -385,7 +407,7 @@ List<RouteBase> buildLearnContentDomainRoutes() {
           return const MaterialPage(child: HadithLandingPage());
         }
         return MaterialPage(
-          child: HadithSubcategoryPage(subcategoryId: subcategoryId),
+          child: HadithCollectionPage(collectionId: subcategoryId),
         );
       },
     ),
@@ -397,7 +419,26 @@ List<RouteBase> buildLearnContentDomainRoutes() {
         if (lessonId.isEmpty) {
           return const MaterialPage(child: HadithLandingPage());
         }
-        return MaterialPage(child: HadithLessonPage(lessonId: lessonId));
+        return MaterialPage(
+          child: HadithLessonPage(
+            lessonId: lessonId,
+            laneContext: switch (state.extra) {
+              final HadithReaderLaneContext lane => lane,
+              _ => null,
+            },
+          ),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/learn/hadith/narrator/:narratorId',
+      name: 'hadithNarratorDetail',
+      pageBuilder: (context, state) {
+        final narratorId = state.pathParameters['narratorId'] ?? '';
+        if (narratorId.isEmpty) {
+          return const MaterialPage(child: HadithLandingPage());
+        }
+        return MaterialPage(child: HadithNarratorPage(narratorId: narratorId));
       },
     ),
     GoRoute(

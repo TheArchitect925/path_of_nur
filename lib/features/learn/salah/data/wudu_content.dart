@@ -12,7 +12,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       subtitle: l10n.wuduTrainerStep1Subtitle,
       teachingNote: l10n.wuduTrainerStep1Note,
       iconKey: 'intention',
-      imageAssetPath: 'assets/images/wudu/step_01_niyyah.png',
+      imageAssetPath: 'assets/images/wudu/step_01_niyyah.webp',
       quizKeywords: const <String>['niyyah', 'intention', 'beginning'],
     ),
     WuduStep(
@@ -21,7 +21,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep2Title,
       subtitle: l10n.wuduTrainerStep2Subtitle,
       iconKey: 'water',
-      imageAssetPath: 'assets/images/wudu/step_02_prepare_water.png',
+      imageAssetPath: 'assets/images/wudu/step_02_prepare_water.webp',
       quizKeywords: const <String>['water', 'clean', 'prepare'],
     ),
     WuduStep(
@@ -30,7 +30,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep3Title,
       subtitle: l10n.wuduTrainerStep3Subtitle,
       iconKey: 'bismillah',
-      imageAssetPath: 'assets/images/wudu/step_03_bismillah.png',
+      imageAssetPath: 'assets/images/wudu/step_03_bismillah.webp',
       quizKeywords: const <String>['bismillah', 'start', 'name of Allah'],
     ),
     WuduStep(
@@ -39,7 +39,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep4Title,
       subtitle: l10n.wuduTrainerStep4Subtitle,
       iconKey: 'hands',
-      imageAssetPath: 'assets/images/wudu/step_04_wash_hands.png',
+      imageAssetPath: 'assets/images/wudu/step_04_wash_hands.webp',
       quizKeywords: const <String>['hands', 'wash'],
     ),
     WuduStep(
@@ -48,7 +48,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep5Title,
       subtitle: l10n.wuduTrainerStep5Subtitle,
       iconKey: 'mouth',
-      imageAssetPath: 'assets/images/wudu/step_05_rinse_mouth_card.png',
+      imageAssetPath: 'assets/images/wudu/step_05_rinse_mouth_card.webp',
       quizKeywords: const <String>['mouth', 'rinse'],
     ),
     WuduStep(
@@ -57,7 +57,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep6Title,
       subtitle: l10n.wuduTrainerStep6Subtitle,
       iconKey: 'nose',
-      imageAssetPath: 'assets/images/wudu/step_06_sniff_nose_card.png',
+      imageAssetPath: 'assets/images/wudu/step_06_sniff_nose_card.webp',
       quizKeywords: const <String>['nose', 'sniff', 'nostrils'],
     ),
     WuduStep(
@@ -66,7 +66,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep7Title,
       subtitle: l10n.wuduTrainerStep7Subtitle,
       iconKey: 'nose',
-      imageAssetPath: 'assets/images/wudu/step_07_blow_nose_card.png',
+      imageAssetPath: 'assets/images/wudu/step_07_blow_nose_card.webp',
       quizKeywords: const <String>['nose', 'blow'],
     ),
     WuduStep(
@@ -75,7 +75,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep8Title,
       subtitle: l10n.wuduTrainerStep8Subtitle,
       iconKey: 'face',
-      imageAssetPath: 'assets/images/wudu/step_08_wash_face_card.png',
+      imageAssetPath: 'assets/images/wudu/step_08_wash_face_card.webp',
       quizKeywords: const <String>['face', 'wash'],
     ),
     WuduStep(
@@ -84,7 +84,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep9Title,
       subtitle: l10n.wuduTrainerStep9Subtitle,
       iconKey: 'arm_right',
-      imageAssetPath: 'assets/images/wudu/step_09_wash_arms.png',
+      imageAssetPath: 'assets/images/wudu/step_09_wash_arms.webp',
       quizKeywords: const <String>['arms', 'elbows', 'wash'],
     ),
     WuduStep(
@@ -93,7 +93,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep10Title,
       subtitle: l10n.wuduTrainerStep10Subtitle,
       iconKey: 'head',
-      imageAssetPath: 'assets/images/wudu/step_10_wipe_head.png',
+      imageAssetPath: 'assets/images/wudu/step_10_wipe_head.webp',
       quizKeywords: const <String>['head', 'wipe'],
     ),
     WuduStep(
@@ -102,7 +102,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep11Title,
       subtitle: l10n.wuduTrainerStep11Subtitle,
       iconKey: 'foot_right',
-      imageAssetPath: 'assets/images/wudu/step_11_wash_feet_card.png',
+      imageAssetPath: 'assets/images/wudu/step_11_wash_feet_card.webp',
       quizKeywords: const <String>['feet', 'ankles', 'toes'],
     ),
     WuduStep(
@@ -111,7 +111,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep12Title,
       subtitle: l10n.wuduTrainerStep12Subtitle,
       iconKey: 'shahada',
-      imageAssetPath: 'assets/images/wudu/step_12_shahada_card.png',
+      imageAssetPath: 'assets/images/wudu/step_12_shahada_card.webp',
       quizKeywords: const <String>['shahada', 'testimony'],
     ),
     WuduStep(
@@ -120,7 +120,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep13Title,
       subtitle: l10n.wuduTrainerStep13Subtitle,
       iconKey: 'dua',
-      imageAssetPath: 'assets/images/wudu/step_13_dua.png',
+      imageAssetPath: 'assets/images/wudu/step_13_dua.webp',
       quizKeywords: const <String>['dua', 'supplication'],
     ),
     WuduStep(
@@ -129,7 +129,7 @@ List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
       title: l10n.wuduTrainerStep14Title,
       subtitle: l10n.wuduTrainerStep14Subtitle,
       iconKey: 'cleanup',
-      imageAssetPath: 'assets/images/wudu/step_14_cleanup_card.png',
+      imageAssetPath: 'assets/images/wudu/step_14_cleanup_card.webp',
       quizKeywords: const <String>['cleanup', 'water', 'tidy'],
     ),
   ];

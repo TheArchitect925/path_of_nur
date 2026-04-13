@@ -6,7 +6,7 @@ class LearnIconRegistry {
   const LearnIconRegistry._();
 
   static const Map<String, String> _assetByKey = {
-    'quran': 'assets/icons/learn_quran_cropped.png',
+    'quran': 'assets/icons/learn_quran_cropped.webp',
   };
 
   static const Map<String, IconData> _iconByKey = {

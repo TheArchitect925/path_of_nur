@@ -5,16 +5,15 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../application/hadith_reader_share_service.dart';
 import '../application/hadith_foundation_repository.dart';
 import '../domain/hadith_foundation_models.dart';
 import '../domain/hadith_source_browse_models.dart';
+import 'hadith_reader_continuity.dart';
+import 'hadith_reader_metadata.dart';
 
 class HadithSourceBrowsePage extends ConsumerWidget {
-  const HadithSourceBrowsePage({
-    super.key,
-    this.sourceId,
-    this.chapterId,
-  });
+  const HadithSourceBrowsePage({super.key, this.sourceId, this.chapterId});
 
   final String? sourceId;
   final String? chapterId;
@@ -67,7 +66,6 @@ class _HadithSourceCollectionListPage extends ConsumerWidget {
                             collection.entryCount,
                           ),
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'hadithSourceDetail',
                     pathParameters: {'sourceId': collection.id},
@@ -89,18 +87,36 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final collection = ref.watch(hadithSourceBrowseCollectionByIdProvider(sourceId));
+    final collection = ref.watch(
+      hadithSourceBrowseCollectionByIdProvider(sourceId),
+    );
     if (collection == null) {
       return AppPageScaffold(
         headerIcon: Icons.library_books_rounded,
         title: l10n.hadithSourceBrowseTitle,
         subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
-        children: [PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody))],
+        children: [
+          PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody)),
+        ],
       );
     }
 
     final chapters = ref.watch(hadithSourceBrowseChaptersProvider(sourceId));
-    final entries = ref.watch(hadithEntriesForSourceCollectionProvider(sourceId));
+    final entries = ref.watch(
+      hadithEntriesForSourceCollectionProvider(sourceId),
+    );
+    final laneContext = chapters.isEmpty
+        ? HadithReaderLaneContext(
+            kind: HadithReaderLaneKind.sourceCollection,
+            laneId: collection.id,
+            laneTitle: collection.title,
+            orderedLessonIds: entries
+                .map((entry) => entry.id)
+                .toList(growable: false),
+            returnRouteName: 'hadithSourceDetail',
+            returnPathParameters: {'sourceId': sourceId},
+          )
+        : null;
 
     return AppPageScaffold(
       headerIcon: Icons.library_books_rounded,
@@ -133,7 +149,6 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
                       chapter.entryCount,
                     ),
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'hadithSourceChapterDetail',
                     pathParameters: {
@@ -161,7 +176,10 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
             .map(
               (entry) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
-                child: _HadithBrowseEntryTile(entry: entry),
+                child: _HadithBrowseEntryTile(
+                  entry: entry,
+                  laneContext: laneContext,
+                ),
               ),
             ),
       ],
@@ -181,7 +199,9 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final collection = ref.watch(hadithSourceBrowseCollectionByIdProvider(sourceId));
+    final collection = ref.watch(
+      hadithSourceBrowseCollectionByIdProvider(sourceId),
+    );
     final chapter = ref.watch(
       hadithSourceBrowseChapterByIdProvider((
         sourceId: sourceId,
@@ -193,7 +213,9 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
         headerIcon: Icons.library_books_rounded,
         title: l10n.hadithSourceBrowseTitle,
         subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
-        children: [PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody))],
+        children: [
+          PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody)),
+        ],
       );
     }
 
@@ -202,6 +224,16 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
         sourceId: sourceId,
         chapterId: chapterId,
       )),
+    );
+    final laneContext = HadithReaderLaneContext(
+      kind: HadithReaderLaneKind.sourceChapter,
+      laneId: '$sourceId:$chapterId',
+      laneTitle: chapterPrimaryLabel(chapter, l10n),
+      orderedLessonIds: entries
+          .map((entry) => entry.id)
+          .toList(growable: false),
+      returnRouteName: 'hadithSourceChapterDetail',
+      returnPathParameters: {'sourceId': sourceId, 'chapterId': chapterId},
     );
 
     return AppPageScaffold(
@@ -216,7 +248,10 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
         ...entries.map(
           (entry) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _HadithBrowseEntryTile(entry: entry),
+            child: _HadithBrowseEntryTile(
+              entry: entry,
+              laneContext: laneContext,
+            ),
           ),
         ),
       ],
@@ -225,9 +260,10 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
 }
 
 class _HadithBrowseEntryTile extends StatelessWidget {
-  const _HadithBrowseEntryTile({required this.entry});
+  const _HadithBrowseEntryTile({required this.entry, this.laneContext});
 
   final HadithEntry entry;
+  final HadithReaderLaneContext? laneContext;
 
   @override
   Widget build(BuildContext context) {
@@ -242,10 +278,15 @@ class _HadithBrowseEntryTile extends StatelessWidget {
             entry.standardizedGrade.displayLabel,
           ),
         ),
-        trailing: const Icon(Icons.chevron_right_rounded),
-        onTap: () => context.pushNamed(
-          'hadithLessonDetail',
-          pathParameters: {'lessonId': entry.id},
+        trailing: IconButton(
+          onPressed: () => _shareCompactHadith(context, entry),
+          tooltip: l10n.hadithActionShare,
+          icon: const Icon(Icons.share_outlined),
+        ),
+        onTap: () => pushHadithLessonDetail(
+          context,
+          lessonId: entry.id,
+          laneContext: laneContext,
         ),
       ),
     );
@@ -275,6 +316,16 @@ String chapterPrimaryLabel(
     return chapter.title;
   }
   return chapterLabel(chapter, l10n);
+}
+
+Future<void> _shareCompactHadith(BuildContext context, HadithEntry entry) {
+  final l10n = AppLocalizations.of(context);
+  final formattedReference = formatHadithReferenceForDisplay(l10n, entry);
+  final text = HadithReaderShareService.buildCompactShareText(
+    entry: entry,
+    formattedReference: formattedReference,
+  );
+  return HadithReaderShareService.shareText(context, text);
 }
 
 String chapterSecondaryLabel(
