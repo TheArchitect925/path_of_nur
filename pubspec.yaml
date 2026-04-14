@@ -141,6 +141,6 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/icons/app_iconv2.png
-  image_path_ios: assets/icons/app_iconv2.png
-  image_path_ios_dark_transparent: assets/icons/app_icondarkv2.png
+  image_path: tooling/app_icon_sources/app_iconv2.png
+  image_path_ios: tooling/app_icon_sources/app_iconv2.png
+  image_path_ios_dark_transparent: tooling/app_icon_sources/app_icondarkv2.png

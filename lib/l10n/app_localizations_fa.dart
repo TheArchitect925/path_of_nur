@@ -18352,15 +18352,11 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   ) {
-    return 'سطح $level · $days روز پیاپی';
+    return '$levelSummary • $daysSummary';
   }
 
   @override
@@ -18604,6 +18600,96 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get settingsAccountsSyncSubtitle =>
       'دستگاه‌های مشترک، نمایه‌های محافظت‌شده، حالت همگام‌سازی و پشتیبان‌گیری را بدون ایجاد مزاحمت در سفر فعلی‌تان مدیریت کنید.';
+
+  @override
+  String get settingsCareModesTitle => 'Care & Life Moments';
+
+  @override
+  String get settingsCareModesSubtitle =>
+      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+
+  @override
+  String get settingsCareModeRamadanTitle => 'Ramadan support';
+
+  @override
+  String get settingsCareModeRamadanBody =>
+      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+
+  @override
+  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+
+  @override
+  String get settingsCareModeLossTitle => 'Loss support';
+
+  @override
+  String get settingsCareModeLossBody =>
+      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+
+  @override
+  String get settingsCareModeLossPrayer =>
+      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+
+  @override
+  String get settingsCareModeLossHadith =>
+      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+
+  @override
+  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+
+  @override
+  String get settingsCareModeGentleTitle => 'Gentle mode support';
+
+  @override
+  String get settingsCareModeGentleBody =>
+      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+
+  @override
+  String get settingsGentleModeReducedNotificationsSubtitle =>
+      'Reduce notification intensity and keep reminders softer.';
+
+  @override
+  String get settingsUnwellModeTitle => 'Unwell Mode';
+
+  @override
+  String get settingsUnwellModeSubtitle =>
+      'Protect the day when illness makes worship harder.';
+
+  @override
+  String get settingsCareModeUnwellTitle => 'Unwell support';
+
+  @override
+  String get settingsCareModeUnwellBody =>
+      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+
+  @override
+  String get settingsCareModeUnwellPrayerEase =>
+      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+
+  @override
+  String get settingsCareModeUnwellHadith =>
+      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+
+  @override
+  String get settingsCycleDaysTitle => 'Cycle Days';
+
+  @override
+  String get settingsCycleDaysSubtitle =>
+      'For sisters only. Protect worship continuity during excused days.';
+
+  @override
+  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+
+  @override
+  String get settingsCycleDaysSupportBody =>
+      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+
+  @override
+  String get settingsCycleDaysReminderSupport =>
+      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+
+  @override
+  String get settingsCycleDaysStreakSupport =>
+      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
 
   @override
   String get settingsCurrentProfileTitle => 'نمایه فعلی';
@@ -19873,11 +19959,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'یک اذان فجر اختصاصی را انتخاب کنید، کلیپ‌های همراه را پیش‌نمایش کنید، و صدای دعا را آفلاین نگه دارید.';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'صدای اذان را فعال کنید';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'یادآوری‌های صلاح می‌توانند اذان انتخاب‌شده را وقتی روشن است پخش کنند.';
+  String get settingsAdhanChoiceTitle => 'Adhan';
 
   @override
   String get settingsRegularAdhanTitle => 'اذان منظم';
@@ -19914,10 +19996,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'پخش پیش‌نمایش';
 
   @override
-  String get settingsTestRegularAdhan => 'اذان منظم را امتحان کنید';
-
-  @override
-  String get settingsTestFajrAdhan => 'تست اذان فجر';
+  String get settingsTestAdhan => 'Test Adhan';
 
   @override
   String get settingsUseAppVolumeTitle => 'از حجم برنامه استفاده کنید';
@@ -19993,30 +20072,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get settingsVisualPreferencesTitle => 'تنظیمات بصری';
 
   @override
-  String get settingsDisableGlassTransparencyTitle =>
-      'شفافیت شیشه ای را غیرفعال کنید';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'به جای شیشه شفاف از سطوح جامد استفاده کنید.';
-
-  @override
   String get settingsDisableColoredGlassTitle => 'شیشه رنگی را غیرفعال کنید';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'سطوح شیشه ای را در حین از بین بردن رنگ های رنگی نگه دارید.';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'شفافیت شیشه ای';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'نحوه نمایش کارت‌های شیشه‌ای شفاف، جزایر، قرص‌ها و پانل‌ها را در برنامه تنظیم کنید.';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'برای تنظیم مجدد شفافیت، شیشه را دوباره روشن کنید.';
 
   @override
   String get settingsVisualPreferenceUpdated => 'اولویت بصری به‌روزرسانی شد';
@@ -20029,10 +20089,6 @@ class AppLocalizationsFa extends AppLocalizations {
       'تصاویر پس زمینه تزئینی را برای نمای تمیزتر پنهان کنید.';
 
   @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'این تنظیمات ظاهر برنامه را بدون تغییر محتوا یا پیشرفت شما تغییر می دهد.';
-
-  @override
   String get settingsDefaultAppearanceActive => 'ظاهر پیش فرض فعال است';
 
   @override
@@ -20041,6 +20097,13 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settingsResetAppearance => 'تنظیم مجدد ظاهر';
+
+  @override
+  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+
+  @override
+  String get settingsFollowSystemThemeSubtitle =>
+      'Match the app with your device\'s current light or dark appearance.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'اطلاعیه های صلاح';
@@ -59857,18 +59920,6 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
-    String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
-  ) {
-    return 'سطح $level · $days روز پیاپی';
-  }
-
-  @override
   String get settingsWhatsNewTitle => 'چه جدید است';
 
   @override
@@ -61376,13 +61427,6 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'یک اذان فجر اختصاصی را انتخاب کنید، کلیپ‌های همراه را پیش‌نمایش کنید، و صدای دعا را آفلاین نگه دارید.';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'صدای اذان را فعال کنید';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'یادآوری‌های صلاح می‌توانند اذان انتخاب‌شده را وقتی روشن است پخش کنند.';
-
-  @override
   String get settingsRegularAdhanTitle => 'اذان منظم';
 
   @override
@@ -61415,12 +61459,6 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get settingsAdhanPreviewPlayTooltip => 'پخش پیش‌نمایش';
-
-  @override
-  String get settingsTestRegularAdhan => 'اذان منظم را امتحان کنید';
-
-  @override
-  String get settingsTestFajrAdhan => 'تست اذان فجر';
 
   @override
   String get settingsUseAppVolumeTitle => 'از حجم برنامه استفاده کنید';
@@ -61496,30 +61534,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get settingsVisualPreferencesTitle => 'تنظیمات بصری';
 
   @override
-  String get settingsDisableGlassTransparencyTitle =>
-      'شفافیت شیشه ای را غیرفعال کنید';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'به جای شیشه شفاف از سطوح جامد استفاده کنید.';
-
-  @override
   String get settingsDisableColoredGlassTitle => 'شیشه رنگی را غیرفعال کنید';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'سطوح شیشه ای را در حین از بین بردن رنگ های رنگی نگه دارید.';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'شفافیت شیشه ای';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'نحوه نمایش کارت‌های شیشه‌ای شفاف، جزایر، قرص‌ها و پانل‌ها را در برنامه تنظیم کنید.';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'برای تنظیم مجدد شفافیت، شیشه را دوباره روشن کنید.';
 
   @override
   String get settingsVisualPreferenceUpdated => 'اولویت بصری به‌روزرسانی شد';
@@ -61530,10 +61549,6 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get settingsDisableBackgroundSubtitle =>
       'تصاویر پس زمینه تزئینی را برای نمای تمیزتر پنهان کنید.';
-
-  @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'این تنظیمات ظاهر برنامه را بدون تغییر محتوا یا پیشرفت شما تغییر می دهد.';
 
   @override
   String get settingsDefaultAppearanceActive => 'ظاهر پیش فرض فعال است';

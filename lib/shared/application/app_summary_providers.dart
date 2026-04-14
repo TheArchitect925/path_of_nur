@@ -162,14 +162,14 @@ class ProfileSummary {
     required this.sex,
     required this.selectedLocale,
     required this.level,
-    required this.currentStreakDays,
+    required this.daysUsingApp,
   });
 
   final String name;
   final UserSex sex;
   final Locale selectedLocale;
   final int level;
-  final int currentStreakDays;
+  final int daysUsingApp;
 }
 
 class HomeDashboardSummary {
@@ -293,7 +293,9 @@ final worshipSummaryProvider = Provider<WorshipSummary>((ref) {
   final todayKey = LocalStore.todayKey(DateTime.now());
   final dhikrCountToday =
       dhikr.recentSessions
-          .where((session) => LocalStore.todayKey(session.finishedAt) == todayKey)
+          .where(
+            (session) => LocalStore.todayKey(session.finishedAt) == todayKey,
+          )
           .fold<int>(0, (sum, session) => sum + session.count) +
       dhikr.currentCount;
 
@@ -461,13 +463,24 @@ final profileSummaryProvider = Provider<ProfileSummary>((ref) {
   final user = ref.watch(userProfileProvider);
   final locale = ref.watch(appLocaleProvider) ?? const Locale('en');
   final journey = ref.watch(journeySummaryProvider);
+  final journeyProgress = ref.watch(journeyProgressProvider);
+  final firstTrackedDay = journeyProgress.dayMetricsByKey.keys.toList()..sort();
+  final startedAt = firstTrackedDay.isNotEmpty
+      ? DateTime.tryParse('${firstTrackedDay.first}T00:00:00')
+      : DateTime.tryParse(user.createdAtIso);
+  final now = DateTime.now();
+  final startDay = startedAt == null
+      ? DateTime(now.year, now.month, now.day)
+      : DateTime(startedAt.year, startedAt.month, startedAt.day);
+  final today = DateTime(now.year, now.month, now.day);
+  final daysUsingApp = today.difference(startDay).inDays + 1;
 
   return ProfileSummary(
     name: user.name,
     sex: user.sex,
     selectedLocale: locale,
     level: journey.level,
-    currentStreakDays: journey.currentStreakDays,
+    daysUsingApp: daysUsingApp < 1 ? 1 : daysUsingApp,
   );
 });
 

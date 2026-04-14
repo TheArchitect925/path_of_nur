@@ -18423,15 +18423,11 @@ class AppLocalizationsHa extends AppLocalizations {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   ) {
-    return '_PH_0__ • _PH_1__';
+    return '$levelSummary • $daysSummary';
   }
 
   @override
@@ -18681,6 +18677,96 @@ class AppLocalizationsHa extends AppLocalizations {
   @override
   String get settingsAccountsSyncSubtitle =>
       'Sarrafa na\'urorin da aka raba, bayanan martaba masu kariya, yanayin daidaitawa, da madogara ba tare da dagula tafiyarku na yanzu ba.';
+
+  @override
+  String get settingsCareModesTitle => 'Care & Life Moments';
+
+  @override
+  String get settingsCareModesSubtitle =>
+      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+
+  @override
+  String get settingsCareModeRamadanTitle => 'Ramadan support';
+
+  @override
+  String get settingsCareModeRamadanBody =>
+      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+
+  @override
+  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+
+  @override
+  String get settingsCareModeLossTitle => 'Loss support';
+
+  @override
+  String get settingsCareModeLossBody =>
+      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+
+  @override
+  String get settingsCareModeLossPrayer =>
+      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+
+  @override
+  String get settingsCareModeLossHadith =>
+      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+
+  @override
+  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+
+  @override
+  String get settingsCareModeGentleTitle => 'Gentle mode support';
+
+  @override
+  String get settingsCareModeGentleBody =>
+      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+
+  @override
+  String get settingsGentleModeReducedNotificationsSubtitle =>
+      'Reduce notification intensity and keep reminders softer.';
+
+  @override
+  String get settingsUnwellModeTitle => 'Unwell Mode';
+
+  @override
+  String get settingsUnwellModeSubtitle =>
+      'Protect the day when illness makes worship harder.';
+
+  @override
+  String get settingsCareModeUnwellTitle => 'Unwell support';
+
+  @override
+  String get settingsCareModeUnwellBody =>
+      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+
+  @override
+  String get settingsCareModeUnwellPrayerEase =>
+      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+
+  @override
+  String get settingsCareModeUnwellHadith =>
+      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+
+  @override
+  String get settingsCycleDaysTitle => 'Cycle Days';
+
+  @override
+  String get settingsCycleDaysSubtitle =>
+      'For sisters only. Protect worship continuity during excused days.';
+
+  @override
+  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+
+  @override
+  String get settingsCycleDaysSupportBody =>
+      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+
+  @override
+  String get settingsCycleDaysReminderSupport =>
+      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+
+  @override
+  String get settingsCycleDaysStreakSupport =>
+      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
 
   @override
   String get settingsCurrentProfileTitle => 'Bayanan Bayani na Yanzu';
@@ -19992,11 +20078,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'Zaɓi fajr Adhan da aka keɓe, duba shirye-shiryen shirye-shiryen da aka haɗa, da kiyaye sautin addu\'a a layi.';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'Kunna Adhan audio';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'Tunasarwar Sallah na iya kunna zaɓaɓɓen Adhan lokacin da wannan ke kunne.';
+  String get settingsAdhanChoiceTitle => 'Adhan';
 
   @override
   String get settingsRegularAdhanTitle => 'Adhan na yau da kullun';
@@ -20033,10 +20115,7 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Kunna preview';
 
   @override
-  String get settingsTestRegularAdhan => 'Gwada Adhan na yau da kullun';
-
-  @override
-  String get settingsTestFajrAdhan => 'Gwada Fajr Adhan';
+  String get settingsTestAdhan => 'Test Adhan';
 
   @override
   String get settingsUseAppVolumeTitle => 'Yi amfani da ƙarar App';
@@ -20113,29 +20192,11 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settingsVisualPreferencesTitle => 'Zaɓuɓɓukan gani';
 
   @override
-  String get settingsDisableGlassTransparencyTitle => 'Kashe Bayyanar Gilashin';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'Yi amfani da daskararrun saman maimakon gilashin translucent.';
-
-  @override
   String get settingsDisableColoredGlassTitle => 'Kashe Gilashin Launi';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'Rike saman gilashi yayin cire maganin launi mai launi.';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'Bayyanar Gilashin';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'Daidaita yadda katunan gilashin, tsibirai, kwaya, da fafutoci ke bayyana a cikin ƙa\'idar.';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'Kunna gilashin baya don daidaita bayyana gaskiya.';
 
   @override
   String get settingsVisualPreferenceUpdated => 'An sabunta zaɓi na gani';
@@ -20148,10 +20209,6 @@ class AppLocalizationsHa extends AppLocalizations {
       'Ɓoye hotunan bangon ado na ado don kallon tsafta.';
 
   @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'Waɗannan saitunan suna canza kamannin ƙa\'idar ba tare da canza abun ciki ko ci gaba ba.';
-
-  @override
   String get settingsDefaultAppearanceActive => 'Siffar ta asali tana aiki';
 
   @override
@@ -20160,6 +20217,13 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get settingsResetAppearance => 'Sake saitin Bayyanar';
+
+  @override
+  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+
+  @override
+  String get settingsFollowSystemThemeSubtitle =>
+      'Match the app with your device\'s current light or dark appearance.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'Sanarwa Salah';

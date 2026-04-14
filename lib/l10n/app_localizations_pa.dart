@@ -18384,15 +18384,11 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   ) {
-    return '$levelSummary · $streakSummary';
+    return '$levelSummary • $daysSummary';
   }
 
   @override
@@ -18641,6 +18637,96 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get settingsAccountsSyncSubtitle =>
       'ਆਪਣੀ ਵਰਤਮਾਨ ਯਾਤਰਾ ਵਿੱਚ ਵਿਘਨ ਪਾਏ ਬਿਨਾਂ ਸਾਂਝੀਆਂ ਡਿਵਾਈਸਾਂ, ਸੁਰੱਖਿਅਤ ਪ੍ਰੋਫਾਈਲਾਂ, ਸਿੰਕ ਮੋਡ ਅਤੇ ਬੈਕਅੱਪ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।';
+
+  @override
+  String get settingsCareModesTitle => 'Care & Life Moments';
+
+  @override
+  String get settingsCareModesSubtitle =>
+      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+
+  @override
+  String get settingsCareModeRamadanTitle => 'Ramadan support';
+
+  @override
+  String get settingsCareModeRamadanBody =>
+      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+
+  @override
+  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+
+  @override
+  String get settingsCareModeLossTitle => 'Loss support';
+
+  @override
+  String get settingsCareModeLossBody =>
+      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+
+  @override
+  String get settingsCareModeLossPrayer =>
+      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+
+  @override
+  String get settingsCareModeLossHadith =>
+      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+
+  @override
+  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+
+  @override
+  String get settingsCareModeGentleTitle => 'Gentle mode support';
+
+  @override
+  String get settingsCareModeGentleBody =>
+      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+
+  @override
+  String get settingsGentleModeReducedNotificationsSubtitle =>
+      'Reduce notification intensity and keep reminders softer.';
+
+  @override
+  String get settingsUnwellModeTitle => 'Unwell Mode';
+
+  @override
+  String get settingsUnwellModeSubtitle =>
+      'Protect the day when illness makes worship harder.';
+
+  @override
+  String get settingsCareModeUnwellTitle => 'Unwell support';
+
+  @override
+  String get settingsCareModeUnwellBody =>
+      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+
+  @override
+  String get settingsCareModeUnwellPrayerEase =>
+      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+
+  @override
+  String get settingsCareModeUnwellHadith =>
+      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+
+  @override
+  String get settingsCycleDaysTitle => 'Cycle Days';
+
+  @override
+  String get settingsCycleDaysSubtitle =>
+      'For sisters only. Protect worship continuity during excused days.';
+
+  @override
+  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+
+  @override
+  String get settingsCycleDaysSupportBody =>
+      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+
+  @override
+  String get settingsCycleDaysReminderSupport =>
+      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+
+  @override
+  String get settingsCycleDaysStreakSupport =>
+      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
 
   @override
   String get settingsCurrentProfileTitle => 'ਮੌਜੂਦਾ ਪ੍ਰੋਫਾਈਲ';
@@ -19923,11 +20009,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਇੱਕ ਸਮਰਪਿਤ ਫਜਰ ਅਜ਼ਾਨ ਚੁਣੋ, ਬੰਡਲ ਕੀਤੇ ਕਲਿੱਪਾਂ ਦਾ ਪੂਰਵਦਰਸ਼ਨ ਕਰੋ, ਅਤੇ ਪ੍ਰਾਰਥਨਾ ਆਡੀਓ ਨੂੰ ਔਫਲਾਈਨ ਰੱਖੋ।';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'ਅਧਾਨ ਆਡੀਓ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'ਜਦੋਂ ਇਹ ਚਾਲੂ ਹੁੰਦਾ ਹੈ ਤਾਂ ਸਾਲਾਹ ਰੀਮਾਈਂਡਰ ਚੁਣੇ ਹੋਏ ਅਜ਼ਾਨ ਚਲਾ ਸਕਦੇ ਹਨ।';
+  String get settingsAdhanChoiceTitle => 'Adhan';
 
   @override
   String get settingsRegularAdhanTitle => 'ਨਿਯਮਤ ਅਜ਼ਾਨ';
@@ -19964,10 +20046,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Preview ਚਲਾਓ';
 
   @override
-  String get settingsTestRegularAdhan => 'ਨਿਯਮਤ ਅਜ਼ਾਨ ਦੀ ਜਾਂਚ ਕਰੋ';
-
-  @override
-  String get settingsTestFajrAdhan => 'ਫਜ਼ਰ ਅਜ਼ਾਨ ਦੀ ਜਾਂਚ ਕਰੋ';
+  String get settingsTestAdhan => 'Test Adhan';
 
   @override
   String get settingsUseAppVolumeTitle => 'ਐਪ ਵਾਲੀਅਮ ਦੀ ਵਰਤੋਂ ਕਰੋ';
@@ -20043,30 +20122,11 @@ class AppLocalizationsPa extends AppLocalizations {
   String get settingsVisualPreferencesTitle => 'ਵਿਜ਼ੂਅਲ ਤਰਜੀਹਾਂ';
 
   @override
-  String get settingsDisableGlassTransparencyTitle =>
-      'ਗਲਾਸ ਪਾਰਦਰਸ਼ਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'ਪਾਰਦਰਸ਼ੀ ਕੱਚ ਦੀ ਬਜਾਏ ਠੋਸ ਸਤਹਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ।';
-
-  @override
   String get settingsDisableColoredGlassTitle => 'ਰੰਗੀਨ ਗਲਾਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'ਰੰਗੇ ਰੰਗ ਦੇ ਇਲਾਜ ਨੂੰ ਹਟਾਉਣ ਦੌਰਾਨ ਕੱਚ ਦੀਆਂ ਸਤਹਾਂ ਨੂੰ ਰੱਖੋ।';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'ਗਲਾਸ ਪਾਰਦਰਸ਼ਤਾ';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'ਵਿਵਸਥਿਤ ਕਰੋ ਕਿ ਐਪ ਵਿੱਚ ਪਾਰਦਰਸ਼ੀ ਸ਼ੀਸ਼ੇ ਦੇ ਕਾਰਡ, ਟਾਪੂ, ਗੋਲੀਆਂ ਅਤੇ ਪੈਨਲ ਕਿਵੇਂ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ।';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'ਦੁਬਾਰਾ ਪਾਰਦਰਸ਼ਤਾ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰਨ ਲਈ ਗਲਾਸ ਨੂੰ ਵਾਪਸ ਚਾਲੂ ਕਰੋ।';
 
   @override
   String get settingsVisualPreferenceUpdated => 'ਵਿਜ਼ੂਅਲ ਤਰਜੀਹ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ';
@@ -20079,10 +20139,6 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਸਾਫ਼-ਸੁਥਰੇ ਦ੍ਰਿਸ਼ ਲਈ ਸਜਾਵਟੀ ਪਿਛੋਕੜ ਚਿੱਤਰ ਨੂੰ ਲੁਕਾਓ।';
 
   @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'ਇਹ ਸੈਟਿੰਗਾਂ ਤੁਹਾਡੀ ਸਮੱਗਰੀ ਜਾਂ ਪ੍ਰਗਤੀ ਨੂੰ ਬਦਲੇ ਬਿਨਾਂ ਐਪ ਦੀ ਦਿੱਖ ਨੂੰ ਬਦਲਦੀਆਂ ਹਨ।';
-
-  @override
   String get settingsDefaultAppearanceActive =>
       'ਪੂਰਵ-ਨਿਰਧਾਰਤ ਦਿੱਖ ਕਿਰਿਆਸ਼ੀਲ ਹੈ';
 
@@ -20092,6 +20148,13 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get settingsResetAppearance => 'ਦਿੱਖ ਰੀਸੈਟ ਕਰੋ';
+
+  @override
+  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+
+  @override
+  String get settingsFollowSystemThemeSubtitle =>
+      'Match the app with your device\'s current light or dark appearance.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'ਸਾਲਾਹ ਸੂਚਨਾਵਾਂ';

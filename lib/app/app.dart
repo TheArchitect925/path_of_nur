@@ -45,8 +45,34 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
-    final theme = AppTheme.themeFor(
+    final manualTheme = AppTheme.themeFor(
       mode: profileSettings.appThemeMode,
+      pageTransitionStyle: profileSettings.pageTransitionStyle,
+      reduceMotion: profileSettings.reduceMotion,
+      disableGlassTransparency: profileSettings.disableGlassTransparency,
+      disableColoredGlass: profileSettings.disableColoredGlass,
+      disableBackground: profileSettings.disableBackground,
+      highContrastText: profileSettings.highContrastText,
+      glassSurfaceAlpha: profileSettings.glassSurfaceAlpha,
+      locale: locale,
+    );
+    final useSystemTheme =
+        profileSettings.themePreference == ProfileThemePreference.system;
+    final lightMode = _lightThemeModeFor(profileSettings.appThemeMode);
+    final darkMode = _darkThemeModeFor(profileSettings.appThemeMode);
+    final lightTheme = AppTheme.themeFor(
+      mode: lightMode,
+      pageTransitionStyle: profileSettings.pageTransitionStyle,
+      reduceMotion: profileSettings.reduceMotion,
+      disableGlassTransparency: profileSettings.disableGlassTransparency,
+      disableColoredGlass: profileSettings.disableColoredGlass,
+      disableBackground: profileSettings.disableBackground,
+      highContrastText: profileSettings.highContrastText,
+      glassSurfaceAlpha: profileSettings.glassSurfaceAlpha,
+      locale: locale,
+    );
+    final darkTheme = AppTheme.themeFor(
+      mode: darkMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,
       reduceMotion: profileSettings.reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
@@ -61,7 +87,9 @@ class PathOfNurApp extends ConsumerWidget {
       key: ValueKey<String>('app-$scopeVersion-$localeTag'),
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
-      theme: theme,
+      theme: useSystemTheme ? lightTheme : manualTheme,
+      darkTheme: useSystemTheme ? darkTheme : manualTheme,
+      themeMode: useSystemTheme ? ThemeMode.system : ThemeMode.light,
       routerConfig: ref.read(appRouterProvider),
       locale: locale,
       localizationsDelegates: const [
@@ -72,5 +100,27 @@ class PathOfNurApp extends ConsumerWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
     );
+  }
+}
+
+AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
+  switch (mode) {
+    case AppThemeMode.noorGlassDark:
+      return AppThemeMode.noorGlass;
+    case AppThemeMode.noGlassDark:
+      return AppThemeMode.noGlass;
+    default:
+      return mode;
+  }
+}
+
+AppThemeMode _darkThemeModeFor(AppThemeMode mode) {
+  switch (mode) {
+    case AppThemeMode.noorGlass:
+      return AppThemeMode.noorGlassDark;
+    case AppThemeMode.noGlass:
+      return AppThemeMode.noGlassDark;
+    default:
+      return mode;
   }
 }

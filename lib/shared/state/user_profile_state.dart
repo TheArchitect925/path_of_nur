@@ -5,22 +5,38 @@ import '../persistence/local_store.dart';
 enum UserSex { brother, sister }
 
 class UserProfileState {
-  const UserProfileState({required this.name, required this.sex});
+  const UserProfileState({
+    required this.name,
+    required this.sex,
+    required this.createdAtIso,
+  });
 
   final String name;
   final UserSex sex;
+  final String createdAtIso;
 
-  UserProfileState copyWith({String? name, UserSex? sex}) {
+  UserProfileState copyWith({
+    String? name,
+    UserSex? sex,
+    String? createdAtIso,
+  }) {
     return UserProfileState(
       name: name ?? this.name,
       sex: sex ?? this.sex,
+      createdAtIso: createdAtIso ?? this.createdAtIso,
     );
   }
 }
 
 class UserProfileNotifier extends StateNotifier<UserProfileState> {
   UserProfileNotifier(this._store)
-      : super(const UserProfileState(name: 'Shahab', sex: UserSex.brother)) {
+    : super(
+        UserProfileState(
+          name: 'Shahab',
+          sex: UserSex.brother,
+          createdAtIso: DateTime.now().toIso8601String(),
+        ),
+      ) {
     _load();
   }
 
@@ -52,6 +68,7 @@ class UserProfileNotifier extends StateNotifier<UserProfileState> {
     state = UserProfileState(
       name: (name == null || name.isEmpty) ? state.name : name,
       sex: sex ?? state.sex,
+      createdAtIso: data['createdAtIso']?.toString() ?? state.createdAtIso,
     );
   }
 
@@ -59,6 +76,7 @@ class UserProfileNotifier extends StateNotifier<UserProfileState> {
     _store.setJsonMap('profile.user', {
       'name': state.name,
       'sex': state.sex.name,
+      'createdAtIso': state.createdAtIso,
     });
   }
 }

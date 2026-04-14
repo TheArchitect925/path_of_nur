@@ -18391,15 +18391,11 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   ) {
-    return 'Tahap $level • $streak hari berturut-turut';
+    return '$levelSummary • $daysSummary';
   }
 
   @override
@@ -18649,6 +18645,96 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get settingsAccountsSyncSubtitle =>
       'Urus peranti kongsi, profil dilindungi, mod penyegerakan dan sandaran tanpa mengganggu perjalanan semasa anda.';
+
+  @override
+  String get settingsCareModesTitle => 'Care & Life Moments';
+
+  @override
+  String get settingsCareModesSubtitle =>
+      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+
+  @override
+  String get settingsCareModeRamadanTitle => 'Ramadan support';
+
+  @override
+  String get settingsCareModeRamadanBody =>
+      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+
+  @override
+  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+
+  @override
+  String get settingsCareModeLossTitle => 'Loss support';
+
+  @override
+  String get settingsCareModeLossBody =>
+      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+
+  @override
+  String get settingsCareModeLossPrayer =>
+      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+
+  @override
+  String get settingsCareModeLossHadith =>
+      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+
+  @override
+  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+
+  @override
+  String get settingsCareModeGentleTitle => 'Gentle mode support';
+
+  @override
+  String get settingsCareModeGentleBody =>
+      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+
+  @override
+  String get settingsGentleModeReducedNotificationsSubtitle =>
+      'Reduce notification intensity and keep reminders softer.';
+
+  @override
+  String get settingsUnwellModeTitle => 'Unwell Mode';
+
+  @override
+  String get settingsUnwellModeSubtitle =>
+      'Protect the day when illness makes worship harder.';
+
+  @override
+  String get settingsCareModeUnwellTitle => 'Unwell support';
+
+  @override
+  String get settingsCareModeUnwellBody =>
+      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+
+  @override
+  String get settingsCareModeUnwellPrayerEase =>
+      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+
+  @override
+  String get settingsCareModeUnwellHadith =>
+      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+
+  @override
+  String get settingsCycleDaysTitle => 'Cycle Days';
+
+  @override
+  String get settingsCycleDaysSubtitle =>
+      'For sisters only. Protect worship continuity during excused days.';
+
+  @override
+  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+
+  @override
+  String get settingsCycleDaysSupportBody =>
+      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+
+  @override
+  String get settingsCycleDaysReminderSupport =>
+      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+
+  @override
+  String get settingsCycleDaysStreakSupport =>
+      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
 
   @override
   String get settingsCurrentProfileTitle => 'Profil Semasa';
@@ -19924,11 +20010,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Pilih Adzan Subuh yang berdedikasi, pratonton klip yang digabungkan, dan pastikan audio solat di luar talian.';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'Dayakan audio Adzan';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'Peringatan solat boleh memainkan Adzan yang dipilih apabila ini dihidupkan.';
+  String get settingsAdhanChoiceTitle => 'Adhan';
 
   @override
   String get settingsRegularAdhanTitle => 'Adzan biasa';
@@ -19965,10 +20047,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Mainkan pratonton';
 
   @override
-  String get settingsTestRegularAdhan => 'Uji Adzan Biasa';
-
-  @override
-  String get settingsTestFajrAdhan => 'Uji Adzan Subuh';
+  String get settingsTestAdhan => 'Test Adhan';
 
   @override
   String get settingsUseAppVolumeTitle => 'Gunakan Kelantangan Apl';
@@ -20044,30 +20123,11 @@ class AppLocalizationsMs extends AppLocalizations {
   String get settingsVisualPreferencesTitle => 'Keutamaan Visual';
 
   @override
-  String get settingsDisableGlassTransparencyTitle =>
-      'Lumpuhkan Ketelusan Kaca';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'Gunakan permukaan pepejal dan bukannya kaca lut sinar.';
-
-  @override
   String get settingsDisableColoredGlassTitle => 'Lumpuhkan Kaca Berwarna';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'Simpan permukaan kaca sambil menanggalkan rawatan warna berwarna.';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'Ketelusan Kaca';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'Laraskan cara kad kaca lut sinar, pulau, pil dan panel kelihatan merentas apl.';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'Hidupkan semula kaca untuk melaraskan ketelusan sekali lagi.';
 
   @override
   String get settingsVisualPreferenceUpdated => 'Keutamaan visual dikemas kini';
@@ -20080,10 +20140,6 @@ class AppLocalizationsMs extends AppLocalizations {
       'Sembunyikan imej latar belakang hiasan untuk paparan yang lebih bersih.';
 
   @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'Tetapan ini mengubah rupa apl tanpa mengubah kandungan atau kemajuan anda.';
-
-  @override
   String get settingsDefaultAppearanceActive => 'Penampilan lalai aktif';
 
   @override
@@ -20092,6 +20148,13 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get settingsResetAppearance => 'Tetapkan Semula Penampilan';
+
+  @override
+  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+
+  @override
+  String get settingsFollowSystemThemeSubtitle =>
+      'Match the app with your device\'s current light or dark appearance.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'Pemberitahuan Salah';

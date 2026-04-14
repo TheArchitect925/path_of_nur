@@ -4912,7 +4912,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileRamadanModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Prioritize fasting rhythm and devotional consistency.'**
+  /// **'Fasting-first guidance and Ramadan-focused support.'**
   String get profileRamadanModeSubtitle;
 
   /// No description provided for @profileLossModeTitle.
@@ -4924,7 +4924,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileLossModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle structure for spiritually heavy days.'**
+  /// **'Guidance, du\'a, and Qur\'anic reminders for loss.'**
   String get profileLossModeSubtitle;
 
   /// No description provided for @profileGentleModeTitle.
@@ -6458,7 +6458,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsLearningHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the learning hub and family learning tools from one focused place.'**
+  /// **'Manage learning level, onboarding, and family learning tools.'**
   String get settingsLearningHubSubtitle;
 
   /// No description provided for @learnHubSubtitle.
@@ -30372,7 +30372,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsProfilePersonalizationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep your name, address preference, modes, and profile-related shortcuts here now that Profile is no longer a top-level tab.'**
+  /// **'Keep your name, address preference, modes, and profile-related shortcuts here.'**
   String get settingsProfilePersonalizationSubtitle;
 
   /// No description provided for @settingsProfileDisplayNameSummary.
@@ -30381,17 +30381,13 @@ abstract class AppLocalizations {
   /// **'{title} {name}'**
   String settingsProfileDisplayNameSummary(String title, String name);
 
-  /// No description provided for @settingsProfileLevelStreakSummary.
+  /// No description provided for @settingsProfileLevelUsageSummary.
   ///
   /// In en, this message translates to:
-  /// **'{levelSummary} • {streakSummary}'**
-  String settingsProfileLevelStreakSummary(
+  /// **'{levelSummary} • {daysSummary}'**
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   );
 
   /// No description provided for @settingsWhatsNewTitle.
@@ -30799,14 +30795,164 @@ abstract class AppLocalizations {
   /// No description provided for @settingsAccountsSyncTitle.
   ///
   /// In en, this message translates to:
-  /// **'Accounts, Profiles & Sync'**
+  /// **'Accounts & Profiles'**
   String get settingsAccountsSyncTitle;
 
   /// No description provided for @settingsAccountsSyncSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Manage shared devices, protected profiles, sync mode, and backups without disturbing your current journey.'**
+  /// **'Manage shared devices, protected profiles, and backups without disturbing your current journey.'**
   String get settingsAccountsSyncSubtitle;
+
+  /// No description provided for @settingsCareModesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Care & Life Moments'**
+  String get settingsCareModesTitle;
+
+  /// No description provided for @settingsCareModesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep calm, supportive modes close for different seasons of worship and daily life.'**
+  String get settingsCareModesSubtitle;
+
+  /// No description provided for @settingsCareModeRamadanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan support'**
+  String get settingsCareModeRamadanTitle;
+
+  /// No description provided for @settingsCareModeRamadanBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.'**
+  String get settingsCareModeRamadanBody;
+
+  /// No description provided for @settingsCareModeRamadanReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an 2:183'**
+  String get settingsCareModeRamadanReference;
+
+  /// No description provided for @settingsCareModeLossTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loss support'**
+  String get settingsCareModeLossTitle;
+
+  /// No description provided for @settingsCareModeLossBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to Allah with patience, du\'\'a, and gentle reminders when grief feels heavy.'**
+  String get settingsCareModeLossBody;
+
+  /// No description provided for @settingsCareModeLossPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Du\'\'a: Inna lillahi wa inna ilayhi raji\'\'un. Allahumma\'\'jurni fi musibati wakhluf li khayran minha.'**
+  String get settingsCareModeLossPrayer;
+
+  /// No description provided for @settingsCareModeLossHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.'**
+  String get settingsCareModeLossHadith;
+
+  /// No description provided for @settingsCareModeLossReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an 2:156-157'**
+  String get settingsCareModeLossReference;
+
+  /// No description provided for @settingsCareModeGentleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle mode support'**
+  String get settingsCareModeGentleTitle;
+
+  /// No description provided for @settingsCareModeGentleBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.'**
+  String get settingsCareModeGentleBody;
+
+  /// No description provided for @settingsGentleModeReducedNotificationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce notification intensity and keep reminders softer.'**
+  String get settingsGentleModeReducedNotificationsSubtitle;
+
+  /// No description provided for @settingsUnwellModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unwell Mode'**
+  String get settingsUnwellModeTitle;
+
+  /// No description provided for @settingsUnwellModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect the day when illness makes worship harder.'**
+  String get settingsUnwellModeSubtitle;
+
+  /// No description provided for @settingsCareModeUnwellTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unwell support'**
+  String get settingsCareModeUnwellTitle;
+
+  /// No description provided for @settingsCareModeUnwellBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.'**
+  String get settingsCareModeUnwellBody;
+
+  /// No description provided for @settingsCareModeUnwellPrayerEase.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.'**
+  String get settingsCareModeUnwellPrayerEase;
+
+  /// No description provided for @settingsCareModeUnwellHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.'**
+  String get settingsCareModeUnwellHadith;
+
+  /// No description provided for @settingsCycleDaysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycle Days'**
+  String get settingsCycleDaysTitle;
+
+  /// No description provided for @settingsCycleDaysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For sisters only. Protect worship continuity during excused days.'**
+  String get settingsCycleDaysSubtitle;
+
+  /// No description provided for @settingsCycleDaysSupportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycle day support'**
+  String get settingsCycleDaysSupportTitle;
+
+  /// No description provided for @settingsCycleDaysSupportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.'**
+  String get settingsCycleDaysSupportBody;
+
+  /// No description provided for @settingsCycleDaysReminderSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support focus: dhikr, du\'\'a, Qur\'\'an listening, and reflection remain available.'**
+  String get settingsCycleDaysReminderSupport;
+
+  /// No description provided for @settingsCycleDaysStreakSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.'**
+  String get settingsCycleDaysStreakSupport;
 
   /// No description provided for @settingsCurrentProfileTitle.
   ///
@@ -32839,20 +32985,14 @@ abstract class AppLocalizations {
   /// No description provided for @settingsAdhanSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose a dedicated Fajr Adhan, preview the bundled clips, and keep prayer audio offline.'**
+  /// **'Choose the bundled adhan and preview it before prayer-time playback.'**
   String get settingsAdhanSubtitle;
 
-  /// No description provided for @settingsEnableAdhanAudioTitle.
+  /// No description provided for @settingsAdhanChoiceTitle.
   ///
   /// In en, this message translates to:
-  /// **'Enable Adhan audio'**
-  String get settingsEnableAdhanAudioTitle;
-
-  /// No description provided for @settingsEnableAdhanAudioSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Salah reminders can play the selected Adhan when this is on.'**
-  String get settingsEnableAdhanAudioSubtitle;
+  /// **'Adhan'**
+  String get settingsAdhanChoiceTitle;
 
   /// No description provided for @settingsRegularAdhanTitle.
   ///
@@ -32914,17 +33054,11 @@ abstract class AppLocalizations {
   /// **'Play preview'**
   String get settingsAdhanPreviewPlayTooltip;
 
-  /// No description provided for @settingsTestRegularAdhan.
+  /// No description provided for @settingsTestAdhan.
   ///
   /// In en, this message translates to:
-  /// **'Test Regular Adhan'**
-  String get settingsTestRegularAdhan;
-
-  /// No description provided for @settingsTestFajrAdhan.
-  ///
-  /// In en, this message translates to:
-  /// **'Test Fajr Adhan'**
-  String get settingsTestFajrAdhan;
+  /// **'Test Adhan'**
+  String get settingsTestAdhan;
 
   /// No description provided for @settingsUseAppVolumeTitle.
   ///
@@ -33064,18 +33198,6 @@ abstract class AppLocalizations {
   /// **'Visual Preferences'**
   String get settingsVisualPreferencesTitle;
 
-  /// No description provided for @settingsDisableGlassTransparencyTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Disable Glass Transparency'**
-  String get settingsDisableGlassTransparencyTitle;
-
-  /// No description provided for @settingsDisableGlassTransparencySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Use solid surfaces instead of translucent glass.'**
-  String get settingsDisableGlassTransparencySubtitle;
-
   /// No description provided for @settingsDisableColoredGlassTitle.
   ///
   /// In en, this message translates to:
@@ -33087,24 +33209,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep glass surfaces while removing the tinted color treatment.'**
   String get settingsDisableColoredGlassSubtitle;
-
-  /// No description provided for @settingsGlassTransparencyTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Glass Transparency'**
-  String get settingsGlassTransparencyTitle;
-
-  /// No description provided for @settingsGlassTransparencySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Adjust how translucent glass cards, islands, pills, and panels appear across the app.'**
-  String get settingsGlassTransparencySubtitle;
-
-  /// No description provided for @settingsGlassTransparencyDisabledSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Turn glass back on to adjust transparency again.'**
-  String get settingsGlassTransparencyDisabledSubtitle;
 
   /// No description provided for @settingsVisualPreferenceUpdated.
   ///
@@ -33124,12 +33228,6 @@ abstract class AppLocalizations {
   /// **'Hide decorative background imagery for a cleaner view.'**
   String get settingsDisableBackgroundSubtitle;
 
-  /// No description provided for @settingsAppearanceNoContentChangeNote.
-  ///
-  /// In en, this message translates to:
-  /// **'These settings change the look of the app without changing your content or progress.'**
-  String get settingsAppearanceNoContentChangeNote;
-
   /// No description provided for @settingsDefaultAppearanceActive.
   ///
   /// In en, this message translates to:
@@ -33147,6 +33245,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset Appearance'**
   String get settingsResetAppearance;
+
+  /// No description provided for @settingsFollowSystemThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow phone day/night mode'**
+  String get settingsFollowSystemThemeTitle;
+
+  /// No description provided for @settingsFollowSystemThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match the app with your device\'\'s current light or dark appearance.'**
+  String get settingsFollowSystemThemeSubtitle;
 
   /// No description provided for @settingsPrayerNotificationsTitle.
   ///
@@ -44159,7 +44269,7 @@ abstract class AppLocalizations {
   /// No description provided for @pageDescriptionSettingsAccountSync.
   ///
   /// In en, this message translates to:
-  /// **'Manage profiles, backups, and device sync with clear control over shared access.'**
+  /// **'Manage profiles, backups, and device sync.'**
   String get pageDescriptionSettingsAccountSync;
 
   /// No description provided for @pageDescriptionSettingsAccountSyncKids.

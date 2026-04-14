@@ -59,13 +59,6 @@ class AttributionsLicensesPage extends StatelessWidget {
               'Source links:\n'
               'https://api-docs.quran.com/',
         ),
-        SizedBox(height: 10),
-        _AttributionCard(
-          title: 'Compliance Note',
-          body:
-              'Before public release, verify all production usage terms and attribution requirements, '
-              'especially translation rights and audio redistribution permissions.',
-        ),
       ],
     );
   }

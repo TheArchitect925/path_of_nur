@@ -526,24 +526,21 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       subtitle: l10n.onboardingThemeSubtitle,
       child: ListView(
         children: [
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: visibleThemeModes
-                .map(
-                  (mode) => SizedBox(
-                    width: 164,
-                    child: _OnboardingThemePreviewTile(
-                      label: _themeModeLabel(mode, l10n),
-                      data: _themePreviewData(mode),
-                      selected: profileSettings.appThemeMode == mode,
-                      onSelected: () {
-                        profileSettingsNotifier.setAppThemeMode(mode);
-                      },
-                    ),
-                  ),
-                )
-                .toList(growable: false),
+          ...visibleThemeModes.map(
+            (mode) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: SizedBox(
+                width: double.infinity,
+                child: _OnboardingThemePreviewTile(
+                  label: _themeModeLabel(mode, l10n),
+                  data: _themePreviewData(mode),
+                  selected: profileSettings.appThemeMode == mode,
+                  onSelected: () {
+                    profileSettingsNotifier.setAppThemeMode(mode);
+                  },
+                ),
+              ),
+            ),
           ),
           const SizedBox(height: 14),
           Text(
@@ -978,26 +975,26 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   const SizedBox(height: 8),
                   Text(
                     l10n.onboardingAccountOptionsBody,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      height: 1.45,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(height: 1.45),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     l10n.onboardingAccountOptionsManualBackupBody,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      height: 1.45,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(height: 1.45),
                   ),
                   const SizedBox(height: 14),
                   FilledButton.icon(
                     onPressed: _authBusy
                         ? null
                         : () => _handleOnboardingAuthAction(
-                              () => ref
-                                  .read(accountsAuthRepositoryProvider)
-                                  .signInWithApple(),
-                            ),
+                            () => ref
+                                .read(accountsAuthRepositoryProvider)
+                                .signInWithApple(),
+                          ),
                     icon: const Icon(Icons.apple_rounded),
                     label: Text(l10n.accountsSyncContinueWithAppleAction),
                   ),
@@ -1006,10 +1003,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     onPressed: _authBusy
                         ? null
                         : () => _handleOnboardingAuthAction(
-                              () => ref
-                                  .read(accountsAuthRepositoryProvider)
-                                  .signInWithGoogle(),
-                            ),
+                            () => ref
+                                .read(accountsAuthRepositoryProvider)
+                                .signInWithGoogle(),
+                          ),
                     icon: const Icon(Icons.account_circle_outlined),
                     label: Text(l10n.accountsSyncContinueWithGoogleAction),
                   ),
@@ -1018,10 +1015,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     onPressed: _authBusy
                         ? null
                         : () => _handleOnboardingAuthAction(
-                              () => ref
-                                  .read(accountsAuthRepositoryProvider)
-                                  .signInWithEmail(),
-                            ),
+                            () => ref
+                                .read(accountsAuthRepositoryProvider)
+                                .signInWithEmail(),
+                          ),
                     icon: const Icon(Icons.email_outlined),
                     label: Text(l10n.accountsSyncContinueWithEmailAction),
                   ),
@@ -1055,12 +1052,13 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     setState(() => _authBusy = false);
     final message = switch (result.status) {
       AuthActionStatus.success => l10n.accountsSyncAccountConnectedResult(
-          result.identity?.displayName ??
-              l10n.accountsSyncDefaultAccountDisplayName,
-        ),
+        result.identity?.displayName ??
+            l10n.accountsSyncDefaultAccountDisplayName,
+      ),
       AuthActionStatus.cancelled => l10n.accountsSyncAuthCancelledResult,
       AuthActionStatus.unavailable => l10n.accountsSyncAuthUnavailableResult,
-      AuthActionStatus.notConfigured => l10n.accountsSyncAuthNotConfiguredResult,
+      AuthActionStatus.notConfigured =>
+        l10n.accountsSyncAuthNotConfiguredResult,
       AuthActionStatus.error => l10n.accountsSyncAuthFailedResult,
     };
     messenger.showSnackBar(SnackBar(content: Text(message)));
@@ -1087,10 +1085,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           ),
           if (subtitle.isNotEmpty) ...[
             const SizedBox(height: 12),
-            Text(
-              subtitle,
-              style: bodyStyle,
-            ),
+            Text(subtitle, style: bodyStyle),
           ],
           const SizedBox(height: 14),
           Expanded(
@@ -1261,7 +1256,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     }
 
     final hasPrayerReminder = _hasAnyPrayerReminderEnabled;
-    profileSettings.setAgeRange(_profileAgeRangeForOnboardingAgeRange(_ageRange));
+    profileSettings.setAgeRange(
+      _profileAgeRangeForOnboardingAgeRange(_ageRange),
+    );
     profileSettings.setPrayerReminders(hasPrayerReminder);
     profileSettings.setQuranReminders(_dailyQuranReminder);
     profileSettings.setReflectionReminders(_dailyLessonReminder);
@@ -1379,10 +1376,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     }
   }
 
-  bool get _hasAnyPrayerReminderEnabled =>
-      _prayerReminders.values.any(
-        (choice) => choice != OnboardingReminderChoice.none,
-      );
+  bool get _hasAnyPrayerReminderEnabled => _prayerReminders.values.any(
+    (choice) => choice != OnboardingReminderChoice.none,
+  );
 
   bool get _allNotificationsDisabled =>
       !_dailyQuranReminder &&

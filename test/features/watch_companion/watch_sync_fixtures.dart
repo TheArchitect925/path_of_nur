@@ -78,6 +78,7 @@ WatchDailySnapshot buildWatchSnapshotFixture() {
       rewardEligible: false,
       source: 'phone',
     ),
+    spiritualPrompt: null,
     lastSyncAt: DateTime.parse('2026-03-14T09:58:00'),
     sourceVersion: '1',
   );

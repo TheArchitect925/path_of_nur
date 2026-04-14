@@ -127,13 +127,6 @@ List<RouteBase> buildCoreSupportRoutes() {
       ),
     ),
     GoRoute(
-      path: '/settings/kids-family',
-      name: 'settingsKidsFamily',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: SettingsPage(category: SettingsCategory.kidsFamily),
-      ),
-    ),
-    GoRoute(
       path: '/settings/about',
       name: 'settingsAbout',
       pageBuilder: (context, state) => const MaterialPage(

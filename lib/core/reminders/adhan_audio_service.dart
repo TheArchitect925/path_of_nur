@@ -38,14 +38,9 @@ class AdhanRepository {
   }
 
   ResolvedAdhanOption resolveFajr(AdhanSettings settings) {
-    final selected = optionById(settings.selectedFajrAdhanId);
-    if (selected != null &&
-        selected.supportsCategory(AdhanOptionCategory.fajr)) {
-      return ResolvedAdhanOption(option: selected, didFallback: false);
-    }
     return ResolvedAdhanOption(
       option: AdhanRegistry.defaultFor(AdhanOptionCategory.fajr),
-      didFallback: true,
+      didFallback: settings.selectedFajrAdhanId != AdhanRegistry.defaultFajrId,
     );
   }
 
@@ -126,7 +121,8 @@ class AdhanPreviewController extends AutoDisposeNotifier<AdhanPreviewState> {
     required AdhanOption option,
     required AdhanSettings settings,
   }) async {
-    if (state.playingOptionId == option.id && state.isPlaying) {
+    if (state.playingOptionId == option.id &&
+        (state.isPlaying || state.isBuffering)) {
       await stop();
       return;
     }

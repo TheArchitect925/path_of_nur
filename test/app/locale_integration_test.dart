@@ -177,6 +177,8 @@ void main() {
     ThemeData themeFor(Locale locale) {
       return AppTheme.themeFor(
         mode: AppThemeMode.defaultMode,
+        pageTransitionStyle: AppPageTransitionStyle.defaultSystem,
+        reduceMotion: false,
         disableGlassTransparency: false,
         disableColoredGlass: false,
         disableBackground: false,

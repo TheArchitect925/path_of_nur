@@ -18403,15 +18403,11 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   ) {
-    return '$levelSummary • $streakSummary';
+    return '$levelSummary • $daysSummary';
   }
 
   @override
@@ -18656,6 +18652,96 @@ class AppLocalizationsKu extends AppLocalizations {
   @override
   String get settingsAccountsSyncSubtitle =>
       'ئامێرە هاوبەشەکان، پرۆفایلە پارێزراوەکان، دۆخی هاوتاکردن، و پاڵپشتییەکان بەڕێوە ببە بەبێ ئەوەی گەشتە ئێستاکەت بێزاری بکات.';
+
+  @override
+  String get settingsCareModesTitle => 'Care & Life Moments';
+
+  @override
+  String get settingsCareModesSubtitle =>
+      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+
+  @override
+  String get settingsCareModeRamadanTitle => 'Ramadan support';
+
+  @override
+  String get settingsCareModeRamadanBody =>
+      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+
+  @override
+  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+
+  @override
+  String get settingsCareModeLossTitle => 'Loss support';
+
+  @override
+  String get settingsCareModeLossBody =>
+      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+
+  @override
+  String get settingsCareModeLossPrayer =>
+      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+
+  @override
+  String get settingsCareModeLossHadith =>
+      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+
+  @override
+  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+
+  @override
+  String get settingsCareModeGentleTitle => 'Gentle mode support';
+
+  @override
+  String get settingsCareModeGentleBody =>
+      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+
+  @override
+  String get settingsGentleModeReducedNotificationsSubtitle =>
+      'Reduce notification intensity and keep reminders softer.';
+
+  @override
+  String get settingsUnwellModeTitle => 'Unwell Mode';
+
+  @override
+  String get settingsUnwellModeSubtitle =>
+      'Protect the day when illness makes worship harder.';
+
+  @override
+  String get settingsCareModeUnwellTitle => 'Unwell support';
+
+  @override
+  String get settingsCareModeUnwellBody =>
+      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+
+  @override
+  String get settingsCareModeUnwellPrayerEase =>
+      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+
+  @override
+  String get settingsCareModeUnwellHadith =>
+      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+
+  @override
+  String get settingsCycleDaysTitle => 'Cycle Days';
+
+  @override
+  String get settingsCycleDaysSubtitle =>
+      'For sisters only. Protect worship continuity during excused days.';
+
+  @override
+  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+
+  @override
+  String get settingsCycleDaysSupportBody =>
+      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+
+  @override
+  String get settingsCycleDaysReminderSupport =>
+      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+
+  @override
+  String get settingsCycleDaysStreakSupport =>
+      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
 
   @override
   String get settingsCurrentProfileTitle => 'پرۆفایلی ئێستا';
@@ -19960,11 +20046,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'ئازانێکی تایبەت بۆ فەجر هەڵبژێرە، کلیپە هەڵگیراوەکان پێشبینە، و دەنگی نوێژ بەبێ ئینتەرنێت بهێڵەوە.';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'دەنگی ئازان چالاک بکە';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'کاتێک ئەمە چالاک بێت، بیرهێنەرەوەکانی نوێژ دەتوانن ئازانی هەڵبژێردراو پخش بکەن.';
+  String get settingsAdhanChoiceTitle => 'Adhan';
 
   @override
   String get settingsRegularAdhanTitle => 'ئازانی ئاسایی';
@@ -20001,10 +20083,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Pêşdîtinê bilîze';
 
   @override
-  String get settingsTestRegularAdhan => 'ئازانی ئاسایی تاقی بکەرەوە';
-
-  @override
-  String get settingsTestFajrAdhan => 'ئازانی فەجر تاقی بکەرەوە';
+  String get settingsTestAdhan => 'Test Adhan';
 
   @override
   String get settingsUseAppVolumeTitle => 'دەنگی ئەپ بەکاربهێنە';
@@ -20082,30 +20161,12 @@ class AppLocalizationsKu extends AppLocalizations {
   String get settingsVisualPreferencesTitle => 'هەڵبژاردنە بینراوەکان';
 
   @override
-  String get settingsDisableGlassTransparencyTitle => 'ڕوونی شووشە ناچالاک بکە';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'لە جیاتی شووشەی ڕوون، ڕووکارە تۆکمەکان بەکاربهێنە.';
-
-  @override
   String get settingsDisableColoredGlassTitle =>
       'شووشەی ڕەنگاوڕەنگ ناچالاک بکە';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'ڕووکارە شووشەییەکان بهێڵەوە بەڵام چارەسەری ڕەنگاوڕەنگ لابەرە.';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'ڕوونی شووشە';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'شێوەی دەرکەوتنی کارتە شووشەییە ڕوونەکان، ئایلەند، حەب، و پانێلەکان لە سەرانسەری ئەپ بگۆڕە.';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'شووشە دووبارە چالاک بکە بۆ ئەوەی هێندەی ڕوونییەکە بگۆڕیت.';
 
   @override
   String get settingsVisualPreferenceUpdated => 'هەڵبژاردنی بینراو نوێ کرایەوە';
@@ -20118,10 +20179,6 @@ class AppLocalizationsKu extends AppLocalizations {
       'وێنەکارییە دیکۆرییەکانی پاشبنەما بشارەوە بۆ دیمەنێکی پاکتر.';
 
   @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'ئەم ڕێکخستنانە دیمەنی ئەپ دەگۆڕن بەبێ ئەوەی ناوەڕۆک یان پێشکەوتنت بگۆڕن.';
-
-  @override
   String get settingsDefaultAppearanceActive => 'دیمەنی بنەڕەتی چالاکە';
 
   @override
@@ -20129,6 +20186,13 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get settingsResetAppearance => 'دیمەن بگەڕێنەرەوە';
+
+  @override
+  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+
+  @override
+  String get settingsFollowSystemThemeSubtitle =>
+      'Match the app with your device\'s current light or dark appearance.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'ئاگادارکردنەوەکانی نوێژ';

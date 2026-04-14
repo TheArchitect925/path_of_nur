@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import 'kids_ui_theme_provider.dart';
 
-enum AppSpecialMode { none, ramadan, loss, gentle }
+enum AppSpecialMode { none, ramadan, loss, gentle, unwell }
 
 class SpecialModeState {
   const SpecialModeState({
@@ -23,6 +23,7 @@ class SpecialModeState {
   bool get isRamadan => activeMode == AppSpecialMode.ramadan;
   bool get isLoss => activeMode == AppSpecialMode.loss;
   bool get isGentle => activeMode == AppSpecialMode.gentle;
+  bool get isUnwell => activeMode == AppSpecialMode.unwell;
   bool get isKids => kidsModeEnabled;
 }
 
@@ -36,6 +37,8 @@ final specialModeProvider = Provider<SpecialModeState>((ref) {
       ? AppSpecialMode.loss
       : settings.gentleModeEnabled
       ? AppSpecialMode.gentle
+      : settings.unwellModeEnabled
+      ? AppSpecialMode.unwell
       : AppSpecialMode.none;
 
   final start = _parseDate(settings.ramadanStartDateIso);

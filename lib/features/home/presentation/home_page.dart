@@ -94,7 +94,15 @@ class _HomePageState extends ConsumerState<HomePage> {
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
     final verseVersion = ref.watch(homeVerseVersionProvider);
-    final worshipSummary = ref.watch(worshipSummaryProvider);
+    final prayerCompleted = ref.watch(
+      worshipSummaryProvider.select((summary) => summary.prayerCompleted),
+    );
+    final prayerTotal = ref.watch(
+      worshipSummaryProvider.select((summary) => summary.prayerTotal),
+    );
+    final dhikrCount = ref.watch(
+      worshipSummaryProvider.select((summary) => summary.dhikrCount),
+    );
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
@@ -117,9 +125,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     final includesTahajjudOffer = scheduleContext.items.any(
       (item) => item.id == 'tahajjud',
     );
-    final trackedPrayerTotal = math.max(worshipSummary.prayerTotal, 5);
+    final trackedPrayerTotal = math.max(prayerTotal, 5);
     final salahProgressText =
-        '${_formatLocalizedCount(context, worshipSummary.prayerCompleted)}/${_formatHomePrayerTrackerTotal(context, trackedPrayerTotal: trackedPrayerTotal, includeTahajjudOffer: includesTahajjudOffer)}';
+        '${_formatLocalizedCount(context, prayerCompleted)}/${_formatHomePrayerTrackerTotal(context, trackedPrayerTotal: trackedPrayerTotal, includeTahajjudOffer: includesTahajjudOffer)}';
 
     return Theme(
       data: Theme.of(context).copyWith(textTheme: homeTextTheme),
@@ -189,7 +197,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   isKidsMode: isKidsMode,
                   salahProgressText: salahProgressText,
                   dhikrProgressText:
-                      '${_formatLocalizedCount(context, worshipSummary.dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
+                      '${_formatLocalizedCount(context, dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
                 ),
               ),
             ),
@@ -1698,6 +1706,23 @@ class _ModeAwareHomeCard extends ConsumerWidget {
           _ModeActionChip(
             icon: Icons.menu_book_outlined,
             label: l10n.modeLossActionMercy,
+            onTap: () => context.pushNamed('quranExplorer'),
+          ),
+        ];
+        break;
+      case AppSpecialMode.unwell:
+        title = l10n.settingsCareModeUnwellTitle;
+        subtitle = l10n.settingsCareModeUnwellBody;
+        icon = Icons.local_hospital_outlined;
+        actions = [
+          _ModeActionChip(
+            icon: Icons.self_improvement_rounded,
+            label: l10n.modeLossActionDhikr,
+            onTap: () => goToTab(context, NavTab.worship),
+          ),
+          _ModeActionChip(
+            icon: Icons.menu_book_outlined,
+            label: l10n.modeRamadanActionQuran,
             onTap: () => context.pushNamed('quranExplorer'),
           ),
         ];

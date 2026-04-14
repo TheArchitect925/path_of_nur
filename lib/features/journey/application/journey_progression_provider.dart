@@ -3,7 +3,10 @@ import 'dart:math' as math;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/persistence/local_store.dart';
+import '../../../shared/state/user_profile_state.dart';
 import '../../learn/quran/application/quran_providers.dart';
+import '../../profile/application/profile_settings_provider.dart';
+import '../../worship/application/sister_cycle_provider.dart';
 import '../../worship/domain/prayer_status.dart';
 import '../../worship/application/dhikr_controller.dart';
 import '../../worship/application/fasting_controller.dart';
@@ -58,6 +61,7 @@ class JourneyActivitySnapshot {
     required this.reflectionEntriesToday,
     required this.reflectionProgress,
     required this.learningStageCompletionsToday,
+    required this.streakExemptionActive,
   });
 
   final DateTime now;
@@ -74,6 +78,7 @@ class JourneyActivitySnapshot {
   final int reflectionEntriesToday;
   final double reflectionProgress;
   final int learningStageCompletionsToday;
+  final bool streakExemptionActive;
 
   JourneyActivitySnapshot copyWith({
     DateTime? now,
@@ -90,6 +95,7 @@ class JourneyActivitySnapshot {
     int? reflectionEntriesToday,
     double? reflectionProgress,
     int? learningStageCompletionsToday,
+    bool? streakExemptionActive,
   }) {
     return JourneyActivitySnapshot(
       now: now ?? this.now,
@@ -109,6 +115,8 @@ class JourneyActivitySnapshot {
       reflectionProgress: reflectionProgress ?? this.reflectionProgress,
       learningStageCompletionsToday:
           learningStageCompletionsToday ?? this.learningStageCompletionsToday,
+      streakExemptionActive:
+          streakExemptionActive ?? this.streakExemptionActive,
     );
   }
 
@@ -603,6 +611,11 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
         !todayCompleted &&
         yesterdayCompleted &&
         !protectedDays.contains(dayKey);
+    if (snapshot.streakExemptionActive &&
+        !todayCompleted &&
+        !protectedDays.contains(dayKey)) {
+      protectedDays.add(dayKey);
+    }
     if (needsProtection && graceTokens > 0) {
       protectedDays.add(dayKey);
       graceTokens -= 1;
@@ -785,6 +798,9 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
   final quranProgress = ref.watch(quranReadingProgressProvider);
   final notes = ref.watch(quranNotesProvider);
   final bookmarks = ref.watch(quranBookmarksProvider);
+  final profileSettings = ref.watch(profileSettingsProvider);
+  final sisterCycle = ref.watch(sisterCycleProvider);
+  final userProfile = ref.watch(userProfileProvider);
 
   final now = DateTime.now();
   final todayKey = LocalStore.todayKey(now);
@@ -794,7 +810,9 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
   }).length;
   final dhikrCountToday =
       dhikr.recentSessions
-          .where((session) => LocalStore.todayKey(session.finishedAt) == todayKey)
+          .where(
+            (session) => LocalStore.todayKey(session.finishedAt) == todayKey,
+          )
           .fold<int>(0, (sum, session) => sum + session.count) +
       dhikr.currentCount;
 
@@ -825,7 +843,8 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
       .map((item) => item.windowEndDateTime)
       .firstOrNull;
   final fajrCompletedToday = prayerRecords.any((record) {
-    if (record.prayer.name != 'fajr' || record.status != PrayerStatus.completed) {
+    if (record.prayer.name != 'fajr' ||
+        record.status != PrayerStatus.completed) {
       return false;
     }
     final completedAt = record.completedAt;
@@ -834,6 +853,9 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
   });
 
   final quranProgressRatio = ref.watch(quranProgressRatioProvider);
+  final streakExemptionActive =
+      profileSettings.unwellModeEnabled ||
+      (userProfile.sex == UserSex.sister && sisterCycle.active);
 
   return JourneyActivitySnapshot(
     now: now,
@@ -850,6 +872,7 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
     reflectionEntriesToday: notesToday,
     reflectionProgress: (notesToday / 2).clamp(0.0, 1.0).toDouble(),
     learningStageCompletionsToday: 0,
+    streakExemptionActive: streakExemptionActive,
   );
 });
 
@@ -911,9 +934,10 @@ final journeyProgressAutoSyncProvider = Provider<void>((ref) {
   }, fireImmediately: true);
 });
 
-final journeyProgressUpdateHelperProvider = Provider<JourneyProgressUpdateHelper>(
-  (ref) => JourneyProgressUpdateHelper(ref),
-);
+final journeyProgressUpdateHelperProvider =
+    Provider<JourneyProgressUpdateHelper>(
+      (ref) => JourneyProgressUpdateHelper(ref),
+    );
 
 class JourneyProgressUpdateHelper {
   const JourneyProgressUpdateHelper(this._ref);
@@ -924,25 +948,29 @@ class JourneyProgressUpdateHelper {
     if (count <= 0) return;
     final snapshot = _ref.read(journeyActivitySnapshotProvider);
     final nextReflectionEntries = snapshot.reflectionEntriesToday + count;
-    _ref.read(journeyProgressProvider.notifier).syncFromSnapshot(
-      snapshot.copyWith(
-        reflectionEntriesToday: nextReflectionEntries,
-        reflectionProgress: (nextReflectionEntries / 2)
-            .clamp(0.0, 1.0)
-            .toDouble(),
-      ),
-    );
+    _ref
+        .read(journeyProgressProvider.notifier)
+        .syncFromSnapshot(
+          snapshot.copyWith(
+            reflectionEntriesToday: nextReflectionEntries,
+            reflectionProgress: (nextReflectionEntries / 2)
+                .clamp(0.0, 1.0)
+                .toDouble(),
+          ),
+        );
   }
 
   void addLearningStageCompletions(int count) {
     if (count <= 0) return;
     final snapshot = _ref.read(journeyActivitySnapshotProvider);
-    _ref.read(journeyProgressProvider.notifier).syncFromSnapshot(
-      snapshot.copyWith(
-        learningStageCompletionsToday:
-            snapshot.learningStageCompletionsToday + count,
-      ),
-    );
+    _ref
+        .read(journeyProgressProvider.notifier)
+        .syncFromSnapshot(
+          snapshot.copyWith(
+            learningStageCompletionsToday:
+                snapshot.learningStageCompletionsToday + count,
+          ),
+        );
   }
 }
 
@@ -1113,7 +1141,9 @@ List<JourneyDailyBadge> _buildDailyBadges(
       title: 'Dhikr 500',
       description: 'Reached the 500 daily dhikr goal.',
       earnedToday: today.dhikrCount >= dailyDhikrGoal,
-      earnedCount: achievedDays((metrics) => metrics.dhikrCount >= dailyDhikrGoal),
+      earnedCount: achievedDays(
+        (metrics) => metrics.dhikrCount >= dailyDhikrGoal,
+      ),
     ),
     JourneyDailyBadge(
       id: 'quran_return',
@@ -1133,7 +1163,8 @@ List<JourneyDailyBadge> _buildDailyBadges(
       id: 'perfect_day',
       title: 'Perfect Day',
       description: 'Salah, dhikr, Qur\'an, and reflection all completed.',
-      earnedToday: today.prayerCompleted >= 5 &&
+      earnedToday:
+          today.prayerCompleted >= 5 &&
           today.dhikrCount >= dailyDhikrGoal &&
           today.quranEngagements >= 1 &&
           today.reflectionEntries >= 1,

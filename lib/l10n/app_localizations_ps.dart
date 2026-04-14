@@ -18374,15 +18374,11 @@ class AppLocalizationsPs extends AppLocalizations {
   }
 
   @override
-  String settingsProfileLevelStreakSummary(
+  String settingsProfileLevelUsageSummary(
     String levelSummary,
-    String streakSummary,
-    Object days,
-    Object level,
-    Object streak,
-    Object streakDays,
+    String daysSummary,
   ) {
-    return '$levelSummary · $streakSummary';
+    return '$levelSummary • $daysSummary';
   }
 
   @override
@@ -18629,6 +18625,96 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get settingsAccountsSyncSubtitle =>
       'ستاسو د اوسني سفر ګډوډولو پرته شریک شوي وسایل، خوندي شوي پروفایلونه، د همغږۍ حالت، او بیک اپ اداره کړئ.';
+
+  @override
+  String get settingsCareModesTitle => 'Care & Life Moments';
+
+  @override
+  String get settingsCareModesSubtitle =>
+      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+
+  @override
+  String get settingsCareModeRamadanTitle => 'Ramadan support';
+
+  @override
+  String get settingsCareModeRamadanBody =>
+      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+
+  @override
+  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+
+  @override
+  String get settingsCareModeLossTitle => 'Loss support';
+
+  @override
+  String get settingsCareModeLossBody =>
+      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+
+  @override
+  String get settingsCareModeLossPrayer =>
+      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+
+  @override
+  String get settingsCareModeLossHadith =>
+      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+
+  @override
+  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+
+  @override
+  String get settingsCareModeGentleTitle => 'Gentle mode support';
+
+  @override
+  String get settingsCareModeGentleBody =>
+      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+
+  @override
+  String get settingsGentleModeReducedNotificationsSubtitle =>
+      'Reduce notification intensity and keep reminders softer.';
+
+  @override
+  String get settingsUnwellModeTitle => 'Unwell Mode';
+
+  @override
+  String get settingsUnwellModeSubtitle =>
+      'Protect the day when illness makes worship harder.';
+
+  @override
+  String get settingsCareModeUnwellTitle => 'Unwell support';
+
+  @override
+  String get settingsCareModeUnwellBody =>
+      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+
+  @override
+  String get settingsCareModeUnwellPrayerEase =>
+      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+
+  @override
+  String get settingsCareModeUnwellHadith =>
+      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+
+  @override
+  String get settingsCycleDaysTitle => 'Cycle Days';
+
+  @override
+  String get settingsCycleDaysSubtitle =>
+      'For sisters only. Protect worship continuity during excused days.';
+
+  @override
+  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+
+  @override
+  String get settingsCycleDaysSupportBody =>
+      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+
+  @override
+  String get settingsCycleDaysReminderSupport =>
+      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+
+  @override
+  String get settingsCycleDaysStreakSupport =>
+      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
 
   @override
   String get settingsCurrentProfileTitle => 'اوسنی پروفایل';
@@ -19913,11 +19999,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'د فجر اذان وقف کړئ، بنډل شوي کلیپونه وګورئ، او د لمانځه آډیو آفلاین وساتئ.';
 
   @override
-  String get settingsEnableAdhanAudioTitle => 'د اذان غږ فعال کړئ';
-
-  @override
-  String get settingsEnableAdhanAudioSubtitle =>
-      'د لمانځه نصیحت کونکي کولی شي ټاکل شوی اذان ادا کړي کله چې دا روان وي.';
+  String get settingsAdhanChoiceTitle => 'Adhan';
 
   @override
   String get settingsRegularAdhanTitle => 'منظم اذان';
@@ -19954,10 +20036,7 @@ class AppLocalizationsPs extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'مخکتنه وغږوئ';
 
   @override
-  String get settingsTestRegularAdhan => 'د منظم اذان ازموینه';
-
-  @override
-  String get settingsTestFajrAdhan => 'د فجر اذان ازمویل';
+  String get settingsTestAdhan => 'Test Adhan';
 
   @override
   String get settingsUseAppVolumeTitle => 'د اپلیکیشن حجم وکاروئ';
@@ -20034,30 +20113,11 @@ class AppLocalizationsPs extends AppLocalizations {
   String get settingsVisualPreferencesTitle => 'بصری غوره توبونه';
 
   @override
-  String get settingsDisableGlassTransparencyTitle =>
-      'د شیشې شفافیت غیر فعال کړئ';
-
-  @override
-  String get settingsDisableGlassTransparencySubtitle =>
-      'د مترقي شیشې پرځای جامد سطحې وکاروئ.';
-
-  @override
   String get settingsDisableColoredGlassTitle => 'رنګ شوي شیشې غیر فعال کړئ';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
       'د رنګ شوي رنګ درملنې لرې کولو پرمهال د شیشې سطحې وساتئ.';
-
-  @override
-  String get settingsGlassTransparencyTitle => 'د شیشې شفافیت';
-
-  @override
-  String get settingsGlassTransparencySubtitle =>
-      'تنظیم کړئ چې څنګه په اپلیکیشن کې د شفاف شیشې کارتونه ، ټاپوګانې ، ګولۍ او تختې څرګندیږي.';
-
-  @override
-  String get settingsGlassTransparencyDisabledSubtitle =>
-      'بیا د روڼتیا تنظیم کولو لپاره شیشې بیرته چالان کړئ.';
 
   @override
   String get settingsVisualPreferenceUpdated => 'بصری غوره توب تازه شوی';
@@ -20070,10 +20130,6 @@ class AppLocalizationsPs extends AppLocalizations {
       'د پاک لید لپاره د آرائشی شالید عکسونه پټ کړئ.';
 
   @override
-  String get settingsAppearanceNoContentChangeNote =>
-      'دا تنظیمات ستاسو د مینځپانګې یا پرمختګ بدلولو پرته د ایپ لید بدلوي.';
-
-  @override
   String get settingsDefaultAppearanceActive => 'اصلي بڼه فعاله ده';
 
   @override
@@ -20082,6 +20138,13 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get settingsResetAppearance => 'بڼه بیا تنظیم کړئ';
+
+  @override
+  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+
+  @override
+  String get settingsFollowSystemThemeSubtitle =>
+      'Match the app with your device\'s current light or dark appearance.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'د سلام خبرتیاوې';

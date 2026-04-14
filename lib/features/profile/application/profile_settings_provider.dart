@@ -37,6 +37,7 @@ class ProfileSettingsState {
     required this.ramadanModeEnabled,
     required this.lossModeEnabled,
     required this.gentleModeEnabled,
+    required this.unwellModeEnabled,
     required this.kidsModeEnabled,
     required this.privateTrackingMode,
     required this.minimalTrackingMode,
@@ -72,6 +73,7 @@ class ProfileSettingsState {
   final bool ramadanModeEnabled;
   final bool lossModeEnabled;
   final bool gentleModeEnabled;
+  final bool unwellModeEnabled;
   final bool kidsModeEnabled;
   final bool privateTrackingMode;
   final bool minimalTrackingMode;
@@ -116,6 +118,7 @@ class ProfileSettingsState {
     bool? ramadanModeEnabled,
     bool? lossModeEnabled,
     bool? gentleModeEnabled,
+    bool? unwellModeEnabled,
     bool? kidsModeEnabled,
     bool? privateTrackingMode,
     bool? minimalTrackingMode,
@@ -151,6 +154,7 @@ class ProfileSettingsState {
       ramadanModeEnabled: ramadanModeEnabled ?? this.ramadanModeEnabled,
       lossModeEnabled: lossModeEnabled ?? this.lossModeEnabled,
       gentleModeEnabled: gentleModeEnabled ?? this.gentleModeEnabled,
+      unwellModeEnabled: unwellModeEnabled ?? this.unwellModeEnabled,
       kidsModeEnabled: kidsModeEnabled ?? this.kidsModeEnabled,
       privateTrackingMode: privateTrackingMode ?? this.privateTrackingMode,
       minimalTrackingMode: minimalTrackingMode ?? this.minimalTrackingMode,
@@ -190,7 +194,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   ProfileSettingsNotifier(this._store)
     : super(
         const ProfileSettingsState(
-          themePreference: ProfileThemePreference.system,
+          themePreference: ProfileThemePreference.light,
           ageRange: ProfileAgeRange.adult,
           kidsUiThemeMode: KidsUiThemeMode.auto,
           reduceMotion: false,
@@ -199,6 +203,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           ramadanModeEnabled: false,
           lossModeEnabled: false,
           gentleModeEnabled: true,
+          unwellModeEnabled: false,
           kidsModeEnabled: false,
           privateTrackingMode: false,
           minimalTrackingMode: false,
@@ -275,6 +280,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       ramadanModeEnabled: value,
       lossModeEnabled: value ? false : state.lossModeEnabled,
       gentleModeEnabled: value ? false : state.gentleModeEnabled,
+      unwellModeEnabled: value ? false : state.unwellModeEnabled,
     );
     _save();
   }
@@ -284,6 +290,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       lossModeEnabled: value,
       ramadanModeEnabled: value ? false : state.ramadanModeEnabled,
       gentleModeEnabled: value ? false : state.gentleModeEnabled,
+      unwellModeEnabled: value ? false : state.unwellModeEnabled,
     );
     _save();
   }
@@ -293,6 +300,17 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       gentleModeEnabled: value,
       ramadanModeEnabled: value ? false : state.ramadanModeEnabled,
       lossModeEnabled: value ? false : state.lossModeEnabled,
+      unwellModeEnabled: value ? false : state.unwellModeEnabled,
+    );
+    _save();
+  }
+
+  void setUnwellModeEnabled(bool value) {
+    state = state.copyWith(
+      unwellModeEnabled: value,
+      ramadanModeEnabled: value ? false : state.ramadanModeEnabled,
+      lossModeEnabled: value ? false : state.lossModeEnabled,
+      gentleModeEnabled: value ? false : state.gentleModeEnabled,
     );
     _save();
   }
@@ -396,7 +414,21 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   }
 
   void setAppThemeMode(AppThemeMode mode) {
-    state = state.copyWith(appThemeMode: mode);
+    state = state.copyWith(
+      appThemeMode: mode,
+      themePreference: state.themePreference == ProfileThemePreference.system
+          ? ProfileThemePreference.system
+          : _manualThemePreferenceForMode(mode),
+    );
+    _save();
+  }
+
+  void setFollowSystemTheme(bool value) {
+    state = state.copyWith(
+      themePreference: value
+          ? ProfileThemePreference.system
+          : _manualThemePreferenceForMode(state.appThemeMode),
+    );
     _save();
   }
 
@@ -427,6 +459,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
 
   void resetAppearance() {
     state = state.copyWith(
+      themePreference: ProfileThemePreference.light,
       appThemeMode: AppThemeMode.noorGlass,
       disableGlassTransparency: false,
       disableColoredGlass: false,
@@ -515,6 +548,8 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
       gentleModeEnabled:
           data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
+      unwellModeEnabled:
+          data['unwellModeEnabled'] as bool? ?? state.unwellModeEnabled,
       kidsModeEnabled: resolvedKidsMode,
       privateTrackingMode:
           data['privateTrackingMode'] as bool? ?? state.privateTrackingMode,
@@ -578,6 +613,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'ramadanModeEnabled': state.ramadanModeEnabled,
       'lossModeEnabled': state.lossModeEnabled,
       'gentleModeEnabled': state.gentleModeEnabled,
+      'unwellModeEnabled': state.unwellModeEnabled,
       'kidsModeEnabled': state.effectiveKidsUiThemeEnabled,
       'privateTrackingMode': state.privateTrackingMode,
       'minimalTrackingMode': state.minimalTrackingMode,
@@ -611,3 +647,13 @@ final profileSettingsProvider =
     StateNotifierProvider<ProfileSettingsNotifier, ProfileSettingsState>(
       (ref) => ProfileSettingsNotifier(ref.watch(localStoreProvider)),
     );
+
+ProfileThemePreference _manualThemePreferenceForMode(AppThemeMode mode) {
+  switch (mode) {
+    case AppThemeMode.noorGlassDark:
+    case AppThemeMode.noGlassDark:
+      return ProfileThemePreference.dark;
+    default:
+      return ProfileThemePreference.light;
+  }
+}
