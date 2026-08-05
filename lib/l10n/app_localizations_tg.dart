@@ -18680,94 +18680,94 @@ class AppLocalizationsTg extends AppLocalizations {
       'Дастгоҳҳои муштарак, профилҳои муҳофизатшуда, ҳолати ҳамоҳангсозӣ ва нусхабардориро бидуни халалдор кардани сафари ҷории шумо идора кунед.';
 
   @override
-  String get settingsCareModesTitle => 'Care & Life Moments';
+  String get settingsCareModesTitle => 'Ғамхорӣ ва лаҳзаҳои зиндагӣ';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+      'Ҳолатҳои ором ва дастгирикунандаро барои фаслҳои гуногуни ибодат ва зиндагии ҳаррӯза наздик нигоҳ доред.';
 
   @override
-  String get settingsCareModeRamadanTitle => 'Ramadan support';
+  String get settingsCareModeRamadanTitle => 'Дастгирии Рамазон';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+      'Дар моҳи Рамазон роҳнамоии марбут ба рӯза, саҳарӣ, ифтор ва намозро наздик нигоҳ доред.';
 
   @override
-  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+  String get settingsCareModeRamadanReference => 'Қуръон 2:183';
 
   @override
-  String get settingsCareModeLossTitle => 'Loss support';
+  String get settingsCareModeLossTitle => 'Дастгирӣ ҳангоми мусибат';
 
   @override
   String get settingsCareModeLossBody =>
-      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+      'Вақте ки ғам вазнин мешавад, бо сабр, дуо ва ёдовариҳои нарм ба сӯи Аллоҳ баргардед.';
 
   @override
   String get settingsCareModeLossPrayer =>
-      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+      'Дуо: Инна лиллаҳи ва инна илайҳи роҷиун. Аллоҳумма аҷурнӣ фӣ мусибатӣ вахлуф лӣ хайран минҳо.';
 
   @override
   String get settingsCareModeLossHadith =>
-      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+      'Ёдоварӣ: Озмоишҳое, ки бар дил вазнинӣ мекунанд, агар бо сабр пазируфта шаванд, метавонанд василаи раҳмат ва каффорат гарданд.';
 
   @override
-  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+  String get settingsCareModeLossReference => 'Қуръон 2:156-157';
 
   @override
-  String get settingsCareModeGentleTitle => 'Gentle mode support';
+  String get settingsCareModeGentleTitle => 'Дастгирии ҳолати нарм';
 
   @override
   String get settingsCareModeGentleBody =>
-      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+      'Шиддати огоҳиҳоро кам кунед ва рӯзро оромтар нигоҳ доред, дар ҳоле ки ёдовариҳои муфид ҳифз мешаванд.';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Reduce notification intensity and keep reminders softer.';
+      'Шиддати огоҳиҳоро кам кунед ва ёдовариҳоро нармтар нигоҳ доред.';
 
   @override
-  String get settingsUnwellModeTitle => 'Unwell Mode';
+  String get settingsUnwellModeTitle => 'Ҳолати беморӣ';
 
   @override
   String get settingsUnwellModeSubtitle =>
-      'Protect the day when illness makes worship harder.';
+      'Рӯзеро, ки беморӣ ибодатро душвор мекунад, ҳифз кунед.';
 
   @override
-  String get settingsCareModeUnwellTitle => 'Unwell support';
+  String get settingsCareModeUnwellTitle => 'Дастгирӣ ҳангоми беморӣ';
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+      'Ин ҳолатро дар рӯзҳои беморӣ истифода баред, то барнома нарм бимонад ва ҳифзи пайдарпаӣ рӯзҳои шифоёбиро фаро гирад.';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+      'Осонӣ дар намоз: Ба тарзе ки метавонед, намоз гузоред — истода, нишаста ё дар сурати зарурат хобида.';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+      'Ёдоварӣ: Беморӣ, хастагӣ ва дард, агар бо сабр таҳаммул шаванд, назди Аллоҳ бе аҷр намемонанд.';
 
   @override
-  String get settingsCycleDaysTitle => 'Cycle Days';
+  String get settingsCycleDaysTitle => 'Рӯзҳои давра';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'For sisters only. Protect worship continuity during excused days.';
+      'Танҳо барои хоҳарон. Давомнокии ибодатро дар рӯзҳои узрнок ҳифз кунед.';
 
   @override
-  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+  String get settingsCycleDaysSupportTitle => 'Дастгирии рӯзҳои давра';
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+      'Ин имкон дастгирии ёдовариҳои ба давра ҳассосро фаъол нигоҳ медорад ва дар рӯзҳое, ки намоз ва рӯза узрноканд, пайдарпаии шуморо ҳифз мекунад.';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+      'Тамаркузи дастгирӣ: зикр, дуо, шунидани Қуръон ва тафаккур дастрас мемонанд.';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
+      'Дастгирии пайдарпаӣ: рӯзҳои ҳифзшуда рӯзҳои фаъоли давраро фаро мегиранд, то пайдарпаии шумо ноодилона канда нашавад.';
 
   @override
   String get settingsCurrentProfileTitle => 'Профили ҷорӣ';
@@ -20082,7 +20082,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Азони бомдодро интихоб кунед, клипҳои маҷмӯиро пешнамоиш кунед ва садои намозро офлайн нигоҳ доред.';
 
   @override
-  String get settingsAdhanChoiceTitle => 'Adhan';
+  String get settingsAdhanChoiceTitle => 'Азон';
 
   @override
   String get settingsRegularAdhanTitle => 'Азони муқаррарӣ';
@@ -20119,7 +20119,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Пешнамоишро пахш кунед';
 
   @override
-  String get settingsTestAdhan => 'Test Adhan';
+  String get settingsTestAdhan => 'Санҷиши азон';
 
   @override
   String get settingsUseAppVolumeTitle => 'Ҳаҷми барномаро истифода баред';
@@ -20226,11 +20226,12 @@ class AppLocalizationsTg extends AppLocalizations {
   String get settingsResetAppearance => 'Аз нав танзимкунии намуди зоҳирӣ';
 
   @override
-  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+  String get settingsFollowSystemThemeTitle =>
+      'Пайравӣ аз ҳолати рӯз/шаби телефон';
 
   @override
   String get settingsFollowSystemThemeSubtitle =>
-      'Match the app with your device\'s current light or dark appearance.';
+      'Барномаро бо намуди равшан ё торики ҷории дастгоҳатон мувофиқ кунед.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'Огоҳиҳои Салоҳ';
@@ -20425,42 +20426,43 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get legalAttributionsSubtitle =>
-      'Qur\'an text, translations, transliteration, audio, and API usage.';
+      'Матни Қуръон, тарҷумаҳо, ҳарфгардонӣ, садо ва истифодаи API.';
 
   @override
-  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+  String get legalAttributionsQuranTitle => 'Матн ва тарҷумаҳои Қуръон';
 
   @override
   String get legalAttributionsQuranBody =>
-      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+      'Барнома дар айни замон барои матни арабӣ ва ҳамгироии тарҷумаҳо аз бастаи Flutter \"quran\" истифода мебарад.\n\nПайвандҳои манбаъ:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
 
   @override
-  String get legalAttributionsTransliterationTitle => 'Transliteration';
+  String get legalAttributionsTransliterationTitle => 'Ҳарфгардонӣ';
 
   @override
   String get legalAttributionsTransliterationBody =>
-      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+      'Ҳарфгардонӣ аз AlQuran.cloud (нашр: en.transliteration) гирифта шуда, дар дастгоҳ захира мешавад.\n\nПайвандҳои манбаъ:\nhttps://alquran.cloud/api';
 
   @override
-  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+  String get legalAttributionsRecitationTitle => 'Садои тиловат';
 
   @override
   String get legalAttributionsRecitationBody =>
-      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+      'Тиловатҳои садоӣ аз манбаъҳои EveryAyah, монанди Husary, Alafasy ва Abdul Basit, пахш ё боргирӣ мешаванд.\n\nПайвандҳои манбаъ:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
 
   @override
-  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+  String get legalAttributionsAdhanTitle => 'Садои огоҳии азон';
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'Манбаи клипи ёдоварии азони ҳамроҳи барнома:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nСуроғаи файли аслӣ:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nМуаллифи дар саҳифаи манбаъ зикршуда: Jarih (кори шахсӣ)\nЛитсензия: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nЭзоҳи ҷорӣ: барнома то иваз шудани маҷмӯаи интихобшуда вариантҳои муваққатии азони офлайнро, ки аз ҳамин клипи ҳамроҳ гирифта шудаанд, пешниҳод мекунад.';
 
   @override
-  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+  String get legalAttributionsWordTimingTitle =>
+      'Замонбандии калимаҳо (ҳамоҳангсозии зинда — бета)';
 
   @override
   String get legalAttributionsWordTimingBody =>
-      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+      'Бахшҳои замонбандии калимаҳо аз Quran.com API v4 дархост мешаванд.\n\nПайвандҳои манбаъ:\nhttps://api-docs.quran.com/';
 
   @override
   String get settingsSyncModePathOfNurCloud => 'Роҳи абри Нур';

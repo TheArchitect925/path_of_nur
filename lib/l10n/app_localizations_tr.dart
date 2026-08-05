@@ -18632,94 +18632,94 @@ class AppLocalizationsTr extends AppLocalizations {
       'Mevcut yolculuğunuzu kesintiye uğratmadan paylaşılan cihazları, korumalı profilleri, senkronizasyon modunu ve yedeklemeleri yönetin.';
 
   @override
-  String get settingsCareModesTitle => 'Care & Life Moments';
+  String get settingsCareModesTitle => 'Bakım ve Hayat Anları';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+      'İbadetin ve günlük hayatın farklı dönemleri için sakin, destekleyici modları yakınında tut.';
 
   @override
-  String get settingsCareModeRamadanTitle => 'Ramadan support';
+  String get settingsCareModeRamadanTitle => 'Ramazan desteği';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+      'Ramazan boyunca oruç, sahur, iftar ve namaz odaklı rehberliği yakınında tut.';
 
   @override
-  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+  String get settingsCareModeRamadanReference => 'Kur’an 2:183';
 
   @override
-  String get settingsCareModeLossTitle => 'Loss support';
+  String get settingsCareModeLossTitle => 'Kayıp desteği';
 
   @override
   String get settingsCareModeLossBody =>
-      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+      'Keder ağır geldiğinde sabır, dua ve nazik hatırlatmalarla Allah’a yönel.';
 
   @override
   String get settingsCareModeLossPrayer =>
-      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+      'Dua: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
 
   @override
   String get settingsCareModeLossHadith =>
-      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+      'Hatırlatma: Kalbe ağır gelen imtihanlar, sabırla karşılandığında yine de rahmet ve günahlara kefaret vesilesi olabilir.';
 
   @override
-  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+  String get settingsCareModeLossReference => 'Kur’an 2:156-157';
 
   @override
-  String get settingsCareModeGentleTitle => 'Gentle mode support';
+  String get settingsCareModeGentleTitle => 'Nazik mod desteği';
 
   @override
   String get settingsCareModeGentleBody =>
-      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+      'Bildirim yoğunluğunu azalt ve faydalı hatırlatmaları korurken günü daha sakin tut.';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Reduce notification intensity and keep reminders softer.';
+      'Bildirim yoğunluğunu azalt ve hatırlatmaları daha yumuşak tut.';
 
   @override
-  String get settingsUnwellModeTitle => 'Unwell Mode';
+  String get settingsUnwellModeTitle => 'Hastalık Modu';
 
   @override
   String get settingsUnwellModeSubtitle =>
-      'Protect the day when illness makes worship harder.';
+      'Hastalık ibadeti zorlaştırdığında gününü koru.';
 
   @override
-  String get settingsCareModeUnwellTitle => 'Unwell support';
+  String get settingsCareModeUnwellTitle => 'Hastalık desteği';
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+      'Hasta günlerinde bunu kullan; uygulama nazik kalır ve seri koruman iyileşme günlerini kapsayabilir.';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+      'Namazda kolaylık: Gücünün yettiği şekilde ayakta, oturarak veya gerektiğinde uzanarak namaz kıl.';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+      'Hatırlatma: Hastalık, yorgunluk ve ağrı, sabırla taşındığında Allah katında boşa gitmez.';
 
   @override
-  String get settingsCycleDaysTitle => 'Cycle Days';
+  String get settingsCycleDaysTitle => 'Döngü Günleri';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'For sisters only. Protect worship continuity during excused days.';
+      'Yalnızca hanımlar için. Mazeretli günlerde ibadet sürekliliğini koru.';
 
   @override
-  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+  String get settingsCycleDaysSupportTitle => 'Döngü günü desteği';
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+      'Bu, döngüye duyarlı hatırlatma desteğini aktif tutar ve namaz ile orucun mazeretli olduğu günlerde serini korur.';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+      'Destek odağı: zikir, dua, Kur’an dinleme ve tefekkür kullanılabilir kalır.';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
+      'Seri desteği: korunan günler aktif döngü günlerini kapsar, böylece serin haksız yere bozulmaz.';
 
   @override
   String get settingsCurrentProfileTitle => 'Mevcut Profil';
@@ -20022,7 +20022,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Özel bir Sabah Ezanı seçin, paketteki klipleri önizleyin ve dua sesini çevrimdışı tutun.';
 
   @override
-  String get settingsAdhanChoiceTitle => 'Adhan';
+  String get settingsAdhanChoiceTitle => 'Ezan';
 
   @override
   String get settingsRegularAdhanTitle => 'Düzenli Ezan';
@@ -20059,7 +20059,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Ön izlemeyi oynat';
 
   @override
-  String get settingsTestAdhan => 'Test Adhan';
+  String get settingsTestAdhan => 'Ezanı Test Et';
 
   @override
   String get settingsUseAppVolumeTitle => 'Uygulama Sesini Kullan';
@@ -20164,11 +20164,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsResetAppearance => 'Görünümü Sıfırla';
 
   @override
-  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+  String get settingsFollowSystemThemeTitle =>
+      'Telefonun gündüz/gece modunu takip et';
 
   @override
   String get settingsFollowSystemThemeSubtitle =>
-      'Match the app with your device\'s current light or dark appearance.';
+      'Uygulamayı cihazının mevcut açık veya koyu görünümüyle eşleştir.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'Salah Bildirimleri';
@@ -20364,42 +20365,43 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get legalAttributionsSubtitle =>
-      'Qur\'an text, translations, transliteration, audio, and API usage.';
+      'Kur’an metni, mealler, transliterasyon, ses ve API kullanımı.';
 
   @override
-  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+  String get legalAttributionsQuranTitle => 'Kur’an Metni ve Mealler';
 
   @override
   String get legalAttributionsQuranBody =>
-      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+      'Uygulama şu anda Arapça metin ve meal entegrasyonları için \"quran\" adlı Flutter paketini kullanıyor.\n\nKaynak bağlantıları:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
 
   @override
-  String get legalAttributionsTransliterationTitle => 'Transliteration';
+  String get legalAttributionsTransliterationTitle => 'Transliterasyon';
 
   @override
   String get legalAttributionsTransliterationBody =>
-      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+      'Transliterasyon AlQuran.cloud üzerinden alınır (sürüm: en.transliteration) ve cihazda önbelleğe alınır.\n\nKaynak bağlantıları:\nhttps://alquran.cloud/api';
 
   @override
-  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+  String get legalAttributionsRecitationTitle => 'Tilavet Sesi';
 
   @override
   String get legalAttributionsRecitationBody =>
-      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+      'Tilavet sesleri Husary, Alafasy ve Abdul Basit gibi EveryAyah kaynaklarından akıtılır veya indirilir.\n\nKaynak bağlantıları:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
 
   @override
-  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+  String get legalAttributionsAdhanTitle => 'Ezan Bildirim Sesi';
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'Uygulamayla birlikte gelen ezan hatırlatma klibinin kaynağı:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOrijinal dosya URL’si:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nKaynak sayfada belirtilen yazar: Jarih (kendi çalışması)\nLisans: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nGüncel not: uygulama, derlenmiş yedek set hazır olana kadar bu klipten türetilen geçici çevrimdışı ezan varyantlarını içerir.';
 
   @override
-  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+  String get legalAttributionsWordTimingTitle =>
+      'Kelime Zamanlaması (Canlı Senkron Beta)';
 
   @override
   String get legalAttributionsWordTimingBody =>
-      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+      'Kelime zamanlama segmentleri Quran.com API v4 üzerinden istenir.\n\nKaynak bağlantıları:\nhttps://api-docs.quran.com/';
 
   @override
   String get settingsSyncModePathOfNurCloud => 'Nūr Bulutunun Yolu';

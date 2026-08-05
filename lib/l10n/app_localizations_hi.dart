@@ -18680,94 +18680,94 @@ class AppLocalizationsHi extends AppLocalizations {
       'अपनी वर्तमान यात्रा में खलल डाले बिना साझा किए गए डिवाइस, संरक्षित प्रोफाइल, सिंक मोड और बैकअप प्रबंधित करें।';
 
   @override
-  String get settingsCareModesTitle => 'Care & Life Moments';
+  String get settingsCareModesTitle => 'देखभाल और जीवन के पल';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+      'इबादत और रोज़मर्रा की ज़िंदगी के अलग-अलग मौसमों के लिए शांत, सहायक मोड पास रखें।';
 
   @override
-  String get settingsCareModeRamadanTitle => 'Ramadan support';
+  String get settingsCareModeRamadanTitle => 'रमज़ान सहायता';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+      'रमज़ान के दौरान रोज़ा, सहरी, इफ़्तार और सलाह-केंद्रित मार्गदर्शन पास रखें।';
 
   @override
-  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+  String get settingsCareModeRamadanReference => 'कुरआन 2:183';
 
   @override
-  String get settingsCareModeLossTitle => 'Loss support';
+  String get settingsCareModeLossTitle => 'शोक सहायता';
 
   @override
   String get settingsCareModeLossBody =>
-      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+      'जब ग़म भारी लगे, तो सब्र, दुआ और कोमल रिमाइंडर के साथ अल्लाह की ओर लौटें।';
 
   @override
   String get settingsCareModeLossPrayer =>
-      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+      'दुआ: इन्ना लिल्लाहि व इन्ना इलैहि राजिऊन। अल्लाहुम्मा अजुरनी फ़ी मुसीबती वख़्लुफ़ ली ख़ैरन मिन्हा।';
 
   @override
   String get settingsCareModeLossHadith =>
-      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+      'याद दिलाना: दिल पर भारी पड़ने वाली आज़माइशें भी, सब्र के साथ सहने पर, रहमत और गुनाहों की माफ़ी का ज़रिया बन सकती हैं।';
 
   @override
-  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+  String get settingsCareModeLossReference => 'कुरआन 2:156-157';
 
   @override
-  String get settingsCareModeGentleTitle => 'Gentle mode support';
+  String get settingsCareModeGentleTitle => 'सौम्य मोड सहायता';
 
   @override
   String get settingsCareModeGentleBody =>
-      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+      'सूचनाओं की तीव्रता कम करें और दिन को शांत रखें, जबकि उपयोगी रिमाइंडर बने रहें।';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Reduce notification intensity and keep reminders softer.';
+      'सूचनाओं की तीव्रता कम करें और रिमाइंडर को नरम रखें।';
 
   @override
-  String get settingsUnwellModeTitle => 'Unwell Mode';
+  String get settingsUnwellModeTitle => 'अस्वस्थ मोड';
 
   @override
   String get settingsUnwellModeSubtitle =>
-      'Protect the day when illness makes worship harder.';
+      'जब बीमारी इबादत को कठिन बना दे, तो उस दिन की रक्षा करें।';
 
   @override
-  String get settingsCareModeUnwellTitle => 'Unwell support';
+  String get settingsCareModeUnwellTitle => 'अस्वस्थता सहायता';
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+      'बीमारी के दिनों में इसका उपयोग करें ताकि ऐप कोमल बना रहे और आपकी स्ट्रीक सुरक्षा रिकवरी के दिनों को कवर कर सके।';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+      'सलाह में आसानी: जिस तरह आप सक्षम हों, वैसे सलाह पढ़ें — ज़रूरत के अनुसार खड़े होकर, बैठकर या लेटकर।';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+      'याद दिलाना: बीमारी, थकान और दर्द, सब्र के साथ सहने पर, अल्लाह के यहाँ बेकार नहीं जाते।';
 
   @override
-  String get settingsCycleDaysTitle => 'Cycle Days';
+  String get settingsCycleDaysTitle => 'चक्र के दिन';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'For sisters only. Protect worship continuity during excused days.';
+      'केवल बहनों के लिए। छूट वाले दिनों में इबादत की निरंतरता की रक्षा करें।';
 
   @override
-  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+  String get settingsCycleDaysSupportTitle => 'चक्र दिवस सहायता';
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+      'यह चक्र-सचेत रिमाइंडर सहायता को सक्रिय रखता है और उन दिनों आपकी स्ट्रीक की रक्षा करता है जब सलाह और रोज़ा माफ़ होते हैं।';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+      'सहायता फोकस: ज़िक्र, दुआ, कुरआन सुनना और चिंतन उपलब्ध रहते हैं।';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
+      'स्ट्रीक सहायता: सुरक्षित दिन सक्रिय चक्र दिनों को कवर करेंगे ताकि आपकी स्ट्रीक अनुचित रूप से न टूटे।';
 
   @override
   String get settingsCurrentProfileTitle => 'वर्तमान प्रोफ़ाइल';
@@ -20055,7 +20055,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'एक समर्पित फज्र अज़ान चुनें, बंडल किए गए क्लिप का पूर्वावलोकन करें, और प्रार्थना ऑडियो ऑफ़लाइन रखें।';
 
   @override
-  String get settingsAdhanChoiceTitle => 'Adhan';
+  String get settingsAdhanChoiceTitle => 'अज़ान';
 
   @override
   String get settingsRegularAdhanTitle => 'नियमित अज़ान';
@@ -20092,7 +20092,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'पूर्वावलोकन चलाएँ';
 
   @override
-  String get settingsTestAdhan => 'Test Adhan';
+  String get settingsTestAdhan => 'अज़ान का परीक्षण करें';
 
   @override
   String get settingsUseAppVolumeTitle => 'ऐप वॉल्यूम का उपयोग करें';
@@ -20195,11 +20195,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsResetAppearance => 'उपस्थिति रीसेट करें';
 
   @override
-  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+  String get settingsFollowSystemThemeTitle =>
+      'फ़ोन के दिन/रात मोड का पालन करें';
 
   @override
   String get settingsFollowSystemThemeSubtitle =>
-      'Match the app with your device\'s current light or dark appearance.';
+      'ऐप को अपने डिवाइस की वर्तमान लाइट या डार्क दिखावट से मिलाएँ।';
 
   @override
   String get settingsPrayerNotificationsTitle => 'सलाह अधिसूचनाएँ';
@@ -20391,42 +20392,43 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get legalAttributionsSubtitle =>
-      'Qur\'an text, translations, transliteration, audio, and API usage.';
+      'कुरआन पाठ, अनुवाद, लिप्यंतरण, ऑडियो और API उपयोग।';
 
   @override
-  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+  String get legalAttributionsQuranTitle => 'कुरआन पाठ और अनुवाद';
 
   @override
   String get legalAttributionsQuranBody =>
-      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+      'ऐप वर्तमान में अरबी पाठ और अनुवाद एकीकरण के लिए Flutter पैकेज \"quran\" का उपयोग करता है।\n\nस्रोत लिंक:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
 
   @override
-  String get legalAttributionsTransliterationTitle => 'Transliteration';
+  String get legalAttributionsTransliterationTitle => 'लिप्यंतरण';
 
   @override
   String get legalAttributionsTransliterationBody =>
-      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+      'लिप्यंतरण AlQuran.cloud (edition: en.transliteration) से प्राप्त किया जाता है और डिवाइस पर कैश किया जाता है।\n\nस्रोत लिंक:\nhttps://alquran.cloud/api';
 
   @override
-  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+  String get legalAttributionsRecitationTitle => 'तिलावत ऑडियो';
 
   @override
   String get legalAttributionsRecitationBody =>
-      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+      'ऑडियो तिलावतें EveryAyah स्रोतों से स्ट्रीम या डाउनलोड की जाती हैं, जैसे Husary, Alafasy और Abdul Basit।\n\nस्रोत लिंक:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
 
   @override
-  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+  String get legalAttributionsAdhanTitle => 'अज़ान अधिसूचना ऑडियो';
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'बंडल की गई अज़ान रिमाइंडर क्लिप का स्रोत:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nमूल फ़ाइल URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nस्रोत पृष्ठ पर सूचीबद्ध लेखक: Jarih (own work)\nलाइसेंस: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nवर्तमान नोट: जब तक चयनित प्रतिस्थापन सेट नहीं जोड़ा जाता, ऐप इस बंडल की गई क्लिप से बने अस्थायी ऑफ़लाइन फ़ॉलबैक अज़ान वेरिएंट शामिल करता है।';
 
   @override
-  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+  String get legalAttributionsWordTimingTitle =>
+      'शब्द टाइमिंग (लाइव सिंक बीटा)';
 
   @override
   String get legalAttributionsWordTimingBody =>
-      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+      'शब्द टाइमिंग सेगमेंट Quran.com API v4 से अनुरोध किए जाते हैं।\n\nस्रोत लिंक:\nhttps://api-docs.quran.com/';
 
   @override
   String get settingsSyncModePathOfNurCloud => 'नूर बादल का पथ';

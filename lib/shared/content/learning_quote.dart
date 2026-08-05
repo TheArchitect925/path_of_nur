@@ -36,7 +36,6 @@ class LearningHubRabbiZidniIlmaHeader extends StatelessWidget {
   const LearningHubRabbiZidniIlmaHeader({super.key, this.center = true});
 
   static const _sourceRef = QuranQuoteRef(surah: 20, ayah: 114);
-  static const _fallbackArabic = 'رَبِّ زِدْنِي عِلْمًا';
   static const _fallbackPhrase = 'Rabbi zidni ilma';
   static const _fallbackTranslation = 'My Lord, increase me in knowledge.';
   final bool center;
@@ -54,15 +53,18 @@ class LearningHubRabbiZidniIlmaHeader extends StatelessWidget {
     );
   }
 
+  // The "Rabbi zidni ilma" phrase is the final three words of 20:114; slice
+  // it positionally so no Quran Arabic is hardcoded in this file.
   static String _extractArabicPhrase(String arabic) {
-    if (arabic.trim().isEmpty) {
-      return _fallbackArabic;
+    final words = arabic
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((word) => word.isNotEmpty)
+        .toList(growable: false);
+    if (words.length < 3) {
+      return arabic.trim();
     }
-    final match = RegExp(r'رَبِّ\s+زِدْنِي\s+عِلْم').firstMatch(arabic);
-    if (match == null) {
-      return _fallbackArabic;
-    }
-    return arabic.substring(match.start, match.end).trim();
+    return words.sublist(words.length - 3).join(' ');
   }
 
   static String _extractPhrase(String transliteration) {

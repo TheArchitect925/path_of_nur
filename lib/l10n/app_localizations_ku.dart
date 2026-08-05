@@ -18654,28 +18654,28 @@ class AppLocalizationsKu extends AppLocalizations {
       'ئامێرە هاوبەشەکان، پرۆفایلە پارێزراوەکان، دۆخی هاوتاکردن، و پاڵپشتییەکان بەڕێوە ببە بەبێ ئەوەی گەشتە ئێستاکەت بێزاری بکات.';
 
   @override
-  String get settingsCareModesTitle => 'Care & Life Moments';
+  String get settingsCareModesTitle => 'Lênihêrîn û Kêliyên Jiyanê';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+      'Ji bo demsalên cuda yên îbadetê û jiyana rojane modên aram û piştgir nêzîkî xwe bihêle.';
 
   @override
-  String get settingsCareModeRamadanTitle => 'Ramadan support';
+  String get settingsCareModeRamadanTitle => 'Piştgiriya Remezanê';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+      'Di Remezanê de rêberiya girêdayî rojî, suhûr, iftar û nivêjê nêzîkî xwe bihêle.';
 
   @override
   String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
 
   @override
-  String get settingsCareModeLossTitle => 'Loss support';
+  String get settingsCareModeLossTitle => 'Piştgiriya windabûnê';
 
   @override
   String get settingsCareModeLossBody =>
-      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+      'Dema xemgînî giran be, bi sebr, du\'a û bîranînên nerm vegere ba Allah.';
 
   @override
   String get settingsCareModeLossPrayer =>
@@ -18683,65 +18683,65 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get settingsCareModeLossHadith =>
-      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+      'Bîranîn: Ceribandinên ku giraniyê didin dil, dema bi sebrê werin pêşwazîkirin, dîsa jî dikarin bibin rêyeke rehmet û efûkirinê.';
 
   @override
   String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
 
   @override
-  String get settingsCareModeGentleTitle => 'Gentle mode support';
+  String get settingsCareModeGentleTitle => 'Piştgiriya moda nerm';
 
   @override
   String get settingsCareModeGentleBody =>
-      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+      'Tundiya agahdariyan kêm bike û roja xwe aramtir bihêle, di heman demê de bîranînên alîkar biparêze.';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Reduce notification intensity and keep reminders softer.';
+      'Tundiya agahdariyan kêm bike û bîranînan nermtir bihêle.';
 
   @override
-  String get settingsUnwellModeTitle => 'Unwell Mode';
+  String get settingsUnwellModeTitle => 'Moda Nexweşiyê';
 
   @override
   String get settingsUnwellModeSubtitle =>
-      'Protect the day when illness makes worship harder.';
+      'Dema nexweşî îbadetê dijwartir dike rojê biparêze.';
 
   @override
-  String get settingsCareModeUnwellTitle => 'Unwell support';
+  String get settingsCareModeUnwellTitle => 'Piştgiriya nexweşiyê';
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+      'Vê di rojên nexweşiyê de bikar bîne da ku sepan nerm bimîne û parastina streak-ê bikaribe rojên başbûnê bigire.';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+      'Hêsaniya nivêjê: Wekî ku tu dikarî nivêj bike; li gorî pêwîstiyê rawestayî, rûniştî an jî razayî.';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+      'Bîranîn: Nexweşî, westan û êş, dema bi sebrê werin kişandin, li cem Allah vala naçin.';
 
   @override
-  String get settingsCycleDaysTitle => 'Cycle Days';
+  String get settingsCycleDaysTitle => 'Rojên Cycle';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'For sisters only. Protect worship continuity during excused days.';
+      'Tenê ji bo xwişkan. Di rojên uzrê de domdariya îbadetê biparêze.';
 
   @override
-  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+  String get settingsCycleDaysSupportTitle => 'Piştgiriya rojên cycle';
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+      'Ev piştgiriya bîranînên hayjêhebûna cycle çalak dihêle û di rojên ku nivêj û rojî uzr in de streak-a te diparêze.';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+      'Fokusa piştgiriyê: dhikr, du\'a, guhdarîkirina Qur\'anê û tefekkur berdest dimînin.';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
+      'Piştgiriya streak-ê: rojên parastî dê rojên cycle yên çalak bigirin da ku streak-a te bi neheqî neşkê.';
 
   @override
   String get settingsCurrentProfileTitle => 'پرۆفایلی ئێستا';
@@ -20046,7 +20046,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'ئازانێکی تایبەت بۆ فەجر هەڵبژێرە، کلیپە هەڵگیراوەکان پێشبینە، و دەنگی نوێژ بەبێ ئینتەرنێت بهێڵەوە.';
 
   @override
-  String get settingsAdhanChoiceTitle => 'Adhan';
+  String get settingsAdhanChoiceTitle => 'Ezan';
 
   @override
   String get settingsRegularAdhanTitle => 'ئازانی ئاسایی';
@@ -20083,7 +20083,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Pêşdîtinê bilîze';
 
   @override
-  String get settingsTestAdhan => 'Test Adhan';
+  String get settingsTestAdhan => 'Ezanê Biceribîne';
 
   @override
   String get settingsUseAppVolumeTitle => 'دەنگی ئەپ بەکاربهێنە';
@@ -20188,11 +20188,12 @@ class AppLocalizationsKu extends AppLocalizations {
   String get settingsResetAppearance => 'دیمەن بگەڕێنەرەوە';
 
   @override
-  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+  String get settingsFollowSystemThemeTitle =>
+      'Moda roj/şevê ya telefonê bişopîne';
 
   @override
   String get settingsFollowSystemThemeSubtitle =>
-      'Match the app with your device\'s current light or dark appearance.';
+      'Sepanê bi xuyanga ronî an tarî ya niha ya cîhaza xwe re li hev bîne.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'ئاگادارکردنەوەکانی نوێژ';
@@ -20385,42 +20386,43 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get legalAttributionsSubtitle =>
-      'Qur\'an text, translations, transliteration, audio, and API usage.';
+      'Deqa Qur\'anê, werger, transliterasyon, deng û bikaranîna API-yê.';
 
   @override
-  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+  String get legalAttributionsQuranTitle => 'Deqa Qur\'anê û Werger';
 
   @override
   String get legalAttributionsQuranBody =>
-      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+      'Sepan niha ji bo deqa erebî û entegrasyonên wergerê pakêta Flutter \"quran\" bikar tîne.\n\nLînkên çavkaniyê:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
 
   @override
-  String get legalAttributionsTransliterationTitle => 'Transliteration';
+  String get legalAttributionsTransliterationTitle => 'Transliterasyon';
 
   @override
   String get legalAttributionsTransliterationBody =>
-      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+      'Transliterasyon ji AlQuran.cloud (edîsyon: en.transliteration) tê anîn û li ser cîhazê tê cache kirin.\n\nLînkên çavkaniyê:\nhttps://alquran.cloud/api';
 
   @override
-  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+  String get legalAttributionsRecitationTitle => 'Dengê Tilawetê';
 
   @override
   String get legalAttributionsRecitationBody =>
-      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+      'Xwendinên dengî ji çavkaniyên EveryAyah ên wekî Husary, Alafasy û Abdul Basit tên streamkirin an dakêşandin.\n\nLînkên çavkaniyê:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
 
   @override
-  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+  String get legalAttributionsAdhanTitle => 'Dengê Agahdariya Ezanê';
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'Çavkaniya klîba bîranîna ezanê ya pakêtkirî:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nURL-a dosyeya orîjînal:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nNivîskarê ku li ser rûpela çavkaniyê hatiye diyarkirin: Jarih (karê xwe)\nLîsans: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nNota niha: sepan heta ku seta cîgir a hilbijartî were guhertin, guhertoyên ezanê yên offline ên demkî yên ku ji vê klîba pakêtkirî hatine derxistin pêşkêş dike.';
 
   @override
-  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+  String get legalAttributionsWordTimingTitle =>
+      'Demjimêriya Peyvan (Live Sync Beta)';
 
   @override
   String get legalAttributionsWordTimingBody =>
-      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+      'Segmentên demjimêriya peyvan ji Quran.com API v4 tên xwestin.\n\nLînkên çavkaniyê:\nhttps://api-docs.quran.com/';
 
   @override
   String get settingsSyncModePathOfNurCloud => 'Path of Nūr Cloud';

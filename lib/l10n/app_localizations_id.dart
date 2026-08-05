@@ -18652,94 +18652,94 @@ class AppLocalizationsId extends AppLocalizations {
       'Kelola perangkat bersama, profil terlindungi, mode sinkronisasi, dan pencadangan tanpa mengganggu perjalanan Anda saat ini.';
 
   @override
-  String get settingsCareModesTitle => 'Care & Life Moments';
+  String get settingsCareModesTitle => 'Perhatian & Momen Kehidupan';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+      'Jaga mode yang tenang dan mendukung tetap dekat untuk berbagai musim ibadah dan kehidupan sehari-hari.';
 
   @override
-  String get settingsCareModeRamadanTitle => 'Ramadan support';
+  String get settingsCareModeRamadanTitle => 'Dukungan Ramadan';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+      'Jaga panduan puasa, sahur, berbuka, dan salat tetap dekat selama Ramadan.';
 
   @override
-  String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
+  String get settingsCareModeRamadanReference => 'Al-Qur’an 2:183';
 
   @override
-  String get settingsCareModeLossTitle => 'Loss support';
+  String get settingsCareModeLossTitle => 'Dukungan saat kehilangan';
 
   @override
   String get settingsCareModeLossBody =>
-      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+      'Kembali kepada Allah dengan sabar, doa, dan pengingat lembut ketika duka terasa berat.';
 
   @override
   String get settingsCareModeLossPrayer =>
-      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+      'Doa: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
 
   @override
   String get settingsCareModeLossHadith =>
-      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+      'Pengingat: Ujian yang memberatkan hati tetap dapat menjadi jalan rahmat dan penghapus dosa jika dihadapi dengan sabar.';
 
   @override
-  String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
+  String get settingsCareModeLossReference => 'Al-Qur’an 2:156-157';
 
   @override
-  String get settingsCareModeGentleTitle => 'Gentle mode support';
+  String get settingsCareModeGentleTitle => 'Dukungan mode lembut';
 
   @override
   String get settingsCareModeGentleBody =>
-      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+      'Kurangi intensitas notifikasi dan jaga hari tetap tenang sambil tetap mempertahankan pengingat yang bermanfaat.';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Reduce notification intensity and keep reminders softer.';
+      'Kurangi intensitas notifikasi dan jaga pengingat tetap lembut.';
 
   @override
-  String get settingsUnwellModeTitle => 'Unwell Mode';
+  String get settingsUnwellModeTitle => 'Mode Sakit';
 
   @override
   String get settingsUnwellModeSubtitle =>
-      'Protect the day when illness makes worship harder.';
+      'Lindungi hari Anda ketika sakit membuat ibadah terasa lebih berat.';
 
   @override
-  String get settingsCareModeUnwellTitle => 'Unwell support';
+  String get settingsCareModeUnwellTitle => 'Dukungan saat sakit';
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+      'Gunakan ini pada hari sakit agar aplikasi tetap lembut dan perlindungan streak Anda dapat mencakup hari-hari pemulihan.';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+      'Kemudahan salat: Salatlah sesuai kemampuan Anda, baik berdiri, duduk, maupun berbaring sesuai kebutuhan.';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+      'Pengingat: Sakit, letih, dan rasa nyeri tidak sia-sia di sisi Allah bila dihadapi dengan sabar.';
 
   @override
-  String get settingsCycleDaysTitle => 'Cycle Days';
+  String get settingsCycleDaysTitle => 'Hari Siklus';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'For sisters only. Protect worship continuity during excused days.';
+      'Khusus untuk muslimah. Lindungi kesinambungan ibadah selama hari-hari uzur.';
 
   @override
-  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+  String get settingsCycleDaysSupportTitle => 'Dukungan hari siklus';
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+      'Ini menjaga dukungan pengingat yang peka siklus tetap aktif dan melindungi streak Anda pada hari-hari ketika salat dan puasa mendapat keringanan.';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+      'Fokus dukungan: dzikir, doa, mendengarkan Al-Qur’an, dan refleksi tetap tersedia.';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
+      'Dukungan streak: hari yang dilindungi akan mencakup hari siklus aktif sehingga streak Anda tidak terputus secara tidak adil.';
 
   @override
   String get settingsCurrentProfileTitle => 'Profil Saat Ini';
@@ -20012,7 +20012,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Pilih Adzan Subuh khusus, pratinjau klip yang dibundel, dan simpan audio doa secara offline.';
 
   @override
-  String get settingsAdhanChoiceTitle => 'Adhan';
+  String get settingsAdhanChoiceTitle => 'Azan';
 
   @override
   String get settingsRegularAdhanTitle => 'Adzan Biasa';
@@ -20049,7 +20049,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Putar pratinjau';
 
   @override
-  String get settingsTestAdhan => 'Test Adhan';
+  String get settingsTestAdhan => 'Uji Azan';
 
   @override
   String get settingsUseAppVolumeTitle => 'Gunakan Volume Aplikasi';
@@ -20152,11 +20152,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsResetAppearance => 'Atur Ulang Penampilan';
 
   @override
-  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+  String get settingsFollowSystemThemeTitle => 'Ikuti mode siang/malam ponsel';
 
   @override
   String get settingsFollowSystemThemeSubtitle =>
-      'Match the app with your device\'s current light or dark appearance.';
+      'Sesuaikan aplikasi dengan tampilan terang atau gelap perangkat Anda saat ini.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'Pemberitahuan Salah';
@@ -20352,42 +20352,43 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get legalAttributionsSubtitle =>
-      'Qur\'an text, translations, transliteration, audio, and API usage.';
+      'Teks Al-Qur’an, terjemahan, transliterasi, audio, dan penggunaan API.';
 
   @override
-  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+  String get legalAttributionsQuranTitle => 'Teks & Terjemahan Al-Qur’an';
 
   @override
   String get legalAttributionsQuranBody =>
-      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+      'Aplikasi ini saat ini menggunakan paket Flutter \"quran\" untuk integrasi teks Arab dan terjemahan.\n\nTautan sumber:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
 
   @override
-  String get legalAttributionsTransliterationTitle => 'Transliteration';
+  String get legalAttributionsTransliterationTitle => 'Transliterasi';
 
   @override
   String get legalAttributionsTransliterationBody =>
-      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+      'Transliterasi diambil dari AlQuran.cloud (edisi: en.transliteration) dan disimpan di perangkat.\n\nTautan sumber:\nhttps://alquran.cloud/api';
 
   @override
-  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+  String get legalAttributionsRecitationTitle => 'Audio Tilawah';
 
   @override
   String get legalAttributionsRecitationBody =>
-      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+      'Audio tilawah dialirkan atau diunduh dari sumber EveryAyah seperti Husary, Alafasy, dan Abdul Basit.\n\nTautan sumber:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
 
   @override
-  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+  String get legalAttributionsAdhanTitle => 'Audio Notifikasi Azan';
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'Sumber klip pengingat azan bawaan:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nURL berkas asli:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nPenulis yang tercantum di halaman sumber: Jarih (karya sendiri)\nLisensi: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCatatan saat ini: aplikasi menyertakan varian azan cadangan offline sementara yang diturunkan dari klip bawaan ini sampai set pengganti hasil kurasi dipasang.';
 
   @override
-  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+  String get legalAttributionsWordTimingTitle =>
+      'Pewaktuan Kata (Beta Sinkronisasi Langsung)';
 
   @override
   String get legalAttributionsWordTimingBody =>
-      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+      'Segmen pewaktuan kata diminta dari Quran.com API v4.\n\nTautan sumber:\nhttps://api-docs.quran.com/';
 
   @override
   String get settingsSyncModePathOfNurCloud => 'Jalur Nūr Cloud';

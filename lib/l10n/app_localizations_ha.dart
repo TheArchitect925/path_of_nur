@@ -18679,94 +18679,94 @@ class AppLocalizationsHa extends AppLocalizations {
       'Sarrafa na\'urorin da aka raba, bayanan martaba masu kariya, yanayin daidaitawa, da madogara ba tare da dagula tafiyarku na yanzu ba.';
 
   @override
-  String get settingsCareModesTitle => 'Care & Life Moments';
+  String get settingsCareModesTitle => 'Kulawa & Lokutan Rayuwa';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Keep calm, supportive modes close for different seasons of worship and daily life.';
+      'Riƙe yanayoyi masu natsuwa da tallafi kusa don lokuta daban-daban na ibada da rayuwar yau da kullum.';
 
   @override
-  String get settingsCareModeRamadanTitle => 'Ramadan support';
+  String get settingsCareModeRamadanTitle => 'Tallafin Ramadan';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Keep fasting, suhoor, iftar, and prayer-focused guidance close during Ramadan.';
+      'Riƙe jagorar azumi, sahur, karya azumi, da Sallah kusa da kai a lokacin Ramadan.';
 
   @override
   String get settingsCareModeRamadanReference => 'Qur\'an 2:183';
 
   @override
-  String get settingsCareModeLossTitle => 'Loss support';
+  String get settingsCareModeLossTitle => 'Tallafin lokacin rashi';
 
   @override
   String get settingsCareModeLossBody =>
-      'Return to Allah with patience, du\'a, and gentle reminders when grief feels heavy.';
+      'Komawa ga Allah cikin haƙuri, addu\'a, da tunatarwa masu taushi lokacin da baƙin ciki ya yi nauyi.';
 
   @override
   String get settingsCareModeLossPrayer =>
-      'Du\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
+      'Addu\'a: Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati wakhluf li khayran minha.';
 
   @override
   String get settingsCareModeLossHadith =>
-      'Reminder: Trials that weigh on the heart can still become a means of mercy and expiation when met with sabr.';
+      'Tunatarwa: Jarrabawar da take nauyi a zuciya na iya zama hanyar rahama da kankare zunubai idan aka fuskance ta da haƙuri.';
 
   @override
   String get settingsCareModeLossReference => 'Qur\'an 2:156-157';
 
   @override
-  String get settingsCareModeGentleTitle => 'Gentle mode support';
+  String get settingsCareModeGentleTitle => 'Tallafin yanayin a hankali';
 
   @override
   String get settingsCareModeGentleBody =>
-      'Reduce notification intensity and keep the day calmer while still preserving helpful reminders.';
+      'Rage ƙarfin sanarwa kuma a sa rana ta kasance cikin natsuwa, tare da kiyaye tunatarwa masu amfani.';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Reduce notification intensity and keep reminders softer.';
+      'Rage ƙarfin sanarwa kuma a sa tunatarwa su yi taushi.';
 
   @override
-  String get settingsUnwellModeTitle => 'Unwell Mode';
+  String get settingsUnwellModeTitle => 'Yanayin Rashin Lafiya';
 
   @override
   String get settingsUnwellModeSubtitle =>
-      'Protect the day when illness makes worship harder.';
+      'Kare ranar lokacin da rashin lafiya ya sa ibada ta yi wahala.';
 
   @override
-  String get settingsCareModeUnwellTitle => 'Unwell support';
+  String get settingsCareModeUnwellTitle => 'Tallafin rashin lafiya';
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Use this on sick days so the app stays gentle and your streak protection can cover recovery days.';
+      'Yi amfani da wannan a ranakun rashin lafiya domin manhajar ta kasance cikin taushi kuma kariyar jerin kwanakinka ta rufe ranakun murmurewa.';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Prayer ease: Pray in the way you are able, standing, sitting, or lying down as needed.';
+      'Sauƙin Sallah: Yi Sallah gwargwadon iyawarka, a tsaye, a zaune, ko a kwance kamar yadda ake buƙata.';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Reminder: Illness, fatigue, and pain are not wasted with Allah when borne with patience.';
+      'Tunatarwa: Rashin lafiya, gajiya, da zafi ba sa tafiya a banza a wurin Allah idan aka jure su da haƙuri.';
 
   @override
-  String get settingsCycleDaysTitle => 'Cycle Days';
+  String get settingsCycleDaysTitle => 'Ranakun Zagaye';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'For sisters only. Protect worship continuity during excused days.';
+      'Domin mata kawai. Kare ci gaban ibada a ranakun uzuri.';
 
   @override
-  String get settingsCycleDaysSupportTitle => 'Cycle day support';
+  String get settingsCycleDaysSupportTitle => 'Tallafin ranakun zagaye';
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'This keeps cycle-aware reminder support active and protects your streak on days when salah and fasting are excused.';
+      'Wannan yana ci gaba da kunna tallafin tunatarwa mai lura da zagaye kuma yana kare jerin kwanakinki a ranakun da aka yafe Sallah da azumi.';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Support focus: dhikr, du\'a, Qur\'an listening, and reflection remain available.';
+      'Fannin tallafi: dhikr, addu\'a, sauraron Alƙur\'ani, da tunani suna nan a buɗe.';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Streak support: protected days will cover active cycle days so your streak is not unfairly broken.';
+      'Tallafin jerin kwanaki: ranakun kariya za su rufe ranakun zagaye masu gudana domin kada a karya jerin kwanakinki ba bisa adalci ba.';
 
   @override
   String get settingsCurrentProfileTitle => 'Bayanan Bayani na Yanzu';
@@ -20078,7 +20078,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'Zaɓi fajr Adhan da aka keɓe, duba shirye-shiryen shirye-shiryen da aka haɗa, da kiyaye sautin addu\'a a layi.';
 
   @override
-  String get settingsAdhanChoiceTitle => 'Adhan';
+  String get settingsAdhanChoiceTitle => 'Azan';
 
   @override
   String get settingsRegularAdhanTitle => 'Adhan na yau da kullun';
@@ -20115,7 +20115,7 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settingsAdhanPreviewPlayTooltip => 'Kunna preview';
 
   @override
-  String get settingsTestAdhan => 'Test Adhan';
+  String get settingsTestAdhan => 'Gwada Azan';
 
   @override
   String get settingsUseAppVolumeTitle => 'Yi amfani da ƙarar App';
@@ -20219,11 +20219,12 @@ class AppLocalizationsHa extends AppLocalizations {
   String get settingsResetAppearance => 'Sake saitin Bayyanar';
 
   @override
-  String get settingsFollowSystemThemeTitle => 'Follow phone day/night mode';
+  String get settingsFollowSystemThemeTitle =>
+      'Bi yanayin rana/dare na wayarka';
 
   @override
   String get settingsFollowSystemThemeSubtitle =>
-      'Match the app with your device\'s current light or dark appearance.';
+      'Daidaita manhajar da yanayin haske ko duhu na na\'urarka na yanzu.';
 
   @override
   String get settingsPrayerNotificationsTitle => 'Sanarwa Salah';
@@ -20417,42 +20418,44 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get legalAttributionsSubtitle =>
-      'Qur\'an text, translations, transliteration, audio, and API usage.';
+      'Rubutun Alƙur\'ani, fassarori, tafsiri (transliteration), sauti, da amfani da API.';
 
   @override
-  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+  String get legalAttributionsQuranTitle => 'Rubutun Alƙur\'ani & Fassarori';
 
   @override
   String get legalAttributionsQuranBody =>
-      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+      'A halin yanzu manhajar tana amfani da fakitin Flutter mai suna \"quran\" don rubutun Larabci da haɗakar fassarori.\n\nHanyoyin tushe:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
 
   @override
-  String get legalAttributionsTransliterationTitle => 'Transliteration';
+  String get legalAttributionsTransliterationTitle =>
+      'Tafsiri (Transliteration)';
 
   @override
   String get legalAttributionsTransliterationBody =>
-      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+      'Ana samo tafsirin (transliteration) daga AlQuran.cloud (bugu: en.transliteration) kuma ana adana shi a na\'urar.\n\nHanyoyin tushe:\nhttps://alquran.cloud/api';
 
   @override
-  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+  String get legalAttributionsRecitationTitle => 'Sautin Karatun Alƙur\'ani';
 
   @override
   String get legalAttributionsRecitationBody =>
-      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+      'Ana watsa ko zazzage karatuttukan Alƙur\'ani daga tushen EveryAyah kamar Husary, Alafasy, da Abdul Basit.\n\nHanyoyin tushe:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
 
   @override
-  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+  String get legalAttributionsAdhanTitle => 'Sautin Sanarwar Azan';
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'Tushen sautin tunatar da azan da aka haɗa cikin manhajar:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nAdireshin URL na asali:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nMawallafin da aka lissafa a shafin tushen: Jarih (aikin kansa)\nLasisi: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nBayani na yanzu: manhajar tana ɗauke da sautukan azan na wucin gadi da ake iya amfani da su ba tare da intanet ba, waɗanda aka samo daga wannan sautin da aka haɗa, har sai an sauya su da zaɓaɓɓun sautukan da za su maye gurbinsu.';
 
   @override
-  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+  String get legalAttributionsWordTimingTitle =>
+      'Lokutan Kalmomi (Live Sync Beta)';
 
   @override
   String get legalAttributionsWordTimingBody =>
-      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+      'Ana neman sassan lokutan kalmomi daga Quran.com API v4.\n\nHanyoyin tushe:\nhttps://api-docs.quran.com/';
 
   @override
   String get settingsSyncModePathOfNurCloud => 'Hanyar Nur Cloud';
