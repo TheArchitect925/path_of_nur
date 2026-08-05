@@ -150,7 +150,7 @@ void main() {
           body: SizedBox(
             width: 320,
             child: KidsArabicTracingPad(
-              letterId: 'sheen',
+              letterId: 'not-a-letter',
               guide: kidsArabicTracingGuideFor('sheen'),
               clearActionLabel: 'Reset',
               traceColorLabel: 'Color',
@@ -195,7 +195,7 @@ void main() {
     await gesture.up();
     await tester.pumpAndSettle();
 
-    expect(kidsArabicSupportsVectorTracing('sheen'), isFalse);
+    expect(kidsArabicSupportsVectorTracing('not-a-letter'), isFalse);
     expect(latestMetrics.pointCount, greaterThan(0));
     expect(latestMetrics.strokeCount, 1);
   });

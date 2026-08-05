@@ -42,7 +42,25 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
+  Future<void> revealText(WidgetTester tester, String label) async {
+    if (find.text(label).evaluate().isEmpty) {
+      final scrollableFinder = find.byType(Scrollable).first;
+      tester.state<ScrollableState>(scrollableFinder).position.jumpTo(0);
+      await tester.pump();
+      var attempts = 0;
+      while (find.text(label).evaluate().isEmpty && attempts < 60) {
+        await tester.drag(scrollableFinder, const Offset(0, -400));
+        await tester.pump();
+        attempts += 1;
+      }
+      await pumpRouteFrames(tester);
+    }
+    await tester.ensureVisible(find.text(label).first);
+    await pumpRouteFrames(tester);
+  }
+
   Future<void> tapActionCard(WidgetTester tester, String label) async {
+    await revealText(tester, label);
     final labelFinder = find.text(label).first;
     await tester.ensureVisible(labelFinder);
     await pumpRouteFrames(tester);
@@ -68,10 +86,20 @@ void main() {
     expect(find.byType(LearnCategoryPage), findsOneWidget);
     expect(find.text(l10n.learnHubSubcategoriesSectionTitle), findsOneWidget);
     expect(find.text(l10n.learnHubKnowledgeSectionTitle), findsNothing);
+    await tester.scrollUntilVisible(
+      find.text(l10n.learnHubSubcategoryCoreKnowledgeTitle),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    await pumpRouteFrames(tester);
     expect(
       find.text(l10n.learnHubSubcategoryCoreKnowledgeTitle),
       findsOneWidget,
     );
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -1200));
+    await pumpRouteFrames(tester);
+    expect(find.text(l10n.learnHubKnowledgeSectionTitle), findsNothing);
   });
 
   testWidgets('Quran and Hadith section entries open their dedicated pages', (
@@ -150,9 +178,12 @@ void main() {
     router.go('/learn/category/tools-explore');
     await pumpRouteFrames(tester);
 
-    expect(find.text(l10n.historyArchiveTitle), findsOneWidget);
-    expect(find.text(l10n.learningJourneyDailyWisdomTitle), findsOneWidget);
-    expect(find.text(l10n.learnGlossaryTitle), findsOneWidget);
+    await revealText(tester, l10n.learnGlossaryTitle);
+    expect(find.text(l10n.learnGlossaryTitle), findsWidgets);
+    await revealText(tester, l10n.historyArchiveTitle);
+    expect(find.text(l10n.historyArchiveTitle), findsWidgets);
+    await revealText(tester, l10n.learningJourneyDailyWisdomTitle);
+    expect(find.text(l10n.learningJourneyDailyWisdomTitle), findsWidgets);
     await tapActionCard(tester, l10n.historyArchiveTitle);
 
     expect(find.byType(HistoryArchivePage), findsOneWidget);

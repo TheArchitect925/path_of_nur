@@ -42,7 +42,7 @@ void main() {
         first.firstWhere((record) => record.prayer == PrayerName.fajr).status,
         PrayerStatus.completed,
       );
-      expect(second.length, 5);
+      expect(second.length, PrayerName.values.length);
       expect(database.meta('migration.prayer_logs.v1.profile-a'), 'done');
     },
   );

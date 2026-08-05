@@ -296,12 +296,17 @@ void main() {
         find.byKey(const ValueKey('quran-shell-player-pill-content')),
       );
       await tester.pumpAndSettle();
-      await tester.fling(
-        find.byKey(const ValueKey('quran-global-player-sheet')),
-        const Offset(0, 420),
-        1800,
-        warnIfMissed: false,
+      final swipeHandle = find.byKey(
+        const ValueKey('quran-global-player-swipe-handle'),
       );
+      final swipeGesture = await tester.startGesture(
+        tester.getCenter(swipeHandle),
+      );
+      await swipeGesture.moveBy(const Offset(0, 40));
+      await tester.pump();
+      await swipeGesture.moveBy(const Offset(0, 320));
+      await tester.pump();
+      await swipeGesture.up();
       await tester.pumpAndSettle();
       expect(
         find.byKey(const ValueKey('quran-global-player-sheet')),

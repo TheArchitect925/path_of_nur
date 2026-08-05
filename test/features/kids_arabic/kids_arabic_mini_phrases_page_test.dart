@@ -74,13 +74,31 @@ void main() {
       final bismillah = kidsArabicMiniPhraseById('bismillah')!;
 
       expect(find.text(l10n.kidsArabicMiniPhrasesTitle), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text(bismillah.phraseAr),
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       expect(find.text(bismillah.phraseAr), findsOneWidget);
       expect(find.text('bismillah'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text(l10n.kidsArabicMiniPhraseBismillahMeaning),
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       expect(
         find.text(l10n.kidsArabicMiniPhraseBismillahMeaning),
         findsOneWidget,
       );
 
+      await tester.scrollUntilVisible(
+        find.text(bismillah.phraseAr),
+        -400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       await tester.tap(find.text(bismillah.phraseAr));
       await tester.pump();
 
@@ -99,12 +117,19 @@ void main() {
       final bismillah = kidsArabicMiniPhraseById('bismillah')!;
       final alhamdulillah = kidsArabicMiniPhraseById('alhamdulillah')!;
 
+      await tester.scrollUntilVisible(
+        find.text(bismillah.phraseAr),
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       expect(find.text(bismillah.phraseAr), findsOneWidget);
 
       await tester.scrollUntilVisible(
         find.text(l10n.kidsArabicMiniPhrasesNextAction),
         300,
         scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
       );
       await tester.tap(find.text(l10n.kidsArabicMiniPhrasesNextAction));
       await tester.pump();

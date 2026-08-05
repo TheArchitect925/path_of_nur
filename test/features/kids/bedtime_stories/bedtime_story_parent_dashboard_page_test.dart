@@ -199,18 +199,36 @@ void main() {
       tester.element(find.byType(BedtimeStoryParentDashboardPage)),
     );
 
-    expect(
-      find.text(l10n.bedtimeParentWelcomeSubtitleWithName('Maryam')),
-      findsOneWidget,
+    Future<void> expectTextRevealed(String text) async {
+      if (!tester.any(find.text(text))) {
+        await tester.scrollUntilVisible(
+          find.text(text),
+          400,
+          scrollable: find.byType(Scrollable).first,
+          maxScrolls: 60,
+        );
+      }
+      expect(find.text(text), findsOneWidget);
+    }
+
+    await expectTextRevealed(
+      l10n.bedtimeParentWelcomeSubtitleWithName('Maryam'),
     );
     container.dispose();
 
     await pumpPage(tester, activeLearner: learnerB);
     await tester.pump(const Duration(milliseconds: 200));
 
-    expect(
-      find.text(l10n.bedtimeParentWelcomeSubtitleWithName('Yusuf')),
-      findsOneWidget,
+    // The scroll offset carries over from the first pump; reset it so the
+    // hero card is reachable by forward scrolling.
+    tester
+        .state<ScrollableState>(find.byType(Scrollable).first)
+        .position
+        .jumpTo(0);
+    await tester.pump();
+
+    await expectTextRevealed(
+      l10n.bedtimeParentWelcomeSubtitleWithName('Yusuf'),
     );
   });
 }

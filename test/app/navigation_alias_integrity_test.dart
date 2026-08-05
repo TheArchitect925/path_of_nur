@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/presentation/data/learn_category_catalog.dart';
-import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_salah_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/learn_self_learning_hub_page.dart';
 import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 
@@ -139,7 +139,7 @@ void main() {
       router.go('/learn/legacy');
       await pumpRouteFrames(tester);
 
-      expect(find.byType(LearnPage), findsOneWidget);
+      expect(find.byType(LearnSelfLearningHubPage), findsOneWidget);
       expect(find.textContaining('/learn/legacy'), findsNothing);
     },
   );

@@ -471,8 +471,9 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
     required bool isDailyReplay,
     TriviaSession? session,
   }) {
-    if (answeredCount <= 0)
+    if (answeredCount <= 0) {
       return const TriviaRewardResult(xp: 0, oceanDrops: 0);
+    }
     if (session?.isKnowledgePathSession == true) {
       return TriviaRewardResult(
         xp: session?.customXpReward ?? 0,

@@ -108,6 +108,9 @@ void main() {
     container
         .read(quranReaderSettingsProvider.notifier)
         .setWordSyncHighlightBeta(true);
+    // The coordinator resolves timing from the audio settings reciter, so it
+    // must match the fixture's reciter.
+    container.read(quranAudioSettingsProvider.notifier).setReciterId('husary');
     container
         .read(quranActivePlaybackSessionProvider.notifier)
         .state = const QuranActivePlaybackSession(
@@ -224,6 +227,9 @@ void main() {
     container
         .read(quranReaderSettingsProvider.notifier)
         .setWordSyncHighlightBeta(true);
+    // Start from the husary reciter so the later switch to alafasy exercises
+    // the reload path.
+    container.read(quranAudioSettingsProvider.notifier).setReciterId('husary');
     container
         .read(quranActivePlaybackSessionProvider.notifier)
         .state = const QuranActivePlaybackSession(

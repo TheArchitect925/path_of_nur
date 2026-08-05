@@ -102,13 +102,25 @@ void main() {
       tester.element(find.byType(LearnerProgressionPage)),
     );
 
-    expect(find.text(l10n.progressionPageHeroTitle('Maryam')), findsOneWidget);
     expect(find.text('Yusuf'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text(l10n.progressionPageHeroTitle('Maryam')),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    expect(find.text(l10n.progressionPageHeroTitle('Maryam')), findsOneWidget);
     container.dispose();
 
     await pumpPage(tester, activeLearner: learnerB);
     await tester.pump(const Duration(milliseconds: 200));
 
+    await tester.scrollUntilVisible(
+      find.text(l10n.progressionPageHeroTitle('Yusuf')),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
     expect(find.text(l10n.progressionPageHeroTitle('Yusuf')), findsOneWidget);
   });
 }

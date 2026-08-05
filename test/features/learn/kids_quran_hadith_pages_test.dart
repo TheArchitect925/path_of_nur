@@ -41,7 +41,14 @@ void main() {
 
     expect(find.text('Qur’an for Kids'), findsOneWidget);
     expect(find.text('Start with any surah'), findsOneWidget);
-    expect(find.text('Al-Fatihah • The Opening'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Al Fatiha • The Opening'),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    await tester.pump();
+    expect(find.text('Al Fatiha • The Opening'), findsOneWidget);
     expect(find.text('Open surah'), findsWidgets);
   });
 
@@ -56,6 +63,14 @@ void main() {
     expect(find.text(l10n.kidsHadithPageTitleText), findsOneWidget);
     expect(find.text('Small hadith, big lessons'), findsOneWidget);
     expect(find.text('Hadith stories'), findsOneWidget);
+    expect(find.text('Actions Are by Intentions'), findsNothing);
+    await tester.scrollUntilVisible(
+      find.text('Smiling at Your Brother Is Charity'),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    await tester.pump();
     expect(find.text('Actions Are by Intentions'), findsNothing);
     expect(find.text('Smiling at Your Brother Is Charity'), findsOneWidget);
   });

@@ -476,6 +476,13 @@ void main() {
       );
       expect(find.text('الْحَمْدُ لِلَّهِ'), findsOneWidget);
 
+      Navigator.of(
+        tester.element(
+          find.byKey(const ValueKey('quran-focus-toggle-repeat-current-ayah')),
+        ),
+      ).pop();
+      await tester.pumpAndSettle();
+
       await tester.tap(find.byKey(const ValueKey('quran-focus-exit')));
       await tester.pumpAndSettle();
 

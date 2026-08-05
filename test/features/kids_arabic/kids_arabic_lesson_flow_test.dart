@@ -43,7 +43,7 @@ void main() {
     List<Override> overrides = const <Override>[],
     Duration settleDelay = const Duration(milliseconds: 800),
   }) async {
-    await tester.binding.setSurfaceSize(const Size(800, 2200));
+    await tester.binding.setSurfaceSize(const Size(800, 2800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final container = await makeTestContainer(overrides: overrides);
     addTearDown(container.dispose);
@@ -108,10 +108,10 @@ void main() {
       ),
     );
 
-    expect(find.text('Great tracing'), findsNothing);
+    expect(find.text('Tracing complete'), findsNothing);
 
     await tester.pump(const Duration(milliseconds: 260));
-    expect(find.text('Great tracing'), findsOneWidget);
+    expect(find.text('Tracing complete'), findsOneWidget);
   });
 
   testWidgets('lesson page shows ready state and retry clears it', (
@@ -132,7 +132,7 @@ void main() {
       ),
     );
 
-    expect(find.text('Great tracing'), findsOneWidget);
+    expect(find.text('Tracing complete'), findsOneWidget);
     expect(find.text('Try again'), findsWidgets);
 
     await tester.scrollUntilVisible(
@@ -144,7 +144,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('Great tracing'), findsNothing);
+    expect(find.text('Tracing complete'), findsNothing);
   });
 
   testWidgets('lesson page supports listen-and-repeat playback from the hero', (

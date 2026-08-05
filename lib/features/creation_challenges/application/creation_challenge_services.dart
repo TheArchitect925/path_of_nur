@@ -279,8 +279,9 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
     ).where((item) => item.challenge.id == challengeId).firstOrNull;
     if (summary == null || summary.isCompleted) return;
     if (summary.challenge.completionRule !=
-        CreationChallengeRuleType.manualConfirm)
+        CreationChallengeRuleType.manualConfirm) {
       return;
+    }
     await _completeChallenge(
       summary,
       evidence: CreationChallengeEvidence(
@@ -347,13 +348,15 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
         return evidence.ruleType == CreationChallengeRuleType.detectCategory &&
             challenge.targetCategoryId == evidence.categoryId;
       case CreationChallengeRuleType.saveObservation:
-        if (evidence.ruleType != CreationChallengeRuleType.saveObservation)
+        if (evidence.ruleType != CreationChallengeRuleType.saveObservation) {
           return false;
+        }
         return challenge.targetCategoryId == null ||
             challenge.targetCategoryId == evidence.categoryId;
       case CreationChallengeRuleType.saveReflection:
-        if (evidence.ruleType != CreationChallengeRuleType.saveReflection)
+        if (evidence.ruleType != CreationChallengeRuleType.saveReflection) {
           return false;
+        }
         return challenge.targetCategoryId == null ||
             challenge.targetCategoryId == evidence.categoryId;
       case CreationChallengeRuleType.checkSkyEvent:

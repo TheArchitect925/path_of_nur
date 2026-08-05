@@ -60,12 +60,15 @@ class TriviaRepository {
     return _questions
         .where((question) {
           if (activeOnly && !question.isActive) return false;
-          if (categoryId != null && question.categoryId != categoryId)
+          if (categoryId != null && question.categoryId != categoryId) {
             return false;
-          if (difficulty != null && question.difficulty != difficulty)
+          }
+          if (difficulty != null && question.difficulty != difficulty) {
             return false;
-          if (mode != null && !question.modeEligibility.contains(mode))
+          }
+          if (mode != null && !question.modeEligibility.contains(mode)) {
             return false;
+          }
           if (dailyEligibleOnly && !question.dailyEligible) return false;
           if (featuredOnly && !question.featured) return false;
           if (tags != null && tags.isNotEmpty) {

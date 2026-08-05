@@ -13,6 +13,7 @@ import 'package:path_of_nur/features/learn/quran/application/quran_reflections_p
 import 'package:path_of_nur/features/learn/quran/domain/quran_content_refs.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_reflection_entry.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
+import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/app_database.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,6 +31,9 @@ Future<ProviderContainer> makeNotesTestContainer({
     overrides: <Override>[
       sharedPreferencesProvider.overrideWithValue(prefs),
       appDatabaseProvider.overrideWithValue(database),
+      dailyNowProvider.overrideWith(
+        (ref) => Stream<DateTime>.value(DateTime.parse('2026-03-23T12:00:00')),
+      ),
     ],
   );
 }

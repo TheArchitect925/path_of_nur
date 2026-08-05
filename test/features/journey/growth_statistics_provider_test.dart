@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/journey/application/growth_statistics_provider.dart';
@@ -19,8 +21,8 @@ void main() {
 
       final container = await makeTestContainer(
         database: database,
-        seed: const <String, Object>{
-          'learn.quran.readingStats': <String, Object>{
+        seed: <String, Object>{
+          'learn.quran.readingStats': jsonEncode(<String, Object>{
             'totalReadingSeconds': 2700,
             'totalSessions': 3,
             'secondsByDayKey': <String, int>{
@@ -28,13 +30,30 @@ void main() {
               '2026-03-19': 900,
               '2026-03-20': 1200,
             },
-          },
-          'learn.quran.listeningStats': <String, Object>{
+          }),
+          'learn.quran.listeningStats': jsonEncode(<String, Object>{
             'totalListeningSeconds': 1200,
             'totalSessions': 2,
             'secondsByDayKey': <String, int>{'2026-03-21': 1200},
-          },
+          }),
           'journey.installStartedAtIso': '2026-03-01T00:00:00.000',
+          // The growth dashboard sources per-day prayer/dhikr metrics from
+          // the persisted journey progress state, mirroring the database
+          // records inserted below.
+          'journey.progress.v2': jsonEncode(<String, Object>{
+            'dayMetricsByKey': <String, Object>{
+              '2026-03-20': <String, Object>{
+                'prayerCompleted': 1,
+                'dhikrSessions': 1,
+                'dhikrCount': 33,
+              },
+              '2026-03-21': <String, Object>{
+                'prayerCompleted': 1,
+                'dhikrSessions': 1,
+                'dhikrCount': 50,
+              },
+            },
+          }),
         },
         overrides: <Override>[
           journeyStatsNowProvider.overrideWithValue(

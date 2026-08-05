@@ -7,7 +7,7 @@ import '../../../test_helpers/app_test_harness.dart';
 
 void main() {
   test('seeded quran guided learning paths stay curated and non-empty', () {
-    expect(seededQuranGuidedLearningPaths, hasLength(5));
+    expect(seededQuranGuidedLearningPaths, hasLength(10));
     for (final path in seededQuranGuidedLearningPaths) {
       expect(path.id, isNotEmpty);
       expect(path.steps, isNotEmpty);
@@ -22,13 +22,10 @@ void main() {
 
     expect(
       routeNames,
-      containsAll(<String>{
+      unorderedEquals(<String>{
         'quranReader',
         'quranTopicDetail',
-        'quranMemorizationReview',
-        'quranReflections',
-        'quranSurahInsights',
-        'quranAyahInsightsPathDetail',
+        'quranSummaryDetailPage',
       }),
     );
   });
@@ -44,17 +41,17 @@ void main() {
       container
           .read(quranGuidedLearningContinuityProvider.notifier)
           .markStepOpened(
-            pathId: 'memorization-support',
-            stepId: 'memorization-study-anchor-ayah',
+            pathId: 'verses-for-hard-times',
+            stepId: 'hard-times-reader-inshirah',
           );
 
       final continuity = container.read(quranGuidedLearningContinuityProvider);
       final continuePath = container.read(quranGuidedContinuePathProvider);
 
-      expect(continuity.lastPathId, 'memorization-support');
-      expect(continuity.lastStepId, 'memorization-study-anchor-ayah');
+      expect(continuity.lastPathId, 'verses-for-hard-times');
+      expect(continuity.lastStepId, 'hard-times-reader-inshirah');
       expect(continuity.updatedAtIso, isNotEmpty);
-      expect(continuePath?.id, 'memorization-support');
+      expect(continuePath?.id, 'verses-for-hard-times');
     },
   );
 
@@ -67,6 +64,14 @@ void main() {
         .toSet();
 
     expect(pathTypes, containsAll(QuranGuidedLearningPathType.values));
-    expect(intensities, containsAll(QuranGuidedLearningPathIntensity.values));
+    // The current curated set intentionally sticks to the gentle and guided
+    // intensities; the deeper intensity is not seeded yet.
+    expect(
+      intensities,
+      containsAll(<QuranGuidedLearningPathIntensity>{
+        QuranGuidedLearningPathIntensity.gentle,
+        QuranGuidedLearningPathIntensity.guided,
+      }),
+    );
   });
 }

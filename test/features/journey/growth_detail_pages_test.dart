@@ -73,6 +73,12 @@ void main() {
     await pumpRouteFrames(tester);
 
     expect(find.text(l10n.growthHabitTodayActionsTitle), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text(l10n.growthHabitSettingsSectionTitle),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
     expect(find.text(l10n.growthHabitSettingsSectionTitle), findsOneWidget);
   });
 

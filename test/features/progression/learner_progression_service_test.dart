@@ -19,13 +19,19 @@ void main() {
         learnerProgressionControllerProvider('child_a').notifier,
       );
 
+      // The current-streak computation is anchored to the real clock, so the
+      // awarded activities must land on yesterday and today.
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day, 20);
+      final yesterday = today.subtract(const Duration(days: 1));
+
       final first = controller.award(
         sourceRef: 'story:adam:complete',
         activityType: LearnerProgressionActivityType.bedtimeStoryCompletion,
         sourceModule: 'kids_bedtime_story',
         xp: 5,
         drops: 1,
-        occurredAt: DateTime(2026, 3, 20, 20),
+        occurredAt: yesterday,
       );
       final duplicate = controller.award(
         sourceRef: 'story:adam:complete',
@@ -33,7 +39,7 @@ void main() {
         sourceModule: 'kids_bedtime_story',
         xp: 5,
         drops: 1,
-        occurredAt: DateTime(2026, 3, 20, 20, 5),
+        occurredAt: yesterday.add(const Duration(minutes: 5)),
       );
       final second = controller.award(
         sourceRef: 'quiz:adam:complete',
@@ -41,7 +47,7 @@ void main() {
         sourceModule: 'kids_bedtime_story_learning',
         xp: 8,
         drops: 0,
-        occurredAt: DateTime(2026, 3, 21, 20),
+        occurredAt: today,
       );
 
       final summary = container.read(

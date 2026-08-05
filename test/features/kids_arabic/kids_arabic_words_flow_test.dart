@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_audio_service.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_progress_provider.dart';
+import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_beginner_words_data.dart';
 import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_letters_data.dart';
 import 'package:path_of_nur/features/kids_arabic/domain/kids_arabic_models.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_word_lesson_page.dart';
@@ -204,7 +205,13 @@ void main() {
 
     expect(find.text(l10n.kidsArabicWordCompleteTitle('باب')), findsOneWidget);
 
-    await tester.tap(find.text(l10n.kidsArabicWordNextAction('نور')));
+    await tester.tap(
+      find.text(
+        l10n.kidsArabicWordNextAction(
+          kidsArabicBeginnerWordById('noor')!.wordAr,
+        ),
+      ),
+    );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 

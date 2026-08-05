@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_progress_provider.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_words_provider.dart';
+import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_beginner_words_data.dart';
 import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_letters_data.dart';
 import 'package:path_of_nur/features/kids_arabic/domain/kids_arabic_models.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_practice_page.dart';
@@ -108,15 +109,17 @@ void main() {
       final l10n = AppLocalizations.of(
         tester.element(find.byType(KidsArabicPracticePage)),
       );
+      final noorAr = kidsArabicBeginnerWordById('noor')!.wordAr;
 
       expect(find.text(l10n.kidsArabicPracticeTitle), findsOneWidget);
       await tester.scrollUntilVisible(
-        find.text(l10n.kidsArabicPracticeContinueWordTitle('نور')),
+        find.text(l10n.kidsArabicPracticeContinueWordTitle(noorAr)),
         300,
         scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
       );
       expect(
-        find.text(l10n.kidsArabicPracticeContinueWordTitle('نور')),
+        find.text(l10n.kidsArabicPracticeContinueWordTitle(noorAr)),
         findsOneWidget,
       );
       await tester.scrollUntilVisible(
@@ -130,9 +133,10 @@ void main() {
       );
 
       await tester.scrollUntilVisible(
-        find.text(l10n.kidsArabicPracticeContinueWordTitle('نور')),
-        300,
+        find.text(l10n.kidsArabicPracticeContinueWordTitle(noorAr)),
+        -300,
         scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
       );
       final continueButton = tester.widget<TextButton>(
         find

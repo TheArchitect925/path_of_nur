@@ -37,7 +37,8 @@ void main() {
     expect(kidsArabicVectorTraceLetterFor('lam'), isNotNull);
     expect(kidsArabicVectorTraceLetterFor('kaf'), isNotNull);
     expect(kidsArabicVectorTraceLetterFor('ha2'), isNotNull);
-    expect(kidsArabicVectorTraceLetterFor('sheen'), isNull);
+    expect(kidsArabicVectorTraceLetterFor('sheen'), isNotNull);
+    expect(kidsArabicVectorTraceLetterFor('not-a-letter'), isNull);
   });
 
   test('vector tracing support is centralized by letter id', () {
@@ -55,8 +56,9 @@ void main() {
     expect(kidsArabicSupportsVectorTracing('lam'), isTrue);
     expect(kidsArabicSupportsVectorTracing('kaf'), isTrue);
     expect(kidsArabicSupportsVectorTracing('ha2'), isTrue);
-    expect(kidsArabicSupportsVectorTracing('sheen'), isFalse);
-    expect(kidsArabicSupportsVectorTracing('sad'), isFalse);
+    expect(kidsArabicSupportsVectorTracing('sheen'), isTrue);
+    expect(kidsArabicSupportsVectorTracing('sad'), isTrue);
+    expect(kidsArabicSupportsVectorTracing('not-a-letter'), isFalse);
   });
 
   test('every Arabic letter has either vector or fallback tracing support', () {
@@ -318,12 +320,26 @@ void main() {
   test(
     'scoreKidsArabicTrace still falls back safely for unsupported letters',
     () {
-      final letter = kidsArabicLetters.firstWhere((item) => item.id == 'sheen');
+      const letter = KidsArabicLetter(
+        id: 'not-a-letter',
+        glyph: '؟',
+        nameEn: 'Unknown',
+        nameAr: 'مجهول',
+        transliteration: 'unknown',
+        soundHint: 'unknown',
+        strokeCount: 2,
+        exampleWord: 'unknown',
+        exampleWordAr: 'مجهول',
+        exampleWordEn: 'unknown',
+        childFriendlyLine: 'A letter we have not met yet.',
+        rewardXp: 0,
+        rewardDrops: 0,
+      );
       final result = scoreKidsArabicTrace(
         letter: letter,
         metrics: const KidsArabicTraceMetrics(
           strokeCount: 2,
-          pointCount: 34,
+          pointCount: 140,
           guidedProgress: 0.66,
           alignmentScore: 0.60,
           completedGuideStrokes: 3,
@@ -332,7 +348,7 @@ void main() {
         ),
       );
 
-      expect(kidsArabicSupportsVectorTracing('sheen'), isFalse);
+      expect(kidsArabicSupportsVectorTracing('not-a-letter'), isFalse);
       expect(result, KidsArabicTraceResult.good);
     },
   );

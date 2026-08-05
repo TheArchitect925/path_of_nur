@@ -37,6 +37,18 @@ void main() {
   }
 
   Future<void> tapActionCard(WidgetTester tester, String label) async {
+    if (find.text(label).evaluate().isEmpty) {
+      final scrollableFinder = find.byType(Scrollable).first;
+      tester.state<ScrollableState>(scrollableFinder).position.jumpTo(0);
+      await tester.pump();
+      await tester.scrollUntilVisible(
+        find.text(label),
+        400,
+        scrollable: scrollableFinder,
+        maxScrolls: 60,
+      );
+      await pumpRouteFrames(tester);
+    }
     final labelFinder = find.text(label).first;
     await tester.ensureVisible(labelFinder);
     await pumpRouteFrames(tester);

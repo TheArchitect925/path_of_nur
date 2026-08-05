@@ -704,8 +704,9 @@ class CelestialCalculationService {
     }
     final absBearing = bearing.abs();
     if (absBearing < 12) return 'Look straight ahead for the $label.';
-    if (bearing < 0)
+    if (bearing < 0) {
       return 'Turn about ${absBearing.round()}° left for the $label.';
+    }
     return 'Turn about ${absBearing.round()}° right for the $label.';
   }
 }

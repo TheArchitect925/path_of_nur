@@ -7,10 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_of_nur/features/learn/quran_teaching/domain/quran_teaching_icon_registry.dart';
 import 'package:path_of_nur/features/shared/legal_info_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
+import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:path_of_nur/shared/widgets/app_scaffold.dart';
-import 'package:path_of_nur/shared/widgets/premium_card.dart';
-import 'package:path_of_nur/features/worship/presentation/worship_page.dart';
+import 'package:path_of_nur/features/worship/presentation/worship_section_pages.dart';
+import 'package:path_of_nur/features/worship/presentation/widgets/salah_timings_tracker_card.dart';
 
 void main() {
   testWidgets('Legal support page renders', (WidgetTester tester) async {
@@ -40,12 +41,20 @@ void main() {
   testWidgets('worship page moon card shows all five prayers with times', (
     WidgetTester tester,
   ) async {
+    // The worship landing became a hub; the daily timings surface now lives
+    // on the prayer section page inside SalahTimingsTrackerCard.
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+          ),
+        ],
         child: MaterialApp(
           localizationsDelegates: [
             AppLocalizations.delegate,
@@ -54,24 +63,37 @@ void main() {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const Scaffold(body: WorshipPage()),
+          home: const Scaffold(body: WorshipPrayerPage()),
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 120));
+    await tester.pump(const Duration(milliseconds: 180));
 
-    final moonCard = find.widgetWithText(PremiumCard, 'Moon Phase').first;
-    expect(moonCard, findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.byType(SalahTimingsTrackerCard),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    final timingsCard = find.byType(SalahTimingsTrackerCard).first;
+    expect(timingsCard, findsOneWidget);
 
     const prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
     for (final prayerName in prayerNames) {
       expect(
-        find.descendant(
-          of: moonCard,
-          matching: find.textContaining('$prayerName '),
-        ),
+        find.descendant(of: timingsCard, matching: find.text(prayerName)),
         findsAtLeastNWidgets(1),
       );
+    }
+
+    final pills = tester.widgetList<PrayerTimingPill>(
+      find.descendant(of: timingsCard, matching: find.byType(PrayerTimingPill)),
+    );
+    expect(pills.length, greaterThanOrEqualTo(5));
+    for (final pill in pills) {
+      expect(pill.time, isNotEmpty);
     }
   });
 

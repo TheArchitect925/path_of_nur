@@ -191,21 +191,24 @@ DateTime _gentleSuggestionTime(
 ) {
   if (habit.id == 'h_morning_adhkar') {
     final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
-    if (fajr != null)
+    if (fajr != null) {
       return fajr.offerDateTime.add(const Duration(minutes: 15));
+    }
   }
   if (habit.id == 'h_evening_adhkar') {
     final maghrib = schedule.where((item) => item.id == 'maghrib').firstOrNull;
-    if (maghrib != null)
+    if (maghrib != null) {
       return maghrib.offerDateTime.add(const Duration(minutes: 20));
+    }
   }
   if (habit.id == 'h_day_end_reflection') {
     return DateTime(date.year, date.month, date.day, 22, 0);
   }
   if (habit.id == 'h_read_quran') {
     final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
-    if (fajr != null)
+    if (fajr != null) {
       return fajr.offerDateTime.add(const Duration(minutes: 35));
+    }
     return DateTime(date.year, date.month, date.day, 19, 45);
   }
   return _timeForWindow(date, GrowthReminderWindowType.evening);

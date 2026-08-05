@@ -26,9 +26,10 @@ void main() {
 
   Future<void> scrollUntilVisible(WidgetTester tester, Finder finder) async {
     await tester.scrollUntilVisible(
-      finder.first,
+      finder,
       240,
       scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
     );
     await pumpWuduFrames(tester);
   }
@@ -90,6 +91,8 @@ void main() {
       tester.element(find.byType(LearningJourneyIslandPage)),
     );
 
+    await scrollUntilVisible(tester, find.text(l10n.wuduPracticeCardSubtitle));
+
     expect(find.text(l10n.wuduPracticeCardTitle), findsWidgets);
     expect(find.text(l10n.wuduPracticeCardSubtitle), findsOneWidget);
 
@@ -97,7 +100,6 @@ void main() {
       of: find.text(l10n.wuduPracticeCardSubtitle),
       matching: find.byType(InkWell),
     );
-    await scrollUntilVisible(tester, find.text(l10n.wuduPracticeCardSubtitle));
     await tester.tap(cardFinder.first);
     await pumpWuduFrames(tester);
 

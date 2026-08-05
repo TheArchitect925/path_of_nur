@@ -43,8 +43,8 @@ void main() {
       container
           .read(quranGuidedLearningContinuityProvider.notifier)
           .markStepOpened(
-            pathId: 'surah-study-starter',
-            stepId: 'surah-open-insight',
+            pathId: 'character-and-adab',
+            stepId: 'character-hujurat-summary',
           );
       container
           .read(quranUserIntentStateProvider.notifier)
@@ -53,7 +53,7 @@ void main() {
       final summary = container.read(quranUserIntentSummaryProvider);
 
       expect(summary.selectedIntent, QuranUserIntent.guidedPath);
-      expect(summary.suggestedPath?.id, 'surah-study-starter');
+      expect(summary.suggestedPath?.id, 'character-and-adab');
       expect(summary.preferredReaderMode, QuranReaderStudyMode.study);
     },
   );

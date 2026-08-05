@@ -50,6 +50,12 @@ void main() {
     await pumpHome(tester);
 
     expect(find.text('Write and Learn Arabic Letters'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Arabic progress'),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
     expect(find.text('Arabic progress'), findsOneWidget);
     expect(find.text('0 letters learned'), findsOneWidget);
     expect(find.text('0 words practiced'), findsOneWidget);
@@ -85,6 +91,12 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
 
+      await tester.scrollUntilVisible(
+        find.text('1 letters learned'),
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       expect(find.text('1 letters learned'), findsOneWidget);
       expect(find.text('0 words practiced'), findsOneWidget);
       expect(find.text('0 phrases heard'), findsOneWidget);

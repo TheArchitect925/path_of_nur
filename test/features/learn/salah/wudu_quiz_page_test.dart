@@ -81,6 +81,13 @@ void main() {
       isTrue,
     );
 
+    await tester.scrollUntilVisible(
+      find.text(trainerL10n.wuduQuizStartAction),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    await pumpWuduFrames(tester);
     final quizLabel = find.text(trainerL10n.wuduQuizStartAction).first;
     await tester.ensureVisible(quizLabel);
     await pumpWuduFrames(tester);
@@ -91,6 +98,13 @@ void main() {
       tester.element(find.byType(WuduQuizPage)),
     );
     expect(find.text(quizL10n.wuduQuizPageTitle), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text(quizL10n.wuduQuizStepOrderQuestion),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
+    await pumpWuduFrames(tester);
     expect(find.text(quizL10n.wuduQuizStepOrderQuestion), findsOneWidget);
   });
 }

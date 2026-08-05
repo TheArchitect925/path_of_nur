@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
@@ -219,14 +220,23 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 200));
 
+      Future<void> expectTextRevealed(String text) async {
+        if (!tester.any(find.text(text))) {
+          await tester.scrollUntilVisible(
+            find.text(text),
+            400,
+            scrollable: find.byType(Scrollable).first,
+            maxScrolls: 60,
+          );
+        }
+        expect(find.text(text), findsOneWidget);
+      }
+
       expect(find.byType(LearnerProgressionPage), findsOneWidget);
       var l10n = AppLocalizations.of(
         tester.element(find.byType(LearnerProgressionPage)),
       );
-      expect(
-        find.text(l10n.progressionPageHeroTitle('Maryam')),
-        findsOneWidget,
-      );
+      await expectTextRevealed(l10n.progressionPageHeroTitle('Maryam'));
 
       router.go('/learn/kids/bedtime-stories/parents');
       await tester.pump();
@@ -235,9 +245,8 @@ void main() {
       l10n = AppLocalizations.of(
         tester.element(find.byType(BedtimeStoryParentDashboardPage)),
       );
-      expect(
-        find.text(l10n.bedtimeParentWelcomeSubtitleWithName('Maryam')),
-        findsOneWidget,
+      await expectTextRevealed(
+        l10n.bedtimeParentWelcomeSubtitleWithName('Maryam'),
       );
 
       final persisted = container
@@ -264,9 +273,8 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 250));
 
-      expect(
-        find.text(l10n.bedtimeParentWelcomeSubtitleWithName('Yusuf')),
-        findsOneWidget,
+      await expectTextRevealed(
+        l10n.bedtimeParentWelcomeSubtitleWithName('Yusuf'),
       );
       expect(tester.takeException(), isNull);
     },

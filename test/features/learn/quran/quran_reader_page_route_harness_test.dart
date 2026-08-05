@@ -647,7 +647,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(feed.playing, isTrue);
 
-      await tester.drag(find.byType(ListView), const Offset(0, -300));
+      await tester.drag(find.byType(CustomScrollView), const Offset(0, -300));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
@@ -670,6 +670,11 @@ void main() {
         find.byKey(const ValueKey('quran-reader-return-to-current-ayah-pill')),
       );
       await tester.pumpAndSettle();
+      // Let the programmatic return-to-ayah scroll retry timers finish so the
+      // coordinator leaves its programmatic-scroll window before dragging.
+      for (var i = 0; i < 30; i += 1) {
+        await tester.pump(const Duration(milliseconds: 100));
+      }
 
       expect(
         container
@@ -678,7 +683,7 @@ void main() {
         isFalse,
       );
 
-      await tester.drag(find.byType(ListView), const Offset(0, -300));
+      await tester.drag(find.byType(CustomScrollView), const Offset(0, -300));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
       expect(
@@ -765,6 +770,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('quran-reader-resume-session-button')),
+      );
+      await tester.pump();
       await tester.tap(
         find.byKey(const ValueKey('quran-reader-resume-session-button')),
       );
@@ -893,6 +902,11 @@ void main() {
               as _FakeRoutePlayerController;
       await container.read(quranSurahAyahsProvider(1).future);
       await tester.pumpAndSettle();
+      // Advance the timers behind the initial-route scroll and autoplay chain,
+      // which pumpAndSettle alone does not flush.
+      for (var i = 0; i < 40; i += 1) {
+        await tester.pump(const Duration(milliseconds: 100));
+      }
 
       expect(feed.hasPlaybackSource, isTrue);
       expect(feed.currentIndex, 0);

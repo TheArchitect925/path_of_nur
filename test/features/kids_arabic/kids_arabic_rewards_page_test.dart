@@ -60,7 +60,19 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
 
+    await tester.scrollUntilVisible(
+      find.text(l10n.kidsArabicLatestAchievementTitle),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
     expect(find.text(l10n.kidsArabicLatestAchievementTitle), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text(l10n.kidsArabicMilestonesSectionTitle),
+      400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
     expect(find.text(l10n.kidsArabicMilestoneFirstWordTitle), findsOneWidget);
     expect(find.text(l10n.kidsArabicMilestonesSectionTitle), findsOneWidget);
 

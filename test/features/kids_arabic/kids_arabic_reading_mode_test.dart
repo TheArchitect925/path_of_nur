@@ -94,6 +94,12 @@ void main() {
       final noor = kidsArabicBeginnerWordById('noor')!;
 
       expect(find.text(l10n.kidsArabicReadingModeTitle), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text(bab.wordAr),
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       expect(find.text(bab.wordAr), findsOneWidget);
       expect(find.text('baab'), findsOneWidget);
       expect(audio.spokenTexts, contains(bab.wordAr));

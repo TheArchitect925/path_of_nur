@@ -791,7 +791,12 @@ void main() {
       await pumpRouteFrames(tester);
 
       final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-      await tester.ensureVisible(searchLauncherFinder);
+      await tester.scrollUntilVisible(
+        searchLauncherFinder,
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       final launcher = tester.widget<InkWell>(
         find
             .descendant(
@@ -835,7 +840,12 @@ void main() {
       await pumpRouteFrames(tester);
 
       final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-      await tester.ensureVisible(searchLauncherFinder);
+      await tester.scrollUntilVisible(
+        searchLauncherFinder,
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       final launcher = tester.widget<InkWell>(
         find
             .descendant(
@@ -872,7 +882,12 @@ void main() {
       await pumpRouteFrames(tester);
 
       final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-      await tester.ensureVisible(searchLauncherFinder);
+      await tester.scrollUntilVisible(
+        searchLauncherFinder,
+        400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       final launcher = tester.widget<InkWell>(
         find
             .descendant(
@@ -1084,6 +1099,12 @@ void main() {
     expect(find.byType(QuranReaderPage), findsOneWidget);
     final page = tester.widget<QuranReaderPage>(find.byType(QuranReaderPage));
     expect(page.initialAyah, 1);
+    await tester.scrollUntilVisible(
+      find.text('Study mode'),
+      -400,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 60,
+    );
     expect(find.text('Study mode'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
@@ -1149,6 +1170,12 @@ void main() {
       await pumpRouteFrames(tester);
 
       expect(find.byType(QuranReaderPage), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text('Reflection mode'),
+        -400,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 60,
+      );
       expect(find.text('Reflection mode'), findsOneWidget);
       expect(tester.takeException(), isNull);
     },

@@ -326,8 +326,9 @@ class GrowthHabit {
     }
     GrowthReminderPrayerAnchor? reminderPrayerAnchor;
     for (final item in GrowthReminderPrayerAnchor.values) {
-      if (item.name == json['reminderPrayerAnchor'])
+      if (item.name == json['reminderPrayerAnchor']) {
         reminderPrayerAnchor = item;
+      }
     }
     GrowthReminderWindowType? reminderWindowType;
     for (final item in GrowthReminderWindowType.values) {
@@ -1223,8 +1224,9 @@ class GrowthHabitOverride {
     }
     GrowthReminderPrayerAnchor? reminderPrayerAnchor;
     for (final item in GrowthReminderPrayerAnchor.values) {
-      if (item.name == json['reminderPrayerAnchor'])
+      if (item.name == json['reminderPrayerAnchor']) {
         reminderPrayerAnchor = item;
+      }
     }
     GrowthReminderWindowType? reminderWindowType;
     for (final item in GrowthReminderWindowType.values) {

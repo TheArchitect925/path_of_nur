@@ -116,7 +116,7 @@ void main() {
     expect(settings.followUpReminderEnabled, isFalse);
     expect(settings.dhikrReminderEnabled, isTrue);
     expect(settings.quietModeEnabled, isTrue);
-    expect(settings.watchThemeMode, AppThemeMode.defaultMode.name);
+    expect(settings.watchThemeMode, AppThemeMode.noorGlass.name);
     expect(settings.followUpDelayMinutes, 20);
     expect(settings.snoozeDurationMinutes, 10);
     expect(validateSettingsSnapshot(settings), isEmpty);

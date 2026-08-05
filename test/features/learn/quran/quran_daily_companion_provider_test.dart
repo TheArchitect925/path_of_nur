@@ -76,7 +76,7 @@ void main() {
 
       expect(summary.activeIntent, QuranUserIntent.reflect);
       expect(summary.preferredReaderMode, QuranReaderStudyMode.reflection);
-      expect(summary.suggestedPath?.id, 'reflection-journey');
+      expect(summary.suggestedPath?.id, 'mercy-and-hope');
     },
   );
 

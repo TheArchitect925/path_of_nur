@@ -28,7 +28,10 @@ void main() {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          home: const FaqLandingPage(),
+          home: const Material(
+            type: MaterialType.transparency,
+            child: FaqLandingPage(),
+          ),
         ),
       ),
     );

@@ -86,6 +86,7 @@ void main() {
         scrollable: scrollable,
       );
       await tester.ensureVisible(continueFinder);
+      await tester.pump();
       expect(continueFinder, findsOneWidget);
 
       await tester.tap(continueFinder);
