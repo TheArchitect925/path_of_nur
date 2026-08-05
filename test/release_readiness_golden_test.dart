@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/features/shared/legal_info_page.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
+
+// Baselines are rasterized on macOS; Linux font rendering differs by a few
+// percent of pixels, so comparisons only run where they were generated.
+// CI enforces this file in the macOS job.
+final bool _skipGoldens = !Platform.isMacOS;
 
 Future<Widget> _host(Widget child) async {
   SharedPreferences.setMockInitialValues({});
@@ -44,7 +51,7 @@ void main() {
       find.byType(MaterialApp),
       matchesGoldenFile('goldens/legal_privacy.png'),
     );
-  });
+  }, skip: _skipGoldens);
 
   testWidgets('golden - legal support page', (tester) async {
     tester.view.physicalSize = const Size(1170, 2532);
@@ -61,5 +68,5 @@ void main() {
       find.byType(MaterialApp),
       matchesGoldenFile('goldens/legal_support.png'),
     );
-  });
+  }, skip: _skipGoldens);
 }

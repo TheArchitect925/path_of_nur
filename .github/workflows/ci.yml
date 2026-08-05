@@ -61,6 +61,12 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Golden tests (macOS-rendered baselines)
+        run: flutter test test/release_readiness_golden_test.dart
+
       - name: iOS + watchOS preflight
         run: bash scripts/ci_ios_watchos_preflight.sh
 
