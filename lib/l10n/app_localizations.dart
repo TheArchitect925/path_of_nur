@@ -15945,7 +15945,7 @@ abstract class AppLocalizations {
   /// No description provided for @legalPrivacyBody.
   ///
   /// In en, this message translates to:
-  /// **'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.'**
+  /// **'Path of Nūr stores your progress and preferences on your device by default. If you sign in, your name and email from Apple or Google are kept on the device to label your account, and signing out removes them. Backups you create are protected with your passphrase when you choose an encrypted export, and are saved to your files or to your own Google Drive or iCloud storage when you enable remote backup. When you search for a prayer location or use automatic location, approximate (city-level) coordinates are sent to OpenStreetMap\'\'s Nominatim service to look up place names; prayer times and Qibla are calculated on your device. Recitation audio, transliteration, and word timing are fetched from EveryAyah, AlQuran.cloud, and Quran.com when you use those features. The app contains no advertising or analytics trackers, and diagnostic logs never leave your device. You can review and clear data in Profile at any time.'**
   String get legalPrivacyBody;
 
   /// No description provided for @legalTermsBody.
@@ -32519,7 +32519,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountsSyncEncryptedExportSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Encode the backup payload before writing it to disk.'**
+  /// **'Protect the backup file with a passphrase before writing it to disk.'**
   String get accountsSyncEncryptedExportSubtitle;
 
   /// No description provided for @accountsSyncExportNowAction.
@@ -32593,6 +32593,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Encrypted payload'**
   String get accountsSyncEncryptedPayloadTitle;
+
+  /// No description provided for @accountsSyncPassphraseFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Passphrase'**
+  String get accountsSyncPassphraseFieldLabel;
+
+  /// No description provided for @accountsSyncPassphraseConfirmFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm passphrase'**
+  String get accountsSyncPassphraseConfirmFieldLabel;
+
+  /// No description provided for @accountsSyncPassphraseMismatchError.
+  ///
+  /// In en, this message translates to:
+  /// **'The passphrases don\'\'t match.'**
+  String get accountsSyncPassphraseMismatchError;
+
+  /// No description provided for @accountsSyncPassphraseTooShortError.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 8 characters.'**
+  String get accountsSyncPassphraseTooShortError;
+
+  /// No description provided for @accountsSyncPassphraseWrongError.
+  ///
+  /// In en, this message translates to:
+  /// **'That passphrase can\'\'t open this backup. Check it and try again.'**
+  String get accountsSyncPassphraseWrongError;
+
+  /// No description provided for @accountsSyncPassphraseExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'This backup is locked with a passphrase. Without it, the file can\'\'t be opened.'**
+  String get accountsSyncPassphraseExplainer;
 
   /// No description provided for @accountsSyncCreateNewProfilesTitle.
   ///

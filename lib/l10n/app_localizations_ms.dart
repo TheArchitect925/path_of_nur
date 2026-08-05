@@ -9197,7 +9197,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Secara lalai, Path of Nūr menyimpan kemajuan dan keutamaan anda pada peranti anda. Jika anda log masuk, nama dan e-mel anda daripada Apple atau Google disimpan pada peranti untuk menandakan akaun anda, dan log keluar akan membuangnya. Sandaran yang anda buat dilindungi dengan frasa laluan anda apabila anda memilih eksport tersulit, dan disimpan ke fail anda atau ke storan Google Drive atau iCloud milik anda sendiri apabila anda mengaktifkan sandaran jauh. Apabila anda mencari lokasi solat atau menggunakan lokasi automatik, koordinat anggaran (peringkat bandar) dihantar ke perkhidmatan Nominatim milik OpenStreetMap untuk mencari nama tempat; waktu solat dan arah kiblat dikira pada peranti anda. Audio bacaan, transliterasi dan pemasaan perkataan diambil daripada EveryAyah, AlQuran.cloud dan Quran.com apabila anda menggunakan ciri tersebut. Aplikasi ini tidak mengandungi penjejak iklan atau analitik, dan log diagnostik tidak pernah meninggalkan peranti anda. Anda boleh menyemak dan mengosongkan data dalam Profil pada bila-bila masa.';
 
   @override
   String get legalTermsBody =>
@@ -19759,6 +19759,28 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Muatan disulitkan';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Frasa laluan';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'Sahkan frasa laluan';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'Frasa laluan tidak sepadan.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'Gunakan sekurang-kurangnya 8 aksara.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Frasa laluan ini tidak dapat membuka sandaran ini. Semak dan cuba lagi.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'Sandaran ini dikunci dengan frasa laluan. Tanpanya, fail tidak dapat dibuka.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Cipta profil baharu';

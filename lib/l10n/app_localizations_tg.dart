@@ -9233,7 +9233,7 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr ба таври пешфарз пешрафт ва афзалиятҳои шуморо дар дастгоҳи шумо нигоҳ медорад. Агар ворид шавед, ном ва почтаи электронии шумо аз Apple ё Google барои нишон додани ҳисобатон дар дастгоҳ нигоҳ дошта мешавад ва баромадан аз ҳисоб онҳоро нест мекунад. Нусхаҳои эҳтиётие, ки месозед, ҳангоми интихоби содироти рамзгузоришуда бо ибораи махфии шумо муҳофизат мешаванд ва ҳангоми фаъол кардани нусхабардории дурдаст дар файлҳои шумо ё дар анбори Google Drive ё iCloud худи шумо нигоҳ дошта мешаванд. Вақте ки ҷойеро барои намоз ҷустуҷӯ мекунед ё макони худкорро истифода мебаред, координатҳои тахминӣ (дар сатҳи шаҳр) барои ёфтани номҳои ҷойҳо ба хидмати Nominatim-и OpenStreetMap фиристода мешаванд; вақтҳои намоз ва қибла дар дастгоҳи шумо ҳисоб карда мешаванд. Садои тиловат, ҳарфгардонӣ ва вақтбандии калимаҳо ҳангоми истифодаи ин имкониятҳо аз EveryAyah, AlQuran.cloud ва Quran.com гирифта мешаванд. Барнома ҳеҷ пайгирандаи таблиғотӣ ё таҳлилӣ надорад ва сабтҳои ташхисӣ ҳеҷ гоҳ аз дастгоҳи шумо берун намераванд. Шумо метавонед дар ҳар вақт маълумотро дар Профил дида, пок кунед.';
 
   @override
   String get legalTermsBody =>
@@ -19818,6 +19818,29 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Мундариҷаи рамзгузоришуда';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Ибораи махфӣ';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'Ибораи махфиро тасдиқ кунед';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'Ибораҳои махфӣ мувофиқат намекунанд.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'На камтар аз 8 аломат истифода баред.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Ин ибораи махфӣ ин нусхаи эҳтиётиро кушода наметавонад. Онро санҷед ва аз нав кӯшиш кунед.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'Ин нусхаи эҳтиётӣ бо ибораи махфӣ қулф шудааст. Бе он файл кушода намешавад.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Профилҳои нав созед';

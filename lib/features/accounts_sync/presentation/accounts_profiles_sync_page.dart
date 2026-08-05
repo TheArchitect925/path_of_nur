@@ -8,7 +8,9 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../application/accounts_sync_controller.dart';
+import '../application/auth_provider_availability.dart';
 import '../application/auto_backup_engine.dart';
+import '../application/backup_crypto.dart';
 import '../application/remote_backup_transport.dart';
 import '../application/accounts_sync_services.dart';
 import '../application/sync_scope_support.dart';
@@ -736,30 +738,38 @@ class _AccountConnectionCardState
             ),
           ],
           const Divider(height: 24),
-          FilledButton.icon(
-            onPressed: _authBusy
-                ? null
-                : () => _handleAuthAction(
-                    () => ref
-                        .read(accountsAuthRepositoryProvider)
-                        .signInWithApple(),
-                  ),
-            icon: const Icon(Icons.apple_rounded),
-            label: Text(l10n.accountsSyncContinueWithAppleAction),
-          ),
-          const SizedBox(height: 12),
-          FilledButton.icon(
-            onPressed: _authBusy
-                ? null
-                : () => _handleAuthAction(
-                    () => ref
-                        .read(accountsAuthRepositoryProvider)
-                        .signInWithGoogle(),
-                  ),
-            icon: const Icon(Icons.account_circle_outlined),
-            label: Text(l10n.accountsSyncContinueWithGoogleAction),
-          ),
-          const SizedBox(height: 12),
+          if (ref
+              .watch(authProviderAvailabilityProvider)
+              .appleSignInAvailable) ...[
+            FilledButton.icon(
+              onPressed: _authBusy
+                  ? null
+                  : () => _handleAuthAction(
+                      () => ref
+                          .read(accountsAuthRepositoryProvider)
+                          .signInWithApple(),
+                    ),
+              icon: const Icon(Icons.apple_rounded),
+              label: Text(l10n.accountsSyncContinueWithAppleAction),
+            ),
+            const SizedBox(height: 12),
+          ],
+          if (ref
+              .watch(authProviderAvailabilityProvider)
+              .googleSignInAvailable) ...[
+            FilledButton.icon(
+              onPressed: _authBusy
+                  ? null
+                  : () => _handleAuthAction(
+                      () => ref
+                          .read(accountsAuthRepositoryProvider)
+                          .signInWithGoogle(),
+                    ),
+              icon: const Icon(Icons.account_circle_outlined),
+              label: Text(l10n.accountsSyncContinueWithGoogleAction),
+            ),
+            const SizedBox(height: 12),
+          ],
           OutlinedButton.icon(
             onPressed: _authBusy
                 ? null
@@ -1773,6 +1783,119 @@ class _RemoteRestorePreviewPageState
   }
 }
 
+/// Collects a backup passphrase, optionally with a confirmation field for
+/// exports. Pops with the passphrase string, or null when cancelled.
+class PassphraseDialog extends StatefulWidget {
+  const PassphraseDialog({
+    super.key,
+    required this.title,
+    required this.requireConfirmation,
+    this.errorText,
+  });
+
+  final String title;
+  final bool requireConfirmation;
+  final String? errorText;
+
+  @override
+  State<PassphraseDialog> createState() => _PassphraseDialogState();
+}
+
+class _PassphraseDialogState extends State<PassphraseDialog> {
+  final TextEditingController _passphraseController = TextEditingController();
+  final TextEditingController _confirmController = TextEditingController();
+  String? _validationError;
+
+  @override
+  void dispose() {
+    _passphraseController.dispose();
+    _confirmController.dispose();
+    super.dispose();
+  }
+
+  void _submit(AppLocalizations l10n) {
+    final passphrase = _passphraseController.text;
+    if (passphrase.length < backupMinimumPassphraseLength) {
+      setState(
+        () => _validationError = l10n.accountsSyncPassphraseTooShortError,
+      );
+      return;
+    }
+    if (widget.requireConfirmation && passphrase != _confirmController.text) {
+      setState(
+        () => _validationError = l10n.accountsSyncPassphraseMismatchError,
+      );
+      return;
+    }
+    Navigator.of(context).pop(passphrase);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final errorText = _validationError ?? widget.errorText;
+    return AlertDialog(
+      title: Text(widget.title),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.accountsSyncPassphraseExplainer,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 12),
+          TextField(
+            controller: _passphraseController,
+            autofocus: true,
+            obscureText: true,
+            autocorrect: false,
+            enableSuggestions: false,
+            decoration: InputDecoration(
+              labelText: l10n.accountsSyncPassphraseFieldLabel,
+            ),
+            onSubmitted: widget.requireConfirmation
+                ? null
+                : (_) => _submit(l10n),
+          ),
+          if (widget.requireConfirmation) ...[
+            const SizedBox(height: 8),
+            TextField(
+              controller: _confirmController,
+              obscureText: true,
+              autocorrect: false,
+              enableSuggestions: false,
+              decoration: InputDecoration(
+                labelText: l10n.accountsSyncPassphraseConfirmFieldLabel,
+              ),
+              onSubmitted: (_) => _submit(l10n),
+            ),
+          ],
+          if (errorText != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              errorText,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.error,
+              ),
+            ),
+          ],
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+        ),
+        FilledButton(
+          onPressed: () => _submit(l10n),
+          child: Text(MaterialLocalizations.of(context).okButtonLabel),
+        ),
+      ],
+    );
+  }
+}
+
 class BackupExportFlowPage extends ConsumerStatefulWidget {
   const BackupExportFlowPage({super.key});
 
@@ -1820,6 +1943,20 @@ class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
                     ? null
                     : () async {
                         final messenger = ScaffoldMessenger.of(context);
+                        String? passphrase;
+                        if (_encrypt) {
+                          passphrase = await showDialog<String>(
+                            context: context,
+                            builder: (dialogContext) => PassphraseDialog(
+                              title: l10n.accountsSyncEncryptedExportTitle,
+                              requireConfirmation: true,
+                            ),
+                          );
+                          if (passphrase == null) {
+                            return;
+                          }
+                        }
+                        if (!mounted) return;
                         setState(() => _busy = true);
                         final export = await ref
                             .read(backupRepositoryProvider)
@@ -1827,6 +1964,7 @@ class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
                               BackupExportOptions(
                                 currentProfileOnly: _currentProfileOnly,
                                 encrypted: _encrypt,
+                                passphrase: passphrase,
                               ),
                             );
                         if (!mounted) return;
@@ -1878,7 +2016,6 @@ class BackupImportFlowPage extends ConsumerStatefulWidget {
 }
 
 class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
-  bool _encrypted = true;
   bool _busy = false;
   ImportValidationResult? _validationResult;
   ImportConflictMode _mode = ImportConflictMode.merge;
@@ -1906,41 +2043,11 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
               ),
               const SizedBox(height: 12),
               FilledButton.icon(
-                onPressed: _busy
-                    ? null
-                    : () async {
-                        setState(() => _busy = true);
-                        final payload = await ref
-                            .read(backupRepositoryProvider)
-                            .pickImportPayload();
-                        if (!mounted) return;
-                        if (payload == null) {
-                          setState(() => _busy = false);
-                          return;
-                        }
-                        final result = await ref
-                            .read(backupRepositoryProvider)
-                            .validateImportPayload(
-                              payload: payload,
-                              encrypted: _encrypted,
-                            );
-                        if (!mounted) return;
-                        setState(() {
-                          _busy = false;
-                          _selectedPayload = payload;
-                          _validationResult = result;
-                        });
-                      },
+                onPressed: _busy ? null : () => _pickAndValidate(l10n),
                 icon: const Icon(Icons.file_open_outlined),
                 label: Text(l10n.accountsSyncChooseBackupFileAction),
               ),
               const SizedBox(height: 12),
-              SwitchListTile.adaptive(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.accountsSyncEncryptedPayloadTitle),
-                value: _encrypted,
-                onChanged: (value) => setState(() => _encrypted = value),
-              ),
               const Divider(height: 1),
               SegmentedButton<ImportConflictMode>(
                 segments: <ButtonSegment<ImportConflictMode>>[
@@ -1988,6 +2095,54 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
         ),
       ],
     );
+  }
+
+  Future<void> _pickAndValidate(AppLocalizations l10n) async {
+    setState(() => _busy = true);
+    final payload = await ref
+        .read(backupRepositoryProvider)
+        .pickImportPayload();
+    if (!mounted) return;
+    if (payload == null) {
+      setState(() => _busy = false);
+      return;
+    }
+    var result = await ref
+        .read(backupRepositoryProvider)
+        .validateImportPayload(payload: payload, encrypted: false);
+    // Encrypted envelope: keep prompting for the passphrase until it opens
+    // or the user cancels. A wrong passphrase reopens the prompt with a
+    // clear error instead of crashing or silently failing.
+    while (result.errorCode == 'passphrase_required' ||
+        result.errorCode == 'wrong_passphrase') {
+      if (!mounted) return;
+      final passphrase = await showDialog<String>(
+        context: context,
+        builder: (dialogContext) => PassphraseDialog(
+          title: l10n.accountsSyncEncryptedPayloadTitle,
+          requireConfirmation: false,
+          errorText: result.errorCode == 'wrong_passphrase'
+              ? l10n.accountsSyncPassphraseWrongError
+              : null,
+        ),
+      );
+      if (passphrase == null) {
+        break;
+      }
+      result = await ref
+          .read(backupRepositoryProvider)
+          .validateImportPayload(
+            payload: payload,
+            encrypted: false,
+            passphrase: passphrase,
+          );
+    }
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _selectedPayload = payload;
+      _validationResult = result;
+    });
   }
 
   Future<void> _confirmAndApply(
@@ -2674,6 +2829,8 @@ String _validationMessage(AppLocalizations l10n, String code) {
   return switch (code) {
     'empty_payload' => l10n.accountsSyncImportErrorEmpty,
     'future_schema' => l10n.accountsSyncImportErrorFutureSchema,
+    'passphrase_required' => l10n.accountsSyncPassphraseExplainer,
+    'wrong_passphrase' => l10n.accountsSyncPassphraseWrongError,
     _ => l10n.accountsSyncImportErrorInvalid,
   };
 }

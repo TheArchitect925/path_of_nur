@@ -9203,7 +9203,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr په تلواليز ډول ستاسو پرمختګ او غوره توبونه ستاسو په آله کې ساتي. که ننوځئ، ستاسو د حساب د پېژندلو لپاره له Apple یا Google څخه ستاسو نوم او برېښنالیک په آله کې ساتل کېږي، او له حسابه وتل يې لرې کوي. کوم بیک اپونه چې جوړوئ، کله چې کوډ شوی صادرات غوره کړئ د پټنوم د عبارت په واسطه خوندي کېږي، او کله چې لرې بیک اپ فعال کړئ، ستاسو په فایلونو کې یا ستاسو په خپل Google Drive یا iCloud زېرمه کې ساتل کېږي. کله چې د لمانځه لپاره ځای لټوئ یا اتوماتیک موقعیت کاروئ، د ځایونو د نومونو موندلو لپاره اټکلي (د ښار په کچه) مختصات د OpenStreetMap د Nominatim خدمت ته لېږل کېږي؛ د لمانځه وختونه او قبله ستاسو په آله کې محاسبه کېږي. د تلاوت غږ، لیکبڼه اړونه او د کلمو مهالبندي، کله چې دغه ځانګړتیاوې کاروئ، له EveryAyah، AlQuran.cloud او Quran.com څخه راوړل کېږي. اپلیکېشن هېڅ اعلاناتي یا شننیز تعقیبوونکي نه لري، او تشخیصي یاداښتونه هېڅکله ستاسو له آلې نه وځي. تاسو کولای شئ هر وخت په پروفایل کې معلومات وګورئ او پاک کړئ.';
 
   @override
   String get legalTermsBody =>
@@ -19738,6 +19738,28 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'کوډ شوې منځپانګه';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'د پټنوم عبارت';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'د پټنوم عبارت تایید کړئ';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'دواړه عبارتونه سره سمون نه خوري.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError => 'لږ تر لږه ۸ توري وکاروئ.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'دغه عبارت دا بیک‌اپ نه شي پرانیستلی. ويې ګورئ او بیا هڅه وکړئ.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'دا بیک‌اپ د پټنوم په عبارت قفل شوی دی. له هغه پرته فایل نه پرانیستل کېږي.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'نوي پروفايلونه جوړ کړئ';

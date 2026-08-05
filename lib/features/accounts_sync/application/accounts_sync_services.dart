@@ -9,6 +9,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../domain/accounts_sync_models.dart';
 import 'accounts_sync_controller.dart';
+import 'backup_crypto.dart';
 import 'sync_scope_support.dart';
 
 const int accountsSyncBackupSchemaVersion = 2;
@@ -161,9 +162,16 @@ class PlatformAccountsAuthRepository implements AccountsAuthRepository {
         .authenticatedAccount
         ?.provider;
     if (provider == AccountProviderType.google) {
+      final googleSignIn = ref.read(googleSignInProvider);
       try {
-        await ref.read(googleSignInProvider).signOut();
-      } catch (_) {}
+        // disconnect() also revokes the OAuth grant so the app no longer
+        // holds access to the Google account after sign-out.
+        await googleSignIn.disconnect();
+      } catch (_) {
+        try {
+          await googleSignIn.signOut();
+        } catch (_) {}
+      }
     }
     await controller.disconnectAuthenticatedAccount();
   }
@@ -184,11 +192,16 @@ class BackupExportOptions {
   const BackupExportOptions({
     required this.currentProfileOnly,
     required this.encrypted,
+    this.passphrase,
     this.sourceType = BackupSourceType.manualExport,
   });
 
   final bool currentProfileOnly;
   final bool encrypted;
+
+  /// Required when [encrypted] is true; the export is written as an
+  /// AES-256-GCM envelope keyed from this passphrase.
+  final String? passphrase;
   final BackupSourceType sourceType;
 }
 
@@ -202,6 +215,7 @@ abstract class BackupRepository {
   Future<ImportValidationResult> validateImportPayload({
     required String payload,
     required bool encrypted,
+    String? passphrase,
   });
 
   Future<RestoreResult> applyImport({
@@ -219,9 +233,14 @@ class LocalBackupRepository implements BackupRepository {
   Future<BackupExportResult> export(BackupExportOptions options) async {
     final packageInfo = await ref.read(accountsSyncPackageInfoProvider.future);
     final controller = ref.read(accountsSyncControllerProvider.notifier);
+    final effectiveEncrypted =
+        options.encrypted &&
+        options.passphrase != null &&
+        options.passphrase!.isNotEmpty;
     final path = await controller.exportBackup(
       currentProfileOnly: options.currentProfileOnly,
       encrypt: options.encrypted,
+      passphrase: options.passphrase,
       sourceType: options.sourceType,
       appVersion: packageInfo.version,
       buildNumber: packageInfo.buildNumber,
@@ -236,7 +255,7 @@ class LocalBackupRepository implements BackupRepository {
           state.backupRecord.lastExportAtIso ??
           DateTime.now().toIso8601String(),
       currentProfileOnly: options.currentProfileOnly,
-      encrypted: options.encrypted,
+      encrypted: effectiveEncrypted,
       scopeSummary: defaultFullBackupScopeSummary(),
       provider: _mapProvider(state.authenticatedAccount?.provider),
       accountLabel: state.authenticatedAccount?.displayName,
@@ -268,32 +287,77 @@ class LocalBackupRepository implements BackupRepository {
   Future<ImportValidationResult> validateImportPayload({
     required String payload,
     required bool encrypted,
+    String? passphrase,
   }) async {
-    if (payload.trim().isEmpty) {
+    final trimmed = payload.trim();
+    if (trimmed.isEmpty) {
       return const ImportValidationResult.failure(
         errorCode: 'empty_payload',
         errorMessage: 'empty_payload',
       );
     }
-    Map<String, dynamic> decodedMap;
+    // Detection order: plain JSON -> passphrase envelope -> legacy
+    // base64(JSON) from historical `.enc.json` exports. The `encrypted`
+    // argument is retained for call-site compatibility only.
+    Object? json;
+    var normalizedPayload = trimmed;
     try {
-      final decoded = encrypted
-          ? utf8.decode(base64Decode(payload.trim()))
-          : payload.trim();
-      final json = jsonDecode(decoded);
+      json = jsonDecode(trimmed);
+    } catch (_) {
+      try {
+        normalizedPayload = utf8.decode(base64Decode(trimmed));
+        json = jsonDecode(normalizedPayload);
+      } catch (_) {
+        return const ImportValidationResult.failure(
+          errorCode: 'invalid_payload',
+          errorMessage: 'invalid_payload',
+        );
+      }
+    }
+    if (json is! Map) {
+      return const ImportValidationResult.failure(
+        errorCode: 'invalid_payload',
+        errorMessage: 'invalid_payload',
+      );
+    }
+    var wasEncrypted = false;
+    if (isEncryptedBackupEnvelope(json)) {
+      if (passphrase == null || passphrase.isEmpty) {
+        return const ImportValidationResult.failure(
+          errorCode: 'passphrase_required',
+          errorMessage: 'passphrase_required',
+        );
+      }
+      try {
+        normalizedPayload = await decryptBackupEnvelope(
+          json.map((key, value) => MapEntry(key.toString(), value)),
+          passphrase,
+        );
+        json = jsonDecode(normalizedPayload);
+        wasEncrypted = true;
+      } on BackupDecryptionException catch (error) {
+        return ImportValidationResult.failure(
+          errorCode: error.code == 'wrong_passphrase'
+              ? 'wrong_passphrase'
+              : 'invalid_payload',
+          errorMessage: error.code,
+        );
+      } catch (_) {
+        return const ImportValidationResult.failure(
+          errorCode: 'invalid_payload',
+          errorMessage: 'invalid_payload',
+        );
+      }
       if (json is! Map) {
         return const ImportValidationResult.failure(
           errorCode: 'invalid_payload',
           errorMessage: 'invalid_payload',
         );
       }
-      decodedMap = json.map((key, value) => MapEntry(key.toString(), value));
-    } catch (_) {
-      return const ImportValidationResult.failure(
-        errorCode: 'invalid_payload',
-        errorMessage: 'invalid_payload',
-      );
     }
+    final decodedMap = json.map(
+      (key, value) => MapEntry(key.toString(), value),
+    );
     final schemaVersion = (decodedMap['schemaVersion'] as num?)?.toInt() ?? 1;
     if (schemaVersion > accountsSyncBackupSchemaVersion) {
       return const ImportValidationResult.failure(
@@ -331,9 +395,10 @@ class LocalBackupRepository implements BackupRepository {
             decodedMap['currentProfileOnly'] as bool? ??
             false,
         encrypted:
-            metadataMap['encrypted'] as bool? ??
-            decodedMap['encrypted'] as bool? ??
-            encrypted,
+            wasEncrypted ||
+            (metadataMap['encrypted'] as bool? ??
+                decodedMap['encrypted'] as bool? ??
+                encrypted),
         scopeSummary: metadataMap['scopeSummary'] is Map
             ? BackupScopeSummary.fromJson(
                 (metadataMap['scopeSummary'] as Map).map(
@@ -353,7 +418,9 @@ class LocalBackupRepository implements BackupRepository {
           .where((item) => item.isNotEmpty)
           .toList(growable: false),
       warnings: warnings,
-      rawPayload: payload.trim(),
+      // Always the decoded plaintext JSON so downstream restore logic never
+      // has to re-handle envelopes or legacy base64 encodings.
+      rawPayload: normalizedPayload,
       decodedPayload: decodedMap,
     );
     return ImportValidationResult.success(preview);
@@ -389,12 +456,12 @@ class LocalBackupRepository implements BackupRepository {
         incomingPayload: incomingDecoded,
         scopeSummary: preview.metadata.scopeSummary,
       );
-      final protectedRaw = preview.metadata.encrypted
-          ? base64Encode(utf8.encode(jsonEncode(protectedPayload)))
-          : jsonEncode(protectedPayload);
+      // The preview already carries decoded plaintext, so the controller
+      // always receives plain JSON regardless of the source file's encoding.
+      final protectedRaw = jsonEncode(protectedPayload);
       await controller.importBackup(
         payload: protectedRaw,
-        encrypted: preview.metadata.encrypted,
+        encrypted: false,
         createNewProfiles: mode == ImportConflictMode.merge,
         replaceExisting: mode == ImportConflictMode.replace,
       );

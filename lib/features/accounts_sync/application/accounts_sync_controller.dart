@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../domain/accounts_sync_models.dart';
+import 'backup_crypto.dart';
 import 'sync_scope_support.dart';
 import 'sync_foundation.dart';
 import '../../../shared/persistence/app_database.dart';
@@ -13,6 +14,7 @@ import '../../../shared/persistence/local_store.dart';
 
 const _accountsSyncStorageKey = 'accounts_sync.state.v1';
 const _accountsSyncReservedPrefix = 'accounts_sync.';
+const _diagnosticsReservedPrefix = 'diagnostics.';
 
 enum AccountProviderType { signInWithApple, google, emailMagicLink, localOnly }
 
@@ -562,6 +564,7 @@ class RemoteBackupRecord {
     String? lastRemoteDeviceLabel,
     String? lastRemoteAccountLabel,
     bool clearRemoteErrorCode = false,
+    bool clearRemoteAccountLabel = false,
   }) {
     return RemoteBackupRecord(
       providerKey: providerKey ?? this.providerKey,
@@ -577,8 +580,9 @@ class RemoteBackupRecord {
           : lastRemoteErrorCode ?? this.lastRemoteErrorCode,
       lastRemoteDeviceLabel:
           lastRemoteDeviceLabel ?? this.lastRemoteDeviceLabel,
-      lastRemoteAccountLabel:
-          lastRemoteAccountLabel ?? this.lastRemoteAccountLabel,
+      lastRemoteAccountLabel: clearRemoteAccountLabel
+          ? null
+          : lastRemoteAccountLabel ?? this.lastRemoteAccountLabel,
     );
   }
 
@@ -1038,8 +1042,59 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   }
 
   Future<void> disconnectAuthenticatedAccount() async {
-    state = state.copyWith(clearAuthSessionAccountId: true);
+    final removedAccountId = state.authSessionAccountId;
+    if (removedAccountId == null) {
+      state = state.copyWith(clearAuthSessionAccountId: true);
+      await _persist();
+      return;
+    }
+    // Remove the account record (email, display name, provider identifier)
+    // instead of only clearing the session pointer, and detach any profiles
+    // that referenced it so their data stays usable on this device.
+    final nextAccounts = state.accounts
+        .where((item) => item.accountId != removedAccountId)
+        .toList(growable: false);
+    final nextProfiles = state.profiles
+        .map(
+          (item) => item.accountId == removedAccountId
+              ? _detachProfileFromAccount(item)
+              : item,
+        )
+        .toList(growable: false);
+    state = state.copyWith(
+      accounts: nextAccounts,
+      profiles: nextProfiles,
+      clearAuthSessionAccountId: true,
+      clearActiveAccountId: state.activeAccountId == removedAccountId,
+      remoteBackupRecord: state.remoteBackupRecord.copyWith(
+        clearRemoteAccountLabel: true,
+      ),
+    );
     await _persist();
+  }
+
+  ProfileRecord _detachProfileFromAccount(ProfileRecord profile) {
+    return ProfileRecord(
+      profileId: profile.profileId,
+      accountId: null,
+      displayName: profile.displayName,
+      avatar: profile.avatar,
+      profileType: profile.profileType,
+      experienceMode: profile.experienceMode,
+      createdAtIso: profile.createdAtIso,
+      updatedAtIso: DateTime.now().toIso8601String(),
+      lastActiveAtIso: profile.lastActiveAtIso,
+      syncEnabled: profile.syncEnabled,
+      syncMode: profile.syncMode,
+      pinProtected: profile.pinProtected,
+      isLocalOnly: profile.isLocalOnly,
+      isGuest: profile.isGuest,
+      guardianManaged: profile.guardianManaged,
+      settingsEditable: profile.settingsEditable,
+      allowExportImport: profile.allowExportImport,
+      canLeaveWithoutPin: profile.canLeaveWithoutPin,
+      visibleSections: profile.visibleSections,
+    );
   }
 
   Future<void> updateRemoteBackupRecord({
@@ -1456,20 +1511,26 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   Future<String> exportBackup({
     required bool currentProfileOnly,
     required bool encrypt,
+    String? passphrase,
     BackupSourceType sourceType = BackupSourceType.manualExport,
     String appVersion = 'unknown',
     String buildNumber = 'unknown',
   }) async {
-    final encoded = await buildBackupPayload(
+    final applyEncryption =
+        encrypt && passphrase != null && passphrase.isNotEmpty;
+    final raw = await buildBackupPayload(
       currentProfileOnly: currentProfileOnly,
-      encrypt: encrypt,
+      encrypt: applyEncryption,
       sourceType: sourceType,
       appVersion: appVersion,
       buildNumber: buildNumber,
     );
+    final encoded = applyEncryption
+        ? await encryptBackupPayload(raw, passphrase)
+        : raw;
     final directory = await getApplicationDocumentsDirectory();
     final file = File(
-      '${directory.path}/path_of_nur_backup_${DateTime.now().millisecondsSinceEpoch}.${encrypt ? 'enc.json' : 'json'}',
+      '${directory.path}/path_of_nur_backup_${DateTime.now().millisecondsSinceEpoch}.${applyEncryption ? 'enc.json' : 'json'}',
     );
     await file.writeAsString(encoded);
     state = state.copyWith(
@@ -1552,8 +1613,10 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       },
       'syncStatus': state.syncStatus.toJson(),
     };
-    final raw = jsonEncode(payload);
-    return encrypt ? base64Encode(utf8.encode(raw)) : raw;
+    // Always return plain JSON. Callers that want an encrypted export wrap
+    // this payload with [encryptBackupPayload]; the `encrypt` flag only
+    // annotates the metadata so imports can describe the source file.
+    return jsonEncode(payload);
   }
 
   Future<void> importBackup({
@@ -1567,17 +1630,28 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       for (final profile in state.profiles)
         profile.profileId: _database.exportStructuredData(profile.profileId),
     };
-    Map<String, dynamic> map;
+    // Accept plain JSON first, then fall back to the legacy base64(JSON)
+    // encoding that old `.enc.json` exports used. The `encrypted` argument is
+    // kept for call-site compatibility; detection is automatic.
+    Object? json;
     try {
-      final decoded = encrypted ? utf8.decode(base64Decode(payload)) : payload;
-      final json = jsonDecode(decoded);
-      if (json is! Map) {
+      json = jsonDecode(payload.trim());
+    } catch (_) {
+      try {
+        json = jsonDecode(utf8.decode(base64Decode(payload.trim())));
+      } catch (_) {
         throw const FormatException('invalid_payload');
       }
-      map = json.map((key, value) => MapEntry(key.toString(), value));
-    } catch (_) {
+    }
+    if (json is! Map) {
       throw const FormatException('invalid_payload');
     }
+    if (isEncryptedBackupEnvelope(json)) {
+      // Encrypted envelopes must be decrypted with the user's passphrase
+      // before reaching the controller (see BackupRepository.validate).
+      throw const FormatException('encrypted_payload');
+    }
+    final map = json.map((key, value) => MapEntry(key.toString(), value));
     final schemaVersion = (map['schemaVersion'] as num?)?.toInt() ?? 1;
     if (schemaVersion > 2) {
       throw const FormatException('future_schema');
@@ -1600,7 +1674,10 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
         .map(
           (key, value) => MapEntry(
             key.toString(),
-            (value as Map).map((k, v) => MapEntry(k.toString(), v)),
+            (value as Map).map((k, v) => MapEntry(k.toString(), v))
+              // Older exports swept device diagnostics into snapshots; never
+              // restore them onto this device.
+              ..removeWhere((k, _) => k.startsWith(_diagnosticsReservedPrefix)),
           ),
         );
     final importedStructured =
@@ -1724,6 +1801,9 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       ..removeWhere(
         (key, _) =>
             key.startsWith(_accountsSyncReservedPrefix) ||
+            // Device diagnostics (crash + analytics logs) are device-local
+            // telemetry and must never travel inside backup payloads.
+            key.startsWith(_diagnosticsReservedPrefix) ||
             key == _accountsSyncStorageKey,
       );
     state = state.copyWith(
@@ -1734,6 +1814,9 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   Iterable<String> _dataKeysForIsolation() => _store.dumpAll().keys.where(
     (key) =>
         !key.startsWith(_accountsSyncReservedPrefix) &&
+        // Diagnostics stay device-level: excluded from snapshots above, so
+        // they must also survive profile switches and restores untouched.
+        !key.startsWith(_diagnosticsReservedPrefix) &&
         key != _accountsSyncStorageKey,
   );
 
@@ -1922,9 +2005,14 @@ class BackupManager {
   Future<String> export({
     required bool currentProfileOnly,
     required bool encrypt,
+    String? passphrase,
   }) => ref
       .read(accountsSyncControllerProvider.notifier)
-      .exportBackup(currentProfileOnly: currentProfileOnly, encrypt: encrypt);
+      .exportBackup(
+        currentProfileOnly: currentProfileOnly,
+        encrypt: encrypt,
+        passphrase: passphrase,
+      );
 }
 
 class ImportRestoreService {

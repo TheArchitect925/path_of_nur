@@ -9216,7 +9216,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr डिफ़ॉल्ट रूप से आपकी प्रगति और प्राथमिकताएँ आपके डिवाइस पर संग्रहीत करता है। यदि आप साइन इन करते हैं, तो आपके खाते की पहचान के लिए Apple या Google से मिला आपका नाम और ईमेल डिवाइस पर रखा जाता है, और साइन आउट करने पर वे हट जाते हैं। जब आप एन्क्रिप्टेड निर्यात चुनते हैं, तो आपके बनाए बैकअप आपके पासफ़्रेज़ से सुरक्षित रहते हैं, और रिमोट बैकअप चालू करने पर वे आपकी फ़ाइलों में या आपके अपने Google Drive या iCloud संग्रहण में सहेजे जाते हैं। जब आप सलाह के लिए स्थान खोजते हैं या स्वचालित स्थान का उपयोग करते हैं, तो स्थानों के नाम खोजने के लिए अनुमानित (शहर-स्तर के) निर्देशांक OpenStreetMap की Nominatim सेवा को भेजे जाते हैं; सलाह के समय और किबला की गणना आपके डिवाइस पर ही होती है। जब आप उन सुविधाओं का उपयोग करते हैं, तो तिलावत की ऑडियो, लिप्यंतरण और शब्दों की टाइमिंग EveryAyah, AlQuran.cloud और Quran.com से प्राप्त की जाती है। ऐप में कोई विज्ञापन या विश्लेषण ट्रैकर नहीं है, और निदान लॉग कभी आपके डिवाइस से बाहर नहीं जाते। आप किसी भी समय प्रोफ़ाइल में डेटा देख और साफ़ कर सकते हैं।';
 
   @override
   String get legalTermsBody =>
@@ -19752,7 +19752,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedExportSubtitle =>
-      'बैकअप payload को डिस्क पर लिखने से पहले एन्कोड करें।';
+      'डिस्क पर लिखने से पहले बैकअप को पासफ़्रेज़ से एन्क्रिप्ट करें।';
 
   @override
   String get accountsSyncExportNowAction => 'अभी एक्सपोर्ट करें';
@@ -19794,6 +19794,29 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'एन्क्रिप्टेड payload';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'पासफ़्रेज़';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'पासफ़्रेज़ की पुष्टि करें';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'दोनों पासफ़्रेज़ मेल नहीं खाते।';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'कम से कम 8 अक्षर इस्तेमाल करें।';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'यह पासफ़्रेज़ इस बैकअप को नहीं खोल सकता। जाँचकर दोबारा कोशिश करें।';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'यह बैकअप एक पासफ़्रेज़ से लॉक है। इसके बिना फ़ाइल नहीं खोली जा सकती।';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'नई प्रोफ़ाइलें बनाएँ';

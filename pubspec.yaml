@@ -62,6 +62,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.39
   share_plus: ^10.1.4
   crypto: ^3.0.6
+  cryptography: ^2.7.0
   file_selector: ^1.0.3
   google_sign_in: ^6.3.0
   package_info_plus: ^8.0.2

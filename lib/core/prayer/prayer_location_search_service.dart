@@ -74,7 +74,8 @@ class PrayerRecentLocation {
 class PrayerLocationSearchService {
   static const _recentLocationsKey = 'settings.prayer.recentLocations';
   static const _host = 'nominatim.openstreetmap.org';
-  static const _userAgent = 'PathOfNur/1.1 (manual prayer location search)';
+  static const _userAgent =
+      'PathOfNur/1.2 (manual prayer location search; contact: info@menzone.ca)';
 
   Future<List<PrayerLocationSearchResult>> search(String query) async {
     final trimmed = query.trim();
@@ -97,9 +98,11 @@ class PrayerLocationSearchService {
     required double latitude,
     required double longitude,
   }) async {
+    // City-level lookup (zoom=10) needs no more than ~1km precision, so
+    // round coordinates to 2 decimals before sharing them with Nominatim.
     final uri = Uri.https(_host, '/reverse', {
-      'lat': '$latitude',
-      'lon': '$longitude',
+      'lat': latitude.toStringAsFixed(2),
+      'lon': longitude.toStringAsFixed(2),
       'format': 'jsonv2',
       'zoom': '10',
     });

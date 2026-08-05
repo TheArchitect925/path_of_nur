@@ -9199,7 +9199,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Secara bawaan, Path of Nūr menyimpan kemajuan dan preferensi Anda di perangkat Anda. Jika Anda masuk, nama dan email Anda dari Apple atau Google disimpan di perangkat untuk menandai akun Anda, dan keluar dari akun akan menghapusnya. Cadangan yang Anda buat dilindungi dengan frasa sandi Anda saat Anda memilih ekspor terenkripsi, dan disimpan ke berkas Anda atau ke penyimpanan Google Drive atau iCloud milik Anda sendiri saat Anda mengaktifkan cadangan jarak jauh. Saat Anda mencari lokasi shalat atau menggunakan lokasi otomatis, koordinat perkiraan (tingkat kota) dikirim ke layanan Nominatim milik OpenStreetMap untuk mencari nama tempat; waktu shalat dan arah kiblat dihitung di perangkat Anda. Audio tilawah, transliterasi, dan pewaktuan kata diambil dari EveryAyah, AlQuran.cloud, dan Quran.com saat Anda menggunakan fitur tersebut. Aplikasi ini tidak memuat pelacak iklan maupun analitik, dan log diagnostik tidak pernah meninggalkan perangkat Anda. Anda dapat meninjau dan menghapus data di Profil kapan saja.';
 
   @override
   String get legalTermsBody =>
@@ -19762,6 +19762,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Muatan terenkripsi';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Frasa sandi';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'Konfirmasi frasa sandi';
+
+  @override
+  String get accountsSyncPassphraseMismatchError => 'Frasa sandi tidak cocok.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'Gunakan minimal 8 karakter.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Frasa sandi ini tidak dapat membuka cadangan ini. Periksa lalu coba lagi.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'Cadangan ini dikunci dengan frasa sandi. Tanpa frasa itu, file tidak dapat dibuka.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Buat profil baru';

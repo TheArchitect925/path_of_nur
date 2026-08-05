@@ -9129,7 +9129,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'يقوم Path of Nūr بتخزين تقدمك وتفضيلاتك محليًا بشكل افتراضي.يمكنك مراجعة الإعدادات ومسحها في الملف الشخصي في أي وقت.';
+      'يخزّن Path of Nūr تقدمك وتفضيلاتك على جهازك بشكل افتراضي. إذا سجّلت الدخول، يُحتفظ باسمك وبريدك الإلكتروني من Apple أو Google على الجهاز لتمييز حسابك، ويؤدي تسجيل الخروج إلى إزالتهما. تُحمى النسخ الاحتياطية التي تنشئها بعبارة المرور الخاصة بك عند اختيار تصدير مشفّر، وتُحفظ في ملفاتك أو في مساحة التخزين الخاصة بك على Google Drive أو iCloud عند تفعيل النسخ الاحتياطي عن بُعد. عند البحث عن موقع للصلاة أو استخدام الموقع التلقائي، تُرسل إحداثيات تقريبية (على مستوى المدينة) إلى خدمة Nominatim التابعة لـ OpenStreetMap للبحث عن أسماء الأماكن؛ وتُحسب أوقات الصلاة واتجاه القبلة على جهازك. يُجلب صوت التلاوة والنقل الحرفي وتوقيت الكلمات من EveryAyah وAlQuran.cloud وQuran.com عند استخدام هذه الميزات. لا يحتوي التطبيق على أي متتبعات إعلانية أو تحليلية، ولا تغادر سجلات التشخيص جهازك أبدًا. يمكنك مراجعة البيانات ومسحها في الملف الشخصي في أي وقت.';
 
   @override
   String get legalTermsBody =>
@@ -19631,6 +19631,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'حمولة مشفرة';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'عبارة المرور';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'تأكيد عبارة المرور';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'عبارتا المرور غير متطابقتين.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError => 'استخدم 8 أحرف على الأقل.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'تعذّر فتح هذه النسخة الاحتياطية بعبارة المرور هذه. تحقق منها وحاول مرة أخرى.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'هذه النسخة الاحتياطية مقفلة بعبارة مرور. لا يمكن فتح الملف من دونها.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'إنشاء ملفات شخصية جديدة';

@@ -9177,7 +9177,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr ডিফল্টভাবে আপনার অগ্রগতি ও পছন্দসমূহ আপনার ডিভাইসে সংরক্ষণ করে। আপনি সাইন-ইন করলে, আপনার অ্যাকাউন্ট চিহ্নিত করার জন্য Apple বা Google থেকে পাওয়া আপনার নাম ও ইমেইল ডিভাইসে রাখা হয়, এবং সাইন আউট করলে সেগুলো মুছে যায়। আপনি এনক্রিপ্ট করা এক্সপোর্ট বেছে নিলে আপনার তৈরি ব্যাকআপগুলো আপনার পাসফ্রেজ দিয়ে সুরক্ষিত থাকে, এবং রিমোট ব্যাকআপ চালু করলে সেগুলো আপনার ফাইলে বা আপনার নিজের Google Drive বা iCloud স্টোরেজে সংরক্ষিত হয়। আপনি সালাহর জন্য অবস্থান খুঁজলে বা স্বয়ংক্রিয় অবস্থান ব্যবহার করলে, স্থানের নাম খুঁজে বের করতে আনুমানিক (শহর-পর্যায়ের) স্থানাঙ্ক OpenStreetMap-এর Nominatim পরিষেবায় পাঠানো হয়; সালাহর সময় ও কিবলা আপনার ডিভাইসেই গণনা করা হয়। আপনি সেই ফিচারগুলো ব্যবহার করলে তিলাওয়াতের অডিও, প্রতিবর্ণীকরণ ও শব্দের টাইমিং EveryAyah, AlQuran.cloud ও Quran.com থেকে আনা হয়। অ্যাপে কোনো বিজ্ঞাপন বা অ্যানালিটিক্স ট্র্যাকার নেই, এবং ডায়াগনস্টিক লগ কখনো আপনার ডিভাইস ছেড়ে যায় না। আপনি যেকোনো সময় প্রোফাইলে গিয়ে ডেটা দেখে নিতে ও মুছে ফেলতে পারেন।';
 
   @override
   String get legalTermsBody =>
@@ -19731,6 +19731,27 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'এনক্রিপ্টেড পেলোড';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'পাসফ্রেজ';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'পাসফ্রেজ নিশ্চিত করুন';
+
+  @override
+  String get accountsSyncPassphraseMismatchError => 'পাসফ্রেজ দুটি মিলছে না।';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'কমপক্ষে ৮টি অক্ষর ব্যবহার করুন।';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'এই পাসফ্রেজ দিয়ে ব্যাকআপটি খোলা যাচ্ছে না। যাচাই করে আবার চেষ্টা করুন।';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'এই ব্যাকআপ একটি পাসফ্রেজ দিয়ে লক করা আছে। এটি ছাড়া ফাইলটি খোলা যাবে না।';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'নতুন প্রোফাইল তৈরি করুন';

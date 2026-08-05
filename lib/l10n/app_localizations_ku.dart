@@ -9209,7 +9209,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr bi awayê pêşdanasînî pêşketin û tercîhên te li ser amûra te tomar dike. Heke tu têkevî hesabê xwe, nav û e-nameya te ya ji Apple an Google li ser amûrê tê hilanîn da ku hesabê te nîşan bide, û derketin ji hesabê wan radike. Kopiyên rezervê yên ku tu çêdikî, dema tu hinardeyeke şîfrekirî hilbijêrî bi hevoka şîfreya te tên parastin, û dema tu rezerva dûr çalak bikî, di pelên te de an di depoya Google Drive an iCloud ya te bi xwe de tên tomarkirin. Dema tu li cihekî nimêjê bigerî an cihderka xweser bi kar bînî, koordînatên nêzîkî (asta bajêr) ji bo dîtina navên cihan ji xizmeta Nominatim a OpenStreetMap re tên şandin; demên nimêjê û qîble li ser amûra te tên hesibandin. Dengê tilawetê, transliterasyon û dema peyvan, dema tu wan taybetmendiyan bi kar bînî, ji EveryAyah, AlQuran.cloud û Quran.com tên anîn. Di sepanê de tu şopînerên reklamê an analîtîkê tune ne, û tomarên teşhîsê tu carî ji amûra te dernakevin. Tu dikarî her dem daneyan di Profîlê de binirxînî û paqij bikî.';
 
   @override
   String get legalTermsBody =>
@@ -19781,6 +19781,29 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Payload-a şîfrekirî';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Hevoka şîfreyê';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'Hevoka şîfreyê piştrast bike';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'Hevokên şîfreyê li hev nakin.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'Herî kêm 8 tîpan bi kar bîne.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Ev hevoka şîfreyê nikare vê backupê veke. Wê kontrol bike û dîsa biceribîne.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'Ev backup bi hevoka şîfreyê hatiye girtin. Bêyî wê, pel nayê vekirin.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Profîlên nû biafirîne';

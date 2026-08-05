@@ -9158,7 +9158,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr به‌طور پیش‌فرض پیشرفت و ترجیحات شما را روی دستگاهتان ذخیره می‌کند. اگر وارد حساب شوید، نام و ایمیل شما از Apple یا Google برای مشخص کردن حسابتان روی دستگاه نگه داشته می‌شود و با خروج از حساب حذف می‌شوند. نسخه‌های پشتیبانی که می‌سازید، هنگام انتخاب خروجی رمزگذاری‌شده با عبارت عبور شما محافظت می‌شوند و در صورت فعال کردن پشتیبان‌گیری از راه دور، در فایل‌های شما یا در فضای ذخیره‌سازی Google Drive یا iCloud خودتان ذخیره می‌شوند. وقتی مکانی برای نماز جست‌وجو می‌کنید یا از مکان‌یابی خودکار استفاده می‌کنید، مختصات تقریبی (در حد شهر) برای یافتن نام مکان‌ها به سرویس Nominatim متعلق به OpenStreetMap فرستاده می‌شود؛ اوقات نماز و قبله روی دستگاه شما محاسبه می‌شوند. صدای تلاوت، آوانویسی و زمان‌بندی واژه‌ها هنگام استفاده از این امکانات از EveryAyah، AlQuran.cloud و Quran.com دریافت می‌شود. این برنامه هیچ ردیاب تبلیغاتی یا تحلیلی ندارد و گزارش‌های عیب‌یابی هرگز از دستگاه شما خارج نمی‌شوند. می‌توانید هر زمان داده‌ها را در نمایه بازبینی و پاک کنید.';
 
   @override
   String get legalTermsBody =>
@@ -19711,6 +19711,28 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'محتوای رمزگذاری‌شده';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'عبارت عبور';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'تأیید عبارت عبور';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'عبارت‌های عبور یکسان نیستند.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'دست‌کم ۸ نویسه استفاده کنید.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'با این عبارت عبور نمی‌توان این پشتیبان را باز کرد. آن را بررسی کنید و دوباره تلاش کنید.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'این پشتیبان با یک عبارت عبور قفل شده است. بدون آن، فایل باز نمی‌شود.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'ایجاد پروفایل‌های جدید';
@@ -50766,7 +50788,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr به‌گونهٔ پیش‌فرض پیشرفت و ترجیحات شما را در دستگاه شما ذخیره می‌کند. اگر به حساب خود وارد شوید، نام و ایمیل شما از Apple یا Google برای نشانی حساب‌تان در دستگاه نگهداری می‌شود و با خارج شدن از حساب حذف می‌گردد. نسخه‌های پشتیبان که می‌سازید، هنگام انتخاب صدور رمزگذاری‌شده با عبارت عبور شما محافظت می‌شوند و در صورت فعال ساختن پشتیبان‌گیری از راه دور، در فایل‌های شما یا در ذخیره‌گاه Google Drive یا iCloud خودتان ذخیره می‌گردند. زمانی که جایی را برای نماز جستجو می‌کنید یا از موقعیت‌یابی خودکار کار می‌گیرید، مختصات تقریبی (در سطح شهر) برای دریافت نام جای‌ها به خدمت Nominatim مربوط به OpenStreetMap فرستاده می‌شود؛ اوقات نماز و قبله در دستگاه شما محاسبه می‌گردد. صدای تلاوت، آوانویسی و زمان‌بندی کلمه‌ها هنگام استفاده از این امکانات از EveryAyah، AlQuran.cloud و Quran.com گرفته می‌شود. این برنامه هیچ ردیاب اعلاناتی یا تحلیلی ندارد و گزارش‌های تشخیصی هرگز از دستگاه شما بیرون نمی‌روند. می‌توانید هر زمان معلومات را در پروفایل بازبینی و پاک کنید.';
 
   @override
   String get legalTermsBody =>
@@ -61317,6 +61339,28 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'محتوای رمزگذاری‌شده';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'عبارت عبور';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'تأیید عبارت عبور';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'عبارت‌های عبور یکسان نیستند.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'دست‌کم ۸ حرف استفاده کنید.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'با این عبارت عبور نمی‌توان این پشتیبان را باز کرد. آن را بررسی کنید و دوباره کوشش کنید.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'این پشتیبان با یک عبارت عبور قفل شده است. بدون آن، فایل باز نمی‌شود.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'ایجاد پروفایل‌های جدید';

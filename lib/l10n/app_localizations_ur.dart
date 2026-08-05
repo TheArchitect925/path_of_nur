@@ -9170,7 +9170,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'نور کا راستہ آپ کی پیشرفت اور ترجیحات کو مقامی طور پر بطور ڈیفالٹ اسٹور کرتا ہے۔ آپ کسی بھی وقت پروفائل میں ترتیبات کا جائزہ لے سکتے ہیں اور اسے صاف کر سکتے ہیں۔';
+      'نور کا راستہ بطور ڈیفالٹ آپ کی پیشرفت اور ترجیحات آپ کی ڈیوائس پر محفوظ کرتا ہے۔ اگر آپ سائن اِن کرتے ہیں تو آپ کے اکاؤنٹ کی شناخت کے لیے Apple یا Google سے ملنے والا آپ کا نام اور ای میل ڈیوائس پر رکھا جاتا ہے، اور سائن آؤٹ کرنے سے وہ ہٹ جاتے ہیں۔ جب آپ انکرپٹڈ ایکسپورٹ منتخب کرتے ہیں تو آپ کے بنائے ہوئے بیک اپ آپ کی خفیہ عبارت سے محفوظ رہتے ہیں، اور ریموٹ بیک اپ فعال کرنے پر وہ آپ کی فائلوں میں یا آپ کے اپنے Google Drive یا iCloud اسٹوریج میں محفوظ کیے جاتے ہیں۔ جب آپ نماز کے لیے کوئی مقام تلاش کرتے ہیں یا خودکار مقام استعمال کرتے ہیں تو جگہوں کے نام معلوم کرنے کے لیے تخمینی (شہر کی سطح کے) کوآرڈینیٹس OpenStreetMap کی Nominatim سروس کو بھیجے جاتے ہیں؛ نماز کے اوقات اور قبلہ کا حساب آپ کی ڈیوائس پر ہی ہوتا ہے۔ جب آپ وہ فیچرز استعمال کرتے ہیں تو تلاوت کی آڈیو، نقلِ حرفی اور الفاظ کی ٹائمنگ EveryAyah، AlQuran.cloud اور Quran.com سے حاصل کی جاتی ہے۔ ایپ میں کوئی اشتہاری یا تجزیاتی ٹریکر نہیں ہے، اور تشخیصی لاگ کبھی آپ کی ڈیوائس سے باہر نہیں جاتے۔ آپ کسی بھی وقت پروفائل میں ڈیٹا کا جائزہ لے سکتے ہیں اور اسے صاف کر سکتے ہیں۔';
 
   @override
   String get legalTermsBody =>
@@ -19730,6 +19730,29 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'خفیہ کردہ مواد';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'خفیہ عبارت';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'خفیہ عبارت کی تصدیق کریں';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'دونوں خفیہ عبارتیں مماثل نہیں ہیں۔';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'کم از کم 8 حروف استعمال کریں۔';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'یہ خفیہ عبارت اس بیک اپ کو نہیں کھول سکتی۔ جانچ کر دوبارہ کوشش کریں۔';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'یہ بیک اپ ایک خفیہ عبارت سے مقفل ہے۔ اس کے بغیر فائل نہیں کھل سکتی۔';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'نئے پروفائلز بنائیں';

@@ -9228,7 +9228,7 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Ta asali, Path of Nūr yana adana ci-gabanka da zaɓukanka a kan na’urarka. Idan ka shiga, ana ajiye sunanka da imel ɗinka daga Apple ko Google a kan na’urar don gane asusunka, kuma fita daga asusun yana share su. Ana kare madadin ajiyar da ka ƙirƙira da jimlar sirrinka idan ka zaɓi fitarwa mai ɓoyewa, kuma ana adana su a cikin fayilolinka ko a cikin ma’ajiyar Google Drive ko iCloud naka idan ka kunna madadin ajiya na waje. Idan ka nemi wurin sallah ko ka yi amfani da gano wuri ta atomatik, ana aika kimanin masu ƙididdigar wuri (matakin birni) zuwa sabis ɗin Nominatim na OpenStreetMap don nemo sunayen wurare; ana lissafa lokutan sallah da alkibla a kan na’urarka. Ana ɗauko sautin tilawa, rubutun lafazi, da lokacin kalmomi daga EveryAyah, AlQuran.cloud, da Quran.com idan ka yi amfani da waɗannan fasalolin. Manhajar ba ta ƙunshi talla ko na’urorin bibiyar bayanai ba, kuma bayanan gano matsala ba sa taɓa barin na’urarka. Kana iya duba da share bayanai a Bayanan Mai Amfani a kowane lokaci.';
 
   @override
   String get legalTermsBody =>
@@ -19769,7 +19769,7 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedExportSubtitle =>
-      'Sa backup payload ya zama encoded kafin rubuta shi a faifai.';
+      'Kare ajiyar baya da jimlar sirri kafin a rubuta ta a faifai.';
 
   @override
   String get accountsSyncExportNowAction => 'Fitar yanzu';
@@ -19812,6 +19812,29 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Payload mai ɓoyewa';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Jimlar sirri';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'Tabbatar da jimlar sirri';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'Jimlolin sirri ba su yi daidai ba.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'Yi amfani da aƙalla haruffa 8.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Wannan jimlar sirri ba za ta iya buɗe wannan ajiyar baya ba. Duba ta sannan ka sake gwadawa.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'An kulle wannan ajiyar baya da jimlar sirri. Ba tare da ita ba, ba za a iya buɗe fayil ɗin ba.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle =>

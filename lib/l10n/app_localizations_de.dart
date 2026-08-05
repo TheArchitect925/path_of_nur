@@ -9324,7 +9324,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr speichert Ihren Fortschritt und Ihre Präferenzen standardmäßig lokal.Sie können die Einstellungen im Profil jederzeit überprüfen und löschen.';
+      'Path of Nūr speichert Ihren Fortschritt und Ihre Präferenzen standardmäßig auf Ihrem Gerät. Wenn Sie sich anmelden, werden Ihr Name und Ihre E-Mail-Adresse von Apple oder Google auf dem Gerät gespeichert, um Ihr Konto zu kennzeichnen; beim Abmelden werden sie entfernt. Von Ihnen erstellte Sicherungen werden mit Ihrer Passphrase geschützt, wenn Sie einen verschlüsselten Export wählen, und in Ihren Dateien oder in Ihrem eigenen Google Drive- oder iCloud-Speicher gesichert, wenn Sie die Remote-Sicherung aktivieren. Wenn Sie nach einem Gebetsort suchen oder den automatischen Standort verwenden, werden ungefähre Koordinaten (auf Stadtebene) an den Nominatim-Dienst von OpenStreetMap gesendet, um Ortsnamen nachzuschlagen; Gebetszeiten und Qibla werden auf Ihrem Gerät berechnet. Rezitationsaudio, Transliteration und Wort-Timing werden von EveryAyah, AlQuran.cloud und Quran.com abgerufen, wenn Sie diese Funktionen nutzen. Die App enthält keine Werbe- oder Analyse-Tracker, und Diagnoseprotokolle verlassen Ihr Gerät nie. Sie können Ihre Daten jederzeit im Profil überprüfen und löschen.';
 
   @override
   String get legalTermsBody =>
@@ -19946,7 +19946,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedExportSubtitle =>
-      'Kodiere den Backup-Inhalt, bevor du ihn auf die Festplatte schreibst.';
+      'Verschlüssele das Backup mit einer Passphrase, bevor es auf die Festplatte geschrieben wird.';
 
   @override
   String get accountsSyncExportNowAction => 'Jetzt exportieren';
@@ -19988,6 +19988,28 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Verschlüsselter Inhalt';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Passphrase';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'Passphrase bestätigen';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'Die Passphrasen stimmen nicht überein.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'Verwende mindestens 8 Zeichen.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Diese Passphrase kann das Backup nicht öffnen. Prüfe sie und versuche es erneut.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'Dieses Backup ist mit einer Passphrase gesichert. Ohne sie lässt sich die Datei nicht öffnen.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Erstellen Sie neue Profile';

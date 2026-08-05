@@ -9211,7 +9211,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr stores your progress and preferences on your device by default. If you sign in, your name and email from Apple or Google are kept on the device to label your account, and signing out removes them. Backups you create are protected with your passphrase when you choose an encrypted export, and are saved to your files or to your own Google Drive or iCloud storage when you enable remote backup. When you search for a prayer location or use automatic location, approximate (city-level) coordinates are sent to OpenStreetMap\'s Nominatim service to look up place names; prayer times and Qibla are calculated on your device. Recitation audio, transliteration, and word timing are fetched from EveryAyah, AlQuran.cloud, and Quran.com when you use those features. The app contains no advertising or analytics trackers, and diagnostic logs never leave your device. You can review and clear data in Profile at any time.';
 
   @override
   String get legalTermsBody =>
@@ -19730,7 +19730,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedExportSubtitle =>
-      'Encode the backup payload before writing it to disk.';
+      'Protect the backup file with a passphrase before writing it to disk.';
 
   @override
   String get accountsSyncExportNowAction => 'Export Now';
@@ -19772,6 +19772,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Encrypted payload';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Passphrase';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'Confirm passphrase';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'The passphrases don\'t match.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'Use at least 8 characters.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'That passphrase can\'t open this backup. Check it and try again.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'This backup is locked with a passphrase. Without it, the file can\'t be opened.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Create new profiles';

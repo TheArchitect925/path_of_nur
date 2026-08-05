@@ -9180,7 +9180,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr, ilerlemeni ve tercihlerini varsayılan olarak cihazında saklar. Oturum açarsan, hesabını etiketlemek için Apple veya Google üzerinden gelen adın ve e-postan cihazda tutulur; oturumu kapattığında bunlar silinir. Şifreli dışa aktarmayı seçtiğinde oluşturduğun yedekler parolanla korunur ve uzak yedeklemeyi etkinleştirdiğinde dosyalarına ya da kendi Google Drive veya iCloud depolama alanına kaydedilir. Bir namaz konumu aradığında veya otomatik konumu kullandığında, yer adlarını bulmak için yaklaşık (şehir düzeyinde) koordinatlar OpenStreetMap tarafından sunulan Nominatim hizmetine gönderilir; namaz saatleri ve kıble cihazında hesaplanır. Bu özellikleri kullandığında tilavet sesi, transliterasyon ve kelime zamanlaması EveryAyah, AlQuran.cloud ve Quran.com üzerinden alınır. Uygulama hiçbir reklam veya analiz izleyicisi içermez ve tanılama günlükleri cihazından asla ayrılmaz. Verileri istediğin zaman Profil bölümünde inceleyebilir ve temizleyebilirsin.';
 
   @override
   String get legalTermsBody =>
@@ -19759,6 +19759,27 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'Şifreli içerik';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'Parola';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel => 'Parolayı doğrulayın';
+
+  @override
+  String get accountsSyncPassphraseMismatchError => 'Parolalar eşleşmiyor.';
+
+  @override
+  String get accountsSyncPassphraseTooShortError =>
+      'En az 8 karakter kullanın.';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'Bu parola yedeği açamıyor. Kontrol edip yeniden deneyin.';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'Bu yedek bir parolayla kilitlidir. Parola olmadan dosya açılamaz.';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'Yeni profiller oluştur';

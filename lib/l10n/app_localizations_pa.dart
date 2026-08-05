@@ -9200,7 +9200,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get legalPrivacyBody =>
-      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+      'Path of Nūr ਡਿਫ਼ਾਲਟ ਵਜੋਂ ਤੁਹਾਡੀ ਤਰੱਕੀ ਅਤੇ ਤਰਜੀਹਾਂ ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਉੱਤੇ ਸੰਭਾਲਦਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਸਾਇਨ ਇਨ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਖਾਤੇ ਦੀ ਪਛਾਣ ਲਈ Apple ਜਾਂ Google ਤੋਂ ਮਿਲਿਆ ਤੁਹਾਡਾ ਨਾਮ ਅਤੇ ਈਮੇਲ ਡਿਵਾਈਸ ਉੱਤੇ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਸਾਈਨ ਆਉਟ ਕਰਨ ਨਾਲ ਉਹ ਹਟ ਜਾਂਦੇ ਹਨ। ਜਦੋਂ ਤੁਸੀਂ ਇਨਕ੍ਰਿਪਟਡ ਨਿਰਯਾਤ ਚੁਣਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਬਣਾਏ ਬੈਕਅੱਪ ਤੁਹਾਡੇ ਪਾਸਫ੍ਰੇਜ਼ ਨਾਲ ਸੁਰੱਖਿਅਤ ਰਹਿੰਦੇ ਹਨ, ਅਤੇ ਰਿਮੋਟ ਬੈਕਅੱਪ ਚਾਲੂ ਕਰਨ ਉੱਤੇ ਉਹ ਤੁਹਾਡੀਆਂ ਫ਼ਾਈਲਾਂ ਵਿੱਚ ਜਾਂ ਤੁਹਾਡੀ ਆਪਣੀ Google Drive ਜਾਂ iCloud ਸਟੋਰੇਜ ਵਿੱਚ ਸੰਭਾਲੇ ਜਾਂਦੇ ਹਨ। ਜਦੋਂ ਤੁਸੀਂ ਸਾਲਾਹ ਲਈ ਥਾਂ ਖੋਜਦੇ ਹੋ ਜਾਂ ਆਟੋਮੈਟਿਕ ਟਿਕਾਣਾ ਵਰਤਦੇ ਹੋ, ਤਾਂ ਥਾਵਾਂ ਦੇ ਨਾਮ ਲੱਭਣ ਲਈ ਅੰਦਾਜ਼ਨ (ਸ਼ਹਿਰ-ਪੱਧਰ ਦੇ) ਕੋਆਰਡੀਨੇਟ OpenStreetMap ਦੀ Nominatim ਸੇਵਾ ਨੂੰ ਭੇਜੇ ਜਾਂਦੇ ਹਨ; ਸਾਲਾਹ ਦੇ ਸਮੇਂ ਅਤੇ ਕਿਬਲਾ ਦੀ ਗਣਨਾ ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਉੱਤੇ ਹੀ ਹੁੰਦੀ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਉਹ ਫੀਚਰ ਵਰਤਦੇ ਹੋ, ਤਾਂ ਤਿਲਾਵਤ ਦੀ ਆਡੀਓ, ਲਿਪੀਅੰਤਰਨ ਅਤੇ ਸ਼ਬਦਾਂ ਦੀ ਟਾਈਮਿੰਗ EveryAyah, AlQuran.cloud ਅਤੇ Quran.com ਤੋਂ ਲਈ ਜਾਂਦੀ ਹੈ। ਐਪ ਵਿੱਚ ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਵਿਸ਼ਲੇਸ਼ਣ ਟ੍ਰੈਕਰ ਨਹੀਂ ਹੈ, ਅਤੇ ਡਾਇਗਨੌਸਟਿਕ ਲੌਗ ਕਦੇ ਵੀ ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦੇ। ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਸਮੇਂ ਪ੍ਰੋਫਾਈਲ ਵਿੱਚ ਡਾਟਾ ਦੇਖ ਅਤੇ ਸਾਫ਼ ਕਰ ਸਕਦੇ ਹੋ।';
 
   @override
   String get legalTermsBody =>
@@ -19706,7 +19706,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedExportSubtitle =>
-      'ਡਿਸਕ ਤੇ ਲਿਖਣ ਤੋਂ ਪਹਿਲਾਂ backup payload ਨੂੰ encode ਕਰੋ।';
+      'ਡਿਸਕ ਤੇ ਲਿਖਣ ਤੋਂ ਪਹਿਲਾਂ ਬੈਕਅਪ ਨੂੰ ਪਾਸਫ੍ਰੇਜ਼ ਨਾਲ ਇੰਕ੍ਰਿਪਟ ਕਰੋ।';
 
   @override
   String get accountsSyncExportNowAction => 'ਹੁਣੇ ਐਕਸਪੋਰਟ ਕਰੋ';
@@ -19748,6 +19748,28 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get accountsSyncEncryptedPayloadTitle => 'ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ payload';
+
+  @override
+  String get accountsSyncPassphraseFieldLabel => 'ਪਾਸਫ੍ਰੇਜ਼';
+
+  @override
+  String get accountsSyncPassphraseConfirmFieldLabel =>
+      'ਪਾਸਫ੍ਰੇਜ਼ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ';
+
+  @override
+  String get accountsSyncPassphraseMismatchError =>
+      'ਦੋਵੇਂ ਪਾਸਫ੍ਰੇਜ਼ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ।';
+
+  @override
+  String get accountsSyncPassphraseTooShortError => 'ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ ਵਰਤੋ।';
+
+  @override
+  String get accountsSyncPassphraseWrongError =>
+      'ਇਹ ਪਾਸਫ੍ਰੇਜ਼ ਇਸ ਬੈਕਅਪ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦਾ। ਜਾਂਚ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get accountsSyncPassphraseExplainer =>
+      'ਇਹ ਬੈਕਅਪ ਇੱਕ ਪਾਸਫ੍ਰੇਜ਼ ਨਾਲ ਲਾਕ ਹੈ। ਇਸ ਤੋਂ ਬਿਨਾਂ ਫਾਇਲ ਨਹੀਂ ਖੁੱਲ੍ਹ ਸਕਦੀ।';
 
   @override
   String get accountsSyncCreateNewProfilesTitle => 'ਨਵੀਆਂ ਪ੍ਰੋਫ਼ਾਈਲਾਂ ਬਣਾਓ';

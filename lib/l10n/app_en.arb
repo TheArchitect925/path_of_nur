@@ -702,8 +702,7 @@
   "quranHubRecommendationContinuePathTitle": "Continue {path}",
   "@quranHubRecommendationContinuePathTitle": {
     "placeholders": {
-      "path": {
-      }
+      "path": {}
     }
   },
   "quranHubRecommendationDailyTitle": "Today’s reflection",
@@ -711,22 +710,19 @@
   "quranHubRecommendationContinueSurahTitle": "Continue Surah {surah}",
   "@quranHubRecommendationContinueSurahTitle": {
     "placeholders": {
-      "surah": {
-      }
+      "surah": {}
     }
   },
   "quranHubRecommendationExploreThemeTitle": "Explore the theme of {theme}",
   "@quranHubRecommendationExploreThemeTitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "quranHubRecommendationJourneyTitle": "Today’s reflection for {journey}",
   "@quranHubRecommendationJourneyTitle": {
     "placeholders": {
-      "journey": {
-      }
+      "journey": {}
     }
   },
   "quranHubRecommendationReasonContinuePath": "Pick up where your guided Qur’an study already left off.",
@@ -735,8 +731,7 @@
   "quranHubRecommendationReasonDailyJourney": "Today’s daily companion aligns with your current journey on {journey}.",
   "@quranHubRecommendationReasonDailyJourney": {
     "placeholders": {
-      "journey": {
-      }
+      "journey": {}
     }
   },
   "quranHubRecommendationReasonReviewDue": "{count, plural, =1{One memorized ayah is due for review today.} other{{count} memorized ayahs are due for review today.}}",
@@ -754,17 +749,14 @@
   "quranHubRecommendationReasonJourneyTheme": "This theme is the clearest Qur’anic bridge for your current journey focus on {theme}.",
   "@quranHubRecommendationReasonJourneyTheme": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "quranHubRecommendationReasonJourneyThemePair": "{journey} is currently mapping into the Qur’anic theme of {theme}.",
   "@quranHubRecommendationReasonJourneyThemePair": {
     "placeholders": {
-      "journey": {
-      },
-      "theme": {
-      }
+      "journey": {},
+      "theme": {}
     }
   },
   "quranCompanionSectionTitle": "Your Qur’an Companion",
@@ -772,8 +764,7 @@
   "quranCompanionResumePathTitle": "Continue {path}",
   "@quranCompanionResumePathTitle": {
     "placeholders": {
-      "path": {
-      }
+      "path": {}
     }
   },
   "quranCompanionResumePathDescription": "Pick up your guided journey where it last felt most alive.",
@@ -781,16 +772,14 @@
   "quranCompanionContinueSurahTitle": "Continue Surah {surah}",
   "@quranCompanionContinueSurahTitle": {
     "placeholders": {
-      "surah": {
-      }
+      "surah": {}
     }
   },
   "quranCompanionContinueSurahDescription": "Return to the ayah where your reading thread was already open.",
   "quranCompanionExploreThemeTitle": "Explore {theme}",
   "@quranCompanionExploreThemeTitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "quranCompanionThemeDescription": "Follow one Qur’anic theme across connected surahs, ayat, and reflections.",
@@ -798,16 +787,14 @@
   "quranCompanionPathwayTitle": "Walk through {path}",
   "@quranCompanionPathwayTitle": {
     "placeholders": {
-      "path": {
-      }
+      "path": {}
     }
   },
   "quranCompanionPathwayDescription": "A guided pathway that keeps the next step clear and spiritually grounded.",
   "quranCompanionStartHereTitle": "Start with Surah {surah}",
   "@quranCompanionStartHereTitle": {
     "placeholders": {
-      "surah": {
-      }
+      "surah": {}
     }
   },
   "quranCompanionStartHereDescription": "A gentle starting point when you want something foundational and clear.",
@@ -816,8 +803,7 @@
   "quranCompanionFridayTitle": "Friday reflection: {surah}",
   "@quranCompanionFridayTitle": {
     "placeholders": {
-      "surah": {
-      }
+      "surah": {}
     }
   },
   "quranCompanionFridayDescription": "A soft Friday nudge toward a widely loved surah for reflection and recitation.",
@@ -1371,22 +1357,19 @@
   "worshipQiblaBearingValue": "Qibla bearing: {degrees}°",
   "@worshipQiblaBearingValue": {
     "placeholders": {
-      "degrees": {
-      }
+      "degrees": {}
     }
   },
   "worshipQiblaDeviceHeadingValue": "Device heading: {degrees}°",
   "@worshipQiblaDeviceHeadingValue": {
     "placeholders": {
-      "degrees": {
-      }
+      "degrees": {}
     }
   },
   "worshipQiblaAlignmentOffsetValue": "Alignment offset: {degrees}°",
   "@worshipQiblaAlignmentOffsetValue": {
     "placeholders": {
-      "degrees": {
-      }
+      "degrees": {}
     }
   },
   "worshipQiblaAlignedMessage": "You are aligned with the Qibla.",
@@ -1396,22 +1379,19 @@
   "worshipQiblaDirectionValue": "Qibla direction {degrees}°",
   "@worshipQiblaDirectionValue": {
     "placeholders": {
-      "degrees": {
-      }
+      "degrees": {}
     }
   },
   "worshipQiblaTurnRightValue": "Turn {degrees}° right",
   "@worshipQiblaTurnRightValue": {
     "placeholders": {
-      "degrees": {
-      }
+      "degrees": {}
     }
   },
   "worshipQiblaTurnLeftValue": "Turn {degrees}° left",
   "@worshipQiblaTurnLeftValue": {
     "placeholders": {
-      "degrees": {
-      }
+      "degrees": {}
     }
   },
   "worshipQiblaFacingQibla": "Facing Qibla",
@@ -1455,24 +1435,20 @@
   "homeTimeRemainingToOffer": "Time remaining to offer {prayerName} salah",
   "@homeTimeRemainingToOffer": {
     "placeholders": {
-      "prayerName": {
-      }
+      "prayerName": {}
     }
   },
   "homePrayerBecomesQada": "{prayerName} becomes qada",
   "@homePrayerBecomesQada": {
     "placeholders": {
-      "prayerName": {
-      }
+      "prayerName": {}
     }
   },
   "homeFractionValue": "{current} / {total}",
   "@homeFractionValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "homeDaysCount": "{count, plural, =0 {0 days} =1 {1 day} other {{count} days}}",
@@ -1486,8 +1462,7 @@
   "homeUntilTime": "Until {time}",
   "@homeUntilTime": {
     "placeholders": {
-      "time": {
-      }
+      "time": {}
     }
   },
   "homePrayerForbiddenSunrise": "Salah not allowed now • Sunrise",
@@ -1496,52 +1471,42 @@
   "homeLevelValue": "Level {level}",
   "@homeLevelValue": {
     "placeholders": {
-      "level": {
-      }
+      "level": {}
     }
   },
   "homeXpValue": "{xp} XP",
   "@homeXpValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "homeXpToNextLevelValue": "{xp} XP to next level",
   "@homeXpToNextLevelValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "homeDailyBadgesTitle": "Daily badges",
   "homeContinueQuranValue": "{surahName} {ayahNumber}",
   "@homeContinueQuranValue": {
     "placeholders": {
-      "surahName": {
-      },
-      "ayahNumber": {
-      }
+      "surahName": {},
+      "ayahNumber": {}
     }
   },
   "homeJourneyRingsValue": "P {prayerPercent}% · D {dhikrPercent}% · Q {quranPercent}%",
   "@homeJourneyRingsValue": {
     "placeholders": {
-      "prayerPercent": {
-      },
-      "dhikrPercent": {
-      },
-      "quranPercent": {
-      }
+      "prayerPercent": {},
+      "dhikrPercent": {},
+      "quranPercent": {}
     }
   },
   "homeCountAndLabel": "{count} • {label}",
   "@homeCountAndLabel": {
     "placeholders": {
-      "count": {
-      },
-      "label": {
-      }
+      "count": {},
+      "label": {}
     }
   },
   "homeShortcutQiblaLabel": "Qibla",
@@ -1984,18 +1949,15 @@
   "learnHubSavedNotesSummary": "Saved items: {saved} • Notes: {notes}",
   "@learnHubSavedNotesSummary": {
     "placeholders": {
-      "saved": {
-      },
-      "notes": {
-      }
+      "saved": {},
+      "notes": {}
     }
   },
   "learnHubNoSavedItems": "No saved items yet. Save any lesson, verse, hadith, or prophet to keep it here.",
   "learnHubIndexedRelationshipsCount": "{count} indexed relationships",
   "@learnHubIndexedRelationshipsCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnHubOpenKnowledgeConstellation": "Open Knowledge Constellation",
@@ -2005,8 +1967,7 @@
   "learnHubDailyThemeLabel": "Theme: {theme}",
   "@learnHubDailyThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "learnHubOpenDailyLearningAction": "Open Daily Learning",
@@ -2328,8 +2289,7 @@
   "learnHubTypeValueLabel": "Type: {type}",
   "@learnHubTypeValueLabel": {
     "placeholders": {
-      "type": {
-      }
+      "type": {}
     }
   },
   "learnHubAnyTypeOption": "Any type",
@@ -2337,8 +2297,7 @@
   "learnHubThemeValueLabel": "Theme: {theme}",
   "@learnHubThemeValueLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "learnHubAnyThemeOption": "Any theme",
@@ -2346,8 +2305,7 @@
   "learnHubDifficultyValueLabel": "Difficulty: {difficulty}",
   "@learnHubDifficultyValueLabel": {
     "placeholders": {
-      "difficulty": {
-      }
+      "difficulty": {}
     }
   },
   "learnHubAnyDifficultyOption": "Any difficulty",
@@ -2358,18 +2316,15 @@
   "learnHubResultsCount": "{count} results",
   "@learnHubResultsCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnHubNoMatchingItems": "No matching items. Try broader filters.",
   "learnHubPathProgress": "{completed} / {total} completed",
   "@learnHubPathProgress": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "learnHubItemTypeVerse": "Verse",
@@ -2398,8 +2353,7 @@
   "quranReferenceViewerReferenceLabel": "Qur’an {reference}",
   "@quranReferenceViewerReferenceLabel": {
     "placeholders": {
-      "reference": {
-      }
+      "reference": {}
     }
   },
   "quranReferenceBlockLoadError": "Unable to load verse content right now.",
@@ -2425,8 +2379,7 @@
   "quranReferenceDetailCurrentAnchorChip": "From {anchor}",
   "@quranReferenceDetailCurrentAnchorChip": {
     "placeholders": {
-      "anchor": {
-      }
+      "anchor": {}
     }
   },
   "quranReferenceDetailWhyRelatedTitle": "Why this is related",
@@ -2435,8 +2388,7 @@
   "quranReferenceDetailOpenDestination": "Open {destination}",
   "@quranReferenceDetailOpenDestination": {
     "placeholders": {
-      "destination": {
-      }
+      "destination": {}
     }
   },
   "quranReferenceDetailOpenQuranInsight": "Qur’an insight",
@@ -2463,17 +2415,14 @@
   "quranReaderJourneyContextSubtitle": "You’re studying {stageTitle} from {journeyTitle}.",
   "@quranReaderJourneyContextSubtitle": {
     "placeholders": {
-      "stageTitle": {
-      },
-      "journeyTitle": {
-      }
+      "stageTitle": {},
+      "journeyTitle": {}
     }
   },
   "quranReaderJourneyContextThemeLabel": "Theme: {themeTitle}",
   "@quranReaderJourneyContextThemeLabel": {
     "placeholders": {
-      "themeTitle": {
-      }
+      "themeTitle": {}
     }
   },
   "quranReaderJourneyContextOpenLesson": "Open journey lesson",
@@ -2487,8 +2436,7 @@
       "count": {
         "type": "int"
       },
-      "dateLabel": {
-      }
+      "dateLabel": {}
     }
   },
   "quranReaderModeCardTitle": "Reader focus",
@@ -2505,8 +2453,7 @@
   "quranReaderModeThemeSubtitle": "Keep {themeTitle} in view so the ayah, surah, and related study links stay tied to one theme.",
   "@quranReaderModeThemeSubtitle": {
     "placeholders": {
-      "themeTitle": {
-      }
+      "themeTitle": {}
     }
   },
   "quranLearnMoreSectionTitle": "Learn More",
@@ -2523,8 +2470,7 @@
   "quranAyahExplanationSourceLine": "Based on trusted tafsir summaries: {sources}",
   "@quranAyahExplanationSourceLine": {
     "placeholders": {
-      "sources": {
-      }
+      "sources": {}
     }
   },
   "quranAyahExplanationTrustedSourceLine": "Based on trusted tafsir sources",
@@ -2804,8 +2750,7 @@
   "triviaQuestionsCount": "{count} questions",
   "@triviaQuestionsCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaHomeSubtitle": "A calm knowledge space for short quizzes, daily review, and gentle reinforcement.",
@@ -2813,32 +2758,28 @@
   "triviaHomeLongestStreakCaption": "Longest {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaHomeAccuracyLabel": "Accuracy",
   "triviaHomeAnsweredCount": "{count} answered",
   "@triviaHomeAnsweredCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaHomeTriviaXpLabel": "Trivia XP",
   "triviaHomeQuizzesCompletedCount": "{count} quizzes completed",
   "@triviaHomeQuizzesCompletedCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaHomeOceanDropsLabel": "Ocean Drops",
   "triviaHomeBestSurvivalCaption": "Best survival {count}",
   "@triviaHomeBestSurvivalCaption": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaHomeContinuePreviousSessionTitle": "Continue previous session",
@@ -2846,10 +2787,8 @@
   "triviaHomeAnsweredProgress": "{answered} of {total} answered.",
   "@triviaHomeAnsweredProgress": {
     "placeholders": {
-      "answered": {
-      },
-      "total": {
-      }
+      "answered": {},
+      "total": {}
     }
   },
   "triviaHomeTodayTitle": "Today",
@@ -2860,8 +2799,7 @@
   "triviaDueCount": "{count} due",
   "@triviaDueCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaHomeKnowledgePathsTitle": "Knowledge Paths",
@@ -2877,8 +2815,7 @@
   "triviaHomeCategoryAccuracy": "Accuracy {percent}%",
   "@triviaHomeCategoryAccuracy": {
     "placeholders": {
-      "percent": {
-      }
+      "percent": {}
     }
   },
   "triviaHomeReviewQueueAction": "Review Queue",
@@ -2891,14 +2828,10 @@
   "triviaHomeRecentPerformanceSummary": "{category} • {correct}/{total} correct • +{xp} XP",
   "@triviaHomeRecentPerformanceSummary": {
     "placeholders": {
-      "category": {
-      },
-      "correct": {
-      },
-      "total": {
-      },
-      "xp": {
-      }
+      "category": {},
+      "correct": {},
+      "total": {},
+      "xp": {}
     }
   },
   "triviaResultsTitle": "Session Results",
@@ -2910,17 +2843,14 @@
   "triviaResultsCompletedSummary": "Completed in {seconds}s • {missed} missed",
   "@triviaResultsCompletedSummary": {
     "placeholders": {
-      "seconds": {
-      },
-      "missed": {
-      }
+      "seconds": {},
+      "missed": {}
     }
   },
   "triviaResultsBestRunInSession": "Best run in this session: {count}",
   "@triviaResultsBestRunInSession": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaResultsRetryStageAction": "Retry Stage",
@@ -2943,8 +2873,7 @@
   "triviaReviewStartSessionSubtitle": "{count} items are ready. The queue favors what was recently missed or still unstable.",
   "@triviaReviewStartSessionSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaReviewStartAction": "Start Review",
@@ -2954,12 +2883,9 @@
   "triviaReviewSeenCorrectIncorrect": "Seen {seen} • Correct {correct} • Incorrect {incorrect}",
   "@triviaReviewSeenCorrectIncorrect": {
     "placeholders": {
-      "seen": {
-      },
-      "correct": {
-      },
-      "incorrect": {
-      }
+      "seen": {},
+      "correct": {},
+      "incorrect": {}
     }
   },
   "triviaStageNotFoundTitle": "Stage not found",
@@ -2968,8 +2894,7 @@
   "triviaStageQuizSubtitle": "Answer {count} focused questions. Wrong answers still feed your review queue.",
   "@triviaStageQuizSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "triviaContinueQuizAction": "Continue Quiz",
@@ -2983,10 +2908,8 @@
   "triviaKnowledgePathStagesCompleted": "{completed} of {total} stages completed",
   "@triviaKnowledgePathStagesCompleted": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "triviaKnowledgePathCompleteSubtitle": "This path is complete. You can revisit any stage for review.",
@@ -2999,10 +2922,8 @@
   "triviaKnowledgeStageSummary": "{count} questions • +{xp} XP",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
-      "count": {
-      },
-      "xp": {
-      }
+      "count": {},
+      "xp": {}
     }
   },
   "learnQuizzesHubSubtitle": "Practice what you have learned across the different learning sections with one organized quiz hub.",
@@ -3020,29 +2941,25 @@
   "learnQuizzesAvailableCount": "{count} quizzes available",
   "@learnQuizzesAvailableCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnQuizzesHadithChapterCount": "{count} hadith chapter quizzes",
   "@learnQuizzesHadithChapterCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnQuizzesProphetModeCount": "{count} prophet quiz modes",
   "@learnQuizzesProphetModeCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnQuizzesLearningModulesLive": "{count} learning modules live",
   "@learnQuizzesLearningModulesLive": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnQuizzesStartsAtEasy": "Starts at Easy",
@@ -3103,8 +3020,7 @@
   "babyNamesOfflineCount": "{count} names available offline",
   "@babyNamesOfflineCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "babyNamesSavedCountLabel": "saved",
@@ -3183,36 +3099,31 @@
   "babyNamesFilterChipGender": "Gender: {value}",
   "@babyNamesFilterChipGender": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "babyNamesFilterChipCategory": "Category: {value}",
   "@babyNamesFilterChipCategory": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "babyNamesFilterChipOrigin": "Origin: {value}",
   "@babyNamesFilterChipOrigin": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "babyNamesFilterChipTheme": "Theme: {value}",
   "@babyNamesFilterChipTheme": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "babyNamesFilterChipLetter": "Letter: {value}",
   "@babyNamesFilterChipLetter": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "babyNamesFilterChipProphetLinked": "Prophet linked",
@@ -3360,8 +3271,7 @@
   "salahRakatsLabel": "{count} Rakats",
   "@salahRakatsLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "salahOfferTimeLabel": "Offer time",
@@ -3369,10 +3279,8 @@
   "salahWindowValue": "{start} to {end}",
   "@salahWindowValue": {
     "placeholders": {
-      "start": {
-      },
-      "end": {
-      }
+      "start": {},
+      "end": {}
     }
   },
   "salahBecomesQadaAfterLabel": "Becomes qada after",
@@ -3381,8 +3289,7 @@
   "salahStartsInLabel": "Starts in {duration}",
   "@salahStartsInLabel": {
     "placeholders": {
-      "duration": {
-      }
+      "duration": {}
     }
   },
   "salahOfferWindowEnded": "Offer window ended",
@@ -3391,19 +3298,15 @@
   "salahOfferBySummary": "Offer by {time} • {status}",
   "@salahOfferBySummary": {
     "placeholders": {
-      "time": {
-      },
-      "status": {
-      }
+      "time": {},
+      "status": {}
     }
   },
   "salahBeginsAtSummary": "Begins at {time} • {status}",
   "@salahBeginsAtSummary": {
     "placeholders": {
-      "time": {
-      },
-      "status": {
-      }
+      "time": {},
+      "status": {}
     }
   },
   "salahRakatGuideTitle": "Salah Rakat Guide",
@@ -3642,8 +3545,7 @@
   "kidsQuranExplanationReflectionPrompt": "What can we learn from this? {prompt}",
   "@kidsQuranExplanationReflectionPrompt": {
     "placeholders": {
-      "prompt": {
-      }
+      "prompt": {}
     }
   },
   "kidsQuranAyahActionTitle": "Try this today",
@@ -3694,8 +3596,7 @@
   "quranMemorizationReviewNextReview": "Next review: {dateLabel}",
   "@quranMemorizationReviewNextReview": {
     "placeholders": {
-      "dateLabel": {
-      }
+      "dateLabel": {}
     }
   },
   "quranMemorizationReviewRhythmMeta": "Reviewed {count} times • Last reviewed: {dateLabel}",
@@ -3704,8 +3605,7 @@
       "count": {
         "type": "int"
       },
-      "dateLabel": {
-      }
+      "dateLabel": {}
     }
   },
   "quranMemorizationReviewNeverReviewed": "Not reviewed yet",
@@ -4217,15 +4117,13 @@
   "learnQualityLabel": "Quality: {quality}",
   "@learnQualityLabel": {
     "placeholders": {
-      "quality": {
-      }
+      "quality": {}
     }
   },
   "learnContinueReasonWithTrack": "Ranked for your {track} track using recency and intent.",
   "@learnContinueReasonWithTrack": {
     "placeholders": {
-      "track": {
-      }
+      "track": {}
     }
   },
   "circlesV2HubSubtitle": "Community forum + mosque buddy spaces are local-first and respectful.",
@@ -4273,12 +4171,9 @@
   "circlesEventCapacity": "Going {going}/{capacity} • Interested {interested}",
   "@circlesEventCapacity": {
     "placeholders": {
-      "going": {
-      },
-      "capacity": {
-      },
-      "interested": {
-      }
+      "going": {},
+      "capacity": {},
+      "interested": {}
     }
   },
   "circlesWaitlistActive": "Capacity reached. New Going responses are moved to interested/waitlist.",
@@ -4291,22 +4186,19 @@
   "circlesRosterGoingPreview": "Going: {names}",
   "@circlesRosterGoingPreview": {
     "placeholders": {
-      "names": {
-      }
+      "names": {}
     }
   },
   "circlesRosterInterestedPreview": "Interested: {names}",
   "@circlesRosterInterestedPreview": {
     "placeholders": {
-      "names": {
-      }
+      "names": {}
     }
   },
   "circlesRosterWaitlistCount": "Waitlist count: {count}",
   "@circlesRosterWaitlistCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "circlesCreateEvent": "Create event",
@@ -4321,15 +4213,13 @@
   "circlesCreateEventDateValue": "Date: {date}",
   "@circlesCreateEventDateValue": {
     "placeholders": {
-      "date": {
-      }
+      "date": {}
     }
   },
   "circlesCreateEventCapacityLabel": "Capacity: {count}",
   "@circlesCreateEventCapacityLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "circlesCreateEventValidation": "Please fill title, location, and description.",
@@ -4377,7 +4267,7 @@
     }
   },
   "onboardingDisclaimerBody": "This app is a companion for guidance and consistency. It does not replace local mosque community, scholars, or real-world support.",
-  "legalPrivacyBody": "Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.",
+  "legalPrivacyBody": "Path of Nūr stores your progress and preferences on your device by default. If you sign in, your name and email from Apple or Google are kept on the device to label your account, and signing out removes them. Backups you create are protected with your passphrase when you choose an encrypted export, and are saved to your files or to your own Google Drive or iCloud storage when you enable remote backup. When you search for a prayer location or use automatic location, approximate (city-level) coordinates are sent to OpenStreetMap''s Nominatim service to look up place names; prayer times and Qibla are calculated on your device. Recitation audio, transliteration, and word timing are fetched from EveryAyah, AlQuran.cloud, and Quran.com when you use those features. The app contains no advertising or analytics trackers, and diagnostic logs never leave your device. You can review and clear data in Profile at any time.",
   "legalTermsBody": "Path of Nūr is a companion app for learning, worship consistency, and reflection. It does not replace qualified scholarship or local community guidance.",
   "legalSupportBody": "For support, use in-app feedback channels and local community resources. If something looks incorrect, report it from the relevant page.",
   "legalBuildInfoTitle": "Build information",
@@ -4408,8 +4298,7 @@
   "learningJourneyLessonActionStudyInQuranSubtitle": "Start with {referenceLabel} and keep this lesson’s study context with you in the reader.",
   "@learningJourneyLessonActionStudyInQuranSubtitle": {
     "placeholders": {
-      "referenceLabel": {
-      }
+      "referenceLabel": {}
     }
   },
   "learningJourneyLessonActionOpenDhikrCounter": "Open Dhikr Counter",
@@ -4682,37 +4571,32 @@
   "kidsArabicContinuePhraseTitle": "Continue phrase {phrase}",
   "@kidsArabicContinuePhraseTitle": {
     "placeholders": {
-      "phrase": {
-      }
+      "phrase": {}
     }
   },
   "kidsArabicContinuePhraseBody": "Return to this phrase and hear “{meaning}” again.",
   "@kidsArabicContinuePhraseBody": {
     "placeholders": {
-      "meaning": {
-      }
+      "meaning": {}
     }
   },
   "kidsArabicGentleReviewTitle": "Gentle review",
   "kidsArabicGentleReviewLetterAction": "Review {letter}",
   "@kidsArabicGentleReviewLetterAction": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicGentleReviewWordAction": "Review {word}",
   "@kidsArabicGentleReviewWordAction": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicGentleReviewPhraseAction": "Hear {phrase} again",
   "@kidsArabicGentleReviewPhraseAction": {
     "placeholders": {
-      "phrase": {
-      }
+      "phrase": {}
     }
   },
   "kidsArabicProgressTitle": "Today in letters",
@@ -4789,43 +4673,37 @@
   "kidsArabicDailyMissionNewLetterTitle": "Learn {letterName}",
   "@kidsArabicDailyMissionNewLetterTitle": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicDailyMissionNewLetterDescription": "Open {letterName}, trace it gently, and finish one lesson.",
   "@kidsArabicDailyMissionNewLetterDescription": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicDailyMissionReviewTitle": "Review {letterName}",
   "@kidsArabicDailyMissionReviewTitle": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicDailyMissionReviewDescription": "Do one gentle review for {letterName}.",
   "@kidsArabicDailyMissionReviewDescription": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicDailyMissionTraceTitle": "Trace {letterName}",
   "@kidsArabicDailyMissionTraceTitle": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicDailyMissionTraceDescription": "Trace {letterName} one more time to keep it close.",
   "@kidsArabicDailyMissionTraceDescription": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicDailyMissionCompletedTitle": "Daily mission complete",
@@ -5047,8 +4925,7 @@
   "kidsArabicParentOverviewProgressBody": "The latest completed letter was {letterName}. The next step is ready whenever you want to continue.",
   "@kidsArabicParentOverviewProgressBody": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicParentOverviewProgressFallback": "Arabic learning has started and the next gentle step is ready to open.",
@@ -5149,26 +5026,22 @@
   "kidsArabicParentTodayFocusSubtitle": "A parent chose {letterName} as the next gentle step.",
   "@kidsArabicParentTodayFocusSubtitle": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicParentReviewNextTitle": "Review this letter next",
   "kidsArabicParentReviewNextSubtitle": "A parent brought {letterName} forward for a warm review.",
   "@kidsArabicParentReviewNextSubtitle": {
     "placeholders": {
-      "letterName": {
-      }
+      "letterName": {}
     }
   },
   "kidsArabicFamilySummaryTitle": "Family summary",
   "kidsArabicFamilySummarySubtitle": "{streak} day streak and {stickers} stickers earned so far.",
   "@kidsArabicFamilySummarySubtitle": {
     "placeholders": {
-      "streak": {
-      },
-      "stickers": {
-      }
+      "streak": {},
+      "stickers": {}
     }
   },
   "kidsArabicFamilySummaryAction": "Show parent summary",
@@ -5177,26 +5050,22 @@
   "kidsArabicParentLatestMilestoneBody": "The newest milestone unlocked was {title}.",
   "@kidsArabicParentLatestMilestoneBody": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "kidsArabicParentRecentActivityTitle": "Recent activity",
   "kidsArabicParentRecentActivityBody": "The most recent Arabic activity was {title}.",
   "@kidsArabicParentRecentActivityBody": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "kidsArabicParentGuidanceTitle": "Parent guidance",
   "kidsArabicParentGuidanceBody": "Focus: {focusLetter}. Review: {reviewLetter}.",
   "@kidsArabicParentGuidanceBody": {
     "placeholders": {
-      "focusLetter": {
-      },
-      "reviewLetter": {
-      }
+      "focusLetter": {},
+      "reviewLetter": {}
     }
   },
   "kidsArabicParentReviewNotNeeded": "No review needed right now",
@@ -5204,10 +5073,8 @@
   "kidsArabicParentOverviewBody": "Latest letter: {latestLetter}. Next suggested letter: {nextLetter}.",
   "@kidsArabicParentOverviewBody": {
     "placeholders": {
-      "latestLetter": {
-      },
-      "nextLetter": {
-      }
+      "latestLetter": {},
+      "nextLetter": {}
     }
   },
   "kidsArabicParentNoLatestLetter": "Not yet started",
@@ -5216,10 +5083,8 @@
   "kidsArabicParentAssignmentsBody": "Focus: {focusLetter}. Review: {reviewLetter}.",
   "@kidsArabicParentAssignmentsBody": {
     "placeholders": {
-      "focusLetter": {
-      },
-      "reviewLetter": {
-      }
+      "focusLetter": {},
+      "reviewLetter": {}
     }
   },
   "kidsArabicParentAssignmentsOff": "Off",
@@ -7228,15 +7093,13 @@
   "familyLearningCurrentPhaseLabel": "Current phase: {phase}",
   "@familyLearningCurrentPhaseLabel": {
     "placeholders": {
-      "phase": {
-      }
+      "phase": {}
     }
   },
   "familyLearningCurrentJourneyLabel": "Current journey: {journey}",
   "@familyLearningCurrentJourneyLabel": {
     "placeholders": {
-      "journey": {
-      }
+      "journey": {}
     }
   },
   "familyLearningStreakLabel": "Streak: {days} days",
@@ -7250,8 +7113,7 @@
   "familyLearningRecentActivityLabel": "Recent activity: {lesson}",
   "@familyLearningRecentActivityLabel": {
     "placeholders": {
-      "lesson": {
-      }
+      "lesson": {}
     }
   },
   "familyLearningSwitchToChildAction": "Switch to child",
@@ -7281,8 +7143,7 @@
   "familyLearningHomeChildTitle": "{name}''s learning",
   "@familyLearningHomeChildTitle": {
     "placeholders": {
-      "name": {
-      }
+      "name": {}
     }
   },
   "familyLearningHomeChildSubtitle": "This child profile keeps learning calmer, path-first, and age-appropriate.",
@@ -7309,8 +7170,7 @@
   "familyLearningContinueTogetherSubtitle": "{prompt}",
   "@familyLearningContinueTogetherSubtitle": {
     "placeholders": {
-      "prompt": {
-      }
+      "prompt": {}
     }
   },
   "familyLearningBrowseReducedTitle": "Browse is reduced here",
@@ -7324,8 +7184,7 @@
   "kidsUiThemeSettingModeHelper": "Current result: {state}",
   "@kidsUiThemeSettingModeHelper": {
     "placeholders": {
-      "state": {
-      }
+      "state": {}
     }
   },
   "kidsUiAgeRangeTitle": "Age range",
@@ -7347,8 +7206,7 @@
   "learnTogetherStartWithChild": "Start with {name}",
   "@learnTogetherStartWithChild": {
     "placeholders": {
-      "name": {
-      }
+      "name": {}
     }
   },
   "learnTogetherReviewTogetherAction": "Review together",
@@ -7776,8 +7634,7 @@
   "accountsSyncRemotePreviewLocalUpdatedValue": "Local data updated {time}",
   "@accountsSyncRemotePreviewLocalUpdatedValue": {
     "placeholders": {
-      "time": {
-      }
+      "time": {}
     }
   },
   "accountsSyncRemotePreviewComparisonTitle": "Per-domain comparison",
@@ -7793,14 +7650,10 @@
   "accountsSyncRemotePreviewResultBody": "{action} finished. Merged: {merged}. Replaced: {replaced}. Safety snapshot: {snapshot}.",
   "@accountsSyncRemotePreviewResultBody": {
     "placeholders": {
-      "action": {
-      },
-      "merged": {
-      },
-      "replaced": {
-      },
-      "snapshot": {
-      }
+      "action": {},
+      "merged": {},
+      "replaced": {},
+      "snapshot": {}
     }
   },
   "accountsSyncRemotePreviewNoMergedDomains": "No domains were merged",
@@ -7808,14 +7661,10 @@
   "accountsSyncRemotePreviewDomainSummary": "{conflict}. Local items: {localCount}. Remote items: {remoteCount}. Merge: {merge}.",
   "@accountsSyncRemotePreviewDomainSummary": {
     "placeholders": {
-      "conflict": {
-      },
-      "localCount": {
-      },
-      "remoteCount": {
-      },
-      "merge": {
-      }
+      "conflict": {},
+      "localCount": {},
+      "remoteCount": {},
+      "merge": {}
     }
   },
   "accountsSyncRemotePreviewProviderMismatchBody": "The remote backup is tied to a different sign-in provider than the current device session.",
@@ -7898,29 +7747,25 @@
   "accountsSyncScopePreviewRemoteValue": "Remote backup: {value}",
   "@accountsSyncScopePreviewRemoteValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "accountsSyncScopePreviewCurrentValue": "Current device setting: {value}",
   "@accountsSyncScopePreviewCurrentValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "accountsSyncScopePreviewExcludedDomain": "This backup does not include {domain}.",
   "@accountsSyncScopePreviewExcludedDomain": {
     "placeholders": {
-      "domain": {
-      }
+      "domain": {}
     }
   },
   "accountsSyncScopePreviewValue": "Backup scope: {value}",
   "@accountsSyncScopePreviewValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "accountsSyncScopeSettingsDescription": "App settings and family/device preferences can stay local if you do not want them in remote backup.",
@@ -7931,29 +7776,25 @@
   "accountsSyncScopeSummaryPartial": "Partial backup. Local-only categories: {domains}.",
   "@accountsSyncScopeSummaryPartial": {
     "placeholders": {
-      "domains": {
-      }
+      "domains": {}
     }
   },
   "accountsSyncScopeIncludeImpactBody": "{domain} will be included in future remote backups. Existing local data stays intact.",
   "@accountsSyncScopeIncludeImpactBody": {
     "placeholders": {
-      "domain": {
-      }
+      "domain": {}
     }
   },
   "accountsSyncScopeExcludeImpactBody": "{domain} will stay only on this device in future remote backups. Existing local data is not deleted, and older backups may still contain it.",
   "@accountsSyncScopeExcludeImpactBody": {
     "placeholders": {
-      "domain": {
-      }
+      "domain": {}
     }
   },
   "accountsSyncScopePreviewMismatchDomain": "Your current settings include {domain}, but this backup did not.",
   "@accountsSyncScopePreviewMismatchDomain": {
     "placeholders": {
-      "domain": {
-      }
+      "domain": {}
     }
   },
   "accountsSyncNoRemoteBackupFound": "No remote backup was found for this account yet.",
@@ -7992,7 +7833,7 @@
   "accountsSyncCurrentProfileOnlyTitle": "Current profile only",
   "accountsSyncCurrentProfileOnlySubtitle": "Export only the active profile instead of the full local account set.",
   "accountsSyncEncryptedExportTitle": "Encrypted export",
-  "accountsSyncEncryptedExportSubtitle": "Encode the backup payload before writing it to disk.",
+  "accountsSyncEncryptedExportSubtitle": "Protect the backup file with a passphrase before writing it to disk.",
   "accountsSyncExportNowAction": "Export Now",
   "accountsSyncExportCreatedResult": "Backup export created.",
   "accountsSyncExportReadyBody": "Your backup file is ready. Keep it in Files or share it to a safe location.",
@@ -8005,6 +7846,12 @@
   "accountsSyncImportFileLoadedSubtitle": "Backup file loaded. Review it before restoring.",
   "accountsSyncChooseBackupFileAction": "Choose backup file",
   "accountsSyncEncryptedPayloadTitle": "Encrypted payload",
+  "accountsSyncPassphraseFieldLabel": "Passphrase",
+  "accountsSyncPassphraseConfirmFieldLabel": "Confirm passphrase",
+  "accountsSyncPassphraseMismatchError": "The passphrases don''t match.",
+  "accountsSyncPassphraseTooShortError": "Use at least 8 characters.",
+  "accountsSyncPassphraseWrongError": "That passphrase can''t open this backup. Check it and try again.",
+  "accountsSyncPassphraseExplainer": "This backup is locked with a passphrase. Without it, the file can''t be opened.",
   "accountsSyncCreateNewProfilesTitle": "Create new profiles",
   "accountsSyncReplaceExistingLocalDataTitle": "Replace existing local data",
   "accountsSyncBackupImported": "Backup imported",
@@ -8528,10 +8375,8 @@
   "growthHomeJourneyDepthSummary": "Today''s completion: {percent} • current streak: {days} days",
   "@growthHomeJourneyDepthSummary": {
     "placeholders": {
-      "percent": {
-      },
-      "days": {
-      }
+      "percent": {},
+      "days": {}
     }
   },
   "growthHomeJourneyDepthOpenStatistics": "Open Statistics",
@@ -9388,16 +9233,14 @@
   "gardenPageMaturityValue": "{percent}%",
   "@gardenPageMaturityValue": {
     "placeholders": {
-      "percent": {
-      }
+      "percent": {}
     }
   },
   "gardenPageNextGrowthTitle": "Next growth",
   "gardenPageNextGrowthValue": "Next stage: {title}",
   "@gardenPageNextGrowthValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "gardenPageNextGrowthSubtitle": "Steady worship, learning, remembrance, and good routines all continue shaping the next growth.",
@@ -9410,25 +9253,21 @@
   "gardenPageDimensionStrengthValue": "{percent}% grown",
   "@gardenPageDimensionStrengthValue": {
     "placeholders": {
-      "percent": {
-      }
+      "percent": {}
     }
   },
   "gardenPageRecentGrowthJustNow": "Just now",
   "gardenPageRecentGrowthRewardValue": "{xp} XP • {drops} drop",
   "@gardenPageRecentGrowthRewardValue": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      }
+      "xp": {},
+      "drops": {}
     }
   },
   "gardenPageRecentGrowthXpValue": "{xp} XP",
   "@gardenPageRecentGrowthXpValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "gardenAmbientQuietDawn": "Quiet dawn",
@@ -10260,37 +10099,29 @@
   "quranTeachingResumeStartBody": "Start with {title} • {subtitle}",
   "@quranTeachingResumeStartBody": {
     "placeholders": {
-      "title": {
-      },
-      "subtitle": {
-      }
+      "title": {},
+      "subtitle": {}
     }
   },
   "quranTeachingResumeLessonBody": "Resume {title} • {subtitle}",
   "@quranTeachingResumeLessonBody": {
     "placeholders": {
-      "title": {
-      },
-      "subtitle": {
-      }
+      "title": {},
+      "subtitle": {}
     }
   },
   "quranTeachingResumeContinueLessonBody": "Continue with {title} • {subtitle}",
   "@quranTeachingResumeContinueLessonBody": {
     "placeholders": {
-      "title": {
-      },
-      "subtitle": {
-      }
+      "title": {},
+      "subtitle": {}
     }
   },
   "quranTeachingResumeWordBody": "Return to {wordAr} and keep reading “{meaning}” calmly.",
   "@quranTeachingResumeWordBody": {
     "placeholders": {
-      "wordAr": {
-      },
-      "meaning": {
-      }
+      "wordAr": {},
+      "meaning": {}
     }
   },
   "quranTeachingResumeReviewBody": "A short review is ready if you want to revisit what you already learned.",
@@ -10298,8 +10129,7 @@
   "quranTeachingGentleReviewWordAction": "Review {word}",
   "@quranTeachingGentleReviewWordAction": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "quranTeachingBeginnerWordsTitle": "Beginner words",
@@ -10321,16 +10151,14 @@
   "quranTeachingBeginnerWordsPlaying": "Playing {word}",
   "@quranTeachingBeginnerWordsPlaying": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "quranTeachingBeginnerWordsAudioUnavailable": "Audio for this word is not available yet.",
   "quranTeachingBeginnerWordsSource": "Source: {reference}",
   "@quranTeachingBeginnerWordsSource": {
     "placeholders": {
-      "reference": {
-      }
+      "reference": {}
     }
   },
   "quranTeachingBeginnerWordsJoinedLettersTitle": "Letters inside the word",
@@ -10343,10 +10171,8 @@
   "quranTeachingBeginnerWordsPreview": "Start with {word}: {meaning}",
   "@quranTeachingBeginnerWordsPreview": {
     "placeholders": {
-      "word": {
-      },
-      "meaning": {
-      }
+      "word": {},
+      "meaning": {}
     }
   },
   "quranTeachingBeginnerWordsOpenAction": "Open beginner words",
@@ -10357,10 +10183,8 @@
   "quranTeachingPathActiveLevel": "{level} • {mode}",
   "@quranTeachingPathActiveLevel": {
     "placeholders": {
-      "level": {
-      },
-      "mode": {
-      }
+      "level": {},
+      "mode": {}
     }
   },
   "quranTeachingProgressSummary": "{completed} of {total} lessons completed",
@@ -10492,8 +10316,7 @@
       "total": {
         "type": "int"
       },
-      "summary": {
-      }
+      "summary": {}
     }
   },
   "quranTeachingDailyReviewCardPracticeMoreAction": "Practice more",
@@ -10648,8 +10471,7 @@
   "quranTeachingModuleOftenSeenIn": "Often seen in: {surahs}",
   "@quranTeachingModuleOftenSeenIn": {
     "placeholders": {
-      "surahs": {
-      }
+      "surahs": {}
     }
   },
   "quranTeachingModuleStarterSurahShelfTitle": "Starter Surah Shelf",
@@ -10657,15 +10479,13 @@
   "quranTeachingLessonUpNext": "Up next: {title}",
   "@quranTeachingLessonUpNext": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "quranTeachingLessonSourceLabel": "Source: {source}",
   "@quranTeachingLessonSourceLabel": {
     "placeholders": {
-      "source": {
-      }
+      "source": {}
     }
   },
   "quranTeachingLessonHearThis": "Hear this",
@@ -10677,17 +10497,14 @@
   "quranTeachingLessonCompleteSubtitle": "You finished {title}. The next step is ready when you are.",
   "@quranTeachingLessonCompleteSubtitle": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "quranTeachingLessonCompleteNextSubtitle": "You finished {title}. Next: {nextTitle}.",
   "@quranTeachingLessonCompleteNextSubtitle": {
     "placeholders": {
-      "title": {
-      },
-      "nextTitle": {
-      }
+      "title": {},
+      "nextTitle": {}
     }
   },
   "quranTeachingLessonQuizScore": "Quiz score: {score}%",
@@ -10702,16 +10519,14 @@
   "quranTeachingLessonNextLesson": "Next lesson: {title}",
   "@quranTeachingLessonNextLesson": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "quranTeachingLessonLetterProfileTitle": "Letter profile",
   "quranTeachingLessonSoundHintLabel": "Sound hint: {hint}",
   "@quranTeachingLessonSoundHintLabel": {
     "placeholders": {
-      "hint": {
-      }
+      "hint": {}
     }
   },
   "quranTeachingLessonFormsTitle": "Forms in a word",
@@ -10795,8 +10610,7 @@
   "batch9QuranWordsAllAyahsSubtitle": "Open the full ayah list for {word} and continue into the Qur''an reader from any reference.",
   "@batch9QuranWordsAllAyahsSubtitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "batch9QuranWordsRootLettersTitle": "Root letters",
@@ -11405,34 +11219,28 @@
   "kidsDuaMyDayMatchPrompt": "What do you say {situation}?",
   "@kidsDuaMyDayMatchPrompt": {
     "placeholders": {
-      "situation": {
-      }
+      "situation": {}
     }
   },
   "kidsDuaMyDayMeaningPrompt": "What does {duaTitle} mean?",
   "@kidsDuaMyDayMeaningPrompt": {
     "placeholders": {
-      "duaTitle": {
-      }
+      "duaTitle": {}
     }
   },
   "kidsDuaMyDayRecapCompleteTitle": "You remembered through your day",
   "kidsDuaMyDayRecapCompleteBody": "You answered {correct} of {total} recap questions and kept your day moving with Allah.",
   "@kidsDuaMyDayRecapCompleteBody": {
     "placeholders": {
-      "correct": {
-      },
-      "total": {
-      }
+      "correct": {},
+      "total": {}
     }
   },
   "kidsDuaMyDayRecapBonusValue": "+{xp} XP and +{drops} Ocean Drop",
   "@kidsDuaMyDayRecapBonusValue": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      }
+      "xp": {},
+      "drops": {}
     }
   },
   "kidsDuaMyDayRightNowMorningReason": "A gentle morning start with Allah.",
@@ -11478,15 +11286,13 @@
   "kidsDuaLightValue": "Your light: {light}",
   "@kidsDuaLightValue": {
     "placeholders": {
-      "light": {
-      }
+      "light": {}
     }
   },
   "kidsDuaStreakValue": "Streak: {days} days",
   "@kidsDuaStreakValue": {
     "placeholders": {
-      "days": {
-      }
+      "days": {}
     }
   },
   "kidsDuaLightSeedLabel": "Gentle Seed",
@@ -11531,8 +11337,7 @@
   "kidsDuaDrawingsLandingSubtitle": "{count} saved drawings",
   "@kidsDuaDrawingsLandingSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsDuaParentTitle": "Parent view",
@@ -11547,10 +11352,8 @@
   "kidsDuaParentCategoryProgress": "{learned} of {total} learned",
   "@kidsDuaParentCategoryProgress": {
     "placeholders": {
-      "learned": {
-      },
-      "total": {
-      }
+      "learned": {},
+      "total": {}
     }
   },
   "kidsDuaParentActivityTitle": "Daily activity",
@@ -11570,15 +11373,13 @@
   "kidsDuaStoriesLandingSubtitle": "{count} gentle stories",
   "@kidsDuaStoriesLandingSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsDuaStoriesDurationValue": "{minutes} min story",
   "@kidsDuaStoriesDurationValue": {
     "placeholders": {
-      "minutes": {
-      }
+      "minutes": {}
     }
   },
   "kidsDuaStoriesFeaturedTitle": "Featured story",
@@ -11594,10 +11395,8 @@
   "kidsDuaStoriesSceneValue": "Scene {current} of {total}",
   "@kidsDuaStoriesSceneValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "kidsDuaStoriesBackAction": "Back",
@@ -11610,8 +11409,7 @@
   "kidsDuaStoriesLessonHint": "Next: learn {title}",
   "@kidsDuaStoriesLessonHint": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "kidsDuaStoriesMyDayDetail": "A calm story for this moment.",
@@ -11719,31 +11517,26 @@
   "xpCardLevelValue": "Level {level} · {title}",
   "@xpCardLevelValue": {
     "placeholders": {
-      "level": {
-      },
-      "title": {
-      }
+      "level": {},
+      "title": {}
     }
   },
   "xpCardTotalXpValue": "{xp} total XP",
   "@xpCardTotalXpValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "xpCardNextLevelValue": "Next: {title}",
   "@xpCardNextLevelValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "xpCardRemainingValue": "{xp} XP to go",
   "@xpCardRemainingValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "xpCardMaxLevel": "Path of Nūr",
@@ -11755,8 +11548,7 @@
   "growthTrackingOverviewHabitsDetail": "{count} due today",
   "@growthTrackingOverviewHabitsDetail": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "growthTrackingOverviewPrayerDetail": "Salah progress for today",
@@ -11764,8 +11556,7 @@
   "growthTrackingOverviewXpDetail": "{xp} total XP",
   "@growthTrackingOverviewXpDetail": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "growthTrackingOverviewDropsDetail": "Drops gathered for Garden and Ocean",
@@ -11774,62 +11565,50 @@
   "growthHomeQuranTrackerSubtitle": "Today: {duration}",
   "@growthHomeQuranTrackerSubtitle": {
     "placeholders": {
-      "duration": {
-      }
+      "duration": {}
     }
   },
   "growthHomeQuranListeningTrackerSubtitle": "Listening: {total} total • {today} today",
   "@growthHomeQuranListeningTrackerSubtitle": {
     "placeholders": {
-      "total": {
-      },
-      "today": {
-      }
+      "total": {},
+      "today": {}
     }
   },
   "growthHomePostSalahAdhkarSubtitle": "Completed after-prayer adhkar recorded in your prayer log.",
   "growthHomeTotalAdhkarCompletedSubtitle": "{postSalah} post-Salah completions • {sessions} dhikr sessions",
   "@growthHomeTotalAdhkarCompletedSubtitle": {
     "placeholders": {
-      "postSalah": {
-      },
-      "sessions": {
-      }
+      "postSalah": {},
+      "sessions": {}
     }
   },
   "growthHomeDhikrTimeSubtitle": "Time in dhikr: {duration}",
   "@growthHomeDhikrTimeSubtitle": {
     "placeholders": {
-      "duration": {
-      }
+      "duration": {}
     }
   },
   "growthHomeTimeReflectionSubtitle": "Since {elapsed}, tracked worship and growth time is {share}.",
   "@growthHomeTimeReflectionSubtitle": {
     "placeholders": {
-      "elapsed": {
-      },
-      "share": {
-      }
+      "elapsed": {},
+      "share": {}
     }
   },
   "journeyStatsQuranReadingTitle": "Qur''an Reading",
   "journeyStatsQuranReadingSubtitle": "{today} today • {sessions} sessions tracked",
   "@journeyStatsQuranReadingSubtitle": {
     "placeholders": {
-      "today": {
-      },
-      "sessions": {
-      }
+      "today": {},
+      "sessions": {}
     }
   },
   "journeyStatsQuranListeningSubtitle": "Listening: {today} today • {sessions} sessions tracked",
   "@journeyStatsQuranListeningSubtitle": {
     "placeholders": {
-      "today": {
-      },
-      "sessions": {
-      }
+      "today": {},
+      "sessions": {}
     }
   },
   "journeyStatsMetricsTitle": "Core metrics",
@@ -11869,17 +11648,14 @@
   "journeyStatsMinutesValue": "{minutes}m",
   "@journeyStatsMinutesValue": {
     "placeholders": {
-      "minutes": {
-      }
+      "minutes": {}
     }
   },
   "journeyStatsDaysHoursValue": "{days}d {hours}h",
   "@journeyStatsDaysHoursValue": {
     "placeholders": {
-      "days": {
-      },
-      "hours": {
-      }
+      "days": {},
+      "hours": {}
     }
   },
   "growthTrackingSuggestionsTitle": "Suggested next steps",
@@ -11899,8 +11675,7 @@
   "growthTrackingCalendarMissedValue": "{count} missed",
   "@growthTrackingCalendarMissedValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "growthOceanDashboardTitle": "Ocean Dashboard",
@@ -11908,10 +11683,8 @@
   "growthOceanDashboardSummary": "You have gathered {drops} drops, contributing to a shared ocean now holding {community} drops.",
   "@growthOceanDashboardSummary": {
     "placeholders": {
-      "drops": {
-      },
-      "community": {
-      }
+      "drops": {},
+      "community": {}
     }
   },
   "growthOceanDashboardYourDrops": "Your drops",
@@ -11928,10 +11701,8 @@
   "growthHabitDashboardCompletionSummary": "{completed} of {due} completed today",
   "@growthHabitDashboardCompletionSummary": {
     "placeholders": {
-      "completed": {
-      },
-      "due": {
-      }
+      "completed": {},
+      "due": {}
     }
   },
   "growthHabitDashboardActionsTitle": "Open tools",
@@ -12133,36 +11904,31 @@
   "crosswordDailyModeSubtitle": "A themed puzzle that rotates through the week.",
   "@crosswordDailyThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "crosswordDailyThemeLabel": "Today’s theme: {theme}",
   "@crosswordPuzzleCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordPuzzleCountLabel": "{count} puzzles live",
   "@crosswordCompletedCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordCompletedCountLabel": "{count} completed",
   "@crosswordTodayXpLabel": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "crosswordTodayXpLabel": "{xp} XP today",
   "@crosswordTodayDropsLabel": {
     "placeholders": {
-      "drops": {
-      }
+      "drops": {}
     }
   },
   "crosswordTodayDropsLabel": "{drops} drops today",
@@ -12172,18 +11938,15 @@
   "crosswordAdultSectionSubtitle": "Reflective knowledge grids drawn from prophets, hadith, Qur’an, and duas.",
   "@crosswordGridSizeLabel": {
     "placeholders": {
-      "size": {
-      }
+      "size": {}
     }
   },
   "crosswordGridSizeLabel": "{size}×{size} grid",
   "crosswordPerfectBadge": "Perfect",
   "@crosswordClueCountSubtitle": {
     "placeholders": {
-      "total": {
-      },
-      "solved": {
-      }
+      "total": {},
+      "solved": {}
     }
   },
   "crosswordClueCountSubtitle": "{solved} of {total} clues solved",
@@ -12192,15 +11955,13 @@
   "crosswordStartAction": "Start puzzle",
   "@crosswordPuzzleTitleKids": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "crosswordPuzzleTitleKids": "Kids {category} puzzle",
   "@crosswordPuzzleTitleAdult": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "crosswordPuzzleTitleAdult": "{category} crossword",
@@ -12227,17 +11988,14 @@
   "crosswordKidsOnlyTitle": "This puzzle is reserved for the adult learning space.",
   "@crosswordDailyPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "crosswordDailyPuzzleSubtitle": "Today’s guided puzzle centers on {category}.",
   "@crosswordPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      },
-      "gridSize": {
-      }
+      "category": {},
+      "gridSize": {}
     }
   },
   "crosswordPuzzleSubtitle": "{category} • {gridSize} grid",
@@ -12245,10 +12003,8 @@
   "crosswordDownLabel": "Down",
   "@crosswordSolvedCountLabel": {
     "placeholders": {
-      "solved": {
-      },
-      "total": {
-      }
+      "solved": {},
+      "total": {}
     }
   },
   "crosswordSolvedCountLabel": "{solved}/{total} solved",
@@ -12257,10 +12013,8 @@
   "crosswordCurrentClueTitle": "Current clue",
   "@crosswordClueMetaLabel": {
     "placeholders": {
-      "length": {
-      },
-      "direction": {
-      }
+      "length": {},
+      "direction": {}
     }
   },
   "crosswordClueMetaLabel": "{length} letters • {direction}",
@@ -12273,22 +12027,19 @@
   "crosswordHintFutureSubtitle": "Hints can be added later without changing the puzzle structure.",
   "@crosswordRevealLetterAction": {
     "placeholders": {
-      "remaining": {
-      }
+      "remaining": {}
     }
   },
   "crosswordRevealLetterAction": "Reveal letter ({remaining} left)",
   "@crosswordRevealWordAction": {
     "placeholders": {
-      "remaining": {
-      }
+      "remaining": {}
     }
   },
   "crosswordRevealWordAction": "Reveal word ({remaining} left)",
   "@crosswordExtraHintAction": {
     "placeholders": {
-      "remaining": {
-      }
+      "remaining": {}
     }
   },
   "crosswordExtraHintAction": "Extra hint ({remaining} left)",
@@ -12302,15 +12053,13 @@
   "crosswordOverviewSubtitle": "A calm snapshot of how your kids and adult crossword sets are moving.",
   "@crosswordPerfectCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordPerfectCountLabel": "{count} perfect solves",
   "@crosswordResumeSectionCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordResumeSectionCount": "{count} in progress",
@@ -12318,23 +12067,17 @@
   "crosswordSelectedClueBadge": "Selected clue",
   "@crosswordClueSemanticsLabel": {
     "placeholders": {
-      "clue": {
-      },
-      "length": {
-      },
-      "direction": {
-      }
+      "clue": {},
+      "length": {},
+      "direction": {}
     }
   },
   "crosswordClueSemanticsLabel": "{clue}. {length} letters. {direction}.",
   "@crosswordCellSemanticsLabel": {
     "placeholders": {
-      "row": {
-      },
-      "col": {
-      },
-      "value": {
-      }
+      "row": {},
+      "col": {},
+      "value": {}
     }
   },
   "crosswordCellSemanticsLabel": "Row {row}, column {col}. Current value {value}.",
@@ -12342,45 +12085,39 @@
   "crosswordCellCurrentWordHint": "Part of the current clue",
   "@crosswordDailyStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordDailyStreakLabel": "{count}-day streak",
   "crosswordDailyCompleteBadge": "Daily puzzle complete",
   "@crosswordDailyBonusAchievedLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordDailyBonusAchievedLabel": "{count} bonus goals",
   "@crosswordDailyCompletedSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "crosswordDailyCompletedSubtitle": "Today’s {theme} puzzle is complete.",
   "crosswordDailyChallengeTitle": "Today’s challenge",
   "@crosswordDailyChallengeSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "crosswordDailyChallengeSubtitle": "A daily crossword shaped around {theme}.",
   "@crosswordDailyTargetDifficultyLabel": {
     "placeholders": {
-      "difficulty": {
-      }
+      "difficulty": {}
     }
   },
   "crosswordDailyTargetDifficultyLabel": "Target difficulty {difficulty}",
   "@crosswordDailyTimeTakenLabel": {
     "placeholders": {
-      "duration": {
-      }
+      "duration": {}
     }
   },
   "crosswordDailyTimeTakenLabel": "Time: {duration}",
@@ -12391,22 +12128,19 @@
   "crosswordDailyObjectiveQuickSolveTitle": "Finish with focus",
   "@crosswordDailyObjectiveQuickSolveSubtitle": {
     "placeholders": {
-      "duration": {
-      }
+      "duration": {}
     }
   },
   "crosswordDailyObjectiveQuickSolveSubtitle": "Complete within {duration}.",
   "@crosswordDailyDropsContributionLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordDailyDropsContributionLabel": "{count} drops today",
   "@crosswordDailyOceanSummary": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordDailyOceanSummary": "Today your crossword added {count} drops to the ocean.",
@@ -12426,26 +12160,21 @@
   "crosswordReturnToPackAction": "Return to pack",
   "@crosswordPackProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "crosswordPackProgressLabel": "{completed} of {total} complete",
   "@crosswordPackPerfectLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "crosswordPackPerfectLabel": "{count} perfect",
   "@crosswordPackDifficultyLabel": {
     "placeholders": {
-      "min": {
-      },
-      "max": {
-      }
+      "min": {},
+      "max": {}
     }
   },
   "crosswordPackDifficultyLabel": "Levels {min}–{max}",
@@ -12482,22 +12211,19 @@
   "wordSearchDailyCompletedSubtitle": "Today''s {theme} word search is complete.",
   "@wordSearchDailyCompletedSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "wordSearchDailyThemeLabel": "Today''s theme: {theme}",
   "@wordSearchDailyThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "wordSearchDailyStreakLabel": "{count}-day streak",
   "@wordSearchDailyStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "wordSearchDailyCompleteBadge": "Daily complete",
@@ -12508,29 +12234,25 @@
   "wordSearchPuzzleCountLabel": "{count} puzzles",
   "@wordSearchPuzzleCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "wordSearchCompletedCountLabel": "{count} completed",
   "@wordSearchCompletedCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "wordSearchXpLabel": "{count} XP",
   "@wordSearchXpLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "wordSearchDropsLabel": "{count} drops",
   "@wordSearchDropsLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "wordSearchContinueSectionTitle": "Continue solving",
@@ -12548,26 +12270,21 @@
   "wordSearchPackDifficultyLabel": "Difficulty {min}-{max}",
   "@wordSearchPackDifficultyLabel": {
     "placeholders": {
-      "min": {
-      },
-      "max": {
-      }
+      "min": {},
+      "max": {}
     }
   },
   "wordSearchPackProgressLabel": "{completed}/{total} complete",
   "@wordSearchPackProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "wordSearchPackPerfectLabel": "{count} perfect",
   "@wordSearchPackPerfectLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "wordSearchRecommendedAction": "Recommended next puzzle",
@@ -12576,47 +12293,39 @@
   "wordSearchGridSizeLabel": "{size}x{size} grid",
   "@wordSearchGridSizeLabel": {
     "placeholders": {
-      "size": {
-      }
+      "size": {}
     }
   },
   "wordSearchFoundCountLabel": "{found}/{total} words found",
   "@wordSearchFoundCountLabel": {
     "placeholders": {
-      "found": {
-      },
-      "total": {
-      }
+      "found": {},
+      "total": {}
     }
   },
   "wordSearchPuzzleTitleKids": "{category} Finder",
   "@wordSearchPuzzleTitleKids": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "wordSearchPuzzleTitleAdult": "{category} Search",
   "@wordSearchPuzzleTitleAdult": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "wordSearchPuzzleSubtitle": "{category} • {size}x{size} board",
   "@wordSearchPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      },
-      "size": {
-      }
+      "category": {},
+      "size": {}
     }
   },
   "wordSearchDailyPuzzleSubtitle": "Daily {theme} word search",
   "@wordSearchDailyPuzzleSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "wordSearchCategoryKids": "Kids",
@@ -12640,10 +12349,8 @@
   "wordSearchHintUsageLabel": "Hints used: {letters} letters, {highlights} highlights",
   "@wordSearchHintUsageLabel": {
     "placeholders": {
-      "letters": {
-      },
-      "highlights": {
-      }
+      "letters": {},
+      "highlights": {}
     }
   },
   "wordSearchGridSectionTitle": "Letter grid",
@@ -12654,16 +12361,14 @@
   "wordSearchRevealedLetterBadge": "First letter: {letter}",
   "@wordSearchRevealedLetterBadge": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "wordSearchHighlightedBadge": "Highlighted",
   "wordSearchExtraHint": "Hint: {hint}",
   "@wordSearchExtraHint": {
     "placeholders": {
-      "hint": {
-      }
+      "hint": {}
     }
   },
   "wordSearchCompletionTitle": "Puzzle complete",
@@ -12678,12 +12383,9 @@
   "wordSearchCellSemanticsLabel": "Row {row}, column {column}, letter {letter}",
   "@wordSearchCellSemanticsLabel": {
     "placeholders": {
-      "row": {
-      },
-      "column": {
-      },
-      "letter": {
-      }
+      "row": {},
+      "column": {},
+      "letter": {}
     }
   },
   "wordSearchPackKidsStarterTitle": "Kids Starter Words",
@@ -12726,66 +12428,56 @@
   "matchingDailyCompletedSubtitle": "Today''s matching theme, {theme}, is complete.",
   "@matchingDailyCompletedSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "matchingDailyThemeLabel": "Today''s theme: {theme}",
   "@matchingDailyThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "matchingDailyPuzzleSubtitle": "Daily matching · {theme}",
   "@matchingDailyPuzzleSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "matchingPuzzleSubtitle": "{category} · {count} pairs",
   "@matchingPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      },
-      "count": {
-      }
+      "category": {},
+      "count": {}
     }
   },
   "matchingPuzzleCountLabel": "{count} puzzles live",
   "@matchingPuzzleCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingCompletedCountLabel": "{count} completed",
   "@matchingCompletedCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingXpLabel": "{count} XP earned",
   "@matchingXpLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingDropsLabel": "{count} drops earned",
   "@matchingDropsLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingDailyStreakLabel": "{count}-day streak",
   "@matchingDailyStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingDailyCompleteBadge": "Daily complete",
@@ -12807,32 +12499,27 @@
   "matchingPairCountLabel": "{count} pairs",
   "@matchingPairCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingFoundCountLabel": "{found} of {total} pairs matched",
   "@matchingFoundCountLabel": {
     "placeholders": {
-      "found": {
-      },
-      "total": {
-      }
+      "found": {},
+      "total": {}
     }
   },
   "matchingPerfectBadge": "Perfect",
   "matchingPuzzleTitleKids": "{category} matching",
   "@matchingPuzzleTitleKids": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "matchingPuzzleTitleAdult": "{category} matching",
   "@matchingPuzzleTitleAdult": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "matchingDifficultyGentle": "Gentle",
@@ -12854,10 +12541,8 @@
   "matchingHintUsageLabel": "Reveal pair: {revealUses} · Remove option: {removeUses}",
   "@matchingHintUsageLabel": {
     "placeholders": {
-      "revealUses": {
-      },
-      "removeUses": {
-      }
+      "revealUses": {},
+      "removeUses": {}
     }
   },
   "matchingLeftColumnTitle": "Left side",
@@ -12868,10 +12553,8 @@
   "matchingCardSemanticsLabel": "{label} {state}",
   "@matchingCardSemanticsLabel": {
     "placeholders": {
-      "label": {
-      },
-      "state": {
-      }
+      "label": {},
+      "state": {}
     }
   },
   "matchingCompletionTitle": "Matching complete",
@@ -12886,26 +12569,21 @@
   "matchingPackDifficultyLabel": "Difficulty {min}–{max}",
   "@matchingPackDifficultyLabel": {
     "placeholders": {
-      "min": {
-      },
-      "max": {
-      }
+      "min": {},
+      "max": {}
     }
   },
   "matchingPackProgressLabel": "{completed} of {total} puzzles completed",
   "@matchingPackProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "matchingPackPerfectLabel": "{count} perfect",
   "@matchingPackPerfectLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "matchingPackKidsBasicsTitle": "Kids Matching Basics",
@@ -12944,22 +12622,19 @@
   "ayahCompletionDailyCompletedSubtitle": "Today''s {theme} ayah is complete.",
   "@ayahCompletionDailyCompletedSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "ayahCompletionDailyThemeLabel": "Today''s focus: {theme}",
   "@ayahCompletionDailyThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "ayahCompletionDailyPuzzleSubtitle": "Daily ayah • {theme}",
   "@ayahCompletionDailyPuzzleSubtitle": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "ayahCompletionDailyHistoryTitle": "Recent daily ayahs",
@@ -12967,37 +12642,32 @@
   "ayahCompletionDailyStreakLabel": "Daily streak {count}",
   "@ayahCompletionDailyStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionDailyCompleteBadge": "Daily complete",
   "ayahCompletionPuzzleCountLabel": "{count} ayah puzzles",
   "@ayahCompletionPuzzleCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionCompletedCountLabel": "{count} completed",
   "@ayahCompletionCompletedCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionXpLabel": "{count} XP",
   "@ayahCompletionXpLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionDropsLabel": "{count} Ocean Drops",
   "@ayahCompletionDropsLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionContinueSectionTitle": "Continue memorization",
@@ -13009,17 +12679,14 @@
   "ayahCompletionProgressCountLabel": "{done} of {total} blanks complete",
   "@ayahCompletionProgressCountLabel": {
     "placeholders": {
-      "done": {
-      },
-      "total": {
-      }
+      "done": {},
+      "total": {}
     }
   },
   "ayahCompletionReferenceLabel": "{reference}",
   "@ayahCompletionReferenceLabel": {
     "placeholders": {
-      "reference": {
-      }
+      "reference": {}
     }
   },
   "ayahCompletionReferenceSubtitle": "Open this ayah in the Qur''an reader",
@@ -13033,53 +12700,42 @@
   "ayahCompletionPackProgressLabel": "{completed} of {total} complete",
   "@ayahCompletionPackProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "ayahCompletionPackPerfectLabel": "{count} perfect",
   "@ayahCompletionPackPerfectLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionPackDifficultyLabel": "Difficulty {min}-{max}",
   "@ayahCompletionPackDifficultyLabel": {
     "placeholders": {
-      "min": {
-      },
-      "max": {
-      }
+      "min": {},
+      "max": {}
     }
   },
   "ayahCompletionPuzzleTitleKids": "Kids Ayah {surah}:{ayah}",
   "@ayahCompletionPuzzleTitleKids": {
     "placeholders": {
-      "surah": {
-      },
-      "ayah": {
-      }
+      "surah": {},
+      "ayah": {}
     }
   },
   "ayahCompletionPuzzleTitleAdult": "Ayah Practice {surah}:{ayah}",
   "@ayahCompletionPuzzleTitleAdult": {
     "placeholders": {
-      "surah": {
-      },
-      "ayah": {
-      }
+      "surah": {},
+      "ayah": {}
     }
   },
   "ayahCompletionPuzzleSubtitle": "{category} • {count} blanks",
   "@ayahCompletionPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      },
-      "count": {
-      }
+      "category": {},
+      "count": {}
     }
   },
   "ayahCompletionVerseSectionTitle": "Ayah",
@@ -13088,8 +12744,7 @@
   "ayahCompletionHintUsageLabel": "Reveal used {count} times",
   "@ayahCompletionHintUsageLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "ayahCompletionBlankSectionTitle": "Fill the blanks",
@@ -13097,22 +12752,19 @@
   "ayahCompletionBlankSelectedLabel": "Blank {index} selected",
   "@ayahCompletionBlankSelectedLabel": {
     "placeholders": {
-      "index": {
-      }
+      "index": {}
     }
   },
   "ayahCompletionBlankChipLabel": "Blank {index}",
   "@ayahCompletionBlankChipLabel": {
     "placeholders": {
-      "index": {
-      }
+      "index": {}
     }
   },
   "ayahCompletionBlankPlaceholder": "Blank {index}",
   "@ayahCompletionBlankPlaceholder": {
     "placeholders": {
-      "index": {
-      }
+      "index": {}
     }
   },
   "ayahCompletionCompletionTitle": "Ayah complete",
@@ -13170,8 +12822,7 @@
   "hadithReflectionDailyThemeLabel": "Today''s theme: {theme}",
   "@hadithReflectionDailyThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "hadithReflectionDailyCompleteBadge": "Daily reflection completed",
@@ -13182,43 +12833,37 @@
   "hadithReflectionPuzzleCountLabel": "{count} reflections",
   "@hadithReflectionPuzzleCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionCompletedCountLabel": "{count} completed",
   "@hadithReflectionCompletedCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionBestChoiceCountLabel": "{count} best-aligned choices",
   "@hadithReflectionBestChoiceCountLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionXpLabel": "{count} XP",
   "@hadithReflectionXpLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionDropsLabel": "{count} drops",
   "@hadithReflectionDropsLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionDailyStreakLabel": "{count}-day streak",
   "@hadithReflectionDailyStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionContinueSectionTitle": "Continue reflecting",
@@ -13232,26 +12877,21 @@
   "hadithReflectionPackDifficultyLabel": "Difficulty {min}–{max}",
   "@hadithReflectionPackDifficultyLabel": {
     "placeholders": {
-      "min": {
-      },
-      "max": {
-      }
+      "min": {},
+      "max": {}
     }
   },
   "hadithReflectionPackProgressLabel": "{completed} of {total} completed",
   "@hadithReflectionPackProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "hadithReflectionPackBestChoiceLabel": "{count} best-aligned",
   "@hadithReflectionPackBestChoiceLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionContinueAction": "Continue reflection",
@@ -13264,15 +12904,13 @@
   "hadithReflectionDailyPuzzleSubtitle": "Daily reflection for {category}",
   "@hadithReflectionDailyPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "hadithReflectionPuzzleSubtitle": "Scenario practice in {category}",
   "@hadithReflectionPuzzleSubtitle": {
     "placeholders": {
-      "category": {
-      }
+      "category": {}
     }
   },
   "hadithReflectionScenarioTitle": "Scenario",
@@ -13293,22 +12931,19 @@
   "hadithReflectionCompletionXpReward": "+{count} XP awarded",
   "@hadithReflectionCompletionXpReward": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionCompletionDropReward": "This reflection added {count} Ocean Drop",
   "@hadithReflectionCompletionDropReward": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionBestChoiceReward": "Best-choice bonus +{count} XP",
   "@hadithReflectionBestChoiceReward": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "hadithReflectionNextPuzzleAction": "Next reflection",
@@ -13363,24 +12998,20 @@
   "dailyKnowledgeHubDateLabel": "Today: {date}",
   "@dailyKnowledgeHubDateLabel": {
     "placeholders": {
-      "date": {
-      }
+      "date": {}
     }
   },
   "dailyKnowledgeHubProgressLabel": "{completed} of {total} completed",
   "@dailyKnowledgeHubProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "dailyKnowledgeHubStreakLabel": "{count}-day bundle streak",
   "@dailyKnowledgeHubStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "dailyKnowledgeHubCompletedBadge": "Bundle complete",
@@ -13390,8 +13021,7 @@
   "dailyKnowledgeHubDifficultyLabel": "Difficulty {count}",
   "@dailyKnowledgeHubDifficultyLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "dailyKnowledgeHubGameDone": "Completed",
@@ -13406,15 +13036,13 @@
   "dailyKnowledgeHubBonusXpReward": "Daily bundle bonus +{count} XP",
   "@dailyKnowledgeHubBonusXpReward": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "dailyKnowledgeHubBonusDropReward": "Daily bundle bonus +{count} Ocean Drop",
   "@dailyKnowledgeHubBonusDropReward": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "dailyKnowledgeHubHistoryTitle": "Recent bundle history",
@@ -13422,15 +13050,13 @@
   "dailyKnowledgeHubHistoryDone": "{date} completed",
   "@dailyKnowledgeHubHistoryDone": {
     "placeholders": {
-      "date": {
-      }
+      "date": {}
     }
   },
   "dailyKnowledgeHubHistoryOpen": "{date} started",
   "@dailyKnowledgeHubHistoryOpen": {
     "placeholders": {
-      "date": {
-      }
+      "date": {}
     }
   },
   "dailyKnowledgeHubAdaptiveTitle": "Adaptive guidance",
@@ -13438,15 +13064,13 @@
   "dailyKnowledgeHubAdaptiveSupportLabel": "Extra support: {game}",
   "@dailyKnowledgeHubAdaptiveSupportLabel": {
     "placeholders": {
-      "game": {
-      }
+      "game": {}
     }
   },
   "dailyKnowledgeHubAdaptiveChallengeLabel": "Slight stretch: {game}",
   "@dailyKnowledgeHubAdaptiveChallengeLabel": {
     "placeholders": {
-      "game": {
-      }
+      "game": {}
     }
   },
   "dailyKnowledgeHubAdaptiveGameCrossword": "Crossword",
@@ -13469,15 +13093,13 @@
   "spiritualGrowthEffortLabel": "Effort {count}",
   "@spiritualGrowthEffortLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "spiritualGrowthReflectionStreakLabel": "{count}-day reflection streak",
   "@spiritualGrowthReflectionStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "spiritualGrowthDailyActionsTitle": "Meaningful actions",
@@ -13499,10 +13121,8 @@
   "spiritualGrowthThemeCountLabel": "{actions} actions across {days} days",
   "@spiritualGrowthThemeCountLabel": {
     "placeholders": {
-      "actions": {
-      },
-      "days": {
-      }
+      "actions": {},
+      "days": {}
     }
   },
   "spiritualGrowthViewThemesAction": "View theme progress",
@@ -13511,44 +13131,38 @@
   "spiritualGrowthStrongestThemeLabel": "Strongest recent theme: {theme}",
   "@spiritualGrowthStrongestThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "spiritualGrowthRecommendedThemeLabel": "Gentle area to revisit: {theme}",
   "@spiritualGrowthRecommendedThemeLabel": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "spiritualGrowthTodaySummaryTitle": "Today at a glance",
   "spiritualGrowthPrayerSummaryLabel": "{count} prayers completed",
   "@spiritualGrowthPrayerSummaryLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "spiritualGrowthDhikrSummaryLabel": "{count} dhikr sessions",
   "@spiritualGrowthDhikrSummaryLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "spiritualGrowthLearningSummaryLabel": "{count} learning completions",
   "@spiritualGrowthLearningSummaryLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "spiritualGrowthBundleSummaryLabel": "Daily bundle: {status}",
   "@spiritualGrowthBundleSummaryLabel": {
     "placeholders": {
-      "status": {
-      }
+      "status": {}
     }
   },
   "spiritualGrowthBundleDone": "complete",
@@ -13675,33 +13289,27 @@
   "learnGamesIslandDailyHeroInProgressSubtitle": "{completed} of {total} daily games complete. Continue from where you left off.",
   "@learnGamesIslandDailyHeroInProgressSubtitle": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "learnGamesIslandDailyProgressLabel": "{completed}/{total} complete",
   "@learnGamesIslandDailyProgressLabel": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "learnGamesIslandDailyStreakLabel": "{count}-day streak",
   "@learnGamesIslandDailyStreakLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnGamesIslandDailyHistoryLabel": "{count} recent days tracked",
   "@learnGamesIslandDailyHistoryLabel": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnGamesIslandInProgressBadge": "In progress",
@@ -13725,8 +13333,7 @@
   "gameVariationTimeRemaining": "Time left: {time}",
   "@gameVariationTimeRemaining": {
     "placeholders": {
-      "time": {
-      }
+      "time": {}
     }
   },
   "gameVariationNoClueActiveSubtitle": "No Clue mode hides the clue list, so this board relies on crossings and category knowledge.",
@@ -13741,10 +13348,8 @@
   "contentBuilderCatalogCount": "{type}: {count}",
   "@contentBuilderCatalogCount": {
     "placeholders": {
-      "type": {
-      },
-      "count": {
-      }
+      "type": {},
+      "count": {}
     }
   },
   "contentBuilderTypeCrossword": "Crossword",
@@ -13760,8 +13365,7 @@
   "contentBuilderValidationIssueCount": "{count} issues in the current snapshot",
   "@contentBuilderValidationIssueCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "contentBuilderDraftTitle": "Draft content item",
@@ -13793,70 +13397,58 @@
   "contentBuilderPreviewDifficulty": "Difficulty {difficulty}",
   "@contentBuilderPreviewDifficulty": {
     "placeholders": {
-      "difficulty": {
-      }
+      "difficulty": {}
     }
   },
   "contentBuilderPreviewCrossword": "{gridSize}x{gridSize} grid with {placements} placements",
   "@contentBuilderPreviewCrossword": {
     "placeholders": {
-      "gridSize": {
-      },
-      "placements": {
-      }
+      "gridSize": {},
+      "placements": {}
     }
   },
   "contentBuilderPreviewWordSearch": "{gridSize}x{gridSize} grid with {entries} target words",
   "@contentBuilderPreviewWordSearch": {
     "placeholders": {
-      "gridSize": {
-      },
-      "entries": {
-      }
+      "gridSize": {},
+      "entries": {}
     }
   },
   "contentBuilderPreviewMatching": "{pairs} matching pairs",
   "@contentBuilderPreviewMatching": {
     "placeholders": {
-      "pairs": {
-      }
+      "pairs": {}
     }
   },
   "contentBuilderPreviewAyah": "Surah {surah}, ayah {ayah}",
   "@contentBuilderPreviewAyah": {
     "placeholders": {
-      "surah": {
-      },
-      "ayah": {
-      }
+      "surah": {},
+      "ayah": {}
     }
   },
   "contentBuilderPreviewHadith": "{choices} scenario choices",
   "@contentBuilderPreviewHadith": {
     "placeholders": {
-      "choices": {
-      }
+      "choices": {}
     }
   },
   "contentBuilderPreviewGrowth": "Growth subtype: {subtype}",
   "@contentBuilderPreviewGrowth": {
     "placeholders": {
-      "subtype": {
-      }
+      "subtype": {}
     }
   },
   "contentBuilderPreviewPack": "{count} linked content items",
   "@contentBuilderPreviewPack": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "contentBuilderPreviewVariationProfile": "Variation profile for {gameType}",
   "@contentBuilderPreviewVariationProfile": {
     "placeholders": {
-      "gameType": {
-      }
+      "gameType": {}
     }
   },
   "contentBuilderPayloadInvalid": "The JSON payload is invalid.",
@@ -14034,10 +13626,8 @@
   "bedtimeStoriesPlaybackProgressLabel": "{current} / {total}",
   "@bedtimeStoriesPlaybackProgressLabel": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "bedtimeStoryLearningLoopTitle": "Continue learning",
@@ -14206,8 +13796,7 @@
   "kidsSeerahNextNodeLabel": "Next node: {title}",
   "@kidsSeerahNextNodeLabel": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "kidsSeerahNextNodeAction": "Next node",
@@ -14763,8 +14352,7 @@
   "progressionPageHeroTitle": "{name}''s progress",
   "@progressionPageHeroTitle": {
     "placeholders": {
-      "name": {
-      }
+      "name": {}
     }
   },
   "progressionPageHeroSubtitle": "Levels, badges, and milestones grow through steady learning.",
@@ -14781,24 +14369,20 @@
   "progressionPageLevelValue": "Level {level} • {title}",
   "@progressionPageLevelValue": {
     "placeholders": {
-      "level": {
-      },
-      "title": {
-      }
+      "level": {},
+      "title": {}
     }
   },
   "progressionPageXpValue": "{xp} XP",
   "@progressionPageXpValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "progressionPageNextLevelValue": "Next level: {title}",
   "@progressionPageNextLevelValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "progressionPageMaxLevel": "Maximum level reached",
@@ -14812,8 +14396,7 @@
   "progressionParentRemainingValue": "{xp} XP to the next level",
   "@progressionParentRemainingValue": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "progressionBadgeFirstStoryTitle": "First story",
@@ -14876,22 +14459,19 @@
   "kidsArabicAchievementsNextStepLabel": "Next step: {step}",
   "@kidsArabicAchievementsNextStepLabel": {
     "placeholders": {
-      "step": {
-      }
+      "step": {}
     }
   },
   "kidsArabicBadgesUnlockedValue": "{count} badges unlocked",
   "@kidsArabicBadgesUnlockedValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMilestonesUnlockedValue": "{count} milestones reached",
   "@kidsArabicMilestonesUnlockedValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnNotesBrowseAllAction": "Browse all notes",
@@ -14957,56 +14537,41 @@
   "growthStatisticsBestDayBody": "{dateLabel} was your strongest day so far, with {prayers} prayers, {adhkar} adhkar, {quranMinutes} of Qur’an time, {xp} XP, and {drops} drops.",
   "@growthStatisticsBestDayBody": {
     "placeholders": {
-      "dateLabel": {
-      },
-      "prayers": {
-      },
-      "adhkar": {
-      },
-      "quranMinutes": {
-      },
-      "xp": {
-      },
-      "drops": {
-      }
+      "dateLabel": {},
+      "prayers": {},
+      "adhkar": {},
+      "quranMinutes": {},
+      "xp": {},
+      "drops": {}
     }
   },
   "growthStatisticsRewardsBody": "Over the last 7 days you gained {xp} XP and {drops} drops. Your strongest XP source was {topXpSource}, and your main drop source was {topDropSource}.",
   "@growthStatisticsRewardsBody": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      },
-      "topXpSource": {
-      },
-      "topDropSource": {
-      }
+      "xp": {},
+      "drops": {},
+      "topXpSource": {},
+      "topDropSource": {}
     }
   },
   "growthStatisticsWeeklyChange": "Compared with the previous period: {change}",
   "@growthStatisticsWeeklyChange": {
     "placeholders": {
-      "change": {
-      }
+      "change": {}
     }
   },
   "growthStatisticsPeriodDateRange": "{start} - {end}",
   "@growthStatisticsPeriodDateRange": {
     "placeholders": {
-      "start": {
-      },
-      "end": {
-      }
+      "start": {},
+      "end": {}
     }
   },
   "growthStatisticsReportCardBody": "{title}\n{body}",
   "@growthStatisticsReportCardBody": {
     "placeholders": {
-      "title": {
-      },
-      "body": {
-      }
+      "title": {},
+      "body": {}
     }
   },
   "learnHubSubcategoryKidsQuranTitle": "Qur’an for Kids",
@@ -15166,52 +14731,39 @@
   "wuduQuizWhatComesNextQuestion": "What comes next after {stepTitle}?",
   "@wuduQuizQuestionProgress": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "@wuduQuizScoreSummary": {
     "placeholders": {
-      "score": {
-      },
-      "total": {
-      }
+      "score": {},
+      "total": {}
     }
   },
   "@wuduQuizRewardFeedback": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      }
+      "xp": {},
+      "drops": {}
     }
   },
   "@wuduQuizStepOrderOptionCorrect": {
     "placeholders": {
-      "first": {
-      },
-      "second": {
-      },
-      "third": {
-      }
+      "first": {},
+      "second": {},
+      "third": {}
     }
   },
   "@wuduQuizStepOrderOption": {
     "placeholders": {
-      "first": {
-      },
-      "second": {
-      },
-      "third": {
-      }
+      "first": {},
+      "second": {},
+      "third": {}
     }
   },
   "@wuduQuizWhatComesNextQuestion": {
     "placeholders": {
-      "stepTitle": {
-      }
+      "stepTitle": {}
     }
   },
   "quranDailyReflectionTitle": "Daily reflection",
@@ -15230,8 +14782,7 @@
   "quranDailyCompanionJourneyBody": "Today''s ayah follows your current journey theme: {theme}.",
   "@quranDailyCompanionJourneyBody": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "quranDailyCompanionJourneyBodyNoTheme": "Today''s ayah follows the strongest Qur''anic connection for the journey stage you are already working through.",
@@ -15374,8 +14925,7 @@
   "learnGamesSearchResultsCountText": "{count} matching option(s)",
   "@learnGamesSearchResultsCountText": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "learnGamesBrowseAllTitleText": "Browse All",
@@ -15416,15 +14966,13 @@
   "kidsArabicMiniPhrasesHomeSubtitle": "{count} heard so far. Open a calm phrase card and listen again.",
   "@kidsArabicMiniPhrasesHomeSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMiniPhrasesWordsCardSubtitle": "{count} phrases heard. Add a short phrase after word reading.",
   "@kidsArabicMiniPhrasesWordsCardSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMiniPhrasesOpenAction": "Open mini phrases",
@@ -15432,17 +14980,14 @@
   "kidsArabicMiniPhrasesPositionValue": "{current} of {total}",
   "@kidsArabicMiniPhrasesPositionValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "kidsArabicMiniPhrasesHeardValue": "{count} heard",
   "@kidsArabicMiniPhrasesHeardValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMiniPhrasesHeardBadge": "Heard",
@@ -15503,24 +15048,20 @@
   "quranDailyReflectionStreakValue": "{days} day streak",
   "@quranDailyReflectionStreakValue": {
     "placeholders": {
-      "days": {
-      }
+      "days": {}
     }
   },
   "quranDailyReflectionBestStreakValue": "Best streak: {streak}",
   "@quranDailyReflectionBestStreakValue": {
     "placeholders": {
-      "streak": {
-      }
+      "streak": {}
     }
   },
   "quranAyahInsightPathsCompletedCount": "{completed} of {total} completed",
   "@quranAyahInsightPathsCompletedCount": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "kidsQuranAyahInsightsTitle": "Ayah insights for kids",
@@ -15590,31 +15131,26 @@
   "growthPathDifficultyValue": "Difficulty: {value}",
   "@growthPathDifficultyValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthPathCommitmentValue": "Commitment: {value}",
   "@growthPathCommitmentValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthPathCompletedHabitsValue": "Completed habits: {completed}/{total}",
   "@growthPathCompletedHabitsValue": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "growthPathCurrentStreakValue": "Current streak: {value}",
   "@growthPathCurrentStreakValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthPathWhyItMattersFallback": "This path is designed to support steady, practical growth.",
@@ -15628,22 +15164,19 @@
   "growthHabitLightRewardValue": "Light reward: {value}",
   "@growthHabitLightRewardValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthHabitGentleReminderValue": "Reminder: {value}",
   "@growthHabitGentleReminderValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthHabitReflectionPromptValue": "Reflection prompt: {value}",
   "@growthHabitReflectionPromptValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthHabitTodayActionsTitle": "Today''s actions",
@@ -15660,15 +15193,13 @@
   "growthHabitCurrentStatusValue": "Current status: {value}",
   "@growthHabitCurrentStatusValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthHabitProgressValue": "Progress: {value}%",
   "@growthHabitProgressValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthHabitSettingsSectionTitle": "Settings",
@@ -15687,23 +15218,20 @@
   "growthRecurrenceWeekdaysValue": "Weekdays: {value}",
   "@growthRecurrenceWeekdaysValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthRecurrenceTimesPerWeek": "{value} times per week",
   "@growthRecurrenceTimesPerWeek": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthRecurrenceOccasional": "Occasional",
   "growthRecurrenceEveryDays": "Every {value} days",
   "@growthRecurrenceEveryDays": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "growthWeekdayMon": "Mon",
@@ -15716,22 +15244,19 @@
   "growthStageValue": "Stage {value}",
   "@growthStageValue": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "kidsArabicWordsCompletedValue": "{count} completed",
   "@kidsArabicWordsCompletedValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicWordsReadyValue": "{count} ready",
   "@kidsArabicWordsReadyValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicWordsJoiningTitle": "Letters join together",
@@ -15742,8 +15267,7 @@
   "kidsArabicWordsNextSubtitle": "Continue with {word} and practice reading it smoothly.",
   "@kidsArabicWordsNextSubtitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicWordsContinueAction": "Continue",
@@ -15760,18 +15284,15 @@
   "kidsArabicWordsRequiredLettersValue": "Required letters: {names}",
   "@kidsArabicWordsRequiredLettersValue": {
     "placeholders": {
-      "names": {
-      }
+      "names": {}
     }
   },
   "kidsArabicWordsHomeAction": "Back to words",
   "kidsArabicReadingModePositionValue": "{current} of {total}",
   "@kidsArabicReadingModePositionValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "kidsArabicWordBabMeaning": "Door",
@@ -15795,15 +15316,13 @@
   "kidsArabicWordLessonTitle": "Learn {word}",
   "@kidsArabicWordLessonTitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicWordLessonSubtitle": "Listen to {word}, trace it, and read it with care.",
   "@kidsArabicWordLessonSubtitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicWordListenAction": "Listen",
@@ -15815,68 +15334,58 @@
   "kidsArabicWordCompleteTitle": "{word} is ready",
   "@kidsArabicWordCompleteTitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicWordCompleteSubtitle": "You finished this word lesson. Keep the sound and shape fresh with one more read.",
   "kidsArabicWordNextAction": "Next: {nextWord}",
   "@kidsArabicWordNextAction": {
     "placeholders": {
-      "nextWord": {
-      }
+      "nextWord": {}
     }
   },
   "kidsArabicMasteryCompletedSectionSubtitle": "{completed} of {total} letters are complete.",
   "@kidsArabicMasteryCompletedSectionSubtitle": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "kidsArabicMasteryPracticingCountValue": "{count} practicing",
   "@kidsArabicMasteryPracticingCountValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMasteryReviewCountValue": "{count} to review",
   "@kidsArabicMasteryReviewCountValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMasteryTotalLettersValue": "{count} letters",
   "@kidsArabicMasteryTotalLettersValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMasteryContinueLetterTitle": "Continue with {letter}",
   "@kidsArabicMasteryContinueLetterTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicMasteryContinueLetterBody": "Keep moving forward with the next letter in your sequence.",
   "kidsArabicMasteryContinueLetterWithCountBody": "You have {count} more letters ready to continue.",
   "@kidsArabicMasteryContinueLetterWithCountBody": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMasteryReviewLetterTitle": "Review {letter}",
   "@kidsArabicMasteryReviewLetterTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicMasteryReviewLetterBody": "A quick review will strengthen recognition and recall.",
@@ -15884,69 +15393,60 @@
   "kidsArabicMasteryCelebrateBody": "Beautiful work. {letter} is part of your growing reading toolkit.",
   "@kidsArabicMasteryCelebrateBody": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicPracticeDailyNewLetterTitle": "New letter: {letter}",
   "@kidsArabicPracticeDailyNewLetterTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicPracticeDailyNewLetterBody": "Meet one new letter and focus on its sound and shape.",
   "kidsArabicPracticeDailyReviewTitle": "Review letter: {letter}",
   "@kidsArabicPracticeDailyReviewTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicPracticeDailyReviewBody": "Revisit a recent letter to keep it strong.",
   "kidsArabicPracticeDailyTraceTitle": "Trace letter: {letter}",
   "@kidsArabicPracticeDailyTraceTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicPracticeDailyTraceBody": "Use tracing to connect movement, sound, and memory.",
   "kidsArabicPracticeContinueLetterTitle": "Continue with {letter}",
   "@kidsArabicPracticeContinueLetterTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicPracticeContinueLetterBody": "Keep moving through the sequence at a calm pace.",
   "kidsArabicPracticeContinueWordTitle": "Continue word: {word}",
   "@kidsArabicPracticeContinueWordTitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicPracticeContinueWordBody": "Return to {word} and strengthen reading confidence.",
   "@kidsArabicPracticeContinueWordBody": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicPracticeReviewLetterTitle": "Review {letter}",
   "@kidsArabicPracticeReviewLetterTitle": {
     "placeholders": {
-      "letter": {
-      }
+      "letter": {}
     }
   },
   "kidsArabicPracticeReviewLetterBody": "A short review helps this letter stay familiar.",
   "kidsArabicPracticeReviewWordTitle": "Review {word}",
   "@kidsArabicPracticeReviewWordTitle": {
     "placeholders": {
-      "word": {
-      }
+      "word": {}
     }
   },
   "kidsArabicPracticeReviewWordBody": "Revisit this word and read it again with care.",
@@ -15958,10 +15458,8 @@
   "kidsArabicTraceCompletionSubtitle": "You earned {xp} XP and {drops} drops for this tracing practice.",
   "@kidsArabicTraceCompletionSubtitle": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      }
+      "xp": {},
+      "drops": {}
     }
   },
   "kidsArabicTryAgainAction": "Try again",
@@ -15969,66 +15467,54 @@
   "wuduTrainerProgressOf": "Step {current} of {total}",
   "@wuduTrainerProgressOf": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "wuduTrainerProgressCounts": "{completed} of {total} completed",
   "@wuduTrainerProgressCounts": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "wuduTrainerRewardFeedbackXpDrops": "+{xp} XP • +{drops} Ocean Drop",
   "@wuduTrainerRewardFeedbackXpDrops": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      }
+      "xp": {},
+      "drops": {}
     }
   },
   "wuduTrainerRewardFeedbackXpOnly": "+{xp} XP",
   "@wuduTrainerRewardFeedbackXpOnly": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "wuduTrainerRewardFeedbackDropsOnly": "+{drops} Ocean Drop",
   "@wuduTrainerRewardFeedbackDropsOnly": {
     "placeholders": {
-      "drops": {
-      }
+      "drops": {}
     }
   },
   "wuduTrainerRewardFeedbackAlreadyCounted": "Already counted in your progress",
   "wuduTrainerResumeSubtitle": "You are on step {current} of {total} and can continue from where you stopped.",
   "@wuduTrainerResumeSubtitle": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "wuduQuizRewardFeedbackXpOnly": "First completion counted: +{xp} XP.",
   "@wuduQuizRewardFeedbackXpOnly": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "wuduQuizRewardFeedbackDropsOnly": "First completion counted: +{drops} Ocean Drop.",
   "@wuduQuizRewardFeedbackDropsOnly": {
     "placeholders": {
-      "drops": {
-      }
+      "drops": {}
     }
   },
   "wuduQuizRewardFeedbackAlreadyCounted": "This quiz was already counted in your learning rewards.",
@@ -16271,10 +15757,8 @@
   "quranLearningPathsContinueTitle": "Continue your pathway",
   "@quranLearningPathsContinueSubtitle": {
     "placeholders": {
-      "pathTitle": {
-      },
-      "stepTitle": {
-      }
+      "pathTitle": {},
+      "stepTitle": {}
     }
   },
   "quranLearningPathsContinueSubtitle": "Pick up {pathTitle} with {stepTitle}.",
@@ -16383,21 +15867,16 @@
   "quranReadinessCountValue": "{opened} of {total} snippets opened",
   "@quranReadinessCountValue": {
     "placeholders": {
-      "opened": {
-      },
-      "total": {
-      }
+      "opened": {},
+      "total": {}
     }
   },
   "quranReadinessLevelProgressValue": "{level}: {opened} of {total}",
   "@quranReadinessLevelProgressValue": {
     "placeholders": {
-      "level": {
-      },
-      "opened": {
-      },
-      "total": {
-      }
+      "level": {},
+      "opened": {},
+      "total": {}
     }
   },
   "quranReadinessReadyFromArabic": "Built from your Arabic practice",
@@ -16426,32 +15905,28 @@
   "quranReadinessHintClearDescription": "Read {focus} clearly and calmly before moving on.",
   "@quranReadinessHintClearDescription": {
     "placeholders": {
-      "focus": {
-      }
+      "focus": {}
     }
   },
   "quranReadinessHintStretchLabel": "Stretch gently",
   "quranReadinessHintStretchDescription": "Stretch {focus} a little longer so the sound stays steady.",
   "@quranReadinessHintStretchDescription": {
     "placeholders": {
-      "focus": {
-      }
+      "focus": {}
     }
   },
   "quranReadinessHintBounceLabel": "Light bounce",
   "quranReadinessHintBounceDescription": "Give {focus} a light bounce instead of cutting it off too sharply.",
   "@quranReadinessHintBounceDescription": {
     "placeholders": {
-      "focus": {
-      }
+      "focus": {}
     }
   },
   "quranReadinessHintNasalLabel": "Soft nasal sound",
   "quranReadinessHintNasalDescription": "Let {focus} carry a soft nasal sound here.",
   "@quranReadinessHintNasalDescription": {
     "placeholders": {
-      "focus": {
-      }
+      "focus": {}
     }
   },
   "quranReadinessAyahContextKidsTitle": "See it inside the ayah",
@@ -16465,8 +15940,7 @@
   "quranReadinessKidsCardSubtitle": "Try this real Qur’an phrase next: {phrase}",
   "@quranReadinessKidsCardSubtitle": {
     "placeholders": {
-      "phrase": {
-      }
+      "phrase": {}
     }
   },
   "quranReadinessKidsCardStartSubtitle": "When a few Arabic sounds feel familiar, these tiny Qur’an phrases help children say, “I know this.”",
@@ -16477,8 +15951,7 @@
   "quranReadinessAdultCardSubtitle": "Continue with the familiar phrase {phrase}.",
   "@quranReadinessAdultCardSubtitle": {
     "placeholders": {
-      "phrase": {
-      }
+      "phrase": {}
     }
   },
   "quranReadinessAdultCardStartSubtitle": "After some Arabic letters and beginner words, these short Qur’anic phrases make recognition feel real.",
@@ -16525,8 +15998,7 @@
   "quranShortSurahsSurahMeta": "{surahName} • {ayahCount} ayahs",
   "@quranShortSurahsSurahMeta": {
     "placeholders": {
-      "surahName": {
-      },
+      "surahName": {},
       "ayahCount": {
         "type": "int"
       }
@@ -16541,8 +16013,7 @@
   "quranShortSurahsKidsCardSubtitle": "Try the full short surah {surahName} next.",
   "@quranShortSurahsKidsCardSubtitle": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "quranShortSurahsKidsCardStartSubtitle": "After tiny Qur’an snippets, this is a calm next step into reading a whole short surah.",
@@ -16553,8 +16024,7 @@
   "quranShortSurahsAdultCardSubtitle": "Continue with the short surah {surahName}.",
   "@quranShortSurahsAdultCardSubtitle": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "quranShortSurahsAdultCardStartSubtitle": "After phrase-level Qur’an recognition, this is the next calm step into complete short surah reading.",
@@ -16564,15 +16034,13 @@
   "quranShortSurahsBridgeKidsSubtitle": "You have started recognizing Qur’an snippets. The next step is reading the full short surah {surahName}.",
   "@quranShortSurahsBridgeKidsSubtitle": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "quranShortSurahsBridgeAdultSubtitle": "After short snippet recognition, continue into the full short surah {surahName}.",
   "@quranShortSurahsBridgeAdultSubtitle": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "quranShortSurahsAyahLabel": "Ayah {number}",
@@ -16610,50 +16078,43 @@
   "arabicLearningProgressKidsLettersValue": "{count} letters learned",
   "@arabicLearningProgressKidsLettersValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningProgressKidsWordsValue": "{count} words practiced",
   "@arabicLearningProgressKidsWordsValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningProgressKidsPhrasesValue": "{count} phrases heard",
   "@arabicLearningProgressKidsPhrasesValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningProgressKidsStreakValue": "{count} day streak",
   "@arabicLearningProgressKidsStreakValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningProgressKidsHighlight": "Latest milestone: {title}",
   "@arabicLearningProgressKidsHighlight": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "arabicLearningProgressKidsRecentValue": "Recent: {title}",
   "@arabicLearningProgressKidsRecentValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "arabicLearningProgressKidsNextValue": "Next: {title}",
   "@arabicLearningProgressKidsNextValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "arabicLearningProgressKidsStartAction": "Start Arabic",
@@ -16665,47 +16126,39 @@
   "arabicLearningProgressAdultLettersValue": "{current} of {total} letters covered",
   "@arabicLearningProgressAdultLettersValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "arabicLearningProgressAdultWordsValue": "{count} words opened",
   "@arabicLearningProgressAdultWordsValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningProgressAdultPhrasesValue": "{count} bridge phrases explored",
   "@arabicLearningProgressAdultPhrasesValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningProgressAdultLessonsValue": "{current} of {total} lessons completed",
   "@arabicLearningProgressAdultLessonsValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "arabicLearningProgressAdultRecentValue": "Recent: {title}",
   "@arabicLearningProgressAdultRecentValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "arabicLearningProgressAdultNextValue": "Next: {title}",
   "@arabicLearningProgressAdultNextValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "arabicLearningProgressAdultStartAction": "Start Arabic",
@@ -16778,8 +16231,7 @@
   "kidsArabicMiniAssessmentCardSubtitle": "{count} calm questions from recent letters, words, or phrases.",
   "@kidsArabicMiniAssessmentCardSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "kidsArabicMiniAssessmentCardAction": "Let’s practice",
@@ -16789,8 +16241,7 @@
   "quranTeachingMiniAssessmentCardSubtitle": "{count} brief recognition questions from your recent Arabic learning.",
   "@quranTeachingMiniAssessmentCardSubtitle": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "quranTeachingMiniAssessmentCardAction": "Start practice",
@@ -16801,22 +16252,19 @@
   "quranTeachingAdultOverviewLastStudiedValue": "Last studied: {title}",
   "@quranTeachingAdultOverviewLastStudiedValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "quranTeachingAdultOverviewNextStepValue": "Next step: {title}",
   "@quranTeachingAdultOverviewNextStepValue": {
     "placeholders": {
-      "title": {
-      }
+      "title": {}
     }
   },
   "quranTeachingAdultOverviewMilestoneValue": "{count} lessons completed so far",
   "@quranTeachingAdultOverviewMilestoneValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "quranTeachingAdultOverviewReviewPrimaryAction": "Continue with review",
@@ -16826,31 +16274,26 @@
   "arabicLearningMiniAssessmentIntroBody": "{count} quick questions. No scores, no timers, and you can leave any time.",
   "@arabicLearningMiniAssessmentIntroBody": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "arabicLearningMiniAssessmentQuestionCounter": "Question {current} of {total}",
   "@arabicLearningMiniAssessmentQuestionCounter": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "arabicLearningMiniAssessmentSeeChoosePrompt": "Which {contentType} is this?",
   "@arabicLearningMiniAssessmentSeeChoosePrompt": {
     "placeholders": {
-      "contentType": {
-      }
+      "contentType": {}
     }
   },
   "arabicLearningMiniAssessmentHearChoosePrompt": "Tap the {contentType} you hear.",
   "@arabicLearningMiniAssessmentHearChoosePrompt": {
     "placeholders": {
-      "contentType": {
-      }
+      "contentType": {}
     }
   },
   "arabicLearningMiniAssessmentReplayAudioAction": "Play again",
@@ -16878,17 +16321,14 @@
   "quranGuidedPassagesCountValue": "{opened} of {total} guided passages opened",
   "@quranGuidedPassagesCountValue": {
     "placeholders": {
-      "opened": {
-      },
-      "total": {
-      }
+      "opened": {},
+      "total": {}
     }
   },
   "quranGuidedPassagesAyahCountValue": "{count} ayahs in focus",
   "@quranGuidedPassagesAyahCountValue": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "quranGuidedPassagesReadyFromShortSurahs": "Built from your short-surah practice",
@@ -16910,12 +16350,9 @@
   "quranGuidedPassagesPassageMeta": "{surahName} • Ayahs {startAyah}-{endAyah}",
   "@quranGuidedPassagesPassageMeta": {
     "placeholders": {
-      "surahName": {
-      },
-      "startAyah": {
-      },
-      "endAyah": {
-      }
+      "surahName": {},
+      "startAyah": {},
+      "endAyah": {}
     }
   },
   "quranGuidedPassagesPlayAction": "Play passage",
@@ -16929,8 +16366,7 @@
   "quranGuidedPassagesKidsCardSubtitle": "Keep reading with the passage {passageTitle}.",
   "@quranGuidedPassagesKidsCardSubtitle": {
     "placeholders": {
-      "passageTitle": {
-      }
+      "passageTitle": {}
     }
   },
   "quranGuidedPassagesKidsCardStartSubtitle": "After short surahs, these slightly longer passages help children feel, “I can keep reading.”",
@@ -16941,8 +16377,7 @@
   "quranGuidedPassagesAdultCardSubtitle": "Continue with the passage {passageTitle}.",
   "@quranGuidedPassagesAdultCardSubtitle": {
     "placeholders": {
-      "passageTitle": {
-      }
+      "passageTitle": {}
     }
   },
   "quranGuidedPassagesAdultCardStartSubtitle": "After snippets and very short surahs, this is the next calm step into slightly longer Qur’anic reading.",
@@ -16952,31 +16387,26 @@
   "quranGuidedPassagesBridgeKidsSubtitle": "You have reached the next reading step. Continue with the guided passage {passageTitle}.",
   "@quranGuidedPassagesBridgeKidsSubtitle": {
     "placeholders": {
-      "passageTitle": {
-      }
+      "passageTitle": {}
     }
   },
   "quranGuidedPassagesBridgeAdultSubtitle": "After short surahs, continue into the guided passage {passageTitle}.",
   "@quranGuidedPassagesBridgeAdultSubtitle": {
     "placeholders": {
-      "passageTitle": {
-      }
+      "passageTitle": {}
     }
   },
   "quranReaderNowPlayingLabel": "Recitation {surahLabel} • Verse {reference}",
   "@quranReaderNowPlayingLabel": {
     "placeholders": {
-      "surahLabel": {
-      },
-      "reference": {
-      }
+      "surahLabel": {},
+      "reference": {}
     }
   },
   "quranReaderNowPlayingFallbackSurahLabel": "Surah {surahNumber}",
   "@quranReaderNowPlayingFallbackSurahLabel": {
     "placeholders": {
-      "surahNumber": {
-      }
+      "surahNumber": {}
     }
   },
   "quranReciterSwitchFailed": "Unable to switch reciters right now. Please try again.",
@@ -17005,8 +16435,7 @@
       "ayahNumber": {
         "type": "int"
       },
-      "position": {
-      }
+      "position": {}
     }
   },
   "quranReaderResumeAction": "Resume",
@@ -17015,24 +16444,21 @@
   "quranReaderReciterSampleError": "Unable to play sample right now: {error}",
   "@quranReaderReciterSampleError": {
     "placeholders": {
-      "error": {
-      }
+      "error": {}
     }
   },
   "quranReaderDownloadSuccess": "Surah audio downloaded successfully.",
   "quranReaderDownloadFailed": "Download failed: {error}",
   "@quranReaderDownloadFailed": {
     "placeholders": {
-      "error": {
-      }
+      "error": {}
     }
   },
   "quranReaderDownloadRemoved": "Downloaded surah audio removed.",
   "quranReaderWordTranslationPrefix": "Translation: {gloss}",
   "@quranReaderWordTranslationPrefix": {
     "placeholders": {
-      "gloss": {
-      }
+      "gloss": {}
     }
   },
   "quranReaderTransliterationUnavailable": "Transliteration not available for this ayah yet.",
@@ -17081,10 +16507,8 @@
   "celestialNextEventValue": "{label} {time}",
   "@celestialNextEventValue": {
     "placeholders": {
-      "label": {
-      },
-      "time": {
-      }
+      "label": {},
+      "time": {}
     }
   },
   "celestialSkyStateDawn": "Dawn",
@@ -17094,15 +16518,13 @@
   "celestialSunriseTimeLabel": "Sunrise {time}",
   "@celestialSunriseTimeLabel": {
     "placeholders": {
-      "time": {
-      }
+      "time": {}
     }
   },
   "celestialSunsetTimeLabel": "Sunset {time}",
   "@celestialSunsetTimeLabel": {
     "placeholders": {
-      "time": {
-      }
+      "time": {}
     }
   },
   "celestialUnavailableTitle": "Celestial data is unavailable right now",
@@ -17119,10 +16541,8 @@
   "celestialSunriseSunsetDetail": "Sunrise {sunrise} • Sunset {sunset}",
   "@celestialSunriseSunsetDetail": {
     "placeholders": {
-      "sunrise": {
-      },
-      "sunset": {
-      }
+      "sunrise": {},
+      "sunset": {}
     }
   },
   "celestialMoonDetail": "{percent}% illumination • {riseSetLabel}",
@@ -17131,8 +16551,7 @@
       "percent": {
         "type": "int"
       },
-      "riseSetLabel": {
-      }
+      "riseSetLabel": {}
     }
   },
   "celestialRiseSetApproximate": "Rise/set approximate",
@@ -17141,10 +16560,8 @@
   "celestialUpcomingHeadline": "{label} at {time}",
   "@celestialUpcomingHeadline": {
     "placeholders": {
-      "label": {
-      },
-      "time": {
-      }
+      "label": {},
+      "time": {}
     }
   },
   "celestialReflectAction": "Reflect",
@@ -17156,8 +16573,7 @@
   "celestialCompassHeading": "{heading} heading",
   "@celestialCompassHeading": {
     "placeholders": {
-      "heading": {
-      }
+      "heading": {}
     }
   },
   "celestialPositionEstimateNotice": "Positions are calculated estimates. Sensor readings may be noisy indoors.",
@@ -17265,10 +16681,8 @@
   "onboardingProgressValue": "{current} / {total}",
   "@onboardingProgressValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "onboardingSettingsHintBody": "You can change this anytime in Settings.",
@@ -17450,8 +16864,7 @@
   "worldLandingObservePromptValue": "Observe: {prompt}",
   "@worldLandingObservePromptValue": {
     "placeholders": {
-      "prompt": {
-      }
+      "prompt": {}
     }
   },
   "worldLandingOpenLessonAction": "Open lesson",
@@ -17459,26 +16872,22 @@
   "lifeLandingFilterThemeValue": "Theme: {theme}",
   "@lifeLandingFilterThemeValue": {
     "placeholders": {
-      "theme": {
-      }
+      "theme": {}
     }
   },
   "lifeLandingFilterStatusAny": "Status: Any",
   "lifeLandingFilterStatusValue": "Status: {status}",
   "@lifeLandingFilterStatusValue": {
     "placeholders": {
-      "status": {
-      }
+      "status": {}
     }
   },
   "lifeLandingClearFiltersAction": "Clear",
   "lifeLandingThemeProgressValue": "{completed}/{total} completed",
   "@lifeLandingThemeProgressValue": {
     "placeholders": {
-      "completed": {
-      },
-      "total": {
-      }
+      "completed": {},
+      "total": {}
     }
   },
   "lifeLandingAnyThemeOption": "Any theme",
@@ -17490,39 +16899,33 @@
   "salahGuidedPrayerPageTitle": "{prayerTitle} - Pray With Guidance",
   "@salahGuidedPrayerPageTitle": {
     "placeholders": {
-      "prayerTitle": {
-      }
+      "prayerTitle": {}
     }
   },
   "salahGuidedPrayerSelectedSurahSubtitle": "Selected surah after al-Fatihah: {surahName}",
   "@salahGuidedPrayerSelectedSurahSubtitle": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "salahGuidedPrayerSurahNotSet": "Not set",
   "salahGuidedPrayerCurrentRakahValue": "Current rakah: {rakah}",
   "@salahGuidedPrayerCurrentRakahValue": {
     "placeholders": {
-      "rakah": {
-      }
+      "rakah": {}
     }
   },
   "salahGuidedPrayerStepProgressValue": "Step {current} of {total}",
   "@salahGuidedPrayerStepProgressValue": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "salahGuidedPrayerFromSurahValue": "From {surahName}",
   "@salahGuidedPrayerFromSurahValue": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "salahGuidedPrayerSelectedSurahFallback": "Selected surah",
@@ -17559,10 +16962,8 @@
   "learnSalahHubSurahCardSubtitle": "{ayahCount} ayahs • {status}",
   "@learnSalahHubSurahCardSubtitle": {
     "placeholders": {
-      "ayahCount": {
-      },
-      "status": {
-      }
+      "ayahCount": {},
+      "status": {}
     }
   },
   "learnSalahHubSurahLockedSubtitle": "Locked until more surahs are practiced",
@@ -17600,8 +17001,7 @@
   "quranSummaryDetailPageSubtitle": "Surah {surahNumber} study companion",
   "@quranSummaryDetailPageSubtitle": {
     "placeholders": {
-      "surahNumber": {
-      }
+      "surahNumber": {}
     }
   },
   "quranSummaryOverviewTitle": "Overview",
@@ -17609,8 +17009,7 @@
   "quranSummaryRevelationLabel": "Revelation: {value}",
   "@quranSummaryRevelationLabel": {
     "placeholders": {
-      "value": {
-      }
+      "value": {}
     }
   },
   "quranSummaryVerseCountLabel": "{count} verses",
@@ -17943,26 +17342,22 @@
   "quranReflectionsPathwayStopHelper": "What do you want to remember from {stopTitle}?",
   "@quranReflectionsSurahHelper": {
     "placeholders": {
-      "surahName": {
-      }
+      "surahName": {}
     }
   },
   "@quranReflectionsThemeHelper": {
     "placeholders": {
-      "themeName": {
-      }
+      "themeName": {}
     }
   },
   "@quranReflectionsPathwayHelper": {
     "placeholders": {
-      "pathwayTitle": {
-      }
+      "pathwayTitle": {}
     }
   },
   "@quranReflectionsPathwayStopHelper": {
     "placeholders": {
-      "stopTitle": {
-      }
+      "stopTitle": {}
     }
   },
   "guidedLearningPathsTitle": "Guided paths",
@@ -18123,8 +17518,7 @@
   "guidedLearningPathNextStepLabel": "Next: {step}",
   "@guidedLearningPathNextStepLabel": {
     "placeholders": {
-      "step": {
-      }
+      "step": {}
     }
   },
   "guidedLearningPathStepOfTotal": "Step {step} of {total}",
@@ -18141,22 +17535,19 @@
   "guidedLearningPathStepCompletedMessage": "{step} marked complete.",
   "@guidedLearningPathStepCompletedMessage": {
     "placeholders": {
-      "step": {
-      }
+      "step": {}
     }
   },
   "guidedLearningPathNextUnlockedMessage": "Next step: {step}",
   "@guidedLearningPathNextUnlockedMessage": {
     "placeholders": {
-      "step": {
-      }
+      "step": {}
     }
   },
   "guidedLearningPathCompletedMessage": "{pathTitle} is complete.",
   "@guidedLearningPathCompletedMessage": {
     "placeholders": {
-      "pathTitle": {
-      }
+      "pathTitle": {}
     }
   },
   "learnEnrichmentSectionTitle": "Learning Moments",
@@ -18170,8 +17561,7 @@
   "learnEnrichmentCompletionTitle": "You completed {pathTitle}",
   "@learnEnrichmentCompletionTitle": {
     "placeholders": {
-      "pathTitle": {
-      }
+      "pathTitle": {}
     }
   },
   "learnEnrichmentCompletionSubtitle": "A meaningful chapter is complete.",
@@ -18192,8 +17582,7 @@
   "learnEnrichmentMilestoneFirstPathStartedTitle": "You started {pathTitle}",
   "@learnEnrichmentMilestoneFirstPathStartedTitle": {
     "placeholders": {
-      "pathTitle": {
-      }
+      "pathTitle": {}
     }
   },
   "learnEnrichmentMilestoneFirstPathStartedBody": "You do not need to do everything at once. One sincere beginning is enough.",
@@ -18223,22 +17612,19 @@
   "learnPersonalizationContinuePathTitle": "Continue {pathTitle}",
   "@learnPersonalizationContinuePathTitle": {
     "placeholders": {
-      "pathTitle": {
-      }
+      "pathTitle": {}
     }
   },
   "learnPersonalizationStartPathTitle": "Start {pathTitle}",
   "@learnPersonalizationStartPathTitle": {
     "placeholders": {
-      "pathTitle": {
-      }
+      "pathTitle": {}
     }
   },
   "learnPersonalizationResumePathTitle": "Return to {pathTitle}",
   "@learnPersonalizationResumePathTitle": {
     "placeholders": {
-      "pathTitle": {
-      }
+      "pathTitle": {}
     }
   },
   "learnPersonalizationContinueStepAction": "Open step",
@@ -18315,8 +17701,7 @@
   "editorialDashboardSubtitle": "Internal content command center · version {version}",
   "@editorialDashboardSubtitle": {
     "placeholders": {
-      "version": {
-      }
+      "version": {}
     }
   },
   "editorialDashboardSubtitleLoading": "Internal content command center",
@@ -18339,10 +17724,8 @@
   "editorialDashboardResultsCount": "{visible} of {total} items visible",
   "@editorialDashboardResultsCount": {
     "placeholders": {
-      "visible": {
-      },
-      "total": {
-      }
+      "visible": {},
+      "total": {}
     }
   },
   "editorialDashboardOverviewTitle": "Overview",
@@ -18453,8 +17836,7 @@
   "editorialDashboardScoreLabel": "Score {score}",
   "@editorialDashboardScoreLabel": {
     "placeholders": {
-      "score": {
-      }
+      "score": {}
     }
   },
   "editorialDashboardPackLabel": "Pack",
@@ -18463,15 +17845,13 @@
   "editorialDashboardContentVersionCount": "{count} saved versions",
   "@editorialDashboardContentVersionCount": {
     "placeholders": {
-      "count": {
-      }
+      "count": {}
     }
   },
   "editorialDashboardContentIdLabel": "Content ID: {contentId}",
   "@editorialDashboardContentIdLabel": {
     "placeholders": {
-      "contentId": {
-      }
+      "contentId": {}
     }
   },
   "editorialDashboardContentTypeQuranExplanation": "Qur’an explanations",
@@ -18494,8 +17874,7 @@
   "editorialDashboardRollbackDefaultSummary": "Rolled back to version {versionNumber}",
   "@editorialDashboardRollbackDefaultSummary": {
     "placeholders": {
-      "versionNumber": {
-      }
+      "versionNumber": {}
     }
   },
   "editorialDashboardRollbackSuccessMessage": "Rollback completed and recorded as a new version.",
@@ -18504,8 +17883,7 @@
   "editorialDashboardFieldRequired": "{fieldLabel} is required.",
   "@editorialDashboardFieldRequired": {
     "placeholders": {
-      "fieldLabel": {
-      }
+      "fieldLabel": {}
     }
   },
   "editorialDashboardQuranExplanationValidation": "Qur’an explanations must keep simple, standard, and kids explanation fields filled.",
@@ -18604,8 +17982,7 @@
   "editorialDashboardVersionLabel": "Version {version}",
   "@editorialDashboardVersionLabel": {
     "placeholders": {
-      "version": {
-      }
+      "version": {}
     }
   },
   "editorialDashboardVersionLoading": "Version",
@@ -18751,35 +18128,28 @@
   "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} of {total} correct",
   "@triviaHomeRecentPerformanceSummaryQuiet": {
     "placeholders": {
-      "category": {
-      },
-      "correct": {
-      },
-      "total": {
-      }
+      "category": {},
+      "correct": {},
+      "total": {}
     }
   },
   "rewardQuietCompletionSummaryXpDrops": "{xp} XP · {drops} drops saved",
   "@rewardQuietCompletionSummaryXpDrops": {
     "placeholders": {
-      "xp": {
-      },
-      "drops": {
-      }
+      "xp": {},
+      "drops": {}
     }
   },
   "rewardQuietCompletionSummaryXpOnly": "{xp} XP saved",
   "@rewardQuietCompletionSummaryXpOnly": {
     "placeholders": {
-      "xp": {
-      }
+      "xp": {}
     }
   },
   "rewardQuietCompletionSummaryDropsOnly": "{drops} drops saved",
   "@rewardQuietCompletionSummaryDropsOnly": {
     "placeholders": {
-      "drops": {
-      }
+      "drops": {}
     }
   },
   "homeWidgetsNextPrayerTitle": "Next Prayer",
@@ -18814,17 +18184,14 @@
   "homeWidgetsPrayerCountdownInMinutes": "in {minutes}m",
   "@homeWidgetsPrayerCountdownInMinutes": {
     "placeholders": {
-      "minutes": {
-      }
+      "minutes": {}
     }
   },
   "homeWidgetsPrayerCountdownInHoursMinutes": "in {hours}h {minutes}m",
   "@homeWidgetsPrayerCountdownInHoursMinutes": {
     "placeholders": {
-      "hours": {
-      },
-      "minutes": {
-      }
+      "hours": {},
+      "minutes": {}
     }
   },
   "quranReaderSearchPillLabel": "Search",
@@ -18842,10 +18209,8 @@
   "quranReaderSearchMatchCounter": "{current} of {total}",
   "@quranReaderSearchMatchCounter": {
     "placeholders": {
-      "current": {
-      },
-      "total": {
-      }
+      "current": {},
+      "total": {}
     }
   },
   "hadithSearchTitle": "Search Hadith",
@@ -18930,8 +18295,7 @@
   "hadithSourceBrowseChapterSummary": "{chapterLabel} • {count} hadith",
   "@hadithSourceBrowseChapterSummary": {
     "placeholders": {
-      "chapterLabel": {
-      },
+      "chapterLabel": {},
       "count": {
         "type": "int"
       }
@@ -18942,10 +18306,8 @@
   "hadithSourceBrowseChapterPageSubtitle": "{sourceTitle} • {chapterLabel} • {count} hadith",
   "@hadithSourceBrowseChapterPageSubtitle": {
     "placeholders": {
-      "sourceTitle": {
-      },
-      "chapterLabel": {
-      },
+      "sourceTitle": {},
+      "chapterLabel": {},
       "count": {
         "type": "int"
       }
@@ -18954,10 +18316,8 @@
   "hadithSourceBrowseEntrySubtitle": "{reference} • {grade}",
   "@hadithSourceBrowseEntrySubtitle": {
     "placeholders": {
-      "reference": {
-      },
-      "grade": {
-      }
+      "reference": {},
+      "grade": {}
     }
   },
   "hadithSourceBrowseChapterNumber": "Chapter {number}",
@@ -19016,15 +18376,13 @@
   "allSearchResultsFor": "Results for \"{query}\"",
   "@allSearchResultsFor": {
     "placeholders": {
-      "query": {
-      }
+      "query": {}
     }
   },
   "allSearchError": "Search unavailable: {message}",
   "@allSearchError": {
     "placeholders": {
-      "message": {
-      }
+      "message": {}
     }
   },
   "hadithReaderContinueTitle": "Continue reading",

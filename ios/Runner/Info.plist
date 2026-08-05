@@ -39,8 +39,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Path of Nūr uses the camera for private, on-device Qibla AR guidance and Creation Explorer observation features.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Path of Nūr may use location when allowed to keep prayer timing reminders accurate during daily movement.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Path of Nūr uses your location to calculate accurate prayer times, Qibla direction, nearby mosque features, and private creation observations.</string>
 	<key>NSSupportsLiveActivities</key>
