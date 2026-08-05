@@ -1,1 +1,0 @@
-lets do a localization pass and ensure that the english fallback are taken care of, do it in 10 Phases and let me know at the end if we still need to do any more additional ones, if you complete it in less then 5 then review the apple watch and tv functionality and keep working on getting those release ready, start Phase 1

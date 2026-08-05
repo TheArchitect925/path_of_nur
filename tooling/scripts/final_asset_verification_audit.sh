@@ -168,6 +168,8 @@ intentional_runtime_png_count = 0
 
 for ref in refs:
     asset = ref['asset']
+    if '$' in asset:
+        continue
     if asset.lower().endswith('.webp'):
         if ref['exists']:
             webp_ref_counts['ACTIVE_WEBP_OK'] += 1

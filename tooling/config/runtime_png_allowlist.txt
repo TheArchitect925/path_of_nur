@@ -4,3 +4,12 @@
 
 # Explicit runtime holdout retained on PNG pending separate visual review.
 path:assets/images/backgrounds/Loading.png
+
+# Restored source icons are PNG-only and are either launcher-icon source copies
+# or reviewed unreferenced runtime icon assets.
+prefix:assets/icons/
+
+# Temporary placeholder art added to keep screens connected until final WebP
+# story and Quran teacher artwork is available.
+prefix:assets/images/kids_stories/
+prefix:assets/images/quran_teacher/

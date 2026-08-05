@@ -1,1 +1,0 @@
-use the on this day as the overall global theme for all the containers and cards acrosss the app, create it as a global setting and link it to the Noor Glass theme. Let me know if we need to go through a couple of versions and phases to accomplish this but everythign on the app should match the behaviour of that card

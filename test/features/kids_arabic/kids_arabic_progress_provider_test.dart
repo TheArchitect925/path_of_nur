@@ -182,106 +182,115 @@ void main() {
     );
   });
 
-  test('progress is isolated per learner and legacy global progress migrates once', () async {
-    final legacySeed = <String, Object>{
-      legacyKidsArabicProgressStorageKey: jsonEncode(<String, Object?>{
-        'progressByLetterId': <String, Object?>{
-          'alif': <String, Object?>{
-            'letterId': 'alif',
-            'lessonsCompleted': 1,
-            'correctReviews': 0,
-            'incorrectReviews': 0,
+  test(
+    'progress is isolated per learner and legacy global progress migrates once',
+    () async {
+      final legacySeed = <String, Object>{
+        legacyKidsArabicProgressStorageKey: jsonEncode(<String, Object?>{
+          'progressByLetterId': <String, Object?>{
+            'alif': <String, Object?>{
+              'letterId': 'alif',
+              'lessonsCompleted': 1,
+              'correctReviews': 0,
+              'incorrectReviews': 0,
+            },
           },
-        },
-        'reviewNeededLetterIds': <String>['alif'],
-        'earnedStickerIds': <String>['starter_seed'],
-        'totalLessonsDone': 1,
-        'totalReviewRoundsDone': 0,
-        'totalFeatureXpAwarded': 8,
-        'totalFeatureDropsAwarded': 1,
-        'localCurrentStreakDays': 1,
-        'localBestStreakDays': 1,
-        'dailyProgress': <String, Object?>{
-          'currentStreak': 1,
-          'bestStreak': 1,
-          'totalActiveDays': 1,
-          'weeklyCompletions': 1,
-          'graceDaysAvailable': 1,
-          'todayMissionCompleted': false,
-          'completionDayKeys': <String>['2026-03-18'],
-        },
-      }),
-    };
+          'reviewNeededLetterIds': <String>['alif'],
+          'earnedStickerIds': <String>['starter_seed'],
+          'totalLessonsDone': 1,
+          'totalReviewRoundsDone': 0,
+          'totalFeatureXpAwarded': 8,
+          'totalFeatureDropsAwarded': 1,
+          'localCurrentStreakDays': 1,
+          'localBestStreakDays': 1,
+          'dailyProgress': <String, Object?>{
+            'currentStreak': 1,
+            'bestStreak': 1,
+            'totalActiveDays': 1,
+            'weeklyCompletions': 1,
+            'graceDaysAvailable': 1,
+            'todayMissionCompleted': false,
+            'completionDayKeys': <String>['2026-03-18'],
+          },
+        }),
+      };
 
-    final first = await makeTestContainer(
-      seed: legacySeed,
-      overrides: [
-        _journeySnapshotOverride(),
-        ..._kidsArabicLearnerOverrides('child_a'),
-      ],
-    );
-    addTearDown(first.dispose);
+      final first = await makeTestContainer(
+        seed: legacySeed,
+        overrides: [
+          _journeySnapshotOverride(),
+          ..._kidsArabicLearnerOverrides('child_a'),
+        ],
+      );
+      addTearDown(first.dispose);
 
-    final migrated = first.read(kidsArabicProgressProvider);
-    final dump = first.read(localStoreProvider).dumpAll();
-    expect(migrated.completedLetterIds, contains('alif'));
-    expect(
-      dump.containsKey(kidsArabicProgressStorageKeyForLearner('child_a')),
-      isTrue,
-    );
-    expect(dump.containsKey(legacyKidsArabicProgressStorageKey), isFalse);
+      final migrated = first.read(kidsArabicProgressProvider);
+      final dump = first.read(localStoreProvider).dumpAll();
+      expect(migrated.completedLetterIds, contains('alif'));
+      expect(
+        dump.containsKey(kidsArabicProgressStorageKeyForLearner('child_a')),
+        isTrue,
+      );
+      expect(dump.containsKey(legacyKidsArabicProgressStorageKey), isFalse);
 
-    final second = await makeTestContainer(
-      seed: dump.map((key, value) => MapEntry(key, value as Object)),
-      overrides: [
-        _journeySnapshotOverride(),
-        ..._kidsArabicLearnerOverrides('child_b'),
-      ],
-    );
-    addTearDown(second.dispose);
+      final second = await makeTestContainer(
+        seed: dump.map((key, value) => MapEntry(key, value as Object)),
+        overrides: [
+          _journeySnapshotOverride(),
+          ..._kidsArabicLearnerOverrides('child_b'),
+        ],
+      );
+      addTearDown(second.dispose);
 
-    final isolated = second.read(kidsArabicProgressProvider);
-    expect(isolated.completedLetterIds, isEmpty);
-  });
+      final isolated = second.read(kidsArabicProgressProvider);
+      expect(isolated.completedLetterIds, isEmpty);
+    },
+  );
 
-  test('scoped progress persists when reopening the app for the same learner', () async {
-    final first = await makeTestContainer(
-      overrides: [
-        _journeySnapshotOverride(),
-        ..._kidsArabicLearnerOverrides('child_a'),
-      ],
-    );
-    addTearDown(first.dispose);
+  test(
+    'scoped progress persists when reopening the app for the same learner',
+    () async {
+      final first = await makeTestContainer(
+        overrides: [
+          _journeySnapshotOverride(),
+          ..._kidsArabicLearnerOverrides('child_a'),
+        ],
+      );
+      addTearDown(first.dispose);
 
-    final letter = kidsArabicLetters.firstWhere((item) => item.id == 'jim');
-    first.read(kidsArabicProgressProvider.notifier).completeLesson(
-      letter: letter,
-      traceResult: KidsArabicTraceResult.good,
-    );
+      final letter = kidsArabicLetters.firstWhere((item) => item.id == 'jim');
+      first
+          .read(kidsArabicProgressProvider.notifier)
+          .completeLesson(
+            letter: letter,
+            traceResult: KidsArabicTraceResult.good,
+          );
 
-    final persisted = first.read(localStoreProvider).dumpAll().map(
-      (key, value) => MapEntry(key, value as Object),
-    );
+      final persisted = first
+          .read(localStoreProvider)
+          .dumpAll()
+          .map((key, value) => MapEntry(key, value as Object));
 
-    final reopened = await makeTestContainer(
-      seed: persisted,
-      overrides: [
-        _journeySnapshotOverride(),
-        ..._kidsArabicLearnerOverrides('child_a'),
-      ],
-    );
-    addTearDown(reopened.dispose);
+      final reopened = await makeTestContainer(
+        seed: persisted,
+        overrides: [
+          _journeySnapshotOverride(),
+          ..._kidsArabicLearnerOverrides('child_a'),
+        ],
+      );
+      addTearDown(reopened.dispose);
 
-    final state = reopened.read(kidsArabicProgressProvider);
-    final progression = reopened.read(
-      learnerProgressionSummaryProvider('child_a'),
-    );
+      final state = reopened.read(kidsArabicProgressProvider);
+      final progression = reopened.read(
+        learnerProgressionSummaryProvider('child_a'),
+      );
 
-    expect(state.completedLetterIds, contains('jim'));
-    expect(state.totalLessonsDone, 1);
-    expect(progression.metrics.kidsArabicLessonCompletions, 1);
-    expect(progression.metrics.totalDrops, letter.rewardDrops);
-  });
+      expect(state.completedLetterIds, contains('jim'));
+      expect(state.totalLessonsDone, 1);
+      expect(progression.metrics.kidsArabicLessonCompletions, 1);
+      expect(progression.metrics.totalDrops, letter.rewardDrops);
+    },
+  );
 }
 
 Override _journeySnapshotOverride() {
@@ -306,6 +315,7 @@ Override _journeySnapshotOverride() {
       reflectionEntriesToday: 0,
       reflectionProgress: 0,
       learningStageCompletionsToday: metrics.learningStageCompletions,
+      streakExemptionActive: false,
     );
   });
 }
@@ -321,7 +331,5 @@ List<Override> _kidsArabicLearnerOverrides(String learnerId) {
     isFallbackLearner: false,
     preferences: const BedtimeLearnerPreferences(),
   );
-  return <Override>[
-    kidsArabicActiveLearnerProvider.overrideWithValue(learner),
-  ];
+  return <Override>[kidsArabicActiveLearnerProvider.overrideWithValue(learner)];
 }

@@ -1,1 +1,0 @@
-all the elemnts on the Learn page - Make this surface use the shared AppSalahHeroCard style from app_salah_hero_card.dart. Reuse the existing shared hero shell, current/next prayer layout, meta chips, and mini stat styling instead of rebuilding the card locally. Keep behavior unchanged and adapt the input data into AppSalahHeroCard, AppSalahHeroStat, and AppSalahHeroMetaChipData.

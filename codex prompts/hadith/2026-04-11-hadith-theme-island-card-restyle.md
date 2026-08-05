@@ -1,1 +1,0 @@
-- [ ] Hadith themes let’s display them like the learning Path islands - use the same format, colours etc.

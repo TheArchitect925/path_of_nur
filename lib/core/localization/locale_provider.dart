@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../l10n/app_localizations.dart';
 import '../../shared/persistence/local_store.dart';
 
 const _localeStorageKey = 'profile.locale';
+const releaseSupportedLocales = <Locale>[Locale('en'), Locale('de')];
 
 Locale? resolveStoredAppLocale(LocalStore store) {
   final tag = store.getString(_localeStorageKey);
@@ -58,8 +58,22 @@ Locale _localeFromTag(String tag) {
   return Locale.fromSubtags(languageCode: language, countryCode: country);
 }
 
+bool isReleaseLocaleSupported(Locale locale) {
+  for (final supported in releaseSupportedLocales) {
+    if (_isLocaleMatch(locale, supported)) {
+      return true;
+    }
+    if (locale.countryCode != null &&
+        supported.countryCode == null &&
+        locale.languageCode == supported.languageCode) {
+      return true;
+    }
+  }
+  return false;
+}
+
 Locale? _resolveToSupportedLocale(Locale locale) {
-  for (final supported in AppLocalizations.supportedLocales) {
+  for (final supported in releaseSupportedLocales) {
     if (_isLocaleMatch(locale, supported)) {
       return supported;
     }

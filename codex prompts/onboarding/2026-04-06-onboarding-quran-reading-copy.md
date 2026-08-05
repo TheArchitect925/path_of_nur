@@ -1,1 +1,0 @@
-Whats your Qur'an reading preference? Instead of How would you liek to read arabic, it sounds off. Then add a small note that there is a preview available lower down in the window to show them examples and help adjust settings.

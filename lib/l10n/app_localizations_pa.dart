@@ -20348,6 +20348,45 @@ class AppLocalizationsPa extends AppLocalizations {
   String get settingsAttributionsLicensesTitle => 'ਵਿਸ਼ੇਸ਼ਤਾ ਅਤੇ ਲਾਇਸੰਸ';
 
   @override
+  String get legalAttributionsSubtitle =>
+      'Qur\'an text, translations, transliteration, audio, and API usage.';
+
+  @override
+  String get legalAttributionsQuranTitle => 'Qur\'an Text & Translations';
+
+  @override
+  String get legalAttributionsQuranBody =>
+      'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran';
+
+  @override
+  String get legalAttributionsTransliterationTitle => 'Transliteration';
+
+  @override
+  String get legalAttributionsTransliterationBody =>
+      'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api';
+
+  @override
+  String get legalAttributionsRecitationTitle => 'Recitation Audio';
+
+  @override
+  String get legalAttributionsRecitationBody =>
+      'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/';
+
+  @override
+  String get legalAttributionsAdhanTitle => 'Adhan Notification Audio';
+
+  @override
+  String get legalAttributionsAdhanBody =>
+      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+
+  @override
+  String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
+
+  @override
+  String get legalAttributionsWordTimingBody =>
+      'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/';
+
+  @override
   String get settingsSyncModePathOfNurCloud => 'ਨੂਰ ਬੱਦਲ ਦਾ ਮਾਰਗ';
 
   @override

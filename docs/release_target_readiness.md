@@ -6,6 +6,7 @@ This document is the honest first-release scope, based on the currently validate
 
 - iOS
 - iPadOS
+- English and German runtime locales
 
 Repo-side Xcode validation on 2026-04-11 is now green enough to begin signed archive work and physical-device QA for the Apple surfaces that already exist in the project:
 
@@ -67,6 +68,8 @@ Ship the first release as a stable local-first app with:
 - profile isolation
 - manual backup/import/export
 - Apple iCloud sync on signed Apple devices
+- English and German localization for V1, with broader locale rollout deferred until validated
+- German Qur'an translation deferred until V1.1
 
 Hold back unvalidated companion and TV surfaces until their native signed-build and physical-QA paths are complete.
 

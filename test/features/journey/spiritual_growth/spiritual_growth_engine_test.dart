@@ -34,6 +34,7 @@ void main() {
       reflectionEntriesToday: 0,
       reflectionProgress: 0.0,
       learningStageCompletionsToday: 0,
+      streakExemptionActive: false,
     );
 
     test('suggests stable intention for the same day and signals', () {

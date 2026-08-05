@@ -2,16 +2,12 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/state/user_profile_state.dart';
-import '../../../../shared/utils/compact_duration_formatter.dart';
-import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../../learn/quran/application/quran_spiritual_moment_provider.dart';
@@ -22,7 +18,6 @@ import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
-import '../prayer_date_utils.dart';
 import 'salah_timings_tracker_card.dart';
 
 class PrayerSection extends ConsumerWidget {
@@ -451,29 +446,6 @@ class _StatMiniTile extends StatelessWidget {
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _PrayerMiniPanel extends StatelessWidget {
-  const _PrayerMiniPanel({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final style = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-    );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: style.decoration(radius: 12),
-      child: Text(
-        label,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -1593,272 +1565,6 @@ class _RakatGuideCellColors {
   }
 }
 
-class _MoonPhaseCard extends StatelessWidget {
-  const _MoonPhaseCard({
-    required this.moon,
-    required this.prayerSchedule,
-    required this.nextPrayerName,
-    required this.remaining,
-    required this.sunriseLabel,
-    required this.sunsetLabel,
-    required this.moonriseLabel,
-    required this.moonsetLabel,
-  });
-
-  final MoonPhaseVisualData moon;
-  final List<PrayerScheduleItem> prayerSchedule;
-  final String? nextPrayerName;
-  final Duration remaining;
-  final String sunriseLabel;
-  final String sunsetLabel;
-  final String moonriseLabel;
-  final String moonsetLabel;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(
-                l10n.worshipPrayerMoonPhaseTitle,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  l10n.worshipPrayerMoonPhaseIllumination(
-                    moon.label,
-                    _formatCount(context, moon.illuminationPercent),
-                    moon.illuminationPercent,
-                  ),
-                  textAlign: TextAlign.right,
-                  style: const TextStyle(
-                    color: AppColors.onSurfaceSubtle,
-                    fontSize: 12.5,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Center(
-            child: SizedBox(
-              width: 360,
-              height: 360,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  // overlay prayer names/times around the moon
-                  if (prayerSchedule.isNotEmpty)
-                    _PrayerTimesOverlay(
-                      schedule: prayerSchedule,
-                      onPrayerTimeTap: () => context.pushNamed('salahTimes'),
-                    ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [MoonPhaseVisual(moon: moon)],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: _PrayerMiniPanel(
-                  label: l10n.worshipPrayerSunriseValue(sunriseLabel),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _PrayerMiniPanel(
-                  label: l10n.worshipPrayerSunsetValue(sunsetLabel),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: _PrayerMiniPanel(
-                  label: l10n.worshipPrayerMoonriseValue(moonriseLabel),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _PrayerMiniPanel(
-                  label: l10n.worshipPrayerMoonsetValue(moonsetLabel),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            nextPrayerName == null
-                ? l10n.worshipPrayerNoUpcomingPrayer
-                : l10n.worshipPrayerNextPrayerIn(
-                    nextPrayerName!,
-                    _humanDuration(context, l10n, remaining),
-                  ),
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PrayerTimesOverlay extends StatelessWidget {
-  const _PrayerTimesOverlay({
-    required this.schedule,
-    required this.onPrayerTimeTap,
-  });
-
-  final List<PrayerScheduleItem> schedule;
-  final VoidCallback onPrayerTimeTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    // positions correspond to the five prayer points around the moon widget.
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final size = constraints.biggest;
-        final center = Offset(size.width / 2, size.height / 2);
-        final radius = size.width * 0.40;
-        return Stack(
-          children: List.generate(schedule.length.clamp(0, 5), (i) {
-            final angle = (-math.pi / 2) + (2 * math.pi * (i / 5));
-            final point = Offset(
-              center.dx + radius * math.cos(angle),
-              center.dy + radius * math.sin(angle),
-            );
-            final item = schedule[i];
-            final label = l10n.worshipPrayerOverlayLabel(
-              localizedPrayerNameForDate(
-                prayerId: item.id,
-                l10n: l10n,
-                date: item.offerDateTime,
-              ),
-              item.offerTime,
-            );
-            return Positioned(
-              left: point.dx - 30,
-              top: point.dy - 10,
-              child: GestureDetector(
-                onTap: onPrayerTimeTap,
-                child: Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.onSurface,
-                  ),
-                ),
-              ),
-            );
-          }),
-        );
-      },
-    );
-  }
-}
-
-class _MoonTimes {
-  const _MoonTimes({required this.moonrise, required this.moonset});
-
-  final DateTime moonrise;
-  final DateTime moonset;
-}
-
-_MoonTimes _calculateMoonTimesForDate(
-  DateTime date, {
-  required DateTime sunrise,
-  required DateTime sunset,
-}) {
-  final normalized = DateTime(date.year, date.month, date.day);
-  final epoch = DateTime.utc(2000, 1, 6);
-  final days = normalized.toUtc().difference(epoch).inHours / 24;
-  const synodic = 29.53058867;
-  final age = (days % synodic + synodic) % synodic;
-
-  // Approximation: moonrise/moonset shift ~50 minutes later daily.
-  final offsetMinutes = (age * 50).round();
-  final moonrise = sunrise.add(Duration(minutes: offsetMinutes));
-  final moonset = sunset.add(Duration(minutes: offsetMinutes));
-  return _MoonTimes(moonrise: moonrise, moonset: moonset);
-}
-
-class _TimingContext {
-  const _TimingContext({
-    required this.nextPrayerName,
-    required this.remainingToNext,
-    required this.progressToNext,
-  });
-
-  final String? nextPrayerName;
-  final Duration remainingToNext;
-  final double progressToNext;
-}
-
-_TimingContext _buildTimingContext(
-  List<PrayerScheduleItem> schedule,
-  DateTime selectedDate,
-  AppLocalizations l10n,
-) {
-  if (schedule.isEmpty) {
-    return const _TimingContext(
-      nextPrayerName: null,
-      remainingToNext: Duration.zero,
-      progressToNext: 0,
-    );
-  }
-  final now = sameDay(selectedDate, DateTime.now())
-      ? DateTime.now()
-      : DateTime(selectedDate.year, selectedDate.month, selectedDate.day, 12);
-
-  PrayerScheduleItem? current;
-  PrayerScheduleItem? next;
-  for (var i = 0; i < schedule.length; i += 1) {
-    final item = schedule[i];
-    if (!now.isBefore(item.windowStartDateTime) &&
-        now.isBefore(item.windowEndDateTime)) {
-      current = item;
-      next = i + 1 < schedule.length ? schedule[i + 1] : null;
-      break;
-    }
-    if (now.isBefore(item.windowStartDateTime)) {
-      next = item;
-      break;
-    }
-  }
-  next ??= schedule.first;
-  final previousAnchor =
-      current?.windowStartDateTime ?? now.subtract(const Duration(hours: 1));
-  final total = math.max(
-    1,
-    next.windowStartDateTime.difference(previousAnchor).inSeconds,
-  );
-  final elapsed = now.difference(previousAnchor).inSeconds.clamp(0, total);
-  return _TimingContext(
-    nextPrayerName: localizedPrayerNameForDate(
-      prayerId: next.id,
-      l10n: l10n,
-      date: selectedDate,
-    ),
-    remainingToNext: next.windowStartDateTime.difference(now),
-    progressToNext: (elapsed / total).clamp(0.0, 1.0),
-  );
-}
-
 List<_TrendPoint> _buildWeeklyTrend(
   PrayerTrackerController controller,
   DateTime anchorDate, {
@@ -1947,17 +1653,4 @@ String _qadaCadenceRecommendation(AppLocalizations l10n, int total) {
   if (total <= 20) return l10n.worshipPrayerCadenceLight;
   if (total <= 60) return l10n.worshipPrayerCadenceSteady;
   return l10n.worshipPrayerCadenceFocused;
-}
-
-String _humanDuration(
-  BuildContext context,
-  AppLocalizations l10n,
-  Duration duration,
-) {
-  return formatCompactDuration(
-    duration,
-    localeName: l10n.localeName,
-    hourSuffix: l10n.durationCompactHourSuffix,
-    minuteSuffix: l10n.durationCompactMinuteSuffix,
-  );
 }

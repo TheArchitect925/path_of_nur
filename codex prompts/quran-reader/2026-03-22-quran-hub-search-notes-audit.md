@@ -1,6 +1,0 @@
-    - [ ] Lets remove the top quran quote since we have the Daily Ayah Reflection anyways
-    - [ ] The search should search the ayah, the translated text and the transliteration text as well. Right now its just searching surahs
-    - [ ] Run an audit on the Add Notes section across the app, it should all feel similar, when user takes a note from a specific section like a ayah then Automatically add the Category Quran, tags etc to make it easier for the user to find it then in the future. 
-    - [ ] Read Quran should be just under Search
-    - [ ] Continue Should be under Read
-    - [ ] Move Continue Learning to Quran Learning page in Learning Path - remember anything learning related should be under learn, Quran page is just for Quran reading

@@ -33588,6 +33588,72 @@ abstract class AppLocalizations {
   /// **'Attributions & Licenses'**
   String get settingsAttributionsLicensesTitle;
 
+  /// No description provided for @legalAttributionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an text, translations, transliteration, audio, and API usage.'**
+  String get legalAttributionsSubtitle;
+
+  /// No description provided for @legalAttributionsQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Text & Translations'**
+  String get legalAttributionsQuranTitle;
+
+  /// No description provided for @legalAttributionsQuranBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The app currently uses the Flutter package \"quran\" for Arabic text and translation integrations.\n\nSource links:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran'**
+  String get legalAttributionsQuranBody;
+
+  /// No description provided for @legalAttributionsTransliterationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration'**
+  String get legalAttributionsTransliterationTitle;
+
+  /// No description provided for @legalAttributionsTransliterationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\nSource links:\nhttps://alquran.cloud/api'**
+  String get legalAttributionsTransliterationBody;
+
+  /// No description provided for @legalAttributionsRecitationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recitation Audio'**
+  String get legalAttributionsRecitationTitle;
+
+  /// No description provided for @legalAttributionsRecitationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio recitations are streamed or downloaded from EveryAyah sources such as Husary, Alafasy, and Abdul Basit.\n\nSource links:\nhttps://everyayah.com/\nhttps://everyayah.com/data/'**
+  String get legalAttributionsRecitationBody;
+
+  /// No description provided for @legalAttributionsAdhanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan Notification Audio'**
+  String get legalAttributionsAdhanTitle;
+
+  /// No description provided for @legalAttributionsAdhanBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.'**
+  String get legalAttributionsAdhanBody;
+
+  /// No description provided for @legalAttributionsWordTimingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Timing (Live Sync Beta)'**
+  String get legalAttributionsWordTimingTitle;
+
+  /// No description provided for @legalAttributionsWordTimingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Word timing segments are requested from Quran.com API v4.\n\nSource links:\nhttps://api-docs.quran.com/'**
+  String get legalAttributionsWordTimingBody;
+
   /// No description provided for @settingsSyncModePathOfNurCloud.
   ///
   /// In en, this message translates to:

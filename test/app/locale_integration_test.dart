@@ -24,14 +24,17 @@ void main() {
   }
 
   test(
-    'unsupported locale codes resolve back to local system locale',
+    'unsupported locale codes resolve back to English and German V1 scope',
     () async {
       final container = await makeTestContainer();
       addTearDown(container.dispose);
       final notifier = container.read(appLocaleProvider.notifier);
 
+      notifier.setLocale(const Locale('de'));
+      expect(container.read(appLocaleProvider), const Locale('de'));
+
       notifier.setLocale(const Locale('ar'));
-      expect(container.read(appLocaleProvider), const Locale('ar'));
+      expect(container.read(appLocaleProvider), isNull);
 
       notifier.setLocale(const Locale('fr', 'FR'));
       expect(container.read(appLocaleProvider), isNull);
@@ -68,16 +71,23 @@ void main() {
       await pumpRouteFrames(tester);
 
       homeContext = tester.element(find.byType(HomePage));
-      expect(Localizations.localeOf(homeContext).languageCode, 'ar');
-      expect(Directionality.of(homeContext), TextDirection.rtl);
+      expect(Localizations.localeOf(homeContext).languageCode, 'en');
+      expect(Directionality.of(homeContext), TextDirection.ltr);
+
+      localeNotifier.setLocale(const Locale('de'));
+      await pumpRouteFrames(tester);
+
+      homeContext = tester.element(find.byType(HomePage));
+      expect(Localizations.localeOf(homeContext).languageCode, 'de');
+      expect(Directionality.of(homeContext), TextDirection.ltr);
 
       router.go('/settings');
       await pumpRouteFrames(tester);
       await pumpRouteFrames(tester);
 
       final settingsContext = tester.element(find.byType(SettingsPage));
-      expect(Localizations.localeOf(settingsContext).languageCode, 'ar');
-      expect(Directionality.of(settingsContext), TextDirection.rtl);
+      expect(Localizations.localeOf(settingsContext).languageCode, 'de');
+      expect(Directionality.of(settingsContext), TextDirection.ltr);
       expect(find.byType(SettingsPage), findsOneWidget);
       expect(find.byType(HomePage), findsNothing);
       expect(tester.takeException(), isNull);
@@ -86,8 +96,8 @@ void main() {
       await pumpRouteFrames(tester);
 
       final urduContext = tester.element(find.byType(SettingsPage));
-      expect(Localizations.localeOf(urduContext).languageCode, 'ur');
-      expect(Directionality.of(urduContext), TextDirection.rtl);
+      expect(Localizations.localeOf(urduContext).languageCode, 'en');
+      expect(Directionality.of(urduContext), TextDirection.ltr);
       expect(tester.takeException(), isNull);
 
       localeNotifier.setLocale(const Locale('fr', 'FR'));
@@ -129,11 +139,7 @@ void main() {
       '/settings': SettingsPage,
     };
 
-    final localeSteps = <Locale>[
-      const Locale('en'),
-      const Locale('ar'),
-      const Locale('ur'),
-    ];
+    final localeSteps = <Locale>[const Locale('en'), const Locale('de')];
     for (final locale in localeSteps) {
       localeNotifier.setLocale(locale);
       await pumpRouteFrames(tester);

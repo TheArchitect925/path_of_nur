@@ -1,1 +1,0 @@
-lets add the theme selection as well on the onboarding carousel as well, similar to the settings one lets add it in a way where it shows the user a sample text and cards too that they can refer to when making changes. Changes shoudl apply in real time

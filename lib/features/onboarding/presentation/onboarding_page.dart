@@ -1502,53 +1502,14 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   List<_LanguageChoice> _localizedLanguageChoices(AppLocalizations l10n) {
     return <_LanguageChoice>[
       _LanguageChoice(
-        id: 'system',
-        label: l10n.onboardingLanguageSystemDefault,
-      ),
-      _LanguageChoice(
         id: 'en',
         label: l10n.onboardingLanguageEnglish,
         locale: const Locale('en'),
       ),
       _LanguageChoice(
-        id: 'ar',
-        label: l10n.onboardingLanguageArabic,
-        locale: const Locale('ar'),
-      ),
-      _LanguageChoice(
         id: 'de',
         label: l10n.onboardingLanguageGerman,
         locale: const Locale('de'),
-      ),
-      _LanguageChoice(
-        id: 'ur',
-        label: l10n.onboardingLanguageUrdu,
-        locale: const Locale('ur'),
-      ),
-      _LanguageChoice(
-        id: 'hi',
-        label: l10n.onboardingLanguageHindi,
-        locale: const Locale('hi'),
-      ),
-      _LanguageChoice(
-        id: 'id',
-        label: l10n.onboardingLanguageIndonesian,
-        locale: const Locale('id'),
-      ),
-      _LanguageChoice(
-        id: 'ms',
-        label: l10n.onboardingLanguageMalay,
-        locale: const Locale('ms'),
-      ),
-      _LanguageChoice(
-        id: 'tr',
-        label: l10n.onboardingLanguageTurkish,
-        locale: const Locale('tr'),
-      ),
-      _LanguageChoice(
-        id: 'bn',
-        label: l10n.onboardingLanguageBengali,
-        locale: const Locale('bn'),
       ),
     ];
   }
@@ -1557,24 +1518,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     switch (id) {
       case 'en':
         return const _LanguageChoice(id: 'en', label: '', locale: Locale('en'));
-      case 'ar':
-        return const _LanguageChoice(id: 'ar', label: '', locale: Locale('ar'));
       case 'de':
         return const _LanguageChoice(id: 'de', label: '', locale: Locale('de'));
-      case 'ur':
-        return const _LanguageChoice(id: 'ur', label: '', locale: Locale('ur'));
-      case 'hi':
-        return const _LanguageChoice(id: 'hi', label: '', locale: Locale('hi'));
-      case 'id':
-        return const _LanguageChoice(id: 'id', label: '', locale: Locale('id'));
-      case 'ms':
-        return const _LanguageChoice(id: 'ms', label: '', locale: Locale('ms'));
-      case 'tr':
-        return const _LanguageChoice(id: 'tr', label: '', locale: Locale('tr'));
-      case 'bn':
-        return const _LanguageChoice(id: 'bn', label: '', locale: Locale('bn'));
       default:
-        return const _LanguageChoice(id: 'system', label: '');
+        return const _LanguageChoice(id: 'en', label: '', locale: Locale('en'));
     }
   }
 

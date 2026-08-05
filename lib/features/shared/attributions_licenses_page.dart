@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/app_page_scaffold.dart';
 import '../../shared/widgets/premium_card.dart';
 
@@ -8,56 +9,35 @@ class AttributionsLicensesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       headerIcon: Icons.verified_outlined,
-      title: 'Attributions & Licenses',
-      subtitle:
-          'Quran text, translations, transliteration, audio and API usage.',
-      children: const [
+      title: l10n.settingsAttributionsLicensesTitle,
+      subtitle: l10n.legalAttributionsSubtitle,
+      children: [
         _AttributionCard(
-          title: 'Qur’an Text & Translations',
-          body:
-              'The app currently uses the Flutter package "quran" for Arabic text and translation integrations.\n\n'
-              'Source links:\n'
-              'https://pub.dev/packages/quran\n'
-              'https://github.com/aqeelshamz/quran',
+          title: l10n.legalAttributionsQuranTitle,
+          body: l10n.legalAttributionsQuranBody,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _AttributionCard(
-          title: 'Transliteration',
-          body:
-              'Transliteration is fetched from AlQuran.cloud (edition: en.transliteration) and cached on device.\n\n'
-              'Source links:\n'
-              'https://alquran.cloud/api',
+          title: l10n.legalAttributionsTransliterationTitle,
+          body: l10n.legalAttributionsTransliterationBody,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _AttributionCard(
-          title: 'Recitation Audio',
-          body:
-              'Audio recitations are streamed/downloaded from EveryAyah sources (e.g., Husary, Alafasy, Abdul Basit).\n\n'
-              'Source links:\n'
-              'https://everyayah.com/\n'
-              'https://everyayah.com/data/',
+          title: l10n.legalAttributionsRecitationTitle,
+          body: l10n.legalAttributionsRecitationBody,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _AttributionCard(
-          title: 'Adhan Notification Audio',
-          body:
-              'Bundled adhan reminder clip source:\n'
-              'https://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\n'
-              'Original file URL:\n'
-              'https://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\n'
-              'Author listed on source page: Jarih (own work)\n'
-              'License: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\n'
-              'Current note: the app ships temporary offline fallback Adhan variants derived from this bundled clip until the curated Pixabay replacements are swapped in.',
+          title: l10n.legalAttributionsAdhanTitle,
+          body: l10n.legalAttributionsAdhanBody,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _AttributionCard(
-          title: 'Word Timing (Live Sync Beta)',
-          body:
-              'Word timing segments are requested from Quran.com API v4.\n\n'
-              'Source links:\n'
-              'https://api-docs.quran.com/',
+          title: l10n.legalAttributionsWordTimingTitle,
+          body: l10n.legalAttributionsWordTimingBody,
         ),
       ],
     );

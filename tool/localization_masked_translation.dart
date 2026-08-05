@@ -58,10 +58,7 @@ void _runExport(List<String> args) {
     return;
   }
 
-  final keys = _resolveTargetKeys(
-    args,
-    englishData: _readArbFile(englishPath),
-  );
+  final keys = _resolveTargetKeys(args, englishData: _readArbFile(englishPath));
   if (keys.isEmpty) {
     stderr.writeln('No keys selected. Provide --group and/or --key.');
     exitCode = 64;
@@ -295,8 +292,9 @@ String? _extractMaskedValue(dynamic raw) {
 
 String _tokenForIndex(int index) => '__PH_${index}__';
 
-Set<String> _expectedTokens(int count) =>
-    {for (var i = 0; i < count; i += 1) _tokenForIndex(i)};
+Set<String> _expectedTokens(int count) => {
+  for (var i = 0; i < count; i += 1) _tokenForIndex(i),
+};
 
 void _printUsage() {
   stdout.writeln(

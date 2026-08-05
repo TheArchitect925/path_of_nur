@@ -144,9 +144,7 @@ List<Override> _kidsArabicLearnerOverrides(String learnerId) {
     isFallbackLearner: false,
     preferences: const BedtimeLearnerPreferences(),
   );
-  return <Override>[
-    kidsArabicActiveLearnerProvider.overrideWithValue(learner),
-  ];
+  return <Override>[kidsArabicActiveLearnerProvider.overrideWithValue(learner)];
 }
 
 Override _journeySnapshotOverride() {
@@ -171,6 +169,7 @@ Override _journeySnapshotOverride() {
       reflectionEntriesToday: 0,
       reflectionProgress: 0,
       learningStageCompletionsToday: metrics.learningStageCompletions,
+      streakExemptionActive: false,
     );
   });
 }

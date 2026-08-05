@@ -569,7 +569,8 @@ class LearnCategoryCatalog {
         .where(
           (item) =>
               !_quranOwnedItemIds.contains(item.id) &&
-              !_hiddenItemIds.contains(item.id),
+              !_hiddenItemIds.contains(item.id) &&
+              item.sectionType != 'placeholder',
         )
         .toList(growable: false);
   }

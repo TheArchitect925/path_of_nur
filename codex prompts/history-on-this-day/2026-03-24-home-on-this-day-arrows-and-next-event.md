@@ -1,1 +1,0 @@
-Add arrows to On This Day and jump to the next/previous entries that are available and let the user browse through them. Instead of showing More moemnts are on the way and the rest of the Text display the next event coming up

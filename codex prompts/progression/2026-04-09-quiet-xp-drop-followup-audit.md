@@ -1,1 +1,0 @@
-- [ ] audit the app and wherever it mentions the drop +1 and xp gained remove it, it should only be in the background and not really show the user. Only show xp and drop earned when its completed as a mini non intrusive message.

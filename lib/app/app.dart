@@ -98,7 +98,7 @@ class PathOfNurApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: releaseSupportedLocales,
     );
   }
 }

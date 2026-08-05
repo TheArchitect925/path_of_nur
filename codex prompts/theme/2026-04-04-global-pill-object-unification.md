@@ -1,1 +1,0 @@
-across the app wherever we have a pill turn them all into a global object so they would be all teh same, the setting we want to use is: Make this button use the shared AppLayeredGlassPillButton style from app_layered_glass_pill_button.dart. Keep behavior unchanged and replace the current pill/button styling with that shared component.

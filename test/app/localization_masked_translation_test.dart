@@ -30,9 +30,7 @@ void main() {
     final english = <String, dynamic>{
       'hadithSearchResultsCount': '{count} results',
       '@hadithSearchResultsCount': <String, dynamic>{
-        'placeholders': <String, dynamic>{
-          'count': <String, dynamic>{},
-        },
+        'placeholders': <String, dynamic>{'count': <String, dynamic>{}},
       },
     };
 
@@ -55,9 +53,7 @@ void main() {
     final english = <String, dynamic>{
       'quranCompanionResumePathTitle': 'Continue {path}',
       '@quranCompanionResumePathTitle': <String, dynamic>{
-        'placeholders': <String, dynamic>{
-          'path': <String, dynamic>{},
-        },
+        'placeholders': <String, dynamic>{'path': <String, dynamic>{}},
       },
     };
 

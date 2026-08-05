@@ -122,54 +122,56 @@ void main() {
       );
       expect(scoped, isNotNull);
       expect(
-        KidsDuaLearningState.fromJson(jsonDecode(scoped!) as Map<String, dynamic>)
-            .progressByLessonId['before-sleep']
-            ?.openCount,
+        KidsDuaLearningState.fromJson(
+          jsonDecode(scoped!) as Map<String, dynamic>,
+        ).progressByLessonId['before-sleep']?.openCount,
         2,
       );
     });
 
-    test('legacy fallback-scoped kids dua progress migrates to shared fallback learner id', () async {
-      final legacyState = KidsDuaLearningState.initial().copyWith(
-        progressByLessonId: <String, KidsDuaLessonProgress>{
-          'before-eating': const KidsDuaLessonProgress(
-            lessonId: 'before-eating',
-            openCount: 1,
-            timesPracticed: 0,
-          ),
-        },
-      );
-      final legacyLearnerId = legacyKidsDuaFallbackLearnerIdForProfile(
-        'device_local',
-      );
-      final container = await makeTestContainer(
-        seed: <String, Object>{
-          kidsDuaLearningStorageKeyForLearner(legacyLearnerId):
-              jsonEncode(legacyState.toJson()),
-        },
-      );
-      addTearDown(container.dispose);
+    test(
+      'legacy fallback-scoped kids dua progress migrates to shared fallback learner id',
+      () async {
+        final legacyState = KidsDuaLearningState.initial().copyWith(
+          progressByLessonId: <String, KidsDuaLessonProgress>{
+            'before-eating': const KidsDuaLessonProgress(
+              lessonId: 'before-eating',
+              openCount: 1,
+              timesPracticed: 0,
+            ),
+          },
+        );
+        final legacyLearnerId = legacyKidsDuaFallbackLearnerIdForProfile(
+          'device_local',
+        );
+        final container = await makeTestContainer(
+          seed: <String, Object>{
+            kidsDuaLearningStorageKeyForLearner(legacyLearnerId): jsonEncode(
+              legacyState.toJson(),
+            ),
+          },
+        );
+        addTearDown(container.dispose);
 
-      container.read(kidsDuaLearningProvider);
-      final prefs = container.read(sharedPreferencesProvider);
-      final canonicalKey = kidsDuaLearningStorageKeyForLearner(
-        kidsDuaFallbackLearnerIdForProfile('device_local'),
-      );
+        container.read(kidsDuaLearningProvider);
+        final prefs = container.read(sharedPreferencesProvider);
+        final canonicalKey = kidsDuaLearningStorageKeyForLearner(
+          kidsDuaFallbackLearnerIdForProfile('device_local'),
+        );
 
-      expect(prefs.getString(canonicalKey), isNotNull);
-      expect(
-        prefs.getString(kidsDuaLearningStorageKeyForLearner(legacyLearnerId)),
-        isNull,
-      );
-      expect(
-        KidsDuaLearningState.fromJson(
-              jsonDecode(prefs.getString(canonicalKey)!) as Map<String, dynamic>,
-            )
-            .progressByLessonId['before-eating']
-            ?.openCount,
-        1,
-      );
-    });
+        expect(prefs.getString(canonicalKey), isNotNull);
+        expect(
+          prefs.getString(kidsDuaLearningStorageKeyForLearner(legacyLearnerId)),
+          isNull,
+        );
+        expect(
+          KidsDuaLearningState.fromJson(
+            jsonDecode(prefs.getString(canonicalKey)!) as Map<String, dynamic>,
+          ).progressByLessonId['before-eating']?.openCount,
+          1,
+        );
+      },
+    );
   });
 
   group('Kids dua recommendations', () {
@@ -195,19 +197,24 @@ void main() {
       expect(item?.segments, isNotEmpty);
     });
 
-    test('recent unfinished dua is recommended ahead of bedtime fallback', () async {
-      final container = await makeTestContainer(
-        overrides: [_journeySnapshotOverride()],
-      );
-      addTearDown(container.dispose);
+    test(
+      'recent unfinished dua is recommended ahead of bedtime fallback',
+      () async {
+        final container = await makeTestContainer(
+          overrides: [_journeySnapshotOverride()],
+        );
+        addTearDown(container.dispose);
 
-      container.read(kidsDuaLearningProvider.notifier).openLesson('before-eating');
+        container
+            .read(kidsDuaLearningProvider.notifier)
+            .openLesson('before-eating');
 
-      final item = container.read(kidsDuaRecommendedLearningItemProvider);
-      expect(item?.duaId, 'before-eating');
-      expect(item?.segments, isNotEmpty);
-      expect(item?.audioVariants.first.assetPath, contains('before_eating'));
-    });
+        final item = container.read(kidsDuaRecommendedLearningItemProvider);
+        expect(item?.duaId, 'before-eating');
+        expect(item?.segments, isNotEmpty);
+        expect(item?.audioVariants.first.assetPath, contains('before_eating'));
+      },
+    );
   });
 }
 
@@ -233,6 +240,7 @@ Override _journeySnapshotOverride() {
       reflectionEntriesToday: 0,
       reflectionProgress: 0,
       learningStageCompletionsToday: metrics.learningStageCompletions,
+      streakExemptionActive: false,
     );
   });
 }

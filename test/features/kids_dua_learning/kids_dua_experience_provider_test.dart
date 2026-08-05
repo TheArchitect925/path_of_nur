@@ -132,6 +132,7 @@ Override _journeySnapshotOverride() {
       reflectionEntriesToday: 0,
       reflectionProgress: 0,
       learningStageCompletionsToday: metrics.learningStageCompletions,
+      streakExemptionActive: false,
     );
   });
 }

@@ -1,1 +1,0 @@
-- [ ] quran top words page has a lot of overflow errors review tjem and fix them

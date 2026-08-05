@@ -133,55 +133,59 @@ void main() {
     );
   });
 
-  test('legacy fallback-scoped creative state migrates to canonical fallback learner', () async {
-    final tempDir = await Directory.systemTemp.createTemp(
-      'kids_dua_creative_legacy_test',
-    );
-    final legacyLearnerId = legacyKidsDuaFallbackLearnerIdForProfile(
-      'device_local',
-    );
-    final legacyState = const KidsDuaCreativeState(
-      parentViewEnabled: true,
-      drawings: <KidsDuaDrawing>[
-        KidsDuaDrawing(
-          id: 'drawing_1',
-          duaId: 'before-sleep',
-          imagePath: '/tmp/before_sleep.png',
-          createdAt: '2026-03-18T10:00:00.000',
-          lastEditedAt: '2026-03-18T10:00:00.000',
-        ),
-      ],
-    );
-    final container = await makeTestContainer(
-      seed: <String, Object>{
-        kidsDuaCreativeStorageKeyForLearner(legacyLearnerId):
-            jsonEncode(legacyState.toJson()),
-      },
-      overrides: [
-        kidsDuaDrawingDirectoryProvider.overrideWith((ref) async => tempDir),
-      ],
-    );
-    addTearDown(() async {
-      container.dispose();
-      if (tempDir.existsSync()) {
-        await tempDir.delete(recursive: true);
-      }
-    });
+  test(
+    'legacy fallback-scoped creative state migrates to canonical fallback learner',
+    () async {
+      final tempDir = await Directory.systemTemp.createTemp(
+        'kids_dua_creative_legacy_test',
+      );
+      final legacyLearnerId = legacyKidsDuaFallbackLearnerIdForProfile(
+        'device_local',
+      );
+      final legacyState = const KidsDuaCreativeState(
+        parentViewEnabled: true,
+        drawings: <KidsDuaDrawing>[
+          KidsDuaDrawing(
+            id: 'drawing_1',
+            duaId: 'before-sleep',
+            imagePath: '/tmp/before_sleep.png',
+            createdAt: '2026-03-18T10:00:00.000',
+            lastEditedAt: '2026-03-18T10:00:00.000',
+          ),
+        ],
+      );
+      final container = await makeTestContainer(
+        seed: <String, Object>{
+          kidsDuaCreativeStorageKeyForLearner(legacyLearnerId): jsonEncode(
+            legacyState.toJson(),
+          ),
+        },
+        overrides: [
+          kidsDuaDrawingDirectoryProvider.overrideWith((ref) async => tempDir),
+        ],
+      );
+      addTearDown(() async {
+        container.dispose();
+        if (tempDir.existsSync()) {
+          await tempDir.delete(recursive: true);
+        }
+      });
 
-    final state = container.read(kidsDuaCreativeProvider);
-    final prefs = container.read(sharedPreferencesProvider);
-    final canonicalKey = kidsDuaCreativeStorageKeyForLearner(
-      kidsDuaFallbackLearnerIdForProfile('device_local'),
-    );
+      final state = container.read(kidsDuaCreativeProvider);
+      final prefs = container.read(sharedPreferencesProvider);
+      final canonicalKey = kidsDuaCreativeStorageKeyForLearner(
+        kidsDuaFallbackLearnerIdForProfile('device_local'),
+      );
 
-    expect(state.parentViewEnabled, isTrue);
-    expect(state.drawings, hasLength(1));
-    expect(prefs.getString(canonicalKey), isNotNull);
-    expect(
-      prefs.getString(kidsDuaCreativeStorageKeyForLearner(legacyLearnerId)),
-      isNull,
-    );
-  });
+      expect(state.parentViewEnabled, isTrue);
+      expect(state.drawings, hasLength(1));
+      expect(prefs.getString(canonicalKey), isNotNull);
+      expect(
+        prefs.getString(kidsDuaCreativeStorageKeyForLearner(legacyLearnerId)),
+        isNull,
+      );
+    },
+  );
 }
 
 Override _journeySnapshotOverride() {
@@ -206,6 +210,7 @@ Override _journeySnapshotOverride() {
       reflectionEntriesToday: 0,
       reflectionProgress: 0,
       learningStageCompletionsToday: metrics.learningStageCompletions,
+      streakExemptionActive: false,
     );
   });
 }

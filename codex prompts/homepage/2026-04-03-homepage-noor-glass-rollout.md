@@ -1,1 +1,0 @@
-ok lets apply this to all hompage containers - the only caviat is - ensure that colours that are non parchment/glass are kept - eg the prayer cards fajr etc should be converted to the new Noor Glass style but the colours of those cards should be maintained - but having the new Noor glass theme applied.
