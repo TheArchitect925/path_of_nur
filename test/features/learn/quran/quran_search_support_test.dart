@@ -51,32 +51,35 @@ void main() {
     );
   });
 
-  test('reader surah search matches translation, transliteration, and arabic', () {
-    final matches = buildReaderSurahSearchMatches(
-      query: 'rahmaan',
-      ayahs: const <QuranReaderSearchableAyah>[
-        (
-          ayahNumber: 1,
-          translation: 'In the name of Allah, the Entirely Merciful',
-          transliteration: 'bismi llahi r-rahmani r-raheem',
-          arabic: 'بسم الله الرحمن الرحيم',
-        ),
-        (
-          ayahNumber: 2,
-          translation: 'All praise is due to Allah',
-          transliteration: 'alhamdu lillahi rabbil alamin',
-          arabic: 'الحمد لله رب العالمين',
-        ),
-      ],
-    );
+  test(
+    'reader surah search matches translation, transliteration, and arabic',
+    () {
+      final matches = buildReaderSurahSearchMatches(
+        query: 'rahmaan',
+        ayahs: const <QuranReaderSearchableAyah>[
+          (
+            ayahNumber: 1,
+            translation: 'In the name of Allah, the Entirely Merciful',
+            transliteration: 'bismi llahi r-rahmani r-raheem',
+            arabic: 'بسم الله الرحمن الرحيم',
+          ),
+          (
+            ayahNumber: 2,
+            translation: 'All praise is due to Allah',
+            transliteration: 'alhamdu lillahi rabbil alamin',
+            arabic: 'الحمد لله رب العالمين',
+          ),
+        ],
+      );
 
-    expect(matches, isNotEmpty);
-    expect(matches.first.ayahNumber, 1);
-    expect(
-      matches.first.matchesField(QuranSearchMatchField.transliteration),
-      isTrue,
-    );
-  });
+      expect(matches, isNotEmpty);
+      expect(matches.first.ayahNumber, 1);
+      expect(
+        matches.first.matchesField(QuranSearchMatchField.transliteration),
+        isTrue,
+      );
+    },
+  );
 
   test('reader surah search honors an arabic preferred field', () {
     final matches = buildReaderSurahSearchMatches(
@@ -94,19 +97,19 @@ void main() {
 
     expect(matches.single.ayahNumber, 6);
     expect(matches.single.matchedFields, {QuranSearchMatchField.arabic});
-    expect(matches.single.highlightTermsFor(QuranSearchMatchField.arabic), isNotEmpty);
+    expect(
+      matches.single.highlightTermsFor(QuranSearchMatchField.arabic),
+      isNotEmpty,
+    );
   });
 
   test(
     'reader search highlighting uses only the exact translation query terms for father',
     () {
       final repository = QuranRepository();
-      final ayah = repository.getAyahsForSurah(
-        2,
-        translationCode: 'en.sahih',
-      ).firstWhere(
-        (item) => item.ayahNumber == 233,
-      );
+      final ayah = repository
+          .getAyahsForSurah(2, translationCode: 'en.sahih')
+          .firstWhere((item) => item.ayahNumber == 233);
 
       final matches = buildReaderSurahSearchMatches(
         query: 'father',

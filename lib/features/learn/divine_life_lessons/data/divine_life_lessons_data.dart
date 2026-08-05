@@ -43,7 +43,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 12,
     ayahStart: 87,
     ayahEnd: 87,
-    translationText: 'None despairs of relief from Allah except disbelieving people.',
+    translationText:
+        'None despairs of relief from Allah except disbelieving people.',
     reflection:
         'Hope is worship. Even in delay, the believer refuses hopeless conclusions.',
     practicalTakeaway:
@@ -221,7 +222,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 39,
     ayahStart: 53,
     ayahEnd: 53,
-    translationText: 'Do not despair of Allah’s mercy; Allah forgives all sins.',
+    translationText:
+        'Do not despair of Allah’s mercy; Allah forgives all sins.',
     reflection:
         'Shaytan wants despair; revelation calls to return, repair, and hope.',
     practicalTakeaway:
@@ -265,7 +267,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'What replacement habit can protect my repentance?',
     ],
     tags: ['tawbah', 'repentance', 'sincerity'],
-    relatedLessonIds: ['never_despair_mercy_39_53', 'inner_outer_purification_91_9_10'],
+    relatedLessonIds: [
+      'never_despair_mercy_39_53',
+      'inner_outer_purification_91_9_10',
+    ],
     estimatedReadMinutes: 4,
     featuredPriority: 84,
   ),
@@ -304,7 +309,10 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Speak to People Well',
     shortSummary: 'Kind and truthful speech is part of covenant ethics.',
     themeId: 'character',
-    situationIds: ['dealing_with_family_tension', 'trying_to_be_more_disciplined'],
+    situationIds: [
+      'dealing_with_family_tension',
+      'trying_to_be_more_disciplined',
+    ],
     quranReference: 'Qur’an 2:83',
     surahName: 'Al-Baqarah',
     surahNumber: 2,
@@ -313,8 +321,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     translationText: 'Speak to people good words.',
     reflection:
         'Speech builds or destroys trust faster than actions in many situations.',
-    practicalTakeaway:
-        'Make your default tone gentle, clear, and truthful.',
+    practicalTakeaway: 'Make your default tone gentle, clear, and truthful.',
     actionSteps: [
       'Remove sarcasm in sensitive conversations.',
       'Use fewer absolute accusations.',
@@ -325,7 +332,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'What phrase can I retire from my vocabulary?',
     ],
     tags: ['speech', 'adab', 'character'],
-    relatedLessonIds: ['avoid_mockery_49_11', 'avoid_suspicion_backbiting_49_12'],
+    relatedLessonIds: [
+      'avoid_mockery_49_11',
+      'avoid_suspicion_backbiting_49_12',
+    ],
     estimatedReadMinutes: 4,
     featuredPriority: 80,
   ),
@@ -343,8 +353,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     translationText: 'Let not one people mock another people.',
     reflection:
         'Mockery is often disguised insecurity. Taqwa refines speech and posture.',
-    practicalTakeaway:
-        'Avoid humor that humiliates others, even casually.',
+    practicalTakeaway: 'Avoid humor that humiliates others, even casually.',
     actionSteps: [
       'Stop sharing belittling jokes.',
       'Apologize for past mockery where possible.',
@@ -371,8 +380,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 12,
     ayahEnd: 12,
     translationText: 'Avoid much suspicion and do not backbite one another.',
-    reflection:
-        'Suspicion poisons relationships before facts are known.',
+    reflection: 'Suspicion poisons relationships before facts are known.',
     practicalTakeaway:
         'Verify, clarify, and speak directly rather than assuming.',
     actionSteps: [
@@ -400,11 +408,10 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 25,
     ayahStart: 63,
     ayahEnd: 63,
-    translationText: 'Servants of the Most Merciful walk upon the earth humbly.',
-    reflection:
-        'Humility is quiet strength under Allah, not insecurity.',
-    practicalTakeaway:
-        'Practice calm listening and lower self-display.',
+    translationText:
+        'Servants of the Most Merciful walk upon the earth humbly.',
+    reflection: 'Humility is quiet strength under Allah, not insecurity.',
+    practicalTakeaway: 'Practice calm listening and lower self-display.',
     actionSteps: [
       'Listen fully before replying.',
       'Credit others publicly where due.',
@@ -430,7 +437,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 31,
     ayahStart: 18,
     ayahEnd: 18,
-    translationText: 'Do not turn your cheek in contempt and do not walk exultantly.',
+    translationText:
+        'Do not turn your cheek in contempt and do not walk exultantly.',
     reflection:
         'Pride often hides fear and insecurity. Taqwa restores proportion.',
     practicalTakeaway:
@@ -454,7 +462,10 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Stand Firm for Justice',
     shortSummary: 'Justice applies even when it is difficult for you.',
     themeId: 'justice',
-    situationIds: ['making_a_difficult_decision', 'dealing_with_family_tension'],
+    situationIds: [
+      'making_a_difficult_decision',
+      'dealing_with_family_tension',
+    ],
     quranReference: 'Qur’an 4:135',
     surahName: 'An-Nisa',
     surahNumber: 4,
@@ -463,8 +474,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     translationText: 'Stand firm in justice, even against yourselves or kin.',
     reflection:
         'Justice in Islam is principled, not tribal. It begins with self-honesty.',
-    practicalTakeaway:
-        'When judging conflict, separate facts from loyalties.',
+    practicalTakeaway: 'When judging conflict, separate facts from loyalties.',
     actionSteps: [
       'Write facts before assigning blame.',
       'Let principles guide your stance.',
@@ -515,7 +525,10 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Be Excellent to Parents',
     shortSummary: 'Ihsan with parents is a core expression of faith.',
     themeId: 'mercy_forgiveness',
-    situationIds: ['dealing_with_family_tension', 'trying_to_be_more_disciplined'],
+    situationIds: [
+      'dealing_with_family_tension',
+      'trying_to_be_more_disciplined',
+    ],
     quranReference: 'Qur’an 17:23',
     surahName: 'Al-Isra',
     surahNumber: 17,
@@ -554,10 +567,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahEnd: 271,
     translationText:
         'If you conceal charity and give it to the poor, it is better for you.',
-    reflection:
-        'Hidden giving purifies intention and protects the recipient.',
-    practicalTakeaway:
-        'Build a small private giving routine each week.',
+    reflection: 'Hidden giving purifies intention and protects the recipient.',
+    practicalTakeaway: 'Build a small private giving routine each week.',
     actionSteps: [
       'Set a recurring private charity amount.',
       'Prioritize local or immediate need discreetly.',
@@ -583,7 +594,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 3,
     ayahStart: 92,
     ayahEnd: 92,
-    translationText: 'You will not attain goodness until you spend of what you love.',
+    translationText:
+        'You will not attain goodness until you spend of what you love.',
     reflection:
         'Giving valued resources retrains attachment and deepens trust.',
     practicalTakeaway:
@@ -615,10 +627,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahEnd: 134,
     translationText:
         'Those who restrain anger and pardon people; Allah loves doers of good.',
-    reflection:
-        'Power is tested in moments of provocation, not comfort.',
-    practicalTakeaway:
-        'Install a short pause routine before reacting.',
+    reflection: 'Power is tested in moments of provocation, not comfort.',
+    practicalTakeaway: 'Install a short pause routine before reacting.',
     actionSteps: [
       'Step away physically when anger surges.',
       'Delay response until breathing slows.',
@@ -629,7 +639,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'How can I be both truthful and gentle?',
     ],
     tags: ['anger', 'forgiveness', 'ihsan'],
-    relatedLessonIds: ['respond_with_better_41_34', 'forgiveness_strength_42_43'],
+    relatedLessonIds: [
+      'respond_with_better_41_34',
+      'forgiveness_strength_42_43',
+    ],
     estimatedReadMinutes: 4,
     featuredPriority: 85,
   ),
@@ -638,17 +651,19 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Purification Is Inner and Outer',
     shortSummary: 'Success belongs to the one who purifies the soul.',
     themeId: 'repentance',
-    situationIds: ['recovering_from_a_mistake', 'trying_to_be_more_disciplined'],
+    situationIds: [
+      'recovering_from_a_mistake',
+      'trying_to_be_more_disciplined',
+    ],
     quranReference: 'Qur’an 91:9–10',
     surahName: 'Ash-Shams',
     surahNumber: 91,
     ayahStart: 9,
     ayahEnd: 10,
-    translationText: 'Successful is the one who purifies it; failed is the one who corrupts it.',
-    reflection:
-        'External compliance without inner reform remains fragile.',
-    practicalTakeaway:
-        'Pair outward habits with regular self-accounting.',
+    translationText:
+        'Successful is the one who purifies it; failed is the one who corrupts it.',
+    reflection: 'External compliance without inner reform remains fragile.',
+    practicalTakeaway: 'Pair outward habits with regular self-accounting.',
     actionSteps: [
       'Review one recurring sin pattern weekly.',
       'Set one purification intention each morning.',
@@ -659,7 +674,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'Which outward act can support inner reform?',
     ],
     tags: ['purification', 'tazkiyah', 'discipline'],
-    relatedLessonIds: ['turn_back_sincerely_66_8', 'accountability_awareness_99_7_8'],
+    relatedLessonIds: [
+      'turn_back_sincerely_66_8',
+      'accountability_awareness_99_7_8',
+    ],
     estimatedReadMinutes: 4,
     featuredPriority: 79,
   ),
@@ -674,7 +692,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 2,
     ayahStart: 238,
     ayahEnd: 238,
-    translationText: 'Guard strictly the prayers, especially the middle prayer.',
+    translationText:
+        'Guard strictly the prayers, especially the middle prayer.',
     reflection:
         'Prayer is a daily covenant. Neglect usually begins with small delays.',
     practicalTakeaway: 'Protect prayer windows before scheduling other tasks.',
@@ -697,7 +716,10 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Prayer Protects the Soul',
     shortSummary: 'Prayer restrains shamelessness and wrongdoing.',
     themeId: 'worship_discipline',
-    situationIds: ['trying_to_be_more_disciplined', 'recovering_from_a_mistake'],
+    situationIds: [
+      'trying_to_be_more_disciplined',
+      'recovering_from_a_mistake',
+    ],
     quranReference: 'Qur’an 29:45',
     surahName: 'Al-Ankabut',
     surahNumber: 29,
@@ -718,7 +740,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'Which sin pattern needs stronger prayer-linked resistance?',
     ],
     tags: ['salah', 'purity', 'ethics'],
-    relatedLessonIds: ['guard_prayer_2_238', 'inner_outer_purification_91_9_10'],
+    relatedLessonIds: [
+      'guard_prayer_2_238',
+      'inner_outer_purification_91_9_10',
+    ],
     estimatedReadMinutes: 4,
     featuredPriority: 88,
   ),
@@ -779,7 +804,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'How can I convert learning into action faster?',
     ],
     tags: ['knowledge', 'learning', 'dua'],
-    relatedLessonIds: ['reflect_creation_3_190_191', 'consult_then_decide_3_159'],
+    relatedLessonIds: [
+      'reflect_creation_3_190_191',
+      'consult_then_decide_3_159',
+    ],
     estimatedReadMinutes: 4,
     featuredPriority: 77,
   ),
@@ -788,15 +816,17 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Consult and Then Decide',
     shortSummary: 'Shura strengthens decisions and community trust.',
     themeId: 'trust_allah',
-    situationIds: ['making_a_difficult_decision', 'dealing_with_family_tension'],
+    situationIds: [
+      'making_a_difficult_decision',
+      'dealing_with_family_tension',
+    ],
     quranReference: 'Qur’an 3:159',
     surahName: 'Aal Imran',
     surahNumber: 3,
     ayahStart: 159,
     ayahEnd: 159,
     translationText: 'Consult them in affairs, then resolve and rely on Allah.',
-    reflection:
-        'Consultation is spiritual maturity, not indecision.',
+    reflection: 'Consultation is spiritual maturity, not indecision.',
     practicalTakeaway: 'Use shura in family, work, and community decisions.',
     actionSteps: [
       'Ask relevant people before finalizing major decisions.',
@@ -823,7 +853,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 42,
     ayahStart: 43,
     ayahEnd: 43,
-    translationText: 'Whoever is patient and forgives, that is from determined matters.',
+    translationText:
+        'Whoever is patient and forgives, that is from determined matters.',
     reflection:
         'Forgiveness is not denial of harm; it is disciplined release from vengeance.',
     practicalTakeaway:
@@ -857,8 +888,7 @@ final divineLifeLessons = <DivineLifeLesson>[
         'He created death and life to test you as to who is best in deed.',
     reflection:
         'Success and hardship are both examinations, not final verdicts.',
-    practicalTakeaway:
-        'Judge days by obedience quality, not outcomes alone.',
+    practicalTakeaway: 'Judge days by obedience quality, not outcomes alone.',
     actionSteps: [
       'Define one “best deed” target daily.',
       'Treat gains and losses with balanced response.',
@@ -869,7 +899,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'How can I improve deed quality today?',
     ],
     tags: ['test', 'perspective', 'deeds'],
-    relatedLessonIds: ['accountability_awareness_99_7_8', 'hardship_not_end_94_5_6'],
+    relatedLessonIds: [
+      'accountability_awareness_99_7_8',
+      'hardship_not_end_94_5_6',
+    ],
     estimatedReadMinutes: 3,
     featuredPriority: 71,
   ),
@@ -884,11 +917,11 @@ final divineLifeLessons = <DivineLifeLesson>[
     surahNumber: 99,
     ayahStart: 7,
     ayahEnd: 8,
-    translationText: 'Whoever does an atom’s weight of good or evil will see it.',
+    translationText:
+        'Whoever does an atom’s weight of good or evil will see it.',
     reflection:
         'Accountability dignifies small deeds and warns against small harms.',
-    practicalTakeaway:
-        'Treat small actions as spiritually significant.',
+    practicalTakeaway: 'Treat small actions as spiritually significant.',
     actionSteps: [
       'Add one small consistent good deed.',
       'Identify one subtle harm to stop immediately.',
@@ -899,7 +932,10 @@ final divineLifeLessons = <DivineLifeLesson>[
       'Which recurring small harm must end now?',
     ],
     tags: ['accountability', 'deeds', 'taqwa'],
-    relatedLessonIds: ['world_is_test_67_2', 'inner_outer_purification_91_9_10'],
+    relatedLessonIds: [
+      'world_is_test_67_2',
+      'inner_outer_purification_91_9_10',
+    ],
     estimatedReadMinutes: 3,
     featuredPriority: 70,
   ),
@@ -944,10 +980,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 83,
     ayahEnd: 83,
     translationText: 'Speak to people good words.',
-    reflection:
-        'Conflict can be managed without violating adab.',
-    practicalTakeaway:
-        'Prioritize respectful clarity over winning arguments.',
+    reflection: 'Conflict can be managed without violating adab.',
+    practicalTakeaway: 'Prioritize respectful clarity over winning arguments.',
     actionSteps: [
       'Prepare key points before difficult discussions.',
       'Avoid public escalation of private matters.',
@@ -974,8 +1008,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 238,
     ayahEnd: 238,
     translationText: 'Guard your prayers consistently.',
-    reflection:
-        'Discipline is mercy to your future self.',
+    reflection: 'Discipline is mercy to your future self.',
     practicalTakeaway:
         'Prefer realistic habits over dramatic short-lived plans.',
     actionSteps: [
@@ -1004,8 +1037,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 8,
     ayahEnd: 8,
     translationText: 'Repent to Allah with sincere repentance.',
-    reflection:
-        'Failure can become formation when met with sincere return.',
+    reflection: 'Failure can become formation when met with sincere return.',
     practicalTakeaway:
         'Create a repeat-prevention plan after every major mistake.',
     actionSteps: [
@@ -1034,10 +1066,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 134,
     ayahEnd: 134,
     translationText: 'Those who restrain anger and pardon people.',
-    reflection:
-        'Mercy in anger moments is a high station of self-mastery.',
-    practicalTakeaway:
-        'Respond from values, not from emotional overflow.',
+    reflection: 'Mercy in anger moments is a high station of self-mastery.',
+    practicalTakeaway: 'Respond from values, not from emotional overflow.',
     actionSteps: [
       'Delay digital replies when angry.',
       'Choose one de-escalation phrase.',
@@ -1064,10 +1094,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 18,
     ayahEnd: 18,
     translationText: 'Do not walk the earth in arrogance.',
-    reflection:
-        'Blessings are safer when carried with humility and gratitude.',
-    practicalTakeaway:
-        'Convert success moments into service moments.',
+    reflection: 'Blessings are safer when carried with humility and gratitude.',
+    practicalTakeaway: 'Convert success moments into service moments.',
     actionSteps: [
       'Attribute success to Allah verbally.',
       'Thank the people who supported you.',
@@ -1094,10 +1122,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 87,
     ayahEnd: 87,
     translationText: 'Do not despair of Allah’s relief.',
-    reflection:
-        'Grief and hope can coexist. Faith gives grief direction.',
-    practicalTakeaway:
-        'Honor grief while preserving worship rhythms.',
+    reflection: 'Grief and hope can coexist. Faith gives grief direction.',
+    practicalTakeaway: 'Honor grief while preserving worship rhythms.',
     actionSteps: [
       'Keep core acts of worship steady.',
       'Speak to trusted support regularly.',
@@ -1126,8 +1152,7 @@ final divineLifeLessons = <DivineLifeLesson>[
     translationText: 'Consult, decide, then rely upon Allah.',
     reflection:
         'Fear of wrong choice often reflects fear of uncertainty, not lack of options.',
-    practicalTakeaway:
-        'Move from endless analysis to principled decision.',
+    practicalTakeaway: 'Move from endless analysis to principled decision.',
     actionSteps: [
       'Define decision criteria from values first.',
       'Set a decision date.',
@@ -1145,7 +1170,8 @@ final divineLifeLessons = <DivineLifeLesson>[
   DivineLifeLesson(
     id: 'character_under_test',
     title: 'Character Is Revealed Under Test',
-    shortSummary: 'Pressure reveals inner character; revelation guides refinement.',
+    shortSummary:
+        'Pressure reveals inner character; revelation guides refinement.',
     themeId: 'accountability_perspective',
     situationIds: ['facing_hardship', 'trying_to_be_more_disciplined'],
     quranReference: 'Qur’an 67:2',
@@ -1154,10 +1180,8 @@ final divineLifeLessons = <DivineLifeLesson>[
     ayahStart: 2,
     ayahEnd: 2,
     translationText: 'He tests you as to who is best in deed.',
-    reflection:
-        'Tests expose priorities and habits honestly.',
-    practicalTakeaway:
-        'Treat stress seasons as data for spiritual growth.',
+    reflection: 'Tests expose priorities and habits honestly.',
+    practicalTakeaway: 'Treat stress seasons as data for spiritual growth.',
     actionSteps: [
       'Note your default stress response.',
       'Replace one harmful stress behavior.',
@@ -1177,17 +1201,18 @@ final divineLifeLessons = <DivineLifeLesson>[
     title: 'Honor the Weight of Small Deeds',
     shortSummary: 'Small good and small harm both matter before Allah.',
     themeId: 'accountability_perspective',
-    situationIds: ['trying_to_be_more_disciplined', 'comparing_yourself_to_others'],
+    situationIds: [
+      'trying_to_be_more_disciplined',
+      'comparing_yourself_to_others',
+    ],
     quranReference: 'Qur’an 99:7–8',
     surahName: 'Az-Zalzalah',
     surahNumber: 99,
     ayahStart: 7,
     ayahEnd: 8,
     translationText: 'Whoever does an atom’s weight will see it.',
-    reflection:
-        'Consistency in tiny deeds builds major transformation.',
-    practicalTakeaway:
-        'Do not dismiss small daily worship and character wins.',
+    reflection: 'Consistency in tiny deeds builds major transformation.',
+    practicalTakeaway: 'Do not dismiss small daily worship and character wins.',
     actionSteps: [
       'Choose one 2-minute good deed to repeat daily.',
       'Stop one subtle recurring wrong.',
@@ -1198,73 +1223,215 @@ final divineLifeLessons = <DivineLifeLesson>[
       'Which small wrong keeps draining my heart?',
     ],
     tags: ['accountability', 'small deeds', 'discipline'],
-    relatedLessonIds: ['accountability_awareness_99_7_8', 'discipline_small_consistency'],
+    relatedLessonIds: [
+      'accountability_awareness_99_7_8',
+      'discipline_small_consistency',
+    ],
     estimatedReadMinutes: 3,
     featuredPriority: 60,
   ),
 ];
 
 const _themeDefinitions = <(String, String, String, int)>[
-  ('patience', 'Patience', 'Steadiness through hardship without quitting worship.', 1),
-  ('gratitude', 'Gratitude', 'Recognizing and using blessings in ways that please Allah.', 2),
-  ('trust_allah', 'Trust in Allah', 'Effort with reliance and surrender of outcomes.', 3),
-  ('hope_mercy', 'Hope and Mercy', 'Refusing despair and returning to divine mercy.', 4),
-  ('repentance', 'Repentance', 'Sincere return to Allah with behavioral correction.', 5),
-  ('character', 'Character', 'Speech, conduct, and emotional discipline rooted in taqwa.', 6),
-  ('humility', 'Humility', 'Walking lightly, rejecting pride, honoring people.', 7),
+  (
+    'patience',
+    'Patience',
+    'Steadiness through hardship without quitting worship.',
+    1,
+  ),
+  (
+    'gratitude',
+    'Gratitude',
+    'Recognizing and using blessings in ways that please Allah.',
+    2,
+  ),
+  (
+    'trust_allah',
+    'Trust in Allah',
+    'Effort with reliance and surrender of outcomes.',
+    3,
+  ),
+  (
+    'hope_mercy',
+    'Hope and Mercy',
+    'Refusing despair and returning to divine mercy.',
+    4,
+  ),
+  (
+    'repentance',
+    'Repentance',
+    'Sincere return to Allah with behavioral correction.',
+    5,
+  ),
+  (
+    'character',
+    'Character',
+    'Speech, conduct, and emotional discipline rooted in taqwa.',
+    6,
+  ),
+  (
+    'humility',
+    'Humility',
+    'Walking lightly, rejecting pride, honoring people.',
+    7,
+  ),
   ('justice', 'Justice', 'Fairness even under pressure and personal bias.', 8),
-  ('mercy_forgiveness', 'Mercy and Forgiveness', 'Strength through restraint, pardon, and compassion.', 9),
-  ('worship_discipline', 'Worship and Discipline', 'Guarding prayer and sustaining righteous routines.', 10),
-  ('knowledge_reflection', 'Knowledge and Reflection', 'Seeking beneficial knowledge and reading divine signs.', 11),
-  ('accountability_perspective', 'Accountability and Perspective', 'Living aware of tests, deeds, and final return.', 12),
+  (
+    'mercy_forgiveness',
+    'Mercy and Forgiveness',
+    'Strength through restraint, pardon, and compassion.',
+    9,
+  ),
+  (
+    'worship_discipline',
+    'Worship and Discipline',
+    'Guarding prayer and sustaining righteous routines.',
+    10,
+  ),
+  (
+    'knowledge_reflection',
+    'Knowledge and Reflection',
+    'Seeking beneficial knowledge and reading divine signs.',
+    11,
+  ),
+  (
+    'accountability_perspective',
+    'Accountability and Perspective',
+    'Living aware of tests, deeds, and final return.',
+    12,
+  ),
 ];
 
 const _situationDefinitions = <(String, String, String, int)>[
-  ('feeling_anxious', 'Feeling anxious', 'When thoughts race and the heart feels unsettled.', 1),
-  ('facing_hardship', 'Facing hardship', 'When pressure, uncertainty, or prolonged struggle rises.', 2),
-  ('feeling_lost', 'Feeling lost', 'When direction feels unclear and motivation drops.', 3),
-  ('feeling_guilty', 'Feeling guilty', 'When regret needs sincere return and repair.', 4),
-  ('feeling_angry', 'Feeling angry', 'When strong emotions threaten wise response.', 5),
-  ('hurt_by_others', 'Hurt by others', 'When betrayal, disrespect, or injury weighs on the heart.', 6),
-  ('struggling_with_pride', 'Struggling with pride', 'When ego and superiority cloud judgment.', 7),
-  ('comparing_yourself_to_others', 'Comparing yourself to others', 'When comparison weakens gratitude and purpose.', 8),
-  ('making_a_difficult_decision', 'Making a difficult decision', 'When choices carry real consequences and uncertainty.', 9),
-  ('trying_to_be_more_disciplined', 'Trying to be more disciplined', 'When building consistency in worship and character.', 10),
-  ('dealing_with_family_tension', 'Dealing with family tension', 'When family relationships feel strained or reactive.', 11),
-  ('seeking_inner_peace', 'Seeking inner peace', 'When the soul needs calm, remembrance, and grounding.', 12),
-  ('recovering_from_a_mistake', 'Recovering from a mistake', 'When rebuilding after failure or sin.', 13),
-  ('handling_success', 'Handling success', 'When blessing and achievement require humility and gratitude.', 14),
-  ('dealing_with_loss', 'Dealing with loss', 'When grief and sorrow require faith, patience, and support.', 15),
-  ('wanting_to_improve_character', 'Wanting to improve character', 'When refining speech, conduct, and emotional maturity.', 16),
+  (
+    'feeling_anxious',
+    'Feeling anxious',
+    'When thoughts race and the heart feels unsettled.',
+    1,
+  ),
+  (
+    'facing_hardship',
+    'Facing hardship',
+    'When pressure, uncertainty, or prolonged struggle rises.',
+    2,
+  ),
+  (
+    'feeling_lost',
+    'Feeling lost',
+    'When direction feels unclear and motivation drops.',
+    3,
+  ),
+  (
+    'feeling_guilty',
+    'Feeling guilty',
+    'When regret needs sincere return and repair.',
+    4,
+  ),
+  (
+    'feeling_angry',
+    'Feeling angry',
+    'When strong emotions threaten wise response.',
+    5,
+  ),
+  (
+    'hurt_by_others',
+    'Hurt by others',
+    'When betrayal, disrespect, or injury weighs on the heart.',
+    6,
+  ),
+  (
+    'struggling_with_pride',
+    'Struggling with pride',
+    'When ego and superiority cloud judgment.',
+    7,
+  ),
+  (
+    'comparing_yourself_to_others',
+    'Comparing yourself to others',
+    'When comparison weakens gratitude and purpose.',
+    8,
+  ),
+  (
+    'making_a_difficult_decision',
+    'Making a difficult decision',
+    'When choices carry real consequences and uncertainty.',
+    9,
+  ),
+  (
+    'trying_to_be_more_disciplined',
+    'Trying to be more disciplined',
+    'When building consistency in worship and character.',
+    10,
+  ),
+  (
+    'dealing_with_family_tension',
+    'Dealing with family tension',
+    'When family relationships feel strained or reactive.',
+    11,
+  ),
+  (
+    'seeking_inner_peace',
+    'Seeking inner peace',
+    'When the soul needs calm, remembrance, and grounding.',
+    12,
+  ),
+  (
+    'recovering_from_a_mistake',
+    'Recovering from a mistake',
+    'When rebuilding after failure or sin.',
+    13,
+  ),
+  (
+    'handling_success',
+    'Handling success',
+    'When blessing and achievement require humility and gratitude.',
+    14,
+  ),
+  (
+    'dealing_with_loss',
+    'Dealing with loss',
+    'When grief and sorrow require faith, patience, and support.',
+    15,
+  ),
+  (
+    'wanting_to_improve_character',
+    'Wanting to improve character',
+    'When refining speech, conduct, and emotional maturity.',
+    16,
+  ),
 ];
 
-final divineLifeThemes = _themeDefinitions.map((definition) {
-  final lessonIds = divineLifeLessons
-      .where((lesson) => lesson.themeId == definition.$1)
-      .map((lesson) => lesson.id)
-      .toList(growable: false);
-  return DivineLifeTheme(
-    id: definition.$1,
-    title: definition.$2,
-    description: definition.$3,
-    lessonIds: lessonIds,
-    sortOrder: definition.$4,
-  );
-}).toList(growable: false);
+final divineLifeThemes = _themeDefinitions
+    .map((definition) {
+      final lessonIds = divineLifeLessons
+          .where((lesson) => lesson.themeId == definition.$1)
+          .map((lesson) => lesson.id)
+          .toList(growable: false);
+      return DivineLifeTheme(
+        id: definition.$1,
+        title: definition.$2,
+        description: definition.$3,
+        lessonIds: lessonIds,
+        sortOrder: definition.$4,
+      );
+    })
+    .toList(growable: false);
 
-final divineLifeSituations = _situationDefinitions.map((definition) {
-  final lessonIds = divineLifeLessons
-      .where((lesson) => lesson.situationIds.contains(definition.$1))
-      .map((lesson) => lesson.id)
-      .toList(growable: false);
-  return DivineLifeSituation(
-    id: definition.$1,
-    title: definition.$2,
-    description: definition.$3,
-    lessonIds: lessonIds,
-    sortOrder: definition.$4,
-  );
-}).toList(growable: false);
+final divineLifeSituations = _situationDefinitions
+    .map((definition) {
+      final lessonIds = divineLifeLessons
+          .where((lesson) => lesson.situationIds.contains(definition.$1))
+          .map((lesson) => lesson.id)
+          .toList(growable: false);
+      return DivineLifeSituation(
+        id: definition.$1,
+        title: definition.$2,
+        description: definition.$3,
+        lessonIds: lessonIds,
+        sortOrder: definition.$4,
+      );
+    })
+    .toList(growable: false);
 
 DivineLifeLesson? divineLifeLessonById(String id) {
   for (final lesson in divineLifeLessons) {

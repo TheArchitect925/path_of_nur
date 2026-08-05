@@ -53,7 +53,9 @@ class BedtimeStoryTranscriptView extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12),
               child: Text(
                 paragraph,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.75),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(height: 1.75),
               ),
             ),
           ),

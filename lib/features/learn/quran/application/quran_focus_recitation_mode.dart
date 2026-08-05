@@ -6,15 +6,11 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'quran_player_controller.dart';
 
 class QuranFocusRecitationSessionState {
-  const QuranFocusRecitationSessionState({
-    this.repeatCurrentAyah = false,
-  });
+  const QuranFocusRecitationSessionState({this.repeatCurrentAyah = false});
 
   final bool repeatCurrentAyah;
 
-  QuranFocusRecitationSessionState copyWith({
-    bool? repeatCurrentAyah,
-  }) {
+  QuranFocusRecitationSessionState copyWith({bool? repeatCurrentAyah}) {
     return QuranFocusRecitationSessionState(
       repeatCurrentAyah: repeatCurrentAyah ?? this.repeatCurrentAyah,
     );
@@ -69,8 +65,7 @@ abstract class QuranFocusRecitationWakeLock {
   Future<void> setEnabled(bool enabled);
 }
 
-class QuranFocusRecitationWakelockPlus
-    implements QuranFocusRecitationWakeLock {
+class QuranFocusRecitationWakelockPlus implements QuranFocusRecitationWakeLock {
   const QuranFocusRecitationWakelockPlus();
 
   @override
@@ -91,9 +86,9 @@ class QuranFocusRecitationSessionController
       return;
     }
     state = state.copyWith(repeatCurrentAyah: value);
-    await _ref.read(quranPlayerControllerProvider).setRepeatCurrentAyahEnabled(
-      value,
-    );
+    await _ref
+        .read(quranPlayerControllerProvider)
+        .setRepeatCurrentAyahEnabled(value);
   }
 
   Future<void> clearForExit() async {
@@ -153,16 +148,18 @@ final quranFocusRecitationWakeLockProvider =
       return const QuranFocusRecitationWakelockPlus();
     });
 
-final quranFocusRecitationSessionProvider = StateNotifierProvider<
-  QuranFocusRecitationSessionController,
-  QuranFocusRecitationSessionState
->((ref) {
-  return QuranFocusRecitationSessionController(ref);
-});
+final quranFocusRecitationSessionProvider =
+    StateNotifierProvider<
+      QuranFocusRecitationSessionController,
+      QuranFocusRecitationSessionState
+    >((ref) {
+      return QuranFocusRecitationSessionController(ref);
+    });
 
-final quranFocusRecitationSleepTimerProvider = StateNotifierProvider<
-  QuranFocusRecitationSleepTimerController,
-  QuranFocusRecitationSleepTimerState
->((ref) {
-  return QuranFocusRecitationSleepTimerController(ref);
-});
+final quranFocusRecitationSleepTimerProvider =
+    StateNotifierProvider<
+      QuranFocusRecitationSleepTimerController,
+      QuranFocusRecitationSleepTimerState
+    >((ref) {
+      return QuranFocusRecitationSleepTimerController(ref);
+    });

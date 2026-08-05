@@ -18,11 +18,10 @@ class PrayerLocationSearchResult {
 }
 
 class PrayerLocationPickerSelection {
-  const PrayerLocationPickerSelection.device({
-    required this.label,
-  }) : latitude = null,
-       longitude = null,
-       useDeviceLocation = true;
+  const PrayerLocationPickerSelection.device({required this.label})
+    : latitude = null,
+      longitude = null,
+      useDeviceLocation = true;
 
   const PrayerLocationPickerSelection.manual({
     required this.label,
@@ -131,7 +130,10 @@ class PrayerLocationSearchService {
     final lat = double.tryParse('${item['lat'] ?? ''}');
     final lon = double.tryParse('${item['lon'] ?? ''}');
     final displayName = item['display_name']?.toString().trim();
-    if (lat == null || lon == null || displayName == null || displayName.isEmpty) {
+    if (lat == null ||
+        lon == null ||
+        displayName == null ||
+        displayName.isEmpty) {
       return null;
     }
     return PrayerLocationSearchResult(
@@ -194,9 +196,13 @@ final prayerLocationSearchServiceProvider =
       (ref) => PrayerLocationSearchService(),
     );
 
-final prayerRecentLocationsProvider = Provider<List<PrayerRecentLocation>>((ref) {
+final prayerRecentLocationsProvider = Provider<List<PrayerRecentLocation>>((
+  ref,
+) {
   final store = ref.watch(localStoreProvider);
-  final raw = store.getJsonList(PrayerLocationSearchService._recentLocationsKey);
+  final raw = store.getJsonList(
+    PrayerLocationSearchService._recentLocationsKey,
+  );
   if (raw == null) return const [];
   return raw
       .map(PrayerRecentLocation.fromJson)
@@ -221,7 +227,9 @@ class PrayerRecentLocationsStore {
   }
 
   List<PrayerRecentLocation> load() {
-    final raw = _store.getJsonList(PrayerLocationSearchService._recentLocationsKey);
+    final raw = _store.getJsonList(
+      PrayerLocationSearchService._recentLocationsKey,
+    );
     if (raw == null) return const [];
     return raw
         .map(PrayerRecentLocation.fromJson)
@@ -230,7 +238,6 @@ class PrayerRecentLocationsStore {
   }
 }
 
-final prayerRecentLocationsStoreProvider =
-    Provider<PrayerRecentLocationsStore>(
-      (ref) => PrayerRecentLocationsStore(ref.watch(localStoreProvider)),
-    );
+final prayerRecentLocationsStoreProvider = Provider<PrayerRecentLocationsStore>(
+  (ref) => PrayerRecentLocationsStore(ref.watch(localStoreProvider)),
+);

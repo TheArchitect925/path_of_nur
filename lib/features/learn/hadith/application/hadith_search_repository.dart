@@ -55,8 +55,10 @@ class HadithStoredSearch {
   }
 }
 
-class HadithRecentSearchesNotifier extends StateNotifier<List<HadithStoredSearch>> {
-  HadithRecentSearchesNotifier(this._store) : super(const <HadithStoredSearch>[]) {
+class HadithRecentSearchesNotifier
+    extends StateNotifier<List<HadithStoredSearch>> {
+  HadithRecentSearchesNotifier(this._store)
+    : super(const <HadithStoredSearch>[]) {
     _load();
   }
 
@@ -145,15 +147,17 @@ class HadithRecentSearchesNotifier extends StateNotifier<List<HadithStoredSearch
 }
 
 final hadithRecentSearchesProvider =
-    StateNotifierProvider<HadithRecentSearchesNotifier, List<HadithStoredSearch>>((
-      ref,
-    ) {
+    StateNotifierProvider<
+      HadithRecentSearchesNotifier,
+      List<HadithStoredSearch>
+    >((ref) {
       final store = ref.watch(localStoreProvider);
       return HadithRecentSearchesNotifier(store);
     });
 
-final hadithSuggestedSearchesProvider =
-    Provider<List<HadithSuggestedSearch>>((ref) {
+final hadithSuggestedSearchesProvider = Provider<List<HadithSuggestedSearch>>((
+  ref,
+) {
   return const <HadithSuggestedSearch>[
     HadithSuggestedSearch.intentions,
     HadithSuggestedSearch.sincerity,

@@ -142,7 +142,10 @@ void main() {
         isNotNull,
       );
       expect(
-        words.firstWhere((word) => word.sharedBeginnerWordId == 'bab').audio!.fallbackTextLabel,
+        words
+            .firstWhere((word) => word.sharedBeginnerWordId == 'bab')
+            .audio!
+            .fallbackTextLabel,
         'باب',
       );
     },
@@ -157,27 +160,46 @@ void main() {
     );
 
     expect(
-      packs.firstWhere((pack) => pack.id == 'adult_beginner_letters_pack').primaryTarget.moduleId,
+      packs
+          .firstWhere((pack) => pack.id == 'adult_beginner_letters_pack')
+          .primaryTarget
+          .moduleId,
       'foundations',
     );
     expect(
-      packs.firstWhere((pack) => pack.id == 'adult_phrase_reading_pack').primaryTarget.moduleId,
+      packs
+          .firstWhere((pack) => pack.id == 'adult_phrase_reading_pack')
+          .primaryTarget
+          .moduleId,
       'phrase_reading',
     );
     expect(
-      packs.firstWhere((pack) => pack.id == 'adult_tajweed_support_pack').primaryTarget.moduleId,
+      packs
+          .firstWhere((pack) => pack.id == 'adult_tajweed_support_pack')
+          .primaryTarget
+          .moduleId,
       'tajweed_basics',
     );
     expect(
-      packs.firstWhere((pack) => pack.id == 'adult_daily_words_theme_pack').primaryTarget.kind,
+      packs
+          .firstWhere((pack) => pack.id == 'adult_daily_words_theme_pack')
+          .primaryTarget
+          .kind,
       ArabicLearningRouteTargetKind.goNamed,
     );
     expect(
-      packs.firstWhere((pack) => pack.id == 'adult_daily_words_theme_pack').primaryTarget.routeName,
+      packs
+          .firstWhere((pack) => pack.id == 'adult_daily_words_theme_pack')
+          .primaryTarget
+          .routeName,
       'quranArabicReadiness',
     );
     expect(
-      packs.firstWhere((pack) => pack.id == 'adult_quran_linked_words_theme_pack').itemIds,
+      packs
+          .firstWhere(
+            (pack) => pack.id == 'adult_quran_linked_words_theme_pack',
+          )
+          .itemIds,
       contains('phrase:bismillah'),
     );
   });

@@ -83,11 +83,11 @@ enum QuranTeachingPracticeRecommendationType {
 class QuranTeachingSmartReviewController
     extends StateNotifier<QuranTeachingSmartReviewState> {
   QuranTeachingSmartReviewController(this._store)
-      : super(
-          QuranTeachingSmartReviewState.fromJson(
-            _store.getJsonMap(_quranTeachingSmartReviewKey),
-          ),
-        );
+    : super(
+        QuranTeachingSmartReviewState.fromJson(
+          _store.getJsonMap(_quranTeachingSmartReviewKey),
+        ),
+      );
 
   final LocalStore _store;
 
@@ -101,59 +101,87 @@ class QuranTeachingSmartReviewController
     for (final step in lesson.steps) {
       final recordId = 'step:${lesson.id}:${step.id}';
       final existing = updated[recordId];
-      updated[recordId] = (existing ??
-              QuranTeachingReviewRecord(
-                id: recordId,
-                lessonId: lesson.id,
-                moduleId: lesson.moduleId,
-                contentType: _contentTypeForStep(lesson, step),
+      updated[recordId] =
+          (existing ??
+                  QuranTeachingReviewRecord(
+                    id: recordId,
+                    lessonId: lesson.id,
+                    moduleId: lesson.moduleId,
+                    contentType: _contentTypeForStep(lesson, step),
+                    prompt: _promptForStep(step),
+                    promptArabic: step.focusArabic,
+                    promptSecondary: step.title,
+                    transliteration: step.transliteration,
+                    meaning: step.examples
+                        .firstWhere(
+                          (example) => example.meaning != null,
+                          orElse: () => const QuranTeachingExample(arabic: ''),
+                        )
+                        .meaning,
+                    hintText: step.explanation,
+                    audio: step.audio,
+                    promptImageAssetPath:
+                        step.visualAnchor?.imageAssetPath ??
+                        step.examples
+                            .firstWhere(
+                              (example) => example.imageAssetPath != null,
+                              orElse: () =>
+                                  const QuranTeachingExample(arabic: ''),
+                            )
+                            .imageAssetPath,
+                    tags: _tagsForLessonAndStep(lesson, step),
+                    availableInVisualMode: step.visualAnchor != null,
+                    memoryState: QuranTeachingMemoryState.newItem,
+                    nextDueAt: now.add(
+                      _reviewIntervals[QuranTeachingMemoryState.newItem]!,
+                    ),
+                  ))
+              .copyWith(
                 prompt: _promptForStep(step),
                 promptArabic: step.focusArabic,
                 promptSecondary: step.title,
                 transliteration: step.transliteration,
-                meaning: step.examples.firstWhere(
-                  (example) => example.meaning != null,
-                  orElse: () => const QuranTeachingExample(arabic: ''),
-                ).meaning,
                 hintText: step.explanation,
                 audio: step.audio,
                 promptImageAssetPath:
                     step.visualAnchor?.imageAssetPath ??
-                    step.examples.firstWhere(
-                      (example) => example.imageAssetPath != null,
-                      orElse: () => const QuranTeachingExample(arabic: ''),
-                    ).imageAssetPath,
+                    existing?.promptImageAssetPath,
                 tags: _tagsForLessonAndStep(lesson, step),
-                availableInVisualMode: step.visualAnchor != null,
-                memoryState: QuranTeachingMemoryState.newItem,
-                nextDueAt: now.add(_reviewIntervals[QuranTeachingMemoryState.newItem]!),
-              ))
-          .copyWith(
-            prompt: _promptForStep(step),
-            promptArabic: step.focusArabic,
-            promptSecondary: step.title,
-            transliteration: step.transliteration,
-            hintText: step.explanation,
-            audio: step.audio,
-            promptImageAssetPath:
-                step.visualAnchor?.imageAssetPath ?? existing?.promptImageAssetPath,
-            tags: _tagsForLessonAndStep(lesson, step),
-            availableInVisualMode:
-                existing?.availableInVisualMode == true || step.visualAnchor != null,
-          );
+                availableInVisualMode:
+                    existing?.availableInVisualMode == true ||
+                    step.visualAnchor != null,
+              );
 
       for (var i = 0; i < step.examples.length; i++) {
         final example = step.examples[i];
         if (example.arabic.trim().isEmpty) continue;
         final exampleId = 'example:${lesson.id}:${step.id}:$i';
         final exampleExisting = updated[exampleId];
-        updated[exampleId] = (exampleExisting ??
-                QuranTeachingReviewRecord(
-                  id: exampleId,
-                  lessonId: lesson.id,
-                  moduleId: lesson.moduleId,
-                  contentType: _contentTypeForExample(lesson, example),
-                  prompt: _promptForExample(lesson, example),
+        updated[exampleId] =
+            (exampleExisting ??
+                    QuranTeachingReviewRecord(
+                      id: exampleId,
+                      lessonId: lesson.id,
+                      moduleId: lesson.moduleId,
+                      contentType: _contentTypeForExample(lesson, example),
+                      prompt: _promptForExample(lesson, example),
+                      promptArabic: example.arabic,
+                      promptSecondary: example.note ?? step.title,
+                      transliteration: example.transliteration,
+                      meaning: example.meaning,
+                      hintText: example.note ?? step.explanation,
+                      audio: example.audio,
+                      promptImageAssetPath:
+                          example.imageAssetPath ??
+                          example.visualAnchor?.imageAssetPath,
+                      tags: _tagsForExample(lesson, step, example),
+                      availableInVisualMode: example.visualAnchor != null,
+                      memoryState: QuranTeachingMemoryState.newItem,
+                      nextDueAt: now.add(
+                        _reviewIntervals[QuranTeachingMemoryState.newItem]!,
+                      ),
+                    ))
+                .copyWith(
                   promptArabic: example.arabic,
                   promptSecondary: example.note ?? step.title,
                   transliteration: example.transliteration,
@@ -161,29 +189,14 @@ class QuranTeachingSmartReviewController
                   hintText: example.note ?? step.explanation,
                   audio: example.audio,
                   promptImageAssetPath:
-                      example.imageAssetPath ?? example.visualAnchor?.imageAssetPath,
+                      example.imageAssetPath ??
+                      example.visualAnchor?.imageAssetPath ??
+                      exampleExisting?.promptImageAssetPath,
                   tags: _tagsForExample(lesson, step, example),
-                  availableInVisualMode: example.visualAnchor != null,
-                  memoryState: QuranTeachingMemoryState.newItem,
-                  nextDueAt:
-                      now.add(_reviewIntervals[QuranTeachingMemoryState.newItem]!),
-                ))
-            .copyWith(
-              promptArabic: example.arabic,
-              promptSecondary: example.note ?? step.title,
-              transliteration: example.transliteration,
-              meaning: example.meaning,
-              hintText: example.note ?? step.explanation,
-              audio: example.audio,
-              promptImageAssetPath:
-                  example.imageAssetPath ??
-                  example.visualAnchor?.imageAssetPath ??
-                  exampleExisting?.promptImageAssetPath,
-              tags: _tagsForExample(lesson, step, example),
-              availableInVisualMode:
-                  exampleExisting?.availableInVisualMode == true ||
-                  example.visualAnchor != null,
-            );
+                  availableInVisualMode:
+                      exampleExisting?.availableInVisualMode == true ||
+                      example.visualAnchor != null,
+                );
       }
     }
 
@@ -217,12 +230,15 @@ class QuranTeachingSmartReviewController
                 correctOptionIds: quiz.correctOptionIds,
                 buildOrder: quiz.buildOrder,
                 truthAnswer: quiz.truthAnswer,
-                hintText: correct ? quiz.feedbackCorrect : quiz.feedbackIncorrect,
+                hintText: correct
+                    ? quiz.feedbackCorrect
+                    : quiz.feedbackIncorrect,
                 tags: tags,
                 availableInVisualMode: _supportsVisualMode(quiz),
                 memoryState: QuranTeachingMemoryState.newItem,
-                nextDueAt:
-                    now.add(_reviewIntervals[QuranTeachingMemoryState.newItem]!),
+                nextDueAt: now.add(
+                  _reviewIntervals[QuranTeachingMemoryState.newItem]!,
+                ),
               ))
           .copyWith(
             prompt: quiz.prompt,
@@ -250,7 +266,10 @@ class QuranTeachingSmartReviewController
       correct: correct,
       now: now,
     );
-    state = state.copyWith(records: updatedRecords, weakAreas: updatedWeakAreas);
+    state = state.copyWith(
+      records: updatedRecords,
+      weakAreas: updatedWeakAreas,
+    );
     _save();
   }
 
@@ -277,13 +296,17 @@ class QuranTeachingSmartReviewController
                 correctOptionIds: item.correctOptionIds,
                 buildOrder: item.buildOrder,
                 truthAnswer: item.truthAnswer,
-                hintText:
-                    correct ? item.feedbackCorrect : item.feedbackIncorrect,
+                hintText: correct
+                    ? item.feedbackCorrect
+                    : item.feedbackIncorrect,
                 tags: tags,
-                availableInVisualMode: _supportsVisualModeFromOptions(item.options),
+                availableInVisualMode: _supportsVisualModeFromOptions(
+                  item.options,
+                ),
                 memoryState: QuranTeachingMemoryState.practicing,
-                nextDueAt:
-                    now.add(_reviewIntervals[QuranTeachingMemoryState.practicing]!),
+                nextDueAt: now.add(
+                  _reviewIntervals[QuranTeachingMemoryState.practicing]!,
+                ),
               ))
           .copyWith(
             hintText: correct ? item.feedbackCorrect : item.feedbackIncorrect,
@@ -326,13 +349,18 @@ class QuranTeachingSmartReviewController
     }
 
     final visualModeEnabled = progress.visualModeEnabled;
-    final dueRecords = state.records.values.where((record) {
-      if (visualModeEnabled == false && record.contentType == QuranTeachingReviewContentType.visualModeItem) {
-        return false;
-      }
-      return record.isDue || record.reviewCount == 0;
-    }).toList(growable: true)
-      ..sort((a, b) => b.priorityScore.compareTo(a.priorityScore));
+    final dueRecords =
+        state.records.values
+            .where((record) {
+              if (visualModeEnabled == false &&
+                  record.contentType ==
+                      QuranTeachingReviewContentType.visualModeItem) {
+                return false;
+              }
+              return record.isDue || record.reviewCount == 0;
+            })
+            .toList(growable: true)
+          ..sort((a, b) => b.priorityScore.compareTo(a.priorityScore));
 
     final selected = <String>[];
 
@@ -350,7 +378,8 @@ class QuranTeachingSmartReviewController
         final ref = 'record:${record.id}';
         if (!predicate(record) || selected.contains(ref)) continue;
         selected.add(ref);
-        if (selected.where((item) => item.startsWith('record:')).length >= target) {
+        if (selected.where((item) => item.startsWith('record:')).length >=
+            target) {
           break;
         }
       }
@@ -367,9 +396,9 @@ class QuranTeachingSmartReviewController
     final topWeakTag = state.weakAreas.values.isEmpty
         ? null
         : (state.weakAreas.values.toList(growable: false)
-              ..sort((a, b) => b.priorityScore.compareTo(a.priorityScore)))
-            .first
-            .tag;
+                ..sort((a, b) => b.priorityScore.compareTo(a.priorityScore)))
+              .first
+              .tag;
 
     if (topWeakTag != null) {
       for (final record in dueRecords) {
@@ -416,10 +445,7 @@ class QuranTeachingSmartReviewController
     _save();
   }
 
-  void completeTodayItem({
-    required String itemRef,
-    required bool correct,
-  }) {
+  void completeTodayItem({required String itemRef, required bool correct}) {
     final session = state.todaySession;
     if (session == null || session.completedItemRefs.contains(itemRef)) return;
     final completed = [...session.completedItemRefs, itemRef];
@@ -433,7 +459,9 @@ class QuranTeachingSmartReviewController
     );
     final updatedHistory = [...state.completedSessions];
     if (updatedSession.completedAt != null) {
-      updatedHistory.removeWhere((item) => item.dateKey == updatedSession.dateKey);
+      updatedHistory.removeWhere(
+        (item) => item.dateKey == updatedSession.dateKey,
+      );
       updatedHistory.insert(
         0,
         QuranTeachingCompletedReviewSession(
@@ -478,19 +506,22 @@ class QuranTeachingSmartReviewController
   }
 }
 
-final quranTeachingSmartReviewProvider = StateNotifierProvider<
-  QuranTeachingSmartReviewController,
-  QuranTeachingSmartReviewState
->((ref) {
-  return QuranTeachingSmartReviewController(ref.watch(localStoreProvider));
-});
+final quranTeachingSmartReviewProvider =
+    StateNotifierProvider<
+      QuranTeachingSmartReviewController,
+      QuranTeachingSmartReviewState
+    >((ref) {
+      return QuranTeachingSmartReviewController(ref.watch(localStoreProvider));
+    });
 
 final quranTeachingDailyReviewSummaryProvider =
     Provider<QuranTeachingDailyReviewSummary>((ref) {
       final review = ref.watch(quranTeachingSmartReviewProvider);
       final session = review.todaySession;
       final hasAnyLearnedItems = review.records.isNotEmpty;
-      final dueItems = review.records.values.where((record) => record.isDue).length;
+      final dueItems = review.records.values
+          .where((record) => record.isDue)
+          .length;
       return QuranTeachingDailyReviewSummary(
         itemCount: session?.itemRefs.length ?? 0,
         estimatedMinutes: session?.estimatedMinutes ?? 0,
@@ -499,7 +530,8 @@ final quranTeachingDailyReviewSummaryProvider =
         isComplete: session?.isComplete == true,
         hasDueItems: dueItems > 0 || (session?.itemRefs.isNotEmpty ?? false),
         completedCount: session?.completedItemRefs.length ?? 0,
-        inProgress: session != null &&
+        inProgress:
+            session != null &&
             session.completedItemRefs.isNotEmpty &&
             session.isComplete == false,
       );
@@ -527,14 +559,17 @@ final quranTeachingReviewDashboardStatsProvider =
             .length,
         itemsDueToday:
             records.where((item) => item.isDue).length + activeMistakes.length,
-        trickyItems: records
+        trickyItems:
+            records
                 .where((item) => item.failureCount > item.successCount)
                 .length +
             review.weakAreas.values
                 .where((item) => item.failureCount > item.successCount)
                 .length,
         masteredCount: records
-            .where((item) => item.memoryState == QuranTeachingMemoryState.mastered)
+            .where(
+              (item) => item.memoryState == QuranTeachingMemoryState.mastered,
+            )
             .length,
       );
     });
@@ -556,7 +591,10 @@ final quranTeachingPracticeRecommendationsProvider =
         );
       }
 
-      final dueWords = review.records.values.where(_isWordLike).where((r) => r.isDue).length;
+      final dueWords = review.records.values
+          .where(_isWordLike)
+          .where((r) => r.isDue)
+          .length;
       if (dueWords > 0) {
         recommendations.add(
           QuranTeachingPracticeRecommendation(
@@ -567,8 +605,10 @@ final quranTeachingPracticeRecommendationsProvider =
         );
       }
 
-      final duePhrases =
-          review.records.values.where(_isPhraseLike).where((r) => r.isDue).length;
+      final duePhrases = review.records.values
+          .where(_isPhraseLike)
+          .where((r) => r.isDue)
+          .length;
       if (duePhrases > 0) {
         recommendations.add(
           QuranTeachingPracticeRecommendation(
@@ -973,7 +1013,9 @@ String _buildMixSummary({
   if (words > 0) parts.add('$words words');
   if (phrases > 0) parts.add('$phrases phrases');
   if (tricky > 0 || mistakes.isNotEmpty) {
-    parts.add('${math.max(tricky, mistakes.isNotEmpty ? 1 : 0)} tricky item${math.max(tricky, mistakes.isNotEmpty ? 1 : 0) == 1 ? '' : 's'}');
+    parts.add(
+      '${math.max(tricky, mistakes.isNotEmpty ? 1 : 0)} tricky item${math.max(tricky, mistakes.isNotEmpty ? 1 : 0) == 1 ? '' : 's'}',
+    );
   }
   return parts.isEmpty ? 'A short mixed review.' : parts.join(', ');
 }

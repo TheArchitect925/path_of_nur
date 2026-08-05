@@ -88,17 +88,23 @@ class _JournalCreatePageState extends ConsumerState<JournalCreatePage> {
               const SizedBox(height: 10),
               TextField(
                 controller: _topicController,
-                decoration: InputDecoration(labelText: l10n.journalLinkedTopicLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.journalLinkedTopicLabel,
+                ),
               ),
               const SizedBox(height: 10),
               TextField(
                 controller: _quranRefController,
-                decoration: InputDecoration(labelText: l10n.journalLinkedQuranLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.journalLinkedQuranLabel,
+                ),
               ),
               const SizedBox(height: 10),
               TextField(
                 controller: _hadithRefController,
-                decoration: InputDecoration(labelText: l10n.journalLinkedHadithLabel),
+                decoration: InputDecoration(
+                  labelText: l10n.journalLinkedHadithLabel,
+                ),
               ),
               const SizedBox(height: 10),
               TextField(
@@ -126,17 +132,21 @@ class _JournalCreatePageState extends ConsumerState<JournalCreatePage> {
                         .map((item) => item.trim())
                         .where((item) => item.isNotEmpty)
                         .toList();
-                    ref.read(journalProvider.notifier).addEntry(
+                    ref
+                        .read(journalProvider.notifier)
+                        .addEntry(
                           title: _titleController.text,
                           body: _bodyController.text,
                           type: _type,
                           linkedTopic: _topicController.text.trim().isEmpty
                               ? null
                               : _topicController.text.trim(),
-                          linkedQuranRef: _quranRefController.text.trim().isEmpty
+                          linkedQuranRef:
+                              _quranRefController.text.trim().isEmpty
                               ? null
                               : _quranRefController.text.trim(),
-                          linkedHadithRef: _hadithRefController.text.trim().isEmpty
+                          linkedHadithRef:
+                              _hadithRefController.text.trim().isEmpty
                               ? null
                               : _hadithRefController.text.trim(),
                           photoPath: _photoController.text.trim().isEmpty

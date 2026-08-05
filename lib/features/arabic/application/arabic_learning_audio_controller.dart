@@ -24,11 +24,9 @@ abstract class ArabicLearningAudioBackend {
 }
 
 class LiveArabicLearningAudioBackend implements ArabicLearningAudioBackend {
-  LiveArabicLearningAudioBackend({
-    AudioPlayer? player,
-    FlutterTts? tts,
-  }) : _player = player ?? AudioPlayer(),
-       _tts = tts ?? FlutterTts();
+  LiveArabicLearningAudioBackend({AudioPlayer? player, FlutterTts? tts})
+    : _player = player ?? AudioPlayer(),
+      _tts = tts ?? FlutterTts();
 
   final AudioPlayer _player;
   final FlutterTts _tts;
@@ -88,23 +86,22 @@ class LiveArabicLearningAudioBackend implements ArabicLearningAudioBackend {
   }
 }
 
-final arabicLearningAudioBackendProvider = Provider<ArabicLearningAudioBackend>((
-  ref,
-) {
-  final backend = LiveArabicLearningAudioBackend();
-  ref.onDispose(() {
-    unawaited(backend.dispose());
-  });
-  return backend;
-});
+final arabicLearningAudioBackendProvider = Provider<ArabicLearningAudioBackend>(
+  (ref) {
+    final backend = LiveArabicLearningAudioBackend();
+    ref.onDispose(() {
+      unawaited(backend.dispose());
+    });
+    return backend;
+  },
+);
 
 class ArabicLearningAudioController
     extends StateNotifier<ArabicLearningAudioState> {
   ArabicLearningAudioController(this._store, this._backend, this._assetBundle)
     : super(
         ArabicLearningAudioState(
-          playbackSpeed:
-              _store.getBool(_arabicLearningSlowPlaybackKey) == true
+          playbackSpeed: _store.getBool(_arabicLearningSlowPlaybackKey) == true
               ? ArabicLearningPlaybackSpeed.slow
               : ArabicLearningPlaybackSpeed.normal,
         ),
@@ -115,7 +112,8 @@ class ArabicLearningAudioController
   final ArabicLearningAssetBundle _assetBundle;
   int _playbackRunId = 0;
 
-  double get _assetSpeed => state.playbackSpeed == ArabicLearningPlaybackSpeed.slow
+  double get _assetSpeed =>
+      state.playbackSpeed == ArabicLearningPlaybackSpeed.slow
       ? _slowAssetPlaybackSpeed
       : _normalAssetPlaybackSpeed;
 
@@ -163,14 +161,8 @@ class ArabicLearningAudioController
     );
   }
 
-  Future<bool> playText({
-    required String playbackId,
-    required String text,
-  }) {
-    return playResolvedAudio(
-      playbackId: playbackId,
-      fallbackText: text,
-    );
+  Future<bool> playText({required String playbackId, required String text}) {
+    return playResolvedAudio(playbackId: playbackId, fallbackText: text);
   }
 
   Future<bool> playResolvedAudio({
@@ -180,10 +172,7 @@ class ArabicLearningAudioController
     String? fallbackText,
   }) async {
     final runId = ++_playbackRunId;
-    state = state.copyWith(
-      activePlaybackId: playbackId,
-      isPlaying: true,
-    );
+    state = state.copyWith(activePlaybackId: playbackId, isPlaying: true);
     await _backend.stop();
 
     final candidates = <String>[
@@ -219,30 +208,25 @@ class ArabicLearningAudioController
   Future<void> stop() async {
     _playbackRunId += 1;
     await _backend.stop();
-    state = state.copyWith(
-      isPlaying: false,
-      clearActivePlaybackId: true,
-    );
+    state = state.copyWith(isPlaying: false, clearActivePlaybackId: true);
   }
 
   void _finishPlayback(int runId) {
     if (_playbackRunId != runId) {
       return;
     }
-    state = state.copyWith(
-      isPlaying: false,
-      clearActivePlaybackId: true,
-    );
+    state = state.copyWith(isPlaying: false, clearActivePlaybackId: true);
   }
 }
 
-final arabicLearningAudioControllerProvider = StateNotifierProvider<
-  ArabicLearningAudioController,
-  ArabicLearningAudioState
->((ref) {
-  return ArabicLearningAudioController(
-    ref.watch(localStoreProvider),
-    ref.watch(arabicLearningAudioBackendProvider),
-    ref.watch(arabicLearningAssetBundleProvider),
-  );
-});
+final arabicLearningAudioControllerProvider =
+    StateNotifierProvider<
+      ArabicLearningAudioController,
+      ArabicLearningAudioState
+    >((ref) {
+      return ArabicLearningAudioController(
+        ref.watch(localStoreProvider),
+        ref.watch(arabicLearningAudioBackendProvider),
+        ref.watch(arabicLearningAssetBundleProvider),
+      );
+    });

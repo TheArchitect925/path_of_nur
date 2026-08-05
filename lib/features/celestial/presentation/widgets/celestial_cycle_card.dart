@@ -486,11 +486,7 @@ class _CelestialCardBody extends StatelessWidget {
 }
 
 class _CelestialGlassShell extends StatelessWidget {
-  const _CelestialGlassShell({
-    required this.child,
-    this.state,
-    this.onTap,
-  });
+  const _CelestialGlassShell({required this.child, this.state, this.onTap});
 
   final Widget child;
   final CelestialSkyState? state;

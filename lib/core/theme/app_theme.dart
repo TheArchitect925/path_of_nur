@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/material.dart';
 import 'app_spacing.dart';
 import 'app_radii.dart';
@@ -17,12 +18,7 @@ enum AppThemeMode {
   noorKids,
 }
 
-enum AppPageTransitionStyle {
-  defaultSystem,
-  gentleFade,
-  iosStyle,
-  noAnimation,
-}
+enum AppPageTransitionStyle { defaultSystem, gentleFade, iosStyle, noAnimation }
 
 const double _glassContrastAlphaMin = 0.82;
 const double _glassContrastAlphaMax = 0.95;
@@ -1080,22 +1076,21 @@ class AppTheme {
   );
 }
 
-PageTransitionsTheme? _pageTransitionsThemeFor(
-  AppPageTransitionStyle style,
-) {
+PageTransitionsTheme? _pageTransitionsThemeFor(AppPageTransitionStyle style) {
   if (style == AppPageTransitionStyle.defaultSystem) {
     return null;
   }
   final builder = switch (style) {
-    AppPageTransitionStyle.defaultSystem => const FadeUpwardsPageTransitionsBuilder(),
-    AppPageTransitionStyle.gentleFade => const _GentleFadePageTransitionsBuilder(),
+    AppPageTransitionStyle.defaultSystem =>
+      const FadeUpwardsPageTransitionsBuilder(),
+    AppPageTransitionStyle.gentleFade =>
+      const _GentleFadePageTransitionsBuilder(),
     AppPageTransitionStyle.iosStyle => const CupertinoPageTransitionsBuilder(),
-    AppPageTransitionStyle.noAnimation => const _NoAnimationPageTransitionsBuilder(),
+    AppPageTransitionStyle.noAnimation =>
+      const _NoAnimationPageTransitionsBuilder(),
   };
   return PageTransitionsTheme(
-    builders: {
-      for (final platform in TargetPlatform.values) platform: builder,
-    },
+    builders: {for (final platform in TargetPlatform.values) platform: builder},
   );
 }
 

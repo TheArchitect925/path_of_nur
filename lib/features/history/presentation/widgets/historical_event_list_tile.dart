@@ -7,11 +7,7 @@ import '../../domain/historical_event_models.dart';
 import '../history_ui_helpers.dart';
 
 class HistoricalEventListTile extends StatelessWidget {
-  const HistoricalEventListTile({
-    super.key,
-    required this.event,
-    this.match,
-  });
+  const HistoricalEventListTile({super.key, required this.event, this.match});
 
   final HistoricalEvent event;
   final HistoricalTodayMatch? match;
@@ -34,7 +30,9 @@ class HistoricalEventListTile extends StatelessWidget {
               runSpacing: 8,
               children: [
                 if (match != null)
-                  HistoricalInfoBadge(label: historicalMatchLabel(l10n, match!)),
+                  HistoricalInfoBadge(
+                    label: historicalMatchLabel(l10n, match!),
+                  ),
                 for (final category in event.categories.take(2))
                   HistoricalInfoBadge(
                     label: historicalCategoryLabel(l10n, category),
@@ -57,9 +55,9 @@ class HistoricalEventListTile extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               formatHistoricalGregorianDate(context, l10n, event.gregorian),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
             ),
             if (event.hijri.hasMonthDay && event.hijri.year != null)
               Text(
@@ -91,9 +89,7 @@ class HistoricalInfoBadge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: Theme.of(
-          context,
-        ).colorScheme.primary.withValues(alpha: 0.12),
+        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
       ),
       child: Text(
         label,

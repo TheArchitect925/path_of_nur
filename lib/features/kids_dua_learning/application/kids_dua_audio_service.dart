@@ -64,7 +64,9 @@ class KidsDuaAudioState {
     bool clearErrorMessage = false,
   }) {
     return KidsDuaAudioState(
-      currentDuaId: clearCurrentDuaId ? null : (currentDuaId ?? this.currentDuaId),
+      currentDuaId: clearCurrentDuaId
+          ? null
+          : (currentDuaId ?? this.currentDuaId),
       currentVariantId: clearCurrentVariantId
           ? null
           : (currentVariantId ?? this.currentVariantId),
@@ -78,7 +80,9 @@ class KidsDuaAudioState {
       isCompleted: isCompleted ?? this.isCompleted,
       isAudioAvailable: isAudioAvailable ?? this.isAudioAvailable,
       isSegmentFallback: isSegmentFallback ?? this.isSegmentFallback,
-      errorMessage: clearErrorMessage ? null : (errorMessage ?? this.errorMessage),
+      errorMessage: clearErrorMessage
+          ? null
+          : (errorMessage ?? this.errorMessage),
     );
   }
 }
@@ -99,8 +103,8 @@ final kidsDuaAudioAvailabilityProvider =
 
 class KidsDuaAudioController extends StateNotifier<KidsDuaAudioState> {
   KidsDuaAudioController()
-      : _player = AudioPlayer(),
-        super(const KidsDuaAudioState()) {
+    : _player = AudioPlayer(),
+      super(const KidsDuaAudioState()) {
     _durationSub = _player.durationStream.listen((duration) {
       state = state.copyWith(totalDuration: duration ?? Duration.zero);
     });
@@ -108,7 +112,8 @@ class KidsDuaAudioController extends StateNotifier<KidsDuaAudioState> {
       state = state.copyWith(currentPosition: position);
     });
     _playerStateSub = _player.playerStateStream.listen((playerState) {
-      final completed = playerState.processingState == ProcessingState.completed;
+      final completed =
+          playerState.processingState == ProcessingState.completed;
       state = state.copyWith(
         isPlaying: playerState.playing,
         isCompleted: completed,
@@ -158,7 +163,9 @@ class KidsDuaAudioController extends StateNotifier<KidsDuaAudioState> {
         activeSegmentId: activeSegmentId,
         isLoading: false,
         isAudioAvailable: true,
-        totalDuration: _player.duration ?? Duration(seconds: variant.estimatedDurationSeconds),
+        totalDuration:
+            _player.duration ??
+            Duration(seconds: variant.estimatedDurationSeconds),
       );
       await _player.play();
       return true;
@@ -187,7 +194,10 @@ class KidsDuaAudioController extends StateNotifier<KidsDuaAudioState> {
   }
 
   Future<void> clearSegmentHighlight() async {
-    state = state.copyWith(clearActiveSegmentId: true, isSegmentFallback: false);
+    state = state.copyWith(
+      clearActiveSegmentId: true,
+      isSegmentFallback: false,
+    );
   }
 
   Future<void> close() async {
@@ -221,7 +231,9 @@ class KidsDuaAudioResolver {
     final keys = await _assetKeys();
     return KidsDuaResolvedAudio(
       variant: variant,
-      resolvedAssetPath: keys.contains(variant.assetPath) ? variant.assetPath : null,
+      resolvedAssetPath: keys.contains(variant.assetPath)
+          ? variant.assetPath
+          : null,
     );
   }
 }

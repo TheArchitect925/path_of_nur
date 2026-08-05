@@ -26,13 +26,17 @@ class BedtimeStoryPlayerBar extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final audioState = ref.watch(bedtimeStoryAudioControllerProvider);
     final queueState = ref.watch(bedtimeStoryQueueControllerProvider);
-    final queueController = ref.read(bedtimeStoryQueueControllerProvider.notifier);
+    final queueController = ref.read(
+      bedtimeStoryQueueControllerProvider.notifier,
+    );
     final isCurrentStory = audioState.currentStoryId == story.id;
     final audioAvailable = media.audio.isAvailable;
     final duration = isCurrentStory && audioState.totalDuration > Duration.zero
         ? audioState.totalDuration
         : story.estimatedDuration;
-    final position = isCurrentStory ? audioState.currentPosition : Duration.zero;
+    final position = isCurrentStory
+        ? audioState.currentPosition
+        : Duration.zero;
     final maxMs = duration.inMilliseconds <= 0
         ? 1.0
         : duration.inMilliseconds.toDouble();
@@ -69,11 +73,7 @@ class BedtimeStoryPlayerBar extends ConsumerWidget {
                 ),
               ),
               Text(
-                _durationLabel(
-                  context,
-                  current: position,
-                  total: duration,
-                ),
+                _durationLabel(context, current: position, total: duration),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               IconButton(
@@ -84,19 +84,16 @@ class BedtimeStoryPlayerBar extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 4),
-          Text(
-            story.shortTitle,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          Text(story.shortTitle, style: Theme.of(context).textTheme.bodyMedium),
           const SizedBox(height: 10),
           Slider(
             value: value.toDouble(),
             max: maxMs,
             onChanged: audioAvailable && isCurrentStory
-                    ? (next) async {
-                    await ref.read(bedtimeStoryAudioControllerProvider.notifier).seek(
-                      Duration(milliseconds: next.round()),
-                    );
+                ? (next) async {
+                    await ref
+                        .read(bedtimeStoryAudioControllerProvider.notifier)
+                        .seek(Duration(milliseconds: next.round()));
                   }
                 : null,
           ),
@@ -108,13 +105,21 @@ class BedtimeStoryPlayerBar extends ConsumerWidget {
                 onPressed: audioAvailable
                     ? () async {
                         if (isCurrentStory && audioState.isPlaying) {
-                          await ref.read(bedtimeStoryAudioControllerProvider.notifier).pause();
+                          await ref
+                              .read(
+                                bedtimeStoryAudioControllerProvider.notifier,
+                              )
+                              .pause();
                           return;
                         }
                         if (isCurrentStory &&
                             !audioState.isPlaying &&
                             audioState.currentPosition > Duration.zero) {
-                          await ref.read(bedtimeStoryAudioControllerProvider.notifier).resume();
+                          await ref
+                              .read(
+                                bedtimeStoryAudioControllerProvider.notifier,
+                              )
+                              .resume();
                           return;
                         }
                         await queueController.playStoryWithBestQueue(story);
@@ -135,14 +140,18 @@ class BedtimeStoryPlayerBar extends ConsumerWidget {
               ),
               OutlinedButton.icon(
                 onPressed: audioAvailable && isCurrentStory
-                    ? () => ref.read(bedtimeStoryAudioControllerProvider.notifier).restart()
+                    ? () => ref
+                          .read(bedtimeStoryAudioControllerProvider.notifier)
+                          .restart()
                     : null,
                 icon: const Icon(Icons.restart_alt_rounded),
                 label: Text(l10n.bedtimeStoriesRestartAction),
               ),
               if (audioAvailable)
                 OutlinedButton.icon(
-                  onPressed: queueState.hasPrevious ? queueController.previous : null,
+                  onPressed: queueState.hasPrevious
+                      ? queueController.previous
+                      : null,
                   icon: const Icon(Icons.skip_previous_rounded),
                   label: Text(l10n.bedtimeStoriesPreviousAction),
                 ),
@@ -158,13 +167,15 @@ class BedtimeStoryPlayerBar extends ConsumerWidget {
                 ),
               if (audioAvailable)
                 OutlinedButton.icon(
-                  onPressed: () => queueController.seekBy(const Duration(seconds: -10)),
+                  onPressed: () =>
+                      queueController.seekBy(const Duration(seconds: -10)),
                   icon: const Icon(Icons.replay_10_rounded),
                   label: Text(l10n.bedtimeStoriesBackShortAction),
                 ),
               if (audioAvailable)
                 OutlinedButton.icon(
-                  onPressed: () => queueController.seekBy(const Duration(seconds: 10)),
+                  onPressed: () =>
+                      queueController.seekBy(const Duration(seconds: 10)),
                   icon: const Icon(Icons.forward_10_rounded),
                   label: Text(l10n.bedtimeStoriesForwardShortAction),
                 ),

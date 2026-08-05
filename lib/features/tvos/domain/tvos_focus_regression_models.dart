@@ -1,10 +1,6 @@
 import 'tvos_foundation_models.dart';
 
-enum TVOSFocusRegressionRisk {
-  low,
-  medium,
-  high,
-}
+enum TVOSFocusRegressionRisk { low, medium, high }
 
 class TVOSFocusQaScenario {
   const TVOSFocusQaScenario({

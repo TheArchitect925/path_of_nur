@@ -342,9 +342,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                           drops: result.dropsEarned,
                         ),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurfaceVariant,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                       if (dailyProgress?.isCompleted == true) ...[
@@ -353,9 +351,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                           l10n.crosswordDailyCompleteBadge,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.primary,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.w600,
                               ),
                         ),

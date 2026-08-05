@@ -25,10 +25,11 @@ class HadithProgressState {
   }
 
   Map<String, dynamic> toJson() => {
-        'lessonProgressById':
-            lessonProgressById.map((key, value) => MapEntry(key, value.toJson())),
-        'recentLessonIds': recentLessonIds,
-      };
+    'lessonProgressById': lessonProgressById.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'recentLessonIds': recentLessonIds,
+  };
 
   static HadithProgressState fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -58,7 +59,10 @@ class HadithProgressState {
       }
     }
 
-    return HadithProgressState(lessonProgressById: map, recentLessonIds: recent);
+    return HadithProgressState(
+      lessonProgressById: map,
+      recentLessonIds: recent,
+    );
   }
 }
 
@@ -125,7 +129,7 @@ class HadithSubcategoryProgress {
 
 class HadithProgressNotifier extends StateNotifier<HadithProgressState> {
   HadithProgressNotifier(this._store, this._oceanDrops)
-      : super(HadithProgressState.fromJson(_store.getJsonMap(_key)));
+    : super(HadithProgressState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'learn.hadith.progress.v1';
   final LocalStore _store;
@@ -173,8 +177,9 @@ class HadithProgressNotifier extends StateNotifier<HadithProgressState> {
     final updated = current.copyWith(
       status: status,
       lastOpenedIso: DateTime.now().toIso8601String(),
-      completedIso:
-          status == HadithLessonStatus.completed ? DateTime.now().toIso8601String() : null,
+      completedIso: status == HadithLessonStatus.completed
+          ? DateTime.now().toIso8601String()
+          : null,
     );
 
     final map = Map<String, HadithLessonProgress>.from(state.lessonProgressById)
@@ -199,11 +204,11 @@ class HadithProgressNotifier extends StateNotifier<HadithProgressState> {
 
 final hadithProgressProvider =
     StateNotifierProvider<HadithProgressNotifier, HadithProgressState>(
-  (ref) => HadithProgressNotifier(
-    ref.watch(localStoreProvider),
-    ref.read(oceanDropServiceProvider),
-  ),
-);
+      (ref) => HadithProgressNotifier(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      ),
+    );
 
 final hadithProgressSummaryProvider = Provider<HadithProgressSummary>((ref) {
   final state = ref.watch(hadithProgressProvider);
@@ -250,62 +255,62 @@ final hadithProgressSummaryProvider = Provider<HadithProgressSummary>((ref) {
 
 final hadithThemeProgressProvider =
     Provider.family<HadithThemeProgress, String>((ref, themeId) {
-  final state = ref.watch(hadithProgressProvider);
-  final subcategories = hadithSubcategoriesForTheme(themeId);
-  final lessonIds = subcategories.expand((item) => item.lessonIds).toList();
+      final state = ref.watch(hadithProgressProvider);
+      final subcategories = hadithSubcategoriesForTheme(themeId);
+      final lessonIds = subcategories.expand((item) => item.lessonIds).toList();
 
-  var completed = 0;
-  var inProgress = 0;
-  for (final id in lessonIds) {
-    final p = state.lessonProgressById[id];
-    if (p == null) continue;
-    if (p.status == HadithLessonStatus.completed) {
-      completed += 1;
-    } else if (p.status == HadithLessonStatus.inProgress) {
-      inProgress += 1;
-    }
-  }
+      var completed = 0;
+      var inProgress = 0;
+      for (final id in lessonIds) {
+        final p = state.lessonProgressById[id];
+        if (p == null) continue;
+        if (p.status == HadithLessonStatus.completed) {
+          completed += 1;
+        } else if (p.status == HadithLessonStatus.inProgress) {
+          inProgress += 1;
+        }
+      }
 
-  return HadithThemeProgress(
-    themeId: themeId,
-    totalLessons: lessonIds.length,
-    completedLessons: completed,
-    inProgressLessons: inProgress,
-  );
-});
+      return HadithThemeProgress(
+        themeId: themeId,
+        totalLessons: lessonIds.length,
+        completedLessons: completed,
+        inProgressLessons: inProgress,
+      );
+    });
 
 final hadithSubcategoryProgressProvider =
     Provider.family<HadithSubcategoryProgress, String>((ref, subcategoryId) {
-  final state = ref.watch(hadithProgressProvider);
-  final sub = hadithSubcategoryById(subcategoryId);
-  if (sub == null) {
-    return const HadithSubcategoryProgress(
-      subcategoryId: '',
-      totalLessons: 0,
-      completedLessons: 0,
-      inProgressLessons: 0,
-    );
-  }
+      final state = ref.watch(hadithProgressProvider);
+      final sub = hadithSubcategoryById(subcategoryId);
+      if (sub == null) {
+        return const HadithSubcategoryProgress(
+          subcategoryId: '',
+          totalLessons: 0,
+          completedLessons: 0,
+          inProgressLessons: 0,
+        );
+      }
 
-  var completed = 0;
-  var inProgress = 0;
-  for (final id in sub.lessonIds) {
-    final p = state.lessonProgressById[id];
-    if (p == null) continue;
-    if (p.status == HadithLessonStatus.completed) {
-      completed += 1;
-    } else if (p.status == HadithLessonStatus.inProgress) {
-      inProgress += 1;
-    }
-  }
+      var completed = 0;
+      var inProgress = 0;
+      for (final id in sub.lessonIds) {
+        final p = state.lessonProgressById[id];
+        if (p == null) continue;
+        if (p.status == HadithLessonStatus.completed) {
+          completed += 1;
+        } else if (p.status == HadithLessonStatus.inProgress) {
+          inProgress += 1;
+        }
+      }
 
-  return HadithSubcategoryProgress(
-    subcategoryId: subcategoryId,
-    totalLessons: sub.lessonIds.length,
-    completedLessons: completed,
-    inProgressLessons: inProgress,
-  );
-});
+      return HadithSubcategoryProgress(
+        subcategoryId: subcategoryId,
+        totalLessons: sub.lessonIds.length,
+        completedLessons: completed,
+        inProgressLessons: inProgress,
+      );
+    });
 
 final hadithSuggestedThemeOrderProvider = Provider<List<HadithTheme>>(
   (_) => hadithThemesInSuggestedOrder(),

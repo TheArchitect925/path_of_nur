@@ -13,17 +13,20 @@ import '../domain/learner_progression_models.dart';
 String learnerProgressionStorageKeyForLearner(String learnerId) =>
     'progression.learner.v1.$learnerId';
 
-final learnerProgressionControllerProvider = StateNotifierProvider.family<
-  LearnerProgressionController,
-  LearnerProgressionState,
-  String
->((ref, learnerId) {
-  return LearnerProgressionController(ref, learnerId);
-});
+final learnerProgressionControllerProvider =
+    StateNotifierProvider.family<
+      LearnerProgressionController,
+      LearnerProgressionState,
+      String
+    >((ref, learnerId) {
+      return LearnerProgressionController(ref, learnerId);
+    });
 
 final learnerProgressionSummaryProvider =
     Provider.family<LearnerProgressionSummary, String>((ref, learnerId) {
-      final controller = ref.watch(learnerProgressionControllerProvider(learnerId).notifier);
+      final controller = ref.watch(
+        learnerProgressionControllerProvider(learnerId).notifier,
+      );
       ref.watch(learnerProgressionControllerProvider(learnerId));
       return controller.buildSummary();
     });
@@ -34,9 +37,9 @@ class LearnerProgressionController
     : _store = _ref.read(localStoreProvider),
       super(
         LearnerProgressionState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
-                learnerProgressionStorageKeyForLearner(learnerId),
-              ),
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(learnerProgressionStorageKeyForLearner(learnerId)),
         ),
       );
 
@@ -75,10 +78,7 @@ class LearnerProgressionController
       occurredAtIso: timestamp.toIso8601String(),
       xpAwarded: xp,
       oceanDropsAwarded: drops,
-      metadata: <String, Object?>{
-        ...metadata,
-        'learnerId': learnerId,
-      },
+      metadata: <String, Object?>{...metadata, 'learnerId': learnerId},
     );
     final nextEntries = Map<String, LearnerProgressionEntry>.from(
       state.entriesBySourceRef,
@@ -89,7 +89,10 @@ class LearnerProgressionController
     );
 
     final nextMetrics = _buildMetrics(nextEntries.values);
-    final newBadgeIds = _unlockBadges(metrics: nextMetrics, occurredAt: timestamp);
+    final newBadgeIds = _unlockBadges(
+      metrics: nextMetrics,
+      occurredAt: timestamp,
+    );
     final newMilestoneIds = _unlockMilestones(
       metrics: nextMetrics,
       occurredAt: timestamp,
@@ -97,26 +100,24 @@ class LearnerProgressionController
 
     if (mirrorToJourney) {
       if (xp > 0) {
-        _ref.read(journeyXpSummaryProvider.notifier).awardLearningXp(
-          sourceRef: sourceRef,
-          occurredAt: timestamp,
-          sourceModule: sourceModule,
-          xp: xp,
-          metadata: <String, Object?>{
-            ...metadata,
-            'learnerId': learnerId,
-          },
-        );
+        _ref
+            .read(journeyXpSummaryProvider.notifier)
+            .awardLearningXp(
+              sourceRef: sourceRef,
+              occurredAt: timestamp,
+              sourceModule: sourceModule,
+              xp: xp,
+              metadata: <String, Object?>{...metadata, 'learnerId': learnerId},
+            );
       }
       if (drops > 0) {
-        _ref.read(journeyDropSummaryProvider.notifier).awardLearningDrop(
-          sourceRef: sourceRef,
-          occurredAt: timestamp,
-          metadata: <String, Object?>{
-            ...metadata,
-            'learnerId': learnerId,
-          },
-        );
+        _ref
+            .read(journeyDropSummaryProvider.notifier)
+            .awardLearningDrop(
+              sourceRef: sourceRef,
+              occurredAt: timestamp,
+              metadata: <String, Object?>{...metadata, 'learnerId': learnerId},
+            );
       }
       if (incrementLearningStageCompletion) {
         _ref
@@ -139,43 +140,44 @@ class LearnerProgressionController
     );
   }
 
-  LearnerProgressionSummary buildSummary({
-    Set<String>? sourceModules,
-  }) {
+  LearnerProgressionSummary buildSummary({Set<String>? sourceModules}) {
     final entries = state.entriesBySourceRef.values
         .where(
           (entry) =>
-              sourceModules == null || sourceModules.contains(entry.sourceModule),
+              sourceModules == null ||
+              sourceModules.contains(entry.sourceModule),
         )
         .toList(growable: false);
     final metrics = _buildMetrics(entries);
     final xpSummary = _buildXpSummary(entries);
-    final unlockedBadges = state.badgeUnlockedAtById.entries
-        .map((unlock) {
-          final definition = learnerProgressionBadgeCatalog.firstWhere(
-            (item) => item.badgeId == unlock.key,
-            orElse: () => learnerProgressionBadgeCatalog.first,
-          );
-          return LearnerProgressionBadgeUnlock(
-            definition: definition,
-            unlockedAtIso: unlock.value,
-          );
-        })
-        .toList(growable: false)
-      ..sort((a, b) => b.unlockedAtIso.compareTo(a.unlockedAtIso));
-    final unlockedMilestones = state.milestoneUnlockedAtById.entries
-        .map((unlock) {
-          final definition = learnerProgressionMilestoneCatalog.firstWhere(
-            (item) => item.milestoneId == unlock.key,
-            orElse: () => learnerProgressionMilestoneCatalog.first,
-          );
-          return LearnerProgressionMilestoneUnlock(
-            definition: definition,
-            unlockedAtIso: unlock.value,
-          );
-        })
-        .toList(growable: false)
-      ..sort((a, b) => b.unlockedAtIso.compareTo(a.unlockedAtIso));
+    final unlockedBadges =
+        state.badgeUnlockedAtById.entries
+            .map((unlock) {
+              final definition = learnerProgressionBadgeCatalog.firstWhere(
+                (item) => item.badgeId == unlock.key,
+                orElse: () => learnerProgressionBadgeCatalog.first,
+              );
+              return LearnerProgressionBadgeUnlock(
+                definition: definition,
+                unlockedAtIso: unlock.value,
+              );
+            })
+            .toList(growable: false)
+          ..sort((a, b) => b.unlockedAtIso.compareTo(a.unlockedAtIso));
+    final unlockedMilestones =
+        state.milestoneUnlockedAtById.entries
+            .map((unlock) {
+              final definition = learnerProgressionMilestoneCatalog.firstWhere(
+                (item) => item.milestoneId == unlock.key,
+                orElse: () => learnerProgressionMilestoneCatalog.first,
+              );
+              return LearnerProgressionMilestoneUnlock(
+                definition: definition,
+                unlockedAtIso: unlock.value,
+              );
+            })
+            .toList(growable: false)
+          ..sort((a, b) => b.unlockedAtIso.compareTo(a.unlockedAtIso));
     return LearnerProgressionSummary(
       metrics: metrics,
       xpSummary: xpSummary,
@@ -262,11 +264,14 @@ class LearnerProgressionController
       0,
       (sum, item) => sum + item.oceanDropsAwarded,
     );
-    final dayKeys = ordered
-        .map((item) => LocalStore.todayKey(DateTime.parse(item.occurredAtIso)))
-        .toSet()
-        .toList(growable: false)
-      ..sort();
+    final dayKeys =
+        ordered
+            .map(
+              (item) => LocalStore.todayKey(DateTime.parse(item.occurredAtIso)),
+            )
+            .toSet()
+            .toList(growable: false)
+          ..sort();
     return LearnerProgressionMetrics(
       totalXp: totalXp,
       totalDrops: totalDrops,
@@ -371,7 +376,11 @@ class LearnerProgressionController
         : DateTime.parse(ordered.last.occurredAtIso);
     final todayKey = LocalStore.todayKey(timestamp);
     final todayXp = ordered
-        .where((item) => LocalStore.todayKey(DateTime.parse(item.occurredAtIso)) == todayKey)
+        .where(
+          (item) =>
+              LocalStore.todayKey(DateTime.parse(item.occurredAtIso)) ==
+              todayKey,
+        )
         .fold<int>(0, (sum, item) => sum + item.xpAwarded);
     final current = xpLevelForTotalXp(totalXp);
     final next = xpNextLevelForTotalXp(totalXp);

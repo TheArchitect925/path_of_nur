@@ -129,17 +129,18 @@ void main() {
     },
   );
 
-  testWidgets('reading mode shows a calm locked state before any words unlock', (
-    tester,
-  ) async {
-    await pumpReadingMode(tester);
+  testWidgets(
+    'reading mode shows a calm locked state before any words unlock',
+    (tester) async {
+      await pumpReadingMode(tester);
 
-    final l10n = AppLocalizations.of(
-      tester.element(find.byType(KidsArabicReadingModePage)),
-    );
+      final l10n = AppLocalizations.of(
+        tester.element(find.byType(KidsArabicReadingModePage)),
+      );
 
-    expect(find.text(l10n.kidsArabicReadingModeTitle), findsOneWidget);
-    expect(find.text(l10n.kidsArabicReadingModeLockedTitle), findsOneWidget);
-    expect(find.text(l10n.kidsArabicReadingModeLockedBody), findsOneWidget);
-  });
+      expect(find.text(l10n.kidsArabicReadingModeTitle), findsOneWidget);
+      expect(find.text(l10n.kidsArabicReadingModeLockedTitle), findsOneWidget);
+      expect(find.text(l10n.kidsArabicReadingModeLockedBody), findsOneWidget);
+    },
+  );
 }

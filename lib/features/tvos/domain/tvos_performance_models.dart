@@ -1,10 +1,6 @@
 import 'tvos_foundation_models.dart';
 
-enum TVOSPerformancePriority {
-  standard,
-  elevated,
-  critical,
-}
+enum TVOSPerformancePriority { standard, elevated, critical }
 
 class TVOSPerformanceSurfaceProfile {
   const TVOSPerformanceSurfaceProfile({

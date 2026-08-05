@@ -216,9 +216,7 @@ class _LearnContentDetailPageState
         ),
         LearningSection(
           title: l10n.learnContentRelatedTopicsTitle,
-          child: LearningRelatedContent(
-            items: relatedTopicLinks,
-          ),
+          child: LearningRelatedContent(items: relatedTopicLinks),
         ),
         LearningSection(
           title: l10n.learnContentContinueTitle,

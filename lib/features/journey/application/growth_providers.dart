@@ -81,13 +81,14 @@ final growthStageContentByNumberProvider =
       return map;
     });
 
-final growthCustomHabitCategoriesProvider = Provider<List<GrowthCustomCategory>>((
-  ref,
-) {
-  final categories = [...ref.watch(growthControllerProvider).customHabitCategories];
-  categories.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
-  return categories;
-});
+final growthCustomHabitCategoriesProvider =
+    Provider<List<GrowthCustomCategory>>((ref) {
+      final categories = [
+        ...ref.watch(growthControllerProvider).customHabitCategories,
+      ];
+      categories.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+      return categories;
+    });
 
 final growthCustomHabitCategoriesByIdProvider =
     Provider<Map<String, GrowthCustomCategory>>((ref) {
@@ -301,45 +302,48 @@ final growthDueHabitsByCategoryProvider =
       return map;
     });
 
-final growthDueHabitSectionsProvider =
-    Provider<List<GrowthHabitSectionData>>((ref) {
-      final due = ref.watch(growthDueHabitsForSelectedDateProvider);
-      final categoryMeta = ref.watch(growthCategoryContentByTypeProvider);
-      final customCategories = ref.watch(growthCustomHabitCategoriesByIdProvider);
-      final sections = <String, List<GrowthHabit>>{};
-      for (final habit in due) {
-        final key = habit.customCategoryId?.isNotEmpty == true
-            ? 'custom:${habit.customCategoryId}'
-            : 'system:${habit.category.name}';
-        sections.putIfAbsent(key, () => <GrowthHabit>[]);
-        sections[key]!.add(habit);
-      }
-      final result = <GrowthHabitSectionData>[];
-      for (final entry in sections.entries) {
-        entry.value.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
-        final first = entry.value.first;
-        final customCategory = first.customCategoryId == null
-            ? null
-            : customCategories[first.customCategoryId!];
-        result.add(
-          GrowthHabitSectionData(
-            id: entry.key,
-            title: customCategory?.title ??
-                categoryMeta[first.category]?.title ??
-                first.category.name,
-            subtitle: customCategory?.description ??
-                categoryMeta[first.category]?.subtitle,
-            habits: entry.value,
-          ),
-        );
-      }
-      result.sort((a, b) {
-        final left = a.habits.first.sortOrder;
-        final right = b.habits.first.sortOrder;
-        return left.compareTo(right);
-      });
-      return result;
-    });
+final growthDueHabitSectionsProvider = Provider<List<GrowthHabitSectionData>>((
+  ref,
+) {
+  final due = ref.watch(growthDueHabitsForSelectedDateProvider);
+  final categoryMeta = ref.watch(growthCategoryContentByTypeProvider);
+  final customCategories = ref.watch(growthCustomHabitCategoriesByIdProvider);
+  final sections = <String, List<GrowthHabit>>{};
+  for (final habit in due) {
+    final key = habit.customCategoryId?.isNotEmpty == true
+        ? 'custom:${habit.customCategoryId}'
+        : 'system:${habit.category.name}';
+    sections.putIfAbsent(key, () => <GrowthHabit>[]);
+    sections[key]!.add(habit);
+  }
+  final result = <GrowthHabitSectionData>[];
+  for (final entry in sections.entries) {
+    entry.value.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    final first = entry.value.first;
+    final customCategory = first.customCategoryId == null
+        ? null
+        : customCategories[first.customCategoryId!];
+    result.add(
+      GrowthHabitSectionData(
+        id: entry.key,
+        title:
+            customCategory?.title ??
+            categoryMeta[first.category]?.title ??
+            first.category.name,
+        subtitle:
+            customCategory?.description ??
+            categoryMeta[first.category]?.subtitle,
+        habits: entry.value,
+      ),
+    );
+  }
+  result.sort((a, b) {
+    final left = a.habits.first.sortOrder;
+    final right = b.habits.first.sortOrder;
+    return left.compareTo(right);
+  });
+  return result;
+});
 
 final growthSeasonalReflectionPromptsProvider = Provider<List<String>>((ref) {
   final context = ref.watch(growthSeasonalContextProvider);

@@ -1020,7 +1020,8 @@ LearningJourneyStage? _firstIncompleteStageForJourney(
   LearningJourney journey,
   Set<String> completedStageIds,
 ) {
-  final stageId = firstUnlockedIncompleteLearningJourneyStageId(
+  final stageId =
+      firstUnlockedIncompleteLearningJourneyStageId(
         journey,
         completedStageIds,
       ) ??

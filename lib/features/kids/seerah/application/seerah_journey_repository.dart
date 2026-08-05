@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/seerah_journey_seed.dart';
 import '../domain/seerah_journey_models.dart';
 
-final kidsSeerahJourneyRepositoryProvider = Provider<KidsSeerahJourneyRepository>(
-  (ref) => const KidsSeerahJourneyRepository(),
-);
+final kidsSeerahJourneyRepositoryProvider =
+    Provider<KidsSeerahJourneyRepository>(
+      (ref) => const KidsSeerahJourneyRepository(),
+    );
 
 final kidsSeerahJourneysProvider = Provider<List<KidsSeerahJourney>>((ref) {
   return ref.watch(kidsSeerahJourneyRepositoryProvider).journeys;
@@ -17,7 +18,9 @@ final featuredKidsSeerahJourneyProvider = Provider<KidsSeerahJourney?>((ref) {
 
 final kidsSeerahJourneyByIdProvider =
     Provider.family<KidsSeerahJourney?, String>((ref, journeyId) {
-      return ref.watch(kidsSeerahJourneyRepositoryProvider).journeyById(journeyId);
+      return ref
+          .watch(kidsSeerahJourneyRepositoryProvider)
+          .journeyById(journeyId);
     });
 
 final kidsSeerahCompanionStoriesProvider =
@@ -76,7 +79,8 @@ class KidsSeerahJourneyRepository {
     required String currentNodeId,
   }) {
     final orderedNodes = [
-      for (final stage in stagesForJourney(journeyId)) ...nodesForStage(stage.stageId),
+      for (final stage in stagesForJourney(journeyId))
+        ...nodesForStage(stage.stageId),
     ];
     for (var index = 0; index < orderedNodes.length; index += 1) {
       if (orderedNodes[index].nodeId == currentNodeId) {

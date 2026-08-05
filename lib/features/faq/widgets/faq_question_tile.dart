@@ -36,7 +36,8 @@ class FaqQuestionTile extends StatelessWidget {
                         ? l10n.batch9FaqBadgeClarification
                         : l10n.batch9FaqBadgeMisconception,
                   ),
-                if (item.isFeatured) _chip(context, l10n.batch9FaqBadgeFeatured),
+                if (item.isFeatured)
+                  _chip(context, l10n.batch9FaqBadgeFeatured),
               ],
             ),
             const SizedBox(height: 10),

@@ -28,7 +28,9 @@ Future<void> captureQuranReflection(
   String? helperText,
 }) async {
   final l10n = AppLocalizations.of(context);
-  final existing = ref.read(quranReflectionsProvider.notifier).findEntry(
+  final existing = ref
+      .read(quranReflectionsProvider.notifier)
+      .findEntry(
         ref: quoteRef,
         sourceEnrichmentId: sourceEnrichmentId,
         sourceType: sourceType,
@@ -52,7 +54,9 @@ Future<void> captureQuranReflection(
     return;
   }
 
-  ref.read(quranReflectionsProvider.notifier).upsertNote(
+  ref
+      .read(quranReflectionsProvider.notifier)
+      .upsertNote(
         ref: quoteRef,
         sourceType: sourceType,
         title: title,

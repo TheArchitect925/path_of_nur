@@ -28,10 +28,7 @@ class QuranWordExampleAyahSection extends StatelessWidget {
     if (exampleRef == null) {
       return Text(
         AppLocalizations.of(context).batch9QuranWordsNoUsageAvailable,
-        style: const TextStyle(
-          color: Color(0xFF6A5A4A),
-          height: 1.3,
-        ),
+        style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.3),
       );
     }
 
@@ -91,9 +88,9 @@ Future<void> showQuranWordUsageSheet(
             children: [
               Text(
                 l10n.batch9QuranWordsAyahListTitle,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 4),
               Text(

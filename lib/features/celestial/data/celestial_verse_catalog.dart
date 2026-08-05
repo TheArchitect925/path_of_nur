@@ -13,7 +13,10 @@ const celestialVerseCatalog = <CelestialVerse>[
         'The sky changes without noise. Reflection grows when the heart learns to notice what is constant.',
     tags: ['heavens', 'night', 'day', 'signs'],
     priority: 10,
-    usageContexts: [CelestialUsageContext.homeCard, CelestialUsageContext.overview],
+    usageContexts: [
+      CelestialUsageContext.homeCard,
+      CelestialUsageContext.overview,
+    ],
   ),
   CelestialVerse(
     id: 'sky_002',
@@ -27,7 +30,11 @@ const celestialVerseCatalog = <CelestialVerse>[
         'The moon teaches gradualness. Its changing shape still follows a measured order.',
     tags: ['sun', 'moon', 'phases', 'order'],
     priority: 9,
-    usageContexts: [CelestialUsageContext.homeCard, CelestialUsageContext.overview, CelestialUsageContext.explore],
+    usageContexts: [
+      CelestialUsageContext.homeCard,
+      CelestialUsageContext.overview,
+      CelestialUsageContext.explore,
+    ],
   ),
   CelestialVerse(
     id: 'sky_003',
@@ -41,7 +48,10 @@ const celestialVerseCatalog = <CelestialVerse>[
         'Precision in creation invites humility. What appears effortless is held by divine command.',
     tags: ['orbit', 'sun', 'moon', 'night', 'day'],
     priority: 10,
-    usageContexts: [CelestialUsageContext.overview, CelestialUsageContext.explore],
+    usageContexts: [
+      CelestialUsageContext.overview,
+      CelestialUsageContext.explore,
+    ],
   ),
   CelestialVerse(
     id: 'sky_004',
@@ -55,7 +65,10 @@ const celestialVerseCatalog = <CelestialVerse>[
         'The sun keeps its course without pause. Consistency in worship is also built through steady movement.',
     tags: ['sun', 'course', 'consistency'],
     priority: 8,
-    usageContexts: [CelestialUsageContext.overview, CelestialUsageContext.explore],
+    usageContexts: [
+      CelestialUsageContext.overview,
+      CelestialUsageContext.explore,
+    ],
   ),
   CelestialVerse(
     id: 'sky_005',
@@ -69,7 +82,11 @@ const celestialVerseCatalog = <CelestialVerse>[
         'The moon does not remain full. Its phases remind us that change can still belong to balance.',
     tags: ['moon', 'phases', 'balance'],
     priority: 10,
-    usageContexts: [CelestialUsageContext.homeCard, CelestialUsageContext.overview, CelestialUsageContext.journal],
+    usageContexts: [
+      CelestialUsageContext.homeCard,
+      CelestialUsageContext.overview,
+      CelestialUsageContext.journal,
+    ],
   ),
   CelestialVerse(
     id: 'sky_006',
@@ -83,21 +100,25 @@ const celestialVerseCatalog = <CelestialVerse>[
         'Creation is not only beautiful. It is also a mercy and a means of guidance.',
     tags: ['stars', 'guidance', 'night'],
     priority: 7,
-    usageContexts: [CelestialUsageContext.explore, CelestialUsageContext.journal],
+    usageContexts: [
+      CelestialUsageContext.explore,
+      CelestialUsageContext.journal,
+    ],
   ),
   CelestialVerse(
     id: 'sky_007',
     objectType: CelestialObjectType.stars,
     ayahReference: 'Qur’an 67:5',
-    arabicText:
-        'وَلَقَدْ زَيَّنَّا السَّمَاءَ الدُّنْيَا بِمَصَابِيحَ',
-    translation:
-        'And We have certainly adorned the nearest heaven with lamps.',
+    arabicText: 'وَلَقَدْ زَيَّنَّا السَّمَاءَ الدُّنْيَا بِمَصَابِيحَ',
+    translation: 'And We have certainly adorned the nearest heaven with lamps.',
     shortReflection:
         'Beauty in the sky is not empty decoration. It is part of a created order that invites remembrance.',
     tags: ['stars', 'beauty', 'heavens'],
     priority: 6,
-    usageContexts: [CelestialUsageContext.explore, CelestialUsageContext.journal],
+    usageContexts: [
+      CelestialUsageContext.explore,
+      CelestialUsageContext.journal,
+    ],
   ),
   CelestialVerse(
     id: 'sky_008',
@@ -111,6 +132,9 @@ const celestialVerseCatalog = <CelestialVerse>[
         'Observation is not complete when it stays outside. The signs in creation also invite inward honesty.',
     tags: ['signs', 'reflection', 'creation'],
     priority: 8,
-    usageContexts: [CelestialUsageContext.homeCard, CelestialUsageContext.journal],
+    usageContexts: [
+      CelestialUsageContext.homeCard,
+      CelestialUsageContext.journal,
+    ],
   ),
 ];

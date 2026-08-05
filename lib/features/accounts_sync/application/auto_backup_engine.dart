@@ -109,7 +109,9 @@ class DefaultAutoBackupController implements AutoBackupController {
         pendingReasons: autoState.pendingReasons,
       );
     }
-    final availability = await ref.read(remoteBackupRepositoryProvider).checkStatus();
+    final availability = await ref
+        .read(remoteBackupRepositoryProvider)
+        .checkStatus();
     if (availability != RemoteBackupAvailability.available) {
       return AutoBackupEligibility(
         result: AutoBackupEligibilityResult.providerUnavailable,
@@ -159,7 +161,8 @@ class DefaultAutoBackupController implements AutoBackupController {
   }) async {
     final controller = ref.read(accountsSyncControllerProvider.notifier);
     final eligibility = await evaluateEligibility(trigger: trigger);
-    if (!force && eligibility.result != AutoBackupEligibilityResult.eligibleNow) {
+    if (!force &&
+        eligibility.result != AutoBackupEligibilityResult.eligibleNow) {
       return AutoBackupRunResult(
         eligibility: eligibility.result,
         trigger: trigger,
@@ -172,7 +175,9 @@ class DefaultAutoBackupController implements AutoBackupController {
       lastTrigger: trigger,
     );
     final result = await ref.read(remoteBackupRepositoryProvider).backupNow();
-    final latestState = ref.read(accountsSyncControllerProvider).autoBackupState;
+    final latestState = ref
+        .read(accountsSyncControllerProvider)
+        .autoBackupState;
     if (result.success) {
       await controller.updateAutoBackupState(
         inProgress: false,
@@ -211,9 +216,14 @@ class DefaultAutoBackupController implements AutoBackupController {
       buildNumber: packageInfo.buildNumber,
     );
     final signature = backupPayloadFingerprint(payload);
-    final currentState = ref.read(accountsSyncControllerProvider).autoBackupState;
+    final currentState = ref
+        .read(accountsSyncControllerProvider)
+        .autoBackupState;
     final successfulSignature = currentState.lastSuccessfulDataSignature;
-    final overdue = _isOverdue(currentState.lastSuccessAtIso, currentState.preferences.frequency);
+    final overdue = _isOverdue(
+      currentState.lastSuccessAtIso,
+      currentState.preferences.frequency,
+    );
     final shouldTrackMeaningfulChanges =
         currentState.preferences.backupOnMeaningfulProgressChange;
     final dirty =
@@ -223,7 +233,8 @@ class DefaultAutoBackupController implements AutoBackupController {
       if (dirty) PendingBackupReason.meaningfulProgressChanged,
       if (overdue) PendingBackupReason.backupOverdue,
       if (trigger == AutoBackupTrigger.signIn) PendingBackupReason.signedIn,
-      if (trigger == AutoBackupTrigger.manualRetry) PendingBackupReason.manualRetry,
+      if (trigger == AutoBackupTrigger.manualRetry)
+        PendingBackupReason.manualRetry,
     ];
     await controller.updateAutoBackupState(
       dirty: dirty || overdue,
@@ -239,7 +250,8 @@ class DefaultAutoBackupController implements AutoBackupController {
     if (lastAttempt == null) {
       return false;
     }
-    return DateTime.now().difference(lastAttempt).inMinutes < minIntervalMinutes;
+    return DateTime.now().difference(lastAttempt).inMinutes <
+        minIntervalMinutes;
   }
 
   bool _isDueForFrequency(
@@ -300,7 +312,10 @@ class _AutoBackupRuntimeBridge with WidgetsBindingObserver {
     } else if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.inactive ||
         state == AppLifecycleState.detached) {
-      final prefs = ref.read(accountsSyncControllerProvider).autoBackupState.preferences;
+      final prefs = ref
+          .read(accountsSyncControllerProvider)
+          .autoBackupState
+          .preferences;
       if (prefs.backupOnBackground) {
         unawaited(
           ref

@@ -97,8 +97,9 @@ class HistoryEventDetailPage extends ConsumerWidget {
                 ),
               ),
             ],
-            if (contextualRelatedAsync case AsyncData(:final value)
-                when value.isNotEmpty) ...[
+            if (contextualRelatedAsync case AsyncData(
+              :final value,
+            ) when value.isNotEmpty) ...[
               const SizedBox(height: 12),
               _HistorySectionCard(
                 title: l10n.contextualLinksRelatedTitle,
@@ -189,7 +190,11 @@ class _HistoryHeaderCard extends StatelessWidget {
           const SizedBox(height: 14),
           _LabelValueRow(
             label: l10n.historyGregorianDateLabel,
-            value: formatHistoricalGregorianDate(context, l10n, event.gregorian),
+            value: formatHistoricalGregorianDate(
+              context,
+              l10n,
+              event.gregorian,
+            ),
           ),
           const SizedBox(height: 10),
           _LabelValueRow(
@@ -250,9 +255,9 @@ class _LabelValueRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 4),
         Text(value),

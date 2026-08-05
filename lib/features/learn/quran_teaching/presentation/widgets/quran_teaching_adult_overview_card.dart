@@ -92,7 +92,8 @@ class QuranTeachingAdultOverviewCard extends StatelessWidget {
                 ),
             ],
           ),
-          if (progress.completedLessons != null && progress.completedLessons! > 0) ...[
+          if (progress.completedLessons != null &&
+              progress.completedLessons! > 0) ...[
             const SizedBox(height: 12),
             Text(
               l10n.quranTeachingAdultOverviewMilestoneValue(
@@ -108,11 +109,12 @@ class QuranTeachingAdultOverviewCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               l10n.quranTeachingAdultOverviewLastStudiedValue(
-                progress.recentActivity!.arabicText ?? progress.recentActivity!.title,
+                progress.recentActivity!.arabicText ??
+                    progress.recentActivity!.title,
               ),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xFF53483E),
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
             ),
           ],
           const SizedBox(height: 8),

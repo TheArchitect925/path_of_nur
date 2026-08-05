@@ -210,8 +210,9 @@ class TVOSHomeParityPayload {
     'prayerSummary': prayerSummary.toJson(),
     'continueReading': continueReading.toJson(),
     'dailyVerse': dailyVerse.toJson(),
-    'mirroredSections':
-        mirroredSections.map((section) => section.name).toList(growable: false),
+    'mirroredSections': mirroredSections
+        .map((section) => section.name)
+        .toList(growable: false),
   };
 }
 
@@ -238,8 +239,9 @@ class TVOSQuranParityPayload {
     'dailyVerse': dailyVerse.toJson(),
     'browseSurahs': browseSurahs.map((surah) => surah.toJson()).toList(),
     'playback': playback.toJson(),
-    'mirroredSections':
-        mirroredSections.map((section) => section.name).toList(growable: false),
+    'mirroredSections': mirroredSections
+        .map((section) => section.name)
+        .toList(growable: false),
   };
 }
 

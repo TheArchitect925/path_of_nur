@@ -110,7 +110,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('quran-reader-next-ayah')));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('quran-reader-open-full-player')));
+    await tester.tap(
+      find.byKey(const ValueKey('quran-reader-open-full-player')),
+    );
     await tester.pumpAndSettle();
     expect(previousCount, 1);
     expect(restartCount, 1);
@@ -414,7 +416,7 @@ void main() {
                 routeName: 'lifeLanding',
               ),
             ],
-          themeTopics: const [
+            themeTopics: const [
               QuranTopic(
                 id: 'gratitude',
                 title: 'Gratitude',
@@ -427,15 +429,15 @@ void main() {
                 relatedProphets: [],
               ),
             ],
-          activeTopicId: 'gratitude',
-          readerSearchQuery: '',
-          readerSearchMatchField: null,
-          readerSearchTranslationHighlights: const [],
-          readerSearchTransliterationHighlights: const [],
-          readerSearchArabicHighlights: const [],
-          studyMode: QuranReaderStudyMode.theme,
-          onTap: () {},
-          onPlayAyah: () {},
+            activeTopicId: 'gratitude',
+            readerSearchQuery: '',
+            readerSearchMatchField: null,
+            readerSearchTranslationHighlights: const [],
+            readerSearchTransliterationHighlights: const [],
+            readerSearchArabicHighlights: const [],
+            studyMode: QuranReaderStudyMode.theme,
+            onTap: () {},
+            onPlayAyah: () {},
             onToggleMemorization: () {},
             onPlayWord: (_) async {},
             onMistakeCheckpoint: () {},

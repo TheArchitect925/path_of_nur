@@ -15,21 +15,22 @@ import 'bedtime_routine_repository.dart';
 String bedtimeCompanionStorageKeyForLearner(String learnerId) =>
     'kids.bedtime_companion.session.v1.$learnerId';
 
-final bedtimeCompanionSessionProvider = StateNotifierProvider<
-  BedtimeCompanionSessionController,
-  BedtimeCompanionState
->((ref) {
-  final controller = BedtimeCompanionSessionController(ref);
-  ref.listen<String>(
-    bedtimeActiveLearnerProvider.select((value) => value.learnerId),
-    (_, nextLearnerId) => controller.updateActiveLearner(nextLearnerId),
-  );
-  ref.listen<BedtimeStoryLibraryProgress>(
-    bedtimeStoryProgressProvider,
-    (previous, next) => controller.syncExternalProgress(),
-  );
-  return controller;
-});
+final bedtimeCompanionSessionProvider =
+    StateNotifierProvider<
+      BedtimeCompanionSessionController,
+      BedtimeCompanionState
+    >((ref) {
+      final controller = BedtimeCompanionSessionController(ref);
+      ref.listen<String>(
+        bedtimeActiveLearnerProvider.select((value) => value.learnerId),
+        (_, nextLearnerId) => controller.updateActiveLearner(nextLearnerId),
+      );
+      ref.listen<BedtimeStoryLibraryProgress>(
+        bedtimeStoryProgressProvider,
+        (previous, next) => controller.syncExternalProgress(),
+      );
+      return controller;
+    });
 
 class BedtimeCompanionSessionController
     extends StateNotifier<BedtimeCompanionState> {
@@ -38,7 +39,9 @@ class BedtimeCompanionSessionController
       _activeLearnerId = _ref.read(bedtimeActiveLearnerProvider).learnerId,
       super(
         BedtimeCompanionState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(
                 bedtimeCompanionStorageKeyForLearner(
                   _ref.read(bedtimeActiveLearnerProvider).learnerId,
                 ),
@@ -73,9 +76,12 @@ class BedtimeCompanionSessionController
       lastUpdatedAtIso: DateTime.now().toIso8601String(),
       suggestedStoryId: story?.id,
       primaryDuaId: primaryDua?.duaId,
-      secondaryDuaIds: secondary.map((item) => item.duaId).toList(growable: false),
+      secondaryDuaIds: secondary
+          .map((item) => item.duaId)
+          .toList(growable: false),
       stepProgressById: {
-        for (final step in plan.steps) step.stepId: const BedtimeRoutineStepProgress(),
+        for (final step in plan.steps)
+          step.stepId: const BedtimeRoutineStepProgress(),
       },
     );
     state = state.copyWith(activeSession: session);
@@ -97,7 +103,8 @@ class BedtimeCompanionSessionController
 
   void startStep(String stepId) {
     final session = ensureSessionForToday();
-    final current = session.stepProgressById[stepId] ?? const BedtimeRoutineStepProgress();
+    final current =
+        session.stepProgressById[stepId] ?? const BedtimeRoutineStepProgress();
     if (current.state == BedtimeRoutineCompletionState.completed) {
       return;
     }
@@ -116,7 +123,8 @@ class BedtimeCompanionSessionController
     bool skipped = false,
   }) {
     final session = ensureSessionForToday();
-    final current = session.stepProgressById[stepId] ?? const BedtimeRoutineStepProgress();
+    final current =
+        session.stepProgressById[stepId] ?? const BedtimeRoutineStepProgress();
     _updateStep(
       stepId,
       current.copyWith(
@@ -140,7 +148,8 @@ class BedtimeCompanionSessionController
 
     if (storyProgress != null) {
       final storyStepId = _stepIdFor(BedtimeRoutineStepType.storyTime);
-      final step = session.stepProgressById[storyStepId] ??
+      final step =
+          session.stepProgressById[storyStepId] ??
           const BedtimeRoutineStepProgress();
       final nextState = storyProgress.isCompleted || storyProgress.hasProgress
           ? BedtimeRoutineCompletionState.completed
@@ -190,11 +199,13 @@ class BedtimeCompanionSessionController
       return;
     }
     final plan = _ref.read(bedtimeRoutineRepositoryProvider).defaultPlan();
-    final requiredComplete = plan.steps.where((step) => !step.isOptional).every((step) {
-      final progress = session.stepProgressById[step.stepId];
-      return progress?.state == BedtimeRoutineCompletionState.completed ||
-          progress?.state == BedtimeRoutineCompletionState.skipped;
-    });
+    final requiredComplete = plan.steps.where((step) => !step.isOptional).every(
+      (step) {
+        final progress = session.stepProgressById[step.stepId];
+        return progress?.state == BedtimeRoutineCompletionState.completed ||
+            progress?.state == BedtimeRoutineCompletionState.skipped;
+      },
+    );
     if (requiredComplete && !session.isCompleted) {
       final completed = session.copyWith(
         completedAtIso: DateTime.now().toIso8601String(),
@@ -202,15 +213,21 @@ class BedtimeCompanionSessionController
       );
       final nextRecent = <BedtimeRoutineSession>[
         completed,
-        ...state.recentSessions.where((item) => item.sessionId != completed.sessionId),
+        ...state.recentSessions.where(
+          (item) => item.sessionId != completed.sessionId,
+        ),
       ];
       if (nextRecent.length > 14) {
         nextRecent.removeRange(14, nextRecent.length);
       }
-      state = state.copyWith(activeSession: completed, recentSessions: nextRecent);
+      state = state.copyWith(
+        activeSession: completed,
+        recentSessions: nextRecent,
+      );
       final learner = _ref.read(bedtimeActiveLearnerProvider);
       final accounts = _ref.read(accountsSyncControllerProvider);
-      final shouldMirror = learner.isLinkedChildProfile &&
+      final shouldMirror =
+          learner.isLinkedChildProfile &&
           accounts.activeProfileId == learner.linkedChildProfileId;
       _ref
           .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
@@ -231,22 +248,24 @@ class BedtimeCompanionSessionController
             },
             mirrorToJourney: shouldMirror,
           );
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.bedtimeRoutineCompleted,
-        domain: KidsActivityDomain.routines,
-        sourceRef: 'bedtime_routine_complete:${completed.sessionId}',
-        contentId: completed.sessionId,
-        titleSnapshot: null,
-        subtitleSnapshot: null,
-        occurredAt: DateTime.now(),
-        metadata: <String, Object?>{
-          'feature': 'kids_bedtime_routine',
-          'planId': completed.planId,
-          'dateKey': completed.dateKey,
-          'storyId': completed.suggestedStoryId,
-          'primaryDuaId': completed.primaryDuaId,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.bedtimeRoutineCompleted,
+            domain: KidsActivityDomain.routines,
+            sourceRef: 'bedtime_routine_complete:${completed.sessionId}',
+            contentId: completed.sessionId,
+            titleSnapshot: null,
+            subtitleSnapshot: null,
+            occurredAt: DateTime.now(),
+            metadata: <String, Object?>{
+              'feature': 'kids_bedtime_routine',
+              'planId': completed.planId,
+              'dateKey': completed.dateKey,
+              'storyId': completed.suggestedStoryId,
+              'primaryDuaId': completed.primaryDuaId,
+            },
+          );
       _persist();
       return;
     }

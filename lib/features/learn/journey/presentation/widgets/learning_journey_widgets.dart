@@ -356,189 +356,189 @@ class LearningJourneyStageCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(18, 18, 18, 20),
               child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 32,
-              height: 32,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: isLocked
-                    ? const Color(0xFFE9E0D3)
-                    : isCompleted
-                    ? const Color(0xFFDDE9D6)
-                    : isCurrent
-                    ? const Color(0xFFF0DEC4)
-                    : const Color(0xFFEADCC7),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: posterAccent.withValues(alpha: 0.20),
-                ),
-              ),
-              child: isLocked
-                  ? const Icon(
-                      Icons.lock_outline_rounded,
-                      size: 16,
-                      color: Color(0xFF7A6A57),
-                    )
-                  : isCompleted
-                  ? const Icon(
-                      Icons.check_rounded,
-                      size: 18,
-                      color: Color(0xFF4E7241),
-                    )
-                  : isCurrent
-                  ? const Icon(
-                      Icons.play_arrow_rounded,
-                      size: 18,
-                      color: Color(0xFF6B4E2D),
-                    )
-                  : Text(
-                      '${stage.order}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: isLocked
-                            ? const Color(0xFF7A6A57)
-                            : isCurrent
-                            ? const Color(0xFF6B4E2D)
-                            : const Color(0xFF71593C),
-                      ),
-                    ),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              width: 6,
-              margin: const EdgeInsets.only(top: 2),
-              decoration: BoxDecoration(
-                color: posterAccent,
-                borderRadius: BorderRadius.circular(999),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Text(
-                        localizedStageTitle(context, stage),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF30281F),
-                        ),
+                  Container(
+                    width: 32,
+                    height: 32,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: isLocked
+                          ? const Color(0xFFE9E0D3)
+                          : isCompleted
+                          ? const Color(0xFFDDE9D6)
+                          : isCurrent
+                          ? const Color(0xFFF0DEC4)
+                          : const Color(0xFFEADCC7),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: posterAccent.withValues(alpha: 0.20),
                       ),
-                      if (isCurrent)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF0DEC4),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
-                          child: Text(
-                            l10n.learningJourneyStageCurrentBadge,
+                    ),
+                    child: isLocked
+                        ? const Icon(
+                            Icons.lock_outline_rounded,
+                            size: 16,
+                            color: Color(0xFF7A6A57),
+                          )
+                        : isCompleted
+                        ? const Icon(
+                            Icons.check_rounded,
+                            size: 18,
+                            color: Color(0xFF4E7241),
+                          )
+                        : isCurrent
+                        ? const Icon(
+                            Icons.play_arrow_rounded,
+                            size: 18,
+                            color: Color(0xFF6B4E2D),
+                          )
+                        : Text(
+                            '${stage.order}',
                             style: TextStyle(
-                              fontSize: 11.5,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF7D5B31),
+                              color: isLocked
+                                  ? const Color(0xFF7A6A57)
+                                  : isCurrent
+                                  ? const Color(0xFF6B4E2D)
+                                  : const Color(0xFF71593C),
                             ),
                           ),
-                        ),
-                      if (!isCurrent && !isCompleted && isPlaceholder)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF0EBE3),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
-                          child: Text(
-                            l10n.learningJourneyStagePreviewBadge,
-                            style: const TextStyle(
-                              fontSize: 11.5,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF756857),
-                            ),
-                          ),
-                        ),
-                      if (isLocked)
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF0EBE3),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
-                          child: Text(
-                            l10n.learningJourneyStageLockedBadge,
-                            style: const TextStyle(
-                              fontSize: 11.5,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF756857),
-                            ),
-                          ),
-                        ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: chipColor,
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        child: Text(
-                          _statusLabel(stage.status, l10n),
-                          style: TextStyle(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w700,
-                            color: chipTextColor,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    localizedStageSummary(context, stage),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
-                      height: 1.35,
+                  const SizedBox(width: 10),
+                  Container(
+                    width: 6,
+                    margin: const EdgeInsets.only(top: 2),
+                    decoration: BoxDecoration(
+                      color: posterAccent,
+                      borderRadius: BorderRadius.circular(999),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      _MetaPill(
-                        label: l10n.learningJourneyDurationMinutes(
-                          stage.durationEstimateMinutes,
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Text(
+                              localizedStageTitle(context, stage),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF30281F),
+                              ),
+                            ),
+                            if (isCurrent)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF0DEC4),
+                                  borderRadius: BorderRadius.circular(999),
+                                ),
+                                child: Text(
+                                  l10n.learningJourneyStageCurrentBadge,
+                                  style: TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF7D5B31),
+                                  ),
+                                ),
+                              ),
+                            if (!isCurrent && !isCompleted && isPlaceholder)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF0EBE3),
+                                  borderRadius: BorderRadius.circular(999),
+                                ),
+                                child: Text(
+                                  l10n.learningJourneyStagePreviewBadge,
+                                  style: const TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF756857),
+                                  ),
+                                ),
+                              ),
+                            if (isLocked)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF0EBE3),
+                                  borderRadius: BorderRadius.circular(999),
+                                ),
+                                child: Text(
+                                  l10n.learningJourneyStageLockedBadge,
+                                  style: const TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF756857),
+                                  ),
+                                ),
+                              ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: chipColor,
+                                borderRadius: BorderRadius.circular(999),
+                              ),
+                              child: Text(
+                                _statusLabel(stage.status, l10n),
+                                style: TextStyle(
+                                  fontSize: 11.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: chipTextColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        color: const Color(0xFFF2E8D9),
-                        textColor: const Color(0xFF725C42),
-                      ),
-                    ],
+                        const SizedBox(height: 6),
+                        Text(
+                          localizedStageSummary(context, stage),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Color(0xFF675B4E),
+                            height: 1.35,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            _MetaPill(
+                              label: l10n.learningJourneyDurationMinutes(
+                                stage.durationEstimateMinutes,
+                              ),
+                              color: const Color(0xFFF2E8D9),
+                              textColor: const Color(0xFF725C42),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
             ),
           ),
         ),

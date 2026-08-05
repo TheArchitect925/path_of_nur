@@ -82,7 +82,9 @@ class EditorialContentRecord {
     'contentId': contentId,
     'contentType': contentType.name,
     'currentSnapshot': currentSnapshot,
-    'versions': versions.map((version) => version.toJson()).toList(growable: false),
+    'versions': versions
+        .map((version) => version.toJson())
+        .toList(growable: false),
   };
 
   static EditorialContentRecord fromJson(Map<String, dynamic> json) {

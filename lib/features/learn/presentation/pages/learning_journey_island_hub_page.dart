@@ -56,16 +56,19 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
     LocalizedGuidedLearningPath? activeLocalizedPath;
     LocalizedGuidedLearningPathStep? nextGuidedStep;
     if (pathResume.hasActivePath && pathResume.activePath != null) {
-      activeLocalizedPath = localizedPaths.cast<LocalizedGuidedLearningPath?>().firstWhere(
-        (path) => path?.path.id == pathResume.activePath!.id,
-        orElse: () => null,
-      );
+      activeLocalizedPath = localizedPaths
+          .cast<LocalizedGuidedLearningPath?>()
+          .firstWhere(
+            (path) => path?.path.id == pathResume.activePath!.id,
+            orElse: () => null,
+          );
       if (activeLocalizedPath != null && pathResume.nextStep != null) {
-        nextGuidedStep =
-            activeLocalizedPath.steps.cast<LocalizedGuidedLearningPathStep?>().firstWhere(
-                  (step) => step?.step.id == pathResume.nextStep!.id,
-                  orElse: () => null,
-                );
+        nextGuidedStep = activeLocalizedPath.steps
+            .cast<LocalizedGuidedLearningPathStep?>()
+            .firstWhere(
+              (step) => step?.step.id == pathResume.nextStep!.id,
+              orElse: () => null,
+            );
       }
     }
 

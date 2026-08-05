@@ -29,7 +29,10 @@ final quranCoreWordsProvider = FutureProvider<List<QuranCoreWord>>((ref) async {
 });
 
 class QuranWordUsageSummary {
-  const QuranWordUsageSummary({required this.word, required this.occurrenceRefs});
+  const QuranWordUsageSummary({
+    required this.word,
+    required this.occurrenceRefs,
+  });
 
   final QuranCoreWord word;
   final List<QuranQuoteRef> occurrenceRefs;
@@ -76,7 +79,9 @@ final quranTopWordUsageIndexProvider =
         wordsByRank[word.rank] = word;
         final normalized = normalizeQuranWordToken(word.arabic);
         if (normalized.isEmpty) continue;
-        targetRanksByToken.putIfAbsent(normalized, () => <int>[]).add(word.rank);
+        targetRanksByToken
+            .putIfAbsent(normalized, () => <int>[])
+            .add(word.rank);
       }
 
       final refsByRank = <int, List<QuranQuoteRef>>{

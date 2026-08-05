@@ -683,7 +683,8 @@ class _AccountConnectionCard extends ConsumerStatefulWidget {
       _AccountConnectionCardState();
 }
 
-class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> {
+class _AccountConnectionCardState
+    extends ConsumerState<_AccountConnectionCard> {
   bool _authBusy = false;
 
   @override
@@ -722,11 +723,7 @@ class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> 
               status.lastBackupAtIso == null
                   ? l10n.accountsSyncBackupNeverBackedUp
                   : l10n.accountsSyncLastBackupValue(
-                      _formatWhen(
-                        context,
-                        l10n,
-                        status.lastBackupAtIso,
-                      ),
+                      _formatWhen(context, l10n, status.lastBackupAtIso),
                     ),
             ),
           ),
@@ -743,10 +740,10 @@ class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> 
             onPressed: _authBusy
                 ? null
                 : () => _handleAuthAction(
-                      () => ref
-                          .read(accountsAuthRepositoryProvider)
-                          .signInWithApple(),
-                    ),
+                    () => ref
+                        .read(accountsAuthRepositoryProvider)
+                        .signInWithApple(),
+                  ),
             icon: const Icon(Icons.apple_rounded),
             label: Text(l10n.accountsSyncContinueWithAppleAction),
           ),
@@ -755,10 +752,10 @@ class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> 
             onPressed: _authBusy
                 ? null
                 : () => _handleAuthAction(
-                      () => ref
-                          .read(accountsAuthRepositoryProvider)
-                          .signInWithGoogle(),
-                    ),
+                    () => ref
+                        .read(accountsAuthRepositoryProvider)
+                        .signInWithGoogle(),
+                  ),
             icon: const Icon(Icons.account_circle_outlined),
             label: Text(l10n.accountsSyncContinueWithGoogleAction),
           ),
@@ -767,10 +764,10 @@ class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> 
             onPressed: _authBusy
                 ? null
                 : () => _handleAuthAction(
-                      () => ref
-                          .read(accountsAuthRepositoryProvider)
-                          .signInWithEmail(),
-                    ),
+                    () => ref
+                        .read(accountsAuthRepositoryProvider)
+                        .signInWithEmail(),
+                  ),
             icon: const Icon(Icons.email_outlined),
             label: Text(l10n.accountsSyncContinueWithEmailAction),
           ),
@@ -789,9 +786,7 @@ class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> 
                     if (!mounted) return;
                     messenger.showSnackBar(
                       SnackBar(
-                        content: Text(
-                          l10n.accountsSyncContinueLocalOnlyResult,
-                        ),
+                        content: Text(l10n.accountsSyncContinueLocalOnlyResult),
                       ),
                     );
                   },
@@ -831,12 +826,13 @@ class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> 
     setState(() => _authBusy = false);
     final message = switch (result.status) {
       AuthActionStatus.success => l10n.accountsSyncAccountConnectedResult(
-          result.identity?.displayName ??
-              l10n.accountsSyncDefaultAccountDisplayName,
-        ),
+        result.identity?.displayName ??
+            l10n.accountsSyncDefaultAccountDisplayName,
+      ),
       AuthActionStatus.cancelled => l10n.accountsSyncAuthCancelledResult,
       AuthActionStatus.unavailable => l10n.accountsSyncAuthUnavailableResult,
-      AuthActionStatus.notConfigured => l10n.accountsSyncAuthNotConfiguredResult,
+      AuthActionStatus.notConfigured =>
+        l10n.accountsSyncAuthNotConfiguredResult,
       AuthActionStatus.error => l10n.accountsSyncAuthFailedResult,
     };
     messenger.showSnackBar(SnackBar(content: Text(message)));
@@ -1107,9 +1103,9 @@ class BackupRestoreHomePage extends ConsumerWidget {
                   if (!context.mounted) return;
                   if (preview == null) {
                     messenger.showSnackBar(
-                          SnackBar(
-                            content: Text(l10n.accountsSyncNoRemoteBackupFound),
-                          ),
+                      SnackBar(
+                        content: Text(l10n.accountsSyncNoRemoteBackupFound),
+                      ),
                     );
                     return;
                   }
@@ -1145,7 +1141,9 @@ class BackupRestoreHomePage extends ConsumerWidget {
                       : l10n.accountsSyncAutoBackupOffBody,
                 ),
                 onChanged: (value) {
-                  ref.read(autoBackupControllerProvider).updatePreferences(
+                  ref
+                      .read(autoBackupControllerProvider)
+                      .updatePreferences(
                         autoBackup.preferences.copyWith(enabled: value),
                       );
                 },
@@ -1164,7 +1162,9 @@ class BackupRestoreHomePage extends ConsumerWidget {
                   value: autoBackup.preferences.frequency,
                   onChanged: (value) {
                     if (value == null) return;
-                    ref.read(autoBackupControllerProvider).updatePreferences(
+                    ref
+                        .read(autoBackupControllerProvider)
+                        .updatePreferences(
                           autoBackup.preferences.copyWith(frequency: value),
                         );
                   },
@@ -1184,7 +1184,9 @@ class BackupRestoreHomePage extends ConsumerWidget {
                 value: autoBackup.preferences.backupOnMeaningfulProgressChange,
                 title: Text(l10n.accountsSyncAutoBackupMeaningfulChangeTitle),
                 onChanged: (value) {
-                  ref.read(autoBackupControllerProvider).updatePreferences(
+                  ref
+                      .read(autoBackupControllerProvider)
+                      .updatePreferences(
                         autoBackup.preferences.copyWith(
                           backupOnMeaningfulProgressChange: value,
                         ),
@@ -1197,7 +1199,9 @@ class BackupRestoreHomePage extends ConsumerWidget {
                 value: autoBackup.preferences.backupOnBackground,
                 title: Text(l10n.accountsSyncAutoBackupBackgroundTitle),
                 onChanged: (value) {
-                  ref.read(autoBackupControllerProvider).updatePreferences(
+                  ref
+                      .read(autoBackupControllerProvider)
+                      .updatePreferences(
                         autoBackup.preferences.copyWith(
                           backupOnBackground: value,
                         ),
@@ -1208,9 +1212,7 @@ class BackupRestoreHomePage extends ConsumerWidget {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.accountsSyncAutoBackupStatusTitle),
-                subtitle: Text(
-                  _autoBackupStatusBody(l10n, autoBackup),
-                ),
+                subtitle: Text(_autoBackupStatusBody(l10n, autoBackup)),
               ),
               if (autoBackup.lastAttemptAtIso != null)
                 ListTile(
@@ -1245,9 +1247,7 @@ class BackupRestoreHomePage extends ConsumerWidget {
                     children: autoBackup.pendingReasons
                         .map(
                           (item) => Chip(
-                            label: Text(
-                              _pendingBackupReasonLabel(l10n, item),
-                            ),
+                            label: Text(_pendingBackupReasonLabel(l10n, item)),
                           ),
                         )
                         .toList(growable: false),
@@ -1341,7 +1341,8 @@ class BackupRestoreHomePage extends ConsumerWidget {
                       return;
                     }
                     if (!value &&
-                        validation.impactPreview?.requiresConfirmation == true) {
+                        validation.impactPreview?.requiresConfirmation ==
+                            true) {
                       final confirmed = await showDialog<bool>(
                         context: context,
                         builder: (dialogContext) => AlertDialog(
@@ -1355,7 +1356,8 @@ class BackupRestoreHomePage extends ConsumerWidget {
                           ),
                           actions: [
                             TextButton(
-                              onPressed: () => Navigator.of(dialogContext).pop(false),
+                              onPressed: () =>
+                                  Navigator.of(dialogContext).pop(false),
                               child: Text(
                                 MaterialLocalizations.of(
                                   dialogContext,
@@ -1363,7 +1365,8 @@ class BackupRestoreHomePage extends ConsumerWidget {
                               ),
                             ),
                             FilledButton(
-                              onPressed: () => Navigator.of(dialogContext).pop(true),
+                              onPressed: () =>
+                                  Navigator.of(dialogContext).pop(true),
                               child: Text(l10n.accountsSyncScopeConfirmAction),
                             ),
                           ],
@@ -1383,10 +1386,13 @@ class BackupRestoreHomePage extends ConsumerWidget {
                         .updateSyncScopePreferences(nextPreferences);
                     await ref
                         .read(autoBackupControllerProvider)
-                        .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
+                        .evaluateEligibility(
+                          trigger: AutoBackupTrigger.appResumed,
+                        );
                   },
                 ),
-                if (domain != kOptionalSyncDomains.last) const Divider(height: 1),
+                if (domain != kOptionalSyncDomains.last)
+                  const Divider(height: 1),
               ],
               const SizedBox(height: 12),
               Text(
@@ -1406,7 +1412,9 @@ class BackupRestoreHomePage extends ConsumerWidget {
                         );
                     await ref
                         .read(autoBackupControllerProvider)
-                        .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
+                        .evaluateEligibility(
+                          trigger: AutoBackupTrigger.appResumed,
+                        );
                   },
                   child: Text(l10n.accountsSyncScopeRestoreDefaultsAction),
                 ),
@@ -1464,9 +1472,8 @@ class BackupRestoreHomePage extends ConsumerWidget {
                 value: prefs.preferManualBackup,
                 title: Text(l10n.accountsSyncPreferManualBackupTitle),
                 onChanged: (value) {
-                  ref.read(syncPreferencesProvider.notifier).state = prefs.copyWith(
-                        preferManualBackup: value,
-                      );
+                  ref.read(syncPreferencesProvider.notifier).state = prefs
+                      .copyWith(preferManualBackup: value);
                 },
               ),
               const Divider(height: 1),
@@ -1475,9 +1482,8 @@ class BackupRestoreHomePage extends ConsumerWidget {
                 value: prefs.allowRestoreSuggestions,
                 title: Text(l10n.accountsSyncAllowRestoreSuggestionsTitle),
                 onChanged: (value) {
-                  ref.read(syncPreferencesProvider.notifier).state = prefs.copyWith(
-                        allowRestoreSuggestions: value,
-                      );
+                  ref.read(syncPreferencesProvider.notifier).state = prefs
+                      .copyWith(allowRestoreSuggestions: value);
                 },
               ),
               const SizedBox(height: 8),
@@ -1494,10 +1500,7 @@ class BackupRestoreHomePage extends ConsumerWidget {
 }
 
 class RemoteRestorePreviewPage extends ConsumerStatefulWidget {
-  const RemoteRestorePreviewPage({
-    required this.preview,
-    super.key,
-  });
+  const RemoteRestorePreviewPage({required this.preview, super.key});
 
   final RestorePreview preview;
 
@@ -1532,9 +1535,7 @@ class _RemoteRestorePreviewPageState
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
-              Text(
-                _restoreSummaryBody(l10n, preview),
-              ),
+              Text(_restoreSummaryBody(l10n, preview)),
               const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
@@ -1677,7 +1678,9 @@ class _RemoteRestorePreviewPageState
               FilledButton(
                 onPressed: _running
                     ? null
-                    : () => _runRestore(RestoreDecisionMode.replaceLocalWithRemote),
+                    : () => _runRestore(
+                        RestoreDecisionMode.replaceLocalWithRemote,
+                      ),
                 child: Text(l10n.accountsSyncRemotePreviewReplaceAction),
               ),
               const SizedBox(height: 10),
@@ -1718,7 +1721,9 @@ class _RemoteRestorePreviewPageState
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(MaterialLocalizations.of(dialogContext).cancelButtonLabel),
+            child: Text(
+              MaterialLocalizations.of(dialogContext).cancelButtonLabel,
+            ),
           ),
           FilledButton(
             onPressed: () => Navigator.of(dialogContext).pop(true),
@@ -1831,9 +1836,7 @@ class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
                         });
                         messenger.showSnackBar(
                           SnackBar(
-                            content: Text(
-                              l10n.accountsSyncExportCreatedResult,
-                            ),
+                            content: Text(l10n.accountsSyncExportCreatedResult),
                           ),
                         );
                       },
@@ -1965,16 +1968,19 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
                 FilledButton(
                   onPressed: _busy
                       ? null
-                      : () => _confirmAndApply(context, _validationResult!.preview!),
+                      : () => _confirmAndApply(
+                          context,
+                          _validationResult!.preview!,
+                        ),
                   child: Text(l10n.accountsSyncRestoreBackupAction),
                 ),
               ] else if (_validationResult?.errorMessage != null) ...[
                 const SizedBox(height: 12),
                 Text(
                   _validationMessage(l10n, _validationResult!.errorMessage!),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.error),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
                 ),
               ],
             ],
@@ -2013,10 +2019,9 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
     );
     if (confirmed != true) return;
     setState(() => _busy = true);
-    final result = await ref.read(backupRepositoryProvider).applyImport(
-          preview: preview,
-          mode: _mode,
-        );
+    final result = await ref
+        .read(backupRepositoryProvider)
+        .applyImport(preview: preview, mode: _mode);
     if (!mounted) return;
     setState(() => _busy = false);
     messenger.showSnackBar(
@@ -2253,10 +2258,7 @@ class _NavRow extends StatelessWidget {
 }
 
 class _ImportPreviewCard extends StatelessWidget {
-  const _ImportPreviewCard({
-    required this.preview,
-    required this.mode,
-  });
+  const _ImportPreviewCard({required this.preview, required this.mode});
 
   final ImportPackagePreview preview;
   final ImportConflictMode mode;
@@ -2322,9 +2324,7 @@ class _ImportPreviewCard extends StatelessWidget {
 }
 
 class _DomainComparisonTile extends StatelessWidget {
-  const _DomainComparisonTile({
-    required this.comparison,
-  });
+  const _DomainComparisonTile({required this.comparison});
 
   final RestoreDomainComparison comparison;
 
@@ -2400,10 +2400,7 @@ String _restoreDomainLabel(AppLocalizations l10n, String domainId) {
   };
 }
 
-String _syncScopeDomainLabel(
-  AppLocalizations l10n,
-  SyncableDomain domain,
-) {
+String _syncScopeDomainLabel(AppLocalizations l10n, SyncableDomain domain) {
   return switch (domain) {
     SyncableDomain.profileBasics => l10n.accountsSyncRemoteDomainProfileBasics,
     SyncableDomain.settingsPreferences => l10n.accountsSyncRemoteDomainSettings,
@@ -2413,7 +2410,8 @@ String _syncScopeDomainLabel(
     SyncableDomain.growthProgress => l10n.accountsSyncRemoteDomainGrowth,
     SyncableDomain.learningProgress => l10n.accountsSyncRemoteDomainLearning,
     SyncableDomain.journalNotes => l10n.accountsSyncRemoteDomainJournal,
-    SyncableDomain.remindersPreferences => l10n.accountsSyncRemoteDomainReminders,
+    SyncableDomain.remindersPreferences =>
+      l10n.accountsSyncRemoteDomainReminders,
     SyncableDomain.themeAccessibility => l10n.accountsSyncRemoteDomainTheme,
   };
 }
@@ -2423,18 +2421,14 @@ String _syncScopeDomainLabelFromKey(AppLocalizations l10n, String key) {
   return domain == null ? key : _syncScopeDomainLabel(l10n, domain);
 }
 
-String _syncScopeDomainSubtitle(
-  AppLocalizations l10n,
-  SyncableDomain domain,
-) {
+String _syncScopeDomainSubtitle(AppLocalizations l10n, SyncableDomain domain) {
   return switch (domain) {
     SyncableDomain.settingsPreferences =>
       l10n.accountsSyncScopeSettingsDescription,
     SyncableDomain.journalNotes => l10n.accountsSyncScopeJournalDescription,
     SyncableDomain.remindersPreferences =>
       l10n.accountsSyncScopeRemindersDescription,
-    SyncableDomain.themeAccessibility =>
-      l10n.accountsSyncScopeThemeDescription,
+    SyncableDomain.themeAccessibility => l10n.accountsSyncScopeThemeDescription,
     _ => '',
   };
 }
@@ -2491,20 +2485,24 @@ List<Widget> _buildScopeMismatchLines(
   return lines;
 }
 
-String _restoreConflictLabel(
-  AppLocalizations l10n,
-  RestoreConflictType type,
-) {
+String _restoreConflictLabel(AppLocalizations l10n, RestoreConflictType type) {
   return switch (type) {
     RestoreConflictType.identical => l10n.accountsSyncRemoteConflictIdentical,
-    RestoreConflictType.remoteNewer => l10n.accountsSyncRemoteConflictRemoteNewer,
+    RestoreConflictType.remoteNewer =>
+      l10n.accountsSyncRemoteConflictRemoteNewer,
     RestoreConflictType.localNewer => l10n.accountsSyncRemoteConflictLocalNewer,
-    RestoreConflictType.remoteOnlyData => l10n.accountsSyncRemoteConflictRemoteOnly,
-    RestoreConflictType.localOnlyData => l10n.accountsSyncRemoteConflictLocalOnly,
-    RestoreConflictType.incompatibleSchema => l10n.accountsSyncRemoteConflictSchema,
-    RestoreConflictType.uncertainDifference => l10n.accountsSyncRemoteConflictUncertain,
-    RestoreConflictType.accountMismatch => l10n.accountsSyncRemoteConflictAccountMismatch,
-    RestoreConflictType.providerMismatch => l10n.accountsSyncRemoteConflictProviderMismatch,
+    RestoreConflictType.remoteOnlyData =>
+      l10n.accountsSyncRemoteConflictRemoteOnly,
+    RestoreConflictType.localOnlyData =>
+      l10n.accountsSyncRemoteConflictLocalOnly,
+    RestoreConflictType.incompatibleSchema =>
+      l10n.accountsSyncRemoteConflictSchema,
+    RestoreConflictType.uncertainDifference =>
+      l10n.accountsSyncRemoteConflictUncertain,
+    RestoreConflictType.accountMismatch =>
+      l10n.accountsSyncRemoteConflictAccountMismatch,
+    RestoreConflictType.providerMismatch =>
+      l10n.accountsSyncRemoteConflictProviderMismatch,
   };
 }
 
@@ -2514,9 +2512,11 @@ String _mergeEligibilityLabel(
 ) {
   return switch (result) {
     MergeEligibilityResult.safeToMerge => l10n.accountsSyncRemoteMergeSafe,
-    MergeEligibilityResult.replaceOnly => l10n.accountsSyncRemoteMergeReplaceOnly,
+    MergeEligibilityResult.replaceOnly =>
+      l10n.accountsSyncRemoteMergeReplaceOnly,
     MergeEligibilityResult.unsafe => l10n.accountsSyncRemoteMergeUnsafe,
-    MergeEligibilityResult.unsupported => l10n.accountsSyncRemoteMergeUnsupported,
+    MergeEligibilityResult.unsupported =>
+      l10n.accountsSyncRemoteMergeUnsupported,
   };
 }
 
@@ -2569,7 +2569,8 @@ String _autoBackupFrequencyLabel(
     AutoBackupFrequency.smart => l10n.accountsSyncAutoBackupFrequencySmart,
     AutoBackupFrequency.daily => l10n.accountsSyncAutoBackupFrequencyDaily,
     AutoBackupFrequency.weekly => l10n.accountsSyncAutoBackupFrequencyWeekly,
-    AutoBackupFrequency.manualOnly => l10n.accountsSyncAutoBackupFrequencyManual,
+    AutoBackupFrequency.manualOnly =>
+      l10n.accountsSyncAutoBackupFrequencyManual,
   };
 }
 
@@ -2605,7 +2606,8 @@ String _pendingBackupReasonLabel(
     PendingBackupReason.backupOverdue =>
       l10n.accountsSyncAutoBackupReasonOverdue,
     PendingBackupReason.signedIn => l10n.accountsSyncAutoBackupReasonSignedIn,
-    PendingBackupReason.manualRetry => l10n.accountsSyncAutoBackupReasonManualRetry,
+    PendingBackupReason.manualRetry =>
+      l10n.accountsSyncAutoBackupReasonManualRetry,
   };
 }
 
@@ -2641,7 +2643,8 @@ String _connectionModeBody(
   String? accountLabel,
 ) {
   return switch (mode) {
-    AccountsSyncConnectionMode.localOnly => l10n.accountsSyncStatusCardLocalOnlyBody,
+    AccountsSyncConnectionMode.localOnly =>
+      l10n.accountsSyncStatusCardLocalOnlyBody,
     AccountsSyncConnectionMode.signedInNoBackup =>
       l10n.accountsSyncStatusCardSignedInBody(
         accountLabel ?? l10n.accountsSyncProviderNone,
@@ -2652,7 +2655,8 @@ String _connectionModeBody(
       l10n.accountsSyncStatusCardBackupRunningBody,
     AccountsSyncConnectionMode.restoreAvailable =>
       l10n.accountsSyncStatusCardRestoreReadyBody,
-    AccountsSyncConnectionMode.syncError => l10n.accountsSyncStatusCardSyncErrorBody,
+    AccountsSyncConnectionMode.syncError =>
+      l10n.accountsSyncStatusCardSyncErrorBody,
   };
 }
 
@@ -2676,7 +2680,8 @@ String _validationMessage(AppLocalizations l10n, String code) {
 
 String _warningLabel(AppLocalizations l10n, String code) {
   return switch (code) {
-    'structured_data_missing' => l10n.accountsSyncImportWarningStructuredDataMissing,
+    'structured_data_missing' =>
+      l10n.accountsSyncImportWarningStructuredDataMissing,
     _ => code,
   };
 }
@@ -2697,7 +2702,8 @@ String _remoteErrorLabel(AppLocalizations l10n, String code) {
     'icloud_unavailable' => l10n.accountsSyncRemoteICloudUnavailableBody,
     'google_auth_expired' => l10n.accountsSyncRemoteAuthExpiredBody,
     'google_drive_upload_failed' => l10n.accountsSyncRemoteBackupFailedBody,
-    'email_backup_not_configured' => l10n.accountsSyncRemoteEmailUnavailableBody,
+    'email_backup_not_configured' =>
+      l10n.accountsSyncRemoteEmailUnavailableBody,
     _ => l10n.accountsSyncRemoteBackupFailedBody,
   };
 }

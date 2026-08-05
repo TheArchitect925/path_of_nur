@@ -16,10 +16,12 @@ const String bedtimeStoryImageBackdropAssetDirectory =
 const String bedtimeStoryImageSceneAssetDirectory =
     'assets/images/prophets/bedtime_stories/scenes';
 const String kidsStoryImageAssetDirectory = 'assets/images/kids_stories';
-const String kidsStoryImageCoverAssetDirectory = 'assets/images/kids_stories/covers';
+const String kidsStoryImageCoverAssetDirectory =
+    'assets/images/kids_stories/covers';
 const String kidsStoryImageBackdropAssetDirectory =
     'assets/images/kids_stories/backdrops';
-const String kidsStoryImageSceneAssetDirectory = 'assets/images/kids_stories/scenes';
+const String kidsStoryImageSceneAssetDirectory =
+    'assets/images/kids_stories/scenes';
 
 const String bedtimeStoryDefaultLanguageCode = 'en';
 const String bedtimeStoryDefaultNarratorId = 'path_of_nur_bedtime_narrator';
@@ -130,12 +132,14 @@ String bedtimeStoryLegacyBackdropAssetPath(String fileName) {
 BedtimeStoryAudioManifestEntry bedtimeStoryAudioManifestEntryFor(
   BedtimeStorySeed story,
 ) {
-  final canonicalFileName = story.collectionType == KidsIslamicStoryCollectionType.prophets
+  final canonicalFileName =
+      story.collectionType == KidsIslamicStoryCollectionType.prophets
       ? bedtimeStoryCanonicalAudioFileName(story)
       : (story.audioFileName.isNotEmpty
             ? story.audioFileName
             : bedtimeStoryCanonicalAudioFileName(story));
-  final assetPath = story.collectionType == KidsIslamicStoryCollectionType.prophets
+  final assetPath =
+      story.collectionType == KidsIslamicStoryCollectionType.prophets
       ? bedtimeStoryAudioAssetPath(canonicalFileName)
       : kidsStoryAudioAssetPath(canonicalFileName);
   return BedtimeStoryAudioManifestEntry(
@@ -144,7 +148,8 @@ BedtimeStoryAudioManifestEntry bedtimeStoryAudioManifestEntryFor(
     prophetId: story.prophetId,
     audioFileName: canonicalFileName,
     assetPath: assetPath,
-    alternateAssetPaths: story.collectionType == KidsIslamicStoryCollectionType.prophets
+    alternateAssetPaths:
+        story.collectionType == KidsIslamicStoryCollectionType.prophets
         ? <String>[bedtimeStoryLegacyAudioAssetPath(story.audioFileName)]
         : const <String>[],
     estimatedDurationSeconds: story.estimatedDurationSeconds,
@@ -171,7 +176,8 @@ List<BedtimeStoryIllustrationManifestEntry> bedtimeStoryIllustrationManifestFor(
       assetPath: story.collectionType == KidsIslamicStoryCollectionType.prophets
           ? bedtimeStoryCoverAssetPath(coverFileName)
           : story.coverAssetPath,
-      alternateAssetPaths: story.collectionType == KidsIslamicStoryCollectionType.prophets
+      alternateAssetPaths:
+          story.collectionType == KidsIslamicStoryCollectionType.prophets
           ? <String>[bedtimeStoryLegacyCoverAssetPath(coverFileName)]
           : const <String>[],
       isBundledAsset: true,
@@ -184,10 +190,9 @@ List<BedtimeStoryIllustrationManifestEntry> bedtimeStoryIllustrationManifestFor(
       assetPath: story.collectionType == KidsIslamicStoryCollectionType.prophets
           ? bedtimeStoryBackdropAssetPath(backdropFileName)
           : story.backdropAssetPath,
-      alternateAssetPaths: story.collectionType == KidsIslamicStoryCollectionType.prophets
-          ? <String>[
-              bedtimeStoryLegacyBackdropAssetPath(backdropFileName),
-            ]
+      alternateAssetPaths:
+          story.collectionType == KidsIslamicStoryCollectionType.prophets
+          ? <String>[bedtimeStoryLegacyBackdropAssetPath(backdropFileName)]
           : const <String>[],
       isBundledAsset: true,
       isAvailable: true,

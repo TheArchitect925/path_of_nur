@@ -5,7 +5,9 @@ import 'bedtime_story_learning_repository.dart';
 
 final bedtimeStoryTonightLearningSuggestionProvider =
     Provider<BedtimeStoryLearningSuggestion?>((ref) {
-      return ref.watch(bedtimeStoryLearningRepositoryProvider).tonightSuggestion();
+      return ref
+          .watch(bedtimeStoryLearningRepositoryProvider)
+          .tonightSuggestion();
     });
 
 final bedtimeStoryContinueLearningSuggestionProvider =

@@ -42,7 +42,9 @@ class _FakeBackupTransport implements BackupTransport {
       success: uploadShouldSucceed,
       availability: availability,
       metadata: uploadShouldSucceed ? payload.metadata : null,
-      messageCode: uploadShouldSucceed ? null : messageCode ?? 'transport_failure',
+      messageCode: uploadShouldSucceed
+          ? null
+          : messageCode ?? 'transport_failure',
     );
   }
 }
@@ -65,10 +67,10 @@ void main() {
     );
   }
 
-  Future<void> connectGoogleAccount(
-    ProviderContainer container,
-  ) async {
-    await container.read(accountsSyncControllerProvider.notifier).connectAuthenticatedAccount(
+  Future<void> connectGoogleAccount(ProviderContainer container) async {
+    await container
+        .read(accountsSyncControllerProvider.notifier)
+        .connectAuthenticatedAccount(
           const AccountIdentity(
             provider: AccountsAuthProvider.google,
             identifier: 'tester@example.com',
@@ -76,7 +78,9 @@ void main() {
             email: 'tester@example.com',
           ),
         );
-    await container.read(accountsSyncControllerProvider.notifier).createProfile(
+    await container
+        .read(accountsSyncControllerProvider.notifier)
+        .createProfile(
           displayName: 'Traveler',
           kind: ProfileKind.adult,
           experienceMode: ProfileExperienceMode.full,
@@ -85,35 +89,42 @@ void main() {
         );
   }
 
-  test('auto-backup eligibility is disabled when preferences are off', () async {
-    final container = await makeContainerWithGoogleTransport(
-      _FakeBackupTransport(provider: RemoteBackupProvider.google),
-    );
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: false,
-            frequency: AutoBackupFrequency.smart,
-            backupOnMeaningfulProgressChange: true,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 240,
-          ),
-        );
+  test(
+    'auto-backup eligibility is disabled when preferences are off',
+    () async {
+      final container = await makeContainerWithGoogleTransport(
+        _FakeBackupTransport(provider: RemoteBackupProvider.google),
+      );
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: false,
+              frequency: AutoBackupFrequency.smart,
+              backupOnMeaningfulProgressChange: true,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 240,
+            ),
+          );
 
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appResumed,
-        );
+      final eligibility = await container
+          .read(autoBackupControllerProvider)
+          .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
 
-    expect(eligibility.result, AutoBackupEligibilityResult.disabled);
-  });
+      expect(eligibility.result, AutoBackupEligibilityResult.disabled);
+    },
+  );
 
   test('auto-backup requires sign-in before becoming eligible', () async {
     final container = await makeContainerWithGoogleTransport(
       _FakeBackupTransport(provider: RemoteBackupProvider.google),
     );
     addTearDown(container.dispose);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
+    await container
+        .read(accountsSyncControllerProvider.notifier)
+        .updateAutoBackupState(
           preferences: const AutoBackupPreferences(
             enabled: true,
             frequency: AutoBackupFrequency.smart,
@@ -123,218 +134,268 @@ void main() {
           ),
         );
 
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appLaunch,
-        );
+    final eligibility = await container
+        .read(autoBackupControllerProvider)
+        .evaluateEligibility(trigger: AutoBackupTrigger.appLaunch);
 
     expect(eligibility.result, AutoBackupEligibilityResult.notSignedIn);
   });
 
-  test('auto-backup becomes eligible when signed in and progress changed', () async {
-    final container = await makeContainerWithGoogleTransport(
-      _FakeBackupTransport(provider: RemoteBackupProvider.google),
-    );
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: true,
-            frequency: AutoBackupFrequency.smart,
-            backupOnMeaningfulProgressChange: true,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 240,
-          ),
-        );
+  test(
+    'auto-backup becomes eligible when signed in and progress changed',
+    () async {
+      final container = await makeContainerWithGoogleTransport(
+        _FakeBackupTransport(provider: RemoteBackupProvider.google),
+      );
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: true,
+              frequency: AutoBackupFrequency.smart,
+              backupOnMeaningfulProgressChange: true,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 240,
+            ),
+          );
 
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appResumed,
-        );
+      final eligibility = await container
+          .read(autoBackupControllerProvider)
+          .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
 
-    expect(eligibility.result, AutoBackupEligibilityResult.eligibleNow);
-    expect(
-      eligibility.pendingReasons,
-      contains(PendingBackupReason.meaningfulProgressChanged),
-    );
-  });
+      expect(eligibility.result, AutoBackupEligibilityResult.eligibleNow);
+      expect(
+        eligibility.pendingReasons,
+        contains(PendingBackupReason.meaningfulProgressChanged),
+      );
+    },
+  );
 
-  test('auto-backup throttles repeated attempts inside the minimum window', () async {
-    final container = await makeContainerWithGoogleTransport(
-      _FakeBackupTransport(provider: RemoteBackupProvider.google),
-    );
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: true,
-            frequency: AutoBackupFrequency.smart,
-            backupOnMeaningfulProgressChange: true,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 240,
-          ),
-          lastAttemptAtIso: DateTime.now().toIso8601String(),
-        );
+  test(
+    'auto-backup throttles repeated attempts inside the minimum window',
+    () async {
+      final container = await makeContainerWithGoogleTransport(
+        _FakeBackupTransport(provider: RemoteBackupProvider.google),
+      );
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: true,
+              frequency: AutoBackupFrequency.smart,
+              backupOnMeaningfulProgressChange: true,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 240,
+            ),
+            lastAttemptAtIso: DateTime.now().toIso8601String(),
+          );
 
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appResumed,
-        );
+      final eligibility = await container
+          .read(autoBackupControllerProvider)
+          .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
 
-    expect(eligibility.result, AutoBackupEligibilityResult.throttled);
-  });
+      expect(eligibility.result, AutoBackupEligibilityResult.throttled);
+    },
+  );
 
-  test('successful auto-backup clears dirty state and stores success metadata', () async {
-    final transport = _FakeBackupTransport(provider: RemoteBackupProvider.google);
-    final container = await makeContainerWithGoogleTransport(transport);
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: true,
-            frequency: AutoBackupFrequency.smart,
-            backupOnMeaningfulProgressChange: true,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 0,
-          ),
-        );
-
-    final result = await container.read(autoBackupControllerProvider).runIfEligible(
-          trigger: AutoBackupTrigger.appResumed,
-        );
-
-    final state = container.read(accountsSyncControllerProvider).autoBackupState;
-    expect(result.ran, isTrue);
-    expect(result.success, isTrue);
-    expect(transport.uploadedPayload, isNotNull);
-    expect(state.dirty, isFalse);
-    expect(state.pendingReasons, isEmpty);
-    expect(state.lastSuccessAtIso, isNotNull);
-    expect(state.lastSuccessfulDataSignature, isNotNull);
-    expect(state.lastFailureCode, isNull);
-  });
-
-  test('failed auto-backup preserves dirty state and records failure', () async {
-    final transport = _FakeBackupTransport(
-      provider: RemoteBackupProvider.google,
-      uploadShouldSucceed: false,
-      messageCode: 'transport_failure',
-    );
-    final container = await makeContainerWithGoogleTransport(transport);
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: true,
-            frequency: AutoBackupFrequency.smart,
-            backupOnMeaningfulProgressChange: true,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 0,
-          ),
-        );
-
-    final result = await container.read(autoBackupControllerProvider).runIfEligible(
-          trigger: AutoBackupTrigger.appResumed,
-        );
-
-    final state = container.read(accountsSyncControllerProvider).autoBackupState;
-    expect(result.ran, isTrue);
-    expect(result.success, isFalse);
-    expect(state.dirty, isTrue);
-    expect(state.lastFailureCode, 'transport_failure');
-    expect(state.lastSuccessAtIso, isNull);
-  });
-
-  test('disabling meaningful-change backups waits for overdue schedule instead of payload diff', () async {
-    final container = await makeContainerWithGoogleTransport(
-      _FakeBackupTransport(provider: RemoteBackupProvider.google),
-    );
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: true,
-            frequency: AutoBackupFrequency.daily,
-            backupOnMeaningfulProgressChange: false,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 0,
-          ),
-          lastSuccessAtIso: DateTime.now().toIso8601String(),
-        );
-
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appResumed,
-        );
-
-    expect(eligibility.result, AutoBackupEligibilityResult.noMeaningfulChanges);
-  });
-
-  test('auto-backup reports provider unavailable when transport cannot back up', () async {
-    final container = await makeContainerWithGoogleTransport(
-      _FakeBackupTransport(
+  test(
+    'successful auto-backup clears dirty state and stores success metadata',
+    () async {
+      final transport = _FakeBackupTransport(
         provider: RemoteBackupProvider.google,
-        availability: RemoteBackupAvailability.providerNotConfigured,
-      ),
-    );
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    await container.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
-          preferences: const AutoBackupPreferences(
-            enabled: true,
-            frequency: AutoBackupFrequency.smart,
-            backupOnMeaningfulProgressChange: true,
-            backupOnBackground: true,
-            minimumIntervalMinutes: 0,
-          ),
-        );
+      );
+      final container = await makeContainerWithGoogleTransport(transport);
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: true,
+              frequency: AutoBackupFrequency.smart,
+              backupOnMeaningfulProgressChange: true,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 0,
+            ),
+          );
 
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appLaunch,
-        );
+      final result = await container
+          .read(autoBackupControllerProvider)
+          .runIfEligible(trigger: AutoBackupTrigger.appResumed);
 
-    expect(eligibility.result, AutoBackupEligibilityResult.providerUnavailable);
-  });
+      final state = container
+          .read(accountsSyncControllerProvider)
+          .autoBackupState;
+      expect(result.ran, isTrue);
+      expect(result.success, isTrue);
+      expect(transport.uploadedPayload, isNotNull);
+      expect(state.dirty, isFalse);
+      expect(state.pendingReasons, isEmpty);
+      expect(state.lastSuccessAtIso, isNotNull);
+      expect(state.lastSuccessfulDataSignature, isNotNull);
+      expect(state.lastFailureCode, isNull);
+    },
+  );
 
-  test('excluded optional domains do not make scoped auto-backup dirty', () async {
-    final container = await makeContainerWithGoogleTransport(
-      _FakeBackupTransport(provider: RemoteBackupProvider.google),
-    );
-    addTearDown(container.dispose);
-    await connectGoogleAccount(container);
-    final controller = container.read(accountsSyncControllerProvider.notifier);
-    await controller.updateSyncScopePreferences(
-      updateSyncScopePreference(
-        container.read(accountsSyncControllerProvider).syncScopePreferences,
-        domain: SyncableDomain.journalNotes,
-        includeInBackup: false,
-      ),
-    );
-    await controller.updateAutoBackupState(
-      preferences: const AutoBackupPreferences(
-        enabled: true,
-        frequency: AutoBackupFrequency.smart,
-        backupOnMeaningfulProgressChange: true,
-        backupOnBackground: true,
-        minimumIntervalMinutes: 0,
-      ),
-    );
-    final baselinePayload = await controller.buildBackupPayload(
-      currentProfileOnly: false,
-      encrypt: false,
-      sourceType: BackupSourceType.remoteBackup,
-      useSyncScope: true,
-      appVersion: '1.2.3',
-      buildNumber: '23',
-    );
-    await controller.updateAutoBackupState(
-      lastSuccessfulDataSignature: backupPayloadFingerprint(baselinePayload),
-      lastSuccessAtIso: DateTime.now().toIso8601String(),
-    );
+  test(
+    'failed auto-backup preserves dirty state and records failure',
+    () async {
+      final transport = _FakeBackupTransport(
+        provider: RemoteBackupProvider.google,
+        uploadShouldSucceed: false,
+        messageCode: 'transport_failure',
+      );
+      final container = await makeContainerWithGoogleTransport(transport);
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: true,
+              frequency: AutoBackupFrequency.smart,
+              backupOnMeaningfulProgressChange: true,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 0,
+            ),
+          );
 
-    final store = container.read(localStoreProvider);
-    await store.setString('journal.entry.test', 'private note');
+      final result = await container
+          .read(autoBackupControllerProvider)
+          .runIfEligible(trigger: AutoBackupTrigger.appResumed);
 
-    final eligibility = await container.read(autoBackupControllerProvider).evaluateEligibility(
-          trigger: AutoBackupTrigger.appResumed,
-        );
+      final state = container
+          .read(accountsSyncControllerProvider)
+          .autoBackupState;
+      expect(result.ran, isTrue);
+      expect(result.success, isFalse);
+      expect(state.dirty, isTrue);
+      expect(state.lastFailureCode, 'transport_failure');
+      expect(state.lastSuccessAtIso, isNull);
+    },
+  );
 
-    expect(eligibility.result, AutoBackupEligibilityResult.noMeaningfulChanges);
-  });
+  test(
+    'disabling meaningful-change backups waits for overdue schedule instead of payload diff',
+    () async {
+      final container = await makeContainerWithGoogleTransport(
+        _FakeBackupTransport(provider: RemoteBackupProvider.google),
+      );
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: true,
+              frequency: AutoBackupFrequency.daily,
+              backupOnMeaningfulProgressChange: false,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 0,
+            ),
+            lastSuccessAtIso: DateTime.now().toIso8601String(),
+          );
+
+      final eligibility = await container
+          .read(autoBackupControllerProvider)
+          .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
+
+      expect(
+        eligibility.result,
+        AutoBackupEligibilityResult.noMeaningfulChanges,
+      );
+    },
+  );
+
+  test(
+    'auto-backup reports provider unavailable when transport cannot back up',
+    () async {
+      final container = await makeContainerWithGoogleTransport(
+        _FakeBackupTransport(
+          provider: RemoteBackupProvider.google,
+          availability: RemoteBackupAvailability.providerNotConfigured,
+        ),
+      );
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
+            preferences: const AutoBackupPreferences(
+              enabled: true,
+              frequency: AutoBackupFrequency.smart,
+              backupOnMeaningfulProgressChange: true,
+              backupOnBackground: true,
+              minimumIntervalMinutes: 0,
+            ),
+          );
+
+      final eligibility = await container
+          .read(autoBackupControllerProvider)
+          .evaluateEligibility(trigger: AutoBackupTrigger.appLaunch);
+
+      expect(
+        eligibility.result,
+        AutoBackupEligibilityResult.providerUnavailable,
+      );
+    },
+  );
+
+  test(
+    'excluded optional domains do not make scoped auto-backup dirty',
+    () async {
+      final container = await makeContainerWithGoogleTransport(
+        _FakeBackupTransport(provider: RemoteBackupProvider.google),
+      );
+      addTearDown(container.dispose);
+      await connectGoogleAccount(container);
+      final controller = container.read(
+        accountsSyncControllerProvider.notifier,
+      );
+      await controller.updateSyncScopePreferences(
+        updateSyncScopePreference(
+          container.read(accountsSyncControllerProvider).syncScopePreferences,
+          domain: SyncableDomain.journalNotes,
+          includeInBackup: false,
+        ),
+      );
+      await controller.updateAutoBackupState(
+        preferences: const AutoBackupPreferences(
+          enabled: true,
+          frequency: AutoBackupFrequency.smart,
+          backupOnMeaningfulProgressChange: true,
+          backupOnBackground: true,
+          minimumIntervalMinutes: 0,
+        ),
+      );
+      final baselinePayload = await controller.buildBackupPayload(
+        currentProfileOnly: false,
+        encrypt: false,
+        sourceType: BackupSourceType.remoteBackup,
+        useSyncScope: true,
+        appVersion: '1.2.3',
+        buildNumber: '23',
+      );
+      await controller.updateAutoBackupState(
+        lastSuccessfulDataSignature: backupPayloadFingerprint(baselinePayload),
+        lastSuccessAtIso: DateTime.now().toIso8601String(),
+      );
+
+      final store = container.read(localStoreProvider);
+      await store.setString('journal.entry.test', 'private note');
+
+      final eligibility = await container
+          .read(autoBackupControllerProvider)
+          .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
+
+      expect(
+        eligibility.result,
+        AutoBackupEligibilityResult.noMeaningfulChanges,
+      );
+    },
+  );
 }

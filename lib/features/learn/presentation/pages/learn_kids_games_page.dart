@@ -95,10 +95,8 @@ class LearnKidsGamesPage extends ConsumerWidget {
       icon: icon,
       color: const Color(0xFFF9E6D8),
       accentColor: const Color(0xFFBF6F1F),
-      onTap: () => context.pushNamed(
-        routeName,
-        pathParameters: {'storyId': story.id},
-      ),
+      onTap: () =>
+          context.pushNamed(routeName, pathParameters: {'storyId': story.id}),
     );
   }
 }

@@ -97,7 +97,9 @@ class QuranReflectionEntry {
       surahNumber: identical(surahNumber, _sentinel)
           ? this.surahNumber
           : surahNumber as int?,
-      themeId: identical(themeId, _sentinel) ? this.themeId : themeId as String?,
+      themeId: identical(themeId, _sentinel)
+          ? this.themeId
+          : themeId as String?,
       pathwayId: identical(pathwayId, _sentinel)
           ? this.pathwayId
           : pathwayId as String?,

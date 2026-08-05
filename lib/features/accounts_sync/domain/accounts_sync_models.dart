@@ -1,9 +1,4 @@
-enum AccountsAuthProvider {
-  localOnly,
-  apple,
-  google,
-  email,
-}
+enum AccountsAuthProvider { localOnly, apple, google, email }
 
 enum AccountsSyncConnectionMode {
   localOnly,
@@ -14,17 +9,9 @@ enum AccountsSyncConnectionMode {
   syncError,
 }
 
-enum BackupSourceType {
-  manualExport,
-  safetySnapshot,
-  remoteBackup,
-}
+enum BackupSourceType { manualExport, safetySnapshot, remoteBackup }
 
-enum RemoteBackupProvider {
-  apple,
-  google,
-  email,
-}
+enum RemoteBackupProvider { apple, google, email }
 
 enum RemoteBackupAvailability {
   unknown,
@@ -36,10 +23,7 @@ enum RemoteBackupAvailability {
   error,
 }
 
-enum ImportConflictMode {
-  merge,
-  replace,
-}
+enum ImportConflictMode { merge, replace }
 
 enum RestoreConflictType {
   identical,
@@ -60,19 +44,9 @@ enum RestoreDecisionMode {
   keepLocalOnly,
 }
 
-enum MergeEligibilityResult {
-  safeToMerge,
-  replaceOnly,
-  unsafe,
-  unsupported,
-}
+enum MergeEligibilityResult { safeToMerge, replaceOnly, unsafe, unsupported }
 
-enum AutoBackupFrequency {
-  smart,
-  daily,
-  weekly,
-  manualOnly,
-}
+enum AutoBackupFrequency { smart, daily, weekly, manualOnly }
 
 enum AutoBackupTrigger {
   appLaunch,
@@ -121,13 +95,7 @@ enum DomainBackupInclusionState {
   unsupported,
 }
 
-enum AuthActionStatus {
-  success,
-  cancelled,
-  unavailable,
-  notConfigured,
-  error,
-}
+enum AuthActionStatus { success, cancelled, unavailable, notConfigured, error }
 
 class AccountIdentity {
   const AccountIdentity({
@@ -170,18 +138,14 @@ class SyncPreferences {
 }
 
 class SyncScopePreferences {
-  const SyncScopePreferences({
-    required this.excludedOptionalDomainNames,
-  });
+  const SyncScopePreferences({required this.excludedOptionalDomainNames});
 
   final List<String> excludedOptionalDomainNames;
 
   Set<String> get excludedOptionalDomainNameSet =>
       excludedOptionalDomainNames.toSet();
 
-  SyncScopePreferences copyWith({
-    List<String>? excludedOptionalDomainNames,
-  }) {
+  SyncScopePreferences copyWith({List<String>? excludedOptionalDomainNames}) {
     return SyncScopePreferences(
       excludedOptionalDomainNames:
           excludedOptionalDomainNames ?? this.excludedOptionalDomainNames,
@@ -490,11 +454,7 @@ class SyncOperationResult {
 }
 
 class AuthActionResult {
-  const AuthActionResult({
-    required this.status,
-    this.identity,
-    this.message,
-  });
+  const AuthActionResult({required this.status, this.identity, this.message});
 
   final AuthActionStatus status;
   final AccountIdentity? identity;
@@ -631,36 +591,32 @@ class AutoBackupPolicyState {
     'inProgress': inProgress,
   };
 
-  factory AutoBackupPolicyState.fromJson(Map<String, dynamic>? json) =>
-      AutoBackupPolicyState(
-        preferences: AutoBackupPreferences.fromJson(
-          (json?['preferences'] as Map?)?.map(
-            (key, value) => MapEntry(key.toString(), value),
-          ),
-        ),
-        dirty: json?['dirty'] as bool? ?? false,
-        pendingReasons:
-            (json?['pendingReasons'] as List?)
-                ?.map(
-                  (item) => PendingBackupReason.values.byName(item.toString()),
-                )
-                .toList() ??
-            const <PendingBackupReason>[],
-        lastAttemptAtIso: json?['lastAttemptAtIso']?.toString(),
-        lastSuccessAtIso: json?['lastSuccessAtIso']?.toString(),
-        lastFailureCode: json?['lastFailureCode']?.toString(),
-        lastTrigger: json?['lastTrigger'] == null
-            ? null
-            : AutoBackupTrigger.values.byName(
-                json!['lastTrigger'].toString(),
-              ),
-        lastEvaluatedAtIso: json?['lastEvaluatedAtIso']?.toString(),
-        lastSuccessfulDataSignature:
-            json?['lastSuccessfulDataSignature']?.toString(),
-        lastEvaluatedDataSignature:
-            json?['lastEvaluatedDataSignature']?.toString(),
-        inProgress: json?['inProgress'] as bool? ?? false,
-      );
+  factory AutoBackupPolicyState.fromJson(
+    Map<String, dynamic>? json,
+  ) => AutoBackupPolicyState(
+    preferences: AutoBackupPreferences.fromJson(
+      (json?['preferences'] as Map?)?.map(
+        (key, value) => MapEntry(key.toString(), value),
+      ),
+    ),
+    dirty: json?['dirty'] as bool? ?? false,
+    pendingReasons:
+        (json?['pendingReasons'] as List?)
+            ?.map((item) => PendingBackupReason.values.byName(item.toString()))
+            .toList() ??
+        const <PendingBackupReason>[],
+    lastAttemptAtIso: json?['lastAttemptAtIso']?.toString(),
+    lastSuccessAtIso: json?['lastSuccessAtIso']?.toString(),
+    lastFailureCode: json?['lastFailureCode']?.toString(),
+    lastTrigger: json?['lastTrigger'] == null
+        ? null
+        : AutoBackupTrigger.values.byName(json!['lastTrigger'].toString()),
+    lastEvaluatedAtIso: json?['lastEvaluatedAtIso']?.toString(),
+    lastSuccessfulDataSignature: json?['lastSuccessfulDataSignature']
+        ?.toString(),
+    lastEvaluatedDataSignature: json?['lastEvaluatedDataSignature']?.toString(),
+    inProgress: json?['inProgress'] as bool? ?? false,
+  );
 }
 
 class AutoBackupRunResult {

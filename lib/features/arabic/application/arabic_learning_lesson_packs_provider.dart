@@ -26,7 +26,9 @@ final arabicLearningLessonPacksProvider =
     });
 
 List<ArabicLearningLessonPack> _buildKidsLessonPacks(Ref ref) {
-  final units = ref.watch(arabicContentUnitsProvider(ArabicLearningAudience.kids));
+  final units = ref.watch(
+    arabicContentUnitsProvider(ArabicLearningAudience.kids),
+  );
   final compositions = ref.watch(
     arabicContentPackCompositionsProvider(ArabicLearningAudience.kids),
   );
@@ -37,9 +39,9 @@ List<ArabicLearningLessonPack> _buildKidsLessonPacks(Ref ref) {
   final readiness = ref.watch(
     quranReadinessBridgeSummaryProvider(ArabicLearningAudience.kids),
   );
-  final continuation = ref.watch(
-    arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids),
-  ).continuation;
+  final continuation = ref
+      .watch(arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids))
+      .continuation;
 
   final nextLetterId = kidsArabicStarterReleaseOrderIds.firstWhere(
     (id) => !progress.completedLetterIds.contains(id),
@@ -75,7 +77,8 @@ List<ArabicLearningLessonPack> _buildKidsLessonPacks(Ref ref) {
         units,
         compositionMap['kids_beginner_letters_pack']!.contentUnitIds,
       ),
-      searchKeywords: compositionMap['kids_beginner_letters_pack']!.searchKeywords,
+      searchKeywords:
+          compositionMap['kids_beginner_letters_pack']!.searchKeywords,
       sortOrder: compositionMap['kids_beginner_letters_pack']!.sortOrder,
     ),
     ArabicLearningLessonPack(
@@ -217,7 +220,8 @@ List<ArabicLearningLessonPack> _buildKidsLessonPacks(Ref ref) {
       ),
       itemIds: compositionMap['kids_quran_readiness_pack']!.contentUnitIds,
       previewArabic: <String>[readiness.snippet.snippetArabic],
-      searchKeywords: compositionMap['kids_quran_readiness_pack']!.searchKeywords,
+      searchKeywords:
+          compositionMap['kids_quran_readiness_pack']!.searchKeywords,
       sortOrder: compositionMap['kids_quran_readiness_pack']!.sortOrder,
     ),
   ];
@@ -232,7 +236,9 @@ List<ArabicLearningLessonPack> _buildKidsLessonPacks(Ref ref) {
 }
 
 List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
-  final units = ref.watch(arabicContentUnitsProvider(ArabicLearningAudience.adult));
+  final units = ref.watch(
+    arabicContentUnitsProvider(ArabicLearningAudience.adult),
+  );
   final compositions = ref.watch(
     arabicContentPackCompositionsProvider(ArabicLearningAudience.adult),
   );
@@ -242,14 +248,18 @@ List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
   final readiness = ref.watch(
     quranReadinessBridgeSummaryProvider(ArabicLearningAudience.adult),
   );
-  final continuation = ref.watch(
-    arabicLearningProgressSummaryProvider(ArabicLearningAudience.adult),
-  ).continuation;
+  final continuation = ref
+      .watch(
+        arabicLearningProgressSummaryProvider(ArabicLearningAudience.adult),
+      )
+      .continuation;
 
   final foundations = catalog.moduleById('foundations');
   final phraseReading = catalog.moduleById('phrase_reading');
   final tajweedBasics = catalog.moduleById('tajweed_basics');
-  final nextWordId = wordProgress.lastWordId ?? beginnerWords.firstOrNull?.sharedBeginnerWordId;
+  final nextWordId =
+      wordProgress.lastWordId ??
+      beginnerWords.firstOrNull?.sharedBeginnerWordId;
 
   final compositionMap = {
     for (final composition in compositions) composition.id: composition,
@@ -272,7 +282,8 @@ List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
           units,
           compositionMap['adult_beginner_letters_pack']!.contentUnitIds,
         ),
-        searchKeywords: compositionMap['adult_beginner_letters_pack']!.searchKeywords,
+        searchKeywords:
+            compositionMap['adult_beginner_letters_pack']!.searchKeywords,
         sortOrder: compositionMap['adult_beginner_letters_pack']!.sortOrder,
       ),
     if (beginnerWords.isNotEmpty && nextWordId != null)
@@ -291,7 +302,8 @@ List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
           units,
           compositionMap['adult_first_words_pack']!.contentUnitIds,
         ),
-        searchKeywords: compositionMap['adult_first_words_pack']!.searchKeywords,
+        searchKeywords:
+            compositionMap['adult_first_words_pack']!.searchKeywords,
         sortOrder: compositionMap['adult_first_words_pack']!.sortOrder,
       ),
     if (phraseReading != null)
@@ -310,7 +322,8 @@ List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
           units,
           compositionMap['adult_phrase_reading_pack']!.contentUnitIds,
         ),
-        searchKeywords: compositionMap['adult_phrase_reading_pack']!.searchKeywords,
+        searchKeywords:
+            compositionMap['adult_phrase_reading_pack']!.searchKeywords,
         sortOrder: compositionMap['adult_phrase_reading_pack']!.sortOrder,
       ),
     ArabicLearningLessonPack(
@@ -413,7 +426,8 @@ List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
       ),
       itemIds: compositionMap['adult_quran_readiness_pack']!.contentUnitIds,
       previewArabic: <String>[readiness.snippet.snippetArabic],
-      searchKeywords: compositionMap['adult_quran_readiness_pack']!.searchKeywords,
+      searchKeywords:
+          compositionMap['adult_quran_readiness_pack']!.searchKeywords,
       sortOrder: compositionMap['adult_quran_readiness_pack']!.sortOrder,
     ),
     if (tajweedBasics != null)
@@ -432,7 +446,8 @@ List<ArabicLearningLessonPack> _buildAdultLessonPacks(Ref ref) {
           units,
           compositionMap['adult_tajweed_support_pack']!.contentUnitIds,
         ),
-        searchKeywords: compositionMap['adult_tajweed_support_pack']!.searchKeywords,
+        searchKeywords:
+            compositionMap['adult_tajweed_support_pack']!.searchKeywords,
         sortOrder: compositionMap['adult_tajweed_support_pack']!.sortOrder,
       ),
   ];
@@ -535,7 +550,9 @@ String? _recommendedPackIdForContinuation(
   return packs.firstOrNull?.id;
 }
 
-List<ArabicLearningLessonPack> _sortPacks(List<ArabicLearningLessonPack> packs) {
+List<ArabicLearningLessonPack> _sortPacks(
+  List<ArabicLearningLessonPack> packs,
+) {
   final sorted = packs.toList(growable: false);
   sorted.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
   return sorted;

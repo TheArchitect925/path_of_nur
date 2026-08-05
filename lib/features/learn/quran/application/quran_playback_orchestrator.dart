@@ -285,6 +285,8 @@ class QuranPlaybackOrchestrator {
     required List<int> ayahNumbers,
   }) {
     final targetAyah = request.ayahNumber ?? ayahNumbers.first;
-    return ayahNumbers.contains(targetAyah) ? ayahNumbers.indexOf(targetAyah) : 0;
+    return ayahNumbers.contains(targetAyah)
+        ? ayahNumbers.indexOf(targetAyah)
+        : 0;
   }
 }

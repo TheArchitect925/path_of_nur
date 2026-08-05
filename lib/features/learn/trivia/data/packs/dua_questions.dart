@@ -233,7 +233,10 @@ final List<TriviaQuestion> duaTriviaQuestions = [
     prompt: 'Which of these is a balanced way to think about unanswered du‘a?',
     correctOptionId: 'a',
     options: const [
-      ('a', 'Allah answers with wisdom, even when the answer is not in the way or time expected'),
+      (
+        'a',
+        'Allah answers with wisdom, even when the answer is not in the way or time expected',
+      ),
       ('b', 'Du‘a is useless if results are delayed'),
       ('c', 'Only prophets should make du‘a'),
       ('d', 'A believer must stop asking after one attempt'),
@@ -270,7 +273,10 @@ final List<TriviaQuestion> duaTriviaQuestions = [
     correctOptionId: 'b',
     options: const [
       ('a', 'To memorize words without understanding'),
-      ('b', 'To ask Allah with beautiful, meaningful, and sound forms of remembrance'),
+      (
+        'b',
+        'To ask Allah with beautiful, meaningful, and sound forms of remembrance',
+      ),
       ('c', 'To avoid personal sincerity'),
       ('d', 'To make worship difficult'),
     ],
@@ -315,7 +321,10 @@ final List<TriviaQuestion> duaTriviaQuestions = [
     prompt: 'Why do Qur’anic supplications matter so much in Islamic learning?',
     correctOptionId: 'a',
     options: const [
-      ('a', 'They teach believers how revelation itself forms the heart’s requests'),
+      (
+        'a',
+        'They teach believers how revelation itself forms the heart’s requests',
+      ),
       ('b', 'They cancel all other supplications'),
       ('c', 'They are only historical quotations'),
       ('d', 'They are unrelated to daily life'),

@@ -79,9 +79,10 @@ final growthWidgetSnapshotProvider = Provider<GrowthWidgetSnapshot>((ref) {
 
   GrowthHabit? focusHabit;
   if (state.focusHabitId != null) {
-    focusHabit = due.where((habit) => habit.id == state.focusHabitId).firstOrNull;
-    focusHabit ??=
-        ref.watch(growthHabitsByIdProvider)[state.focusHabitId!];
+    focusHabit = due
+        .where((habit) => habit.id == state.focusHabitId)
+        .firstOrNull;
+    focusHabit ??= ref.watch(growthHabitsByIdProvider)[state.focusHabitId!];
   }
   focusHabit ??= due.firstOrNull;
 
@@ -108,50 +109,56 @@ final growthWidgetSnapshotProvider = Provider<GrowthWidgetSnapshot>((ref) {
     selectedFocusHabitCompleted:
         focusHabit != null &&
         logs[focusHabit.id]?.status == GrowthHabitStatus.completed,
-    reflectionPromptPreview: prompts.firstOrNull ?? 'Return gently when you are ready.',
+    reflectionPromptPreview:
+        prompts.firstOrNull ?? 'Return gently when you are ready.',
     privateModeEnabled: state.privateMode,
     updatedAtIso: DateTime.now().toIso8601String(),
   );
 });
 
-final growthTodayProgressWidgetDataProvider = Provider<GrowthTodayProgressWidgetData>((
+final growthTodayProgressWidgetDataProvider =
+    Provider<GrowthTodayProgressWidgetData>((ref) {
+      final snapshot = ref.watch(growthWidgetSnapshotProvider);
+      return GrowthTodayProgressWidgetData(
+        completedCount: snapshot.todayCompletedCount,
+        dueCount: snapshot.todayDueCount,
+        progressPercent: snapshot.todayProgressPercent,
+        lightEarnedToday: snapshot.lightEarnedToday,
+        deepLinkPath: '/journey/today',
+        title: snapshot.privateModeEnabled ? 'Today\'s Path' : 'Today Progress',
+      );
+    });
+
+final growthFocusHabitWidgetDataProvider = Provider<GrowthFocusHabitWidgetData>(
+  (ref) {
+    final snapshot = ref.watch(growthWidgetSnapshotProvider);
+    return GrowthFocusHabitWidgetData(
+      habitId: snapshot.selectedFocusHabitId,
+      title: snapshot.selectedFocusHabitTitle ?? 'Choose a focus habit',
+      isCompleted: snapshot.selectedFocusHabitCompleted,
+      supportingCopy: snapshot.selectedFocusHabitCompleted
+          ? 'Quiet progress for today.'
+          : 'Return gently to this habit.',
+      deepLinkPath: snapshot.selectedFocusHabitId == null
+          ? '/journey/today'
+          : '/journey/habit/${snapshot.selectedFocusHabitId}',
+    );
+  },
+);
+
+final growthReflectionWidgetDataProvider = Provider<GrowthReflectionWidgetData>(
+  (ref) {
+    final snapshot = ref.watch(growthWidgetSnapshotProvider);
+    return GrowthReflectionWidgetData(
+      prompt: snapshot.reflectionPromptPreview,
+      deepLinkPath: '/journey/reflection',
+    );
+  },
+);
+
+final growthJourneyWidgetDataProvider = Provider<GrowthJourneyWidgetData>((
   ref,
 ) {
-  final snapshot = ref.watch(growthWidgetSnapshotProvider);
-  return GrowthTodayProgressWidgetData(
-    completedCount: snapshot.todayCompletedCount,
-    dueCount: snapshot.todayDueCount,
-    progressPercent: snapshot.todayProgressPercent,
-    lightEarnedToday: snapshot.lightEarnedToday,
-    deepLinkPath: '/journey/today',
-    title: snapshot.privateModeEnabled ? 'Today\'s Path' : 'Today Progress',
-  );
-});
-
-final growthFocusHabitWidgetDataProvider = Provider<GrowthFocusHabitWidgetData>((ref) {
-  final snapshot = ref.watch(growthWidgetSnapshotProvider);
-  return GrowthFocusHabitWidgetData(
-    habitId: snapshot.selectedFocusHabitId,
-    title: snapshot.selectedFocusHabitTitle ?? 'Choose a focus habit',
-    isCompleted: snapshot.selectedFocusHabitCompleted,
-    supportingCopy: snapshot.selectedFocusHabitCompleted
-        ? 'Quiet progress for today.'
-        : 'Return gently to this habit.',
-    deepLinkPath: snapshot.selectedFocusHabitId == null
-        ? '/journey/today'
-        : '/journey/habit/${snapshot.selectedFocusHabitId}',
-  );
-});
-
-final growthReflectionWidgetDataProvider = Provider<GrowthReflectionWidgetData>((ref) {
-  final snapshot = ref.watch(growthWidgetSnapshotProvider);
-  return GrowthReflectionWidgetData(
-    prompt: snapshot.reflectionPromptPreview,
-    deepLinkPath: '/journey/reflection',
-  );
-});
-
-final growthJourneyWidgetDataProvider = Provider<GrowthJourneyWidgetData>((ref) {
   final snapshot = ref.watch(growthWidgetSnapshotProvider);
   final journey = ref.watch(growthJourneyStatsProvider);
   return GrowthJourneyWidgetData(

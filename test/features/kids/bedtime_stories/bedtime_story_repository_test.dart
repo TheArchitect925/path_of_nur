@@ -39,7 +39,10 @@ void main() {
       final series = container.read(bedtimeStorySeriesProvider('muhammad'));
       expect(series.length, 4);
       expect(series.every((story) => story.isMultipart), isTrue);
-      expect(series.map((story) => story.partNumber), orderedEquals([1, 2, 3, 4]));
+      expect(
+        series.map((story) => story.partNumber),
+        orderedEquals([1, 2, 3, 4]),
+      );
       expect(series.every((story) => story.totalParts == 4), isTrue);
     });
 
@@ -57,38 +60,47 @@ void main() {
       expect(featured, isNotNull);
       expect(featured!.isFeatured, isTrue);
       expect(tonight, isNotNull);
-      expect(tonight!.recommendedForTonight || tonight.id == featured.id, isTrue);
+      expect(
+        tonight!.recommendedForTonight || tonight.id == featured.id,
+        isTrue,
+      );
     });
 
-    test('library includes the new non-prophet stories without breaking bedtime', () async {
-      SharedPreferences.setMockInitialValues(<String, Object>{});
-      final prefs = await SharedPreferences.getInstance();
-      final container = ProviderContainer(
-        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-      );
-      addTearDown(container.dispose);
+    test(
+      'library includes the new non-prophet stories without breaking bedtime',
+      () async {
+        SharedPreferences.setMockInitialValues(<String, Object>{});
+        final prefs = await SharedPreferences.getInstance();
+        final container = ProviderContainer(
+          overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+        );
+        addTearDown(container.dispose);
 
-      final libraryStories = container.read(kidsIslamicStoriesProvider);
-      final bedtimeStories = container.read(bedtimeStoriesProvider);
+        final libraryStories = container.read(kidsIslamicStoriesProvider);
+        final bedtimeStories = container.read(bedtimeStoriesProvider);
 
-      expect(libraryStories.length, 27);
-      expect(
-        libraryStories.any((story) => !story.isProphetStory),
-        isTrue,
-      );
-      expect(
-        libraryStories.any((story) => story.id == 'story_companion_khadijah_support_v1'),
-        isTrue,
-      );
-      expect(
-        bedtimeStories.any((story) => story.id == 'story_sharing_with_others_v1'),
-        isTrue,
-      );
-      expect(
-        bedtimeStories.any((story) => story.id == 'story_bismillah_before_eating_v1'),
-        isFalse,
-      );
-    });
+        expect(libraryStories.length, 27);
+        expect(libraryStories.any((story) => !story.isProphetStory), isTrue);
+        expect(
+          libraryStories.any(
+            (story) => story.id == 'story_companion_khadijah_support_v1',
+          ),
+          isTrue,
+        );
+        expect(
+          bedtimeStories.any(
+            (story) => story.id == 'story_sharing_with_others_v1',
+          ),
+          isTrue,
+        );
+        expect(
+          bedtimeStories.any(
+            (story) => story.id == 'story_bismillah_before_eating_v1',
+          ),
+          isFalse,
+        );
+      },
+    );
 
     test('library can browse non-prophet collections cleanly', () async {
       SharedPreferences.setMockInitialValues(<String, Object>{});

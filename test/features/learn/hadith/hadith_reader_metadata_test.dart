@@ -77,19 +77,11 @@ void main() {
       final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
       expect(
-        formatHadithChapterPositionForDisplay(
-          l10n,
-          current: 3,
-          total: 18,
-        ),
+        formatHadithChapterPositionForDisplay(l10n, current: 3, total: 18),
         'Hadith 3 of 18 in this chapter',
       );
       expect(
-        formatHadithChapterPositionForDisplay(
-          l10n,
-          current: 0,
-          total: 18,
-        ),
+        formatHadithChapterPositionForDisplay(l10n, current: 0, total: 18),
         isNull,
       );
     });

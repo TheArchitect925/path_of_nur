@@ -37,18 +37,23 @@ class SpiritualGrowthIntentionPickerPage extends ConsumerWidget {
               const SizedBox(height: 6),
               Text(
                 spiritualGrowthTitleFromKey(l10n, suggested.titleKey),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 4),
-              Text(spiritualGrowthSubtitleFromKey(l10n, suggested.descriptionKey)),
+              Text(
+                spiritualGrowthSubtitleFromKey(l10n, suggested.descriptionKey),
+              ),
               const SizedBox(height: 10),
               FilledButton(
                 onPressed: () {
                   ref
                       .read(spiritualGrowthControllerProvider.notifier)
-                      .chooseIntention(dateKey: todayKey, intentionId: suggested.id);
+                      .chooseIntention(
+                        dateKey: todayKey,
+                        intentionId: suggested.id,
+                      );
                   Navigator.of(context).maybePop();
                 },
                 child: Text(l10n.spiritualGrowthAcceptIntentionAction),

@@ -296,10 +296,7 @@ bool _isPrayerActive(PrayerScheduleItem item, DateTime now) {
 }
 
 class _ResolvedPrayerLiveDisplay {
-  const _ResolvedPrayerLiveDisplay({
-    this.currentPrayer,
-    this.currentRemaining,
-  });
+  const _ResolvedPrayerLiveDisplay({this.currentPrayer, this.currentRemaining});
 
   final PrayerScheduleItem? currentPrayer;
   final Duration? currentRemaining;

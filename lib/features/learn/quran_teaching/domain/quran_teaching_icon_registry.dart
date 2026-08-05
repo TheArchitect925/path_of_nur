@@ -35,8 +35,9 @@ abstract final class QuranTeachingIconRegistry {
       }
     }
 
-    final legacyCodePoint =
-        int.tryParse(json['iconCodePoint']?.toString() ?? '');
+    final legacyCodePoint = int.tryParse(
+      json['iconCodePoint']?.toString() ?? '',
+    );
     if (legacyCodePoint == null) {
       return null;
     }
@@ -49,9 +50,6 @@ abstract final class QuranTeachingIconRegistry {
     }
 
     final iconId = _legacyIdsByCodePoint[icon.codePoint];
-    return <String, dynamic>{
-      'iconId': iconId,
-      'iconCodePoint': icon.codePoint,
-    };
+    return <String, dynamic>{'iconId': iconId, 'iconCodePoint': icon.codePoint};
   }
 }

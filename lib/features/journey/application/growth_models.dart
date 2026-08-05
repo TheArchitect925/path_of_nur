@@ -326,7 +326,8 @@ class GrowthHabit {
     }
     GrowthReminderPrayerAnchor? reminderPrayerAnchor;
     for (final item in GrowthReminderPrayerAnchor.values) {
-      if (item.name == json['reminderPrayerAnchor']) reminderPrayerAnchor = item;
+      if (item.name == json['reminderPrayerAnchor'])
+        reminderPrayerAnchor = item;
     }
     GrowthReminderWindowType? reminderWindowType;
     for (final item in GrowthReminderWindowType.values) {
@@ -346,8 +347,8 @@ class GrowthHabit {
       weekdays: (json['weekdays'] as List? ?? const [])
           .map((e) => int.tryParse(e.toString()) ?? 1)
           .toList(),
-      frequencyTarget: int.tryParse(json['frequencyTarget']?.toString() ?? '') ??
-          7,
+      frequencyTarget:
+          int.tryParse(json['frequencyTarget']?.toString() ?? '') ?? 7,
       difficulty: int.tryParse(json['difficulty']?.toString() ?? '') ?? 1,
       lightReward: int.tryParse(json['lightReward']?.toString() ?? '') ?? 8,
       streakEligible: json['streakEligible'] != false,
@@ -393,7 +394,8 @@ class GrowthHabit {
       nextReminderAtEpochMs:
           int.tryParse(json['nextReminderAtEpochMs']?.toString() ?? '') ?? 0,
       lastReminderSentAtEpochMs:
-          int.tryParse(json['lastReminderSentAtEpochMs']?.toString() ?? '') ?? 0,
+          int.tryParse(json['lastReminderSentAtEpochMs']?.toString() ?? '') ??
+          0,
       customCategoryId: json['customCategoryId']?.toString(),
     );
   }
@@ -443,9 +445,11 @@ class GrowthHabitLog {
     }
     return GrowthHabitLog(
       status: status,
-      progress: (json['progress'] as num?)?.toDouble() ??
+      progress:
+          (json['progress'] as num?)?.toDouble() ??
           (status == GrowthHabitStatus.completed ? 1.0 : 0.0),
-      updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? '') ??
+      updatedAt:
+          DateTime.tryParse(json['updatedAt']?.toString() ?? '') ??
           DateTime.now(),
       entrusted: json['entrusted'] == true,
     );
@@ -600,7 +604,8 @@ class GrowthReflectionEntry {
       tawbah: json['tawbah']?.toString() ?? '',
       note: json['note']?.toString() ?? '',
       entrustToAllah: json['entrustToAllah'] == true,
-      createdAt: DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
+      createdAt:
+          DateTime.tryParse(json['createdAt']?.toString() ?? '') ??
           DateTime.now(),
       mood: mood,
       linkedHabitId: json['linkedHabitId']?.toString(),
@@ -631,7 +636,8 @@ class GrowthRewardEvent {
   static GrowthRewardEvent fromJson(Map<String, dynamic> json) {
     return GrowthRewardEvent(
       rewardId: json['rewardId']?.toString() ?? '',
-      unlockedAt: DateTime.tryParse(json['unlockedAt']?.toString() ?? '') ??
+      unlockedAt:
+          DateTime.tryParse(json['unlockedAt']?.toString() ?? '') ??
           DateTime.now(),
       source: json['source']?.toString() ?? 'growth',
     );
@@ -847,10 +853,8 @@ class GrowthState {
         ),
       ),
       'habitLogsByDay': habitLogsByDay.map(
-        (day, logs) => MapEntry(
-          day,
-          logs.map((id, log) => MapEntry(id, log.toJson())),
-        ),
+        (day, logs) =>
+            MapEntry(day, logs.map((id, log) => MapEntry(id, log.toJson()))),
       ),
       'startedPathIds': startedPathIds.toList(),
       'pausedPathIds': pausedPathIds.toList(),
@@ -876,10 +880,11 @@ class GrowthState {
         .whereType<Map>()
         .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
         .toList();
-    final customCategoriesRaw = (json['customHabitCategories'] as List? ?? const [])
-        .whereType<Map>()
-        .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
-        .toList();
+    final customCategoriesRaw =
+        (json['customHabitCategories'] as List? ?? const [])
+            .whereType<Map>()
+            .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
+            .toList();
 
     final statusByDay = <String, Map<String, GrowthHabitStatus>>{};
     final habitLogsByDay = <String, Map<String, GrowthHabitLog>>{};
@@ -888,8 +893,12 @@ class GrowthState {
     if (overrideRaw is Map) {
       for (final entry in overrideRaw.entries) {
         if (entry.value is! Map) continue;
-        final value = (entry.value as Map).map((k, v) => MapEntry(k.toString(), v));
-        habitOverrides[entry.key.toString()] = GrowthHabitOverride.fromJson(value);
+        final value = (entry.value as Map).map(
+          (k, v) => MapEntry(k.toString(), v),
+        );
+        habitOverrides[entry.key.toString()] = GrowthHabitOverride.fromJson(
+          value,
+        );
       }
     }
     final statusRaw = json['statusByDay'];
@@ -916,7 +925,9 @@ class GrowthState {
         final map = <String, GrowthHabitLog>{};
         for (final logEntry in (entry.value as Map).entries) {
           if (logEntry.value is! Map) continue;
-          final value = (logEntry.value as Map).map((k, v) => MapEntry(k.toString(), v));
+          final value = (logEntry.value as Map).map(
+            (k, v) => MapEntry(k.toString(), v),
+          );
           map[logEntry.key.toString()] = GrowthHabitLog.fromJson(value);
         }
         habitLogsByDay[entry.key.toString()] = map;
@@ -1049,7 +1060,8 @@ class GrowthWidgetSnapshot {
     if (json == null) {
       final now = DateTime.now();
       return GrowthWidgetSnapshot(
-        dayKey: '${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+        dayKey:
+            '${now.year.toString().padLeft(4, '0')}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
         todayCompletedCount: 0,
         todayDueCount: 0,
         todayProgressPercent: 0,
@@ -1084,7 +1096,8 @@ class GrowthWidgetSnapshot {
           json['reflectionPromptPreview']?.toString() ??
           'Return gently when you are ready.',
       privateModeEnabled: json['privateModeEnabled'] == true,
-      updatedAtIso: json['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+      updatedAtIso:
+          json['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
     );
   }
 }
@@ -1166,8 +1179,7 @@ class GrowthHabitOverride {
       paused: paused ?? this.paused,
       reminderMode: reminderMode ?? this.reminderMode,
       reminderTimeMinutes: reminderTimeMinutes ?? this.reminderTimeMinutes,
-      reminderPrayerAnchor:
-          reminderPrayerAnchor ?? this.reminderPrayerAnchor,
+      reminderPrayerAnchor: reminderPrayerAnchor ?? this.reminderPrayerAnchor,
       reminderOffsetMinutes:
           reminderOffsetMinutes ?? this.reminderOffsetMinutes,
       reminderWindowType: reminderWindowType ?? this.reminderWindowType,
@@ -1211,7 +1223,8 @@ class GrowthHabitOverride {
     }
     GrowthReminderPrayerAnchor? reminderPrayerAnchor;
     for (final item in GrowthReminderPrayerAnchor.values) {
-      if (item.name == json['reminderPrayerAnchor']) reminderPrayerAnchor = item;
+      if (item.name == json['reminderPrayerAnchor'])
+        reminderPrayerAnchor = item;
     }
     GrowthReminderWindowType? reminderWindowType;
     for (final item in GrowthReminderWindowType.values) {
@@ -1228,11 +1241,13 @@ class GrowthHabitOverride {
       showInToday: json['showInToday'] as bool?,
       paused: json['paused'] as bool?,
       reminderMode: reminderMode,
-      reminderTimeMinutes:
-          int.tryParse(json['reminderTimeMinutes']?.toString() ?? ''),
+      reminderTimeMinutes: int.tryParse(
+        json['reminderTimeMinutes']?.toString() ?? '',
+      ),
       reminderPrayerAnchor: reminderPrayerAnchor,
-      reminderOffsetMinutes:
-          int.tryParse(json['reminderOffsetMinutes']?.toString() ?? ''),
+      reminderOffsetMinutes: int.tryParse(
+        json['reminderOffsetMinutes']?.toString() ?? '',
+      ),
       reminderWindowType: reminderWindowType,
       reminderDays: (json['reminderDays'] as List?)
           ?.map((e) => int.tryParse(e.toString()) ?? 1)

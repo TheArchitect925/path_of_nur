@@ -26,7 +26,9 @@ class OnThisDayMatchesPage extends ConsumerWidget {
               return _EmptyTodayMatchesState(l10n: l10n);
             }
             final featured = todayState.featuredMatch;
-            final remaining = todayState.matches.skip(1).toList(growable: false);
+            final remaining = todayState.matches
+                .skip(1)
+                .toList(growable: false);
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -37,12 +39,14 @@ class OnThisDayMatchesPage extends ConsumerWidget {
                 const SizedBox(height: 14),
                 Text(
                   formatTodayGregorianDate(context, l10n, todayState.today),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 4),
-                Text(formatTodayHijriDate(context, l10n, todayState.hijriToday)),
+                Text(
+                  formatTodayHijriDate(context, l10n, todayState.hijriToday),
+                ),
                 if (remaining.isNotEmpty) ...[
                   const SizedBox(height: 18),
                   Text(
@@ -94,10 +98,7 @@ class _EmptyTodayMatchesState extends StatelessWidget {
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 6),
-            Text(
-              l10n.historyEmptyTodaySubtitle,
-              textAlign: TextAlign.center,
-            ),
+            Text(l10n.historyEmptyTodaySubtitle, textAlign: TextAlign.center),
           ],
         ),
       ),

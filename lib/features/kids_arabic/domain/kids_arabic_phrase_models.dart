@@ -26,7 +26,9 @@ class KidsArabicMiniPhraseProgressState {
   }) {
     return KidsArabicMiniPhraseProgressState(
       heardPhraseIds: heardPhraseIds ?? this.heardPhraseIds,
-      lastPhraseId: clearLastPhraseId ? null : (lastPhraseId ?? this.lastPhraseId),
+      lastPhraseId: clearLastPhraseId
+          ? null
+          : (lastPhraseId ?? this.lastPhraseId),
     );
   }
 
@@ -41,7 +43,9 @@ class KidsArabicMiniPhraseProgressState {
         lastPhraseId: null,
       );
 
-  static KidsArabicMiniPhraseProgressState fromJson(Map<String, dynamic>? json) {
+  static KidsArabicMiniPhraseProgressState fromJson(
+    Map<String, dynamic>? json,
+  ) {
     if (json == null) {
       return initial();
     }

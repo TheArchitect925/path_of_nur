@@ -20,7 +20,9 @@ void main() {
       expect(featured, isNotNull);
       expect(featured!.totalStages, 4);
       expect(
-        repository.stagesForJourney(featured.journeyId).map((stage) => stage.stageId),
+        repository
+            .stagesForJourney(featured.journeyId)
+            .map((stage) => stage.stageId),
         orderedEquals(<String>[
           'seerah_stage_childhood',
           'seerah_stage_revelation',

@@ -5,10 +5,7 @@ void main() {
   group('formatCompactDuration', () {
     test('keeps sub-minute positive durations at one minute', () {
       expect(
-        formatCompactDuration(
-          const Duration(seconds: 59),
-          localeName: 'en',
-        ),
+        formatCompactDuration(const Duration(seconds: 59), localeName: 'en'),
         '1m',
       );
     });

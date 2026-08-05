@@ -59,11 +59,13 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
         _syncGuidance(
           _ref,
           DailyUsageState.fromJson(
-            _ref.read(localStoreProvider).getJsonMap(
-              kidsDuaMyDayStorageKeyForLearner(
-                _ref.read(kidsDuaActiveLearnerProvider).learnerId,
-              ),
-            ),
+            _ref
+                .read(localStoreProvider)
+                .getJsonMap(
+                  kidsDuaMyDayStorageKeyForLearner(
+                    _ref.read(kidsDuaActiveLearnerProvider).learnerId,
+                  ),
+                ),
             _ref
                 .read(kidsDuaMyDayServiceProvider)
                 .todayKey(_ref.read(kidsDuaNowProvider)()),
@@ -99,14 +101,14 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
           .registerMeaningfulActivity(
             KidsDuaDailyActivityType.myDaySectionCompleted,
           );
-      _ref.read(kidsDuaLearningProvider.notifier).recordActivity(
-        type: KidsDuaActivityLogType.myDayCompleted,
-        duaId: duaId,
-      );
+      _ref
+          .read(kidsDuaLearningProvider.notifier)
+          .recordActivity(
+            type: KidsDuaActivityLogType.myDayCompleted,
+            duaId: duaId,
+          );
       final reward = _ref
-          .read(
-            learnerProgressionControllerProvider(_activeLearnerId).notifier,
-          )
+          .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
           .award(
             sourceRef: 'kids_dua_my_day:${service.todayKey(now)}',
             activityType: LearnerProgressionActivityType.duaMyDayCompletion,
@@ -122,28 +124,27 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
           );
       _ref
           .read(kidsDuaLearningProvider.notifier)
-          .awardMyDayBonus(
-            xp: reward.awardedXp,
-            drops: reward.awardedDrops,
-          );
+          .awardMyDayBonus(xp: reward.awardedXp, drops: reward.awardedDrops);
       final lesson = _ref
           .read(kidsDuaLessonsProvider)
           .where((item) => item.id == duaId)
           .firstOrNull;
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.duaMyDayCompleted,
-        domain: KidsActivityDomain.duas,
-        sourceRef: 'kids_dua_my_day_complete:${service.todayKey(now)}',
-        contentId: duaId,
-        titleSnapshot: lesson?.title,
-        subtitleSnapshot: lesson?.miniLesson,
-        occurredAt: now,
-        metadata: <String, Object?>{
-          'feature': 'kids_dua_my_day',
-          'dateKey': service.todayKey(now),
-          'duaId': duaId,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.duaMyDayCompleted,
+            domain: KidsActivityDomain.duas,
+            sourceRef: 'kids_dua_my_day_complete:${service.todayKey(now)}',
+            contentId: duaId,
+            titleSnapshot: lesson?.title,
+            subtitleSnapshot: lesson?.miniLesson,
+            occurredAt: now,
+            metadata: <String, Object?>{
+              'feature': 'kids_dua_my_day',
+              'dateKey': service.todayKey(now),
+              'duaId': duaId,
+            },
+          );
       xpAwarded = reward.awardedXp;
       dropsAwarded = reward.awardedDrops;
       state = next.copyWith(dayCompletionRewarded: true);
@@ -156,10 +157,12 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
             .registerMeaningfulActivity(
               KidsDuaDailyActivityType.todayFocusCompleted,
             );
-        _ref.read(kidsDuaLearningProvider.notifier).recordActivity(
-          type: KidsDuaActivityLogType.myDayStepCompleted,
-          duaId: duaId,
-        );
+        _ref
+            .read(kidsDuaLearningProvider.notifier)
+            .recordActivity(
+              type: KidsDuaActivityLogType.myDayStepCompleted,
+              duaId: duaId,
+            );
       }
       state = next;
     }
@@ -269,7 +272,8 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
 bool _shouldMirrorRewardsToJourney(Ref ref) {
   final accounts = ref.read(accountsSyncControllerProvider);
   final learner = ref.read(kidsDuaActiveLearnerProvider);
-  return learner.isChildProfile && accounts.activeProfileId == learner.learnerId;
+  return learner.isChildProfile &&
+      accounts.activeProfileId == learner.learnerId;
 }
 
 DailyUsageState _syncGuidance(Ref ref, DailyUsageState value) {

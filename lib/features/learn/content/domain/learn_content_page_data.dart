@@ -3,20 +3,14 @@ import 'learn_topic_category.dart';
 enum LearnContentVariant { standard, ramadan, loss, gentle, kids }
 
 class RelatedTopic {
-  const RelatedTopic({
-    required this.topicId,
-    required this.title,
-  });
+  const RelatedTopic({required this.topicId, required this.title});
 
   final String topicId;
   final String title;
 }
 
 class LearnContentBlock {
-  const LearnContentBlock({
-    required this.title,
-    required this.body,
-  });
+  const LearnContentBlock({required this.title, required this.body});
 
   final String title;
   final String body;

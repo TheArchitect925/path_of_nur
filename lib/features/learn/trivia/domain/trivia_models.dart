@@ -320,13 +320,16 @@ class TriviaSession {
   }
 
   String? get currentQuestionId {
-    if (questionIds.isEmpty || currentIndex < 0 || currentIndex >= questionIds.length) {
+    if (questionIds.isEmpty ||
+        currentIndex < 0 ||
+        currentIndex >= questionIds.length) {
       return null;
     }
     return questionIds[currentIndex];
   }
 
-  int get answeredCount => questionStates.values.where((item) => item.isAnswered).length;
+  int get answeredCount =>
+      questionStates.values.where((item) => item.isAnswered).length;
 
   bool get isLastQuestion => currentIndex >= questionIds.length - 1;
 
@@ -353,7 +356,8 @@ class TriviaSession {
     if (json == null) return null;
     final id = json['id']?.toString();
     if (id == null || id.isEmpty) return null;
-    final mode = _modeFromName(json['mode']?.toString()) ?? TriviaMode.quickChallenge;
+    final mode =
+        _modeFromName(json['mode']?.toString()) ?? TriviaMode.quickChallenge;
     final questionIds = <String>[];
     final rawQuestionIds = json['questionIds'];
     if (rawQuestionIds is List) {
@@ -370,8 +374,8 @@ class TriviaSession {
           entry.value is Map<String, dynamic>
               ? entry.value as Map<String, dynamic>
               : entry.value is Map
-                  ? Map<String, dynamic>.from(entry.value as Map)
-                  : null,
+              ? Map<String, dynamic>.from(entry.value as Map)
+              : null,
         );
         if (parsed != null) {
           questionStates[entry.key.toString()] = parsed;
@@ -385,15 +389,17 @@ class TriviaSession {
       questionIds: questionIds,
       currentIndex: int.tryParse(json['currentIndex']?.toString() ?? '') ?? 0,
       questionStates: questionStates,
-      startedAtIso: json['startedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+      startedAtIso:
+          json['startedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
       dailyKey: json['dailyKey']?.toString(),
       dailyReplay: json['dailyReplay'] == true,
       knowledgePathId: json['knowledgePathId']?.toString(),
       knowledgeStageId: json['knowledgeStageId']?.toString(),
       knowledgeStageTitle: json['knowledgeStageTitle']?.toString(),
       customXpReward: int.tryParse(json['customXpReward']?.toString() ?? ''),
-      customOceanDropReward:
-          int.tryParse(json['customOceanDropReward']?.toString() ?? ''),
+      customOceanDropReward: int.tryParse(
+        json['customOceanDropReward']?.toString() ?? '',
+      ),
     );
   }
 }
@@ -479,23 +485,30 @@ class TriviaSessionResult {
     if (sessionId == null || sessionId.isEmpty) return null;
     return TriviaSessionResult(
       sessionId: sessionId,
-      mode: _modeFromName(json['mode']?.toString()) ?? TriviaMode.quickChallenge,
+      mode:
+          _modeFromName(json['mode']?.toString()) ?? TriviaMode.quickChallenge,
       categoryId: json['categoryId']?.toString(),
       totalAnswered: int.tryParse(json['totalAnswered']?.toString() ?? '') ?? 0,
       correctCount: int.tryParse(json['correctCount']?.toString() ?? '') ?? 0,
-      incorrectCount: int.tryParse(json['incorrectCount']?.toString() ?? '') ?? 0,
-      startedAtIso: json['startedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-      completedAtIso: json['completedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+      incorrectCount:
+          int.tryParse(json['incorrectCount']?.toString() ?? '') ?? 0,
+      startedAtIso:
+          json['startedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+      completedAtIso:
+          json['completedAtIso']?.toString() ??
+          DateTime.now().toIso8601String(),
       questionIds: (json['questionIds'] as List? ?? const <dynamic>[])
           .map((item) => item.toString())
           .where((item) => item.isNotEmpty)
           .toList(growable: false),
-      incorrectQuestionIds: (json['incorrectQuestionIds'] as List? ?? const <dynamic>[])
-          .map((item) => item.toString())
-          .where((item) => item.isNotEmpty)
-          .toList(growable: false),
+      incorrectQuestionIds:
+          (json['incorrectQuestionIds'] as List? ?? const <dynamic>[])
+              .map((item) => item.toString())
+              .where((item) => item.isNotEmpty)
+              .toList(growable: false),
       xpEarned: int.tryParse(json['xpEarned']?.toString() ?? '') ?? 0,
-      oceanDropsEarned: int.tryParse(json['oceanDropsEarned']?.toString() ?? '') ?? 0,
+      oceanDropsEarned:
+          int.tryParse(json['oceanDropsEarned']?.toString() ?? '') ?? 0,
       wasPerfect: json['wasPerfect'] == true,
       wasDailyReplay: json['wasDailyReplay'] == true,
       survivalRun: int.tryParse(json['survivalRun']?.toString() ?? '') ?? 0,
@@ -609,10 +622,11 @@ class TriviaKnowledgePathProgress {
     if (pathId == null || pathId.isEmpty) return null;
     return TriviaKnowledgePathProgress(
       pathId: pathId,
-      completedStageIds: (json['completedStageIds'] as List? ?? const <dynamic>[])
-          .map((item) => item.toString())
-          .where((item) => item.isNotEmpty)
-          .toList(growable: false),
+      completedStageIds:
+          (json['completedStageIds'] as List? ?? const <dynamic>[])
+              .map((item) => item.toString())
+              .where((item) => item.isNotEmpty)
+              .toList(growable: false),
       rewardedStageIds: (json['rewardedStageIds'] as List? ?? const <dynamic>[])
           .map((item) => item.toString())
           .where((item) => item.isNotEmpty)
@@ -674,10 +688,12 @@ class TriviaCategoryStats {
     if (categoryId == null || categoryId.isEmpty) return null;
     return TriviaCategoryStats(
       categoryId: categoryId,
-      questionsAnswered: int.tryParse(json['questionsAnswered']?.toString() ?? '') ?? 0,
+      questionsAnswered:
+          int.tryParse(json['questionsAnswered']?.toString() ?? '') ?? 0,
       correct: int.tryParse(json['correct']?.toString() ?? '') ?? 0,
       incorrect: int.tryParse(json['incorrect']?.toString() ?? '') ?? 0,
-      quizzesCompleted: int.tryParse(json['quizzesCompleted']?.toString() ?? '') ?? 0,
+      quizzesCompleted:
+          int.tryParse(json['quizzesCompleted']?.toString() ?? '') ?? 0,
     );
   }
 }
@@ -743,12 +759,15 @@ class TriviaUserStats {
     List<TriviaSessionResult>? recentResults,
   }) {
     return TriviaUserStats(
-      totalQuestionsAnswered: totalQuestionsAnswered ?? this.totalQuestionsAnswered,
-      totalQuizzesCompleted: totalQuizzesCompleted ?? this.totalQuizzesCompleted,
+      totalQuestionsAnswered:
+          totalQuestionsAnswered ?? this.totalQuestionsAnswered,
+      totalQuizzesCompleted:
+          totalQuizzesCompleted ?? this.totalQuizzesCompleted,
       totalCorrect: totalCorrect ?? this.totalCorrect,
       totalIncorrect: totalIncorrect ?? this.totalIncorrect,
       totalTriviaXp: totalTriviaXp ?? this.totalTriviaXp,
-      totalTriviaOceanDrops: totalTriviaOceanDrops ?? this.totalTriviaOceanDrops,
+      totalTriviaOceanDrops:
+          totalTriviaOceanDrops ?? this.totalTriviaOceanDrops,
       currentStreak: currentStreak ?? this.currentStreak,
       longestStreak: longestStreak ?? this.longestStreak,
       bestSurvivalRun: bestSurvivalRun ?? this.bestSurvivalRun,
@@ -780,8 +799,12 @@ class TriviaUserStats {
     'longestDailyQuizStreak': longestDailyQuizStreak,
     'lastCompletionDayKey': lastCompletionDayKey,
     'lastDailyQuizDayKey': lastDailyQuizDayKey,
-    'categoryStats': categoryStats.map((key, value) => MapEntry(key, value.toJson())),
-    'recentResults': recentResults.map((item) => item.toJson()).toList(growable: false),
+    'categoryStats': categoryStats.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'recentResults': recentResults
+        .map((item) => item.toJson())
+        .toList(growable: false),
   };
 
   static TriviaUserStats fromJson(Map<String, dynamic>? json) {
@@ -794,8 +817,8 @@ class TriviaUserStats {
           entry.value is Map<String, dynamic>
               ? entry.value as Map<String, dynamic>
               : entry.value is Map
-                  ? Map<String, dynamic>.from(entry.value as Map)
-                  : null,
+              ? Map<String, dynamic>.from(entry.value as Map)
+              : null,
         );
         if (parsed != null) {
           categoryStats[parsed.categoryId] = parsed;
@@ -810,8 +833,8 @@ class TriviaUserStats {
           item is Map<String, dynamic>
               ? item
               : item is Map
-                  ? Map<String, dynamic>.from(item)
-                  : null,
+              ? Map<String, dynamic>.from(item)
+              : null,
         );
         if (parsed != null) recentResults.add(parsed);
       }
@@ -822,7 +845,8 @@ class TriviaUserStats {
       totalQuizzesCompleted:
           int.tryParse(json['totalQuizzesCompleted']?.toString() ?? '') ?? 0,
       totalCorrect: int.tryParse(json['totalCorrect']?.toString() ?? '') ?? 0,
-      totalIncorrect: int.tryParse(json['totalIncorrect']?.toString() ?? '') ?? 0,
+      totalIncorrect:
+          int.tryParse(json['totalIncorrect']?.toString() ?? '') ?? 0,
       totalTriviaXp: int.tryParse(json['totalTriviaXp']?.toString() ?? '') ?? 0,
       totalTriviaOceanDrops:
           int.tryParse(json['totalTriviaOceanDrops']?.toString() ?? '') ?? 0,
@@ -927,7 +951,8 @@ class TriviaReviewItem {
       lastSeenIso: json['lastSeenIso']?.toString(),
       lastIncorrectIso: json['lastIncorrectIso']?.toString(),
       nextReviewIso: json['nextReviewIso']?.toString(),
-      masteryState: _masteryFromName(json['masteryState']?.toString()) ??
+      masteryState:
+          _masteryFromName(json['masteryState']?.toString()) ??
           TriviaReviewMasteryState.newItem,
       priority: int.tryParse(json['priority']?.toString() ?? '') ?? 0,
     );
@@ -1031,17 +1056,24 @@ class IslamicTriviaState {
       stats: stats ?? this.stats,
       reviewItems: reviewItems ?? this.reviewItems,
       pathProgress: pathProgress ?? this.pathProgress,
-      activeSession: clearActiveSession ? null : (activeSession ?? this.activeSession),
+      activeSession: clearActiveSession
+          ? null
+          : (activeSession ?? this.activeSession),
       lastResult: clearLastResult ? null : (lastResult ?? this.lastResult),
-      dailyQuizState:
-          clearDailyQuizState ? null : (dailyQuizState ?? this.dailyQuizState),
+      dailyQuizState: clearDailyQuizState
+          ? null
+          : (dailyQuizState ?? this.dailyQuizState),
     );
   }
 
   Map<String, dynamic> toJson() => {
     'stats': stats.toJson(),
-    'reviewItems': reviewItems.map((key, value) => MapEntry(key, value.toJson())),
-    'pathProgress': pathProgress.map((key, value) => MapEntry(key, value.toJson())),
+    'reviewItems': reviewItems.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'pathProgress': pathProgress.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
     'activeSession': activeSession?.toJson(),
     'lastResult': lastResult?.toJson(),
     'dailyQuizState': dailyQuizState?.toJson(),
@@ -1057,8 +1089,8 @@ class IslamicTriviaState {
           entry.value is Map<String, dynamic>
               ? entry.value as Map<String, dynamic>
               : entry.value is Map
-                  ? Map<String, dynamic>.from(entry.value as Map)
-                  : null,
+              ? Map<String, dynamic>.from(entry.value as Map)
+              : null,
         );
         if (parsed != null) {
           reviewItems[parsed.questionId] = parsed;
@@ -1073,8 +1105,8 @@ class IslamicTriviaState {
           entry.value is Map<String, dynamic>
               ? entry.value as Map<String, dynamic>
               : entry.value is Map
-                  ? Map<String, dynamic>.from(entry.value as Map)
-                  : null,
+              ? Map<String, dynamic>.from(entry.value as Map)
+              : null,
         );
         if (parsed != null) {
           pathProgress[parsed.pathId] = parsed;
@@ -1086,8 +1118,8 @@ class IslamicTriviaState {
         json['stats'] is Map<String, dynamic>
             ? json['stats'] as Map<String, dynamic>
             : json['stats'] is Map
-                ? Map<String, dynamic>.from(json['stats'] as Map)
-                : null,
+            ? Map<String, dynamic>.from(json['stats'] as Map)
+            : null,
       ),
       reviewItems: reviewItems,
       pathProgress: pathProgress,
@@ -1095,22 +1127,22 @@ class IslamicTriviaState {
         json['activeSession'] is Map<String, dynamic>
             ? json['activeSession'] as Map<String, dynamic>
             : json['activeSession'] is Map
-                ? Map<String, dynamic>.from(json['activeSession'] as Map)
-                : null,
+            ? Map<String, dynamic>.from(json['activeSession'] as Map)
+            : null,
       ),
       lastResult: TriviaSessionResult.fromJson(
         json['lastResult'] is Map<String, dynamic>
             ? json['lastResult'] as Map<String, dynamic>
             : json['lastResult'] is Map
-                ? Map<String, dynamic>.from(json['lastResult'] as Map)
-                : null,
+            ? Map<String, dynamic>.from(json['lastResult'] as Map)
+            : null,
       ),
       dailyQuizState: TriviaDailyQuizState.fromJson(
         json['dailyQuizState'] is Map<String, dynamic>
             ? json['dailyQuizState'] as Map<String, dynamic>
             : json['dailyQuizState'] is Map
-                ? Map<String, dynamic>.from(json['dailyQuizState'] as Map)
-                : null,
+            ? Map<String, dynamic>.from(json['dailyQuizState'] as Map)
+            : null,
       ),
     );
   }

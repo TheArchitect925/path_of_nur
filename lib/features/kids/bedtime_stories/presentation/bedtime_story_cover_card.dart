@@ -25,7 +25,8 @@ class BedtimeStoryCoverCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final artPath = media.backdrop.resolvedAssetPath ?? media.cover.resolvedAssetPath;
+    final artPath =
+        media.backdrop.resolvedAssetPath ?? media.cover.resolvedAssetPath;
     final hasArtwork = artPath != null;
 
     return PremiumCard(
@@ -113,7 +114,11 @@ class _FallbackArtwork extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: <Color>[Color(0xFFFFF7EB), Color(0xFFF5EADA), Color(0xFFE7D9C8)],
+          colors: <Color>[
+            Color(0xFFFFF7EB),
+            Color(0xFFF5EADA),
+            Color(0xFFE7D9C8),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -122,7 +127,11 @@ class _FallbackArtwork extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.auto_stories_rounded, size: 56, color: Color(0xFF7B624A)),
+            const Icon(
+              Icons.auto_stories_rounded,
+              size: 56,
+              color: Color(0xFF7B624A),
+            ),
             const SizedBox(height: 10),
             Text(
               title,

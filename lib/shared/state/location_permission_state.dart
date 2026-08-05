@@ -28,12 +28,12 @@ class LocationPermissionState {
 class LocationPermissionNotifier
     extends StateNotifier<LocationPermissionState> {
   LocationPermissionNotifier()
-      : super(
-          const LocationPermissionState(
-            status: PermissionStatus.denied,
-            isLoading: false,
-          ),
-        ) {
+    : super(
+        const LocationPermissionState(
+          status: PermissionStatus.denied,
+          isLoading: false,
+        ),
+      ) {
     refreshStatus();
   }
 
@@ -48,10 +48,7 @@ class LocationPermissionNotifier
 
   Future<void> requestWhileUsingApp() async {
     if (!_supportsPermissionHandlerLocation()) {
-      state = state.copyWith(
-        status: PermissionStatus.denied,
-        isLoading: false,
-      );
+      state = state.copyWith(status: PermissionStatus.denied, isLoading: false);
       return;
     }
     state = state.copyWith(isLoading: true);
@@ -64,10 +61,10 @@ class LocationPermissionNotifier
   }
 }
 
-final locationPermissionProvider = StateNotifierProvider<
-    LocationPermissionNotifier, LocationPermissionState>(
-  (ref) => LocationPermissionNotifier(),
-);
+final locationPermissionProvider =
+    StateNotifierProvider<LocationPermissionNotifier, LocationPermissionState>(
+      (ref) => LocationPermissionNotifier(),
+    );
 
 bool _supportsPermissionHandlerLocation() {
   if (kIsWeb) return false;

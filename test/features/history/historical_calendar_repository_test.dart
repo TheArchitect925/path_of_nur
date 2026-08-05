@@ -159,108 +159,123 @@ void main() {
     expect(matches.single.event.id, 'dual');
   });
 
-  test('real seeded dataset has stable ids, valid categories, and broad coverage', () {
-    final raw = File(
-      'assets/data/historical_calendar_seed.json',
-    ).readAsStringSync();
-    final events = parseHistoricalCalendarSeed(raw);
+  test(
+    'real seeded dataset has stable ids, valid categories, and broad coverage',
+    () {
+      final raw = File(
+        'assets/data/historical_calendar_seed.json',
+      ).readAsStringSync();
+      final events = parseHistoricalCalendarSeed(raw);
 
-    expect(events.length, greaterThanOrEqualTo(40));
+      expect(events.length, greaterThanOrEqualTo(40));
 
-    final ids = <String>{};
-    final slugs = <String>{};
-    final gregorianMonths = <int>{};
-    final hijriMonths = <int>{};
-    var curatedLinksCount = 0;
+      final ids = <String>{};
+      final slugs = <String>{};
+      final gregorianMonths = <int>{};
+      final hijriMonths = <int>{};
+      var curatedLinksCount = 0;
 
-    for (final event in events) {
-      expect(event.id, isNotEmpty, reason: 'Every event needs a stable id.');
-      expect(
-        ids.add(event.id),
-        isTrue,
-        reason: 'Duplicate historical event id: ${event.id}',
-      );
-      expect(event.slug, isNotEmpty, reason: 'Every event needs a stable slug.');
-      expect(
-        slugs.add(event.slug),
-        isTrue,
-        reason: 'Duplicate historical event slug: ${event.slug}',
-      );
-      expect(
-        event.title.trim(),
-        isNotEmpty,
-        reason: 'Historical event title missing for ${event.id}',
-      );
-      expect(
-        event.summaryShort.trim(),
-        isNotEmpty,
-        reason: 'summaryShort missing for ${event.id}',
-      );
-      expect(
-        event.categories,
-        isNotEmpty,
-        reason: 'At least one category is required for ${event.id}',
-      );
-      expect(
-        event.tags,
-        isNotEmpty,
-        reason: 'At least one tag is required for ${event.id}',
-      );
-      expect(
-        event.location.name.trim(),
-        isNotEmpty,
-        reason: 'Location name missing for ${event.id}',
-      );
-      expect(
-        event.significancePoints,
-        isNotEmpty,
-        reason: 'Significance points missing for ${event.id}',
-      );
-      expect(event.isPublished, isTrue, reason: 'Seeded events should be published.');
-      if (event.relatedContentIds.isNotEmpty ||
-          event.relatedContentHooks.isNotEmpty) {
-        curatedLinksCount += 1;
+      for (final event in events) {
+        expect(event.id, isNotEmpty, reason: 'Every event needs a stable id.');
+        expect(
+          ids.add(event.id),
+          isTrue,
+          reason: 'Duplicate historical event id: ${event.id}',
+        );
+        expect(
+          event.slug,
+          isNotEmpty,
+          reason: 'Every event needs a stable slug.',
+        );
+        expect(
+          slugs.add(event.slug),
+          isTrue,
+          reason: 'Duplicate historical event slug: ${event.slug}',
+        );
+        expect(
+          event.title.trim(),
+          isNotEmpty,
+          reason: 'Historical event title missing for ${event.id}',
+        );
+        expect(
+          event.summaryShort.trim(),
+          isNotEmpty,
+          reason: 'summaryShort missing for ${event.id}',
+        );
+        expect(
+          event.categories,
+          isNotEmpty,
+          reason: 'At least one category is required for ${event.id}',
+        );
+        expect(
+          event.tags,
+          isNotEmpty,
+          reason: 'At least one tag is required for ${event.id}',
+        );
+        expect(
+          event.location.name.trim(),
+          isNotEmpty,
+          reason: 'Location name missing for ${event.id}',
+        );
+        expect(
+          event.significancePoints,
+          isNotEmpty,
+          reason: 'Significance points missing for ${event.id}',
+        );
+        expect(
+          event.isPublished,
+          isTrue,
+          reason: 'Seeded events should be published.',
+        );
+        if (event.relatedContentIds.isNotEmpty ||
+            event.relatedContentHooks.isNotEmpty) {
+          curatedLinksCount += 1;
+        }
+
+        if (event.gregorian.month case final month?) {
+          expect(month, inInclusiveRange(1, 12));
+          gregorianMonths.add(month);
+        }
+        if (event.gregorian.day case final day?) {
+          expect(day, inInclusiveRange(1, 31));
+        }
+        if (event.hijri.month case final month?) {
+          expect(month, inInclusiveRange(1, 12));
+          hijriMonths.add(month);
+        }
+        if (event.hijri.day case final day?) {
+          expect(day, inInclusiveRange(1, 31));
+        }
+
+        final hasDateInfo =
+            event.gregorian.year != null ||
+            event.gregorian.month != null ||
+            event.gregorian.day != null ||
+            event.hijri.year != null ||
+            event.hijri.month != null ||
+            event.hijri.day != null;
+        expect(
+          hasDateInfo,
+          isTrue,
+          reason: 'Date data missing for ${event.id}',
+        );
       }
 
-      if (event.gregorian.month case final month?) {
-        expect(month, inInclusiveRange(1, 12));
-        gregorianMonths.add(month);
-      }
-      if (event.gregorian.day case final day?) {
-        expect(day, inInclusiveRange(1, 31));
-      }
-      if (event.hijri.month case final month?) {
-        expect(month, inInclusiveRange(1, 12));
-        hijriMonths.add(month);
-      }
-      if (event.hijri.day case final day?) {
-        expect(day, inInclusiveRange(1, 31));
-      }
-
-      final hasDateInfo =
-          event.gregorian.year != null ||
-          event.gregorian.month != null ||
-          event.gregorian.day != null ||
-          event.hijri.year != null ||
-          event.hijri.month != null ||
-          event.hijri.day != null;
-      expect(hasDateInfo, isTrue, reason: 'Date data missing for ${event.id}');
-    }
-
-    expect(
-      gregorianMonths.length,
-      greaterThanOrEqualTo(12),
-      reason: 'Seed data should span the full Gregorian calendar.',
-    );
-    expect(
-      hijriMonths.length,
-      greaterThanOrEqualTo(12),
-      reason: 'Seed data should span the full Hijri calendar.',
-    );
-    expect(
-      curatedLinksCount,
-      greaterThanOrEqualTo(4),
-      reason: 'Key historical events should include curated related links.',
-    );
-  });
+      expect(
+        gregorianMonths.length,
+        greaterThanOrEqualTo(12),
+        reason: 'Seed data should span the full Gregorian calendar.',
+      );
+      expect(
+        hijriMonths.length,
+        greaterThanOrEqualTo(12),
+        reason: 'Seed data should span the full Hijri calendar.',
+      );
+      expect(
+        curatedLinksCount,
+        greaterThanOrEqualTo(4),
+        reason: 'Key historical events should include curated related links.',
+      );
+    },
+  );
 }

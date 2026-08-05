@@ -120,9 +120,7 @@ class _QuranTeachingSectionPageState
       DateTime.now().toIso8601String().substring(0, 10),
       progress.visualModeEnabled ? 'visual:on' : 'visual:off',
       ...progress.completedLessonIds.toList(growable: false)..sort(),
-      ...mistakeItems
-          .map((item) => item.quizId)
-          .toList(growable: false)
+      ...mistakeItems.map((item) => item.quizId).toList(growable: false)
         ..sort(),
     ].join('|');
     if (_lastReviewSyncSignature != reviewSyncSignature) {

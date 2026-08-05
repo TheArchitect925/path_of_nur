@@ -29,7 +29,11 @@ class GamesIslandCatalog {
               routeName: 'learnDailyKnowledgeHub',
             ),
             badgeLabel: l10n.learnGamesIslandTodayBadge,
-            searchKeywords: const ['daily challenge', 'today', 'daily knowledge'],
+            searchKeywords: const [
+              'daily challenge',
+              'today',
+              'daily knowledge',
+            ],
           ),
         ],
       ),
@@ -75,7 +79,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnMatchingHome',
             ),
-            searchKeywords: const ['matching games', 'matching', 'knowledge games'],
+            searchKeywords: const [
+              'matching games',
+              'matching',
+              'knowledge games',
+            ],
           ),
         ],
       ),

@@ -308,10 +308,7 @@ WuduQuizContent buildWuduQuizContent(
         type: WuduQuizQuestionType.adab,
         questionText: l10n.wuduQuizAdabQuestion,
         options: <WuduQuizOption>[
-          WuduQuizOption(
-            id: 'clean_up',
-            label: l10n.wuduQuizAdabOptionCleanUp,
-          ),
+          WuduQuizOption(id: 'clean_up', label: l10n.wuduQuizAdabOptionCleanUp),
           WuduQuizOption(
             id: 'waste_water',
             label: l10n.wuduQuizAdabOptionWasteWater,

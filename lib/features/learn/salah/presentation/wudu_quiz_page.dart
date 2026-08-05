@@ -206,9 +206,7 @@ class _QuestionCard extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                submitted
-                    ? l10n.wuduQuizAnswerLocked
-                    : l10n.wuduQuizAnswerHint,
+                submitted ? l10n.wuduQuizAnswerLocked : l10n.wuduQuizAnswerHint,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 10),

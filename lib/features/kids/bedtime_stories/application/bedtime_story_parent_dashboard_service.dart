@@ -82,41 +82,49 @@ class BedtimeStoryParentDashboardService {
 
     final completedProphetStoryParts = prophetBedtimeStories
         .where(
-          (story) => (storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
+          (story) =>
+              (storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
         )
         .toList(growable: false);
     final completedLibraryStories = allStories
         .where(
-          (story) => (storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
+          (story) =>
+              (storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
         )
         .toList(growable: false);
     final startedLibraryStories = allStories
         .where((story) {
           final progress = storyProgress.storyProgressById[story.id];
-          return (progress?.hasProgress ?? false) || (progress?.isCompleted ?? false);
+          return (progress?.hasProgress ?? false) ||
+              (progress?.isCompleted ?? false);
         })
         .toList(growable: false);
 
     final groupedStories = <String, List<BedtimeStorySeed>>{};
     for (final story in prophetBedtimeStories) {
-      groupedStories.putIfAbsent(story.prophetId, () => <BedtimeStorySeed>[]).add(story);
+      groupedStories
+          .putIfAbsent(story.prophetId, () => <BedtimeStorySeed>[])
+          .add(story);
     }
     final completedStoryGroups = groupedStories.values.where((group) {
       return group.every(
-        (story) => storyProgress.storyProgressById[story.id]?.isCompleted ?? false,
+        (story) =>
+            storyProgress.storyProgressById[story.id]?.isCompleted ?? false,
       );
     }).length;
 
     final completedQuizzes = learningRepo.quizzes
         .where(
           (quiz) =>
-              learningState.progressByActivityId[quiz.quizId]?.isCompleted ?? false,
+              learningState.progressByActivityId[quiz.quizId]?.isCompleted ??
+              false,
         )
         .toList(growable: false);
     final completedMemory = learningRepo.memoryDecks
         .where(
           (deck) =>
-              learningState.progressByActivityId[deck.deckId]?.isCompleted ?? false,
+              learningState.progressByActivityId[deck.deckId]?.isCompleted ??
+              false,
         )
         .toList(growable: false);
 
@@ -132,7 +140,8 @@ class BedtimeStoryParentDashboardService {
             storyProgress: storyProgress,
             learningState: learningState,
           );
-    final lastActiveDateIso = activityController.mostRecentActivity()?.occurredAtIso ??
+    final lastActiveDateIso =
+        activityController.mostRecentActivity()?.occurredAtIso ??
         progression.metrics.lastActivityAtIso ??
         _latestActivityIso(
           stories: allStories,
@@ -140,11 +149,15 @@ class BedtimeStoryParentDashboardService {
           learningState: learningState,
         );
 
-    final inferredBedtimeXp = completedProphetStoryParts.fold<int>(
+    final inferredBedtimeXp =
+        completedProphetStoryParts.fold<int>(
           0,
           (sum, story) => sum + story.xpReward,
         ) +
-        completedQuizzes.fold<int>(0, (sum, quiz) => sum + quiz.reward.xpReward) +
+        completedQuizzes.fold<int>(
+          0,
+          (sum, quiz) => sum + quiz.reward.xpReward,
+        ) +
         completedMemory.fold<int>(0, (sum, deck) => sum + deck.reward.xpReward);
     final inferredBedtimeDrops = completedProphetStoryParts.fold<int>(
       0,
@@ -153,9 +166,8 @@ class BedtimeStoryParentDashboardService {
 
     final seerahSummaries = seerahRepository.journeys
         .map(
-          (journey) => _ref.read(
-            kidsSeerahJourneySummaryProvider(journey.journeyId),
-          ),
+          (journey) =>
+              _ref.read(kidsSeerahJourneySummaryProvider(journey.journeyId)),
         )
         .whereType<KidsSeerahJourneySummary>()
         .toList(growable: false);
@@ -172,7 +184,8 @@ class BedtimeStoryParentDashboardService {
         .length;
 
     final overview = BedtimeParentOverviewSummary(
-      learnerId: familyContext.activeChildProfile?.id ?? accounts.activeProfileId,
+      learnerId:
+          familyContext.activeChildProfile?.id ?? accounts.activeProfileId,
       learnerDisplayName: learner.effectiveDisplayName,
       currentLevel: progression.xpSummary.currentLevel,
       currentLevelTitle: progression.xpSummary.currentLevelTitle,
@@ -184,7 +197,8 @@ class BedtimeStoryParentDashboardService {
       totalMemorySessionsCompleted: completedMemory.length,
       totalRecallActivitiesCompleted: completedQuizzes.length,
       totalBedtimeLearningSessions:
-          storyProgress.recentStoryIds.length + learningState.recentActivityIds.length,
+          storyProgress.recentStoryIds.length +
+          learningState.recentActivityIds.length,
       totalXpEarnedFromBedtimeLearning: bedtimeProgression.metrics.totalXp > 0
           ? bedtimeProgression.metrics.totalXp
           : inferredBedtimeXp,
@@ -209,7 +223,8 @@ class BedtimeStoryParentDashboardService {
           .where(
             (entry) => entry.value.any((story) {
               final progress = storyProgress.storyProgressById[story.id];
-              return (progress?.hasProgress ?? false) || (progress?.isCompleted ?? false);
+              return (progress?.hasProgress ?? false) ||
+                  (progress?.isCompleted ?? false);
             }),
           )
           .length,
@@ -226,11 +241,19 @@ class BedtimeStoryParentDashboardService {
       longestStreak: progression.metrics.longestLearningStreakDays > 0
           ? progression.metrics.longestLearningStreakDays
           : _longestStreak(allActiveDates),
-      activeDaysThisWeek: _activeDaysSince(allActiveDates, const Duration(days: 7)),
-      activeDaysThisMonth: _activeDaysSince(allActiveDates, const Duration(days: 30)),
+      activeDaysThisWeek: _activeDaysSince(
+        allActiveDates,
+        const Duration(days: 7),
+      ),
+      activeDaysThisMonth: _activeDaysSince(
+        allActiveDates,
+        const Duration(days: 30),
+      ),
       averageSessionsPerWeek: _averageSessionsPerWeek(
         storyCount: storyProgress.recentStoryIds.length,
-        learningCount: learningState.recentActivityIds.length + duaLearning.activityLog.length,
+        learningCount:
+            learningState.recentActivityIds.length +
+            duaLearning.activityLog.length,
         activeDates: allActiveDates,
       ),
       lastActiveDateIso: lastActiveDateIso,
@@ -259,12 +282,14 @@ class BedtimeStoryParentDashboardService {
         seerahJourneysCompleted: totalSeerahJourneysCompleted,
         duaSummary: duaSummary,
         duaLight: duaLight,
-        duaLastActiveIso: activityController
+        duaLastActiveIso:
+            activityController
                 .mostRecentActivity(domains: const {KidsActivityDomain.duas})
                 ?.occurredAtIso ??
             _latestDuaActivityIso(duaLearning.activityLog),
         arabicSummary: arabicSummary,
-        arabicLastActiveIso: activityController
+        arabicLastActiveIso:
+            activityController
                 .mostRecentActivity(domains: const {KidsActivityDomain.arabic})
                 ?.occurredAtIso ??
             arabicProgress.dailyProgress.lastCompletedAt,
@@ -326,16 +351,22 @@ class BedtimeStoryParentDashboardService {
   }) {
     final items = <BedtimeParentProphetProgress>[];
     for (final entry in groupedStories.entries) {
-      final stories = [...entry.value]..sort((a, b) => a.partNumber.compareTo(b.partNumber));
+      final stories = [...entry.value]
+        ..sort((a, b) => a.partNumber.compareTo(b.partNumber));
       final storyPartsCompleted = stories
-          .where((story) => storyProgress.storyProgressById[story.id]?.isCompleted ?? false)
+          .where(
+            (story) =>
+                storyProgress.storyProgressById[story.id]?.isCompleted ?? false,
+          )
           .length;
       final started = stories.any((story) {
         final progress = storyProgress.storyProgressById[story.id];
-        return (progress?.hasProgress ?? false) || (progress?.isCompleted ?? false);
+        return (progress?.hasProgress ?? false) ||
+            (progress?.isCompleted ?? false);
       });
       final continueStory = stories.firstWhere(
-        (story) => !(storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
+        (story) =>
+            !(storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
         orElse: () => stories.first,
       );
       final quizCompleted = stories.every((story) {
@@ -343,14 +374,16 @@ class BedtimeStoryParentDashboardService {
         if (quiz == null) {
           return true;
         }
-        return learningState.progressByActivityId[quiz.quizId]?.isCompleted ?? false;
+        return learningState.progressByActivityId[quiz.quizId]?.isCompleted ??
+            false;
       });
       final memoryCompleted = stories.every((story) {
         final deck = learningRepo.memoryDeckForStory(story.id);
         if (deck == null) {
           return true;
         }
-        return learningState.progressByActivityId[deck.deckId]?.isCompleted ?? false;
+        return learningState.progressByActivityId[deck.deckId]?.isCompleted ??
+            false;
       });
       items.add(
         BedtimeParentProphetProgress(
@@ -479,13 +512,15 @@ class BedtimeStoryParentDashboardService {
     }
 
     for (final story in stories) {
-      final isCompleted = storyProgress.storyProgressById[story.id]?.isCompleted ?? false;
+      final isCompleted =
+          storyProgress.storyProgressById[story.id]?.isCompleted ?? false;
       if (!isCompleted) {
         continue;
       }
       final quiz = learningRepo.quizForStory(story.id);
       if (quiz != null &&
-          !(learningState.progressByActivityId[quiz.quizId]?.isCompleted ?? false)) {
+          !(learningState.progressByActivityId[quiz.quizId]?.isCompleted ??
+              false)) {
         recommendations.add(
           BedtimeParentRecommendation(
             type: BedtimeParentRecommendationType.completeQuiz,
@@ -500,13 +535,15 @@ class BedtimeStoryParentDashboardService {
     }
 
     for (final story in stories) {
-      final isCompleted = storyProgress.storyProgressById[story.id]?.isCompleted ?? false;
+      final isCompleted =
+          storyProgress.storyProgressById[story.id]?.isCompleted ?? false;
       if (!isCompleted) {
         continue;
       }
       final deck = learningRepo.memoryDeckForStory(story.id);
       if (deck != null &&
-          !(learningState.progressByActivityId[deck.deckId]?.isCompleted ?? false)) {
+          !(learningState.progressByActivityId[deck.deckId]?.isCompleted ??
+              false)) {
         recommendations.add(
           BedtimeParentRecommendation(
             type: BedtimeParentRecommendationType.completeMemory,
@@ -521,7 +558,8 @@ class BedtimeStoryParentDashboardService {
     }
 
     final nextStory = stories.firstWhere(
-      (story) => !(storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
+      (story) =>
+          !(storyProgress.storyProgressById[story.id]?.isCompleted ?? false),
       orElse: () => _ref.watch(tonightBedtimeStoryProvider) ?? stories.first,
     );
     recommendations.add(
@@ -594,7 +632,9 @@ class BedtimeStoryParentDashboardService {
       );
     }
     if (arabicRecommendation != null) {
-      final letter = arabicLetters.where((item) => item.id == arabicRecommendation.letterId).firstOrNull;
+      final letter = arabicLetters
+          .where((item) => item.id == arabicRecommendation.letterId)
+          .firstOrNull;
       if (letter == null) {
         return null;
       }
@@ -645,7 +685,8 @@ class BedtimeStoryParentDashboardService {
         completedCount: storiesCompleted,
         totalCount: storiesTotal,
         secondaryCount: startedStoriesCount,
-        lastActiveDateIso: activityController
+        lastActiveDateIso:
+            activityController
                 .mostRecentActivity(domains: const {KidsActivityDomain.stories})
                 ?.occurredAtIso ??
             _latestActivityIso(
@@ -660,7 +701,8 @@ class BedtimeStoryParentDashboardService {
         completedCount: seerahStagesCompleted,
         totalCount: seerahStagesTotal,
         secondaryCount: seerahJourneysCompleted,
-        lastActiveDateIso: activityController
+        lastActiveDateIso:
+            activityController
                 .mostRecentActivity(domains: const {KidsActivityDomain.seerah})
                 ?.occurredAtIso ??
             _latestProgressionIsoForModules(
@@ -679,7 +721,8 @@ class BedtimeStoryParentDashboardService {
         totalCount: duaSummary.totalLessons,
         secondaryCount: duaLight.currentStreakDays,
         lastActiveDateIso: duaLastActiveIso,
-        hasActivity: duaSummary.learnedLessons > 0 || duaSummary.startedCategories > 0,
+        hasActivity:
+            duaSummary.learnedLessons > 0 || duaSummary.startedCategories > 0,
       ),
       KidsParentLearningAreaSummary(
         type: KidsParentLearningAreaType.arabic,
@@ -708,7 +751,9 @@ class BedtimeStoryParentDashboardService {
               entry: entry,
               storyById: {for (final story in allStories) story.id: story},
               duaById: {for (final lesson in duaLessons) lesson.id: lesson},
-              arabicById: {for (final letter in arabicLetters) letter.id: letter},
+              arabicById: {
+                for (final letter in arabicLetters) letter.id: letter,
+              },
               seerahRepository: seerahRepository,
             ),
           )
@@ -718,18 +763,13 @@ class BedtimeStoryParentDashboardService {
         return canonicalItems;
       }
     }
-    final storyById = {
-      for (final story in allStories) story.id: story,
-    };
-    final duaById = {
-      for (final lesson in duaLessons) lesson.id: lesson,
-    };
-    final arabicById = {
-      for (final letter in arabicLetters) letter.id: letter,
-    };
+    final storyById = {for (final story in allStories) story.id: story};
+    final duaById = {for (final lesson in duaLessons) lesson.id: lesson};
+    final arabicById = {for (final letter in arabicLetters) letter.id: letter};
     final items = <KidsParentRecentActivityItem>[];
-    final entries = progressionState.entriesBySourceRef.values.toList(growable: false)
-      ..sort((a, b) => b.occurredAtIso.compareTo(a.occurredAtIso));
+    final entries = progressionState.entriesBySourceRef.values.toList(
+      growable: false,
+    )..sort((a, b) => b.occurredAtIso.compareTo(a.occurredAtIso));
 
     for (final entry in entries) {
       final item = _progressionEntryToRecentActivity(
@@ -756,7 +796,9 @@ class BedtimeStoryParentDashboardService {
     switch (entry.type) {
       case KidsActivityType.storyOpened:
       case KidsActivityType.storyCompleted:
-        final story = entry.contentId == null ? null : storyById[entry.contentId!];
+        final story = entry.contentId == null
+            ? null
+            : storyById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? story?.shortTitle ?? '',
@@ -765,7 +807,9 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case KidsActivityType.quizCompleted:
-        final story = entry.contentId == null ? null : storyById[entry.contentId!];
+        final story = entry.contentId == null
+            ? null
+            : storyById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? story?.shortTitle ?? '',
@@ -774,7 +818,9 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case KidsActivityType.memoryCompleted:
-        final story = entry.contentId == null ? null : storyById[entry.contentId!];
+        final story = entry.contentId == null
+            ? null
+            : storyById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? story?.shortTitle ?? '',
@@ -784,7 +830,9 @@ class BedtimeStoryParentDashboardService {
         );
       case KidsActivityType.duaLessonOpened:
       case KidsActivityType.duaLessonCompleted:
-        final lesson = entry.contentId == null ? null : duaById[entry.contentId!];
+        final lesson = entry.contentId == null
+            ? null
+            : duaById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? lesson?.title ?? '',
@@ -793,7 +841,9 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case KidsActivityType.duaPracticeCompleted:
-        final lesson = entry.contentId == null ? null : duaById[entry.contentId!];
+        final lesson = entry.contentId == null
+            ? null
+            : duaById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? lesson?.title ?? '',
@@ -802,7 +852,9 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case KidsActivityType.duaMyDayCompleted:
-        final lesson = entry.contentId == null ? null : duaById[entry.contentId!];
+        final lesson = entry.contentId == null
+            ? null
+            : duaById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? lesson?.title ?? '',
@@ -813,7 +865,9 @@ class BedtimeStoryParentDashboardService {
       case KidsActivityType.arabicLetterCompleted:
       case KidsActivityType.arabicReviewCompleted:
       case KidsActivityType.arabicDailyMissionCompleted:
-        final letter = entry.contentId == null ? null : arabicById[entry.contentId!];
+        final letter = entry.contentId == null
+            ? null
+            : arabicById[entry.contentId!];
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? letter?.nameEn ?? '',
@@ -826,7 +880,9 @@ class BedtimeStoryParentDashboardService {
       case KidsActivityType.seerahJourneyOpened:
       case KidsActivityType.seerahNodeOpened:
       case KidsActivityType.seerahNodeCompleted:
-        final node = entry.contentId == null ? null : seerahRepository.nodeById(entry.contentId!);
+        final node = entry.contentId == null
+            ? null
+            : seerahRepository.nodeById(entry.contentId!);
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? node?.title ?? '',
@@ -835,7 +891,9 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case KidsActivityType.seerahStageCompleted:
-        final stage = entry.contentId == null ? null : seerahRepository.stageById(entry.contentId!);
+        final stage = entry.contentId == null
+            ? null
+            : seerahRepository.stageById(entry.contentId!);
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? stage?.title ?? '',
@@ -844,7 +902,9 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case KidsActivityType.seerahJourneyCompleted:
-        final journey = entry.contentId == null ? null : seerahRepository.journeyById(entry.contentId!);
+        final journey = entry.contentId == null
+            ? null
+            : seerahRepository.journeyById(entry.contentId!);
         return KidsParentRecentActivityItem(
           id: entry.id,
           title: entry.titleSnapshot ?? journey?.title ?? '',
@@ -905,7 +965,8 @@ class BedtimeStoryParentDashboardService {
           occurredAtIso: entry.occurredAtIso,
         );
       case LearnerProgressionActivityType.duaLessonCompletion:
-        final lessonId = entry.metadata['lessonId']?.toString() ??
+        final lessonId =
+            entry.metadata['lessonId']?.toString() ??
             entry.sourceRef.split(':').elementAtOrNull(1);
         final lesson = lessonId == null ? null : duaById[lessonId];
         return KidsParentRecentActivityItem(
@@ -969,7 +1030,9 @@ class BedtimeStoryParentDashboardService {
         );
       case LearnerProgressionActivityType.seerahStageCompletion:
         final stageId = entry.metadata['stageId']?.toString();
-        final stage = stageId == null ? null : seerahRepository.stageById(stageId);
+        final stage = stageId == null
+            ? null
+            : seerahRepository.stageById(stageId);
         return KidsParentRecentActivityItem(
           id: entry.sourceRef,
           title: stage?.title ?? '',
@@ -979,7 +1042,9 @@ class BedtimeStoryParentDashboardService {
         );
       case LearnerProgressionActivityType.seerahJourneyCompletion:
         final journeyId = entry.metadata['journeyId']?.toString();
-        final journey = journeyId == null ? null : seerahRepository.journeyById(journeyId);
+        final journey = journeyId == null
+            ? null
+            : seerahRepository.journeyById(journeyId);
         return KidsParentRecentActivityItem(
           id: entry.sourceRef,
           title: journey?.title ?? '',
@@ -1003,10 +1068,11 @@ class BedtimeStoryParentDashboardService {
     LearnerProgressionState state,
     Set<String> sourceModules,
   ) {
-    final entries = state.entriesBySourceRef.values
-        .where((item) => sourceModules.contains(item.sourceModule))
-        .toList(growable: false)
-      ..sort((a, b) => b.occurredAtIso.compareTo(a.occurredAtIso));
+    final entries =
+        state.entriesBySourceRef.values
+            .where((item) => sourceModules.contains(item.sourceModule))
+            .toList(growable: false)
+          ..sort((a, b) => b.occurredAtIso.compareTo(a.occurredAtIso));
     return entries.isEmpty ? null : entries.first.occurredAtIso;
   }
 
@@ -1146,7 +1212,10 @@ class BedtimeStoryParentDashboardService {
     return activeDayKeys
         .map(_fromDayKey)
         .whereType<DateTime>()
-        .where((date) => !date.isBefore(DateTime(cutoff.year, cutoff.month, cutoff.day)))
+        .where(
+          (date) =>
+              !date.isBefore(DateTime(cutoff.year, cutoff.month, cutoff.day)),
+        )
         .length;
   }
 
@@ -1158,7 +1227,8 @@ class BedtimeStoryParentDashboardService {
     if (activeDates.isEmpty) {
       return 0;
     }
-    final dates = activeDates.map(_fromDayKey).whereType<DateTime>().toList()..sort();
+    final dates = activeDates.map(_fromDayKey).whereType<DateTime>().toList()
+      ..sort();
     final first = dates.first;
     final last = dates.last;
     final weeks = ((last.difference(first).inDays + 1) / 7).clamp(1, 1000);

@@ -5,12 +5,13 @@ import '../domain/hadith_reflection_models.dart';
 
 const _hadithReflectionProgressKey = 'learn.hadith_reflection.progress.v1';
 
-final hadithReflectionProgressProvider = StateNotifierProvider<
-  HadithReflectionProgressNotifier,
-  HadithReflectionProgressState
->((ref) {
-  return HadithReflectionProgressNotifier(ref.watch(localStoreProvider));
-});
+final hadithReflectionProgressProvider =
+    StateNotifierProvider<
+      HadithReflectionProgressNotifier,
+      HadithReflectionProgressState
+    >((ref) {
+      return HadithReflectionProgressNotifier(ref.watch(localStoreProvider));
+    });
 
 class HadithReflectionProgressNotifier
     extends StateNotifier<HadithReflectionProgressState> {

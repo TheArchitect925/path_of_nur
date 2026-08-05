@@ -1,15 +1,8 @@
 import 'tvos_foundation_models.dart';
 
-enum TVOSDiagnosticsMode {
-  localBufferOnly,
-  localBufferWithCompanionExport,
-}
+enum TVOSDiagnosticsMode { localBufferOnly, localBufferWithCompanionExport }
 
-enum TVOSAnalyticsSeverity {
-  info,
-  warning,
-  critical,
-}
+enum TVOSAnalyticsSeverity { info, warning, critical }
 
 class TVOSAnalyticsEventDefinition {
   const TVOSAnalyticsEventDefinition({

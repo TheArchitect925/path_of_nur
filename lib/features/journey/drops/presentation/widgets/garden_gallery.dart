@@ -71,9 +71,8 @@ class GardenGallerySection extends ConsumerWidget {
                     ? () {
                         Navigator.of(context).push(
                           MaterialPageRoute<void>(
-                            builder: (_) => GardenImageViewerPage(
-                              milestone: milestone,
-                            ),
+                            builder: (_) =>
+                                GardenImageViewerPage(milestone: milestone),
                           ),
                         );
                       }
@@ -146,7 +145,9 @@ class GardenGalleryTile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Icon(
-                        unlocked ? Icons.visibility_rounded : Icons.lock_rounded,
+                        unlocked
+                            ? Icons.visibility_rounded
+                            : Icons.lock_rounded,
                         size: 16,
                         color: Colors.white,
                       ),
@@ -238,7 +239,9 @@ class _GardenMilestoneArtwork extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                const Color(0xFF1E1915).withValues(alpha: unlocked ? 0.18 : 0.28),
+                const Color(
+                  0xFF1E1915,
+                ).withValues(alpha: unlocked ? 0.18 : 0.28),
               ],
             ),
           ),

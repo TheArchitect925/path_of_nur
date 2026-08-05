@@ -54,9 +54,7 @@ class RevelationGrowthLinkCard extends StatelessWidget {
       label: Text(label, style: const TextStyle(fontSize: 11.5)),
       onPressed: onTap,
       backgroundColor: AppColors.surface.withValues(alpha: 0.28),
-      side: BorderSide(
-        color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
-      ),
+      side: BorderSide(color: AppColors.accentGoldSoft.withValues(alpha: 0.34)),
     );
   }
 }

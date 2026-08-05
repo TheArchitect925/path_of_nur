@@ -27,22 +27,25 @@ void main() {
     expect(advancedIndex, 1);
   });
 
-  test('fallback weighting avoids jumping immediately at approximate word edges', () {
-    final heldIndex = resolveQuranWordHighlightIndex(
-      arabicText: 'الْحَمْدُ لِلَّهِ رَبِّ',
-      position: const Duration(milliseconds: 705),
-      totalDuration: const Duration(milliseconds: 2000),
-      previousWordIndex: 0,
-    );
+  test(
+    'fallback weighting avoids jumping immediately at approximate word edges',
+    () {
+      final heldIndex = resolveQuranWordHighlightIndex(
+        arabicText: 'الْحَمْدُ لِلَّهِ رَبِّ',
+        position: const Duration(milliseconds: 705),
+        totalDuration: const Duration(milliseconds: 2000),
+        previousWordIndex: 0,
+      );
 
-    final advancedIndex = resolveQuranWordHighlightIndex(
-      arabicText: 'الْحَمْدُ لِلَّهِ رَبِّ',
-      position: const Duration(milliseconds: 1240),
-      totalDuration: const Duration(milliseconds: 2000),
-      previousWordIndex: 0,
-    );
+      final advancedIndex = resolveQuranWordHighlightIndex(
+        arabicText: 'الْحَمْدُ لِلَّهِ رَبِّ',
+        position: const Duration(milliseconds: 1240),
+        totalDuration: const Duration(milliseconds: 2000),
+        previousWordIndex: 0,
+      );
 
-    expect(heldIndex, 0);
-    expect(advancedIndex, greaterThanOrEqualTo(1));
-  });
+      expect(heldIndex, 0);
+      expect(advancedIndex, greaterThanOrEqualTo(1));
+    },
+  );
 }

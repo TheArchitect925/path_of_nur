@@ -25,16 +25,16 @@ class AccountsSyncPackageInfo {
   final String buildNumber;
 }
 
-final accountsSyncPackageInfoProvider = FutureProvider<AccountsSyncPackageInfo>((
-  ref,
-) async {
-  final info = await PackageInfo.fromPlatform();
-  return AccountsSyncPackageInfo(
-    appName: info.appName,
-    version: info.version,
-    buildNumber: info.buildNumber,
-  );
-});
+final accountsSyncPackageInfoProvider = FutureProvider<AccountsSyncPackageInfo>(
+  (ref) async {
+    final info = await PackageInfo.fromPlatform();
+    return AccountsSyncPackageInfo(
+      appName: info.appName,
+      version: info.version,
+      buildNumber: info.buildNumber,
+    );
+  },
+);
 
 final googleSignInProvider = Provider<GoogleSignIn>((ref) {
   return GoogleSignIn(
@@ -156,7 +156,10 @@ class PlatformAccountsAuthRepository implements AccountsAuthRepository {
   @override
   Future<void> signOut() async {
     final controller = ref.read(accountsSyncControllerProvider.notifier);
-    final provider = ref.read(accountsSyncControllerProvider).authenticatedAccount?.provider;
+    final provider = ref
+        .read(accountsSyncControllerProvider)
+        .authenticatedAccount
+        ?.provider;
     if (provider == AccountProviderType.google) {
       try {
         await ref.read(googleSignInProvider).signOut();
@@ -171,10 +174,7 @@ final accountsAuthRepositoryProvider = Provider<AccountsAuthRepository>(
 );
 
 class BackupExportResult {
-  const BackupExportResult({
-    required this.filePath,
-    required this.metadata,
-  });
+  const BackupExportResult({required this.filePath, required this.metadata});
 
   final String filePath;
   final BackupMetadata metadata;
@@ -232,7 +232,9 @@ class LocalBackupRepository implements BackupRepository {
       appVersion: packageInfo.version,
       appBuild: packageInfo.buildNumber,
       sourceType: options.sourceType,
-      exportedAtIso: state.backupRecord.lastExportAtIso ?? DateTime.now().toIso8601String(),
+      exportedAtIso:
+          state.backupRecord.lastExportAtIso ??
+          DateTime.now().toIso8601String(),
       currentProfileOnly: options.currentProfileOnly,
       encrypted: options.encrypted,
       scopeSummary: defaultFullBackupScopeSummary(),
@@ -253,10 +255,7 @@ class LocalBackupRepository implements BackupRepository {
   Future<String?> pickImportPayload() async {
     final file = await openFile(
       acceptedTypeGroups: const <XTypeGroup>[
-        XTypeGroup(
-          label: 'Path of Nur backup',
-          extensions: <String>['json'],
-        ),
+        XTypeGroup(label: 'Path of Nur backup', extensions: <String>['json']),
       ],
     );
     if (file == null) {
@@ -278,7 +277,9 @@ class LocalBackupRepository implements BackupRepository {
     }
     Map<String, dynamic> decodedMap;
     try {
-      final decoded = encrypted ? utf8.decode(base64Decode(payload.trim())) : payload.trim();
+      final decoded = encrypted
+          ? utf8.decode(base64Decode(payload.trim()))
+          : payload.trim();
       final json = jsonDecode(decoded);
       if (json is! Map) {
         return const ImportValidationResult.failure(
@@ -307,7 +308,9 @@ class LocalBackupRepository implements BackupRepository {
         .map((item) => item as Map)
         .toList(growable: false);
     final metadataMap =
-        (decodedMap['metadata'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)) ??
+        (decodedMap['metadata'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ) ??
         <String, dynamic>{};
     final warnings = <String>[];
     if (!decodedMap.containsKey('structuredDataByProfile')) {
@@ -459,12 +462,13 @@ AccountsAuthProvider? _backupProviderFromKey(String? key) {
   };
 }
 
-final syncPreferencesProvider =
-    StateProvider<SyncPreferences>((ref) => const SyncPreferences(
-      keepLocalOnlyAvailable: true,
-      preferManualBackup: true,
-      allowRestoreSuggestions: true,
-    ));
+final syncPreferencesProvider = StateProvider<SyncPreferences>(
+  (ref) => const SyncPreferences(
+    keepLocalOnlyAvailable: true,
+    preferManualBackup: true,
+    allowRestoreSuggestions: true,
+  ),
+);
 
 final syncScopePreferencesProvider = Provider<SyncScopePreferences>((ref) {
   return ref.watch(accountsSyncControllerProvider).syncScopePreferences;
@@ -497,12 +501,14 @@ final accountsSyncStatusProvider = Provider<AccountsSyncStatusViewModel>((ref) {
   final auth = ref.watch(authStateProvider);
   final hasBackup = state.backupRecord.lastExportAtIso != null;
   final mode = switch (auth.status) {
-    AuthStatus.localOnly || AuthStatus.unauthenticated => hasBackup
-        ? AccountsSyncConnectionMode.backupAvailable
-        : AccountsSyncConnectionMode.localOnly,
-    AuthStatus.authenticated => hasBackup
-        ? AccountsSyncConnectionMode.backupAvailable
-        : AccountsSyncConnectionMode.signedInNoBackup,
+    AuthStatus.localOnly || AuthStatus.unauthenticated =>
+      hasBackup
+          ? AccountsSyncConnectionMode.backupAvailable
+          : AccountsSyncConnectionMode.localOnly,
+    AuthStatus.authenticated =>
+      hasBackup
+          ? AccountsSyncConnectionMode.backupAvailable
+          : AccountsSyncConnectionMode.signedInNoBackup,
   };
   return AccountsSyncStatusViewModel(
     mode: mode,

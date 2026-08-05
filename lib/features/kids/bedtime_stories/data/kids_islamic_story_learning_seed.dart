@@ -41,7 +41,8 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
     storyId: 'story_bismillah_before_eating_v1',
     prophetId: '',
     title: 'What We Learned Before Eating',
-    shortDescription: 'A gentle review about saying Bismillah and eating with adab.',
+    shortDescription:
+        'A gentle review about saying Bismillah and eating with adab.',
     ageGroup: BedtimeStoryAgeGroup.kidsEarly,
     sortOrder: 201,
     questions: [
@@ -49,7 +50,11 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
         id: 'bismillah_q1',
         prompt: 'What should we say before we begin eating?',
         type: BedtimeStoryQuizQuestionType.multipleChoice,
-        options: [_option('bismillah', 'Bismillah'), _option('bye', 'Goodbye'), _option('later', 'Later')],
+        options: [
+          _option('bismillah', 'Bismillah'),
+          _option('bye', 'Goodbye'),
+          _option('later', 'Later'),
+        ],
         correctId: 'bismillah',
         explanation: 'That is right. We begin with Allah’s name.',
       ),
@@ -63,7 +68,8 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
           _option('sleep', 'To go to sleep'),
         ],
         correctId: 'remember',
-        explanation: 'Yes. Remembering Allah brings blessing to simple moments.',
+        explanation:
+            'Yes. Remembering Allah brings blessing to simple moments.',
       ),
       _question(
         id: 'bismillah_q3',
@@ -145,7 +151,8 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
     storyId: 'story_helping_parents_v1',
     prophetId: '',
     title: 'What We Learned About Helping Parents',
-    shortDescription: 'A gentle review about serving our parents with kindness.',
+    shortDescription:
+        'A gentle review about serving our parents with kindness.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 203,
     questions: [
@@ -179,7 +186,8 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: [_option('true', 'True'), _option('false', 'False')],
         correctId: 'true',
-        explanation: 'True. Serving our parents with kindness is beloved to Allah.',
+        explanation:
+            'True. Serving our parents with kindness is beloved to Allah.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -253,7 +261,8 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
     storyId: 'story_saying_sorry_and_forgiving_v1',
     prophetId: '',
     title: 'What We Learned About Forgiving',
-    shortDescription: 'A gentle review about apology, mercy, and building again.',
+    shortDescription:
+        'A gentle review about apology, mercy, and building again.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 205,
     questions: [
@@ -279,7 +288,8 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
           _option('hide', 'Hide quietly'),
         ],
         correctId: 'sorry',
-        explanation: 'Yes. Apologizing and repairing a mistake brings hearts back together.',
+        explanation:
+            'Yes. Apologizing and repairing a mistake brings hearts back together.',
       ),
       _question(
         id: 'forgive_q3',

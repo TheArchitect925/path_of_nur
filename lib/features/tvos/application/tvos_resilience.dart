@@ -117,22 +117,10 @@ int _structuredDataRowCount(AppDatabase appDatabase) {
         appDatabase,
         'SELECT COUNT(*) AS value FROM prayer_records;',
       ) +
-      _countRows(
-        appDatabase,
-        'SELECT COUNT(*) AS value FROM dhikr_state;',
-      ) +
-      _countRows(
-        appDatabase,
-        'SELECT COUNT(*) AS value FROM dhikr_sessions;',
-      ) +
-      _countRows(
-        appDatabase,
-        'SELECT COUNT(*) AS value FROM sync_outbox;',
-      ) +
-      _countRows(
-        appDatabase,
-        'SELECT COUNT(*) AS value FROM sync_cursor;',
-      );
+      _countRows(appDatabase, 'SELECT COUNT(*) AS value FROM dhikr_state;') +
+      _countRows(appDatabase, 'SELECT COUNT(*) AS value FROM dhikr_sessions;') +
+      _countRows(appDatabase, 'SELECT COUNT(*) AS value FROM sync_outbox;') +
+      _countRows(appDatabase, 'SELECT COUNT(*) AS value FROM sync_cursor;');
 }
 
 int _countRows(

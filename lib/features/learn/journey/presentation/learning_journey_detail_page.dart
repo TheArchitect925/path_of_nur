@@ -417,13 +417,15 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               stage: stage,
               isCurrent: stage.id == activeStageId,
               isCompleted: completedStageIds.contains(stage.id),
-              isLocked: !completedStageIds.contains(stage.id) &&
+              isLocked:
+                  !completedStageIds.contains(stage.id) &&
                   !isLearningJourneyStageUnlocked(
                     journey: journey,
                     stageId: stage.id,
                     completedStageIds: completedStageIds,
                   ),
-              onTap: completedStageIds.contains(stage.id) ||
+              onTap:
+                  completedStageIds.contains(stage.id) ||
                       isLearningJourneyStageUnlocked(
                         journey: journey,
                         stageId: stage.id,
@@ -502,10 +504,12 @@ String _difficultyLabel(
   AppLocalizations l10n,
 ) {
   return switch (difficulty) {
-    LearningJourneyDifficulty.beginner => l10n.learningJourneyDifficultyBeginner,
+    LearningJourneyDifficulty.beginner =>
+      l10n.learningJourneyDifficultyBeginner,
     LearningJourneyDifficulty.intermediate =>
       l10n.learningJourneyDifficultyIntermediate,
-    LearningJourneyDifficulty.advanced => l10n.learningJourneyDifficultyAdvanced,
+    LearningJourneyDifficulty.advanced =>
+      l10n.learningJourneyDifficultyAdvanced,
   };
 }
 

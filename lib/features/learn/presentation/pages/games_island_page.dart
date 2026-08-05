@@ -171,17 +171,19 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
     }
     final filtered = <GameDiscoverySection>[];
     for (final section in base) {
-      final cards = section.cards.where((card) {
-        final haystack = [
-          section.title,
-          section.subtitle,
-          card.title,
-          card.subtitle,
-          card.badgeLabel ?? '',
-          ...card.searchKeywords,
-        ].join(' ').toLowerCase();
-        return haystack.contains(normalized);
-      }).toList(growable: false);
+      final cards = section.cards
+          .where((card) {
+            final haystack = [
+              section.title,
+              section.subtitle,
+              card.title,
+              card.subtitle,
+              card.badgeLabel ?? '',
+              ...card.searchKeywords,
+            ].join(' ').toLowerCase();
+            return haystack.contains(normalized);
+          })
+          .toList(growable: false);
       if (cards.isEmpty) {
         continue;
       }

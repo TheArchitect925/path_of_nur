@@ -14,10 +14,12 @@ void main() {
       );
       addTearDown(container.dispose);
 
-      container.read(quranReadingStatsProvider.notifier).logReadingSession(
-        duration: const Duration(minutes: 12),
-        completedAt: DateTime(2026, 3, 20, 10, 30),
-      );
+      container
+          .read(quranReadingStatsProvider.notifier)
+          .logReadingSession(
+            duration: const Duration(minutes: 12),
+            completedAt: DateTime(2026, 3, 20, 10, 30),
+          );
 
       final stats = container.read(quranReadingStatsProvider);
       expect(stats.totalReadingSeconds, 12 * 60);
@@ -59,10 +61,12 @@ void main() {
       );
       addTearDown(container.dispose);
 
-      container.read(quranListeningStatsProvider.notifier).logListeningSession(
-        duration: const Duration(minutes: 9),
-        completedAt: DateTime(2026, 3, 20, 11, 45),
-      );
+      container
+          .read(quranListeningStatsProvider.notifier)
+          .logListeningSession(
+            duration: const Duration(minutes: 9),
+            completedAt: DateTime(2026, 3, 20, 11, 45),
+          );
 
       final listening = container.read(quranListeningStatsProvider);
       final reading = container.read(quranReadingStatsProvider);

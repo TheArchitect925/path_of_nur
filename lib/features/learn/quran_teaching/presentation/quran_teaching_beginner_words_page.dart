@@ -347,7 +347,9 @@ class _QuranTeachingBeginnerWordsPageState
     final audio = word.audio;
     if (audio == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.quranTeachingBeginnerWordsAudioUnavailable)),
+        SnackBar(
+          content: Text(l10n.quranTeachingBeginnerWordsAudioUnavailable),
+        ),
       );
       return;
     }

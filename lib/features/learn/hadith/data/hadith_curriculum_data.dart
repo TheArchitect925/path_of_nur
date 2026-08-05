@@ -9,7 +9,10 @@ const hadithCurriculum = HadithCurriculum(
       whyItMatters:
           'Character is where faith becomes visible. Prophetic teachings shape habits that protect both the heart and relationships.',
       subcategoryIds: ['char-honesty-integrity', 'char-gentleness-adab'],
-      relatedThemeIds: ['speech-honesty-trust', 'gratitude-humility-self-discipline'],
+      relatedThemeIds: [
+        'speech-honesty-trust',
+        'gratitude-humility-self-discipline',
+      ],
       order: 1,
     ),
     HadithTheme(
@@ -18,8 +21,14 @@ const hadithCurriculum = HadithCurriculum(
       summary: 'Sincerity, steady worship, remembrance, and spiritual balance.',
       whyItMatters:
           'Worship loses depth when intention is neglected. These lessons anchor action in sincerity and continuity.',
-      subcategoryIds: ['worship-sincerity-niyyah', 'worship-consistency-remembrance'],
-      relatedThemeIds: ['gratitude-humility-self-discipline', 'hardship-patience-trials'],
+      subcategoryIds: [
+        'worship-sincerity-niyyah',
+        'worship-consistency-remembrance',
+      ],
+      relatedThemeIds: [
+        'gratitude-humility-self-discipline',
+        'hardship-patience-trials',
+      ],
       order: 2,
     ),
     HadithTheme(
@@ -29,7 +38,10 @@ const hadithCurriculum = HadithCurriculum(
       whyItMatters:
           'The Prophetic way builds healthy families and compassionate social order through clear rights and shared responsibility.',
       subcategoryIds: ['family-parents-kinship', 'family-marriage-home'],
-      relatedThemeIds: ['mercy-compassion-service', 'community-brotherhood-responsibility'],
+      relatedThemeIds: [
+        'mercy-compassion-service',
+        'community-brotherhood-responsibility',
+      ],
       order: 3,
     ),
     HadithTheme(
@@ -39,7 +51,10 @@ const hadithCurriculum = HadithCurriculum(
       whyItMatters:
           'Speech can heal or harm quickly. Hadith guidance trains the tongue toward truth, restraint, and reconciliation.',
       subcategoryIds: ['speech-guarding-tongue', 'speech-promises-trust'],
-      relatedThemeIds: ['character-manners', 'community-brotherhood-responsibility'],
+      relatedThemeIds: [
+        'character-manners',
+        'community-brotherhood-responsibility',
+      ],
       order: 4,
     ),
     HadithTheme(
@@ -49,17 +64,27 @@ const hadithCurriculum = HadithCurriculum(
       whyItMatters:
           'Mercy is not sentiment alone; it is practical care. This theme connects spiritual depth with social tenderness.',
       subcategoryIds: ['mercy-vulnerable-care', 'mercy-neighbor-hospitality'],
-      relatedThemeIds: ['family-society', 'community-brotherhood-responsibility'],
+      relatedThemeIds: [
+        'family-society',
+        'community-brotherhood-responsibility',
+      ],
       order: 5,
     ),
     HadithTheme(
       id: 'hardship-patience-trials',
       title: 'Hardship, Patience & Trials',
-      summary: 'Endurance, emotional steadiness, and trust in difficult seasons.',
+      summary:
+          'Endurance, emotional steadiness, and trust in difficult seasons.',
       whyItMatters:
           'Trials reveal what the heart leans on. Hadith guidance teaches patience with purpose, not passivity.',
-      subcategoryIds: ['hardship-sabr-reliance', 'hardship-emotional-resilience'],
-      relatedThemeIds: ['worship-intention', 'gratitude-humility-self-discipline'],
+      subcategoryIds: [
+        'hardship-sabr-reliance',
+        'hardship-emotional-resilience',
+      ],
+      relatedThemeIds: [
+        'worship-intention',
+        'gratitude-humility-self-discipline',
+      ],
       order: 6,
     ),
     HadithTheme(
@@ -78,14 +103,18 @@ const hadithCurriculum = HadithCurriculum(
       summary: 'Belonging, public ethics, and carrying each other with care.',
       whyItMatters:
           'Faith matures in community. Prophetic teachings strengthen trust, accountability, and communal care.',
-      subcategoryIds: ['community-brotherhood-unity', 'community-justice-responsibility'],
+      subcategoryIds: [
+        'community-brotherhood-unity',
+        'community-justice-responsibility',
+      ],
       relatedThemeIds: ['family-society', 'speech-honesty-trust'],
       order: 8,
     ),
     HadithTheme(
       id: 'life-and-world-lessons',
       title: 'Life & World Lessons from Hadith',
-      summary: 'Wisdom on time, mortality, stewardship, and observing creation.',
+      summary:
+          'Wisdom on time, mortality, stewardship, and observing creation.',
       whyItMatters:
           'These lessons connect daily life, mortality, and reflection on the world to sustained God-conscious living.',
       subcategoryIds: ['life-time-mortality', 'world-stewardship-observation'],
@@ -123,7 +152,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'worship-intention',
       title: 'Consistency & Remembrance',
       summary: 'Steady worship and daily remembrance over bursts of intensity.',
-      lessonIds: ['worship-consistency-small-deeds', 'worship-dhikr-heart-anchor'],
+      lessonIds: [
+        'worship-consistency-small-deeds',
+        'worship-dhikr-heart-anchor',
+      ],
       order: 2,
     ),
     HadithSubcategory(
@@ -139,7 +171,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'family-society',
       title: 'Marriage & Home Life',
       summary: 'Mercy, consultation, and trust within the household.',
-      lessonIds: ['family-mercy-between-spouses', 'family-rights-responsibilities-home'],
+      lessonIds: [
+        'family-mercy-between-spouses',
+        'family-rights-responsibilities-home',
+      ],
       order: 2,
     ),
     HadithSubcategory(
@@ -179,7 +214,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'hardship-patience-trials',
       title: 'Patience & Reliance',
       summary: 'Sabr with trust, purposeful endurance, and hope.',
-      lessonIds: ['hardship-sabr-with-purpose', 'hardship-tawakkul-with-effort'],
+      lessonIds: [
+        'hardship-sabr-with-purpose',
+        'hardship-tawakkul-with-effort',
+      ],
       order: 1,
     ),
     HadithSubcategory(
@@ -195,7 +233,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'gratitude-humility-self-discipline',
       title: 'Gratitude & Contentment',
       summary: 'Thankfulness in plenty and in limitation.',
-      lessonIds: ['gratitude-seeing-blessings-daily', 'gratitude-contentment-over-comparison'],
+      lessonIds: [
+        'gratitude-seeing-blessings-daily',
+        'gratitude-contentment-over-comparison',
+      ],
       order: 1,
     ),
     HadithSubcategory(
@@ -211,7 +252,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'community-brotherhood-responsibility',
       title: 'Brotherhood & Sisterhood',
       summary: 'Mutual care, sincere advice, and solidarity.',
-      lessonIds: ['community-loving-good-for-others', 'community-reconciling-hearts'],
+      lessonIds: [
+        'community-loving-good-for-others',
+        'community-reconciling-hearts',
+      ],
       order: 1,
     ),
     HadithSubcategory(
@@ -219,7 +263,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'community-brotherhood-responsibility',
       title: 'Justice & Public Responsibility',
       summary: 'Responsible citizenship, fairness, and public trust.',
-      lessonIds: ['community-justice-with-mercy', 'community-amr-bil-maruf-wisdom'],
+      lessonIds: [
+        'community-justice-with-mercy',
+        'community-amr-bil-maruf-wisdom',
+      ],
       order: 2,
     ),
     HadithSubcategory(
@@ -235,7 +282,10 @@ const hadithCurriculum = HadithCurriculum(
       themeId: 'life-and-world-lessons',
       title: 'Stewardship & Observation',
       summary: 'Mercy to creation and reflective engagement with the world.',
-      lessonIds: ['world-kindness-to-animals', 'world-cleanliness-public-space'],
+      lessonIds: [
+        'world-kindness-to-animals',
+        'world-cleanliness-public-space',
+      ],
       order: 2,
     ),
   ],
@@ -257,7 +307,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['truthful speech', 'moral consistency', 'public trust'],
       reflectionPrompt:
           'Where in your daily speech do you need more precision and honesty?',
-      relatedLessonIds: ['speech-say-good-or-silent', 'speech-fulfill-promises'],
+      relatedLessonIds: [
+        'speech-say-good-or-silent',
+        'speech-fulfill-promises',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -268,7 +321,8 @@ const hadithCurriculum = HadithCurriculum(
           tradition: 'Shared wisdom in earlier scriptures',
           themeSummary:
               'Biblical wisdom literature frequently presents truthful speech as life-giving and deceit as socially destructive.',
-          referenceNote: 'Summary-level comparison; not a direct quotation set.',
+          referenceNote:
+              'Summary-level comparison; not a direct quotation set.',
         ),
       ],
       order: 1,
@@ -290,7 +344,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['sincerity', 'consistency', 'accountability'],
       reflectionPrompt:
           'Which private habit would most improve your public trustworthiness?',
-      relatedLessonIds: ['worship-hidden-deeds', 'humility-daily-self-accounting'],
+      relatedLessonIds: [
+        'worship-hidden-deeds',
+        'humility-daily-self-accounting',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -354,7 +411,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['nasiha', 'dignity', 'wise timing'],
       reflectionPrompt:
           'When you correct others, do they feel helped or shamed?',
-      relatedLessonIds: ['community-reconciling-hearts', 'char-gentleness-strength'],
+      relatedLessonIds: [
+        'community-reconciling-hearts',
+        'char-gentleness-strength',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -384,9 +444,11 @@ const hadithCurriculum = HadithCurriculum(
       practicalTakeaway:
           'Before acts of worship, pause briefly and name your intention in one sentence.',
       keyConcepts: ['niyyah', 'sincerity', 'inner state'],
-      reflectionPrompt:
-          'What intention do you most want to purify this week?',
-      relatedLessonIds: ['worship-hidden-deeds', 'worship-consistency-small-deeds'],
+      reflectionPrompt: 'What intention do you most want to purify this week?',
+      relatedLessonIds: [
+        'worship-hidden-deeds',
+        'worship-consistency-small-deeds',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -418,7 +480,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['ikhlas', 'private worship', 'spiritual protection'],
       reflectionPrompt:
           'Which act can you keep between you and God this month?',
-      relatedLessonIds: ['char-integrity-unseen', 'worship-intentions-weigh-actions'],
+      relatedLessonIds: [
+        'char-integrity-unseen',
+        'worship-intentions-weigh-actions',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -482,7 +547,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['dhikr', 'heart awareness', 'spiritual focus'],
       reflectionPrompt:
           'Which daily moment could become your most consistent remembrance point?',
-      relatedLessonIds: ['worship-consistency-small-deeds', 'gratitude-seeing-blessings-daily'],
+      relatedLessonIds: [
+        'worship-consistency-small-deeds',
+        'gratitude-seeing-blessings-daily',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -546,7 +614,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['silat al-rahim', 'reconciliation', 'patience'],
       reflectionPrompt:
           'Which family tie needs healing, and what is one low-conflict first step?',
-      relatedLessonIds: ['community-reconciling-hearts', 'family-honoring-parents'],
+      relatedLessonIds: [
+        'community-reconciling-hearts',
+        'family-honoring-parents',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -578,7 +649,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['mercy', 'companionship', 'mutual rights'],
       reflectionPrompt:
           'What home behavior of yours most needs to reflect mercy?',
-      relatedLessonIds: ['family-rights-responsibilities-home', 'char-gentleness-strength'],
+      relatedLessonIds: [
+        'family-rights-responsibilities-home',
+        'char-gentleness-strength',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -610,7 +684,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['justice', 'consultation', 'duty fulfillment'],
       reflectionPrompt:
           'Where does your household need clearer expectations to reduce conflict?',
-      relatedLessonIds: ['speech-fulfill-promises', 'family-mercy-between-spouses'],
+      relatedLessonIds: [
+        'speech-fulfill-promises',
+        'family-mercy-between-spouses',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -642,7 +719,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['speech discipline', 'restraint', 'benefit'],
       reflectionPrompt:
           'Which conversation pattern in your life most needs this principle?',
-      relatedLessonIds: ['speech-avoid-backbiting-harm', 'char-honesty-foundation'],
+      relatedLessonIds: [
+        'speech-avoid-backbiting-harm',
+        'char-honesty-foundation',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -674,7 +754,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['honor protection', 'gheebah awareness', 'social trust'],
       reflectionPrompt:
           'How do you usually respond when harmful talk begins in your circle?',
-      relatedLessonIds: ['community-reconciling-hearts', 'speech-say-good-or-silent'],
+      relatedLessonIds: [
+        'community-reconciling-hearts',
+        'speech-say-good-or-silent',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -706,7 +789,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['amanah', 'reliability', 'covenant ethics'],
       reflectionPrompt:
           'Which open promise in your life needs immediate attention?',
-      relatedLessonIds: ['speech-trust-public-private', 'family-rights-responsibilities-home'],
+      relatedLessonIds: [
+        'speech-trust-public-private',
+        'family-rights-responsibilities-home',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -770,7 +856,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['rahmah', 'dignity-centered service', 'charity ethics'],
       reflectionPrompt:
           'How can your charity become more relational and less transactional?',
-      relatedLessonIds: ['mercy-support-orphans-vulnerable', 'mercy-hospitality-generosity'],
+      relatedLessonIds: [
+        'mercy-support-orphans-vulnerable',
+        'mercy-hospitality-generosity',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -834,7 +923,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['neighbor rights', 'local responsibility', 'social trust'],
       reflectionPrompt:
           'If your neighbors described your presence, would they describe safety and care?',
-      relatedLessonIds: ['mercy-hospitality-generosity', 'community-loving-good-for-others'],
+      relatedLessonIds: [
+        'mercy-hospitality-generosity',
+        'community-loving-good-for-others',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -866,7 +958,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['hospitality', 'generosity', 'belonging'],
       reflectionPrompt:
           'How can your home or schedule become more hospitable without becoming overwhelmed?',
-      relatedLessonIds: ['mercy-rights-of-neighbors', 'family-mercy-between-spouses'],
+      relatedLessonIds: [
+        'mercy-rights-of-neighbors',
+        'family-mercy-between-spouses',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -898,7 +993,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['sabr', 'steadfastness', 'ethical restraint'],
       reflectionPrompt:
           'During stress, what reaction most needs replacing with sabr?',
-      relatedLessonIds: ['hardship-tawakkul-with-effort', 'worship-consistency-small-deeds'],
+      relatedLessonIds: [
+        'hardship-tawakkul-with-effort',
+        'worship-consistency-small-deeds',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -962,7 +1060,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['anger regulation', 'self-mastery', 'restraint'],
       reflectionPrompt:
           'What early sign tells you anger is rising, and what is your first safer response?',
-      relatedLessonIds: ['char-gentleness-strength', 'hardship-grief-with-hope'],
+      relatedLessonIds: [
+        'char-gentleness-strength',
+        'hardship-grief-with-hope',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -994,7 +1095,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['hope', 'emotional honesty', 'spiritual resilience'],
       reflectionPrompt:
           'What would hopeful patience look like in your current sorrow?',
-      relatedLessonIds: ['hardship-sabr-with-purpose', 'life-remembering-death-balance'],
+      relatedLessonIds: [
+        'hardship-sabr-with-purpose',
+        'life-remembering-death-balance',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1026,7 +1130,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['shukr', 'awareness', 'spiritual contentment'],
       reflectionPrompt:
           'Which recurring gift in your life have you stopped noticing?',
-      relatedLessonIds: ['gratitude-contentment-over-comparison', 'worship-dhikr-heart-anchor'],
+      relatedLessonIds: [
+        'gratitude-contentment-over-comparison',
+        'worship-dhikr-heart-anchor',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1058,7 +1165,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['contentment', 'envy awareness', 'healthy aspiration'],
       reflectionPrompt:
           'What comparison habit is quietly draining your gratitude?',
-      relatedLessonIds: ['humility-lowering-ego', 'gratitude-seeing-blessings-daily'],
+      relatedLessonIds: [
+        'humility-lowering-ego',
+        'gratitude-seeing-blessings-daily',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1090,7 +1200,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['humility', 'ego restraint', 'teachability'],
       reflectionPrompt:
           'Where does subtle pride show up in your daily interactions?',
-      relatedLessonIds: ['humility-daily-self-accounting', 'char-adab-correction'],
+      relatedLessonIds: [
+        'humility-daily-self-accounting',
+        'char-adab-correction',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1151,10 +1264,17 @@ const hadithCurriculum = HadithCurriculum(
           'Qur’anic brotherhood ethics support mutual care, fairness, and collective uplift.',
       practicalTakeaway:
           'Make one intentional du’a and one practical action for someone else’s success today.',
-      keyConcepts: ['brotherhood/sisterhood', 'sincere concern', 'collective wellbeing'],
+      keyConcepts: [
+        'brotherhood/sisterhood',
+        'sincere concern',
+        'collective wellbeing',
+      ],
       reflectionPrompt:
           'Whose success is difficult for you to celebrate sincerely, and why?',
-      relatedLessonIds: ['community-reconciling-hearts', 'mercy-rights-of-neighbors'],
+      relatedLessonIds: [
+        'community-reconciling-hearts',
+        'mercy-rights-of-neighbors',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1186,7 +1306,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['reconciliation', 'unity', 'conflict de-escalation'],
       reflectionPrompt:
           'What personal pride is blocking reconciliation in your life?',
-      relatedLessonIds: ['char-adab-correction', 'speech-avoid-backbiting-harm'],
+      relatedLessonIds: [
+        'char-adab-correction',
+        'speech-avoid-backbiting-harm',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1218,7 +1341,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['justice', 'mercy', 'ethical responsibility'],
       reflectionPrompt:
           'Where do you need more fairness, and where do you need more mercy?',
-      relatedLessonIds: ['community-amr-bil-maruf-wisdom', 'mercy-support-orphans-vulnerable'],
+      relatedLessonIds: [
+        'community-amr-bil-maruf-wisdom',
+        'mercy-support-orphans-vulnerable',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1250,7 +1376,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['moral responsibility', 'wisdom', 'proportional counsel'],
       reflectionPrompt:
           'How can you move from reactive criticism to wise, constructive advice?',
-      relatedLessonIds: ['char-adab-correction', 'community-justice-with-mercy'],
+      relatedLessonIds: [
+        'char-adab-correction',
+        'community-justice-with-mercy',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1282,7 +1411,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['time stewardship', 'accountability', 'prioritization'],
       reflectionPrompt:
           'Where is your best energy going, and does that match your values?',
-      relatedLessonIds: ['worship-consistency-small-deeds', 'life-remembering-death-balance'],
+      relatedLessonIds: [
+        'worship-consistency-small-deeds',
+        'life-remembering-death-balance',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1314,7 +1446,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['mortality awareness', 'priority clarity', 'repentance'],
       reflectionPrompt:
           'What would you simplify if you lived with healthier awareness of life’s limits?',
-      relatedLessonIds: ['hardship-grief-with-hope', 'humility-daily-self-accounting'],
+      relatedLessonIds: [
+        'hardship-grief-with-hope',
+        'humility-daily-self-accounting',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1346,7 +1481,10 @@ const hadithCurriculum = HadithCurriculum(
       keyConcepts: ['stewardship', 'mercy to creation', 'ethical care'],
       reflectionPrompt:
           'How does your daily lifestyle affect animals directly or indirectly?',
-      relatedLessonIds: ['world-cleanliness-public-space', 'mercy-care-for-poor'],
+      relatedLessonIds: [
+        'world-cleanliness-public-space',
+        'mercy-care-for-poor',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',
@@ -1375,10 +1513,17 @@ const hadithCurriculum = HadithCurriculum(
           'Qur’anic anti-corruption ethics can be applied to environmental and civic responsibility in daily life.',
       practicalTakeaway:
           'Adopt one local stewardship habit: clean-up walks, waste reduction, or maintaining shared space manners.',
-      keyConcepts: ['cleanliness', 'public responsibility', 'environmental adab'],
+      keyConcepts: [
+        'cleanliness',
+        'public responsibility',
+        'environmental adab',
+      ],
       reflectionPrompt:
           'What change in your public habits would most benefit your neighborhood?',
-      relatedLessonIds: ['mercy-rights-of-neighbors', 'world-kindness-to-animals'],
+      relatedLessonIds: [
+        'mercy-rights-of-neighbors',
+        'world-kindness-to-animals',
+      ],
       comparativeInsights: [
         HadithComparativeInsight(
           tradition: 'Related Qur’anic themes',

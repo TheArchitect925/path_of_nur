@@ -20,10 +20,7 @@ void main() {
 
     expect(session.questions, isNotEmpty);
     final question = session.questions.first;
-    expect(
-      question.contentType,
-      ArabicLearningContinuationContentType.letter,
-    );
+    expect(question.contentType, ArabicLearningContinuationContentType.letter);
     expect(question.options.length, greaterThanOrEqualTo(3));
     expect(
       question.options.any((option) => option.id == question.correctOptionId),
@@ -36,7 +33,9 @@ void main() {
     final container = await makeTestContainer();
     addTearDown(container.dispose);
 
-    container.read(kidsArabicProgressProvider.notifier).completeLesson(
+    container
+        .read(kidsArabicProgressProvider.notifier)
+        .completeLesson(
           letter: kidsArabicLetters.first,
           traceResult: KidsArabicTraceResult.good,
         );
@@ -74,10 +73,7 @@ void main() {
     expect(session.questions, isNotEmpty);
     final question = session.questions.first;
     expect(question.itemId, 'noor');
-    expect(
-      question.contentType,
-      ArabicLearningContinuationContentType.word,
-    );
+    expect(question.contentType, ArabicLearningContinuationContentType.word);
     expect(
       question.followUpTarget.kind,
       ArabicLearningRouteTargetKind.adultBeginnerWords,

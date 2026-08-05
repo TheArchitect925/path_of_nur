@@ -112,10 +112,12 @@ class _EditorialContentBrowserPageState
                     ],
                   ),
                   trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () => context.pushNamed(
+                  onTap: () => context.pushNamed(
                     'editorialContentEditor',
                     pathParameters: {
-                      'contentType': editorialContentTypeRouteSegment(widget.contentType),
+                      'contentType': editorialContentTypeRouteSegment(
+                        widget.contentType,
+                      ),
                     },
                     queryParameters: {'id': summary.contentId},
                   ),
@@ -128,10 +130,7 @@ class _EditorialContentBrowserPageState
   }
 }
 
-String _contentTypeLabel(
-  AppLocalizations l10n,
-  EditorialContentType type,
-) {
+String _contentTypeLabel(AppLocalizations l10n, EditorialContentType type) {
   return switch (type) {
     EditorialContentType.quranExplanation =>
       l10n.editorialDashboardContentTypeQuranExplanation,

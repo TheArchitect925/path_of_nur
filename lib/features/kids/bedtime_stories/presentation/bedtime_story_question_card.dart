@@ -81,7 +81,9 @@ class _AnswerOptionTile extends StatelessWidget {
             Expanded(child: Text(label)),
             const SizedBox(width: 8),
             Icon(
-              selected ? Icons.check_circle_rounded : Icons.radio_button_unchecked,
+              selected
+                  ? Icons.check_circle_rounded
+                  : Icons.radio_button_unchecked,
               size: 20,
             ),
           ],

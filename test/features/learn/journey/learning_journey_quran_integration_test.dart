@@ -36,13 +36,16 @@ void main() {
     expect(links.any((entry) => entry.stageId == 'fatihah-read'), isFalse);
   });
 
-  test('reverse links can hand patience verses back into the character journey', () {
-    final links = learningJourneyQuranReverseLinksForVerse(2, 153);
+  test(
+    'reverse links can hand patience verses back into the character journey',
+    () {
+      final links = learningJourneyQuranReverseLinksForVerse(2, 153);
 
-    expect(links.any((entry) => entry.stageId == 'character-sabr'), isTrue);
-    expect(
-      links.firstWhere((entry) => entry.stageId == 'character-sabr').topicId,
-      'patience',
-    );
-  });
+      expect(links.any((entry) => entry.stageId == 'character-sabr'), isTrue);
+      expect(
+        links.firstWhere((entry) => entry.stageId == 'character-sabr').topicId,
+        'patience',
+      );
+    },
+  );
 }

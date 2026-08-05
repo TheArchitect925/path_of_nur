@@ -24,7 +24,8 @@ class QuranPlaybackRequest {
 
   int? get targetAyahNumber => ayahNumber;
 
-  bool get resolvesToSurahEntry => isSurahEntry ?? targetAyahNumber == null || targetAyahNumber == 1;
+  bool get resolvesToSurahEntry =>
+      isSurahEntry ?? targetAyahNumber == null || targetAyahNumber == 1;
 }
 
 enum QuranPlaybackReason {

@@ -14,7 +14,9 @@ class GardenUnlockService {
   }
 
   int unlockedCount(List<GardenMilestone> milestones, int totalDrops) {
-    return milestones.where((milestone) => isUnlocked(milestone, totalDrops)).length;
+    return milestones
+        .where((milestone) => isUnlocked(milestone, totalDrops))
+        .length;
   }
 
   GardenMilestone? nextLockedMilestone(

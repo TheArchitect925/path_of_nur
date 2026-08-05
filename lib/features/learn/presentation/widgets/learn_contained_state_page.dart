@@ -38,10 +38,7 @@ class LearnContainedStatePage extends StatelessWidget {
             children: [
               Text(
                 body,
-                style: const TextStyle(
-                  color: Color(0xFF675B4E),
-                  height: 1.4,
-                ),
+                style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
               ),
               if (primaryActionLabel != null || secondaryActionLabel != null)
                 const SizedBox(height: 14),

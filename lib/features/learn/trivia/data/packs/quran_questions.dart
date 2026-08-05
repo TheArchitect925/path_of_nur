@@ -92,8 +92,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     difficulty: TriviaDifficulty.easy,
     prompt: 'An ayah is a verse of the Qur’an.',
     correct: true,
-    explanation:
-        'A surah is a chapter, and an ayah is a verse within a surah.',
+    explanation: 'A surah is a chapter, and an ayah is a verse within a surah.',
     tags: const ['quran', 'ayah', 'surah', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -130,8 +129,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('yasin', 'Surah Ya-Sin'),
     ],
     correctOptionId: 'baqarah',
-    explanation:
-        'Surah Al-Baqarah is the longest surah in the Qur’an.',
+    explanation: 'Surah Al-Baqarah is the longest surah in the Qur’an.',
     tags: const ['quran', 'surah', 'al_baqarah', 'structure', 'beginner'],
     beginnerFriendly: true,
     featured: true,
@@ -150,8 +148,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('nasr', 'Surah An-Nasr'),
     ],
     correctOptionId: 'kawthar',
-    explanation:
-        'Surah Al-Kawthar is the shortest surah in the Qur’an.',
+    explanation: 'Surah Al-Kawthar is the shortest surah in the Qur’an.',
     tags: const ['quran', 'surah', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -184,8 +181,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('masad', 'Surah Al-Masad'),
     ],
     correctOptionId: 'nas',
-    explanation:
-        'The final surah in the Qur’an is Surah An-Nas.',
+    explanation: 'The final surah in the Qur’an is Surah An-Nas.',
     tags: const ['quran', 'surah', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -306,12 +302,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
     prompt: 'How many juz are in the Qur’an?',
-    options: const [
-      ('30', '30'),
-      ('10', '10'),
-      ('40', '40'),
-      ('60', '60'),
-    ],
+    options: const [('30', '30'), ('10', '10'), ('40', '40'), ('60', '60')],
     correctOptionId: '30',
     explanation:
         'The Qur’an is commonly divided into 30 juz to help pace recitation and memorization.',
@@ -367,8 +358,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('call', 'A call to prayer'),
     ],
     correctOptionId: 'chapter',
-    explanation:
-        'A surah is a chapter of the Qur’an made up of ayat.',
+    explanation: 'A surah is a chapter of the Qur’an made up of ayat.',
     tags: const ['quran', 'surah', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -378,7 +368,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_021',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'The Qur’an was preserved only in written form, not through memorization.',
+    prompt:
+        'The Qur’an was preserved only in written form, not through memorization.',
     correct: false,
     explanation:
         'The Qur’an was preserved through both memorization and writing from the earliest period.',
@@ -400,8 +391,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('dukhan', 'Surah Ad-Dukhan'),
     ],
     correctOptionId: 'fatihah',
-    explanation:
-        'These opening words are from Surah Al-Fatihah.',
+    explanation: 'These opening words are from Surah Al-Fatihah.',
     quranReference: 'Qur’an 1:2',
     tags: const ['quran', 'al_fatihah', 'ayah', 'beginner'],
     beginnerFriendly: true,
@@ -412,7 +402,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_023',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is known for beginning with “Read” in the first revelation?',
+    prompt:
+        'Which surah is known for beginning with “Read” in the first revelation?',
     options: const [
       ('alaq', 'Surah Al-‘Alaq'),
       ('qadr', 'Surah Al-Qadr'),
@@ -454,8 +445,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('rahman', 'Surah Ar-Rahman'),
     ],
     correctOptionId: 'qadr',
-    explanation:
-        'Surah Al-Qadr speaks directly about Laylat al-Qadr.',
+    explanation: 'Surah Al-Qadr speaks directly about Laylat al-Qadr.',
     quranReference: 'Qur’an 97:1-5',
     tags: const ['quran', 'laylat_al_qadr', 'surah', 'beginner'],
     beginnerFriendly: true,
@@ -499,7 +489,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_028',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is widely known for speaking about protection from envy, darkness, and harm?',
+    prompt:
+        'Which surah is widely known for speaking about protection from envy, darkness, and harm?',
     options: const [
       ('falaq', 'Surah Al-Falaq'),
       ('nas', 'Surah An-Nas'),
@@ -519,7 +510,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_029',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is widely known for seeking refuge from whispering evil?',
+    prompt:
+        'Which surah is widely known for seeking refuge from whispering evil?',
     options: const [
       ('nas', 'Surah An-Nas'),
       ('falaq', 'Surah Al-Falaq'),
@@ -561,8 +553,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
       ('nur', 'Surah An-Nur'),
     ],
     correctOptionId: 'baqarah',
-    explanation:
-        'Ayat al-Kursi is verse 255 of Surah Al-Baqarah.',
+    explanation: 'Ayat al-Kursi is verse 255 of Surah Al-Baqarah.',
     quranReference: 'Qur’an 2:255',
     tags: const ['quran', 'al_baqarah', 'ayah', 'beginner'],
     beginnerFriendly: true,
@@ -574,7 +565,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_032',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is known for the repeated verse “So which of the favors of your Lord will you deny?”',
+    prompt:
+        'Which surah is known for the repeated verse “So which of the favors of your Lord will you deny?”',
     options: const [
       ('rahman', 'Surah Ar-Rahman'),
       ('waqiah', 'Surah Al-Waqi‘ah'),
@@ -607,7 +599,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_034',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is often associated with seeking refuge from evil and whisperings together with Al-Falaq?',
+    prompt:
+        'Which surah is often associated with seeking refuge from evil and whisperings together with Al-Falaq?',
     options: const [
       ('nas', 'Surah An-Nas'),
       ('ikhlas', 'Surah Al-Ikhlas'),
@@ -626,7 +619,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_035',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is widely known for speaking about the sovereignty of Allah and is often recited at night?',
+    prompt:
+        'Which surah is widely known for speaking about the sovereignty of Allah and is often recited at night?',
     options: const [
       ('mulk', 'Surah Al-Mulk'),
       ('kahf', 'Surah Al-Kahf'),
@@ -646,7 +640,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_036',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Memorizing even small portions of the Qur’an is part of Qur’an learning.',
+    prompt:
+        'Memorizing even small portions of the Qur’an is part of Qur’an learning.',
     correct: true,
     explanation:
         'Qur’an learning includes recitation, understanding, reflection, and memorization at different levels.',
@@ -659,7 +654,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_037',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is often known as the heart of the Qur’an in popular Muslim teaching?',
+    prompt:
+        'Which surah is often known as the heart of the Qur’an in popular Muslim teaching?',
     options: const [
       ('yasin', 'Surah Ya-Sin'),
       ('mulk', 'Surah Al-Mulk'),
@@ -702,11 +698,18 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_039',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'A person can study the Qur’an through recitation, memorization, and understanding together.',
+    prompt:
+        'A person can study the Qur’an through recitation, memorization, and understanding together.',
     correct: true,
     explanation:
         'Qur’an learning is not limited to one path. Recitation, memorization, reflection, and study support each other.',
-    tags: const ['quran', 'memorization', 'reflection', 'recitation', 'beginner'],
+    tags: const [
+      'quran',
+      'memorization',
+      'reflection',
+      'recitation',
+      'beginner',
+    ],
     beginnerFriendly: true,
     packId: _pack,
     sortOrder: 39,
@@ -715,7 +718,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_040',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is widely recited for protection together with An-Nas?',
+    prompt:
+        'Which surah is widely recited for protection together with An-Nas?',
     options: const [
       ('falaq', 'Surah Al-Falaq'),
       ('ikhlas', 'Surah Al-Ikhlas'),
@@ -748,7 +752,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_042',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which surah is strongly associated with Allah’s oneness and is short and widely memorized?',
+    prompt:
+        'Which surah is strongly associated with Allah’s oneness and is short and widely memorized?',
     options: const [
       ('ikhlas', 'Surah Al-Ikhlas'),
       ('masad', 'Surah Al-Masad'),
@@ -802,7 +807,8 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_045',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'A person may learn the meanings of the Qur’an while also continuing to improve recitation.',
+    prompt:
+        'A person may learn the meanings of the Qur’an while also continuing to improve recitation.',
     correct: true,
     explanation:
         'Recitation and understanding support each other. Both are part of a healthy Qur’an relationship.',
@@ -821,7 +827,10 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'What is the broad difference between Makki and Madani surahs?',
     options: const [
-      ('timing', 'They are classified by whether revelation was before or after Hijrah'),
+      (
+        'timing',
+        'They are classified by whether revelation was before or after Hijrah',
+      ),
       ('length', 'Makki are always short and Madani are always long'),
       ('language', 'Makki are Arabic and Madani are non-Arabic'),
       ('audience', 'Madani were only for scholars'),
@@ -851,7 +860,10 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'What is a hizb in Qur’an structure?',
     options: const [
-      ('division', 'A subdivision used within the Qur’an for pacing recitation'),
+      (
+        'division',
+        'A subdivision used within the Qur’an for pacing recitation',
+      ),
       ('chapter', 'Another word for surah'),
       ('verse', 'Another word for ayah'),
       ('teacher', 'A recitation teacher'),
@@ -870,7 +882,10 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     prompt: 'Why is gradual revelation an important Qur’anic learning point?',
     options: const [
       ('strengthen', 'It strengthened hearts and guided life step by step'),
-      ('delay', 'It happened gradually only because the message was incomplete'),
+      (
+        'delay',
+        'It happened gradually only because the message was incomplete',
+      ),
       ('confuse', 'It was meant to make the message harder to follow'),
       ('hide', 'It was meant to hide rulings from people'),
     ],
@@ -908,8 +923,7 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
       ('travel', 'Journey and movement'),
     ],
     correctOptionId: 'recitation',
-    explanation:
-        'The word Qur’an is closely tied to recitation and reading.',
+    explanation: 'The word Qur’an is closely tied to recitation and reading.',
     tags: const ['quran', 'terminology', 'recitation'],
     packId: _pack,
     sortOrder: 106,
@@ -918,7 +932,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_007',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which surah is especially known for stories of the cave, the garden, Musa and al-Khidr, and Dhul-Qarnayn?',
+    prompt:
+        'Which surah is especially known for stories of the cave, the garden, Musa and al-Khidr, and Dhul-Qarnayn?',
     options: const [
       ('kahf', 'Surah Al-Kahf'),
       ('yusuf', 'Surah Yusuf'),
@@ -950,7 +965,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_009',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'What is one broad practical benefit of dividing the Qur’an into juz?',
+    prompt:
+        'What is one broad practical benefit of dividing the Qur’an into juz?',
     options: const [
       ('pacing', 'It helps pace recitation and memorization'),
       ('replace_surahs', 'It replaces the surah structure'),
@@ -968,7 +984,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_010',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which surah is strongly associated with the phrase “Master of the Day of Judgment”?',
+    prompt:
+        'Which surah is strongly associated with the phrase “Master of the Day of Judgment”?',
     options: const [
       ('fatihah', 'Surah Al-Fatihah'),
       ('mulk', 'Surah Al-Mulk'),
@@ -988,7 +1005,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_011',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Qur’an study includes understanding themes, not only pronouncing words.',
+    prompt:
+        'Qur’an study includes understanding themes, not only pronouncing words.',
     correct: true,
     explanation:
         'Recitation is central, but the Qur’an also calls people to reflect, understand, and respond to its guidance.',
@@ -1003,7 +1021,10 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'What does “rukūʿ” commonly refer to in printed Qur’an study aids?',
     options: const [
-      ('section_marker', 'A thematic section marker used in some mus-haf layouts'),
+      (
+        'section_marker',
+        'A thematic section marker used in some mus-haf layouts',
+      ),
       ('prostration_only', 'Only a sajdah verse'),
       ('pause_sign_only', 'Only a stop sign'),
       ('harf_count', 'A count of letters'),
@@ -1020,7 +1041,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_013',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which surah is strongly tied to the theme of Allah’s sovereignty over life and death and creation?',
+    prompt:
+        'Which surah is strongly tied to the theme of Allah’s sovereignty over life and death and creation?',
     options: const [
       ('mulk', 'Surah Al-Mulk'),
       ('fajr', 'Surah Al-Fajr'),
@@ -1073,9 +1095,13 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_016',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which statement best describes a major difference between Qur’an and tafsir?',
+    prompt:
+        'Which statement best describes a major difference between Qur’an and tafsir?',
     options: const [
-      ('explains', 'Tafsir explains the Qur’an, while the Qur’an itself is revelation'),
+      (
+        'explains',
+        'Tafsir explains the Qur’an, while the Qur’an itself is revelation',
+      ),
       ('same', 'They are exactly the same text'),
       ('replace', 'Tafsir replaces the need for the Qur’an'),
       ('nonreligious', 'Tafsir is unrelated to religion'),
@@ -1091,7 +1117,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_017',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'One reason the Qur’an is easy for remembrance is that Allah says so explicitly in the Qur’an.',
+    prompt:
+        'One reason the Qur’an is easy for remembrance is that Allah says so explicitly in the Qur’an.',
     correct: true,
     explanation:
         'The Qur’an itself says that Allah has made it easy for remembrance.',
@@ -1105,7 +1132,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_018',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which surah is especially known for the phrase “Say: He is Allah, One”?',
+    prompt:
+        'Which surah is especially known for the phrase “Say: He is Allah, One”?',
     options: const [
       ('ikhlas', 'Surah Al-Ikhlas'),
       ('falaq', 'Surah Al-Falaq'),
@@ -1125,9 +1153,13 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_019',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which idea best fits the Qur’anic description of the Book as “no doubt” for the mindful?',
+    prompt:
+        'Which idea best fits the Qur’anic description of the Book as “no doubt” for the mindful?',
     options: const [
-      ('certainty', 'It gives certainty and guidance to those who approach it with taqwa'),
+      (
+        'certainty',
+        'It gives certainty and guidance to those who approach it with taqwa',
+      ),
       ('easy_fact', 'It means every verse is simple without study'),
       ('no_need', 'It means no teacher is ever helpful'),
       ('history_only', 'It means it is only a historical book'),
@@ -1195,7 +1227,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_023',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'A translation of the Qur’an is identical in status to the Arabic Qur’an itself.',
+    prompt:
+        'A translation of the Qur’an is identical in status to the Arabic Qur’an itself.',
     correct: false,
     explanation:
         'Translations are explanations of meaning, while the revealed Qur’an itself is the Arabic recited text.',
@@ -1207,7 +1240,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_024',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which surah is well known for repeated reminders of Allah’s favors?',
+    prompt:
+        'Which surah is well known for repeated reminders of Allah’s favors?',
     options: const [
       ('rahman', 'Surah Ar-Rahman'),
       ('mulk', 'Surah Al-Mulk'),
@@ -1246,7 +1280,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_026',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'The Qur’an includes verses that call people to think about creation and signs.',
+    prompt:
+        'The Qur’an includes verses that call people to think about creation and signs.',
     correct: true,
     explanation:
         'The Qur’an often calls people to reflect on the heavens, earth, life, and signs around them.',
@@ -1259,7 +1294,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_027',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which expression best describes why many Muslims review the Qur’an regularly?',
+    prompt:
+        'Which expression best describes why many Muslims review the Qur’an regularly?',
     options: const [
       ('retain', 'To retain recitation, memorization, and connection'),
       ('replace', 'To replace prayer'),
@@ -1296,7 +1332,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_029',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Recitation manners include avoiding treating the Qur’an carelessly.',
+    prompt:
+        'Recitation manners include avoiding treating the Qur’an carelessly.',
     correct: true,
     explanation:
         'Respectful engagement with the Qur’an is part of Muslim adab and reverence for revelation.',
@@ -1311,7 +1348,10 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'What is one safe way to describe the Qur’an’s preservation?',
     options: const [
-      ('guarded', 'Allah guarded its preservation, and the Ummah preserved it through memorization and transmission'),
+      (
+        'guarded',
+        'Allah guarded its preservation, and the Ummah preserved it through memorization and transmission',
+      ),
       ('private', 'It survived only in one hidden manuscript'),
       ('uncertain', 'Its wording changed completely over time'),
       ('oral_only', 'It was never written down at all'),
@@ -1329,7 +1369,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_031',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'The Qur’an’s message includes both personal reform and social guidance.',
+    prompt:
+        'The Qur’an’s message includes both personal reform and social guidance.',
     correct: true,
     explanation:
         'The Qur’an shapes the inner self while also guiding family life, justice, ethics, and community.',
@@ -1375,9 +1416,13 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_034',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which idea best fits a healthy beginner relationship with the Qur’an?',
+    prompt:
+        'Which idea best fits a healthy beginner relationship with the Qur’an?',
     options: const [
-      ('steady', 'Steady recitation, learning, and reflection even in small amounts'),
+      (
+        'steady',
+        'Steady recitation, learning, and reflection even in small amounts',
+      ),
       ('rush', 'Rushing through without care'),
       ('delay', 'Waiting years before starting at all'),
       ('limit', 'Treating it only as a Ramadan activity'),
@@ -1394,7 +1439,8 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     id: 'quran_med_035',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which surah contains the Throne Verse, commonly called Ayat al-Kursi?',
+    prompt:
+        'Which surah contains the Throne Verse, commonly called Ayat al-Kursi?',
     options: const [
       ('baqarah', 'Surah Al-Baqarah'),
       ('nisa', 'Surah An-Nisa'),
@@ -1416,11 +1462,18 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_001',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement is the safest broad description of Makki and Madani revelation?',
+    prompt:
+        'Which statement is the safest broad description of Makki and Madani revelation?',
     options: const [
-      ('hijrah', 'They are broadly classified by whether revelation was before or after Hijrah'),
+      (
+        'hijrah',
+        'They are broadly classified by whether revelation was before or after Hijrah',
+      ),
       ('language', 'They were revealed in different languages'),
-      ('region_only', 'They are only about city location with no other meaning'),
+      (
+        'region_only',
+        'They are only about city location with no other meaning',
+      ),
       ('length_only', 'They are defined only by length'),
     ],
     correctOptionId: 'hijrah',
@@ -1434,7 +1487,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_002',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Every surah begins with the disconnected letters known as huruf muqatta‘at.',
+    prompt:
+        'Every surah begins with the disconnected letters known as huruf muqatta‘at.',
     correct: false,
     explanation:
         'Only some surahs begin with these opening letters, not all of them.',
@@ -1447,9 +1501,13 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_003',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'What is one careful reason Muslims avoid reducing Qur’an knowledge to numbers alone?',
+    prompt:
+        'What is one careful reason Muslims avoid reducing Qur’an knowledge to numbers alone?',
     options: const [
-      ('purpose', 'Because the Qur’an came for guidance, remembrance, and transformation, not just counting facts'),
+      (
+        'purpose',
+        'Because the Qur’an came for guidance, remembrance, and transformation, not just counting facts',
+      ),
       ('forbidden', 'Because numbers are completely forbidden in study'),
       ('irrelevant', 'Because structure has no place in learning'),
       ('secret', 'Because structural facts are hidden from ordinary Muslims'),
@@ -1466,7 +1524,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_004',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which surah is named after a form of divine dominion and begins by praising the One in whose hand is sovereignty?',
+    prompt:
+        'Which surah is named after a form of divine dominion and begins by praising the One in whose hand is sovereignty?',
     options: const [
       ('mulk', 'Surah Al-Mulk'),
       ('hashr', 'Surah Al-Hashr'),
@@ -1486,7 +1545,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_005',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an was compiled into a mus-haf long after all concern for preservation had passed.',
+    prompt:
+        'The Qur’an was compiled into a mus-haf long after all concern for preservation had passed.',
     correct: false,
     explanation:
         'Preservation was an early and serious concern, supported through memorization, writing, and careful transmission.',
@@ -1498,11 +1558,18 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_006',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement best distinguishes Qur’an recitation from merely reading translation?',
+    prompt:
+        'Which statement best distinguishes Qur’an recitation from merely reading translation?',
     options: const [
-      ('revealed_text', 'Recitation preserves and voices the revealed Arabic text itself'),
+      (
+        'revealed_text',
+        'Recitation preserves and voices the revealed Arabic text itself',
+      ),
       ('same_status', 'Translation has exactly the same revealed wording'),
-      ('translation_better', 'Translation is always spiritually superior to recitation'),
+      (
+        'translation_better',
+        'Translation is always spiritually superior to recitation',
+      ),
       ('no_need', 'Recitation makes meaning unnecessary'),
     ],
     correctOptionId: 'revealed_text',
@@ -1516,9 +1583,13 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_007',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement is most accurate about sajdah verses in Qur’an study?',
+    prompt:
+        'Which statement is most accurate about sajdah verses in Qur’an study?',
     options: const [
-      ('special', 'They are verses associated with prostration and special attentiveness in recitation'),
+      (
+        'special',
+        'They are verses associated with prostration and special attentiveness in recitation',
+      ),
       ('erased', 'They are verses removed from public recitation'),
       ('only_fiqh', 'They are only legal rulings with no recitation effect'),
       ('all_surahs', 'Every surah contains one'),
@@ -1535,7 +1606,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_008',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'All well-known virtues popularly attached to surahs are equally strong and equally established.',
+    prompt:
+        'All well-known virtues popularly attached to surahs are equally strong and equally established.',
     correct: false,
     explanation:
         'Some reported virtues are stronger and more established than others, so careful learning matters.',
@@ -1549,9 +1621,13 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_009',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'What is one safe educational reason for learning surah names and themes?',
+    prompt:
+        'What is one safe educational reason for learning surah names and themes?',
     options: const [
-      ('orientation', 'It helps orient a learner inside the Qur’an and strengthens recall'),
+      (
+        'orientation',
+        'It helps orient a learner inside the Qur’an and strengthens recall',
+      ),
       ('replace_recitation', 'It replaces the need to recite'),
       ('avoid_meaning', 'It helps avoid engaging with meaning'),
       ('cancel_tafsir', 'It removes the need for any explanation'),
@@ -1568,7 +1644,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_010',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which surah explicitly describes the Qur’an as a healing and mercy for believers?',
+    prompt:
+        'Which surah explicitly describes the Qur’an as a healing and mercy for believers?',
     options: const [
       ('isra', 'Surah Al-Isra passage'),
       ('kahf', 'Surah Al-Kahf'),
@@ -1588,7 +1665,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_011',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an’s order in the mus-haf is exactly the same as the chronological order of revelation.',
+    prompt:
+        'The Qur’an’s order in the mus-haf is exactly the same as the chronological order of revelation.',
     correct: false,
     explanation:
         'The order of revelation and the order of surahs in the mus-haf are not the same thing.',
@@ -1600,9 +1678,13 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_012',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement best fits the relationship between tajwid and tadabbur?',
+    prompt:
+        'Which statement best fits the relationship between tajwid and tadabbur?',
     options: const [
-      ('both', 'Tajwid refines recitation, while tadabbur deepens reflection; both matter'),
+      (
+        'both',
+        'Tajwid refines recitation, while tadabbur deepens reflection; both matter',
+      ),
       ('same', 'They are exactly the same discipline'),
       ('exclude', 'One makes the other unnecessary'),
       ('opposed', 'They work against each other'),
@@ -1619,9 +1701,13 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_013',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which phrase best explains why the Qur’an is central in Muslim daily life?',
+    prompt:
+        'Which phrase best explains why the Qur’an is central in Muslim daily life?',
     options: const [
-      ('anchor', 'It anchors worship, guidance, remembrance, and moral direction'),
+      (
+        'anchor',
+        'It anchors worship, guidance, remembrance, and moral direction',
+      ),
       ('ceremony', 'It is used only in ceremonies'),
       ('ornament', 'It is mainly decorative'),
       ('seasonal', 'It is only for Ramadan'),
@@ -1652,12 +1738,19 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_015',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement is the most careful beginner-safe description of Qur’an preservation?',
+    prompt:
+        'Which statement is the most careful beginner-safe description of Qur’an preservation?',
     options: const [
-      ('through_means', 'Allah preserved it through revelation, memorization, writing, and transmission'),
+      (
+        'through_means',
+        'Allah preserved it through revelation, memorization, writing, and transmission',
+      ),
       ('through_one_person', 'It was preserved only by one person'),
       ('accidental', 'It survived accidentally without effort'),
-      ('translation_only', 'It was preserved mainly through later translations'),
+      (
+        'translation_only',
+        'It was preserved mainly through later translations',
+      ),
     ],
     correctOptionId: 'through_means',
     explanation:
@@ -1671,7 +1764,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_016',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'A person benefits most from the Qur’an by speed alone, even without reflection or care.',
+    prompt:
+        'A person benefits most from the Qur’an by speed alone, even without reflection or care.',
     correct: false,
     explanation:
         'The Qur’an calls for reverence, recitation, reflection, and response, not speed alone.',
@@ -1684,12 +1778,19 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_017',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which of these is the safest broad statement about famous surah recitation habits?',
+    prompt:
+        'Which of these is the safest broad statement about famous surah recitation habits?',
     options: const [
-      ('careful', 'Some recitation habits are widely taught, but learners should pair practice with sound knowledge'),
+      (
+        'careful',
+        'Some recitation habits are widely taught, but learners should pair practice with sound knowledge',
+      ),
       ('equal', 'Every popular claim about every surah has identical strength'),
       ('ignore', 'All surah habits should be ignored completely'),
-      ('replace', 'Special surah habits replace learning the rest of the Qur’an'),
+      (
+        'replace',
+        'Special surah habits replace learning the rest of the Qur’an',
+      ),
     ],
     correctOptionId: 'careful',
     explanation:
@@ -1703,7 +1804,8 @@ final List<TriviaQuestion> _advancedQuranQuestions = [
     id: 'quran_hard_018',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which concept best fits the Qur’anic call to “remember” in connection with the Book?',
+    prompt:
+        'Which concept best fits the Qur’anic call to “remember” in connection with the Book?',
     options: const [
       ('active', 'An active returning to recitation, reflection, and response'),
       ('passive', 'A purely passive memory with no action'),

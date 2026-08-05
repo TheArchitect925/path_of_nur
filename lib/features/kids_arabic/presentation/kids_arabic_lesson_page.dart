@@ -726,10 +726,7 @@ class _TraceCompletionCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             rewardLabel,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Color(0xFF675B4E),
-            ),
+            style: const TextStyle(fontSize: 12, color: Color(0xFF675B4E)),
           ),
           const SizedBox(height: 12),
           Row(
@@ -833,10 +830,7 @@ class _CompletionSheet extends ConsumerWidget {
                 xp: result.xpAwarded,
                 drops: result.oceanDropsAwarded,
               ),
-              style: const TextStyle(
-                fontSize: 12,
-                color: Color(0xFF675B4E),
-              ),
+              style: const TextStyle(fontSize: 12, color: Color(0xFF675B4E)),
             ),
             if (result.dailyMissionResult != null) ...[
               const SizedBox(height: 10),

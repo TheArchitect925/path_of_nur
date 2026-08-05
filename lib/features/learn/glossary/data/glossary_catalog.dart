@@ -5,14 +5,26 @@ import '../domain/glossary_models.dart';
 
 class GlossaryCatalog {
   static const entries = <GlossaryEntry>[
-    GlossaryEntry(id: GlossaryEntryId.salah, category: GlossaryCategory.practice),
+    GlossaryEntry(
+      id: GlossaryEntryId.salah,
+      category: GlossaryCategory.practice,
+    ),
     GlossaryEntry(
       id: GlossaryEntryId.ibadah,
       category: GlossaryCategory.practice,
     ),
-    GlossaryEntry(id: GlossaryEntryId.dhikr, category: GlossaryCategory.practice),
-    GlossaryEntry(id: GlossaryEntryId.masjid, category: GlossaryCategory.places),
-    GlossaryEntry(id: GlossaryEntryId.quran, category: GlossaryCategory.sources),
+    GlossaryEntry(
+      id: GlossaryEntryId.dhikr,
+      category: GlossaryCategory.practice,
+    ),
+    GlossaryEntry(
+      id: GlossaryEntryId.masjid,
+      category: GlossaryCategory.places,
+    ),
+    GlossaryEntry(
+      id: GlossaryEntryId.quran,
+      category: GlossaryCategory.sources,
+    ),
     GlossaryEntry(
       id: GlossaryEntryId.hadith,
       category: GlossaryCategory.sources,
@@ -31,9 +43,9 @@ class GlossaryCatalog {
   }
 
   static List<LocalizedGlossaryEntry> localizedEntries(BuildContext context) {
-    return entries.map((entry) => localizedEntry(context, entry.id)).toList(
-      growable: false,
-    );
+    return entries
+        .map((entry) => localizedEntry(context, entry.id))
+        .toList(growable: false);
   }
 
   static LocalizedGlossaryEntry localizedEntry(
@@ -121,10 +133,7 @@ String localizedShortDefinition(AppLocalizations l10n, GlossaryEntryId id) {
   };
 }
 
-String localizedExpandedExplanation(
-  AppLocalizations l10n,
-  GlossaryEntryId id,
-) {
+String localizedExpandedExplanation(AppLocalizations l10n, GlossaryEntryId id) {
   return switch (id) {
     GlossaryEntryId.salah => l10n.glossaryEntrySalahExpanded,
     GlossaryEntryId.ibadah => l10n.glossaryEntryIbadahExpanded,

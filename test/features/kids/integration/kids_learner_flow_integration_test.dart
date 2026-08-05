@@ -49,9 +49,7 @@ void main() {
       bedtimeAvailableLearnersProvider.overrideWith(
         (ref) => const <BedtimeLearnerIdentity>[learnerA, learnerB],
       ),
-      bedtimeActiveLearnerProvider.overrideWith(
-        (ref) => activeLearner,
-      ),
+      bedtimeActiveLearnerProvider.overrideWith((ref) => activeLearner),
     ];
   }
 
@@ -68,7 +66,9 @@ void main() {
       );
 
       final letter = kidsArabicLetters.firstWhere((item) => item.id == 'alif');
-      final learnerANotifier = container.read(kidsArabicProgressProvider.notifier);
+      final learnerANotifier = container.read(
+        kidsArabicProgressProvider.notifier,
+      );
       final result = learnerANotifier.completeLesson(
         letter: letter,
         traceResult: KidsArabicTraceResult.completed,
@@ -81,14 +81,13 @@ void main() {
       final learnerAActivities = container
           .read(kidsActivityLogProvider.notifier)
           .recentActivities(limit: 10);
-      final learnerAParent = container.read(bedtimeStoryParentDashboardProvider);
+      final learnerAParent = container.read(
+        bedtimeStoryParentDashboardProvider,
+      );
 
       expect(result.firstMeaningfulCompletion, isTrue);
       expect(learnerAArabic.completedLetterIds, contains('alif'));
-      expect(
-        learnerAProgression.metrics.kidsArabicLessonCompletions,
-        1,
-      );
+      expect(learnerAProgression.metrics.kidsArabicLessonCompletions, 1);
       expect(learnerAProgression.metrics.totalXp, greaterThan(0));
       expect(learnerAProgression.metrics.totalDrops, greaterThan(0));
       expect(
@@ -105,15 +104,19 @@ void main() {
         ),
         isTrue,
       );
-      expect(learnerAParent.overview.totalXpEarnedAcrossKidsLearning, greaterThan(0));
+      expect(
+        learnerAParent.overview.totalXpEarnedAcrossKidsLearning,
+        greaterThan(0),
+      );
       expect(
         learnerAParent.overview.totalArabicLettersCompleted,
         greaterThanOrEqualTo(1),
       );
 
-      final persisted = container.read(localStoreProvider).dumpAll().map(
-        (key, value) => MapEntry(key, value as Object),
-      );
+      final persisted = container
+          .read(localStoreProvider)
+          .dumpAll()
+          .map((key, value) => MapEntry(key, value as Object));
       container.dispose();
 
       final learnerBContainer = await makeTestContainer(
@@ -127,39 +130,41 @@ void main() {
       );
       addTearDown(learnerBContainer.dispose);
 
-      final learnerBArabicBefore = learnerBContainer.read(kidsArabicProgressProvider);
+      final learnerBArabicBefore = learnerBContainer.read(
+        kidsArabicProgressProvider,
+      );
       final learnerBActivitiesBefore = learnerBContainer
           .read(kidsActivityLogProvider.notifier)
           .recentActivities(limit: 10);
-      final learnerBParentBefore =
-          learnerBContainer.read(bedtimeStoryParentDashboardProvider);
+      final learnerBParentBefore = learnerBContainer.read(
+        bedtimeStoryParentDashboardProvider,
+      );
 
       expect(learnerBArabicBefore.completedLetterIds, isEmpty);
       expect(learnerBActivitiesBefore, isEmpty);
-      expect(
-        learnerBParentBefore.overview.totalArabicLettersCompleted,
-        0,
-      );
+      expect(learnerBParentBefore.overview.totalArabicLettersCompleted, 0);
 
-      final learnerBNotifier = learnerBContainer.read(kidsArabicProgressProvider.notifier);
+      final learnerBNotifier = learnerBContainer.read(
+        kidsArabicProgressProvider.notifier,
+      );
       learnerBNotifier.completeLesson(
         letter: kidsArabicLetters.firstWhere((item) => item.id == 'ba'),
         traceResult: KidsArabicTraceResult.good,
       );
 
-      final learnerBArabicAfter = learnerBContainer.read(kidsArabicProgressProvider);
+      final learnerBArabicAfter = learnerBContainer.read(
+        kidsArabicProgressProvider,
+      );
       final learnerBProgression = learnerBContainer.read(
         learnerProgressionSummaryProvider(learnerB.learnerId),
       );
       expect(learnerBArabicAfter.completedLetterIds, contains('ba'));
-      expect(
-        learnerBProgression.metrics.kidsArabicLessonCompletions,
-        1,
-      );
+      expect(learnerBProgression.metrics.kidsArabicLessonCompletions, 1);
 
-      final persistedAgain = learnerBContainer.read(localStoreProvider).dumpAll().map(
-        (key, value) => MapEntry(key, value as Object),
-      );
+      final persistedAgain = learnerBContainer
+          .read(localStoreProvider)
+          .dumpAll()
+          .map((key, value) => MapEntry(key, value as Object));
 
       final learnerAReopened = await makeTestContainer(
         seed: persistedAgain,
@@ -172,16 +177,15 @@ void main() {
       );
       addTearDown(learnerAReopened.dispose);
 
-      final learnerAArabicAgain = learnerAReopened.read(kidsArabicProgressProvider);
+      final learnerAArabicAgain = learnerAReopened.read(
+        kidsArabicProgressProvider,
+      );
       final learnerAProgressionAgain = learnerAReopened.read(
         learnerProgressionSummaryProvider(learnerA.learnerId),
       );
       expect(learnerAArabicAgain.completedLetterIds, contains('alif'));
       expect(learnerAArabicAgain.completedLetterIds, isNot(contains('ba')));
-      expect(
-        learnerAProgressionAgain.metrics.kidsArabicLessonCompletions,
-        1,
-      );
+      expect(learnerAProgressionAgain.metrics.kidsArabicLessonCompletions, 1);
     },
   );
 
@@ -202,10 +206,12 @@ void main() {
       );
 
       final letter = kidsArabicLetters.firstWhere((item) => item.id == 'alif');
-      container.read(kidsArabicProgressProvider.notifier).completeLesson(
-        letter: letter,
-        traceResult: KidsArabicTraceResult.completed,
-      );
+      container
+          .read(kidsArabicProgressProvider.notifier)
+          .completeLesson(
+            letter: letter,
+            traceResult: KidsArabicTraceResult.completed,
+          );
 
       final router = container.read(appRouterProvider);
       router.go('/learn/kids/progression');
@@ -217,7 +223,10 @@ void main() {
       var l10n = AppLocalizations.of(
         tester.element(find.byType(LearnerProgressionPage)),
       );
-      expect(find.text(l10n.progressionPageHeroTitle('Maryam')), findsOneWidget);
+      expect(
+        find.text(l10n.progressionPageHeroTitle('Maryam')),
+        findsOneWidget,
+      );
 
       router.go('/learn/kids/bedtime-stories/parents');
       await tester.pump();
@@ -231,9 +240,10 @@ void main() {
         findsOneWidget,
       );
 
-      final persisted = container.read(localStoreProvider).dumpAll().map(
-        (key, value) => MapEntry(key, value as Object),
-      );
+      final persisted = container
+          .read(localStoreProvider)
+          .dumpAll()
+          .map((key, value) => MapEntry(key, value as Object));
       final learnerBContainer = await makeTestContainer(
         seed: persisted,
         overrides: <Override>[
@@ -242,13 +252,14 @@ void main() {
             () => DateTime(2026, 3, 22, 9),
           ),
           dailyNowProvider.overrideWith(
-            (ref) => Stream<DateTime>.value(
-              DateTime.parse('2026-03-22T09:00:00'),
-            ),
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-22T09:00:00')),
           ),
         ],
       );
-      learnerBContainer.read(appRouterProvider).go('/learn/kids/bedtime-stories/parents');
+      learnerBContainer
+          .read(appRouterProvider)
+          .go('/learn/kids/bedtime-stories/parents');
       await tester.pumpWidget(buildRouterTestApp(learnerBContainer));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 250));

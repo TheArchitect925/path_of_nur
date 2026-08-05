@@ -17,91 +17,96 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('Hadith source browse', () {
-    test('source collections and chapter groupings use verified public entries', () {
-      final hidden = HadithEntry(
-        id: 'hidden_source_entry',
-        themeId: generatedHadithEntries.first.themeId,
-        collectionIds: generatedHadithEntries.first.collectionIds,
-        title: 'Hidden source entry',
-        excerpt: generatedHadithEntries.first.excerpt,
-        hadithText: generatedHadithEntries.first.hadithText,
-        englishText: 'This should not appear in source browse.',
-        arabicText: generatedHadithEntries.first.arabicText,
-        transliteration: generatedHadithEntries.first.transliteration,
-        sourceUrl: generatedHadithEntries.first.sourceUrl,
-        translationSourceVerified: false,
-        arabicMatnSourceVerified: false,
-        transliterationSourceVerified:
-            generatedHadithEntries.first.transliterationSourceVerified,
-        source: generatedHadithEntries.first.source,
-        sourceCollection: 'Hidden Collection',
-        sourceReference: '999',
-        grading: 'Sahih',
-        narrator: generatedHadithEntries.first.narrator,
-        sourceCollectionIds: const <String>['hidden_collection'],
-        sourceCollectionId: 'hidden_collection',
-        sourceCollectionTitle: 'Hidden Collection',
-        tags: generatedHadithEntries.first.tags,
-        quranConnections: generatedHadithEntries.first.quranConnections,
-        meaning: generatedHadithEntries.first.meaning,
-        lessons: generatedHadithEntries.first.lessons,
-        reflectionPrompts: generatedHadithEntries.first.reflectionPrompts,
-        practiceAction: generatedHadithEntries.first.practiceAction,
-        relatedHadithIds: generatedHadithEntries.first.relatedHadithIds,
-      );
+    test(
+      'source collections and chapter groupings use verified public entries',
+      () {
+        final hidden = HadithEntry(
+          id: 'hidden_source_entry',
+          themeId: generatedHadithEntries.first.themeId,
+          collectionIds: generatedHadithEntries.first.collectionIds,
+          title: 'Hidden source entry',
+          excerpt: generatedHadithEntries.first.excerpt,
+          hadithText: generatedHadithEntries.first.hadithText,
+          englishText: 'This should not appear in source browse.',
+          arabicText: generatedHadithEntries.first.arabicText,
+          transliteration: generatedHadithEntries.first.transliteration,
+          sourceUrl: generatedHadithEntries.first.sourceUrl,
+          translationSourceVerified: false,
+          arabicMatnSourceVerified: false,
+          transliterationSourceVerified:
+              generatedHadithEntries.first.transliterationSourceVerified,
+          source: generatedHadithEntries.first.source,
+          sourceCollection: 'Hidden Collection',
+          sourceReference: '999',
+          grading: 'Sahih',
+          narrator: generatedHadithEntries.first.narrator,
+          sourceCollectionIds: const <String>['hidden_collection'],
+          sourceCollectionId: 'hidden_collection',
+          sourceCollectionTitle: 'Hidden Collection',
+          tags: generatedHadithEntries.first.tags,
+          quranConnections: generatedHadithEntries.first.quranConnections,
+          meaning: generatedHadithEntries.first.meaning,
+          lessons: generatedHadithEntries.first.lessons,
+          reflectionPrompts: generatedHadithEntries.first.reflectionPrompts,
+          practiceAction: generatedHadithEntries.first.practiceAction,
+          relatedHadithIds: generatedHadithEntries.first.relatedHadithIds,
+        );
 
-      final container = ProviderContainer(
-        overrides: [
-          editorialHadithEntriesProvider.overrideWith(
-            (ref) => <HadithEntry>[...generatedHadithEntries, hidden],
+        final container = ProviderContainer(
+          overrides: [
+            editorialHadithEntriesProvider.overrideWith(
+              (ref) => <HadithEntry>[...generatedHadithEntries, hidden],
+            ),
+          ],
+        );
+        addTearDown(container.dispose);
+
+        final collections = container.read(
+          hadithSourceBrowseCollectionsProvider,
+        );
+        final riyad = collections.firstWhere(
+          (collection) => collection.id == 'riyad_as_salihin',
+        );
+        final bukhari = collections.firstWhere(
+          (collection) => collection.id == 'sahih_al_bukhari',
+        );
+        final riyadChapters = container.read(
+          hadithSourceBrowseChaptersProvider('riyad_as_salihin'),
+        );
+        final bukhariChapters = container.read(
+          hadithSourceBrowseChaptersProvider('sahih_al_bukhari'),
+        );
+        final riyadEntries = container.read(
+          hadithEntriesForSourceCollectionProvider('riyad_as_salihin'),
+        );
+        final riyadChapterEntryTotal = riyadChapters.fold<int>(
+          0,
+          (sum, chapter) => sum + chapter.entryCount,
+        );
+
+        expect(
+          collections.any((collection) => collection.id == 'hidden_collection'),
+          isFalse,
+        );
+        expect(riyad.entryCount, greaterThan(800));
+        expect(riyad.chapterCount, greaterThan(0));
+        expect(riyadChapters, isNotEmpty);
+        expect(
+          riyadChapters.any(
+            (chapter) => chapter.title == 'The Book of Virtues',
           ),
-        ],
-      );
-      addTearDown(container.dispose);
-
-      final collections = container.read(hadithSourceBrowseCollectionsProvider);
-      final riyad = collections.firstWhere(
-        (collection) => collection.id == 'riyad_as_salihin',
-      );
-      final bukhari = collections.firstWhere(
-        (collection) => collection.id == 'sahih_al_bukhari',
-      );
-      final riyadChapters = container.read(
-        hadithSourceBrowseChaptersProvider('riyad_as_salihin'),
-      );
-      final bukhariChapters = container.read(
-        hadithSourceBrowseChaptersProvider('sahih_al_bukhari'),
-      );
-      final riyadEntries = container.read(
-        hadithEntriesForSourceCollectionProvider('riyad_as_salihin'),
-      );
-      final riyadChapterEntryTotal = riyadChapters.fold<int>(
-        0,
-        (sum, chapter) => sum + chapter.entryCount,
-      );
-
-      expect(
-        collections.any((collection) => collection.id == 'hidden_collection'),
-        isFalse,
-      );
-      expect(riyad.entryCount, greaterThan(800));
-      expect(riyad.chapterCount, greaterThan(0));
-      expect(riyadChapters, isNotEmpty);
-      expect(
-        riyadChapters.any(
-          (chapter) => chapter.title == 'The Book of Virtues',
-        ),
-        isTrue,
-      );
-      expect(
-        riyadChapters.map((chapter) => chapter.id).toSet().length,
-        riyadChapters.length,
-      );
-      expect(riyadChapterEntryTotal, riyadEntries.length);
-      expect(bukhari.chapterCount, 1);
-      expect(bukhariChapters, hasLength(1));
-      expect(bukhariChapters.first.isFallback, isTrue);
-    });
+          isTrue,
+        );
+        expect(
+          riyadChapters.map((chapter) => chapter.id).toSet().length,
+          riyadChapters.length,
+        );
+        expect(riyadChapterEntryTotal, riyadEntries.length);
+        expect(bukhari.chapterCount, 1);
+        expect(bukhariChapters, hasLength(1));
+        expect(bukhariChapters.first.isFallback, isTrue);
+      },
+    );
 
     testWidgets(
       'source and chapter browse routes open the canonical hadith reader',

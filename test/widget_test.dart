@@ -37,16 +37,15 @@ void main() {
     expect(find.byIcon(Icons.support_agent_rounded), findsOneWidget);
   });
 
-  testWidgets('worship page moon card shows all five prayers with times',
-      (WidgetTester tester) async {
+  testWidgets('worship page moon card shows all five prayers with times', (
+    WidgetTester tester,
+  ) async {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-        ],
+        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
         child: MaterialApp(
           localizationsDelegates: [
             AppLocalizations.delegate,
@@ -61,8 +60,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    final moonCard =
-        find.widgetWithText(PremiumCard, 'Moon Phase').first;
+    final moonCard = find.widgetWithText(PremiumCard, 'Moon Phase').first;
     expect(moonCard, findsOneWidget);
 
     const prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
@@ -77,56 +75,61 @@ void main() {
     }
   });
 
-  testWidgets('app shell can swap root tab content without duplicate key errors',
-      (WidgetTester tester) async {
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
+  testWidgets(
+    'app shell can swap root tab content without duplicate key errors',
+    (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
 
-    Widget buildShell(String location, String label) {
-      return ProviderScope(
-        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-        child: MaterialApp(
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: AppShellScaffold(
-            currentLocation: location,
-            child: Center(child: Text(label)),
+      Widget buildShell(String location, String label) {
+        return ProviderScope(
+          overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+          child: MaterialApp(
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: AppShellScaffold(
+              currentLocation: location,
+              child: Center(child: Text(label)),
+            ),
           ),
-        ),
+        );
+      }
+
+      await tester.pumpWidget(buildShell('/home', 'Home'));
+      await tester.pump();
+      await tester.pumpWidget(buildShell('/learn', 'Learn'));
+      await tester.pump();
+      await tester.pumpWidget(buildShell('/profile', 'Profile'));
+      await tester.pump();
+
+      expect(find.text('Profile'), findsAtLeastNWidgets(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  test(
+    'quran teaching icon registry resolves current and legacy payloads safely',
+    () {
+      final icon = QuranTeachingIconRegistry.iconFromJson(const {
+        'iconId': 'menu_book_rounded',
+      });
+      expect(icon, Icons.menu_book_rounded);
+
+      final legacyIcon = QuranTeachingIconRegistry.iconFromJson({
+        'iconCodePoint': Icons.short_text_rounded.codePoint,
+      });
+      expect(legacyIcon, Icons.short_text_rounded);
+
+      final serialized = QuranTeachingIconRegistry.iconToJson(
+        Icons.rule_rounded,
       );
-    }
-
-    await tester.pumpWidget(buildShell('/home', 'Home'));
-    await tester.pump();
-    await tester.pumpWidget(buildShell('/learn', 'Learn'));
-    await tester.pump();
-    await tester.pumpWidget(buildShell('/profile', 'Profile'));
-    await tester.pump();
-
-    expect(find.text('Profile'), findsAtLeastNWidgets(1));
-    expect(tester.takeException(), isNull);
-  });
-
-  test('quran teaching icon registry resolves current and legacy payloads safely',
-      () {
-    final icon = QuranTeachingIconRegistry.iconFromJson(const {
-      'iconId': 'menu_book_rounded',
-    });
-    expect(icon, Icons.menu_book_rounded);
-
-    final legacyIcon = QuranTeachingIconRegistry.iconFromJson({
-      'iconCodePoint': Icons.short_text_rounded.codePoint,
-    });
-    expect(legacyIcon, Icons.short_text_rounded);
-
-    final serialized =
-        QuranTeachingIconRegistry.iconToJson(Icons.rule_rounded);
-    expect(serialized['iconId'], 'rule_rounded');
-    expect(serialized['iconCodePoint'], Icons.rule_rounded.codePoint);
-  });
+      expect(serialized['iconId'], 'rule_rounded');
+      expect(serialized['iconCodePoint'], Icons.rule_rounded.codePoint);
+    },
+  );
 }

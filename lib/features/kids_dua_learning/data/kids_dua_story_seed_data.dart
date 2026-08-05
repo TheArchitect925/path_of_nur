@@ -208,8 +208,7 @@ final kidsDuaStories = <KidsDuaStory>[
         id: 'story_subhanallah_scene_4',
         storyId: 'story_subhanallah',
         order: 4,
-        text:
-            'Mama said, When we see something beautiful, we say SubhanAllah.',
+        text: 'Mama said, When we see something beautiful, we say SubhanAllah.',
         illustrationHint: 'mother and child under stars',
         mood: 'warm',
         highlightPhrase: 'SubhanAllah',
@@ -750,8 +749,7 @@ final kidsDuaStories = <KidsDuaStory>[
         id: 'story_entering_washroom_scene_2',
         storyId: 'story_entering_washroom',
         order: 2,
-        text:
-            'Mama said gently, Before we go in, we ask Allah for protection.',
+        text: 'Mama said gently, Before we go in, we ask Allah for protection.',
         illustrationHint: 'mother speaking kindly near doorway',
         mood: 'gentle',
         highlightPhrase: 'ask Allah for protection',

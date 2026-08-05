@@ -20,8 +20,7 @@ const quranTeacherPlaceholderImagePath =
 const quranTeacherVisualManifest = <String, QuranTeacherVisualAssetEntry>{
   'letter_alif_apple': QuranTeacherVisualAssetEntry(
     id: 'letter_alif_apple',
-    assetPath:
-        'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+    assetPath: 'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
     label: 'Alif Apple',
     category: 'letters',
   ),
@@ -39,8 +38,7 @@ const quranTeacherVisualManifest = <String, QuranTeacherVisualAssetEntry>{
   ),
   'letter_jeem_juice': QuranTeacherVisualAssetEntry(
     id: 'letter_jeem_juice',
-    assetPath:
-        'assets/images/quran_teacher/visual_mode/letters/jeem_juice.png',
+    assetPath: 'assets/images/quran_teacher/visual_mode/letters/jeem_juice.png',
     label: 'Jeem Juice',
     category: 'letters',
   ),
@@ -52,22 +50,19 @@ const quranTeacherVisualManifest = <String, QuranTeacherVisualAssetEntry>{
   ),
   'letter_meem_moon': QuranTeacherVisualAssetEntry(
     id: 'letter_meem_moon',
-    assetPath:
-        'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
+    assetPath: 'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
     label: 'Meem Moon',
     category: 'letters',
   ),
   'letter_noon_nest': QuranTeacherVisualAssetEntry(
     id: 'letter_noon_nest',
-    assetPath:
-        'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
+    assetPath: 'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
     label: 'Noon Nest',
     category: 'letters',
   ),
   'letter_waw_water': QuranTeacherVisualAssetEntry(
     id: 'letter_waw_water',
-    assetPath:
-        'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
+    assetPath: 'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
     label: 'Waw Water',
     category: 'letters',
   ),

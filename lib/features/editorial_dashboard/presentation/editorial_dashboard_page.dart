@@ -52,24 +52,24 @@ class _EditorialDashboardPageState
     final visibleItems = _filterItems(scoredItems);
     final grouped = <EditorialDashboardDomain, List<EditorialScoredItem>>{};
     for (final item in visibleItems) {
-      grouped.putIfAbsent(item.item.domain, () => <EditorialScoredItem>[]).add(
-        item,
-      );
+      grouped
+          .putIfAbsent(item.item.domain, () => <EditorialScoredItem>[])
+          .add(item);
     }
-    final filteredPacks = packHealth.where((pack) {
-      if (_selectedDomain != null && pack.domain != _selectedDomain) {
-        return false;
-      }
-      if (_selectedPackId != null && pack.packId != _selectedPackId) {
-        return false;
-      }
-      return true;
-    }).toList(growable: false);
-    final packIds = packHealth
-        .map((pack) => pack.packId)
-        .toSet()
-        .toList(growable: false)
-      ..sort();
+    final filteredPacks = packHealth
+        .where((pack) {
+          if (_selectedDomain != null && pack.domain != _selectedDomain) {
+            return false;
+          }
+          if (_selectedPackId != null && pack.packId != _selectedPackId) {
+            return false;
+          }
+          return true;
+        })
+        .toList(growable: false);
+    final packIds =
+        packHealth.map((pack) => pack.packId).toSet().toList(growable: false)
+          ..sort();
 
     return AppPageScaffold(
       headerIcon: Icons.dashboard_customize_outlined,
@@ -97,10 +97,7 @@ class _EditorialDashboardPageState
           summary: triageSummary,
         ),
         const SizedBox(height: 16),
-        _QueueSection(
-          queues: queues,
-          onSelectQueue: _applyQueueFilter,
-        ),
+        _QueueSection(queues: queues, onSelectQueue: _applyQueueFilter),
         const SizedBox(height: 16),
         _FiltersCard(
           searchController: _searchController,
@@ -207,7 +204,8 @@ class _EditorialDashboardPageState
       _selectedIssueCode = switch (category) {
         EditorialTriageCategory.criticalIssues => null,
         EditorialTriageCategory.needsReview => EditorialIssueCode.needsReview,
-        EditorialTriageCategory.kidsSafetyGaps => EditorialIssueCode.missingKids,
+        EditorialTriageCategory.kidsSafetyGaps =>
+          EditorialIssueCode.missingKids,
         EditorialTriageCategory.missingLocalization =>
           EditorialIssueCode.missingLocalization,
         EditorialTriageCategory.missingSourceMetadata =>
@@ -288,66 +286,71 @@ class _EditorialDashboardPageState
     );
     controller.dispose();
     if (saved == null) return;
-    ref.read(editorialDashboardMetadataProvider.notifier).saveNote(
-          item.item.id,
-          saved,
-        );
+    ref
+        .read(editorialDashboardMetadataProvider.notifier)
+        .saveNote(item.item.id, saved);
   }
 
   List<EditorialScoredItem> _filterItems(List<EditorialScoredItem> items) {
     final query = _searchController.text.trim().toLowerCase();
-    final filtered = items.where((item) {
-      if (_selectedDomain != null && item.item.domain != _selectedDomain) {
-        return false;
-      }
-      if (_selectedStatus != null && item.item.status != _selectedStatus) {
-        return false;
-      }
-      if (_selectedPriority != null &&
-          item.quality.priority != _selectedPriority) {
-        return false;
-      }
-      if (_selectedReadiness != null && item.readiness != _selectedReadiness) {
-        return false;
-      }
-      if (_selectedIssueCode != null &&
-          !item.quality.issues.any((issue) => issue.code == _selectedIssueCode)) {
-        return false;
-      }
-      if (_selectedScoreBand != null &&
-          item.quality.band != _selectedScoreBand) {
-        return false;
-      }
-      if (_selectedPackId != null && item.item.packId != _selectedPackId) {
-        return false;
-      }
-      if (_missingOnly && !item.item.missingContent) return false;
-      if (_needsReviewOnly && !item.item.needsReview) return false;
-      if (_kidsMissingOnly &&
-          (!item.item.kidsExpected || item.item.kidsSafe)) {
-        return false;
-      }
-      if (_localizationMissingOnly &&
-          (!item.item.localizationExpected || item.item.localizationReady)) {
-        return false;
-      }
-      if (_sourceMissingOnly &&
-          (!item.item.sourcesExpected || item.item.hasSources)) {
-        return false;
-      }
-      if (query.isEmpty) return true;
-      final note = item.note?.toLowerCase() ?? '';
-      final issueCodes = item.quality.issues
-          .map((issue) => issue.code.name.toLowerCase())
-          .join(' ');
-      final readiness = item.readiness.name.toLowerCase();
-      final priority = item.quality.priority.name.toLowerCase();
-      return item.item.matchesQuery(query) ||
-          note.contains(query) ||
-          issueCodes.contains(query) ||
-          readiness.contains(query) ||
-          priority.contains(query);
-    }).toList(growable: false);
+    final filtered = items
+        .where((item) {
+          if (_selectedDomain != null && item.item.domain != _selectedDomain) {
+            return false;
+          }
+          if (_selectedStatus != null && item.item.status != _selectedStatus) {
+            return false;
+          }
+          if (_selectedPriority != null &&
+              item.quality.priority != _selectedPriority) {
+            return false;
+          }
+          if (_selectedReadiness != null &&
+              item.readiness != _selectedReadiness) {
+            return false;
+          }
+          if (_selectedIssueCode != null &&
+              !item.quality.issues.any(
+                (issue) => issue.code == _selectedIssueCode,
+              )) {
+            return false;
+          }
+          if (_selectedScoreBand != null &&
+              item.quality.band != _selectedScoreBand) {
+            return false;
+          }
+          if (_selectedPackId != null && item.item.packId != _selectedPackId) {
+            return false;
+          }
+          if (_missingOnly && !item.item.missingContent) return false;
+          if (_needsReviewOnly && !item.item.needsReview) return false;
+          if (_kidsMissingOnly &&
+              (!item.item.kidsExpected || item.item.kidsSafe)) {
+            return false;
+          }
+          if (_localizationMissingOnly &&
+              (!item.item.localizationExpected ||
+                  item.item.localizationReady)) {
+            return false;
+          }
+          if (_sourceMissingOnly &&
+              (!item.item.sourcesExpected || item.item.hasSources)) {
+            return false;
+          }
+          if (query.isEmpty) return true;
+          final note = item.note?.toLowerCase() ?? '';
+          final issueCodes = item.quality.issues
+              .map((issue) => issue.code.name.toLowerCase())
+              .join(' ');
+          final readiness = item.readiness.name.toLowerCase();
+          final priority = item.quality.priority.name.toLowerCase();
+          return item.item.matchesQuery(query) ||
+              note.contains(query) ||
+              issueCodes.contains(query) ||
+              readiness.contains(query) ||
+              priority.contains(query);
+        })
+        .toList(growable: false);
     filtered.sort((a, b) {
       final priorityCompare = a.quality.priority.index.compareTo(
         b.quality.priority.index,
@@ -450,10 +453,7 @@ class _OverviewCard extends StatelessWidget {
 }
 
 class _QueueSection extends StatelessWidget {
-  const _QueueSection({
-    required this.queues,
-    required this.onSelectQueue,
-  });
+  const _QueueSection({required this.queues, required this.onSelectQueue});
 
   final List<EditorialReviewQueue> queues;
   final ValueChanged<EditorialTriageCategory> onSelectQueue;
@@ -461,9 +461,9 @@ class _QueueSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final nonEmpty = queues.where((queue) => queue.items.isNotEmpty).toList(
-      growable: false,
-    );
+    final nonEmpty = queues
+        .where((queue) => queue.items.isNotEmpty)
+        .toList(growable: false);
     if (nonEmpty.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -511,16 +511,18 @@ class _QueueSection extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 8),
-                          ...queue.items.take(3).map(
-                            (item) => Padding(
-                              padding: const EdgeInsets.only(bottom: 6),
-                              child: Text(
-                                '${_itemTitle(l10n, item.scoredItem.item)} · '
-                                '${_priorityLabel(l10n, item.scoredItem.quality.priority)} · '
-                                '${item.scoredItem.quality.score}',
+                          ...queue.items
+                              .take(3)
+                              .map(
+                                (item) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 6),
+                                  child: Text(
+                                    '${_itemTitle(l10n, item.scoredItem.item)} · '
+                                    '${_priorityLabel(l10n, item.scoredItem.quality.priority)} · '
+                                    '${item.scoredItem.quality.score}',
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -778,10 +780,7 @@ class _ChoiceChipRow<T> extends StatelessWidget {
 }
 
 class _PackHealthSection extends StatelessWidget {
-  const _PackHealthSection({
-    required this.packs,
-    required this.onSelectPack,
-  });
+  const _PackHealthSection({required this.packs, required this.onSelectPack});
 
   final List<EditorialPackHealth> packs;
   final ValueChanged<String> onSelectPack;
@@ -857,19 +856,23 @@ class _PackHealthSection extends StatelessWidget {
                                 value: pack.verifiedItems,
                               ),
                               _MetricBadge(
-                                label: l10n.editorialDashboardPackMetricMissingRequired,
+                                label: l10n
+                                    .editorialDashboardPackMetricMissingRequired,
                                 value: pack.missingRequiredFieldsCount,
                               ),
                               _MetricBadge(
-                                label: l10n.editorialDashboardPackMetricKidsCoverage,
+                                label: l10n
+                                    .editorialDashboardPackMetricKidsCoverage,
                                 value: pack.kidsSafeCoveragePercent,
                               ),
                               _MetricBadge(
-                                label: l10n.editorialDashboardPackMetricSourceCoverage,
+                                label: l10n
+                                    .editorialDashboardPackMetricSourceCoverage,
                                 value: pack.sourceCoveragePercent,
                               ),
                               _MetricBadge(
-                                label: l10n.editorialDashboardPackMetricLocalizationCoverage,
+                                label: l10n
+                                    .editorialDashboardPackMetricLocalizationCoverage,
                                 value: pack.localizationCoveragePercent,
                               ),
                             ],
@@ -900,7 +903,7 @@ class _DomainSectionCard extends StatelessWidget {
   final List<EditorialScoredItem> items;
   final Future<void> Function(BuildContext, EditorialScoredItem) onSaveNote;
   final void Function(String itemId, EditorialReadinessState readiness)
-      onSetReadiness;
+  onSetReadiness;
 
   @override
   Widget build(BuildContext context) {
@@ -961,7 +964,7 @@ class _DashboardItemTile extends StatelessWidget {
   final EditorialScoredItem item;
   final Future<void> Function(BuildContext, EditorialScoredItem) onSaveNote;
   final void Function(String itemId, EditorialReadinessState readiness)
-      onSetReadiness;
+  onSetReadiness;
 
   @override
   Widget build(BuildContext context) {
@@ -1064,16 +1067,21 @@ class _DashboardItemTile extends StatelessWidget {
                   spacing: 8,
                   runSpacing: 8,
                   children: item.quality.issues
-                      .map((issue) => _FlagBadge(label: _issueLabel(l10n, issue.code)))
+                      .map(
+                        (issue) =>
+                            _FlagBadge(label: _issueLabel(l10n, issue.code)),
+                      )
                       .toList(growable: false),
                 ),
                 const SizedBox(height: 8),
-                ...item.quality.penaltyReasons.take(3).map(
-                  (reason) => Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Text(reason),
-                  ),
-                ),
+                ...item.quality.penaltyReasons
+                    .take(3)
+                    .map(
+                      (reason) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(reason),
+                      ),
+                    ),
               ],
               if (item.quality.positiveReasons.isNotEmpty) ...[
                 const SizedBox(height: 10),
@@ -1082,12 +1090,14 @@ class _DashboardItemTile extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const SizedBox(height: 6),
-                ...item.quality.positiveReasons.take(2).map(
-                  (reason) => Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Text(reason),
-                  ),
-                ),
+                ...item.quality.positiveReasons
+                    .take(2)
+                    .map(
+                      (reason) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(reason),
+                      ),
+                    ),
               ],
               if (item.hasNote) ...[
                 const SizedBox(height: 10),
@@ -1103,12 +1113,15 @@ class _DashboardItemTile extends StatelessWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  if (_editableContentTypeForItem(item.item.id) case final contentType?)
+                  if (_editableContentTypeForItem(item.item.id)
+                      case final contentType?)
                     OutlinedButton.icon(
                       onPressed: () => context.pushNamed(
                         'editorialContentBrowser',
                         pathParameters: {
-                          'contentType': editorialContentTypeRouteSegment(contentType),
+                          'contentType': editorialContentTypeRouteSegment(
+                            contentType,
+                          ),
                         },
                       ),
                       icon: const Icon(Icons.edit_note_rounded),
@@ -1222,10 +1235,7 @@ class _FlagBadge extends StatelessWidget {
   }
 }
 
-String _domainLabel(
-  AppLocalizations l10n,
-  EditorialDashboardDomain domain,
-) {
+String _domainLabel(AppLocalizations l10n, EditorialDashboardDomain domain) {
   return switch (domain) {
     EditorialDashboardDomain.quran => l10n.editorialDashboardDomainQuran,
     EditorialDashboardDomain.hadith => l10n.editorialDashboardDomainHadith,
@@ -1245,10 +1255,7 @@ String _domainLabel(
   };
 }
 
-String _typeLabel(
-  AppLocalizations l10n,
-  EditorialDashboardItemType type,
-) {
+String _typeLabel(AppLocalizations l10n, EditorialDashboardItemType type) {
   return switch (type) {
     EditorialDashboardItemType.system => l10n.editorialDashboardTypeSystem,
     EditorialDashboardItemType.coverage => l10n.editorialDashboardTypeCoverage,
@@ -1274,7 +1281,8 @@ String _statusLabel(
 ) {
   return switch (status) {
     EditorialDashboardItemStatus.draft => l10n.editorialDashboardStatusDraft,
-    EditorialDashboardItemStatus.partial => l10n.editorialDashboardStatusPartial,
+    EditorialDashboardItemStatus.partial =>
+      l10n.editorialDashboardStatusPartial,
     EditorialDashboardItemStatus.reviewed =>
       l10n.editorialDashboardStatusReviewed,
     EditorialDashboardItemStatus.verified =>
@@ -1283,12 +1291,10 @@ String _statusLabel(
   };
 }
 
-String _metricLabel(
-  AppLocalizations l10n,
-  EditorialDashboardMetricType type,
-) {
+String _metricLabel(AppLocalizations l10n, EditorialDashboardMetricType type) {
   return switch (type) {
-    EditorialDashboardMetricType.entries => l10n.editorialDashboardMetricEntries,
+    EditorialDashboardMetricType.entries =>
+      l10n.editorialDashboardMetricEntries,
     EditorialDashboardMetricType.total => l10n.editorialDashboardMetricTotal,
     EditorialDashboardMetricType.covered =>
       l10n.editorialDashboardMetricCovered,
@@ -1311,13 +1317,9 @@ String _metricLabel(
   };
 }
 
-String _priorityLabel(
-  AppLocalizations l10n,
-  EditorialPriorityLevel priority,
-) {
+String _priorityLabel(AppLocalizations l10n, EditorialPriorityLevel priority) {
   return switch (priority) {
-    EditorialPriorityLevel.critical =>
-      l10n.editorialDashboardPriorityCritical,
+    EditorialPriorityLevel.critical => l10n.editorialDashboardPriorityCritical,
     EditorialPriorityLevel.high => l10n.editorialDashboardPriorityHigh,
     EditorialPriorityLevel.medium => l10n.editorialDashboardPriorityMedium,
     EditorialPriorityLevel.low => l10n.editorialDashboardPriorityLow,
@@ -1352,8 +1354,7 @@ String _issueLabel(AppLocalizations l10n, EditorialIssueCode issue) {
       l10n.editorialDashboardIssueMissingSourceRef,
     EditorialIssueCode.missingLocalization =>
       l10n.editorialDashboardIssueMissingLocalization,
-    EditorialIssueCode.needsReview =>
-      l10n.editorialDashboardIssueNeedsReview,
+    EditorialIssueCode.needsReview => l10n.editorialDashboardIssueNeedsReview,
     EditorialIssueCode.draftOnly => l10n.editorialDashboardIssueDraftOnly,
     EditorialIssueCode.incompleteRouteMetadata =>
       l10n.editorialDashboardIssueIncompleteRoute,
@@ -1364,25 +1365,20 @@ String _issueLabel(AppLocalizations l10n, EditorialIssueCode issue) {
     EditorialIssueCode.missingRecommendationTags =>
       l10n.editorialDashboardIssueMissingRecommendationTags,
     EditorialIssueCode.lowCoverage => l10n.editorialDashboardIssueLowCoverage,
-    EditorialIssueCode.staleContent =>
-      l10n.editorialDashboardIssueStaleContent,
+    EditorialIssueCode.staleContent => l10n.editorialDashboardIssueStaleContent,
     EditorialIssueCode.infoOnly => l10n.editorialDashboardIssueInfoOnly,
   };
 }
 
 String _scoreBandLabel(AppLocalizations l10n, EditorialScoreBand band) {
   return switch (band) {
-    EditorialScoreBand.excellent =>
-      l10n.editorialDashboardScoreBandExcellent,
+    EditorialScoreBand.excellent => l10n.editorialDashboardScoreBandExcellent,
     EditorialScoreBand.healthy => l10n.editorialDashboardScoreBandHealthy,
     EditorialScoreBand.weak => l10n.editorialDashboardScoreBandWeak,
   };
 }
 
-String _queueLabel(
-  AppLocalizations l10n,
-  EditorialTriageCategory category,
-) {
+String _queueLabel(AppLocalizations l10n, EditorialTriageCategory category) {
   return switch (category) {
     EditorialTriageCategory.criticalIssues =>
       l10n.editorialDashboardQueueCriticalIssues,
@@ -1413,8 +1409,7 @@ String _itemTitle(AppLocalizations l10n, EditorialDashboardItem item) {
       l10n.editorialDashboardItemQuranAyahExplanations,
     'quran_explanation_rollout_packs' =>
       l10n.editorialDashboardItemQuranExplanationPacks,
-    'quran_surah_summaries' =>
-      l10n.editorialDashboardItemQuranSurahSummaries,
+    'quran_surah_summaries' => l10n.editorialDashboardItemQuranSurahSummaries,
     'quran_explanation_surah_coverage' =>
       l10n.editorialDashboardItemQuranSurahCoverage,
     'hadith_themes' => l10n.editorialDashboardItemHadithThemes,
@@ -1423,8 +1418,7 @@ String _itemTitle(AppLocalizations l10n, EditorialDashboardItem item) {
     'story_prophets_library' => l10n.editorialDashboardItemProphetsLibrary,
     'story_bedtime_library' => l10n.editorialDashboardItemBedtimeStories,
     'story_kids_library' => l10n.editorialDashboardItemKidsStories,
-    'story_kids_seerah_journey' =>
-      l10n.editorialDashboardItemKidsSeerahJourney,
+    'story_kids_seerah_journey' => l10n.editorialDashboardItemKidsSeerahJourney,
     'dua_kids_categories' => l10n.editorialDashboardItemKidsDuaCategories,
     'dua_kids_lessons' => l10n.editorialDashboardItemKidsDuaLessons,
     'dua_kids_stories' => l10n.editorialDashboardItemKidsDuaStories,

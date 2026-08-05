@@ -104,25 +104,26 @@ class CreationObservation {
       aiConfidence: aiConfidence ?? this.aiConfidence,
       imagePath: clearImagePath ? null : (imagePath ?? this.imagePath),
       selectedVerseId: selectedVerseId ?? this.selectedVerseId,
-      userReflection:
-          clearReflection ? null : (userReflection ?? this.userReflection),
+      userReflection: clearReflection
+          ? null
+          : (userReflection ?? this.userReflection),
       isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'timestamp': timestamp.toIso8601String(),
-        'locationName': locationName,
-        'latitude': latitude,
-        'longitude': longitude,
-        'categoryId': categoryId.name,
-        'aiConfidence': aiConfidence,
-        'imagePath': imagePath,
-        'selectedVerseId': selectedVerseId,
-        'userReflection': userReflection,
-        'isFavorite': isFavorite,
-      };
+    'id': id,
+    'timestamp': timestamp.toIso8601String(),
+    'locationName': locationName,
+    'latitude': latitude,
+    'longitude': longitude,
+    'categoryId': categoryId.name,
+    'aiConfidence': aiConfidence,
+    'imagePath': imagePath,
+    'selectedVerseId': selectedVerseId,
+    'userReflection': userReflection,
+    'isFavorite': isFavorite,
+  };
 
   static CreationObservation? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -130,7 +131,10 @@ class CreationObservation {
     final timestamp = DateTime.tryParse(raw['timestamp']?.toString() ?? '');
     final categoryName = raw['categoryId']?.toString();
     final selectedVerseId = raw['selectedVerseId']?.toString();
-    if (id == null || timestamp == null || categoryName == null || selectedVerseId == null) {
+    if (id == null ||
+        timestamp == null ||
+        categoryName == null ||
+        selectedVerseId == null) {
       return null;
     }
     CreationCategoryId? category;

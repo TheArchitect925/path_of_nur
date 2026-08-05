@@ -57,9 +57,7 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
               ),
               const SizedBox(height: 12),
               if (filtered.isEmpty)
-                PremiumCard(
-                  child: Text(l10n.batch9FaqCategoryEmptyFilter),
-                )
+                PremiumCard(child: Text(l10n.batch9FaqCategoryEmptyFilter))
               else
                 ...filtered.map(
                   (item) => Padding(

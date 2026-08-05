@@ -59,8 +59,9 @@ class FaqDetailPage extends ConsumerWidget {
                     children: [
                       Text(
                         l10n.batch9FaqDetailShortAnswerTitle,
-                        style: Theme.of(context).textTheme.titleSmall
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(item.shortAnswer),
@@ -74,8 +75,9 @@ class FaqDetailPage extends ConsumerWidget {
                     children: [
                       Text(
                         l10n.batch9FaqDetailAnswerTitle,
-                        style: Theme.of(context).textTheme.titleSmall
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(item.answer),
@@ -168,7 +170,9 @@ class FaqDetailPage extends ConsumerWidget {
       error: (error, _) => AppPageScaffold(
         title: l10n.batch9FaqTitle,
         subtitle: l10n.batch9FaqSubtitle,
-        children: [Center(child: Text(l10n.batch9FaqLoadError(error.toString())))],
+        children: [
+          Center(child: Text(l10n.batch9FaqLoadError(error.toString()))),
+        ],
       ),
     );
   }

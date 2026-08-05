@@ -30,7 +30,9 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final repository = ref.watch(kidsSeerahJourneyRepositoryProvider);
-    final summary = ref.watch(kidsSeerahJourneySummaryProvider(widget.journeyId));
+    final summary = ref.watch(
+      kidsSeerahJourneySummaryProvider(widget.journeyId),
+    );
     final node = repository.nodeById(widget.nodeId);
     if (summary == null || node == null) {
       return AppPageScaffold(
@@ -43,17 +45,18 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
     if (!_opened) {
       _opened = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(kidsSeerahJourneyProgressProvider.notifier).openNode(
-              journeyId: widget.journeyId,
-              nodeId: node.nodeId,
-            );
+        ref
+            .read(kidsSeerahJourneyProgressProvider.notifier)
+            .openNode(journeyId: widget.journeyId, nodeId: node.nodeId);
       });
     }
 
     final stage = summary.stages.firstWhere(
       (item) => item.stage.stageId == node.stageId,
     );
-    final nodeSummary = stage.nodes.firstWhere((item) => item.node.nodeId == node.nodeId);
+    final nodeSummary = stage.nodes.firstWhere(
+      (item) => item.node.nodeId == node.nodeId,
+    );
     final nextNode = repository.nextNodeInJourney(
       journeyId: widget.journeyId,
       currentNodeId: widget.nodeId,
@@ -70,9 +73,9 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
             children: [
               Text(
                 node.title,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 8),
               Text(node.description),
@@ -100,9 +103,7 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(
-                    l10n.kidsSeerahNextNodeLabel(nextNode.title),
-                  ),
+                  child: Text(l10n.kidsSeerahNextNodeLabel(nextNode.title)),
                 ),
                 const SizedBox(width: 10),
                 FilledButton.tonal(

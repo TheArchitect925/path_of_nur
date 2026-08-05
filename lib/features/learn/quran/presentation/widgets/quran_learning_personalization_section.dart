@@ -52,7 +52,8 @@ class QuranLearningPersonalizationSection extends ConsumerWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         if (summary.hasSignals &&
-            (summary.continuePath != null || summary.continueDomain != null)) ...[
+            (summary.continuePath != null ||
+                summary.continueDomain != null)) ...[
           const SizedBox(height: 10),
           Wrap(
             spacing: 8,
@@ -129,9 +130,7 @@ class QuranLearningPersonalizationSection extends ConsumerWidget {
               subtitle: _tagLabel(l10n, summary.suggestedTag!),
               onTap: () => context.pushNamed(
                 'quranKnowledgeSearch',
-                queryParameters: {
-                  'q': _tagLabel(l10n, summary.suggestedTag!),
-                },
+                queryParameters: {'q': _tagLabel(l10n, summary.suggestedTag!)},
               ),
             ),
         ] else ...[

@@ -25,11 +25,9 @@ final arabicLearningQuickResumeWidgetBootstrapProvider = Provider<void>((ref) {
   );
 
   Future<void>.microtask(
-    () => ref.read(arabicLearningQuickResumeWidgetBridgeProvider).writeSnapshot(
-          l10n: l10n,
-          kids: kids,
-          adult: adult,
-        ),
+    () => ref
+        .read(arabicLearningQuickResumeWidgetBridgeProvider)
+        .writeSnapshot(l10n: l10n, kids: kids, adult: adult),
   );
 });
 
@@ -62,7 +60,10 @@ class ArabicLearningQuickResumeWidgetBridge {
       for (final entry in payload.entries) {
         await HomeWidget.saveWidgetData<String>(entry.key, entry.value);
       }
-      await HomeWidget.updateWidget(androidName: _androidName, iOSName: _iosName);
+      await HomeWidget.updateWidget(
+        androidName: _androidName,
+        iOSName: _iosName,
+      );
     } catch (error) {
       AppTelemetry.logEvent(
         'arabic_resume_widget_sync_failed',

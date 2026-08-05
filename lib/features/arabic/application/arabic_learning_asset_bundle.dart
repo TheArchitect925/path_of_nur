@@ -46,9 +46,9 @@ class LiveArabicLearningAssetBundle implements ArabicLearningAssetBundle {
   @override
   Future<List<String>> availableAssets(Iterable<String> candidates) async {
     final keys = await assetKeys();
-    return candidates.where((path) => path.isNotEmpty && keys.contains(path)).toList(
-      growable: false,
-    );
+    return candidates
+        .where((path) => path.isNotEmpty && keys.contains(path))
+        .toList(growable: false);
   }
 
   @override
@@ -79,13 +79,12 @@ final arabicLearningAssetBundleProvider = Provider<ArabicLearningAssetBundle>((
   return LiveArabicLearningAssetBundle();
 });
 
-final arabicLearningOfflineWarmupProvider = Provider<ArabicLearningOfflineWarmup>((
-  ref,
-) {
-  return ArabicLearningOfflineWarmup(
-    bundle: ref.watch(arabicLearningAssetBundleProvider),
-  );
-});
+final arabicLearningOfflineWarmupProvider =
+    Provider<ArabicLearningOfflineWarmup>((ref) {
+      return ArabicLearningOfflineWarmup(
+        bundle: ref.watch(arabicLearningAssetBundleProvider),
+      );
+    });
 
 class ArabicLearningOfflineWarmup {
   ArabicLearningOfflineWarmup({required ArabicLearningAssetBundle bundle})
@@ -93,12 +92,15 @@ class ArabicLearningOfflineWarmup {
 
   final ArabicLearningAssetBundle _bundle;
 
-  Future<void> prewarmAudienceStartBundle(ArabicLearningAudience audience) async {
+  Future<void> prewarmAudienceStartBundle(
+    ArabicLearningAudience audience,
+  ) async {
     switch (audience) {
       case ArabicLearningAudience.kids:
         final noorAudio = arabicSharedBeginnerWordById('noor')?.audioAssetPath;
-        final bismillahAudio =
-            arabicSharedMiniPhraseById('bismillah')?.audioAssetPath;
+        final bismillahAudio = arabicSharedMiniPhraseById(
+          'bismillah',
+        )?.audioAssetPath;
         await _bundle.prewarmAssets(<String>[
           ...arabicLetterAudioCandidateAssetPaths('alif'),
           ...arabicLetterAudioCandidateAssetPaths('ba'),
@@ -108,8 +110,9 @@ class ArabicLearningOfflineWarmup {
         ]);
       case ArabicLearningAudience.adult:
         final rabbAudio = arabicSharedBeginnerWordById('rabb')?.audioAssetPath;
-        final alhamdulillahAudio =
-            arabicSharedMiniPhraseById('alhamdulillah')?.audioAssetPath;
+        final alhamdulillahAudio = arabicSharedMiniPhraseById(
+          'alhamdulillah',
+        )?.audioAssetPath;
         await _bundle.prewarmAssets(<String>[
           ...arabicLetterAudioCandidateAssetPaths('alif'),
           ...arabicLetterAudioCandidateAssetPaths('ba'),
@@ -144,13 +147,17 @@ class ArabicLearningOfflineWarmup {
       case ArabicLearningContinuationContentType.lesson:
         if (adultCatalog != null &&
             continuation.primaryTarget.lessonId != null) {
-          final lesson = adultCatalog.lessonById(continuation.primaryTarget.lessonId!);
+          final lesson = adultCatalog.lessonById(
+            continuation.primaryTarget.lessonId!,
+          );
           if (lesson != null) {
             for (final step in lesson.steps) {
               if (step.audio?.assetPath case final path? when path.isNotEmpty) {
                 assets.add(path);
               }
-              assets.addAll(step.audio?.alternateAudioAssetPaths ?? const <String>[]);
+              assets.addAll(
+                step.audio?.alternateAudioAssetPaths ?? const <String>[],
+              );
               assets.addAll(arabicLetterAudioCandidateAssetPaths(step.id));
             }
           }

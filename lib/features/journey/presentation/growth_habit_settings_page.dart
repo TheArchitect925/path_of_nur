@@ -98,7 +98,7 @@ class GrowthHabitSettingsPage extends ConsumerWidget {
                       subtitle: Text(
                         habit.customCategoryId?.isNotEmpty == true
                             ? categoriesById[habit.customCategoryId!]?.title ??
-                                habit.subtitle
+                                  habit.subtitle
                             : growthCategoryLocalizedLabel(
                                 habit.category,
                                 l10n,
@@ -180,7 +180,9 @@ Future<void> _showAddCategoryDialog(BuildContext context, WidgetRef ref) async {
             onPressed: () {
               final title = titleController.text.trim();
               if (title.isEmpty) return;
-              ref.read(growthControllerProvider.notifier).addCustomHabitCategory(
+              ref
+                  .read(growthControllerProvider.notifier)
+                  .addCustomHabitCategory(
                     title: title,
                     description: descriptionController.text.trim(),
                   );
@@ -207,7 +209,9 @@ Future<void> _showAddHabitDialog(BuildContext context, WidgetRef ref) async {
     builder: (dialogContext) {
       return StatefulBuilder(
         builder: (context, setState) {
-          final customCategories = ref.watch(growthCustomHabitCategoriesProvider);
+          final customCategories = ref.watch(
+            growthCustomHabitCategoriesProvider,
+          );
           return AlertDialog(
             title: Text(l10n.growthHabitSettingsAddHabit),
             content: SingleChildScrollView(
@@ -261,7 +265,8 @@ Future<void> _showAddHabitDialog(BuildContext context, WidgetRef ref) async {
                     DropdownButtonFormField<String?>(
                       initialValue: customCategoryId,
                       decoration: InputDecoration(
-                        labelText: l10n.growthHabitSettingsOptionalCustomCategory,
+                        labelText:
+                            l10n.growthHabitSettingsOptionalCustomCategory,
                       ),
                       items: [
                         DropdownMenuItem<String?>(
@@ -292,7 +297,9 @@ Future<void> _showAddHabitDialog(BuildContext context, WidgetRef ref) async {
                 onPressed: () {
                   final title = titleController.text.trim();
                   if (title.isEmpty) return;
-                  ref.read(growthControllerProvider.notifier).addCustomHabit(
+                  ref
+                      .read(growthControllerProvider.notifier)
+                      .addCustomHabit(
                         title: title,
                         subtitle: subtitleController.text.trim().isEmpty
                             ? l10n.growthHabitSettingsCustomHabitFallbackSubtitle

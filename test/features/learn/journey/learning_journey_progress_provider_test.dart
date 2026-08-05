@@ -74,14 +74,8 @@ void main() {
 
     final state = container.read(learningJourneyProgressProvider);
     expect(state.startedJourneyIds, contains('islam-foundations'));
-    expect(
-      state.startedAtIsoByJourney['islam-foundations'],
-      isNotNull,
-    );
-    expect(
-      state.lastAccessedAtIsoByJourney['islam-foundations'],
-      isNotNull,
-    );
+    expect(state.startedAtIsoByJourney['islam-foundations'], isNotNull);
+    expect(state.lastAccessedAtIsoByJourney['islam-foundations'], isNotNull);
     expect(state.lastOpenedJourneyId, 'islam-foundations');
     expect(state.lastOpenedStageId, 'islam-what-is-islam');
   });

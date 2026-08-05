@@ -62,7 +62,8 @@ final homeCalendarMonthProgressProvider =
         final dayKey = LocalStore.todayKey(date);
         final prayerEntries = repository.readDayEntries(dayKey);
         final journeyMetrics =
-            journeyProgress.dayMetricsByKey[dayKey] ?? const JourneyDayMetrics();
+            journeyProgress.dayMetricsByKey[dayKey] ??
+            const JourneyDayMetrics();
         final learningCompletionsFromJourney =
             journeyMetrics.learningStageCompletions;
         final learningCompletionsFromProgress = learningProgress
@@ -81,7 +82,8 @@ final homeCalendarMonthProgressProvider =
           learning: _resolveLearningLevel(
             journeyMetrics: journeyMetrics,
             completedStageCount:
-                learningCompletionsFromJourney + learningCompletionsFromProgress,
+                learningCompletionsFromJourney +
+                learningCompletionsFromProgress,
             touchedLearning: touchedLearning,
           ),
         );

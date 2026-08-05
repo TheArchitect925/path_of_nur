@@ -34,7 +34,9 @@ class BedtimeStoryCompletionBanner extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             nextStory != null
-                ? l10n.bedtimeStoriesStoryCompleteWithNextSubtitle(nextStory!.shortTitle)
+                ? l10n.bedtimeStoriesStoryCompleteWithNextSubtitle(
+                    nextStory!.shortTitle,
+                  )
                 : l10n.bedtimeStoriesStoryCompleteSubtitle,
           ),
           const SizedBox(height: 12),

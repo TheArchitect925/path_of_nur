@@ -35,21 +35,26 @@ void main() {
       );
     });
 
-    test('tonight suggestion resolves to a bedtime learning activity', () async {
-      SharedPreferences.setMockInitialValues(<String, Object>{});
-      final prefs = await SharedPreferences.getInstance();
-      final container = ProviderContainer(
-        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-      );
-      addTearDown(container.dispose);
+    test(
+      'tonight suggestion resolves to a bedtime learning activity',
+      () async {
+        SharedPreferences.setMockInitialValues(<String, Object>{});
+        final prefs = await SharedPreferences.getInstance();
+        final container = ProviderContainer(
+          overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+        );
+        addTearDown(container.dispose);
 
-      final suggestion = container.read(bedtimeStoryTonightLearningSuggestionProvider);
-      expect(suggestion, isNotNull);
-      expect(
-        suggestion!.mode.name,
-        anyOf(equals('quiz'), equals('memoryCards')),
-      );
-    });
+        final suggestion = container.read(
+          bedtimeStoryTonightLearningSuggestionProvider,
+        );
+        expect(suggestion, isNotNull);
+        expect(
+          suggestion!.mode.name,
+          anyOf(equals('quiz'), equals('memoryCards')),
+        );
+      },
+    );
 
     test('non-prophet stories reuse the shared learning repository', () async {
       SharedPreferences.setMockInitialValues(<String, Object>{});

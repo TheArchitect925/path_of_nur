@@ -71,12 +71,14 @@ Her meal felt warm,
 peaceful,
 and full of blessing.
 ''',
-    lesson: 'We begin with Allah’s name before eating and thank Him after we finish.',
+    lesson:
+        'We begin with Allah’s name before eating and thank Him after we finish.',
     hadithQuote:
         'O young boy, mention Allah’s name, eat with your right hand, and eat from what is near you.',
     hadithReference: 'Sahih al-Bukhari 5376; Sahih Muslim 2022',
     sourceCategory: KidsIslamicStorySourceCategory.hadith,
-    sourceNote: 'A child-friendly manners story inspired by authentic teachings about eating with adab.',
+    sourceNote:
+        'A child-friendly manners story inspired by authentic teachings about eating with adab.',
     estimatedDurationSeconds: 58,
     isFeatured: true,
     isMultipart: false,
@@ -84,7 +86,8 @@ and full of blessing.
     totalParts: 1,
     tags: ['bismillah', 'eating', 'dua', 'daily life', 'manners'],
     sortOrder: 210,
-    coverAssetPath: 'assets/images/kids_stories/covers/bismillah_before_eating_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/bismillah_before_eating_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/bismillah_before_eating_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -167,7 +170,8 @@ Both boys said,
     quranReference: 'Qur’an 59:9',
     quranQuoteRef: QuranQuoteRef(surah: 59, ayah: 9),
     sourceCategory: KidsIslamicStorySourceCategory.quran,
-    sourceNote: 'A child-friendly sharing story inspired by the Qur’anic value of preferring others with generosity.',
+    sourceNote:
+        'A child-friendly sharing story inspired by the Qur’anic value of preferring others with generosity.',
     estimatedDurationSeconds: 52,
     isFeatured: true,
     isMultipart: false,
@@ -175,7 +179,8 @@ Both boys said,
     totalParts: 1,
     tags: ['sharing', 'kindness', 'friends', 'generosity'],
     sortOrder: 220,
-    coverAssetPath: 'assets/images/kids_stories/covers/sharing_with_others_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/sharing_with_others_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/sharing_with_others_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -231,12 +236,15 @@ Together they wiped the table clean.
 
 Maryam felt light again.
 ''',
-    lesson: 'Truthfulness brings peace to the heart, even when we have made a mistake.',
-    quranQuote: 'O you who believe, fear Allah and be with those who are truthful.',
+    lesson:
+        'Truthfulness brings peace to the heart, even when we have made a mistake.',
+    quranQuote:
+        'O you who believe, fear Allah and be with those who are truthful.',
     quranReference: 'Qur’an 9:119',
     quranQuoteRef: QuranQuoteRef(surah: 9, ayah: 119),
     sourceCategory: KidsIslamicStorySourceCategory.quran,
-    sourceNote: 'A child-friendly honesty story anchored in the Qur’anic command to stay with truthfulness.',
+    sourceNote:
+        'A child-friendly honesty story anchored in the Qur’anic command to stay with truthfulness.',
     estimatedDurationSeconds: 54,
     isFeatured: true,
     isMultipart: false,
@@ -244,7 +252,8 @@ Maryam felt light again.
     totalParts: 1,
     tags: ['truth', 'honesty', 'mistake', 'adab'],
     sortOrder: 230,
-    coverAssetPath: 'assets/images/kids_stories/covers/telling_the_truth_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/telling_the_truth_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/telling_the_truth_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -298,7 +307,8 @@ His parents smiled.
 Layth felt happy,
 because kindness begins at home.
 ''',
-    lesson: 'Helping our parents with kindness is a beautiful act beloved to Allah.',
+    lesson:
+        'Helping our parents with kindness is a beautiful act beloved to Allah.',
     quranQuote: 'And lower to them the wing of humility out of mercy.',
     quranReference: 'Qur’an 17:24',
     quranQuoteRef: QuranQuoteRef(surah: 17, ayah: 24),
@@ -310,7 +320,8 @@ because kindness begins at home.
     totalParts: 1,
     tags: ['parents', 'helping', 'family', 'kindness'],
     sortOrder: 240,
-    coverAssetPath: 'assets/images/kids_stories/covers/helping_parents_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/helping_parents_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/helping_parents_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -337,7 +348,10 @@ because kindness begins at home.
     category: BedtimeStoryCategory.familyKindness,
     collectionType: KidsIslamicStoryCollectionType.familyKindness,
     storyType: KidsIslamicStoryType.animals,
-    themes: [KidsIslamicStoryTheme.compassionForAnimals, KidsIslamicStoryTheme.kindness],
+    themes: [
+      KidsIslamicStoryTheme.compassionForAnimals,
+      KidsIslamicStoryTheme.kindness,
+    ],
     ageGroup: BedtimeStoryAgeGroup.kids,
     summary: 'A child notices a thirsty kitten and learns mercy.',
     audioFileName: 'kindness_to_animals_kids_story_en_v1.mp3',
@@ -377,7 +391,8 @@ and thanked Allah for letting her be kind.
     totalParts: 1,
     tags: ['animals', 'mercy', 'kindness', 'care'],
     sortOrder: 250,
-    coverAssetPath: 'assets/images/kids_stories/covers/kindness_to_animals_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/kindness_to_animals_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/kindness_to_animals_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -430,7 +445,8 @@ Hasan learned that respect can be soft and beautiful.
 ''',
     lesson: 'The masjid is a place of peace, respect, and remembrance.',
     sourceCategory: KidsIslamicStorySourceCategory.islamicManners,
-    sourceNote: 'A child-friendly adab story about calm and respectful behavior in the masjid.',
+    sourceNote:
+        'A child-friendly adab story about calm and respectful behavior in the masjid.',
     estimatedDurationSeconds: 51,
     isFeatured: false,
     isMultipart: false,
@@ -438,7 +454,8 @@ Hasan learned that respect can be soft and beautiful.
     totalParts: 1,
     tags: ['masjid', 'manners', 'respect', 'quiet'],
     sortOrder: 260,
-    coverAssetPath: 'assets/images/kids_stories/covers/masjid_manners_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/masjid_manners_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/masjid_manners_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -492,7 +509,8 @@ Ramadan was not only about hunger.
 
 It was also about giving.
 ''',
-    lesson: 'Ramadan teaches us to care for others with generosity and soft hearts.',
+    lesson:
+        'Ramadan teaches us to care for others with generosity and soft hearts.',
     quranQuote:
         'O you who believe, fasting has been prescribed for you as it was prescribed for those before you so that you may become mindful of Allah.',
     quranReference: 'Qur’an 2:183',
@@ -505,7 +523,8 @@ It was also about giving.
     totalParts: 1,
     tags: ['ramadan', 'kindness', 'iftar', 'giving'],
     sortOrder: 270,
-    coverAssetPath: 'assets/images/kids_stories/covers/ramadan_kindness_cover.png',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/ramadan_kindness_cover.png',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/ramadan_kindness_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
@@ -557,7 +576,8 @@ The joy stayed,
 but now it felt fuller,
 because gratitude was inside it.
 ''',
-    lesson: 'Eid joy becomes more beautiful when it is filled with gratitude to Allah.',
+    lesson:
+        'Eid joy becomes more beautiful when it is filled with gratitude to Allah.',
     quranQuote: 'If you are grateful, I will surely give you more.',
     quranReference: 'Qur’an 14:7',
     quranQuoteRef: QuranQuoteRef(surah: 14, ayah: 7),
@@ -624,7 +644,8 @@ Mina clapped gently.
 
 Patience had been growing in her too.
 ''',
-    lesson: 'Patience means trusting Allah while we wait for good things to grow.',
+    lesson:
+        'Patience means trusting Allah while we wait for good things to grow.',
     quranQuote: 'Indeed, Allah is with the patient.',
     quranReference: 'Qur’an 2:153',
     quranQuoteRef: QuranQuoteRef(surah: 2, ayah: 153),
@@ -637,7 +658,8 @@ Patience had been growing in her too.
     tags: ['patience', 'waiting', 'growth', 'trust'],
     sortOrder: 290,
     coverAssetPath: 'assets/images/kids_stories/covers/patience_cover.png',
-    backdropAssetPath: 'assets/images/kids_stories/backdrops/patience_backdrop.png',
+    backdropAssetPath:
+        'assets/images/kids_stories/backdrops/patience_backdrop.png',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -689,9 +711,11 @@ Together they built again.
 
 The room felt peaceful once more.
 ''',
-    lesson: 'Saying sorry and forgiving each other brings hearts back together.',
+    lesson:
+        'Saying sorry and forgiving each other brings hearts back together.',
     sourceCategory: KidsIslamicStorySourceCategory.islamicManners,
-    sourceNote: 'A simple child-friendly manners story about apology, mercy, and making things right.',
+    sourceNote:
+        'A simple child-friendly manners story about apology, mercy, and making things right.',
     estimatedDurationSeconds: 54,
     isFeatured: true,
     isMultipart: false,

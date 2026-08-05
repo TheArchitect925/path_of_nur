@@ -37,7 +37,9 @@ final spiritualGrowthEngineProvider = Provider<SpiritualGrowthEngine>(
 class SpiritualGrowthController extends StateNotifier<SpiritualGrowthState> {
   SpiritualGrowthController(this._ref, this._store)
     : super(
-        SpiritualGrowthState.fromJson(_store.getJsonMap(_spiritualGrowthStateKey)),
+        SpiritualGrowthState.fromJson(
+          _store.getJsonMap(_spiritualGrowthStateKey),
+        ),
       );
 
   final Ref _ref;
@@ -47,10 +49,7 @@ class SpiritualGrowthController extends StateNotifier<SpiritualGrowthState> {
     _store.setJsonMap(_spiritualGrowthStateKey, state.toJson());
   }
 
-  void chooseIntention({
-    required String dateKey,
-    required String intentionId,
-  }) {
+  void chooseIntention({required String dateKey, required String intentionId}) {
     state = state.copyWith(
       selectedIntentionIdByDateKey: {
         ...state.selectedIntentionIdByDateKey,
@@ -60,10 +59,7 @@ class SpiritualGrowthController extends StateNotifier<SpiritualGrowthState> {
     _persist();
   }
 
-  void toggleManualAction({
-    required String dateKey,
-    required String actionId,
-  }) {
+  void toggleManualAction({required String dateKey, required String actionId}) {
     final current = Set<String>.from(state.manualActionIdsFor(dateKey));
     if (!current.add(actionId)) {
       current.remove(actionId);
@@ -114,16 +110,18 @@ class SpiritualGrowthController extends StateNotifier<SpiritualGrowthState> {
     final selectedIntention = catalog.intentions
         .where((item) => item.id == selectedIntentionId)
         .firstOrNull;
-    _ref.read(growthControllerProvider.notifier).addReflection(
-      date: date,
-      prompt: prompt?.id ?? promptId,
-      gratitude: selectedIntention?.id ?? '',
-      tawbah: moodTag ?? '',
-      note: note?.trim() ?? '',
-      entrustToAllah: prompt?.theme == 'trust_in_allah',
-      mood: _growthMoodFromTag(moodTag),
-      linkedHabitId: null,
-    );
+    _ref
+        .read(growthControllerProvider.notifier)
+        .addReflection(
+          date: date,
+          prompt: prompt?.id ?? promptId,
+          gratitude: selectedIntention?.id ?? '',
+          tawbah: moodTag ?? '',
+          note: note?.trim() ?? '',
+          entrustToAllah: prompt?.theme == 'trust_in_allah',
+          mood: _growthMoodFromTag(moodTag),
+          linkedHabitId: null,
+        );
     _ref.read(journeyProgressUpdateHelperProvider).addReflectionEntries(1);
 
     if ((state.reflectionRewardGrantedAtIsoByDateKey[dateKey] ?? '').isEmpty) {
@@ -134,25 +132,29 @@ class SpiritualGrowthController extends StateNotifier<SpiritualGrowthState> {
         },
       );
       _persist();
-      _ref.read(journeyXpSummaryProvider.notifier).awardLearningXp(
-        sourceRef: 'spiritual_growth:reflection:$dateKey',
-        sourceModule: 'journey',
-        occurredAt: occurredAt,
-        metadata: <String, Object?>{
-          'promptId': promptId,
-          'responseId': responseId,
-          'theme': prompt?.theme,
-        },
-      );
-      _ref.read(journeyDropSummaryProvider.notifier).awardLearningDrop(
-        sourceRef: 'spiritual_growth:reflection:$dateKey',
-        occurredAt: occurredAt,
-        metadata: <String, Object?>{
-          'promptId': promptId,
-          'responseId': responseId,
-          'theme': prompt?.theme,
-        },
-      );
+      _ref
+          .read(journeyXpSummaryProvider.notifier)
+          .awardLearningXp(
+            sourceRef: 'spiritual_growth:reflection:$dateKey',
+            sourceModule: 'journey',
+            occurredAt: occurredAt,
+            metadata: <String, Object?>{
+              'promptId': promptId,
+              'responseId': responseId,
+              'theme': prompt?.theme,
+            },
+          );
+      _ref
+          .read(journeyDropSummaryProvider.notifier)
+          .awardLearningDrop(
+            sourceRef: 'spiritual_growth:reflection:$dateKey',
+            occurredAt: occurredAt,
+            metadata: <String, Object?>{
+              'promptId': promptId,
+              'responseId': responseId,
+              'theme': prompt?.theme,
+            },
+          );
     }
   }
 
@@ -169,7 +171,9 @@ class SpiritualGrowthController extends StateNotifier<SpiritualGrowthState> {
 }
 
 final spiritualGrowthControllerProvider =
-    StateNotifierProvider<SpiritualGrowthController, SpiritualGrowthState>((ref) {
+    StateNotifierProvider<SpiritualGrowthController, SpiritualGrowthState>((
+      ref,
+    ) {
       return SpiritualGrowthController(ref, ref.watch(localStoreProvider));
     });
 
@@ -199,24 +203,29 @@ final spiritualGrowthTodayActionStatusesProvider =
       );
       final bundleCompleted = hubProgress.progressFor(todayKey).isCompleted;
 
-      return catalog.actions.map((action) {
-        final isCompleted = switch (action.id) {
-          'salah_presence' => snapshot.prayerCompletedToday > 0,
-          'dhikr_remembrance' => snapshot.dhikrSessionsToday > 0,
-          'quran_connection' => snapshot.quranEngagementsToday > 0,
-          'learning_consistency' => snapshot.learningStageCompletionsToday > 0,
-          'daily_bundle' => bundleCompleted,
-          _ => manualIds.contains(action.id),
-        };
-        return GrowthActionStatus(
-          action: action,
-          isCompleted: isCompleted,
-          isManual: action.isManual,
-        );
-      }).toList(growable: false);
+      return catalog.actions
+          .map((action) {
+            final isCompleted = switch (action.id) {
+              'salah_presence' => snapshot.prayerCompletedToday > 0,
+              'dhikr_remembrance' => snapshot.dhikrSessionsToday > 0,
+              'quran_connection' => snapshot.quranEngagementsToday > 0,
+              'learning_consistency' =>
+                snapshot.learningStageCompletionsToday > 0,
+              'daily_bundle' => bundleCompleted,
+              _ => manualIds.contains(action.id),
+            };
+            return GrowthActionStatus(
+              action: action,
+              isCompleted: isCompleted,
+              isManual: action.isManual,
+            );
+          })
+          .toList(growable: false);
     });
 
-final spiritualGrowthSuggestedIntentionProvider = Provider<DailyIntention>((ref) {
+final spiritualGrowthSuggestedIntentionProvider = Provider<DailyIntention>((
+  ref,
+) {
   final engine = ref.watch(spiritualGrowthEngineProvider);
   final catalog = ref.watch(spiritualGrowthCatalogProvider);
   final audience = ref.watch(spiritualGrowthAudienceProvider);
@@ -263,7 +272,9 @@ final spiritualGrowthActiveIntentionProvider = Provider<DailyIntention>((ref) {
     ),
   );
   if (selectedId != null) {
-    final selected = catalog.intentions.where((item) => item.id == selectedId).firstOrNull;
+    final selected = catalog.intentions
+        .where((item) => item.id == selectedId)
+        .firstOrNull;
     if (selected != null) return selected;
   }
   return ref.watch(spiritualGrowthSuggestedIntentionProvider);

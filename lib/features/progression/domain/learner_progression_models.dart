@@ -54,14 +54,14 @@ class LearnerProgressionEntry {
   final Map<String, Object?> metadata;
 
   Map<String, Object?> toJson() => <String, Object?>{
-        'sourceRef': sourceRef,
-        'activityType': activityType.name,
-        'sourceModule': sourceModule,
-        'occurredAtIso': occurredAtIso,
-        'xpAwarded': xpAwarded,
-        'oceanDropsAwarded': oceanDropsAwarded,
-        'metadata': metadata,
-      };
+    'sourceRef': sourceRef,
+    'activityType': activityType.name,
+    'sourceModule': sourceModule,
+    'occurredAtIso': occurredAtIso,
+    'xpAwarded': xpAwarded,
+    'oceanDropsAwarded': oceanDropsAwarded,
+    'metadata': metadata,
+  };
 
   factory LearnerProgressionEntry.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -119,13 +119,13 @@ class LearnerProgressionState {
   }
 
   Map<String, Object?> toJson() => <String, Object?>{
-        'entriesBySourceRef': entriesBySourceRef.map(
-          (key, value) => MapEntry(key, value.toJson()),
-        ),
-        'badgeUnlockedAtById': badgeUnlockedAtById,
-        'milestoneUnlockedAtById': milestoneUnlockedAtById,
-        'lastUpdatedAtIso': lastUpdatedAtIso,
-      };
+    'entriesBySourceRef': entriesBySourceRef.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'badgeUnlockedAtById': badgeUnlockedAtById,
+    'milestoneUnlockedAtById': milestoneUnlockedAtById,
+    'lastUpdatedAtIso': lastUpdatedAtIso,
+  };
 
   factory LearnerProgressionState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -139,9 +139,9 @@ class LearnerProgressionState {
           entry.value is Map<String, dynamic>
               ? entry.value as Map<String, dynamic>
               : (entry.value as Map?)?.map(
-                    (key, value) => MapEntry(key.toString(), value),
-                  ) ??
-                  <String, dynamic>{},
+                      (key, value) => MapEntry(key.toString(), value),
+                    ) ??
+                    <String, dynamic>{},
         );
       }
     }

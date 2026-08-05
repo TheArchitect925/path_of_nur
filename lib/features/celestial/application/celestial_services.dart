@@ -15,9 +15,10 @@ import '../../../shared/persistence/local_store.dart';
 import '../data/celestial_verse_catalog.dart';
 import '../domain/celestial_models.dart';
 
-final celestialCalculationServiceProvider = Provider<CelestialCalculationService>(
-  (ref) => const CelestialCalculationService(),
-);
+final celestialCalculationServiceProvider =
+    Provider<CelestialCalculationService>(
+      (ref) => const CelestialCalculationService(),
+    );
 
 final celestialVerseSelectorProvider = Provider<CelestialVerseSelector>(
   (ref) => const CelestialVerseSelector(celestialVerseCatalog),
@@ -27,9 +28,10 @@ final celestialWidgetBridgeProvider = Provider<CelestialWidgetBridge>(
   (ref) => const CelestialWidgetBridge(),
 );
 
-final celestialObservationRepositoryProvider = Provider<CelestialObservationRepository>(
-  (ref) => CelestialObservationRepository(ref.watch(localStoreProvider)),
-);
+final celestialObservationRepositoryProvider =
+    Provider<CelestialObservationRepository>(
+      (ref) => CelestialObservationRepository(ref.watch(localStoreProvider)),
+    );
 
 final celestialActionServiceProvider = Provider<CelestialActionService>(
   (ref) => CelestialActionService(
@@ -49,7 +51,10 @@ final celestialCompassHeadingProvider = StreamProvider<double?>((ref) {
 });
 
 final celestialObservationsProvider =
-    StateNotifierProvider<CelestialObservationsController, List<CelestialObservation>>((ref) {
+    StateNotifierProvider<
+      CelestialObservationsController,
+      List<CelestialObservation>
+    >((ref) {
       return CelestialObservationsController(
         ref.watch(celestialObservationRepositoryProvider),
       );
@@ -61,7 +66,10 @@ final homeCelestialSelectedDateProvider = StateProvider<DateTime>((ref) {
 });
 
 final celestialSnapshotForDateProvider =
-    FutureProvider.family<CelestialSnapshot, DateTime>((ref, selectedDate) async {
+    FutureProvider.family<CelestialSnapshot, DateTime>((
+      ref,
+      selectedDate,
+    ) async {
       final prefs = ref.watch(prayerSettingsProvider).preferences;
       final location = ref.watch(prayerLocationProvider);
       final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
@@ -84,7 +92,9 @@ final celestialSnapshotForDateProvider =
       );
     });
 
-final celestialSnapshotProvider = FutureProvider<CelestialSnapshot>((ref) async {
+final celestialSnapshotProvider = FutureProvider<CelestialSnapshot>((
+  ref,
+) async {
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
   final snapshot = await ref.watch(
     celestialSnapshotForDateProvider(
@@ -118,7 +128,8 @@ DateTime _effectiveCelestialTimestamp({
   );
 }
 
-class CelestialObservationsController extends StateNotifier<List<CelestialObservation>> {
+class CelestialObservationsController
+    extends StateNotifier<List<CelestialObservation>> {
   CelestialObservationsController(this._repository) : super(_repository.load());
 
   final CelestialObservationRepository _repository;
@@ -130,7 +141,9 @@ class CelestialObservationsController extends StateNotifier<List<CelestialObserv
   Future<void> toggleFavorite(String id) async {
     final next = <CelestialObservation>[];
     for (final item in state) {
-      next.add(item.id == id ? item.copyWith(isFavorite: !item.isFavorite) : item);
+      next.add(
+        item.id == id ? item.copyWith(isFavorite: !item.isFavorite) : item,
+      );
     }
     state = next;
     await _repository.saveAll(next);
@@ -159,7 +172,9 @@ class CelestialObservationRepository {
   }
 
   Future<void> save(CelestialObservation observation) async {
-    final existing = load().where((item) => item.id != observation.id).toList(growable: true);
+    final existing = load()
+        .where((item) => item.id != observation.id)
+        .toList(growable: true);
     existing.insert(0, observation);
     await saveAll(existing.take(120).toList(growable: false));
   }
@@ -288,9 +303,7 @@ class CelestialWidgetBridge {
       // Widget sync must not block the in-app celestial experience.
       AppTelemetry.logEvent(
         'celestial_widget_sync_failed',
-        metadata: <String, Object?>{
-          'error': error.toString(),
-        },
+        metadata: <String, Object?>{'error': error.toString()},
       );
     }
   }
@@ -322,12 +335,16 @@ class CelestialVerseSelector {
   }) {
     final target = switch (skyState) {
       CelestialSkyState.day => CelestialObjectType.sun,
-      CelestialSkyState.dawn || CelestialSkyState.dusk => CelestialObjectType.signs,
-      CelestialSkyState.night => lunarData.illuminationPercent >= 35
-          ? CelestialObjectType.moon
-          : CelestialObjectType.stars,
+      CelestialSkyState.dawn ||
+      CelestialSkyState.dusk => CelestialObjectType.signs,
+      CelestialSkyState.night =>
+        lunarData.illuminationPercent >= 35
+            ? CelestialObjectType.moon
+            : CelestialObjectType.stars,
     };
-    final eligible = _catalog.where((item) => item.objectType == target).toList(growable: false);
+    final eligible = _catalog
+        .where((item) => item.objectType == target)
+        .toList(growable: false);
     if (eligible.isEmpty) {
       return _catalog[timestamp.day % _catalog.length];
     }
@@ -429,14 +446,20 @@ class CelestialCalculationService {
     final state = !timestamp.isBefore(dawnStart) && timestamp.isBefore(sunrise)
         ? CelestialSkyState.dawn
         : isDay
-            ? CelestialSkyState.day
-            : !timestamp.isBefore(sunset) && timestamp.isBefore(duskEnd)
-                ? CelestialSkyState.dusk
-                : CelestialSkyState.night;
+        ? CelestialSkyState.day
+        : !timestamp.isBefore(sunset) && timestamp.isBefore(duskEnd)
+        ? CelestialSkyState.dusk
+        : CelestialSkyState.night;
 
     final progress = switch (state) {
       CelestialSkyState.day => _fraction(sunrise, sunset, timestamp),
-      CelestialSkyState.night => _fraction(sunset, sunrise.add(const Duration(days: 1)), timestamp.isBefore(sunrise) ? timestamp.add(const Duration(days: 1)) : timestamp),
+      CelestialSkyState.night => _fraction(
+        sunset,
+        sunrise.add(const Duration(days: 1)),
+        timestamp.isBefore(sunrise)
+            ? timestamp.add(const Duration(days: 1))
+            : timestamp,
+      ),
       CelestialSkyState.dawn => _fraction(dawnStart, sunrise, timestamp),
       CelestialSkyState.dusk => _fraction(sunset, duskEnd, timestamp),
     };
@@ -458,12 +481,17 @@ class CelestialCalculationService {
   }) {
     final daysSinceKnown =
         timestamp.toUtc().difference(_knownNewMoon).inMinutes / 1440;
-    final age = ((daysSinceKnown % _synodicMonthDays) + _synodicMonthDays) % _synodicMonthDays;
+    final age =
+        ((daysSinceKnown % _synodicMonthDays) + _synodicMonthDays) %
+        _synodicMonthDays;
     final phaseValue = age / _synodicMonthDays;
-    final illumination = (((1 - math.cos(phaseValue * math.pi * 2)) / 2) * 100).round();
+    final illumination = (((1 - math.cos(phaseValue * math.pi * 2)) / 2) * 100)
+        .round();
 
     final riseOffsetHours = phaseValue * 24;
-    var moonrise = sunrise.add(Duration(minutes: (riseOffsetHours * 60).round()));
+    var moonrise = sunrise.add(
+      Duration(minutes: (riseOffsetHours * 60).round()),
+    );
     if (moonrise.day != sunrise.day) {
       moonrise = DateTime(
         sunrise.year,
@@ -474,7 +502,8 @@ class CelestialCalculationService {
       );
     }
     final moonset = moonrise.add(_moonTravelTime);
-    final isAboveHorizon = !timestamp.isBefore(moonrise) && timestamp.isBefore(moonset);
+    final isAboveHorizon =
+        !timestamp.isBefore(moonrise) && timestamp.isBefore(moonset);
 
     return LunarData(
       moonrise: moonrise,
@@ -498,27 +527,39 @@ class CelestialCalculationService {
         type: CelestialEventType.sunrise,
         time: _normalizeFutureEvent(timestamp, solar.sunrise),
         label: 'Sunrise',
-        relativeDescription: _relativeTime(_normalizeFutureEvent(timestamp, solar.sunrise), timestamp),
+        relativeDescription: _relativeTime(
+          _normalizeFutureEvent(timestamp, solar.sunrise),
+          timestamp,
+        ),
       ),
       CelestialEvent(
         type: CelestialEventType.sunset,
         time: _normalizeFutureEvent(timestamp, solar.sunset),
         label: 'Sunset',
-        relativeDescription: _relativeTime(_normalizeFutureEvent(timestamp, solar.sunset), timestamp),
+        relativeDescription: _relativeTime(
+          _normalizeFutureEvent(timestamp, solar.sunset),
+          timestamp,
+        ),
       ),
       if (lunar.moonrise != null)
         CelestialEvent(
           type: CelestialEventType.moonrise,
           time: _normalizeFutureEvent(timestamp, lunar.moonrise!),
           label: 'Moonrise',
-          relativeDescription: _relativeTime(_normalizeFutureEvent(timestamp, lunar.moonrise!), timestamp),
+          relativeDescription: _relativeTime(
+            _normalizeFutureEvent(timestamp, lunar.moonrise!),
+            timestamp,
+          ),
         ),
       if (lunar.moonset != null)
         CelestialEvent(
           type: CelestialEventType.moonset,
           time: _normalizeFutureEvent(timestamp, lunar.moonset!),
           label: 'Moonset',
-          relativeDescription: _relativeTime(_normalizeFutureEvent(timestamp, lunar.moonset!), timestamp),
+          relativeDescription: _relativeTime(
+            _normalizeFutureEvent(timestamp, lunar.moonset!),
+            timestamp,
+          ),
         ),
     ]..sort((a, b) => a.time.compareTo(b.time));
 
@@ -532,18 +573,26 @@ class CelestialCalculationService {
     required double? headingDegrees,
   }) {
     final dayOfYear = int.parse(DateFormat('D').format(timestamp));
-    final declination = -23.44 * math.cos((2 * math.pi / 365) * (dayOfYear + 10));
-    final middayAltitude = (90 - (latitude - declination).abs()).clamp(8, 85).toDouble();
+    final declination =
+        -23.44 * math.cos((2 * math.pi / 365) * (dayOfYear + 10));
+    final middayAltitude = (90 - (latitude - declination).abs())
+        .clamp(8, 85)
+        .toDouble();
     if (!solar.isAboveHorizon) {
       return CelestialDirectionMarker(
         label: 'Sun',
-        status: solar.state == CelestialSkyState.dawn ? 'Near rise' : 'Below horizon',
+        status: solar.state == CelestialSkyState.dawn
+            ? 'Near rise'
+            : 'Below horizon',
         guidance: solar.state == CelestialSkyState.dawn
             ? 'Look toward the eastern horizon.'
             : 'The sun is below the horizon right now.',
         azimuthDegrees: solar.state == CelestialSkyState.night ? 90 : 270,
         altitudeDegrees: -8,
-        relativeBearingDegrees: _relativeBearing(headingDegrees, solar.state == CelestialSkyState.night ? 90 : 270),
+        relativeBearingDegrees: _relativeBearing(
+          headingDegrees,
+          solar.state == CelestialSkyState.night ? 90 : 270,
+        ),
         isVisible: false,
       );
     }
@@ -552,7 +601,10 @@ class CelestialCalculationService {
     return CelestialDirectionMarker(
       label: 'Sun',
       status: 'Visible',
-      guidance: _guidanceForBearing(_relativeBearing(headingDegrees, azimuth), 'sun'),
+      guidance: _guidanceForBearing(
+        _relativeBearing(headingDegrees, azimuth),
+        'sun',
+      ),
       azimuthDegrees: azimuth,
       altitudeDegrees: altitude,
       relativeBearingDegrees: _relativeBearing(headingDegrees, azimuth),
@@ -570,7 +622,8 @@ class CelestialCalculationService {
       return CelestialDirectionMarker(
         label: 'Moon',
         status: 'Unavailable',
-        guidance: 'Moonrise and moonset are approximate here and unavailable for this moment.',
+        guidance:
+            'Moonrise and moonset are approximate here and unavailable for this moment.',
         azimuthDegrees: 0,
         altitudeDegrees: -12,
         relativeBearingDegrees: null,
@@ -580,8 +633,8 @@ class CelestialCalculationService {
     final moonProgress = snapshot.timestamp.isBefore(moonrise)
         ? 0.0
         : snapshot.timestamp.isAfter(moonset)
-            ? 1.0
-            : _fraction(moonrise, moonset, snapshot.timestamp);
+        ? 1.0
+        : _fraction(moonrise, moonset, snapshot.timestamp);
     final azimuth = 90 + (moonProgress * 180);
     final altitude = snapshot.lunarData.isAboveHorizon
         ? math.sin(moonProgress * math.pi) * 55
@@ -590,7 +643,10 @@ class CelestialCalculationService {
       label: 'Moon',
       status: snapshot.lunarData.isAboveHorizon ? 'Visible' : 'Below horizon',
       guidance: snapshot.lunarData.isAboveHorizon
-          ? _guidanceForBearing(_relativeBearing(headingDegrees, azimuth), 'moon')
+          ? _guidanceForBearing(
+              _relativeBearing(headingDegrees, azimuth),
+              'moon',
+            )
           : 'The moon is below the horizon right now.',
       azimuthDegrees: azimuth,
       altitudeDegrees: altitude,
@@ -633,7 +689,10 @@ class CelestialCalculationService {
     return 'in ${hours}h ${minutes}m';
   }
 
-  static double? _relativeBearing(double? headingDegrees, double azimuthDegrees) {
+  static double? _relativeBearing(
+    double? headingDegrees,
+    double azimuthDegrees,
+  ) {
     if (headingDegrees == null) return null;
     final delta = ((azimuthDegrees - headingDegrees + 540) % 360) - 180;
     return delta;
@@ -645,7 +704,8 @@ class CelestialCalculationService {
     }
     final absBearing = bearing.abs();
     if (absBearing < 12) return 'Look straight ahead for the $label.';
-    if (bearing < 0) return 'Turn about ${absBearing.round()}° left for the $label.';
+    if (bearing < 0)
+      return 'Turn about ${absBearing.round()}° left for the $label.';
     return 'Turn about ${absBearing.round()}° right for the $label.';
   }
 }

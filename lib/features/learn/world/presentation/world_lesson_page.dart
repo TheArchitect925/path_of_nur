@@ -196,16 +196,12 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
         ),
         LearningSection(
           title: l10n.learnContentRelatedTopicsTitle,
-          child: LearningRelatedContent(
-            items: relatedLessonLinks,
-          ),
+          child: LearningRelatedContent(items: relatedLessonLinks),
         ),
         if (crossDomainRelated.isNotEmpty)
           LearningSection(
             title: l10n.learnContentReferencesTitle,
-            child: LearningRelatedContent(
-              items: relatedCrossDomainLinks,
-            ),
+            child: LearningRelatedContent(items: relatedCrossDomainLinks),
           ),
         if (citations.isNotEmpty)
           LearningExpandableSection(
@@ -318,6 +314,7 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
       ],
     );
   }
+
   String _qualityLabel(AppLocalizations l10n, LearnCompletionQuality quality) {
     switch (quality) {
       case LearnCompletionQuality.notRead:
@@ -330,5 +327,4 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
         return l10n.learnQualityApplied;
     }
   }
-
 }

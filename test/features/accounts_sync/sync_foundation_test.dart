@@ -18,9 +18,7 @@ import 'package:path_of_nur/shared/persistence/local_store.dart';
 import '../../test_helpers/app_test_harness.dart';
 
 class _FakeSyncTransport extends SyncTransport {
-  const _FakeSyncTransport({
-    this.inboundChanges = const <SyncInboundChange>[],
-  });
+  const _FakeSyncTransport({this.inboundChanges = const <SyncInboundChange>[]});
 
   final List<SyncInboundChange> inboundChanges;
 
@@ -28,7 +26,9 @@ class _FakeSyncTransport extends SyncTransport {
   Future<SyncTransportResponse> sync(SyncTransportRequest request) async {
     return SyncTransportResponse(
       online: true,
-      acceptedDedupKeys: request.outboxEntries.map((entry) => entry.dedupKey).toList(),
+      acceptedDedupKeys: request.outboxEntries
+          .map((entry) => entry.dedupKey)
+          .toList(),
       inboundChanges: inboundChanges
           .map(
             (change) => SyncInboundChange(
@@ -68,7 +68,9 @@ class _FlakySyncTransport extends SyncTransport {
     }
     return SyncTransportResponse(
       online: true,
-      acceptedDedupKeys: request.outboxEntries.map((entry) => entry.dedupKey).toList(),
+      acceptedDedupKeys: request.outboxEntries
+          .map((entry) => entry.dedupKey)
+          .toList(),
       inboundChanges: const <SyncInboundChange>[],
       nextCursor: 'cursor-2',
       statusCode: 'ok',
@@ -85,54 +87,79 @@ void main() {
         .setMockMethodCallHandler(ICloudSyncTransport.channel, null);
   });
 
-  test('auth state supports unauthenticated, local-only, and authenticated sessions', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
+  test(
+    'auth state supports unauthenticated, local-only, and authenticated sessions',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
 
-    expect(container.read(authStateProvider).status, AuthStatus.unauthenticated);
+      expect(
+        container.read(authStateProvider).status,
+        AuthStatus.unauthenticated,
+      );
 
-    await container.read(accountsSyncControllerProvider.notifier).addAccount(
-          provider: AccountProviderType.localOnly,
-          identifier: 'local-user',
-          displayName: 'Local User',
-        );
-    expect(container.read(authStateProvider).status, AuthStatus.localOnly);
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .addAccount(
+            provider: AccountProviderType.localOnly,
+            identifier: 'local-user',
+            displayName: 'Local User',
+          );
+      expect(container.read(authStateProvider).status, AuthStatus.localOnly);
 
-    await container.read(accountsSyncControllerProvider.notifier).addAccount(
-          provider: AccountProviderType.google,
-          identifier: 'user@example.com',
-          displayName: 'Signed In User',
-          syncMode: ProfileSyncMode.pathOfNurCloud,
-        );
-    expect(container.read(authStateProvider).status, AuthStatus.authenticated);
-    expect(container.read(authStateProvider).session?.account?.provider, AccountProviderType.google);
-  });
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .addAccount(
+            provider: AccountProviderType.google,
+            identifier: 'user@example.com',
+            displayName: 'Signed In User',
+            syncMode: ProfileSyncMode.pathOfNurCloud,
+          );
+      expect(
+        container.read(authStateProvider).status,
+        AuthStatus.authenticated,
+      );
+      expect(
+        container.read(authStateProvider).session?.account?.provider,
+        AccountProviderType.google,
+      );
+    },
+  );
 
-  test('device identity is stable across containers sharing the same preferences', () async {
-    SharedPreferences.setMockInitialValues(<String, Object>{'app.onboardingCompleted': true});
-    final prefs = await SharedPreferences.getInstance();
-    final dbA = AppDatabase.inMemory();
-    final dbB = AppDatabase.inMemory();
-    addTearDown(dbA.close);
-    addTearDown(dbB.close);
+  test(
+    'device identity is stable across containers sharing the same preferences',
+    () async {
+      SharedPreferences.setMockInitialValues(<String, Object>{
+        'app.onboardingCompleted': true,
+      });
+      final prefs = await SharedPreferences.getInstance();
+      final dbA = AppDatabase.inMemory();
+      final dbB = AppDatabase.inMemory();
+      addTearDown(dbA.close);
+      addTearDown(dbB.close);
 
-    final containerA = ProviderContainer(overrides: [
-      sharedPreferencesProvider.overrideWithValue(prefs),
-      appDatabaseProvider.overrideWithValue(dbA),
-    ]);
-    final containerB = ProviderContainer(overrides: [
-      sharedPreferencesProvider.overrideWithValue(prefs),
-      appDatabaseProvider.overrideWithValue(dbB),
-    ]);
-    addTearDown(containerA.dispose);
-    addTearDown(containerB.dispose);
+      final containerA = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          appDatabaseProvider.overrideWithValue(dbA),
+        ],
+      );
+      final containerB = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          appDatabaseProvider.overrideWithValue(dbB),
+        ],
+      );
+      addTearDown(containerA.dispose);
+      addTearDown(containerB.dispose);
 
-    final idA = containerA.read(deviceIdentityProvider).deviceId;
-    final idB = containerB.read(deviceIdentityProvider).deviceId;
+      final idA = containerA.read(deviceIdentityProvider).deviceId;
+      final idB = containerB.read(deviceIdentityProvider).deviceId;
 
-    expect(idA, isNotEmpty);
-    expect(idA, idB);
-  });
+      expect(idA, isNotEmpty);
+      expect(idA, idB);
+    },
+  );
 
   test('prayer writes enqueue a deduplicated sync outbox record', () async {
     final container = await makeTestContainer();
@@ -152,88 +179,114 @@ void main() {
       syncMode: ProfileSyncMode.pathOfNurCloud,
       avatar: 'T',
     );
-    final scopeId = container.read(accountsSyncControllerProvider).activeProfileId!;
+    final scopeId = container
+        .read(accountsSyncControllerProvider)
+        .activeProfileId!;
 
     final notifier = container.read(prayerControllerProvider.notifier);
     notifier.cycleStatus(PrayerName.fajr);
     notifier.cycleStatus(PrayerName.fajr);
 
-    final entries = container.read(syncOutboxRepositoryProvider).pendingEntries(scopeId);
-    expect(entries.where((entry) => entry.domain == syncDomainPrayerLog), hasLength(1));
+    final entries = container
+        .read(syncOutboxRepositoryProvider)
+        .pendingEntries(scopeId);
+    expect(
+      entries.where((entry) => entry.domain == syncDomainPrayerLog),
+      hasLength(1),
+    );
   });
 
-  test('sync manager uploads outbox and applies newer remote prayer changes deterministically', () async {
-    final dayKey = LocalStore.todayKey();
-    final remoteUpdatedAt = DateTime.now().add(const Duration(minutes: 5)).toIso8601String();
-    final container = await makeTestContainer(
-      overrides: [
-        cloudSyncTransportProvider.overrideWithValue(
-          _FakeSyncTransport(
-            inboundChanges: [
-              SyncInboundChange(
-                scopeId: 'profile_pending_override',
-                domain: syncDomainPrayerLog,
-                entityKey: dayKey,
-                changedAtIso: remoteUpdatedAt,
-                deviceId: 'remote-device',
-                revision: 'rev-1',
-                payload: {
-                  'dayKey': dayKey,
-                  'updatedAtIso': remoteUpdatedAt,
-                  'records': [
-                    {
-                      'prayer': PrayerName.fajr.name,
-                      'status': PrayerStatus.missed.name,
-                      'completedAtIso': null,
-                      'updatedAtIso': remoteUpdatedAt,
-                    },
-                  ],
-                },
-              ),
-            ],
+  test(
+    'sync manager uploads outbox and applies newer remote prayer changes deterministically',
+    () async {
+      final dayKey = LocalStore.todayKey();
+      final remoteUpdatedAt = DateTime.now()
+          .add(const Duration(minutes: 5))
+          .toIso8601String();
+      final container = await makeTestContainer(
+        overrides: [
+          cloudSyncTransportProvider.overrideWithValue(
+            _FakeSyncTransport(
+              inboundChanges: [
+                SyncInboundChange(
+                  scopeId: 'profile_pending_override',
+                  domain: syncDomainPrayerLog,
+                  entityKey: dayKey,
+                  changedAtIso: remoteUpdatedAt,
+                  deviceId: 'remote-device',
+                  revision: 'rev-1',
+                  payload: {
+                    'dayKey': dayKey,
+                    'updatedAtIso': remoteUpdatedAt,
+                    'records': [
+                      {
+                        'prayer': PrayerName.fajr.name,
+                        'status': PrayerStatus.missed.name,
+                        'completedAtIso': null,
+                        'updatedAtIso': remoteUpdatedAt,
+                      },
+                    ],
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
-    addTearDown(container.dispose);
-    final controller = container.read(accountsSyncControllerProvider.notifier);
+        ],
+      );
+      addTearDown(container.dispose);
+      final controller = container.read(
+        accountsSyncControllerProvider.notifier,
+      );
 
-    await controller.addAccount(
-      provider: AccountProviderType.google,
-      identifier: 'cloud@example.com',
-      displayName: 'Cloud',
-      syncMode: ProfileSyncMode.pathOfNurCloud,
-    );
-    await controller.createProfile(
-      displayName: 'Cloud Profile',
-      kind: ProfileKind.adult,
-      experienceMode: ProfileExperienceMode.full,
-      syncMode: ProfileSyncMode.pathOfNurCloud,
-      avatar: 'C',
-    );
-    final scopeId = container.read(accountsSyncControllerProvider).activeProfileId!;
+      await controller.addAccount(
+        provider: AccountProviderType.google,
+        identifier: 'cloud@example.com',
+        displayName: 'Cloud',
+        syncMode: ProfileSyncMode.pathOfNurCloud,
+      );
+      await controller.createProfile(
+        displayName: 'Cloud Profile',
+        kind: ProfileKind.adult,
+        experienceMode: ProfileExperienceMode.full,
+        syncMode: ProfileSyncMode.pathOfNurCloud,
+        avatar: 'C',
+      );
+      final scopeId = container
+          .read(accountsSyncControllerProvider)
+          .activeProfileId!;
 
-    container.read(prayerControllerProvider.notifier).cycleStatus(PrayerName.fajr);
-    final pending = container.read(syncOutboxRepositoryProvider).pendingEntries(scopeId);
-    expect(pending, isNotEmpty);
+      container
+          .read(prayerControllerProvider.notifier)
+          .cycleStatus(PrayerName.fajr);
+      final pending = container
+          .read(syncOutboxRepositoryProvider)
+          .pendingEntries(scopeId);
+      expect(pending, isNotEmpty);
 
-    final report = await container.read(syncEngineProvider).syncScope(
-          scopeId: scopeId,
-          accountId: container.read(accountsSyncControllerProvider).activeAccountId,
-          deviceId: container.read(deviceIdentityProvider).deviceId,
-          syncModeName: ProfileSyncMode.pathOfNurCloud.name,
-        );
-    await container.read(accountsSyncControllerProvider.notifier).applySyncReport(
-          report,
-          reloadScope: report.appliedInboundCount > 0,
-        );
+      final report = await container
+          .read(syncEngineProvider)
+          .syncScope(
+            scopeId: scopeId,
+            accountId: container
+                .read(accountsSyncControllerProvider)
+                .activeAccountId,
+            deviceId: container.read(deviceIdentityProvider).deviceId,
+            syncModeName: ProfileSyncMode.pathOfNurCloud.name,
+          );
+      await container
+          .read(accountsSyncControllerProvider.notifier)
+          .applySyncReport(report, reloadScope: report.appliedInboundCount > 0);
 
-    final record = container
-        .read(prayerLogRepositoryProvider)
-        .readDayEntries(dayKey)[PrayerName.fajr];
-    expect(record?.status, PrayerStatus.missed);
-    expect(container.read(syncOutboxRepositoryProvider).pendingCount(scopeId), 0);
-  });
+      final record = container
+          .read(prayerLogRepositoryProvider)
+          .readDayEntries(dayKey)[PrayerName.fajr];
+      expect(record?.status, PrayerStatus.missed);
+      expect(
+        container.read(syncOutboxRepositoryProvider).pendingCount(scopeId),
+        0,
+      );
+    },
+  );
 
   test('dhikr session replay is deduplicated by session id', () async {
     final database = AppDatabase.inMemory();
@@ -340,22 +393,23 @@ void main() {
       syncMode: ProfileSyncMode.pathOfNurCloud,
       avatar: 'A',
     );
-    final profileA = container.read(accountsSyncControllerProvider).activeProfileId!;
-    container.read(prayerLogRepositoryProvider).saveDailyRecords(
-          LocalStore.todayKey(),
-          [
-            for (final prayer in PrayerName.values)
-              DailyPrayerRecord(
-                prayer: prayer,
-                status: prayer == PrayerName.fajr
-                    ? PrayerStatus.completed
-                    : PrayerStatus.pending,
-                completedAtIso: prayer == PrayerName.fajr
-                    ? DateTime.now().toIso8601String()
-                    : null,
-              ),
-          ],
-        );
+    final profileA = container
+        .read(accountsSyncControllerProvider)
+        .activeProfileId!;
+    container
+        .read(prayerLogRepositoryProvider)
+        .saveDailyRecords(LocalStore.todayKey(), [
+          for (final prayer in PrayerName.values)
+            DailyPrayerRecord(
+              prayer: prayer,
+              status: prayer == PrayerName.fajr
+                  ? PrayerStatus.completed
+                  : PrayerStatus.pending,
+              completedAtIso: prayer == PrayerName.fajr
+                  ? DateTime.now().toIso8601String()
+                  : null,
+            ),
+        ]);
 
     await controller.createProfile(
       displayName: 'Profile B',
@@ -364,95 +418,107 @@ void main() {
       syncMode: ProfileSyncMode.pathOfNurCloud,
       avatar: 'B',
     );
-    final profileB = container.read(accountsSyncControllerProvider).activeProfileId!;
-    container.read(prayerLogRepositoryProvider).saveDailyRecords(
-          LocalStore.todayKey(),
-          [
-            for (final prayer in PrayerName.values)
-              DailyPrayerRecord(
-                prayer: prayer,
-                status:
-                    prayer == PrayerName.asr ? PrayerStatus.completed : PrayerStatus.pending,
-                completedAtIso: prayer == PrayerName.asr
-                    ? DateTime.now().toIso8601String()
-                    : null,
-              ),
-          ],
-        );
+    final profileB = container
+        .read(accountsSyncControllerProvider)
+        .activeProfileId!;
+    container
+        .read(prayerLogRepositoryProvider)
+        .saveDailyRecords(LocalStore.todayKey(), [
+          for (final prayer in PrayerName.values)
+            DailyPrayerRecord(
+              prayer: prayer,
+              status: prayer == PrayerName.asr
+                  ? PrayerStatus.completed
+                  : PrayerStatus.pending,
+              completedAtIso: prayer == PrayerName.asr
+                  ? DateTime.now().toIso8601String()
+                  : null,
+            ),
+        ]);
 
     final outbox = container.read(syncOutboxRepositoryProvider);
     expect(outbox.pendingEntries(profileA), hasLength(1));
     expect(outbox.pendingEntries(profileB), hasLength(1));
   });
 
-  test('iCloud transport syncs persisted changes through the real channel contract', () async {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-    addTearDown(() {
-      debugDefaultTargetPlatformOverride = null;
-    });
-    final store = <String, String>{};
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
-      switch (call.method) {
-        case 'isAvailable':
-          return true;
-        case 'readValue':
-          final key = (call.arguments as Map)['key']?.toString() ?? '';
-          return store[key];
-        case 'writeValue':
-          final args = call.arguments as Map;
-          store[args['key'].toString()] = args['value'].toString();
-          return true;
-      }
-      return null;
-    });
+  test(
+    'iCloud transport syncs persisted changes through the real channel contract',
+    () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+      });
+      final store = <String, String>{};
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
+            switch (call.method) {
+              case 'isAvailable':
+                return true;
+              case 'readValue':
+                final key = (call.arguments as Map)['key']?.toString() ?? '';
+                return store[key];
+              case 'writeValue':
+                final args = call.arguments as Map;
+                store[args['key'].toString()] = args['value'].toString();
+                return true;
+            }
+            return null;
+          });
 
-    final transport = const ICloudSyncTransport();
-    final firstResponse = await transport.sync(
-      const SyncTransportRequest(
-        scopeId: 'profile-a',
-        accountId: 'acct-1',
-        deviceId: 'device-a',
-        cursor: null,
-        outboxEntries: [
-          SyncOutboxEntry(
-            outboxId: 'profile-a|prayer_log|2026-03-14',
-            scopeId: 'profile-a',
-            domain: syncDomainPrayerLog,
-            entityKey: '2026-03-14',
-            payload: {
-              'dayKey': '2026-03-14',
-              'updatedAtIso': '2026-03-14T12:00:00.000',
-              'records': [
-                {'prayer': 'fajr', 'status': 'completed', 'updatedAtIso': '2026-03-14T12:00:00.000'},
-              ],
-            },
-            deviceId: 'device-a',
-            dedupKey: 'profile-a|prayer_log|2026-03-14',
-            createdAtIso: '2026-03-14T12:00:00.000',
-            updatedAtIso: '2026-03-14T12:00:00.000',
-            status: 'pending',
-            attemptCount: 0,
-          ),
-        ],
-      ),
-    );
+      final transport = const ICloudSyncTransport();
+      final firstResponse = await transport.sync(
+        const SyncTransportRequest(
+          scopeId: 'profile-a',
+          accountId: 'acct-1',
+          deviceId: 'device-a',
+          cursor: null,
+          outboxEntries: [
+            SyncOutboxEntry(
+              outboxId: 'profile-a|prayer_log|2026-03-14',
+              scopeId: 'profile-a',
+              domain: syncDomainPrayerLog,
+              entityKey: '2026-03-14',
+              payload: {
+                'dayKey': '2026-03-14',
+                'updatedAtIso': '2026-03-14T12:00:00.000',
+                'records': [
+                  {
+                    'prayer': 'fajr',
+                    'status': 'completed',
+                    'updatedAtIso': '2026-03-14T12:00:00.000',
+                  },
+                ],
+              },
+              deviceId: 'device-a',
+              dedupKey: 'profile-a|prayer_log|2026-03-14',
+              createdAtIso: '2026-03-14T12:00:00.000',
+              updatedAtIso: '2026-03-14T12:00:00.000',
+              status: 'pending',
+              attemptCount: 0,
+            ),
+          ],
+        ),
+      );
 
-    final secondResponse = await transport.sync(
-      const SyncTransportRequest(
-        scopeId: 'profile-a',
-        accountId: 'acct-1',
-        deviceId: 'device-b',
-        cursor: '0',
-        outboxEntries: [],
-      ),
-    );
+      final secondResponse = await transport.sync(
+        const SyncTransportRequest(
+          scopeId: 'profile-a',
+          accountId: 'acct-1',
+          deviceId: 'device-b',
+          cursor: '0',
+          outboxEntries: [],
+        ),
+      );
 
-    expect(firstResponse.online, isTrue);
-    expect(firstResponse.acceptedDedupKeys, contains('profile-a|prayer_log|2026-03-14'));
-    expect(secondResponse.inboundChanges, hasLength(1));
-    expect(secondResponse.inboundChanges.first.domain, syncDomainPrayerLog);
-  });
+      expect(firstResponse.online, isTrue);
+      expect(
+        firstResponse.acceptedDedupKeys,
+        contains('profile-a|prayer_log|2026-03-14'),
+      );
+      expect(secondResponse.inboundChanges, hasLength(1));
+      expect(secondResponse.inboundChanges.first.domain, syncDomainPrayerLog);
+    },
+  );
 
   test('iCloud transport fails safely when unavailable', () async {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
@@ -461,11 +527,11 @@ void main() {
     });
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
-      if (call.method == 'isAvailable') {
-        return false;
-      }
-      return null;
-    });
+          if (call.method == 'isAvailable') {
+            return false;
+          }
+          return null;
+        });
 
     final response = await const ICloudSyncTransport().sync(
       const SyncTransportRequest(
@@ -484,55 +550,55 @@ void main() {
     expect(response.transportLabel, syncTransportKeyICloud);
   });
 
-  test('iCloud transport reports write failures with actionable diagnostics', () async {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-    addTearDown(() {
-      debugDefaultTargetPlatformOverride = null;
-    });
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
-      switch (call.method) {
-        case 'isAvailable':
-          return true;
-        case 'readValue':
-          return null;
-        case 'writeValue':
-          return false;
-      }
-      return null;
-    });
+  test(
+    'iCloud transport reports write failures with actionable diagnostics',
+    () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+      });
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
+            switch (call.method) {
+              case 'isAvailable':
+                return true;
+              case 'readValue':
+                return null;
+              case 'writeValue':
+                return false;
+            }
+            return null;
+          });
 
-    final response = await const ICloudSyncTransport().sync(
-      const SyncTransportRequest(
-        scopeId: 'profile-a',
-        accountId: 'acct-1',
-        deviceId: 'device-a',
-        cursor: null,
-        outboxEntries: [
-          SyncOutboxEntry(
-            outboxId: 'profile-a|prayer_log|2026-03-14',
-            scopeId: 'profile-a',
-            domain: syncDomainPrayerLog,
-            entityKey: '2026-03-14',
-            payload: {
-              'dayKey': '2026-03-14',
-              'records': [],
-            },
-            deviceId: 'device-a',
-            dedupKey: 'profile-a|prayer_log|2026-03-14',
-            createdAtIso: '2026-03-14T12:00:00.000',
-            updatedAtIso: '2026-03-14T12:00:00.000',
-            status: 'pending',
-            attemptCount: 0,
-          ),
-        ],
-      ),
-    );
+      final response = await const ICloudSyncTransport().sync(
+        const SyncTransportRequest(
+          scopeId: 'profile-a',
+          accountId: 'acct-1',
+          deviceId: 'device-a',
+          cursor: null,
+          outboxEntries: [
+            SyncOutboxEntry(
+              outboxId: 'profile-a|prayer_log|2026-03-14',
+              scopeId: 'profile-a',
+              domain: syncDomainPrayerLog,
+              entityKey: '2026-03-14',
+              payload: {'dayKey': '2026-03-14', 'records': []},
+              deviceId: 'device-a',
+              dedupKey: 'profile-a|prayer_log|2026-03-14',
+              createdAtIso: '2026-03-14T12:00:00.000',
+              updatedAtIso: '2026-03-14T12:00:00.000',
+              status: 'pending',
+              attemptCount: 0,
+            ),
+          ],
+        ),
+      );
 
-    expect(response.online, isFalse);
-    expect(response.statusCode, 'icloud_write_failed');
-    expect(response.errorMessage, 'sync_error_icloud_write_failed');
-  });
+      expect(response.online, isFalse);
+      expect(response.statusCode, 'icloud_write_failed');
+      expect(response.errorMessage, 'sync_error_icloud_write_failed');
+    },
+  );
 
   test('iCloud transport reports a no-op sync cleanly', () async {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
@@ -542,19 +608,19 @@ void main() {
     final store = <String, String>{};
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
-      switch (call.method) {
-        case 'isAvailable':
-          return true;
-        case 'readValue':
-          final key = (call.arguments as Map)['key']?.toString() ?? '';
-          return store[key];
-        case 'writeValue':
-          final args = call.arguments as Map;
-          store[args['key'].toString()] = args['value'].toString();
-          return true;
-      }
-      return null;
-    });
+          switch (call.method) {
+            case 'isAvailable':
+              return true;
+            case 'readValue':
+              final key = (call.arguments as Map)['key']?.toString() ?? '';
+              return store[key];
+            case 'writeValue':
+              final args = call.arguments as Map;
+              store[args['key'].toString()] = args['value'].toString();
+              return true;
+          }
+          return null;
+        });
 
     final response = await const ICloudSyncTransport().sync(
       const SyncTransportRequest(
@@ -575,9 +641,7 @@ void main() {
   test('failed sync remains retryable and succeeds on retry', () async {
     final flaky = _FlakySyncTransport();
     final container = await makeTestContainer(
-      overrides: [
-        cloudSyncTransportProvider.overrideWithValue(flaky),
-      ],
+      overrides: [cloudSyncTransportProvider.overrideWithValue(flaky)],
     );
     addTearDown(container.dispose);
     final controller = container.read(accountsSyncControllerProvider.notifier);
@@ -595,20 +659,34 @@ void main() {
       syncMode: ProfileSyncMode.pathOfNurCloud,
       avatar: 'C',
     );
-    final scopeId = container.read(accountsSyncControllerProvider).activeProfileId!;
-    container.read(prayerControllerProvider.notifier).cycleStatus(PrayerName.fajr);
+    final scopeId = container
+        .read(accountsSyncControllerProvider)
+        .activeProfileId!;
+    container
+        .read(prayerControllerProvider.notifier)
+        .cycleStatus(PrayerName.fajr);
 
-    final first = await container.read(syncEngineProvider).syncScope(
+    final first = await container
+        .read(syncEngineProvider)
+        .syncScope(
           scopeId: scopeId,
-          accountId: container.read(accountsSyncControllerProvider).activeAccountId,
+          accountId: container
+              .read(accountsSyncControllerProvider)
+              .activeAccountId,
           deviceId: container.read(deviceIdentityProvider).deviceId,
           syncModeName: ProfileSyncMode.pathOfNurCloud.name,
         );
-    final pendingAfterFailure = container.read(syncOutboxRepositoryProvider).pendingCount(scopeId);
+    final pendingAfterFailure = container
+        .read(syncOutboxRepositoryProvider)
+        .pendingCount(scopeId);
 
-    final second = await container.read(syncEngineProvider).syncScope(
+    final second = await container
+        .read(syncEngineProvider)
+        .syncScope(
           scopeId: scopeId,
-          accountId: container.read(accountsSyncControllerProvider).activeAccountId,
+          accountId: container
+              .read(accountsSyncControllerProvider)
+              .activeAccountId,
           deviceId: container.read(deviceIdentityProvider).deviceId,
           syncModeName: ProfileSyncMode.pathOfNurCloud.name,
         );
@@ -616,67 +694,73 @@ void main() {
     expect(first.succeeded, isFalse);
     expect(pendingAfterFailure, greaterThan(0));
     expect(second.succeeded, isTrue);
-    expect(container.read(syncOutboxRepositoryProvider).pendingCount(scopeId), 0);
+    expect(
+      container.read(syncOutboxRepositoryProvider).pendingCount(scopeId),
+      0,
+    );
   });
 
-  test('iCloud transport keeps profile scopes isolated by document key', () async {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-    addTearDown(() {
-      debugDefaultTargetPlatformOverride = null;
-    });
-    final store = <String, String>{};
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
-      switch (call.method) {
-        case 'isAvailable':
-          return true;
-        case 'readValue':
-          final key = (call.arguments as Map)['key']?.toString() ?? '';
-          return store[key];
-        case 'writeValue':
-          final args = call.arguments as Map;
-          store[args['key'].toString()] = args['value'].toString();
-          return true;
-      }
-      return null;
-    });
+  test(
+    'iCloud transport keeps profile scopes isolated by document key',
+    () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      addTearDown(() {
+        debugDefaultTargetPlatformOverride = null;
+      });
+      final store = <String, String>{};
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(ICloudSyncTransport.channel, (call) async {
+            switch (call.method) {
+              case 'isAvailable':
+                return true;
+              case 'readValue':
+                final key = (call.arguments as Map)['key']?.toString() ?? '';
+                return store[key];
+              case 'writeValue':
+                final args = call.arguments as Map;
+                store[args['key'].toString()] = args['value'].toString();
+                return true;
+            }
+            return null;
+          });
 
-    final transport = const ICloudSyncTransport();
-    await transport.sync(
-      const SyncTransportRequest(
-        scopeId: 'profile-a',
-        accountId: 'acct-1',
-        deviceId: 'device-a',
-        cursor: null,
-        outboxEntries: [
-          SyncOutboxEntry(
-            outboxId: 'a1',
-            scopeId: 'profile-a',
-            domain: syncDomainPrayerLog,
-            entityKey: '2026-03-14',
-            payload: {'dayKey': '2026-03-14', 'records': []},
-            deviceId: 'device-a',
-            dedupKey: 'a1',
-            createdAtIso: '2026-03-14T12:00:00Z',
-            updatedAtIso: '2026-03-14T12:00:00Z',
-            status: 'pending',
-            attemptCount: 0,
-          ),
-        ],
-      ),
-    );
-    final response = await transport.sync(
-      const SyncTransportRequest(
-        scopeId: 'profile-b',
-        accountId: 'acct-1',
-        deviceId: 'device-b',
-        cursor: null,
-        outboxEntries: <SyncOutboxEntry>[],
-      ),
-    );
+      final transport = const ICloudSyncTransport();
+      await transport.sync(
+        const SyncTransportRequest(
+          scopeId: 'profile-a',
+          accountId: 'acct-1',
+          deviceId: 'device-a',
+          cursor: null,
+          outboxEntries: [
+            SyncOutboxEntry(
+              outboxId: 'a1',
+              scopeId: 'profile-a',
+              domain: syncDomainPrayerLog,
+              entityKey: '2026-03-14',
+              payload: {'dayKey': '2026-03-14', 'records': []},
+              deviceId: 'device-a',
+              dedupKey: 'a1',
+              createdAtIso: '2026-03-14T12:00:00Z',
+              updatedAtIso: '2026-03-14T12:00:00Z',
+              status: 'pending',
+              attemptCount: 0,
+            ),
+          ],
+        ),
+      );
+      final response = await transport.sync(
+        const SyncTransportRequest(
+          scopeId: 'profile-b',
+          accountId: 'acct-1',
+          deviceId: 'device-b',
+          cursor: null,
+          outboxEntries: <SyncOutboxEntry>[],
+        ),
+      );
 
-    expect(response.inboundChanges, isEmpty);
-    expect(store.keys, contains('sync.scope.profile-a'));
-    expect(store.keys, isNot(contains('sync.scope.profile-b')));
-  });
+      expect(response.inboundChanges, isEmpty);
+      expect(store.keys, contains('sync.scope.profile-a'));
+      expect(store.keys, isNot(contains('sync.scope.profile-b')));
+    },
+  );
 }

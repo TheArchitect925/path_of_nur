@@ -2,7 +2,8 @@ import 'package:path_of_nur/features/learn/quran/data/quran_word_timing_reposito
 
 class FakeQuranWordTimingRepository extends QuranWordTimingRepository {
   FakeQuranWordTimingRepository({
-    Map<String, List<QuranWordTimingSegment>> timings = const <String, List<QuranWordTimingSegment>>{},
+    Map<String, List<QuranWordTimingSegment>> timings =
+        const <String, List<QuranWordTimingSegment>>{},
   }) : _timings = Map<String, List<QuranWordTimingSegment>>.from(timings),
        super();
 

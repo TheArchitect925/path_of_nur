@@ -80,7 +80,8 @@ const _themes = <WorldTheme>[
   WorldTheme(
     id: 'travel-reflection-signs',
     title: 'Travel, Reflection & Signs in the World',
-    summary: 'Travel, ruins, lived observation, and learning from what remains.',
+    summary:
+        'Travel, ruins, lived observation, and learning from what remains.',
     whyItMatters:
         'Travel and attentive observation prevent heedlessness and reconnect daily life with lessons in creation.',
     subcategoryIds: ['travel-observe-earth', 'travel-history-remains'],
@@ -95,10 +96,7 @@ const _subcategories = <WorldSubcategory>[
     themeId: 'time-cycles-seasons',
     title: 'Night, Day, Dawn & Sunset',
     summary: 'Alternation as rhythm, mercy, and accountability.',
-    lessonIds: [
-      'time-night-day-alternation',
-      'time-dawn-sunset-heart-rhythm',
-    ],
+    lessonIds: ['time-night-day-alternation', 'time-dawn-sunset-heart-rhythm'],
     order: 1,
   ),
   WorldSubcategory(
@@ -117,10 +115,7 @@ const _subcategories = <WorldSubcategory>[
     themeId: 'heavens-sky-celestial-signs',
     title: 'Moon & Sun',
     summary: 'Light, measure, and orientation through celestial signs.',
-    lessonIds: [
-      'celestial-moon-measure-time',
-      'celestial-sun-light-provision',
-    ],
+    lessonIds: ['celestial-moon-measure-time', 'celestial-sun-light-provision'],
     order: 1,
   ),
   WorldSubcategory(
@@ -128,10 +123,7 @@ const _subcategories = <WorldSubcategory>[
     themeId: 'heavens-sky-celestial-signs',
     title: 'Stars, Sky Order & Vastness',
     summary: 'Guidance, proportion, and humility before vast creation.',
-    lessonIds: [
-      'celestial-stars-guidance-humility',
-      'celestial-sky-order-awe',
-    ],
+    lessonIds: ['celestial-stars-guidance-humility', 'celestial-sky-order-awe'],
     order: 2,
   ),
   WorldSubcategory(
@@ -139,10 +131,7 @@ const _subcategories = <WorldSubcategory>[
     themeId: 'water-rain-oceans',
     title: 'Rain, Clouds & Revival',
     summary: 'Rain cycles and revival after dryness.',
-    lessonIds: [
-      'water-rain-mercy-revival',
-      'water-clouds-wind-patterns',
-    ],
+    lessonIds: ['water-rain-mercy-revival', 'water-clouds-wind-patterns'],
     order: 1,
   ),
   WorldSubcategory(
@@ -183,10 +172,7 @@ const _subcategories = <WorldSubcategory>[
     themeId: 'plants-trees-growth',
     title: 'Seeds, Crops & Cultivation',
     summary: 'From hidden beginnings to visible provision.',
-    lessonIds: [
-      'plants-seeds-hidden-growth',
-      'plants-crops-labor-provision',
-    ],
+    lessonIds: ['plants-seeds-hidden-growth', 'plants-crops-labor-provision'],
     order: 1,
   ),
   WorldSubcategory(
@@ -266,7 +252,10 @@ const _lessons = <WorldLesson>[
         'How does your relationship with morning and evening affect your spiritual steadiness?',
     observationPrompt:
         'Observe sunrise or sunset this week; note how color and light change gradually, not instantly.',
-    relatedLessonIds: ['time-dawn-sunset-heart-rhythm', 'celestial-moon-measure-time'],
+    relatedLessonIds: [
+      'time-dawn-sunset-heart-rhythm',
+      'celestial-moon-measure-time',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Psalms / Wisdom reflection traditions',
@@ -295,7 +284,10 @@ const _lessons = <WorldLesson>[
         'Which daily transition could become your most reliable reflection moment?',
     observationPrompt:
         'During sunset, notice shifting shadows and how the environment becomes quieter and softer.',
-    relatedLessonIds: ['time-night-day-alternation', 'time-seasons-change-reflection'],
+    relatedLessonIds: [
+      'time-night-day-alternation',
+      'time-seasons-change-reflection',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Biblical prayer-hour traditions',
@@ -320,10 +312,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'At each season change, set one spiritual intention and one practical habit adjustment.',
     keyConcepts: ['change', 'adaptation', 'patience'],
-    reflectionPrompt: 'How do you respond when your environment changes unexpectedly?',
+    reflectionPrompt:
+        'How do you respond when your environment changes unexpectedly?',
     observationPrompt:
         'During a season shift, record one change in daylight, one in plant life, and one in your routine.',
-    relatedLessonIds: ['time-lifespan-urgency-gratitude', 'plants-seeds-hidden-growth'],
+    relatedLessonIds: [
+      'time-lifespan-urgency-gratitude',
+      'plants-seeds-hidden-growth',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom literature',
@@ -348,9 +344,13 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Choose one time-wasting habit to reduce and one beneficial habit to protect daily.',
     keyConcepts: ['mortality', 'priority', 'purpose'],
-    reflectionPrompt: 'If you treated time as trust, what would you change this month?',
+    reflectionPrompt:
+        'If you treated time as trust, what would you change this month?',
     observationPrompt: null,
-    relatedLessonIds: ['time-night-day-alternation', 'time-seasons-change-reflection'],
+    relatedLessonIds: [
+      'time-night-day-alternation',
+      'time-seasons-change-reflection',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Psalms and memento mori traditions',
@@ -375,10 +375,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Observe the moon across one week and note how regular attention deepens awareness.',
     keyConcepts: ['lunar cycle', 'measure', 'consistency'],
-    reflectionPrompt: 'What does gradual change in the moon teach you about gradual growth in yourself?',
+    reflectionPrompt:
+        'What does gradual change in the moon teach you about gradual growth in yourself?',
     observationPrompt:
         'Look for the moon at the same time over several nights and record visible changes.',
-    relatedLessonIds: ['time-night-day-alternation', 'celestial-stars-guidance-humility'],
+    relatedLessonIds: [
+      'time-night-day-alternation',
+      'celestial-stars-guidance-humility',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Hebrew Bible festival/time traditions',
@@ -403,10 +407,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Begin one daylight activity each day with a brief gratitude statement for provision.',
     keyConcepts: ['provision', 'light', 'dependence'],
-    reflectionPrompt: 'What daily gift feels ordinary to you but is actually foundational?',
+    reflectionPrompt:
+        'What daily gift feels ordinary to you but is actually foundational?',
     observationPrompt:
         'During morning light, note how quickly life activity increases in your surroundings.',
-    relatedLessonIds: ['plants-crops-labor-provision', 'water-rain-mercy-revival'],
+    relatedLessonIds: [
+      'plants-crops-labor-provision',
+      'water-rain-mercy-revival',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Psalms creation praise themes',
@@ -431,9 +439,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Spend one night monthly away from screens to observe the sky in silence.',
     keyConcepts: ['guidance', 'vastness', 'humility'],
-    reflectionPrompt: 'How does cosmic scale change your perception of personal stress?',
-    observationPrompt: 'Find a low-light location and observe the sky for 10 quiet minutes.',
-    relatedLessonIds: ['celestial-sky-order-awe', 'travel-observe-patterns-signs'],
+    reflectionPrompt:
+        'How does cosmic scale change your perception of personal stress?',
+    observationPrompt:
+        'Find a low-light location and observe the sky for 10 quiet minutes.',
+    relatedLessonIds: [
+      'celestial-sky-order-awe',
+      'travel-observe-patterns-signs',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom and patriarchal sky-observation motifs',
@@ -453,14 +466,16 @@ const _lessons = <WorldLesson>[
         'Patterns in sky movement and proportion invite reflection on balance and restraint in human life.',
     quranicPerspective:
         'The Qur’anic framing of measured creation encourages careful observation and gratitude rather than heedlessness.',
-    reflectiveTakeaway:
-        'A world with measure invites a life with measure.',
+    reflectiveTakeaway: 'A world with measure invites a life with measure.',
     practicalTakeaway:
         'Apply “measure” to one area of life: speech, spending, or screen time.',
     keyConcepts: ['measure', 'balance', 'order'],
     reflectionPrompt: 'Where does your life currently lack healthy proportion?',
     observationPrompt: null,
-    relatedLessonIds: ['time-night-day-alternation', 'time-lifespan-urgency-gratitude'],
+    relatedLessonIds: [
+      'time-night-day-alternation',
+      'time-lifespan-urgency-gratitude',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom tradition on order in creation',
@@ -485,10 +500,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'When rain falls, pause for gratitude and one practical act of mercy.',
     keyConcepts: ['mercy', 'revival', 'dependence'],
-    reflectionPrompt: 'Where in your life do you most need revival after dryness?',
+    reflectionPrompt:
+        'Where in your life do you most need revival after dryness?',
     observationPrompt:
         'After rainfall, observe one visible change in soil, plants, or air quality.',
-    relatedLessonIds: ['plants-seeds-hidden-growth', 'time-lifespan-urgency-gratitude'],
+    relatedLessonIds: [
+      'plants-seeds-hidden-growth',
+      'time-lifespan-urgency-gratitude',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Psalms and prophetic rain imagery',
@@ -513,10 +532,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'During shifting weather, practice patience and notice gradual transitions.',
     keyConcepts: ['process', 'transition', 'patience'],
-    reflectionPrompt: 'What ongoing process in your life needs more patient trust?',
+    reflectionPrompt:
+        'What ongoing process in your life needs more patient trust?',
     observationPrompt:
         'Watch cloud movement for five minutes and note direction, pace, and density changes.',
-    relatedLessonIds: ['travel-observe-patterns-signs', 'water-rain-mercy-revival'],
+    relatedLessonIds: [
+      'travel-observe-patterns-signs',
+      'water-rain-mercy-revival',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom and poetic weather reflections',
@@ -541,10 +564,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Support one local water-conservation or cleanliness habit this month.',
     keyConcepts: ['provision', 'stewardship', 'flow'],
-    reflectionPrompt: 'How can gratitude for water become visible in your behavior?',
+    reflectionPrompt:
+        'How can gratitude for water become visible in your behavior?',
     observationPrompt:
         'Observe a river, stream, or drainage path and note how it shapes nearby life.',
-    relatedLessonIds: ['earth-settlement-gratitude-stewardship', 'water-seas-vastness-boundary'],
+    relatedLessonIds: [
+      'earth-settlement-gratitude-stewardship',
+      'water-seas-vastness-boundary',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Torah and Psalm river motifs',
@@ -569,9 +596,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'When near large landscapes, practice short silent reflection before speaking or photographing.',
     keyConcepts: ['vastness', 'limits', 'awe'],
-    reflectionPrompt: 'What does the idea of boundary protect in your own life?',
-    observationPrompt: 'At a shoreline or large body of water, observe repeating wave patterns for two minutes.',
-    relatedLessonIds: ['celestial-stars-guidance-humility', 'earth-mountains-stability-reflection'],
+    reflectionPrompt:
+        'What does the idea of boundary protect in your own life?',
+    observationPrompt:
+        'At a shoreline or large body of water, observe repeating wave patterns for two minutes.',
+    relatedLessonIds: [
+      'celestial-stars-guidance-humility',
+      'earth-mountains-stability-reflection',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Biblical sea imagery traditions',
@@ -599,7 +631,10 @@ const _lessons = <WorldLesson>[
     reflectionPrompt: 'Where do you need groundedness instead of reactivity?',
     observationPrompt:
         'On a walk or drive, observe terrain elevation changes and how perspective shifts with height.',
-    relatedLessonIds: ['time-seasons-change-reflection', 'earth-valleys-plains-contrast'],
+    relatedLessonIds: [
+      'time-seasons-change-reflection',
+      'earth-valleys-plains-contrast',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Psalms mountain imagery',
@@ -624,9 +659,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'In moments of personal contrast, practice comparison-free gratitude.',
     keyConcepts: ['contrast', 'variety', 'gratitude'],
-    reflectionPrompt: 'How do you respond to difference when it is not in your favor?',
-    observationPrompt: 'Notice one high and one low landscape area and compare how each supports life.',
-    relatedLessonIds: ['plants-fruits-variety-sign', 'earth-mountains-stability-reflection'],
+    reflectionPrompt:
+        'How do you respond to difference when it is not in your favor?',
+    observationPrompt:
+        'Notice one high and one low landscape area and compare how each supports life.',
+    relatedLessonIds: [
+      'plants-fruits-variety-sign',
+      'earth-mountains-stability-reflection',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom literature nature contrasts',
@@ -654,7 +694,10 @@ const _lessons = <WorldLesson>[
     reflectionPrompt: 'What repeated choice is quietly becoming your path?',
     observationPrompt:
         'During travel, observe how road signs, lanes, and markers prevent confusion; reflect on guidance in life.',
-    relatedLessonIds: ['travel-observe-patterns-signs', 'travel-history-accountability'],
+    relatedLessonIds: [
+      'travel-observe-patterns-signs',
+      'travel-history-accountability',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom “way/path” traditions',
@@ -679,9 +722,13 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Adopt one neighborhood care act: cleanup, kindness to neighbors, or waste reduction.',
     keyConcepts: ['stewardship', 'settlement', 'responsibility'],
-    reflectionPrompt: 'How can your presence make your local environment more dignified?',
+    reflectionPrompt:
+        'How can your presence make your local environment more dignified?',
     observationPrompt: null,
-    relatedLessonIds: ['earth-pathways-travel-guidance', 'water-rivers-provision-settlement'],
+    relatedLessonIds: [
+      'earth-pathways-travel-guidance',
+      'water-rivers-provision-settlement',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Stewardship themes in Abrahamic ethics',
@@ -697,19 +744,21 @@ const _lessons = <WorldLesson>[
     subcategoryId: 'plants-seeds-crops',
     title: 'Seeds and Hidden Growth',
     subtitle: 'Small beginnings and patient unfolding.',
-    overview:
-        'Seeds model how unseen stages often precede visible outcomes.',
+    overview: 'Seeds model how unseen stages often precede visible outcomes.',
     quranicPerspective:
         'Qur’anic references to growth from small beginnings reinforce trust in gradual divine processes.',
-    reflectiveTakeaway:
-        'Not all meaningful growth is immediately visible.',
+    reflectiveTakeaway: 'Not all meaningful growth is immediately visible.',
     practicalTakeaway:
         'Track one small habit for 30 days before judging outcomes.',
     keyConcepts: ['gradual growth', 'patience', 'trust in process'],
-    reflectionPrompt: 'What small practice in your life needs more time before evaluation?',
+    reflectionPrompt:
+        'What small practice in your life needs more time before evaluation?',
     observationPrompt:
         'Observe a seed, sprout, or small plant through several days and note subtle changes.',
-    relatedLessonIds: ['water-rain-mercy-revival', 'time-seasons-change-reflection'],
+    relatedLessonIds: [
+      'water-rain-mercy-revival',
+      'time-seasons-change-reflection',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Parable traditions about seed growth',
@@ -734,9 +783,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Before meals, include a brief gratitude pause for labor, land, and mercy.',
     keyConcepts: ['provision', 'labor', 'reliance'],
-    reflectionPrompt: 'Which part of provision do you usually overlook: effort or mercy?',
-    observationPrompt: 'Visit a market or garden and reflect on the chain of labor behind one fruit or grain.',
-    relatedLessonIds: ['plants-seeds-hidden-growth', 'water-rain-mercy-revival'],
+    reflectionPrompt:
+        'Which part of provision do you usually overlook: effort or mercy?',
+    observationPrompt:
+        'Visit a market or garden and reflect on the chain of labor behind one fruit or grain.',
+    relatedLessonIds: [
+      'plants-seeds-hidden-growth',
+      'water-rain-mercy-revival',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Agrarian wisdom traditions',
@@ -762,8 +816,12 @@ const _lessons = <WorldLesson>[
         'Practice gratitude by intentionally noticing variety in daily provision.',
     keyConcepts: ['diversity', 'nourishment', 'gratitude'],
     reflectionPrompt: 'What created variety have you stopped noticing?',
-    observationPrompt: 'Compare two fruits by color, texture, and taste; reflect on diversity with shared purpose.',
-    relatedLessonIds: ['plants-gardens-beauty-responsibility', 'time-night-day-alternation'],
+    observationPrompt:
+        'Compare two fruits by color, texture, and taste; reflect on diversity with shared purpose.',
+    relatedLessonIds: [
+      'plants-gardens-beauty-responsibility',
+      'time-night-day-alternation',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Garden and vine imagery traditions',
@@ -783,14 +841,18 @@ const _lessons = <WorldLesson>[
         'Natural beauty can nourish the heart while calling people to protect what they enjoy.',
     quranicPerspective:
         'Qur’anic garden imagery combines delight with accountability and remembrance of the Giver.',
-    reflectiveTakeaway:
-        'Beauty should increase humility, gratitude, and care.',
+    reflectiveTakeaway: 'Beauty should increase humility, gratitude, and care.',
     practicalTakeaway:
         'Protect one local green space through simple regular care or advocacy.',
     keyConcepts: ['beauty', 'care', 'stewardship'],
-    reflectionPrompt: 'How can admiration become action in your relationship with nature?',
-    observationPrompt: 'During a walk, identify one place where beauty is protected and one where it is neglected.',
-    relatedLessonIds: ['earth-settlement-gratitude-stewardship', 'plants-fruits-variety-sign'],
+    reflectionPrompt:
+        'How can admiration become action in your relationship with nature?',
+    observationPrompt:
+        'During a walk, identify one place where beauty is protected and one where it is neglected.',
+    relatedLessonIds: [
+      'earth-settlement-gratitude-stewardship',
+      'plants-fruits-variety-sign',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom and Eden/garden motifs',
@@ -815,9 +877,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Choose one steady, small beneficial act rather than waiting for large opportunities.',
     keyConcepts: ['order', 'benefit', 'consistency'],
-    reflectionPrompt: 'What small consistent service could you begin this week?',
-    observationPrompt: 'If safe and possible, observe pollinators around flowers and notice repeated patterns.',
-    relatedLessonIds: ['animals-small-creatures-humility', 'plants-crops-labor-provision'],
+    reflectionPrompt:
+        'What small consistent service could you begin this week?',
+    observationPrompt:
+        'If safe and possible, observe pollinators around flowers and notice repeated patterns.',
+    relatedLessonIds: [
+      'animals-small-creatures-humility',
+      'plants-crops-labor-provision',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom reflections on industrious creatures',
@@ -843,8 +910,12 @@ const _lessons = <WorldLesson>[
         'Practice careful attention to one “overlooked” aspect of your environment each day.',
     keyConcepts: ['attention', 'humility', 'significance'],
     reflectionPrompt: 'What do you usually ignore that may carry a lesson?',
-    observationPrompt: 'Observe an insect trail or pattern from a respectful distance for a short period.',
-    relatedLessonIds: ['celestial-stars-guidance-humility', 'time-night-day-alternation'],
+    observationPrompt:
+        'Observe an insect trail or pattern from a respectful distance for a short period.',
+    relatedLessonIds: [
+      'celestial-stars-guidance-humility',
+      'time-night-day-alternation',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Parabolic and wisdom traditions',
@@ -870,8 +941,12 @@ const _lessons = <WorldLesson>[
         'During travel, use bird observation as a cue for brief trust-focused dua.',
     keyConcepts: ['motion', 'reliance', 'attentiveness'],
     reflectionPrompt: 'Where do you need both movement and trust right now?',
-    observationPrompt: 'Watch birds landing and taking off; note rhythm, caution, and adaptation.',
-    relatedLessonIds: ['travel-observe-patterns-signs', 'water-seas-vastness-boundary'],
+    observationPrompt:
+        'Watch birds landing and taking off; note rhythm, caution, and adaptation.',
+    relatedLessonIds: [
+      'travel-observe-patterns-signs',
+      'water-seas-vastness-boundary',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Gospel and wisdom bird imagery',
@@ -896,9 +971,13 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Reflect on consumption choices and reduce waste connected to animal-derived resources.',
     keyConcepts: ['benefit', 'responsibility', 'compassion'],
-    reflectionPrompt: 'How can your choices better reflect gratitude and mercy toward creatures?',
+    reflectionPrompt:
+        'How can your choices better reflect gratitude and mercy toward creatures?',
     observationPrompt: null,
-    relatedLessonIds: ['plants-crops-labor-provision', 'animals-birds-motion-trust'],
+    relatedLessonIds: [
+      'plants-crops-labor-provision',
+      'animals-birds-motion-trust',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Stewardship motifs in Abrahamic legal-moral traditions',
@@ -918,15 +997,18 @@ const _lessons = <WorldLesson>[
         'Travel expands observation range and interrupts habitual inattentiveness.',
     quranicPerspective:
         'The Qur’an invites people to travel and observe outcomes in the world as part of moral learning.',
-    reflectiveTakeaway:
-        'A changed view can reshape a fixed heart.',
+    reflectiveTakeaway: 'A changed view can reshape a fixed heart.',
     practicalTakeaway:
         'On each trip, choose one deliberate observation goal tied to gratitude or humility.',
     keyConcepts: ['travel', 'attention', 'learning'],
-    reflectionPrompt: 'What does travel reveal that routine usually hides from you?',
+    reflectionPrompt:
+        'What does travel reveal that routine usually hides from you?',
     observationPrompt:
         'During travel, note one pattern in land, one in weather, and one in human settlement.',
-    relatedLessonIds: ['earth-pathways-travel-guidance', 'travel-history-accountability'],
+    relatedLessonIds: [
+      'earth-pathways-travel-guidance',
+      'travel-history-accountability',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Pilgrimage and journey motifs',
@@ -946,14 +1028,18 @@ const _lessons = <WorldLesson>[
         'Meaningful observation does not require distant travel; even local walks can become reflective practice.',
     quranicPerspective:
         'Qur’anic reflection is tied to attentive seeing and remembering, not only to grand experiences.',
-    reflectiveTakeaway:
-        'Depth often comes from attention, not distance.',
+    reflectiveTakeaway: 'Depth often comes from attention, not distance.',
     practicalTakeaway:
         'Take one weekly reflection walk without audio distraction.',
     keyConcepts: ['presence', 'attention', 'remembrance'],
-    reflectionPrompt: 'How often do you move through places without truly seeing them?',
-    observationPrompt: 'During your next walk, notice three overlooked signs and write one line about each.',
-    relatedLessonIds: ['travel-observe-patterns-signs', 'time-dawn-sunset-heart-rhythm'],
+    reflectionPrompt:
+        'How often do you move through places without truly seeing them?',
+    observationPrompt:
+        'During your next walk, notice three overlooked signs and write one line about each.',
+    relatedLessonIds: [
+      'travel-observe-patterns-signs',
+      'time-dawn-sunset-heart-rhythm',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Monastic and contemplative walking traditions',
@@ -978,9 +1064,14 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'When visiting historical sites, ask what moral pattern led to endurance or decline.',
     keyConcepts: ['humility', 'history', 'accountability'],
-    reflectionPrompt: 'What kind of legacy are your daily habits currently building?',
-    observationPrompt: 'If visiting an old site, spend one minute in silence before reading placards or taking photos.',
-    relatedLessonIds: ['travel-history-accountability', 'time-lifespan-urgency-gratitude'],
+    reflectionPrompt:
+        'What kind of legacy are your daily habits currently building?',
+    observationPrompt:
+        'If visiting an old site, spend one minute in silence before reading placards or taking photos.',
+    relatedLessonIds: [
+      'travel-history-accountability',
+      'time-lifespan-urgency-gratitude',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Prophetic historical warnings',
@@ -1005,9 +1096,13 @@ const _lessons = <WorldLesson>[
     practicalTakeaway:
         'Choose one historical lesson and translate it into a personal behavior change this month.',
     keyConcepts: ['consequence', 'memory', 'reform'],
-    reflectionPrompt: 'Which repeated mistake in human history appears in smaller form in your own life?',
+    reflectionPrompt:
+        'Which repeated mistake in human history appears in smaller form in your own life?',
     observationPrompt: null,
-    relatedLessonIds: ['travel-ruins-humility-lesson', 'earth-settlement-gratitude-stewardship'],
+    relatedLessonIds: [
+      'travel-ruins-humility-lesson',
+      'earth-settlement-gratitude-stewardship',
+    ],
     comparativeInsights: [
       WorldComparativeInsight(
         tradition: 'Wisdom and prophetic memory traditions',

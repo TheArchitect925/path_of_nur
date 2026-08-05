@@ -38,12 +38,11 @@ TVOSQuranParityPayload buildTVOSQuranParityPayload({
   final byNumber = <int, QuranSurah>{
     for (final surah in availableSurahs) surah.number: surah,
   };
-  final curatedBrowse =
-      tvosCuratedQuranBrowseSurahNumbers
-          .map((number) => byNumber[number])
-          .whereType<QuranSurah>()
-          .map(TVOSBrowseSurahParityPayload.fromSurah)
-          .toList(growable: false);
+  final curatedBrowse = tvosCuratedQuranBrowseSurahNumbers
+      .map((number) => byNumber[number])
+      .whereType<QuranSurah>()
+      .map(TVOSBrowseSurahParityPayload.fromSurah)
+      .toList(growable: false);
 
   final playbackSurahNumber =
       recitationSession?.surahNumber ?? continueReading.surahNumber;
@@ -62,7 +61,8 @@ TVOSQuranParityPayload buildTVOSQuranParityPayload({
       audioEnabled: audioEnabled,
       hasActiveSession: recitationSession != null,
       resumeSurahNumber: playbackSurahNumber,
-      resumeAyahNumber: recitationSession?.ayahNumber ?? continueReading.ayahNumber,
+      resumeAyahNumber:
+          recitationSession?.ayahNumber ?? continueReading.ayahNumber,
       resumeSurahName: playbackSurahName,
       positionSeconds: recitationSession?.positionSeconds ?? 0,
     ),
@@ -107,7 +107,9 @@ final tvosQuranParityPayloadProvider = Provider<TVOSQuranParityPayload>((ref) {
   );
 });
 
-final tvosParityPayloadBundleProvider = Provider<TVOSParityPayloadBundle>((ref) {
+final tvosParityPayloadBundleProvider = Provider<TVOSParityPayloadBundle>((
+  ref,
+) {
   final now = DateTime.now().toUtc().toIso8601String();
   final home = ref.watch(tvosHomeParityPayloadProvider);
   final quran = ref.watch(tvosQuranParityPayloadProvider);

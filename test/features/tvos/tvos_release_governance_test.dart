@@ -36,13 +36,19 @@ void main() {
     expect(openBlockingGates.single.id, TVOSReleaseGateId.realDeviceQaRequired);
   });
 
-  test('passing gates include diagnostics, focus regression, and performance', () {
-    final passingGateIds = tvosPassingReleaseGates()
-        .map((gate) => gate.id)
-        .toSet();
+  test(
+    'passing gates include diagnostics, focus regression, and performance',
+    () {
+      final passingGateIds = tvosPassingReleaseGates()
+          .map((gate) => gate.id)
+          .toSet();
 
-    expect(passingGateIds, contains(TVOSReleaseGateId.diagnosticsGuardrails));
-    expect(passingGateIds, contains(TVOSReleaseGateId.focusRegressionHarness));
-    expect(passingGateIds, contains(TVOSReleaseGateId.performanceProfiles));
-  });
+      expect(passingGateIds, contains(TVOSReleaseGateId.diagnosticsGuardrails));
+      expect(
+        passingGateIds,
+        contains(TVOSReleaseGateId.focusRegressionHarness),
+      );
+      expect(passingGateIds, contains(TVOSReleaseGateId.performanceProfiles));
+    },
+  );
 }

@@ -46,14 +46,20 @@ const _trackSuggestedPaths = <LearnTrackType, List<LearnRelatedQuery>>{
   ],
   LearnTrackType.ramadan: <LearnRelatedQuery>[
     LearnRelatedQuery(LearnDomainType.quran, '2:152'),
-    LearnRelatedQuery(LearnDomainType.hadith, 'worship-consistency-over-volume'),
+    LearnRelatedQuery(
+      LearnDomainType.hadith,
+      'worship-consistency-over-volume',
+    ),
     LearnRelatedQuery(LearnDomainType.life, 'gratitude-daily-awareness'),
     LearnRelatedQuery(LearnDomainType.world, 'time-night-day-alternation'),
     LearnRelatedQuery(LearnDomainType.quran, '55:13'),
   ],
   LearnTrackType.revert: <LearnRelatedQuery>[
     LearnRelatedQuery(LearnDomainType.quran, '1:1'),
-    LearnRelatedQuery(LearnDomainType.hadith, 'worship-intentions-weigh-actions'),
+    LearnRelatedQuery(
+      LearnDomainType.hadith,
+      'worship-intentions-weigh-actions',
+    ),
     LearnRelatedQuery(LearnDomainType.life, 'character-intention-sincerity'),
     LearnRelatedQuery(LearnDomainType.life, 'community-neighbor-rights'),
     LearnRelatedQuery(LearnDomainType.hadith, 'speech-guarding-the-tongue'),
@@ -63,7 +69,10 @@ const _trackSuggestedPaths = <LearnTrackType, List<LearnRelatedQuery>>{
 const _crossDomainRelatedMap = <String, List<LearnRelatedQuery>>{
   'life:gratitude-daily-awareness': [
     LearnRelatedQuery(LearnDomainType.quran, '2:152'),
-    LearnRelatedQuery(LearnDomainType.hadith, 'gratitude-seeing-blessings-daily'),
+    LearnRelatedQuery(
+      LearnDomainType.hadith,
+      'gratitude-seeing-blessings-daily',
+    ),
     LearnRelatedQuery(LearnDomainType.world, 'water-rain-mercy-revival'),
   ],
   'life:community-neighbor-rights': [
@@ -81,7 +90,10 @@ const _crossDomainRelatedMap = <String, List<LearnRelatedQuery>>{
   ],
   'world:water-rain-mercy-revival': [
     LearnRelatedQuery(LearnDomainType.life, 'gratitude-daily-awareness'),
-    LearnRelatedQuery(LearnDomainType.hadith, 'gratitude-seeing-blessings-daily'),
+    LearnRelatedQuery(
+      LearnDomainType.hadith,
+      'gratitude-seeing-blessings-daily',
+    ),
   ],
   'world:earth-mountains-stability-reflection': [
     LearnRelatedQuery(LearnDomainType.life, 'hardship-hope-resilience'),
@@ -103,7 +115,10 @@ const _crossDomainRelatedMap = <String, List<LearnRelatedQuery>>{
   ],
   'quran:2:152': [
     LearnRelatedQuery(LearnDomainType.life, 'gratitude-daily-awareness'),
-    LearnRelatedQuery(LearnDomainType.hadith, 'gratitude-seeing-blessings-daily'),
+    LearnRelatedQuery(
+      LearnDomainType.hadith,
+      'gratitude-seeing-blessings-daily',
+    ),
   ],
   'quran:16:68': [
     LearnRelatedQuery(LearnDomainType.world, 'animals-bee-order-benefit'),
@@ -123,10 +138,7 @@ class LearnRelatedQuery {
 }
 
 class _ProgressValue {
-  const _ProgressValue({
-    required this.status,
-    required this.lastOpened,
-  });
+  const _ProgressValue({required this.status, required this.lastOpened});
 
   final LearnUnifiedStatus status;
   final DateTime? lastOpened;
@@ -237,7 +249,8 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
       queryParameters: {'ayah': latest.ayahNumber.toString()},
       lastOpened: DateTime.tryParse(latest.createdAtIso),
       status: LearnUnifiedStatus.inProgress,
-      quality: qualityState.byLessonKey['notes:${latest.id}'] ??
+      quality:
+          qualityState.byLessonKey['notes:${latest.id}'] ??
           LearnCompletionQuality.reflected,
     );
   }
@@ -246,30 +259,26 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
   if (!worldEnabled) worldContinue = null;
   if (!hadithEnabled) hadithContinue = null;
 
-  final continueCandidates = [
-    if (quranEnabled) quranContinueItem,
-    if (lifeEnabled) lifeContinue,
-    if (worldEnabled) worldContinue,
-    if (hadithEnabled) hadithContinue,
-    notesContinueItem,
-  ].whereType<LearnUnifiedLessonRef>().toList()
-    ..sort((a, b) {
-      return _continueScore(
-        item: b,
-        selectedTrack: selectedTrack,
-      ).compareTo(
-        _continueScore(item: a, selectedTrack: selectedTrack),
-      );
-    });
+  final continueCandidates =
+      [
+        if (quranEnabled) quranContinueItem,
+        if (lifeEnabled) lifeContinue,
+        if (worldEnabled) worldContinue,
+        if (hadithEnabled) hadithContinue,
+        notesContinueItem,
+      ].whereType<LearnUnifiedLessonRef>().toList()..sort((a, b) {
+        return _continueScore(
+          item: b,
+          selectedTrack: selectedTrack,
+        ).compareTo(_continueScore(item: a, selectedTrack: selectedTrack));
+      });
 
-  LearnUnifiedLessonRef? continueItem =
-      continueCandidates.isEmpty ? null : continueCandidates.first;
+  LearnUnifiedLessonRef? continueItem = continueCandidates.isEmpty
+      ? null
+      : continueCandidates.first;
   final continueReason = continueItem == null
       ? 'Start your first lesson to build momentum.'
-      : _buildContinueReason(
-          continueItem,
-          selectedTrack: selectedTrack,
-        );
+      : _buildContinueReason(continueItem, selectedTrack: selectedTrack);
 
   LearnUnifiedLessonRef? suggestedNext;
   final selectedPath =
@@ -285,7 +294,13 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
       quranContinueProgress: quranContinueProgress,
       qualityState: qualityState,
     );
-    if (!_isDomainEnabled(item?.domain, quranEnabled, lifeEnabled, worldEnabled, hadithEnabled)) {
+    if (!_isDomainEnabled(
+      item?.domain,
+      quranEnabled,
+      lifeEnabled,
+      worldEnabled,
+      hadithEnabled,
+    )) {
       continue;
     }
     if (item != null && item.status != LearnUnifiedStatus.completed) {
@@ -295,7 +310,8 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
   }
   if (continueItem != null && suggestedNext != null) {
     final continueKey = '${continueItem.domain.name}:${continueItem.lessonId}';
-    final suggestedKey = '${suggestedNext.domain.name}:${suggestedNext.lessonId}';
+    final suggestedKey =
+        '${suggestedNext.domain.name}:${suggestedNext.lessonId}';
     if (continueKey == suggestedKey) {
       suggestedNext = null;
       for (final key in selectedPath) {
@@ -309,7 +325,13 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
           quranContinueProgress: quranContinueProgress,
           qualityState: qualityState,
         );
-        if (!_isDomainEnabled(item?.domain, quranEnabled, lifeEnabled, worldEnabled, hadithEnabled)) {
+        if (!_isDomainEnabled(
+          item?.domain,
+          quranEnabled,
+          lifeEnabled,
+          worldEnabled,
+          hadithEnabled,
+        )) {
           continue;
         }
         if (item == null || item.status == LearnUnifiedStatus.completed) {
@@ -340,55 +362,62 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
       .whereType<LearnUnifiedLessonRef>()
       .toList();
 
-  final recentItems = [
-    if (quranEnabled) ...quranRecentItems,
-    if (lifeEnabled) ...lifeState.recentLessonIds.map(
-      (id) => _lessonRef(
-        domain: LearnDomainType.life,
-        lessonId: id,
-        progressById: lifeProgressById,
-        qualityState: qualityState,
-      ),
-    ),
-    if (worldEnabled) ...worldState.recentLessonIds.map(
-      (id) => _lessonRef(
-        domain: LearnDomainType.world,
-        lessonId: id,
-        progressById: worldProgressById,
-        qualityState: qualityState,
-      ),
-    ),
-    if (hadithEnabled) ...hadithState.recentLessonIds.map(
-      (id) => _lessonRef(
-        domain: LearnDomainType.hadith,
-        lessonId: id,
-        progressById: hadithProgressById,
-        qualityState: qualityState,
-      ),
-    ),
-    ...quranNotes.take(4).map(
-      (note) => LearnUnifiedLessonRef(
-        domain: LearnDomainType.notes,
-        lessonId: note.id,
-        title: note.text.trim().isEmpty
-            ? 'Qur\'an note ${note.surahNumber}:${note.ayahNumber}'
-            : note.text.split('\n').first.trim(),
-        subtitle: 'Linked to Qur\'an ${note.surahNumber}:${note.ayahNumber}',
-        routeName: 'quranReader',
-        pathParameters: {'surahNumber': note.surahNumber.toString()},
-        queryParameters: {'ayah': note.ayahNumber.toString()},
-        lastOpened: DateTime.tryParse(note.createdAtIso),
-        status: LearnUnifiedStatus.inProgress,
-        quality: qualityState.byLessonKey['notes:${note.id}'] ??
-            LearnCompletionQuality.reflected,
-      ),
-    ),
-  ].whereType<LearnUnifiedLessonRef>().toList()
-    ..sort((a, b) {
-      final aTime = a.lastOpened ?? DateTime.fromMillisecondsSinceEpoch(0);
-      final bTime = b.lastOpened ?? DateTime.fromMillisecondsSinceEpoch(0);
-      return bTime.compareTo(aTime);
-    });
+  final recentItems =
+      [
+        if (quranEnabled) ...quranRecentItems,
+        if (lifeEnabled)
+          ...lifeState.recentLessonIds.map(
+            (id) => _lessonRef(
+              domain: LearnDomainType.life,
+              lessonId: id,
+              progressById: lifeProgressById,
+              qualityState: qualityState,
+            ),
+          ),
+        if (worldEnabled)
+          ...worldState.recentLessonIds.map(
+            (id) => _lessonRef(
+              domain: LearnDomainType.world,
+              lessonId: id,
+              progressById: worldProgressById,
+              qualityState: qualityState,
+            ),
+          ),
+        if (hadithEnabled)
+          ...hadithState.recentLessonIds.map(
+            (id) => _lessonRef(
+              domain: LearnDomainType.hadith,
+              lessonId: id,
+              progressById: hadithProgressById,
+              qualityState: qualityState,
+            ),
+          ),
+        ...quranNotes
+            .take(4)
+            .map(
+              (note) => LearnUnifiedLessonRef(
+                domain: LearnDomainType.notes,
+                lessonId: note.id,
+                title: note.text.trim().isEmpty
+                    ? 'Qur\'an note ${note.surahNumber}:${note.ayahNumber}'
+                    : note.text.split('\n').first.trim(),
+                subtitle:
+                    'Linked to Qur\'an ${note.surahNumber}:${note.ayahNumber}',
+                routeName: 'quranReader',
+                pathParameters: {'surahNumber': note.surahNumber.toString()},
+                queryParameters: {'ayah': note.ayahNumber.toString()},
+                lastOpened: DateTime.tryParse(note.createdAtIso),
+                status: LearnUnifiedStatus.inProgress,
+                quality:
+                    qualityState.byLessonKey['notes:${note.id}'] ??
+                    LearnCompletionQuality.reflected,
+              ),
+            ),
+      ].whereType<LearnUnifiedLessonRef>().toList()..sort((a, b) {
+        final aTime = a.lastOpened ?? DateTime.fromMillisecondsSinceEpoch(0);
+        final bTime = b.lastOpened ?? DateTime.fromMillisecondsSinceEpoch(0);
+        return bTime.compareTo(aTime);
+      });
 
   final dedupedRecent = <LearnUnifiedLessonRef>[];
   final seenKeys = <String>{};
@@ -456,7 +485,10 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
       continue;
     }
     if (surah.number == quranProgress.surahNumber) {
-      completedQuranAyahs += quranProgress.ayahNumber.clamp(0, surah.verseCount);
+      completedQuranAyahs += quranProgress.ayahNumber.clamp(
+        0,
+        surah.verseCount,
+      );
       break;
     }
   }
@@ -535,62 +567,65 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
 
 final learnCrossDomainRelatedProvider =
     Provider.family<List<LearnUnifiedLessonRef>, LearnRelatedQuery>((ref, key) {
-  final lifeState = ref.watch(lifeProgressProvider);
-  final worldState = ref.watch(worldProgressProvider);
-  final hadithState = ref.watch(hadithProgressProvider);
-  final qualityState = ref.watch(learnQualityProvider);
-  final quranProgress = _ProgressValue(
-    status: LearnUnifiedStatus.inProgress,
-    lastOpened: DateTime.tryParse(
-      ref.watch(quranReadingProgressProvider).updatedAtIso,
-    ),
-  );
-  final quranSurahMap = ref.watch(quranSurahMapProvider);
+      final lifeState = ref.watch(lifeProgressProvider);
+      final worldState = ref.watch(worldProgressProvider);
+      final hadithState = ref.watch(hadithProgressProvider);
+      final qualityState = ref.watch(learnQualityProvider);
+      final quranProgress = _ProgressValue(
+        status: LearnUnifiedStatus.inProgress,
+        lastOpened: DateTime.tryParse(
+          ref.watch(quranReadingProgressProvider).updatedAtIso,
+        ),
+      );
+      final quranSurahMap = ref.watch(quranSurahMapProvider);
 
-  final lifeProgressById = <String, _ProgressValue>{};
-  for (final entry in lifeState.lessonProgressById.entries) {
-    lifeProgressById[entry.key] = _ProgressValue(
-      status: _mapLifeStatus(entry.value.status),
-      lastOpened: DateTime.tryParse(entry.value.lastOpenedIso ?? ''),
-    );
-  }
-  final worldProgressById = <String, _ProgressValue>{};
-  for (final entry in worldState.lessonProgressById.entries) {
-    worldProgressById[entry.key] = _ProgressValue(
-      status: _mapWorldStatus(entry.value.status),
-      lastOpened: DateTime.tryParse(entry.value.lastOpenedIso ?? ''),
-    );
-  }
-  final hadithProgressById = <String, _ProgressValue>{};
-  for (final entry in hadithState.lessonProgressById.entries) {
-    hadithProgressById[entry.key] = _ProgressValue(
-      status: _mapHadithStatus(entry.value.status),
-      lastOpened: DateTime.tryParse(entry.value.lastOpenedIso ?? ''),
-    );
-  }
+      final lifeProgressById = <String, _ProgressValue>{};
+      for (final entry in lifeState.lessonProgressById.entries) {
+        lifeProgressById[entry.key] = _ProgressValue(
+          status: _mapLifeStatus(entry.value.status),
+          lastOpened: DateTime.tryParse(entry.value.lastOpenedIso ?? ''),
+        );
+      }
+      final worldProgressById = <String, _ProgressValue>{};
+      for (final entry in worldState.lessonProgressById.entries) {
+        worldProgressById[entry.key] = _ProgressValue(
+          status: _mapWorldStatus(entry.value.status),
+          lastOpened: DateTime.tryParse(entry.value.lastOpenedIso ?? ''),
+        );
+      }
+      final hadithProgressById = <String, _ProgressValue>{};
+      for (final entry in hadithState.lessonProgressById.entries) {
+        hadithProgressById[entry.key] = _ProgressValue(
+          status: _mapHadithStatus(entry.value.status),
+          lastOpened: DateTime.tryParse(entry.value.lastOpenedIso ?? ''),
+        );
+      }
 
-  final mapKey = '${key.domain.name}:${key.lessonId}';
-  final candidates = _crossDomainRelatedMap[mapKey] ?? const <LearnRelatedQuery>[];
+      final mapKey = '${key.domain.name}:${key.lessonId}';
+      final candidates =
+          _crossDomainRelatedMap[mapKey] ?? const <LearnRelatedQuery>[];
 
-  final output = <LearnUnifiedLessonRef>[];
-  for (final candidate in candidates) {
-    final item = _lookupItem(
-      domain: candidate.domain,
-      lessonId: candidate.lessonId,
-      lifeProgressById: lifeProgressById,
-      worldProgressById: worldProgressById,
-      hadithProgressById: hadithProgressById,
-      quranSurahMap: quranSurahMap,
-      quranContinueProgress: quranProgress,
-      qualityState: qualityState,
-    );
-    if (item != null) output.add(item);
-  }
-  return output;
-});
+      final output = <LearnUnifiedLessonRef>[];
+      for (final candidate in candidates) {
+        final item = _lookupItem(
+          domain: candidate.domain,
+          lessonId: candidate.lessonId,
+          lifeProgressById: lifeProgressById,
+          worldProgressById: worldProgressById,
+          hadithProgressById: hadithProgressById,
+          quranSurahMap: quranSurahMap,
+          quranContinueProgress: quranProgress,
+          qualityState: qualityState,
+        );
+        if (item != null) output.add(item);
+      }
+      return output;
+    });
 
-final learnLessonCitationsProvider =
-    Provider.family<List<LearnCitation>, LearnRelatedQuery>((ref, key) {
+final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnRelatedQuery>((
+  ref,
+  key,
+) {
   switch (key.domain) {
     case LearnDomainType.quran:
       return [
@@ -748,7 +783,8 @@ LearnUnifiedLessonRef? _lessonRef({
         pathParameters: {'lessonId': lessonId},
         lastOpened: progress?.lastOpened,
         status: progress?.status ?? LearnUnifiedStatus.notStarted,
-        quality: qualityState.byLessonKey['${domain.name}:$lessonId'] ??
+        quality:
+            qualityState.byLessonKey['${domain.name}:$lessonId'] ??
             LearnCompletionQuality.notRead,
       );
     case LearnDomainType.world:
@@ -763,7 +799,8 @@ LearnUnifiedLessonRef? _lessonRef({
         pathParameters: {'lessonId': lessonId},
         lastOpened: progress?.lastOpened,
         status: progress?.status ?? LearnUnifiedStatus.notStarted,
-        quality: qualityState.byLessonKey['${domain.name}:$lessonId'] ??
+        quality:
+            qualityState.byLessonKey['${domain.name}:$lessonId'] ??
             LearnCompletionQuality.notRead,
       );
     case LearnDomainType.hadith:
@@ -778,7 +815,8 @@ LearnUnifiedLessonRef? _lessonRef({
         pathParameters: {'lessonId': lessonId},
         lastOpened: progress?.lastOpened,
         status: progress?.status ?? LearnUnifiedStatus.notStarted,
-        quality: qualityState.byLessonKey['${domain.name}:$lessonId'] ??
+        quality:
+            qualityState.byLessonKey['${domain.name}:$lessonId'] ??
             LearnCompletionQuality.notRead,
       );
     case LearnDomainType.notes:
@@ -822,7 +860,8 @@ LearnUnifiedLessonRef? _quranRefFromLocation({
     queryParameters: {'ayah': ayahNumber.toString()},
     lastOpened: progress.lastOpened,
     status: progress.status,
-    quality: qualityState.byLessonKey['quran:$surahNumber:$ayahNumber'] ??
+    quality:
+        qualityState.byLessonKey['quran:$surahNumber:$ayahNumber'] ??
         LearnCompletionQuality.notRead,
   );
 }

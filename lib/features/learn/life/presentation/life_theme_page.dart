@@ -10,10 +10,7 @@ import '../data/life_curriculum_data.dart';
 import '../domain/life_models.dart';
 
 class LifeThemePage extends ConsumerWidget {
-  const LifeThemePage({
-    super.key,
-    required this.themeId,
-  });
+  const LifeThemePage({super.key, required this.themeId});
 
   final String themeId;
 
@@ -67,7 +64,10 @@ class LifeThemePage extends ConsumerWidget {
               const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: progress.ratio, minHeight: 8),
+                child: LinearProgressIndicator(
+                  value: progress.ratio,
+                  minHeight: 8,
+                ),
               ),
             ],
           ),
@@ -141,10 +141,12 @@ class LifeThemePage extends ConsumerWidget {
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
-              ...subcategories.map((sub) => Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Text('• ${sub.title}'),
-                  )),
+              ...subcategories.map(
+                (sub) => Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text('• ${sub.title}'),
+                ),
+              ),
             ],
           ),
         ),

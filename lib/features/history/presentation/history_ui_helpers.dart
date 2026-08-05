@@ -94,10 +94,7 @@ String formatTodayHijriDate(
   );
 }
 
-String historicalMatchLabel(
-  AppLocalizations l10n,
-  HistoricalTodayMatch match,
-) {
+String historicalMatchLabel(AppLocalizations l10n, HistoricalTodayMatch match) {
   if (match.matchesGregorian && match.matchesHijri) {
     return l10n.historyMatchBadgeBoth;
   }

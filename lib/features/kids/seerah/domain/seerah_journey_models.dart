@@ -163,7 +163,8 @@ class KidsSeerahJourneyProgressState {
   }) {
     return KidsSeerahJourneyProgressState(
       startedJourneyIds: startedJourneyIds ?? this.startedJourneyIds,
-      manualCompletedNodeIds: manualCompletedNodeIds ?? this.manualCompletedNodeIds,
+      manualCompletedNodeIds:
+          manualCompletedNodeIds ?? this.manualCompletedNodeIds,
       rewardedNodeIds: rewardedNodeIds ?? this.rewardedNodeIds,
       completedStageIds: completedStageIds ?? this.completedStageIds,
       rewardedStageIds: rewardedStageIds ?? this.rewardedStageIds,
@@ -252,13 +253,12 @@ class KidsSeerahJourneySummary {
   final String? lastOpenedNodeId;
   final String? nextNodeId;
 
-  int get completedStageCount => stages.where((stage) => stage.isCompleted).length;
+  int get completedStageCount =>
+      stages.where((stage) => stage.isCompleted).length;
   int get totalNodeCount =>
       stages.fold<int>(0, (sum, stage) => sum + stage.nodes.length);
-  int get completedNodeCount => stages.fold<int>(
-    0,
-    (sum, stage) => sum + stage.completedNodeCount,
-  );
+  int get completedNodeCount =>
+      stages.fold<int>(0, (sum, stage) => sum + stage.completedNodeCount);
 }
 
 class KidsSeerahRewardOutcome {

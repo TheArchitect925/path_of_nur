@@ -43,10 +43,7 @@ class GrowthAction {
 }
 
 class ReflectionResponseOption {
-  const ReflectionResponseOption({
-    required this.id,
-    required this.labelKey,
-  });
+  const ReflectionResponseOption({required this.id, required this.labelKey});
 
   final String id;
   final String labelKey;
@@ -231,10 +228,8 @@ class SpiritualGrowthState {
       ),
       manualActionIdsByDateKey: rawManual is Map
           ? rawManual.map(
-              (key, value) => MapEntry(
-                key.toString(),
-                _stringList(value).toSet(),
-              ),
+              (key, value) =>
+                  MapEntry(key.toString(), _stringList(value).toSet()),
             )
           : const <String, Set<String>>{},
       reflectionEntryByDateKey: rawEntries is Map

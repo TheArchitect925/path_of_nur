@@ -28,69 +28,76 @@ final bedtimeFamilyModeProvider =
       return BedtimeFamilyModeController(ref);
     });
 
-final bedtimeAvailableLearnersProvider = Provider<List<BedtimeLearnerIdentity>>((
-  ref,
-) {
-  final familyState = ref.watch(bedtimeFamilyModeProvider);
-  final familyContext = ref.watch(activeFamilyLearningContextProvider);
-  final accounts = ref.watch(accountsSyncControllerProvider);
-  final childProfiles = _resolveRelevantChildren(ref);
-  final items = <BedtimeLearnerIdentity>[];
-  final guardianId = familyContext.activeGuardianProfileId;
+final bedtimeAvailableLearnersProvider = Provider<List<BedtimeLearnerIdentity>>(
+  (ref) {
+    final familyState = ref.watch(bedtimeFamilyModeProvider);
+    final familyContext = ref.watch(activeFamilyLearningContextProvider);
+    final accounts = ref.watch(accountsSyncControllerProvider);
+    final childProfiles = _resolveRelevantChildren(ref);
+    final items = <BedtimeLearnerIdentity>[];
+    final guardianId = familyContext.activeGuardianProfileId;
 
-  for (final child in childProfiles) {
-    final preferences = familyState.preferencesByLearnerId[child.id] ??
-        const BedtimeLearnerPreferences();
-    items.add(
-      BedtimeLearnerIdentity(
-        learnerId: child.id,
-        linkedChildProfileId: child.id,
-        displayName: child.displayName,
-        avatarReference: child.avatarReference,
-        ageGroup: child.ageGroup,
-        guardianProfileId: guardianId,
-        isFallbackLearner: false,
-        preferences: preferences,
-        createdAtIso: child.createdAt,
-        updatedAtIso: child.updatedAt,
-        isArchived: familyState.archivedLearnerIds.contains(child.id),
-        sortOrder: 0,
-      ),
-    );
-  }
-
-  final activeProfile = accounts.activeProfile;
-  if (items.isEmpty && activeProfile?.profileId != null) {
-    final fallbackId = bedtimeFallbackLearnerIdForProfile(activeProfile!.profileId);
-    items.add(
-      BedtimeLearnerIdentity(
-        learnerId: fallbackId,
-        displayName: activeProfile.displayName,
-        avatarReference: activeProfile.avatar,
-        ageGroup: familyContext.activeChildProfile?.ageGroup ?? LearningAgeGroup.kids,
-        guardianProfileId: familyContext.activeGuardianProfileId ?? activeProfile.profileId,
-        isFallbackLearner: true,
-        preferences: familyState.preferencesByLearnerId[fallbackId] ??
-            const BedtimeLearnerPreferences(),
-        isArchived: familyState.archivedLearnerIds.contains(fallbackId),
-      ),
-    );
-  }
-
-  items.sort((a, b) {
-    if (a.isArchived != b.isArchived) {
-      return a.isArchived ? 1 : -1;
+    for (final child in childProfiles) {
+      final preferences =
+          familyState.preferencesByLearnerId[child.id] ??
+          const BedtimeLearnerPreferences();
+      items.add(
+        BedtimeLearnerIdentity(
+          learnerId: child.id,
+          linkedChildProfileId: child.id,
+          displayName: child.displayName,
+          avatarReference: child.avatarReference,
+          ageGroup: child.ageGroup,
+          guardianProfileId: guardianId,
+          isFallbackLearner: false,
+          preferences: preferences,
+          createdAtIso: child.createdAt,
+          updatedAtIso: child.updatedAt,
+          isArchived: familyState.archivedLearnerIds.contains(child.id),
+          sortOrder: 0,
+        ),
+      );
     }
-    final nameCompare = a.effectiveDisplayName.toLowerCase().compareTo(
-      b.effectiveDisplayName.toLowerCase(),
-    );
-    if (nameCompare != 0) {
-      return nameCompare;
+
+    final activeProfile = accounts.activeProfile;
+    if (items.isEmpty && activeProfile?.profileId != null) {
+      final fallbackId = bedtimeFallbackLearnerIdForProfile(
+        activeProfile!.profileId,
+      );
+      items.add(
+        BedtimeLearnerIdentity(
+          learnerId: fallbackId,
+          displayName: activeProfile.displayName,
+          avatarReference: activeProfile.avatar,
+          ageGroup:
+              familyContext.activeChildProfile?.ageGroup ??
+              LearningAgeGroup.kids,
+          guardianProfileId:
+              familyContext.activeGuardianProfileId ?? activeProfile.profileId,
+          isFallbackLearner: true,
+          preferences:
+              familyState.preferencesByLearnerId[fallbackId] ??
+              const BedtimeLearnerPreferences(),
+          isArchived: familyState.archivedLearnerIds.contains(fallbackId),
+        ),
+      );
     }
-    return a.learnerId.compareTo(b.learnerId);
-  });
-  return items;
-});
+
+    items.sort((a, b) {
+      if (a.isArchived != b.isArchived) {
+        return a.isArchived ? 1 : -1;
+      }
+      final nameCompare = a.effectiveDisplayName.toLowerCase().compareTo(
+        b.effectiveDisplayName.toLowerCase(),
+      );
+      if (nameCompare != 0) {
+        return nameCompare;
+      }
+      return a.learnerId.compareTo(b.learnerId);
+    });
+    return items;
+  },
+);
 
 final bedtimeArchivedLearnersProvider = Provider<List<BedtimeLearnerIdentity>>((
   ref,
@@ -131,23 +138,27 @@ final bedtimeActiveLearnerProvider = Provider<BedtimeLearnerIdentity>((ref) {
   if (guardianId != null && learners.isNotEmpty) {
     final session = familyState.activeLearnerSessionByGuardianId[guardianId];
     if (session != null) {
-      final selected = learners.where((item) => !item.isArchived).firstWhere(
-        (item) => item.learnerId == session.learnerId,
-        orElse: () => const BedtimeLearnerIdentity(
-          learnerId: '',
-          displayName: '',
-          avatarReference: '',
-          ageGroup: LearningAgeGroup.kids,
-          guardianProfileId: null,
-          isFallbackLearner: true,
-          preferences: BedtimeLearnerPreferences(),
-        ),
-      );
+      final selected = learners
+          .where((item) => !item.isArchived)
+          .firstWhere(
+            (item) => item.learnerId == session.learnerId,
+            orElse: () => const BedtimeLearnerIdentity(
+              learnerId: '',
+              displayName: '',
+              avatarReference: '',
+              ageGroup: LearningAgeGroup.kids,
+              guardianProfileId: null,
+              isFallbackLearner: true,
+              preferences: BedtimeLearnerPreferences(),
+            ),
+          );
       if (selected.learnerId.isNotEmpty) {
         return selected;
       }
     }
-    final firstAvailable = learners.where((item) => !item.isArchived).firstOrNull;
+    final firstAvailable = learners
+        .where((item) => !item.isArchived)
+        .firstOrNull;
     if (firstAvailable != null) {
       return firstAvailable;
     }
@@ -164,7 +175,8 @@ final bedtimeActiveLearnerProvider = Provider<BedtimeLearnerIdentity>((ref) {
     displayName: activeProfile?.displayName ?? '',
     avatarReference: activeProfile?.avatar ?? '🌙',
     ageGroup: LearningAgeGroup.kids,
-    guardianProfileId: familyContext.activeGuardianProfileId ?? activeProfile?.profileId,
+    guardianProfileId:
+        familyContext.activeGuardianProfileId ?? activeProfile?.profileId,
     isFallbackLearner: true,
     preferences: const BedtimeLearnerPreferences(),
   );
@@ -180,7 +192,8 @@ final bedtimeCanManageFamilyModeProvider = Provider<bool>((ref) {
       activeProfile.profileType != ProfileKind.guest;
 });
 
-class BedtimeFamilyModeController extends StateNotifier<BedtimeFamilyModeState> {
+class BedtimeFamilyModeController
+    extends StateNotifier<BedtimeFamilyModeState> {
   BedtimeFamilyModeController(this._ref)
     : _store = _ref.read(localStoreProvider),
       super(
@@ -226,10 +239,7 @@ class BedtimeFamilyModeController extends StateNotifier<BedtimeFamilyModeState> 
 
   Future<void> archiveLearner(String learnerId) async {
     state = state.copyWith(
-      archivedLearnerIds: {
-        ...state.archivedLearnerIds,
-        learnerId,
-      },
+      archivedLearnerIds: {...state.archivedLearnerIds, learnerId},
     );
     await _persist();
   }
@@ -258,7 +268,9 @@ List<ChildLearningProfile> _resolveRelevantChildren(Ref ref) {
     }
   }
   if (familyContext.activeChildProfile != null &&
-      childProfiles.every((item) => item.id != familyContext.activeChildProfile!.id)) {
+      childProfiles.every(
+        (item) => item.id != familyContext.activeChildProfile!.id,
+      )) {
     childProfiles.add(familyContext.activeChildProfile!);
   }
   return childProfiles;

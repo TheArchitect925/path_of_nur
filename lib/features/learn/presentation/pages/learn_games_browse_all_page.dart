@@ -14,7 +14,8 @@ class LearnGamesBrowseAllPage extends StatefulWidget {
   final String? initialQuery;
 
   @override
-  State<LearnGamesBrowseAllPage> createState() => _LearnGamesBrowseAllPageState();
+  State<LearnGamesBrowseAllPage> createState() =>
+      _LearnGamesBrowseAllPageState();
 }
 
 class _LearnGamesBrowseAllPageState extends State<LearnGamesBrowseAllPage> {
@@ -87,16 +88,18 @@ class _LearnGamesBrowseAllPageState extends State<LearnGamesBrowseAllPage> {
     if (normalized.isEmpty) {
       return entries;
     }
-    return entries.where((entry) {
-      final haystack = [
-        entry.section.title,
-        entry.section.subtitle,
-        entry.card.title,
-        entry.card.subtitle,
-        entry.card.badgeLabel ?? '',
-        ...entry.card.searchKeywords,
-      ].join(' ').toLowerCase();
-      return haystack.contains(normalized);
-    }).toList(growable: false);
+    return entries
+        .where((entry) {
+          final haystack = [
+            entry.section.title,
+            entry.section.subtitle,
+            entry.card.title,
+            entry.card.subtitle,
+            entry.card.badgeLabel ?? '',
+            ...entry.card.searchKeywords,
+          ].join(' ').toLowerCase();
+          return haystack.contains(normalized);
+        })
+        .toList(growable: false);
   }
 }

@@ -28,30 +28,37 @@ void main() {
     expect(summary.continuation.intent, ArabicLearningContinuationIntent.start);
   });
 
-  test('kids progress summary reflects learned letters words and phrases', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
+  test(
+    'kids progress summary reflects learned letters words and phrases',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
 
-    container.read(kidsArabicProgressProvider.notifier).completeLesson(
-          letter: kidsArabicLetters.first,
-          traceResult: KidsArabicTraceResult.good,
-        );
-    container.read(kidsArabicWordProgressProvider.notifier).completeWord('bab');
-    container
-        .read(kidsArabicMiniPhraseProgressProvider.notifier)
-        .markPhraseHeard('bismillah');
+      container
+          .read(kidsArabicProgressProvider.notifier)
+          .completeLesson(
+            letter: kidsArabicLetters.first,
+            traceResult: KidsArabicTraceResult.good,
+          );
+      container
+          .read(kidsArabicWordProgressProvider.notifier)
+          .completeWord('bab');
+      container
+          .read(kidsArabicMiniPhraseProgressProvider.notifier)
+          .markPhraseHeard('bismillah');
 
-    final summary = container.read(
-      arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids),
-    );
+      final summary = container.read(
+        arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids),
+      );
 
-    expect(summary.hasStarted, isTrue);
-    expect(summary.engagedLetters, 1);
-    expect(summary.engagedWords, 1);
-    expect(summary.engagedPhrases, 1);
-    expect(summary.currentStreakDays, greaterThanOrEqualTo(1));
-    expect(summary.recentActivity, isNotNull);
-  });
+      expect(summary.hasStarted, isTrue);
+      expect(summary.engagedLetters, 1);
+      expect(summary.engagedWords, 1);
+      expect(summary.engagedPhrases, 1);
+      expect(summary.currentStreakDays, greaterThanOrEqualTo(1));
+      expect(summary.recentActivity, isNotNull);
+    },
+  );
 
   test('adult progress summary starts with a calm start state', () async {
     final container = await makeTestContainer();
@@ -69,30 +76,36 @@ void main() {
     expect(summary.continuation.intent, ArabicLearningContinuationIntent.start);
   });
 
-  test('adult progress summary derives lesson word and bridge coverage', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
+  test(
+    'adult progress summary derives lesson word and bridge coverage',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
 
-    container
-        .read(quranTeachingProgressProvider.notifier)
-        .completeLesson('alphabet_letters_1');
-    container
-        .read(quranTeachingBeginnerWordsProgressProvider.notifier)
-        .recordWordOpened('rabb');
-    container
-        .read(quranReadinessBridgeProgressProvider(ArabicLearningAudience.adult)
-            .notifier)
-        .markSnippetOpened('bismillah_bridge');
+      container
+          .read(quranTeachingProgressProvider.notifier)
+          .completeLesson('alphabet_letters_1');
+      container
+          .read(quranTeachingBeginnerWordsProgressProvider.notifier)
+          .recordWordOpened('rabb');
+      container
+          .read(
+            quranReadinessBridgeProgressProvider(
+              ArabicLearningAudience.adult,
+            ).notifier,
+          )
+          .markSnippetOpened('bismillah_bridge');
 
-    final summary = container.read(
-      arabicLearningProgressSummaryProvider(ArabicLearningAudience.adult),
-    );
+      final summary = container.read(
+        arabicLearningProgressSummaryProvider(ArabicLearningAudience.adult),
+      );
 
-    expect(summary.hasStarted, isTrue);
-    expect(summary.engagedLetters, 7);
-    expect(summary.engagedWords, 1);
-    expect(summary.engagedPhrases, 1);
-    expect(summary.completedLessons, 1);
-    expect(summary.recentActivity, isNotNull);
-  });
+      expect(summary.hasStarted, isTrue);
+      expect(summary.engagedLetters, 7);
+      expect(summary.engagedWords, 1);
+      expect(summary.engagedPhrases, 1);
+      expect(summary.completedLessons, 1);
+      expect(summary.recentActivity, isNotNull);
+    },
+  );
 }

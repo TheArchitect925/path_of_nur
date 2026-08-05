@@ -298,12 +298,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   Widget _plannedState(BuildContext context, DuaItem item) {
     final l10n = AppLocalizations.of(context);
     return ListView(
-      padding: const EdgeInsets.fromLTRB(
-        16,
-        12,
-        16,
-        _bottomContentPadding,
-      ),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, _bottomContentPadding),
       children: [
         _heroCard(context, item),
         const SizedBox(height: 12),

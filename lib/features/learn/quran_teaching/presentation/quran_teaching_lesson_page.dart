@@ -233,15 +233,12 @@ class _QuranTeachingLessonPageState
 
   void _playAudio(QuranAudioCue audio) {
     final l10n = AppLocalizations.of(context);
-    ref
-        .read(quranTeachingAudioPlaybackServiceProvider)
-        .playCue(audio)
-        .then((played) {
+    ref.read(quranTeachingAudioPlaybackServiceProvider).playCue(audio).then((
+      played,
+    ) {
       if (!mounted || played) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.batch9AudioNotAddedYet(audio.label)),
-        ),
+        SnackBar(content: Text(l10n.batch9AudioNotAddedYet(audio.label))),
       );
     });
   }

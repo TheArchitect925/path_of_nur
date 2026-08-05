@@ -9,6 +9,7 @@ extension WuduLocalizations on AppLocalizations {
     if (drops > 0) return wuduTrainerRewardFeedbackDropsOnly(drops);
     return wuduTrainerRewardFeedbackAlreadyCounted;
   }
+
   String wuduQuizRewardFeedbackText(int xp, int drops) {
     if (xp > 0 && drops > 0) return wuduQuizRewardFeedback(xp, drops);
     if (xp > 0) return wuduQuizRewardFeedbackXpOnly(xp);

@@ -48,223 +48,211 @@ class _QuranTeachingReviewPageState
       title: l10n.triviaReviewMistakesTitle,
       subtitle: l10n.triviaReviewMistakesSubtitle,
       children: [
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.quranTeachingReviewPageIntroTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                mistakes.isEmpty
+                    ? l10n.quranTeachingReviewPageEmptyBody
+                    : l10n.quranTeachingReviewPageCountBody(mistakes.length),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.quranTeachingReviewPageSessionTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 10),
+              SegmentedButton<_ReviewSessionFilter>(
+                segments: [
+                  ButtonSegment(
+                    value: _ReviewSessionFilter.all,
+                    label: Text(l10n.quranTeachingReviewPageFilterAll),
+                  ),
+                  ButtonSegment(
+                    value: _ReviewSessionFilter.quick,
+                    label: Text(l10n.quranTeachingReviewPageFilterQuick),
+                  ),
+                  ButtonSegment(
+                    value: _ReviewSessionFilter.recent,
+                    label: Text(l10n.quranTeachingReviewPageFilterRecent),
+                  ),
+                  ButtonSegment(
+                    value: _ReviewSessionFilter.hardest,
+                    label: Text(l10n.quranTeachingReviewPageFilterHardest),
+                  ),
+                ],
+                selected: <_ReviewSessionFilter>{_filter},
+                onSelectionChanged: (selection) {
+                  setState(() {
+                    _filter = selection.first;
+                    _index = 0;
+                    _sessionStarted = false;
+                    _clearAnswerState();
+                  });
+                },
+              ),
+              if (!_sessionStarted && sessionItems.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                FilledButton(
+                  onPressed: () => setState(() => _sessionStarted = true),
+                  child: Text(
+                    _filter == _ReviewSessionFilter.quick
+                        ? l10n.quranTeachingReviewPageStartQuickAction
+                        : l10n.quranTeachingReviewPageStartAction,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        if (!_sessionStarted && sessionItems.isEmpty)
+          PremiumCard(
+            child: Text(
+              l10n.quranTeachingReviewPageFilterEmpty,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ),
+        if (_sessionStarted && current != null)
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  l10n.quranTeachingReviewPageItemCounter(
+                    _index + 1,
+                    sessionItems.length,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.onSurfaceSubtle,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  current.prompt,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                if (current.promptArabic != null) ...[
+                  const SizedBox(height: 10),
                   Text(
-                    l10n.quranTeachingReviewPageIntroTitle,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
+                    current.promptArabic!,
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.rtl,
+                    style: const TextStyle(
+                      fontSize: 34,
+                      fontFamily: 'AmiriQuran',
                     ),
                   ),
+                ],
+                if (current.promptSecondary != null) ...[
                   const SizedBox(height: 6),
                   Text(
-                    mistakes.isEmpty
-                        ? l10n.quranTeachingReviewPageEmptyBody
-                        : l10n.quranTeachingReviewPageCountBody(
-                            mistakes.length,
-                          ),
+                    current.promptSecondary!,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
-              ),
-            ),
-            const SizedBox(height: 12),
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.quranTeachingReviewPageSessionTitle,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                if (current.audio != null) ...[
                   const SizedBox(height: 10),
-                  SegmentedButton<_ReviewSessionFilter>(
-                    segments: [
-                      ButtonSegment(
-                        value: _ReviewSessionFilter.all,
-                        label: Text(l10n.quranTeachingReviewPageFilterAll),
-                      ),
-                      ButtonSegment(
-                        value: _ReviewSessionFilter.quick,
-                        label: Text(l10n.quranTeachingReviewPageFilterQuick),
-                      ),
-                      ButtonSegment(
-                        value: _ReviewSessionFilter.recent,
-                        label: Text(l10n.quranTeachingReviewPageFilterRecent),
-                      ),
-                      ButtonSegment(
-                        value: _ReviewSessionFilter.hardest,
-                        label: Text(l10n.quranTeachingReviewPageFilterHardest),
-                      ),
-                    ],
-                    selected: <_ReviewSessionFilter>{_filter},
-                    onSelectionChanged: (selection) {
-                      setState(() {
-                        _filter = selection.first;
-                        _index = 0;
-                        _sessionStarted = false;
-                        _clearAnswerState();
-                      });
+                  QuranTeachingAudioIconButton(
+                    audio: current.audio,
+                    availableIcon: Icons.volume_up_rounded,
+                    label: l10n.quranTeachingReviewPageReplayAudioAction,
+                    onAvailablePressed: () async {
+                      final played = await ref
+                          .read(quranTeachingAudioPlaybackServiceProvider)
+                          .playCue(current.audio!);
+                      if (!mounted || played) {
+                        return;
+                      }
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            l10n.batch9AudioNotAddedYet(current.audio!.label),
+                          ),
+                        ),
+                      );
                     },
                   ),
-                  if (!_sessionStarted && sessionItems.isNotEmpty) ...[
-                    const SizedBox(height: 12),
-                    FilledButton(
-                      onPressed: () => setState(() => _sessionStarted = true),
-                      child: Text(
-                        _filter == _ReviewSessionFilter.quick
-                            ? l10n.quranTeachingReviewPageStartQuickAction
-                            : l10n.quranTeachingReviewPageStartAction,
-                      ),
-                    ),
-                  ],
                 ],
-              ),
+                const SizedBox(height: 14),
+                ..._reviewOptions(current, context),
+                if (_feedback != null) ...[
+                  const SizedBox(height: 14),
+                  Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: (_wasCorrect == true ? Colors.green : Colors.red)
+                          .withValues(alpha: 0.10),
+                    ),
+                    child: Text(_feedback!),
+                  ),
+                ],
+                const SizedBox(height: 14),
+                FilledButton(
+                  onPressed: _feedback == null
+                      ? () => _submit(current)
+                      : () => _advance(sessionItems),
+                  child: Text(
+                    _feedback == null
+                        ? l10n.quranTeachingReviewPageCheckAnswerAction
+                        : l10n.quranTeachingReviewPageNextItemAction,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
-            if (!_sessionStarted && sessionItems.isEmpty)
-              PremiumCard(
-                child: Text(
-                  l10n.quranTeachingReviewPageFilterEmpty,
-                  style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        if (_sessionStarted && current == null)
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.quranTeachingReviewPageCompleteTitle,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-            if (_sessionStarted && current != null)
-              PremiumCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      l10n.quranTeachingReviewPageItemCounter(
-                        _index + 1,
-                        sessionItems.length,
-                      ),
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      current.prompt,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    if (current.promptArabic != null) ...[
-                      const SizedBox(height: 10),
-                      Text(
-                        current.promptArabic!,
-                        textAlign: TextAlign.center,
-                        textDirection: TextDirection.rtl,
-                        style: const TextStyle(
-                          fontSize: 34,
-                          fontFamily: 'AmiriQuran',
-                        ),
-                      ),
-                    ],
-                    if (current.promptSecondary != null) ...[
-                      const SizedBox(height: 6),
-                      Text(
-                        current.promptSecondary!,
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
-                    if (current.audio != null) ...[
-                      const SizedBox(height: 10),
-                      QuranTeachingAudioIconButton(
-                        audio: current.audio,
-                        availableIcon: Icons.volume_up_rounded,
-                        label: l10n.quranTeachingReviewPageReplayAudioAction,
-                        onAvailablePressed: () async {
-                          final played = await ref
-                              .read(quranTeachingAudioPlaybackServiceProvider)
-                              .playCue(current.audio!);
-                          if (!mounted || played) {
-                            return;
-                          }
-                          messenger.showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                l10n.batch9AudioNotAddedYet(
-                                  current.audio!.label,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                    const SizedBox(height: 14),
-                    ..._reviewOptions(current, context),
-                    if (_feedback != null) ...[
-                      const SizedBox(height: 14),
-                      Container(
-                        padding: const EdgeInsets.all(14),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: (_wasCorrect == true ? Colors.green : Colors.red)
-                              .withValues(alpha: 0.10),
-                        ),
-                        child: Text(_feedback!),
-                      ),
-                    ],
-                    const SizedBox(height: 14),
-                    FilledButton(
-                      onPressed: _feedback == null
-                          ? () => _submit(current)
-                          : () => _advance(sessionItems),
-                      child: Text(
-                        _feedback == null
-                            ? l10n.quranTeachingReviewPageCheckAnswerAction
-                            : l10n.quranTeachingReviewPageNextItemAction,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 8),
+                Text(l10n.quranTeachingReviewPageImprovedCount(_improvedCount)),
+                Text(
+                  l10n.quranTeachingReviewPageStillNeedsCount(_stillNeedsCount),
                 ),
-              ),
-            if (_sessionStarted && current == null)
-              PremiumCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.quranTeachingReviewPageCompleteTitle,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      l10n.quranTeachingReviewPageImprovedCount(
-                        _improvedCount,
-                      ),
-                    ),
-                    Text(
-                      l10n.quranTeachingReviewPageStillNeedsCount(
-                        _stillNeedsCount,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    FilledButton(
-                      onPressed: () {
-                        setState(() {
-                          _sessionStarted = false;
-                          _index = 0;
-                          _clearAnswerState();
-                          _improvedCount = 0;
-                          _stillNeedsCount = 0;
-                        });
-                      },
-                      child: Text(
-                        l10n.quranTeachingReviewPageStartAnotherAction,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 12),
+                FilledButton(
+                  onPressed: () {
+                    setState(() {
+                      _sessionStarted = false;
+                      _index = 0;
+                      _clearAnswerState();
+                      _improvedCount = 0;
+                      _stillNeedsCount = 0;
+                    });
+                  },
+                  child: Text(l10n.quranTeachingReviewPageStartAnotherAction),
                 ),
-              ),
+              ],
+            ),
+          ),
       ],
     );
   }
@@ -298,8 +286,9 @@ class _QuranTeachingReviewPageState
             Expanded(
               child: ChoiceChip(
                 label: Text(
-                  AppLocalizations.of(context)
-                      .quranTeachingReviewPageTrueAction,
+                  AppLocalizations.of(
+                    context,
+                  ).quranTeachingReviewPageTrueAction,
                 ),
                 selected: _selectedTrueFalse == true,
                 onSelected: (_) => setState(() => _selectedTrueFalse = true),
@@ -309,8 +298,9 @@ class _QuranTeachingReviewPageState
             Expanded(
               child: ChoiceChip(
                 label: Text(
-                  AppLocalizations.of(context)
-                      .quranTeachingReviewPageFalseAction,
+                  AppLocalizations.of(
+                    context,
+                  ).quranTeachingReviewPageFalseAction,
                 ),
                 selected: _selectedTrueFalse == false,
                 onSelected: (_) => setState(() => _selectedTrueFalse = false),
@@ -394,10 +384,9 @@ class _QuranTeachingReviewPageState
     ref
         .read(quranTeachingMistakeQueueProvider.notifier)
         .recordReviewResult(item.quizId, correct: correct);
-    ref.read(quranTeachingSmartReviewProvider.notifier).recordMistakeReviewOutcome(
-          item: item,
-          correct: correct,
-        );
+    ref
+        .read(quranTeachingSmartReviewProvider.notifier)
+        .recordMistakeReviewOutcome(item: item, correct: correct);
     setState(() {
       _wasCorrect = correct;
       _feedback = correct ? item.feedbackCorrect : item.feedbackIncorrect;

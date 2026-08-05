@@ -35,7 +35,9 @@ final editorialDashboardPackageInfoProvider = Provider<AsyncValue<String>>((
 final editorialDashboardDomainSectionsProvider =
     Provider<List<EditorialDashboardDomainSection>>((ref) {
       final quranManifest = ref.watch(quranAyahExplanationManifestProvider);
-      final quranPackCounts = ref.watch(quranAyahExplanationPackSummaryProvider);
+      final quranPackCounts = ref.watch(
+        quranAyahExplanationPackSummaryProvider,
+      );
       final quranPackDefinitions = ref.watch(
         quranAyahExplanationPackDefinitionsProvider,
       );
@@ -44,12 +46,13 @@ final editorialDashboardDomainSectionsProvider =
         quranAyahExplanationCoverageBySurahProvider,
       );
       final actionRepository = ref.watch(quranAyahActionRepositoryProvider);
-      final explanationEntries = ref.watch(
-        quranAyahExplanationRepositoryProvider,
-      ).getAll();
+      final explanationEntries = ref
+          .watch(quranAyahExplanationRepositoryProvider)
+          .getAll();
       final quranActionCount = explanationEntries
           .where(
-            (entry) => actionRepository.actionForEntry(
+            (entry) =>
+                actionRepository.actionForEntry(
                   entry,
                   languageCode: 'en',
                   preferKids: false,
@@ -59,7 +62,8 @@ final editorialDashboardDomainSectionsProvider =
           .length;
       final quranKidsActionCount = explanationEntries
           .where(
-            (entry) => actionRepository.actionForEntry(
+            (entry) =>
+                actionRepository.actionForEntry(
                   entry,
                   languageCode: 'en',
                   preferKids: true,
@@ -71,89 +75,98 @@ final editorialDashboardDomainSectionsProvider =
       final quranReviewedCount = quranManifest
           .where(
             (item) =>
-                item.reviewStatus == QuranAyahExplanationReviewStatus.reviewed ||
+                item.reviewStatus ==
+                    QuranAyahExplanationReviewStatus.reviewed ||
                 item.reviewStatus == QuranAyahExplanationReviewStatus.verified,
           )
           .length;
       final quranVerifiedCount = quranManifest
-          .where((item) => item.reviewStatus == QuranAyahExplanationReviewStatus.verified)
+          .where(
+            (item) =>
+                item.reviewStatus == QuranAyahExplanationReviewStatus.verified,
+          )
           .length;
       final quranKidsReviewedCount = quranManifest
-          .where((item) => item.reviewStatus == QuranAyahExplanationReviewStatus.kidsReviewed)
+          .where(
+            (item) =>
+                item.reviewStatus ==
+                QuranAyahExplanationReviewStatus.kidsReviewed,
+          )
           .length;
       final totalQuranAyahCount = quranSummaries.fold<int>(
         0,
         (sum, item) => sum + item.surah.verseCount,
       );
       final quranMissingAyahCount = totalQuranAyahCount - quranManifest.length;
-      final quranPackItems = quranPackDefinitions.map((definition) {
-        final entries = quranManifest
-            .where((entry) => entry.rolloutPack == definition.pack)
-            .toList(growable: false);
-        final reviewed = entries
-            .where(
-              (entry) =>
-                  entry.reviewStatus ==
-                      QuranAyahExplanationReviewStatus.reviewed ||
-                  entry.reviewStatus ==
+      final quranPackItems = quranPackDefinitions
+          .map((definition) {
+            final entries = quranManifest
+                .where((entry) => entry.rolloutPack == definition.pack)
+                .toList(growable: false);
+            final reviewed = entries
+                .where(
+                  (entry) =>
+                      entry.reviewStatus ==
+                          QuranAyahExplanationReviewStatus.reviewed ||
+                      entry.reviewStatus ==
+                          QuranAyahExplanationReviewStatus.verified,
+                )
+                .length;
+            final verified = entries
+                .where(
+                  (entry) =>
+                      entry.reviewStatus ==
                       QuranAyahExplanationReviewStatus.verified,
-            )
-            .length;
-        final verified = entries
-            .where(
-              (entry) =>
-                  entry.reviewStatus ==
-                  QuranAyahExplanationReviewStatus.verified,
-            )
-            .length;
-        final kidsReady = entries.where((entry) => entry.hasKids).length;
-        final sourceReady = entries.where((entry) => entry.hasSourceRefs).length;
-        return EditorialDashboardItem(
-          domain: EditorialDashboardDomain.quran,
-          id: 'quran_pack_${definition.pack.name}',
-          type: EditorialDashboardItemType.pack,
-          status: entries.isEmpty
-              ? EditorialDashboardItemStatus.draft
-              : reviewed == entries.length
-              ? EditorialDashboardItemStatus.reviewed
-              : EditorialDashboardItemStatus.partial,
-          metrics: <EditorialDashboardMetric>[
-            EditorialDashboardMetric(
-              type: EditorialDashboardMetricType.entries,
-              value: entries.length,
-            ),
-            EditorialDashboardMetric(
-              type: EditorialDashboardMetricType.reviewed,
-              value: reviewed,
-            ),
-            EditorialDashboardMetric(
-              type: EditorialDashboardMetricType.verified,
-              value: verified,
-            ),
-            EditorialDashboardMetric(
-              type: EditorialDashboardMetricType.kidsReady,
-              value: kidsReady,
-            ),
-            EditorialDashboardMetric(
-              type: EditorialDashboardMetricType.localized,
-              value: sourceReady,
-            ),
-          ],
-          kidsSafe: kidsReady == entries.length && entries.isNotEmpty,
-          kidsExpected: true,
-          hasSources: sourceReady == entries.length && entries.isNotEmpty,
-          sourcesExpected: true,
-          localizationReady: true,
-          missingContent: entries.isEmpty,
-          needsReview: reviewed < entries.length,
-          routeName: 'quranLearningHub',
-          packId: definition.pack.name,
-          searchKeywords: <String>[
-            'quran pack',
-            definition.pack.name,
-          ],
-        );
-      }).toList(growable: false);
+                )
+                .length;
+            final kidsReady = entries.where((entry) => entry.hasKids).length;
+            final sourceReady = entries
+                .where((entry) => entry.hasSourceRefs)
+                .length;
+            return EditorialDashboardItem(
+              domain: EditorialDashboardDomain.quran,
+              id: 'quran_pack_${definition.pack.name}',
+              type: EditorialDashboardItemType.pack,
+              status: entries.isEmpty
+                  ? EditorialDashboardItemStatus.draft
+                  : reviewed == entries.length
+                  ? EditorialDashboardItemStatus.reviewed
+                  : EditorialDashboardItemStatus.partial,
+              metrics: <EditorialDashboardMetric>[
+                EditorialDashboardMetric(
+                  type: EditorialDashboardMetricType.entries,
+                  value: entries.length,
+                ),
+                EditorialDashboardMetric(
+                  type: EditorialDashboardMetricType.reviewed,
+                  value: reviewed,
+                ),
+                EditorialDashboardMetric(
+                  type: EditorialDashboardMetricType.verified,
+                  value: verified,
+                ),
+                EditorialDashboardMetric(
+                  type: EditorialDashboardMetricType.kidsReady,
+                  value: kidsReady,
+                ),
+                EditorialDashboardMetric(
+                  type: EditorialDashboardMetricType.localized,
+                  value: sourceReady,
+                ),
+              ],
+              kidsSafe: kidsReady == entries.length && entries.isNotEmpty,
+              kidsExpected: true,
+              hasSources: sourceReady == entries.length && entries.isNotEmpty,
+              sourcesExpected: true,
+              localizationReady: true,
+              missingContent: entries.isEmpty,
+              needsReview: reviewed < entries.length,
+              routeName: 'quranLearningHub',
+              packId: definition.pack.name,
+              searchKeywords: <String>['quran pack', definition.pack.name],
+            );
+          })
+          .toList(growable: false);
 
       final hadithThemes = ref.watch(hadithThemesProvider);
       final hadithCollections = ref.watch(hadithCollectionsProvider);
@@ -162,10 +175,15 @@ final editorialDashboardDomainSectionsProvider =
       final prophets = ref.watch(prophetsProvider);
       final bedtimeStories = ref.watch(bedtimeStoriesProvider);
       final kidsStories = ref.watch(kidsIslamicStoriesProvider);
-      final kidsSeerahRepository = ref.watch(kidsSeerahJourneyRepositoryProvider);
+      final kidsSeerahRepository = ref.watch(
+        kidsSeerahJourneyRepositoryProvider,
+      );
       final kidsSeerahJourneys = ref.watch(kidsSeerahJourneysProvider);
       final kidsSeerahStages = kidsSeerahJourneys
-          .expand((journey) => kidsSeerahRepository.stagesForJourney(journey.journeyId))
+          .expand(
+            (journey) =>
+                kidsSeerahRepository.stagesForJourney(journey.journeyId),
+          )
           .toList(growable: false);
       final kidsSeerahNodes = kidsSeerahStages
           .expand((stage) => kidsSeerahRepository.nodesForStage(stage.stageId))
@@ -255,7 +273,10 @@ final editorialDashboardDomainSectionsProvider =
             ),
             EditorialDashboardMetric(
               type: EditorialDashboardMetricType.covered,
-              value: quranPackCounts.values.fold<int>(0, (sum, value) => sum + value),
+              value: quranPackCounts.values.fold<int>(
+                0,
+                (sum, value) => sum + value,
+              ),
             ),
           ],
           kidsSafe: true,
@@ -567,7 +588,9 @@ final editorialDashboardDomainSectionsProvider =
               value: completedLearningJourneyCount,
             ),
           ],
-          kidsSafe: learningJourneys.any((journey) => journey.id.contains('kids')),
+          kidsSafe: learningJourneys.any(
+            (journey) => journey.id.contains('kids'),
+          ),
           kidsExpected: true,
           localizationReady: true,
           packId: 'learning_journeys',
@@ -802,7 +825,12 @@ final editorialDashboardDomainSectionsProvider =
           localizationReady: true,
           routeName: 'quranDailyCompanion',
           packId: 'recommendation_engines',
-          searchKeywords: const <String>['home', 'reader', 'journey', 'surface'],
+          searchKeywords: const <String>[
+            'home',
+            'reader',
+            'journey',
+            'surface',
+          ],
         ),
       ];
 
@@ -912,12 +940,9 @@ class EditorialDashboardMetadataController
   }
 
   void _persist() {
-    _store.setJsonMap(
-      _editorialDashboardMetadataKey,
-      <String, dynamic>{
-        for (final entry in state.entries) entry.key: entry.value.toJson(),
-      },
-    );
+    _store.setJsonMap(_editorialDashboardMetadataKey, <String, dynamic>{
+      for (final entry in state.entries) entry.key: entry.value.toJson(),
+    });
   }
 
   void setReadiness(String itemId, EditorialReadinessState readiness) {
@@ -926,7 +951,10 @@ class EditorialDashboardMetadataController
           readinessOverride: readiness,
           updatedAtIso: DateTime.now().toIso8601String(),
         );
-    state = <String, EditorialDashboardMetadataEntry>{...state, itemId: updated};
+    state = <String, EditorialDashboardMetadataEntry>{
+      ...state,
+      itemId: updated,
+    };
     _persist();
   }
 
@@ -938,17 +966,23 @@ class EditorialDashboardMetadataController
           clearNote: normalized.isEmpty,
           updatedAtIso: DateTime.now().toIso8601String(),
         );
-    state = <String, EditorialDashboardMetadataEntry>{...state, itemId: updated};
+    state = <String, EditorialDashboardMetadataEntry>{
+      ...state,
+      itemId: updated,
+    };
     _persist();
   }
 }
 
-final editorialDashboardMetadataProvider = StateNotifierProvider<
-  EditorialDashboardMetadataController,
-  Map<String, EditorialDashboardMetadataEntry>
->((ref) {
-  return EditorialDashboardMetadataController(ref.watch(localStoreProvider));
-});
+final editorialDashboardMetadataProvider =
+    StateNotifierProvider<
+      EditorialDashboardMetadataController,
+      Map<String, EditorialDashboardMetadataEntry>
+    >((ref) {
+      return EditorialDashboardMetadataController(
+        ref.watch(localStoreProvider),
+      );
+    });
 
 final editorialDashboardScoredItemsProvider =
     Provider<List<EditorialScoredItem>>((ref) {
@@ -980,15 +1014,18 @@ final editorialDashboardScoredItemsProvider =
 final editorialDashboardScoredSectionsProvider =
     Provider<List<EditorialDashboardDomainSection>>((ref) {
       final scoredItems = ref.watch(editorialDashboardScoredItemsProvider);
-      return EditorialDashboardDomain.values.map((domain) {
-        return EditorialDashboardDomainSection(
-          domain: domain,
-          items: scoredItems
-              .where((item) => item.item.domain == domain)
-              .map((item) => item.item)
-              .toList(growable: false),
-        );
-      }).where((section) => section.items.isNotEmpty).toList(growable: false);
+      return EditorialDashboardDomain.values
+          .map((domain) {
+            return EditorialDashboardDomainSection(
+              domain: domain,
+              items: scoredItems
+                  .where((item) => item.item.domain == domain)
+                  .map((item) => item.item)
+                  .toList(growable: false),
+            );
+          })
+          .where((section) => section.items.isNotEmpty)
+          .toList(growable: false);
     });
 
 final editorialDashboardPackHealthProvider =
@@ -1037,14 +1074,14 @@ final editorialDashboardPackHealthProvider =
         final sourcePercent =
             ((items.where((item) => item.item.hasSources).length / total) * 100)
                 .round();
-        final localizationPercent = ((items
-                    .where((item) => item.item.localizationReady)
-                    .length /
-                total) *
-            100)
-            .round();
+        final localizationPercent =
+            ((items.where((item) => item.item.localizationReady).length /
+                        total) *
+                    100)
+                .round();
         final overall =
-            (items.fold<int>(0, (sum, item) => sum + item.quality.score) / total)
+            (items.fold<int>(0, (sum, item) => sum + item.quality.score) /
+                    total)
                 .round();
         final readiness = overall >= 92 && missingRequired == 0
             ? EditorialReadinessState.launchReady
@@ -1124,7 +1161,8 @@ final editorialDashboardReviewQueuesProvider =
           category: EditorialTriageCategory.missingLocalization,
           items: build(
             EditorialTriageCategory.missingLocalization,
-            (item) => item.item.localizationExpected && !item.item.localizationReady,
+            (item) =>
+                item.item.localizationExpected && !item.item.localizationReady,
           ),
         ),
         EditorialReviewQueue(
@@ -1138,7 +1176,8 @@ final editorialDashboardReviewQueuesProvider =
           category: EditorialTriageCategory.incompleteContentPacks,
           items: build(
             EditorialTriageCategory.incompleteContentPacks,
-            (item) => item.item.type == EditorialDashboardItemType.pack &&
+            (item) =>
+                item.item.type == EditorialDashboardItemType.pack &&
                 item.quality.score < 85,
           ),
         ),
@@ -1160,23 +1199,18 @@ final editorialDashboardReviewQueuesProvider =
         ),
         EditorialReviewQueue(
           category: EditorialTriageCategory.recentlyUpdated,
-          items: build(
-            EditorialTriageCategory.recentlyUpdated,
-            (item) {
-              final updated = DateTime.tryParse(item.lastUpdatedIso ?? '');
-              return updated != null &&
-                  now.difference(updated).inDays <= 7;
-            },
-          ),
+          items: build(EditorialTriageCategory.recentlyUpdated, (item) {
+            final updated = DateTime.tryParse(item.lastUpdatedIso ?? '');
+            return updated != null && now.difference(updated).inDays <= 7;
+          }),
         ),
         EditorialReviewQueue(
           category: EditorialTriageCategory.staleContent,
           items: build(
             EditorialTriageCategory.staleContent,
-            (item) =>
-                item.quality.issues.any(
-                  (issue) => issue.code == EditorialIssueCode.staleContent,
-                ),
+            (item) => item.quality.issues.any(
+              (issue) => issue.code == EditorialIssueCode.staleContent,
+            ),
           ),
         ),
       ];
@@ -1361,7 +1395,9 @@ EditorialQualityScore _scoreItem(
     );
   }
 
-  final updated = DateTime.tryParse(lastUpdatedIso ?? item.lastUpdatedIso ?? '');
+  final updated = DateTime.tryParse(
+    lastUpdatedIso ?? item.lastUpdatedIso ?? '',
+  );
   if (updated != null && now.difference(updated).inDays > 60) {
     penalize(
       true,
@@ -1378,15 +1414,15 @@ EditorialQualityScore _scoreItem(
       code: EditorialIssueCode.infoOnly,
       priority: EditorialPriorityLevel.low,
       penalty: 4,
-      detail: 'This item is informational rather than fully reviewable content.',
+      detail:
+          'This item is informational rather than fully reviewable content.',
     );
   }
 
   if (score < 0) score = 0;
 
-  final priority = issues.any(
-        (issue) => issue.priority == EditorialPriorityLevel.critical,
-      )
+  final priority =
+      issues.any((issue) => issue.priority == EditorialPriorityLevel.critical)
       ? EditorialPriorityLevel.critical
       : issues.any((issue) => issue.priority == EditorialPriorityLevel.high)
       ? EditorialPriorityLevel.high
@@ -1394,7 +1430,8 @@ EditorialQualityScore _scoreItem(
       ? EditorialPriorityLevel.medium
       : EditorialPriorityLevel.low;
 
-  final readiness = score >= 94 &&
+  final readiness =
+      score >= 94 &&
           !item.missingContent &&
           !item.needsReview &&
           item.status == EditorialDashboardItemStatus.verified

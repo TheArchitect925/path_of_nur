@@ -48,17 +48,15 @@ class BedtimeCompanionPage extends ConsumerWidget {
             children: [
               Text(
                 l10n.bedtimeCompanionHeroTitle(learner.effectiveDisplayName),
-                style: Theme.of(
-                  context,
-                ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const SizedBox(height: 8),
               Text(l10n.bedtimeCompanionHeroSubtitle),
               const SizedBox(height: 12),
               if (recommendation != null)
-                _Tag(
-                  label: _recommendationTitle(l10n, recommendation),
-                ),
+                _Tag(label: _recommendationTitle(l10n, recommendation)),
               const SizedBox(height: 12),
               Text(
                 l10n.bedtimeCompanionRoutineProgress(
@@ -84,7 +82,8 @@ class BedtimeCompanionPage extends ConsumerWidget {
               context: context,
               ref: ref,
               step: step,
-              progress: session?.stepProgressById[step.stepId] ??
+              progress:
+                  session?.stepProgressById[step.stepId] ??
                   const BedtimeRoutineStepProgress(),
               primaryDua: primaryDua,
               storyId: story?.id,
@@ -104,7 +103,9 @@ class BedtimeCompanionPage extends ConsumerWidget {
             onComplete: () {
               ref
                   .read(bedtimeCompanionSessionProvider.notifier)
-                  .completeStep(_stepId(plan, BedtimeRoutineStepType.bedtimeDua));
+                  .completeStep(
+                    _stepId(plan, BedtimeRoutineStepType.bedtimeDua),
+                  );
             },
           ),
         ],
@@ -126,7 +127,9 @@ class BedtimeCompanionPage extends ConsumerWidget {
         _ReflectionCard(
           session: session,
           onSelect: (choiceId) {
-            ref.read(bedtimeCompanionSessionProvider.notifier).completeStep(
+            ref
+                .read(bedtimeCompanionSessionProvider.notifier)
+                .completeStep(
                   _stepId(plan, BedtimeRoutineStepType.gratitudeReflection),
                   selectedChoiceId: choiceId,
                 );
@@ -136,8 +139,12 @@ class BedtimeCompanionPage extends ConsumerWidget {
         _SleepReadyCard(
           isCompleted: session?.isCompleted ?? false,
           onReady: () {
-            final controller = ref.read(bedtimeCompanionSessionProvider.notifier);
-            controller.completeStep(_stepId(plan, BedtimeRoutineStepType.getReadyForBed));
+            final controller = ref.read(
+              bedtimeCompanionSessionProvider.notifier,
+            );
+            controller.completeStep(
+              _stepId(plan, BedtimeRoutineStepType.getReadyForBed),
+            );
             controller.completeStep(
               _stepId(plan, BedtimeRoutineStepType.sleepReadyFinish),
             );
@@ -247,7 +254,9 @@ class _StoryCard extends ConsumerWidget {
     if (story == null) {
       return const SizedBox.shrink();
     }
-    final availability = ref.watch(bedtimeStoryAudioAvailabilityProvider(story));
+    final availability = ref.watch(
+      bedtimeStoryAudioAvailabilityProvider(story),
+    );
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,7 +288,9 @@ class _StoryCard extends ConsumerWidget {
                     }
                   },
                   icon: Icon(
-                    hasAudio ? Icons.play_circle_fill_rounded : Icons.menu_book_rounded,
+                    hasAudio
+                        ? Icons.play_circle_fill_rounded
+                        : Icons.menu_book_rounded,
                   ),
                   label: Text(
                     hasAudio
@@ -343,9 +354,9 @@ class _DuaCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             '${l10n.bedtimeCompanionSourceLabel}: ${dua.sourceReference}',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFF7B6A57),
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: const Color(0xFF7B6A57)),
           ),
           if (secondaryDuas.isNotEmpty) ...[
             const SizedBox(height: 12),
@@ -377,10 +388,7 @@ class _DuaCard extends StatelessWidget {
 }
 
 class _ReflectionCard extends StatelessWidget {
-  const _ReflectionCard({
-    required this.session,
-    required this.onSelect,
-  });
+  const _ReflectionCard({required this.session, required this.onSelect});
 
   final BedtimeRoutineSession? session;
   final ValueChanged<String> onSelect;
@@ -420,10 +428,7 @@ class _ReflectionCard extends StatelessWidget {
 }
 
 class _SleepReadyCard extends StatelessWidget {
-  const _SleepReadyCard({
-    required this.isCompleted,
-    required this.onReady,
-  });
+  const _SleepReadyCard({required this.isCompleted, required this.onReady});
 
   final bool isCompleted;
   final VoidCallback onReady;

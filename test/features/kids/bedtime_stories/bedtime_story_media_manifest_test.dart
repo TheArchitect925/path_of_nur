@@ -15,7 +15,9 @@ void main() {
     );
     expect(
       entry.alternateAssetPaths,
-      contains('assets/audio/bedtime_stories/prophets/prophet_adam_bedtime_v1.mp3'),
+      contains(
+        'assets/audio/bedtime_stories/prophets/prophet_adam_bedtime_v1.mp3',
+      ),
     );
     expect(entry.languageCode, 'en');
     expect(entry.versionTag, 'v1');

@@ -214,7 +214,8 @@ const seededGrowthUnlockables = <GrowthUnlockable>[
     type: GrowthUnlockableType.reflectionPack,
     title: 'Returning Gently',
     subtitle: 'Extra reflective prompts.',
-    description: 'A small pack of prompts for calm returns after difficult days.',
+    description:
+        'A small pack of prompts for calm returns after difficult days.',
     previewAssetKey: 'reflection_pack_returning',
     requiredTotalCompletions: 35,
     requiredStreakDays: 5,

@@ -13,16 +13,14 @@ void main() {
     expect(phrases, hasLength(6));
     expect(
       phrases.map((item) => item.id),
-      orderedEquals(
-        const [
-          'bismillah',
-          'alhamdulillah',
-          'subhanallah',
-          'allahu-akbar',
-          'assalamu-alaikum',
-          'inshaallah',
-        ],
-      ),
+      orderedEquals(const [
+        'bismillah',
+        'alhamdulillah',
+        'subhanallah',
+        'allahu-akbar',
+        'assalamu-alaikum',
+        'inshaallah',
+      ]),
     );
     for (final phrase in phrases) {
       expect(phrase.phraseAr, isNotEmpty);
@@ -34,7 +32,9 @@ void main() {
     final container = await makeTestContainer();
     addTearDown(container.dispose);
 
-    final notifier = container.read(kidsArabicMiniPhraseProgressProvider.notifier);
+    final notifier = container.read(
+      kidsArabicMiniPhraseProgressProvider.notifier,
+    );
     notifier.markPhraseOpened('alhamdulillah');
     notifier.markPhraseHeard('subhanallah');
 

@@ -13,17 +13,18 @@ import 'bedtime_story_repository.dart';
 const legacyBedtimeStoryLearningProgressKey =
     'kids.bedtime_stories.learning_progress.v1';
 
-final bedtimeStoryLearningProgressProvider = StateNotifierProvider<
-  BedtimeStoryLearningProgressController,
-  BedtimeStoryLearningProgressState
->((ref) {
-  final controller = BedtimeStoryLearningProgressController(ref);
-  ref.listen<String>(
-    bedtimeActiveLearnerProvider.select((value) => value.learnerId),
-    (_, next) => controller.updateActiveLearner(next),
-  );
-  return controller;
-});
+final bedtimeStoryLearningProgressProvider =
+    StateNotifierProvider<
+      BedtimeStoryLearningProgressController,
+      BedtimeStoryLearningProgressState
+    >((ref) {
+      final controller = BedtimeStoryLearningProgressController(ref);
+      ref.listen<String>(
+        bedtimeActiveLearnerProvider.select((value) => value.learnerId),
+        (_, next) => controller.updateActiveLearner(next),
+      );
+      return controller;
+    });
 
 class BedtimeStoryLearningProgressController
     extends StateNotifier<BedtimeStoryLearningProgressState> {
@@ -144,20 +145,17 @@ class BedtimeStoryLearningProgressController
       _ref
           .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
           .award(
-        sourceRef: sourceRef,
-        activityType: mode == BedtimeStoryLearningMode.quiz
-            ? LearnerProgressionActivityType.bedtimeQuizCompletion
-            : LearnerProgressionActivityType.bedtimeMemoryCompletion,
-        sourceModule: 'kids_bedtime_story_learning',
-        xp: xpReward,
-        drops: 0,
-        occurredAt: now,
-        metadata: {
-          ...metadata,
-          'bedtimeLearnerId': _activeLearnerId,
-        },
-        mirrorToJourney: true,
-      );
+            sourceRef: sourceRef,
+            activityType: mode == BedtimeStoryLearningMode.quiz
+                ? LearnerProgressionActivityType.bedtimeQuizCompletion
+                : LearnerProgressionActivityType.bedtimeMemoryCompletion,
+            sourceModule: 'kids_bedtime_story_learning',
+            xp: xpReward,
+            drops: 0,
+            occurredAt: now,
+            metadata: {...metadata, 'bedtimeLearnerId': _activeLearnerId},
+            mirrorToJourney: true,
+          );
     } else if (!wasCompleted && firstRewardGrant) {
       _ref
           .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
@@ -170,31 +168,30 @@ class BedtimeStoryLearningProgressController
             xp: xpReward,
             drops: 0,
             occurredAt: now,
-            metadata: {
-              ...metadata,
-              'bedtimeLearnerId': _activeLearnerId,
-            },
+            metadata: {...metadata, 'bedtimeLearnerId': _activeLearnerId},
           );
     }
     if (!wasCompleted) {
       final story = _ref.read(bedtimeStoryByIdProvider(storyId));
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: mode == BedtimeStoryLearningMode.quiz
-            ? KidsActivityType.quizCompleted
-            : KidsActivityType.memoryCompleted,
-        domain: KidsActivityDomain.stories,
-        sourceRef: sourceRef,
-        contentId: storyId,
-        titleSnapshot: story?.shortTitle ?? story?.title,
-        subtitleSnapshot: story?.lesson,
-        occurredAt: now,
-        metadata: <String, Object?>{
-          ...metadata,
-          'feature': 'kids_bedtime_story_learning',
-          'storyId': storyId,
-          'mode': mode.name,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: mode == BedtimeStoryLearningMode.quiz
+                ? KidsActivityType.quizCompleted
+                : KidsActivityType.memoryCompleted,
+            domain: KidsActivityDomain.stories,
+            sourceRef: sourceRef,
+            contentId: storyId,
+            titleSnapshot: story?.shortTitle ?? story?.title,
+            subtitleSnapshot: story?.lesson,
+            occurredAt: now,
+            metadata: <String, Object?>{
+              ...metadata,
+              'feature': 'kids_bedtime_story_learning',
+              'storyId': storyId,
+              'mode': mode.name,
+            },
+          );
     }
     _persist();
     return BedtimeStoryLearningCompletionOutcome(
@@ -209,7 +206,9 @@ class BedtimeStoryLearningProgressController
     }
     _activeLearnerId = learnerId;
     state = BedtimeStoryLearningProgressState.fromJson(
-      _store.getJsonMap(bedtimeStoryLearningProgressStorageKeyForLearner(learnerId)),
+      _store.getJsonMap(
+        bedtimeStoryLearningProgressStorageKeyForLearner(learnerId),
+      ),
     );
     _migrateLegacyProgressIfNeeded();
   }

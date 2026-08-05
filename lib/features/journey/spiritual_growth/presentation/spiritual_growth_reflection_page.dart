@@ -55,7 +55,9 @@ class _SpiritualGrowthReflectionPageState
               const SizedBox(height: 6),
               Text(spiritualGrowthTitleFromKey(l10n, intention.titleKey)),
               const SizedBox(height: 4),
-              Text(spiritualGrowthSubtitleFromKey(l10n, intention.descriptionKey)),
+              Text(
+                spiritualGrowthSubtitleFromKey(l10n, intention.descriptionKey),
+              ),
             ],
           ),
         ),

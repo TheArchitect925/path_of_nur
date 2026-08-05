@@ -35,20 +35,20 @@ class KidsDuaTapRepeatView extends StatelessWidget {
         children: [
           Text(
             l10n.kidsDuaTapRepeatSectionTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 6),
           Text(
             hasAudio
                 ? (isSegmentFallback
-                    ? l10n.kidsDuaTapRepeatFallbackWholeAudio
-                    : l10n.kidsDuaTapRepeatBody)
+                      ? l10n.kidsDuaTapRepeatFallbackWholeAudio
+                      : l10n.kidsDuaTapRepeatBody)
                 : l10n.kidsDuaTapRepeatNoAudioBody,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFF655A4C),
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF655A4C)),
           ),
           const SizedBox(height: 12),
           ...item.segments.map((segment) {
@@ -62,7 +62,9 @@ class KidsDuaTapRepeatView extends StatelessWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
-                    color: selected ? const Color(0xFFFFF7EB) : const Color(0xFFFCFBF8),
+                    color: selected
+                        ? const Color(0xFFFFF7EB)
+                        : const Color(0xFFFCFBF8),
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(
                       color: selected
@@ -75,7 +77,9 @@ class KidsDuaTapRepeatView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
-                        hasAudio ? Icons.volume_up_rounded : Icons.menu_book_rounded,
+                        hasAudio
+                            ? Icons.volume_up_rounded
+                            : Icons.menu_book_rounded,
                         color: const Color(0xFF8A6A45),
                       ),
                       const SizedBox(width: 10),
@@ -88,17 +92,15 @@ class KidsDuaTapRepeatView extends StatelessWidget {
                               child: Text(
                                 segment.arabicSegmentText,
                                 textAlign: TextAlign.right,
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(fontWeight: FontWeight.w700),
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               segment.transliterationSegmentText,
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: const Color(0xFF655A4C),
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: const Color(0xFF655A4C)),
                             ),
                           ],
                         ),

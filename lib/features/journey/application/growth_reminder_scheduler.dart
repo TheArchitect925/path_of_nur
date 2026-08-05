@@ -27,7 +27,8 @@ final growthReminderPlanProvider = Provider<List<GrowthNotificationRequest>>((
   final reminders = <GrowthNotificationRequest>[];
   for (final habit in habits) {
     if (!_isEligibleForReminder(habit)) continue;
-    if (habit.reminderDays.isNotEmpty && !habit.reminderDays.contains(today.weekday)) {
+    if (habit.reminderDays.isNotEmpty &&
+        !habit.reminderDays.contains(today.weekday)) {
       continue;
     }
     if (!isHabitDueOnDate(habit, today, state)) continue;
@@ -45,7 +46,9 @@ final growthReminderPlanProvider = Provider<List<GrowthNotificationRequest>>((
 
     final defaultBody =
         habitContentById[habit.id]?.reminderCopy ??
-        encouragement.gentleReminders[(today.day + today.month + habit.id.length) %
+        encouragement.gentleReminders[(today.day +
+                today.month +
+                habit.id.length) %
             encouragement.gentleReminders.length];
     reminders.add(
       GrowthNotificationRequest(
@@ -69,37 +72,37 @@ final growthReminderBootstrapProvider = Provider<void>((ref) {
   final service = ref.read(localNotificationServiceProvider);
   final store = ref.read(localStoreProvider);
 
-  ref.listen<List<GrowthNotificationRequest>>(
-    growthReminderPlanProvider,
-    (_, reminders) {
-      Future<void>.microtask(() async {
-        final now = ref.read(dailyNowProvider).value ?? DateTime.now();
-        final dayKey = LocalStore.todayKey(now);
-        final settings = ref.read(growthControllerProvider).globalReminderSettings;
-        await store.setJsonList(
-          'growth.reminders.plan.$dayKey',
-          reminders
-              .map(
-                (item) => {
-                  'id': item.id,
-                  'habitId': item.habitId,
-                  'when': item.when.toIso8601String(),
-                  'title': item.title,
-                  'body': item.body,
-                  'quietDelivery': item.quietDelivery,
-                },
-              )
-              .toList(),
-        );
-        await service.syncGrowthReminders(
-          reminders: reminders,
-          pauseAll:
-              !settings.remindersEnabled || settings.pauseAllReminders,
-        );
-      });
-    },
-    fireImmediately: true,
-  );
+  ref.listen<List<GrowthNotificationRequest>>(growthReminderPlanProvider, (
+    _,
+    reminders,
+  ) {
+    Future<void>.microtask(() async {
+      final now = ref.read(dailyNowProvider).value ?? DateTime.now();
+      final dayKey = LocalStore.todayKey(now);
+      final settings = ref
+          .read(growthControllerProvider)
+          .globalReminderSettings;
+      await store.setJsonList(
+        'growth.reminders.plan.$dayKey',
+        reminders
+            .map(
+              (item) => {
+                'id': item.id,
+                'habitId': item.habitId,
+                'when': item.when.toIso8601String(),
+                'title': item.title,
+                'body': item.body,
+                'quietDelivery': item.quietDelivery,
+              },
+            )
+            .toList(),
+      );
+      await service.syncGrowthReminders(
+        reminders: reminders,
+        pauseAll: !settings.remindersEnabled || settings.pauseAllReminders,
+      );
+    });
+  }, fireImmediately: true);
 });
 
 bool _isEligibleForReminder(GrowthHabit habit) {
@@ -128,9 +131,13 @@ DateTime? _resolveReminderTime({
         null => null,
       };
       if (prayerId == null) return null;
-      final prayer = prayerSchedule.where((item) => item.id == prayerId).firstOrNull;
+      final prayer = prayerSchedule
+          .where((item) => item.id == prayerId)
+          .firstOrNull;
       if (prayer == null) return null;
-      return prayer.offerDateTime.add(Duration(minutes: habit.reminderOffsetMinutes));
+      return prayer.offerDateTime.add(
+        Duration(minutes: habit.reminderOffsetMinutes),
+      );
     case GrowthReminderMode.timeWindow:
       return _timeForWindow(onDate, habit.reminderWindowType);
     case GrowthReminderMode.gentleSuggestion:
@@ -184,18 +191,21 @@ DateTime _gentleSuggestionTime(
 ) {
   if (habit.id == 'h_morning_adhkar') {
     final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
-    if (fajr != null) return fajr.offerDateTime.add(const Duration(minutes: 15));
+    if (fajr != null)
+      return fajr.offerDateTime.add(const Duration(minutes: 15));
   }
   if (habit.id == 'h_evening_adhkar') {
     final maghrib = schedule.where((item) => item.id == 'maghrib').firstOrNull;
-    if (maghrib != null) return maghrib.offerDateTime.add(const Duration(minutes: 20));
+    if (maghrib != null)
+      return maghrib.offerDateTime.add(const Duration(minutes: 20));
   }
   if (habit.id == 'h_day_end_reflection') {
     return DateTime(date.year, date.month, date.day, 22, 0);
   }
   if (habit.id == 'h_read_quran') {
     final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
-    if (fajr != null) return fajr.offerDateTime.add(const Duration(minutes: 35));
+    if (fajr != null)
+      return fajr.offerDateTime.add(const Duration(minutes: 35));
     return DateTime(date.year, date.month, date.day, 19, 45);
   }
   return _timeForWindow(date, GrowthReminderWindowType.evening);

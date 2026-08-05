@@ -30,7 +30,10 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
   required Size size,
   required KidsArabicTracingGuide? guide,
 }) {
-  final pointCount = userStrokes.fold<int>(0, (sum, stroke) => sum + stroke.length);
+  final pointCount = userStrokes.fold<int>(
+    0,
+    (sum, stroke) => sum + stroke.length,
+  );
   if (guide == null) {
     final minimumEffortMet = pointCount >= 30 && userStrokes.isNotEmpty;
     return KidsArabicTraceEvaluation(
@@ -44,8 +47,11 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
     );
   }
 
-  final allPoints = userStrokes.expand((stroke) => stroke).toList(growable: false);
-  final threshold = math.min(size.width, size.height) * guide.proximityThreshold;
+  final allPoints = userStrokes
+      .expand((stroke) => stroke)
+      .toList(growable: false);
+  final threshold =
+      math.min(size.width, size.height) * guide.proximityThreshold;
   final strokeProgress = <double>[];
   final strokeAlignment = <double>[];
   var completedStrokeCount = 0;
@@ -57,7 +63,10 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
     var covered = 0;
     var alignmentTotal = 0.0;
     for (final normalized in sampledPoints) {
-      final target = Offset(normalized.dx * size.width, normalized.dy * size.height);
+      final target = Offset(
+        normalized.dx * size.width,
+        normalized.dy * size.height,
+      );
       var nearest = double.infinity;
       for (final point in allPoints) {
         final distance = (point - target).distance;
@@ -70,8 +79,12 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
         alignmentTotal += (1 - (nearest / threshold)).clamp(0.0, 1.0);
       }
     }
-    final progress = sampledPoints.isEmpty ? 0.0 : covered / sampledPoints.length;
-    final alignment = sampledPoints.isEmpty ? 0.0 : alignmentTotal / sampledPoints.length;
+    final progress = sampledPoints.isEmpty
+        ? 0.0
+        : covered / sampledPoints.length;
+    final alignment = sampledPoints.isEmpty
+        ? 0.0
+        : alignmentTotal / sampledPoints.length;
     strokeProgress.add(progress.clamp(0.0, 1.0));
     strokeAlignment.add(alignment.clamp(0.0, 1.0));
     if (progress >= stroke.completionThreshold) {
@@ -88,7 +101,9 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
   final alignmentScore = strokeAlignment.isEmpty
       ? 0.0
       : strokeAlignment.reduce((a, b) => a + b) / strokeAlignment.length;
-  final minimumEffortMet = pointCount >= guide.minimumEffortPoints && guidedProgress >= guide.completedThreshold * 0.55;
+  final minimumEffortMet =
+      pointCount >= guide.minimumEffortPoints &&
+      guidedProgress >= guide.completedThreshold * 0.55;
 
   return KidsArabicTraceEvaluation(
     completedStrokeCount: completedStrokeCount,
@@ -97,7 +112,8 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
     alignmentScore: alignmentScore,
     activeStrokeIndex: activeStrokeIndex,
     minimumEffortMet: minimumEffortMet,
-    successPulse: minimumEffortMet && completedStrokeCount == guide.strokes.length,
+    successPulse:
+        minimumEffortMet && completedStrokeCount == guide.strokes.length,
   );
 }
 
@@ -109,7 +125,8 @@ KidsArabicTraceResult scoreKidsArabicTraceWithGuide({
     return KidsArabicTraceResult.completed;
   }
   if (guide == null) {
-    if (metrics.pointCount >= 220 && metrics.strokeCount >= metrics.totalGuideStrokes) {
+    if (metrics.pointCount >= 220 &&
+        metrics.strokeCount >= metrics.totalGuideStrokes) {
       return KidsArabicTraceResult.excellent;
     }
     if (metrics.pointCount >= 120) {

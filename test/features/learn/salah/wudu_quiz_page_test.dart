@@ -76,7 +76,10 @@ void main() {
       controller.completeCurrentStep();
       await pumpWuduFrames(tester);
     }
-    expect(container.read(wuduTrainerControllerProvider).guidedFinished, isTrue);
+    expect(
+      container.read(wuduTrainerControllerProvider).guidedFinished,
+      isTrue,
+    );
 
     final quizLabel = find.text(trainerL10n.wuduQuizStartAction).first;
     await tester.ensureVisible(quizLabel);

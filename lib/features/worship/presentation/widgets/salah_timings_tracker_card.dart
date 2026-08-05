@@ -57,9 +57,9 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
         ? ref.watch(prayerScheduleContextProvider)
         : null;
     final dayKey = LocalStore.todayKey(selectedDate);
-    final dayEntries = ref.watch(prayerLogRepositoryProvider).readDayEntries(
-      dayKey,
-    );
+    final dayEntries = ref
+        .watch(prayerLogRepositoryProvider)
+        .readDayEntries(dayKey);
     ref.watch(prayerControllerProvider);
     final completedCount = dayEntries.values
         .where((entry) => entry.status == PrayerStatus.completed)

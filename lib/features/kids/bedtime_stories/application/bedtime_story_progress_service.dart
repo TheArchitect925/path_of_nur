@@ -32,11 +32,13 @@ class BedtimeStoryProgressController
       _activeLearnerId = _ref.read(bedtimeActiveLearnerProvider).learnerId,
       super(
         BedtimeStoryLibraryProgress.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
-            bedtimeStoryProgressStorageKeyForLearner(
-              _ref.read(bedtimeActiveLearnerProvider).learnerId,
-            ),
-          ),
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(
+                bedtimeStoryProgressStorageKeyForLearner(
+                  _ref.read(bedtimeActiveLearnerProvider).learnerId,
+                ),
+              ),
         ),
       ) {
     _migrateLegacyProgressIfNeeded();
@@ -60,21 +62,23 @@ class BedtimeStoryProgressController
     );
     _writeStoryProgress(storyId, next);
     final story = _ref.read(bedtimeStoryByIdProvider(storyId));
-    _ref.read(kidsActivityLogProvider.notifier).log(
-      type: KidsActivityType.storyOpened,
-      domain: KidsActivityDomain.stories,
-      sourceRef: 'bedtime_story_open:$storyId',
-      contentId: storyId,
-      titleSnapshot: story?.shortTitle ?? story?.title,
-      subtitleSnapshot: story?.lesson,
-      occurredAt: now,
-      dedupeWindow: const Duration(minutes: 2),
-      metadata: <String, Object?>{
-        'feature': 'kids_bedtime_story',
-        'storyId': storyId,
-        'bedtimeLearnerId': _activeLearnerId,
-      },
-    );
+    _ref
+        .read(kidsActivityLogProvider.notifier)
+        .log(
+          type: KidsActivityType.storyOpened,
+          domain: KidsActivityDomain.stories,
+          sourceRef: 'bedtime_story_open:$storyId',
+          contentId: storyId,
+          titleSnapshot: story?.shortTitle ?? story?.title,
+          subtitleSnapshot: story?.lesson,
+          occurredAt: now,
+          dedupeWindow: const Duration(minutes: 2),
+          metadata: <String, Object?>{
+            'feature': 'kids_bedtime_story',
+            'storyId': storyId,
+            'bedtimeLearnerId': _activeLearnerId,
+          },
+        );
     _persist();
   }
 
@@ -138,8 +142,7 @@ class BedtimeStoryProgressController
           .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
           .award(
             sourceRef: 'bedtime_story:${story.id}:complete',
-            activityType:
-                LearnerProgressionActivityType.bedtimeStoryCompletion,
+            activityType: LearnerProgressionActivityType.bedtimeStoryCompletion,
             sourceModule: 'kids_bedtime_story',
             xp: story.xpReward,
             drops: story.oceanDropsReward,
@@ -161,22 +164,24 @@ class BedtimeStoryProgressController
       dropsAwarded = award.awardedDrops;
     }
     if (!wasCompleted) {
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.storyCompleted,
-        domain: KidsActivityDomain.stories,
-        sourceRef: 'bedtime_story_complete:${story.id}',
-        contentId: story.id,
-        titleSnapshot: story.shortTitle,
-        subtitleSnapshot: story.lesson,
-        occurredAt: now,
-        metadata: <String, Object?>{
-          'feature': 'kids_bedtime_story',
-          'storyId': story.id,
-          'storyFamilyId': story.effectiveStoryFamilyId,
-          'prophetId': story.prophetId,
-          'completionSource': completionSource,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.storyCompleted,
+            domain: KidsActivityDomain.stories,
+            sourceRef: 'bedtime_story_complete:${story.id}',
+            contentId: story.id,
+            titleSnapshot: story.shortTitle,
+            subtitleSnapshot: story.lesson,
+            occurredAt: now,
+            metadata: <String, Object?>{
+              'feature': 'kids_bedtime_story',
+              'storyId': story.id,
+              'storyFamilyId': story.effectiveStoryFamilyId,
+              'prophetId': story.prophetId,
+              'completionSource': completionSource,
+            },
+          );
     }
 
     final seriesCompleted = _markSeriesCompletedIfReady(
@@ -219,7 +224,9 @@ class BedtimeStoryProgressController
 
   void _ensureEveryStoryHasProgress() {
     final allStories = _ref.read(kidsIslamicStoriesProvider);
-    final nextMap = Map<String, BedtimeStoryProgress>.from(state.storyProgressById);
+    final nextMap = Map<String, BedtimeStoryProgress>.from(
+      state.storyProgressById,
+    );
     var changed = false;
     for (final story in allStories) {
       if (!nextMap.containsKey(story.id)) {
@@ -234,8 +241,9 @@ class BedtimeStoryProgressController
   }
 
   void _writeStoryProgress(String storyId, BedtimeStoryProgress progress) {
-    final nextMap = Map<String, BedtimeStoryProgress>.from(state.storyProgressById)
-      ..[storyId] = progress;
+    final nextMap = Map<String, BedtimeStoryProgress>.from(
+      state.storyProgressById,
+    )..[storyId] = progress;
     final nextRecent = List<String>.from(state.recentStoryIds)
       ..remove(storyId)
       ..insert(0, storyId);
@@ -272,7 +280,9 @@ class BedtimeStoryProgressController
   }
 
   void _migrateLegacyProgressIfNeeded() {
-    final scopedKey = bedtimeStoryProgressStorageKeyForLearner(_activeLearnerId);
+    final scopedKey = bedtimeStoryProgressStorageKeyForLearner(
+      _activeLearnerId,
+    );
     final scoped = _store.getJsonMap(scopedKey);
     if (scoped != null) {
       state = BedtimeStoryLibraryProgress.fromJson(scoped);

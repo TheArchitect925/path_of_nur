@@ -108,12 +108,12 @@ void main() {
   test(
     'Kids beginner words derive joined letter visuals from the shared forms',
     () {
-    final bab = kidsArabicBeginnerWordById('bab');
-    expect(bab, isNotNull);
-    expect(
-      bab!.joiningExamples.map((item) => item.joinedGlyph),
-      orderedEquals(const ['بـ', 'ـا', 'ب']),
-    );
+      final bab = kidsArabicBeginnerWordById('bab');
+      expect(bab, isNotNull);
+      expect(
+        bab!.joiningExamples.map((item) => item.joinedGlyph),
+        orderedEquals(const ['بـ', 'ـا', 'ب']),
+      );
 
       final noor = kidsArabicBeginnerWordById('noor');
       expect(noor, isNotNull);

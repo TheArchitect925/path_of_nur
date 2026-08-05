@@ -26,19 +26,17 @@ final gardenMilestonesProvider = Provider<List<GardenMilestone>>((ref) {
 final nextGardenMilestoneProvider = Provider<GardenMilestone?>((ref) {
   final milestones = ref.watch(gardenMilestonesProvider);
   final totalDrops = ref.watch(journeyDropSummaryProvider).totalDrops;
-  return ref.watch(gardenUnlockServiceProvider).nextLockedMilestone(
-    milestones,
-    totalDrops,
-  );
+  return ref
+      .watch(gardenUnlockServiceProvider)
+      .nextLockedMilestone(milestones, totalDrops);
 });
 
 final gardenProgressSummaryProvider = Provider<GardenProgressSummary>((ref) {
   final milestones = ref.watch(gardenMilestonesProvider);
   final totalDrops = ref.watch(journeyDropSummaryProvider).totalDrops;
-  return ref.watch(gardenUnlockServiceProvider).buildProgressSummary(
-    milestones,
-    totalDrops: totalDrops,
-  );
+  return ref
+      .watch(gardenUnlockServiceProvider)
+      .buildProgressSummary(milestones, totalDrops: totalDrops);
 });
 
 final unlockedGardenMilestonesProvider = Provider<List<GardenMilestone>>((ref) {

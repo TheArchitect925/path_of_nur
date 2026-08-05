@@ -1,7 +1,9 @@
 enum LearnDomainType { quran, life, world, hadith, notes }
 
 enum LearnUnifiedStatus { notStarted, inProgress, completed }
+
 enum LearnCompletionQuality { notRead, read, reflected, applied }
+
 enum LearnTrackType { beginner, family, character, ramadan, revert }
 
 class LearnUnifiedLessonRef {
@@ -134,10 +136,7 @@ class LearnContentBundle {
   final String sizeLabel;
   final bool futureRemoteCompatible;
 
-  LearnContentBundle copyWith({
-    int? version,
-    bool? installed,
-  }) {
+  LearnContentBundle copyWith({int? version, bool? installed}) {
     return LearnContentBundle(
       id: id,
       title: title,

@@ -11,10 +11,7 @@ import '../domain/learn_content_page_data.dart';
 import '../domain/learn_topic_category.dart';
 
 class LearnTopicLandingPage extends ConsumerWidget {
-  const LearnTopicLandingPage({
-    super.key,
-    required this.category,
-  });
+  const LearnTopicLandingPage({super.key, required this.category});
 
   final LearnTopicCategory category;
 
@@ -52,10 +49,7 @@ class LearnTopicLandingPage extends ConsumerWidget {
 }
 
 class _TopicTile extends ConsumerWidget {
-  const _TopicTile({
-    required this.category,
-    required this.topic,
-  });
+  const _TopicTile({required this.category, required this.topic});
 
   final LearnTopicCategory category;
   final LearnContentPageData topic;
@@ -91,7 +85,10 @@ class _TopicTile extends ConsumerWidget {
             ),
             child: Icon(_topicIcon(category), size: 18),
           ),
-          title: Text(topic.title, style: const TextStyle(fontWeight: FontWeight.w700)),
+          title: Text(
+            topic.title,
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

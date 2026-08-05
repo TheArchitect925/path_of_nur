@@ -29,9 +29,11 @@ List<HistoricalTodayMatch> buildHistoricalTodayMatches({
   for (final event in events) {
     if (!event.isPublished) continue;
     final matchesGregorian =
-        event.gregorian.day == today.day && event.gregorian.month == today.month;
+        event.gregorian.day == today.day &&
+        event.gregorian.month == today.month;
     final matchesHijri =
-        event.hijri.day == hijriToday.day && event.hijri.month == hijriToday.month;
+        event.hijri.day == hijriToday.day &&
+        event.hijri.month == hijriToday.month;
     if (!matchesGregorian && !matchesHijri) continue;
     matches.add(
       HistoricalTodayMatch(
@@ -46,8 +48,9 @@ List<HistoricalTodayMatch> buildHistoricalTodayMatches({
     final bucketCompare = a.rankingBucket.compareTo(b.rankingBucket);
     if (bucketCompare != 0) return bucketCompare;
 
-    final featuredCompare =
-        b.event.featuredPriority.compareTo(a.event.featuredPriority);
+    final featuredCompare = b.event.featuredPriority.compareTo(
+      a.event.featuredPriority,
+    );
     if (featuredCompare != 0) return featuredCompare;
 
     final titleCompare = a.event.title.compareTo(b.event.title);
@@ -110,7 +113,9 @@ class HistoricalCalendarRepository {
 
   Future<List<HistoricalEvent>> getEventsByHijriMonth(int month) async {
     final all = await loadAllEvents();
-    return all.where((event) => event.hijri.month == month).toList(growable: false);
+    return all
+        .where((event) => event.hijri.month == month)
+        .toList(growable: false);
   }
 
   Future<List<HistoricalTodayMatch>> getTodayMatches({
@@ -144,10 +149,7 @@ class HistoricalCalendarRepository {
         continue;
       }
       candidates.add(
-        HistoricalUpcomingEvent(
-          event: event,
-          occurrenceDate: occurrenceDate,
-        ),
+        HistoricalUpcomingEvent(event: event, occurrenceDate: occurrenceDate),
       );
     }
 
@@ -157,8 +159,9 @@ class HistoricalCalendarRepository {
       final dateCompare = a.occurrenceDate.compareTo(b.occurrenceDate);
       if (dateCompare != 0) return dateCompare;
 
-      final featuredCompare =
-          b.event.featuredPriority.compareTo(a.event.featuredPriority);
+      final featuredCompare = b.event.featuredPriority.compareTo(
+        a.event.featuredPriority,
+      );
       if (featuredCompare != 0) return featuredCompare;
 
       final titleCompare = a.event.title.compareTo(b.event.title);
@@ -171,6 +174,7 @@ class HistoricalCalendarRepository {
   }
 }
 
-final historicalCalendarRepositoryProvider = Provider<HistoricalCalendarRepository>(
-  (ref) => HistoricalCalendarRepository(),
-);
+final historicalCalendarRepositoryProvider =
+    Provider<HistoricalCalendarRepository>(
+      (ref) => HistoricalCalendarRepository(),
+    );

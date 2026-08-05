@@ -213,7 +213,8 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
     return groups.values
         .map(
           (entries) => _MapLocationGroup(
-            prophets: [...entries]..sort((a, b) => a.timelineOrder - b.timelineOrder),
+            prophets: [...entries]
+              ..sort((a, b) => a.timelineOrder - b.timelineOrder),
           ),
         )
         .toList(growable: false);
@@ -259,10 +260,7 @@ class _MapMarker extends StatelessWidget {
         : group.locationLabel;
     final showLabel = focused || group.prophets.length > 1;
     return Tooltip(
-      message: l10n.prophetsMapMarkerTooltip(
-        label,
-        group.locationLabel,
-      ),
+      message: l10n.prophetsMapMarkerTooltip(label, group.locationLabel),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(22),
@@ -296,7 +294,10 @@ class _MapMarker extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: color,
-                    border: Border.all(color: AppColors.accentGoldSoft, width: 1.4),
+                    border: Border.all(
+                      color: AppColors.accentGoldSoft,
+                      width: 1.4,
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: color.withValues(alpha: 0.28),
@@ -400,7 +401,12 @@ class _CalmWorldPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final propheticBelt = RRect.fromRectAndRadius(
-      Rect.fromLTWH(size.width * 0.50, size.height * 0.16, size.width * 0.22, size.height * 0.34),
+      Rect.fromLTWH(
+        size.width * 0.50,
+        size.height * 0.16,
+        size.width * 0.22,
+        size.height * 0.34,
+      ),
       const Radius.circular(36),
     );
     canvas.drawRRect(propheticBelt, focusBand);

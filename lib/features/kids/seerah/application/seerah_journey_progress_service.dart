@@ -20,17 +20,18 @@ const legacyKidsSeerahJourneyProgressKey = 'kids.seerah.progress.v1';
 String kidsSeerahJourneyProgressStorageKeyForLearner(String learnerId) =>
     'kids.seerah.progress.v2.$learnerId';
 
-final kidsSeerahJourneyProgressProvider = StateNotifierProvider<
-  KidsSeerahJourneyProgressController,
-  KidsSeerahJourneyProgressState
->((ref) {
-  final controller = KidsSeerahJourneyProgressController(ref);
-  ref.listen<String>(
-    bedtimeActiveLearnerProvider.select((value) => value.learnerId),
-    (_, next) => controller.updateActiveLearner(next),
-  );
-  return controller;
-});
+final kidsSeerahJourneyProgressProvider =
+    StateNotifierProvider<
+      KidsSeerahJourneyProgressController,
+      KidsSeerahJourneyProgressState
+    >((ref) {
+      final controller = KidsSeerahJourneyProgressController(ref);
+      ref.listen<String>(
+        bedtimeActiveLearnerProvider.select((value) => value.learnerId),
+        (_, next) => controller.updateActiveLearner(next),
+      );
+      return controller;
+    });
 
 final kidsSeerahJourneySummaryProvider =
     Provider.family<KidsSeerahJourneySummary?, String>((ref, journeyId) {
@@ -40,7 +41,9 @@ final kidsSeerahJourneySummaryProvider =
     });
 
 final kidsSeerahContinueJourneyProvider = Provider<KidsSeerahJourney?>((ref) {
-  return ref.watch(kidsSeerahJourneyProgressProvider.notifier).continueJourney();
+  return ref
+      .watch(kidsSeerahJourneyProgressProvider.notifier)
+      .continueJourney();
 });
 
 class KidsSeerahJourneyProgressController
@@ -50,11 +53,13 @@ class KidsSeerahJourneyProgressController
       _activeLearnerId = _ref.read(bedtimeActiveLearnerProvider).learnerId,
       super(
         KidsSeerahJourneyProgressState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
-            kidsSeerahJourneyProgressStorageKeyForLearner(
-              _ref.read(bedtimeActiveLearnerProvider).learnerId,
-            ),
-          ),
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(
+                kidsSeerahJourneyProgressStorageKeyForLearner(
+                  _ref.read(bedtimeActiveLearnerProvider).learnerId,
+                ),
+              ),
         ),
       ) {
     _migrateLegacyProgressIfNeeded();
@@ -66,11 +71,12 @@ class KidsSeerahJourneyProgressController
 
   KidsSeerahJourney? continueJourney() {
     final repository = _ref.read(kidsSeerahJourneyRepositoryProvider);
-    for (final journeyId in state.recentNodeIds
-        .map((nodeId) => repository.nodeById(nodeId)?.stageId)
-        .whereType<String>()
-        .map((stageId) => repository.stageById(stageId)?.journeyId)
-        .whereType<String>()) {
+    for (final journeyId
+        in state.recentNodeIds
+            .map((nodeId) => repository.nodeById(nodeId)?.stageId)
+            .whereType<String>()
+            .map((stageId) => repository.stageById(stageId)?.journeyId)
+            .whereType<String>()) {
       final summary = buildSummary(journeyId);
       if (summary != null && !summary.isCompleted) {
         return summary.journey;
@@ -91,7 +97,9 @@ class KidsSeerahJourneyProgressController
     }
     _activeLearnerId = learnerId;
     state = KidsSeerahJourneyProgressState.fromJson(
-      _store.getJsonMap(kidsSeerahJourneyProgressStorageKeyForLearner(learnerId)),
+      _store.getJsonMap(
+        kidsSeerahJourneyProgressStorageKeyForLearner(learnerId),
+      ),
     );
     _migrateLegacyProgressIfNeeded();
   }
@@ -100,22 +108,24 @@ class KidsSeerahJourneyProgressController
     state = state.copyWith(
       startedJourneyIds: {...state.startedJourneyIds, journeyId},
     );
-    final journey = _ref.read(kidsSeerahJourneyRepositoryProvider).journeyById(
-      journeyId,
-    );
-    _ref.read(kidsActivityLogProvider.notifier).log(
-      type: KidsActivityType.seerahJourneyOpened,
-      domain: KidsActivityDomain.seerah,
-      sourceRef: 'kids_seerah_journey_open:$journeyId',
-      contentId: journeyId,
-      titleSnapshot: journey?.title,
-      subtitleSnapshot: journey?.description,
-      dedupeWindow: const Duration(minutes: 2),
-      metadata: <String, Object?>{
-        'feature': 'kids_seerah',
-        'journeyId': journeyId,
-      },
-    );
+    final journey = _ref
+        .read(kidsSeerahJourneyRepositoryProvider)
+        .journeyById(journeyId);
+    _ref
+        .read(kidsActivityLogProvider.notifier)
+        .log(
+          type: KidsActivityType.seerahJourneyOpened,
+          domain: KidsActivityDomain.seerah,
+          sourceRef: 'kids_seerah_journey_open:$journeyId',
+          contentId: journeyId,
+          titleSnapshot: journey?.title,
+          subtitleSnapshot: journey?.description,
+          dedupeWindow: const Duration(minutes: 2),
+          metadata: <String, Object?>{
+            'feature': 'kids_seerah',
+            'journeyId': journeyId,
+          },
+        );
     _persist();
   }
 
@@ -130,21 +140,25 @@ class KidsSeerahJourneyProgressController
       startedJourneyIds: {...state.startedJourneyIds, journeyId},
       recentNodeIds: recent,
     );
-    final node = _ref.read(kidsSeerahJourneyRepositoryProvider).nodeById(nodeId);
-    _ref.read(kidsActivityLogProvider.notifier).log(
-      type: KidsActivityType.seerahNodeOpened,
-      domain: KidsActivityDomain.seerah,
-      sourceRef: 'kids_seerah_node_open:$nodeId',
-      contentId: nodeId,
-      titleSnapshot: node?.title,
-      subtitleSnapshot: node?.description,
-      dedupeWindow: const Duration(minutes: 2),
-      metadata: <String, Object?>{
-        'feature': 'kids_seerah',
-        'journeyId': journeyId,
-        'nodeId': nodeId,
-      },
-    );
+    final node = _ref
+        .read(kidsSeerahJourneyRepositoryProvider)
+        .nodeById(nodeId);
+    _ref
+        .read(kidsActivityLogProvider.notifier)
+        .log(
+          type: KidsActivityType.seerahNodeOpened,
+          domain: KidsActivityDomain.seerah,
+          sourceRef: 'kids_seerah_node_open:$nodeId',
+          contentId: nodeId,
+          titleSnapshot: node?.title,
+          subtitleSnapshot: node?.description,
+          dedupeWindow: const Duration(minutes: 2),
+          metadata: <String, Object?>{
+            'feature': 'kids_seerah',
+            'journeyId': journeyId,
+            'nodeId': nodeId,
+          },
+        );
     _persist();
   }
 
@@ -163,7 +177,8 @@ class KidsSeerahJourneyProgressController
           node.nodeId,
         },
       );
-      if (node.nodeXpReward > 0 && !nextState.rewardedNodeIds.contains(node.nodeId)) {
+      if (node.nodeXpReward > 0 &&
+          !nextState.rewardedNodeIds.contains(node.nodeId)) {
         xpAwarded += node.nodeXpReward;
         nextState = nextState.copyWith(
           rewardedNodeIds: {...nextState.rewardedNodeIds, node.nodeId},
@@ -180,20 +195,22 @@ class KidsSeerahJourneyProgressController
             'nodeType': node.nodeType.name,
           },
         );
-        _ref.read(kidsActivityLogProvider.notifier).log(
-          type: KidsActivityType.seerahNodeCompleted,
-          domain: KidsActivityDomain.seerah,
-          sourceRef: 'kids_seerah_node_complete:${node.nodeId}',
-          contentId: node.nodeId,
-          titleSnapshot: node.title,
-          subtitleSnapshot: node.description,
-          metadata: <String, Object?>{
-            'feature': 'kids_seerah',
-            'journeyId': journeyId,
-            'nodeId': node.nodeId,
-            'nodeType': node.nodeType.name,
-          },
-        );
+        _ref
+            .read(kidsActivityLogProvider.notifier)
+            .log(
+              type: KidsActivityType.seerahNodeCompleted,
+              domain: KidsActivityDomain.seerah,
+              sourceRef: 'kids_seerah_node_complete:${node.nodeId}',
+              contentId: node.nodeId,
+              titleSnapshot: node.title,
+              subtitleSnapshot: node.description,
+              metadata: <String, Object?>{
+                'feature': 'kids_seerah',
+                'journeyId': journeyId,
+                'nodeId': node.nodeId,
+                'nodeType': node.nodeType.name,
+              },
+            );
       }
     }
 
@@ -221,17 +238,24 @@ class KidsSeerahJourneyProgressController
     var nextState = state;
 
     for (final stage in summary.stages) {
-      if (!stage.isCompleted || nextState.completedStageIds.contains(stage.stage.stageId)) {
+      if (!stage.isCompleted ||
+          nextState.completedStageIds.contains(stage.stage.stageId)) {
         continue;
       }
       nextState = nextState.copyWith(
-        completedStageIds: {...nextState.completedStageIds, stage.stage.stageId},
+        completedStageIds: {
+          ...nextState.completedStageIds,
+          stage.stage.stageId,
+        },
       );
       if (!nextState.rewardedStageIds.contains(stage.stage.stageId)) {
         const stageXp = 4;
         xpAwarded += stageXp;
         nextState = nextState.copyWith(
-          rewardedStageIds: {...nextState.rewardedStageIds, stage.stage.stageId},
+          rewardedStageIds: {
+            ...nextState.rewardedStageIds,
+            stage.stage.stageId,
+          },
         );
         _awardProgression(
           sourceRef: 'kids_seerah_stage:${stage.stage.stageId}:complete',
@@ -244,24 +268,27 @@ class KidsSeerahJourneyProgressController
             'stageId': stage.stage.stageId,
           },
         );
-        _ref.read(kidsActivityLogProvider.notifier).log(
-          type: KidsActivityType.seerahStageCompleted,
-          domain: KidsActivityDomain.seerah,
-          sourceRef: 'kids_seerah_stage_complete:${stage.stage.stageId}',
-          contentId: stage.stage.stageId,
-          titleSnapshot: stage.stage.title,
-          subtitleSnapshot: stage.stage.description,
-          metadata: <String, Object?>{
-            'feature': 'kids_seerah',
-            'journeyId': journeyId,
-            'stageId': stage.stage.stageId,
-          },
-        );
+        _ref
+            .read(kidsActivityLogProvider.notifier)
+            .log(
+              type: KidsActivityType.seerahStageCompleted,
+              domain: KidsActivityDomain.seerah,
+              sourceRef: 'kids_seerah_stage_complete:${stage.stage.stageId}',
+              contentId: stage.stage.stageId,
+              titleSnapshot: stage.stage.title,
+              subtitleSnapshot: stage.stage.description,
+              metadata: <String, Object?>{
+                'feature': 'kids_seerah',
+                'journeyId': journeyId,
+                'stageId': stage.stage.stageId,
+              },
+            );
       }
       stageCompleted = true;
     }
 
-    if (summary.isCompleted && !nextState.completedJourneyIds.contains(journeyId)) {
+    if (summary.isCompleted &&
+        !nextState.completedJourneyIds.contains(journeyId)) {
       nextState = nextState.copyWith(
         completedJourneyIds: {...nextState.completedJourneyIds, journeyId},
       );
@@ -283,18 +310,20 @@ class KidsSeerahJourneyProgressController
             'journeyId': journeyId,
           },
         );
-        _ref.read(kidsActivityLogProvider.notifier).log(
-          type: KidsActivityType.seerahJourneyCompleted,
-          domain: KidsActivityDomain.seerah,
-          sourceRef: 'kids_seerah_journey_complete:$journeyId',
-          contentId: journeyId,
-          titleSnapshot: summary.journey.title,
-          subtitleSnapshot: summary.journey.description,
-          metadata: <String, Object?>{
-            'feature': 'kids_seerah',
-            'journeyId': journeyId,
-          },
-        );
+        _ref
+            .read(kidsActivityLogProvider.notifier)
+            .log(
+              type: KidsActivityType.seerahJourneyCompleted,
+              domain: KidsActivityDomain.seerah,
+              sourceRef: 'kids_seerah_journey_complete:$journeyId',
+              contentId: journeyId,
+              titleSnapshot: summary.journey.title,
+              subtitleSnapshot: summary.journey.description,
+              metadata: <String, Object?>{
+                'feature': 'kids_seerah',
+                'journeyId': journeyId,
+              },
+            );
       }
       journeyCompleted = true;
     }
@@ -342,7 +371,8 @@ class KidsSeerahJourneyProgressController
             );
           })
           .toList(growable: false);
-      final isCompleted = nodes.isNotEmpty && nodes.every((node) => node.isCompleted);
+      final isCompleted =
+          nodes.isNotEmpty && nodes.every((node) => node.isCompleted);
       stageSummaries.add(
         KidsSeerahJourneyStageSummary(
           stage: stage,
@@ -372,7 +402,8 @@ class KidsSeerahJourneyProgressController
     return KidsSeerahJourneySummary(
       journey: journey,
       stages: stageSummaries,
-      isCompleted: stageSummaries.isNotEmpty &&
+      isCompleted:
+          stageSummaries.isNotEmpty &&
           stageSummaries.every((stage) => stage.isCompleted),
       lastOpenedNodeId: state.recentNodeIds.firstOrNull,
       nextNodeId: nextNodeId,

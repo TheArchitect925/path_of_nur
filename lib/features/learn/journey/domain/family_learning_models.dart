@@ -18,9 +18,7 @@ class FamilyLearningGroup {
   final String primaryGuardianProfileId;
   final List<String> childProfileIds;
 
-  FamilyLearningGroup copyWith({
-    List<String>? childProfileIds,
-  }) {
+  FamilyLearningGroup copyWith({List<String>? childProfileIds}) {
     return FamilyLearningGroup(
       id: id,
       primaryGuardianProfileId: primaryGuardianProfileId,
@@ -29,10 +27,10 @@ class FamilyLearningGroup {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'primaryGuardianProfileId': primaryGuardianProfileId,
-        'childProfileIds': childProfileIds,
-      };
+    'id': id,
+    'primaryGuardianProfileId': primaryGuardianProfileId,
+    'childProfileIds': childProfileIds,
+  };
 
   factory FamilyLearningGroup.fromJson(Map<String, dynamic> json) {
     return FamilyLearningGroup(
@@ -111,8 +109,7 @@ class ChildLearningPermissions {
   }) {
     return ChildLearningPermissions(
       allowBrowseAll: allowBrowseAll ?? this.allowBrowseAll,
-      allowLegacyLearning:
-          allowLegacyLearning ?? this.allowLegacyLearning,
+      allowLegacyLearning: allowLegacyLearning ?? this.allowLegacyLearning,
       allowAdvancedJourneys:
           allowAdvancedJourneys ?? this.allowAdvancedJourneys,
       allowSecondaryExploration:
@@ -124,14 +121,14 @@ class ChildLearningPermissions {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'allowBrowseAll': allowBrowseAll,
-        'allowLegacyLearning': allowLegacyLearning,
-        'allowAdvancedJourneys': allowAdvancedJourneys,
-        'allowSecondaryExploration': allowSecondaryExploration,
-        'allowTrivia': allowTrivia,
-        'allowDiscovery': allowDiscovery,
-        'dailyGoal': dailyGoal,
-      };
+    'allowBrowseAll': allowBrowseAll,
+    'allowLegacyLearning': allowLegacyLearning,
+    'allowAdvancedJourneys': allowAdvancedJourneys,
+    'allowSecondaryExploration': allowSecondaryExploration,
+    'allowTrivia': allowTrivia,
+    'allowDiscovery': allowDiscovery,
+    'dailyGoal': dailyGoal,
+  };
 
   factory ChildLearningPermissions.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -214,20 +211,20 @@ class ChildLearningProfile {
   bool get guidedOnly => browsingMode == ChildBrowsingMode.guidedOnly;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'displayName': displayName,
-        'ageGroup': ageGroup.name,
-        'learningLevel': learningLevel.name,
-        'assignedPathId': assignedPathId,
-        'preferredLanguageTag': preferredLanguageTag,
-        'avatarReference': avatarReference,
-        'kidsUiThemeMode': kidsUiThemeMode.name,
-        'contentSafetyMode': contentSafetyMode.name,
-        'browsingMode': browsingMode.name,
-        'permissions': permissions.toJson(),
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
-      };
+    'id': id,
+    'displayName': displayName,
+    'ageGroup': ageGroup.name,
+    'learningLevel': learningLevel.name,
+    'assignedPathId': assignedPathId,
+    'preferredLanguageTag': preferredLanguageTag,
+    'avatarReference': avatarReference,
+    'kidsUiThemeMode': kidsUiThemeMode.name,
+    'contentSafetyMode': contentSafetyMode.name,
+    'browsingMode': browsingMode.name,
+    'permissions': permissions.toJson(),
+    'createdAt': createdAt,
+    'updatedAt': updatedAt,
+  };
 
   factory ChildLearningProfile.fromJson(Map<String, dynamic> json) {
     return ChildLearningProfile(
@@ -250,8 +247,7 @@ class ChildLearningProfile {
             ChildContentSafetyMode.guided.name,
       ),
       browsingMode: ChildBrowsingMode.values.byName(
-        json['browsingMode']?.toString() ??
-            ChildBrowsingMode.guidedOnly.name,
+        json['browsingMode']?.toString() ?? ChildBrowsingMode.guidedOnly.name,
       ),
       permissions: ChildLearningPermissions.fromJson(
         (json['permissions'] as Map?)?.map(
@@ -278,11 +274,11 @@ class ParentChildLearningLink {
   final String createdAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'guardianProfileId': guardianProfileId,
-        'childProfileId': childProfileId,
-        'role': role.name,
-        'createdAt': createdAt,
-      };
+    'guardianProfileId': guardianProfileId,
+    'childProfileId': childProfileId,
+    'role': role.name,
+    'createdAt': createdAt,
+  };
 
   factory ParentChildLearningLink.fromJson(Map<String, dynamic> json) {
     return ParentChildLearningLink(
@@ -363,11 +359,12 @@ class FamilyLearningStoreState {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'groups': groups.map((key, value) => MapEntry(key, value.toJson())),
-        'childProfiles':
-            childProfiles.map((key, value) => MapEntry(key, value.toJson())),
-        'links': links.map((item) => item.toJson()).toList(growable: false),
-      };
+    'groups': groups.map((key, value) => MapEntry(key, value.toJson())),
+    'childProfiles': childProfiles.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'links': links.map((item) => item.toJson()).toList(growable: false),
+  };
 
   factory FamilyLearningStoreState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -384,17 +381,19 @@ class FamilyLearningStoreState {
       ),
       childProfiles:
           ((json['childProfiles'] as Map?) ?? const <String, dynamic>{}).map(
-        (key, value) => MapEntry(
-          key.toString(),
-          ChildLearningProfile.fromJson(
-            (value as Map).map((k, v) => MapEntry(k.toString(), v)),
+            (key, value) => MapEntry(
+              key.toString(),
+              ChildLearningProfile.fromJson(
+                (value as Map).map((k, v) => MapEntry(k.toString(), v)),
+              ),
+            ),
           ),
-        ),
-      ),
       links: ((json['links'] as List?) ?? const <dynamic>[])
           .map(
             (item) => ParentChildLearningLink.fromJson(
-              (item as Map).map((key, value) => MapEntry(key.toString(), value)),
+              (item as Map).map(
+                (key, value) => MapEntry(key.toString(), value),
+              ),
             ),
           )
           .toList(growable: false),

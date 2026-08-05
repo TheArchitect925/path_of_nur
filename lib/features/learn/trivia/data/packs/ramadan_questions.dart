@@ -286,7 +286,8 @@ final List<TriviaQuestion> ramadanTriviaQuestions = [
     id: 'ramadan_int_017',
     categoryId: 'ramadan',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which of these is most directly connected to the end of the fasting day?',
+    prompt:
+        'Which of these is most directly connected to the end of the fasting day?',
     correctOptionId: 'd',
     options: const [
       ('a', 'Sunrise'),
@@ -303,7 +304,8 @@ final List<TriviaQuestion> ramadanTriviaQuestions = [
     id: 'ramadan_int_018',
     categoryId: 'ramadan',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which worship is especially encouraged alongside fasting during Ramadan?',
+    prompt:
+        'Which worship is especially encouraged alongside fasting during Ramadan?',
     correctOptionId: 'b',
     options: const [
       ('a', 'Ignoring family duties'),
@@ -369,8 +371,7 @@ final List<TriviaQuestion> ramadanTriviaQuestions = [
     id: 'ramadan_int_022',
     categoryId: 'ramadan',
     difficulty: TriviaDifficulty.medium,
-    prompt:
-        'Which phrase best describes taqwa, the goal connected to fasting?',
+    prompt: 'Which phrase best describes taqwa, the goal connected to fasting?',
     correctOptionId: 'd',
     options: const [
       ('a', 'Winning arguments'),
@@ -394,7 +395,10 @@ final List<TriviaQuestion> ramadanTriviaQuestions = [
     correctOptionId: 'b',
     options: const [
       ('a', 'Because Ramadan cancels the rest of the year'),
-      ('b', 'Because Ramadan invites steady recitation, reflection, and reform rather than haste'),
+      (
+        'b',
+        'Because Ramadan invites steady recitation, reflection, and reform rather than haste',
+      ),
       ('c', 'Because the Qur’an has no connection to Ramadan'),
       ('d', 'Because fasting only matters for travelers'),
     ],
@@ -421,7 +425,8 @@ final List<TriviaQuestion> ramadanTriviaQuestions = [
     id: 'ramadan_hard_025',
     categoryId: 'ramadan',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which answer best reflects the relationship between fasting and the tongue?',
+    prompt:
+        'Which answer best reflects the relationship between fasting and the tongue?',
     correctOptionId: 'a',
     options: const [
       ('a', 'A fast should be protected by truthful and disciplined speech'),

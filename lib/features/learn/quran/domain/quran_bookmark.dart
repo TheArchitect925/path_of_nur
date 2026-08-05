@@ -10,10 +10,10 @@ class QuranBookmark {
   final String createdAtIso;
 
   Map<String, dynamic> toJson() => {
-        'surahNumber': surahNumber,
-        'ayahNumber': ayahNumber,
-        'createdAtIso': createdAtIso,
-      };
+    'surahNumber': surahNumber,
+    'ayahNumber': ayahNumber,
+    'createdAtIso': createdAtIso,
+  };
 
   static QuranBookmark? fromJson(dynamic json) {
     if (json is! Map) return null;

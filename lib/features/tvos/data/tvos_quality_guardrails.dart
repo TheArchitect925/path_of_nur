@@ -25,7 +25,8 @@ tvosAnalyticsEventDefinitions = <TVOSAnalyticsEventDefinition>[
     name: 'tvos_settings_changed',
     surfaceId: TVOSSurfaceId.settings,
     severity: TVOSAnalyticsSeverity.warning,
-    summary: 'Records startup and listening-default changes for tvOS-safe preferences.',
+    summary:
+        'Records startup and listening-default changes for tvOS-safe preferences.',
   ),
   TVOSAnalyticsEventDefinition(
     name: 'tvos_listening_mode_opened',
@@ -61,7 +62,8 @@ tvosQualityGuardrailDefinitions = <TVOSQualityGuardrailDefinition>[
     requiresLocalCrashBuffer: true,
     requiresPlaybackErrorCapture: true,
     requiresFocusQaCoverage: true,
-    summary: 'Qur’an requires route telemetry, playback-error capture, and focus QA coverage.',
+    summary:
+        'Qur’an requires route telemetry, playback-error capture, and focus QA coverage.',
   ),
   TVOSQualityGuardrailDefinition(
     surfaceId: TVOSSurfaceId.settings,
@@ -71,7 +73,8 @@ tvosQualityGuardrailDefinitions = <TVOSQualityGuardrailDefinition>[
     requiresLocalCrashBuffer: true,
     requiresPlaybackErrorCapture: false,
     requiresFocusQaCoverage: true,
-    summary: 'Settings should capture preference changes without pretending cloud diagnostics exist.',
+    summary:
+        'Settings should capture preference changes without pretending cloud diagnostics exist.',
   ),
   TVOSQualityGuardrailDefinition(
     surfaceId: TVOSSurfaceId.profiles,
@@ -81,6 +84,7 @@ tvosQualityGuardrailDefinitions = <TVOSQualityGuardrailDefinition>[
     requiresLocalCrashBuffer: true,
     requiresPlaybackErrorCapture: false,
     requiresFocusQaCoverage: true,
-    summary: 'Profiles should capture household switching and shared-device QA signals.',
+    summary:
+        'Profiles should capture household switching and shared-device QA signals.',
   ),
 ];

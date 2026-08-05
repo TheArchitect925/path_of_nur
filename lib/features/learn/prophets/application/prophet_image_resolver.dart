@@ -63,6 +63,5 @@ String? resolveProphetImageAsset(ProphetEntry prophet) {
 }
 
 Alignment resolveProphetImageAlignment(ProphetEntry prophet) {
-  return _prophetImageAlignmentById[prophet.id] ??
-      const Alignment(0, 0.12);
+  return _prophetImageAlignmentById[prophet.id] ?? const Alignment(0, 0.12);
 }

@@ -31,7 +31,8 @@ final bedtimeStoryAudioAvailabilityProvider =
           .isAudioAvailable(story);
     });
 
-class BedtimeStoryAudioController extends StateNotifier<BedtimeStoryAudioState> {
+class BedtimeStoryAudioController
+    extends StateNotifier<BedtimeStoryAudioState> {
   BedtimeStoryAudioController(this._ref)
     : _player = AudioPlayer(),
       super(const BedtimeStoryAudioState()) {
@@ -105,9 +106,7 @@ class BedtimeStoryAudioController extends StateNotifier<BedtimeStoryAudioState> 
       } else if (initialPosition > Duration.zero || state.isCompleted) {
         await _player.seek(initialPosition);
       }
-      _ref
-          .read(bedtimeStoryProgressProvider.notifier)
-          .openStory(story.id);
+      _ref.read(bedtimeStoryProgressProvider.notifier).openStory(story.id);
       state = state.copyWith(
         currentStoryId: story.id,
         playbackSource: resolved.playbackSource,
@@ -242,10 +241,9 @@ class BedtimeStoryAudioController extends StateNotifier<BedtimeStoryAudioState> 
                   : story.estimatedDuration,
               source: BedtimeStoryPlaybackSource.asset,
             );
-        _ref.read(bedtimeStoryProgressProvider.notifier).completeStory(
-          story,
-          completionSource: 'audio',
-        );
+        _ref
+            .read(bedtimeStoryProgressProvider.notifier)
+            .completeStory(story, completionSource: 'audio');
       }
       state = state.copyWith(
         isPlaying: false,

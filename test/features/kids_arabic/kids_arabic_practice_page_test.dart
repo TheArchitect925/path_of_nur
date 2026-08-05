@@ -124,7 +124,10 @@ void main() {
         300,
         scrollable: find.byType(Scrollable).first,
       );
-      expect(find.text(l10n.kidsArabicPracticeReviewWordsTitle), findsOneWidget);
+      expect(
+        find.text(l10n.kidsArabicPracticeReviewWordsTitle),
+        findsOneWidget,
+      );
 
       await tester.scrollUntilVisible(
         find.text(l10n.kidsArabicPracticeContinueWordTitle('نور')),
@@ -132,7 +135,8 @@ void main() {
         scrollable: find.byType(Scrollable).first,
       );
       final continueButton = tester.widget<TextButton>(
-        find.widgetWithText(TextButton, l10n.kidsArabicPracticeContinueAction)
+        find
+            .widgetWithText(TextButton, l10n.kidsArabicPracticeContinueAction)
             .last,
       );
       continueButton.onPressed!.call();

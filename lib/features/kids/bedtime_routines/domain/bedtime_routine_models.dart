@@ -10,7 +10,12 @@ enum BedtimeRoutineStepType {
   sleepReadyFinish,
 }
 
-enum BedtimeRoutineCompletionState { notStarted, inProgress, completed, skipped }
+enum BedtimeRoutineCompletionState {
+  notStarted,
+  inProgress,
+  completed,
+  skipped,
+}
 
 enum BedtimeRecommendationType {
   resumeStory,
@@ -125,17 +130,18 @@ class BedtimeRoutineStepProgress {
       state: state ?? this.state,
       startedAtIso: startedAtIso ?? this.startedAtIso,
       completedAtIso: completedAtIso ?? this.completedAtIso,
-      selectedChoiceId:
-          clearSelectedChoiceId ? null : (selectedChoiceId ?? this.selectedChoiceId),
+      selectedChoiceId: clearSelectedChoiceId
+          ? null
+          : (selectedChoiceId ?? this.selectedChoiceId),
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'state': state.name,
-        'startedAtIso': startedAtIso,
-        'completedAtIso': completedAtIso,
-        'selectedChoiceId': selectedChoiceId,
-      };
+    'state': state.name,
+    'startedAtIso': startedAtIso,
+    'completedAtIso': completedAtIso,
+    'selectedChoiceId': selectedChoiceId,
+  };
 
   factory BedtimeRoutineStepProgress.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -210,21 +216,21 @@ class BedtimeRoutineSession {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'sessionId': sessionId,
-        'learnerId': learnerId,
-        'planId': planId,
-        'dateKey': dateKey,
-        'startedAtIso': startedAtIso,
-        'lastUpdatedAtIso': lastUpdatedAtIso,
-        'completedAtIso': completedAtIso,
-        'suggestedStoryId': suggestedStoryId,
-        'primaryDuaId': primaryDuaId,
-        'secondaryDuaIds': secondaryDuaIds,
-        'reflectionChoiceId': reflectionChoiceId,
-        'stepProgressById': stepProgressById.map(
-          (key, value) => MapEntry(key, value.toJson()),
-        ),
-      };
+    'sessionId': sessionId,
+    'learnerId': learnerId,
+    'planId': planId,
+    'dateKey': dateKey,
+    'startedAtIso': startedAtIso,
+    'lastUpdatedAtIso': lastUpdatedAtIso,
+    'completedAtIso': completedAtIso,
+    'suggestedStoryId': suggestedStoryId,
+    'primaryDuaId': primaryDuaId,
+    'secondaryDuaIds': secondaryDuaIds,
+    'reflectionChoiceId': reflectionChoiceId,
+    'stepProgressById': stepProgressById.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+  };
 
   factory BedtimeRoutineSession.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -234,7 +240,8 @@ class BedtimeRoutineSession {
     final stepProgress = <String, BedtimeRoutineStepProgress>{};
     if (rawSteps is Map) {
       for (final entry in rawSteps.entries) {
-        stepProgress[entry.key.toString()] = BedtimeRoutineStepProgress.fromJson(
+        stepProgress[entry.key
+            .toString()] = BedtimeRoutineStepProgress.fromJson(
           entry.value is Map<String, dynamic>
               ? entry.value as Map<String, dynamic>
               : (entry.value as Map?)?.map(
@@ -277,15 +284,17 @@ class BedtimeCompanionState {
     List<BedtimeRoutineSession>? recentSessions,
   }) {
     return BedtimeCompanionState(
-      activeSession: clearActiveSession ? null : (activeSession ?? this.activeSession),
+      activeSession: clearActiveSession
+          ? null
+          : (activeSession ?? this.activeSession),
       recentSessions: recentSessions ?? this.recentSessions,
     );
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'activeSession': activeSession?.toJson(),
-        'recentSessions': recentSessions.map((item) => item.toJson()).toList(),
-      };
+    'activeSession': activeSession?.toJson(),
+    'recentSessions': recentSessions.map((item) => item.toJson()).toList(),
+  };
 
   factory BedtimeCompanionState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {

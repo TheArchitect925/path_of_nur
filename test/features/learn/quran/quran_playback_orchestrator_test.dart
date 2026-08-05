@@ -115,34 +115,38 @@ void main() {
   test(
     'resume of Fatihah after app background keeps the target without prepending Bismillah',
     () async {
-    final prepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 1,
-        ayahNumber: 4,
-        resumePosition: Duration(seconds: 12),
-        playbackReason: QuranPlaybackReason.resume,
-      ),
-      ayahs: const <int>[1, 2, 3, 4, 5, 6, 7],
-    );
+      final prepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 1,
+          ayahNumber: 4,
+          resumePosition: Duration(seconds: 12),
+          playbackReason: QuranPlaybackReason.resume,
+        ),
+        ayahs: const <int>[1, 2, 3, 4, 5, 6, 7],
+      );
 
-    expect(prepared.didPrependBismillah, isFalse);
-    expect(prepared.initialLogicalIndex, 3);
-    expect(prepared.initialPosition, const Duration(seconds: 12));
-  });
+      expect(prepared.didPrependBismillah, isFalse);
+      expect(prepared.initialLogicalIndex, 3);
+      expect(prepared.initialPosition, const Duration(seconds: 12));
+    },
+  );
 
-  test('jump within Fatihah keeps the target without prepending Bismillah', () async {
-    final prepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 1,
-        ayahNumber: 6,
-        playbackReason: QuranPlaybackReason.jump,
-      ),
-      ayahs: const <int>[1, 2, 3, 4, 5, 6, 7],
-    );
+  test(
+    'jump within Fatihah keeps the target without prepending Bismillah',
+    () async {
+      final prepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 1,
+          ayahNumber: 6,
+          playbackReason: QuranPlaybackReason.jump,
+        ),
+        ayahs: const <int>[1, 2, 3, 4, 5, 6, 7],
+      );
 
-    expect(prepared.didPrependBismillah, isFalse);
-    expect(prepared.initialLogicalIndex, 5);
-  });
+      expect(prepared.didPrependBismillah, isFalse);
+      expect(prepared.initialLogicalIndex, 5);
+    },
+  );
 
   test('fresh play of another surah prepends Bismillah', () async {
     final prepared = await prepare(
@@ -160,68 +164,71 @@ void main() {
   test(
     'resume of another surah keeps the target without prepending Bismillah',
     () async {
-    final prepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 2,
-        ayahNumber: 3,
-        resumePosition: Duration(seconds: 8),
-        playbackReason: QuranPlaybackReason.resume,
-      ),
-      ayahs: const <int>[1, 2, 3, 4],
-    );
+      final prepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 2,
+          ayahNumber: 3,
+          resumePosition: Duration(seconds: 8),
+          playbackReason: QuranPlaybackReason.resume,
+        ),
+        ayahs: const <int>[1, 2, 3, 4],
+      );
 
-    expect(prepared.didPrependBismillah, isFalse);
-    expect(prepared.initialLogicalIndex, 2);
-  });
+      expect(prepared.didPrependBismillah, isFalse);
+      expect(prepared.initialLogicalIndex, 2);
+    },
+  );
 
   test(
     'jump within another surah keeps the target without prepending Bismillah',
     () async {
-    final prepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 36,
-        ayahNumber: 12,
-        playbackReason: QuranPlaybackReason.jump,
-      ),
-      ayahs: const <int>[1, 5, 12, 20],
-    );
+      final prepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 36,
+          ayahNumber: 12,
+          playbackReason: QuranPlaybackReason.jump,
+        ),
+        ayahs: const <int>[1, 5, 12, 20],
+      );
 
-    expect(prepared.didPrependBismillah, isFalse);
-    expect(prepared.initialLogicalIndex, 2);
-  });
+      expect(prepared.didPrependBismillah, isFalse);
+      expect(prepared.initialLogicalIndex, 2);
+    },
+  );
 
   test(
     'bookmark deep link and restore requests mid-surah do not prepend Bismillah',
     () async {
-    final bookmarkPrepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 18,
-        ayahNumber: 25,
-        playbackReason: QuranPlaybackReason.bookmark,
-      ),
-      ayahs: const <int>[10, 20, 25, 30],
-    );
-    final deepLinkPrepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 18,
-        ayahNumber: 25,
-        playbackReason: QuranPlaybackReason.deepLink,
-      ),
-      ayahs: const <int>[10, 20, 25, 30],
-    );
-    final restorePrepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 18,
-        ayahNumber: 25,
-        playbackReason: QuranPlaybackReason.restore,
-      ),
-      ayahs: const <int>[10, 20, 25, 30],
-    );
+      final bookmarkPrepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 18,
+          ayahNumber: 25,
+          playbackReason: QuranPlaybackReason.bookmark,
+        ),
+        ayahs: const <int>[10, 20, 25, 30],
+      );
+      final deepLinkPrepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 18,
+          ayahNumber: 25,
+          playbackReason: QuranPlaybackReason.deepLink,
+        ),
+        ayahs: const <int>[10, 20, 25, 30],
+      );
+      final restorePrepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 18,
+          ayahNumber: 25,
+          playbackReason: QuranPlaybackReason.restore,
+        ),
+        ayahs: const <int>[10, 20, 25, 30],
+      );
 
-    expect(bookmarkPrepared.didPrependBismillah, isFalse);
-    expect(deepLinkPrepared.didPrependBismillah, isFalse);
-    expect(restorePrepared.didPrependBismillah, isFalse);
-  });
+      expect(bookmarkPrepared.didPrependBismillah, isFalse);
+      expect(deepLinkPrepared.didPrependBismillah, isFalse);
+      expect(restorePrepared.didPrependBismillah, isFalse);
+    },
+  );
 
   test(
     'sourceAware mode avoids duplicate Bismillah when source already contains it',
@@ -244,38 +251,48 @@ void main() {
   test(
     'intended target is preserved without pre-roll for mid-surah bookmarks',
     () async {
-    final prepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 18,
-        ayahNumber: 25,
-        resumePosition: Duration(seconds: 17),
-        playbackReason: QuranPlaybackReason.bookmark,
-      ),
-      ayahs: const <int>[10, 20, 25, 30],
-    );
+      final prepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 18,
+          ayahNumber: 25,
+          resumePosition: Duration(seconds: 17),
+          playbackReason: QuranPlaybackReason.bookmark,
+        ),
+        ayahs: const <int>[10, 20, 25, 30],
+      );
 
-    expect(prepared.didPrependBismillah, isFalse);
-    expect(prepared.preRollMetadata, isNull);
-    expect(prepared.request.surahNumber, 18);
-    expect(prepared.request.ayahNumber, 25);
-    expect(prepared.initialLogicalIndex, 2);
-    expect(prepared.initialPosition, const Duration(seconds: 17));
-  });
+      expect(prepared.didPrependBismillah, isFalse);
+      expect(prepared.preRollMetadata, isNull);
+      expect(prepared.request.surahNumber, 18);
+      expect(prepared.request.ayahNumber, 25);
+      expect(prepared.initialLogicalIndex, 2);
+      expect(prepared.initialPosition, const Duration(seconds: 17));
+    },
+  );
 
-  test('mid-surah deep links keep the logical target metadata without pre-roll', () async {
-    final prepared = await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 2,
-        ayahNumber: 3,
-        playbackReason: QuranPlaybackReason.deepLink,
-      ),
-      ayahs: const <int>[1, 2, 3, 4],
-    );
+  test(
+    'mid-surah deep links keep the logical target metadata without pre-roll',
+    () async {
+      final prepared = await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 2,
+          ayahNumber: 3,
+          playbackReason: QuranPlaybackReason.deepLink,
+        ),
+        ayahs: const <int>[1, 2, 3, 4],
+      );
 
-    expect(prepared.preRollMetadata, isNull);
-    expect(prepared.entries[prepared.initialLogicalIndex].metadata.surahNumber, 2);
-    expect(prepared.entries[prepared.initialLogicalIndex].metadata.ayahNumber, 3);
-  });
+      expect(prepared.preRollMetadata, isNull);
+      expect(
+        prepared.entries[prepared.initialLogicalIndex].metadata.surahNumber,
+        2,
+      );
+      expect(
+        prepared.entries[prepared.initialLogicalIndex].metadata.ayahNumber,
+        3,
+      );
+    },
+  );
 
   test('Surah At-Tawbah start does not prepend Bismillah', () async {
     final prepared = await prepare(
@@ -292,28 +309,31 @@ void main() {
     expect(prepared.preRollSource, isNull);
   });
 
-  test('reuses cached prepared playback for repeated identical queue requests', () async {
-    repository.resolveAyahSourceMetadataCallCount = 0;
+  test(
+    'reuses cached prepared playback for repeated identical queue requests',
+    () async {
+      repository.resolveAyahSourceMetadataCallCount = 0;
 
-    await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 18,
-        ayahNumber: 25,
-        resumePosition: Duration(seconds: 5),
-        playbackReason: QuranPlaybackReason.resume,
-      ),
-      ayahs: const <int>[20, 25, 30],
-    );
-    await prepare(
-      const QuranPlaybackRequest(
-        surahNumber: 18,
-        ayahNumber: 25,
-        resumePosition: Duration(seconds: 9),
-        playbackReason: QuranPlaybackReason.resume,
-      ),
-      ayahs: const <int>[20, 25, 30],
-    );
+      await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 18,
+          ayahNumber: 25,
+          resumePosition: Duration(seconds: 5),
+          playbackReason: QuranPlaybackReason.resume,
+        ),
+        ayahs: const <int>[20, 25, 30],
+      );
+      await prepare(
+        const QuranPlaybackRequest(
+          surahNumber: 18,
+          ayahNumber: 25,
+          resumePosition: Duration(seconds: 9),
+          playbackReason: QuranPlaybackReason.resume,
+        ),
+        ayahs: const <int>[20, 25, 30],
+      );
 
-    expect(repository.resolveAyahSourceMetadataCallCount, 3);
-  });
+      expect(repository.resolveAyahSourceMetadataCallCount, 3);
+    },
+  );
 }

@@ -81,4 +81,5 @@ String arabicModuleContentUnitId(String moduleId) => 'module:$moduleId';
 
 String arabicBridgeContentUnitId(String bridgeId) => 'bridge:$bridgeId';
 
-String arabicShortSurahContentUnitId(int surahNumber) => 'short_surah:$surahNumber';
+String arabicShortSurahContentUnitId(int surahNumber) =>
+    'short_surah:$surahNumber';

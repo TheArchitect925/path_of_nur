@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import '../../creation_explorer/domain/creation_explorer_models.dart';
 
 enum CreationChallengeType { observe, detect, reflect, skyEvent, photoJournal }
+
 enum CreationChallengeDifficulty { gentle, steady, deeper }
+
 enum CreationChallengeStatus { available, completed, expired }
+
 enum CreationExplorerMode { creationExplorer, skyExplorer, journal }
+
 enum CreationChallengeRuleType {
   openExplorer,
   detectCategory,
@@ -14,7 +18,15 @@ enum CreationChallengeRuleType {
   checkSkyEvent,
   manualConfirm,
 }
-enum ChallengeEvidenceType { explorerOpen, detection, observation, reflection, manual }
+
+enum ChallengeEvidenceType {
+  explorerOpen,
+  detection,
+  observation,
+  reflection,
+  manual,
+}
+
 enum ChallengeSlot { daily, bonus, weekly }
 
 class CreationChallenge {
@@ -73,14 +85,14 @@ class ChallengeCompletion {
   final int awardedDrops;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'challengeId': challengeId,
-        'completedAt': completedAt.toIso8601String(),
-        'evidenceType': evidenceType.name,
-        'evidenceRefId': evidenceRefId,
-        'notes': notes,
-        'awardedDrops': awardedDrops,
-      };
+    'id': id,
+    'challengeId': challengeId,
+    'completedAt': completedAt.toIso8601String(),
+    'evidenceType': evidenceType.name,
+    'evidenceRefId': evidenceRefId,
+    'notes': notes,
+    'awardedDrops': awardedDrops,
+  };
 
   static ChallengeCompletion? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -88,7 +100,10 @@ class ChallengeCompletion {
     final challengeId = raw['challengeId']?.toString();
     final completedAt = DateTime.tryParse(raw['completedAt']?.toString() ?? '');
     final evidenceTypeName = raw['evidenceType']?.toString();
-    if (id == null || challengeId == null || completedAt == null || evidenceTypeName == null) {
+    if (id == null ||
+        challengeId == null ||
+        completedAt == null ||
+        evidenceTypeName == null) {
       return null;
     }
     ChallengeEvidenceType? evidenceType;
@@ -131,14 +146,14 @@ class ChallengeHistoryEntry {
   final CreationCategoryId? categoryId;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'date': date.toIso8601String(),
-        'challengeId': challengeId,
-        'completed': completed,
-        'skipped': skipped,
-        'explorerSource': explorerSource.name,
-        'categoryId': categoryId?.name,
-      };
+    'id': id,
+    'date': date.toIso8601String(),
+    'challengeId': challengeId,
+    'completed': completed,
+    'skipped': skipped,
+    'explorerSource': explorerSource.name,
+    'categoryId': categoryId?.name,
+  };
 
   static ChallengeHistoryEntry? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -146,7 +161,10 @@ class ChallengeHistoryEntry {
     final challengeId = raw['challengeId']?.toString();
     final date = DateTime.tryParse(raw['date']?.toString() ?? '');
     final explorerName = raw['explorerSource']?.toString();
-    if (id == null || challengeId == null || date == null || explorerName == null) {
+    if (id == null ||
+        challengeId == null ||
+        date == null ||
+        explorerName == null) {
       return null;
     }
     CreationExplorerMode? explorerSource;
@@ -193,11 +211,11 @@ class CreationChallengeAssignment {
   final DateTime endAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'slot': slot.name,
-        'challengeId': challengeId,
-        'startAt': startAt.toIso8601String(),
-        'endAt': endAt.toIso8601String(),
-      };
+    'slot': slot.name,
+    'challengeId': challengeId,
+    'startAt': startAt.toIso8601String(),
+    'endAt': endAt.toIso8601String(),
+  };
 
   static CreationChallengeAssignment? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -205,7 +223,10 @@ class CreationChallengeAssignment {
     final challengeId = raw['challengeId']?.toString();
     final startAt = DateTime.tryParse(raw['startAt']?.toString() ?? '');
     final endAt = DateTime.tryParse(raw['endAt']?.toString() ?? '');
-    if (slotName == null || challengeId == null || startAt == null || endAt == null) {
+    if (slotName == null ||
+        challengeId == null ||
+        startAt == null ||
+        endAt == null) {
       return null;
     }
     ChallengeSlot? slot;
@@ -267,10 +288,14 @@ class CreationChallengeState {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'assignments': assignments.map((key, value) => MapEntry(key.name, value.toJson())),
-        'completions': completions.map((item) => item.toJson()).toList(growable: false),
-        'history': history.map((item) => item.toJson()).toList(growable: false),
-      };
+    'assignments': assignments.map(
+      (key, value) => MapEntry(key.name, value.toJson()),
+    ),
+    'completions': completions
+        .map((item) => item.toJson())
+        .toList(growable: false),
+    'history': history.map((item) => item.toJson()).toList(growable: false),
+  };
 
   static CreationChallengeState fromJson(Map<String, dynamic>? json) {
     if (json == null) {

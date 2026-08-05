@@ -18,13 +18,7 @@ enum KidsActivityType {
   bedtimeRoutineCompleted,
 }
 
-enum KidsActivityDomain {
-  stories,
-  duas,
-  arabic,
-  seerah,
-  routines,
-}
+enum KidsActivityDomain { stories, duas, arabic, seerah, routines }
 
 class KidsActivityEntry {
   const KidsActivityEntry({
@@ -52,17 +46,17 @@ class KidsActivityEntry {
   final Map<String, Object?> metadata;
 
   Map<String, Object?> toJson() => <String, Object?>{
-        'id': id,
-        'learnerId': learnerId,
-        'occurredAtIso': occurredAtIso,
-        'type': type.name,
-        'domain': domain.name,
-        'sourceRef': sourceRef,
-        'contentId': contentId,
-        'titleSnapshot': titleSnapshot,
-        'subtitleSnapshot': subtitleSnapshot,
-        'metadata': metadata,
-      };
+    'id': id,
+    'learnerId': learnerId,
+    'occurredAtIso': occurredAtIso,
+    'type': type.name,
+    'domain': domain.name,
+    'sourceRef': sourceRef,
+    'contentId': contentId,
+    'titleSnapshot': titleSnapshot,
+    'subtitleSnapshot': subtitleSnapshot,
+    'metadata': metadata,
+  };
 
   factory KidsActivityEntry.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -95,21 +89,17 @@ class KidsActivityEntry {
 }
 
 class KidsActivityLogState {
-  const KidsActivityLogState({
-    this.entries = const <KidsActivityEntry>[],
-  });
+  const KidsActivityLogState({this.entries = const <KidsActivityEntry>[]});
 
   final List<KidsActivityEntry> entries;
 
-  KidsActivityLogState copyWith({
-    List<KidsActivityEntry>? entries,
-  }) {
+  KidsActivityLogState copyWith({List<KidsActivityEntry>? entries}) {
     return KidsActivityLogState(entries: entries ?? this.entries);
   }
 
   Map<String, Object?> toJson() => <String, Object?>{
-        'entries': entries.map((item) => item.toJson()).toList(growable: false),
-      };
+    'entries': entries.map((item) => item.toJson()).toList(growable: false),
+  };
 
   factory KidsActivityLogState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {

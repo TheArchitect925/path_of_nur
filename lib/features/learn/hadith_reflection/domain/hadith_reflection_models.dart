@@ -465,10 +465,7 @@ class HadithReflectionPackProgressSummary {
 }
 
 class HadithReflectionCatalog {
-  const HadithReflectionCatalog({
-    required this.puzzles,
-    required this.packs,
-  });
+  const HadithReflectionCatalog({required this.puzzles, required this.packs});
 
   final List<HadithReflectionPuzzle> puzzles;
   final List<HadithReflectionPuzzlePack> packs;

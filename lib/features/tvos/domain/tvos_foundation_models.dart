@@ -1,23 +1,8 @@
-enum TVOSParityClassification {
-  directReuse,
-  adaptation,
-  laterPhase,
-  iosOnly,
-}
+enum TVOSParityClassification { directReuse, adaptation, laterPhase, iosOnly }
 
-enum TVOSReleaseStage {
-  foundation,
-  testflight,
-  limitedRelease,
-  publicLaunch,
-}
+enum TVOSReleaseStage { foundation, testflight, limitedRelease, publicLaunch }
 
-enum TVOSFeatureAvailability {
-  enabled,
-  staged,
-  hidden,
-  iosOnly,
-}
+enum TVOSFeatureAvailability { enabled, staged, hidden, iosOnly }
 
 enum TVOSParityHealth {
   mirrored,

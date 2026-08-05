@@ -15,10 +15,7 @@ import 'arabic_learning_route_target_navigation.dart';
 import 'widgets/arabic_learning_playback_speed_toggle.dart';
 
 class ArabicLearningMiniAssessmentPage extends ConsumerStatefulWidget {
-  const ArabicLearningMiniAssessmentPage({
-    required this.audience,
-    super.key,
-  });
+  const ArabicLearningMiniAssessmentPage({required this.audience, super.key});
 
   final ArabicLearningAudience audience;
 
@@ -79,11 +76,13 @@ class _ArabicLearningMiniAssessmentPageState
                     ? l10n.arabicLearningMiniAssessmentCorrectFeedback
                     : l10n.arabicLearningMiniAssessmentRetryFeedback),
           positiveFeedback: _lastAnswerCorrect,
-          onReplayAudio: currentQuestion.type ==
+          onReplayAudio:
+              currentQuestion.type ==
                   ArabicLearningAssessmentQuestionType.hearChoose
               ? () => _playQuestionAudio(currentQuestion)
               : null,
-          onSelectOption: (optionId) => _selectOption(currentQuestion, optionId),
+          onSelectOption: (optionId) =>
+              _selectOption(currentQuestion, optionId),
           resolved: _resolvedQuestions.contains(currentQuestion.questionId),
         )
       else
@@ -104,12 +103,13 @@ class _ArabicLearningMiniAssessmentPageState
           onSecondaryTap: !prefersReview || _session.reviewSuggestion == null
               ? null
               : () => openArabicLearningRouteTarget(
-                    context,
-                    target: _session.continueTarget,
-                    adultCatalog: adultCatalog,
-                  ),
+                  context,
+                  target: _session.continueTarget,
+                  adultCatalog: adultCatalog,
+                ),
         ),
-      if (currentQuestion != null && _resolvedQuestions.contains(currentQuestion.questionId)) ...[
+      if (currentQuestion != null &&
+          _resolvedQuestions.contains(currentQuestion.questionId)) ...[
         const SizedBox(height: 12),
         FilledButton(
           onPressed: _advance,
@@ -141,7 +141,9 @@ class _ArabicLearningMiniAssessmentPageState
   Future<void> _playQuestionAudio(
     ArabicLearningAssessmentQuestion question,
   ) async {
-    await ref.read(arabicLearningAudioControllerProvider.notifier).playResolvedAudio(
+    await ref
+        .read(arabicLearningAudioControllerProvider.notifier)
+        .playResolvedAudio(
           playbackId: question.audioPlaybackId ?? question.questionId,
           primaryAssetPath: question.audioAssetPath,
           alternateAssetPaths: question.audioAlternateAssetPaths,
@@ -149,7 +151,10 @@ class _ArabicLearningMiniAssessmentPageState
         );
   }
 
-  void _selectOption(ArabicLearningAssessmentQuestion question, String optionId) {
+  void _selectOption(
+    ArabicLearningAssessmentQuestion question,
+    String optionId,
+  ) {
     if (_resolvedQuestions.contains(question.questionId)) {
       return;
     }
@@ -179,10 +184,7 @@ class _ArabicLearningMiniAssessmentPageState
 }
 
 class _IntroCard extends StatelessWidget {
-  const _IntroCard({
-    required this.audience,
-    required this.questionCount,
-  });
+  const _IntroCard({required this.audience, required this.questionCount});
 
   final ArabicLearningAudience audience;
   final int questionCount;
@@ -205,14 +207,12 @@ class _IntroCard extends StatelessWidget {
         children: [
           Text(
             l10n.arabicLearningMiniAssessmentIntroTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
-          Text(
-            l10n.arabicLearningMiniAssessmentIntroBody(questionCount),
-          ),
+          Text(l10n.arabicLearningMiniAssessmentIntroBody(questionCount)),
         ],
       ),
     );
@@ -260,7 +260,8 @@ class _QuestionCard extends StatelessWidget {
       ArabicLearningContinuationContentType.review =>
         l10n.arabicLearningMiniAssessmentContentWord,
     };
-    final isPlaying = question.audioPlaybackId != null &&
+    final isPlaying =
+        question.audioPlaybackId != null &&
         audioState.isPlaying &&
         audioState.activePlaybackId == question.audioPlaybackId;
 
@@ -281,21 +282,24 @@ class _QuestionCard extends StatelessWidget {
               questionNumber,
               totalQuestions,
             ),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 12),
           Text(
             question.type == ArabicLearningAssessmentQuestionType.seeChoose
                 ? l10n.arabicLearningMiniAssessmentSeeChoosePrompt(contentLabel)
-                : l10n.arabicLearningMiniAssessmentHearChoosePrompt(contentLabel),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                : l10n.arabicLearningMiniAssessmentHearChoosePrompt(
+                    contentLabel,
+                  ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 14),
-          if (question.type == ArabicLearningAssessmentQuestionType.seeChoose) ...[
+          if (question.type ==
+              ArabicLearningAssessmentQuestionType.seeChoose) ...[
             Center(
               child: Text(
                 question.arabicPrompt ?? '',
@@ -343,7 +347,9 @@ class _QuestionCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(color: const Color(0xFFE4DACE)),
                     ),
-                    child: question.type == ArabicLearningAssessmentQuestionType.seeChoose
+                    child:
+                        question.type ==
+                            ArabicLearningAssessmentQuestionType.seeChoose
                         ? _SeeChooseOption(option: option)
                         : _HearChooseOption(option: option),
                   ),
@@ -383,9 +389,9 @@ class _SeeChooseOption extends StatelessWidget {
       children: [
         Text(
           option.title,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
         ),
         if (option.meaning != null) ...[
           const SizedBox(height: 4),
@@ -420,9 +426,9 @@ class _HearChooseOption extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             option.transliteration!,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
         ],
         if (option.meaning != null) ...[
@@ -465,9 +471,9 @@ class _CompletionCard extends StatelessWidget {
         children: [
           Text(
             l10n.arabicLearningMiniAssessmentCompleteTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
           Text(
@@ -476,10 +482,7 @@ class _CompletionCard extends StatelessWidget {
                 : l10n.arabicLearningMiniAssessmentCompleteContinueBody,
           ),
           const SizedBox(height: 14),
-          FilledButton(
-            onPressed: onPrimaryTap,
-            child: Text(primaryLabel),
-          ),
+          FilledButton(onPressed: onPrimaryTap, child: Text(primaryLabel)),
           if (showReview && onSecondaryTap != null) ...[
             const SizedBox(height: 10),
             OutlinedButton(

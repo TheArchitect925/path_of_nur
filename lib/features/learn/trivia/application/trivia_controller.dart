@@ -139,43 +139,44 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
   int get masteredReviewCount =>
       state.reviewItems.values.where((item) => item.isMastered).length;
 
-  bool startSession({
-    required TriviaMode mode,
-    String? categoryId,
-  }) {
+  bool startSession({required TriviaMode mode, String? categoryId}) {
     final now = DateTime.now();
     final sessionQuestions = switch (mode) {
       TriviaMode.quickChallenge => _repository.pickRandomQuestions(
-          mode: mode,
-          categoryId: categoryId,
-          desiredCount: mode.suggestedQuestionCount,
-          random: Random(now.microsecondsSinceEpoch),
-        ),
+        mode: mode,
+        categoryId: categoryId,
+        desiredCount: mode.suggestedQuestionCount,
+        random: Random(now.microsecondsSinceEpoch),
+      ),
       TriviaMode.deepDive => _repository.pickRandomQuestions(
-          mode: mode,
-          categoryId: categoryId,
-          desiredCount: mode.suggestedQuestionCount,
-          random: Random(now.microsecondsSinceEpoch),
-        ),
+        mode: mode,
+        categoryId: categoryId,
+        desiredCount: mode.suggestedQuestionCount,
+        random: Random(now.microsecondsSinceEpoch),
+      ),
       TriviaMode.survival => _repository.pickRandomQuestions(
-          mode: mode,
-          categoryId: categoryId,
-          desiredCount: _repository
-              .playableQuestions(mode: mode, categoryId: categoryId)
-              .length,
-          random: Random(now.microsecondsSinceEpoch),
-        ),
+        mode: mode,
+        categoryId: categoryId,
+        desiredCount: _repository
+            .playableQuestions(mode: mode, categoryId: categoryId)
+            .length,
+        random: Random(now.microsecondsSinceEpoch),
+      ),
       TriviaMode.reviewMistakes => _repository.reviewQuestions(
-          reviewItems: _reviewPool(now),
-          count: mode.suggestedQuestionCount,
-        ),
-      TriviaMode.dailyQuiz => _buildDailySessionQuestions(now, categoryId: categoryId),
+        reviewItems: _reviewPool(now),
+        count: mode.suggestedQuestionCount,
+      ),
+      TriviaMode.dailyQuiz => _buildDailySessionQuestions(
+        now,
+        categoryId: categoryId,
+      ),
     };
 
     if (sessionQuestions.isEmpty) return false;
 
     final dayKey = LocalStore.todayKey(now);
-    final isDailyReplay = mode == TriviaMode.dailyQuiz &&
+    final isDailyReplay =
+        mode == TriviaMode.dailyQuiz &&
         state.dailyQuizState?.dayKey == dayKey &&
         state.dailyQuizState?.completed == true;
 
@@ -184,7 +185,9 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
         id: 'trivia_${mode.name}_${now.microsecondsSinceEpoch}',
         mode: mode,
         categoryId: categoryId,
-        questionIds: sessionQuestions.map((item) => item.id).toList(growable: false),
+        questionIds: sessionQuestions
+            .map((item) => item.id)
+            .toList(growable: false),
         startedAtIso: now.toIso8601String(),
         dailyKey: mode == TriviaMode.dailyQuiz ? dayKey : null,
         dailyReplay: isDailyReplay,
@@ -221,14 +224,17 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       return currentState?.isCorrect == true;
     }
     final isCorrect = question.correctOptionId == optionId;
-    final nextStates = Map<String, TriviaSessionQuestionState>.from(session.questionStates)
-      ..[question.id] = TriviaSessionQuestionState(
-        questionId: question.id,
-        selectedOptionId: optionId,
-        isCorrect: isCorrect,
-        answeredAtIso: DateTime.now().toIso8601String(),
-      );
-    state = state.copyWith(activeSession: session.copyWith(questionStates: nextStates));
+    final nextStates =
+        Map<String, TriviaSessionQuestionState>.from(session.questionStates)
+          ..[question.id] = TriviaSessionQuestionState(
+            questionId: question.id,
+            selectedOptionId: optionId,
+            isCorrect: isCorrect,
+            answeredAtIso: DateTime.now().toIso8601String(),
+          );
+    state = state.copyWith(
+      activeSession: session.copyWith(questionStates: nextStates),
+    );
     _save();
     return isCorrect;
   }
@@ -309,7 +315,8 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
   void _load() {
     state = IslamicTriviaState.fromJson(_store.getJsonMap(_storageKey));
     final active = state.activeSession;
-    if (active != null && _repository.questionsForIds(active.questionIds).isEmpty) {
+    if (active != null &&
+        _repository.questionsForIds(active.questionIds).isEmpty) {
       state = state.copyWith(clearActiveSession: true);
       _save();
     }
@@ -319,7 +326,10 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
     _store.setJsonMap(_storageKey, state.toJson());
   }
 
-  List<TriviaQuestion> _buildDailySessionQuestions(DateTime now, {String? categoryId}) {
+  List<TriviaQuestion> _buildDailySessionQuestions(
+    DateTime now, {
+    String? categoryId,
+  }) {
     final dayKey = LocalStore.todayKey(now);
     final existing = state.dailyQuizState;
     if (existing != null &&
@@ -332,11 +342,13 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
   }
 
   List<TriviaReviewItem> _reviewPool(DateTime now) {
-    return state.reviewItems.values.where((item) {
-      if (item.isMastered) return false;
-      final due = DateTime.tryParse(item.nextReviewIso ?? '');
-      return due == null || !due.isAfter(now);
-    }).toList(growable: false);
+    return state.reviewItems.values
+        .where((item) {
+          if (item.isMastered) return false;
+          final due = DateTime.tryParse(item.nextReviewIso ?? '');
+          return due == null || !due.isAfter(now);
+        })
+        .toList(growable: false);
   }
 
   void _finishSession() {
@@ -345,7 +357,9 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
     final answeredStates = session.questionStates.values
         .where((item) => item.isAnswered)
         .toList(growable: false);
-    final correctCount = answeredStates.where((item) => item.isCorrect == true).length;
+    final correctCount = answeredStates
+        .where((item) => item.isCorrect == true)
+        .length;
     final incorrectCount = answeredStates.length - correctCount;
     final reward = _calculateRewards(
       mode: session.mode,
@@ -364,7 +378,9 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       incorrectCount: incorrectCount,
       startedAtIso: session.startedAtIso,
       completedAtIso: now.toIso8601String(),
-      questionIds: answeredStates.map((item) => item.questionId).toList(growable: false),
+      questionIds: answeredStates
+          .map((item) => item.questionId)
+          .toList(growable: false),
       incorrectQuestionIds: answeredStates
           .where((item) => item.isCorrect == false)
           .map((item) => item.questionId)
@@ -434,7 +450,8 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
           questionIds: result.questionIds,
           incorrectQuestionIds: result.incorrectQuestionIds,
           xpEarned: result.xpEarned + pathReward.reward.xp,
-          oceanDropsEarned: result.oceanDropsEarned + pathReward.reward.oceanDrops,
+          oceanDropsEarned:
+              result.oceanDropsEarned + pathReward.reward.oceanDrops,
           wasPerfect: result.wasPerfect,
           wasDailyReplay: result.wasDailyReplay,
           survivalRun: result.survivalRun,
@@ -454,7 +471,8 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
     required bool isDailyReplay,
     TriviaSession? session,
   }) {
-    if (answeredCount <= 0) return const TriviaRewardResult(xp: 0, oceanDrops: 0);
+    if (answeredCount <= 0)
+      return const TriviaRewardResult(xp: 0, oceanDrops: 0);
     if (session?.isKnowledgePathSession == true) {
       return TriviaRewardResult(
         xp: session?.customXpReward ?? 0,
@@ -502,12 +520,19 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       if (!stateEntry.isAnswered) continue;
       final question = questionById(stateEntry.questionId);
       if (question == null) continue;
-      final existing = next[question.id] ??
-          TriviaReviewItem(questionId: question.id, categoryId: question.categoryId);
+      final existing =
+          next[question.id] ??
+          TriviaReviewItem(
+            questionId: question.id,
+            categoryId: question.categoryId,
+          );
       final nextSeen = existing.timesSeen + 1;
       if (stateEntry.isCorrect == true) {
         final correctCount = existing.timesCorrect + 1;
-        final nextMastery = _promoteMastery(existing.masteryState, correctCount);
+        final nextMastery = _promoteMastery(
+          existing.masteryState,
+          correctCount,
+        );
         next[question.id] = existing.copyWith(
           timesSeen: nextSeen,
           timesCorrect: correctCount,
@@ -539,11 +564,14 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
     required DateTime now,
   }) {
     final dayKey = LocalStore.todayKey(now);
-    final categoryStats = Map<String, TriviaCategoryStats>.from(current.categoryStats);
+    final categoryStats = Map<String, TriviaCategoryStats>.from(
+      current.categoryStats,
+    );
     for (final questionId in result.questionIds) {
       final question = questionById(questionId);
       if (question == null) continue;
-      final existing = categoryStats[question.categoryId] ??
+      final existing =
+          categoryStats[question.categoryId] ??
           TriviaCategoryStats(categoryId: question.categoryId);
       final wasCorrect = !result.incorrectQuestionIds.contains(questionId);
       categoryStats[question.categoryId] = existing.copyWith(
@@ -553,10 +581,12 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       );
     }
     if (result.questionIds.isNotEmpty) {
-      final focusCategory = result.categoryId ??
+      final focusCategory =
+          result.categoryId ??
           questionById(result.questionIds.first)?.categoryId;
       if (focusCategory != null) {
-        final existing = categoryStats[focusCategory] ??
+        final existing =
+            categoryStats[focusCategory] ??
             TriviaCategoryStats(categoryId: focusCategory);
         categoryStats[focusCategory] = existing.copyWith(
           quizzesCompleted: existing.quizzesCompleted + 1,
@@ -571,8 +601,7 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
           ? null
           : DateTime.tryParse(current.lastCompletionDayKey!);
       final currentDay = DateTime.parse(dayKey);
-      if (previous != null &&
-          currentDay.difference(previous).inDays == 1) {
+      if (previous != null && currentDay.difference(previous).inDays == 1) {
         streak += 1;
       } else {
         streak = 1;
@@ -589,8 +618,7 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
             ? null
             : DateTime.tryParse(current.lastDailyQuizDayKey!);
         final currentDay = DateTime.parse(dayKey);
-        if (previous != null &&
-            currentDay.difference(previous).inDays == 1) {
+        if (previous != null && currentDay.difference(previous).inDays == 1) {
           dailyQuizStreak += 1;
         } else {
           dailyQuizStreak = 1;
@@ -602,12 +630,14 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       }
     }
 
-    final recentResults = [result, ...current.recentResults]
-        .take(8)
-        .toList(growable: false);
+    final recentResults = [
+      result,
+      ...current.recentResults,
+    ].take(8).toList(growable: false);
 
     return current.copyWith(
-      totalQuestionsAnswered: current.totalQuestionsAnswered + result.totalAnswered,
+      totalQuestionsAnswered:
+          current.totalQuestionsAnswered + result.totalAnswered,
       totalQuizzesCompleted: current.totalQuizzesCompleted + 1,
       totalCorrect: current.totalCorrect + result.correctCount,
       totalIncorrect: current.totalIncorrect + result.incorrectCount,
@@ -685,7 +715,10 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       );
     }
     final progress = pathProgress(path.id);
-    final completedStages = {...progress.completedStageIds, session.knowledgeStageId!};
+    final completedStages = {
+      ...progress.completedStageIds,
+      session.knowledgeStageId!,
+    };
     final rewardedStages = {...progress.rewardedStageIds};
     var bonusXp = 0;
     var bonusDrops = 0;
@@ -717,10 +750,7 @@ class TriviaController extends StateNotifier<IslamicTriviaState> {
       pathCompletionRewardGranted: rewardGranted,
     );
     return _KnowledgePathCompletionResult(
-      updatedProgress: {
-        ...state.pathProgress,
-        path.id: updated,
-      },
+      updatedProgress: {...state.pathProgress, path.id: updated},
       reward: TriviaRewardResult(xp: bonusXp, oceanDrops: bonusDrops),
     );
   }

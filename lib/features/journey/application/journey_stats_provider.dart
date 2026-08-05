@@ -164,9 +164,7 @@ final journeyStatsSummaryProvider = Provider<JourneyStatsSummary>((ref) {
     totalPostSalahAdhkarCompleted: totalPostSalahAdhkarCompleted,
     totalDhikrSeconds: totalDhikrSeconds,
     totalQuranReadingSeconds: quranStats.totalReadingSeconds,
-    todayQuranReadingSeconds: quranStats.secondsForDay(
-      LocalStore.todayKey(),
-    ),
+    todayQuranReadingSeconds: quranStats.secondsForDay(LocalStore.todayKey()),
     totalQuranReadingSessions: quranStats.totalSessions,
     totalQuranListeningSeconds: quranListeningStats.totalListeningSeconds,
     todayQuranListeningSeconds: quranListeningStats.secondsForDay(

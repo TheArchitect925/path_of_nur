@@ -106,7 +106,8 @@ class QuranVerseContent extends ConsumerWidget {
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
     final textAlign = center ? TextAlign.center : TextAlign.start;
-    final resolvedArabicTextAlign = arabicTextAlign ?? textAlignForContent(arabic);
+    final resolvedArabicTextAlign =
+        arabicTextAlign ?? textAlignForContent(arabic);
     final resolvedSupportTextAlign = supportTextAlign ?? textAlign;
     final resolvedReferenceTextAlign = referenceTextAlign ?? textAlign;
     final referenceColor = QuranPresentationStyle.translucentHarakatColor(

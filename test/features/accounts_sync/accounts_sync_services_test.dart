@@ -26,13 +26,24 @@ void main() {
         'deviceLabel': 'Test Device',
       },
       'accounts': <Map<String, dynamic>>[
-        <String, dynamic>{'accountId': 'acct_1', 'provider': 'google', 'identifier': 'a@example.com', 'displayName': 'Test User', 'createdAtIso': '2026-03-24T12:00:00Z', 'lastLoginAtIso': '2026-03-24T12:00:00Z', 'connectedDeviceCount': 1, 'syncMode': 'manualBackupOnly'},
+        <String, dynamic>{
+          'accountId': 'acct_1',
+          'provider': 'google',
+          'identifier': 'a@example.com',
+          'displayName': 'Test User',
+          'createdAtIso': '2026-03-24T12:00:00Z',
+          'lastLoginAtIso': '2026-03-24T12:00:00Z',
+          'connectedDeviceCount': 1,
+          'syncMode': 'manualBackupOnly',
+        },
       ],
       'profiles': <Map<String, dynamic>>[
         <String, dynamic>{'profileId': 'profile_1', 'displayName': 'Amina'},
       ],
       'profileSnapshots': <String, dynamic>{'profile_1': <String, dynamic>{}},
-      'structuredDataByProfile': <String, dynamic>{'profile_1': <String, dynamic>{}},
+      'structuredDataByProfile': <String, dynamic>{
+        'profile_1': <String, dynamic>{},
+      },
     });
 
     final result = await repository.validateImportPayload(

@@ -10,43 +10,42 @@ import 'package:path_of_nur/l10n/app_localizations.dart';
 import '../../test_helpers/app_test_harness.dart';
 
 void main() {
-  testWidgets('creation explorer shows physical-device fallback when image labeling is unavailable', (
-    tester,
-  ) async {
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        creationImageLabelingRuntimeProvider.overrideWithValue(
-          CreationImageLabelingRuntime(
-            availabilityOverride: () async => false,
+  testWidgets(
+    'creation explorer shows physical-device fallback when image labeling is unavailable',
+    (tester) async {
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          creationImageLabelingRuntimeProvider.overrideWithValue(
+            CreationImageLabelingRuntime(
+              availabilityOverride: () async => false,
+            ),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: MaterialApp(
+            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: const Scaffold(body: CreationExplorerPage()),
           ),
         ),
-      ],
-    );
-    addTearDown(container.dispose);
+      );
 
-    await tester.pumpWidget(
-      UncontrolledProviderScope(
-        container: container,
-        child: MaterialApp(
-          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: const Scaffold(
-            body: CreationExplorerPage(),
-          ),
-        ),
-      ),
-    );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 120));
 
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 120));
-
-    expect(find.text(creationImageLabelingDeviceOnlyMessage), findsOneWidget);
-    expect(find.text('Image labeling runs on device only'), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
+      expect(find.text(creationImageLabelingDeviceOnlyMessage), findsOneWidget);
+      expect(find.text('Image labeling runs on device only'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }

@@ -9,4 +9,3 @@ class DhikrSummary {
   final int sessionsCompleted;
   final String favoritePhrase;
 }
-

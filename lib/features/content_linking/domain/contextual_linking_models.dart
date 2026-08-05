@@ -1,9 +1,4 @@
-enum ContextualContentType {
-  historicalEvent,
-  journey,
-  hadith,
-  learnContent,
-}
+enum ContextualContentType { historicalEvent, journey, hadith, learnContent }
 
 class ContextualLinkNode {
   const ContextualLinkNode({

@@ -66,7 +66,10 @@ const _themes = <LifeTheme>[
     summary: 'Neighborly ethics, friendship, and social trust.',
     whyItMatters:
         'Belief is social as well as personal. Communities strengthen when speech, promises, and differences are handled with adab.',
-    subcategoryIds: ['community-friendship-neighbors', 'community-disagreement-promises'],
+    subcategoryIds: [
+      'community-friendship-neighbors',
+      'community-disagreement-promises',
+    ],
     relatedThemeIds: ['justice-moral-conduct', 'mercy-forgiveness-compassion'],
     order: 5,
   ),
@@ -86,7 +89,10 @@ const _themes = <LifeTheme>[
     summary: 'Awareness of blessings and daily muhasabah.',
     whyItMatters:
         'Gratitude protects the heart from entitlement. Reflection turns events into lessons and keeps intention alive.',
-    subcategoryIds: ['gratitude-blessings-contentment', 'reflection-self-accountability'],
+    subcategoryIds: [
+      'gratitude-blessings-contentment',
+      'reflection-self-accountability',
+    ],
     relatedThemeIds: ['character', 'hardship-patience'],
     order: 3,
   ),
@@ -139,10 +145,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'family',
     title: 'Marriage, Children & Household Mercy',
     summary: 'Companionship, responsibility, and emotional safety.',
-    lessonIds: [
-      'family-marriage-mercy',
-      'family-children-tarbiyah',
-    ],
+    lessonIds: ['family-marriage-mercy', 'family-children-tarbiyah'],
     order: 2,
   ),
   LifeSubcategory(
@@ -172,10 +175,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'wealth-responsibility',
     title: 'Lawful Earning & Responsible Spending',
     summary: 'Ethical income, moderation, and priorities.',
-    lessonIds: [
-      'wealth-halal-earning',
-      'wealth-spending-balance',
-    ],
+    lessonIds: ['wealth-halal-earning', 'wealth-spending-balance'],
     order: 1,
   ),
   LifeSubcategory(
@@ -183,10 +183,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'wealth-responsibility',
     title: 'Generosity, Trust & Accountability',
     summary: 'From charity to amanah in financial dealings.',
-    lessonIds: [
-      'wealth-generosity-ihsan',
-      'wealth-trust-accountability',
-    ],
+    lessonIds: ['wealth-generosity-ihsan', 'wealth-trust-accountability'],
     order: 2,
   ),
   LifeSubcategory(
@@ -194,10 +191,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'hardship-patience',
     title: 'Inner Resilience in Trials',
     summary: 'Emotional steadiness and disciplined response.',
-    lessonIds: [
-      'hardship-sabr-active',
-      'hardship-hope-resilience',
-    ],
+    lessonIds: ['hardship-sabr-active', 'hardship-hope-resilience'],
     order: 1,
   ),
   LifeSubcategory(
@@ -205,10 +199,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'hardship-patience',
     title: 'Prayer, Dua & Trust in الله',
     summary: 'Turning pain into worship and action.',
-    lessonIds: [
-      'hardship-prayer-anchor',
-      'hardship-tawakkul-action',
-    ],
+    lessonIds: ['hardship-prayer-anchor', 'hardship-tawakkul-action'],
     order: 2,
   ),
   LifeSubcategory(
@@ -216,10 +207,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'community-relationships',
     title: 'Friendship, Neighbors & Belonging',
     summary: 'Daily ethics of belonging and care.',
-    lessonIds: [
-      'community-friendship-character',
-      'community-neighbor-rights',
-    ],
+    lessonIds: ['community-friendship-character', 'community-neighbor-rights'],
     order: 1,
   ),
   LifeSubcategory(
@@ -238,10 +226,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'work-time-discipline',
     title: 'Work Ethic, Intention & Excellence',
     summary: 'Productive work grounded in sincerity.',
-    lessonIds: [
-      'work-intention-service',
-      'work-excellence-amanah',
-    ],
+    lessonIds: ['work-intention-service', 'work-excellence-amanah'],
     order: 1,
   ),
   LifeSubcategory(
@@ -249,10 +234,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'work-time-discipline',
     title: 'Time Stewardship & Balanced Routine',
     summary: 'Protecting priorities and avoiding drift.',
-    lessonIds: [
-      'time-priority-management',
-      'time-rest-worship-balance',
-    ],
+    lessonIds: ['time-priority-management', 'time-rest-worship-balance'],
     order: 2,
   ),
   LifeSubcategory(
@@ -260,10 +242,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'gratitude-reflection',
     title: 'Gratitude, Blessings & Contentment',
     summary: 'Seeing blessings clearly and responding well.',
-    lessonIds: [
-      'gratitude-daily-awareness',
-      'gratitude-contentment-vs-envy',
-    ],
+    lessonIds: ['gratitude-daily-awareness', 'gratitude-contentment-vs-envy'],
     order: 1,
   ),
   LifeSubcategory(
@@ -271,10 +250,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'gratitude-reflection',
     title: 'Reflection & Self-Accountability',
     summary: 'Muhasabah and course-correction habits.',
-    lessonIds: [
-      'reflection-evening-review',
-      'reflection-repentance-renewal',
-    ],
+    lessonIds: ['reflection-evening-review', 'reflection-repentance-renewal'],
     order: 2,
   ),
   LifeSubcategory(
@@ -304,10 +280,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'mercy-forgiveness-compassion',
     title: 'Mercy in Everyday Relationships',
     summary: 'Kindness under stress and emotional restraint.',
-    lessonIds: [
-      'mercy-softening-speech',
-      'mercy-serving-vulnerable',
-    ],
+    lessonIds: ['mercy-softening-speech', 'mercy-serving-vulnerable'],
     order: 1,
   ),
   LifeSubcategory(
@@ -326,10 +299,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'loss-death-remembrance',
     title: 'Grief, Support & Patience',
     summary: 'Facing loss with truth, prayer, and care.',
-    lessonIds: [
-      'loss-grief-with-faith',
-      'loss-supporting-others',
-    ],
+    lessonIds: ['loss-grief-with-faith', 'loss-supporting-others'],
     order: 1,
   ),
   LifeSubcategory(
@@ -337,10 +307,7 @@ const _subcategories = <LifeSubcategory>[
     themeId: 'loss-death-remembrance',
     title: 'Mortality, Accountability & Legacy',
     summary: 'Living with akhirah-awareness and purpose.',
-    lessonIds: [
-      'death-remembering-accountability',
-      'death-legacy-good-deeds',
-    ],
+    lessonIds: ['death-remembering-accountability', 'death-legacy-good-deeds'],
     order: 2,
   ),
 ];
@@ -361,7 +328,10 @@ const _lessons = <LifeLesson>[
     keyConcepts: ['gratitude', 'service', 'respectful speech'],
     reflectionPrompt:
         'What one recurring act of care can you sustain even during busy weeks?',
-    relatedLessonIds: ['family-parents-respectful-disagreement', 'mercy-serving-vulnerable'],
+    relatedLessonIds: [
+      'family-parents-respectful-disagreement',
+      'mercy-serving-vulnerable',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Hebrew Bible / Wisdom tradition',
@@ -393,7 +363,10 @@ const _lessons = <LifeLesson>[
     keyConcepts: ['adab', 'firmness with gentleness', 'boundaries'],
     reflectionPrompt:
         'How can you protect both principle and relationship in one difficult conversation?',
-    relatedLessonIds: ['character-speech-truth-gentleness', 'community-respectful-disagreement'],
+    relatedLessonIds: [
+      'character-speech-truth-gentleness',
+      'community-respectful-disagreement',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Biblical wisdom literature',
@@ -417,7 +390,10 @@ const _lessons = <LifeLesson>[
         'Adopt a weekly repair ritual: apology, appreciation, and one concrete improvement commitment.',
     keyConcepts: ['tranquility', 'mercy', 'trust repair'],
     reflectionPrompt: 'What habit most improves emotional safety in your home?',
-    relatedLessonIds: ['character-intention-sincerity', 'forgiveness-reconciliation-steps'],
+    relatedLessonIds: [
+      'character-intention-sincerity',
+      'forgiveness-reconciliation-steps',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'New Testament household ethics',
@@ -442,7 +418,10 @@ const _lessons = <LifeLesson>[
     keyConcepts: ['example', 'consistency', 'gentle correction'],
     reflectionPrompt:
         'Which home routine currently teaches your values most clearly?',
-    relatedLessonIds: ['gratitude-daily-awareness', 'work-time-priority-management'],
+    relatedLessonIds: [
+      'gratitude-daily-awareness',
+      'work-time-priority-management',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Torah/Deuteronomic family teaching tradition',
@@ -467,7 +446,10 @@ const _lessons = <LifeLesson>[
     keyConcepts: ['niyyah', 'ikhlas', 'motive audit'],
     reflectionPrompt:
         'Which recurring action needs an intention reset this week?',
-    relatedLessonIds: ['character-integrity-consistency', 'work-intention-service'],
+    relatedLessonIds: [
+      'character-integrity-consistency',
+      'work-intention-service',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Sermon-on-the-Mount moral teaching tradition',
@@ -490,8 +472,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Track one integrity metric for seven days: promises kept, deadlines met, or truthfulness in speech.',
     keyConcepts: ['truthfulness', 'promise-keeping', 'self-accountability'],
-    reflectionPrompt: 'Where is your private behavior drifting from your public values?',
-    relatedLessonIds: ['community-keeping-promises', 'justice-truthful-testimony'],
+    reflectionPrompt:
+        'Where is your private behavior drifting from your public values?',
+    relatedLessonIds: [
+      'community-keeping-promises',
+      'justice-truthful-testimony',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Proverbs / wisdom ethics',
@@ -516,7 +502,10 @@ const _lessons = <LifeLesson>[
     keyConcepts: ['truth', 'gentleness', 'restraint'],
     reflectionPrompt:
         'Which conversation this week needs truthful but softer wording?',
-    relatedLessonIds: ['community-respectful-disagreement', 'forgiveness-releasing-resentment'],
+    relatedLessonIds: [
+      'community-respectful-disagreement',
+      'forgiveness-releasing-resentment',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Biblical wisdom sayings',
@@ -539,8 +528,7 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Choose one boundary for the next week: screen hygiene, gaze discipline, or reaction control.',
     keyConcepts: ['haya', 'restraint', 'discipline'],
-    reflectionPrompt:
-        'Which boundary would most protect your heart right now?',
+    reflectionPrompt: 'Which boundary would most protect your heart right now?',
     relatedLessonIds: ['time-priority-management', 'hardship-sabr-active'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -564,8 +552,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Audit your income stream for fairness, honesty, and harm reduction.',
     keyConcepts: ['halal earning', 'fair dealing', 'accountability'],
-    reflectionPrompt: 'Which part of your work life most needs ethical refinement?',
-    relatedLessonIds: ['work-excellence-amanah', 'justice-accountability-transparency'],
+    reflectionPrompt:
+        'Which part of your work life most needs ethical refinement?',
+    relatedLessonIds: [
+      'work-excellence-amanah',
+      'justice-accountability-transparency',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Hebrew prophetic ethics',
@@ -589,7 +581,10 @@ const _lessons = <LifeLesson>[
         'Use a simple three-part budget: essentials, future needs, and giving.',
     keyConcepts: ['moderation', 'budgeting', 'priority clarity'],
     reflectionPrompt: 'Where does your spending drift away from your values?',
-    relatedLessonIds: ['gratitude-contentment-vs-envy', 'wealth-generosity-ihsan'],
+    relatedLessonIds: [
+      'gratitude-contentment-vs-envy',
+      'wealth-generosity-ihsan',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Wisdom literature (Proverbs tradition)',
@@ -638,7 +633,10 @@ const _lessons = <LifeLesson>[
         'Write down commitments, deadlines, and repayment plans to prevent injustice.',
     keyConcepts: ['amanah', 'contracts', 'transparency'],
     reflectionPrompt: 'What financial promise should you clarify this week?',
-    relatedLessonIds: ['community-keeping-promises', 'justice-truthful-testimony'],
+    relatedLessonIds: [
+      'community-keeping-promises',
+      'justice-truthful-testimony',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Torah legal tradition',
@@ -661,7 +659,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'When stressed, use a three-step response: pause, pray, and choose one constructive action.',
     keyConcepts: ['sabr', 'restraint', 'constructive action'],
-    reflectionPrompt: 'What does active patience look like in your current trial?',
+    reflectionPrompt:
+        'What does active patience look like in your current trial?',
     relatedLessonIds: ['hardship-hope-resilience', 'loss-grief-with-faith'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -686,7 +685,10 @@ const _lessons = <LifeLesson>[
         'Keep a weekly hope log: one answered dua, one lesson learned, one next step.',
     keyConcepts: ['hope', 'resilience', 'meaning-making'],
     reflectionPrompt: 'Which sign of mercy have you overlooked this month?',
-    relatedLessonIds: ['gratitude-daily-awareness', 'reflection-repentance-renewal'],
+    relatedLessonIds: [
+      'gratitude-daily-awareness',
+      'reflection-repentance-renewal',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Psalms lament tradition',
@@ -702,8 +704,7 @@ const _lessons = <LifeLesson>[
     subcategoryId: 'hardship-prayer-trust',
     title: 'Prayer as an Anchor in Hardship',
     subtitle: 'Returning to salah under pressure.',
-    overview:
-        'Focuses on keeping prayer stable when life feels unstable.',
+    overview: 'Focuses on keeping prayer stable when life feels unstable.',
     quranicPerspective:
         'Prayer is repeatedly presented as support in difficulty, strengthening orientation and restraint.',
     practicalTakeaway:
@@ -733,7 +734,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'For each major worry, write one dua and one practical step.',
     keyConcepts: ['tawakkul', 'effort', 'surrender of outcomes'],
-    reflectionPrompt: 'Where do you need more action, and where do you need more surrender?',
+    reflectionPrompt:
+        'Where do you need more action, and where do you need more surrender?',
     relatedLessonIds: ['work-intention-service', 'reflection-evening-review'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -758,7 +760,10 @@ const _lessons = <LifeLesson>[
         'Map your closest influences and set one boundary with a harmful pattern.',
     keyConcepts: ['companionship', 'influence', 'boundaries'],
     reflectionPrompt: 'Which friendship most helps your growth, and why?',
-    relatedLessonIds: ['community-neighbor-rights', 'character-integrity-consistency'],
+    relatedLessonIds: [
+      'community-neighbor-rights',
+      'character-integrity-consistency',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Proverbs friendship wisdom',
@@ -781,7 +786,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Practice one neighborly act weekly: check-in, assistance, or respectful protection of space.',
     keyConcepts: ['proximity ethics', 'reliability', 'service'],
-    reflectionPrompt: 'How can your immediate surroundings feel safer because of you?',
+    reflectionPrompt:
+        'How can your immediate surroundings feel safer because of you?',
     relatedLessonIds: ['wealth-generosity-ihsan', 'mercy-serving-vulnerable'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -806,7 +812,10 @@ const _lessons = <LifeLesson>[
         'Reduce over-promising; commit to fewer items and complete them reliably.',
     keyConcepts: ['covenant', 'trustworthiness', 'reliability'],
     reflectionPrompt: 'Which unfulfilled promise needs immediate repair?',
-    relatedLessonIds: ['wealth-trust-accountability', 'justice-accountability-transparency'],
+    relatedLessonIds: [
+      'wealth-trust-accountability',
+      'justice-accountability-transparency',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Torah covenantal ethics',
@@ -829,8 +838,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Use a disagreement template: clarify intent, state concern, propose next step.',
     keyConcepts: ['adab in difference', 'listening', 'clarity'],
-    reflectionPrompt: 'When do you confuse winning an argument with serving truth?',
-    relatedLessonIds: ['character-speech-truth-gentleness', 'justice-fairness-with-opponents'],
+    reflectionPrompt:
+        'When do you confuse winning an argument with serving truth?',
+    relatedLessonIds: [
+      'character-speech-truth-gentleness',
+      'justice-fairness-with-opponents',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Pauline community ethics',
@@ -877,8 +890,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Set a quality standard, deadline, and rest boundary for key weekly tasks.',
     keyConcepts: ['ihsan', 'quality', 'balance'],
-    reflectionPrompt: 'Where has perfectionism reduced your sincerity or consistency?',
-    relatedLessonIds: ['time-rest-worship-balance', 'character-intention-sincerity'],
+    reflectionPrompt:
+        'Where has perfectionism reduced your sincerity or consistency?',
+    relatedLessonIds: [
+      'time-rest-worship-balance',
+      'character-intention-sincerity',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Monastic craft and discipline traditions',
@@ -901,7 +918,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Plan day blocks around prayers, responsibilities, learning, and rest.',
     keyConcepts: ['priorities', 'planning', 'stewardship'],
-    reflectionPrompt: 'Which priority is consistently pushed out by low-value urgency?',
+    reflectionPrompt:
+        'Which priority is consistently pushed out by low-value urgency?',
     relatedLessonIds: ['hardship-prayer-anchor', 'reflection-evening-review'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -925,7 +943,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Create an evening wind-down routine that protects Fajr readiness.',
     keyConcepts: ['rhythm', 'rest', 'consistency'],
-    reflectionPrompt: 'What one evening habit most harms your next day worship?',
+    reflectionPrompt:
+        'What one evening habit most harms your next day worship?',
     relatedLessonIds: ['work-excellence-amanah', 'hardship-hope-resilience'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -950,7 +969,10 @@ const _lessons = <LifeLesson>[
         'Record three blessings daily and pair each with one action of thanks.',
     keyConcepts: ['shukr', 'awareness', 'action'],
     reflectionPrompt: 'Which blessing do you use often but thank for rarely?',
-    relatedLessonIds: ['gratitude-contentment-vs-envy', 'reflection-evening-review'],
+    relatedLessonIds: [
+      'gratitude-contentment-vs-envy',
+      'reflection-evening-review',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Psalms and thanksgiving traditions',
@@ -974,7 +996,10 @@ const _lessons = <LifeLesson>[
         'Limit comparison triggers and replace them with service-oriented goals.',
     keyConcepts: ['contentment', 'envy control', 'trust'],
     reflectionPrompt: 'Which comparison habit most drains your peace?',
-    relatedLessonIds: ['wealth-spending-balance', 'character-intention-sincerity'],
+    relatedLessonIds: [
+      'wealth-spending-balance',
+      'character-intention-sincerity',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Wisdom literature on envy',
@@ -997,8 +1022,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Ask nightly: What did I do well, where did I fail, what is my next correction?',
     keyConcepts: ['muhasabah', 'course correction', 'consistency'],
-    reflectionPrompt: 'What pattern keeps repeating because it is never reviewed?',
-    relatedLessonIds: ['reflection-repentance-renewal', 'time-priority-management'],
+    reflectionPrompt:
+        'What pattern keeps repeating because it is never reviewed?',
+    relatedLessonIds: [
+      'reflection-repentance-renewal',
+      'time-priority-management',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Examen-like devotional review traditions',
@@ -1021,8 +1050,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'For one recurring mistake, write a repentance plan with triggers and alternatives.',
     keyConcepts: ['tawbah', 'repair', 'renewal'],
-    reflectionPrompt: 'What concrete repair step proves your repentance is real?',
-    relatedLessonIds: ['hardship-hope-resilience', 'forgiveness-releasing-resentment'],
+    reflectionPrompt:
+        'What concrete repair step proves your repentance is real?',
+    relatedLessonIds: [
+      'hardship-hope-resilience',
+      'forgiveness-releasing-resentment',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Prophetic repentance motifs in Abrahamic traditions',
@@ -1045,8 +1078,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Avoid rumor-based judgments; confirm facts before endorsing claims.',
     keyConcepts: ['testimony', 'truth', 'due process'],
-    reflectionPrompt: 'Where are you tempted to accept narrative over verified truth?',
-    relatedLessonIds: ['community-respectful-disagreement', 'justice-fairness-with-opponents'],
+    reflectionPrompt:
+        'Where are you tempted to accept narrative over verified truth?',
+    relatedLessonIds: [
+      'community-respectful-disagreement',
+      'justice-fairness-with-opponents',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Torah legal ethics',
@@ -1070,7 +1107,10 @@ const _lessons = <LifeLesson>[
         'Before judgments, ask: would I apply the same standard to my own side?',
     keyConcepts: ['impartiality', 'moral courage', 'bias control'],
     reflectionPrompt: 'Which bias most distorts your fairness?',
-    relatedLessonIds: ['character-speech-truth-gentleness', 'community-keeping-promises'],
+    relatedLessonIds: [
+      'character-speech-truth-gentleness',
+      'community-keeping-promises',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Prophetic justice traditions',
@@ -1093,8 +1133,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'If you lead any team, publish expectations and feedback channels clearly.',
     keyConcepts: ['amanah', 'shura', 'service leadership'],
-    reflectionPrompt: 'How does your influence currently affect weaker people in your circle?',
-    relatedLessonIds: ['justice-accountability-transparency', 'wealth-trust-accountability'],
+    reflectionPrompt:
+        'How does your influence currently affect weaker people in your circle?',
+    relatedLessonIds: [
+      'justice-accountability-transparency',
+      'wealth-trust-accountability',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Biblical shepherd-leadership motifs',
@@ -1117,8 +1161,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Create traceable decision logs for responsibilities that affect other people.',
     keyConcepts: ['accountability', 'transparency', 'rights protection'],
-    reflectionPrompt: 'What decision process in your role currently lacks healthy oversight?',
-    relatedLessonIds: ['community-keeping-promises', 'wealth-trust-accountability'],
+    reflectionPrompt:
+        'What decision process in your role currently lacks healthy oversight?',
+    relatedLessonIds: [
+      'community-keeping-promises',
+      'wealth-trust-accountability',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Wisdom and prophetic critique traditions',
@@ -1141,8 +1189,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Replace one recurring harsh phrase with a calmer alternative this week.',
     keyConcepts: ['rahmah', 'tone discipline', 'de-escalation'],
-    reflectionPrompt: 'Which relationship would change most if your tone softened?',
-    relatedLessonIds: ['character-speech-truth-gentleness', 'forgiveness-releasing-resentment'],
+    reflectionPrompt:
+        'Which relationship would change most if your tone softened?',
+    relatedLessonIds: [
+      'character-speech-truth-gentleness',
+      'forgiveness-releasing-resentment',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Proverbs speech wisdom',
@@ -1165,7 +1217,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Choose one local service action and commit to a monthly cadence.',
     keyConcepts: ['compassion', 'service', 'dignity'],
-    reflectionPrompt: 'Who in your circle is overlooked but most needs consistent support?',
+    reflectionPrompt:
+        'Who in your circle is overlooked but most needs consistent support?',
     relatedLessonIds: ['community-neighbor-rights', 'wealth-generosity-ihsan'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -1189,8 +1242,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Name one grievance and move it through dua, journaling, and boundary planning.',
     keyConcepts: ['forgiveness', 'boundaries', 'healing'],
-    reflectionPrompt: 'What resentment is silently shaping your mood and decisions?',
-    relatedLessonIds: ['reflection-repentance-renewal', 'mercy-softening-speech'],
+    reflectionPrompt:
+        'What resentment is silently shaping your mood and decisions?',
+    relatedLessonIds: [
+      'reflection-repentance-renewal',
+      'mercy-softening-speech',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'New Testament forgiveness teaching',
@@ -1213,8 +1270,12 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Use a reconciliation checklist: acknowledge harm, offer repair, define future boundaries.',
     keyConcepts: ['repair', 'restitution', 'safe reconciliation'],
-    reflectionPrompt: 'What repair is needed before trust can realistically return?',
-    relatedLessonIds: ['family-marriage-mercy', 'community-respectful-disagreement'],
+    reflectionPrompt:
+        'What repair is needed before trust can realistically return?',
+    relatedLessonIds: [
+      'family-marriage-mercy',
+      'community-respectful-disagreement',
+    ],
     comparativeInsights: [
       LifeComparativeInsight(
         tradition: 'Reconciliation motifs in Abrahamic ethics',
@@ -1254,14 +1315,14 @@ const _lessons = <LifeLesson>[
     subcategoryId: 'loss-grief-support',
     title: 'Supporting Others in Grief',
     subtitle: 'Presence over perfect words.',
-    overview:
-        'Teaches practical compassion for people carrying fresh loss.',
+    overview: 'Teaches practical compassion for people carrying fresh loss.',
     quranicPerspective:
         'Mercy-centered conduct includes standing with people in pain and avoiding harmful speech.',
     practicalTakeaway:
         'Offer practical support (meals, transport, listening) before advice.',
     keyConcepts: ['companioning grief', 'presence', 'practical care'],
-    reflectionPrompt: 'How can you become safer to approach for someone grieving?',
+    reflectionPrompt:
+        'How can you become safer to approach for someone grieving?',
     relatedLessonIds: ['mercy-serving-vulnerable', 'community-neighbor-rights'],
     comparativeInsights: [
       LifeComparativeInsight(
@@ -1285,7 +1346,8 @@ const _lessons = <LifeLesson>[
     practicalTakeaway:
         'Review one weekly decision through this lens: what would matter most at life’s end?',
     keyConcepts: ['mortality awareness', 'accountability', 'priority reset'],
-    reflectionPrompt: 'What would you stop delaying if you remembered death more consciously?',
+    reflectionPrompt:
+        'What would you stop delaying if you remembered death more consciously?',
     relatedLessonIds: ['reflection-evening-review', 'death-legacy-good-deeds'],
     comparativeInsights: [
       LifeComparativeInsight(

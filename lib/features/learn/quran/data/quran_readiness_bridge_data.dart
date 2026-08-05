@@ -94,7 +94,8 @@ const quranReadinessBridgeSeeds = <QuranReadinessBridgeSeed>[
     snippetArabic: 'مَالِكِ يَوْمِ الدِّينِ',
     transliteration: 'maliki yawm id-deen',
     simpleMeaning: 'Master of the Day of Judgment',
-    audioAssetPath: 'assets/audio/quran_teacher/phrases/maliki_yawm_id_deen.mp3',
+    audioAssetPath:
+        'assets/audio/quran_teacher/phrases/maliki_yawm_id_deen.mp3',
     hints: <QuranReadinessPronunciationHintSeed>[
       QuranReadinessPronunciationHintSeed(
         id: 'maliki_stretch',
@@ -149,7 +150,8 @@ const quranReadinessBridgeSeeds = <QuranReadinessBridgeSeed>[
     snippetArabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ',
     transliteration: 'qul huwa Allahu ahad',
     simpleMeaning: 'Say: He is Allah, One',
-    audioAssetPath: 'assets/audio/quran_teacher/phrases/qul_huwa_allahu_ahad.mp3',
+    audioAssetPath:
+        'assets/audio/quran_teacher/phrases/qul_huwa_allahu_ahad.mp3',
     hints: <QuranReadinessPronunciationHintSeed>[
       QuranReadinessPronunciationHintSeed(
         id: 'ahad_qalqalah',

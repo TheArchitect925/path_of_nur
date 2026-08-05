@@ -36,8 +36,7 @@ class DhikrAntiRushDetector {
     if (intervalCount <= 0) {
       return false;
     }
-    final averageIntervalMicros =
-        totalWindow.inMicroseconds / intervalCount;
+    final averageIntervalMicros = totalWindow.inMicroseconds / intervalCount;
     if (averageIntervalMicros >
         minimumAverageInterval.inMicroseconds.toDouble()) {
       return false;

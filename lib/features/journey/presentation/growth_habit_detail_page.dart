@@ -9,10 +9,7 @@ import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
 
 class GrowthHabitDetailPage extends ConsumerStatefulWidget {
-  const GrowthHabitDetailPage({
-    super.key,
-    required this.habitId,
-  });
+  const GrowthHabitDetailPage({super.key, required this.habitId});
 
   final String habitId;
 
@@ -42,7 +39,9 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
     final selectedDate = ref.watch(growthSelectedDateProvider);
     final log = ref.watch(growthLogsForSelectedDateProvider)[habit.id];
     final habitContent = ref.watch(growthHabitContentByIdProvider)[habit.id];
-    final stageContent = ref.watch(growthStageContentByNumberProvider)[habit.stage];
+    final stageContent = ref.watch(
+      growthStageContentByNumberProvider,
+    )[habit.stage];
 
     return AppPageScaffold(
       headerIcon: Icons.track_changes_rounded,
@@ -72,7 +71,8 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                     ),
                   ),
                   _Pill(
-                    label: habitContent?.suggestedRecurrence ??
+                    label:
+                        habitContent?.suggestedRecurrence ??
                         growthRecurrenceLabel(habit),
                   ),
                 ],
@@ -119,7 +119,9 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 runSpacing: 8,
                 children: [
                   FilledButton.tonalIcon(
-                    onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
+                    onPressed: () => ref
+                        .read(growthControllerProvider.notifier)
+                        .setHabitStatus(
                           date: selectedDate,
                           habitId: habit.id,
                           status: GrowthHabitStatus.completed,
@@ -128,7 +130,9 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                     label: Text(l10n.growthHabitCompleteAction),
                   ),
                   FilledButton.tonal(
-                    onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
+                    onPressed: () => ref
+                        .read(growthControllerProvider.notifier)
+                        .setHabitStatus(
                           date: selectedDate,
                           habitId: habit.id,
                           status: GrowthHabitStatus.snoozed,
@@ -136,7 +140,9 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                     child: Text(l10n.growthHabitReturnLaterAction),
                   ),
                   FilledButton.tonal(
-                    onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
+                    onPressed: () => ref
+                        .read(growthControllerProvider.notifier)
+                        .setHabitStatus(
                           date: selectedDate,
                           habitId: habit.id,
                           status: GrowthHabitStatus.deferred,
@@ -144,7 +150,9 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                     child: Text(l10n.growthHabitCarryForwardAction),
                   ),
                   FilledButton.tonal(
-                    onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
+                    onPressed: () => ref
+                        .read(growthControllerProvider.notifier)
+                        .setHabitStatus(
                           date: selectedDate,
                           habitId: habit.id,
                           status: GrowthHabitStatus.skipped,
@@ -165,11 +173,14 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                   onChanged: (v) => setState(() => _partialValue = v),
                 ),
                 FilledButton.tonal(
-                  onPressed: () => ref.read(growthControllerProvider.notifier).setHabitProgress(
+                  onPressed: () => ref
+                      .read(growthControllerProvider.notifier)
+                      .setHabitProgress(
                         date: selectedDate,
                         habitId: habit.id,
                         progress: _partialValue,
-                        entrusted: habit.entrustToAllah || habit.privateTracking,
+                        entrusted:
+                            habit.entrustToAllah || habit.privateTracking,
                       ),
                   child: Text(l10n.growthHabitSavePartialProgressAction),
                 ),

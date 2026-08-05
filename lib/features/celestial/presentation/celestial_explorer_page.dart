@@ -21,7 +21,8 @@ class CelestialExplorerPage extends ConsumerStatefulWidget {
   const CelestialExplorerPage({super.key});
 
   @override
-  ConsumerState<CelestialExplorerPage> createState() => _CelestialExplorerPageState();
+  ConsumerState<CelestialExplorerPage> createState() =>
+      _CelestialExplorerPageState();
 }
 
 class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
@@ -33,13 +34,15 @@ class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
     _noteController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(celestialActionServiceProvider).markExplorerOpened();
-      ref.read(creationChallengeServiceProvider.notifier).processEvidence(
-        CreationChallengeEvidence(
-          ruleType: CreationChallengeRuleType.openExplorer,
-          source: CreationExplorerMode.skyExplorer,
-          occurredAt: DateTime.now(),
-        ),
-      );
+      ref
+          .read(creationChallengeServiceProvider.notifier)
+          .processEvidence(
+            CreationChallengeEvidence(
+              ruleType: CreationChallengeRuleType.openExplorer,
+              source: CreationExplorerMode.skyExplorer,
+              occurredAt: DateTime.now(),
+            ),
+          );
     });
   }
 
@@ -94,15 +97,20 @@ class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
                   _JournalTab(
                     observations: observations,
                     onDelete: (id) async {
-                      await ref.read(celestialObservationsProvider.notifier).remove(id);
+                      await ref
+                          .read(celestialObservationsProvider.notifier)
+                          .remove(id);
                     },
                     onFavorite: (id) async {
-                      await ref.read(celestialObservationsProvider.notifier).toggleFavorite(id);
+                      await ref
+                          .read(celestialObservationsProvider.notifier)
+                          .toggleFavorite(id);
                     },
                   ),
                 ],
               ),
-              loading: () => const Center(child: CircularProgressIndicator.adaptive()),
+              loading: () =>
+                  const Center(child: CircularProgressIndicator.adaptive()),
               error: (_, _) => const _ExplorerUnavailable(),
             ),
           ),
@@ -130,11 +138,16 @@ class _ExplorerTabBar extends StatelessWidget {
         indicator: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: AppColors.accentGold.withValues(alpha: 0.16),
-          border: Border.all(color: AppColors.accentGold.withValues(alpha: 0.18)),
+          border: Border.all(
+            color: AppColors.accentGold.withValues(alpha: 0.18),
+          ),
         ),
         labelColor: AppColors.onSurface,
         unselectedLabelColor: AppColors.onSurfaceSubtle,
-        labelStyle: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700),
+        labelStyle: const TextStyle(
+          fontSize: 13.5,
+          fontWeight: FontWeight.w700,
+        ),
         unselectedLabelStyle: const TextStyle(
           fontSize: 13.5,
           fontWeight: FontWeight.w600,
@@ -150,10 +163,7 @@ class _ExplorerTabBar extends StatelessWidget {
 }
 
 class _OverviewTab extends ConsumerWidget {
-  const _OverviewTab({
-    required this.snapshot,
-    required this.noteController,
-  });
+  const _OverviewTab({required this.snapshot, required this.noteController});
 
   final CelestialSnapshot snapshot;
   final TextEditingController noteController;
@@ -171,9 +181,9 @@ class _OverviewTab extends ConsumerWidget {
             children: [
               Text(
                 snapshot.locationLabel,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 4),
               Text(
@@ -188,7 +198,8 @@ class _OverviewTab extends ConsumerWidget {
                   Expanded(
                     child: _MetricCard(
                       title: l10n.celestialSunLabel,
-                      headline: snapshot.solarData.state == CelestialSkyState.night
+                      headline:
+                          snapshot.solarData.state == CelestialSkyState.night
                           ? l10n.celestialBelowHorizonLabel
                           : l10n.celestialVisibleLabel,
                       detail: l10n.celestialSunriseSunsetDetail(
@@ -252,7 +263,9 @@ class _OverviewTab extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   OutlinedButton.icon(
-                    onPressed: () => ref.read(celestialActionServiceProvider).markVerseOpened(snapshot.verseOfMoment),
+                    onPressed: () => ref
+                        .read(celestialActionServiceProvider)
+                        .markVerseOpened(snapshot.verseOfMoment),
                     icon: const Icon(Icons.auto_awesome_rounded),
                     label: Text(l10n.celestialReflectAction),
                   ),
@@ -260,7 +273,9 @@ class _OverviewTab extends ConsumerWidget {
                     onPressed: () async {
                       final note = noteController.text.trim();
                       if (note.isEmpty) return;
-                      await ref.read(celestialActionServiceProvider).saveObservation(
+                      await ref
+                          .read(celestialActionServiceProvider)
+                          .saveObservation(
                             snapshot: snapshot,
                             verse: snapshot.verseOfMoment,
                             note: note,
@@ -290,9 +305,9 @@ class _OverviewTab extends ConsumerWidget {
             children: [
               Text(
                 l10n.celestialJournalMomentTitle,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               TextField(
@@ -320,10 +335,9 @@ class _ExploreTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final heading = ref.watch(celestialCompassHeadingProvider).value;
-    final reading = ref.read(celestialCalculationServiceProvider).buildDirectionalReading(
-          snapshot: snapshot,
-          headingDegrees: heading,
-        );
+    final reading = ref
+        .read(celestialCalculationServiceProvider)
+        .buildDirectionalReading(snapshot: snapshot, headingDegrees: heading);
 
     return ListView(
       physics: const BouncingScrollPhysics(),
@@ -336,9 +350,9 @@ class _ExploreTab extends ConsumerWidget {
                 heading == null
                     ? l10n.celestialCompassUnavailable
                     : l10n.celestialCompassHeading('${heading.round()}°'),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 14),
               _CompassBand(reading: reading),
@@ -409,16 +423,14 @@ class _JournalTab extends StatelessWidget {
                       children: [
                         Text(
                           item.locationLabel,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           '${DateFormat.yMMMd().add_jm().format(item.timestamp)} • ${item.moonPhaseName}',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.onSurfaceSubtle,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.onSurfaceSubtle),
                         ),
                       ],
                     ),
@@ -428,7 +440,9 @@ class _JournalTab extends StatelessWidget {
                       onFavorite(item.id);
                     },
                     icon: Icon(
-                      item.isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                      item.isFavorite
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
                     ),
                   ),
                   IconButton(
@@ -482,18 +496,18 @@ class _MetricCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.labelMedium?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
           const SizedBox(height: 4),
           Text(headline, style: Theme.of(context).textTheme.titleSmall),
           const SizedBox(height: 4),
           Text(
             detail,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),
@@ -524,11 +538,16 @@ class _DirectionalInfoCard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: marker.isVisible
                       ? const Color(0xFFFFD27A).withValues(alpha: 0.16)
-                      : Theme.of(context).colorScheme.surface.withValues(alpha: 0.52),
+                      : Theme.of(
+                          context,
+                        ).colorScheme.surface.withValues(alpha: 0.52),
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: Text(
@@ -546,9 +565,9 @@ class _DirectionalInfoCard extends StatelessWidget {
               marker.azimuthDegrees.round(),
               marker.altitudeDegrees.round(),
             ),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),
@@ -581,8 +600,8 @@ class _CompassBand extends StatelessWidget {
                   Text(
                     l10n.celestialCompassNorthLabel,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -620,8 +639,14 @@ class _CompassPainter extends CustomPainter {
 
     for (var i = 0; i < 12; i += 1) {
       final angle = (i * 30 - 90) * math.pi / 180;
-      final outer = Offset(center.dx + math.cos(angle) * radius, center.dy + math.sin(angle) * radius);
-      final inner = Offset(center.dx + math.cos(angle) * (radius - 10), center.dy + math.sin(angle) * (radius - 10));
+      final outer = Offset(
+        center.dx + math.cos(angle) * radius,
+        center.dy + math.sin(angle) * radius,
+      );
+      final inner = Offset(
+        center.dx + math.cos(angle) * (radius - 10),
+        center.dy + math.sin(angle) * (radius - 10),
+      );
       canvas.drawLine(
         outer,
         inner,
@@ -632,7 +657,13 @@ class _CompassPainter extends CustomPainter {
     }
 
     _drawMarker(canvas, center, radius, reading.sun, const Color(0xFFFFD27A));
-    _drawMarker(canvas, center, radius - 20, reading.moon, const Color(0xFFC9D9FF));
+    _drawMarker(
+      canvas,
+      center,
+      radius - 20,
+      reading.moon,
+      const Color(0xFFC9D9FF),
+    );
   }
 
   void _drawMarker(
@@ -643,8 +674,12 @@ class _CompassPainter extends CustomPainter {
     Color color,
   ) {
     final angle = (marker.azimuthDegrees - 90) * math.pi / 180;
-    final point = Offset(center.dx + math.cos(angle) * radius, center.dy + math.sin(angle) * radius);
-    final paint = Paint()..color = color.withValues(alpha: marker.isVisible ? 0.95 : 0.45);
+    final point = Offset(
+      center.dx + math.cos(angle) * radius,
+      center.dy + math.sin(angle) * radius,
+    );
+    final paint = Paint()
+      ..color = color.withValues(alpha: marker.isVisible ? 0.95 : 0.45);
     canvas.drawCircle(point, 7, paint);
   }
 
@@ -664,9 +699,9 @@ class _ExplorerUnavailable extends StatelessWidget {
         child: PremiumCard(
           child: Text(
             l10n.celestialExplorerUnavailable,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: AppColors.onSurfaceSubtle),
             textAlign: TextAlign.center,
           ),
         ),

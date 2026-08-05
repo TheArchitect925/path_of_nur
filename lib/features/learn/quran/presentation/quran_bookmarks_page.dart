@@ -23,16 +23,17 @@ class QuranBookmarksPage extends ConsumerWidget {
       subtitle: l10n.quranBookmarksPageSubtitle,
       children: [
         if (bookmarks.isEmpty)
-          PremiumCard(
-            child: Text(l10n.quranBookmarksEmpty),
-          )
+          PremiumCard(child: Text(l10n.quranBookmarksEmpty))
         else
           ...bookmarks.map((bookmark) {
             final surah = surahMap[bookmark.surahNumber];
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: PremiumCard(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 10,
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -50,8 +51,11 @@ class QuranBookmarksPage extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              surah?.transliteratedName ?? l10n.quranUnknownSurah,
-                              style: const TextStyle(fontWeight: FontWeight.w700),
+                              surah?.transliteratedName ??
+                                  l10n.quranUnknownSurah,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                             const SizedBox(height: 2),
                             Text(

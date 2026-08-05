@@ -1,6 +1,16 @@
 import '../../../features/journey/application/growth_seasonal.dart';
 
-enum CelestialObjectType { sun, moon, stars, night, day, heavens, orbit, phases, signs }
+enum CelestialObjectType {
+  sun,
+  moon,
+  stars,
+  night,
+  day,
+  heavens,
+  orbit,
+  phases,
+  signs,
+}
 
 enum CelestialSkyState { dawn, day, dusk, night }
 
@@ -143,9 +153,7 @@ class CelestialObservation {
   final String? photoPath;
   final bool isFavorite;
 
-  CelestialObservation copyWith({
-    bool? isFavorite,
-  }) {
+  CelestialObservation copyWith({bool? isFavorite}) {
     return CelestialObservation(
       id: id,
       timestamp: timestamp,
@@ -164,20 +172,20 @@ class CelestialObservation {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'timestamp': timestamp.toIso8601String(),
-        'locationLabel': locationLabel,
-        'moonPhaseName': moonPhaseName,
-        'skyState': skyState.name,
-        'verseReference': verseReference,
-        'verseTranslation': verseTranslation,
-        'reflectionNote': reflectionNote,
-        'latitude': latitude,
-        'longitude': longitude,
-        'headingDegrees': headingDegrees,
-        'photoPath': photoPath,
-        'isFavorite': isFavorite,
-      };
+    'id': id,
+    'timestamp': timestamp.toIso8601String(),
+    'locationLabel': locationLabel,
+    'moonPhaseName': moonPhaseName,
+    'skyState': skyState.name,
+    'verseReference': verseReference,
+    'verseTranslation': verseTranslation,
+    'reflectionNote': reflectionNote,
+    'latitude': latitude,
+    'longitude': longitude,
+    'headingDegrees': headingDegrees,
+    'photoPath': photoPath,
+    'isFavorite': isFavorite,
+  };
 
   static CelestialObservation? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -251,14 +259,14 @@ class CelestialWidgetPayload {
   final String reflectionLine;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'locationLabel': locationLabel,
-        'dateLabel': dateLabel,
-        'sunriseLabel': sunriseLabel,
-        'sunsetLabel': sunsetLabel,
-        'moonriseLabel': moonriseLabel,
-        'moonsetLabel': moonsetLabel,
-        'moonPhaseLabel': moonPhaseLabel,
-        'progressLabel': progressLabel,
-        'reflectionLine': reflectionLine,
-      };
+    'locationLabel': locationLabel,
+    'dateLabel': dateLabel,
+    'sunriseLabel': sunriseLabel,
+    'sunsetLabel': sunsetLabel,
+    'moonriseLabel': moonriseLabel,
+    'moonsetLabel': moonsetLabel,
+    'moonPhaseLabel': moonPhaseLabel,
+    'progressLabel': progressLabel,
+    'reflectionLine': reflectionLine,
+  };
 }

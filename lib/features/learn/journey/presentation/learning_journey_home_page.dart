@@ -85,7 +85,7 @@ class LearningJourneyHomePage extends ConsumerWidget {
     final fallbackJourneys =
         adaptiveGuidance?.fallbackJourneys
             .where(
-                (journey) =>
+              (journey) =>
                   learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
                   isProductionSafeLearningJourney(journey),
             )
@@ -94,7 +94,7 @@ class LearningJourneyHomePage extends ConsumerWidget {
     final secondaryJourneys =
         adaptiveGuidance?.secondaryJourneys
             .where(
-                (journey) =>
+              (journey) =>
                   learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
                   isProductionSafeLearningJourney(journey),
             )

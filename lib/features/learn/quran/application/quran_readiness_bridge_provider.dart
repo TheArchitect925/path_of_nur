@@ -30,57 +30,59 @@ final quranReadinessBridgeSnippetsProvider =
       final settings = ref.watch(quranReaderSettingsProvider);
       final surahs = repository.getSurahs();
 
-      return quranReadinessBridgeSeeds.map((seed) {
-        final phrase = seed.sharedPhraseId == null
-            ? null
-            : arabicSharedMiniPhraseById(seed.sharedPhraseId!);
-        final ayah = repository
-            .getAyahsForSurah(
-              seed.ref.surah,
-              translationCode: settings.translationCode,
-            )
-            .firstWhere((item) => item.ayahNumber == seed.ref.ayah);
-        final surahName = surahs
-            .firstWhere((item) => item.number == seed.ref.surah)
-            .transliteratedName;
-        final snippetArabic =
-            _extractSnippetFromAyah(
-              ayahArabic: ayah.arabic,
-              phraseArabic: seed.snippetArabic,
-            ) ??
-            seed.snippetArabic;
-        final familiarWords = seed.familiarWordIds
-            .map((id) => arabicSharedBeginnerWordById(id))
-            .whereType<ArabicBeginnerWordEntry>()
-            .toList(growable: false);
+      return quranReadinessBridgeSeeds
+          .map((seed) {
+            final phrase = seed.sharedPhraseId == null
+                ? null
+                : arabicSharedMiniPhraseById(seed.sharedPhraseId!);
+            final ayah = repository
+                .getAyahsForSurah(
+                  seed.ref.surah,
+                  translationCode: settings.translationCode,
+                )
+                .firstWhere((item) => item.ayahNumber == seed.ref.ayah);
+            final surahName = surahs
+                .firstWhere((item) => item.number == seed.ref.surah)
+                .transliteratedName;
+            final snippetArabic =
+                _extractSnippetFromAyah(
+                  ayahArabic: ayah.arabic,
+                  phraseArabic: seed.snippetArabic,
+                ) ??
+                seed.snippetArabic;
+            final familiarWords = seed.familiarWordIds
+                .map((id) => arabicSharedBeginnerWordById(id))
+                .whereType<ArabicBeginnerWordEntry>()
+                .toList(growable: false);
 
-        return QuranReadinessBridgeSnippet(
-          id: seed.id,
-          order: seed.order,
-          level: seed.level,
-          ref: seed.ref,
-          snippetArabic: snippetArabic,
-          ayahArabic: ayah.arabic,
-          ayahTranslation: ayah.translation,
-          transliteration: seed.transliteration,
-          simpleMeaning: seed.simpleMeaning,
-          audioAssetPath: seed.audioAssetPath ?? phrase?.audioAssetPath,
-          familiarWords: familiarWords,
-          surahName: surahName,
-          hints: seed.hints
-              .map(
-                (hint) => QuranReadinessPronunciationHint(
-                  id: hint.id,
-                  type: hint.type,
-                  focusArabic: hint.focusArabic,
-                  adultTarget: hint.adultTarget,
-                  kidsTarget: hint.kidsTarget,
-                ),
-              )
-              .toList(growable: false),
-          sharedPhrase: phrase,
-        );
-      }).toList(growable: false)
+            return QuranReadinessBridgeSnippet(
+              id: seed.id,
+              order: seed.order,
+              level: seed.level,
+              ref: seed.ref,
+              snippetArabic: snippetArabic,
+              ayahArabic: ayah.arabic,
+              ayahTranslation: ayah.translation,
+              transliteration: seed.transliteration,
+              simpleMeaning: seed.simpleMeaning,
+              audioAssetPath: seed.audioAssetPath ?? phrase?.audioAssetPath,
+              familiarWords: familiarWords,
+              surahName: surahName,
+              hints: seed.hints
+                  .map(
+                    (hint) => QuranReadinessPronunciationHint(
+                      id: hint.id,
+                      type: hint.type,
+                      focusArabic: hint.focusArabic,
+                      adultTarget: hint.adultTarget,
+                      kidsTarget: hint.kidsTarget,
+                    ),
+                  )
+                  .toList(growable: false),
+              sharedPhrase: phrase,
+            );
+          })
+          .toList(growable: false)
         ..sort((a, b) => a.order.compareTo(b.order));
     });
 
@@ -96,20 +98,21 @@ final quranReadinessBridgeLevelsProvider =
       return ordered;
     });
 
-final quranReadinessBridgeProgressProvider = StateNotifierProvider.family<
-  QuranReadinessBridgeProgressNotifier,
-  QuranReadinessBridgeProgressState,
-  ArabicLearningAudience
->((ref, audience) {
-  final notifier = QuranReadinessBridgeProgressNotifier(ref, audience);
-  if (audience == ArabicLearningAudience.kids) {
-    ref.listen<String>(
-      kidsArabicActiveLearnerProvider.select((value) => value.learnerId),
-      (_, nextLearnerId) => notifier.updateActiveLearner(nextLearnerId),
-    );
-  }
-  return notifier;
-});
+final quranReadinessBridgeProgressProvider =
+    StateNotifierProvider.family<
+      QuranReadinessBridgeProgressNotifier,
+      QuranReadinessBridgeProgressState,
+      ArabicLearningAudience
+    >((ref, audience) {
+      final notifier = QuranReadinessBridgeProgressNotifier(ref, audience);
+      if (audience == ArabicLearningAudience.kids) {
+        ref.listen<String>(
+          kidsArabicActiveLearnerProvider.select((value) => value.learnerId),
+          (_, nextLearnerId) => notifier.updateActiveLearner(nextLearnerId),
+        );
+      }
+      return notifier;
+    });
 
 final quranReadinessBridgeSummaryProvider =
     Provider.family<QuranReadinessBridgeSummary, ArabicLearningAudience>((
@@ -117,7 +120,9 @@ final quranReadinessBridgeSummaryProvider =
       audience,
     ) {
       final snippets = ref.watch(quranReadinessBridgeSnippetsProvider);
-      final progress = ref.watch(quranReadinessBridgeProgressProvider(audience));
+      final progress = ref.watch(
+        quranReadinessBridgeProgressProvider(audience),
+      );
       final routeName = audience == ArabicLearningAudience.kids
           ? 'kidsArabicQuranReadiness'
           : 'quranArabicReadiness';
@@ -142,12 +147,25 @@ final quranReadinessBridgeSummaryProvider =
       final hasArabicFoundationStarted = switch (audience) {
         ArabicLearningAudience.kids =>
           ref.watch(kidsArabicProgressProvider).totalLessonsDone > 0 ||
-          ref.watch(kidsArabicWordProgressProvider).totalWordLessonsDone > 0 ||
-          ref.watch(kidsArabicMiniPhraseProgressProvider).heardPhraseIds.isNotEmpty,
+              ref.watch(kidsArabicWordProgressProvider).totalWordLessonsDone >
+                  0 ||
+              ref
+                  .watch(kidsArabicMiniPhraseProgressProvider)
+                  .heardPhraseIds
+                  .isNotEmpty,
         ArabicLearningAudience.adult =>
-          ref.watch(quranTeachingProgressProvider).startedLessonIds.isNotEmpty ||
-          ref.watch(quranTeachingProgressProvider).completedLessonIds.isNotEmpty ||
-          ref.watch(quranTeachingBeginnerWordsProgressProvider).lastWordId != null,
+          ref
+                  .watch(quranTeachingProgressProvider)
+                  .startedLessonIds
+                  .isNotEmpty ||
+              ref
+                  .watch(quranTeachingProgressProvider)
+                  .completedLessonIds
+                  .isNotEmpty ||
+              ref
+                      .watch(quranTeachingBeginnerWordsProgressProvider)
+                      .lastWordId !=
+                  null,
       };
 
       final firstUnopened = snippets.firstWhere(
@@ -156,7 +174,9 @@ final quranReadinessBridgeSummaryProvider =
       );
       final lastSnippet = progress.lastSnippetId == null
           ? null
-          : snippets.where((item) => item.id == progress.lastSnippetId).firstOrNull;
+          : snippets
+                .where((item) => item.id == progress.lastSnippetId)
+                .firstOrNull;
 
       if (openedCount == 0) {
         return QuranReadinessBridgeSummary(
@@ -202,18 +222,20 @@ final quranReadinessBridgeSummaryProvider =
 class QuranReadinessBridgeProgressNotifier
     extends StateNotifier<QuranReadinessBridgeProgressState> {
   QuranReadinessBridgeProgressNotifier(Ref ref, this._audience)
-      : _store = ref.read(localStoreProvider),
-        _activeLearnerId = _resolveLearnerId(ref, _audience),
-        super(
-          QuranReadinessBridgeProgressState.fromJson(
-            ref.read(localStoreProvider).getJsonMap(
-                  quranReadinessBridgeStorageKeyForAudience(
-                    _audience,
-                    learnerId: _resolveLearnerId(ref, _audience),
-                  ),
+    : _store = ref.read(localStoreProvider),
+      _activeLearnerId = _resolveLearnerId(ref, _audience),
+      super(
+        QuranReadinessBridgeProgressState.fromJson(
+          ref
+              .read(localStoreProvider)
+              .getJsonMap(
+                quranReadinessBridgeStorageKeyForAudience(
+                  _audience,
+                  learnerId: _resolveLearnerId(ref, _audience),
                 ),
-          ),
-        );
+              ),
+        ),
+      );
 
   final LocalStore _store;
   final ArabicLearningAudience _audience;
@@ -227,7 +249,8 @@ class QuranReadinessBridgeProgressNotifier
   }
 
   void updateActiveLearner(String learnerId) {
-    if (_audience != ArabicLearningAudience.kids || _activeLearnerId == learnerId) {
+    if (_audience != ArabicLearningAudience.kids ||
+        _activeLearnerId == learnerId) {
       return;
     }
     _activeLearnerId = learnerId;

@@ -146,7 +146,8 @@ class QuranTeachingReviewRecord {
       buildOrder: buildOrder ?? this.buildOrder,
       truthAnswer: truthAnswer ?? this.truthAnswer,
       tags: tags ?? this.tags,
-      availableInVisualMode: availableInVisualMode ?? this.availableInVisualMode,
+      availableInVisualMode:
+          availableInVisualMode ?? this.availableInVisualMode,
       memoryState: memoryState ?? this.memoryState,
       lastReviewedAt: lastReviewedAt ?? this.lastReviewedAt,
       nextDueAt: nextDueAt ?? this.nextDueAt,
@@ -261,12 +262,9 @@ class QuranTeachingReviewRecord {
       lastReviewSource: lastReviewSource,
       reviewCount: int.tryParse(json['reviewCount']?.toString() ?? '') ?? 0,
       successCount: int.tryParse(json['successCount']?.toString() ?? '') ?? 0,
-      failureCount:
-          int.tryParse(json['failureCount']?.toString() ?? '') ?? 0,
-      correctStreak:
-          int.tryParse(json['correctStreak']?.toString() ?? '') ?? 0,
-      priorityBoost:
-          int.tryParse(json['priorityBoost']?.toString() ?? '') ?? 0,
+      failureCount: int.tryParse(json['failureCount']?.toString() ?? '') ?? 0,
+      correctStreak: int.tryParse(json['correctStreak']?.toString() ?? '') ?? 0,
+      priorityBoost: int.tryParse(json['priorityBoost']?.toString() ?? '') ?? 0,
     );
   }
 }
@@ -435,8 +433,9 @@ class QuranTeachingCompletedReviewSession {
     Map<String, dynamic>? json,
   ) {
     final dateKey = json?['dateKey']?.toString();
-    final completedAt =
-        DateTime.tryParse(json?['completedAt']?.toString() ?? '');
+    final completedAt = DateTime.tryParse(
+      json?['completedAt']?.toString() ?? '',
+    );
     if (dateKey == null || completedAt == null) return null;
     return QuranTeachingCompletedReviewSession(
       dateKey: dateKey,
@@ -479,11 +478,11 @@ class QuranTeachingSmartReviewState {
 
   Map<String, dynamic> toJson() => {
     'records': records.map((key, value) => MapEntry(key, value.toJson())),
-    'weakAreas':
-        weakAreas.map((key, value) => MapEntry(key, value.toJson())),
+    'weakAreas': weakAreas.map((key, value) => MapEntry(key, value.toJson())),
     'todaySession': todaySession?.toJson(),
-    'completedSessions':
-        completedSessions.map((item) => item.toJson()).toList(growable: false),
+    'completedSessions': completedSessions
+        .map((item) => item.toJson())
+        .toList(growable: false),
   };
 
   static QuranTeachingSmartReviewState fromJson(Map<String, dynamic>? json) {

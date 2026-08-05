@@ -100,7 +100,8 @@ class UserLearningProfile {
     return UserLearningProfile(
       categoryStrength: _doubleMap(source['categoryStrength']),
       gameTypeStrength: _doubleMap(source['gameTypeStrength']),
-      overallSkillLevel: (source['overallSkillLevel'] as num?)?.toDouble() ?? 0.5,
+      overallSkillLevel:
+          (source['overallSkillLevel'] as num?)?.toDouble() ?? 0.5,
       recentPerformance: _intMap(source['recentPerformance']),
       difficultyComfort: _doubleMap(source['difficultyComfort']),
       focusCategory: source['focusCategory']?.toString(),
@@ -129,19 +130,13 @@ class AdaptiveLearningInsight {
 Map<String, double> _doubleMap(Object? raw) {
   if (raw is! Map) return const <String, double>{};
   return raw.map(
-    (key, value) => MapEntry(
-      key.toString(),
-      (value as num?)?.toDouble() ?? 0,
-    ),
+    (key, value) => MapEntry(key.toString(), (value as num?)?.toDouble() ?? 0),
   );
 }
 
 Map<String, int> _intMap(Object? raw) {
   if (raw is! Map) return const <String, int>{};
   return raw.map(
-    (key, value) => MapEntry(
-      key.toString(),
-      (value as num?)?.toInt() ?? 0,
-    ),
+    (key, value) => MapEntry(key.toString(), (value as num?)?.toInt() ?? 0),
   );
 }

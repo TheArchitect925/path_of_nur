@@ -177,19 +177,17 @@ class EditorialDashboardDomainSection {
   int get localizedCount =>
       items.where((item) => item.localizationReady).length;
 
-  int get reviewedCount =>
-      items
-          .where(
-            (item) =>
-                item.status == EditorialDashboardItemStatus.reviewed ||
-                item.status == EditorialDashboardItemStatus.verified,
-          )
-          .length;
+  int get reviewedCount => items
+      .where(
+        (item) =>
+            item.status == EditorialDashboardItemStatus.reviewed ||
+            item.status == EditorialDashboardItemStatus.verified,
+      )
+      .length;
 
-  int get verifiedCount =>
-      items
-          .where((item) => item.status == EditorialDashboardItemStatus.verified)
-          .length;
+  int get verifiedCount => items
+      .where((item) => item.status == EditorialDashboardItemStatus.verified)
+      .length;
 }
 
 class EditorialIssue {
@@ -314,10 +312,7 @@ class EditorialReviewQueueItem {
 }
 
 class EditorialReviewQueue {
-  const EditorialReviewQueue({
-    required this.category,
-    required this.items,
-  });
+  const EditorialReviewQueue({required this.category, required this.items});
 
   final EditorialTriageCategory category;
   final List<EditorialReviewQueueItem> items;

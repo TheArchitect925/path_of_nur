@@ -8,7 +8,8 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
     id: 'hadith_easy_001',
     categoryId: 'hadith',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which famous hadith begins with “Actions are judged by intentions”?',
+    prompt:
+        'Which famous hadith begins with “Actions are judged by intentions”?',
     options: const [
       ('innama', 'Innama al-a\'malu bin-niyyat'),
       ('rahmah', 'Ar-Rahimuna yarhamuhum ar-Rahman'),
@@ -28,7 +29,8 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
     id: 'hadith_easy_002',
     categoryId: 'hadith',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Sunnah only refers to optional deeds and never to the Prophet’s teachings more broadly.',
+    prompt:
+        'Sunnah only refers to optional deeds and never to the Prophet’s teachings more broadly.',
     correct: false,
     explanation:
         'The Sunnah refers broadly to the Prophet’s teachings, example, and guidance. Some Sunnah acts are optional, but the term is wider than that.',
@@ -61,7 +63,8 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
     id: 'hadith_med_004',
     categoryId: 'hadith',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which trait was directly linked to faith in the statement “modesty is part of faith”?',
+    prompt:
+        'Which trait was directly linked to faith in the statement “modesty is part of faith”?',
     options: const [
       ('haya', 'Modesty'),
       ('anger', 'Anger'),
@@ -69,8 +72,7 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
       ('silence', 'Silence'),
     ],
     correctOptionId: 'haya',
-    explanation:
-        'The Prophet taught that haya, or modesty, is part of iman.',
+    explanation: 'The Prophet taught that haya, or modesty, is part of iman.',
     sourceReference: 'Sahih al-Bukhari 24; Sahih Muslim 36',
     tags: const ['hadith', 'iman', 'ethics'],
     reflectionFriendly: true,

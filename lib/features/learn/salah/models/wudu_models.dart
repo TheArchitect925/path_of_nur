@@ -39,10 +39,7 @@ class WuduQuizSeed {
 enum WuduQuizQuestionType { stepOrder, whatComesNext, identifyValidStep, adab }
 
 class WuduQuizOption {
-  const WuduQuizOption({
-    required this.id,
-    required this.label,
-  });
+  const WuduQuizOption({required this.id, required this.label});
 
   final String id;
   final String label;

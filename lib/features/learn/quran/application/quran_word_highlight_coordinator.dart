@@ -33,7 +33,8 @@ class QuranWordHighlightState {
       activeWordIndex != null;
 }
 
-class QuranWordHighlightCoordinator extends StateNotifier<QuranWordHighlightState> {
+class QuranWordHighlightCoordinator
+    extends StateNotifier<QuranWordHighlightState> {
   QuranWordHighlightCoordinator(this.ref, {required this.pageSurahNumber})
     : super(const QuranWordHighlightState()) {
     _bind();

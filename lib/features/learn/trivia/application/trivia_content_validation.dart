@@ -104,7 +104,8 @@ class TriviaContentValidator {
           issues.add(
             TriviaValidationIssue(
               code: 'empty_option_label',
-              message: 'Question ${question.id} contains an empty option label.',
+              message:
+                  'Question ${question.id} contains an empty option label.',
               questionId: question.id,
             ),
           );

@@ -81,9 +81,9 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
                 const SizedBox(height: 6),
                 Text(
                   l10n.historyNoEventsForThisDate,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
                 ),
               ],
               const SizedBox(height: 14),

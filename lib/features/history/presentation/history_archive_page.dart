@@ -44,21 +44,23 @@ class _HistoryArchivePageState extends ConsumerState<HistoryArchivePage> {
         const SizedBox(height: 8),
         eventsAsync.when(
           data: (events) {
-            final filtered = events.where((event) {
-              if (_selectedCategory != null &&
-                  !event.categories.contains(_selectedCategory)) {
-                return false;
-              }
-              if (_selectedGregorianMonth != null &&
-                  event.gregorian.month != _selectedGregorianMonth) {
-                return false;
-              }
-              if (_selectedHijriMonth != null &&
-                  event.hijri.month != _selectedHijriMonth) {
-                return false;
-              }
-              return true;
-            }).toList(growable: false);
+            final filtered = events
+                .where((event) {
+                  if (_selectedCategory != null &&
+                      !event.categories.contains(_selectedCategory)) {
+                    return false;
+                  }
+                  if (_selectedGregorianMonth != null &&
+                      event.gregorian.month != _selectedGregorianMonth) {
+                    return false;
+                  }
+                  if (_selectedHijriMonth != null &&
+                      event.hijri.month != _selectedHijriMonth) {
+                    return false;
+                  }
+                  return true;
+                })
+                .toList(growable: false);
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,9 +82,9 @@ class _HistoryArchivePageState extends ConsumerState<HistoryArchivePage> {
                 const SizedBox(height: 16),
                 Text(
                   l10n.historyArchiveResultsCount(filtered.length),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 10),
                 if (filtered.isEmpty)
@@ -145,7 +147,9 @@ class _ArchiveFilters extends StatelessWidget {
         const SizedBox(height: 10),
         DropdownButtonFormField<HistoricalEventCategory?>(
           initialValue: selectedCategory,
-          decoration: InputDecoration(labelText: l10n.historyArchiveCategoryLabel),
+          decoration: InputDecoration(
+            labelText: l10n.historyArchiveCategoryLabel,
+          ),
           items: [
             DropdownMenuItem<HistoricalEventCategory?>(
               value: null,
@@ -174,7 +178,9 @@ class _ArchiveFilters extends StatelessWidget {
             for (var month = 1; month <= 12; month++)
               DropdownMenuItem<int?>(
                 value: month,
-                child: Text(DateFormat.MMMM(locale).format(DateTime(2026, month))),
+                child: Text(
+                  DateFormat.MMMM(locale).format(DateTime(2026, month)),
+                ),
               ),
           ],
           onChanged: onGregorianMonthChanged,
@@ -182,7 +188,9 @@ class _ArchiveFilters extends StatelessWidget {
         const SizedBox(height: 10),
         DropdownButtonFormField<int?>(
           initialValue: selectedHijriMonth,
-          decoration: InputDecoration(labelText: l10n.historyArchiveHijriMonthLabel),
+          decoration: InputDecoration(
+            labelText: l10n.historyArchiveHijriMonthLabel,
+          ),
           items: [
             DropdownMenuItem<int?>(
               value: null,

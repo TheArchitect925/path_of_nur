@@ -40,7 +40,9 @@ void main() {
         learnerId: learner.learnerId,
         learnerDisplayName: learner.displayName,
         currentLevel: learner.learnerId == 'child_a' ? 3 : 1,
-        currentLevelTitle: learner.learnerId == 'child_a' ? 'Learner' : 'Seeker',
+        currentLevelTitle: learner.learnerId == 'child_a'
+            ? 'Learner'
+            : 'Seeker',
         xpProgressPercent: learner.learnerId == 'child_a' ? 0.6 : 0.2,
         xpRemainingToNextLevel: learner.learnerId == 'child_a' ? 12 : 18,
         totalStoriesCompleted: learner.learnerId == 'child_a' ? 2 : 0,
@@ -49,10 +51,18 @@ void main() {
         totalMemorySessionsCompleted: 0,
         totalRecallActivitiesCompleted: 0,
         totalBedtimeLearningSessions: learner.learnerId == 'child_a' ? 4 : 0,
-        totalXpEarnedFromBedtimeLearning: learner.learnerId == 'child_a' ? 19 : 0,
-        totalOceanDropsEarnedFromBedtimeLearning: learner.learnerId == 'child_a' ? 1 : 0,
-        totalXpEarnedAcrossKidsLearning: learner.learnerId == 'child_a' ? 36 : 4,
-        totalOceanDropsEarnedAcrossKidsLearning: learner.learnerId == 'child_a' ? 3 : 0,
+        totalXpEarnedFromBedtimeLearning: learner.learnerId == 'child_a'
+            ? 19
+            : 0,
+        totalOceanDropsEarnedFromBedtimeLearning: learner.learnerId == 'child_a'
+            ? 1
+            : 0,
+        totalXpEarnedAcrossKidsLearning: learner.learnerId == 'child_a'
+            ? 36
+            : 4,
+        totalOceanDropsEarnedAcrossKidsLearning: learner.learnerId == 'child_a'
+            ? 3
+            : 0,
         totalKidsStoriesCompleted: learner.learnerId == 'child_a' ? 3 : 0,
         totalSeerahStagesCompleted: learner.learnerId == 'child_a' ? 2 : 0,
         totalSeerahJourneysCompleted: learner.learnerId == 'child_a' ? 1 : 0,
@@ -155,9 +165,7 @@ void main() {
         bedtimeAvailableLearnersProvider.overrideWith(
           (ref) => const [learnerA, learnerB],
         ),
-        bedtimeActiveLearnerProvider.overrideWith(
-          (ref) => activeLearner,
-        ),
+        bedtimeActiveLearnerProvider.overrideWith((ref) => activeLearner),
         bedtimeStoryParentDashboardProvider.overrideWith(
           (ref) => summaryFor(activeLearner),
         ),

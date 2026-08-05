@@ -87,10 +87,7 @@ class DivineLifeNote {
   final String noteText;
   final String updatedAtIso;
 
-  DivineLifeNote copyWith({
-    String? noteText,
-    String? updatedAtIso,
-  }) {
+  DivineLifeNote copyWith({String? noteText, String? updatedAtIso}) {
     return DivineLifeNote(
       lessonId: lessonId,
       noteText: noteText ?? this.noteText,

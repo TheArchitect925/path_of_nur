@@ -32,9 +32,10 @@ QuranReaderStudyMode quranPreferredReaderModeForIntent(
     QuranUserIntent.understand => QuranReaderStudyMode.study,
     QuranUserIntent.reflect => QuranReaderStudyMode.reflection,
     QuranUserIntent.memorize => QuranReaderStudyMode.memorization,
-    QuranUserIntent.themes => hasHighlightedTopic
-        ? QuranReaderStudyMode.theme
-        : QuranReaderStudyMode.study,
+    QuranUserIntent.themes =>
+      hasHighlightedTopic
+          ? QuranReaderStudyMode.theme
+          : QuranReaderStudyMode.study,
     QuranUserIntent.guidedPath => QuranReaderStudyMode.study,
   };
 }
@@ -45,10 +46,8 @@ QuranGuidedLearningPathType? quranPreferredPathTypeForIntent(
   return switch (intent) {
     QuranUserIntent.understand =>
       QuranGuidedLearningPathType.beginnerUnderstanding,
-    QuranUserIntent.reflect =>
-      QuranGuidedLearningPathType.reflectionJourney,
-    QuranUserIntent.memorize =>
-      QuranGuidedLearningPathType.memorizationSupport,
+    QuranUserIntent.reflect => QuranGuidedLearningPathType.reflectionJourney,
+    QuranUserIntent.memorize => QuranGuidedLearningPathType.memorizationSupport,
     QuranUserIntent.themes => QuranGuidedLearningPathType.themeStudy,
     QuranUserIntent.guidedPath => null,
   };

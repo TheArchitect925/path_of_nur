@@ -36,7 +36,10 @@ class ContextualLinkingService {
         currentCategories,
         candidate.categories,
       );
-      final matchedEntities = _sharedValues(currentEntities, candidate.entities);
+      final matchedEntities = _sharedValues(
+        currentEntities,
+        candidate.entities,
+      );
 
       final score =
           (matchedTags.length * tagWeight) +
@@ -69,9 +72,9 @@ class ContextualLinkingService {
       final scoreCompare = b.score.compareTo(a.score);
       if (scoreCompare != 0) return scoreCompare;
 
-      final typeCompare = _typePriority(a.node.type).compareTo(
-        _typePriority(b.node.type),
-      );
+      final typeCompare = _typePriority(
+        a.node.type,
+      ).compareTo(_typePriority(b.node.type));
       if (typeCompare != 0) return typeCompare;
 
       final titleCompare = a.node.title.compareTo(b.node.title);
@@ -106,13 +109,13 @@ class ContextualLinkingService {
   }
 
   Set<String> _normalizeSet(Iterable<String> raw) {
-    return raw
-        .map(_normalize)
-        .where((item) => item.isNotEmpty)
-        .toSet();
+    return raw.map(_normalize).where((item) => item.isNotEmpty).toSet();
   }
 
-  List<String> _sharedValues(Set<String> source, Iterable<String> rawCandidates) {
+  List<String> _sharedValues(
+    Set<String> source,
+    Iterable<String> rawCandidates,
+  ) {
     final matched = <String>{};
     for (final item in rawCandidates) {
       final normalized = _normalize(item);

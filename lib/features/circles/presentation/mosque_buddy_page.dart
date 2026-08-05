@@ -18,7 +18,13 @@ const _buddyInterests = <String>[
   'Hiking',
 ];
 
-const _availabilityWindows = <String>['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+const _availabilityWindows = <String>[
+  'Fajr',
+  'Dhuhr',
+  'Asr',
+  'Maghrib',
+  'Isha',
+];
 
 class MosqueBuddyPage extends ConsumerWidget {
   const MosqueBuddyPage({super.key});

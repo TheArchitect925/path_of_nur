@@ -20,19 +20,24 @@ final activeGardenStateProvider = Provider<GardenState>((ref) {
   return ref.watch(gardenStateProvider(learner.learnerId));
 });
 
-final gardenStateProvider = Provider.family<GardenState, String>((ref, learnerId) {
-  final learner = ref.watch(bedtimeAvailableLearnersProvider).firstWhere(
-    (item) => item.learnerId == learnerId,
-    orElse: () => BedtimeLearnerIdentity(
-      learnerId: learnerId,
-      displayName: learnerId,
-      avatarReference: '',
-      ageGroup: ref.watch(bedtimeActiveLearnerProvider).ageGroup,
-      guardianProfileId: null,
-      isFallbackLearner: true,
-      preferences: const BedtimeLearnerPreferences(),
-    ),
-  );
+final gardenStateProvider = Provider.family<GardenState, String>((
+  ref,
+  learnerId,
+) {
+  final learner = ref
+      .watch(bedtimeAvailableLearnersProvider)
+      .firstWhere(
+        (item) => item.learnerId == learnerId,
+        orElse: () => BedtimeLearnerIdentity(
+          learnerId: learnerId,
+          displayName: learnerId,
+          avatarReference: '',
+          ageGroup: ref.watch(bedtimeActiveLearnerProvider).ageGroup,
+          guardianProfileId: null,
+          isFallbackLearner: true,
+          preferences: const BedtimeLearnerPreferences(),
+        ),
+      );
   final summary = ref.watch(learnerProgressionSummaryProvider(learnerId));
   final state = ref.watch(learnerProgressionControllerProvider(learnerId));
   final journeyStats = ref.watch(journeyStatsSummaryProvider);
@@ -120,7 +125,8 @@ class GardenService {
         dimension: GardenGrowthDimension.learningGrowth,
         score: learningGrowthScore,
         emphasisPercent: _percent(learningGrowthScore),
-        summaryValue: summary.metrics.storyCompletions +
+        summaryValue:
+            summary.metrics.storyCompletions +
             summary.metrics.quizCompletions +
             summary.metrics.memoryCompletions +
             summary.metrics.seerahNodeCompletions +
@@ -134,8 +140,8 @@ class GardenService {
         summaryValue: usesJourneyFallback
             ? globalJourneyStats.totalAdhkarCompletedLifetime
             : summary.metrics.duaLessonCompletions +
-                summary.metrics.duaPracticeSessions +
-                summary.metrics.duaMyDayCompletions,
+                  summary.metrics.duaPracticeSessions +
+                  summary.metrics.duaMyDayCompletions,
       ),
       GardenDimensionState(
         dimension: GardenGrowthDimension.mercyWater,
@@ -168,9 +174,9 @@ class GardenService {
         )
         .toList(growable: false);
 
-    final recentGrowth = progressionState.entriesBySourceRef.values
-        .toList(growable: false)
-      ..sort((a, b) => b.occurredAtIso.compareTo(a.occurredAtIso));
+    final recentGrowth = progressionState.entriesBySourceRef.values.toList(
+      growable: false,
+    )..sort((a, b) => b.occurredAtIso.compareTo(a.occurredAtIso));
     final recentItems = recentGrowth
         .take(4)
         .map(
@@ -198,9 +204,11 @@ class GardenService {
       consistencyScore: consistencyScore,
       wisdomFruitScore: wisdomFruitScore,
       lastUpdatedIso:
-          progressionState.lastUpdatedAtIso ?? globalJourneyXp.updatedAt.toIso8601String(),
+          progressionState.lastUpdatedAtIso ??
+          globalJourneyXp.updatedAt.toIso8601String(),
       lastVisualRefreshAtIso:
-          progressionState.lastUpdatedAtIso ?? globalJourneyXp.updatedAt.toIso8601String(),
+          progressionState.lastUpdatedAtIso ??
+          globalJourneyXp.updatedAt.toIso8601String(),
       unlockedVisualIds: milestones
           .where((item) => item.unlocked)
           .map((item) => item.milestone.id)
@@ -244,8 +252,14 @@ class GardenService {
       metrics.bedtimeRoutineCompletions,
       30,
     );
-    final streakScore = _progressFromThreshold(metrics.currentLearningStreakDays, 30);
-    final activeRhythmScore = _progressFromThreshold(metrics.activeDayKeys.length, 45);
+    final streakScore = _progressFromThreshold(
+      metrics.currentLearningStreakDays,
+      30,
+    );
+    final activeRhythmScore = _progressFromThreshold(
+      metrics.activeDayKeys.length,
+      45,
+    );
     return ((routineScore * 0.45) +
             (streakScore * 0.35) +
             (activeRhythmScore * 0.2))
@@ -284,9 +298,15 @@ class GardenService {
       metrics.duaLessonCompletions + metrics.duaMyDayCompletions,
       20,
     );
-    final practiceScore = _progressFromThreshold(metrics.duaPracticeSessions, 50);
+    final practiceScore = _progressFromThreshold(
+      metrics.duaPracticeSessions,
+      50,
+    );
     final fallbackDhikrScore = usesJourneyFallback
-        ? _progressFromThreshold(globalJourneyStats.totalAdhkarCompletedLifetime, 300)
+        ? _progressFromThreshold(
+            globalJourneyStats.totalAdhkarCompletedLifetime,
+            300,
+          )
         : 0;
     return ((duaScore * 0.5) +
             (practiceScore * 0.3) +
@@ -304,10 +324,16 @@ class GardenService {
       30,
     );
     final longestStreakScore = _progressFromThreshold(
-      math.max(metrics.longestLearningStreakDays, globalJourneyStats.bestStreakDays),
+      math.max(
+        metrics.longestLearningStreakDays,
+        globalJourneyStats.bestStreakDays,
+      ),
       45,
     );
-    final activeDaysScore = _progressFromThreshold(metrics.activeDayKeys.length, 60);
+    final activeDaysScore = _progressFromThreshold(
+      metrics.activeDayKeys.length,
+      60,
+    );
     final fallbackActiveDaysScore = usesJourneyFallback
         ? _progressFromThreshold(globalJourneyStats.activeDays, 90)
         : 0;
@@ -347,15 +373,16 @@ class GardenService {
     required double wisdomFruitScore,
   }) {
     final levelScore = _progressFromThreshold(level, 100);
-    final blended = (((levelScore * 0.28) +
-            (waterScore * 0.18) +
-            (prayerFoundationScore * 0.16) +
-            (learningGrowthScore * 0.16) +
-            (remembranceLightScore * 0.1) +
-            (consistencyScore * 0.07) +
-            (wisdomFruitScore * 0.05))
-        .clamp(0, 1))
-        .toDouble();
+    final blended =
+        (((levelScore * 0.28) +
+                    (waterScore * 0.18) +
+                    (prayerFoundationScore * 0.16) +
+                    (learningGrowthScore * 0.16) +
+                    (remembranceLightScore * 0.1) +
+                    (consistencyScore * 0.07) +
+                    (wisdomFruitScore * 0.05))
+                .clamp(0, 1))
+            .toDouble();
     return _percent(blended);
   }
 
@@ -407,23 +434,29 @@ class GardenService {
     return GardenAmbientState.quietDawn;
   }
 
-  List<GardenInsightMessage> _buildInsights(List<GardenDimensionState> dimensions) {
+  List<GardenInsightMessage> _buildInsights(
+    List<GardenDimensionState> dimensions,
+  ) {
     final strongest = dimensions.toList(growable: false)
       ..sort((a, b) => b.score.compareTo(a.score));
-    return strongest.take(3).map((dimension) {
-      final key = switch (dimension.dimension) {
-        GardenGrowthDimension.prayerFoundation => 'gardenInsightPrayer',
-        GardenGrowthDimension.learningGrowth => 'gardenInsightLearning',
-        GardenGrowthDimension.remembranceLight => 'gardenInsightLight',
-        GardenGrowthDimension.mercyWater => 'gardenInsightWater',
-        GardenGrowthDimension.wisdomFruit => 'gardenInsightFruit',
-        GardenGrowthDimension.consistencyBloom => 'gardenInsightConsistency',
-      };
-      return GardenInsightMessage(
-        dimension: dimension.dimension,
-        messageKey: key,
-      );
-    }).toList(growable: false);
+    return strongest
+        .take(3)
+        .map((dimension) {
+          final key = switch (dimension.dimension) {
+            GardenGrowthDimension.prayerFoundation => 'gardenInsightPrayer',
+            GardenGrowthDimension.learningGrowth => 'gardenInsightLearning',
+            GardenGrowthDimension.remembranceLight => 'gardenInsightLight',
+            GardenGrowthDimension.mercyWater => 'gardenInsightWater',
+            GardenGrowthDimension.wisdomFruit => 'gardenInsightFruit',
+            GardenGrowthDimension.consistencyBloom =>
+              'gardenInsightConsistency',
+          };
+          return GardenInsightMessage(
+            dimension: dimension.dimension,
+            messageKey: key,
+          );
+        })
+        .toList(growable: false);
   }
 
   double _progressFromThreshold(int value, int threshold) {

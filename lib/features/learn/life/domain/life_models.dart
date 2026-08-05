@@ -129,12 +129,12 @@ class LifeLessonProgress {
   }
 
   Map<String, dynamic> toJson() => {
-        'lessonId': lessonId,
-        'status': status.name,
-        'lastOpenedIso': lastOpenedIso,
-        'completedIso': completedIso,
-        'openCount': openCount,
-      };
+    'lessonId': lessonId,
+    'status': status.name,
+    'lastOpenedIso': lastOpenedIso,
+    'completedIso': completedIso,
+    'openCount': openCount,
+  };
 
   static LifeLessonProgress? fromJson(dynamic raw) {
     if (raw is! Map) return null;

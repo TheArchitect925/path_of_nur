@@ -247,47 +247,52 @@ void main() {
       },
     );
 
-    test('maps canonical dua my day activity into broader recent activity', () async {
-      const learner = BedtimeLearnerIdentity(
-        learnerId: 'child_a',
-        displayName: 'Maryam',
-        avatarReference: '🌙',
-        ageGroup: LearningAgeGroup.kids,
-        guardianProfileId: 'guardian_1',
-        isFallbackLearner: false,
-        preferences: BedtimeLearnerPreferences(),
-      );
-      SharedPreferences.setMockInitialValues(<String, Object>{});
-      final prefs = await SharedPreferences.getInstance();
-      final container = ProviderContainer(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          bedtimeAvailableLearnersProvider.overrideWith(
-            (ref) => const [learner],
-          ),
-          bedtimeActiveLearnerProvider.overrideWith((ref) => learner),
-        ],
-      );
-      addTearDown(container.dispose);
+    test(
+      'maps canonical dua my day activity into broader recent activity',
+      () async {
+        const learner = BedtimeLearnerIdentity(
+          learnerId: 'child_a',
+          displayName: 'Maryam',
+          avatarReference: '🌙',
+          ageGroup: LearningAgeGroup.kids,
+          guardianProfileId: 'guardian_1',
+          isFallbackLearner: false,
+          preferences: BedtimeLearnerPreferences(),
+        );
+        SharedPreferences.setMockInitialValues(<String, Object>{});
+        final prefs = await SharedPreferences.getInstance();
+        final container = ProviderContainer(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            bedtimeAvailableLearnersProvider.overrideWith(
+              (ref) => const [learner],
+            ),
+            bedtimeActiveLearnerProvider.overrideWith((ref) => learner),
+          ],
+        );
+        addTearDown(container.dispose);
 
-      container.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.duaMyDayCompleted,
-        domain: KidsActivityDomain.duas,
-        sourceRef: 'kids_dua_my_day_complete:2026-03-21',
-        contentId: 'before-sleep',
-        titleSnapshot: 'Before Sleep',
-        subtitleSnapshot: 'A calm dua for bedtime',
-        occurredAt: DateTime(2026, 3, 21, 21),
-      );
+        container
+            .read(kidsActivityLogProvider.notifier)
+            .log(
+              type: KidsActivityType.duaMyDayCompleted,
+              domain: KidsActivityDomain.duas,
+              sourceRef: 'kids_dua_my_day_complete:2026-03-21',
+              contentId: 'before-sleep',
+              titleSnapshot: 'Before Sleep',
+              subtitleSnapshot: 'A calm dua for bedtime',
+              occurredAt: DateTime(2026, 3, 21, 21),
+            );
 
-      final summary = container.read(bedtimeStoryParentDashboardProvider);
-      expect(summary.learningRecentActivity, isNotEmpty);
-      expect(
-        summary.learningRecentActivity.first.type,
-        KidsParentRecentActivityType.duaMyDay,
-      );
-      expect(summary.learningRecentActivity.first.title, 'Before Sleep');
-    });
+        final summary = container.read(bedtimeStoryParentDashboardProvider);
+        expect(summary.learningRecentActivity, isNotEmpty);
+        expect(
+          summary.learningRecentActivity.first.type,
+          KidsParentRecentActivityType.duaMyDay,
+        );
+        expect(summary.learningRecentActivity.first.title, 'Before Sleep');
+      },
+    );
 
     test(
       'builds a sparse but real broader summary from progression-only activity',

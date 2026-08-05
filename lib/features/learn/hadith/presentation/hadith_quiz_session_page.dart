@@ -276,11 +276,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
               Text(result.encouragement),
               const SizedBox(height: 10),
               Text(
-                buildCompactRewardSummary(
-                  l10n,
-                  xp: result.xpAwarded,
-                  drops: 0,
-                ),
+                buildCompactRewardSummary(l10n, xp: result.xpAwarded, drops: 0),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),

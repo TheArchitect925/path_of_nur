@@ -339,9 +339,7 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
                           drops: result.dropsEarned,
                         ),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurfaceVariant,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                       if (dailyProgress?.isCompleted == true) ...[
@@ -350,9 +348,7 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
                           l10n.wordSearchDailyCompleteBadge,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.primary,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.w600,
                               ),
                         ),

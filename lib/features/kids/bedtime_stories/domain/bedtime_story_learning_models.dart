@@ -266,7 +266,8 @@ class BedtimeStoryLearningActivityProgress {
       currentStepIndex: (json['currentStepIndex'] as num?)?.toInt() ?? 0,
       totalSteps: (json['totalSteps'] as num?)?.toInt() ?? 0,
       correctCount: (json['correctCount'] as num?)?.toInt() ?? 0,
-      completedStepIds: (json['completedStepIds'] as List?)
+      completedStepIds:
+          (json['completedStepIds'] as List?)
               ?.map((item) => item.toString())
               .toList(growable: false) ??
           const <String>[],
@@ -314,7 +315,9 @@ class BedtimeStoryLearningProgressState {
     'recentActivityIds': recentActivityIds,
   };
 
-  static BedtimeStoryLearningProgressState fromJson(Map<String, dynamic>? json) {
+  static BedtimeStoryLearningProgressState fromJson(
+    Map<String, dynamic>? json,
+  ) {
     if (json == null) {
       return const BedtimeStoryLearningProgressState();
     }
@@ -322,19 +325,20 @@ class BedtimeStoryLearningProgressState {
     final rawMap = json['progressByActivityId'];
     if (rawMap is Map) {
       for (final entry in rawMap.entries) {
-        progressById[entry.key.toString()] =
-            BedtimeStoryLearningActivityProgress.fromJson(
-              entry.value is Map<String, dynamic>
-                  ? entry.value as Map<String, dynamic>
-                  : (entry.value as Map?)?.map(
-                      (key, value) => MapEntry(key.toString(), value),
-                    ),
-            );
+        progressById[entry.key
+            .toString()] = BedtimeStoryLearningActivityProgress.fromJson(
+          entry.value is Map<String, dynamic>
+              ? entry.value as Map<String, dynamic>
+              : (entry.value as Map?)?.map(
+                  (key, value) => MapEntry(key.toString(), value),
+                ),
+        );
       }
     }
     return BedtimeStoryLearningProgressState(
       progressByActivityId: progressById,
-      recentActivityIds: (json['recentActivityIds'] as List?)
+      recentActivityIds:
+          (json['recentActivityIds'] as List?)
               ?.map((item) => item.toString())
               .toList(growable: false) ??
           const <String>[],

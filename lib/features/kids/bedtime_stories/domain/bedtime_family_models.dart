@@ -53,7 +53,8 @@ class BedtimeLearnerPreferences {
           prefersBedtimeDuaFirst ?? this.prefersBedtimeDuaFirst,
       alwaysResumeBedtimeStory:
           alwaysResumeBedtimeStory ?? this.alwaysResumeBedtimeStory,
-      preferTranscriptWhenAudioMissing: preferTranscriptWhenAudioMissing ??
+      preferTranscriptWhenAudioMissing:
+          preferTranscriptWhenAudioMissing ??
           this.preferTranscriptWhenAudioMissing,
       simplifiedBedtimeRoutine:
           simplifiedBedtimeRoutine ?? this.simplifiedBedtimeRoutine,
@@ -61,16 +62,16 @@ class BedtimeLearnerPreferences {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'nickname': nickname,
-        'favoriteProphetIds': favoriteProphetIds,
-        'bedtimeLanguageTag': bedtimeLanguageTag,
-        'bedtimeMinutesPreference': bedtimeMinutesPreference,
-        'difficultyPreference': difficultyPreference.name,
-        'prefersBedtimeDuaFirst': prefersBedtimeDuaFirst,
-        'alwaysResumeBedtimeStory': alwaysResumeBedtimeStory,
-        'preferTranscriptWhenAudioMissing': preferTranscriptWhenAudioMissing,
-        'simplifiedBedtimeRoutine': simplifiedBedtimeRoutine,
-      };
+    'nickname': nickname,
+    'favoriteProphetIds': favoriteProphetIds,
+    'bedtimeLanguageTag': bedtimeLanguageTag,
+    'bedtimeMinutesPreference': bedtimeMinutesPreference,
+    'difficultyPreference': difficultyPreference.name,
+    'prefersBedtimeDuaFirst': prefersBedtimeDuaFirst,
+    'alwaysResumeBedtimeStory': alwaysResumeBedtimeStory,
+    'preferTranscriptWhenAudioMissing': preferTranscriptWhenAudioMissing,
+    'simplifiedBedtimeRoutine': simplifiedBedtimeRoutine,
+  };
 
   factory BedtimeLearnerPreferences.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -82,13 +83,14 @@ class BedtimeLearnerPreferences {
           .map((item) => item.toString())
           .toList(growable: false),
       bedtimeLanguageTag: json['bedtimeLanguageTag']?.toString(),
-      bedtimeMinutesPreference:
-          (json['bedtimeMinutesPreference'] as num?)?.toInt(),
+      bedtimeMinutesPreference: (json['bedtimeMinutesPreference'] as num?)
+          ?.toInt(),
       difficultyPreference: _difficultyFromString(
         json['difficultyPreference']?.toString(),
       ),
       prefersBedtimeDuaFirst: json['prefersBedtimeDuaFirst'] as bool? ?? true,
-      alwaysResumeBedtimeStory: json['alwaysResumeBedtimeStory'] as bool? ?? true,
+      alwaysResumeBedtimeStory:
+          json['alwaysResumeBedtimeStory'] as bool? ?? true,
       preferTranscriptWhenAudioMissing:
           json['preferTranscriptWhenAudioMissing'] as bool? ?? true,
       simplifiedBedtimeRoutine:
@@ -137,10 +139,9 @@ class BedtimeLearnerIdentity {
   final bool isArchived;
   final int sortOrder;
 
-  String get effectiveDisplayName =>
-      (preferences.nickname ?? '').trim().isEmpty
-          ? displayName
-          : preferences.nickname!.trim();
+  String get effectiveDisplayName => (preferences.nickname ?? '').trim().isEmpty
+      ? displayName
+      : preferences.nickname!.trim();
 
   bool get isLinkedChildProfile =>
       linkedChildProfileId != null && linkedChildProfileId!.isNotEmpty;
@@ -158,10 +159,10 @@ class BedtimeActiveLearnerSession {
   final String? guardianProfileId;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'learnerId': learnerId,
-        'selectedAtIso': selectedAtIso,
-        'guardianProfileId': guardianProfileId,
-      };
+    'learnerId': learnerId,
+    'selectedAtIso': selectedAtIso,
+    'guardianProfileId': guardianProfileId,
+  };
 
   factory BedtimeActiveLearnerSession.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -186,7 +187,8 @@ class BedtimeFamilyModeState {
     this.preferencesByLearnerId = const <String, BedtimeLearnerPreferences>{},
   });
 
-  final Map<String, BedtimeActiveLearnerSession> activeLearnerSessionByGuardianId;
+  final Map<String, BedtimeActiveLearnerSession>
+  activeLearnerSessionByGuardianId;
   final Set<String> archivedLearnerIds;
   final Map<String, BedtimeLearnerPreferences> preferencesByLearnerId;
 
@@ -206,12 +208,14 @@ class BedtimeFamilyModeState {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'activeLearnerSessionByGuardianId': activeLearnerSessionByGuardianId
-            .map((key, value) => MapEntry(key, value.toJson())),
-        'archivedLearnerIds': archivedLearnerIds.toList(growable: false),
-        'preferencesByLearnerId': preferencesByLearnerId
-            .map((key, value) => MapEntry(key, value.toJson())),
-      };
+    'activeLearnerSessionByGuardianId': activeLearnerSessionByGuardianId.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'archivedLearnerIds': archivedLearnerIds.toList(growable: false),
+    'preferencesByLearnerId': preferencesByLearnerId.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+  };
 
   factory BedtimeFamilyModeState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {

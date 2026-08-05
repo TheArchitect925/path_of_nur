@@ -254,7 +254,8 @@ tvosContentModuleRegistry = <TVOSContentModuleDefinition>[
     requiredReleaseStage: TVOSReleaseStage.testflight,
     requiresSharedParityPayload: false,
     dependsOnSectionKeys: <String>['profiles.primarySwitcher'],
-    summary: 'Shared-device and companion-handoff guidance for the tvOS Profiles route.',
+    summary:
+        'Shared-device and companion-handoff guidance for the tvOS Profiles route.',
   ),
   TVOSContentModuleDefinition(
     id: TVOSContentModuleId.prayerCurrentNext,

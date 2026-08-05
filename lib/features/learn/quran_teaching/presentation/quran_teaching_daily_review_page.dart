@@ -71,156 +71,154 @@ class _QuranTeachingDailyReviewPageState
       title: l10n.batch9DailyReviewTitle,
       subtitle: l10n.batch9DailyReviewFallbackSummary,
       children: [
-            QuranTeachingReviewSessionHeader(
-              current: session?.completedItemRefs.length ?? 0,
-              total: session?.itemRefs.length ?? 0,
-              summary: session?.mixSummary.isNotEmpty == true
-                  ? session!.mixSummary
-                  : l10n.batch9DailyReviewFallbackSummary,
+        QuranTeachingReviewSessionHeader(
+          current: session?.completedItemRefs.length ?? 0,
+          total: session?.itemRefs.length ?? 0,
+          summary: session?.mixSummary.isNotEmpty == true
+              ? session!.mixSummary
+              : l10n.batch9DailyReviewFallbackSummary,
+        ),
+        const SizedBox(height: 12),
+        if (session == null || session.itemRefs.isEmpty)
+          PremiumCard(
+            child: Text(
+              reviewState.records.isEmpty
+                  ? l10n.quranTeachingDailyReviewEmptyStart
+                  : l10n.quranTeachingDailyReviewEmptyNoDue,
             ),
-            const SizedBox(height: 12),
-            if (session == null || session.itemRefs.isEmpty)
-              PremiumCard(
-                child: Text(
-                  reviewState.records.isEmpty
-                      ? l10n.quranTeachingDailyReviewEmptyStart
-                      : l10n.quranTeachingDailyReviewEmptyNoDue,
+          ),
+        if (session != null &&
+            session.itemRefs.isNotEmpty &&
+            currentRef != null &&
+            currentRecord == null &&
+            currentMistake == null)
+          PremiumCard(
+            child: Text(l10n.quranTeachingDailyReviewItemUnavailable),
+          ),
+        if (currentRecord != null) ...[
+          _RecordReviewCard(
+            record: currentRecord,
+            selectedOptionId: _selectedOptionId,
+            selectedTrueFalse: _selectedTrueFalse,
+            selectedTokens: _selectedTokens,
+            feedback: _feedback,
+            wasCorrect: _wasCorrect,
+            revealed: _revealed,
+            onSelectOption: (id) {
+              if (_feedback != null) return;
+              setState(() => _selectedOptionId = id);
+            },
+            onSelectTrueFalse: (value) {
+              if (_feedback != null) return;
+              setState(() => _selectedTrueFalse = value);
+            },
+            onToggleToken: (value) {
+              if (_feedback != null) return;
+              setState(() {
+                if (_selectedTokens.contains(value)) {
+                  _selectedTokens.remove(value);
+                } else {
+                  _selectedTokens.add(value);
+                }
+              });
+            },
+            onReveal: () => setState(() => _revealed = true),
+            onPlayAudio: _playAudio,
+          ),
+          const SizedBox(height: 12),
+          if (_feedback == null &&
+              QuranTeachingReviewPresenter.isSelfCheck(currentRecord))
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton.tonal(
+                    onPressed: () => _submitSelfCheck(currentRecord, true),
+                    child: Text(l10n.quranTeachingDailyReviewRememberedAction),
+                  ),
                 ),
-              ),
-            if (session != null &&
-                session.itemRefs.isNotEmpty &&
-                currentRef != null &&
-                currentRecord == null &&
-                currentMistake == null)
-              PremiumCard(
-                child: Text(l10n.quranTeachingDailyReviewItemUnavailable),
-              ),
-            if (currentRecord != null) ...[
-              _RecordReviewCard(
-                record: currentRecord,
-                selectedOptionId: _selectedOptionId,
-                selectedTrueFalse: _selectedTrueFalse,
-                selectedTokens: _selectedTokens,
-                feedback: _feedback,
-                wasCorrect: _wasCorrect,
-                revealed: _revealed,
-                onSelectOption: (id) {
-                  if (_feedback != null) return;
-                  setState(() => _selectedOptionId = id);
-                },
-                onSelectTrueFalse: (value) {
-                  if (_feedback != null) return;
-                  setState(() => _selectedTrueFalse = value);
-                },
-                onToggleToken: (value) {
-                  if (_feedback != null) return;
-                  setState(() {
-                    if (_selectedTokens.contains(value)) {
-                      _selectedTokens.remove(value);
-                    } else {
-                      _selectedTokens.add(value);
-                    }
-                  });
-                },
-                onReveal: () => setState(() => _revealed = true),
-                onPlayAudio: _playAudio,
-              ),
-              const SizedBox(height: 12),
-              if (_feedback == null &&
-                  QuranTeachingReviewPresenter.isSelfCheck(currentRecord))
-                Row(
-                  children: [
-                    Expanded(
-                      child: FilledButton.tonal(
-                        onPressed: () => _submitSelfCheck(currentRecord, true),
-                        child: Text(
-                          l10n.quranTeachingDailyReviewRememberedAction,
-                        ),
-                      ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => _submitSelfCheck(currentRecord, false),
+                    child: Text(
+                      l10n.quranTeachingDailyReviewNeedAnotherPassAction,
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: OutlinedButton(
-                        onPressed: () => _submitSelfCheck(currentRecord, false),
-                        child: Text(
-                          l10n.quranTeachingDailyReviewNeedAnotherPassAction,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              if (_feedback == null &&
-                  !QuranTeachingReviewPresenter.isSelfCheck(currentRecord))
-                FilledButton(
-                  onPressed: () => _submitRecord(currentRecord),
-                  child: Text(l10n.batch9CheckAnswerAction),
-                ),
-              if (_feedback != null)
-                FilledButton(
-                  onPressed: () => _advance(currentRef!),
-                  child: Text(l10n.quranTeachingDailyReviewNextItemAction),
-                ),
-            ],
-            if (currentMistake != null) ...[
-              _MistakeReviewCard(
-                item: currentMistake,
-                selectedOptionId: _selectedOptionId,
-                selectedTrueFalse: _selectedTrueFalse,
-                selectedTokens: _selectedTokens,
-                feedback: _feedback,
-                wasCorrect: _wasCorrect,
-                onSelectOption: (id) {
-                  if (_feedback != null) return;
-                  setState(() => _selectedOptionId = id);
-                },
-                onSelectTrueFalse: (value) {
-                  if (_feedback != null) return;
-                  setState(() => _selectedTrueFalse = value);
-                },
-                onToggleToken: (value) {
-                  if (_feedback != null) return;
-                  setState(() {
-                    if (_selectedTokens.contains(value)) {
-                      _selectedTokens.remove(value);
-                    } else {
-                      _selectedTokens.add(value);
-                    }
-                  });
-                },
-                onPlayAudio: _playAudio,
-              ),
-              const SizedBox(height: 12),
-              if (_feedback == null)
-                FilledButton(
-                  onPressed: () => _submitMistake(currentMistake!),
-                  child: Text(l10n.batch9CheckAnswerAction),
-                ),
-              if (_feedback != null)
-                FilledButton(
-                  onPressed: () => _advance(currentRef!),
-                  child: Text(l10n.quranTeachingDailyReviewNextItemAction),
-                ),
-            ],
-            if (session?.isComplete == true) ...[
-              QuranTeachingReviewCompletionCard(
-                correctCount: session!.correctCount,
-                needsMoreCount: session.needsMoreCount,
-              ),
-              const SizedBox(height: 12),
-              FilledButton.tonal(
-                onPressed: () {
-                  ref
-                      .read(quranTeachingSmartReviewProvider.notifier)
-                      .ensureTodaySession(
-                        catalog: catalog,
-                        progress: progress,
-                        mistakes: mistakes,
-                      );
-                },
-                child: Text(l10n.quranTeachingDailyReviewMoreLaterAction),
-              ),
-            ],
-          ],
+              ],
+            ),
+          if (_feedback == null &&
+              !QuranTeachingReviewPresenter.isSelfCheck(currentRecord))
+            FilledButton(
+              onPressed: () => _submitRecord(currentRecord),
+              child: Text(l10n.batch9CheckAnswerAction),
+            ),
+          if (_feedback != null)
+            FilledButton(
+              onPressed: () => _advance(currentRef!),
+              child: Text(l10n.quranTeachingDailyReviewNextItemAction),
+            ),
+        ],
+        if (currentMistake != null) ...[
+          _MistakeReviewCard(
+            item: currentMistake,
+            selectedOptionId: _selectedOptionId,
+            selectedTrueFalse: _selectedTrueFalse,
+            selectedTokens: _selectedTokens,
+            feedback: _feedback,
+            wasCorrect: _wasCorrect,
+            onSelectOption: (id) {
+              if (_feedback != null) return;
+              setState(() => _selectedOptionId = id);
+            },
+            onSelectTrueFalse: (value) {
+              if (_feedback != null) return;
+              setState(() => _selectedTrueFalse = value);
+            },
+            onToggleToken: (value) {
+              if (_feedback != null) return;
+              setState(() {
+                if (_selectedTokens.contains(value)) {
+                  _selectedTokens.remove(value);
+                } else {
+                  _selectedTokens.add(value);
+                }
+              });
+            },
+            onPlayAudio: _playAudio,
+          ),
+          const SizedBox(height: 12),
+          if (_feedback == null)
+            FilledButton(
+              onPressed: () => _submitMistake(currentMistake!),
+              child: Text(l10n.batch9CheckAnswerAction),
+            ),
+          if (_feedback != null)
+            FilledButton(
+              onPressed: () => _advance(currentRef!),
+              child: Text(l10n.quranTeachingDailyReviewNextItemAction),
+            ),
+        ],
+        if (session?.isComplete == true) ...[
+          QuranTeachingReviewCompletionCard(
+            correctCount: session!.correctCount,
+            needsMoreCount: session.needsMoreCount,
+          ),
+          const SizedBox(height: 12),
+          FilledButton.tonal(
+            onPressed: () {
+              ref
+                  .read(quranTeachingSmartReviewProvider.notifier)
+                  .ensureTodaySession(
+                    catalog: catalog,
+                    progress: progress,
+                    mistakes: mistakes,
+                  );
+            },
+            child: Text(l10n.quranTeachingDailyReviewMoreLaterAction),
+          ),
+        ],
+      ],
     );
   }
 

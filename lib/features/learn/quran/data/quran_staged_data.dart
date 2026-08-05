@@ -107,7 +107,8 @@ const Map<int, List<QuranAyah>> stagedAyahMap = {
       surahNumber: 1,
       ayahNumber: 1,
       arabic: 'بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ',
-      translation: 'In the name of الله, the Entirely Merciful, the Especially Merciful.',
+      translation:
+          'In the name of الله, the Entirely Merciful, the Especially Merciful.',
       transliteration: 'Bismillahi ar-Rahmani ar-Rahim',
     ),
     QuranAyah(

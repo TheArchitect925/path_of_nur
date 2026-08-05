@@ -20,6 +20,5 @@ class QuranSurah {
   int get revelationOrder => quranRevelationOrderForSurah(number);
   String get revelationClassification =>
       quranRevelationClassificationForPlace(revelationPlace);
-  String get revelationPeriod =>
-      quranRevelationPeriodForPlace(revelationPlace);
+  String get revelationPeriod => quranRevelationPeriodForPlace(revelationPlace);
 }

@@ -95,7 +95,9 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
-              Text(l10n.salahGuidedPrayerCurrentRakahValue(current.rakahNumber)),
+              Text(
+                l10n.salahGuidedPrayerCurrentRakahValue(current.rakahNumber),
+              ),
               const SizedBox(height: 10),
               LinearProgressIndicator(value: progressRatio, minHeight: 8),
               const SizedBox(height: 8),

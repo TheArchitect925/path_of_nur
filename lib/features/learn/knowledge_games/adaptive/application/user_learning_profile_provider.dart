@@ -14,7 +14,8 @@ import '../../../word_search/application/word_search_repository.dart';
 import '../domain/user_learning_profile_models.dart';
 import 'adaptive_learning_engine.dart';
 
-const _userLearningProfileStorageKey = 'learn.knowledge_games.adaptive_profile.v1';
+const _userLearningProfileStorageKey =
+    'learn.knowledge_games.adaptive_profile.v1';
 
 final adaptiveLearningEngineProvider = Provider<AdaptiveLearningEngine>(
   (_) => const AdaptiveLearningEngine(),
@@ -37,56 +38,61 @@ class UserLearningProfileSnapshotNotifier
   }
 }
 
-final userLearningProfileSnapshotProvider = StateNotifierProvider<
-  UserLearningProfileSnapshotNotifier,
-  UserLearningProfile
->((ref) {
-  return UserLearningProfileSnapshotNotifier(ref.watch(localStoreProvider));
-});
-
-final computedUserLearningProfileProvider =
-    FutureProvider<UserLearningProfile>((ref) async {
-      final engine = ref.watch(adaptiveLearningEngineProvider);
-      final crosswordCatalog = await ref.watch(crosswordCatalogProvider.future);
-      final wordSearchCatalog = await ref.watch(wordSearchCatalogProvider.future);
-      final matchingCatalog = await ref.watch(matchingCatalogProvider.future);
-      final ayahCompletionCatalog = await ref.watch(
-        ayahCompletionCatalogProvider.future,
-      );
-      final hadithReflectionCatalog = await ref.watch(
-        hadithReflectionCatalogProvider.future,
-      );
-      return engine.buildProfile(
-        crosswordCatalog: crosswordCatalog,
-        crosswordProgress: ref.watch(crosswordProgressProvider),
-        wordSearchCatalog: wordSearchCatalog,
-        wordSearchProgress: ref.watch(wordSearchProgressProvider),
-        matchingCatalog: matchingCatalog,
-        matchingProgress: ref.watch(matchingProgressProvider),
-        ayahCompletionCatalog: ayahCompletionCatalog,
-        ayahCompletionProgress: ref.watch(ayahCompletionProgressProvider),
-        hadithReflectionCatalog: hadithReflectionCatalog,
-        hadithReflectionProgress: ref.watch(hadithReflectionProgressProvider),
-        now: DateTime.now(),
-      );
+final userLearningProfileSnapshotProvider =
+    StateNotifierProvider<
+      UserLearningProfileSnapshotNotifier,
+      UserLearningProfile
+    >((ref) {
+      return UserLearningProfileSnapshotNotifier(ref.watch(localStoreProvider));
     });
 
-final userLearningProfileProvider = Provider<UserLearningProfile>((ref) {
-  ref.listen<AsyncValue<UserLearningProfile>>(computedUserLearningProfileProvider, (
-    _,
-    next,
-  ) {
-    next.whenData(
-      (profile) =>
-          ref.read(userLearningProfileSnapshotProvider.notifier).replace(profile),
+final computedUserLearningProfileProvider = FutureProvider<UserLearningProfile>(
+  (ref) async {
+    final engine = ref.watch(adaptiveLearningEngineProvider);
+    final crosswordCatalog = await ref.watch(crosswordCatalogProvider.future);
+    final wordSearchCatalog = await ref.watch(wordSearchCatalogProvider.future);
+    final matchingCatalog = await ref.watch(matchingCatalogProvider.future);
+    final ayahCompletionCatalog = await ref.watch(
+      ayahCompletionCatalogProvider.future,
     );
-  });
+    final hadithReflectionCatalog = await ref.watch(
+      hadithReflectionCatalogProvider.future,
+    );
+    return engine.buildProfile(
+      crosswordCatalog: crosswordCatalog,
+      crosswordProgress: ref.watch(crosswordProgressProvider),
+      wordSearchCatalog: wordSearchCatalog,
+      wordSearchProgress: ref.watch(wordSearchProgressProvider),
+      matchingCatalog: matchingCatalog,
+      matchingProgress: ref.watch(matchingProgressProvider),
+      ayahCompletionCatalog: ayahCompletionCatalog,
+      ayahCompletionProgress: ref.watch(ayahCompletionProgressProvider),
+      hadithReflectionCatalog: hadithReflectionCatalog,
+      hadithReflectionProgress: ref.watch(hadithReflectionProgressProvider),
+      now: DateTime.now(),
+    );
+  },
+);
+
+final userLearningProfileProvider = Provider<UserLearningProfile>((ref) {
+  ref.listen<AsyncValue<UserLearningProfile>>(
+    computedUserLearningProfileProvider,
+    (_, next) {
+      next.whenData(
+        (profile) => ref
+            .read(userLearningProfileSnapshotProvider.notifier)
+            .replace(profile),
+      );
+    },
+  );
   final computed = ref.watch(computedUserLearningProfileProvider);
   final stored = ref.watch(userLearningProfileSnapshotProvider);
   return computed.valueOrNull ?? stored;
 });
 
-final adaptiveLearningInsightProvider = Provider<AdaptiveLearningInsight>((ref) {
+final adaptiveLearningInsightProvider = Provider<AdaptiveLearningInsight>((
+  ref,
+) {
   final engine = ref.watch(adaptiveLearningEngineProvider);
   final profile = ref.watch(userLearningProfileProvider);
   return engine.buildInsight(profile);

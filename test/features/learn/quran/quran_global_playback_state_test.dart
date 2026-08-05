@@ -64,15 +64,16 @@ void main() {
       await feed.dispose();
     });
 
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
-        );
+    container
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = const QuranActivePlaybackSession(
+      surahNumber: 1,
+      ayahNumbers: <int>[1, 2, 3],
+      reciterId: 'husary',
+      playbackSpeed: 1,
+      includeMediaTags: true,
+      isSurahMode: true,
+    );
     container
         .read(quranAudioSettingsProvider.notifier)
         .setRepeatRange(startAyah: 2, endAyah: 3);

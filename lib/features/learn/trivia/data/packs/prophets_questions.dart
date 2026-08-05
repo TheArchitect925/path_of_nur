@@ -146,7 +146,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_008',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet’s patience is often remembered during severe hardship and illness?',
+    prompt:
+        'Which prophet’s patience is often remembered during severe hardship and illness?',
     options: const [
       ('ayyub', 'Ayyub'),
       ('idris', 'Idris'),
@@ -189,8 +190,7 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
       ('harun', 'Harun'),
     ],
     correctOptionId: 'dawud',
-    explanation:
-        'Dawud, peace be upon him, was given the Zabur.',
+    explanation: 'Dawud, peace be upon him, was given the Zabur.',
     quranReference: 'Qur’an 17:55',
     tags: const ['prophets', 'dawud', 'revelation', 'beginner'],
     beginnerFriendly: true,
@@ -255,7 +255,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_014',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet is especially associated with the Children of Israel and the Exodus from Fir‘awn?',
+    prompt:
+        'Which prophet is especially associated with the Children of Israel and the Exodus from Fir‘awn?',
     options: const [
       ('musa', 'Musa'),
       ('harun', 'Harun'),
@@ -289,7 +290,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_016',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet called his people away from cheating in measure and trade?',
+    prompt:
+        'Which prophet called his people away from cheating in measure and trade?',
     options: const [
       ('shuayb', 'Shuayb'),
       ('salih', 'Salih'),
@@ -364,7 +366,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_020',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet is directly associated with the Ka‘bah together with Ibrahim?',
+    prompt:
+        'Which prophet is directly associated with the Ka‘bah together with Ibrahim?',
     options: const [
       ('ismail', 'Ismail'),
       ('ishaq', 'Ishaq'),
@@ -392,8 +395,7 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
       ('zakariyya', 'Zakariyya'),
     ],
     correctOptionId: 'yaqub',
-    explanation:
-        'Yusuf, peace be upon him, was the son of Yaqub.',
+    explanation: 'Yusuf, peace be upon him, was the son of Yaqub.',
     quranReference: 'Qur’an 12:4-6',
     tags: const ['prophets', 'yusuf', 'yaqub', 'family', 'beginner'],
     beginnerFriendly: true,
@@ -447,8 +449,7 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
       ('muhammad', 'Muhammad'),
     ],
     correctOptionId: 'musa',
-    explanation:
-        'Musa, peace be upon him, was given the Torah.',
+    explanation: 'Musa, peace be upon him, was given the Torah.',
     quranReference: 'Qur’an 5:44',
     tags: const ['prophets', 'musa', 'revelation', 'beginner'],
     beginnerFriendly: true,
@@ -464,7 +465,13 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     explanation:
         'Muhammad, peace and blessings be upon him, is the final messenger and prophet.',
     quranReference: 'Qur’an 33:40',
-    tags: const ['prophets', 'muhammad', 'seerah', 'final_messenger', 'beginner'],
+    tags: const [
+      'prophets',
+      'muhammad',
+      'seerah',
+      'final_messenger',
+      'beginner',
+    ],
     beginnerFriendly: true,
     featured: true,
     packId: _pack,
@@ -474,7 +481,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_026',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet is associated with the phrase “There is no deity except You; glory be to You. Indeed, I was of the wrongdoers”?',
+    prompt:
+        'Which prophet is associated with the phrase “There is no deity except You; glory be to You. Indeed, I was of the wrongdoers”?',
     options: const [
       ('yunus', 'Yunus'),
       ('ayyub', 'Ayyub'),
@@ -496,7 +504,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_027',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet was given the ability to judge and rule with wisdom as both a prophet and a king?',
+    prompt:
+        'Which prophet was given the ability to judge and rule with wisdom as both a prophet and a king?',
     options: const [
       ('dawud', 'Dawud'),
       ('hud', 'Hud'),
@@ -559,8 +568,7 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
       ('muhammad', 'Muhammad'),
     ],
     correctOptionId: 'isa',
-    explanation:
-        'Isa, peace be upon him, was given the Injeel.',
+    explanation: 'Isa, peace be upon him, was given the Injeel.',
     quranReference: 'Qur’an 5:46',
     tags: const ['prophets', 'isa', 'revelation', 'beginner'],
     beginnerFriendly: true,
@@ -585,7 +593,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_032',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet was described as truthful and a prophet, and also elevated to a high station?',
+    prompt:
+        'Which prophet was described as truthful and a prophet, and also elevated to a high station?',
     options: const [
       ('idris', 'Idris'),
       ('ilyas', 'Ilyas'),
@@ -605,7 +614,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_033',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet’s people were destroyed after they rejected his message and persisted in wrongdoing, in a story centered around Sodom and its surroundings?',
+    prompt:
+        'Which prophet’s people were destroyed after they rejected his message and persisted in wrongdoing, in a story centered around Sodom and its surroundings?',
     options: const [
       ('lut', 'Lut'),
       ('hud', 'Hud'),
@@ -639,7 +649,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_035',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet’s story is especially associated with enduring betrayal and then forgiving?',
+    prompt:
+        'Which prophet’s story is especially associated with enduring betrayal and then forgiving?',
     options: const [
       ('yusuf', 'Yusuf'),
       ('yunus', 'Yunus'),
@@ -650,7 +661,14 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     explanation:
         'The story of Yusuf, peace be upon him, includes betrayal by his brothers, patience, and later generosity toward them.',
     quranReference: 'Qur’an 12:89-92',
-    tags: const ['prophets', 'yusuf', 'patience', 'family', 'mercy', 'beginner'],
+    tags: const [
+      'prophets',
+      'yusuf',
+      'patience',
+      'family',
+      'mercy',
+      'beginner',
+    ],
     beginnerFriendly: true,
     reflectionFriendly: true,
     featured: true,
@@ -661,7 +679,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_036',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet was known for calling his people to worship Allah alone while warning against the worship of false gods among the people of Madyan?',
+    prompt:
+        'Which prophet was known for calling his people to worship Allah alone while warning against the worship of false gods among the people of Madyan?',
     options: const [
       ('shuayb', 'Shuayb'),
       ('hud', 'Hud'),
@@ -681,7 +700,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_037',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Muhammad, peace and blessings be upon him, is mentioned in the Qur’an by name.',
+    prompt:
+        'Muhammad, peace and blessings be upon him, is mentioned in the Qur’an by name.',
     correct: true,
     explanation:
         'The Qur’an mentions Muhammad, peace and blessings be upon him, by name in multiple places.',
@@ -703,8 +723,7 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
       ('lut', 'Lut'),
     ],
     correctOptionId: 'salih',
-    explanation:
-        'Salih, peace be upon him, was sent to Thamud.',
+    explanation: 'Salih, peace be upon him, was sent to Thamud.',
     quranReference: 'Qur’an 7:73',
     tags: const ['prophets', 'salih', 'thamud', 'beginner'],
     beginnerFriendly: true,
@@ -715,7 +734,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_039',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet is especially associated with calling people away from the worship of Ba‘l?',
+    prompt:
+        'Which prophet is especially associated with calling people away from the worship of Ba‘l?',
     options: const [
       ('ilyas', 'Ilyas'),
       ('al_yasa', 'Al-Yasa'),
@@ -749,7 +769,8 @@ final List<TriviaQuestion> _beginnerProphetsQuestions = [
     id: 'prophets_easy_041',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prophet is mentioned in the Qur’an and described among the patient and righteous, though fewer story details are given about him than some other prophets?',
+    prompt:
+        'Which prophet is mentioned in the Qur’an and described among the patient and righteous, though fewer story details are given about him than some other prophets?',
     options: const [
       ('dhul_kifl', 'Dhul-Kifl'),
       ('yahya', 'Yahya'),
@@ -806,7 +827,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_002',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet said, “My prison is more beloved to me than that to which they invite me”?',
+    prompt:
+        'Which prophet said, “My prison is more beloved to me than that to which they invite me”?',
     options: const [
       ('yusuf', 'Yusuf'),
       ('musa', 'Musa'),
@@ -829,8 +851,7 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'Hud was sent to Thamud, while Salih was sent to ‘Ad.',
     correct: false,
-    explanation:
-        'Hud was sent to ‘Ad, while Salih was sent to Thamud.',
+    explanation: 'Hud was sent to ‘Ad, while Salih was sent to Thamud.',
     quranReference: 'Qur’an 7:65, 7:73',
     tags: const ['prophets', 'hud', 'salih', 'people_of_ad', 'thamud'],
     packId: _pack,
@@ -840,7 +861,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_004',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet asked Allah, “Expand for me my chest and ease for me my task”?',
+    prompt:
+        'Which prophet asked Allah, “Expand for me my chest and ease for me my task”?',
     options: const [
       ('musa', 'Musa'),
       ('harun', 'Harun'),
@@ -861,7 +883,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_005',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet was saved together with his followers from a flood that overwhelmed the rejecters?',
+    prompt:
+        'Which prophet was saved together with his followers from a flood that overwhelmed the rejecters?',
     options: const [
       ('nuh', 'Nuh'),
       ('hud', 'Hud'),
@@ -880,7 +903,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_006',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'The Qur’an connects Ayyub’s relief from suffering with Allah’s mercy.',
+    prompt:
+        'The Qur’an connects Ayyub’s relief from suffering with Allah’s mercy.',
     correct: true,
     explanation:
         'Allah removed Ayyub’s hardship and described it as mercy and a reminder.',
@@ -894,7 +918,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_007',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet’s people were punished with a violent wind after persistent rejection?',
+    prompt:
+        'Which prophet’s people were punished with a violent wind after persistent rejection?',
     options: const [
       ('hud', 'Hud'),
       ('salih', 'Salih'),
@@ -914,7 +939,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_008',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet’s people hamstrung the she-camel after being warned not to harm it?',
+    prompt:
+        'Which prophet’s people hamstrung the she-camel after being warned not to harm it?',
     options: const [
       ('salih', 'Salih'),
       ('hud', 'Hud'),
@@ -947,7 +973,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_010',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet asked Allah for a sign concerning how He gives life to the dead?',
+    prompt:
+        'Which prophet asked Allah for a sign concerning how He gives life to the dead?',
     options: const [
       ('ibrahim', 'Ibrahim'),
       ('musa', 'Musa'),
@@ -967,7 +994,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_011',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet was told to strike the sea, after which it parted by Allah’s permission?',
+    prompt:
+        'Which prophet was told to strike the sea, after which it parted by Allah’s permission?',
     options: const [
       ('musa', 'Musa'),
       ('harun', 'Harun'),
@@ -1019,7 +1047,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_014',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet is connected with the title “a word from Allah” in relation to his miraculous birth?',
+    prompt:
+        'Which prophet is connected with the title “a word from Allah” in relation to his miraculous birth?',
     options: const [
       ('isa', 'Isa'),
       ('yahya', 'Yahya'),
@@ -1038,7 +1067,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_015',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Dawud and Sulayman are both associated in the Qur’an with judgment and wisdom.',
+    prompt:
+        'Dawud and Sulayman are both associated in the Qur’an with judgment and wisdom.',
     correct: true,
     explanation:
         'The Qur’an mentions both Dawud and Sulayman, peace be upon them, in relation to wise judgment.',
@@ -1051,7 +1081,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_016',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet asked for a kingdom that would not belong to anyone after him?',
+    prompt:
+        'Which prophet asked for a kingdom that would not belong to anyone after him?',
     options: const [
       ('sulayman', 'Sulayman'),
       ('dawud', 'Dawud'),
@@ -1070,7 +1101,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_017',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet’s father-in-law is traditionally associated with Madyan after he fled from Egypt?',
+    prompt:
+        'Which prophet’s father-in-law is traditionally associated with Madyan after he fled from Egypt?',
     options: const [
       ('musa', 'Musa'),
       ('harun', 'Harun'),
@@ -1102,7 +1134,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_019',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet said, “Indeed, adversity has touched me, and You are the most merciful of the merciful”?',
+    prompt:
+        'Which prophet said, “Indeed, adversity has touched me, and You are the most merciful of the merciful”?',
     options: const [
       ('ayyub', 'Ayyub'),
       ('yunus', 'Yunus'),
@@ -1123,7 +1156,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_020',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet is especially associated with calling his people back when they had become attached to wealth, gardens, and worldly strength?',
+    prompt:
+        'Which prophet is especially associated with calling his people back when they had become attached to wealth, gardens, and worldly strength?',
     options: const [
       ('hud', 'Hud'),
       ('salih', 'Salih'),
@@ -1142,7 +1176,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_021',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Yahya was described in the Qur’an as noble, chaste, and a prophet from among the righteous.',
+    prompt:
+        'Yahya was described in the Qur’an as noble, chaste, and a prophet from among the righteous.',
     correct: true,
     explanation:
         'The Qur’an honors Yahya, peace be upon him, with noble qualities and prophetic status.',
@@ -1155,7 +1190,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_022',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet is associated with the phrase “My Lord, truly I am in need of whatever good You send down to me”?',
+    prompt:
+        'Which prophet is associated with the phrase “My Lord, truly I am in need of whatever good You send down to me”?',
     options: const [
       ('musa', 'Musa'),
       ('zakariyya', 'Zakariyya'),
@@ -1176,7 +1212,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_023',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet’s story includes a shirt that became a means of comfort and restoration in his family story?',
+    prompt:
+        'Which prophet’s story includes a shirt that became a means of comfort and restoration in his family story?',
     options: const [
       ('yusuf', 'Yusuf'),
       ('yaqub', 'Yaqub'),
@@ -1195,7 +1232,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_024',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'The Qur’an presents Ibrahim as an imam in faith after he was tested and remained true.',
+    prompt:
+        'The Qur’an presents Ibrahim as an imam in faith after he was tested and remained true.',
     correct: true,
     explanation:
         'Allah informed Ibrahim, peace be upon him, that he would be made an imam for the people after he fulfilled the tests.',
@@ -1209,7 +1247,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_025',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet is directly linked in the Qur’an to a mission among the Israelites during a later period and is often mentioned close to Al-Yasa?',
+    prompt:
+        'Which prophet is directly linked in the Qur’an to a mission among the Israelites during a later period and is often mentioned close to Al-Yasa?',
     options: const [
       ('ilyas', 'Ilyas'),
       ('idris', 'Idris'),
@@ -1228,7 +1267,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_026',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet said of Allah, “And I hope that He will forgive me my mistake on the Day of Judgment,” in a passage that reflects his deep humility?',
+    prompt:
+        'Which prophet said of Allah, “And I hope that He will forgive me my mistake on the Day of Judgment,” in a passage that reflects his deep humility?',
     options: const [
       ('ibrahim', 'Ibrahim'),
       ('nuh', 'Nuh'),
@@ -1248,7 +1288,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_027',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'The Qur’an links Muhammad, peace and blessings be upon him, with being sent as a mercy to the worlds.',
+    prompt:
+        'The Qur’an links Muhammad, peace and blessings be upon him, with being sent as a mercy to the worlds.',
     correct: true,
     explanation:
         'Allah describes Muhammad, peace and blessings be upon him, as a mercy to the worlds.',
@@ -1263,7 +1304,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_028',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet’s father is named Yaqub in the Qur’anic narrative, placing him in the family of Ibrahim through Ishaq?',
+    prompt:
+        'Which prophet’s father is named Yaqub in the Qur’anic narrative, placing him in the family of Ibrahim through Ishaq?',
     options: const [
       ('yusuf', 'Yusuf'),
       ('ismail', 'Ismail'),
@@ -1282,7 +1324,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_029',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which prophet asked Allah to make his speech clear and requested support through his brother?',
+    prompt:
+        'Which prophet asked Allah to make his speech clear and requested support through his brother?',
     options: const [
       ('musa', 'Musa'),
       ('harun', 'Harun'),
@@ -1302,7 +1345,8 @@ final List<TriviaQuestion> _intermediateProphetsQuestions = [
     id: 'prophets_med_030',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Yunus’s people are notable in the Qur’an because they believed in time and benefited from that belief.',
+    prompt:
+        'Yunus’s people are notable in the Qur’an because they believed in time and benefited from that belief.',
     correct: true,
     explanation:
         'The Qur’an highlights that the people of Yunus believed, and their punishment was lifted for a time.',
@@ -1318,7 +1362,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_001',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is directly associated with Surah Yusuf as its central narrative figure?',
+    prompt:
+        'Which prophet is directly associated with Surah Yusuf as its central narrative figure?',
     options: const [
       ('yusuf', 'Yusuf'),
       ('yaqub', 'Yaqub'),
@@ -1337,7 +1382,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_002',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an names Idris before mentioning Nuh in every list where both appear.',
+    prompt:
+        'The Qur’an names Idris before mentioning Nuh in every list where both appear.',
     correct: false,
     explanation:
         'The Qur’an does not present a single uniform list order in that way, so this statement is too absolute to be correct.',
@@ -1350,7 +1396,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_003',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is described in the Qur’an with the phrase “excellent servant” in a passage tied to patience and turning back to Allah?',
+    prompt:
+        'Which prophet is described in the Qur’an with the phrase “excellent servant” in a passage tied to patience and turning back to Allah?',
     options: const [
       ('ayyub', 'Ayyub'),
       ('dawud', 'Dawud'),
@@ -1370,7 +1417,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_004',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet’s mission includes a famous confrontation with the worship of celestial bodies in the Qur’anic narrative?',
+    prompt:
+        'Which prophet’s mission includes a famous confrontation with the worship of celestial bodies in the Qur’anic narrative?',
     options: const [
       ('ibrahim', 'Ibrahim'),
       ('idris', 'Idris'),
@@ -1389,7 +1437,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_005',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an states that Dhul-Kifl received a separate named scripture.',
+    prompt:
+        'The Qur’an states that Dhul-Kifl received a separate named scripture.',
     correct: false,
     explanation:
         'The Qur’an mentions Dhul-Kifl, peace be upon him, honorably, but it does not state that he received a named scripture.',
@@ -1403,7 +1452,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_006',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet’s du‘a includes the wording “Indeed, I seek refuge in You from asking that of which I have no knowledge”?',
+    prompt:
+        'Which prophet’s du‘a includes the wording “Indeed, I seek refuge in You from asking that of which I have no knowledge”?',
     options: const [
       ('nuh', 'Nuh'),
       ('yunus', 'Yunus'),
@@ -1423,7 +1473,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_007',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet’s story includes the phrase “This is from the favor of my Lord to test me whether I will be grateful or ungrateful”?',
+    prompt:
+        'Which prophet’s story includes the phrase “This is from the favor of my Lord to test me whether I will be grateful or ungrateful”?',
     options: const [
       ('sulayman', 'Sulayman'),
       ('dawud', 'Dawud'),
@@ -1444,7 +1495,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_008',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an presents Yahya as receiving wisdom while still a child.',
+    prompt:
+        'The Qur’an presents Yahya as receiving wisdom while still a child.',
     correct: true,
     explanation:
         'The Qur’an says Yahya, peace be upon him, was given wisdom while still young.',
@@ -1457,7 +1509,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_009',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is associated with the supplication asking Allah to include him among the righteous, grant him a truthful mention among later people, and make him among the inheritors of the Garden?',
+    prompt:
+        'Which prophet is associated with the supplication asking Allah to include him among the righteous, grant him a truthful mention among later people, and make him among the inheritors of the Garden?',
     options: const [
       ('ibrahim', 'Ibrahim'),
       ('zakariyya', 'Zakariyya'),
@@ -1477,7 +1530,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_010',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet’s story in the Qur’an includes the request, “Appoint for me a minister from my family”?',
+    prompt:
+        'Which prophet’s story in the Qur’an includes the request, “Appoint for me a minister from my family”?',
     options: const [
       ('musa', 'Musa'),
       ('harun', 'Harun'),
@@ -1496,7 +1550,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_011',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an states that Yunus remained in the fish because he never glorified Allah.',
+    prompt:
+        'The Qur’an states that Yunus remained in the fish because he never glorified Allah.',
     correct: false,
     explanation:
         'The Qur’an teaches the opposite: had Yunus not been among those who glorified Allah, he would have remained there until the Day of Resurrection.',
@@ -1509,7 +1564,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_012',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet’s people are described as carving homes in mountains and acting with arrogance before punishment came?',
+    prompt:
+        'Which prophet’s people are described as carving homes in mountains and acting with arrogance before punishment came?',
     options: const [
       ('salih', 'Salih'),
       ('hud', 'Hud'),
@@ -1528,7 +1584,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_013',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is connected with the statement that Allah strengthened him with the Holy Spirit?',
+    prompt:
+        'Which prophet is connected with the statement that Allah strengthened him with the Holy Spirit?',
     options: const [
       ('isa', 'Isa'),
       ('musa', 'Musa'),
@@ -1547,7 +1604,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_014',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Every prophet mentioned in the Qur’an has a full extended story told in one place.',
+    prompt:
+        'Every prophet mentioned in the Qur’an has a full extended story told in one place.',
     correct: false,
     explanation:
         'Some prophets have extensive narratives, while others are mentioned briefly and across different passages.',
@@ -1559,7 +1617,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_015',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is associated with the prayer, “Leave me not alone, though You are the best of inheritors”?',
+    prompt:
+        'Which prophet is associated with the prayer, “Leave me not alone, though You are the best of inheritors”?',
     options: const [
       ('zakariyya', 'Zakariyya'),
       ('ayyub', 'Ayyub'),
@@ -1579,7 +1638,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_016',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is explicitly described in the Qur’an as both a messenger and a prophet from the descendants of Ibrahim and Israel in a context that stresses truthfulness?',
+    prompt:
+        'Which prophet is explicitly described in the Qur’an as both a messenger and a prophet from the descendants of Ibrahim and Israel in a context that stresses truthfulness?',
     options: const [
       ('ismail', 'Ismail'),
       ('idris', 'Idris'),
@@ -1598,7 +1658,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_017',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The Qur’an presents Ibrahim’s debates and supplications as part of the same wider teaching about certainty, tawhid, and leadership.',
+    prompt:
+        'The Qur’an presents Ibrahim’s debates and supplications as part of the same wider teaching about certainty, tawhid, and leadership.',
     correct: true,
     explanation:
         'Across multiple passages, Ibrahim, peace be upon him, is shown as a model of reasoning, certainty, du‘a, and leadership in faith.',
@@ -1612,7 +1673,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_018',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet’s people are especially known in the Qur’an for rejecting the call to honesty in measure, balance, and public dealings?',
+    prompt:
+        'Which prophet’s people are especially known in the Qur’an for rejecting the call to honesty in measure, balance, and public dealings?',
     options: const [
       ('shuayb', 'Shuayb'),
       ('hud', 'Hud'),
@@ -1632,7 +1694,8 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     id: 'prophets_hard_019',
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prophet is described with language connecting him to immediate purity, compassion, and dutifulness to his parents from early life?',
+    prompt:
+        'Which prophet is described with language connecting him to immediate purity, compassion, and dutifulness to his parents from early life?',
     options: const [
       ('yahya', 'Yahya'),
       ('yusuf', 'Yusuf'),

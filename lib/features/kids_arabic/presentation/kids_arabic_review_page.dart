@@ -396,10 +396,7 @@ class _ReviewSummaryCard extends StatelessWidget {
                 xp: dailyMissionResult!.xpAwarded,
                 drops: dailyMissionResult!.oceanDropsAwarded,
               ),
-              style: const TextStyle(
-                fontSize: 12,
-                color: Color(0xFF675B4E),
-              ),
+              style: const TextStyle(fontSize: 12, color: Color(0xFF675B4E)),
             ),
             const SizedBox(height: 6),
             Text(

@@ -206,8 +206,7 @@ const List<GrowthStageContent> seededGrowthStages = [
         'Build reliable basics: prayer, Qur’an, remembrance, du’a, gratitude, and guarded speech.',
     introductionCopy:
         'Begin again today with simple, sincere consistency. Small steps matter.',
-    unlockCopy:
-        'Your foundation is forming. Consistency grows over time.',
+    unlockCopy: 'Your foundation is forming. Consistency grows over time.',
   ),
   GrowthStageContent(
     id: 'stage_2_strengthening',
@@ -218,8 +217,7 @@ const List<GrowthStageContent> seededGrowthStages = [
         'Add practices that strengthen patience, service, and inward steadiness.',
     introductionCopy:
         'Continue your path with steadiness. Depth comes with repetition.',
-    unlockCopy:
-        'Your heart is in motion. Keep walking the path gently.',
+    unlockCopy: 'Your heart is in motion. Keep walking the path gently.',
   ),
   GrowthStageContent(
     id: 'stage_3_excellence',
@@ -230,39 +228,123 @@ const List<GrowthStageContent> seededGrowthStages = [
         'Advance with ihsan through disciplined ibadah, reflection, and character refinement.',
     introductionCopy:
         'Return gently to what elevates your soul, one sincere act at a time.',
-    unlockCopy:
-        'Light upon light. Continue with humility and steadiness.',
+    unlockCopy: 'Light upon light. Continue with humility and steadiness.',
   ),
 ];
 
 const List<GrowthHabitContent> seededGrowthHabitContent = [
-  GrowthHabitContent(habitId: 'h_pray_five', suggestedRecurrence: 'Daily at salah times', reminderCopy: 'Salah time is near. Continue your path with presence.'),
-  GrowthHabitContent(habitId: 'h_read_quran', suggestedRecurrence: 'Daily, even a few ayat', reminderCopy: 'Open the Qur’an for a few moments. Small steps matter.'),
-  GrowthHabitContent(habitId: 'h_morning_adhkar', suggestedRecurrence: 'Each morning', reminderCopy: 'Begin again this morning with remembrance.'),
-  GrowthHabitContent(habitId: 'h_evening_adhkar', suggestedRecurrence: 'Each evening', reminderCopy: 'Return gently this evening with adhkar.'),
-  GrowthHabitContent(habitId: 'h_make_dua', suggestedRecurrence: 'Daily, after salah or quiet moments', reminderCopy: 'Raise one sincere du’a before Allah.'),
-  GrowthHabitContent(habitId: 'h_gratitude', suggestedRecurrence: 'Daily', reminderCopy: 'Name one blessing. Consistency grows over time.'),
-  GrowthHabitContent(habitId: 'h_harmful_speech', suggestedRecurrence: 'Daily awareness', reminderCopy: 'Pause gently before speaking.'),
-  GrowthHabitContent(habitId: 'h_sunnah_prayer', suggestedRecurrence: 'Most weekdays', reminderCopy: 'Add one Sunnah salah today if you can.'),
-  GrowthHabitContent(habitId: 'h_salawat', suggestedRecurrence: 'Daily', reminderCopy: 'Send salawat with love and calmness.'),
-  GrowthHabitContent(habitId: 'h_istighfar', suggestedRecurrence: 'Daily, in short moments', reminderCopy: 'Return with istighfar. Begin again today.'),
-  GrowthHabitContent(habitId: 'h_study_knowledge', suggestedRecurrence: '3-4 times weekly', reminderCopy: 'Take one short knowledge step today.'),
-  GrowthHabitContent(habitId: 'h_help_someone', suggestedRecurrence: 'Several times weekly', reminderCopy: 'Offer one quiet act of help today.'),
-  GrowthHabitContent(habitId: 'h_give_charity', suggestedRecurrence: '1-2 times weekly', reminderCopy: 'Give even a little. Small steps matter.'),
-  GrowthHabitContent(habitId: 'h_patience_anger', suggestedRecurrence: 'Daily awareness', reminderCopy: 'When tested, return gently to patience.'),
-  GrowthHabitContent(habitId: 'h_tahajjud', suggestedRecurrence: 'Occasional weekly', reminderCopy: 'If possible tonight, stand briefly in salah.'),
-  GrowthHabitContent(habitId: 'h_sunnah_fasts', suggestedRecurrence: 'Weekly or bi-weekly', reminderCopy: 'Prepare for your next Sunnah fast with intention.'),
-  GrowthHabitContent(habitId: 'h_memorize_quran', suggestedRecurrence: 'Several times weekly', reminderCopy: 'Review one ayah. Consistency grows over time.'),
-  GrowthHabitContent(habitId: 'h_reflect_verse', suggestedRecurrence: 'Daily', reminderCopy: 'Choose one verse and live it today.'),
-  GrowthHabitContent(habitId: 'h_reconnect_family', suggestedRecurrence: 'Several times weekly', reminderCopy: 'Reach out gently and strengthen a family tie.'),
-  GrowthHabitContent(habitId: 'h_humility', suggestedRecurrence: 'Daily intention', reminderCopy: 'Lower the ego and keep walking the path.'),
-  GrowthHabitContent(habitId: 'h_day_end_reflection', suggestedRecurrence: 'Nightly', reminderCopy: 'Close the day with reflection and return.'),
+  GrowthHabitContent(
+    habitId: 'h_pray_five',
+    suggestedRecurrence: 'Daily at salah times',
+    reminderCopy: 'Salah time is near. Continue your path with presence.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_read_quran',
+    suggestedRecurrence: 'Daily, even a few ayat',
+    reminderCopy: 'Open the Qur’an for a few moments. Small steps matter.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_morning_adhkar',
+    suggestedRecurrence: 'Each morning',
+    reminderCopy: 'Begin again this morning with remembrance.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_evening_adhkar',
+    suggestedRecurrence: 'Each evening',
+    reminderCopy: 'Return gently this evening with adhkar.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_make_dua',
+    suggestedRecurrence: 'Daily, after salah or quiet moments',
+    reminderCopy: 'Raise one sincere du’a before Allah.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_gratitude',
+    suggestedRecurrence: 'Daily',
+    reminderCopy: 'Name one blessing. Consistency grows over time.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_harmful_speech',
+    suggestedRecurrence: 'Daily awareness',
+    reminderCopy: 'Pause gently before speaking.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_sunnah_prayer',
+    suggestedRecurrence: 'Most weekdays',
+    reminderCopy: 'Add one Sunnah salah today if you can.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_salawat',
+    suggestedRecurrence: 'Daily',
+    reminderCopy: 'Send salawat with love and calmness.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_istighfar',
+    suggestedRecurrence: 'Daily, in short moments',
+    reminderCopy: 'Return with istighfar. Begin again today.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_study_knowledge',
+    suggestedRecurrence: '3-4 times weekly',
+    reminderCopy: 'Take one short knowledge step today.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_help_someone',
+    suggestedRecurrence: 'Several times weekly',
+    reminderCopy: 'Offer one quiet act of help today.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_give_charity',
+    suggestedRecurrence: '1-2 times weekly',
+    reminderCopy: 'Give even a little. Small steps matter.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_patience_anger',
+    suggestedRecurrence: 'Daily awareness',
+    reminderCopy: 'When tested, return gently to patience.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_tahajjud',
+    suggestedRecurrence: 'Occasional weekly',
+    reminderCopy: 'If possible tonight, stand briefly in salah.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_sunnah_fasts',
+    suggestedRecurrence: 'Weekly or bi-weekly',
+    reminderCopy: 'Prepare for your next Sunnah fast with intention.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_memorize_quran',
+    suggestedRecurrence: 'Several times weekly',
+    reminderCopy: 'Review one ayah. Consistency grows over time.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_reflect_verse',
+    suggestedRecurrence: 'Daily',
+    reminderCopy: 'Choose one verse and live it today.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_reconnect_family',
+    suggestedRecurrence: 'Several times weekly',
+    reminderCopy: 'Reach out gently and strengthen a family tie.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_humility',
+    suggestedRecurrence: 'Daily intention',
+    reminderCopy: 'Lower the ego and keep walking the path.',
+  ),
+  GrowthHabitContent(
+    habitId: 'h_day_end_reflection',
+    suggestedRecurrence: 'Nightly',
+    reminderCopy: 'Close the day with reflection and return.',
+  ),
 ];
 
 const List<GrowthPathContent> seededGrowthPathContent = [
   GrowthPathContent(
     pathId: 'core-muslim-habits',
-    whyItMatters: 'A complete spiritual base that supports lifelong consistency.',
+    whyItMatters:
+        'A complete spiritual base that supports lifelong consistency.',
     stageLabel: 'All Stages',
     milestoneNames: ['First Light', 'Steady Footsteps', 'Light Upon Light'],
   ),
@@ -280,19 +362,22 @@ const List<GrowthPathContent> seededGrowthPathContent = [
   ),
   GrowthPathContent(
     pathId: 'path-of-excellence',
-    whyItMatters: 'Ihsan grows through patient refinement, not sudden intensity.',
+    whyItMatters:
+        'Ihsan grows through patient refinement, not sudden intensity.',
     stageLabel: 'Path of Excellence',
     milestoneNames: ['Light Upon Light', 'Path Strengthened'],
   ),
   GrowthPathContent(
     pathId: 'quran-companion',
-    whyItMatters: 'Qur’an companionship keeps guidance present in daily choices.',
+    whyItMatters:
+        'Qur’an companionship keeps guidance present in daily choices.',
     stageLabel: 'Strengthening the Heart',
     milestoneNames: ['First Light', 'Heart in Motion'],
   ),
   GrowthPathContent(
     pathId: 'character-builder',
-    whyItMatters: 'Character habits protect relationships and purify intention.',
+    whyItMatters:
+        'Character habits protect relationships and purify intention.',
     stageLabel: 'Strengthening the Heart',
     milestoneNames: ['Steady Footsteps', 'Path Strengthened'],
   ),
@@ -379,38 +464,39 @@ const List<GrowthPromptGroup> seededGrowthPromptGroups = [
   ),
 ];
 
-const GrowthEncouragementCopy seededGrowthEncouragementCopy = GrowthEncouragementCopy(
-  completion: [
-    'Alhamdulillah. Keep walking the path with sincerity.',
-    'A small completed act brings steady light.',
-    'Consistency grows over time. Continue gently.',
-  ],
-  returning: [
-    'Return gently. Begin again today.',
-    'No day is wasted when you come back with intention.',
-    'Small steps matter, especially on returning days.',
-  ],
-  streak: [
-    'Steady footsteps are forming. Keep your pace gentle.',
-    'Your consistency is growing quietly over time.',
-    'Continue your path, one sincere step at a time.',
-  ],
-  dayEnd: [
-    'Close the day with gratitude and tawbah.',
-    'End gently. Tomorrow is another chance to begin again.',
-    'Review with mercy, and continue your path tomorrow.',
-  ],
-  pathProgress: [
-    'Your path is strengthening through steady effort.',
-    'Continue your journey with calm consistency.',
-    'Light increases through repeated sincere acts.',
-  ],
-  gentleReminders: [
-    'Return gently when you are ready.',
-    'Begin again today with one small act.',
-    'Keep walking the path. Small steps matter.',
-  ],
-);
+const GrowthEncouragementCopy seededGrowthEncouragementCopy =
+    GrowthEncouragementCopy(
+      completion: [
+        'Alhamdulillah. Keep walking the path with sincerity.',
+        'A small completed act brings steady light.',
+        'Consistency grows over time. Continue gently.',
+      ],
+      returning: [
+        'Return gently. Begin again today.',
+        'No day is wasted when you come back with intention.',
+        'Small steps matter, especially on returning days.',
+      ],
+      streak: [
+        'Steady footsteps are forming. Keep your pace gentle.',
+        'Your consistency is growing quietly over time.',
+        'Continue your path, one sincere step at a time.',
+      ],
+      dayEnd: [
+        'Close the day with gratitude and tawbah.',
+        'End gently. Tomorrow is another chance to begin again.',
+        'Review with mercy, and continue your path tomorrow.',
+      ],
+      pathProgress: [
+        'Your path is strengthening through steady effort.',
+        'Continue your journey with calm consistency.',
+        'Light increases through repeated sincere acts.',
+      ],
+      gentleReminders: [
+        'Return gently when you are ready.',
+        'Begin again today with one small act.',
+        'Keep walking the path. Small steps matter.',
+      ],
+    );
 
 const List<GrowthMilestoneContent> seededGrowthMilestones = [
   GrowthMilestoneContent(
@@ -449,7 +535,8 @@ const List<GrowthMilestoneContent> seededGrowthMilestones = [
     id: 'quiet_resolve',
     title: 'Quiet Resolve',
     subtitle: 'Steadiness under pressure',
-    description: 'You continued your path through demanding days with sincerity.',
+    description:
+        'You continued your path through demanding days with sincerity.',
     unlockCondition: 'Resilience/protected consistency days',
     sortOrder: 5,
   ),
@@ -457,7 +544,8 @@ const List<GrowthMilestoneContent> seededGrowthMilestones = [
     id: 'returning_often',
     title: 'Returning Often',
     subtitle: 'The heart keeps coming back',
-    description: 'You repeatedly returned with reflection and renewed intention.',
+    description:
+        'You repeatedly returned with reflection and renewed intention.',
     unlockCondition: 'Frequent reflection and gentle restarts',
     sortOrder: 6,
   ),

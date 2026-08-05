@@ -115,7 +115,8 @@ class QuranPlayerController {
         return false;
       }
 
-      final session = activeSession != null &&
+      final session =
+          activeSession != null &&
               activeSession.surahNumber == surahNumber &&
               _matchesAyahSequence(activeSession.ayahNumbers, resolvedAyahs)
           ? activeSession
@@ -124,10 +125,13 @@ class QuranPlayerController {
               ayahNumbers: resolvedAyahs,
               reciterId: ref.read(quranAudioSettingsProvider).reciterId,
               playbackSpeed: _resolvedPlaybackSpeed(),
-              includeMediaTags:
-                  ref.read(quranAudioSettingsProvider).backgroundPlaybackEnabled,
+              includeMediaTags: ref
+                  .read(quranAudioSettingsProvider)
+                  .backgroundPlaybackEnabled,
               isSurahMode: resolvedAyahs.length > 1,
-              bismillahMode: ref.read(quranDefaultBismillahPlaybackModeProvider),
+              bismillahMode: ref.read(
+                quranDefaultBismillahPlaybackModeProvider,
+              ),
             );
       _markPreparingTransition(
         surahNumber: surahNumber,
@@ -189,7 +193,9 @@ class QuranPlayerController {
   }
 
   Future<bool> switchReciter(String reciterId) async {
-    final exists = QuranAudioRepository.reciters.any((item) => item.id == reciterId);
+    final exists = QuranAudioRepository.reciters.any(
+      (item) => item.id == reciterId,
+    );
     if (!exists) {
       return false;
     }
@@ -263,7 +269,9 @@ class QuranPlayerController {
           surahNumber: session.surahNumber,
           ayahNumbers: session.ayahNumbers,
           reciterId: reciterId,
-          playbackSpeed: _resolvedPlaybackSpeed(preferred: session.playbackSpeed),
+          playbackSpeed: _resolvedPlaybackSpeed(
+            preferred: session.playbackSpeed,
+          ),
           includeMediaTags: session.includeMediaTags,
           isSurahMode: session.isSurahMode,
           bismillahMode: session.bismillahMode,
@@ -349,16 +357,18 @@ class QuranPlayerController {
         includeMediaTags: session.includeMediaTags,
       );
       if (!started) {
-        ref.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-          failureType: QuranPlaybackFailureType.sessionRestoreFailed,
-          activeSourceType: QuranPlaybackSourceType.unavailable,
-          canRetry: true,
-          canUseFallback: false,
-          requiresUserAction: true,
-          surahNumber: session.surahNumber,
-          ayahNumber: targetAyah,
-          reciterId: session.reciterId,
-        );
+        ref
+            .read(quranPlaybackSourceStateProvider.notifier)
+            .markFailure(
+              failureType: QuranPlaybackFailureType.sessionRestoreFailed,
+              activeSourceType: QuranPlaybackSourceType.unavailable,
+              canRetry: true,
+              canUseFallback: false,
+              requiresUserAction: true,
+              surahNumber: session.surahNumber,
+              ayahNumber: targetAyah,
+              reciterId: session.reciterId,
+            );
         return false;
       }
       rememberSession(
@@ -366,7 +376,9 @@ class QuranPlayerController {
           surahNumber: session.surahNumber,
           ayahNumbers: session.ayahNumbers,
           reciterId: session.reciterId,
-          playbackSpeed: _resolvedPlaybackSpeed(preferred: session.playbackSpeed),
+          playbackSpeed: _resolvedPlaybackSpeed(
+            preferred: session.playbackSpeed,
+          ),
           includeMediaTags: session.includeMediaTags,
           isSurahMode: session.isSurahMode,
           bismillahMode: session.bismillahMode,
@@ -375,17 +387,19 @@ class QuranPlayerController {
       return true;
     } catch (error) {
       final stored = ref.read(quranRecitationSessionProvider);
-      ref.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-        failureType: QuranPlaybackFailureType.sessionRestoreFailed,
-        activeSourceType: QuranPlaybackSourceType.unavailable,
-        canRetry: true,
-        canUseFallback: false,
-        requiresUserAction: true,
-        surahNumber: stored?.surahNumber,
-        ayahNumber: stored?.ayahNumber,
-        reciterId: ref.read(quranAudioSettingsProvider).reciterId,
-        failureDetail: error.toString(),
-      );
+      ref
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markFailure(
+            failureType: QuranPlaybackFailureType.sessionRestoreFailed,
+            activeSourceType: QuranPlaybackSourceType.unavailable,
+            canRetry: true,
+            canUseFallback: false,
+            requiresUserAction: true,
+            surahNumber: stored?.surahNumber,
+            ayahNumber: stored?.ayahNumber,
+            reciterId: ref.read(quranAudioSettingsProvider).reciterId,
+            failureDetail: error.toString(),
+          );
       return false;
     }
   }
@@ -447,7 +461,9 @@ class QuranPlayerController {
     }
   }
 
-  @Deprecated('Auto-Bismillah is temporarily disabled. Use resumeCurrentPlayback.')
+  @Deprecated(
+    'Auto-Bismillah is temporarily disabled. Use resumeCurrentPlayback.',
+  )
   Future<bool> resumeCurrentPlaybackWithBismillah() {
     return resumeCurrentPlayback();
   }
@@ -515,14 +531,16 @@ class QuranPlayerController {
     _activePlaybackSpeed = playbackSpeed;
     _activeIncludeMediaTags = includeMediaTags;
     final targetEntry = prepared.entries[prepared.initialLogicalIndex];
-    ref.read(quranPlaybackSourceStateProvider.notifier).markResolving(
-      activeSourceType: targetEntry.metadata.sourceType,
-      surahNumber: targetEntry.metadata.surahNumber,
-      ayahNumber: targetEntry.metadata.ayahNumber,
-      reciterId: reciterId,
-      canUseFallback: targetEntry.metadata.hasFallbackSource,
-      fallbackSourceType: targetEntry.metadata.fallbackSourceType,
-    );
+    ref
+        .read(quranPlaybackSourceStateProvider.notifier)
+        .markResolving(
+          activeSourceType: targetEntry.metadata.sourceType,
+          surahNumber: targetEntry.metadata.surahNumber,
+          ayahNumber: targetEntry.metadata.ayahNumber,
+          reciterId: reciterId,
+          canUseFallback: targetEntry.metadata.hasFallbackSource,
+          fallbackSourceType: targetEntry.metadata.fallbackSourceType,
+        );
 
     if (prepared.didPrependBismillah && prepared.preRollSource != null) {
       try {
@@ -583,20 +601,24 @@ class QuranPlayerController {
       _activeIncludeMediaTags = includeMediaTags;
       final entry = prepared.entries[initialIndex];
       if (fallbackFrom != null) {
-        ref.read(quranPlaybackSourceStateProvider.notifier).markFallbackApplied(
-          fromSourceType: fallbackFrom,
-          toSourceType: entry.metadata.sourceType,
-          surahNumber: entry.metadata.surahNumber,
-          ayahNumber: entry.metadata.ayahNumber,
-          reciterId: reciterId,
-        );
+        ref
+            .read(quranPlaybackSourceStateProvider.notifier)
+            .markFallbackApplied(
+              fromSourceType: fallbackFrom,
+              toSourceType: entry.metadata.sourceType,
+              surahNumber: entry.metadata.surahNumber,
+              ayahNumber: entry.metadata.ayahNumber,
+              reciterId: reciterId,
+            );
       } else {
-        ref.read(quranPlaybackSourceStateProvider.notifier).markReady(
-          activeSourceType: entry.metadata.sourceType,
-          surahNumber: entry.metadata.surahNumber,
-          ayahNumber: entry.metadata.ayahNumber,
-          reciterId: reciterId,
-        );
+        ref
+            .read(quranPlaybackSourceStateProvider.notifier)
+            .markReady(
+              activeSourceType: entry.metadata.sourceType,
+              surahNumber: entry.metadata.surahNumber,
+              ayahNumber: entry.metadata.ayahNumber,
+              reciterId: reciterId,
+            );
       }
       _scheduleBufferingTimeoutIfNeeded(_player.playerState);
       final activeSession = ref.read(quranActivePlaybackSessionProvider);
@@ -632,20 +654,24 @@ class QuranPlayerController {
         failedIndex: initialIndex,
         failurePosition: initialPosition,
       );
-      ref.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-        failureType: classifyQuranPlaybackFailure(
-          error: error,
-          sourceType: prepared.entries[initialIndex].metadata.sourceType,
-        ),
-        activeSourceType: prepared.entries[initialIndex].metadata.sourceType,
-        canRetry: true,
-        canUseFallback: prepared.entries[initialIndex].metadata.hasFallbackSource,
-        requiresUserAction: true,
-        surahNumber: prepared.entries[initialIndex].metadata.surahNumber,
-        ayahNumber: prepared.entries[initialIndex].metadata.ayahNumber,
-        reciterId: reciterId,
-        failureDetail: error.message,
-      );
+      ref
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markFailure(
+            failureType: classifyQuranPlaybackFailure(
+              error: error,
+              sourceType: prepared.entries[initialIndex].metadata.sourceType,
+            ),
+            activeSourceType:
+                prepared.entries[initialIndex].metadata.sourceType,
+            canRetry: true,
+            canUseFallback:
+                prepared.entries[initialIndex].metadata.hasFallbackSource,
+            requiresUserAction: true,
+            surahNumber: prepared.entries[initialIndex].metadata.surahNumber,
+            ayahNumber: prepared.entries[initialIndex].metadata.ayahNumber,
+            reciterId: reciterId,
+            failureDetail: error.message,
+          );
       await _player.stop();
       return false;
     } on PlayerInterruptedException {
@@ -653,7 +679,8 @@ class QuranPlayerController {
     }
   }
 
-  Future<QuranActivePlaybackSession?> _restoreSessionFromStoredProgress() async {
+  Future<QuranActivePlaybackSession?>
+  _restoreSessionFromStoredProgress() async {
     final stored = ref.read(quranRecitationSessionProvider);
     if (stored == null) {
       return null;
@@ -667,9 +694,7 @@ class QuranPlayerController {
     final audioSettings = ref.read(quranAudioSettingsProvider);
     final session = QuranActivePlaybackSession(
       surahNumber: stored.surahNumber,
-      ayahNumbers: ayahs
-          .map((item) => item.ayahNumber)
-          .toList(growable: false),
+      ayahNumbers: ayahs.map((item) => item.ayahNumber).toList(growable: false),
       reciterId: audioSettings.reciterId,
       playbackSpeed: _resolvedPlaybackSpeed(
         preferred: audioSettings.playbackSpeed,
@@ -705,7 +730,9 @@ class QuranPlayerController {
           request: QuranPlaybackRequest(
             surahNumber: session.surahNumber,
             ayahNumber: targetAyah,
-            resumePosition: resumePosition > Duration.zero ? resumePosition : null,
+            resumePosition: resumePosition > Duration.zero
+                ? resumePosition
+                : null,
             playbackReason: playbackReason,
             isSurahEntry: targetAyah == 1,
           ),
@@ -779,7 +806,9 @@ class QuranPlayerController {
           request: QuranPlaybackRequest(
             surahNumber: surahNumber,
             ayahNumber: ayahNumber,
-            resumePosition: resumePosition > Duration.zero ? resumePosition : null,
+            resumePosition: resumePosition > Duration.zero
+                ? resumePosition
+                : null,
             playbackReason: playbackReason,
             isSurahEntry: isSurahEntry,
             isSurahTransition: isSurahTransition,
@@ -819,7 +848,9 @@ class QuranPlayerController {
         isSurahMode: true,
         bismillahMode: preferredMode,
       ),
-      currentIndex: ayahNumbers.indexOf(ayahNumber).clamp(0, ayahNumbers.length - 1),
+      currentIndex: ayahNumbers
+          .indexOf(ayahNumber)
+          .clamp(0, ayahNumbers.length - 1),
     );
     return true;
   }
@@ -938,24 +969,29 @@ class QuranPlayerController {
         if (activePrepared == null) {
           return;
         }
-        final index = (_player.currentIndex ?? activePrepared.initialLogicalIndex)
-            .clamp(0, activePrepared.entries.length - 1);
+        final index =
+            (_player.currentIndex ?? activePrepared.initialLogicalIndex).clamp(
+              0,
+              activePrepared.entries.length - 1,
+            );
         final entry = activePrepared.entries[index];
         _saveFailureSessionContext(
           prepared: activePrepared,
           failedIndex: index,
           failurePosition: _player.position,
         );
-        ref.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-          failureType: QuranPlaybackFailureType.bufferingTimeout,
-          activeSourceType: entry.metadata.sourceType,
-          canRetry: true,
-          canUseFallback: entry.metadata.hasFallbackSource,
-          requiresUserAction: true,
-          surahNumber: entry.metadata.surahNumber,
-          ayahNumber: entry.metadata.ayahNumber,
-          reciterId: _activeReciterId,
-        );
+        ref
+            .read(quranPlaybackSourceStateProvider.notifier)
+            .markFailure(
+              failureType: QuranPlaybackFailureType.bufferingTimeout,
+              activeSourceType: entry.metadata.sourceType,
+              canRetry: true,
+              canUseFallback: entry.metadata.hasFallbackSource,
+              requiresUserAction: true,
+              surahNumber: entry.metadata.surahNumber,
+              ayahNumber: entry.metadata.ayahNumber,
+              reciterId: _activeReciterId,
+            );
         await _player.stop();
       });
       return;
@@ -996,8 +1032,9 @@ class QuranPlayerController {
           surahNumber: entry.metadata.surahNumber,
           ayahNumber: entry.metadata.ayahNumber,
           reciterId: _activeReciterId ?? entry.metadata.reciterId,
-          didApplyFallback:
-              ref.read(quranPlaybackSourceStateProvider).didApplyFallback,
+          didApplyFallback: ref
+              .read(quranPlaybackSourceStateProvider)
+              .didApplyFallback,
         );
       case ProcessingState.ready:
         final current = ref.read(quranPlaybackSourceStateProvider);
@@ -1027,24 +1064,27 @@ class QuranPlayerController {
     }
     final prepared = _activePreparedPlayback;
     if (prepared == null || prepared.entries.isEmpty) {
-      ref.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-        failureType: QuranPlaybackFailureType.unknown,
-        activeSourceType: QuranPlaybackSourceType.unavailable,
-        canRetry: true,
-        canUseFallback: false,
-        requiresUserAction: true,
-        surahNumber: null,
-        ayahNumber: null,
-        reciterId: _activeReciterId,
-        failureDetail: error.message,
-      );
+      ref
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markFailure(
+            failureType: QuranPlaybackFailureType.unknown,
+            activeSourceType: QuranPlaybackSourceType.unavailable,
+            canRetry: true,
+            canUseFallback: false,
+            requiresUserAction: true,
+            surahNumber: null,
+            ayahNumber: null,
+            reciterId: _activeReciterId,
+            failureDetail: error.message,
+          );
       return;
     }
 
     _isRecoveringFromSourceFailure = true;
     try {
-      final failedIndex = (error.index ?? _player.currentIndex ?? prepared.initialLogicalIndex)
-          .clamp(0, prepared.entries.length - 1);
+      final failedIndex =
+          (error.index ?? _player.currentIndex ?? prepared.initialLogicalIndex)
+              .clamp(0, prepared.entries.length - 1);
       final failedEntry = prepared.entries[failedIndex];
       final currentPosition =
           failedIndex == (_player.currentIndex ?? failedIndex)
@@ -1077,20 +1117,22 @@ class QuranPlayerController {
         failedIndex: failedIndex,
         failurePosition: currentPosition,
       );
-      ref.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-        failureType: classifyQuranPlaybackFailure(
-          error: error,
-          sourceType: failedEntry.metadata.sourceType,
-        ),
-        activeSourceType: failedEntry.metadata.sourceType,
-        canRetry: true,
-        canUseFallback: failedEntry.metadata.hasFallbackSource,
-        requiresUserAction: true,
-        surahNumber: failedEntry.metadata.surahNumber,
-        ayahNumber: failedEntry.metadata.ayahNumber,
-        reciterId: _activeReciterId ?? failedEntry.metadata.reciterId,
-        failureDetail: error.message,
-      );
+      ref
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markFailure(
+            failureType: classifyQuranPlaybackFailure(
+              error: error,
+              sourceType: failedEntry.metadata.sourceType,
+            ),
+            activeSourceType: failedEntry.metadata.sourceType,
+            canRetry: true,
+            canUseFallback: failedEntry.metadata.hasFallbackSource,
+            requiresUserAction: true,
+            surahNumber: failedEntry.metadata.surahNumber,
+            ayahNumber: failedEntry.metadata.ayahNumber,
+            reciterId: _activeReciterId ?? failedEntry.metadata.reciterId,
+            failureDetail: error.message,
+          );
       await _player.stop();
     } finally {
       _isRecoveringFromSourceFailure = false;
@@ -1111,7 +1153,7 @@ class QuranPlayerController {
         .save(
           surahNumber: failedEntry.metadata.surahNumber,
           ayahNumber: failedEntry.metadata.ayahNumber,
-        positionSeconds: failurePosition.inSeconds,
+          positionSeconds: failurePosition.inSeconds,
         );
   }
 
@@ -1173,7 +1215,9 @@ class QuranPlayerController {
             surahNumber: session.surahNumber,
             ayahNumbers: session.ayahNumbers,
             reciterId: reciterId,
-            playbackSpeed: _resolvedPlaybackSpeed(preferred: session.playbackSpeed),
+            playbackSpeed: _resolvedPlaybackSpeed(
+              preferred: session.playbackSpeed,
+            ),
             includeMediaTags: session.includeMediaTags,
             isSurahMode: session.isSurahMode,
             bismillahMode: session.bismillahMode,
@@ -1200,15 +1244,17 @@ class QuranPlayerController {
     required String reciterId,
   }) {
     final current = ref.read(quranPlaybackSourceStateProvider);
-    ref.read(quranPlaybackSourceStateProvider.notifier).markPreparingTransition(
-      activeSourceType: current.activeSourceType,
-      surahNumber: surahNumber,
-      ayahNumber: ayahNumber,
-      reciterId: reciterId,
-      canUseFallback: current.canUseFallback,
-      fallbackSourceType: current.fallbackSourceType,
-      didApplyFallback: current.didApplyFallback,
-    );
+    ref
+        .read(quranPlaybackSourceStateProvider.notifier)
+        .markPreparingTransition(
+          activeSourceType: current.activeSourceType,
+          surahNumber: surahNumber,
+          ayahNumber: ayahNumber,
+          reciterId: reciterId,
+          canUseFallback: current.canUseFallback,
+          fallbackSourceType: current.fallbackSourceType,
+          didApplyFallback: current.didApplyFallback,
+        );
   }
 
   void _scheduleLikelyPreloads({
@@ -1224,17 +1270,19 @@ class QuranPlayerController {
         : null;
     if (nextAyah != null) {
       unawaited(
-        ref.read(quranPlaybackOrchestratorProvider).preloadPlayback(
-          request: QuranPlaybackRequest(
-            surahNumber: session.surahNumber,
-            ayahNumber: nextAyah,
-            playbackReason: QuranPlaybackReason.jump,
-            isSurahEntry: nextAyah == 1,
-          ),
-          reciterId: session.reciterId,
-          ayahNumbers: session.ayahNumbers,
-          mode: session.bismillahMode,
-        ),
+        ref
+            .read(quranPlaybackOrchestratorProvider)
+            .preloadPlayback(
+              request: QuranPlaybackRequest(
+                surahNumber: session.surahNumber,
+                ayahNumber: nextAyah,
+                playbackReason: QuranPlaybackReason.jump,
+                isSurahEntry: nextAyah == 1,
+              ),
+              reciterId: session.reciterId,
+              ayahNumbers: session.ayahNumbers,
+              mode: session.bismillahMode,
+            ),
       );
       return;
     }
@@ -1261,19 +1309,21 @@ class QuranPlayerController {
     if (ayahNumbers.isEmpty) {
       return;
     }
-    await ref.read(quranPlaybackOrchestratorProvider).preloadPlayback(
-      request: QuranPlaybackRequest(
-        surahNumber: targetSurahNumber,
-        ayahNumber: ayahNumbers.first,
-        playbackReason: QuranPlaybackReason.jump,
-        isSurahEntry: true,
-        isSurahTransition: true,
-        originatingSurahNumber: currentSurahNumber,
-      ),
-      reciterId: reciterId,
-      ayahNumbers: ayahNumbers,
-      mode: preferredMode,
-    );
+    await ref
+        .read(quranPlaybackOrchestratorProvider)
+        .preloadPlayback(
+          request: QuranPlaybackRequest(
+            surahNumber: targetSurahNumber,
+            ayahNumber: ayahNumbers.first,
+            playbackReason: QuranPlaybackReason.jump,
+            isSurahEntry: true,
+            isSurahTransition: true,
+            originatingSurahNumber: currentSurahNumber,
+          ),
+          reciterId: reciterId,
+          ayahNumbers: ayahNumbers,
+          mode: preferredMode,
+        );
   }
 
   double _resolvedPlaybackSpeed({double? preferred}) {

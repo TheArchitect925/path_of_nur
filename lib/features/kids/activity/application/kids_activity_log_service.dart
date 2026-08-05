@@ -25,11 +25,13 @@ class KidsActivityLogController extends StateNotifier<KidsActivityLogState> {
       _activeLearnerId = ref.read(bedtimeActiveLearnerProvider).learnerId,
       super(
         KidsActivityLogState.fromJson(
-          ref.read(localStoreProvider).getJsonMap(
-            kidsActivityLogStorageKeyForLearner(
-              ref.read(bedtimeActiveLearnerProvider).learnerId,
-            ),
-          ),
+          ref
+              .read(localStoreProvider)
+              .getJsonMap(
+                kidsActivityLogStorageKeyForLearner(
+                  ref.read(bedtimeActiveLearnerProvider).learnerId,
+                ),
+              ),
         ),
       );
 
@@ -72,8 +74,7 @@ class KidsActivityLogController extends StateNotifier<KidsActivityLogState> {
     }
 
     final entry = KidsActivityEntry(
-      id:
-          '${now.microsecondsSinceEpoch}_${type.name}_${contentId ?? sourceRef}',
+      id: '${now.microsecondsSinceEpoch}_${type.name}_${contentId ?? sourceRef}',
       learnerId: _activeLearnerId,
       occurredAtIso: now.toIso8601String(),
       type: type,
@@ -82,10 +83,7 @@ class KidsActivityLogController extends StateNotifier<KidsActivityLogState> {
       contentId: contentId,
       titleSnapshot: titleSnapshot,
       subtitleSnapshot: subtitleSnapshot,
-      metadata: <String, Object?>{
-        ...metadata,
-        'learnerId': _activeLearnerId,
-      },
+      metadata: <String, Object?>{...metadata, 'learnerId': _activeLearnerId},
     );
 
     final nextEntries = <KidsActivityEntry>[

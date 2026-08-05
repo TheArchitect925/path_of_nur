@@ -21,14 +21,13 @@ class QuranReflectionsNotifier
     String? sourceId,
   }) {
     for (final entry in state) {
-      if (
-          _matchesIdentity(
-            entry,
-            ref: ref,
-            sourceEnrichmentId: sourceEnrichmentId,
-            sourceType: sourceType,
-            sourceId: sourceId,
-          )) {
+      if (_matchesIdentity(
+        entry,
+        ref: ref,
+        sourceEnrichmentId: sourceEnrichmentId,
+        sourceType: sourceType,
+        sourceId: sourceId,
+      )) {
         return entry;
       }
     }
@@ -248,11 +247,7 @@ class QuranReflectionsNotifier
     return updated.id;
   }
 
-  void updateEntry({
-    required String id,
-    String? note,
-    bool? isFavorite,
-  }) {
+  void updateEntry({required String id, String? note, bool? isFavorite}) {
     final existing = findById(id);
     if (existing == null) {
       return;
@@ -298,14 +293,12 @@ class QuranReflectionsNotifier
   }
 
   bool _matchesIdentity(
-    QuranReflectionEntry entry,
-    {
+    QuranReflectionEntry entry, {
     required QuranQuoteRef? ref,
     required String? sourceEnrichmentId,
     required QuranReflectionSourceType? sourceType,
     required String? sourceId,
-  }
-  ) {
+  }) {
     if (sourceEnrichmentId != null && entry.sourceEnrichmentId != null) {
       return entry.sourceEnrichmentId == sourceEnrichmentId;
     }

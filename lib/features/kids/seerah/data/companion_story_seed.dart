@@ -138,8 +138,7 @@ and trust in Allah.
 ''',
     lesson:
         'A loyal friend stays close in hard times and trusts Allah. Abu Bakr رضي الله عنه teaches beautiful friendship and steady faith.',
-    quranQuote:
-        'Do not grieve; indeed Allah is with us.',
+    quranQuote: 'Do not grieve; indeed Allah is with us.',
     quranReference: 'Qur’an 9:40',
     quranQuoteRef: QuranQuoteRef(surah: 9, ayah: 40),
     sourceCategory: KidsIslamicStorySourceCategory.quran,

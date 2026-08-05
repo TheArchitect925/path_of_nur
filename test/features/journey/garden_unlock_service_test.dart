@@ -14,10 +14,7 @@ void main() {
   });
 
   test('next locked milestone selects the next unmet threshold', () {
-    expect(
-      service.nextLockedMilestone(gardenMilestones, 0)?.requiredDrops,
-      1,
-    );
+    expect(service.nextLockedMilestone(gardenMilestones, 0)?.requiredDrops, 1);
     expect(
       service.nextLockedMilestone(gardenMilestones, 25)?.requiredDrops,
       50,
@@ -39,15 +36,18 @@ void main() {
     expect(summary.progressToNext, closeTo(0.5, 0.0001));
   });
 
-  test('progress summary reports completion once all milestones are unlocked', () {
-    final summary = service.buildProgressSummary(
-      gardenMilestones,
-      totalDrops: 1000,
-    );
+  test(
+    'progress summary reports completion once all milestones are unlocked',
+    () {
+      final summary = service.buildProgressSummary(
+        gardenMilestones,
+        totalDrops: 1000,
+      );
 
-    expect(summary.allUnlocked, isTrue);
-    expect(summary.nextRequiredDrops, isNull);
-    expect(summary.dropsRemaining, 0);
-    expect(summary.progressToNext, 1);
-  });
+      expect(summary.allUnlocked, isTrue);
+      expect(summary.nextRequiredDrops, isNull);
+      expect(summary.dropsRemaining, 0);
+      expect(summary.progressToNext, 1);
+    },
+  );
 }

@@ -567,11 +567,7 @@ class _BedtimeStoryDetailPageState
     }
     final l10n = AppLocalizations.of(context);
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          l10n.bedtimeStoriesCompletionSnackQuiet,
-        ),
-      ),
+      SnackBar(content: Text(l10n.bedtimeStoriesCompletionSnackQuiet)),
     );
   }
 

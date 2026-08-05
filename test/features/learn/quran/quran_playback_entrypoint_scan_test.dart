@@ -29,30 +29,44 @@ void main() {
 
       expect(reader.contains('_audioPlayer.setAudioSources('), isFalse);
       expect(reader.contains('_audioPlayer.setFilePath('), isFalse);
-      expect(reader.contains('_playerController.startPreparedPlayback('), isTrue);
+      expect(
+        reader.contains('_playerController.startPreparedPlayback('),
+        isTrue,
+      );
     },
   );
 
-  test('watch next previous and mobile resume use controller-owned surah entry paths', () {
-    final watch = File(
-      'lib/features/watch_companion/application/watch_quran_audio_contract.dart',
-    ).readAsStringSync();
-    final controller = File(
-      'lib/features/learn/quran/application/quran_player_controller.dart',
-    ).readAsStringSync();
+  test(
+    'watch next previous and mobile resume use controller-owned surah entry paths',
+    () {
+      final watch = File(
+        'lib/features/watch_companion/application/watch_quran_audio_contract.dart',
+      ).readAsStringSync();
+      final controller = File(
+        'lib/features/learn/quran/application/quran_player_controller.dart',
+      ).readAsStringSync();
 
-    expect(watch.contains('playAdjacentSurah(1)'), isTrue);
-    expect(watch.contains('playAdjacentSurah(-1)'), isTrue);
-    expect(controller.contains('quranRecitationSessionProvider'), isTrue);
-    expect(controller.contains('_restoreSessionFromStoredProgress'), isTrue);
-  });
+      expect(watch.contains('playAdjacentSurah(1)'), isTrue);
+      expect(watch.contains('playAdjacentSurah(-1)'), isTrue);
+      expect(controller.contains('quranRecitationSessionProvider'), isTrue);
+      expect(controller.contains('_restoreSessionFromStoredProgress'), isTrue);
+    },
+  );
 
-  test('reader ayah-entry path no longer uses raw seek for surah re-entry jumps', () {
-    final reader = File(
-      'lib/features/learn/quran/presentation/quran_reader_page.dart',
-    ).readAsStringSync();
+  test(
+    'reader ayah-entry path no longer uses raw seek for surah re-entry jumps',
+    () {
+      final reader = File(
+        'lib/features/learn/quran/presentation/quran_reader_page.dart',
+      ).readAsStringSync();
 
-    expect(reader.contains('_audioPlayer.seek(Duration.zero, index: targetIndex);'), isFalse);
-    expect(reader.contains('_startSurahPlayback('), isTrue);
-  });
+      expect(
+        reader.contains(
+          '_audioPlayer.seek(Duration.zero, index: targetIndex);',
+        ),
+        isFalse,
+      );
+      expect(reader.contains('_startSurahPlayback('), isTrue);
+    },
+  );
 }

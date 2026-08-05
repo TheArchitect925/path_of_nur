@@ -25,7 +25,9 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final summary = ref.watch(kidsSeerahJourneySummaryProvider(widget.journeyId));
+    final summary = ref.watch(
+      kidsSeerahJourneySummaryProvider(widget.journeyId),
+    );
     if (summary == null) {
       return AppPageScaffold(
         title: l10n.kidsSeerahJourneysTitle,
@@ -37,12 +39,12 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
     if (!_synced) {
       _synced = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(kidsSeerahJourneyProgressProvider.notifier).openJourney(
-              summary.journey.journeyId,
-            );
-        ref.read(kidsSeerahJourneyProgressProvider.notifier).syncJourney(
-              summary.journey.journeyId,
-            );
+        ref
+            .read(kidsSeerahJourneyProgressProvider.notifier)
+            .openJourney(summary.journey.journeyId);
+        ref
+            .read(kidsSeerahJourneyProgressProvider.notifier)
+            .syncJourney(summary.journey.journeyId);
       });
     }
 
@@ -58,20 +60,16 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
             children: [
               Text(
                 l10n.kidsSeerahTimelineTitle,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 children: summary.journey.timeline
-                    .map(
-                      (marker) => Chip(
-                        label: Text(marker.label),
-                      ),
-                    )
+                    .map((marker) => Chip(label: Text(marker.label)))
                     .toList(growable: false),
               ),
               const SizedBox(height: 12),
@@ -97,9 +95,7 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
               children: [
                 const Icon(Icons.play_circle_fill_rounded),
                 const SizedBox(width: 10),
-                Expanded(
-                  child: Text(l10n.kidsSeerahContinueNodeSubtitle),
-                ),
+                Expanded(child: Text(l10n.kidsSeerahContinueNodeSubtitle)),
                 const SizedBox(width: 10),
                 FilledButton.tonal(
                   onPressed: () => context.pushNamed(
@@ -182,8 +178,8 @@ class _StageCard extends StatelessWidget {
                   stage.isCompleted
                       ? l10n.kidsSeerahStageCompletedBadge
                       : stage.isUnlocked
-                          ? l10n.kidsSeerahStageInProgressBadge
-                          : l10n.kidsSeerahStageLockedBadge,
+                      ? l10n.kidsSeerahStageInProgressBadge
+                      : l10n.kidsSeerahStageLockedBadge,
                 ),
               ),
             ],

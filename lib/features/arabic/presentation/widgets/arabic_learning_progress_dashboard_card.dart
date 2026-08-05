@@ -51,9 +51,9 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             _subtitle(l10n),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: const Color(0xFF66594C),
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF66594C)),
           ),
           const SizedBox(height: 14),
           LinearProgressIndicator(
@@ -62,35 +62,31 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(999),
           ),
           const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: _chips(l10n),
-          ),
+          Wrap(spacing: 8, runSpacing: 8, children: _chips(l10n)),
           if (_isKids && kidsHighlight != null) ...[
             const SizedBox(height: 12),
             Text(
               l10n.arabicLearningProgressKidsHighlight(kidsHighlight!),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
           ],
           if (summary.recentActivity != null) ...[
             const SizedBox(height: 12),
             Text(
               _recentLabel(l10n, summary.recentActivity!),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xFF53483E),
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
             ),
           ],
           const SizedBox(height: 10),
           Text(
             _nextStepLabel(l10n),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: const Color(0xFF53483E),
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
           ),
           const SizedBox(height: 14),
           Row(
@@ -99,14 +95,16 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
                 child: FilledButton.icon(
                   onPressed: onPrimaryTap,
                   icon: Icon(
-                    summary.continuation.intent == ArabicLearningContinuationIntent.start
+                    summary.continuation.intent ==
+                            ArabicLearningContinuationIntent.start
                         ? Icons.play_arrow_rounded
                         : Icons.play_circle_fill_rounded,
                   ),
                   label: Text(_primaryActionLabel(l10n)),
                 ),
               ),
-              if (summary.reviewSuggestion != null && onSecondaryTap != null) ...[
+              if (summary.reviewSuggestion != null &&
+                  onSecondaryTap != null) ...[
                 const SizedBox(width: 10),
                 Expanded(
                   child: OutlinedButton.icon(
@@ -138,7 +136,9 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
     final chips = <Widget>[
       _DashboardChip(
         label: _isKids
-            ? l10n.arabicLearningProgressKidsLettersValue(summary.engagedLetters)
+            ? l10n.arabicLearningProgressKidsLettersValue(
+                summary.engagedLetters,
+              )
             : l10n.arabicLearningProgressAdultLettersValue(
                 summary.engagedLetters,
                 summary.totalLetters,
@@ -151,8 +151,12 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
       ),
       _DashboardChip(
         label: _isKids
-            ? l10n.arabicLearningProgressKidsPhrasesValue(summary.engagedPhrases)
-            : l10n.arabicLearningProgressAdultPhrasesValue(summary.engagedPhrases),
+            ? l10n.arabicLearningProgressKidsPhrasesValue(
+                summary.engagedPhrases,
+              )
+            : l10n.arabicLearningProgressAdultPhrasesValue(
+                summary.engagedPhrases,
+              ),
       ),
     ];
     if (_isKids && summary.currentStreakDays != null) {
@@ -190,7 +194,8 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
   }
 
   String _nextStepLabel(AppLocalizations l10n) {
-    final value = summary.continuation.primaryArabicText ??
+    final value =
+        summary.continuation.primaryArabicText ??
         summary.continuation.primaryTitle ??
         '';
     return _isKids

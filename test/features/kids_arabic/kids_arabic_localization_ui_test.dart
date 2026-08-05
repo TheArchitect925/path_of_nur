@@ -57,43 +57,45 @@ void main() {
     }
   });
 
-  testWidgets('kids Arabic lesson and review pages load in English, Arabic, and German', (
-    tester,
-  ) async {
-    for (final locale in const [Locale('en'), Locale('ar'), Locale('de')]) {
-      await pumpLocalizedPage(
-        tester,
-        locale: locale,
-        child: const KidsArabicLessonPage(letterId: 'alif'),
-      );
-      expect(find.byType(KidsArabicLessonPage), findsOneWidget);
+  testWidgets(
+    'kids Arabic lesson and review pages load in English, Arabic, and German',
+    (tester) async {
+      for (final locale in const [Locale('en'), Locale('ar'), Locale('de')]) {
+        await pumpLocalizedPage(
+          tester,
+          locale: locale,
+          child: const KidsArabicLessonPage(letterId: 'alif'),
+        );
+        expect(find.byType(KidsArabicLessonPage), findsOneWidget);
 
-      await pumpLocalizedPage(
-        tester,
-        locale: locale,
-        child: const KidsArabicReviewPage(),
-      );
-      expect(find.byType(KidsArabicReviewPage), findsOneWidget);
-    }
-  });
+        await pumpLocalizedPage(
+          tester,
+          locale: locale,
+          child: const KidsArabicReviewPage(),
+        );
+        expect(find.byType(KidsArabicReviewPage), findsOneWidget);
+      }
+    },
+  );
 
-  testWidgets('kids Arabic rewards and parent dashboard pages load in English, Arabic, and German', (
-    tester,
-  ) async {
-    for (final locale in const [Locale('en'), Locale('ar'), Locale('de')]) {
-      await pumpLocalizedPage(
-        tester,
-        locale: locale,
-        child: const KidsArabicRewardsPage(),
-      );
-      expect(find.byType(KidsArabicRewardsPage), findsOneWidget);
+  testWidgets(
+    'kids Arabic rewards and parent dashboard pages load in English, Arabic, and German',
+    (tester) async {
+      for (final locale in const [Locale('en'), Locale('ar'), Locale('de')]) {
+        await pumpLocalizedPage(
+          tester,
+          locale: locale,
+          child: const KidsArabicRewardsPage(),
+        );
+        expect(find.byType(KidsArabicRewardsPage), findsOneWidget);
 
-      await pumpLocalizedPage(
-        tester,
-        locale: locale,
-        child: const KidsArabicParentDashboardPage(),
-      );
-      expect(find.byType(KidsArabicParentDashboardPage), findsOneWidget);
-    }
-  });
+        await pumpLocalizedPage(
+          tester,
+          locale: locale,
+          child: const KidsArabicParentDashboardPage(),
+        );
+        expect(find.byType(KidsArabicParentDashboardPage), findsOneWidget);
+      }
+    },
+  );
 }

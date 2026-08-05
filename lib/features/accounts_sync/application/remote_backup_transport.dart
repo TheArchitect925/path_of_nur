@@ -83,7 +83,8 @@ class AppleICloudBackupTransport implements BackupTransport {
       provider: provider,
       backupId:
           response['path']?.toString() ?? _appleBackupPath(account.identifier),
-      schemaVersion: (response['schemaVersion'] as num?)?.toInt() ??
+      schemaVersion:
+          (response['schemaVersion'] as num?)?.toInt() ??
           accountsSyncBackupSchemaVersion,
       appVersion: response['appVersion']?.toString() ?? 'unknown',
       appBuild: response['buildNumber']?.toString() ?? 'unknown',
@@ -92,10 +93,11 @@ class AppleICloudBackupTransport implements BackupTransport {
           response['updatedAtIso']?.toString() ??
           DateTime.now().toIso8601String(),
       updatedAtIso:
-          response['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-      deviceLabel: response['deviceLabel']?.toString() ?? state.syncStatus.deviceName,
-      accountLabel:
-          response['accountLabel']?.toString() ?? account.displayName,
+          response['updatedAtIso']?.toString() ??
+          DateTime.now().toIso8601String(),
+      deviceLabel:
+          response['deviceLabel']?.toString() ?? state.syncStatus.deviceName,
+      accountLabel: response['accountLabel']?.toString() ?? account.displayName,
       payloadSizeBytes: (response['sizeBytes'] as num?)?.toInt() ?? 0,
       scopeSummary: response['scopeSummary'] is Map
           ? BackupScopeSummary.fromJson(
@@ -118,13 +120,11 @@ class AppleICloudBackupTransport implements BackupTransport {
         messageCode: 'icloud_unavailable',
       );
     }
-    final ok = await _channel.invokeMethod<bool>(
-          'writeBackupFile',
-          <String, Object?>{
-            'path': payload.metadata.backupId,
-            'value': payload.payload,
-          },
-        ) ??
+    final ok =
+        await _channel.invokeMethod<bool>('writeBackupFile', <String, Object?>{
+          'path': payload.metadata.backupId,
+          'value': payload.payload,
+        }) ??
         false;
     if (!ok) {
       return const SyncOperationResult(
@@ -142,14 +142,16 @@ class AppleICloudBackupTransport implements BackupTransport {
 
   @override
   Future<String?> downloadPayload(String backupId) {
-    return _channel.invokeMethod<String>(
-      'readBackupFile',
-      <String, Object?>{'path': backupId},
-    );
+    return _channel.invokeMethod<String>('readBackupFile', <String, Object?>{
+      'path': backupId,
+    });
   }
 
   String _appleBackupPath(String identifier) {
-    final safeIdentifier = identifier.replaceAll(RegExp(r'[^a-zA-Z0-9._-]'), '_');
+    final safeIdentifier = identifier.replaceAll(
+      RegExp(r'[^a-zA-Z0-9._-]'),
+      '_',
+    );
     return 'remote_backups/$safeIdentifier/path_of_nur_backup.json';
   }
 }
@@ -195,31 +197,35 @@ class GoogleDriveBackupTransport implements BackupTransport {
     final file = (files.first as Map).map(
       (key, value) => MapEntry(key.toString(), value),
     );
-    final appProperties = (file['appProperties'] as Map?)?.map(
+    final appProperties =
+        (file['appProperties'] as Map?)?.map(
           (key, value) => MapEntry(key.toString(), value),
         ) ??
         <String, dynamic>{};
-    final includedDomainNames = (appProperties['includedDomains']?.toString() ?? '')
-        .split(',')
-        .map((item) => item.trim())
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
-    final excludedDomainNames = (appProperties['excludedDomains']?.toString() ?? '')
-        .split(',')
-        .map((item) => item.trim())
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
-    final requiredDomainNames = (appProperties['requiredDomains']?.toString() ?? '')
-        .split(',')
-        .map((item) => item.trim())
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
+    final includedDomainNames =
+        (appProperties['includedDomains']?.toString() ?? '')
+            .split(',')
+            .map((item) => item.trim())
+            .where((item) => item.isNotEmpty)
+            .toList(growable: false);
+    final excludedDomainNames =
+        (appProperties['excludedDomains']?.toString() ?? '')
+            .split(',')
+            .map((item) => item.trim())
+            .where((item) => item.isNotEmpty)
+            .toList(growable: false);
+    final requiredDomainNames =
+        (appProperties['requiredDomains']?.toString() ?? '')
+            .split(',')
+            .map((item) => item.trim())
+            .where((item) => item.isNotEmpty)
+            .toList(growable: false);
     return RemoteBackupMetadata(
       provider: provider,
       backupId: file['id']?.toString() ?? '',
       schemaVersion:
           int.tryParse(appProperties['schemaVersion']?.toString() ?? '') ??
-              accountsSyncBackupSchemaVersion,
+          accountsSyncBackupSchemaVersion,
       appVersion: appProperties['appVersion']?.toString() ?? 'unknown',
       appBuild: appProperties['buildNumber']?.toString() ?? 'unknown',
       createdAtIso:
@@ -231,7 +237,8 @@ class GoogleDriveBackupTransport implements BackupTransport {
       deviceLabel: appProperties['deviceLabel']?.toString() ?? 'Google Drive',
       accountLabel: account.displayName ?? account.email,
       payloadSizeBytes: int.tryParse(file['size']?.toString() ?? '') ?? 0,
-      scopeSummary: includedDomainNames.isEmpty &&
+      scopeSummary:
+          includedDomainNames.isEmpty &&
               excludedDomainNames.isEmpty &&
               requiredDomainNames.isEmpty
           ? defaultFullBackupScopeSummary()
@@ -270,9 +277,12 @@ class GoogleDriveBackupTransport implements BackupTransport {
         'createdAtIso': payload.metadata.createdAtIso,
         'deviceLabel': payload.metadata.deviceLabel,
         'accountLabel': payload.metadata.accountLabel,
-        'includedDomains': payload.metadata.scopeSummary.includedDomainNames.join(','),
-        'excludedDomains': payload.metadata.scopeSummary.excludedDomainNames.join(','),
-        'requiredDomains': payload.metadata.scopeSummary.requiredDomainNames.join(','),
+        'includedDomains': payload.metadata.scopeSummary.includedDomainNames
+            .join(','),
+        'excludedDomains': payload.metadata.scopeSummary.excludedDomainNames
+            .join(','),
+        'requiredDomains': payload.metadata.scopeSummary.requiredDomainNames
+            .join(','),
         'checksum': payload.checksum,
       },
     });
@@ -390,7 +400,11 @@ Future<Map<String, dynamic>> _getJson(
   Uri uri,
   Map<String, String> headers,
 ) async {
-  final response = await _sendRequest(method: 'GET', uri: uri, headers: headers);
+  final response = await _sendRequest(
+    method: 'GET',
+    uri: uri,
+    headers: headers,
+  );
   if (response.statusCode < 200 || response.statusCode >= 300) {
     throw HttpException('Request failed: ${response.statusCode}');
   }
@@ -429,9 +443,7 @@ abstract class RemoteBackupRepository {
 
   Future<RestorePreview?> prepareRestorePreview();
 
-  Future<RestoreResult> restoreRemote({
-    required RestoreDecisionMode mode,
-  });
+  Future<RestoreResult> restoreRemote({required RestoreDecisionMode mode});
 }
 
 class DefaultRemoteBackupRepository implements RemoteBackupRepository {
@@ -440,11 +452,19 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
   final Ref ref;
 
   BackupTransport? get _transport {
-    final account = ref.read(accountsSyncControllerProvider).authenticatedAccount;
+    final account = ref
+        .read(accountsSyncControllerProvider)
+        .authenticatedAccount;
     return switch (account?.provider) {
-      AccountProviderType.signInWithApple => ref.read(appleRemoteBackupTransportProvider),
-      AccountProviderType.google => ref.read(googleRemoteBackupTransportProvider),
-      AccountProviderType.emailMagicLink => ref.read(emailRemoteBackupTransportProvider),
+      AccountProviderType.signInWithApple => ref.read(
+        appleRemoteBackupTransportProvider,
+      ),
+      AccountProviderType.google => ref.read(
+        googleRemoteBackupTransportProvider,
+      ),
+      AccountProviderType.emailMagicLink => ref.read(
+        emailRemoteBackupTransportProvider,
+      ),
       _ => null,
     };
   }
@@ -475,7 +495,9 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
       return null;
     }
     final metadata = await transport.fetchMetadata();
-    await ref.read(accountsSyncControllerProvider.notifier).updateRemoteBackupRecord(
+    await ref
+        .read(accountsSyncControllerProvider.notifier)
+        .updateRemoteBackupRecord(
           providerKey: transport.provider.name,
           remoteBackupId: metadata?.backupId,
           lastRemoteBackupAtIso: metadata?.updatedAtIso,
@@ -515,12 +537,17 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
     final remotePayload = RemoteBackupPayload(
       metadata: RemoteBackupMetadata(
         provider: transport.provider,
-        backupId: state.remoteBackupRecord.remoteBackupId ??
-            _defaultBackupId(transport.provider, account?.identifier ?? 'local'),
+        backupId:
+            state.remoteBackupRecord.remoteBackupId ??
+            _defaultBackupId(
+              transport.provider,
+              account?.identifier ?? 'local',
+            ),
         schemaVersion: accountsSyncBackupSchemaVersion,
         appVersion: packageInfo.version,
         appBuild: packageInfo.buildNumber,
-        createdAtIso: state.remoteBackupRecord.lastRemoteBackupAtIso ??
+        createdAtIso:
+            state.remoteBackupRecord.lastRemoteBackupAtIso ??
             DateTime.now().toIso8601String(),
         updatedAtIso: DateTime.now().toIso8601String(),
         deviceLabel: state.syncStatus.deviceName,
@@ -547,14 +574,19 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
     await controller.updateAutoBackupState(
       lastAttemptAtIso: DateTime.now().toIso8601String(),
       lastTrigger: AutoBackupTrigger.manualRetry,
-      lastSuccessAtIso: result.success ? DateTime.now().toIso8601String() : null,
+      lastSuccessAtIso: result.success
+          ? DateTime.now().toIso8601String()
+          : null,
       lastSuccessfulDataSignature: result.success ? dataSignature : null,
       dirty: result.success
           ? false
           : ref.read(accountsSyncControllerProvider).autoBackupState.dirty,
       pendingReasons: result.success
           ? const <PendingBackupReason>[]
-          : ref.read(accountsSyncControllerProvider).autoBackupState.pendingReasons,
+          : ref
+                .read(accountsSyncControllerProvider)
+                .autoBackupState
+                .pendingReasons,
       lastFailureCode: result.success ? null : result.messageCode,
       clearLastFailureCode: result.success,
     );
@@ -576,10 +608,9 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
     if (payload == null) {
       return null;
     }
-    final validation = await ref.read(backupRepositoryProvider).validateImportPayload(
-          payload: payload,
-          encrypted: false,
-        );
+    final validation = await ref
+        .read(backupRepositoryProvider)
+        .validateImportPayload(payload: payload, encrypted: false);
     if (!validation.isValid || validation.preview == null) {
       return null;
     }
@@ -593,14 +624,15 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
           appVersion: packageInfo.version,
           buildNumber: packageInfo.buildNumber,
         );
-    final localValidation = await ref.read(backupRepositoryProvider).validateImportPayload(
-          payload: localPayload,
-          encrypted: false,
-        );
+    final localValidation = await ref
+        .read(backupRepositoryProvider)
+        .validateImportPayload(payload: localPayload, encrypted: false);
     if (!localValidation.isValid || localValidation.preview == null) {
       return null;
     }
-    final comparison = ref.read(restoreComparisonEngineProvider).compare(
+    final comparison = ref
+        .read(restoreComparisonEngineProvider)
+        .compare(
           localPreview: localValidation.preview!,
           remotePreview: validation.preview!,
           remoteMetadata: metadata,
@@ -644,7 +676,8 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
         conflictSummary: RestoreConflictSummary(
           mode: ImportConflictMode.replace,
           decisionMode: mode,
-          willReplaceLocalProfiles: mode == RestoreDecisionMode.replaceLocalWithRemote,
+          willReplaceLocalProfiles:
+              mode == RestoreDecisionMode.replaceLocalWithRemote,
           willMergeProfiles: mode == RestoreDecisionMode.mergeSafeDomains,
           safetySnapshotCreated: false,
         ),
@@ -686,12 +719,16 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
           ),
         );
       }
-      final mergedPayload = ref.read(restoreComparisonEngineProvider).buildMergedPayload(
+      final mergedPayload = ref
+          .read(restoreComparisonEngineProvider)
+          .buildMergedPayload(
             localPreview: preview.localImportPreview,
             remotePreview: preview.importPreview,
             summary: summary,
           );
-      final mergedValidation = await ref.read(backupRepositoryProvider).validateImportPayload(
+      final mergedValidation = await ref
+          .read(backupRepositoryProvider)
+          .validateImportPayload(
             payload: jsonEncode(mergedPayload),
             encrypted: false,
           );
@@ -746,27 +783,34 @@ class DefaultRemoteBackupRepository implements RemoteBackupRepository {
           .toList(growable: false);
       skippedDomains = const <String>[];
     }
-    final result = await ref.read(backupRepositoryProvider).applyImport(
-          preview: importPreview,
-          mode: importMode,
-        );
+    final result = await ref
+        .read(backupRepositoryProvider)
+        .applyImport(preview: importPreview, mode: importMode);
     if (result.applied) {
-      await ref.read(accountsSyncControllerProvider.notifier).updateRemoteBackupRecord(
+      await ref
+          .read(accountsSyncControllerProvider.notifier)
+          .updateRemoteBackupRecord(
             lastRemoteRestoreAtIso: DateTime.now().toIso8601String(),
           );
       final normalizedPayload = mode == RestoreDecisionMode.mergeSafeDomains
           ? jsonEncode(
-              ref.read(restoreComparisonEngineProvider).buildMergedPayload(
+              ref
+                  .read(restoreComparisonEngineProvider)
+                  .buildMergedPayload(
                     localPreview: preview.localImportPreview,
                     remotePreview: preview.importPreview,
                     summary: preview.comparisonSummary,
                   ),
             )
           : preview.importPreview.rawPayload;
-      await ref.read(accountsSyncControllerProvider.notifier).updateAutoBackupState(
+      await ref
+          .read(accountsSyncControllerProvider.notifier)
+          .updateAutoBackupState(
             dirty: false,
             pendingReasons: const <PendingBackupReason>[],
-            lastSuccessfulDataSignature: backupPayloadFingerprint(normalizedPayload),
+            lastSuccessfulDataSignature: backupPayloadFingerprint(
+              normalizedPayload,
+            ),
             clearLastFailureCode: true,
           );
     }

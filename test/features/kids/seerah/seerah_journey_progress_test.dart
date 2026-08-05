@@ -16,7 +16,9 @@ void main() {
       addTearDown(container.dispose);
 
       final repository = container.read(kidsSeerahJourneyRepositoryProvider);
-      final controller = container.read(kidsSeerahJourneyProgressProvider.notifier);
+      final controller = container.read(
+        kidsSeerahJourneyProgressProvider.notifier,
+      );
       final node = repository.nodeById('seerah_node_reflection_character');
 
       expect(node, isNotNull);
@@ -29,7 +31,9 @@ void main() {
       var summary = controller.buildSummary('journey_seerah_muhammad_kids_v1');
       expect(
         summary!.stages
-            .firstWhere((stage) => stage.stage.stageId == 'seerah_stage_childhood')
+            .firstWhere(
+              (stage) => stage.stage.stageId == 'seerah_stage_childhood',
+            )
             .nodes
             .firstWhere((item) => item.node.nodeId == node.nodeId)
             .isCompleted,
@@ -40,7 +44,9 @@ void main() {
       summary = controller.buildSummary('journey_seerah_muhammad_kids_v1');
       expect(
         summary!.stages
-            .firstWhere((stage) => stage.stage.stageId == 'seerah_stage_childhood')
+            .firstWhere(
+              (stage) => stage.stage.stageId == 'seerah_stage_childhood',
+            )
             .nodes
             .firstWhere((item) => item.node.nodeId == node.nodeId)
             .isCompleted,
@@ -57,7 +63,9 @@ void main() {
       addTearDown(container.dispose);
 
       final repository = container.read(kidsSeerahJourneyRepositoryProvider);
-      final controller = container.read(kidsSeerahJourneyProgressProvider.notifier);
+      final controller = container.read(
+        kidsSeerahJourneyProgressProvider.notifier,
+      );
       final node = repository.nodeById('seerah_node_reflection_mercy');
 
       final first = controller.completeManualNode(

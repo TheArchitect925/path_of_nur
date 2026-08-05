@@ -100,17 +100,26 @@ class RestoreComparisonEngine {
       if (providerMismatch) 'provider_mismatch',
       if (accountMismatch) 'account_mismatch',
       if (schemaMismatch) 'incompatible_schema',
-      if (domains.any((item) => item.conflictType == RestoreConflictType.localNewer))
+      if (domains.any(
+        (item) => item.conflictType == RestoreConflictType.localNewer,
+      ))
         'local_newer_progress',
-      if (domains.any((item) => item.conflictType == RestoreConflictType.remoteNewer))
+      if (domains.any(
+        (item) => item.conflictType == RestoreConflictType.remoteNewer,
+      ))
         'remote_newer_progress',
-      if (domains.any((item) => item.conflictType == RestoreConflictType.localOnlyData))
+      if (domains.any(
+        (item) => item.conflictType == RestoreConflictType.localOnlyData,
+      ))
         'local_only_data',
-      if (domains.any((item) => item.conflictType == RestoreConflictType.remoteOnlyData))
+      if (domains.any(
+        (item) => item.conflictType == RestoreConflictType.remoteOnlyData,
+      ))
         'remote_only_data',
       if (domains.any(
         (item) => item.conflictType == RestoreConflictType.uncertainDifference,
-      )) 'uncertain_difference',
+      ))
+        'uncertain_difference',
     ];
 
     final canMergeSafeDomains =
@@ -156,8 +165,9 @@ class RestoreComparisonEngine {
     required ImportPackagePreview remotePreview,
     required RestoreComparisonSummary summary,
   }) {
-    final merged = jsonDecode(jsonEncode(remotePreview.decodedPayload))
-        as Map<String, dynamic>;
+    final merged =
+        jsonDecode(jsonEncode(remotePreview.decodedPayload))
+            as Map<String, dynamic>;
     final localPayload = localPreview.decodedPayload;
     final remotePayload = remotePreview.decodedPayload;
 
@@ -178,7 +188,8 @@ class RestoreComparisonEngine {
       remotePayload['structuredDataByProfile'],
       summary,
     );
-    final metadata = (merged['metadata'] as Map?)?.map(
+    final metadata =
+        (merged['metadata'] as Map?)?.map(
           (key, value) => MapEntry(key.toString(), value),
         ) ??
         <String, dynamic>{};
@@ -198,10 +209,9 @@ class RestoreComparisonEngine {
     if (localIdentity == null) {
       return false;
     }
-    final remoteAccountLabel =
-        remoteMetadata.accountLabel.isNotEmpty
-            ? remoteMetadata.accountLabel
-            : remotePreview.metadata.accountLabel;
+    final remoteAccountLabel = remoteMetadata.accountLabel.isNotEmpty
+        ? remoteMetadata.accountLabel
+        : remotePreview.metadata.accountLabel;
     final localLabels = <String>{
       localIdentity.displayName.trim().toLowerCase(),
       localIdentity.identifier.trim().toLowerCase(),
@@ -381,7 +391,8 @@ class RestoreComparisonEngine {
         final value = entry.value[key];
         if (value is List) {
           for (final row in _mapList(value)) {
-            final id = row['entryId'] ??
+            final id =
+                row['entryId'] ??
                 row['eventId'] ??
                 row['id'] ??
                 row['sourceRef'] ??
@@ -407,7 +418,8 @@ class RestoreComparisonEngine {
         final value = entry.value[key];
         if (value is List) {
           for (final row in _mapList(value)) {
-            final id = row['entryId'] ??
+            final id =
+                row['entryId'] ??
                 row['eventId'] ??
                 row['id'] ??
                 row['sourceRef'] ??
@@ -555,19 +567,29 @@ class RestoreComparisonEngine {
     if (accountMismatch) {
       return RestoreConflictType.accountMismatch;
     }
-    if (domains.every((item) => item.conflictType == RestoreConflictType.identical)) {
+    if (domains.every(
+      (item) => item.conflictType == RestoreConflictType.identical,
+    )) {
       return RestoreConflictType.identical;
     }
-    if (domains.any((item) => item.conflictType == RestoreConflictType.localNewer)) {
+    if (domains.any(
+      (item) => item.conflictType == RestoreConflictType.localNewer,
+    )) {
       return RestoreConflictType.localNewer;
     }
-    if (domains.any((item) => item.conflictType == RestoreConflictType.remoteNewer)) {
+    if (domains.any(
+      (item) => item.conflictType == RestoreConflictType.remoteNewer,
+    )) {
       return RestoreConflictType.remoteNewer;
     }
-    if (domains.any((item) => item.conflictType == RestoreConflictType.localOnlyData)) {
+    if (domains.any(
+      (item) => item.conflictType == RestoreConflictType.localOnlyData,
+    )) {
       return RestoreConflictType.localOnlyData;
     }
-    if (domains.any((item) => item.conflictType == RestoreConflictType.remoteOnlyData)) {
+    if (domains.any(
+      (item) => item.conflictType == RestoreConflictType.remoteOnlyData,
+    )) {
       return RestoreConflictType.remoteOnlyData;
     }
     return RestoreConflictType.uncertainDifference;
@@ -610,7 +632,9 @@ class RestoreComparisonEngine {
         byId[key] = _pickLatestMap(item, existing, 'updatedAtIso');
       }
     }
-    return byId.values.where((item) => (item['profileId']?.toString() ?? '').isNotEmpty).toList(growable: false);
+    return byId.values
+        .where((item) => (item['profileId']?.toString() ?? '').isNotEmpty)
+        .toList(growable: false);
   }
 
   Map<String, dynamic> _mergeProfileSnapshots(
@@ -619,10 +643,7 @@ class RestoreComparisonEngine {
   ) {
     final local = _mapOfMaps(localRaw);
     final remote = _mapOfMaps(remoteRaw);
-    return <String, dynamic>{
-      ...local,
-      ...remote,
-    };
+    return <String, dynamic>{...local, ...remote};
   }
 
   Map<String, dynamic> _mergeStructuredDataByProfile(
@@ -715,10 +736,14 @@ class RestoreComparisonEngine {
         byId[key] = _pickLatestMap(row, existing, 'finishedAtIso');
       }
     }
-    return byId.values.where((row) => (row['sessionId']?.toString() ?? '').isNotEmpty).toList(growable: false);
+    return byId.values
+        .where((row) => (row['sessionId']?.toString() ?? '').isNotEmpty)
+        .toList(growable: false);
   }
 
-  Map<String, Map<String, dynamic>> _structuredProfiles(Map<String, dynamic> payload) {
+  Map<String, Map<String, dynamic>> _structuredProfiles(
+    Map<String, dynamic> payload,
+  ) {
     return _mapOfMaps(payload['structuredDataByProfile']);
   }
 
@@ -742,7 +767,9 @@ class RestoreComparisonEngine {
     if (raw is! List) return const <Map<String, dynamic>>[];
     return raw
         .whereType<Map>()
-        .map((item) => item.map((key, value) => MapEntry(key.toString(), value)))
+        .map(
+          (item) => item.map((key, value) => MapEntry(key.toString(), value)),
+        )
         .toList(growable: false);
   }
 
@@ -757,7 +784,10 @@ class RestoreComparisonEngine {
       (key, value) => MapEntry(
         key.toString(),
         value is Map
-            ? value.map((innerKey, innerValue) => MapEntry(innerKey.toString(), innerValue))
+            ? value.map(
+                (innerKey, innerValue) =>
+                    MapEntry(innerKey.toString(), innerValue),
+              )
             : <String, dynamic>{},
       ),
     );

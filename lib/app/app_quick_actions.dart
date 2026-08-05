@@ -73,8 +73,14 @@ final appQuickActionsBootstrapProvider = Provider<void>((ref) {
       type: _qaKidsArabicContinue,
       localizedTitle: l10n.arabicQuickActionKidsContinue,
     ),
-    ShortcutItem(type: _qaOpenToday, localizedTitle: l10n.appQuickActionOpenToday),
-    ShortcutItem(type: _qaReadQuran, localizedTitle: l10n.appQuickActionReadQuran),
+    ShortcutItem(
+      type: _qaOpenToday,
+      localizedTitle: l10n.appQuickActionOpenToday,
+    ),
+    ShortcutItem(
+      type: _qaReadQuran,
+      localizedTitle: l10n.appQuickActionReadQuran,
+    ),
     ShortcutItem(
       type: _qaDailyLearning,
       localizedTitle: l10n.appQuickActionDailyLearning,

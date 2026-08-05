@@ -24,7 +24,9 @@ final tvosSidebarSurfaceFlagsProvider = Provider<List<TVOSSurfaceFlag>>((ref) {
       .toList(growable: false);
 });
 
-final tvosPendingParitySurfacesProvider = Provider<List<TVOSSurfaceFlag>>((ref) {
+final tvosPendingParitySurfacesProvider = Provider<List<TVOSSurfaceFlag>>((
+  ref,
+) {
   return tvosSurfaceFlags
       .where(
         (flag) =>

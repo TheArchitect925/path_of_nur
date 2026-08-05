@@ -227,7 +227,8 @@ class CrosswordHomePage extends ConsumerWidget {
                           Text(
                             buildCompactRewardSummary(
                               l10n,
-                              xp: (dailyProgress!.perfectCompletedAtIso ?? '')
+                              xp:
+                                  (dailyProgress!.perfectCompletedAtIso ?? '')
                                       .isNotEmpty
                                   ? 2
                                   : 1,

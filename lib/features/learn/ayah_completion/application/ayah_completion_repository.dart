@@ -327,10 +327,7 @@ class AyahCompletionRepository {
       if (fallback.isEmpty) break;
       distractors.add(fallback);
     }
-    final options = {
-      correctWord,
-      ...distractors,
-    }.toList(growable: false);
+    final options = {correctWord, ...distractors}.toList(growable: false);
     options.sort((a, b) => a.compareTo(b));
     return options;
   }

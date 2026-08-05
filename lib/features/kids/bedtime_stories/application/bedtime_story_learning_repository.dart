@@ -13,16 +13,16 @@ final bedtimeStoryLearningRepositoryProvider =
 
 final bedtimeStoryQuizByStoryIdProvider =
     Provider.family<BedtimeStoryQuizSeed?, String>((ref, storyId) {
-      return ref.watch(bedtimeStoryLearningRepositoryProvider).quizForStory(
-        storyId,
-      );
+      return ref
+          .watch(bedtimeStoryLearningRepositoryProvider)
+          .quizForStory(storyId);
     });
 
 final bedtimeStoryMemoryDeckByStoryIdProvider =
     Provider.family<BedtimeStoryMemoryDeckSeed?, String>((ref, storyId) {
-      return ref.watch(bedtimeStoryLearningRepositoryProvider).memoryDeckForStory(
-        storyId,
-      );
+      return ref
+          .watch(bedtimeStoryLearningRepositoryProvider)
+          .memoryDeckForStory(storyId);
     });
 
 class BedtimeStoryLearningRepository {
@@ -30,17 +30,12 @@ class BedtimeStoryLearningRepository {
 
   final Ref _ref;
 
-  List<BedtimeStoryQuizSeed> get quizzes => [
-    ...kBedtimeStoryQuizzes,
-    ...kKidsIslamicStoryQuizzes,
-  ]
-    ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+  List<BedtimeStoryQuizSeed> get quizzes =>
+      [...kBedtimeStoryQuizzes, ...kKidsIslamicStoryQuizzes]
+        ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
 
   List<BedtimeStoryMemoryDeckSeed> get memoryDecks =>
-      [
-        ...kBedtimeStoryMemoryDecks,
-        ...kKidsIslamicStoryMemoryDecks,
-      ]
+      [...kBedtimeStoryMemoryDecks, ...kKidsIslamicStoryMemoryDecks]
         ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
 
   BedtimeStoryQuizSeed? quizForStory(String storyId) {
@@ -80,7 +75,8 @@ class BedtimeStoryLearningRepository {
   }
 
   BedtimeStoryLearningSuggestion? tonightSuggestion() {
-    final story = _ref.watch(continueBedtimeStoryProvider) ??
+    final story =
+        _ref.watch(continueBedtimeStoryProvider) ??
         _ref.watch(tonightBedtimeStoryProvider);
     if (story == null) {
       return null;
@@ -121,7 +117,9 @@ class BedtimeStoryLearningRepository {
     return null;
   }
 
-  BedtimeStoryLearningSuggestion? firstPendingSuggestionForStory(String storyId) {
+  BedtimeStoryLearningSuggestion? firstPendingSuggestionForStory(
+    String storyId,
+  ) {
     final learningState = _ref.watch(bedtimeStoryLearningProgressProvider);
     final quiz = quizForStory(storyId);
     if (quiz != null) {

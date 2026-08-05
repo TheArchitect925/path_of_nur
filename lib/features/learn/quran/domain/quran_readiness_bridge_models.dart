@@ -8,12 +8,7 @@ enum QuranReadinessBridgeLevel {
   ayahConfidence,
 }
 
-enum QuranReadinessPronunciationHintType {
-  clear,
-  stretch,
-  bounce,
-  nasal,
-}
+enum QuranReadinessPronunciationHintType { clear, stretch, bounce, nasal }
 
 class QuranReadinessPronunciationHintSeed {
   const QuranReadinessPronunciationHintSeed({
@@ -46,7 +41,9 @@ class QuranReadinessPronunciationHint {
   final ArabicLearningRouteTarget? adultTarget;
   final ArabicLearningRouteTarget? kidsTarget;
 
-  ArabicLearningRouteTarget? targetForAudience(ArabicLearningAudience audience) {
+  ArabicLearningRouteTarget? targetForAudience(
+    ArabicLearningAudience audience,
+  ) {
     switch (audience) {
       case ArabicLearningAudience.kids:
         return kidsTarget;
@@ -153,7 +150,9 @@ class QuranReadinessBridgeProgressState {
           ? null
           : lastSnippetId ?? this.lastSnippetId,
       openedSnippetIds: openedSnippetIds ?? this.openedSnippetIds,
-      lastOpenedAt: clearLastOpenedAt ? null : lastOpenedAt ?? this.lastOpenedAt,
+      lastOpenedAt: clearLastOpenedAt
+          ? null
+          : lastOpenedAt ?? this.lastOpenedAt,
     );
   }
 
@@ -163,7 +162,9 @@ class QuranReadinessBridgeProgressState {
     'lastOpenedAt': lastOpenedAt?.toIso8601String(),
   };
 
-  factory QuranReadinessBridgeProgressState.fromJson(Map<String, dynamic>? json) {
+  factory QuranReadinessBridgeProgressState.fromJson(
+    Map<String, dynamic>? json,
+  ) {
     if (json == null) {
       return const QuranReadinessBridgeProgressState();
     }

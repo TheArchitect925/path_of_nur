@@ -32,7 +32,9 @@ class _BedtimeStoryMemoryCardsPageState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final story = ref.watch(bedtimeStoryByIdProvider(widget.storyId));
-    final deck = ref.watch(bedtimeStoryMemoryDeckByStoryIdProvider(widget.storyId));
+    final deck = ref.watch(
+      bedtimeStoryMemoryDeckByStoryIdProvider(widget.storyId),
+    );
 
     if (story == null) {
       return AppPageScaffold(
@@ -53,9 +55,9 @@ class _BedtimeStoryMemoryCardsPageState
               children: [
                 Text(
                   l10n.bedtimeStoryLearningUnavailableTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(l10n.bedtimeStoryMemoryUnavailableSubtitle),
@@ -71,9 +73,7 @@ class _BedtimeStoryMemoryCardsPageState
         title: l10n.bedtimeStoryMemoryTitle,
         subtitle: story.shortTitle,
         children: [
-          PremiumCard(
-            child: Text(l10n.bedtimeStoryMemoryUnavailableSubtitle),
-          ),
+          PremiumCard(child: Text(l10n.bedtimeStoryMemoryUnavailableSubtitle)),
         ],
       );
     }
@@ -96,12 +96,14 @@ class _BedtimeStoryMemoryCardsPageState
     if (!_didOpenActivity) {
       _didOpenActivity = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(bedtimeStoryLearningProgressProvider.notifier).openActivity(
-          activityId: deck.deckId,
-          storyId: story.id,
-          mode: BedtimeStoryLearningMode.memoryCards,
-          totalSteps: deck.pairs.length,
-        );
+        ref
+            .read(bedtimeStoryLearningProgressProvider.notifier)
+            .openActivity(
+              activityId: deck.deckId,
+              storyId: story.id,
+              mode: BedtimeStoryLearningMode.memoryCards,
+              totalSteps: deck.pairs.length,
+            );
       });
     }
 
@@ -146,9 +148,9 @@ class _BedtimeStoryMemoryCardsPageState
               children: [
                 Text(
                   l10n.bedtimeStoryMemoryCompleteTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(l10n.bedtimeStoryMemoryCompleteSubtitle),
@@ -182,7 +184,11 @@ class _BedtimeStoryMemoryCardsPageState
                   setState(() {
                     _selectedPromptId = pair.pairId;
                   });
-                  _tryResolveMatch(deck, pairId: pair.pairId, selectingPrompt: true);
+                  _tryResolveMatch(
+                    deck,
+                    pairId: pair.pairId,
+                    selectingPrompt: true,
+                  );
                 },
               ),
             ),
@@ -205,7 +211,11 @@ class _BedtimeStoryMemoryCardsPageState
                   setState(() {
                     _selectedAnswerId = pair.pairId;
                   });
-                  _tryResolveMatch(deck, pairId: pair.pairId, selectingPrompt: false);
+                  _tryResolveMatch(
+                    deck,
+                    pairId: pair.pairId,
+                    selectingPrompt: false,
+                  );
                 },
               ),
             ),
@@ -246,7 +256,9 @@ class _BedtimeStoryMemoryCardsPageState
     final current = ref.read(bedtimeStoryLearningProgressProvider);
     final previous = current.progressByActivityId[deck.deckId];
     final completedCount = (previous?.completedStepIds.length ?? 0) + 1;
-    ref.read(bedtimeStoryLearningProgressProvider.notifier).recordStepProgress(
+    ref
+        .read(bedtimeStoryLearningProgressProvider.notifier)
+        .recordStepProgress(
           activityId: deck.deckId,
           storyId: deck.storyId,
           mode: BedtimeStoryLearningMode.memoryCards,

@@ -173,8 +173,9 @@ class BedtimeStorySeed {
   final List<BedtimeStorySceneIllustration> sceneIllustrations;
 
   Duration get estimatedDuration => Duration(seconds: estimatedDurationSeconds);
-  String get effectiveStoryFamilyId =>
-      storyFamilyId.isNotEmpty ? storyFamilyId : (prophetId.isNotEmpty ? prophetId : id);
+  String get effectiveStoryFamilyId => storyFamilyId.isNotEmpty
+      ? storyFamilyId
+      : (prophetId.isNotEmpty ? prophetId : id);
   bool get isProphetStory => storyType == KidsIslamicStoryType.prophet;
   bool get hasQuranReference =>
       (quranQuote ?? '').isNotEmpty &&
@@ -413,11 +414,13 @@ class BedtimeStoryLibraryProgress {
         );
       }
     }
-    final recent = (json['recentStoryIds'] as List?)
+    final recent =
+        (json['recentStoryIds'] as List?)
             ?.map((item) => item.toString())
             .toList(growable: false) ??
         const <String>[];
-    final completedSeries = (json['completedSeriesProphetIds'] as List?)
+    final completedSeries =
+        (json['completedSeriesProphetIds'] as List?)
             ?.map((item) => item.toString())
             .toSet() ??
         const <String>{};
@@ -479,7 +482,9 @@ class BedtimeStoryAudioState {
       isLoading: isLoading ?? this.isLoading,
       isCompleted: isCompleted ?? this.isCompleted,
       lastPlayedAtIso: lastPlayedAtIso ?? this.lastPlayedAtIso,
-      errorMessage: clearErrorMessage ? null : (errorMessage ?? this.errorMessage),
+      errorMessage: clearErrorMessage
+          ? null
+          : (errorMessage ?? this.errorMessage),
       isAssetAvailable: isAssetAvailable ?? this.isAssetAvailable,
     );
   }

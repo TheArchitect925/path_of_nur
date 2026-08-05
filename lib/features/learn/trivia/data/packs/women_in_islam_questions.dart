@@ -8,7 +8,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_easy_001',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Who is the mother of Isa mentioned with special honor in the Qur\'an?',
+    prompt:
+        'Who is the mother of Isa mentioned with special honor in the Qur\'an?',
     options: const [
       ('maryam', 'Maryam'),
       ('asiya', 'Asiya'),
@@ -29,7 +30,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_easy_002',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Khadijah was the first wife of the Prophet and among the earliest believers.',
+    prompt:
+        'Khadijah was the first wife of the Prophet and among the earliest believers.',
     correct: true,
     explanation:
         'Khadijah supported the Prophet with faith, steadiness, and sacrifice from the beginning of revelation.',
@@ -43,7 +45,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_easy_003',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which woman in the Qur\'an is associated with trust in Allah when placing her infant in safety?',
+    prompt:
+        'Which woman in the Qur\'an is associated with trust in Allah when placing her infant in safety?',
     options: const [
       ('mother_musa', 'The mother of Musa'),
       ('maryam', 'Maryam'),
@@ -54,7 +57,13 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     explanation:
         'The mother of Musa trusted Allah when she followed divine inspiration regarding her infant son.',
     quranReference: 'Qur\'an 28:7',
-    tags: const ['women_in_islam', 'mother_of_musa', 'trust', 'quran', 'beginner'],
+    tags: const [
+      'women_in_islam',
+      'mother_of_musa',
+      'trust',
+      'quran',
+      'beginner',
+    ],
     beginnerFriendly: true,
     packId: _pack,
     sortOrder: 3,
@@ -63,7 +72,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_easy_004',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which wife of the Prophet is especially known for hadith transmission and legal understanding?',
+    prompt:
+        'Which wife of the Prophet is especially known for hadith transmission and legal understanding?',
     options: const [
       ('aishah', 'A\'ishah'),
       ('khadijah', 'Khadijah'),
@@ -82,7 +92,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_easy_005',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Women in Islam are part of the story of knowledge, worship, sacrifice, and community.',
+    prompt:
+        'Women in Islam are part of the story of knowledge, worship, sacrifice, and community.',
     correct: true,
     explanation:
         'Islamic history includes women of worship, learning, courage, support, and service to the community.',
@@ -95,7 +106,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_easy_006',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which woman is remembered for supporting the Prophet early in revelation with faith and comfort?',
+    prompt:
+        'Which woman is remembered for supporting the Prophet early in revelation with faith and comfort?',
     options: const [
       ('khadijah', 'Khadijah'),
       ('aishah', 'A\'ishah'),
@@ -114,7 +126,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_med_007',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which woman in the Qur\'anic story is associated with faith under oppression and a prayer for a home near Allah?',
+    prompt:
+        'Which woman in the Qur\'anic story is associated with faith under oppression and a prayer for a home near Allah?',
     options: const [
       ('asiya', 'Asiya'),
       ('maryam', 'Maryam'),
@@ -125,7 +138,13 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     explanation:
         'Asiya is remembered as a believer under oppression who asked Allah for a home near Him in Paradise.',
     quranReference: 'Qur\'an 66:11',
-    tags: const ['women_in_islam', 'asiya', 'patience', 'faith', 'intermediate'],
+    tags: const [
+      'women_in_islam',
+      'asiya',
+      'patience',
+      'faith',
+      'intermediate',
+    ],
     reflectionFriendly: true,
     packId: _pack,
     sortOrder: 7,
@@ -148,7 +167,10 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'What broad lesson does Khadijah\'s life especially offer?',
     options: const [
-      ('support', 'Faithful support, wisdom, and sacrifice in service of truth'),
+      (
+        'support',
+        'Faithful support, wisdom, and sacrifice in service of truth',
+      ),
       ('status_only', 'Social rank without service'),
       ('withdrawal', 'Avoiding all responsibility'),
       ('argument', 'Constant public argument'),
@@ -165,7 +187,8 @@ final List<TriviaQuestion> womenInIslamTriviaQuestions = [
     id: 'women_islam_hard_010',
     categoryId: 'women_in_islam',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Studying women in Islam is only about family roles and not about knowledge, courage, worship, and contribution.',
+    prompt:
+        'Studying women in Islam is only about family roles and not about knowledge, courage, worship, and contribution.',
     correct: false,
     explanation:
         'Women in Islamic history are remembered for knowledge, worship, courage, narration, support, and service to the community.',

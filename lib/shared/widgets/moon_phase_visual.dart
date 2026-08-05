@@ -93,11 +93,7 @@ MoonPhaseVisualData moonPhaseVisualForDate(
 }
 
 class MoonPhaseVisual extends StatelessWidget {
-  const MoonPhaseVisual({
-    super.key,
-    required this.moon,
-    this.size = 136,
-  });
+  const MoonPhaseVisual({super.key, required this.moon, this.size = 136});
 
   final MoonPhaseVisualData moon;
   final double size;
@@ -106,10 +102,7 @@ class MoonPhaseVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: moon.label,
-      child: Text(
-        moon.emoji,
-        style: TextStyle(fontSize: size),
-      ),
+      child: Text(moon.emoji, style: TextStyle(fontSize: size)),
     );
   }
 }

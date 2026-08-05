@@ -44,9 +44,7 @@ class AppLayeredSectionGlassCard extends StatelessWidget {
             AppHeroGlassShell.globalCardHighlightGradientColors,
         child: Theme(
           data: Theme.of(context).copyWith(),
-          child: DefaultTextStyle.merge(
-            child: child,
-          ),
+          child: DefaultTextStyle.merge(child: child),
         ),
       ),
     );

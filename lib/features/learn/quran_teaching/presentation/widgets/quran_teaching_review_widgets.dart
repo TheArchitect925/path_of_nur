@@ -22,28 +22,28 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
     final title = !summary.hasAnyLearnedItems
         ? l10n.quranTeachingDailyReviewCardEmptyTitle
         : summary.isComplete
-            ? l10n.quranTeachingDailyReviewCardCompleteTitle
-            : summary.inProgress
-                ? l10n.quranTeachingDailyReviewCardContinueTitle
-                : l10n.quranTeachingDailyReviewCardReadyTitle;
+        ? l10n.quranTeachingDailyReviewCardCompleteTitle
+        : summary.inProgress
+        ? l10n.quranTeachingDailyReviewCardContinueTitle
+        : l10n.quranTeachingDailyReviewCardReadyTitle;
     final subtitle = !summary.hasAnyLearnedItems
         ? l10n.quranTeachingDailyReviewCardEmptySubtitle
         : !summary.hasDueItems
-            ? l10n.quranTeachingDailyReviewCardNothingDueSubtitle
-            : summary.inProgress
-                ? l10n.quranTeachingDailyReviewCardProgressSubtitle(
-                    summary.completedCount,
-                    summary.itemCount,
-                    summary.mixSummary,
-                  )
-                : summary.mixSummary;
+        ? l10n.quranTeachingDailyReviewCardNothingDueSubtitle
+        : summary.inProgress
+        ? l10n.quranTeachingDailyReviewCardProgressSubtitle(
+            summary.completedCount,
+            summary.itemCount,
+            summary.mixSummary,
+          )
+        : summary.mixSummary;
     final actionLabel = summary.isComplete
         ? l10n.quranTeachingDailyReviewCardPracticeMoreAction
         : summary.itemCount == 0
-            ? l10n.quranTeachingDailyReviewCardOpenAction
-            : summary.inProgress
-                ? l10n.quranTeachingDailyReviewCardContinueAction
-                : l10n.quranTeachingDailyReviewCardStartAction;
+        ? l10n.quranTeachingDailyReviewCardOpenAction
+        : summary.inProgress
+        ? l10n.quranTeachingDailyReviewCardContinueAction
+        : l10n.quranTeachingDailyReviewCardStartAction;
 
     return PremiumCard(
       child: Column(
@@ -54,9 +54,9 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               if (summary.itemCount > 0)
@@ -83,9 +83,9 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
                   : l10n.quranTeachingDailyReviewCardItemCount(
                       summary.itemCount,
                     ),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
             ),
           ],
           const SizedBox(height: 12),
@@ -130,9 +130,9 @@ class QuranTeachingRecommendationCard extends StatelessWidget {
               children: [
                 Text(
                   _titleForRecommendation(l10n),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 4),
                 Text(_subtitleForRecommendation(l10n)),
@@ -207,9 +207,9 @@ class QuranTeachingWeakAreaCard extends StatelessWidget {
         children: [
           Text(
             label,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
           Text(subtitle),
@@ -220,10 +220,7 @@ class QuranTeachingWeakAreaCard extends StatelessWidget {
 }
 
 class QuranTeachingMemoryStateChip extends StatelessWidget {
-  const QuranTeachingMemoryStateChip({
-    super.key,
-    required this.memoryState,
-  });
+  const QuranTeachingMemoryStateChip({super.key, required this.memoryState});
 
   final QuranTeachingMemoryState memoryState;
 
@@ -232,25 +229,25 @@ class QuranTeachingMemoryStateChip extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final (label, color) = switch (memoryState) {
       QuranTeachingMemoryState.newItem => (
-          l10n.quranTeachingMemoryStateNew,
-          Colors.blueGrey,
-        ),
+        l10n.quranTeachingMemoryStateNew,
+        Colors.blueGrey,
+      ),
       QuranTeachingMemoryState.practicing => (
-          l10n.quranTeachingMemoryStatePracticing,
-          Colors.orange,
-        ),
+        l10n.quranTeachingMemoryStatePracticing,
+        Colors.orange,
+      ),
       QuranTeachingMemoryState.familiar => (
-          l10n.quranTeachingMemoryStateFamiliar,
-          Colors.blue,
-        ),
+        l10n.quranTeachingMemoryStateFamiliar,
+        Colors.blue,
+      ),
       QuranTeachingMemoryState.recognized => (
-          l10n.quranTeachingMemoryStateRecognized,
-          Colors.green,
-        ),
+        l10n.quranTeachingMemoryStateRecognized,
+        Colors.green,
+      ),
       QuranTeachingMemoryState.mastered => (
-          l10n.quranTeachingMemoryStateMastered,
-          Colors.teal,
-        ),
+        l10n.quranTeachingMemoryStateMastered,
+        Colors.teal,
+      ),
     };
 
     return Container(
@@ -292,9 +289,9 @@ class QuranTeachingReviewSessionHeader extends StatelessWidget {
         children: [
           Text(
             l10n.quranTeachingReviewSessionHeaderTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
           Text(summary),
@@ -331,23 +328,21 @@ class QuranTeachingReviewCompletionCard extends StatelessWidget {
         children: [
           Text(
             l10n.quranTeachingReviewCompletionTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          Text(
-            l10n.quranTeachingReviewCompletionCorrectCount(correctCount),
-          ),
+          Text(l10n.quranTeachingReviewCompletionCorrectCount(correctCount)),
           Text(
             l10n.quranTeachingReviewCompletionNeedsMoreCount(needsMoreCount),
           ),
           const SizedBox(height: 10),
           Text(
             l10n.quranTeachingReviewCompletionBody,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),

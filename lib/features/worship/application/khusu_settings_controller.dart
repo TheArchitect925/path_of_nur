@@ -26,4 +26,3 @@ final khusuSettingsControllerProvider =
     StateNotifierProvider<KhusuSettingsController, KhusuSettings>(
       (ref) => KhusuSettingsController(),
     );
-

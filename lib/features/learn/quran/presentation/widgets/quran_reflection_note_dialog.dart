@@ -74,16 +74,13 @@ Future<QuranReflectionComposerResult?> showQuranReflectionComposerDialog(
             if (sourceContextLabel?.trim().isNotEmpty ?? false) ...[
               Text(
                 sourceContextLabel!,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
             ],
-            Text(
-              helperText,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            Text(helperText, style: Theme.of(context).textTheme.bodySmall),
             const SizedBox(height: 12),
             TextField(
               controller: controller,
@@ -100,8 +97,7 @@ Future<QuranReflectionComposerResult?> showQuranReflectionComposerDialog(
               value: isFavorite,
               contentPadding: EdgeInsets.zero,
               controlAffinity: ListTileControlAffinity.leading,
-              onChanged: (value) =>
-                  setState(() => isFavorite = value ?? false),
+              onChanged: (value) => setState(() => isFavorite = value ?? false),
               title: Text(
                 isFavorite
                     ? l10n.quranReflectionsRemoveFavoriteAction

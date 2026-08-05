@@ -20,10 +20,12 @@ class CreationChallengesPage extends ConsumerStatefulWidget {
   const CreationChallengesPage({super.key});
 
   @override
-  ConsumerState<CreationChallengesPage> createState() => _CreationChallengesPageState();
+  ConsumerState<CreationChallengesPage> createState() =>
+      _CreationChallengesPageState();
 }
 
-class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage> {
+class _CreationChallengesPageState
+    extends ConsumerState<CreationChallengesPage> {
   _CreationChallengeTab _tab = _CreationChallengeTab.today;
 
   @override
@@ -55,10 +57,9 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
         SegmentedPillControl<_CreationChallengeTab>(
           items: _CreationChallengeTab.values,
           selectedItem: _tab,
-          labelBuilder: (tab) =>
-              tab == _CreationChallengeTab.today
-                  ? l10n.commonToday
-                  : l10n.commonHistory,
+          labelBuilder: (tab) => tab == _CreationChallengeTab.today
+              ? l10n.commonToday
+              : l10n.commonHistory,
           onChanged: (value) => setState(() => _tab = value),
         ),
         const SizedBox(height: 10),
@@ -94,26 +95,32 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
           for (final slot in ChallengeSlot.values)
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: _ChallengeCard(summary: summaries.firstWhere((item) => item.slot == slot)),
+              child: _ChallengeCard(
+                summary: summaries.firstWhere((item) => item.slot == slot),
+              ),
             ),
         ] else ...[
-          ...state.history.take(24).map(
-            (entry) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(_historyTitle(entry.challengeId)),
-                  subtitle: Text(
-                    '${entry.completed ? l10n.creationChallengesStatusCompleted : l10n.creationChallengesSkippedLabel} • ${_dateLabel(entry.date)}',
-                  ),
-                  trailing: Icon(
-                    entry.completed ? Icons.check_circle_rounded : Icons.remove_circle_outline_rounded,
+          ...state.history
+              .take(24)
+              .map(
+                (entry) => Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: PremiumCard(
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(_historyTitle(entry.challengeId)),
+                      subtitle: Text(
+                        '${entry.completed ? l10n.creationChallengesStatusCompleted : l10n.creationChallengesSkippedLabel} • ${_dateLabel(entry.date)}',
+                      ),
+                      trailing: Icon(
+                        entry.completed
+                            ? Icons.check_circle_rounded
+                            : Icons.remove_circle_outline_rounded,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
         ],
       ],
     );
@@ -123,7 +130,9 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        color: Theme.of(
+          context,
+        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Text('$label: $value'),
@@ -131,7 +140,9 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
   }
 
   String _historyTitle(String challengeId) {
-    return creationChallengePool.firstWhere((item) => item.id == challengeId).title;
+    return creationChallengePool
+        .firstWhere((item) => item.id == challengeId)
+        .title;
   }
 
   String _dateLabel(DateTime value) {
@@ -148,8 +159,12 @@ class _ChallengeCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final challenge = summary.challenge;
-    final category = challenge.targetCategoryId == null ? null : creationCategoryById[challenge.targetCategoryId!];
-    final verse = challenge.verseId == null ? null : creationVerseById[challenge.verseId!];
+    final category = challenge.targetCategoryId == null
+        ? null
+        : creationCategoryById[challenge.targetCategoryId!];
+    final verse = challenge.verseId == null
+        ? null
+        : creationVerseById[challenge.verseId!];
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,10 +172,15 @@ class _ChallengeCard extends ConsumerWidget {
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: (category?.colorTheme ?? Theme.of(context).colorScheme.primary).withValues(alpha: 0.16),
+                backgroundColor:
+                    (category?.colorTheme ??
+                            Theme.of(context).colorScheme.primary)
+                        .withValues(alpha: 0.16),
                 child: Icon(
                   challenge.icon,
-                  color: category?.colorTheme ?? Theme.of(context).colorScheme.primary,
+                  color:
+                      category?.colorTheme ??
+                      Theme.of(context).colorScheme.primary,
                 ),
               ),
               const SizedBox(width: 12),
@@ -172,7 +192,12 @@ class _ChallengeCard extends ConsumerWidget {
                       _slotLabel(context, summary.slot),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
-                    Text(challenge.title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                    Text(
+                      challenge.title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                     const SizedBox(height: 2),
                     Text(challenge.subtitle),
                   ],
@@ -201,7 +226,9 @@ class _ChallengeCard extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.35),
+                color: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.35),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Text(challenge.reflectionPrompt!),
@@ -210,16 +237,17 @@ class _ChallengeCard extends ConsumerWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              Text(
-                l10n.creationChallengesRewardDrops(challenge.rewardDrops),
-              ),
+              Text(l10n.creationChallengesRewardDrops(challenge.rewardDrops)),
               const Spacer(),
               if (summary.isCompleted)
                 Text(l10n.creationChallengesStatusCompleted)
               else ...[
-                if (challenge.completionRule == CreationChallengeRuleType.manualConfirm)
+                if (challenge.completionRule ==
+                    CreationChallengeRuleType.manualConfirm)
                   OutlinedButton(
-                    onPressed: () => ref.read(creationChallengeServiceProvider.notifier).completeManually(challenge.id),
+                    onPressed: () => ref
+                        .read(creationChallengeServiceProvider.notifier)
+                        .completeManually(challenge.id),
                     child: Text(l10n.creationChallengesMarkCompleteAction),
                   )
                 else
@@ -229,7 +257,9 @@ class _ChallengeCard extends ConsumerWidget {
                   ),
                 const SizedBox(width: 8),
                 TextButton(
-                  onPressed: () => ref.read(creationChallengeServiceProvider.notifier).skipChallenge(summary.slot),
+                  onPressed: () => ref
+                      .read(creationChallengeServiceProvider.notifier)
+                      .skipChallenge(summary.slot),
                   child: Text(l10n.creationChallengesSkipAction),
                 ),
               ],
@@ -243,23 +273,30 @@ class _ChallengeCard extends ConsumerWidget {
   Widget _statusChip(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final (label, icon) = switch (summary.status) {
-      CreationChallengeStatus.completed => (l10n.creationChallengesStatusCompleted, Icons.check_circle_rounded),
-      CreationChallengeStatus.expired => (l10n.creationChallengesStatusExpired, Icons.schedule_rounded),
-      CreationChallengeStatus.available => (l10n.creationChallengesStatusOpen, Icons.radio_button_unchecked_rounded),
+      CreationChallengeStatus.completed => (
+        l10n.creationChallengesStatusCompleted,
+        Icons.check_circle_rounded,
+      ),
+      CreationChallengeStatus.expired => (
+        l10n.creationChallengesStatusExpired,
+        Icons.schedule_rounded,
+      ),
+      CreationChallengeStatus.available => (
+        l10n.creationChallengesStatusOpen,
+        Icons.radio_button_unchecked_rounded,
+      ),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        color: Theme.of(
+          context,
+        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 16),
-          const SizedBox(width: 6),
-          Text(label),
-        ],
+        children: [Icon(icon, size: 16), const SizedBox(width: 6), Text(label)],
       ),
     );
   }
@@ -290,8 +327,14 @@ class _ChallengeCard extends ConsumerWidget {
     }
   }
 
-  Future<void> _openChallenge(BuildContext context, WidgetRef ref, CreationChallenge challenge) async {
-    await ref.read(creationChallengeServiceProvider.notifier).startChallenge(challenge.id);
+  Future<void> _openChallenge(
+    BuildContext context,
+    WidgetRef ref,
+    CreationChallenge challenge,
+  ) async {
+    await ref
+        .read(creationChallengeServiceProvider.notifier)
+        .startChallenge(challenge.id);
     switch (challenge.targetExplorerMode) {
       case CreationExplorerMode.skyExplorer:
         if (context.mounted) context.pushNamed('skyExplorer');

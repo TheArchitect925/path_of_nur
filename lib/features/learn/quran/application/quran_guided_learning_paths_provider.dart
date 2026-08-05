@@ -31,13 +31,15 @@ class QuranGuidedLearningProgressNotifier
   void markPathStarted({required String pathId, String? stepId}) {
     final now = DateTime.now().toIso8601String();
     final current = _entryFor(pathId);
-    final nextEntries = Map<String, QuranGuidedLearningPathProgressEntry>.from(
-      state.entriesByPath,
-    )..[pathId] = current.copyWith(
-        startedAtIso: current.startedAtIso ?? now,
-        lastOpenedStopId: stepId ?? current.lastOpenedStopId,
-        lastAccessedAtIso: now,
-      );
+    final nextEntries =
+        Map<String, QuranGuidedLearningPathProgressEntry>.from(
+            state.entriesByPath,
+          )
+          ..[pathId] = current.copyWith(
+            startedAtIso: current.startedAtIso ?? now,
+            lastOpenedStopId: stepId ?? current.lastOpenedStopId,
+            lastAccessedAtIso: now,
+          );
 
     state = state.copyWith(
       entriesByPath: nextEntries,
@@ -51,13 +53,15 @@ class QuranGuidedLearningProgressNotifier
   void markStepOpened({required String pathId, required String stepId}) {
     final now = DateTime.now().toIso8601String();
     final current = _entryFor(pathId);
-    final nextEntries = Map<String, QuranGuidedLearningPathProgressEntry>.from(
-      state.entriesByPath,
-    )..[pathId] = current.copyWith(
-        startedAtIso: current.startedAtIso ?? now,
-        lastOpenedStopId: stepId,
-        lastAccessedAtIso: now,
-      );
+    final nextEntries =
+        Map<String, QuranGuidedLearningPathProgressEntry>.from(
+            state.entriesByPath,
+          )
+          ..[pathId] = current.copyWith(
+            startedAtIso: current.startedAtIso ?? now,
+            lastOpenedStopId: stepId,
+            lastAccessedAtIso: now,
+          );
 
     state = state.copyWith(
       entriesByPath: nextEntries,
@@ -77,16 +81,18 @@ class QuranGuidedLearningProgressNotifier
     final completed = Set<String>.from(current.completedStopIds)..add(stepId);
     final isCompleted = completed.length >= path.steps.length;
 
-    final nextEntries = Map<String, QuranGuidedLearningPathProgressEntry>.from(
-      state.entriesByPath,
-    )..[path.id] = current.copyWith(
-        startedAtIso: current.startedAtIso ?? now,
-        lastOpenedStopId: stepId,
-        completedStopIds: completed,
-        lastAccessedAtIso: now,
-        completedAtIso: isCompleted ? now : current.completedAtIso,
-        clearCompletedAtIso: !isCompleted,
-      );
+    final nextEntries =
+        Map<String, QuranGuidedLearningPathProgressEntry>.from(
+            state.entriesByPath,
+          )
+          ..[path.id] = current.copyWith(
+            startedAtIso: current.startedAtIso ?? now,
+            lastOpenedStopId: stepId,
+            completedStopIds: completed,
+            lastAccessedAtIso: now,
+            completedAtIso: isCompleted ? now : current.completedAtIso,
+            clearCompletedAtIso: !isCompleted,
+          );
 
     state = state.copyWith(
       entriesByPath: nextEntries,
@@ -129,26 +135,29 @@ final quranGuidedPathsByCategoryProvider =
       final grouped =
           <QuranGuidedLearningPathCategory, List<QuranGuidedLearningPath>>{};
       for (final path in ref.watch(quranGuidedLearningPathsProvider)) {
-        grouped.putIfAbsent(path.category, () => <QuranGuidedLearningPath>[]).add(
-          path,
-        );
+        grouped
+            .putIfAbsent(path.category, () => <QuranGuidedLearningPath>[])
+            .add(path);
       }
       return grouped;
     });
 
-final quranGuidedLearningContinuityProvider = StateNotifierProvider<
-  QuranGuidedLearningProgressNotifier,
-  QuranGuidedLearningProgressState
->((ref) {
-  return QuranGuidedLearningProgressNotifier(ref.watch(localStoreProvider));
-});
+final quranGuidedLearningContinuityProvider =
+    StateNotifierProvider<
+      QuranGuidedLearningProgressNotifier,
+      QuranGuidedLearningProgressState
+    >((ref) {
+      return QuranGuidedLearningProgressNotifier(ref.watch(localStoreProvider));
+    });
 
 final quranGuidedPathProgressByIdProvider =
     Provider.family<QuranGuidedLearningPathProgressEntry?, String>((
       ref,
       pathId,
     ) {
-      return ref.watch(quranGuidedLearningContinuityProvider).entriesByPath[pathId];
+      return ref
+          .watch(quranGuidedLearningContinuityProvider)
+          .entriesByPath[pathId];
     });
 
 final quranGuidedNextStepForPathProvider =

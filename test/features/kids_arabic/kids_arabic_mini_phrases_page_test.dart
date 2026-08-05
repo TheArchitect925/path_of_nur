@@ -57,62 +57,67 @@ void main() {
     return container;
   }
 
-  testWidgets('mini phrases page renders phrase meaning and tap-to-hear audio', (
-    tester,
-  ) async {
-    final audio = _FakeKidsArabicAudioService();
-    await pumpMiniPhrases(
-      tester,
-      overrides: <Override>[
-        kidsArabicAudioServiceProvider.overrideWithValue(audio),
-      ],
-    );
+  testWidgets(
+    'mini phrases page renders phrase meaning and tap-to-hear audio',
+    (tester) async {
+      final audio = _FakeKidsArabicAudioService();
+      await pumpMiniPhrases(
+        tester,
+        overrides: <Override>[
+          kidsArabicAudioServiceProvider.overrideWithValue(audio),
+        ],
+      );
 
-    final l10n = AppLocalizations.of(
-      tester.element(find.byType(KidsArabicMiniPhrasesPage)),
-    );
-    final bismillah = kidsArabicMiniPhraseById('bismillah')!;
+      final l10n = AppLocalizations.of(
+        tester.element(find.byType(KidsArabicMiniPhrasesPage)),
+      );
+      final bismillah = kidsArabicMiniPhraseById('bismillah')!;
 
-    expect(find.text(l10n.kidsArabicMiniPhrasesTitle), findsOneWidget);
-    expect(find.text(bismillah.phraseAr), findsOneWidget);
-    expect(find.text('bismillah'), findsOneWidget);
-    expect(find.text(l10n.kidsArabicMiniPhraseBismillahMeaning), findsOneWidget);
+      expect(find.text(l10n.kidsArabicMiniPhrasesTitle), findsOneWidget);
+      expect(find.text(bismillah.phraseAr), findsOneWidget);
+      expect(find.text('bismillah'), findsOneWidget);
+      expect(
+        find.text(l10n.kidsArabicMiniPhraseBismillahMeaning),
+        findsOneWidget,
+      );
 
-    await tester.tap(find.text(bismillah.phraseAr));
-    await tester.pump();
+      await tester.tap(find.text(bismillah.phraseAr));
+      await tester.pump();
 
-    expect(audio.spokenTexts, contains(bismillah.phraseAr));
-    expect(find.text(l10n.kidsArabicRepeatAfterMePrompt), findsOneWidget);
-  });
+      expect(audio.spokenTexts, contains(bismillah.phraseAr));
+      expect(find.text(l10n.kidsArabicRepeatAfterMePrompt), findsOneWidget);
+    },
+  );
 
-  testWidgets('mini phrases page moves between phrases with next and previous buttons', (
-    tester,
-  ) async {
-    await pumpMiniPhrases(tester);
-    final l10n = AppLocalizations.of(
-      tester.element(find.byType(KidsArabicMiniPhrasesPage)),
-    );
-    final bismillah = kidsArabicMiniPhraseById('bismillah')!;
-    final alhamdulillah = kidsArabicMiniPhraseById('alhamdulillah')!;
+  testWidgets(
+    'mini phrases page moves between phrases with next and previous buttons',
+    (tester) async {
+      await pumpMiniPhrases(tester);
+      final l10n = AppLocalizations.of(
+        tester.element(find.byType(KidsArabicMiniPhrasesPage)),
+      );
+      final bismillah = kidsArabicMiniPhraseById('bismillah')!;
+      final alhamdulillah = kidsArabicMiniPhraseById('alhamdulillah')!;
 
-    expect(find.text(bismillah.phraseAr), findsOneWidget);
+      expect(find.text(bismillah.phraseAr), findsOneWidget);
 
-    await tester.scrollUntilVisible(
-      find.text(l10n.kidsArabicMiniPhrasesNextAction),
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.tap(find.text(l10n.kidsArabicMiniPhrasesNextAction));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 250));
+      await tester.scrollUntilVisible(
+        find.text(l10n.kidsArabicMiniPhrasesNextAction),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(find.text(l10n.kidsArabicMiniPhrasesNextAction));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 250));
 
-    expect(find.text(alhamdulillah.phraseAr), findsWidgets);
-    expect(find.text('alhamdulillah'), findsOneWidget);
+      expect(find.text(alhamdulillah.phraseAr), findsWidgets);
+      expect(find.text('alhamdulillah'), findsOneWidget);
 
-    await tester.tap(find.text(l10n.kidsArabicMiniPhrasesPreviousAction));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 250));
+      await tester.tap(find.text(l10n.kidsArabicMiniPhrasesPreviousAction));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 250));
 
-    expect(find.text(bismillah.phraseAr), findsWidgets);
-  });
+      expect(find.text(bismillah.phraseAr), findsWidgets);
+    },
+  );
 }

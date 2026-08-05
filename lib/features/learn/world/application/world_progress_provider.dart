@@ -202,10 +202,7 @@ class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
         actionType: oceanActionLessonCompleted,
         sourceModule: oceanSourceLearn,
         referenceId: lessonId,
-        metadata: {
-          'timestamp': updated.completedIso,
-          'category': 'world',
-        },
+        metadata: {'timestamp': updated.completedIso, 'category': 'world'},
       );
     }
   }

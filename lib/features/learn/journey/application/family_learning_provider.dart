@@ -43,7 +43,9 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
     required ChildBrowsingMode browsingMode,
     required ChildLearningPermissions permissions,
   }) async {
-    final activeProfile = _ref.read(accountsSyncControllerProvider).activeProfile;
+    final activeProfile = _ref
+        .read(accountsSyncControllerProvider)
+        .activeProfile;
     final guardianProfileId = activeProfile?.profileId;
     if (guardianProfileId == null) {
       return;
@@ -67,7 +69,8 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
     final now = DateTime.now().toIso8601String();
     final nextGroups = {...state.groups};
     final groupId = 'family_$guardianProfileId';
-    final existingGroup = nextGroups[groupId] ??
+    final existingGroup =
+        nextGroups[groupId] ??
         FamilyLearningGroup(
           id: groupId,
           primaryGuardianProfileId: guardianProfileId,
@@ -127,10 +130,7 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
     final now = DateTime.now().toIso8601String();
     final nextChild = child.copyWith(updatedAt: now);
     state = state.copyWith(
-      childProfiles: {
-        ...state.childProfiles,
-        child.id: nextChild,
-      },
+      childProfiles: {...state.childProfiles, child.id: nextChild},
     );
     await _save();
     await _ref
@@ -144,7 +144,9 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
   }
 
   Future<void> switchToProfile(String profileId) {
-    return _ref.read(deviceSessionManagerProvider).switchProfile(profileId, pin: '');
+    return _ref
+        .read(deviceSessionManagerProvider)
+        .switchProfile(profileId, pin: '');
   }
 
   Future<void> _seedChildProfileSnapshot(ChildLearningProfile child) async {
@@ -152,16 +154,22 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
     if (path == null) {
       return;
     }
-    final snapshot = _ref.read(accountsSyncControllerProvider).profileSnapshots[child.id];
+    final snapshot = _ref
+        .read(accountsSyncControllerProvider)
+        .profileSnapshots[child.id];
     final existingPathState = UserLearningPathState.fromJson(
       _decodeSnapshotJsonMap(snapshot?[_familyLearningPathStateKey]),
     );
-    final validPhaseId = _resolvePhaseId(existingPathState?.currentPhaseId, path);
+    final validPhaseId = _resolvePhaseId(
+      existingPathState?.currentPhaseId,
+      path,
+    );
     final nextPathState = UserLearningPathState(
       selectedLevel: child.learningLevel,
       ageGroup: child.ageGroup,
       currentPhaseId: validPhaseId,
-      completedPhaseIds: existingPathState?.completedPhaseIds ?? const <String>{},
+      completedPhaseIds:
+          existingPathState?.completedPhaseIds ?? const <String>{},
       activeJourneyIds: existingPathState?.activeJourneyIds ?? const <String>{},
       secondaryExplorationIds:
           existingPathState?.secondaryExplorationIds ?? const <String>{},
@@ -171,13 +179,10 @@ class FamilyLearningNotifier extends StateNotifier<FamilyLearningStoreState> {
     );
     await _ref
         .read(accountsSyncControllerProvider.notifier)
-        .mergeIntoProfileSnapshot(
-          child.id,
-          <String, dynamic>{
-            _familyLearningPathStateKey: jsonEncode(nextPathState.toJson()),
-            _familyLearningLocaleKey: child.preferredLanguageTag,
-          },
-        );
+        .mergeIntoProfileSnapshot(child.id, <String, dynamic>{
+          _familyLearningPathStateKey: jsonEncode(nextPathState.toJson()),
+          _familyLearningLocaleKey: child.preferredLanguageTag,
+        });
   }
 
   String _resolvePhaseId(String? candidate, LearningPath path) {
@@ -268,8 +273,9 @@ final activeFamilyLearningContextProvider =
         activeGuardianProfileId: activeGuardianProfileId,
         activeChildProfile: activeChildProfile,
         familyGroup: group,
-        switchableProfileIds:
-            switchableProfileIds.toSet().toList(growable: false),
+        switchableProfileIds: switchableProfileIds.toSet().toList(
+          growable: false,
+        ),
         visibilityPolicy: _buildVisibilityPolicy(
           activeProfile: activeProfile,
           childProfile: activeChildProfile,
@@ -283,8 +289,8 @@ FamilyLearningVisibilityPolicy _buildVisibilityPolicy({
   required ChildLearningProfile? childProfile,
   required AccountsSyncState accounts,
 }) {
-  final isChild = activeProfile?.profileType == ProfileKind.child ||
-      childProfile != null;
+  final isChild =
+      activeProfile?.profileType == ProfileKind.child || childProfile != null;
   if (!isChild) {
     return const FamilyLearningVisibilityPolicy(
       isChildProfile: false,
@@ -300,13 +306,15 @@ FamilyLearningVisibilityPolicy _buildVisibilityPolicy({
   }
   final effectiveAgeGroup =
       childProfile?.ageGroup ?? _defaultAgeGroupForProfile(activeProfile!);
-  final defaultPermissions =
-      ChildLearningPermissions.defaultsFor(effectiveAgeGroup);
+  final defaultPermissions = ChildLearningPermissions.defaultsFor(
+    effectiveAgeGroup,
+  );
   final permissions = childProfile?.permissions ?? defaultPermissions;
   final guidedOnly =
       (childProfile?.browsingMode ?? ChildBrowsingMode.guidedOnly) ==
-          ChildBrowsingMode.guidedOnly;
-  final allowAdvanced = permissions.allowAdvancedJourneys &&
+      ChildBrowsingMode.guidedOnly;
+  final allowAdvanced =
+      permissions.allowAdvancedJourneys &&
       !accounts.sharedDeviceSafety.hideAdvancedToolsFromChildProfiles;
   return FamilyLearningVisibilityPolicy(
     isChildProfile: true,
@@ -339,7 +347,8 @@ bool _isDiscoveryJourney(String journeyId) {
   }.contains(journeyId);
 }
 
-bool _isTriviaJourney(String journeyId) => journeyId == 'trivia-knowledge-paths';
+bool _isTriviaJourney(String journeyId) =>
+    journeyId == 'trivia-knowledge-paths';
 
 bool learningVisibilityAllowsJourney(
   FamilyLearningVisibilityPolicy policy,
@@ -383,9 +392,7 @@ final familyLearningSwitcherProfilesProvider = Provider<List<ProfileRecord>>((
   final profiles = ref.watch(
     accountsSyncControllerProvider.select((state) => state.profiles),
   );
-  final byId = {
-    for (final item in profiles) item.profileId: item,
-  };
+  final byId = {for (final item in profiles) item.profileId: item};
   return context.switchableProfileIds
       .map((id) => byId[id])
       .whereType<ProfileRecord>()
@@ -426,11 +433,9 @@ ChildLearningProgressState _childProgressFromSnapshot({
       : LearningPathRegistry.pathForLevel(pathState.selectedLevel);
   final totalJourneys = path == null
       ? 0
-      : path.phases.fold<int>(
-          0,
-          (sum, phase) => sum + phase.journeyIds.length,
-        );
-  final phaseId = pathState?.currentPhaseId ??
+      : path.phases.fold<int>(0, (sum, phase) => sum + phase.journeyIds.length);
+  final phaseId =
+      pathState?.currentPhaseId ??
       (path?.phases.isNotEmpty == true ? path!.phases.first.id : null);
   final phase = path?.phases.where((item) => item.id == phaseId).firstOrNull;
   final recommendationJourneyIds = phase == null
@@ -454,7 +459,8 @@ ChildLearningProgressState _childProgressFromSnapshot({
         progress.todayLightOpenedDayKeys.contains(LocalStore.todayKey()),
     recommendationJourneyIds: recommendationJourneyIds,
     recentCompletedStageId: _recentCompletedStageId(progress),
-    lastActivityAt: progress.completedStageDateKeys[_recentCompletedStageId(progress)],
+    lastActivityAt:
+        progress.completedStageDateKeys[_recentCompletedStageId(progress)],
   );
 }
 
@@ -487,7 +493,9 @@ final familyLearningChildProgressProvider =
       if (accounts.activeProfileId == childProfileId) {
         final progress = ref.watch(learningJourneyProgressProvider);
         final pathState = ref.watch(learningPathStateProvider);
-        final completedJourneyIds = _completedJourneyIds(progress.completedStageIds);
+        final completedJourneyIds = _completedJourneyIds(
+          progress.completedStageIds,
+        );
         final totalJourneys = pathState == null
             ? 0
             : pathState.path.phases.fold<int>(
@@ -507,13 +515,15 @@ final familyLearningChildProgressProvider =
           todayCompleted:
               progress.activeDayKeys.contains(LocalStore.todayKey()) ||
               progress.todayLightOpenedDayKeys.contains(LocalStore.todayKey()),
-          recommendationJourneyIds: pathState?.activeJourneys
+          recommendationJourneyIds:
+              pathState?.activeJourneys
                   .map((item) => item.id)
                   .take(3)
                   .toList(growable: false) ??
               const <String>[],
           recentCompletedStageId: _recentCompletedStageId(progress),
-          lastActivityAt: progress.completedStageDateKeys[_recentCompletedStageId(progress)],
+          lastActivityAt: progress
+              .completedStageDateKeys[_recentCompletedStageId(progress)],
         );
       }
       return _childProgressFromSnapshot(

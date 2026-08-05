@@ -38,7 +38,9 @@ ArabicLearningAssessmentSession _buildKidsSession(Ref ref) {
   final continuation = ref.watch(
     arabicLearningContinuationProvider(ArabicLearningAudience.kids),
   );
-  final review = ref.watch(arabicLearningReviewProvider(ArabicLearningAudience.kids));
+  final review = ref.watch(
+    arabicLearningReviewProvider(ArabicLearningAudience.kids),
+  );
   final progress = ref.watch(
     arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids),
   );
@@ -58,17 +60,18 @@ ArabicLearningAssessmentSession _buildKidsSession(Ref ref) {
       .map((status) => status.word)
       .toList(growable: false);
   final phrasePool = phrases.toList(growable: false);
-  final seedPools = <ArabicLearningContinuationContentType, List<_AssessmentSeed>>{
-    ArabicLearningContinuationContentType.letter: letterPool
-        .map(_kidsLetterSeed)
-        .toList(growable: false),
-    ArabicLearningContinuationContentType.word: wordPool
-        .map(_kidsWordSeed)
-        .toList(growable: false),
-    ArabicLearningContinuationContentType.phrase: phrasePool
-        .map(_kidsPhraseSeed)
-        .toList(growable: false),
-  };
+  final seedPools =
+      <ArabicLearningContinuationContentType, List<_AssessmentSeed>>{
+        ArabicLearningContinuationContentType.letter: letterPool
+            .map(_kidsLetterSeed)
+            .toList(growable: false),
+        ArabicLearningContinuationContentType.word: wordPool
+            .map(_kidsWordSeed)
+            .toList(growable: false),
+        ArabicLearningContinuationContentType.phrase: phrasePool
+            .map(_kidsPhraseSeed)
+            .toList(growable: false),
+      };
 
   final prioritized = <_AssessmentSeed>[];
   final seen = <String>{};
@@ -165,17 +168,18 @@ ArabicLearningAssessmentSession _buildAdultSession(Ref ref) {
   final phrasePool = arabicSharedMiniPhrases
       .where((phrase) => adultPhraseRouteTarget(phrase.id) != null)
       .toList(growable: false);
-  final seedPools = <ArabicLearningContinuationContentType, List<_AssessmentSeed>>{
-    ArabicLearningContinuationContentType.letter: arabicAlphabetCatalog
-        .map((letter) => _adultLetterSeed(letter, catalog))
-        .toList(growable: false),
-    ArabicLearningContinuationContentType.word: words
-        .map(_adultWordSeed)
-        .toList(growable: false),
-    ArabicLearningContinuationContentType.phrase: phrasePool
-        .map(_adultPhraseSeed)
-        .toList(growable: false),
-  };
+  final seedPools =
+      <ArabicLearningContinuationContentType, List<_AssessmentSeed>>{
+        ArabicLearningContinuationContentType.letter: arabicAlphabetCatalog
+            .map((letter) => _adultLetterSeed(letter, catalog))
+            .toList(growable: false),
+        ArabicLearningContinuationContentType.word: words
+            .map(_adultWordSeed)
+            .toList(growable: false),
+        ArabicLearningContinuationContentType.phrase: phrasePool
+            .map(_adultPhraseSeed)
+            .toList(growable: false),
+      };
 
   final prioritized = <_AssessmentSeed>[];
   final seen = <String>{};
@@ -256,7 +260,8 @@ List<ArabicLearningAssessmentQuestion> _buildQuestions(
   final questions = <ArabicLearningAssessmentQuestion>[];
   for (var index = 0; index < seeds.length; index++) {
     final seed = seeds[index];
-    final sameTypePool = seedPools[seed.contentType] ?? const <_AssessmentSeed>[];
+    final sameTypePool =
+        seedPools[seed.contentType] ?? const <_AssessmentSeed>[];
     final distractors = _distractorsFor(seed, sameTypePool);
     final options = <ArabicLearningAssessmentOption>[
       seed.option,
@@ -302,9 +307,9 @@ List<_AssessmentSeed> _distractorsFor(
   if (sameTypePool.length <= 1) {
     return const <_AssessmentSeed>[];
   }
-  final ordered = sameTypePool.where((item) => item.itemId != seed.itemId).toList(
-        growable: false,
-      );
+  final ordered = sameTypePool
+      .where((item) => item.itemId != seed.itemId)
+      .toList(growable: false);
   if (ordered.isEmpty) {
     return const <_AssessmentSeed>[];
   }
@@ -333,13 +338,19 @@ _AssessmentSeed? _kidsSeedFromSuggestion(
 }) {
   switch (suggestion.contentType) {
     case ArabicLearningContinuationContentType.letter:
-      final letter = letters.where((item) => item.id == suggestion.itemId).firstOrNull;
+      final letter = letters
+          .where((item) => item.id == suggestion.itemId)
+          .firstOrNull;
       return letter == null ? null : _kidsLetterSeed(letter);
     case ArabicLearningContinuationContentType.word:
-      final word = words.where((item) => item.id == suggestion.itemId).firstOrNull;
+      final word = words
+          .where((item) => item.id == suggestion.itemId)
+          .firstOrNull;
       return word == null ? null : _kidsWordSeed(word);
     case ArabicLearningContinuationContentType.phrase:
-      final phrase = phrases.where((item) => item.id == suggestion.itemId).firstOrNull;
+      final phrase = phrases
+          .where((item) => item.id == suggestion.itemId)
+          .firstOrNull;
       return phrase == null ? null : _kidsPhraseSeed(phrase);
     case ArabicLearningContinuationContentType.lesson:
     case ArabicLearningContinuationContentType.review:
@@ -358,13 +369,19 @@ _AssessmentSeed? _kidsSeedFromRecentActivity(
   }
   switch (activity.contentType) {
     case ArabicLearningContinuationContentType.letter:
-      final letter = letters.where((item) => item.id == activity.itemId).firstOrNull;
+      final letter = letters
+          .where((item) => item.id == activity.itemId)
+          .firstOrNull;
       return letter == null ? null : _kidsLetterSeed(letter);
     case ArabicLearningContinuationContentType.word:
-      final word = words.where((item) => item.id == activity.itemId).firstOrNull;
+      final word = words
+          .where((item) => item.id == activity.itemId)
+          .firstOrNull;
       return word == null ? null : _kidsWordSeed(word);
     case ArabicLearningContinuationContentType.phrase:
-      final phrase = phrases.where((item) => item.id == activity.itemId).firstOrNull;
+      final phrase = phrases
+          .where((item) => item.id == activity.itemId)
+          .firstOrNull;
       return phrase == null ? null : _kidsPhraseSeed(phrase);
     case ArabicLearningContinuationContentType.lesson:
     case ArabicLearningContinuationContentType.review:
@@ -487,17 +504,22 @@ _AssessmentSeed? _adultSeedFromSuggestion(
     case ArabicLearningContinuationContentType.word:
       final word = words
           .where(
-            (item) => (item.sharedBeginnerWordId ?? item.id) == suggestion.itemId,
+            (item) =>
+                (item.sharedBeginnerWordId ?? item.id) == suggestion.itemId,
           )
           .firstOrNull;
       return word == null ? null : _adultWordSeed(word);
     case ArabicLearningContinuationContentType.phrase:
-      final phrase = phrases.where((item) => item.id == suggestion.itemId).firstOrNull;
+      final phrase = phrases
+          .where((item) => item.id == suggestion.itemId)
+          .firstOrNull;
       return phrase == null ? null : _adultPhraseSeed(phrase);
     case ArabicLearningContinuationContentType.lesson:
       final lesson = catalog.lessonById(suggestion.itemId);
       final firstLetter = lesson == null ? null : _firstLetterForLesson(lesson);
-      return firstLetter == null ? null : _adultLetterSeed(firstLetter, catalog);
+      return firstLetter == null
+          ? null
+          : _adultLetterSeed(firstLetter, catalog);
     case ArabicLearningContinuationContentType.review:
       return null;
   }
@@ -519,7 +541,9 @@ _AssessmentSeed? _adultSeedFromRecentActivity(
       return letter == null ? null : _adultLetterSeed(letter, catalog);
     case ArabicLearningContinuationContentType.word:
       final word = words
-          .where((item) => (item.sharedBeginnerWordId ?? item.id) == activity.itemId)
+          .where(
+            (item) => (item.sharedBeginnerWordId ?? item.id) == activity.itemId,
+          )
           .firstOrNull;
       return word == null ? null : _adultWordSeed(word);
     case ArabicLearningContinuationContentType.phrase:
@@ -532,7 +556,9 @@ _AssessmentSeed? _adultSeedFromRecentActivity(
           return _adultPhraseSeed(phrase);
         }
       }
-      final phrase = phrases.where((item) => item.id == activity.itemId).firstOrNull;
+      final phrase = phrases
+          .where((item) => item.id == activity.itemId)
+          .firstOrNull;
       return phrase == null ? null : _adultPhraseSeed(phrase);
     case ArabicLearningContinuationContentType.lesson:
       final lesson = catalog.lessonById(activity.itemId);
@@ -556,7 +582,9 @@ _AssessmentSeed? _adultSeedFromContinuation(
     case ArabicLearningContinuationContentType.word:
       final word = words
           .where(
-            (item) => (item.sharedBeginnerWordId ?? item.id) == continuation.primaryItemId,
+            (item) =>
+                (item.sharedBeginnerWordId ?? item.id) ==
+                continuation.primaryItemId,
           )
           .firstOrNull;
       return word == null ? null : _adultWordSeed(word);
@@ -626,7 +654,8 @@ _AssessmentSeed _adultWordSeed(QuranWordEntry word) {
     ),
     audioPlaybackId: 'word:${word.sharedBeginnerWordId ?? word.id}',
     audioAssetPath: word.audio?.assetPath,
-    audioAlternateAssetPaths: word.audio?.alternateAudioAssetPaths ?? const <String>[],
+    audioAlternateAssetPaths:
+        word.audio?.alternateAudioAssetPaths ?? const <String>[],
     audioFallbackText: word.audio?.fallbackTextLabel ?? word.arabic,
   );
 }

@@ -143,61 +143,66 @@ void main() {
     expect(find.text(l10n.learnGamesHubTitleText), findsOneWidget);
   });
 
-  test('Games catalog exposes the in-page section and option lists directly', () async {
-    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-    final sections = GamesIslandCatalog.sections(l10n);
-    final sectionTitles = sections.map((section) => section.title).toList(growable: false);
-    final cardTitles = sections
-        .expand((section) => section.cards)
-        .map((card) => card.title)
-        .toList(growable: false);
-    final routeNames = sections
-        .expand((section) => section.cards)
-        .map((card) => card.routeTarget.routeName)
-        .toList(growable: false);
+  test(
+    'Games catalog exposes the in-page section and option lists directly',
+    () async {
+      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+      final sections = GamesIslandCatalog.sections(l10n);
+      final sectionTitles = sections
+          .map((section) => section.title)
+          .toList(growable: false);
+      final cardTitles = sections
+          .expand((section) => section.cards)
+          .map((card) => card.title)
+          .toList(growable: false);
+      final routeNames = sections
+          .expand((section) => section.cards)
+          .map((card) => card.routeTarget.routeName)
+          .toList(growable: false);
 
-    expect(
-      sectionTitles,
-      containsAll(<String>[
-        l10n.learnGamesIslandSectionDailyTitle,
-        l10n.learnGamesIslandSectionKnowledgeTitle,
-        l10n.learnGamesIslandSectionQuranTitle,
-        l10n.learnGamesIslandSectionHadithTitle,
-        l10n.learnGamesIslandSectionModesTitle,
-        l10n.learnGamesIslandSectionGrowthTitle,
-        l10n.learnGamesIslandSectionPacksTitle,
-      ]),
-    );
-    expect(
-      cardTitles,
-      containsAll(<String>[
-        l10n.learnGamesDailyKnowledgeTodayTitleText,
-        l10n.learnGamesKnowledgeCrosswordTitleText,
-        l10n.learnGamesKnowledgeWordSearchTitleText,
-        l10n.learnGamesKnowledgeMatchingTitleText,
-        l10n.learnGamesQuranAyahCompletionTitleText,
-        l10n.learnGamesQuranAdultShortSurahsTitleText,
-        l10n.learnGamesQuranMemorizationSetTitleText,
-        l10n.learnGamesQuranDailyAyahTitleText,
-        l10n.learnGamesHadithReflectionHomeTitleText,
-        l10n.learnGamesHadithPatienceTitleText,
-        l10n.learnGamesHadithAngerTitleText,
-        l10n.learnGamesHadithFamilyTitleText,
-        l10n.learnGamesChallengeDailyRunTitleText,
-        l10n.learnGamesChallengeReviewModeTitleText,
-        l10n.learnGamesChallengeTriviaTitleText,
-        l10n.learnGamesGrowthSpiritualTitleText,
-        l10n.learnGamesGrowthChooseIntentionTitleText,
-        l10n.learnGamesGrowthDailyReflectionTitleText,
-        l10n.learnGamesGrowthThemeFocusTitleText,
-        l10n.learnGamesPackAdultFoundationsTitleText,
-        l10n.learnGamesPackProphetsTitleText,
-        l10n.learnGamesPackDuasTitleText,
-        l10n.learnGamesPackDailyRotationTitleText,
-      ]),
-    );
-    expect(routeNames, isNot(contains('learnGamesSection')));
-  });
+      expect(
+        sectionTitles,
+        containsAll(<String>[
+          l10n.learnGamesIslandSectionDailyTitle,
+          l10n.learnGamesIslandSectionKnowledgeTitle,
+          l10n.learnGamesIslandSectionQuranTitle,
+          l10n.learnGamesIslandSectionHadithTitle,
+          l10n.learnGamesIslandSectionModesTitle,
+          l10n.learnGamesIslandSectionGrowthTitle,
+          l10n.learnGamesIslandSectionPacksTitle,
+        ]),
+      );
+      expect(
+        cardTitles,
+        containsAll(<String>[
+          l10n.learnGamesDailyKnowledgeTodayTitleText,
+          l10n.learnGamesKnowledgeCrosswordTitleText,
+          l10n.learnGamesKnowledgeWordSearchTitleText,
+          l10n.learnGamesKnowledgeMatchingTitleText,
+          l10n.learnGamesQuranAyahCompletionTitleText,
+          l10n.learnGamesQuranAdultShortSurahsTitleText,
+          l10n.learnGamesQuranMemorizationSetTitleText,
+          l10n.learnGamesQuranDailyAyahTitleText,
+          l10n.learnGamesHadithReflectionHomeTitleText,
+          l10n.learnGamesHadithPatienceTitleText,
+          l10n.learnGamesHadithAngerTitleText,
+          l10n.learnGamesHadithFamilyTitleText,
+          l10n.learnGamesChallengeDailyRunTitleText,
+          l10n.learnGamesChallengeReviewModeTitleText,
+          l10n.learnGamesChallengeTriviaTitleText,
+          l10n.learnGamesGrowthSpiritualTitleText,
+          l10n.learnGamesGrowthChooseIntentionTitleText,
+          l10n.learnGamesGrowthDailyReflectionTitleText,
+          l10n.learnGamesGrowthThemeFocusTitleText,
+          l10n.learnGamesPackAdultFoundationsTitleText,
+          l10n.learnGamesPackProphetsTitleText,
+          l10n.learnGamesPackDuasTitleText,
+          l10n.learnGamesPackDailyRotationTitleText,
+        ]),
+      );
+      expect(routeNames, isNot(contains('learnGamesSection')));
+    },
+  );
 
   testWidgets('Browse All search and routing work with real destinations', (
     tester,

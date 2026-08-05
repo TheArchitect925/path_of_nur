@@ -82,8 +82,7 @@ final List<TriviaQuestion> ethicsCharacterTriviaQuestions = [
     difficulty: TriviaDifficulty.easy,
     prompt: 'Islamic character includes how a person speaks to others.',
     correct: true,
-    explanation:
-        'Speech is one of the clearest signs of character and faith.',
+    explanation: 'Speech is one of the clearest signs of character and faith.',
     tags: const ['akhlaq', 'speech', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -111,7 +110,8 @@ final List<TriviaQuestion> ethicsCharacterTriviaQuestions = [
     id: 'akhlaq_med_007',
     categoryId: 'akhlaq',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Good akhlaq includes controlling anger rather than letting it rule every response.',
+    prompt:
+        'Good akhlaq includes controlling anger rather than letting it rule every response.',
     correct: true,
     explanation:
         'Self-restraint and control are signs of strength in character.',
@@ -143,7 +143,8 @@ final List<TriviaQuestion> ethicsCharacterTriviaQuestions = [
     id: 'akhlaq_hard_009',
     categoryId: 'akhlaq',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement best describes the relationship between worship and character?',
+    prompt:
+        'Which statement best describes the relationship between worship and character?',
     options: const [
       ('linked', 'Worship and character are deeply linked in Islam'),
       ('separate', 'They are completely unrelated'),
@@ -162,7 +163,8 @@ final List<TriviaQuestion> ethicsCharacterTriviaQuestions = [
     id: 'akhlaq_hard_010',
     categoryId: 'akhlaq',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Akhlaq is only about private feelings and has nothing to do with how a person treats others.',
+    prompt:
+        'Akhlaq is only about private feelings and has nothing to do with how a person treats others.',
     correct: false,
     explanation:
         'Character is seen in speech, honesty, mercy, patience, fairness, and the way one treats others.',

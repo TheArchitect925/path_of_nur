@@ -7,10 +7,7 @@ import '../../../l10n/app_localizations.dart';
 import '../domain/contextual_linking_models.dart';
 
 class ContextualRelatedContentSection extends StatelessWidget {
-  const ContextualRelatedContentSection({
-    super.key,
-    required this.items,
-  });
+  const ContextualRelatedContentSection({super.key, required this.items});
 
   final List<ContextualLinkResult> items;
 
@@ -72,8 +69,10 @@ class ContextualRelatedContentSection extends StatelessWidget {
           ? null
           : LearningJourneyRegistry.journeyById(journeyId);
       if (journey != null) {
-        final localizedSubtitle = localizedJourneySubtitle(context, journey)
-            .trim();
+        final localizedSubtitle = localizedJourneySubtitle(
+          context,
+          journey,
+        ).trim();
         if (localizedSubtitle.isNotEmpty) {
           return localizedSubtitle;
         }

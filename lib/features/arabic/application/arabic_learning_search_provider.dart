@@ -26,19 +26,23 @@ final arabicLearningSearchResultsProvider =
       ref,
       search,
     ) {
-      final items = ref.watch(arabicLearningSearchIndexProvider(search.audience));
+      final items = ref.watch(
+        arabicLearningSearchIndexProvider(search.audience),
+      );
       final normalizedQuery = _normalizeForSearch(search.query);
 
-      final filtered = items.where((item) {
-        if (search.filters.isNotEmpty &&
-            !search.filters.contains(item.primaryFilter)) {
-          return false;
-        }
-        if (normalizedQuery.isEmpty) {
-          return true;
-        }
-        return _buildSearchBlob(item).contains(normalizedQuery);
-      }).toList(growable: false);
+      final filtered = items
+          .where((item) {
+            if (search.filters.isNotEmpty &&
+                !search.filters.contains(item.primaryFilter)) {
+              return false;
+            }
+            if (normalizedQuery.isEmpty) {
+              return true;
+            }
+            return _buildSearchBlob(item).contains(normalizedQuery);
+          })
+          .toList(growable: false);
 
       filtered.sort((a, b) {
         final scoreA = _matchScore(a, normalizedQuery);
@@ -56,7 +60,9 @@ final arabicLearningSearchResultsProvider =
     });
 
 List<ArabicLearningSearchItem> _buildKidsSearchIndex(Ref ref) {
-  final units = ref.watch(arabicContentUnitsProvider(ArabicLearningAudience.kids));
+  final units = ref.watch(
+    arabicContentUnitsProvider(ArabicLearningAudience.kids),
+  );
   final reviewSummary = ref.watch(
     arabicLearningReviewProvider(ArabicLearningAudience.kids),
   );
@@ -76,17 +82,16 @@ List<ArabicLearningSearchItem> _buildKidsSearchIndex(Ref ref) {
       },
       audiencePrefix: 'kids',
     ),
-    ..._reviewItemsFor(
-      reviewSummary,
-      startOrder: 400,
-    ),
+    ..._reviewItemsFor(reviewSummary, startOrder: 400),
   ];
 
   return items;
 }
 
 List<ArabicLearningSearchItem> _buildAdultSearchIndex(Ref ref) {
-  final units = ref.watch(arabicContentUnitsProvider(ArabicLearningAudience.adult));
+  final units = ref.watch(
+    arabicContentUnitsProvider(ArabicLearningAudience.adult),
+  );
   final reviewSummary = ref.watch(
     arabicLearningReviewProvider(ArabicLearningAudience.adult),
   );
@@ -106,10 +111,7 @@ List<ArabicLearningSearchItem> _buildAdultSearchIndex(Ref ref) {
       },
       audiencePrefix: 'adult',
     ),
-    ..._reviewItemsFor(
-      reviewSummary,
-      startOrder: 400,
-    ),
+    ..._reviewItemsFor(reviewSummary, startOrder: 400),
   ];
 
   return items;
@@ -127,7 +129,9 @@ List<ArabicLearningSearchItem> _lessonPackItems(
           type: ArabicLearningSearchItemType.lessonPack,
           target: pack.primaryTarget,
           title: pack.id,
-          arabicText: pack.previewArabic.isEmpty ? null : pack.previewArabic.join('  •  '),
+          arabicText: pack.previewArabic.isEmpty
+              ? null
+              : pack.previewArabic.join('  •  '),
           keywords: <String>[
             pack.id,
             pack.type.name,

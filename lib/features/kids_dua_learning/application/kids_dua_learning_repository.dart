@@ -13,10 +13,14 @@ final kidsDuaLearningRepositoryProvider = Provider<KidsDuaLearningRepository>(
 
 final kidsDuaLearningItemByIdProvider =
     Provider.family<KidsDuaLearningItem?, String>((ref, duaId) {
-      return ref.watch(kidsDuaLearningRepositoryProvider).learningItemById(duaId);
+      return ref
+          .watch(kidsDuaLearningRepositoryProvider)
+          .learningItemById(duaId);
     });
 
-final kidsDuaRecommendedLearningItemProvider = Provider<KidsDuaLearningItem?>((ref) {
+final kidsDuaRecommendedLearningItemProvider = Provider<KidsDuaLearningItem?>((
+  ref,
+) {
   final repository = ref.watch(kidsDuaLearningRepositoryProvider);
   return repository.recommendedLearningItem();
 });
@@ -68,7 +72,8 @@ class KidsDuaLearningRepository {
     if (progress.recentLessonIds.isNotEmpty) {
       final recentId = progress.recentLessonIds.first;
       final recentProgress = progress.progressByLessonId[recentId];
-      if (recentProgress != null && recentProgress.status != KidsDuaLessonStatus.learned) {
+      if (recentProgress != null &&
+          recentProgress.status != KidsDuaLessonStatus.learned) {
         return learningItemById(recentId);
       }
     }
@@ -84,19 +89,25 @@ class KidsDuaLearningRepository {
   }
 
   List<KidsDuaSegment> _segmentsForLesson(KidsDuaLessonContent lesson) {
-    return lesson.phraseChunks.asMap().entries.map((entry) {
-      final index = entry.key;
-      final chunk = entry.value;
-      return KidsDuaSegment(
-        segmentId: chunk.id,
-        duaId: lesson.id,
-        sortOrder: index,
-        arabicSegmentText: chunk.arabic,
-        transliterationSegmentText: chunk.transliteration,
-        translationSegmentText: lesson.phraseChunks.length == 1 ? lesson.meaning : null,
-        emphasisType: index == 0 ? 'lead' : null,
-      );
-    }).toList(growable: false);
+    return lesson.phraseChunks
+        .asMap()
+        .entries
+        .map((entry) {
+          final index = entry.key;
+          final chunk = entry.value;
+          return KidsDuaSegment(
+            segmentId: chunk.id,
+            duaId: lesson.id,
+            sortOrder: index,
+            arabicSegmentText: chunk.arabic,
+            transliterationSegmentText: chunk.transliteration,
+            translationSegmentText: lesson.phraseChunks.length == 1
+                ? lesson.meaning
+                : null,
+            emphasisType: index == 0 ? 'lead' : null,
+          );
+        })
+        .toList(growable: false);
   }
 
   bool _isBedtimeLesson(KidsDuaLessonContent lesson) {
@@ -104,8 +115,12 @@ class KidsDuaLearningRepository {
   }
 
   bool _isDailyRoutineLesson(KidsDuaLessonContent lesson) {
-    return const <String>{'sleep', 'food_drink', 'home_daily', 'daily_basics'}
-        .contains(lesson.categoryId);
+    return const <String>{
+      'sleep',
+      'food_drink',
+      'home_daily',
+      'daily_basics',
+    }.contains(lesson.categoryId);
   }
 
   bool _isEmotionLesson(KidsDuaLessonContent lesson) {

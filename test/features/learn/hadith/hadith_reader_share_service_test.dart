@@ -225,7 +225,10 @@ void main() {
 
       expect(readerText, contains('Translation: ${entry.translation.trim()}'));
       expect(readerText, contains('Narrated by: Umar ibn al-Khattab'));
-      expect(readerText.split('\n\n').length, greaterThan(compactText.split('\n\n').length));
+      expect(
+        readerText.split('\n\n').length,
+        greaterThan(compactText.split('\n\n').length),
+      );
     });
   });
 }

@@ -292,10 +292,7 @@ class LearningJourneyIslandPage extends ConsumerWidget {
   }
 }
 
-Widget _wrapIbadahContainer({
-  required String islandId,
-  required Widget child,
-}) {
+Widget _wrapIbadahContainer({required String islandId, required Widget child}) {
   if (islandId != 'practice-worship') {
     return child;
   }

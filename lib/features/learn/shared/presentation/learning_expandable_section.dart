@@ -34,4 +34,3 @@ class LearningExpandableSection extends StatelessWidget {
     );
   }
 }
-

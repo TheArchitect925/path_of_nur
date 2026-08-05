@@ -22,26 +22,33 @@ final quranThemesByCategoryProvider =
     Provider<Map<QuranThemeCategory, List<QuranThemeDefinition>>>((ref) {
       final grouped = <QuranThemeCategory, List<QuranThemeDefinition>>{};
       for (final theme in ref.watch(quranThemeRegistryProvider)) {
-        grouped.putIfAbsent(theme.category, () => <QuranThemeDefinition>[]).add(
-          theme,
-        );
+        grouped
+            .putIfAbsent(theme.category, () => <QuranThemeDefinition>[])
+            .add(theme);
       }
       return grouped;
     });
 
-final quranThemeByIdProvider =
-    Provider.family<QuranThemeDefinition?, String>((ref, themeId) {
-      for (final theme in ref.watch(quranThemeRegistryProvider)) {
-        if (theme.id == themeId) return theme;
-      }
-      return null;
-    });
+final quranThemeByIdProvider = Provider.family<QuranThemeDefinition?, String>((
+  ref,
+  themeId,
+) {
+  for (final theme in ref.watch(quranThemeRegistryProvider)) {
+    if (theme.id == themeId) return theme;
+  }
+  return null;
+});
 
-final quranResolvedThemesProvider = Provider<List<QuranThemeResolvedTopic>>((ref) {
+final quranResolvedThemesProvider = Provider<List<QuranThemeResolvedTopic>>((
+  ref,
+) {
   final themes = ref.watch(quranThemeRegistryProvider);
   final surahs = ref.watch(quranSurahSummaryListProvider);
   return themes
-      .map((theme) => _resolveTheme(theme: theme, surahs: surahs, allThemes: themes))
+      .map(
+        (theme) =>
+            _resolveTheme(theme: theme, surahs: surahs, allThemes: themes),
+      )
       .where((theme) => theme.relatedSurahs.isNotEmpty)
       .toList(growable: false);
 });
@@ -59,10 +66,11 @@ QuranThemeResolvedTopic _resolveTheme({
   required List<QuranSurahSummaryEntry> surahs,
   required List<QuranThemeDefinition> allThemes,
 }) {
-  final matchedSurahs = surahs
-      .where((entry) => _matchesTheme(theme, entry))
-      .toList(growable: false)
-    ..sort((a, b) => a.surahNumber.compareTo(b.surahNumber));
+  final matchedSurahs =
+      surahs
+          .where((entry) => _matchesTheme(theme, entry))
+          .toList(growable: false)
+        ..sort((a, b) => a.surahNumber.compareTo(b.surahNumber));
 
   final notableAyatByKey = <String, QuranSurahNotableAyah>{};
   final prophetById = <String, QuranSurahNamedReference>{};
@@ -70,7 +78,8 @@ QuranThemeResolvedTopic _resolveTheme({
 
   for (final surah in matchedSurahs) {
     for (final ayah in surah.notableAyat) {
-      final key = '${ayah.surahNumber}:${ayah.ayahNumber}-${ayah.endAyahNumber ?? ayah.ayahNumber}';
+      final key =
+          '${ayah.surahNumber}:${ayah.ayahNumber}-${ayah.endAyahNumber ?? ayah.ayahNumber}';
       notableAyatByKey.putIfAbsent(key, () => ayah);
     }
     for (final prophet in surah.relatedProphets) {
@@ -81,11 +90,12 @@ QuranThemeResolvedTopic _resolveTheme({
     }
   }
 
-  final relatedThemes = allThemes
-      .where((candidate) => candidate.id != theme.id)
-      .where((candidate) => _sharesSignal(theme, candidate))
-      .toList(growable: false)
-    ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+  final relatedThemes =
+      allThemes
+          .where((candidate) => candidate.id != theme.id)
+          .where((candidate) => _sharesSignal(theme, candidate))
+          .toList(growable: false)
+        ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
 
   return QuranThemeResolvedTopic(
     definition: theme,

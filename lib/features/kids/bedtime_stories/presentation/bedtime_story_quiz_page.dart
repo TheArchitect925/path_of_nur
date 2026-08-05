@@ -18,7 +18,8 @@ class BedtimeStoryQuizPage extends ConsumerStatefulWidget {
   final String storyId;
 
   @override
-  ConsumerState<BedtimeStoryQuizPage> createState() => _BedtimeStoryQuizPageState();
+  ConsumerState<BedtimeStoryQuizPage> createState() =>
+      _BedtimeStoryQuizPageState();
 }
 
 class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
@@ -52,9 +53,9 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
               children: [
                 Text(
                   l10n.bedtimeStoryLearningUnavailableTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(l10n.bedtimeStoryQuizUnavailableSubtitle),
@@ -70,9 +71,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
         title: l10n.bedtimeStoryQuizTitle,
         subtitle: story.shortTitle,
         children: [
-          PremiumCard(
-            child: Text(l10n.bedtimeStoryQuizUnavailableSubtitle),
-          ),
+          PremiumCard(child: Text(l10n.bedtimeStoryQuizUnavailableSubtitle)),
         ],
       );
     }
@@ -87,7 +86,10 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
             ),
       ),
     );
-    final safeIndex = progress.currentStepIndex.clamp(0, quiz.questions.length - 1);
+    final safeIndex = progress.currentStepIndex.clamp(
+      0,
+      quiz.questions.length - 1,
+    );
     final question = quiz.questions[safeIndex];
     final nextSuggestion = ref.watch(
       bedtimeStoryNextLearningSuggestionByStoryIdProvider(widget.storyId),
@@ -96,12 +98,14 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
     if (!_didOpenActivity) {
       _didOpenActivity = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(bedtimeStoryLearningProgressProvider.notifier).openActivity(
-          activityId: quiz.quizId,
-          storyId: story.id,
-          mode: BedtimeStoryLearningMode.quiz,
-          totalSteps: quiz.questions.length,
-        );
+        ref
+            .read(bedtimeStoryLearningProgressProvider.notifier)
+            .openActivity(
+              activityId: quiz.quizId,
+              storyId: story.id,
+              mode: BedtimeStoryLearningMode.quiz,
+              totalSteps: quiz.questions.length,
+            );
       });
     }
 
@@ -127,7 +131,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                 value: quiz.questions.isEmpty
                     ? 0
                     : (safeIndex + (progress.isCompleted ? 1 : 0)) /
-                        quiz.questions.length,
+                          quiz.questions.length,
               ),
               const SizedBox(height: 8),
               Text(
@@ -154,7 +158,9 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                 _submitted = true;
                 _answeredCorrectly = answerId == question.correctAnswerId;
               });
-              ref.read(bedtimeStoryLearningProgressProvider.notifier).recordStepProgress(
+              ref
+                  .read(bedtimeStoryLearningProgressProvider.notifier)
+                  .recordStepProgress(
                     activityId: quiz.quizId,
                     storyId: story.id,
                     mode: BedtimeStoryLearningMode.quiz,
@@ -179,9 +185,9 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                     _answeredCorrectly
                         ? l10n.bedtimeStoryQuizCorrectTitle
                         : l10n.bedtimeStoryQuizTryAgainTitle,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(question.explanation),
@@ -204,7 +210,8 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                               mode: BedtimeStoryLearningMode.quiz,
                               totalSteps: quiz.questions.length,
                               xpReward: quiz.reward.xpReward,
-                              sourceRef: 'bedtime_story_quiz:${quiz.quizId}:complete',
+                              sourceRef:
+                                  'bedtime_story_quiz:${quiz.quizId}:complete',
                               metadata: <String, Object?>{
                                 'feature': 'kids_bedtime_story_quiz',
                                 'storyId': story.id,
@@ -260,9 +267,9 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
               children: [
                 Text(
                   l10n.bedtimeStoryQuizCompleteTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(

@@ -128,9 +128,9 @@ class QuranPlaybackControlsCard extends StatelessWidget {
                   key: const ValueKey('quran-reader-play-pause-button'),
                   onPressed: isPreparing ? null : onTogglePlayback,
                   style: FilledButton.styleFrom(
-                    backgroundColor: const Color(0xFF4A3C2F).withValues(
-                      alpha: 0.94,
-                    ),
+                    backgroundColor: const Color(
+                      0xFF4A3C2F,
+                    ).withValues(alpha: 0.94),
                     foregroundColor: Colors.white,
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(
@@ -208,8 +208,9 @@ class QuranPlaybackControlsCard extends StatelessWidget {
                 FilterChip(
                   key: const ValueKey('quran-reader-follow-toggle'),
                   selected: followModeEnabled,
-                  onSelected:
-                      isPreparing ? null : (_) => onToggleFollowMode?.call(),
+                  onSelected: isPreparing
+                      ? null
+                      : (_) => onToggleFollowMode?.call(),
                   avatar: Icon(
                     followModeEnabled
                         ? Icons.my_location_rounded
@@ -225,7 +226,10 @@ class QuranPlaybackControlsCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: panelStyle.backgroundColor,
                   borderRadius: BorderRadius.circular(999),
@@ -343,7 +347,9 @@ class QuranPlaybackControlsCard extends StatelessWidget {
               ),
             ],
           ),
-          if (hasReachedEnd && nextSurahNumber != null && onNextSurah != null) ...[
+          if (hasReachedEnd &&
+              nextSurahNumber != null &&
+              onNextSurah != null) ...[
             const SizedBox(height: 8),
             SizedBox(
               width: double.infinity,

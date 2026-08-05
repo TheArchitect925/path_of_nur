@@ -32,7 +32,10 @@ class _ReaderPlaybackHarness extends ConsumerWidget {
     );
     return Column(
       children: [
-        Text(state.activeAyahKey ?? 'idle', key: const ValueKey('active-ayah-key')),
+        Text(
+          state.activeAyahKey ?? 'idle',
+          key: const ValueKey('active-ayah-key'),
+        ),
         Text(
           nowPlayingLabel ?? 'No active label',
           key: const ValueKey('now-playing-label'),
@@ -152,73 +155,81 @@ void main() {
     );
   }
 
-  testWidgets('reader harness follows play pause seek-style index changes and reciter updates', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: true,
-        hasPlaybackSource: true,
-        currentIndex: 1,
-        position: const Duration(seconds: 12),
-        duration: const Duration(seconds: 90),
-        processingState: ProcessingState.ready,
-      );
-    addTearDown(feed.dispose);
-
-    await tester.pumpWidget(await wrapHarness(feed));
-
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(_ReaderPlaybackHarness)),
-    );
-    await container.read(quranSurahAyahsProvider(1).future);
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
+  testWidgets(
+    'reader harness follows play pause seek-style index changes and reciter updates',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          position: const Duration(seconds: 12),
+          duration: const Duration(seconds: 90),
+          processingState: ProcessingState.ready,
         );
-    feed.emitIndex();
-    feed.emitPlayerState();
-    feed.emitPosition();
-    await tester.pump();
+      addTearDown(feed.dispose);
 
-    expect(find.text('1:2'), findsOneWidget);
-    expect(find.textContaining('Verse 1:2'), findsWidgets);
-    expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
+      await tester.pumpWidget(await wrapHarness(feed));
 
-    feed.update(playing: false, processingState: ProcessingState.ready);
-    feed.emitPlayerState();
-    await tester.pump();
-    expect(find.byIcon(Icons.play_circle_fill_rounded), findsOneWidget);
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(_ReaderPlaybackHarness)),
+      );
+      await container.read(quranSurahAyahsProvider(1).future);
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      feed.emitPosition();
+      await tester.pump();
 
-    feed.update(playing: true, currentIndex: 2, position: const Duration(seconds: 28));
-    feed.emitIndex();
-    feed.emitPlayerState();
-    feed.emitPosition();
-    await tester.pump();
-    expect(find.text('1:3'), findsOneWidget);
-    expect(find.textContaining('Verse 1:3'), findsWidgets);
+      expect(find.text('1:2'), findsOneWidget);
+      expect(find.textContaining('Verse 1:2'), findsWidgets);
+      expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
-    container.read(quranAudioSettingsProvider.notifier).setReciterId('alafasy');
-    await tester.pumpAndSettle();
-    expect(find.byKey(const ValueKey('reciter-name')), findsOneWidget);
-    expect(find.textContaining('Alafasy'), findsOneWidget);
+      feed.update(playing: false, processingState: ProcessingState.ready);
+      feed.emitPlayerState();
+      await tester.pump();
+      expect(find.byIcon(Icons.play_circle_fill_rounded), findsOneWidget);
 
-    container
-        .read(quranRecitationSessionProvider.notifier)
-        .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 28);
-    container.read(quranActivePlaybackSessionProvider.notifier).state = null;
-    feed.update(
-      playing: false,
-      hasPlaybackSource: false,
-      processingState: ProcessingState.idle,
-    );
-    feed.emitPlayerState();
-    await tester.pump();
-    expect(find.text('idle'), findsOneWidget);
-  });
+      feed.update(
+        playing: true,
+        currentIndex: 2,
+        position: const Duration(seconds: 28),
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      feed.emitPosition();
+      await tester.pump();
+      expect(find.text('1:3'), findsOneWidget);
+      expect(find.textContaining('Verse 1:3'), findsWidgets);
+
+      container
+          .read(quranAudioSettingsProvider.notifier)
+          .setReciterId('alafasy');
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey('reciter-name')), findsOneWidget);
+      expect(find.textContaining('Alafasy'), findsOneWidget);
+
+      container
+          .read(quranRecitationSessionProvider.notifier)
+          .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 28);
+      container.read(quranActivePlaybackSessionProvider.notifier).state = null;
+      feed.update(
+        playing: false,
+        hasPlaybackSource: false,
+        processingState: ProcessingState.idle,
+      );
+      feed.emitPlayerState();
+      await tester.pump();
+      expect(find.text('idle'), findsOneWidget);
+    },
+  );
 }

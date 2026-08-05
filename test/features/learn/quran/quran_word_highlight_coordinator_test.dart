@@ -105,16 +105,19 @@ void main() {
       await feed.dispose();
     });
 
-    container.read(quranReaderSettingsProvider.notifier).setWordSyncHighlightBeta(true);
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[2],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
-        );
+    container
+        .read(quranReaderSettingsProvider.notifier)
+        .setWordSyncHighlightBeta(true);
+    container
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = const QuranActivePlaybackSession(
+      surahNumber: 1,
+      ayahNumbers: <int>[2],
+      reciterId: 'husary',
+      playbackSpeed: 1,
+      includeMediaTags: true,
+      isSurahMode: false,
+    );
     feed.emitIndex();
     feed.emitPlayerState();
     feed.emitPosition();
@@ -128,54 +131,60 @@ void main() {
     expect(state.activeWordIndex, 1);
   });
 
-  test('degrades to ayah-only highlight when timing data is unavailable', () async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: true,
-        hasPlaybackSource: true,
-        currentIndex: 0,
-        position: const Duration(milliseconds: 800),
-        duration: const Duration(seconds: 4),
-        processingState: ProcessingState.ready,
-      );
-    final timingRepository = FakeQuranWordTimingRepository();
-    final container = await createContainer(
-      feed: feed,
-      timingRepository: timingRepository,
-    );
-    final subscription = container.listen(
-      quranWordHighlightCoordinatorProvider(1),
-      (previous, next) {},
-      fireImmediately: true,
-    );
-    addTearDown(() async {
-      subscription.close();
-      container.dispose();
-      await feed.dispose();
-    });
-
-    container.read(quranReaderSettingsProvider.notifier).setWordSyncHighlightBeta(true);
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
+  test(
+    'degrades to ayah-only highlight when timing data is unavailable',
+    () async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 0,
+          position: const Duration(milliseconds: 800),
+          duration: const Duration(seconds: 4),
+          processingState: ProcessingState.ready,
         );
-    feed.emitIndex();
-    feed.emitPlayerState();
-    feed.emitPosition();
-    await Future<void>.delayed(Duration.zero);
-    await Future<void>.delayed(Duration.zero);
-    await Future<void>.delayed(Duration.zero);
+      final timingRepository = FakeQuranWordTimingRepository();
+      final container = await createContainer(
+        feed: feed,
+        timingRepository: timingRepository,
+      );
+      final subscription = container.listen(
+        quranWordHighlightCoordinatorProvider(1),
+        (previous, next) {},
+        fireImmediately: true,
+      );
+      addTearDown(() async {
+        subscription.close();
+        container.dispose();
+        await feed.dispose();
+      });
 
-    final state = container.read(quranWordHighlightCoordinatorProvider(1));
-    expect(state.activeAyahKey, '1:1');
-    expect(state.mode, QuranWordHighlightMode.noTimingAvailable);
-    expect(state.activeWordIndex, isNull);
-  });
+      container
+          .read(quranReaderSettingsProvider.notifier)
+          .setWordSyncHighlightBeta(true);
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: false,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      feed.emitPosition();
+      await Future<void>.delayed(Duration.zero);
+      await Future<void>.delayed(Duration.zero);
+      await Future<void>.delayed(Duration.zero);
+
+      final state = container.read(quranWordHighlightCoordinatorProvider(1));
+      expect(state.activeAyahKey, '1:1');
+      expect(state.mode, QuranWordHighlightMode.noTimingAvailable);
+      expect(state.activeWordIndex, isNull);
+    },
+  );
 
   test('reloads timing when reciter changes during active playback', () async {
     final feed = FakeQuranPlaybackFeed()
@@ -212,16 +221,19 @@ void main() {
       await feed.dispose();
     });
 
-    container.read(quranReaderSettingsProvider.notifier).setWordSyncHighlightBeta(true);
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[2],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
-        );
+    container
+        .read(quranReaderSettingsProvider.notifier)
+        .setWordSyncHighlightBeta(true);
+    container
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = const QuranActivePlaybackSession(
+      surahNumber: 1,
+      ayahNumbers: <int>[2],
+      reciterId: 'husary',
+      playbackSpeed: 1,
+      includeMediaTags: true,
+      isSurahMode: false,
+    );
     feed.emitIndex();
     feed.emitPlayerState();
     feed.emitPosition();
@@ -229,7 +241,10 @@ void main() {
     await Future<void>.delayed(Duration.zero);
     await Future<void>.delayed(Duration.zero);
 
-    expect(container.read(quranWordHighlightCoordinatorProvider(1)).activeWordIndex, 0);
+    expect(
+      container.read(quranWordHighlightCoordinatorProvider(1)).activeWordIndex,
+      0,
+    );
 
     container.read(quranAudioSettingsProvider.notifier).setReciterId('alafasy');
     await Future<void>.delayed(Duration.zero);

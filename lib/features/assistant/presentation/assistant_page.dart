@@ -143,7 +143,10 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
                         : Alignment.centerLeft,
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 8),
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         color: message.role == AssistantRole.user
                             ? const Color(0xFFE6DCCF)

@@ -19,21 +19,31 @@ class LearningPathRegistry {
         LearningPathPhase(
           id: 'beginner-daily-practice',
           title: 'Daily Practice',
-          description: 'Build the essentials of worship one calm step at a time.',
+          description:
+              'Build the essentials of worship one calm step at a time.',
           order: 2,
-          journeyIds: ['salah-foundations', 'journey-of-wudu', 'duas-daily-life'],
+          journeyIds: [
+            'salah-foundations',
+            'journey-of-wudu',
+            'duas-daily-life',
+          ],
         ),
         LearningPathPhase(
           id: 'beginner-connection',
           title: 'Connection',
           description: 'Deepen prayer, recitation, and a first hadith rhythm.',
           order: 3,
-          journeyIds: ['understanding-al-fatihah', 'short-surahs', 'hadith-essentials'],
+          journeyIds: [
+            'understanding-al-fatihah',
+            'short-surahs',
+            'hadith-essentials',
+          ],
         ),
         LearningPathPhase(
           id: 'beginner-identity',
           title: 'Identity',
-          description: 'Grow through stories, belonging, and beautiful character.',
+          description:
+              'Grow through stories, belonging, and beautiful character.',
           order: 4,
           journeyIds: ['prophets-journey', 'beautiful-character'],
         ),
@@ -57,12 +67,17 @@ class LearningPathRegistry {
           title: 'Understanding',
           description: 'Connect Quran reading, meaning, and recurring words.',
           order: 2,
-          journeyIds: ['journey-quran', 'understand-what-you-recite', '100-quranic-words'],
+          journeyIds: [
+            'journey-quran',
+            'understand-what-you-recite',
+            '100-quranic-words',
+          ],
         ),
         LearningPathPhase(
           id: 'practicing-character',
           title: 'Character',
-          description: 'Keep worship connected to manners, reflection, and hadith.',
+          description:
+              'Keep worship connected to manners, reflection, and hadith.',
           order: 3,
           journeyIds: ['beautiful-character', 'hadith-essentials'],
         ),
@@ -79,19 +94,25 @@ class LearningPathRegistry {
       id: 'seeker-path',
       level: LearningPathLevel.seeker,
       title: 'Knowledge Seeker Path',
-      description: 'A more structured route through belief, history, and integration.',
+      description:
+          'A more structured route through belief, history, and integration.',
       phases: [
         LearningPathPhase(
           id: 'seeker-foundations',
           title: 'Foundations',
           description: 'Strengthen belief, practice, and historical context.',
           order: 1,
-          journeyIds: ['foundations-of-faith', 'fiqh-basics', 'timeline-of-islam'],
+          journeyIds: [
+            'foundations-of-faith',
+            'fiqh-basics',
+            'timeline-of-islam',
+          ],
         ),
         LearningPathPhase(
           id: 'seeker-quran-depth',
           title: 'Quran Depth',
-          description: 'Move from reading toward themes, surahs, and guided reflection.',
+          description:
+              'Move from reading toward themes, surahs, and guided reflection.',
           order: 2,
           journeyIds: ['journey-quran', 'short-surahs'],
         ),
@@ -115,26 +136,30 @@ class LearningPathRegistry {
       id: 'advanced-path',
       level: LearningPathLevel.advanced,
       title: 'Advanced Path',
-      description: 'A quieter route focused on refinement, reflection, and action.',
+      description:
+          'A quieter route focused on refinement, reflection, and action.',
       phases: [
         LearningPathPhase(
           id: 'advanced-reflection',
           title: 'Reflection',
-          description: 'Keep learning alive through daily reflection and synthesis.',
+          description:
+              'Keep learning alive through daily reflection and synthesis.',
           order: 1,
           journeyIds: ['reflection-mode', 'daily-wisdom'],
         ),
         LearningPathPhase(
           id: 'advanced-refinement',
           title: 'Refinement',
-          description: 'Refine recitation and deepen understanding with intention.',
+          description:
+              'Refine recitation and deepen understanding with intention.',
           order: 2,
           journeyIds: ['tajweed-basics', 'journey-quran'],
         ),
         LearningPathPhase(
           id: 'advanced-character-action',
           title: 'Character and Action',
-          description: 'Connect refinement to habit, service, and sustained worship.',
+          description:
+              'Connect refinement to habit, service, and sustained worship.',
           order: 3,
           journeyIds: ['beautiful-character', 'daily-routines', 'daily-dhikr'],
         ),
@@ -218,8 +243,7 @@ class LearningPathRegistry {
         l10n.learningPathPhasePracticingStructureDescription,
       'seeker-foundations' =>
         l10n.learningPathPhaseSeekerFoundationsDescription,
-      'seeker-quran-depth' =>
-        l10n.learningPathPhaseSeekerQuranDepthDescription,
+      'seeker-quran-depth' => l10n.learningPathPhaseSeekerQuranDepthDescription,
       'seeker-arabic' => l10n.learningPathPhaseSeekerArabicDescription,
       'seeker-integration' =>
         l10n.learningPathPhaseSeekerIntegrationDescription,
@@ -233,4 +257,3 @@ class LearningPathRegistry {
     };
   }
 }
-

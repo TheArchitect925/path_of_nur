@@ -69,8 +69,7 @@ final List<TriviaQuestion> generalKnowledgeTriviaQuestions = [
       ('cairo', 'Cairo'),
     ],
     correctOptionId: 'makkah',
-    explanation:
-        'Al-Masjid al-Haram is in Makkah and surrounds the Ka‘bah.',
+    explanation: 'Al-Masjid al-Haram is in Makkah and surrounds the Ka‘bah.',
     tags: const ['general', 'makkah', 'places'],
     packId: _pack,
     sortOrder: 4,

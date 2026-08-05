@@ -809,7 +809,12 @@ Path kidsArabicGuideStrokePath(KidsArabicGuideStroke stroke, Size size) {
           (current.dx + next.dx) / 2,
           (current.dy + next.dy) / 2,
         );
-        path.quadraticBezierTo(control.dx, control.dy, midPoint.dx, midPoint.dy);
+        path.quadraticBezierTo(
+          control.dx,
+          control.dy,
+          midPoint.dx,
+          midPoint.dy,
+        );
       }
       path.lineTo(scaled.last.dx, scaled.last.dy);
       return path;

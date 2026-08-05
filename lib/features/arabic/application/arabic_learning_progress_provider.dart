@@ -39,7 +39,9 @@ ArabicLearningProgressSummary _buildKidsSummary(Ref ref) {
   final continuation = ref.watch(
     arabicLearningContinuationProvider(ArabicLearningAudience.kids),
   );
-  final review = ref.watch(arabicLearningReviewProvider(ArabicLearningAudience.kids));
+  final review = ref.watch(
+    arabicLearningReviewProvider(ArabicLearningAudience.kids),
+  );
 
   final recentActivity = _kidsRecentActivity(
     progress: progress,
@@ -127,7 +129,8 @@ ArabicLearningReviewSuggestion? _resolveSecondaryReview({
   required ArabicLearningContinuationSummary continuation,
   required ArabicLearningReviewSummary review,
 }) {
-  if (review.primarySuggestion.intent == ArabicLearningContinuationIntent.review &&
+  if (review.primarySuggestion.intent ==
+          ArabicLearningContinuationIntent.review &&
       review.primarySuggestion.target.canonicalItemId !=
           continuation.primaryTarget.canonicalItemId) {
     return review.primarySuggestion;
@@ -148,7 +151,9 @@ ArabicLearningRecentActivity? _kidsRecentActivity({
   required List<KidsArabicMiniPhrase> phrases,
 }) {
   if (phraseProgress.lastPhraseId != null) {
-    final phrase = phrases.where((item) => item.id == phraseProgress.lastPhraseId).firstOrNull;
+    final phrase = phrases
+        .where((item) => item.id == phraseProgress.lastPhraseId)
+        .firstOrNull;
     if (phrase != null) {
       return ArabicLearningRecentActivity(
         contentType: ArabicLearningContinuationContentType.phrase,
@@ -159,7 +164,9 @@ ArabicLearningRecentActivity? _kidsRecentActivity({
     }
   }
   if (wordProgress.lastWordId != null) {
-    final word = words.where((item) => item.id == wordProgress.lastWordId).firstOrNull;
+    final word = words
+        .where((item) => item.id == wordProgress.lastWordId)
+        .firstOrNull;
     if (word != null) {
       return ArabicLearningRecentActivity(
         contentType: ArabicLearningContinuationContentType.word,
@@ -170,7 +177,9 @@ ArabicLearningRecentActivity? _kidsRecentActivity({
     }
   }
   if (progress.lastLessonLetterId != null) {
-    final letter = kidsArabicLetters.where((item) => item.id == progress.lastLessonLetterId).firstOrNull;
+    final letter = kidsArabicLetters
+        .where((item) => item.id == progress.lastLessonLetterId)
+        .firstOrNull;
     if (letter != null) {
       return ArabicLearningRecentActivity(
         contentType: ArabicLearningContinuationContentType.letter,
@@ -249,7 +258,8 @@ ArabicLearningRecentActivity? _adultRecentActivity({
   if (wordProgress.lastWordId != null) {
     final word = words
         .where(
-          (item) => (item.sharedBeginnerWordId ?? item.id) == wordProgress.lastWordId,
+          (item) =>
+              (item.sharedBeginnerWordId ?? item.id) == wordProgress.lastWordId,
         )
         .firstOrNull;
     if (word != null) {

@@ -17,7 +17,9 @@ void main() {
       );
       addTearDown(container.dispose);
 
-      final controller = container.read(bedtimeCompanionSessionProvider.notifier);
+      final controller = container.read(
+        bedtimeCompanionSessionProvider.notifier,
+      );
       final state = container.read(bedtimeCompanionSessionProvider);
       final duaStepId = kDefaultBedtimeRoutinePlan.steps
           .firstWhere((step) => step.stepId == 'step_bedtime_dua')
@@ -66,8 +68,12 @@ void main() {
       );
       addTearDown(container.dispose);
 
-      final storyProgress = container.read(bedtimeStoryProgressProvider.notifier);
-      final controller = container.read(bedtimeCompanionSessionProvider.notifier);
+      final storyProgress = container.read(
+        bedtimeStoryProgressProvider.notifier,
+      );
+      final controller = container.read(
+        bedtimeCompanionSessionProvider.notifier,
+      );
       final storyId = container
           .read(bedtimeCompanionSessionProvider)
           .activeSession
@@ -82,7 +88,9 @@ void main() {
       );
       controller.syncExternalProgress();
 
-      final session = container.read(bedtimeCompanionSessionProvider).activeSession;
+      final session = container
+          .read(bedtimeCompanionSessionProvider)
+          .activeSession;
       expect(
         session?.stepProgressById['step_story_time']?.state.name,
         'completed',

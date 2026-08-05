@@ -161,11 +161,7 @@ const List<LevelDefinition> xpLevelDefinitions = <LevelDefinition>[
     title: 'Lantern of the Path',
   ),
   LevelDefinition(level: 72, totalXpRequired: 47734, title: 'Lantern of Dawn'),
-  LevelDefinition(
-    level: 73,
-    totalXpRequired: 49583,
-    title: 'Lantern of Salah',
-  ),
+  LevelDefinition(level: 73, totalXpRequired: 49583, title: 'Lantern of Salah'),
   LevelDefinition(
     level: 74,
     totalXpRequired: 51484,

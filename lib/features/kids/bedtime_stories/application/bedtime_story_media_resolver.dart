@@ -158,20 +158,25 @@ class BedtimeStoryMediaResolver {
     BedtimeStorySeed story,
   ) async {
     final keys = await _assetKeys();
-    return bedtimeStoryIllustrationManifestFor(story).map((entry) {
-      final candidates = <String>[entry.assetPath, ...entry.alternateAssetPaths];
-      for (final path in candidates) {
-        if (keys.contains(path)) {
+    return bedtimeStoryIllustrationManifestFor(story)
+        .map((entry) {
+          final candidates = <String>[
+            entry.assetPath,
+            ...entry.alternateAssetPaths,
+          ];
+          for (final path in candidates) {
+            if (keys.contains(path)) {
+              return BedtimeStoryResolvedIllustration(
+                entry: entry,
+                resolvedAssetPath: path,
+              );
+            }
+          }
           return BedtimeStoryResolvedIllustration(
             entry: entry,
-            resolvedAssetPath: path,
+            resolvedAssetPath: null,
           );
-        }
-      }
-      return BedtimeStoryResolvedIllustration(
-        entry: entry,
-        resolvedAssetPath: null,
-      );
-    }).toList(growable: false);
+        })
+        .toList(growable: false);
   }
 }

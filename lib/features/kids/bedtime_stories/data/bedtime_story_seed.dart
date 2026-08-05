@@ -451,8 +451,7 @@ Good night...
     tags: ['prophet', 'ibrahim', 'truth', 'fire', 'idols', 'courage'],
     sortOrder: 30,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/ibrahim_cover.png',
-    backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/ibrahim_backdrop.png',
+    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/ibrahim_backdrop.png',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1636,8 +1635,7 @@ Good night...
     tags: ['prophet', 'sulaiman', 'animals', 'ant', 'hoopoe', 'gratitude'],
     sortOrder: 100,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/sulaiman_cover.png',
-    backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/sulaiman_backdrop.png',
+    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/sulaiman_backdrop.png',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1763,8 +1761,7 @@ Allah is with you.
 
 Good night...
 ''',
-    lesson:
-        'Be honest and kind. Even when life is hard, Allah is with you.',
+    lesson: 'Be honest and kind. Even when life is hard, Allah is with you.',
     quranQuote: 'And indeed, you are of a great moral character.',
     quranReference: 'Qur’an 68:4',
     quranQuoteRef: QuranQuoteRef(surah: 68, ayah: 4),
@@ -1776,8 +1773,7 @@ Good night...
     tags: ['prophet', 'muhammad', 'childhood', 'makkah', 'character'],
     sortOrder: 110,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.png',
-    backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
+    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1937,8 +1933,7 @@ Good night...
     tags: ['prophet', 'muhammad', 'revelation', 'quran', 'patience'],
     sortOrder: 120,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.png',
-    backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
+    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -2063,8 +2058,7 @@ And be gentle and fair.
 
 Good night...
 ''',
-    lesson:
-        'Trust Allah in hard times, help others, and be gentle and fair.',
+    lesson: 'Trust Allah in hard times, help others, and be gentle and fair.',
     quranQuote: 'Indeed, Allah is with those who are patient.',
     quranReference: 'Qur’an 2:153',
     quranQuoteRef: QuranQuoteRef(surah: 2, ayah: 153),
@@ -2076,8 +2070,7 @@ Good night...
     tags: ['prophet', 'muhammad', 'hijrah', 'madinah', 'community'],
     sortOrder: 130,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.png',
-    backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
+    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -2206,8 +2199,7 @@ Good night...
     tags: ['prophet', 'muhammad', 'mercy', 'forgiveness', 'makkah'],
     sortOrder: 140,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.png',
-    backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
+    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.png',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,

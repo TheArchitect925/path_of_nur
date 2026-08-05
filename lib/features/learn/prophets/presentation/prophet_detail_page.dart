@@ -596,7 +596,8 @@ class _ReferenceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QuranReferenceLinkTile(
-      referenceLabel: '${item.surahName} (${item.surahNumber}:${item.verseRange})',
+      referenceLabel:
+          '${item.surahName} (${item.surahNumber}:${item.verseRange})',
       surahNumber: item.surahNumber,
       verseRange: item.verseRange,
       fallbackStartAyah: item.startAyah,

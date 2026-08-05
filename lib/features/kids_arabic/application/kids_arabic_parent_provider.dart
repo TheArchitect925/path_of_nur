@@ -205,7 +205,9 @@ class KidsArabicParentPreferencesNotifier
       _activeLearnerId = ref.read(kidsArabicActiveLearnerProvider).learnerId,
       super(
         KidsArabicParentPreferences.fromJson(
-          ref.read(localStoreProvider).getJsonMap(
+          ref
+              .read(localStoreProvider)
+              .getJsonMap(
                 kidsArabicParentPreferencesStorageKeyForLearner(
                   ref.read(kidsArabicActiveLearnerProvider).learnerId,
                 ),

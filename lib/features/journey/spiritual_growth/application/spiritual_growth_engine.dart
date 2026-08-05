@@ -66,11 +66,11 @@ class SpiritualGrowthEngine {
     required String? selectedTheme,
   }) {
     final eligible = catalog.reflectionPrompts
-        .where(
-          (item) => item.audience == audience || item.audience == 'mixed',
-        )
+        .where((item) => item.audience == audience || item.audience == 'mixed')
         .toList(growable: false);
-    final seed = _seedFor('${LocalStore.todayKey(date)}:${selectedTheme ?? ''}');
+    final seed = _seedFor(
+      '${LocalStore.todayKey(date)}:${selectedTheme ?? ''}',
+    );
     final ranked = [...eligible]
       ..sort((a, b) {
         final aMatches = a.theme == selectedTheme ? 1 : 0;
@@ -98,15 +98,25 @@ class SpiritualGrowthEngine {
           .where((item) => item.id == entry.value)
           .firstOrNull;
       if (intention == null) continue;
-      themeAffinity.update(intention.theme, (value) => value + 1, ifAbsent: () => 1);
+      themeAffinity.update(
+        intention.theme,
+        (value) => value + 1,
+        ifAbsent: () => 1,
+      );
       consistency.putIfAbsent(intention.theme, () => <String>{}).add(entry.key);
     }
 
     for (final entry in state.manualActionIdsByDateKey.entries) {
       for (final actionId in entry.value) {
-        final action = catalog.actions.where((item) => item.id == actionId).firstOrNull;
+        final action = catalog.actions
+            .where((item) => item.id == actionId)
+            .firstOrNull;
         if (action == null) continue;
-        themeAffinity.update(action.theme, (value) => value + 1, ifAbsent: () => 1);
+        themeAffinity.update(
+          action.theme,
+          (value) => value + 1,
+          ifAbsent: () => 1,
+        );
         consistency.putIfAbsent(action.theme, () => <String>{}).add(entry.key);
       }
     }
@@ -116,27 +126,37 @@ class SpiritualGrowthEngine {
           .where((item) => item.id == entry.value.reflectionPromptId)
           .firstOrNull;
       if (prompt == null) continue;
-      themeAffinity.update(prompt.theme, (value) => value + 1, ifAbsent: () => 1);
+      themeAffinity.update(
+        prompt.theme,
+        (value) => value + 1,
+        ifAbsent: () => 1,
+      );
       consistency.putIfAbsent(prompt.theme, () => <String>{}).add(entry.key);
     }
 
     for (final action in todayActions.where((item) => item.isCompleted)) {
-      themeAffinity.update(action.action.theme, (value) => value + 1, ifAbsent: () => 1);
-      consistency.putIfAbsent(action.action.theme, () => <String>{}).add(todayKey);
+      themeAffinity.update(
+        action.action.theme,
+        (value) => value + 1,
+        ifAbsent: () => 1,
+      );
+      consistency
+          .putIfAbsent(action.action.theme, () => <String>{})
+          .add(todayKey);
     }
 
     final strongestTheme = themeAffinity.entries.isEmpty
         ? null
         : (themeAffinity.entries.toList()
-              ..sort((a, b) => b.value.compareTo(a.value)))
-            .first
-            .key;
+                ..sort((a, b) => b.value.compareTo(a.value)))
+              .first
+              .key;
     final recommendedTheme = themeAffinity.entries.isEmpty
         ? null
         : (themeAffinity.entries.toList()
-              ..sort((a, b) => a.value.compareTo(b.value)))
-            .first
-            .key;
+                ..sort((a, b) => a.value.compareTo(b.value)))
+              .first
+              .key;
 
     return SpiritualGrowthProfile(
       themeAffinity: themeAffinity,
@@ -161,21 +181,22 @@ class SpiritualGrowthEngine {
       ...profile.themeAffinity.keys,
       ...profile.habitConsistency.keys,
     };
-    final list = themes
-        .map(
-          (theme) => SpiritualGrowthThemeSummary(
-            theme: theme,
-            activityCount: profile.themeAffinity[theme] ?? 0,
-            consistencyCount: profile.habitConsistency[theme] ?? 0,
-          ),
-        )
-        .toList(growable: false)
-      ..sort((a, b) {
-        if (a.activityCount != b.activityCount) {
-          return b.activityCount.compareTo(a.activityCount);
-        }
-        return b.consistencyCount.compareTo(a.consistencyCount);
-      });
+    final list =
+        themes
+            .map(
+              (theme) => SpiritualGrowthThemeSummary(
+                theme: theme,
+                activityCount: profile.themeAffinity[theme] ?? 0,
+                consistencyCount: profile.habitConsistency[theme] ?? 0,
+              ),
+            )
+            .toList(growable: false)
+          ..sort((a, b) {
+            if (a.activityCount != b.activityCount) {
+              return b.activityCount.compareTo(a.activityCount);
+            }
+            return b.consistencyCount.compareTo(a.consistencyCount);
+          });
     return list;
   }
 
@@ -185,7 +206,9 @@ class SpiritualGrowthEngine {
     required bool dailyBundleCompleted,
   }) {
     final themes = <String>[];
-    final mappedFocus = _themeFromAdaptiveCategory(adaptiveProfile.focusCategory);
+    final mappedFocus = _themeFromAdaptiveCategory(
+      adaptiveProfile.focusCategory,
+    );
     if (mappedFocus != null) themes.add(mappedFocus);
     if (snapshot.prayerProgress < 0.5) themes.add('discipline');
     if (snapshot.dhikrSessionsToday == 0) themes.add('gratitude');

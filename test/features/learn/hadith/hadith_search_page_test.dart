@@ -146,48 +146,47 @@ void main() {
     },
   );
 
-  testWidgets(
-    'recent search chips rerun the canonical hadith search path',
-    (tester) async {
-      SharedPreferences.setMockInitialValues({
-        'learn.hadith.recentSearches.v1':
-            '[{"query":"mercy","filter":"all","updatedAtIso":"2026-04-11T00:00:00.000Z"}]',
-      });
-      final prefs = await SharedPreferences.getInstance();
-      final router = GoRouter(
-        initialLocation: '/learn/hadith/search',
-        routes: buildLearnContentDomainRoutes(),
-      );
+  testWidgets('recent search chips rerun the canonical hadith search path', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({
+      'learn.hadith.recentSearches.v1':
+          '[{"query":"mercy","filter":"all","updatedAtIso":"2026-04-11T00:00:00.000Z"}]',
+    });
+    final prefs = await SharedPreferences.getInstance();
+    final router = GoRouter(
+      initialLocation: '/learn/hadith/search',
+      routes: buildLearnContentDomainRoutes(),
+    );
 
-      await tester.pumpWidget(
-        ProviderScope(
-          overrides: [
-            sharedPreferencesProvider.overrideWithValue(prefs),
-            editorialHadithEntriesProvider.overrideWith(
-              (ref) => seededHadithEntries,
-            ),
-          ],
-          child: MaterialApp.router(
-            routerConfig: router,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: AppLocalizations.supportedLocales,
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          editorialHadithEntriesProvider.overrideWith(
+            (ref) => seededHadithEntries,
           ),
+        ],
+        child: MaterialApp.router(
+          routerConfig: router,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
         ),
-      );
-      await tester.pumpAndSettle();
+      ),
+    );
+    await tester.pumpAndSettle();
 
-      await tester.tap(find.text('mercy').first);
-      await tester.pumpAndSettle();
+    await tester.tap(find.text('mercy').first);
+    await tester.pumpAndSettle();
 
-      expect(find.text('Text matches'), findsOneWidget);
-      expect(find.text('Source'), findsWidgets);
-    },
-  );
+    expect(find.text('Text matches'), findsOneWidget);
+    expect(find.text('Source'), findsWidgets);
+  });
 
   testWidgets(
     'search page surfaces chapter metadata matches through the canonical source filter',

@@ -23,10 +23,8 @@ class LearningRelatedContent extends StatelessWidget {
           runSpacing: 8,
           children: items
               .map(
-                (item) => ActionChip(
-                  label: Text(item.label),
-                  onPressed: item.onTap,
-                ),
+                (item) =>
+                    ActionChip(label: Text(item.label), onPressed: item.onTap),
               )
               .toList(growable: false),
         ),

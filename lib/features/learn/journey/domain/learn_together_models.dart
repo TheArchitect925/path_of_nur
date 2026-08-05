@@ -27,9 +27,7 @@ class LearnTogetherSessionRecord {
 
   String get id => '$childProfileId::$stageId';
 
-  LearnTogetherSessionRecord copyWith({
-    String? completedAtIso,
-  }) {
+  LearnTogetherSessionRecord copyWith({String? completedAtIso}) {
     return LearnTogetherSessionRecord(
       childProfileId: childProfileId,
       journeyId: journeyId,
@@ -40,12 +38,12 @@ class LearnTogetherSessionRecord {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'childProfileId': childProfileId,
-        'journeyId': journeyId,
-        'stageId': stageId,
-        'startedAtIso': startedAtIso,
-        'completedAtIso': completedAtIso,
-      };
+    'childProfileId': childProfileId,
+    'journeyId': journeyId,
+    'stageId': stageId,
+    'startedAtIso': startedAtIso,
+    'completedAtIso': completedAtIso,
+  };
 
   factory LearnTogetherSessionRecord.fromJson(Map<String, dynamic> json) {
     return LearnTogetherSessionRecord(
@@ -86,9 +84,9 @@ class LearnTogetherState {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'sessions': sessions.map((key, value) => MapEntry(key, value.toJson())),
-        'learnedTogetherStageIds': learnedTogetherStageIds,
-      };
+    'sessions': sessions.map((key, value) => MapEntry(key, value.toJson())),
+    'learnedTogetherStageIds': learnedTogetherStageIds,
+  };
 
   factory LearnTogetherState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {

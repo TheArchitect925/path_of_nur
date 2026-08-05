@@ -261,9 +261,10 @@ QuranPlaybackFailureType classifyQuranPlaybackFailure({
   return QuranPlaybackFailureType.unknown;
 }
 
-final quranPlaybackSourceStateProvider = StateNotifierProvider<
-  QuranPlaybackSourceStateNotifier,
-  QuranPlaybackSourceState
->((ref) {
-  return QuranPlaybackSourceStateNotifier();
-});
+final quranPlaybackSourceStateProvider =
+    StateNotifierProvider<
+      QuranPlaybackSourceStateNotifier,
+      QuranPlaybackSourceState
+    >((ref) {
+      return QuranPlaybackSourceStateNotifier();
+    });

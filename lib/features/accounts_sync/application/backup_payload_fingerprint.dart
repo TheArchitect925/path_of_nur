@@ -20,11 +20,14 @@ Map<String, dynamic> _normalizeMap(Map<String, dynamic> source) {
       continue;
     }
     if (entry.key == 'metadata' && entry.value is Map) {
-      final metadata = Map<String, dynamic>.from(
-        (entry.value as Map).map((key, value) => MapEntry(key.toString(), value)),
-      )
-        ..remove('exportedAtIso')
-        ..remove('lastBackupAtIso');
+      final metadata =
+          Map<String, dynamic>.from(
+              (entry.value as Map).map(
+                (key, value) => MapEntry(key.toString(), value),
+              ),
+            )
+            ..remove('exportedAtIso')
+            ..remove('lastBackupAtIso');
       normalized[entry.key] = _normalizeValue(metadata);
       continue;
     }

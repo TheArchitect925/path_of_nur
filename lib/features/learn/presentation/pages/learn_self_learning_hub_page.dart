@@ -43,11 +43,7 @@ class LearnSelfLearningHubPage extends ConsumerWidget {
         SectionHubActionGrid(
           actions: [
             for (final category in moduleCategories)
-              _buildAction(
-                context,
-                analytics: analytics,
-                category: category,
-              ),
+              _buildAction(context, analytics: analytics, category: category),
           ],
         ),
       ],

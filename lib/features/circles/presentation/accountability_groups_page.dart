@@ -21,59 +21,59 @@ class AccountabilityGroupsPage extends ConsumerWidget {
       title: l10n.circlesAccountabilityTitle,
       subtitle: l10n.circlesAccountabilitySubtitle,
       children: [
-        ...groups.map(
-          (group) {
-            final joined = state.joinedAccountabilityGroupIds.contains(group.id);
-            final streak = state.accountabilityCheckins[group.id] ?? 0;
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      group.title,
-                      style: const TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(group.description),
-                    const SizedBox(height: 6),
-                    Text('${group.focus} • ${group.defaultCadence} • ${group.memberCount}'),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: FilledButton.tonal(
-                            onPressed: () =>
-                                notifier.toggleAccountabilityGroup(group.id),
-                            child: Text(
-                              joined
-                                  ? l10n.circlesAccountabilityJoined
-                                  : l10n.circlesJoin,
-                            ),
+        ...groups.map((group) {
+          final joined = state.joinedAccountabilityGroupIds.contains(group.id);
+          final streak = state.accountabilityCheckins[group.id] ?? 0;
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    group.title,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(group.description),
+                  const SizedBox(height: 6),
+                  Text(
+                    '${group.focus} • ${group.defaultCadence} • ${group.memberCount}',
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton.tonal(
+                          onPressed: () =>
+                              notifier.toggleAccountabilityGroup(group.id),
+                          child: Text(
+                            joined
+                                ? l10n.circlesAccountabilityJoined
+                                : l10n.circlesJoin,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: FilledButton.tonal(
-                            onPressed: joined
-                                ? () => notifier.checkInAccountabilityGroup(
-                                      group.id,
-                                    )
-                                : null,
-                            child: Text(l10n.circlesAccountabilityCheckIn),
-                          ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: FilledButton.tonal(
+                          onPressed: joined
+                              ? () => notifier.checkInAccountabilityGroup(
+                                  group.id,
+                                )
+                              : null,
+                          child: Text(l10n.circlesAccountabilityCheckIn),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text('${l10n.circlesAccountabilityStreak}: $streak'),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text('${l10n.circlesAccountabilityStreak}: $streak'),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        }),
       ],
     );
   }

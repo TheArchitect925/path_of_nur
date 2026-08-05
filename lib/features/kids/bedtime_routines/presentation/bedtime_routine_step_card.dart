@@ -59,8 +59,8 @@ class BedtimeRoutineStepCard extends StatelessWidget {
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: const Color(0xFF675B4E),
-                      ),
+                    color: const Color(0xFF675B4E),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Row(

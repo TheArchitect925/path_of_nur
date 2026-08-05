@@ -43,10 +43,7 @@ class EditorialRelationSection extends StatelessWidget {
             padding: EdgeInsets.only(
               bottom: entry.key == visibleLinks.length - 1 ? 0 : 10,
             ),
-            child: _EditorialRelationTile(
-              link: entry.value,
-              compact: compact,
-            ),
+            child: _EditorialRelationTile(link: entry.value, compact: compact),
           );
         }),
       ],
@@ -55,10 +52,7 @@ class EditorialRelationSection extends StatelessWidget {
 }
 
 class _EditorialRelationTile extends StatelessWidget {
-  const _EditorialRelationTile({
-    required this.link,
-    required this.compact,
-  });
+  const _EditorialRelationTile({required this.link, required this.compact});
 
   final EditorialResolvedRelationLink link;
   final bool compact;

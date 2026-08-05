@@ -112,177 +112,227 @@ class _FakeQuranLiveActivityService extends QuranLiveActivityService {
 }
 
 void main() {
-  testWidgets('shell playback pill appears for active Qur’an playback and expands into the full player sheet', (
-    tester,
-  ) async {
-    late _FakeMiniPlayerController controller;
-    SharedPreferences.setMockInitialValues(const <String, Object>{});
-    final prefs = await SharedPreferences.getInstance();
-    final router = GoRouter(
-      initialLocation: '/home',
-      routes: [
-        GoRoute(
-          path: '/home',
-          name: 'home',
-          builder: (context, state) => const AppShellScaffold(
-            currentLocation: '/home',
-            child: Center(child: Text('Home')),
-          ),
-        ),
-        GoRoute(
-          path: '/quran/surah/:surahNumber',
-          name: 'quranReader',
-          builder: (context, state) => Scaffold(
-            body: Text(
-              'Reader ${state.pathParameters['surahNumber']}:${state.uri.queryParameters['ayah'] ?? '-'}',
+  testWidgets(
+    'shell playback pill appears for active Qur’an playback and expands into the full player sheet',
+    (tester) async {
+      late _FakeMiniPlayerController controller;
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+      final router = GoRouter(
+        initialLocation: '/home',
+        routes: [
+          GoRoute(
+            path: '/home',
+            name: 'home',
+            builder: (context, state) => const AppShellScaffold(
+              currentLocation: '/home',
+              child: Center(child: Text('Home')),
             ),
           ),
-        ),
-        GoRoute(
-          path: '/quran/focus-recitation',
-          name: 'quranFocusRecitation',
-          builder: (context, state) => Scaffold(
-            body: Text(
-              'Focus ${state.uri.queryParameters['surah'] ?? '-'}:${state.uri.queryParameters['ayah'] ?? '-'}',
+          GoRoute(
+            path: '/quran/surah/:surahNumber',
+            name: 'quranReader',
+            builder: (context, state) => Scaffold(
+              body: Text(
+                'Reader ${state.pathParameters['surahNumber']}:${state.uri.queryParameters['ayah'] ?? '-'}',
+              ),
             ),
           ),
-        ),
-      ],
-    );
-
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          quranGlobalPlaybackStateProvider.overrideWithValue(
-            const QuranReaderPlaybackState(
-              pageSurahNumber: 1,
-              reciterId: 'husary',
-              reciterName: 'Husary',
-              activeSurahNumber: 1,
-              activeAyahKey: '1:2',
-              activeAyahNumber: 2,
-              hasPlayback: true,
-              isPlaying: true,
-              status: QuranReaderPlaybackStatus.playing,
-              canPause: true,
-              canPlay: false,
-              canGoNextAyah: true,
-              canGoNextSurah: true,
-              nextAyahNumber: 3,
-              nextSurahNumber: 2,
+          GoRoute(
+            path: '/quran/focus-recitation',
+            name: 'quranFocusRecitation',
+            builder: (context, state) => Scaffold(
+              body: Text(
+                'Focus ${state.uri.queryParameters['surah'] ?? '-'}:${state.uri.queryParameters['ayah'] ?? '-'}',
+              ),
             ),
-          ),
-          quranPlayerControllerProvider.overrideWith(
-            (ref) => controller = _FakeMiniPlayerController(ref, AudioPlayer()),
           ),
         ],
-        child: MaterialApp.router(
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
+      );
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            quranGlobalPlaybackStateProvider.overrideWithValue(
+              const QuranReaderPlaybackState(
+                pageSurahNumber: 1,
+                reciterId: 'husary',
+                reciterName: 'Husary',
+                activeSurahNumber: 1,
+                activeAyahKey: '1:2',
+                activeAyahNumber: 2,
+                hasPlayback: true,
+                isPlaying: true,
+                status: QuranReaderPlaybackStatus.playing,
+                canPause: true,
+                canPlay: false,
+                canGoNextAyah: true,
+                canGoNextSurah: true,
+                nextAyahNumber: 3,
+                nextSurahNumber: 2,
+              ),
+            ),
+            quranPlayerControllerProvider.overrideWith(
+              (ref) =>
+                  controller = _FakeMiniPlayerController(ref, AudioPlayer()),
+            ),
           ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          routerConfig: router,
+          child: MaterialApp.router(
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            routerConfig: router,
+          ),
         ),
-      ),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 200));
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
 
-    expect(find.byKey(const ValueKey('quran-shell-player-pill')), findsOneWidget);
-    expect(
-      find.byKey(const ValueKey('quran-shell-player-play-pause')),
-      findsOneWidget,
-    );
-    expect(
-      find.byKey(const ValueKey('quran-shell-player-progress')),
-      findsOneWidget,
-    );
-    expect(find.byKey(const ValueKey('quran-shell-player-expand')), findsOneWidget);
-    expect(
-      find.byKey(const ValueKey('quran-shell-player-pill-content')),
-      findsOneWidget,
-    );
-    expect(find.byKey(const ValueKey('quran-reader-next-ayah')), findsNothing);
-    expect(find.byKey(const ValueKey('quran-reader-next-surah')), findsNothing);
-    expect(find.byKey(const ValueKey('quran-reader-close-player')), findsNothing);
-    expect(find.byKey(const ValueKey('quran-reader-follow-toggle')), findsNothing);
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-pill')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-play-pause')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-progress')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-expand')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-pill-content')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-next-ayah')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-next-surah')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-close-player')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-follow-toggle')),
+        findsNothing,
+      );
 
-    final compactProgress = tester.widget<LinearProgressIndicator>(
-      find.byKey(const ValueKey('quran-shell-player-progress')),
-    );
-    expect(compactProgress.value, closeTo(0.0, 0.001));
+      final compactProgress = tester.widget<LinearProgressIndicator>(
+        find.byKey(const ValueKey('quran-shell-player-progress')),
+      );
+      expect(compactProgress.value, closeTo(0.0, 0.001));
 
-    await tester.tap(find.byKey(const ValueKey('quran-shell-player-play-pause')));
-    await tester.pump();
-    expect(controller.paused, isTrue);
+      await tester.tap(
+        find.byKey(const ValueKey('quran-shell-player-play-pause')),
+      );
+      await tester.pump();
+      expect(controller.paused, isTrue);
 
-    await tester.tap(find.byKey(const ValueKey('quran-shell-player-expand')));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const ValueKey('quran-global-player-sheet')), findsOneWidget);
-    expect(find.byKey(const ValueKey('quran-shell-player-pill')), findsNothing);
-    expect(
-      find.byKey(const ValueKey('quran-global-player-collapse')),
-      findsOneWidget,
-    );
-    expect(find.byKey(const ValueKey('quran-reader-follow-toggle')), findsNothing);
-    expect(
-      find.byKey(const ValueKey('quran-global-player-open-focus-mode')),
-      findsOneWidget,
-    );
+      await tester.tap(find.byKey(const ValueKey('quran-shell-player-expand')));
+      await tester.pumpAndSettle();
+      expect(
+        find.byKey(const ValueKey('quran-global-player-sheet')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-pill')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-global-player-collapse')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-follow-toggle')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-global-player-open-focus-mode')),
+        findsOneWidget,
+      );
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-play-pause-button')));
-    await tester.pump();
-    expect(controller.paused, isTrue);
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-pause-button')),
+      );
+      await tester.pump();
+      expect(controller.paused, isTrue);
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-next-ayah')));
-    await tester.pump();
-    await tester.tap(find.byKey(const ValueKey('quran-reader-next-surah')));
-    await tester.pump();
-    expect(controller.relativeAyahOffsets, <int>[1]);
-    expect(controller.adjacentSurahOffsets, <int>[1]);
+      await tester.tap(find.byKey(const ValueKey('quran-reader-next-ayah')));
+      await tester.pump();
+      await tester.tap(find.byKey(const ValueKey('quran-reader-next-surah')));
+      await tester.pump();
+      expect(controller.relativeAyahOffsets, <int>[1]);
+      expect(controller.adjacentSurahOffsets, <int>[1]);
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-forward-15')));
-    await tester.pump();
-    expect(controller.seekPositions, isNotEmpty);
+      await tester.tap(find.byKey(const ValueKey('quran-reader-forward-15')));
+      await tester.pump();
+      expect(controller.seekPositions, isNotEmpty);
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-close-player')));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const ValueKey('quran-global-player-sheet')), findsNothing);
-    expect(find.byKey(const ValueKey('quran-shell-player-pill')), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('quran-reader-close-player')));
+      await tester.pumpAndSettle();
+      expect(
+        find.byKey(const ValueKey('quran-global-player-sheet')),
+        findsNothing,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-shell-player-pill')),
+        findsOneWidget,
+      );
 
-    await tester.tap(find.byKey(const ValueKey('quran-shell-player-pill-content')));
-    await tester.pumpAndSettle();
-    await tester.fling(
-      find.byKey(const ValueKey('quran-global-player-sheet')),
-      const Offset(0, 420),
-      1800,
-      warnIfMissed: false,
-    );
-    await tester.pumpAndSettle();
-    expect(find.byKey(const ValueKey('quran-global-player-sheet')), findsNothing);
+      await tester.tap(
+        find.byKey(const ValueKey('quran-shell-player-pill-content')),
+      );
+      await tester.pumpAndSettle();
+      await tester.fling(
+        find.byKey(const ValueKey('quran-global-player-sheet')),
+        const Offset(0, 420),
+        1800,
+        warnIfMissed: false,
+      );
+      await tester.pumpAndSettle();
+      expect(
+        find.byKey(const ValueKey('quran-global-player-sheet')),
+        findsNothing,
+      );
 
-    await tester.tap(find.byKey(const ValueKey('quran-shell-player-pill-content')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('quran-global-player-open-reader')));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 250));
-    expect(find.text('Reader 1:2'), findsOneWidget);
+      await tester.tap(
+        find.byKey(const ValueKey('quran-shell-player-pill-content')),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-global-player-open-reader')),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 250));
+      expect(find.text('Reader 1:2'), findsOneWidget);
 
-    router.go('/home');
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('quran-shell-player-pill-content')));
-    await tester.pumpAndSettle();
-    await tester.tap(
-      find.byKey(const ValueKey('quran-global-player-open-focus-mode')),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 250));
-    expect(find.text('Focus 1:2'), findsOneWidget);
-  });
+      router.go('/home');
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-shell-player-pill-content')),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-global-player-open-focus-mode')),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 250));
+      expect(find.text('Focus 1:2'), findsOneWidget);
+    },
+  );
 
   testWidgets('shell playback pill stays visible when playback failed', (
     tester,
@@ -347,7 +397,10 @@ void main() {
     await tester.pump(const Duration(milliseconds: 200));
 
     expect(find.textContaining('network'), findsOneWidget);
-    expect(find.byKey(const ValueKey('quran-shell-player-pill')), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('quran-shell-player-pill')),
+      findsOneWidget,
+    );
     expect(
       find.byKey(const ValueKey('quran-shell-player-play-pause')),
       findsOneWidget,
@@ -357,75 +410,18 @@ void main() {
       findsOneWidget,
     );
 
-    await tester.tap(find.byKey(const ValueKey('quran-shell-player-play-pause')));
+    await tester.tap(
+      find.byKey(const ValueKey('quran-shell-player-play-pause')),
+    );
     await tester.pump();
     expect(controller.retried, isTrue);
   });
 
-  testWidgets('shell playback pill progress updates with playback state changes', (
-    tester,
-  ) async {
-    final playbackStateProvider = StateProvider<QuranReaderPlaybackState>(
-      (ref) => const QuranReaderPlaybackState(
-        pageSurahNumber: 1,
-        reciterId: 'husary',
-        reciterName: 'Husary',
-        activeSurahNumber: 1,
-        activeAyahKey: '1:2',
-        activeAyahNumber: 2,
-        hasPlayback: true,
-        isPlaying: true,
-        status: QuranReaderPlaybackStatus.playing,
-        canPause: true,
-        position: Duration(seconds: 15),
-        duration: Duration(seconds: 60),
-      ),
-    );
-
-    SharedPreferences.setMockInitialValues(const <String, Object>{});
-    final prefs = await SharedPreferences.getInstance();
-
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          quranPlayerControllerProvider.overrideWith(
-            (ref) => _FakeMiniPlayerController(ref, AudioPlayer()),
-          ),
-          quranGlobalPlaybackStateProvider.overrideWith(
-            (ref) => ref.watch(playbackStateProvider),
-          ),
-        ],
-        child: const MaterialApp(
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: AppShellScaffold(
-            currentLocation: '/home',
-            child: SizedBox.shrink(),
-          ),
-        ),
-      ),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 200));
-
-    LinearProgressIndicator compactProgress() =>
-        tester.widget<LinearProgressIndicator>(
-          find.byKey(const ValueKey('quran-shell-player-progress')),
-        );
-
-    expect(compactProgress().value, closeTo(0.25, 0.001));
-
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(AppShellScaffold)),
-    );
-    container.read(playbackStateProvider.notifier).state =
-        const QuranReaderPlaybackState(
+  testWidgets(
+    'shell playback pill progress updates with playback state changes',
+    (tester) async {
+      final playbackStateProvider = StateProvider<QuranReaderPlaybackState>(
+        (ref) => const QuranReaderPlaybackState(
           pageSurahNumber: 1,
           reciterId: 'husary',
           reciterName: 'Husary',
@@ -436,14 +432,75 @@ void main() {
           isPlaying: true,
           status: QuranReaderPlaybackStatus.playing,
           canPause: true,
-          position: Duration(seconds: 45),
+          position: Duration(seconds: 15),
           duration: Duration(seconds: 60),
-        );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 100));
+        ),
+      );
 
-    expect(compactProgress().value, closeTo(0.75, 0.001));
-  });
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            quranPlayerControllerProvider.overrideWith(
+              (ref) => _FakeMiniPlayerController(ref, AudioPlayer()),
+            ),
+            quranGlobalPlaybackStateProvider.overrideWith(
+              (ref) => ref.watch(playbackStateProvider),
+            ),
+          ],
+          child: const MaterialApp(
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: AppShellScaffold(
+              currentLocation: '/home',
+              child: SizedBox.shrink(),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
+
+      LinearProgressIndicator compactProgress() =>
+          tester.widget<LinearProgressIndicator>(
+            find.byKey(const ValueKey('quran-shell-player-progress')),
+          );
+
+      expect(compactProgress().value, closeTo(0.25, 0.001));
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(AppShellScaffold)),
+      );
+      container
+          .read(playbackStateProvider.notifier)
+          .state = const QuranReaderPlaybackState(
+        pageSurahNumber: 1,
+        reciterId: 'husary',
+        reciterName: 'Husary',
+        activeSurahNumber: 1,
+        activeAyahKey: '1:2',
+        activeAyahNumber: 2,
+        hasPlayback: true,
+        isPlaying: true,
+        status: QuranReaderPlaybackStatus.playing,
+        canPause: true,
+        position: Duration(seconds: 45),
+        duration: Duration(seconds: 60),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 100));
+
+      expect(compactProgress().value, closeTo(0.75, 0.001));
+    },
+  );
 
   testWidgets('shell playback pill hides while focus recitation mode is open', (
     tester,
@@ -455,9 +512,7 @@ void main() {
       ProviderScope(
         overrides: [
           sharedPreferencesProvider.overrideWithValue(prefs),
-          quranFocusRecitationOpenProvider.overrideWith(
-            (ref) => true,
-          ),
+          quranFocusRecitationOpenProvider.overrideWith((ref) => true),
           quranGlobalPlaybackStateProvider.overrideWithValue(
             const QuranReaderPlaybackState(
               pageSurahNumber: 1,
@@ -493,75 +548,79 @@ void main() {
     expect(find.byKey(const ValueKey('quran-shell-player-pill')), findsNothing);
   });
 
-  testWidgets('shell updates Qur’an live activity while browsing outside the reader', (
-    tester,
-  ) async {
-    final fakeLiveActivity = _FakeQuranLiveActivityService();
-    final playbackStateProvider = StateProvider<QuranReaderPlaybackState>(
-      (ref) => const QuranReaderPlaybackState(
-        pageSurahNumber: 1,
-        reciterId: 'husary',
-        reciterName: 'Husary',
-        activeSurahNumber: 1,
-        activeAyahKey: '1:2',
-        activeAyahNumber: 2,
-        hasPlayback: true,
-        isPlaying: true,
-        status: QuranReaderPlaybackStatus.playing,
-        position: Duration(seconds: 9),
-        duration: Duration(seconds: 45),
-      ),
-    );
-
-    SharedPreferences.setMockInitialValues(const <String, Object>{});
-    final prefs = await SharedPreferences.getInstance();
-
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          quranLiveActivityServiceProvider.overrideWithValue(fakeLiveActivity),
-          quranGlobalPlaybackStateProvider.overrideWith(
-            (ref) => ref.watch(playbackStateProvider),
-          ),
-        ],
-        child: const MaterialApp(
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: AppShellScaffold(
-            currentLocation: '/home',
-            child: SizedBox.shrink(),
-          ),
-        ),
-      ),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 200));
-
-    expect(fakeLiveActivity.updateCount, 1);
-    expect(fakeLiveActivity.lastPayload?['surahNumber'], 1);
-    expect(fakeLiveActivity.lastPayload?['ayahNumber'], 2);
-
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(AppShellScaffold)),
-    );
-    container.read(playbackStateProvider.notifier).state =
-        const QuranReaderPlaybackState(
+  testWidgets(
+    'shell updates Qur’an live activity while browsing outside the reader',
+    (tester) async {
+      final fakeLiveActivity = _FakeQuranLiveActivityService();
+      final playbackStateProvider = StateProvider<QuranReaderPlaybackState>(
+        (ref) => const QuranReaderPlaybackState(
           pageSurahNumber: 1,
           reciterId: 'husary',
           reciterName: 'Husary',
-          hasPlayback: false,
-          isPlaying: false,
-          status: QuranReaderPlaybackStatus.idle,
-        );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 200));
+          activeSurahNumber: 1,
+          activeAyahKey: '1:2',
+          activeAyahNumber: 2,
+          hasPlayback: true,
+          isPlaying: true,
+          status: QuranReaderPlaybackStatus.playing,
+          position: Duration(seconds: 9),
+          duration: Duration(seconds: 45),
+        ),
+      );
 
-    expect(fakeLiveActivity.endCount, 1);
-  });
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            quranLiveActivityServiceProvider.overrideWithValue(
+              fakeLiveActivity,
+            ),
+            quranGlobalPlaybackStateProvider.overrideWith(
+              (ref) => ref.watch(playbackStateProvider),
+            ),
+          ],
+          child: const MaterialApp(
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: AppShellScaffold(
+              currentLocation: '/home',
+              child: SizedBox.shrink(),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
+
+      expect(fakeLiveActivity.updateCount, 1);
+      expect(fakeLiveActivity.lastPayload?['surahNumber'], 1);
+      expect(fakeLiveActivity.lastPayload?['ayahNumber'], 2);
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(AppShellScaffold)),
+      );
+      container
+          .read(playbackStateProvider.notifier)
+          .state = const QuranReaderPlaybackState(
+        pageSurahNumber: 1,
+        reciterId: 'husary',
+        reciterName: 'Husary',
+        hasPlayback: false,
+        isPlaying: false,
+        status: QuranReaderPlaybackStatus.idle,
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
+
+      expect(fakeLiveActivity.endCount, 1);
+    },
+  );
 }

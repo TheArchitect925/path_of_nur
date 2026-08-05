@@ -25,10 +25,11 @@ class LifeProgressState {
   }
 
   Map<String, dynamic> toJson() => {
-        'lessonProgressById': lessonProgressById
-            .map((key, value) => MapEntry(key, value.toJson())),
-        'recentLessonIds': recentLessonIds,
-      };
+    'lessonProgressById': lessonProgressById.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'recentLessonIds': recentLessonIds,
+  };
 
   static LifeProgressState fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -125,7 +126,7 @@ class LifeSubcategoryProgress {
 
 class LifeProgressNotifier extends StateNotifier<LifeProgressState> {
   LifeProgressNotifier(this._store, this._oceanDrops)
-      : super(LifeProgressState.fromJson(_store.getJsonMap(_key)));
+    : super(LifeProgressState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'learn.life.progress.v1';
   final LocalStore _store;
@@ -188,10 +189,7 @@ class LifeProgressNotifier extends StateNotifier<LifeProgressState> {
         actionType: oceanActionLessonCompleted,
         sourceModule: oceanSourceLearn,
         referenceId: lessonId,
-        metadata: {
-          'timestamp': updated.completedIso,
-          'category': 'life',
-        },
+        metadata: {'timestamp': updated.completedIso, 'category': 'life'},
       );
     }
   }
@@ -203,11 +201,11 @@ class LifeProgressNotifier extends StateNotifier<LifeProgressState> {
 
 final lifeProgressProvider =
     StateNotifierProvider<LifeProgressNotifier, LifeProgressState>(
-  (ref) => LifeProgressNotifier(
-    ref.watch(localStoreProvider),
-    ref.read(oceanDropServiceProvider),
-  ),
-);
+      (ref) => LifeProgressNotifier(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      ),
+    );
 
 final lifeProgressSummaryProvider = Provider<LifeProgressSummary>((ref) {
   final state = ref.watch(lifeProgressProvider);
@@ -252,7 +250,10 @@ final lifeProgressSummaryProvider = Provider<LifeProgressSummary>((ref) {
   );
 });
 
-final lifeThemeProgressProvider = Provider.family<LifeThemeProgress, String>((ref, themeId) {
+final lifeThemeProgressProvider = Provider.family<LifeThemeProgress, String>((
+  ref,
+  themeId,
+) {
   final state = ref.watch(lifeProgressProvider);
   final subcategories = lifeSubcategoriesForTheme(themeId);
   final lessonIds = subcategories.expand((item) => item.lessonIds).toList();
@@ -280,37 +281,37 @@ final lifeThemeProgressProvider = Provider.family<LifeThemeProgress, String>((re
 
 final lifeSubcategoryProgressProvider =
     Provider.family<LifeSubcategoryProgress, String>((ref, subcategoryId) {
-  final state = ref.watch(lifeProgressProvider);
-  final sub = lifeSubcategoryById(subcategoryId);
-  if (sub == null) {
-    return const LifeSubcategoryProgress(
-      subcategoryId: '',
-      totalLessons: 0,
-      completedLessons: 0,
-      inProgressLessons: 0,
-    );
-  }
+      final state = ref.watch(lifeProgressProvider);
+      final sub = lifeSubcategoryById(subcategoryId);
+      if (sub == null) {
+        return const LifeSubcategoryProgress(
+          subcategoryId: '',
+          totalLessons: 0,
+          completedLessons: 0,
+          inProgressLessons: 0,
+        );
+      }
 
-  var completed = 0;
-  var inProgress = 0;
+      var completed = 0;
+      var inProgress = 0;
 
-  for (final id in sub.lessonIds) {
-    final p = state.lessonProgressById[id];
-    if (p == null) continue;
-    if (p.status == LifeLessonStatus.completed) {
-      completed += 1;
-    } else if (p.status == LifeLessonStatus.inProgress) {
-      inProgress += 1;
-    }
-  }
+      for (final id in sub.lessonIds) {
+        final p = state.lessonProgressById[id];
+        if (p == null) continue;
+        if (p.status == LifeLessonStatus.completed) {
+          completed += 1;
+        } else if (p.status == LifeLessonStatus.inProgress) {
+          inProgress += 1;
+        }
+      }
 
-  return LifeSubcategoryProgress(
-    subcategoryId: subcategoryId,
-    totalLessons: sub.lessonIds.length,
-    completedLessons: completed,
-    inProgressLessons: inProgress,
-  );
-});
+      return LifeSubcategoryProgress(
+        subcategoryId: subcategoryId,
+        totalLessons: sub.lessonIds.length,
+        completedLessons: completed,
+        inProgressLessons: inProgress,
+      );
+    });
 
 final lifeSuggestedThemeOrderProvider = Provider<List<LifeTheme>>((ref) {
   return lifeThemesInSuggestedOrder();

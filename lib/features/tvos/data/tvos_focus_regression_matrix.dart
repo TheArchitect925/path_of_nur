@@ -1,16 +1,12 @@
 import '../domain/tvos_focus_regression_models.dart';
 import '../domain/tvos_foundation_models.dart';
 
-const List<TVOSFocusQaScenario> tvosFocusQaScenarios = <
-    TVOSFocusQaScenario>[
+const List<TVOSFocusQaScenario> tvosFocusQaScenarios = <TVOSFocusQaScenario>[
   TVOSFocusQaScenario(
     surfaceId: TVOSSurfaceId.home,
     routePath: '/home',
     defaultSectionId: 'home.continueJourney',
-    orderedSectionIds: <String>[
-      'home.continueJourney',
-      'home.verse',
-    ],
+    orderedSectionIds: <String>['home.continueJourney', 'home.verse'],
     requiresLeftEdgeNavigationEscape: true,
     requiresContentFocusRestore: true,
     requiresNavigationRestore: true,
@@ -177,11 +173,7 @@ const List<TVOSFocusQaScenario> tvosFocusQaScenarios = <
     surfaceId: TVOSSurfaceId.kids,
     routePath: '/learn/kids/fun-learning',
     defaultSectionId: 'kids.primary',
-    orderedSectionIds: <String>[
-      'kids.primary',
-      'kids.story',
-      'kids.support',
-    ],
+    orderedSectionIds: <String>['kids.primary', 'kids.story', 'kids.support'],
     requiresLeftEdgeNavigationEscape: true,
     requiresContentFocusRestore: true,
     requiresNavigationRestore: true,

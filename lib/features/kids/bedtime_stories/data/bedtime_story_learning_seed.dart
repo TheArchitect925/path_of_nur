@@ -43,7 +43,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_adam_bedtime_v1',
     prophetId: 'adam',
     title: 'What We Learned from Prophet Adam',
-    shortDescription: 'A gentle review about beginnings, forgiveness, and turning back to Allah.',
+    shortDescription:
+        'A gentle review about beginnings, forgiveness, and turning back to Allah.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 1,
     questions: <BedtimeStoryQuizQuestion>[
@@ -57,7 +58,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('ibrahim', 'Ibrahim'),
         ],
         correctId: 'adam',
-        explanation: 'That is right. Prophet Adam was the first human and the first prophet.',
+        explanation:
+            'That is right. Prophet Adam was the first human and the first prophet.',
       ),
       _question(
         id: 'adam_q2',
@@ -69,7 +71,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('blame', 'Blame someone else'),
         ],
         correctId: 'return',
-        explanation: 'Yes. Prophet Adam teaches us to say sorry, return to Allah, and try to do better.',
+        explanation:
+            'Yes. Prophet Adam teaches us to say sorry, return to Allah, and try to do better.',
       ),
       _question(
         id: 'adam_q3',
@@ -80,7 +83,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. Allah is Most Merciful and accepts sincere repentance.',
+        explanation:
+            'True. Allah is Most Merciful and accepts sincere repentance.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -114,7 +118,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('tower', 'A tower'),
         ],
         correctId: 'ark',
-        explanation: 'Correct. Prophet Nuh built a great Ark because he trusted Allah.',
+        explanation:
+            'Correct. Prophet Nuh built a great Ark because he trusted Allah.',
       ),
       _question(
         id: 'nuh_q2',
@@ -137,7 +142,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. Allah protected Prophet Nuh, the believers, and the animals on the Ark.',
+        explanation:
+            'True. Allah protected Prophet Nuh, the believers, and the animals on the Ark.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -157,7 +163,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_ibrahim_bedtime_v1',
     prophetId: 'ibrahim',
     title: 'What We Learned from Prophet Ibrahim',
-    shortDescription: 'A gentle review about truth, courage, and trusting Allah.',
+    shortDescription:
+        'A gentle review about truth, courage, and trusting Allah.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 3,
     questions: <BedtimeStoryQuizQuestion>[
@@ -171,7 +178,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('trees', 'Trees'),
         ],
         correctId: 'idols',
-        explanation: 'Correct. They worshipped idols, but Ibrahim taught them to worship Allah alone.',
+        explanation:
+            'Correct. They worshipped idols, but Ibrahim taught them to worship Allah alone.',
       ),
       _question(
         id: 'ibrahim_q2',
@@ -183,11 +191,13 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('ran', 'He ran away from it'),
         ],
         correctId: 'safe',
-        explanation: 'Yes. Allah protected Ibrahim and made the fire safe for him.',
+        explanation:
+            'Yes. Allah protected Ibrahim and made the fire safe for him.',
       ),
       _question(
         id: 'ibrahim_q3',
-        prompt: 'True or false: Prophet Ibrahim stood for the truth even when others were angry.',
+        prompt:
+            'True or false: Prophet Ibrahim stood for the truth even when others were angry.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
@@ -214,7 +224,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_ismail_bedtime_v1',
     prophetId: 'ismail',
     title: 'What We Learned from Prophet Ismail',
-    shortDescription: 'A gentle review about patience, obedience, and trust in Allah.',
+    shortDescription:
+        'A gentle review about patience, obedience, and trust in Allah.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 4,
     questions: <BedtimeStoryQuizQuestion>[
@@ -240,7 +251,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('laugh', 'He laughed at the dream'),
         ],
         correctId: 'patient',
-        explanation: 'Yes. Ismail showed patience, trust, and obedience to Allah.',
+        explanation:
+            'Yes. Ismail showed patience, trust, and obedience to Allah.',
       ),
       _question(
         id: 'ismail_q3',
@@ -285,7 +297,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('mountain', 'On a mountain'),
         ],
         correctId: 'well',
-        explanation: 'Correct. Yusuf was left in a well, but Allah still cared for him.',
+        explanation:
+            'Correct. Yusuf was left in a well, but Allah still cared for him.',
       ),
       _question(
         id: 'yusuf_q2',
@@ -342,7 +355,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('cave', 'In a cave'),
         ],
         correctId: 'basket',
-        explanation: 'Correct. Allah protected baby Musa through that difficult moment.',
+        explanation:
+            'Correct. Allah protected baby Musa through that difficult moment.',
       ),
       _question(
         id: 'musa_q2',
@@ -354,11 +368,13 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('storm', 'A storm covered the sky'),
         ],
         correctId: 'parted',
-        explanation: 'Yes. Allah parted the sea and made a safe path for Musa and his people.',
+        explanation:
+            'Yes. Allah parted the sea and made a safe path for Musa and his people.',
       ),
       _question(
         id: 'musa_q3',
-        prompt: 'True or false: Musa said Allah would guide him even when the people were scared.',
+        prompt:
+            'True or false: Musa said Allah would guide him even when the people were scared.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
@@ -385,7 +401,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_yunus_bedtime_v1',
     prophetId: 'yunus',
     title: 'What We Learned from Prophet Yunus',
-    shortDescription: 'A gentle review about dua, forgiveness, and second chances.',
+    shortDescription:
+        'A gentle review about dua, forgiveness, and second chances.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 7,
     questions: <BedtimeStoryQuizQuestion>[
@@ -399,7 +416,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('camel', 'A camel'),
         ],
         correctId: 'whale',
-        explanation: 'Correct. Yunus was inside the whale, but Allah never forgot him.',
+        explanation:
+            'Correct. Yunus was inside the whale, but Allah never forgot him.',
       ),
       _question(
         id: 'yunus_q2',
@@ -422,7 +440,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. Allah is Merciful and listens to sincere repentance.',
+        explanation:
+            'True. Allah is Merciful and listens to sincere repentance.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -442,7 +461,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_dawud_bedtime_v1',
     prophetId: 'dawud',
     title: 'What We Learned from Prophet Dawud',
-    shortDescription: 'A gentle review about courage, justice, and using gifts for good.',
+    shortDescription:
+        'A gentle review about courage, justice, and using gifts for good.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 8,
     questions: <BedtimeStoryQuizQuestion>[
@@ -468,11 +488,13 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('stars', 'A sky full of stars'),
         ],
         correctId: 'voice',
-        explanation: 'Yes. Dawud had a beautiful voice, and even the mountains and birds praised Allah with him.',
+        explanation:
+            'Yes. Dawud had a beautiful voice, and even the mountains and birds praised Allah with him.',
       ),
       _question(
         id: 'dawud_q3',
-        prompt: 'True or false: Dawud used his skills to help and protect people.',
+        prompt:
+            'True or false: Dawud used his skills to help and protect people.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
@@ -499,7 +521,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_isa_bedtime_v1',
     prophetId: 'isa',
     title: 'What We Learned from Prophet Isa',
-    shortDescription: 'A gentle review about kindness, compassion, and trusting Allah.',
+    shortDescription:
+        'A gentle review about kindness, compassion, and trusting Allah.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 9,
     questions: <BedtimeStoryQuizQuestion>[
@@ -525,11 +548,13 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('wind', 'Control over the wind'),
         ],
         correctId: 'healing',
-        explanation: 'Yes. Allah gave Isa miracles that helped and comforted people.',
+        explanation:
+            'Yes. Allah gave Isa miracles that helped and comforted people.',
       ),
       _question(
         id: 'isa_q3',
-        prompt: 'True or false: Isa remained gentle and patient even when people were unkind.',
+        prompt:
+            'True or false: Isa remained gentle and patient even when people were unkind.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
@@ -556,7 +581,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_sulaiman_bedtime_v1',
     prophetId: 'sulaiman',
     title: 'What We Learned from Prophet Sulaiman',
-    shortDescription: 'A calm review about gratitude, wisdom, and caring for every creature.',
+    shortDescription:
+        'A calm review about gratitude, wisdom, and caring for every creature.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 10,
     questions: <BedtimeStoryQuizQuestion>[
@@ -570,7 +596,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('fish', 'A fish'),
         ],
         correctId: 'ant',
-        explanation: 'Correct. Sulaiman heard the ant and cared about even the smallest creatures.',
+        explanation:
+            'Correct. Sulaiman heard the ant and cared about even the smallest creatures.',
       ),
       _question(
         id: 'sulaiman_q2',
@@ -582,7 +609,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('dove', 'A dove'),
         ],
         correctId: 'hoopoe',
-        explanation: 'Yes. The hoopoe brought news about a kingdom that needed guidance.',
+        explanation:
+            'Yes. The hoopoe brought news about a kingdom that needed guidance.',
       ),
       _question(
         id: 'sulaiman_q3',
@@ -593,7 +621,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. Sulaiman teaches us to use our gifts well and stay grateful.',
+        explanation:
+            'True. Sulaiman teaches us to use our gifts well and stay grateful.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -613,13 +642,15 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_muhammad_part1_bedtime_v1',
     prophetId: 'muhammad',
     title: 'What We Learned from Prophet Muhammad ﷺ Part 1',
-    shortDescription: 'A gentle review about honesty, kindness, and early life.',
+    shortDescription:
+        'A gentle review about honesty, kindness, and early life.',
     ageGroup: BedtimeStoryAgeGroup.kidsPlus,
     sortOrder: 11,
     questions: <BedtimeStoryQuizQuestion>[
       _question(
         id: 'muhammad1_q1',
-        prompt: 'What name did people give Muhammad ﷺ because they trusted him?',
+        prompt:
+            'What name did people give Muhammad ﷺ because they trusted him?',
         type: BedtimeStoryQuizQuestionType.multipleChoice,
         options: <BedtimeStoryQuizOption>[
           _option('ameen', 'Al-Ameen'),
@@ -627,7 +658,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('habib', 'Al-Habib'),
         ],
         correctId: 'ameen',
-        explanation: 'Correct. People called him Al-Ameen, the trustworthy one.',
+        explanation:
+            'Correct. People called him Al-Ameen, the trustworthy one.',
       ),
       _question(
         id: 'muhammad1_q2',
@@ -643,14 +675,16 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
       ),
       _question(
         id: 'muhammad1_q3',
-        prompt: 'True or false: Good character made Muhammad ﷺ special even before prophethood.',
+        prompt:
+            'True or false: Good character made Muhammad ﷺ special even before prophethood.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. Honesty, kindness, and trustworthiness were already clear in his life.',
+        explanation:
+            'True. Honesty, kindness, and trustworthiness were already clear in his life.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -670,7 +704,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_muhammad_part2_bedtime_v1',
     prophetId: 'muhammad',
     title: 'What We Learned from Prophet Muhammad ﷺ Part 2',
-    shortDescription: 'A gentle review about revelation, patience, and kindness.',
+    shortDescription:
+        'A gentle review about revelation, patience, and kindness.',
     ageGroup: BedtimeStoryAgeGroup.kidsPlus,
     sortOrder: 12,
     questions: <BedtimeStoryQuizQuestion>[
@@ -684,11 +719,13 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('israfil', 'Israfil'),
         ],
         correctId: 'jibreel',
-        explanation: 'Correct. Allah sent Angel Jibreel with the first revelation.',
+        explanation:
+            'Correct. Allah sent Angel Jibreel with the first revelation.',
       ),
       _question(
         id: 'muhammad2_q2',
-        prompt: 'Who comforted the Prophet ﷺ when he came home after revelation?',
+        prompt:
+            'Who comforted the Prophet ﷺ when he came home after revelation?',
         type: BedtimeStoryQuizQuestionType.recallChoice,
         options: <BedtimeStoryQuizOption>[
           _option('khadijah', 'Khadijah'),
@@ -696,18 +733,21 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('aisha', 'Aisha'),
         ],
         correctId: 'khadijah',
-        explanation: 'Yes. Khadijah comforted him and believed in him right away.',
+        explanation:
+            'Yes. Khadijah comforted him and believed in him right away.',
       ),
       _question(
         id: 'muhammad2_q3',
-        prompt: 'True or false: The Prophet ﷺ stayed patient and kind even when people mocked him.',
+        prompt:
+            'True or false: The Prophet ﷺ stayed patient and kind even when people mocked him.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. He stayed patient and never answered cruelty with cruelty.',
+        explanation:
+            'True. He stayed patient and never answered cruelty with cruelty.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -727,7 +767,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_muhammad_part3_bedtime_v1',
     prophetId: 'muhammad',
     title: 'What We Learned from Prophet Muhammad ﷺ Part 3',
-    shortDescription: 'A calm review about Hijrah, community, and trusting Allah.',
+    shortDescription:
+        'A calm review about Hijrah, community, and trusting Allah.',
     ageGroup: BedtimeStoryAgeGroup.kidsPlus,
     sortOrder: 13,
     questions: <BedtimeStoryQuizQuestion>[
@@ -741,7 +782,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('umrah', 'Umrah'),
         ],
         correctId: 'hijrah',
-        explanation: 'Correct. The move from Makkah to Madinah is called the Hijrah.',
+        explanation:
+            'Correct. The move from Makkah to Madinah is called the Hijrah.',
       ),
       _question(
         id: 'muhammad3_q2',
@@ -753,18 +795,21 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('hide', 'Do not speak to anyone.'),
         ],
         correctId: 'allah_with_us',
-        explanation: 'Yes. The Prophet ﷺ trusted Allah even when danger was close.',
+        explanation:
+            'Yes. The Prophet ﷺ trusted Allah even when danger was close.',
       ),
       _question(
         id: 'muhammad3_q3',
-        prompt: 'True or false: In Madinah, the Prophet ﷺ built a caring community.',
+        prompt:
+            'True or false: In Madinah, the Prophet ﷺ built a caring community.',
         type: BedtimeStoryQuizQuestionType.trueFalse,
         options: <BedtimeStoryQuizOption>[
           _option('true', 'True'),
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. He taught people to pray, help the poor, and live with kindness and fairness.',
+        explanation:
+            'True. He taught people to pray, help the poor, and live with kindness and fairness.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -784,13 +829,15 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
     storyId: 'story_prophet_muhammad_part4_bedtime_v1',
     prophetId: 'muhammad',
     title: 'What We Learned from Prophet Muhammad ﷺ Part 4',
-    shortDescription: 'A calm review about mercy, forgiveness, and the final message.',
+    shortDescription:
+        'A calm review about mercy, forgiveness, and the final message.',
     ageGroup: BedtimeStoryAgeGroup.kidsPlus,
     sortOrder: 14,
     questions: <BedtimeStoryQuizQuestion>[
       _question(
         id: 'muhammad4_q1',
-        prompt: 'How did the Prophet ﷺ treat the people of Makkah when he returned?',
+        prompt:
+            'How did the Prophet ﷺ treat the people of Makkah when he returned?',
         type: BedtimeStoryQuizQuestionType.multipleChoice,
         options: <BedtimeStoryQuizOption>[
           _option('mercy', 'He forgave them'),
@@ -810,7 +857,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('idols', 'Old idols'),
         ],
         correctId: 'quran',
-        explanation: 'Yes. He reminded people to hold on to the Qur’an and remember Allah.',
+        explanation:
+            'Yes. He reminded people to hold on to the Qur’an and remember Allah.',
       ),
       _question(
         id: 'muhammad4_q3',
@@ -821,7 +869,8 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
           _option('false', 'False'),
         ],
         correctId: 'true',
-        explanation: 'True. His life teaches mercy, kindness, patience, and love for Allah.',
+        explanation:
+            'True. His life teaches mercy, kindness, patience, and love for Allah.',
       ),
     ],
     completionRule: const BedtimeStoryQuizCompletionRule(
@@ -838,20 +887,25 @@ final List<BedtimeStoryQuizSeed> kBedtimeStoryQuizzes = <BedtimeStoryQuizSeed>[
   ),
 ];
 
-final List<BedtimeStoryMemoryDeckSeed> kBedtimeStoryMemoryDecks =
-    <BedtimeStoryMemoryDeckSeed>[
+final List<BedtimeStoryMemoryDeckSeed>
+kBedtimeStoryMemoryDecks = <BedtimeStoryMemoryDeckSeed>[
   BedtimeStoryMemoryDeckSeed(
     deckId: 'memory_story_prophet_adam_bedtime_v1',
     storyId: 'story_prophet_adam_bedtime_v1',
     prophetId: 'adam',
     title: 'Memory Cards for Prophet Adam',
-    shortDescription: 'Match key parts of Adam’s story with what they teach us.',
+    shortDescription:
+        'Match key parts of Adam’s story with what they teach us.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 1,
     pairs: <BedtimeStoryMemoryCardPair>[
       _pair('adam_pair_1', 'First human', 'Adam'),
       _pair('adam_pair_2', 'Beautiful home', 'Jannah'),
-      _pair('adam_pair_3', 'What to do after a mistake', 'Ask Allah for forgiveness'),
+      _pair(
+        'adam_pair_3',
+        'What to do after a mistake',
+        'Ask Allah for forgiveness',
+      ),
       _pair('adam_pair_4', 'Special beginning', 'Humanity on Earth'),
     ],
     reward: _memoryReward,
@@ -1019,7 +1073,11 @@ final List<BedtimeStoryMemoryDeckSeed> kBedtimeStoryMemoryDecks =
     pairs: <BedtimeStoryMemoryCardPair>[
       _pair('isa_pair_1', 'Blessed mother', 'Maryam'),
       _pair('isa_pair_2', 'Miracle at birth', 'Spoke in the cradle'),
-      _pair('isa_pair_3', 'Helped people by Allah’s permission', 'Healed the sick'),
+      _pair(
+        'isa_pair_3',
+        'Helped people by Allah’s permission',
+        'Healed the sick',
+      ),
       _pair('isa_pair_4', 'What Isa showed', 'Compassion'),
     ],
     reward: _memoryReward,
@@ -1125,7 +1183,11 @@ final List<BedtimeStoryMemoryDeckSeed> kBedtimeStoryMemoryDecks =
       _pair('muhammad4_pair_1', 'How he returned', 'With mercy'),
       _pair('muhammad4_pair_2', 'What was removed', 'Idols around the Ka‘bah'),
       _pair('muhammad4_pair_3', 'What to hold on to', 'The Qur’an'),
-      _pair('muhammad4_pair_4', 'What his life taught', 'Kindness and fairness'),
+      _pair(
+        'muhammad4_pair_4',
+        'What his life taught',
+        'Kindness and fairness',
+      ),
     ],
     reward: _memoryReward,
     relatedStoryIds: <String>['story_prophet_muhammad_part3_bedtime_v1'],

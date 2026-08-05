@@ -48,8 +48,12 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final lesson = ref.watch(kidsDuaLessonByIdProvider(widget.lessonId));
-    final learningItem = ref.watch(kidsDuaLearningItemByIdProvider(widget.lessonId));
-    final nextLesson = ref.watch(kidsDuaNextLessonByIdProvider(widget.lessonId));
+    final learningItem = ref.watch(
+      kidsDuaLearningItemByIdProvider(widget.lessonId),
+    );
+    final nextLesson = ref.watch(
+      kidsDuaNextLessonByIdProvider(widget.lessonId),
+    );
     final stories = ref.watch(kidsDuaStoriesForLessonProvider(widget.lessonId));
     final progress = ref
         .watch(kidsDuaLearningProvider)
@@ -80,7 +84,9 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
           lesson: lesson,
           learnerName: learner.displayName,
           categoryTitle:
-              ref.watch(kidsDuaCategoryByIdProvider(lesson.categoryId))?.title ??
+              ref
+                  .watch(kidsDuaCategoryByIdProvider(lesson.categoryId))
+                  ?.title ??
               '',
         ),
         const SizedBox(height: 12),
@@ -90,7 +96,10 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
             children: [
               Text(
                 l10n.kidsDuaLearningModesTitle,
-                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const SizedBox(height: 10),
               SegmentedButton<KidsDuaRepeatMode>(
@@ -136,15 +145,15 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
             lessonId: lesson.id,
             audioVariant: audioVariant,
           ),
-          onRestart: () => _handleRestart(
-            lessonId: lesson.id,
-            audioVariant: audioVariant,
-          ),
+          onRestart: () =>
+              _handleRestart(lessonId: lesson.id, audioVariant: audioVariant),
           onRepeatWholeChanged: (value) async {
             setState(() {
               _repeatWhole = value;
             });
-            await ref.read(kidsDuaAudioControllerProvider.notifier).setRepeatWhole(value);
+            await ref
+                .read(kidsDuaAudioControllerProvider.notifier)
+                .setRepeatWhole(value);
           },
         ),
         const SizedBox(height: 12),
@@ -172,10 +181,9 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
               alignment: Alignment.centerLeft,
               child: FilledButton.tonalIcon(
                 onPressed: () {
-                  ref.read(kidsDuaLearningProvider.notifier).recordReadAlongComplete(
-                        lesson.id,
-                        mode: _mode,
-                      );
+                  ref
+                      .read(kidsDuaLearningProvider.notifier)
+                      .recordReadAlongComplete(lesson.id, mode: _mode);
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(l10n.kidsDuaPracticeSavedSnack)),
                   );
@@ -198,7 +206,8 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
             ),
           ),
         ],
-        if (learningItem != null && _mode == KidsDuaRepeatMode.gentlePractice) ...[
+        if (learningItem != null &&
+            _mode == KidsDuaRepeatMode.gentlePractice) ...[
           const SizedBox(height: 12),
           _Frame(
             child: Column(
@@ -206,7 +215,10 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
               children: [
                 Text(
                   l10n.kidsDuaGentlePracticeTitle,
-                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -248,9 +260,9 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
           onStory: stories.isEmpty
               ? null
               : () => context.pushNamed(
-                    'kidsDuaStoryPlayer',
-                    pathParameters: {'storyId': stories.first.id},
-                  ),
+                  'kidsDuaStoryPlayer',
+                  pathParameters: {'storyId': stories.first.id},
+                ),
           onDraw: () => context.pushNamed(
             'kidsDuaDrawing',
             pathParameters: {'lessonId': lesson.id},
@@ -315,10 +327,7 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
       await controller.resume();
       return;
     }
-    final played = await controller.playVariant(
-      audioVariant,
-      duaId: lessonId,
-    );
+    final played = await controller.playVariant(audioVariant, duaId: lessonId);
     if (played) {
       ref.read(kidsDuaLearningProvider.notifier).recordAudioListen(lessonId);
     }
@@ -337,10 +346,7 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
     if (audioVariant == null) {
       return;
     }
-    final played = await controller.playVariant(
-      audioVariant,
-      duaId: lessonId,
-    );
+    final played = await controller.playVariant(audioVariant, duaId: lessonId);
     if (played) {
       ref.read(kidsDuaLearningProvider.notifier).recordAudioListen(lessonId);
     }
@@ -354,14 +360,15 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
     setState(() {
       _selectedSegmentId = segment.segmentId;
     });
-    ref.read(kidsDuaLearningProvider.notifier).recordSegmentRepeat(
-          lessonId: lessonId,
-          segmentId: segment.segmentId,
-        );
+    ref
+        .read(kidsDuaLearningProvider.notifier)
+        .recordSegmentRepeat(lessonId: lessonId, segmentId: segment.segmentId);
     if (audioVariant == null) {
       return;
     }
-    final played = await ref.read(kidsDuaAudioControllerProvider.notifier).playVariant(
+    final played = await ref
+        .read(kidsDuaAudioControllerProvider.notifier)
+        .playVariant(
           audioVariant,
           duaId: lessonId,
           activeSegmentId: segment.segmentId,
@@ -369,7 +376,11 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
         );
     if (!played && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context).kidsDuaTapRepeatNoAudioBody)),
+        SnackBar(
+          content: Text(
+            AppLocalizations.of(context).kidsDuaTapRepeatNoAudioBody,
+          ),
+        ),
       );
     }
   }
@@ -425,7 +436,9 @@ class _HeroCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       l10n.kidsDuaLessonHeroSubtitle(
-                        learnerName.isEmpty ? l10n.kidsDuaLearningBuddyLabel : learnerName,
+                        learnerName.isEmpty
+                            ? l10n.kidsDuaLearningBuddyLabel
+                            : learnerName,
                         categoryTitle,
                       ),
                       style: const TextStyle(color: Color(0xFF675B4E)),
@@ -496,7 +509,10 @@ class _AudioCard extends StatelessWidget {
             children: [
               Text(
                 l10n.kidsDuaAudioSectionTitle,
-                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
@@ -546,7 +562,8 @@ class _AudioCard extends StatelessWidget {
           );
         },
         loading: () => Text(l10n.kidsDuaAudioLoadingLabel),
-        error: (error, stackTrace) => Text(l10n.kidsDuaAudioUnavailableSubtitle),
+        error: (error, stackTrace) =>
+            Text(l10n.kidsDuaAudioUnavailableSubtitle),
       ),
     );
   }
@@ -559,10 +576,7 @@ class _AudioCard extends StatelessWidget {
 }
 
 class _ReadAlongControls extends StatelessWidget {
-  const _ReadAlongControls({
-    required this.mode,
-    required this.onChanged,
-  });
+  const _ReadAlongControls({required this.mode, required this.onChanged});
 
   final KidsDuaReadAlongMode mode;
   final ValueChanged<KidsDuaReadAlongMode> onChanged;

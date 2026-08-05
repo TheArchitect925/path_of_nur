@@ -41,12 +41,16 @@ class SpiritualGrowthValidation {
           action.titleKey.isEmpty ||
           action.descriptionKey.isEmpty) {
         issues.add(
-          SpiritualGrowthValidationIssue('Invalid action metadata: ${action.id}'),
+          SpiritualGrowthValidationIssue(
+            'Invalid action metadata: ${action.id}',
+          ),
         );
       }
       if (action.xpValue < 0 || action.dropValue < 0) {
         issues.add(
-          SpiritualGrowthValidationIssue('Invalid reward metadata: ${action.id}'),
+          SpiritualGrowthValidationIssue(
+            'Invalid reward metadata: ${action.id}',
+          ),
         );
       }
     }
@@ -63,7 +67,9 @@ class SpiritualGrowthValidation {
           prompt.descriptionKey.isEmpty ||
           prompt.responseOptions.isEmpty) {
         issues.add(
-          SpiritualGrowthValidationIssue('Invalid prompt metadata: ${prompt.id}'),
+          SpiritualGrowthValidationIssue(
+            'Invalid prompt metadata: ${prompt.id}',
+          ),
         );
       }
       final optionIds = <String>{};

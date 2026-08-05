@@ -7,7 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/config/build_flavor.dart';
 import '../../../shared/persistence/local_store.dart';
 
-const _editorialDashboardPinHashKey = 'internal.editorial_dashboard.pin_hash.v1';
+const _editorialDashboardPinHashKey =
+    'internal.editorial_dashboard.pin_hash.v1';
 const _defaultEditorialDashboardPin = '0786';
 
 class EditorialDashboardAccessState {
@@ -95,9 +96,10 @@ final editorialDashboardFeatureEnabledProvider = Provider<bool>((ref) {
       );
 });
 
-final editorialDashboardAccessProvider = StateNotifierProvider<
-  EditorialDashboardAccessController,
-  EditorialDashboardAccessState
->((ref) {
-  return EditorialDashboardAccessController(ref.watch(localStoreProvider));
-});
+final editorialDashboardAccessProvider =
+    StateNotifierProvider<
+      EditorialDashboardAccessController,
+      EditorialDashboardAccessState
+    >((ref) {
+      return EditorialDashboardAccessController(ref.watch(localStoreProvider));
+    });

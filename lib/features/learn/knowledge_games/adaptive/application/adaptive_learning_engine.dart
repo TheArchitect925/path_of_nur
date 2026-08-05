@@ -50,9 +50,9 @@ class AdaptiveLearningEngine {
       categoryScores.putIfAbsent(signal.category, () => <double>[]).add(score);
       gameTypeScores.putIfAbsent(signal.gameType, () => <double>[]).add(score);
       if (signal.completed) {
-        comfortScores.putIfAbsent(signal.gameType, () => <double>[]).add(
-          (signal.difficulty / 100).clamp(0.05, 1.0),
-        );
+        comfortScores
+            .putIfAbsent(signal.gameType, () => <double>[])
+            .add((signal.difficulty / 100).clamp(0.05, 1.0));
       }
     }
 
@@ -107,7 +107,8 @@ class AdaptiveLearningEngine {
 
   AdaptiveLearningInsight buildInsight(UserLearningProfile profile) {
     final hasAdaptiveData =
-        profile.categoryStrength.isNotEmpty || profile.gameTypeStrength.isNotEmpty;
+        profile.categoryStrength.isNotEmpty ||
+        profile.gameTypeStrength.isNotEmpty;
     return AdaptiveLearningInsight(
       hasAdaptiveData: hasAdaptiveData,
       supportGameType: profile.supportGameType,

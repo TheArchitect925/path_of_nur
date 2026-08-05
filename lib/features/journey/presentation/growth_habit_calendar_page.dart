@@ -94,10 +94,7 @@ class _GrowthHabitCalendarPageState
               habits: habits,
               state: state,
             );
-            return _CalendarDayTile(
-              date: date,
-              summary: summary,
-            );
+            return _CalendarDayTile(date: date, summary: summary);
           },
         ),
       ],

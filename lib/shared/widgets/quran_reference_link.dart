@@ -63,25 +63,29 @@ class QuranReferenceLinkTile extends StatelessWidget {
       padding: margin,
       child: InkWell(
         borderRadius: BorderRadius.circular(borderRadius),
-        onTap: onTapOverride ?? (canDeepLink ? () {
-          if (_endAyahNumber != null || fallbackStartAyah != null) {
-            openQuranAt(
-              context,
-              surahNumber: surahNumber,
-              ayahNumber: fallbackStartAyah!,
-              endAyahNumber: _endAyahNumber,
-              autoplay: autoplay,
-            );
-            return;
-          }
-          openQuranReferenceRange(
-            context,
-            surahNumber: surahNumber,
-            verseRange: verseRange,
-            fallbackStartAyah: fallbackStartAyah,
-            autoplay: autoplay,
-          );
-        } : null),
+        onTap:
+            onTapOverride ??
+            (canDeepLink
+                ? () {
+                    if (_endAyahNumber != null || fallbackStartAyah != null) {
+                      openQuranAt(
+                        context,
+                        surahNumber: surahNumber,
+                        ayahNumber: fallbackStartAyah!,
+                        endAyahNumber: _endAyahNumber,
+                        autoplay: autoplay,
+                      );
+                      return;
+                    }
+                    openQuranReferenceRange(
+                      context,
+                      surahNumber: surahNumber,
+                      verseRange: verseRange,
+                      fallbackStartAyah: fallbackStartAyah,
+                      autoplay: autoplay,
+                    );
+                  }
+                : null),
         child: Container(
           width: double.infinity,
           padding: padding,

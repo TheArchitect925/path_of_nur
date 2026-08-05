@@ -171,11 +171,7 @@ class HistoricalAlternateDate {
 }
 
 class HistoricalSourceReference {
-  const HistoricalSourceReference({
-    required this.label,
-    this.note,
-    this.url,
-  });
+  const HistoricalSourceReference({required this.label, this.note, this.url});
 
   final String label;
   final String? note;
@@ -284,9 +280,12 @@ class HistoricalEvent {
     List<String> readStringList(String key) {
       final raw = json[key];
       if (raw is! List) return const <String>[];
-      return raw.map((item) => item.toString().trim()).where((item) {
-        return item.isNotEmpty;
-      }).toList(growable: false);
+      return raw
+          .map((item) => item.toString().trim())
+          .where((item) {
+            return item.isNotEmpty;
+          })
+          .toList(growable: false);
     }
 
     final rawCategories = readStringList('categories');
@@ -341,7 +340,9 @@ class HistoricalEvent {
                     item.map((key, value) => MapEntry(key.toString(), value)),
                   ),
                 )
-                .where((item) => item.label.isNotEmpty && item.routeName.isNotEmpty)
+                .where(
+                  (item) => item.label.isNotEmpty && item.routeName.isNotEmpty,
+                )
                 .toList(growable: false)
           : const <HistoricalRelatedContentHook>[],
       featuredPriority: (json['featuredPriority'] as num?)?.toInt() ?? 0,

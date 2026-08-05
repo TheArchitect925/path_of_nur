@@ -833,7 +833,8 @@ List<GrowthHabit> seasonalGrowthHabits = const [
     id: 's_fast_optional_today',
     title: 'Optional Fast Today',
     subtitle: 'Track recommended voluntary fasting days.',
-    description: 'Use this for Monday/Thursday, white days, Arafah, Ashura, or custom fasts.',
+    description:
+        'Use this for Monday/Thursday, white days, Arafah, Ashura, or custom fasts.',
     category: GrowthHabitCategory.healthDiscipline,
     pathIds: ['seasonal-fasting'],
     recurrenceType: GrowthHabitRecurrenceType.daily,

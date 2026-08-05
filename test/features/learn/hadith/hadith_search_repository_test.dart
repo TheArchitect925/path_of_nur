@@ -199,65 +199,68 @@ void main() {
         expect(
           riyadResults.every(
             (result) =>
-                result.entry.displaySourceCollectionTitle ==
-                'Riyad as-Salihin',
+                result.entry.displaySourceCollectionTitle == 'Riyad as-Salihin',
           ),
           isTrue,
         );
       },
     );
 
-    test('recent searches are deduplicated, persisted, and keep filter context', () async {
-      SharedPreferences.setMockInitialValues({});
-      final prefs = await SharedPreferences.getInstance();
-      final container = ProviderContainer(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-        ],
-      );
-      addTearDown(container.dispose);
+    test(
+      'recent searches are deduplicated, persisted, and keep filter context',
+      () async {
+        SharedPreferences.setMockInitialValues({});
+        final prefs = await SharedPreferences.getInstance();
+        final container = ProviderContainer(
+          overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+        );
+        addTearDown(container.dispose);
 
-      final notifier = container.read(hadithRecentSearchesProvider.notifier);
-      notifier.addSearch('intentions');
-      notifier.addSearch('sincerity', filter: HadithSearchFilter.category);
-      notifier.addSearch(' Intentions ', filter: HadithSearchFilter.source);
+        final notifier = container.read(hadithRecentSearchesProvider.notifier);
+        notifier.addSearch('intentions');
+        notifier.addSearch('sincerity', filter: HadithSearchFilter.category);
+        notifier.addSearch(' Intentions ', filter: HadithSearchFilter.source);
 
-      final recents = container.read(hadithRecentSearchesProvider);
-      expect(recents, hasLength(2));
-      expect(recents.first.query, 'Intentions');
-      expect(recents.first.filter, HadithSearchFilter.source);
-      expect(
-        recents.where(
-          (item) => normalizeHadithSearchText(item.query) == 'intentions',
-        ),
-        hasLength(1),
-      );
+        final recents = container.read(hadithRecentSearchesProvider);
+        expect(recents, hasLength(2));
+        expect(recents.first.query, 'Intentions');
+        expect(recents.first.filter, HadithSearchFilter.source);
+        expect(
+          recents.where(
+            (item) => normalizeHadithSearchText(item.query) == 'intentions',
+          ),
+          hasLength(1),
+        );
 
-      final stored = prefs.getString('learn.hadith.recentSearches.v1');
-      expect(stored, isNotNull);
-      expect(stored, contains('Intentions'));
-    });
+        final stored = prefs.getString('learn.hadith.recentSearches.v1');
+        expect(stored, isNotNull);
+        expect(stored, contains('Intentions'));
+      },
+    );
 
-    test('snippet and highlight metadata stay focused on matched search terms', () {
-      const metadata = HadithSearchPresentationMetadata(
-        snippetText: '',
-        highlightTerms: <String>[],
-      );
-      expect(metadata.highlightTerms, isEmpty);
+    test(
+      'snippet and highlight metadata stay focused on matched search terms',
+      () {
+        const metadata = HadithSearchPresentationMetadata(
+          snippetText: '',
+          highlightTerms: <String>[],
+        );
+        expect(metadata.highlightTerms, isEmpty);
 
-      final built = buildHadithSearchPresentationMetadata(
-        field: HadithSearchMatchField.translation,
-        query: 'patient',
-        sourceText:
-            'Whoever remains patient, Allah will make him patient and give him a great reward.',
-      );
+        final built = buildHadithSearchPresentationMetadata(
+          field: HadithSearchMatchField.translation,
+          query: 'patient',
+          sourceText:
+              'Whoever remains patient, Allah will make him patient and give him a great reward.',
+        );
 
-      expect(built.snippetText.toLowerCase(), contains('patient'));
-      expect(
-        built.highlightTerms.map((term) => term.toLowerCase()),
-        contains('patient'),
-      );
-    });
+        expect(built.snippetText.toLowerCase(), contains('patient'));
+        expect(
+          built.highlightTerms.map((term) => term.toLowerCase()),
+          contains('patient'),
+        );
+      },
+    );
 
     test(
       'source search reuses canonical narrator aliases and chapter labels',
@@ -289,11 +292,17 @@ void main() {
         );
 
         expect(aliasResults, isNotEmpty);
-        expect(aliasResults.first.result.matchedField, HadithSearchMatchField.narrator);
+        expect(
+          aliasResults.first.result.matchedField,
+          HadithSearchMatchField.narrator,
+        );
         expect(aliasResults.first.entry.id, aliasedNarratorEntry.id);
 
         expect(chapterResults, isNotEmpty);
-        expect(chapterResults.first.result.matchedField, HadithSearchMatchField.chapter);
+        expect(
+          chapterResults.first.result.matchedField,
+          HadithSearchMatchField.chapter,
+        );
         expect(chapterResults.first.entry.id, chapterIndexedEntry.id);
       },
     );

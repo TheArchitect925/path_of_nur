@@ -11,17 +11,18 @@ void main() {
   final englishKeys = englishData.keys
       .where((key) => !key.startsWith('@'))
       .toSet();
-  final localeFiles = l10nDir
-      .listSync()
-      .whereType<File>()
-      .where((file) {
-        final name = file.uri.pathSegments.last;
-        return name.startsWith('app_') &&
-            name.endsWith('.arb') &&
-            name != 'app_en.arb';
-      })
-      .toList(growable: false)
-    ..sort((a, b) => a.path.compareTo(b.path));
+  final localeFiles =
+      l10nDir
+          .listSync()
+          .whereType<File>()
+          .where((file) {
+            final name = file.uri.pathSegments.last;
+            return name.startsWith('app_') &&
+                name.endsWith('.arb') &&
+                name != 'app_en.arb';
+          })
+          .toList(growable: false)
+        ..sort((a, b) => a.path.compareTo(b.path));
 
   test('non-English locale files keep parity with the English keyset', () {
     for (final file in localeFiles) {
@@ -50,7 +51,8 @@ void main() {
       ];
 
       for (final file in localeFiles) {
-        final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+        final data =
+            jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
         final localeName = file.uri.pathSegments.last;
         for (final key in watchedKeys) {
           final englishValue = englishData[key];

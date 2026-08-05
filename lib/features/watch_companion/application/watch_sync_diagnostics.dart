@@ -9,4 +9,3 @@ class WatchSyncDiagnostics {
     debugPrint('[watch_sync] $category $payload');
   }
 }
-

@@ -187,7 +187,10 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     prompt: 'Why is the study of Seerah important for Muslims today?',
     correctOptionId: 'a',
     options: const [
-      ('a', 'It teaches how the Prophet ﷺ lived Islam with wisdom, mercy, and firmness'),
+      (
+        'a',
+        'It teaches how the Prophet ﷺ lived Islam with wisdom, mercy, and firmness',
+      ),
       ('b', 'It replaces the Qur’an'),
       ('c', 'It is only about military history'),
       ('d', 'It is only for scholars of language'),
@@ -270,7 +273,8 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     id: 'seerah_int_016',
     categoryId: 'seerah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which city was the setting for the Prophet’s mission before the Hijrah?',
+    prompt:
+        'Which city was the setting for the Prophet’s mission before the Hijrah?',
     correctOptionId: 'a',
     options: const [
       ('a', 'Makkah'),
@@ -322,7 +326,10 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     correctOptionId: 'b',
     options: const [
       ('a', 'Because it focused only on politics'),
-      ('b', 'Because it shows tawhid, patience, and steadfastness before political strength'),
+      (
+        'b',
+        'Because it shows tawhid, patience, and steadfastness before political strength',
+      ),
       ('c', 'Because it ended the need for later revelation'),
       ('d', 'Because it removed all hardship quickly'),
     ],
@@ -341,7 +348,13 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     correct: true,
     explanation:
         'Seerah is not only historical knowledge. It helps believers understand worship, leadership, patience, mercy, and prophetic character in practice.',
-    tags: const ['seerah', 'learning', 'love_of_prophet', 'advanced', 'reflection'],
+    tags: const [
+      'seerah',
+      'learning',
+      'love_of_prophet',
+      'advanced',
+      'reflection',
+    ],
     dailyEligible: true,
     reflectionFriendly: true,
   ),

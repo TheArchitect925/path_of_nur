@@ -22,10 +22,10 @@ class QuranReadingProgress {
   }
 
   Map<String, dynamic> toJson() => {
-        'surahNumber': surahNumber,
-        'ayahNumber': ayahNumber,
-        'updatedAtIso': updatedAtIso,
-      };
+    'surahNumber': surahNumber,
+    'ayahNumber': ayahNumber,
+    'updatedAtIso': updatedAtIso,
+  };
 
   static QuranReadingProgress? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;

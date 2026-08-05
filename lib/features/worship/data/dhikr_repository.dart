@@ -31,10 +31,10 @@ class DhikrRepository {
     required LocalStore legacyStore,
     required String scopeId,
     SyncMutationRecorder? syncRecorder,
-  })  : _database = database,
-        _legacyStore = legacyStore,
-        _scopeId = scopeId,
-        _syncRecorder = syncRecorder;
+  }) : _database = database,
+       _legacyStore = legacyStore,
+       _scopeId = scopeId,
+       _syncRecorder = syncRecorder;
 
   final AppDatabase _database;
   final LocalStore _legacyStore;
@@ -83,9 +83,12 @@ class DhikrRepository {
           final phraseLabel = row['phraseLabel']?.toString();
           final count = (row['count'] as num?)?.toInt();
           final target = (row['target'] as num?)?.toInt();
-          final startedAt = DateTime.tryParse(row['startedAt']?.toString() ?? '');
-          final finishedAt =
-              DateTime.tryParse(row['finishedAt']?.toString() ?? '');
+          final startedAt = DateTime.tryParse(
+            row['startedAt']?.toString() ?? '',
+          );
+          final finishedAt = DateTime.tryParse(
+            row['finishedAt']?.toString() ?? '',
+          );
           if (phraseLabel == null ||
               count == null ||
               target == null ||
@@ -142,7 +145,8 @@ class DhikrRepository {
       currentSessionStartedAt: stateRows.isEmpty
           ? null
           : DateTime.tryParse(
-              stateRows.first['current_session_started_at_iso'] as String? ?? '',
+              stateRows.first['current_session_started_at_iso'] as String? ??
+                  '',
             ),
       updatedAtIso: stateRows.isEmpty
           ? DateTime.fromMillisecondsSinceEpoch(0).toIso8601String()
@@ -153,9 +157,11 @@ class DhikrRepository {
             phraseLabel: row['phrase_label'] as String,
             count: row['count'] as int,
             target: row['target'] as int,
-            startedAt: DateTime.tryParse(row['started_at_iso'] as String) ??
+            startedAt:
+                DateTime.tryParse(row['started_at_iso'] as String) ??
                 DateTime.now(),
-            finishedAt: DateTime.tryParse(row['finished_at_iso'] as String) ??
+            finishedAt:
+                DateTime.tryParse(row['finished_at_iso'] as String) ??
                 DateTime.now(),
           ),
       ],

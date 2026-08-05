@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError('sharedPreferencesProvider must be overridden in main().');
+  throw UnimplementedError(
+    'sharedPreferencesProvider must be overridden in main().',
+  );
 });
 
 final localStoreProvider = Provider<LocalStore>((ref) {
@@ -27,7 +29,8 @@ class LocalStore {
 
   String? getString(String key) => _prefs.getString(key);
 
-  Future<bool> setString(String key, String value) => _prefs.setString(key, value);
+  Future<bool> setString(String key, String value) =>
+      _prefs.setString(key, value);
 
   bool? getBool(String key) => _prefs.getBool(key);
 

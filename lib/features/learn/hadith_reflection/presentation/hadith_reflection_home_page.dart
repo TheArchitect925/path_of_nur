@@ -292,9 +292,7 @@ class _ModeGrid extends ConsumerWidget {
               child: _CardButton(
                 onTap: () => context.pushNamed(
                   'learnHadithReflectionPack',
-                  pathParameters: {
-                    'packId': 'hadith_reflection_kids_kindness',
-                  },
+                  pathParameters: {'packId': 'hadith_reflection_kids_kindness'},
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -420,7 +418,10 @@ class _PackCard extends ConsumerWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _chip(context, hadithReflectionLocalizedCategory(l10n, pack.category)),
+              _chip(
+                context,
+                hadithReflectionLocalizedCategory(l10n, pack.category),
+              ),
               _chip(
                 context,
                 l10n.hadithReflectionPackDifficultyLabel(

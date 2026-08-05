@@ -32,12 +32,7 @@ class LearnTogetherNotifier extends StateNotifier<LearnTogetherState> {
       stageId: stageId,
       startedAtIso: now,
     );
-    state = state.copyWith(
-      sessions: {
-        ...state.sessions,
-        record.id: record,
-      },
-    );
+    state = state.copyWith(sessions: {...state.sessions, record.id: record});
     await _save();
   }
 
@@ -99,68 +94,70 @@ final learnTogetherEligibleJourneyIdsProvider = Provider<Set<String>>((ref) {
   };
 });
 
-final learnTogetherPromptProvider = Provider.family<
-    LearnTogetherPromptSet?,
-    ({
-      String journeyId,
-      String stageId,
-      LearningAgeGroup ageGroup,
-      AppLocalizations l10n,
-    })>((ref, args) {
-  final l10n = args.l10n;
-  final isKids = args.ageGroup == LearningAgeGroup.kids;
-  switch (args.journeyId) {
-    case 'prophets-journey':
-    case 'seerah-journey':
-      return LearnTogetherPromptSet(
-        discussionPrompts: [
-          isKids
-              ? l10n.learnTogetherPromptStoryKids1
-              : l10n.learnTogetherPromptStory1,
-          isKids
-              ? l10n.learnTogetherPromptStoryKids2
-              : l10n.learnTogetherPromptStory2,
-        ],
-        parentGuidance: l10n.learnTogetherGuidancePatience,
-        familyPrompt: l10n.learnTogetherFamilyPromptStory,
-      );
-    case 'beautiful-character':
-      return LearnTogetherPromptSet(
-        discussionPrompts: [
-          l10n.learnTogetherPromptCharacter1,
-          l10n.learnTogetherPromptCharacter2,
-        ],
-        parentGuidance: l10n.learnTogetherGuidanceCharacter,
-        familyPrompt: l10n.learnTogetherFamilyPromptCharacter,
-      );
-    case 'duas-daily-life':
-      return LearnTogetherPromptSet(
-        discussionPrompts: [
-          l10n.learnTogetherPromptDua1,
-          l10n.learnTogetherPromptDua2,
-        ],
-        parentGuidance: l10n.learnTogetherGuidanceDua,
-        familyPrompt: l10n.learnTogetherFamilyPromptDua,
-      );
-    case 'daily-dhikr':
-      return LearnTogetherPromptSet(
-        discussionPrompts: [
-          l10n.learnTogetherPromptDhikr1,
-          l10n.learnTogetherPromptDhikr2,
-        ],
-        parentGuidance: l10n.learnTogetherGuidanceDhikr,
-        familyPrompt: l10n.learnTogetherFamilyPromptDhikr,
-      );
-    case 'stories-signs':
-      return LearnTogetherPromptSet(
-        discussionPrompts: [
-          l10n.learnTogetherPromptSigns1,
-          l10n.learnTogetherPromptSigns2,
-        ],
-        parentGuidance: l10n.learnTogetherGuidanceSigns,
-        familyPrompt: l10n.learnTogetherFamilyPromptSigns,
-      );
-    default:
-      return null;
-  }
-});
+final learnTogetherPromptProvider =
+    Provider.family<
+      LearnTogetherPromptSet?,
+      ({
+        String journeyId,
+        String stageId,
+        LearningAgeGroup ageGroup,
+        AppLocalizations l10n,
+      })
+    >((ref, args) {
+      final l10n = args.l10n;
+      final isKids = args.ageGroup == LearningAgeGroup.kids;
+      switch (args.journeyId) {
+        case 'prophets-journey':
+        case 'seerah-journey':
+          return LearnTogetherPromptSet(
+            discussionPrompts: [
+              isKids
+                  ? l10n.learnTogetherPromptStoryKids1
+                  : l10n.learnTogetherPromptStory1,
+              isKids
+                  ? l10n.learnTogetherPromptStoryKids2
+                  : l10n.learnTogetherPromptStory2,
+            ],
+            parentGuidance: l10n.learnTogetherGuidancePatience,
+            familyPrompt: l10n.learnTogetherFamilyPromptStory,
+          );
+        case 'beautiful-character':
+          return LearnTogetherPromptSet(
+            discussionPrompts: [
+              l10n.learnTogetherPromptCharacter1,
+              l10n.learnTogetherPromptCharacter2,
+            ],
+            parentGuidance: l10n.learnTogetherGuidanceCharacter,
+            familyPrompt: l10n.learnTogetherFamilyPromptCharacter,
+          );
+        case 'duas-daily-life':
+          return LearnTogetherPromptSet(
+            discussionPrompts: [
+              l10n.learnTogetherPromptDua1,
+              l10n.learnTogetherPromptDua2,
+            ],
+            parentGuidance: l10n.learnTogetherGuidanceDua,
+            familyPrompt: l10n.learnTogetherFamilyPromptDua,
+          );
+        case 'daily-dhikr':
+          return LearnTogetherPromptSet(
+            discussionPrompts: [
+              l10n.learnTogetherPromptDhikr1,
+              l10n.learnTogetherPromptDhikr2,
+            ],
+            parentGuidance: l10n.learnTogetherGuidanceDhikr,
+            familyPrompt: l10n.learnTogetherFamilyPromptDhikr,
+          );
+        case 'stories-signs':
+          return LearnTogetherPromptSet(
+            discussionPrompts: [
+              l10n.learnTogetherPromptSigns1,
+              l10n.learnTogetherPromptSigns2,
+            ],
+            parentGuidance: l10n.learnTogetherGuidanceSigns,
+            familyPrompt: l10n.learnTogetherFamilyPromptSigns,
+          );
+        default:
+          return null;
+      }
+    });

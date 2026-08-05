@@ -40,11 +40,7 @@ extension QuranSurahThemeTagSearchAliases on QuranSurahThemeTag {
   List<String> get searchAliases {
     return switch (this) {
       QuranSurahThemeTag.tawhid => const ['tawhid', 'oneness', 'belief'],
-      QuranSurahThemeTag.revelation => const [
-        'revelation',
-        'quran',
-        'wahy',
-      ],
+      QuranSurahThemeTag.revelation => const ['revelation', 'quran', 'wahy'],
       QuranSurahThemeTag.guidance => const [
         'guidance',
         'hidayah',
@@ -56,7 +52,11 @@ extension QuranSurahThemeTagSearchAliases on QuranSurahThemeTag {
         'accountability',
         'reckoning',
       ],
-      QuranSurahThemeTag.patience => const ['patience', 'sabr', 'steadfastness'],
+      QuranSurahThemeTag.patience => const [
+        'patience',
+        'sabr',
+        'steadfastness',
+      ],
       QuranSurahThemeTag.repentance => const [
         'repentance',
         'tawbah',
@@ -84,11 +84,7 @@ extension QuranSurahThemeTagSearchAliases on QuranSurahThemeTag {
         'shukr',
         'thankfulness',
       ],
-      QuranSurahThemeTag.justice => const [
-        'justice',
-        'fairness',
-        'trusts',
-      ],
+      QuranSurahThemeTag.justice => const ['justice', 'fairness', 'trusts'],
       QuranSurahThemeTag.signsOfCreation => const [
         'signs of creation',
         'creation',
@@ -99,11 +95,7 @@ extension QuranSurahThemeTagSearchAliases on QuranSurahThemeTag {
         'nifaq',
         'double-heartedness',
       ],
-      QuranSurahThemeTag.charity => const [
-        'charity',
-        'spending',
-        'giving',
-      ],
+      QuranSurahThemeTag.charity => const ['charity', 'spending', 'giving'],
       QuranSurahThemeTag.family => const ['family', 'parents', 'marriage'],
       QuranSurahThemeTag.struggle => const [
         'struggle',

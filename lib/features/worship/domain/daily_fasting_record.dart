@@ -14,4 +14,3 @@ class DailyFastingRecord {
   final FastingStatus status;
   final String? note;
 }
-

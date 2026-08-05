@@ -24,10 +24,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
-  Future<void> scrollUntilVisible(
-    WidgetTester tester,
-    Finder finder,
-  ) async {
+  Future<void> scrollUntilVisible(WidgetTester tester, Finder finder) async {
     await tester.scrollUntilVisible(
       finder.first,
       240,

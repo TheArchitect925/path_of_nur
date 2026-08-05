@@ -26,10 +26,8 @@ Future<void> showGlossaryEntrySheet(
     context: context,
     isScrollControlled: true,
     showDragHandle: true,
-    builder: (context) => _GlossaryEntrySheet(
-      entry: entry,
-      showOpenGlossaryAction: true,
-    ),
+    builder: (context) =>
+        _GlossaryEntrySheet(entry: entry, showOpenGlossaryAction: true),
   );
 }
 
@@ -62,16 +60,10 @@ class GlossaryInlineTerm extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: interactive && _allowsTap(triggerMode)
-          ? () => showGlossaryEntrySheet(
-              context,
-              entryId: resolved.id,
-            )
+          ? () => showGlossaryEntrySheet(context, entryId: resolved.id)
           : null,
       onLongPress: interactive && _allowsLongPress(triggerMode)
-          ? () => showGlossaryEntrySheet(
-              context,
-              entryId: resolved.id,
-            )
+          ? () => showGlossaryEntrySheet(context, entryId: resolved.id)
           : null,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
@@ -130,10 +122,10 @@ class _GlossaryEntrySheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final textTheme = Theme.of(context).textTheme;
-    final isKidsMode =
-        ProviderScope.containerOf(context, listen: false)
-            .read(specialModeProvider)
-            .isKids;
+    final isKidsMode = ProviderScope.containerOf(
+      context,
+      listen: false,
+    ).read(specialModeProvider).isKids;
     return SafeArea(
       child: SingleChildScrollView(
         padding: EdgeInsets.only(
@@ -155,10 +147,7 @@ class _GlossaryEntrySheet extends StatelessWidget {
             if (entry.transliteration != null &&
                 entry.transliteration!.trim().isNotEmpty) ...[
               const SizedBox(height: 4),
-              Text(
-                entry.transliteration!,
-                style: textTheme.titleSmall,
-              ),
+              Text(entry.transliteration!, style: textTheme.titleSmall),
             ],
             const SizedBox(height: 12),
             Wrap(

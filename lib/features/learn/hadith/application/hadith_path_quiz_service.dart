@@ -557,21 +557,23 @@ Future<HadithQuizSubmissionOutcome> submitHadithQuizSession(
   final xp = outcome.result.xpAwarded;
   if (xp > 0) {
     final bonusEntries = (xp / JourneyXpRules.xpPerReflectionEntry).round();
-    ref.read(journeyProgressUpdateHelperProvider).addReflectionEntries(
-      bonusEntries,
-    );
+    ref
+        .read(journeyProgressUpdateHelperProvider)
+        .addReflectionEntries(bonusEntries);
   }
 
-  ref.read(oceanDropServiceProvider).awardDrop(
-    actionType: oceanActionQuizCompleted,
-    sourceModule: oceanSourceQuiz,
-    referenceId: session.id,
-    metadata: {
-      'timestamp': now.toIso8601String(),
-      'score': score,
-      'questionCount': session.questions.length,
-    },
-  );
+  ref
+      .read(oceanDropServiceProvider)
+      .awardDrop(
+        actionType: oceanActionQuizCompleted,
+        sourceModule: oceanSourceQuiz,
+        referenceId: session.id,
+        metadata: {
+          'timestamp': now.toIso8601String(),
+          'score': score,
+          'questionCount': session.questions.length,
+        },
+      );
 
   return outcome;
 }

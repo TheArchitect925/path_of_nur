@@ -18,8 +18,5 @@ PrayerSummary buildPrayerSummary(List<DailyPrayerRecord> records) {
   final completed = obligatoryRecords
       .where((record) => record.status == PrayerStatus.completed)
       .length;
-  return PrayerSummary(
-    completed: completed,
-    total: obligatoryRecords.length,
-  );
+  return PrayerSummary(completed: completed, total: obligatoryRecords.length);
 }

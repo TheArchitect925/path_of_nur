@@ -12,33 +12,45 @@ import 'package:path_of_nur/features/learn/quran_teaching/application/quran_teac
 import '../../test_helpers/app_test_harness.dart';
 
 void main() {
-  test('kids quick resume starts at the first lesson with a deep-linkable path', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
+  test(
+    'kids quick resume starts at the first lesson with a deep-linkable path',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
 
-    final summary = container.read(
-      arabicLearningQuickResumeSummaryProvider(ArabicLearningAudience.kids),
-    );
+      final summary = container.read(
+        arabicLearningQuickResumeSummaryProvider(ArabicLearningAudience.kids),
+      );
 
-    expect(summary.primaryAction, ArabicLearningQuickResumePrimaryAction.start);
-    expect(summary.primaryLocation, '/learn/kids/arabic/lesson/alif');
-    expect(summary.hasReviewAction, isTrue);
-  });
+      expect(
+        summary.primaryAction,
+        ArabicLearningQuickResumePrimaryAction.start,
+      );
+      expect(summary.primaryLocation, '/learn/kids/arabic/lesson/alif');
+      expect(summary.hasReviewAction, isTrue);
+    },
+  );
 
-  test('adult quick resume resolves lesson targets into canonical Arabic routes', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
+  test(
+    'adult quick resume resolves lesson targets into canonical Arabic routes',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
 
-    final summary = container.read(
-      arabicLearningQuickResumeSummaryProvider(ArabicLearningAudience.adult),
-    );
+      final summary = container.read(
+        arabicLearningQuickResumeSummaryProvider(ArabicLearningAudience.adult),
+      );
 
-    expect(
-      summary.primaryLocation,
-      '/quran/arabic/module/foundations/lesson/alphabet_letters_1',
-    );
-    expect(summary.primaryAction, ArabicLearningQuickResumePrimaryAction.start);
-  });
+      expect(
+        summary.primaryLocation,
+        '/quran/arabic/module/foundations/lesson/alphabet_letters_1',
+      );
+      expect(
+        summary.primaryAction,
+        ArabicLearningQuickResumePrimaryAction.start,
+      );
+    },
+  );
 
   test('adult quick resume review points to the shared review route', () async {
     final container = await makeTestContainer();
@@ -74,16 +86,18 @@ void main() {
     addTearDown(container.dispose);
 
     final alif = kidsArabicLetters.firstWhere((letter) => letter.id == 'alif');
-    container.read(kidsArabicProgressProvider.notifier).completeLesson(
-          letter: alif,
-          traceResult: KidsArabicTraceResult.good,
-        );
+    container
+        .read(kidsArabicProgressProvider.notifier)
+        .completeLesson(letter: alif, traceResult: KidsArabicTraceResult.good);
 
     final summary = container.read(
       arabicLearningQuickResumeSummaryProvider(ArabicLearningAudience.kids),
     );
 
-    expect(summary.primaryAction, ArabicLearningQuickResumePrimaryAction.continueLearning);
+    expect(
+      summary.primaryAction,
+      ArabicLearningQuickResumePrimaryAction.continueLearning,
+    );
     expect(summary.primaryLocation, isNot('/learn/kids/arabic/lesson/alif'));
   });
 }

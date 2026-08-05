@@ -112,7 +112,8 @@ void main() {
           }),
           quranPlayerControllerProvider.overrideWith(
             (ref) =>
-                controller ?? _FakeFocusRecitationController(ref, AudioPlayer()),
+                controller ??
+                _FakeFocusRecitationController(ref, AudioPlayer()),
           ),
           quranFocusRecitationWakeLockProvider.overrideWithValue(
             wakeLock ?? _FakeFocusWakeLock(),
@@ -182,22 +183,23 @@ void main() {
       final container = ProviderScope.containerOf(
         tester.element(find.byType(QuranFocusRecitationPage)),
       );
-      container.read(playbackStateProvider.notifier).state =
-          const QuranReaderPlaybackState(
-            pageSurahNumber: 1,
-            reciterId: 'husary',
-            reciterName: 'Husary',
-            activeSurahNumber: 1,
-            activeAyahKey: '1:3',
-            activeAyahNumber: 3,
-            hasPlayback: true,
-            isPlaying: true,
-            status: QuranReaderPlaybackStatus.playing,
-            canPause: true,
-            canPlay: false,
-            canGoPreviousAyah: true,
-            canGoNextAyah: false,
-          );
+      container
+          .read(playbackStateProvider.notifier)
+          .state = const QuranReaderPlaybackState(
+        pageSurahNumber: 1,
+        reciterId: 'husary',
+        reciterName: 'Husary',
+        activeSurahNumber: 1,
+        activeAyahKey: '1:3',
+        activeAyahNumber: 3,
+        hasPlayback: true,
+        isPlaying: true,
+        status: QuranReaderPlaybackStatus.playing,
+        canPause: true,
+        canPlay: false,
+        canGoPreviousAyah: true,
+        canGoNextAyah: false,
+      );
       await tester.pumpAndSettle();
 
       expect(find.text('الرَّحْمَٰنِ الرَّحِيمِ'), findsOneWidget);
@@ -331,7 +333,9 @@ void main() {
     (tester) async {
       SharedPreferences.setMockInitialValues(const <String, Object>{});
       final prefs = await SharedPreferences.getInstance();
-      final controllerProvider = Provider<_FakeFocusRecitationController>((ref) {
+      final controllerProvider = Provider<_FakeFocusRecitationController>((
+        ref,
+      ) {
         return _FakeFocusRecitationController(ref, AudioPlayer());
       });
       final playbackStateProvider = Provider<QuranReaderPlaybackState>(
@@ -403,7 +407,9 @@ void main() {
     (tester) async {
       SharedPreferences.setMockInitialValues(const <String, Object>{});
       final prefs = await SharedPreferences.getInstance();
-      final controllerProvider = Provider<_FakeFocusRecitationController>((ref) {
+      final controllerProvider = Provider<_FakeFocusRecitationController>((
+        ref,
+      ) {
         return _FakeFocusRecitationController(ref, AudioPlayer());
       });
       final playbackStateProvider = Provider<QuranReaderPlaybackState>(
@@ -464,7 +470,10 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(controller.repeatCurrentAyahStates, contains(true));
-      expect(find.byKey(const ValueKey('quran-focus-repeat-chip')), findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('quran-focus-repeat-chip')),
+        findsOneWidget,
+      );
       expect(find.text('الْحَمْدُ لِلَّهِ'), findsOneWidget);
 
       await tester.tap(find.byKey(const ValueKey('quran-focus-exit')));
@@ -479,7 +488,9 @@ void main() {
     (tester) async {
       SharedPreferences.setMockInitialValues(const <String, Object>{});
       final prefs = await SharedPreferences.getInstance();
-      final controllerProvider = Provider<_FakeFocusRecitationController>((ref) {
+      final controllerProvider = Provider<_FakeFocusRecitationController>((
+        ref,
+      ) {
         return _FakeFocusRecitationController(ref, AudioPlayer());
       });
       final playbackStateProvider = Provider<QuranReaderPlaybackState>(
@@ -635,45 +646,46 @@ void main() {
     },
   );
 
-  testWidgets('focus recitation layout stays stable for long ayahs on smaller screens', (
-    tester,
-  ) async {
-    tester.view.physicalSize = const Size(320, 640);
-    tester.view.devicePixelRatio = 1.0;
-    addTearDown(() {
-      tester.view.resetPhysicalSize();
-      tester.view.resetDevicePixelRatio();
-    });
+  testWidgets(
+    'focus recitation layout stays stable for long ayahs on smaller screens',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
 
-    SharedPreferences.setMockInitialValues(const <String, Object>{});
-    final prefs = await SharedPreferences.getInstance();
-    final playbackStateProvider = Provider<QuranReaderPlaybackState>(
-      (ref) => const QuranReaderPlaybackState(
-        pageSurahNumber: 1,
-        reciterId: 'husary',
-        reciterName: 'Husary',
-        activeSurahNumber: 1,
-        activeAyahKey: '1:2',
-        activeAyahNumber: 2,
-        hasPlayback: true,
-        isPlaying: true,
-        status: QuranReaderPlaybackStatus.playing,
-        canPause: true,
-        canPlay: false,
-      ),
-    );
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+      final playbackStateProvider = Provider<QuranReaderPlaybackState>(
+        (ref) => const QuranReaderPlaybackState(
+          pageSurahNumber: 1,
+          reciterId: 'husary',
+          reciterName: 'Husary',
+          activeSurahNumber: 1,
+          activeAyahKey: '1:2',
+          activeAyahNumber: 2,
+          hasPlayback: true,
+          isPlaying: true,
+          status: QuranReaderPlaybackStatus.playing,
+          canPause: true,
+          canPlay: false,
+        ),
+      );
 
-    await pumpFocusPage(
-      tester,
-      prefs: prefs,
-      playbackOverride: playbackStateProvider,
-      overrideAyahs: longAyahs,
-    );
+      await pumpFocusPage(
+        tester,
+        prefs: prefs,
+        playbackOverride: playbackStateProvider,
+        overrideAyahs: longAyahs,
+      );
 
-    expect(
-      find.byKey(const ValueKey('quran-focus-recitation-scroll')),
-      findsOneWidget,
-    );
-    expect(tester.takeException(), isNull);
-  });
+      expect(
+        find.byKey(const ValueKey('quran-focus-recitation-scroll')),
+        findsOneWidget,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
 }

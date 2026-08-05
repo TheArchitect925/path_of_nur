@@ -34,7 +34,8 @@ final quranTeachingAdultOverviewProvider =
               canonicalItemId: foundations.id,
               moduleId: foundations.id,
             );
-      final firstWordId = beginnerWords.firstOrNull?.sharedBeginnerWordId ??
+      final firstWordId =
+          beginnerWords.firstOrNull?.sharedBeginnerWordId ??
           beginnerWords.firstOrNull?.id;
       final browseWordsTarget = firstWordId == null
           ? null

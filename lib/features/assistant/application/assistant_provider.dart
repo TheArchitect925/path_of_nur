@@ -18,10 +18,7 @@ enum AssistantIntent {
 }
 
 class AssistantQuickAction {
-  const AssistantQuickAction({
-    required this.label,
-    required this.routeName,
-  });
+  const AssistantQuickAction({required this.label, required this.routeName});
 
   final String label;
   final String routeName;
@@ -41,11 +38,11 @@ class AssistantMessage {
   final AssistantIntent? intent;
 
   Map<String, dynamic> toJson() => {
-        'role': role.name,
-        'text': text,
-        'createdAtIso': createdAtIso,
-        'intent': intent?.name,
-      };
+    'role': role.name,
+    'text': text,
+    'createdAtIso': createdAtIso,
+    'intent': intent?.name,
+  };
 
   static AssistantMessage? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -107,9 +104,9 @@ class AssistantState {
   }
 
   Map<String, dynamic> toJson() => {
-        'messages': messages.map((e) => e.toJson()).toList(),
-        'recentPrompts': recentPrompts,
-      };
+    'messages': messages.map((e) => e.toJson()).toList(),
+    'recentPrompts': recentPrompts,
+  };
 
   static AssistantState fromJson(Map<String, dynamic>? json) {
     final prompts = const [
@@ -147,13 +144,17 @@ class AssistantState {
       }
     }
 
-    return AssistantState(messages: items, quickPrompts: prompts, recentPrompts: recent);
+    return AssistantState(
+      messages: items,
+      quickPrompts: prompts,
+      recentPrompts: recent,
+    );
   }
 }
 
 class AssistantNotifier extends StateNotifier<AssistantState> {
   AssistantNotifier(this._store)
-      : super(AssistantState.fromJson(_store.getJsonMap(_key)));
+    : super(AssistantState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'assistant.thread';
   final LocalStore _store;
@@ -241,8 +242,8 @@ class AssistantNotifier extends StateNotifier<AssistantState> {
 
 final assistantProvider =
     StateNotifierProvider<AssistantNotifier, AssistantState>(
-  (ref) => AssistantNotifier(ref.watch(localStoreProvider)),
-);
+      (ref) => AssistantNotifier(ref.watch(localStoreProvider)),
+    );
 
 final assistantModeAwarePromptProvider = Provider<List<String>>((ref) {
   final mode = ref.watch(specialModeProvider);
@@ -277,7 +278,9 @@ final assistantModeAwarePromptProvider = Provider<List<String>>((ref) {
   return prompts;
 });
 
-final assistantQuickActionsProvider = Provider<List<AssistantQuickAction>>((ref) {
+final assistantQuickActionsProvider = Provider<List<AssistantQuickAction>>((
+  ref,
+) {
   return const [
     AssistantQuickAction(label: 'Open Learn', routeName: 'learnLifeLanding'),
     AssistantQuickAction(label: 'Open Quran', routeName: 'quranExplorer'),

@@ -14,10 +14,7 @@ seededWorshipRemembranceAyahEnrichmentEntries = [
         'This ayah links worship and remembrance directly, showing that salah is not only ritual form but conscious turning to Allah.',
     body:
         'The verse teaches that prayer is established to remember Allah. This gives salah a clear spiritual purpose: not empty movement, but steady presence, obedience, and recollection of the One being worshipped.',
-    tags: [
-      QuranAyahEnrichmentTag.worship,
-      QuranAyahEnrichmentTag.guidance,
-    ],
+    tags: [QuranAyahEnrichmentTag.worship, QuranAyahEnrichmentTag.guidance],
     relatedRefs: [QuranQuoteRef(surah: 29, ayah: 45)],
     reflectionPrompts: [
       'What would change in my prayer if I entered it more intentionally as remembrance?',

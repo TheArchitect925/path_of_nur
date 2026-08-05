@@ -43,7 +43,9 @@ class QuranUserIntentState {
 
 class QuranUserIntentNotifier extends StateNotifier<QuranUserIntentState> {
   QuranUserIntentNotifier(this._store)
-    : super(QuranUserIntentState.fromJson(_store.getJsonMap(_quranUserIntentKey)));
+    : super(
+        QuranUserIntentState.fromJson(_store.getJsonMap(_quranUserIntentKey)),
+      );
 
   final LocalStore _store;
 

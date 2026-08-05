@@ -10,7 +10,9 @@ final arabicLearningQuickResumeSummaryProvider =
       ref,
       audience,
     ) {
-      final continuation = ref.watch(arabicLearningContinuationProvider(audience));
+      final continuation = ref.watch(
+        arabicLearningContinuationProvider(audience),
+      );
       final primaryLocation = arabicLearningRouteLocationForTarget(
         continuation.primaryTarget,
       );
@@ -29,7 +31,8 @@ final arabicLearningQuickResumeSummaryProvider =
             ArabicLearningQuickResumePrimaryAction.continueLearning,
         },
         primaryTarget: continuation.primaryTarget,
-        primaryLocation: primaryLocation ?? _fallbackLocationForAudience(audience),
+        primaryLocation:
+            primaryLocation ?? _fallbackLocationForAudience(audience),
         primaryTitle: continuation.primaryTitle ?? 'Arabic',
         primarySubtitle: continuation.primarySubtitle,
         primaryArabicText: continuation.primaryArabicText,

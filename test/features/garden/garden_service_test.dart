@@ -45,7 +45,8 @@ void main() {
           entriesBySourceRef: <String, LearnerProgressionEntry>{
             'story:1': const LearnerProgressionEntry(
               sourceRef: 'story:1',
-              activityType: LearnerProgressionActivityType.bedtimeStoryCompletion,
+              activityType:
+                  LearnerProgressionActivityType.bedtimeStoryCompletion,
               sourceModule: 'kids_story',
               occurredAtIso: '2026-03-20T20:00:00.000',
               xpAwarded: 5,
@@ -55,7 +56,11 @@ void main() {
           lastUpdatedAtIso: '2026-03-20T20:00:00.000',
         ),
         globalJourneyStats: _journeyStats(),
-        globalJourneyXp: _xpSummary(totalXp: 300, level: 10, progressPercent: 0.2),
+        globalJourneyXp: _xpSummary(
+          totalXp: 300,
+          level: 10,
+          progressPercent: 0.2,
+        ),
         globalJourneyDrops: 45,
       );
 
@@ -64,10 +69,7 @@ void main() {
       expect(state.totalOceanDrops, 120);
       expect(state.currentGardenLevel, 8);
       expect(state.currentVisualStage.sortOrder, greaterThanOrEqualTo(2));
-      expect(
-        state.milestones.where((item) => item.unlocked).length,
-        5,
-      );
+      expect(state.milestones.where((item) => item.unlocked).length, 5);
       expect(state.recentGrowth, hasLength(1));
       expect(state.dimensions.length, 6);
     });
@@ -111,7 +113,11 @@ void main() {
           currentStreak: 5,
           bestStreak: 12,
         ),
-        globalJourneyXp: _xpSummary(totalXp: 240, level: 9, progressPercent: 0.5),
+        globalJourneyXp: _xpSummary(
+          totalXp: 240,
+          level: 9,
+          progressPercent: 0.5,
+        ),
         globalJourneyDrops: 50,
       );
 
@@ -156,7 +162,9 @@ LearnerProgressionMetrics _metrics({
     seerahJourneyCompletions: 0,
     currentLearningStreakDays: streak,
     longestLearningStreakDays: longestStreak,
-    lastActivityAtIso: activeDays.isEmpty ? null : '${activeDays.last}T20:00:00.000',
+    lastActivityAtIso: activeDays.isEmpty
+        ? null
+        : '${activeDays.last}T20:00:00.000',
     activeDayKeys: activeDays,
   );
 }

@@ -200,9 +200,9 @@ class HadithContentBlock extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               item.supportingText!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
             ),
           ],
         ],

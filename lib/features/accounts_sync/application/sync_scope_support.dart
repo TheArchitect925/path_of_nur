@@ -126,10 +126,9 @@ BackupScopeSummary buildBackupScopeSummary(SyncScopePreferences preferences) {
   );
 }
 
-BackupScopeSummary defaultFullBackupScopeSummary() =>
-    buildBackupScopeSummary(
-      const SyncScopePreferences(excludedOptionalDomainNames: <String>[]),
-    );
+BackupScopeSummary defaultFullBackupScopeSummary() => buildBackupScopeSummary(
+  const SyncScopePreferences(excludedOptionalDomainNames: <String>[]),
+);
 
 ScopeValidationResult buildScopeValidationResult(
   SyncScopePreferences preferences,
@@ -227,7 +226,10 @@ Map<String, dynamic> preserveExcludedLocalDomainsInPayload({
   final localSnapshots = _mapOfMaps(localPayload['profileSnapshots']);
   final incomingSnapshots = _mapOfMaps(incomingPayload['profileSnapshots']);
   final mergedSnapshots = <String, Map<String, dynamic>>{};
-  final allProfileIds = <String>{...localSnapshots.keys, ...incomingSnapshots.keys};
+  final allProfileIds = <String>{
+    ...localSnapshots.keys,
+    ...incomingSnapshots.keys,
+  };
   final excludedDomains = scopeSummary.excludedDomainNames
       .map(syncableDomainFromKey)
       .whereType<SyncableDomain>()
@@ -258,7 +260,10 @@ Map<String, Map<String, dynamic>> _mapOfMaps(Object? raw) {
     (key, value) => MapEntry(
       key.toString(),
       value is Map
-          ? value.map((innerKey, innerValue) => MapEntry(innerKey.toString(), innerValue))
+          ? value.map(
+              (innerKey, innerValue) =>
+                  MapEntry(innerKey.toString(), innerValue),
+            )
           : <String, dynamic>{},
     ),
   );

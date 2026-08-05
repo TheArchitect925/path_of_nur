@@ -10,10 +10,7 @@ import '../data/life_curriculum_data.dart';
 import '../domain/life_models.dart';
 
 class LifeSubcategoryPage extends ConsumerWidget {
-  const LifeSubcategoryPage({
-    super.key,
-    required this.subcategoryId,
-  });
+  const LifeSubcategoryPage({super.key, required this.subcategoryId});
 
   final String subcategoryId;
 
@@ -57,7 +54,10 @@ class LifeSubcategoryPage extends ConsumerWidget {
               const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: progress.ratio, minHeight: 8),
+                child: LinearProgressIndicator(
+                  value: progress.ratio,
+                  minHeight: 8,
+                ),
               ),
             ],
           ),
@@ -87,13 +87,17 @@ class LifeSubcategoryPage extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               ...lessons.map((lesson) {
-                final p = ref.watch(lifeProgressProvider).lessonProgressById[lesson.id];
+                final p = ref
+                    .watch(lifeProgressProvider)
+                    .lessonProgressById[lesson.id];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text(lesson.title),
-                    subtitle: Text('${lesson.subtitle}\n${_statusLabel(l10n, p?.status)}'),
+                    subtitle: Text(
+                      '${lesson.subtitle}\n${_statusLabel(l10n, p?.status)}',
+                    ),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () => context.pushNamed(
                       'lifeLessonDetail',

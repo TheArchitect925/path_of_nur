@@ -32,7 +32,8 @@ class _FamilyLearningManagementPageState
     final accounts = ref.watch(accountsSyncControllerProvider);
     final children = ref.watch(familyLearningChildProfilesForGuardianProvider);
     final activeProfile = accounts.activeProfile;
-    final canManage = activeProfile != null &&
+    final canManage =
+        activeProfile != null &&
         activeProfile.profileType != ProfileKind.child &&
         activeProfile.profileType != ProfileKind.guest;
 
@@ -52,9 +53,7 @@ class _FamilyLearningManagementPageState
           PremiumCard(
             child: Row(
               children: [
-                const CircleAvatar(
-                  child: Icon(Icons.verified_user_outlined),
-                ),
+                const CircleAvatar(child: Icon(Icons.verified_user_outlined)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -120,16 +119,22 @@ class _FamilyLearningManagementPageState
               final progress = ref.watch(
                 familyLearningChildProgressProvider(child.id),
               );
-              final path = LearningPathRegistry.pathForLevel(child.learningLevel);
+              final path = LearningPathRegistry.pathForLevel(
+                child.learningLevel,
+              );
               final currentPhase = path?.phases
                   .where((item) => item.id == progress.currentPhaseId)
                   .firstOrNull;
               final currentJourney = progress.currentJourneyId == null
                   ? null
-                  : LearningJourneyRegistry.journeyById(progress.currentJourneyId!);
+                  : LearningJourneyRegistry.journeyById(
+                      progress.currentJourneyId!,
+                    );
               final recentStage = progress.recentCompletedStageId == null
                   ? null
-                  : LearningJourneyRegistry.stageById(progress.recentCompletedStageId!);
+                  : LearningJourneyRegistry.stageById(
+                      progress.recentCompletedStageId!,
+                    );
               final learnedTogether = ref.watch(
                 learnTogetherProvider.select(
                   (state) =>
@@ -229,7 +234,9 @@ class _FamilyLearningManagementPageState
                       ],
                       const SizedBox(height: 4),
                       Text(
-                        l10n.familyLearningStreakLabel(progress.currentStreakDays),
+                        l10n.familyLearningStreakLabel(
+                          progress.currentStreakDays,
+                        ),
                         style: const TextStyle(
                           color: Color(0xFF675B4E),
                           height: 1.35,
@@ -268,10 +275,7 @@ class _FamilyLearningManagementPageState
                           border: Border.all(color: const Color(0xFFE3D6C4)),
                         ),
                         child: Text(
-                          _sharedPrompt(
-                            l10n,
-                            progress.currentJourneyId,
-                          ),
+                          _sharedPrompt(l10n, progress.currentJourneyId),
                           style: const TextStyle(
                             color: Color(0xFF675B4E),
                             height: 1.35,
@@ -325,11 +329,14 @@ class _FamilyLearningManagementPageState
                           ),
                         ],
                       ),
-                      if (currentJourney != null && progress.currentStageId != null) ...[
+                      if (currentJourney != null &&
+                          progress.currentStageId != null) ...[
                         const SizedBox(height: 10),
                         FilledButton.tonalIcon(
                           onPressed: () async {
-                            await ref.read(learnTogetherProvider.notifier).startSession(
+                            await ref
+                                .read(learnTogetherProvider.notifier)
+                                .startSession(
                                   childProfileId: child.id,
                                   journeyId: currentJourney.id,
                                   stageId: progress.currentStageId!,
@@ -380,7 +387,9 @@ class _FamilyLearningManagementPageState
           LearningAgeGroup.kids,
         ),
         onSave: (payload) async {
-          await ref.read(familyLearningProvider.notifier).createChildProfile(
+          await ref
+              .read(familyLearningProvider.notifier)
+              .createChildProfile(
                 displayName: payload.displayName,
                 ageGroup: payload.ageGroup,
                 learningLevel: payload.learningLevel,
@@ -409,12 +418,15 @@ class _FamilyLearningManagementPageState
         initialBrowsingMode: child.browsingMode,
         initialPermissions: child.permissions,
         onSave: (payload) async {
-          final assignedPath =
-              LearningPathRegistry.pathForLevel(payload.learningLevel);
+          final assignedPath = LearningPathRegistry.pathForLevel(
+            payload.learningLevel,
+          );
           if (assignedPath == null) {
             return;
           }
-          await ref.read(familyLearningProvider.notifier).updateChildProfile(
+          await ref
+              .read(familyLearningProvider.notifier)
+              .updateChildProfile(
                 child.copyWith(
                   displayName: payload.displayName,
                   ageGroup: payload.ageGroup,
@@ -588,8 +600,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                       }
                       setState(() {
                         _ageGroup = value;
-                        _permissions =
-                            ChildLearningPermissions.defaultsFor(value);
+                        _permissions = ChildLearningPermissions.defaultsFor(
+                          value,
+                        );
                       });
                     },
                   ),
@@ -663,8 +676,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     title: Text(l10n.familyLearningAllowBrowseAll),
                     value: _permissions.allowBrowseAll,
                     onChanged: (value) => setState(
-                      () => _permissions =
-                          _permissions.copyWith(allowBrowseAll: value),
+                      () => _permissions = _permissions.copyWith(
+                        allowBrowseAll: value,
+                      ),
                     ),
                   ),
                   SwitchListTile.adaptive(
@@ -672,8 +686,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     title: Text(l10n.familyLearningAllowDiscovery),
                     value: _permissions.allowDiscovery,
                     onChanged: (value) => setState(
-                      () => _permissions =
-                          _permissions.copyWith(allowDiscovery: value),
+                      () => _permissions = _permissions.copyWith(
+                        allowDiscovery: value,
+                      ),
                     ),
                   ),
                   SwitchListTile.adaptive(
@@ -681,8 +696,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     title: Text(l10n.familyLearningAllowTrivia),
                     value: _permissions.allowTrivia,
                     onChanged: (value) => setState(
-                      () => _permissions =
-                          _permissions.copyWith(allowTrivia: value),
+                      () => _permissions = _permissions.copyWith(
+                        allowTrivia: value,
+                      ),
                     ),
                   ),
                   SwitchListTile.adaptive(
@@ -690,8 +706,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     title: Text(l10n.familyLearningAllowLegacy),
                     value: _permissions.allowLegacyLearning,
                     onChanged: (value) => setState(
-                      () => _permissions =
-                          _permissions.copyWith(allowLegacyLearning: value),
+                      () => _permissions = _permissions.copyWith(
+                        allowLegacyLearning: value,
+                      ),
                     ),
                   ),
                   SwitchListTile.adaptive(
@@ -699,10 +716,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     title: Text(l10n.familyLearningAllowAdvanced),
                     value: _permissions.allowAdvancedJourneys,
                     onChanged: (value) => setState(
-                      () => _permissions =
-                          _permissions.copyWith(
-                            allowAdvancedJourneys: value,
-                          ),
+                      () => _permissions = _permissions.copyWith(
+                        allowAdvancedJourneys: value,
+                      ),
                     ),
                   ),
                   SwitchListTile.adaptive(
@@ -710,10 +726,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     title: Text(l10n.familyLearningAllowExploration),
                     value: _permissions.allowSecondaryExploration,
                     onChanged: (value) => setState(
-                      () => _permissions =
-                          _permissions.copyWith(
-                            allowSecondaryExploration: value,
-                          ),
+                      () => _permissions = _permissions.copyWith(
+                        allowSecondaryExploration: value,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -721,7 +736,9 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: _saving ? null : () => Navigator.of(context).pop(),
+                          onPressed: _saving
+                              ? null
+                              : () => Navigator.of(context).pop(),
                           child: Text(l10n.familyLearningCancelAction),
                         ),
                       ),
@@ -734,7 +751,8 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                                   setState(() => _saving = true);
                                   await widget.onSave(
                                     _ChildProfileEditorPayload(
-                                      displayName: _nameController.text.trim().isEmpty
+                                      displayName:
+                                          _nameController.text.trim().isEmpty
                                           ? l10n.familyLearningDefaultChildName
                                           : _nameController.text.trim(),
                                       avatarReference:

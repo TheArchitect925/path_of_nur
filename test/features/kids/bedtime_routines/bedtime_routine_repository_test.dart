@@ -26,37 +26,40 @@ void main() {
       expect(primaryDua?.duaId, 'before-sleep');
     });
 
-    test('supports story-first order and simplified mode from learner preferences', () async {
-      SharedPreferences.setMockInitialValues(<String, Object>{});
-      final prefs = await SharedPreferences.getInstance();
-      final container = ProviderContainer(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          bedtimeActiveLearnerProvider.overrideWithValue(
-            BedtimeLearnerIdentity(
-              learnerId: 'child_story_first',
-              displayName: 'Amina',
-              avatarReference: 'moon',
-              ageGroup: LearningAgeGroup.kids,
-              guardianProfileId: 'parent_1',
-              isFallbackLearner: false,
-              preferences: const BedtimeLearnerPreferences(
-                prefersBedtimeDuaFirst: false,
-                simplifiedBedtimeRoutine: true,
+    test(
+      'supports story-first order and simplified mode from learner preferences',
+      () async {
+        SharedPreferences.setMockInitialValues(<String, Object>{});
+        final prefs = await SharedPreferences.getInstance();
+        final container = ProviderContainer(
+          overrides: [
+            sharedPreferencesProvider.overrideWithValue(prefs),
+            bedtimeActiveLearnerProvider.overrideWithValue(
+              BedtimeLearnerIdentity(
+                learnerId: 'child_story_first',
+                displayName: 'Amina',
+                avatarReference: 'moon',
+                ageGroup: LearningAgeGroup.kids,
+                guardianProfileId: 'parent_1',
+                isFallbackLearner: false,
+                preferences: const BedtimeLearnerPreferences(
+                  prefersBedtimeDuaFirst: false,
+                  simplifiedBedtimeRoutine: true,
+                ),
               ),
             ),
-          ),
-        ],
-      );
-      addTearDown(container.dispose);
+          ],
+        );
+        addTearDown(container.dispose);
 
-      final plan = container.read(bedtimeRoutinePlanProvider);
-      expect(plan.steps[1].stepType.name, 'storyTime');
-      expect(plan.steps[2].stepType.name, 'bedtimeDua');
-      expect(
-        plan.steps.any((item) => item.stepType.name == 'gratitudeReflection'),
-        isFalse,
-      );
-    });
+        final plan = container.read(bedtimeRoutinePlanProvider);
+        expect(plan.steps[1].stepType.name, 'storyTime');
+        expect(plan.steps[2].stepType.name, 'bedtimeDua');
+        expect(
+          plan.steps.any((item) => item.stepType.name == 'gratitudeReflection'),
+          isFalse,
+        );
+      },
+    );
   });
 }

@@ -30,10 +30,7 @@ class GardenPage extends ConsumerWidget {
         const SizedBox(height: 14),
         const GardenMeaningCard(),
         const SizedBox(height: 14),
-        GardenNextUnlockCard(
-          summary: progress,
-          nextMilestone: nextMilestone,
-        ),
+        GardenNextUnlockCard(summary: progress, nextMilestone: nextMilestone),
         const SizedBox(height: 14),
         const GardenGallerySection(),
       ],

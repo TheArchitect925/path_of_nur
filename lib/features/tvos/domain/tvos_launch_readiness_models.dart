@@ -16,15 +16,9 @@ enum TVOSLaunchReadinessGateId {
   realDeviceAppleTvQa,
 }
 
-enum TVOSDistributionEvidenceId {
-  signedArchive,
-  testflightUpload,
-}
+enum TVOSDistributionEvidenceId { signedArchive, testflightUpload }
 
-enum TVOSDistributionEvidenceStatus {
-  missing,
-  recorded,
-}
+enum TVOSDistributionEvidenceStatus { missing, recorded }
 
 class TVOSLaunchReadinessGate {
   const TVOSLaunchReadinessGate({

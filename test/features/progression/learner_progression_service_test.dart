@@ -55,8 +55,14 @@ void main() {
       expect(summary.metrics.totalDrops, 1);
       expect(summary.metrics.storyCompletions, 1);
       expect(summary.metrics.quizCompletions, 1);
-      expect(summary.unlockedBadges.map((item) => item.definition.badgeId), contains('badge_first_story'));
-      expect(summary.unlockedBadges.map((item) => item.definition.badgeId), contains('badge_first_quiz'));
+      expect(
+        summary.unlockedBadges.map((item) => item.definition.badgeId),
+        contains('badge_first_story'),
+      );
+      expect(
+        summary.unlockedBadges.map((item) => item.definition.badgeId),
+        contains('badge_first_quiz'),
+      );
       expect(summary.metrics.currentLearningStreakDays, 2);
       expect(summary.xpSummary.currentLevel, greaterThanOrEqualTo(1));
     });

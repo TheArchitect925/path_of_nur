@@ -10,8 +10,7 @@ extension LearnContainedStateLocalizations on AppLocalizations {
   String get learnContainedStateGuidesSubtitle =>
       'These guides are being held in a contained state for now.';
 
-  String get learnContainedStateQuranMappingTitle =>
-      'Qur\'an lesson mapping';
+  String get learnContainedStateQuranMappingTitle => 'Qur\'an lesson mapping';
 
   String get learnContainedStateQuranMappingSubtitle =>
       'This mapping surface is contained until more lesson links are ready.';

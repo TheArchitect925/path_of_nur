@@ -27,17 +27,16 @@ final arabicContentUnitsProvider =
     });
 
 final arabicContentPackCompositionsProvider =
-    Provider.family<List<ArabicContentPackComposition>, ArabicLearningAudience>((
-      ref,
-      audience,
-    ) {
-      switch (audience) {
-        case ArabicLearningAudience.kids:
-          return kidsArabicContentPackCompositions;
-        case ArabicLearningAudience.adult:
-          return adultArabicContentPackCompositions;
-      }
-    });
+    Provider.family<List<ArabicContentPackComposition>, ArabicLearningAudience>(
+      (ref, audience) {
+        switch (audience) {
+          case ArabicLearningAudience.kids:
+            return kidsArabicContentPackCompositions;
+          case ArabicLearningAudience.adult:
+            return adultArabicContentPackCompositions;
+        }
+      },
+    );
 
 ArabicContentUnit? arabicContentUnitById(
   List<ArabicContentUnit> units,
@@ -77,7 +76,10 @@ List<ArabicContentUnit> _buildKidsContentUnits(Ref ref) {
         subtitle: letter.soundHint,
         arabicText: letter.glyph,
         transliteration: letter.kidsTransliteration,
-        keywords: <String>[letter.nameAr, if (letter.supportsTracing) 'tracing'],
+        keywords: <String>[
+          letter.nameAr,
+          if (letter.supportsTracing) 'tracing',
+        ],
         relatedLetterIds: <String>[letter.id],
         isAvailable: unlockedLetterIds.contains(letter.id),
       ),
@@ -98,8 +100,12 @@ List<ArabicContentUnit> _buildKidsContentUnits(Ref ref) {
         arabicText: status.word.wordAr,
         transliteration: status.word.transliteration,
         summary: arabicSharedBeginnerWordById(status.word.id)?.simpleMeaning,
-        audioAssetPath: arabicSharedBeginnerWordById(status.word.id)?.audioAssetPath,
-        sourceReference: arabicSharedBeginnerWordById(status.word.id)?.sourceReference,
+        audioAssetPath: arabicSharedBeginnerWordById(
+          status.word.id,
+        )?.audioAssetPath,
+        sourceReference: arabicSharedBeginnerWordById(
+          status.word.id,
+        )?.sourceReference,
         keywords: <String>[status.word.id],
         relatedLetterIds: status.word.letterIds,
         isAvailable: status.unlocked,
@@ -127,7 +133,9 @@ List<ArabicContentUnit> _buildKidsContentUnits(Ref ref) {
           phrase.id,
           if (phraseProgress.heardPhraseIds.contains(phrase.id)) 'heard',
         ],
-        relatedLetterIds: arabicSharedMiniPhraseById(phrase.id)?.letterIds ?? const <String>[],
+        relatedLetterIds:
+            arabicSharedMiniPhraseById(phrase.id)?.letterIds ??
+            const <String>[],
         relatedPhraseIds: <String>[phrase.id],
       ),
     const ArabicContentUnit(
@@ -167,7 +175,9 @@ List<ArabicContentUnit> _buildKidsContentUnits(Ref ref) {
           snippet.surahName,
           ...snippet.familiarWords.map((word) => word.id),
         ],
-        relatedWordIds: snippet.familiarWords.map((word) => word.id).toList(growable: false),
+        relatedWordIds: snippet.familiarWords
+            .map((word) => word.id)
+            .toList(growable: false),
         relatedPhraseIds: snippet.sharedPhrase == null
             ? const <String>[]
             : <String>[snippet.sharedPhrase!.id],
@@ -279,7 +289,8 @@ List<ArabicContentUnit> _buildAdultContentUnits(Ref ref) {
       keywords: <String>['review', 'practice'],
     ),
     for (final module in catalog.modules.where(
-      (module) => module.id == 'foundations' ||
+      (module) =>
+          module.id == 'foundations' ||
           module.id == 'phrase_reading' ||
           module.id == 'tajweed_basics',
     ))
@@ -323,7 +334,9 @@ List<ArabicContentUnit> _buildAdultContentUnits(Ref ref) {
           snippet.surahName,
           ...snippet.familiarWords.map((word) => word.id),
         ],
-        relatedWordIds: snippet.familiarWords.map((word) => word.id).toList(growable: false),
+        relatedWordIds: snippet.familiarWords
+            .map((word) => word.id)
+            .toList(growable: false),
         relatedPhraseIds: snippet.sharedPhrase == null
             ? const <String>[]
             : <String>[snippet.sharedPhrase!.id],

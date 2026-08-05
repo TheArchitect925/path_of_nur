@@ -23,11 +23,14 @@ class BedtimeStoryMiniPlayer extends ConsumerWidget {
     }
 
     final queueState = ref.watch(bedtimeStoryQueueControllerProvider);
-    final queueController = ref.read(bedtimeStoryQueueControllerProvider.notifier);
+    final queueController = ref.read(
+      bedtimeStoryQueueControllerProvider.notifier,
+    );
     final audioState = ref.watch(bedtimeStoryAudioControllerProvider);
     final progress = ref.watch(
       bedtimeStoryProgressProvider.select(
-        (value) => value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
+        (value) =>
+            value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
       ),
     );
     final mediaAsync = ref.watch(bedtimeStoryResolvedMediaProvider(story));
@@ -89,7 +92,8 @@ class BedtimeStoryMiniPlayer extends ConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        queueState.queueType == BedtimeStoryQueueType.continueSeries
+                        queueState.queueType ==
+                                BedtimeStoryQueueType.continueSeries
                             ? l10n.bedtimeStoriesContinueSeriesLabel(
                                 story.partNumber,
                                 story.totalParts,

@@ -10,9 +10,7 @@ import 'package:path_of_nur/shared/persistence/local_store.dart';
 import '../../test_helpers/app_test_harness.dart';
 
 class _FakeArabicLearningAudioBackend implements ArabicLearningAudioBackend {
-  _FakeArabicLearningAudioBackend({
-    this.playableAssets = const <String>{},
-  });
+  _FakeArabicLearningAudioBackend({this.playableAssets = const <String>{}});
 
   final Set<String> playableAssets;
   final List<String> playedAssets = <String>[];
@@ -77,90 +75,106 @@ class _FakeArabicLearningAssetBundle implements ArabicLearningAssetBundle {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('shared Arabic audio controller defaults to normal speed and persists slow mode', () async {
-    final backend = _FakeArabicLearningAudioBackend();
-    final bundle = _FakeArabicLearningAssetBundle(const <String>{});
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        arabicLearningAudioBackendProvider.overrideWithValue(backend),
-        arabicLearningAssetBundleProvider.overrideWithValue(bundle),
-      ],
-    );
-    addTearDown(container.dispose);
+  test(
+    'shared Arabic audio controller defaults to normal speed and persists slow mode',
+    () async {
+      final backend = _FakeArabicLearningAudioBackend();
+      final bundle = _FakeArabicLearningAssetBundle(const <String>{});
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          arabicLearningAudioBackendProvider.overrideWithValue(backend),
+          arabicLearningAssetBundleProvider.overrideWithValue(bundle),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    expect(
-      container.read(arabicLearningAudioControllerProvider).playbackSpeed,
-      ArabicLearningPlaybackSpeed.normal,
-    );
+      expect(
+        container.read(arabicLearningAudioControllerProvider).playbackSpeed,
+        ArabicLearningPlaybackSpeed.normal,
+      );
 
-    await container
-        .read(arabicLearningAudioControllerProvider.notifier)
-        .setPlaybackSpeed(ArabicLearningPlaybackSpeed.slow);
+      await container
+          .read(arabicLearningAudioControllerProvider.notifier)
+          .setPlaybackSpeed(ArabicLearningPlaybackSpeed.slow);
 
-    expect(
-      container.read(arabicLearningAudioControllerProvider).playbackSpeed,
-      ArabicLearningPlaybackSpeed.slow,
-    );
-    expect(
-      container.read(localStoreProvider).getBool('arabic.learning.audio.slow.v1'),
-      isTrue,
-    );
-  });
+      expect(
+        container.read(arabicLearningAudioControllerProvider).playbackSpeed,
+        ArabicLearningPlaybackSpeed.slow,
+      );
+      expect(
+        container
+            .read(localStoreProvider)
+            .getBool('arabic.learning.audio.slow.v1'),
+        isTrue,
+      );
+    },
+  );
 
-  test('shared Arabic audio controller prefers bundled word audio and falls back to Arabic text', () async {
-    final backend = _FakeArabicLearningAudioBackend(
-      playableAssets: <String>{
+  test(
+    'shared Arabic audio controller prefers bundled word audio and falls back to Arabic text',
+    () async {
+      final backend = _FakeArabicLearningAudioBackend(
+        playableAssets: <String>{'assets/audio/quran_teacher/words/noor.mp3'},
+      );
+      final bundle = _FakeArabicLearningAssetBundle(<String>{
         'assets/audio/quran_teacher/words/noor.mp3',
-      },
-    );
-    final bundle = _FakeArabicLearningAssetBundle(<String>{
-      'assets/audio/quran_teacher/words/noor.mp3',
-    });
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        arabicLearningAudioBackendProvider.overrideWithValue(backend),
-        arabicLearningAssetBundleProvider.overrideWithValue(bundle),
-      ],
-    );
-    addTearDown(container.dispose);
+      });
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          arabicLearningAudioBackendProvider.overrideWithValue(backend),
+          arabicLearningAssetBundleProvider.overrideWithValue(bundle),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    final notifier = container.read(arabicLearningAudioControllerProvider.notifier);
+      final notifier = container.read(
+        arabicLearningAudioControllerProvider.notifier,
+      );
 
-    await notifier.playBeginnerWord(arabicSharedBeginnerWordById('noor')!);
-    await notifier.playBeginnerWord(arabicSharedBeginnerWordById('qalam')!);
+      await notifier.playBeginnerWord(arabicSharedBeginnerWordById('noor')!);
+      await notifier.playBeginnerWord(arabicSharedBeginnerWordById('qalam')!);
 
-    expect(
-      backend.playedAssets,
-      contains('assets/audio/quran_teacher/words/noor.mp3'),
-    );
-    expect(bundle.prewarmedAssets, contains('assets/audio/quran_teacher/words/noor.mp3'));
-    expect(backend.spokenTexts, contains('قلم'));
-    expect(
-      container.read(arabicLearningAudioControllerProvider).isPlaying,
-      isFalse,
-    );
-  });
+      expect(
+        backend.playedAssets,
+        contains('assets/audio/quran_teacher/words/noor.mp3'),
+      );
+      expect(
+        bundle.prewarmedAssets,
+        contains('assets/audio/quran_teacher/words/noor.mp3'),
+      );
+      expect(backend.spokenTexts, contains('قلم'));
+      expect(
+        container.read(arabicLearningAudioControllerProvider).isPlaying,
+        isFalse,
+      );
+    },
+  );
 
-  test('shared Arabic audio controller skips missing assets and falls back calmly', () async {
-    final backend = _FakeArabicLearningAudioBackend(
-      playableAssets: const <String>{},
-    );
-    final bundle = _FakeArabicLearningAssetBundle(const <String>{});
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        arabicLearningAudioBackendProvider.overrideWithValue(backend),
-        arabicLearningAssetBundleProvider.overrideWithValue(bundle),
-      ],
-    );
-    addTearDown(container.dispose);
+  test(
+    'shared Arabic audio controller skips missing assets and falls back calmly',
+    () async {
+      final backend = _FakeArabicLearningAudioBackend(
+        playableAssets: const <String>{},
+      );
+      final bundle = _FakeArabicLearningAssetBundle(const <String>{});
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          arabicLearningAudioBackendProvider.overrideWithValue(backend),
+          arabicLearningAssetBundleProvider.overrideWithValue(bundle),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    final notifier = container.read(arabicLearningAudioControllerProvider.notifier);
-    final played = await notifier.playBeginnerPhrase(
-      arabicSharedMiniPhraseById('bismillah')!,
-    );
+      final notifier = container.read(
+        arabicLearningAudioControllerProvider.notifier,
+      );
+      final played = await notifier.playBeginnerPhrase(
+        arabicSharedMiniPhraseById('bismillah')!,
+      );
 
-    expect(played, isTrue);
-    expect(backend.playedAssets, isEmpty);
-    expect(backend.spokenTexts, contains('بِسْمِ اللّٰهِ'));
-  });
+      expect(played, isTrue);
+      expect(backend.playedAssets, isEmpty);
+      expect(backend.spokenTexts, contains('بِسْمِ اللّٰهِ'));
+    },
+  );
 }

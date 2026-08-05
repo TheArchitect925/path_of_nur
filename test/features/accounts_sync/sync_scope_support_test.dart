@@ -29,86 +29,102 @@ void main() {
         .setMockMethodCallHandler(pathProviderChannel, null);
   });
 
-  test('sync scope preferences persist through accounts sync state serialization', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
-    final controller = container.read(accountsSyncControllerProvider.notifier);
+  test(
+    'sync scope preferences persist through accounts sync state serialization',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
+      final controller = container.read(
+        accountsSyncControllerProvider.notifier,
+      );
 
-    await controller.updateSyncScopePreferences(
-      const SyncScopePreferences(
-        excludedOptionalDomainNames: <String>[
-          'journal_notes',
-          'theme_accessibility',
-        ],
-      ),
-    );
+      await controller.updateSyncScopePreferences(
+        const SyncScopePreferences(
+          excludedOptionalDomainNames: <String>[
+            'journal_notes',
+            'theme_accessibility',
+          ],
+        ),
+      );
 
-    final serialized = container.read(accountsSyncControllerProvider).toJson();
-    final restored = AccountsSyncState.fromJson(
-      serialized.map((key, value) => MapEntry(key.toString(), value)),
-    );
+      final serialized = container
+          .read(accountsSyncControllerProvider)
+          .toJson();
+      final restored = AccountsSyncState.fromJson(
+        serialized.map((key, value) => MapEntry(key.toString(), value)),
+      );
 
-    expect(
-      restored.syncScopePreferences.excludedOptionalDomainNames,
-      containsAll(<String>['journal_notes', 'theme_accessibility']),
-    );
-  });
+      expect(
+        restored.syncScopePreferences.excludedOptionalDomainNames,
+        containsAll(<String>['journal_notes', 'theme_accessibility']),
+      );
+    },
+  );
 
-  test('scoped backup payload excludes optional domains from future remote backups', () async {
-    final container = await makeTestContainer();
-    addTearDown(container.dispose);
-    final controller = container.read(accountsSyncControllerProvider.notifier);
-    final store = container.read(localStoreProvider);
+  test(
+    'scoped backup payload excludes optional domains from future remote backups',
+    () async {
+      final container = await makeTestContainer();
+      addTearDown(container.dispose);
+      final controller = container.read(
+        accountsSyncControllerProvider.notifier,
+      );
+      final store = container.read(localStoreProvider);
 
-    await controller.addAccount(
-      provider: AccountProviderType.localOnly,
-      identifier: 'local-device',
-      displayName: 'Owner',
-    );
-    await controller.createProfile(
-      displayName: 'Traveler',
-      kind: ProfileKind.adult,
-      experienceMode: ProfileExperienceMode.full,
-      syncMode: ProfileSyncMode.manualBackupOnly,
-      avatar: 'T',
-    );
-    await store.setJsonMap('settings.profile', <String, dynamic>{'theme': 'amber'});
-    await store.setString('journal.entry.example', 'private note');
-    await store.setString('theme.mode', 'midnight');
-    await controller.updateSyncScopePreferences(
-      const SyncScopePreferences(
-        excludedOptionalDomainNames: <String>[
-          'journal_notes',
-          'theme_accessibility',
-        ],
-      ),
-    );
+      await controller.addAccount(
+        provider: AccountProviderType.localOnly,
+        identifier: 'local-device',
+        displayName: 'Owner',
+      );
+      await controller.createProfile(
+        displayName: 'Traveler',
+        kind: ProfileKind.adult,
+        experienceMode: ProfileExperienceMode.full,
+        syncMode: ProfileSyncMode.manualBackupOnly,
+        avatar: 'T',
+      );
+      await store.setJsonMap('settings.profile', <String, dynamic>{
+        'theme': 'amber',
+      });
+      await store.setString('journal.entry.example', 'private note');
+      await store.setString('theme.mode', 'midnight');
+      await controller.updateSyncScopePreferences(
+        const SyncScopePreferences(
+          excludedOptionalDomainNames: <String>[
+            'journal_notes',
+            'theme_accessibility',
+          ],
+        ),
+      );
 
-    final payload = await controller.buildBackupPayload(
-      currentProfileOnly: false,
-      encrypt: false,
-      sourceType: BackupSourceType.remoteBackup,
-      useSyncScope: true,
-      appVersion: '1.2.3',
-      buildNumber: '23',
-    );
-    final decoded = jsonDecode(payload) as Map<String, dynamic>;
-    final metadata = (decoded['metadata'] as Map<String, dynamic>);
-    final scopeSummary = BackupScopeSummary.fromJson(
-      (metadata['scopeSummary'] as Map).map(
-        (key, value) => MapEntry(key.toString(), value),
-      ),
-    );
-    final snapshots = ((decoded['profileSnapshots'] as Map).values.first as Map)
-        .map((key, value) => MapEntry(key.toString(), value));
+      final payload = await controller.buildBackupPayload(
+        currentProfileOnly: false,
+        encrypt: false,
+        sourceType: BackupSourceType.remoteBackup,
+        useSyncScope: true,
+        appVersion: '1.2.3',
+        buildNumber: '23',
+      );
+      final decoded = jsonDecode(payload) as Map<String, dynamic>;
+      final metadata = (decoded['metadata'] as Map<String, dynamic>);
+      final scopeSummary = BackupScopeSummary.fromJson(
+        (metadata['scopeSummary'] as Map).map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
+      );
+      final snapshots =
+          ((decoded['profileSnapshots'] as Map).values.first as Map).map(
+            (key, value) => MapEntry(key.toString(), value),
+          );
 
-    expect(scopeSummary.isPartial, isTrue);
-    expect(scopeSummary.excludedDomainNames, contains('journal_notes'));
-    expect(scopeSummary.excludedDomainNames, contains('theme_accessibility'));
-    expect(snapshots.containsKey('journal.entry.example'), isFalse);
-    expect(snapshots.containsKey('theme.mode'), isFalse);
-    expect(snapshots.containsKey('settings.profile'), isTrue);
-  });
+      expect(scopeSummary.isPartial, isTrue);
+      expect(scopeSummary.excludedDomainNames, contains('journal_notes'));
+      expect(scopeSummary.excludedDomainNames, contains('theme_accessibility'));
+      expect(snapshots.containsKey('journal.entry.example'), isFalse);
+      expect(snapshots.containsKey('theme.mode'), isFalse);
+      expect(snapshots.containsKey('settings.profile'), isTrue);
+    },
+  );
 
   test('partial backup import preserves excluded local-only domains', () async {
     final container = await makeTestContainer(
@@ -138,7 +154,9 @@ void main() {
       syncMode: ProfileSyncMode.manualBackupOnly,
       avatar: 'T',
     );
-    await store.setJsonMap('settings.profile', <String, dynamic>{'theme': 'amber'});
+    await store.setJsonMap('settings.profile', <String, dynamic>{
+      'theme': 'amber',
+    });
     await store.setString('journal.entry.example', 'keep me local');
     await controller.updateSyncScopePreferences(
       const SyncScopePreferences(
@@ -155,17 +173,25 @@ void main() {
       buildNumber: '23',
     );
     final remoteMap = jsonDecode(remotePayload) as Map<String, dynamic>;
-    final profileId = container.read(accountsSyncControllerProvider).activeProfileId!;
+    final profileId = container
+        .read(accountsSyncControllerProvider)
+        .activeProfileId!;
     final snapshots =
         (remoteMap['profileSnapshots'] as Map<String, dynamic>)[profileId]
             as Map<String, dynamic>;
-    snapshots['settings.profile'] = jsonEncode(<String, dynamic>{'theme': 'teal'});
+    snapshots['settings.profile'] = jsonEncode(<String, dynamic>{
+      'theme': 'teal',
+    });
 
-    final preview = await container.read(backupRepositoryProvider).validateImportPayload(
+    final preview = await container
+        .read(backupRepositoryProvider)
+        .validateImportPayload(
           payload: jsonEncode(remoteMap),
           encrypted: false,
         );
-    final result = await container.read(backupRepositoryProvider).applyImport(
+    final result = await container
+        .read(backupRepositoryProvider)
+        .applyImport(
           preview: preview.preview!,
           mode: ImportConflictMode.replace,
         );

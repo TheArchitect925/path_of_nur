@@ -143,7 +143,8 @@ class QuranAudioSourceMetadata {
       notes: clearNotes ? null : (notes ?? this.notes),
       confidence: confidence ?? this.confidence,
       manualReviewNeeded: manualReviewNeeded ?? this.manualReviewNeeded,
-      isStandaloneBismillah: isStandaloneBismillah ?? this.isStandaloneBismillah,
+      isStandaloneBismillah:
+          isStandaloneBismillah ?? this.isStandaloneBismillah,
       fallbackSource: clearFallbackSource
           ? null
           : (fallbackSource ?? this.fallbackSource),

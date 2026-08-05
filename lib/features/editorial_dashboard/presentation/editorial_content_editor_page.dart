@@ -42,24 +42,30 @@ class _EditorialContentEditorPageState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final currentSnapshot = ref.watch(
-      editorialCurrentContentSnapshotProvider(
-        (widget.contentType, widget.contentId),
-      ),
+      editorialCurrentContentSnapshotProvider((
+        widget.contentType,
+        widget.contentId,
+      )),
     );
     final versions = ref.watch(
-      editorialContentVersionsForItemProvider(
-        (widget.contentType, widget.contentId),
-      ),
+      editorialContentVersionsForItemProvider((
+        widget.contentType,
+        widget.contentId,
+      )),
     );
     if (currentSnapshot == null) {
       return AppPageScaffold(
         headerIcon: Icons.edit_off_outlined,
         title: l10n.editorialDashboardContentEditorTitle,
         subtitle: l10n.editorialDashboardEmptyTitle,
-        children: [PremiumCard(child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text(l10n.editorialDashboardEmptySubtitle),
-        ))],
+        children: [
+          PremiumCard(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(l10n.editorialDashboardEmptySubtitle),
+            ),
+          ),
+        ],
       );
     }
     _initializeControllersIfNeeded(currentSnapshot);
@@ -196,7 +202,9 @@ class _EditorialContentEditorPageState
                                       version.contentSnapshot,
                                       currentSnapshot,
                                     ),
-                                    icon: const Icon(Icons.compare_arrows_rounded),
+                                    icon: const Icon(
+                                      Icons.compare_arrows_rounded,
+                                    ),
                                     label: Text(
                                       l10n.editorialDashboardCompareVersionAction,
                                     ),
@@ -205,9 +213,9 @@ class _EditorialContentEditorPageState
                                     onPressed: _isSaving
                                         ? null
                                         : () => _confirmRollback(
-                                              context,
-                                              version,
-                                            ),
+                                            context,
+                                            version,
+                                          ),
                                     icon: const Icon(Icons.history_rounded),
                                     label: Text(
                                       l10n.editorialDashboardRollbackAction,
@@ -311,9 +319,13 @@ class _EditorialContentEditorPageState
                             style: Theme.of(dialogContext).textTheme.titleSmall,
                           ),
                           const SizedBox(height: 4),
-                          Text('${l10n.editorialDashboardBeforeLabel}: ${change.before}'),
+                          Text(
+                            '${l10n.editorialDashboardBeforeLabel}: ${change.before}',
+                          ),
                           const SizedBox(height: 2),
-                          Text('${l10n.editorialDashboardAfterLabel}: ${change.after}'),
+                          Text(
+                            '${l10n.editorialDashboardAfterLabel}: ${change.after}',
+                          ),
                         ],
                       ),
                     ),
@@ -321,8 +333,7 @@ class _EditorialContentEditorPageState
                   TextField(
                     controller: summaryController,
                     decoration: InputDecoration(
-                      labelText:
-                          l10n.editorialDashboardChangeSummaryFieldLabel,
+                      labelText: l10n.editorialDashboardChangeSummaryFieldLabel,
                       helperText:
                           l10n.editorialDashboardChangeSummaryFieldHelper,
                     ),
@@ -337,9 +348,9 @@ class _EditorialContentEditorPageState
               child: Text(l10n.editorialDashboardCancelAction),
             ),
             FilledButton(
-              onPressed: () => Navigator.of(dialogContext).pop(
-                summaryController.text.trim(),
-              ),
+              onPressed: () => Navigator.of(
+                dialogContext,
+              ).pop(summaryController.text.trim()),
               child: Text(l10n.editorialDashboardSaveVersionAction),
             ),
           ],
@@ -351,7 +362,9 @@ class _EditorialContentEditorPageState
       return;
     }
     setState(() => _isSaving = true);
-    await ref.read(editorialContentVersionsProvider.notifier).saveEdit(
+    await ref
+        .read(editorialContentVersionsProvider.notifier)
+        .saveEdit(
           type: widget.contentType,
           contentId: widget.contentId,
           snapshot: nextSnapshot,
@@ -392,9 +405,9 @@ class _EditorialContentEditorPageState
               child: Text(l10n.editorialDashboardCancelAction),
             ),
             FilledButton(
-              onPressed: () => Navigator.of(dialogContext).pop(
-                summaryController.text.trim(),
-              ),
+              onPressed: () => Navigator.of(
+                dialogContext,
+              ).pop(summaryController.text.trim()),
               child: Text(l10n.editorialDashboardRollbackAction),
             ),
           ],
@@ -404,7 +417,9 @@ class _EditorialContentEditorPageState
     summaryController.dispose();
     if (confirmed == null || confirmed.trim().isEmpty) return;
     setState(() => _isSaving = true);
-    await ref.read(editorialContentVersionsProvider.notifier).rollbackToVersion(
+    await ref
+        .read(editorialContentVersionsProvider.notifier)
+        .rollbackToVersion(
           type: widget.contentType,
           contentId: widget.contentId,
           targetVersionNumber: version.versionNumber,
@@ -450,9 +465,13 @@ class _EditorialContentEditorPageState
                                     ).textTheme.titleSmall,
                                   ),
                                   const SizedBox(height: 4),
-                                  Text('${l10n.editorialDashboardBeforeLabel}: ${change.before}'),
+                                  Text(
+                                    '${l10n.editorialDashboardBeforeLabel}: ${change.before}',
+                                  ),
                                   const SizedBox(height: 2),
-                                  Text('${l10n.editorialDashboardAfterLabel}: ${change.after}'),
+                                  Text(
+                                    '${l10n.editorialDashboardAfterLabel}: ${change.after}',
+                                  ),
                                 ],
                               ),
                             ),
@@ -514,8 +533,7 @@ class _EditorialContentEditorPageState
     }
     if (widget.contentType == EditorialContentType.quranExplanation) {
       final simple = snapshot['simpleSummary']?.toString().trim() ?? '';
-      final standard =
-          snapshot['standardExplanation']?.toString().trim() ?? '';
+      final standard = snapshot['standardExplanation']?.toString().trim() ?? '';
       final kids = snapshot['kidsExplanation']?.toString().trim() ?? '';
       if (simple.isEmpty || standard.isEmpty || kids.isEmpty) {
         errors.add(l10n.editorialDashboardQuranExplanationValidation);
@@ -539,7 +557,11 @@ class _EditorialContentEditorPageState
           : after[field.key]?.toString() ?? '';
       if (beforeValue.trim() == afterValue.trim()) continue;
       changes.add(
-        _FieldChange(label: field.label, before: beforeValue, after: afterValue),
+        _FieldChange(
+          label: field.label,
+          before: beforeValue,
+          after: afterValue,
+        ),
       );
     }
     if (widget.contentType == EditorialContentType.quranExplanation) {
@@ -815,10 +837,7 @@ List<String> _stringList(Object? value) {
       .toList(growable: false);
 }
 
-String _contentTypeLabel(
-  AppLocalizations l10n,
-  EditorialContentType type,
-) {
+String _contentTypeLabel(AppLocalizations l10n, EditorialContentType type) {
   return switch (type) {
     EditorialContentType.quranExplanation =>
       l10n.editorialDashboardContentTypeQuranExplanation,

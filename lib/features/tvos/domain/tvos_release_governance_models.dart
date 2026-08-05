@@ -1,11 +1,6 @@
 import 'tvos_foundation_models.dart';
 
-enum TVOSUpdateChannel {
-  internal,
-  testflight,
-  releaseCandidate,
-  publicStore,
-}
+enum TVOSUpdateChannel { internal, testflight, releaseCandidate, publicStore }
 
 enum TVOSReleaseGateId {
   unsignedReleaseBuild,

@@ -49,17 +49,16 @@ class HomeFeatureCardHeader extends StatelessWidget {
               Text(
                 subtitle,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.textTheme.bodySmall?.color?.withValues(alpha: 0.86),
+                  color: theme.textTheme.bodySmall?.color?.withValues(
+                    alpha: 0.86,
+                  ),
                   height: 1.35,
                 ),
               ),
             ],
           ),
         ),
-        if (trailing != null) ...[
-          const SizedBox(width: 10),
-          trailing!,
-        ],
+        if (trailing != null) ...[const SizedBox(width: 10), trailing!],
       ],
     );
   }

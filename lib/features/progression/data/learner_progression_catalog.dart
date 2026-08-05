@@ -68,7 +68,7 @@ const List<LearnerProgressionBadgeDefinition> learnerProgressionBadgeCatalog =
     ];
 
 const List<LearnerProgressionMilestoneDefinition>
-    learnerProgressionMilestoneCatalog = <LearnerProgressionMilestoneDefinition>[
+learnerProgressionMilestoneCatalog = <LearnerProgressionMilestoneDefinition>[
   LearnerProgressionMilestoneDefinition(
     milestoneId: 'milestone_stories_10',
     titleKey: 'progressionMilestoneStoriesTenTitle',

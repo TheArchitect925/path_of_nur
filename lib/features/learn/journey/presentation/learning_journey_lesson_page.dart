@@ -76,8 +76,8 @@ class LearningJourneyLessonPage extends ConsumerWidget {
         selectedIntent != null) {
       quranReaderQueryParameters['mode'] = quranPreferredReaderModeForIntent(
         selectedIntent,
-        hasHighlightedTopic: quranContextEntry.topicId?.trim().isNotEmpty ??
-            false,
+        hasHighlightedTopic:
+            quranContextEntry.topicId?.trim().isNotEmpty ?? false,
       ).wireName;
     }
     final filteredRelatedTools = quranContextEntry == null

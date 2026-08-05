@@ -24,24 +24,36 @@ void main() {
       controller.updateActiveLearner('child_a');
       controller.openStory('story_prophet_adam_bedtime_v1');
       expect(
-        controller.progressFor('story_prophet_adam_bedtime_v1').completionState.name,
+        controller
+            .progressFor('story_prophet_adam_bedtime_v1')
+            .completionState
+            .name,
         'inProgress',
       );
 
       controller.updateActiveLearner('child_b');
       expect(
-        controller.progressFor('story_prophet_adam_bedtime_v1').completionState.name,
+        controller
+            .progressFor('story_prophet_adam_bedtime_v1')
+            .completionState
+            .name,
         'notStarted',
       );
 
       controller.openStory('story_prophet_nuh_bedtime_v1');
       controller.updateActiveLearner('child_a');
       expect(
-        controller.progressFor('story_prophet_adam_bedtime_v1').completionState.name,
+        controller
+            .progressFor('story_prophet_adam_bedtime_v1')
+            .completionState
+            .name,
         'inProgress',
       );
       expect(
-        controller.progressFor('story_prophet_nuh_bedtime_v1').completionState.name,
+        controller
+            .progressFor('story_prophet_nuh_bedtime_v1')
+            .completionState
+            .name,
         'notStarted',
       );
     });
@@ -76,36 +88,39 @@ void main() {
       );
     });
 
-    test('legacy bedtime progress migrates once into active learner scope', () async {
-      SharedPreferences.setMockInitialValues(<String, Object>{
-        legacyBedtimeStoryProgressKey: jsonEncode(<String, Object?>{
-          'storyProgressById': <String, Object?>{
-            'story_prophet_adam_bedtime_v1': <String, Object?>{
-              'currentPositionMs': 1000,
-              'totalDurationMs': 2000,
-              'totalListenedMs': 1000,
-              'startedAtIso': DateTime.now().toIso8601String(),
+    test(
+      'legacy bedtime progress migrates once into active learner scope',
+      () async {
+        SharedPreferences.setMockInitialValues(<String, Object>{
+          legacyBedtimeStoryProgressKey: jsonEncode(<String, Object?>{
+            'storyProgressById': <String, Object?>{
+              'story_prophet_adam_bedtime_v1': <String, Object?>{
+                'currentPositionMs': 1000,
+                'totalDurationMs': 2000,
+                'totalListenedMs': 1000,
+                'startedAtIso': DateTime.now().toIso8601String(),
+              },
             },
-          },
-        }),
-      });
-      final prefs = await SharedPreferences.getInstance();
-      final container = ProviderContainer(
-        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-      );
-      addTearDown(container.dispose);
+          }),
+        });
+        final prefs = await SharedPreferences.getInstance();
+        final container = ProviderContainer(
+          overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+        );
+        addTearDown(container.dispose);
 
-      container.read(bedtimeStoryProgressProvider);
+        container.read(bedtimeStoryProgressProvider);
 
-      expect(prefs.getString(legacyBedtimeStoryProgressKey), isNull);
-      expect(
-        prefs.getString(
-          bedtimeStoryProgressStorageKeyForLearner(
-            bedtimeFallbackLearnerIdForProfile('device_local'),
+        expect(prefs.getString(legacyBedtimeStoryProgressKey), isNull);
+        expect(
+          prefs.getString(
+            bedtimeStoryProgressStorageKeyForLearner(
+              bedtimeFallbackLearnerIdForProfile('device_local'),
+            ),
           ),
-        ),
-        isNotNull,
-      );
-    });
+          isNotNull,
+        );
+      },
+    );
   });
 }

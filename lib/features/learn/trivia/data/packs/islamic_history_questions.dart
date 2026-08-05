@@ -214,7 +214,10 @@ final List<TriviaQuestion> islamicHistoryTriviaQuestions = [
     correctOptionId: 'b',
     options: const [
       ('a', 'Because it ended all hardship permanently'),
-      ('b', 'Because it marked the formation of a new Muslim community and public order'),
+      (
+        'b',
+        'Because it marked the formation of a new Muslim community and public order',
+      ),
       ('c', 'Because it replaced the Qur’an'),
       ('d', 'Because it cancelled prayer'),
     ],
@@ -278,7 +281,10 @@ final List<TriviaQuestion> islamicHistoryTriviaQuestions = [
     prompt: 'Why is Madinah central in early Islamic history?',
     correctOptionId: 'a',
     options: const [
-      ('a', 'It became the place where the Muslim community grew and Islamic life was organized'),
+      (
+        'a',
+        'It became the place where the Muslim community grew and Islamic life was organized',
+      ),
       ('b', 'It replaced Makkah as qiblah'),
       ('c', 'It was the birthplace of Ibrahim'),
       ('d', 'It was the only city where prayer was allowed'),
@@ -315,7 +321,10 @@ final List<TriviaQuestion> islamicHistoryTriviaQuestions = [
     options: const [
       ('a', 'Because it ended all conflict forever'),
       ('b', 'Because it had no long-term consequence'),
-      ('c', 'Because what looked difficult in the moment opened the door to later growth and stability'),
+      (
+        'c',
+        'Because what looked difficult in the moment opened the door to later growth and stability',
+      ),
       ('d', 'Because it removed the need for da‘wah'),
     ],
     explanation:

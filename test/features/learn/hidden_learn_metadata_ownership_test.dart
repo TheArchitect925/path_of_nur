@@ -65,83 +65,80 @@ void main() {
     expect(find.byType(LearningJourneyStagePage), findsOneWidget);
   });
 
-  test('hidden catalog items with canonical owners now target route-specific destinations', () {
-    expect(
-      LearnCategoryCatalog.byId('becoming-muslim'),
-      isNotNull,
-    );
-    expect(
-      LearnCategoryCatalog.byId('becoming-muslim')!.routeName,
-      'learnContentDetail',
-    );
-    expect(
-      LearnCategoryCatalog.byId('becoming-muslim')!.pathParameters,
-      {'category': 'life', 'topicId': 'new-muslim-path'},
-    );
+  test(
+    'hidden catalog items with canonical owners now target route-specific destinations',
+    () {
+      expect(LearnCategoryCatalog.byId('becoming-muslim'), isNotNull);
+      expect(
+        LearnCategoryCatalog.byId('becoming-muslim')!.routeName,
+        'learnContentDetail',
+      );
+      expect(LearnCategoryCatalog.byId('becoming-muslim')!.pathParameters, {
+        'category': 'life',
+        'topicId': 'new-muslim-path',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('aqeedah-essentials')!.routeName,
-      'learnJourneyDetail',
-    );
-    expect(
-      LearnCategoryCatalog.byId('aqeedah-essentials')!.pathParameters,
-      {'journeyId': 'foundations-of-faith'},
-    );
+      expect(
+        LearnCategoryCatalog.byId('aqeedah-essentials')!.routeName,
+        'learnJourneyDetail',
+      );
+      expect(LearnCategoryCatalog.byId('aqeedah-essentials')!.pathParameters, {
+        'journeyId': 'foundations-of-faith',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('five-pillars')!.routeName,
-      'learnJourneyStage',
-    );
-    expect(
-      LearnCategoryCatalog.byId('five-pillars')!.pathParameters,
-      {'journeyId': 'islam-foundations', 'stageId': 'islam-five-pillars'},
-    );
+      expect(
+        LearnCategoryCatalog.byId('five-pillars')!.routeName,
+        'learnJourneyStage',
+      );
+      expect(LearnCategoryCatalog.byId('five-pillars')!.pathParameters, {
+        'journeyId': 'islam-foundations',
+        'stageId': 'islam-five-pillars',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('ramadhan-fasting')!.routeName,
-      'learnJourneyDetail',
-    );
-    expect(
-      LearnCategoryCatalog.byId('ramadhan-fasting')!.pathParameters,
-      {'journeyId': 'ramadan-foundations'},
-    );
+      expect(
+        LearnCategoryCatalog.byId('ramadhan-fasting')!.routeName,
+        'learnJourneyDetail',
+      );
+      expect(LearnCategoryCatalog.byId('ramadhan-fasting')!.pathParameters, {
+        'journeyId': 'ramadan-foundations',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('zakah-sadaqah')!.routeName,
-      'learnJourneyStage',
-    );
-    expect(
-      LearnCategoryCatalog.byId('zakah-sadaqah')!.pathParameters,
-      {'journeyId': 'fiqh-basics', 'stageId': 'fiqh-zakat-basics'},
-    );
+      expect(
+        LearnCategoryCatalog.byId('zakah-sadaqah')!.routeName,
+        'learnJourneyStage',
+      );
+      expect(LearnCategoryCatalog.byId('zakah-sadaqah')!.pathParameters, {
+        'journeyId': 'fiqh-basics',
+        'stageId': 'fiqh-zakat-basics',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('hajj')!.routeName,
-      'learnContentDetail',
-    );
-    expect(
-      LearnCategoryCatalog.byId('hajj')!.pathParameters,
-      {'category': 'life', 'topicId': 'hajj-full-journey'},
-    );
+      expect(
+        LearnCategoryCatalog.byId('hajj')!.routeName,
+        'learnContentDetail',
+      );
+      expect(LearnCategoryCatalog.byId('hajj')!.pathParameters, {
+        'category': 'life',
+        'topicId': 'hajj-full-journey',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('umrah')!.routeName,
-      'learnContentDetail',
-    );
-    expect(
-      LearnCategoryCatalog.byId('umrah')!.pathParameters,
-      {'category': 'life', 'topicId': 'umrah-full-journey'},
-    );
+      expect(
+        LearnCategoryCatalog.byId('umrah')!.routeName,
+        'learnContentDetail',
+      );
+      expect(LearnCategoryCatalog.byId('umrah')!.pathParameters, {
+        'category': 'life',
+        'topicId': 'umrah-full-journey',
+      });
 
-    expect(
-      LearnCategoryCatalog.byId('fiqh-basic')!.routeName,
-      'learnJourneyDetail',
-    );
-    expect(
-      LearnCategoryCatalog.byId('fiqh-basic')!.pathParameters,
-      {'journeyId': 'fiqh-basics'},
-    );
-  });
+      expect(
+        LearnCategoryCatalog.byId('fiqh-basic')!.routeName,
+        'learnJourneyDetail',
+      );
+      expect(LearnCategoryCatalog.byId('fiqh-basic')!.pathParameters, {
+        'journeyId': 'fiqh-basics',
+      });
+    },
+  );
 
   test('ambiguous hidden catalog items stay on learnLegacy', () {
     const retainedLegacyIds = <String>['jummah', 'eid', 'funeral'];

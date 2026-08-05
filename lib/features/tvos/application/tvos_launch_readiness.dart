@@ -53,14 +53,13 @@ TVOSLaunchReadinessSnapshot buildTVOSLaunchReadinessSnapshot() {
 }
 
 bool tvosLaunchReadinessIncludesPhase27() {
-  return buildTVOSLaunchReadinessSnapshot()
-      .completedPhases
-      .contains(TVOSPhaseId.phase27LaunchPolishReadiness);
+  return buildTVOSLaunchReadinessSnapshot().completedPhases.contains(
+    TVOSPhaseId.phase27LaunchPolishReadiness,
+  );
 }
 
 List<TVOSLaunchReadinessGate> tvosPublicLaunchBlockingGates() {
-  return buildTVOSLaunchReadinessSnapshot()
-      .gates
+  return buildTVOSLaunchReadinessSnapshot().gates
       .where((gate) => gate.blocksPublicLaunch && !gate.isPassing)
       .toList(growable: false);
 }
@@ -82,8 +81,14 @@ bool tvosHasRecordedTestflightUploadProof() {
 bool _hasRecordedDistributionProof(
   List<TVOSDistributionEvidenceRecord> evidence,
 ) {
-  return _hasRecordedEvidence(evidence, TVOSDistributionEvidenceId.signedArchive) &&
-      _hasRecordedEvidence(evidence, TVOSDistributionEvidenceId.testflightUpload);
+  return _hasRecordedEvidence(
+        evidence,
+        TVOSDistributionEvidenceId.signedArchive,
+      ) &&
+      _hasRecordedEvidence(
+        evidence,
+        TVOSDistributionEvidenceId.testflightUpload,
+      );
 }
 
 bool _hasRecordedEvidence(

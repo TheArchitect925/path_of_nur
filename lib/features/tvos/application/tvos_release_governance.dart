@@ -39,7 +39,10 @@ bool tvosUpdateGovernanceMatchesEnabledSidebarRoutes() {
       .map((flag) => flag.routePath)
       .toSet();
 
-  return snapshot.gatedRoutePaths.toSet().difference(enabledSidebarRoutes).isEmpty &&
+  return snapshot.gatedRoutePaths
+          .toSet()
+          .difference(enabledSidebarRoutes)
+          .isEmpty &&
       enabledSidebarRoutes.difference(snapshot.gatedRoutePaths.toSet()).isEmpty;
 }
 
@@ -51,15 +54,13 @@ bool tvosGovernanceAllowsOnlyTestflightPromotion() {
 }
 
 List<TVOSReleaseGate> tvosPassingReleaseGates() {
-  return buildTVOSUpdateGovernanceSnapshot()
-      .releaseGates
+  return buildTVOSUpdateGovernanceSnapshot().releaseGates
       .where((gate) => gate.isPassing)
       .toList(growable: false);
 }
 
 List<TVOSReleaseGate> tvosBlockingReleaseGatesStillOpen() {
-  return buildTVOSUpdateGovernanceSnapshot()
-      .releaseGates
+  return buildTVOSUpdateGovernanceSnapshot().releaseGates
       .where((gate) => gate.blocksPromotion && !gate.isPassing)
       .toList(growable: false);
 }

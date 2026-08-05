@@ -44,7 +44,8 @@ void openArabicLearningRouteTarget(
       }
       Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (_) => QuranTeachingLessonPage(lesson: lesson, module: module),
+          builder: (_) =>
+              QuranTeachingLessonPage(lesson: lesson, module: module),
         ),
       );
     case ArabicLearningRouteTargetKind.adultModule:
@@ -70,8 +71,10 @@ void openArabicLearningRouteTarget(
         ),
       );
     case ArabicLearningRouteTargetKind.adultDailyReview:
-      Navigator.of(
-        context,
-      ).push(MaterialPageRoute<void>(builder: (_) => const QuranTeachingDailyReviewPage()));
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => const QuranTeachingDailyReviewPage(),
+        ),
+      );
   }
 }

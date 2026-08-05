@@ -18,7 +18,8 @@ class KidsDuaReadAlongView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final showTransliteration = readAlongMode != KidsDuaReadAlongMode.arabicOnly;
+    final showTransliteration =
+        readAlongMode != KidsDuaReadAlongMode.arabicOnly;
     final showTranslation = readAlongMode == KidsDuaReadAlongMode.full;
     return Container(
       width: double.infinity,
@@ -33,9 +34,9 @@ class KidsDuaReadAlongView extends StatelessWidget {
         children: [
           Text(
             l10n.kidsDuaReadAlongSectionTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 10),
           ...item.segments.map((segment) {
@@ -45,7 +46,9 @@ class KidsDuaReadAlongView extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 10),
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: highlighted ? const Color(0xFFFFF7EB) : const Color(0xFFFCFBF8),
+                color: highlighted
+                    ? const Color(0xFFFFF7EB)
+                    : const Color(0xFFFCFBF8),
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
                   color: highlighted
@@ -61,9 +64,8 @@ class KidsDuaReadAlongView extends StatelessWidget {
                     child: Text(
                       segment.arabicSegmentText,
                       textAlign: TextAlign.right,
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.w700),
                     ),
                   ),
                   if (showTransliteration) ...[
@@ -71,17 +73,18 @@ class KidsDuaReadAlongView extends StatelessWidget {
                     Text(
                       segment.transliterationSegmentText,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: const Color(0xFF655A4C),
-                          ),
+                        color: const Color(0xFF655A4C),
+                      ),
                     ),
                   ],
-                  if (showTranslation && segment.translationSegmentText != null) ...[
+                  if (showTranslation &&
+                      segment.translationSegmentText != null) ...[
                     const SizedBox(height: 6),
                     Text(
                       segment.translationSegmentText!,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: const Color(0xFF766856),
-                          ),
+                        color: const Color(0xFF766856),
+                      ),
                     ),
                   ],
                 ],
@@ -93,9 +96,9 @@ class KidsDuaReadAlongView extends StatelessWidget {
             Text(
               item.translation,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF554C42),
-                    height: 1.45,
-                  ),
+                color: const Color(0xFF554C42),
+                height: 1.45,
+              ),
             ),
           ],
         ],

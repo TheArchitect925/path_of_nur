@@ -53,10 +53,7 @@ const List<KidsSeerahJourneyStage> kKidsSeerahJourneyStages = [
     description:
         'Meet Muhammad ﷺ as a truthful young person known for beautiful character.',
     sortOrder: 1,
-    nodeIds: [
-      'seerah_node_story_part1',
-      'seerah_node_reflection_character',
-    ],
+    nodeIds: ['seerah_node_story_part1', 'seerah_node_reflection_character'],
     estimatedDurationMinutes: 9,
   ),
   KidsSeerahJourneyStage(
@@ -183,8 +180,7 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
     nodeId: 'seerah_node_companion_abu_bakr',
     stageId: 'seerah_stage_hijrah',
     title: 'Companion Story: Abu Bakr رضي الله عنه',
-    description:
-        'See what loyalty and friendship looked like on the Hijrah.',
+    description: 'See what loyalty and friendship looked like on the Hijrah.',
     nodeType: KidsSeerahJourneyNodeType.companionStory,
     sortOrder: 2,
     relatedStoryId: 'story_companion_abu_bakr_friendship_v1',
@@ -194,8 +190,7 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
     nodeId: 'seerah_node_quiz_part3',
     stageId: 'seerah_stage_hijrah',
     title: 'Journey Check-In',
-    description:
-        'Review the Hijrah with one short quiz step.',
+    description: 'Review the Hijrah with one short quiz step.',
     nodeType: KidsSeerahJourneyNodeType.quiz,
     sortOrder: 3,
     relatedStoryId: 'story_prophet_muhammad_part3_bedtime_v1',
@@ -210,8 +205,7 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
         'Pause and remember how Madinah became a place of care, faith, and community.',
     nodeType: KidsSeerahJourneyNodeType.milestone,
     sortOrder: 4,
-    reflectionPrompt:
-        'What makes a community feel caring and safe?',
+    reflectionPrompt: 'What makes a community feel caring and safe?',
     reflectionChoices: [
       'Helping each other',
       'Welcoming people',
@@ -278,8 +272,7 @@ const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
     title: 'The First to Believe',
     shortSummary:
         'A calm companion story about support, comfort, and early faith.',
-    lesson:
-        'Support for truth can be gentle, wise, and full of love.',
+    lesson: 'Support for truth can be gentle, wise, and full of love.',
     relatedSeerahEventIds: ['seerah_stage_revelation'],
     storyId: 'story_companion_khadijah_support_v1',
     ageGroup: BedtimeStoryAgeGroup.kids,
@@ -291,8 +284,7 @@ const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
     title: 'A Loyal Friend on the Hijrah',
     shortSummary:
         'A companion story about loyalty, trust, and friendship during migration.',
-    lesson:
-        'A loyal friend stays close in hard moments and trusts Allah.',
+    lesson: 'A loyal friend stays close in hard moments and trusts Allah.',
     relatedSeerahEventIds: ['seerah_stage_hijrah'],
     storyId: 'story_companion_abu_bakr_friendship_v1',
     ageGroup: BedtimeStoryAgeGroup.kids,
@@ -304,8 +296,7 @@ const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
     title: 'Patience and Faith',
     shortSummary:
         'A companion story about patience, faith, and holding tightly to truth.',
-    lesson:
-        'Patience with faith is beautiful, even when something feels hard.',
+    lesson: 'Patience with faith is beautiful, even when something feels hard.',
     relatedSeerahEventIds: ['seerah_stage_return'],
     storyId: 'story_companion_bilal_patience_v1',
     ageGroup: BedtimeStoryAgeGroup.kids,

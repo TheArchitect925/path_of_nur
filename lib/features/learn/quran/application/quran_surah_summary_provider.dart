@@ -34,50 +34,53 @@ final quranSurahSummaryListProvider = Provider<List<QuranSurahSummaryEntry>>((
     );
   }
 
-  return surahs.map((surah) {
-    final seed = seedBySurah[surah.number];
-    if (seed == null) {
-      throw StateError('Missing surah summary seed for ${surah.number}.');
-    }
-    final enrichment = enrichmentBySurah[surah.number];
-    final themeTags = _mergeThemeTags(
-      inferred: _inferThemeTags(seed.summary, seed.keywords),
-      seeded: enrichment?.themeTags ?? const <QuranSurahThemeTag>[],
-    );
-    return QuranSurahSummaryEntry(
-      surah: surah,
-      meaning: surah.englishName,
-      revelationType:
-          seed.revelationTypeOverride ??
-          (surah.revelationClassification == 'Madani'
-              ? QuranSurahSummaryRevelationType.madani
-              : QuranSurahSummaryRevelationType.makki),
-      summary: seed.summary,
-      keywords: seed.keywords,
-      themeTags: themeTags,
-      notableAyat: enrichment?.notableAyat ?? const <QuranSurahNotableAyah>[],
-      relatedProphets:
-          enrichment?.relatedProphets ?? const <QuranSurahNamedReference>[],
-      relatedEvents:
-          enrichment?.relatedEvents ?? const <QuranSurahNamedReference>[],
-      virtues: enrichment?.virtues ?? const <QuranSurahVirtueNote>[],
-      reflections:
-          enrichment?.reflections ?? const <QuranSurahReflectionPrompt>[],
-      searchAliases: _buildSearchAliases(
-        keywords: seed.keywords,
-        themeTags: themeTags,
-        prophets: enrichment?.relatedProphets ?? const [],
-        events: enrichment?.relatedEvents ?? const [],
-        explicitAliases: enrichment?.searchAliases ?? const [],
-      ),
-      detailIntro: enrichment?.detailIntro,
-      editorialNotes: enrichment?.editorialNotes ?? const <String>[],
-      summaryEvidenceLevel:
-          enrichment?.summaryEvidenceLevel ??
-          QuranSurahContentEvidenceLevel.editorialSynthesis,
-      sortIndex: surah.number,
-    );
-  }).toList(growable: false);
+  return surahs
+      .map((surah) {
+        final seed = seedBySurah[surah.number];
+        if (seed == null) {
+          throw StateError('Missing surah summary seed for ${surah.number}.');
+        }
+        final enrichment = enrichmentBySurah[surah.number];
+        final themeTags = _mergeThemeTags(
+          inferred: _inferThemeTags(seed.summary, seed.keywords),
+          seeded: enrichment?.themeTags ?? const <QuranSurahThemeTag>[],
+        );
+        return QuranSurahSummaryEntry(
+          surah: surah,
+          meaning: surah.englishName,
+          revelationType:
+              seed.revelationTypeOverride ??
+              (surah.revelationClassification == 'Madani'
+                  ? QuranSurahSummaryRevelationType.madani
+                  : QuranSurahSummaryRevelationType.makki),
+          summary: seed.summary,
+          keywords: seed.keywords,
+          themeTags: themeTags,
+          notableAyat:
+              enrichment?.notableAyat ?? const <QuranSurahNotableAyah>[],
+          relatedProphets:
+              enrichment?.relatedProphets ?? const <QuranSurahNamedReference>[],
+          relatedEvents:
+              enrichment?.relatedEvents ?? const <QuranSurahNamedReference>[],
+          virtues: enrichment?.virtues ?? const <QuranSurahVirtueNote>[],
+          reflections:
+              enrichment?.reflections ?? const <QuranSurahReflectionPrompt>[],
+          searchAliases: _buildSearchAliases(
+            keywords: seed.keywords,
+            themeTags: themeTags,
+            prophets: enrichment?.relatedProphets ?? const [],
+            events: enrichment?.relatedEvents ?? const [],
+            explicitAliases: enrichment?.searchAliases ?? const [],
+          ),
+          detailIntro: enrichment?.detailIntro,
+          editorialNotes: enrichment?.editorialNotes ?? const <String>[],
+          summaryEvidenceLevel:
+              enrichment?.summaryEvidenceLevel ??
+              QuranSurahContentEvidenceLevel.editorialSynthesis,
+          sortIndex: surah.number,
+        );
+      })
+      .toList(growable: false);
 });
 
 final quranSurahSummaryEntryProvider =
@@ -97,8 +100,7 @@ List<QuranSurahThemeTag> _mergeThemeTags({
   final merged = <QuranSurahThemeTag>{
     ...inferred,
     ...seeded,
-  }.toList(growable: false)
-    ..sort((a, b) => a.index.compareTo(b.index));
+  }.toList(growable: false)..sort((a, b) => a.index.compareTo(b.index));
   return merged;
 }
 
@@ -118,8 +120,12 @@ List<String> _buildSearchAliases({
   }.toList(growable: false);
 }
 
-List<QuranSurahThemeTag> _inferThemeTags(String summary, List<String> keywords) {
-  final normalized = '${summary.toLowerCase()} ${keywords.join(' ').toLowerCase()}';
+List<QuranSurahThemeTag> _inferThemeTags(
+  String summary,
+  List<String> keywords,
+) {
+  final normalized =
+      '${summary.toLowerCase()} ${keywords.join(' ').toLowerCase()}';
   final tags = <QuranSurahThemeTag>{};
 
   void addIf(bool condition, QuranSurahThemeTag tag) {

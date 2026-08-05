@@ -1,5 +1,1 @@
-enum LearnTopicCategory {
-  life,
-  world,
-  hadith,
-}
+enum LearnTopicCategory { life, world, hadith }

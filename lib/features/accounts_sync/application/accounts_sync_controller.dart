@@ -984,8 +984,7 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     };
     final existing = state.accounts.cast<AccountRecord?>().firstWhere(
       (item) =>
-          item?.provider == provider &&
-          item?.identifier == identity.identifier,
+          item?.provider == provider && item?.identifier == identity.identifier,
       orElse: () => null,
     );
     final now = DateTime.now().toIso8601String();
@@ -1626,10 +1625,14 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
           ? importedSnapshots
           : {...state.profileSnapshots, ...importedSnapshots};
       final nextActiveProfileId = replaceExisting
-          ? nextProfiles.cast<ProfileRecord?>().firstWhere(
-                (item) => item?.profileId == state.activeProfileId,
-                orElse: () => nextProfiles.isEmpty ? null : nextProfiles.first,
-              )?.profileId
+          ? nextProfiles
+                .cast<ProfileRecord?>()
+                .firstWhere(
+                  (item) => item?.profileId == state.activeProfileId,
+                  orElse: () =>
+                      nextProfiles.isEmpty ? null : nextProfiles.first,
+                )
+                ?.profileId
           : state.activeProfileId;
       final nextActiveProfile = nextProfiles.cast<ProfileRecord?>().firstWhere(
         (item) => item?.profileId == nextActiveProfileId,
@@ -1639,7 +1642,8 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
           ? nextActiveProfile?.accountId ??
                 (nextAccounts.isEmpty ? null : nextAccounts.first.accountId)
           : state.activeAccountId;
-      final nextAuthAccountId = replaceExisting &&
+      final nextAuthAccountId =
+          replaceExisting &&
               nextAccounts.every(
                 (item) => item.accountId != state.authSessionAccountId,
               )
@@ -1666,7 +1670,8 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       }
       if (state.activeProfileId != null) {
         await _store.restoreAll(
-          state.profileSnapshots[state.activeProfileId!] ?? const <String, dynamic>{},
+          state.profileSnapshots[state.activeProfileId!] ??
+              const <String, dynamic>{},
           replaceKeys: _dataKeysForIsolation(),
         );
       }
@@ -1748,7 +1753,8 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     List<AccountRecord> imported,
   ) {
     final byKey = {
-      for (final item in existing) '${item.provider.name}:${item.identifier}': item,
+      for (final item in existing)
+        '${item.provider.name}:${item.identifier}': item,
     };
     for (final item in imported) {
       byKey['${item.provider.name}:${item.identifier}'] = item;

@@ -68,9 +68,9 @@ class SpiritualGrowthPage extends ConsumerWidget {
               const SizedBox(height: 6),
               Text(
                 spiritualGrowthTitleFromKey(l10n, activeIntention.titleKey),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 4),
               Text(
@@ -109,11 +109,13 @@ class SpiritualGrowthPage extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   FilledButton(
-                    onPressed: () => context.pushNamed('spiritualGrowthIntentions'),
+                    onPressed: () =>
+                        context.pushNamed('spiritualGrowthIntentions'),
                     child: Text(l10n.spiritualGrowthChooseIntentionAction),
                   ),
                   OutlinedButton(
-                    onPressed: () => context.pushNamed('spiritualGrowthReflection'),
+                    onPressed: () =>
+                        context.pushNamed('spiritualGrowthReflection'),
                     child: Text(l10n.spiritualGrowthReflectionAction),
                   ),
                 ],
@@ -158,7 +160,9 @@ class SpiritualGrowthPage extends ConsumerWidget {
                                 l10n,
                                 item.action.titleKey,
                               ),
-                              style: const TextStyle(fontWeight: FontWeight.w700),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                             const SizedBox(height: 2),
                             Text(
@@ -261,27 +265,31 @@ class SpiritualGrowthPage extends ConsumerWidget {
               if (themes.isEmpty)
                 Text(l10n.spiritualGrowthThemeSummaryEmpty)
               else ...[
-                ...themes.take(3).map(
-                  (item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            spiritualGrowthThemeLabel(l10n, item.theme),
-                            style: const TextStyle(fontWeight: FontWeight.w700),
-                          ),
+                ...themes
+                    .take(3)
+                    .map(
+                      (item) => Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                spiritualGrowthThemeLabel(l10n, item.theme),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              l10n.spiritualGrowthThemeCountLabel(
+                                item.activityCount.toString(),
+                                item.consistencyCount.toString(),
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          l10n.spiritualGrowthThemeCountLabel(
-                            item.activityCount.toString(),
-                            item.consistencyCount.toString(),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
                 const SizedBox(height: 8),
                 OutlinedButton(
                   onPressed: () => context.pushNamed('spiritualGrowthThemes'),

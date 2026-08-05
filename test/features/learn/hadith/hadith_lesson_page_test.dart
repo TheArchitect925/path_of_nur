@@ -180,7 +180,10 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Why this source is trusted'), findsOneWidget);
-      expect(find.textContaining('reviewable trusted-source context'), findsOneWidget);
+      expect(
+        find.textContaining('reviewable trusted-source context'),
+        findsOneWidget,
+      );
     });
 
     testWidgets('chapter row shows chapter position context when available', (
@@ -263,9 +266,7 @@ void main() {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            home: const HadithLessonPage(
-              lessonId: 'sent_to_perfect_character',
-            ),
+            home: const HadithLessonPage(lessonId: 'sent_to_perfect_character'),
           ),
         ),
       );
@@ -369,9 +370,7 @@ GoRouter _buildTestRouter({
               (ref) => seededHadithEntries,
             ),
           ],
-          child: HadithLessonPage(
-            lessonId: state.pathParameters['lessonId']!,
-          ),
+          child: HadithLessonPage(lessonId: state.pathParameters['lessonId']!),
         ),
       ),
       GoRoute(
@@ -384,9 +383,8 @@ GoRouter _buildTestRouter({
       GoRoute(
         path: '/learn/hadith/source/:sourceId',
         name: 'hadithSourceDetail',
-        builder: (context, state) => Scaffold(
-          body: Text('source:${state.pathParameters['sourceId']}'),
-        ),
+        builder: (context, state) =>
+            Scaffold(body: Text('source:${state.pathParameters['sourceId']}')),
       ),
       GoRoute(
         path: '/learn/hadith/source/:sourceId/chapter/:chapterId',
@@ -414,9 +412,7 @@ GoRouter _buildTestRouter({
               (ref) => seededHadithEntries,
             ),
           ],
-          child: HadithLessonPage(
-            lessonId: state.pathParameters['lessonId']!,
-          ),
+          child: HadithLessonPage(lessonId: state.pathParameters['lessonId']!),
         ),
       ),
       GoRoute(

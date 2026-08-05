@@ -52,9 +52,9 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
               children: [
                 Text(
                   l10n.worshipQiblaUnavailableOnIpadTitle,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
                 Text(l10n.worshipQiblaUnavailableOnIpadBody),
@@ -62,83 +62,83 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
             ),
           ),
         ] else ...[
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.worshipQiblaCompassDirectionTitle,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 10),
-              if (_loadingLocation)
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(child: Text(l10n.worshipQiblaDetectingLocation)),
-                  ],
-                )
-              else if (_error != null)
-                Text(_error!, style: Theme.of(context).textTheme.bodyMedium)
-              else if (position != null) ...[
-                QiblaCompassWidget(
-                  userLatitude: position.latitude,
-                  userLongitude: position.longitude,
-                  arMode: _arMode,
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.worshipQiblaCompassDirectionTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
-                const SizedBox(height: 18),
-                _QiblaLocationSection(
-                  label: _resolvedLocationLabel(context),
-                  loading: _resolvingLocationLabel,
-                  onRefresh: _resolveLocation,
-                  siteDistances: _buildSiteDistances(context, position),
-                ),
-              ] else
-                Text(l10n.worshipQiblaUnableToDetermineLocation),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.worshipQiblaArOptionTitle,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 6),
-              Text(l10n.worshipQiblaArOptionSubtitle),
-              const SizedBox(height: 10),
-              FilledButton.tonalIcon(
-                onPressed: () => setState(() => _arMode = !_arMode),
-                icon: Icon(
-                  _arMode
-                      ? Icons.view_in_ar_rounded
-                      : Icons.view_in_ar_outlined,
-                ),
-                label: Text(
-                  _arMode
-                      ? l10n.worshipQiblaDisableArMode
-                      : l10n.worshipQiblaEnableArMode,
-                ),
-              ),
-              if (_arMode) ...[
-                const SizedBox(height: 8),
-                Text(l10n.worshipQiblaArModeBetaHint),
+                const SizedBox(height: 10),
+                if (_loadingLocation)
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(child: Text(l10n.worshipQiblaDetectingLocation)),
+                    ],
+                  )
+                else if (_error != null)
+                  Text(_error!, style: Theme.of(context).textTheme.bodyMedium)
+                else if (position != null) ...[
+                  QiblaCompassWidget(
+                    userLatitude: position.latitude,
+                    userLongitude: position.longitude,
+                    arMode: _arMode,
+                  ),
+                  const SizedBox(height: 18),
+                  _QiblaLocationSection(
+                    label: _resolvedLocationLabel(context),
+                    loading: _resolvingLocationLabel,
+                    onRefresh: _resolveLocation,
+                    siteDistances: _buildSiteDistances(context, position),
+                  ),
+                ] else
+                  Text(l10n.worshipQiblaUnableToDetermineLocation),
               ],
-            ],
+            ),
           ),
-        ),
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.worshipQiblaArOptionTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(l10n.worshipQiblaArOptionSubtitle),
+                const SizedBox(height: 10),
+                FilledButton.tonalIcon(
+                  onPressed: () => setState(() => _arMode = !_arMode),
+                  icon: Icon(
+                    _arMode
+                        ? Icons.view_in_ar_rounded
+                        : Icons.view_in_ar_outlined,
+                  ),
+                  label: Text(
+                    _arMode
+                        ? l10n.worshipQiblaDisableArMode
+                        : l10n.worshipQiblaEnableArMode,
+                  ),
+                ),
+                if (_arMode) ...[
+                  const SizedBox(height: 8),
+                  Text(l10n.worshipQiblaArModeBetaHint),
+                ],
+              ],
+            ),
+          ),
         ],
       ],
     );

@@ -92,7 +92,9 @@ class ArabicLearningDiscoverySearchSection extends StatelessWidget {
                       child: _ResultCard(
                         item: item,
                         isKids: _isKids,
-                        onOpen: item.isAvailable ? () => onOpenResult(item) : null,
+                        onOpen: item.isAvailable
+                            ? () => onOpenResult(item)
+                            : null,
                       ),
                     ),
                   )
@@ -159,9 +161,7 @@ class _ResultCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: item.isAvailable
-              ? Colors.white
-              : const Color(0xFFF2EEE7),
+          color: item.isAvailable ? Colors.white : const Color(0xFFF2EEE7),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: item.isAvailable
@@ -182,10 +182,11 @@ class _ResultCard extends StatelessWidget {
                     children: [
                       Text(
                         _typeLabel(l10n),
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: const Color(0xFF6A5A46),
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: const Color(0xFF6A5A46),
+                            ),
                       ),
                       if (!item.isAvailable)
                         Text(
@@ -204,7 +205,8 @@ class _ResultCard extends StatelessWidget {
                       arabicText,
                       textDirection: TextDirection.rtl,
                       style: TextStyle(
-                        fontSize: item.type == ArabicLearningSearchItemType.letter
+                        fontSize:
+                            item.type == ArabicLearningSearchItemType.letter
                             ? 30
                             : 26,
                         fontFamily: 'AmiriQuran',
@@ -222,7 +224,9 @@ class _ResultCard extends StatelessWidget {
                   ),
                   if (item.type == ArabicLearningSearchItemType.lessonPack) ...[
                     const SizedBox(height: 4),
-                    Text(localizedArabicLearningLessonPackSubtitle(l10n, item.id)),
+                    Text(
+                      localizedArabicLearningLessonPackSubtitle(l10n, item.id),
+                    ),
                   ] else if (item.meaning case final meaning?) ...[
                     const SizedBox(height: 4),
                     Text(meaning),
@@ -289,9 +293,9 @@ class _EmptyState extends StatelessWidget {
         children: [
           Text(
             l10n.learnHubSearchEmptyTitle,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
           Text(l10n.arabicLearningSearchNoResultsBody),

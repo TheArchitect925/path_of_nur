@@ -147,10 +147,7 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
                       ...options.origins.map(
                         (origin) => DropdownMenuItem<String>(
                           value: origin,
-                          child: Text(
-                            origin,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                          child: Text(origin, overflow: TextOverflow.ellipsis),
                         ),
                       ),
                     ],

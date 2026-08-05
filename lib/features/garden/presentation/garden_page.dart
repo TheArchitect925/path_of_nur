@@ -238,8 +238,12 @@ class _GardenHeroCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          _localizedStageTitle(l10n, garden.currentVisualStage.stageId),
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          _localizedStageTitle(
+                            l10n,
+                            garden.currentVisualStage.stageId,
+                          ),
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
                               ),
@@ -247,7 +251,8 @@ class _GardenHeroCard extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           _localizedAmbientLabel(l10n, garden.ambientState),
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
                                 color: Colors.white.withValues(alpha: 0.92),
                               ),
                         ),
@@ -261,9 +266,9 @@ class _GardenHeroCard extends StatelessWidget {
           const SizedBox(height: 14),
           Text(
             l10n.gardenPageHeroTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 6),
           Text(
@@ -289,7 +294,9 @@ class _GardenHeroCard extends StatelessWidget {
               ),
               _HeroPill(
                 label: l10n.gardenPageMaturityLabel,
-                value: l10n.gardenPageMaturityValue('${garden.maturityPercent}'),
+                value: l10n.gardenPageMaturityValue(
+                  '${garden.maturityPercent}',
+                ),
               ),
             ],
           ),
@@ -301,21 +308,21 @@ class _GardenHeroCard extends StatelessWidget {
   static List<Color> _ambientColors(GardenAmbientState state) {
     return switch (state) {
       GardenAmbientState.quietDawn => const [
-          Color(0xFFE7DCC9),
-          Color(0xFFB8C7A3),
-        ],
+        Color(0xFFE7DCC9),
+        Color(0xFFB8C7A3),
+      ],
       GardenAmbientState.gentleMorning => const [
-          Color(0xFFF2E3C0),
-          Color(0xFF9AB780),
-        ],
+        Color(0xFFF2E3C0),
+        Color(0xFF9AB780),
+      ],
       GardenAmbientState.warmLight => const [
-          Color(0xFFF3DEAF),
-          Color(0xFFC98F54),
-        ],
+        Color(0xFFF3DEAF),
+        Color(0xFFC98F54),
+      ],
       GardenAmbientState.eveningGlow => const [
-          Color(0xFFDCC9B7),
-          Color(0xFF738B6B),
-        ],
+        Color(0xFFDCC9B7),
+        Color(0xFF738B6B),
+      ],
     };
   }
 
@@ -368,9 +375,9 @@ class _NextGrowthCard extends StatelessWidget {
               : l10n.gardenPageNextGrowthValue(
                   _GardenHeroCard._localizedStageTitle(l10n, nextStage.stageId),
                 ),
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 6),
         Text(
@@ -414,9 +421,9 @@ class _DimensionCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               _dimensionTitle(l10n, dimension.dimension),
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 4),
             Text(
@@ -513,7 +520,9 @@ class _RecentGrowthTile extends StatelessWidget {
       ),
       title: Text(_activityLabel(l10n, item.activityType)),
       subtitle: Text(
-        parsedDate == null ? l10n.gardenPageRecentGrowthJustNow : dateFormat.format(parsedDate),
+        parsedDate == null
+            ? l10n.gardenPageRecentGrowthJustNow
+            : dateFormat.format(parsedDate),
       ),
       trailing: Text(
         l10n.gardenPageRecentGrowthTracked,
@@ -622,7 +631,9 @@ class _MilestoneTile extends StatelessWidget {
                       },
                     ),
                     if (!visual.unlocked)
-                      Container(color: const Color(0xFF1E1915).withValues(alpha: 0.34)),
+                      Container(
+                        color: const Color(0xFF1E1915).withValues(alpha: 0.34),
+                      ),
                   ],
                 ),
               ),
@@ -636,8 +647,8 @@ class _MilestoneTile extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -699,9 +710,9 @@ class _MeaningLine extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 3),
               Text(body, style: Theme.of(context).textTheme.bodySmall),
@@ -733,9 +744,9 @@ class _HeroPill extends StatelessWidget {
         children: [
           Text(
             value,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 2),
           Text(label, style: Theme.of(context).textTheme.bodySmall),
@@ -759,9 +770,9 @@ class _SectionCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 12),
           child,

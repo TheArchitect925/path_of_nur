@@ -15,7 +15,8 @@ const _learningPathStateKey = 'learn.path.state.v1';
 // Journey progress remains the source of truth for completion, while this store
 // only keeps user-level guidance, adaptive hints, and manual path selection.
 
-class LearningPathSelectionNotifier extends StateNotifier<UserLearningPathState?> {
+class LearningPathSelectionNotifier
+    extends StateNotifier<UserLearningPathState?> {
   LearningPathSelectionNotifier(this._ref, this._store) : super(null) {
     _load();
   }
@@ -43,7 +44,8 @@ class LearningPathSelectionNotifier extends StateNotifier<UserLearningPathState?
       selectedLevel: inferredLevel,
       ageGroup: inferredAgeGroup,
       currentPhaseId:
-          LearningPathRegistry.pathForLevel(inferredLevel)?.phases.first.id ?? '',
+          LearningPathRegistry.pathForLevel(inferredLevel)?.phases.first.id ??
+          '',
       completedPhaseIds: const <String>{},
       activeJourneyIds: const <String>{},
     );
@@ -58,10 +60,7 @@ class LearningPathSelectionNotifier extends StateNotifier<UserLearningPathState?
     setLevel(level, ageGroup: _mapLearningAgeGroup(ageGroup));
   }
 
-  void setLevel(
-    LearningPathLevel level, {
-    LearningAgeGroup? ageGroup,
-  }) {
+  void setLevel(LearningPathLevel level, {LearningAgeGroup? ageGroup}) {
     final path = LearningPathRegistry.pathForLevel(level);
     if (path == null) return;
     final current = state;
@@ -71,7 +70,8 @@ class LearningPathSelectionNotifier extends StateNotifier<UserLearningPathState?
       currentPhaseId: path.phases.first.id,
       completedPhaseIds: const <String>{},
       activeJourneyIds: const <String>{},
-      secondaryExplorationIds: current?.secondaryExplorationIds ?? const <String>{},
+      secondaryExplorationIds:
+          current?.secondaryExplorationIds ?? const <String>{},
       lastActivityTimestamp: DateTime.now().toIso8601String(),
       completionRate: current?.completionRate ?? 0,
       averageSessionDepth: current?.averageSessionDepth ?? 0,
@@ -122,7 +122,10 @@ class LearningPathSelectionNotifier extends StateNotifier<UserLearningPathState?
     );
     final completionRate = startedStageCount == 0
         ? 0.0
-        : (progress.completedStageIds.length / startedStageCount).clamp(0.0, 1.0);
+        : (progress.completedStageIds.length / startedStageCount).clamp(
+            0.0,
+            1.0,
+          );
     final averageSessionDepth = startedJourneys.isEmpty
         ? 0.0
         : progress.completedStageIds.length / startedJourneys.length;
@@ -148,11 +151,12 @@ class LearningPathSelectionNotifier extends StateNotifier<UserLearningPathState?
 }
 
 final learningPathSelectionProvider =
-    StateNotifierProvider<LearningPathSelectionNotifier, UserLearningPathState?>(
-      (ref) => LearningPathSelectionNotifier(
-        ref,
-        ref.watch(localStoreProvider),
-      ),
+    StateNotifierProvider<
+      LearningPathSelectionNotifier,
+      UserLearningPathState?
+    >(
+      (ref) =>
+          LearningPathSelectionNotifier(ref, ref.watch(localStoreProvider)),
     );
 
 class LearningPathResolvedState {
@@ -207,7 +211,9 @@ class LearningPathResolvedState {
   }
 
   LearningPathPhase? phaseForJourney(String journeyId) {
-    return path.phases.where((phase) => phase.journeyIds.contains(journeyId)).firstOrNull;
+    return path.phases
+        .where((phase) => phase.journeyIds.contains(journeyId))
+        .firstOrNull;
   }
 }
 
@@ -222,7 +228,8 @@ final learningPathStateProvider = Provider<LearningPathResolvedState?>((ref) {
   LearningPathPhase currentPhase = path.phases.first;
 
   for (final phase in path.phases) {
-    final phaseComplete = phase.journeyIds.isNotEmpty &&
+    final phaseComplete =
+        phase.journeyIds.isNotEmpty &&
         phase.journeyIds.every(completedJourneyIds.contains);
     if (phaseComplete) {
       completedPhases.add(phase.id);
@@ -267,7 +274,11 @@ final learningPathStateProvider = Provider<LearningPathResolvedState?>((ref) {
     secondaryJourneys: selected.secondaryExplorationIds
         .map(LearningJourneyRegistry.journeyById)
         .whereType<LearningJourney>()
-        .where((journey) => !path.phases.any((phase) => phase.journeyIds.contains(journey.id)))
+        .where(
+          (journey) => !path.phases.any(
+            (phase) => phase.journeyIds.contains(journey.id),
+          ),
+        )
         .toList(growable: false),
     completionRate: selected.completionRate,
     averageSessionDepth: selected.averageSessionDepth,
@@ -330,7 +341,8 @@ final learningPathAdaptiveGuidanceProvider =
       }
 
       if (shouldSurfaceDepth) {
-        final nextPhase = pathState.phaseIndex + 1 < pathState.path.phases.length
+        final nextPhase =
+            pathState.phaseIndex + 1 < pathState.path.phases.length
             ? pathState.path.phases[pathState.phaseIndex + 1]
             : null;
         if (nextPhase != null) {
@@ -381,14 +393,14 @@ final learningPathAdaptiveGuidanceProvider =
         completedPhase: completedPhase,
         nextPhase: nextPhase,
         nextLevelPath: pathState.isPathComplete
-            ? LearningPathRegistry.pathForLevel(_nextLevel(pathState.path.level))
+            ? LearningPathRegistry.pathForLevel(
+                _nextLevel(pathState.path.level),
+              )
             : null,
       );
     });
 
-LearningPathLevel _mapExperienceToLevel(
-  OnboardingIslamExperience experience,
-) {
+LearningPathLevel _mapExperienceToLevel(OnboardingIslamExperience experience) {
   switch (experience) {
     case OnboardingIslamExperience.exploring:
     case OnboardingIslamExperience.newToIslam:
@@ -402,9 +414,7 @@ LearningPathLevel _mapExperienceToLevel(
   }
 }
 
-LearningAgeGroup _mapLearningAgeGroup(
-  OnboardingLearningAgeGroup ageGroup,
-) {
+LearningAgeGroup _mapLearningAgeGroup(OnboardingLearningAgeGroup ageGroup) {
   switch (ageGroup) {
     case OnboardingLearningAgeGroup.kids:
       return LearningAgeGroup.kids;
@@ -429,11 +439,19 @@ Set<String> _completedJourneyIds(Set<String> completedStageIds) {
 List<String> _complementaryJourneyIds(String journeyId) {
   switch (journeyId) {
     case 'salah-foundations':
-      return const ['journey-of-wudu', 'understand-what-you-recite', 'daily-dhikr'];
+      return const [
+        'journey-of-wudu',
+        'understand-what-you-recite',
+        'daily-dhikr',
+      ];
     case 'journey-of-wudu':
       return const ['salah-foundations', 'duas-daily-life'];
     case 'journey-quran':
-      return const ['understanding-al-fatihah', 'short-surahs', '100-quranic-words'];
+      return const [
+        'understanding-al-fatihah',
+        'short-surahs',
+        '100-quranic-words',
+      ];
     case 'understanding-al-fatihah':
       return const ['salah-foundations', 'short-surahs'];
     case 'reading-basics':
@@ -482,7 +500,9 @@ List<String> _reinforcementJourneyIds(LearningPathResolvedState pathState) {
       'duas-daily-life',
     ];
   }
-  return pathState.currentPhaseJourneys.map((item) => item.id).toList(growable: false);
+  return pathState.currentPhaseJourneys
+      .map((item) => item.id)
+      .toList(growable: false);
 }
 
 LearningJourney? _selectPersonalizedTodayJourney({
@@ -494,7 +514,9 @@ LearningJourney? _selectPersonalizedTodayJourney({
       ? null
       : LearningJourneyRegistry.journeyById(progress.lastOpenedJourneyId!);
   if (currentJourney != null &&
-      pathState.path.phases.any((phase) => phase.journeyIds.contains(currentJourney.id))) {
+      pathState.path.phases.any(
+        (phase) => phase.journeyIds.contains(currentJourney.id),
+      )) {
     return currentJourney;
   }
   final agePreferredActive = pathState.activeJourneys

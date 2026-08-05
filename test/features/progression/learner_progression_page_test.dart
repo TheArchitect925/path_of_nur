@@ -43,9 +43,7 @@ void main() {
         bedtimeAvailableLearnersProvider.overrideWith(
           (ref) => const [learnerA, learnerB],
         ),
-        bedtimeActiveLearnerProvider.overrideWith(
-          (ref) => activeLearner,
-        ),
+        bedtimeActiveLearnerProvider.overrideWith((ref) => activeLearner),
       ],
     );
     addTearDown(container.dispose);

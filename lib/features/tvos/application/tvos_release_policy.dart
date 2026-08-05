@@ -6,7 +6,8 @@ final class TVOSReleasePolicy {
 
   static bool get isPublicLaunchReady => false;
 
-  static TVOSReleaseStage get currentReleaseStage => TVOSReleaseStage.testflight;
+  static TVOSReleaseStage get currentReleaseStage =>
+      TVOSReleaseStage.testflight;
 
   static List<TVOSSurfaceParityEntry> get currentlyMirroredSurfaces =>
       tvosSurfaceParityEntries

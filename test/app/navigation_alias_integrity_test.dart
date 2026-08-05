@@ -127,21 +127,22 @@ void main() {
     );
   });
 
-  testWidgets('learn legacy route remains active in the pre-restructure router', (
-    tester,
-  ) async {
-    final container = await makeRoutingTestContainer();
-    final router = container.read(appRouterProvider);
+  testWidgets(
+    'learn legacy route remains active in the pre-restructure router',
+    (tester) async {
+      final container = await makeRoutingTestContainer();
+      final router = container.read(appRouterProvider);
 
-    await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
 
-    router.go('/learn/legacy');
-    await pumpRouteFrames(tester);
+      router.go('/learn/legacy');
+      await pumpRouteFrames(tester);
 
-    expect(find.byType(LearnPage), findsOneWidget);
-    expect(find.textContaining('/learn/legacy'), findsNothing);
-  });
+      expect(find.byType(LearnPage), findsOneWidget);
+      expect(find.textContaining('/learn/legacy'), findsNothing);
+    },
+  );
 
   test('active learn catalog items avoid compatibility-only route targets', () {
     const disallowedRouteNames = <String>{

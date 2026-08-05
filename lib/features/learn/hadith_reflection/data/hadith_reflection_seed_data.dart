@@ -30,7 +30,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
       ),
       HadithReflectionChoice(
         id: 'laugh_with_friends',
-        label: 'Keep joking with your friends and let the new student figure it out.',
+        label:
+            'Keep joking with your friends and let the new student figure it out.',
         feedbackText:
             'This needs reflection. The Hadith encourages active kindness, not leaving someone feeling unnoticed.',
       ),
@@ -38,7 +39,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     tags: ['kindness', 'friendship', 'welcome'],
     levelBandMin: 1,
     levelBandMax: 10,
-    helpText: 'Look for the choice that makes another person feel safe and seen.',
+    helpText:
+        'Look for the choice that makes another person feel safe and seen.',
     isDailyEligible: true,
     dailyThemes: ['kindness', 'mixed'],
   ),
@@ -258,7 +260,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     difficulty: 9,
     shortTeachingSummary:
         'Faith grows when you want good for others as you want it for yourself.',
-    reflectionPrompt: 'What do you enjoy receiving from others? How can you give that too?',
+    reflectionPrompt:
+        'What do you enjoy receiving from others? How can you give that too?',
     scenarioTitle: 'Snack time',
     scenarioDescription:
         'You notice a friend forgot their snack and looks embarrassed while everyone else is eating.',
@@ -306,7 +309,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'help_with_patience',
-        label: 'Help them patiently for a little while before your own activity.',
+        label:
+            'Help them patiently for a little while before your own activity.',
         feedbackText:
             'This is best aligned. Supporting family with sincerity is valuable in the sight of Allah.',
         isBestChoice: true,
@@ -430,7 +434,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'renew_intention',
-        label: 'Participate, renew your intention for Allah, and keep your heart under review.',
+        label:
+            'Participate, renew your intention for Allah, and keep your heart under review.',
         feedbackText:
             'This is best aligned. The Hadith does not ask you to abandon good deeds, but to purify why you do them.',
         isBestChoice: true,
@@ -514,21 +519,24 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'pause_and_verify',
-        label: 'Pause, ask detailed questions, and step away if the doubt remains.',
+        label:
+            'Pause, ask detailed questions, and step away if the doubt remains.',
         feedbackText:
             'This is best aligned. The Hadith encourages caution when the boundary is unclear and your conscience is unsettled.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'accept_try_later',
-        label: 'Take it for now and promise yourself you will look into it later.',
+        label:
+            'Take it for now and promise yourself you will look into it later.',
         feedbackText:
             'This is not the strongest response because it lets urgency overpower clarity in a doubtful matter.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
         id: 'ignore_concern',
-        label: 'Ignore the discomfort because the money is too useful to question.',
+        label:
+            'Ignore the discomfort because the money is too useful to question.',
         feedbackText:
             'This needs reflection. The Hadith teaches that uneasy grey areas are not where a believer should settle comfortably.',
       ),
@@ -570,7 +578,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
       ),
       HadithReflectionChoice(
         id: 'add_more',
-        label: 'Contribute extra details because everyone already knows enough anyway.',
+        label:
+            'Contribute extra details because everyone already knows enough anyway.',
         feedbackText:
             'This conflicts with the teaching. Curiosity is not the same as concern or benefit.',
       ),
@@ -598,7 +607,8 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'measure_words',
-        label: 'Choose either a beneficial comment or silence until you can speak constructively.',
+        label:
+            'Choose either a beneficial comment or silence until you can speak constructively.',
         feedbackText:
             'This is best aligned. The Hadith gives a simple but demanding standard for speech.',
         isBestChoice: true,
@@ -682,21 +692,24 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'repent_now',
-        label: 'Turn back immediately with remorse, dua, and a fresh plan to avoid the sin.',
+        label:
+            'Turn back immediately with remorse, dua, and a fresh plan to avoid the sin.',
         feedbackText:
             'This is best aligned. The Hadith strengthens hope and calls you back without delay.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'wait_until_better',
-        label: 'Wait until you feel more spiritually worthy before making tawbah.',
+        label:
+            'Wait until you feel more spiritually worthy before making tawbah.',
         feedbackText:
             'This is a common feeling, but it is not the strongest path. Repentance is for the moment of need, not after worthiness is manufactured.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
         id: 'stop_trying',
-        label: 'Assume repeated failure means repentance is no longer sincere for you.',
+        label:
+            'Assume repeated failure means repentance is no longer sincere for you.',
         feedbackText:
             'This needs reflection. Despair is not what the Hadith teaches; returning again is itself part of sincerity.',
       ),
@@ -724,21 +737,24 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'return_without_delay',
-        label: 'Keep returning to Allah and strengthen the practical steps around your tawbah.',
+        label:
+            'Keep returning to Allah and strengthen the practical steps around your tawbah.',
         feedbackText:
             'This is best aligned. The Hadith keeps the servant moving back toward Allah, not away in shame.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'less_dua_out_of_shame',
-        label: 'Reduce your dua because you feel hypocritical asking for help again.',
+        label:
+            'Reduce your dua because you feel hypocritical asking for help again.',
         feedbackText:
             'This comes from pain, but it is not the strongest response. Shame should lead to humble return, not distance.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
         id: 'accept_defeat',
-        label: 'Assume this weakness will always define you, so there is no point in trying hard.',
+        label:
+            'Assume this weakness will always define you, so there is no point in trying hard.',
         feedbackText:
             'This needs reflection. The Hadith teaches ongoing access to repentance, not resignation.',
       ),
@@ -766,21 +782,24 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'review_and_repair',
-        label: 'Acknowledge the trust, review what is slipping, and make a practical plan to repair it.',
+        label:
+            'Acknowledge the trust, review what is slipping, and make a practical plan to repair it.',
         feedbackText:
             'This is best aligned. The Hadith frames responsibility as an amanah that deserves review and care.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'wait_for_complaint',
-        label: 'Keep going until someone clearly complains, then respond if needed.',
+        label:
+            'Keep going until someone clearly complains, then respond if needed.',
         feedbackText:
             'This is reactive rather than responsible. The stronger response is to honor trust before neglect becomes normal.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
         id: 'say_everyone_busy',
-        label: 'Tell yourself everyone is busy, so this is not a serious issue.',
+        label:
+            'Tell yourself everyone is busy, so this is not a serious issue.',
         feedbackText:
             'This needs reflection. Busyness does not cancel accountability for what has been entrusted to you.',
       ),
@@ -808,14 +827,16 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'choose_qualified',
-        label: 'Choose the more qualified person and explain the decision fairly.',
+        label:
+            'Choose the more qualified person and explain the decision fairly.',
         feedbackText:
             'This is best aligned. Justice asks you to separate trust from personal preference.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'choose_friend_with_support',
-        label: 'Choose your friend, but promise yourself you will support them heavily.',
+        label:
+            'Choose your friend, but promise yourself you will support them heavily.',
         feedbackText:
             'This may sound compassionate, but it is not the strongest response because the initial choice still bends away from fairness.',
         isAcceptableChoice: true,
@@ -850,14 +871,16 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'pause_turn_to_allah',
-        label: 'Pause, hold your tongue, and turn to Allah before reacting publicly.',
+        label:
+            'Pause, hold your tongue, and turn to Allah before reacting publicly.',
         feedbackText:
             'This is best aligned. The Hadith directs attention to the very first response when the heart is shaken.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'vent_then_regret',
-        label: 'Let it all out immediately and hope to apologize later if needed.',
+        label:
+            'Let it all out immediately and hope to apologize later if needed.',
         feedbackText:
             'This is understandable in pain, but it is not the strongest path because first reactions still shape harm.',
         isAcceptableChoice: true,
@@ -892,21 +915,24 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
     choices: [
       HadithReflectionChoice(
         id: 'benefit_and_tawakkul',
-        label: 'Review what is beneficial to learn, seek Allah’s help, and move forward with steadiness.',
+        label:
+            'Review what is beneficial to learn, seek Allah’s help, and move forward with steadiness.',
         feedbackText:
             'This is best aligned. The Hadith combines effort, reliance, and refusal to sink into unhelpful regret.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
         id: 'keep_saying_if_only',
-        label: 'Spend days repeating “if only” without taking the next beneficial step.',
+        label:
+            'Spend days repeating “if only” without taking the next beneficial step.',
         feedbackText:
             'This is not the strongest response because it traps you in regret instead of benefit.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
         id: 'stop_trying_future',
-        label: 'Assume failure means you should stop trying meaningful things for a while.',
+        label:
+            'Assume failure means you should stop trying meaningful things for a while.',
         feedbackText:
             'This needs reflection. The Hadith points toward resilient action with Allah’s help, not defeatism.',
       ),
@@ -928,11 +954,7 @@ const List<HadithReflectionPuzzlePack> hadithReflectionPuzzlePacks = [
     category: 'kindness',
     minDifficulty: 8,
     maxDifficulty: 12,
-    puzzleIds: [
-      'kids_smile_welcome',
-      'kids_share_snack',
-      'kids_mercy_younger',
-    ],
+    puzzleIds: ['kids_smile_welcome', 'kids_share_snack', 'kids_mercy_younger'],
     tags: ['kids', 'kindness'],
     isDailyEligible: true,
     isFeatured: true,
@@ -962,10 +984,7 @@ const List<HadithReflectionPuzzlePack> hadithReflectionPuzzlePacks = [
     category: 'patience',
     minDifficulty: 33,
     maxDifficulty: 35,
-    puzzleIds: [
-      'adult_patience_grief',
-      'adult_strong_believer_balance',
-    ],
+    puzzleIds: ['adult_patience_grief', 'adult_strong_believer_balance'],
     tags: ['patience', 'resilience'],
     isDailyEligible: true,
     isFeatured: true,
@@ -978,10 +997,7 @@ const List<HadithReflectionPuzzlePack> hadithReflectionPuzzlePacks = [
     category: 'anger',
     minDifficulty: 12,
     maxDifficulty: 30,
-    puzzleIds: [
-      'kids_anger_game',
-      'adult_speak_good_meeting',
-    ],
+    puzzleIds: ['kids_anger_game', 'adult_speak_good_meeting'],
     tags: ['anger', 'speech', 'self-control'],
     isDailyEligible: true,
     isFeatured: false,
@@ -1011,10 +1027,7 @@ const List<HadithReflectionPuzzlePack> hadithReflectionPuzzlePacks = [
     category: 'community',
     minDifficulty: 29,
     maxDifficulty: 30,
-    puzzleIds: [
-      'adult_sincere_advice',
-      'adult_help_quietly',
-    ],
+    puzzleIds: ['adult_sincere_advice', 'adult_help_quietly'],
     tags: ['community', 'service', 'advice'],
     isDailyEligible: true,
     isFeatured: false,
@@ -1027,10 +1040,7 @@ const List<HadithReflectionPuzzlePack> hadithReflectionPuzzlePacks = [
     category: 'repentance',
     minDifficulty: 34,
     maxDifficulty: 35,
-    puzzleIds: [
-      'adult_repentance_after_slip',
-      'adult_keep_repenting',
-    ],
+    puzzleIds: ['adult_repentance_after_slip', 'adult_keep_repenting'],
     tags: ['repentance', 'hope', 'mercy'],
     isDailyEligible: true,
     isFeatured: false,

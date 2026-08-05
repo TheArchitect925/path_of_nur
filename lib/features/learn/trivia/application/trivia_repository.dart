@@ -21,11 +21,14 @@ class TriviaRepository {
     required List<TriviaCategory> categories,
     required List<TriviaQuestion> questions,
     required List<TriviaKnowledgePath> knowledgePaths,
-  })  : _categories = List<TriviaCategory>.unmodifiable(
-          [...categories]..sort((a, b) => a.displayOrder.compareTo(b.displayOrder)),
-        ),
-        _questions = List<TriviaQuestion>.unmodifiable(questions),
-        _knowledgePaths = List<TriviaKnowledgePath>.unmodifiable(knowledgePaths) {
+  }) : _categories = List<TriviaCategory>.unmodifiable(
+         [...categories]
+           ..sort((a, b) => a.displayOrder.compareTo(b.displayOrder)),
+       ),
+       _questions = List<TriviaQuestion>.unmodifiable(questions),
+       _knowledgePaths = List<TriviaKnowledgePath>.unmodifiable(
+         knowledgePaths,
+       ) {
     assert(() {
       _validate();
       return true;
@@ -54,19 +57,24 @@ class TriviaRepository {
     bool dailyEligibleOnly = false,
     bool featuredOnly = false,
   }) {
-    return _questions.where((question) {
-      if (activeOnly && !question.isActive) return false;
-      if (categoryId != null && question.categoryId != categoryId) return false;
-      if (difficulty != null && question.difficulty != difficulty) return false;
-      if (mode != null && !question.modeEligibility.contains(mode)) return false;
-      if (dailyEligibleOnly && !question.dailyEligible) return false;
-      if (featuredOnly && !question.featured) return false;
-      if (tags != null && tags.isNotEmpty) {
-        final questionTags = question.tags.toSet();
-        if (!tags.any(questionTags.contains)) return false;
-      }
-      return true;
-    }).toList(growable: false)
+    return _questions
+        .where((question) {
+          if (activeOnly && !question.isActive) return false;
+          if (categoryId != null && question.categoryId != categoryId)
+            return false;
+          if (difficulty != null && question.difficulty != difficulty)
+            return false;
+          if (mode != null && !question.modeEligibility.contains(mode))
+            return false;
+          if (dailyEligibleOnly && !question.dailyEligible) return false;
+          if (featuredOnly && !question.featured) return false;
+          if (tags != null && tags.isNotEmpty) {
+            final questionTags = question.tags.toSet();
+            if (!tags.any(questionTags.contains)) return false;
+          }
+          return true;
+        })
+        .toList(growable: false)
       ..sort((a, b) {
         final pack = (a.packId ?? '').compareTo(b.packId ?? '');
         if (pack != 0) return pack;
@@ -108,13 +116,15 @@ class TriviaRepository {
     Set<String> excludeIds = const <String>{},
   }) {
     return filterQuestions(
-      mode: mode,
-      categoryId: categoryId,
-      dailyEligibleOnly: dailyEligibleOnly,
-    ).where((question) {
-      if (excludeIds.contains(question.id)) return false;
-      return true;
-    }).toList(growable: false);
+          mode: mode,
+          categoryId: categoryId,
+          dailyEligibleOnly: dailyEligibleOnly,
+        )
+        .where((question) {
+          if (excludeIds.contains(question.id)) return false;
+          return true;
+        })
+        .toList(growable: false);
   }
 
   List<TriviaQuestion> pickRandomQuestions({
@@ -123,7 +133,7 @@ class TriviaRepository {
     int? desiredCount,
     Random? random,
     Set<String> excludeIds = const <String>{},
-    }) {
+  }) {
     final pool = playableQuestions(
       mode: mode,
       categoryId: categoryId,
@@ -133,8 +143,10 @@ class TriviaRepository {
     if (pool.isEmpty) return const <TriviaQuestion>[];
     final rng = random ?? Random();
     final picked = [...pool]..shuffle(rng);
-    final count = (desiredCount ?? mode.suggestedQuestionCount)
-        .clamp(1, picked.length);
+    final count = (desiredCount ?? mode.suggestedQuestionCount).clamp(
+      1,
+      picked.length,
+    );
     return picked.take(count).toList(growable: false);
   }
 
@@ -159,11 +171,14 @@ class TriviaRepository {
       dailyEligibleOnly: true,
     );
     if (pool.isEmpty) return const <TriviaQuestion>[];
-    final scored = pool.map((question) {
-      final seed = '$dayKey:${question.id}'.hashCode;
-      return (score: seed, question: question);
-    }).toList(growable: false)
-      ..sort((a, b) => a.score.compareTo(b.score));
+    final scored =
+        pool
+            .map((question) {
+              final seed = '$dayKey:${question.id}'.hashCode;
+              return (score: seed, question: question);
+            })
+            .toList(growable: false)
+          ..sort((a, b) => a.score.compareTo(b.score));
     return scored
         .take(count.clamp(1, scored.length))
         .map((item) => item.question)

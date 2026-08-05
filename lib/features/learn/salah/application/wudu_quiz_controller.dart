@@ -305,20 +305,14 @@ final wuduQuizControllerProvider =
       dependencies: <ProviderOrFamily>[wuduQuizContentProvider],
     );
 
-final wuduQuizLocalizationsProvider = Provider<AppLocalizations>(
-  (ref) {
-    throw UnimplementedError('Override only in the Wudu quiz subtree.');
-  },
-  dependencies: const <ProviderOrFamily>[],
-);
+final wuduQuizLocalizationsProvider = Provider<AppLocalizations>((ref) {
+  throw UnimplementedError('Override only in the Wudu quiz subtree.');
+}, dependencies: const <ProviderOrFamily>[]);
 
-final wuduQuizContentProvider = Provider<WuduQuizContent>(
-  (ref) {
-    final l10n = ref.watch(wuduQuizLocalizationsProvider);
-    return buildWuduQuizContent(l10n, buildWuduStepContent(l10n));
-  },
-  dependencies: <ProviderOrFamily>[wuduQuizLocalizationsProvider],
-);
+final wuduQuizContentProvider = Provider<WuduQuizContent>((ref) {
+  final l10n = ref.watch(wuduQuizLocalizationsProvider);
+  return buildWuduQuizContent(l10n, buildWuduStepContent(l10n));
+}, dependencies: <ProviderOrFamily>[wuduQuizLocalizationsProvider]);
 
 Map<String, String> _toStringMap(dynamic raw) {
   if (raw is! Map) return const <String, String>{};

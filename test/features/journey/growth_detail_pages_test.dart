@@ -16,9 +16,8 @@ void main() {
     return makeTestContainer(
       overrides: <Override>[
         dailyNowProvider.overrideWith(
-          (ref) => Stream<DateTime>.value(
-            DateTime.parse('2026-03-22T12:00:00'),
-          ),
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
         ),
       ],
     );
@@ -88,10 +87,16 @@ void main() {
 
     router.go('/journey/habit/missing-habit');
     await pumpRouteFrames(tester);
-    expect(find.text(l10n.growthHabitUnavailableMessage), findsAtLeastNWidgets(1));
+    expect(
+      find.text(l10n.growthHabitUnavailableMessage),
+      findsAtLeastNWidgets(1),
+    );
 
     router.go('/journey/path/missing-path');
     await pumpRouteFrames(tester);
-    expect(find.text(l10n.growthPathUnavailableMessage), findsAtLeastNWidgets(1));
+    expect(
+      find.text(l10n.growthPathUnavailableMessage),
+      findsAtLeastNWidgets(1),
+    );
   });
 }

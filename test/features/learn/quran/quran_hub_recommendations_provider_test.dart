@@ -13,83 +13,111 @@ import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import '../../../test_helpers/app_test_harness.dart';
 
 void main() {
-  test('hub recommendations prioritize active path and current daily companion context', () async {
-    final journey = LearningJourneyRegistry.journeyById('daily-dhikr')!;
-    final stage = LearningJourneyRegistry.stageById('dhikr-what-is')!;
-    final dueProgress = MemorizationProgress(
-      verseId: 'q_2_153',
-      stage: MemorizationStage.repeating,
-      addedAt: DateTime.parse('2026-03-20T09:00:00Z'),
-      lastReviewed: DateTime.parse('2026-03-21T09:00:00Z'),
-      nextReview: DateTime.parse('2026-03-23T09:00:00Z'),
-      reviewCount: 2,
-      lastReviewSuccessful: true,
-    );
+  test(
+    'hub recommendations prioritize active path and current daily companion context',
+    () async {
+      final journey = LearningJourneyRegistry.journeyById('daily-dhikr')!;
+      final stage = LearningJourneyRegistry.stageById('dhikr-what-is')!;
+      final dueProgress = MemorizationProgress(
+        verseId: 'q_2_153',
+        stage: MemorizationStage.repeating,
+        addedAt: DateTime.parse('2026-03-20T09:00:00Z'),
+        lastReviewed: DateTime.parse('2026-03-21T09:00:00Z'),
+        nextReview: DateTime.parse('2026-03-23T09:00:00Z'),
+        reviewCount: 2,
+        lastReviewSuccessful: true,
+      );
 
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        dailyNowProvider.overrideWith(
-          (ref) => Stream<DateTime>.value(DateTime.parse('2026-03-24T09:00:00')),
-        ),
-        quranGuidedContinuePathProvider.overrideWith(
-          (ref) => seededQuranGuidedLearningPaths.firstWhere(
-            (path) => path.id == 'tawhid-foundations',
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-24T09:00:00')),
           ),
-        ),
-        learningJourneyContinueProvider.overrideWithValue(
-          LearningJourneyContinueState(
-            hasJourney: true,
-            journey: journey,
-            stage: stage,
-            journeyCompleted: false,
+          quranGuidedContinuePathProvider.overrideWith(
+            (ref) => seededQuranGuidedLearningPaths.firstWhere(
+              (path) => path.id == 'tawhid-foundations',
+            ),
           ),
-        ),
-        quranMemorizationDueProvider.overrideWith((ref) => <MemorizationProgress>[
-              dueProgress,
-            ]),
-      ],
-    );
-    addTearDown(container.dispose);
-
-    final recommendations = container.read(quranHubRecommendationsProvider);
-    final recommendationTypes = recommendations
-        .map((item) => item.type)
-        .toList(growable: false);
-
-    expect(recommendations, hasLength(4));
-    expect(recommendations[0].type, QuranHubRecommendationType.resumePathway);
-    expect(recommendationTypes, contains(QuranHubRecommendationType.continueSurah));
-    expect(recommendationTypes, contains(QuranHubRecommendationType.timeOfDayPick));
-    expect(recommendationTypes, contains(QuranHubRecommendationType.relatedFollowUp));
-  });
-
-  test('hub recommendations fall back to stable daily, pathway, and theme suggestions', () async {
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        dailyNowProvider.overrideWith(
-          (ref) => Stream<DateTime>.value(DateTime.parse('2026-03-24T09:00:00')),
-        ),
-        quranGuidedContinuePathProvider.overrideWith((ref) => null),
-        learningJourneyContinueProvider.overrideWithValue(
-          const LearningJourneyContinueState(
-            hasJourney: false,
-            journeyCompleted: false,
+          learningJourneyContinueProvider.overrideWithValue(
+            LearningJourneyContinueState(
+              hasJourney: true,
+              journey: journey,
+              stage: stage,
+              journeyCompleted: false,
+            ),
           ),
-        ),
-        quranMemorizationDueProvider.overrideWith((ref) => const <MemorizationProgress>[]),
-      ],
-    );
-    addTearDown(container.dispose);
+          quranMemorizationDueProvider.overrideWith(
+            (ref) => <MemorizationProgress>[dueProgress],
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    final recommendations = container.read(quranHubRecommendationsProvider);
-    final recommendationTypes = recommendations
-        .map((item) => item.type)
-        .toList(growable: false);
+      final recommendations = container.read(quranHubRecommendationsProvider);
+      final recommendationTypes = recommendations
+          .map((item) => item.type)
+          .toList(growable: false);
 
-    expect(recommendations, hasLength(4));
-    expect(recommendationTypes[0], QuranHubRecommendationType.continueSurah);
-    expect(recommendationTypes, contains(QuranHubRecommendationType.timeOfDayPick));
-    expect(recommendationTypes, contains(QuranHubRecommendationType.pathwaySuggestion));
-    expect(recommendationTypes, contains(QuranHubRecommendationType.relatedFollowUp));
-  });
+      expect(recommendations, hasLength(4));
+      expect(recommendations[0].type, QuranHubRecommendationType.resumePathway);
+      expect(
+        recommendationTypes,
+        contains(QuranHubRecommendationType.continueSurah),
+      );
+      expect(
+        recommendationTypes,
+        contains(QuranHubRecommendationType.timeOfDayPick),
+      );
+      expect(
+        recommendationTypes,
+        contains(QuranHubRecommendationType.relatedFollowUp),
+      );
+    },
+  );
+
+  test(
+    'hub recommendations fall back to stable daily, pathway, and theme suggestions',
+    () async {
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-24T09:00:00')),
+          ),
+          quranGuidedContinuePathProvider.overrideWith((ref) => null),
+          learningJourneyContinueProvider.overrideWithValue(
+            const LearningJourneyContinueState(
+              hasJourney: false,
+              journeyCompleted: false,
+            ),
+          ),
+          quranMemorizationDueProvider.overrideWith(
+            (ref) => const <MemorizationProgress>[],
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      final recommendations = container.read(quranHubRecommendationsProvider);
+      final recommendationTypes = recommendations
+          .map((item) => item.type)
+          .toList(growable: false);
+
+      expect(recommendations, hasLength(4));
+      expect(recommendationTypes[0], QuranHubRecommendationType.continueSurah);
+      expect(
+        recommendationTypes,
+        contains(QuranHubRecommendationType.timeOfDayPick),
+      );
+      expect(
+        recommendationTypes,
+        contains(QuranHubRecommendationType.pathwaySuggestion),
+      );
+      expect(
+        recommendationTypes,
+        contains(QuranHubRecommendationType.relatedFollowUp),
+      );
+    },
+  );
 }

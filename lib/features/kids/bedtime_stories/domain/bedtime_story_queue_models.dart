@@ -63,7 +63,8 @@ class BedtimeStoryQueueState {
       return const BedtimeStoryQueueState();
     }
     return BedtimeStoryQueueState(
-      storyIds: (json['storyIds'] as List?)
+      storyIds:
+          (json['storyIds'] as List?)
               ?.map((item) => item.toString())
               .toList(growable: false) ??
           const <String>[],

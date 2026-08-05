@@ -49,53 +49,52 @@ class NearbyMosquesPage extends ConsumerWidget {
             ),
           ),
         if (selected != null) const SizedBox(height: 12),
-        ...mosques.map(
-          (mosque) {
-            final imported = state.importedMosqueIds.contains(mosque.id);
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      mosque.name,
-                      style: const TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: 4),
-                    Text('${mosque.city} • ${mosque.distanceKm.toStringAsFixed(1)} km'),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: FilledButton.tonal(
-                            onPressed: () => notifier.toggleMosqueImported(
-                              mosque.id,
-                            ),
-                            child: Text(
-                              imported
-                                  ? l10n.circlesImported
-                                  : l10n.circlesImportTimetable,
-                            ),
+        ...mosques.map((mosque) {
+          final imported = state.importedMosqueIds.contains(mosque.id);
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    mosque.name,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${mosque.city} • ${mosque.distanceKm.toStringAsFixed(1)} km',
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton.tonal(
+                          onPressed: () =>
+                              notifier.toggleMosqueImported(mosque.id),
+                          child: Text(
+                            imported
+                                ? l10n.circlesImported
+                                : l10n.circlesImportTimetable,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: FilledButton.tonal(
-                            onPressed: imported
-                                ? () => notifier.selectMosque(mosque.id)
-                                : null,
-                            child: Text(l10n.circlesOpen),
-                          ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: FilledButton.tonal(
+                          onPressed: imported
+                              ? () => notifier.selectMosque(mosque.id)
+                              : null,
+                          child: Text(l10n.circlesOpen),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        }),
       ],
     );
   }

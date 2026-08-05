@@ -13,7 +13,9 @@ import 'quran_surah_summary_provider.dart';
 import 'quran_theme_discovery_provider.dart';
 import 'quran_user_intent_provider.dart';
 
-final quranHubContextSnapshotProvider = Provider<QuranHubContextSnapshot>((ref) {
+final quranHubContextSnapshotProvider = Provider<QuranHubContextSnapshot>((
+  ref,
+) {
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
   final continueSummary = ref.watch(quranContinueReadingSummaryProvider);
   final recentReadings = ref.watch(quranRecentReadingsProvider);
@@ -50,7 +52,9 @@ final quranHubContextSnapshotProvider = Provider<QuranHubContextSnapshot>((ref) 
     isFriday: now.weekday == DateTime.friday,
     readingStreak: ref.watch(quranReadingStreakProvider),
     readingTimeTodaySeconds: ref.watch(quranReadingTimeTodaySecondsProvider),
-    listeningTimeTodaySeconds: ref.watch(quranListeningTimeTodaySecondsProvider),
+    listeningTimeTodaySeconds: ref.watch(
+      quranListeningTimeTodaySecondsProvider,
+    ),
     selectedIntentWireName: selectedIntent?.wireName,
     continueSurahNumber: continueSummary.surahNumber,
     continueAyahNumber: continueSummary.ayahNumber,
@@ -87,7 +91,9 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
   final candidates = <QuranHubRecommendation>[];
 
   if (continuePath != null) {
-    final progress = ref.watch(quranGuidedPathProgressByIdProvider(continuePath.id));
+    final progress = ref.watch(
+      quranGuidedPathProgressByIdProvider(continuePath.id),
+    );
     final completedCount = progress?.completedStopIds.length ?? 0;
     final totalStops = continuePath.steps.length;
     candidates.add(
@@ -121,9 +127,7 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
         destinationType: QuranHubRecommendationDestinationType.readerEntry,
         priority: snapshot.readingStreak >= 3 ? 286 : 280,
         routeName: 'quranReader',
-        pathParameters: {
-          'surahNumber': continueSummary.surahNumber.toString(),
-        },
+        pathParameters: {'surahNumber': continueSummary.surahNumber.toString()},
         queryParameters: {'ayah': continueSummary.ayahNumber.toString()},
         surahNumber: continueSummary.surahNumber,
         ayahNumber: continueSummary.ayahNumber,
@@ -133,7 +137,8 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
 
   final timeReason = switch (snapshot.timeSegment) {
     QuranHubTimeSegment.morning => QuranHubRecommendationReason.forThisMorning,
-    QuranHubTimeSegment.afternoon => QuranHubRecommendationReason.forThisAfternoon,
+    QuranHubTimeSegment.afternoon =>
+      QuranHubRecommendationReason.forThisAfternoon,
     QuranHubTimeSegment.evening => QuranHubRecommendationReason.forThisEvening,
     QuranHubTimeSegment.night => QuranHubRecommendationReason.forTonight,
   };
@@ -185,7 +190,9 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
     );
   }
 
-  final growthThemeId = _preferredThemeIdForIntent(userIntentSummary.selectedIntent);
+  final growthThemeId = _preferredThemeIdForIntent(
+    userIntentSummary.selectedIntent,
+  );
   if (growthThemeId != null) {
     final resolvedTheme = themeById[growthThemeId];
     if (resolvedTheme != null) {
@@ -211,7 +218,8 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
   );
   if (recentSurahEntry != null) {
     final recentThemeId =
-        _preferredThemeIdForSurahEntry(recentSurahEntry) ?? snapshot.dailyThemeId;
+        _preferredThemeIdForSurahEntry(recentSurahEntry) ??
+        snapshot.dailyThemeId;
     if (recentThemeId != null && recentThemeId != growthThemeId) {
       final relatedTheme = themeById[recentThemeId];
       if (relatedTheme != null) {
@@ -242,7 +250,8 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
               type: QuranHubRecommendationType.pathwaySuggestion,
               source: QuranHubRecommendationSource.related,
               reason: QuranHubRecommendationReason.connectedToYourJourney,
-              destinationType: QuranHubRecommendationDestinationType.pathwayDetail,
+              destinationType:
+                  QuranHubRecommendationDestinationType.pathwayDetail,
               priority: 220,
               routeName: 'quranLearningPathDetail',
               pathParameters: {'pathId': followUpPath.id},
@@ -329,12 +338,13 @@ final quranHubRecommendationsProvider = Provider<List<QuranHubRecommendation>>((
   return unique;
 });
 
-final quranHubPrimaryRecommendationProvider =
-    Provider<QuranHubRecommendation?>((ref) {
-      final items = ref.watch(quranHubRecommendationsProvider);
-      if (items.isEmpty) return null;
-      return items.first;
-    });
+final quranHubPrimaryRecommendationProvider = Provider<QuranHubRecommendation?>(
+  (ref) {
+    final items = ref.watch(quranHubRecommendationsProvider);
+    if (items.isEmpty) return null;
+    return items.first;
+  },
+);
 
 final quranHubSecondaryRecommendationsProvider =
     Provider<List<QuranHubRecommendation>>((ref) {

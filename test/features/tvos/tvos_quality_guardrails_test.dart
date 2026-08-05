@@ -42,7 +42,9 @@ void main() {
       contains('tvos_settings_changed'),
     );
     expect(
-      settingsEvents.firstWhere((event) => event.name == 'tvos_settings_changed').severity,
+      settingsEvents
+          .firstWhere((event) => event.name == 'tvos_settings_changed')
+          .severity,
       TVOSAnalyticsSeverity.warning,
     );
   });

@@ -536,7 +536,8 @@ final List<TVOSSectionFlag> tvosSectionFlags = <TVOSSectionFlag>[
     releaseStage: TVOSReleaseStage.testflight,
     parityHealth: TVOSParityHealth.adaptationRequired,
     requiresSharedParityPayload: false,
-    notes: 'tvOS-specific preference guidance and companion-device boundary module.',
+    notes:
+        'tvOS-specific preference guidance and companion-device boundary module.',
   ),
   const TVOSSectionFlag(
     sectionKey: 'profiles.primarySwitcher',
@@ -554,7 +555,8 @@ final List<TVOSSectionFlag> tvosSectionFlags = <TVOSSectionFlag>[
     releaseStage: TVOSReleaseStage.testflight,
     parityHealth: TVOSParityHealth.adaptationRequired,
     requiresSharedParityPayload: false,
-    notes: 'Per-profile resume and continuity stage for the tvOS Profiles route.',
+    notes:
+        'Per-profile resume and continuity stage for the tvOS Profiles route.',
   ),
   const TVOSSectionFlag(
     sectionKey: 'profiles.householdGuidance',

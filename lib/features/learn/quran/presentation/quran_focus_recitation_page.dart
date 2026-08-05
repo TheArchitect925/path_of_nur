@@ -44,8 +44,12 @@ class _QuranFocusRecitationPageState
   @override
   void initState() {
     super.initState();
-    _focusSessionNotifier = ref.read(quranFocusRecitationSessionProvider.notifier);
-    _sleepTimerNotifier = ref.read(quranFocusRecitationSleepTimerProvider.notifier);
+    _focusSessionNotifier = ref.read(
+      quranFocusRecitationSessionProvider.notifier,
+    );
+    _sleepTimerNotifier = ref.read(
+      quranFocusRecitationSleepTimerProvider.notifier,
+    );
     _wakeLockService = ref.read(quranFocusRecitationWakeLockProvider);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
@@ -90,7 +94,9 @@ class _QuranFocusRecitationPageState
           builder: (context, ref, child) {
             final settings = ref.watch(quranReaderSettingsProvider);
             final session = ref.watch(quranFocusRecitationSessionProvider);
-            final sleepTimer = ref.watch(quranFocusRecitationSleepTimerProvider);
+            final sleepTimer = ref.watch(
+              quranFocusRecitationSleepTimerProvider,
+            );
             final settingsNotifier = ref.read(
               quranReaderSettingsProvider.notifier,
             );
@@ -128,8 +134,8 @@ class _QuranFocusRecitationPageState
                           contentPadding: EdgeInsets.zero,
                           value: settings.focusRecitationShowTranslation,
                           title: Text(l10n.quranShowTranslation),
-                          onChanged:
-                              settingsNotifier.setFocusRecitationShowTranslation,
+                          onChanged: settingsNotifier
+                              .setFocusRecitationShowTranslation,
                         ),
                         SwitchListTile.adaptive(
                           key: const ValueKey(
@@ -150,8 +156,8 @@ class _QuranFocusRecitationPageState
                           title: Text(
                             l10n.quranFocusRecitationKeepScreenAwakeAction,
                           ),
-                          onChanged:
-                              settingsNotifier.setFocusRecitationKeepScreenAwake,
+                          onChanged: settingsNotifier
+                              .setFocusRecitationKeepScreenAwake,
                         ),
                         SwitchListTile.adaptive(
                           key: const ValueKey(
@@ -197,7 +203,9 @@ class _QuranFocusRecitationPageState
                                   ),
                                 ),
                                 onSelected: (_) {
-                                  sleepTimerNotifier.setDurationMinutes(minutes);
+                                  sleepTimerNotifier.setDurationMinutes(
+                                    minutes,
+                                  );
                                 },
                               ),
                             if (sleepTimer.isActive)
@@ -206,8 +214,7 @@ class _QuranFocusRecitationPageState
                                   'quran-focus-cancel-sleep-timer',
                                 ),
                                 label: Text(
-                                  l10n
-                                      .quranFocusRecitationSleepTimerCancelAction,
+                                  l10n.quranFocusRecitationSleepTimerCancelAction,
                                 ),
                                 onPressed: sleepTimerNotifier.clear,
                               ),
@@ -233,7 +240,9 @@ class _QuranFocusRecitationPageState
                             key: const ValueKey('quran-focus-open-reader'),
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.menu_book_rounded),
-                            title: Text(l10n.shellQuranMiniPlayerOpenReaderAction),
+                            title: Text(
+                              l10n.shellQuranMiniPlayerOpenReaderAction,
+                            ),
                             trailing: const Icon(Icons.chevron_right_rounded),
                             onTap: () {
                               Navigator.of(sheetContext).pop();
@@ -314,10 +323,7 @@ class _QuranFocusRecitationPageState
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: <Color>[
-              Color(0xFFF8F2E8),
-              Color(0xFFEDE3D6),
-            ],
+            colors: <Color>[Color(0xFFF8F2E8), Color(0xFFEDE3D6)],
           ),
         ),
         child: SafeArea(
@@ -548,11 +554,7 @@ class _FocusRecitationHeader extends StatelessWidget {
 }
 
 class _FocusStatusChip extends StatelessWidget {
-  const _FocusStatusChip({
-    super.key,
-    required this.label,
-    required this.icon,
-  });
+  const _FocusStatusChip({super.key, required this.label, required this.icon});
 
   final String label;
   final IconData icon;
@@ -616,8 +618,8 @@ class _FocusRecitationAyahView extends StatelessWidget {
         final arabicBaseSize = arabicLength > 190
             ? 28.0
             : arabicLength > 120
-                ? 31.0
-                : 36.0;
+            ? 31.0
+            : 36.0;
         final arabicStyle = QuranPresentationStyle.translucentTextStyle(
           context,
           AppTextStyles.quranVerse(size: arabicBaseSize * arabicScale).copyWith(
@@ -656,7 +658,10 @@ class _FocusRecitationAyahView extends StatelessWidget {
             key: const ValueKey('quran-focus-recitation-scroll'),
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.symmetric(
-              horizontal: math.max(0, (constraints.maxWidth - maxContentWidth) / 2),
+              horizontal: math.max(
+                0,
+                (constraints.maxWidth - maxContentWidth) / 2,
+              ),
               vertical: 16,
             ),
             child: ConstrainedBox(
@@ -693,7 +698,9 @@ class _FocusRecitationAyahView extends StatelessWidget {
                     ],
                     if (showTranslation) ...[
                       SizedBox(
-                        height: showTransliteration && secondaryVisible ? 18 : 20,
+                        height: showTransliteration && secondaryVisible
+                            ? 18
+                            : 20,
                       ),
                       Text(
                         ayah.translation,
@@ -754,21 +761,19 @@ class _FocusRecitationControls extends StatelessWidget {
     final primaryIcon = showRetryAction
         ? Icons.refresh_rounded
         : isPreparing
-            ? Icons.hourglass_top_rounded
-            : isPlaying
-                ? Icons.pause_circle_filled_rounded
-                : Icons.play_circle_fill_rounded;
+        ? Icons.hourglass_top_rounded
+        : isPlaying
+        ? Icons.pause_circle_filled_rounded
+        : Icons.play_circle_fill_rounded;
     final primaryEnabled = showRetryAction || canPause || canPlay;
     return DecoratedBox(
-      decoration: surfaceStyle.decoration(
-        radius: 28,
-        includeShadow: true,
-      ),
+      decoration: surfaceStyle.decoration(radius: 28, includeShadow: true),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
         child: Column(
           children: [
-            if (sourceStatusLabel != null && sourceStatusLabel!.trim().isNotEmpty)
+            if (sourceStatusLabel != null &&
+                sourceStatusLabel!.trim().isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
@@ -798,9 +803,9 @@ class _FocusRecitationControls extends StatelessWidget {
                   onPressed: primaryEnabled ? onTogglePlayback : null,
                   style: IconButton.styleFrom(
                     minimumSize: const Size(76, 76),
-                    backgroundColor: const Color(0xFF4A3C2F).withValues(
-                      alpha: 0.94,
-                    ),
+                    backgroundColor: const Color(
+                      0xFF4A3C2F,
+                    ).withValues(alpha: 0.94),
                     foregroundColor: Colors.white,
                     elevation: 0,
                   ),
@@ -826,10 +831,7 @@ class _FocusRecitationControls extends StatelessWidget {
 }
 
 class _FocusRecitationEmptyState extends StatelessWidget {
-  const _FocusRecitationEmptyState({
-    required this.l10n,
-    required this.onExit,
-  });
+  const _FocusRecitationEmptyState({required this.l10n, required this.onExit});
 
   final AppLocalizations l10n;
   final VoidCallback onExit;
@@ -853,9 +855,9 @@ class _FocusRecitationEmptyState extends StatelessWidget {
             Text(
               l10n.quranFocusRecitationEmptyBody,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: AppColors.onSurfaceSubtle),
             ),
             const SizedBox(height: 18),
             FilledButton.tonal(

@@ -27,11 +27,7 @@ const kidsArabicContentPackCompositions = <ArabicContentPackComposition>[
     type: ArabicLearningLessonPackType.words,
     sortOrder: 1,
     contentUnitIds: <String>['word:bab', 'word:noor', 'word:qalam'],
-    searchKeywords: <String>[
-      'first words',
-      'beginner words',
-      'reading words',
-    ],
+    searchKeywords: <String>['first words', 'beginner words', 'reading words'],
   ),
   ArabicContentPackComposition(
     id: 'kids_mini_phrases_pack',
@@ -46,11 +42,7 @@ const kidsArabicContentPackCompositions = <ArabicContentPackComposition>[
       'phrase:assalamu-alaikum',
       'phrase:inshaallah',
     ],
-    searchKeywords: <String>[
-      'mini phrases',
-      'heard phrases',
-      'daily phrases',
-    ],
+    searchKeywords: <String>['mini phrases', 'heard phrases', 'daily phrases'],
   ),
   ArabicContentPackComposition(
     id: 'kids_daily_words_theme_pack',
@@ -79,11 +71,7 @@ const kidsArabicContentPackCompositions = <ArabicContentPackComposition>[
       'bridge:rabbil_alamin_bridge',
       'bridge:iyyaka_nabudu_bridge',
     ],
-    searchKeywords: <String>[
-      'prayer words',
-      'salah words',
-      'dhikr words',
-    ],
+    searchKeywords: <String>['prayer words', 'salah words', 'dhikr words'],
   ),
   ArabicContentPackComposition(
     id: 'kids_quran_linked_words_theme_pack',
@@ -209,11 +197,7 @@ const adultArabicContentPackCompositions = <ArabicContentPackComposition>[
       'phrase:alhamdulillah',
       'phrase:iyyaka-nabudu',
     ],
-    searchKeywords: <String>[
-      'prayer words',
-      'salah words',
-      'dhikr words',
-    ],
+    searchKeywords: <String>['prayer words', 'salah words', 'dhikr words'],
   ),
   ArabicContentPackComposition(
     id: 'adult_quran_linked_words_theme_pack',

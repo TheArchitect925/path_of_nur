@@ -89,14 +89,15 @@ class _LearningJourneyStagePageState
           'learnJourneyDetail',
           pathParameters: {'journeyId': journey.id},
         ),
-        secondaryActionLabel:
-            l10n.learnContainedStateOpenQuranLearningAction,
+        secondaryActionLabel: l10n.learnContainedStateOpenQuranLearningAction,
         onSecondaryAction: () => context.pushNamed('quranLearningHub'),
       );
     }
 
     final completedStageIds = ref.watch(
-      learningJourneyProgressProvider.select((state) => state.completedStageIds),
+      learningJourneyProgressProvider.select(
+        (state) => state.completedStageIds,
+      ),
     );
     final stageUnlocked =
         completedStageIds.contains(stage.id) ||

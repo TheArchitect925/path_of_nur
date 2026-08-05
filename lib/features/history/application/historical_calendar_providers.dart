@@ -22,12 +22,15 @@ class HistoricalTodayState {
       matches.isEmpty ? null : matches.first;
 }
 
-final historicalCalendarEventsProvider =
-    FutureProvider<List<HistoricalEvent>>((ref) async {
-      return ref.watch(historicalCalendarRepositoryProvider).getAllEvents();
-    });
+final historicalCalendarEventsProvider = FutureProvider<List<HistoricalEvent>>((
+  ref,
+) async {
+  return ref.watch(historicalCalendarRepositoryProvider).getAllEvents();
+});
 
-final historicalTodayProvider = FutureProvider<HistoricalTodayState>((ref) async {
+final historicalTodayProvider = FutureProvider<HistoricalTodayState>((
+  ref,
+) async {
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
   final today = DateTime(now.year, now.month, now.day);
   final hijriToday = toHijriDate(today);
@@ -47,7 +50,9 @@ final historicalTodayProvider = FutureProvider<HistoricalTodayState>((ref) async
 
 final historicalEventBySlugProvider =
     FutureProvider.family<HistoricalEvent?, String>((ref, slug) async {
-      return ref.watch(historicalCalendarRepositoryProvider).getEventBySlug(slug);
+      return ref
+          .watch(historicalCalendarRepositoryProvider)
+          .getEventBySlug(slug);
     });
 
 final historicalEventsByCategoryProvider =

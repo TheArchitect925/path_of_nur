@@ -87,11 +87,13 @@ class KidsDuaCreativeNotifier extends StateNotifier<KidsDuaCreativeState> {
       _activeLearnerId = _ref.read(kidsDuaActiveLearnerProvider).learnerId,
       super(
         KidsDuaCreativeState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
-            kidsDuaCreativeStorageKeyForLearner(
-              _ref.read(kidsDuaActiveLearnerProvider).learnerId,
-            ),
-          ),
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(
+                kidsDuaCreativeStorageKeyForLearner(
+                  _ref.read(kidsDuaActiveLearnerProvider).learnerId,
+                ),
+              ),
         ),
       ) {
     _migrateLegacyStateIfNeeded();

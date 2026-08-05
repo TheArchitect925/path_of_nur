@@ -8,9 +8,7 @@ const _trackKey = 'learn.unified.track.v1';
 const _bundleKey = 'learn.unified.bundles.v1';
 
 class LearnQualityState {
-  const LearnQualityState({
-    required this.byLessonKey,
-  });
+  const LearnQualityState({required this.byLessonKey});
 
   final Map<String, LearnCompletionQuality> byLessonKey;
 
@@ -79,7 +77,8 @@ class LearnTrackSelectionNotifier extends StateNotifier<LearnTrackType> {
   }
 }
 
-class LearnBundleManagerNotifier extends StateNotifier<List<LearnContentBundle>> {
+class LearnBundleManagerNotifier
+    extends StateNotifier<List<LearnContentBundle>> {
   LearnBundleManagerNotifier(this._store) : super(_seedBundles()) {
     _load();
   }
@@ -159,7 +158,9 @@ class LearnBundleManagerNotifier extends StateNotifier<List<LearnContentBundle>>
     }
     state = [
       for (final bundle in state)
-        bundle.copyWith(installed: installedById[bundle.id] ?? bundle.installed),
+        bundle.copyWith(
+          installed: installedById[bundle.id] ?? bundle.installed,
+        ),
     ];
   }
 
@@ -199,4 +200,3 @@ final learnTrackTitlesProvider = Provider<Map<LearnTrackType, String>>((ref) {
     LearnTrackType.revert: 'Revert',
   };
 });
-

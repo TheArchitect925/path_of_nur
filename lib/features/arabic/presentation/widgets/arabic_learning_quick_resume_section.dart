@@ -34,7 +34,9 @@ class ArabicLearningQuickResumeSection extends StatelessWidget {
             isKids
                 ? l10n.arabicQuickResumeKidsSectionTitle
                 : l10n.arabicQuickResumeAdultSectionTitle,
-            style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: 6),
           Text(
@@ -47,7 +49,9 @@ class ArabicLearningQuickResumeSection extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.42),
+              color: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.42,
+              ),
               borderRadius: BorderRadius.circular(18),
             ),
             child: Column(
@@ -55,7 +59,9 @@ class ArabicLearningQuickResumeSection extends StatelessWidget {
               children: [
                 Text(
                   summary.primaryTitle,
-                  style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 if (summary.primarySubtitle case final subtitle?
                     when subtitle.isNotEmpty) ...[
@@ -85,26 +91,22 @@ class ArabicLearningQuickResumeSection extends StatelessWidget {
             children: [
               FilledButton.tonalIcon(
                 onPressed: onPrimaryTap,
-                icon: Icon(
-                  switch (summary.primaryAction) {
-                    ArabicLearningQuickResumePrimaryAction.start =>
-                      Icons.play_circle_rounded,
-                    ArabicLearningQuickResumePrimaryAction.continueLearning =>
-                      Icons.play_arrow_rounded,
-                    ArabicLearningQuickResumePrimaryAction.review =>
-                      Icons.refresh_rounded,
-                  },
-                ),
-                label: Text(
-                  switch (summary.primaryAction) {
-                    ArabicLearningQuickResumePrimaryAction.start =>
-                      l10n.arabicQuickResumeStartAction,
-                    ArabicLearningQuickResumePrimaryAction.continueLearning =>
-                      l10n.arabicQuickResumeContinueAction,
-                    ArabicLearningQuickResumePrimaryAction.review =>
-                      l10n.arabicQuickResumeReviewAction,
-                  },
-                ),
+                icon: Icon(switch (summary.primaryAction) {
+                  ArabicLearningQuickResumePrimaryAction.start =>
+                    Icons.play_circle_rounded,
+                  ArabicLearningQuickResumePrimaryAction.continueLearning =>
+                    Icons.play_arrow_rounded,
+                  ArabicLearningQuickResumePrimaryAction.review =>
+                    Icons.refresh_rounded,
+                }),
+                label: Text(switch (summary.primaryAction) {
+                  ArabicLearningQuickResumePrimaryAction.start =>
+                    l10n.arabicQuickResumeStartAction,
+                  ArabicLearningQuickResumePrimaryAction.continueLearning =>
+                    l10n.arabicQuickResumeContinueAction,
+                  ArabicLearningQuickResumePrimaryAction.review =>
+                    l10n.arabicQuickResumeReviewAction,
+                }),
               ),
               if (summary.hasReviewAction && onReviewTap != null)
                 OutlinedButton.icon(

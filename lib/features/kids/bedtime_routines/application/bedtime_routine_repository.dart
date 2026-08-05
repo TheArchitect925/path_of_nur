@@ -8,7 +8,9 @@ import '../../../kids_dua_learning/domain/kids_dua_models.dart';
 import '../data/bedtime_routine_seed.dart';
 import '../domain/bedtime_routine_models.dart';
 
-final bedtimeRoutineRepositoryProvider = Provider<BedtimeRoutineRepository>((ref) {
+final bedtimeRoutineRepositoryProvider = Provider<BedtimeRoutineRepository>((
+  ref,
+) {
   return BedtimeRoutineRepository(ref);
 });
 
@@ -40,9 +42,12 @@ class BedtimeRoutineRepository {
         return aOrder.compareTo(bOrder);
       });
     final filteredSteps = simplified
-        ? steps.where((item) {
-            return item.stepType != BedtimeRoutineStepType.gratitudeReflection;
-          }).toList(growable: false)
+        ? steps
+              .where((item) {
+                return item.stepType !=
+                    BedtimeRoutineStepType.gratitudeReflection;
+              })
+              .toList(growable: false)
         : steps;
     return BedtimeRoutinePlan(
       planId: kDefaultBedtimeRoutinePlan.planId,
@@ -56,7 +61,9 @@ class BedtimeRoutineRepository {
           ? null
           : '${learner.preferences.bedtimeMinutesPreference}m',
       narrationPreferenceLabel:
-          learner.preferences.preferTranscriptWhenAudioMissing ? 'transcript_ok' : null,
+          learner.preferences.preferTranscriptWhenAudioMissing
+          ? 'transcript_ok'
+          : null,
     );
   }
 
@@ -65,7 +72,10 @@ class BedtimeRoutineRepository {
     if (lesson == null) {
       return null;
     }
-    return _mapKidsLessonToSuggestedDua(lesson, bedtimeUseCase: 'primary_sleep_dua');
+    return _mapKidsLessonToSuggestedDua(
+      lesson,
+      bedtimeUseCase: 'primary_sleep_dua',
+    );
   }
 
   List<SuggestedBedtimeDua> secondaryBedtimeDuas() {
@@ -108,15 +118,14 @@ class BedtimeRoutineRepository {
       sourceReference: lesson.sourceReference,
       bedtimeUseCase: bedtimeUseCase,
       ageGroup: BedtimeStoryAgeGroup.kids,
-      audioAssetPath: lesson.audioAssetPath.isEmpty ? null : lesson.audioAssetPath,
+      audioAssetPath: lesson.audioAssetPath.isEmpty
+          ? null
+          : lesson.audioAssetPath,
       tags: <String>[lesson.categoryId, lesson.sourceType],
     );
   }
 
-  int _orderFor(
-    BedtimeRoutineStep step, {
-    required bool prefersDuaFirst,
-  }) {
+  int _orderFor(BedtimeRoutineStep step, {required bool prefersDuaFirst}) {
     if (prefersDuaFirst) {
       return step.sortOrder;
     }
@@ -126,6 +135,10 @@ class BedtimeRoutineRepository {
     if (step.stepType == BedtimeRoutineStepType.bedtimeDua) {
       return 3;
     }
-    return step.sortOrder == 2 ? 3 : step.sortOrder == 3 ? 2 : step.sortOrder;
+    return step.sortOrder == 2
+        ? 3
+        : step.sortOrder == 3
+        ? 2
+        : step.sortOrder;
   }
 }

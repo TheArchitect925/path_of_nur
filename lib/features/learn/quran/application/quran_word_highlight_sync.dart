@@ -62,18 +62,19 @@ int _resolvePreciseHighlightIndex({
   required List<QuranWordTimingSegment> preciseSegments,
   required int? previousWordIndex,
 }) {
-  final normalized = preciseSegments
-      .map(
-        (segment) => QuranWordTimingSegment(
-          wordIndex: segment.wordIndex.clamp(0, wordCount - 1),
-          startMs: segment.startMs < 0 ? 0 : segment.startMs,
-          endMs: segment.endMs < segment.startMs
-              ? segment.startMs
-              : segment.endMs,
-        ),
-      )
-      .toList(growable: false)
-    ..sort((a, b) => a.startMs.compareTo(b.startMs));
+  final normalized =
+      preciseSegments
+          .map(
+            (segment) => QuranWordTimingSegment(
+              wordIndex: segment.wordIndex.clamp(0, wordCount - 1),
+              startMs: segment.startMs < 0 ? 0 : segment.startMs,
+              endMs: segment.endMs < segment.startMs
+                  ? segment.startMs
+                  : segment.endMs,
+            ),
+          )
+          .toList(growable: false)
+        ..sort((a, b) => a.startMs.compareTo(b.startMs));
 
   var resolvedIndex = normalized.first.wordIndex;
   for (var i = 0; i < normalized.length; i += 1) {

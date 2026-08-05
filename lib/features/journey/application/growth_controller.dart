@@ -47,7 +47,9 @@ class GrowthController extends StateNotifier<GrowthState> {
       logsByDay[entry.key] = Map<String, GrowthHabitLog>.from(entry.value);
     }
 
-    final dayLogs = Map<String, GrowthHabitLog>.from(logsByDay[dayKey] ?? const {});
+    final dayLogs = Map<String, GrowthHabitLog>.from(
+      logsByDay[dayKey] ?? const {},
+    );
     if (status == null) {
       dayLogs.remove(habitId);
     } else {
@@ -77,7 +79,9 @@ class GrowthController extends StateNotifier<GrowthState> {
     for (final entry in state.statusByDay.entries) {
       statusByDay[entry.key] = Map<String, GrowthHabitStatus>.from(entry.value);
     }
-    final statusDay = Map<String, GrowthHabitStatus>.from(statusByDay[dayKey] ?? const {});
+    final statusDay = Map<String, GrowthHabitStatus>.from(
+      statusByDay[dayKey] ?? const {},
+    );
     if (status == null) {
       statusDay.remove(habitId);
     } else {
@@ -112,7 +116,9 @@ class GrowthController extends StateNotifier<GrowthState> {
     for (final entry in state.habitLogsByDay.entries) {
       logsByDay[entry.key] = Map<String, GrowthHabitLog>.from(entry.value);
     }
-    final dayLogs = Map<String, GrowthHabitLog>.from(logsByDay[dayKey] ?? const {});
+    final dayLogs = Map<String, GrowthHabitLog>.from(
+      logsByDay[dayKey] ?? const {},
+    );
     dayLogs[habitId] = GrowthHabitLog(
       status: status,
       progress: normalized,
@@ -125,7 +131,9 @@ class GrowthController extends StateNotifier<GrowthState> {
     for (final entry in state.statusByDay.entries) {
       statusByDay[entry.key] = Map<String, GrowthHabitStatus>.from(entry.value);
     }
-    final statusDay = Map<String, GrowthHabitStatus>.from(statusByDay[dayKey] ?? const {});
+    final statusDay = Map<String, GrowthHabitStatus>.from(
+      statusByDay[dayKey] ?? const {},
+    );
     statusDay[habitId] = status;
     statusByDay[dayKey] = statusDay;
 
@@ -207,7 +215,9 @@ class GrowthController extends StateNotifier<GrowthState> {
     bool? allowSnooze,
     bool? remindersPaused,
   }) {
-    final overrides = Map<String, GrowthHabitOverride>.from(state.habitOverrides);
+    final overrides = Map<String, GrowthHabitOverride>.from(
+      state.habitOverrides,
+    );
     final existing =
         overrides[habitId] ??
         const GrowthHabitOverride(
@@ -492,8 +502,12 @@ class GrowthController extends StateNotifier<GrowthState> {
   }
 
   void deleteCustomHabit(String habitId) {
-    final nextHabits = state.customHabits.where((h) => h.id != habitId).toList();
-    final overrides = Map<String, GrowthHabitOverride>.from(state.habitOverrides);
+    final nextHabits = state.customHabits
+        .where((h) => h.id != habitId)
+        .toList();
+    final overrides = Map<String, GrowthHabitOverride>.from(
+      state.habitOverrides,
+    );
     overrides.remove(habitId);
     final logs = <String, Map<String, GrowthHabitLog>>{};
     for (final day in state.habitLogsByDay.entries) {
@@ -520,7 +534,7 @@ class GrowthController extends StateNotifier<GrowthState> {
     final sortBase = state.customHabitCategories.isEmpty
         ? 1
         : state.customHabitCategories.map((e) => e.sortOrder).reduce(math.max) +
-            1;
+              1;
     final next = GrowthCustomCategory(
       id: 'category_$nowMs',
       title: title,
@@ -613,7 +627,10 @@ class GrowthController extends StateNotifier<GrowthState> {
     _persist();
   }
 
-  void registerUnlockedRewards(Set<String> rewardIds, {required String source}) {
+  void registerUnlockedRewards(
+    Set<String> rewardIds, {
+    required String source,
+  }) {
     if (rewardIds.isEmpty) return;
     final unlocked = Set<String>.from(state.unlockedRewardIds);
     final events = [...state.rewardEvents];
@@ -670,10 +687,7 @@ class GrowthController extends StateNotifier<GrowthState> {
       _persist();
       return;
     }
-    updateHabitOverride(
-      habitId,
-      remindersPaused: false,
-    );
+    updateHabitOverride(habitId, remindersPaused: false);
   }
 
   void addReflection({

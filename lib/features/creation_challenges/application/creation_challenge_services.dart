@@ -7,16 +7,21 @@ import '../../creation_explorer/domain/creation_explorer_models.dart';
 import '../data/creation_challenge_catalog.dart';
 import '../domain/creation_challenge_models.dart';
 
-final creationChallengeRepositoryProvider = Provider<CreationChallengeRepository>((ref) {
-  return CreationChallengeRepository(ref.watch(localStoreProvider));
-});
+final creationChallengeRepositoryProvider =
+    Provider<CreationChallengeRepository>((ref) {
+      return CreationChallengeRepository(ref.watch(localStoreProvider));
+    });
 
-final creationChallengeEngineProvider = Provider<CreationChallengeEngine>((ref) {
+final creationChallengeEngineProvider = Provider<CreationChallengeEngine>((
+  ref,
+) {
   return const CreationChallengeEngine();
 });
 
 final creationChallengeServiceProvider =
-    StateNotifierProvider<CreationChallengeService, CreationChallengeState>((ref) {
+    StateNotifierProvider<CreationChallengeService, CreationChallengeState>((
+      ref,
+    ) {
       return CreationChallengeService(
         repository: ref.watch(creationChallengeRepositoryProvider),
         engine: ref.watch(creationChallengeEngineProvider),
@@ -24,11 +29,12 @@ final creationChallengeServiceProvider =
       );
     });
 
-final currentCreationChallengesProvider = Provider<List<CreationChallengeSummary>>((ref) {
-  final service = ref.watch(creationChallengeServiceProvider.notifier);
-  final state = ref.watch(creationChallengeServiceProvider);
-  return service.currentSummaries(state);
-});
+final currentCreationChallengesProvider =
+    Provider<List<CreationChallengeSummary>>((ref) {
+      final service = ref.watch(creationChallengeServiceProvider.notifier);
+      final state = ref.watch(creationChallengeServiceProvider);
+      return service.currentSummaries(state);
+    });
 
 final creationChallengeStreakProvider = Provider<int>((ref) {
   final state = ref.watch(creationChallengeServiceProvider);
@@ -55,7 +61,11 @@ class CreationChallengeEngine {
   const CreationChallengeEngine();
 
   List<CreationChallenge> get dailyPool => creationChallengePool
-      .where((item) => !item.isBonus && item.challengeType != CreationChallengeType.reflect)
+      .where(
+        (item) =>
+            !item.isBonus &&
+            item.challengeType != CreationChallengeType.reflect,
+      )
       .toList(growable: false);
 
   List<CreationChallenge> get bonusPool => creationChallengePool
@@ -63,7 +73,11 @@ class CreationChallengeEngine {
       .toList(growable: false);
 
   List<CreationChallenge> get weeklyPool => creationChallengePool
-      .where((item) => item.challengeType == CreationChallengeType.reflect && item.difficulty == CreationChallengeDifficulty.deeper)
+      .where(
+        (item) =>
+            item.challengeType == CreationChallengeType.reflect &&
+            item.difficulty == CreationChallengeDifficulty.deeper,
+      )
       .toList(growable: false);
 
   CreationChallengeAssignment assignFor({
@@ -71,17 +85,27 @@ class CreationChallengeEngine {
     required DateTime now,
     required List<ChallengeHistoryEntry> history,
   }) {
-    final startAt = slot == ChallengeSlot.weekly ? _startOfWeek(now) : DateTime(now.year, now.month, now.day);
+    final startAt = slot == ChallengeSlot.weekly
+        ? _startOfWeek(now)
+        : DateTime(now.year, now.month, now.day);
     final endAt = slot == ChallengeSlot.weekly
         ? startAt.add(const Duration(days: 7))
         : startAt.add(const Duration(days: 1));
-    final previous = history.where((entry) => entry.completed || entry.skipped).take(8).toList(growable: false);
+    final previous = history
+        .where((entry) => entry.completed || entry.skipped)
+        .take(8)
+        .toList(growable: false);
     final pool = switch (slot) {
       ChallengeSlot.daily => dailyPool,
       ChallengeSlot.bonus => bonusPool,
       ChallengeSlot.weekly => weeklyPool,
     };
-    final selected = _pickChallenge(pool, slot: slot, anchor: startAt, recentHistory: previous);
+    final selected = _pickChallenge(
+      pool,
+      slot: slot,
+      anchor: startAt,
+      recentHistory: previous,
+    );
     return CreationChallengeAssignment(
       slot: slot,
       challengeId: selected.id,
@@ -96,21 +120,27 @@ class CreationChallengeEngine {
     required DateTime anchor,
     required List<ChallengeHistoryEntry> recentHistory,
   }) {
-    final recentChallengeIds = recentHistory.map((item) => item.challengeId).toSet();
+    final recentChallengeIds = recentHistory
+        .map((item) => item.challengeId)
+        .toSet();
     final recentCategories = recentHistory
         .map((item) => item.categoryId)
         .whereType<CreationCategoryId>()
         .take(3)
         .toSet();
-    final filtered = pool.where((item) {
-      if (recentChallengeIds.contains(item.id)) return false;
-      if (item.targetCategoryId != null && recentCategories.contains(item.targetCategoryId)) {
-        return false;
-      }
-      return true;
-    }).toList(growable: false);
+    final filtered = pool
+        .where((item) {
+          if (recentChallengeIds.contains(item.id)) return false;
+          if (item.targetCategoryId != null &&
+              recentCategories.contains(item.targetCategoryId)) {
+            return false;
+          }
+          return true;
+        })
+        .toList(growable: false);
     final candidates = filtered.isEmpty ? pool : filtered;
-    final seed = anchor.year * 10000 + anchor.month * 100 + anchor.day + slot.index * 97;
+    final seed =
+        anchor.year * 10000 + anchor.month * 100 + anchor.day + slot.index * 97;
     return candidates[seed % candidates.length];
   }
 
@@ -138,12 +168,19 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
 
   void _ensureAssignments([DateTime? now]) {
     final effectiveNow = now ?? DateTime.now();
-    final nextAssignments = Map<ChallengeSlot, CreationChallengeAssignment>.from(state.assignments);
+    final nextAssignments =
+        Map<ChallengeSlot, CreationChallengeAssignment>.from(state.assignments);
     var changed = false;
     for (final slot in ChallengeSlot.values) {
       final existing = nextAssignments[slot];
-      if (existing == null || effectiveNow.isBefore(existing.startAt) || !effectiveNow.isBefore(existing.endAt)) {
-        nextAssignments[slot] = _engine.assignFor(slot: slot, now: effectiveNow, history: state.history);
+      if (existing == null ||
+          effectiveNow.isBefore(existing.startAt) ||
+          !effectiveNow.isBefore(existing.endAt)) {
+        nextAssignments[slot] = _engine.assignFor(
+          slot: slot,
+          now: effectiveNow,
+          history: state.history,
+        );
         changed = true;
       }
     }
@@ -153,30 +190,40 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
     }
   }
 
-  List<CreationChallengeSummary> currentSummaries(CreationChallengeState state) {
-    return ChallengeSlot.values.map((slot) {
-      final assignment = this.state.assignments[slot]!;
-      final challenge = creationChallengePool.firstWhere((item) => item.id == assignment.challengeId);
-      final completion = this.state.completions.where((item) => item.challengeId == challenge.id).firstOrNull;
-      final status = completion != null
-          ? CreationChallengeStatus.completed
-          : DateTime.now().isAfter(assignment.endAt)
+  List<CreationChallengeSummary> currentSummaries(
+    CreationChallengeState state,
+  ) {
+    return ChallengeSlot.values
+        .map((slot) {
+          final assignment = this.state.assignments[slot]!;
+          final challenge = creationChallengePool.firstWhere(
+            (item) => item.id == assignment.challengeId,
+          );
+          final completion = this.state.completions
+              .where((item) => item.challengeId == challenge.id)
+              .firstOrNull;
+          final status = completion != null
+              ? CreationChallengeStatus.completed
+              : DateTime.now().isAfter(assignment.endAt)
               ? CreationChallengeStatus.expired
               : CreationChallengeStatus.available;
-      return CreationChallengeSummary(
-        slot: slot,
-        challenge: challenge,
-        assignment: assignment,
-        status: status,
-        completion: completion,
-      );
-    }).toList(growable: false);
+          return CreationChallengeSummary(
+            slot: slot,
+            challenge: challenge,
+            assignment: assignment,
+            status: status,
+            completion: completion,
+          );
+        })
+        .toList(growable: false);
   }
 
   int currentDailyStreak(CreationChallengeState state) {
     final completionsByDay = <String>{};
     for (final completion in state.completions) {
-      final summary = creationChallengePool.where((item) => item.id == completion.challengeId).firstOrNull;
+      final summary = creationChallengePool
+          .where((item) => item.id == completion.challengeId)
+          .firstOrNull;
       if (summary == null || summary.isBonus) continue;
       completionsByDay.add(LocalStore.todayKey(completion.completedAt));
     }
@@ -207,7 +254,10 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
   }
 
   Future<void> startChallenge(String challengeId) async {
-    AppTelemetry.logEvent('creation_challenge_started', metadata: <String, Object?>{'challengeId': challengeId});
+    AppTelemetry.logEvent(
+      'creation_challenge_started',
+      metadata: <String, Object?>{'challengeId': challengeId},
+    );
   }
 
   Future<bool> processEvidence(CreationChallengeEvidence evidence) async {
@@ -224,14 +274,20 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
 
   Future<void> completeManually(String challengeId, {String? notes}) async {
     _ensureAssignments();
-    final summary = currentSummaries(state).where((item) => item.challenge.id == challengeId).firstOrNull;
+    final summary = currentSummaries(
+      state,
+    ).where((item) => item.challenge.id == challengeId).firstOrNull;
     if (summary == null || summary.isCompleted) return;
-    if (summary.challenge.completionRule != CreationChallengeRuleType.manualConfirm) return;
+    if (summary.challenge.completionRule !=
+        CreationChallengeRuleType.manualConfirm)
+      return;
     await _completeChallenge(
       summary,
       evidence: CreationChallengeEvidence(
         ruleType: CreationChallengeRuleType.manualConfirm,
-        source: summary.challenge.targetExplorerMode ?? CreationExplorerMode.creationExplorer,
+        source:
+            summary.challenge.targetExplorerMode ??
+            CreationExplorerMode.creationExplorer,
         occurredAt: DateTime.now(),
         categoryId: summary.challenge.targetCategoryId,
         notes: notes,
@@ -243,7 +299,9 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
     _ensureAssignments();
     final assignment = state.assignments[slot];
     if (assignment == null) return;
-    final challenge = creationChallengePool.firstWhere((item) => item.id == assignment.challengeId);
+    final challenge = creationChallengePool.firstWhere(
+      (item) => item.id == assignment.challengeId,
+    );
     final history = <ChallengeHistoryEntry>[
       ChallengeHistoryEntry(
         id: 'skip_${assignment.challengeId}_${DateTime.now().millisecondsSinceEpoch}',
@@ -251,20 +309,34 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
         challengeId: assignment.challengeId,
         completed: false,
         skipped: true,
-        explorerSource: challenge.targetExplorerMode ?? CreationExplorerMode.creationExplorer,
+        explorerSource:
+            challenge.targetExplorerMode ??
+            CreationExplorerMode.creationExplorer,
         categoryId: challenge.targetCategoryId,
       ),
       ...state.history,
     ].take(180).toList(growable: false);
     state = state.copyWith(history: history);
     _persist();
-    AppTelemetry.logEvent('creation_challenge_skipped', metadata: <String, Object?>{'challengeId': challenge.id, 'slot': slot.name});
+    AppTelemetry.logEvent(
+      'creation_challenge_skipped',
+      metadata: <String, Object?>{
+        'challengeId': challenge.id,
+        'slot': slot.name,
+      },
+    );
     _ensureAssignments(DateTime.now().add(const Duration(days: 1)));
   }
 
-  bool _matches(CreationChallenge challenge, CreationChallengeEvidence evidence) {
-    if (challenge.targetExplorerMode != null && challenge.targetExplorerMode != evidence.source) {
-      if (!(challenge.completionRule == CreationChallengeRuleType.saveReflection && evidence.ruleType == CreationChallengeRuleType.saveReflection)) {
+  bool _matches(
+    CreationChallenge challenge,
+    CreationChallengeEvidence evidence,
+  ) {
+    if (challenge.targetExplorerMode != null &&
+        challenge.targetExplorerMode != evidence.source) {
+      if (!(challenge.completionRule ==
+              CreationChallengeRuleType.saveReflection &&
+          evidence.ruleType == CreationChallengeRuleType.saveReflection)) {
         return false;
       }
     }
@@ -272,15 +344,21 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
       case CreationChallengeRuleType.openExplorer:
         return evidence.ruleType == CreationChallengeRuleType.openExplorer;
       case CreationChallengeRuleType.detectCategory:
-        return evidence.ruleType == CreationChallengeRuleType.detectCategory && challenge.targetCategoryId == evidence.categoryId;
+        return evidence.ruleType == CreationChallengeRuleType.detectCategory &&
+            challenge.targetCategoryId == evidence.categoryId;
       case CreationChallengeRuleType.saveObservation:
-        if (evidence.ruleType != CreationChallengeRuleType.saveObservation) return false;
-        return challenge.targetCategoryId == null || challenge.targetCategoryId == evidence.categoryId;
+        if (evidence.ruleType != CreationChallengeRuleType.saveObservation)
+          return false;
+        return challenge.targetCategoryId == null ||
+            challenge.targetCategoryId == evidence.categoryId;
       case CreationChallengeRuleType.saveReflection:
-        if (evidence.ruleType != CreationChallengeRuleType.saveReflection) return false;
-        return challenge.targetCategoryId == null || challenge.targetCategoryId == evidence.categoryId;
+        if (evidence.ruleType != CreationChallengeRuleType.saveReflection)
+          return false;
+        return challenge.targetCategoryId == null ||
+            challenge.targetCategoryId == evidence.categoryId;
       case CreationChallengeRuleType.checkSkyEvent:
-        return evidence.ruleType == CreationChallengeRuleType.checkSkyEvent || evidence.ruleType == CreationChallengeRuleType.openExplorer;
+        return evidence.ruleType == CreationChallengeRuleType.checkSkyEvent ||
+            evidence.ruleType == CreationChallengeRuleType.openExplorer;
       case CreationChallengeRuleType.manualConfirm:
         return evidence.ruleType == CreationChallengeRuleType.manualConfirm;
     }
@@ -299,9 +377,10 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
       notes: evidence.notes,
       awardedDrops: summary.challenge.rewardDrops,
     );
-    final updatedCompletions = <ChallengeCompletion>[completion, ...state.completions]
-        .take(240)
-        .toList(growable: false);
+    final updatedCompletions = <ChallengeCompletion>[
+      completion,
+      ...state.completions,
+    ].take(240).toList(growable: false);
     final updatedHistory = <ChallengeHistoryEntry>[
       ChallengeHistoryEntry(
         id: 'history_${summary.challenge.id}_${DateTime.now().millisecondsSinceEpoch}',
@@ -314,7 +393,10 @@ class CreationChallengeService extends StateNotifier<CreationChallengeState> {
       ),
       ...state.history,
     ].take(180).toList(growable: false);
-    state = state.copyWith(completions: updatedCompletions, history: updatedHistory);
+    state = state.copyWith(
+      completions: updatedCompletions,
+      history: updatedHistory,
+    );
     _persist();
     _oceanDrops.awardDrop(
       actionType: oceanActionCreationChallengeCompleted,

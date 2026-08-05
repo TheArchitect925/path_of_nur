@@ -55,10 +55,8 @@ void main() {
           builder: (context) => Scaffold(
             body: Center(
               child: FilledButton(
-                onPressed: () => AppTransientFeedback.showWarning(
-                  context,
-                  'Review needed',
-                ),
+                onPressed: () =>
+                    AppTransientFeedback.showWarning(context, 'Review needed'),
                 child: const Text('Warn'),
               ),
             ),

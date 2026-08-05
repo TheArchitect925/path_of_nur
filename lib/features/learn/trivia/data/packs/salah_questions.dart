@@ -54,7 +54,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_003',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which prayer begins after the sun passes its highest point in the sky?',
+    prompt:
+        'Which prayer begins after the sun passes its highest point in the sky?',
     options: const [
       ('fajr', 'Fajr'),
       ('dhuhr', 'Dhuhr'),
@@ -81,8 +82,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('fajr', 'Fajr'),
     ],
     correctOptionId: 'maghrib',
-    explanation:
-        'Maghrib begins immediately after the sun sets.',
+    explanation: 'Maghrib begins immediately after the sun sets.',
     tags: const ['salah', 'prayer_time', 'maghrib', 'beginner'],
     beginnerFriendly: true,
     featured: true,
@@ -101,8 +101,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('asr', 'Asr'),
     ],
     correctOptionId: 'isha',
-    explanation:
-        'Isha is the night prayer and follows Maghrib.',
+    explanation: 'Isha is the night prayer and follows Maghrib.',
     tags: const ['salah', 'prayer_time', 'isha', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -114,8 +113,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     difficulty: TriviaDifficulty.easy,
     prompt: 'Fajr is prayed before sunrise.',
     correct: true,
-    explanation:
-        'Fajr enters before sunrise and ends when the sun rises.',
+    explanation: 'Fajr enters before sunrise and ends when the sun rises.',
     tags: const ['salah', 'prayer_time', 'fajr', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -168,8 +166,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('duha', 'Duha'),
     ],
     correctOptionId: 'adhan',
-    explanation:
-        'The adhan is the call that announces the time for prayer.',
+    explanation: 'The adhan is the call that announces the time for prayer.',
     tags: const ['salah', 'adhan', 'beginner'],
     beginnerFriendly: true,
     featured: true,
@@ -200,15 +197,9 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
     prompt: 'How many obligatory rak‘ah are in Fajr?',
-    options: const [
-      ('two', '2'),
-      ('three', '3'),
-      ('four', '4'),
-      ('five', '5'),
-    ],
+    options: const [('two', '2'), ('three', '3'), ('four', '4'), ('five', '5')],
     correctOptionId: 'two',
-    explanation:
-        'Fajr has two obligatory rak‘ah.',
+    explanation: 'Fajr has two obligatory rak‘ah.',
     tags: const ['salah', 'rakah', 'fajr', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -219,15 +210,9 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
     prompt: 'How many obligatory rak‘ah are in Maghrib?',
-    options: const [
-      ('two', '2'),
-      ('three', '3'),
-      ('four', '4'),
-      ('five', '5'),
-    ],
+    options: const [('two', '2'), ('three', '3'), ('four', '4'), ('five', '5')],
     correctOptionId: 'three',
-    explanation:
-        'Maghrib has three obligatory rak‘ah.',
+    explanation: 'Maghrib has three obligatory rak‘ah.',
     tags: const ['salah', 'rakah', 'maghrib', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -245,8 +230,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('maghrib_only', 'Maghrib only'),
     ],
     correctOptionId: 'dhuhr_asr_isha',
-    explanation:
-        'Dhuhr, Asr, and Isha each have four obligatory rak‘ah.',
+    explanation: 'Dhuhr, Asr, and Isha each have four obligatory rak‘ah.',
     tags: const ['salah', 'rakah', 'dhuhr', 'asr', 'isha', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -290,8 +274,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('khutbah', 'Khutbah'),
     ],
     correctOptionId: 'taslim',
-    explanation:
-        'The taslim ends the prayer with greetings of peace.',
+    explanation: 'The taslim ends the prayer with greetings of peace.',
     tags: const ['salah', 'taslim', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -309,8 +292,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('qiyam', 'Qiyam'),
     ],
     correctOptionId: 'tashahhud',
-    explanation:
-        'The tashahhud is the sitting testimony recited in prayer.',
+    explanation: 'The tashahhud is the sitting testimony recited in prayer.',
     tags: const ['salah', 'tashahhud', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -389,7 +371,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_022',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'What is the shorter call immediately before congregational prayer begins called?',
+    prompt:
+        'What is the shorter call immediately before congregational prayer begins called?',
     options: const [
       ('iqamah', 'Iqamah'),
       ('adhan', 'Adhan'),
@@ -444,7 +427,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_025',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which voluntary prayer is usually associated with the night after sleeping?',
+    prompt:
+        'Which voluntary prayer is usually associated with the night after sleeping?',
     options: const [
       ('tahajjud', 'Tahajjud'),
       ('duha', 'Duha'),
@@ -463,7 +447,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_026',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which voluntary prayer is often prayed after Isha and ends the night prayers on an odd number?',
+    prompt:
+        'Which voluntary prayer is often prayed after Isha and ends the night prayers on an odd number?',
     options: const [
       ('witr', 'Witr'),
       ('duha', 'Duha'),
@@ -483,7 +468,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_027',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which optional prayer is often prayed in the forenoon after sunrise?',
+    prompt:
+        'Which optional prayer is often prayed in the forenoon after sunrise?',
     options: const [
       ('duha', 'Duha'),
       ('tahajjud', 'Tahajjud'),
@@ -502,7 +488,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_028',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Rawatib are regular voluntary prayers connected to the obligatory prayers.',
+    prompt:
+        'Rawatib are regular voluntary prayers connected to the obligatory prayers.',
     correct: true,
     explanation:
         'Rawatib are established Sunnah prayers associated with the daily obligatory prayers.',
@@ -515,7 +502,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_029',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'What should a worshipper usually do after hearing the adhan and preparing for prayer?',
+    prompt:
+        'What should a worshipper usually do after hearing the adhan and preparing for prayer?',
     options: const [
       ('respond', 'Prepare for prayer and respond respectfully'),
       ('ignore', 'Ignore it completely'),
@@ -534,7 +522,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_030',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Facing the qiblah is one of the basic conditions of prayer when able.',
+    prompt:
+        'Facing the qiblah is one of the basic conditions of prayer when able.',
     correct: true,
     explanation:
         'Facing the qiblah is a basic condition of salah when a person is able to do so.',
@@ -547,7 +536,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_031',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which body position comes after standing recitation in a normal rak‘ah?',
+    prompt:
+        'Which body position comes after standing recitation in a normal rak‘ah?',
     options: const [
       ('ruku', 'Ruku'),
       ('taslim', 'Taslim'),
@@ -574,8 +564,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('wudu', 'Wudu'),
     ],
     correctOptionId: 'standing',
-    explanation:
-        'After ruku, the worshipper rises before moving into sujud.',
+    explanation: 'After ruku, the worshipper rises before moving into sujud.',
     tags: const ['salah', 'ruku', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -587,8 +576,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     difficulty: TriviaDifficulty.easy,
     prompt: 'Sujud occurs after rising from ruku in a rak‘ah.',
     correct: true,
-    explanation:
-        'After rising from ruku, the worshipper moves into sujud.',
+    explanation: 'After rising from ruku, the worshipper moves into sujud.',
     tags: const ['salah', 'sujud', 'structure', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -606,8 +594,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('duha', 'Duha'),
     ],
     correctOptionId: 'khutbah',
-    explanation:
-        'The sermon before the Friday prayer is called the khutbah.',
+    explanation: 'The sermon before the Friday prayer is called the khutbah.',
     tags: const ['salah', 'jummah', 'khutbah', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -630,7 +617,8 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     id: 'salah_easy_036',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'What prayer is offered when entering the mosque before sitting, if time allows?',
+    prompt:
+        'What prayer is offered when entering the mosque before sitting, if time allows?',
     options: const [
       ('tahiyyat', 'Tahiyyat al-masjid'),
       ('witr', 'Witr'),
@@ -651,8 +639,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     difficulty: TriviaDifficulty.easy,
     prompt: 'Jumu‘ah is connected to Friday.',
     correct: true,
-    explanation:
-        'Jumu‘ah is the special Friday congregational prayer.',
+    explanation: 'Jumu‘ah is the special Friday congregational prayer.',
     tags: const ['salah', 'jummah', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -670,8 +657,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('isha', 'Isha'),
     ],
     correctOptionId: 'asr',
-    explanation:
-        'Asr is the afternoon prayer.',
+    explanation: 'Asr is the afternoon prayer.',
     tags: const ['salah', 'asr', 'prayer_time', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -757,8 +743,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
       ('fajr', 'Fajr'),
     ],
     correctOptionId: 'isha',
-    explanation:
-        'Isha is the night prayer and comes after Maghrib.',
+    explanation: 'Isha is the night prayer and comes after Maghrib.',
     tags: const ['salah', 'isha', 'prayer_time', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -825,8 +810,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
       ('astaghfirullah', 'Astaghfirullah'),
     ],
     correctOptionId: 'hayya_ala_salah',
-    explanation:
-        'Hayya \'ala-s salah means “come to prayer.”',
+    explanation: 'Hayya \'ala-s salah means “come to prayer.”',
     tags: const ['salah', 'adhan', 'intermediate'],
     packId: _pack,
     sortOrder: 101,
@@ -843,8 +827,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
       ('ashhadu', 'Ashhadu anna Muhammadan Rasul Allah'),
     ],
     correctOptionId: 'hayya_ala_falah',
-    explanation:
-        'Hayya \'ala-l falah means “come to success.”',
+    explanation: 'Hayya \'ala-l falah means “come to success.”',
     tags: const ['salah', 'adhan', 'intermediate'],
     packId: _pack,
     sortOrder: 102,
@@ -865,7 +848,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_004',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'What should a worshipper in congregation generally do if the imam bows?',
+    prompt:
+        'What should a worshipper in congregation generally do if the imam bows?',
     options: const [
       ('follow', 'Follow the imam without racing ahead'),
       ('stay', 'Stay standing for as long as desired'),
@@ -883,7 +867,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_005',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which of these is a regular Sunnah prayer connected to the obligatory prayers?',
+    prompt:
+        'Which of these is a regular Sunnah prayer connected to the obligatory prayers?',
     options: const [
       ('rawatib', 'Rawatib'),
       ('eid', 'Eid prayer'),
@@ -980,7 +965,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_011',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which voluntary prayer is especially associated with the later part of the night?',
+    prompt:
+        'Which voluntary prayer is especially associated with the later part of the night?',
     options: const [
       ('tahajjud', 'Tahajjud'),
       ('duha', 'Duha'),
@@ -1028,7 +1014,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_014',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'What is one broad purpose of the regular Sunnah prayers around the obligatory prayers?',
+    prompt:
+        'What is one broad purpose of the regular Sunnah prayers around the obligatory prayers?',
     options: const [
       ('support', 'They support and beautify one’s daily worship'),
       ('replace', 'They replace the obligatory prayers'),
@@ -1047,7 +1034,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_015',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Listening carefully during the Jumu‘ah khutbah is part of the Friday prayer etiquette.',
+    prompt:
+        'Listening carefully during the Jumu‘ah khutbah is part of the Friday prayer etiquette.',
     correct: true,
     explanation:
         'The khutbah is not casual background speech. It is part of the seriousness and reminder of Jumu‘ah.',
@@ -1059,7 +1047,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_016',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'If a person enters the mosque, what broad etiquette is often taught before sitting?',
+    prompt:
+        'If a person enters the mosque, what broad etiquette is often taught before sitting?',
     options: const [
       ('pray', 'Pray Tahiyyat al-masjid if appropriate'),
       ('speak', 'Start a loud conversation'),
@@ -1077,7 +1066,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_017',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'One broad way to strengthen khushu is to understand what one is reciting and doing.',
+    prompt:
+        'One broad way to strengthen khushu is to understand what one is reciting and doing.',
     correct: true,
     explanation:
         'Understanding the recitation and meaning of the prayer can help deepen focus and humility.',
@@ -1091,7 +1081,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_018',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which daily prayer is commonly associated with the start of the night?',
+    prompt:
+        'Which daily prayer is commonly associated with the start of the night?',
     options: const [
       ('isha', 'Isha'),
       ('fajr', 'Fajr'),
@@ -1099,8 +1090,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
       ('asr', 'Asr'),
     ],
     correctOptionId: 'isha',
-    explanation:
-        'Isha is the prayer of the night after Maghrib.',
+    explanation: 'Isha is the prayer of the night after Maghrib.',
     tags: const ['salah', 'isha', 'prayer_time', 'intermediate'],
     packId: _pack,
     sortOrder: 118,
@@ -1109,7 +1099,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_019',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'The worshipper should deliberately race ahead of the imam to show enthusiasm.',
+    prompt:
+        'The worshipper should deliberately race ahead of the imam to show enthusiasm.',
     correct: false,
     explanation:
         'In congregation, the imam is followed, and deliberate rushing ahead goes against proper order.',
@@ -1123,7 +1114,10 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     difficulty: TriviaDifficulty.medium,
     prompt: 'What is one broad benefit of Tahajjud in a believer’s life?',
     options: const [
-      ('private', 'It builds a private and sincere connection with Allah at night'),
+      (
+        'private',
+        'It builds a private and sincere connection with Allah at night',
+      ),
       ('replace', 'It replaces Fajr'),
       ('shorten', 'It shortens the five daily prayers'),
       ('publicity', 'It is mainly for public attention'),
@@ -1141,7 +1135,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_021',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which of these is most closely tied to ending the night prayer sequence on an odd number?',
+    prompt:
+        'Which of these is most closely tied to ending the night prayer sequence on an odd number?',
     options: const [
       ('witr', 'Witr'),
       ('duha', 'Duha'),
@@ -1209,7 +1204,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_025',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Forgetting a part of prayer is one of the reasons sujood as-sahw may be discussed in basic fiqh.',
+    prompt:
+        'Forgetting a part of prayer is one of the reasons sujood as-sahw may be discussed in basic fiqh.',
     correct: true,
     explanation:
         'At a broad level, sujood as-sahw is tied to forgetfulness or certain mistakes in prayer.',
@@ -1240,7 +1236,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_027',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Stillness, proper sequence, and presence of heart all help a prayer feel more complete.',
+    prompt:
+        'Stillness, proper sequence, and presence of heart all help a prayer feel more complete.',
     correct: true,
     explanation:
         'Prayer is strengthened by calm movement, proper order, and inner attentiveness.',
@@ -1253,7 +1250,8 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_028',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which of these is best understood as a voluntary prayer linked to daytime, not night?',
+    prompt:
+        'Which of these is best understood as a voluntary prayer linked to daytime, not night?',
     options: const [
       ('duha', 'Duha'),
       ('tahajjud', 'Tahajjud'),
@@ -1285,9 +1283,13 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     id: 'salah_med_030',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'What should broadly happen if a person realizes they forgot part of the prayer structure?',
+    prompt:
+        'What should broadly happen if a person realizes they forgot part of the prayer structure?',
     options: const [
-      ('learn_remedy', 'Learn the proper remedy and correct it according to sound prayer knowledge'),
+      (
+        'learn_remedy',
+        'Learn the proper remedy and correct it according to sound prayer knowledge',
+      ),
       ('ignore', 'Ignore it completely forever'),
       ('quit_all', 'Stop praying entirely'),
       ('debate', 'Argue loudly during prayer'),
@@ -1307,11 +1309,18 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_001',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement best describes the relationship between obligatory and voluntary prayers?',
+    prompt:
+        'Which statement best describes the relationship between obligatory and voluntary prayers?',
     options: const [
-      ('support', 'Voluntary prayers support and beautify worship but do not replace the obligatory prayers'),
+      (
+        'support',
+        'Voluntary prayers support and beautify worship but do not replace the obligatory prayers',
+      ),
       ('same', 'They are always exactly the same in status'),
-      ('reverse', 'Voluntary prayers are more binding than all obligatory prayers'),
+      (
+        'reverse',
+        'Voluntary prayers are more binding than all obligatory prayers',
+      ),
       ('cancel', 'Voluntary prayers cancel obligatory prayers'),
     ],
     correctOptionId: 'support',
@@ -1325,7 +1334,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_002',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'A person strengthens prayer only by increasing quantity, never by improving stillness or understanding.',
+    prompt:
+        'A person strengthens prayer only by increasing quantity, never by improving stillness or understanding.',
     correct: false,
     explanation:
         'Prayer is strengthened by quality as well as quantity: understanding, stillness, humility, and sincerity matter greatly.',
@@ -1340,7 +1350,10 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     difficulty: TriviaDifficulty.hard,
     prompt: 'Which statement best fits the role of khushu in salah?',
     options: const [
-      ('inner_outer', 'It joins inner humility with outward calm and reverence'),
+      (
+        'inner_outer',
+        'It joins inner humility with outward calm and reverence',
+      ),
       ('speed_only', 'It means finishing quickly'),
       ('voice_only', 'It depends only on how loudly one recites'),
       ('place_only', 'It depends only on praying in a famous mosque'),
@@ -1358,10 +1371,17 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_004',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement is the safest broad description of sujood as-sahw in this trivia pack?',
+    prompt:
+        'Which statement is the safest broad description of sujood as-sahw in this trivia pack?',
     options: const [
-      ('broad', 'It is prostration related to forgetfulness in prayer, while detailed rules belong to fiqh study'),
-      ('simple', 'It is always exactly the same in every possible case without detail'),
+      (
+        'broad',
+        'It is prostration related to forgetfulness in prayer, while detailed rules belong to fiqh study',
+      ),
+      (
+        'simple',
+        'It is always exactly the same in every possible case without detail',
+      ),
       ('optional', 'It has nothing to do with mistakes'),
       ('adhan', 'It is part of the adhan'),
     ],
@@ -1407,7 +1427,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_007',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which prayer is most directly tied to the Qur’anic call, “When the call is proclaimed for prayer on Friday, hasten to the remembrance of Allah”?',
+    prompt:
+        'Which prayer is most directly tied to the Qur’anic call, “When the call is proclaimed for prayer on Friday, hasten to the remembrance of Allah”?',
     options: const [
       ('jummah', 'Jumu‘ah'),
       ('fajr', 'Fajr'),
@@ -1444,7 +1465,10 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     options: const [
       ('honor', 'It honors the mosque space with prayer before sitting'),
       ('replace_jummah', 'It replaces Friday prayer'),
-      ('mandatory_all', 'It is identical in obligation to the five daily prayers'),
+      (
+        'mandatory_all',
+        'It is identical in obligation to the five daily prayers',
+      ),
       ('night_only', 'It is only for the last part of the night'),
     ],
     correctOptionId: 'honor',
@@ -1459,7 +1483,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_010',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which of these best describes the relationship between outward form and inward meaning in prayer?',
+    prompt:
+        'Which of these best describes the relationship between outward form and inward meaning in prayer?',
     options: const [
       ('together', 'Both outward form and inward devotion matter together'),
       ('outward_only', 'Only physical movements matter'),
@@ -1479,7 +1504,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_011',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'The mosque etiquette around prayer includes respect, calmness, and avoiding needless disturbance.',
+    prompt:
+        'The mosque etiquette around prayer includes respect, calmness, and avoiding needless disturbance.',
     correct: true,
     explanation:
         'Mosque etiquette supports worship, concentration, and respect for others who are praying and remembering Allah.',
@@ -1492,7 +1518,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_012',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which phrase best captures one broad purpose of voluntary night prayer?',
+    prompt:
+        'Which phrase best captures one broad purpose of voluntary night prayer?',
     options: const [
       ('sincerity', 'A private act of sincerity, need, and closeness to Allah'),
       ('publicity', 'A public performance for attention'),
@@ -1512,7 +1539,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_013',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'A person should treat every prayer the same outwardly even if they are careless inwardly, because the heart is irrelevant.',
+    prompt:
+        'A person should treat every prayer the same outwardly even if they are careless inwardly, because the heart is irrelevant.',
     correct: false,
     explanation:
         'Prayer is not meant to be empty outward motion. The heart and presence before Allah matter deeply.',
@@ -1525,9 +1553,13 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_014',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which statement best fits the educational value of learning rak‘ah counts?',
+    prompt:
+        'Which statement best fits the educational value of learning rak‘ah counts?',
     options: const [
-      ('preserve', 'It helps preserve correct daily practice and confidence in worship'),
+      (
+        'preserve',
+        'It helps preserve correct daily practice and confidence in worship',
+      ),
       ('boast', 'It mainly helps a person show off knowledge'),
       ('ignore', 'It has no practical value'),
       ('replace_focus', 'It replaces the need for khushu'),
@@ -1543,9 +1575,13 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_015',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'Which broad statement is safest about prayer mistakes in a beginner learning context?',
+    prompt:
+        'Which broad statement is safest about prayer mistakes in a beginner learning context?',
     options: const [
-      ('learn', 'Learn the basic remedies calmly and continue improving without despair'),
+      (
+        'learn',
+        'Learn the basic remedies calmly and continue improving without despair',
+      ),
       ('panic', 'Any mistake makes prayer knowledge hopeless'),
       ('ignore', 'All mistakes should always be ignored'),
       ('quit', 'Mistakes mean a person should stop praying until perfect'),
@@ -1562,7 +1598,8 @@ final List<TriviaQuestion> _advancedSalahQuestions = [
     id: 'salah_hard_016',
     categoryId: 'salah',
     difficulty: TriviaDifficulty.hard,
-    prompt: 'One broad lesson of standing in prayer is readiness to listen, recite, and present oneself before Allah.',
+    prompt:
+        'One broad lesson of standing in prayer is readiness to listen, recite, and present oneself before Allah.',
     correct: true,
     explanation:
         'The standing posture in prayer reflects attentiveness, dignity, and readiness before Allah.',

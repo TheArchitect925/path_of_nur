@@ -33,7 +33,9 @@ void main() {
 
     final restored = BedtimeStoryLibraryProgress.fromJson(state.toJson());
     expect(
-      restored.storyProgressById['story_prophet_adam_bedtime_v1']?.completionState,
+      restored
+          .storyProgressById['story_prophet_adam_bedtime_v1']
+          ?.completionState,
       BedtimeStoryCompletionState.inProgress,
     );
     expect(
@@ -42,7 +44,10 @@ void main() {
           ?.isCompleted,
       isTrue,
     );
-    expect(restored.recentStoryIds.first, 'story_prophet_muhammad_part1_bedtime_v1');
+    expect(
+      restored.recentStoryIds.first,
+      'story_prophet_muhammad_part1_bedtime_v1',
+    );
     expect(restored.completedSeriesProphetIds, contains('muhammad'));
   });
 }

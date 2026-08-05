@@ -28,7 +28,13 @@ void main() {
     expect(de.kidsArabicHomeTitle.trim(), isNotEmpty);
     expect(ar.kidsArabicHomeTitle, isNot(en.kidsArabicHomeTitle));
     expect(de.kidsArabicHomeTitle, isNot(en.kidsArabicHomeTitle));
-    expect(ar.kidsArabicPronunciationAction, isNot(en.kidsArabicPronunciationAction));
-    expect(de.kidsArabicPronunciationAction, isNot(en.kidsArabicPronunciationAction));
+    expect(
+      ar.kidsArabicPronunciationAction,
+      isNot(en.kidsArabicPronunciationAction),
+    );
+    expect(
+      de.kidsArabicPronunciationAction,
+      isNot(en.kidsArabicPronunciationAction),
+    );
   });
 }

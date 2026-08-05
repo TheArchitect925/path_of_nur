@@ -311,14 +311,17 @@ void main() {
     expect(module?.minimumPhase, TVOSPhaseId.phase14GamesRemoteInteractivity);
   });
 
-  test('profiles primary switcher module is staged with phase 19 ownership', () {
-    final module = tvosContentModuleBySectionKey('profiles.primarySwitcher');
-    expect(module, isNotNull);
-    expect(
-      module?.minimumPhase,
-      TVOSPhaseId.phase19ProfilesHouseholdContinuity,
-    );
-  });
+  test(
+    'profiles primary switcher module is staged with phase 19 ownership',
+    () {
+      final module = tvosContentModuleBySectionKey('profiles.primarySwitcher');
+      expect(module, isNotNull);
+      expect(
+        module?.minimumPhase,
+        TVOSPhaseId.phase19ProfilesHouseholdContinuity,
+      );
+    },
+  );
 
   test('favorites primary paths module is staged with phase 16 ownership', () {
     final module = tvosContentModuleBySectionKey('favorites.primaryPaths');

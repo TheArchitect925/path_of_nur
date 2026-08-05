@@ -157,7 +157,8 @@ class QuranAudioRepository {
       preferredSourceType: preferredSourceType,
       hasLocalSource: localSource != null,
     );
-    final primarySource = primarySourceType == QuranPlaybackSourceType.localDownload
+    final primarySource =
+        primarySourceType == QuranPlaybackSourceType.localDownload
         ? localSource!
         : remoteSource;
     final fallbackSourceType =

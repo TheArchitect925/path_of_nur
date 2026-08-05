@@ -41,7 +41,9 @@ final bedtimeStorySleepTimerProvider =
       return controller;
     });
 
-final bedtimeStoryCurrentQueueStoryProvider = Provider<BedtimeStorySeed?>((ref) {
+final bedtimeStoryCurrentQueueStoryProvider = Provider<BedtimeStorySeed?>((
+  ref,
+) {
   final queueState = ref.watch(bedtimeStoryQueueControllerProvider);
   final storyId = queueState.currentStoryId;
   if (storyId == null) {
@@ -59,17 +61,20 @@ final bedtimeStoryNextQueueStoryProvider = Provider<BedtimeStorySeed?>((ref) {
   return ref.watch(bedtimeStoryByIdProvider(nextId));
 });
 
-class BedtimeStoryQueueController extends StateNotifier<BedtimeStoryQueueState> {
+class BedtimeStoryQueueController
+    extends StateNotifier<BedtimeStoryQueueState> {
   BedtimeStoryQueueController(this._ref)
     : _store = _ref.read(localStoreProvider),
       _activeLearnerId = _ref.read(bedtimeActiveLearnerProvider).learnerId,
       super(
         BedtimeStoryQueueState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
-            bedtimeStoryQueueStorageKeyForLearner(
-              _ref.read(bedtimeActiveLearnerProvider).learnerId,
-            ),
-          ),
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(
+                bedtimeStoryQueueStorageKeyForLearner(
+                  _ref.read(bedtimeActiveLearnerProvider).learnerId,
+                ),
+              ),
         ),
       );
 
@@ -144,9 +149,9 @@ class BedtimeStoryQueueController extends StateNotifier<BedtimeStoryQueueState> 
     if (story == null) {
       return;
     }
-    final progress = _ref.read(bedtimeStoryProgressProvider.notifier).progressFor(
-      story.id,
-    );
+    final progress = _ref
+        .read(bedtimeStoryProgressProvider.notifier)
+        .progressFor(story.id);
     final startAt = progress.isCompleted && !restartCompleted
         ? Duration.zero
         : Duration(milliseconds: progress.currentPositionMs);
@@ -158,7 +163,9 @@ class BedtimeStoryQueueController extends StateNotifier<BedtimeStoryQueueState> 
 
   Future<void> togglePlayPause() async {
     final audio = _ref.read(bedtimeStoryAudioControllerProvider);
-    final audioController = _ref.read(bedtimeStoryAudioControllerProvider.notifier);
+    final audioController = _ref.read(
+      bedtimeStoryAudioControllerProvider.notifier,
+    );
     if (audio.isPlaying) {
       await audioController.pause();
       return;
@@ -227,7 +234,9 @@ class BedtimeStoryQueueController extends StateNotifier<BedtimeStoryQueueState> 
     }
     _activeLearnerId = learnerId;
     _handledCompletion = false;
-    await _ref.read(bedtimeStoryAudioControllerProvider.notifier).stopForLearnerChange();
+    await _ref
+        .read(bedtimeStoryAudioControllerProvider.notifier)
+        .stopForLearnerChange();
     state = BedtimeStoryQueueState.fromJson(
       _store.getJsonMap(bedtimeStoryQueueStorageKeyForLearner(learnerId)),
     );
@@ -253,7 +262,9 @@ class BedtimeStoryQueueController extends StateNotifier<BedtimeStoryQueueState> 
     if (next.currentStoryId != currentStoryId) {
       return;
     }
-    if (next.isCompleted && previous?.isCompleted != true && !_handledCompletion) {
+    if (next.isCompleted &&
+        previous?.isCompleted != true &&
+        !_handledCompletion) {
       _handledCompletion = true;
       final sleepTimer = _ref.read(bedtimeStorySleepTimerProvider);
       if (sleepTimer.mode == BedtimeStorySleepTimerMode.endOfStory) {

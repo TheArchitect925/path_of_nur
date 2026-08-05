@@ -49,87 +49,87 @@ void main() {
   });
 
   group('buildTVOSQuranParityPayload', () {
-    test('maps curated browse and active playback session from shared data', () {
-      final payload = buildTVOSQuranParityPayload(
-        continueReading: const QuranContinueReadingSummary(
-          surahNumber: 1,
-          surahName: 'Al-Fatihah',
-          ayahNumber: 5,
-          locationLabel: 'Al-Fatihah 1:5',
-        ),
-        dailyVerse: const TVOSDailyVerseParityPayload(
-          surahNumber: 2,
-          ayahNumber: 45,
-          arabic: 'وَاسْتَعِينُوا',
-          translation: 'Seek help through patience and prayer.',
-          transliteration: 'Wastaeenu',
-          locationLabel: 'Al-Baqarah 2:45',
-        ),
-        availableSurahs: const <QuranSurah>[
-          QuranSurah(
-            number: 1,
-            arabicName: 'الفاتحة',
-            transliteratedName: 'Al-Fatihah',
-            englishName: 'The Opening',
-            verseCount: 7,
-            revelationPlace: 'Makkah',
+    test(
+      'maps curated browse and active playback session from shared data',
+      () {
+        final payload = buildTVOSQuranParityPayload(
+          continueReading: const QuranContinueReadingSummary(
+            surahNumber: 1,
+            surahName: 'Al-Fatihah',
+            ayahNumber: 5,
+            locationLabel: 'Al-Fatihah 1:5',
           ),
-          QuranSurah(
-            number: 94,
-            arabicName: 'الشرح',
-            transliteratedName: 'Ash-Sharh',
-            englishName: 'The Expansion',
-            verseCount: 8,
-            revelationPlace: 'Makkah',
+          dailyVerse: const TVOSDailyVerseParityPayload(
+            surahNumber: 2,
+            ayahNumber: 45,
+            arabic: 'وَاسْتَعِينُوا',
+            translation: 'Seek help through patience and prayer.',
+            transliteration: 'Wastaeenu',
+            locationLabel: 'Al-Baqarah 2:45',
           ),
-          QuranSurah(
-            number: 112,
-            arabicName: 'الإخلاص',
-            transliteratedName: 'Al-Ikhlas',
-            englishName: 'Sincerity',
-            verseCount: 4,
-            revelationPlace: 'Makkah',
+          availableSurahs: const <QuranSurah>[
+            QuranSurah(
+              number: 1,
+              arabicName: 'الفاتحة',
+              transliteratedName: 'Al-Fatihah',
+              englishName: 'The Opening',
+              verseCount: 7,
+              revelationPlace: 'Makkah',
+            ),
+            QuranSurah(
+              number: 94,
+              arabicName: 'الشرح',
+              transliteratedName: 'Ash-Sharh',
+              englishName: 'The Expansion',
+              verseCount: 8,
+              revelationPlace: 'Makkah',
+            ),
+            QuranSurah(
+              number: 112,
+              arabicName: 'الإخلاص',
+              transliteratedName: 'Al-Ikhlas',
+              englishName: 'Sincerity',
+              verseCount: 4,
+              revelationPlace: 'Makkah',
+            ),
+            QuranSurah(
+              number: 113,
+              arabicName: 'الفلق',
+              transliteratedName: 'Al-Falaq',
+              englishName: 'Daybreak',
+              verseCount: 5,
+              revelationPlace: 'Makkah',
+            ),
+            QuranSurah(
+              number: 114,
+              arabicName: 'الناس',
+              transliteratedName: 'An-Nas',
+              englishName: 'Mankind',
+              verseCount: 6,
+              revelationPlace: 'Makkah',
+            ),
+          ],
+          recitationSession: const QuranRecitationSession(
+            surahNumber: 94,
+            ayahNumber: 6,
+            positionSeconds: 42,
+            updatedAtIso: '2026-03-25T00:00:00.000Z',
           ),
-          QuranSurah(
-            number: 113,
-            arabicName: 'الفلق',
-            transliteratedName: 'Al-Falaq',
-            englishName: 'Daybreak',
-            verseCount: 5,
-            revelationPlace: 'Makkah',
-          ),
-          QuranSurah(
-            number: 114,
-            arabicName: 'الناس',
-            transliteratedName: 'An-Nas',
-            englishName: 'Mankind',
-            verseCount: 6,
-            revelationPlace: 'Makkah',
-          ),
-        ],
-        recitationSession: const QuranRecitationSession(
-          surahNumber: 94,
-          ayahNumber: 6,
-          positionSeconds: 42,
-          updatedAtIso: '2026-03-25T00:00:00.000Z',
-        ),
-        audioEnabled: true,
-      );
+          audioEnabled: true,
+        );
 
-      expect(payload.routePath, '/quran');
-      expect(payload.playback.hasActiveSession, isTrue);
-      expect(payload.playback.resumeSurahNumber, 94);
-      expect(payload.playback.positionSeconds, 42);
-      expect(payload.browseSurahs, hasLength(5));
-      expect(
-        payload.mirroredSections,
-        contains(TVOSMirroredSectionId.quranPlayback),
-      );
-      expect(
-        (payload.toJson()['browseSurahs'] as List<Object?>).length,
-        5,
-      );
-    });
+        expect(payload.routePath, '/quran');
+        expect(payload.playback.hasActiveSession, isTrue);
+        expect(payload.playback.resumeSurahNumber, 94);
+        expect(payload.playback.positionSeconds, 42);
+        expect(payload.browseSurahs, hasLength(5));
+        expect(
+          payload.mirroredSections,
+          contains(TVOSMirroredSectionId.quranPlayback),
+        );
+        expect((payload.toJson()['browseSurahs'] as List<Object?>).length, 5);
+      },
+    );
 
     test('falls back to continue-reading when playback session is absent', () {
       final payload = buildTVOSQuranParityPayload(

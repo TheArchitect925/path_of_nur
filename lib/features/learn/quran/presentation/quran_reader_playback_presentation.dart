@@ -18,8 +18,7 @@ String? buildQuranReaderNowPlayingLabel({
   }
 
   final surahArabicName = surahMap[resolvedSurahNumber]?.arabicName as String?;
-  final surahLabel =
-      surahArabicName == null || surahArabicName.isEmpty
+  final surahLabel = surahArabicName == null || surahArabicName.isEmpty
       ? l10n.quranReaderNowPlayingFallbackSurahLabel(resolvedSurahNumber)
       : surahArabicName;
 
@@ -47,8 +46,7 @@ String buildQuranPlaybackStatusLabel({
         l10n.quranPlaybackFailureBufferingTimeout,
       QuranPlaybackFailureType.sessionRestoreFailed =>
         l10n.quranPlaybackFailureSessionRestore,
-      QuranPlaybackFailureType.unknown =>
-        l10n.quranPlaybackFailureUnknown,
+      QuranPlaybackFailureType.unknown => l10n.quranPlaybackFailureUnknown,
     };
   }
 

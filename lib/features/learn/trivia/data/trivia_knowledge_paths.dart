@@ -34,7 +34,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         learningText:
             'Allah sent prophets to teach tawhid, call people to worship Him, and guide them with wisdom and patience.',
         reference: 'Qur’an 16:36',
-        questionIds: ['prophets_easy_001', 'prophets_easy_003', 'prophets_easy_010'],
+        questionIds: [
+          'prophets_easy_001',
+          'prophets_easy_003',
+          'prophets_easy_010',
+        ],
         difficulty: TriviaDifficulty.easy,
       ),
       TriviaKnowledgeStage(
@@ -70,7 +74,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         learningText:
             'The stories of the earliest prophets establish the beginning of humanity’s test and the call to worship Allah alone.',
         reference: 'Qur’an 2:30-39',
-        questionIds: ['prophets_easy_001', 'prophets_easy_002', 'prophets_easy_004'],
+        questionIds: [
+          'prophets_easy_001',
+          'prophets_easy_002',
+          'prophets_easy_004',
+        ],
         difficulty: TriviaDifficulty.easy,
       ),
       TriviaKnowledgeStage(
@@ -78,7 +86,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Nuh, Hud, and Salih',
         learningText:
             'These prophets called their peoples back to tawhid and warned them against arrogance and rejection.',
-        questionIds: ['prophets_easy_002', 'prophets_easy_008', 'prophets_med_003'],
+        questionIds: [
+          'prophets_easy_002',
+          'prophets_easy_008',
+          'prophets_med_003',
+        ],
         difficulty: TriviaDifficulty.easy,
       ),
       TriviaKnowledgeStage(
@@ -86,7 +98,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Ibrahim and His Family',
         learningText:
             'Ibrahim, peace be upon him, and his family model surrender, trust, and devotion across generations.',
-        questionIds: ['prophets_easy_007', 'prophets_easy_020', 'prophets_med_024'],
+        questionIds: [
+          'prophets_easy_007',
+          'prophets_easy_020',
+          'prophets_med_024',
+        ],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -94,7 +110,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Musa and Harun',
         learningText:
             'The story of Musa and Harun shows da‘wah, courage before tyranny, and reliance on Allah in a time of great trial.',
-        questionIds: ['prophets_easy_014', 'prophets_easy_015', 'prophets_med_012'],
+        questionIds: [
+          'prophets_easy_014',
+          'prophets_easy_015',
+          'prophets_med_012',
+        ],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -102,7 +122,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Kings, Wisdom, and Trial',
         learningText:
             'Dawud, Sulayman, Ayyub, and Yunus each teach different forms of gratitude, patience, repentance, and justice.',
-        questionIds: ['prophets_easy_011', 'prophets_easy_008', 'prophets_med_030'],
+        questionIds: [
+          'prophets_easy_011',
+          'prophets_easy_008',
+          'prophets_med_030',
+        ],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -111,7 +135,11 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         learningText:
             'The chain of prophethood leads to Prophet Muhammad ﷺ, whose mission completed and confirmed the message.',
         reference: 'Qur’an 33:40',
-        questionIds: ['prophets_easy_009', 'prophets_easy_025', 'prophets_med_027'],
+        questionIds: [
+          'prophets_easy_009',
+          'prophets_easy_025',
+          'prophets_med_027',
+        ],
         difficulty: TriviaDifficulty.hard,
       ),
     ],

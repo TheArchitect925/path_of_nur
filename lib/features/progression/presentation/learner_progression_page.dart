@@ -128,7 +128,9 @@ class LearnerProgressionPage extends ConsumerWidget {
                         (milestone) => ListTile(
                           contentPadding: EdgeInsets.zero,
                           leading: const Icon(Icons.flag_rounded),
-                          title: Text(_localizedMilestoneTitle(l10n, milestone)),
+                          title: Text(
+                            _localizedMilestoneTitle(l10n, milestone),
+                          ),
                           subtitle: Text(
                             _localizedMilestoneDescription(l10n, milestone),
                           ),
@@ -158,13 +160,16 @@ class LearnerProgressionPage extends ConsumerWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(controller.iconForName(badge.definition.iconName)),
+                              Icon(
+                                controller.iconForName(
+                                  badge.definition.iconName,
+                                ),
+                              ),
                               const SizedBox(height: 8),
                               Text(
                                 _localizedBadgeTitle(l10n, badge),
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(fontWeight: FontWeight.w700),
                               ),
                               const SizedBox(height: 4),
                               Text(

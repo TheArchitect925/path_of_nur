@@ -71,443 +71,433 @@ class _QuranTeachingListenOnlyPageState
       title: l10n.batch9ListenOnlyTitle,
       subtitle: l10n.quranTeachingListenOnlySubtitle,
       children: [
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.batch9AudioPracticeTitle,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.batch9AudioPracticeTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(l10n.quranTeachingListenOnlySubtitle),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: selectedPack?.id,
+                isExpanded: true,
+                items: packs
+                    .map(
+                      (pack) => DropdownMenuItem<String>(
+                        value: pack.id,
+                        child: Text(pack.title),
+                      ),
+                    )
+                    .toList(growable: false),
+                onChanged: (value) {
+                  if (value == null) return;
+                  controller.selectPack(value);
+                },
+                decoration: InputDecoration(
+                  labelText: l10n.quranTeachingListenOnlyContentSetLabel,
+                ),
+              ),
+              if (selectedPack != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  selectedPack.description,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.onSurfaceSubtle,
                   ),
-                  const SizedBox(height: 6),
-                  Text(l10n.quranTeachingListenOnlySubtitle),
-                  const SizedBox(height: 12),
-                  DropdownButtonFormField<String>(
-                    initialValue: selectedPack?.id,
+                ),
+                const SizedBox(height: 8),
+                FutureBuilder<int>(
+                  future: QuranTeachingAssetResolver.availableAudioCount(
+                    selectedPack.items,
+                  ),
+                  builder: (context, snapshot) {
+                    final available = snapshot.data;
+                    if (available == null) {
+                      return Text(
+                        l10n.quranTeachingListenOnlyCheckingLocalAudio,
+                      );
+                    }
+                    return Text(
+                      l10n.quranTeachingListenOnlyAudioAvailability(
+                        '$available',
+                        '${selectedPack.items.length}',
+                      ),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                selectedPack?.title ?? l10n.quranTeachingListenOnlyChoosePack,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 24,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  color: AppColors.surfaceSoft.withValues(alpha: 0.6),
+                ),
+                child: currentItem == null
+                    ? Text(
+                        l10n.quranTeachingListenOnlySelectPackToBegin,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )
+                    : _ListenOnlyContent(
+                        item: currentItem,
+                        visibility: state.textVisibility,
+                        showVisualAnchor: state.visualModeEnabled,
+                      ),
+              ),
+              const SizedBox(height: 14),
+              if (selectedPack != null)
+                Text(
+                  l10n.quranTeachingListenOnlyProgress(
+                    '${safeIndex + 1}',
+                    '${items.length}',
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              const SizedBox(height: 8),
+              LinearProgressIndicator(
+                value: items.isEmpty ? 0 : (safeIndex + 1) / items.length,
+                minHeight: 8,
+                borderRadius: BorderRadius.circular(999),
+              ),
+              if (selectedPack != null) ...[
+                const SizedBox(height: 8),
+                Builder(
+                  builder: (context) {
+                    final meta = QuranTeachingAssetResolver.listenOnlyPackMeta(
+                      selectedPack.id,
+                    );
+                    if (meta?.estimatedDurationMs == null) {
+                      return const SizedBox.shrink();
+                    }
+                    final seconds = (meta!.estimatedDurationMs! / 1000).round();
+                    return Text(
+                      l10n.quranTeachingListenOnlyEstimatedPackLength(
+                        '$seconds',
+                      ),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
+                      ),
+                    );
+                  },
+                ),
+              ],
+              const SizedBox(height: 16),
+              FutureBuilder<bool>(
+                future: QuranTeachingAssetResolver.hasAudio(currentItem?.audio),
+                builder: (context, snapshot) {
+                  final audioAvailable = snapshot.data == true;
+                  return Column(
+                    children: [
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          final compactControls = constraints.maxWidth < 340;
+                          if (compactControls) {
+                            return Column(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: IconButton.filled(
+                                    onPressed: !audioAvailable || items.isEmpty
+                                        ? null
+                                        : () {
+                                            final next = !state.isPlaying;
+                                            controller.setPlaying(next);
+                                            if (next) {
+                                              _startPlaybackSimulation(
+                                                items.length,
+                                              );
+                                            } else {
+                                              _autoAdvanceTimer?.cancel();
+                                            }
+                                            _showAudioCue(
+                                              currentItem?.audio.label ??
+                                                  l10n.quranTeachingListenOnlyDefaultAudioLabel,
+                                              selectedPack?.title ??
+                                                  l10n.quranTeachingListenOnlyDefaultContextLabel,
+                                            );
+                                          },
+                                    icon: Icon(
+                                      state.isPlaying
+                                          ? Icons.pause_rounded
+                                          : Icons.play_arrow_rounded,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: IconButton.filledTonal(
+                                        onPressed: items.isEmpty
+                                            ? null
+                                            : () => controller.previous(
+                                                items.length,
+                                              ),
+                                        icon: const Icon(
+                                          Icons.skip_previous_rounded,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: IconButton.filledTonal(
+                                        onPressed: items.isEmpty
+                                            ? null
+                                            : () =>
+                                                  controller.next(items.length),
+                                        icon: const Icon(
+                                          Icons.skip_next_rounded,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          }
+                          return Row(
+                            children: [
+                              Expanded(
+                                child: IconButton.filledTonal(
+                                  onPressed: items.isEmpty
+                                      ? null
+                                      : () => controller.previous(items.length),
+                                  icon: const Icon(Icons.skip_previous_rounded),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: IconButton.filled(
+                                  onPressed: !audioAvailable || items.isEmpty
+                                      ? null
+                                      : () {
+                                          final next = !state.isPlaying;
+                                          controller.setPlaying(next);
+                                          if (next) {
+                                            _startPlaybackSimulation(
+                                              items.length,
+                                            );
+                                          } else {
+                                            _autoAdvanceTimer?.cancel();
+                                          }
+                                          _showAudioCue(
+                                            currentItem?.audio.label ??
+                                                l10n.quranTeachingListenOnlyDefaultAudioLabel,
+                                            selectedPack?.title ??
+                                                l10n.quranTeachingListenOnlyDefaultContextLabel,
+                                          );
+                                        },
+                                  icon: Icon(
+                                    state.isPlaying
+                                        ? Icons.pause_rounded
+                                        : Icons.play_arrow_rounded,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: IconButton.filledTonal(
+                                  onPressed: items.isEmpty
+                                      ? null
+                                      : () => controller.next(items.length),
+                                  icon: const Icon(Icons.skip_next_rounded),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                      if (!audioAvailable && currentItem != null) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          l10n.quranTeachingListenOnlyAudioUnavailable,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                        ),
+                      ],
+                    ],
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final compactActions = constraints.maxWidth < 380;
+                  final replayButton = QuranTeachingAudioIconButton(
+                    audio: currentItem?.audio,
+                    availableIcon: Icons.replay_rounded,
+                    label: l10n.quranTeachingListenOnlyReplayAction,
+                    onAvailablePressed: items.isEmpty
+                        ? null
+                        : () {
+                            controller.replay();
+                            _showAudioCue(
+                              currentItem?.audio.label ??
+                                  l10n.quranTeachingListenOnlyReplayAction,
+                              l10n.quranTeachingListenOnlyReplayCurrentItem,
+                            );
+                          },
+                  );
+                  final speedField = DropdownButtonFormField<double>(
+                    initialValue: state.playbackSpeed,
                     isExpanded: true,
-                    items: packs
+                    items: const <double>[0.75, 1.0, 1.25]
                         .map(
-                          (pack) => DropdownMenuItem<String>(
-                            value: pack.id,
-                            child: Text(pack.title),
+                          (speed) => DropdownMenuItem<double>(
+                            value: speed,
+                            child: Text('${speed}x'),
                           ),
                         )
                         .toList(growable: false),
                     onChanged: (value) {
                       if (value == null) return;
-                      controller.selectPack(value);
+                      controller.setPlaybackSpeed(value);
                     },
                     decoration: InputDecoration(
-                      labelText: l10n.quranTeachingListenOnlyContentSetLabel,
+                      labelText: l10n.quranTeachingListenOnlySpeedLabel,
                     ),
-                  ),
-                  if (selectedPack != null) ...[
-                    const SizedBox(height: 8),
-                    Text(
-                      selectedPack.description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    FutureBuilder<int>(
-                      future: QuranTeachingAssetResolver.availableAudioCount(
-                        selectedPack.items,
-                      ),
-                      builder: (context, snapshot) {
-                        final available = snapshot.data;
-                        if (available == null) {
-                          return Text(
-                            l10n.quranTeachingListenOnlyCheckingLocalAudio,
-                          );
-                        }
-                        return Text(
-                          l10n.quranTeachingListenOnlyAudioAvailability(
-                            '$available',
-                            '${selectedPack.items.length}',
-                          ),
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
-                        );
-                      },
-                    ),
-                  ],
-                ],
+                  );
+                  if (compactActions) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        replayButton,
+                        const SizedBox(height: 10),
+                        speedField,
+                      ],
+                    );
+                  }
+                  return Row(
+                    children: [
+                      Expanded(child: replayButton),
+                      const SizedBox(width: 10),
+                      Expanded(child: speedField),
+                    ],
+                  );
+                },
               ),
-            ),
-            const SizedBox(height: 12),
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    selectedPack?.title ??
-                        l10n.quranTeachingListenOnlyChoosePack,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.quranTeachingListenOnlyModeOptionsTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 8),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: state.autoAdvance,
+                onChanged: controller.toggleAutoAdvance,
+                title: Text(l10n.quranTeachingListenOnlyAutoPlayNextItem),
+              ),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: state.repeatCurrent,
+                onChanged: controller.toggleRepeatCurrent,
+                title: Text(l10n.quranTeachingListenOnlyRepeatCurrentItem),
+              ),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: state.shuffle,
+                onChanged: controller.toggleShuffle,
+                title: Text(l10n.quranTeachingListenOnlyShuffleOrder),
+              ),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: state.visualModeEnabled,
+                onChanged: controller.toggleVisualMode,
+                title: Text(l10n.quranTeachingListenOnlyVisualMode),
+              ),
+              const SizedBox(height: 8),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final compactSegments = constraints.maxWidth < 430;
+                  final segments = <ButtonSegment<QuranTeachingTextVisibility>>[
+                    ButtonSegment(
+                      value: QuranTeachingTextVisibility.arabicOnly,
+                      label: Text(l10n.quranTeachingListenOnlyArabic),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 24,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: AppColors.surfaceSoft.withValues(alpha: 0.6),
-                    ),
-                    child: currentItem == null
-                        ? Text(
-                            l10n.quranTeachingListenOnlySelectPackToBegin,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          )
-                        : _ListenOnlyContent(
-                            item: currentItem,
-                            visibility: state.textVisibility,
-                            showVisualAnchor: state.visualModeEnabled,
-                          ),
-                  ),
-                  const SizedBox(height: 14),
-                  if (selectedPack != null)
-                    Text(
-                      l10n.quranTeachingListenOnlyProgress(
-                        '${safeIndex + 1}',
-                        '${items.length}',
+                    ButtonSegment(
+                      value:
+                          QuranTeachingTextVisibility.arabicWithTransliteration,
+                      label: Text(
+                        l10n.quranTeachingListenOnlyArabicTransliteration,
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  const SizedBox(height: 8),
-                  LinearProgressIndicator(
-                    value: items.isEmpty ? 0 : (safeIndex + 1) / items.length,
-                    minHeight: 8,
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  if (selectedPack != null) ...[
-                    const SizedBox(height: 8),
-                    Builder(
-                      builder: (context) {
-                        final meta =
-                            QuranTeachingAssetResolver.listenOnlyPackMeta(
-                              selectedPack.id,
-                            );
-                        if (meta?.estimatedDurationMs == null) {
-                          return const SizedBox.shrink();
-                        }
-                        final seconds = (meta!.estimatedDurationMs! / 1000)
-                            .round();
-                        return Text(
-                          l10n.quranTeachingListenOnlyEstimatedPackLength(
-                            '$seconds',
-                          ),
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
-                        );
-                      },
+                    ButtonSegment(
+                      value: QuranTeachingTextVisibility.hidden,
+                      label: Text(l10n.quranTeachingListenOnlyAudioOnly),
                     ),
-                  ],
-                  const SizedBox(height: 16),
-                  FutureBuilder<bool>(
-                    future: QuranTeachingAssetResolver.hasAudio(
-                      currentItem?.audio,
-                    ),
-                    builder: (context, snapshot) {
-                      final audioAvailable = snapshot.data == true;
-                      return Column(
-                        children: [
-                          LayoutBuilder(
-                            builder: (context, constraints) {
-                              final compactControls = constraints.maxWidth < 340;
-                              if (compactControls) {
-                                return Column(
-                                  children: [
-                                    SizedBox(
-                                      width: double.infinity,
-                                      child: IconButton.filled(
-                                        onPressed:
-                                            !audioAvailable || items.isEmpty
-                                            ? null
-                                            : () {
-                                                final next = !state.isPlaying;
-                                                controller.setPlaying(next);
-                                                if (next) {
-                                                  _startPlaybackSimulation(
-                                                    items.length,
-                                                  );
-                                                } else {
-                                                  _autoAdvanceTimer?.cancel();
-                                                }
-                                                _showAudioCue(
-                                                  currentItem?.audio.label ??
-                                                      l10n.quranTeachingListenOnlyDefaultAudioLabel,
-                                                  selectedPack?.title ??
-                                                      l10n.quranTeachingListenOnlyDefaultContextLabel,
-                                                );
-                                              },
-                                        icon: Icon(
-                                          state.isPlaying
-                                              ? Icons.pause_rounded
-                                              : Icons.play_arrow_rounded,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: IconButton.filledTonal(
-                                            onPressed: items.isEmpty
-                                                ? null
-                                                : () => controller.previous(
-                                                    items.length,
-                                                  ),
-                                            icon: const Icon(
-                                              Icons.skip_previous_rounded,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        Expanded(
-                                          child: IconButton.filledTonal(
-                                            onPressed: items.isEmpty
-                                                ? null
-                                                : () => controller.next(
-                                                    items.length,
-                                                  ),
-                                            icon: const Icon(
-                                              Icons.skip_next_rounded,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              }
-                              return Row(
-                                children: [
-                                  Expanded(
-                                    child: IconButton.filledTonal(
-                                      onPressed: items.isEmpty
-                                          ? null
-                                          : () => controller.previous(
-                                              items.length,
-                                            ),
-                                      icon: const Icon(
-                                        Icons.skip_previous_rounded,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: IconButton.filled(
-                                      onPressed:
-                                          !audioAvailable || items.isEmpty
-                                          ? null
-                                          : () {
-                                              final next = !state.isPlaying;
-                                              controller.setPlaying(next);
-                                              if (next) {
-                                                _startPlaybackSimulation(
-                                                  items.length,
-                                                );
-                                              } else {
-                                                _autoAdvanceTimer?.cancel();
-                                              }
-                                              _showAudioCue(
-                                                currentItem?.audio.label ??
-                                                    l10n.quranTeachingListenOnlyDefaultAudioLabel,
-                                                selectedPack?.title ??
-                                                    l10n.quranTeachingListenOnlyDefaultContextLabel,
-                                              );
-                                            },
-                                      icon: Icon(
-                                        state.isPlaying
-                                            ? Icons.pause_rounded
-                                            : Icons.play_arrow_rounded,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: IconButton.filledTonal(
-                                      onPressed: items.isEmpty
-                                          ? null
-                                          : () => controller.next(items.length),
-                                      icon: const Icon(Icons.skip_next_rounded),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                          if (!audioAvailable && currentItem != null) ...[
-                            const SizedBox(height: 8),
-                            Text(
-                              l10n.quranTeachingListenOnlyAudioUnavailable,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: AppColors.onSurfaceSubtle),
+                  ];
+                  return SegmentedButton<QuranTeachingTextVisibility>(
+                    segments: segments,
+                    expandedInsets: compactSegments
+                        ? const EdgeInsets.symmetric(vertical: 4)
+                        : EdgeInsets.zero,
+                    multiSelectionEnabled: false,
+                    showSelectedIcon: false,
+                    style: compactSegments
+                        ? ButtonStyle(
+                            visualDensity: const VisualDensity(
+                              horizontal: -2,
+                              vertical: -2,
                             ),
-                          ],
-                        ],
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      final compactActions = constraints.maxWidth < 380;
-                      final replayButton = QuranTeachingAudioIconButton(
-                        audio: currentItem?.audio,
-                        availableIcon: Icons.replay_rounded,
-                        label: l10n.quranTeachingListenOnlyReplayAction,
-                        onAvailablePressed: items.isEmpty
-                            ? null
-                            : () {
-                                controller.replay();
-                                _showAudioCue(
-                                  currentItem?.audio.label ??
-                                      l10n.quranTeachingListenOnlyReplayAction,
-                                  l10n.quranTeachingListenOnlyReplayCurrentItem,
-                                );
-                              },
-                      );
-                      final speedField = DropdownButtonFormField<double>(
-                        initialValue: state.playbackSpeed,
-                        isExpanded: true,
-                        items: const <double>[0.75, 1.0, 1.25]
-                            .map(
-                              (speed) => DropdownMenuItem<double>(
-                                value: speed,
-                                child: Text('${speed}x'),
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 10,
                               ),
-                            )
-                            .toList(growable: false),
-                        onChanged: (value) {
-                          if (value == null) return;
-                          controller.setPlaybackSpeed(value);
-                        },
-                        decoration: InputDecoration(
-                          labelText: l10n.quranTeachingListenOnlySpeedLabel,
-                        ),
-                      );
-                      if (compactActions) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            replayButton,
-                            const SizedBox(height: 10),
-                            speedField,
-                          ],
-                        );
-                      }
-                      return Row(
-                        children: [
-                          Expanded(child: replayButton),
-                          const SizedBox(width: 10),
-                          Expanded(child: speedField),
-                        ],
-                      );
+                            ),
+                          )
+                        : null,
+                    selected: <QuranTeachingTextVisibility>{
+                      state.textVisibility,
                     },
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.quranTeachingListenOnlyModeOptionsTitle,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SwitchListTile.adaptive(
-                    contentPadding: EdgeInsets.zero,
-                    value: state.autoAdvance,
-                    onChanged: controller.toggleAutoAdvance,
-                    title: Text(l10n.quranTeachingListenOnlyAutoPlayNextItem),
-                  ),
-                  SwitchListTile.adaptive(
-                    contentPadding: EdgeInsets.zero,
-                    value: state.repeatCurrent,
-                    onChanged: controller.toggleRepeatCurrent,
-                    title: Text(l10n.quranTeachingListenOnlyRepeatCurrentItem),
-                  ),
-                  SwitchListTile.adaptive(
-                    contentPadding: EdgeInsets.zero,
-                    value: state.shuffle,
-                    onChanged: controller.toggleShuffle,
-                    title: Text(l10n.quranTeachingListenOnlyShuffleOrder),
-                  ),
-                  SwitchListTile.adaptive(
-                    contentPadding: EdgeInsets.zero,
-                    value: state.visualModeEnabled,
-                    onChanged: controller.toggleVisualMode,
-                    title: Text(l10n.quranTeachingListenOnlyVisualMode),
-                  ),
-                  const SizedBox(height: 8),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      final compactSegments = constraints.maxWidth < 430;
-                      final segments = <ButtonSegment<QuranTeachingTextVisibility>>[
-                        ButtonSegment(
-                          value: QuranTeachingTextVisibility.arabicOnly,
-                          label: Text(l10n.quranTeachingListenOnlyArabic),
-                        ),
-                        ButtonSegment(
-                          value: QuranTeachingTextVisibility
-                              .arabicWithTransliteration,
-                          label: Text(
-                            l10n.quranTeachingListenOnlyArabicTransliteration,
-                          ),
-                        ),
-                        ButtonSegment(
-                          value: QuranTeachingTextVisibility.hidden,
-                          label: Text(l10n.quranTeachingListenOnlyAudioOnly),
-                        ),
-                      ];
-                      return SegmentedButton<QuranTeachingTextVisibility>(
-                        segments: segments,
-                        expandedInsets: compactSegments
-                            ? const EdgeInsets.symmetric(vertical: 4)
-                            : EdgeInsets.zero,
-                        multiSelectionEnabled: false,
-                        showSelectedIcon: false,
-                        style: compactSegments
-                            ? ButtonStyle(
-                                visualDensity: const VisualDensity(
-                                  horizontal: -2,
-                                  vertical: -2,
-                                ),
-                                padding: WidgetStateProperty.all(
-                                  const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 10,
-                                  ),
-                                ),
-                              )
-                            : null,
-                        selected: <QuranTeachingTextVisibility>{
-                          state.textVisibility,
-                        },
-                        onSelectionChanged: (selection) {
-                          controller.setTextVisibility(selection.first);
-                        },
-                      );
+                    onSelectionChanged: (selection) {
+                      controller.setTextVisibility(selection.first);
                     },
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+      ],
     );
   }
 

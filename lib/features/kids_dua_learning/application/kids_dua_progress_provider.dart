@@ -76,11 +76,13 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
             .read(kidsDuaRetentionServiceProvider)
             .syncForToday(
               state: KidsDuaLearningState.fromJson(
-                _ref.read(localStoreProvider).getJsonMap(
-                  kidsDuaLearningStorageKeyForLearner(
-                    _ref.read(kidsDuaActiveLearnerProvider).learnerId,
-                  ),
-                ),
+                _ref
+                    .read(localStoreProvider)
+                    .getJsonMap(
+                      kidsDuaLearningStorageKeyForLearner(
+                        _ref.read(kidsDuaActiveLearnerProvider).learnerId,
+                      ),
+                    ),
               ),
               now: _ref.read(kidsDuaNowProvider)(),
             ),
@@ -123,20 +125,22 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
       recentLessonIds: recent,
     );
     _persist();
-    _ref.read(kidsActivityLogProvider.notifier).log(
-      type: KidsActivityType.duaLessonOpened,
-      domain: KidsActivityDomain.duas,
-      sourceRef: 'kids_dua_open:$lessonId',
-      contentId: lessonId,
-      titleSnapshot: lesson?.title,
-      subtitleSnapshot: lesson?.miniLesson,
-      occurredAt: DateTime.parse(nowIso),
-      dedupeWindow: const Duration(minutes: 2),
-      metadata: <String, Object?>{
-        'feature': 'kids_dua_learning',
-        'lessonId': lessonId,
-      },
-    );
+    _ref
+        .read(kidsActivityLogProvider.notifier)
+        .log(
+          type: KidsActivityType.duaLessonOpened,
+          domain: KidsActivityDomain.duas,
+          sourceRef: 'kids_dua_open:$lessonId',
+          contentId: lessonId,
+          titleSnapshot: lesson?.title,
+          subtitleSnapshot: lesson?.miniLesson,
+          occurredAt: DateTime.parse(nowIso),
+          dedupeWindow: const Duration(minutes: 2),
+          metadata: <String, Object?>{
+            'feature': 'kids_dua_learning',
+            'lessonId': lessonId,
+          },
+        );
     _ref
         .read(learnUnifiedProgressProvider.notifier)
         .markStarted(_itemId(lessonId));
@@ -177,7 +181,9 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
         );
     final reward = firstCompletion
         ? _ref
-              .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
+              .read(
+                learnerProgressionControllerProvider(_activeLearnerId).notifier,
+              )
               .award(
                 sourceRef: 'kids_dua_lesson:$lessonId:complete',
                 activityType:
@@ -191,7 +197,8 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
                   'lessonId': lessonId,
                 },
                 mirrorToJourney: _shouldMirrorRewardsToJourney(),
-                incrementLearningStageCompletion: _shouldMirrorRewardsToJourney(),
+                incrementLearningStageCompletion:
+                    _shouldMirrorRewardsToJourney(),
               )
         : const LearnerProgressionAwardResult(
             awardedXp: 0,
@@ -202,19 +209,21 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
             leveledUp: false,
           );
     if (firstCompletion) {
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.duaLessonCompleted,
-        domain: KidsActivityDomain.duas,
-        sourceRef: 'kids_dua_lesson_complete:$lessonId',
-        contentId: lessonId,
-        titleSnapshot: lesson.title,
-        subtitleSnapshot: lesson.miniLesson,
-        occurredAt: _ref.read(kidsDuaNowProvider)(),
-        metadata: <String, Object?>{
-          'feature': 'kids_dua_learning',
-          'lessonId': lessonId,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.duaLessonCompleted,
+            domain: KidsActivityDomain.duas,
+            sourceRef: 'kids_dua_lesson_complete:$lessonId',
+            contentId: lessonId,
+            titleSnapshot: lesson.title,
+            subtitleSnapshot: lesson.miniLesson,
+            occurredAt: _ref.read(kidsDuaNowProvider)(),
+            metadata: <String, Object?>{
+              'feature': 'kids_dua_learning',
+              'lessonId': lessonId,
+            },
+          );
       _registerDailyActivity(KidsDuaDailyActivityType.lessonCompleted);
       state = state.copyWith(
         activityLog: _nextActivityLog(
@@ -231,8 +240,7 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
       unlockedRewardIds: nextRewards.all,
       stickerUnlockedAtById: nextStickers.unlockedAtById,
       recentLessonIds: _nextRecent(lessonId),
-      totalFeatureXpAwarded:
-          state.totalFeatureXpAwarded + reward.awardedXp,
+      totalFeatureXpAwarded: state.totalFeatureXpAwarded + reward.awardedXp,
       totalFeatureDropsAwarded:
           state.totalFeatureDropsAwarded + reward.awardedDrops,
     );
@@ -280,8 +288,7 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
           .award(
             sourceRef:
                 'kids_dua_practice:${LocalStore.todayKey(_ref.read(kidsDuaNowProvider)())}',
-            activityType:
-                LearnerProgressionActivityType.duaPracticeCompletion,
+            activityType: LearnerProgressionActivityType.duaPracticeCompletion,
             sourceModule: 'kids_dua_learning',
             xp: kidsDuaPracticeXp,
             drops: 0,
@@ -299,21 +306,23 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
     }
     if (correctAnswers > 0) {
       final lesson = uniqueIds.isEmpty ? null : _lessonById(uniqueIds.first);
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.duaPracticeCompleted,
-        domain: KidsActivityDomain.duas,
-        sourceRef:
-            'kids_dua_practice:${LocalStore.todayKey(_ref.read(kidsDuaNowProvider)())}',
-        contentId: uniqueIds.isEmpty ? null : uniqueIds.first,
-        titleSnapshot: lesson?.title,
-        subtitleSnapshot: lesson?.miniLesson,
-        occurredAt: _ref.read(kidsDuaNowProvider)(),
-        dedupeWindow: const Duration(minutes: 1),
-        metadata: <String, Object?>{
-          'feature': 'kids_dua_learning',
-          'lessonIds': uniqueIds,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.duaPracticeCompleted,
+            domain: KidsActivityDomain.duas,
+            sourceRef:
+                'kids_dua_practice:${LocalStore.todayKey(_ref.read(kidsDuaNowProvider)())}',
+            contentId: uniqueIds.isEmpty ? null : uniqueIds.first,
+            titleSnapshot: lesson?.title,
+            subtitleSnapshot: lesson?.miniLesson,
+            occurredAt: _ref.read(kidsDuaNowProvider)(),
+            dedupeWindow: const Duration(minutes: 1),
+            metadata: <String, Object?>{
+              'feature': 'kids_dua_learning',
+              'lessonIds': uniqueIds,
+            },
+          );
       _registerDailyActivity(KidsDuaDailyActivityType.practiceCorrect);
       state = state.copyWith(
         activityLog: _nextActivityLog(
@@ -465,8 +474,9 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
       lastPracticedAtIso: _nowIso(),
       lastLearningMode: KidsDuaRepeatMode.listen.name,
     );
-    final nextMap = Map<String, KidsDuaLessonProgress>.from(state.progressByLessonId)
-      ..[lessonId] = next;
+    final nextMap = Map<String, KidsDuaLessonProgress>.from(
+      state.progressByLessonId,
+    )..[lessonId] = next;
     state = state.copyWith(
       progressByLessonId: nextMap,
       recentLessonIds: _nextRecent(lessonId),
@@ -485,8 +495,9 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
       lastPracticedAtIso: _nowIso(),
       lastLearningMode: KidsDuaRepeatMode.tapToRepeat.name,
     );
-    final nextMap = Map<String, KidsDuaLessonProgress>.from(state.progressByLessonId)
-      ..[lessonId] = next;
+    final nextMap = Map<String, KidsDuaLessonProgress>.from(
+      state.progressByLessonId,
+    )..[lessonId] = next;
     state = state.copyWith(
       progressByLessonId: nextMap,
       recentLessonIds: _nextRecent(lessonId),
@@ -502,13 +513,13 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
     final next = current.copyWith(
       startedAtIso: current.startedAtIso ?? _nowIso(),
       timesPracticed: current.timesPracticed + 1,
-      readAlongCompletedAtIso:
-          current.readAlongCompletedAtIso ?? _nowIso(),
+      readAlongCompletedAtIso: current.readAlongCompletedAtIso ?? _nowIso(),
       lastPracticedAtIso: _nowIso(),
       lastLearningMode: mode.name,
     );
-    final nextMap = Map<String, KidsDuaLessonProgress>.from(state.progressByLessonId)
-      ..[lessonId] = next;
+    final nextMap = Map<String, KidsDuaLessonProgress>.from(
+      state.progressByLessonId,
+    )..[lessonId] = next;
     state = state.copyWith(
       progressByLessonId: nextMap,
       recentLessonIds: _nextRecent(lessonId),
@@ -521,12 +532,14 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
       return;
     }
     _activeLearnerId = learnerId;
-    state = _ref.read(kidsDuaRetentionServiceProvider).syncForToday(
-      state: KidsDuaLearningState.fromJson(
-        _store.getJsonMap(kidsDuaLearningStorageKeyForLearner(learnerId)),
-      ),
-      now: _ref.read(kidsDuaNowProvider)(),
-    );
+    state = _ref
+        .read(kidsDuaRetentionServiceProvider)
+        .syncForToday(
+          state: KidsDuaLearningState.fromJson(
+            _store.getJsonMap(kidsDuaLearningStorageKeyForLearner(learnerId)),
+          ),
+          now: _ref.read(kidsDuaNowProvider)(),
+        );
     _migrateLegacyProgressIfNeeded();
   }
 
@@ -607,18 +620,22 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
     final scopedKey = kidsDuaLearningStorageKeyForLearner(_activeLearnerId);
     final scoped = _store.getJsonMap(scopedKey);
     if (scoped != null) {
-      state = _ref.read(kidsDuaRetentionServiceProvider).syncForToday(
-        state: KidsDuaLearningState.fromJson(scoped),
-        now: _ref.read(kidsDuaNowProvider)(),
-      );
+      state = _ref
+          .read(kidsDuaRetentionServiceProvider)
+          .syncForToday(
+            state: KidsDuaLearningState.fromJson(scoped),
+            now: _ref.read(kidsDuaNowProvider)(),
+          );
       return;
     }
     final legacy = _store.getJsonMap(legacyKidsDuaLearningStateKey);
     if (legacy != null) {
-      state = _ref.read(kidsDuaRetentionServiceProvider).syncForToday(
-        state: KidsDuaLearningState.fromJson(legacy),
-        now: _ref.read(kidsDuaNowProvider)(),
-      );
+      state = _ref
+          .read(kidsDuaRetentionServiceProvider)
+          .syncForToday(
+            state: KidsDuaLearningState.fromJson(legacy),
+            now: _ref.read(kidsDuaNowProvider)(),
+          );
       _store.setJsonMap(scopedKey, state.toJson());
       _store.remove(legacyKidsDuaLearningStateKey);
       return;
@@ -636,10 +653,12 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
     if (legacyScoped == null) {
       return;
     }
-    state = _ref.read(kidsDuaRetentionServiceProvider).syncForToday(
-      state: KidsDuaLearningState.fromJson(legacyScoped),
-      now: _ref.read(kidsDuaNowProvider)(),
-    );
+    state = _ref
+        .read(kidsDuaRetentionServiceProvider)
+        .syncForToday(
+          state: KidsDuaLearningState.fromJson(legacyScoped),
+          now: _ref.read(kidsDuaNowProvider)(),
+        );
     _store.setJsonMap(scopedKey, state.toJson());
     _store.remove(kidsDuaLearningStorageKeyForLearner(legacyScopedLearnerId));
   }
@@ -658,7 +677,8 @@ class KidsDuaLearningNotifier extends StateNotifier<KidsDuaLearningState> {
   bool _shouldMirrorRewardsToJourney() {
     final accounts = _ref.read(accountsSyncControllerProvider);
     final learner = _ref.read(kidsDuaActiveLearnerProvider);
-    return learner.isChildProfile && accounts.activeProfileId == learner.learnerId;
+    return learner.isChildProfile &&
+        accounts.activeProfileId == learner.learnerId;
   }
 
   List<KidsDuaActivityLogEntry> _nextActivityLog({

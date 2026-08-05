@@ -408,7 +408,11 @@ final quranDailyCompanionSummaryProvider = Provider<QuranDailyCompanionSummary>(
     return QuranDailyCompanionSummary(
       reflection: reflection,
       meaningCue: _dailyMeaningCue(entry, activeIntent),
-      practicalTakeaway: _dailyPracticalTakeaway(entry, reflection, activeIntent),
+      practicalTakeaway: _dailyPracticalTakeaway(
+        entry,
+        reflection,
+        activeIntent,
+      ),
       relatedLinks: relatedLinks,
       themes: themes,
       memorizationEntry: memorizationEntry,
@@ -602,7 +606,8 @@ List<QuranAyahEnrichmentEntry> _rankDailyCandidates(
   if (intent == null || candidates.length <= 1) return candidates;
   final ranked = List<QuranAyahEnrichmentEntry>.from(candidates);
   ranked.sort((a, b) {
-    final scoreDiff = _dailyIntentScore(b, intent) - _dailyIntentScore(a, intent);
+    final scoreDiff =
+        _dailyIntentScore(b, intent) - _dailyIntentScore(a, intent);
     if (scoreDiff != 0) return scoreDiff;
     return _compareDailyEntries(a, b);
   });
@@ -673,7 +678,8 @@ bool _entryLooksAlignedToTopic(QuranAyahEnrichmentEntry entry, String topicId) {
     'patience' => entry.tags.contains(QuranAyahEnrichmentTag.sabr),
     'gratitude' => entry.tags.contains(QuranAyahEnrichmentTag.shukr),
     'humility' => entry.domain == QuranAyahEnrichmentDomain.characterAdab,
-    'remembrance' => entry.domain == QuranAyahEnrichmentDomain.worshipRemembrance,
+    'remembrance' =>
+      entry.domain == QuranAyahEnrichmentDomain.worshipRemembrance,
     'repentance' => entry.tags.contains(QuranAyahEnrichmentTag.repentance),
     'trust-in-allah' => entry.tags.contains(QuranAyahEnrichmentTag.tawakkul),
     'mercy' => entry.tags.contains(QuranAyahEnrichmentTag.mercy),
@@ -756,8 +762,7 @@ String _dailyPracticalTakeaway(
   QuranDailyReflectionSummary reflection,
   QuranUserIntent? intent,
 ) {
-  if (intent == QuranUserIntent.reflect &&
-      entry.reflectionPrompts.isNotEmpty) {
+  if (intent == QuranUserIntent.reflect && entry.reflectionPrompts.isNotEmpty) {
     return entry.reflectionPrompts.first.trim();
   }
   if (entry.body.trim().isNotEmpty) {

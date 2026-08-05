@@ -160,7 +160,10 @@ void main() {
       pathParameters: const {'slug': 'battle-of-badr'},
     );
 
-    final results = service.findRelated(current: current, candidates: [current]);
+    final results = service.findRelated(
+      current: current,
+      candidates: [current],
+    );
 
     expect(results, isEmpty);
   });

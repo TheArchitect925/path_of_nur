@@ -75,7 +75,10 @@ class FaqCategoryCard extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _chip(context, l10n.batch9FaqQuestionCount(summary.questionCount)),
+                _chip(
+                  context,
+                  l10n.batch9FaqQuestionCount(summary.questionCount),
+                ),
                 if (summary.featuredCount > 0)
                   _chip(
                     context,
