@@ -89,6 +89,7 @@ final quranSelectedUserIntentProvider = Provider<QuranUserIntent?>((ref) {
 final quranUserIntentSummaryProvider = Provider<QuranUserIntentSummary>((ref) {
   final selectedIntent = ref.watch(quranSelectedUserIntentProvider);
   final featuredPaths = ref.watch(quranGuidedFeaturedLearningPathsProvider);
+  final allPaths = ref.watch(quranGuidedLearningPathsProvider);
   final continuePath = ref.watch(quranGuidedContinuePathProvider);
 
   final preferredReaderMode = selectedIntent == null
@@ -100,6 +101,7 @@ final quranUserIntentSummaryProvider = Provider<QuranUserIntentSummary>((ref) {
     suggestedPath = _suggestedPathForIntent(
       selectedIntent,
       featuredPaths: featuredPaths,
+      allPaths: allPaths,
       continuePath: continuePath,
     );
   }
@@ -114,6 +116,7 @@ final quranUserIntentSummaryProvider = Provider<QuranUserIntentSummary>((ref) {
 QuranGuidedLearningPath? _suggestedPathForIntent(
   QuranUserIntent intent, {
   required List<QuranGuidedLearningPath> featuredPaths,
+  required List<QuranGuidedLearningPath> allPaths,
   required QuranGuidedLearningPath? continuePath,
 }) {
   if (continuePath != null &&
@@ -125,6 +128,11 @@ QuranGuidedLearningPath? _suggestedPathForIntent(
   final preferredType = quranPreferredPathTypeForIntent(intent);
   if (preferredType != null) {
     for (final path in featuredPaths) {
+      if (path.type == preferredType) return path;
+    }
+    // Some path types (e.g. memorization support) may not be featured; still
+    // surface a matching path rather than no suggestion at all.
+    for (final path in allPaths) {
       if (path.type == preferredType) return path;
     }
   }

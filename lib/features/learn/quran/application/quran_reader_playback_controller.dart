@@ -302,11 +302,18 @@ QuranReaderPlaybackState buildQuranReaderPlaybackState(
       ? null
       : activeSession;
   final resolvedPlayerIndex = feed.hasPlaybackSource ? feed.currentIndex : null;
-  final resolvedFallbackAyahKey = _resolveReaderPlaybackFallbackAyahKey(
-    pageSurahNumber: pageSurahNumber,
-    sourceState: sourceState,
-    rememberedActiveAyahKey: rememberedActiveAyahKey,
-  );
+  final isPlaybackFullyStopped =
+      !feed.hasPlaybackSource &&
+      activeSession == null &&
+      sourceState.resolutionState == QuranPlaybackSourceResolutionState.idle &&
+      !sourceState.hasFailure;
+  final resolvedFallbackAyahKey = isPlaybackFullyStopped
+      ? null
+      : _resolveReaderPlaybackFallbackAyahKey(
+          pageSurahNumber: pageSurahNumber,
+          sourceState: sourceState,
+          rememberedActiveAyahKey: rememberedActiveAyahKey,
+        );
   final resolvedActiveAyahKey = resolveQuranReaderPlaybackAyahKey(
     currentSurahNumber: pageSurahNumber,
     isSurahPlaybackMode: isSurahPlaybackMode,

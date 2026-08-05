@@ -82,7 +82,7 @@ class QuranFocusRecitationSessionController
   final Ref _ref;
 
   Future<void> setRepeatCurrentAyah(bool value) async {
-    if (state.repeatCurrentAyah == value) {
+    if (!mounted || state.repeatCurrentAyah == value) {
       return;
     }
     state = state.copyWith(repeatCurrentAyah: value);
@@ -92,6 +92,9 @@ class QuranFocusRecitationSessionController
   }
 
   Future<void> clearForExit() async {
+    if (!mounted) {
+      return;
+    }
     _ref.read(quranFocusRecitationSleepTimerProvider.notifier).clear();
     await setRepeatCurrentAyah(false);
   }
@@ -133,6 +136,9 @@ class QuranFocusRecitationSleepTimerController
   void clear() {
     _timer?.cancel();
     _timer = null;
+    if (!mounted) {
+      return;
+    }
     state = const QuranFocusRecitationSleepTimerState();
   }
 

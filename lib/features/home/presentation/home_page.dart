@@ -64,7 +64,12 @@ String _formatHomePrayerTrackerTotal(
   required int trackedPrayerTotal,
   required bool includeTahajjudOffer,
 }) {
-  return _formatLocalizedCount(context, trackedPrayerTotal);
+  final total = _formatLocalizedCount(context, trackedPrayerTotal);
+  if (!includeTahajjudOffer) {
+    return total;
+  }
+  // Five daily prayers plus the optional Tahajjud offer (e.g. "5+1").
+  return '$total+${_formatLocalizedCount(context, 1)}';
 }
 
 const int _shortcutDailyDhikrGoal = 500;

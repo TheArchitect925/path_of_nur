@@ -65,10 +65,26 @@ class _QuranFocusRecitationPageState
 
   @override
   void dispose() {
-    _sleepTimerNotifier.clear();
-    unawaited(_focusSessionNotifier.clearForExit());
+    // Defer provider mutations: notifying listeners synchronously while the
+    // element tree is being unmounted trips framework lifecycle assertions.
+    final sleepTimerNotifier = _sleepTimerNotifier;
+    final focusSessionNotifier = _focusSessionNotifier;
+    scheduleMicrotask(() {
+      sleepTimerNotifier.clear();
+      unawaited(focusSessionNotifier.clearForExit());
+    });
     unawaited(_syncWakeLock(false));
     super.dispose();
+  }
+
+  Future<void> _handleExit(BuildContext context) async {
+    final navigator = Navigator.of(context);
+    _sleepTimerNotifier.clear();
+    await _focusSessionNotifier.clearForExit();
+    if (!mounted) {
+      return;
+    }
+    await navigator.maybePop();
   }
 
   Future<void> _syncWakeLock(bool enabled) async {
@@ -330,7 +346,7 @@ class _QuranFocusRecitationPageState
           child: ayah == null || surah == null
               ? _FocusRecitationEmptyState(
                   l10n: l10n,
-                  onExit: () => Navigator.of(context).maybePop(),
+                  onExit: () => unawaited(_handleExit(context)),
                 )
               : Column(
                   children: [
@@ -351,7 +367,7 @@ class _QuranFocusRecitationPageState
                                 ),
                               )
                             : null,
-                        onExit: () => Navigator.of(context).maybePop(),
+                        onExit: () => unawaited(_handleExit(context)),
                         onOpenSettings: () => _showFocusRecitationSettings(
                           context: context,
                           activeSurahNumber: surah.number,

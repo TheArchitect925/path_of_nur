@@ -41,10 +41,6 @@ String? resolveQuranReaderPlaybackAyahKey({
     return null;
   }
 
-  if (_isValidAyahKey(fallbackAyahKey)) {
-    return fallbackAyahKey;
-  }
-
   if (activeSession != null &&
       !activeSession.isSurahMode &&
       activeSession.surahNumber == currentSurahNumber &&
@@ -53,6 +49,10 @@ String? resolveQuranReaderPlaybackAyahKey({
       surahNumber: currentSurahNumber,
       ayahNumber: activeSession.ayahNumbers.first,
     );
+  }
+
+  if (_isValidAyahKey(fallbackAyahKey)) {
+    return fallbackAyahKey;
   }
 
   return null;
