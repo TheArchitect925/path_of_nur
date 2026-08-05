@@ -25,22 +25,41 @@ import 'routes/startup_routes.dart';
 import 'routes/worship_routes.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
-  final onboardingCompleted = ref.watch(onboardingCompletedProvider);
-  final accountsSyncState = ref.watch(accountsSyncControllerProvider);
-  final familyLearningContext = ref.watch(activeFamilyLearningContextProvider);
-  final editorialDashboardEnabled = ref.watch(
-    editorialDashboardFeatureEnabledProvider,
-  );
-  final editorialDashboardUnlocked = ref.watch(
+  // The router is created exactly once per container. Redirect inputs are
+  // read fresh on every navigation, and provider changes nudge the router
+  // through refreshListenable so active locations re-run the redirect —
+  // recreating GoRouter here would reset navigation state and leak the
+  // previous instance's bindings.
+  final refreshNotifier = ValueNotifier<int>(0);
+  void bump() => refreshNotifier.value++;
+  ref.listen(onboardingCompletedProvider, (_, _) => bump());
+  ref.listen(accountsSyncControllerProvider, (_, _) => bump());
+  ref.listen(activeFamilyLearningContextProvider, (_, _) => bump());
+  ref.listen(editorialDashboardFeatureEnabledProvider, (_, _) => bump());
+  ref.listen(
     editorialDashboardAccessProvider.select((value) => value.isSessionUnlocked),
+    (_, _) => bump(),
   );
   const initial = '/startup';
   final shellNavigatorKey = GlobalKey<NavigatorState>();
 
-  return GoRouter(
+  final router = GoRouter(
     initialLocation: initial,
     observers: [TelemetryNavigatorObserver()],
+    refreshListenable: refreshNotifier,
     redirect: (context, state) {
+      final onboardingCompleted = ref.read(onboardingCompletedProvider);
+      final accountsSyncState = ref.read(accountsSyncControllerProvider);
+      final familyLearningContext = ref.read(
+        activeFamilyLearningContextProvider,
+      );
+      final editorialDashboardEnabled = ref.read(
+        editorialDashboardFeatureEnabledProvider,
+      );
+      final editorialDashboardUnlocked = ref
+          .read(editorialDashboardAccessProvider)
+          .isSessionUnlocked;
+
       final deepLinkPath = mapAppDeepLink(state.uri);
       if (deepLinkPath != null) return deepLinkPath;
 
@@ -147,6 +166,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
     ],
   );
+  ref.onDispose(() {
+    router.dispose();
+    refreshNotifier.dispose();
+  });
+  return router;
 });
 
 Widget _buildTabPage(NavTab tab) {

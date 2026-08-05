@@ -2,8 +2,13 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -12,6 +17,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install ripgrep
+        run: sudo apt-get update -q && sudo apt-get install -y -q ripgrep
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -34,12 +42,18 @@ jobs:
       - name: Test
         run: flutter test
 
+      - name: Debug APK build
+        run: flutter build apk --debug
+
   ios-watchos-preflight:
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install ripgrep
+        run: brew install ripgrep
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
