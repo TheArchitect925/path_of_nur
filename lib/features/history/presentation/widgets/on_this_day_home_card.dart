@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -176,57 +178,68 @@ class _HistoricalEventPreview extends StatelessWidget {
         pathParameters: {'slug': event.slug},
       ),
       borderRadius: BorderRadius.circular(24),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          color: const Color(0xFFFFF8EE).withValues(alpha: 0.64),
-          border: Border.all(
-            color: const Color(0xFFE7C98C).withValues(alpha: 0.36),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
+      child: Builder(
+        builder: (context) {
+          final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+          final night = appearance?.isNightFamily == true;
+          return DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              color: night
+                  ? appearance!.onSurface.withValues(alpha: 0.08)
+                  : const Color(0xFFFFF8EE).withValues(alpha: 0.64),
+              border: Border.all(
+                color: night
+                    ? appearance!.onSurface.withValues(alpha: 0.16)
+                    : const Color(0xFFE7C98C).withValues(alpha: 0.36),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _Badge(label: badgeLabel),
-                  if (secondaryLabel != null) _Badge(label: secondaryLabel!),
-                  if (event.categories.isNotEmpty)
-                    _Badge(
-                      label: historicalCategoryLabel(
-                        l10n,
-                        event.categories.first,
-                      ),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _Badge(label: badgeLabel),
+                      if (secondaryLabel != null)
+                        _Badge(label: secondaryLabel!),
+                      if (event.categories.isNotEmpty)
+                        _Badge(
+                          label: historicalCategoryLabel(
+                            l10n,
+                            event.categories.first,
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    event.title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
                     ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    event.summaryShort,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (event.hasLocation) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      event.location.name,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
                 ],
               ),
-              const SizedBox(height: 12),
-              Text(
-                event.title,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                event.summaryShort,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              if (event.hasLocation) ...[
-                const SizedBox(height: 10),
-                Text(
-                  event.location.name,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

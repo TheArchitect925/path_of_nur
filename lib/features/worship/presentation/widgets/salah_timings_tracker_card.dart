@@ -946,10 +946,14 @@ class PrayerTimingPill extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              innerCardTop.withValues(alpha: 0.92),
-              innerCardBottom.withValues(alpha: 0.86),
-            ],
+            // Night colors already carry their own low alpha — re-stamping
+            // 0.92 here is what turned the tiles into solid cream slabs.
+            colors: night
+                ? [innerCardTop, innerCardBottom]
+                : [
+                    innerCardTop.withValues(alpha: 0.92),
+                    innerCardBottom.withValues(alpha: 0.86),
+                  ],
           ),
         ),
         child: Column(

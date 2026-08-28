@@ -6,6 +6,7 @@ import '../../../core/theme/app_backgrounds.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_hero_glass_shell.dart';
+import '../../../shared/widgets/night_sky.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
 import '../../journey/drops/application/journey_drops_providers.dart';
 import '../../journey/drops/domain/garden_asset_paths.dart';
@@ -21,10 +22,17 @@ class AppLoadingScreen extends ConsumerStatefulWidget {
 }
 
 class _AppLoadingScreenState extends ConsumerState<AppLoadingScreen> {
-  static const _headlineColor = Color(0xFF26170B);
-  static const _primaryTextColor = Color(0xFF342114);
-  static const _secondaryTextColor = Color(0xFF5C4737);
-  static const _tertiaryTextColor = Color(0xFF6F5846);
+  // Night themes swap the warm daylight ink for ivory.
+  bool get _night =>
+      Theme.of(context).extension<AppAppearanceTheme>()?.isNightFamily == true;
+  Color get _headlineColor =>
+      _night ? const Color(0xFFF0E4C0) : const Color(0xFF26170B);
+  Color get _primaryTextColor =>
+      _night ? const Color(0xFFEFE8D7) : const Color(0xFF342114);
+  Color get _secondaryTextColor =>
+      _night ? const Color(0xFFC9C0AA) : const Color(0xFF5C4737);
+  Color get _tertiaryTextColor =>
+      _night ? const Color(0xFFA9A18C) : const Color(0xFF6F5846);
 
   @override
   void initState() {
@@ -74,11 +82,17 @@ class _AppLoadingScreenState extends ConsumerState<AppLoadingScreen> {
           DecoratedBox(
             decoration: BoxDecoration(gradient: background.baseGradient),
           ),
-          Image.asset(
-            gardenBackgroundAsset,
-            fit: BoxFit.cover,
-            errorBuilder: (_, _, _) => const SizedBox.shrink(),
-          ),
+          // Night themes load under their own sky instead of the garden art:
+          // Midnight gets the stars and true-phase moon, Candlelight keeps
+          // its glow (carried by the background spec gradients).
+          if (appearance?.isNightFamily != true)
+            Image.asset(
+              gardenBackgroundAsset,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => const SizedBox.shrink(),
+            )
+          else if (appearance?.mode == AppThemeMode.midnight)
+            CustomPaint(painter: MidnightSkyPainter(now: DateTime.now())),
           DecoratedBox(
             decoration: BoxDecoration(
               gradient: background.wallpaperTintGradient,
@@ -127,13 +141,13 @@ class _AppLoadingScreenState extends ConsumerState<AppLoadingScreen> {
                                 Text(
                                   l10n.loadingHeadlineAllahAkbar,
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Amiri Quran',
                                     fontSize: 34,
                                     height: 1.25,
                                     fontWeight: FontWeight.w700,
                                     color: _primaryTextColor,
-                                    shadows: [
+                                    shadows: const [
                                       Shadow(
                                         color: Color(0x26FFF8EA),
                                         blurRadius: 10,
@@ -156,13 +170,13 @@ class _AppLoadingScreenState extends ConsumerState<AppLoadingScreen> {
                                 Text(
                                   greeting.arabic,
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Amiri Quran',
                                     fontSize: 26,
                                     height: 1.25,
                                     fontWeight: FontWeight.w700,
                                     color: _primaryTextColor,
-                                    shadows: [
+                                    shadows: const [
                                       Shadow(
                                         color: Color(0x24FFF8EA),
                                         blurRadius: 8,
