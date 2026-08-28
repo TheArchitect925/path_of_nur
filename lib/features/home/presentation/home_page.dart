@@ -272,7 +272,7 @@ class _TodayContentSection extends StatelessWidget {
           density: PremiumCardDensity.compact,
           surfaceTintColor: const Color(0xFFE7C98C),
           surfaceAlphaOverride: 0.2,
-          child: const _HomeLearningActionsCard(expandable: false),
+          child: const _HomeLearningActionsCard(),
         ),
       ],
     );
@@ -813,9 +813,7 @@ class _ModeAwareHomeCard extends ConsumerWidget {
 }
 
 class _HomeLearningActionsCard extends ConsumerWidget {
-  const _HomeLearningActionsCard({this.expandable = true});
-
-  final bool expandable;
+  const _HomeLearningActionsCard();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -925,37 +923,18 @@ class _HomeLearningActionsCard extends ConsumerWidget {
       ],
     );
 
-    if (!expandable) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.homeDailyLearningQuizzesTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 4),
-          Text(l10n.homeDailyLearningQuizzesSubtitle),
-          const SizedBox(height: 10),
-          content,
-        ],
-      );
-    }
-
-    return NoorGlassCard(
-      includeShadow: true,
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          tilePadding: EdgeInsets.zero,
-          childrenPadding: EdgeInsets.zero,
-          title: Text(
-            l10n.homeDailyLearningQuizzesTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          subtitle: Text(l10n.homeDailyLearningQuizzesSubtitle),
-          children: [const SizedBox(height: 10), content],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.homeDailyLearningQuizzesTitle,
+          style: const TextStyle(fontWeight: FontWeight.w700),
         ),
-      ),
+        const SizedBox(height: 4),
+        Text(l10n.homeDailyLearningQuizzesSubtitle),
+        const SizedBox(height: 10),
+        content,
+      ],
     );
   }
 }

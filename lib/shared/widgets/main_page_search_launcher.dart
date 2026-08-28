@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../l10n/app_localizations.dart';
 import 'premium_card.dart';
 
+/// Legacy descriptor for hub-specific search destinations. The launcher now
+/// routes to the unified /search page, so these entries no longer drive a
+/// per-hub search delegate; the type remains so hub pages compile while
+/// their destination lists are retired incrementally.
 class MainPageSearchDestination {
   const MainPageSearchDestination({
     required this.title,
@@ -17,21 +22,22 @@ class MainPageSearchDestination {
   final IconData icon;
   final VoidCallback onTap;
   final List<String> keywords;
-
-  String get searchableText =>
-      [title, subtitle, ...keywords].join(' ').toLowerCase();
 }
 
+/// Search entry card shown on the five main hub pages. Opens the canonical
+/// global search (/search) — one search experience for the whole app.
 class MainPageSearchLauncher extends StatelessWidget {
   const MainPageSearchLauncher({
     super.key,
-    required this.destinations,
+    this.destinations = const <MainPageSearchDestination>[],
     this.hintText,
     this.supplementalBuilder,
   });
 
   final List<MainPageSearchDestination> destinations;
   final String? hintText;
+
+  /// Unused since consolidation on /search; kept for call-site compatibility.
   final Widget? Function(
     BuildContext context,
     String query,
@@ -45,213 +51,22 @@ class MainPageSearchLauncher extends StatelessWidget {
     final resolvedHint = hintText ?? l10n.mainPageSearchHint;
 
     return PremiumCard(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: destinations.isEmpty
-            ? null
-            : () {
-                showSearch<void>(
-                  context: context,
-                  delegate: _MainPageSearchDelegate(
-                    destinations: destinations,
-                    searchFieldLabel: resolvedHint,
-                    emptyTitle: l10n.mainPageSearchEmptyTitle,
-                    emptySubtitle: l10n.mainPageSearchEmptySubtitle,
-                    supplementalBuilder: supplementalBuilder,
-                  ),
-                );
-              },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-          child: Row(
-            children: [
-              const Icon(Icons.search_rounded),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  resolvedHint,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).hintColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _MainPageSearchDelegate extends SearchDelegate<void> {
-  _MainPageSearchDelegate({
-    required this.destinations,
-    required String searchFieldLabel,
-    required this.emptyTitle,
-    required this.emptySubtitle,
-    this.supplementalBuilder,
-  }) : super(searchFieldLabel: searchFieldLabel);
-
-  final List<MainPageSearchDestination> destinations;
-  final String emptyTitle;
-  final String emptySubtitle;
-  final Widget? Function(
-    BuildContext context,
-    String query,
-    ValueChanged<String> updateQuery,
-  )?
-  supplementalBuilder;
-
-  List<MainPageSearchDestination> _filteredDestinations() {
-    final normalized = query.trim().toLowerCase();
-    if (normalized.isEmpty) return destinations;
-    return destinations
-        .where((destination) => destination.searchableText.contains(normalized))
-        .toList(growable: false);
-  }
-
-  @override
-  ThemeData appBarTheme(BuildContext context) {
-    final theme = Theme.of(context);
-    return theme.copyWith(
-      appBarTheme: theme.appBarTheme.copyWith(
-        backgroundColor: theme.scaffoldBackgroundColor,
-        elevation: 0,
-      ),
-      inputDecorationTheme: theme.inputDecorationTheme.copyWith(
-        border: InputBorder.none,
-      ),
-    );
-  }
-
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    if (query.trim().isEmpty) return null;
-    return [
-      IconButton(
-        onPressed: () => query = '',
-        icon: const Icon(Icons.close_rounded),
-      ),
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () => close(context, null),
-      icon: const BackButtonIcon(),
-      tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return _SearchResultList(
-      results: _filteredDestinations(),
-      emptyTitle: emptyTitle,
-      emptySubtitle: emptySubtitle,
-      supplementalContent: supplementalBuilder?.call(
-        context,
-        query,
-        (value) => query = value,
-      ),
-      onTap: (destination) {
-        close(context, null);
-        destination.onTap();
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return _SearchResultList(
-      results: _filteredDestinations(),
-      emptyTitle: emptyTitle,
-      emptySubtitle: emptySubtitle,
-      supplementalContent: supplementalBuilder?.call(
-        context,
-        query,
-        (value) => query = value,
-      ),
-      onTap: (destination) {
-        close(context, null);
-        destination.onTap();
-      },
-    );
-  }
-}
-
-class _SearchResultList extends StatelessWidget {
-  const _SearchResultList({
-    required this.results,
-    required this.emptyTitle,
-    required this.emptySubtitle,
-    required this.onTap,
-    this.supplementalContent,
-  });
-
-  final List<MainPageSearchDestination> results;
-  final String emptyTitle;
-  final String emptySubtitle;
-  final ValueChanged<MainPageSearchDestination> onTap;
-  final Widget? supplementalContent;
-
-  @override
-  Widget build(BuildContext context) {
-    final hasSupplementalContent = supplementalContent != null;
-    if (results.isEmpty && !hasSupplementalContent) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.search_off_rounded, size: 32),
-              const SizedBox(height: 12),
-              Text(
-                emptyTitle,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                emptySubtitle,
-                style: Theme.of(context).textTheme.bodyMedium,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-      children: [
-        ...?supplementalContent == null ? null : [supplementalContent!],
-        if (supplementalContent != null && results.isNotEmpty)
-          const SizedBox(height: 10),
-        ...List<Widget>.generate(results.length, (index) {
-          final destination = results[index];
-          return Padding(
-            padding: EdgeInsets.only(
-              bottom: index == results.length - 1 ? 0 : 10,
-            ),
-            child: PremiumCard(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: Icon(destination.icon),
-                title: Text(destination.title),
-                subtitle: Text(destination.subtitle),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () => onTap(destination),
+      density: PremiumCardDensity.compact,
+      onTap: () => context.pushNamed('allSearch'),
+      child: Row(
+        children: [
+          const Icon(Icons.search_rounded),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              resolvedHint,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).hintColor,
               ),
             ),
-          );
-        }),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -63,7 +63,6 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
         activeSession?.knowledgeStageId == resolvedStage.id;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(title: Text(resolvedStage.title)),
       body: SafeArea(
         child: ListView(

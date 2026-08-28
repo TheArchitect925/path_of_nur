@@ -260,9 +260,12 @@ void main() {
       find.byType(QuranAppHubPage),
       searchLauncherFinder,
     );
-    final launcher = tester.widget<InkWell>(
+    final launcher = tester.widget<GestureDetector>(
       find
-          .descendant(of: searchLauncherFinder, matching: find.byType(InkWell))
+          .descendant(
+            of: searchLauncherFinder,
+            matching: find.byType(GestureDetector),
+          )
           .first,
     );
     launcher.onTap?.call();

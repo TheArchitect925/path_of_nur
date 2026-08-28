@@ -797,11 +797,11 @@ void main() {
         scrollable: find.byType(Scrollable).first,
         maxScrolls: 60,
       );
-      final launcher = tester.widget<InkWell>(
+      final launcher = tester.widget<GestureDetector>(
         find
             .descendant(
               of: searchLauncherFinder,
-              matching: find.byType(InkWell),
+              matching: find.byType(GestureDetector),
             )
             .first,
       );
@@ -846,11 +846,11 @@ void main() {
         scrollable: find.byType(Scrollable).first,
         maxScrolls: 60,
       );
-      final launcher = tester.widget<InkWell>(
+      final launcher = tester.widget<GestureDetector>(
         find
             .descendant(
               of: searchLauncherFinder,
-              matching: find.byType(InkWell),
+              matching: find.byType(GestureDetector),
             )
             .first,
       );
@@ -888,11 +888,11 @@ void main() {
         scrollable: find.byType(Scrollable).first,
         maxScrolls: 60,
       );
-      final launcher = tester.widget<InkWell>(
+      final launcher = tester.widget<GestureDetector>(
         find
             .descendant(
               of: searchLauncherFinder,
-              matching: find.byType(InkWell),
+              matching: find.byType(GestureDetector),
             )
             .first,
       );

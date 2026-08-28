@@ -5,6 +5,10 @@ import '../../core/theme/app_surfaces.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import 'noor_liquid_glass.dart';
 
+/// Legacy glass surface. New card-style surfaces should use [PremiumCard]
+/// (which offers density variants, tap handling, and header slots); the
+/// remaining NoorGlassCard call sites are pill/panel variants that rely on
+/// its [NoorLiquidGlassMode] and custom radius parameters.
 class NoorGlassCard extends ConsumerStatefulWidget {
   const NoorGlassCard({
     super.key,

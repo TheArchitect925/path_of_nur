@@ -37,7 +37,6 @@ class _IslamicTriviaSessionPageState
 
     if (session == null || question == null) {
       return Scaffold(
-        backgroundColor: AppColors.background,
         appBar: AppBar(title: Text(l10n.triviaSessionPageTitle)),
         body: Padding(
           padding: EdgeInsets.all(20),
@@ -63,7 +62,6 @@ class _IslamicTriviaSessionPageState
             .clamp(0.0, 1.0);
 
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: Text(
           session.knowledgeStageTitle ??
