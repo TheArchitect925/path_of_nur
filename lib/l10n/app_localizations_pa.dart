@@ -41974,4 +41974,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'ਈਦ ਮੁਬਾਰਕ';
+
+  @override
+  String get settingsLivingSkyTitle => 'ਜੀਵੰਤ ਅਸਮਾਨ';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'ਨੂਰ ਗਲਾਸ ਦਿਨ ਦੇ ਨਾਲ ਚੱਲਦਾ ਹੈ — ਗੁਲਾਬੀ-ਸੁਨਹਿਰੀ ਫਜਰ, ਅੰਬਰ ਮਗਰਿਬ, ਅਤੇ ਹਨੇਰੇ ਤੋਂ ਬਾਅਦ ਤਾਰਿਆਂ ਭਰੀ ਰਾਤ।';
 }

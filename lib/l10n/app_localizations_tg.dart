@@ -42095,4 +42095,11 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'Ид муборак';
+
+  @override
+  String get settingsLivingSkyTitle => 'Осмони зинда';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'Нур Глас ҳамроҳи рӯз меравад — субҳи гулобии заррин, Мағриби қаҳрабоӣ ва осмони пурситора пас аз торикӣ.';
 }

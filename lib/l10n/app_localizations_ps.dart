@@ -41938,4 +41938,11 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'اختر مو مبارک شه';
+
+  @override
+  String get settingsLivingSkyTitle => 'ژوندۍ اسمان';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'نور ګلاس د ورځې سره ځي — ګلابي-زرین سهار، کهربايي ماښام او له تیارې وروسته له ستورو ډک اسمان.';
 }

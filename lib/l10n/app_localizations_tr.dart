@@ -41984,4 +41984,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'Bayramın Mübarek Olsun';
+
+  @override
+  String get settingsLivingSkyTitle => 'Yaşayan gökyüzü';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'Noor Glass günü izler — gül kurusu altın şafak, kehribar Akşam ve karanlıktan sonra yıldızlı gece.';
 }

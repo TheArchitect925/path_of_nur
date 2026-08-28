@@ -42011,4 +42011,11 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'جەژنت پیرۆز بێت';
+
+  @override
+  String get settingsLivingSkyTitle => 'ئاسمانی زیندوو';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'نوور گڵاس لەگەڵ ڕۆژدا دەڕوات — بەرەبەیانی گوڵاوی-زێڕین، مەغریبی کارەبایی و ئاسمانی پڕئەستێرە دوای تاریکی.';
 }

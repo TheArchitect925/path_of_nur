@@ -927,6 +927,19 @@ class SettingsPage extends ConsumerWidget {
                     );
                   },
                 ),
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsLivingSkyTitle),
+                  subtitle: Text(l10n.settingsLivingSkySubtitle),
+                  value: profileSettings.livingAtmosphere,
+                  onChanged: (value) {
+                    profileSettingsNotifier.setLivingAtmosphere(value);
+                    _showAppearanceSnack(
+                      context,
+                      l10n.settingsThemeChangedSuccessfully,
+                    );
+                  },
+                ),
                 const SizedBox(height: 8),
                 ...visibleThemeModes.map(
                   (mode) => Padding(

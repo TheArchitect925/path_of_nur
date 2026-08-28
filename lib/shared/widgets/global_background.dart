@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/prayer/prayer_preferences.dart';
 import '../../core/theme/app_backgrounds.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/theme/living_atmosphere.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/wallpaper/application/wallpaper_provider.dart';
 import '../application/daily_clock_provider.dart';
@@ -117,6 +119,48 @@ class GlobalBackground extends ConsumerWidget {
               decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
             ),
             CustomPaint(painter: EidBuntingPainter()),
+            IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: backgroundSpec.foregroundGlowGradient,
+                ),
+              ),
+            ),
+            if (overlayColor != null) ColoredBox(color: overlayColor!),
+          ],
+        ),
+      );
+    }
+
+    // Living Atmosphere: on Noor Glass the wallpaper photo gives way to a
+    // painted sky that follows the prayer clock — rose-gold dawn, clear
+    // day, amber Maghrib. (After dark the app resolves to Midnight before
+    // reaching here, so night never paints on this branch.)
+    if (assetPath == null &&
+        appearance?.mode == AppThemeMode.noorGlass &&
+        settings.livingAtmosphere) {
+      final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+      final schedule = ref.watch(prayerScheduleContextProvider);
+      DateTime? scheduleStart(String id) {
+        for (final item in schedule.items) {
+          if (item.id == id) return item.windowStartDateTime;
+        }
+        return null;
+      }
+
+      final phase = noorSkyPhaseAt(
+        now: now,
+        fajrStart: scheduleStart('fajr'),
+        maghribStart: scheduleStart('maghrib'),
+        ishaStart: scheduleStart('isha'),
+      );
+      return Positioned.fill(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(gradient: noorSkyGradientFor(phase)),
+            ),
             IgnorePointer(
               child: DecoratedBox(
                 decoration: BoxDecoration(

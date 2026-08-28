@@ -41733,4 +41733,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'عيد مبارك';
+
+  @override
+  String get settingsLivingSkyTitle => 'سماء حيّة';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'تتبع كريمة النور مسار اليوم — فجر وردي ذهبي، ومغرب كهرماني، وسماء مرصّعة بالنجوم بعد حلول الظلام.';
 }

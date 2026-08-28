@@ -63,6 +63,7 @@ class ProfileSettingsState {
     required this.dressUpQadrNights,
     required this.dressUpEid,
     required this.occasionOffersSeen,
+    required this.livingAtmosphere,
     required this.glassTransparencyLevel,
     required this.disableBackground,
     this.ramadanStartDateIso,
@@ -115,6 +116,10 @@ class ProfileSettingsState {
   /// Occasion dress-up offers already shown (consent sheet keys); each
   /// occasion is offered once and never nags again.
   final List<String> occasionOffersSeen;
+
+  /// Noor Glass follows the day: painted dawn/day/Maghrib skies, and the
+  /// Midnight theme arriving on its own after dark.
+  final bool livingAtmosphere;
   final double glassTransparencyLevel;
   final bool disableBackground;
   final String? ramadanStartDateIso;
@@ -165,6 +170,7 @@ class ProfileSettingsState {
     bool? dressUpQadrNights,
     bool? dressUpEid,
     List<String>? occasionOffersSeen,
+    bool? livingAtmosphere,
     double? glassTransparencyLevel,
     bool? disableBackground,
     String? ramadanStartDateIso,
@@ -211,6 +217,7 @@ class ProfileSettingsState {
       dressUpQadrNights: dressUpQadrNights ?? this.dressUpQadrNights,
       dressUpEid: dressUpEid ?? this.dressUpEid,
       occasionOffersSeen: occasionOffersSeen ?? this.occasionOffersSeen,
+      livingAtmosphere: livingAtmosphere ?? this.livingAtmosphere,
       glassTransparencyLevel: glassTransparencyLevel == null
           ? this.glassTransparencyLevel
           : normalizedGlassTransparencyLevel(glassTransparencyLevel),
@@ -260,6 +267,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           dressUpQadrNights: false,
           dressUpEid: false,
           occasionOffersSeen: <String>[],
+          livingAtmosphere: true,
           glassTransparencyLevel: kGlassTransparencyLevelDefault,
           disableBackground: false,
         ),
@@ -503,6 +511,11 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setLivingAtmosphere(bool value) {
+    state = state.copyWith(livingAtmosphere: value);
+    _save();
+  }
+
   /// Records that an occasion's dress-up offer has been shown, so the
   /// consent sheet never asks about that occasion again.
   void markOccasionOfferSeen(String occasionKey) {
@@ -665,6 +678,8 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
               ?.whereType<String>()
               .toList() ??
           state.occasionOffersSeen,
+      livingAtmosphere:
+          data['livingAtmosphere'] as bool? ?? state.livingAtmosphere,
       glassTransparencyLevel: normalizedGlassTransparencyLevel(
         (data['glassTransparencyLevel'] as num?)?.toDouble() ??
             kGlassTransparencyLevelDefault,
@@ -716,6 +731,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'dressUpQadrNights': state.dressUpQadrNights,
       'dressUpEid': state.dressUpEid,
       'occasionOffersSeen': state.occasionOffersSeen,
+      'livingAtmosphere': state.livingAtmosphere,
       'glassTransparencyLevel': state.glassTransparencyLevel,
       'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,

@@ -8,7 +8,9 @@ import 'app_quick_actions.dart';
 import '../core/localization/locale_provider.dart';
 import '../core/reminders/prayer_live_activity_service.dart';
 import '../core/reminders/reminder_scheduler.dart';
+import '../core/prayer/prayer_preferences.dart';
 import '../core/theme/app_theme.dart';
+import '../core/theme/living_atmosphere.dart';
 import '../core/theme/occasion_theme.dart';
 import '../features/journey/application/growth_reminder_scheduler.dart';
 import '../features/journey/application/growth_providers.dart';
@@ -57,8 +59,31 @@ class PathOfNurApp extends ConsumerWidget {
       isRamadan: specialMode.isRamadan || specialMode.ramadanDateWindowActive,
       now: occasionNow,
     );
+    // Living Atmosphere: after dark a Noor Glass app becomes Midnight.
+    // Applied after occasion resolution and after the day/night pairing so
+    // the flip survives both paths.
+    final schedule = ref.watch(prayerScheduleContextProvider);
+    DateTime? scheduleStart(String id) {
+      for (final item in schedule.items) {
+        if (item.id == id) return item.windowStartDateTime;
+      }
+      return null;
+    }
+
+    final skyPhase = noorSkyPhaseAt(
+      now: occasionNow,
+      fajrStart: scheduleStart('fajr'),
+      maghribStart: scheduleStart('maghrib'),
+      ishaStart: scheduleStart('isha'),
+    );
+    AppThemeMode withLivingSky(AppThemeMode mode) =>
+        resolveLivingAtmosphereMode(
+          mode: mode,
+          livingAtmosphere: profileSettings.livingAtmosphere,
+          phase: skyPhase,
+        );
     final manualTheme = AppTheme.themeFor(
-      mode: effectiveThemeMode,
+      mode: withLivingSky(effectiveThemeMode),
       pageTransitionStyle: profileSettings.pageTransitionStyle,
       reduceMotion: profileSettings.reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
@@ -70,8 +95,8 @@ class PathOfNurApp extends ConsumerWidget {
     );
     final useSystemTheme =
         profileSettings.themePreference == ProfileThemePreference.system;
-    final lightMode = _lightThemeModeFor(effectiveThemeMode);
-    final darkMode = _darkThemeModeFor(effectiveThemeMode);
+    final lightMode = withLivingSky(_lightThemeModeFor(effectiveThemeMode));
+    final darkMode = withLivingSky(_darkThemeModeFor(effectiveThemeMode));
     final lightTheme = AppTheme.themeFor(
       mode: lightMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,

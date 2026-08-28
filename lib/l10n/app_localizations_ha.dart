@@ -42052,4 +42052,11 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'Barka da Sallah';
+
+  @override
+  String get settingsLivingSkyTitle => 'Sararin sama mai rai';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'Noor Glass na bin yini — alfijir mai ruwan zinariya, magariba mai amber, da daren taurari bayan duhu.';
 }

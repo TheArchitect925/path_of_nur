@@ -41888,6 +41888,13 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'عید مبارک';
+
+  @override
+  String get settingsLivingSkyTitle => 'آسمان زنده';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'پوستهٔ نور با روز همراه می‌شود — سپیده‌دم رزگلد، مغرب کهربایی و آسمان پرستاره پس از تاریکی.';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83769,4 +83776,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get homeGreetingEidMubarak => 'عید مبارک';
+
+  @override
+  String get settingsLivingSkyTitle => 'آسمان زنده';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'پوستهٔ نور با روز همراه می‌شود — سپیده‌دم رزگلد، مغرب کهربایی و آسمان پرستاره پس از تاریکی.';
 }

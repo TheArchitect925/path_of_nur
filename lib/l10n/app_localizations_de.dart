@@ -42494,4 +42494,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'Eid Mubarak';
+
+  @override
+  String get settingsLivingSkyTitle => 'Lebendiger Himmel';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'Noor Glass folgt dem Tag — roségoldene Morgendämmerung, bernsteinfarbenes Maghrib und der Sternenhimmel nach Einbruch der Nacht.';
 }

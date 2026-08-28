@@ -41930,4 +41930,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'ঈদ মোবারক';
+
+  @override
+  String get settingsLivingSkyTitle => 'জীবন্ত আকাশ';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'নূর গ্লাস দিনের সাথে চলে — গোলাপি-সোনালি ফজর, অ্যাম্বার মাগরিব, আর অন্ধকারের পরে তারাভরা রাত।';
 }

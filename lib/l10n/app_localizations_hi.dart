@@ -42043,4 +42043,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'ईद मुबारक';
+
+  @override
+  String get settingsLivingSkyTitle => 'जीवंत आकाश';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'नूर ग्लास दिन के साथ चलता है — गुलाबी-सुनहरी फ़ज्र, एम्बर मग़रिब, और अंधेरे के बाद तारों भरी रात।';
 }

@@ -69948,6 +69948,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Eid Mubarak'**
   String get homeGreetingEidMubarak;
+
+  /// No description provided for @settingsLivingSkyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Living sky'**
+  String get settingsLivingSkyTitle;
+
+  /// No description provided for @settingsLivingSkySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Noor Glass follows the day — rose-gold dawn, amber Maghrib, and the starry night after dark.'**
+  String get settingsLivingSkySubtitle;
 }
 
 class _AppLocalizationsDelegate

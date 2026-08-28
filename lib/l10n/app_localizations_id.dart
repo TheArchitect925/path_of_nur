@@ -41996,4 +41996,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'Selamat Hari Raya';
+
+  @override
+  String get settingsLivingSkyTitle => 'Langit yang hidup';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'Noor Glass mengikuti hari — fajar merah jambu keemasan, Magrib kuning sawo, dan langit berbintang setelah gelap.';
 }

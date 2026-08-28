@@ -41973,4 +41973,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'عید مبارک';
+
+  @override
+  String get settingsLivingSkyTitle => 'زندہ آسمان';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'نور گلاس دن کے ساتھ چلتا ہے — گلابی سنہری فجر، عنبری مغرب، اور اندھیرے کے بعد ستاروں بھری رات۔';
 }

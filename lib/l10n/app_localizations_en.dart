@@ -41993,4 +41993,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get homeGreetingEidMubarak => 'Eid Mubarak';
+
+  @override
+  String get settingsLivingSkyTitle => 'Living sky';
+
+  @override
+  String get settingsLivingSkySubtitle =>
+      'Noor Glass follows the day — rose-gold dawn, amber Maghrib, and the starry night after dark.';
 }
