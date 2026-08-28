@@ -825,8 +825,17 @@ class _FocusRecitationControls extends StatelessWidget {
             tintColor: const Color(0xFFDABE8D),
             surfaceAlphaOverride: 0.62,
           );
+    // Moonlit Tonal (dark themes): brighter ivory tonal fills, and explicit
+    // disabled colors — Material's disabled fallback uses the light app
+    // theme's ink, which disappears on a dark pill.
     final secondaryFill = surfaceStyle?.iconBackgroundColor ??
-        palette.controlsContent.withValues(alpha: 0.12);
+        palette.controlsContent.withValues(alpha: 0.18);
+    final disabledSecondaryFill = palette.isDark
+        ? palette.controlsContent.withValues(alpha: 0.07)
+        : null;
+    final disabledSecondaryForeground = palette.isDark
+        ? palette.controlsContent.withValues(alpha: 0.38)
+        : null;
     final decoration = surfaceStyle?.decoration(radius: 28, includeShadow: true) ??
         BoxDecoration(
           color: palette.controlsFill,
@@ -868,6 +877,8 @@ class _FocusRecitationControls extends StatelessWidget {
                   style: IconButton.styleFrom(
                     backgroundColor: secondaryFill,
                     foregroundColor: palette.controlsContent,
+                    disabledBackgroundColor: disabledSecondaryFill,
+                    disabledForegroundColor: disabledSecondaryForeground,
                   ),
                   icon: const Icon(Icons.skip_previous_rounded),
                 ),
@@ -879,6 +890,12 @@ class _FocusRecitationControls extends StatelessWidget {
                     minimumSize: const Size(76, 76),
                     backgroundColor: palette.playFill,
                     foregroundColor: palette.playForeground,
+                    disabledBackgroundColor: palette.isDark
+                        ? palette.playFill.withValues(alpha: 0.25)
+                        : null,
+                    disabledForegroundColor: palette.isDark
+                        ? palette.playForeground.withValues(alpha: 0.55)
+                        : null,
                     elevation: 0,
                   ),
                   icon: Icon(primaryIcon, size: 38),
@@ -890,6 +907,8 @@ class _FocusRecitationControls extends StatelessWidget {
                   style: IconButton.styleFrom(
                     backgroundColor: secondaryFill,
                     foregroundColor: palette.controlsContent,
+                    disabledBackgroundColor: disabledSecondaryFill,
+                    disabledForegroundColor: disabledSecondaryForeground,
                   ),
                   icon: const Icon(Icons.skip_next_rounded),
                 ),

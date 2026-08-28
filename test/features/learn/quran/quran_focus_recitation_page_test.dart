@@ -762,6 +762,25 @@ void main() {
         'midnight',
       );
 
+      // Dark palettes must pin explicit disabled colors: Material's fallback
+      // uses the light theme's ink, which vanished on the dark controls pill.
+      final nextButton = tester.widget<IconButton>(
+        find.byKey(const ValueKey('quran-focus-next-ayah')),
+      );
+      expect(nextButton.style?.backgroundColor?.resolve(const {}), isNotNull);
+      expect(
+        nextButton.style?.foregroundColor?.resolve(const {
+          WidgetState.disabled,
+        }),
+        isNotNull,
+      );
+      expect(
+        nextButton.style?.backgroundColor?.resolve(const {
+          WidgetState.disabled,
+        }),
+        isNotNull,
+      );
+
       await tester.tap(
         find.byKey(const ValueKey('quran-focus-atmosphere-candlelight')),
       );
