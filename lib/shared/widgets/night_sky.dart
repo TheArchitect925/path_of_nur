@@ -33,9 +33,17 @@ const Gradient candlelightGlowGradient = RadialGradient(
 /// [now] (waxing lights the right limb, waning the left). Star layout is
 /// deterministic (fixed seed) so frames never shimmer.
 class MidnightSkyPainter extends CustomPainter {
-  MidnightSkyPainter({required this.now});
+  MidnightSkyPainter({
+    required this.now,
+    this.moonFraction = const Offset(0.19, 0.085),
+  });
 
   final DateTime now;
+
+  /// Moon center as a fraction of the canvas. The reader (no chrome in the
+  /// top-left) uses the default; app-wide pages put page titles top-left, so
+  /// GlobalBackground tucks the moon top-right instead.
+  final Offset moonFraction;
 
   static const Color _starColor = Color(0xFFFFF4D6);
   static const Color _moonLit = Color(0xFFEDE5CE);
@@ -79,9 +87,10 @@ class MidnightSkyPainter extends CustomPainter {
 
   void _paintMoon(Canvas canvas, Size size) {
     final r = math.min(size.width, size.height) * 0.052;
-    // High in the top star band: clear of headers below and the status-bar
-    // clock above, and never over content text.
-    final center = Offset(size.width * 0.19, size.height * 0.085);
+    final center = Offset(
+      size.width * moonFraction.dx,
+      size.height * moonFraction.dy,
+    );
     final age = moonAgeDays(now);
     final phase = age / lunarSynodicMonthDays;
     final illuminated = moonIlluminatedFraction(now);
@@ -145,6 +154,9 @@ class MidnightSkyPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant MidnightSkyPainter oldDelegate) {
     final a = oldDelegate.now;
-    return a.year != now.year || a.month != now.month || a.day != now.day;
+    return a.year != now.year ||
+        a.month != now.month ||
+        a.day != now.day ||
+        oldDelegate.moonFraction != moonFraction;
   }
 }

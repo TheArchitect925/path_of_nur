@@ -55,7 +55,15 @@ class GlobalBackground extends ConsumerWidget {
               decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
             ),
             if (isMidnight)
-              CustomPaint(painter: MidnightSkyPainter(now: now!)),
+              CustomPaint(
+                painter: MidnightSkyPainter(
+                  now: now!,
+                  // Header-height, right of center: clear of the status-bar
+                  // icons above, page titles on the left, and Home's corner
+                  // controls.
+                  moonFraction: const Offset(0.735, 0.105),
+                ),
+              ),
             IgnorePointer(
               child: DecoratedBox(
                 decoration: BoxDecoration(
