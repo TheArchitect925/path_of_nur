@@ -41857,4 +41857,77 @@ class AppLocalizationsBn extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'সেহরি শেষ $time-এ';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'লাইলাতুল কদর';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'অ্যাপের গভীরতম রাত — প্রায়-কালো বেগুনি, তারার মাঠ, আর উপর থেকে নেমে আসা কোমল আলো।';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'সেরা: শেষ দশকের বিজোড় রাতগুলোতে';
+
+  @override
+  String get settingsThemeChoiceEid => 'ঈদ';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'উৎসবের সাজে নূর ক্রিম — সোনালি জমিন আর মাথার উপরে ঝালর।';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'সেরা: ঈদের দিনগুলোতে, সকালের তাকবির থেকে সন্ধ্যার সাক্ষাৎ';
+
+  @override
+  String get settingsDressUpQadrTitle => 'শেষ দশ রাতের সম্মান';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'রমজানের শেষ দশকের বিজোড় রাতে লাইলাতুল কদর থিম ব্যবহার করুন।';
+
+  @override
+  String get settingsDressUpEidTitle => 'ঈদে সাজুন';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'ঈদের দিনগুলোতে ঈদ থিম ব্যবহার করুন, পরে আপনার থিমে ফিরে যান।';
+
+  @override
+  String get occasionOfferJummahTitle => 'আজ জুমু\'আ';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'প্রতি শুক্রবার অ্যাপটিকে মসজিদ-পান্না সাজে সাজাবেন? দিন শেষে আপনার থিমে ফিরে আসবে।';
+
+  @override
+  String get occasionOfferRamadanTitle => 'রমজান শুরু হয়েছে';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'বরকতময় মাস জুড়ে অ্যাপটিকে লায়ালি রাতে সাজাবেন? ঈদের পরে আপনার থিমে ফিরে আসবে।';
+
+  @override
+  String get occasionOfferEidTitle => 'ঈদ মোবারক!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'ঈদের দিনগুলোতে অ্যাপটিকে উৎসবের সাজে সাজাবেন? পরে আপনার থিমে ফিরে আসবে।';
+
+  @override
+  String get occasionOfferQadrTitle => 'শেষ দশ রাত';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'বিজোড় রাতগুলো লাইলাতুল কদর থিমে সম্মান জানাবেন? হাজার মাসের চেয়ে উত্তম।';
+
+  @override
+  String get occasionOfferAccept => 'সাজান';
+
+  @override
+  String get occasionOfferDecline => 'এখন নয়';
+
+  @override
+  String get homeGreetingEidMubarak => 'ঈদ মোবারক';
 }

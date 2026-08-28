@@ -60,6 +60,9 @@ class ProfileSettingsState {
     required this.disableColoredGlass,
     required this.dressUpFridays,
     required this.dressUpRamadan,
+    required this.dressUpQadrNights,
+    required this.dressUpEid,
+    required this.occasionOffersSeen,
     required this.glassTransparencyLevel,
     required this.disableBackground,
     this.ramadanStartDateIso,
@@ -102,6 +105,16 @@ class ProfileSettingsState {
 
   /// Wear the Ramadan (Layali) theme through the month, reverting after.
   final bool dressUpRamadan;
+
+  /// Wear the Night of Power theme on the odd last-ten nights of Ramadan.
+  final bool dressUpQadrNights;
+
+  /// Wear the Eid theme through the Eid days (al-Fitr and al-Adha).
+  final bool dressUpEid;
+
+  /// Occasion dress-up offers already shown (consent sheet keys); each
+  /// occasion is offered once and never nags again.
+  final List<String> occasionOffersSeen;
   final double glassTransparencyLevel;
   final bool disableBackground;
   final String? ramadanStartDateIso;
@@ -149,6 +162,9 @@ class ProfileSettingsState {
     bool? disableColoredGlass,
     bool? dressUpFridays,
     bool? dressUpRamadan,
+    bool? dressUpQadrNights,
+    bool? dressUpEid,
+    List<String>? occasionOffersSeen,
     double? glassTransparencyLevel,
     bool? disableBackground,
     String? ramadanStartDateIso,
@@ -192,6 +208,9 @@ class ProfileSettingsState {
       disableColoredGlass: disableColoredGlass ?? this.disableColoredGlass,
       dressUpFridays: dressUpFridays ?? this.dressUpFridays,
       dressUpRamadan: dressUpRamadan ?? this.dressUpRamadan,
+      dressUpQadrNights: dressUpQadrNights ?? this.dressUpQadrNights,
+      dressUpEid: dressUpEid ?? this.dressUpEid,
+      occasionOffersSeen: occasionOffersSeen ?? this.occasionOffersSeen,
       glassTransparencyLevel: glassTransparencyLevel == null
           ? this.glassTransparencyLevel
           : normalizedGlassTransparencyLevel(glassTransparencyLevel),
@@ -238,6 +257,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           disableColoredGlass: false,
           dressUpFridays: false,
           dressUpRamadan: false,
+          dressUpQadrNights: false,
+          dressUpEid: false,
+          occasionOffersSeen: <String>[],
           glassTransparencyLevel: kGlassTransparencyLevelDefault,
           disableBackground: false,
         ),
@@ -471,6 +493,26 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setDressUpQadrNights(bool value) {
+    state = state.copyWith(dressUpQadrNights: value);
+    _save();
+  }
+
+  void setDressUpEid(bool value) {
+    state = state.copyWith(dressUpEid: value);
+    _save();
+  }
+
+  /// Records that an occasion's dress-up offer has been shown, so the
+  /// consent sheet never asks about that occasion again.
+  void markOccasionOfferSeen(String occasionKey) {
+    if (state.occasionOffersSeen.contains(occasionKey)) return;
+    state = state.copyWith(
+      occasionOffersSeen: <String>[...state.occasionOffersSeen, occasionKey],
+    );
+    _save();
+  }
+
   void setGlassTransparencyLevel(double value) {
     state = state.copyWith(glassTransparencyLevel: value);
     _save();
@@ -615,6 +657,14 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['disableColoredGlass'] as bool? ?? state.disableColoredGlass,
       dressUpFridays: data['dressUpFridays'] as bool? ?? state.dressUpFridays,
       dressUpRamadan: data['dressUpRamadan'] as bool? ?? state.dressUpRamadan,
+      dressUpQadrNights:
+          data['dressUpQadrNights'] as bool? ?? state.dressUpQadrNights,
+      dressUpEid: data['dressUpEid'] as bool? ?? state.dressUpEid,
+      occasionOffersSeen:
+          (data['occasionOffersSeen'] as List<dynamic>?)
+              ?.whereType<String>()
+              .toList() ??
+          state.occasionOffersSeen,
       glassTransparencyLevel: normalizedGlassTransparencyLevel(
         (data['glassTransparencyLevel'] as num?)?.toDouble() ??
             kGlassTransparencyLevelDefault,
@@ -663,6 +713,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'disableColoredGlass': state.disableColoredGlass,
       'dressUpFridays': state.dressUpFridays,
       'dressUpRamadan': state.dressUpRamadan,
+      'dressUpQadrNights': state.dressUpQadrNights,
+      'dressUpEid': state.dressUpEid,
+      'occasionOffersSeen': state.occasionOffersSeen,
       'glassTransparencyLevel': state.glassTransparencyLevel,
       'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,

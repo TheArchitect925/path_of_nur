@@ -41660,4 +41660,77 @@ class AppLocalizationsAr extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'ينتهي السحور عند $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'ليلة القدر';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'أعمق ليل في التطبيق — بنفسجي داكن يقارب السواد، حقل من النجوم، ونور لطيف يتنزل من الأعلى.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'الأنسب لـ: الليالي الوترية من العشر الأواخر';
+
+  @override
+  String get settingsThemeChoiceEid => 'العيد';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'كريمة النور في ثوب العيد — أرضية ذهبية وزينة معلّقة فوق الصفحة.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'الأنسب لـ: أيام العيد، من تكبيرات الصباح إلى زيارات المساء';
+
+  @override
+  String get settingsDressUpQadrTitle => 'إحياء العشر الأواخر';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'استخدم سمة ليلة القدر في الليالي الوترية من العشر الأواخر.';
+
+  @override
+  String get settingsDressUpEidTitle => 'تزيّن للعيد';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'استخدم سمة العيد في أيامه، ثم عد إلى سمتك.';
+
+  @override
+  String get occasionOfferJummahTitle => 'إنه يوم الجمعة';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'هل نُلبس التطبيق زمرد المسجد كل جمعة؟ يعود إلى سمتك بنهاية اليوم.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'بدأ رمضان';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'هل نُلبس التطبيق ليالي رمضان طوال الشهر الفضيل؟ يعود إلى سمتك بعد العيد.';
+
+  @override
+  String get occasionOfferEidTitle => 'عيد مبارك!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'هل نُلبس التطبيق ثوب العيد في أيامه؟ يعود إلى سمتك بعدها.';
+
+  @override
+  String get occasionOfferQadrTitle => 'العشر الأواخر';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'هل نُحيي الليالي الوترية بسمة ليلة القدر؟ خير من ألف شهر.';
+
+  @override
+  String get occasionOfferAccept => 'تزيّن';
+
+  @override
+  String get occasionOfferDecline => 'ليس الآن';
+
+  @override
+  String get homeGreetingEidMubarak => 'عيد مبارك';
 }

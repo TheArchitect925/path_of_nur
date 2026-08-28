@@ -41815,6 +41815,79 @@ class AppLocalizationsFa extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'پایان سحر در $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'شب قدر';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'ژرف‌ترین شب برنامه — بنفش نزدیک به سیاه، دشتی از ستاره و نوری لطیف که از بالا فرود می‌آید.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'بهترین برای: شب‌های فرد دههٔ پایانی';
+
+  @override
+  String get settingsThemeChoiceEid => 'عید';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'کرم نور در جامهٔ جشن — زمینهٔ طلایی و ریسه‌های آویخته بر فراز صفحه.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'بهترین برای: روزهای عید، از تکبیر صبح تا دیدارهای شب';
+
+  @override
+  String get settingsDressUpQadrTitle => 'گرامیداشت ده شب پایانی';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'در شب‌های فرد دههٔ پایانی رمضان، پوستهٔ شب قدر را به کار ببرید.';
+
+  @override
+  String get settingsDressUpEidTitle => 'آراستن برای عید';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'در روزهای عید پوستهٔ عید را به کار ببرید و سپس به پوستهٔ خود بازگردید.';
+
+  @override
+  String get occasionOfferJummahTitle => 'جمعه است';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'هر جمعه برنامه را به زمرد مسجد بیاراییم؟ در پایان روز به پوستهٔ شما بازمی‌گردد.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'رمضان آغاز شد';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'در سراسر ماه مبارک، برنامه را به شب لیالی بیاراییم؟ پس از عید به پوستهٔ شما بازمی‌گردد.';
+
+  @override
+  String get occasionOfferEidTitle => 'عید مبارک!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'در روزهای عید برنامه را جشن‌آذین کنیم؟ پس از آن به پوستهٔ شما بازمی‌گردد.';
+
+  @override
+  String get occasionOfferQadrTitle => 'ده شب پایانی';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'شب‌های فرد را با پوستهٔ شب قدر گرامی بداریم؟ بهتر از هزار ماه.';
+
+  @override
+  String get occasionOfferAccept => 'بیارای';
+
+  @override
+  String get occasionOfferDecline => 'اکنون نه';
+
+  @override
+  String get homeGreetingEidMubarak => 'عید مبارک';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83623,4 +83696,77 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'پایان سحر در $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'شب قدر';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'ژرف‌ترین شب برنامه — بنفش نزدیک به سیاه، دشتی از ستاره و نوری لطیف که از بالا فرود می‌آید.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'بهترین برای: شب‌های فرد دههٔ پایانی';
+
+  @override
+  String get settingsThemeChoiceEid => 'عید';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'کرم نور در جامهٔ جشن — زمینهٔ طلایی و ریسه‌های آویخته بر فراز صفحه.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'بهترین برای: روزهای عید، از تکبیر صبح تا دیدارهای شب';
+
+  @override
+  String get settingsDressUpQadrTitle => 'گرامیداشت ده شب پایانی';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'در شب‌های فرد دههٔ پایانی رمضان، پوستهٔ شب قدر را به کار ببرید.';
+
+  @override
+  String get settingsDressUpEidTitle => 'آراستن برای عید';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'در روزهای عید پوستهٔ عید را به کار ببرید و سپس به پوستهٔ خود بازگردید.';
+
+  @override
+  String get occasionOfferJummahTitle => 'جمعه است';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'هر جمعه برنامه را به زمرد مسجد بیاراییم؟ در پایان روز به پوستهٔ شما بازمی‌گردد.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'رمضان آغاز شد';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'در سراسر ماه مبارک، برنامه را به شب لیالی بیاراییم؟ پس از عید به پوستهٔ شما بازمی‌گردد.';
+
+  @override
+  String get occasionOfferEidTitle => 'عید مبارک!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'در روزهای عید برنامه را جشن‌آذین کنیم؟ پس از آن به پوستهٔ شما بازمی‌گردد.';
+
+  @override
+  String get occasionOfferQadrTitle => 'ده شب پایانی';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'شب‌های فرد را با پوستهٔ شب قدر گرامی بداریم؟ بهتر از هزار ماه.';
+
+  @override
+  String get occasionOfferAccept => 'بیارای';
+
+  @override
+  String get occasionOfferDecline => 'اکنون نه';
+
+  @override
+  String get homeGreetingEidMubarak => 'عید مبارک';
 }

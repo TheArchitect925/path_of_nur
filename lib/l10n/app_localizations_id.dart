@@ -41923,4 +41923,77 @@ class AppLocalizationsId extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'Sahur berakhir pukul $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'Lailatul Qadar';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'Malam terdalam di aplikasi — ungu nyaris hitam, hamparan bintang, dan cahaya lembut yang turun dari atas.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'Terbaik untuk: malam-malam ganjil sepuluh hari terakhir';
+
+  @override
+  String get settingsThemeChoiceEid => 'Idulfitri & Iduladha';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'Krem Noor berhias pesta — latar keemasan dan untaian bendera di atas halaman.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'Terbaik untuk: hari-hari raya, dari takbir pagi hingga silaturahmi petang';
+
+  @override
+  String get settingsDressUpQadrTitle => 'Muliakan sepuluh malam terakhir';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'Pakai tema Lailatul Qadar pada malam-malam ganjil sepuluh terakhir Ramadan.';
+
+  @override
+  String get settingsDressUpEidTitle => 'Berhias untuk hari raya';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'Pakai tema hari raya selama hari-hari Id, lalu kembali ke tema Anda.';
+
+  @override
+  String get occasionOfferJummahTitle => 'Hari ini Jumat';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'Hiasi aplikasi dengan Zamrud Masjid setiap Jumat? Kembali ke tema Anda di penghujung hari.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'Ramadan telah tiba';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'Hiasi aplikasi dengan malam Layali sepanjang bulan penuh berkah? Kembali ke tema Anda setelah Id.';
+
+  @override
+  String get occasionOfferEidTitle => 'Selamat Idulfitri!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'Hiasi aplikasi untuk hari raya selama hari-hari Id? Kembali ke tema Anda setelahnya.';
+
+  @override
+  String get occasionOfferQadrTitle => 'Sepuluh malam terakhir';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'Muliakan malam-malam ganjil dengan tema Lailatul Qadar? Lebih baik dari seribu bulan.';
+
+  @override
+  String get occasionOfferAccept => 'Hiasi';
+
+  @override
+  String get occasionOfferDecline => 'Nanti saja';
+
+  @override
+  String get homeGreetingEidMubarak => 'Selamat Hari Raya';
 }

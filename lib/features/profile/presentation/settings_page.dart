@@ -90,6 +90,8 @@ class SettingsPage extends ConsumerWidget {
       AppThemeMode.candlelight,
       AppThemeMode.jummah,
       AppThemeMode.ramadan,
+      AppThemeMode.laylatAlQadr,
+      AppThemeMode.eid,
       AppThemeMode.noorGlassDark,
       AppThemeMode.noGlass,
       AppThemeMode.noGlassDark,
@@ -893,6 +895,32 @@ class SettingsPage extends ConsumerWidget {
                   value: profileSettings.dressUpRamadan,
                   onChanged: (value) {
                     profileSettingsNotifier.setDressUpRamadan(value);
+                    _showAppearanceSnack(
+                      context,
+                      l10n.settingsThemeChangedSuccessfully,
+                    );
+                  },
+                ),
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsDressUpQadrTitle),
+                  subtitle: Text(l10n.settingsDressUpQadrSubtitle),
+                  value: profileSettings.dressUpQadrNights,
+                  onChanged: (value) {
+                    profileSettingsNotifier.setDressUpQadrNights(value);
+                    _showAppearanceSnack(
+                      context,
+                      l10n.settingsThemeChangedSuccessfully,
+                    );
+                  },
+                ),
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsDressUpEidTitle),
+                  subtitle: Text(l10n.settingsDressUpEidSubtitle),
+                  value: profileSettings.dressUpEid,
+                  onChanged: (value) {
+                    profileSettingsNotifier.setDressUpEid(value);
                     _showAppearanceSnack(
                       context,
                       l10n.settingsThemeChangedSuccessfully,
@@ -3303,6 +3331,10 @@ String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeJummahDescription;
     case AppThemeMode.ramadan:
       return l10n.settingsThemeModeRamadanDescription;
+    case AppThemeMode.laylatAlQadr:
+      return l10n.settingsThemeModeLaylatAlQadrDescription;
+    case AppThemeMode.eid:
+      return l10n.settingsThemeModeEidDescription;
   }
 }
 
@@ -3338,6 +3370,10 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeChoiceJummah;
     case AppThemeMode.ramadan:
       return l10n.settingsThemeChoiceRamadan;
+    case AppThemeMode.laylatAlQadr:
+      return l10n.settingsThemeChoiceLaylatAlQadr;
+    case AppThemeMode.eid:
+      return l10n.settingsThemeChoiceEid;
   }
 }
 
@@ -3373,6 +3409,10 @@ String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeJummahBestFor;
     case AppThemeMode.ramadan:
       return l10n.settingsThemeModeRamadanBestFor;
+    case AppThemeMode.laylatAlQadr:
+      return l10n.settingsThemeModeLaylatAlQadrBestFor;
+    case AppThemeMode.eid:
+      return l10n.settingsThemeModeEidBestFor;
   }
 }
 

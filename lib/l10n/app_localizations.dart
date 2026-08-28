@@ -69822,6 +69822,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Suhoor ends at {time}'**
   String homeRamadanSuhoorEndsAt(Object time);
+
+  /// No description provided for @settingsThemeChoiceLaylatAlQadr.
+  ///
+  /// In en, this message translates to:
+  /// **'Laylat al-Qadr'**
+  String get settingsThemeChoiceLaylatAlQadr;
+
+  /// No description provided for @settingsThemeModeLaylatAlQadrDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The deepest night in the app — near-black violet, a field of stars, and a soft light descending from above.'**
+  String get settingsThemeModeLaylatAlQadrDescription;
+
+  /// No description provided for @settingsThemeModeLaylatAlQadrBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for: the odd nights of the last ten'**
+  String get settingsThemeModeLaylatAlQadrBestFor;
+
+  /// No description provided for @settingsThemeChoiceEid.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid'**
+  String get settingsThemeChoiceEid;
+
+  /// No description provided for @settingsThemeModeEidDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The Noor cream dressed for the festival — golden ground, celebration gold, and bunting overhead.'**
+  String get settingsThemeModeEidDescription;
+
+  /// No description provided for @settingsThemeModeEidBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for: the days of Eid, morning takbir to evening visits'**
+  String get settingsThemeModeEidBestFor;
+
+  /// No description provided for @settingsDressUpQadrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Honor the last ten nights'**
+  String get settingsDressUpQadrTitle;
+
+  /// No description provided for @settingsDressUpQadrSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wear the Night of Power theme on the odd nights of Ramadan\'\'s last ten.'**
+  String get settingsDressUpQadrSubtitle;
+
+  /// No description provided for @settingsDressUpEidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress up for Eid'**
+  String get settingsDressUpEidTitle;
+
+  /// No description provided for @settingsDressUpEidSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wear the Eid theme through the days of Eid, then return to your theme.'**
+  String get settingsDressUpEidSubtitle;
+
+  /// No description provided for @occasionOfferJummahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'\'s Jumu\'\'ah'**
+  String get occasionOfferJummahTitle;
+
+  /// No description provided for @occasionOfferJummahBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress the app in Masjid Emerald every Friday? It returns to your theme at night\'\'s end.'**
+  String get occasionOfferJummahBody;
+
+  /// No description provided for @occasionOfferRamadanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan has begun'**
+  String get occasionOfferRamadanTitle;
+
+  /// No description provided for @occasionOfferRamadanBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress the app in the Layali night through the blessed month? It returns to your theme after Eid.'**
+  String get occasionOfferRamadanBody;
+
+  /// No description provided for @occasionOfferEidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid Mubarak!'**
+  String get occasionOfferEidTitle;
+
+  /// No description provided for @occasionOfferEidBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress the app for the festival through the days of Eid? It returns to your theme after.'**
+  String get occasionOfferEidBody;
+
+  /// No description provided for @occasionOfferQadrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The last ten nights'**
+  String get occasionOfferQadrTitle;
+
+  /// No description provided for @occasionOfferQadrBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Honor the odd nights with the Night of Power theme? Better than a thousand months.'**
+  String get occasionOfferQadrBody;
+
+  /// No description provided for @occasionOfferAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress up'**
+  String get occasionOfferAccept;
+
+  /// No description provided for @occasionOfferDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get occasionOfferDecline;
+
+  /// No description provided for @homeGreetingEidMubarak.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid Mubarak'**
+  String get homeGreetingEidMubarak;
 }
 
 class _AppLocalizationsDelegate

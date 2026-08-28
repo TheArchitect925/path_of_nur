@@ -42421,4 +42421,77 @@ class AppLocalizationsDe extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'Suhur endet um $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'Lailat al-Qadr';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'Die tiefste Nacht der App — fast schwarzes Violett, ein Sternenfeld und ein sanftes Licht von oben.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'Ideal für: die ungeraden Nächte der letzten zehn';
+
+  @override
+  String get settingsThemeChoiceEid => 'Eid';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'Das Noor-Creme festlich gekleidet — goldener Grund, Festtagsgold und Wimpel über der Seite.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'Ideal für: die Eid-Tage, vom Takbir am Morgen bis zu den Besuchen am Abend';
+
+  @override
+  String get settingsDressUpQadrTitle => 'Die letzten zehn Nächte ehren';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'In den ungeraden Nächten der letzten zehn das Design der Nacht der Bestimmung tragen.';
+
+  @override
+  String get settingsDressUpEidTitle => 'Festlich zu Eid';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'An den Eid-Tagen das Eid-Design tragen, danach zurück zu deinem Design.';
+
+  @override
+  String get occasionOfferJummahTitle => 'Es ist Dschumu\'a';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'Die App jeden Freitag in Masdschid-Smaragd kleiden? Danach kehrt sie zu deinem Design zurück.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'Ramadan hat begonnen';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'Die App den gesegneten Monat über in die Layali-Nacht kleiden? Nach Eid kehrt sie zu deinem Design zurück.';
+
+  @override
+  String get occasionOfferEidTitle => 'Eid Mubarak!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'Die App für die Eid-Tage festlich kleiden? Danach kehrt sie zu deinem Design zurück.';
+
+  @override
+  String get occasionOfferQadrTitle => 'Die letzten zehn Nächte';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'Die ungeraden Nächte mit dem Design der Nacht der Bestimmung ehren? Besser als tausend Monate.';
+
+  @override
+  String get occasionOfferAccept => 'Festlich kleiden';
+
+  @override
+  String get occasionOfferDecline => 'Nicht jetzt';
+
+  @override
+  String get homeGreetingEidMubarak => 'Eid Mubarak';
 }

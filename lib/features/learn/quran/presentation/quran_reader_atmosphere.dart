@@ -46,7 +46,10 @@ QuranReaderAtmosphere resolveQuranReaderAtmosphere(
   if (appearance.mode == AppThemeMode.jummah) {
     return QuranReaderAtmosphere.jummah;
   }
-  if (appearance.mode == AppThemeMode.ramadan) {
+  if (appearance.mode == AppThemeMode.ramadan ||
+      appearance.mode == AppThemeMode.laylatAlQadr) {
+    // The Night of Power reads on the Layali surface — the reader stays a
+    // calm violet rather than gaining its own festival dressing.
     return QuranReaderAtmosphere.ramadan;
   }
   if (appearance.isDark) return QuranReaderAtmosphere.midnight;

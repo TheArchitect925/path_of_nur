@@ -41901,4 +41901,77 @@ class AppLocalizationsPa extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'ਸਹਿਰੀ $time ਵਜੇ ਖ਼ਤਮ';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'ਲੈਲਤੁਲ ਕਦਰ';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'ਐਪ ਦੀ ਸਭ ਤੋਂ ਗਹਿਰੀ ਰਾਤ — ਲਗਭਗ ਕਾਲਾ ਜਾਮਨੀ, ਤਾਰਿਆਂ ਦਾ ਮੈਦਾਨ, ਅਤੇ ਉੱਪਰੋਂ ਉੱਤਰਦੀ ਕੋਮਲ ਰੌਸ਼ਨੀ।';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'ਸਭ ਤੋਂ ਵਧੀਆ: ਆਖ਼ਰੀ ਦਸ ਦੀਆਂ ਟਾਂਕ ਰਾਤਾਂ ਲਈ';
+
+  @override
+  String get settingsThemeChoiceEid => 'ਈਦ';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'ਤਿਉਹਾਰ ਲਈ ਸਜੀ ਨੂਰ ਕਰੀਮ — ਸੁਨਹਿਰੀ ਜ਼ਮੀਨ ਅਤੇ ਉੱਪਰ ਲਟਕਦੀਆਂ ਝੰਡੀਆਂ।';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'ਸਭ ਤੋਂ ਵਧੀਆ: ਈਦ ਦੇ ਦਿਨਾਂ ਲਈ, ਸਵੇਰ ਦੀ ਤਕਬੀਰ ਤੋਂ ਸ਼ਾਮ ਦੀਆਂ ਮੁਲਾਕਾਤਾਂ ਤੱਕ';
+
+  @override
+  String get settingsDressUpQadrTitle => 'ਆਖ਼ਰੀ ਦਸ ਰਾਤਾਂ ਦਾ ਸਨਮਾਨ';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'ਰਮਜ਼ਾਨ ਦੀਆਂ ਆਖ਼ਰੀ ਦਸ ਦੀਆਂ ਟਾਂਕ ਰਾਤਾਂ ਵਿੱਚ ਲੈਲਤੁਲ ਕਦਰ ਥੀਮ ਵਰਤੋ।';
+
+  @override
+  String get settingsDressUpEidTitle => 'ਈਦ ਲਈ ਸਜਾਵਟ';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'ਈਦ ਦੇ ਦਿਨਾਂ ਵਿੱਚ ਈਦ ਥੀਮ ਵਰਤੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ ਤੇ ਵਾਪਸ ਜਾਓ।';
+
+  @override
+  String get occasionOfferJummahTitle => 'ਅੱਜ ਜੁਮਾ ਹੈ';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'ਹਰ ਜੁਮੇ ਐਪ ਨੂੰ ਮਸਜਿਦ-ਪੰਨੇ ਵਿੱਚ ਸਜਾਈਏ? ਦਿਨ ਢਲਦਿਆਂ ਤੁਹਾਡੀ ਥੀਮ ਵਾਪਸ ਆ ਜਾਵੇਗੀ।';
+
+  @override
+  String get occasionOfferRamadanTitle => 'ਰਮਜ਼ਾਨ ਸ਼ੁਰੂ ਹੋ ਗਿਆ';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'ਮੁਬਾਰਕ ਮਹੀਨੇ ਭਰ ਐਪ ਨੂੰ ਲਯਾਲੀ ਰਾਤ ਵਿੱਚ ਸਜਾਈਏ? ਈਦ ਤੋਂ ਬਾਅਦ ਤੁਹਾਡੀ ਥੀਮ ਵਾਪਸ ਆ ਜਾਵੇਗੀ।';
+
+  @override
+  String get occasionOfferEidTitle => 'ਈਦ ਮੁਬਾਰਕ!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'ਈਦ ਦੇ ਦਿਨਾਂ ਵਿੱਚ ਐਪ ਨੂੰ ਤਿਉਹਾਰ ਲਈ ਸਜਾਈਏ? ਬਾਅਦ ਵਿੱਚ ਤੁਹਾਡੀ ਥੀਮ ਵਾਪਸ ਆ ਜਾਵੇਗੀ।';
+
+  @override
+  String get occasionOfferQadrTitle => 'ਆਖ਼ਰੀ ਦਸ ਰਾਤਾਂ';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'ਟਾਂਕ ਰਾਤਾਂ ਨੂੰ ਲੈਲਤੁਲ ਕਦਰ ਥੀਮ ਨਾਲ ਸਨਮਾਨ ਦੇਈਏ? ਹਜ਼ਾਰ ਮਹੀਨਿਆਂ ਤੋਂ ਬਿਹਤਰ।';
+
+  @override
+  String get occasionOfferAccept => 'ਸਜਾਓ';
+
+  @override
+  String get occasionOfferDecline => 'ਹੁਣ ਨਹੀਂ';
+
+  @override
+  String get homeGreetingEidMubarak => 'ਈਦ ਮੁਬਾਰਕ';
 }

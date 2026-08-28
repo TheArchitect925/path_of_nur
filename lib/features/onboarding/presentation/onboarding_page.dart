@@ -1620,6 +1620,10 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeChoiceJummah;
     case AppThemeMode.ramadan:
       return l10n.settingsThemeChoiceRamadan;
+    case AppThemeMode.laylatAlQadr:
+      return l10n.settingsThemeChoiceLaylatAlQadr;
+    case AppThemeMode.eid:
+      return l10n.settingsThemeChoiceEid;
   }
 }
 

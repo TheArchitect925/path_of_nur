@@ -41979,4 +41979,77 @@ class AppLocalizationsHa extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'Sahur na karewa da $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'Lailatul Kadari';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'Daren mafi zurfi a manhajar — shunayya kusan baki, filin taurari, da haske mai laushi na saukowa daga sama.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'Mafi dacewa: darare marasa adadin biyu na goman karshe';
+
+  @override
+  String get settingsThemeChoiceEid => 'Sallah (Idi)';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'Kirim na Noor cikin adon biki — kasa ta zinariya da tutoci rataye a sama.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'Mafi dacewa: kwanakin Idi, daga kabbara ta safe zuwa ziyarce-ziyarcen yamma';
+
+  @override
+  String get settingsDressUpQadrTitle => 'Girmama goman karshe';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'Yi amfani da jigon Lailatul Kadari a darare marasa adadin biyu na goman karshe na Ramadan.';
+
+  @override
+  String get settingsDressUpEidTitle => 'Yi ado don Idi';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'Yi amfani da jigon Idi a kwanakin Idi, sannan ka koma jigonka.';
+
+  @override
+  String get occasionOfferJummahTitle => 'Yau Juma\'a ce';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'A sanya wa manhajar adon Zumurrudun Masallaci kowace Juma\'a? Za ta koma jigonka a karshen rana.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'Ramadan ya fara';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'A sanya wa manhajar daren Layali cikin watan alheri? Za ta koma jigonka bayan Idi.';
+
+  @override
+  String get occasionOfferEidTitle => 'Barka da Sallah!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'A yi wa manhajar adon biki a kwanakin Idi? Za ta koma jigonka bayan haka.';
+
+  @override
+  String get occasionOfferQadrTitle => 'Goman karshe na darare';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'A girmama darare marasa adadin biyu da jigon Lailatul Kadari? Ya fi wata dubu alheri.';
+
+  @override
+  String get occasionOfferAccept => 'Yi ado';
+
+  @override
+  String get occasionOfferDecline => 'Ba yanzu ba';
+
+  @override
+  String get homeGreetingEidMubarak => 'Barka da Sallah';
 }

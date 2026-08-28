@@ -64,6 +64,7 @@ class AppBackgroundTheme {
       case AppThemeMode.candlelight:
       case AppThemeMode.jummah:
       case AppThemeMode.ramadan:
+      case AppThemeMode.laylatAlQadr:
         return _nightSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
@@ -75,6 +76,8 @@ class AppBackgroundTheme {
           atmosphere: atmosphere,
           disableGlassTransparency: glassDisabled,
         );
+      case AppThemeMode.eid:
+        return _eidSpec(atmosphere: atmosphere);
       case AppThemeMode.defaultMode:
       case AppThemeMode.calmBeautiful:
       case AppThemeMode.easyRead:
@@ -390,6 +393,34 @@ class AppBackgroundTheme {
         ),
       );
     }
+    if (appearance.mode == AppThemeMode.laylatAlQadr) {
+      // Night of Power: near-black violet with a pale light from above;
+      // GlobalBackground paints the dense stars and the descending beam.
+      return AppBackgroundSpec(
+        baseGradient: const RadialGradient(
+          center: Alignment(0, -0.85),
+          radius: 1.5,
+          colors: <Color>[
+            Color(0xFF191330),
+            Color(0xFF130E27),
+            Color(0xFF0E0A1D),
+          ],
+          stops: <double>[0.0, 0.48, 1.0],
+        ),
+        wallpaperTintGradient: const LinearGradient(
+          colors: <Color>[Colors.transparent, Colors.transparent],
+        ),
+        foregroundGlowGradient: RadialGradient(
+          center: const Alignment(0, -1.15),
+          radius: 1.2,
+          colors: <Color>[
+            const Color(0xFFF5E9C8).withValues(alpha: quranLift ? 0.14 : 0.10),
+            Colors.transparent,
+          ],
+          stops: const <double>[0.0, 0.60],
+        ),
+      );
+    }
     if (appearance.mode == AppThemeMode.ramadan) {
       // Layali: violet Ramadan night; the fanoos lantern and crescent are
       // painted by GlobalBackground, the spec carries the lantern's crown.
@@ -467,6 +498,38 @@ class AppBackgroundTheme {
           Colors.transparent,
         ],
         stops: const <double>[0.0, 0.55],
+      ),
+    );
+  }
+
+  static AppBackgroundSpec _eidSpec({
+    required AppBackgroundAtmosphere atmosphere,
+  }) {
+    final quranLift = atmosphere == AppBackgroundAtmosphere.quran;
+    // Festival cream: no wallpaper photo — GlobalBackground hangs the
+    // painted bunting over this warm golden ground.
+    return AppBackgroundSpec(
+      baseGradient: const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: <Color>[
+          Color(0xFFFDF8EC),
+          Color(0xFFF6EBD3),
+          Color(0xFFF0E3C8),
+        ],
+        stops: <double>[0.0, 0.55, 1.0],
+      ),
+      wallpaperTintGradient: const LinearGradient(
+        colors: <Color>[Colors.transparent, Colors.transparent],
+      ),
+      foregroundGlowGradient: RadialGradient(
+        center: const Alignment(0, -1.2),
+        radius: 1.1,
+        colors: <Color>[
+          const Color(0xFFE3B95C).withValues(alpha: quranLift ? 0.14 : 0.10),
+          Colors.transparent,
+        ],
+        stops: const <double>[0.0, 0.58],
       ),
     );
   }

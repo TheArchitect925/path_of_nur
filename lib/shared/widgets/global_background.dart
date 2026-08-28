@@ -45,7 +45,8 @@ class GlobalBackground extends ConsumerWidget {
     if (appearance?.isNightFamily == true) {
       final isMidnight = appearance!.mode == AppThemeMode.midnight;
       final isRamadan = appearance.mode == AppThemeMode.ramadan;
-      final now = isMidnight || isRamadan
+      final isQadr = appearance.mode == AppThemeMode.laylatAlQadr;
+      final now = isMidnight || isRamadan || isQadr
           ? (ref.watch(dailyNowProvider).value ?? DateTime.now())
           : null;
       return Positioned.fill(
@@ -81,8 +82,41 @@ class GlobalBackground extends ConsumerWidget {
                   lanternFraction: const Offset(0.14, 0.0),
                 ),
               ),
+            ] else if (isQadr) ...[
+              CustomPaint(
+                painter: MidnightSkyPainter(
+                  now: now!,
+                  moonFraction: const Offset(0.735, 0.105),
+                  // Near-black violet limb for the Night of Power sky.
+                  moonShadowColor: const Color(0xFF241D3F),
+                ),
+              ),
+              CustomPaint(painter: QadrDescentPainter()),
             ] else if (appearance.mode == AppThemeMode.jummah)
               CustomPaint(painter: MihrabArchPainter()),
+            IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: backgroundSpec.foregroundGlowGradient,
+                ),
+              ),
+            ),
+            if (overlayColor != null) ColoredBox(color: overlayColor!),
+          ],
+        ),
+      );
+    }
+
+    // Eid dresses the cream ground with painted bunting instead of a photo.
+    if (appearance?.mode == AppThemeMode.eid) {
+      return Positioned.fill(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
+            ),
+            CustomPaint(painter: EidBuntingPainter()),
             IgnorePointer(
               child: DecoratedBox(
                 decoration: BoxDecoration(

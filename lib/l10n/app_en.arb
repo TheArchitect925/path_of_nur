@@ -18601,5 +18601,26 @@
     "placeholders": {
       "time": {}
     }
-  }
+  },
+  "settingsThemeChoiceLaylatAlQadr": "Laylat al-Qadr",
+  "settingsThemeModeLaylatAlQadrDescription": "The deepest night in the app — near-black violet, a field of stars, and a soft light descending from above.",
+  "settingsThemeModeLaylatAlQadrBestFor": "Best for: the odd nights of the last ten",
+  "settingsThemeChoiceEid": "Eid",
+  "settingsThemeModeEidDescription": "The Noor cream dressed for the festival — golden ground, celebration gold, and bunting overhead.",
+  "settingsThemeModeEidBestFor": "Best for: the days of Eid, morning takbir to evening visits",
+  "settingsDressUpQadrTitle": "Honor the last ten nights",
+  "settingsDressUpQadrSubtitle": "Wear the Night of Power theme on the odd nights of Ramadan''s last ten.",
+  "settingsDressUpEidTitle": "Dress up for Eid",
+  "settingsDressUpEidSubtitle": "Wear the Eid theme through the days of Eid, then return to your theme.",
+  "occasionOfferJummahTitle": "It''s Jumu''ah",
+  "occasionOfferJummahBody": "Dress the app in Masjid Emerald every Friday? It returns to your theme at night''s end.",
+  "occasionOfferRamadanTitle": "Ramadan has begun",
+  "occasionOfferRamadanBody": "Dress the app in the Layali night through the blessed month? It returns to your theme after Eid.",
+  "occasionOfferEidTitle": "Eid Mubarak!",
+  "occasionOfferEidBody": "Dress the app for the festival through the days of Eid? It returns to your theme after.",
+  "occasionOfferQadrTitle": "The last ten nights",
+  "occasionOfferQadrBody": "Honor the odd nights with the Night of Power theme? Better than a thousand months.",
+  "occasionOfferAccept": "Dress up",
+  "occasionOfferDecline": "Not now",
+  "homeGreetingEidMubarak": "Eid Mubarak"
 }

@@ -41920,4 +41920,77 @@ class AppLocalizationsEn extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'Suhoor ends at $time';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'Laylat al-Qadr';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'The deepest night in the app — near-black violet, a field of stars, and a soft light descending from above.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'Best for: the odd nights of the last ten';
+
+  @override
+  String get settingsThemeChoiceEid => 'Eid';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'The Noor cream dressed for the festival — golden ground, celebration gold, and bunting overhead.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'Best for: the days of Eid, morning takbir to evening visits';
+
+  @override
+  String get settingsDressUpQadrTitle => 'Honor the last ten nights';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'Wear the Night of Power theme on the odd nights of Ramadan\'s last ten.';
+
+  @override
+  String get settingsDressUpEidTitle => 'Dress up for Eid';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'Wear the Eid theme through the days of Eid, then return to your theme.';
+
+  @override
+  String get occasionOfferJummahTitle => 'It\'s Jumu\'ah';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'Dress the app in Masjid Emerald every Friday? It returns to your theme at night\'s end.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'Ramadan has begun';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'Dress the app in the Layali night through the blessed month? It returns to your theme after Eid.';
+
+  @override
+  String get occasionOfferEidTitle => 'Eid Mubarak!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'Dress the app for the festival through the days of Eid? It returns to your theme after.';
+
+  @override
+  String get occasionOfferQadrTitle => 'The last ten nights';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'Honor the odd nights with the Night of Power theme? Better than a thousand months.';
+
+  @override
+  String get occasionOfferAccept => 'Dress up';
+
+  @override
+  String get occasionOfferDecline => 'Not now';
+
+  @override
+  String get homeGreetingEidMubarak => 'Eid Mubarak';
 }

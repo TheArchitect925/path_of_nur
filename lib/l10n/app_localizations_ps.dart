@@ -41865,4 +41865,77 @@ class AppLocalizationsPs extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'پېغمان په $time پای ته رسېږي';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'د قدر شپه';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'د اپ ترټولو ژوره شپه — تور ته نږدې بنفشي، د ستورو ډګر او له پاسه راکوزېدونکې نرمه رڼا.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'غوره ده: د وروستیو لسو طاق شپو لپاره';
+
+  @override
+  String get settingsThemeChoiceEid => 'اختر';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'د نور کریم د اختر په جامه کې — زرینه زمکه او د پاڼې له پاسه ځوړند بیرغونه.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'غوره ده: د اختر ورځې، د سهار له تکبیره تر ماښام لیدنو';
+
+  @override
+  String get settingsDressUpQadrTitle => 'د وروستیو لسو شپو درناوی';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'د روژې د وروستیو لسو په طاق شپو کې د قدر شپې بڼه وکاروئ.';
+
+  @override
+  String get settingsDressUpEidTitle => 'د اختر لپاره سینګار';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'د اختر په ورځو کې د اختر بڼه وکاروئ، بیا خپلې بڼې ته ورشئ.';
+
+  @override
+  String get occasionOfferJummahTitle => 'نن جمعه ده';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'هره جمعه اپ د جومات په زمرد وسینګاروو؟ د ورځې په پای کې ستاسو بڼې ته راګرځي.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'روژه پیل شوه';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'د مبارکې میاشتې په اوږدو کې اپ د لیالي شپې ته وسینګاروو؟ له اختر وروسته ستاسو بڼې ته راګرځي.';
+
+  @override
+  String get occasionOfferEidTitle => 'اختر مو مبارک!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'د اختر په ورځو کې اپ وسینګاروو؟ وروسته ستاسو بڼې ته راګرځي.';
+
+  @override
+  String get occasionOfferQadrTitle => 'وروستۍ لس شپې';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'طاق شپې د قدر شپې په بڼه ونازوو؟ له زرو میاشتو غوره.';
+
+  @override
+  String get occasionOfferAccept => 'سینګار یې کړه';
+
+  @override
+  String get occasionOfferDecline => 'اوس نه';
+
+  @override
+  String get homeGreetingEidMubarak => 'اختر مو مبارک شه';
 }

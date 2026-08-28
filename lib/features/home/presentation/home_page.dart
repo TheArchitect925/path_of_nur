@@ -12,6 +12,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/occasion_theme.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
 import '../../../features/history/presentation/widgets/on_this_day_home_card.dart';
 import '../application/home_calendar_progress_provider.dart';
@@ -47,6 +48,8 @@ import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_title.dart';
+import '../../profile/application/profile_settings_provider.dart';
+import 'widgets/occasion_offer_sheet.dart';
 import 'widgets/ramadan_hero_card.dart';
 import 'widgets/right_now_dua_row.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
@@ -127,6 +130,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     return SafeArea(
       child: Stack(
         children: [
+          const OccasionOfferCoordinator(),
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.fromLTRB(
@@ -386,15 +390,29 @@ class _TopGreetingBlock extends StatelessWidget {
                   const SizedBox(height: 4),
                   Consumer(
                     builder: (context, ref, _) {
-                      // Sacred-time greeting: Jumu'ah Mubarak on Fridays,
-                      // Ramadan Mubarak through the month, salam otherwise.
+                      // Sacred-time greeting: Eid Mubarak on the Eid days,
+                      // Jumu'ah Mubarak on Fridays, Ramadan Mubarak through
+                      // the month, salam otherwise.
                       final now =
                           ref.watch(dailyNowProvider).value ?? DateTime.now();
                       final isRamadan = ref.watch(
                         specialModeProvider.select((mode) => mode.isRamadan),
                       );
+                      final ramadanEndIso = ref.watch(
+                        profileSettingsProvider.select(
+                          (s) => s.ramadanEndDateIso,
+                        ),
+                      );
+                      final isEid =
+                          isEidAlFitrAt(
+                            ramadanEndIso: ramadanEndIso,
+                            now: now,
+                          ) ||
+                          isEidAlAdhaAt(now);
                       final isFriday = now.weekday == DateTime.friday;
-                      final occasion = isFriday
+                      final occasion = isEid
+                          ? l10n.homeGreetingEidMubarak
+                          : isFriday
                           ? l10n.homeGreetingJumuahMubarak
                           : isRamadan
                           ? l10n.homeGreetingRamadanMubarak

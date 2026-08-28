@@ -132,8 +132,9 @@ int? _ramadanDayNumber(String? startIso, DateTime now) {
   if (startIso == null) return null;
   final start = DateTime.tryParse(startIso);
   if (start == null) return null;
-  final startDay = DateTime(start.year, start.month, start.day);
-  final today = DateTime(now.year, now.month, now.day);
+  // UTC dates: local midnights across a DST change are not whole days apart.
+  final startDay = DateTime.utc(start.year, start.month, start.day);
+  final today = DateTime.utc(now.year, now.month, now.day);
   final day = today.difference(startDay).inDays + 1;
   if (day < 1 || day > 30) return null;
   return day;

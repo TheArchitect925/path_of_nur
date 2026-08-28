@@ -41911,4 +41911,77 @@ class AppLocalizationsTr extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'Sahur $time sona eriyor';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'Kadir Gecesi';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'Uygulamanın en derin gecesi — siyaha yakın mor, bir yıldız tarlası ve yukarıdan süzülen yumuşak bir ışık.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'En iyi: son on günün tek geceleri';
+
+  @override
+  String get settingsThemeChoiceEid => 'Bayram';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'Bayrama giyinmiş Noor kremi — altın zemin ve sayfanın üzerinde süs bayrakları.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'En iyi: bayram günleri, sabah tekbirinden akşam ziyaretlerine';
+
+  @override
+  String get settingsDressUpQadrTitle => 'Son on geceyi yücelt';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'Ramazan\'ın son on gününün tek gecelerinde Kadir Gecesi temasını kullan.';
+
+  @override
+  String get settingsDressUpEidTitle => 'Bayram için süslen';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'Bayram günlerinde bayram temasını kullan, sonra kendi temana dön.';
+
+  @override
+  String get occasionOfferJummahTitle => 'Bugün Cuma';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'Uygulamayı her Cuma Cami Zümrüdüyle giydirelim mi? Gün sonunda temana döner.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'Ramazan başladı';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'Mübarek ay boyunca uygulamayı Leyali gecesiyle giydirelim mi? Bayramdan sonra temana döner.';
+
+  @override
+  String get occasionOfferEidTitle => 'Bayramın mübarek olsun!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'Bayram günlerinde uygulamayı bayram için giydirelim mi? Sonrasında temana döner.';
+
+  @override
+  String get occasionOfferQadrTitle => 'Son on gece';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'Tek geceleri Kadir Gecesi temasıyla yüceltelim mi? Bin aydan daha hayırlı.';
+
+  @override
+  String get occasionOfferAccept => 'Giydir';
+
+  @override
+  String get occasionOfferDecline => 'Şimdi değil';
+
+  @override
+  String get homeGreetingEidMubarak => 'Bayramın Mübarek Olsun';
 }

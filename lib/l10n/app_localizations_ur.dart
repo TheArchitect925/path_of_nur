@@ -41900,4 +41900,77 @@ class AppLocalizationsUr extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'سحری $time پر ختم';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'لیلۃ القدر';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'ایپ کی گہری ترین رات — تقریباً سیاہ بنفشی، ستاروں کا میدان، اور اوپر سے اترتی نرم روشنی۔';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'بہترین: آخری عشرے کی طاق راتوں کے لیے';
+
+  @override
+  String get settingsThemeChoiceEid => 'عید';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'تہوار کے لیے سجی نور کریم — سنہری زمین اور صفحے کے اوپر لٹکتی جھنڈیاں۔';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'بہترین: عید کے دنوں کے لیے، صبح کی تکبیر سے شام کی ملاقاتوں تک';
+
+  @override
+  String get settingsDressUpQadrTitle => 'آخری دس راتوں کی تعظیم';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'رمضان کے آخری عشرے کی طاق راتوں میں لیلۃ القدر تھیم استعمال کریں۔';
+
+  @override
+  String get settingsDressUpEidTitle => 'عید کے لیے سجاوٹ';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'عید کے دنوں میں عید تھیم استعمال کریں، پھر اپنی تھیم پر واپس جائیں۔';
+
+  @override
+  String get occasionOfferJummahTitle => 'آج جمعہ ہے';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'ہر جمعے ایپ کو مسجد زمرد میں سجائیں؟ دن کے اختتام پر آپ کی تھیم واپس آ جائے گی۔';
+
+  @override
+  String get occasionOfferRamadanTitle => 'رمضان شروع ہو گیا';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'بابرکت مہینے بھر ایپ کو لیالی رات میں سجائیں؟ عید کے بعد آپ کی تھیم واپس آ جائے گی۔';
+
+  @override
+  String get occasionOfferEidTitle => 'عید مبارک!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'عید کے دنوں میں ایپ کو تہوار کے لیے سجائیں؟ بعد میں آپ کی تھیم واپس آ جائے گی۔';
+
+  @override
+  String get occasionOfferQadrTitle => 'آخری دس راتیں';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'طاق راتوں کو لیلۃ القدر تھیم سے تعظیم دیں؟ ہزار مہینوں سے بہتر۔';
+
+  @override
+  String get occasionOfferAccept => 'سجائیں';
+
+  @override
+  String get occasionOfferDecline => 'ابھی نہیں';
+
+  @override
+  String get homeGreetingEidMubarak => 'عید مبارک';
 }

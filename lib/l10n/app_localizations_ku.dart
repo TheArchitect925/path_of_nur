@@ -41938,4 +41938,77 @@ class AppLocalizationsKu extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'پاشخەوتن لە $time کۆتایی دێت';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'شەوی قەدر';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'قووڵترین شەوی ئەپەکە — مۆرێکی نزیک لە ڕەش، دەشتێک لە ئەستێرە و ڕووناکییەکی نەرم کە لە سەرەوە دادێت.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'باشترینە بۆ: شەوە تاکەکانی دە شەوی کۆتایی';
+
+  @override
+  String get settingsThemeChoiceEid => 'جەژن';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'کرێمی نوور بە جلی جەژنەوە — زەمینەی زێڕین و ئاڵای ڕازاوە بەسەر لاپەڕەکەوە.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'باشترینە بۆ: ڕۆژانی جەژن، لە تەکبیری بەیانی تا سەردانی ئێوارە';
+
+  @override
+  String get settingsDressUpQadrTitle => 'ڕێزگرتن لە دە شەوی کۆتایی';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'لە شەوە تاکەکانی دە شەوی کۆتایی ڕەمەزان ڕووکاری شەوی قەدر بەکاربهێنە.';
+
+  @override
+  String get settingsDressUpEidTitle => 'خۆڕازاندنەوە بۆ جەژن';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'لە ڕۆژانی جەژندا ڕووکاری جەژن بەکاربهێنە، پاشان بگەڕێوە بۆ ڕووکارەکەت.';
+
+  @override
+  String get occasionOfferJummahTitle => 'ئەمڕۆ جومعەیە';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'هەموو جومعەیەک ئەپەکە بە زمروودی مزگەوت بڕازێنینەوە؟ لە کۆتایی ڕۆژدا دەگەڕێتەوە بۆ ڕووکارەکەت.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'ڕەمەزان دەستی پێکرد';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'بە درێژایی مانگی پیرۆز ئەپەکە بە شەوی لەیالی بڕازێنینەوە؟ دوای جەژن دەگەڕێتەوە بۆ ڕووکارەکەت.';
+
+  @override
+  String get occasionOfferEidTitle => 'جەژنت پیرۆز!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'لە ڕۆژانی جەژندا ئەپەکە بڕازێنینەوە؟ پاشان دەگەڕێتەوە بۆ ڕووکارەکەت.';
+
+  @override
+  String get occasionOfferQadrTitle => 'دە شەوی کۆتایی';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'شەوە تاکەکان بە ڕووکاری شەوی قەدر ڕێزیان لێبگرین؟ باشترە لە هەزار مانگ.';
+
+  @override
+  String get occasionOfferAccept => 'بڕازێنەوە';
+
+  @override
+  String get occasionOfferDecline => 'ئێستا نا';
+
+  @override
+  String get homeGreetingEidMubarak => 'جەژنت پیرۆز بێت';
 }

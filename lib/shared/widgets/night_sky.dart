@@ -308,3 +308,150 @@ double fanoosGlowStrengthFor(DateTime now) {
   if (hour >= 20 || hour < 2) return 0.7; // taraweeh evenings
   return 0.35;
 }
+
+/// Laylat al-Qadr: a field of extra stars and a soft column of light
+/// descending from the top of the sky — "peace it is, until the emergence
+/// of dawn". Painted over the MidnightSkyPainter's base stars.
+class QadrDescentPainter extends CustomPainter {
+  QadrDescentPainter();
+
+  static const Color _lightColor = Color(0xFFF5E9C8);
+  static const Color _starColor = Color(0xFFFFF4D6);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Descending beam: a blurred trapezoid from the top center, fading out
+    // by mid-screen so content below stays untouched.
+    final beamTopHalf = size.width * 0.055;
+    final beamBottomHalf = size.width * 0.24;
+    final beamBottom = size.height * 0.42;
+    final cx = size.width * 0.5;
+    final beam = Path()
+      ..moveTo(cx - beamTopHalf, 0)
+      ..lineTo(cx + beamTopHalf, 0)
+      ..lineTo(cx + beamBottomHalf, beamBottom)
+      ..lineTo(cx - beamBottomHalf, beamBottom)
+      ..close();
+    canvas.drawPath(
+      beam,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[
+            _lightColor.withValues(alpha: 0.16),
+            _lightColor.withValues(alpha: 0.05),
+            Colors.transparent,
+          ],
+          stops: const <double>[0.0, 0.55, 1.0],
+        ).createShader(Rect.fromLTRB(0, 0, size.width, beamBottom))
+        ..maskFilter = MaskFilter.blur(BlurStyle.normal, size.width * 0.045),
+    );
+
+    // Extra stars, denser than the Midnight base field, across the upper
+    // 40% of the sky. Deterministic so the night never flickers.
+    var seed = 47;
+    double nextRandom() {
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      return seed / 0x7fffffff;
+    }
+
+    for (var i = 0; i < 46; i++) {
+      final x = nextRandom() * size.width;
+      final y = nextRandom() * size.height * 0.40;
+      final r = 0.5 + nextRandom() * 1.1;
+      final alpha = 0.28 + nextRandom() * 0.45;
+      canvas.drawCircle(
+        Offset(x, y),
+        r,
+        Paint()..color = _starColor.withValues(alpha: alpha),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant QadrDescentPainter oldDelegate) => false;
+}
+
+/// Eid: two strings of festival bunting swinging across the top of the
+/// page — emerald, gold, and violet pennants on fine cords. Pure paint.
+class EidBuntingPainter extends CustomPainter {
+  EidBuntingPainter();
+
+  static const List<Color> _pennantColors = <Color>[
+    Color(0xFF2E7D5B),
+    Color(0xFFD9A741),
+    Color(0xFF8A79BC),
+    Color(0xFFCE8B52),
+  ];
+  static const Color _cordColor = Color(0xFF8A7351);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    _paintString(
+      canvas,
+      size,
+      startY: size.height * 0.045,
+      endY: size.height * 0.075,
+      sag: size.height * 0.030,
+      pennants: 9,
+      colorOffset: 0,
+    );
+    _paintString(
+      canvas,
+      size,
+      startY: size.height * 0.105,
+      endY: size.height * 0.070,
+      sag: size.height * 0.026,
+      pennants: 7,
+      colorOffset: 2,
+    );
+  }
+
+  void _paintString(
+    Canvas canvas,
+    Size size, {
+    required double startY,
+    required double endY,
+    required double sag,
+    required int pennants,
+    required int colorOffset,
+  }) {
+    final cord = Paint()
+      ..color = _cordColor.withValues(alpha: 0.38)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.1;
+
+    Offset pointAt(double t) {
+      // Quadratic sag between the two anchor heights.
+      final x = size.width * t;
+      final line = startY + (endY - startY) * t;
+      final dip = sag * 4 * t * (1 - t);
+      return Offset(x, line + dip);
+    }
+
+    final path = Path()..moveTo(0, startY);
+    for (var i = 1; i <= 24; i++) {
+      final pt = pointAt(i / 24);
+      path.lineTo(pt.dx, pt.dy);
+    }
+    canvas.drawPath(path, cord);
+
+    final pennantW = size.width * 0.036;
+    final pennantH = size.width * 0.052;
+    for (var i = 0; i < pennants; i++) {
+      final t = (i + 1) / (pennants + 1);
+      final anchor = pointAt(t);
+      final color = _pennantColors[(i + colorOffset) % _pennantColors.length];
+      final pennant = Path()
+        ..moveTo(anchor.dx - pennantW / 2, anchor.dy)
+        ..lineTo(anchor.dx + pennantW / 2, anchor.dy)
+        ..lineTo(anchor.dx, anchor.dy + pennantH)
+        ..close();
+      canvas.drawPath(pennant, Paint()..color = color.withValues(alpha: 0.88));
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant EidBuntingPainter oldDelegate) => false;
+}

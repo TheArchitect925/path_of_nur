@@ -20,6 +20,8 @@ enum AppThemeMode {
   candlelight,
   jummah,
   ramadan,
+  laylatAlQadr,
+  eid,
 }
 
 enum AppPageTransitionStyle { defaultSystem, gentleFade, iosStyle, noAnimation }
@@ -101,7 +103,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       mode == AppThemeMode.midnight ||
       mode == AppThemeMode.candlelight ||
       mode == AppThemeMode.jummah ||
-      mode == AppThemeMode.ramadan;
+      mode == AppThemeMode.ramadan ||
+      mode == AppThemeMode.laylatAlQadr;
 
   bool get isMidnightFamily =>
       mode == AppThemeMode.midnightManuscript ||
@@ -111,7 +114,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       mode == AppThemeMode.noorGlass ||
       mode == AppThemeMode.noorGlassDark ||
       mode == AppThemeMode.noorMidnightManuscript ||
-      mode == AppThemeMode.noorKids;
+      mode == AppThemeMode.noorKids ||
+      mode == AppThemeMode.eid;
 
   bool get isNoorGlassPrimaryFamily =>
       mode == AppThemeMode.noorGlass || mode == AppThemeMode.noorGlassDark;
@@ -651,6 +655,73 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
               ? 0.985
               : glassSurfaceAlpha.clamp(0.80, 0.90),
           glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.laylatAlQadr:
+        // Night of Power: the deepest sky in the app — near-black violet,
+        // dense stars, and a soft light descending from above. Pale
+        // luminous gold for wayfinding.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF0E0A1D),
+          backgroundAlt: const Color(0xFF191330),
+          surface: const Color(0xFF241C40),
+          surfaceSoft: const Color(0xFF1E1737),
+          frostedGlassTone: const Color(0xFFEDE6D2),
+          sanctuarySurfaceTone: const Color(0xFFEFE9D6),
+          sanctuaryEdgeLight: const Color(0xFFE9CD8F),
+          inputSurface: const Color(0xFF2A2148),
+          onSurface: const Color(0xFFF2EDE0),
+          onSurfaceSubtle: const Color(0xFFC9C1AE),
+          onSurfaceMuted: const Color(0xFF8E8677),
+          accent: const Color(0xFFE9CD8F),
+          accentSoft: const Color(0xFFC2A45F),
+          border: const Color(0xFF3F3563),
+          divider: const Color(0xFF362D57),
+          success: const Color(0xFF9FC7A6),
+          quranArabicEmphasis: const Color(0xFFF4E9C9),
+          makkiFill: const Color(0x2EE9CD8F),
+          makkiBorder: const Color(0xFFE9CD8F),
+          madaniFill: const Color(0x2A93BDA8),
+          madaniBorder: const Color(0xFF93BDA8),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.eid:
+        // Eid: the Noor cream dressed for the festival — warmer golden
+        // ground, celebration-gold accents, painted bunting overhead.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFFF8F1E2),
+          backgroundAlt: const Color(0xFFF0E3C8),
+          surface: const Color(0xFFFDF8ED),
+          surfaceSoft: const Color(0xFFF5EBD6),
+          frostedGlassTone: const Color(0xFFFBF0D5),
+          sanctuarySurfaceTone: const Color(0xFFFAEFD8),
+          sanctuaryEdgeLight: const Color(0xFFEFD292),
+          inputSurface: const Color(0xFFF8F0DE),
+          onSurface: const Color(0xFF3A2E22),
+          onSurfaceSubtle: const Color(0xFF655444),
+          onSurfaceMuted: const Color(0xFF85715E),
+          accent: const Color(0xFFC99A3C),
+          accentSoft: const Color(0xFFA5772E),
+          border: const Color(0xFFD9C193),
+          divider: const Color(0xFFE6D7B8),
+          success: const Color(0xFF7FB89A),
+          quranArabicEmphasis: const Color(0xFF413429),
+          makkiFill: const Color(0x24B48B43),
+          makkiBorder: const Color(0xFFBC9750),
+          madaniFill: const Color(0x2279B2A4),
+          madaniBorder: const Color(0xFF6EA798),
+          glassSurfaceAlpha: 0.985,
+          glassBorderAlpha: 0.42,
           disableGlassTransparency: disableGlassTransparency,
           disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,

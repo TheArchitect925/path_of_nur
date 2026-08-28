@@ -41970,4 +41970,77 @@ class AppLocalizationsHi extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'सहरी $time पर समाप्त';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'लैलतुल क़द्र';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'ऐप की सबसे गहरी रात — लगभग काला बैंगनी, तारों का मैदान, और ऊपर से उतरती कोमल रोशनी।';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'सर्वश्रेष्ठ: आख़िरी दस की विषम रातों के लिए';
+
+  @override
+  String get settingsThemeChoiceEid => 'ईद';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'त्योहार के लिए सजी नूर क्रीम — सुनहरी ज़मीन और ऊपर लटकती झंडियाँ।';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'सर्वश्रेष्ठ: ईद के दिनों में, सुबह की तकबीर से शाम की मुलाक़ातों तक';
+
+  @override
+  String get settingsDressUpQadrTitle => 'आख़िरी दस रातों का सम्मान';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'रमज़ान की आख़िरी दस की विषम रातों में लैलतुल क़द्र थीम रखें।';
+
+  @override
+  String get settingsDressUpEidTitle => 'ईद के लिए सजाएँ';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'ईद के दिनों में ईद थीम रखें, फिर अपनी थीम पर लौटें।';
+
+  @override
+  String get occasionOfferJummahTitle => 'आज जुमा है';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'हर जुमे को ऐप को मस्जिद-पन्ना रंग में सजाएँ? दिन ढलने पर आपकी थीम लौट आएगी।';
+
+  @override
+  String get occasionOfferRamadanTitle => 'रमज़ान शुरू हो गया';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'मुबारक महीने भर ऐप को लयाली रात में सजाएँ? ईद के बाद आपकी थीम लौट आएगी।';
+
+  @override
+  String get occasionOfferEidTitle => 'ईद मुबारक!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'ईद के दिनों में ऐप को त्योहार के लिए सजाएँ? बाद में आपकी थीम लौट आएगी।';
+
+  @override
+  String get occasionOfferQadrTitle => 'आख़िरी दस रातें';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'विषम रातों को लैलतुल क़द्र थीम से सम्मान दें? हज़ार महीनों से बेहतर।';
+
+  @override
+  String get occasionOfferAccept => 'सजाएँ';
+
+  @override
+  String get occasionOfferDecline => 'अभी नहीं';
+
+  @override
+  String get homeGreetingEidMubarak => 'ईद मुबारक';
 }

@@ -42022,4 +42022,77 @@ class AppLocalizationsTg extends AppLocalizations {
   String homeRamadanSuhoorEndsAt(Object time) {
     return 'Саҳарӣ дар $time ба охир мерасад';
   }
+
+  @override
+  String get settingsThemeChoiceLaylatAlQadr => 'Шаби Қадр';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrDescription =>
+      'Жарфтарин шаби барнома — бунафши қариб сиёҳ, майдони ситорагон ва нури мулоиме, ки аз боло фуруд меояд.';
+
+  @override
+  String get settingsThemeModeLaylatAlQadrBestFor =>
+      'Беҳтарин барои: шабҳои тоқи даҳаи охир';
+
+  @override
+  String get settingsThemeChoiceEid => 'Ид';
+
+  @override
+  String get settingsThemeModeEidDescription =>
+      'Крем-нури ороста ба ҷашн — замини заррин ва байрақчаҳои овезон бар фарози саҳифа.';
+
+  @override
+  String get settingsThemeModeEidBestFor =>
+      'Беҳтарин барои: рӯзҳои ид, аз такбири субҳ то дидорҳои шом';
+
+  @override
+  String get settingsDressUpQadrTitle => 'Гиромидошти даҳ шаби охир';
+
+  @override
+  String get settingsDressUpQadrSubtitle =>
+      'Дар шабҳои тоқи даҳаи охири Рамазон мавзӯи Шаби Қадрро истифода баред.';
+
+  @override
+  String get settingsDressUpEidTitle => 'Ороиш барои ид';
+
+  @override
+  String get settingsDressUpEidSubtitle =>
+      'Дар рӯзҳои ид мавзӯи идро истифода баред, сипас ба мавзӯи худ баргардед.';
+
+  @override
+  String get occasionOfferJummahTitle => 'Имрӯз ҷумъа аст';
+
+  @override
+  String get occasionOfferJummahBody =>
+      'Ҳар ҷумъа барномаро бо Зумурради Масҷид оро диҳем? Дар охири рӯз ба мавзӯи шумо бармегардад.';
+
+  @override
+  String get occasionOfferRamadanTitle => 'Рамазон оғоз шуд';
+
+  @override
+  String get occasionOfferRamadanBody =>
+      'Дар тӯли моҳи муборак барномаро бо шаби Лаёлӣ оро диҳем? Пас аз ид ба мавзӯи шумо бармегардад.';
+
+  @override
+  String get occasionOfferEidTitle => 'Ид муборак!';
+
+  @override
+  String get occasionOfferEidBody =>
+      'Дар рӯзҳои ид барномаро ҷашнона оро диҳем? Баъдан ба мавзӯи шумо бармегардад.';
+
+  @override
+  String get occasionOfferQadrTitle => 'Даҳ шаби охир';
+
+  @override
+  String get occasionOfferQadrBody =>
+      'Шабҳои тоқро бо мавзӯи Шаби Қадр гиромӣ дорем? Беҳтар аз ҳазор моҳ.';
+
+  @override
+  String get occasionOfferAccept => 'Оро деҳ';
+
+  @override
+  String get occasionOfferDecline => 'Ҳоло не';
+
+  @override
+  String get homeGreetingEidMubarak => 'Ид муборак';
 }
