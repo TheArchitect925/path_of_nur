@@ -35,7 +35,8 @@ class QuranPresentationStyle {
   }
 
   static Color quranSupportTextColor(BuildContext context) {
-    return Colors.black;
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    return appearance?.backgroundForeground ?? _fallbackSupportText;
   }
 
   static TextStyle quranSupportTextStyle(
