@@ -41739,4 +41739,23 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'মোমবাতির আলো';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'তারাভরা রাতের আকাশ ও আসল চাঁদের কলা অনুসরণকারী কোমল উজ্জ্বল চাঁদ। গাঢ় নীল কাচ, হাতির দাঁতের রঙের লেখা ও সোনালি ছোঁয়া।';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'সবচেয়ে উপযুক্ত: রাতের পড়া ও OLED স্ক্রিন';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'মোমবাতির আলোয় উষ্ণ ঘর — গাঢ় বাদামি ও কোমল আভা। কম নীল আলো, ক্লান্ত চোখের জন্য আরামদায়ক।';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'সবচেয়ে উপযুক্ত: ঘুমের আগে বিশ্রাম';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'অ্যাপের থিম অনুসরণ করুন';
 }

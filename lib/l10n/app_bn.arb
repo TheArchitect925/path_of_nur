@@ -18661,5 +18661,10 @@
   "quranReaderAtmosphereTitle": "পাঠকের থিম",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "মধ্যরাত",
-  "quranReaderAtmosphereCandlelight": "মোমবাতির আলো"
+  "quranReaderAtmosphereCandlelight": "মোমবাতির আলো",
+  "settingsThemeModeMidnightDescription": "তারাভরা রাতের আকাশ ও আসল চাঁদের কলা অনুসরণকারী কোমল উজ্জ্বল চাঁদ। গাঢ় নীল কাচ, হাতির দাঁতের রঙের লেখা ও সোনালি ছোঁয়া।",
+  "settingsThemeModeMidnightBestFor": "সবচেয়ে উপযুক্ত: রাতের পড়া ও OLED স্ক্রিন",
+  "settingsThemeModeCandlelightDescription": "মোমবাতির আলোয় উষ্ণ ঘর — গাঢ় বাদামি ও কোমল আভা। কম নীল আলো, ক্লান্ত চোখের জন্য আরামদায়ক।",
+  "settingsThemeModeCandlelightBestFor": "সবচেয়ে উপযুক্ত: ঘুমের আগে বিশ্রাম",
+  "quranReaderAtmosphereFollowApp": "অ্যাপের থিম অনুসরণ করুন"
 }

@@ -5,6 +5,10 @@
 /// atmospheres ship reader-first; an app-wide theme revamp can adopt them
 /// later.
 enum QuranReaderAtmosphere {
+  /// Resolve from the app-wide theme: night app themes read on their own
+  /// atmosphere, light themes on Noor Glass. The default since app-wide
+  /// themes shipped.
+  followApp('follow_app'),
   noorGlass('noor_glass'),
   midnight('midnight'),
   candlelight('candlelight');
@@ -17,6 +21,6 @@ enum QuranReaderAtmosphere {
     for (final value in values) {
       if (value.wireName == raw) return value;
     }
-    return QuranReaderAtmosphere.noorGlass;
+    return QuranReaderAtmosphere.followApp;
   }
 }

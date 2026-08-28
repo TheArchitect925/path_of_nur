@@ -432,7 +432,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           focusRecitationShowTranslation: true,
           focusRecitationShowTransliteration: true,
           focusRecitationKeepScreenAwake: false,
-          readerAtmosphere: QuranReaderAtmosphere.noorGlass,
+          readerAtmosphere: QuranReaderAtmosphere.followApp,
         ),
       ) {
     _load();

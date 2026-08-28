@@ -41793,4 +41793,23 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Mum ışığı';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'Gerçek ay evresini izleyen yumuşak ışıltılı bir ay ve yıldızlı gece göğü. Koyu çivit camı, fildişi metin ve altın vurgular.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'En uygun: gece okuması ve OLED ekranlar';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'Mum ışığında sıcak bir oda — koyu kahve ve yumuşak bir parıltı. Az mavi ışık, yorgun gözlere nazik.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'En uygun: uykudan önce sakinleşme';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Uygulama temasına uy';
 }

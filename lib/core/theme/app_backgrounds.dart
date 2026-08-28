@@ -60,6 +60,12 @@ class AppBackgroundTheme {
           atmosphere: atmosphere,
           disableGlassTransparency: glassDisabled,
         );
+      case AppThemeMode.midnight:
+      case AppThemeMode.candlelight:
+        return _nightSpec(
+          appearance: effectiveAppearance,
+          atmosphere: atmosphere,
+        );
       case AppThemeMode.dark:
       case AppThemeMode.noGlassDark:
         return _darkSpec(
@@ -340,6 +346,69 @@ class AppBackgroundTheme {
           ),
           const Color(0xFF090D13),
         ],
+      ),
+    );
+  }
+
+  /// Painted-atmosphere spec for the Midnight and Candlelight themes: no
+  /// wallpaper image — the base gradient IS the sky/ember ground, and the
+  /// glow layer carries the candle crown (Midnight's stars and moon are
+  /// painted separately by GlobalBackground). The Qur'an atmosphere lifts
+  /// the crown slightly for reading warmth.
+  static AppBackgroundSpec _nightSpec({
+    required AppAppearanceTheme appearance,
+    required AppBackgroundAtmosphere atmosphere,
+  }) {
+    final quranLift = atmosphere == AppBackgroundAtmosphere.quran;
+    final isCandlelight = appearance.mode == AppThemeMode.candlelight;
+    if (isCandlelight) {
+      return AppBackgroundSpec(
+        baseGradient: const RadialGradient(
+          center: Alignment(0, -0.55),
+          radius: 1.6,
+          colors: <Color>[
+            Color(0xFF241C12),
+            Color(0xFF1D1610),
+            Color(0xFF15100B),
+          ],
+          stops: <double>[0.0, 0.55, 1.0],
+        ),
+        wallpaperTintGradient: const LinearGradient(
+          colors: <Color>[Colors.transparent, Colors.transparent],
+        ),
+        foregroundGlowGradient: RadialGradient(
+          center: const Alignment(0, -1.2),
+          radius: 1.1,
+          colors: <Color>[
+            const Color(0xFFC48A3A).withValues(alpha: quranLift ? 0.36 : 0.30),
+            Colors.transparent,
+          ],
+          stops: const <double>[0.0, 0.60],
+        ),
+      );
+    }
+    return AppBackgroundSpec(
+      baseGradient: const RadialGradient(
+        center: Alignment(0, -0.85),
+        radius: 1.5,
+        colors: <Color>[
+          Color(0xFF232A44),
+          Color(0xFF1A1F33),
+          Color(0xFF121423),
+        ],
+        stops: <double>[0.0, 0.48, 1.0],
+      ),
+      wallpaperTintGradient: const LinearGradient(
+        colors: <Color>[Colors.transparent, Colors.transparent],
+      ),
+      foregroundGlowGradient: RadialGradient(
+        center: const Alignment(0, -1.1),
+        radius: 1.0,
+        colors: <Color>[
+          const Color(0xFFE9DDBF).withValues(alpha: quranLift ? 0.06 : 0.04),
+          Colors.transparent,
+        ],
+        stops: const <double>[0.0, 0.55],
       ),
     );
   }

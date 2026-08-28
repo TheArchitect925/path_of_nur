@@ -18651,5 +18651,10 @@
   "quranReaderAtmosphereTitle": "د لوستونکي بڼه",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "نیمه شپه",
-  "quranReaderAtmosphereCandlelight": "د شمعې رڼا"
+  "quranReaderAtmosphereCandlelight": "د شمعې رڼا",
+  "settingsThemeModeMidnightDescription": "د ستورو ډکه د شپې اسمان او هغه ځلېدونکې سپوږمۍ چې د سپوږمۍ له ریښتيني پړاو سره سمون لري. ژور نیلي ښیښه، د عاج رنګ متن او زرین رنګونه.",
+  "settingsThemeModeMidnightBestFor": "غوره ده د: شپې لوستلو او OLED پردو لپاره",
+  "settingsThemeModeCandlelightDescription": "د شمعې په رڼا کې توده خونه — ژور نسواري له نرمې رڼا سره. لږه شنه رڼا، ستړو سترګو ته ارامه.",
+  "settingsThemeModeCandlelightBestFor": "غوره ده د: له خوب مخکې ارامۍ لپاره",
+  "quranReaderAtmosphereFollowApp": "د اپلیکیشن له بڼې سره سمون"
 }

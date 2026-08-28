@@ -18544,5 +18544,10 @@
   "quranReaderAtmosphereTitle": "Reader theme",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "Midnight",
-  "quranReaderAtmosphereCandlelight": "Candlelight"
+  "quranReaderAtmosphereCandlelight": "Candlelight",
+  "settingsThemeModeMidnightDescription": "A starry night sky with a softly glowing moon that follows the real lunar phase. Deep indigo glass with ivory text and gold accents.",
+  "settingsThemeModeMidnightBestFor": "Best for: night reading and OLED screens",
+  "settingsThemeModeCandlelightDescription": "A warm candlelit room — deep umber with a soft glow. Low blue light, gentle on tired eyes.",
+  "settingsThemeModeCandlelightBestFor": "Best for: winding down before sleep",
+  "quranReaderAtmosphereFollowApp": "Match app theme"
 }

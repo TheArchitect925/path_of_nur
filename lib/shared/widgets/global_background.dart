@@ -6,6 +6,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/wallpaper/application/wallpaper_provider.dart';
+import '../application/daily_clock_provider.dart';
+import 'night_sky.dart';
 
 const double _backgroundDecodeScale = 1.1;
 
@@ -35,6 +37,36 @@ class GlobalBackground extends ConsumerWidget {
 
     if (settings.disableBackground || appearance?.disableBackground == true) {
       return Positioned.fill(child: ColoredBox(color: fallbackColor));
+    }
+
+    // Night themes paint their atmosphere instead of a wallpaper photo:
+    // Midnight gets the starry sky with the true-phase moon, Candlelight the
+    // ember ground with its glow crown (carried by the spec's gradients).
+    if (appearance?.isNightFamily == true) {
+      final isMidnight = appearance!.mode == AppThemeMode.midnight;
+      final now = isMidnight
+          ? (ref.watch(dailyNowProvider).value ?? DateTime.now())
+          : null;
+      return Positioned.fill(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
+            ),
+            if (isMidnight)
+              CustomPaint(painter: MidnightSkyPainter(now: now!)),
+            IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: backgroundSpec.foregroundGlowGradient,
+                ),
+              ),
+            ),
+            if (overlayColor != null) ColoredBox(color: overlayColor!),
+          ],
+        ),
+      );
     }
 
     final effectiveAsset = assetPath ?? wallpaper.assetPath;

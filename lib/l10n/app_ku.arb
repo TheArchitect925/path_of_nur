@@ -18651,5 +18651,10 @@
   "quranReaderAtmosphereTitle": "Dirûvê xwendinê",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "Nîvê şevê",
-  "quranReaderAtmosphereCandlelight": "Ronahiya mûmê"
+  "quranReaderAtmosphereCandlelight": "Ronahiya mûmê",
+  "settingsThemeModeMidnightDescription": "Asmanê şevê yê stêrkdar bi heyveke geş a ku li gorî qonaxa rastîn a heyvê diçe. Cama nîlî ya kûr bi nivîsa spî û xemlên zêrîn.",
+  "settingsThemeModeMidnightBestFor": "Herî baş ji bo: xwendina şevê û ekranên OLED",
+  "settingsThemeModeCandlelightDescription": "Odeyeke germ bi ronahiya mumê — qehweyî kûr bi ronahiyeke nerm. Ronahiya şîn kêm, ji çavên westiyayî re nerm.",
+  "settingsThemeModeCandlelightBestFor": "Herî baş ji bo: rihetbûna beriya xewê",
+  "quranReaderAtmosphereFollowApp": "Li gorî dirûvê sepanê"
 }

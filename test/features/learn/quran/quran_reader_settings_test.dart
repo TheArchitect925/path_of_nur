@@ -82,7 +82,7 @@ void main() {
       expect(notifier.state.showLearnMore, isFalse);
     });
 
-    test('defaults reader atmosphere to Noor Glass', () async {
+    test('defaults reader atmosphere to matching the app theme', () async {
       SharedPreferences.setMockInitialValues(const {});
       final prefs = await SharedPreferences.getInstance();
       final store = LocalStore(prefs);
@@ -90,7 +90,7 @@ void main() {
 
       expect(
         notifier.state.readerAtmosphere,
-        QuranReaderAtmosphere.noorGlass,
+        QuranReaderAtmosphere.followApp,
       );
     });
 
@@ -113,7 +113,7 @@ void main() {
       );
     });
 
-    test('falls back to Noor Glass for unknown stored atmosphere', () async {
+    test('falls back to follow-app for unknown stored atmosphere', () async {
       SharedPreferences.setMockInitialValues(const {
         'learn.quran.readerAtmosphere': 'lava_lamp',
       });
@@ -123,7 +123,7 @@ void main() {
 
       expect(
         notifier.state.readerAtmosphere,
-        QuranReaderAtmosphere.noorGlass,
+        QuranReaderAtmosphere.followApp,
       );
     });
   });

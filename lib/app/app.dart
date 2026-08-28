@@ -109,6 +109,10 @@ AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
       return AppThemeMode.noorGlass;
     case AppThemeMode.noGlassDark:
       return AppThemeMode.noGlass;
+    // The night themes pair with Noor Glass when the OS switches to light.
+    case AppThemeMode.midnight:
+    case AppThemeMode.candlelight:
+      return AppThemeMode.noorGlass;
     default:
       return mode;
   }
@@ -116,8 +120,9 @@ AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
 
 AppThemeMode _darkThemeModeFor(AppThemeMode mode) {
   switch (mode) {
+    // OS dark mode now lands on the starry Midnight theme.
     case AppThemeMode.noorGlass:
-      return AppThemeMode.noorGlassDark;
+      return AppThemeMode.midnight;
     case AppThemeMode.noGlass:
       return AppThemeMode.noGlassDark;
     default:

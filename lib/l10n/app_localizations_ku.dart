@@ -41820,4 +41820,23 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Ronahiya mûmê';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'Asmanê şevê yê stêrkdar bi heyveke geş a ku li gorî qonaxa rastîn a heyvê diçe. Cama nîlî ya kûr bi nivîsa spî û xemlên zêrîn.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'Herî baş ji bo: xwendina şevê û ekranên OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'Odeyeke germ bi ronahiya mumê — qehweyî kûr bi ronahiyeke nerm. Ronahiya şîn kêm, ji çavên westiyayî re nerm.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'Herî baş ji bo: rihetbûna beriya xewê';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Li gorî dirûvê sepanê';
 }

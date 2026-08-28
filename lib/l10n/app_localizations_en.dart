@@ -41802,4 +41802,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Candlelight';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'A starry night sky with a softly glowing moon that follows the real lunar phase. Deep indigo glass with ivory text and gold accents.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'Best for: night reading and OLED screens';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'A warm candlelit room — deep umber with a soft glow. Low blue light, gentle on tired eyes.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'Best for: winding down before sleep';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Match app theme';
 }

@@ -18544,5 +18544,10 @@
   "quranReaderAtmosphereTitle": "Lese-Design",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "Mitternacht",
-  "quranReaderAtmosphereCandlelight": "Kerzenlicht"
+  "quranReaderAtmosphereCandlelight": "Kerzenlicht",
+  "settingsThemeModeMidnightDescription": "Ein Sternenhimmel mit sanft leuchtendem Mond, der der echten Mondphase folgt. Tiefes Indigo-Glas mit elfenbeinfarbener Schrift und goldenen Akzenten.",
+  "settingsThemeModeMidnightBestFor": "Ideal für: Lesen bei Nacht und OLED-Bildschirme",
+  "settingsThemeModeCandlelightDescription": "Ein warmer Raum im Kerzenschein — tiefes Umbra mit sanftem Glühen. Wenig Blaulicht, schonend für müde Augen.",
+  "settingsThemeModeCandlelightBestFor": "Ideal für: das Zur-Ruhe-Kommen vor dem Schlafen",
+  "quranReaderAtmosphereFollowApp": "Dem App-Design folgen"
 }

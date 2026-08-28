@@ -42302,4 +42302,23 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Kerzenlicht';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'Ein Sternenhimmel mit sanft leuchtendem Mond, der der echten Mondphase folgt. Tiefes Indigo-Glas mit elfenbeinfarbener Schrift und goldenen Akzenten.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'Ideal für: Lesen bei Nacht und OLED-Bildschirme';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'Ein warmer Raum im Kerzenschein — tiefes Umbra mit sanftem Glühen. Wenig Blaulicht, schonend für müde Augen.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'Ideal für: das Zur-Ruhe-Kommen vor dem Schlafen';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Dem App-Design folgen';
 }

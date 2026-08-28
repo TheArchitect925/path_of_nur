@@ -18651,5 +18651,10 @@
   "quranReaderAtmosphereTitle": "Мавзӯи хонанда",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "Нисфи шаб",
-  "quranReaderAtmosphereCandlelight": "Нури шамъ"
+  "quranReaderAtmosphereCandlelight": "Нури шамъ",
+  "settingsThemeModeMidnightDescription": "Осмони шаби пурситора бо моҳи нармтобанда, ки ба марҳилаи воқеии моҳ пайравӣ мекунад. Шишаи нилии амиқ бо матни оҷӣ ва оро­иши тиллоӣ.",
+  "settingsThemeModeMidnightBestFor": "Беҳтарин барои: хониши шабона ва экранҳои OLED",
+  "settingsThemeModeCandlelightDescription": "Ҳуҷраи гарм дар нури шамъ — қаҳваранги амиқ бо тобиши нарм. Нури кабуди кам, барои чашмони хаста мулоим.",
+  "settingsThemeModeCandlelightBestFor": "Беҳтарин барои: оромӣ пеш аз хоб",
+  "quranReaderAtmosphereFollowApp": "Мутобиқи мавзӯи барнома"
 }

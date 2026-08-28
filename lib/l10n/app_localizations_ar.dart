@@ -41542,4 +41542,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'ضوء الشموع';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'سماء ليلية مرصعة بالنجوم مع قمر متوهج يتبع الطور القمري الحقيقي. زجاج نيلي عميق بنص عاجي ولمسات ذهبية.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'الأنسب لِـ: القراءة الليلية وشاشات OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'غرفة دافئة على ضوء الشموع — بني داكن مع توهج ناعم. إضاءة زرقاء منخفضة ولطيفة على العيون المتعبة.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'الأنسب لِـ: الاسترخاء قبل النوم';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'مطابقة مظهر التطبيق';
 }

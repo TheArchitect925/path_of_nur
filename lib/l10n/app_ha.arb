@@ -18661,5 +18661,10 @@
   "quranReaderAtmosphereTitle": "Jigon karatu",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "Tsakar dare",
-  "quranReaderAtmosphereCandlelight": "Hasken kyandir"
+  "quranReaderAtmosphereCandlelight": "Hasken kyandir",
+  "settingsThemeModeMidnightDescription": "Sararin dare mai taurari da wata mai haske wanda ke bin ainihin matakin wata. Gilashin shudi mai zurfi da rubutu irin hauren giwa da kayan zinariya.",
+  "settingsThemeModeMidnightBestFor": "Ya fi dacewa da: karatun dare da allon OLED",
+  "settingsThemeModeCandlelightDescription": "Daki mai dumi cikin hasken kyandir — ruwan kasa mai zurfi da haske mai laushi. Karancin shudin haske, mai sauki ga idanu.",
+  "settingsThemeModeCandlelightBestFor": "Ya fi dacewa da: hutawa kafin barci",
+  "quranReaderAtmosphereFollowApp": "Bi jigon manhaja"
 }

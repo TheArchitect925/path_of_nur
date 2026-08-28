@@ -18652,5 +18652,10 @@
   "quranReaderAtmosphereTitle": "پوسته خواندن",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "نیمه‌شب",
-  "quranReaderAtmosphereCandlelight": "نور شمع"
+  "quranReaderAtmosphereCandlelight": "نور شمع",
+  "settingsThemeModeMidnightDescription": "آسمان شب پرستاره با ماهی تابان که از فاز واقعی ماه پیروی می‌کند. شیشه نیلی تیره با متن عاجی و جزئیات طلایی.",
+  "settingsThemeModeMidnightBestFor": "مناسب برای: مطالعه شبانه و صفحه‌های OLED",
+  "settingsThemeModeCandlelightDescription": "اتاقی گرم در نور شمع — قهوه‌ای تیره با تابشی ملایم. نور آبی کم و ملایم برای چشمان خسته.",
+  "settingsThemeModeCandlelightBestFor": "مناسب برای: آرامش پیش از خواب",
+  "quranReaderAtmosphereFollowApp": "هماهنگ با پوسته برنامه"
 }

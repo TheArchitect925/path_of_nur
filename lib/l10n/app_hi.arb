@@ -18649,5 +18649,10 @@
   "quranReaderAtmosphereTitle": "पाठक थीम",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "मध्यरात्रि",
-  "quranReaderAtmosphereCandlelight": "मोमबत्ती की रोशनी"
+  "quranReaderAtmosphereCandlelight": "मोमबत्ती की रोशनी",
+  "settingsThemeModeMidnightDescription": "तारों भरा रात का आसमान और असली चंद्र कला के अनुसार चमकता चांद। गहरा नीला कांच, हाथीदांत रंग का पाठ और सुनहरे स्पर्श।",
+  "settingsThemeModeMidnightBestFor": "सबसे उपयुक्त: रात में पढ़ना और OLED स्क्रीन",
+  "settingsThemeModeCandlelightDescription": "मोमबत्ती की रोशनी वाला गर्म कमरा — गहरा भूरा और कोमल आभा। कम नीली रोशनी, थकी आंखों के लिए आरामदायक।",
+  "settingsThemeModeCandlelightBestFor": "सबसे उपयुक्त: सोने से पहले विश्राम",
+  "quranReaderAtmosphereFollowApp": "ऐप थीम से मिलाएं"
 }

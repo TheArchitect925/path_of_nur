@@ -18649,5 +18649,10 @@
   "quranReaderAtmosphereTitle": "قاری تھیم",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "آدھی رات",
-  "quranReaderAtmosphereCandlelight": "موم بتی کی روشنی"
+  "quranReaderAtmosphereCandlelight": "موم بتی کی روشنی",
+  "settingsThemeModeMidnightDescription": "ستاروں بھرا رات کا آسمان اور اصل چاند کی منزل کے مطابق چمکتا چاند۔ گہرا نیلا شیشہ، ہاتھی دانت رنگ کی تحریر اور سنہری لمسات۔",
+  "settingsThemeModeMidnightBestFor": "بہترین: رات کے مطالعے اور OLED اسکرینوں کے لیے",
+  "settingsThemeModeCandlelightDescription": "موم بتی کی روشنی والا گرم کمرہ — گہرا بھورا اور نرم چمک۔ کم نیلی روشنی، تھکی آنکھوں کے لیے نرم۔",
+  "settingsThemeModeCandlelightBestFor": "بہترین: سونے سے پہلے سکون کے لیے",
+  "quranReaderAtmosphereFollowApp": "ایپ تھیم کے مطابق"
 }

@@ -1612,6 +1612,10 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeChoiceNoorMidnightManuscript;
     case AppThemeMode.noorKids:
       return l10n.settingsThemeChoiceNoorKids;
+    case AppThemeMode.midnight:
+      return l10n.quranReaderAtmosphereMidnight;
+    case AppThemeMode.candlelight:
+      return l10n.quranReaderAtmosphereCandlelight;
   }
 }
 

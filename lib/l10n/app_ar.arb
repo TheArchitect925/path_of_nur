@@ -18649,5 +18649,10 @@
   "quranReaderAtmosphereTitle": "مظهر القارئ",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "منتصف الليل",
-  "quranReaderAtmosphereCandlelight": "ضوء الشموع"
+  "quranReaderAtmosphereCandlelight": "ضوء الشموع",
+  "settingsThemeModeMidnightDescription": "سماء ليلية مرصعة بالنجوم مع قمر متوهج يتبع الطور القمري الحقيقي. زجاج نيلي عميق بنص عاجي ولمسات ذهبية.",
+  "settingsThemeModeMidnightBestFor": "الأنسب لِـ: القراءة الليلية وشاشات OLED",
+  "settingsThemeModeCandlelightDescription": "غرفة دافئة على ضوء الشموع — بني داكن مع توهج ناعم. إضاءة زرقاء منخفضة ولطيفة على العيون المتعبة.",
+  "settingsThemeModeCandlelightBestFor": "الأنسب لِـ: الاسترخاء قبل النوم",
+  "quranReaderAtmosphereFollowApp": "مطابقة مظهر التطبيق"
 }

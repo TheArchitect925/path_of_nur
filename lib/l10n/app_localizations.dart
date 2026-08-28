@@ -69630,6 +69630,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Candlelight'**
   String get quranReaderAtmosphereCandlelight;
+
+  /// No description provided for @settingsThemeModeMidnightDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A starry night sky with a softly glowing moon that follows the real lunar phase. Deep indigo glass with ivory text and gold accents.'**
+  String get settingsThemeModeMidnightDescription;
+
+  /// No description provided for @settingsThemeModeMidnightBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for: night reading and OLED screens'**
+  String get settingsThemeModeMidnightBestFor;
+
+  /// No description provided for @settingsThemeModeCandlelightDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A warm candlelit room — deep umber with a soft glow. Low blue light, gentle on tired eyes.'**
+  String get settingsThemeModeCandlelightDescription;
+
+  /// No description provided for @settingsThemeModeCandlelightBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for: winding down before sleep'**
+  String get settingsThemeModeCandlelightBestFor;
+
+  /// No description provided for @quranReaderAtmosphereFollowApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Match app theme'**
+  String get quranReaderAtmosphereFollowApp;
 }
 
 class _AppLocalizationsDelegate

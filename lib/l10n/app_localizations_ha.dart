@@ -41861,4 +41861,23 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Hasken kyandir';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'Sararin dare mai taurari da wata mai haske wanda ke bin ainihin matakin wata. Gilashin shudi mai zurfi da rubutu irin hauren giwa da kayan zinariya.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'Ya fi dacewa da: karatun dare da allon OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'Daki mai dumi cikin hasken kyandir — ruwan kasa mai zurfi da haske mai laushi. Karancin shudin haske, mai sauki ga idanu.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'Ya fi dacewa da: hutawa kafin barci';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Bi jigon manhaja';
 }

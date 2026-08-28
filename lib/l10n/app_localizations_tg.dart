@@ -41904,4 +41904,23 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Нури шамъ';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'Осмони шаби пурситора бо моҳи нармтобанда, ки ба марҳилаи воқеии моҳ пайравӣ мекунад. Шишаи нилии амиқ бо матни оҷӣ ва оро­иши тиллоӣ.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'Беҳтарин барои: хониши шабона ва экранҳои OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'Ҳуҷраи гарм дар нури шамъ — қаҳваранги амиқ бо тобиши нарм. Нури кабуди кам, барои чашмони хаста мулоим.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'Беҳтарин барои: оромӣ пеш аз хоб';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Мутобиқи мавзӯи барнома';
 }

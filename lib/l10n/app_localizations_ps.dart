@@ -41747,4 +41747,23 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'د شمعې رڼا';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'د ستورو ډکه د شپې اسمان او هغه ځلېدونکې سپوږمۍ چې د سپوږمۍ له ریښتيني پړاو سره سمون لري. ژور نیلي ښیښه، د عاج رنګ متن او زرین رنګونه.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'غوره ده د: شپې لوستلو او OLED پردو لپاره';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'د شمعې په رڼا کې توده خونه — ژور نسواري له نرمې رڼا سره. لږه شنه رڼا، ستړو سترګو ته ارامه.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'غوره ده د: له خوب مخکې ارامۍ لپاره';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'د اپلیکیشن له بڼې سره سمون';
 }

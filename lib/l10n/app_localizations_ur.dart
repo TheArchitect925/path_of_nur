@@ -41782,4 +41782,23 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'موم بتی کی روشنی';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'ستاروں بھرا رات کا آسمان اور اصل چاند کی منزل کے مطابق چمکتا چاند۔ گہرا نیلا شیشہ، ہاتھی دانت رنگ کی تحریر اور سنہری لمسات۔';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'بہترین: رات کے مطالعے اور OLED اسکرینوں کے لیے';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'موم بتی کی روشنی والا گرم کمرہ — گہرا بھورا اور نرم چمک۔ کم نیلی روشنی، تھکی آنکھوں کے لیے نرم۔';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'بہترین: سونے سے پہلے سکون کے لیے';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'ایپ تھیم کے مطابق';
 }

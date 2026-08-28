@@ -86,6 +86,8 @@ class SettingsPage extends ConsumerWidget {
             : prayerState.preferences.location);
     const visibleThemeModes = [
       AppThemeMode.noorGlass,
+      AppThemeMode.midnight,
+      AppThemeMode.candlelight,
       AppThemeMode.noorGlassDark,
       AppThemeMode.noGlass,
       AppThemeMode.noGlassDark,
@@ -3081,6 +3083,10 @@ String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeNoorMidnightManuscriptDescription;
     case AppThemeMode.noorKids:
       return l10n.settingsThemeModeNoorKidsDescription;
+    case AppThemeMode.midnight:
+      return l10n.settingsThemeModeMidnightDescription;
+    case AppThemeMode.candlelight:
+      return l10n.settingsThemeModeCandlelightDescription;
   }
 }
 
@@ -3108,6 +3114,10 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeChoiceNoorMidnightManuscript;
     case AppThemeMode.noorKids:
       return l10n.settingsThemeChoiceNoorKids;
+    case AppThemeMode.midnight:
+      return l10n.quranReaderAtmosphereMidnight;
+    case AppThemeMode.candlelight:
+      return l10n.quranReaderAtmosphereCandlelight;
   }
 }
 
@@ -3135,6 +3145,10 @@ String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeNoorMidnightManuscriptBestFor;
     case AppThemeMode.noorKids:
       return l10n.settingsThemeModeNoorKidsBestFor;
+    case AppThemeMode.midnight:
+      return l10n.settingsThemeModeMidnightBestFor;
+    case AppThemeMode.candlelight:
+      return l10n.settingsThemeModeCandlelightBestFor;
   }
 }
 

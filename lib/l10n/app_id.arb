@@ -18661,5 +18661,10 @@
   "quranReaderAtmosphereTitle": "Tema pembaca",
   "quranReaderAtmosphereNoorGlass": "Noor Glass",
   "quranReaderAtmosphereMidnight": "Tengah malam",
-  "quranReaderAtmosphereCandlelight": "Cahaya lilin"
+  "quranReaderAtmosphereCandlelight": "Cahaya lilin",
+  "settingsThemeModeMidnightDescription": "Langit malam berbintang dengan bulan bercahaya lembut yang mengikuti fase bulan sebenarnya. Kaca nila pekat dengan teks gading dan aksen emas.",
+  "settingsThemeModeMidnightBestFor": "Paling cocok untuk: membaca malam dan layar OLED",
+  "settingsThemeModeCandlelightDescription": "Ruangan hangat bercahaya lilin — cokelat tua dengan pendar lembut. Cahaya biru rendah, nyaman untuk mata lelah.",
+  "settingsThemeModeCandlelightBestFor": "Paling cocok untuk: bersantai sebelum tidur",
+  "quranReaderAtmosphereFollowApp": "Ikuti tema aplikasi"
 }

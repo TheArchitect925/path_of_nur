@@ -41697,6 +41697,25 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'نور شمع';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'آسمان شب پرستاره با ماهی تابان که از فاز واقعی ماه پیروی می‌کند. شیشه نیلی تیره با متن عاجی و جزئیات طلایی.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'مناسب برای: مطالعه شبانه و صفحه‌های OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'اتاقی گرم در نور شمع — قهوه‌ای تیره با تابشی ملایم. نور آبی کم و ملایم برای چشمان خسته.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'مناسب برای: آرامش پیش از خواب';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'هماهنگ با پوسته برنامه';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83387,4 +83406,23 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'نور شمع';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'آسمان شب پرستاره با ماهی تابان که از فاز واقعی ماه پیروی می‌کند. شیشه نیلی تیره با متن عاجی و جزئیات طلایی.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'مناسب برای: مطالعه شبانه و صفحه‌های OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'اتاقی گرم در نور شمع — قهوه‌ای تیره با تابشی ملایم. نور آبی کم و ملایم برای چشمان خسته.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'مناسب برای: آرامش پیش از خواب';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'هماهنگ با پوسته برنامه';
 }

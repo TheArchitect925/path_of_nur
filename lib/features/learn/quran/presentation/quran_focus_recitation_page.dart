@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_theme.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -365,13 +366,17 @@ class _QuranFocusRecitationPageState
         playbackState.sourceResolutionState ==
             QuranPlaybackSourceResolutionState.preparingTransition;
 
-    final palette = QuranReaderAtmospherePalette.of(settings.readerAtmosphere);
+    final atmosphere = resolveQuranReaderAtmosphere(
+      settings.readerAtmosphere,
+      Theme.of(context).extension<AppAppearanceTheme>(),
+    );
+    final palette = QuranReaderAtmospherePalette.of(atmosphere);
 
     return Scaffold(
       key: const ValueKey('quran-focus-recitation-page'),
       backgroundColor: palette.base,
       body: QuranReaderAtmosphereBackground(
-        atmosphere: settings.readerAtmosphere,
+        atmosphere: atmosphere,
         child: SafeArea(
           child: ayah == null || surah == null
               ? _FocusRecitationEmptyState(
@@ -432,7 +437,7 @@ class _QuranFocusRecitationPageState
                               '${ayah.surahNumber}:${ayah.ayahNumber}:'
                               '${settings.focusRecitationShowTranslation}:'
                               '${settings.focusRecitationShowTransliteration}:'
-                              '${settings.readerAtmosphere.wireName}',
+                              '${atmosphere.wireName}',
                             ),
                             ayah: ayah,
                             palette: palette,

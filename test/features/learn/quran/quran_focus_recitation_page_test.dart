@@ -742,7 +742,7 @@ void main() {
       );
       expect(
         container.read(quranReaderSettingsProvider).readerAtmosphere,
-        QuranReaderAtmosphere.noorGlass,
+        QuranReaderAtmosphere.followApp,
       );
 
       await tester.tap(find.byKey(const ValueKey('quran-focus-settings')));

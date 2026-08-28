@@ -41786,4 +41786,23 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereCandlelight => 'Cahaya lilin';
+
+  @override
+  String get settingsThemeModeMidnightDescription =>
+      'Langit malam berbintang dengan bulan bercahaya lembut yang mengikut fasa bulan sebenar. Kaca nila pekat dengan teks gading dan aksen emas.';
+
+  @override
+  String get settingsThemeModeMidnightBestFor =>
+      'Paling sesuai untuk: bacaan malam dan skrin OLED';
+
+  @override
+  String get settingsThemeModeCandlelightDescription =>
+      'Bilik hangat bercahaya lilin — perang tua dengan sinaran lembut. Cahaya biru rendah, lembut pada mata letih.';
+
+  @override
+  String get settingsThemeModeCandlelightBestFor =>
+      'Paling sesuai untuk: berehat sebelum tidur';
+
+  @override
+  String get quranReaderAtmosphereFollowApp => 'Ikut tema aplikasi';
 }
