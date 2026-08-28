@@ -515,7 +515,9 @@ class AppSurfaceTheme {
     final accent = resolveTintColor(
       appearance: appearance,
       treatment: treatment,
-      tintColor: tintColor,
+      // Night themes use one standard glass: per-surface colored tints are
+      // dropped so tiles never fight the painted atmosphere.
+      tintColor: appearance?.isNightFamily == true ? null : tintColor,
       surface: surface,
       disableColoredGlass: disableColoredGlass,
     );

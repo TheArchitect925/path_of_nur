@@ -26,11 +26,27 @@ class QuranPresentationStyle {
     TextStyle style, {
     Color? fallbackColor,
   }) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    if (appearance?.isNightFamily == true) {
+      // Night themes paint verses in warm ivory directly — the light-theme
+      // translucency would leave the dark default ink invisible.
+      return style.copyWith(
+        color: appearance!.quranArabicEmphasis.withValues(alpha: 0.94),
+      );
+    }
     final baseColor = style.color ?? fallbackColor ?? const Color(0xFF1F1B17);
     return style.copyWith(color: translucentColor(context, baseColor));
   }
 
   static Color translucentHarakatColor(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    if (appearance?.isNightFamily == true) {
+      // Soft coral reads on the dark grounds where the deep red vanishes.
+      final warm = appearance!.mode == AppThemeMode.candlelight
+          ? const Color(0xFFE8946B)
+          : const Color(0xFFE58B72);
+      return warm.withValues(alpha: 0.92);
+    }
     return translucentColor(context, _defaultHarakatColor);
   }
 

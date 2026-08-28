@@ -319,13 +319,24 @@ class _ResolvedNoorGlassStyle {
     final isDark = appearance?.isDark ?? false;
     final baseSurface = appearance?.surface ?? theme.colorScheme.surface;
     final softSurface = appearance?.surfaceSoft ?? baseSurface;
-    final milkTone =
-        appearance?.frostedGlassTone ??
-        (isDark ? const Color(0xFFEFE3CB) : const Color(0xFFFEFBF6));
-    final sanctuaryTone =
-        appearance?.sanctuarySurfaceTone ??
-        (isDark ? const Color(0xFFEBDCBD) : const Color(0xFFF9F0DF));
-    final tint = spec.tintColor ?? const Color(0xFFE7C98C);
+    final isNightMilk = appearance?.isNightFamily ?? false;
+    // Night themes never milk-wash toward the light frosted tones — the
+    // glass stays on the dark surface so cards read as deep night glass.
+    final milkTone = isNightMilk
+        ? (appearance?.surfaceSoft ?? baseSurface)
+        : appearance?.frostedGlassTone ??
+              (isDark ? const Color(0xFFEFE3CB) : const Color(0xFFFEFBF6));
+    final sanctuaryTone = isNightMilk
+        ? (appearance?.surface ?? baseSurface)
+        : appearance?.sanctuarySurfaceTone ??
+              (isDark ? const Color(0xFFEBDCBD) : const Color(0xFFF9F0DF));
+    // The night themes use one standard glass everywhere: per-tile colored
+    // tints and custom highlights are ignored so every surface reads as the
+    // same deep glass over the painted atmosphere.
+    final isNight = appearance?.isNightFamily ?? false;
+    final tint = isNight
+        ? (appearance?.accent ?? const Color(0xFFE7C98C))
+        : (spec.tintColor ?? const Color(0xFFE7C98C));
     final tokens = _NoorGlassTokens.forPreset(spec.preset);
     final surfaceAlpha = spec.surfaceAlphaOverride ?? tokens.surfaceAlpha;
     final fillBase =
@@ -334,15 +345,16 @@ class _ResolvedNoorGlassStyle {
         Color.lerp(fillBase, sanctuaryTone, tokens.sanctuaryBlend) ?? fillBase;
     final bottomFill =
         Color.lerp(warmedBase, tint, tokens.tintBlend) ?? warmedBase;
-    final topFill =
-        Color.lerp(bottomFill, Colors.white, tokens.topLightBlend) ??
-        bottomFill;
+    final topFill = isNightMilk
+        ? bottomFill
+        : Color.lerp(bottomFill, Colors.white, tokens.topLightBlend) ??
+              bottomFill;
     final borderColor =
         spec.borderColor ??
         (Color.lerp(Colors.white, tint, tokens.borderTintBlend) ?? Colors.white)
             .withValues(alpha: tokens.borderAlpha);
     final highlightGradientColors =
-        spec.highlightGradientColors ??
+        (isNight ? null : spec.highlightGradientColors) ??
         <Color>[
           Colors.white.withValues(alpha: tokens.topHighlightAlpha),
           Colors.white.withValues(alpha: tokens.midHighlightAlpha),

@@ -11,9 +11,12 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final foreground =
-        appearance?.backgroundForeground ??
-        Theme.of(context).colorScheme.onSurface;
+    // Night themes crown their section headers in gold, per the approved
+    // app-wide mockups; other themes keep the standard foreground.
+    final foreground = appearance?.isNightFamily == true
+        ? appearance!.accent
+        : appearance?.backgroundForeground ??
+              Theme.of(context).colorScheme.onSurface;
     final subtleForeground =
         appearance?.backgroundForegroundSubtle ??
         Theme.of(context).colorScheme.onSurfaceVariant;

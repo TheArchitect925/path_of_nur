@@ -889,37 +889,47 @@ class PrayerTimingPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final palette = _paletteForPrayerId(prayerId);
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final night = appearance?.isNightFamily == true;
+    final palette = _effectivePrayerPalette(context, prayerId);
     final accent = isCurrent
         ? palette.strong
         : isNext
         ? palette.base
         : palette.muted;
     final isCompleted = status == PrayerStatus.completed;
-    final pillBackgroundTint =
-        Color.lerp(
-          palette.soft,
-          palette.base,
-          isCurrent ? 0.62 : (isNext ? 0.48 : 0.34),
-        ) ??
-        palette.base;
-    final innerCardTop =
-        Color.lerp(palette.soft, Colors.white, isCurrent ? 0.18 : 0.30) ??
-        palette.soft;
-    final innerCardBottom =
-        Color.lerp(
-          palette.soft,
-          palette.base,
-          isCurrent ? 0.26 : (isNext ? 0.20 : 0.14),
-        ) ??
-        palette.base;
-    final innerBorderColor =
-        Color.lerp(
-          Colors.white.withValues(alpha: 0.88),
-          palette.base.withValues(alpha: isCurrent ? 0.42 : 0.30),
-          isCurrent ? 0.52 : (isNext ? 0.40 : 0.28),
-        ) ??
-        Colors.white.withValues(alpha: 0.88);
+    // Night themes keep the tile on the standard dark glass: no white lift,
+    // just a slightly brighter surface for the current/next prayer.
+    final pillBackgroundTint = night
+        ? appearance!.onSurface.withValues(
+            alpha: isCurrent ? 0.16 : (isNext ? 0.12 : 0.08),
+          )
+        : Color.lerp(
+                palette.soft,
+                palette.base,
+                isCurrent ? 0.62 : (isNext ? 0.48 : 0.34),
+              ) ??
+              palette.base;
+    final innerCardTop = night
+        ? appearance!.onSurface.withValues(alpha: isCurrent ? 0.14 : 0.09)
+        : Color.lerp(palette.soft, Colors.white, isCurrent ? 0.18 : 0.30) ??
+              palette.soft;
+    final innerCardBottom = night
+        ? appearance!.onSurface.withValues(alpha: isCurrent ? 0.08 : 0.05)
+        : Color.lerp(
+                palette.soft,
+                palette.base,
+                isCurrent ? 0.26 : (isNext ? 0.20 : 0.14),
+              ) ??
+              palette.base;
+    final innerBorderColor = night
+        ? appearance!.onSurface.withValues(alpha: isCurrent ? 0.30 : 0.16)
+        : Color.lerp(
+                Colors.white.withValues(alpha: 0.88),
+                palette.base.withValues(alpha: isCurrent ? 0.42 : 0.30),
+                isCurrent ? 0.52 : (isNext ? 0.40 : 0.28),
+              ) ??
+              Colors.white.withValues(alpha: 0.88);
     final pillContent = NoorGlassCard(
       padding: const EdgeInsets.all(4),
       surfaceVariant: AppSurfaceVariant.panel,
@@ -966,28 +976,51 @@ class PrayerTimingPill extends StatelessWidget {
                 InkWell(
                   onTap: isCompleted ? onToggleOffered : onOpenDetails,
                   borderRadius: BorderRadius.circular(999),
-                  child: Container(
-                    width: 24,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: isCompleted
-                          ? const Color(0xFF5E8A43).withValues(alpha: 0.14)
-                          : (onOpenDetails ?? onToggleOffered) == null
-                          ? const Color(0xFFF1ECE4)
-                          : const Color(0xFFF7F1E8),
-                    ),
-                    child: Icon(
-                      isCompleted
-                          ? Icons.check_circle_rounded
-                          : Icons.check_circle_outline_rounded,
-                      size: 18,
-                      color: isCompleted
-                          ? const Color(0xFF5E8A43)
-                          : (onOpenDetails ?? onToggleOffered) == null
-                          ? const Color(0xFFB4A594)
-                          : const Color(0xFF7D705F),
-                    ),
+                  child: Builder(
+                    builder: (context) {
+                      final appearance = Theme.of(
+                        context,
+                      ).extension<AppAppearanceTheme>();
+                      final night = appearance?.isNightFamily == true;
+                      final doneColor = night
+                          ? appearance!.success
+                          : const Color(0xFF5E8A43);
+                      final idleFill = night
+                          ? appearance!.onSurface.withValues(alpha: 0.10)
+                          : const Color(0xFFF7F1E8);
+                      final inertFill = night
+                          ? appearance!.onSurface.withValues(alpha: 0.06)
+                          : const Color(0xFFF1ECE4);
+                      final idleIcon = night
+                          ? appearance!.onSurfaceSubtle
+                          : const Color(0xFF7D705F);
+                      final inertIcon = night
+                          ? appearance!.onSurfaceMuted
+                          : const Color(0xFFB4A594);
+                      return Container(
+                        width: 24,
+                        height: 24,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: isCompleted
+                              ? doneColor.withValues(alpha: 0.14)
+                              : (onOpenDetails ?? onToggleOffered) == null
+                              ? inertFill
+                              : idleFill,
+                        ),
+                        child: Icon(
+                          isCompleted
+                              ? Icons.check_circle_rounded
+                              : Icons.check_circle_outline_rounded,
+                          size: 18,
+                          color: isCompleted
+                              ? doneColor
+                              : (onOpenDetails ?? onToggleOffered) == null
+                              ? inertIcon
+                              : idleIcon,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -1121,6 +1154,24 @@ IconData iconForPrayerId(String prayerId) {
     default:
       return PrayerName.isha.icon;
   }
+}
+
+/// Night themes flatten the per-prayer pastel identity into the standard
+/// glass: one quiet surface, ivory ink, gold emphasis.
+_PrayerColorPalette _effectivePrayerPalette(
+  BuildContext context,
+  String prayerId,
+) {
+  final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+  if (appearance?.isNightFamily == true) {
+    return _PrayerColorPalette(
+      base: appearance!.accent,
+      strong: appearance.onSurface,
+      muted: appearance.onSurfaceSubtle,
+      soft: appearance.onSurface.withValues(alpha: 0.08),
+    );
+  }
+  return _paletteForPrayerId(prayerId);
 }
 
 _PrayerColorPalette _paletteForPrayerId(String prayerId) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_surfaces.dart';
+import '../../core/theme/app_theme.dart';
 import 'app_page_scaffold.dart';
 import 'quran_quote_block.dart';
 import 'shortcut_dock.dart';
@@ -197,6 +198,16 @@ class SectionHubActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    // Night themes drop the per-category pastel identity: standard glass,
+    // gold icon, ivory title.
+    final isNight = appearance?.isNightFamily ?? false;
+    final iconColor = isNight
+        ? (appearance?.accent ?? action.accentColor)
+        : action.accentColor;
+    final titleColor = isNight
+        ? (appearance?.onSurface ?? action.accentColor)
+        : action.accentColor;
     final contentColors = AppSurfaceTheme.contentColors(context);
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
@@ -220,14 +231,16 @@ class SectionHubActionCard extends StatelessWidget {
                 width: 46,
                 height: 46,
                 decoration: BoxDecoration(
-                  color: Color.alphaBlend(
-                    action.color.withValues(alpha: 0.22),
-                    surfaceStyle.iconBackgroundColor,
-                  ),
+                  color: isNight
+                      ? surfaceStyle.iconBackgroundColor
+                      : Color.alphaBlend(
+                          action.color.withValues(alpha: 0.22),
+                          surfaceStyle.iconBackgroundColor,
+                        ),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(color: surfaceStyle.borderColor),
                 ),
-                child: Icon(action.icon, color: action.accentColor),
+                child: Icon(action.icon, color: iconColor),
               ),
               const SizedBox(height: 14),
               Text(
@@ -236,7 +249,7 @@ class SectionHubActionCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: action.accentColor,
+                  color: titleColor,
                   fontSize: 16,
                 ),
               ),
