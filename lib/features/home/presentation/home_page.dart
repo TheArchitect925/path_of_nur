@@ -968,7 +968,13 @@ class _ModeActionChip extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: 16, color: AppColors.onSurface),
+              Icon(
+                icon,
+                size: 16,
+                color:
+                    Theme.of(context).extension<AppAppearanceTheme>()?.onSurface ??
+                    AppColors.onSurface,
+              ),
               const SizedBox(width: 6),
               Flexible(
                 child: Text(

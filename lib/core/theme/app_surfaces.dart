@@ -54,7 +54,9 @@ class AppSurfaceMatrix {
     if (appearance.mode == AppThemeMode.noorKids) {
       return AppSurfaceFamily.kids;
     }
-    if (appearance.isMidnightFamily) {
+    if (appearance.isMidnightFamily || appearance.isNightFamily) {
+      // The painted night themes share the midnight family's dark-tuned
+      // glass recipes; their own palettes supply the indigo/umber tones.
       return AppSurfaceFamily.midnight;
     }
     if (appearance.isNoGlassFamily) {
