@@ -2680,6 +2680,12 @@ class AppLocalizationsId extends AppLocalizations {
       'Simpan ayat hari ini, panduan, dan pembelajaran bersama di satu tempat yang tenang.';
 
   @override
+  String get homeRightNowTitle => 'Untuk saat ini';
+
+  @override
+  String get homeRightNowSubtitle => 'Doa yang sesuai dengan waktu Anda';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'Kuis belajar harian';
 
   @override

@@ -2661,6 +2661,12 @@ class AppLocalizationsFa extends AppLocalizations {
       'آیه، هدایت و یادگیری امروز را در یک جای آرام کنار هم نگه دارید.';
 
   @override
+  String get homeRightNowTitle => 'برای این لحظه';
+
+  @override
+  String get homeRightNowSubtitle => 'دعاهای متناسب با وقت روز';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'کوئیزهای یادگیری روزانه';
 
   @override
@@ -44289,6 +44295,12 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get homeTodayContentSubtitle =>
       'آیه، هدایت و یادگیری امروز را در یک جای آرام کنار هم نگه دارید.';
+
+  @override
+  String get homeRightNowTitle => 'برای این لحظه';
+
+  @override
+  String get homeRightNowSubtitle => 'دعاهای متناسب با وقت روز';
 
   @override
   String get homeDailyLearningQuizzesTitle => 'کوئیزهای یادگیری روزانه';

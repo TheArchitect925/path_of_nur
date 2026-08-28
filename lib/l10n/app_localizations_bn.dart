@@ -2674,6 +2674,12 @@ class AppLocalizationsBn extends AppLocalizations {
       'আজকের আয়াত, দিকনির্দেশনা এবং শেখা এক শান্ত জায়গায় একসাথে রাখুন।';
 
   @override
+  String get homeRightNowTitle => 'এই মুহূর্তের জন্য';
+
+  @override
+  String get homeRightNowSubtitle => 'দিনের সময় অনুযায়ী দোয়া';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'দৈনিক শেখার কুইজ';
 
   @override

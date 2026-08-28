@@ -11,6 +11,7 @@ import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
 import '../../../features/history/presentation/widgets/on_this_day_home_card.dart';
 import '../application/home_calendar_progress_provider.dart';
@@ -37,22 +38,17 @@ import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/arabic_text_utils.dart';
-import '../../../shared/widgets/app_hero_glass_shell.dart';
-import '../../../shared/widgets/app_layered_section_glass_card.dart';
 import '../../../shared/widgets/app_salah_hero_card.dart';
-import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/noor_glass_card.dart';
 import '../../../shared/widgets/noor_liquid_glass.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
+import '../../../shared/widgets/section_title.dart';
+import 'widgets/right_now_dua_row.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
-import '../../learn/presentation/data/learn_category_catalog.dart';
-import '../../learn/quran/application/quran_providers.dart';
-import '../../learn/quran/presentation/widgets/quran_compact_search_results_section.dart';
-import '../../learn/presentation/learn_ui_localization.dart';
-import '../../learn/presentation/models/learn_category_item.dart';
 
 String _formatLocalizedCount(BuildContext context, num value) {
   return NumberFormat.decimalPattern(
@@ -76,7 +72,6 @@ String _formatHomePrayerTrackerTotal(
 const int _shortcutDailyDhikrGoal = 500;
 const double _homeFloatingShortcutBottomOffset = 92;
 const double _homeFloatingShortcutContentPadding = 136;
-const Color _homePrimaryTextColor = Color(0xFF25221E);
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -90,10 +85,6 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final homeTextTheme = Theme.of(context).textTheme.apply(
-      bodyColor: _homePrimaryTextColor,
-      displayColor: _homePrimaryTextColor,
-    );
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
     final verseVersion = ref.watch(homeVerseVersionProvider);
@@ -132,105 +123,73 @@ class _HomePageState extends ConsumerState<HomePage> {
     final salahProgressText =
         '${_formatLocalizedCount(context, prayerCompleted)}/${_formatHomePrayerTrackerTotal(context, trackedPrayerTotal: trackedPrayerTotal, includeTahajjudOffer: includesTahajjudOffer)}';
 
-    return Theme(
-      data: Theme.of(context).copyWith(textTheme: homeTextTheme),
-      child: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(
-                18,
-                8,
-                18,
-                _homeFloatingShortcutContentPadding,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
-                  const SizedBox(height: 12),
-                  _AyahCard(
-                    verse: displayVerse,
-                    onTap: () => ref
-                        .read(homeVerseVersionProvider.notifier)
-                        .update((state) {
-                          final poolLength = homeContextualQuotePool.length;
-                          if (poolLength <= 1) {
-                            return state;
-                          }
-                          var next = HomePage._verseRandom.nextInt(poolLength);
-                          final current = state % poolLength;
-                          while (next == current) {
-                            next = HomePage._verseRandom.nextInt(poolLength);
-                          }
-                          return next;
-                        }),
-                  ),
-                  const SizedBox(height: 14),
-                  const _ModeAwareHomeCard(),
-                  const SizedBox(height: 10),
-                  _SalahSummaryCard(l10n: l10n),
-                  const SizedBox(height: 12),
-                  const _DailySalahTimingsCard(),
-                  const SizedBox(height: 12),
-                  const OnThisDayHomeCard(),
-                  const SizedBox(height: 12),
-                  const CelestialCycleCard(collapsible: true),
-                  const SizedBox(height: 12),
-                  _TodayContentSection(
-                    quranBundle: quranBundle,
-                    spiritualMoment: spiritualMoment,
-                  ),
-                  const SizedBox(height: 14),
-                  const _HomeTestingRoutePills(),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 16,
-              right: 16,
-              bottom:
-                  (_homeFloatingShortcutBottomOffset -
-                          MediaQuery.viewPaddingOf(context).bottom)
-                      .clamp(58.0, _homeFloatingShortcutBottomOffset),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: _HomeFloatingShortcutSection(
-                  isKidsMode: isKidsMode,
-                  salahProgressText: salahProgressText,
-                  dhikrProgressText:
-                      '${_formatLocalizedCount(context, dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _HomeTestingRoutePills extends StatelessWidget {
-  const _HomeTestingRoutePills();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-
-    return _HomeNoorCardShell(
-      child: Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        alignment: WrapAlignment.center,
+    return SafeArea(
+      child: Stack(
         children: [
-          AppLayeredGlassPillButton(
-            label: l10n.homeTestOnboardingPill,
-            onPressed: () => context.go('/onboarding?preview=1'),
+          SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(
+              18,
+              8,
+              18,
+              _homeFloatingShortcutContentPadding,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
+                const SizedBox(height: 12),
+                _SalahSummaryCard(l10n: l10n),
+                const SizedBox(height: 12),
+                const _DailySalahTimingsCard(),
+                const SizedBox(height: 12),
+                const _ModeAwareHomeCard(),
+                const RightNowDuaRow(),
+                _AyahCard(
+                  verse: displayVerse,
+                  onTap: () => ref
+                      .read(homeVerseVersionProvider.notifier)
+                      .update((state) {
+                        final poolLength = homeContextualQuotePool.length;
+                        if (poolLength <= 1) {
+                          return state;
+                        }
+                        var next = HomePage._verseRandom.nextInt(poolLength);
+                        final current = state % poolLength;
+                        while (next == current) {
+                          next = HomePage._verseRandom.nextInt(poolLength);
+                        }
+                        return next;
+                      }),
+                ),
+                const SizedBox(height: 14),
+                _TodayContentSection(
+                  quranBundle: quranBundle,
+                  spiritualMoment: spiritualMoment,
+                ),
+                const SizedBox(height: 14),
+                const OnThisDayHomeCard(),
+                const SizedBox(height: 12),
+                const CelestialCycleCard(collapsible: true),
+              ],
+            ),
           ),
-          AppLayeredGlassPillButton(
-            label: l10n.homeTestLoadingScreenPill,
-            onPressed: () => context.go('/startup'),
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom:
+                (_homeFloatingShortcutBottomOffset -
+                        MediaQuery.viewPaddingOf(context).bottom)
+                    .clamp(58.0, _homeFloatingShortcutBottomOffset),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: _HomeFloatingShortcutSection(
+                isKidsMode: isKidsMode,
+                salahProgressText: salahProgressText,
+                dhikrProgressText:
+                    '${_formatLocalizedCount(context, dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
+              ),
+            ),
           ),
         ],
       ),
@@ -280,56 +239,42 @@ class _TodayContentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return AppHeroGlassShell(
-      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-      tintColor: const Color(0xFFE7C98C),
-      surfaceAlphaOverride: 0.2,
-      radius: 36,
-      borderColor: const Color(0x42FFFFFF),
-      highlightGradientColors: const [
-        Color(0x24FFFFFF),
-        Colors.transparent,
-        Color(0x16E8C98F),
-      ],
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          tilePadding: EdgeInsets.zero,
-          childrenPadding: EdgeInsets.zero,
-          initiallyExpanded: false,
-          title: Text(
-            l10n.homeTodayContentTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          subtitle: Text(l10n.homeTodayContentSubtitle),
-          children: [
-            const SizedBox(height: 10),
-            const QuranDailyReflectionCard(
-              compact: true,
-              showCompanionAction: true,
-              showSecondaryActions: false,
-            ),
-            if (spiritualMoment != null) ...[
-              const SizedBox(height: 10),
-              QuranSpiritualMomentCard(
-                bundle: spiritualMoment!,
-                surface: QuranSpiritualMomentSurface.home,
-                allowDismiss: true,
-              ),
-            ],
-            if (quranBundle != null) ...[
-              const SizedBox(height: 10),
-              QuranPersonalizedRecommendationCard(
-                bundle: quranBundle!,
-                surface: QuranPersonalizationSurface.home,
-                allowDismiss: true,
-              ),
-            ],
-            const SizedBox(height: 10),
-            const _HomeLearningActionsCard(expandable: false),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SectionTitle(
+          title: l10n.homeTodayContentTitle,
+          subtitle: l10n.homeTodayContentSubtitle,
         ),
-      ),
+        const QuranDailyReflectionCard(
+          compact: true,
+          showCompanionAction: true,
+          showSecondaryActions: false,
+        ),
+        if (spiritualMoment != null) ...[
+          const SizedBox(height: 10),
+          QuranSpiritualMomentCard(
+            bundle: spiritualMoment!,
+            surface: QuranSpiritualMomentSurface.home,
+            allowDismiss: true,
+          ),
+        ],
+        if (quranBundle != null) ...[
+          const SizedBox(height: 10),
+          QuranPersonalizedRecommendationCard(
+            bundle: quranBundle!,
+            surface: QuranPersonalizationSurface.home,
+            allowDismiss: true,
+          ),
+        ],
+        const SizedBox(height: 10),
+        PremiumCard(
+          density: PremiumCardDensity.compact,
+          surfaceTintColor: const Color(0xFFE7C98C),
+          surfaceAlphaOverride: 0.2,
+          child: const _HomeLearningActionsCard(expandable: false),
+        ),
+      ],
     );
   }
 }
@@ -367,6 +312,11 @@ class _TopGreetingBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final foreground =
+        appearance?.backgroundForeground ??
+        Theme.of(context).colorScheme.onSurface;
+    final iconColor = appearance?.accent ?? foreground;
     return Column(
       children: [
         Row(
@@ -374,47 +324,27 @@ class _TopGreetingBlock extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(
-                  IslamicIcons.mosque,
-                  size: 24,
-                  color: Color(0xFF6E563E),
-                ),
+                Icon(IslamicIcons.mosque, size: 24, color: iconColor),
                 const SizedBox(width: 8),
                 Text(
                   l10n.navHome,
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: _homePrimaryTextColor,
+                    color: foreground,
                     fontFamily: AppFonts.latinSerif,
                   ),
                 ),
               ],
             ),
             IconButton(
-              onPressed: () {
-                showSearch<void>(
-                  context: context,
-                  delegate: _HomeGlobalSearchDelegate(
-                    l10n: l10n,
-                    destinations: _buildHomeSearchDestinations(l10n),
-                  ),
-                );
-              },
-              icon: const Icon(
-                Icons.search_rounded,
-                size: 30,
-                color: Color(0xFF7A5A33),
-              ),
+              onPressed: () => context.pushNamed('allSearch'),
+              icon: Icon(Icons.search_rounded, size: 30, color: iconColor),
               tooltip: l10n.homeSearchTooltip,
             ),
             IconButton(
               onPressed: () => context.goNamed('settings'),
-              icon: const Icon(
-                Icons.settings,
-                size: 30,
-                color: Color(0xFF7A5A33),
-              ),
+              icon: Icon(Icons.settings, size: 30, color: iconColor),
               tooltip: l10n.profilePrayerSettingsTitle,
             ),
           ],
@@ -426,7 +356,7 @@ class _TopGreetingBlock extends StatelessWidget {
           textDirection: textDirectionForContent(l10n.greetingArabic),
           style: TextStyle(
             fontSize: 20,
-            color: _homePrimaryTextColor,
+            color: foreground,
             height: 1.15,
             fontFamily: AppFonts.latinSerif,
           ),
@@ -446,7 +376,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.w700,
-                      color: _homePrimaryTextColor,
+                      color: foreground,
                       letterSpacing: 0.2,
                       fontFamily: AppFonts.latinSerif,
                     ),
@@ -456,7 +386,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     l10n.peaceUponYou,
                     style: TextStyle(
                       fontSize: 15,
-                      color: _homePrimaryTextColor,
+                      color: foreground,
                       fontFamily: AppFonts.latinSerif,
                     ),
                   ),
@@ -479,537 +409,6 @@ class _TopGreetingBlock extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _HomeSearchDestination {
-  const _HomeSearchDestination({
-    required this.title,
-    required this.subtitle,
-    required this.keywords,
-    required this.onSelected,
-  });
-
-  final String title;
-  final String subtitle;
-  final List<String> keywords;
-  final void Function(BuildContext context) onSelected;
-}
-
-List<_HomeSearchDestination> _buildHomeSearchDestinations(
-  AppLocalizations l10n,
-) {
-  return [
-    _HomeSearchDestination(
-      title: l10n.navHome,
-      subtitle: l10n.homeOverviewHeroSubtitle,
-      keywords: ['home', 'dashboard', 'overview'],
-      onSelected: (context) => context.go(NavTab.home.path),
-    ),
-    _HomeSearchDestination(
-      title: l10n.homeSearchQiblaFinderTitle,
-      subtitle: l10n.homeSearchQiblaFinderSubtitle,
-      keywords: ['qibla', 'direction', 'compass', 'kaaba', 'ar qibla'],
-      onSelected: (context) => context.pushNamed('qiblaFinder'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.worshipTitle,
-      subtitle: l10n.worshipSubtitle,
-      keywords: ['worship', 'prayer', 'dhikr', 'fasting', 'khusu'],
-      onSelected: (context) => context.go(NavTab.worship.path),
-    ),
-    _HomeSearchDestination(
-      title: l10n.worshipTitle,
-      subtitle: l10n.worshipSubtitle,
-      keywords: [
-        'salah',
-        'prayer times',
-        'fajr',
-        'dhuhr',
-        'asr',
-        'maghrib',
-        'isha',
-      ],
-      onSelected: (context) => context.pushNamed('salahTimes'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.navLearning,
-      subtitle: l10n.learnSubtitle,
-      keywords: ['learn', 'quran', 'life', 'world', 'hadith', 'notes'],
-      onSelected: (context) => context.go(NavTab.learn.path),
-    ),
-    _HomeSearchDestination(
-      title: l10n.quranExplorerTitle,
-      subtitle: l10n.quranExplorerSubtitle,
-      keywords: ['surah', 'quran', 'reader', 'explorer'],
-      onSelected: (context) => context.pushNamed('quranExplorer'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.quranSearchTitle,
-      subtitle: l10n.quranSearchSubtitle,
-      keywords: ['quran search', 'ayah', 'surah search'],
-      onSelected: (context) => context.pushNamed('quranSearch'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.homeSearchQuranTopWordsTitle,
-      subtitle: l10n.homeSearchQuranTopWordsSubtitle,
-      keywords: [
-        'top 500 words',
-        'quran words',
-        'vocabulary',
-        'transliteration',
-      ],
-      onSelected: (context) => context.pushNamed('quranTopWords'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.homeSearchNamesOfAllahTitle,
-      subtitle: l10n.homeSearchNamesOfAllahSubtitle,
-      keywords: ['99 names', 'asma ul husna', 'allah names', 'names of الله'],
-      onSelected: (context) => context.pushNamed('quranNamesOfAllah'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.historyArchiveTitle,
-      subtitle: l10n.historyArchiveSubtitle,
-      keywords: [
-        'on this day',
-        'history archive',
-        'historical calendar',
-        'islamic history',
-      ],
-      onSelected: (context) => context.pushNamed('learnHistoryArchive'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.learnLifeSectionTitle,
-      subtitle: l10n.learnLifeSectionSubtitle,
-      keywords: ['life', 'family', 'character'],
-      onSelected: (context) => context.pushNamed('learnLifeLanding'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.babyNamesTitle,
-      subtitle: l10n.babyNamesSubtitle,
-      keywords: ['baby', 'names', 'family names', 'muslim baby names'],
-      onSelected: (context) => context.pushNamed('babyNamesHome'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.learnWorldSectionTitle,
-      subtitle: l10n.learnWorldSectionSubtitle,
-      keywords: ['world', 'creation', 'signs'],
-      onSelected: (context) => context.pushNamed('learnWorldLanding'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.learnHadithSectionTitle,
-      subtitle: l10n.learnHadithSectionSubtitle,
-      keywords: ['hadith', 'manners', 'character'],
-      onSelected: (context) => context.pushNamed('learnHadithLanding'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.homeSearchImportantHadithTitle,
-      subtitle: l10n.homeSearchImportantHadithSubtitle,
-      keywords: ['important ahadith', 'hadith 50', 'nawawi', 'hadith study'],
-      onSelected: (context) => context.pushNamed('learnHadithImportant'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.learnNotesSectionTitle,
-      subtitle: l10n.learnNotesSectionSubtitle,
-      keywords: ['notes', 'reflection', 'journal notes'],
-      onSelected: (context) => context.pushNamed('learnNotesLanding'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.assistantTitle,
-      subtitle: l10n.assistantSubtitle,
-      keywords: ['assistant', 'help', 'guide'],
-      onSelected: (context) => context.pushNamed('assistant'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.circlesTitle,
-      subtitle: l10n.circlesSubtitle,
-      keywords: ['community', 'circles', 'groups'],
-      onSelected: (context) => context.pushNamed('circlesDiscovery'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.journalTitle,
-      subtitle: l10n.journalSubtitle,
-      keywords: ['journal', 'timeline', 'memories', 'reflection'],
-      onSelected: (context) => context.pushNamed('journalTimeline'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.navPrayer,
-      subtitle: l10n.journeySubtitle,
-      keywords: ['journey', 'xp', 'streak', 'rings'],
-      onSelected: (context) => context.go(NavTab.journey.path),
-    ),
-    _HomeSearchDestination(
-      title: l10n.oceanTitle,
-      subtitle: l10n.oceanSubtitle,
-      keywords: ['ocean', 'drops', 'rewards'],
-      onSelected: (context) => context.pushNamed('oceanDrops'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.wallpaperLibraryTitle,
-      subtitle: l10n.wallpaperLibrarySubtitle,
-      keywords: ['wallpaper', 'rewards', 'background'],
-      onSelected: (context) => context.pushNamed('wallpaperLibrary'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.profilePrayerSettingsTitle,
-      subtitle: l10n.profilePrayerSettingsSubtitle,
-      keywords: ['profile', 'settings', 'reminders', 'preferences'],
-      onSelected: (context) => context.goNamed('settings'),
-    ),
-    ..._learnCategorySearchDestinations(l10n),
-  ];
-}
-
-List<_HomeSearchDestination> _learnCategorySearchDestinations(
-  AppLocalizations l10n,
-) {
-  _HomeSearchDestination destinationForCategory(LearnCategoryItem item) {
-    final categoryLabel = item.sectionType.replaceAll('-', ' ');
-    return _HomeSearchDestination(
-      title: item.localizedTitle(l10n),
-      subtitle:
-          item.localizedDescription(l10n) ??
-          l10n.homeLearnCategoryFallbackSubtitle(categoryLabel),
-      keywords: [...item.searchKeywords, ...item.tags, item.sectionType],
-      onSelected: (context) => context.pushNamed(
-        item.routeName,
-        pathParameters: item.pathParameters,
-        queryParameters: item.queryParameters,
-      ),
-    );
-  }
-
-  return [...LearnCategoryCatalog.searchableItems.map(destinationForCategory)];
-}
-
-class _HomeGlobalSearchDelegate extends SearchDelegate<void> {
-  _HomeGlobalSearchDelegate({required this.l10n, required this.destinations});
-
-  final AppLocalizations l10n;
-  final List<_HomeSearchDestination> destinations;
-
-  @override
-  String get searchFieldLabel => l10n.homeSearchHint;
-
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      if (query.isNotEmpty)
-        IconButton(
-          onPressed: () => query = '',
-          icon: const Icon(Icons.clear_rounded),
-          tooltip: l10n.homeSearchClearTooltip,
-        ),
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () => close(context, null),
-      icon: const Icon(Icons.arrow_back_rounded),
-      tooltip: l10n.homeSearchCloseTooltip,
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return _SearchResultList(
-      query: query,
-      items: destinations,
-      emptyLabel: l10n.homeSearchNoResults,
-      onRunQuery: (value) => query = value,
-      onTap: (item) {
-        close(context, null);
-        item.onSelected(context);
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return _SearchResultList(
-      query: query,
-      items: destinations,
-      emptyLabel: l10n.homeSearchNoResults,
-      onRunQuery: (value) => query = value,
-      onTap: (item) {
-        close(context, null);
-        item.onSelected(context);
-      },
-    );
-  }
-}
-
-class _SearchResultList extends StatelessWidget {
-  const _SearchResultList({
-    required this.query,
-    required this.items,
-    required this.emptyLabel,
-    required this.onRunQuery,
-    required this.onTap,
-  });
-
-  final String query;
-  final List<_HomeSearchDestination> items;
-  final String emptyLabel;
-  final ValueChanged<String> onRunQuery;
-  final ValueChanged<_HomeSearchDestination> onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final trimmed = query.trim().toLowerCase();
-    final filtered = trimmed.isEmpty
-        ? items
-        : items.where((item) {
-            final haystack =
-                '${item.title} ${item.subtitle} ${item.keywords.join(' ')}'
-                    .toLowerCase();
-            return haystack.contains(trimmed);
-          }).toList();
-    return Consumer(
-      builder: (context, ref, _) {
-        final quranResults = trimmed.isEmpty
-            ? const <QuranSearchResult>[]
-            : ref
-                      .watch(
-                        quranTextSearchResultsProvider(
-                          QuranTextSearchQuery(query: query, maxResults: 3),
-                        ),
-                      )
-                      .asData
-                      ?.value ??
-                  const <QuranSearchResult>[];
-
-        if (filtered.isEmpty && quranResults.isEmpty) {
-          return Center(
-            child: Text(
-              emptyLabel,
-              style: const TextStyle(color: _homePrimaryTextColor),
-            ),
-          );
-        }
-
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(12, 12, 12, 24),
-          children: [
-            if (trimmed.isNotEmpty) ...[
-              QuranCompactSearchResultsSection(query: query, maxResults: 3),
-              if (filtered.isNotEmpty) const SizedBox(height: 10),
-            ],
-            ...List<Widget>.generate(filtered.length, (index) {
-              final item = filtered[index];
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(item.title),
-                    subtitle: Text(item.subtitle),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () => onTap(item),
-                  ),
-                  if (index != filtered.length - 1) const Divider(height: 1),
-                ],
-              );
-            }),
-          ],
-        );
-      },
-    );
-  }
-}
-
-// ignore: unused_element
-class _WelcomeCarousel extends StatelessWidget {
-  const _WelcomeCarousel();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 132,
-      child: PageView(
-        physics: const BouncingScrollPhysics(),
-        children: const [
-          _WelcomeCarouselCard(
-            icon: Icons.wb_sunny_outlined,
-            title: 'homeWelcomeDailyIntentionTitle',
-            subtitle: 'homeWelcomeDailyIntentionSubtitle',
-          ),
-          _WelcomeCarouselCard(
-            icon: Icons.schedule_rounded,
-            title: 'homeWelcomePrayerRhythmTitle',
-            subtitle: 'homeWelcomePrayerRhythmSubtitle',
-          ),
-          _WelcomeCarouselCard(
-            icon: Icons.favorite_outline_rounded,
-            title: 'homeWelcomeDhikrQuietTitle',
-            subtitle: 'homeWelcomeDhikrQuietSubtitle',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _WelcomeCarouselCard extends StatelessWidget {
-  const _WelcomeCarouselCard({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
-
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final resolvedTitle = _localize(context, title, l10n);
-    final resolvedSubtitle = _localize(context, subtitle, l10n);
-    final iconStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      tintColor: const Color(0xFF8F6E40),
-      surfaceAlphaOverride: 0.20,
-    );
-    return _GlassCard(
-      radius: 22,
-      padding: const EdgeInsets.all(14),
-      child: Row(
-        children: [
-          Container(
-            height: 46,
-            width: 46,
-            decoration: iconStyle.decoration(radius: 12, includeShadow: false),
-            child: Icon(icon, color: const Color(0xFF8F6E40)),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  resolvedTitle,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontFamily: AppFonts.latinSerif,
-                    fontWeight: FontWeight.w600,
-                    color: _homePrimaryTextColor,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  resolvedSubtitle,
-                  style: const TextStyle(
-                    fontSize: 12.5,
-                    color: _homePrimaryTextColor,
-                    height: 1.3,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _localize(
-    BuildContext context,
-    String keyOrText,
-    AppLocalizations l10n,
-  ) {
-    switch (keyOrText) {
-      case 'homeWelcomeDailyIntentionTitle':
-        return l10n.homeWelcomeDailyIntentionTitle;
-      case 'homeWelcomeDailyIntentionSubtitle':
-        return l10n.homeWelcomeDailyIntentionSubtitle;
-      case 'homeWelcomePrayerRhythmTitle':
-        return l10n.homeWelcomePrayerRhythmTitle;
-      case 'homeWelcomePrayerRhythmSubtitle':
-        return l10n.homeWelcomePrayerRhythmSubtitle;
-      case 'homeWelcomeDhikrQuietTitle':
-        return l10n.homeWelcomeDhikrQuietTitle;
-      case 'homeWelcomeDhikrQuietSubtitle':
-        return l10n.homeWelcomeDhikrQuietSubtitle;
-      default:
-        return keyOrText;
-    }
-  }
-}
-
-// ignore: unused_element
-class _AvatarHaloSection extends StatelessWidget {
-  const _AvatarHaloSection();
-
-  @override
-  Widget build(BuildContext context) {
-    final double size = math.min(MediaQuery.of(context).size.width - 40, 300);
-    final double inner = size * 0.53;
-
-    return Center(
-      child: SizedBox(
-        width: size,
-        height: size,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: size,
-              height: size,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFFF0EADD).withValues(alpha: 0.33),
-                border: Border.all(
-                  color: const Color(0xFFD8C28D).withValues(alpha: 0.64),
-                  width: 1.8,
-                ),
-              ),
-            ),
-            Container(
-              width: inner,
-              height: inner,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFFE9ED98).withValues(alpha: 0.42),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFFF4F386).withValues(alpha: 0.62),
-                    blurRadius: 20,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: inner - 8,
-              height: inner - 8,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: const Color(0xFFEEFA7C).withValues(alpha: 0.84),
-                  width: 3.5,
-                ),
-              ),
-            ),
-            CircleAvatar(
-              radius: inner * 0.38,
-              backgroundColor: const Color(0xFFF8EFE2),
-              child: CircleAvatar(
-                radius: inner * 0.365,
-                backgroundColor: const Color(0xFFEFDFC9),
-                child: Icon(
-                  Icons.person,
-                  size: inner * 0.42,
-                  color: const Color(0xFF61422D).withValues(alpha: 0.86),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -1284,50 +683,6 @@ class _ForbiddenPrayerPeriod {
   final String value;
 }
 
-class _GlassCard extends StatelessWidget {
-  const _GlassCard({
-    required this.child,
-    this.padding = const EdgeInsets.all(16),
-    this.radius = 30,
-  });
-
-  final Widget child;
-  final EdgeInsetsGeometry padding;
-  final double radius;
-
-  @override
-  Widget build(BuildContext context) {
-    return _HomeNoorCardShell(padding: padding, radius: radius, child: child);
-  }
-}
-
-class _HomeNoorCardShell extends StatelessWidget {
-  const _HomeNoorCardShell({
-    required this.child,
-    this.padding = const EdgeInsets.all(16),
-    this.radius = 30,
-  });
-
-  final Widget child;
-  final EdgeInsetsGeometry padding;
-  final double radius;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppLayeredSectionGlassCard(
-      contentPadding: padding,
-      outerRadius: radius + 2,
-      innerRadius: radius - 8,
-      surfaceVariant: AppSurfaceVariant.card,
-      surfaceTreatment: AppSurfaceTreatment.standard,
-      surfaceTintColor: const Color(0xFFE6B85F),
-      surfaceAlphaOverride: 0.32,
-      includeShadow: true,
-      child: child,
-    );
-  }
-}
-
 class _ModeAwareHomeCard extends ConsumerWidget {
   const _ModeAwareHomeCard();
 
@@ -1430,33 +785,28 @@ class _ModeAwareHomeCard extends ConsumerWidget {
         break;
     }
 
-    return _HomeNoorCardShell(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: AppColors.accentGoldSoft),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontFamily: AppFonts.latinSerif,
-                  ),
-                ),
-              ),
-            ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: PremiumCard(
+        density: PremiumCardDensity.compact,
+        surfaceTintColor: const Color(0xFFE6B85F),
+        surfaceAlphaOverride: 0.32,
+        leading: Icon(icon, color: AppColors.accentGoldSoft),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontFamily: AppFonts.latinSerif,
           ),
-          const SizedBox(height: 8),
-          Text(
-            subtitle,
-            style: const TextStyle(color: _homePrimaryTextColor, height: 1.35),
-          ),
-          const SizedBox(height: 10),
-          Wrap(spacing: 8, runSpacing: 8, children: actions),
-        ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(subtitle, style: const TextStyle(height: 1.35)),
+            const SizedBox(height: 10),
+            Wrap(spacing: 8, runSpacing: 8, children: actions),
+          ],
+        ),
       ),
     );
   }

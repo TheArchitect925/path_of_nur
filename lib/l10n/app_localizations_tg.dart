@@ -2708,6 +2708,12 @@ class AppLocalizationsTg extends AppLocalizations {
       'Ояти имрӯз, роҳнамоӣ ва омӯзишро дар як ҷои ором якҷо нигоҳ доред.';
 
   @override
+  String get homeRightNowTitle => 'Барои ин лаҳза';
+
+  @override
+  String get homeRightNowSubtitle => 'Дуоҳо мувофиқи вақти рӯз';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'Омӯзиши рӯзона ва викторинаҳо';
 
   @override

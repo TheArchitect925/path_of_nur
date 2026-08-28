@@ -2704,6 +2704,12 @@ class AppLocalizationsHi extends AppLocalizations {
       'आज की आयत, मार्गदर्शन और सीख को एक शांत जगह में साथ रखें।';
 
   @override
+  String get homeRightNowTitle => 'इस पल के लिए';
+
+  @override
+  String get homeRightNowSubtitle => 'दिन के समय के अनुसार दुआएँ';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'दैनिक सीखना और क्विज़';
 
   @override

@@ -2698,6 +2698,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Keep today\'s ayah, guidance, and learning together in one calm place.';
 
   @override
+  String get homeRightNowTitle => 'For this moment';
+
+  @override
+  String get homeRightNowSubtitle => 'Duas matched to your time of day';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'Daily learning & quizzes';
 
   @override

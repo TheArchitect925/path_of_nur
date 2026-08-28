@@ -4609,6 +4609,18 @@ abstract class AppLocalizations {
   /// **'Keep today\'\'s ayah, guidance, and learning together in one calm place.'**
   String get homeTodayContentSubtitle;
 
+  /// No description provided for @homeRightNowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For this moment'**
+  String get homeRightNowTitle;
+
+  /// No description provided for @homeRightNowSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas matched to your time of day'**
+  String get homeRightNowSubtitle;
+
   /// No description provided for @homeDailyLearningQuizzesTitle.
   ///
   /// In en, this message translates to:

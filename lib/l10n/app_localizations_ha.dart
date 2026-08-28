@@ -2704,6 +2704,12 @@ class AppLocalizationsHa extends AppLocalizations {
       'Ajiye ayar yau, shiriya da koyo tare a wuri guda mai nutsuwa.';
 
   @override
+  String get homeRightNowTitle => 'Don wannan lokaci';
+
+  @override
+  String get homeRightNowSubtitle => 'Addu\'o\'in da suka dace da lokacin rana';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'Koyon yau da quizzes';
 
   @override

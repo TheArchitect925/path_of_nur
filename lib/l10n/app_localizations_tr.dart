@@ -2688,6 +2688,12 @@ class AppLocalizationsTr extends AppLocalizations {
       'Bugünün ayetini, rehberliğini ve öğrenimini tek bir sakin yerde bir arada tutun.';
 
   @override
+  String get homeRightNowTitle => 'Bu an için';
+
+  @override
+  String get homeRightNowSubtitle => 'Günün saatine uygun dualar';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'Günlük öğrenme quizleri';
 
   @override
