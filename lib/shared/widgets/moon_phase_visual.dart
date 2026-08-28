@@ -17,18 +17,34 @@ class MoonPhaseVisualData {
   final int illuminationPercent;
 }
 
+/// Mean length of a lunar synodic month, in days.
+const double lunarSynodicMonthDays = 29.53058867;
+
+/// Age of the moon in days (0 = new moon) for [date], using the same epoch
+/// the worship moon card has always used.
+double moonAgeDays(DateTime date) {
+  final normalized = DateTime(date.year, date.month, date.day);
+  final epoch = DateTime.utc(2000, 1, 6);
+  final days = normalized.toUtc().difference(epoch).inHours / 24;
+  return (days % lunarSynodicMonthDays + lunarSynodicMonthDays) %
+      lunarSynodicMonthDays;
+}
+
+/// Illuminated fraction of the lunar disc (0.0–1.0) for [date].
+double moonIlluminatedFraction(DateTime date) {
+  final age = moonAgeDays(date);
+  return (1 - math.cos((2 * math.pi * age) / lunarSynodicMonthDays)) / 2;
+}
+
 MoonPhaseVisualData moonPhaseVisualForDate(
   DateTime date,
   AppLocalizations l10n,
 ) {
-  final normalized = DateTime(date.year, date.month, date.day);
-  final epoch = DateTime.utc(2000, 1, 6);
-  final days = normalized.toUtc().difference(epoch).inHours / 24;
-  const synodic = 29.53058867;
-  final age = (days % synodic + synodic) % synodic;
-  final illumination = ((1 - math.cos((2 * math.pi * age) / synodic)) / 2 * 100)
-      .round()
-      .clamp(0, 100);
+  final age = moonAgeDays(date);
+  final illumination = (moonIlluminatedFraction(date) * 100).round().clamp(
+    0,
+    100,
+  );
   if (age < 1.84566) {
     return MoonPhaseVisualData(
       label: l10n.worshipPrayerMoonPhaseNewMoon,
