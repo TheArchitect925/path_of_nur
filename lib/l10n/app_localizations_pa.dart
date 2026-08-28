@@ -41771,4 +41771,16 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'ਹਰ ਵਰਗ ਇੱਕ ਦਿਨ ਹੈ — ਗੂੜ੍ਹਾ ਰੰਗ ਮਤਲਬ ਭਰਪੂਰ ਦਿਨ';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'ਪਾਠਕ ਥੀਮ';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'ਅੱਧੀ ਰਾਤ';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'ਮੋਮਬੱਤੀ ਦੀ ਰੋਸ਼ਨੀ';
 }

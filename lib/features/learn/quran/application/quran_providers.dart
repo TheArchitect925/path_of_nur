@@ -5,6 +5,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
+import '../domain/quran_reader_atmosphere.dart';
 import 'quran_playback_orchestrator.dart';
 import 'quran_playback_policy.dart';
 import 'quran_search_normalization.dart';
@@ -55,6 +56,7 @@ const _focusRecitationShowTransliterationKey =
     'learn.quran.focusRecitationShowTransliteration';
 const _focusRecitationKeepScreenAwakeKey =
     'learn.quran.focusRecitationKeepScreenAwake';
+const _readerAtmosphereKey = 'learn.quran.readerAtmosphere';
 const _kidsExplanationEnabledKey = 'learn.quran.kidsExplanationEnabled';
 const _wordFavoritesKey = 'learn.quran.wordFavorites';
 const _wordReviewProgressKey = 'learn.quran.wordReviewProgress';
@@ -88,6 +90,7 @@ class QuranReaderSettings {
     required this.focusRecitationShowTranslation,
     required this.focusRecitationShowTransliteration,
     required this.focusRecitationKeepScreenAwake,
+    required this.readerAtmosphere,
   });
 
   final String translationCode;
@@ -107,6 +110,7 @@ class QuranReaderSettings {
   final bool focusRecitationShowTranslation;
   final bool focusRecitationShowTransliteration;
   final bool focusRecitationKeepScreenAwake;
+  final QuranReaderAtmosphere readerAtmosphere;
 
   QuranReaderSettings copyWith({
     String? translationCode,
@@ -126,6 +130,7 @@ class QuranReaderSettings {
     bool? focusRecitationShowTranslation,
     bool? focusRecitationShowTransliteration,
     bool? focusRecitationKeepScreenAwake,
+    QuranReaderAtmosphere? readerAtmosphere,
   }) {
     return QuranReaderSettings(
       translationCode: translationCode ?? this.translationCode,
@@ -153,6 +158,7 @@ class QuranReaderSettings {
           this.focusRecitationShowTransliteration,
       focusRecitationKeepScreenAwake:
           focusRecitationKeepScreenAwake ?? this.focusRecitationKeepScreenAwake,
+      readerAtmosphere: readerAtmosphere ?? this.readerAtmosphere,
     );
   }
 }
@@ -426,6 +432,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           focusRecitationShowTranslation: true,
           focusRecitationShowTransliteration: true,
           focusRecitationKeepScreenAwake: false,
+          readerAtmosphere: QuranReaderAtmosphere.noorGlass,
         ),
       ) {
     _load();
@@ -522,6 +529,11 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setBool(_focusRecitationKeepScreenAwakeKey, value);
   }
 
+  void setReaderAtmosphere(QuranReaderAtmosphere value) {
+    state = state.copyWith(readerAtmosphere: value);
+    _store.setString(_readerAtmosphereKey, value.wireName);
+  }
+
   void _load() {
     final code = _store.getString(_translationCodeKey);
     final showArabic = _store.getBool(_showArabicKey);
@@ -550,6 +562,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     final focusRecitationKeepScreenAwake = _store.getBool(
       _focusRecitationKeepScreenAwakeKey,
     );
+    final readerAtmosphereRaw = _store.getString(_readerAtmosphereKey);
 
     state = state.copyWith(
       translationCode: (code != null && quranTranslationCodes.contains(code))
@@ -579,6 +592,9 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
       focusRecitationKeepScreenAwake:
           focusRecitationKeepScreenAwake ??
           state.focusRecitationKeepScreenAwake,
+      readerAtmosphere: readerAtmosphereRaw == null
+          ? state.readerAtmosphere
+          : QuranReaderAtmosphere.parse(readerAtmosphereRaw),
     );
   }
 }

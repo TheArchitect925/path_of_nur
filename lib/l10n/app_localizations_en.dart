@@ -41790,4 +41790,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Each square is one day — deeper color means a fuller day';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Reader theme';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Midnight';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Candlelight';
 }

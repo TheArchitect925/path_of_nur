@@ -69606,6 +69606,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Each square is one day — deeper color means a fuller day'**
   String get growthActivityHeatmapSubtitle;
+
+  /// No description provided for @quranReaderAtmosphereTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader theme'**
+  String get quranReaderAtmosphereTitle;
+
+  /// No description provided for @quranReaderAtmosphereNoorGlass.
+  ///
+  /// In en, this message translates to:
+  /// **'Noor Glass'**
+  String get quranReaderAtmosphereNoorGlass;
+
+  /// No description provided for @quranReaderAtmosphereMidnight.
+  ///
+  /// In en, this message translates to:
+  /// **'Midnight'**
+  String get quranReaderAtmosphereMidnight;
+
+  /// No description provided for @quranReaderAtmosphereCandlelight.
+  ///
+  /// In en, this message translates to:
+  /// **'Candlelight'**
+  String get quranReaderAtmosphereCandlelight;
 }
 
 class _AppLocalizationsDelegate

@@ -18645,5 +18645,9 @@
   "settingsUnwellModeSubtitle": "जब बीमारी इबादत को कठिन बना दे, तो उस दिन की रक्षा करें।",
   "settingsUnwellModeTitle": "अस्वस्थ मोड",
   "growthActivityHeatmapTitle": "एक नज़र में गतिविधि",
-  "growthActivityHeatmapSubtitle": "हर वर्ग एक दिन है — गहरा रंग यानी भरपूर दिन"
+  "growthActivityHeatmapSubtitle": "हर वर्ग एक दिन है — गहरा रंग यानी भरपूर दिन",
+  "quranReaderAtmosphereTitle": "पाठक थीम",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "मध्यरात्रि",
+  "quranReaderAtmosphereCandlelight": "मोमबत्ती की रोशनी"
 }

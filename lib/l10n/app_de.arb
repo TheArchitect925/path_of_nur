@@ -18540,5 +18540,9 @@
     "description": "Action label to open the canonical hadith browse page."
   },
   "growthActivityHeatmapTitle": "Aktivität auf einen Blick",
-  "growthActivityHeatmapSubtitle": "Jedes Quadrat ist ein Tag – je kräftiger die Farbe, desto erfüllter der Tag"
+  "growthActivityHeatmapSubtitle": "Jedes Quadrat ist ein Tag – je kräftiger die Farbe, desto erfüllter der Tag",
+  "quranReaderAtmosphereTitle": "Lese-Design",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "Mitternacht",
+  "quranReaderAtmosphereCandlelight": "Kerzenlicht"
 }

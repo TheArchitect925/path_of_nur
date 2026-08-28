@@ -41530,4 +41530,16 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'كل مربع يمثل يوماً — كلما زاد اللون عمقاً كان اليوم أكثر امتلاءً';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'مظهر القارئ';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'منتصف الليل';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'ضوء الشموع';
 }

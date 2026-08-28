@@ -41770,4 +41770,16 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'ہر مربع ایک دن ہے — گہرا رنگ یعنی بھرپور دن';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'قاری تھیم';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'آدھی رات';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'موم بتی کی روشنی';
 }

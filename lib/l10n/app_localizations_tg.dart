@@ -41892,4 +41892,16 @@ class AppLocalizationsTg extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Ҳар мураббаъ як рӯз аст — ранги пурратар яъне рӯзи пурратар';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Мавзӯи хонанда';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Нисфи шаб';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Нури шамъ';
 }

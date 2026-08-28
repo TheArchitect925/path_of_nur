@@ -18645,5 +18645,9 @@
   "settingsUnwellModeSubtitle": "جب بیماری عبادت کو مشکل بنا دے تو دن کی حفاظت کریں۔",
   "settingsUnwellModeTitle": "علالت موڈ",
   "growthActivityHeatmapTitle": "ایک نظر میں سرگرمی",
-  "growthActivityHeatmapSubtitle": "ہر مربع ایک دن ہے — گہرا رنگ یعنی بھرپور دن"
+  "growthActivityHeatmapSubtitle": "ہر مربع ایک دن ہے — گہرا رنگ یعنی بھرپور دن",
+  "quranReaderAtmosphereTitle": "قاری تھیم",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "آدھی رات",
+  "quranReaderAtmosphereCandlelight": "موم بتی کی روشنی"
 }

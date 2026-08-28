@@ -41735,4 +41735,16 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'هر مربع یوه ورځ ده — ژور رنګ د ډکې ورځې معنا لري';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'د لوستونکي بڼه';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'نیمه شپه';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'د شمعې رڼا';
 }

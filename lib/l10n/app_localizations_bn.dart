@@ -41727,4 +41727,16 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'প্রতিটি বর্গ একটি দিন — গাঢ় রঙ মানে পূর্ণ দিন';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'পাঠকের থিম';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'মধ্যরাত';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'মোমবাতির আলো';
 }

@@ -41793,4 +41793,16 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Setiap kotak adalah satu hari — warna lebih pekat berarti hari lebih penuh';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Tema pembaca';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Tengah malam';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Cahaya lilin';
 }

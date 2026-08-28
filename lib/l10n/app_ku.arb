@@ -18647,5 +18647,9 @@
   "settingsUnwellModeSubtitle": "Dema nexweşî îbadetê dijwartir dike rojê biparêze.",
   "settingsUnwellModeTitle": "Moda Nexweşiyê",
   "growthActivityHeatmapTitle": "Çalakî bi yek nêrînê",
-  "growthActivityHeatmapSubtitle": "Her çarçik rojek e — rengê kûrtir tê wateya rojeke tijetir"
+  "growthActivityHeatmapSubtitle": "Her çarçik rojek e — rengê kûrtir tê wateya rojeke tijetir",
+  "quranReaderAtmosphereTitle": "Dirûvê xwendinê",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "Nîvê şevê",
+  "quranReaderAtmosphereCandlelight": "Ronahiya mûmê"
 }

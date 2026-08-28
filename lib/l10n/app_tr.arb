@@ -18647,5 +18647,9 @@
   "settingsUnwellModeSubtitle": "Hastalık ibadeti zorlaştırdığında gününü koru.",
   "settingsUnwellModeTitle": "Hastalık Modu",
   "growthActivityHeatmapTitle": "Bir bakışta etkinlik",
-  "growthActivityHeatmapSubtitle": "Her kare bir gün — koyu renk daha dolu bir gün demek"
+  "growthActivityHeatmapSubtitle": "Her kare bir gün — koyu renk daha dolu bir gün demek",
+  "quranReaderAtmosphereTitle": "Okuyucu teması",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "Gece yarısı",
+  "quranReaderAtmosphereCandlelight": "Mum ışığı"
 }

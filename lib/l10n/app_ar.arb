@@ -18645,5 +18645,9 @@
   "settingsUnwellModeSubtitle": "احمِ يومك عندما يجعل المرض العبادة أصعب.",
   "settingsUnwellModeTitle": "وضع المرض",
   "growthActivityHeatmapTitle": "نشاطك في لمحة",
-  "growthActivityHeatmapSubtitle": "كل مربع يمثل يوماً — كلما زاد اللون عمقاً كان اليوم أكثر امتلاءً"
+  "growthActivityHeatmapSubtitle": "كل مربع يمثل يوماً — كلما زاد اللون عمقاً كان اليوم أكثر امتلاءً",
+  "quranReaderAtmosphereTitle": "مظهر القارئ",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "منتصف الليل",
+  "quranReaderAtmosphereCandlelight": "ضوء الشموع"
 }

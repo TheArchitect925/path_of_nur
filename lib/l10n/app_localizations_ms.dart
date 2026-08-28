@@ -41774,4 +41774,16 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Setiap petak ialah satu hari — warna lebih pekat bermakna hari lebih penuh';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Tema pembaca';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Tengah malam';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Cahaya lilin';
 }

@@ -18657,5 +18657,9 @@
   "settingsUnwellModeSubtitle": "Lindungi hari Anda ketika sakit membuat ibadah terasa lebih berat.",
   "settingsUnwellModeTitle": "Mode Sakit",
   "growthActivityHeatmapTitle": "Aktivitas sekilas",
-  "growthActivityHeatmapSubtitle": "Setiap kotak adalah satu hari — warna lebih pekat berarti hari lebih penuh"
+  "growthActivityHeatmapSubtitle": "Setiap kotak adalah satu hari — warna lebih pekat berarti hari lebih penuh",
+  "quranReaderAtmosphereTitle": "Tema pembaca",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "Tengah malam",
+  "quranReaderAtmosphereCandlelight": "Cahaya lilin"
 }

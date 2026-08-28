@@ -41849,4 +41849,16 @@ class AppLocalizationsHa extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Kowanne murabba\'i rana daya ne — launi mai zurfi na nuna rana cikakkiya';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Jigon karatu';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Tsakar dare';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Hasken kyandir';
 }

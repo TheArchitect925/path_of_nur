@@ -18648,5 +18648,9 @@
   "settingsUnwellModeSubtitle": "روزهایی را که مریضی عبادت را دشوار می‌سازد، محافظت کنید.",
   "settingsUnwellModeTitle": "حالت مریضی",
   "growthActivityHeatmapTitle": "فعالیت در یک نگاه",
-  "growthActivityHeatmapSubtitle": "هر مربع یک روز است — رنگ پررنگ‌تر یعنی روز پربارتر"
+  "growthActivityHeatmapSubtitle": "هر مربع یک روز است — رنگ پررنگ‌تر یعنی روز پربارتر",
+  "quranReaderAtmosphereTitle": "پوسته خواندن",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "نیمه‌شب",
+  "quranReaderAtmosphereCandlelight": "نور شمع"
 }

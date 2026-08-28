@@ -8,9 +8,11 @@ import 'package:path_of_nur/features/learn/quran/application/quran_player_contro
 import 'package:path_of_nur/features/learn/quran/application/quran_providers.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_reader_playback_controller.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_reader_atmosphere.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_focus_recitation_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
+import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class _FakeFocusRecitationController extends QuranPlayerController {
@@ -107,6 +109,9 @@ void main() {
       ProviderScope(
         overrides: [
           sharedPreferencesProvider.overrideWithValue(prefs),
+          dailyNowProvider.overrideWith(
+            (ref) => Stream<DateTime>.value(DateTime(2026, 8, 28, 10)),
+          ),
           quranGlobalPlaybackStateProvider.overrideWith((ref) {
             return ref.watch(playbackOverride);
           }),
@@ -360,6 +365,9 @@ void main() {
         ProviderScope(
           overrides: [
             sharedPreferencesProvider.overrideWithValue(prefs),
+            dailyNowProvider.overrideWith(
+              (ref) => Stream<DateTime>.value(DateTime(2026, 8, 28, 10)),
+            ),
             quranGlobalPlaybackStateProvider.overrideWith((ref) {
               return ref.watch(playbackStateProvider);
             }),
@@ -432,6 +440,9 @@ void main() {
         ProviderScope(
           overrides: [
             sharedPreferencesProvider.overrideWithValue(prefs),
+            dailyNowProvider.overrideWith(
+              (ref) => Stream<DateTime>.value(DateTime(2026, 8, 28, 10)),
+            ),
             quranGlobalPlaybackStateProvider.overrideWith((ref) {
               return ref.watch(playbackStateProvider);
             }),
@@ -519,6 +530,9 @@ void main() {
         ProviderScope(
           overrides: [
             sharedPreferencesProvider.overrideWithValue(prefs),
+            dailyNowProvider.overrideWith(
+              (ref) => Stream<DateTime>.value(DateTime(2026, 8, 28, 10)),
+            ),
             quranGlobalPlaybackStateProvider.overrideWith((ref) {
               return ref.watch(playbackStateProvider);
             }),
@@ -691,6 +705,70 @@ void main() {
       expect(
         find.byKey(const ValueKey('quran-focus-recitation-scroll')),
         findsOneWidget,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'reader atmosphere picker switches and persists the focus page theme',
+    (tester) async {
+      SharedPreferences.setMockInitialValues(const <String, Object>{});
+      final prefs = await SharedPreferences.getInstance();
+      final playbackStateProvider = Provider<QuranReaderPlaybackState>(
+        (ref) => const QuranReaderPlaybackState(
+          pageSurahNumber: 1,
+          reciterId: 'husary',
+          reciterName: 'Husary',
+          activeSurahNumber: 1,
+          activeAyahKey: '1:2',
+          activeAyahNumber: 2,
+          hasPlayback: true,
+          isPlaying: true,
+          status: QuranReaderPlaybackStatus.playing,
+          canPause: true,
+          canPlay: false,
+        ),
+      );
+
+      await pumpFocusPage(
+        tester,
+        prefs: prefs,
+        playbackOverride: playbackStateProvider,
+      );
+
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranFocusRecitationPage)),
+      );
+      expect(
+        container.read(quranReaderSettingsProvider).readerAtmosphere,
+        QuranReaderAtmosphere.noorGlass,
+      );
+
+      await tester.tap(find.byKey(const ValueKey('quran-focus-settings')));
+      await tester.pumpAndSettle();
+
+      await tester.tap(
+        find.byKey(const ValueKey('quran-focus-atmosphere-midnight')),
+      );
+      await tester.pumpAndSettle();
+
+      expect(
+        container.read(quranReaderSettingsProvider).readerAtmosphere,
+        QuranReaderAtmosphere.midnight,
+      );
+      expect(
+        prefs.getString('learn.quran.readerAtmosphere'),
+        'midnight',
+      );
+
+      await tester.tap(
+        find.byKey(const ValueKey('quran-focus-atmosphere-candlelight')),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        container.read(quranReaderSettingsProvider).readerAtmosphere,
+        QuranReaderAtmosphere.candlelight,
       );
       expect(tester.takeException(), isNull);
     },

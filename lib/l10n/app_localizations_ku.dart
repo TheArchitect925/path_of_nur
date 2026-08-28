@@ -41808,4 +41808,16 @@ class AppLocalizationsKu extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Her çarçik rojek e — rengê kûrtir tê wateya rojeke tijetir';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Dirûvê xwendinê';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Nîvê şevê';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Ronahiya mûmê';
 }

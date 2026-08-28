@@ -18657,5 +18657,9 @@
   "settingsUnwellModeSubtitle": "ਜਦੋਂ ਬਿਮਾਰੀ ਇਬਾਦਤ ਨੂੰ ਔਖਾ ਬਣਾ ਦੇਵੇ, ਤਾਂ ਉਸ ਦਿਨ ਦੀ ਰੱਖਿਆ ਕਰੋ।",
   "settingsUnwellModeTitle": "ਬਿਮਾਰੀ ਮੋਡ",
   "growthActivityHeatmapTitle": "ਇੱਕ ਨਜ਼ਰ ਵਿੱਚ ਗਤੀਵਿਧੀ",
-  "growthActivityHeatmapSubtitle": "ਹਰ ਵਰਗ ਇੱਕ ਦਿਨ ਹੈ — ਗੂੜ੍ਹਾ ਰੰਗ ਮਤਲਬ ਭਰਪੂਰ ਦਿਨ"
+  "growthActivityHeatmapSubtitle": "ਹਰ ਵਰਗ ਇੱਕ ਦਿਨ ਹੈ — ਗੂੜ੍ਹਾ ਰੰਗ ਮਤਲਬ ਭਰਪੂਰ ਦਿਨ",
+  "quranReaderAtmosphereTitle": "ਪਾਠਕ ਥੀਮ",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "ਅੱਧੀ ਰਾਤ",
+  "quranReaderAtmosphereCandlelight": "ਮੋਮਬੱਤੀ ਦੀ ਰੋਸ਼ਨੀ"
 }

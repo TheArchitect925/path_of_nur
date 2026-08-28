@@ -18657,5 +18657,9 @@
   "settingsUnwellModeSubtitle": "অসুস্থতা যখন ইবাদত কঠিন করে তোলে, তখন দিনটিকে সুরক্ষিত রাখুন।",
   "settingsUnwellModeTitle": "অসুস্থ মোড",
   "growthActivityHeatmapTitle": "এক নজরে কার্যক্রম",
-  "growthActivityHeatmapSubtitle": "প্রতিটি বর্গ একটি দিন — গাঢ় রঙ মানে পূর্ণ দিন"
+  "growthActivityHeatmapSubtitle": "প্রতিটি বর্গ একটি দিন — গাঢ় রঙ মানে পূর্ণ দিন",
+  "quranReaderAtmosphereTitle": "পাঠকের থিম",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "মধ্যরাত",
+  "quranReaderAtmosphereCandlelight": "মোমবাতির আলো"
 }

@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_providers.dart';
 import 'package:path_of_nur/features/learn/quran/domain/bismillah_playback_mode.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_reader_atmosphere.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -79,6 +80,51 @@ void main() {
       final notifier = QuranReaderSettingsNotifier(store);
 
       expect(notifier.state.showLearnMore, isFalse);
+    });
+
+    test('defaults reader atmosphere to Noor Glass', () async {
+      SharedPreferences.setMockInitialValues(const {});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      expect(
+        notifier.state.readerAtmosphere,
+        QuranReaderAtmosphere.noorGlass,
+      );
+    });
+
+    test('persists and reloads the reader atmosphere', () async {
+      SharedPreferences.setMockInitialValues(const {});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      notifier.setReaderAtmosphere(QuranReaderAtmosphere.midnight);
+      expect(
+        notifier.state.readerAtmosphere,
+        QuranReaderAtmosphere.midnight,
+      );
+
+      final reloaded = QuranReaderSettingsNotifier(LocalStore(prefs));
+      expect(
+        reloaded.state.readerAtmosphere,
+        QuranReaderAtmosphere.midnight,
+      );
+    });
+
+    test('falls back to Noor Glass for unknown stored atmosphere', () async {
+      SharedPreferences.setMockInitialValues(const {
+        'learn.quran.readerAtmosphere': 'lava_lamp',
+      });
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      expect(
+        notifier.state.readerAtmosphere,
+        QuranReaderAtmosphere.noorGlass,
+      );
     });
   });
 }

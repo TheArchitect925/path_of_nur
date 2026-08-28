@@ -18540,5 +18540,9 @@
     "description": "Action label to open the canonical hadith browse page."
   },
   "growthActivityHeatmapTitle": "Activity at a glance",
-  "growthActivityHeatmapSubtitle": "Each square is one day — deeper color means a fuller day"
+  "growthActivityHeatmapSubtitle": "Each square is one day — deeper color means a fuller day",
+  "quranReaderAtmosphereTitle": "Reader theme",
+  "quranReaderAtmosphereNoorGlass": "Noor Glass",
+  "quranReaderAtmosphereMidnight": "Midnight",
+  "quranReaderAtmosphereCandlelight": "Candlelight"
 }

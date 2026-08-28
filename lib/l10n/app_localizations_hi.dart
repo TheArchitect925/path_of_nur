@@ -41840,4 +41840,16 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'हर वर्ग एक दिन है — गहरा रंग यानी भरपूर दिन';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'पाठक थीम';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'मध्यरात्रि';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'मोमबत्ती की रोशनी';
 }

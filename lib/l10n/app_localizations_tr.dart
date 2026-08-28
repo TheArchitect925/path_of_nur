@@ -41781,4 +41781,16 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get growthActivityHeatmapSubtitle =>
       'Her kare bir gün — koyu renk daha dolu bir gün demek';
+
+  @override
+  String get quranReaderAtmosphereTitle => 'Okuyucu teması';
+
+  @override
+  String get quranReaderAtmosphereNoorGlass => 'Noor Glass';
+
+  @override
+  String get quranReaderAtmosphereMidnight => 'Gece yarısı';
+
+  @override
+  String get quranReaderAtmosphereCandlelight => 'Mum ışığı';
 }
