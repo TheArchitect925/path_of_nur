@@ -716,6 +716,9 @@ class AppTheme {
     final serifOrLocaleUi = localeUsesRtlUiFont
         ? localeUiFont
         : AppFonts.latinSerif;
+    final sansOrLocaleUi = localeUsesRtlUiFont
+        ? localeUiFont
+        : AppFonts.latinSans;
 
     final themeData = ThemeData(
       useMaterial3: true,
@@ -742,6 +745,7 @@ class AppTheme {
           color: onSurface,
           fontSize: 34,
           fontWeight: FontWeight.w700,
+          fontFamily: serifOrLocaleUi,
         ),
         titleLarge: TextStyle(
           color: onSurface,
@@ -767,29 +771,29 @@ class AppTheme {
           fontSize: 15,
           fontWeight: FontWeight.w500,
           height: 1.45,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: sansOrLocaleUi,
         ),
         bodyMedium: TextStyle(
           color: onSurfaceSubtle,
           fontSize: 14,
           height: 1.45,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: sansOrLocaleUi,
         ),
         bodySmall: TextStyle(
           color: onSurfaceSubtle,
           fontSize: 13,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: sansOrLocaleUi,
         ),
         labelLarge: TextStyle(
           color: onSurface,
           fontWeight: FontWeight.w700,
           fontSize: 14,
-          fontFamily: localeUiFont,
+          fontFamily: sansOrLocaleUi,
         ),
         labelMedium: TextStyle(
           color: onSurface,
           fontSize: 12,
-          fontFamily: localeUiFont,
+          fontFamily: sansOrLocaleUi,
         ),
       ),
       appBarTheme: AppBarTheme(
