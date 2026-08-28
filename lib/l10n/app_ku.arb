@@ -18661,5 +18661,17 @@
   "settingsThemeModeJummahDescription": "Keskê mizgeftê yê kûr bi kevana mîhrabê ya zêrîn — sepan di cilê roja herî baş de.",
   "settingsThemeModeJummahBestFor": "Herî baş ji bo: rojên Înê, ji şevê heta xutbeyê",
   "settingsDressUpFridaysTitle": "Rojên Înê bixemilîne",
-  "settingsDressUpFridaysSubtitle": "Her Înê dirûvê Înê li xwe bike, paşê vegere dirûvê xwe."
+  "settingsDressUpFridaysSubtitle": "Her Înê dirûvê Înê li xwe bike, paşê vegere dirûvê xwe.",
+  "notificationsJumuahLeaveTitle": "Dema çûyîna Înê ye",
+  "notificationsJumuahLeaveBody": "Niha derkeve da ku beriya destpêka xutbeyê bigihîjî mizgeftê.",
+  "homeGreetingJumuahMubarak": "Îna pîroz",
+  "homeGreetingRamadanMubarak": "Remezan pîroz",
+  "settingsJumuahMosqueTitle": "Mizgefta te",
+  "settingsJumuahLeaveReminderTitle": "Bibîrxistina dema çûyînê",
+  "settingsJumuahLeaveOff": "Girtî",
+  "settingsJumuahLeaveFixed": "Dema rêwîtiyê ya sabît",
+  "settingsJumuahLeaveEstimate": "Ji cihê min texmîn bike",
+  "settingsJumuahTravelMinutesLabel": "Dema rêwîtiyê",
+  "settingsJumuahChooseMosque": "Cihê mizgeftê hilbijêre",
+  "settingsJumuahEstimatePrivacyNote": "Texmîn tenê dema sepan vekirî ye cihê te bi kar tîne."
 }

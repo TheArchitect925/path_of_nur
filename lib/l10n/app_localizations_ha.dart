@@ -41898,4 +41898,42 @@ class AppLocalizationsHa extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Sanya jigon Jumma\'a kowace Juma\'a, sannan koma jigonka.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'Lokacin tashi zuwa Jumma\'a';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Tashi yanzu don isa masallaci kafin hudubar ta fara.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Jumma\'a Mubarak';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Ramadan Mubarak';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Masallacinka';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Tunatarwar lokacin tashi';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Kashe';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Kayyadadden lokacin tafiya';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Kiyasta daga wurina';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Lokacin tafiya';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Zabi wurin masallaci';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'Kiyasin yana amfani da wurinka ne kawai lokacin da manhajar take a bude.';
 }

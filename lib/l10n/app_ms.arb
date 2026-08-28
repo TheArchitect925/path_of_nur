@@ -18671,5 +18671,17 @@
   "settingsThemeModeJummahDescription": "Hijau masjid pekat bermahkota lengkung mihrab emas — aplikasi berhias untuk sebaik-baik hari.",
   "settingsThemeModeJummahBestFor": "Paling sesuai untuk: hari Jumaat, dari malam hingga khutbah",
   "settingsDressUpFridaysTitle": "Hiaskan hari Jumaat",
-  "settingsDressUpFridaysSubtitle": "Pakai tema Jumaat setiap Jumaat, kemudian kembali ke tema anda."
+  "settingsDressUpFridaysSubtitle": "Pakai tema Jumaat setiap Jumaat, kemudian kembali ke tema anda.",
+  "notificationsJumuahLeaveTitle": "Masa untuk bertolak ke Jumaat",
+  "notificationsJumuahLeaveBody": "Bertolaklah sekarang agar tiba di masjid sebelum khutbah bermula.",
+  "homeGreetingJumuahMubarak": "Jumaat Mubarak",
+  "homeGreetingRamadanMubarak": "Ramadan Mubarak",
+  "settingsJumuahMosqueTitle": "Masjid anda",
+  "settingsJumuahLeaveReminderTitle": "Peringatan masa bertolak",
+  "settingsJumuahLeaveOff": "Mati",
+  "settingsJumuahLeaveFixed": "Masa perjalanan tetap",
+  "settingsJumuahLeaveEstimate": "Anggar dari lokasi saya",
+  "settingsJumuahTravelMinutesLabel": "Masa perjalanan",
+  "settingsJumuahChooseMosque": "Pilih lokasi masjid",
+  "settingsJumuahEstimatePrivacyNote": "Anggaran menggunakan lokasi anda hanya semasa aplikasi dibuka."
 }

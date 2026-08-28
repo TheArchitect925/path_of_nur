@@ -41830,4 +41830,42 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Her Cuma, Cuma temasını giy; sonra kendi temana dön.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'Cumaya çıkma vakti';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Hutbe başlamadan camiye varmak için şimdi yola çık.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Cumanız mübarek olsun';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Ramazan mübarek olsun';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Camin';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Yola çıkma hatırlatıcısı';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Kapalı';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Sabit yol süresi';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Konumumdan tahmin et';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Yol süresi';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Cami konumunu seç';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'Tahmin, konumunu yalnızca uygulama açıkken kullanır.';
 }

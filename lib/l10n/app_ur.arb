@@ -18659,5 +18659,17 @@
   "settingsThemeModeJummahDescription": "سنہری محرابی قوس سے سجا گہرا مسجدی سبز — بہترین دن کے لیے سجی ایپ۔",
   "settingsThemeModeJummahBestFor": "بہترین: جمعے کے دن، رات سے خطبے تک",
   "settingsDressUpFridaysTitle": "جمعے سجائیں",
-  "settingsDressUpFridaysSubtitle": "ہر جمعہ جمعے کا تھیم پہنیں، پھر اپنے تھیم پر واپس جائیں۔"
+  "settingsDressUpFridaysSubtitle": "ہر جمعہ جمعے کا تھیم پہنیں، پھر اپنے تھیم پر واپس جائیں۔",
+  "notificationsJumuahLeaveTitle": "جمعے کے لیے نکلنے کا وقت",
+  "notificationsJumuahLeaveBody": "خطبہ شروع ہونے سے پہلے مسجد پہنچنے کے لیے ابھی نکلیں۔",
+  "homeGreetingJumuahMubarak": "جمعہ مبارک",
+  "homeGreetingRamadanMubarak": "رمضان مبارک",
+  "settingsJumuahMosqueTitle": "آپ کی مسجد",
+  "settingsJumuahLeaveReminderTitle": "نکلنے کے وقت کی یاددہانی",
+  "settingsJumuahLeaveOff": "بند",
+  "settingsJumuahLeaveFixed": "مقررہ سفر کا وقت",
+  "settingsJumuahLeaveEstimate": "میرے مقام سے اندازہ",
+  "settingsJumuahTravelMinutesLabel": "سفر کا وقت",
+  "settingsJumuahChooseMosque": "مسجد کا مقام چنیں",
+  "settingsJumuahEstimatePrivacyNote": "اندازہ آپ کا مقام صرف ایپ کھلی ہونے پر استعمال کرتا ہے۔"
 }

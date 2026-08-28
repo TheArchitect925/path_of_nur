@@ -41941,4 +41941,42 @@ class AppLocalizationsTg extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Ҳар ҷумъа мавзӯи Ҷумъаро пӯшед, сипас ба мавзӯи худ баргардед.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'Вақти рафтан ба ҷумъа';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Ҳозир бароед, то пеш аз оғози хутба ба масҷид расед.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Ҷумъа муборак';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Рамазон муборак';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Масҷиди шумо';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Ёдоварии вақти рафтан';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Хомӯш';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Вақти собити роҳ';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Аз ҷойгиршавии ман ҳисоб кун';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Вақти роҳ';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Ҷои масҷидро интихоб кунед';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'Ҳисоб ҷойгиршавии шуморо танҳо ҳангоми кушода будани барнома истифода мебарад.';
 }

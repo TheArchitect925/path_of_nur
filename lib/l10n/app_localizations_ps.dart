@@ -41784,4 +41784,42 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'هره جمعه د جمعې بڼه واغوندئ، بيا خپلې بڼې ته وګرځئ.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'د جمعې د تللو وخت دی';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'اوس روان شئ چې د خطبې له پیل مخکې جومات ته ورسېږئ.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'جمعه مبارکه';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'رمضان مبارک';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'ستاسو جومات';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'د تللو وخت يادونه';
+
+  @override
+  String get settingsJumuahLeaveOff => 'بند';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'ثابت د سفر وخت';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'زما له موقعیت اټکل';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'د سفر وخت';
+
+  @override
+  String get settingsJumuahChooseMosque => 'د جومات ځای وټاکئ';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'اټکل ستاسو موقعیت يوازې د اپلیکیشن د پرانيستي پر مهال کاروي.';
 }

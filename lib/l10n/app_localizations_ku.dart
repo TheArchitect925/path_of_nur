@@ -41857,4 +41857,42 @@ class AppLocalizationsKu extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Her Înê dirûvê Înê li xwe bike, paşê vegere dirûvê xwe.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'Dema çûyîna Înê ye';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Niha derkeve da ku beriya destpêka xutbeyê bigihîjî mizgeftê.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Îna pîroz';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Remezan pîroz';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Mizgefta te';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Bibîrxistina dema çûyînê';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Girtî';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Dema rêwîtiyê ya sabît';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Ji cihê min texmîn bike';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Dema rêwîtiyê';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Cihê mizgeftê hilbijêre';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'Texmîn tenê dema sepan vekirî ye cihê te bi kar tîne.';
 }

@@ -67,6 +67,53 @@ enum PrayerTimeMode { calculatedAdjusted, manual }
 
 enum FridayReminderMode { normalDhuhr, customJumuah }
 
+/// How the Jumu'ah "time to leave" reminder computes travel time.
+enum JumuahLeaveReminderMode {
+  off('off'),
+  fixedTravelTime('fixed'),
+  locationEstimate('estimate');
+
+  const JumuahLeaveReminderMode(this.wireName);
+  final String wireName;
+
+  static JumuahLeaveReminderMode parse(String? raw) {
+    for (final value in values) {
+      if (value.wireName == raw || value.name == raw) return value;
+    }
+    return JumuahLeaveReminderMode.off;
+  }
+}
+
+/// Minutes of slack added on top of travel so arrival precedes the khutbah.
+const int jumuahLeaveBufferMinutes = 5;
+
+/// When to leave for Jumu'ah on [day], or null when the reminder is off.
+/// [estimatedTravelMinutes] feeds the location-estimate mode; both modes
+/// fall back to the stored fixed minutes.
+DateTime? jumuahLeaveTimeFor({
+  required DateTime day,
+  required PrayerPreferences preferences,
+  int? estimatedTravelMinutes,
+}) {
+  if (preferences.jumuahLeaveReminderMode == JumuahLeaveReminderMode.off) {
+    return null;
+  }
+  final jumuahMinutes =
+      (preferences.jumuahOverrideEnabled
+          ? preferences.jumuahTimeMinutes
+          : null) ??
+      defaultJumuahDisplayMinutes;
+  final travel =
+      (preferences.jumuahLeaveReminderMode ==
+              JumuahLeaveReminderMode.locationEstimate
+          ? estimatedTravelMinutes
+          : null) ??
+      preferences.jumuahTravelMinutes;
+  return DateTime(day.year, day.month, day.day).add(
+    Duration(minutes: jumuahMinutes - travel - jumuahLeaveBufferMinutes),
+  );
+}
+
 const int defaultJumuahDisplayMinutes = 13 * 60 + 30;
 
 class PrayerClockTimes {
@@ -284,6 +331,11 @@ class PrayerPreferences {
     this.mosqueReferenceTimes = const PrayerClockTimes(),
     this.jumuahOverrideEnabled = false,
     this.jumuahTimeMinutes,
+    this.jumuahMosqueName,
+    this.jumuahMosqueLatitude,
+    this.jumuahMosqueLongitude,
+    this.jumuahLeaveReminderMode = JumuahLeaveReminderMode.off,
+    this.jumuahTravelMinutes = 20,
     this.fridayReminderMode = FridayReminderMode.normalDhuhr,
     this.activeProfileId = 'default',
     this.lastModeSwitchAt,
@@ -303,6 +355,11 @@ class PrayerPreferences {
   final PrayerClockTimes mosqueReferenceTimes;
   final bool jumuahOverrideEnabled;
   final int? jumuahTimeMinutes;
+  final String? jumuahMosqueName;
+  final double? jumuahMosqueLatitude;
+  final double? jumuahMosqueLongitude;
+  final JumuahLeaveReminderMode jumuahLeaveReminderMode;
+  final int jumuahTravelMinutes;
   final FridayReminderMode fridayReminderMode;
   final String activeProfileId;
   final DateTime? lastModeSwitchAt;
@@ -322,10 +379,16 @@ class PrayerPreferences {
     PrayerClockTimes? mosqueReferenceTimes,
     bool? jumuahOverrideEnabled,
     int? jumuahTimeMinutes,
+    String? jumuahMosqueName,
+    double? jumuahMosqueLatitude,
+    double? jumuahMosqueLongitude,
+    JumuahLeaveReminderMode? jumuahLeaveReminderMode,
+    int? jumuahTravelMinutes,
     FridayReminderMode? fridayReminderMode,
     String? activeProfileId,
     DateTime? lastModeSwitchAt,
     bool clearJumuahTime = false,
+    bool clearJumuahMosque = false,
     bool clearLastModeSwitchAt = false,
     bool clearManualCoordinates = false,
   }) {
@@ -347,6 +410,18 @@ class PrayerPreferences {
       jumuahTimeMinutes: clearJumuahTime
           ? null
           : jumuahTimeMinutes ?? this.jumuahTimeMinutes,
+      jumuahMosqueName: clearJumuahMosque
+          ? null
+          : jumuahMosqueName ?? this.jumuahMosqueName,
+      jumuahMosqueLatitude: clearJumuahMosque
+          ? null
+          : jumuahMosqueLatitude ?? this.jumuahMosqueLatitude,
+      jumuahMosqueLongitude: clearJumuahMosque
+          ? null
+          : jumuahMosqueLongitude ?? this.jumuahMosqueLongitude,
+      jumuahLeaveReminderMode:
+          jumuahLeaveReminderMode ?? this.jumuahLeaveReminderMode,
+      jumuahTravelMinutes: jumuahTravelMinutes ?? this.jumuahTravelMinutes,
       fridayReminderMode: fridayReminderMode ?? this.fridayReminderMode,
       activeProfileId: activeProfileId ?? this.activeProfileId,
       lastModeSwitchAt: clearLastModeSwitchAt
@@ -862,14 +937,26 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     bool? enabled,
     int? jumuahTimeMinutes,
     FridayReminderMode? fridayReminderMode,
+    String? mosqueName,
+    double? mosqueLatitude,
+    double? mosqueLongitude,
+    JumuahLeaveReminderMode? leaveReminderMode,
+    int? travelMinutes,
     bool clearJumuahTime = false,
+    bool clearJumuahMosque = false,
   }) {
     state = state.copyWith(
       preferences: state.preferences.copyWith(
         jumuahOverrideEnabled: enabled,
         jumuahTimeMinutes: jumuahTimeMinutes,
         fridayReminderMode: fridayReminderMode,
+        jumuahMosqueName: mosqueName,
+        jumuahMosqueLatitude: mosqueLatitude,
+        jumuahMosqueLongitude: mosqueLongitude,
+        jumuahLeaveReminderMode: leaveReminderMode,
+        jumuahTravelMinutes: travelMinutes,
         clearJumuahTime: clearJumuahTime,
+        clearJumuahMosque: clearJumuahMosque,
       ),
     );
     _save();
@@ -977,6 +1064,16 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     final mosqueReferenceTimesRaw = data['mosqueReferenceTimes'];
     final jumuahOverrideEnabled = data['jumuahOverrideEnabled'];
     final jumuahTimeMinutes = data['jumuahTimeMinutes'];
+    final jumuahMosqueName = data['jumuahMosqueName'] as String?;
+    final jumuahMosqueLatitude = (data['jumuahMosqueLatitude'] as num?)
+        ?.toDouble();
+    final jumuahMosqueLongitude = (data['jumuahMosqueLongitude'] as num?)
+        ?.toDouble();
+    final jumuahLeaveReminderMode = JumuahLeaveReminderMode.parse(
+      data['jumuahLeaveReminderMode'] as String?,
+    );
+    final jumuahTravelMinutes =
+        (data['jumuahTravelMinutes'] as num?)?.toInt() ?? 20;
     final fridayReminderModeName = data['fridayReminderMode'] as String?;
     final activeProfileId = data['activeProfileId'] as String?;
     final lastModeSwitchAtRaw = data['lastModeSwitchAt'];
@@ -1058,6 +1155,11 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
         jumuahOverrideEnabled: jumuahOverrideEnabled is bool
             ? jumuahOverrideEnabled
             : defaults.jumuahOverrideEnabled,
+        jumuahMosqueName: jumuahMosqueName,
+        jumuahMosqueLatitude: jumuahMosqueLatitude,
+        jumuahMosqueLongitude: jumuahMosqueLongitude,
+        jumuahLeaveReminderMode: jumuahLeaveReminderMode,
+        jumuahTravelMinutes: jumuahTravelMinutes,
         jumuahTimeMinutes:
             (jumuahTimeMinutes as num?)?.toInt() ?? defaults.jumuahTimeMinutes,
         fridayReminderMode: fridayReminderMode,
@@ -1091,6 +1193,12 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
       'mosqueReferenceTimes': state.preferences.mosqueReferenceTimes.toJson(),
       'jumuahOverrideEnabled': state.preferences.jumuahOverrideEnabled,
       'jumuahTimeMinutes': state.preferences.jumuahTimeMinutes,
+      'jumuahMosqueName': state.preferences.jumuahMosqueName,
+      'jumuahMosqueLatitude': state.preferences.jumuahMosqueLatitude,
+      'jumuahMosqueLongitude': state.preferences.jumuahMosqueLongitude,
+      'jumuahLeaveReminderMode':
+          state.preferences.jumuahLeaveReminderMode.wireName,
+      'jumuahTravelMinutes': state.preferences.jumuahTravelMinutes,
       'fridayReminderMode': state.preferences.fridayReminderMode.name,
       'activeProfileId': state.preferences.activeProfileId,
       'lastModeSwitchAt': state.preferences.lastModeSwitchAt?.toIso8601String(),

@@ -18671,5 +18671,17 @@
   "settingsThemeModeJummahDescription": "সোনালি মিহরাব খিলানে মুকুট পরা গভীর মসজিদ-সবুজ — সেরা দিনের সাজে অ্যাপ।",
   "settingsThemeModeJummahBestFor": "সবচেয়ে উপযুক্ত: শুক্রবার, রাত থেকে খুতবা পর্যন্ত",
   "settingsDressUpFridaysTitle": "শুক্রবার সাজান",
-  "settingsDressUpFridaysSubtitle": "প্রতি শুক্রবার জুমু''আহ থিম পরুন, তারপর আপনার থিমে ফিরে যান।"
+  "settingsDressUpFridaysSubtitle": "প্রতি শুক্রবার জুমু''আহ থিম পরুন, তারপর আপনার থিমে ফিরে যান।",
+  "notificationsJumuahLeaveTitle": "জুমু''আহর জন্য রওনা হওয়ার সময়",
+  "notificationsJumuahLeaveBody": "খুতবা শুরুর আগে মসজিদে পৌঁছাতে এখনই রওনা দিন।",
+  "homeGreetingJumuahMubarak": "জুমু''আহ মোবারক",
+  "homeGreetingRamadanMubarak": "রমজান মোবারক",
+  "settingsJumuahMosqueTitle": "আপনার মসজিদ",
+  "settingsJumuahLeaveReminderTitle": "রওনার সময়ের রিমাইন্ডার",
+  "settingsJumuahLeaveOff": "বন্ধ",
+  "settingsJumuahLeaveFixed": "নির্দিষ্ট যাতায়াত সময়",
+  "settingsJumuahLeaveEstimate": "আমার অবস্থান থেকে অনুমান",
+  "settingsJumuahTravelMinutesLabel": "যাতায়াত সময়",
+  "settingsJumuahChooseMosque": "মসজিদের অবস্থান বাছুন",
+  "settingsJumuahEstimatePrivacyNote": "অনুমানটি কেবল অ্যাপ খোলা থাকাকালে আপনার অবস্থান ব্যবহার করে।"
 }

@@ -18671,5 +18671,17 @@
   "settingsThemeModeJummahDescription": "Koren masallaci mai zurfi da bakan mihrab na zinariya — manhajar cikin kayan mafi kyawun rana.",
   "settingsThemeModeJummahBestFor": "Ya fi dacewa da: Juma''a, daga dare zuwa huduba",
   "settingsDressUpFridaysTitle": "Ado ranakun Juma''a",
-  "settingsDressUpFridaysSubtitle": "Sanya jigon Jumma''a kowace Juma''a, sannan koma jigonka."
+  "settingsDressUpFridaysSubtitle": "Sanya jigon Jumma''a kowace Juma''a, sannan koma jigonka.",
+  "notificationsJumuahLeaveTitle": "Lokacin tashi zuwa Jumma''a",
+  "notificationsJumuahLeaveBody": "Tashi yanzu don isa masallaci kafin hudubar ta fara.",
+  "homeGreetingJumuahMubarak": "Jumma''a Mubarak",
+  "homeGreetingRamadanMubarak": "Ramadan Mubarak",
+  "settingsJumuahMosqueTitle": "Masallacinka",
+  "settingsJumuahLeaveReminderTitle": "Tunatarwar lokacin tashi",
+  "settingsJumuahLeaveOff": "Kashe",
+  "settingsJumuahLeaveFixed": "Kayyadadden lokacin tafiya",
+  "settingsJumuahLeaveEstimate": "Kiyasta daga wurina",
+  "settingsJumuahTravelMinutesLabel": "Lokacin tafiya",
+  "settingsJumuahChooseMosque": "Zabi wurin masallaci",
+  "settingsJumuahEstimatePrivacyNote": "Kiyasin yana amfani da wurinka ne kawai lokacin da manhajar take a bude."
 }

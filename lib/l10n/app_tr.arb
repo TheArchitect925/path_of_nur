@@ -18661,5 +18661,17 @@
   "settingsThemeModeJummahDescription": "Altın mihrap kemeriyle taçlanmış derin cami yeşili — günlerin en hayırlısı için giyinmiş uygulama.",
   "settingsThemeModeJummahBestFor": "En uygun: Cumalar, geceden hutbeye",
   "settingsDressUpFridaysTitle": "Cumaları süsle",
-  "settingsDressUpFridaysSubtitle": "Her Cuma, Cuma temasını giy; sonra kendi temana dön."
+  "settingsDressUpFridaysSubtitle": "Her Cuma, Cuma temasını giy; sonra kendi temana dön.",
+  "notificationsJumuahLeaveTitle": "Cumaya çıkma vakti",
+  "notificationsJumuahLeaveBody": "Hutbe başlamadan camiye varmak için şimdi yola çık.",
+  "homeGreetingJumuahMubarak": "Cumanız mübarek olsun",
+  "homeGreetingRamadanMubarak": "Ramazan mübarek olsun",
+  "settingsJumuahMosqueTitle": "Camin",
+  "settingsJumuahLeaveReminderTitle": "Yola çıkma hatırlatıcısı",
+  "settingsJumuahLeaveOff": "Kapalı",
+  "settingsJumuahLeaveFixed": "Sabit yol süresi",
+  "settingsJumuahLeaveEstimate": "Konumumdan tahmin et",
+  "settingsJumuahTravelMinutesLabel": "Yol süresi",
+  "settingsJumuahChooseMosque": "Cami konumunu seç",
+  "settingsJumuahEstimatePrivacyNote": "Tahmin, konumunu yalnızca uygulama açıkken kullanır."
 }

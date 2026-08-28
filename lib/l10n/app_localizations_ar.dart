@@ -41579,4 +41579,42 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'ارتدِ مظهر الجمعة كل جمعة ثم عد إلى مظهرك.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'حان وقت الانطلاق إلى الجمعة';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'انطلق الآن لتصل إلى المسجد قبل بدء الخطبة.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'جمعة مباركة';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'رمضان مبارك';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'مسجدك';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'تذكير وقت الانطلاق';
+
+  @override
+  String get settingsJumuahLeaveOff => 'إيقاف';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'وقت تنقل ثابت';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'تقدير من موقعي';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'مدة التنقل';
+
+  @override
+  String get settingsJumuahChooseMosque => 'اختيار موقع المسجد';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'يستخدم التقدير موقعك فقط أثناء فتح التطبيق.';
 }

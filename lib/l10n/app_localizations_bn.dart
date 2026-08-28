@@ -41776,4 +41776,42 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'প্রতি শুক্রবার জুমু\'আহ থিম পরুন, তারপর আপনার থিমে ফিরে যান।';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'জুমু\'আহর জন্য রওনা হওয়ার সময়';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'খুতবা শুরুর আগে মসজিদে পৌঁছাতে এখনই রওনা দিন।';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'জুমু\'আহ মোবারক';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'রমজান মোবারক';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'আপনার মসজিদ';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'রওনার সময়ের রিমাইন্ডার';
+
+  @override
+  String get settingsJumuahLeaveOff => 'বন্ধ';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'নির্দিষ্ট যাতায়াত সময়';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'আমার অবস্থান থেকে অনুমান';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'যাতায়াত সময়';
+
+  @override
+  String get settingsJumuahChooseMosque => 'মসজিদের অবস্থান বাছুন';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'অনুমানটি কেবল অ্যাপ খোলা থাকাকালে আপনার অবস্থান ব্যবহার করে।';
 }

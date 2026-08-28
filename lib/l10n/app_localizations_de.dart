@@ -42339,4 +42339,43 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Trage jeden Freitag das Dschumu\'a-Design und kehre danach zu deinem Design zurück.';
+
+  @override
+  String get notificationsJumuahLeaveTitle =>
+      'Zeit, zur Dschumu\'a aufzubrechen';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Mach dich jetzt auf den Weg, um vor Beginn der Chutba in der Moschee zu sein.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Dschumu\'a Mubarak';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Ramadan Mubarak';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Deine Moschee';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Aufbruch-Erinnerung';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Aus';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Feste Fahrzeit';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Von meinem Standort schätzen';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Fahrzeit';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Moschee-Standort wählen';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'Die Schätzung nutzt deinen Standort nur bei geöffneter App.';
 }

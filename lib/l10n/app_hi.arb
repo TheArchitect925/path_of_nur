@@ -18659,5 +18659,17 @@
   "settingsThemeModeJummahDescription": "सुनहरे मेहराब से सुसज्जित गहरा मस्जिद-हरा — सबसे बेहतरीन दिन के लिए सजा ऐप।",
   "settingsThemeModeJummahBestFor": "सबसे उपयुक्त: शुक्रवार, रात से खुतबे तक",
   "settingsDressUpFridaysTitle": "शुक्रवार सजाएं",
-  "settingsDressUpFridaysSubtitle": "हर शुक्रवार जुमुआ थीम पहनें, फिर अपनी थीम पर लौटें।"
+  "settingsDressUpFridaysSubtitle": "हर शुक्रवार जुमुआ थीम पहनें, फिर अपनी थीम पर लौटें।",
+  "notificationsJumuahLeaveTitle": "जुमुआ के लिए निकलने का समय",
+  "notificationsJumuahLeaveBody": "खुतबा शुरू होने से पहले मस्जिद पहुंचने के लिए अभी निकलें।",
+  "homeGreetingJumuahMubarak": "जुमुआ मुबारक",
+  "homeGreetingRamadanMubarak": "रमज़ान मुबारक",
+  "settingsJumuahMosqueTitle": "आपकी मस्जिद",
+  "settingsJumuahLeaveReminderTitle": "निकलने के समय की याद",
+  "settingsJumuahLeaveOff": "बंद",
+  "settingsJumuahLeaveFixed": "निश्चित यात्रा समय",
+  "settingsJumuahLeaveEstimate": "मेरे स्थान से अनुमान",
+  "settingsJumuahTravelMinutesLabel": "यात्रा समय",
+  "settingsJumuahChooseMosque": "मस्जिद का स्थान चुनें",
+  "settingsJumuahEstimatePrivacyNote": "अनुमान आपके स्थान का उपयोग केवल ऐप खुले रहने पर करता है।"
 }

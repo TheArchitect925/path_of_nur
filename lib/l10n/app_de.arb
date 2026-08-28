@@ -18554,5 +18554,17 @@
   "settingsThemeModeJummahDescription": "Tiefes Moscheegrün, gekrönt von einem goldenen Mihrab-Bogen — die App im Gewand des besten Tages.",
   "settingsThemeModeJummahBestFor": "Ideal für: Freitage, von der Nacht bis zur Chutba",
   "settingsDressUpFridaysTitle": "Freitage festlich kleiden",
-  "settingsDressUpFridaysSubtitle": "Trage jeden Freitag das Dschumu''a-Design und kehre danach zu deinem Design zurück."
+  "settingsDressUpFridaysSubtitle": "Trage jeden Freitag das Dschumu''a-Design und kehre danach zu deinem Design zurück.",
+  "notificationsJumuahLeaveTitle": "Zeit, zur Dschumu''a aufzubrechen",
+  "notificationsJumuahLeaveBody": "Mach dich jetzt auf den Weg, um vor Beginn der Chutba in der Moschee zu sein.",
+  "homeGreetingJumuahMubarak": "Dschumu''a Mubarak",
+  "homeGreetingRamadanMubarak": "Ramadan Mubarak",
+  "settingsJumuahMosqueTitle": "Deine Moschee",
+  "settingsJumuahLeaveReminderTitle": "Aufbruch-Erinnerung",
+  "settingsJumuahLeaveOff": "Aus",
+  "settingsJumuahLeaveFixed": "Feste Fahrzeit",
+  "settingsJumuahLeaveEstimate": "Von meinem Standort schätzen",
+  "settingsJumuahTravelMinutesLabel": "Fahrzeit",
+  "settingsJumuahChooseMosque": "Moschee-Standort wählen",
+  "settingsJumuahEstimatePrivacyNote": "Die Schätzung nutzt deinen Standort nur bei geöffneter App."
 }

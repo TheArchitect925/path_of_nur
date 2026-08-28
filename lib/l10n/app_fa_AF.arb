@@ -18662,5 +18662,17 @@
   "settingsThemeModeJummahDescription": "سبز مسجدی ژرف با تاج قوس محراب طلایی — برنامه در جامه بهترین روز.",
   "settingsThemeModeJummahBestFor": "مناسب برای: جمعه‌ها، از شب تا خطبه",
   "settingsDressUpFridaysTitle": "آراستن جمعه‌ها",
-  "settingsDressUpFridaysSubtitle": "هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد."
+  "settingsDressUpFridaysSubtitle": "هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد.",
+  "notificationsJumuahLeaveTitle": "زمان حرکت به سوی جمعه",
+  "notificationsJumuahLeaveBody": "اکنون حرکت کن تا پیش از آغاز خطبه به مسجد برسی.",
+  "homeGreetingJumuahMubarak": "جمعه مبارک",
+  "homeGreetingRamadanMubarak": "رمضان مبارک",
+  "settingsJumuahMosqueTitle": "مسجد شما",
+  "settingsJumuahLeaveReminderTitle": "یادآور زمان حرکت",
+  "settingsJumuahLeaveOff": "خاموش",
+  "settingsJumuahLeaveFixed": "زمان سفر ثابت",
+  "settingsJumuahLeaveEstimate": "برآورد از موقعیت من",
+  "settingsJumuahTravelMinutesLabel": "زمان سفر",
+  "settingsJumuahChooseMosque": "انتخاب موقعیت مسجد",
+  "settingsJumuahEstimatePrivacyNote": "برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند."
 }

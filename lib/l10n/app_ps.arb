@@ -18661,5 +18661,17 @@
   "settingsThemeModeJummahDescription": "ژور د جومات شين رنګ چې د زرينې محراب قوس پرې تاج دی — اپلیکیشن د غوره ورځې په جامه کې.",
   "settingsThemeModeJummahBestFor": "غوره ده د: جمعو لپاره، له شپې تر خطبې",
   "settingsDressUpFridaysTitle": "جمعې سينګار کړئ",
-  "settingsDressUpFridaysSubtitle": "هره جمعه د جمعې بڼه واغوندئ، بيا خپلې بڼې ته وګرځئ."
+  "settingsDressUpFridaysSubtitle": "هره جمعه د جمعې بڼه واغوندئ، بيا خپلې بڼې ته وګرځئ.",
+  "notificationsJumuahLeaveTitle": "د جمعې د تللو وخت دی",
+  "notificationsJumuahLeaveBody": "اوس روان شئ چې د خطبې له پیل مخکې جومات ته ورسېږئ.",
+  "homeGreetingJumuahMubarak": "جمعه مبارکه",
+  "homeGreetingRamadanMubarak": "رمضان مبارک",
+  "settingsJumuahMosqueTitle": "ستاسو جومات",
+  "settingsJumuahLeaveReminderTitle": "د تللو وخت يادونه",
+  "settingsJumuahLeaveOff": "بند",
+  "settingsJumuahLeaveFixed": "ثابت د سفر وخت",
+  "settingsJumuahLeaveEstimate": "زما له موقعیت اټکل",
+  "settingsJumuahTravelMinutesLabel": "د سفر وخت",
+  "settingsJumuahChooseMosque": "د جومات ځای وټاکئ",
+  "settingsJumuahEstimatePrivacyNote": "اټکل ستاسو موقعیت يوازې د اپلیکیشن د پرانيستي پر مهال کاروي."
 }

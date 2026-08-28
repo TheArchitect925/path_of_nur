@@ -41820,4 +41820,42 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'ਹਰ ਸ਼ੁੱਕਰਵਾਰ ਜੁਮਾ ਥੀਮ ਪਹਿਨੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ \'ਤੇ ਵਾਪਸ ਜਾਓ।';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'ਜੁਮੇ ਲਈ ਨਿਕਲਣ ਦਾ ਸਮਾਂ';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'ਖੁਤਬਾ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਮਸਜਿਦ ਪਹੁੰਚਣ ਲਈ ਹੁਣੇ ਨਿਕਲੋ।';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'ਜੁਮਾ ਮੁਬਾਰਕ';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'ਰਮਜ਼ਾਨ ਮੁਬਾਰਕ';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'ਤੁਹਾਡੀ ਮਸਜਿਦ';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'ਨਿਕਲਣ ਦੇ ਸਮੇਂ ਦੀ ਯਾਦ';
+
+  @override
+  String get settingsJumuahLeaveOff => 'ਬੰਦ';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'ਪੱਕਾ ਸਫ਼ਰ ਸਮਾਂ';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'ਮੇਰੇ ਟਿਕਾਣੇ ਤੋਂ ਅੰਦਾਜ਼ਾ';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'ਸਫ਼ਰ ਸਮਾਂ';
+
+  @override
+  String get settingsJumuahChooseMosque => 'ਮਸਜਿਦ ਦਾ ਟਿਕਾਣਾ ਚੁਣੋ';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'ਅੰਦਾਜ਼ਾ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਸਿਰਫ਼ ਐਪ ਖੁੱਲ੍ਹੀ ਹੋਣ \'ਤੇ ਵਰਤਦਾ ਹੈ।';
 }

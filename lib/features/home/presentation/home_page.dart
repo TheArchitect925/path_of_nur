@@ -382,13 +382,38 @@ class _TopGreetingBlock extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    l10n.peaceUponYou,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: foreground,
-                      fontFamily: AppFonts.latinSerif,
-                    ),
+                  Consumer(
+                    builder: (context, ref, _) {
+                      // Sacred-time greeting: Jumu'ah Mubarak on Fridays,
+                      // Ramadan Mubarak through the month, salam otherwise.
+                      final now =
+                          ref.watch(dailyNowProvider).value ?? DateTime.now();
+                      final isRamadan = ref.watch(
+                        specialModeProvider.select((mode) => mode.isRamadan),
+                      );
+                      final isFriday = now.weekday == DateTime.friday;
+                      final occasion = isFriday
+                          ? l10n.homeGreetingJumuahMubarak
+                          : isRamadan
+                          ? l10n.homeGreetingRamadanMubarak
+                          : null;
+                      final appearance = Theme.of(
+                        context,
+                      ).extension<AppAppearanceTheme>();
+                      return Text(
+                        occasion ?? l10n.peaceUponYou,
+                        style: TextStyle(
+                          fontSize: occasion != null ? 16 : 15,
+                          fontWeight: occasion != null
+                              ? FontWeight.w600
+                              : FontWeight.w400,
+                          color: occasion != null
+                              ? (appearance?.accent ?? foreground)
+                              : foreground,
+                          fontFamily: AppFonts.latinSerif,
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 8),
                   Image.asset(

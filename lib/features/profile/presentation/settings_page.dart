@@ -2501,7 +2501,191 @@ class _JumuahSettingsSection extends StatelessWidget {
                 .toList(),
           ),
         ],
+        const SizedBox(height: 16),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.mosque_outlined),
+          title: Text(l10n.settingsJumuahMosqueTitle),
+          subtitle: Text(
+            preferences.jumuahMosqueName ?? l10n.settingsJumuahChooseMosque,
+          ),
+          trailing: const Icon(Icons.chevron_right_rounded),
+          onTap: () async {
+            final result = await showDialog<PrayerLocationSearchResult>(
+              context: context,
+              builder: (context) => const _JumuahMosquePickerDialog(),
+            );
+            if (result == null) return;
+            prayerNotifier.updateJumuahSettings(
+              mosqueName: result.label,
+              mosqueLatitude: result.latitude,
+              mosqueLongitude: result.longitude,
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l10n.settingsJumuahLeaveReminderTitle,
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final mode in JumuahLeaveReminderMode.values)
+              ChoiceChip(
+                key: ValueKey('jumuah-leave-${mode.wireName}'),
+                label: Text(switch (mode) {
+                  JumuahLeaveReminderMode.off => l10n.settingsJumuahLeaveOff,
+                  JumuahLeaveReminderMode.fixedTravelTime =>
+                    l10n.settingsJumuahLeaveFixed,
+                  JumuahLeaveReminderMode.locationEstimate =>
+                    l10n.settingsJumuahLeaveEstimate,
+                }),
+                selected: preferences.jumuahLeaveReminderMode == mode,
+                onSelected: (_) {
+                  prayerNotifier.updateJumuahSettings(leaveReminderMode: mode);
+                },
+              ),
+          ],
+        ),
+        if (preferences.jumuahLeaveReminderMode ==
+            JumuahLeaveReminderMode.fixedTravelTime) ...[
+          const SizedBox(height: 8),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.settingsJumuahTravelMinutesLabel),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.remove_circle_outline),
+                  onPressed: () => prayerNotifier.updateJumuahSettings(
+                    travelMinutes: (preferences.jumuahTravelMinutes - 5).clamp(
+                      5,
+                      120,
+                    ),
+                  ),
+                ),
+                Text(
+                  _formatCount(context, preferences.jumuahTravelMinutes),
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add_circle_outline),
+                  onPressed: () => prayerNotifier.updateJumuahSettings(
+                    travelMinutes: (preferences.jumuahTravelMinutes + 5).clamp(
+                      5,
+                      120,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+        if (preferences.jumuahLeaveReminderMode ==
+            JumuahLeaveReminderMode.locationEstimate) ...[
+          const SizedBox(height: 8),
+          Text(
+            l10n.settingsJumuahEstimatePrivacyNote,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ],
+    );
+  }
+}
+
+class _JumuahMosquePickerDialog extends ConsumerStatefulWidget {
+  const _JumuahMosquePickerDialog();
+
+  @override
+  ConsumerState<_JumuahMosquePickerDialog> createState() =>
+      _JumuahMosquePickerDialogState();
+}
+
+class _JumuahMosquePickerDialogState
+    extends ConsumerState<_JumuahMosquePickerDialog> {
+  final _controller = TextEditingController();
+  List<PrayerLocationSearchResult> _results = const [];
+  bool _searching = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _search() async {
+    final query = _controller.text.trim();
+    if (query.isEmpty) return;
+    setState(() => _searching = true);
+    try {
+      final service = ref.read(prayerLocationSearchServiceProvider);
+      final results = await service.search(query);
+      if (!mounted) return;
+      setState(() => _results = results);
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _results = const []);
+    } finally {
+      if (mounted) setState(() => _searching = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return AlertDialog(
+      title: Text(l10n.settingsJumuahMosqueTitle),
+      content: SizedBox(
+        width: 360,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: _controller,
+              autofocus: true,
+              textInputAction: TextInputAction.search,
+              onSubmitted: (_) => _search(),
+              decoration: InputDecoration(
+                hintText: l10n.settingsJumuahChooseMosque,
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.search_rounded),
+                  onPressed: _search,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            if (_searching)
+              const Padding(
+                padding: EdgeInsets.all(12),
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
+            else
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (final result in _results)
+                      ListTile(
+                        dense: true,
+                        leading: const Icon(Icons.mosque_outlined),
+                        title: Text(
+                          result.label,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        onTap: () => Navigator.of(context).pop(result),
+                      ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

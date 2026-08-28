@@ -41889,4 +41889,42 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'हर शुक्रवार जुमुआ थीम पहनें, फिर अपनी थीम पर लौटें।';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'जुमुआ के लिए निकलने का समय';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'खुतबा शुरू होने से पहले मस्जिद पहुंचने के लिए अभी निकलें।';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'जुमुआ मुबारक';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'रमज़ान मुबारक';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'आपकी मस्जिद';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'निकलने के समय की याद';
+
+  @override
+  String get settingsJumuahLeaveOff => 'बंद';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'निश्चित यात्रा समय';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'मेरे स्थान से अनुमान';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'यात्रा समय';
+
+  @override
+  String get settingsJumuahChooseMosque => 'मस्जिद का स्थान चुनें';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'अनुमान आपके स्थान का उपयोग केवल ऐप खुले रहने पर करता है।';
 }

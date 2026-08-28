@@ -41839,4 +41839,42 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Wear the Jumu\'ah theme every Friday, then return to your theme.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'Time to leave for Jumu\'ah';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Head out now to reach the masjid before the khutbah begins.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Jumu\'ah Mubarak';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Ramadan Mubarak';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Your masjid';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Time to leave reminder';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Off';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Fixed travel time';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Estimate from my location';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Travel time';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Choose masjid location';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'The estimate uses your location only while the app is open.';
 }

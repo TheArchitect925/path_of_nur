@@ -41734,6 +41734,44 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'زمان حرکت به سوی جمعه';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'اکنون حرکت کن تا پیش از آغاز خطبه به مسجد برسی.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'جمعه مبارک';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'رمضان مبارک';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'مسجد شما';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'یادآور زمان حرکت';
+
+  @override
+  String get settingsJumuahLeaveOff => 'خاموش';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'زمان سفر ثابت';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'برآورد از موقعیت من';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'زمان سفر';
+
+  @override
+  String get settingsJumuahChooseMosque => 'انتخاب موقعیت مسجد';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند.';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83461,4 +83499,42 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'زمان حرکت به سوی جمعه';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'اکنون حرکت کن تا پیش از آغاز خطبه به مسجد برسی.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'جمعه مبارک';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'رمضان مبارک';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'مسجد شما';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'یادآور زمان حرکت';
+
+  @override
+  String get settingsJumuahLeaveOff => 'خاموش';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'زمان سفر ثابت';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'برآورد از موقعیت من';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'زمان سفر';
+
+  @override
+  String get settingsJumuahChooseMosque => 'انتخاب موقعیت مسجد';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند.';
 }

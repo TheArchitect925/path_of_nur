@@ -18661,5 +18661,17 @@
   "settingsThemeModeJummahDescription": "Сабзи амиқи масҷидӣ бо камони меҳроби тиллоӣ — барнома дар либоси беҳтарин рӯз.",
   "settingsThemeModeJummahBestFor": "Беҳтарин барои: ҷумъаҳо, аз шаб то хутба",
   "settingsDressUpFridaysTitle": "Ҷумъаҳоро оро диҳед",
-  "settingsDressUpFridaysSubtitle": "Ҳар ҷумъа мавзӯи Ҷумъаро пӯшед, сипас ба мавзӯи худ баргардед."
+  "settingsDressUpFridaysSubtitle": "Ҳар ҷумъа мавзӯи Ҷумъаро пӯшед, сипас ба мавзӯи худ баргардед.",
+  "notificationsJumuahLeaveTitle": "Вақти рафтан ба ҷумъа",
+  "notificationsJumuahLeaveBody": "Ҳозир бароед, то пеш аз оғози хутба ба масҷид расед.",
+  "homeGreetingJumuahMubarak": "Ҷумъа муборак",
+  "homeGreetingRamadanMubarak": "Рамазон муборак",
+  "settingsJumuahMosqueTitle": "Масҷиди шумо",
+  "settingsJumuahLeaveReminderTitle": "Ёдоварии вақти рафтан",
+  "settingsJumuahLeaveOff": "Хомӯш",
+  "settingsJumuahLeaveFixed": "Вақти собити роҳ",
+  "settingsJumuahLeaveEstimate": "Аз ҷойгиршавии ман ҳисоб кун",
+  "settingsJumuahTravelMinutesLabel": "Вақти роҳ",
+  "settingsJumuahChooseMosque": "Ҷои масҷидро интихоб кунед",
+  "settingsJumuahEstimatePrivacyNote": "Ҳисоб ҷойгиршавии шуморо танҳо ҳангоми кушода будани барнома истифода мебарад."
 }

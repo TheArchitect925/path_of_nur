@@ -18659,5 +18659,17 @@
   "settingsThemeModeJummahDescription": "أخضر مسجدي عميق يتوجه قوس محراب ذهبي — التطبيق في حُلّة خير الأيام.",
   "settingsThemeModeJummahBestFor": "الأنسب لِـ: أيام الجمعة، من الليل إلى الخطبة",
   "settingsDressUpFridaysTitle": "تزيين أيام الجمعة",
-  "settingsDressUpFridaysSubtitle": "ارتدِ مظهر الجمعة كل جمعة ثم عد إلى مظهرك."
+  "settingsDressUpFridaysSubtitle": "ارتدِ مظهر الجمعة كل جمعة ثم عد إلى مظهرك.",
+  "notificationsJumuahLeaveTitle": "حان وقت الانطلاق إلى الجمعة",
+  "notificationsJumuahLeaveBody": "انطلق الآن لتصل إلى المسجد قبل بدء الخطبة.",
+  "homeGreetingJumuahMubarak": "جمعة مباركة",
+  "homeGreetingRamadanMubarak": "رمضان مبارك",
+  "settingsJumuahMosqueTitle": "مسجدك",
+  "settingsJumuahLeaveReminderTitle": "تذكير وقت الانطلاق",
+  "settingsJumuahLeaveOff": "إيقاف",
+  "settingsJumuahLeaveFixed": "وقت تنقل ثابت",
+  "settingsJumuahLeaveEstimate": "تقدير من موقعي",
+  "settingsJumuahTravelMinutesLabel": "مدة التنقل",
+  "settingsJumuahChooseMosque": "اختيار موقع المسجد",
+  "settingsJumuahEstimatePrivacyNote": "يستخدم التقدير موقعك فقط أثناء فتح التطبيق."
 }

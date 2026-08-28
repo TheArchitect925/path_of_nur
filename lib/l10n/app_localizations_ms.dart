@@ -41823,4 +41823,42 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get settingsDressUpFridaysSubtitle =>
       'Pakai tema Jumaat setiap Jumaat, kemudian kembali ke tema anda.';
+
+  @override
+  String get notificationsJumuahLeaveTitle => 'Masa untuk bertolak ke Jumaat';
+
+  @override
+  String get notificationsJumuahLeaveBody =>
+      'Bertolaklah sekarang agar tiba di masjid sebelum khutbah bermula.';
+
+  @override
+  String get homeGreetingJumuahMubarak => 'Jumaat Mubarak';
+
+  @override
+  String get homeGreetingRamadanMubarak => 'Ramadan Mubarak';
+
+  @override
+  String get settingsJumuahMosqueTitle => 'Masjid anda';
+
+  @override
+  String get settingsJumuahLeaveReminderTitle => 'Peringatan masa bertolak';
+
+  @override
+  String get settingsJumuahLeaveOff => 'Mati';
+
+  @override
+  String get settingsJumuahLeaveFixed => 'Masa perjalanan tetap';
+
+  @override
+  String get settingsJumuahLeaveEstimate => 'Anggar dari lokasi saya';
+
+  @override
+  String get settingsJumuahTravelMinutesLabel => 'Masa perjalanan';
+
+  @override
+  String get settingsJumuahChooseMosque => 'Pilih lokasi masjid';
+
+  @override
+  String get settingsJumuahEstimatePrivacyNote =>
+      'Anggaran menggunakan lokasi anda hanya semasa aplikasi dibuka.';
 }

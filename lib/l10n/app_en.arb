@@ -18554,5 +18554,17 @@
   "settingsThemeModeJummahDescription": "Deep masjid green crowned by a golden mihrab arch — the app dressed for the best of days.",
   "settingsThemeModeJummahBestFor": "Best for: Fridays, from night to khutbah",
   "settingsDressUpFridaysTitle": "Dress up Fridays",
-  "settingsDressUpFridaysSubtitle": "Wear the Jumu''ah theme every Friday, then return to your theme."
+  "settingsDressUpFridaysSubtitle": "Wear the Jumu''ah theme every Friday, then return to your theme.",
+  "notificationsJumuahLeaveTitle": "Time to leave for Jumu''ah",
+  "notificationsJumuahLeaveBody": "Head out now to reach the masjid before the khutbah begins.",
+  "homeGreetingJumuahMubarak": "Jumu''ah Mubarak",
+  "homeGreetingRamadanMubarak": "Ramadan Mubarak",
+  "settingsJumuahMosqueTitle": "Your masjid",
+  "settingsJumuahLeaveReminderTitle": "Time to leave reminder",
+  "settingsJumuahLeaveOff": "Off",
+  "settingsJumuahLeaveFixed": "Fixed travel time",
+  "settingsJumuahLeaveEstimate": "Estimate from my location",
+  "settingsJumuahTravelMinutesLabel": "Travel time",
+  "settingsJumuahChooseMosque": "Choose masjid location",
+  "settingsJumuahEstimatePrivacyNote": "The estimate uses your location only while the app is open."
 }

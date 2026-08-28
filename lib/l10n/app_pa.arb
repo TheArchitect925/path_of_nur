@@ -18671,5 +18671,17 @@
   "settingsThemeModeJummahDescription": "ਸੁਨਹਿਰੀ ਮਿਹਰਾਬ ਮੇਹਰਾਬ ਨਾਲ ਸਜਿਆ ਗੂੜ੍ਹਾ ਮਸਜਿਦ-ਹਰਾ — ਸਭ ਤੋਂ ਵਧੀਆ ਦਿਨ ਲਈ ਸਜੀ ਐਪ।",
   "settingsThemeModeJummahBestFor": "ਸਭ ਤੋਂ ਢੁਕਵਾਂ: ਸ਼ੁੱਕਰਵਾਰ, ਰਾਤ ਤੋਂ ਖੁਤਬੇ ਤੱਕ",
   "settingsDressUpFridaysTitle": "ਸ਼ੁੱਕਰਵਾਰ ਸਜਾਓ",
-  "settingsDressUpFridaysSubtitle": "ਹਰ ਸ਼ੁੱਕਰਵਾਰ ਜੁਮਾ ਥੀਮ ਪਹਿਨੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ ''ਤੇ ਵਾਪਸ ਜਾਓ।"
+  "settingsDressUpFridaysSubtitle": "ਹਰ ਸ਼ੁੱਕਰਵਾਰ ਜੁਮਾ ਥੀਮ ਪਹਿਨੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ ''ਤੇ ਵਾਪਸ ਜਾਓ।",
+  "notificationsJumuahLeaveTitle": "ਜੁਮੇ ਲਈ ਨਿਕਲਣ ਦਾ ਸਮਾਂ",
+  "notificationsJumuahLeaveBody": "ਖੁਤਬਾ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਮਸਜਿਦ ਪਹੁੰਚਣ ਲਈ ਹੁਣੇ ਨਿਕਲੋ।",
+  "homeGreetingJumuahMubarak": "ਜੁਮਾ ਮੁਬਾਰਕ",
+  "homeGreetingRamadanMubarak": "ਰਮਜ਼ਾਨ ਮੁਬਾਰਕ",
+  "settingsJumuahMosqueTitle": "ਤੁਹਾਡੀ ਮਸਜਿਦ",
+  "settingsJumuahLeaveReminderTitle": "ਨਿਕਲਣ ਦੇ ਸਮੇਂ ਦੀ ਯਾਦ",
+  "settingsJumuahLeaveOff": "ਬੰਦ",
+  "settingsJumuahLeaveFixed": "ਪੱਕਾ ਸਫ਼ਰ ਸਮਾਂ",
+  "settingsJumuahLeaveEstimate": "ਮੇਰੇ ਟਿਕਾਣੇ ਤੋਂ ਅੰਦਾਜ਼ਾ",
+  "settingsJumuahTravelMinutesLabel": "ਸਫ਼ਰ ਸਮਾਂ",
+  "settingsJumuahChooseMosque": "ਮਸਜਿਦ ਦਾ ਟਿਕਾਣਾ ਚੁਣੋ",
+  "settingsJumuahEstimatePrivacyNote": "ਅੰਦਾਜ਼ਾ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਸਿਰਫ਼ ਐਪ ਖੁੱਲ੍ਹੀ ਹੋਣ ''ਤੇ ਵਰਤਦਾ ਹੈ।"
 }

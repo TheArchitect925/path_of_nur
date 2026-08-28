@@ -69690,6 +69690,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Wear the Jumu\'\'ah theme every Friday, then return to your theme.'**
   String get settingsDressUpFridaysSubtitle;
+
+  /// No description provided for @notificationsJumuahLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to leave for Jumu\'\'ah'**
+  String get notificationsJumuahLeaveTitle;
+
+  /// No description provided for @notificationsJumuahLeaveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Head out now to reach the masjid before the khutbah begins.'**
+  String get notificationsJumuahLeaveBody;
+
+  /// No description provided for @homeGreetingJumuahMubarak.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'\'ah Mubarak'**
+  String get homeGreetingJumuahMubarak;
+
+  /// No description provided for @homeGreetingRamadanMubarak.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan Mubarak'**
+  String get homeGreetingRamadanMubarak;
+
+  /// No description provided for @settingsJumuahMosqueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your masjid'**
+  String get settingsJumuahMosqueTitle;
+
+  /// No description provided for @settingsJumuahLeaveReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to leave reminder'**
+  String get settingsJumuahLeaveReminderTitle;
+
+  /// No description provided for @settingsJumuahLeaveOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settingsJumuahLeaveOff;
+
+  /// No description provided for @settingsJumuahLeaveFixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed travel time'**
+  String get settingsJumuahLeaveFixed;
+
+  /// No description provided for @settingsJumuahLeaveEstimate.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate from my location'**
+  String get settingsJumuahLeaveEstimate;
+
+  /// No description provided for @settingsJumuahTravelMinutesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel time'**
+  String get settingsJumuahTravelMinutesLabel;
+
+  /// No description provided for @settingsJumuahChooseMosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose masjid location'**
+  String get settingsJumuahChooseMosque;
+
+  /// No description provided for @settingsJumuahEstimatePrivacyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'The estimate uses your location only while the app is open.'**
+  String get settingsJumuahEstimatePrivacyNote;
 }
 
 class _AppLocalizationsDelegate
