@@ -1522,6 +1522,45 @@ class AppLocalizationsId extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'Bagaimana perasaan Anda saat ini?';
+
+  @override
+  String get duaSituationForgiveness => 'Memohon ampunan';
+
+  @override
+  String get duaSituationGratitude => 'Bersyukur';
+
+  @override
+  String get duaSituationAnxiety => 'Cemas';
+
+  @override
+  String get duaSituationSadness => 'Sedih';
+
+  @override
+  String get duaSituationAnger => 'Marah';
+
+  @override
+  String get duaSituationHardship => 'Dalam kesulitan';
+
+  @override
+  String get duaSituationIllness => 'Sakit';
+
+  @override
+  String get duaSituationGoodNews => 'Kabar baik';
+
+  @override
+  String get duaSituationSneezing => 'Bersin';
+
+  @override
+  String get duaSituationProtection => 'Memohon perlindungan';
+
+  @override
+  String get duaSituationGuidance => 'Memohon petunjuk';
+
+  @override
+  String get duaSituationSocial => 'Bersama orang lain';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override

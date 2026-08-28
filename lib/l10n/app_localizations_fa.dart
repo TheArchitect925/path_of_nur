@@ -1516,6 +1516,45 @@ class AppLocalizationsFa extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'الان چه احساسی داری؟';
+
+  @override
+  String get duaSituationForgiveness => 'طلب آمرزش';
+
+  @override
+  String get duaSituationGratitude => 'سپاسگزار';
+
+  @override
+  String get duaSituationAnxiety => 'مضطرب';
+
+  @override
+  String get duaSituationSadness => 'غمگین';
+
+  @override
+  String get duaSituationAnger => 'خشمگین';
+
+  @override
+  String get duaSituationHardship => 'در سختی';
+
+  @override
+  String get duaSituationIllness => 'بیمار';
+
+  @override
+  String get duaSituationGoodNews => 'خبر خوش';
+
+  @override
+  String get duaSituationSneezing => 'عطسه';
+
+  @override
+  String get duaSituationProtection => 'طلب محافظت';
+
+  @override
+  String get duaSituationGuidance => 'طلب هدایت';
+
+  @override
+  String get duaSituationSocial => 'با دیگران';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override
@@ -43150,6 +43189,45 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get duaHubAllCategories => 'All categories';
+
+  @override
+  String get duaHubFeelingLabel => 'الان چه احساسی داری؟';
+
+  @override
+  String get duaSituationForgiveness => 'طلب آمرزش';
+
+  @override
+  String get duaSituationGratitude => 'سپاسگزار';
+
+  @override
+  String get duaSituationAnxiety => 'مضطرب';
+
+  @override
+  String get duaSituationSadness => 'غمگین';
+
+  @override
+  String get duaSituationAnger => 'خشمگین';
+
+  @override
+  String get duaSituationHardship => 'در سختی';
+
+  @override
+  String get duaSituationIllness => 'بیمار';
+
+  @override
+  String get duaSituationGoodNews => 'خبر خوش';
+
+  @override
+  String get duaSituationSneezing => 'عطسه';
+
+  @override
+  String get duaSituationProtection => 'طلب محافظت';
+
+  @override
+  String get duaSituationGuidance => 'طلب هدایت';
+
+  @override
+  String get duaSituationSocial => 'با دیگران';
 
   @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';

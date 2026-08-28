@@ -1526,6 +1526,45 @@ class AppLocalizationsKu extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'Tu niha çawa hîs dikî?';
+
+  @override
+  String get duaSituationForgiveness => 'Lêborîn xwestin';
+
+  @override
+  String get duaSituationGratitude => 'Spasdar';
+
+  @override
+  String get duaSituationAnxiety => 'Bêzar';
+
+  @override
+  String get duaSituationSadness => 'Xemgîn';
+
+  @override
+  String get duaSituationAnger => 'Hêrs';
+
+  @override
+  String get duaSituationHardship => 'Di zehmetiyê de';
+
+  @override
+  String get duaSituationIllness => 'Nexweş';
+
+  @override
+  String get duaSituationGoodNews => 'Mizgînî';
+
+  @override
+  String get duaSituationSneezing => 'Bêhnijîn';
+
+  @override
+  String get duaSituationProtection => 'Parastin xwestin';
+
+  @override
+  String get duaSituationGuidance => 'Rênîşandan xwestin';
+
+  @override
+  String get duaSituationSocial => 'Bi kesên din re';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override

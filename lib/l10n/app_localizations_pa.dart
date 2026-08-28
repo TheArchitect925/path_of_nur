@@ -1519,6 +1519,45 @@ class AppLocalizationsPa extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'ਤੁਸੀਂ ਹੁਣ ਕਿਵੇਂ ਮਹਿਸੂਸ ਕਰ ਰਹੇ ਹੋ?';
+
+  @override
+  String get duaSituationForgiveness => 'ਮਾਫ਼ੀ ਦੀ ਭਾਲ';
+
+  @override
+  String get duaSituationGratitude => 'ਸ਼ੁਕਰਗੁਜ਼ਾਰ';
+
+  @override
+  String get duaSituationAnxiety => 'ਚਿੰਤਤ';
+
+  @override
+  String get duaSituationSadness => 'ਉਦਾਸ';
+
+  @override
+  String get duaSituationAnger => 'ਗੁੱਸੇ ਵਿੱਚ';
+
+  @override
+  String get duaSituationHardship => 'ਮੁਸ਼ਕਲ ਵਿੱਚ';
+
+  @override
+  String get duaSituationIllness => 'ਬਿਮਾਰ';
+
+  @override
+  String get duaSituationGoodNews => 'ਖੁਸ਼ਖਬਰੀ';
+
+  @override
+  String get duaSituationSneezing => 'ਛਿੱਕ';
+
+  @override
+  String get duaSituationProtection => 'ਸੁਰੱਖਿਆ ਦੀ ਭਾਲ';
+
+  @override
+  String get duaSituationGuidance => 'ਸੇਧ ਦੀ ਭਾਲ';
+
+  @override
+  String get duaSituationSocial => 'ਦੂਜਿਆਂ ਨਾਲ';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override

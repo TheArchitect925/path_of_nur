@@ -1524,6 +1524,45 @@ class AppLocalizationsTg extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'Ҳоло худро чӣ гуна ҳис мекунӣ?';
+
+  @override
+  String get duaSituationForgiveness => 'Омурзиш хостан';
+
+  @override
+  String get duaSituationGratitude => 'Шукргузор';
+
+  @override
+  String get duaSituationAnxiety => 'Изтироб';
+
+  @override
+  String get duaSituationSadness => 'Ғамгин';
+
+  @override
+  String get duaSituationAnger => 'Хашмгин';
+
+  @override
+  String get duaSituationHardship => 'Дар сахтӣ';
+
+  @override
+  String get duaSituationIllness => 'Бемор';
+
+  @override
+  String get duaSituationGoodNews => 'Хабари хуш';
+
+  @override
+  String get duaSituationSneezing => 'Атса';
+
+  @override
+  String get duaSituationProtection => 'Ҳимоя хостан';
+
+  @override
+  String get duaSituationGuidance => 'Ҳидоят хостан';
+
+  @override
+  String get duaSituationSocial => 'Бо дигарон';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override

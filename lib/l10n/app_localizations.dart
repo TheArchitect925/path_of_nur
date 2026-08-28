@@ -2678,6 +2678,84 @@ abstract class AppLocalizations {
   /// **'All categories'**
   String get duaHubAllCategories;
 
+  /// No description provided for @duaHubFeelingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'How are you feeling right now?'**
+  String get duaHubFeelingLabel;
+
+  /// No description provided for @duaSituationForgiveness.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeking forgiveness'**
+  String get duaSituationForgiveness;
+
+  /// No description provided for @duaSituationGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Grateful'**
+  String get duaSituationGratitude;
+
+  /// No description provided for @duaSituationAnxiety.
+  ///
+  /// In en, this message translates to:
+  /// **'Anxious'**
+  String get duaSituationAnxiety;
+
+  /// No description provided for @duaSituationSadness.
+  ///
+  /// In en, this message translates to:
+  /// **'Sad'**
+  String get duaSituationSadness;
+
+  /// No description provided for @duaSituationAnger.
+  ///
+  /// In en, this message translates to:
+  /// **'Angry'**
+  String get duaSituationAnger;
+
+  /// No description provided for @duaSituationHardship.
+  ///
+  /// In en, this message translates to:
+  /// **'Facing hardship'**
+  String get duaSituationHardship;
+
+  /// No description provided for @duaSituationIllness.
+  ///
+  /// In en, this message translates to:
+  /// **'Unwell'**
+  String get duaSituationIllness;
+
+  /// No description provided for @duaSituationGoodNews.
+  ///
+  /// In en, this message translates to:
+  /// **'Good news'**
+  String get duaSituationGoodNews;
+
+  /// No description provided for @duaSituationSneezing.
+  ///
+  /// In en, this message translates to:
+  /// **'Sneezing'**
+  String get duaSituationSneezing;
+
+  /// No description provided for @duaSituationProtection.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeking protection'**
+  String get duaSituationProtection;
+
+  /// No description provided for @duaSituationGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeking guidance'**
+  String get duaSituationGuidance;
+
+  /// No description provided for @duaSituationSocial.
+  ///
+  /// In en, this message translates to:
+  /// **'With others'**
+  String get duaSituationSocial;
+
   /// No description provided for @duaHubEmptyFiltered.
   ///
   /// In en, this message translates to:

@@ -1517,6 +1517,45 @@ class AppLocalizationsPs extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'ته اوس څنګه احساس کوې؟';
+
+  @override
+  String get duaSituationForgiveness => 'بخښنه غوښتل';
+
+  @override
+  String get duaSituationGratitude => 'شکرګزار';
+
+  @override
+  String get duaSituationAnxiety => 'اندېښمن';
+
+  @override
+  String get duaSituationSadness => 'خپه';
+
+  @override
+  String get duaSituationAnger => 'غوسه';
+
+  @override
+  String get duaSituationHardship => 'په سختۍ کې';
+
+  @override
+  String get duaSituationIllness => 'ناروغ';
+
+  @override
+  String get duaSituationGoodNews => 'ښه خبر';
+
+  @override
+  String get duaSituationSneezing => 'پرنجی';
+
+  @override
+  String get duaSituationProtection => 'ساتنه غوښتل';
+
+  @override
+  String get duaSituationGuidance => 'لارښوونه غوښتل';
+
+  @override
+  String get duaSituationSocial => 'له نورو سره';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override

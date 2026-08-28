@@ -1509,6 +1509,45 @@ class AppLocalizationsAr extends AppLocalizations {
   String get duaHubAllCategories => 'جميع الفئات';
 
   @override
+  String get duaHubFeelingLabel => 'كيف تشعر الآن؟';
+
+  @override
+  String get duaSituationForgiveness => 'طلب المغفرة';
+
+  @override
+  String get duaSituationGratitude => 'شاكر';
+
+  @override
+  String get duaSituationAnxiety => 'قلق';
+
+  @override
+  String get duaSituationSadness => 'حزين';
+
+  @override
+  String get duaSituationAnger => 'غاضب';
+
+  @override
+  String get duaSituationHardship => 'في شدة';
+
+  @override
+  String get duaSituationIllness => 'مريض';
+
+  @override
+  String get duaSituationGoodNews => 'خبر سار';
+
+  @override
+  String get duaSituationSneezing => 'العطاس';
+
+  @override
+  String get duaSituationProtection => 'طلب الحماية';
+
+  @override
+  String get duaSituationGuidance => 'طلب الهداية';
+
+  @override
+  String get duaSituationSocial => 'مع الآخرين';
+
+  @override
   String get duaHubEmptyFiltered =>
       'لا يوجد duas تم التحقق منه يطابق عامل التصفية هذا حتى الآن.';
 

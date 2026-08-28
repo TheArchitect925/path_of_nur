@@ -1524,6 +1524,45 @@ class AppLocalizationsHa extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'Yaya kake ji yanzu?';
+
+  @override
+  String get duaSituationForgiveness => 'Neman gafara';
+
+  @override
+  String get duaSituationGratitude => 'Godiya';
+
+  @override
+  String get duaSituationAnxiety => 'Damuwa';
+
+  @override
+  String get duaSituationSadness => 'Bakin ciki';
+
+  @override
+  String get duaSituationAnger => 'Fushi';
+
+  @override
+  String get duaSituationHardship => 'Cikin wahala';
+
+  @override
+  String get duaSituationIllness => 'Rashin lafiya';
+
+  @override
+  String get duaSituationGoodNews => 'Labari mai dadi';
+
+  @override
+  String get duaSituationSneezing => 'Atishawa';
+
+  @override
+  String get duaSituationProtection => 'Neman kariya';
+
+  @override
+  String get duaSituationGuidance => 'Neman shiriya';
+
+  @override
+  String get duaSituationSocial => 'Tare da wasu';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override

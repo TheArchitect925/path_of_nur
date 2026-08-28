@@ -1520,6 +1520,45 @@ class AppLocalizationsUr extends AppLocalizations {
   String get duaHubAllCategories => 'تمام زمرے';
 
   @override
+  String get duaHubFeelingLabel => 'آپ ابھی کیسا محسوس کر رہے ہیں؟';
+
+  @override
+  String get duaSituationForgiveness => 'مغفرت کی طلب';
+
+  @override
+  String get duaSituationGratitude => 'شکر گزار';
+
+  @override
+  String get duaSituationAnxiety => 'پریشان';
+
+  @override
+  String get duaSituationSadness => 'اداس';
+
+  @override
+  String get duaSituationAnger => 'غصے میں';
+
+  @override
+  String get duaSituationHardship => 'مشکل میں';
+
+  @override
+  String get duaSituationIllness => 'بیمار';
+
+  @override
+  String get duaSituationGoodNews => 'خوشخبری';
+
+  @override
+  String get duaSituationSneezing => 'چھینک';
+
+  @override
+  String get duaSituationProtection => 'حفاظت کی طلب';
+
+  @override
+  String get duaSituationGuidance => 'ہدایت کی طلب';
+
+  @override
+  String get duaSituationSocial => 'دوسروں کے ساتھ';
+
+  @override
   String get duaHubEmptyFiltered =>
       'ابھی تک کوئی تصدیق شدہ دعا اس فلٹر سے مماثل نہیں ہے۔';
 

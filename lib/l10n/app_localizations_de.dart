@@ -1549,6 +1549,45 @@ class AppLocalizationsDe extends AppLocalizations {
   String get duaHubAllCategories => 'Alle Kategorien';
 
   @override
+  String get duaHubFeelingLabel => 'Wie fühlst du dich gerade?';
+
+  @override
+  String get duaSituationForgiveness => 'Um Vergebung bittend';
+
+  @override
+  String get duaSituationGratitude => 'Dankbar';
+
+  @override
+  String get duaSituationAnxiety => 'Ängstlich';
+
+  @override
+  String get duaSituationSadness => 'Traurig';
+
+  @override
+  String get duaSituationAnger => 'Wütend';
+
+  @override
+  String get duaSituationHardship => 'In Schwierigkeiten';
+
+  @override
+  String get duaSituationIllness => 'Krank';
+
+  @override
+  String get duaSituationGoodNews => 'Gute Nachricht';
+
+  @override
+  String get duaSituationSneezing => 'Niesen';
+
+  @override
+  String get duaSituationProtection => 'Schutz suchend';
+
+  @override
+  String get duaSituationGuidance => 'Führung suchend';
+
+  @override
+  String get duaSituationSocial => 'Mit anderen';
+
+  @override
   String get duaHubEmptyFiltered =>
       'Es gibt noch keine verifizierten Duas, die diesem Filter entsprechen.';
 

@@ -1521,6 +1521,45 @@ class AppLocalizationsHi extends AppLocalizations {
   String get duaHubAllCategories => 'सभी श्रेणियां';
 
   @override
+  String get duaHubFeelingLabel => 'आप अभी कैसा महसूस कर रहे हैं?';
+
+  @override
+  String get duaSituationForgiveness => 'क्षमा की तलाश';
+
+  @override
+  String get duaSituationGratitude => 'आभारी';
+
+  @override
+  String get duaSituationAnxiety => 'चिंतित';
+
+  @override
+  String get duaSituationSadness => 'उदास';
+
+  @override
+  String get duaSituationAnger => 'क्रोधित';
+
+  @override
+  String get duaSituationHardship => 'कठिनाई में';
+
+  @override
+  String get duaSituationIllness => 'अस्वस्थ';
+
+  @override
+  String get duaSituationGoodNews => 'शुभ समाचार';
+
+  @override
+  String get duaSituationSneezing => 'छींक';
+
+  @override
+  String get duaSituationProtection => 'सुरक्षा की तलाश';
+
+  @override
+  String get duaSituationGuidance => 'मार्गदर्शन की तलाश';
+
+  @override
+  String get duaSituationSocial => 'दूसरों के साथ';
+
+  @override
   String get duaHubEmptyFiltered =>
       'अभी तक कोई सत्यापित जोड़ी इस फ़िल्टर से मेल नहीं खाती।';
 

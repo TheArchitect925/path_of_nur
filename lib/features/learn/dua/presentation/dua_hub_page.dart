@@ -6,7 +6,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
+import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/filter_chip_row.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_discovery_search_field.dart';
@@ -33,6 +36,24 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   DuaHubTab _tab = DuaHubTab.duas;
   String? _selectedCategoryId;
   String? _selectedSubcategoryId;
+  String? _selectedSituation;
+
+  /// Canonical presentation order for the emotion/situation index; the row
+  /// only shows situations that actually occur in the dataset.
+  static const List<String> _situationOrder = [
+    'anxiety',
+    'sadness',
+    'anger',
+    'hardship',
+    'illness',
+    'gratitude',
+    'forgiveness',
+    'protection',
+    'guidance',
+    'good_news',
+    'sneezing',
+    'social_interactions',
+  ];
 
   @override
   void initState() {
@@ -106,13 +127,17 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                   const SizedBox(height: 8),
                   _subcategoryScroller(context, selectedCategorySummary),
                 ],
+                if (_tab == DuaHubTab.duas) ...[
+                  const SizedBox(height: 12),
+                  _situationRow(context, l10n, dataset),
+                ],
                 const SizedBox(height: 12),
                 if (_tab == DuaHubTab.duas) ...[
                   if (verified.isEmpty)
                     _emptyCard(l10n.duaHubEmptyFiltered)
                   else
                     ...verified.map(
-                      (item) => _duaCard(
+                      (item) => _duaTile(
                         context,
                         item,
                         saved: savedIds.contains(item.id),
@@ -142,7 +167,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                     _emptyCard(l10n.duaHubEmptySaved)
                   else
                     ...saved.map(
-                      (item) => _duaCard(
+                      (item) => _duaTile(
                         context,
                         item,
                         saved: savedIds.contains(item.id),
@@ -257,6 +282,10 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                   item.subcategory != _selectedSubcategoryId) {
                 return false;
               }
+              if (_selectedSituation != null &&
+                  !item.situationContexts.contains(_selectedSituation)) {
+                return false;
+              }
               return item.matchesQuery(
                 query,
                 categoryLabel: dataset.categoryLabel(item.category),
@@ -304,56 +333,152 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     return items[index];
   }
 
-  Widget _duaCard(BuildContext context, DuaItem item, {required bool saved}) {
+  Widget _situationRow(
+    BuildContext context,
+    AppLocalizations l10n,
+    DuaDataset dataset,
+  ) {
+    final present = <String>{};
+    for (final item in dataset.verifiedItems) {
+      present.addAll(item.situationContexts);
+    }
+    final situations = _situationOrder
+        .where(present.contains)
+        .toList(growable: false);
+    if (situations.isEmpty) return const SizedBox.shrink();
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 8),
+          child: Text(
+            l10n.duaHubFeelingLabel,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: appearance?.backgroundForegroundSubtle,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        FilterChipRow<String>(
+          items: [
+            for (final situation in situations)
+              FilterChipItem(
+                value: situation,
+                label: _situationLabel(l10n, situation),
+                icon: _situationIcon(situation),
+              ),
+          ],
+          selected: _selectedSituation,
+          onSelected: (value) => setState(() => _selectedSituation = value),
+        ),
+      ],
+    );
+  }
+
+  String _situationLabel(AppLocalizations l10n, String situation) {
+    switch (situation) {
+      case 'forgiveness':
+        return l10n.duaSituationForgiveness;
+      case 'gratitude':
+        return l10n.duaSituationGratitude;
+      case 'anxiety':
+        return l10n.duaSituationAnxiety;
+      case 'sadness':
+        return l10n.duaSituationSadness;
+      case 'anger':
+        return l10n.duaSituationAnger;
+      case 'hardship':
+        return l10n.duaSituationHardship;
+      case 'illness':
+        return l10n.duaSituationIllness;
+      case 'good_news':
+        return l10n.duaSituationGoodNews;
+      case 'sneezing':
+        return l10n.duaSituationSneezing;
+      case 'protection':
+        return l10n.duaSituationProtection;
+      case 'guidance':
+        return l10n.duaSituationGuidance;
+      case 'social_interactions':
+        return l10n.duaSituationSocial;
+    }
+    return situation
+        .split('_')
+        .where((part) => part.isNotEmpty)
+        .map((part) => '${part[0].toUpperCase()}${part.substring(1)}')
+        .join(' ');
+  }
+
+  IconData _situationIcon(String situation) {
+    switch (situation) {
+      case 'forgiveness':
+        return Icons.volunteer_activism_outlined;
+      case 'gratitude':
+        return Icons.favorite_outline_rounded;
+      case 'anxiety':
+        return Icons.psychology_outlined;
+      case 'sadness':
+        return Icons.water_drop_outlined;
+      case 'anger':
+        return Icons.whatshot_outlined;
+      case 'hardship':
+        return Icons.terrain_outlined;
+      case 'illness':
+        return Icons.healing_outlined;
+      case 'good_news':
+        return Icons.celebration_outlined;
+      case 'sneezing':
+        return Icons.air_rounded;
+      case 'protection':
+        return Icons.shield_outlined;
+      case 'guidance':
+        return Icons.explore_outlined;
+      case 'social_interactions':
+        return Icons.groups_outlined;
+    }
+    return Icons.label_outline_rounded;
+  }
+
+  Widget _duaTile(BuildContext context, DuaItem item, {required bool saved}) {
     final colors = DuaCategoryTheme.resolve(context, item.category);
     final l10n = AppLocalizations.of(context);
-    return _interactiveCard(
-      onTap: () {
-        context.pushNamed('learnDuaDetail', pathParameters: {'duaId': item.id});
-      },
-      semanticsLabel: l10n.duaHubOpenDuaSemantics(item.title),
-      child: PremiumCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _cardBanner(
-              context: context,
-              colors: colors,
-              title: item.title,
-              subtitle: item.sourceRef,
-              trailing: IconButton(
-                tooltip: saved ? l10n.duaHubRemoveSaved : l10n.duaHubSave,
-                onPressed: () =>
-                    ref.read(duaLearningProvider.notifier).toggleSaved(item.id),
-                icon: Icon(
-                  saved
-                      ? Icons.bookmark_rounded
-                      : Icons.bookmark_border_rounded,
-                  color: colors.accent,
-                ),
-              ),
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: colors.accent,
+    );
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Semantics(
+        button: true,
+        label: l10n.duaHubOpenDuaSemantics(item.title),
+        child: CompactListTile(
+          title: item.title,
+          subtitle: item.whenToSay,
+          leading: Container(
+            width: 40,
+            height: 40,
+            decoration: iconStyle.decoration(radius: 13, includeShadow: false),
+            child: Icon(colors.icon, size: 20, color: colors.accent),
+          ),
+          trailing: IconButton(
+            tooltip: saved ? l10n.duaHubRemoveSaved : l10n.duaHubSave,
+            visualDensity: VisualDensity.compact,
+            onPressed: () =>
+                ref.read(duaLearningProvider.notifier).toggleSaved(item.id),
+            icon: Icon(
+              saved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+              color: colors.accent,
             ),
-            const SizedBox(height: 10),
-            Text(item.whenToSay),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _metaChip(
-                  item.isQuran ? l10n.duaSourceQuran : l10n.duaSourceSunnah,
-                  colors: colors,
-                ),
-                _metaChip(item.subcategoryLabel, colors: colors),
-                _metaChip(
-                  _difficultyLabel(l10n, item.difficulty),
-                  colors: colors,
-                ),
-                if (item.isCore)
-                  _metaChip(l10n.duaCoreVerified, colors: colors),
-              ],
-            ),
-          ],
+          ),
+          onTap: () {
+            context.pushNamed(
+              'learnDuaDetail',
+              pathParameters: {'duaId': item.id},
+            );
+          },
         ),
       ),
     );
@@ -607,17 +732,6 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         ],
       ),
     );
-  }
-
-  String _difficultyLabel(AppLocalizations l10n, DuaDifficulty difficulty) {
-    switch (difficulty) {
-      case DuaDifficulty.beginner:
-        return l10n.learnTrackBeginner;
-      case DuaDifficulty.intermediate:
-        return l10n.learnHubDifficultyIntermediate;
-      case DuaDifficulty.advanced:
-        return l10n.learnHubDifficultyAdvanced;
-    }
   }
 
   String _tabLabel(AppLocalizations l10n, DuaHubTab tab) {

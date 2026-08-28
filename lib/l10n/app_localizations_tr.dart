@@ -1520,6 +1520,45 @@ class AppLocalizationsTr extends AppLocalizations {
   String get duaHubAllCategories => 'All categories';
 
   @override
+  String get duaHubFeelingLabel => 'Şu an nasıl hissediyorsun?';
+
+  @override
+  String get duaSituationForgiveness => 'Bağışlanma dileme';
+
+  @override
+  String get duaSituationGratitude => 'Şükreden';
+
+  @override
+  String get duaSituationAnxiety => 'Kaygılı';
+
+  @override
+  String get duaSituationSadness => 'Üzgün';
+
+  @override
+  String get duaSituationAnger => 'Öfkeli';
+
+  @override
+  String get duaSituationHardship => 'Zorluk içinde';
+
+  @override
+  String get duaSituationIllness => 'Hasta';
+
+  @override
+  String get duaSituationGoodNews => 'Güzel haber';
+
+  @override
+  String get duaSituationSneezing => 'Hapşırma';
+
+  @override
+  String get duaSituationProtection => 'Korunma dileme';
+
+  @override
+  String get duaSituationGuidance => 'Hidayet dileme';
+
+  @override
+  String get duaSituationSocial => 'Başkalarıyla';
+
+  @override
   String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
 
   @override
