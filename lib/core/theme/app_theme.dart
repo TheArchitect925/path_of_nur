@@ -713,7 +713,9 @@ class AppTheme {
     final brightness = appearance.isDark ? Brightness.dark : Brightness.light;
     final localeUiFont = AppFonts.uiFontFamilyForLocale(locale);
     final localeUsesRtlUiFont = AppFonts.usesRtlUiFont(locale);
-    final serifOrLocaleUi = localeUsesRtlUiFont ? localeUiFont : 'serif';
+    final serifOrLocaleUi = localeUsesRtlUiFont
+        ? localeUiFont
+        : AppFonts.latinSerif;
 
     final themeData = ThemeData(
       useMaterial3: true,

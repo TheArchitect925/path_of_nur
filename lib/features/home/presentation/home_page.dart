@@ -9,6 +9,7 @@ import '../../../app/nav_tabs.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
 import '../../../features/history/presentation/widgets/on_this_day_home_card.dart';
@@ -385,7 +386,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                     color: _homePrimaryTextColor,
-                    fontFamily: 'serif',
+                    fontFamily: AppFonts.latinSerif,
                   ),
                 ),
               ],
@@ -427,7 +428,7 @@ class _TopGreetingBlock extends StatelessWidget {
             fontSize: 20,
             color: _homePrimaryTextColor,
             height: 1.15,
-            fontFamily: 'serif',
+            fontFamily: AppFonts.latinSerif,
           ),
         ),
         const SizedBox(height: 10),
@@ -447,7 +448,7 @@ class _TopGreetingBlock extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       color: _homePrimaryTextColor,
                       letterSpacing: 0.2,
-                      fontFamily: 'serif',
+                      fontFamily: AppFonts.latinSerif,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -456,7 +457,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 15,
                       color: _homePrimaryTextColor,
-                      fontFamily: 'serif',
+                      fontFamily: AppFonts.latinSerif,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -893,7 +894,7 @@ class _WelcomeCarouselCard extends StatelessWidget {
                   resolvedTitle,
                   style: const TextStyle(
                     fontSize: 16,
-                    fontFamily: 'serif',
+                    fontFamily: AppFonts.latinSerif,
                     fontWeight: FontWeight.w600,
                     color: _homePrimaryTextColor,
                   ),
@@ -1442,7 +1443,7 @@ class _ModeAwareHomeCard extends ConsumerWidget {
                   title,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontFamily: 'serif',
+                    fontFamily: AppFonts.latinSerif,
                   ),
                 ),
               ),

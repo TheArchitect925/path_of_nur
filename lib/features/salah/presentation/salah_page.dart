@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
@@ -150,7 +151,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 26,
-                          fontFamily: 'serif',
+                          fontFamily: AppFonts.latinSerif,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF32251D),
                         ),
@@ -289,7 +290,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                         ).localizedLabel(l10n),
                                         style: const TextStyle(
                                           fontSize: 22,
-                                          fontFamily: 'serif',
+                                          fontFamily: AppFonts.latinSerif,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xFF33281F),
                                         ),

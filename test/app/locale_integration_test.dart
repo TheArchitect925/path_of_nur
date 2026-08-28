@@ -195,7 +195,7 @@ void main() {
     }
 
     final englishTheme = themeFor(const Locale('en'));
-    expect(englishTheme.textTheme.bodyMedium?.fontFamily, 'serif');
+    expect(englishTheme.textTheme.bodyMedium?.fontFamily, AppFonts.latinSerif);
     expect(englishTheme.textTheme.labelMedium?.fontFamily, 'Roboto');
 
     final arabicTheme = themeFor(const Locale('ar'));

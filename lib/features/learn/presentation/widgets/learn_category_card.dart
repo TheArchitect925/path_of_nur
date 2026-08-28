@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../core/theme/app_surfaces.dart';
@@ -177,7 +178,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: onSurface,
-                      fontFamily: 'serif',
+                      fontFamily: AppFonts.latinSerif,
                       fontSize: 15.4,
                       fontWeight: FontWeight.w600,
                       height: 1.2,

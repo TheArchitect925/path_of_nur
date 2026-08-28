@@ -8,6 +8,14 @@ class AppFonts {
   static const String uiArabic = 'Noto Sans Arabic';
   static const String uiUrdu = 'Noto Sans Arabic';
 
+  /// Serif for headings, Qur'an-adjacent quotes, and translation prose.
+  /// Bundled so iOS and Android render identical headings (previously the
+  /// platform-dependent 'serif' alias).
+  static const String latinSerif = 'Lora';
+
+  /// Sans for body copy, labels, and UI chrome in Latin-script locales.
+  static const String latinSans = 'Figtree';
+
   static bool usesRtlUiFont(Locale? locale) {
     final code = locale?.languageCode.toLowerCase();
     return code == 'ar' || code == 'ur';

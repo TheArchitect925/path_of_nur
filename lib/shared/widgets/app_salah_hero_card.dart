@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_fonts.dart';
 import '../../core/theme/app_surfaces.dart';
 import 'arabic_text_utils.dart';
 import 'app_hero_glass_shell.dart';
@@ -286,7 +287,7 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
                   fontSize: 23.25,
                   fontWeight: FontWeight.w700,
                   color: Color(0xFF202228),
-                  fontFamily: 'serif',
+                  fontFamily: AppFonts.latinSerif,
                   height: 1.0,
                 ),
               ),
@@ -298,7 +299,7 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 12.4,
                   color: Color(0xFF4D4036),
-                  fontFamily: 'serif',
+                  fontFamily: AppFonts.latinSerif,
                 ),
               ),
             ],
@@ -314,7 +315,7 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
                 fontSize: 18.75,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF202228),
-                fontFamily: 'serif',
+                fontFamily: AppFonts.latinSerif,
               ),
             ),
             Text(

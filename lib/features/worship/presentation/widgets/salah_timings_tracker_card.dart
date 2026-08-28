@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/home/application/home_calendar_progress_provider.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
@@ -132,7 +133,7 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               color: _salahTrackerPrimaryTextColor,
-                              fontFamily: 'serif',
+                              fontFamily: AppFonts.latinSerif,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -143,7 +144,7 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
                               fontSize: 12.5,
                               fontWeight: FontWeight.w600,
                               color: _salahTrackerPrimaryTextColor,
-                              fontFamily: 'serif',
+                              fontFamily: AppFonts.latinSerif,
                             ),
                           ),
                         ],
@@ -583,7 +584,7 @@ class _PrayerCalendarSheetState extends ConsumerState<_PrayerCalendarSheet> {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      fontFamily: 'serif',
+                      fontFamily: AppFonts.latinSerif,
                     ),
                   ),
                 ),
@@ -946,7 +947,7 @@ class PrayerTimingPill extends StatelessWidget {
                       fontSize: 12.8,
                       fontWeight: FontWeight.w700,
                       color: _salahTrackerPrimaryTextColor,
-                      fontFamily: 'serif',
+                      fontFamily: AppFonts.latinSerif,
                     ),
                   ),
                 ),
@@ -990,7 +991,7 @@ class PrayerTimingPill extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 15,
                 color: _salahTrackerPrimaryTextColor,
-                fontFamily: 'serif',
+                fontFamily: AppFonts.latinSerif,
                 height: 1.15,
               ),
             ),
@@ -1001,7 +1002,7 @@ class PrayerTimingPill extends StatelessWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
                 color: _salahTrackerPrimaryTextColor,
-                fontFamily: 'serif',
+                fontFamily: AppFonts.latinSerif,
               ),
             ),
             if (isCompleted) ...[
