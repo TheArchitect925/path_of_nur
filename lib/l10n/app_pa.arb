@@ -18683,5 +18683,15 @@
   "settingsJumuahLeaveEstimate": "ਮੇਰੇ ਟਿਕਾਣੇ ਤੋਂ ਅੰਦਾਜ਼ਾ",
   "settingsJumuahTravelMinutesLabel": "ਸਫ਼ਰ ਸਮਾਂ",
   "settingsJumuahChooseMosque": "ਮਸਜਿਦ ਦਾ ਟਿਕਾਣਾ ਚੁਣੋ",
-  "settingsJumuahEstimatePrivacyNote": "ਅੰਦਾਜ਼ਾ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਸਿਰਫ਼ ਐਪ ਖੁੱਲ੍ਹੀ ਹੋਣ ''ਤੇ ਵਰਤਦਾ ਹੈ।"
+  "settingsJumuahEstimatePrivacyNote": "ਅੰਦਾਜ਼ਾ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਸਿਰਫ਼ ਐਪ ਖੁੱਲ੍ਹੀ ਹੋਣ ''ਤੇ ਵਰਤਦਾ ਹੈ।",
+  "settingsThemeChoiceRamadan": "ਰਮਜ਼ਾਨ — ਲਯਾਲੀ",
+  "settingsThemeModeRamadanDescription": "ਚਮਕਦੇ ਫ਼ਾਨੂਸ ਅਤੇ ਮਹੀਨੇ ਦੇ ਚੰਨ ਨਾਲ ਰੌਸ਼ਨ ਜਾਮਨੀ ਰਮਜ਼ਾਨ ਦੀ ਰਾਤ।",
+  "settingsThemeModeRamadanBestFor": "ਸਭ ਤੋਂ ਵਧੀਆ: ਮੁਬਾਰਕ ਮਹੀਨੇ ਲਈ, ਸਹਿਰੀ ਤੋਂ ਤਰਾਵੀਹ ਤੱਕ",
+  "settingsDressUpRamadanTitle": "ਰਮਜ਼ਾਨ ਲਈ ਸਜਾਵਟ",
+  "settingsDressUpRamadanSubtitle": "ਰਮਜ਼ਾਨ ਦੌਰਾਨ ਲਯਾਲੀ ਥੀਮ ਵਰਤੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ ਤੇ ਵਾਪਸ ਜਾਓ।",
+  "homeRamadanDayLabel": "ਰਮਜ਼ਾਨ · ਦਿਨ {day}",
+  "homeRamadanIftarIn": "ਇਫ਼ਤਾਰ {duration} ਵਿੱਚ",
+  "homeRamadanIftarAt": "ਇਫ਼ਤਾਰ {time} ਵਜੇ",
+  "homeRamadanSuhoorEndsIn": "ਸਹਿਰੀ {duration} ਵਿੱਚ ਖ਼ਤਮ",
+  "homeRamadanSuhoorEndsAt": "ਸਹਿਰੀ {time} ਵਜੇ ਖ਼ਤਮ"
 }

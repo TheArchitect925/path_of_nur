@@ -50,5 +50,57 @@ void main() {
         AppThemeMode.jummah,
       );
     });
+
+    test('wears Layali through Ramadan when dress-up is enabled', () {
+      expect(
+        resolveOccasionThemeMode(
+          baseMode: AppThemeMode.noorGlass,
+          dressUpFridays: false,
+          dressUpRamadan: true,
+          isRamadan: true,
+          now: saturday,
+        ),
+        AppThemeMode.ramadan,
+      );
+    });
+
+    test('Ramadan outranks Jummah on a Friday in Ramadan', () {
+      expect(
+        resolveOccasionThemeMode(
+          baseMode: AppThemeMode.noorGlass,
+          dressUpFridays: true,
+          dressUpRamadan: true,
+          isRamadan: true,
+          now: friday,
+        ),
+        AppThemeMode.ramadan,
+      );
+    });
+
+    test('Ramadan dress-up stays quiet outside the month', () {
+      expect(
+        resolveOccasionThemeMode(
+          baseMode: AppThemeMode.noorGlass,
+          dressUpFridays: false,
+          dressUpRamadan: true,
+          isRamadan: false,
+          now: saturday,
+        ),
+        AppThemeMode.noorGlass,
+      );
+    });
+
+    test('Ramadan window without dress-up keeps the base theme', () {
+      expect(
+        resolveOccasionThemeMode(
+          baseMode: AppThemeMode.midnight,
+          dressUpFridays: false,
+          dressUpRamadan: false,
+          isRamadan: true,
+          now: saturday,
+        ),
+        AppThemeMode.midnight,
+      );
+    });
   });
 }

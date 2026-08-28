@@ -18673,5 +18673,15 @@
   "settingsJumuahLeaveEstimate": "Ji cihê min texmîn bike",
   "settingsJumuahTravelMinutesLabel": "Dema rêwîtiyê",
   "settingsJumuahChooseMosque": "Cihê mizgeftê hilbijêre",
-  "settingsJumuahEstimatePrivacyNote": "Texmîn tenê dema sepan vekirî ye cihê te bi kar tîne."
+  "settingsJumuahEstimatePrivacyNote": "Texmîn tenê dema sepan vekirî ye cihê te bi kar tîne.",
+  "settingsThemeChoiceRamadan": "ڕەمەزان — لەیالی",
+  "settingsThemeModeRamadanDescription": "شەوێکی مۆری ڕەمەزان، بە فانووسی گەشاوە و مانگی نوێ ڕووناک بووەتەوە.",
+  "settingsThemeModeRamadanBestFor": "باشترینە بۆ: مانگی پیرۆز، لە پاشخەوتنەوە تا تەراویح",
+  "settingsDressUpRamadanTitle": "خۆڕازاندنەوە بۆ ڕەمەزان",
+  "settingsDressUpRamadanSubtitle": "بە درێژایی ڕەمەزان ڕووکاری لەیالی بەکاربهێنە، پاشان بگەڕێوە بۆ ڕووکارەکەت.",
+  "homeRamadanDayLabel": "ڕەمەزان · ڕۆژی {day}",
+  "homeRamadanIftarIn": "بەربانگ لە {duration}دا",
+  "homeRamadanIftarAt": "بەربانگ لە {time}",
+  "homeRamadanSuhoorEndsIn": "پاشخەوتن لە {duration}دا کۆتایی دێت",
+  "homeRamadanSuhoorEndsAt": "پاشخەوتن لە {time} کۆتایی دێت"
 }

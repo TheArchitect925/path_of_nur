@@ -18683,5 +18683,15 @@
   "settingsJumuahLeaveEstimate": "Perkirakan dari lokasi saya",
   "settingsJumuahTravelMinutesLabel": "Waktu tempuh",
   "settingsJumuahChooseMosque": "Pilih lokasi masjid",
-  "settingsJumuahEstimatePrivacyNote": "Perkiraan memakai lokasi Anda hanya saat aplikasi terbuka."
+  "settingsJumuahEstimatePrivacyNote": "Perkiraan memakai lokasi Anda hanya saat aplikasi terbuka.",
+  "settingsThemeChoiceRamadan": "Ramadan — Layali",
+  "settingsThemeModeRamadanDescription": "Malam Ramadan berwarna ungu yang diterangi lentera fanus dan bulan sabit.",
+  "settingsThemeModeRamadanBestFor": "Terbaik untuk: bulan penuh berkah, dari sahur hingga tarawih",
+  "settingsDressUpRamadanTitle": "Berhias untuk Ramadan",
+  "settingsDressUpRamadanSubtitle": "Pakai tema Layali sepanjang Ramadan, lalu kembali ke tema Anda.",
+  "homeRamadanDayLabel": "Ramadan · Hari ke-{day}",
+  "homeRamadanIftarIn": "Berbuka dalam {duration}",
+  "homeRamadanIftarAt": "Berbuka pukul {time}",
+  "homeRamadanSuhoorEndsIn": "Sahur berakhir dalam {duration}",
+  "homeRamadanSuhoorEndsAt": "Sahur berakhir pukul {time}"
 }

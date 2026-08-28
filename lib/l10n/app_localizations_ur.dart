@@ -41857,4 +41857,47 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'اندازہ آپ کا مقام صرف ایپ کھلی ہونے پر استعمال کرتا ہے۔';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'رمضان — لیالی';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'چمکتی فانوس اور مہینے کے ہلال سے روشن بنفشی رمضان کی رات۔';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'بہترین: بابرکت مہینے کے لیے، سحری سے تراویح تک';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'رمضان کے لیے سجاوٹ';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'رمضان بھر لیالی تھیم استعمال کریں، پھر اپنی تھیم پر واپس جائیں۔';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'رمضان · دن $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'افطار $duration میں';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'افطار $time پر';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'سحری $duration میں ختم';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'سحری $time پر ختم';
+  }
 }

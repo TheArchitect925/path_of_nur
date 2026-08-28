@@ -41861,4 +41861,47 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'Anggaran menggunakan lokasi anda hanya semasa aplikasi dibuka.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'Ramadan — Layali';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'Malam Ramadan berwarna ungu, diterangi tanglung fanus dan anak bulan.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'Terbaik untuk: bulan yang mulia, dari sahur hingga tarawih';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'Berhias untuk Ramadan';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'Gunakan tema Layali sepanjang Ramadan, kemudian kembali ke tema anda.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'Ramadan · Hari $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'Berbuka dalam $duration';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'Berbuka pada $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'Sahur tamat dalam $duration';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'Sahur tamat pada $time';
+  }
 }

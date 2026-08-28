@@ -41895,4 +41895,47 @@ class AppLocalizationsKu extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'Texmîn tenê dema sepan vekirî ye cihê te bi kar tîne.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'ڕەمەزان — لەیالی';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'شەوێکی مۆری ڕەمەزان، بە فانووسی گەشاوە و مانگی نوێ ڕووناک بووەتەوە.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'باشترینە بۆ: مانگی پیرۆز، لە پاشخەوتنەوە تا تەراویح';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'خۆڕازاندنەوە بۆ ڕەمەزان';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'بە درێژایی ڕەمەزان ڕووکاری لەیالی بەکاربهێنە، پاشان بگەڕێوە بۆ ڕووکارەکەت.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'ڕەمەزان · ڕۆژی $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'بەربانگ لە $durationدا';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'بەربانگ لە $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'پاشخەوتن لە $durationدا کۆتایی دێت';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'پاشخەوتن لە $time کۆتایی دێت';
+  }
 }

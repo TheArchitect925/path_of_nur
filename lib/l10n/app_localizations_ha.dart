@@ -41936,4 +41936,47 @@ class AppLocalizationsHa extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'Kiyasin yana amfani da wurinka ne kawai lokacin da manhajar take a bude.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'Ramadan — Layali';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'Daren Ramadan mai launin shunayya, wanda fitilar fanus mai haske da jinjirin watan ke haskakawa.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'Mafi dacewa: watan alheri, daga sahur zuwa tarawihi';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'Yi ado don Ramadan';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'Yi amfani da jigon Layali cikin Ramadan, sannan ka koma jigonka.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'Ramadan · Rana ta $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'Buda-baki nan da $duration';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'Buda-baki da $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'Sahur zai kare nan da $duration';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'Sahur na karewa da $time';
+  }
 }

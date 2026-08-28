@@ -41927,4 +41927,47 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'अनुमान आपके स्थान का उपयोग केवल ऐप खुले रहने पर करता है।';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'रमज़ान — लयाली';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'जगमगाते फ़ानूस और महीने के चाँद से रोशन बैंगनी रमज़ान की रात।';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'सर्वश्रेष्ठ: मुबारक महीने में, सहरी से तरावीह तक';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'रमज़ान के लिए सजाएँ';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'रमज़ान भर लयाली थीम रखें, फिर अपनी थीम पर लौटें।';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'रमज़ान · दिन $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'इफ़्तार $duration में';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'इफ़्तार $time पर';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'सहरी $duration में समाप्त';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'सहरी $time पर समाप्त';
+  }
 }

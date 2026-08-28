@@ -41979,4 +41979,47 @@ class AppLocalizationsTg extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'Ҳисоб ҷойгиршавии шуморо танҳо ҳангоми кушода будани барнома истифода мебарад.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'Рамазон — Лаёлӣ';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'Шаби бунафши Рамазон, ки бо фонуси дурахшон ва ҳилоли моҳ равшан аст.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'Беҳтарин барои: моҳи муборак, аз саҳарӣ то таровеҳ';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'Ороиш барои Рамазон';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'Дар давоми Рамазон мавзӯи Лаёлиро истифода баред, сипас ба мавзӯи худ баргардед.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'Рамазон · Рӯзи $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'Ифтор пас аз $duration';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'Ифтор дар $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'Саҳарӣ пас аз $duration ба охир мерасад';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'Саҳарӣ дар $time ба охир мерасад';
+  }
 }

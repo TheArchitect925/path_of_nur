@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,6 +26,8 @@ String quranReaderAtmosphereLabel(
       return l10n.quranReaderAtmosphereCandlelight;
     case QuranReaderAtmosphere.jummah:
       return l10n.settingsThemeChoiceJummah;
+    case QuranReaderAtmosphere.ramadan:
+      return l10n.settingsThemeChoiceRamadan;
   }
 }
 
@@ -44,6 +45,9 @@ QuranReaderAtmosphere resolveQuranReaderAtmosphere(
   }
   if (appearance.mode == AppThemeMode.jummah) {
     return QuranReaderAtmosphere.jummah;
+  }
+  if (appearance.mode == AppThemeMode.ramadan) {
+    return QuranReaderAtmosphere.ramadan;
   }
   if (appearance.isDark) return QuranReaderAtmosphere.midnight;
   return QuranReaderAtmosphere.noorGlass;
@@ -162,6 +166,24 @@ class QuranReaderAtmospherePalette {
     playForeground: Color(0xFF16382C),
   );
 
+  static const _ramadan = QuranReaderAtmospherePalette._(
+    atmosphere: QuranReaderAtmosphere.ramadan,
+    isDark: true,
+    base: Color(0xFF151024),
+    primaryText: Color(0xFFF0E9DA),
+    supportText: Color(0xFFE5DCC8),
+    subtleText: Color(0xFFC6BDAB),
+    arabicText: Color(0xFFF5EEDD),
+    harakat: Color(0xFFE58B72),
+    chipFill: Color(0x14F0E9DA),
+    chipBorder: Color(0x2EF0E9DA),
+    chipContent: Color(0xFFD6CDB8),
+    controlsFill: Color(0x1AF0E9DA),
+    controlsContent: Color(0xFFF0E9DA),
+    playFill: Color(0xFFE9BE7B),
+    playForeground: Color(0xFF211A38),
+  );
+
   static QuranReaderAtmospherePalette of(QuranReaderAtmosphere atmosphere) {
     switch (atmosphere) {
       // followApp is resolved before palettes are looked up; fall back to the
@@ -175,6 +197,8 @@ class QuranReaderAtmospherePalette {
         return _candlelight;
       case QuranReaderAtmosphere.jummah:
         return _jummah;
+      case QuranReaderAtmosphere.ramadan:
+        return _ramadan;
     }
   }
 
@@ -272,6 +296,35 @@ class QuranReaderAtmosphereBackground extends ConsumerWidget {
             child: child,
           ),
         );
+      case QuranReaderAtmosphere.ramadan:
+        final ramadanNow = ref.watch(dailyNowProvider).value ?? DateTime.now();
+        return DecoratedBox(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment(0, -0.85),
+              radius: 1.5,
+              colors: <Color>[
+                Color(0xFF2C2347),
+                Color(0xFF211A38),
+                Color(0xFF151024),
+              ],
+              stops: <double>[0.0, 0.48, 1.0],
+            ),
+          ),
+          child: CustomPaint(
+            painter: MidnightSkyPainter(
+              now: ramadanNow,
+              moonShadowColor: Color(0xFF352B54),
+            ),
+            child: CustomPaint(
+              painter: FanoosLanternPainter(
+                glowStrength: fanoosGlowStrengthFor(ramadanNow),
+                lanternFraction: const Offset(0.86, 0.0),
+              ),
+              child: child,
+            ),
+          ),
+        );
       case QuranReaderAtmosphere.jummah:
         return DecoratedBox(
           decoration: const BoxDecoration(
@@ -286,10 +339,7 @@ class QuranReaderAtmosphereBackground extends ConsumerWidget {
               stops: <double>[0.0, 0.48, 1.0],
             ),
           ),
-          child: CustomPaint(
-            painter: MihrabArchPainter(),
-            child: child,
-          ),
+          child: CustomPaint(painter: MihrabArchPainter(), child: child),
         );
     }
   }
@@ -315,4 +365,3 @@ class QuranReaderAtmosphereBackground extends ConsumerWidget {
     return const Color(0xFFC49654).withValues(alpha: 0.16);
   }
 }
-

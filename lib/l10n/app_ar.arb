@@ -18671,5 +18671,15 @@
   "settingsJumuahLeaveEstimate": "تقدير من موقعي",
   "settingsJumuahTravelMinutesLabel": "مدة التنقل",
   "settingsJumuahChooseMosque": "اختيار موقع المسجد",
-  "settingsJumuahEstimatePrivacyNote": "يستخدم التقدير موقعك فقط أثناء فتح التطبيق."
+  "settingsJumuahEstimatePrivacyNote": "يستخدم التقدير موقعك فقط أثناء فتح التطبيق.",
+  "settingsThemeChoiceRamadan": "رمضان — ليالي",
+  "settingsThemeModeRamadanDescription": "ليل رمضاني بنفسجي يضيئه فانوس متوهج وهلال الشهر.",
+  "settingsThemeModeRamadanBestFor": "الأنسب لـ: الشهر الفضيل، من السحور إلى التراويح",
+  "settingsDressUpRamadanTitle": "تزيّن لرمضان",
+  "settingsDressUpRamadanSubtitle": "استخدم سمة ليالي طوال رمضان، ثم عد إلى سمتك.",
+  "homeRamadanDayLabel": "رمضان · اليوم {day}",
+  "homeRamadanIftarIn": "الإفطار بعد {duration}",
+  "homeRamadanIftarAt": "الإفطار عند {time}",
+  "homeRamadanSuhoorEndsIn": "ينتهي السحور بعد {duration}",
+  "homeRamadanSuhoorEndsAt": "ينتهي السحور عند {time}"
 }

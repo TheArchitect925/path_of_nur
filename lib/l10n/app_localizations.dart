@@ -69762,6 +69762,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The estimate uses your location only while the app is open.'**
   String get settingsJumuahEstimatePrivacyNote;
+
+  /// No description provided for @settingsThemeChoiceRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan — Layali'**
+  String get settingsThemeChoiceRamadan;
+
+  /// No description provided for @settingsThemeModeRamadanDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A violet Ramadan night lit by a glowing fanoos lantern and the month\'\'s crescent.'**
+  String get settingsThemeModeRamadanDescription;
+
+  /// No description provided for @settingsThemeModeRamadanBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for: the blessed month, suhoor to taraweeh'**
+  String get settingsThemeModeRamadanBestFor;
+
+  /// No description provided for @settingsDressUpRamadanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress up for Ramadan'**
+  String get settingsDressUpRamadanTitle;
+
+  /// No description provided for @settingsDressUpRamadanSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wear the Layali theme through Ramadan, then return to your theme.'**
+  String get settingsDressUpRamadanSubtitle;
+
+  /// No description provided for @homeRamadanDayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan · Day {day}'**
+  String homeRamadanDayLabel(Object day);
+
+  /// No description provided for @homeRamadanIftarIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar in {duration}'**
+  String homeRamadanIftarIn(Object duration);
+
+  /// No description provided for @homeRamadanIftarAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar at {time}'**
+  String homeRamadanIftarAt(Object time);
+
+  /// No description provided for @homeRamadanSuhoorEndsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor ends in {duration}'**
+  String homeRamadanSuhoorEndsIn(Object duration);
+
+  /// No description provided for @homeRamadanSuhoorEndsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor ends at {time}'**
+  String homeRamadanSuhoorEndsAt(Object time);
 }
 
 class _AppLocalizationsDelegate

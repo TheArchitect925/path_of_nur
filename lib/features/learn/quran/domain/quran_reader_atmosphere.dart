@@ -12,7 +12,8 @@ enum QuranReaderAtmosphere {
   noorGlass('noor_glass'),
   midnight('midnight'),
   candlelight('candlelight'),
-  jummah('jummah');
+  jummah('jummah'),
+  ramadan('ramadan');
 
   const QuranReaderAtmosphere(this.wireName);
 

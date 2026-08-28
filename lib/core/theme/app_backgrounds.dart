@@ -63,6 +63,7 @@ class AppBackgroundTheme {
       case AppThemeMode.midnight:
       case AppThemeMode.candlelight:
       case AppThemeMode.jummah:
+      case AppThemeMode.ramadan:
         return _nightSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
@@ -386,6 +387,34 @@ class AppBackgroundTheme {
             Colors.transparent,
           ],
           stops: const <double>[0.0, 0.58],
+        ),
+      );
+    }
+    if (appearance.mode == AppThemeMode.ramadan) {
+      // Layali: violet Ramadan night; the fanoos lantern and crescent are
+      // painted by GlobalBackground, the spec carries the lantern's crown.
+      return AppBackgroundSpec(
+        baseGradient: const RadialGradient(
+          center: Alignment(0, -0.85),
+          radius: 1.5,
+          colors: <Color>[
+            Color(0xFF2C2347),
+            Color(0xFF211A38),
+            Color(0xFF151024),
+          ],
+          stops: <double>[0.0, 0.48, 1.0],
+        ),
+        wallpaperTintGradient: const LinearGradient(
+          colors: <Color>[Colors.transparent, Colors.transparent],
+        ),
+        foregroundGlowGradient: RadialGradient(
+          center: const Alignment(0.75, -1.1),
+          radius: 1.0,
+          colors: <Color>[
+            const Color(0xFFE9BE7B).withValues(alpha: quranLift ? 0.12 : 0.09),
+            Colors.transparent,
+          ],
+          stops: const <double>[0.0, 0.55],
         ),
       );
     }

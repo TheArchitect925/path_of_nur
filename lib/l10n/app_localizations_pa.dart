@@ -41858,4 +41858,47 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'ਅੰਦਾਜ਼ਾ ਤੁਹਾਡਾ ਟਿਕਾਣਾ ਸਿਰਫ਼ ਐਪ ਖੁੱਲ੍ਹੀ ਹੋਣ \'ਤੇ ਵਰਤਦਾ ਹੈ।';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'ਰਮਜ਼ਾਨ — ਲਯਾਲੀ';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'ਚਮਕਦੇ ਫ਼ਾਨੂਸ ਅਤੇ ਮਹੀਨੇ ਦੇ ਚੰਨ ਨਾਲ ਰੌਸ਼ਨ ਜਾਮਨੀ ਰਮਜ਼ਾਨ ਦੀ ਰਾਤ।';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'ਸਭ ਤੋਂ ਵਧੀਆ: ਮੁਬਾਰਕ ਮਹੀਨੇ ਲਈ, ਸਹਿਰੀ ਤੋਂ ਤਰਾਵੀਹ ਤੱਕ';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'ਰਮਜ਼ਾਨ ਲਈ ਸਜਾਵਟ';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'ਰਮਜ਼ਾਨ ਦੌਰਾਨ ਲਯਾਲੀ ਥੀਮ ਵਰਤੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ ਤੇ ਵਾਪਸ ਜਾਓ।';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'ਰਮਜ਼ਾਨ · ਦਿਨ $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'ਇਫ਼ਤਾਰ $duration ਵਿੱਚ';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'ਇਫ਼ਤਾਰ $time ਵਜੇ';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'ਸਹਿਰੀ $duration ਵਿੱਚ ਖ਼ਤਮ';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'ਸਹਿਰੀ $time ਵਜੇ ਖ਼ਤਮ';
+  }
 }

@@ -41822,4 +41822,47 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'اټکل ستاسو موقعیت يوازې د اپلیکیشن د پرانيستي پر مهال کاروي.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'رمضان — لیالي';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'د رمضان بنفشي شپه، چې ځلانده فانوس او د میاشتې هلال یې روښانه کوي.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'غوره ده: د مبارکې میاشتې لپاره، له پېغمانه تر تراویحو';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'د رمضان لپاره سینګار';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'د رمضان په اوږدو کې د لیالي بڼه وکاروئ، بیا خپلې بڼې ته ورشئ.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'رمضان · $day ورځ';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'افطار په $duration کې';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'افطار په $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'پېغمان په $duration کې پای ته رسېږي';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'پېغمان په $time پای ته رسېږي';
+  }
 }

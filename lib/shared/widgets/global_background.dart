@@ -44,7 +44,8 @@ class GlobalBackground extends ConsumerWidget {
     // ember ground with its glow crown (carried by the spec's gradients).
     if (appearance?.isNightFamily == true) {
       final isMidnight = appearance!.mode == AppThemeMode.midnight;
-      final now = isMidnight
+      final isRamadan = appearance.mode == AppThemeMode.ramadan;
+      final now = isMidnight || isRamadan
           ? (ref.watch(dailyNowProvider).value ?? DateTime.now())
           : null;
       return Positioned.fill(
@@ -64,7 +65,23 @@ class GlobalBackground extends ConsumerWidget {
                   moonFraction: const Offset(0.735, 0.105),
                 ),
               )
-            else if (appearance.mode == AppThemeMode.jummah)
+            else if (isRamadan) ...[
+              CustomPaint(
+                painter: MidnightSkyPainter(
+                  now: now!,
+                  moonFraction: const Offset(0.735, 0.105),
+                  // Violet unlit limb so the crescent sits in the Layali sky.
+                  moonShadowColor: const Color(0xFF352B54),
+                ),
+              ),
+              CustomPaint(
+                painter: FanoosLanternPainter(
+                  glowStrength: fanoosGlowStrengthFor(now),
+                  // Hangs left of the page titles, opposite the crescent.
+                  lanternFraction: const Offset(0.14, 0.0),
+                ),
+              ),
+            ] else if (appearance.mode == AppThemeMode.jummah)
               CustomPaint(painter: MihrabArchPainter()),
             IgnorePointer(
               child: DecoratedBox(

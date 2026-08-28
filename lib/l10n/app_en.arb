@@ -18566,5 +18566,40 @@
   "settingsJumuahLeaveEstimate": "Estimate from my location",
   "settingsJumuahTravelMinutesLabel": "Travel time",
   "settingsJumuahChooseMosque": "Choose masjid location",
-  "settingsJumuahEstimatePrivacyNote": "The estimate uses your location only while the app is open."
+  "settingsJumuahEstimatePrivacyNote": "The estimate uses your location only while the app is open.",
+  "settingsThemeChoiceRamadan": "Ramadan — Layali",
+  "settingsThemeModeRamadanDescription": "A violet Ramadan night lit by a glowing fanoos lantern and the month''s crescent.",
+  "settingsThemeModeRamadanBestFor": "Best for: the blessed month, suhoor to taraweeh",
+  "settingsDressUpRamadanTitle": "Dress up for Ramadan",
+  "settingsDressUpRamadanSubtitle": "Wear the Layali theme through Ramadan, then return to your theme.",
+  "homeRamadanDayLabel": "Ramadan · Day {day}",
+  "@homeRamadanDayLabel": {
+    "placeholders": {
+      "day": {}
+    }
+  },
+  "homeRamadanIftarIn": "Iftar in {duration}",
+  "@homeRamadanIftarIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "homeRamadanIftarAt": "Iftar at {time}",
+  "@homeRamadanIftarAt": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "homeRamadanSuhoorEndsIn": "Suhoor ends in {duration}",
+  "@homeRamadanSuhoorEndsIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "homeRamadanSuhoorEndsAt": "Suhoor ends at {time}",
+  "@homeRamadanSuhoorEndsAt": {
+    "placeholders": {
+      "time": {}
+    }
+  }
 }

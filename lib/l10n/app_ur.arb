@@ -18671,5 +18671,15 @@
   "settingsJumuahLeaveEstimate": "میرے مقام سے اندازہ",
   "settingsJumuahTravelMinutesLabel": "سفر کا وقت",
   "settingsJumuahChooseMosque": "مسجد کا مقام چنیں",
-  "settingsJumuahEstimatePrivacyNote": "اندازہ آپ کا مقام صرف ایپ کھلی ہونے پر استعمال کرتا ہے۔"
+  "settingsJumuahEstimatePrivacyNote": "اندازہ آپ کا مقام صرف ایپ کھلی ہونے پر استعمال کرتا ہے۔",
+  "settingsThemeChoiceRamadan": "رمضان — لیالی",
+  "settingsThemeModeRamadanDescription": "چمکتی فانوس اور مہینے کے ہلال سے روشن بنفشی رمضان کی رات۔",
+  "settingsThemeModeRamadanBestFor": "بہترین: بابرکت مہینے کے لیے، سحری سے تراویح تک",
+  "settingsDressUpRamadanTitle": "رمضان کے لیے سجاوٹ",
+  "settingsDressUpRamadanSubtitle": "رمضان بھر لیالی تھیم استعمال کریں، پھر اپنی تھیم پر واپس جائیں۔",
+  "homeRamadanDayLabel": "رمضان · دن {day}",
+  "homeRamadanIftarIn": "افطار {duration} میں",
+  "homeRamadanIftarAt": "افطار {time} پر",
+  "homeRamadanSuhoorEndsIn": "سحری {duration} میں ختم",
+  "homeRamadanSuhoorEndsAt": "سحری {time} پر ختم"
 }

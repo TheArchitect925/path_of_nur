@@ -19,6 +19,7 @@ enum AppThemeMode {
   midnight,
   candlelight,
   jummah,
+  ramadan,
 }
 
 enum AppPageTransitionStyle { defaultSystem, gentleFade, iosStyle, noAnimation }
@@ -99,7 +100,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   bool get isNightFamily =>
       mode == AppThemeMode.midnight ||
       mode == AppThemeMode.candlelight ||
-      mode == AppThemeMode.jummah;
+      mode == AppThemeMode.jummah ||
+      mode == AppThemeMode.ramadan;
 
   bool get isMidnightFamily =>
       mode == AppThemeMode.midnightManuscript ||
@@ -194,7 +196,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       ? accent.withValues(alpha: 0.15)
       : accent.withValues(alpha: isDark ? 0.22 : 0.16);
 
-  Color get chipSelectedText => isNightFamily || isMidnightFamily || isNoorGlassFamily
+  Color get chipSelectedText =>
+      isNightFamily || isMidnightFamily || isNoorGlassFamily
       ? quranArabicEmphasis
       : onSurface;
 
@@ -644,6 +647,40 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           makkiBorder: const Color(0xFFDCC07A),
           madaniFill: const Color(0x2A8FCBAA),
           madaniBorder: const Color(0xFF8FCBAA),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.ramadan:
+        // Layali: Deep Glass over the violet Ramadan night, lit by the
+        // fanoos lantern and the month's growing crescent.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF151024),
+          backgroundAlt: const Color(0xFF211A38),
+          surface: const Color(0xFF2E2749),
+          surfaceSoft: const Color(0xFF272040),
+          frostedGlassTone: const Color(0xFFEDE4CE),
+          sanctuarySurfaceTone: const Color(0xFFF0E7CF),
+          sanctuaryEdgeLight: const Color(0xFFE9BE7B),
+          inputSurface: const Color(0xFF322A50),
+          onSurface: const Color(0xFFF0E9DA),
+          onSurfaceSubtle: const Color(0xFFC6BDAB),
+          onSurfaceMuted: const Color(0xFF8D8577),
+          accent: const Color(0xFFE9BE7B),
+          accentSoft: const Color(0xFFC29A58),
+          border: const Color(0xFF443B66),
+          divider: const Color(0xFF3A325C),
+          success: const Color(0xFFA3C79E),
+          quranArabicEmphasis: const Color(0xFFF2E5C2),
+          makkiFill: const Color(0x2EE9BE7B),
+          makkiBorder: const Color(0xFFE9BE7B),
+          madaniFill: const Color(0x2A93BDA8),
+          madaniBorder: const Color(0xFF93BDA8),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.985
               : glassSurfaceAlpha.clamp(0.80, 0.90),

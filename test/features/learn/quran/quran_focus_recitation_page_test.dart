@@ -590,6 +590,10 @@ void main() {
       await tester.pump();
       await tester.tap(find.byKey(const ValueKey('quran-focus-settings')));
       await tester.pumpAndSettle();
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('quran-focus-cancel-sleep-timer')),
+      );
+      await tester.pumpAndSettle();
       await tester.tap(
         find.byKey(const ValueKey('quran-focus-cancel-sleep-timer')),
       );
@@ -757,10 +761,7 @@ void main() {
         container.read(quranReaderSettingsProvider).readerAtmosphere,
         QuranReaderAtmosphere.midnight,
       );
-      expect(
-        prefs.getString('learn.quran.readerAtmosphere'),
-        'midnight',
-      );
+      expect(prefs.getString('learn.quran.readerAtmosphere'), 'midnight');
 
       // Dark palettes must pin explicit disabled colors: Material's fallback
       // uses the light theme's ink, which vanished on the dark controls pill.

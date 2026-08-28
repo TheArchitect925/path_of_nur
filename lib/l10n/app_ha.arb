@@ -18683,5 +18683,15 @@
   "settingsJumuahLeaveEstimate": "Kiyasta daga wurina",
   "settingsJumuahTravelMinutesLabel": "Lokacin tafiya",
   "settingsJumuahChooseMosque": "Zabi wurin masallaci",
-  "settingsJumuahEstimatePrivacyNote": "Kiyasin yana amfani da wurinka ne kawai lokacin da manhajar take a bude."
+  "settingsJumuahEstimatePrivacyNote": "Kiyasin yana amfani da wurinka ne kawai lokacin da manhajar take a bude.",
+  "settingsThemeChoiceRamadan": "Ramadan — Layali",
+  "settingsThemeModeRamadanDescription": "Daren Ramadan mai launin shunayya, wanda fitilar fanus mai haske da jinjirin watan ke haskakawa.",
+  "settingsThemeModeRamadanBestFor": "Mafi dacewa: watan alheri, daga sahur zuwa tarawihi",
+  "settingsDressUpRamadanTitle": "Yi ado don Ramadan",
+  "settingsDressUpRamadanSubtitle": "Yi amfani da jigon Layali cikin Ramadan, sannan ka koma jigonka.",
+  "homeRamadanDayLabel": "Ramadan · Rana ta {day}",
+  "homeRamadanIftarIn": "Buda-baki nan da {duration}",
+  "homeRamadanIftarAt": "Buda-baki da {time}",
+  "homeRamadanSuhoorEndsIn": "Sahur zai kare nan da {duration}",
+  "homeRamadanSuhoorEndsAt": "Sahur na karewa da {time}"
 }

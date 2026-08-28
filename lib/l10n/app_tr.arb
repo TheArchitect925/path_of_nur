@@ -18673,5 +18673,15 @@
   "settingsJumuahLeaveEstimate": "Konumumdan tahmin et",
   "settingsJumuahTravelMinutesLabel": "Yol süresi",
   "settingsJumuahChooseMosque": "Cami konumunu seç",
-  "settingsJumuahEstimatePrivacyNote": "Tahmin, konumunu yalnızca uygulama açıkken kullanır."
+  "settingsJumuahEstimatePrivacyNote": "Tahmin, konumunu yalnızca uygulama açıkken kullanır.",
+  "settingsThemeChoiceRamadan": "Ramazan — Leyali",
+  "settingsThemeModeRamadanDescription": "Parlayan bir fener ve ayın hilaliyle aydınlanan mor bir Ramazan gecesi.",
+  "settingsThemeModeRamadanBestFor": "En iyi: mübarek ay boyunca, sahurdan teravihe",
+  "settingsDressUpRamadanTitle": "Ramazan için süslen",
+  "settingsDressUpRamadanSubtitle": "Ramazan boyunca Leyali temasını kullan, sonra kendi temana dön.",
+  "homeRamadanDayLabel": "Ramazan · {day}. Gün",
+  "homeRamadanIftarIn": "İftara {duration}",
+  "homeRamadanIftarAt": "İftar saati {time}",
+  "homeRamadanSuhoorEndsIn": "Sahurun bitmesine {duration}",
+  "homeRamadanSuhoorEndsAt": "Sahur {time} sona eriyor"
 }

@@ -41877,4 +41877,47 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'The estimate uses your location only while the app is open.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'Ramadan — Layali';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'A violet Ramadan night lit by a glowing fanoos lantern and the month\'s crescent.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'Best for: the blessed month, suhoor to taraweeh';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'Dress up for Ramadan';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'Wear the Layali theme through Ramadan, then return to your theme.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'Ramadan · Day $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'Iftar in $duration';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'Iftar at $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'Suhoor ends in $duration';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'Suhoor ends at $time';
+  }
 }

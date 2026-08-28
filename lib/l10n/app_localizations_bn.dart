@@ -41814,4 +41814,47 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'অনুমানটি কেবল অ্যাপ খোলা থাকাকালে আপনার অবস্থান ব্যবহার করে।';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'রমজান — লায়ালি';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'জ্বলন্ত ফানুস লণ্ঠন ও মাসের অর্ধচন্দ্রে আলোকিত বেগুনি রমজানের রাত।';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'সেরা: বরকতময় মাসে, সেহরি থেকে তারাবিহ পর্যন্ত';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'রমজানে সাজুন';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'রমজান জুড়ে লায়ালি থিম ব্যবহার করুন, পরে আপনার থিমে ফিরে যান।';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'রমজান · দিন $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'ইফতার $duration পরে';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'ইফতার $time-এ';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'সেহরি শেষ হবে $duration পরে';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'সেহরি শেষ $time-এ';
+  }
 }

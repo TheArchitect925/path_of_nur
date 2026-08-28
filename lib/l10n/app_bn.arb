@@ -18683,5 +18683,15 @@
   "settingsJumuahLeaveEstimate": "আমার অবস্থান থেকে অনুমান",
   "settingsJumuahTravelMinutesLabel": "যাতায়াত সময়",
   "settingsJumuahChooseMosque": "মসজিদের অবস্থান বাছুন",
-  "settingsJumuahEstimatePrivacyNote": "অনুমানটি কেবল অ্যাপ খোলা থাকাকালে আপনার অবস্থান ব্যবহার করে।"
+  "settingsJumuahEstimatePrivacyNote": "অনুমানটি কেবল অ্যাপ খোলা থাকাকালে আপনার অবস্থান ব্যবহার করে।",
+  "settingsThemeChoiceRamadan": "রমজান — লায়ালি",
+  "settingsThemeModeRamadanDescription": "জ্বলন্ত ফানুস লণ্ঠন ও মাসের অর্ধচন্দ্রে আলোকিত বেগুনি রমজানের রাত।",
+  "settingsThemeModeRamadanBestFor": "সেরা: বরকতময় মাসে, সেহরি থেকে তারাবিহ পর্যন্ত",
+  "settingsDressUpRamadanTitle": "রমজানে সাজুন",
+  "settingsDressUpRamadanSubtitle": "রমজান জুড়ে লায়ালি থিম ব্যবহার করুন, পরে আপনার থিমে ফিরে যান।",
+  "homeRamadanDayLabel": "রমজান · দিন {day}",
+  "homeRamadanIftarIn": "ইফতার {duration} পরে",
+  "homeRamadanIftarAt": "ইফতার {time}-এ",
+  "homeRamadanSuhoorEndsIn": "সেহরি শেষ হবে {duration} পরে",
+  "homeRamadanSuhoorEndsAt": "সেহরি শেষ {time}-এ"
 }

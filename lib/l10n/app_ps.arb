@@ -18673,5 +18673,15 @@
   "settingsJumuahLeaveEstimate": "زما له موقعیت اټکل",
   "settingsJumuahTravelMinutesLabel": "د سفر وخت",
   "settingsJumuahChooseMosque": "د جومات ځای وټاکئ",
-  "settingsJumuahEstimatePrivacyNote": "اټکل ستاسو موقعیت يوازې د اپلیکیشن د پرانيستي پر مهال کاروي."
+  "settingsJumuahEstimatePrivacyNote": "اټکل ستاسو موقعیت يوازې د اپلیکیشن د پرانيستي پر مهال کاروي.",
+  "settingsThemeChoiceRamadan": "رمضان — لیالي",
+  "settingsThemeModeRamadanDescription": "د رمضان بنفشي شپه، چې ځلانده فانوس او د میاشتې هلال یې روښانه کوي.",
+  "settingsThemeModeRamadanBestFor": "غوره ده: د مبارکې میاشتې لپاره، له پېغمانه تر تراویحو",
+  "settingsDressUpRamadanTitle": "د رمضان لپاره سینګار",
+  "settingsDressUpRamadanSubtitle": "د رمضان په اوږدو کې د لیالي بڼه وکاروئ، بیا خپلې بڼې ته ورشئ.",
+  "homeRamadanDayLabel": "رمضان · {day} ورځ",
+  "homeRamadanIftarIn": "افطار په {duration} کې",
+  "homeRamadanIftarAt": "افطار په {time}",
+  "homeRamadanSuhoorEndsIn": "پېغمان په {duration} کې پای ته رسېږي",
+  "homeRamadanSuhoorEndsAt": "پېغمان په {time} پای ته رسېږي"
 }

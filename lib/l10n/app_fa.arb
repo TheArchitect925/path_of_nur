@@ -18674,5 +18674,15 @@
   "settingsJumuahLeaveEstimate": "برآورد از موقعیت من",
   "settingsJumuahTravelMinutesLabel": "زمان سفر",
   "settingsJumuahChooseMosque": "انتخاب موقعیت مسجد",
-  "settingsJumuahEstimatePrivacyNote": "برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند."
+  "settingsJumuahEstimatePrivacyNote": "برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند.",
+  "settingsThemeChoiceRamadan": "رمضان — لیالی",
+  "settingsThemeModeRamadanDescription": "شبی بنفش از رمضان، روشن از فانوس تابان و هلال ماه.",
+  "settingsThemeModeRamadanBestFor": "بهترین برای: ماه مبارک، از سحر تا تراویح",
+  "settingsDressUpRamadanTitle": "آراستن برای رمضان",
+  "settingsDressUpRamadanSubtitle": "در طول رمضان پوستهٔ لیالی را به کار ببرید و سپس به پوستهٔ خود بازگردید.",
+  "homeRamadanDayLabel": "رمضان · روز {day}",
+  "homeRamadanIftarIn": "افطار تا {duration} دیگر",
+  "homeRamadanIftarAt": "افطار در {time}",
+  "homeRamadanSuhoorEndsIn": "سحر تا {duration} دیگر پایان می‌یابد",
+  "homeRamadanSuhoorEndsAt": "پایان سحر در {time}"
 }

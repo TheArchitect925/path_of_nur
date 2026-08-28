@@ -36,6 +36,7 @@ class MidnightSkyPainter extends CustomPainter {
   MidnightSkyPainter({
     required this.now,
     this.moonFraction = const Offset(0.19, 0.085),
+    this.moonShadowColor = const Color(0xFF2C3352),
   });
 
   final DateTime now;
@@ -45,9 +46,11 @@ class MidnightSkyPainter extends CustomPainter {
   /// GlobalBackground tucks the moon top-right instead.
   final Offset moonFraction;
 
+  /// Unlit-limb color; overridable so violet skies (Ramadan) can match.
+  final Color moonShadowColor;
+
   static const Color _starColor = Color(0xFFFFF4D6);
   static const Color _moonLit = Color(0xFFEDE5CE);
-  static const Color _moonShadow = Color(0xFF2C3352);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -73,11 +76,7 @@ class MidnightSkyPainter extends CustomPainter {
       glowPaint.color = _starColor.withValues(
         alpha: alpha * (bright ? 0.55 : 0.38),
       );
-      canvas.drawCircle(
-        Offset(x, y),
-        radius * (bright ? 3.2 : 2.4),
-        glowPaint,
-      );
+      canvas.drawCircle(Offset(x, y), radius * (bright ? 3.2 : 2.4), glowPaint);
       corePaint.color = _starColor.withValues(
         alpha: bright ? (alpha + 0.25).clamp(0.0, 1.0) : alpha,
       );
@@ -103,7 +102,7 @@ class MidnightSkyPainter extends CustomPainter {
     }
 
     // Unlit body, faintly separated from the sky.
-    canvas.drawCircle(center, r, Paint()..color = _moonShadow);
+    canvas.drawCircle(center, r, Paint()..color = moonShadowColor);
     canvas.drawCircle(
       center,
       r,
@@ -126,11 +125,7 @@ class MidnightSkyPainter extends CustomPainter {
     canvas.translate(center.dx, center.dy);
     if (!waxing) canvas.scale(-1, 1);
     final lit = Path()..moveTo(0, -r);
-    lit.arcToPoint(
-      Offset(0, r),
-      radius: Radius.circular(r),
-      clockwise: true,
-    );
+    lit.arcToPoint(Offset(0, r), radius: Radius.circular(r), clockwise: true);
     if (terminator.abs() < r * 0.02) {
       lit.lineTo(0, -r);
     } else {
@@ -144,10 +139,7 @@ class MidnightSkyPainter extends CustomPainter {
       lit.arcTo(oval, math.pi / 2, terminator > 0 ? -math.pi : math.pi, false);
     }
     lit.close();
-    canvas.drawPath(
-      lit,
-      Paint()..color = _moonLit.withValues(alpha: 0.95),
-    );
+    canvas.drawPath(lit, Paint()..color = _moonLit.withValues(alpha: 0.95));
     canvas.restore();
   }
 
@@ -157,7 +149,8 @@ class MidnightSkyPainter extends CustomPainter {
     return a.year != now.year ||
         a.month != now.month ||
         a.day != now.day ||
-        oldDelegate.moonFraction != moonFraction;
+        oldDelegate.moonFraction != moonFraction ||
+        oldDelegate.moonShadowColor != moonShadowColor;
   }
 }
 
@@ -187,10 +180,7 @@ class MihrabArchPainter extends CustomPainter {
           glowColor.withValues(alpha: 0.0),
         ],
       ).createShader(crownRect);
-    canvas.drawRect(
-      Rect.fromLTRB(left, topY, left + archWidth, baseY),
-      glow,
-    );
+    canvas.drawRect(Rect.fromLTRB(left, topY, left + archWidth, baseY), glow);
 
     // Arch outline, fading toward the base.
     final stroke = Paint()
@@ -215,4 +205,106 @@ class MihrabArchPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant MihrabArchPainter oldDelegate) =>
       oldDelegate.glowColor != glowColor;
+}
+
+/// The Ramadan fanoos: a small lantern hanging from the top of the screen,
+/// its glow warming as iftar draws near. Pure paint — no assets.
+class FanoosLanternPainter extends CustomPainter {
+  FanoosLanternPainter({
+    required this.glowStrength,
+    this.lanternFraction = const Offset(0.88, 0.0),
+  });
+
+  /// 0..1 — how strongly the lantern glows (rises toward iftar).
+  final double glowStrength;
+
+  /// Horizontal position of the lantern as a fraction of the width; it
+  /// always hangs from the top edge.
+  final Offset lanternFraction;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final x = size.width * lanternFraction.dx;
+    final unit = size.width * 0.055;
+    // Long enough that the lantern body hangs below the status-bar clock.
+    final cordEnd = size.height * 0.052;
+    final bodyTop = cordEnd + unit * 0.16;
+    final bodyRect = Rect.fromCenter(
+      center: Offset(x, bodyTop + unit * 0.62),
+      width: unit * 0.78,
+      height: unit * 1.24,
+    );
+
+    // Glow — scales with iftar proximity.
+    final glowAlpha = 0.18 + 0.30 * glowStrength.clamp(0.0, 1.0);
+    canvas.drawCircle(
+      bodyRect.center,
+      unit * (1.4 + glowStrength * 0.7),
+      Paint()
+        ..color = const Color(0xFFE9BE7B).withValues(alpha: glowAlpha)
+        ..maskFilter = MaskFilter.blur(BlurStyle.normal, unit * 0.9),
+    );
+
+    // Cord.
+    canvas.drawLine(
+      Offset(x, 0),
+      Offset(x, cordEnd),
+      Paint()
+        ..color = const Color(0xFFF0E9DA).withValues(alpha: 0.38)
+        ..strokeWidth = 1.2,
+    );
+
+    // Cap.
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromCenter(
+          center: Offset(x, cordEnd + unit * 0.08),
+          width: unit * 0.42,
+          height: unit * 0.16,
+        ),
+        Radius.circular(unit * 0.06),
+      ),
+      Paint()..color = const Color(0xFF8E6A34),
+    );
+
+    // Body.
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(bodyRect, Radius.circular(unit * 0.24)),
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[
+            Color(0xFFE9BE7B),
+            Color(0xFFD9A254),
+            Color(0xFFB97F35),
+          ],
+        ).createShader(bodyRect),
+    );
+
+    // Inner flame panel.
+    final flameRect = bodyRect.deflate(unit * 0.14);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(flameRect, Radius.circular(unit * 0.12)),
+      Paint()
+        ..color = const Color(
+          0xFFFFECBE,
+        ).withValues(alpha: 0.72 + 0.24 * glowStrength.clamp(0.0, 1.0)),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant FanoosLanternPainter oldDelegate) =>
+      oldDelegate.glowStrength != glowStrength ||
+      oldDelegate.lanternFraction != lanternFraction;
+}
+
+/// Hour-bucketed glow strength for the fanoos: soft through the day,
+/// brightening through the afternoon toward iftar, warm through the night.
+double fanoosGlowStrengthFor(DateTime now) {
+  final hour = now.hour;
+  if (hour >= 16 && hour < 20) return 1.0; // approaching and at iftar
+  if (hour >= 12 && hour < 16) return 0.55;
+  if (hour >= 20 || hour < 2) return 0.7; // taraweeh evenings
+  return 0.35;
 }

@@ -1618,6 +1618,8 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.quranReaderAtmosphereCandlelight;
     case AppThemeMode.jummah:
       return l10n.settingsThemeChoiceJummah;
+    case AppThemeMode.ramadan:
+      return l10n.settingsThemeChoiceRamadan;
   }
 }
 

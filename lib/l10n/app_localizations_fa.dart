@@ -41772,6 +41772,49 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'رمضان — لیالی';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'شبی بنفش از رمضان، روشن از فانوس تابان و هلال ماه.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'بهترین برای: ماه مبارک، از سحر تا تراویح';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'آراستن برای رمضان';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'در طول رمضان پوستهٔ لیالی را به کار ببرید و سپس به پوستهٔ خود بازگردید.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'رمضان · روز $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'افطار تا $duration دیگر';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'افطار در $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'سحر تا $duration دیگر پایان می‌یابد';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'پایان سحر در $time';
+  }
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83537,4 +83580,47 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'برآورد تنها هنگام باز بودن برنامه از موقعیت شما استفاده می‌کند.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'رمضان — لیالی';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'شبی بنفش از رمضان، روشن از فانوس تابان و هلال ماه.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'بهترین برای: ماه مبارک، از سحر تا تراویح';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'آراستن برای رمضان';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'در طول رمضان پوستهٔ لیالی را به کار ببرید و سپس به پوستهٔ خود بازگردید.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'رمضان · روز $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'افطار تا $duration دیگر';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'افطار در $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'سحر تا $duration دیگر پایان می‌یابد';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'پایان سحر در $time';
+  }
 }

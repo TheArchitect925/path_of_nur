@@ -47,6 +47,7 @@ import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_title.dart';
+import 'widgets/ramadan_hero_card.dart';
 import 'widgets/right_now_dua_row.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
 
@@ -139,6 +140,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               children: [
                 _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
                 const SizedBox(height: 12),
+                const RamadanHeroCard(),
                 _SalahSummaryCard(l10n: l10n),
                 const SizedBox(height: 12),
                 const _DailySalahTimingsCard(),
@@ -997,7 +999,9 @@ class _ModeActionChip extends StatelessWidget {
                 icon,
                 size: 16,
                 color:
-                    Theme.of(context).extension<AppAppearanceTheme>()?.onSurface ??
+                    Theme.of(
+                      context,
+                    ).extension<AppAppearanceTheme>()?.onSurface ??
                     AppColors.onSurface,
               ),
               const SizedBox(width: 6),

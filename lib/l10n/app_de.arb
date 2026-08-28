@@ -18566,5 +18566,15 @@
   "settingsJumuahLeaveEstimate": "Von meinem Standort schätzen",
   "settingsJumuahTravelMinutesLabel": "Fahrzeit",
   "settingsJumuahChooseMosque": "Moschee-Standort wählen",
-  "settingsJumuahEstimatePrivacyNote": "Die Schätzung nutzt deinen Standort nur bei geöffneter App."
+  "settingsJumuahEstimatePrivacyNote": "Die Schätzung nutzt deinen Standort nur bei geöffneter App.",
+  "settingsThemeChoiceRamadan": "Ramadan — Layali",
+  "settingsThemeModeRamadanDescription": "Eine violette Ramadan-Nacht, erhellt von einer leuchtenden Fanus-Laterne und der Mondsichel des Monats.",
+  "settingsThemeModeRamadanBestFor": "Ideal für: den gesegneten Monat, von Suhur bis Tarawih",
+  "settingsDressUpRamadanTitle": "Festlich im Ramadan",
+  "settingsDressUpRamadanSubtitle": "Im Ramadan das Layali-Design tragen, danach zurück zu deinem Design.",
+  "homeRamadanDayLabel": "Ramadan · Tag {day}",
+  "homeRamadanIftarIn": "Iftar in {duration}",
+  "homeRamadanIftarAt": "Iftar um {time}",
+  "homeRamadanSuhoorEndsIn": "Suhur endet in {duration}",
+  "homeRamadanSuhoorEndsAt": "Suhur endet um {time}"
 }

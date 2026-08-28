@@ -18671,5 +18671,15 @@
   "settingsJumuahLeaveEstimate": "मेरे स्थान से अनुमान",
   "settingsJumuahTravelMinutesLabel": "यात्रा समय",
   "settingsJumuahChooseMosque": "मस्जिद का स्थान चुनें",
-  "settingsJumuahEstimatePrivacyNote": "अनुमान आपके स्थान का उपयोग केवल ऐप खुले रहने पर करता है।"
+  "settingsJumuahEstimatePrivacyNote": "अनुमान आपके स्थान का उपयोग केवल ऐप खुले रहने पर करता है।",
+  "settingsThemeChoiceRamadan": "रमज़ान — लयाली",
+  "settingsThemeModeRamadanDescription": "जगमगाते फ़ानूस और महीने के चाँद से रोशन बैंगनी रमज़ान की रात।",
+  "settingsThemeModeRamadanBestFor": "सर्वश्रेष्ठ: मुबारक महीने में, सहरी से तरावीह तक",
+  "settingsDressUpRamadanTitle": "रमज़ान के लिए सजाएँ",
+  "settingsDressUpRamadanSubtitle": "रमज़ान भर लयाली थीम रखें, फिर अपनी थीम पर लौटें।",
+  "homeRamadanDayLabel": "रमज़ान · दिन {day}",
+  "homeRamadanIftarIn": "इफ़्तार {duration} में",
+  "homeRamadanIftarAt": "इफ़्तार {time} पर",
+  "homeRamadanSuhoorEndsIn": "सहरी {duration} में समाप्त",
+  "homeRamadanSuhoorEndsAt": "सहरी {time} पर समाप्त"
 }

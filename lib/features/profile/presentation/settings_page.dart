@@ -89,6 +89,7 @@ class SettingsPage extends ConsumerWidget {
       AppThemeMode.midnight,
       AppThemeMode.candlelight,
       AppThemeMode.jummah,
+      AppThemeMode.ramadan,
       AppThemeMode.noorGlassDark,
       AppThemeMode.noGlass,
       AppThemeMode.noGlassDark,
@@ -879,6 +880,19 @@ class SettingsPage extends ConsumerWidget {
                   value: profileSettings.dressUpFridays,
                   onChanged: (value) {
                     profileSettingsNotifier.setDressUpFridays(value);
+                    _showAppearanceSnack(
+                      context,
+                      l10n.settingsThemeChangedSuccessfully,
+                    );
+                  },
+                ),
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsDressUpRamadanTitle),
+                  subtitle: Text(l10n.settingsDressUpRamadanSubtitle),
+                  value: profileSettings.dressUpRamadan,
+                  onChanged: (value) {
+                    profileSettingsNotifier.setDressUpRamadan(value);
                     _showAppearanceSnack(
                       context,
                       l10n.settingsThemeChangedSuccessfully,
@@ -3287,6 +3301,8 @@ String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeCandlelightDescription;
     case AppThemeMode.jummah:
       return l10n.settingsThemeModeJummahDescription;
+    case AppThemeMode.ramadan:
+      return l10n.settingsThemeModeRamadanDescription;
   }
 }
 
@@ -3320,6 +3336,8 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.quranReaderAtmosphereCandlelight;
     case AppThemeMode.jummah:
       return l10n.settingsThemeChoiceJummah;
+    case AppThemeMode.ramadan:
+      return l10n.settingsThemeChoiceRamadan;
   }
 }
 
@@ -3353,6 +3371,8 @@ String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeCandlelightBestFor;
     case AppThemeMode.jummah:
       return l10n.settingsThemeModeJummahBestFor;
+    case AppThemeMode.ramadan:
+      return l10n.settingsThemeModeRamadanBestFor;
   }
 }
 

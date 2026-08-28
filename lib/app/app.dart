@@ -23,6 +23,7 @@ import '../features/ios_widgets/application/iphone_home_widget_sync_service.dart
 import '../features/profile/application/profile_settings_provider.dart';
 import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
 import '../shared/application/daily_clock_provider.dart';
+import '../shared/application/special_mode_provider.dart';
 import '../l10n/app_localizations.dart';
 
 class PathOfNurApp extends ConsumerWidget {
@@ -47,11 +48,13 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
-    final occasionNow =
-        ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final occasionNow = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final specialMode = ref.watch(specialModeProvider);
     final effectiveThemeMode = resolveOccasionThemeMode(
       baseMode: profileSettings.appThemeMode,
       dressUpFridays: profileSettings.dressUpFridays,
+      dressUpRamadan: profileSettings.dressUpRamadan,
+      isRamadan: specialMode.isRamadan || specialMode.ramadanDateWindowActive,
       now: occasionNow,
     );
     final manualTheme = AppTheme.themeFor(
@@ -122,9 +125,11 @@ AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
     case AppThemeMode.midnight:
     case AppThemeMode.candlelight:
       return AppThemeMode.noorGlass;
-    // The Jumu'ah occasion holds day and night alike.
+    // The occasions hold day and night alike.
     case AppThemeMode.jummah:
       return AppThemeMode.jummah;
+    case AppThemeMode.ramadan:
+      return AppThemeMode.ramadan;
     default:
       return mode;
   }

@@ -18673,5 +18673,15 @@
   "settingsJumuahLeaveEstimate": "Аз ҷойгиршавии ман ҳисоб кун",
   "settingsJumuahTravelMinutesLabel": "Вақти роҳ",
   "settingsJumuahChooseMosque": "Ҷои масҷидро интихоб кунед",
-  "settingsJumuahEstimatePrivacyNote": "Ҳисоб ҷойгиршавии шуморо танҳо ҳангоми кушода будани барнома истифода мебарад."
+  "settingsJumuahEstimatePrivacyNote": "Ҳисоб ҷойгиршавии шуморо танҳо ҳангоми кушода будани барнома истифода мебарад.",
+  "settingsThemeChoiceRamadan": "Рамазон — Лаёлӣ",
+  "settingsThemeModeRamadanDescription": "Шаби бунафши Рамазон, ки бо фонуси дурахшон ва ҳилоли моҳ равшан аст.",
+  "settingsThemeModeRamadanBestFor": "Беҳтарин барои: моҳи муборак, аз саҳарӣ то таровеҳ",
+  "settingsDressUpRamadanTitle": "Ороиш барои Рамазон",
+  "settingsDressUpRamadanSubtitle": "Дар давоми Рамазон мавзӯи Лаёлиро истифода баред, сипас ба мавзӯи худ баргардед.",
+  "homeRamadanDayLabel": "Рамазон · Рӯзи {day}",
+  "homeRamadanIftarIn": "Ифтор пас аз {duration}",
+  "homeRamadanIftarAt": "Ифтор дар {time}",
+  "homeRamadanSuhoorEndsIn": "Саҳарӣ пас аз {duration} ба охир мерасад",
+  "homeRamadanSuhoorEndsAt": "Саҳарӣ дар {time} ба охир мерасад"
 }

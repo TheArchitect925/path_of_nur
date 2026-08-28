@@ -42378,4 +42378,47 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'Die Schätzung nutzt deinen Standort nur bei geöffneter App.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'Ramadan — Layali';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'Eine violette Ramadan-Nacht, erhellt von einer leuchtenden Fanus-Laterne und der Mondsichel des Monats.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'Ideal für: den gesegneten Monat, von Suhur bis Tarawih';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'Festlich im Ramadan';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'Im Ramadan das Layali-Design tragen, danach zurück zu deinem Design.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'Ramadan · Tag $day';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'Iftar in $duration';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'Iftar um $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'Suhur endet in $duration';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'Suhur endet um $time';
+  }
 }

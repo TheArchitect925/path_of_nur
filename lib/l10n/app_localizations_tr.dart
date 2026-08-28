@@ -41868,4 +41868,47 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get settingsJumuahEstimatePrivacyNote =>
       'Tahmin, konumunu yalnızca uygulama açıkken kullanır.';
+
+  @override
+  String get settingsThemeChoiceRamadan => 'Ramazan — Leyali';
+
+  @override
+  String get settingsThemeModeRamadanDescription =>
+      'Parlayan bir fener ve ayın hilaliyle aydınlanan mor bir Ramazan gecesi.';
+
+  @override
+  String get settingsThemeModeRamadanBestFor =>
+      'En iyi: mübarek ay boyunca, sahurdan teravihe';
+
+  @override
+  String get settingsDressUpRamadanTitle => 'Ramazan için süslen';
+
+  @override
+  String get settingsDressUpRamadanSubtitle =>
+      'Ramazan boyunca Leyali temasını kullan, sonra kendi temana dön.';
+
+  @override
+  String homeRamadanDayLabel(Object day) {
+    return 'Ramazan · $day. Gün';
+  }
+
+  @override
+  String homeRamadanIftarIn(Object duration) {
+    return 'İftara $duration';
+  }
+
+  @override
+  String homeRamadanIftarAt(Object time) {
+    return 'İftar saati $time';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsIn(Object duration) {
+    return 'Sahurun bitmesine $duration';
+  }
+
+  @override
+  String homeRamadanSuhoorEndsAt(Object time) {
+    return 'Sahur $time sona eriyor';
+  }
 }
