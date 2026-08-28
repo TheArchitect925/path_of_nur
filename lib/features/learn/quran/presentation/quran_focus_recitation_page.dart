@@ -846,8 +846,8 @@ class _FocusRecitationControls extends StatelessWidget {
         : isPreparing
         ? Icons.hourglass_top_rounded
         : isPlaying
-        ? Icons.pause_circle_filled_rounded
-        : Icons.play_circle_fill_rounded;
+        ? Icons.pause_rounded
+        : Icons.play_arrow_rounded;
     final primaryEnabled = showRetryAction || canPause || canPlay;
     return DecoratedBox(
       decoration: decoration,
