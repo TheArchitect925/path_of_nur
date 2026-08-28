@@ -2722,7 +2722,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Himpunkan ayat hari ini, panduan dan pembelajaran di satu tempat yang tenang.';
 
   @override
-  String get homeRightNowTitle => 'Untuk saat ini';
+  String get homeRightNowTitle => 'Doa untuk sekarang';
 
   @override
   String get homeRightNowSubtitle => 'Doa mengikut waktu anda';

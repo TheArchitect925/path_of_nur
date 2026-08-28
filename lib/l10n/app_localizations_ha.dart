@@ -2743,7 +2743,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'Ajiye ayar yau, shiriya da koyo tare a wuri guda mai nutsuwa.';
 
   @override
-  String get homeRightNowTitle => 'Don wannan lokaci';
+  String get homeRightNowTitle => 'Addu\'o\'in yanzu';
 
   @override
   String get homeRightNowSubtitle => 'Addu\'o\'in da suka dace da lokacin rana';

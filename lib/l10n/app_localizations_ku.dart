@@ -2734,7 +2734,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Aya îro, rêberî û fêrbûnê li yek cihê aram bi hev re bigire.';
 
   @override
-  String get homeRightNowTitle => 'Bo vê kêliyê';
+  String get homeRightNowTitle => 'Duayên niha';
 
   @override
   String get homeRightNowSubtitle => 'Dua li gorî dema rojê';

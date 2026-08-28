@@ -2728,7 +2728,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'آج کی آیت، رہنمائی اور سیکھنے کو ایک پُرسکون جگہ میں ساتھ رکھیں۔';
 
   @override
-  String get homeRightNowTitle => 'اس لمحے کے لیے';
+  String get homeRightNowTitle => 'ابھی کے لیے دعائیں';
 
   @override
   String get homeRightNowSubtitle => 'دن کے وقت کے مطابق دعائیں';

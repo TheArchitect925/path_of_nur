@@ -2785,7 +2785,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Halte die heutige Ayah, Führung und Lerninhalte an einem ruhigen Ort zusammen.';
 
   @override
-  String get homeRightNowTitle => 'Für diesen Moment';
+  String get homeRightNowTitle => 'Duas für jetzt';
 
   @override
   String get homeRightNowSubtitle => 'Duas passend zur Tageszeit';

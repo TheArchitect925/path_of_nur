@@ -4690,7 +4690,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeRightNowTitle.
   ///
   /// In en, this message translates to:
-  /// **'For this moment'**
+  /// **'Duas for right now'**
   String get homeRightNowTitle;
 
   /// No description provided for @homeRightNowSubtitle.

@@ -2738,7 +2738,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਅੱਜ ਦੀ ਆਯਤ, ਰਹਿਨੁਮਾਈ ਅਤੇ ਸਿੱਖਿਆ ਨੂੰ ਇੱਕ ਸ਼ਾਂਤ ਥਾਂ ਤੇ ਇਕੱਠੇ ਰੱਖੋ।';
 
   @override
-  String get homeRightNowTitle => 'ਇਸ ਪਲ ਲਈ';
+  String get homeRightNowTitle => 'ਹੁਣ ਲਈ ਦੁਆਵਾਂ';
 
   @override
   String get homeRightNowSubtitle => 'ਦਿਨ ਦੇ ਸਮੇਂ ਅਨੁਸਾਰ ਦੁਆਵਾਂ';

@@ -2720,7 +2720,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'اجمع آية اليوم والهداية والتعلم في مكان هادئ واحد.';
 
   @override
-  String get homeRightNowTitle => 'لهذه اللحظة';
+  String get homeRightNowTitle => 'أدعية الآن';
 
   @override
   String get homeRightNowSubtitle => 'أدعية مختارة حسب وقتك من اليوم';

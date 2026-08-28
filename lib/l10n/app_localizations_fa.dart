@@ -2700,7 +2700,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'آیه، هدایت و یادگیری امروز را در یک جای آرام کنار هم نگه دارید.';
 
   @override
-  String get homeRightNowTitle => 'برای این لحظه';
+  String get homeRightNowTitle => 'دعاهای اکنون';
 
   @override
   String get homeRightNowSubtitle => 'دعاهای متناسب با وقت روز';
@@ -44382,7 +44382,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'آیه، هدایت و یادگیری امروز را در یک جای آرام کنار هم نگه دارید.';
 
   @override
-  String get homeRightNowTitle => 'برای این لحظه';
+  String get homeRightNowTitle => 'دعاهای اکنون';
 
   @override
   String get homeRightNowSubtitle => 'دعاهای متناسب با وقت روز';

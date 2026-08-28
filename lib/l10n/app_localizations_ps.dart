@@ -2731,7 +2731,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'د نن آيت، لارښوونه او زده کړه په يو ارام ځای کې سره يو ځای وساتئ.';
 
   @override
-  String get homeRightNowTitle => 'د دې شېبې لپاره';
+  String get homeRightNowTitle => 'د اوس دعاګانې';
 
   @override
   String get homeRightNowSubtitle => 'د ورځې له وخت سره سمې دعاګانې';

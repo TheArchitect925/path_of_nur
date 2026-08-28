@@ -2719,7 +2719,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Simpan ayat hari ini, panduan, dan pembelajaran bersama di satu tempat yang tenang.';
 
   @override
-  String get homeRightNowTitle => 'Untuk saat ini';
+  String get homeRightNowTitle => 'Doa untuk sekarang';
 
   @override
   String get homeRightNowSubtitle => 'Doa yang sesuai dengan waktu Anda';
