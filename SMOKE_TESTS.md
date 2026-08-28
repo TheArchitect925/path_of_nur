@@ -44,6 +44,7 @@
 | PON-S-journey-stats-viz | PON-E-information-display-redesign | Rings, sparklines, and activity heatmaps for Journey statistics | 5 | done |
 | PON-S-reader-typography-split | PON-E-information-display-redesign | Split reader into part files; Lora serif for translation; themed sheets | 3 | done |
 | PON-S-unified-search | PON-E-information-display-redesign | All hub search entries open the canonical /search page | 3 | done |
+| PON-S-recommendation-stability | PON-E-information-display-redesign | Pin the daily recommendation per surface; dismiss removes the visible ayah | 2 | done |
 
 ## Smoke Tests
 
@@ -76,3 +77,5 @@
 | PON-T-025 | Reader support text is serif and dark-safe | Open any surah in the reader with transliteration + translation on, in light AND a dark theme. Expected: translation/transliteration render in the Lora serif with relaxed line height, and remain clearly legible in dark themes (previously black-on-dark). | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-dark-quran-support-text · sprint:2026-08-27 |
 | PON-T-026 | One search everywhere | Tap the search card on Worship, Learn, Journey, and Qur'an tabs, and the search icon on Home. Expected: all five open the same global search page; typing Arabic (e.g. اهدنا), transliteration (naabudu), or English surfaces Qur'an/hadith/dua results with working navigation. | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-unified-search · sprint:2026-08-27 |
 | PON-T-027 | Headings use the bundled serif on both platforms | Compare any page title on iOS and Android (e.g. Home header, Learn hub). Expected: both render the same Lora serif (previously iOS showed Times and Android Noto Serif via the system 'serif' alias). | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-latin-type-system · sprint:2026-08-27 |
+| PON-T-028 | "For you today" stays put and dismisses correctly | Open Home, note the ayah in the "For you today" card, switch to another tab and back, scroll away and back. Expected: the same ayah is still shown (no shuffling on its own). Tap the X. Expected: that exact ayah disappears, a different one replaces it, the replacement also stays stable, and no dismissed ayah returns that day. | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-recommendation-stability · sprint:2026-08-27 |
+| PON-T-029 | Home sections have distinct names | Open Home and scroll through. Expected: the horizontal dua row is titled "Duas for right now" and the ayah card is titled "For this moment" — no two sections on Home share a title. | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-recommendation-stability · sprint:2026-08-27 |
