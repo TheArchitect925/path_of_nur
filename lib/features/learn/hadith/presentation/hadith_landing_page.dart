@@ -11,7 +11,6 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
-import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/hadith_daily_reflection_service.dart';
 import '../application/hadith_foundation_repository.dart';
@@ -34,7 +33,6 @@ class HadithLandingPage extends ConsumerStatefulWidget {
 
 class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
   _HadithTab _selectedTab = _HadithTab.themes;
-  final TextEditingController _searchController = TextEditingController();
   late final QuranQuote _entryQuote;
 
   @override
@@ -57,7 +55,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
 
   @override
   void dispose() {
-    _searchController.dispose();
     super.dispose();
   }
 
@@ -108,53 +105,50 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
         ),
         const SizedBox(height: 12),
         if (_selectedTab == _HadithTab.themes) ...[
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.hadithTitleEssentialStarter,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  l10n.hadithSubtitleEssentialStarter,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 10),
-                FilledButton.tonalIcon(
-                  onPressed: () => context.pushNamed('learnHadithImportant'),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  label: Text(l10n.hadithActionStartEssential),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
+          if (dailyBundle.entry != null) ...[
+            _DailyHadithHero(bundle: dailyBundle),
+            const SizedBox(height: 12),
+          ],
+          Row(
             children: [
-              FilledButton.tonalIcon(
-                onPressed: () => context.pushNamed('hadithBrowse'),
-                icon: const Icon(Icons.tune_rounded),
-                label: Text(l10n.hadithActionBrowseAllHadith),
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.play_arrow_rounded,
+                  label: l10n.hadithTitleEssentialStarter,
+                  onTap: () => context.pushNamed('learnHadithImportant'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.tune_rounded,
+                  label: l10n.hadithActionBrowseAllHadith,
+                  onTap: () => context.pushNamed('hadithBrowse'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.library_books_rounded,
+                  label: l10n.hadithActionBrowseSources,
+                  onTap: () => context.pushNamed('hadithSourceBrowse'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.search_rounded,
+                  label: l10n.hadithSearchTitle,
+                  onTap: () => context.pushNamed('hadithSearch'),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          PremiumCard(
-            surfaceVariant: AppSurfaceVariant.panel,
-            child: LearnDiscoverySearchField(
-              controller: _searchController,
-              hintText: l10n.searchHadithHint,
-              readOnly: true,
-              onTap: () => context.pushNamed('hadithSearch'),
-            ),
-          ),
-          const SizedBox(height: 10),
           ..._buildThemeRows(context, themes, savedIds),
         ],
         if (_selectedTab == _HadithTab.collections) ...[
@@ -1014,5 +1008,77 @@ Color _hadithThemeIconBaseColor(String themeId) {
       return const Color(0xFFE4E7EE);
     default:
       return const Color(0xFFECE5D7);
+  }
+}
+
+class _DailyHadithHero extends ConsumerWidget {
+  const _DailyHadithHero({required this.bundle});
+
+  final HadithDailyReflectionBundle bundle;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final entry = bundle.entry!;
+    final sourceLine =
+        '${entry.displaySourceCollection}'
+        '${entry.displaySourceReference == null ? '' : ' \u2022 ${entry.displaySourceReference}'}';
+    return PremiumCard(
+      density: PremiumCardDensity.compact,
+      onTap: () => context.pushNamed(
+        'hadithLessonDetail',
+        pathParameters: {'lessonId': entry.id},
+      ),
+      leading: const Icon(Icons.wb_twilight_rounded),
+      title: Text(l10n.hadithTitleDailyReflection),
+      trailing: const Icon(Icons.chevron_right_rounded),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            entry.title,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(sourceLine, style: Theme.of(context).textTheme.bodySmall),
+        ],
+      ),
+    );
+  }
+}
+
+class _HadithFeatureTile extends StatelessWidget {
+  const _HadithFeatureTile({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      density: PremiumCardDensity.compact,
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 22),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ],
+      ),
+    );
   }
 }

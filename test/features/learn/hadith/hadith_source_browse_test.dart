@@ -148,7 +148,12 @@ void main() {
 
         expect(find.text('General chapter'), findsWidgets);
 
+        // Tapping an entry expands its full text inline; the explicit open
+        // action pushes the canonical hadith reader.
         await tester.tap(find.text('Actions Are by Intentions').first);
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.byIcon(Icons.open_in_new_rounded).first);
         await tester.pumpAndSettle();
 
         expect(find.text('Source'), findsOneWidget);
