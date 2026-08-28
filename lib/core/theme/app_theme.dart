@@ -139,11 +139,11 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   );
 
   Color get backgroundForeground => isDark && !disableBackground
-      ? (isMidnightFamily ? const Color(0xFFE1D0AB) : const Color(0xFF2A231C))
+      ? (isMidnightFamily ? const Color(0xFFE1D0AB) : onSurface)
       : onSurface;
 
   Color get backgroundForegroundSubtle => isDark && !disableBackground
-      ? (isMidnightFamily ? const Color(0xFF9D8860) : const Color(0xFF4F4438))
+      ? (isMidnightFamily ? const Color(0xFF9D8860) : onSurfaceSubtle)
       : onSurfaceSubtle;
 
   Color get navLabelActive => isMidnightFamily
