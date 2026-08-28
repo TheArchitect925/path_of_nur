@@ -13,11 +13,18 @@ class _SettingsGroupCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final appearance = theme.extension<AppAppearanceTheme>();
+    final surface = appearance?.surfaceSoft ?? theme.colorScheme.surface;
+    final foreground = appearance?.onSurface ?? theme.colorScheme.onSurface;
+    final subtle =
+        appearance?.onSurfaceSubtle ?? theme.colorScheme.onSurfaceVariant;
+    final accent = appearance?.accent ?? theme.colorScheme.primary;
     return Material(
-      color: const Color(0xFFFAF6F0),
+      color: surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18),
-        side: BorderSide(color: AppColors.accentGold.withValues(alpha: 0.20)),
+        side: BorderSide(color: accent.withValues(alpha: 0.20)),
       ),
       child: Container(
         width: double.infinity,
@@ -27,19 +34,15 @@ class _SettingsGroupCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w800,
-                color: const Color(0xFF4F4032),
+                color: foreground,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               subtitle,
-              style: const TextStyle(
-                fontSize: 12,
-                height: 1.35,
-                color: Color(0xFF6A5A4A),
-              ),
+              style: TextStyle(fontSize: 12, height: 1.35, color: subtle),
             ),
             const SizedBox(height: 12),
             child,
@@ -57,14 +60,17 @@ class _SettingsSubsectionLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     return Padding(
       padding: const EdgeInsets.only(bottom: 6),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w700,
-          color: Color(0xFF6A5A4A),
+          color:
+              appearance?.onSurfaceSubtle ??
+              Theme.of(context).colorScheme.onSurfaceVariant,
         ),
       ),
     );
@@ -84,15 +90,18 @@ class _ScaleControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           '$label ($percent%)',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF6A5A4A),
+            color:
+                appearance?.onSurfaceSubtle ??
+                Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         Slider(

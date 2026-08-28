@@ -384,6 +384,7 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       baseStyle: QuranPresentationStyle.quranSupportTextStyle(
                         context,
                         TextStyle(
+                          fontFamily: AppFonts.latinSerif,
                           fontStyle: FontStyle.italic,
                           height: 1.6,
                           fontSize: widget.transliterationFontSize,
@@ -398,16 +399,17 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                   ),
                 ],
                 if (widget.showTranslation) ...[
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 10),
                   Text.rich(
                     _buildFollowTextSpan(
                       text: widget.ayah.translation,
                       searchHighlightField: QuranSearchMatchField.translation,
                       baseStyle: TextStyle(
+                        fontFamily: AppFonts.latinSerif,
                         height:
                             widget.studyMode == QuranReaderStudyMode.reflection
                             ? 1.65
-                            : 1.5,
+                            : 1.55,
                         fontSize: widget.translationFontSize,
                         fontWeight:
                             widget.studyMode == QuranReaderStudyMode.reflection

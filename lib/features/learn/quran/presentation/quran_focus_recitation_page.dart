@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
+import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/quran_presentation_style.dart';
@@ -647,10 +648,15 @@ class _FocusRecitationAyahView extends StatelessWidget {
         final translationStyle = QuranPresentationStyle.quranSupportTextStyle(
           context,
           Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontFamily: AppFonts.latinSerif,
                 fontSize: 18 * translationScale,
-                height: 1.5,
+                height: 1.55,
               ) ??
-              TextStyle(fontSize: 18 * translationScale, height: 1.5),
+              TextStyle(
+                fontFamily: AppFonts.latinSerif,
+                fontSize: 18 * translationScale,
+                height: 1.55,
+              ),
         );
         final transliterationStyle =
             QuranPresentationStyle.quranSupportTextStyle(

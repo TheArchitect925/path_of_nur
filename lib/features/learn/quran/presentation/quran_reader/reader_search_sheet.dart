@@ -315,7 +315,7 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                     ? l10n.quranReaderSearchScopeSubtitle
                     : l10n.quranReaderSearchWholeQuranSubtitle,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFF6A5A4A),
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
               const SizedBox(height: 12),
@@ -373,7 +373,7 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                       Text(
                         l10n.quranRecentSearches,
                         style: theme.textTheme.labelLarge?.copyWith(
-                          color: const Color(0xFF6A5A4A),
+                          color: theme.colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -405,7 +405,7 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                       Text(
                         l10n.quranSuggestedSearches,
                         style: theme.textTheme.labelLarge?.copyWith(
-                          color: const Color(0xFF6A5A4A),
+                          color: theme.colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -445,7 +445,7 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                           _currentSurahResults.length,
                         ),
                         style: theme.textTheme.labelLarge?.copyWith(
-                          color: const Color(0xFF6A5A4A),
+                          color: theme.colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -485,7 +485,7 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                           _wholeQuranResults.length,
                         ),
                         style: theme.textTheme.labelLarge?.copyWith(
-                          color: const Color(0xFF6A5A4A),
+                          color: theme.colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w700,
                         ),
                       ),

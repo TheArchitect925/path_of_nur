@@ -11,7 +11,9 @@ import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_fonts.dart';
 import '../../../../../core/theme/app_text_styles.dart';
+import '../../../../../core/theme/app_theme.dart';
 import '../../../../../core/reminders/quran_live_activity_service.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/persistence/local_store.dart';
