@@ -18654,5 +18654,10 @@
   "settingsThemeModeMidnightBestFor": "الأنسب لِـ: القراءة الليلية وشاشات OLED",
   "settingsThemeModeCandlelightDescription": "غرفة دافئة على ضوء الشموع — بني داكن مع توهج ناعم. إضاءة زرقاء منخفضة ولطيفة على العيون المتعبة.",
   "settingsThemeModeCandlelightBestFor": "الأنسب لِـ: الاسترخاء قبل النوم",
-  "quranReaderAtmosphereFollowApp": "مطابقة مظهر التطبيق"
+  "quranReaderAtmosphereFollowApp": "مطابقة مظهر التطبيق",
+  "settingsThemeChoiceJummah": "الجمعة",
+  "settingsThemeModeJummahDescription": "أخضر مسجدي عميق يتوجه قوس محراب ذهبي — التطبيق في حُلّة خير الأيام.",
+  "settingsThemeModeJummahBestFor": "الأنسب لِـ: أيام الجمعة، من الليل إلى الخطبة",
+  "settingsDressUpFridaysTitle": "تزيين أيام الجمعة",
+  "settingsDressUpFridaysSubtitle": "ارتدِ مظهر الجمعة كل جمعة ثم عد إلى مظهرك."
 }

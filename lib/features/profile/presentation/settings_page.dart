@@ -88,6 +88,7 @@ class SettingsPage extends ConsumerWidget {
       AppThemeMode.noorGlass,
       AppThemeMode.midnight,
       AppThemeMode.candlelight,
+      AppThemeMode.jummah,
       AppThemeMode.noorGlassDark,
       AppThemeMode.noGlass,
       AppThemeMode.noGlassDark,
@@ -865,6 +866,19 @@ class SettingsPage extends ConsumerWidget {
                       ProfileThemePreference.system,
                   onChanged: (value) {
                     profileSettingsNotifier.setFollowSystemTheme(value);
+                    _showAppearanceSnack(
+                      context,
+                      l10n.settingsThemeChangedSuccessfully,
+                    );
+                  },
+                ),
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsDressUpFridaysTitle),
+                  subtitle: Text(l10n.settingsDressUpFridaysSubtitle),
+                  value: profileSettings.dressUpFridays,
+                  onChanged: (value) {
+                    profileSettingsNotifier.setDressUpFridays(value);
                     _showAppearanceSnack(
                       context,
                       l10n.settingsThemeChangedSuccessfully,
@@ -3087,6 +3101,8 @@ String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeMidnightDescription;
     case AppThemeMode.candlelight:
       return l10n.settingsThemeModeCandlelightDescription;
+    case AppThemeMode.jummah:
+      return l10n.settingsThemeModeJummahDescription;
   }
 }
 
@@ -3118,6 +3134,8 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.quranReaderAtmosphereMidnight;
     case AppThemeMode.candlelight:
       return l10n.quranReaderAtmosphereCandlelight;
+    case AppThemeMode.jummah:
+      return l10n.settingsThemeChoiceJummah;
   }
 }
 
@@ -3149,6 +3167,8 @@ String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeMidnightBestFor;
     case AppThemeMode.candlelight:
       return l10n.settingsThemeModeCandlelightBestFor;
+    case AppThemeMode.jummah:
+      return l10n.settingsThemeModeJummahBestFor;
   }
 }
 

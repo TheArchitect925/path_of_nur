@@ -41880,4 +41880,22 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Bi jigon manhaja';
+
+  @override
+  String get settingsThemeChoiceJummah => 'Jumma\'a';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Koren masallaci mai zurfi da bakan mihrab na zinariya — manhajar cikin kayan mafi kyawun rana.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'Ya fi dacewa da: Juma\'a, daga dare zuwa huduba';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Ado ranakun Juma\'a';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Sanya jigon Jumma\'a kowace Juma\'a, sannan koma jigonka.';
 }

@@ -9,6 +9,7 @@ import '../core/localization/locale_provider.dart';
 import '../core/reminders/prayer_live_activity_service.dart';
 import '../core/reminders/reminder_scheduler.dart';
 import '../core/theme/app_theme.dart';
+import '../core/theme/occasion_theme.dart';
 import '../features/journey/application/growth_reminder_scheduler.dart';
 import '../features/journey/application/growth_providers.dart';
 import '../features/journey/application/growth_widget_support.dart';
@@ -21,6 +22,7 @@ import '../features/accounts_sync/application/auto_backup_engine.dart';
 import '../features/ios_widgets/application/iphone_home_widget_sync_service.dart';
 import '../features/profile/application/profile_settings_provider.dart';
 import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
+import '../shared/application/daily_clock_provider.dart';
 import '../l10n/app_localizations.dart';
 
 class PathOfNurApp extends ConsumerWidget {
@@ -45,8 +47,15 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
+    final occasionNow =
+        ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final effectiveThemeMode = resolveOccasionThemeMode(
+      baseMode: profileSettings.appThemeMode,
+      dressUpFridays: profileSettings.dressUpFridays,
+      now: occasionNow,
+    );
     final manualTheme = AppTheme.themeFor(
-      mode: profileSettings.appThemeMode,
+      mode: effectiveThemeMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,
       reduceMotion: profileSettings.reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
@@ -58,8 +67,8 @@ class PathOfNurApp extends ConsumerWidget {
     );
     final useSystemTheme =
         profileSettings.themePreference == ProfileThemePreference.system;
-    final lightMode = _lightThemeModeFor(profileSettings.appThemeMode);
-    final darkMode = _darkThemeModeFor(profileSettings.appThemeMode);
+    final lightMode = _lightThemeModeFor(effectiveThemeMode);
+    final darkMode = _darkThemeModeFor(effectiveThemeMode);
     final lightTheme = AppTheme.themeFor(
       mode: lightMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,
@@ -113,6 +122,9 @@ AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
     case AppThemeMode.midnight:
     case AppThemeMode.candlelight:
       return AppThemeMode.noorGlass;
+    // The Jumu'ah occasion holds day and night alike.
+    case AppThemeMode.jummah:
+      return AppThemeMode.jummah;
     default:
       return mode;
   }

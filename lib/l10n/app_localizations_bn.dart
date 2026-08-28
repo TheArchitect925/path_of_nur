@@ -41758,4 +41758,22 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'অ্যাপের থিম অনুসরণ করুন';
+
+  @override
+  String get settingsThemeChoiceJummah => 'জুমু\'আহ';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'সোনালি মিহরাব খিলানে মুকুট পরা গভীর মসজিদ-সবুজ — সেরা দিনের সাজে অ্যাপ।';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'সবচেয়ে উপযুক্ত: শুক্রবার, রাত থেকে খুতবা পর্যন্ত';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'শুক্রবার সাজান';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'প্রতি শুক্রবার জুমু\'আহ থিম পরুন, তারপর আপনার থিমে ফিরে যান।';
 }

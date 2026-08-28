@@ -18657,5 +18657,10 @@
   "settingsThemeModeMidnightBestFor": "مناسب برای: مطالعه شبانه و صفحه‌های OLED",
   "settingsThemeModeCandlelightDescription": "اتاقی گرم در نور شمع — قهوه‌ای تیره با تابشی ملایم. نور آبی کم و ملایم برای چشمان خسته.",
   "settingsThemeModeCandlelightBestFor": "مناسب برای: آرامش پیش از خواب",
-  "quranReaderAtmosphereFollowApp": "هماهنگ با پوسته برنامه"
+  "quranReaderAtmosphereFollowApp": "هماهنگ با پوسته برنامه",
+  "settingsThemeChoiceJummah": "جمعه",
+  "settingsThemeModeJummahDescription": "سبز مسجدی ژرف با تاج قوس محراب طلایی — برنامه در جامه بهترین روز.",
+  "settingsThemeModeJummahBestFor": "مناسب برای: جمعه‌ها، از شب تا خطبه",
+  "settingsDressUpFridaysTitle": "آراستن جمعه‌ها",
+  "settingsDressUpFridaysSubtitle": "هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد."
 }

@@ -18666,5 +18666,10 @@
   "settingsThemeModeMidnightBestFor": "Ya fi dacewa da: karatun dare da allon OLED",
   "settingsThemeModeCandlelightDescription": "Daki mai dumi cikin hasken kyandir — ruwan kasa mai zurfi da haske mai laushi. Karancin shudin haske, mai sauki ga idanu.",
   "settingsThemeModeCandlelightBestFor": "Ya fi dacewa da: hutawa kafin barci",
-  "quranReaderAtmosphereFollowApp": "Bi jigon manhaja"
+  "quranReaderAtmosphereFollowApp": "Bi jigon manhaja",
+  "settingsThemeChoiceJummah": "Jumma''a",
+  "settingsThemeModeJummahDescription": "Koren masallaci mai zurfi da bakan mihrab na zinariya — manhajar cikin kayan mafi kyawun rana.",
+  "settingsThemeModeJummahBestFor": "Ya fi dacewa da: Juma''a, daga dare zuwa huduba",
+  "settingsDressUpFridaysTitle": "Ado ranakun Juma''a",
+  "settingsDressUpFridaysSubtitle": "Sanya jigon Jumma''a kowace Juma''a, sannan koma jigonka."
 }

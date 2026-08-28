@@ -58,6 +58,7 @@ class ProfileSettingsState {
     required this.prayerCalendarMode,
     required this.disableGlassTransparency,
     required this.disableColoredGlass,
+    required this.dressUpFridays,
     required this.glassTransparencyLevel,
     required this.disableBackground,
     this.ramadanStartDateIso,
@@ -94,6 +95,9 @@ class ProfileSettingsState {
   final PrayerCalendarMode prayerCalendarMode;
   final bool disableGlassTransparency;
   final bool disableColoredGlass;
+
+  /// Wear the Jumu'ah (Masjid Emerald) theme every Friday, reverting after.
+  final bool dressUpFridays;
   final double glassTransparencyLevel;
   final bool disableBackground;
   final String? ramadanStartDateIso;
@@ -139,6 +143,7 @@ class ProfileSettingsState {
     PrayerCalendarMode? prayerCalendarMode,
     bool? disableGlassTransparency,
     bool? disableColoredGlass,
+    bool? dressUpFridays,
     double? glassTransparencyLevel,
     bool? disableBackground,
     String? ramadanStartDateIso,
@@ -180,6 +185,7 @@ class ProfileSettingsState {
       disableGlassTransparency:
           disableGlassTransparency ?? this.disableGlassTransparency,
       disableColoredGlass: disableColoredGlass ?? this.disableColoredGlass,
+      dressUpFridays: dressUpFridays ?? this.dressUpFridays,
       glassTransparencyLevel: glassTransparencyLevel == null
           ? this.glassTransparencyLevel
           : normalizedGlassTransparencyLevel(glassTransparencyLevel),
@@ -224,6 +230,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           prayerCalendarMode: PrayerCalendarMode.gregorian,
           disableGlassTransparency: false,
           disableColoredGlass: false,
+          dressUpFridays: false,
           glassTransparencyLevel: kGlassTransparencyLevelDefault,
           disableBackground: false,
         ),
@@ -447,6 +454,11 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setDressUpFridays(bool value) {
+    state = state.copyWith(dressUpFridays: value);
+    _save();
+  }
+
   void setGlassTransparencyLevel(double value) {
     state = state.copyWith(glassTransparencyLevel: value);
     _save();
@@ -589,6 +601,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           state.disableGlassTransparency,
       disableColoredGlass:
           data['disableColoredGlass'] as bool? ?? state.disableColoredGlass,
+      dressUpFridays: data['dressUpFridays'] as bool? ?? state.dressUpFridays,
       glassTransparencyLevel: normalizedGlassTransparencyLevel(
         (data['glassTransparencyLevel'] as num?)?.toDouble() ??
             kGlassTransparencyLevelDefault,
@@ -635,6 +648,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'prayerCalendarMode': state.prayerCalendarMode.name,
       'disableGlassTransparency': state.disableGlassTransparency,
       'disableColoredGlass': state.disableColoredGlass,
+      'dressUpFridays': state.dressUpFridays,
       'glassTransparencyLevel': state.glassTransparencyLevel,
       'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,

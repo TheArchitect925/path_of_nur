@@ -62,6 +62,7 @@ class AppBackgroundTheme {
         );
       case AppThemeMode.midnight:
       case AppThemeMode.candlelight:
+      case AppThemeMode.jummah:
         return _nightSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
@@ -360,6 +361,34 @@ class AppBackgroundTheme {
     required AppBackgroundAtmosphere atmosphere,
   }) {
     final quranLift = atmosphere == AppBackgroundAtmosphere.quran;
+    if (appearance.mode == AppThemeMode.jummah) {
+      // Masjid Emerald: dome-green ground; the golden mihrab arch itself is
+      // painted by GlobalBackground, the spec carries only a faint crown.
+      return AppBackgroundSpec(
+        baseGradient: const RadialGradient(
+          center: Alignment(0, -0.85),
+          radius: 1.5,
+          colors: <Color>[
+            Color(0xFF1E4B3A),
+            Color(0xFF16382C),
+            Color(0xFF0D271E),
+          ],
+          stops: <double>[0.0, 0.48, 1.0],
+        ),
+        wallpaperTintGradient: const LinearGradient(
+          colors: <Color>[Colors.transparent, Colors.transparent],
+        ),
+        foregroundGlowGradient: RadialGradient(
+          center: const Alignment(0, -1.15),
+          radius: 1.05,
+          colors: <Color>[
+            const Color(0xFFDCC07A).withValues(alpha: quranLift ? 0.14 : 0.10),
+            Colors.transparent,
+          ],
+          stops: const <double>[0.0, 0.58],
+        ),
+      );
+    }
     final isCandlelight = appearance.mode == AppThemeMode.candlelight;
     if (isCandlelight) {
       return AppBackgroundSpec(

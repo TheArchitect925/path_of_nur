@@ -18549,5 +18549,10 @@
   "settingsThemeModeMidnightBestFor": "Best for: night reading and OLED screens",
   "settingsThemeModeCandlelightDescription": "A warm candlelit room — deep umber with a soft glow. Low blue light, gentle on tired eyes.",
   "settingsThemeModeCandlelightBestFor": "Best for: winding down before sleep",
-  "quranReaderAtmosphereFollowApp": "Match app theme"
+  "quranReaderAtmosphereFollowApp": "Match app theme",
+  "settingsThemeChoiceJummah": "Jumu''ah",
+  "settingsThemeModeJummahDescription": "Deep masjid green crowned by a golden mihrab arch — the app dressed for the best of days.",
+  "settingsThemeModeJummahBestFor": "Best for: Fridays, from night to khutbah",
+  "settingsDressUpFridaysTitle": "Dress up Fridays",
+  "settingsDressUpFridaysSubtitle": "Wear the Jumu''ah theme every Friday, then return to your theme."
 }

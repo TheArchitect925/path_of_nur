@@ -41871,4 +41871,22 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'ऐप थीम से मिलाएं';
+
+  @override
+  String get settingsThemeChoiceJummah => 'जुमुआ';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'सुनहरे मेहराब से सुसज्जित गहरा मस्जिद-हरा — सबसे बेहतरीन दिन के लिए सजा ऐप।';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'सबसे उपयुक्त: शुक्रवार, रात से खुतबे तक';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'शुक्रवार सजाएं';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'हर शुक्रवार जुमुआ थीम पहनें, फिर अपनी थीम पर लौटें।';
 }

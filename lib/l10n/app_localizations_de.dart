@@ -42321,4 +42321,22 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Dem App-Design folgen';
+
+  @override
+  String get settingsThemeChoiceJummah => 'Dschumu\'a';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Tiefes Moscheegrün, gekrönt von einem goldenen Mihrab-Bogen — die App im Gewand des besten Tages.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'Ideal für: Freitage, von der Nacht bis zur Chutba';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Freitage festlich kleiden';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Trage jeden Freitag das Dschumu\'a-Design und kehre danach zu deinem Design zurück.';
 }

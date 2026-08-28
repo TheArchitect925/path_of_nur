@@ -41812,4 +41812,22 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Uygulama temasına uy';
+
+  @override
+  String get settingsThemeChoiceJummah => 'Cuma';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Altın mihrap kemeriyle taçlanmış derin cami yeşili — günlerin en hayırlısı için giyinmiş uygulama.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'En uygun: Cumalar, geceden hutbeye';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Cumaları süsle';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Her Cuma, Cuma temasını giy; sonra kendi temana dön.';
 }

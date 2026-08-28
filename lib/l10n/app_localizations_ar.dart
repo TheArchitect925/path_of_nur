@@ -41561,4 +41561,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'مطابقة مظهر التطبيق';
+
+  @override
+  String get settingsThemeChoiceJummah => 'الجمعة';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'أخضر مسجدي عميق يتوجه قوس محراب ذهبي — التطبيق في حُلّة خير الأيام.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'الأنسب لِـ: أيام الجمعة، من الليل إلى الخطبة';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'تزيين أيام الجمعة';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'ارتدِ مظهر الجمعة كل جمعة ثم عد إلى مظهرك.';
 }

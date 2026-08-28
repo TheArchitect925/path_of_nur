@@ -63,7 +63,9 @@ class GlobalBackground extends ConsumerWidget {
                   // controls.
                   moonFraction: const Offset(0.735, 0.105),
                 ),
-              ),
+              )
+            else if (appearance.mode == AppThemeMode.jummah)
+              CustomPaint(painter: MihrabArchPainter()),
             IgnorePointer(
               child: DecoratedBox(
                 decoration: BoxDecoration(

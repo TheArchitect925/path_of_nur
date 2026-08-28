@@ -41839,4 +41839,22 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Li gorî dirûvê sepanê';
+
+  @override
+  String get settingsThemeChoiceJummah => 'În';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Keskê mizgeftê yê kûr bi kevana mîhrabê ya zêrîn — sepan di cilê roja herî baş de.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'Herî baş ji bo: rojên Înê, ji şevê heta xutbeyê';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Rojên Înê bixemilîne';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Her Înê dirûvê Înê li xwe bike, paşê vegere dirûvê xwe.';
 }

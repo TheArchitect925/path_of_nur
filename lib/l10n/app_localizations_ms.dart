@@ -41805,4 +41805,22 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Ikut tema aplikasi';
+
+  @override
+  String get settingsThemeChoiceJummah => 'Jumaat';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Hijau masjid pekat bermahkota lengkung mihrab emas — aplikasi berhias untuk sebaik-baik hari.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'Paling sesuai untuk: hari Jumaat, dari malam hingga khutbah';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Hiaskan hari Jumaat';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Pakai tema Jumaat setiap Jumaat, kemudian kembali ke tema anda.';
 }

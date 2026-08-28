@@ -69660,6 +69660,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Match app theme'**
   String get quranReaderAtmosphereFollowApp;
+
+  /// No description provided for @settingsThemeChoiceJummah.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'\'ah'**
+  String get settingsThemeChoiceJummah;
+
+  /// No description provided for @settingsThemeModeJummahDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep masjid green crowned by a golden mihrab arch — the app dressed for the best of days.'**
+  String get settingsThemeModeJummahDescription;
+
+  /// No description provided for @settingsThemeModeJummahBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for: Fridays, from night to khutbah'**
+  String get settingsThemeModeJummahBestFor;
+
+  /// No description provided for @settingsDressUpFridaysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dress up Fridays'**
+  String get settingsDressUpFridaysTitle;
+
+  /// No description provided for @settingsDressUpFridaysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wear the Jumu\'\'ah theme every Friday, then return to your theme.'**
+  String get settingsDressUpFridaysSubtitle;
 }
 
 class _AppLocalizationsDelegate

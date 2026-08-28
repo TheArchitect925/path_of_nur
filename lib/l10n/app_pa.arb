@@ -18666,5 +18666,10 @@
   "settingsThemeModeMidnightBestFor": "ਸਭ ਤੋਂ ਢੁਕਵਾਂ: ਰਾਤ ਦੀ ਪੜ੍ਹਾਈ ਅਤੇ OLED ਸਕਰੀਨਾਂ",
   "settingsThemeModeCandlelightDescription": "ਮੋਮਬੱਤੀ ਦੀ ਰੋਸ਼ਨੀ ਵਾਲਾ ਨਿੱਘਾ ਕਮਰਾ — ਗੂੜ੍ਹਾ ਭੂਰਾ ਅਤੇ ਕੋਮਲ ਚਮਕ। ਘੱਟ ਨੀਲੀ ਰੋਸ਼ਨੀ, ਥੱਕੀਆਂ ਅੱਖਾਂ ਲਈ ਆਰਾਮਦਾਇਕ।",
   "settingsThemeModeCandlelightBestFor": "ਸਭ ਤੋਂ ਢੁਕਵਾਂ: ਸੌਣ ਤੋਂ ਪਹਿਲਾਂ ਆਰਾਮ",
-  "quranReaderAtmosphereFollowApp": "ਐਪ ਥੀਮ ਨਾਲ ਮਿਲਾਓ"
+  "quranReaderAtmosphereFollowApp": "ਐਪ ਥੀਮ ਨਾਲ ਮਿਲਾਓ",
+  "settingsThemeChoiceJummah": "ਜੁਮਾ",
+  "settingsThemeModeJummahDescription": "ਸੁਨਹਿਰੀ ਮਿਹਰਾਬ ਮੇਹਰਾਬ ਨਾਲ ਸਜਿਆ ਗੂੜ੍ਹਾ ਮਸਜਿਦ-ਹਰਾ — ਸਭ ਤੋਂ ਵਧੀਆ ਦਿਨ ਲਈ ਸਜੀ ਐਪ।",
+  "settingsThemeModeJummahBestFor": "ਸਭ ਤੋਂ ਢੁਕਵਾਂ: ਸ਼ੁੱਕਰਵਾਰ, ਰਾਤ ਤੋਂ ਖੁਤਬੇ ਤੱਕ",
+  "settingsDressUpFridaysTitle": "ਸ਼ੁੱਕਰਵਾਰ ਸਜਾਓ",
+  "settingsDressUpFridaysSubtitle": "ਹਰ ਸ਼ੁੱਕਰਵਾਰ ਜੁਮਾ ਥੀਮ ਪਹਿਨੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ ''ਤੇ ਵਾਪਸ ਜਾਓ।"
 }

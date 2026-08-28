@@ -41716,6 +41716,24 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'هماهنگ با پوسته برنامه';
+
+  @override
+  String get settingsThemeChoiceJummah => 'جمعه';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'سبز مسجدی ژرف با تاج قوس محراب طلایی — برنامه در جامه بهترین روز.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'مناسب برای: جمعه‌ها، از شب تا خطبه';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'آراستن جمعه‌ها';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد.';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83425,4 +83443,22 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'هماهنگ با پوسته برنامه';
+
+  @override
+  String get settingsThemeChoiceJummah => 'جمعه';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'سبز مسجدی ژرف با تاج قوس محراب طلایی — برنامه در جامه بهترین روز.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'مناسب برای: جمعه‌ها، از شب تا خطبه';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'آراستن جمعه‌ها';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'هر جمعه پوسته جمعه را بپوش و سپس به پوسته خود بازگرد.';
 }

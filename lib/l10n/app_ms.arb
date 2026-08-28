@@ -18666,5 +18666,10 @@
   "settingsThemeModeMidnightBestFor": "Paling sesuai untuk: bacaan malam dan skrin OLED",
   "settingsThemeModeCandlelightDescription": "Bilik hangat bercahaya lilin — perang tua dengan sinaran lembut. Cahaya biru rendah, lembut pada mata letih.",
   "settingsThemeModeCandlelightBestFor": "Paling sesuai untuk: berehat sebelum tidur",
-  "quranReaderAtmosphereFollowApp": "Ikut tema aplikasi"
+  "quranReaderAtmosphereFollowApp": "Ikut tema aplikasi",
+  "settingsThemeChoiceJummah": "Jumaat",
+  "settingsThemeModeJummahDescription": "Hijau masjid pekat bermahkota lengkung mihrab emas — aplikasi berhias untuk sebaik-baik hari.",
+  "settingsThemeModeJummahBestFor": "Paling sesuai untuk: hari Jumaat, dari malam hingga khutbah",
+  "settingsDressUpFridaysTitle": "Hiaskan hari Jumaat",
+  "settingsDressUpFridaysSubtitle": "Pakai tema Jumaat setiap Jumaat, kemudian kembali ke tema anda."
 }

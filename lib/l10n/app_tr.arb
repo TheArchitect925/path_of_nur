@@ -18656,5 +18656,10 @@
   "settingsThemeModeMidnightBestFor": "En uygun: gece okuması ve OLED ekranlar",
   "settingsThemeModeCandlelightDescription": "Mum ışığında sıcak bir oda — koyu kahve ve yumuşak bir parıltı. Az mavi ışık, yorgun gözlere nazik.",
   "settingsThemeModeCandlelightBestFor": "En uygun: uykudan önce sakinleşme",
-  "quranReaderAtmosphereFollowApp": "Uygulama temasına uy"
+  "quranReaderAtmosphereFollowApp": "Uygulama temasına uy",
+  "settingsThemeChoiceJummah": "Cuma",
+  "settingsThemeModeJummahDescription": "Altın mihrap kemeriyle taçlanmış derin cami yeşili — günlerin en hayırlısı için giyinmiş uygulama.",
+  "settingsThemeModeJummahBestFor": "En uygun: Cumalar, geceden hutbeye",
+  "settingsDressUpFridaysTitle": "Cumaları süsle",
+  "settingsDressUpFridaysSubtitle": "Her Cuma, Cuma temasını giy; sonra kendi temana dön."
 }

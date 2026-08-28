@@ -18,6 +18,7 @@ enum AppThemeMode {
   noorKids,
   midnight,
   candlelight,
+  jummah,
 }
 
 enum AppPageTransitionStyle { defaultSystem, gentleFade, iosStyle, noAnimation }
@@ -96,7 +97,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   /// Candlelight. Glass stays translucent so the sky shows through cards;
   /// gold is reserved for wayfinding (active tab, selected chips).
   bool get isNightFamily =>
-      mode == AppThemeMode.midnight || mode == AppThemeMode.candlelight;
+      mode == AppThemeMode.midnight ||
+      mode == AppThemeMode.candlelight ||
+      mode == AppThemeMode.jummah;
 
   bool get isMidnightFamily =>
       mode == AppThemeMode.midnightManuscript ||
@@ -607,6 +610,40 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           makkiBorder: const Color(0xFFE2C177),
           madaniFill: const Color(0x2A85BCAA),
           madaniBorder: const Color(0xFF85BCAA),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.80, 0.90),
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.30,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.jummah:
+        // Masjid Emerald: Deep Glass over dome-green, crowned by the golden
+        // mihrab arch. The Jumu'ah occasion theme.
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF0D271E),
+          backgroundAlt: const Color(0xFF16382C),
+          surface: const Color(0xFF24443A),
+          surfaceSoft: const Color(0xFF1D3A2F),
+          frostedGlassTone: const Color(0xFFE9EFDC),
+          sanctuarySurfaceTone: const Color(0xFFEFEFD6),
+          sanctuaryEdgeLight: const Color(0xFFDCC07A),
+          inputSurface: const Color(0xFF27473A),
+          onSurface: const Color(0xFFEAF2E6),
+          onSurfaceSubtle: const Color(0xFFB8C9B4),
+          onSurfaceMuted: const Color(0xFF7E907C),
+          accent: const Color(0xFFDCC07A),
+          accentSoft: const Color(0xFFB49A55),
+          border: const Color(0xFF35543F),
+          divider: const Color(0xFF2C4837),
+          success: const Color(0xFF8FCBAA),
+          quranArabicEmphasis: const Color(0xFFEFE3B8),
+          makkiFill: const Color(0x2EDCC07A),
+          makkiBorder: const Color(0xFFDCC07A),
+          madaniFill: const Color(0x2A8FCBAA),
+          madaniBorder: const Color(0xFF8FCBAA),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.985
               : glassSurfaceAlpha.clamp(0.80, 0.90),

@@ -160,3 +160,59 @@ class MidnightSkyPainter extends CustomPainter {
         oldDelegate.moonFraction != moonFraction;
   }
 }
+
+/// The golden mihrab arch that crowns the Jumu'ah (Masjid Emerald) theme:
+/// a fine arch outline whose stroke fades toward its base, with a soft gold
+/// radiance inside the crown. Pure paint — no assets.
+class MihrabArchPainter extends CustomPainter {
+  MihrabArchPainter({this.glowColor = const Color(0xFFDCC07A)});
+
+  final Color glowColor;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final archWidth = size.width * 0.78;
+    final left = (size.width - archWidth) / 2;
+    final topY = -size.height * 0.03;
+    final crownRect = Rect.fromLTWH(left, topY, archWidth, archWidth * 0.92);
+    final baseY = size.height * 0.40;
+
+    // Radiance inside the crown.
+    final glow = Paint()
+      ..shader = RadialGradient(
+        center: const Alignment(0, -0.4),
+        radius: 0.9,
+        colors: <Color>[
+          glowColor.withValues(alpha: 0.16),
+          glowColor.withValues(alpha: 0.0),
+        ],
+      ).createShader(crownRect);
+    canvas.drawRect(
+      Rect.fromLTRB(left, topY, left + archWidth, baseY),
+      glow,
+    );
+
+    // Arch outline, fading toward the base.
+    final stroke = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.4
+      ..shader = LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: <Color>[
+          glowColor.withValues(alpha: 0.42),
+          glowColor.withValues(alpha: 0.0),
+        ],
+      ).createShader(Rect.fromLTRB(left, topY, left + archWidth, baseY));
+    final path = Path()
+      ..moveTo(left, baseY)
+      ..lineTo(left, topY + crownRect.height / 2)
+      ..arcTo(crownRect, math.pi, math.pi, false)
+      ..lineTo(left + archWidth, baseY);
+    canvas.drawPath(path, stroke);
+  }
+
+  @override
+  bool shouldRepaint(covariant MihrabArchPainter oldDelegate) =>
+      oldDelegate.glowColor != glowColor;
+}

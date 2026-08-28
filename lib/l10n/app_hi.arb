@@ -18654,5 +18654,10 @@
   "settingsThemeModeMidnightBestFor": "सबसे उपयुक्त: रात में पढ़ना और OLED स्क्रीन",
   "settingsThemeModeCandlelightDescription": "मोमबत्ती की रोशनी वाला गर्म कमरा — गहरा भूरा और कोमल आभा। कम नीली रोशनी, थकी आंखों के लिए आरामदायक।",
   "settingsThemeModeCandlelightBestFor": "सबसे उपयुक्त: सोने से पहले विश्राम",
-  "quranReaderAtmosphereFollowApp": "ऐप थीम से मिलाएं"
+  "quranReaderAtmosphereFollowApp": "ऐप थीम से मिलाएं",
+  "settingsThemeChoiceJummah": "जुमुआ",
+  "settingsThemeModeJummahDescription": "सुनहरे मेहराब से सुसज्जित गहरा मस्जिद-हरा — सबसे बेहतरीन दिन के लिए सजा ऐप।",
+  "settingsThemeModeJummahBestFor": "सबसे उपयुक्त: शुक्रवार, रात से खुतबे तक",
+  "settingsDressUpFridaysTitle": "शुक्रवार सजाएं",
+  "settingsDressUpFridaysSubtitle": "हर शुक्रवार जुमुआ थीम पहनें, फिर अपनी थीम पर लौटें।"
 }

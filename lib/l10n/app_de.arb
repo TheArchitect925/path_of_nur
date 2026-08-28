@@ -18549,5 +18549,10 @@
   "settingsThemeModeMidnightBestFor": "Ideal für: Lesen bei Nacht und OLED-Bildschirme",
   "settingsThemeModeCandlelightDescription": "Ein warmer Raum im Kerzenschein — tiefes Umbra mit sanftem Glühen. Wenig Blaulicht, schonend für müde Augen.",
   "settingsThemeModeCandlelightBestFor": "Ideal für: das Zur-Ruhe-Kommen vor dem Schlafen",
-  "quranReaderAtmosphereFollowApp": "Dem App-Design folgen"
+  "quranReaderAtmosphereFollowApp": "Dem App-Design folgen",
+  "settingsThemeChoiceJummah": "Dschumu''a",
+  "settingsThemeModeJummahDescription": "Tiefes Moscheegrün, gekrönt von einem goldenen Mihrab-Bogen — die App im Gewand des besten Tages.",
+  "settingsThemeModeJummahBestFor": "Ideal für: Freitage, von der Nacht bis zur Chutba",
+  "settingsDressUpFridaysTitle": "Freitage festlich kleiden",
+  "settingsDressUpFridaysSubtitle": "Trage jeden Freitag das Dschumu''a-Design und kehre danach zu deinem Design zurück."
 }

@@ -41923,4 +41923,22 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Мутобиқи мавзӯи барнома';
+
+  @override
+  String get settingsThemeChoiceJummah => 'Ҷумъа';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Сабзи амиқи масҷидӣ бо камони меҳроби тиллоӣ — барнома дар либоси беҳтарин рӯз.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'Беҳтарин барои: ҷумъаҳо, аз шаб то хутба';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Ҷумъаҳоро оро диҳед';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Ҳар ҷумъа мавзӯи Ҷумъаро пӯшед, сипас ба мавзӯи худ баргардед.';
 }

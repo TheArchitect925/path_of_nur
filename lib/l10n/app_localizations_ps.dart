@@ -41766,4 +41766,22 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'د اپلیکیشن له بڼې سره سمون';
+
+  @override
+  String get settingsThemeChoiceJummah => 'جمعه';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'ژور د جومات شين رنګ چې د زرينې محراب قوس پرې تاج دی — اپلیکیشن د غوره ورځې په جامه کې.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'غوره ده د: جمعو لپاره، له شپې تر خطبې';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'جمعې سينګار کړئ';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'هره جمعه د جمعې بڼه واغوندئ، بيا خپلې بڼې ته وګرځئ.';
 }

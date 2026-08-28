@@ -41821,4 +41821,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'Match app theme';
+
+  @override
+  String get settingsThemeChoiceJummah => 'Jumu\'ah';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'Deep masjid green crowned by a golden mihrab arch — the app dressed for the best of days.';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'Best for: Fridays, from night to khutbah';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'Dress up Fridays';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'Wear the Jumu\'ah theme every Friday, then return to your theme.';
 }

@@ -18656,5 +18656,10 @@
   "settingsThemeModeMidnightBestFor": "Беҳтарин барои: хониши шабона ва экранҳои OLED",
   "settingsThemeModeCandlelightDescription": "Ҳуҷраи гарм дар нури шамъ — қаҳваранги амиқ бо тобиши нарм. Нури кабуди кам, барои чашмони хаста мулоим.",
   "settingsThemeModeCandlelightBestFor": "Беҳтарин барои: оромӣ пеш аз хоб",
-  "quranReaderAtmosphereFollowApp": "Мутобиқи мавзӯи барнома"
+  "quranReaderAtmosphereFollowApp": "Мутобиқи мавзӯи барнома",
+  "settingsThemeChoiceJummah": "Ҷумъа",
+  "settingsThemeModeJummahDescription": "Сабзи амиқи масҷидӣ бо камони меҳроби тиллоӣ — барнома дар либоси беҳтарин рӯз.",
+  "settingsThemeModeJummahBestFor": "Беҳтарин барои: ҷумъаҳо, аз шаб то хутба",
+  "settingsDressUpFridaysTitle": "Ҷумъаҳоро оро диҳед",
+  "settingsDressUpFridaysSubtitle": "Ҳар ҷумъа мавзӯи Ҷумъаро пӯшед, сипас ба мавзӯи худ баргардед."
 }

@@ -18654,5 +18654,10 @@
   "settingsThemeModeMidnightBestFor": "بہترین: رات کے مطالعے اور OLED اسکرینوں کے لیے",
   "settingsThemeModeCandlelightDescription": "موم بتی کی روشنی والا گرم کمرہ — گہرا بھورا اور نرم چمک۔ کم نیلی روشنی، تھکی آنکھوں کے لیے نرم۔",
   "settingsThemeModeCandlelightBestFor": "بہترین: سونے سے پہلے سکون کے لیے",
-  "quranReaderAtmosphereFollowApp": "ایپ تھیم کے مطابق"
+  "quranReaderAtmosphereFollowApp": "ایپ تھیم کے مطابق",
+  "settingsThemeChoiceJummah": "جمعہ",
+  "settingsThemeModeJummahDescription": "سنہری محرابی قوس سے سجا گہرا مسجدی سبز — بہترین دن کے لیے سجی ایپ۔",
+  "settingsThemeModeJummahBestFor": "بہترین: جمعے کے دن، رات سے خطبے تک",
+  "settingsDressUpFridaysTitle": "جمعے سجائیں",
+  "settingsDressUpFridaysSubtitle": "ہر جمعہ جمعے کا تھیم پہنیں، پھر اپنے تھیم پر واپس جائیں۔"
 }

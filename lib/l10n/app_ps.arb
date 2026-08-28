@@ -18656,5 +18656,10 @@
   "settingsThemeModeMidnightBestFor": "غوره ده د: شپې لوستلو او OLED پردو لپاره",
   "settingsThemeModeCandlelightDescription": "د شمعې په رڼا کې توده خونه — ژور نسواري له نرمې رڼا سره. لږه شنه رڼا، ستړو سترګو ته ارامه.",
   "settingsThemeModeCandlelightBestFor": "غوره ده د: له خوب مخکې ارامۍ لپاره",
-  "quranReaderAtmosphereFollowApp": "د اپلیکیشن له بڼې سره سمون"
+  "quranReaderAtmosphereFollowApp": "د اپلیکیشن له بڼې سره سمون",
+  "settingsThemeChoiceJummah": "جمعه",
+  "settingsThemeModeJummahDescription": "ژور د جومات شين رنګ چې د زرينې محراب قوس پرې تاج دی — اپلیکیشن د غوره ورځې په جامه کې.",
+  "settingsThemeModeJummahBestFor": "غوره ده د: جمعو لپاره، له شپې تر خطبې",
+  "settingsDressUpFridaysTitle": "جمعې سينګار کړئ",
+  "settingsDressUpFridaysSubtitle": "هره جمعه د جمعې بڼه واغوندئ، بيا خپلې بڼې ته وګرځئ."
 }

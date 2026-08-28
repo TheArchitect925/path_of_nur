@@ -41802,4 +41802,22 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get quranReaderAtmosphereFollowApp => 'ਐਪ ਥੀਮ ਨਾਲ ਮਿਲਾਓ';
+
+  @override
+  String get settingsThemeChoiceJummah => 'ਜੁਮਾ';
+
+  @override
+  String get settingsThemeModeJummahDescription =>
+      'ਸੁਨਹਿਰੀ ਮਿਹਰਾਬ ਮੇਹਰਾਬ ਨਾਲ ਸਜਿਆ ਗੂੜ੍ਹਾ ਮਸਜਿਦ-ਹਰਾ — ਸਭ ਤੋਂ ਵਧੀਆ ਦਿਨ ਲਈ ਸਜੀ ਐਪ।';
+
+  @override
+  String get settingsThemeModeJummahBestFor =>
+      'ਸਭ ਤੋਂ ਢੁਕਵਾਂ: ਸ਼ੁੱਕਰਵਾਰ, ਰਾਤ ਤੋਂ ਖੁਤਬੇ ਤੱਕ';
+
+  @override
+  String get settingsDressUpFridaysTitle => 'ਸ਼ੁੱਕਰਵਾਰ ਸਜਾਓ';
+
+  @override
+  String get settingsDressUpFridaysSubtitle =>
+      'ਹਰ ਸ਼ੁੱਕਰਵਾਰ ਜੁਮਾ ਥੀਮ ਪਹਿਨੋ, ਫਿਰ ਆਪਣੀ ਥੀਮ \'ਤੇ ਵਾਪਸ ਜਾਓ।';
 }

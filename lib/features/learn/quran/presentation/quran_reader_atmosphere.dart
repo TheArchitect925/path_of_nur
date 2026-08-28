@@ -25,6 +25,8 @@ String quranReaderAtmosphereLabel(
       return l10n.quranReaderAtmosphereMidnight;
     case QuranReaderAtmosphere.candlelight:
       return l10n.quranReaderAtmosphereCandlelight;
+    case QuranReaderAtmosphere.jummah:
+      return l10n.settingsThemeChoiceJummah;
   }
 }
 
@@ -39,6 +41,9 @@ QuranReaderAtmosphere resolveQuranReaderAtmosphere(
   if (appearance == null) return QuranReaderAtmosphere.noorGlass;
   if (appearance.mode == AppThemeMode.candlelight) {
     return QuranReaderAtmosphere.candlelight;
+  }
+  if (appearance.mode == AppThemeMode.jummah) {
+    return QuranReaderAtmosphere.jummah;
   }
   if (appearance.isDark) return QuranReaderAtmosphere.midnight;
   return QuranReaderAtmosphere.noorGlass;
@@ -139,6 +144,24 @@ class QuranReaderAtmospherePalette {
     playForeground: Color(0xFF241C12),
   );
 
+  static const _jummah = QuranReaderAtmospherePalette._(
+    atmosphere: QuranReaderAtmosphere.jummah,
+    isDark: true,
+    base: Color(0xFF0D271E),
+    primaryText: Color(0xFFEAF2E6),
+    supportText: Color(0xFFDFEAD9),
+    subtleText: Color(0xFFB8C9B4),
+    arabicText: Color(0xFFF0EFD8),
+    harakat: Color(0xFFE2A379),
+    chipFill: Color(0x14EAF2E6),
+    chipBorder: Color(0x2EEAF2E6),
+    chipContent: Color(0xFFCBD9C4),
+    controlsFill: Color(0x1AEAF2E6),
+    controlsContent: Color(0xFFEAF2E6),
+    playFill: Color(0xFFDCC07A),
+    playForeground: Color(0xFF16382C),
+  );
+
   static QuranReaderAtmospherePalette of(QuranReaderAtmosphere atmosphere) {
     switch (atmosphere) {
       // followApp is resolved before palettes are looked up; fall back to the
@@ -150,6 +173,8 @@ class QuranReaderAtmospherePalette {
         return _midnight;
       case QuranReaderAtmosphere.candlelight:
         return _candlelight;
+      case QuranReaderAtmosphere.jummah:
+        return _jummah;
     }
   }
 
@@ -244,6 +269,25 @@ class QuranReaderAtmosphereBackground extends ConsumerWidget {
           decoration: const BoxDecoration(gradient: candlelightBaseGradient),
           child: DecoratedBox(
             decoration: const BoxDecoration(gradient: candlelightGlowGradient),
+            child: child,
+          ),
+        );
+      case QuranReaderAtmosphere.jummah:
+        return DecoratedBox(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment(0, -0.85),
+              radius: 1.5,
+              colors: <Color>[
+                Color(0xFF1E4B3A),
+                Color(0xFF16382C),
+                Color(0xFF0D271E),
+              ],
+              stops: <double>[0.0, 0.48, 1.0],
+            ),
+          ),
+          child: CustomPaint(
+            painter: MihrabArchPainter(),
             child: child,
           ),
         );
