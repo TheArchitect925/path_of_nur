@@ -41523,4 +41523,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'نشاطك في لمحة';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'كل مربع يمثل يوماً — كلما زاد اللون عمقاً كان اليوم أكثر امتلاءً';
 }

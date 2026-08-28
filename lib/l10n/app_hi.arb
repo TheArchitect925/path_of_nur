@@ -18643,5 +18643,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "अज़ान का परीक्षण करें",
   "settingsUnwellModeSubtitle": "जब बीमारी इबादत को कठिन बना दे, तो उस दिन की रक्षा करें।",
-  "settingsUnwellModeTitle": "अस्वस्थ मोड"
+  "settingsUnwellModeTitle": "अस्वस्थ मोड",
+  "growthActivityHeatmapTitle": "एक नज़र में गतिविधि",
+  "growthActivityHeatmapSubtitle": "हर वर्ग एक दिन है — गहरा रंग यानी भरपूर दिन"
 }

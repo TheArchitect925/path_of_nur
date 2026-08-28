@@ -41801,4 +41801,11 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'Çalakî bi yek nêrînê';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'Her çarçik rojek e — rengê kûrtir tê wateya rojeke tijetir';
 }

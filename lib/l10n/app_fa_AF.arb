@@ -18646,5 +18646,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "آزمایش اذان",
   "settingsUnwellModeSubtitle": "روزهایی را که مریضی عبادت را دشوار می‌سازد، محافظت کنید.",
-  "settingsUnwellModeTitle": "حالت مریضی"
+  "settingsUnwellModeTitle": "حالت مریضی",
+  "growthActivityHeatmapTitle": "فعالیت در یک نگاه",
+  "growthActivityHeatmapSubtitle": "هر مربع یک روز است — رنگ پررنگ‌تر یعنی روز پربارتر"
 }

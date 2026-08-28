@@ -18643,5 +18643,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "تجربة الأذان",
   "settingsUnwellModeSubtitle": "احمِ يومك عندما يجعل المرض العبادة أصعب.",
-  "settingsUnwellModeTitle": "وضع المرض"
+  "settingsUnwellModeTitle": "وضع المرض",
+  "growthActivityHeatmapTitle": "نشاطك في لمحة",
+  "growthActivityHeatmapSubtitle": "كل مربع يمثل يوماً — كلما زاد اللون عمقاً كان اليوم أكثر امتلاءً"
 }

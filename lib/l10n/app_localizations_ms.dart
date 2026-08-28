@@ -41767,4 +41767,11 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'Aktiviti sepintas lalu';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'Setiap petak ialah satu hari — warna lebih pekat bermakna hari lebih penuh';
 }

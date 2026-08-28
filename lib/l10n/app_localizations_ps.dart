@@ -41728,4 +41728,11 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'ټول حدیثونه وګوره';
+
+  @override
+  String get growthActivityHeatmapTitle => 'فعالیت په یوه کتنه';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'هر مربع یوه ورځ ده — ژور رنګ د ډکې ورځې معنا لري';
 }

@@ -18645,5 +18645,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "Ezanê Biceribîne",
   "settingsUnwellModeSubtitle": "Dema nexweşî îbadetê dijwartir dike rojê biparêze.",
-  "settingsUnwellModeTitle": "Moda Nexweşiyê"
+  "settingsUnwellModeTitle": "Moda Nexweşiyê",
+  "growthActivityHeatmapTitle": "Çalakî bi yek nêrînê",
+  "growthActivityHeatmapSubtitle": "Her çarçik rojek e — rengê kûrtir tê wateya rojeke tijetir"
 }

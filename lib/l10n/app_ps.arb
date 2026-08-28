@@ -18645,5 +18645,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "اذان وازمویئ",
   "settingsUnwellModeSubtitle": "کله چې ناروغي عبادت ستونزمن کړي، ورځ وساتئ.",
-  "settingsUnwellModeTitle": "د ناروغۍ حالت"
+  "settingsUnwellModeTitle": "د ناروغۍ حالت",
+  "growthActivityHeatmapTitle": "فعالیت په یوه کتنه",
+  "growthActivityHeatmapSubtitle": "هر مربع یوه ورځ ده — ژور رنګ د ډکې ورځې معنا لري"
 }

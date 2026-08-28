@@ -41720,4 +41720,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'এক নজরে কার্যক্রম';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'প্রতিটি বর্গ একটি দিন — গাঢ় রঙ মানে পূর্ণ দিন';
 }

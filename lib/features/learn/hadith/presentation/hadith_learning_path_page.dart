@@ -6,6 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_section.dart';
 import '../application/hadith_learning_paths_service.dart';
@@ -54,17 +55,7 @@ class HadithLearningPathPage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  minHeight: 8,
-                  value: summary?.ratio ?? 0,
-                  backgroundColor: AppColors.surface.withValues(alpha: 0.4),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    AppColors.onSurface.withValues(alpha: 0.72),
-                  ),
-                ),
-              ),
+              ProgressBar(value: summary?.ratio ?? 0, height: 8),
             ],
           ),
         ),
@@ -214,21 +205,11 @@ class HadithLearningPathPage extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(999),
-                      child: LinearProgressIndicator(
-                        minHeight: 6,
-                        value: chapter.lessonIds.isEmpty
-                            ? 0
-                            : (completedInChapter / chapter.lessonIds.length)
-                                  .clamp(0.0, 1.0),
-                        backgroundColor: AppColors.surface.withValues(
-                          alpha: 0.4,
-                        ),
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColors.onSurface.withValues(alpha: 0.72),
-                        ),
-                      ),
+                    ProgressBar(
+                      value: chapter.lessonIds.isEmpty
+                          ? 0
+                          : completedInChapter / chapter.lessonIds.length,
+                      height: 6,
                     ),
                     const SizedBox(height: 10),
                     ...chapterEntries.asMap().entries.map((pair) {

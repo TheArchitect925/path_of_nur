@@ -41842,4 +41842,11 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'Ayyuka a takaice';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'Kowanne murabba\'i rana daya ne — launi mai zurfi na nuna rana cikakkiya';
 }

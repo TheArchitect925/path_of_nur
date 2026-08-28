@@ -41678,6 +41678,13 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'فعالیت در یک نگاه';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'هر مربع یک روز است — رنگ پررنگ‌تر یعنی روز پربارتر';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -83349,4 +83356,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'فعالیت در یک نگاه';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'هر مربع یک روز است — رنگ پررنگ‌تر یعنی روز پربارتر';
 }

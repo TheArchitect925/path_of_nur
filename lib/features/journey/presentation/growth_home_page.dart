@@ -10,6 +10,8 @@ import '../../learn/quran/domain/quran_personalization_models.dart';
 import '../../learn/quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/display/activity_heatmap.dart';
+import '../../../shared/widgets/display/progress_bar.dart';
 import '../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../shared/widgets/main_page_shortcut_stack.dart';
@@ -17,6 +19,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
+import '../application/growth_statistics_provider.dart';
 import '../application/journey_progression_provider.dart';
 
 class GrowthHomePage extends ConsumerWidget {
@@ -188,6 +191,8 @@ class GrowthHomePage extends ConsumerWidget {
             ],
           ),
         ),
+        const SizedBox(height: 12),
+        const _GrowthRecentActivityCard(),
         const SizedBox(height: 12),
         Wrap(
           spacing: 12,
@@ -363,10 +368,7 @@ class _GrowthProgressMetricRow extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(value: value.clamp(0.0, 1.0)),
-          ),
+          child: ProgressBar(value: value),
         ),
         const SizedBox(width: 10),
         Text(
@@ -467,6 +469,47 @@ class _GrowthActionButton extends StatelessWidget {
         textStyle: Theme.of(
           context,
         ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+}
+
+/// Five-week personal activity heatmap for the Journey root. Private by
+/// design: it shows only the user's own rhythm, never comparisons.
+class _GrowthRecentActivityCard extends ConsumerWidget {
+  const _GrowthRecentActivityCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final rollups = ref.watch(
+      growthStatisticsDashboardProvider.select(
+        (dashboard) => dashboard.recentDailyRollups,
+      ),
+    );
+    if (rollups.isEmpty) return const SizedBox.shrink();
+    final recent = rollups.length <= 35
+        ? rollups
+        : rollups.sublist(rollups.length - 35);
+
+    return PremiumCard(
+      density: PremiumCardDensity.compact,
+      leading: const Icon(Icons.calendar_view_month_rounded),
+      title: Text(l10n.growthActivityHeatmapTitle),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.growthActivityHeatmapSubtitle,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 10),
+          ActivityHeatmap(
+            values: recent
+                .map((rollup) => rollup.dayScore)
+                .toList(growable: false),
+          ),
+        ],
       ),
     );
   }

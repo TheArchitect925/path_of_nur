@@ -198,6 +198,7 @@ class GrowthStatisticsDashboardData {
     required this.monthlyTrend,
     required this.bestDay,
     required this.rewardsInsight,
+    this.recentDailyRollups = const <GrowthStatsDailyRollup>[],
   });
 
   final GrowthStatsPeriodSummary weeklySummary;
@@ -208,6 +209,10 @@ class GrowthStatisticsDashboardData {
   final List<GrowthStatsChartPoint> monthlyTrend;
   final GrowthBestDayInsight? bestDay;
   final GrowthRewardsInsight rewardsInsight;
+
+  /// Last ten weeks of daily rollups, oldest first, one entry per day
+  /// (zero-filled for inactive days). Feeds the activity heatmap.
+  final List<GrowthStatsDailyRollup> recentDailyRollups;
 
   bool get hasAnyActivity =>
       weeklySummary.hasActivity ||
@@ -363,6 +368,9 @@ final growthStatisticsDashboardProvider =
         monthlyTrend: monthlyTrend,
         bestDay: _buildBestDayInsight(rollups),
         rewardsInsight: rewardsInsight,
+        recentDailyRollups: _daysInclusive(today, 70)
+            .map((day) => _rollupForDay(rollups, day))
+            .toList(growable: false),
       );
     });
 

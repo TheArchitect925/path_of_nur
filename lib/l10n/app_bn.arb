@@ -18655,5 +18655,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "আযান পরীক্ষা করুন",
   "settingsUnwellModeSubtitle": "অসুস্থতা যখন ইবাদত কঠিন করে তোলে, তখন দিনটিকে সুরক্ষিত রাখুন।",
-  "settingsUnwellModeTitle": "অসুস্থ মোড"
+  "settingsUnwellModeTitle": "অসুস্থ মোড",
+  "growthActivityHeatmapTitle": "এক নজরে কার্যক্রম",
+  "growthActivityHeatmapSubtitle": "প্রতিটি বর্গ একটি দিন — গাঢ় রঙ মানে পূর্ণ দিন"
 }

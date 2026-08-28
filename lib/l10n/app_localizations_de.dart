@@ -42283,4 +42283,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Alle Hadithe durchsuchen';
+
+  @override
+  String get growthActivityHeatmapTitle => 'Aktivität auf einen Blick';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'Jedes Quadrat ist ein Tag – je kräftiger die Farbe, desto erfüllter der Tag';
 }

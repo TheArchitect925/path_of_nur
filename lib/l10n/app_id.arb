@@ -18655,5 +18655,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "Uji Azan",
   "settingsUnwellModeSubtitle": "Lindungi hari Anda ketika sakit membuat ibadah terasa lebih berat.",
-  "settingsUnwellModeTitle": "Mode Sakit"
+  "settingsUnwellModeTitle": "Mode Sakit",
+  "growthActivityHeatmapTitle": "Aktivitas sekilas",
+  "growthActivityHeatmapSubtitle": "Setiap kotak adalah satu hari — warna lebih pekat berarti hari lebih penuh"
 }

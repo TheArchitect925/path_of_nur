@@ -18645,5 +18645,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "Ezanı Test Et",
   "settingsUnwellModeSubtitle": "Hastalık ibadeti zorlaştırdığında gününü koru.",
-  "settingsUnwellModeTitle": "Hastalık Modu"
+  "settingsUnwellModeTitle": "Hastalık Modu",
+  "growthActivityHeatmapTitle": "Bir bakışta etkinlik",
+  "growthActivityHeatmapSubtitle": "Her kare bir gün — koyu renk daha dolu bir gün demek"
 }

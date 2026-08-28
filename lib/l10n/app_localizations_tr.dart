@@ -41774,4 +41774,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Browse all hadith';
+
+  @override
+  String get growthActivityHeatmapTitle => 'Bir bakışta etkinlik';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'Her kare bir gün — koyu renk daha dolu bir gün demek';
 }

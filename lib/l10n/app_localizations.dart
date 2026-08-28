@@ -69594,6 +69594,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Browse all hadith'**
   String get hadithActionBrowseAllHadith;
+
+  /// No description provided for @growthActivityHeatmapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity at a glance'**
+  String get growthActivityHeatmapTitle;
+
+  /// No description provided for @growthActivityHeatmapSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Each square is one day — deeper color means a fuller day'**
+  String get growthActivityHeatmapSubtitle;
 }
 
 class _AppLocalizationsDelegate

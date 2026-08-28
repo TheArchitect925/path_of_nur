@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/utils/reward_feedback.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_references.dart';
@@ -92,17 +93,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  minHeight: 7,
-                  value: progress,
-                  backgroundColor: AppColors.surface.withValues(alpha: 0.4),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    AppColors.onSurface.withValues(alpha: 0.75),
-                  ),
-                ),
-              ),
+              ProgressBar(value: progress, height: 7),
             ],
           ),
         ),

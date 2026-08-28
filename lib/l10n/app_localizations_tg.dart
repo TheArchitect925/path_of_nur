@@ -41885,4 +41885,11 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get hadithActionBrowseAllHadith => 'Ҳама ҳадисҳоро бин';
+
+  @override
+  String get growthActivityHeatmapTitle => 'Фаъолият дар як нигоҳ';
+
+  @override
+  String get growthActivityHeatmapSubtitle =>
+      'Ҳар мураббаъ як рӯз аст — ранги пурратар яъне рӯзи пурратар';
 }

@@ -7,6 +7,7 @@ import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../journey/application/journey_progression_provider.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
@@ -609,19 +610,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                               ?.copyWith(color: AppColors.onSurfaceSubtle),
                         ),
                         const SizedBox(height: 6),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(999),
-                          child: LinearProgressIndicator(
-                            minHeight: 7,
-                            value: ratio,
-                            backgroundColor: AppColors.surface.withValues(
-                              alpha: 0.4,
-                            ),
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              AppColors.onSurface.withValues(alpha: 0.72),
-                            ),
-                          ),
-                        ),
+                        ProgressBar(value: ratio, height: 7),
                       ],
                     ),
                   ),
@@ -924,14 +913,11 @@ class _ThemeCard extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: progressRatio,
-                  minHeight: 7,
-                  backgroundColor: surfaceStyle.iconBackgroundColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(accent),
-                ),
+              ProgressBar(
+                value: progressRatio,
+                height: 7,
+                color: accent,
+                backgroundColor: surfaceStyle.iconBackgroundColor,
               ),
               const SizedBox(height: 6),
               Text(

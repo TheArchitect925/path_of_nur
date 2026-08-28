@@ -18655,5 +18655,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "Uji Azan",
   "settingsUnwellModeSubtitle": "Lindungi hari anda apabila sakit menjadikan ibadah lebih sukar.",
-  "settingsUnwellModeTitle": "Mod Tidak Sihat"
+  "settingsUnwellModeTitle": "Mod Tidak Sihat",
+  "growthActivityHeatmapTitle": "Aktiviti sepintas lalu",
+  "growthActivityHeatmapSubtitle": "Setiap petak ialah satu hari — warna lebih pekat bermakna hari lebih penuh"
 }

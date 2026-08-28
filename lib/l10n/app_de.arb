@@ -18538,5 +18538,7 @@
   "hadithActionBrowseAllHadith": "Alle Hadithe durchsuchen",
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
-  }
+  },
+  "growthActivityHeatmapTitle": "Aktivität auf einen Blick",
+  "growthActivityHeatmapSubtitle": "Jedes Quadrat ist ein Tag – je kräftiger die Farbe, desto erfüllter der Tag"
 }

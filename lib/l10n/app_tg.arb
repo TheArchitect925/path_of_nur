@@ -18645,5 +18645,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "Санҷиши азон",
   "settingsUnwellModeSubtitle": "Рӯзеро, ки беморӣ ибодатро душвор мекунад, ҳифз кунед.",
-  "settingsUnwellModeTitle": "Ҳолати беморӣ"
+  "settingsUnwellModeTitle": "Ҳолати беморӣ",
+  "growthActivityHeatmapTitle": "Фаъолият дар як нигоҳ",
+  "growthActivityHeatmapSubtitle": "Ҳар мураббаъ як рӯз аст — ранги пурратар яъне рӯзи пурратар"
 }

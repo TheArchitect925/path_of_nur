@@ -18643,5 +18643,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "اذان آزمائیں",
   "settingsUnwellModeSubtitle": "جب بیماری عبادت کو مشکل بنا دے تو دن کی حفاظت کریں۔",
-  "settingsUnwellModeTitle": "علالت موڈ"
+  "settingsUnwellModeTitle": "علالت موڈ",
+  "growthActivityHeatmapTitle": "ایک نظر میں سرگرمی",
+  "growthActivityHeatmapSubtitle": "ہر مربع ایک دن ہے — گہرا رنگ یعنی بھرپور دن"
 }

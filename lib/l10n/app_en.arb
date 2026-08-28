@@ -18538,5 +18538,7 @@
   "hadithActionBrowseAllHadith": "Browse all hadith",
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
-  }
+  },
+  "growthActivityHeatmapTitle": "Activity at a glance",
+  "growthActivityHeatmapSubtitle": "Each square is one day — deeper color means a fuller day"
 }

@@ -18655,5 +18655,7 @@
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "Gwada Azan",
   "settingsUnwellModeSubtitle": "Kare ranar lokacin da rashin lafiya ya sa ibada ta yi wahala.",
-  "settingsUnwellModeTitle": "Yanayin Rashin Lafiya"
+  "settingsUnwellModeTitle": "Yanayin Rashin Lafiya",
+  "growthActivityHeatmapTitle": "Ayyuka a takaice",
+  "growthActivityHeatmapSubtitle": "Kowanne murabba''i rana daya ne — launi mai zurfi na nuna rana cikakkiya"
 }
