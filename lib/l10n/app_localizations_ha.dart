@@ -2807,6 +2807,111 @@ class AppLocalizationsHa extends AppLocalizations {
   String get hubNewBadgeLabel => 'Sabo';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Yanzu · lokacin $prayer a buɗe yake';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Na gaba · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'lokaci ya ƙare';
+
+  @override
+  String get worshipBeginsAtLabel => 'zai fara da';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'Zai zama qada cikin $duration';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Jumma\'a — tashi kafin $time';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'Ibada';
+
+  @override
+  String get worshipGroupToolsTitle => 'Kayan aiki';
+
+  @override
+  String get worshipPrayerTabLearn => 'Koyo';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Canza burin yau';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Burin zikiri na yau';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Burin kanka';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'Lokuta da tazara · shirin qada · ƙididdiga';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count yau · zama na jagora da na hannu';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Tunatarwa da kiran sallah';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Koyi sallah';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Mai koyar da alwala · sallah ta jagora · jagorar raka\'a';
+
+  @override
+  String get fastingSuggestionRamadan => 'Ramadan — rubuta azumin yau';
+
+  @override
+  String get fastingSuggestionWhiteDays =>
+      'Kwanakin fari sun zo — azumin sunnah?';
+
+  @override
+  String get fastingSuggestionMondayToday => 'Yau Litinin ce — azumin sunnah?';
+
+  @override
+  String get fastingSuggestionThursdayToday =>
+      'Yau Alhamis ce — azumin sunnah?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'Gobe Litinin ce — azumin sunnah?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'Gobe Alhamis ce — azumin sunnah?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Sahur zai ƙare da $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'Buda-baki da $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'An kammala azumi $count wannan wata';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'Jerin azumi na kwana $count';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Katin sallah';
 
   @override

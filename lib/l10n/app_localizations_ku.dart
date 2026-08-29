@@ -2798,6 +2798,109 @@ class AppLocalizationsKu extends AppLocalizations {
   String get hubNewBadgeLabel => 'Nû';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Niha · dema $prayer vekirî ye';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Ya din · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'dem diqede';
+
+  @override
+  String get worshipBeginsAtLabel => 'dest pê dike';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'Piştî $duration dibe qeza';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Îna — heta $time derkeve';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'Îbadet';
+
+  @override
+  String get worshipGroupToolsTitle => 'Amûr';
+
+  @override
+  String get worshipPrayerTabLearn => 'Fêrbûn';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Armanca rojane biguherîne';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Armanca zikrê ya rojane';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Armanca taybet';
+
+  @override
+  String get worshipSalahHubSubtitle => 'Dem û pencere · plana qezayê · amar';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return 'Îro $count · danişînên rêbernameyî û destî';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Bîranîn û ezan';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Fêrî nimêjê bibe';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Rahênerê destmêjê · nimêja rêbernameyî · rêbera rekatan';
+
+  @override
+  String get fastingSuggestionRamadan => 'Remezan — rojiya îro tomar bike';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'Rojên spî hatine — rojiya sunnetê?';
+
+  @override
+  String get fastingSuggestionMondayToday => 'Îro Duşem e — rojiya sunnetê?';
+
+  @override
+  String get fastingSuggestionThursdayToday =>
+      'Îro Pêncşem e — rojiya sunnetê?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'Sibe Duşem e — rojiya sunnetê?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'Sibe Pêncşem e — rojiya sunnetê?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Suhûr di $time de diqede';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'Fitar di $time de';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'Vê mehê $count rojî temam bûn';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'Zincîra rojiyê ya $count rojan';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Karta nimêjê';
 
   @override

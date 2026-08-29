@@ -2776,6 +2776,109 @@ class AppLocalizationsBn extends AppLocalizations {
   String get hubNewBadgeLabel => 'নতুন';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'এখন · $prayer এর সময় চলছে';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'পরবর্তী · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'সময় শেষ';
+
+  @override
+  String get worshipBeginsAtLabel => 'শুরু হয়';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return '$duration পরে কাজা হবে';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'জুমুআ — $time এর আগে রওনা দিন';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'ইবাদত';
+
+  @override
+  String get worshipGroupToolsTitle => 'সরঞ্জাম';
+
+  @override
+  String get worshipPrayerTabLearn => 'শিখুন';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'দৈনিক লক্ষ্য পরিবর্তন';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'দৈনিক যিকির লক্ষ্য';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'নিজস্ব লক্ষ্য';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'সময় ও উইন্ডো · কাজা পরিকল্পনা · পরিসংখ্যান';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return 'আজ $count · নির্দেশিত ও ম্যানুয়াল সেশন';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'রিমাইন্ডার ও আযান';
+
+  @override
+  String get worshipLearnToPrayTitle => 'সালাত শিখুন';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'ওযু প্রশিক্ষক · নির্দেশিত সালাত · রাকাত নির্দেশিকা';
+
+  @override
+  String get fastingSuggestionRamadan => 'রমজান — আজকের রোজা ট্র্যাক করুন';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'আইয়ামে বিজ এসেছে — সুন্নত রোজা?';
+
+  @override
+  String get fastingSuggestionMondayToday => 'আজ সোমবার — সুন্নত রোজা?';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'আজ বৃহস্পতিবার — সুন্নত রোজা?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'আগামীকাল সোমবার — সুন্নত রোজা?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'আগামীকাল বৃহস্পতিবার — সুন্নত রোজা?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'সাহরি শেষ $time এ';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'ইফতার $time এ';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'এ মাসে $countটি রোজা সম্পন্ন';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return '$count দিনের রোজার ধারা';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'সালাত হিরো';
 
   @override

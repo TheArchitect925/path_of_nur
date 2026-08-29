@@ -4795,6 +4795,168 @@ abstract class AppLocalizations {
   /// **'New'**
   String get hubNewBadgeLabel;
 
+  /// No description provided for @worshipNowWindowOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Now · {prayer} window open'**
+  String worshipNowWindowOpen(Object prayer);
+
+  /// No description provided for @worshipNowUpNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Up next · {prayer}'**
+  String worshipNowUpNext(Object prayer);
+
+  /// No description provided for @worshipWindowEndsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'window ends'**
+  String get worshipWindowEndsLabel;
+
+  /// No description provided for @worshipBeginsAtLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'begins at'**
+  String get worshipBeginsAtLabel;
+
+  /// No description provided for @worshipBecomesQadaIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Becomes qada in {duration}'**
+  String worshipBecomesQadaIn(Object duration);
+
+  /// No description provided for @worshipJumuahLeaveBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'\'ah — leave by {time}'**
+  String worshipJumuahLeaveBy(Object time);
+
+  /// No description provided for @worshipGroupWorshipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get worshipGroupWorshipTitle;
+
+  /// No description provided for @worshipGroupToolsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get worshipGroupToolsTitle;
+
+  /// No description provided for @worshipPrayerTabLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn'**
+  String get worshipPrayerTabLearn;
+
+  /// No description provided for @dhikrDailyGoalEditTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Change daily goal'**
+  String get dhikrDailyGoalEditTooltip;
+
+  /// No description provided for @dhikrDailyGoalEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily dhikr goal'**
+  String get dhikrDailyGoalEditTitle;
+
+  /// No description provided for @dhikrDailyGoalEditCustomLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom goal'**
+  String get dhikrDailyGoalEditCustomLabel;
+
+  /// No description provided for @worshipSalahHubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Times & windows · qada planner · stats'**
+  String get worshipSalahHubSubtitle;
+
+  /// No description provided for @worshipDhikrTodaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} today · guided and manual sessions'**
+  String worshipDhikrTodaySubtitle(Object count);
+
+  /// No description provided for @worshipRemindersAdhanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders & adhan'**
+  String get worshipRemindersAdhanTitle;
+
+  /// No description provided for @worshipLearnToPrayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn to pray'**
+  String get worshipLearnToPrayTitle;
+
+  /// No description provided for @worshipLearnToPraySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wudu trainer · guided salah · rakat guide'**
+  String get worshipLearnToPraySubtitle;
+
+  /// No description provided for @fastingSuggestionRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan — track today\'\'s fast'**
+  String get fastingSuggestionRamadan;
+
+  /// No description provided for @fastingSuggestionWhiteDays.
+  ///
+  /// In en, this message translates to:
+  /// **'The white days are here — a sunnah fast?'**
+  String get fastingSuggestionWhiteDays;
+
+  /// No description provided for @fastingSuggestionMondayToday.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'\'s Monday — a sunnah fast today?'**
+  String get fastingSuggestionMondayToday;
+
+  /// No description provided for @fastingSuggestionThursdayToday.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'\'s Thursday — a sunnah fast today?'**
+  String get fastingSuggestionThursdayToday;
+
+  /// No description provided for @fastingSuggestionMondayTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow is Monday — a sunnah fast?'**
+  String get fastingSuggestionMondayTomorrow;
+
+  /// No description provided for @fastingSuggestionThursdayTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow is Thursday — a sunnah fast?'**
+  String get fastingSuggestionThursdayTomorrow;
+
+  /// No description provided for @fastingSuhoorEndsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor ends at {time}'**
+  String fastingSuhoorEndsAt(Object time);
+
+  /// No description provided for @fastingIftarAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar at {time}'**
+  String fastingIftarAt(Object time);
+
+  /// No description provided for @fastingCompletedThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} fasts completed this month'**
+  String fastingCompletedThisMonth(Object count);
+
+  /// No description provided for @fastingStreakDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day fasting streak'**
+  String fastingStreakDays(Object count);
+
   /// No description provided for @homeModuleSalahHeroTitle.
   ///
   /// In en, this message translates to:

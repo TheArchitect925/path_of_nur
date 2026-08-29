@@ -2764,6 +2764,107 @@ class AppLocalizationsFa extends AppLocalizations {
   String get hubNewBadgeLabel => 'جدید';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'اکنون · وقت $prayer باز است';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'بعدی · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'پایان وقت';
+
+  @override
+  String get worshipBeginsAtLabel => 'آغاز در';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'پس از $duration قضا می‌شود';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'جمعه — تا $time حرکت کنید';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'عبادت';
+
+  @override
+  String get worshipGroupToolsTitle => 'ابزارها';
+
+  @override
+  String get worshipPrayerTabLearn => 'آموزش';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'تغییر هدف روزانه';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'هدف ذکر روزانه';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'هدف دلخواه';
+
+  @override
+  String get worshipSalahHubSubtitle => 'اوقات و بازه‌ها · برنامه قضا · آمار';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count امروز · جلسات هدایت‌شده و دستی';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'یادآورها و اذان';
+
+  @override
+  String get worshipLearnToPrayTitle => 'آموزش نماز';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'مربی وضو · نماز هدایت‌شده · راهنمای رکعات';
+
+  @override
+  String get fastingSuggestionRamadan => 'رمضان — روزه امروز را ثبت کنید';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'ایام بیض رسیده — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionMondayToday => 'امروز دوشنبه است — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'امروز پنجشنبه است — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionMondayTomorrow => 'فردا دوشنبه است — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'فردا پنجشنبه است — روزه سنت؟';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'سحری تا $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'افطار در $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return '$count روزه کامل در این ماه';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'زنجیره $count روزه';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';
 
   @override
@@ -44741,6 +44842,107 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get hubNewBadgeLabel => 'جدید';
+
+  @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'اکنون · وقت $prayer باز است';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'بعدی · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'پایان وقت';
+
+  @override
+  String get worshipBeginsAtLabel => 'آغاز در';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'پس از $duration قضا می‌شود';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'جمعه — تا $time حرکت کنید';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'عبادت';
+
+  @override
+  String get worshipGroupToolsTitle => 'ابزارها';
+
+  @override
+  String get worshipPrayerTabLearn => 'آموزش';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'تغییر هدف روزانه';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'هدف ذکر روزانه';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'هدف دلخواه';
+
+  @override
+  String get worshipSalahHubSubtitle => 'اوقات و بازه‌ها · برنامه قضا · آمار';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count امروز · جلسات هدایت‌شده و دستی';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'یادآورها و اذان';
+
+  @override
+  String get worshipLearnToPrayTitle => 'آموزش نماز';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'مربی وضو · نماز هدایت‌شده · راهنمای رکعات';
+
+  @override
+  String get fastingSuggestionRamadan => 'رمضان — روزه امروز را ثبت کنید';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'ایام بیض رسیده — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionMondayToday => 'امروز دوشنبه است — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'امروز پنجشنبه است — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionMondayTomorrow => 'فردا دوشنبه است — روزه سنت؟';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'فردا پنجشنبه است — روزه سنت؟';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'سحری تا $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'افطار در $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return '$count روزه کامل در این ماه';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'زنجیره $count روزه';
+  }
 
   @override
   String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';

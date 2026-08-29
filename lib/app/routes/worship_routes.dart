@@ -24,17 +24,18 @@ List<RouteBase> buildWorshipRoutes() {
       pageBuilder: (context, state) =>
           const MaterialPage(child: WorshipFastingPage()),
     ),
+    // The Tracking and Reminders router pages retired with the Prayer Room
+    // (calm-navigation Phase 3b); their routes redirect to the surfaces that
+    // hold the content now.
     GoRoute(
       path: '/worship/tracking',
       name: 'worshipTrackingPage',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: WorshipTrackingPage()),
+      redirect: (context, state) => '/worship/prayer',
     ),
     GoRoute(
       path: '/worship/reminders',
       name: 'worshipRemindersPage',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: WorshipRemindersPage()),
+      redirect: (context, state) => '/settings/notifications-reminders',
     ),
     GoRoute(
       path: '/worship/duas',

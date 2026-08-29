@@ -7,7 +7,9 @@ import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
+import '../../../../core/prayer/prayer_preferences.dart';
 import '../../application/fasting_controller.dart';
+import '../../application/fasting_insights_provider.dart';
 import '../../domain/fasting_status.dart';
 import '../../domain/fasting_type.dart';
 
@@ -27,6 +29,8 @@ class FastingSection extends ConsumerWidget {
           title: l10n.fastingSectionTitle,
           subtitle: l10n.fastingSectionSubtitle,
         ),
+        const _FastingRhythmCard(),
+        const SizedBox(height: 12),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,6 +241,107 @@ class _FastingChoicePill extends StatelessWidget {
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Sunnah-aware rhythm: today's suggestion, suhoor/iftar times from the
+/// prayer schedule, and simple momentum numbers (calm, not gamified).
+class _FastingRhythmCard extends ConsumerWidget {
+  const _FastingRhythmCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final suggestion = ref.watch(fastingSuggestionProvider);
+    final insights = ref.watch(fastingInsightsProvider);
+    final scheduleContext = ref.watch(prayerScheduleContextProvider);
+    final fajr = scheduleContext.items
+        .where((item) => item.id == 'fajr')
+        .firstOrNull;
+    final maghrib = scheduleContext.items
+        .where((item) => item.id == 'maghrib')
+        .firstOrNull;
+
+    final rows = <Widget>[];
+    if (suggestion != null) {
+      rows.add(
+        Row(
+          children: [
+            const Icon(
+              Icons.tips_and_updates_outlined,
+              size: 18,
+              color: AppColors.accentGoldSoft,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                suggestion.label(l10n),
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    if (fajr != null || maghrib != null) {
+      rows.add(
+        Wrap(
+          spacing: 12,
+          runSpacing: 6,
+          children: [
+            if (fajr != null)
+              Text(
+                l10n.fastingSuhoorEndsAt(fajr.offerTime),
+                style: const TextStyle(fontSize: 13),
+              ),
+            if (maghrib != null)
+              Text(
+                l10n.fastingIftarAt(maghrib.offerTime),
+                style: const TextStyle(fontSize: 13),
+              ),
+          ],
+        ),
+      );
+    }
+    if (insights.completedThisMonth > 0 || insights.streakDays > 0) {
+      rows.add(
+        Wrap(
+          spacing: 12,
+          runSpacing: 6,
+          children: [
+            if (insights.completedThisMonth > 0)
+              Text(
+                l10n.fastingCompletedThisMonth(insights.completedThisMonth),
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            if (insights.streakDays > 1)
+              Text(
+                l10n.fastingStreakDays(insights.streakDays),
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+          ],
+        ),
+      );
+    }
+    if (rows.isEmpty) return const SizedBox.shrink();
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (var i = 0; i < rows.length; i++) ...[
+            rows[i],
+            if (i < rows.length - 1) const SizedBox(height: 8),
+          ],
+        ],
       ),
     );
   }

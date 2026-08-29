@@ -2811,6 +2811,111 @@ class AppLocalizationsTg extends AppLocalizations {
   String get hubNewBadgeLabel => 'Нав';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Ҳоло · вақти $prayer кушода аст';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Оянда · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'вақт мегузарад';
+
+  @override
+  String get worshipBeginsAtLabel => 'оғоз мешавад';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'Пас аз $duration қазо мешавад';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Ҷумъа — то $time равед';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'Ибодат';
+
+  @override
+  String get worshipGroupToolsTitle => 'Абзорҳо';
+
+  @override
+  String get worshipPrayerTabLearn => 'Омӯзиш';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Тағйири ҳадафи рӯзона';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Ҳадафи зикри рӯзона';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Ҳадафи фармоишӣ';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'Вақтҳо ва фосилаҳо · нақшаи қазо · омор';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return 'Имрӯз $count · ҷаласаҳои роҳнамо ва дастӣ';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Ёдрасҳо ва азон';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Намозро омӯзед';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Мураббии таҳорат · намози роҳнамо · дастури ракъатҳо';
+
+  @override
+  String get fastingSuggestionRamadan => 'Рамазон — рӯзаи имрӯзро қайд кунед';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'Айёми бийз расид — рӯзаи суннатӣ?';
+
+  @override
+  String get fastingSuggestionMondayToday =>
+      'Имрӯз душанбе аст — рӯзаи суннатӣ?';
+
+  @override
+  String get fastingSuggestionThursdayToday =>
+      'Имрӯз панҷшанбе аст — рӯзаи суннатӣ?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'Фардо душанбе аст — рӯзаи суннатӣ?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'Фардо панҷшанбе аст — рӯзаи суннатӣ?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Саҳарӣ то $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'Ифтор дар $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'Ин моҳ $count рӯза пурра шуд';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'Силсилаи рӯзаи $count-рӯза';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Корти асосии намоз';
 
   @override

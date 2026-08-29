@@ -2849,6 +2849,112 @@ class AppLocalizationsDe extends AppLocalizations {
   String get hubNewBadgeLabel => 'Neu';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Jetzt · $prayer-Zeitfenster offen';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Als Nächstes · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'Fenster endet';
+
+  @override
+  String get worshipBeginsAtLabel => 'beginnt um';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'Wird Qada in $duration';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Jumu\'ah — Aufbruch bis $time';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'Gottesdienst';
+
+  @override
+  String get worshipGroupToolsTitle => 'Werkzeuge';
+
+  @override
+  String get worshipPrayerTabLearn => 'Lernen';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Tagesziel ändern';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Tägliches Dhikr-Ziel';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Eigenes Ziel';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'Zeiten & Fenster · Qada-Planer · Statistiken';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count heute · geführte und manuelle Sitzungen';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Erinnerungen & Adhan';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Beten lernen';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Wudu-Trainer · geführtes Gebet · Rakat-Übersicht';
+
+  @override
+  String get fastingSuggestionRamadan => 'Ramadan — heutiges Fasten erfassen';
+
+  @override
+  String get fastingSuggestionWhiteDays =>
+      'Die weißen Tage sind da — Sunnah-Fasten?';
+
+  @override
+  String get fastingSuggestionMondayToday =>
+      'Heute ist Montag — Sunnah-Fasten?';
+
+  @override
+  String get fastingSuggestionThursdayToday =>
+      'Heute ist Donnerstag — Sunnah-Fasten?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'Morgen ist Montag — Sunnah-Fasten?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'Morgen ist Donnerstag — Sunnah-Fasten?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Suhoor endet um $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'Iftar um $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return '$count Fastentage diesen Monat';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return '$count-Tage-Fastenserie';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Salah-Karte';
 
   @override

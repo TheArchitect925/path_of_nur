@@ -2784,6 +2784,107 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hubNewBadgeLabel => 'جديد';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'الآن · وقت $prayer مفتوح';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'التالية · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'ينتهي الوقت';
+
+  @override
+  String get worshipBeginsAtLabel => 'تبدأ في';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'تصبح قضاءً بعد $duration';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'الجمعة — غادر قبل $time';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'العبادة';
+
+  @override
+  String get worshipGroupToolsTitle => 'أدوات';
+
+  @override
+  String get worshipPrayerTabLearn => 'تعلّم';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'تغيير الهدف اليومي';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'هدف الذكر اليومي';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'هدف مخصص';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'المواقيت والأوقات · مخطط القضاء · الإحصاءات';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count اليوم · جلسات موجهة ويدوية';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'التذكيرات والأذان';
+
+  @override
+  String get worshipLearnToPrayTitle => 'تعلم الصلاة';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'مدرب الوضوء · الصلاة الموجهة · دليل الركعات';
+
+  @override
+  String get fastingSuggestionRamadan => 'رمضان — سجل صيام اليوم';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'الأيام البيض هنا — صيام سنة؟';
+
+  @override
+  String get fastingSuggestionMondayToday => 'اليوم الاثنين — صيام سنة؟';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'اليوم الخميس — صيام سنة؟';
+
+  @override
+  String get fastingSuggestionMondayTomorrow => 'غدًا الاثنين — صيام سنة؟';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow => 'غدًا الخميس — صيام سنة؟';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'ينتهي السحور في $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'الإفطار في $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return '$count صيام مكتمل هذا الشهر';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'سلسلة صيام $count يوم';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'بطاقة الصلاة الرئيسية';
 
   @override

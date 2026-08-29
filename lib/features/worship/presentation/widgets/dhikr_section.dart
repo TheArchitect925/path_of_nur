@@ -16,6 +16,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/dhikr_controller.dart';
+import '../../application/dhikr_daily_goal_provider.dart';
 import '../../domain/dhikr_preset.dart';
 import '../../domain/dhikr_session.dart';
 
@@ -31,7 +32,6 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
   bool _antiRushDialogVisible = false;
   bool _counterPressed = false;
 
-  static const _dailyDhikrGoal = 500;
 
   late final AnimationController _counterPulseController;
   late final Animation<double> _counterScale;
@@ -387,6 +387,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
     );
     final state = ref.watch(dhikrControllerProvider);
     final notifier = ref.read(dhikrControllerProvider.notifier);
+    final dailyDhikrGoal = ref.watch(dhikrDailyGoalProvider);
     final progress = (state.currentCount / state.target).clamp(0, 1).toDouble();
     final now = DateTime.now();
     final todayStart = DateTime(now.year, now.month, now.day);
@@ -397,7 +398,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
         .where((session) => !session.finishedAt.isBefore(todayStart))
         .length;
     final todayTotal = todayCompleted + state.currentCount;
-    final dailyProgress = (todayTotal / _dailyDhikrGoal).clamp(0, 1).toDouble();
+    final dailyProgress = (todayTotal / dailyDhikrGoal).clamp(0, 1).toDouble();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -750,16 +751,27 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                 minHeight: 8,
               ),
               const SizedBox(height: 6),
-              Text(
-                l10n.homeFractionValue(
-                  _formatCount(context, todayTotal),
-                  _formatCount(context, _dailyDhikrGoal),
-                ),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 22,
-                  color: AppColors.onSurface,
-                ),
+              Row(
+                children: [
+                  Text(
+                    l10n.homeFractionValue(
+                      _formatCount(context, todayTotal),
+                      _formatCount(context, dailyDhikrGoal),
+                    ),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 22,
+                      color: AppColors.onSurface,
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  IconButton(
+                    visualDensity: VisualDensity.compact,
+                    tooltip: l10n.dhikrDailyGoalEditTooltip,
+                    icon: const Icon(Icons.edit_outlined, size: 17),
+                    onPressed: () => _showDailyGoalPicker(context, ref),
+                  ),
+                ],
               ),
               const SizedBox(height: 4),
               Text(
@@ -1066,4 +1078,58 @@ String _formatSessionDuration(
     hourSuffix: l10n.durationCompactHourSuffix,
     minuteSuffix: l10n.durationCompactMinuteSuffix,
   );
+}
+
+Future<void> _showDailyGoalPicker(BuildContext context, WidgetRef ref) async {
+  final l10n = AppLocalizations.of(context);
+  final current = ref.read(dhikrDailyGoalProvider);
+  final controller = TextEditingController(text: '$current');
+  final result = await showDialog<int>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(l10n.dhikrDailyGoalEditTitle),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final preset in const <int>[100, 300, 500, 1000])
+                ChoiceChip(
+                  label: Text('$preset'),
+                  selected: current == preset,
+                  onSelected: (_) => Navigator.of(context).pop(preset),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: l10n.dhikrDailyGoalEditCustomLabel,
+              border: const OutlineInputBorder(),
+              isDense: true,
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(l10n.quranCancel),
+        ),
+        FilledButton(
+          onPressed: () =>
+              Navigator.of(context).pop(int.tryParse(controller.text.trim())),
+          child: Text(l10n.quranSave),
+        ),
+      ],
+    ),
+  );
+  if (result != null && result > 0) {
+    ref.read(dhikrDailyGoalProvider.notifier).setGoal(result);
+  }
 }

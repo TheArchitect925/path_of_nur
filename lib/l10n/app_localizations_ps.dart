@@ -2795,6 +2795,106 @@ class AppLocalizationsPs extends AppLocalizations {
   String get hubNewBadgeLabel => 'نوی';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'اوس · د $prayer وخت پرانيستی دی';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'راتلونکی · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'وخت پای ته رسيږي';
+
+  @override
+  String get worshipBeginsAtLabel => 'پيليږي په';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'په $duration کې قضا کيږي';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'جمعه — تر $time پورې حرکت وکړئ';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'عبادت';
+
+  @override
+  String get worshipGroupToolsTitle => 'وسايل';
+
+  @override
+  String get worshipPrayerTabLearn => 'زده کړه';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'ورځنۍ موخه بدله کړئ';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'د ورځني ذکر موخه';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'ځانګړې موخه';
+
+  @override
+  String get worshipSalahHubSubtitle => 'وختونه او مودې · د قضا پلان · شمېرې';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return 'نن $count · لارښود او لاسي ناستې';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'يادونې او اذان';
+
+  @override
+  String get worshipLearnToPrayTitle => 'لمونځ زده کړئ';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'د اودس روزونکی · لارښود لمونځ · د رکعتونو لارښود';
+
+  @override
+  String get fastingSuggestionRamadan => 'روژه — د نن روژه ثبت کړئ';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'سپينې ورځې راغلې — سنت روژه؟';
+
+  @override
+  String get fastingSuggestionMondayToday => 'نن دوشنبه ده — سنت روژه؟';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'نن پنجشنبه ده — سنت روژه؟';
+
+  @override
+  String get fastingSuggestionMondayTomorrow => 'سبا دوشنبه ده — سنت روژه؟';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow => 'سبا پنجشنبه ده — سنت روژه؟';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'پېغمنی په $time پای ته رسيږي';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'افطار په $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'دا مياشت $count روژې بشپړې شوې';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'د $count ورځو د روژې لړۍ';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'د لمانځه اصلي کارت';
 
   @override

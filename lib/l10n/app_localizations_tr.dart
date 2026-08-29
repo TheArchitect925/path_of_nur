@@ -2791,6 +2791,109 @@ class AppLocalizationsTr extends AppLocalizations {
   String get hubNewBadgeLabel => 'Yeni';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Şimdi · $prayer vakti açık';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Sıradaki · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'vakit bitiyor';
+
+  @override
+  String get worshipBeginsAtLabel => 'başlangıç';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return '$duration içinde kazaya kalır';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Cuma — $time\'e kadar çık';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'İbadet';
+
+  @override
+  String get worshipGroupToolsTitle => 'Araçlar';
+
+  @override
+  String get worshipPrayerTabLearn => 'Öğren';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Günlük hedefi değiştir';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Günlük zikir hedefi';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Özel hedef';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'Vakitler ve pencereler · kaza planı · istatistikler';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return 'Bugün $count · rehberli ve elle oturumlar';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Hatırlatıcılar ve ezan';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Namazı öğren';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Abdest eğitmeni · rehberli namaz · rekât rehberi';
+
+  @override
+  String get fastingSuggestionRamadan => 'Ramazan — bugünün orucunu kaydet';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'Beyaz günler geldi — sünnet orucu?';
+
+  @override
+  String get fastingSuggestionMondayToday => 'Bugün Pazartesi — sünnet orucu?';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'Bugün Perşembe — sünnet orucu?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'Yarın Pazartesi — sünnet orucu?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'Yarın Perşembe — sünnet orucu?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Sahur $time\'de biter';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'İftar $time\'de';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'Bu ay $count oruç tamamlandı';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return '$count günlük oruç serisi';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Namaz kartı';
 
   @override

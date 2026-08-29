@@ -362,6 +362,7 @@ Future<void> openPrayerTrackerSheet(
       prayerName: prayerName,
       initialTiming: existingEntry?.timing,
       initialPlace: existingEntry?.place,
+      initialNotes: existingEntry?.notes,
     ),
   );
   if (result == null) return;
@@ -378,6 +379,7 @@ Future<void> openPrayerTrackerSheet(
           prayer,
           timing: result.timing,
           place: result.place,
+          notes: result.notes,
         );
     return;
   }
@@ -395,6 +397,7 @@ Future<void> openPrayerTrackerSheet(
                 current?.completedAtIso ?? defaultCompletedAt.toIso8601String(),
             timing: result.timing,
             place: result.place,
+            notes: result.notes,
           );
   repository.saveDayEntries(dayKey, entries);
   ref
@@ -403,10 +406,15 @@ Future<void> openPrayerTrackerSheet(
 }
 
 class _PrayerTrackerResult {
-  const _PrayerTrackerResult({required this.timing, required this.place});
+  const _PrayerTrackerResult({
+    required this.timing,
+    required this.place,
+    this.notes,
+  });
 
   final PrayerOfferTiming timing;
   final PrayerOfferPlace place;
+  final String? notes;
 }
 
 class _PrayerTrackerSheet extends StatefulWidget {
@@ -414,11 +422,13 @@ class _PrayerTrackerSheet extends StatefulWidget {
     required this.prayerName,
     required this.initialTiming,
     required this.initialPlace,
+    this.initialNotes,
   });
 
   final String prayerName;
   final PrayerOfferTiming? initialTiming;
   final PrayerOfferPlace? initialPlace;
+  final String? initialNotes;
 
   @override
   State<_PrayerTrackerSheet> createState() => _PrayerTrackerSheetState();
@@ -427,12 +437,20 @@ class _PrayerTrackerSheet extends StatefulWidget {
 class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
   late PrayerOfferTiming _timing;
   late PrayerOfferPlace _place;
+  late final TextEditingController _notesController;
 
   @override
   void initState() {
     super.initState();
     _timing = widget.initialTiming ?? PrayerOfferTiming.onTime;
     _place = widget.initialPlace ?? PrayerOfferPlace.alone;
+    _notesController = TextEditingController(text: widget.initialNotes ?? '');
+  }
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
   }
 
   @override
@@ -492,6 +510,16 @@ class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
                     ),
                 ],
               ),
+              const SizedBox(height: 14),
+              TextFormField(
+                controller: _notesController,
+                maxLines: 2,
+                decoration: InputDecoration(
+                  labelText: l10n.salahOptionalNotesLabel,
+                  border: const OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -505,7 +533,11 @@ class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
                   Expanded(
                     child: FilledButton(
                       onPressed: () => Navigator.of(context).pop(
-                        _PrayerTrackerResult(timing: _timing, place: _place),
+                        _PrayerTrackerResult(
+                          timing: _timing,
+                          place: _place,
+                          notes: _notesController.text,
+                        ),
                       ),
                       child: Text(l10n.quranSave),
                     ),

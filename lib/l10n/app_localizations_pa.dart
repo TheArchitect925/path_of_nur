@@ -2801,6 +2801,108 @@ class AppLocalizationsPa extends AppLocalizations {
   String get hubNewBadgeLabel => 'ਨਵਾਂ';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'ਹੁਣ · $prayer ਦਾ ਸਮਾਂ ਖੁੱਲ੍ਹਾ ਹੈ';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'ਅਗਲੀ · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'ਸਮਾਂ ਖਤਮ';
+
+  @override
+  String get worshipBeginsAtLabel => 'ਸ਼ੁਰੂ ਹੋਵੇਗੀ';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return '$duration ਵਿੱਚ ਕਜ਼ਾ ਹੋਵੇਗੀ';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'ਜੁਮੁਆ — $time ਤੱਕ ਨਿਕਲੋ';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'ਇਬਾਦਤ';
+
+  @override
+  String get worshipGroupToolsTitle => 'ਸੰਦ';
+
+  @override
+  String get worshipPrayerTabLearn => 'ਸਿੱਖੋ';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'ਰੋਜ਼ਾਨਾ ਟੀਚਾ ਬਦਲੋ';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'ਰੋਜ਼ਾਨਾ ਜ਼ਿਕਰ ਟੀਚਾ';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'ਕਸਟਮ ਟੀਚਾ';
+
+  @override
+  String get worshipSalahHubSubtitle => 'ਸਮਾਂ ਅਤੇ ਅਵਧੀ · ਕਜ਼ਾ ਯੋਜਨਾ · ਅੰਕੜੇ';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return 'ਅੱਜ $count · ਨਿਰਦੇਸ਼ਿਤ ਅਤੇ ਹੱਥੀਂ ਸੈਸ਼ਨ';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'ਰਿਮਾਈਂਡਰ ਅਤੇ ਅਜ਼ਾਨ';
+
+  @override
+  String get worshipLearnToPrayTitle => 'ਨਮਾਜ਼ ਸਿੱਖੋ';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'ਵੁਜ਼ੂ ਸਿਖਲਾਈ · ਨਿਰਦੇਸ਼ਿਤ ਨਮਾਜ਼ · ਰਕਾਤ ਗਾਈਡ';
+
+  @override
+  String get fastingSuggestionRamadan => 'ਰਮਜ਼ਾਨ — ਅੱਜ ਦਾ ਰੋਜ਼ਾ ਦਰਜ ਕਰੋ';
+
+  @override
+  String get fastingSuggestionWhiteDays => 'ਅਯਾਮੇ-ਬੀਜ਼ ਆ ਗਏ — ਸੁੰਨਤ ਰੋਜ਼ਾ?';
+
+  @override
+  String get fastingSuggestionMondayToday => 'ਅੱਜ ਸੋਮਵਾਰ ਹੈ — ਸੁੰਨਤ ਰੋਜ਼ਾ?';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'ਅੱਜ ਵੀਰਵਾਰ ਹੈ — ਸੁੰਨਤ ਰੋਜ਼ਾ?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'ਕੱਲ੍ਹ ਸੋਮਵਾਰ ਹੈ — ਸੁੰਨਤ ਰੋਜ਼ਾ?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'ਕੱਲ੍ਹ ਵੀਰਵਾਰ ਹੈ — ਸੁੰਨਤ ਰੋਜ਼ਾ?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'ਸਹਿਰੀ $time ਤੇ ਖਤਮ';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'ਇਫਤਾਰ $time ਤੇ';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return 'ਇਸ ਮਹੀਨੇ $count ਰੋਜ਼ੇ ਪੂਰੇ';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return '$count ਦਿਨਾਂ ਦੀ ਰੋਜ਼ਾ ਲੜੀ';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'ਸਲਾਤ ਹੀਰੋ';
 
   @override

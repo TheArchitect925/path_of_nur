@@ -2,11 +2,15 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
+import '../../../salah/presentation/salah_page.dart';
 import '../../../../shared/state/user_profile_state.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
@@ -18,7 +22,6 @@ import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
-import 'salah_timings_tracker_card.dart';
 
 class PrayerSection extends ConsumerWidget {
   const PrayerSection({super.key});
@@ -69,7 +72,7 @@ class _PrayerHubTabs extends StatelessWidget {
           Tab(text: l10n.worshipPrayerTabTimes),
           Tab(text: l10n.worshipPrayerTabQada),
           Tab(text: l10n.worshipPrayerTabStats),
-          Tab(text: l10n.worshipPrayerTabRakat),
+          Tab(text: l10n.worshipPrayerTabLearn),
         ],
       ),
     );
@@ -118,8 +121,6 @@ class _PrayerTimesTab extends ConsumerWidget {
         Localizations.localeOf(context).languageCode,
       )),
     );
-    final tracker = ref.watch(prayerTrackerControllerProvider);
-    final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
     final sisterCycle = ref.watch(sisterCycleProvider);
     final sisterCycleNotifier = ref.read(sisterCycleProvider.notifier);
     final sisterCycleGuidance = ref.watch(sisterCycleGuidanceProvider);
@@ -265,10 +266,10 @@ class _PrayerTimesTab extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
           ],
-          SalahTimingsTrackerCard(
-            selectedDate: tracker.selectedDate,
-            onSelectedDateChanged: trackerNotifier.setSelectedDate,
-          ),
+          // The former /salah-times page — offer windows, qada rules, live
+          // countdowns, notes — merged here as the Times tab
+          // (calm-navigation Phase 3b).
+          const SalahTimesPage(embedded: true),
           if (spiritualMoment != null) ...[
             const SizedBox(height: 12),
             QuranSpiritualMomentCard(
@@ -742,11 +743,35 @@ class _PrayerRakatTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 12, bottom: 20),
+    final l10n = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(top: 12, bottom: 20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [_RakatCard()],
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const _RakatCard(),
+          const SizedBox(height: 12),
+          CompactListTile(
+            title: l10n.learningJourneyToolWuduGuideTitle,
+            subtitle: l10n.learningJourneyToolWuduGuideSubtitle,
+            leading: const HubLeadingIcon(Icons.water_drop_outlined),
+            onTap: () => context.pushNamed('learnWuduGuide'),
+          ),
+          const SizedBox(height: 6),
+          CompactListTile(
+            title: l10n.wuduTrainerPageTitle,
+            subtitle: l10n.wuduTrainerPageSubtitle,
+            leading: const HubLeadingIcon(Icons.route_rounded),
+            onTap: () => context.pushNamed('learnWuduTrainer'),
+          ),
+          const SizedBox(height: 6),
+          CompactListTile(
+            title: l10n.worshipLearnToPrayTitle,
+            subtitle: l10n.worshipLearnToPraySubtitle,
+            leading: const HubLeadingIcon(Icons.school_outlined),
+            onTap: () => context.pushNamed('learnSalahHub'),
+          ),
+        ],
       ),
     );
   }

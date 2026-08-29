@@ -2800,6 +2800,112 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hubNewBadgeLabel => 'New';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Now · $prayer window open';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Up next · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'window ends';
+
+  @override
+  String get worshipBeginsAtLabel => 'begins at';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'Becomes qada in $duration';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Jumu\'ah — leave by $time';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'Worship';
+
+  @override
+  String get worshipGroupToolsTitle => 'Tools';
+
+  @override
+  String get worshipPrayerTabLearn => 'Learn';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Change daily goal';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Daily dhikr goal';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Custom goal';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'Times & windows · qada planner · stats';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count today · guided and manual sessions';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Reminders & adhan';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Learn to pray';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Wudu trainer · guided salah · rakat guide';
+
+  @override
+  String get fastingSuggestionRamadan => 'Ramadan — track today\'s fast';
+
+  @override
+  String get fastingSuggestionWhiteDays =>
+      'The white days are here — a sunnah fast?';
+
+  @override
+  String get fastingSuggestionMondayToday =>
+      'It\'s Monday — a sunnah fast today?';
+
+  @override
+  String get fastingSuggestionThursdayToday =>
+      'It\'s Thursday — a sunnah fast today?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow =>
+      'Tomorrow is Monday — a sunnah fast?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow =>
+      'Tomorrow is Thursday — a sunnah fast?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Suhoor ends at $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'Iftar at $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return '$count fasts completed this month';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return '$count-day fasting streak';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Salah hero';
 
   @override

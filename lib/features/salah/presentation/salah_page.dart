@@ -25,7 +25,12 @@ import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 
 class SalahTimesPage extends ConsumerStatefulWidget {
-  const SalahTimesPage({super.key});
+  const SalahTimesPage({super.key, this.embedded = false});
+
+  /// When true the page renders as inline content (no Scaffold, background,
+  /// back header, or verse header) — used as the Salah Hub's Times tab in
+  /// the calm-navigation merge.
+  final bool embedded;
 
   @override
   ConsumerState<SalahTimesPage> createState() => _SalahTimesPageState();
@@ -120,52 +125,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
         (settings.preferences.useDeviceLocation
             ? l10n.worshipQiblaLocationLabel
             : settings.preferences.location);
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          const GlobalBackground(),
-          SafeArea(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                      color: const Color(0xFF3C2F25),
-                    ),
-                    const SizedBox(width: 4),
-                    const Icon(
-                      IslamicIcons.prayer,
-                      color: Color(0xFF3C2F25),
-                      size: 24,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        l10n.homePrayerSectionTitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 26,
-                          fontFamily: AppFonts.latinSerif,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF32251D),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                _SalahVerseHeader(
-                  quote: salahQuote,
-                  onOpenQuran: () =>
-                      openQuranQuoteLocation(context, salahQuote),
-                ),
-                const SizedBox(height: 12),
+    final contentChildren = <Widget>[
                 _SalahSummaryHeader(
                   schedule: schedule,
                   scheduleContext: scheduleContext,
@@ -399,6 +359,62 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                     ),
                   );
                 }),
+    ];
+
+    if (widget.embedded) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: contentChildren,
+      );
+    }
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          const GlobalBackground(),
+          SafeArea(
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => context.pop(),
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                      color: const Color(0xFF3C2F25),
+                    ),
+                    const SizedBox(width: 4),
+                    const Icon(
+                      IslamicIcons.prayer,
+                      color: Color(0xFF3C2F25),
+                      size: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        l10n.homePrayerSectionTitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontFamily: AppFonts.latinSerif,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF32251D),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                _SalahVerseHeader(
+                  quote: salahQuote,
+                  onOpenQuran: () =>
+                      openQuranQuoteLocation(context, salahQuote),
+                ),
+                const SizedBox(height: 12),
+                ...contentChildren,
               ],
             ),
           ),

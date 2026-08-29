@@ -2786,6 +2786,108 @@ class AppLocalizationsMs extends AppLocalizations {
   String get hubNewBadgeLabel => 'Baharu';
 
   @override
+  String worshipNowWindowOpen(Object prayer) {
+    return 'Sekarang · waktu $prayer terbuka';
+  }
+
+  @override
+  String worshipNowUpNext(Object prayer) {
+    return 'Seterusnya · $prayer';
+  }
+
+  @override
+  String get worshipWindowEndsLabel => 'waktu tamat';
+
+  @override
+  String get worshipBeginsAtLabel => 'bermula pada';
+
+  @override
+  String worshipBecomesQadaIn(Object duration) {
+    return 'Menjadi qada dalam $duration';
+  }
+
+  @override
+  String worshipJumuahLeaveBy(Object time) {
+    return 'Jumaat — bertolak sebelum $time';
+  }
+
+  @override
+  String get worshipGroupWorshipTitle => 'Ibadah';
+
+  @override
+  String get worshipGroupToolsTitle => 'Alatan';
+
+  @override
+  String get worshipPrayerTabLearn => 'Belajar';
+
+  @override
+  String get dhikrDailyGoalEditTooltip => 'Tukar sasaran harian';
+
+  @override
+  String get dhikrDailyGoalEditTitle => 'Sasaran zikir harian';
+
+  @override
+  String get dhikrDailyGoalEditCustomLabel => 'Sasaran tersuai';
+
+  @override
+  String get worshipSalahHubSubtitle =>
+      'Waktu & tempoh · perancang qada · statistik';
+
+  @override
+  String worshipDhikrTodaySubtitle(Object count) {
+    return '$count hari ini · sesi berpandu dan manual';
+  }
+
+  @override
+  String get worshipRemindersAdhanTitle => 'Peringatan & azan';
+
+  @override
+  String get worshipLearnToPrayTitle => 'Belajar solat';
+
+  @override
+  String get worshipLearnToPraySubtitle =>
+      'Jurulatih wuduk · solat berpandu · panduan rakaat';
+
+  @override
+  String get fastingSuggestionRamadan => 'Ramadan — catat puasa hari ini';
+
+  @override
+  String get fastingSuggestionWhiteDays =>
+      'Hari-hari putih tiba — puasa sunat?';
+
+  @override
+  String get fastingSuggestionMondayToday => 'Hari ini Isnin — puasa sunat?';
+
+  @override
+  String get fastingSuggestionThursdayToday => 'Hari ini Khamis — puasa sunat?';
+
+  @override
+  String get fastingSuggestionMondayTomorrow => 'Esok Isnin — puasa sunat?';
+
+  @override
+  String get fastingSuggestionThursdayTomorrow => 'Esok Khamis — puasa sunat?';
+
+  @override
+  String fastingSuhoorEndsAt(Object time) {
+    return 'Sahur tamat pada $time';
+  }
+
+  @override
+  String fastingIftarAt(Object time) {
+    return 'Berbuka pada $time';
+  }
+
+  @override
+  String fastingCompletedThisMonth(Object count) {
+    return '$count puasa selesai bulan ini';
+  }
+
+  @override
+  String fastingStreakDays(Object count) {
+    return 'Rentetan puasa $count hari';
+  }
+
+  @override
   String get homeModuleSalahHeroTitle => 'Kad solat utama';
 
   @override

@@ -10,8 +10,8 @@ import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:path_of_nur/shared/widgets/app_scaffold.dart';
+import 'package:path_of_nur/features/salah/presentation/salah_page.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_section_pages.dart';
-import 'package:path_of_nur/features/worship/presentation/widgets/salah_timings_tracker_card.dart';
 
 void main() {
   testWidgets('Legal support page renders', (WidgetTester tester) async {
@@ -41,8 +41,8 @@ void main() {
   testWidgets('worship page moon card shows all five prayers with times', (
     WidgetTester tester,
   ) async {
-    // The worship landing became a hub; the daily timings surface now lives
-    // on the prayer section page inside SalahTimingsTrackerCard.
+    // Phase 3b: the Salah Hub's Times tab now embeds the full salah-times
+    // experience (SalahTimesPage) with all five prayers.
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
@@ -72,12 +72,12 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
 
     await tester.scrollUntilVisible(
-      find.byType(SalahTimingsTrackerCard),
+      find.byType(SalahTimesPage),
       400,
       scrollable: find.byType(Scrollable).first,
       maxScrolls: 60,
     );
-    final timingsCard = find.byType(SalahTimingsTrackerCard).first;
+    final timingsCard = find.byType(SalahTimesPage).first;
     expect(timingsCard, findsOneWidget);
 
     const prayerNames = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
@@ -88,13 +88,12 @@ void main() {
       );
     }
 
-    final pills = tester.widgetList<PrayerTimingPill>(
-      find.descendant(of: timingsCard, matching: find.byType(PrayerTimingPill)),
+    // Each prayer card in the merged Times tab carries a real offer time.
+    final offerTimeLabels = find.descendant(
+      of: timingsCard,
+      matching: find.textContaining(':'),
     );
-    expect(pills.length, greaterThanOrEqualTo(5));
-    for (final pill in pills) {
-      expect(pill.time, isNotEmpty);
-    }
+    expect(offerTimeLabels, findsAtLeastNWidgets(5));
   });
 
   testWidgets(

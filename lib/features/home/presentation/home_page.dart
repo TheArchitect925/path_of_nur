@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/nav_tabs.dart';
+import '../../../core/prayer/prayer_forbidden_periods.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
@@ -33,6 +34,7 @@ import '../../../shared/widgets/noor_liquid_glass.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../profile/application/profile_settings_provider.dart';
+import '../../worship/application/dhikr_daily_goal_provider.dart';
 import '../application/home_module_prefs_provider.dart';
 import '../domain/home_modules.dart';
 import 'widgets/home_prayer_strip.dart';
@@ -316,8 +318,6 @@ class _TopGreetingBlock extends StatelessWidget {
 class _SalahSummaryCard extends ConsumerWidget {
   const _SalahSummaryCard({required this.l10n});
 
-  static const _zenithForbiddenLead = Duration(minutes: 5);
-  static const _sunsetForbiddenLead = Duration(minutes: 20);
 
   final AppLocalizations l10n;
 
@@ -385,8 +385,7 @@ class _SalahSummaryCard extends ConsumerWidget {
     final current = scheduleContext.items
         .where((item) => item.id == scheduleContext.currentPrayerId)
         .firstOrNull;
-    final forbiddenPeriod = _activeForbiddenPeriod(
-      l10n,
+    final forbiddenPeriod = activeForbiddenPrayerPeriod(
       scheduleContext.items,
       now,
     );
@@ -419,7 +418,7 @@ class _SalahSummaryCard extends ConsumerWidget {
         includeTahajjudOffer: includesTahajjudOffer,
       ),
     );
-    final dhikrDailyGoal = math.max(worship.dhikrTarget, 500);
+    final dhikrDailyGoal = ref.watch(dhikrDailyGoalProvider);
     final dhikrValue = l10n.homeFractionValue(
       _formatLocalizedCount(context, worship.dhikrCount),
       _formatLocalizedCount(context, dhikrDailyGoal),
@@ -434,7 +433,8 @@ class _SalahSummaryCard extends ConsumerWidget {
       if (forbiddenPeriod != null)
         AppSalahHeroMetaChipData(
           icon: Icons.block_rounded,
-          label: '${forbiddenPeriod.label} • ${forbiddenPeriod.value}',
+          label:
+              '${forbiddenPrayerPeriodLabel(l10n, forbiddenPeriod)} • ${l10n.homeUntilTime(forbiddenPeriod.untilTime)}',
           color: const Color(0xFFD01919),
         )
       else if (current != null) ...[
@@ -486,7 +486,7 @@ class _SalahSummaryCard extends ConsumerWidget {
         ),
       ],
       metaChips: metaChips,
-      onOpenSalahTimes: () => context.pushNamed('salahTimes'),
+      onOpenSalahTimes: () => context.pushNamed('worshipPrayerPage'),
       onOpenLocationPicker: () =>
           _showLocationPicker(context, ref, locationLabel),
     );
@@ -504,64 +504,6 @@ class _SalahSummaryCard extends ConsumerWidget {
       minuteSuffix: l10n.durationCompactMinuteSuffix,
     );
   }
-
-  _ForbiddenPrayerPeriod? _activeForbiddenPeriod(
-    AppLocalizations l10n,
-    List<PrayerScheduleItem> items,
-    DateTime now,
-  ) {
-    PrayerScheduleItem? itemById(String id) =>
-        items.where((item) => item.id == id).firstOrNull;
-
-    final fajr = itemById('fajr');
-    if (fajr != null) {
-      final sunriseStart = fajr.overdueDateTime;
-      final sunriseEnd = fajr.makeUpFromDateTime;
-      if (!now.isBefore(sunriseStart) && now.isBefore(sunriseEnd)) {
-        return _ForbiddenPrayerPeriod(
-          label: l10n.homePrayerForbiddenSunrise,
-          value: l10n.homeUntilTime(fajr.makeUpFrom),
-        );
-      }
-    }
-
-    final dhuhr = itemById('dhuhr');
-    if (dhuhr != null) {
-      final zenithStart = dhuhr.windowStartDateTime.subtract(
-        _zenithForbiddenLead,
-      );
-      final zenithEnd = dhuhr.windowStartDateTime;
-      if (!now.isBefore(zenithStart) && now.isBefore(zenithEnd)) {
-        return _ForbiddenPrayerPeriod(
-          label: l10n.homePrayerForbiddenZenith,
-          value: l10n.homeUntilTime(dhuhr.windowStart),
-        );
-      }
-    }
-
-    final maghrib = itemById('maghrib');
-    if (maghrib != null) {
-      final sunsetStart = maghrib.windowStartDateTime.subtract(
-        _sunsetForbiddenLead,
-      );
-      final sunsetEnd = maghrib.windowStartDateTime;
-      if (!now.isBefore(sunsetStart) && now.isBefore(sunsetEnd)) {
-        return _ForbiddenPrayerPeriod(
-          label: l10n.homePrayerForbiddenSunset,
-          value: l10n.homeUntilTime(maghrib.windowStart),
-        );
-      }
-    }
-
-    return null;
-  }
-}
-
-class _ForbiddenPrayerPeriod {
-  const _ForbiddenPrayerPeriod({required this.label, required this.value});
-
-  final String label;
-  final String value;
 }
 
 class _ModeAwareHomeCard extends ConsumerWidget {
@@ -614,11 +556,6 @@ class _ModeAwareHomeCard extends ConsumerWidget {
             icon: Icons.self_improvement_rounded,
             label: l10n.modeLossActionDhikr,
             onTap: () => goToTab(context, NavTab.worship),
-          ),
-          _ModeActionChip(
-            icon: Icons.spa_outlined,
-            label: l10n.modeLossActionKhusu,
-            onTap: () => context.pushNamed('khusuFocus'),
           ),
           _ModeActionChip(
             icon: Icons.menu_book_outlined,

@@ -1616,6 +1616,78 @@
   "growthGroupEnjoyTitle": "Enjoy",
   "growthGroupConnectTitle": "Connect",
   "hubNewBadgeLabel": "New",
+  "worshipNowWindowOpen": "Now · {prayer} window open",
+  "@worshipNowWindowOpen": {
+    "placeholders": {
+      "prayer": {}
+    }
+  },
+  "worshipNowUpNext": "Up next · {prayer}",
+  "@worshipNowUpNext": {
+    "placeholders": {
+      "prayer": {}
+    }
+  },
+  "worshipWindowEndsLabel": "window ends",
+  "worshipBeginsAtLabel": "begins at",
+  "worshipBecomesQadaIn": "Becomes qada in {duration}",
+  "@worshipBecomesQadaIn": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "worshipJumuahLeaveBy": "Jumu''ah — leave by {time}",
+  "@worshipJumuahLeaveBy": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "worshipGroupWorshipTitle": "Worship",
+  "worshipGroupToolsTitle": "Tools",
+  "worshipPrayerTabLearn": "Learn",
+  "dhikrDailyGoalEditTooltip": "Change daily goal",
+  "dhikrDailyGoalEditTitle": "Daily dhikr goal",
+  "dhikrDailyGoalEditCustomLabel": "Custom goal",
+  "worshipSalahHubSubtitle": "Times & windows · qada planner · stats",
+  "worshipDhikrTodaySubtitle": "{count} today · guided and manual sessions",
+  "@worshipDhikrTodaySubtitle": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "worshipRemindersAdhanTitle": "Reminders & adhan",
+  "worshipLearnToPrayTitle": "Learn to pray",
+  "worshipLearnToPraySubtitle": "Wudu trainer · guided salah · rakat guide",
+  "fastingSuggestionRamadan": "Ramadan — track today''s fast",
+  "fastingSuggestionWhiteDays": "The white days are here — a sunnah fast?",
+  "fastingSuggestionMondayToday": "It''s Monday — a sunnah fast today?",
+  "fastingSuggestionThursdayToday": "It''s Thursday — a sunnah fast today?",
+  "fastingSuggestionMondayTomorrow": "Tomorrow is Monday — a sunnah fast?",
+  "fastingSuggestionThursdayTomorrow": "Tomorrow is Thursday — a sunnah fast?",
+  "fastingSuhoorEndsAt": "Suhoor ends at {time}",
+  "@fastingSuhoorEndsAt": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "fastingIftarAt": "Iftar at {time}",
+  "@fastingIftarAt": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "fastingCompletedThisMonth": "{count} fasts completed this month",
+  "@fastingCompletedThisMonth": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "fastingStreakDays": "{count}-day fasting streak",
+  "@fastingStreakDays": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "homeModuleSalahHeroTitle": "Salah hero",
   "homeModulePrayerStripTitle": "Prayer times row",
   "homeModulePrayerStripSubtitle": "Compact five-prayer strip that opens Ibadah.",

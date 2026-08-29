@@ -34,10 +34,8 @@ import '../../features/profile/presentation/profile_whats_new_page.dart';
 import '../../features/profile/presentation/settings_page.dart';
 import '../../features/quran/presentation/quran_verse_page.dart';
 import '../../features/search/presentation/all_search_page.dart';
-import '../../features/salah/presentation/salah_page.dart';
 import '../../features/shared/attributions_licenses_page.dart';
 import '../../features/shared/legal_info_page.dart';
-import '../../features/worship/presentation/khusu_focus_page.dart';
 import '../../features/worship/presentation/qibla_finder_page.dart';
 
 String _redirectWithQuery(String path, GoRouterState state) {
@@ -59,11 +57,12 @@ String _redirectWithPathAndQuery(String pathTemplate, GoRouterState state) {
 
 List<RouteBase> buildCoreSupportRoutes() {
   return <RouteBase>[
+    // /salah-times merged into the Salah Hub's Times tab
+    // (calm-navigation Phase 3b); the name stays for notification deep links.
     GoRoute(
       path: '/salah-times',
       name: 'salahTimes',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: SalahTimesPage()),
+      redirect: (context, state) => '/worship/prayer',
     ),
     GoRoute(
       path: '/home/edit',
@@ -332,11 +331,12 @@ List<RouteBase> buildCoreSupportRoutes() {
       pageBuilder: (context, state) =>
           const MaterialPage(child: AttributionsLicensesPage()),
     ),
+    // Khushu focus was cut from the IA (calm-navigation Phase 3b) — the
+    // built-but-unwired KhusuSection stays parked for a future revival.
     GoRoute(
       path: '/khusu-focus',
       name: 'khusuFocus',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KhusuFocusPage()),
+      redirect: (context, state) => '/worship',
     ),
     GoRoute(
       path: '/qibla-finder',

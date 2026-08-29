@@ -9,6 +9,7 @@ import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
+import '../../features/worship/application/dhikr_daily_goal_provider.dart';
 import '../../features/worship/application/prayer_controller.dart';
 import '../../features/worship/domain/prayer_name.dart';
 import '../../features/worship/domain/prayer_status.dart';
@@ -185,9 +186,7 @@ class QuickActionsSheet extends ConsumerWidget {
                       title: l10n.homeShortcutDhikrLabel,
                       subtitle: l10n.homeFractionValue(
                         countFormat.format(worship.dhikrCount),
-                        countFormat.format(worship.dhikrTarget < 500
-                            ? 500
-                            : worship.dhikrTarget),
+                        countFormat.format(ref.watch(dhikrDailyGoalProvider)),
                       ),
                       onTap: () {
                         Navigator.of(context).pop();
