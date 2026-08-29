@@ -140,8 +140,29 @@ class MidnightSkyPainter extends CustomPainter {
     }
     lit.close();
     canvas.drawPath(lit, Paint()..color = _moonLit.withValues(alpha: 0.95));
+
+    // Maria. Without them a full moon is just a pale disc; these few soft
+    // patches read as a moon at any phase. Clipped to the lit area so they
+    // never appear on the unlit side, and mirrored with it when waning.
+    canvas.save();
+    canvas.clipPath(lit);
+    final seaPaint = Paint()
+      ..color = const Color(0xFF9C8F6E).withValues(alpha: 0.30)
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, r * 0.10);
+    for (final sea in _moonMaria) {
+      canvas.drawCircle(Offset(sea.$1 * r, sea.$2 * r), sea.$3 * r, seaPaint);
+    }
+    canvas.restore();
     canvas.restore();
   }
+
+  /// Lunar maria as (dx, dy, radius) fractions of the moon radius.
+  static const List<(double, double, double)> _moonMaria = [
+    (-0.30, -0.32, 0.30),
+    (0.16, 0.06, 0.34),
+    (-0.10, 0.46, 0.22),
+    (0.40, -0.40, 0.16),
+  ];
 
   @override
   bool shouldRepaint(covariant MidnightSkyPainter oldDelegate) {

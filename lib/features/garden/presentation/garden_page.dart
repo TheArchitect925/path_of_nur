@@ -63,12 +63,38 @@ class GardenPage extends ConsumerWidget {
         const SizedBox(height: 14),
         _SectionCard(
           title: l10n.gardenPageBreakdownTitle,
-          child: Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: garden.dimensions
-                .map((dimension) => _DimensionCard(dimension: dimension))
-                .toList(growable: false),
+          // Two even columns rather than fixed-width tiles, so these match
+          // the full-width cards around them instead of leaving a ragged
+          // gap at the end of each row.
+          child: Column(
+            children: [
+              for (var row = 0; row < garden.dimensions.length; row += 2)
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: row + 2 < garden.dimensions.length ? 10 : 0,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: _DimensionCard(
+                            dimension: garden.dimensions[row],
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: row + 1 < garden.dimensions.length
+                              ? _DimensionCard(
+                                  dimension: garden.dimensions[row + 1],
+                                )
+                              : const SizedBox.shrink(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
         const SizedBox(height: 14),
@@ -213,12 +239,15 @@ class _NewGrowthNote extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: theme.textTheme.bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.w700),
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 2),
               Text(
-                named.isEmpty ? l10n.gardenVistaNewGrowthBody : named.join(' · '),
+                named.isEmpty
+                    ? l10n.gardenVistaNewGrowthBody
+                    : named.join(' · '),
                 style: theme.textTheme.bodySmall,
               ),
             ],
@@ -255,8 +284,10 @@ class _GardenHeroCard extends StatelessWidget {
       GardenGrowthDimension.remembranceLight => garden.remembranceLightScore,
       GardenGrowthDimension.consistencyBloom => garden.consistencyScore,
       GardenGrowthDimension.wisdomFruit => garden.wisdomFruitScore,
-      GardenGrowthDimension.mercyWater =>
-        (garden.totalOceanDrops / 1000).clamp(0.0, 1.0),
+      GardenGrowthDimension.mercyWater => (garden.totalOceanDrops / 1000).clamp(
+        0.0,
+        1.0,
+      ),
     };
   }
 
@@ -458,46 +489,43 @@ class _DimensionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return SizedBox(
-      width: 170,
-      child: PremiumCard(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(
-              GardenPage._iconForDimension(dimension.dimension),
-              color: const Color(0xFF72553C),
+    return PremiumCard(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            GardenPage._iconForDimension(dimension.dimension),
+            color: const Color(0xFF72553C),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            _dimensionTitle(l10n, dimension.dimension),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            _dimensionBody(l10n, dimension.dimension),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: dimension.score,
+              minHeight: 7,
             ),
-            const SizedBox(height: 8),
-            Text(
-              _dimensionTitle(l10n, dimension.dimension),
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.gardenPageDimensionStrengthValue(
+              '${dimension.emphasisPercent}',
             ),
-            const SizedBox(height: 4),
-            Text(
-              _dimensionBody(l10n, dimension.dimension),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 10),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(
-                value: dimension.score,
-                minHeight: 7,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.gardenPageDimensionStrengthValue(
-                '${dimension.emphasisPercent}',
-              ),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }

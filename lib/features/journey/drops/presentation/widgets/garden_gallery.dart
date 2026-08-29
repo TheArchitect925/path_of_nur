@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -124,17 +122,12 @@ class GardenGalleryTile extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  _GardenMilestoneArtwork(
-                    milestone: milestone,
-                    unlocked: unlocked,
-                  ),
-                  if (!unlocked)
-                    BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 2.4, sigmaY: 2.4),
-                      child: Container(
-                        color: const Color(0xFF2B241D).withValues(alpha: 0.34),
-                      ),
-                    ),
+                  // Milestone art is a reward: a locked tile shows a plain
+                  // covered panel, never a blurred glimpse of the artwork.
+                  if (unlocked)
+                    _GardenMilestoneArtwork(milestone: milestone)
+                  else
+                    const _GardenLockedPanel(),
                   Positioned(
                     top: 12,
                     right: 12,
@@ -210,14 +203,38 @@ class GardenGalleryTile extends StatelessWidget {
   }
 }
 
+/// Stands in for milestone art that has not been earned yet — a quiet
+/// covered panel, with no trace of the image behind it.
+class _GardenLockedPanel extends StatelessWidget {
+  const _GardenLockedPanel();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFFE9E2D6), Color(0xFFD9D0C2)],
+        ),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.spa_outlined,
+          size: 30,
+          color: const Color(0xFF6A5A4A).withValues(alpha: 0.32),
+        ),
+      ),
+    );
+  }
+}
+
+/// Earned milestone art. Locked tiles use [_GardenLockedPanel] instead, so
+/// this never has to dim or obscure anything.
 class _GardenMilestoneArtwork extends StatelessWidget {
-  const _GardenMilestoneArtwork({
-    required this.milestone,
-    required this.unlocked,
-  });
+  const _GardenMilestoneArtwork({required this.milestone});
 
   final GardenMilestone milestone;
-  final bool unlocked;
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +246,7 @@ class _GardenMilestoneArtwork extends StatelessWidget {
           path,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            return _GardenArtworkFallback(unlocked: unlocked);
+            return const _GardenArtworkFallback();
           },
         ),
         DecoratedBox(
@@ -239,9 +256,7 @@ class _GardenMilestoneArtwork extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                const Color(
-                  0xFF1E1915,
-                ).withValues(alpha: unlocked ? 0.18 : 0.28),
+                const Color(0xFF1E1915).withValues(alpha: 0.18),
               ],
             ),
           ),
@@ -252,9 +267,7 @@ class _GardenMilestoneArtwork extends StatelessWidget {
 }
 
 class _GardenArtworkFallback extends StatelessWidget {
-  const _GardenArtworkFallback({required this.unlocked});
-
-  final bool unlocked;
+  const _GardenArtworkFallback();
 
   @override
   Widget build(BuildContext context) {
@@ -263,14 +276,12 @@ class _GardenArtworkFallback extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: unlocked
-              ? const [Color(0xFFE7D7AE), Color(0xFF8BA06B)]
-              : const [Color(0xFFE2DDD4), Color(0xFFC8C0B3)],
+          colors: const [Color(0xFFE7D7AE), Color(0xFF8BA06B)],
         ),
       ),
       child: Center(
         child: Icon(
-          unlocked ? Icons.local_florist_rounded : Icons.park_outlined,
+          Icons.local_florist_rounded,
           size: 40,
           color: const Color(0xFF2C2318),
         ),
