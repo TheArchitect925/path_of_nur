@@ -270,9 +270,11 @@ function paintWater(tier, tod) {
   if (seaVisible) {
     const full = tier >= 5;
     const [seaHi, seaLo] = G.sea;
-    const fade = lgV(defs, [[0, seaHi, 0], [0.1, seaHi, 1], [0.92, seaLo, 1], [1, seaLo, 0]], 0, 0, 1, 0);
-    g += `<rect x="1180" y="${HZN - 12}" width="800" height="${full ? 126 : 78}" fill="${fade}"/>`;
-    g += `<rect x="1200" y="${HZN - 12}" width="760" height="4" fill="${IVORY}" opacity="0.3"/>`;
+    // Stays inside the ground layer's bay saddle (bottom ~HZN+78) with soft
+    // horizontal fades so it melts into the flanking hills.
+    const fade = lgV(defs, [[0, seaHi, 0], [0.16, seaHi, 1], [0.86, seaLo, 1], [1, seaLo, 0]], 0, 0, 1, 0);
+    g += `<rect x="1200" y="${HZN - 10}" width="770" height="${full ? 82 : 56}" fill="${fade}"/>`;
+    g += `<rect x="1250" y="${HZN - 10}" width="660" height="4" fill="${IVORY}" opacity="0.3"/>`;
     if (full) {
       g += `<ellipse cx="1480" cy="${HZN + 34}" rx="140" ry="5" fill="${IVORY}" opacity="0.2"/>
         <ellipse cx="1690" cy="${HZN + 58}" rx="90" ry="4" fill="${IVORY}" opacity="0.16"/>
@@ -407,6 +409,165 @@ function treeParts(stageNumber, tod) {
   };
 }
 
+/* ============================ PLANT PAINTERS ============================ */
+
+function trunkPathD(x, gy, h, w, lean = 0) {
+  return `M ${x - w * 0.55} ${gy}
+    C ${x - w * 0.42 + lean * 0.3} ${gy - h * 0.5} ${x - w * 0.3 + lean * 0.8} ${gy - h * 0.82} ${x - w * 0.16 + lean} ${gy - h}
+    L ${x + w * 0.16 + lean} ${gy - h}
+    C ${x + w * 0.28 + lean * 0.8} ${gy - h * 0.78} ${x + w * 0.4 + lean * 0.3} ${gy - h * 0.48} ${x + w * 0.55} ${gy} Z`;
+}
+
+const OLIVE_LEAF = ['#57684E', '#71835F', '#93A47A', '#B8C49A'];
+
+function paintPlant(name, variant, tod = 'day') {
+  const G = GROUNDS[tod];
+  const defs = [];
+  const rough = roughFilter(defs);
+  let g = '';
+  const region = {
+    olive: ELEMENTS.olive.rect, palm: ELEMENTS.datePalm.rect, fig: ELEMENTS.fig.rect,
+    pomegranate: ELEMENTS.pomegranate.rect, vine: ELEMENTS.grapeVine.rect,
+    gourd: ELEMENTS.gourd.rect, sidr: ELEMENTS.loteTree.rect, rayhan: ELEMENTS.rayhan.rect,
+  }[name];
+  const base = {
+    olive: ELEMENTS.olive.base, palm: ELEMENTS.datePalm.base, fig: ELEMENTS.fig.base,
+    pomegranate: ELEMENTS.pomegranate.base, vine: ELEMENTS.grapeVine.base,
+    gourd: ELEMENTS.gourd.base, sidr: ELEMENTS.loteTree.base, rayhan: ELEMENTS.rayhan.base,
+  }[name];
+  const [bx, by] = base;
+  const trunkFill = lgV(defs, [[0, G.trunkLit], [1, G.trunk]], 0, 0, 1, 0);
+  switch (name) {
+    case 'olive': {
+      const s = [0.6, 0.82, 1.04][variant - 1];
+      g += shadowEl(defs, bx + 14, by + 4, 74 * s, 12, 0.2);
+      g += `<g filter="url(#${rough})"><path d="${trunkPathD(bx, by, 92 * s, 13 * s, 4)}" fill="${trunkFill}"/></g>`;
+      g += foliage(defs, bx - 2, by - 128 * s, 68 * s, 50 * s, 51, OLIVE_LEAF);
+      if (variant >= 2) {
+        const rnd = mulberry32(21);
+        for (let i = 0; i < (variant === 3 ? 10 : 5); i++) {
+          const a = rnd() * Math.PI * 2, r = 58 * s * (0.35 + rnd() * 0.55);
+          g += `<circle cx="${(bx + r * Math.cos(a)).toFixed(0)}" cy="${(by - 128 * s + r * Math.sin(a) * 0.75).toFixed(0)}" r="4" fill="#D9E0C2" opacity="0.95"/>`;
+        }
+      }
+      break;
+    }
+    case 'palm': {
+      const s = [0.5, 0.72, 0.95][variant - 1];
+      const tipX = bx + 30 * s, tipY = by - 320 * s;
+      g += shadowEl(defs, bx + 40 * s, by + 4, 70 * s, 11, 0.2);
+      let rings = '';
+      for (let i = 0; i < 6; i++) {
+        rings += `<path d="M ${bx + 4 * s + i * 3.4 * s} ${by - i * 52 * s} q ${12 * s} ${-6 * s} ${22 * s} 0" stroke="${G.trunk}" stroke-width="${2.5 * s}" opacity="0.4" fill="none"/>`;
+      }
+      g += `<g filter="url(#${rough})"><path d="M ${bx} ${by} q ${8 * s} ${-180 * s} ${30 * s} ${-320 * s} l ${26 * s} 2 q ${-16 * s} ${150 * s} ${-8 * s} ${318 * s} Z" fill="${trunkFill}"/>${rings}</g>`;
+      let fronds = '';
+      [[-1, -0.42], [-0.78, -0.9], [-0.2, -1.12], [0.42, -1.02], [0.95, -0.6], [1.15, -0.1]].forEach(([dx, dy], i) => {
+        const c1 = i % 2 ? G.leaf[1] : G.leaf[2];
+        fronds += `<path d="M ${tipX} ${tipY} q ${dx * 140 * s} ${dy * 115 * s} ${dx * 245 * s} ${dy * 92 * s} q ${-dx * 95 * s} ${-dy * 8 * s + 36 * s} ${-dx * 232 * s} ${-dy * 76 * s + 10 * s} Z" fill="${c1}"/>`;
+        fronds += `<path d="M ${tipX} ${tipY} q ${dx * 120 * s} ${dy * 100 * s} ${dx * 225 * s} ${dy * 88 * s}" stroke="${G.leaf[0]}" stroke-width="${3 * s}" fill="none" opacity="0.55"/>`;
+      });
+      if (variant === 3) {
+        fronds += `<circle cx="${tipX - 16 * s}" cy="${tipY + 38 * s}" r="${12 * s}" fill="${GOLD}"/><circle cx="${tipX + 4 * s}" cy="${tipY + 48 * s}" r="${12 * s}" fill="${DEEPGOLD}"/><circle cx="${tipX + 24 * s}" cy="${tipY + 36 * s}" r="${10 * s}" fill="${GOLD}"/><circle cx="${tipX - 6 * s}" cy="${tipY + 34 * s}" r="3" fill="#FBF0D0"/>`;
+      }
+      g += fronds;
+      break;
+    }
+    case 'fig': {
+      const s = [0.55, 0.76, 0.96][variant - 1];
+      g += shadowEl(defs, bx + 8, by + 4, 60 * s, 10, 0.18);
+      g += `<g filter="url(#${rough})"><path d="M ${bx} ${by} C ${bx - 2} ${by - 42 * s} ${bx + 2} ${by - 60 * s} ${bx} ${by - 80 * s}" stroke="${G.trunk}" stroke-width="${9 * s}" fill="none" stroke-linecap="round"/></g>`;
+      g += foliage(defs, bx, by - 118 * s, 54 * s, 42 * s, 61, G.leaf);
+      if (variant === 3) {
+        g += `<circle cx="${bx - 26 * s}" cy="${by - 100 * s}" r="${8 * s}" fill="#8A5A4A"/><circle cx="${bx + 32 * s}" cy="${by - 112 * s}" r="${8 * s}" fill="#8A5A4A"/><circle cx="${bx - 24 * s}" cy="${by - 102 * s}" r="2.4" fill="#D8B090"/>`;
+      }
+      break;
+    }
+    case 'pomegranate': {
+      const s = [0.55, 0.78, 1][variant - 1];
+      g += shadowEl(defs, bx, by + 4, 58 * s, 10, 0.18);
+      g += `<g filter="url(#${rough})"><path d="M ${bx} ${by} C ${bx - 3} ${by - 36 * s} ${bx + 2} ${by - 50 * s} ${bx} ${by - 64 * s}" stroke="${G.trunk}" stroke-width="${8 * s}" fill="none" stroke-linecap="round"/></g>`;
+      g += foliage(defs, bx, by - 104 * s, 50 * s, 40 * s, 71, G.leaf);
+      const n = variant === 1 ? 0 : variant === 2 ? 3 : 6;
+      const rnd = mulberry32(31);
+      for (let i = 0; i < n; i++) {
+        const a = rnd() * Math.PI * 2, r = 46 * s * (0.3 + rnd() * 0.55);
+        const ox = bx + r * Math.cos(a), oy = by - 102 * s + r * Math.sin(a) * 0.7;
+        g += `<circle cx="${ox.toFixed(0)}" cy="${oy.toFixed(0)}" r="${8 * s}" fill="#A45C42"/><circle cx="${(ox - 2).toFixed(0)}" cy="${(oy - 2).toFixed(0)}" r="2.2" fill="#E0A882"/>`;
+      }
+      break;
+    }
+    case 'vine': {
+      const s = [0.6, 0.8, 1][variant - 1];
+      g += shadowEl(defs, bx, by + 4, 66 * s, 10, 0.18);
+      g += `<g filter="url(#${rough})">
+        <rect x="${bx - 62 * s}" y="${by - 118 * s}" width="${7 * s}" height="${118 * s}" rx="3" fill="${G.trunk}"/>
+        <rect x="${bx + 56 * s}" y="${by - 118 * s}" width="${7 * s}" height="${118 * s}" rx="3" fill="${G.trunk}"/>
+        <rect x="${bx - 70 * s}" y="${by - 124 * s}" width="${140 * s}" height="${8 * s}" rx="4" fill="${G.trunkLit}"/></g>`;
+      g += foliage(defs, bx - 30 * s, by - 116 * s, 34 * s, 22 * s, 81, G.leaf);
+      g += foliage(defs, bx + 28 * s, by - 112 * s, 32 * s, 20 * s, 82, G.leaf);
+      const cluster = (cx, cy, cs) => {
+        let c = '';
+        for (let i = 0; i < 8; i++) {
+          c += `<circle cx="${(cx + ((i % 3) - 1) * 8.5 * cs).toFixed(0)}" cy="${(cy + Math.floor(i / 3) * 8 * cs).toFixed(0)}" r="${(5.2 * cs).toFixed(1)}" fill="${i % 2 ? '#7A5A78' : '#5C4360'}"/>`;
+        }
+        return c + `<circle cx="${(cx - 4 * cs).toFixed(0)}" cy="${(cy - 2 * cs).toFixed(0)}" r="2" fill="#C8A8C0" opacity="0.9"/>`;
+      };
+      if (variant >= 2) g += cluster(bx - 38 * s, by - 80 * s, s);
+      if (variant === 3) g += cluster(bx + 36 * s, by - 92 * s, s) + cluster(bx - 2 * s, by - 64 * s, s * 0.9);
+      break;
+    }
+    case 'gourd': {
+      const s = [0.6, 0.8, 1][variant - 1];
+      const gourdShape = (gx, gy, gs, c) =>
+        `<ellipse cx="${gx}" cy="${gy}" rx="${16 * gs}" ry="${12 * gs}" fill="${c}"/><ellipse cx="${gx - 4 * gs}" cy="${gy - 4 * gs}" rx="${5 * gs}" ry="${3.5 * gs}" fill="#FBF0D0" opacity="0.7"/><path d="M ${gx} ${gy - 12 * gs} q 2 -6 8 -8" stroke="${G.leaf[1]}" stroke-width="2.4" fill="none"/>`;
+      g += `<g filter="url(#${rough})"><path d="M ${bx - 76 * s} ${by} C ${bx - 34 * s} ${by - 28 * s} ${bx + 30 * s} ${by - 4 * s} ${bx + 76 * s} ${by - 24 * s}" stroke="${G.leaf[1]}" stroke-width="${5 * s}" fill="none"/>
+        ${foliage(defs, bx - 34 * s, by - 20 * s, 16 * s, 11 * s, 91, G.leaf, false)}${foliage(defs, bx + 16 * s, by - 12 * s, 14 * s, 10 * s, 92, G.leaf, false)}</g>`;
+      g += gourdShape(bx - 8 * s, by - 13 * s, s, '#D8C48E');
+      if (variant >= 2) g += gourdShape(bx + 46 * s, by - 10 * s, s * 0.85, GOLD);
+      if (variant === 3) g += gourdShape(bx - 56 * s, by - 8 * s, s * 0.8, '#D8C48E');
+      break;
+    }
+    case 'sidr': {
+      const s = variant === 1 ? 0.6 : 0.78;
+      g += glow2(defs, bx, by - 160 * s, variant === 2 ? 180 * s : 140 * s, CREAM, variant === 2 ? 0.5 : 0.3);
+      g += shadowEl(defs, bx, by + 4, 60 * s, 10, 0.16);
+      g += `<g filter="url(#${rough})"><path d="${trunkPathD(bx, by, 118 * s, 12 * s)}" fill="${trunkFill}"/></g>`;
+      g += foliage(defs, bx, by - 165 * s, 72 * s, 54 * s, 55, OLIVE_LEAF);
+      const rnd = mulberry32(53);
+      for (let i = 0; i < (variant === 2 ? 12 : 6); i++) {
+        const a = rnd() * Math.PI * 2, rr = 80 * s * (0.4 + rnd() * 0.6);
+        g += `<circle cx="${(bx + rr * Math.cos(a)).toFixed(0)}" cy="${(by - 158 * s + rr * Math.sin(a) * 0.7).toFixed(0)}" r="${(4 + rnd() * 3.5).toFixed(1)}" fill="${rnd() > 0.5 ? CREAM : GOLD}"/>`;
+      }
+      if (variant === 2) g += sparkle(bx - 64 * s, by - 240 * s, 12, CREAM);
+      break;
+    }
+    case 'rayhan': {
+      const s = [0.6, 0.8, 1][variant - 1];
+      const tuft = (tx, n, seed) => {
+        let t = '';
+        const rnd = mulberry32(seed);
+        for (let i = 0; i < n; i++) {
+          const dx = (i - (n - 1) / 2) * 10 * s + (rnd() - 0.5) * 4;
+          t += `<path d="M ${(tx + dx).toFixed(1)} ${by} q ${(dx * 0.5).toFixed(1)} ${-32 * s} ${(dx * 0.2).toFixed(1)} ${-50 * s}" stroke="${G.leaf[2]}" stroke-width="${4.4 * s}" fill="none" stroke-linecap="round"/>`;
+          if (variant >= 2) t += `<circle cx="${(tx + dx * 1.2).toFixed(0)}" cy="${(by - 52 * s).toFixed(0)}" r="${3.4 * s}" fill="#C8A8C0" opacity="0.92"/>`;
+        }
+        return t;
+      };
+      let tufts = tuft(bx, 5, 1);
+      if (variant >= 2) tufts += tuft(bx - 70 * s, 4, 2);
+      if (variant === 3) tufts += tuft(bx + 72 * s, 4, 3) + sparkle(bx + 34 * s, by - 68 * s, 7, GOLD, 0.8);
+      g += `<g filter="url(#${rough})">${tufts}</g>`;
+      break;
+    }
+  }
+  return { svg: svgDoc(region, g, defs), region };
+}
+
+const PLANT_VARIANTS = {
+  olive: 3, palm: 3, fig: 3, pomegranate: 3, vine: 3, gourd: 3, sidr: 2, rayhan: 3,
+};
+
 /* =========================== FILE MANIFEST ============================== */
 
 function buildLayerFiles() {
@@ -432,6 +593,12 @@ function buildLayerFiles() {
     } else {
       files[`garden_tree_s${s}_trunk.webp`] = { svg: parts.trunk, region: ELEMENTS.centralTree.rect };
       files[`garden_tree_s${s}_canopy.webp`] = { svg: parts.canopy, region: ELEMENTS.centralTree.rect };
+    }
+  }
+  for (const [plant, variants] of Object.entries(PLANT_VARIANTS)) {
+    for (let variant = 1; variant <= variants; variant++) {
+      const painted = paintPlant(plant, variant);
+      files[`garden_plant_${plant}_v${variant}.webp`] = { svg: painted.svg, region: painted.region };
     }
   }
   return files;
@@ -544,14 +711,19 @@ function renderWebp(name, svg, region) {
 
 /* Composed full-scene preview for visual QA (reused by the P7 milestone
    scenes). Stacks the layer SVG contents in z order inside one document. */
-function composeScene({ ambKey = 'morning', tod = 'day', tier = 3, stage = 5 }) {
+function composeScene({ ambKey = 'morning', tod = 'day', tier = 3, stage = 5, plants = {} }) {
   const inner = (svg) => svg.replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '');
   let g = inner(paintSky(ambKey, tod));
   g += inner(paintGround(tod));
   g += inner(paintWater(tier, tod));
+  const zOf = { sidr: 30, palm: 32, olive: 34, fig: 36, pomegranate: 44, vine: 46, gourd: 48, rayhan: 50 };
+  const back = Object.entries(plants).filter(([n]) => zOf[n] < 40).sort((a, b) => zOf[a[0]] - zOf[b[0]]);
+  const front = Object.entries(plants).filter(([n]) => zOf[n] > 40).sort((a, b) => zOf[a[0]] - zOf[b[0]]);
+  for (const [plant, variant] of back) g += inner(paintPlant(plant, variant, tod).svg);
   const parts = treeParts(stage, tod);
   if (parts.single) g += inner(parts.single);
   else g += inner(parts.trunk) + inner(parts.canopy);
+  for (const [plant, variant] of front) g += inner(paintPlant(plant, variant, tod).svg);
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS.w} ${CANVAS.h}">${g}</svg>`;
 }
 
@@ -578,10 +750,11 @@ if (layoutOnly || !hasTool('rsvg-convert') || !hasTool('cwebp')) {
 }
 
 if (preview) {
+  const allPlants = { olive: 3, palm: 3, fig: 3, pomegranate: 3, vine: 3, gourd: 3, sidr: 2, rayhan: 3 };
   const scenes = [
-    ['preview_day_t3_s5', { ambKey: 'morning', tod: 'day', tier: 3, stage: 5 }],
-    ['preview_day_t5_s10', { ambKey: 'warm', tod: 'day', tier: 5, stage: 10 }],
-    ['preview_night_t5_s10', { ambKey: 'evening', tod: 'night', tier: 5, stage: 10 }],
+    ['preview_day_t3_s5', { ambKey: 'morning', tod: 'day', tier: 3, stage: 5, plants: { olive: 1, fig: 1, rayhan: 2, gourd: 1 } }],
+    ['preview_day_t5_s10', { ambKey: 'warm', tod: 'day', tier: 5, stage: 10, plants: allPlants }],
+    ['preview_night_t5_s10', { ambKey: 'evening', tod: 'night', tier: 5, stage: 10, plants: allPlants }],
     ['preview_dawn_t1_s1', { ambKey: 'dawn', tod: 'day', tier: 1, stage: 1 }],
   ];
   for (const [name, cfg] of scenes) {
