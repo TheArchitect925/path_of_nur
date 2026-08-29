@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "Намоз",
   "homeShortcutDhikrLabel": "Зикр",
   "homeShortcutDailyCaption": "Рӯзона",
+  "homeSalahTahajjudBonusCaption": "Ҳаррӯза · +{count} Таҳаҷҷуд",
   "homeShortcutMissedCount": "{count, plural, =0 {0 аз даст рафта} =1 {1 аз даст рафта} other {{count} аз даст рафта}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

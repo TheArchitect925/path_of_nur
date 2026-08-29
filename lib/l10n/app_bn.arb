@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "সালাত",
   "homeShortcutDhikrLabel": "যিকির",
   "homeShortcutDailyCaption": "আজকের জন্য দ্রুত পথ",
+  "homeSalahTahajjudBonusCaption": "দৈনিক · +{count} তাহাজ্জুদ",
   "homeShortcutMissedCount": "{count}টি মিস হয়েছে",
   "@homeShortcutMissedCount": {
     "placeholders": {

@@ -2849,6 +2849,11 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeShortcutDailyCaption => 'Fokusa îro';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'Rojane · +$count Teheccud';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     return '$count winda bû';
   }

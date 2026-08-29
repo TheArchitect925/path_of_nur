@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "Gebet",
   "homeShortcutDhikrLabel": "Gedenken",
   "homeShortcutDailyCaption": "Täglich",
+  "homeSalahTahajjudBonusCaption": "Täglich · +{count} Tahadschud",
   "homeShortcutMissedCount": "{count, plural, =0 {0 verpasst} =1 {1 verpasst} other {{count} verpasst}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

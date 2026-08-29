@@ -1586,6 +1586,8 @@
   "homeShortcutSalahLabel": "Salah",
   "homeShortcutDhikrLabel": "Dhikr",
   "homeShortcutDailyCaption": "Daily",
+  "homeSalahTahajjudBonusCaption": "Daily · +{count} Tahajjud",
+  "@homeSalahTahajjudBonusCaption": {"placeholders": {"count": {"type": "String"}}},
   "homeShortcutMissedCount": "{count, plural, =0 {0 missed} =1 {1 missed} other {{count} missed}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

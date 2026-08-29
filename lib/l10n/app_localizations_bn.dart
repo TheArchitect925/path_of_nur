@@ -2822,6 +2822,11 @@ class AppLocalizationsBn extends AppLocalizations {
   String get homeShortcutDailyCaption => 'আজকের জন্য দ্রুত পথ';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'দৈনিক · +$count তাহাজ্জুদ';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     return '$countটি মিস হয়েছে';
   }

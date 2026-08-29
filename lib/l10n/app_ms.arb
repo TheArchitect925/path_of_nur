@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "Solat",
   "homeShortcutDhikrLabel": "Zikir",
   "homeShortcutDailyCaption": "Pantas untuk hari ini",
+  "homeSalahTahajjudBonusCaption": "Harian · +{count} Tahajud",
   "homeShortcutMissedCount": "{count} terlepas",
   "@homeShortcutMissedCount": {
     "placeholders": {

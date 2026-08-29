@@ -2833,6 +2833,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeShortcutDailyCaption => 'Cepat untuk hari ini';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'Harian · +$count Tahajud';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     return '$count terlewat';
   }

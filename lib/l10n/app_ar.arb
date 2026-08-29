@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "الصلاة",
   "homeShortcutDhikrLabel": "أذكار",
   "homeShortcutDailyCaption": "برنامجك اليومي",
+  "homeSalahTahajjudBonusCaption": "يومي · +{count} تهجد",
   "homeShortcutMissedCount": "{count, plural, =0 {0 فائتة} =1 {1 فائتة} other {{count} فائتة}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

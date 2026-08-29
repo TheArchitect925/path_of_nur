@@ -35,6 +35,9 @@ import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../worship/application/dhikr_daily_goal_provider.dart';
+import '../../worship/application/prayer_controller.dart';
+import '../../worship/domain/prayer_name.dart';
+import '../../worship/domain/prayer_status.dart';
 import '../application/home_module_prefs_provider.dart';
 import '../domain/home_modules.dart';
 import 'widgets/home_prayer_strip.dart';
@@ -55,14 +58,8 @@ String _formatLocalizedCount(BuildContext context, num value) {
 String _formatHomePrayerTrackerTotal(
   BuildContext context, {
   required int trackedPrayerTotal,
-  required bool includeTahajjudOffer,
 }) {
-  final total = _formatLocalizedCount(context, trackedPrayerTotal);
-  if (!includeTahajjudOffer) {
-    return total;
-  }
-  // Five daily prayers plus the optional Tahajjud offer (e.g. "5+1").
-  return '$total+${_formatLocalizedCount(context, 1)}';
+  return _formatLocalizedCount(context, trackedPrayerTotal);
 }
 
 class HomePage extends ConsumerStatefulWidget {
@@ -209,6 +206,9 @@ class _HomeEditEntryButton extends StatelessWidget {
   }
 }
 
+/// Width of the search + settings icons trailing the greeting.
+const double _greetingTrailingIconsWidth = 96;
+
 class _TopGreetingBlock extends StatelessWidget {
   const _TopGreetingBlock({required this.l10n, required this.userProfile});
 
@@ -231,6 +231,9 @@ class _TopGreetingBlock extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // Balances the two trailing icons so the greeting centres on the
+        // screen rather than on the space left over beside them.
+        const SizedBox(width: _greetingTrailingIconsWidth),
         Expanded(
           child: Material(
             color: Colors.transparent,
@@ -238,11 +241,11 @@ class _TopGreetingBlock extends StatelessWidget {
               onTap: () => context.goNamed('settings'),
               borderRadius: BorderRadius.circular(14),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     l10n.greetingArabic,
-                    textAlign: textAlignForContent(l10n.greetingArabic),
+                    textAlign: TextAlign.center,
                     textDirection: textDirectionForContent(l10n.greetingArabic),
                     style: TextStyle(
                       fontSize: 14,
@@ -256,6 +259,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     '$_address ${userProfile.name}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
@@ -301,6 +305,7 @@ class _TopGreetingBlock extends StatelessWidget {
                         occasion ?? l10n.peaceUponYou,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: occasion != null ? 14 : 13,
                           fontWeight: occasion != null
@@ -336,7 +341,6 @@ class _TopGreetingBlock extends StatelessWidget {
 
 class _SalahSummaryCard extends ConsumerWidget {
   const _SalahSummaryCard({required this.l10n});
-
 
   final AppLocalizations l10n;
 
@@ -390,14 +394,7 @@ class _SalahSummaryCard extends ConsumerWidget {
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final prayerSettings = ref.watch(prayerSettingsProvider);
-    final prayerLocation = ref.watch(prayerLocationProvider);
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
-    final todaySchedule = buildPrayerScheduleForDate(
-      date: DateTime(now.year, now.month, now.day),
-      latitude: prayerLocation.latitude,
-      longitude: prayerLocation.longitude,
-      settings: prayerSettings.preferences,
-    ).toList(growable: false);
     final next = scheduleContext.items
         .where((item) => item.id == scheduleContext.nextPrayerId)
         .firstOrNull;
@@ -425,18 +422,23 @@ class _SalahSummaryCard extends ConsumerWidget {
           );
     final offerByLabel = l10n.homePrayerBeginsAt(nextAt);
     final offerByValue = nextAt;
-    final includesTahajjudOffer = todaySchedule.any(
-      (item) => item.id == 'tahajjud',
-    );
     final trackedPrayerTotal = math.max(worship.prayerTotal, 5);
     final prayerCompletedValue = l10n.homeFractionValue(
       _formatLocalizedCount(context, worship.prayerCompleted),
       _formatHomePrayerTrackerTotal(
         context,
         trackedPrayerTotal: trackedPrayerTotal,
-        includeTahajjudOffer: includesTahajjudOffer,
       ),
     );
+    // Tahajjud sits outside the five: the tracker counts only the obligatory
+    // prayers, and a Tahajjud actually offered is shown as its own bonus.
+    final tahajjudOffered = ref
+        .watch(prayerControllerProvider)
+        .any(
+          (record) =>
+              record.prayer == PrayerName.tahajjud &&
+              record.status == PrayerStatus.completed,
+        );
     final dhikrDailyGoal = ref.watch(dhikrDailyGoalProvider);
     final dhikrValue = l10n.homeFractionValue(
       _formatLocalizedCount(context, worship.dhikrCount),
@@ -485,7 +487,11 @@ class _SalahSummaryCard extends ConsumerWidget {
         AppSalahHeroStat(
           title: l10n.homeShortcutSalahLabel,
           value: prayerCompletedValue,
-          subtitle: l10n.homeShortcutDailyCaption,
+          subtitle: tahajjudOffered
+              ? l10n.homeSalahTahajjudBonusCaption(
+                  _formatLocalizedCount(context, 1),
+                )
+              : l10n.homeShortcutDailyCaption,
           icon: Icons.checklist_rounded,
           tint: const Color(0xFF9F7A42),
         ),

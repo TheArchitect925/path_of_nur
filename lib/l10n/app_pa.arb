@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "ਸਲਾਹ",
   "homeShortcutDhikrLabel": "ਜ਼ਿਕਰ",
   "homeShortcutDailyCaption": "ਰੋਜ਼ਾਨਾ",
+  "homeSalahTahajjudBonusCaption": "ਰੋਜ਼ਾਨਾ · +{count} ਤਹੱਜੁਦ",
   "homeShortcutMissedCount": "{count, plural, =0 {0 ਛੁੱਟੀਆਂ} =1 {1 ਛੁੱਟੀ} other {{count} ਛੁੱਟੀਆਂ}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

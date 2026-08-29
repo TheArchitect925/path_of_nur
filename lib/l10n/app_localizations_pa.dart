@@ -2840,6 +2840,11 @@ class AppLocalizationsPa extends AppLocalizations {
   String get homeShortcutDailyCaption => 'ਰੋਜ਼ਾਨਾ';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'ਰੋਜ਼ਾਨਾ · +$count ਤਹੱਜੁਦ';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

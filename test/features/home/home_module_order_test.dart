@@ -3,12 +3,22 @@ import 'package:path_of_nur/features/home/domain/home_modules.dart';
 
 void main() {
   group('default Home module order', () {
-    test('duas for right now sit above the day\'s ayah', () {
+    test('the day closes with on-this-day, duas, then the sky', () {
+      // Superseded the earlier "duas lead the content" order: Home now ends
+      // on one arc of the day's context.
       final order = kDefaultHomeModuleOrder;
       expect(
+        order.indexOf(HomeModule.onThisDay),
+        lessThan(order.indexOf(HomeModule.duasNow)),
+      );
+      expect(
         order.indexOf(HomeModule.duasNow),
-        lessThan(order.indexOf(HomeModule.today)),
-        reason: 'duas lead the day\'s content on Home',
+        lessThan(order.indexOf(HomeModule.celestial)),
+      );
+      expect(
+        order.indexOf(HomeModule.celestial),
+        order.length - 1,
+        reason: 'tonight\'s sky closes Home',
       );
     });
 

@@ -139,8 +139,11 @@ void main() {
     expect(find.text('Tahajjud'), findsOneWidget);
     expect(find.text('التهجد'), findsOneWidget);
 
-    // The 5+1 tracker total still shows on Home's salah hero stats.
+    // Home's tracker counts the five obligatory prayers only: a Tahajjud
+    // window on the schedule no longer inflates the denominator, because
+    // offering it never incremented the numerator either.
     await pumpPage(tester, container, const HomePage());
-    expect(find.textContaining('5+1'), findsWidgets);
+    expect(find.textContaining('5+1'), findsNothing);
+    expect(find.textContaining('/ 5'), findsWidgets);
   });
 }

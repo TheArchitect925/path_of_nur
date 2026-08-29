@@ -2811,6 +2811,11 @@ class AppLocalizationsFa extends AppLocalizations {
   String get homeShortcutDailyCaption => 'تمرکز امروز';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'روزانه · +$count تهجد';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     return '$count مورد از دست رفته';
   }
@@ -45305,6 +45310,11 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get homeShortcutDailyCaption => 'تمرکز امروز';
+
+  @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'روزانه · +$count تهجد';
+  }
 
   @override
   String homeShortcutMissedCount(int count) {

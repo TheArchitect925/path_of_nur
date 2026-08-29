@@ -2832,6 +2832,11 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeShortcutDailyCaption => 'آج کی توجہ';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'روزانہ · +$count تہجد';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

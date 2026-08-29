@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "Namaz",
   "homeShortcutDhikrLabel": "Zikir",
   "homeShortcutDailyCaption": "Günlük odak",
+  "homeSalahTahajjudBonusCaption": "Günlük · +{count} Teheccüd",
   "homeShortcutMissedCount": "{count} kaçırıldı",
   "@homeShortcutMissedCount": {
     "placeholders": {

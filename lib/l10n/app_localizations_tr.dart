@@ -2838,6 +2838,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get homeShortcutDailyCaption => 'Günlük odak';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'Günlük · +$count Teheccüd';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     return '$count kaçırıldı';
   }

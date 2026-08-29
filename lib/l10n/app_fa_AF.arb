@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "نماز",
   "homeShortcutDhikrLabel": "ذکر",
   "homeShortcutDailyCaption": "تمرکز امروز",
+  "homeSalahTahajjudBonusCaption": "روزانه · +{count} تهجد",
   "homeShortcutMissedCount": "{count} مورد از دست رفته",
   "@homeShortcutMissedCount": {
     "placeholders": {

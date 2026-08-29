@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "Salah",
   "homeShortcutDhikrLabel": "Dhikr",
   "homeShortcutDailyCaption": "Fokusa îro",
+  "homeSalahTahajjudBonusCaption": "Rojane · +{count} Teheccud",
   "homeShortcutMissedCount": "{count} winda bû",
   "@homeShortcutMissedCount": {
     "placeholders": {

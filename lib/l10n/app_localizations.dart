@@ -4897,6 +4897,12 @@ abstract class AppLocalizations {
   /// **'Daily'**
   String get homeShortcutDailyCaption;
 
+  /// No description provided for @homeSalahTahajjudBonusCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily · +{count} Tahajjud'**
+  String homeSalahTahajjudBonusCaption(String count);
+
   /// No description provided for @homeShortcutMissedCount.
   ///
   /// In en, this message translates to:

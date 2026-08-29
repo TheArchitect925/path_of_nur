@@ -2896,6 +2896,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get homeShortcutDailyCaption => 'Täglich';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'Täglich · +$count Tahadschud';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

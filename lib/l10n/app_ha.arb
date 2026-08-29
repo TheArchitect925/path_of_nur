@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "Sallah",
   "homeShortcutDhikrLabel": "Dhikr",
   "homeShortcutDailyCaption": "Na yau",
+  "homeSalahTahajjudBonusCaption": "Kullum · +{count} Tahajjud",
   "homeShortcutMissedCount": "{count, plural, =0 {0 an rasa} =1 {1 an rasa} other {{count} an rasa}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

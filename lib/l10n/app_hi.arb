@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "सलाह",
   "homeShortcutDhikrLabel": "ज़िक्र",
   "homeShortcutDailyCaption": "दैनिक",
+  "homeSalahTahajjudBonusCaption": "दैनिक · +{count} तहज्जुद",
   "homeShortcutMissedCount": "{count, plural, =0 {0 छूटी} =1 {1 छूटी} other {{count} छूटी}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

@@ -24,12 +24,12 @@ enum HomeModule {
 
 const List<HomeModule> kDefaultHomeModuleOrder = <HomeModule>[
   HomeModule.prayerStrip,
-  // Duas lead the day's content: they are the shortest action on Home, so
-  // they sit above the ayah rather than after it.
-  HomeModule.duasNow,
   HomeModule.today,
   HomeModule.garden,
+  // The day's context closes Home in one arc: what happened on this day,
+  // the duas that suit right now, then tonight's sky.
   HomeModule.onThisDay,
+  HomeModule.duasNow,
   HomeModule.celestial,
 ];
 

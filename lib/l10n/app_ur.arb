@@ -1579,6 +1579,7 @@
   "homeShortcutSalahLabel": "نماز",
   "homeShortcutDhikrLabel": "ذکر",
   "homeShortcutDailyCaption": "آج کی توجہ",
+  "homeSalahTahajjudBonusCaption": "روزانہ · +{count} تہجد",
   "homeShortcutMissedCount": "{count, plural, =0 {0 رہ گئے} =1 {1 رہ گیا} other {{count} رہ گئے}}",
   "@homeShortcutMissedCount": {
     "placeholders": {

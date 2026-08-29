@@ -2839,6 +2839,11 @@ class AppLocalizationsMs extends AppLocalizations {
   String get homeShortcutDailyCaption => 'Pantas untuk hari ini';
 
   @override
+  String homeSalahTahajjudBonusCaption(String count) {
+    return 'Harian · +$count Tahajud';
+  }
+
+  @override
   String homeShortcutMissedCount(int count) {
     return '$count terlepas';
   }
