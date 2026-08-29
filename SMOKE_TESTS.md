@@ -12,6 +12,7 @@
 | PON-E-repo-reconnect | Repo history reconnect and hygiene | done |
 | PON-E-backup-privacy-hardening | Backup encryption and account privacy hardening | done |
 | PON-E-platform-runtime-config | Platform permission and auth runtime configuration | done |
+| PON-E-font-asset-integrity | Bundled font asset integrity | done |
 
 ### Stories
 
@@ -31,6 +32,8 @@
 | PON-S-auth-button-gating | PON-E-platform-runtime-config | Show sign-in buttons only when the platform auth config exists | 2 | done |
 | PON-S-privacy-policy-accuracy | PON-E-platform-runtime-config | Privacy policy names actual services and data flows (16 locales) | 2 | done |
 | PON-S-nominatim-coordinate-privacy | PON-E-platform-runtime-config | Send only city-level coordinates to Nominatim reverse lookup | 1 | done |
+| PON-S-arabic-font-assets-restored | PON-E-font-asset-integrity | Replace corrupt Arabic font assets with genuine Noto builds | 3 | done |
+| PON-S-font-asset-guard-test | PON-E-font-asset-integrity | Fail the build when a declared font asset is not a real font | 1 | done |
 
 ## Smoke Tests
 
@@ -51,3 +54,6 @@
 | PON-T-013 | Location features work on an Android release build | Install a release APK on an Android device, open Qibla finder and prayer times with automatic location. Expected: the app asks for location permission and both features work (previously the manifest declared no location or INTERNET permission, so they could not). | ⬜ | epic:PON-E-platform-runtime-config · story:PON-S-android-runtime-permissions · sprint:2026-08-05 |
 | PON-T-014 | Sign-in buttons appear only where they can work | On iOS: Accounts & Sync shows "Continue with Apple"; the Google button is hidden (until the build passes PON_GOOGLE_AUTH_CONFIGURED=true). On Android: no Apple button. Email option remains visible everywhere. | ⬜ | epic:PON-E-platform-runtime-config · story:PON-S-auth-button-gating · sprint:2026-08-05 · Setup steps in docs/auth_provider_setup.md |
 | PON-T-015 | Privacy policy describes real data flows | Open Profile → Legal → Privacy in en and de (plus any dev locale). Expected: the text names on-device storage, Apple/Google sign-in data with sign-out removal, passphrase-protected exports, Google Drive/iCloud backups, city-level coordinates to OpenStreetMap Nominatim, and EveryAyah/AlQuran.cloud/Quran.com audio-data sources; no claim that data is local-only. | ⬜ | epic:PON-E-platform-runtime-config · story:PON-S-privacy-policy-accuracy · sprint:2026-08-05 |
+| PON-T-016 | Kids Arabic letters render in the real Naskh face | Learn → search "Arabic" → Kids Learning → Arabic Learning → Start Arabic → open a letter lesson. Expected: the large letter card and the Arabic name (e.g. ألف) render in Noto Naskh Arabic — calligraphic Naskh strokes with tapered terminals, not the system Arabic face. Header "Letter ا" and the "Trace and hear ألف" subtitle show joined Arabic, never boxes or disconnected letters. | ⬜ | epic:PON-E-font-asset-integrity · story:PON-S-arabic-font-assets-restored · sprint:2026-08-29 · The bundled file was a GitHub 404 HTML page, so every Kids Arabic screen silently fell back to the platform font |
+| PON-T-017 | Home and Learn Arabic lines render correctly | Open Home, then Learn. Expected: the Arabic greeting on Home, the "رَبِّ زِدْنِي عِلْمًا" card on Learn, and the Kids Learning ayah all render with correctly joined letters and diacritics sitting on the right glyphs; no tofu boxes and no letters rendered in isolated form. | ⬜ | epic:PON-E-font-asset-integrity · story:PON-S-arabic-font-assets-restored · sprint:2026-08-29 |
+| PON-T-018 | Font assets are validated by the test suite | Run `flutter test test/core/font_assets_test.dart`. Expected: every font declared under `flutter: fonts:` in pubspec.yaml exists, starts with an sfnt signature, and is accepted by the engine font parser. Replacing any of them with a non-font file (e.g. an HTML error page) must make the test fail. | ⬜ | epic:PON-E-font-asset-integrity · story:PON-S-font-asset-guard-test · sprint:2026-08-29 |
