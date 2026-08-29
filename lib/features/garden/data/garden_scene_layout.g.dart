@@ -36,7 +36,7 @@ abstract final class GardenSceneLayout {
   static const GardenLayerRect heroCrop = GardenLayerRect(130, 0, 1740, 1200);
   static const GardenLayerRect homeCardCrop = GardenLayerRect(100, 280, 1800, 800);
   static const GardenLayerRect groundRect = GardenLayerRect(0, 540, 2000, 660);
-  static const GardenLayerRect waterRect = GardenLayerRect(1140, 560, 560, 640);
+  static const GardenLayerRect waterRect = GardenLayerRect(1040, 560, 960, 640);
 
   static const Map<String, GardenLayerPlacement> elementPlacements = {
     'loteTree': GardenLayerPlacement(
@@ -119,6 +119,41 @@ abstract final class GardenSceneLayout {
   /// resolver walks variants/stages downward through this set and falls back
   /// to the placeholder painter when nothing is available.
   static const Set<String> availableGardenArtFiles = <String>{
-
+    'garden_ground_day.webp',
+    'garden_ground_night.webp',
+    'garden_sky_dawn_day.webp',
+    'garden_sky_dawn_night.webp',
+    'garden_sky_evening_day.webp',
+    'garden_sky_evening_night.webp',
+    'garden_sky_morning_day.webp',
+    'garden_sky_morning_night.webp',
+    'garden_sky_warm_day.webp',
+    'garden_sky_warm_night.webp',
+    'garden_tree_s01.webp',
+    'garden_tree_s02.webp',
+    'garden_tree_s03.webp',
+    'garden_tree_s04.webp',
+    'garden_tree_s05_canopy.webp',
+    'garden_tree_s05_trunk.webp',
+    'garden_tree_s06_canopy.webp',
+    'garden_tree_s06_trunk.webp',
+    'garden_tree_s07_canopy.webp',
+    'garden_tree_s07_trunk.webp',
+    'garden_tree_s08_canopy.webp',
+    'garden_tree_s08_trunk.webp',
+    'garden_tree_s09_canopy.webp',
+    'garden_tree_s09_trunk.webp',
+    'garden_tree_s10_canopy.webp',
+    'garden_tree_s10_trunk.webp',
+    'garden_water_e01.webp',
+    'garden_water_e01_night.webp',
+    'garden_water_e02.webp',
+    'garden_water_e02_night.webp',
+    'garden_water_e03.webp',
+    'garden_water_e03_night.webp',
+    'garden_water_e04.webp',
+    'garden_water_e04_night.webp',
+    'garden_water_e05.webp',
+    'garden_water_e05_night.webp',
   };
 }
