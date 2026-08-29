@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
@@ -39,7 +39,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final accent = appearance?.accent ?? AppColors.accentGold;
+    final accent = appearance?.accent ?? context.palette.accent;
     final onSurface = appearance?.onSurface ?? const Color(0xFF3D3025);
     final onSurfaceSubtle =
         appearance?.onSurfaceSubtle ?? const Color(0xFF6A563F);
@@ -199,7 +199,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.accentGold.withValues(alpha: alpha),
+        color: context.palette.accent.withValues(alpha: alpha),
       ),
     );
   }

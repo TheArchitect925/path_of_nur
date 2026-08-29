@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../arabic/data/arabic_alphabet_catalog.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
@@ -123,7 +123,7 @@ class _QuranTeachingModulePageState
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+                    color: context.palette.surfaceSoft.withValues(alpha: 0.45),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -261,7 +261,9 @@ class _QuranTeachingModulePageState
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: AppColors.surfaceSoft),
+                              border: Border.all(
+                                color: context.palette.surfaceSoft,
+                              ),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,7 +286,7 @@ class _QuranTeachingModulePageState
                                       : word.frequencyLabel,
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
-                                        color: AppColors.onSurfaceSubtle,
+                                        color: context.palette.onSurfaceSubtle,
                                       ),
                                 ),
                                 if (_showFoundInQuran &&
@@ -317,7 +319,8 @@ class _QuranTeachingModulePageState
                                     l10n.quranTeachingBeginnerWordsOpenInlineHint,
                                     style: Theme.of(context).textTheme.bodySmall
                                         ?.copyWith(
-                                          color: AppColors.onSurfaceSubtle,
+                                          color:
+                                              context.palette.onSurfaceSubtle,
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
@@ -354,7 +357,7 @@ class _QuranTeachingModulePageState
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.surfaceSoft),
+                        border: Border.all(color: context.palette.surfaceSoft),
                       ),
                       child: Row(
                         children: [
@@ -456,7 +459,9 @@ class _QuranTeachingModulePageState
                           Text(
                             '${lesson.estimatedSeconds}s • ${completed ? 'Completed' : (unlocked ? 'Ready now' : 'Locked for guided path')}',
                             style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: AppColors.onSurfaceSubtle),
+                                ?.copyWith(
+                                  color: context.palette.onSurfaceSubtle,
+                                ),
                           ),
                         ],
                       ),
@@ -483,7 +488,7 @@ class _InfoChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.75),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.75),
       ),
       child: Text(label),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
@@ -113,9 +113,11 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(999),
-                      color: AppColors.surface.withValues(alpha: 0.2),
+                      color: context.palette.surface.withValues(alpha: 0.2),
                       border: Border.all(
-                        color: AppColors.accentGoldSoft.withValues(alpha: 0.28),
+                        color: context.palette.accentSoft.withValues(
+                          alpha: 0.28,
+                        ),
                       ),
                     ),
                     child: Text(
@@ -148,8 +150,8 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                   tileColor = Colors.red.withValues(alpha: 0.14);
                   borderColor = Colors.red.withValues(alpha: 0.42);
                 } else {
-                  tileColor = AppColors.surface.withValues(alpha: 0.2);
-                  borderColor = AppColors.accentGoldSoft.withValues(
+                  tileColor = context.palette.surface.withValues(alpha: 0.2);
+                  borderColor = context.palette.accentSoft.withValues(
                     alpha: 0.24,
                   );
                 }
@@ -182,8 +184,8 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                                 : Icons.radio_button_unchecked_rounded,
                             size: 18,
                             color: isSelected
-                                ? AppColors.onSurface
-                                : AppColors.onSurfaceSubtle,
+                                ? context.palette.onSurface
+                                : context.palette.onSurfaceSubtle,
                           ),
                           const SizedBox(width: 10),
                           Expanded(child: Text(option)),
@@ -269,7 +271,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
               Text(
                 buildCompactRewardSummary(l10n, xp: result.xpAwarded, drops: 0),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               if (result.chapterMilestoneUnlocked ||
@@ -354,9 +356,9 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.26),
+        color: context.palette.surface.withValues(alpha: 0.26),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(text),

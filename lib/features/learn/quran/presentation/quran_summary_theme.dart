@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_theme.dart';
 
@@ -131,7 +131,7 @@ class QuranSummaryThemePalette {
   static QuranSummaryThemePalette resolve(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final isDark = appearance?.isDark ?? false;
-    final accent = appearance?.accent ?? AppColors.accentGold;
+    final accent = appearance?.accent ?? context.palette.accent;
     final elevatedStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.card,

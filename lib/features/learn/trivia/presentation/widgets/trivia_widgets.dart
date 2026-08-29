@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -37,9 +37,9 @@ class TriviaStatTile extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               label,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
             if (caption != null) ...[
               const SizedBox(height: 4),
@@ -87,9 +87,9 @@ class TriviaModeCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             mode.localizedSubtitle(l10n),
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
@@ -151,9 +151,9 @@ class TriviaCategoryCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             subtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           Row(
@@ -199,15 +199,15 @@ class TriviaOptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = correct
-        ? AppColors.success
+        ? context.palette.success
         : incorrect
-        ? AppColors.caution
-        : AppColors.surface;
+        ? context.palette.caution
+        : context.palette.surface;
     final isEmphasized = selected || correct || incorrect;
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: isEmphasized ? color : AppColors.accentGold,
+      tintColor: isEmphasized ? color : context.palette.accent,
       baseColor: isEmphasized ? color : null,
     );
     return Semantics(
@@ -237,9 +237,9 @@ class TriviaOptionCard extends StatelessWidget {
                 ),
               ),
               if (correct)
-                const Icon(Icons.check_circle_rounded, color: AppColors.success)
+                Icon(Icons.check_circle_rounded, color: context.palette.success)
               else if (incorrect)
-                const Icon(Icons.cancel_rounded, color: AppColors.caution)
+                Icon(Icons.cancel_rounded, color: context.palette.caution)
               else if (selected)
                 Icon(
                   Icons.radio_button_checked_rounded,
@@ -282,9 +282,9 @@ class TriviaEmptyStateCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           if (action != null) ...[const SizedBox(height: 10), action!],
         ],
@@ -317,9 +317,9 @@ class TriviaSectionHeader extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           subtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: context.palette.onSurfaceSubtle,
+          ),
         ),
       ],
     );
@@ -369,16 +369,16 @@ class TriviaKnowledgePathCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             subtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 12),
           LinearProgressIndicator(
             value: progress.clamp(0.0, 1.0),
             minHeight: 8,
-            color: AppColors.accentGoldSoft,
-            backgroundColor: AppColors.surfaceSoft,
+            color: context.palette.accentSoft,
+            backgroundColor: context.palette.surfaceSoft,
           ),
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
@@ -426,7 +426,7 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: AppColors.surfaceSoft,
+              color: context.palette.surfaceSoft,
               borderRadius: BorderRadius.circular(999),
             ),
             alignment: Alignment.center,
@@ -452,7 +452,7 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 8),

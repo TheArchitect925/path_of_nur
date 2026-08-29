@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/premium_card.dart';
 
@@ -25,7 +25,7 @@ class LearnActionCard extends StatelessWidget {
     final iconStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return PremiumCard(
       child: Material(
@@ -41,7 +41,7 @@ class LearnActionCard extends StatelessWidget {
                   radius: 12,
                   includeShadow: false,
                 ),
-                child: Icon(icon, color: AppColors.onSurface),
+                child: Icon(icon, color: context.palette.onSurface),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -59,8 +59,8 @@ class LearnActionCard extends StatelessWidget {
                       subtitle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: AppColors.onSurfaceSubtle,
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         height: 1.35,
                       ),
                     ),
@@ -68,9 +68,9 @@ class LearnActionCard extends StatelessWidget {
                 ),
               ),
               if (showChevron)
-                const Icon(
+                Icon(
                   Icons.chevron_right,
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
             ],
           ),

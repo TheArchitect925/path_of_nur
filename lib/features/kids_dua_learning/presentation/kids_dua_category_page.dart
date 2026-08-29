@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -86,7 +86,7 @@ class KidsDuaCategoryPage extends ConsumerWidget {
                       width: 50,
                       height: 50,
                       decoration: _kidsNoorPanelDecoration(context),
-                      child: Icon(lesson.icon, color: AppColors.accentGold),
+                      child: Icon(lesson.icon, color: context.palette.accent),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -100,8 +100,8 @@ class KidsDuaCategoryPage extends ConsumerWidget {
                           const SizedBox(height: 4),
                           Text(
                             lesson.whenToSay,
-                            style: const TextStyle(
-                              color: AppColors.onSurfaceSubtle,
+                            style: TextStyle(
+                              color: context.palette.onSurfaceSubtle,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -115,9 +115,9 @@ class KidsDuaCategoryPage extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.chevron_right_rounded,
-                      color: AppColors.accentGold,
+                      color: context.palette.accent,
                     ),
                   ],
                 ),
@@ -142,8 +142,8 @@ class _LevelChip extends StatelessWidget {
       decoration: _kidsNoorPillDecoration(context),
       child: Text(
         'L$level',
-        style: const TextStyle(
-          color: AppColors.accentGold,
+        style: TextStyle(
+          color: context.palette.accent,
           fontWeight: FontWeight.w700,
         ),
       ),

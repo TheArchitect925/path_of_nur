@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/nav_tabs.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
@@ -875,9 +875,9 @@ class _TrendChartCard extends StatelessWidget {
                     Text(
                       labelBuilder(point),
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: 10.5,
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(fontSize: 10.5),
                     ),
                 ],
               ),
@@ -1029,7 +1029,7 @@ class _HighlightMetricCard extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: AppColors.accentGoldSoft,
+      tintColor: context.palette.accentSoft,
     );
     return Container(
       constraints: const BoxConstraints(minWidth: 170, maxWidth: 240),

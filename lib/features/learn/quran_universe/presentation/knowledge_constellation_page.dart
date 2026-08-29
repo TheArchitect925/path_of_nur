@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
@@ -93,11 +93,11 @@ class _KnowledgeConstellationPageState
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: const [
+                children: [
                   _LegendChip(
                     label: 'Qur’an',
-                    color: AppColors.accentGold,
-                    borderColor: AppColors.accentGoldSoft,
+                    color: context.palette.accent,
+                    borderColor: context.palette.accentSoft,
                   ),
                   _LegendChip(
                     label: 'Hadith',
@@ -143,6 +143,8 @@ class _KnowledgeConstellationPageState
                             positions: _positions,
                             edges: _edges,
                             selectedNodeId: _selectedNodeId,
+                            lineColor: context.palette.onSurface,
+                            highlightColor: context.palette.accent,
                           ),
                         ),
                       ),
@@ -218,7 +220,7 @@ class _KnowledgeConstellationPageState
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurface.withValues(alpha: 0.84),
+                    color: context.palette.onSurface.withValues(alpha: 0.84),
                     fontSize: 10.8,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                   ),
@@ -376,9 +378,9 @@ class _KnowledgeConstellationPageState
   _NodeStyle _styleFor(QuranUniverseNodeType type) {
     switch (type) {
       case QuranUniverseNodeType.quran:
-        return const _NodeStyle(
-          fill: AppColors.accentGold,
-          border: AppColors.accentGoldSoft,
+        return _NodeStyle(
+          fill: context.palette.accent,
+          border: context.palette.accentSoft,
         );
       case QuranUniverseNodeType.hadith:
         return const _NodeStyle(
@@ -396,9 +398,9 @@ class _KnowledgeConstellationPageState
           border: Color(0xFFF6F1E8),
         );
       case QuranUniverseNodeType.concept:
-        return const _NodeStyle(
-          fill: AppColors.surface,
-          border: AppColors.accentGoldSoft,
+        return _NodeStyle(
+          fill: context.palette.surface,
+          border: context.palette.accentSoft,
         );
     }
   }
@@ -436,7 +438,7 @@ class _LegendChip extends StatelessWidget {
       child: Text(
         label,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: textColor ?? AppColors.onSurface,
+          color: textColor ?? context.palette.onSurface,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -456,23 +458,30 @@ class _ConstellationEdgesPainter extends CustomPainter {
     required this.positions,
     required this.edges,
     required this.selectedNodeId,
+    required this.lineColor,
+    required this.highlightColor,
   });
 
   final Map<String, Offset> positions;
   final List<_ConstellationEdge> edges;
   final String? selectedNodeId;
 
+  /// Resolved at build time — a painter has no BuildContext, so reading the
+  /// palette inside paint() is not an option.
+  final Color lineColor;
+  final Color highlightColor;
+
   @override
   void paint(Canvas canvas, Size size) {
     final basePaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0
-      ..color = AppColors.onSurface.withValues(alpha: 0.12);
+      ..color = lineColor.withValues(alpha: 0.12);
 
     final highlightPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.8
-      ..color = AppColors.accentGold.withValues(alpha: 0.35);
+      ..color = highlightColor.withValues(alpha: 0.35);
 
     for (final edge in edges) {
       final a = positions[edge.fromId];
@@ -487,6 +496,10 @@ class _ConstellationEdgesPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _ConstellationEdgesPainter oldDelegate) {
+    if (oldDelegate.lineColor != lineColor ||
+        oldDelegate.highlightColor != highlightColor) {
+      return true;
+    }
     return oldDelegate.selectedNodeId != selectedNodeId ||
         oldDelegate.positions != positions ||
         oldDelegate.edges != edges;

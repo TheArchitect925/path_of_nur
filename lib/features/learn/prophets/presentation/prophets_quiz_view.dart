@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_quiz_controller.dart';
@@ -92,7 +92,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                 Text(
                   _difficultyLabel(state.lastDifficulty),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -106,7 +106,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                 Text(
                   _modeLabel(current.mode),
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -145,17 +145,17 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                               ? const Color(0x332D8F58)
                               : showWrong
                               ? const Color(0x33A55050)
-                              : AppColors.surface.withValues(alpha: 0.25),
+                              : context.palette.surface.withValues(alpha: 0.25),
                           border: Border.all(
                             color: showCorrect
                                 ? const Color(0xFF2D8F58)
                                 : showWrong
                                 ? const Color(0xFFA55050)
                                 : (selectedThis
-                                      ? AppColors.accentGold.withValues(
+                                      ? context.palette.accent.withValues(
                                           alpha: 0.65,
                                         )
-                                      : AppColors.accentGoldSoft.withValues(
+                                      : context.palette.accentSoft.withValues(
                                           alpha: 0.34,
                                         )),
                           ),
@@ -318,7 +318,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               Text(
                 l10n.batch9ProphetQuizSubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 12),

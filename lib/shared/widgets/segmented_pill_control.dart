@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_palette.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
 
@@ -24,7 +24,7 @@ class SegmentedPillControl<T> extends StatelessWidget {
     final contentColors = AppSurfaceTheme.contentColors(context);
     final onSurface = contentColors.foreground;
     final onSurfaceSubtle = contentColors.subtleForeground;
-    final accent = appearance?.accent ?? AppColors.accentGold;
+    final accent = appearance?.accent ?? context.palette.accent;
     final outerStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
@@ -34,7 +34,9 @@ class SegmentedPillControl<T> extends StatelessWidget {
       variant: AppSurfaceVariant.pill,
       tintColor: accent,
       baseColor:
-          appearance?.surfaceSoft ?? appearance?.surface ?? AppColors.surface,
+          appearance?.surfaceSoft ??
+          appearance?.surface ??
+          context.palette.surface,
     );
 
     return Container(

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -678,11 +678,11 @@ class _ReadinessChoicePill extends StatelessWidget {
     return AppLayeredGlassPillButton(
       onPressed: onTap,
       label: label,
-      tintColor: selected ? AppColors.accentGoldSoft : null,
+      tintColor: selected ? context.palette.accentSoft : null,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       foregroundColor: selected
           ? const Color(0xFF8A5A1F)
-          : AppColors.onSurfaceSubtle,
+          : context.palette.onSurfaceSubtle,
     );
   }
 }
@@ -711,7 +711,7 @@ class _SurahAyahCard extends StatelessWidget {
         color: highlighted ? const Color(0xFFFFF1D8) : const Color(0xFFF9F6F1),
         border: Border.all(
           color: highlighted
-              ? AppColors.accentGoldSoft
+              ? context.palette.accentSoft
               : const Color(0xFFE6DDD1),
         ),
       ),
@@ -740,9 +740,9 @@ class _SurahAyahCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             ayah.translation,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),

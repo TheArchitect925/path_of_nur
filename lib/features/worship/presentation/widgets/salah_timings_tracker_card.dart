@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_surfaces.dart';
@@ -32,7 +32,7 @@ Color _salahTrackerPrimaryText(BuildContext context) =>
 
 Color _salahTrackerSubtleText(BuildContext context) =>
     Theme.of(context).extension<AppAppearanceTheme>()?.onSurfaceSubtle ??
-    AppColors.onSurfaceSubtle;
+    context.palette.onSurfaceSubtle;
 
 Color _salahTrackerAccent(BuildContext context) =>
     Theme.of(context).extension<AppAppearanceTheme>()?.accentSoft ??
@@ -653,15 +653,15 @@ class _PrayerCalendarSheetState extends ConsumerState<_PrayerCalendarSheet> {
               children: [
                 _CalendarLegendItem(
                   label: l10n.homeShortcutSalahLabel,
-                  color: AppColors.accentGoldSoft,
+                  color: context.palette.accentSoft,
                 ),
                 _CalendarLegendItem(
                   label: l10n.homeShortcutDhikrLabel,
-                  color: AppColors.success,
+                  color: context.palette.success,
                 ),
                 _CalendarLegendItem(
                   label: l10n.quranTitle,
-                  color: AppColors.caution,
+                  color: context.palette.caution,
                 ),
                 _CalendarLegendItem(
                   label: l10n.learnTitle,
@@ -773,7 +773,7 @@ class _CalendarDayCell extends StatelessWidget {
     final selectedStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     final unselectedStyle = AppSurfaceTheme.resolve(
       context,
@@ -797,7 +797,7 @@ class _CalendarDayCell extends StatelessWidget {
                     color: isSelected
                         ? selectedStyle.borderColor
                         : isToday
-                        ? AppColors.accentGoldSoft.withValues(alpha: 0.34)
+                        ? context.palette.accentSoft.withValues(alpha: 0.34)
                         : Colors.transparent,
                   ),
                 ),
@@ -845,14 +845,17 @@ class _CalendarDayProgressRow extends StatelessWidget {
       children: [
         _CalendarProgressDot(
           level: effective.salah,
-          color: AppColors.accentGoldSoft,
+          color: context.palette.accentSoft,
         ),
         const SizedBox(width: 2),
-        _CalendarProgressDot(level: effective.dhikr, color: AppColors.success),
+        _CalendarProgressDot(
+          level: effective.dhikr,
+          color: context.palette.success,
+        ),
         const SizedBox(width: 2),
         _CalendarProgressDot(
           level: effective.reading,
-          color: AppColors.caution,
+          color: context.palette.caution,
         ),
         const SizedBox(width: 2),
         _CalendarProgressDot(

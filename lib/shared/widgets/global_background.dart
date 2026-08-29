@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/prayer/prayer_preferences.dart';
 import '../../core/theme/app_backgrounds.dart';
-import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_palette.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/living_atmosphere.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
@@ -30,7 +30,7 @@ class GlobalBackground extends ConsumerWidget {
     final wallpaper = ref.watch(selectedWallpaperProvider);
     final settings = ref.watch(profileSettingsProvider);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final fallbackColor = appearance?.background ?? AppColors.background;
+    final fallbackColor = appearance?.background ?? context.palette.background;
     final backgroundSpec = AppBackgroundTheme.resolve(
       appearance: appearance,
       disableGlassTransparency: settings.disableGlassTransparency,

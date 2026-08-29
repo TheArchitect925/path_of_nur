@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -101,15 +101,15 @@ class DailyProphetQuizCard extends StatelessWidget {
                       ? const Color(0x332D8F58)
                       : showWrong
                       ? const Color(0x33A55050)
-                      : AppColors.surface.withValues(alpha: 0.26),
+                      : context.palette.surface.withValues(alpha: 0.26),
                   border: Border.all(
                     color: showCorrect
                         ? const Color(0xFF2D8F58)
                         : showWrong
                         ? const Color(0xFFA55050)
                         : (selected
-                              ? AppColors.accentGold.withValues(alpha: 0.65)
-                              : AppColors.accentGoldSoft.withValues(
+                              ? context.palette.accent.withValues(alpha: 0.65)
+                              : context.palette.accentSoft.withValues(
                                   alpha: 0.34,
                                 )),
                   ),

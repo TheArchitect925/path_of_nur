@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -43,12 +43,12 @@ class FaqCategoryCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(color: pillStyle.borderColor),
                   ),
-                  child: Icon(icon, color: AppColors.accentGold),
+                  child: Icon(icon, color: context.palette.accent),
                 ),
                 const Spacer(),
                 Icon(
                   Icons.chevron_right_rounded,
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ],
             ),
@@ -66,9 +66,9 @@ class FaqCategoryCard extends StatelessWidget {
               summary.subtitle,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
             const SizedBox(height: 10),
             Wrap(

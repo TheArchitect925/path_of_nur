@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -70,9 +70,9 @@ class DailyRevelationCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             item.subtitle!,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
         const SizedBox(height: 8),
@@ -103,9 +103,9 @@ class DailyRevelationCard extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           copy.returnTomorrow,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: context.palette.onSurfaceSubtle,
+          ),
         ),
       ],
     );

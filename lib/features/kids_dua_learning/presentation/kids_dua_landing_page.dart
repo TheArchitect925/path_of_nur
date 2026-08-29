@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -173,20 +173,20 @@ class _LightCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: const TextStyle(color: AppColors.accentGold),
+            style: TextStyle(color: context.palette.accent),
           ),
           const SizedBox(height: 6),
           Text(
             _localizedCopy(context, summary.lightDescriptionKey),
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               height: 1.4,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             _localizedCopy(context, summary.reminderPrompt.bodyKey),
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       ),
@@ -285,8 +285,8 @@ class _HeroCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.kidsDuaHeroSubtitle,
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               height: 1.4,
             ),
           ),
@@ -345,7 +345,7 @@ class _FeatureCard extends StatelessWidget {
                 width: 52,
                 height: 52,
                 decoration: _kidsNoorPanelDecoration(context, radius: 18),
-                child: Icon(icon, color: AppColors.accentGold),
+                child: Icon(icon, color: context.palette.accent),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -372,7 +372,7 @@ class _FeatureCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             detail,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
           const SizedBox(height: 12),
           SizedBox(
@@ -407,7 +407,7 @@ class _CategoryCard extends StatelessWidget {
               width: 54,
               height: 54,
               decoration: _kidsNoorPanelDecoration(context, radius: 18),
-              child: Icon(item.category.icon, color: AppColors.accentGold),
+              child: Icon(item.category.icon, color: context.palette.accent),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -421,7 +421,7 @@ class _CategoryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     item.category.subtitle,
-                    style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                    style: TextStyle(color: context.palette.onSurfaceSubtle),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -429,18 +429,15 @@ class _CategoryCard extends StatelessWidget {
                       item.learnedCount,
                       item.totalCount,
                     ),
-                    style: const TextStyle(
-                      color: AppColors.accentGold,
+                    style: TextStyle(
+                      color: context.palette.accent,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.accentGold,
-            ),
+            Icon(Icons.chevron_right_rounded, color: context.palette.accent),
           ],
         ),
       ),
@@ -474,7 +471,7 @@ class _QuickEntryCard extends StatelessWidget {
               width: 52,
               height: 52,
               decoration: _kidsNoorPanelDecoration(context, radius: 18),
-              child: Icon(icon, color: AppColors.accentGold),
+              child: Icon(icon, color: context.palette.accent),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -488,15 +485,12 @@ class _QuickEntryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                    style: TextStyle(color: context.palette.onSurfaceSubtle),
                   ),
                 ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.accentGold,
-            ),
+            Icon(Icons.chevron_right_rounded, color: context.palette.accent),
           ],
         ),
       ),
@@ -522,7 +516,7 @@ class _SectionHeader extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           subtitle,
-          style: const TextStyle(color: AppColors.onSurfaceSubtle),
+          style: TextStyle(color: context.palette.onSurfaceSubtle),
         ),
       ],
     );

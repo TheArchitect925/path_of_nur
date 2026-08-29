@@ -151,7 +151,7 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       height: 30,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: AppColors.accentGold.withValues(alpha: 0.25),
+                        color: context.palette.accent.withValues(alpha: 0.25),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(

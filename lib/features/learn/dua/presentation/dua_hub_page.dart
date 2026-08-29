@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -550,9 +550,9 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             const SizedBox(height: 10),
             Text(
               item.whenToSay,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
             const SizedBox(height: 10),
             Wrap(
@@ -602,7 +602,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return InkWell(
       onTap: onTap,
@@ -615,20 +615,22 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               color: selected
                   ? AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.18,
                       solidAlphaWhenDisabled: 0.28,
                     )
                   : style.backgroundColor,
               gradient: selected ? null : style.gradient,
               border: Border.all(
-                color: selected ? AppColors.accentGold : style.borderColor,
+                color: selected ? context.palette.accent : style.borderColor,
               ),
             ),
         child: Text(
           label,
           style: TextStyle(
-            color: selected ? AppColors.onSurface : AppColors.onSurfaceSubtle,
+            color: selected
+                ? context.palette.onSurface
+                : context.palette.onSurfaceSubtle,
             fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
@@ -640,7 +642,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return InkWell(
       onTap: onTap,
@@ -721,7 +723,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],

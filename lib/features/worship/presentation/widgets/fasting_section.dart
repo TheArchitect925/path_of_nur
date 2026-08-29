@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -47,12 +47,12 @@ class FastingSection extends ConsumerWidget {
               const SizedBox(height: 4),
               Text(
                 l10n.fastingTypeValue(fasting.selectedType.label),
-                style: TextStyle(color: AppColors.onSurfaceSubtle),
+                style: TextStyle(color: context.palette.onSurfaceSubtle),
               ),
               const SizedBox(height: 12),
               LinearProgressIndicator(
                 value: _statusProgress(fasting.todayStatus),
-                backgroundColor: AppColors.surfaceSoft,
+                backgroundColor: context.palette.surfaceSoft,
                 minHeight: 8,
               ),
             ],
@@ -109,11 +109,11 @@ class FastingSection extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: 17,
-                    backgroundColor: AppColors.success,
+                    backgroundColor: context.palette.success,
                     child: Icon(
                       Icons.spa_outlined,
                       size: 18,
-                      color: AppColors.onSurface,
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -132,7 +132,7 @@ class FastingSection extends ConsumerWidget {
                             entry.status.label,
                           ),
                           style: TextStyle(
-                            color: AppColors.onSurfaceSubtle,
+                            color: context.palette.onSurfaceSubtle,
                           ),
                         ),
                       ],
@@ -156,7 +156,7 @@ class FastingSection extends ConsumerWidget {
               Text(
                 l10n.fastingGentleReminderBody,
                 style: TextStyle(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                   height: 1.45,
                 ),
               ),
@@ -197,7 +197,7 @@ class _FastingChoicePill extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return InkWell(
       onTap: onTap,
@@ -210,7 +210,7 @@ class _FastingChoicePill extends StatelessWidget {
               color: isSelected
                   ? AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.18,
                       solidAlphaWhenDisabled: 0.28,
                     )
@@ -218,10 +218,10 @@ class _FastingChoicePill extends StatelessWidget {
               gradient: isSelected ? null : style.gradient,
               border: Border.all(
                 color: isSelected
-                    ? AppColors.accentGold
+                    ? context.palette.accent
                     : AppSurfaceTheme.adaptiveColor(
                         context,
-                        AppColors.accentGoldSoft,
+                        context.palette.accentSoft,
                         alpha: 0.45,
                         solidAlphaWhenDisabled: 0.55,
                       ),
@@ -230,7 +230,7 @@ class _FastingChoicePill extends StatelessWidget {
         child: Text(
           label,
           style: TextStyle(
-            color: AppColors.onSurface,
+            color: context.palette.onSurface,
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
@@ -265,7 +265,7 @@ class _FastingRhythmCard extends ConsumerWidget {
             Icon(
               Icons.tips_and_updates_outlined,
               size: 18,
-              color: AppColors.accentGoldSoft,
+              color: context.palette.accentSoft,
             ),
             const SizedBox(width: 8),
             Expanded(

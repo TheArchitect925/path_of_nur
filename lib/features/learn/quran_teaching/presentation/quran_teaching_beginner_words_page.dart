@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -168,7 +168,7 @@ class _QuranTeachingBeginnerWordsPageState
                         activeWord.exampleReference!,
                       ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   const SizedBox(height: 16),
@@ -270,8 +270,8 @@ class _QuranTeachingBeginnerWordsPageState
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: AppColors.surfaceSoft.withValues(alpha: 0.45),
-              border: Border.all(color: AppColors.surfaceSoft),
+              color: context.palette.surfaceSoft.withValues(alpha: 0.45),
+              border: Border.all(color: context.palette.surfaceSoft),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,7 +304,7 @@ class _QuranTeachingBeginnerWordsPageState
                 Text(
                   _formLabel(l10n, item.displayForm),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -390,7 +390,7 @@ class _WordSummaryChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.45),
       ),
       child: Text(
         label,

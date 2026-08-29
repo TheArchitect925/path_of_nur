@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../data/seeded_prophetic_lineage_data.dart';
@@ -86,7 +86,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
               Text(
                 l10n.prophetsFamilyTreeSubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 10),
@@ -119,7 +119,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
               Text(
                 l10n.prophetsFamilyTreeLinkedNote,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],
@@ -129,9 +129,9 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
         PremiumCard(
           child: Text(
             l10n.prophetsFamilyTreeScopeNote,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ),
         const SizedBox(height: 10),
@@ -246,12 +246,12 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
           color: selected
-              ? AppColors.accentGold.withValues(alpha: 0.22)
-              : AppColors.surface.withValues(alpha: 0.3),
+              ? context.palette.accent.withValues(alpha: 0.22)
+              : context.palette.surface.withValues(alpha: 0.3),
           border: Border.all(
             color: selected
-                ? AppColors.accentGold.withValues(alpha: 0.6)
-                : AppColors.accentGoldSoft.withValues(alpha: 0.32),
+                ? context.palette.accent.withValues(alpha: 0.6)
+                : context.palette.accentSoft.withValues(alpha: 0.32),
           ),
         ),
         child: Text(label, style: const TextStyle(fontSize: 12.3)),

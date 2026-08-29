@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/quran_teaching_smart_review_controller.dart';
@@ -65,7 +65,7 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
                     summary.estimatedMinutes,
                   ),
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
             ],
@@ -83,9 +83,9 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
                   : l10n.quranTeachingDailyReviewCardItemCount(
                       summary.itemCount,
                     ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
           ],
           const SizedBox(height: 12),
@@ -118,7 +118,7 @@ class QuranTeachingRecommendationCard extends StatelessWidget {
             width: 42,
             height: 42,
             decoration: BoxDecoration(
-              color: AppColors.surfaceSoft.withValues(alpha: 0.7),
+              color: context.palette.surfaceSoft.withValues(alpha: 0.7),
               borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(recommendation.icon),
@@ -340,9 +340,9 @@ class QuranTeachingReviewCompletionCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             l10n.quranTeachingReviewCompletionBody,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),

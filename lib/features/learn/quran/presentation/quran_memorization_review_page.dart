@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -210,7 +210,7 @@ class _MemorizationReviewCard extends ConsumerWidget {
                         '${entry.surahNumber}:${entry.ayahNumber}',
                       ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ],
@@ -223,13 +223,13 @@ class _MemorizationReviewCard extends ConsumerWidget {
                 ),
                 decoration: _quranNoorPillDecoration(
                   context,
-                  tintColor: AppColors.accentGoldSoft,
+                  tintColor: context.palette.accentSoft,
                 ),
                 child: Text(
                   _stageLabel(l10n, entry.progress.stage),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ),
@@ -263,9 +263,9 @@ class _MemorizationReviewCard extends ConsumerWidget {
                 ),
               ),
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
@@ -277,9 +277,9 @@ class _MemorizationReviewCard extends ConsumerWidget {
                       context,
                     ).formatMediumDate(entry.progress.lastReviewed!),
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           if (themes.isNotEmpty) ...[
             const SizedBox(height: 12),

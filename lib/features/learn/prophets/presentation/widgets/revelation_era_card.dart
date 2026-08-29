@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
@@ -69,16 +69,16 @@ class RevelationEraCard extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _chip(l10n.prophetsRegionChip(regionLabel)),
-              _chip(l10n.prophetsCivilizationChip(civilizationTitle)),
+              _chip(context, l10n.prophetsRegionChip(regionLabel)),
+              _chip(context, l10n.prophetsCivilizationChip(civilizationTitle)),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             civilizationSummary,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           if (coreMessages.isNotEmpty) ...[
             const SizedBox(height: 8),
@@ -120,16 +120,18 @@ class RevelationEraCard extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: growthHabitLabels
-                  .map((label) => _chip(l10n.prophetsPracticeChip(label)))
+                  .map(
+                    (label) => _chip(context, l10n.prophetsPracticeChip(label)),
+                  )
                   .toList(),
             ),
           ],
           const SizedBox(height: 8),
           Text(
             featuredProphetsLabel,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           Wrap(
@@ -198,14 +200,14 @@ class RevelationEraCard extends StatelessWidget {
     );
   }
 
-  Widget _chip(String text) {
+  Widget _chip(BuildContext context, String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.28),
+        color: context.palette.surface.withValues(alpha: 0.28),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(text, style: const TextStyle(fontSize: 11.5)),

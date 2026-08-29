@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -64,8 +64,8 @@ class _KidsDuaMyDayPageState extends ConsumerState<KidsDuaMyDayPage> {
                   state.isDayComplete
                       ? l10n.kidsDuaMyDayCompleteBody
                       : l10n.kidsDuaMyDaySubtitle,
-                  style: const TextStyle(
-                    color: AppColors.onSurfaceSubtle,
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.4,
                   ),
                 ),
@@ -196,14 +196,14 @@ class _LightProgressCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: const TextStyle(color: AppColors.accentGold),
+            style: TextStyle(color: context.palette.accent),
           ),
           const SizedBox(height: 6),
           Text(
             summary.todayCompleted
                 ? l10n.kidsDuaMyDayLightComplete
                 : l10n.kidsDuaMyDayLightContinue,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       ),
@@ -266,7 +266,7 @@ class _SectionCard extends ConsumerWidget {
                   width: 48,
                   height: 48,
                   decoration: _kidsNoorPanelDecoration(context),
-                  child: Icon(section.icon, color: AppColors.accentGold),
+                  child: Icon(section.icon, color: context.palette.accent),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -338,7 +338,7 @@ class _DuaRow extends StatelessWidget {
               style: TextStyle(
                 color: completed
                     ? const Color(0xFF4E7A39)
-                    : AppColors.accentGold,
+                    : context.palette.accent,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -417,7 +417,7 @@ class _GuidanceCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon, color: AppColors.accentGold),
+                Icon(icon, color: context.palette.accent),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
@@ -435,7 +435,7 @@ class _GuidanceCard extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               detail,
-              style: const TextStyle(color: AppColors.onSurfaceSubtle),
+              style: TextStyle(color: context.palette.onSurfaceSubtle),
             ),
             const SizedBox(height: 12),
             FilledButton(onPressed: onTap, child: Text(actionLabel)),
@@ -464,7 +464,7 @@ class _SectionHeader extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           subtitle,
-          style: const TextStyle(color: AppColors.onSurfaceSubtle),
+          style: TextStyle(color: context.palette.onSurfaceSubtle),
         ),
       ],
     );

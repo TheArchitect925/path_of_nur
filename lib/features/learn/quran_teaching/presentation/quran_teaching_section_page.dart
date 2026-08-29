@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../arabic/application/arabic_learning_asset_bundle.dart';
 import '../../../arabic/domain/arabic_learning_continuity_models.dart';
 import '../../../arabic/domain/arabic_learning_search_models.dart';
@@ -399,7 +399,7 @@ class _QuranTeachingSectionPageState
               Text(
                 '${quranReadiness.snippet.surahName} • ${quranReadiness.snippet.ref.locationLabel}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 12),
@@ -448,7 +448,7 @@ class _QuranTeachingSectionPageState
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+                  color: context.palette.surfaceSoft.withValues(alpha: 0.45),
                 ),
                 child: Text(
                   arabicAlphabetCatalog
@@ -979,7 +979,7 @@ class _QuranTeachingSectionPageState
                                   module.description,
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
-                                        color: AppColors.onSurfaceSubtle,
+                                        color: context.palette.onSurfaceSubtle,
                                       ),
                                 ),
                               ],
@@ -1054,7 +1054,7 @@ class _QuranTeachingSectionPageState
                         border: Border.all(
                           color: current == level
                               ? Theme.of(context).colorScheme.primary
-                              : AppColors.surfaceSoft,
+                              : context.palette.surfaceSoft,
                         ),
                       ),
                       child: Column(
@@ -1124,9 +1124,9 @@ class _ShortSurahsAdultCard extends StatelessWidget {
               summary.surah.surahTransliteratedName,
               summary.surah.ayahCount,
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
@@ -1253,7 +1253,7 @@ class _ModeChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.75),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.75),
       ),
       child: Text(label),
     );

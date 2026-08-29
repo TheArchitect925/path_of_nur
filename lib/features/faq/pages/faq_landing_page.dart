@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
@@ -59,7 +59,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
               Text(
                 l10n.batch9FaqScholarNote,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 10),
@@ -98,7 +98,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
                     Text(
                       l10n.batch9FaqBrowseAllSubtitle,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ],
@@ -202,7 +202,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
       children: [
         Icon(
           Icons.search_rounded,
-          color: AppColors.onSurface.withValues(alpha: 0.75),
+          color: context.palette.onSurface.withValues(alpha: 0.75),
         ),
         const SizedBox(width: 10),
         Expanded(
@@ -304,7 +304,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
                 Text(
                   l10n.batch9FaqSearchEmptySubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
@@ -60,9 +60,9 @@ class _PrayerHubTabs extends StatelessWidget {
     return Container(
       decoration: surfaceStyle.decoration(radius: 14),
       child: TabBar(
-        labelColor: AppColors.onSurface,
-        unselectedLabelColor: AppColors.onSurfaceSubtle,
-        indicatorColor: AppColors.accentGold,
+        labelColor: context.palette.onSurface,
+        unselectedLabelColor: context.palette.onSurfaceSubtle,
+        indicatorColor: context.palette.accent,
         labelStyle: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w600),
         unselectedLabelStyle: TextStyle(
           fontSize: 13.5,
@@ -158,7 +158,7 @@ class _PrayerTimesTab extends ConsumerWidget {
                     sisterCycleGuidance.summary,
                     style: TextStyle(
                       fontSize: 12.5,
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -309,7 +309,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
                 const SizedBox(height: 6),
                 Text(
                   l10n.worshipPrayerQadaOverviewSubtitle,
-                  style: TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
                 ...obligatoryPrayerNames.map(
@@ -351,7 +351,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
                 Text(
                   l10n.worshipPrayerQadaGuidanceBody,
                   style: TextStyle(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.45,
                   ),
                 ),
@@ -393,7 +393,7 @@ class _QadaBacklogBar extends StatelessWidget {
             Text(
               l10n.worshipPrayerQueuedCount(count),
               style: TextStyle(
-                color: AppColors.onSurfaceSubtle,
+                color: context.palette.onSurfaceSubtle,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -405,9 +405,9 @@ class _QadaBacklogBar extends StatelessWidget {
           child: LinearProgressIndicator(
             value: progress.clamp(0.0, 1.0),
             minHeight: 9,
-            backgroundColor: AppColors.surfaceSoft,
+            backgroundColor: context.palette.surfaceSoft,
             color: count == 0
-                ? AppColors.success
+                ? context.palette.success
                 : const Color(0xFFC85E34),
           ),
         ),
@@ -438,7 +438,7 @@ class _StatMiniTile extends StatelessWidget {
             label,
             style: TextStyle(
               fontSize: 11,
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -620,8 +620,8 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                   child: LinearProgressIndicator(
                     value: completion,
                     minHeight: 9,
-                    backgroundColor: AppColors.surfaceSoft,
-                    color: AppColors.success,
+                    backgroundColor: context.palette.surfaceSoft,
+                    color: context.palette.success,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -632,7 +632,7 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                       (completion * 100).toStringAsFixed(1),
                     ),
                   ),
-                  style: TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
               ],
             ),
@@ -651,7 +651,7 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                   DateFormat.yMMMM(
                     Localizations.localeOf(context).toLanguageTag(),
                   ).format(selectedMonth),
-                  style: TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
                 _MonthlyTrackerGrid(
@@ -709,7 +709,7 @@ class _MonthSectionHeader extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 DateFormat.yMMMM(localeTag).format(selectedMonth),
-                style: TextStyle(color: AppColors.onSurfaceSubtle),
+                style: TextStyle(color: context.palette.onSurfaceSubtle),
               ),
             ],
           ),
@@ -726,7 +726,7 @@ class _MonthSectionHeader extends StatelessWidget {
             Icons.chevron_right_rounded,
             color: canGoToNextMonth
                 ? null
-                : AppColors.onSurfaceSubtle.withValues(alpha: 0.5),
+                : context.palette.onSurfaceSubtle.withValues(alpha: 0.5),
           ),
         ),
       ],
@@ -855,11 +855,11 @@ class _MonthlyTrackerGrid extends StatelessWidget {
   Color _statusColor(BuildContext context, PrayerStatus status) {
     switch (status) {
       case PrayerStatus.completed:
-        return AppColors.success;
+        return context.palette.success;
       case PrayerStatus.missed:
-        return AppColors.caution;
+        return context.palette.caution;
       case PrayerStatus.pending:
-        return AppColors.surfaceSoft;
+        return context.palette.surfaceSoft;
     }
   }
 }
@@ -876,7 +876,7 @@ class _WeekdayHead extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 11,
-          color: AppColors.onSurfaceSubtle,
+          color: context.palette.onSurfaceSubtle,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -919,7 +919,7 @@ class _QadaPlannerCard extends ConsumerWidget {
           Text(
             l10n.worshipPrayerCadenceValue(recommendedCadence),
             style: TextStyle(
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12.5,
             ),
           ),
@@ -936,8 +936,8 @@ class _QadaPlannerCard extends ConsumerWidget {
             child: LinearProgressIndicator(
               value: dailyProgress,
               minHeight: 8,
-              color: AppColors.success,
-              backgroundColor: AppColors.surfaceSoft,
+              color: context.palette.success,
+              backgroundColor: context.palette.surfaceSoft,
             ),
           ),
           const SizedBox(height: 6),
@@ -947,7 +947,7 @@ class _QadaPlannerCard extends ConsumerWidget {
               _formatCount(context, dailyTarget),
             ),
             style: TextStyle(
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12,
             ),
           ),
@@ -987,7 +987,7 @@ class _QadaPlannerCard extends ConsumerWidget {
           if (queue.isEmpty)
             Text(
               l10n.worshipPrayerNoQueuedQadaLeft,
-              style: TextStyle(color: AppColors.onSurfaceSubtle),
+              style: TextStyle(color: context.palette.onSurfaceSubtle),
             )
           else
             Wrap(
@@ -1035,7 +1035,7 @@ class _TrendChartCard extends StatelessWidget {
           Text(
             subtitle,
             style: TextStyle(
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12.5,
             ),
           ),
@@ -1064,10 +1064,10 @@ class _TrendChartCard extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: item.completionRate >= 0.7
-                                          ? AppColors.success
+                                          ? context.palette.success
                                           : item.completionRate >= 0.4
-                                          ? AppColors.accentGold
-                                          : AppColors.caution,
+                                          ? context.palette.accent
+                                          : context.palette.caution,
                                     ),
                                   ),
                                 ),
@@ -1078,7 +1078,7 @@ class _TrendChartCard extends StatelessWidget {
                               item.label,
                               style: TextStyle(
                                 fontSize: 11,
-                                color: AppColors.onSurfaceSubtle,
+                                color: context.palette.onSurfaceSubtle,
                               ),
                             ),
                           ],
@@ -1107,7 +1107,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
       return PremiumCard(
         child: Text(
           l10n.worshipPrayerNoRecordsThisMonth,
-          style: TextStyle(color: AppColors.onSurfaceSubtle),
+          style: TextStyle(color: context.palette.onSurfaceSubtle),
         ),
       );
     }
@@ -1125,7 +1125,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
           Text(
             l10n.worshipPrayerHeatmapSubtitle,
             style: TextStyle(
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontSize: 12.5,
             ),
           ),
@@ -1180,11 +1180,11 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
   Color _heatmapColor(BuildContext context, PrayerStatus status) {
     switch (status) {
       case PrayerStatus.completed:
-        return AppColors.success;
+        return context.palette.success;
       case PrayerStatus.missed:
-        return AppColors.caution;
+        return context.palette.caution;
       case PrayerStatus.pending:
-        return AppColors.surfaceSoft;
+        return context.palette.surfaceSoft;
     }
   }
 }
@@ -1315,7 +1315,7 @@ class _RakatCardState extends State<_RakatCard> {
           ),
           Text(
             l10n.salahDailyGuideNote,
-            style: TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       ),
@@ -1357,19 +1357,19 @@ class _RakatGuideRow extends StatelessWidget {
     final guideColors = _RakatGuideColumnColors.resolve(context);
     final borderColor = AppSurfaceTheme.adaptiveColor(
       context,
-      AppColors.accentGoldSoft,
+      context.palette.accentSoft,
       alpha: 0.18,
       solidAlphaWhenDisabled: 0.24,
     );
     final headerColor = AppSurfaceTheme.adaptiveColor(
       context,
-      AppColors.accentGold,
+      context.palette.accent,
       alpha: 0.12,
       solidAlphaWhenDisabled: 0.16,
     );
     final rowColor = AppSurfaceTheme.adaptiveColor(
       context,
-      AppColors.surfaceSoft,
+      context.palette.surfaceSoft,
       alpha: 0.28,
       solidAlphaWhenDisabled: 0.42,
     );
@@ -1504,8 +1504,8 @@ class _RakatGuideColumnColors {
     return _RakatGuideColumnColors(
       prayer: _RakatGuideCellColors.fromBase(
         context,
-        base: AppColors.surfaceSoft,
-        textColor: AppColors.onSurface,
+        base: context.palette.surfaceSoft,
+        textColor: context.palette.onSurface,
       ),
       sunnah: _RakatGuideCellColors.fromBase(
         context,

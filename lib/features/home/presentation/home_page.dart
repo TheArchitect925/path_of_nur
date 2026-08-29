@@ -9,7 +9,7 @@ import '../../../app/nav_tabs.dart';
 import '../../../core/prayer/prayer_forbidden_periods.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_theme.dart';
@@ -620,7 +620,7 @@ class _ModeAwareHomeCard extends ConsumerWidget {
         density: PremiumCardDensity.compact,
         surfaceTintColor: const Color(0xFFE6B85F),
         surfaceAlphaOverride: 0.32,
-        leading: Icon(icon, color: AppColors.accentGoldSoft),
+        leading: Icon(icon, color: context.palette.accentSoft),
         title: Text(
           title,
           style: const TextStyle(
@@ -662,7 +662,7 @@ class _ModeActionChip extends StatelessWidget {
         child: NoorGlassCard(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           surfaceVariant: AppSurfaceVariant.pill,
-          surfaceTintColor: AppColors.accentGold,
+          surfaceTintColor: context.palette.accent,
           surfaceAlphaOverride: 0.18,
           includeShadow: false,
           mode: NoorLiquidGlassMode.fake,
@@ -677,7 +677,7 @@ class _ModeActionChip extends StatelessWidget {
                     Theme.of(
                       context,
                     ).extension<AppAppearanceTheme>()?.onSurface ??
-                    AppColors.onSurface,
+                    context.palette.onSurface,
               ),
               const SizedBox(width: 6),
               Flexible(

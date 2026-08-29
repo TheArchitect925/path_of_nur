@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -108,7 +108,7 @@ class _QuranTeachingListenOnlyPageState
                 Text(
                   selectedPack.description,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -129,7 +129,7 @@ class _QuranTeachingListenOnlyPageState
                         '${selectedPack.items.length}',
                       ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     );
                   },
@@ -157,7 +157,7 @@ class _QuranTeachingListenOnlyPageState
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24),
-                  color: AppColors.surfaceSoft.withValues(alpha: 0.6),
+                  color: context.palette.surfaceSoft.withValues(alpha: 0.6),
                 ),
                 child: currentItem == null
                     ? Text(
@@ -203,7 +203,7 @@ class _QuranTeachingListenOnlyPageState
                       ),
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     );
                   },
@@ -340,7 +340,9 @@ class _QuranTeachingListenOnlyPageState
                         Text(
                           l10n.quranTeachingListenOnlyAudioUnavailable,
                           style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                              ?.copyWith(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                         ),
                       ],
                     ],
@@ -581,9 +583,9 @@ class _ListenOnlyContent extends StatelessWidget {
           Text(
             item.meaning!,
             textAlign: TextAlign.center,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
         if (showVisualAnchor && item.visualAnchor != null) ...[

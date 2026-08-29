@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../application/growth_models.dart';
@@ -201,7 +201,7 @@ BoxDecoration growthNoorPanelDecoration(
 }
 
 Color growthNoorSubtleTextColor(BuildContext context) {
-  return AppColors.onSurfaceSubtle;
+  return context.palette.onSurfaceSubtle;
 }
 
 AppLocalizations _growthL10n() {

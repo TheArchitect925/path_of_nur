@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/prayer/prayer_location_search_service.dart';
 import '../../../../core/prayer/prayer_preferences.dart';
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
@@ -23,14 +23,13 @@ import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../application/celestial_services.dart';
 import '../../domain/celestial_models.dart';
 
-
 Color _celestialInk(BuildContext context) =>
     Theme.of(context).extension<AppAppearanceTheme>()?.onSurface ??
-    AppColors.onSurface;
+    context.palette.onSurface;
 
 Color _celestialSubtleInk(BuildContext context) =>
     Theme.of(context).extension<AppAppearanceTheme>()?.onSurfaceSubtle ??
-    AppColors.onSurfaceSubtle;
+    context.palette.onSurfaceSubtle;
 
 Color _celestialAccent(BuildContext context) {
   final appearance = Theme.of(context).extension<AppAppearanceTheme>();
@@ -239,7 +238,10 @@ class _CollapsibleHeader extends StatelessWidget {
         IconButton(
           onPressed: onOpenExplorer,
           tooltip: title,
-          icon: Icon(Icons.open_in_new_rounded, color: _celestialSubtleInk(context)),
+          icon: Icon(
+            Icons.open_in_new_rounded,
+            color: _celestialSubtleInk(context),
+          ),
         ),
         IconButton(
           onPressed: onToggleExpanded,
@@ -786,7 +788,8 @@ class _InfoPill extends StatelessWidget {
                 label,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color:
-                      appearance?.onSurfaceSubtle ?? AppColors.onSurfaceSubtle,
+                      appearance?.onSurfaceSubtle ??
+                      context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 2),
@@ -798,7 +801,7 @@ class _InfoPill extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color:
                         appearance?.onSurfaceSubtle ??
-                        AppColors.onSurfaceSubtle,
+                        context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],

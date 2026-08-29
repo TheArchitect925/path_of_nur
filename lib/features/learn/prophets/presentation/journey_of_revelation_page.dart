@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_detail_repository.dart';
@@ -75,7 +75,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               Text(
                 l10n.prophetsJourneySubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 10),
@@ -92,7 +92,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                   '${eras.length}',
                 ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               if (lastEra != null || lastProphet != null) ...[
@@ -110,7 +110,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                     ].join(' • '),
                   ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -171,7 +171,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               Text(
                 l10n.prophetsJourneyContinuitySubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 8),
@@ -179,7 +179,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: continuityCalls
-                    .map((call) => _continuityChip(call))
+                    .map((call) => _continuityChip(context, call))
                     .toList(),
               ),
             ],
@@ -342,14 +342,14 @@ class JourneyOfRevelationPage extends ConsumerWidget {
     };
   }
 
-  Widget _continuityChip(String text) {
+  Widget _continuityChip(BuildContext context, String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.28),
+        color: context.palette.surface.withValues(alpha: 0.28),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(text, style: const TextStyle(fontSize: 11.5)),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -133,7 +133,9 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                             localizedProphetEraTitle(l10n, lastOpened.eraGroup),
                           ),
                           style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                              ?.copyWith(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                         ),
                       ],
                     ),
@@ -221,7 +223,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 Text(
                   l10n.prophetsCount(filtered.length),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ] else if (isQuiz) ...[
@@ -229,7 +231,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 Text(
                   l10n.prophetsQuizTabSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ] else if (isFamilyTree) ...[
@@ -237,7 +239,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 Text(
                   l10n.prophetsFamilyTreeTabSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ] else ...[
@@ -245,7 +247,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 Text(
                   l10n.prophetsJourneyTabSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -424,12 +426,12 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
           color: selected
-              ? AppColors.accentGold.withValues(alpha: 0.22)
-              : AppColors.surface.withValues(alpha: 0.3),
+              ? context.palette.accent.withValues(alpha: 0.22)
+              : context.palette.surface.withValues(alpha: 0.3),
           border: Border.all(
             color: selected
-                ? AppColors.accentGold.withValues(alpha: 0.6)
-                : AppColors.accentGoldSoft.withValues(alpha: 0.32),
+                ? context.palette.accent.withValues(alpha: 0.6)
+                : context.palette.accentSoft.withValues(alpha: 0.32),
           ),
         ),
         child: Text(label, style: const TextStyle(fontSize: 12.3)),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
@@ -280,7 +280,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                     context,
                   ).formatFullDate(dailyBundle.date),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -304,14 +304,14 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                   Text(
                     '${dailyBundle.entry!.displaySourceCollection}${dailyBundle.entry!.displaySourceReference == null ? '' : ' • ${dailyBundle.entry!.displaySourceReference}'}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     l10n.hadithGradeLabel(dailyBundle.entry!.grading),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -397,7 +397,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                       dailyBundle.bestStreak == 1 ? '' : 's',
                     ),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -452,7 +452,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                     reviewState.completedQuizIds.length,
                   ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -596,8 +596,8 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                                   ? Icons.check_circle_rounded
                                   : Icons.chevron_right_rounded,
                               color: isDone
-                                  ? AppColors.onSurface
-                                  : AppColors.onSurfaceSubtle,
+                                  ? context.palette.onSurface
+                                  : context.palette.onSurfaceSubtle,
                             ),
                           ],
                         ),
@@ -607,7 +607,9 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                         Text(
                           l10n.hadithPathLessonCount(completed, total),
                           style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                              ?.copyWith(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                         ),
                         const SizedBox(height: 6),
                         ProgressBar(value: ratio, height: 7),
@@ -908,7 +910,7 @@ class _ThemeCard extends ConsumerWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                   height: 1.35,
                 ),
               ),
@@ -1023,9 +1025,9 @@ class _DailyHadithHero extends ConsumerWidget {
         children: [
           Text(
             entry.title,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 4),
           Text(sourceLine, style: Theme.of(context).textTheme.bodySmall),

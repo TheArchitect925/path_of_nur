@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../personalization/domain/learning_personalization_models.dart';
@@ -189,7 +189,7 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
                                 suggestion.subtitle,
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
-                                      color: AppColors.onSurfaceSubtle,
+                                      color: context.palette.onSurfaceSubtle,
                                     ),
                               ),
                             ],

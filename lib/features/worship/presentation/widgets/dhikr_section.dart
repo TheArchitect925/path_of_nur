@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' as intl;
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
@@ -31,7 +31,6 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
     with SingleTickerProviderStateMixin {
   bool _antiRushDialogVisible = false;
   bool _counterPressed = false;
-
 
   late final AnimationController _counterPulseController;
   late final Animation<double> _counterScale;
@@ -235,7 +234,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
         final dialogStyle = AppSurfaceTheme.resolve(
           dialogContext,
           variant: AppSurfaceVariant.card,
-          tintColor: AppColors.accentGold,
+          tintColor: context.palette.accent,
         );
         return Dialog(
           backgroundColor: Colors.transparent,
@@ -251,7 +250,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                   border: Border.all(
                     color: AppSurfaceTheme.adaptiveColor(
                       dialogContext,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.26,
                       solidAlphaWhenDisabled: 0.34,
                     ),
@@ -269,7 +268,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                       presetLabel,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.titleLarge?.copyWith(
-                        color: AppColors.onSurface,
+                        color: context.palette.onSurface,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -278,7 +277,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                   Text(
                     l10n.dhikrAntiRushTitle,
                     style: theme.textTheme.headlineMedium?.copyWith(
-                      color: AppColors.onSurface,
+                      color: context.palette.onSurface,
                       fontWeight: FontWeight.w800,
                       height: 1.05,
                     ),
@@ -292,7 +291,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                         context,
                         AppTextStyles.quranVerse(
                           size: 28,
-                          color: AppColors.onSurface,
+                          color: context.palette.onSurface,
                           weight: FontWeight.w600,
                         ),
                       ),
@@ -304,13 +303,13 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                     style: QuranPresentationStyle.translucentTextStyle(
                       context,
                       theme.textTheme.titleLarge?.copyWith(
-                            color: AppColors.onSurfaceSubtle,
+                            color: context.palette.onSurfaceSubtle,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w600,
                             height: 1.2,
                           ) ??
-                          const TextStyle(
-                            color: AppColors.onSurfaceSubtle,
+                          TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w600,
                             height: 1.2,
@@ -323,12 +322,12 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                     style: QuranPresentationStyle.translucentTextStyle(
                       context,
                       theme.textTheme.headlineSmall?.copyWith(
-                            color: AppColors.onSurface,
+                            color: context.palette.onSurface,
                             fontWeight: FontWeight.w500,
                             height: 1.25,
                           ) ??
-                          const TextStyle(
-                            color: AppColors.onSurface,
+                          TextStyle(
+                            color: context.palette.onSurface,
                             fontWeight: FontWeight.w500,
                             height: 1.25,
                           ),
@@ -338,7 +337,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                   Text(
                     l10n.dhikrAntiRushBody,
                     style: theme.textTheme.headlineSmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                       fontWeight: FontWeight.w500,
                       height: 1.35,
                     ),
@@ -348,7 +347,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        foregroundColor: AppColors.accentGold,
+                        foregroundColor: context.palette.accent,
                         textStyle: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -409,7 +408,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
           subtitle: l10n.dhikrSectionSubtitle,
         ),
         PremiumCard(
-          surfaceTintColor: AppColors.accentGold,
+          surfaceTintColor: context.palette.accent,
           surfaceAlphaOverride: 0.18,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -419,7 +418,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
-                  color: AppColors.onSurface,
+                  color: context.palette.onSurface,
                 ),
               ),
               const SizedBox(height: 4),
@@ -433,13 +432,13 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                     Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontSize: 36,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.onSurface,
+                          color: context.palette.onSurface,
                           height: 1.35,
                         ) ??
-                        const TextStyle(
+                        TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.onSurface,
+                          color: context.palette.onSurface,
                           height: 1.35,
                         ),
                   ),
@@ -452,7 +451,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 6),
@@ -460,7 +459,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                 state.selectedPreset.translation,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 22),
@@ -492,10 +491,10 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                             reduceMotion: reduceMotion,
                           ),
                           borderRadius: BorderRadius.circular(999),
-                          splashColor: AppColors.accentGold.withValues(
+                          splashColor: context.palette.accent.withValues(
                             alpha: 0.08,
                           ),
-                          highlightColor: AppColors.accentGold.withValues(
+                          highlightColor: context.palette.accent.withValues(
                             alpha: 0.04,
                           ),
                           child: AnimatedContainer(
@@ -523,14 +522,14 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                                       ],
                               ),
                               border: Border.all(
-                                color: AppColors.accentGold.withValues(
+                                color: context.palette.accent.withValues(
                                   alpha: reachedTarget ? 0.86 : 0.62,
                                 ),
                                 width: reachedTarget ? 2.2 : 1.4,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.accentGold.withValues(
+                                  color: context.palette.accent.withValues(
                                     alpha: 0.18 + (glowStrength * 0.18),
                                   ),
                                   blurRadius: 22 + (glowStrength * 18),
@@ -557,7 +556,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                                             ?.copyWith(
                                               fontWeight: FontWeight.w800,
                                               height: 1,
-                                              color: AppColors.onSurface,
+                                              color: context.palette.onSurface,
                                             ),
                                       ),
                                     ),
@@ -576,7 +575,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                                           .titleMedium
                                           ?.copyWith(
                                             fontWeight: FontWeight.w700,
-                                            color: AppColors.onSurface,
+                                            color: context.palette.onSurface,
                                           ),
                                     ),
                                     const SizedBox(height: 6),
@@ -587,7 +586,8 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                                           .textTheme
                                           .labelLarge
                                           ?.copyWith(
-                                            color: AppColors.onSurfaceSubtle,
+                                            color:
+                                                context.palette.onSurfaceSubtle,
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
@@ -611,8 +611,8 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                         ? l10n.kidsDhikrTargetReachedMessage
                         : l10n.dhikrTargetReachedMessage,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: AppColors.success,
+                    style: TextStyle(
+                      color: context.palette.success,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -662,14 +662,14 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                   minHeight: 10,
                   backgroundColor: AppSurfaceTheme.adaptiveColor(
                     context,
-                    AppColors.accentGoldSoft,
+                    context.palette.accentSoft,
                     alpha: 0.20,
                     solidAlphaWhenDisabled: 0.24,
                   ),
                   valueColor: AlwaysStoppedAnimation<Color>(
                     AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.92,
                       solidAlphaWhenDisabled: 0.92,
                     ),
@@ -685,7 +685,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],
@@ -747,7 +747,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
               const SizedBox(height: 6),
               LinearProgressIndicator(
                 value: dailyProgress,
-                backgroundColor: AppColors.surfaceSoft,
+                backgroundColor: context.palette.surfaceSoft,
                 minHeight: 8,
               ),
               const SizedBox(height: 6),
@@ -758,10 +758,10 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                       _formatCount(context, todayTotal),
                       _formatCount(context, dailyDhikrGoal),
                     ),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 22,
-                      color: AppColors.onSurface,
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(width: 6),
@@ -778,7 +778,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
                 isKidsMode
                     ? l10n.kidsDhikrDailyGoalSubtitle
                     : l10n.dhikrDailyGoalSubtitle,
-                style: TextStyle(color: AppColors.onSurfaceSubtle),
+                style: TextStyle(color: context.palette.onSurfaceSubtle),
               ),
               const SizedBox(height: 14),
               const Divider(height: 1),
@@ -823,7 +823,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection>
           PremiumCard(
             child: Text(
               l10n.dhikrNoCompletedSessionsYet,
-              style: TextStyle(color: AppColors.onSurfaceSubtle),
+              style: TextStyle(color: context.palette.onSurfaceSubtle),
             ),
           )
         else
@@ -853,7 +853,9 @@ class _DhikrActionPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tint = emphasize ? AppColors.accentGold : AppColors.accentGoldSoft;
+    final tint = emphasize
+        ? context.palette.accent
+        : context.palette.accentSoft;
     return NoorGlassCard(
       padding: EdgeInsets.zero,
       surfaceVariant: AppSurfaceVariant.pill,
@@ -870,13 +872,13 @@ class _DhikrActionPill extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon, size: 20, color: AppColors.onSurface),
+                Icon(icon, size: 20, color: context.palette.onSurface),
                 const SizedBox(width: 10),
                 Text(
                   label,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.onSurface,
+                    color: context.palette.onSurface,
                   ),
                 ),
               ],
@@ -907,7 +909,7 @@ class _TargetChip extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return InkWell(
       onTap: onTap,
@@ -920,21 +922,21 @@ class _TargetChip extends StatelessWidget {
               color: isSelected
                   ? AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.18,
                       solidAlphaWhenDisabled: 0.28,
                     )
                   : style.backgroundColor,
               gradient: isSelected ? null : style.gradient,
               border: Border.all(
-                color: isSelected ? AppColors.accentGold : style.borderColor,
+                color: isSelected ? context.palette.accent : style.borderColor,
               ),
             ),
         child: Text(
           text,
           style: TextStyle(
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-            color: AppColors.onSurface,
+            color: context.palette.onSurface,
           ),
         ),
       ),
@@ -958,7 +960,7 @@ class _SelectableDhikrPill extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return InkWell(
       onTap: onTap,
@@ -971,7 +973,7 @@ class _SelectableDhikrPill extends StatelessWidget {
               color: isSelected
                   ? AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.16,
                       solidAlphaWhenDisabled: 0.26,
                     )
@@ -979,10 +981,10 @@ class _SelectableDhikrPill extends StatelessWidget {
               gradient: isSelected ? null : style.gradient,
               border: Border.all(
                 color: isSelected
-                    ? AppColors.accentGold
+                    ? context.palette.accent
                     : AppSurfaceTheme.adaptiveColor(
                         context,
-                        AppColors.accentGoldSoft,
+                        context.palette.accentSoft,
                         alpha: 0.45,
                         solidAlphaWhenDisabled: 0.55,
                       ),
@@ -991,7 +993,9 @@ class _SelectableDhikrPill extends StatelessWidget {
         child: Text(
           label,
           style: TextStyle(
-            color: isSelected ? AppColors.onSurface : AppColors.onSurfaceSubtle,
+            color: isSelected
+                ? context.palette.onSurface
+                : context.palette.onSurfaceSubtle,
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
@@ -1014,7 +1018,7 @@ class _RecentDhikrSessionCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 17,
-            backgroundColor: AppColors.accentGoldSoft,
+            backgroundColor: context.palette.accentSoft,
             child: Text(
               '${session.count}',
               style: const TextStyle(
@@ -1041,7 +1045,7 @@ class _RecentDhikrSessionCard extends StatelessWidget {
                     ),
                     _formatSessionDuration(context, l10n, session),
                   ),
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 ),
               ],
             ),
@@ -1051,7 +1055,7 @@ class _RecentDhikrSessionCard extends StatelessWidget {
             intl.DateFormat.jm(
               Localizations.localeOf(context).toLanguageTag(),
             ).format(session.finishedAt),
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       ),

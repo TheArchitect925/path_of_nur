@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
@@ -165,7 +165,7 @@ class _HadithBrowsePageState extends ConsumerState<HadithBrowsePage> {
                   subcategoryCount,
                 ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 10),
@@ -378,8 +378,8 @@ class _HadithBrowseResultCard extends StatelessWidget {
                         ? Icons.check_box_rounded
                         : Icons.check_box_outline_blank_rounded,
                     color: isCompleted
-                        ? AppColors.success
-                        : AppColors.onSurfaceSubtle,
+                        ? context.palette.success
+                        : context.palette.onSurfaceSubtle,
                   ),
                 ),
                 IconButton(
@@ -397,8 +397,8 @@ class _HadithBrowseResultCard extends StatelessWidget {
                         ? Icons.bookmark_rounded
                         : Icons.bookmark_border_rounded,
                     color: isSaved
-                        ? AppColors.onSurface
-                        : AppColors.onSurfaceSubtle,
+                        ? context.palette.onSurface
+                        : context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -442,7 +442,7 @@ class _HadithBrowseResultCard extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -450,7 +450,7 @@ class _HadithBrowseResultCard extends StatelessWidget {
           .decoration(radius: 999, includeShadow: false)
           .copyWith(
             border: Border.all(
-              color: AppColors.accentGoldSoft.withValues(alpha: 0.30),
+              color: context.palette.accentSoft.withValues(alpha: 0.30),
             ),
           ),
       child: Text(text, style: const TextStyle(fontSize: 11.5)),

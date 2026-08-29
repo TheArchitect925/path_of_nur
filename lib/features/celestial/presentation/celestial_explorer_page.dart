@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
@@ -137,13 +137,13 @@ class _ExplorerTabBar extends StatelessWidget {
         dividerColor: Colors.transparent,
         indicator: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
-          color: AppColors.accentGold.withValues(alpha: 0.16),
+          color: context.palette.accent.withValues(alpha: 0.16),
           border: Border.all(
-            color: AppColors.accentGold.withValues(alpha: 0.18),
+            color: context.palette.accent.withValues(alpha: 0.18),
           ),
         ),
-        labelColor: AppColors.onSurface,
-        unselectedLabelColor: AppColors.onSurfaceSubtle,
+        labelColor: context.palette.onSurface,
+        unselectedLabelColor: context.palette.onSurfaceSubtle,
         labelStyle: const TextStyle(
           fontSize: 13.5,
           fontWeight: FontWeight.w700,
@@ -189,7 +189,7 @@ class _OverviewTab extends ConsumerWidget {
               Text(
                 '${DateFormat.yMMMMEEEEd().format(snapshot.timestamp)} • ${snapshot.hijriDate.day} ${snapshot.hijriDate.monthName} ${snapshot.hijriDate.year} AH',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 16),
@@ -254,7 +254,7 @@ class _OverviewTab extends ConsumerWidget {
               Text(
                 snapshot.verseOfMoment.shortReflection,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 12),
@@ -361,7 +361,7 @@ class _ExploreTab extends ConsumerWidget {
                 l10n.celestialPositionEstimateNotice,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],
@@ -399,7 +399,7 @@ class _JournalTab extends StatelessWidget {
               l10n.celestialJournalEmptyState,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.onSurfaceSubtle,
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
           ),
@@ -430,7 +430,9 @@ class _JournalTab extends StatelessWidget {
                         Text(
                           '${DateFormat.yMMMd().add_jm().format(item.timestamp)} • ${item.moonPhaseName}',
                           style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                              ?.copyWith(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                         ),
                       ],
                     ),
@@ -457,7 +459,7 @@ class _JournalTab extends StatelessWidget {
               Text(
                 item.verseReference,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 4),
@@ -496,18 +498,18 @@ class _MetricCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 4),
           Text(headline, style: Theme.of(context).textTheme.titleSmall),
           const SizedBox(height: 4),
           Text(
             detail,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),
@@ -565,9 +567,9 @@ class _DirectionalInfoCard extends StatelessWidget {
               marker.azimuthDegrees.round(),
               marker.altitudeDegrees.round(),
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),
@@ -592,7 +594,10 @@ class _CompassBand extends StatelessWidget {
             children: [
               CustomPaint(
                 size: Size(constraints.maxWidth, 180),
-                painter: _CompassPainter(reading: reading),
+                painter: _CompassPainter(
+                  reading: reading,
+                  lineColor: context.palette.onSurfaceSubtle,
+                ),
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -609,7 +614,7 @@ class _CompassBand extends StatelessWidget {
                         ? l10n.celestialMoveSlowlyForHeading
                         : '${reading.headingDegrees!.round()}°',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],
@@ -623,9 +628,12 @@ class _CompassBand extends StatelessWidget {
 }
 
 class _CompassPainter extends CustomPainter {
-  const _CompassPainter({required this.reading});
+  const _CompassPainter({required this.reading, required this.lineColor});
 
   final CelestialDirectionalReading reading;
+
+  /// Resolved at build time — a painter has no BuildContext.
+  final Color lineColor;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -634,7 +642,7 @@ class _CompassPainter extends CustomPainter {
     final ringPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2
-      ..color = AppColors.onSurfaceSubtle.withValues(alpha: 0.18);
+      ..color = lineColor.withValues(alpha: 0.18);
     canvas.drawCircle(center, radius, ringPaint);
 
     for (var i = 0; i < 12; i += 1) {
@@ -652,7 +660,7 @@ class _CompassPainter extends CustomPainter {
         inner,
         Paint()
           ..strokeWidth = 1.2
-          ..color = AppColors.onSurfaceSubtle.withValues(alpha: 0.28),
+          ..color = lineColor.withValues(alpha: 0.28),
       );
     }
 
@@ -699,9 +707,9 @@ class _ExplorerUnavailable extends StatelessWidget {
         child: PremiumCard(
           child: Text(
             l10n.celestialExplorerUnavailable,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
             textAlign: TextAlign.center,
           ),
         ),

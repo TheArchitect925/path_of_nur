@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -32,8 +32,8 @@ class KhusuSection extends ConsumerWidget {
             children: [
               Text(
                 l10n.khusuSectionIntroBody,
-                style: const TextStyle(
-                  color: AppColors.onSurfaceSubtle,
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
                   height: 1.45,
                 ),
               ),
@@ -102,8 +102,8 @@ class KhusuSection extends ConsumerWidget {
         PremiumCard(
           child: Text(
             l10n.khusuClosingQuote,
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               fontStyle: FontStyle.italic,
               height: 1.45,
             ),
@@ -144,7 +144,7 @@ class _FocusCard extends StatelessWidget {
     final iconStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return PremiumCard(
       child: Row(
@@ -157,7 +157,7 @@ class _FocusCard extends StatelessWidget {
                 .copyWith(
                   color: AppSurfaceTheme.adaptiveColor(
                     context,
-                    AppColors.accentGold,
+                    context.palette.accent,
                     alpha: 0.18,
                     solidAlphaWhenDisabled: 0.28,
                   ),
@@ -165,13 +165,13 @@ class _FocusCard extends StatelessWidget {
                   border: Border.all(
                     color: AppSurfaceTheme.adaptiveColor(
                       context,
-                      AppColors.accentGold,
+                      context.palette.accent,
                       alpha: 0.28,
                       solidAlphaWhenDisabled: 0.34,
                     ),
                   ),
                 ),
-            child: Icon(icon, color: AppColors.onSurface),
+            child: Icon(icon, color: context.palette.onSurface),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -185,8 +185,8 @@ class _FocusCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: const TextStyle(
-                    color: AppColors.onSurfaceSubtle,
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -217,7 +217,7 @@ class _SettingRow extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ),
         Switch(value: value, onChanged: onChanged),

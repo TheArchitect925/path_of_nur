@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
@@ -217,7 +217,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
                     Text(
                       widget.content.honoredArabicName,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ],
@@ -234,7 +234,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
                       : Icons.bookmark_border_rounded,
                   color: widget.isBookmarked
                       ? const Color(0xFF8F6A3A)
-                      : AppColors.onSurfaceSubtle,
+                      : context.palette.onSurfaceSubtle,
                 ),
               ),
             ],
@@ -328,9 +328,9 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(999),
-            color: AppColors.surface.withValues(alpha: 0.28),
+            color: context.palette.surface.withValues(alpha: 0.28),
             border: Border.all(
-              color: AppColors.accentGoldSoft.withValues(alpha: 0.35),
+              color: context.palette.accentSoft.withValues(alpha: 0.35),
             ),
           ),
           child: Text(label, style: const TextStyle(fontSize: 12.2)),
@@ -548,9 +548,9 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.3),
+        color: context.palette.surface.withValues(alpha: 0.3),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(text, style: const TextStyle(fontSize: 12)),
@@ -561,8 +561,10 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
     return ActionChip(
       label: Text(text, style: const TextStyle(fontSize: 11.5)),
       onPressed: onTap,
-      backgroundColor: AppColors.surface.withValues(alpha: 0.26),
-      side: BorderSide(color: AppColors.accentGoldSoft.withValues(alpha: 0.30)),
+      backgroundColor: context.palette.surface.withValues(alpha: 0.26),
+      side: BorderSide(
+        color: context.palette.accentSoft.withValues(alpha: 0.30),
+      ),
     );
   }
 

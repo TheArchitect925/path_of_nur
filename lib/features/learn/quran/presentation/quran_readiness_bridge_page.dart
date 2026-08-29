@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -204,7 +204,7 @@ class _QuranReadinessBridgePageState
               color: isPlaying
                   ? (isKids
                         ? const Color(0xFF9ED081)
-                        : AppColors.accentGoldSoft)
+                        : context.palette.accentSoft)
                   : const Color(0xFFE2D9CB),
               width: isPlaying ? 1.6 : 1,
             ),
@@ -214,7 +214,7 @@ class _QuranReadinessBridgePageState
                       color:
                           (isKids
                                   ? const Color(0xFFB8E39E)
-                                  : AppColors.accentGoldSoft)
+                                  : context.palette.accentSoft)
                               .withValues(alpha: 0.22),
                       blurRadius: 18,
                     ),
@@ -406,7 +406,7 @@ class _QuranReadinessBridgePageState
                 Text(
                   activeSnippet.ayahTranslation,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -676,7 +676,7 @@ class _QuranReadinessBridgePageState
           style: baseStyle.copyWith(
             color: isPlaying
                 ? const Color(0xFF8A5A1F)
-                : AppColors.accentGoldSoft,
+                : context.palette.accentSoft,
             backgroundColor:
                 (isPlaying ? const Color(0xFFFFE5B6) : const Color(0xFFF9EBCF))
                     .withValues(alpha: 0.9),
@@ -972,7 +972,7 @@ class _BridgeSummaryChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.55),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.55),
       ),
       child: Text(
         label,

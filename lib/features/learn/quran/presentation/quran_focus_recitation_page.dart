@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_fonts.dart';
@@ -132,7 +132,7 @@ class _QuranFocusRecitationPageState
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
                 child: Material(
-                  color: AppColors.surface,
+                  color: context.palette.surface,
                   elevation: 10,
                   borderRadius: BorderRadius.circular(24),
                   child: SingleChildScrollView(
@@ -146,7 +146,7 @@ class _QuranFocusRecitationPageState
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(
                                 fontWeight: FontWeight.w800,
-                                color: AppColors.onSurface,
+                                color: context.palette.onSurface,
                               ),
                         ),
                         const SizedBox(height: 12),
@@ -155,7 +155,7 @@ class _QuranFocusRecitationPageState
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.onSurface,
+                                color: context.palette.onSurface,
                               ),
                         ),
                         const SizedBox(height: 10),
@@ -245,7 +245,7 @@ class _QuranFocusRecitationPageState
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.onSurface,
+                                color: context.palette.onSurface,
                               ),
                         ),
                         const SizedBox(height: 10),

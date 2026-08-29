@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
@@ -52,7 +52,7 @@ class CrosswordHomePage extends ConsumerWidget {
                 Text(
                   l10n.crosswordLoadErrorSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -238,7 +238,9 @@ class CrosswordHomePage extends ConsumerWidget {
                               ),
                             ),
                             style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: AppColors.onSurfaceSubtle),
+                                ?.copyWith(
+                                  color: context.palette.onSurfaceSubtle,
+                                ),
                           ),
                         ],
                         const SizedBox(height: 12),
@@ -507,9 +509,9 @@ class _ContinuePuzzleCard extends StatelessWidget {
               puzzle.clues.length.toString(),
               progress.solvedClueIds.length.toString(),
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
@@ -565,9 +567,9 @@ class _OverviewCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           Wrap(
@@ -680,9 +682,9 @@ class _PackCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             crosswordPackSubtitle(l10n, pack),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           ClipRRect(
@@ -759,7 +761,7 @@ class _DailyHistoryRow extends StatelessWidget {
               Text(
                 dateKey,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 2),
@@ -773,7 +775,7 @@ class _DailyHistoryRow extends StatelessWidget {
               Text(
                 themeLabel,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],
