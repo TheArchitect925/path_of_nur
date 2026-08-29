@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,12 +23,10 @@ class ArabicLearningAssetManifest {
 
   static Future<Set<String>> _loadAssetKeys() async {
     try {
-      final raw = await rootBundle.loadString('AssetManifest.json');
-      final decoded = json.decode(raw);
-      if (decoded is! Map<String, dynamic>) {
-        return <String>{};
-      }
-      return decoded.keys.toSet();
+      // Flutter no longer ships AssetManifest.json — AssetManifest.bin is the
+      // bundled form, and this API reads it regardless of encoding.
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      return manifest.listAssets().toSet();
     } catch (_) {
       return <String>{};
     }
