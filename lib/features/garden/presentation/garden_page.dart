@@ -690,31 +690,43 @@ class _MilestoneTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Image.asset(
-                      visual.assetPath,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return DecoratedBox(
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xFFE7D7AE), Color(0xFF8BA06B)],
+                // Milestone art is the reward for reaching it: until then the
+                // tile stays covered rather than showing a dimmed preview.
+                child: visual.unlocked
+                    ? Image.asset(
+                        visual.assetPath,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xFFE7D7AE), Color(0xFF8BA06B)],
+                              ),
                             ),
+                            child: Center(
+                              child: Icon(Icons.local_florist_rounded),
+                            ),
+                          );
+                        },
+                      )
+                    : DecoratedBox(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0xFFE9E2D6), Color(0xFFD9D0C2)],
                           ),
-                          child: const Center(
-                            child: Icon(Icons.local_florist_rounded),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.lock_rounded,
+                            size: 26,
+                            color: const Color(
+                              0xFF6A5A4A,
+                            ).withValues(alpha: 0.42),
                           ),
-                        );
-                      },
-                    ),
-                    if (!visual.unlocked)
-                      Container(
-                        color: const Color(0xFF1E1915).withValues(alpha: 0.34),
+                        ),
                       ),
-                  ],
-                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 14),
