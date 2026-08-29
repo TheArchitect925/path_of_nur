@@ -758,6 +758,14 @@ final growthJourneyStatsProvider = Provider<GrowthJourneyStats>((ref) {
   );
 });
 
+/// Legacy unlockable-gating score — NOT the user-facing garden.
+///
+/// The canonical garden is `GardenService` (10 stages, weighted maturity);
+/// see `activeGardenStateProvider`. This five-stage score survives only
+/// because every seeded unlockable's `requiredGardenStage` is calibrated
+/// against it: re-basing it onto maturity would silently shift when
+/// wallpapers, themes and titles unlock. Use it for reward gating only —
+/// never to show the user what stage their garden is at.
 final growthGardenProgressProvider = Provider<GrowthGardenProgressView>((ref) {
   final state = ref.watch(growthControllerProvider);
   final stats = ref.watch(growthJourneyStatsProvider);

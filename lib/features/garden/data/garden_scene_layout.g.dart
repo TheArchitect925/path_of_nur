@@ -37,6 +37,7 @@ abstract final class GardenSceneLayout {
   static const GardenLayerRect homeCardCrop = GardenLayerRect(100, 280, 1800, 800);
   static const GardenLayerRect groundRect = GardenLayerRect(0, 540, 2000, 660);
   static const GardenLayerRect waterRect = GardenLayerRect(1040, 560, 960, 640);
+  static const GardenLayerRect beehiveRect = GardenLayerRect(826, 614, 92, 100);
 
   static const Map<String, GardenLayerPlacement> elementPlacements = {
     'loteTree': GardenLayerPlacement(
@@ -119,8 +120,21 @@ abstract final class GardenSceneLayout {
   /// resolver walks variants/stages downward through this set and falls back
   /// to the placeholder painter when nothing is available.
   static const Set<String> availableGardenArtFiles = <String>{
+    'garden_animal_ants.webp',
+    'garden_animal_beehive.webp',
+    'garden_animal_hoopoe.webp',
     'garden_ground_day.webp',
     'garden_ground_night.webp',
+    'garden_milestone_m01.webp',
+    'garden_milestone_m02.webp',
+    'garden_milestone_m03.webp',
+    'garden_milestone_m04.webp',
+    'garden_milestone_m05.webp',
+    'garden_milestone_m06.webp',
+    'garden_milestone_m07.webp',
+    'garden_milestone_m08.webp',
+    'garden_milestone_m09.webp',
+    'garden_milestone_m10.webp',
     'garden_plant_fig_v1.webp',
     'garden_plant_fig_v2.webp',
     'garden_plant_fig_v3.webp',

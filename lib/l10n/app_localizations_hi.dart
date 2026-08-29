@@ -22670,6 +22670,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'आपकी हालिया निरंतरता पूरे बगीचे को स्वस्थ और भरपूर रहने में मदद कर रही है।';
 
   @override
+  String get homeModuleGardenTitle => 'Your Garden';
+
+  @override
+  String get homeModuleGardenSubtitle =>
+      'A living view of how your worship is growing.';
+
+  @override
   String get gardenElementCentralTreeTitle => 'The Good Tree';
 
   @override

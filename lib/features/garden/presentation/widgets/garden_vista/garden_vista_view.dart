@@ -101,6 +101,18 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
     await controller.markSceneSeen(spec);
   }
 
+  @override
+  void didUpdateWidget(GardenVistaView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // The learner picker can swap gardens under us; the new learner needs its
+    // own baseline (or its own bloom), not the previous one's.
+    if (widget.manageSeenLifecycle &&
+        widget.spec.learnerId != oldWidget.spec.learnerId) {
+      _lifecycleHandled = false;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _runSeenLifecycle());
+    }
+  }
+
   /// Design-space points where new growth appeared, for the bloom light.
   List<Offset> get _bloomAnchors {
     final spec = widget.spec;
@@ -360,6 +372,11 @@ class _SceneLayers extends StatelessWidget {
           ? resolver.animalAsset(element.id)
           : resolver.plantAsset(element.id, element.variantLevel);
       addLayer(path, placement.rect);
+    }
+    // The hive hangs in the canopy whenever bees are working the garden.
+    final bees = spec.elementById(GardenSceneElementId.bee);
+    if (bees != null && bees.variantLevel > 0) {
+      addLayer(resolver.beehiveAsset(), GardenSceneLayout.beehiveRect);
     }
     final treePlacement = GardenSceneLayout
         .elementPlacements[GardenSceneElementId.centralTree.name];

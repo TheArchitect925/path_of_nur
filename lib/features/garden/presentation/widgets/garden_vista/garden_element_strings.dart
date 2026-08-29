@@ -49,6 +49,21 @@ abstract final class GardenElementStrings {
     };
   }
 
+  static String stageTitle(AppLocalizations l10n, GardenVisualStageId stage) {
+    return switch (stage) {
+      GardenVisualStageId.seed => l10n.gardenStageSeed,
+      GardenVisualStageId.sprout => l10n.gardenStageSprout,
+      GardenVisualStageId.smallRoots => l10n.gardenStageRoots,
+      GardenVisualStageId.youngStem => l10n.gardenStageStem,
+      GardenVisualStageId.smallTree => l10n.gardenStageYoungTree,
+      GardenVisualStageId.strengtheningTrunk => l10n.gardenStageTrunk,
+      GardenVisualStageId.branchGrowth => l10n.gardenStageBranches,
+      GardenVisualStageId.leafGrowth => l10n.gardenStageLeaves,
+      GardenVisualStageId.fruitBeginning => l10n.gardenStageFruit,
+      GardenVisualStageId.flourishingTree => l10n.gardenStageFlourishing,
+    };
+  }
+
   static String dimensionTitle(
     AppLocalizations l10n,
     GardenGrowthDimension dimension,

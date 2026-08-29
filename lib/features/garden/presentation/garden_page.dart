@@ -405,20 +405,7 @@ class _GardenHeroCard extends StatelessWidget {
   static String _localizedStageTitle(
     AppLocalizations l10n,
     GardenVisualStageId stageId,
-  ) {
-    return switch (stageId) {
-      GardenVisualStageId.seed => l10n.gardenStageSeed,
-      GardenVisualStageId.sprout => l10n.gardenStageSprout,
-      GardenVisualStageId.smallRoots => l10n.gardenStageRoots,
-      GardenVisualStageId.youngStem => l10n.gardenStageStem,
-      GardenVisualStageId.smallTree => l10n.gardenStageYoungTree,
-      GardenVisualStageId.strengtheningTrunk => l10n.gardenStageTrunk,
-      GardenVisualStageId.branchGrowth => l10n.gardenStageBranches,
-      GardenVisualStageId.leafGrowth => l10n.gardenStageLeaves,
-      GardenVisualStageId.fruitBeginning => l10n.gardenStageFruit,
-      GardenVisualStageId.flourishingTree => l10n.gardenStageFlourishing,
-    };
-  }
+  ) => GardenElementStrings.stageTitle(l10n, stageId);
 }
 
 class _NextGrowthCard extends StatelessWidget {

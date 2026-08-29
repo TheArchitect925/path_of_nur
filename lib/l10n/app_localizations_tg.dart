@@ -22708,6 +22708,13 @@ class AppLocalizationsTg extends AppLocalizations {
       'Your recent consistency is helping the whole garden stay healthy and full.';
 
   @override
+  String get homeModuleGardenTitle => 'Your Garden';
+
+  @override
+  String get homeModuleGardenSubtitle =>
+      'A living view of how your worship is growing.';
+
+  @override
   String get gardenElementCentralTreeTitle => 'The Good Tree';
 
   @override

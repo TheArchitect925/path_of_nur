@@ -22918,6 +22918,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ihre neue Konsistenz trägt dazu bei, dass der gesamte Garten gesund und voll bleibt.';
 
   @override
+  String get homeModuleGardenTitle => 'Your Garden';
+
+  @override
+  String get homeModuleGardenSubtitle =>
+      'A living view of how your worship is growing.';
+
+  @override
   String get gardenElementCentralTreeTitle => 'The Good Tree';
 
   @override

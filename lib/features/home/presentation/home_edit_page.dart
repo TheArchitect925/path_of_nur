@@ -22,6 +22,8 @@ class HomeEditPage extends ConsumerWidget {
         return l10n.homeModulePrayerStripTitle;
       case HomeModule.today:
         return l10n.homeTodayContentTitle;
+      case HomeModule.garden:
+        return l10n.homeModuleGardenTitle;
       case HomeModule.duasNow:
         return l10n.homeRightNowTitle;
       case HomeModule.onThisDay:
@@ -37,6 +39,8 @@ class HomeEditPage extends ConsumerWidget {
         return l10n.homeModulePrayerStripSubtitle;
       case HomeModule.today:
         return l10n.homeTodayContentSubtitle;
+      case HomeModule.garden:
+        return l10n.homeModuleGardenSubtitle;
       case HomeModule.duasNow:
         return l10n.homeRightNowSubtitle;
       case HomeModule.onThisDay:

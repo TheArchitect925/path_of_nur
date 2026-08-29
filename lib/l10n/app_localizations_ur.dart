@@ -22614,6 +22614,13 @@ class AppLocalizationsUr extends AppLocalizations {
       'آپ کی حالیہ مستقل مزاجی پورے باغ کو صحت مند اور بھرپور رہنے میں مدد دے رہی ہے۔';
 
   @override
+  String get homeModuleGardenTitle => 'Your Garden';
+
+  @override
+  String get homeModuleGardenSubtitle =>
+      'A living view of how your worship is growing.';
+
+  @override
   String get gardenElementCentralTreeTitle => 'The Good Tree';
 
   @override

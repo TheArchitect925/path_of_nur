@@ -1,3 +1,10 @@
+/// Legacy five-stage ladder used ONLY to gate unlockable rewards.
+///
+/// The garden the user sees is `GardenVisualStageId` (10 stages) driven by
+/// `GardenService`. Keep this enum for `requiredGardenStage` thresholds so
+/// unlock timing never shifts; `legacyGrowthStageForMaturity` in
+/// `garden_scene_composer.dart` maps the canonical maturity onto it where a
+/// display needs the old vocabulary.
 enum GrowthGardenStage { seed, sprout, rooted, flourishing, lightUponLight }
 
 enum GrowthUnlockableType {

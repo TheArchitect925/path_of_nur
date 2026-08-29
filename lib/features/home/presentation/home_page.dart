@@ -41,6 +41,7 @@ import 'widgets/home_prayer_strip.dart';
 import 'widgets/home_today_card.dart';
 import '../../../shared/widgets/quick_actions_sheet.dart';
 import 'widgets/occasion_offer_sheet.dart';
+import 'widgets/garden_vista_home_card.dart';
 import 'widgets/ramadan_hero_card.dart';
 import 'widgets/right_now_dua_row.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
@@ -81,6 +82,14 @@ class _HomePageState extends ConsumerState<HomePage> {
         return const Padding(
           padding: EdgeInsets.only(top: 12),
           child: HomePrayerStrip(),
+        );
+      case HomeModule.garden:
+        if (isKidsMode) {
+          return const SizedBox.shrink();
+        }
+        return const Padding(
+          padding: EdgeInsets.only(top: 16),
+          child: GardenVistaHomeCard(),
         );
       case HomeModule.today:
         final quranBundle = ref.watch(

@@ -37316,6 +37316,18 @@ abstract class AppLocalizations {
   /// **'Your recent consistency is helping the whole garden stay healthy and full.'**
   String get gardenInsightConsistency;
 
+  /// No description provided for @homeModuleGardenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Garden'**
+  String get homeModuleGardenTitle;
+
+  /// No description provided for @homeModuleGardenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A living view of how your worship is growing.'**
+  String get homeModuleGardenSubtitle;
+
   /// No description provided for @gardenElementCentralTreeTitle.
   ///
   /// In en, this message translates to:

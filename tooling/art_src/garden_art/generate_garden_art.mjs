@@ -35,6 +35,8 @@ const CROPS = {
 const REGIONS = {
   ground: [0, 540, 2000, 660],
   water: [1040, 560, 960, 640],
+  // Hangs in the central tree's canopy; shown whenever bees are present.
+  beehive: [826, 614, 92, 100],
 };
 
 const ELEMENTS = {
@@ -568,6 +570,91 @@ const PLANT_VARIANTS = {
   olive: 3, palm: 3, fig: 3, pomegranate: 3, vine: 3, gourd: 3, sidr: 2, rayhan: 3,
 };
 
+/* ============================ ANIMAL PAINTERS ===========================
+   Only creatures that SIT get raster sprites. The bee, songbirds and fish
+   move, so they stay painter-drawn in GardenMotionPainter where they can be
+   animated without a sprite sheet. */
+
+function paintAnimal(name, tod = 'day') {
+  const G = GROUNDS[tod];
+  const defs = [];
+  const rough = roughFilter(defs);
+  let g = '';
+  let region;
+  if (name === 'hoopoe') {
+    region = ELEMENTS.hoopoe.rect;
+    const [bx, by] = ELEMENTS.hoopoe.base;
+    const cx = bx, cy = by + 8;
+    g += shadowEl(defs, cx, by + 28, 34, 7, 0.18);
+    // Body, tail, wing bar, head, crest, beak — earthy warm tones.
+    g += `<g filter="url(#${rough})">
+      <ellipse cx="${cx}" cy="${cy}" rx="31" ry="20" fill="#A5764F"/>
+      <path d="M ${cx + 22} ${cy - 4} L ${cx + 62} ${cy + 12} L ${cx + 60} ${cy + 20} L ${cx + 20} ${cy + 9} Z" fill="#2E2419"/>
+      <path d="M ${cx + 26} ${cy + 1} L ${cx + 58} ${cy + 14} L ${cx + 57} ${cy + 17} L ${cx + 25} ${cy + 6} Z" fill="${IVORY}" opacity="0.85"/>
+      <path d="M ${cx - 14} ${cy - 4} q 20 -8 36 4 q -18 12 -36 6 Z" fill="#2E2419"/>
+      <path d="M ${cx - 10} ${cy - 1} q 14 -4 26 3" stroke="${IVORY}" stroke-width="3" fill="none" opacity="0.8"/>
+      <circle cx="${cx - 26}" cy="${cy - 16}" r="13" fill="#B98A5E"/>
+      <path d="M ${cx - 44} ${cy - 14} l -20 5 l 20 4 Z" fill="#2E2419"/>
+      <circle cx="${cx - 30}" cy="${cy - 18}" r="2.6" fill="#241A10"/>
+      <path d="M ${cx - 22} ${cy - 34} q 4 -12 2 -20 M ${cx - 15} ${cy - 33} q 7 -11 8 -19 M ${cx - 29} ${cy - 33} q -1 -12 -5 -18" stroke="#B4714A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <circle cx="${cx - 23}" cy="${cy - 55}" r="3" fill="#2E2419"/>
+      <circle cx="${cx - 7}" cy="${cy - 53}" r="3" fill="#2E2419"/>
+      <circle cx="${cx - 35}" cy="${cy - 52}" r="3" fill="#2E2419"/>
+      <path d="M ${cx - 6} ${cy + 18} l -2 12 M ${cx + 6} ${cy + 18} l 1 12" stroke="#7A5A34" stroke-width="3.4" stroke-linecap="round"/>
+    </g>`;
+  } else if (name === 'ants') {
+    region = ELEMENTS.ant.rect;
+    const placement = ELEMENTS.ant;
+    const [rx, ry] = [placement.rect[0], placement.base[1]];
+    let trail = '';
+    for (let i = 0; i < 4; i++) {
+      const ax = rx + 30 + i * 28, ay = ry + 8 - i * 4;
+      trail += `<g>
+        <ellipse cx="${ax}" cy="${ay}" rx="5" ry="3.6" fill="#2A1E12"/>
+        <circle cx="${ax - 6.5}" cy="${ay - 1}" r="2.4" fill="#2A1E12"/>
+        <circle cx="${ax + 6}" cy="${ay - 0.5}" r="3" fill="#2A1E12"/>
+        <path d="M ${ax - 1} ${ay - 3} l -3 -4 M ${ax + 2} ${ay - 3} l 3 -4 M ${ax} ${ay + 3} l -3 4 M ${ax + 3} ${ay + 3} l 3 4" stroke="#2A1E12" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M ${ax - 8} ${ay - 3} l -4 -5" stroke="#2A1E12" stroke-width="1.2" stroke-linecap="round"/>
+      </g>`;
+    }
+    g += `<g filter="url(#${rough})">${trail}</g>`;
+  } else if (name === 'beehive') {
+    // Sits in the central tree's canopy at the beehive anchor.
+    const [ax, ay] = MOTION.beehiveAnchor;
+    region = REGIONS.beehive;
+    g += shadowEl(defs, ax, ay + 44, 34, 7, 0.16);
+    g += `<g filter="url(#${rough})">
+      <path d="M ${ax} ${ay - 46} l 3 12 l -6 0 Z" fill="${G.trunk}"/>
+      <ellipse cx="${ax}" cy="${ay - 22}" rx="26" ry="15" fill="#C79A57"/>
+      <ellipse cx="${ax}" cy="${ay - 4}" rx="32" ry="17" fill="#D8AC66"/>
+      <ellipse cx="${ax}" cy="${ay + 15}" rx="28" ry="16" fill="#C79A57"/>
+      <ellipse cx="${ax}" cy="${ay + 30}" rx="19" ry="12" fill="#B4884A"/>
+      <ellipse cx="${ax + 1}" cy="${ay + 22}" rx="7" ry="6" fill="#4A3418"/>
+      <path d="M ${ax - 22} ${ay - 8} q 22 -6 44 0 M ${ax - 24} ${ay + 10} q 24 -6 48 0" stroke="#A87B3F" stroke-width="2" fill="none" opacity="0.6"/>
+    </g>`;
+  }
+  return { svg: svgDoc(region, g, defs), region };
+}
+
+const ANIMAL_SPRITES = ['hoopoe', 'ants', 'beehive'];
+
+/* The ten drops milestones, as full scenes for the existing gallery. Each is
+   the vista as it looks around that milestone, composed from the same parts
+   so the gallery and the live garden can never drift apart. Order and names
+   follow lib/features/journey/drops/domain/garden_milestones.dart. */
+const MILESTONE_SCENES = [
+  ['m01', { ambKey: 'dawn', tod: 'day', tier: 1, stage: 1, plants: {} }],
+  ['m02', { ambKey: 'dawn', tod: 'day', tier: 1, stage: 2, plants: { rayhan: 1 } }],
+  ['m03', { ambKey: 'morning', tod: 'day', tier: 2, stage: 3, plants: { olive: 1, rayhan: 1 } }],
+  ['m04', { ambKey: 'morning', tod: 'day', tier: 2, stage: 4, plants: { olive: 1, fig: 1, rayhan: 2 } }],
+  ['m05', { ambKey: 'morning', tod: 'day', tier: 3, stage: 5, plants: { olive: 2, fig: 1, gourd: 1, rayhan: 2 } }],
+  ['m06', { ambKey: 'warm', tod: 'day', tier: 3, stage: 6, plants: { olive: 3, palm: 1, fig: 2, gourd: 1, rayhan: 2 } }],
+  ['m07', { ambKey: 'evening', tod: 'day', tier: 4, stage: 7, plants: { olive: 3, palm: 2, fig: 2, pomegranate: 1, gourd: 2, rayhan: 3 } }],
+  ['m08', { ambKey: 'evening', tod: 'day', tier: 4, stage: 8, plants: { olive: 3, palm: 2, fig: 3, pomegranate: 2, vine: 1, gourd: 2, rayhan: 3 } }],
+  ['m09', { ambKey: 'evening', tod: 'night', tier: 5, stage: 9, plants: { olive: 3, palm: 3, fig: 3, pomegranate: 2, vine: 2, gourd: 3, sidr: 1, rayhan: 3 } }],
+  ['m10', { ambKey: 'warm', tod: 'day', tier: 5, stage: 10, plants: { olive: 3, palm: 3, fig: 3, pomegranate: 3, vine: 3, gourd: 3, sidr: 2, rayhan: 3 } }],
+];
+
 /* =========================== FILE MANIFEST ============================== */
 
 function buildLayerFiles() {
@@ -600,6 +687,17 @@ function buildLayerFiles() {
       const painted = paintPlant(plant, variant);
       files[`garden_plant_${plant}_v${variant}.webp`] = { svg: painted.svg, region: painted.region };
     }
+  }
+  for (const animal of ANIMAL_SPRITES) {
+    const painted = paintAnimal(animal);
+    files[`garden_animal_${animal}.webp`] = { svg: painted.svg, region: painted.region };
+  }
+  // Gallery scenes render at half canvas — they are thumbnails, not heroes.
+  for (const [name, cfg] of MILESTONE_SCENES) {
+    files[`garden_milestone_${name}.webp`] = {
+      svg: composeScene(cfg),
+      region: [0, 0, CANVAS.w / 2, CANVAS.h / 2],
+    };
   }
   return files;
 }
@@ -662,6 +760,7 @@ abstract final class GardenSceneLayout {
   static const GardenLayerRect homeCardCrop = ${rectConst([CROPS.homeCard.x, CROPS.homeCard.y, CROPS.homeCard.w, CROPS.homeCard.h])};
   static const GardenLayerRect groundRect = ${rectConst(REGIONS.ground)};
   static const GardenLayerRect waterRect = ${rectConst(REGIONS.water)};
+  static const GardenLayerRect beehiveRect = ${rectConst(REGIONS.beehive)};
 
   static const Map<String, GardenLayerPlacement> elementPlacements = {
 ${placements}

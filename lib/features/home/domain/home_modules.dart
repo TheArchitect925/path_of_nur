@@ -4,6 +4,7 @@
 enum HomeModule {
   prayerStrip('prayer_strip'),
   today('today'),
+  garden('garden'),
   duasNow('duas_now'),
   onThisDay('on_this_day'),
   celestial('celestial');
@@ -24,6 +25,7 @@ enum HomeModule {
 const List<HomeModule> kDefaultHomeModuleOrder = <HomeModule>[
   HomeModule.prayerStrip,
   HomeModule.today,
+  HomeModule.garden,
   HomeModule.duasNow,
   HomeModule.onThisDay,
   HomeModule.celestial,

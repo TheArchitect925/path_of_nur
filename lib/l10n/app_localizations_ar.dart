@@ -22490,6 +22490,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'ثباتك الأخير يساعد الحديقة كلها على البقاء صحيّة وممتلئة.';
 
   @override
+  String get homeModuleGardenTitle => 'Your Garden';
+
+  @override
+  String get homeModuleGardenSubtitle =>
+      'A living view of how your worship is growing.';
+
+  @override
   String get gardenElementCentralTreeTitle => 'The Good Tree';
 
   @override
