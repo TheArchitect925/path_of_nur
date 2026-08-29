@@ -10,6 +10,7 @@ import '../../../data/garden_scene_asset_resolver.dart';
 import '../../../data/garden_scene_layout.g.dart';
 import '../../../domain/garden_models.dart';
 import '../../../domain/garden_scene_models.dart';
+import 'garden_bloom_painter.dart';
 import 'garden_motion_painter.dart';
 import 'garden_vista_placeholder_painter.dart';
 
@@ -29,11 +30,15 @@ class GardenVistaView extends ConsumerStatefulWidget {
     this.enableMotion = true,
     this.manageSeenLifecycle = false,
     this.semanticLabel,
+    this.onElementTap,
     this.resolver = const GardenSceneAssetResolver(),
   });
 
   final GardenSceneSpec spec;
   final GardenVistaCrop crop;
+
+  /// Called with the element under a tap, when one is visible there.
+  final void Function(GardenSceneElementSpec element)? onElementTap;
 
   /// The compact Home card passes false and never carries a ticker.
   final bool enableMotion;
@@ -50,8 +55,10 @@ class GardenVistaView extends ConsumerStatefulWidget {
 }
 
 class _GardenVistaViewState extends ConsumerState<GardenVistaView>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   AnimationController? _motion;
+  AnimationController? _bloom;
+  bool _lifecycleHandled = false;
 
   bool get _wantsMotion =>
       widget.enableMotion && widget.crop == GardenVistaCrop.hero;
@@ -60,15 +67,61 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
   void initState() {
     super.initState();
     if (widget.manageSeenLifecycle) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) {
-          return;
-        }
-        ref
-            .read(gardenSceneSeenControllerProvider)
-            .ensureBaseline(widget.spec);
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => _runSeenLifecycle());
     }
+  }
+
+  /// First visit (and profile switch / restore) writes the baseline silently.
+  /// Otherwise, new growth gets one calm bloom and is then acknowledged, so
+  /// it never replays on a later visit.
+  Future<void> _runSeenLifecycle() async {
+    if (!mounted || _lifecycleHandled) {
+      return;
+    }
+    _lifecycleHandled = true;
+    final controller = ref.read(gardenSceneSeenControllerProvider);
+    final spec = widget.spec;
+    if (!spec.hasNewGrowth) {
+      await controller.ensureBaseline(spec);
+      return;
+    }
+    final reduceMotion =
+        ref.read(profileSettingsProvider).reduceMotion;
+    if (!reduceMotion) {
+      final bloom = _bloom ??= AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 1200),
+      );
+      setState(() {});
+      await bloom.forward(from: 0);
+    }
+    if (!mounted) {
+      return;
+    }
+    await controller.markSceneSeen(spec);
+  }
+
+  /// Design-space points where new growth appeared, for the bloom light.
+  List<Offset> get _bloomAnchors {
+    final spec = widget.spec;
+    final ids = <GardenSceneElementId>{
+      ...spec.newlyAppeared,
+      ...spec.newlyGrown,
+      if (spec.treeStageAdvanced) GardenSceneElementId.centralTree,
+    };
+    final anchors = <Offset>[];
+    for (final id in ids) {
+      final placement = GardenSceneLayout.elementPlacements[id.name];
+      if (placement != null) {
+        anchors.add(Offset(placement.baseX, placement.baseY));
+      } else if (id == GardenSceneElementId.stream ||
+          id == GardenSceneElementId.oceanHorizon) {
+        final line = GardenSceneLayout.streamCenterline;
+        final mid = line[line.length ~/ 2];
+        anchors.add(Offset(mid[0], mid[1]));
+      }
+    }
+    return anchors;
   }
 
   @override
@@ -121,6 +174,7 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
   @override
   void dispose() {
     _motion?.dispose();
+    _bloom?.dispose();
     super.dispose();
   }
 
@@ -168,6 +222,11 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
                         resolver: widget.resolver,
                         brightness: brightness,
                         motion: motionActive ? _ensureMotionController() : null,
+                        bloom: _bloom,
+                        bloomAnchors: _bloom == null
+                            ? const <Offset>[]
+                            : _bloomAnchors,
+                        onElementTap: widget.onElementTap,
                       ),
                     ),
                   ),
@@ -213,12 +272,18 @@ class _SceneLayers extends StatelessWidget {
     required this.resolver,
     required this.brightness,
     this.motion,
+    this.bloom,
+    this.bloomAnchors = const <Offset>[],
+    this.onElementTap,
   });
 
   final GardenSceneSpec spec;
   final GardenSceneAssetResolver resolver;
   final Brightness brightness;
   final Animation<double>? motion;
+  final Animation<double>? bloom;
+  final List<Offset> bloomAnchors;
+  final void Function(GardenSceneElementSpec element)? onElementTap;
 
   @override
   Widget build(BuildContext context) {
@@ -313,17 +378,77 @@ class _SceneLayers extends StatelessWidget {
     if (animation != null) {
       layers.add(
         Positioned.fill(
-          child: RepaintBoundary(
-            child: CustomPaint(
-              painter: GardenMotionPainter(
-                animation: animation,
-                spec: spec,
-                brightness: brightness,
+          child: IgnorePointer(
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: GardenMotionPainter(
+                  animation: animation,
+                  spec: spec,
+                  brightness: brightness,
+                ),
               ),
             ),
           ),
         ),
       );
+    }
+    final bloomAnimation = bloom;
+    if (bloomAnimation != null && bloomAnchors.isNotEmpty) {
+      layers.add(
+        Positioned.fill(
+          child: IgnorePointer(
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: GardenBloomPainter(
+                  animation: bloomAnimation,
+                  anchors: bloomAnchors,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    // Tap targets go last, ordered by the same z as the artwork, so where
+    // two elements overlap the one drawn on top is the one you hit.
+    final tapHandler = onElementTap;
+    if (tapHandler != null) {
+      final targets = <GardenSceneElementSpec>[
+        ...elements,
+        // The tree is always present, even at variant 0 (it is the seed).
+        spec.elementById(GardenSceneElementId.centralTree) ??
+            const GardenSceneElementSpec(
+              id: GardenSceneElementId.centralTree,
+              kind: GardenSceneElementKind.tree,
+              dimension: null,
+              variantLevel: 1,
+              isNewSinceLastVisit: false,
+            ),
+      ]..sort((a, b) {
+          final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
+          final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
+          return za.compareTo(zb);
+        });
+      for (final element in targets) {
+        final placement =
+            GardenSceneLayout.elementPlacements[element.id.name];
+        if (placement == null) {
+          continue;
+        }
+        layers.add(
+          Positioned(
+            left: placement.rect.x,
+            top: placement.rect.y,
+            width: placement.rect.w,
+            height: placement.rect.h,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => tapHandler(element),
+              child: const SizedBox.expand(),
+            ),
+          ),
+        );
+      }
     }
     return Stack(clipBehavior: Clip.none, children: layers);
   }

@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/garden/application/garden_scene_composer.dart';
 import 'package:path_of_nur/features/garden/application/garden_scene_provider.dart';
+import 'package:path_of_nur/features/garden/data/garden_scene_layout.g.dart';
+import 'package:path_of_nur/features/garden/domain/garden_scene_models.dart';
+import 'package:path_of_nur/features/garden/presentation/widgets/garden_vista/garden_bloom_painter.dart';
 import 'package:path_of_nur/features/garden/presentation/widgets/garden_vista/garden_motion_painter.dart';
 import 'package:path_of_nur/features/garden/presentation/widgets/garden_vista/garden_vista_placeholder_painter.dart';
 import 'package:path_of_nur/features/garden/presentation/widgets/garden_vista/garden_vista_view.dart';
@@ -136,6 +139,142 @@ void main() {
           widget is CustomPaint && widget.painter is GardenMotionPainter),
       findsNothing,
     );
+  });
+
+  testWidgets('new growth plays the bloom once, then acknowledges it',
+      (tester) async {
+    final container = await makeGardenTestContainer();
+    addTearDown(container.dispose);
+    final controller = container.read(gardenSceneSeenControllerProvider);
+
+    // Establish a baseline, then grow the garden.
+    final before = composer.compose(
+      garden: makeGardenState(prayer: 0.1),
+      lastSeen: null,
+    );
+    await controller.ensureBaseline(before, now: DateTime(2026, 8, 29));
+    final grown = composer.compose(
+      garden: makeGardenState(prayer: 0.6, drops: 120, maturity: 30),
+      lastSeen:
+          container.read(gardenSceneMementoRepositoryProvider).read('learner_1'),
+    );
+    expect(grown.hasNewGrowth, isTrue);
+
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 400,
+                // Motion off: its 24s repeat would never let the test settle,
+                // and the bloom controller is independent of it.
+                child: GardenVistaView(
+                  spec: grown,
+                  enableMotion: false,
+                  manageSeenLifecycle: true,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(
+      find.byWidgetPredicate((widget) =>
+          widget is CustomPaint && widget.painter is GardenBloomPainter),
+      findsOneWidget,
+      reason: 'the calm bloom should be painting mid-animation',
+    );
+
+    await tester.pump(const Duration(milliseconds: 1200));
+    await tester.pumpAndSettle();
+    final memento =
+        container.read(gardenSceneMementoRepositoryProvider).read('learner_1')!;
+    expect(memento.variantFor(GardenSceneElementId.olive), 2,
+        reason: 'growth must be acknowledged so it never replays');
+    final replay = composer.compose(
+      garden: makeGardenState(prayer: 0.6, drops: 120, maturity: 30),
+      lastSeen: memento,
+    );
+    expect(replay.hasNewGrowth, isFalse);
+  });
+
+  testWidgets('reduce-motion skips the bloom but still acknowledges growth',
+      (tester) async {
+    final container = await makeGardenTestContainer();
+    addTearDown(container.dispose);
+    container.read(profileSettingsProvider.notifier).setReduceMotion(true);
+    final controller = container.read(gardenSceneSeenControllerProvider);
+
+    final before =
+        composer.compose(garden: makeGardenState(prayer: 0.1), lastSeen: null);
+    await controller.ensureBaseline(before, now: DateTime(2026, 8, 29));
+    final grown = composer.compose(
+      garden: makeGardenState(prayer: 0.6),
+      lastSeen:
+          container.read(gardenSceneMementoRepositoryProvider).read('learner_1'),
+    );
+
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 400,
+                child: GardenVistaView(spec: grown, manageSeenLifecycle: true),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      find.byWidgetPredicate((widget) =>
+          widget is CustomPaint && widget.painter is GardenBloomPainter),
+      findsNothing,
+      reason: 'reduce-motion must skip the bloom entirely',
+    );
+    expect(
+      container
+          .read(gardenSceneMementoRepositoryProvider)
+          .read('learner_1')!
+          .variantFor(GardenSceneElementId.olive),
+      2,
+    );
+  });
+
+  testWidgets('tapping a visible element reports it to the caller',
+      (tester) async {
+    final spec = composer.compose(
+      garden: makeGardenState(prayer: 0.9, drops: 400, maturity: 60),
+      lastSeen: null,
+    );
+    final tapped = <GardenSceneElementId>[];
+    await pumpVista(
+      tester,
+      vista: GardenVistaView(
+        spec: spec,
+        onElementTap: (element) => tapped.add(element.id),
+      ),
+    );
+    // The date palm sits on the left; tap inside its layout rect.
+    final vista = tester.getRect(find.byType(GardenVistaView));
+    final crop = GardenSceneLayout.heroCrop;
+    final scale = vista.width / crop.w;
+    final placement = GardenSceneLayout.elementPlacements['datePalm']!;
+    await tester.tapAt(Offset(
+      vista.left + (placement.rect.x + placement.rect.w / 2 - crop.x) * scale,
+      vista.top + (placement.rect.y + placement.rect.h / 2 - crop.y) * scale,
+    ));
+    await tester.pump();
+    expect(tapped, contains(GardenSceneElementId.datePalm));
   });
 
   testWidgets('compact card without lifecycle management writes nothing',

@@ -7,10 +7,13 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../kids/bedtime_stories/application/bedtime_active_learner_service.dart';
 import '../../progression/domain/learner_progression_models.dart';
+import '../../../core/theme/app_theme.dart';
 import '../application/garden_scene_provider.dart';
 import '../application/garden_service.dart';
 import '../domain/garden_models.dart';
 import '../domain/garden_scene_models.dart';
+import 'widgets/garden_vista/garden_element_meaning_sheet.dart';
+import 'widgets/garden_vista/garden_element_strings.dart';
 import 'widgets/garden_vista/garden_vista_view.dart';
 
 class GardenPage extends ConsumerWidget {
@@ -179,11 +182,83 @@ class GardenPage extends ConsumerWidget {
   }
 }
 
+/// The quiet caption under the vista when the garden has changed since the
+/// last visit — a note, never a popup or a reward screen.
+class _NewGrowthNote extends StatelessWidget {
+  const _NewGrowthNote({required this.scene});
+
+  final GardenSceneSpec scene;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final appearance = theme.extension<AppAppearanceTheme>();
+    final tint = appearance?.accent ?? theme.colorScheme.primary;
+    final title = scene.newlyAppeared.isNotEmpty
+        ? l10n.gardenVistaNewGrowthTitle
+        : l10n.gardenVistaStageAdvancedTitle;
+    final named = <String>[
+      for (final id in [...scene.newlyAppeared, ...scene.newlyGrown].take(3))
+        GardenElementStrings.title(l10n, id),
+    ];
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(Icons.auto_awesome_rounded, size: 18, color: tint),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: theme.textTheme.bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                named.isEmpty ? l10n.gardenVistaNewGrowthBody : named.join(' · '),
+                style: theme.textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _GardenHeroCard extends StatelessWidget {
   const _GardenHeroCard({required this.garden, required this.scene});
 
   final GardenState garden;
   final GardenSceneSpec scene;
+
+  /// Current strength of whatever grows this element, for the detail sheet.
+  static double _dimensionScore(
+    GardenState garden,
+    GardenSceneElementSpec element,
+  ) {
+    final dimension = element.dimension;
+    if (dimension == null) {
+      return (garden.maturityPercent / 100).clamp(0.0, 1.0);
+    }
+    for (final state in garden.dimensions) {
+      if (state.dimension == dimension) {
+        return state.score;
+      }
+    }
+    return switch (dimension) {
+      GardenGrowthDimension.prayerFoundation => garden.prayerFoundationScore,
+      GardenGrowthDimension.learningGrowth => garden.learningGrowthScore,
+      GardenGrowthDimension.remembranceLight => garden.remembranceLightScore,
+      GardenGrowthDimension.consistencyBloom => garden.consistencyScore,
+      GardenGrowthDimension.wisdomFruit => garden.wisdomFruitScore,
+      GardenGrowthDimension.mercyWater =>
+        (garden.totalOceanDrops / 1000).clamp(0.0, 1.0),
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,19 +280,28 @@ class _GardenHeroCard extends StatelessWidget {
                     child: GardenVistaView(
                       spec: scene,
                       manageSeenLifecycle: true,
+                      onElementTap: (element) => showGardenElementMeaningSheet(
+                        context,
+                        element: element,
+                        dimensionScore: _dimensionScore(garden, element),
+                      ),
                       semanticLabel:
                           '${_localizedStageTitle(l10n, garden.currentVisualStage.stageId)} · ${l10n.gardenPageMaturityValue('${garden.maturityPercent}')}',
                     ),
                   ),
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          const Color(0xFF1E1915).withValues(alpha: 0.48),
-                        ],
+                  // Scrim and caption must not swallow taps meant for the
+                  // plants and creatures beneath them.
+                  IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            const Color(0xFF1E1915).withValues(alpha: 0.48),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -225,35 +309,45 @@ class _GardenHeroCard extends StatelessWidget {
                     left: 16,
                     right: 16,
                     bottom: 16,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _localizedStageTitle(
-                            l10n,
-                            garden.currentVisualStage.stageId,
+                    child: IgnorePointer(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _localizedStageTitle(
+                              l10n,
+                              garden.currentVisualStage.stageId,
+                            ),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w800,
+                                ),
                           ),
-                          style: Theme.of(context).textTheme.titleLarge
-                              ?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                              ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          _localizedAmbientLabel(l10n, garden.ambientState),
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color: Colors.white.withValues(alpha: 0.92),
-                              ),
-                        ),
-                      ],
+                          const SizedBox(height: 4),
+                          Text(
+                            _localizedAmbientLabel(l10n, garden.ambientState),
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.92),
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
+          const SizedBox(height: 12),
+          if (scene.hasNewGrowth)
+            _NewGrowthNote(scene: scene)
+          else
+            Text(
+              l10n.gardenVistaExploreHint,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           const SizedBox(height: 14),
           Text(
             l10n.gardenPageHeroTitle,

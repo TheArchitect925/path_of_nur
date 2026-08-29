@@ -529,6 +529,194 @@ class AppLocalizationsDe extends AppLocalizations {
   String get quranAppHubSearchHint => 'Im Heiligen Quran suchen';
 
   @override
+  String get quranTabContinueEyebrow => 'Weiterlesen';
+
+  @override
+  String quranTabContinueProgressLabel(int ayah, int total, int percent) {
+    return 'Aya $ayah von $total · $percent% geschafft';
+  }
+
+  @override
+  String get quranTabContinueAction => 'Weiter';
+
+  @override
+  String get quranTabListenAction => 'Anhören';
+
+  @override
+  String get quranTabAllSurahsTitle => 'Alle Suren';
+
+  @override
+  String get quranTabAllSurahsSubtitle =>
+      'Alle 114 Suren · nach Reihenfolge oder Offenbarung';
+
+  @override
+  String get quranTabPlanTitle => 'Leseplan';
+
+  @override
+  String get quranTabPlanNoneSubtitle =>
+      'Wähle ein Tempo und schließe den ganzen Koran ab';
+
+  @override
+  String quranTabPlanJuzLabel(int juz) {
+    return 'Dschuz $juz von 30';
+  }
+
+  @override
+  String get quranTabPlanDoneSuffix => 'heutige Portion gelesen ✓';
+
+  @override
+  String quranTabPlanTodaySuffix(String portion) {
+    return 'heute: $portion';
+  }
+
+  @override
+  String get quranTabTodayAyahTitle => 'Aya des Tages';
+
+  @override
+  String quranTabTodayAyahSubtitle(String reference) {
+    return '$reference · mit einer kurzen Reflexion';
+  }
+
+  @override
+  String get quranTabGroupRead => 'Lesen';
+
+  @override
+  String get quranTabGroupUnderstand => 'Verstehen';
+
+  @override
+  String get quranTabGroupPractice => 'Üben';
+
+  @override
+  String get quranTabBookmarksTitle => 'Lesezeichen & Notizen';
+
+  @override
+  String get quranTabBookmarksSubtitle =>
+      'Deine gespeicherten Ayat, Notizen und Reflexionen';
+
+  @override
+  String get quranTabListenTitle => 'Hören & rezitieren';
+
+  @override
+  String get quranTabListenSubtitle =>
+      'Rezitatoren, Fokus-Rezitation und Audio';
+
+  @override
+  String get quranTabSummariesTitle => 'Suren-Zusammenfassungen & Einblicke';
+
+  @override
+  String get quranTabSummariesSubtitle =>
+      'Worum es in jeder Sure geht, auf einer Seite';
+
+  @override
+  String get quranTabTopicsTitle => 'Themen & Motive';
+
+  @override
+  String get quranTabTopicsSubtitle =>
+      'Geduld, Barmherzigkeit, die Propheten, die Zeichen…';
+
+  @override
+  String get quranTabPathwaysTitle => 'Koran-Pfade';
+
+  @override
+  String get quranTabPathwaysSubtitle =>
+      'Geführte thematische Reisen durch die Ayat';
+
+  @override
+  String get quranTabLearnArabicTitle => 'Arabisch lesen lernen';
+
+  @override
+  String get quranTabLearnArabicSubtitle =>
+      'Buchstaben → kurze Suren → geführte Passagen';
+
+  @override
+  String get quranTabStartHereBadge => 'Hier starten';
+
+  @override
+  String get quranTabMemorizationTitle => 'Auswendiglernen';
+
+  @override
+  String get quranTabMemorizationSubtitle =>
+      'Hifz-Wiederholung in ruhigem Rhythmus';
+
+  @override
+  String get quranTabWordPracticeTitle => 'Wortübung';
+
+  @override
+  String get quranTabWordPracticeSubtitle =>
+      'Häufigste Koran-Wörter · Wiederholungsstapel';
+
+  @override
+  String get quranKhatmPageTitle => 'Leseplan';
+
+  @override
+  String get quranKhatmPageSubtitle =>
+      'Ein ruhiges Tempo, um den ganzen Koran abzuschließen.';
+
+  @override
+  String get quranKhatmPaceTitle => 'Dein Tempo';
+
+  @override
+  String get quranKhatmPaceHalfJuz => 'Ein halber Dschuz pro Tag';
+
+  @override
+  String get quranKhatmPaceOneJuz => 'Ein Dschuz pro Tag';
+
+  @override
+  String get quranKhatmPaceTwoJuz => 'Zwei Dschuz pro Tag';
+
+  @override
+  String quranKhatmPacePages(int pages) {
+    return '$pages Seiten pro Tag';
+  }
+
+  @override
+  String get quranKhatmPaceFinishBy => 'Bis zu einem Datum abschließen';
+
+  @override
+  String get quranKhatmPaceRamadan => 'In 30 Tagen abschließen (Ramadan-Tempo)';
+
+  @override
+  String get quranKhatmTodayPortionTitle => 'Heutige Portion';
+
+  @override
+  String get quranKhatmMarkDoneAction =>
+      'Heutige Portion als gelesen markieren';
+
+  @override
+  String get quranKhatmPortionDoneLabel =>
+      'Die heutige Portion ist gelesen — ma schaa Allah';
+
+  @override
+  String get quranKhatmContinueAction => 'Weiterlesen';
+
+  @override
+  String quranKhatmProgressLabel(int percent, int juz) {
+    return '$percent% des Korans · Dschuz $juz von 30';
+  }
+
+  @override
+  String get quranKhatmSyncAction => 'Auf meine Leseposition setzen';
+
+  @override
+  String get quranKhatmStopAction => 'Plan entfernen';
+
+  @override
+  String get quranKhatmCompleteTitle =>
+      'Khatm vollendet — möge Allah es annehmen';
+
+  @override
+  String get quranKhatmStartAction => 'Plan starten';
+
+  @override
+  String quranKhatmAyahCountLabel(int count) {
+    return '$count Ayat';
+  }
+
+  @override
+  String get growthHabitsQuranPlanRowSubtitle =>
+      'Dein Khatm-Plan lebt jetzt im Koran-Tab';
+
+  @override
   String get quranDiscoverSectionTitle => 'Den Quran entdecken';
 
   @override
@@ -22728,6 +22916,139 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get gardenInsightConsistency =>
       'Ihre neue Konsistenz trägt dazu bei, dass der gesamte Garten gesund und voll bleibt.';
+
+  @override
+  String get gardenElementCentralTreeTitle => 'The Good Tree';
+
+  @override
+  String get gardenElementCentralTreeMeaning =>
+      'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.';
+
+  @override
+  String get gardenElementStreamTitle => 'The Flowing Stream';
+
+  @override
+  String get gardenElementStreamMeaning =>
+      'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.';
+
+  @override
+  String get gardenElementOceanTitle => 'The Distant Sea';
+
+  @override
+  String get gardenElementOceanMeaning =>
+      'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.';
+
+  @override
+  String get gardenElementOliveTitle => 'The Olive';
+
+  @override
+  String get gardenElementOliveMeaning =>
+      'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.';
+
+  @override
+  String get gardenElementDatePalmTitle => 'The Date Palm';
+
+  @override
+  String get gardenElementDatePalmMeaning =>
+      'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.';
+
+  @override
+  String get gardenElementFigTitle => 'The Fig';
+
+  @override
+  String get gardenElementFigMeaning =>
+      'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.';
+
+  @override
+  String get gardenElementPomegranateTitle => 'The Pomegranate';
+
+  @override
+  String get gardenElementPomegranateMeaning =>
+      'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.';
+
+  @override
+  String get gardenElementGrapeVineTitle => 'The Grapevine';
+
+  @override
+  String get gardenElementGrapeVineMeaning =>
+      'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.';
+
+  @override
+  String get gardenElementGourdTitle => 'The Gourd';
+
+  @override
+  String get gardenElementGourdMeaning =>
+      'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.';
+
+  @override
+  String get gardenElementLoteTreeTitle => 'The Lote Tree';
+
+  @override
+  String get gardenElementLoteTreeMeaning =>
+      'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.';
+
+  @override
+  String get gardenElementRayhanTitle => 'Fragrant Rayhan';
+
+  @override
+  String get gardenElementRayhanMeaning =>
+      'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.';
+
+  @override
+  String get gardenElementBeeTitle => 'The Bee';
+
+  @override
+  String get gardenElementBeeMeaning =>
+      'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.';
+
+  @override
+  String get gardenElementAntTitle => 'The Ant';
+
+  @override
+  String get gardenElementAntMeaning =>
+      'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.';
+
+  @override
+  String get gardenElementHoopoeTitle => 'The Hoopoe';
+
+  @override
+  String get gardenElementHoopoeMeaning =>
+      'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.';
+
+  @override
+  String get gardenElementSongbirdsTitle => 'Birds in Rows';
+
+  @override
+  String get gardenElementSongbirdsMeaning =>
+      'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.';
+
+  @override
+  String get gardenElementFishTitle => 'The Fish';
+
+  @override
+  String get gardenElementFishMeaning =>
+      'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.';
+
+  @override
+  String get gardenElementSheetSourceLabel => 'In the Qur\'an';
+
+  @override
+  String get gardenElementSheetGrowsWithLabel => 'Grows with';
+
+  @override
+  String get gardenVistaExploreHint =>
+      'Tap a plant or creature in your garden to see what it means.';
+
+  @override
+  String get gardenVistaNewGrowthTitle => 'Something new has taken root';
+
+  @override
+  String get gardenVistaNewGrowthBody =>
+      'Your garden has changed since you were last here.';
+
+  @override
+  String get gardenVistaStageAdvancedTitle =>
+      'Your garden has entered a new stage';
 
   @override
   String get gardenRecentStory => 'Geschichte abgeschlossen';

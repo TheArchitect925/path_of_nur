@@ -1019,6 +1019,324 @@ abstract class AppLocalizations {
   /// **'Search the Holy Qur\'\'an'**
   String get quranAppHubSearchHint;
 
+  /// No description provided for @quranTabContinueEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reading'**
+  String get quranTabContinueEyebrow;
+
+  /// No description provided for @quranTabContinueProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah {ayah} of {total} · {percent}% through'**
+  String quranTabContinueProgressLabel(int ayah, int total, int percent);
+
+  /// No description provided for @quranTabContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get quranTabContinueAction;
+
+  /// No description provided for @quranTabListenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen'**
+  String get quranTabListenAction;
+
+  /// No description provided for @quranTabAllSurahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All surahs'**
+  String get quranTabAllSurahsTitle;
+
+  /// No description provided for @quranTabAllSurahsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse all 114 surahs · by order or revelation'**
+  String get quranTabAllSurahsSubtitle;
+
+  /// No description provided for @quranTabPlanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading plan'**
+  String get quranTabPlanTitle;
+
+  /// No description provided for @quranTabPlanNoneSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a pace and finish the whole Qur’an'**
+  String get quranTabPlanNoneSubtitle;
+
+  /// No description provided for @quranTabPlanJuzLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Juz {juz} of 30'**
+  String quranTabPlanJuzLabel(int juz);
+
+  /// No description provided for @quranTabPlanDoneSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'today’s portion read ✓'**
+  String get quranTabPlanDoneSuffix;
+
+  /// No description provided for @quranTabPlanTodaySuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'today: {portion}'**
+  String quranTabPlanTodaySuffix(String portion);
+
+  /// No description provided for @quranTabTodayAyahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s ayah'**
+  String get quranTabTodayAyahTitle;
+
+  /// No description provided for @quranTabTodayAyahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{reference} · with a short reflection'**
+  String quranTabTodayAyahSubtitle(String reference);
+
+  /// No description provided for @quranTabGroupRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get quranTabGroupRead;
+
+  /// No description provided for @quranTabGroupUnderstand.
+  ///
+  /// In en, this message translates to:
+  /// **'Understand'**
+  String get quranTabGroupUnderstand;
+
+  /// No description provided for @quranTabGroupPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get quranTabGroupPractice;
+
+  /// No description provided for @quranTabBookmarksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks & notes'**
+  String get quranTabBookmarksTitle;
+
+  /// No description provided for @quranTabBookmarksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your saved ayahs, notes, and reflections'**
+  String get quranTabBookmarksSubtitle;
+
+  /// No description provided for @quranTabListenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen & recite'**
+  String get quranTabListenTitle;
+
+  /// No description provided for @quranTabListenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reciters, focus recitation, and audio'**
+  String get quranTabListenSubtitle;
+
+  /// No description provided for @quranTabSummariesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah summaries & insights'**
+  String get quranTabSummariesTitle;
+
+  /// No description provided for @quranTabSummariesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What each surah is about, in a page'**
+  String get quranTabSummariesSubtitle;
+
+  /// No description provided for @quranTabTopicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Topics & themes'**
+  String get quranTabTopicsTitle;
+
+  /// No description provided for @quranTabTopicsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience, mercy, the prophets, the signs…'**
+  String get quranTabTopicsSubtitle;
+
+  /// No description provided for @quranTabPathwaysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an pathways'**
+  String get quranTabPathwaysTitle;
+
+  /// No description provided for @quranTabPathwaysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided themed journeys through ayahs'**
+  String get quranTabPathwaysSubtitle;
+
+  /// No description provided for @quranTabLearnArabicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn to read Arabic'**
+  String get quranTabLearnArabicTitle;
+
+  /// No description provided for @quranTabLearnArabicSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters → short surahs → guided passages'**
+  String get quranTabLearnArabicSubtitle;
+
+  /// No description provided for @quranTabStartHereBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Start here'**
+  String get quranTabStartHereBadge;
+
+  /// No description provided for @quranTabMemorizationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorization'**
+  String get quranTabMemorizationTitle;
+
+  /// No description provided for @quranTabMemorizationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hifz review and gentle repetition'**
+  String get quranTabMemorizationSubtitle;
+
+  /// No description provided for @quranTabWordPracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word practice'**
+  String get quranTabWordPracticeTitle;
+
+  /// No description provided for @quranTabWordPracticeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Qur’anic words · review deck'**
+  String get quranTabWordPracticeSubtitle;
+
+  /// No description provided for @quranKhatmPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Plan'**
+  String get quranKhatmPageTitle;
+
+  /// No description provided for @quranKhatmPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm pace to complete the whole Qur’an.'**
+  String get quranKhatmPageSubtitle;
+
+  /// No description provided for @quranKhatmPaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your pace'**
+  String get quranKhatmPaceTitle;
+
+  /// No description provided for @quranKhatmPaceHalfJuz.
+  ///
+  /// In en, this message translates to:
+  /// **'Half a juz a day'**
+  String get quranKhatmPaceHalfJuz;
+
+  /// No description provided for @quranKhatmPaceOneJuz.
+  ///
+  /// In en, this message translates to:
+  /// **'One juz a day'**
+  String get quranKhatmPaceOneJuz;
+
+  /// No description provided for @quranKhatmPaceTwoJuz.
+  ///
+  /// In en, this message translates to:
+  /// **'Two juz a day'**
+  String get quranKhatmPaceTwoJuz;
+
+  /// No description provided for @quranKhatmPacePages.
+  ///
+  /// In en, this message translates to:
+  /// **'{pages} pages a day'**
+  String quranKhatmPacePages(int pages);
+
+  /// No description provided for @quranKhatmPaceFinishBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish by a date'**
+  String get quranKhatmPaceFinishBy;
+
+  /// No description provided for @quranKhatmPaceRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish in 30 days (Ramadan pace)'**
+  String get quranKhatmPaceRamadan;
+
+  /// No description provided for @quranKhatmTodayPortionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s portion'**
+  String get quranKhatmTodayPortionTitle;
+
+  /// No description provided for @quranKhatmMarkDoneAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark today’s portion read'**
+  String get quranKhatmMarkDoneAction;
+
+  /// No description provided for @quranKhatmPortionDoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s portion is read — ma sha Allah'**
+  String get quranKhatmPortionDoneLabel;
+
+  /// No description provided for @quranKhatmContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reading'**
+  String get quranKhatmContinueAction;
+
+  /// No description provided for @quranKhatmProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% of the Qur’an · Juz {juz} of 30'**
+  String quranKhatmProgressLabel(int percent, int juz);
+
+  /// No description provided for @quranKhatmSyncAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set to where I’m reading'**
+  String get quranKhatmSyncAction;
+
+  /// No description provided for @quranKhatmStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove plan'**
+  String get quranKhatmStopAction;
+
+  /// No description provided for @quranKhatmCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatm complete — may Allah accept it'**
+  String get quranKhatmCompleteTitle;
+
+  /// No description provided for @quranKhatmStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start plan'**
+  String get quranKhatmStartAction;
+
+  /// No description provided for @quranKhatmAyahCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} ayahs'**
+  String quranKhatmAyahCountLabel(int count);
+
+  /// No description provided for @growthHabitsQuranPlanRowSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your khatm plan now lives in the Qur’an tab'**
+  String get growthHabitsQuranPlanRowSubtitle;
+
   /// No description provided for @quranDiscoverSectionTitle.
   ///
   /// In en, this message translates to:
@@ -36997,6 +37315,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your recent consistency is helping the whole garden stay healthy and full.'**
   String get gardenInsightConsistency;
+
+  /// No description provided for @gardenElementCentralTreeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Good Tree'**
+  String get gardenElementCentralTreeTitle;
+
+  /// No description provided for @gardenElementCentralTreeMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.'**
+  String get gardenElementCentralTreeMeaning;
+
+  /// No description provided for @gardenElementStreamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Flowing Stream'**
+  String get gardenElementStreamTitle;
+
+  /// No description provided for @gardenElementStreamMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.'**
+  String get gardenElementStreamMeaning;
+
+  /// No description provided for @gardenElementOceanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Distant Sea'**
+  String get gardenElementOceanTitle;
+
+  /// No description provided for @gardenElementOceanMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.'**
+  String get gardenElementOceanMeaning;
+
+  /// No description provided for @gardenElementOliveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Olive'**
+  String get gardenElementOliveTitle;
+
+  /// No description provided for @gardenElementOliveMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.'**
+  String get gardenElementOliveMeaning;
+
+  /// No description provided for @gardenElementDatePalmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Date Palm'**
+  String get gardenElementDatePalmTitle;
+
+  /// No description provided for @gardenElementDatePalmMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.'**
+  String get gardenElementDatePalmMeaning;
+
+  /// No description provided for @gardenElementFigTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Fig'**
+  String get gardenElementFigTitle;
+
+  /// No description provided for @gardenElementFigMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.'**
+  String get gardenElementFigMeaning;
+
+  /// No description provided for @gardenElementPomegranateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Pomegranate'**
+  String get gardenElementPomegranateTitle;
+
+  /// No description provided for @gardenElementPomegranateMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.'**
+  String get gardenElementPomegranateMeaning;
+
+  /// No description provided for @gardenElementGrapeVineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Grapevine'**
+  String get gardenElementGrapeVineTitle;
+
+  /// No description provided for @gardenElementGrapeVineMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.'**
+  String get gardenElementGrapeVineMeaning;
+
+  /// No description provided for @gardenElementGourdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Gourd'**
+  String get gardenElementGourdTitle;
+
+  /// No description provided for @gardenElementGourdMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.'**
+  String get gardenElementGourdMeaning;
+
+  /// No description provided for @gardenElementLoteTreeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Lote Tree'**
+  String get gardenElementLoteTreeTitle;
+
+  /// No description provided for @gardenElementLoteTreeMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.'**
+  String get gardenElementLoteTreeMeaning;
+
+  /// No description provided for @gardenElementRayhanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fragrant Rayhan'**
+  String get gardenElementRayhanTitle;
+
+  /// No description provided for @gardenElementRayhanMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.'**
+  String get gardenElementRayhanMeaning;
+
+  /// No description provided for @gardenElementBeeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Bee'**
+  String get gardenElementBeeTitle;
+
+  /// No description provided for @gardenElementBeeMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.'**
+  String get gardenElementBeeMeaning;
+
+  /// No description provided for @gardenElementAntTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ant'**
+  String get gardenElementAntTitle;
+
+  /// No description provided for @gardenElementAntMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.'**
+  String get gardenElementAntMeaning;
+
+  /// No description provided for @gardenElementHoopoeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Hoopoe'**
+  String get gardenElementHoopoeTitle;
+
+  /// No description provided for @gardenElementHoopoeMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.'**
+  String get gardenElementHoopoeMeaning;
+
+  /// No description provided for @gardenElementSongbirdsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Birds in Rows'**
+  String get gardenElementSongbirdsTitle;
+
+  /// No description provided for @gardenElementSongbirdsMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.'**
+  String get gardenElementSongbirdsMeaning;
+
+  /// No description provided for @gardenElementFishTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Fish'**
+  String get gardenElementFishTitle;
+
+  /// No description provided for @gardenElementFishMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.'**
+  String get gardenElementFishMeaning;
+
+  /// No description provided for @gardenElementSheetSourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'In the Qur\'\'an'**
+  String get gardenElementSheetSourceLabel;
+
+  /// No description provided for @gardenElementSheetGrowsWithLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Grows with'**
+  String get gardenElementSheetGrowsWithLabel;
+
+  /// No description provided for @gardenVistaExploreHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a plant or creature in your garden to see what it means.'**
+  String get gardenVistaExploreHint;
+
+  /// No description provided for @gardenVistaNewGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Something new has taken root'**
+  String get gardenVistaNewGrowthTitle;
+
+  /// No description provided for @gardenVistaNewGrowthBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your garden has changed since you were last here.'**
+  String get gardenVistaNewGrowthBody;
+
+  /// No description provided for @gardenVistaStageAdvancedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your garden has entered a new stage'**
+  String get gardenVistaStageAdvancedTitle;
 
   /// No description provided for @gardenRecentStory.
   ///

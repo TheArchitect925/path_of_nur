@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../data/garden_scene_layout.g.dart';
+import '../../../domain/garden_models.dart';
 import '../../../domain/garden_scene_models.dart';
 import 'garden_ambient_palette.dart';
 
@@ -34,7 +35,39 @@ class GardenMotionPainter extends CustomPainter {
     } else {
       _paintStreamStreaks(canvas, t);
     }
+    _paintFireflies(canvas, t);
     canvas.restore();
+  }
+
+  /// Light motes over the meadow — full presence in the evening glow, a hint
+  /// of it in warm light, nothing in the brighter ambients.
+  void _paintFireflies(Canvas canvas, double t) {
+    final strength = switch (spec.ambient) {
+      GardenAmbientState.eveningGlow => 1.0,
+      GardenAmbientState.warmLight => 0.4,
+      _ => 0.0,
+    };
+    if (strength == 0) {
+      return;
+    }
+    const region = GardenSceneLayout.fireflyRegion;
+    final paint = Paint()
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
+    for (var i = 0; i < 7; i++) {
+      // Lissajous paths — deterministic, so frames never shimmer.
+      final phase = i / 7;
+      final fx = 0.5 + 0.42 * math.sin((t + phase) * 2 * math.pi * (1 + i % 3));
+      final fy = 0.5 + 0.38 * math.cos((t + phase) * 2 * math.pi * (2 + i % 2));
+      final pulse =
+          0.2 + 0.4 * (0.5 + 0.5 * math.sin((t * 6 + phase) * 2 * math.pi));
+      paint.color = GardenAmbientPalette.gold
+          .withValues(alpha: pulse * strength);
+      canvas.drawCircle(
+        Offset(region.x + region.w * fx, region.y + region.h * fy),
+        3.2,
+        paint,
+      );
+    }
   }
 
   void _paintPondPulse(Canvas canvas, double t) {
