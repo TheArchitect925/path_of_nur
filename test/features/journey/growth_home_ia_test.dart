@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
+import 'package:path_of_nur/features/circles/presentation/circles_discovery_page.dart';
 import 'package:path_of_nur/features/garden/presentation/garden_page.dart';
+import 'package:path_of_nur/features/journal/presentation/journal_timeline_page.dart';
 import 'package:path_of_nur/features/journey/presentation/growth_browse_all_page.dart';
 import 'package:path_of_nur/features/journey/presentation/growth_habits_page.dart';
 import 'package:path_of_nur/features/journey/presentation/growth_section_pages.dart';
 import 'package:path_of_nur/features/journey/presentation/growth_tracking_dashboard_page.dart';
 import 'package:path_of_nur/features/journey/spiritual_growth/presentation/spiritual_growth_page.dart';
+import 'package:path_of_nur/features/ocean/presentation/ocean_dashboard_page.dart';
+import 'package:path_of_nur/features/wallpaper/presentation/wallpaper_library_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
-import 'package:path_of_nur/shared/widgets/section_hub_scaffold.dart';
+import 'package:path_of_nur/shared/widgets/display/compact_list_tile.dart';
 
 import '../../test_helpers/app_test_harness.dart';
 
@@ -27,30 +31,25 @@ void main() {
     return left.dx.compareTo(right.dx);
   }
 
-  Finder islandCardFinder(String label) {
-    final gridFinder = find.byType(SectionHubActionGrid);
-    final labelFinder = find.descendant(
-      of: gridFinder,
-      matching: find.text(label),
-    );
+  Finder hubRowFinder(String label) {
     return find.ancestor(
-      of: labelFinder.first,
-      matching: find.byType(SectionHubActionCard),
+      of: find.text(label).first,
+      matching: find.byType(CompactListTile),
     );
   }
 
-  Future<void> tapIslandCard(WidgetTester tester, String label) async {
-    final cardFinder = islandCardFinder(label);
-    await tester.ensureVisible(cardFinder);
+  Future<void> tapHubRow(WidgetTester tester, String label) async {
+    final rowFinder = hubRowFinder(label);
+    await tester.ensureVisible(rowFinder);
     await pumpRouteFrames(tester);
-    await tester.tap(cardFinder.first);
+    await tester.tap(rowFinder.first);
     await pumpRouteFrames(tester);
   }
 
-  testWidgets('growth home shows the cleaned island set in order', (
+  testWidgets('growth home shows the grouped one-list layout in order', (
     tester,
   ) async {
-    await tester.binding.setSurfaceSize(const Size(1200, 2200));
+    await tester.binding.setSurfaceSize(const Size(1200, 2600));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     final container = await makeTestContainer(
@@ -69,25 +68,39 @@ void main() {
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
+    // The four group headers render, in order.
+    for (final group in <String>[
+      l10n.growthGroupTrackTitle,
+      l10n.growthGroupGrowTitle,
+      l10n.growthGroupEnjoyTitle,
+      l10n.growthGroupConnectTitle,
+    ]) {
+      expect(find.text(group), findsOneWidget, reason: group);
+    }
+
+    // Every destination appears exactly once, in the grouped order.
     final titles = <String>[
       l10n.growthTabToday,
-      l10n.growthTabPaths,
       l10n.growthTabHabits,
-      l10n.growthTabJourney,
-      l10n.growthTabReflection,
-      l10n.spiritualGrowthTitle,
       l10n.growthStatisticsTitle,
+      l10n.journalTitle,
+      l10n.growthTabPaths,
+      l10n.growthTabJourney,
+      l10n.spiritualGrowthTitle,
+      l10n.growthTabReflection,
       l10n.gardenPageTitle,
+      l10n.oceanTitle,
+      l10n.wallpaperLibraryTitle,
+      l10n.circlesTitle,
       l10n.growthHomeBrowseAllTitle,
     ];
 
     for (final title in titles) {
-      expect(islandCardFinder(title), findsOneWidget, reason: title);
+      expect(hubRowFinder(title), findsOneWidget, reason: title);
     }
 
     final positions = {
-      for (final title in titles)
-        title: tester.getTopLeft(islandCardFinder(title)),
+      for (final title in titles) title: tester.getTopLeft(hubRowFinder(title)),
     };
 
     for (var index = 0; index < titles.length - 1; index++) {
@@ -100,12 +113,17 @@ void main() {
         reason: '${titles[index]} should appear before ${titles[index + 1]}',
       );
     }
+
+    // The activity heatmap is the hero; the old grid/search-card chrome is
+    // gone.
+    expect(find.text(l10n.growthActivityHeatmapTitle), findsOneWidget);
+    expect(find.text(l10n.mainPageSearchHint), findsNothing);
   });
 
   testWidgets(
-    'growth home routes Browse All and Statistics islands correctly',
+    'growth home routes Browse All and Statistics rows correctly',
     (tester) async {
-      await tester.binding.setSurfaceSize(const Size(1200, 2200));
+      await tester.binding.setSurfaceSize(const Size(1200, 2600));
       addTearDown(() => tester.binding.setSurfaceSize(null));
 
       final container = await makeTestContainer(
@@ -125,13 +143,13 @@ void main() {
       router.go('/journey');
       await pumpRouteFrames(tester);
 
-      await tapIslandCard(tester, l10n.growthHomeBrowseAllTitle);
+      await tapHubRow(tester, l10n.growthHomeBrowseAllTitle);
       expect(find.text(l10n.growthBrowseAllDailyFocusTitle), findsOneWidget);
 
       router.go('/journey');
       await pumpRouteFrames(tester);
 
-      await tapIslandCard(tester, l10n.growthStatisticsTitle);
+      await tapHubRow(tester, l10n.growthStatisticsTitle);
       expect(find.text(l10n.growthStatisticsTitle), findsAtLeastNWidgets(1));
       expect(
         find.text(l10n.growthTrackingOverviewTitle),
@@ -152,63 +170,10 @@ void main() {
     },
   );
 
-  testWidgets(
-    'growth home highlights progress depth and featured statistics and garden entries',
-    (tester) async {
-      await tester.binding.setSurfaceSize(const Size(1200, 2200));
-      addTearDown(() => tester.binding.setSurfaceSize(null));
-
-      final container = await makeTestContainer(
-        overrides: <Override>[
-          dailyNowProvider.overrideWith(
-            (ref) =>
-                Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
-          ),
-        ],
-      );
-
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
-
-      final router = container.read(appRouterProvider);
-      router.go('/journey');
-      await pumpRouteFrames(tester);
-      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-
-      expect(find.text(l10n.growthHomeJourneyDepthTitle), findsOneWidget);
-      expect(
-        find.text(l10n.growthHomeFeaturedStatisticsAction),
-        findsOneWidget,
-      );
-      expect(find.text(l10n.growthHomeFeaturedGardenAction), findsOneWidget);
-
-      final openStatisticsButton = find.widgetWithText(
-        FilledButton,
-        l10n.growthHomeJourneyDepthOpenStatistics,
-      );
-      await tester.ensureVisible(openStatisticsButton);
-      await tester.tap(openStatisticsButton);
-      await pumpRouteFrames(tester);
-      expect(find.byType(GrowthTrackingDashboardPage), findsOneWidget);
-
-      router.go('/journey');
-      await pumpRouteFrames(tester);
-
-      final openGardenButton = find.widgetWithText(
-        FilledButton,
-        l10n.growthHomeFeaturedGardenAction,
-      );
-      await pumpRouteFrames(tester);
-      await tester.tap(openGardenButton);
-      await pumpRouteFrames(tester);
-      expect(find.byType(GardenPage), findsOneWidget);
-    },
-  );
-
-  testWidgets('growth home islands open their dedicated destination pages', (
+  testWidgets('growth home rows open their dedicated destination pages', (
     tester,
   ) async {
-    await tester.binding.setSurfaceSize(const Size(1200, 2200));
+    await tester.binding.setSurfaceSize(const Size(1200, 2600));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     final container = await makeTestContainer(
@@ -230,13 +195,17 @@ void main() {
 
     final cases = <(String, Type)>[
       (l10n.growthTabToday, GrowthTodaySectionPage),
-      (l10n.growthTabPaths, GrowthPathsSectionPage),
       (l10n.growthTabHabits, GrowthHabitsPage),
-      (l10n.growthTabJourney, GrowthJourneySectionPage),
-      (l10n.growthTabReflection, GrowthReflectionSectionPage),
-      (l10n.spiritualGrowthTitle, SpiritualGrowthPage),
       (l10n.growthStatisticsTitle, GrowthTrackingDashboardPage),
+      (l10n.journalTitle, JournalTimelinePage),
+      (l10n.growthTabPaths, GrowthPathsSectionPage),
+      (l10n.growthTabJourney, GrowthJourneySectionPage),
+      (l10n.spiritualGrowthTitle, SpiritualGrowthPage),
+      (l10n.growthTabReflection, GrowthReflectionSectionPage),
       (l10n.gardenPageTitle, GardenPage),
+      (l10n.oceanTitle, OceanDashboardPage),
+      (l10n.wallpaperLibraryTitle, WallpaperLibraryPage),
+      (l10n.circlesTitle, CirclesDiscoveryPage),
       (l10n.growthHomeBrowseAllTitle, GrowthBrowseAllPage),
     ];
 
@@ -244,7 +213,7 @@ void main() {
       router.go('/journey');
       await pumpRouteFrames(tester);
 
-      await tapIslandCard(tester, label);
+      await tapHubRow(tester, label);
 
       expect(find.byType(pageType), findsOneWidget, reason: label);
     }

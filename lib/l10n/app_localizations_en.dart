@@ -2785,6 +2785,21 @@ class AppLocalizationsEn extends AppLocalizations {
       'New: hold the Home tab for quick actions';
 
   @override
+  String get growthGroupTrackTitle => 'Track';
+
+  @override
+  String get growthGroupGrowTitle => 'Grow';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Enjoy';
+
+  @override
+  String get growthGroupConnectTitle => 'Connect';
+
+  @override
+  String get hubNewBadgeLabel => 'New';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Salah hero';
 
   @override

@@ -2768,6 +2768,21 @@ class AppLocalizationsId extends AppLocalizations {
       'Baru: tahan tab Beranda untuk aksi cepat';
 
   @override
+  String get growthGroupTrackTitle => 'Lacak';
+
+  @override
+  String get growthGroupGrowTitle => 'Tumbuh';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Nikmati';
+
+  @override
+  String get growthGroupConnectTitle => 'Terhubung';
+
+  @override
+  String get hubNewBadgeLabel => 'Baru';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Kartu salat utama';
 
   @override

@@ -2749,6 +2749,21 @@ class AppLocalizationsFa extends AppLocalizations {
       'جدید: برای اقدامات سریع، زبانه خانه را نگه دارید';
 
   @override
+  String get growthGroupTrackTitle => 'پیگیری';
+
+  @override
+  String get growthGroupGrowTitle => 'رشد';
+
+  @override
+  String get growthGroupEnjoyTitle => 'لذت';
+
+  @override
+  String get growthGroupConnectTitle => 'ارتباط';
+
+  @override
+  String get hubNewBadgeLabel => 'جدید';
+
+  @override
   String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';
 
   @override
@@ -44711,6 +44726,21 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get quickActionsDiscoveryHint =>
       'جدید: برای اقدامات سریع، زبانه خانه را نگه دارید';
+
+  @override
+  String get growthGroupTrackTitle => 'پیگیری';
+
+  @override
+  String get growthGroupGrowTitle => 'رشد';
+
+  @override
+  String get growthGroupEnjoyTitle => 'لذت';
+
+  @override
+  String get growthGroupConnectTitle => 'ارتباط';
+
+  @override
+  String get hubNewBadgeLabel => 'جدید';
 
   @override
   String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';

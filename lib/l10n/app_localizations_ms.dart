@@ -2771,6 +2771,21 @@ class AppLocalizationsMs extends AppLocalizations {
       'Baharu: tahan tab Laman Utama untuk tindakan pantas';
 
   @override
+  String get growthGroupTrackTitle => 'Jejak';
+
+  @override
+  String get growthGroupGrowTitle => 'Tumbuh';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Nikmati';
+
+  @override
+  String get growthGroupConnectTitle => 'Hubung';
+
+  @override
+  String get hubNewBadgeLabel => 'Baharu';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Kad solat utama';
 
   @override

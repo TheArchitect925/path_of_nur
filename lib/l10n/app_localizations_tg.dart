@@ -2796,6 +2796,21 @@ class AppLocalizationsTg extends AppLocalizations {
       'Нав: барои амалҳои зуд варақаи Асосиро нигоҳ доред';
 
   @override
+  String get growthGroupTrackTitle => 'Пайгирӣ';
+
+  @override
+  String get growthGroupGrowTitle => 'Рушд';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Лаззат';
+
+  @override
+  String get growthGroupConnectTitle => 'Пайванд';
+
+  @override
+  String get hubNewBadgeLabel => 'Нав';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Корти асосии намоз';
 
   @override

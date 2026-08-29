@@ -4765,6 +4765,36 @@ abstract class AppLocalizations {
   /// **'New: hold the Home tab for quick actions'**
   String get quickActionsDiscoveryHint;
 
+  /// No description provided for @growthGroupTrackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track'**
+  String get growthGroupTrackTitle;
+
+  /// No description provided for @growthGroupGrowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow'**
+  String get growthGroupGrowTitle;
+
+  /// No description provided for @growthGroupEnjoyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoy'**
+  String get growthGroupEnjoyTitle;
+
+  /// No description provided for @growthGroupConnectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get growthGroupConnectTitle;
+
+  /// No description provided for @hubNewBadgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get hubNewBadgeLabel;
+
   /// No description provided for @homeModuleSalahHeroTitle.
   ///
   /// In en, this message translates to:

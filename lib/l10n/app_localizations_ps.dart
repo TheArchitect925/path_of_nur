@@ -2780,6 +2780,21 @@ class AppLocalizationsPs extends AppLocalizations {
       'نوی: د چټکو کړنو لپاره د کور ټب ونيسئ';
 
   @override
+  String get growthGroupTrackTitle => 'تعقيب';
+
+  @override
+  String get growthGroupGrowTitle => 'وده';
+
+  @override
+  String get growthGroupEnjoyTitle => 'خوند';
+
+  @override
+  String get growthGroupConnectTitle => 'اړيکه';
+
+  @override
+  String get hubNewBadgeLabel => 'نوی';
+
+  @override
   String get homeModuleSalahHeroTitle => 'د لمانځه اصلي کارت';
 
   @override

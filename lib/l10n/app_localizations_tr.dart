@@ -2776,6 +2776,21 @@ class AppLocalizationsTr extends AppLocalizations {
       'Yeni: hızlı işlemler için Ana Sayfa sekmesini basılı tut';
 
   @override
+  String get growthGroupTrackTitle => 'Takip';
+
+  @override
+  String get growthGroupGrowTitle => 'Gelişim';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Keyif';
+
+  @override
+  String get growthGroupConnectTitle => 'Bağlantı';
+
+  @override
+  String get hubNewBadgeLabel => 'Yeni';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Namaz kartı';
 
   @override

@@ -2761,6 +2761,21 @@ class AppLocalizationsBn extends AppLocalizations {
       'নতুন: দ্রুত কাজের জন্য হোম ট্যাব চেপে ধরুন';
 
   @override
+  String get growthGroupTrackTitle => 'ট্র্যাক';
+
+  @override
+  String get growthGroupGrowTitle => 'বৃদ্ধি';
+
+  @override
+  String get growthGroupEnjoyTitle => 'উপভোগ';
+
+  @override
+  String get growthGroupConnectTitle => 'সংযোগ';
+
+  @override
+  String get hubNewBadgeLabel => 'নতুন';
+
+  @override
   String get homeModuleSalahHeroTitle => 'সালাত হিরো';
 
   @override

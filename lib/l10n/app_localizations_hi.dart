@@ -2791,6 +2791,21 @@ class AppLocalizationsHi extends AppLocalizations {
       'नया: त्वरित कार्यों के लिए होम टैब दबाए रखें';
 
   @override
+  String get growthGroupTrackTitle => 'ट्रैक';
+
+  @override
+  String get growthGroupGrowTitle => 'विकास';
+
+  @override
+  String get growthGroupEnjoyTitle => 'आनंद';
+
+  @override
+  String get growthGroupConnectTitle => 'जुड़ाव';
+
+  @override
+  String get hubNewBadgeLabel => 'नया';
+
+  @override
   String get homeModuleSalahHeroTitle => 'सलात हीरो';
 
   @override

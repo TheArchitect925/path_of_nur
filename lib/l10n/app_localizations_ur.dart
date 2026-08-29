@@ -2776,6 +2776,21 @@ class AppLocalizationsUr extends AppLocalizations {
       'نیا: فوری اقدامات کے لیے ہوم ٹیب دبائے رکھیں';
 
   @override
+  String get growthGroupTrackTitle => 'ٹریک';
+
+  @override
+  String get growthGroupGrowTitle => 'نشوونما';
+
+  @override
+  String get growthGroupEnjoyTitle => 'لطف';
+
+  @override
+  String get growthGroupConnectTitle => 'رابطہ';
+
+  @override
+  String get hubNewBadgeLabel => 'نیا';
+
+  @override
   String get homeModuleSalahHeroTitle => 'نماز کا مرکزی کارڈ';
 
   @override

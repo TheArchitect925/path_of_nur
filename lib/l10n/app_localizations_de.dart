@@ -2834,6 +2834,21 @@ class AppLocalizationsDe extends AppLocalizations {
       'Neu: Home-Tab gedrückt halten für Schnellaktionen';
 
   @override
+  String get growthGroupTrackTitle => 'Verfolgen';
+
+  @override
+  String get growthGroupGrowTitle => 'Wachsen';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Genießen';
+
+  @override
+  String get growthGroupConnectTitle => 'Verbinden';
+
+  @override
+  String get hubNewBadgeLabel => 'Neu';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Salah-Karte';
 
   @override

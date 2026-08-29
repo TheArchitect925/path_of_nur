@@ -2786,6 +2786,21 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਨਵਾਂ: ਤੁਰੰਤ ਕਾਰਵਾਈਆਂ ਲਈ ਹੋਮ ਟੈਬ ਦਬਾਈ ਰੱਖੋ';
 
   @override
+  String get growthGroupTrackTitle => 'ਟਰੈਕ';
+
+  @override
+  String get growthGroupGrowTitle => 'ਵਿਕਾਸ';
+
+  @override
+  String get growthGroupEnjoyTitle => 'ਆਨੰਦ';
+
+  @override
+  String get growthGroupConnectTitle => 'ਜੁੜਾਅ';
+
+  @override
+  String get hubNewBadgeLabel => 'ਨਵਾਂ';
+
+  @override
   String get homeModuleSalahHeroTitle => 'ਸਲਾਤ ਹੀਰੋ';
 
   @override

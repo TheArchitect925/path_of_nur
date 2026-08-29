@@ -2769,6 +2769,21 @@ class AppLocalizationsAr extends AppLocalizations {
       'جديد: اضغط مطولًا على تبويب الرئيسية للإجراءات السريعة';
 
   @override
+  String get growthGroupTrackTitle => 'تتبع';
+
+  @override
+  String get growthGroupGrowTitle => 'نمو';
+
+  @override
+  String get growthGroupEnjoyTitle => 'استمتع';
+
+  @override
+  String get growthGroupConnectTitle => 'تواصل';
+
+  @override
+  String get hubNewBadgeLabel => 'جديد';
+
+  @override
   String get homeModuleSalahHeroTitle => 'بطاقة الصلاة الرئيسية';
 
   @override

@@ -2792,6 +2792,21 @@ class AppLocalizationsHa extends AppLocalizations {
       'Sabo: riƙe shafin Gida don ayyuka masu sauri';
 
   @override
+  String get growthGroupTrackTitle => 'Bibiya';
+
+  @override
+  String get growthGroupGrowTitle => 'Girma';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Jin daɗi';
+
+  @override
+  String get growthGroupConnectTitle => 'Haɗi';
+
+  @override
+  String get hubNewBadgeLabel => 'Sabo';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Katin sallah';
 
   @override

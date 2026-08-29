@@ -2783,6 +2783,21 @@ class AppLocalizationsKu extends AppLocalizations {
       'Nû: ji bo kirinên bilez tabloya Malê bigire';
 
   @override
+  String get growthGroupTrackTitle => 'Şopandin';
+
+  @override
+  String get growthGroupGrowTitle => 'Mezinbûn';
+
+  @override
+  String get growthGroupEnjoyTitle => 'Kêfxweşî';
+
+  @override
+  String get growthGroupConnectTitle => 'Girêdan';
+
+  @override
+  String get hubNewBadgeLabel => 'Nû';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Karta nimêjê';
 
   @override
