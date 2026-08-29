@@ -4105,6 +4105,36 @@ class AppLocalizationsTg extends AppLocalizations {
       'Continue your journey, find today’s lesson, and open one calm learning path at a time.';
 
   @override
+  String get learnLandingPathEyebrow => 'Роҳи шумо';
+
+  @override
+  String get learnLandingChoosePathTitle => 'Роҳи омӯзиши худро интихоб кунед';
+
+  @override
+  String get learnLandingChoosePathSubtitle =>
+      'Ба чанд савол ҷавоб диҳед ва дарсҳои оромро қадам ба қадам пайравӣ кунед.';
+
+  @override
+  String learnLandingPhaseOfLabel(int current, int total) {
+    return 'Марҳилаи $current аз $total';
+  }
+
+  @override
+  String get learnLandingNextUpLabel => 'Навбатӣ';
+
+  @override
+  String get learnLandingContinueAction => 'Идома';
+
+  @override
+  String get learnLandingViewPathAction => 'Дидани роҳ';
+
+  @override
+  String get learnLandingTodayTitle => 'Омӯзиши имрӯз';
+
+  @override
+  String get learnLandingBrowseTitle => 'Аз рӯи мавзӯъ дидан';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -4393,7 +4423,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Who is Allah, core knowledge, and understanding Islam belong together here.';
 
   @override
-  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Hadith';
+  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Sunnah';
 
   @override
   String get learnHubCategoryQuranHadithSubtitle =>

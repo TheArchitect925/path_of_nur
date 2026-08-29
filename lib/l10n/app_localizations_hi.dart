@@ -4092,6 +4092,36 @@ class AppLocalizationsHi extends AppLocalizations {
       'Continue your journey, find today’s lesson, and open one calm learning path at a time.';
 
   @override
+  String get learnLandingPathEyebrow => 'आपका पथ';
+
+  @override
+  String get learnLandingChoosePathTitle => 'अपना सीखने का पथ चुनें';
+
+  @override
+  String get learnLandingChoosePathSubtitle =>
+      'कुछ प्रश्नों के उत्तर दें और शांत, चरण-दर-चरण पाठों का पालन करें।';
+
+  @override
+  String learnLandingPhaseOfLabel(int current, int total) {
+    return 'चरण $current / $total';
+  }
+
+  @override
+  String get learnLandingNextUpLabel => 'आगे';
+
+  @override
+  String get learnLandingContinueAction => 'जारी रखें';
+
+  @override
+  String get learnLandingViewPathAction => 'पथ देखें';
+
+  @override
+  String get learnLandingTodayTitle => 'आज की सीख';
+
+  @override
+  String get learnLandingBrowseTitle => 'विषय के अनुसार ब्राउज़ करें';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -4381,7 +4411,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'अल्लाह कौन है, मूल ज्ञान और इस्लाम की समझ यहां एक साथ है।';
 
   @override
-  String get learnHubCategoryQuranHadithTitle => 'कुरान और हदीस';
+  String get learnHubCategoryQuranHadithTitle => 'क़ुरआन और सुन्नत';
 
   @override
   String get learnHubCategoryQuranHadithSubtitle =>

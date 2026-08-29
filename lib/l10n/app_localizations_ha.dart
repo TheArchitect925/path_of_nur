@@ -4098,6 +4098,36 @@ class AppLocalizationsHa extends AppLocalizations {
       'Continue your journey, find today’s lesson, and open one calm learning path at a time.';
 
   @override
+  String get learnLandingPathEyebrow => 'Hanyarka';
+
+  @override
+  String get learnLandingChoosePathTitle => 'Zaɓi hanyar karatunka';
+
+  @override
+  String get learnLandingChoosePathSubtitle =>
+      'Amsa ʼyan tambayoyi ka bi darussa cikin natsuwa, mataki-mataki.';
+
+  @override
+  String learnLandingPhaseOfLabel(int current, int total) {
+    return 'Mataki na $current cikin $total';
+  }
+
+  @override
+  String get learnLandingNextUpLabel => 'Na gaba';
+
+  @override
+  String get learnLandingContinueAction => 'Ci gaba';
+
+  @override
+  String get learnLandingViewPathAction => 'Duba hanya';
+
+  @override
+  String get learnLandingTodayTitle => 'Karatun yau';
+
+  @override
+  String get learnLandingBrowseTitle => 'Bincika ta jigo';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -4386,7 +4416,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'Who is Allah, core knowledge, and understanding Islam belong together here.';
 
   @override
-  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Hadith';
+  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Sunnah';
 
   @override
   String get learnHubCategoryQuranHadithSubtitle =>

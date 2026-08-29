@@ -14,7 +14,8 @@ class LearnHubTaxonomy {
     LearnHubCategoryId.prophetsStories,
     LearnHubCategoryId.worshipPractice,
     LearnHubCategoryId.characterAdab,
-    LearnHubCategoryId.arabicLanguage,
+    // arabicLanguage stays a valid deep-link target but is folded into
+    // Qur'an & Sunnah in the browse hierarchy (its subcategory lives there).
     LearnHubCategoryId.kidsLearning,
     LearnHubCategoryId.quizzesChallenges,
     LearnHubCategoryId.faq,
@@ -131,12 +132,11 @@ class LearnHubTaxonomy {
 
   static LearnHubRouteTarget categoryRouteTarget(LearnHubCategoryId id) {
     switch (id) {
-      case LearnHubCategoryId.characterAdab:
-        return const LearnHubRouteTarget(routeName: 'learnCharacterCompanion');
       case LearnHubCategoryId.arabicLanguage:
         return const LearnHubRouteTarget(routeName: 'quranArabic');
       case LearnHubCategoryId.faq:
         return const LearnHubRouteTarget(routeName: 'faqLanding');
+      case LearnHubCategoryId.characterAdab:
       case LearnHubCategoryId.foundations:
       case LearnHubCategoryId.quranHadith:
       case LearnHubCategoryId.prophetsStories:
@@ -263,14 +263,14 @@ class LearnHubTaxonomy {
         id: 'divine-life-lessons',
         title: l10n.learnCategoryDivineLifeLessonsTitle,
         subtitle: l10n.learnHubSubcategoryDivineLifeLessonsSubtitle,
-        categoryId: LearnHubCategoryId.quranHadith,
+        categoryId: LearnHubCategoryId.characterAdab,
         routeTarget: const LearnHubRouteTarget(routeName: 'learnLifeLanding'),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'world-creation',
         title: l10n.learnCategoryWorldCreationTitle,
         subtitle: l10n.learnHubSubcategoryWorldCreationSubtitle,
-        categoryId: LearnHubCategoryId.quranHadith,
+        categoryId: LearnHubCategoryId.foundations,
         routeTarget: const LearnHubRouteTarget(routeName: 'learnWorldLanding'),
       ),
       LearnHubSubcategoryDescriptor(
@@ -393,7 +393,7 @@ class LearnHubTaxonomy {
         id: 'arabic-learning',
         title: l10n.learnHubSubcategoryArabicLearningTitle,
         subtitle: l10n.learnHubSubcategoryArabicLearningSubtitle,
-        categoryId: LearnHubCategoryId.arabicLanguage,
+        categoryId: LearnHubCategoryId.quranHadith,
         routeTarget: const LearnHubRouteTarget(routeName: 'quranArabic'),
       ),
       LearnHubSubcategoryDescriptor(

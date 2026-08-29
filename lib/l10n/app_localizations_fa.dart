@@ -4043,6 +4043,36 @@ class AppLocalizationsFa extends AppLocalizations {
       'Continue your journey, find today’s lesson, and open one calm learning path at a time.';
 
   @override
+  String get learnLandingPathEyebrow => 'مسیر شما';
+
+  @override
+  String get learnLandingChoosePathTitle => 'مسیر یادگیری خود را انتخاب کنید';
+
+  @override
+  String get learnLandingChoosePathSubtitle =>
+      'به چند پرسش پاسخ دهید و درس‌های آرام را گام‌به‌گام دنبال کنید.';
+
+  @override
+  String learnLandingPhaseOfLabel(int current, int total) {
+    return 'مرحله $current از $total';
+  }
+
+  @override
+  String get learnLandingNextUpLabel => 'بعدی';
+
+  @override
+  String get learnLandingContinueAction => 'ادامه';
+
+  @override
+  String get learnLandingViewPathAction => 'مشاهده مسیر';
+
+  @override
+  String get learnLandingTodayTitle => 'یادگیری امروز';
+
+  @override
+  String get learnLandingBrowseTitle => 'مرور بر اساس موضوع';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -4331,7 +4361,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'Who is Allah, core knowledge, and understanding Islam belong together here.';
 
   @override
-  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Hadith';
+  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Sunnah';
 
   @override
   String get learnHubCategoryQuranHadithSubtitle =>
@@ -46123,6 +46153,36 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Continue your journey, find today’s lesson, and open one calm learning path at a time.';
 
   @override
+  String get learnLandingPathEyebrow => 'مسیر شما';
+
+  @override
+  String get learnLandingChoosePathTitle => 'مسیر یادگیری خود را انتخاب کنید';
+
+  @override
+  String get learnLandingChoosePathSubtitle =>
+      'به چند پرسش پاسخ دهید و درس‌های آرام را گام‌به‌گام دنبال کنید.';
+
+  @override
+  String learnLandingPhaseOfLabel(int current, int total) {
+    return 'مرحله $current از $total';
+  }
+
+  @override
+  String get learnLandingNextUpLabel => 'بعدی';
+
+  @override
+  String get learnLandingContinueAction => 'ادامه';
+
+  @override
+  String get learnLandingViewPathAction => 'مشاهده مسیر';
+
+  @override
+  String get learnLandingTodayTitle => 'یادگیری امروز';
+
+  @override
+  String get learnLandingBrowseTitle => 'مرور بر اساس موضوع';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -46411,7 +46471,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Who is Allah, core knowledge, and understanding Islam belong together here.';
 
   @override
-  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Hadith';
+  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Sunnah';
 
   @override
   String get learnHubCategoryQuranHadithSubtitle =>

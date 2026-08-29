@@ -4088,6 +4088,36 @@ class AppLocalizationsEn extends AppLocalizations {
       'Discover organized teachings, essential topics, and guided study paths that make learning easier to follow and more rewarding to revisit.';
 
   @override
+  String get learnLandingPathEyebrow => 'Your path';
+
+  @override
+  String get learnLandingChoosePathTitle => 'Choose your learning path';
+
+  @override
+  String get learnLandingChoosePathSubtitle =>
+      'Answer a few questions and follow calm, step-by-step lessons.';
+
+  @override
+  String learnLandingPhaseOfLabel(int current, int total) {
+    return 'Phase $current of $total';
+  }
+
+  @override
+  String get learnLandingNextUpLabel => 'Next up';
+
+  @override
+  String get learnLandingContinueAction => 'Continue';
+
+  @override
+  String get learnLandingViewPathAction => 'View path';
+
+  @override
+  String get learnLandingTodayTitle => 'Today’s learning';
+
+  @override
+  String get learnLandingBrowseTitle => 'Browse by topic';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -4376,7 +4406,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Who is Allah, core knowledge, and understanding Islam belong together here.';
 
   @override
-  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Hadith';
+  String get learnHubCategoryQuranHadithTitle => 'Qur’an & Sunnah';
 
   @override
   String get learnHubCategoryQuranHadithSubtitle =>

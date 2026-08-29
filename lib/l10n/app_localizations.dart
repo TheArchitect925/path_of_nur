@@ -7019,6 +7019,60 @@ abstract class AppLocalizations {
   /// **'Discover organized teachings, essential topics, and guided study paths that make learning easier to follow and more rewarding to revisit.'**
   String get learnHubLandingCalmSubtitle;
 
+  /// No description provided for @learnLandingPathEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Your path'**
+  String get learnLandingPathEyebrow;
+
+  /// No description provided for @learnLandingChoosePathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your learning path'**
+  String get learnLandingChoosePathTitle;
+
+  /// No description provided for @learnLandingChoosePathSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer a few questions and follow calm, step-by-step lessons.'**
+  String get learnLandingChoosePathSubtitle;
+
+  /// No description provided for @learnLandingPhaseOfLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase {current} of {total}'**
+  String learnLandingPhaseOfLabel(int current, int total);
+
+  /// No description provided for @learnLandingNextUpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next up'**
+  String get learnLandingNextUpLabel;
+
+  /// No description provided for @learnLandingContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get learnLandingContinueAction;
+
+  /// No description provided for @learnLandingViewPathAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View path'**
+  String get learnLandingViewPathAction;
+
+  /// No description provided for @learnLandingTodayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s learning'**
+  String get learnLandingTodayTitle;
+
+  /// No description provided for @learnLandingBrowseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by topic'**
+  String get learnLandingBrowseTitle;
+
   /// No description provided for @learnHubContinueJourneyTitle.
   ///
   /// In en, this message translates to:
@@ -7538,7 +7592,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryQuranHadithTitle.
   ///
   /// In en, this message translates to:
-  /// **'Qur’an & Hadith'**
+  /// **'Qur’an & Sunnah'**
   String get learnHubCategoryQuranHadithTitle;
 
   /// No description provided for @learnHubCategoryQuranHadithSubtitle.

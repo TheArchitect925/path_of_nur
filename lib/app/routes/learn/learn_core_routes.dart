@@ -21,7 +21,6 @@ import '../../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../../features/learn/presentation/pages/learn_games_browse_all_page.dart';
 import '../../../features/learn/presentation/pages/learn_quran_hub_page.dart';
-import '../../../features/learn/presentation/pages/learn_self_learning_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../../../features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
@@ -250,15 +249,16 @@ List<RouteBase> buildLearnCoreRoutes() {
     GoRoute(
       path: '/learn/legacy',
       name: 'learnLegacy',
-      // Compatibility surface retained for hidden catalog items and older
-      // Learning Journey metadata that still reference the original library.
-      pageBuilder: (context, state) {
+      // The Self Learning library is retired; older catalog entries and
+      // Learning Journey metadata that still push this name land on the
+      // Explore All browser instead.
+      redirect: (context, state) {
         const analytics = LearnAnalyticsService();
         analytics.logLegacyRouteOpened(
           routeKey: '/learn/legacy',
           matchedLocation: state.matchedLocation,
         );
-        return const MaterialPage(child: LearnSelfLearningHubPage());
+        return '/learn/explore';
       },
     ),
     GoRoute(
