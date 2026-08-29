@@ -13,20 +13,43 @@ import 'night_sky.dart';
 
 const double _backgroundDecodeScale = 1.1;
 
+/// Where the night-theme moon sits, expressed for left-to-right reading:
+/// header height on the trailing side, clear of the status-bar icons above
+/// and of the page title beside it.
+const Offset kMoonFractionDefault = Offset(0.735, 0.105);
+
+/// Home centres its greeting and puts its controls on the trailing side, so
+/// the moon takes the leading side there to stay out of both.
+const Offset kMoonFractionHome = Offset(0.12, 0.105);
+
+/// Mirrors a moon position for right-to-left layouts, where titles and
+/// controls swap sides and a fixed x would land right back under them.
+Offset resolveMoonFraction(Offset fraction, TextDirection direction) {
+  return direction == TextDirection.rtl
+      ? Offset(1 - fraction.dx, fraction.dy)
+      : fraction;
+}
+
 class GlobalBackground extends ConsumerWidget {
   const GlobalBackground({
     super.key,
     this.assetPath,
     this.overlayColor,
     this.atmosphere = AppBackgroundAtmosphere.standard,
+    this.moonFraction = kMoonFractionDefault,
   });
 
   final String? assetPath;
   final Color? overlayColor;
   final AppBackgroundAtmosphere atmosphere;
+  final Offset moonFraction;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final moonFraction = resolveMoonFraction(
+      this.moonFraction,
+      Directionality.of(context),
+    );
     final wallpaper = ref.watch(selectedWallpaperProvider);
     final settings = ref.watch(profileSettingsProvider);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
@@ -62,18 +85,15 @@ class GlobalBackground extends ConsumerWidget {
               CustomPaint(
                 painter: MidnightSkyPainter(
                   now: now!,
-                  // Header-height, tucked into the right corner: Home's
-                  // greeting is centred, so the moon has to sit outside the
-                  // text band. Page titles elsewhere are left-aligned and
-                  // stay well clear.
-                  moonFraction: const Offset(0.88, 0.105),
+                  // Position comes from the surface: see the constants above.
+                  moonFraction: moonFraction,
                 ),
               )
             else if (isRamadan) ...[
               CustomPaint(
                 painter: MidnightSkyPainter(
                   now: now!,
-                  moonFraction: const Offset(0.88, 0.105),
+                  moonFraction: moonFraction,
                   // Violet unlit limb so the crescent sits in the Layali sky.
                   moonShadowColor: const Color(0xFF352B54),
                 ),
@@ -89,7 +109,7 @@ class GlobalBackground extends ConsumerWidget {
               CustomPaint(
                 painter: MidnightSkyPainter(
                   now: now!,
-                  moonFraction: const Offset(0.88, 0.105),
+                  moonFraction: moonFraction,
                   // Near-black violet limb for the Night of Power sky.
                   moonShadowColor: const Color(0xFF241D3F),
                 ),

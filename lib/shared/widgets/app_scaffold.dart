@@ -65,7 +65,14 @@ class AppShellScaffold extends ConsumerWidget {
       extendBody: true,
       body: Stack(
         children: [
-          const GlobalBackground(),
+          // Only Home's own page centres its greeting; everywhere else,
+          // including pages pushed inside the Home tab, keeps the moon on
+          // the right where it clears left-aligned titles.
+          GlobalBackground(
+            moonFraction: activeTab == NavTab.home && isRootTabPage
+                ? kMoonFractionHome
+                : kMoonFractionDefault,
+          ),
           _MainTabSwipeWrapper(
             enabled: isRootTabPage,
             activeTab: activeTab,
