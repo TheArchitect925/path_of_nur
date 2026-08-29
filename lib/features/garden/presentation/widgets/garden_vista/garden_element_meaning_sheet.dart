@@ -49,8 +49,10 @@ class GardenElementMeaningSheet extends StatelessWidget {
 
     return SafeArea(
       top: false,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
+      child: SingleChildScrollView(
+        // The app's floating tab bar overlays modal sheets, so clear it
+        // explicitly — the system inset alone leaves the last line hidden.
+        padding: const EdgeInsets.fromLTRB(20, 4, 20, 96),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
