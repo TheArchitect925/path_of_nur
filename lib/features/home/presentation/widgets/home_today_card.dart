@@ -23,10 +23,15 @@ class HomeTodayCard extends ConsumerWidget {
     super.key,
     required this.quranBundle,
     required this.spiritualMoment,
+    this.showSectionTitle = true,
   });
 
   final QuranRecommendationBundle? quranBundle;
   final QuranSpiritualMomentBundle? spiritualMoment;
+
+  /// False when an enclosing tile already renders the "Today" header, so the
+  /// title is not printed twice.
+  final bool showSectionTitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +39,7 @@ class HomeTodayCard extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SectionTitle(title: l10n.homeTodayContentTitle),
+        if (showSectionTitle) SectionTitle(title: l10n.homeTodayContentTitle),
         const QuranDailyReflectionCard(
           compact: true,
           showCompanionAction: true,

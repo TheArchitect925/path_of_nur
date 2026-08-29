@@ -105,11 +105,21 @@ class _HomePageState extends ConsumerState<HomePage> {
             Localizations.localeOf(context).languageCode,
           )),
         );
+        final todayL10n = AppLocalizations.of(context);
         return Padding(
           padding: const EdgeInsets.only(top: 16),
-          child: HomeTodayCard(
-            quranBundle: quranBundle,
-            spiritualMoment: spiritualMoment,
+          child: ExpandableTile(
+            leading: const Icon(Icons.auto_stories_rounded, size: 20),
+            title: Text(todayL10n.homeTodayContentTitle),
+            subtitle: Text(todayL10n.homeTodayContentSubtitle),
+            // The day's ayah is primary content, so it opens expanded; the
+            // control is there for readers who would rather tuck it away.
+            initiallyExpanded: true,
+            child: HomeTodayCard(
+              quranBundle: quranBundle,
+              spiritualMoment: spiritualMoment,
+              showSectionTitle: false,
+            ),
           ),
         );
       case HomeModule.duasNow:
