@@ -37593,6 +37593,26 @@ class AppLocalizationsFa extends AppLocalizations {
   String get quranFocusRecitationKeepScreenAwakeAction => 'Keep screen awake';
 
   @override
+  String get quranFocusRecitationKeepScreenAwakeSleepTimerHint =>
+      'در زمان اجرای تایمر خواب خاموش است تا صفحه بتواند خاموش شود';
+
+  @override
+  String quranFocusRecitationSleepTimerHoursLabel(String hours) {
+    return '$hours ساعت';
+  }
+
+  @override
+  String get quranFocusRecitationSleepTimerStopAtAction => 'توقف در ساعتی مشخص';
+
+  @override
+  String quranFocusRecitationSleepTimerStopAtLabel(String time) {
+    return 'در $time متوقف می‌شود';
+  }
+
+  @override
+  String get quranPlaybackDismissPlayerAction => 'بستن پخش‌کننده';
+
+  @override
   String get quranFocusRecitationRepeatCurrentAyahAction =>
       'Repeat current ayah';
 
@@ -80065,6 +80085,26 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get quranFocusRecitationKeepScreenAwakeAction => 'Keep screen awake';
+
+  @override
+  String get quranFocusRecitationKeepScreenAwakeSleepTimerHint =>
+      'در زمان اجرای تایمر خواب خاموش است تا صفحه بتواند خاموش شود';
+
+  @override
+  String quranFocusRecitationSleepTimerHoursLabel(String hours) {
+    return '$hours ساعت';
+  }
+
+  @override
+  String get quranFocusRecitationSleepTimerStopAtAction => 'توقف در ساعتی مشخص';
+
+  @override
+  String quranFocusRecitationSleepTimerStopAtLabel(String time) {
+    return 'در $time متوقف می‌شود';
+  }
+
+  @override
+  String get quranPlaybackDismissPlayerAction => 'بستن پخش‌کننده';
 
   @override
   String get quranFocusRecitationRepeatCurrentAyahAction =>

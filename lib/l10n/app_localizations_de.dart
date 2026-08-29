@@ -38163,6 +38163,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Bildschirm wach halten';
 
   @override
+  String get quranFocusRecitationKeepScreenAwakeSleepTimerHint =>
+      'Aus, solange der Sleeptimer läuft, damit der Bildschirm ruhen kann';
+
+  @override
+  String quranFocusRecitationSleepTimerHoursLabel(String hours) {
+    return '$hours Std';
+  }
+
+  @override
+  String get quranFocusRecitationSleepTimerStopAtAction =>
+      'Zu einer Uhrzeit stoppen';
+
+  @override
+  String quranFocusRecitationSleepTimerStopAtLabel(String time) {
+    return 'Stoppt um $time';
+  }
+
+  @override
+  String get quranPlaybackDismissPlayerAction => 'Player schließen';
+
+  @override
   String get quranFocusRecitationRepeatCurrentAyahAction =>
       'Aktuelle Ayah wiederholen';
 

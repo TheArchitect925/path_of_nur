@@ -19,7 +19,7 @@ class PageLayoutConfig {
 
 enum AppPageHeaderAlignment { start, center }
 
-class AppPageScaffold extends ConsumerWidget {
+class AppPageScaffold extends ConsumerStatefulWidget {
   static const double _homeMatchedBottomContentPadding = 136;
   static const double _homeMatchedFloatingBottomOffset = 92;
 
@@ -71,7 +71,25 @@ class AppPageScaffold extends ConsumerWidget {
   final List<Widget>? bodySlivers;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AppPageScaffold> createState() => _AppPageScaffoldState();
+}
+
+class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
+  // Pages that bring their own controller keep it; the rest get one here so
+  // the scroll indicator always has something to attach to.
+  ScrollController? _fallbackController;
+
+  ScrollController get _effectiveController =>
+      widget.scrollController ?? (_fallbackController ??= ScrollController());
+
+  @override
+  void dispose() {
+    _fallbackController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final canPop = Navigator.canPop(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final foreground =
@@ -79,22 +97,25 @@ class AppPageScaffold extends ConsumerWidget {
     final subtleForeground =
         appearance?.backgroundForegroundSubtle ?? const Color(0xFF5D4F44);
     final resolvedQuote =
-        quote ?? (quotePool == null ? null : quoteFromPoolForToday(quotePool!));
+        widget.quote ??
+        (widget.quotePool == null
+            ? null
+            : quoteFromPoolForToday(widget.quotePool!));
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
     final pageTransitionStyle = ref.watch(
       profileSettingsProvider.select((value) => value.pageTransitionStyle),
     );
-    final bottomInset = layoutConfig.extendBehindBottomNav
+    final bottomInset = widget.layoutConfig.extendBehindBottomNav
         ? 0.0
-        : _homeMatchedBottomContentPadding;
+        : AppPageScaffold._homeMatchedBottomContentPadding;
     final headerCrossAxisAlignment =
-        headerAlignment == AppPageHeaderAlignment.center
+        widget.headerAlignment == AppPageHeaderAlignment.center
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
     final headerContent = <Widget>[
-      if (canPop || headerIcon != null)
+      if (canPop || widget.headerIcon != null)
         Row(
           crossAxisAlignment: headerCrossAxisAlignment,
           children: [
@@ -105,23 +126,28 @@ class AppPageScaffold extends ConsumerWidget {
                 icon: const BackButtonIcon(),
                 color: foreground,
               ),
-            if (canPop && headerIcon != null) const SizedBox(width: 4),
-            if (headerIcon != null)
-              Icon(headerIcon, color: foreground, size: headerIconSize),
-            if (headerIcon != null) SizedBox(width: headerIconSpacing),
+            if (canPop && widget.headerIcon != null) const SizedBox(width: 4),
+            if (widget.headerIcon != null)
+              Icon(
+                widget.headerIcon,
+                color: foreground,
+                size: widget.headerIconSize,
+              ),
+            if (widget.headerIcon != null)
+              SizedBox(width: widget.headerIconSpacing),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     style: Theme.of(
                       context,
                     ).textTheme.titleLarge?.copyWith(color: foreground),
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    subtitle,
+                    widget.subtitle,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
@@ -129,9 +155,9 @@ class AppPageScaffold extends ConsumerWidget {
                 ],
               ),
             ),
-            if (headerActions != null) ...[
+            if (widget.headerActions != null) ...[
               const SizedBox(width: 8),
-              ...headerActions!,
+              ...widget.headerActions!,
             ],
           ],
         )
@@ -140,14 +166,14 @@ class AppPageScaffold extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              widget.title,
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: foreground),
             ),
             const SizedBox(height: 6),
             Text(
-              subtitle,
+              widget.subtitle,
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
@@ -155,12 +181,12 @@ class AppPageScaffold extends ConsumerWidget {
           ],
         ),
       const SizedBox(height: 12),
-      if (quoteHeader != null) ...[
+      if (widget.quoteHeader != null) ...[
         const SizedBox(height: 12),
         _AnimatedQuoteHeader(
           reduceMotion: reduceMotion,
           style: pageTransitionStyle,
-          child: quoteHeader!,
+          child: widget.quoteHeader!,
         ),
       ] else if (resolvedQuote != null) ...[
         const SizedBox(height: 12),
@@ -169,10 +195,10 @@ class AppPageScaffold extends ConsumerWidget {
           style: pageTransitionStyle,
           child: QuranQuoteBlock(
             quote: resolvedQuote,
-            useOuterChrome: quoteUseOuterChrome,
+            useOuterChrome: widget.quoteUseOuterChrome,
             onTap: () {
-              if (onQuoteTap != null) {
-                onQuoteTap!(resolvedQuote);
+              if (widget.onQuoteTap != null) {
+                widget.onQuoteTap!(resolvedQuote);
                 return;
               }
               openQuranQuoteLocation(context, resolvedQuote);
@@ -182,18 +208,18 @@ class AppPageScaffold extends ConsumerWidget {
       ],
       const SizedBox(height: 20),
     ];
-    final hasCustomSlivers = bodySlivers != null;
+    final hasCustomSlivers = widget.bodySlivers != null;
     return _AnimatedPageEntrance(
       reduceMotion: reduceMotion,
       style: pageTransitionStyle,
       child: Stack(
         children: [
-          if (ownsBackground)
-            layoutConfig.extendBehindBottomNav
+          if (widget.ownsBackground)
+            widget.layoutConfig.extendBehindBottomNav
                 ? GlobalBackground(
-                    assetPath: backgroundAssetPath,
-                    overlayColor: backgroundOverlayColor,
-                    atmosphere: backgroundAtmosphere,
+                    assetPath: widget.backgroundAssetPath,
+                    overlayColor: widget.backgroundOverlayColor,
+                    atmosphere: widget.backgroundAtmosphere,
                   )
                 : ClipRect(
                     child: Padding(
@@ -201,46 +227,52 @@ class AppPageScaffold extends ConsumerWidget {
                       child: Stack(
                         children: [
                           GlobalBackground(
-                            assetPath: backgroundAssetPath,
-                            overlayColor: backgroundOverlayColor,
-                            atmosphere: backgroundAtmosphere,
+                            assetPath: widget.backgroundAssetPath,
+                            overlayColor: widget.backgroundOverlayColor,
+                            atmosphere: widget.backgroundAtmosphere,
                           ),
                         ],
                       ),
                     ),
                   ),
           SafeArea(
-            child: hasCustomSlivers
-                ? CustomScrollView(
-                    controller: scrollController,
-                    physics: const BouncingScrollPhysics(),
-                    slivers: [
-                      SliverPadding(
-                        padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
-                        sliver: SliverList.list(
-                          children: [...headerContent, ...children],
+            // A thin scroll indicator so long pages show how much is left.
+            child: Scrollbar(
+              controller: _effectiveController,
+              thickness: 3,
+              radius: const Radius.circular(999),
+              child: hasCustomSlivers
+                  ? CustomScrollView(
+                      controller: _effectiveController,
+                      physics: const BouncingScrollPhysics(),
+                      slivers: [
+                        SliverPadding(
+                          padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+                          sliver: SliverList.list(
+                            children: [...headerContent, ...widget.children],
+                          ),
                         ),
-                      ),
-                      ...bodySlivers!,
-                      if (bottomInset > 0)
-                        SliverToBoxAdapter(
-                          child: SizedBox(height: bottomInset),
-                        ),
-                    ],
-                  )
-                : ListView(
-                    controller: scrollController,
-                    physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
-                    children: [...headerContent, ...children],
-                  ),
+                        ...widget.bodySlivers!,
+                        if (bottomInset > 0)
+                          SliverToBoxAdapter(
+                            child: SizedBox(height: bottomInset),
+                          ),
+                      ],
+                    )
+                  : ListView(
+                      controller: _effectiveController,
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
+                      children: [...headerContent, ...widget.children],
+                    ),
+            ),
           ),
-          if (floatingBottom != null)
+          if (widget.floatingBottom != null)
             Positioned(
               left: 16,
               right: 16,
-              bottom: _homeMatchedFloatingBottomOffset,
-              child: floatingBottom!,
+              bottom: AppPageScaffold._homeMatchedFloatingBottomOffset,
+              child: widget.floatingBottom!,
             ),
         ],
       ),

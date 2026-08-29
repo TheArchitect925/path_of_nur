@@ -59,7 +59,10 @@ class _QuranFocusRecitationPageState
       }
       unawaited(
         _syncWakeLock(
-          ref.read(quranReaderSettingsProvider).focusRecitationKeepScreenAwake,
+          ref
+                  .read(quranReaderSettingsProvider)
+                  .focusRecitationKeepScreenAwake &&
+              !ref.read(quranFocusRecitationSleepTimerProvider).isActive,
         ),
       );
     });
@@ -203,12 +206,23 @@ class _QuranFocusRecitationPageState
                             'quran-focus-toggle-keep-screen-awake',
                           ),
                           contentPadding: EdgeInsets.zero,
-                          value: settings.focusRecitationKeepScreenAwake,
+                          value:
+                              settings.focusRecitationKeepScreenAwake &&
+                              !sleepTimer.isActive,
                           title: Text(
                             l10n.quranFocusRecitationKeepScreenAwakeAction,
                           ),
-                          onChanged: settingsNotifier
-                              .setFocusRecitationKeepScreenAwake,
+                          // A sleep timer means the listener is settling in
+                          // to sleep, so the screen must be free to turn off.
+                          subtitle: sleepTimer.isActive
+                              ? Text(
+                                  l10n.quranFocusRecitationKeepScreenAwakeSleepTimerHint,
+                                )
+                              : null,
+                          onChanged: sleepTimer.isActive
+                              ? null
+                              : settingsNotifier
+                                    .setFocusRecitationKeepScreenAwake,
                         ),
                         SwitchListTile.adaptive(
                           key: const ValueKey(
@@ -239,7 +253,16 @@ class _QuranFocusRecitationPageState
                           spacing: 8,
                           runSpacing: 8,
                           children: [
-                            for (final minutes in const [5, 10, 15, 30])
+                            for (final minutes in const [
+                              5,
+                              10,
+                              15,
+                              30,
+                              45,
+                              60,
+                              90,
+                              120,
+                            ])
                               ChoiceChip(
                                 key: ValueKey(
                                   'quran-focus-sleep-timer-$minutes',
@@ -249,9 +272,13 @@ class _QuranFocusRecitationPageState
                                     sleepTimer.durationSeconds ==
                                         minutes * Duration.secondsPerMinute,
                                 label: Text(
-                                  l10n.quranFocusRecitationSleepTimerMinutesLabel(
-                                    minutes,
-                                  ),
+                                  minutes < 60
+                                      ? l10n.quranFocusRecitationSleepTimerMinutesLabel(
+                                          minutes,
+                                        )
+                                      : l10n.quranFocusRecitationSleepTimerHoursLabel(
+                                          _formatSleepTimerHours(minutes),
+                                        ),
                                 ),
                                 onSelected: (_) {
                                   sleepTimerNotifier.setDurationMinutes(
@@ -259,6 +286,44 @@ class _QuranFocusRecitationPageState
                                   );
                                 },
                               ),
+                            ActionChip(
+                              key: const ValueKey(
+                                'quran-focus-sleep-timer-stop-at',
+                              ),
+                              avatar: const Icon(
+                                Icons.schedule_rounded,
+                                size: 18,
+                              ),
+                              label: Text(
+                                sleepTimer.stopAt != null
+                                    ? l10n.quranFocusRecitationSleepTimerStopAtLabel(
+                                        TimeOfDay.fromDateTime(
+                                          sleepTimer.stopAt!,
+                                        ).format(context),
+                                      )
+                                    : l10n.quranFocusRecitationSleepTimerStopAtAction,
+                              ),
+                              onPressed: () async {
+                                final picked = await showTimePicker(
+                                  context: context,
+                                  initialTime: TimeOfDay.fromDateTime(
+                                    DateTime.now().add(
+                                      const Duration(minutes: 45),
+                                    ),
+                                  ),
+                                );
+                                if (picked == null) return;
+                                sleepTimerNotifier.setStopAt(
+                                  DateTime(
+                                    2026,
+                                    1,
+                                    1,
+                                    picked.hour,
+                                    picked.minute,
+                                  ),
+                                );
+                              },
+                            ),
                             if (sleepTimer.isActive)
                               ActionChip(
                                 key: const ValueKey(
@@ -333,6 +398,22 @@ class _QuranFocusRecitationPageState
             next.focusRecitationKeepScreenAwake) {
           unawaited(_syncWakeLock(next.focusRecitationKeepScreenAwake));
         }
+      },
+    );
+    // Starting a sleep timer releases the wake lock so the screen can turn
+    // off; cancelling it restores whatever the setting says.
+    ref.listen<QuranFocusRecitationSleepTimerState>(
+      quranFocusRecitationSleepTimerProvider,
+      (previous, next) {
+        if (previous?.isActive == next.isActive) return;
+        unawaited(
+          _syncWakeLock(
+            !next.isActive &&
+                ref
+                    .read(quranReaderSettingsProvider)
+                    .focusRecitationKeepScreenAwake,
+          ),
+        );
       },
     );
 
@@ -572,9 +653,9 @@ class _FocusRecitationHeader extends StatelessWidget {
               Text(
                 reciterName,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: palette.subtleText,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: palette.subtleText),
               ),
               if (repeatCurrentAyah || activeSleepTimerLabel != null) ...[
                 const SizedBox(height: 10),
@@ -833,7 +914,8 @@ class _FocusRecitationControls extends StatelessWidget {
     // Moonlit Tonal (dark themes): brighter ivory tonal fills, and explicit
     // disabled colors — Material's disabled fallback uses the light app
     // theme's ink, which disappears on a dark pill.
-    final secondaryFill = surfaceStyle?.iconBackgroundColor ??
+    final secondaryFill =
+        surfaceStyle?.iconBackgroundColor ??
         palette.controlsContent.withValues(alpha: 0.18);
     final disabledSecondaryFill = palette.isDark
         ? palette.controlsContent.withValues(alpha: 0.07)
@@ -841,7 +923,8 @@ class _FocusRecitationControls extends StatelessWidget {
     final disabledSecondaryForeground = palette.isDark
         ? palette.controlsContent.withValues(alpha: 0.38)
         : null;
-    final decoration = surfaceStyle?.decoration(radius: 28, includeShadow: true) ??
+    final decoration =
+        surfaceStyle?.decoration(radius: 28, includeShadow: true) ??
         BoxDecoration(
           color: palette.controlsFill,
           borderRadius: BorderRadius.circular(28),
@@ -971,4 +1054,12 @@ class _FocusRecitationEmptyState extends StatelessWidget {
       ),
     );
   }
+}
+
+/// "60" -> "1", "90" -> "1.5", "120" -> "2" for the hour-scale chips.
+String _formatSleepTimerHours(int minutes) {
+  final hours = minutes / 60;
+  return hours == hours.roundToDouble()
+      ? hours.round().toString()
+      : hours.toStringAsFixed(1);
 }

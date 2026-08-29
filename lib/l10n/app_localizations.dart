@@ -62514,6 +62514,36 @@ abstract class AppLocalizations {
   /// **'Keep screen awake'**
   String get quranFocusRecitationKeepScreenAwakeAction;
 
+  /// No description provided for @quranFocusRecitationKeepScreenAwakeSleepTimerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Off while the sleep timer runs, so the screen can rest'**
+  String get quranFocusRecitationKeepScreenAwakeSleepTimerHint;
+
+  /// No description provided for @quranFocusRecitationSleepTimerHoursLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} hr'**
+  String quranFocusRecitationSleepTimerHoursLabel(String hours);
+
+  /// No description provided for @quranFocusRecitationSleepTimerStopAtAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop at a time'**
+  String get quranFocusRecitationSleepTimerStopAtAction;
+
+  /// No description provided for @quranFocusRecitationSleepTimerStopAtLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops at {time}'**
+  String quranFocusRecitationSleepTimerStopAtLabel(String time);
+
+  /// No description provided for @quranPlaybackDismissPlayerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss player'**
+  String get quranPlaybackDismissPlayerAction;
+
   /// No description provided for @quranFocusRecitationRepeatCurrentAyahAction.
   ///
   /// In en, this message translates to:

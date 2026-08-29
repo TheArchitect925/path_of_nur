@@ -25,12 +25,20 @@ class QuranFocusRecitationSleepTimerState {
     this.durationSeconds,
     this.remainingSeconds,
     this.startedAtIso,
+    this.stopAtIso,
   });
 
   final QuranFocusRecitationSleepTimerMode mode;
   final int? durationSeconds;
   final int? remainingSeconds;
   final String? startedAtIso;
+
+  /// Set when the timer was chosen as a clock time ("stop at 22:30") rather
+  /// than a duration, so the surface can show the hour it will stop.
+  final String? stopAtIso;
+
+  DateTime? get stopAt =>
+      stopAtIso == null ? null : DateTime.tryParse(stopAtIso!);
 
   bool get isActive => mode != QuranFocusRecitationSleepTimerMode.off;
 
@@ -45,6 +53,8 @@ class QuranFocusRecitationSleepTimerState {
     bool clearRemainingSeconds = false,
     String? startedAtIso,
     bool clearStartedAtIso = false,
+    String? stopAtIso,
+    bool clearStopAtIso = false,
   }) {
     return QuranFocusRecitationSleepTimerState(
       mode: mode ?? this.mode,
@@ -57,6 +67,7 @@ class QuranFocusRecitationSleepTimerState {
       startedAtIso: clearStartedAtIso
           ? null
           : (startedAtIso ?? this.startedAtIso),
+      stopAtIso: clearStopAtIso ? null : (stopAtIso ?? this.stopAtIso),
     );
   }
 }
@@ -108,7 +119,7 @@ class QuranFocusRecitationSleepTimerController
   final Ref _ref;
   Timer? _timer;
 
-  void setDuration(Duration duration) {
+  void setDuration(Duration duration, {DateTime? stopAt}) {
     final safeSeconds = duration.inSeconds.clamp(1, 24 * 60 * 60);
     _timer?.cancel();
     state = QuranFocusRecitationSleepTimerState(
@@ -116,6 +127,7 @@ class QuranFocusRecitationSleepTimerController
       durationSeconds: safeSeconds,
       remainingSeconds: safeSeconds,
       startedAtIso: DateTime.now().toIso8601String(),
+      stopAtIso: stopAt?.toIso8601String(),
     );
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) async {
       final nextRemaining = (state.remainingSeconds ?? 0) - 1;
@@ -131,6 +143,23 @@ class QuranFocusRecitationSleepTimerController
 
   void setDurationMinutes(int minutes) {
     setDuration(Duration(minutes: minutes.clamp(1, 24 * 60)));
+  }
+
+  /// Stops playback at a wall-clock time. A time already past today is read
+  /// as tomorrow, so picking 06:00 at night behaves the way it reads.
+  void setStopAt(DateTime target, {DateTime? now}) {
+    final from = now ?? DateTime.now();
+    var stopAt = DateTime(
+      from.year,
+      from.month,
+      from.day,
+      target.hour,
+      target.minute,
+    );
+    if (!stopAt.isAfter(from)) {
+      stopAt = stopAt.add(const Duration(days: 1));
+    }
+    setDuration(stopAt.difference(from), stopAt: stopAt);
   }
 
   void clear() {

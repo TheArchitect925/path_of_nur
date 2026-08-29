@@ -37687,6 +37687,27 @@ class AppLocalizationsId extends AppLocalizations {
   String get quranFocusRecitationKeepScreenAwakeAction => 'Keep screen awake';
 
   @override
+  String get quranFocusRecitationKeepScreenAwakeSleepTimerHint =>
+      'Mati selama pengatur waktu tidur berjalan, agar layar bisa beristirahat';
+
+  @override
+  String quranFocusRecitationSleepTimerHoursLabel(String hours) {
+    return '$hours jam';
+  }
+
+  @override
+  String get quranFocusRecitationSleepTimerStopAtAction =>
+      'Berhenti pada jam tertentu';
+
+  @override
+  String quranFocusRecitationSleepTimerStopAtLabel(String time) {
+    return 'Berhenti pukul $time';
+  }
+
+  @override
+  String get quranPlaybackDismissPlayerAction => 'Tutup pemutar';
+
+  @override
   String get quranFocusRecitationRepeatCurrentAyahAction =>
       'Repeat current ayah';
 
