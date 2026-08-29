@@ -100,6 +100,8 @@
 | PON-S-theme-palette-sweep | PON-E-calm-navigation | Retire the static light-theme AppColors constants app-wide in favour of a theme-resolved context.palette, with a policy test | 5 | done |
 | PON-S-learn-conformance-ratchet | PON-E-learn-design-parity | Conformance test that freezes today's Learn design drift and fails on any new drift or stale exemption | 2 | done |
 | PON-S-learn-page-shells | PON-E-learn-design-parity | Put the nine Learn pages that built a bare Scaffold back on the app scaffold, retiring every Material AppBar in Learn | 3 | done |
+| PON-S-settings-menu-audit | PON-E-calm-navigation | Settings menu audit: one-list landing, settings search, split Profile/Adhan pages, corrected legal labels | 5 | done |
+| PON-S-settings-subpages-consistency | PON-E-calm-navigation | Settings sub-pages: mega-cards split into titled groups, themed pickers, display-kit rows on the accounts pages | 5 | done |
 
 ## Smoke Tests
 
