@@ -98,14 +98,28 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # NOTE: asset directory entries are NON-recursive — every subdirectory that
+  # contains runtime files needs its own line here.
   assets:
     - assets/images/
     - assets/images/backgrounds/
     - assets/images/prophets/
+    - assets/images/prophets/Stories/
     - assets/images/kids_arabic_coloring/
+    - assets/images/kids_dua_stories/
+    - assets/images/learn_art/
+    - assets/images/wudu/
     - assets/icons/
     - assets/audio/
-    # Includes bundled Adhan assets under assets/audio/adhan/regular and fajr.
+    - assets/audio/adhan/fajr/
+    - assets/audio/adhan/regular/
+    - assets/audio/ambient/
+    - assets/audio/effects/
+    - assets/audio/salah/husary/
+    - assets/audio/bedtime_stories/prophets/
+    - assets/audio/bedtime_stories/prophets/en/path_of_nur/
+    - assets/audio/kids_dua/en/path_of_nur/
+    - assets/audio/kids_stories/en/path_of_nur/
     - assets/video/
     - assets/animations/
     - assets/data/

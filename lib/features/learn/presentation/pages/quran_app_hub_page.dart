@@ -35,7 +35,6 @@ import '../../quran/presentation/quran_learning_path_copy.dart';
 import '../../quran/presentation/quran_summary_theme.dart';
 import '../../quran/presentation/quran_theme_copy.dart';
 import '../../quran/presentation/widgets/quran_daily_reflection_card.dart';
-import '../../quran/presentation/widgets/quran_compact_search_results_section.dart';
 import '../../quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../quran/presentation/widgets/quran_spiritual_moment_card.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
@@ -105,87 +104,7 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         closeLabel: l10n.learnShortcutClose,
       ),
       children: [
-        MainPageSearchLauncher(
-          hintText: l10n.quranAppHubSearchHint,
-          destinations: [
-            MainPageSearchDestination(
-              title: l10n.quranAppHubSearchHint,
-              subtitle: l10n.quranExplorerSubtitle,
-              icon: Icons.search_rounded,
-              keywords: ['search', 'surah', 'ayah', 'reader'],
-              onTap: () => context.pushNamed('quranSearch'),
-            ),
-            MainPageSearchDestination(
-              title: l10n.quranKnowledgeSearchTitle,
-              subtitle: l10n.quranKnowledgeSearchSubtitle,
-              icon: Icons.manage_search_rounded,
-              keywords: ['knowledge', 'insights', 'topics'],
-              onTap: () => context.pushNamed('quranKnowledgeSearch'),
-            ),
-            MainPageSearchDestination(
-              title: l10n.quranHubReadQuranSectionTitle,
-              subtitle: l10n.quranExplorerSubtitle,
-              icon: Icons.menu_book_rounded,
-              keywords: ['read', 'quran', 'explorer'],
-              onTap: () => context.pushNamed('quranExplorer'),
-            ),
-            MainPageSearchDestination(
-              title: l10n.quranSummaryIslandTitle,
-              subtitle: l10n.quranSummaryIslandSubtitle,
-              icon: Icons.auto_stories_rounded,
-              keywords: ['summary', 'surah summary'],
-              onTap: () => context.pushNamed('quranSummaryPage'),
-            ),
-            MainPageSearchDestination(
-              title: l10n.quranThemeDiscoveryIslandTitle,
-              subtitle: l10n.quranThemeDiscoveryIslandSubtitle,
-              icon: Icons.account_tree_outlined,
-              keywords: ['topics', 'themes', 'browse by topic'],
-              onTap: () => context.pushNamed('quranTopicExplorer'),
-            ),
-            MainPageSearchDestination(
-              title: l10n.quranPathwaysIslandTitle,
-              subtitle: l10n.quranPathwaysIslandSubtitle,
-              icon: Icons.route_rounded,
-              keywords: ['pathways', 'guided paths', 'study'],
-              onTap: () => context.pushNamed('quranLearningPaths'),
-            ),
-            ...wordStudyActions.map(
-              (action) => MainPageSearchDestination(
-                title: action.title,
-                subtitle: action.subtitle,
-                icon: action.icon,
-                keywords: [action.title, action.subtitle],
-                onTap: action.onTap,
-              ),
-            ),
-            ...studyActions.map(
-              (action) => MainPageSearchDestination(
-                title: action.title,
-                subtitle: action.subtitle,
-                icon: action.icon,
-                keywords: [action.title, action.subtitle],
-                onTap: action.onTap,
-              ),
-            ),
-            ...toolActions.map(
-              (action) => MainPageSearchDestination(
-                title: action.title,
-                subtitle: action.subtitle,
-                icon: action.icon,
-                keywords: [action.title, action.subtitle],
-                onTap: action.onTap,
-              ),
-            ),
-          ],
-          supplementalBuilder: (context, query, updateQuery) {
-            if (query.trim().isEmpty) return null;
-            return QuranCompactSearchResultsSection(
-              query: query,
-              maxResults: 3,
-            );
-          },
-        ),
+        MainPageSearchLauncher(hintText: l10n.quranAppHubSearchHint),
         const SizedBox(height: 12),
         _SectionHeader(title: l10n.quranHubReadQuranSectionTitle),
         const SizedBox(height: 8),

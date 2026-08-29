@@ -13,6 +13,7 @@
 | PON-E-backup-privacy-hardening | Backup encryption and account privacy hardening | done |
 | PON-E-platform-runtime-config | Platform permission and auth runtime configuration | done |
 | PON-E-information-display-redesign | Information display redesign (type system, prayer-anchored home, scannable collections, stats visualization, unified search) | done |
+| PON-E-calm-navigation | Calm navigation redesign (Mihrab home, one-list hubs, Prayer Room, path-led Learn, reader-first Quran, storybook art) | in_progress |
 
 ### Stories
 
@@ -51,6 +52,7 @@
 | PON-S-ramadan-layali-theme | PON-E-information-display-redesign | Ramadan Layali theme with fanoos lantern, crescent, iftar/suhoor hero, and Dress up for Ramadan | 5 | done |
 | PON-S-occasion-engine | PON-E-information-display-redesign | Occasion Engine: Laylat al-Qadr and Eid themes, hijri-aware windows, priority ladder, and one-time consent sheet | 5 | done |
 | PON-S-living-atmosphere | PON-E-information-display-redesign | Living Atmosphere: Noor Glass sky follows the prayer clock, Midnight arrives after dark | 3 | done |
+| PON-S-phase0-foundations | PON-E-calm-navigation | Phase 0: asset bundling fixes, prophet recompression, dead-code removal, crash + copy fixes | 3 | done |
 
 ## Smoke Tests
 
@@ -109,3 +111,9 @@
 | PON-T-051 | Noor Glass wears the living day sky | On the Noor Glass theme with "Living sky" on (the default, Settings → Appearance), sweep Home and a few pages during the day. Expected: the wallpaper photo is gone — the background is a clean painted cream sky; around Fajr it blushes rose-gold from the top, and from about 45 minutes before Maghrib until Isha it turns warm amber. All text and glass cards stay fully legible in every phase. | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-living-atmosphere · sprint:2026-08-28 |
 | PON-T-052 | Midnight arrives on its own after dark | Stay on Noor Glass with "Living sky" on past Isha (or before Fajr). Expected: the whole app becomes the starry Midnight theme — indigo sky, glowing stars, true-phase moon, ivory ink — with no setting touched, and returns to the cream sky at Fajr. Occasion themes are untouched: a Friday stays Masjid Emerald all evening. | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-living-atmosphere · sprint:2026-08-28 |
 | PON-T-053 | Living sky toggle restores the wallpaper | Turn "Living sky" off in Settings → Appearance. Expected: Noor Glass immediately returns to its static wallpaper photo at every hour, and no automatic night switch happens. Turning it back on restores the painted sky. Other themes (Midnight, Candlelight, Jumu'ah, Layali, Eid) look identical whether the toggle is on or off. | ⬜ | epic:PON-E-information-display-redesign · story:PON-S-living-atmosphere · sprint:2026-08-28 |
+| PON-T-054 | Wudu trainer shows real step artwork | Open Learn → Salah → Wudu guide → Trainer and step through. Expected: every step shows its full illustration (previously a silent icon fallback because the images never shipped); no broken-image placeholders. | ⬜ | epic:PON-E-calm-navigation · story:PON-S-phase0-foundations · sprint:2026-08-28 |
+| PON-T-055 | Kids dua stories render scene illustrations | Open a kids dua story (Learn → Kids → Duas → any story with scenes). Expected: illustrated scene art (bedroom/table/sky scenes) renders behind story pages instead of the icon fallback. | ⬜ | epic:PON-E-calm-navigation · story:PON-S-phase0-foundations · sprint:2026-08-28 |
+| PON-T-056 | Prophet cards: correct art, small install | Open Learn → Prophets & Stories and scroll all 25 cards. Expected: every card shows artwork with no loading hitches; the Musa card's artwork depicts Musa and Harun's depicts Harun (their images were swapped); overall app install size is roughly 35–40 MB smaller than the previous build. | ⬜ | epic:PON-E-calm-navigation · story:PON-S-phase0-foundations · sprint:2026-08-28 |
+| PON-T-057 | Settings learning level opens without crash | Open Settings → Learning → "Learning level". Expected: the learning journey home opens (with the level switcher available) — previously this tile crashed on an unregistered route. | ⬜ | epic:PON-E-calm-navigation · story:PON-S-phase0-foundations · sprint:2026-08-28 |
+| PON-T-058 | Hub search cards still open global search; islands header is number-free | Tap the search card on Ibadah, Learn, Growth, and Qur'an tabs. Expected: all open the global search page (the dead per-hub destination lists were removed with no behavior change). On Learn → Learning Journey home, the islands section header reads "Learning Islands" (no count) in every language. | ⬜ | epic:PON-E-calm-navigation · story:PON-S-phase0-foundations · sprint:2026-08-28 |
+| PON-T-059 | Adhan and ambient audio play from the bundle | Settings → Prayer & Worship → adhan section → play a sample; also play a bedtime story with narration. Expected: audio actually plays (the audio subfolders previously never shipped in the bundle, so samples were silent on fresh installs). | ⬜ | epic:PON-E-calm-navigation · story:PON-S-phase0-foundations · sprint:2026-08-28 |

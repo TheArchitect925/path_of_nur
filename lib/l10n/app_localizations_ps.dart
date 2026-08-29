@@ -9720,7 +9720,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'یو ارام زده‌کړیز کور چې د سفرونو، د نن لارښوونې، او پنځو روښانو ټاپوګانو پر بنسټ جوړ شوی.';
+      'یو ارام زده‌کړیز کور چې د سفرونو، د نن لارښوونې، او روښانو ټاپوګانو پر بنسټ جوړ شوی.';
 
   @override
   String get learningJourneyHomeContinueBadge => 'دوام';
@@ -9785,7 +9785,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'له دغو لارو يوه وازموئ څو د زده کړې روانه لړۍ مو ثابته پاتې شي.';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '۵ ټاپوګان';
+  String get learningJourneyHomeIslandsTitle => 'د زده کړې ټاپوګان';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
@@ -11087,7 +11087,7 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'همدا پنځه ټاپوګان لا هم د لټون اصلي بڼه ده. دلته نور هر څه ثانوي پلټنه ده.';
+      'همدا ټاپوګان لا هم د لټون اصلي بڼه ده. دلته نور هر څه ثانوي پلټنه ده.';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'وسايل او ټولګې';

@@ -9844,7 +9844,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'Ein ruhigeres Lernhaus, das rund um Reisen, heutige Führung und fünf klare Inseln gebaut ist.';
+      'Ein ruhigeres Lernhaus, das rund um Reisen, heutige Führung und klare Inseln gebaut ist.';
 
   @override
   String get learningJourneyHomeContinueBadge => 'Setzen Sie Ihre Reise fort';
@@ -9909,7 +9909,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Probieren Sie einen dieser Wege aus, um Ihren Lernrhythmus stabil zu halten.';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '9 Inseln';
+  String get learningJourneyHomeIslandsTitle => 'Lerninseln';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
@@ -11231,7 +11231,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'Die fünf Inseln bleiben das primäre Suchmodell.Alles andere hier ist sekundäre Erkundung.';
+      'Die Inseln bleiben das primäre Suchmodell.Alles andere hier ist sekundäre Erkundung.';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'Werkzeuge und Sammlungen';

@@ -16767,7 +16767,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyHomeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calmer learning home built around journeys, today’s guidance, and five clear islands.'**
+  /// **'A calmer learning home built around journeys, today’s guidance, and clear learning islands.'**
   String get learningJourneyHomeSubtitle;
 
   /// No description provided for @learningJourneyHomeContinueBadge.
@@ -16875,7 +16875,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyHomeIslandsTitle.
   ///
   /// In en, this message translates to:
-  /// **'9 Islands'**
+  /// **'Learning Islands'**
   String get learningJourneyHomeIslandsTitle;
 
   /// No description provided for @learningJourneyHomeIslandsSubtitle.
@@ -19020,7 +19020,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyBrowseIslandsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The five islands remain the primary browse model. Everything else here is secondary exploration.'**
+  /// **'The learning islands remain the primary browse model. Everything else here is secondary exploration.'**
   String get learningJourneyBrowseIslandsSubtitle;
 
   /// No description provided for @learningJourneyBrowseToolsTitle.

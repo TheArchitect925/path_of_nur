@@ -9688,7 +9688,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'ایک پرسکون سیکھنے کا گھر جو سفر، آج کی رہنمائی، اور پانچ واضح جزیروں کے ارد گرد بنایا گیا ہے۔';
+      'ایک پرسکون سیکھنے کا گھر جو سفر، آج کی رہنمائی، اور واضح جزیروں کے ارد گرد بنایا گیا ہے۔';
 
   @override
   String get learningJourneyHomeContinueBadge => 'اپنا سفر جاری رکھیں';
@@ -9753,7 +9753,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'اپنی سیکھنے کی تال کو مستحکم رکھنے کے لیے ان میں سے کوئی ایک طریقہ آزمائیں۔';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '9 جزائر';
+  String get learningJourneyHomeIslandsTitle => 'سیکھنے کے جزیرے';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
@@ -11058,7 +11058,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'پانچ جزائر بنیادی براؤز ماڈل بنے ہوئے ہیں۔ یہاں باقی سب کچھ سیکنڈری ایکسپلوریشن ہے۔';
+      'جزائر بنیادی براؤز ماڈل بنے ہوئے ہیں۔ یہاں باقی سب کچھ سیکنڈری ایکسپلوریشن ہے۔';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'ٹولز اور کلیکشنز';

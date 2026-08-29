@@ -83,40 +83,7 @@ class _LearningSectionLandingPageState
         closeLabel: l10n.learnShortcutClose,
       ),
       children: [
-        MainPageSearchLauncher(
-          destinations: [
-            MainPageSearchDestination(
-              title: l10n.learnHubLandingExploreAllTitle,
-              subtitle: l10n.learnHubLandingExploreAllSubtitle,
-              icon: Icons.travel_explore_rounded,
-              keywords: ['explore', 'browse', 'all knowledge'],
-              onTap: () => context.pushNamed('learnExploreAllKnowledge'),
-            ),
-            ...visibleActions.map(
-              (action) => MainPageSearchDestination(
-                title: action.title,
-                subtitle: action.subtitle,
-                icon: action.icon,
-                keywords: [action.title, action.subtitle],
-                onTap: action.onTap,
-              ),
-            ),
-            MainPageSearchDestination(
-              title: l10n.learnNotesSectionTitle,
-              subtitle: l10n.learnNotesSectionSubtitle,
-              icon: Icons.notes_rounded,
-              keywords: ['notes', 'saved', 'journal'],
-              onTap: () => context.pushNamed('learnNotesLanding'),
-            ),
-            MainPageSearchDestination(
-              title: l10n.batch9FaqTitle,
-              subtitle: l10n.batch9FaqSubtitle,
-              icon: Icons.help_outline_rounded,
-              keywords: ['faq', 'questions', 'answers'],
-              onTap: () => context.pushNamed('faqLanding'),
-            ),
-          ],
-        ),
+        const MainPageSearchLauncher(),
         const SizedBox(height: 18),
         _SectionHeader(
           title: l10n.learnHubVisibleIslandsTitle,

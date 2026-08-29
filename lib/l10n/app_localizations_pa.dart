@@ -9717,7 +9717,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'ਯਾਤਰਾਵਾਂ, ਅੱਜ ਦੀ ਰਹਿਨੁਮਾਈ ਅਤੇ ਪੰਜ ਸਾਫ਼ ਟਾਪੂਆਂ ਦੇ ਆਲੇ-ਦੁਆਲੇ ਬਣਿਆ ਇੱਕ ਹੋਰ ਸ਼ਾਂਤ ਸਿੱਖਣ ਘਰ।';
+      'ਯਾਤਰਾਵਾਂ, ਅੱਜ ਦੀ ਰਹਿਨੁਮਾਈ ਅਤੇ ਸਾਫ਼ ਟਾਪੂਆਂ ਦੇ ਆਲੇ-ਦੁਆਲੇ ਬਣਿਆ ਇੱਕ ਹੋਰ ਸ਼ਾਂਤ ਸਿੱਖਣ ਘਰ।';
 
   @override
   String get learningJourneyHomeContinueBadge => 'ਜਾਰੀ';
@@ -9782,7 +9782,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਲਹਿਰ ਨੂੰ ਸਥਿਰ ਰੱਖਣ ਲਈ ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ ਕੋਈ ਇੱਕ ਰਾਹ ਅਜ਼ਮਾਓ।';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '5 ਟਾਪੂ';
+  String get learningJourneyHomeIslandsTitle => 'ਸਿੱਖਣ ਦੇ ਟਾਪੂ';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
@@ -11087,7 +11087,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'ਪੰਜ ਟਾਪੂ ਅਜੇ ਵੀ ਮੁੱਖ ਵੇਖਣ ਮਾਡਲ ਹਨ। ਇੱਥੇ ਬਾਕੀ ਸਭ ਕੁਝ ਦੂਸਰਾ ਖੋਜੀ ਹਿੱਸਾ ਹੈ।';
+      'ਟਾਪੂ ਅਜੇ ਵੀ ਮੁੱਖ ਵੇਖਣ ਮਾਡਲ ਹਨ। ਇੱਥੇ ਬਾਕੀ ਸਭ ਕੁਝ ਦੂਸਰਾ ਖੋਜੀ ਹਿੱਸਾ ਹੈ।';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'ਸੰਦ ਅਤੇ ਕਲੇਕਸ਼ਨ';

@@ -9646,7 +9646,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'منزل تعليمي أكثر هدوءًا مبني على الرحلات وإرشادات اليوم وخمس جزر صافية.';
+      'منزل تعليمي أكثر هدوءًا مبني على الرحلات وإرشادات اليوم وجزر صافية.';
 
   @override
   String get learningJourneyHomeContinueBadge => 'واصل رحلتك';
@@ -9710,7 +9710,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'جرب أحد هذه المسارات للحفاظ على ثبات إيقاع التعلم لديك.';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '9 جزر';
+  String get learningJourneyHomeIslandsTitle => 'جزر التعلم';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
@@ -11008,7 +11008,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'تظل الجزر الخمس هي نموذج التصفح الأساسي.كل شيء آخر هنا هو استكشاف ثانوي.';
+      'تظل الجزر هي نموذج التصفح الأساسي.كل شيء آخر هنا هو استكشاف ثانوي.';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'الأدوات والمجموعات';

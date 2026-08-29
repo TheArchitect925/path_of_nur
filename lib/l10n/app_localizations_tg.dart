@@ -9751,7 +9751,7 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'Хонаи оромтари омӯзиш, ки бар пояи сафарҳо, роҳнамоии имрӯз ва панҷ ҷазираи равшан сохта шудааст.';
+      'Хонаи оромтари омӯзиш, ки бар пояи сафарҳо, роҳнамоии имрӯз ва ҷазираҳои равшан сохта шудааст.';
 
   @override
   String get learningJourneyHomeContinueBadge => 'Идома';
@@ -9816,7 +9816,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Яке аз ин роҳҳоро бисанҷед, то ритми омӯзиши шумо устувор бимонад.';
 
   @override
-  String get learningJourneyHomeIslandsTitle => '5 ҷазира';
+  String get learningJourneyHomeIslandsTitle => 'Ҷазираҳои омӯзиш';
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
@@ -11121,7 +11121,7 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'Ин панҷ ҷазира ҳанӯз ҳам модели асосии дидананд. Ҳамаи чизҳои дигар дар ин ҷо ҷустуҷӯи дуюмдараҷаанд.';
+      'Ин ҷазираҳо ҳанӯз ҳам модели асосии дидананд. Ҳамаи чизҳои дигар дар ин ҷо ҷустуҷӯи дуюмдараҷаанд.';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'Абзорҳо ва маҷмӯаҳо';
