@@ -1176,62 +1176,14 @@ Future<void> _showPathSwitcher(
   await _showPathSelector(context, ref, pathState.path.level);
 }
 
+// The dedicated picker page owns level selection (and the honest switch
+// confirmation) since calm-navigation Phase 5.
 Future<void> _showPathSelector(
   BuildContext context,
   WidgetRef ref,
   LearningPathLevel? selectedLevel,
 ) async {
-  final l10n = AppLocalizations.of(context);
-  final level = await showModalBottomSheet<LearningPathLevel>(
-    context: context,
-    showDragHandle: true,
-    builder: (context) {
-      return SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          children: LearningPathRegistry.paths
-              .map((path) {
-                final selected = path.level == selectedLevel;
-                return ListTile(
-                  leading: Icon(
-                    selected ? Icons.check_circle_rounded : Icons.route_rounded,
-                  ),
-                  title: Text(
-                    LearningPathRegistry.localizedPathTitle(l10n, path),
-                  ),
-                  subtitle: Text(
-                    LearningPathRegistry.localizedPathDescription(l10n, path),
-                  ),
-                  onTap: () => Navigator.of(context).pop(path.level),
-                );
-              })
-              .toList(growable: false),
-        ),
-      );
-    },
-  );
-  if (level == null || level == selectedLevel || !context.mounted) return;
-  final confirmed = await showDialog<bool>(
-    context: context,
-    builder: (dialogContext) {
-      return AlertDialog(
-        title: Text(l10n.learningPathSwitchConfirmTitle),
-        content: Text(l10n.learningPathSwitchConfirmBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(l10n.learningPathSwitchCancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: Text(l10n.learningPathSwitchConfirm),
-          ),
-        ],
-      );
-    },
-  );
-  if (confirmed != true || !context.mounted) return;
-  ref.read(learningPathSelectionProvider.notifier).setLevel(level);
+  context.pushNamed('learnLearningPath');
 }
 
 String _localizedTodayLightBadge(TodayLightKind kind, AppLocalizations l10n) {

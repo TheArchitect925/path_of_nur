@@ -4135,6 +4135,46 @@ class AppLocalizationsTg extends AppLocalizations {
   String get learnLandingBrowseTitle => 'Аз рӯи мавзӯъ дидан';
 
   @override
+  String get learnPathDetailTitle => 'Роҳи омӯзиши шумо';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'Тағйири сатҳ';
+
+  @override
+  String get learnPathTestYourselfTitle => 'Худро бисанҷед';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'Озмуни кӯтоҳ барои анҷоми ин марҳила.';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'Анҷомёфта';
+
+  @override
+  String get learnPathPickerTitle => 'Сатҳи худро интихоб кунед';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'Роҳеро интихоб кунед, ки ба ҳолати шумо мувофиқ аст. Ҳар вақт иваз карда метавонед — пешрафти шумо ҳамеша мемонад.';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'Ҷорӣ';
+
+  @override
+  String get learnPathMigrationTitle => 'Роҳи шумо омода аст';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'Омӯзиши шумо акнун дар як роҳ аст: $level. Ҳар чизе ки анҷом додаед, ҳисоб мешавад.';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'Дидани роҳи худ';
+
+  @override
+  String get learnPathMigrationDismiss => 'Ҳоло не';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -17430,28 +17470,28 @@ class AppLocalizationsTg extends AppLocalizations {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'Beginner Path';
+  String get learningPathBeginnerTitle => 'Нав ба ислом';
 
   @override
   String get learningPathBeginnerDescription =>
       'A calm first route through Islam, worship, and identity.';
 
   @override
-  String get learningPathPracticingTitle => 'Practicing Path';
+  String get learningPathPracticingTitle => 'Сохтани устуворӣ';
 
   @override
   String get learningPathPracticingDescription =>
       'Strengthen consistency in worship and understanding.';
 
   @override
-  String get learningPathSeekerTitle => 'Knowledge Seeker Path';
+  String get learningPathSeekerTitle => 'Амиқсозии дониш';
 
   @override
   String get learningPathSeekerDescription =>
       'A more structured route through belief, history, and integration.';
 
   @override
-  String get learningPathAdvancedTitle => 'Advanced Path';
+  String get learningPathAdvancedTitle => 'Такмил';
 
   @override
   String get learningPathAdvancedDescription =>

@@ -15,6 +15,8 @@ class LearningPathRegistry {
           description: 'Start with Islam, Allah, and the pillars.',
           order: 1,
           journeyIds: ['islam-foundations', 'foundations-of-faith'],
+          guidedPathIds: ['foundations-starter'],
+          triviaPathId: 'foundations_of_islam',
         ),
         LearningPathPhase(
           id: 'beginner-daily-practice',
@@ -27,6 +29,8 @@ class LearningPathRegistry {
             'journey-of-wudu',
             'duas-daily-life',
           ],
+          guidedPathIds: ['salah-starter'],
+          triviaPathId: 'learning_salah',
         ),
         LearningPathPhase(
           id: 'beginner-connection',
@@ -38,6 +42,8 @@ class LearningPathRegistry {
             'short-surahs',
             'hadith-essentials',
           ],
+          guidedPathIds: ['quran-beginner-starter'],
+          triviaPathId: 'understanding_the_quran',
         ),
         LearningPathPhase(
           id: 'beginner-identity',
@@ -46,6 +52,8 @@ class LearningPathRegistry {
               'Grow through stories, belonging, and beautiful character.',
           order: 4,
           journeyIds: ['prophets-journey', 'beautiful-character'],
+          guidedPathIds: ['stories-starter', 'character-starter'],
+          triviaPathId: 'prophets_journey',
         ),
       ],
     ),
@@ -61,6 +69,8 @@ class LearningPathRegistry {
           description: 'Rebuild daily worship through salah, dhikr, and duas.',
           order: 1,
           journeyIds: ['salah-foundations', 'daily-dhikr', 'duas-daily-life'],
+          guidedPathIds: ['salah-starter', 'daily-dhikr-starter'],
+          triviaPathId: 'learning_salah',
         ),
         LearningPathPhase(
           id: 'practicing-understanding',
@@ -72,6 +82,8 @@ class LearningPathRegistry {
             'understand-what-you-recite',
             '100-quranic-words',
           ],
+          guidedPathIds: ['quran-beginner-starter'],
+          triviaPathId: 'understanding_the_quran',
         ),
         LearningPathPhase(
           id: 'practicing-character',
@@ -80,6 +92,7 @@ class LearningPathRegistry {
               'Keep worship connected to manners, reflection, and hadith.',
           order: 3,
           journeyIds: ['beautiful-character', 'hadith-essentials'],
+          guidedPathIds: ['character-starter'],
         ),
         LearningPathPhase(
           id: 'practicing-structure',
@@ -107,6 +120,8 @@ class LearningPathRegistry {
             'fiqh-basics',
             'timeline-of-islam',
           ],
+          guidedPathIds: ['foundations-starter'],
+          triviaPathId: 'foundations_of_islam',
         ),
         LearningPathPhase(
           id: 'seeker-quran-depth',
@@ -115,6 +130,8 @@ class LearningPathRegistry {
               'Move from reading toward themes, surahs, and guided reflection.',
           order: 2,
           journeyIds: ['journey-quran', 'short-surahs'],
+          guidedPathIds: ['quran-beginner-starter'],
+          triviaPathId: 'understanding_the_quran',
         ),
         LearningPathPhase(
           id: 'seeker-arabic',
@@ -129,6 +146,8 @@ class LearningPathRegistry {
           description: 'Tie history, signs, and prophetic life together.',
           order: 4,
           journeyIds: ['seerah-journey', 'stories-signs'],
+          guidedPathIds: ['stories-starter'],
+          triviaPathId: 'prophets_journey',
         ),
       ],
     ),
@@ -154,6 +173,7 @@ class LearningPathRegistry {
               'Refine recitation and deepen understanding with intention.',
           order: 2,
           journeyIds: ['tajweed-basics', 'journey-quran'],
+          triviaPathId: 'understanding_the_quran',
         ),
         LearningPathPhase(
           id: 'advanced-character-action',
@@ -162,6 +182,7 @@ class LearningPathRegistry {
               'Connect refinement to habit, service, and sustained worship.',
           order: 3,
           journeyIds: ['beautiful-character', 'daily-routines', 'daily-dhikr'],
+          guidedPathIds: ['character-starter', 'daily-dhikr-starter'],
         ),
       ],
     ),

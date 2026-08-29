@@ -4096,6 +4096,46 @@ class AppLocalizationsUr extends AppLocalizations {
   String get learnLandingBrowseTitle => 'موضوع کے لحاظ سے دیکھیں';
 
   @override
+  String get learnPathDetailTitle => 'آپ کے سیکھنے کا راستہ';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'سطح تبدیل کریں';
+
+  @override
+  String get learnPathTestYourselfTitle => 'خود کو آزمائیں';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'اس مرحلے کو مکمل کرنے کے لیے ایک مختصر کوئز۔';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'مکمل';
+
+  @override
+  String get learnPathPickerTitle => 'اپنی سطح منتخب کریں';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'وہ راستہ چنیں جو آپ کی موجودہ حالت سے میل کھاتا ہو۔ کبھی بھی بدل سکتے ہیں — آپ کی پیش رفت ہمیشہ محفوظ رہتی ہے۔';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'موجودہ';
+
+  @override
+  String get learnPathMigrationTitle => 'آپ کا راستہ تیار ہے';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'آپ کی سیکھ اب ایک راستے پر ہے: $level۔ جو کچھ آپ نے مکمل کیا وہ سب شمار ہوتا ہے۔';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'اپنا راستہ دیکھیں';
+
+  @override
+  String get learnPathMigrationDismiss => 'ابھی نہیں';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -17362,28 +17402,28 @@ class AppLocalizationsUr extends AppLocalizations {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'ابتدائی راستہ';
+  String get learningPathBeginnerTitle => 'اسلام میں نئے';
 
   @override
   String get learningPathBeginnerDescription =>
       'اسلام، عبادت اور شناخت کے ذریعے ایک پرسکون پہلا راستہ۔';
 
   @override
-  String get learningPathPracticingTitle => 'مشق کرنے والا راستہ';
+  String get learningPathPracticingTitle => 'تسلسل بنانا';
 
   @override
   String get learningPathPracticingDescription =>
       'عبادات اور فہم میں مستقل مزاجی کو مضبوط کریں۔';
 
   @override
-  String get learningPathSeekerTitle => 'علم کے متلاشی کا راستہ';
+  String get learningPathSeekerTitle => 'علم گہرا کرنا';
 
   @override
   String get learningPathSeekerDescription =>
       'عقیدہ، تاریخ اور انضمام کے ذریعے ایک زیادہ منظم راستہ۔';
 
   @override
-  String get learningPathAdvancedTitle => 'اعلی درجے کا راستہ';
+  String get learningPathAdvancedTitle => 'تزکیہ';
 
   @override
   String get learningPathAdvancedDescription =>

@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../shared/learn_art_assets.dart';
 import '../../enrichment/application/learn_enrichment_provider.dart';
 import '../../enrichment/presentation/widgets/learn_enrichment_cards.dart';
 import '../../journey/application/family_learning_provider.dart';
@@ -67,6 +69,19 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
       title: localizedPath.title,
       subtitle: localizedPath.subtitle,
       children: [
+        if (guidedPathArtAsset(pathId) != null) ...[
+          ArtHeaderCard(
+            imageAsset: guidedPathArtAsset(pathId)!,
+            title: localizedPath.title,
+            subtitle: localizedPath.subtitle,
+            fallbackIcon: GuidedLearningPathIconRegistry.iconForPathId(
+              localizedPath.path.id,
+            ),
+            fallbackColor: Theme.of(context).colorScheme.primary,
+            aspectRatio: 21 / 9,
+          ),
+          const SizedBox(height: 12),
+        ],
         if (completionEnrichment != null) ...[
           LearnPathCompletionCard(
             pathId: pathId,

@@ -4183,6 +4183,46 @@ class AppLocalizationsDe extends AppLocalizations {
   String get learnLandingBrowseTitle => 'Nach Thema stöbern';
 
   @override
+  String get learnPathDetailTitle => 'Dein Lernweg';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'Stufe ändern';
+
+  @override
+  String get learnPathTestYourselfTitle => 'Teste dich';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'Ein kurzes Quiz zum Abschluss dieser Phase.';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'Abgeschlossen';
+
+  @override
+  String get learnPathPickerTitle => 'Wähle deine Stufe';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'Wähle den Weg, der zu dir passt. Du kannst ihn jederzeit ändern — dein Fortschritt bleibt immer erhalten.';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'Aktuell';
+
+  @override
+  String get learnPathMigrationTitle => 'Dein Weg ist bereit';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'Dein Lernen liegt jetzt auf einem Weg: $level. Alles, was du abgeschlossen hast, zählt weiterhin.';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'Weg ansehen';
+
+  @override
+  String get learnPathMigrationDismiss => 'Nicht jetzt';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Reise fortsetzen';
 
   @override
@@ -17590,28 +17630,28 @@ class AppLocalizationsDe extends AppLocalizations {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'Anfängerpfad';
+  String get learningPathBeginnerTitle => 'Neu im Islam';
 
   @override
   String get learningPathBeginnerDescription =>
       'Ein ruhiger erster Weg durch Islam, Anbetung und Identität.';
 
   @override
-  String get learningPathPracticingTitle => 'Übungsweg';
+  String get learningPathPracticingTitle => 'Beständigkeit aufbauen';
 
   @override
   String get learningPathPracticingDescription =>
       'Kontinuität in der Anbetung und im Verständnis stärken.';
 
   @override
-  String get learningPathSeekerTitle => 'Wissenssucherpfad';
+  String get learningPathSeekerTitle => 'Wissen vertiefen';
 
   @override
   String get learningPathSeekerDescription =>
       'Eine strukturiertere Route durch Glauben, Geschichte und Integration.';
 
   @override
-  String get learningPathAdvancedTitle => 'Erweiterter Pfad';
+  String get learningPathAdvancedTitle => 'Verfeinerung';
 
   @override
   String get learningPathAdvancedDescription =>

@@ -4112,6 +4112,46 @@ class AppLocalizationsKu extends AppLocalizations {
   String get learnLandingBrowseTitle => 'Li gorî mijarê bigere';
 
   @override
+  String get learnPathDetailTitle => 'Rêya fêrbûna te';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'Astê biguherîne';
+
+  @override
+  String get learnPathTestYourselfTitle => 'Xwe biceribîne';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'Testeke kurt ji bo girtina vê qonaxê.';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'Temam';
+
+  @override
+  String get learnPathPickerTitle => 'Asta xwe hilbijêre';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'Rêya ku li gorî te ye hilbijêre. Her dem dikarî biguherînî — pêşketina te her tim dimîne.';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'Niha';
+
+  @override
+  String get learnPathMigrationTitle => 'Rêya te amade ye';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'Fêrbûna te niha li ser yek rêyê ye: $level. Her tiştê ku te temam kiriye tê hesibandin.';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'Rêya xwe bibîne';
+
+  @override
+  String get learnPathMigrationDismiss => 'Ne niha';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -17407,28 +17447,28 @@ class AppLocalizationsKu extends AppLocalizations {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'Beginner Path';
+  String get learningPathBeginnerTitle => 'Nû li Îslamê';
 
   @override
   String get learningPathBeginnerDescription =>
       'A calm first route through Islam, worship, and identity.';
 
   @override
-  String get learningPathPracticingTitle => 'Practicing Path';
+  String get learningPathPracticingTitle => 'Avakirina berdewamiyê';
 
   @override
   String get learningPathPracticingDescription =>
       'Strengthen consistency in worship and understanding.';
 
   @override
-  String get learningPathSeekerTitle => 'Knowledge Seeker Path';
+  String get learningPathSeekerTitle => 'Kûrkirina zanînê';
 
   @override
   String get learningPathSeekerDescription =>
       'A more structured route through belief, history, and integration.';
 
   @override
-  String get learningPathAdvancedTitle => 'Advanced Path';
+  String get learningPathAdvancedTitle => 'Kamilbûn';
 
   @override
   String get learningPathAdvancedDescription =>

@@ -4073,6 +4073,46 @@ class AppLocalizationsFa extends AppLocalizations {
   String get learnLandingBrowseTitle => 'مرور بر اساس موضوع';
 
   @override
+  String get learnPathDetailTitle => 'مسیر یادگیری شما';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'تغییر سطح';
+
+  @override
+  String get learnPathTestYourselfTitle => 'خودت را بیازما';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'آزمونی کوتاه برای پایان این مرحله.';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'تکمیل‌شده';
+
+  @override
+  String get learnPathPickerTitle => 'سطح خود را انتخاب کنید';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'مسیری را انتخاب کنید که با وضعیت شما هماهنگ است. هر زمان می‌توانید تغییرش دهید — پیشرفت شما همیشه محفوظ می‌ماند.';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'کنونی';
+
+  @override
+  String get learnPathMigrationTitle => 'مسیر شما آماده است';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'یادگیری شما اکنون در یک مسیر است: $level. هر آنچه کامل کرده‌اید محاسبه می‌شود.';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'مشاهده مسیر';
+
+  @override
+  String get learnPathMigrationDismiss => 'حالا نه';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -17354,28 +17394,28 @@ class AppLocalizationsFa extends AppLocalizations {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'Beginner Path';
+  String get learningPathBeginnerTitle => 'تازه‌وارد به اسلام';
 
   @override
   String get learningPathBeginnerDescription =>
       'A calm first route through Islam, worship, and identity.';
 
   @override
-  String get learningPathPracticingTitle => 'Practicing Path';
+  String get learningPathPracticingTitle => 'ساختن استمرار';
 
   @override
   String get learningPathPracticingDescription =>
       'Strengthen consistency in worship and understanding.';
 
   @override
-  String get learningPathSeekerTitle => 'Knowledge Seeker Path';
+  String get learningPathSeekerTitle => 'ژرف‌سازی دانش';
 
   @override
   String get learningPathSeekerDescription =>
       'A more structured route through belief, history, and integration.';
 
   @override
-  String get learningPathAdvancedTitle => 'Advanced Path';
+  String get learningPathAdvancedTitle => 'پالایش';
 
   @override
   String get learningPathAdvancedDescription =>
@@ -46183,6 +46223,46 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get learnLandingBrowseTitle => 'مرور بر اساس موضوع';
 
   @override
+  String get learnPathDetailTitle => 'مسیر یادگیری شما';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'تغییر سطح';
+
+  @override
+  String get learnPathTestYourselfTitle => 'خودت را بیازما';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'آزمونی کوتاه برای پایان این مرحله.';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'تکمیل‌شده';
+
+  @override
+  String get learnPathPickerTitle => 'سطح خود را انتخاب کنید';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'مسیری را انتخاب کنید که با وضعیت شما هماهنگ است. هر زمان می‌توانید تغییرش دهید — پیشرفت شما همیشه محفوظ می‌ماند.';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'کنونی';
+
+  @override
+  String get learnPathMigrationTitle => 'مسیر شما آماده است';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'یادگیری شما اکنون در یک مسیر است: $level. هر آنچه کامل کرده‌اید محاسبه می‌شود.';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'مشاهده مسیر';
+
+  @override
+  String get learnPathMigrationDismiss => 'حالا نه';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -59464,28 +59544,28 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'Beginner Path';
+  String get learningPathBeginnerTitle => 'تازه‌وارد به اسلام';
 
   @override
   String get learningPathBeginnerDescription =>
       'A calm first route through Islam, worship, and identity.';
 
   @override
-  String get learningPathPracticingTitle => 'Practicing Path';
+  String get learningPathPracticingTitle => 'ساختن استمرار';
 
   @override
   String get learningPathPracticingDescription =>
       'Strengthen consistency in worship and understanding.';
 
   @override
-  String get learningPathSeekerTitle => 'Knowledge Seeker Path';
+  String get learningPathSeekerTitle => 'ژرف‌سازی دانش';
 
   @override
   String get learningPathSeekerDescription =>
       'A more structured route through belief, history, and integration.';
 
   @override
-  String get learningPathAdvancedTitle => 'Advanced Path';
+  String get learningPathAdvancedTitle => 'پالایش';
 
   @override
   String get learningPathAdvancedDescription =>

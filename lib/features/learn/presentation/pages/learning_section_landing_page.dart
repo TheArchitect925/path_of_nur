@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/display/art_header_card.dart';
@@ -17,8 +18,10 @@ import '../../journey/application/learning_path_provider.dart';
 import '../../journey/data/learning_journey_localized_metadata.dart';
 import '../../journey/data/learning_path_registry.dart';
 import '../../journey/domain/family_learning_models.dart';
+
 import '../../journey/domain/learning_journey_models.dart';
 import '../../journey/domain/learning_path_models.dart';
+import '../../shared/learn_art_assets.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
@@ -79,6 +82,7 @@ class _LearningSectionLandingPageState
 
   List<Widget> _buildAdultChildren(BuildContext context, AppLocalizations l10n) {
     return [
+      const _PathMigrationCard(),
       const _LearnPathHeroCard(),
       const SizedBox(height: 14),
       const _TodayLearningSection(),
@@ -205,22 +209,81 @@ class _LearnBrowseGroup {
   final String? routeNameOverride;
 }
 
+/// One-time "Your path is ready" moment for existing users after the path
+/// merge: shows the level their history mapped onto, then never returns.
+class _PathMigrationCard extends ConsumerStatefulWidget {
+  const _PathMigrationCard();
+
+  @override
+  ConsumerState<_PathMigrationCard> createState() => _PathMigrationCardState();
+}
+
+class _PathMigrationCardState extends ConsumerState<_PathMigrationCard> {
+  static const _seenKey = 'learn.pathMigrationCard.v1';
+  bool _dismissed = false;
+
+  void _markSeen() {
+    ref.read(localStoreProvider).setBool(_seenKey, true);
+    setState(() => _dismissed = true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_dismissed) return const SizedBox.shrink();
+    final store = ref.watch(localStoreProvider);
+    if (store.getBool(_seenKey) ?? false) return const SizedBox.shrink();
+    final pathState = ref.watch(learningPathStateProvider);
+    if (pathState == null) return const SizedBox.shrink();
+
+    final l10n = AppLocalizations.of(context);
+    final levelName = LearningPathRegistry.localizedPathTitle(
+      l10n,
+      pathState.path,
+    );
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: AppHeroGlassShell(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.learnPathMigrationTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 6),
+            Text(l10n.learnPathMigrationBody(levelName)),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: _markSeen,
+                  child: Text(l10n.learnPathMigrationDismiss),
+                ),
+                const SizedBox(width: 8),
+                FilledButton.tonal(
+                  onPressed: () {
+                    _markSeen();
+                    context.pushNamed('learnPathDetail');
+                  },
+                  child: Text(l10n.learnPathMigrationAction),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 /// The leveled learning path as the landing hero: scenic level art, the
 /// current phase with its progress, and the next journey to continue. Without
 /// a chosen path it becomes the invitation to pick one.
 class _LearnPathHeroCard extends ConsumerWidget {
   const _LearnPathHeroCard();
-
-  static const Map<LearningPathLevel, String> _levelArt = {
-    LearningPathLevel.beginner:
-        'assets/images/learn_art/level_new_to_islam.webp',
-    LearningPathLevel.practicing:
-        'assets/images/learn_art/level_building_consistency.webp',
-    LearningPathLevel.seeker:
-        'assets/images/learn_art/level_deepening_knowledge.webp',
-    LearningPathLevel.advanced:
-        'assets/images/learn_art/level_refinement.webp',
-  };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -228,7 +291,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
     final pathState = ref.watch(learningPathStateProvider);
     final accent = Theme.of(context).colorScheme.primary;
 
-    void openJourneyHome() {
+    void openPathDetail() {
       ref
           .read(learnAnalyticsServiceProvider)
           .logPrimaryCardOpened(
@@ -237,19 +300,29 @@ class _LearnPathHeroCard extends ConsumerWidget {
             domain: 'journeys',
             audience: LearnAnalyticsAudience.beginner,
           );
-      context.pushNamed('learnJourneyHome');
+      context.pushNamed('learnPathDetail');
     }
 
     if (pathState == null) {
       return ArtHeaderCard(
-        imageAsset: _levelArt[LearningPathLevel.beginner]!,
+        imageAsset: levelArtAsset(LearningPathLevel.beginner),
         eyebrow: l10n.learnLandingPathEyebrow,
         title: l10n.learnLandingChoosePathTitle,
         subtitle: l10n.learnLandingChoosePathSubtitle,
         fallbackIcon: Icons.flag_rounded,
         fallbackColor: accent,
         aspectRatio: 16 / 9,
-        onTap: openJourneyHome,
+        onTap: () {
+          ref
+              .read(learnAnalyticsServiceProvider)
+              .logPrimaryCardOpened(
+                cardId: 'path_hero_choose',
+                sourceSurface: 'learn_landing',
+                domain: 'journeys',
+                audience: LearnAnalyticsAudience.beginner,
+              );
+          context.pushNamed('learnLearningPath');
+        },
       );
     }
 
@@ -270,8 +343,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ArtHeaderCard(
-            imageAsset: _levelArt[level] ??
-                _levelArt[LearningPathLevel.beginner]!,
+            imageAsset: levelArtAsset(level),
             eyebrow: l10n.learnLandingPathEyebrow,
             title: LearningPathRegistry.localizedPathTitle(
               l10n,
@@ -285,7 +357,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
             fallbackColor: accent,
             aspectRatio: 16 / 9,
             borderRadius: const BorderRadius.all(Radius.circular(16)),
-            onTap: openJourneyHome,
+            onTap: openPathDetail,
           ),
           const SizedBox(height: 12),
           Row(
@@ -361,7 +433,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: TextButton(
-              onPressed: openJourneyHome,
+              onPressed: openPathDetail,
               child: Text(l10n.learnLandingViewPathAction),
             ),
           ),

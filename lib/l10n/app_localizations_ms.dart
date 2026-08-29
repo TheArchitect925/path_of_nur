@@ -4100,6 +4100,46 @@ class AppLocalizationsMs extends AppLocalizations {
   String get learnLandingBrowseTitle => 'Layari mengikut topik';
 
   @override
+  String get learnPathDetailTitle => 'Laluan Pembelajaran Anda';
+
+  @override
+  String get learnPathDetailChangeLevelAction => 'Tukar tahap';
+
+  @override
+  String get learnPathTestYourselfTitle => 'Uji diri anda';
+
+  @override
+  String get learnPathTestYourselfSubtitle =>
+      'Kuiz ringkas untuk menutup fasa ini.';
+
+  @override
+  String get learnPathPhaseCompletedLabel => 'Selesai';
+
+  @override
+  String get learnPathPickerTitle => 'Pilih tahap anda';
+
+  @override
+  String get learnPathPickerSubtitle =>
+      'Pilih laluan yang sepadan dengan kedudukan anda. Boleh ditukar bila-bila masa — kemajuan anda sentiasa kekal.';
+
+  @override
+  String get learnPathPickerCurrentBadge => 'Semasa';
+
+  @override
+  String get learnPathMigrationTitle => 'Laluan anda sedia';
+
+  @override
+  String learnPathMigrationBody(String level) {
+    return 'Pembelajaran anda kini berada di satu laluan: $level. Semua yang anda selesaikan tetap dikira.';
+  }
+
+  @override
+  String get learnPathMigrationAction => 'Lihat laluan anda';
+
+  @override
+  String get learnPathMigrationDismiss => 'Bukan sekarang';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -17395,28 +17435,28 @@ class AppLocalizationsMs extends AppLocalizations {
       'Learn names that deepen awe, hope, and trust.';
 
   @override
-  String get learningPathBeginnerTitle => 'Beginner Path';
+  String get learningPathBeginnerTitle => 'Baru Mengenali Islam';
 
   @override
   String get learningPathBeginnerDescription =>
       'A calm first route through Islam, worship, and identity.';
 
   @override
-  String get learningPathPracticingTitle => 'Practicing Path';
+  String get learningPathPracticingTitle => 'Membina Konsistensi';
 
   @override
   String get learningPathPracticingDescription =>
       'Strengthen consistency in worship and understanding.';
 
   @override
-  String get learningPathSeekerTitle => 'Knowledge Seeker Path';
+  String get learningPathSeekerTitle => 'Mendalami Ilmu';
 
   @override
   String get learningPathSeekerDescription =>
       'A more structured route through belief, history, and integration.';
 
   @override
-  String get learningPathAdvancedTitle => 'Advanced Path';
+  String get learningPathAdvancedTitle => 'Penyempurnaan';
 
   @override
   String get learningPathAdvancedDescription =>

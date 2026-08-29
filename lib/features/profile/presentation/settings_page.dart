@@ -1265,9 +1265,7 @@ class SettingsPage extends ConsumerWidget {
                     ),
                   ),
                   trailing: const Icon(Icons.chevron_right_rounded),
-                  // Journey home hosts the level switcher until the dedicated
-                  // path picker ships (calm-navigation Phase 5).
-                  onTap: () => context.pushNamed('learnJourneyHome'),
+                  onTap: () => context.pushNamed('learnLearningPath'),
                 ),
                 const Divider(height: 1),
                 ListTile(

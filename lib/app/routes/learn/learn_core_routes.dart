@@ -13,6 +13,8 @@ import '../../../features/learn/journey/presentation/family_learning_management_
 import '../../../features/learn/journey/presentation/learning_journey_detail_page.dart';
 import '../../../features/learn/journey/presentation/learning_journey_home_page.dart';
 import '../../../features/learn/journey/presentation/learning_journey_island_page.dart';
+import '../../../features/learn/journey/presentation/learning_path_detail_page.dart';
+import '../../../features/learn/journey/presentation/learning_path_picker_page.dart';
 import '../../../features/learn/journey/presentation/learning_journey_stage_page.dart';
 import '../../../features/learn/knowledge_games/content_expansion/presentation/internal_content_builder_page.dart';
 import '../../../features/learn/presentation/data/learn_hub_taxonomy.dart';
@@ -260,6 +262,18 @@ List<RouteBase> buildLearnCoreRoutes() {
         );
         return '/learn/explore';
       },
+    ),
+    GoRoute(
+      path: '/learn/path',
+      name: 'learnPathDetail',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearningPathDetailPage()),
+    ),
+    GoRoute(
+      path: '/learn/path/level',
+      name: 'learnLearningPath',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearningPathPickerPage()),
     ),
     GoRoute(
       path: '/learn/journey-home',

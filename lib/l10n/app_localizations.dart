@@ -7073,6 +7073,78 @@ abstract class AppLocalizations {
   /// **'Browse by topic'**
   String get learnLandingBrowseTitle;
 
+  /// No description provided for @learnPathDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Learning Path'**
+  String get learnPathDetailTitle;
+
+  /// No description provided for @learnPathDetailChangeLevelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Change level'**
+  String get learnPathDetailChangeLevelAction;
+
+  /// No description provided for @learnPathTestYourselfTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Test yourself'**
+  String get learnPathTestYourselfTitle;
+
+  /// No description provided for @learnPathTestYourselfSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short quiz to close this phase.'**
+  String get learnPathTestYourselfSubtitle;
+
+  /// No description provided for @learnPathPhaseCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get learnPathPhaseCompletedLabel;
+
+  /// No description provided for @learnPathPickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your level'**
+  String get learnPathPickerTitle;
+
+  /// No description provided for @learnPathPickerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the path that matches where you are. You can change it anytime — your progress always stays.'**
+  String get learnPathPickerSubtitle;
+
+  /// No description provided for @learnPathPickerCurrentBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get learnPathPickerCurrentBadge;
+
+  /// No description provided for @learnPathMigrationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your path is ready'**
+  String get learnPathMigrationTitle;
+
+  /// No description provided for @learnPathMigrationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your learning now lives on one path: {level}. Everything you completed already counts.'**
+  String learnPathMigrationBody(String level);
+
+  /// No description provided for @learnPathMigrationAction.
+  ///
+  /// In en, this message translates to:
+  /// **'See your path'**
+  String get learnPathMigrationAction;
+
+  /// No description provided for @learnPathMigrationDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get learnPathMigrationDismiss;
+
   /// No description provided for @learnHubContinueJourneyTitle.
   ///
   /// In en, this message translates to:
@@ -28824,7 +28896,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathBeginnerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Beginner Path'**
+  /// **'New to Islam'**
   String get learningPathBeginnerTitle;
 
   /// No description provided for @learningPathBeginnerDescription.
@@ -28836,7 +28908,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathPracticingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Practicing Path'**
+  /// **'Building Consistency'**
   String get learningPathPracticingTitle;
 
   /// No description provided for @learningPathPracticingDescription.
@@ -28848,7 +28920,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathSeekerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Knowledge Seeker Path'**
+  /// **'Deepening Knowledge'**
   String get learningPathSeekerTitle;
 
   /// No description provided for @learningPathSeekerDescription.
@@ -28860,7 +28932,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathAdvancedTitle.
   ///
   /// In en, this message translates to:
-  /// **'Advanced Path'**
+  /// **'Refinement'**
   String get learningPathAdvancedTitle;
 
   /// No description provided for @learningPathAdvancedDescription.
