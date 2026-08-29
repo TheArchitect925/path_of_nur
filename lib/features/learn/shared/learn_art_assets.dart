@@ -15,6 +15,22 @@ String levelArtAsset(LearningPathLevel level) {
   };
 }
 
+/// Scene for a learning island. Journeys inherit their island's scene as a
+/// card thumbnail, so every journey in the app carries art.
+String? journeyIslandArtAsset(String islandId) {
+  return switch (islandId) {
+    'core-knowledge' => '$_artRoot/journey_core_knowledge.webp',
+    'practice-worship' => '$_artRoot/journey_practice_worship.webp',
+    'understanding-islam' => '$_artRoot/journey_understanding_islam.webp',
+    'arabic-learning' => '$_artRoot/journey_arabic_learning.webp',
+    'discovery' => '$_artRoot/journey_discovery.webp',
+    'kids-learning' => '$_artRoot/journey_kids_learning.webp',
+    'browse-all' => '$_artRoot/journey_browse_all.webp',
+    'tools-other' => '$_artRoot/journey_tools_other.webp',
+    _ => null,
+  };
+}
+
 /// Scene tile for a kids-learning subcategory; null when it has no art yet.
 String? kidsSubcategoryArtAsset(String subcategoryId) {
   return switch (subcategoryId) {

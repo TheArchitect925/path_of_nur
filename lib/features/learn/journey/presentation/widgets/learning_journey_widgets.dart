@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/theme/islamic_icons.dart';
+import '../../../../../shared/widgets/display/art_header_card.dart';
+import '../../../shared/learn_art_assets.dart';
 import '../../data/learning_journey_localized_metadata.dart';
 import '../../domain/learning_journey_models.dart';
 
@@ -120,14 +122,11 @@ class LearningJourneyIslandCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 46,
-              height: 46,
-              decoration: BoxDecoration(
-                color: island.accentColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Icon(island.icon, color: island.accentColor),
+            ArtLeadingThumb(
+              imageAsset: journeyIslandArtAsset(island.id),
+              fallbackIcon: island.icon,
+              fallbackColor: island.accentColor,
+              size: 46,
             ),
             const SizedBox(height: 14),
             Text(
@@ -189,15 +188,18 @@ class LearningJourneyCard extends StatelessWidget {
             border: Border.all(color: const Color(0xFFE0CEB4)),
           ),
           child: Row(
+            // The card grew tall enough that a centred thumb floats away from
+            // the title it belongs to.
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEADCC7),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(leadingIcon, color: leadingColor),
+              // Journeys wear their island's scene; the icon stays as the
+              // fallback for any island without art.
+              ArtLeadingThumb(
+                imageAsset: journeyIslandArtAsset(journey.islandId),
+                fallbackIcon: leadingIcon,
+                fallbackColor: leadingColor,
+                size: 42,
+                borderRadius: BorderRadius.circular(12),
               ),
               const SizedBox(width: 12),
               Expanded(

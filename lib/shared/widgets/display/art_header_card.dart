@@ -136,27 +136,34 @@ class ArtLeadingThumb extends StatelessWidget {
     required this.fallbackIcon,
     required this.fallbackColor,
     this.size = 52,
+    this.borderRadius,
   });
 
-  final String imageAsset;
+  /// Null renders the icon fallback, so callers can pass a resolver result
+  /// straight through for subjects that have no art yet.
+  final String? imageAsset;
   final IconData fallbackIcon;
   final Color fallbackColor;
   final double size;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
+    final asset = imageAsset;
     return ClipRRect(
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: borderRadius ?? BorderRadius.circular(14),
       child: SizedBox(
         width: size,
         height: size,
-        child: Image.asset(
-          imageAsset,
-          fit: BoxFit.cover,
-          filterQuality: FilterQuality.low,
-          errorBuilder: (context, error, stackTrace) =>
-              ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
-        ),
+        child: asset == null
+            ? ArtImageFallback(icon: fallbackIcon, color: fallbackColor)
+            : Image.asset(
+                asset,
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.low,
+                errorBuilder: (context, error, stackTrace) =>
+                    ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
+              ),
       ),
     );
   }
