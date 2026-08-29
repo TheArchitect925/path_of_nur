@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../arabic/data/arabic_alphabet_catalog.dart';
 import '../../../arabic/domain/arabic_alphabet_models.dart';
 import '../../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
+import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_teaching_audio_playback_service.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
@@ -71,163 +72,130 @@ class _QuranTeachingLessonPageState
         ? widget.lesson.steps[_stepIndex + 1].title
         : null;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.lesson.title),
-        actions: [
-          IconButton(
-            onPressed: () {
-              final fallbackPack = _firstAudioPackForModule(
-                catalog,
-                widget.module.id,
-              );
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => QuranTeachingListenOnlyPage(
-                    initialPackId: fallbackPack?.id,
-                  ),
+    return LearnHubPageScaffold(
+      headerIcon: Icons.menu_book_rounded,
+      title: widget.lesson.title,
+      subtitle: widget.module.title,
+      headerActions: [
+        IconButton(
+          onPressed: () {
+            final fallbackPack = _firstAudioPackForModule(
+              catalog,
+              widget.module.id,
+            );
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => QuranTeachingListenOnlyPage(
+                  initialPackId: fallbackPack?.id,
                 ),
-              );
-            },
-            icon: const Icon(Icons.headphones_rounded),
-            tooltip: l10n.batch9PracticeAsAudioTooltip,
+              ),
+            );
+          },
+          icon: const Icon(Icons.headphones_rounded),
+          tooltip: l10n.batch9PracticeAsAudioTooltip,
+        ),
+        IconButton(
+          onPressed: () => ref
+              .read(quranTeachingProgressProvider.notifier)
+              .toggleReviewLater(widget.lesson.id),
+          icon: Icon(
+            reviewLater
+                ? Icons.bookmark_rounded
+                : Icons.bookmark_border_rounded,
           ),
-          IconButton(
-            onPressed: () => ref
-                .read(quranTeachingProgressProvider.notifier)
-                .toggleReviewLater(widget.lesson.id),
-            icon: Icon(
-              reviewLater
-                  ? Icons.bookmark_rounded
-                  : Icons.bookmark_border_rounded,
+          tooltip: reviewLater
+              ? l10n.accessibilitySavedForReview
+              : l10n.accessibilityReviewLater,
+        ),
+      ],
+      children: [
+        const ArabicLearningPlaybackSpeedToggle(),
+        const SizedBox(height: 12),
+        Text(
+          '$currentPage / $totalPages',
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+            color: context.palette.onSurfaceSubtle,
+          ),
+        ),
+        const SizedBox(height: 8),
+        LinearProgressIndicator(
+          value: totalPages == 0 ? 0 : currentPage / totalPages,
+          minHeight: 8,
+          borderRadius: BorderRadius.circular(999),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: _inQuiz
+              ? _QuizBody(
+                  quiz: widget.lesson.quizzes[_quizIndex],
+                  selectedOptionId: _selectedOptionId,
+                  selectedTrueFalse: _selectedTrueFalse,
+                  buildSelection: _buildSelection,
+                  feedback: _feedback,
+                  wasCorrect: _wasCorrect,
+                  onPlayAudio: _playAudio,
+                  onSelectOption: (id) {
+                    if (_feedback != null) return;
+                    setState(() => _selectedOptionId = id);
+                  },
+                  onSelectTrueFalse: (value) {
+                    if (_feedback != null) return;
+                    setState(() => _selectedTrueFalse = value);
+                  },
+                  onTapBuildToken: (value) {
+                    if (_feedback != null) return;
+                    setState(() {
+                      if (_buildSelection.contains(value)) {
+                        _buildSelection.remove(value);
+                      } else {
+                        _buildSelection.add(value);
+                      }
+                    });
+                  },
+                )
+              : _LessonStepBody(
+                  step: widget.lesson.steps[_stepIndex],
+                  visualModeEnabled: progress.visualModeEnabled,
+                  onPlayAudio: _playAudio,
+                ),
+        ),
+        if (!_inQuiz && nextStepTitle != null) ...[
+          const SizedBox(height: 12),
+          Text(
+            l10n.quranTeachingLessonUpNext(nextStepTitle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+              fontWeight: FontWeight.w600,
             ),
-            tooltip: reviewLater
-                ? l10n.accessibilitySavedForReview
-                : l10n.accessibilityReviewLater,
           ),
         ],
-      ),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          children: [
-            const ArabicLearningPlaybackSpeedToggle(),
-            const SizedBox(height: 12),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final compactHeader = constraints.maxWidth < 360;
-                if (compactHeader) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.module.title,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text('$currentPage / $totalPages'),
-                    ],
-                  );
-                }
-                return Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        widget.module.title,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Text('$currentPage / $totalPages'),
-                  ],
-                );
-              },
+        const SizedBox(height: 16),
+        if (!_inQuiz)
+          FilledButton(
+            onPressed: _advanceStep,
+            child: Text(
+              _stepIndex == widget.lesson.steps.length - 1
+                  ? (widget.lesson.quizzes.isEmpty
+                        ? l10n.batch9CompleteLessonAction
+                        : l10n.batch9TryQuickQuizAction)
+                  : l10n.batch9ContinueAction,
             ),
-            const SizedBox(height: 8),
-            LinearProgressIndicator(
-              value: totalPages == 0 ? 0 : currentPage / totalPages,
-              minHeight: 8,
-              borderRadius: BorderRadius.circular(999),
+          ),
+        if (_inQuiz && _feedback == null)
+          FilledButton(
+            onPressed: _submitQuiz,
+            child: Text(l10n.batch9CheckAnswerAction),
+          ),
+        if (_inQuiz && _feedback != null)
+          FilledButton(
+            onPressed: _advanceQuiz,
+            child: Text(
+              _quizIndex == widget.lesson.quizzes.length - 1
+                  ? l10n.batch9FinishLessonAction
+                  : l10n.batch9NextQuestionAction,
             ),
-            const SizedBox(height: 16),
-            PremiumCard(
-              child: _inQuiz
-                  ? _QuizBody(
-                      quiz: widget.lesson.quizzes[_quizIndex],
-                      selectedOptionId: _selectedOptionId,
-                      selectedTrueFalse: _selectedTrueFalse,
-                      buildSelection: _buildSelection,
-                      feedback: _feedback,
-                      wasCorrect: _wasCorrect,
-                      onPlayAudio: _playAudio,
-                      onSelectOption: (id) {
-                        if (_feedback != null) return;
-                        setState(() => _selectedOptionId = id);
-                      },
-                      onSelectTrueFalse: (value) {
-                        if (_feedback != null) return;
-                        setState(() => _selectedTrueFalse = value);
-                      },
-                      onTapBuildToken: (value) {
-                        if (_feedback != null) return;
-                        setState(() {
-                          if (_buildSelection.contains(value)) {
-                            _buildSelection.remove(value);
-                          } else {
-                            _buildSelection.add(value);
-                          }
-                        });
-                      },
-                    )
-                  : _LessonStepBody(
-                      step: widget.lesson.steps[_stepIndex],
-                      visualModeEnabled: progress.visualModeEnabled,
-                      onPlayAudio: _playAudio,
-                    ),
-            ),
-            if (!_inQuiz && nextStepTitle != null) ...[
-              const SizedBox(height: 12),
-              Text(
-                l10n.quranTeachingLessonUpNext(nextStepTitle),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-            const SizedBox(height: 16),
-            if (!_inQuiz)
-              FilledButton(
-                onPressed: _advanceStep,
-                child: Text(
-                  _stepIndex == widget.lesson.steps.length - 1
-                      ? (widget.lesson.quizzes.isEmpty
-                            ? l10n.batch9CompleteLessonAction
-                            : l10n.batch9TryQuickQuizAction)
-                      : l10n.batch9ContinueAction,
-                ),
-              ),
-            if (_inQuiz && _feedback == null)
-              FilledButton(
-                onPressed: _submitQuiz,
-                child: Text(l10n.batch9CheckAnswerAction),
-              ),
-            if (_inQuiz && _feedback != null)
-              FilledButton(
-                onPressed: _advanceQuiz,
-                child: Text(
-                  _quizIndex == widget.lesson.quizzes.length - 1
-                      ? l10n.batch9FinishLessonAction
-                      : l10n.batch9NextQuestionAction,
-                ),
-              ),
-          ],
-        ),
-      ),
+          ),
+      ],
     );
   }
 
@@ -444,7 +412,7 @@ class _LessonStepBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
-            color: AppColors.surfaceSoft.withValues(alpha: 0.65),
+            color: context.palette.surfaceSoft.withValues(alpha: 0.65),
           ),
           child: Column(
             children: [
@@ -480,7 +448,7 @@ class _LessonStepBody extends StatelessWidget {
           Text(
             l10n.quranTeachingLessonSourceLabel(step.sourceReference!),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -489,9 +457,9 @@ class _LessonStepBody extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             step.helperText!,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
         const SizedBox(height: 16),
@@ -536,7 +504,7 @@ class _LessonStepBody extends StatelessWidget {
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    border: Border.all(color: AppColors.surfaceSoft),
+                    border: Border.all(color: context.palette.surfaceSoft),
                   ),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
@@ -568,7 +536,7 @@ class _LessonStepBody extends StatelessWidget {
                                 ),
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
-                                      color: AppColors.onSurfaceSubtle,
+                                      color: context.palette.onSurfaceSubtle,
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
@@ -580,7 +548,7 @@ class _LessonStepBody extends StatelessWidget {
                                 '${example.visualAnchor!.label} • ${example.visualAnchor!.hint}',
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
-                                      color: AppColors.onSurfaceSubtle,
+                                      color: context.palette.onSurfaceSubtle,
                                     ),
                               ),
                             ),
@@ -683,9 +651,9 @@ class _QuizBody extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             quiz.promptSecondary!,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
         if (quiz.audio != null) ...[
@@ -716,7 +684,7 @@ class _QuizBody extends StatelessWidget {
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppColors.surfaceSoft),
+              border: Border.all(color: context.palette.surfaceSoft),
             ),
             child: Text(
               buildSelection.isEmpty
@@ -783,7 +751,7 @@ class _QuizBody extends StatelessWidget {
                     border: Border.all(
                       color: selectedOptionId == option.id
                           ? Theme.of(context).colorScheme.primary
-                          : AppColors.surfaceSoft,
+                          : context.palette.surfaceSoft,
                     ),
                   ),
                   child: Row(
@@ -880,7 +848,7 @@ class _SharedLetterSupportCard extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.45),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -952,9 +920,9 @@ class _SharedLetterSupportCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               l10n.quranTeachingLessonNoForwardJoinHint,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
           ],
         ],
@@ -975,7 +943,7 @@ class _LetterFormTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.surfaceSoft),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -984,7 +952,7 @@ class _LetterFormTile extends StatelessWidget {
           Text(
             label,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               fontWeight: FontWeight.w700,
             ),
           ),
