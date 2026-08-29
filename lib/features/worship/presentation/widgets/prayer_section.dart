@@ -1154,7 +1154,9 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
                               (day) => Container(
                                 width: 10,
                                 height: 10,
-                                margin: const EdgeInsets.only(right: 3),
+                                margin: const EdgeInsetsDirectional.only(
+                                  end: 3,
+                                ),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: _heatmapColor(

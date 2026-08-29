@@ -787,7 +787,7 @@
       "journey": {}
     }
   },
-  "quranHubRecommendationReasonReviewDue": "{count, plural, =1{One memorized ayah is due for review today.} other{{count} memorized ayahs are due for review today.}}",
+  "quranHubRecommendationReasonReviewDue": "{count, plural, =1{آية محفوظة واحدة تحتاج إلى المراجعة اليوم.} other{{count} آيات محفوظة تحتاج إلى المراجعة اليوم.}}",
   "@quranHubRecommendationReasonReviewDue": {
     "placeholders": {
       "count": {
@@ -1120,7 +1120,7 @@
   "worshipPrayerQadaOverviewTitle": "نظرة على القضاء",
   "worshipPrayerQadaOverviewSubtitle": "اعرف أي قوائم القضاء أثقل وخطط لإيقاع قضائك بوضوح.",
   "worshipPrayerQadaGuidanceTitle": "إرشاد قضاء الصلوات الفائتة",
-  "worshipPrayerQadaGuidanceBody": "1. Keep current prayers on time as the first priority.\n2. Make sincere tawbah and ask Allah for consistency.\n3. Build a manageable qada routine (for example: add one qada after each current prayer).\n4. Track by prayer type to avoid overwhelm and maintain steady progress.\n5. If your situation is complex, confirm your plan with a trusted local scholar.",
+  "worshipPrayerQadaGuidanceBody": "١. حافظ على أداء الصلوات الحاضرة في وقتها كأولوية أولى.\n٢. أخلص التوبة واسأل الله الثبات.\n٣. ابنِ روتينًا ميسورًا للقضاء (مثال: صلِّ فائتة واحدة بعد كل صلاة حاضرة).\n٤. تابِع حسب نوع الصلاة لتتجنب الإرهاق وتحافظ على تقدم ثابت.\n٥. إن كانت حالتك معقدة، فأكِّد خطتك مع عالم موثوق في بلدك.",
   "worshipPrayerHistoryTitle": "سجل الصلوات",
   "worshipPrayerHistorySubtitle": "أوقات الإتمام المسجلة ليوم {date}.",
   "@worshipPrayerHistorySubtitle": {
@@ -1375,9 +1375,9 @@
   "homeJourneyNextUnlockValue": "معاينة مكافأة خلفية الشاشة",
   "homeQuickActionsTitle": "إجراءات سريعة",
   "homeQuickActionsSubtitle": "اقفز إلى أقسامك الأساسية بسرعة.",
-  "appQuickActionOpenToday": "Open Today",
-  "appQuickActionReadQuran": "Read Qur’an",
-  "appQuickActionDailyLearning": "Daily Learning",
+  "appQuickActionOpenToday": "افتح اليوم",
+  "appQuickActionReadQuran": "اقرأ القرآن",
+  "appQuickActionDailyLearning": "التعلّم اليومي",
   "homeReflectionReminder": "\"عد بهدوء إلى نيتك. الأعمال الصغيرة المخلصة تبني ضوءًا دائمًا \".",
   "homeWelcomeDailyIntentionTitle": "النية اليومية",
   "homeWelcomeDailyIntentionSubtitle": "ابدأ اليوم بالتركيز اللطيف والتفكير والاتساق.",
@@ -1401,17 +1401,17 @@
   "worshipQiblaDisableArMode": "تعطيل وضع الواقع المعزز",
   "worshipQiblaEnableArMode": "تمكين وضع الواقع المعزز",
   "worshipQiblaArModeBetaHint": "لا يزال وضع الواقع المعزز خفيف الوزن وقد يختلف حسب الجهاز.",
-  "worshipQiblaArLiveTitle": "Live camera guidance",
-  "worshipQiblaArLiveSubtitle": "Hold your phone up. Keep the Qibla marker above the horizon and align the prayer mat toward the floor.",
-  "worshipQiblaArPrayerMatHint": "Place your prayer mat so its top edge points in the same direction as the Qibla marker.",
-  "worshipQiblaArOverlayTitle": "Move until the marker centers",
+  "worshipQiblaArLiveTitle": "الإرشاد المباشر بالكاميرا",
+  "worshipQiblaArLiveSubtitle": "ارفع هاتفك. أبقِ مؤشر القبلة فوق الأفق ووجّه السجادة نحو الأرض.",
+  "worshipQiblaArPrayerMatHint": "ضع سجادة الصلاة بحيث تشير حافتها العليا في اتجاه مؤشر القبلة نفسه.",
+  "worshipQiblaArOverlayTitle": "تحرّك حتى يتوسط المؤشر",
   "worshipQiblaArHorizonLineLabel": "Horizon",
   "worshipQiblaArKaabaLabel": "Qibla",
-  "worshipQiblaArCameraUnavailableTitle": "Camera unavailable",
-  "worshipQiblaArCameraPermissionBody": "Allow camera access to use AR mode and view the Qibla over your surroundings.",
-  "worshipQiblaArCameraUnavailableBody": "AR mode could not start the camera on this device right now.",
-  "worshipQiblaArCameraLoadingBody": "Starting the camera for live Qibla guidance...",
-  "worshipQiblaArRetryCameraAction": "Retry camera",
+  "worshipQiblaArCameraUnavailableTitle": "الكاميرا غير متاحة",
+  "worshipQiblaArCameraPermissionBody": "اسمح بالوصول إلى الكاميرا لاستخدام وضع الواقع المعزز ورؤية القبلة فوق ما حولك.",
+  "worshipQiblaArCameraUnavailableBody": "تعذّر على وضع الواقع المعزز تشغيل الكاميرا على هذا الجهاز الآن.",
+  "worshipQiblaArCameraLoadingBody": "جارٍ تشغيل الكاميرا للإرشاد المباشر إلى القبلة…",
+  "worshipQiblaArRetryCameraAction": "أعد محاولة الكاميرا",
   "worshipQiblaLocationServicesDisabled": "تم تعطيل خدمات الموقع. تمكينهم من استخدام مكتشف القبلة.",
   "worshipQiblaLocationPermissionRequired": "إذن الموقع مطلوب لتحديد القبلة من مكان وجودك.",
   "worshipQiblaUnableToReadLocation": "يتعذَّر قراءة موقعك الآن.",
@@ -1440,31 +1440,31 @@
   },
   "worshipQiblaAlignedMessage": "أنت متوافق مع القبلة.",
   "worshipQiblaRotateMessage": "قم بالتدوير برفق حتى تتم محاذاة السهم.",
-  "worshipQiblaCalibrationHint": "Move your phone gently in a figure-eight if the compass feels stuck.",
-  "worshipQiblaCurrentHeadingLabel": "Current heading",
-  "worshipQiblaDirectionValue": "Qibla direction {degrees}°",
+  "worshipQiblaCalibrationHint": "حرّك هاتفك برفق على شكل رقم ثمانية إذا بدت البوصلة متوقفة.",
+  "worshipQiblaCurrentHeadingLabel": "الاتجاه الحالي",
+  "worshipQiblaDirectionValue": "اتجاه القبلة {degrees}°",
   "@worshipQiblaDirectionValue": {
     "placeholders": {
       "degrees": {}
     }
   },
-  "worshipQiblaTurnRightValue": "Turn {degrees}° right",
+  "worshipQiblaTurnRightValue": "استدر {degrees}° إلى اليمين",
   "@worshipQiblaTurnRightValue": {
     "placeholders": {
       "degrees": {}
     }
   },
-  "worshipQiblaTurnLeftValue": "Turn {degrees}° left",
+  "worshipQiblaTurnLeftValue": "استدر {degrees}° إلى اليسار",
   "@worshipQiblaTurnLeftValue": {
     "placeholders": {
       "degrees": {}
     }
   },
-  "worshipQiblaFacingQibla": "Facing Qibla",
-  "worshipQiblaLocationLabel": "Current location",
-  "worshipQiblaLocationUnknown": "Location unavailable",
-  "worshipQiblaRefreshLocation": "Refresh location",
-  "worshipQiblaMajorSitesTitle": "Distance to major Islamic sites",
+  "worshipQiblaFacingQibla": "أنت مستقبل القبلة",
+  "worshipQiblaLocationLabel": "الموقع الحالي",
+  "worshipQiblaLocationUnknown": "الموقع غير متاح",
+  "worshipQiblaRefreshLocation": "حدّث الموقع",
+  "worshipQiblaMajorSitesTitle": "المسافة إلى المعالم الإسلامية الكبرى",
   "worshipQiblaDistanceKmValue": "{distance} km",
   "@worshipQiblaDistanceKmValue": {
     "placeholders": {
@@ -1768,8 +1768,8 @@
   "profileQuranReminders": "آيات قرآنية",
   "profileReflectionReminders": "تذكيرات التفكير",
   "profileFastingReminders": "رسائل تذكير بالصيام",
-  "profileOnThisDayReminders": "On This Day reminders",
-  "profileOnThisDayRemindersSubtitle": "Notify me when today has a historical Islamic event to reflect on.",
+  "profileOnThisDayReminders": "تذكيرات «في مثل هذا اليوم»",
+  "profileOnThisDayRemindersSubtitle": "نبّهني عندما يكون في اليوم حدث إسلامي تاريخي يستحق التأمل.",
   "profileMoonriseReminders": "تنبيهات طلوع القمر",
   "profileMoonriseRemindersSubtitle": "أبلغني عندما يبدأ القمر في الطلوع.",
   "profileMoonsetReminders": "تنبيهات غروب القمر",
@@ -2032,7 +2032,7 @@
   "helpGuideQuranDescription": "اقرأ، ابحث، ضع إشارة مرجعية، وارجع إلى القرآن دون أن تفقد مكانك.",
   "helpGuideQuranStep1": "افتح \"تعلم\" وادخل إلى قسم القرآن لتصفح السور والموضوعات والإشارات المرجعية والملاحظات.",
   "helpGuideQuranStep2": "استخدم حقل البحث للعثور على سورة أو آية أو موضوع، ثم افتح النتيجة التي تريدها.",
-  "helpGuideQuranStep3": "Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.",
+  "helpGuideQuranStep3": "اضبط إعدادات العربية والنقل الصوتي والترجمة من الإعدادات < التعلّم عندما تحتاج إلى تخطيط قراءة مختلف.",
   "helpGuideLearningTitle": "التعلم",
   "helpGuideLearningDescription": "استخدم مركز التعلم للتنقل بين المواضيع الموجهة والدروس وأدوات المراجعة.",
   "helpGuideLearningStep1": "افتح \"تعلم\" لاختيار قسم مثل القرآن أو الحديث أو الحياة أو العالم أو الأنبياء أو الاختبارات.",
@@ -2555,8 +2555,8 @@
   "quranReferenceDetailReasonLearningPath": "يجمع هذا المسار الآيات والدروس القريبة حتى تتمكن من دراسة نفس الموضوع بتسلسل أكثر هدوءًا.",
   "quranReferenceDetailReasonLearningJourney": "يدرس درس الرحلة هذا نفس المقطع القرآني في تسلسل موجه، حتى تتمكن من الانتقال من القراءة إلى تدفق الدرس الأكثر هدوءًا.",
   "quranThemeMapRelatedThemesTitle": "المواضيع",
-  "quranReaderJourneyContextTitle": "Journey context",
-  "quranReaderJourneyContextSubtitle": "You’re studying {stageTitle} from {journeyTitle}.",
+  "quranReaderJourneyContextTitle": "سياق الرحلة",
+  "quranReaderJourneyContextSubtitle": "أنت تدرس {stageTitle} من {journeyTitle}.",
   "@quranReaderJourneyContextSubtitle": {
     "placeholders": {
       "stageTitle": {},
@@ -2569,12 +2569,12 @@
       "themeTitle": {}
     }
   },
-  "quranReaderJourneyContextOpenLesson": "Open journey lesson",
-  "quranReaderJourneyContextOpenTheme": "Explore this theme",
-  "quranReaderMemorizationFocusTitle": "Memorization focus",
-  "quranReaderMemorizationFocusSubtitle": "Repeat this ayah calmly while keeping its meaning and the strongest study links close below.",
-  "quranReaderMemorizationFocusOpenReview": "Open review list",
-  "quranReaderMemorizationFocusMeta": "Reviewed {count} times • Last reviewed: {dateLabel}",
+  "quranReaderJourneyContextOpenLesson": "افتح درس الرحلة",
+  "quranReaderJourneyContextOpenTheme": "استكشف هذا الموضوع",
+  "quranReaderMemorizationFocusTitle": "تركيز الحفظ",
+  "quranReaderMemorizationFocusSubtitle": "كرّر هذه الآية بهدوء مع إبقاء معناها وأقوى روابط الدراسة قريبة في الأسفل.",
+  "quranReaderMemorizationFocusOpenReview": "افتح قائمة المراجعة",
+  "quranReaderMemorizationFocusMeta": "روجعت {count} مرة • آخر مراجعة: {dateLabel}",
   "@quranReaderMemorizationFocusMeta": {
     "placeholders": {
       "count": {
@@ -2583,18 +2583,18 @@
       "dateLabel": {}
     }
   },
-  "quranReaderModeCardTitle": "Reader focus",
+  "quranReaderModeCardTitle": "تركيز القارئ",
   "quranReaderModeChangeAction": "Change",
-  "quranReaderModeReadingLabel": "Reading mode",
-  "quranReaderModeReadingSubtitle": "Keep the page calmer and let study cues stay lighter while you move through the surah.",
-  "quranReaderModeReflectionLabel": "Reflection mode",
-  "quranReaderModeReflectionSubtitle": "Keep meaning and reflection cues closer to the ayah without turning the page into a study dashboard.",
-  "quranReaderModeStudyLabel": "Study mode",
-  "quranReaderModeStudySubtitle": "Bring ayah links, surah study, and deeper learning handoffs closer to the reading flow.",
-  "quranReaderModeMemorizationLabel": "Memorization mode",
-  "quranReaderModeMemorizationSubtitle": "Reduce study density, keep repetition clear, and leave meaning close enough to support retention.",
-  "quranReaderModeThemeLabel": "Theme mode",
-  "quranReaderModeThemeSubtitle": "Keep {themeTitle} in view so the ayah, surah, and related study links stay tied to one theme.",
+  "quranReaderModeReadingLabel": "وضع القراءة",
+  "quranReaderModeReadingSubtitle": "يبقي الصفحة أهدأ ويخفف إشارات الدراسة أثناء تنقلك في السورة.",
+  "quranReaderModeReflectionLabel": "وضع التدبر",
+  "quranReaderModeReflectionSubtitle": "يبقي المعنى وإشارات التدبر قريبة من الآية دون أن تتحول الصفحة إلى لوحة دراسة.",
+  "quranReaderModeStudyLabel": "وضع الدراسة",
+  "quranReaderModeStudySubtitle": "يقرّب روابط الآيات ودراسة السورة ومسارات التعلّم الأعمق من تدفق القراءة.",
+  "quranReaderModeMemorizationLabel": "وضع الحفظ",
+  "quranReaderModeMemorizationSubtitle": "يقلّل كثافة الدراسة، ويُبقي التكرار واضحًا، ويترك المعنى قريبًا بما يكفي لدعم الترسيخ.",
+  "quranReaderModeThemeLabel": "وضع الموضوع",
+  "quranReaderModeThemeSubtitle": "يُبقي {themeTitle} في الأفق لتظل الآية والسورة وروابط الدراسة مرتبطة بموضوع واحد.",
   "@quranReaderModeThemeSubtitle": {
     "placeholders": {
       "themeTitle": {}
@@ -3372,20 +3372,20 @@
   "quranSearchSavedAction": "محفوظ",
   "quranSearchRemoveSavedAction": "إزالة البحث المحفوظ",
   "quranSearchNoResults": "لم يتم العثور على أي تطابقات.جرّب كلمة رئيسية مختلفة.",
-  "quranReaderSourcesLicensingTitle": "Sources & Licensing",
-  "quranReaderSourcesArabicTextTitle": "Qur’an Arabic text (reader/search):",
-  "quranReaderSourcesArabicTextValue": "package:quran (Flutter package), based on Quran data bundled in package.",
+  "quranReaderSourcesLicensingTitle": "المصادر والتراخيص",
+  "quranReaderSourcesArabicTextTitle": "النص العربي للقرآن (القارئ/البحث):",
+  "quranReaderSourcesArabicTextValue": "‏package:quran (حزمة Flutter)، بالاعتماد على بيانات القرآن المضمّنة في الحزمة.",
   "quranReaderSourcesTranslationsTitle": "Translations:",
-  "quranReaderSourcesTranslationsValue": "package:quran translation set (e.g., Saheeh International, Clear Quran, Urdu, Bengali, Indonesian, Turkish, Dari).",
+  "quranReaderSourcesTranslationsValue": "مجموعة ترجمات ‏package:quran (مثل: صحيح إنترناشونال، القرآن الواضح، الأردية، البنغالية، الإندونيسية، التركية، الدرية).",
   "quranReaderSourcesTransliterationTitle": "Transliteration:",
-  "quranReaderSourcesTransliterationValue": "AlQuran.cloud API (edition: en.transliteration) cached locally on device.",
-  "quranReaderSourcesAudioTitle": "Audio recitations:",
-  "quranReaderSourcesAudioValue": "EveryAyah CDN (Husary, Alafasy, Abdul Basit).",
-  "quranReaderSourcesTimingTitle": "Word timing segments (live sync beta):",
-  "quranReaderSourcesTimingValue": "Quran.com API v4 (api.quran.com), recitations by ayah with segments.",
-  "quranReaderAttributionLinksTitle": "Attribution links",
-  "quranReaderOpenFullAttributionsAction": "Open full Attributions & Licenses page",
-  "quranReaderSourcesLaunchNote": "Note: verify production usage terms with each provider before public launch, especially audio redistribution rights.",
+  "quranReaderSourcesTransliterationValue": "واجهة ‏AlQuran.cloud (الإصدار: en.transliteration) مخزّنة محليًا على الجهاز.",
+  "quranReaderSourcesAudioTitle": "التلاوات الصوتية:",
+  "quranReaderSourcesAudioValue": "شبكة ‏EveryAyah (الحصري، العفاسي، عبد الباسط).",
+  "quranReaderSourcesTimingTitle": "مقاطع توقيت الكلمات (تجربة المزامنة المباشرة):",
+  "quranReaderSourcesTimingValue": "واجهة ‏Quran.com الإصدار الرابع (api.quran.com)، تلاوات بحسب الآية مع المقاطع.",
+  "quranReaderAttributionLinksTitle": "روابط الإسناد",
+  "quranReaderOpenFullAttributionsAction": "افتح صفحة الإسناد والتراخيص كاملة",
+  "quranReaderSourcesLaunchNote": "ملاحظة: تحقّق من شروط الاستخدام الإنتاجي لدى كل مزوّد قبل الإطلاق العام، وبخاصة حقوق إعادة توزيع الصوت.",
   "salahCurrentPrayerBadge": "الصلاة الحالية",
   "salahNextPrayerBadge": "الصلاة القادمة",
   "salahNotificationOff": "إيقاف",
@@ -3409,17 +3409,17 @@
   "salahReflectionHeaderNote": "تم تثبيته كرأس روحي لهذا القسم.",
   "salahOpenInQuranAction": "فتح في القرآن",
   "salahTrackSalahTitle": "تتبع الصلاة",
-  "salahCurrentSalahTitle": "Current Salah",
-  "salahTrackCurrentSalah": "Track this current salah",
-  "salahMostRecentUntracked": "Most recent untracked salah",
+  "salahCurrentSalahTitle": "الصلاة الحالية",
+  "salahTrackCurrentSalah": "تابِع هذه الصلاة الحالية",
+  "salahMostRecentUntracked": "آخر صلاة لم تُسجَّل",
   "salahRakatsLabel": "{count} Rakats",
   "@salahRakatsLabel": {
     "placeholders": {
       "count": {}
     }
   },
-  "salahOfferTimeLabel": "Offer time",
-  "salahOfferWindowLabel": "Offer window",
+  "salahOfferTimeLabel": "وقت الأداء",
+  "salahOfferWindowLabel": "نافذة الأداء",
   "salahWindowValue": "{start} to {end}",
   "@salahWindowValue": {
     "placeholders": {
@@ -3427,45 +3427,45 @@
       "end": {}
     }
   },
-  "salahBecomesQadaAfterLabel": "Becomes qada after",
-  "salahTimeRemainingToOfferLabel": "Time remaining to offer",
-  "salahMakeUpFromLabel": "Make up from",
-  "salahStartsInLabel": "Starts in {duration}",
+  "salahBecomesQadaAfterLabel": "تصبح قضاءً بعد",
+  "salahTimeRemainingToOfferLabel": "الوقت المتبقي للأداء",
+  "salahMakeUpFromLabel": "اقضِ ابتداءً من",
+  "salahStartsInLabel": "تبدأ بعد {duration}",
   "@salahStartsInLabel": {
     "placeholders": {
       "duration": {}
     }
   },
-  "salahOfferWindowEnded": "Offer window ended",
-  "salahNoActiveSalah": "No active salah",
-  "salahNoUpcomingSalah": "No upcoming salah",
-  "salahOfferBySummary": "Offer by {time} • {status}",
+  "salahOfferWindowEnded": "انتهت نافذة الأداء",
+  "salahNoActiveSalah": "لا توجد صلاة حالية",
+  "salahNoUpcomingSalah": "لا توجد صلاة قادمة",
+  "salahOfferBySummary": "أدِّها قبل {time} • {status}",
   "@salahOfferBySummary": {
     "placeholders": {
       "time": {},
       "status": {}
     }
   },
-  "salahBeginsAtSummary": "Begins at {time} • {status}",
+  "salahBeginsAtSummary": "تبدأ عند {time} • {status}",
   "@salahBeginsAtSummary": {
     "placeholders": {
       "time": {},
       "status": {}
     }
   },
-  "salahRakatGuideTitle": "Salah Rakat Guide",
+  "salahRakatGuideTitle": "دليل ركعات الصلاة",
   "salahRakatGuidePrayerColumn": "Salah",
   "salahRakatGuideSunnahColumn": "Sunnah",
   "salahRakatGuideFardColumn": "Fard",
   "salahRakatGuideNaflColumn": "Nafl / Witr",
-  "salahRakatGuideFajrSunnah": "2 before",
-  "salahRakatGuideDhuhrSunnah": "4 before, 2 after",
-  "salahRakatGuideDhuhrNafl": "2 after",
-  "salahRakatGuideAsrSunnah": "4 before",
-  "salahRakatGuideMaghribSunnah": "2 after",
-  "salahRakatGuideMaghribNafl": "2 after",
-  "salahRakatGuideIshaSunnah": "2 after",
-  "salahRakatGuideIshaNafl": "3 witr + 2 nafl",
+  "salahRakatGuideFajrSunnah": "٢ قبلها",
+  "salahRakatGuideDhuhrSunnah": "٤ قبلها، ٢ بعدها",
+  "salahRakatGuideDhuhrNafl": "٢ بعدها",
+  "salahRakatGuideAsrSunnah": "٤ قبلها",
+  "salahRakatGuideMaghribSunnah": "٢ بعدها",
+  "salahRakatGuideMaghribNafl": "٢ بعدها",
+  "salahRakatGuideIshaSunnah": "٢ بعدها",
+  "salahRakatGuideIshaNafl": "٣ وتر + ٢ نافلة",
   "salahStartedLabel": "Started",
   "salahQuickActionsTitle": "إجراءات سريعة",
   "salahQuickTrackOnTime": "في الوقت المحدد",
@@ -7851,26 +7851,26 @@
   "accountsSyncScopeConfirmAction": "تحديث النطاق",
   "accountsSyncScopeManualExportNote": "لا يزال التصدير اليدوي يتضمن البيانات المحلية الكاملة افتراضيًا، حتى لو كانت النسخ الاحتياطية البعيدة المستقبلية جزئية.",
   "accountsSyncScopeRestoreDefaultsAction": "استعادة الإعدادات الموصى بها",
-  "accountsSyncScopePreviewTitle": "Backup scope",
-  "accountsSyncScopePreviewRemoteValue": "Remote backup: {value}",
+  "accountsSyncScopePreviewTitle": "نطاق النسخة الاحتياطية",
+  "accountsSyncScopePreviewRemoteValue": "النسخة الاحتياطية البعيدة: {value}",
   "@accountsSyncScopePreviewRemoteValue": {
     "placeholders": {
       "value": {}
     }
   },
-  "accountsSyncScopePreviewCurrentValue": "Current device setting: {value}",
+  "accountsSyncScopePreviewCurrentValue": "إعداد هذا الجهاز: {value}",
   "@accountsSyncScopePreviewCurrentValue": {
     "placeholders": {
       "value": {}
     }
   },
-  "accountsSyncScopePreviewExcludedDomain": "This backup does not include {domain}.",
+  "accountsSyncScopePreviewExcludedDomain": "لا تتضمن هذه النسخة الاحتياطية {domain}.",
   "@accountsSyncScopePreviewExcludedDomain": {
     "placeholders": {
       "domain": {}
     }
   },
-  "accountsSyncScopePreviewValue": "Backup scope: {value}",
+  "accountsSyncScopePreviewValue": "نطاق النسخة الاحتياطية: {value}",
   "@accountsSyncScopePreviewValue": {
     "placeholders": {
       "value": {}
@@ -7899,7 +7899,7 @@
       "domain": {}
     }
   },
-  "accountsSyncScopePreviewMismatchDomain": "Your current settings include {domain}, but this backup did not.",
+  "accountsSyncScopePreviewMismatchDomain": "إعداداتك الحالية تتضمن {domain}، لكن هذه النسخة الاحتياطية لم تتضمنها.",
   "@accountsSyncScopePreviewMismatchDomain": {
     "placeholders": {
       "domain": {}
@@ -7965,8 +7965,8 @@
   "accountsSyncBackupImported": "تم استيراد النسخة الاحتياطية",
   "accountsSyncImportModeMerge": "دمج",
   "accountsSyncImportModeReplace": "استبدال",
-  "accountsSyncImportPreviewTitle": "Import preview",
-  "accountsSyncImportPreviewSummary": "{profiles, plural, =0 {0 profiles} =1 {1 profile} other {{profiles} profiles}} • {accounts, plural, =0 {0 accounts} =1 {1 account} other {{accounts} accounts}}",
+  "accountsSyncImportPreviewTitle": "معاينة الاستيراد",
+  "accountsSyncImportPreviewSummary": "{profiles, plural, =0 {لا ملفات تعريف} =1 {ملف تعريف واحد} other {{profiles} ملفات تعريف}} • {accounts, plural, =0 {لا حسابات} =1 {حساب واحد} other {{accounts} حسابات}}",
   "@accountsSyncImportPreviewSummary": {
     "placeholders": {
       "profiles": {
@@ -7977,7 +7977,7 @@
       }
     }
   },
-  "accountsSyncImportPreviewModeValue": "Restore mode: {mode}",
+  "accountsSyncImportPreviewModeValue": "وضع الاستعادة: {mode}",
   "@accountsSyncImportPreviewModeValue": {
     "placeholders": {
       "mode": {
@@ -8371,7 +8371,7 @@
   "dhikrAntiRushVerseTranslation": "فاصبر وما صبرك إلا بالله.(القرآن 16:127)",
   "dhikrAntiRushBody": "تذكير لطيف: الذكر يدور حول الحضور والإخلاص والصبر، وليس السرعة وحدها.خذ الأمر بهدوء وقصد، ابتغاء مرضاة الله.",
   "dhikrAntiRushAcknowledgeAction": "أنا أفهم",
-  "dhikrTargetReachedMessage": "Session target reached. Alhamdulillah.",
+  "dhikrTargetReachedMessage": "بلغت هدف الجلسة. الحمد لله.",
   "dhikrUndoOneTooltip": "التراجع عن عدد واحد",
   "dhikrAddManuallyAction": "أضف يدويًا",
   "dhikrFinishSessionAction": "إنهاء الجلسة",
@@ -8463,26 +8463,26 @@
   "growthHomeHabitsSubtitle": "تتبع العادات التي تشكل يومك بهدوء.",
   "growthHomeJourneySubtitle": "قم بمراجعة مستواك وفتح القفل والتقدم المطرد.",
   "growthHomeReflectionSubtitle": "وقفة للشكر والتوبة والمراجعة الصادقة.",
-  "growthHomeJourneyDepthTitle": "See your progress clearly",
-  "growthHomeJourneyDepthSubtitle": "These progress rings show today''s prayer, dhikr, Qur''an, reflection, and fasting rhythm. Open Statistics for longer trends or Garden for the visual story of your growth.",
-  "growthHomeJourneyDepthSummary": "Today''s completion: {percent} • current streak: {days} days",
+  "growthHomeJourneyDepthTitle": "شاهِد تقدمك بوضوح",
+  "growthHomeJourneyDepthSubtitle": "تُظهر حلقات التقدم هذه إيقاع اليوم من الصلاة والذكر والقرآن والتدبر والصيام. افتح الإحصاءات لمتابعة اتجاهات أطول، أو الحديقة لترى القصة المرئية لنموك.",
+  "growthHomeJourneyDepthSummary": "إنجاز اليوم: {percent} • السلسلة الحالية: {days} يومًا",
   "@growthHomeJourneyDepthSummary": {
     "placeholders": {
       "percent": {},
       "days": {}
     }
   },
-  "growthHomeJourneyDepthOpenStatistics": "Open Statistics",
-  "growthHomeJourneyDepthOpenGarden": "Open Garden",
+  "growthHomeJourneyDepthOpenStatistics": "افتح الإحصاءات",
+  "growthHomeJourneyDepthOpenGarden": "افتح الحديقة",
   "growthHomeJourneyDepthPrayerLabel": "Prayer",
   "growthHomeJourneyDepthDhikrLabel": "Dhikr",
   "growthHomeJourneyDepthQuranLabel": "Quran",
   "growthHomeJourneyDepthReflectionLabel": "Reflection",
   "growthHomeJourneyDepthFastingLabel": "Fasting",
-  "growthHomeFeaturedStatisticsSubtitle": "Follow weekly trends, active days, and reward momentum in one calm dashboard.",
-  "growthHomeFeaturedStatisticsAction": "View trends",
-  "growthHomeFeaturedGardenSubtitle": "See how your drops unlock imagery, meaning, and your next growth milestone.",
-  "growthHomeFeaturedGardenAction": "See Garden",
+  "growthHomeFeaturedStatisticsSubtitle": "تابِع الاتجاهات الأسبوعية والأيام النشطة وزخم المكافآت في لوحة واحدة هادئة.",
+  "growthHomeFeaturedStatisticsAction": "اعرض الاتجاهات",
+  "growthHomeFeaturedGardenSubtitle": "شاهِد كيف تفتح قطراتك الصور والمعاني ومعلمك التالي في النمو.",
+  "growthHomeFeaturedGardenAction": "شاهِد الحديقة",
   "growthHomePrivateModeTitle": "تقدم هادئ",
   "growthHomePublicModeTitle": "النمو في الحركة",
   "growthHomeAllUnlocksPresent": "جميع عمليات الفتح الحالية موجودة بالفعل.",
@@ -8697,7 +8697,7 @@
   "growthReflectionRecentUnlockNote": "ظهرت عملية فتح حديثة من خلال التفكير المستمر والخطوات الصغيرة.",
   "growthReflectionSeasonalPromptsTitle": "المطالبات الموسمية",
   "growthReflectionNoSeasonalPrompt": "لا يوجد مطالبة موسمية اليوم.أكمل طريقك بإخلاص.",
-  "growthReflectionIntro": "This space is for honest review, gratitude, tawbah, and entrusting your efforts to Allah.",
+  "growthReflectionIntro": "هذه المساحة للمراجعة الصادقة والشكر والتوبة وتفويض جهدك إلى الله.",
   "growthReflectionPrivateModeTitle": "الوضع الخاص (صور النمو الهادئ)",
   "growthReflectionPromptSuggestionsTitle": "اقتراحات سريعة",
   "growthReflectionPromptLibraryTitle": "مكتبة عاجلة",
@@ -8712,8 +8712,8 @@
   "growthReflectionTawbahHint": "ما الذي تستغفر منه؟",
   "growthReflectionShortNotesTitle": "ملاحظات قصيرة",
   "growthReflectionShortNotesHint": "أبقِ هذا بسيطًا وصادقًا",
-  "growthReflectionEntrustToAllahTitle": "Entrust deeds to Allah",
-  "growthReflectionEntrustToAllahSubtitle": "When enabled, this entry is tracked quietly without celebratory emphasis.",
+  "growthReflectionEntrustToAllahTitle": "فوّض أعمالك إلى الله",
+  "growthReflectionEntrustToAllahSubtitle": "عند التفعيل، يُسجَّل هذا الإدخال بهدوء دون إبراز احتفالي.",
   "growthReflectionSaveAction": "حفظ الانعكاس",
   "growthReflectionTodayEntriesTitle": "إدخالات اليوم",
   "growthReflectionBeginAgain": "ابدأ مرة أخرى اليوم بتأمل قصير.",
@@ -8757,7 +8757,7 @@
       }
     }
   },
-  "growthReflectionEntrustedQuietly": "Entrusted quietly to Allah",
+  "growthReflectionEntrustedQuietly": "فُوِّض إلى الله بهدوء",
   "growthReflectionGratitudeHistoryTitle": "تاريخ الامتنان",
   "growthReflectionNoGratitudeHistory": "لا يوجد تاريخ الامتنان حتى الآن.",
   "growthReflectionRecentReflectionsTitle": "تأملات الأخيرة",
@@ -15002,10 +15002,10 @@
   "quranReaderFollowModeLabel": "اتبع الوضع",
   "quranReaderFollowSuspendedLabel": "تم إيقاف المتابعة مؤقتًا أثناء التصفح.",
   "quranReaderReturnToCurrentAyahAction": "العودة إلى الآية الحالية",
-  "quranReaderPreviousSurahAction": "Previous surah",
-  "quranReaderNextSurahAction": "Next surah",
-  "quranReaderAdjacentSurahUnavailable": "Unable to open that surah right now.",
-  "quranReaderRepeatRangeSummary": "Repeat ayahs {startAyah}–{endAyah}",
+  "quranReaderPreviousSurahAction": "السورة السابقة",
+  "quranReaderNextSurahAction": "السورة التالية",
+  "quranReaderAdjacentSurahUnavailable": "تعذّر فتح تلك السورة الآن.",
+  "quranReaderRepeatRangeSummary": "كرّر الآيات {startAyah}–{endAyah}",
   "@quranReaderRepeatRangeSummary": {
     "placeholders": {
       "startAyah": {
@@ -15016,7 +15016,7 @@
       }
     }
   },
-  "quranReaderRepeatLoopSummary": "Loop {count}x",
+  "quranReaderRepeatLoopSummary": "تكرار {count}×",
   "@quranReaderRepeatLoopSummary": {
     "placeholders": {
       "count": {
@@ -15024,7 +15024,7 @@
       }
     }
   },
-  "quranReaderRepeatRangeLoopSummary": "Repeat ayahs {startAyah}–{endAyah} • {count}x",
+  "quranReaderRepeatRangeLoopSummary": "كرّر الآيات {startAyah}–{endAyah} • {count}×",
   "@quranReaderRepeatRangeLoopSummary": {
     "placeholders": {
       "startAyah": {
@@ -15038,7 +15038,7 @@
       }
     }
   },
-  "quranReaderNextSurahButtonLabel": "Next Surah ({surahNumber})",
+  "quranReaderNextSurahButtonLabel": "السورة التالية ({surahNumber})",
   "@quranReaderNextSurahButtonLabel": {
     "placeholders": {
       "surahNumber": {
@@ -16529,7 +16529,7 @@
       "passageTitle": {}
     }
   },
-  "quranReaderNowPlayingLabel": "Recitation {surahLabel} • Verse {reference}",
+  "quranReaderNowPlayingLabel": "تلاوة {surahLabel} • الآية {reference}",
   "@quranReaderNowPlayingLabel": {
     "placeholders": {
       "surahLabel": {},
@@ -16561,7 +16561,7 @@
   "quranReaderPlaybackSpeedLockedHint": "تم تثبيت السرعة على 1.00x عند تفعيل تمييز مزامنة الكلمات المباشر.",
   "quranReaderMemorizationSettingsTitle": "إعدادات الحفظ",
   "quranReaderContinueRecitationTitle": "متابعة التلاوة",
-  "quranReaderResumeAudioRecitationTitle": "Resume Audio Recitation",
+  "quranReaderResumeAudioRecitationTitle": "استئناف التلاوة الصوتية",
   "quranReaderContinueRecitationSubtitle": "استأنف من الآية {ayahNumber} عند {position}",
   "@quranReaderContinueRecitationSubtitle": {
     "placeholders": {
@@ -16572,7 +16572,7 @@
     }
   },
   "quranReaderResumeAction": "استئناف",
-  "quranReaderRestartSurahAction": "Restart Surah",
+  "quranReaderRestartSurahAction": "أعد السورة من البداية",
   "quranReaderTransliterationLoadError": "تعذر تحميل النقل الصوتي الكامل الآن. تحقق من الاتصال وحاول مرة أخرى.",
   "quranReaderReciterSampleError": "تعذر تشغيل العينة الآن: {error}",
   "@quranReaderReciterSampleError": {
@@ -16597,17 +16597,17 @@
   "quranReaderTransliterationUnavailable": "النقل الصوتي غير متاح لهذه الآية بعد.",
   "quranReaderSettingsToggleTitle": "الإعدادات",
   "quranReaderSettingsExpandCollapse": "توسيع/طي",
-  "quranReaderReadingDisplaySectionTitle": "Reading & Display",
-  "quranReaderReadingDisplaySectionSubtitle": "Adjust what stays visible and how the ayah text feels while you read.",
-  "quranReaderStudyToolsSectionTitle": "Study Tools",
-  "quranReaderStudyToolsSectionSubtitle": "Optional learning aids and beta helpers for deeper study.",
-  "quranReaderAudioPlaybackSectionTitle": "Audio & Playback",
-  "quranReaderAudioPlaybackSectionSubtitle": "Choose the reciter and playback behavior without crowding the reading controls.",
-  "quranReaderDownloadsOfflineSectionTitle": "Downloads & Offline",
-  "quranReaderDownloadsOfflineSectionSubtitle": "Keep only the surahs you need on this device.",
-  "quranReaderMemorizationReviewSectionTitle": "Memorization & Review",
-  "quranReaderMemorizationReviewSectionSubtitle": "Keep hifz-focused controls separate from everyday reading.",
-  "quranReaderRepeatPracticeTitle": "Repeat & practice",
+  "quranReaderReadingDisplaySectionTitle": "القراءة والعرض",
+  "quranReaderReadingDisplaySectionSubtitle": "اضبط ما يبقى ظاهرًا وكيف يبدو نص الآية أثناء القراءة.",
+  "quranReaderStudyToolsSectionTitle": "أدوات الدراسة",
+  "quranReaderStudyToolsSectionSubtitle": "مساعدات تعلّم اختيارية وأدوات تجريبية للدراسة الأعمق.",
+  "quranReaderAudioPlaybackSectionTitle": "الصوت والتشغيل",
+  "quranReaderAudioPlaybackSectionSubtitle": "اختر القارئ وسلوك التشغيل دون ازدحام أدوات القراءة.",
+  "quranReaderDownloadsOfflineSectionTitle": "التنزيلات والوضع دون اتصال",
+  "quranReaderDownloadsOfflineSectionSubtitle": "أبقِ على هذا الجهاز السور التي تحتاجها فقط.",
+  "quranReaderMemorizationReviewSectionTitle": "الحفظ والمراجعة",
+  "quranReaderMemorizationReviewSectionSubtitle": "أبقِ أدوات الحفظ منفصلة عن القراءة اليومية.",
+  "quranReaderRepeatPracticeTitle": "التكرار والتمرين",
   "quranReaderTextSettingsTitle": "إعدادات النص",
   "quranReaderTranslationSourceLabel": "مصدر الترجمة",
   "quranReaderTextOptionsTitle": "خيارات النص",
@@ -17033,27 +17033,27 @@
   "lifeLandingTabOverview": "Overview",
   "lifeLandingTabThemes": "Themes",
   "lifeLandingTabLessons": "Lessons",
-  "salahGuidedPrayerUnavailable": "Guided prayer unavailable.",
-  "salahGuidedPrayerPageTitle": "{prayerTitle} - Pray With Guidance",
+  "salahGuidedPrayerUnavailable": "الصلاة الموجَّهة غير متاحة.",
+  "salahGuidedPrayerPageTitle": "{prayerTitle} - صلِّ بإرشاد",
   "@salahGuidedPrayerPageTitle": {
     "placeholders": {
       "prayerTitle": {}
     }
   },
-  "salahGuidedPrayerSelectedSurahSubtitle": "Selected surah after al-Fatihah: {surahName}",
+  "salahGuidedPrayerSelectedSurahSubtitle": "السورة المختارة بعد الفاتحة: {surahName}",
   "@salahGuidedPrayerSelectedSurahSubtitle": {
     "placeholders": {
       "surahName": {}
     }
   },
-  "salahGuidedPrayerSurahNotSet": "Not set",
-  "salahGuidedPrayerCurrentRakahValue": "Current rakah: {rakah}",
+  "salahGuidedPrayerSurahNotSet": "غير محددة",
+  "salahGuidedPrayerCurrentRakahValue": "الركعة الحالية: {rakah}",
   "@salahGuidedPrayerCurrentRakahValue": {
     "placeholders": {
       "rakah": {}
     }
   },
-  "salahGuidedPrayerStepProgressValue": "Step {current} of {total}",
+  "salahGuidedPrayerStepProgressValue": "الخطوة {current} من {total}",
   "@salahGuidedPrayerStepProgressValue": {
     "placeholders": {
       "current": {},
@@ -17066,13 +17066,13 @@
       "surahName": {}
     }
   },
-  "salahGuidedPrayerSelectedSurahFallback": "Selected surah",
-  "salahGuidedPrayerShowTransliteration": "Show transliteration",
-  "salahGuidedPrayerShowTranslation": "Show translation",
+  "salahGuidedPrayerSelectedSurahFallback": "السورة المختارة",
+  "salahGuidedPrayerShowTransliteration": "أظهر النقل الصوتي",
+  "salahGuidedPrayerShowTranslation": "أظهر الترجمة",
   "salahGuidedPrayerPauseAction": "Pause",
   "salahGuidedPrayerPlayAction": "Play",
-  "salahGuidedPrayerRepeatStepAction": "Repeat Step",
-  "salahGuidedPrayerNextStepAction": "Next Step",
+  "salahGuidedPrayerRepeatStepAction": "أعد الخطوة",
+  "salahGuidedPrayerNextStepAction": "الخطوة التالية",
   "salahGuidedPrayerFinishAction": "Finish",
   "learnSalahHubTitle": "Salah Trainer",
   "learnSalahHubGuidanceNoticeDua": "O Allah, make the Qur''an easy for us to learn and remember.",
@@ -17119,31 +17119,31 @@
   "wuduGuideSunnahEnhancementsTitle": "Sunnah enhancements",
   "wuduGuideImportantRemindersTitle": "Important reminders",
   "quranSummaryIslandTitle": "Quran Summary",
-  "quranSummaryIslandSubtitle": "Explore all 114 surahs with short overviews, revelation type, and key themes.",
+  "quranSummaryIslandSubtitle": "استكشف السور الـ١١٤ جميعها مع نبذات موجزة ونوع النزول وأبرز الموضوعات.",
   "quranSummaryPageTitle": "Quran Summary",
-  "quranSummaryPageSubtitle": "Browse every surah with a concise overview, revelation context, and study-friendly details.",
-  "quranSummarySearchHint": "Search by surah number, name, Arabic, or meaning...",
+  "quranSummaryPageSubtitle": "تصفّح كل سورة مع نبذة موجزة وسياق النزول وتفاصيل تعين على الدراسة.",
+  "quranSummarySearchHint": "ابحث برقم السورة أو اسمها أو بالعربية أو بالمعنى…",
   "quranSummaryFilterAll": "All",
   "quranSummaryFilterMakki": "Makki",
   "quranSummaryFilterMadani": "Madani",
-  "quranSummaryNoResultsTitle": "No surahs matched your search",
-  "quranSummaryNoResultsSubtitle": "Try another surah name, number, Arabic spelling, or revelation filter.",
-  "quranSummaryHeroEyebrow": "Surah Overview",
+  "quranSummaryNoResultsTitle": "لا توجد سور مطابقة لبحثك",
+  "quranSummaryNoResultsSubtitle": "جرّب اسم سورة آخر أو رقمًا أو كتابة عربية أو مرشّح نزول مختلفًا.",
+  "quranSummaryHeroEyebrow": "نظرة على السورة",
   "quranSummaryHeroTitle": "Read the flow of the Quran one surah at a time",
-  "quranSummaryHeroSubtitle": "A calm reference for themes, revelation setting, and quick orientation before you open the reader.",
+  "quranSummaryHeroSubtitle": "مرجع هادئ للموضوعات وسياق النزول والتوجيه السريع قبل أن تفتح القارئ.",
   "quranSummaryRevelationMixed": "Mixed",
   "quranSummaryVersesLabel": "verses",
-  "quranSummaryOpenReaderAction": "Open surah reader",
-  "quranSummaryDetailMissingTitle": "This surah summary is not available",
+  "quranSummaryOpenReaderAction": "افتح قارئ السورة",
+  "quranSummaryDetailMissingTitle": "ملخص هذه السورة غير متاح",
   "quranSummaryDetailMissingSubtitle": "Return to the Quran Summary list and choose another surah.",
-  "quranSummaryDetailPageSubtitle": "Surah {surahNumber} study companion",
+  "quranSummaryDetailPageSubtitle": "رفيق دراسة السورة {surahNumber}",
   "@quranSummaryDetailPageSubtitle": {
     "placeholders": {
       "surahNumber": {}
     }
   },
   "quranSummaryOverviewTitle": "Overview",
-  "quranSummaryMetadataTitle": "Surah at a glance",
+  "quranSummaryMetadataTitle": "السورة في لمحة",
   "quranSummaryRevelationLabel": "Revelation: {value}",
   "@quranSummaryRevelationLabel": {
     "placeholders": {
@@ -17158,7 +17158,7 @@
       }
     }
   },
-  "quranSummaryRevelationOrderLabel": "Revelation order {order}",
+  "quranSummaryRevelationOrderLabel": "ترتيب النزول {order}",
   "@quranSummaryRevelationOrderLabel": {
     "placeholders": {
       "order": {
@@ -17166,15 +17166,15 @@
       }
     }
   },
-  "quranSummaryKeyThemesTitle": "Key themes",
-  "quranSummaryNotableAyatTitle": "Notable ayat",
-  "quranSummaryRelatedProphetsTitle": "Related prophets",
-  "quranSummaryRelatedEventsTitle": "Related events",
-  "quranSummaryVirtuesTitle": "Virtues and recitation notes",
-  "quranSummaryReflectionPromptsTitle": "Reflection prompts",
-  "quranSummaryActionsTitle": "Reader actions",
-  "quranSummaryNoReadingProgress": "No saved reading progress for this surah yet. You can open it directly or begin from ayah 1.",
-  "quranSummaryResumeHint": "Continue where you left off at ayah {ayahNumber}.",
+  "quranSummaryKeyThemesTitle": "أبرز الموضوعات",
+  "quranSummaryNotableAyatTitle": "آيات بارزة",
+  "quranSummaryRelatedProphetsTitle": "الأنبياء ذوو الصلة",
+  "quranSummaryRelatedEventsTitle": "الأحداث ذات الصلة",
+  "quranSummaryVirtuesTitle": "الفضائل وملاحظات التلاوة",
+  "quranSummaryReflectionPromptsTitle": "مفاتيح التدبر",
+  "quranSummaryActionsTitle": "إجراءات القارئ",
+  "quranSummaryNoReadingProgress": "لا يوجد تقدم قراءة محفوظ لهذه السورة بعد. يمكنك فتحها مباشرة أو البدء من الآية ١.",
+  "quranSummaryResumeHint": "تابِع من حيث توقفت عند الآية {ayahNumber}.",
   "@quranSummaryResumeHint": {
     "placeholders": {
       "ayahNumber": {
@@ -17182,9 +17182,9 @@
       }
     }
   },
-  "quranSummaryStartReadingAction": "Start from beginning",
-  "quranSummaryResumeReadingAction": "Resume reading",
-  "quranSummaryViewDetailsAction": "View details",
+  "quranSummaryStartReadingAction": "ابدأ من البداية",
+  "quranSummaryResumeReadingAction": "استأنف القراءة",
+  "quranSummaryViewDetailsAction": "اعرض التفاصيل",
   "quranSummaryThemeTawhid": "Tawhid",
   "quranSummaryThemeRevelation": "Revelation",
   "quranSummaryThemeGuidance": "Guidance",
@@ -17199,12 +17199,12 @@
   "quranSummaryThemeCommunity": "Community",
   "quranSummaryThemeGratitude": "Gratitude",
   "quranSummaryThemeJustice": "Justice",
-  "quranSummaryThemeSignsOfCreation": "Signs of creation",
+  "quranSummaryThemeSignsOfCreation": "آيات الخلق",
   "quranSummaryThemeHypocrisy": "Hypocrisy",
   "quranSummaryThemeCharity": "Charity",
   "quranSummaryThemeFamily": "Family",
   "quranSummaryThemeStruggle": "Struggle",
-  "quranSummaryThemeParadiseAndHell": "Paradise and Hell",
+  "quranSummaryThemeParadiseAndHell": "الجنة والنار",
   "quranThemeDiscoveryIslandTitle": "تصفح حسب الموضوع",
   "quranThemeDiscoveryIslandSubtitle": "استكشف القرآن من خلال موضوعات مثل الرحمة والصبر والأنبياء والهدى والآخرة.",
   "quranThemeDiscoveryPageTitle": "تصفح حسب الموضوع",
@@ -18190,14 +18190,14 @@
   "homeGlassVariantClearShowcaseMicro": "الأكثر انفتاحًا · تباين محسوب",
   "loadingHeadlineAllahAkbar": "اللَّهُ أَكْبَرُ",
   "loadingGreetingMorning": "اللَّهُمَّ بِكَ أَصْبَحْنَا",
-  "loadingGreetingMorningTranslation": "O Allah, by You we enter the morning",
+  "loadingGreetingMorningTranslation": "اللهم بك أصبحنا",
   "loadingGreetingEvening": "اللَّهُمَّ بِكَ أَمْسَيْنَا",
-  "loadingGreetingEveningTranslation": "O Allah, by You we enter the evening",
-  "loadingWelcomeBack": "Welcome Back",
-  "loadingRestoringProgress": "Restoring your progress",
-  "loadingStatusPreparing": "Preparing your space…",
-  "loadingStatusRestoring": "Restoring your progress…",
-  "loadingStatusSyncing": "Syncing your journey…",
+  "loadingGreetingEveningTranslation": "اللهم بك أمسينا",
+  "loadingWelcomeBack": "أهلًا بعودتك",
+  "loadingRestoringProgress": "جارٍ استعادة تقدمك",
+  "loadingStatusPreparing": "جارٍ تهيئة مساحتك…",
+  "loadingStatusRestoring": "جارٍ استعادة تقدمك…",
+  "loadingStatusSyncing": "جارٍ مزامنة رحلتك…",
   "loadingStatusFinalizing": "Finalizing…",
   "homeTestOnboardingPill": "اختبار الإعداد الأولي",
   "homeTestLoadingScreenPill": "اختبار شاشة التحميل",
@@ -18253,8 +18253,8 @@
   "onboardingAccountOptionsBody": "لا يجمع Path of Nūr بيانات تعلّمك افتراضيًا. ويُستخدم تسجيل الدخول فقط للنسخ الاحتياطي والاستعادة والمزامنة بين الأجهزة عند توفرها.",
   "onboardingAccountOptionsManualBackupBody": "يمكنك أيضًا نسخ بياناتك احتياطيًا يدويًا لاحقًا من الإعدادات.",
   "historyNoEventsForThisDate": "There are no events for this date.",
-  "worshipQiblaUnavailableOnIpadTitle": "Qibla finder unavailable on iPad",
-  "worshipQiblaUnavailableOnIpadBody": "Qibla finder does not correctly work on iPad due to hardware limitations.",
+  "worshipQiblaUnavailableOnIpadTitle": "الباحث عن القبلة غير متاح على iPad",
+  "worshipQiblaUnavailableOnIpadBody": "لا يعمل الباحث عن القبلة بشكل صحيح على iPad بسبب قيود العتاد.",
   "gardenPageRecentGrowthTracked": "Tracked",
   "hadithReflectionCompletedQuiet": "اكتمل التفكير.",
   "hadithLessonCompletedQuiet": "اكتمل الدرس.",
@@ -18446,29 +18446,29 @@
   "hadithSectionRelatedQuran": "Related Qur’an",
   "hadithSectionRelatedDuas": "Related Duas",
   "hadithSectionRelatedCanonical": "Related hadith",
-  "quranReaderRelatedHadithTitle": "Related Hadith",
-  "quranReaderRelatedDuasTitle": "Related Duas",
-  "allSearchTitle": "All Search",
-  "allSearchSubtitle": "Search Qur’an, hadith, duas, and learning content together.",
-  "allSearchHint": "Search across Path of Nur",
-  "allSearchEmptyTitle": "Search across the app",
-  "allSearchEmptySubtitle": "We’ll group results by domain so it stays calm and easy to trust.",
+  "quranReaderRelatedHadithTitle": "أحاديث ذات صلة",
+  "quranReaderRelatedDuasTitle": "أدعية ذات صلة",
+  "allSearchTitle": "البحث الشامل",
+  "allSearchSubtitle": "ابحث في القرآن والحديث والأدعية ومحتوى التعلّم معًا.",
+  "allSearchHint": "ابحث في تطبيق Path of Nur",
+  "allSearchEmptyTitle": "ابحث في التطبيق كله",
+  "allSearchEmptySubtitle": "سنجمع النتائج حسب المجال لتبقى هادئة وسهلة الثقة.",
   "allSearchSuggestionsTitle": "Suggestions",
-  "allSearchRecentTitle": "Recent searches",
+  "allSearchRecentTitle": "عمليات البحث الأخيرة",
   "allSearchClearRecent": "Clear",
-  "allSearchNoRecent": "No recent searches yet.",
-  "allSearchNoResultsTitle": "No results yet",
-  "allSearchNoResultsSubtitle": "We could not find a strong match across Qur’an, hadith, duas, or learn content.",
-  "allSearchNoResultsTipBroader": "Try a shorter or broader phrase.",
-  "allSearchNoResultsTipDomain": "You can also jump into a domain search for more depth.",
+  "allSearchNoRecent": "لا توجد عمليات بحث حديثة بعد.",
+  "allSearchNoResultsTitle": "لا نتائج بعد",
+  "allSearchNoResultsSubtitle": "لم نعثر على تطابق قوي في القرآن أو الحديث أو الأدعية أو محتوى التعلّم.",
+  "allSearchNoResultsTipBroader": "جرّب عبارة أقصر أو أوسع.",
+  "allSearchNoResultsTipDomain": "يمكنك أيضًا الانتقال إلى بحث مجال بعينه لمزيد من العمق.",
   "allSearchDomainQuran": "Qur’an",
   "allSearchDomainHadith": "Hadith",
   "allSearchDomainDua": "Duas",
   "allSearchDomainLearn": "Learn",
-  "allSearchViewAllQuran": "View all in Qur’an",
-  "allSearchViewAllHadith": "View all in Hadith",
-  "allSearchViewAllDua": "View all in Duas",
-  "allSearchViewAllLearn": "View all in Learn",
+  "allSearchViewAllQuran": "اعرض الكل في القرآن",
+  "allSearchViewAllHadith": "اعرض الكل في الحديث",
+  "allSearchViewAllDua": "اعرض الكل في الأدعية",
+  "allSearchViewAllLearn": "اعرض الكل في التعلّم",
   "allSearchSuggestionMercy": "mercy",
   "allSearchSuggestionPatience": "patience",
   "allSearchSuggestionIntentions": "intentions",
@@ -18477,13 +18477,13 @@
   "allSearchSuggestionProphets": "prophets",
   "allSearchSuggestionGratitude": "gratitude",
   "allSearchSuggestionJustice": "justice",
-  "allSearchResultsFor": "Results for \"{query}\"",
+  "allSearchResultsFor": "نتائج البحث عن \"{query}\"",
   "@allSearchResultsFor": {
     "placeholders": {
       "query": {}
     }
   },
-  "allSearchError": "Search unavailable: {message}",
+  "allSearchError": "البحث غير متاح: {message}",
   "@allSearchError": {
     "placeholders": {
       "message": {}

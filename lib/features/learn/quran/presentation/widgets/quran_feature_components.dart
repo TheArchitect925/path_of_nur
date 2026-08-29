@@ -40,7 +40,7 @@ class QuranFeatureSectionCard extends StatelessWidget {
                 Container(
                   width: 24,
                   height: 2,
-                  margin: const EdgeInsets.only(right: 10),
+                  margin: const EdgeInsetsDirectional.only(end: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(999),
                     color: palette.goldAccent.withValues(alpha: 0.82),

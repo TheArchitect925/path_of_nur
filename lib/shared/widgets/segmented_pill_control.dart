@@ -48,7 +48,7 @@ class SegmentedPillControl<T> extends StatelessWidget {
           children: items
               .map(
                 (item) => Padding(
-                  padding: const EdgeInsets.only(right: 4),
+                  padding: const EdgeInsetsDirectional.only(end: 4),
                   child: Material(
                     type: MaterialType.transparency,
                     child: InkWell(

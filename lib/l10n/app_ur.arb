@@ -787,7 +787,7 @@
       "journey": {}
     }
   },
-  "quranHubRecommendationReasonReviewDue": "{count, plural, =1{One memorized ayah is due for review today.} other{{count} memorized ayahs are due for review today.}}",
+  "quranHubRecommendationReasonReviewDue": "{count, plural, =1{ایک حفظ شدہ آیت آج دہرائی جانی ہے۔} other{{count} حفظ شدہ آیات آج دہرائی جانی ہیں۔}}",
   "@quranHubRecommendationReasonReviewDue": {
     "placeholders": {
       "count": {
@@ -1375,9 +1375,9 @@
   "homeJourneyNextUnlockValue": "وال پیپر انعام کا پیش نظارہ",
   "homeQuickActionsTitle": "فوری اقدامات",
   "homeQuickActionsSubtitle": "اپنے بنیادی حصوں میں جلدی سے جائیں۔",
-  "appQuickActionOpenToday": "Open Today",
-  "appQuickActionReadQuran": "Read Qur’an",
-  "appQuickActionDailyLearning": "Daily Learning",
+  "appQuickActionOpenToday": "آج کھولیں",
+  "appQuickActionReadQuran": "قرآن پڑھیں",
+  "appQuickActionDailyLearning": "روزانہ سیکھنا",
   "homeReflectionReminder": "\"اپنے ارادے کی طرف نرمی سے لوٹ آؤ۔ چھوٹی مخلصانہ حرکتیں دیرپا روشنی پیدا کرتی ہیں۔\"",
   "homeWelcomeDailyIntentionTitle": "روزانہ کی نیت",
   "homeWelcomeDailyIntentionSubtitle": "دن کی شروعات نرم توجہ، غور و فکر اور مستقل مزاجی کے ساتھ کریں۔",
@@ -1401,17 +1401,17 @@
   "worshipQiblaDisableArMode": "اے آر موڈ کو غیر فعال کریں۔",
   "worshipQiblaEnableArMode": "اے آر موڈ کو فعال کریں۔",
   "worshipQiblaArModeBetaHint": "AR موڈ اب بھی ہلکا ہے اور آلہ کے لحاظ سے مختلف ہو سکتا ہے۔",
-  "worshipQiblaArLiveTitle": "Live camera guidance",
-  "worshipQiblaArLiveSubtitle": "Hold your phone up. Keep the Qibla marker above the horizon and align the prayer mat toward the floor.",
-  "worshipQiblaArPrayerMatHint": "Place your prayer mat so its top edge points in the same direction as the Qibla marker.",
-  "worshipQiblaArOverlayTitle": "Move until the marker centers",
+  "worshipQiblaArLiveTitle": "کیمرے کی براہِ راست رہنمائی",
+  "worshipQiblaArLiveSubtitle": "اپنا فون اوپر اٹھائیں۔ قبلہ کے نشان کو افق سے اوپر رکھیں اور جائے نماز کو فرش کی سمت میں کریں۔",
+  "worshipQiblaArPrayerMatHint": "اپنی جائے نماز اس طرح بچھائیں کہ اس کا اوپری کنارہ قبلہ کے نشان کی سمت میں ہو۔",
+  "worshipQiblaArOverlayTitle": "نشان درمیان میں آنے تک حرکت کریں",
   "worshipQiblaArHorizonLineLabel": "Horizon",
   "worshipQiblaArKaabaLabel": "Qibla",
-  "worshipQiblaArCameraUnavailableTitle": "Camera unavailable",
-  "worshipQiblaArCameraPermissionBody": "Allow camera access to use AR mode and view the Qibla over your surroundings.",
-  "worshipQiblaArCameraUnavailableBody": "AR mode could not start the camera on this device right now.",
-  "worshipQiblaArCameraLoadingBody": "Starting the camera for live Qibla guidance...",
-  "worshipQiblaArRetryCameraAction": "Retry camera",
+  "worshipQiblaArCameraUnavailableTitle": "کیمرہ دستیاب نہیں",
+  "worshipQiblaArCameraPermissionBody": "اے آر موڈ استعمال کرنے اور اپنے ماحول پر قبلہ دیکھنے کے لیے کیمرے کی اجازت دیں۔",
+  "worshipQiblaArCameraUnavailableBody": "اے آر موڈ اس وقت اس ڈیوائس پر کیمرہ شروع نہیں کر سکا۔",
+  "worshipQiblaArCameraLoadingBody": "قبلہ کی براہِ راست رہنمائی کے لیے کیمرہ شروع کیا جا رہا ہے…",
+  "worshipQiblaArRetryCameraAction": "کیمرہ دوبارہ آزمائیں",
   "worshipQiblaLocationServicesDisabled": "مقام کی خدمات غیر فعال ہیں۔ انہیں قبلہ فائنڈر استعمال کرنے کے قابل بنائیں۔",
   "worshipQiblaLocationPermissionRequired": "آپ جہاں سے ہیں قبلہ کا تعین کرنے کے لیے مقام کی اجازت درکار ہے۔",
   "worshipQiblaUnableToReadLocation": "ابھی آپ کا مقام پڑھنے سے قاصر ہے۔",
@@ -1440,31 +1440,31 @@
   },
   "worshipQiblaAlignedMessage": "آپ قبلہ کی طرف متوجہ ہیں۔",
   "worshipQiblaRotateMessage": "آہستہ سے گھمائیں جب تک کہ تیر سیدھ میں نہ آجائے۔",
-  "worshipQiblaCalibrationHint": "Move your phone gently in a figure-eight if the compass feels stuck.",
-  "worshipQiblaCurrentHeadingLabel": "Current heading",
-  "worshipQiblaDirectionValue": "Qibla direction {degrees}°",
+  "worshipQiblaCalibrationHint": "اگر قطب نما رکا ہوا محسوس ہو تو فون کو نرمی سے آٹھ کے ہندسے کی شکل میں گھمائیں۔",
+  "worshipQiblaCurrentHeadingLabel": "موجودہ سمت",
+  "worshipQiblaDirectionValue": "قبلہ کی سمت {degrees}°",
   "@worshipQiblaDirectionValue": {
     "placeholders": {
       "degrees": {}
     }
   },
-  "worshipQiblaTurnRightValue": "Turn {degrees}° right",
+  "worshipQiblaTurnRightValue": "{degrees}° دائیں مڑیں",
   "@worshipQiblaTurnRightValue": {
     "placeholders": {
       "degrees": {}
     }
   },
-  "worshipQiblaTurnLeftValue": "Turn {degrees}° left",
+  "worshipQiblaTurnLeftValue": "{degrees}° بائیں مڑیں",
   "@worshipQiblaTurnLeftValue": {
     "placeholders": {
       "degrees": {}
     }
   },
-  "worshipQiblaFacingQibla": "Facing Qibla",
-  "worshipQiblaLocationLabel": "Current location",
-  "worshipQiblaLocationUnknown": "Location unavailable",
-  "worshipQiblaRefreshLocation": "Refresh location",
-  "worshipQiblaMajorSitesTitle": "Distance to major Islamic sites",
+  "worshipQiblaFacingQibla": "آپ قبلہ رخ ہیں",
+  "worshipQiblaLocationLabel": "موجودہ مقام",
+  "worshipQiblaLocationUnknown": "مقام دستیاب نہیں",
+  "worshipQiblaRefreshLocation": "مقام تازہ کریں",
+  "worshipQiblaMajorSitesTitle": "اہم اسلامی مقامات سے فاصلہ",
   "worshipQiblaDistanceKmValue": "{distance} km",
   "@worshipQiblaDistanceKmValue": {
     "placeholders": {
@@ -1475,7 +1475,7 @@
   },
   "worshipQiblaSiteMasjidAlHaram": "Masjid al-Haram",
   "worshipQiblaSiteProphetsMosque": "Al-Masjid an-Nabawi",
-  "worshipQiblaSiteAlAqsa": "Al-Aqsa Mosque",
+  "worshipQiblaSiteAlAqsa": "مسجد الاقصیٰ",
   "worshipQiblaSiteQubaMosque": "Masjid Quba",
   "worshipQiblaLocationMakkah": "Makkah",
   "worshipQiblaLocationMadinah": "Madinah",
@@ -1768,8 +1768,8 @@
   "profileQuranReminders": "قرآن کی یاددہانی",
   "profileReflectionReminders": "غور و فکر یاد دہانیاں",
   "profileFastingReminders": "روزہ کی یاددہانی",
-  "profileOnThisDayReminders": "On This Day reminders",
-  "profileOnThisDayRemindersSubtitle": "Notify me when today has a historical Islamic event to reflect on.",
+  "profileOnThisDayReminders": "«آج کے دن» یاد دہانیاں",
+  "profileOnThisDayRemindersSubtitle": "جب آج کے دن کوئی تاریخی اسلامی واقعہ غور کرنے کے لیے ہو تو مجھے اطلاع دیں۔",
   "profileMoonriseReminders": "چاند طلوع ہونے کی اطلاعات",
   "profileMoonriseRemindersSubtitle": "جب چاند طلوع ہو رہا ہو تو مجھے اطلاع دیں۔",
   "profileMoonsetReminders": "چاند سیٹ کی اطلاعات",
@@ -2032,7 +2032,7 @@
   "helpGuideQuranDescription": "اپنی جگہ کھوئے بغیر قرآن کو پڑھیں، تلاش کریں، بک مارک کریں اور واپس جائیں۔",
   "helpGuideQuranStep1": "سورتوں، عنوانات، بُک مارکس اور نوٹس کو براؤز کرنے کے لیے قرآن سیکھیں اور سیکشن میں داخل ہوں۔",
   "helpGuideQuranStep2": "سورہ، آیت یا موضوع تلاش کرنے کے لیے سرچ فیلڈ کا استعمال کریں، پھر جو نتیجہ آپ چاہتے ہیں اسے کھولیں۔",
-  "helpGuideQuranStep3": "Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.",
+  "helpGuideQuranStep3": "جب آپ کو مختلف پڑھنے کی ترتیب درکار ہو تو ترتیبات < سیکھنا سے عربی، نقل حرفی اور ترجمے کی ترتیبات ایڈجسٹ کریں۔",
   "helpGuideLearningTitle": "سیکھنا",
   "helpGuideLearningDescription": "رہنمائی والے عنوانات، اسباق اور جائزہ کے ٹولز کے درمیان منتقل ہونے کے لیے سیکھنے کے مرکز کا استعمال کریں۔",
   "helpGuideLearningStep1": "قرآن، حدیث، زندگی، دنیا، انبیاء، یا کوئز جیسے سیکشن کا انتخاب کرنا سیکھیں۔",
@@ -2555,8 +2555,8 @@
   "quranReferenceDetailReasonLearningPath": "یہ راستہ قریبی آیات اور اسباق کو جمع کرتا ہے تاکہ آپ ایک ہی تھیم کو پرسکون ترتیب میں پڑھ سکیں۔",
   "quranReferenceDetailReasonLearningJourney": "یہ سفری سبق اسی قرآنی اقتباس کا گائیڈڈ ترتیب میں مطالعہ کرتا ہے، تاکہ آپ پڑھنے سے ایک پرسکون سبق کے بہاؤ کی طرف بڑھ سکیں۔",
   "quranThemeMapRelatedThemesTitle": "تھیمز",
-  "quranReaderJourneyContextTitle": "Journey context",
-  "quranReaderJourneyContextSubtitle": "You’re studying {stageTitle} from {journeyTitle}.",
+  "quranReaderJourneyContextTitle": "سفر کا سیاق",
+  "quranReaderJourneyContextSubtitle": "آپ {journeyTitle} میں سے {stageTitle} پڑھ رہے ہیں۔",
   "@quranReaderJourneyContextSubtitle": {
     "placeholders": {
       "stageTitle": {},
@@ -2569,12 +2569,12 @@
       "themeTitle": {}
     }
   },
-  "quranReaderJourneyContextOpenLesson": "Open journey lesson",
-  "quranReaderJourneyContextOpenTheme": "Explore this theme",
-  "quranReaderMemorizationFocusTitle": "Memorization focus",
-  "quranReaderMemorizationFocusSubtitle": "Repeat this ayah calmly while keeping its meaning and the strongest study links close below.",
-  "quranReaderMemorizationFocusOpenReview": "Open review list",
-  "quranReaderMemorizationFocusMeta": "Reviewed {count} times • Last reviewed: {dateLabel}",
+  "quranReaderJourneyContextOpenLesson": "سفر کا سبق کھولیں",
+  "quranReaderJourneyContextOpenTheme": "یہ موضوع دریافت کریں",
+  "quranReaderMemorizationFocusTitle": "حفظ پر توجہ",
+  "quranReaderMemorizationFocusSubtitle": "اس آیت کو سکون سے دہرائیں اور اس کا مفہوم اور مضبوط ترین مطالعاتی روابط نیچے قریب رکھیں۔",
+  "quranReaderMemorizationFocusOpenReview": "دہرائی کی فہرست کھولیں",
+  "quranReaderMemorizationFocusMeta": "{count} بار دہرایا گیا • آخری دہرائی: {dateLabel}",
   "@quranReaderMemorizationFocusMeta": {
     "placeholders": {
       "count": {
@@ -2583,18 +2583,18 @@
       "dateLabel": {}
     }
   },
-  "quranReaderModeCardTitle": "Reader focus",
+  "quranReaderModeCardTitle": "ریڈر کی توجہ",
   "quranReaderModeChangeAction": "Change",
-  "quranReaderModeReadingLabel": "Reading mode",
-  "quranReaderModeReadingSubtitle": "Keep the page calmer and let study cues stay lighter while you move through the surah.",
-  "quranReaderModeReflectionLabel": "Reflection mode",
-  "quranReaderModeReflectionSubtitle": "Keep meaning and reflection cues closer to the ayah without turning the page into a study dashboard.",
-  "quranReaderModeStudyLabel": "Study mode",
-  "quranReaderModeStudySubtitle": "Bring ayah links, surah study, and deeper learning handoffs closer to the reading flow.",
-  "quranReaderModeMemorizationLabel": "Memorization mode",
-  "quranReaderModeMemorizationSubtitle": "Reduce study density, keep repetition clear, and leave meaning close enough to support retention.",
-  "quranReaderModeThemeLabel": "Theme mode",
-  "quranReaderModeThemeSubtitle": "Keep {themeTitle} in view so the ayah, surah, and related study links stay tied to one theme.",
+  "quranReaderModeReadingLabel": "پڑھنے کا موڈ",
+  "quranReaderModeReadingSubtitle": "صفحے کو زیادہ پُرسکون رکھتا ہے اور سورت میں آگے بڑھتے ہوئے مطالعاتی اشارے ہلکے رکھتا ہے۔",
+  "quranReaderModeReflectionLabel": "غور و فکر کا موڈ",
+  "quranReaderModeReflectionSubtitle": "مفہوم اور غور و فکر کے اشارے آیت کے قریب رکھتا ہے، بغیر اس کے کہ صفحہ مطالعاتی ڈیش بورڈ بن جائے۔",
+  "quranReaderModeStudyLabel": "مطالعے کا موڈ",
+  "quranReaderModeStudySubtitle": "آیات کے روابط، سورت کا مطالعہ اور گہرے سیکھنے کے راستے پڑھنے کے بہاؤ کے قریب لاتا ہے۔",
+  "quranReaderModeMemorizationLabel": "حفظ کا موڈ",
+  "quranReaderModeMemorizationSubtitle": "مطالعے کی کثافت کم کرتا ہے، تکرار کو واضح رکھتا ہے، اور مفہوم اتنا قریب رکھتا ہے کہ یاد رکھنے میں مدد ملے۔",
+  "quranReaderModeThemeLabel": "موضوع کا موڈ",
+  "quranReaderModeThemeSubtitle": "{themeTitle} کو سامنے رکھتا ہے تاکہ آیت، سورت اور متعلقہ مطالعاتی روابط ایک ہی موضوع سے جڑے رہیں۔",
   "@quranReaderModeThemeSubtitle": {
     "placeholders": {
       "themeTitle": {}
@@ -3372,20 +3372,20 @@
   "quranSearchSavedAction": "محفوظ",
   "quranSearchRemoveSavedAction": "محفوظ تلاش ہٹائیں",
   "quranSearchNoResults": "کوئی مماثلت نہیں ملی۔ ایک مختلف کلیدی لفظ آزمائیں۔",
-  "quranReaderSourcesLicensingTitle": "Sources & Licensing",
-  "quranReaderSourcesArabicTextTitle": "Qur’an Arabic text (reader/search):",
-  "quranReaderSourcesArabicTextValue": "package:quran (Flutter package), based on Quran data bundled in package.",
+  "quranReaderSourcesLicensingTitle": "مآخذ اور لائسنس",
+  "quranReaderSourcesArabicTextTitle": "قرآن کا عربی متن (ریڈر/تلاش):",
+  "quranReaderSourcesArabicTextValue": "‏package:quran (فلٹر پیکج)، پیکج میں شامل قرآنی ڈیٹا پر مبنی۔",
   "quranReaderSourcesTranslationsTitle": "Translations:",
-  "quranReaderSourcesTranslationsValue": "package:quran translation set (e.g., Saheeh International, Clear Quran, Urdu, Bengali, Indonesian, Turkish, Dari).",
+  "quranReaderSourcesTranslationsValue": "‏package:quran کا ترجمہ سیٹ (مثلاً صحیح انٹرنیشنل، کلیئر قرآن، اردو، بنگالی، انڈونیشی، ترکی، دری)۔",
   "quranReaderSourcesTransliterationTitle": "Transliteration:",
-  "quranReaderSourcesTransliterationValue": "AlQuran.cloud API (edition: en.transliteration) cached locally on device.",
-  "quranReaderSourcesAudioTitle": "Audio recitations:",
-  "quranReaderSourcesAudioValue": "EveryAyah CDN (Husary, Alafasy, Abdul Basit).",
-  "quranReaderSourcesTimingTitle": "Word timing segments (live sync beta):",
-  "quranReaderSourcesTimingValue": "Quran.com API v4 (api.quran.com), recitations by ayah with segments.",
-  "quranReaderAttributionLinksTitle": "Attribution links",
-  "quranReaderOpenFullAttributionsAction": "Open full Attributions & Licenses page",
-  "quranReaderSourcesLaunchNote": "Note: verify production usage terms with each provider before public launch, especially audio redistribution rights.",
+  "quranReaderSourcesTransliterationValue": "‏AlQuran.cloud API (ایڈیشن: en.transliteration) ڈیوائس پر مقامی طور پر محفوظ۔",
+  "quranReaderSourcesAudioTitle": "صوتی تلاوتیں:",
+  "quranReaderSourcesAudioValue": "‏EveryAyah CDN (حصری، عفاسی، عبد الباسط)۔",
+  "quranReaderSourcesTimingTitle": "الفاظ کے وقت کے حصے (لائیو سنک بیٹا):",
+  "quranReaderSourcesTimingValue": "‏Quran.com API v4 (api.quran.com)، آیت کے حساب سے تلاوتیں بمع حصوں کے۔",
+  "quranReaderAttributionLinksTitle": "انتساب کے روابط",
+  "quranReaderOpenFullAttributionsAction": "انتساب اور لائسنس کا مکمل صفحہ کھولیں",
+  "quranReaderSourcesLaunchNote": "نوٹ: عوامی اجرا سے پہلے ہر فراہم کنندہ کے ساتھ پیداواری استعمال کی شرائط کی تصدیق کریں، خاص طور پر آڈیو کی دوبارہ تقسیم کے حقوق۔",
   "salahCurrentPrayerBadge": "موجودہ نماز",
   "salahNextPrayerBadge": "اگلی نماز",
   "salahNotificationOff": "آف",
@@ -3409,17 +3409,17 @@
   "salahReflectionHeaderNote": "اس سیکشن کے لیے روحانی ہیڈر کے طور پر پن کیا گیا ہے۔",
   "salahOpenInQuranAction": "قرآن میں کھولیں۔",
   "salahTrackSalahTitle": "نماز کو ٹریک کریں۔",
-  "salahCurrentSalahTitle": "Current Salah",
-  "salahTrackCurrentSalah": "Track this current salah",
-  "salahMostRecentUntracked": "Most recent untracked salah",
+  "salahCurrentSalahTitle": "موجودہ نماز",
+  "salahTrackCurrentSalah": "اس موجودہ نماز کو ریکارڈ کریں",
+  "salahMostRecentUntracked": "حال ہی کی غیر ریکارڈ شدہ نماز",
   "salahRakatsLabel": "{count} Rakats",
   "@salahRakatsLabel": {
     "placeholders": {
       "count": {}
     }
   },
-  "salahOfferTimeLabel": "Offer time",
-  "salahOfferWindowLabel": "Offer window",
+  "salahOfferTimeLabel": "ادائیگی کا وقت",
+  "salahOfferWindowLabel": "ادائیگی کا دورانیہ",
   "salahWindowValue": "{start} to {end}",
   "@salahWindowValue": {
     "placeholders": {
@@ -3427,45 +3427,45 @@
       "end": {}
     }
   },
-  "salahBecomesQadaAfterLabel": "Becomes qada after",
-  "salahTimeRemainingToOfferLabel": "Time remaining to offer",
-  "salahMakeUpFromLabel": "Make up from",
-  "salahStartsInLabel": "Starts in {duration}",
+  "salahBecomesQadaAfterLabel": "اس کے بعد قضا ہو جائے گی",
+  "salahTimeRemainingToOfferLabel": "ادائیگی کے لیے باقی وقت",
+  "salahMakeUpFromLabel": "یہاں سے قضا کریں",
+  "salahStartsInLabel": "{duration} میں شروع",
   "@salahStartsInLabel": {
     "placeholders": {
       "duration": {}
     }
   },
-  "salahOfferWindowEnded": "Offer window ended",
-  "salahNoActiveSalah": "No active salah",
-  "salahNoUpcomingSalah": "No upcoming salah",
-  "salahOfferBySummary": "Offer by {time} • {status}",
+  "salahOfferWindowEnded": "ادائیگی کا دورانیہ ختم ہوا",
+  "salahNoActiveSalah": "کوئی موجودہ نماز نہیں",
+  "salahNoUpcomingSalah": "کوئی آنے والی نماز نہیں",
+  "salahOfferBySummary": "{time} تک ادا کریں • {status}",
   "@salahOfferBySummary": {
     "placeholders": {
       "time": {},
       "status": {}
     }
   },
-  "salahBeginsAtSummary": "Begins at {time} • {status}",
+  "salahBeginsAtSummary": "{time} پر شروع • {status}",
   "@salahBeginsAtSummary": {
     "placeholders": {
       "time": {},
       "status": {}
     }
   },
-  "salahRakatGuideTitle": "Salah Rakat Guide",
+  "salahRakatGuideTitle": "نماز کی رکعات کی رہنمائی",
   "salahRakatGuidePrayerColumn": "Salah",
   "salahRakatGuideSunnahColumn": "Sunnah",
   "salahRakatGuideFardColumn": "Fard",
   "salahRakatGuideNaflColumn": "Nafl / Witr",
-  "salahRakatGuideFajrSunnah": "2 before",
-  "salahRakatGuideDhuhrSunnah": "4 before, 2 after",
-  "salahRakatGuideDhuhrNafl": "2 after",
-  "salahRakatGuideAsrSunnah": "4 before",
-  "salahRakatGuideMaghribSunnah": "2 after",
-  "salahRakatGuideMaghribNafl": "2 after",
-  "salahRakatGuideIshaSunnah": "2 after",
-  "salahRakatGuideIshaNafl": "3 witr + 2 nafl",
+  "salahRakatGuideFajrSunnah": "٢ پہلے",
+  "salahRakatGuideDhuhrSunnah": "٤ پہلے، ٢ بعد",
+  "salahRakatGuideDhuhrNafl": "٢ بعد",
+  "salahRakatGuideAsrSunnah": "٤ پہلے",
+  "salahRakatGuideMaghribSunnah": "٢ بعد",
+  "salahRakatGuideMaghribNafl": "٢ بعد",
+  "salahRakatGuideIshaSunnah": "٢ بعد",
+  "salahRakatGuideIshaNafl": "٣ وتر + ٢ نفل",
   "salahStartedLabel": "Started",
   "salahQuickActionsTitle": "فوری اقدامات",
   "salahQuickTrackOnTime": "وقت پر",
@@ -7475,24 +7475,24 @@
   "profileWhatsNewEntry113Item3": "ترتیبات اور اکاؤنٹ کے بہاؤ میں وضاحت بڑھائی گئی۔",
   "profileWhatsNewEntry113Item4": "نوٹیفکیشن اور یاددہانی کے متن کو بہتر کیا گیا۔",
   "profileWhatsNewEntry113Item5": "چھوٹی بہتریاں اور بگ فکس شامل کی گئیں۔",
-  "profileWhatsNewEntry112Title": "Trusted-source Qur''anic Arabic improvements",
-  "profileWhatsNewEntry112Summary": "The Learn Qur''anic Arabic content now uses stricter source handling so visible Qur''anic examples are more traceable and consistent.",
+  "profileWhatsNewEntry112Title": "مستند مآخذ پر مبنی قرآنی عربی کی بہتری",
+  "profileWhatsNewEntry112Summary": "«قرآنی عربی سیکھیں» کا مواد اب مآخذ کے سخت تر انتظام کا استعمال کرتا ہے تاکہ نظر آنے والی قرآنی مثالیں زیادہ قابلِ سراغ اور ہم آہنگ ہوں۔",
   "profileWhatsNewEntry112Item1": "نماز سے متعلق اسٹیٹس اور خلاصے بہتر کیے گئے۔",
   "profileWhatsNewEntry112Item2": "سیکھنے کی اسکرینوں میں واضح UI لیبل شامل کیے گئے۔",
-  "profileWhatsNewEntry112Item3": "Source-locked the seeded 100-word Qur''anic Arabic dataset so future additions require source metadata.",
+  "profileWhatsNewEntry112Item3": "قرآنی عربی کے ١٠٠ الفاظ کے بنیادی ڈیٹا سیٹ کو مآخذ سے منسلک کر دیا گیا تاکہ آئندہ اضافوں کے لیے مآخذ کی معلومات لازمی ہوں۔",
   "profileWhatsNewEntry111Title": "ورژن 1.1.1",
   "profileWhatsNewEntry111Summary": "ہم آہنگی، بیک اپ اور پروفائل مینجمنٹ کو بہتر کیا گیا۔",
   "profileWhatsNewEntry111Item1": "سنک اسٹیٹس اور بیک اپ کے خلاصوں میں بہتری کی گئی۔",
   "profileWhatsNewEntry111Item2": "پروفائل سوئچنگ کے بہاؤ کو واضح بنایا گیا۔",
   "profileWhatsNewEntry111Item3": "شیئرڈ ڈیوائس حفاظتی آپشنز کو بہتر کیا گیا۔",
-  "profileWhatsNewEntry110Title": "Smarter Qur''anic Arabic practice",
-  "profileWhatsNewEntry110Summary": "Qur''anic Arabic learning became more adaptive, with more meaningful review and guidance across the teaching flow.",
+  "profileWhatsNewEntry110Title": "زیادہ ذہین قرآنی عربی کی مشق",
+  "profileWhatsNewEntry110Summary": "قرآنی عربی سیکھنا زیادہ موافق ہو گیا، اور پورے تدریسی سلسلے میں دہرائی اور رہنمائی زیادہ بامعنی ہو گئی۔",
   "profileWhatsNewEntry110Item1": "نیویگیشن لیبلز کو مزید واضح بنایا گیا۔",
   "profileWhatsNewEntry110Item2": "عام ٹول ٹپس اور شیل متن بہتر کیا گیا۔",
-  "profileWhatsNewEntry110Item3": "Moved Learn Qur''anic Arabic into its own dedicated Learn destination for easier discovery.",
+  "profileWhatsNewEntry110Item3": "«قرآنی عربی سیکھیں» کو آسان دریافت کے لیے سیکھنے کے اپنے مخصوص حصے میں منتقل کیا گیا۔",
   "profileComingSoonRoadmapTitle": "جلد آ رہا ہے",
   "profileComingSoonRoadmapSubtitle": "آنے والی چیزوں پر ایک نظر۔",
-  "profileComingSoonCard1Title": "Deeper Qur''anic Arabic guidance",
+  "profileComingSoonCard1Title": "قرآنی عربی کی گہری رہنمائی",
   "profileComingSoonCard1Description": "آپ کے سفر کے مطابق مزید حسبِ ضرورت اختیارات۔",
   "profileComingSoonCard2Title": "گہری پیش رفت کی جھلکیاں",
   "profileComingSoonCard2Description": "آپ کی عادات، مستقل مزاجی، اور بڑھوتری کے واضح خلاصے۔",
@@ -7851,26 +7851,26 @@
   "accountsSyncScopeConfirmAction": "دائرہ اپ ڈیٹ کریں",
   "accountsSyncScopeManualExportNote": "دستی ایکسپورٹ میں بطورِ ڈیفالٹ مکمل مقامی ڈیٹا شامل رہتا ہے، چاہے آئندہ ریموٹ بیک اپ جزوی ہوں۔",
   "accountsSyncScopeRestoreDefaultsAction": "تجویز کردہ طے شدہ ترتیبات بحال کریں",
-  "accountsSyncScopePreviewTitle": "Backup scope",
-  "accountsSyncScopePreviewRemoteValue": "Remote backup: {value}",
+  "accountsSyncScopePreviewTitle": "بیک اپ کا دائرہ",
+  "accountsSyncScopePreviewRemoteValue": "ریموٹ بیک اپ: {value}",
   "@accountsSyncScopePreviewRemoteValue": {
     "placeholders": {
       "value": {}
     }
   },
-  "accountsSyncScopePreviewCurrentValue": "Current device setting: {value}",
+  "accountsSyncScopePreviewCurrentValue": "اس ڈیوائس کی ترتیب: {value}",
   "@accountsSyncScopePreviewCurrentValue": {
     "placeholders": {
       "value": {}
     }
   },
-  "accountsSyncScopePreviewExcludedDomain": "This backup does not include {domain}.",
+  "accountsSyncScopePreviewExcludedDomain": "اس بیک اپ میں {domain} شامل نہیں ہے۔",
   "@accountsSyncScopePreviewExcludedDomain": {
     "placeholders": {
       "domain": {}
     }
   },
-  "accountsSyncScopePreviewValue": "Backup scope: {value}",
+  "accountsSyncScopePreviewValue": "بیک اپ کا دائرہ: {value}",
   "@accountsSyncScopePreviewValue": {
     "placeholders": {
       "value": {}
@@ -7899,7 +7899,7 @@
       "domain": {}
     }
   },
-  "accountsSyncScopePreviewMismatchDomain": "Your current settings include {domain}, but this backup did not.",
+  "accountsSyncScopePreviewMismatchDomain": "آپ کی موجودہ ترتیبات میں {domain} شامل ہے، مگر اس بیک اپ میں نہیں تھا۔",
   "@accountsSyncScopePreviewMismatchDomain": {
     "placeholders": {
       "domain": {}
@@ -7965,8 +7965,8 @@
   "accountsSyncBackupImported": "بیک اپ درآمد ہو گیا",
   "accountsSyncImportModeMerge": "ضم کریں",
   "accountsSyncImportModeReplace": "بدل دیں",
-  "accountsSyncImportPreviewTitle": "Import preview",
-  "accountsSyncImportPreviewSummary": "{profiles, plural, =0 {0 profiles} =1 {1 profile} other {{profiles} profiles}} • {accounts, plural, =0 {0 accounts} =1 {1 account} other {{accounts} accounts}}",
+  "accountsSyncImportPreviewTitle": "درآمد کا پیش منظر",
+  "accountsSyncImportPreviewSummary": "{profiles, plural, =0 {کوئی پروفائل نہیں} =1 {ایک پروفائل} other {{profiles} پروفائلز}} • {accounts, plural, =0 {کوئی اکاؤنٹ نہیں} =1 {ایک اکاؤنٹ} other {{accounts} اکاؤنٹس}}",
   "@accountsSyncImportPreviewSummary": {
     "placeholders": {
       "profiles": {
@@ -7977,7 +7977,7 @@
       }
     }
   },
-  "accountsSyncImportPreviewModeValue": "Restore mode: {mode}",
+  "accountsSyncImportPreviewModeValue": "بحالی کا موڈ: {mode}",
   "@accountsSyncImportPreviewModeValue": {
     "placeholders": {
       "mode": {
@@ -8463,26 +8463,26 @@
   "growthHomeHabitsSubtitle": "ان عادات کو ٹریک کریں جو خاموشی سے آپ کے دن کی تشکیل کرتی ہیں۔",
   "growthHomeJourneySubtitle": "اپنے لیول، انلاک اور مستقل پیشرفت کا جائزہ لیں۔",
   "growthHomeReflectionSubtitle": "شکر گزاری، توبہ، اور دیانتدارانہ جائزہ کے لیے توقف کریں۔",
-  "growthHomeJourneyDepthTitle": "See your progress clearly",
-  "growthHomeJourneyDepthSubtitle": "These progress rings show today''s prayer, dhikr, Qur''an, reflection, and fasting rhythm. Open Statistics for longer trends or Garden for the visual story of your growth.",
-  "growthHomeJourneyDepthSummary": "Today''s completion: {percent} • current streak: {days} days",
+  "growthHomeJourneyDepthTitle": "اپنی پیش رفت واضح دیکھیں",
+  "growthHomeJourneyDepthSubtitle": "یہ پیش رفت کے حلقے آج کی نماز، ذکر، قرآن، غور و فکر اور روزے کی روانی دکھاتے ہیں۔ طویل رجحانات کے لیے اعداد و شمار کھولیں یا اپنی نشوونما کی بصری کہانی کے لیے باغ۔",
+  "growthHomeJourneyDepthSummary": "آج کی تکمیل: {percent} • موجودہ تسلسل: {days} دن",
   "@growthHomeJourneyDepthSummary": {
     "placeholders": {
       "percent": {},
       "days": {}
     }
   },
-  "growthHomeJourneyDepthOpenStatistics": "Open Statistics",
-  "growthHomeJourneyDepthOpenGarden": "Open Garden",
+  "growthHomeJourneyDepthOpenStatistics": "اعداد و شمار کھولیں",
+  "growthHomeJourneyDepthOpenGarden": "باغ کھولیں",
   "growthHomeJourneyDepthPrayerLabel": "Prayer",
   "growthHomeJourneyDepthDhikrLabel": "Dhikr",
   "growthHomeJourneyDepthQuranLabel": "Quran",
   "growthHomeJourneyDepthReflectionLabel": "Reflection",
   "growthHomeJourneyDepthFastingLabel": "Fasting",
-  "growthHomeFeaturedStatisticsSubtitle": "Follow weekly trends, active days, and reward momentum in one calm dashboard.",
-  "growthHomeFeaturedStatisticsAction": "View trends",
-  "growthHomeFeaturedGardenSubtitle": "See how your drops unlock imagery, meaning, and your next growth milestone.",
-  "growthHomeFeaturedGardenAction": "See Garden",
+  "growthHomeFeaturedStatisticsSubtitle": "ہفتہ وار رجحانات، سرگرم دن اور انعامات کی رفتار ایک پُرسکون ڈیش بورڈ میں دیکھیں۔",
+  "growthHomeFeaturedStatisticsAction": "رجحانات دیکھیں",
+  "growthHomeFeaturedGardenSubtitle": "دیکھیں کہ آپ کے قطرے کیسے مناظر، معنی اور آپ کا اگلا سنگِ میل کھولتے ہیں۔",
+  "growthHomeFeaturedGardenAction": "باغ دیکھیں",
   "growthHomePrivateModeTitle": "خاموش ترقی",
   "growthHomePublicModeTitle": "حرکت میں اضافہ",
   "growthHomeAllUnlocksPresent": "تمام موجودہ انلاک پہلے سے موجود ہیں۔",
@@ -8697,7 +8697,7 @@
   "growthReflectionRecentUnlockNote": "ایک حالیہ غیر مقفل مستحکم غور و فکر اور چھوٹے قدموں کے ذریعے ظاہر ہوا۔",
   "growthReflectionSeasonalPromptsTitle": "موسمی اشارے",
   "growthReflectionNoSeasonalPrompt": "آج کوئی موسمی اشارہ نہیں ہے۔ اخلاص کے ساتھ اپنا راستہ جاری رکھیں۔",
-  "growthReflectionIntro": "This space is for honest review, gratitude, tawbah, and entrusting your efforts to Allah.",
+  "growthReflectionIntro": "یہ جگہ ایمانداری سے جائزہ لینے، شکر، توبہ اور اپنی کوششیں اللہ کے سپرد کرنے کے لیے ہے۔",
   "growthReflectionPrivateModeTitle": "پرائیویٹ موڈ (خاموش ترقی کے منظر)",
   "growthReflectionPromptSuggestionsTitle": "فوری تجاویز",
   "growthReflectionPromptLibraryTitle": "فوری لائبریری",
@@ -8712,8 +8712,8 @@
   "growthReflectionTawbahHint": "معافی کس لیے مانگتے ہو؟",
   "growthReflectionShortNotesTitle": "مختصر نوٹس",
   "growthReflectionShortNotesHint": "اس کو سادہ اور مخلص رکھیں",
-  "growthReflectionEntrustToAllahTitle": "Entrust deeds to Allah",
-  "growthReflectionEntrustToAllahSubtitle": "When enabled, this entry is tracked quietly without celebratory emphasis.",
+  "growthReflectionEntrustToAllahTitle": "اعمال اللہ کے سپرد کریں",
+  "growthReflectionEntrustToAllahSubtitle": "فعال ہونے پر یہ اندراج بغیر کسی جشن کے خاموشی سے ریکارڈ ہوتا ہے۔",
   "growthReflectionSaveAction": "غور و فکر کو محفوظ کریں۔",
   "growthReflectionTodayEntriesTitle": "آج کے اندراجات",
   "growthReflectionBeginAgain": "ایک مختصر غور و فکر کے ساتھ آج دوبارہ شروع کریں۔",
@@ -8757,7 +8757,7 @@
       }
     }
   },
-  "growthReflectionEntrustedQuietly": "Entrusted quietly to Allah",
+  "growthReflectionEntrustedQuietly": "خاموشی سے اللہ کے سپرد",
   "growthReflectionGratitudeHistoryTitle": "شکرگزاری کی تاریخ",
   "growthReflectionNoGratitudeHistory": "ابھی تک شکر گزاری کی کوئی تاریخ نہیں ہے۔",
   "growthReflectionRecentReflectionsTitle": "حالیہ غور و فکر",
@@ -9445,8 +9445,8 @@
   "gardenRecentSeerahNode": "سیرت کا مرحلہ مکمل ہوا۔",
   "gardenRecentSeerahStage": "سیرت کا مرحلہ مکمل ہوا۔",
   "gardenRecentSeerahJourney": "سیرت کا سفر مکمل ہوا۔",
-  "gardenRecentKidsArabicLesson": "Arabic letter lesson completed",
-  "gardenRecentKidsArabicDaily": "Arabic daily mission completed",
+  "gardenRecentKidsArabicLesson": "عربی حرف کا سبق مکمل ہوا",
+  "gardenRecentKidsArabicDaily": "عربی کا روزانہ مشن مکمل ہوا",
   "gardenPageLightMeaningTitle": "یاد کے ذریعے روشنی",
   "gardenPageLightMeaningBody": "دعا اور ذکر باغ میں چمک، گرمی اور پرسکون ماحول لاتے ہیں۔",
   "gardenPageFruitMeaningTitle": "کھلنے میں حکمت",
@@ -11784,7 +11784,7 @@
       "minutes": {}
     }
   },
-  "journeyStatsDaysHoursValue": "{days}d {hours}h",
+  "journeyStatsDaysHoursValue": "{days} دن {hours} گھنٹے",
   "@journeyStatsDaysHoursValue": {
     "placeholders": {
       "days": {},
@@ -15002,10 +15002,10 @@
   "quranReaderFollowModeLabel": "موڈ کو فالو کریں۔",
   "quranReaderFollowSuspendedLabel": "براؤز کرتے وقت فالو عارضی طور پر موقوف ہے۔",
   "quranReaderReturnToCurrentAyahAction": "موجودہ آیت پر واپس جائیں",
-  "quranReaderPreviousSurahAction": "Previous surah",
-  "quranReaderNextSurahAction": "Next surah",
-  "quranReaderAdjacentSurahUnavailable": "Unable to open that surah right now.",
-  "quranReaderRepeatRangeSummary": "Repeat ayahs {startAyah}–{endAyah}",
+  "quranReaderPreviousSurahAction": "پچھلی سورت",
+  "quranReaderNextSurahAction": "اگلی سورت",
+  "quranReaderAdjacentSurahUnavailable": "اس وقت وہ سورت نہیں کھولی جا سکی۔",
+  "quranReaderRepeatRangeSummary": "آیات {startAyah}–{endAyah} دہرائیں",
   "@quranReaderRepeatRangeSummary": {
     "placeholders": {
       "startAyah": {
@@ -15016,7 +15016,7 @@
       }
     }
   },
-  "quranReaderRepeatLoopSummary": "Loop {count}x",
+  "quranReaderRepeatLoopSummary": "{count}× دہرائیں",
   "@quranReaderRepeatLoopSummary": {
     "placeholders": {
       "count": {
@@ -15024,7 +15024,7 @@
       }
     }
   },
-  "quranReaderRepeatRangeLoopSummary": "Repeat ayahs {startAyah}–{endAyah} • {count}x",
+  "quranReaderRepeatRangeLoopSummary": "آیات {startAyah}–{endAyah} دہرائیں • {count}×",
   "@quranReaderRepeatRangeLoopSummary": {
     "placeholders": {
       "startAyah": {
@@ -15038,7 +15038,7 @@
       }
     }
   },
-  "quranReaderNextSurahButtonLabel": "Next Surah ({surahNumber})",
+  "quranReaderNextSurahButtonLabel": "اگلی سورت ({surahNumber})",
   "@quranReaderNextSurahButtonLabel": {
     "placeholders": {
       "surahNumber": {
@@ -16529,7 +16529,7 @@
       "passageTitle": {}
     }
   },
-  "quranReaderNowPlayingLabel": "Recitation {surahLabel} • Verse {reference}",
+  "quranReaderNowPlayingLabel": "تلاوت {surahLabel} • آیت {reference}",
   "@quranReaderNowPlayingLabel": {
     "placeholders": {
       "surahLabel": {},
@@ -16561,7 +16561,7 @@
   "quranReaderPlaybackSpeedLockedHint": "جب لائیو لفظی ہائی لائٹ فعال ہو تو رفتار 1.00x پر مقفل رہتی ہے۔",
   "quranReaderMemorizationSettingsTitle": "حفظ کی ترتیبات",
   "quranReaderContinueRecitationTitle": "تلاوت جاری رکھیں",
-  "quranReaderResumeAudioRecitationTitle": "Resume Audio Recitation",
+  "quranReaderResumeAudioRecitationTitle": "صوتی تلاوت دوبارہ شروع کریں",
   "quranReaderContinueRecitationSubtitle": "آیت {ayahNumber} سے {position} پر دوبارہ شروع کریں",
   "@quranReaderContinueRecitationSubtitle": {
     "placeholders": {
@@ -16572,7 +16572,7 @@
     }
   },
   "quranReaderResumeAction": "دوبارہ شروع کریں",
-  "quranReaderRestartSurahAction": "Restart Surah",
+  "quranReaderRestartSurahAction": "سورت شروع سے شروع کریں",
   "quranReaderTransliterationLoadError": "اس وقت مکمل ٹرانسلٹریشن لوڈ نہیں ہو سکی۔ کنکشن چیک کریں اور دوبارہ کوشش کریں۔",
   "quranReaderReciterSampleError": "اس وقت نمونہ نہیں چل سکا: {error}",
   "@quranReaderReciterSampleError": {
@@ -16597,17 +16597,17 @@
   "quranReaderTransliterationUnavailable": "اس آیت کے لیے ابھی ٹرانسلٹریشن دستیاب نہیں ہے۔",
   "quranReaderSettingsToggleTitle": "ترتیبات",
   "quranReaderSettingsExpandCollapse": "کھولیں/سمیٹیں",
-  "quranReaderReadingDisplaySectionTitle": "Reading & Display",
-  "quranReaderReadingDisplaySectionSubtitle": "Adjust what stays visible and how the ayah text feels while you read.",
-  "quranReaderStudyToolsSectionTitle": "Study Tools",
-  "quranReaderStudyToolsSectionSubtitle": "Optional learning aids and beta helpers for deeper study.",
-  "quranReaderAudioPlaybackSectionTitle": "Audio & Playback",
-  "quranReaderAudioPlaybackSectionSubtitle": "Choose the reciter and playback behavior without crowding the reading controls.",
-  "quranReaderDownloadsOfflineSectionTitle": "Downloads & Offline",
-  "quranReaderDownloadsOfflineSectionSubtitle": "Keep only the surahs you need on this device.",
-  "quranReaderMemorizationReviewSectionTitle": "Memorization & Review",
-  "quranReaderMemorizationReviewSectionSubtitle": "Keep hifz-focused controls separate from everyday reading.",
-  "quranReaderRepeatPracticeTitle": "Repeat & practice",
+  "quranReaderReadingDisplaySectionTitle": "پڑھنا اور ڈسپلے",
+  "quranReaderReadingDisplaySectionSubtitle": "ایڈجسٹ کریں کہ کیا نظر آتا رہے اور پڑھتے ہوئے آیت کا متن کیسا محسوس ہو۔",
+  "quranReaderStudyToolsSectionTitle": "مطالعے کے اوزار",
+  "quranReaderStudyToolsSectionSubtitle": "گہرے مطالعے کے لیے اختیاری معاونات اور بیٹا مددگار۔",
+  "quranReaderAudioPlaybackSectionTitle": "آڈیو اور پلے بیک",
+  "quranReaderAudioPlaybackSectionSubtitle": "قاری اور پلے بیک کا انداز منتخب کریں، بغیر پڑھنے کے کنٹرولز کو بھیڑ کیے۔",
+  "quranReaderDownloadsOfflineSectionTitle": "ڈاؤن لوڈز اور آف لائن",
+  "quranReaderDownloadsOfflineSectionSubtitle": "اس ڈیوائس پر صرف وہی سورتیں رکھیں جن کی آپ کو ضرورت ہے۔",
+  "quranReaderMemorizationReviewSectionTitle": "حفظ اور دہرائی",
+  "quranReaderMemorizationReviewSectionSubtitle": "حفظ سے متعلق کنٹرولز کو روزمرہ پڑھنے سے الگ رکھیں۔",
+  "quranReaderRepeatPracticeTitle": "دہرائی اور مشق",
   "quranReaderTextSettingsTitle": "متن کی ترتیبات",
   "quranReaderTranslationSourceLabel": "ترجمے کا ماخذ",
   "quranReaderTextOptionsTitle": "متن کے اختیارات",
@@ -17167,11 +17167,11 @@
     }
   },
   "quranSummaryKeyThemesTitle": "اہم موضوعات",
-  "quranSummaryNotableAyatTitle": "Notable ayat",
-  "quranSummaryRelatedProphetsTitle": "Related prophets",
-  "quranSummaryRelatedEventsTitle": "Related events",
-  "quranSummaryVirtuesTitle": "Virtues and recitation notes",
-  "quranSummaryReflectionPromptsTitle": "Reflection prompts",
+  "quranSummaryNotableAyatTitle": "نمایاں آیات",
+  "quranSummaryRelatedProphetsTitle": "متعلقہ انبیا",
+  "quranSummaryRelatedEventsTitle": "متعلقہ واقعات",
+  "quranSummaryVirtuesTitle": "فضائل اور تلاوت کے نکات",
+  "quranSummaryReflectionPromptsTitle": "غور و فکر کے سوالات",
   "quranSummaryActionsTitle": "ریڈر کے اعمال",
   "quranSummaryNoReadingProgress": "اس سورت کے لیے ابھی محفوظ مطالعہ پیش رفت موجود نہیں۔ آپ اسے براہ راست کھول سکتے ہیں یا آیت 1 سے شروع کر سکتے ہیں۔",
   "quranSummaryResumeHint": "آیت {ayahNumber} سے وہیں سے جاری رکھیں جہاں آپ رکے تھے۔",
@@ -17199,12 +17199,12 @@
   "quranSummaryThemeCommunity": "Community",
   "quranSummaryThemeGratitude": "Gratitude",
   "quranSummaryThemeJustice": "Justice",
-  "quranSummaryThemeSignsOfCreation": "Signs of creation",
+  "quranSummaryThemeSignsOfCreation": "تخلیق کی نشانیاں",
   "quranSummaryThemeHypocrisy": "Hypocrisy",
   "quranSummaryThemeCharity": "Charity",
   "quranSummaryThemeFamily": "Family",
   "quranSummaryThemeStruggle": "Struggle",
-  "quranSummaryThemeParadiseAndHell": "Paradise and Hell",
+  "quranSummaryThemeParadiseAndHell": "جنت اور جہنم",
   "quranThemeDiscoveryIslandTitle": "موضوع کے لحاظ سے براؤز کریں۔",
   "quranThemeDiscoveryIslandSubtitle": "رحمت، صبر، انبیاء، رہنمائی اور آخرت جیسے موضوعات کے ذریعے قرآن کو دریافت کریں۔",
   "quranThemeDiscoveryPageTitle": "موضوع کے لحاظ سے براؤز کریں۔",
@@ -18190,14 +18190,14 @@
   "homeGlassVariantClearShowcaseMicro": "سب سے زیادہ کھلا · محتاط تضاد",
   "loadingHeadlineAllahAkbar": "اللَّهُ أَكْبَرُ",
   "loadingGreetingMorning": "اللَّهُمَّ بِكَ أَصْبَحْنَا",
-  "loadingGreetingMorningTranslation": "O Allah, by You we enter the morning",
+  "loadingGreetingMorningTranslation": "اے اللہ، تیرے ہی سہارے ہم نے صبح کی",
   "loadingGreetingEvening": "اللَّهُمَّ بِكَ أَمْسَيْنَا",
-  "loadingGreetingEveningTranslation": "O Allah, by You we enter the evening",
-  "loadingWelcomeBack": "Welcome Back",
-  "loadingRestoringProgress": "Restoring your progress",
-  "loadingStatusPreparing": "Preparing your space…",
-  "loadingStatusRestoring": "Restoring your progress…",
-  "loadingStatusSyncing": "Syncing your journey…",
+  "loadingGreetingEveningTranslation": "اے اللہ، تیرے ہی سہارے ہم نے شام کی",
+  "loadingWelcomeBack": "خوش آمدید",
+  "loadingRestoringProgress": "آپ کی پیش رفت بحال کی جا رہی ہے",
+  "loadingStatusPreparing": "آپ کی جگہ تیار کی جا رہی ہے…",
+  "loadingStatusRestoring": "آپ کی پیش رفت بحال کی جا رہی ہے…",
+  "loadingStatusSyncing": "آپ کا سفر ہم آہنگ کیا جا رہا ہے…",
   "loadingStatusFinalizing": "Finalizing…",
   "homeTestOnboardingPill": "آن بورڈنگ آزمائیں",
   "homeTestLoadingScreenPill": "لوڈنگ اسکرین آزمائیں",
@@ -18253,8 +18253,8 @@
   "onboardingAccountOptionsBody": "Path of Nūr آپ کے سیکھنے کے ڈیٹا کو بطورِ ڈیفالٹ جمع نہیں کرتا۔ سائن اِن صرف بیک اپ، بحالی، اور جہاں دستیاب ہو وہاں مختلف ڈیوائسز کے درمیان مطابقت پذیری کے لیے ہے۔",
   "onboardingAccountOptionsManualBackupBody": "آپ بعد میں Settings سے اپنے ڈیٹا کا دستی بیک اپ بھی لے سکتے ہیں۔",
   "historyNoEventsForThisDate": "There are no events for this date.",
-  "worshipQiblaUnavailableOnIpadTitle": "Qibla finder unavailable on iPad",
-  "worshipQiblaUnavailableOnIpadBody": "Qibla finder does not correctly work on iPad due to hardware limitations.",
+  "worshipQiblaUnavailableOnIpadTitle": "قبلہ تلاش کرنے والا iPad پر دستیاب نہیں",
+  "worshipQiblaUnavailableOnIpadBody": "ہارڈویئر کی حدود کی وجہ سے قبلہ تلاش کرنے والا iPad پر درست کام نہیں کرتا۔",
   "gardenPageRecentGrowthTracked": "Tracked",
   "hadithReflectionCompletedQuiet": "غور و فکر مکمل۔",
   "hadithLessonCompletedQuiet": "سبق مکمل ہو گیا۔",
@@ -18299,17 +18299,17 @@
   "homeWidgetsPrayerCountdownInMinutes": "{minutes} منٹ میں",
   "homeWidgetsPrayerCountdownInHoursMinutes": "{hours} گھنٹے {minutes} منٹ میں",
   "quranReaderSearchPillLabel": "Search",
-  "quranReaderSearchSheetTitle": "Search this surah",
-  "quranReaderSearchScopeSubtitle": "Find matches in the current surah.",
-  "quranReaderSearchWholeQuranSubtitle": "Find matches across the whole Qur’an.",
-  "quranReaderSearchScopeCurrentSurah": "Current Surah",
-  "quranReaderSearchScopeWholeQuran": "Whole Qur’an",
-  "quranReaderSearchHint": "Search translation, transliteration, or Arabic",
+  "quranReaderSearchSheetTitle": "اس سورت میں تلاش کریں",
+  "quranReaderSearchScopeSubtitle": "موجودہ سورت میں مماثلتیں تلاش کریں۔",
+  "quranReaderSearchWholeQuranSubtitle": "پورے قرآن میں مماثلتیں تلاش کریں۔",
+  "quranReaderSearchScopeCurrentSurah": "موجودہ سورت",
+  "quranReaderSearchScopeWholeQuran": "پورا قرآن",
+  "quranReaderSearchHint": "ترجمہ، نقل حرفی یا عربی تلاش کریں",
   "quranReaderSearchClearAction": "Clear",
   "quranReaderSearchRunAction": "Search",
-  "quranReaderSearchClearRecentAction": "Clear recent",
-  "quranReaderSearchPreviousAction": "Previous match",
-  "quranReaderSearchNextAction": "Next match",
+  "quranReaderSearchClearRecentAction": "حالیہ صاف کریں",
+  "quranReaderSearchPreviousAction": "پچھلی مماثلت",
+  "quranReaderSearchNextAction": "اگلی مماثلت",
   "quranReaderSearchMatchCounter": "{current} of {total}",
   "@quranReaderSearchMatchCounter": {
     "placeholders": {
@@ -18446,29 +18446,29 @@
   "hadithSectionRelatedQuran": "Related Qur’an",
   "hadithSectionRelatedDuas": "Related Duas",
   "hadithSectionRelatedCanonical": "Related hadith",
-  "quranReaderRelatedHadithTitle": "Related Hadith",
-  "quranReaderRelatedDuasTitle": "Related Duas",
-  "allSearchTitle": "All Search",
-  "allSearchSubtitle": "Search Qur’an, hadith, duas, and learning content together.",
-  "allSearchHint": "Search across Path of Nur",
-  "allSearchEmptyTitle": "Search across the app",
-  "allSearchEmptySubtitle": "We’ll group results by domain so it stays calm and easy to trust.",
+  "quranReaderRelatedHadithTitle": "متعلقہ احادیث",
+  "quranReaderRelatedDuasTitle": "متعلقہ دعائیں",
+  "allSearchTitle": "مجموعی تلاش",
+  "allSearchSubtitle": "قرآن، حدیث، دعائیں اور سیکھنے کا مواد ایک ساتھ تلاش کریں۔",
+  "allSearchHint": "‏Path of Nur میں تلاش کریں",
+  "allSearchEmptyTitle": "پوری ایپ میں تلاش کریں",
+  "allSearchEmptySubtitle": "ہم نتائج کو شعبے کے حساب سے ترتیب دیں گے تاکہ سب پُرسکون اور قابلِ اعتماد رہے۔",
   "allSearchSuggestionsTitle": "Suggestions",
-  "allSearchRecentTitle": "Recent searches",
+  "allSearchRecentTitle": "حالیہ تلاشیں",
   "allSearchClearRecent": "Clear",
-  "allSearchNoRecent": "No recent searches yet.",
-  "allSearchNoResultsTitle": "No results yet",
-  "allSearchNoResultsSubtitle": "We could not find a strong match across Qur’an, hadith, duas, or learn content.",
-  "allSearchNoResultsTipBroader": "Try a shorter or broader phrase.",
-  "allSearchNoResultsTipDomain": "You can also jump into a domain search for more depth.",
+  "allSearchNoRecent": "ابھی کوئی حالیہ تلاش نہیں۔",
+  "allSearchNoResultsTitle": "ابھی کوئی نتیجہ نہیں",
+  "allSearchNoResultsSubtitle": "ہمیں قرآن، حدیث، دعاؤں یا سیکھنے کے مواد میں کوئی مضبوط مماثلت نہیں ملی۔",
+  "allSearchNoResultsTipBroader": "کوئی مختصر یا وسیع تر عبارت آزمائیں۔",
+  "allSearchNoResultsTipDomain": "آپ مزید گہرائی کے لیے کسی مخصوص شعبے کی تلاش میں بھی جا سکتے ہیں۔",
   "allSearchDomainQuran": "Qur’an",
   "allSearchDomainHadith": "Hadith",
   "allSearchDomainDua": "Duas",
   "allSearchDomainLearn": "Learn",
-  "allSearchViewAllQuran": "View all in Qur’an",
-  "allSearchViewAllHadith": "View all in Hadith",
-  "allSearchViewAllDua": "View all in Duas",
-  "allSearchViewAllLearn": "View all in Learn",
+  "allSearchViewAllQuran": "قرآن میں سب دیکھیں",
+  "allSearchViewAllHadith": "حدیث میں سب دیکھیں",
+  "allSearchViewAllDua": "دعاؤں میں سب دیکھیں",
+  "allSearchViewAllLearn": "سیکھنے میں سب دیکھیں",
   "allSearchSuggestionMercy": "mercy",
   "allSearchSuggestionPatience": "patience",
   "allSearchSuggestionIntentions": "intentions",
@@ -18477,13 +18477,13 @@
   "allSearchSuggestionProphets": "prophets",
   "allSearchSuggestionGratitude": "gratitude",
   "allSearchSuggestionJustice": "justice",
-  "allSearchResultsFor": "Results for \"{query}\"",
+  "allSearchResultsFor": "\"{query}\" کے نتائج",
   "@allSearchResultsFor": {
     "placeholders": {
       "query": {}
     }
   },
-  "allSearchError": "Search unavailable: {message}",
+  "allSearchError": "تلاش دستیاب نہیں: {message}",
   "@allSearchError": {
     "placeholders": {
       "message": {}

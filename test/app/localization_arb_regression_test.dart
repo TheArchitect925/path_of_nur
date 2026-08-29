@@ -37,6 +37,64 @@ void main() {
     }
   });
 
+  test('no locale file carries keys the English template has dropped', () {
+    for (final file in localeFiles) {
+      final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+      final stale =
+          data.keys
+              .where(
+                (key) =>
+                    !key.startsWith('@') &&
+                    key != '@@locale' &&
+                    !englishKeys.contains(key),
+              )
+              .toList()
+            ..sort();
+      expect(
+        stale,
+        isEmpty,
+        reason:
+            '${file.path} keeps keys removed from the template: '
+            '${stale.join(', ')}',
+      );
+    }
+  });
+
+  // gen-l10n unions placeholders across every ARB file, so one locale inventing
+  // a placeholder adds a phantom parameter to the method English and German
+  // call — and forces every call site to pass a padding argument for it.
+  test('locale placeholders match the English template exactly', () {
+    final placeholder = RegExp(r'\{([A-Za-z0-9_]+)\}');
+    Set<String> placeholdersIn(String value) =>
+        placeholder.allMatches(value).map((m) => m.group(1)!).toSet();
+
+    for (final file in localeFiles) {
+      final data = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+      final mismatches = <String>[];
+      for (final key in englishKeys) {
+        final english = englishData[key];
+        final localeValue = data[key];
+        if (english is! String || localeValue is! String) continue;
+        final want = placeholdersIn(english);
+        final got = placeholdersIn(localeValue);
+        if (want.length == got.length && want.containsAll(got)) continue;
+        final added = got.difference(want).toList()..sort();
+        final dropped = want.difference(got).toList()..sort();
+        mismatches.add(
+          '$key ${added.isEmpty ? '' : 'added $added '}'
+                  '${dropped.isEmpty ? '' : 'dropped $dropped'}'
+              .trim(),
+        );
+      }
+      mismatches.sort();
+      expect(
+        mismatches,
+        isEmpty,
+        reason: '${file.path} placeholder drift: ${mismatches.join('; ')}',
+      );
+    }
+  });
+
   test(
     'hadith reader provenance and chapter labels no longer fall back to English',
     () {

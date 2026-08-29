@@ -3676,7 +3676,7 @@ class _PreferenceDropdown<T> extends StatelessWidget {
           Expanded(child: Text(label)),
           const SizedBox(width: 12),
           Align(
-            alignment: Alignment.centerRight,
+            alignment: AlignmentDirectional.centerEnd,
             child: DropdownButton<T>(
               value: value,
               alignment: AlignmentDirectional.centerEnd,
@@ -3689,7 +3689,7 @@ class _PreferenceDropdown<T> extends StatelessWidget {
                       value: entry.key,
                       child: Text(
                         entryBuilder?.call(entry.key) ?? entry.value,
-                        textAlign: TextAlign.right,
+                        textAlign: TextAlign.end,
                       ),
                     ),
                   )
