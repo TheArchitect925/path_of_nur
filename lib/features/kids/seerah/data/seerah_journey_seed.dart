@@ -9,9 +9,9 @@ const KidsSeerahJourney kKidsSeerahJourney = KidsSeerahJourney(
   ageGroup: BedtimeStoryAgeGroup.kids,
   totalStages: 4,
   isFeatured: true,
-  coverAssetPath: 'assets/images/kids_stories/covers/seerah_journey_cover.png',
+  coverAssetPath: 'assets/images/kids_stories/covers/seerah_journey_cover.webp',
   backdropAssetPath:
-      'assets/images/kids_stories/backdrops/seerah_journey_backdrop.png',
+      'assets/images/kids_stories/backdrops/seerah_journey_backdrop.webp',
   tags: ['seerah', 'prophet muhammad', 'companions', 'timeline'],
   timeline: [
     KidsSeerahTimelineMarker(

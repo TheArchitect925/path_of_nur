@@ -105,6 +105,14 @@ flutter:
     - assets/images/backgrounds/
     - assets/images/prophets/
     - assets/images/prophets/Stories/
+    - assets/images/prophets/bedtime_stories/covers/
+    - assets/images/prophets/bedtime_stories/backdrops/
+    - assets/images/kids_stories/covers/
+    - assets/images/kids_stories/backdrops/
+    - assets/images/kids_stories/scenes/
+    - assets/images/quran_teacher/placeholders/
+    - assets/images/quran_teacher/visual_mode/letters/
+    - assets/images/quran_teacher/visual_mode/words/
     - assets/images/kids_arabic_coloring/
     - assets/images/kids_dua_stories/
     - assets/images/learn_art/

@@ -87,9 +87,9 @@ and full of blessing.
     tags: ['bismillah', 'eating', 'dua', 'daily life', 'manners'],
     sortOrder: 210,
     coverAssetPath:
-        'assets/images/kids_stories/covers/bismillah_before_eating_cover.png',
+        'assets/images/kids_stories/covers/bismillah_before_eating_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/bismillah_before_eating_backdrop.png',
+        'assets/images/kids_stories/backdrops/bismillah_before_eating_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -110,7 +110,7 @@ and full of blessing.
         sortOrder: 1,
         title: 'A hungry moment',
         description: 'Safa is ready to eat and remembers to pause first.',
-        imageName: 'bismillah_before_eating_scene_1.png',
+        imageName: 'bismillah_before_eating_scene_1.webp',
         caption: 'She pauses before taking her first bite.',
       ),
       _scene(
@@ -119,7 +119,7 @@ and full of blessing.
         sortOrder: 2,
         title: 'A blessed meal',
         description: 'The meal becomes gentle and thankful.',
-        imageName: 'bismillah_before_eating_scene_2.png',
+        imageName: 'bismillah_before_eating_scene_2.webp',
         caption: 'Remembering Allah brings barakah to simple moments.',
       ),
     ],
@@ -180,9 +180,9 @@ Both boys said,
     tags: ['sharing', 'kindness', 'friends', 'generosity'],
     sortOrder: 220,
     coverAssetPath:
-        'assets/images/kids_stories/covers/sharing_with_others_cover.png',
+        'assets/images/kids_stories/covers/sharing_with_others_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/sharing_with_others_backdrop.png',
+        'assets/images/kids_stories/backdrops/sharing_with_others_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -253,9 +253,9 @@ Maryam felt light again.
     tags: ['truth', 'honesty', 'mistake', 'adab'],
     sortOrder: 230,
     coverAssetPath:
-        'assets/images/kids_stories/covers/telling_the_truth_cover.png',
+        'assets/images/kids_stories/covers/telling_the_truth_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/telling_the_truth_backdrop.png',
+        'assets/images/kids_stories/backdrops/telling_the_truth_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -321,9 +321,9 @@ because kindness begins at home.
     tags: ['parents', 'helping', 'family', 'kindness'],
     sortOrder: 240,
     coverAssetPath:
-        'assets/images/kids_stories/covers/helping_parents_cover.png',
+        'assets/images/kids_stories/covers/helping_parents_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/helping_parents_backdrop.png',
+        'assets/images/kids_stories/backdrops/helping_parents_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -392,9 +392,9 @@ and thanked Allah for letting her be kind.
     tags: ['animals', 'mercy', 'kindness', 'care'],
     sortOrder: 250,
     coverAssetPath:
-        'assets/images/kids_stories/covers/kindness_to_animals_cover.png',
+        'assets/images/kids_stories/covers/kindness_to_animals_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/kindness_to_animals_backdrop.png',
+        'assets/images/kids_stories/backdrops/kindness_to_animals_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -455,9 +455,9 @@ Hasan learned that respect can be soft and beautiful.
     tags: ['masjid', 'manners', 'respect', 'quiet'],
     sortOrder: 260,
     coverAssetPath:
-        'assets/images/kids_stories/covers/masjid_manners_cover.png',
+        'assets/images/kids_stories/covers/masjid_manners_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/masjid_manners_backdrop.png',
+        'assets/images/kids_stories/backdrops/masjid_manners_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -524,9 +524,9 @@ It was also about giving.
     tags: ['ramadan', 'kindness', 'iftar', 'giving'],
     sortOrder: 270,
     coverAssetPath:
-        'assets/images/kids_stories/covers/ramadan_kindness_cover.png',
+        'assets/images/kids_stories/covers/ramadan_kindness_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/ramadan_kindness_backdrop.png',
+        'assets/images/kids_stories/backdrops/ramadan_kindness_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -589,9 +589,9 @@ because gratitude was inside it.
     totalParts: 1,
     tags: ['eid', 'gratitude', 'celebration', 'thankfulness'],
     sortOrder: 280,
-    coverAssetPath: 'assets/images/kids_stories/covers/eid_gratitude_cover.png',
+    coverAssetPath: 'assets/images/kids_stories/covers/eid_gratitude_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/eid_gratitude_backdrop.png',
+        'assets/images/kids_stories/backdrops/eid_gratitude_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -657,9 +657,9 @@ Patience had been growing in her too.
     totalParts: 1,
     tags: ['patience', 'waiting', 'growth', 'trust'],
     sortOrder: 290,
-    coverAssetPath: 'assets/images/kids_stories/covers/patience_cover.png',
+    coverAssetPath: 'assets/images/kids_stories/covers/patience_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/patience_backdrop.png',
+        'assets/images/kids_stories/backdrops/patience_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -724,9 +724,9 @@ The room felt peaceful once more.
     tags: ['sorry', 'forgiveness', 'siblings', 'mercy'],
     sortOrder: 300,
     coverAssetPath:
-        'assets/images/kids_stories/covers/saying_sorry_and_forgiving_cover.png',
+        'assets/images/kids_stories/covers/saying_sorry_and_forgiving_cover.webp',
     backdropAssetPath:
-        'assets/images/kids_stories/backdrops/saying_sorry_and_forgiving_backdrop.png',
+        'assets/images/kids_stories/backdrops/saying_sorry_and_forgiving_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,
     isLocked: false,
     unlockXp: 0,
