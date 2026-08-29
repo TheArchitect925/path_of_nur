@@ -461,7 +461,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get navDhikr => 'الإباضة';
+  String get navDhikr => 'العبادة';
 
   @override
   String get navLearning => 'تعلم';
@@ -1404,7 +1404,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranHubRecommendationsSubtitle =>
-      'A small set of next steps based on your current Qur\'an rhythm, focus, and study context.';
+      'مجموعة صغيرة من الخطوات التالية بناءً على إيقاعك الحالي مع القرآن وتركيزك وسياق دراستك.';
 
   @override
   String quranHubRecommendationContinuePathTitle(Object path) {
@@ -1412,7 +1412,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get quranHubRecommendationDailyTitle => 'Today\'s reflection';
+  String get quranHubRecommendationDailyTitle => 'تدبر اليوم';
 
   @override
   String get quranHubRecommendationReviewTitle => 'راجع محفوظاتك';
@@ -1429,12 +1429,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String quranHubRecommendationJourneyTitle(Object journey) {
-    return 'Today\'s reflection for $journey';
+    return 'تدبر اليوم لـ $journey';
   }
 
   @override
   String get quranHubRecommendationReasonContinuePath =>
-      'Pick up where your guided Qur\'an study already left off.';
+      'تابِع من حيث توقفت دراستك القرآنية الموجَّهة.';
 
   @override
   String get quranHubRecommendationReasonGuidedPath =>
@@ -1446,7 +1446,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String quranHubRecommendationReasonDailyJourney(Object journey) {
-    return 'Today\'s daily companion aligns with your current journey on $journey.';
+    return 'رفيق اليوم متوافق مع رحلتك الحالية في $journey.';
   }
 
   @override
@@ -1470,15 +1470,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonTheme =>
-      'Follow one Qur\'anic theme across ayahs, insights, and connected study surfaces.';
+      'تابِع موضوعًا قرآنيًا واحدًا عبر الآيات واللطائف ومساحات الدراسة المرتبطة.';
 
   @override
   String get quranHubRecommendationReasonThemeFocus =>
-      'This best matches your current focus on thematic Qur\'an study.';
+      'هذا يناسب تركيزك الحالي على الدراسة الموضوعية للقرآن.';
 
   @override
   String quranHubRecommendationReasonJourneyTheme(Object theme) {
-    return 'This theme is the clearest Qur\'anic bridge for your current journey focus on $theme.';
+    return 'هذا الموضوع هو أوضح جسر قرآني لتركيز رحلتك الحالية على $theme.';
   }
 
   @override
@@ -1486,7 +1486,7 @@ class AppLocalizationsAr extends AppLocalizations {
     Object journey,
     Object theme,
   ) {
-    return '$journey is currently mapping into the Qur\'anic theme of $theme.';
+    return '$journey ترتبط حاليًا بالموضوع القرآني $theme.';
   }
 
   @override
@@ -2620,16 +2620,16 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get worshipQiblaSiteMasjidAlHaram => 'Masjid al-Haram';
+  String get worshipQiblaSiteMasjidAlHaram => 'المسجد الحرام';
 
   @override
-  String get worshipQiblaSiteProphetsMosque => 'Al-Masjid an-Nabawi';
+  String get worshipQiblaSiteProphetsMosque => 'المسجد النبوي';
 
   @override
-  String get worshipQiblaSiteAlAqsa => 'Al-Aqsa Mosque';
+  String get worshipQiblaSiteAlAqsa => 'المسجد الأقصى';
 
   @override
-  String get worshipQiblaSiteQubaMosque => 'Masjid Quba';
+  String get worshipQiblaSiteQubaMosque => 'مسجد قباء';
 
   @override
   String get worshipQiblaLocationMakkah => 'Makkah';
@@ -2843,10 +2843,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get durationCompactHourSuffix => 'ح';
+  String get durationCompactHourSuffix => 'س';
 
   @override
-  String get durationCompactMinuteSuffix => 'متر';
+  String get durationCompactMinuteSuffix => 'د';
 
   @override
   String homeLearnCategoryFallbackSubtitle(String category) {
@@ -3365,7 +3365,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get languageOptionsSubtitle =>
-      'اختر لغة التطبيق الخاص بك.تشمل الخيارات الفارسية الفارسية والداري والطاجيكية.';
+      'اختر لغة التطبيق الخاص بك. تشمل الخيارات الفارسية الفارسية والداري والطاجيكية.';
 
   @override
   String get languageEnglish => 'الإنجليزية';
@@ -3663,7 +3663,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learnSalahHubGuidanceNoticeBody2 =>
-      'الغرض منه هو أن تكون أداة مساعدة للتعلم وأداة للممارسة الموجهة.ولا ينبغي الاعتماد عليه كبديل دائم لحفظ تلاوات الصلاة.';
+      'الغرض منه هو أن تكون أداة مساعدة للتعلم وأداة للممارسة الموجهة. ولا ينبغي الاعتماد عليه كبديل دائم لحفظ تلاوات الصلاة.';
 
   @override
   String get learnSalahHubGuidanceNoticeBody3 =>
@@ -3809,7 +3809,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String worshipTrackingPrayerSummary(int count, String date) {
-    return '$count تسجيلات صلاح مسجلة.مراجعة $date.';
+    return '$count تسجيلات صلاح مسجلة. مراجعة $date.';
   }
 
   @override
@@ -3962,7 +3962,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsHelpGuideNotFoundSubtitle =>
-      'لا يمكن فتح هذا الدليل الآن.ارجع إلى المساعدة والدليل وحاول موضوعًا آخر.';
+      'لا يمكن فتح هذا الدليل الآن. ارجع إلى المساعدة والدليل وحاول موضوعًا آخر.';
 
   @override
   String get helpGuideGettingStartedTitle => 'البدء';
@@ -7143,7 +7143,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get babyNamesNoResults =>
-      'لا توجد أسماء تتطابق مع هذه المجموعة حتى الآن.حاول تخفيف مرشح واحد أو اثنين.';
+      'لا توجد أسماء تتطابق مع هذه المجموعة حتى الآن. حاول تخفيف مرشح واحد أو اثنين.';
 
   @override
   String get babyNamesNoResultsHint =>
@@ -7238,7 +7238,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get babyNamesFavoritesEmpty =>
-      'لا توجد أسماء محفوظة حتى الآن.الأسماء المفضلة من صفحات التصفح أو التفاصيل.';
+      'لا توجد أسماء محفوظة حتى الآن. الأسماء المفضلة من صفحات التصفح أو التفاصيل.';
 
   @override
   String get babyNamesClearCompare => 'مقارنة واضحة';
@@ -7334,7 +7334,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get journeyLevelMotivation =>
-      'الاتساق يبني العمق.الأفعال الصغيرة تبقي رحلتك مستمرة.';
+      'الاتساق يبني العمق. الأفعال الصغيرة تبقي رحلتك مستمرة.';
 
   @override
   String get journeyLightSectionTitle => 'تقدم الضوء';
@@ -7347,7 +7347,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get journeyLightCardSubtitle =>
-      'كل عمل صادق يضيف ضوءا مع مرور الوقت.اجعلها لطيفة ومتسقة.';
+      'كل عمل صادق يضيف ضوءا مع مرور الوقت. اجعلها لطيفة ومتسقة.';
 
   @override
   String get journeyRingsSectionTitle => 'حلقات يومية';
@@ -7456,7 +7456,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get journeyOceanCardSubtitle =>
-      'كل قطرة مهمة.بمرور الوقت، تصبح القطرات الصغيرة محيطًا ذا معنى.';
+      'كل قطرة مهمة. بمرور الوقت، تصبح القطرات الصغيرة محيطًا ذا معنى.';
 
   @override
   String get quranExplorerTitle => 'سورة اكسبلورر';
@@ -7538,7 +7538,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranBookmarksEmpty =>
-      'لا توجد إشارات مرجعية حتى الآن.حفظ الآية من القارئ.';
+      'لا توجد إشارات مرجعية حتى الآن. حفظ الآية من القارئ.';
 
   @override
   String get quranUnknownSurah => 'سورة غير معروفة';
@@ -7554,7 +7554,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranNotesEmpty =>
-      'لا توجد ملاحظات حتى الآن.إضافة واحدة من القارئ.';
+      'لا توجد ملاحظات حتى الآن. إضافة واحدة من القارئ.';
 
   @override
   String get quranDeleteNote => 'حذف الملاحظة';
@@ -7588,7 +7588,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranSearchNoResults =>
-      'لم يتم العثور على أي تطابقات.جرّب كلمة رئيسية مختلفة.';
+      'لم يتم العثور على أي تطابقات. جرّب كلمة رئيسية مختلفة.';
 
   @override
   String get quranReaderSourcesLicensingTitle => 'المصادر والتراخيص';
@@ -7658,7 +7658,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get salahDailyGuideNote =>
-      'استخدم هذا كدليل يومي عملي.احفظوا الفرض أولًا، ثم ابنوا السنة والنفل والوتر على توافق.';
+      'استخدم هذا كدليل يومي عملي. احفظوا الفرض أولًا، ثم ابنوا السنة والنفل والوتر على توافق.';
 
   @override
   String get salahQadaRuleTitle => 'حكم القضاء';
@@ -7754,7 +7754,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get salahRakatGuideFardColumn => 'Fard';
 
   @override
-  String get salahRakatGuideNaflColumn => 'Nafl / Witr';
+  String get salahRakatGuideNaflColumn => 'نافلة / وتر';
 
   @override
   String get salahRakatGuideFajrSunnah => '٢ قبلها';
@@ -8579,7 +8579,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get oceanNoSourceData =>
-      'لا توجد بيانات المصدر حتى الآن.استكمال الإجراءات اليومية لإضافة قطرات.';
+      'لا توجد بيانات المصدر حتى الآن. استكمال الإجراءات اليومية لإضافة قطرات.';
 
   @override
   String get oceanSourcePrayer => 'الصلاة';
@@ -8700,7 +8700,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get kidsDhikrTargetReachedMessage =>
-      'عمل مذهل!لقد وصلت إلى هدف الذكر الخاص بك.';
+      'عمل مذهل! لقد وصلت إلى هدف الذكر الخاص بك.';
 
   @override
   String get kidsDhikrUndoOneTooltip => 'التراجع عن عدد واحد';
@@ -8719,7 +8719,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get kidsDhikrDailyGoalSubtitle =>
-      'كل ذكرى لها أهميتها.استمر في المضي قدمًا بقلب هادئ.';
+      'كل ذكرى لها أهميتها. استمر في المضي قدمًا بقلب هادئ.';
 
   @override
   String get kidsWorshipTabPrayer => 'الصلاة';
@@ -8771,7 +8771,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get kidsJourneyFeedbackFirstStageOpened =>
-      'لقد فتحت خطوة جديدة.خذ وقتك واستمتع به.';
+      'لقد فتحت خطوة جديدة. خذ وقتك واستمتع به.';
 
   @override
   String get kidsJourneyLessonSectionIntroduction => 'لنبدأ';
@@ -9094,7 +9094,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String wallpaperRewardSummary(int unlocked, int total, String hint) {
-    return 'مفتوح $unlocked/$total.التالي: $hint';
+    return 'مفتوح $unlocked/$total. التالي: $hint';
   }
 
   @override
@@ -9119,7 +9119,7 @@ class AppLocalizationsAr extends AppLocalizations {
     int allowance,
     int protectedDays,
   ) {
-    return '$remaining/$allowance رموز السماح المتبقية هذا الشهر.الأيام المحمية هذا الأسبوع: $protectedDays.';
+    return '$remaining/$allowance رموز السماح المتبقية هذا الشهر. الأيام المحمية هذا الأسبوع: $protectedDays.';
   }
 
   @override
@@ -9159,7 +9159,7 @@ class AppLocalizationsAr extends AppLocalizations {
     int journal,
     int favorites,
   ) {
-    return 'أعمال العبادة: $worship.إكمال التعلم: $learning.إدخالات دفتر اليومية: $journal.المفضلة: $favorites.';
+    return 'أعمال العبادة: $worship. إكمال التعلم: $learning. إدخالات دفتر اليومية: $journal. المفضلة: $favorites.';
   }
 
   @override
@@ -9209,7 +9209,7 @@ class AppLocalizationsAr extends AppLocalizations {
     int requiredTopics,
     int currentTopics,
   ) {
-    return 'المستوى $requiredLevel مطلوب • المستوى الحالي $currentLevel.تعرف على الهدف $requiredTopics • الحالي $currentTopics.';
+    return 'المستوى $requiredLevel مطلوب • المستوى الحالي $currentLevel. تعرف على الهدف $requiredTopics • الحالي $currentTopics.';
   }
 
   @override
@@ -9348,7 +9348,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesNoMatches =>
-      'لا توجد مباريات قريبة حتى الآن.اضبط تفضيلاتك.';
+      'لا توجد مباريات قريبة حتى الآن. اضبط تفضيلاتك.';
 
   @override
   String get circlesTrustLevelTitle => 'مستوى الثقة';
@@ -9358,7 +9358,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesPolicyBody =>
-      'سلوك محترم، ولقاءات تم التحقق منها، وعدم التحرش، وعدم وجود محتوى ضار/مسيء.الإبلاغ عن المخاوف في وقت مبكر.';
+      'سلوك محترم، ولقاءات تم التحقق منها، وعدم التحرش، وعدم وجود محتوى ضار/مسيء. الإبلاغ عن المخاوف في وقت مبكر.';
 
   @override
   String get circlesReportLogTitle => 'سجل التقرير';
@@ -9422,7 +9422,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesWaitlistActive =>
-      'وصلت السعة.يتم نقل استجابات الذهاب الجديدة إلى قائمة المهتمين/الانتظار.';
+      'وصلت السعة. يتم نقل استجابات الذهاب الجديدة إلى قائمة المهتمين/الانتظار.';
 
   @override
   String get circlesEventFiltersTitle => 'مرشحات الأحداث';
@@ -9462,7 +9462,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesCreateEventModerationHint =>
-      'الأحداث التي أنشأها المستخدم محلية في الوقت الحالي.يمكن للإصدارات المستقبلية تمكين سير عمل موافقة مشرف المسجد.';
+      'الأحداث التي أنشأها المستخدم محلية في الوقت الحالي. يمكن للإصدارات المستقبلية تمكين سير عمل موافقة مشرف المسجد.';
 
   @override
   String get circlesCreateEventTitleLabel => 'عنوان الحدث';
@@ -9558,7 +9558,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get onboardingDisclaimerBody =>
-      'هذا التطبيق هو رفيق للتوجيه والاتساق.إنه لا يحل محل مجتمع المساجد المحلي أو العلماء أو الدعم في العالم الحقيقي.';
+      'هذا التطبيق هو رفيق للتوجيه والاتساق. إنه لا يحل محل مجتمع المساجد المحلي أو العلماء أو الدعم في العالم الحقيقي.';
 
   @override
   String get legalPrivacyBody =>
@@ -9566,11 +9566,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get legalTermsBody =>
-      'مسار نور هو تطبيق مصاحب للتعلم واتساق العبادة والتأمل.ولا يحل محل المنح الدراسية المؤهلة أو توجيهات المجتمع المحلي.';
+      'مسار نور هو تطبيق مصاحب للتعلم واتساق العبادة والتأمل. ولا يحل محل المنح الدراسية المؤهلة أو توجيهات المجتمع المحلي.';
 
   @override
   String get legalSupportBody =>
-      'للحصول على الدعم، استخدم قنوات التعليقات داخل التطبيق وموارد المجتمع المحلي.إذا كان هناك شيء يبدو غير صحيح، فأبلغ عنه من الصفحة ذات الصلة.';
+      'للحصول على الدعم، استخدم قنوات التعليقات داخل التطبيق وموارد المجتمع المحلي. إذا كان هناك شيء يبدو غير صحيح، فأبلغ عنه من الصفحة ذات الصلة.';
 
   @override
   String get legalBuildInfoTitle => 'بناء المعلومات';
@@ -9666,7 +9666,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteFatihahIntro =>
-      'الفاتحة هي السورة التي تكررها كثيرًا في الصلاة.إن تعلم معناها الأساسي يحول التلاوة المألوفة إلى عبادة واعية.';
+      'الفاتحة هي السورة التي تكررها كثيرًا في الصلاة. إن تعلم معناها الأساسي يحول التلاوة المألوفة إلى عبادة واعية.';
 
   @override
   String get learningJourneyStageReciteFatihahSection1Title =>
@@ -9730,7 +9730,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteShortSurahsIntro =>
-      'تتضمن الصلاة عبارات قصيرة متكررة تشكل التواضع والثناء والخشوع.ومعرفة معناها يساعد الجسم والقلب على التحرك معًا.';
+      'تتضمن الصلاة عبارات قصيرة متكررة تشكل التواضع والثناء والخشوع. ومعرفة معناها يساعد الجسم والقلب على التحرك معًا.';
 
   @override
   String get learningJourneyStageReciteShortSurahsSection1Title =>
@@ -9746,7 +9746,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteShortSurahsSection2Body =>
-      'اختر عبارة واحدة لتنتبه إليها في صلاتك القادمة.كرر ذلك ببطء بما يكفي ليظل المعنى حاضرًا للحظة واحدة على الأقل.';
+      'اختر عبارة واحدة لتنتبه إليها في صلاتك القادمة. كرر ذلك ببطء بما يكفي ليظل المعنى حاضرًا للحظة واحدة على الأقل.';
 
   @override
   String get learningJourneyStageReciteShortSurahsTakeaway1 =>
@@ -9805,7 +9805,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteMeaningIntro =>
-      'تظهر بعض العبارات القصيرة مرارًا وتكرارًا في حياة المسلم.عندما تفهمها، يصبح الذكر أخف وزنا في الحمل وأسهل في الاحتفاظ به.';
+      'تظهر بعض العبارات القصيرة مرارًا وتكرارًا في حياة المسلم. عندما تفهمها، يصبح الذكر أخف وزنا في الحمل وأسهل في الاحتفاظ به.';
 
   @override
   String get learningJourneyStageReciteMeaningSection1Title =>
@@ -9821,7 +9821,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteMeaningSection2Body =>
-      'استخدم عبارة واحدة بعد الصلاة، وواحدة أثناء المشي الهادئ، وواحدة عندما يحدث شيء جيد.وهذا يكفي لبدء إيقاع يومي صادق.';
+      'استخدم عبارة واحدة بعد الصلاة، وواحدة أثناء المشي الهادئ، وواحدة عندما يحدث شيء جيد. وهذا يكفي لبدء إيقاع يومي صادق.';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Bullet1 =>
@@ -9887,7 +9887,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Body =>
-      'الحركات هي علامات العلة القصيرة التي تخبرك ما إذا كان الصوت مفتوحًا أم منخفضًا أم دائريًا.ابدأ بملاحظة العلامة قبل القلق بشأن السرعة.';
+      'الحركات هي علامات العلة القصيرة التي تخبرك ما إذا كان الصوت مفتوحًا أم منخفضًا أم دائريًا. ابدأ بملاحظة العلامة قبل القلق بشأن السرعة.';
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection1Bullet1 =>
@@ -9907,7 +9907,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsOpenSection2Body =>
-      'اقرأ حرفًا واحدًا في كل مرة، ثم انطق الصوت، ثم كرر نفس النمط في مثالين أو ثلاثة أمثلة.الدقة أولا.السرعة في وقت لاحق.';
+      'اقرأ حرفًا واحدًا في كل مرة، ثم انطق الصوت، ثم كرر نفس النمط في مثالين أو ثلاثة أمثلة. الدقة أولا. السرعة في وقت لاحق.';
 
   @override
   String get learningJourneyStageReadingBasicsOpenTakeaway1 =>
@@ -9939,7 +9939,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection1Body =>
-      'يمكن أن تبدو الحروف العربية مختلفة في بداية الكلمة أو وسطها أو نهايتها.هذا طبيعي.الهدف ليس الإتقان الفوري.الهدف هو تعلم التعرف على نفس الحرف بأكثر من شكل.';
+      'يمكن أن تبدو الحروف العربية مختلفة في بداية الكلمة أو وسطها أو نهايتها. هذا طبيعي. الهدف ليس الإتقان الفوري. الهدف هو تعلم التعرف على نفس الحرف بأكثر من شكل.';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Title =>
@@ -9947,7 +9947,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Body =>
-      'العمل مع مجموعات قصيرة من الحروف والكلمات البسيطة.تتبع الصوت من حرف إلى آخر بدلاً من محاولة ابتلاع الكلمة بأكملها مرة واحدة.';
+      'العمل مع مجموعات قصيرة من الحروف والكلمات البسيطة. تتبع الصوت من حرف إلى آخر بدلاً من محاولة ابتلاع الكلمة بأكملها مرة واحدة.';
 
   @override
   String get learningJourneyStageReadingBasicsPracticeSection2Bullet1 =>
@@ -9983,7 +9983,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointIntro =>
-      'نقطة التفتيش ليست امتحانا نهائيا.إنها وقفة هادئة لملاحظة ما أصبح أسهل وما لا يزال يحتاج إلى تمريرة أكثر هدوءًا.';
+      'نقطة التفتيش ليست امتحانا نهائيا. إنها وقفة هادئة لملاحظة ما أصبح أسهل وما لا يزال يحتاج إلى تمريرة أكثر هدوءًا.';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Title =>
@@ -9991,7 +9991,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Body =>
-      'استخدم بعض عمليات التحقق القصيرة قبل المضي قدمًا.أنت لا تحتاج إلى الكمال.أنت بحاجة إلى ما يكفي من الوضوح لمواصلة البناء دون ارتباك.';
+      'استخدم بعض عمليات التحقق القصيرة قبل المضي قدمًا. أنت لا تحتاج إلى الكمال. أنت بحاجة إلى ما يكفي من الوضوح لمواصلة البناء دون ارتباك.';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection1Bullet1 =>
@@ -10011,7 +10011,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointSection2Body =>
-      'إذا كانت إحدى المناطق لا تزال تشعر بالضعف، فارجع إلى تلك المنطقة عمدًا.تعمل الحلقات الثابتة على بناء الثقة في القراءة بشكل أفضل من التظاهر بأنك مستعد لكل شيء.';
+      'إذا كانت إحدى المناطق لا تزال تشعر بالضعف، فارجع إلى تلك المنطقة عمدًا. تعمل الحلقات الثابتة على بناء الثقة في القراءة بشكل أفضل من التظاهر بأنك مستعد لكل شيء.';
 
   @override
   String get learningJourneyStageReadingBasicsCheckpointTakeaway1 =>
@@ -10102,7 +10102,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyHomeIslandsSubtitle =>
-      'ابدأ من الجزيرة التي تناسب ما تريد أن تتعلمه الآن.تؤدي كل جزيرة إلى رحلات حقيقية ومحتوى منظم.';
+      'ابدأ من الجزيرة التي تناسب ما تريد أن تتعلمه الآن. تؤدي كل جزيرة إلى رحلات حقيقية ومحتوى منظم.';
 
   @override
   String get learningJourneyHomeBrowseAllTitle => 'تصفح كل المعرفة';
@@ -10312,7 +10312,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFeedbackFirstStageOpened =>
-      'بدأ التعلم.ابق حاضرًا واتخذ خطوة واحدة ذات معنى.';
+      'بدأ التعلم. ابق حاضرًا واتخذ خطوة واحدة ذات معنى.';
 
   @override
   String learningJourneyFeedbackStageCompleted(int streak) {
@@ -10396,7 +10396,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslandJourneysSubtitle =>
-      'المسارات المنظمة تأتي أولاً هنا.تظل الأدوات ذات الصلة متاحة أدناه عندما تحتاج إليها.';
+      'المسارات المنظمة تأتي أولاً هنا. تظل الأدوات ذات الصلة متاحة أدناه عندما تحتاج إليها.';
 
   @override
   String get learningJourneyIslandRelatedToolsTitle =>
@@ -11345,7 +11345,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDetailStagesSubtitle =>
-      'تحرك مرحلة واحدة في كل مرة.يتم تسليط الضوء على المراحل الحالية والمكتملة بلطف.';
+      'تحرك مرحلة واحدة في كل مرة. يتم تسليط الضوء على المراحل الحالية والمكتملة بلطف.';
 
   @override
   String get learningJourneyDetailActionStart => 'ابدأ الرحلة';
@@ -11396,7 +11396,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseIslandsSubtitle =>
-      'تظل الجزر هي نموذج التصفح الأساسي.كل شيء آخر هنا هو استكشاف ثانوي.';
+      'تظل الجزر هي نموذج التصفح الأساسي. كل شيء آخر هنا هو استكشاف ثانوي.';
 
   @override
   String get learningJourneyBrowseToolsTitle => 'الأدوات والمجموعات';
@@ -11603,7 +11603,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySeerahEarlyLifeSection2Body =>
-      'قبل الوحي، كان الناس يعرفونه بالفعل على أنه صادق وجدير بالثقة.تظهر السيرة المبكرة أن الشخصية النبوية كانت مرئية قبل فترة طويلة من الرسالة العامة.';
+      'قبل الوحي، كان الناس يعرفونه بالفعل على أنه صادق وجدير بالثقة. تظهر السيرة المبكرة أن الشخصية النبوية كانت مرئية قبل فترة طويلة من الرسالة العامة.';
 
   @override
   String get learningJourneySeerahEarlyLifeBullet1 =>
@@ -11646,7 +11646,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySeerahFirstRevelationSection1Body =>
-      'كان النبي ﷺ يتأمل هادئًا في غار حراء.وهناك جاء جبريل بالوحي الأول والأمر بالقراءة باسم الرب الذي خلق.';
+      'كان النبي ﷺ يتأمل هادئًا في غار حراء. وهناك جاء جبريل بالوحي الأول والأمر بالقراءة باسم الرب الذي خلق.';
 
   @override
   String get learningJourneySeerahFirstRevelationSection2Title =>
@@ -11654,7 +11654,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySeerahFirstRevelationSection2Body =>
-      'بداية الوحي ضمت العلم والعبادة والتواضع والخشوع.لقد كانت لحظة ثقيلة، لكنها أصبحت رحمة للعالم.';
+      'بداية الوحي ضمت العلم والعبادة والتواضع والخشوع. لقد كانت لحظة ثقيلة، لكنها أصبحت رحمة للعالم.';
 
   @override
   String get learningJourneySeerahFirstRevelationBullet1 =>
@@ -11803,7 +11803,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySeerahMadinahSection2Body =>
-      'تظهر الفترة المدنية أن الإسلام ليس مجرد اعتقاد شخصي.كما أنه يشكل المجتمع والعلاقات والمسؤولية العامة والرعاية المتبادلة.';
+      'تظهر الفترة المدنية أن الإسلام ليس مجرد اعتقاد شخصي. كما أنه يشكل المجتمع والعلاقات والمسؤولية العامة والرعاية المتبادلة.';
 
   @override
   String get learningJourneySeerahMadinahBullet1 =>
@@ -11846,14 +11846,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySeerahLeadershipSection1Body =>
-      'وكان ﷺ يسمع، ويسامح، ويشاور، ويشجاع عند الحاجة، ويرفق بالناس مع الثبات على الحق.لم تصبح قيادته ترويجًا لذاته أبدًا.';
+      'وكان ﷺ يسمع، ويسامح، ويشاور، ويشجاع عند الحاجة، ويرفق بالناس مع الثبات على الحق. لم تصبح قيادته ترويجًا لذاته أبدًا.';
 
   @override
   String get learningJourneySeerahLeadershipSection2Title => 'الشخصية كقيادة';
 
   @override
   String get learningJourneySeerahLeadershipSection2Body =>
-      'ولم تكن الرحمة والصبر والأمانة منفصلة عن قيادته.لقد كانوا نفس الطريقة التي قاد بها.';
+      'ولم تكن الرحمة والصبر والأمانة منفصلة عن قيادته. لقد كانوا نفس الطريقة التي قاد بها.';
 
   @override
   String get learningJourneySeerahLeadershipBullet1 =>
@@ -11953,7 +11953,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrWhatIsSection2Body =>
-      'ابدأ ببعض الذكريات القصيرة التي تفهمها ويمكنك الاحتفاظ بها باستمرار.الذكر القليل الثابت خير من الزائد الذي يزول.';
+      'ابدأ ببعض الذكريات القصيرة التي تفهمها ويمكنك الاحتفاظ بها باستمرار. الذكر القليل الثابت خير من الزائد الذي يزول.';
 
   @override
   String get learningJourneyDhikrWhatIsBullet1 =>
@@ -11995,14 +11995,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrMorningSection1Body =>
-      'من الأفضل قراءة أذكار الصباح بعد الفجر أو في أول النهار.يمكن للمبتدئين أن يبدأوا بذكرى أو اثنتين من الأذكار الصحيحة ويحافظوا عليها ثابتة.';
+      'من الأفضل قراءة أذكار الصباح بعد الفجر أو في أول النهار. يمكن للمبتدئين أن يبدأوا بذكرى أو اثنتين من الأذكار الصحيحة ويحافظوا عليها ثابتة.';
 
   @override
   String get learningJourneyDhikrMorningSection2Title => 'بناء العادة';
 
   @override
   String get learningJourneyDhikrMorningSection2Body =>
-      'اجعل الصباح صغيرًا في البداية.اربطها بلحظة واضحة مثل بعد الصلاة، أو قبل الخروج من المنزل، أو قبل فتح هاتفك.';
+      'اجعل الصباح صغيرًا في البداية. اربطها بلحظة واضحة مثل بعد الصلاة، أو قبل الخروج من المنزل، أو قبل فتح هاتفك.';
 
   @override
   String get learningJourneyDhikrMorningBullet1 =>
@@ -12062,7 +12062,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrEveningSection2Body =>
-      'روتين مسائي قصير يخلق إغلاقًا روحيًا.إنها طريقة لطيفة لإنهاء اليوم بالذكرى بدلاً من الثقل أو الغفلة.';
+      'روتين مسائي قصير يخلق إغلاقًا روحيًا. إنها طريقة لطيفة لإنهاء اليوم بالذكرى بدلاً من الثقل أو الغفلة.';
 
   @override
   String get learningJourneyDhikrEveningBullet1 =>
@@ -12125,7 +12125,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrAfterSalahSection2Body =>
-      'ابدأ بعد صلاة واحدة كل يوم إذا لزم الأمر.حافظ على الإيقاع هادئًا ومنتبهًا بدلًا من تحويله إلى صيغة متسرعة.';
+      'ابدأ بعد صلاة واحدة كل يوم إذا لزم الأمر. حافظ على الإيقاع هادئًا ومنتبهًا بدلًا من تحويله إلى صيغة متسرعة.';
 
   @override
   String get learningJourneyDhikrAfterSalahBullet1 =>
@@ -12179,7 +12179,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrRoutineSection1Body =>
-      'اختر ثلاث أوقات إرساء: الصباح، وبعد الصلاة، وقبل النوم.أرفق ذكرى قصيرة بكل لحظة واحتفظ بها لمدة أسبوع قبل إضافة المزيد.';
+      'اختر ثلاث أوقات إرساء: الصباح، وبعد الصلاة، وقبل النوم. أرفق ذكرى قصيرة بكل لحظة واحتفظ بها لمدة أسبوع قبل إضافة المزيد.';
 
   @override
   String get learningJourneyDhikrRoutineSection2Title =>
@@ -12187,7 +12187,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrRoutineSection2Body =>
-      'الوضوح يهم أكثر من الشدة.إن الروتين الصغير الذي يستمر في الحياة الواقعية سيفيدك أكثر من الروتين الكبير الذي ينهار بسرعة.';
+      'الوضوح يهم أكثر من الشدة. إن الروتين الصغير الذي يستمر في الحياة الواقعية سيفيدك أكثر من الروتين الكبير الذي ينهار بسرعة.';
 
   @override
   String get learningJourneyDhikrRoutineBullet1 =>
@@ -12358,7 +12358,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFaithBooksSection2Body =>
-      'وهذا الاعتقاد يعلم احترام الوحي وامتنان القرآن.ويذكرك أيضًا أن التوجيه يتم تلقيه بتواضع، وليس اختراعًا عن الرغبة.';
+      'وهذا الاعتقاد يعلم احترام الوحي وامتنان القرآن. ويذكرك أيضًا أن التوجيه يتم تلقيه بتواضع، وليس اختراعًا عن الرغبة.';
 
   @override
   String get learningJourneyFaithBooksBullet1 =>
@@ -12552,7 +12552,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWordsTopSection1Body =>
-      'عندما تستمر في مواجهة نفس الكلمات، يبدأ القرآن في الشعور بأنه أقل بعدًا.يمكن للمفردات الصغيرة أن تفتح العديد من الآيات أكثر مما يتوقعه الناس.';
+      'عندما تستمر في مواجهة نفس الكلمات، يبدأ القرآن في الشعور بأنه أقل بعدًا. يمكن للمفردات الصغيرة أن تفتح العديد من الآيات أكثر مما يتوقعه الناس.';
 
   @override
   String get learningJourneyWordsTopSection2Title => 'كيف تبدأ بشكل جيد';
@@ -12602,14 +12602,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWordsReviewSection1Body =>
-      'الكلمات تتلاشى بسرعة عندما تُرى مرة واحدة فقط.تعيدهم المراجعة إلى أن يصبح الاعتراف أمرًا طبيعيًا وليس قسريًا.';
+      'الكلمات تتلاشى بسرعة عندما تُرى مرة واحدة فقط. تعيدهم المراجعة إلى أن يصبح الاعتراف أمرًا طبيعيًا وليس قسريًا.';
 
   @override
   String get learningJourneyWordsReviewSection2Title => 'حلقة ذاكرة هادئة';
 
   @override
   String get learningJourneyWordsReviewSection2Body =>
-      'استخدم جلسات مراجعة قصيرة ومتكررة بدلاً من الجلسات الطويلة المرهقة.الاعتراف ينمو من خلال العودة والتكرار.';
+      'استخدم جلسات مراجعة قصيرة ومتكررة بدلاً من الجلسات الطويلة المرهقة. الاعتراف ينمو من خلال العودة والتكرار.';
 
   @override
   String get learningJourneyWordsReviewBullet1 =>
@@ -12651,7 +12651,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWordsPatternsSection1Body =>
-      'حاول جمع الكلمات حول العبادة أو الرحمة أو الهداية أو الشكر أو الآخرة.يساعد التجميع حسب الموضوع الذاكرة على ربط الكلمات بالمعنى.';
+      'حاول جمع الكلمات حول العبادة أو الرحمة أو الهداية أو الشكر أو الآخرة. يساعد التجميع حسب الموضوع الذاكرة على ربط الكلمات بالمعنى.';
 
   @override
   String get learningJourneyWordsPatternsSection2Title =>
@@ -12659,7 +12659,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWordsPatternsSection2Body =>
-      'لاحظ عندما تستمر الكلمات ذات الصلة في الظهور في سياقات مماثلة.هذا التكرار هو أداة للذاكرة، وليس مجرد حادث.';
+      'لاحظ عندما تستمر الكلمات ذات الصلة في الظهور في سياقات مماثلة. هذا التكرار هو أداة للذاكرة، وليس مجرد حادث.';
 
   @override
   String get learningJourneyWordsPatternsBullet1 =>
@@ -12706,7 +12706,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDetailCompletionSubtitle =>
-      'لقد وصلت إلى نهاية هذه الرحلة.قم بإعادة النظر في المرحلة النهائية، وراجع ما بقي معك، واختر خطوة تالية لاستكمالها في حياتك اليومية.';
+      'لقد وصلت إلى نهاية هذه الرحلة. قم بإعادة النظر في المرحلة النهائية، وراجع ما بقي معك، واختر خطوة تالية لاستكمالها في حياتك اليومية.';
 
   @override
   String learningJourneyDetailActionNextJourney(String journeyTitle) {
@@ -12828,7 +12828,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomDailyQuoteSection1Body =>
-      'الحكمة اليومية تجلب تذكيرات قصيرة من القرآن والحديث والأمثال النبوية والتأمل في نقطة دخول واحدة هادئة.الهدف ليس الحجم.الهدف هو تذكير صادق يبقى معك.';
+      'الحكمة اليومية تجلب تذكيرات قصيرة من القرآن والحديث والأمثال النبوية والتأمل في نقطة دخول واحدة هادئة. الهدف ليس الحجم. الهدف هو تذكير صادق يبقى معك.';
 
   @override
   String get learningJourneyWisdomDailyQuoteSection2Title =>
@@ -12872,14 +12872,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomShortLessonIntro =>
-      'يساعد الدرس الموجز التذكير اليومي على تنمية الجذور.إنه يشرح ما يكفي لجعل التذكير قابلاً للاستخدام.';
+      'يساعد الدرس الموجز التذكير اليومي على تنمية الجذور. إنه يشرح ما يكفي لجعل التذكير قابلاً للاستخدام.';
 
   @override
   String get learningJourneyWisdomShortLessonSection1Title => 'أسلوب شرح متسق';
 
   @override
   String get learningJourneyWisdomShortLessonSection1Body =>
-      'سواء كان المصدر حديثاً أو آية أو حدثًا نبويًا أو تأملًا، يجب أن يظل الشرح هادئًا وعمليًا ومناسبًا للمبتدئين.وهذا يبقي الحكمة اليومية متماسكة.';
+      'سواء كان المصدر حديثاً أو آية أو حدثًا نبويًا أو تأملًا، يجب أن يظل الشرح هادئًا وعمليًا ومناسبًا للمبتدئين. وهذا يبقي الحكمة اليومية متماسكة.';
 
   @override
   String get learningJourneyWisdomShortLessonSection2Title =>
@@ -12887,7 +12887,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomShortLessonSection2Body =>
-      'يجب أن ينتهي الدرس القصير بالخطوة التالية.قد تكون تلك الخطوة التالية عبارة عن رحلة، أو أداة، أو عبادة قصيرة، أو قرار عملي.';
+      'يجب أن ينتهي الدرس القصير بالخطوة التالية. قد تكون تلك الخطوة التالية عبارة عن رحلة، أو أداة، أو عبادة قصيرة، أو قرار عملي.';
 
   @override
   String get learningJourneyWisdomShortLessonBullet1 =>
@@ -12922,7 +12922,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeIntro =>
-      'الغرض من الحكمة اليومية ليس جمع الاقتباسات.إنه تغيير الكلام والنية والعادات والانتباه بلطف.';
+      'الغرض من الحكمة اليومية ليس جمع الاقتباسات. إنه تغيير الكلام والنية والعادات والانتباه بلطف.';
 
   @override
   String get learningJourneyWisdomPracticeSection1Title => 'إجراء واحد يكفي';
@@ -13146,7 +13146,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterHumilitySection1Body =>
-      'التواضع لا يعني الضعف أو محو الذات.إنه يعني قبول الحق، وخفض الكبرياء، ورفض معاملة الآخرين باستعلاء.';
+      'التواضع لا يعني الضعف أو محو الذات. إنه يعني قبول الحق، وخفض الكبرياء، ورفض معاملة الآخرين باستعلاء.';
 
   @override
   String get learningJourneyCharacterHumilitySection2Title =>
@@ -13154,7 +13154,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterHumilitySection2Body =>
-      'يمكن أن يختبئ الكبرياء داخل المعرفة أو الموهبة أو العبادة أو الثروة أو المكانة الاجتماعية.يسأل التواضع: هل مازلت أستمع وأتعلم وأحترم الآخرين؟';
+      'يمكن أن يختبئ الكبرياء داخل المعرفة أو الموهبة أو العبادة أو الثروة أو المكانة الاجتماعية. يسأل التواضع: هل مازلت أستمع وأتعلم وأحترم الآخرين؟';
 
   @override
   String get learningJourneyCharacterHumilityBullet1 =>
@@ -13201,7 +13201,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterForgivenessSection1Body =>
-      'التسامح ليس التظاهر بأن الأذى كان جيداً.إنه التخلي عن الرغبة في الاستمرار في تغذية الاستياء عندما يكون التسامح حكيمًا وآمنًا.';
+      'التسامح ليس التظاهر بأن الأذى كان جيداً. إنه التخلي عن الرغبة في الاستمرار في تغذية الاستياء عندما يكون التسامح حكيمًا وآمنًا.';
 
   @override
   String get learningJourneyCharacterForgivenessSection2Title =>
@@ -13256,7 +13256,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterAngerSection1Body =>
-      'الغضب يضيق الحكم بسرعة.يمكن للحظة واحدة غير منضبطة أن تدمر العبادة والعلاقات والثقة التي تم بناؤها على مدار سنوات.';
+      'الغضب يضيق الحكم بسرعة. يمكن للحظة واحدة غير منضبطة أن تدمر العبادة والعلاقات والثقة التي تم بناؤها على مدار سنوات.';
 
   @override
   String get learningJourneyCharacterAngerSection2Title =>
@@ -13319,7 +13319,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterKindnessSection2Body =>
-      'الرحمة تجعل الإيمان مرئيًا.غالبًا ما يشعر الناس بالإسلام أولاً من خلال شخصية المسلم قبل أن يفهموا تعاليمه الأعمق.';
+      'الرحمة تجعل الإيمان مرئيًا. غالبًا ما يشعر الناس بالإسلام أولاً من خلال شخصية المسلم قبل أن يفهموا تعاليمه الأعمق.';
 
   @override
   String get learningJourneyCharacterKindnessBullet1 =>
@@ -13358,7 +13358,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterCompletionIntro =>
-      'لقد وصلت إلى نهاية هذه الرحلة.الآن المهمة ليست مزيد من المعلومات.إنه تطبيق ثابت.';
+      'لقد وصلت إلى نهاية هذه الرحلة. الآن المهمة ليست مزيد من المعلومات. إنه تطبيق ثابت.';
 
   @override
   String get learningJourneyCharacterCompletionSection1Title =>
@@ -13366,7 +13366,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterCompletionSection1Body =>
-      'ما هي الجودة التي جاءت أسهل؟أيهما كشف ضعفك؟التفكير الصادق يجعل النمو المستقبلي حقيقيًا.';
+      'ما هي الجودة التي جاءت أسهل؟ أيهما كشف ضعفك؟ التفكير الصادق يجعل النمو المستقبلي حقيقيًا.';
 
   @override
   String get learningJourneyCharacterCompletionSection2Title =>
@@ -13374,7 +13374,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyCharacterCompletionSection2Body =>
-      'لا تحاول إتقان كل شيء دفعة واحدة.اختر صفة واحدة تحتاج إلى الاهتمام أكثر في هذا الموسم من الحياة واستمر في العودة إليها.';
+      'لا تحاول إتقان كل شيء دفعة واحدة. اختر صفة واحدة تحتاج إلى الاهتمام أكثر في هذا الموسم من الحياة واستمر في العودة إليها.';
 
   @override
   String get learningJourneyCharacterCompletionBullet1 =>
@@ -13896,7 +13896,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyHadithEssentialCollectionSection2Body =>
-      'ابدأ بمجموعة صغيرة منسقة.اقرأ ببطء، واحتفظ بدرس واحد، ودع هذا الدرس يشكل العمل قبل الاندفاع إلى الكمية.';
+      'ابدأ بمجموعة صغيرة منسقة. اقرأ ببطء، واحتفظ بدرس واحد، ودع هذا الدرس يشكل العمل قبل الاندفاع إلى الكمية.';
 
   @override
   String get learningJourneyHadithEssentialCollectionBullet1 =>
@@ -13940,7 +13940,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyHadithThemesSection1Body =>
-      'تجمع المواضيع الإرشادات ذات الصلة معًا بحيث يبدو التعلم عمليًا.إنها تساعدك على رؤية أن الحديث ليس أرشيفًا عشوائيًا بل خريطة للحياة.';
+      'تجمع المواضيع الإرشادات ذات الصلة معًا بحيث يبدو التعلم عمليًا. إنها تساعدك على رؤية أن الحديث ليس أرشيفًا عشوائيًا بل خريطة للحياة.';
 
   @override
   String get learningJourneyHadithThemesSection2Title =>
@@ -13948,7 +13948,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyHadithThemesSection2Body =>
-      'اختر موضوعًا واحدًا لبضعة أيام.اقرأ حديثاً واحداً، وافهم مقصده، واسأل كيف يجب أن يظهر في كلامك، أو عبادتك، أو علاقاتك.';
+      'اختر موضوعًا واحدًا لبضعة أيام. اقرأ حديثاً واحداً، وافهم مقصده، واسأل كيف يجب أن يظهر في كلامك، أو عبادتك، أو علاقاتك.';
 
   @override
   String get learningJourneyHadithThemesBullet1 =>
@@ -13984,21 +13984,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyHadithReviewLessonIntro =>
-      'المراجعة تحافظ على الحديث من البقاء ملهمًا للحظة واحدة ونسيانه في اللحظة التالية.يساعد التوجيه على أن يصبح ذاكرة وعادات.';
+      'المراجعة تحافظ على الحديث من البقاء ملهمًا للحظة واحدة ونسيانه في اللحظة التالية. يساعد التوجيه على أن يصبح ذاكرة وعادات.';
 
   @override
   String get learningJourneyHadithReviewSection1Title => 'ما يحمي المراجعة';
 
   @override
   String get learningJourneyHadithReviewSection1Body =>
-      'بدون مراجعة، الحديث المفيد يتلاشى بسرعة.تساعدك زيارة العودة القصيرة على ملاحظة ما هو عالق، وما هو غير واضح، وما الذي لا يزال يحتاج إلى شرح.';
+      'بدون مراجعة، الحديث المفيد يتلاشى بسرعة. تساعدك زيارة العودة القصيرة على ملاحظة ما هو عالق، وما هو غير واضح، وما الذي لا يزال يحتاج إلى شرح.';
 
   @override
   String get learningJourneyHadithReviewSection2Title => 'كيفية المراجعة بهدف';
 
   @override
   String get learningJourneyHadithReviewSection2Body =>
-      'المراجعة لا تتعلق فقط بالإجابات الصحيحة.يتعلق الأمر بالسؤال عما إذا كان الحديث قد غير اختيارك أو كلامك أو انتباهك بعد قراءته لأول مرة.';
+      'المراجعة لا تتعلق فقط بالإجابات الصحيحة. يتعلق الأمر بالسؤال عما إذا كان الحديث قد غير اختيارك أو كلامك أو انتباهك بعد قراءته لأول مرة.';
 
   @override
   String get learningJourneyHadithReviewBullet1 =>
@@ -14080,14 +14080,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahPrepareLessonIntro =>
-      'التحضير يشكل جودة الصلاة.الوضوء، والنية، والتوقيت، والقليل من الهدوء تجعل الصلاة أكثر تركيزًا قبل التكبيرة الأولى.';
+      'التحضير يشكل جودة الصلاة. الوضوء، والنية، والتوقيت، والقليل من الهدوء تجعل الصلاة أكثر تركيزًا قبل التكبيرة الأولى.';
 
   @override
   String get learningJourneySalahPrepareSection1Title => 'إعداد الجسم والقلب';
 
   @override
   String get learningJourneySalahPrepareSection1Body =>
-      'الوضوء ينظفك ويسويك.نية واضحة تذكرك لمن الصلاة.الوصول إلى الصلاة في وقتها يعطي لقلبك مجالاً أكبر للوصول قبل أن يبدأ لسانك.';
+      'الوضوء ينظفك ويسويك. نية واضحة تذكرك لمن الصلاة. الوصول إلى الصلاة في وقتها يعطي لقلبك مجالاً أكبر للوصول قبل أن يبدأ لسانك.';
 
   @override
   String get learningJourneySalahPrepareSection2Title =>
@@ -14095,7 +14095,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahPrepareSection2Body =>
-      'لا تحتاج إلى جو مثالي في كل مرة.أنت بحاجة إلى بعض العادات الموثوقة التي تساعدك على الوصول بعناية.';
+      'لا تحتاج إلى جو مثالي في كل مرة. أنت بحاجة إلى بعض العادات الموثوقة التي تساعدك على الوصول بعناية.';
 
   @override
   String get learningJourneySalahPrepareBullet1 => 'تجديد الوضوء مع الإنتباه.';
@@ -14132,14 +14132,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahMovementsSection1Body =>
-      'تصبح الصلاة أسهل عندما تتوقف عن محاولة الإسراع خلال الوحدة بأكملها مرة واحدة.تعلم التسلسل ووضعية واحدة في كل مرة واربط كل حركة بالغرض المقصود منها.';
+      'تصبح الصلاة أسهل عندما تتوقف عن محاولة الإسراع خلال الوحدة بأكملها مرة واحدة. تعلم التسلسل ووضعية واحدة في كل مرة واربط كل حركة بالغرض المقصود منها.';
 
   @override
   String get learningJourneySalahMovementsSection2Title => 'ما تعلمه المواقف';
 
   @override
   String get learningJourneySalahMovementsSection2Body =>
-      'فالوقوف يعلم الاهتمام، والركوع يعلم التواضع، والسجود يعلم القرب والاستسلام.يساعد الجسم على تدريب القلب.';
+      'فالوقوف يعلم الاهتمام، والركوع يعلم التواضع، والسجود يعلم القرب والاستسلام. يساعد الجسم على تدريب القلب.';
 
   @override
   String get learningJourneySalahMovementsBullet1 =>
@@ -14178,7 +14178,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahWordsMeaningSection1Body =>
-      'إن فهم الفاتحة والتكبير والتسبيح والأذكار البسيطة يمنح القلب ما يحفظه أثناء الصلاة.المعنى لا يحل محل التركيز، لكنه يساعد على إيقاظه.';
+      'إن فهم الفاتحة والتكبير والتسبيح والأذكار البسيطة يمنح القلب ما يحفظه أثناء الصلاة. المعنى لا يحل محل التركيز، لكنه يساعد على إيقاظه.';
 
   @override
   String get learningJourneySalahWordsMeaningSection2Title =>
@@ -14186,7 +14186,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahWordsMeaningSection2Body =>
-      'ليس من الضروري أن تفهم كل شيء دفعة واحدة.ابدأ بالعبارات التي تتلوها كل يوم، ودع الألفة تتحول إلى اهتمام.';
+      'ليس من الضروري أن تفهم كل شيء دفعة واحدة. ابدأ بالعبارات التي تتلوها كل يوم، ودع الألفة تتحول إلى اهتمام.';
 
   @override
   String get learningJourneySalahWordsMeaningBullet1 =>
@@ -14218,14 +14218,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahConsistencyLessonIntro =>
-      'يتم بناء الثبات في الصلاة من خلال العودة، وليس من خلال الانتظار للشعور بالكمال.كما أن الخشوع ينمو تدريجيًا من خلال التكرار والفهم والجهد الصادق.';
+      'يتم بناء الثبات في الصلاة من خلال العودة، وليس من خلال الانتظار للشعور بالكمال. كما أن الخشوع ينمو تدريجيًا من خلال التكرار والفهم والجهد الصادق.';
 
   @override
   String get learningJourneySalahConsistencySection1Title => 'حماية هذه العادة';
 
   @override
   String get learningJourneySalahConsistencySection1Body =>
-      'غالبًا ما تبدأ عادة الصلاة المحمية بمرتكز أو اثنين قويين، ثم تتوسع.حتى بعد الأيام الضعيفة، الجواب هو العودة، وليس التخلي عن الذات.';
+      'غالبًا ما تبدأ عادة الصلاة المحمية بمرتكز أو اثنين قويين، ثم تتوسع. حتى بعد الأيام الضعيفة، الجواب هو العودة، وليس التخلي عن الذات.';
 
   @override
   String get learningJourneySalahConsistencySection2Title =>
@@ -14233,7 +14233,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahConsistencySection2Body =>
-      'ويعين على الخشوع الاستعداد والفهم وتقليل التشتت قبل الصلاة.إنه ليس كل شيء أو لا شيء.';
+      'ويعين على الخشوع الاستعداد والفهم وتقليل التشتت قبل الصلاة. إنه ليس كل شيء أو لا شيء.';
 
   @override
   String get learningJourneySalahConsistencyBullet1 =>
@@ -14269,7 +14269,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneySalahCompletionLessonIntro =>
-      'لقد انتقلت في معنى الصلاة وإعدادها وحركاتها واتساقها.اختر الآن كيفية إبقاء الصلاة حية بعد هذه الرحلة.';
+      'لقد انتقلت في معنى الصلاة وإعدادها وحركاتها واتساقها. اختر الآن كيفية إبقاء الصلاة حية بعد هذه الرحلة.';
 
   @override
   String get learningJourneySalahCompletionSection1Title =>
@@ -14327,14 +14327,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduWhySection1Body =>
-      'الوضوء هو إعداد بدني، ولكنه يبطئ الجسم أيضًا ويشير إلى اقتراب الصلاة.يعينك على دخول العبادة بالنية.';
+      'الوضوء هو إعداد بدني، ولكنه يبطئ الجسم أيضًا ويشير إلى اقتراب الصلاة. يعينك على دخول العبادة بالنية.';
 
   @override
   String get learningJourneyWuduWhySection2Title => 'إطار مبتدئ هادئ';
 
   @override
   String get learningJourneyWuduWhySection2Body =>
-      'فكر في الوضوء كمدخل عادي إلى الصلاة.عندما يصبح المدخل مألوفًا، تبدو العبادة أقل ثقلًا.';
+      'فكر في الوضوء كمدخل عادي إلى الصلاة. عندما يصبح المدخل مألوفًا، تبدو العبادة أقل ثقلًا.';
 
   @override
   String get learningJourneyWuduWhyBullet1 =>
@@ -14372,14 +14372,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduPracticeSection1Body =>
-      'تحرك عبر الأفعال بالترتيب ودع التكرار يجعل النمط مألوفًا.ممارسة الهدوء أكثر فائدة من السرعة القلقة.';
+      'تحرك عبر الأفعال بالترتيب ودع التكرار يجعل النمط مألوفًا. ممارسة الهدوء أكثر فائدة من السرعة القلقة.';
 
   @override
   String get learningJourneyWuduPracticeSection2Title => 'استخدم المدرب جيدًا';
 
   @override
   String get learningJourneyWuduPracticeSection2Body =>
-      'يساعدك المدرب عندما تحتاج إلى تكرار بصري أو تمريرة إرشادية خلال الخطوات.إنه موجود لدعم الذاكرة، وليس استبدال الاهتمام.';
+      'يساعدك المدرب عندما تحتاج إلى تكرار بصري أو تمريرة إرشادية خلال الخطوات. إنه موجود لدعم الذاكرة، وليس استبدال الاهتمام.';
 
   @override
   String get learningJourneyWuduPracticeBullet1 =>
@@ -14419,7 +14419,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduBreaksSection1Body =>
-      'ابدأ بالمواقف الأكثر شيوعًا التي تنقض الوضوء بشكل واضح.لا يحتاج المبتدئون إلى البدء بحالات نادرة.';
+      'ابدأ بالمواقف الأكثر شيوعًا التي تنقض الوضوء بشكل واضح. لا يحتاج المبتدئون إلى البدء بحالات نادرة.';
 
   @override
   String get learningJourneyWuduBreaksSection2Title =>
@@ -14427,7 +14427,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduBreaksSection2Body =>
-      'الإسلام لا يطلب منك أن تعيش في الشك.تعلم الحالات الواضحة ولا تدع الهمس يحول العبادة إلى شك دائم.';
+      'الإسلام لا يطلب منك أن تعيش في الشك. تعلم الحالات الواضحة ولا تدع الهمس يحول العبادة إلى شك دائم.';
 
   @override
   String get learningJourneyWuduBreaksBullet1 =>
@@ -14466,7 +14466,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduMistakesSection1Body =>
-      'غالبًا ما يتعجل الناس في تنفيذ الأمر، أو يتجاهلون الاهتمام، أو يتركون عدم اليقين يجعلهم يكررون الأمر أكثر من اللازم.التصحيح الهادئ أفضل من إعادة التشغيل المستمر.';
+      'غالبًا ما يتعجل الناس في تنفيذ الأمر، أو يتجاهلون الاهتمام، أو يتركون عدم اليقين يجعلهم يكررون الأمر أكثر من اللازم. التصحيح الهادئ أفضل من إعادة التشغيل المستمر.';
 
   @override
   String get learningJourneyWuduMistakesSection2Title => 'فحص ذاتي بسيط';
@@ -14509,7 +14509,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduCompletionLessonIntro =>
-      'لقد انتقلت من فهم الوضوء إلى الممارسة والوضوح والفحص الذاتي.الآن اربط هذه الثقة بالعبادة الأكثر هدوءًا.';
+      'لقد انتقلت من فهم الوضوء إلى الممارسة والوضوح والفحص الذاتي. الآن اربط هذه الثقة بالعبادة الأكثر هدوءًا.';
 
   @override
   String get learningJourneyWuduCompletionSection1Title => 'ما بنيت هذه الرحلة';
@@ -14523,7 +14523,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduCompletionSection2Body =>
-      'دع الوضوء الواثق يقلل الاحتكاك قبل الصلاة.تعامل معه على أنه المدخل إلى الصلاة والذكر والعبادة الثابتة بدلاً من كونه مصدرًا متكررًا للتوتر.';
+      'دع الوضوء الواثق يقلل الاحتكاك قبل الصلاة. تعامل معه على أنه المدخل إلى الصلاة والذكر والعبادة الثابتة بدلاً من كونه مصدرًا متكررًا للتوتر.';
 
   @override
   String get learningJourneyWuduCompletionBullet1 =>
@@ -14566,7 +14566,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetOpenSection1Body =>
-      'لاحظ الأشكال العريضة للحروف وكيف يمكن تعلم مجموعات من الحروف معًا.الهدف هو التعرف أولاً، وليس النطق المثالي في جلسة واحدة.';
+      'لاحظ الأشكال العريضة للحروف وكيف يمكن تعلم مجموعات من الحروف معًا. الهدف هو التعرف أولاً، وليس النطق المثالي في جلسة واحدة.';
 
   @override
   String get learningJourneyAlphabetOpenSection2Title =>
@@ -14574,7 +14574,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetOpenSection2Body =>
-      'اعمل على كتابة بضعة أحرف، وقل أسمائها بصوت عالٍ، وأشر إلى الأشكال التي تبدو متشابهة أو مختلفة.وهذا يبقي عينيك نشطة وذاكرتك مشغولة.';
+      'اعمل على كتابة بضعة أحرف، وقل أسمائها بصوت عالٍ، وأشر إلى الأشكال التي تبدو متشابهة أو مختلفة. وهذا يبقي عينيك نشطة وذاكرتك مشغولة.';
 
   @override
   String get learningJourneyAlphabetOpenBullet1 =>
@@ -14606,21 +14606,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetRepeatLessonIntro =>
-      'التكرار يحول التعرض للأبجدية إلى ذاكرة أبجدية.إن سماع الأصوات وتكرارها يساعد على استقرار الحروف بشكل أعمق.';
+      'التكرار يحول التعرض للأبجدية إلى ذاكرة أبجدية. إن سماع الأصوات وتكرارها يساعد على استقرار الحروف بشكل أعمق.';
 
   @override
   String get learningJourneyAlphabetRepeatSection1Title => 'ما تقويه';
 
   @override
   String get learningJourneyAlphabetRepeatSection1Body =>
-      'تتعلق هذه المرحلة بالتعرف على الصوت والتكرار المستمر.عندما يعمل لسانك وأذنك معًا، تتحسن عملية تذكر الحروف.';
+      'تتعلق هذه المرحلة بالتعرف على الصوت والتكرار المستمر. عندما يعمل لسانك وأذنك معًا، تتحسن عملية تذكر الحروف.';
 
   @override
   String get learningJourneyAlphabetRepeatSection2Title => 'كيف تكرر بشكل جيد';
 
   @override
   String get learningJourneyAlphabetRepeatSection2Body =>
-      'كرر مجموعة قصيرة عدة مرات بدلاً من القفز بسرعة عبر كل شيء.التكرار البطيء أكثر فائدة من التكرار المتعب.';
+      'كرر مجموعة قصيرة عدة مرات بدلاً من القفز بسرعة عبر كل شيء. التكرار البطيء أكثر فائدة من التكرار المتعب.';
 
   @override
   String get learningJourneyAlphabetRepeatBullet1 =>
@@ -14652,7 +14652,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetReviewLessonIntro =>
-      'المراجعة تؤهلك للقراءة.تصبح الأبجدية مفيدة عندما يمكنك العودة إليها بسهولة دون أن تشعر بالضياع.';
+      'المراجعة تؤهلك للقراءة. تصبح الأبجدية مفيدة عندما يمكنك العودة إليها بسهولة دون أن تشعر بالضياع.';
 
   @override
   String get learningJourneyAlphabetReviewSection1Title =>
@@ -14668,7 +14668,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetReviewSection2Body =>
-      'بمجرد أن تصبح الحروف مألوفة، تكون جاهزًا لبدء قراءة العلامات والنماذج المرتبطة.أنت لا تحتاج إلى الكمال.أنت بحاجة إلى ثقة عملية.';
+      'بمجرد أن تصبح الحروف مألوفة، تكون جاهزًا لبدء قراءة العلامات والنماذج المرتبطة. أنت لا تحتاج إلى الكمال. أنت بحاجة إلى ثقة عملية.';
 
   @override
   String get learningJourneyAlphabetReviewBullet1 =>
@@ -14704,14 +14704,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingKasrahLessonIntro =>
-      'كسرة يعطي صوت أنا قصير.تغير هذه العلامة الصغيرة ملمس الرسالة وهي أحد المفاتيح الأولى للقراءة الحقيقية.';
+      'كسرة يعطي صوت أنا قصير. تغير هذه العلامة الصغيرة ملمس الرسالة وهي أحد المفاتيح الأولى للقراءة الحقيقية.';
 
   @override
   String get learningJourneyReadingKasrahSection1Title => 'ما الذي يجب مراقبته';
 
   @override
   String get learningJourneyReadingKasrahSection1Body =>
-      'انظر أسفل الحرف ودع عينك تلتقط العلامة قبل أن يتحرك لسانك.يساعد هذا التوقف المؤقت على منع التخمين.';
+      'انظر أسفل الحرف ودع عينك تلتقط العلامة قبل أن يتحرك لسانك. يساعد هذا التوقف المؤقت على منع التخمين.';
 
   @override
   String get learningJourneyReadingKasrahSection2Title => 'اقتراح الممارسة';
@@ -14757,7 +14757,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingDammahSection1Body =>
-      'الصوت يدور بشكل مختلف عن الفتح والكسرة.إن ملاحظة هذا الاختلاف تساعدك على التوقف عن التعامل مع جميع العلامات على أنها واحدة.';
+      'الصوت يدور بشكل مختلف عن الفتح والكسرة. إن ملاحظة هذا الاختلاف تساعدك على التوقف عن التعامل مع جميع العلامات على أنها واحدة.';
 
   @override
   String get learningJourneyReadingDammahSection2Title => 'اقتراح الممارسة';
@@ -14795,14 +14795,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingSukunLessonIntro =>
-      'يعلمك \"سكون\" ما يحدث عندما يبقى الحرف بدون حرف علة.هذا الصوت المريح مهم لقراءة أكثر وضوحًا.';
+      'يعلمك \"سكون\" ما يحدث عندما يبقى الحرف بدون حرف علة. هذا الصوت المريح مهم لقراءة أكثر وضوحًا.';
 
   @override
   String get learningJourneyReadingSukunSection1Title => 'كيف يشعر سكون';
 
   @override
   String get learningJourneyReadingSukunSection1Body =>
-      'الحرف الساكن لا يحمل حركة جديدة.وبدلاً من ذلك، تتوقف عند الرسالة وتسمع بقية النص بوضوح.';
+      'الحرف الساكن لا يحمل حركة جديدة. وبدلاً من ذلك، تتوقف عند الرسالة وتسمع بقية النص بوضوح.';
 
   @override
   String get learningJourneyReadingSukunSection2Title => 'اقتراح الممارسة';
@@ -14841,21 +14841,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingShaddahLessonIntro =>
-      'شدة يظهر صوتا مضاعفا.ويطلب منك الإبطاء بدرجة كافية لسماع الرسالة ونطقها بمزيد من العناية.';
+      'شدة يظهر صوتا مضاعفا. ويطلب منك الإبطاء بدرجة كافية لسماع الرسالة ونطقها بمزيد من العناية.';
 
   @override
   String get learningJourneyReadingShaddahSection1Title => 'لماذا الشدة مهمة';
 
   @override
   String get learningJourneyReadingShaddahSection1Body =>
-      'حرف مضاعف يغير طريقة نطق الكلمة.يمكن أن يؤدي فقدانها إلى تسطيح الكلمة وجعل التلاوة أقل دقة.';
+      'حرف مضاعف يغير طريقة نطق الكلمة. يمكن أن يؤدي فقدانها إلى تسطيح الكلمة وجعل التلاوة أقل دقة.';
 
   @override
   String get learningJourneyReadingShaddahSection2Title => 'اقتراح الممارسة';
 
   @override
   String get learningJourneyReadingShaddahSection2Body =>
-      'استخدم كلمات قصيرة وقم بالمبالغة في الصوت المضاعف قليلاً في البداية.بمجرد أن يصبح النمط واضحًا، قم بتخفيفه إلى القراءة العادية.';
+      'استخدم كلمات قصيرة وقم بالمبالغة في الصوت المضاعف قليلاً في البداية. بمجرد أن يصبح النمط واضحًا، قم بتخفيفه إلى القراءة العادية.';
 
   @override
   String get learningJourneyReadingShaddahBullet1 => 'تمهل عند الحرف المضاعف.';
@@ -14886,14 +14886,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsLessonIntro =>
-      'تعمل التوافه بشكل أفضل عندما تدعم هدفًا تعليميًا.يمنح المسار سياقًا لأسئلتك ويساعد على الشعور بالهدف من التعزيز.';
+      'تعمل التوافه بشكل أفضل عندما تدعم هدفًا تعليميًا. يمنح المسار سياقًا لأسئلتك ويساعد على الشعور بالهدف من التعزيز.';
 
   @override
   String get learningJourneyTriviaPathsSection1Title => 'لماذا المسارات مهمة';
 
   @override
   String get learningJourneyTriviaPathsSection1Body =>
-      'مسار تحت عنوان يبقي الأسئلة متصلة.وهذا يجعل من السهل تذكر ما تعلمته والاستمرار في رحلة أعمق لاحقًا.';
+      'مسار تحت عنوان يبقي الأسئلة متصلة. وهذا يجعل من السهل تذكر ما تعلمته والاستمرار في رحلة أعمق لاحقًا.';
 
   @override
   String get learningJourneyTriviaPathsSection2Title => 'كيفية الاختيار الجيد';
@@ -14939,7 +14939,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaSessionSection1Body =>
-      'تمهل قبل التخمين.دع كل سؤال يعلمك شيئا، خاصة عندما تفوته.';
+      'تمهل قبل التخمين. دع كل سؤال يعلمك شيئا، خاصة عندما تفوته.';
 
   @override
   String get learningJourneyTriviaSessionSection2Title =>
@@ -14947,7 +14947,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaSessionSection2Body =>
-      'الإجابة المفقودة هي دليل.فهو يوضح لك أي موضوع يحتاج إلى تمريرة أخرى عبر درس أو رحلة حقيقية.';
+      'الإجابة المفقودة هي دليل. فهو يوضح لك أي موضوع يحتاج إلى تمريرة أخرى عبر درس أو رحلة حقيقية.';
 
   @override
   String get learningJourneyTriviaSessionBullet1 =>
@@ -14979,14 +14979,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaReviewLessonIntro =>
-      'المراجعة هي المكان الذي تصبح فيه التوافه تعزيزًا.يساعد على تحويل الأسئلة الضعيفة إلى فهم أوضح.';
+      'المراجعة هي المكان الذي تصبح فيه التوافه تعزيزًا. يساعد على تحويل الأسئلة الضعيفة إلى فهم أوضح.';
 
   @override
   String get learningJourneyTriviaReviewSection1Title => 'ما الاستعراض يظهر لك';
 
   @override
   String get learningJourneyTriviaReviewSection1Body =>
-      'تكشف المراجعة عن أنماط فيما نسيته.وهذا يجعل من السهل تحديد ما إذا كنت بحاجة إلى مزيد من التكرار أو درس أعمق.';
+      'تكشف المراجعة عن أنماط فيما نسيته. وهذا يجعل من السهل تحديد ما إذا كنت بحاجة إلى مزيد من التكرار أو درس أعمق.';
 
   @override
   String get learningJourneyTriviaReviewSection2Title => 'أين تذهب بعد ذلك';
@@ -15033,14 +15033,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanWhatIsSection1Body =>
-      'رمضان شهر الصيام والقرآن والدعاء والصدقة والصبر والرحمة.ولا يتعلق الأمر بالجوع فقط.إنه موسم العبادة والعودة.';
+      'رمضان شهر الصيام والقرآن والدعاء والصدقة والصبر والرحمة. ولا يتعلق الأمر بالجوع فقط. إنه موسم العبادة والعودة.';
 
   @override
   String get learningJourneyRamadanWhatIsSection2Title => 'كيف تدخل الشهر';
 
   @override
   String get learningJourneyRamadanWhatIsSection2Body =>
-      'ابدأ رمضان بخشوع وأمل.دع الشهر يبدو مختلفًا لأن نيتك وجدولك الزمني واهتمامك تصبح أكثر تركيزًا على العبادة.';
+      'ابدأ رمضان بخشوع وأمل. دع الشهر يبدو مختلفًا لأن نيتك وجدولك الزمني واهتمامك تصبح أكثر تركيزًا على العبادة.';
 
   @override
   String get learningJourneyRamadanWhatIsBullet1 =>
@@ -15126,7 +15126,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection1Body =>
-      'السحور يعطي القوة والبركة.وبدء النهار بالنية والصلاة والذكر يعين الصيام على الثبات.';
+      'السحور يعطي القوة والبركة. وبدء النهار بالنية والصلاة والذكر يعين الصيام على الثبات.';
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection2Title =>
@@ -15134,7 +15134,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection2Body =>
-      'الإفطار هو لحظة الامتنان والدعاء والراحة.اجعله متوازناً بما فيه الكفاية بحيث لا يزال في المساء مجال للصلاة والقرآن والراحة.';
+      'الإفطار هو لحظة الامتنان والدعاء والراحة. اجعله متوازناً بما فيه الكفاية بحيث لا يزال في المساء مجال للصلاة والقرآن والراحة.';
 
   @override
   String get learningJourneyRamadanSuhoorIftarBullet1 =>
@@ -15174,7 +15174,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanBreaksFastSection1Body =>
-      'ابدأ بالأمور الشائعة التي تفسد الصوم بشكل واضح.لا تحتاج مؤسسة المبتدئين إلى كل حالة تفصيلية في اليوم الأول.';
+      'ابدأ بالأمور الشائعة التي تفسد الصوم بشكل واضح. لا تحتاج مؤسسة المبتدئين إلى كل حالة تفصيلية في اليوم الأول.';
 
   @override
   String get learningJourneyRamadanBreaksFastSection2Title =>
@@ -15182,7 +15182,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanBreaksFastSection2Body =>
-      'لا تدع الصيام يتحول إلى قلق دائم.تعلم القواعد الواضحة، واسأل عندما تحتاج إلى المساعدة، وتجنب تغذية كل شك عابر.';
+      'لا تدع الصيام يتحول إلى قلق دائم. تعلم القواعد الواضحة، واسأل عندما تحتاج إلى المساعدة، وتجنب تغذية كل شك عابر.';
 
   @override
   String get learningJourneyRamadanBreaksFastBullet1 =>
@@ -15213,7 +15213,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanLaylatLessonIntro =>
-      'ليلة القدر خير من ألف شهر.ويطلبها المؤمن في آخر الليل بالعبادة والدعاء والإخلاص.';
+      'ليلة القدر خير من ألف شهر. ويطلبها المؤمن في آخر الليل بالعبادة والدعاء والإخلاص.';
 
   @override
   String get learningJourneyRamadanLaylatSection1Title =>
@@ -15221,7 +15221,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanLaylatSection1Body =>
-      'إن للليالي العشر الأخيرة وزنا خاصا، لأن ليلة القدر مخفية فيها.يشجع هذا الإخفاء على بذل جهد متواصل بدلاً من كثافة ليلة واحدة.';
+      'إن للليالي العشر الأخيرة وزنا خاصا، لأن ليلة القدر مخفية فيها. يشجع هذا الإخفاء على بذل جهد متواصل بدلاً من كثافة ليلة واحدة.';
 
   @override
   String get learningJourneyRamadanLaylatSection2Title => 'كيف تسعى إليه';
@@ -15307,7 +15307,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanMistakesLessonIntro =>
-      'بعض الأخطاء الرمضانية لا تأتي من سوء النية.إنهم يأتون من العجلة أو الإفراط أو الإرهاق أو إغفال هدف الشهر.';
+      'بعض الأخطاء الرمضانية لا تأتي من سوء النية. إنهم يأتون من العجلة أو الإفراط أو الإرهاق أو إغفال هدف الشهر.';
 
   @override
   String get learningJourneyRamadanMistakesSection1Title => 'الفخاخ المشتركة';
@@ -15321,7 +15321,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanMistakesSection2Body =>
-      'اجعل الشهر بسيطًا بما فيه الكفاية بحيث تظل العبادة مركزية.قلل من إلهاء واحد، وعادة زائدة، ونمط من الغفلة.';
+      'اجعل الشهر بسيطًا بما فيه الكفاية بحيث تظل العبادة مركزية. قلل من إلهاء واحد، وعادة زائدة، ونمط من الغفلة.';
 
   @override
   String get learningJourneyRamadanMistakesBullet1 =>
@@ -15584,7 +15584,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranOpenSection1Body =>
-      'ابدأ برؤية القرآن كمركز للهداية.لا تحتاج إلى إتقان الهيكل في اليوم الأول.أنت بحاجة إلى دخول هادئ وعلاقة صادقة.';
+      'ابدأ برؤية القرآن كمركز للهداية. لا تحتاج إلى إتقان الهيكل في اليوم الأول. أنت بحاجة إلى دخول هادئ وعلاقة صادقة.';
 
   @override
   String get learningJourneyQuranOpenSection2Title => 'كيف تبدأ بشكل جيد';
@@ -15621,21 +15621,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranReadIntro =>
-      'يجب أن يكون إيقاع القراءة الأولى واقعيًا بدرجة كافية للبقاء على قيد الحياة في الحياة الطبيعية.العودة البطيئة والثابتة أفضل من البدايات المكثفة التي تختفي.';
+      'يجب أن يكون إيقاع القراءة الأولى واقعيًا بدرجة كافية للبقاء على قيد الحياة في الحياة الطبيعية. العودة البطيئة والثابتة أفضل من البدايات المكثفة التي تختفي.';
 
   @override
   String get learningJourneyQuranReadSection1Title => 'اختر بداية واضحة';
 
   @override
   String get learningJourneyQuranReadSection1Body =>
-      'تعتبر الفاتحة نقطة انطلاق مثالية لأنها قصيرة ومركزية للصلاة وغنية بالمعاني.فهو يعطي كلاً من الهيكل والأهمية المباشرة.';
+      'تعتبر الفاتحة نقطة انطلاق مثالية لأنها قصيرة ومركزية للصلاة وغنية بالمعاني. فهو يعطي كلاً من الهيكل والأهمية المباشرة.';
 
   @override
   String get learningJourneyQuranReadSection2Title => 'بناء إيقاع';
 
   @override
   String get learningJourneyQuranReadSection2Body =>
-      'اربط القراءة بلحظة واحدة متكررة.فلتكن العادة صغيرة بما يكفي لتنجو من السفر والضغط والتعب العادي.';
+      'اربط القراءة بلحظة واحدة متكررة. فلتكن العادة صغيرة بما يكفي لتنجو من السفر والضغط والتعب العادي.';
 
   @override
   String get learningJourneyQuranReadBullet1 =>
@@ -15672,7 +15672,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranThemesSection1Body =>
-      'تساعد السمات المبتدئين على ربط الآيات دون الشعور بالضياع.وهي تبين أن القرآن مصدر متماسك للإرشاد، وليس كومة من المقاطع غير المترابطة.';
+      'تساعد السمات المبتدئين على ربط الآيات دون الشعور بالضياع. وهي تبين أن القرآن مصدر متماسك للإرشاد، وليس كومة من المقاطع غير المترابطة.';
 
   @override
   String get learningJourneyQuranThemesSection2Title =>
@@ -15680,7 +15680,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranThemesSection2Body =>
-      'يجب أن يؤدي الاستكشاف الموضوعي إلى تعميق قراءتك، وليس استبدالها.استخدم المواضيع لملاحظة الأنماط، ثم عد إلى القراءة والتأمل المستمرين.';
+      'يجب أن يؤدي الاستكشاف الموضوعي إلى تعميق قراءتك، وليس استبدالها. استخدم المواضيع لملاحظة الأنماط، ثم عد إلى القراءة والتأمل المستمرين.';
 
   @override
   String get learningJourneyQuranThemesBullet1 =>
@@ -15712,14 +15712,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranNextStepsIntro =>
-      'أفضل نهاية لمقدمة القرآن هي الخطوة العملية التالية.اختر مسارًا واحدًا يبقي العلاقة حية بعد الدروس الأولى.';
+      'أفضل نهاية لمقدمة القرآن هي الخطوة العملية التالية. اختر مسارًا واحدًا يبقي العلاقة حية بعد الدروس الأولى.';
 
   @override
   String get learningJourneyQuranNextStepsSection1Title => 'ما قمت ببنائه';
 
   @override
   String get learningJourneyQuranNextStepsSection1Body =>
-      'لديك الآن إطار أكثر هدوءًا للقراءة والبنية والموضوعات.والخطوة التالية هي اختيار كيفية تعميق تلك العلاقة دون فوضى.';
+      'لديك الآن إطار أكثر هدوءًا للقراءة والبنية والموضوعات. والخطوة التالية هي اختيار كيفية تعميق تلك العلاقة دون فوضى.';
 
   @override
   String get learningJourneyQuranNextStepsSection2Title =>
@@ -15727,7 +15727,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranNextStepsSection2Body =>
-      'قد تتعمق في الفاتحة أو السور القصيرة أو معاني التلاوة المألوفة.المفتاح هو الحفاظ على مسار واحد واضح بدلاً من فتح كل شيء مرة واحدة.';
+      'قد تتعمق في الفاتحة أو السور القصيرة أو معاني التلاوة المألوفة. المفتاح هو الحفاظ على مسار واحد واضح بدلاً من فتح كل شيء مرة واحدة.';
 
   @override
   String get learningJourneyQuranNextStepsBullet1 =>
@@ -15778,7 +15778,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFatihahReadSection2Body =>
-      'تعلمنا هذه الآيات الافتتاحية أن الصلاة تبدأ بالتسبيح قبل السؤال.إنهم يعيدون مركز القلب قبل أن تتكشف بقية السورة.';
+      'تعلمنا هذه الآيات الافتتاحية أن الصلاة تبدأ بالتسبيح قبل السؤال. إنهم يعيدون مركز القلب قبل أن تتكشف بقية السورة.';
 
   @override
   String get learningJourneyFatihahReadBullet1 => 'الحمد يأتي قبل الطلبات.';
@@ -15824,7 +15824,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFatihahRecitationSection2Body =>
-      'وكل ركعة تجدد هذا الوعد.الصلاة ليست تلاوة فقط .وهو إعلان متكرر للعبادة والاتكال والمحاسبة.';
+      'وكل ركعة تجدد هذا الوعد. الصلاة ليست تلاوة فقط . وهو إعلان متكرر للعبادة والاتكال والمحاسبة.';
 
   @override
   String get learningJourneyFatihahRecitationBullet1 =>
@@ -15864,7 +15864,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFatihahReflectionSection1Body =>
-      'لا يطلب الإرشاد ولو لمرة واحدة.ويطلبها مراراً وتكراراً لأن القلب يحتاج دائماً إلى المساعدة ليظل مستقيماً وصادقاً وثابتاً.';
+      'لا يطلب الإرشاد ولو لمرة واحدة. ويطلبها مراراً وتكراراً لأن القلب يحتاج دائماً إلى المساعدة ليظل مستقيماً وصادقاً وثابتاً.';
 
   @override
   String get learningJourneyFatihahReflectionSection2Title => 'كيف يدخل صلاح';
@@ -15903,7 +15903,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFatihahCompletionIntro =>
-      'لقد انتقلت بالفاتحة تسبيحاً وعبادةً ودعاءً.والآن المهمة هي نقل هذه المعاني إلى الصلاة اليومية.';
+      'لقد انتقلت بالفاتحة تسبيحاً وعبادةً ودعاءً. والآن المهمة هي نقل هذه المعاني إلى الصلاة اليومية.';
 
   @override
   String get learningJourneyFatihahCompletionSection1Title => 'ما تعلمته';
@@ -15918,7 +15918,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFatihahCompletionSection2Body =>
-      'حافظ على معنى واحد حيًا كل يوم في الصلاة.ولتصبح الفاتحة شيئًا تفهمه وتشعر به، وليس شيئًا تكرره فقط.';
+      'حافظ على معنى واحد حيًا كل يوم في الصلاة. ولتصبح الفاتحة شيئًا تفهمه وتشعر به، وليس شيئًا تكرره فقط.';
 
   @override
   String get learningJourneyFatihahCompletionBullet1 =>
@@ -16053,7 +16053,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyShortSurahKafirunThemes =>
-      'موضوعها الرئيسي هو الوضوح في العبادة.إنه يعلم أن العبادة لا يمكن أن تختلط بالتسوية عندما يتعلق الأمر بمن يُعبد حقًا.';
+      'موضوعها الرئيسي هو الوضوح في العبادة. إنه يعلم أن العبادة لا يمكن أن تختلط بالتسوية عندما يتعلق الأمر بمن يُعبد حقًا.';
 
   @override
   String get learningJourneyShortSurahKafirunTakeaway1 =>
@@ -16109,7 +16109,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyShortSurahCompletionSection1Body =>
-      'ويعلمون معًا التوحيد واللجوء والشكر والوضوح في العبادة.فهي ليست مجرد تلاوات قصيرة.إنها تذكيرات حية.';
+      'ويعلمون معًا التوحيد واللجوء والشكر والوضوح في العبادة. فهي ليست مجرد تلاوات قصيرة. إنها تذكيرات حية.';
 
   @override
   String get learningJourneyShortSurahCompletionSection2Title =>
@@ -16117,7 +16117,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyShortSurahCompletionSection2Body =>
-      'استخدم سورة قصيرة في الصلاة مع الاهتمام الزائد هذا الأسبوع.وليسافر المعنى مع التلاوة بدلا من أن ينفصل عنها.';
+      'استخدم سورة قصيرة في الصلاة مع الاهتمام الزائد هذا الأسبوع. وليسافر المعنى مع التلاوة بدلا من أن ينفصل عنها.';
 
   @override
   String get learningJourneyShortSurahCompletionBullet1 =>
@@ -16152,7 +16152,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetCompletionIntro =>
-      'لديك الآن أساس في التعرف على الحروف وتكرار الصوت.الخطوة التالية هي معرفة كيفية تصرف تلك الحروف أثناء القراءة.';
+      'لديك الآن أساس في التعرف على الحروف وتكرار الصوت. الخطوة التالية هي معرفة كيفية تصرف تلك الحروف أثناء القراءة.';
 
   @override
   String get learningJourneyAlphabetCompletionSection1Title =>
@@ -16168,7 +16168,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyAlphabetCompletionSection2Body =>
-      'تضيف أساسيات القراءة العلامات وقواعد الصوت التي تجعل الحروف تصبح كلمات حقيقية.هذه هي الخطوة الطبيعية التالية بعد الإلمام بالأبجدية.';
+      'تضيف أساسيات القراءة العلامات وقواعد الصوت التي تجعل الحروف تصبح كلمات حقيقية. هذه هي الخطوة الطبيعية التالية بعد الإلمام بالأبجدية.';
 
   @override
   String get learningJourneyAlphabetCompletionBullet1 =>
@@ -16204,7 +16204,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingCompletionIntro =>
-      'لقد انتقلت من الحروف إلى العلامات والتوقفات والأصوات المضاعفة والنماذج المرتبطة.الآن تحتاج هذه المهارات إلى الاتصال بالتلاوة الحية.';
+      'لقد انتقلت من الحروف إلى العلامات والتوقفات والأصوات المضاعفة والنماذج المرتبطة. الآن تحتاج هذه المهارات إلى الاتصال بالتلاوة الحية.';
 
   @override
   String get learningJourneyReadingCompletionSection1Title =>
@@ -16212,7 +16212,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingCompletionSection1Body =>
-      'علامات القراءة والحروف المرتبطة لم تعد مجردة.لديك الآن بداية قراءة الثقة وتعرف أين لا تزال نقاط ضعفك موجودة.';
+      'علامات القراءة والحروف المرتبطة لم تعد مجردة. لديك الآن بداية قراءة الثقة وتعرف أين لا تزال نقاط ضعفك موجودة.';
 
   @override
   String get learningJourneyReadingCompletionSection2Title =>
@@ -16272,7 +16272,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReciteCompletionIntro =>
-      'لقد ربطت التلاوة المألوفة بالمعنى.المهمة الآن هي السماح لهذا المعنى بالانتقال إلى العبادة والذكر وخطوتك التعليمية التالية.';
+      'لقد ربطت التلاوة المألوفة بالمعنى. المهمة الآن هي السماح لهذا المعنى بالانتقال إلى العبادة والذكر وخطوتك التعليمية التالية.';
 
   @override
   String get learningJourneyReciteCompletionSection1Title =>
@@ -16280,7 +16280,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyReciteCompletionSection1Body =>
-      'لم تعد العبارات المألوفة بحاجة إلى أن تظل فارغة أو تلقائية.لديك الآن مرتكزات بسيطة يمكنها جذب المزيد من الاهتمام للصلاة والذكرى.';
+      'لم تعد العبارات المألوفة بحاجة إلى أن تظل فارغة أو تلقائية. لديك الآن مرتكزات بسيطة يمكنها جذب المزيد من الاهتمام للصلاة والذكرى.';
 
   @override
   String get learningJourneyReciteCompletionSection2Title =>
@@ -16672,7 +16672,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFaithTawheedTakeaway2 =>
-      'العبادة ليست مجرد طقوس.ويشمل حالة القلب.';
+      'العبادة ليست مجرد طقوس. ويشمل حالة القلب.';
 
   @override
   String get learningJourneyFaithTawheedTakeaway3 =>
@@ -16746,7 +16746,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFaithCompletionIntro =>
-      'لقد انتقلت من خلال المعتقدات الأساسية للإسلام.تجمعهم هذه المرحلة النهائية في صورة واحدة واضحة وتوجهك نحو الخطوة التالية.';
+      'لقد انتقلت من خلال المعتقدات الأساسية للإسلام. تجمعهم هذه المرحلة النهائية في صورة واحدة واضحة وتوجهك نحو الخطوة التالية.';
 
   @override
   String get learningJourneyFaithCompletionSection1Title => 'ما تحمله الآن';
@@ -16760,7 +16760,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFaithCompletionSection2Body =>
-      'والخطوة التالية الأقوى هي جعل هذه المعتقدات تتعمق من خلال القرآن والقصص النبوية والعبادات اليومية.كلما تمت إعادة النظر في المعتقد، كلما أصبح قناعة حية بدلاً من المفردات.';
+      'والخطوة التالية الأقوى هي جعل هذه المعتقدات تتعمق من خلال القرآن والقصص النبوية والعبادات اليومية. كلما تمت إعادة النظر في المعتقد، كلما أصبح قناعة حية بدلاً من المفردات.';
 
   @override
   String get learningJourneyFaithCompletionTakeaway1 =>
@@ -16798,7 +16798,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhHalalSection2Body =>
-      'إذا لم تكن متأكدًا من شيء ما، فالنمط الآمن هو التباطؤ وتجنب التخمين وطلب المعرفة.وهذا يحمي القلب من التعامل مع الدين بشكل عرضي.';
+      'إذا لم تكن متأكدًا من شيء ما، فالنمط الآمن هو التباطؤ وتجنب التخمين وطلب المعرفة. وهذا يحمي القلب من التعامل مع الدين بشكل عرضي.';
 
   @override
   String get learningJourneyFiqhHalalTakeaway1 =>
@@ -16818,7 +16818,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhCleanlinessIntro =>
-      'لقد أولى الإسلام أهمية كبيرة للطهارة والنظافة والاستعداد.وهذا جزء من تكريم العبادة والكرامة اليومية.';
+      'لقد أولى الإسلام أهمية كبيرة للطهارة والنظافة والاستعداد. وهذا جزء من تكريم العبادة والكرامة اليومية.';
 
   @override
   String get learningJourneyFiqhCleanlinessSection1Body =>
@@ -16846,11 +16846,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhPrayerIntro =>
-      'الصلاة لها هيكل خارجي وهدف داخلي.تمنحك هذه المرحلة الإطار الفقهي الأساسي دون إثقال كاهلك باختلافات في التفاصيل.';
+      'الصلاة لها هيكل خارجي وهدف داخلي. تمنحك هذه المرحلة الإطار الفقهي الأساسي دون إثقال كاهلك باختلافات في التفاصيل.';
 
   @override
   String get learningJourneyFiqhPrayerSection1Body =>
-      'وينبغي أن يعلم كل مسلم أن الصلاة لها أوقات محددة، وشروط مطلوبة، وأعمال ضرورية.تعلم الأساسيات أولاً أفضل من أن تطغى عليك الاختلافات المتقدمة.';
+      'وينبغي أن يعلم كل مسلم أن الصلاة لها أوقات محددة، وشروط مطلوبة، وأعمال ضرورية. تعلم الأساسيات أولاً أفضل من أن تطغى عليك الاختلافات المتقدمة.';
 
   @override
   String get learningJourneyFiqhPrayerSection2Body =>
@@ -16874,7 +16874,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhFastingIntro =>
-      'الصيام هو أحد العبادات الكبرى في الإسلام.أساسياتها بسيطة، ولكن معرفتها بوضوح تساعد على تجنب عدم اليقين.';
+      'الصيام هو أحد العبادات الكبرى في الإسلام. أساسياتها بسيطة، ولكن معرفتها بوضوح تساعد على تجنب عدم اليقين.';
 
   @override
   String get learningJourneyFiqhFastingSection1Body =>
@@ -16902,7 +16902,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhZakatIntro =>
-      'الزكاة تطهر المال وتساعد على رعاية المحتاجين.حتى قبل أن تصبح الزكاة مستحقة، من المهم فهم الغرض منها.';
+      'الزكاة تطهر المال وتساعد على رعاية المحتاجين. حتى قبل أن تصبح الزكاة مستحقة، من المهم فهم الغرض منها.';
 
   @override
   String get learningJourneyFiqhZakatSection1Body =>
@@ -16934,7 +16934,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhDailyLifeSection1Body =>
-      'غالبًا ما تبدأ أسئلة الحياة اليومية صغيرة: هل هذا نظيف بما يكفي للصلاة؟هل أحتاج إلى الوضوء مرة أخرى؟هل هذا الإجراء آمن أم مشكوك فيه؟الفقه السليم يبدأ بالهدوء وليس بالذعر.';
+      'غالبًا ما تبدأ أسئلة الحياة اليومية صغيرة: هل هذا نظيف بما يكفي للصلاة؟ هل أحتاج إلى الوضوء مرة أخرى؟ هل هذا الإجراء آمن أم مشكوك فيه؟ الفقه السليم يبدأ بالهدوء وليس بالذعر.';
 
   @override
   String get learningJourneyFiqhDailyLifeSection2Body =>
@@ -16946,7 +16946,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhDailyLifeTakeaway2 =>
-      'عدم معرفة كل شيء طبيعي.التعلم الصادق مهم.';
+      'عدم معرفة كل شيء طبيعي. التعلم الصادق مهم.';
 
   @override
   String get learningJourneyFiqhDailyLifeTakeaway3 =>
@@ -16958,7 +16958,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhCompletionIntro =>
-      'لديك الآن خريطة عملية بسيطة لعدة مجالات مهمة في حياة المسلم.تساعدك هذه المرحلة النهائية على تحويل المعرفة إلى عمل ثابت.';
+      'لديك الآن خريطة عملية بسيطة لعدة مجالات مهمة في حياة المسلم. تساعدك هذه المرحلة النهائية على تحويل المعرفة إلى عمل ثابت.';
 
   @override
   String get learningJourneyFiqhCompletionSection1Title => 'ما هو الفقه ل';
@@ -16972,7 +16972,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyFiqhCompletionSection2Body =>
-      'أفضل خطوة تالية هي تعميق مجال عملي واحد تحتاجه الآن، مثل الوضوء أو الصلاة أو رمضان.يعد تطبيق التعلم المركّز أسهل من محاولة إتقان كل شيء مرة واحدة.';
+      'أفضل خطوة تالية هي تعميق مجال عملي واحد تحتاجه الآن، مثل الوضوء أو الصلاة أو رمضان. يعد تطبيق التعلم المركّز أسهل من محاولة إتقان كل شيء مرة واحدة.';
 
   @override
   String get learningJourneyFiqhCompletionTakeaway1 =>
@@ -17002,7 +17002,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineEarlyProphetsIntro =>
-      'يبدأ التاريخ الإسلامي قبل وقت طويل من ظهور خاتم الأنبياء.ترسي القصص النبوية الأولى أنماط الهداية والنضال والرحمة.';
+      'يبدأ التاريخ الإسلامي قبل وقت طويل من ظهور خاتم الأنبياء. ترسي القصص النبوية الأولى أنماط الهداية والنضال والرحمة.';
 
   @override
   String get learningJourneyTimelineEarlyProphetsSection1Body =>
@@ -17010,7 +17010,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineEarlyProphetsSection2Body =>
-      'هذا التاريخ المبكر يمنحك الأساس.إنه يوضح أن الإسلام ليس فكرة جديدة منفصلة.إنها استمرار لنفس الرسالة التي علمها الأنبياء.';
+      'هذا التاريخ المبكر يمنحك الأساس. إنه يوضح أن الإسلام ليس فكرة جديدة منفصلة. إنها استمرار لنفس الرسالة التي علمها الأنبياء.';
 
   @override
   String get learningJourneyTimelineEarlyProphetsTakeaway1 =>
@@ -17034,11 +17034,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineProphetEraSection1Body =>
-      'لقد بنت الأعوام المكية الإيمان والصبر والثبات.لقد بنت السنوات المدنية المجتمع والقانون والقيادة والنظام الاجتماعي في ظل الوحي.';
+      'لقد بنت الأعوام المكية الإيمان والصبر والثبات. لقد بنت السنوات المدنية المجتمع والقانون والقيادة والنظام الاجتماعي في ظل الوحي.';
 
   @override
   String get learningJourneyTimelineProphetEraSection2Body =>
-      'هذا العصر مهم لأنه يوضح كيف انتقل الإيمان من القناعة الخاصة إلى المجتمع الحي.وهو النموذج الذي يعود إليه المسلمون طلباً للاسترشاد.';
+      'هذا العصر مهم لأنه يوضح كيف انتقل الإيمان من القناعة الخاصة إلى المجتمع الحي. وهو النموذج الذي يعود إليه المسلمون طلباً للاسترشاد.';
 
   @override
   String get learningJourneyTimelineProphetEraTakeaway1 =>
@@ -17062,7 +17062,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineKhulafaSection1Body =>
-      'واجه كل من أبو بكر وعمر وعثمان وعلي اختبارات مختلفة.وشمل عصرهم قرارات القيادة، والتوسع، والتحديات، والعمل الجاد لتوجيه المجتمع المتنامي.';
+      'واجه كل من أبو بكر وعمر وعثمان وعلي اختبارات مختلفة. وشمل عصرهم قرارات القيادة، والتوسع، والتحديات، والعمل الجاد لتوجيه المجتمع المتنامي.';
 
   @override
   String get learningJourneyTimelineKhulafaSection2Body =>
@@ -17090,11 +17090,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineExpansionSection1Body =>
-      'ومع توسع الأراضي الإسلامية، نقلت المجتمعات العبادة والعلم والتجارة والحكم إلى العديد من المناطق.لقد جلب التوسع الفرص وكذلك الاختبارات.';
+      'ومع توسع الأراضي الإسلامية، نقلت المجتمعات العبادة والعلم والتجارة والحكم إلى العديد من المناطق. لقد جلب التوسع الفرص وكذلك الاختبارات.';
 
   @override
   String get learningJourneyTimelineExpansionSection2Body =>
-      'تساعدك هذه المرحلة على رؤية أن التاريخ الإسلامي أصبح عالميًا في وقت مبكر جدًا.ولم يقتصر الإسلام على قبيلة واحدة أو منطقة واحدة.وقد وصلت توجيهاته إلى العديد من الشعوب والسياقات.';
+      'تساعدك هذه المرحلة على رؤية أن التاريخ الإسلامي أصبح عالميًا في وقت مبكر جدًا. ولم يقتصر الإسلام على قبيلة واحدة أو منطقة واحدة. وقد وصلت توجيهاته إلى العديد من الشعوب والسياقات.';
 
   @override
   String get learningJourneyTimelineExpansionTakeaway1 =>
@@ -17118,11 +17118,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineGoldenAgeSection1Body =>
-      'وقد ساهم العلماء والفقهاء والمدرسون والعلماء والبناؤون في بناء حضارة غنية متجذرة في الوحي والتعلم.وتضمنت هذه الفترة الدراسة والحفظ والتعليق والخدمة.';
+      'وقد ساهم العلماء والفقهاء والمدرسون والعلماء والبناؤون في بناء حضارة غنية متجذرة في الوحي والتعلم. وتضمنت هذه الفترة الدراسة والحفظ والتعليق والخدمة.';
 
   @override
   String get learningJourneyTimelineGoldenAgeSection2Body =>
-      'وهذا مهم لأنه يوضح أن الإيمان والتعلم ليسا أعداء.يمكن للمجتمع المرتكز على الوحي أيضًا أن ينمي المعرفة والجمال والمنفعة الاجتماعية.';
+      'وهذا مهم لأنه يوضح أن الإيمان والتعلم ليسا أعداء. يمكن للمجتمع المرتكز على الوحي أيضًا أن ينمي المعرفة والجمال والمنفعة الاجتماعية.';
 
   @override
   String get learningJourneyTimelineGoldenAgeTakeaway1 =>
@@ -17142,15 +17142,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineModernIntro =>
-      'الفترة الحديثة معقدة.يعيش المسلمون في العديد من المجتمعات ويواجهون أسئلة جديدة بينما لا يزالون يعودون إلى الوحي الخالد.';
+      'الفترة الحديثة معقدة. يعيش المسلمون في العديد من المجتمعات ويواجهون أسئلة جديدة بينما لا يزالون يعودون إلى الوحي الخالد.';
 
   @override
   String get learningJourneyTimelineModernSection1Body =>
-      'تشتمل الحياة الإسلامية الحديثة على تنوع الثقافات، والحقائق السياسية، والهجرة، والتكنولوجيا، والضغوط الاجتماعية الجديدة.ليس كل مشكلة حديثة لها ملخص بسيط.';
+      'تشتمل الحياة الإسلامية الحديثة على تنوع الثقافات، والحقائق السياسية، والهجرة، والتكنولوجيا، والضغوط الاجتماعية الجديدة. ليس كل مشكلة حديثة لها ملخص بسيط.';
 
   @override
   String get learningJourneyTimelineModernSection2Body =>
-      'هذه المرحلة تشجع المنظور بدلا من اليأس.لقد مرت الأمة بتغيرات كثيرة من قبل.ولا يزال المسلمون يرجعون إلى الكتاب والسنة والعلم الموثوق في التوجيه.';
+      'هذه المرحلة تشجع المنظور بدلا من اليأس. لقد مرت الأمة بتغيرات كثيرة من قبل. ولا يزال المسلمون يرجعون إلى الكتاب والسنة والعلم الموثوق في التوجيه.';
 
   @override
   String get learningJourneyTimelineModernTakeaway1 =>
@@ -17169,21 +17169,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyTimelineCompletionIntro =>
-      'لديك الآن خريطة بسيطة للعصور الإسلامية الكبرى.تدور هذه المرحلة الأخيرة حول تحويل تلك الخريطة إلى فضول أعمق ودراسة أكثر تركيزًا.';
+      'لديك الآن خريطة بسيطة للعصور الإسلامية الكبرى. تدور هذه المرحلة الأخيرة حول تحويل تلك الخريطة إلى فضول أعمق ودراسة أكثر تركيزًا.';
 
   @override
   String get learningJourneyTimelineCompletionSection1Title => 'القصة المتصلة';
 
   @override
   String get learningJourneyTimelineCompletionSection1Body =>
-      'التاريخ الإسلامي ليس كومة من الحقائق المنفصلة.إن التوجيه النبوي، والحياة المجتمعية، والعلم، والتوسع العالمي، كلها ترتبط بقصة واحدة طويلة من الوحي والاستجابة والنضال والخدمة.';
+      'التاريخ الإسلامي ليس كومة من الحقائق المنفصلة. إن التوجيه النبوي، والحياة المجتمعية، والعلم، والتوسع العالمي، كلها ترتبط بقصة واحدة طويلة من الوحي والاستجابة والنضال والخدمة.';
 
   @override
   String get learningJourneyTimelineCompletionSection2Title => 'خطوتك التالية';
 
   @override
   String get learningJourneyTimelineCompletionSection2Body =>
-      'اختر مسارًا واحدًا للتعمق فيه بعد ذلك: الأنبياء، أو السيرة، أو القرآن، أو الشخصية.تصبح الدراسة المتعمقة أسهل بمجرد أن تعرف مكان تناسب كل عصر في القصة الأوسع.';
+      'اختر مسارًا واحدًا للتعمق فيه بعد ذلك: الأنبياء، أو السيرة، أو القرآن، أو الشخصية. تصبح الدراسة المتعمقة أسهل بمجرد أن تعرف مكان تناسب كل عصر في القصة الأوسع.';
 
   @override
   String get learningJourneyTimelineCompletionTakeaway1 =>
@@ -17213,7 +17213,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesSkyIntro =>
-      'السماء والنجوم تدعو إلى التأمل الهادئ.ويدعو القرآن الناس مراراً وتكراراً إلى ملاحظة الترتيب والجمال الذي فوقهم.';
+      'السماء والنجوم تدعو إلى التأمل الهادئ. ويدعو القرآن الناس مراراً وتكراراً إلى ملاحظة الترتيب والجمال الذي فوقهم.';
 
   @override
   String get learningJourneyStoriesSkySection1Body =>
@@ -17240,7 +17240,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesOceanIntro =>
-      'يعكس المحيط القوة والإمداد والجمال والخطر في آن واحد.ويشير القرآن إلى البحر آية لمن يتفكر.';
+      'يعكس المحيط القوة والإمداد والجمال والخطر في آن واحد. ويشير القرآن إلى البحر آية لمن يتفكر.';
 
   @override
   String get learningJourneyStoriesOceanSection1Body =>
@@ -17276,7 +17276,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesMountainsSection2Body =>
-      'بالنسبة للمؤمن، يمكن أن تكون الجبال بمثابة تذكير للسعي إلى الثبات في الإيمان.ليس كل ما حولك يجب أن يحرك قلبك بهذه السهولة.';
+      'بالنسبة للمؤمن، يمكن أن تكون الجبال بمثابة تذكير للسعي إلى الثبات في الإيمان. ليس كل ما حولك يجب أن يحرك قلبك بهذه السهولة.';
 
   @override
   String get learningJourneyStoriesMountainsTakeaway1 =>
@@ -17300,11 +17300,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesAnimalsSection1Body =>
-      'توفر الحيوانات الطعام والنقل والرفقة والدروس.ويلفت القرآن الانتباه إليهم فيلاحظ الناس التصميم والتوفير وتنوع الخلق.';
+      'توفر الحيوانات الطعام والنقل والرفقة والدروس. ويلفت القرآن الانتباه إليهم فيلاحظ الناس التصميم والتوفير وتنوع الخلق.';
 
   @override
   String get learningJourneyStoriesAnimalsSection2Body =>
-      'إن التأمل في الحيوانات يمكن أن يلين القلب.تبدأ في رؤية الرحمة والاعتماد وحكمة الرب الذي يعول عددًا لا يحصى من المخلوقات كل يوم.';
+      'إن التأمل في الحيوانات يمكن أن يلين القلب. تبدأ في رؤية الرحمة والاعتماد وحكمة الرب الذي يعول عددًا لا يحصى من المخلوقات كل يوم.';
 
   @override
   String get learningJourneyStoriesAnimalsTakeaway1 =>
@@ -17332,7 +17332,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesHumanCreationSection2Body =>
-      'هذا الانعكاس يحمي من نقيضين: الكبرياء وإهمال الذات.أنت لست بلا معنى، لكنك لست مكتفيًا ذاتيًا أيضًا.';
+      'هذا الانعكاس يحمي من نقيضين: الكبرياء وإهمال الذات. أنت لست بلا معنى، لكنك لست مكتفيًا ذاتيًا أيضًا.';
 
   @override
   String get learningJourneyStoriesHumanCreationTakeaway1 =>
@@ -17352,7 +17352,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesDayNightIntro =>
-      'يعد إيقاع النهار والليل من أوضح العلامات من حولنا.فهو يشكل العبادة والعمل والراحة والتأمل.';
+      'يعد إيقاع النهار والليل من أوضح العلامات من حولنا. فهو يشكل العبادة والعمل والراحة والتأمل.';
 
   @override
   String get learningJourneyStoriesDayNightSection1Body =>
@@ -17380,7 +17380,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStoriesCompletionIntro =>
-      'لقد تأملت آيات من حولك في السماء والبحر والأرض والكائنات الحية وحياتك.والخطوة التالية هي المضي قدمًا بهذا التفكير.';
+      'لقد تأملت آيات من حولك في السماء والبحر والأرض والكائنات الحية وحياتك. والخطوة التالية هي المضي قدمًا بهذا التفكير.';
 
   @override
   String get learningJourneyStoriesCompletionSection1Title =>
@@ -17726,7 +17726,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageUnavailableBody =>
-      'لا يمكن لهذه المرحلة فتح محتواها المقصود في الوقت الحالي.استخدم الإجراء الاحتياطي أدناه أو ارجع إلى الرحلة وتابع الخطوة الأخرى المتاحة.';
+      'لا يمكن لهذه المرحلة فتح محتواها المقصود في الوقت الحالي. استخدم الإجراء الاحتياطي أدناه أو ارجع إلى الرحلة وتابع الخطوة الأخرى المتاحة.';
 
   @override
   String get learningJourneyStageUnavailableFallbackTitle =>
@@ -17905,7 +17905,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslamWhatIsIslamSection2Body =>
-      'وهذا يعني أن الإسلام يشكل الحياة اليومية.فالصلاة وحسن الخلق والذكر والتعلم لا تنفصل عن الإيمان.هذه هي الطريقة التي يُعاش بها الإيمان.';
+      'وهذا يعني أن الإسلام يشكل الحياة اليومية. فالصلاة وحسن الخلق والذكر والتعلم لا تنفصل عن الإيمان. هذه هي الطريقة التي يُعاش بها الإيمان.';
 
   @override
   String get learningJourneyIslamWhatIsIslamTakeaway1 =>
@@ -17953,15 +17953,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslamFivePillarsIntro =>
-      'الركائز الخمس تعطي هيكلًا لحياة المسلم.وهي ليست واجبات عشوائية.إنهم يدربون القلب والجسد والوقت والمال على العبادة.';
+      'الركائز الخمس تعطي هيكلًا لحياة المسلم. وهي ليست واجبات عشوائية. إنهم يدربون القلب والجسد والوقت والمال على العبادة.';
 
   @override
   String get learningJourneyIslamFivePillarsSection1Body =>
-      'الأركان هي الشهادة، والصلاة، والزكاة، وصوم رمضان، والحج لمن استطاع.معًا يحافظون على ارتباط الإيمان بالعمل اليومي والمجتمع والطاعة.';
+      'الأركان هي الشهادة، والصلاة، والزكاة، وصوم رمضان، والحج لمن استطاع. معًا يحافظون على ارتباط الإيمان بالعمل اليومي والمجتمع والطاعة.';
 
   @override
   String get learningJourneyIslamFivePillarsSection2Body =>
-      'لا يحتاج المبتدئ إلى إتقان كل التفاصيل مرة واحدة.الخطوة الأولى الصحيحة هي فهم الركائز، ثم البدء بالركائز التي تشكل الإيقاع اليومي بشكل مباشر.';
+      'لا يحتاج المبتدئ إلى إتقان كل التفاصيل مرة واحدة. الخطوة الأولى الصحيحة هي فهم الركائز، ثم البدء بالركائز التي تشكل الإيقاع اليومي بشكل مباشر.';
 
   @override
   String get learningJourneyIslamFivePillarsTakeaway1 =>
@@ -17981,7 +17981,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslamFirstStepsIntro =>
-      'البداية القوية بسيطة، قابلة للتكرار، وصادقة.لا تحتاج إلى حمل كل شيء دفعة واحدة.';
+      'البداية القوية بسيطة، قابلة للتكرار، وصادقة. لا تحتاج إلى حمل كل شيء دفعة واحدة.';
 
   @override
   String get learningJourneyIslamFirstStepsSection1Body =>
@@ -17989,7 +17989,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslamFirstStepsSection2Body =>
-      'الصحبة الصالحة والصبر مع نفسك والشخصية الجميلة مهمة منذ البداية.النمو في الإسلام ليس مجرد معلومات.وهي العبادة مع الثبات.';
+      'الصحبة الصالحة والصبر مع نفسك والشخصية الجميلة مهمة منذ البداية. النمو في الإسلام ليس مجرد معلومات. وهي العبادة مع الثبات.';
 
   @override
   String get learningJourneyIslamFirstStepsTakeaway1 =>
@@ -18009,7 +18009,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslamCompletionIntro =>
-      'لقد بنيت الإطار الأول للإسلام عقيدة وممارسة.والخطوة التالية هي حمل هذا الإطار في العبادة والتواصل اليومي.';
+      'لقد بنيت الإطار الأول للإسلام عقيدة وممارسة. والخطوة التالية هي حمل هذا الإطار في العبادة والتواصل اليومي.';
 
   @override
   String get learningJourneyIslamCompletionSection1Title => 'ما لديك الآن';
@@ -18081,15 +18081,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorIntro =>
-      'الصلاة هي أقوى بنيان يومي للمسلم.عندما تصبح الصلاة هي المرساة، يتوقف بقية الروتين عن الطفو.';
+      'الصلاة هي أقوى بنيان يومي للمسلم. عندما تصبح الصلاة هي المرساة، يتوقف بقية الروتين عن الطفو.';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorSection1Body =>
-      'بدلاً من التعامل مع الصلاة كمهمة أخرى، قم ببناء يومك حولها.دع أوقات الصلاة تتشكل عندما تتوقف وتعيد ضبطها وتعود إلى ما يهمك.';
+      'بدلاً من التعامل مع الصلاة كمهمة أخرى، قم ببناء يومك حولها. دع أوقات الصلاة تتشكل عندما تتوقف وتعيد ضبطها وتعود إلى ما يهمك.';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorSection2Body =>
-      'وهذا أيضًا يجعل العادات الأخرى أسهل.إن قراءة القرآن الصغير بعد الفجر، أو الذكر بعد الصلاة، أو الدعاء قبل مغادرة المنزل تصبح مرتبطة بشيء ثابت بالفعل.';
+      'وهذا أيضًا يجعل العادات الأخرى أسهل. إن قراءة القرآن الصغير بعد الفجر، أو الذكر بعد الصلاة، أو الدعاء قبل مغادرة المنزل تصبح مرتبطة بشيء ثابت بالفعل.';
 
   @override
   String get learningJourneyDailyRoutinesPrayerAnchorTakeaway1 =>
@@ -18109,7 +18109,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorIntro =>
-      'يجب أن يكون إيقاع القرآن اليومي ممكنا وليس ثقيلا.حتى كمية صغيرة يمكن أن تبقي العلاقة على قيد الحياة.';
+      'يجب أن يكون إيقاع القرآن اليومي ممكنا وليس ثقيلا. حتى كمية صغيرة يمكن أن تبقي العلاقة على قيد الحياة.';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorSection1Body =>
@@ -18117,7 +18117,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorSection2Body =>
-      'النقطة المهمة هي الاتساق مع الحضور.علاقة قصيرة ثابتة مع القرآن خير من انتظار لحظات مثالية نادرة.';
+      'النقطة المهمة هي الاتساق مع الحضور. علاقة قصيرة ثابتة مع القرآن خير من انتظار لحظات مثالية نادرة.';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorTakeaway1 =>
@@ -18137,7 +18137,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesEveningResetIntro =>
-      'المساء إما أن يبعثر القلب أو يجمعه برفق من جديد.تساعد عملية إعادة الضبط القصيرة على إنهاء اليوم بالذكرى.';
+      'المساء إما أن يبعثر القلب أو يجمعه برفق من جديد. تساعد عملية إعادة الضبط القصيرة على إنهاء اليوم بالذكرى.';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection1Body =>
@@ -18145,7 +18145,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection2Body =>
-      'هذا النوع من إعادة التعيين هو أيضًا رحمة بعد أيام غير كاملة.بدلًا من أن يسيطر عليك الشعور بالذنب، تساعدك الذكرى على العودة والبدء من جديد غدًا.';
+      'هذا النوع من إعادة التعيين هو أيضًا رحمة بعد أيام غير كاملة. بدلًا من أن يسيطر عليك الشعور بالذنب، تساعدك الذكرى على العودة والبدء من جديد غدًا.';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetTakeaway1 =>
@@ -18169,7 +18169,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingSection1Body =>
-      'حافظ على عاداتك صغيرة في البداية.كررها في نفس المكان أو بعد نفس الصلاة.قم بمراجعتها بلطف بدلاً من التعامل مع يوم ضائع على أنه فشل.';
+      'حافظ على عاداتك صغيرة في البداية. كررها في نفس المكان أو بعد نفس الصلاة. قم بمراجعتها بلطف بدلاً من التعامل مع يوم ضائع على أنه فشل.';
 
   @override
   String get learningJourneyDailyRoutinesHabitBuildingSection2Body =>
@@ -18193,7 +18193,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesCompletionIntro =>
-      'لديك الآن إيقاع يومي بسيط.والخطوة التالية هي الاستمرار في تعميقه دون إضافة فوضى أو ضغط.';
+      'لديك الآن إيقاع يومي بسيط. والخطوة التالية هي الاستمرار في تعميقه دون إضافة فوضى أو ضغط.';
 
   @override
   String get learningJourneyDailyRoutinesCompletionSection1Title =>
@@ -18409,7 +18409,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningGuidedHomeSubtitle =>
-      'يظل ملف تعريف الطفل هذا مركزًا على المسار المعين أولاً.يمكن فتح التصفح الإضافي لاحقًا إذا سمحت بذلك.';
+      'يظل ملف تعريف الطفل هذا مركزًا على المسار المعين أولاً. يمكن فتح التصفح الإضافي لاحقًا إذا سمحت بذلك.';
 
   @override
   String get familyLearningBrowseAllChildSubtitle =>
@@ -18432,7 +18432,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningIslandReducedSubtitle =>
-      'تم تصغير هذه الجزيرة لملف تعريف الطفل الحالي.ارجع إلى المسار المعين للحصول على الخطوة التالية الأكثر وضوحًا.';
+      'تم تصغير هذه الجزيرة لملف تعريف الطفل الحالي. ارجع إلى المسار المعين للحصول على الخطوة التالية الأكثر وضوحًا.';
 
   @override
   String get familyLearningSettingsTitle => 'التعلم العائلي';
@@ -20493,7 +20493,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsPrayerTimeModeSubtitle =>
-      'اختر كيفية تعامل مسار نور مع جدول الصلاة الخاص بك.يجب على معظم المستخدمين الاحتفاظ بأوقات الصلاة المحسوبة وإجراء تعديلات صغيرة إذا لزم الأمر.';
+      'اختر كيفية تعامل مسار نور مع جدول الصلاة الخاص بك. يجب على معظم المستخدمين الاحتفاظ بأوقات الصلاة المحسوبة وإجراء تعديلات صغيرة إذا لزم الأمر.';
 
   @override
   String get settingsPrayerTimeModeCalculatedAdjustedTitle =>
@@ -20501,7 +20501,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsPrayerTimeModeCalculatedAdjustedDescription =>
-      'الأفضل بالنسبة لمعظم المستخدمين.يقوم Path of Nūr بحساب أوقات الصلاة لموقعك وطريقتك كل يوم، ثم يقوم بتطبيق التعديلات المحفوظة لكل صلاة تلقائيًا.';
+      'الأفضل بالنسبة لمعظم المستخدمين. يقوم Path of Nūr بحساب أوقات الصلاة لموقعك وطريقتك كل يوم، ثم يقوم بتطبيق التعديلات المحفوظة لكل صلاة تلقائيًا.';
 
   @override
   String get settingsPrayerTimeModeManualTitle =>
@@ -20509,7 +20509,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsPrayerTimeModeManualDescription =>
-      'استخدم أوقات الصلاة المحددة التي تدخلها بنفسك.يتجاوز هذا حساب الصلاة اليومي العادي لأوقات الصلاة المتعقبة ويجب استخدامه فقط إذا كنت تريد جدولًا يدويًا ثابتًا عن عمد.';
+      'استخدم أوقات الصلاة المحددة التي تدخلها بنفسك. يتجاوز هذا حساب الصلاة اليومي العادي لأوقات الصلاة المتعقبة ويجب استخدامه فقط إذا كنت تريد جدولًا يدويًا ثابتًا عن عمد.';
 
   @override
   String get settingsManualTimesPrefilledFromToday =>
@@ -20517,7 +20517,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsPrayerTimeModeManualNote =>
-      'يعد الوضع اليدوي خيارًا متقدمًا.إذا تغيرت أوقات الصلاة المحلية لديك موسميًا، فقد تحتاج إلى تحديثها بنفسك.';
+      'يعد الوضع اليدوي خيارًا متقدمًا. إذا تغيرت أوقات الصلاة المحلية لديك موسميًا، فقد تحتاج إلى تحديثها بنفسك.';
 
   @override
   String get settingsRecommendedBadge => 'موصى به';
@@ -20527,11 +20527,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsPrayerTimeAdjustmentsSubtitle =>
-      'قم بضبط أوقات الصلاة المحسوبة ببضع دقائق.سيستمر مسار نور في حساب أوقات الصلاة بشكل طبيعي لموقعك وطريقتك، ثم قم بتطبيق التعديلات المحفوظة تلقائيًا.';
+      'قم بضبط أوقات الصلاة المحسوبة ببضع دقائق. سيستمر مسار نور في حساب أوقات الصلاة بشكل طبيعي لموقعك وطريقتك، ثم قم بتطبيق التعديلات المحفوظة تلقائيًا.';
 
   @override
   String get settingsPrayerTimeAdjustmentsExample =>
-      'إذا تم حساب الفجر على أنه الساعة 5:00 صباحًا وقمت بتغييره إلى 4:55 صباحًا، فسيحفظ التطبيق تعديلًا لمدة -5 دقائق لصلاة الفجر.ستستخدم أوقات صلاة الفجر المستقبلية أيضًا نفس التعديل المحفوظ.';
+      'إذا تم حساب الفجر على أنه الساعة 5:00 صباحًا وقمت بتغييره إلى 4:55 صباحًا، فسيحفظ التطبيق تعديلًا لمدة -5 دقائق لصلاة الفجر. ستستخدم أوقات صلاة الفجر المستقبلية أيضًا نفس التعديل المحفوظ.';
 
   @override
   String get settingsPrayerTimeAdjustmentsScope =>
@@ -20576,7 +20576,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsMosqueTimeComparisonSubtitle =>
-      'قارن جدول مواعيد مسجدك المحلي مع أوقات الصلاة المحسوبة والمعدلة في تطبيق Path of Nūr.يظل هذا محليًا ويساعدك على مراجعة مدى قرب تعديلاتك الحالية.';
+      'قارن جدول مواعيد مسجدك المحلي مع أوقات الصلاة المحسوبة والمعدلة في تطبيق Path of Nūr. يظل هذا محليًا ويساعدك على مراجعة مدى قرب تعديلاتك الحالية.';
 
   @override
   String get settingsApplySuggestedAdjustments => 'تطبيق التعديلات المقترحة';
@@ -20745,11 +20745,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'أسطح أكثر نظافة وتباين أقوى لقراءة مركزة.يوصى بها لجلسات القراءة الأطول.';
+      'أسطح أكثر نظافة وتباين أقوى لقراءة مركزة. يوصى بها لجلسات القراءة الأطول.';
 
   @override
   String get settingsThemeModeDarkDescription =>
-      'مظهر هادئ في الإضاءة المنخفضة للاستخدام الليلي.يوصى به للبيئات منخفضة الإضاءة.';
+      'مظهر هادئ في الإضاءة المنخفضة للاستخدام الليلي. يوصى به للبيئات منخفضة الإضاءة.';
 
   @override
   String settingsCurrentProfileSummary(String name, String syncMode) {
@@ -20883,7 +20883,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dhikrAntiRushBody =>
-      'تذكير لطيف: الذكر يدور حول الحضور والإخلاص والصبر، وليس السرعة وحدها.خذ الأمر بهدوء وقصد، ابتغاء مرضاة الله.';
+      'تذكير لطيف: الذكر يدور حول الحضور والإخلاص والصبر، وليس السرعة وحدها. خذ الأمر بهدوء وقصد، ابتغاء مرضاة الله.';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'أنا أفهم';
@@ -21341,7 +21341,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthHabitsNoHabitsDue =>
-      'لا توجد عادات مستحقة الآن.أكمل طريقك بمراجعة خفيفة.';
+      'لا توجد عادات مستحقة الآن. أكمل طريقك بمراجعة خفيفة.';
 
   @override
   String get growthHabitsProgressLabel => 'التقدم';
@@ -21365,7 +21365,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthReflectionNoSeasonalPrompt =>
-      'لا يوجد مطالبة موسمية اليوم.أكمل طريقك بإخلاص.';
+      'لا يوجد مطالبة موسمية اليوم. أكمل طريقك بإخلاص.';
 
   @override
   String get growthReflectionIntro =>
@@ -21531,7 +21531,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthJourneyNoSeasonalJourney =>
-      'لا توجد رحلة موسمية نشطة.استمر في السير في طريقك الثابت.';
+      'لا توجد رحلة موسمية نشطة. استمر في السير في طريقك الثابت.';
 
   @override
   String growthJourneyHijriDateValue(String day, String month, String year) {
@@ -21543,7 +21543,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String growthJourneyPrivateModeSummary(String value) {
-    return 'الوضع الخاص قيد التشغيل.يظل الضوء المرئي هادئًا أثناء استمرار تقدمك ($value).';
+    return 'الوضع الخاص قيد التشغيل. يظل الضوء المرئي هادئًا أثناء استمرار تقدمك ($value).';
   }
 
   @override
@@ -21656,7 +21656,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthEncouragementReturning1 =>
-      'ابدأ مرة أخرى بلطف.ولا تزال العودة الهادئة مهمة.';
+      'ابدأ مرة أخرى بلطف. ولا تزال العودة الهادئة مهمة.';
 
   @override
   String get growthEncouragementReturning2 => 'عد بخطوة واحدة صغيرة اليوم.';
@@ -21675,11 +21675,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthEncouragementDayEnd1 =>
-      'عقد اليوم جهدا صادقا.استمر في المشي بلطف.';
+      'عقد اليوم جهدا صادقا. استمر في المشي بلطف.';
 
   @override
   String get growthEncouragementDayEnd2 =>
-      'بعض الخير ترسخ اليوم.تواصل مع الثبات الهادئ.';
+      'بعض الخير ترسخ اليوم. تواصل مع الثبات الهادئ.';
 
   @override
   String get growthEncouragementDayEnd3 => 'مراجعة هادئة يمكن أن تتجدد غدا.';
@@ -21752,7 +21752,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthWeeklySummaryRestart =>
-      'ابدأ مرة أخرى اليوم.يمكن للانعكاس أن يجدد إيقاعك بهدوء.';
+      'ابدأ مرة أخرى اليوم. يمكن للانعكاس أن يجدد إيقاعك بهدوء.';
 
   @override
   String get growthMonthlySummaryStrong =>
@@ -21781,7 +21781,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get oceanCommunitySubtitle =>
-      'كل فعل يضيف قطرة.معًا، تتجمع القطرات في المحيط.';
+      'كل فعل يضيف قطرة. معًا، تتجمع القطرات في المحيط.';
 
   @override
   String oceanHeroGreeting(String name) {
@@ -21875,7 +21875,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String oceanContributionSummary(String today, String lifetime) {
-    return 'لقد أضفت $today قطرات اليوم.تبلغ مساهمتك مدى الحياة $lifetime نقطة.';
+    return 'لقد أضفت $today قطرات اليوم. تبلغ مساهمتك مدى الحياة $lifetime نقطة.';
   }
 
   @override
@@ -23712,7 +23712,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get batch9HadithQuizUnavailable =>
-      'لا يوجد اختبار متاح لهذا الاختيار حتى الآن.أكمل المزيد من الدروس وحاول مرة أخرى.';
+      'لا يوجد اختبار متاح لهذا الاختيار حتى الآن. أكمل المزيد من الدروس وحاول مرة أخرى.';
 
   @override
   String get batch9SubmitAnswerAction => 'إرسال الإجابة';
@@ -23799,7 +23799,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranTeachingDailyReviewEmptyNoDue =>
-      'لا توجد مراجعة مستحقة الآن.جرب درسًا جديدًا أو افتح تمرينًا إضافيًا لاحقًا.';
+      'لا توجد مراجعة مستحقة الآن. جرب درسًا جديدًا أو افتح تمرينًا إضافيًا لاحقًا.';
 
   @override
   String get quranTeachingDailyReviewItemUnavailable =>
@@ -23826,11 +23826,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quranTeachingDailyReviewReplayAudioAction => 'إعادة تشغيل الصوت';
 
   @override
-  String get quranTeachingDailyReviewCorrectFeedback => 'صحيح.هذا البند يستقر.';
+  String get quranTeachingDailyReviewCorrectFeedback =>
+      'صحيح. هذا البند يستقر.';
 
   @override
   String get quranTeachingDailyReviewRetryFeedback =>
-      'ليس تماما.هذا سوف يعود عاجلا.';
+      'ليس تماما. هذا سوف يعود عاجلا.';
 
   @override
   String get quranTeachingDailyReviewTrue => 'صحيح';
@@ -24890,7 +24891,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String accessibilityCreationCategoryDetected(String category) {
-    return 'تم اكتشاف $category.افتح بطاقة الانعكاس.';
+    return 'تم اكتشاف $category. افتح بطاقة الانعكاس.';
   }
 
   @override
@@ -25004,7 +25005,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get creationExplorerCameraAccessBody =>
-      'يعمل Creation Explorer بالكامل على الجهاز.يتيح الوصول إلى الكاميرا للتطبيق اكتشاف فئات واسعة مثل الطيور والنباتات والمياه والسماء دون تحميل الصور.';
+      'يعمل Creation Explorer بالكامل على الجهاز. يتيح الوصول إلى الكاميرا للتطبيق اكتشاف فئات واسعة مثل الطيور والنباتات والمياه والسماء دون تحميل الصور.';
 
   @override
   String get creationExplorerAllowCameraAction => 'السماح بالكاميرا';
@@ -25041,7 +25042,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get creationExplorerHowItWorksBody =>
-      'يستخدم Creation Explorer التصنيف الموجود على الجهاز لاكتشاف الفئات العامة فقط.فهو ينتظر إشارة ثابتة قبل إظهار الملصق، ثم يقدم انعكاسًا قرآنيًا مرتبطًا بما تراه.';
+      'يستخدم Creation Explorer التصنيف الموجود على الجهاز لاكتشاف الفئات العامة فقط. فهو ينتظر إشارة ثابتة قبل إظهار الملصق، ثم يقدم انعكاسًا قرآنيًا مرتبطًا بما تراه.';
 
   @override
   String get creationExplorerCurrentDetectedSign => 'العلامة المكتشفة الحالية';
@@ -25075,7 +25076,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get creationExplorerYourReflectionHint =>
-      'ماذا لاحظت؟ما الذي ذكرك به؟';
+      'ماذا لاحظت؟ ما الذي ذكرك به؟';
 
   @override
   String get creationExplorerCloseAction => 'إغلاق';
@@ -26799,7 +26800,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get journeyStatsTimeReflectionHelper =>
-      'وهذا للتأمل وليس للحكم.إنه يقيس فقط الوقت الذي يتتبعه التطبيق بالفعل.';
+      'وهذا للتأمل وليس للحكم. إنه يقيس فقط الوقت الذي يتتبعه التطبيق بالفعل.';
 
   @override
   String get journeyStatsSalahOfferedTitle => 'مجموع الصلاة المقدمة';
@@ -27396,7 +27397,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get glossaryEntryMasjidExpanded =>
-      'المسجد هو مكان للصلاة والتعلم والاجتماع والمجتمع.يأتي المسلمون إلى المسجد لأداء الصلاة الجماعية وغيرها من العبادات والذكر.';
+      'المسجد هو مكان للصلاة والتعلم والاجتماع والمجتمع. يأتي المسلمون إلى المسجد لأداء الصلاة الجماعية وغيرها من العبادات والذكر.';
 
   @override
   String get glossaryEntryMasjidKidsShort =>
@@ -27433,7 +27434,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get glossaryEntryHadithExpanded =>
-      'الحديث يتم نقل تقارير عما قاله النبي محمد صلى الله عليه وسلم، أو فعله، أو وافق عليه.فهي تساعد في شرح الممارسات الإسلامية وتعميق الفهم إلى جانب القرآن.';
+      'الحديث يتم نقل تقارير عما قاله النبي محمد صلى الله عليه وسلم، أو فعله، أو وافق عليه. فهي تساعد في شرح الممارسات الإسلامية وتعميق الفهم إلى جانب القرآن.';
 
   @override
   String get glossaryEntryHadithKidsShort =>
@@ -27441,7 +27442,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get glossaryEntryHadithKidsExpanded =>
-      'الحديث عبارة عن تقارير تعلمنا عن أقوال النبي محمد صلى الله عليه وسلم وأفعاله وهديه.إنهم يساعدون المسلمين على تعلم كيفية عيش الإسلام في الحياة اليومية.';
+      'الحديث عبارة عن تقارير تعلمنا عن أقوال النبي محمد صلى الله عليه وسلم وأفعاله وهديه. إنهم يساعدون المسلمين على تعلم كيفية عيش الإسلام في الحياة اليومية.';
 
   @override
   String get glossaryEntrySunnahTerm => 'السنة';
@@ -27452,7 +27453,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get glossaryEntrySunnahExpanded =>
-      'السنة هي النموذج النبوي الموجود في أقوال النبي وأفعاله وأخلاقه وتوجيهاته.يتطلع المسلمون إلى السنة لمعرفة كيفية عيش تعاليم الإسلام في الحياة اليومية.';
+      'السنة هي النموذج النبوي الموجود في أقوال النبي وأفعاله وأخلاقه وتوجيهاته. يتطلع المسلمون إلى السنة لمعرفة كيفية عيش تعاليم الإسلام في الحياة اليومية.';
 
   @override
   String get glossaryEntrySunnahKidsShort =>
@@ -32410,7 +32411,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthStatisticsBestDayEmpty =>
-      'استمر.ستظهر هذه الرؤية بمجرد أن يكون لديك انتشار أقوى للنشاط.';
+      'استمر. ستظهر هذه الرؤية بمجرد أن يكون لديك انتشار أقوى للنشاط.';
 
   @override
   String get growthStatisticsBestDayReasonPrefix =>
@@ -32499,7 +32500,7 @@ class AppLocalizationsAr extends AppLocalizations {
     Object topXpSource,
     Object topDropSource,
   ) {
-    return 'خلال الأيام السبعة الماضية، حصلت على $xp XP و$drops من الانخفاضات.كان أقوى مصدر XP لديك هو $topXpSource، وكان مصدر الإسقاط الرئيسي لديك هو $topDropSource.';
+    return 'خلال الأيام السبعة الماضية، حصلت على $xp XP و$drops من الانخفاضات. كان أقوى مصدر XP لديك هو $topXpSource، وكان مصدر الإسقاط الرئيسي لديك هو $topDropSource.';
   }
 
   @override
@@ -32649,7 +32650,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduTrainerLearningNote =>
-      'هذا المدرب للتعلم والمراجعة.قم ببناء ثقة هادئة، واسأل معلمًا موثوقًا به عندما تحتاج إلى تفاصيل فقهية أعمق.';
+      'هذا المدرب للتعلم والمراجعة. قم ببناء ثقة هادئة، واسأل معلمًا موثوقًا به عندما تحتاج إلى تفاصيل فقهية أعمق.';
 
   @override
   String get wuduTrainerModeTitle => 'اختر الوضع الخاص بك';
@@ -32684,7 +32685,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduTrainerChecklistSubtitle =>
-      'ضع علامة على كل خطوة أثناء مراجعتها.من الأفضل تعلم الوضوء بترتيب ثابت من البداية إلى النهاية.';
+      'ضع علامة على كل خطوة أثناء مراجعتها. من الأفضل تعلم الوضوء بترتيب ثابت من البداية إلى النهاية.';
 
   @override
   String get wuduTrainerStepMattersTitle => 'ملاحظة مفيدة';
@@ -32700,7 +32701,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduTrainerCompletionBody =>
-      'مشيت من خلال مدرب الوضوء الكامل.قم بالمراجعة بهدوء حتى يصبح التسلسل مألوفًا قبل صلاح.';
+      'مشيت من خلال مدرب الوضوء الكامل. قم بالمراجعة بهدوء حتى يصبح التسلسل مألوفًا قبل صلاح.';
 
   @override
   String get wuduTrainerCompletionNote =>
@@ -32790,7 +32791,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduTrainerStep1Note =>
-      'النية في القلب .لا تحتاج إلى صيغة منطوقة.';
+      'النية في القلب . لا تحتاج إلى صيغة منطوقة.';
 
   @override
   String get wuduTrainerStep2Title => 'تحضير الماء النظيف';
@@ -32883,7 +32884,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduTrainerReviewSummaryText =>
-      'لقد أكملت بالفعل هذا المدرب.يمكنك مراجعة جميع الخطوات في أي وقت، ولن يؤدي البدء من جديد إلى إضافة مكافآت مكررة.';
+      'لقد أكملت بالفعل هذا المدرب. يمكنك مراجعة جميع الخطوات في أي وقت، ولن يؤدي البدء من جديد إلى إضافة مكافآت مكررة.';
 
   @override
   String get wuduTrainerStartAgainActionText => 'ابدأ مرة أخرى';
@@ -32916,7 +32917,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduQuizSummarySubtitle =>
-      'لقد أنهيت اختبار الوضوء.قم بمراجعة درجاتك، ثم قم بزيارة المدرب مرة أخرى عندما تريد جولة تدريب هادئة أخرى.';
+      'لقد أنهيت اختبار الوضوء. قم بمراجعة درجاتك، ثم قم بزيارة المدرب مرة أخرى عندما تريد جولة تدريب هادئة أخرى.';
 
   @override
   String get wuduQuizStartAction => 'اختبر معلوماتك';
@@ -32938,7 +32939,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduQuizResume =>
-      'يتم حفظ تقدم الاختبار الخاص بك.يمكنك المتابعة من السؤال الحالي.';
+      'يتم حفظ تقدم الاختبار الخاص بك. يمكنك المتابعة من السؤال الحالي.';
 
   @override
   String get wuduQuizTypeOrder => 'النظام';
@@ -32963,11 +32964,11 @@ class AppLocalizationsAr extends AppLocalizations {
       'اختر إجابة واحدة، ثم تحقق منها قبل المتابعة.';
 
   @override
-  String get wuduQuizAnswerLocked => 'تم حفظ هذه الإجابة.اقرأ الشرح ثم تابع.';
+  String get wuduQuizAnswerLocked => 'تم حفظ هذه الإجابة. اقرأ الشرح ثم تابع.';
 
   @override
   String get wuduQuizCompletionSaved =>
-      'يتم حفظ إكمال الاختبار.لن تؤدي إعادة الفتح أو المحاولة مرة أخرى إلى إضافة مكافآت مكررة.';
+      'يتم حفظ إكمال الاختبار. لن تؤدي إعادة الفتح أو المحاولة مرة أخرى إلى إضافة مكافآت مكررة.';
 
   @override
   String get wuduQuizStepOrderQuestion =>
@@ -32987,7 +32988,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduQuizIdentifyValidStepExplanation =>
-      'مسح الرأس جزء من الوضوء.الاختيارات الأخرى ليست خطوات في التسلسل.';
+      'مسح الرأس جزء من الوضوء. الاختيارات الأخرى ليست خطوات في التسلسل.';
 
   @override
   String get wuduQuizDistractorClapHands => 'صفق بيديك';
@@ -34368,7 +34369,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get kidsArabicWordCompleteSubtitle =>
-      'لقد أنهيت درس الكلمات هذا.حافظ على الصوت والشكل متجددًا من خلال قراءة أخرى.';
+      'لقد أنهيت درس الكلمات هذا. حافظ على الصوت والشكل متجددًا من خلال قراءة أخرى.';
 
   @override
   String kidsArabicWordNextAction(Object nextWord) {
@@ -37757,7 +37758,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboardingLanguageEnglish => 'الإنجليزية';
 
   @override
-  String get onboardingLanguageArabic => 'العربية (العربية)';
+  String get onboardingLanguageArabic => 'العربية';
 
   @override
   String get onboardingLanguageGerman => 'الألمانية (Deutsch)';
@@ -41233,7 +41234,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'خذها خطوة صادقة واحدة في كل مرة. فالتقدم الحقيقي يُبنى بأعمال صغيرة ثابتة.';
 
   @override
-  String get onboardingDisclaimerTitle => 'A Gentle Note Before You Begin';
+  String get onboardingDisclaimerTitle => 'تنويه وملاحظة';
 
   @override
   String get onboardingDisclaimerIntroBody =>

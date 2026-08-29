@@ -403,6 +403,13 @@ class _SalahSummaryCard extends ConsumerWidget {
         ? arabicPrayerNameForDate(prayerId: 'dhuhr', date: now)
         : arabicPrayerNameForDate(prayerId: next.id, date: now);
     final nextAt = next?.offerTime ?? l10n.atTime.replaceFirst('at ', '');
+    final currentName = current == null
+        ? null
+        : localizedPrayerNameForDate(
+            prayerId: current.id,
+            l10n: l10n,
+            date: now,
+          );
     final currentEndsIn = current == null
         ? null
         : _formatDuration(
@@ -452,12 +459,12 @@ class _SalahSummaryCard extends ConsumerWidget {
         AppSalahHeroMetaChipData(
           icon: Icons.timelapse_rounded,
           label:
-              '${l10n.homeTimeRemainingToOffer(current.name)} • ${currentEndsIn ?? current.overdueAt}',
+              '${l10n.homeTimeRemainingToOffer(currentName ?? current.name)} • ${currentEndsIn ?? current.overdueAt}',
         ),
         if (current.hasDelayedMakeUpWindow)
           AppSalahHeroMetaChipData(
             icon: Icons.warning_amber_rounded,
-            label: l10n.homePrayerBecomesQada(current.name),
+            label: l10n.homePrayerBecomesQada(currentName ?? current.name),
             color: const Color(0xFF9A6D16),
           ),
       ],

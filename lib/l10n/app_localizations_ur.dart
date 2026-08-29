@@ -467,10 +467,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get navDhikr => 'عبادت';
 
   @override
-  String get navLearning => 'سیکھیں۔';
+  String get navLearning => 'سیکھیں';
 
   @override
-  String get navHome => 'گھر';
+  String get navHome => 'مرکزی صفحہ';
 
   @override
   String get navPrayer => 'نمو';
@@ -1416,7 +1416,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranHubRecommendationsSubtitle =>
-      'A small set of next steps based on your current Qur\'an rhythm, focus, and study context.';
+      'آپ کی موجودہ قرآنی روانی، توجہ اور مطالعے کے سیاق کی بنیاد پر اگلے چند اقدامات۔';
 
   @override
   String quranHubRecommendationContinuePathTitle(Object path) {
@@ -1424,7 +1424,7 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get quranHubRecommendationDailyTitle => 'Today\'s reflection';
+  String get quranHubRecommendationDailyTitle => 'آج کا غور و فکر';
 
   @override
   String get quranHubRecommendationReviewTitle => 'اپنی یادداشت کا جائزہ لیں';
@@ -1441,12 +1441,12 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String quranHubRecommendationJourneyTitle(Object journey) {
-    return 'Today\'s reflection for $journey';
+    return '$journey کے لیے آج کا غور و فکر';
   }
 
   @override
   String get quranHubRecommendationReasonContinuePath =>
-      'Pick up where your guided Qur\'an study already left off.';
+      'وہیں سے شروع کریں جہاں آپ کا رہنمائی شدہ قرآنی مطالعہ رکا تھا۔';
 
   @override
   String get quranHubRecommendationReasonGuidedPath =>
@@ -1458,7 +1458,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String quranHubRecommendationReasonDailyJourney(Object journey) {
-    return 'Today\'s daily companion aligns with your current journey on $journey.';
+    return 'آج کا روزانہ ساتھی $journey پر آپ کے موجودہ سفر سے ہم آہنگ ہے۔';
   }
 
   @override
@@ -1482,15 +1482,15 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranHubRecommendationReasonTheme =>
-      'Follow one Qur\'anic theme across ayahs, insights, and connected study surfaces.';
+      'ایک قرآنی موضوع کو آیات، بصیرتوں اور متعلقہ مطالعاتی حصوں میں دیکھیں۔';
 
   @override
   String get quranHubRecommendationReasonThemeFocus =>
-      'This best matches your current focus on thematic Qur\'an study.';
+      'یہ موضوعاتی قرآنی مطالعے پر آپ کی موجودہ توجہ سے بہترین مطابقت رکھتا ہے۔';
 
   @override
   String quranHubRecommendationReasonJourneyTheme(Object theme) {
-    return 'This theme is the clearest Qur\'anic bridge for your current journey focus on $theme.';
+    return 'یہ موضوع $theme پر آپ کے موجودہ سفر کے لیے واضح ترین قرآنی پل ہے۔';
   }
 
   @override
@@ -1498,7 +1498,7 @@ class AppLocalizationsUr extends AppLocalizations {
     Object journey,
     Object theme,
   ) {
-    return '$journey is currently mapping into the Qur\'anic theme of $theme.';
+    return '$journey اس وقت $theme کے قرآنی موضوع سے جڑ رہا ہے۔';
   }
 
   @override
@@ -2629,16 +2629,16 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get worshipQiblaSiteMasjidAlHaram => 'Masjid al-Haram';
+  String get worshipQiblaSiteMasjidAlHaram => 'مسجد حرام';
 
   @override
-  String get worshipQiblaSiteProphetsMosque => 'Al-Masjid an-Nabawi';
+  String get worshipQiblaSiteProphetsMosque => 'مسجد نبوی';
 
   @override
-  String get worshipQiblaSiteAlAqsa => 'مسجد الاقصیٰ';
+  String get worshipQiblaSiteAlAqsa => 'مسجد اقصیٰ';
 
   @override
-  String get worshipQiblaSiteQubaMosque => 'Masjid Quba';
+  String get worshipQiblaSiteQubaMosque => 'مسجد قبا';
 
   @override
   String get worshipQiblaLocationMakkah => 'Makkah';
@@ -2852,7 +2852,7 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get durationCompactHourSuffix => 'گھن';
+  String get durationCompactHourSuffix => 'گھنٹے';
 
   @override
   String get durationCompactMinuteSuffix => 'منٹ';
@@ -7781,7 +7781,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get salahRakatGuideFardColumn => 'Fard';
 
   @override
-  String get salahRakatGuideNaflColumn => 'Nafl / Witr';
+  String get salahRakatGuideNaflColumn => 'نفل / وتر';
 
   @override
   String get salahRakatGuideFajrSunnah => '٢ پہلے';
@@ -38003,7 +38003,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get onboardingLanguageGerman => 'جرمن (Deutsch)';
 
   @override
-  String get onboardingLanguageUrdu => 'اردو (اردو)';
+  String get onboardingLanguageUrdu => 'اردو';
 
   @override
   String get onboardingLanguageHindi => 'ہندی (हिंदी)';

@@ -55,7 +55,10 @@ ARABIC_SCRIPT = re.compile(r"[؀-ۿݐ-ݿ]")
 
 # A sentence-ending mark glued to the next sentence. Guarded against ordinals
 # ("3.Etappe"), decimals and initialisms.
-MISSING_SPACE = re.compile(r"(?<![A-Z0-9])[.!?](?=[A-ZÄÖÜ][a-zäöüß])")
+MISSING_SPACE = re.compile(
+    r"(?<![A-Z0-9])[.!?](?=[A-ZÄÖÜ][a-zäöüß])"      # Latin: "fällig.Absolvieren"
+    r"|(?<![A-Z0-9])[.!?؟](?=[\u0600-\u06FF])"      # Arabic script: "الاتساق.إنه"
+)
 
 # Words that are only ever correct with a diacritic AND have no ASCII homograph
 # in the language or in stray English strings. Kept deliberately conservative —
@@ -140,6 +143,11 @@ def load(locale: str) -> dict:
         return json.load(fh)
 
 
+def normalize_for_comparison(text: str) -> str:
+    """Fold apostrophe spellings so an untranslated copy cannot hide behind them."""
+    return re.sub(r"[\u2019'`]+", "'", text).strip()
+
+
 def strip_placeholders(text: str) -> str:
     return re.sub(r"\{[^{}]*\}", "", text)
 
@@ -205,7 +213,7 @@ def check_locale(locale: str, template: dict) -> dict:
         if is_translatable_prose(english):
             tier = tier_of(key)
             counts[tier][1] += 1
-            if value.strip() == english.strip():
+            if normalize_for_comparison(value) == normalize_for_comparison(english):
                 counts[tier][0] += 1
                 continue  # untranslated copy: later checks would flag the English
 

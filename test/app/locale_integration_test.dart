@@ -24,7 +24,7 @@ void main() {
   }
 
   test(
-    'unsupported locale codes resolve back to English and German V1 scope',
+    'unsupported locale codes resolve back, release locales resolve through',
     () async {
       final container = await makeTestContainer();
       addTearDown(container.dispose);
@@ -34,7 +34,10 @@ void main() {
       expect(container.read(appLocaleProvider), const Locale('de'));
 
       notifier.setLocale(const Locale('ar'));
-      expect(container.read(appLocaleProvider), isNull);
+      expect(container.read(appLocaleProvider), const Locale('ar'));
+
+      notifier.setLocale(const Locale('ur'));
+      expect(container.read(appLocaleProvider), const Locale('ur'));
 
       notifier.setLocale(const Locale('fr', 'FR'));
       expect(container.read(appLocaleProvider), isNull);
@@ -71,8 +74,8 @@ void main() {
       await pumpRouteFrames(tester);
 
       homeContext = tester.element(find.byType(HomePage));
-      expect(Localizations.localeOf(homeContext).languageCode, 'en');
-      expect(Directionality.of(homeContext), TextDirection.ltr);
+      expect(Localizations.localeOf(homeContext).languageCode, 'ar');
+      expect(Directionality.of(homeContext), TextDirection.rtl);
 
       localeNotifier.setLocale(const Locale('de'));
       await pumpRouteFrames(tester);
@@ -96,8 +99,8 @@ void main() {
       await pumpRouteFrames(tester);
 
       final urduContext = tester.element(find.byType(SettingsPage));
-      expect(Localizations.localeOf(urduContext).languageCode, 'en');
-      expect(Directionality.of(urduContext), TextDirection.ltr);
+      expect(Localizations.localeOf(urduContext).languageCode, 'ur');
+      expect(Directionality.of(urduContext), TextDirection.rtl);
       expect(tester.takeException(), isNull);
 
       localeNotifier.setLocale(const Locale('fr', 'FR'));
@@ -139,7 +142,11 @@ void main() {
       '/settings': SettingsPage,
     };
 
-    final localeSteps = <Locale>[const Locale('en'), const Locale('de')];
+    final localeSteps = <Locale>[
+      const Locale('en'),
+      const Locale('de'),
+      const Locale('ar'),
+    ];
     for (final locale in localeSteps) {
       localeNotifier.setLocale(locale);
       await pumpRouteFrames(tester);

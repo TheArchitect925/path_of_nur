@@ -4,7 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../shared/persistence/local_store.dart';
 
 const _localeStorageKey = 'profile.locale';
-const releaseSupportedLocales = <Locale>[Locale('en'), Locale('de')];
+const releaseSupportedLocales = <Locale>[
+  Locale('en'),
+  Locale('de'),
+  Locale('ar'),
+  Locale('ur'),
+];
 
 Locale? resolveStoredAppLocale(LocalStore store) {
   final tag = store.getString(_localeStorageKey);

@@ -249,8 +249,8 @@
     }
   },
   "navDhikr": "عبادت",
-  "navLearning": "سیکھیں۔",
-  "navHome": "گھر",
+  "navLearning": "سیکھیں",
+  "navHome": "مرکزی صفحہ",
   "navPrayer": "نمو",
   "navGarden": "باغ",
   "greetingArabic": "السلام عليكم ورحمة الله وبركاته",
@@ -751,14 +751,14 @@
   "quranHubNotesSubtitle": "محفوظ کردہ غور و فکروں، جھلکیوں، اور آیت سے منسلک نوٹ پر واپس جائیں۔",
   "quranHubDailyLightTitle": "آج کی روشنی",
   "quranHubRecommendationsTitle": "آپ کے لیے تجویز کردہ",
-  "quranHubRecommendationsSubtitle": "A small set of next steps based on your current Qur''an rhythm, focus, and study context.",
+  "quranHubRecommendationsSubtitle": "آپ کی موجودہ قرآنی روانی، توجہ اور مطالعے کے سیاق کی بنیاد پر اگلے چند اقدامات۔",
   "quranHubRecommendationContinuePathTitle": "{path} جاری رکھیں",
   "@quranHubRecommendationContinuePathTitle": {
     "placeholders": {
       "path": {}
     }
   },
-  "quranHubRecommendationDailyTitle": "Today''s reflection",
+  "quranHubRecommendationDailyTitle": "آج کا غور و فکر",
   "quranHubRecommendationReviewTitle": "اپنی یادداشت کا جائزہ لیں",
   "quranHubRecommendationContinueSurahTitle": "سورۃ {surah} جاری رکھیں",
   "@quranHubRecommendationContinueSurahTitle": {
@@ -772,16 +772,16 @@
       "theme": {}
     }
   },
-  "quranHubRecommendationJourneyTitle": "Today''s reflection for {journey}",
+  "quranHubRecommendationJourneyTitle": "{journey} کے لیے آج کا غور و فکر",
   "@quranHubRecommendationJourneyTitle": {
     "placeholders": {
       "journey": {}
     }
   },
-  "quranHubRecommendationReasonContinuePath": "Pick up where your guided Qur''an study already left off.",
+  "quranHubRecommendationReasonContinuePath": "وہیں سے شروع کریں جہاں آپ کا رہنمائی شدہ قرآنی مطالعہ رکا تھا۔",
   "quranHubRecommendationReasonGuidedPath": "یہ ہدایت یافتہ راستے پر چلنے پر آپ کی موجودہ توجہ سے بہترین میل کھاتا ہے۔",
   "quranHubRecommendationReasonDaily": "ایک آیت، ایک معنی اشارہ، اور ایک پرسکون اگلے قدم کو آج قریب رکھیں۔",
-  "quranHubRecommendationReasonDailyJourney": "Today''s daily companion aligns with your current journey on {journey}.",
+  "quranHubRecommendationReasonDailyJourney": "آج کا روزانہ ساتھی {journey} پر آپ کے موجودہ سفر سے ہم آہنگ ہے۔",
   "@quranHubRecommendationReasonDailyJourney": {
     "placeholders": {
       "journey": {}
@@ -797,15 +797,15 @@
   },
   "quranHubRecommendationReasonMemorizationFocus": "تکرار اور جائزہ کو قریب رکھیں جبکہ حفظ آپ کا بنیادی مرکز ہے۔",
   "quranHubRecommendationReasonRecentStudy": "اس سورت کی طرف واپس جائیں جس کا آپ حال ہی میں مطالعہ کر رہے تھے۔",
-  "quranHubRecommendationReasonTheme": "Follow one Qur''anic theme across ayahs, insights, and connected study surfaces.",
-  "quranHubRecommendationReasonThemeFocus": "This best matches your current focus on thematic Qur''an study.",
-  "quranHubRecommendationReasonJourneyTheme": "This theme is the clearest Qur''anic bridge for your current journey focus on {theme}.",
+  "quranHubRecommendationReasonTheme": "ایک قرآنی موضوع کو آیات، بصیرتوں اور متعلقہ مطالعاتی حصوں میں دیکھیں۔",
+  "quranHubRecommendationReasonThemeFocus": "یہ موضوعاتی قرآنی مطالعے پر آپ کی موجودہ توجہ سے بہترین مطابقت رکھتا ہے۔",
+  "quranHubRecommendationReasonJourneyTheme": "یہ موضوع {theme} پر آپ کے موجودہ سفر کے لیے واضح ترین قرآنی پل ہے۔",
   "@quranHubRecommendationReasonJourneyTheme": {
     "placeholders": {
       "theme": {}
     }
   },
-  "quranHubRecommendationReasonJourneyThemePair": "{journey} is currently mapping into the Qur''anic theme of {theme}.",
+  "quranHubRecommendationReasonJourneyThemePair": "{journey} اس وقت {theme} کے قرآنی موضوع سے جڑ رہا ہے۔",
   "@quranHubRecommendationReasonJourneyThemePair": {
     "placeholders": {
       "journey": {},
@@ -1473,10 +1473,10 @@
       }
     }
   },
-  "worshipQiblaSiteMasjidAlHaram": "Masjid al-Haram",
-  "worshipQiblaSiteProphetsMosque": "Al-Masjid an-Nabawi",
-  "worshipQiblaSiteAlAqsa": "مسجد الاقصیٰ",
-  "worshipQiblaSiteQubaMosque": "Masjid Quba",
+  "worshipQiblaSiteMasjidAlHaram": "مسجد حرام",
+  "worshipQiblaSiteProphetsMosque": "مسجد نبوی",
+  "worshipQiblaSiteAlAqsa": "مسجد اقصیٰ",
+  "worshipQiblaSiteQubaMosque": "مسجد قبا",
   "worshipQiblaLocationMakkah": "Makkah",
   "worshipQiblaLocationMadinah": "Madinah",
   "worshipQiblaLocationJerusalem": "Jerusalem",
@@ -1615,7 +1615,7 @@
       }
     }
   },
-  "durationCompactHourSuffix": "گھن",
+  "durationCompactHourSuffix": "گھنٹے",
   "durationCompactMinuteSuffix": "منٹ",
   "homeLearnCategoryFallbackSubtitle": "{category} میں چھوٹے اور واضح قدموں کے ساتھ سیکھتے رہیں۔",
   "@homeLearnCategoryFallbackSubtitle": {
@@ -3457,7 +3457,7 @@
   "salahRakatGuidePrayerColumn": "Salah",
   "salahRakatGuideSunnahColumn": "Sunnah",
   "salahRakatGuideFardColumn": "Fard",
-  "salahRakatGuideNaflColumn": "Nafl / Witr",
+  "salahRakatGuideNaflColumn": "نفل / وتر",
   "salahRakatGuideFajrSunnah": "٢ پہلے",
   "salahRakatGuideDhuhrSunnah": "٤ پہلے، ٢ بعد",
   "salahRakatGuideDhuhrNafl": "٢ بعد",
@@ -16932,7 +16932,7 @@
   "onboardingLanguageEnglish": "انگریزی",
   "onboardingLanguageArabic": "عربی (العربية)",
   "onboardingLanguageGerman": "جرمن (Deutsch)",
-  "onboardingLanguageUrdu": "اردو (اردو)",
+  "onboardingLanguageUrdu": "اردو",
   "onboardingLanguageHindi": "ہندی (हिंदी)",
   "onboardingLanguageIndonesian": "انڈونیشی",
   "onboardingLanguageMalay": "ملائی",
