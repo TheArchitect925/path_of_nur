@@ -62,17 +62,18 @@ class GlobalBackground extends ConsumerWidget {
               CustomPaint(
                 painter: MidnightSkyPainter(
                   now: now!,
-                  // Header-height, right of center: clear of the status-bar
-                  // icons above, page titles on the left, and Home's corner
-                  // controls.
-                  moonFraction: const Offset(0.735, 0.105),
+                  // Header-height, tucked into the right corner: Home's
+                  // greeting is centred, so the moon has to sit outside the
+                  // text band. Page titles elsewhere are left-aligned and
+                  // stay well clear.
+                  moonFraction: const Offset(0.88, 0.105),
                 ),
               )
             else if (isRamadan) ...[
               CustomPaint(
                 painter: MidnightSkyPainter(
                   now: now!,
-                  moonFraction: const Offset(0.735, 0.105),
+                  moonFraction: const Offset(0.88, 0.105),
                   // Violet unlit limb so the crescent sits in the Layali sky.
                   moonShadowColor: const Color(0xFF352B54),
                 ),
@@ -88,7 +89,7 @@ class GlobalBackground extends ConsumerWidget {
               CustomPaint(
                 painter: MidnightSkyPainter(
                   now: now!,
-                  moonFraction: const Offset(0.735, 0.105),
+                  moonFraction: const Offset(0.88, 0.105),
                   // Near-black violet limb for the Night of Power sky.
                   moonShadowColor: const Color(0xFF241D3F),
                 ),
