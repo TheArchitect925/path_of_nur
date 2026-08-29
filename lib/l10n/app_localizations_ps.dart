@@ -2751,6 +2751,35 @@ class AppLocalizationsPs extends AppLocalizations {
       'د لمانځه د وختونو بشپړ تعقيبوونکی په عبادت کې دی، د وختونو له کتار څخه يو ټک لرې.';
 
   @override
+  String get quickActionsTitle => 'چټک کړنې';
+
+  @override
+  String get quickActionsContinueReading => 'لوستل ته دوام ورکړئ';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'د $prayer لمونځ ثبت کړئ';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'د $prayer لمونځ ادا شو';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'راتلونکی: $prayer په $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'په هره پاڼه کې د کور ټب ونيسئ ترڅو دا پرانيستل شي';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'نوی: د چټکو کړنو لپاره د کور ټب ونيسئ';
+
+  @override
   String get homeModuleSalahHeroTitle => 'د لمانځه اصلي کارت';
 
   @override

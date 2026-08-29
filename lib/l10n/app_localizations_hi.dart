@@ -2763,6 +2763,34 @@ class AppLocalizationsHi extends AppLocalizations {
       'पूरा सलात समय ट्रैकर इबादत में है, समय पंक्ति से एक टैप दूर।';
 
   @override
+  String get quickActionsTitle => 'त्वरित कार्य';
+
+  @override
+  String get quickActionsContinueReading => 'पढ़ना जारी रखें';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return '$prayer अदा चिह्नित करें';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer अदा हुई';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'अगली: $prayer, $time पर';
+  }
+
+  @override
+  String get quickActionsHint => 'किसी भी स्क्रीन पर होम टैब दबाए रखें';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'नया: त्वरित कार्यों के लिए होम टैब दबाए रखें';
+
+  @override
   String get homeModuleSalahHeroTitle => 'सलात हीरो';
 
   @override

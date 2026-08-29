@@ -2740,6 +2740,35 @@ class AppLocalizationsAr extends AppLocalizations {
       'متتبع مواقيت الصلاة الكامل موجود في العبادة، على بعد نقرة من شريط المواقيت.';
 
   @override
+  String get quickActionsTitle => 'إجراءات سريعة';
+
+  @override
+  String get quickActionsContinueReading => 'متابعة القراءة';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'تسجيل صلاة $prayer';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'تمت صلاة $prayer';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'التالية: $prayer في $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'اضغط مطولًا على تبويب الرئيسية في أي شاشة لفتح هذه القائمة';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'جديد: اضغط مطولًا على تبويب الرئيسية للإجراءات السريعة';
+
+  @override
   String get homeModuleSalahHeroTitle => 'بطاقة الصلاة الرئيسية';
 
   @override

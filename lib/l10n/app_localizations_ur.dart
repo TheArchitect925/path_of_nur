@@ -2748,6 +2748,34 @@ class AppLocalizationsUr extends AppLocalizations {
       'نماز کے اوقات کا مکمل ٹریکر عبادت میں ہے، اوقات کی قطار سے ایک ٹیپ کے فاصلے پر۔';
 
   @override
+  String get quickActionsTitle => 'فوری اقدامات';
+
+  @override
+  String get quickActionsContinueReading => 'پڑھنا جاری رکھیں';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return '$prayer ادا نشان زد کریں';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer ادا ہوگئی';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'اگلی: $prayer، $time بجے';
+  }
+
+  @override
+  String get quickActionsHint => 'کسی بھی اسکرین پر ہوم ٹیب دبائے رکھیں';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'نیا: فوری اقدامات کے لیے ہوم ٹیب دبائے رکھیں';
+
+  @override
   String get homeModuleSalahHeroTitle => 'نماز کا مرکزی کارڈ';
 
   @override

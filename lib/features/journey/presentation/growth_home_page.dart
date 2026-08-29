@@ -13,8 +13,6 @@ import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/display/activity_heatmap.dart';
 import '../../../shared/widgets/display/progress_bar.dart';
 import '../../../shared/widgets/main_page_search_launcher.dart';
-import '../../../shared/widgets/main_page_shortcut_configs.dart';
-import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -42,11 +40,6 @@ class GrowthHomePage extends ConsumerWidget {
       headerIcon: IslamicIcons.tasbih,
       title: l10n.journeyTitle,
       subtitle: l10n.growthHomeHeaderSubtitle,
-      floatingBottom: MainPageShortcutStack(
-        items: buildJourneyPageShortcuts(l10n),
-        openLabel: l10n.learnShortcutOpen,
-        closeLabel: l10n.learnShortcutClose,
-      ),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
       children: [

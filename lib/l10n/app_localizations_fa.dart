@@ -2720,6 +2720,35 @@ class AppLocalizationsFa extends AppLocalizations {
       'پیگیر کامل اوقات نماز در عبادت است، یک ضربه از نوار اوقات فاصله دارد.';
 
   @override
+  String get quickActionsTitle => 'اقدامات سریع';
+
+  @override
+  String get quickActionsContinueReading => 'ادامه خواندن';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'ثبت نماز $prayer';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'نماز $prayer خوانده شد';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'بعدی: $prayer در $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'در هر صفحه، زبانه خانه را نگه دارید تا این باز شود';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'جدید: برای اقدامات سریع، زبانه خانه را نگه دارید';
+
+  @override
   String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';
 
   @override
@@ -44653,6 +44682,35 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get homeEditTrackerFootnote =>
       'پیگیر کامل اوقات نماز در عبادت است، یک ضربه از نوار اوقات فاصله دارد.';
+
+  @override
+  String get quickActionsTitle => 'اقدامات سریع';
+
+  @override
+  String get quickActionsContinueReading => 'ادامه خواندن';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'ثبت نماز $prayer';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'نماز $prayer خوانده شد';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'بعدی: $prayer در $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'در هر صفحه، زبانه خانه را نگه دارید تا این باز شود';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'جدید: برای اقدامات سریع، زبانه خانه را نگه دارید';
 
   @override
   String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';

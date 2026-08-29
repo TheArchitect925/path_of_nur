@@ -2758,6 +2758,34 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਪੂਰਾ ਸਲਾਤ ਸਮਾਂ ਟਰੈਕਰ ਇਬਾਦਤ ਵਿੱਚ ਹੈ, ਸਮਾਂ ਪੱਟੀ ਤੋਂ ਇੱਕ ਟੈਪ ਦੂਰ।';
 
   @override
+  String get quickActionsTitle => 'ਤੁਰੰਤ ਕਾਰਵਾਈਆਂ';
+
+  @override
+  String get quickActionsContinueReading => 'ਪੜ੍ਹਨਾ ਜਾਰੀ ਰੱਖੋ';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return '$prayer ਅਦਾ ਵਜੋਂ ਨਿਸ਼ਾਨਬੱਧ ਕਰੋ';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer ਅਦਾ ਹੋਈ';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'ਅਗਲੀ: $prayer, $time ਤੇ';
+  }
+
+  @override
+  String get quickActionsHint => 'ਕਿਸੇ ਵੀ ਸਕ੍ਰੀਨ ਤੇ ਹੋਮ ਟੈਬ ਦਬਾਈ ਰੱਖੋ';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'ਨਵਾਂ: ਤੁਰੰਤ ਕਾਰਵਾਈਆਂ ਲਈ ਹੋਮ ਟੈਬ ਦਬਾਈ ਰੱਖੋ';
+
+  @override
   String get homeModuleSalahHeroTitle => 'ਸਲਾਤ ਹੀਰੋ';
 
   @override

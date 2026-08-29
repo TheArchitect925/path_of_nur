@@ -67,26 +67,25 @@ void main() {
     },
   );
 
-  testWidgets(
-    'canonical learn landing shows the pre-restructure shortcut layout',
-    (tester) async {
-      final container = await makeTestContainer(
-        overrides: <Override>[
-          dailyNowProvider.overrideWith(
-            (ref) =>
-                Stream<DateTime>.value(DateTime.parse('2026-04-07T12:00:00')),
-          ),
-        ],
-      );
-      addTearDown(container.dispose);
+  testWidgets('learn landing has no floating dock after the dock retirement', (
+    tester,
+  ) async {
+    final container = await makeTestContainer(
+      overrides: <Override>[
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-04-07T12:00:00')),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
 
-      await pumpPage(tester, container, const LearningSectionLandingPage());
+    await pumpPage(tester, container, const LearningSectionLandingPage());
 
-      final learnContext = tester.element(
-        find.byType(LearningSectionLandingPage),
-      );
-      final l10n = AppLocalizations.of(learnContext);
-      expect(find.text(l10n.learnShortcutOpen), findsOneWidget);
-    },
-  );
+    final learnContext = tester.element(
+      find.byType(LearningSectionLandingPage),
+    );
+    final l10n = AppLocalizations.of(learnContext);
+    expect(find.text(l10n.learnShortcutOpen), findsNothing);
+  });
 }

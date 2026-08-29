@@ -2747,6 +2747,35 @@ class AppLocalizationsTr extends AppLocalizations {
       'Tam namaz vakitleri takibi İbadet sekmesinde, vakit satırından bir dokunuş uzakta.';
 
   @override
+  String get quickActionsTitle => 'Hızlı işlemler';
+
+  @override
+  String get quickActionsContinueReading => 'Okumaya devam et';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return '$prayer kılındı olarak işaretle';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer kılındı';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Sıradaki: $prayer, $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Bunu açmak için herhangi bir ekranda Ana Sayfa sekmesini basılı tut';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Yeni: hızlı işlemler için Ana Sayfa sekmesini basılı tut';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Namaz kartı';
 
   @override

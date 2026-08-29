@@ -2805,6 +2805,35 @@ class AppLocalizationsDe extends AppLocalizations {
       'Der vollständige Gebetszeiten-Tracker lebt in Ibadah, einen Tipp von der Zeitenleiste entfernt.';
 
   @override
+  String get quickActionsTitle => 'Schnellaktionen';
+
+  @override
+  String get quickActionsContinueReading => 'Weiterlesen';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return '$prayer als verrichtet markieren';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer verrichtet';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Nächstes: $prayer um $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Halte den Home-Tab auf jedem Bildschirm gedrückt, um dies zu öffnen';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Neu: Home-Tab gedrückt halten für Schnellaktionen';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Salah-Karte';
 
   @override

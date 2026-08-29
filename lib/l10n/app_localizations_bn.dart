@@ -2733,6 +2733,34 @@ class AppLocalizationsBn extends AppLocalizations {
       'পূর্ণ সালাত সময় ট্র্যাকার ইবাদতে আছে, সময় সারি থেকে এক ট্যাপ দূরে।';
 
   @override
+  String get quickActionsTitle => 'দ্রুত কাজ';
+
+  @override
+  String get quickActionsContinueReading => 'পড়া চালিয়ে যান';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return '$prayer আদায় চিহ্নিত করুন';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer আদায় হয়েছে';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'পরবর্তী: $prayer, $time';
+  }
+
+  @override
+  String get quickActionsHint => 'যেকোনো স্ক্রিনে হোম ট্যাব চেপে ধরে এটি খুলুন';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'নতুন: দ্রুত কাজের জন্য হোম ট্যাব চেপে ধরুন';
+
+  @override
   String get homeModuleSalahHeroTitle => 'সালাত হিরো';
 
   @override

@@ -4723,6 +4723,48 @@ abstract class AppLocalizations {
   /// **'The full salah timings tracker lives in Ibadah, one tap from the prayer times row.'**
   String get homeEditTrackerFootnote;
 
+  /// No description provided for @quickActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick actions'**
+  String get quickActionsTitle;
+
+  /// No description provided for @quickActionsContinueReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reading'**
+  String get quickActionsContinueReading;
+
+  /// No description provided for @quickActionsMarkPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark {prayer} offered'**
+  String quickActionsMarkPrayer(Object prayer);
+
+  /// No description provided for @quickActionsPrayerOffered.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayer} offered'**
+  String quickActionsPrayerOffered(Object prayer);
+
+  /// No description provided for @quickActionsNextPrayerAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {prayer} at {time}'**
+  String quickActionsNextPrayerAt(Object prayer, Object time);
+
+  /// No description provided for @quickActionsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold the Home tab on any screen to open this'**
+  String get quickActionsHint;
+
+  /// No description provided for @quickActionsDiscoveryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New: hold the Home tab for quick actions'**
+  String get quickActionsDiscoveryHint;
+
   /// No description provided for @homeModuleSalahHeroTitle.
   ///
   /// In en, this message translates to:

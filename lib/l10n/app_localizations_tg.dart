@@ -2767,6 +2767,35 @@ class AppLocalizationsTg extends AppLocalizations {
       'Пайгирии пурраи вақтҳои намоз дар Ибодат аст, як зарба аз сатри вақтҳо.';
 
   @override
+  String get quickActionsTitle => 'Амалҳои зуд';
+
+  @override
+  String get quickActionsContinueReading => 'Идомаи хониш';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'Намози $prayer-ро қайд кунед';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'Намози $prayer хонда шуд';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Оянда: $prayer дар $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Дар ҳар экран варақаи Асосиро нигоҳ доред, то ин кушода шавад';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Нав: барои амалҳои зуд варақаи Асосиро нигоҳ доред';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Корти асосии намоз';
 
   @override

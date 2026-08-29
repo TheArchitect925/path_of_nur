@@ -2763,6 +2763,35 @@ class AppLocalizationsHa extends AppLocalizations {
       'Cikakken mai bibiyar lokutan sallah yana cikin Ibadah, taɓa ɗaya daga layin lokuta.';
 
   @override
+  String get quickActionsTitle => 'Ayyuka masu sauri';
+
+  @override
+  String get quickActionsContinueReading => 'Ci gaba da karatu';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'Rubuta sallar $prayer';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'An yi sallar $prayer';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Na gaba: $prayer da $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Riƙe shafin Gida a kowane allo don buɗe wannan';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Sabo: riƙe shafin Gida don ayyuka masu sauri';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Katin sallah';
 
   @override

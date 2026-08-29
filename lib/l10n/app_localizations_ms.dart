@@ -2742,6 +2742,35 @@ class AppLocalizationsMs extends AppLocalizations {
       'Penjejak waktu solat penuh berada di Ibadah, satu ketikan dari baris waktu.';
 
   @override
+  String get quickActionsTitle => 'Tindakan pantas';
+
+  @override
+  String get quickActionsContinueReading => 'Teruskan membaca';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'Tanda $prayer selesai';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer selesai';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Seterusnya: $prayer pada $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Tahan tab Laman Utama pada mana-mana skrin untuk membukanya';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Baharu: tahan tab Laman Utama untuk tindakan pantas';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Kad solat utama';
 
   @override

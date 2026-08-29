@@ -22,6 +22,7 @@ import '../../core/theme/app_theme.dart';
 import '../state/shell_state.dart';
 import 'app_hero_glass_shell.dart';
 import 'global_background.dart';
+import 'quick_actions_sheet.dart';
 
 class AppShellScaffold extends ConsumerWidget {
   static const double _mainTabSwipeMinDistance = 72;
@@ -270,6 +271,11 @@ class AppShellScaffold extends ConsumerWidget {
         label: label,
         child: InkWell(
           onTap: () => context.go(tab.path),
+          // Holding the Home tab opens the global quick-actions sheet — the
+          // one shortcut affordance that replaced the per-tab floating docks.
+          onLongPress: tab == NavTab.home
+              ? () => showQuickActionsSheet(context)
+              : null,
           borderRadius: BorderRadius.circular(20),
           child: SizedBox(
             height: 74,

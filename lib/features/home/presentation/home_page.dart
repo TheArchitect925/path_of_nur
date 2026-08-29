@@ -37,6 +37,7 @@ import '../application/home_module_prefs_provider.dart';
 import '../domain/home_modules.dart';
 import 'widgets/home_prayer_strip.dart';
 import 'widgets/home_today_card.dart';
+import '../../../shared/widgets/quick_actions_sheet.dart';
 import 'widgets/occasion_offer_sheet.dart';
 import 'widgets/ramadan_hero_card.dart';
 import 'widgets/right_now_dua_row.dart';
@@ -137,6 +138,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Stack(
         children: [
           const OccasionOfferCoordinator(),
+          const QuickActionsHintCoordinator(),
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.fromLTRB(18, 8, 18, 28),

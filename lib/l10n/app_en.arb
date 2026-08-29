@@ -1588,6 +1588,29 @@
   "homeEditAlwaysOnLabel": "Always on",
   "homeEditEntryLabel": "Edit Home",
   "homeEditTrackerFootnote": "The full salah timings tracker lives in Ibadah, one tap from the prayer times row.",
+  "quickActionsTitle": "Quick actions",
+  "quickActionsContinueReading": "Continue reading",
+  "quickActionsMarkPrayer": "Mark {prayer} offered",
+  "@quickActionsMarkPrayer": {
+    "placeholders": {
+      "prayer": {}
+    }
+  },
+  "quickActionsPrayerOffered": "{prayer} offered",
+  "@quickActionsPrayerOffered": {
+    "placeholders": {
+      "prayer": {}
+    }
+  },
+  "quickActionsNextPrayerAt": "Next: {prayer} at {time}",
+  "@quickActionsNextPrayerAt": {
+    "placeholders": {
+      "prayer": {},
+      "time": {}
+    }
+  },
+  "quickActionsHint": "Hold the Home tab on any screen to open this",
+  "quickActionsDiscoveryHint": "New: hold the Home tab for quick actions",
   "homeModuleSalahHeroTitle": "Salah hero",
   "homeModulePrayerStripTitle": "Prayer times row",
   "homeModulePrayerStripSubtitle": "Compact five-prayer strip that opens Ibadah.",

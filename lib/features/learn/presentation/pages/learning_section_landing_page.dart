@@ -8,8 +8,6 @@ import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/main_page_search_launcher.dart';
-import '../../../../shared/widgets/main_page_shortcut_configs.dart';
-import '../../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../analytics/domain/learn_analytics_models.dart';
@@ -77,11 +75,6 @@ class _LearningSectionLandingPageState
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
-      floatingBottom: MainPageShortcutStack(
-        items: buildLearnPageShortcuts(l10n),
-        openLabel: l10n.learnShortcutOpen,
-        closeLabel: l10n.learnShortcutClose,
-      ),
       children: [
         const MainPageSearchLauncher(),
         const SizedBox(height: 18),

@@ -12,8 +12,6 @@ import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/main_page_search_launcher.dart';
-import '../../../../shared/widgets/main_page_shortcut_configs.dart';
-import '../../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_sacred_block_chrome.dart';
@@ -98,11 +96,6 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         kidsMode: isKidsMode,
       ),
       quote: _entryQuote,
-      floatingBottom: MainPageShortcutStack(
-        items: buildQuranPageShortcuts(l10n),
-        openLabel: l10n.learnShortcutOpen,
-        closeLabel: l10n.learnShortcutClose,
-      ),
       children: [
         MainPageSearchLauncher(hintText: l10n.quranAppHubSearchHint),
         const SizedBox(height: 12),

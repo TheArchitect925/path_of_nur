@@ -2754,6 +2754,35 @@ class AppLocalizationsKu extends AppLocalizations {
       'Şopînerê temam ê demên nimêjê di Îbadetê de ye, yek lêdan ji rêza deman dûr e.';
 
   @override
+  String get quickActionsTitle => 'Kirinên bilez';
+
+  @override
+  String get quickActionsContinueReading => 'Xwendinê bidomîne';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'Nimêja $prayer tomar bike';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return 'Nimêja $prayer hat kirin';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Ya din: $prayer di $time de';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Li her ekranê tabloya Malê bigire da ku ev vebe';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Nû: ji bo kirinên bilez tabloya Malê bigire';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Karta nimêjê';
 
   @override

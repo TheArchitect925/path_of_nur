@@ -2739,6 +2739,35 @@ class AppLocalizationsId extends AppLocalizations {
       'Pelacak waktu salat lengkap ada di Ibadah, satu ketukan dari baris waktu.';
 
   @override
+  String get quickActionsTitle => 'Aksi cepat';
+
+  @override
+  String get quickActionsContinueReading => 'Lanjutkan membaca';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'Tandai $prayer selesai';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer selesai';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Berikutnya: $prayer pukul $time';
+  }
+
+  @override
+  String get quickActionsHint =>
+      'Tahan tab Beranda di layar mana pun untuk membuka ini';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'Baru: tahan tab Beranda untuk aksi cepat';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Kartu salat utama';
 
   @override

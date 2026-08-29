@@ -2757,6 +2757,34 @@ class AppLocalizationsEn extends AppLocalizations {
       'The full salah timings tracker lives in Ibadah, one tap from the prayer times row.';
 
   @override
+  String get quickActionsTitle => 'Quick actions';
+
+  @override
+  String get quickActionsContinueReading => 'Continue reading';
+
+  @override
+  String quickActionsMarkPrayer(Object prayer) {
+    return 'Mark $prayer offered';
+  }
+
+  @override
+  String quickActionsPrayerOffered(Object prayer) {
+    return '$prayer offered';
+  }
+
+  @override
+  String quickActionsNextPrayerAt(Object prayer, Object time) {
+    return 'Next: $prayer at $time';
+  }
+
+  @override
+  String get quickActionsHint => 'Hold the Home tab on any screen to open this';
+
+  @override
+  String get quickActionsDiscoveryHint =>
+      'New: hold the Home tab for quick actions';
+
+  @override
   String get homeModuleSalahHeroTitle => 'Salah hero';
 
   @override

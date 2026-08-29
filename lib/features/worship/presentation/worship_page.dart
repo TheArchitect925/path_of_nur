@@ -1,38 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/main_page_search_launcher.dart';
-import '../../../shared/widgets/main_page_shortcut_configs.dart';
-import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../home/application/home_calendar_progress_provider.dart';
 import 'widgets/salah_timings_tracker_card.dart';
 
-const int _shortcutDailyDhikrGoal = 500;
-
 class WorshipPage extends ConsumerWidget {
   const WorshipPage({super.key});
-
-  String _formatLocalizedCount(BuildContext context, num value) {
-    return NumberFormat.decimalPattern(
-      Localizations.localeOf(context).toLanguageTag(),
-    ).format(value);
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final worshipSummary = ref.watch(worshipSummaryProvider);
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
     );
@@ -46,17 +33,6 @@ class WorshipPage extends ConsumerWidget {
         context,
         AppPageDescriptionKey.worshipHub,
         kidsMode: isKidsMode,
-      ),
-      floatingBottom: MainPageShortcutStack(
-        items: buildWorshipPageShortcuts(
-          l10n,
-          salahProgressText:
-              '${_formatLocalizedCount(context, worshipSummary.prayerCompleted)}/${_formatLocalizedCount(context, worshipSummary.prayerTotal)}',
-          dhikrProgressText:
-              '${_formatLocalizedCount(context, worshipSummary.dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
-        ),
-        openLabel: l10n.learnShortcutOpen,
-        closeLabel: l10n.learnShortcutClose,
       ),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
