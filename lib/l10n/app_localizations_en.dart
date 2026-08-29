@@ -2730,11 +2730,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Earned today';
 
   @override
-  String get homeTodayContentTitle => 'Today\'s content';
+  String get homeTodayContentTitle => 'Today';
 
   @override
   String get homeTodayContentSubtitle =>
       'Keep today\'s ayah, guidance, and learning together in one calm place.';
+
+  @override
+  String get homeEditTitle => 'Customize Home';
+
+  @override
+  String get homeEditSubtitle =>
+      'Show only what serves you. Drag to reorder, switch off what you don\'t need.';
+
+  @override
+  String get homeEditHiddenTitle => 'Hidden';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Always on';
+
+  @override
+  String get homeEditEntryLabel => 'Edit Home';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'The full salah timings tracker lives in Ibadah, one tap from the prayer times row.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Salah hero';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Prayer times row';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'Compact five-prayer strip that opens Ibadah.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'Moon phase, sunrise and sunset.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'For you: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'A moment: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Duas for right now';

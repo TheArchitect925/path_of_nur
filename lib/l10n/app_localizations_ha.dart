@@ -2736,11 +2736,55 @@ class AppLocalizationsHa extends AppLocalizations {
   String get homeBadgeEarnedToday => 'An samu yau';
 
   @override
-  String get homeTodayContentTitle => 'Abin yau';
+  String get homeTodayContentTitle => 'Yau';
 
   @override
   String get homeTodayContentSubtitle =>
       'Ajiye ayar yau, shiriya da koyo tare a wuri guda mai nutsuwa.';
+
+  @override
+  String get homeEditTitle => 'Keɓance Gida';
+
+  @override
+  String get homeEditSubtitle =>
+      'Nuna abin da ke taimaka maka kawai. Ja don sake tsarawa, kashe abin da ba ka bukata.';
+
+  @override
+  String get homeEditHiddenTitle => 'Ɓoyayye';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Koyaushe a kunne';
+
+  @override
+  String get homeEditEntryLabel => 'Gyara Gida';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'Cikakken mai bibiyar lokutan sallah yana cikin Ibadah, taɓa ɗaya daga layin lokuta.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Katin sallah';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Layin lokutan sallah';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'Gajeren layin salloli biyar da ke buɗe Ibadah.';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'Yanayin wata, fitowar rana da faɗuwarta.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'Naka: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'Wani lokaci: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Addu\'o\'in yanzu';

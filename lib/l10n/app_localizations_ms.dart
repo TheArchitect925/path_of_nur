@@ -2715,11 +2715,55 @@ class AppLocalizationsMs extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Diperoleh hari ini';
 
   @override
-  String get homeTodayContentTitle => 'Kandungan hari ini';
+  String get homeTodayContentTitle => 'Hari Ini';
 
   @override
   String get homeTodayContentSubtitle =>
       'Himpunkan ayat hari ini, panduan dan pembelajaran di satu tempat yang tenang.';
+
+  @override
+  String get homeEditTitle => 'Sesuaikan Laman Utama';
+
+  @override
+  String get homeEditSubtitle =>
+      'Papar hanya yang bermanfaat. Seret untuk susun semula, matikan yang tidak perlu.';
+
+  @override
+  String get homeEditHiddenTitle => 'Tersembunyi';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Sentiasa aktif';
+
+  @override
+  String get homeEditEntryLabel => 'Edit Laman Utama';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'Penjejak waktu solat penuh berada di Ibadah, satu ketikan dari baris waktu.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Kad solat utama';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Baris waktu solat';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'Baris ringkas lima solat yang membuka Ibadah.';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'Fasa bulan, matahari terbit dan terbenam.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'Untuk anda: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'Satu detik: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Doa untuk sekarang';

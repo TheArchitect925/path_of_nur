@@ -2713,11 +2713,54 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeBadgeEarnedToday => 'ربحت شارة اليوم';
 
   @override
-  String get homeTodayContentTitle => 'محتوى اليوم';
+  String get homeTodayContentTitle => 'اليوم';
 
   @override
   String get homeTodayContentSubtitle =>
       'اجمع آية اليوم والهداية والتعلم في مكان هادئ واحد.';
+
+  @override
+  String get homeEditTitle => 'تخصيص الرئيسية';
+
+  @override
+  String get homeEditSubtitle =>
+      'أظهر ما ينفعك فقط. اسحب لإعادة الترتيب وأطفئ ما لا تحتاجه.';
+
+  @override
+  String get homeEditHiddenTitle => 'مخفي';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'دائمًا ظاهر';
+
+  @override
+  String get homeEditEntryLabel => 'تعديل الرئيسية';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'متتبع مواقيت الصلاة الكامل موجود في العبادة، على بعد نقرة من شريط المواقيت.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'بطاقة الصلاة الرئيسية';
+
+  @override
+  String get homeModulePrayerStripTitle => 'شريط مواقيت الصلاة';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'شريط مضغوط للصلوات الخمس يفتح العبادة.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'طور القمر وشروق الشمس وغروبها.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'لك: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'لحظة: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'أدعية الآن';

@@ -6,7 +6,6 @@ import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
-import 'package:path_of_nur/shared/widgets/main_page_shortcut_configs.dart';
 
 import '../../test_helpers/app_test_harness.dart';
 
@@ -37,7 +36,7 @@ void main() {
   }
 
   testWidgets(
-    'home page shows the shortcut pill and expands shortcut actions',
+    'home page has no floating dock and offers the Edit Home entry',
     (tester) async {
       final container = await makeTestContainer(
         overrides: <Override>[
@@ -53,20 +52,18 @@ void main() {
 
       final homeContext = tester.element(find.byType(HomePage));
       final l10n = AppLocalizations.of(homeContext);
-      final homeShortcuts = buildHomePageShortcuts(
-        l10n,
-        salahProgressText: '0/0',
-        dhikrProgressText: '0/0',
+      // The Mihrab Home retired the floating shortcut dock.
+      expect(find.text(l10n.homeShortcutOpen), findsNothing);
+
+      // A quiet customize entry sits at the bottom of the scroll.
+      final scrollable = find.byType(Scrollable).first;
+      await tester.scrollUntilVisible(
+        find.text(l10n.homeEditEntryLabel),
+        400,
+        scrollable: scrollable,
+        maxScrolls: 60,
       );
-      final openShortcuts = find.text(l10n.homeShortcutOpen);
-      expect(openShortcuts, findsOneWidget);
-
-      await tester.tap(openShortcuts);
-      await tester.pump();
-
-      for (final item in homeShortcuts) {
-        expect(find.text(item.label), findsWidgets);
-      }
+      expect(find.text(l10n.homeEditEntryLabel), findsOneWidget);
     },
   );
 

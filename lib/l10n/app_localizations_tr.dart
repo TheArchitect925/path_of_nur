@@ -2720,11 +2720,54 @@ class AppLocalizationsTr extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Bugünün rozeti kazanıldı';
 
   @override
-  String get homeTodayContentTitle => 'Bugünün içeriği';
+  String get homeTodayContentTitle => 'Bugün';
 
   @override
   String get homeTodayContentSubtitle =>
       'Bugünün ayetini, rehberliğini ve öğrenimini tek bir sakin yerde bir arada tutun.';
+
+  @override
+  String get homeEditTitle => 'Ana Sayfayı Özelleştir';
+
+  @override
+  String get homeEditSubtitle =>
+      'Yalnızca işine yarayanı göster. Sıralamak için sürükle, gerekmeyeni kapat.';
+
+  @override
+  String get homeEditHiddenTitle => 'Gizli';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Her zaman açık';
+
+  @override
+  String get homeEditEntryLabel => 'Ana Sayfayı Düzenle';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'Tam namaz vakitleri takibi İbadet sekmesinde, vakit satırından bir dokunuş uzakta.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Namaz kartı';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Namaz vakitleri satırı';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'İbadeti açan beş vakitlik kompakt satır.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'Ay evresi, gün doğumu ve batımı.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'Senin için: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'Bir an: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Şu an için dualar';

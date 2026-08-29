@@ -2740,11 +2740,54 @@ class AppLocalizationsTg extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Имрӯз ба даст омад';
 
   @override
-  String get homeTodayContentTitle => 'Мундариҷаи имрӯз';
+  String get homeTodayContentTitle => 'Имрӯз';
 
   @override
   String get homeTodayContentSubtitle =>
       'Ояти имрӯз, роҳнамоӣ ва омӯзишро дар як ҷои ором якҷо нигоҳ доред.';
+
+  @override
+  String get homeEditTitle => 'Танзими саҳифаи асосӣ';
+
+  @override
+  String get homeEditSubtitle =>
+      'Танҳо чизи фоиданокро нишон диҳед. Барои аз нав тартиб додан кашед, нолозимро хомӯш кунед.';
+
+  @override
+  String get homeEditHiddenTitle => 'Пинҳон';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Ҳамеша фаъол';
+
+  @override
+  String get homeEditEntryLabel => 'Таҳрири саҳифа';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'Пайгирии пурраи вақтҳои намоз дар Ибодат аст, як зарба аз сатри вақтҳо.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Корти асосии намоз';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Сатри вақтҳои намоз';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'Сатри мухтасари панҷ намоз, ки Ибодатро мекушояд.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'Фазаи моҳ, тулӯъ ва ғуруби офтоб.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'Барои шумо: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'Як лаҳза: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Дуоҳо барои ҳозир';

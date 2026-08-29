@@ -2778,11 +2778,55 @@ class AppLocalizationsDe extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Heute verdient';
 
   @override
-  String get homeTodayContentTitle => 'Heutige Inhalte';
+  String get homeTodayContentTitle => 'Heute';
 
   @override
   String get homeTodayContentSubtitle =>
       'Halte die heutige Ayah, Führung und Lerninhalte an einem ruhigen Ort zusammen.';
+
+  @override
+  String get homeEditTitle => 'Startseite anpassen';
+
+  @override
+  String get homeEditSubtitle =>
+      'Zeige nur, was dir dient. Ziehe zum Umsortieren, schalte Unnötiges aus.';
+
+  @override
+  String get homeEditHiddenTitle => 'Ausgeblendet';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Immer sichtbar';
+
+  @override
+  String get homeEditEntryLabel => 'Startseite bearbeiten';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'Der vollständige Gebetszeiten-Tracker lebt in Ibadah, einen Tipp von der Zeitenleiste entfernt.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Salah-Karte';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Gebetszeitenleiste';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'Kompakte Leiste der fünf Gebete, öffnet Ibadah.';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'Mondphase, Sonnenauf- und -untergang.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'Für dich: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'Ein Moment: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Duas für jetzt';

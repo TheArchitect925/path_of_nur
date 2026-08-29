@@ -7,6 +7,7 @@ import '../../features/editorial_dashboard/presentation/editorial_dashboard_page
 import '../../features/editorial_dashboard/presentation/editorial_dashboard_pin_page.dart';
 import '../../features/editorial_dashboard/presentation/editorial_content_browser_page.dart';
 import '../../features/editorial_dashboard/presentation/editorial_content_editor_page.dart';
+import '../../features/home/presentation/home_edit_page.dart';
 import '../../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
 import '../../features/learn/quran/presentation/quran_focus_recitation_page.dart';
@@ -63,6 +64,12 @@ List<RouteBase> buildCoreSupportRoutes() {
       name: 'salahTimes',
       pageBuilder: (context, state) =>
           const MaterialPage(child: SalahTimesPage()),
+    ),
+    GoRoute(
+      path: '/home/edit',
+      name: 'homeEdit',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: HomeEditPage()),
     ),
     GoRoute(
       path: '/settings',

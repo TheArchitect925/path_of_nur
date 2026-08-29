@@ -15,6 +15,8 @@ import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
+import '../../home/application/home_calendar_progress_provider.dart';
+import 'widgets/salah_timings_tracker_card.dart';
 
 const int _shortcutDailyDhikrGoal = 500;
 
@@ -62,6 +64,15 @@ class WorshipPage extends ConsumerWidget {
         QuranQuoteBlock(
           quote: quote,
           onTap: () => openQuranQuoteLocation(context, quote),
+        ),
+        const SizedBox(height: 12),
+        // The daily timings tracker moved here from Home (calm-navigation
+        // Phase 1); Home's compact prayer strip deep-links to this tab.
+        SalahTimingsTrackerCard(
+          selectedDate: ref.watch(homePrayerSelectedDateProvider),
+          onSelectedDateChanged: (value) {
+            ref.read(homePrayerSelectedDateProvider.notifier).state = value;
+          },
         ),
         const SizedBox(height: 12),
         const MainPageSearchLauncher(),

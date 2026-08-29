@@ -2721,11 +2721,54 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeBadgeEarnedToday => 'آج کا بیج حاصل ہوا';
 
   @override
-  String get homeTodayContentTitle => 'آج کا مواد';
+  String get homeTodayContentTitle => 'آج';
 
   @override
   String get homeTodayContentSubtitle =>
       'آج کی آیت، رہنمائی اور سیکھنے کو ایک پُرسکون جگہ میں ساتھ رکھیں۔';
+
+  @override
+  String get homeEditTitle => 'ہوم کو اپنی مرضی کے مطابق بنائیں';
+
+  @override
+  String get homeEditSubtitle =>
+      'صرف وہی دکھائیں جو کام آئے۔ ترتیب بدلنے کے لیے کھینچیں، غیر ضروری بند کریں۔';
+
+  @override
+  String get homeEditHiddenTitle => 'پوشیدہ';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'ہمیشہ فعال';
+
+  @override
+  String get homeEditEntryLabel => 'ہوم میں ترمیم';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'نماز کے اوقات کا مکمل ٹریکر عبادت میں ہے، اوقات کی قطار سے ایک ٹیپ کے فاصلے پر۔';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'نماز کا مرکزی کارڈ';
+
+  @override
+  String get homeModulePrayerStripTitle => 'نماز کے اوقات کی قطار';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'پانچ نمازوں کی مختصر قطار جو عبادت کھولتی ہے۔';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'چاند کی حالت، طلوع و غروبِ آفتاب۔';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'آپ کے لیے: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'ایک لمحہ: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'ابھی کے لیے دعائیں';

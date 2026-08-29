@@ -2724,11 +2724,55 @@ class AppLocalizationsPs extends AppLocalizations {
   String get homeBadgeEarnedToday => 'نن تر لاسه شوې';
 
   @override
-  String get homeTodayContentTitle => 'د نن منځپانګه';
+  String get homeTodayContentTitle => 'نن';
 
   @override
   String get homeTodayContentSubtitle =>
       'د نن آيت، لارښوونه او زده کړه په يو ارام ځای کې سره يو ځای وساتئ.';
+
+  @override
+  String get homeEditTitle => 'کور شخصي کړئ';
+
+  @override
+  String get homeEditSubtitle =>
+      'يوازې هغه څه ښکاره کړئ چې ګټور وي. د بيا ترتيب لپاره يې کش کړئ، نالازم بند کړئ.';
+
+  @override
+  String get homeEditHiddenTitle => 'پټ';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'تل فعال';
+
+  @override
+  String get homeEditEntryLabel => 'کور سمول';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'د لمانځه د وختونو بشپړ تعقيبوونکی په عبادت کې دی، د وختونو له کتار څخه يو ټک لرې.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'د لمانځه اصلي کارت';
+
+  @override
+  String get homeModulePrayerStripTitle => 'د لمانځه وختونو کتار';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'د پنځو لمونځونو لنډ کتار چې عبادت پرانيزي.';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'د سپوږمۍ پړاو، لمر ختل او لمر لوېدل.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'ستاسو لپاره: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'يوه شېبه: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'د اوس دعاګانې';

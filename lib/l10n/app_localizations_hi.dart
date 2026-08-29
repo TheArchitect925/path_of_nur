@@ -2736,11 +2736,55 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeBadgeEarnedToday => 'आज प्राप्त';
 
   @override
-  String get homeTodayContentTitle => 'आज की सामग्री';
+  String get homeTodayContentTitle => 'आज';
 
   @override
   String get homeTodayContentSubtitle =>
       'आज की आयत, मार्गदर्शन और सीख को एक शांत जगह में साथ रखें।';
+
+  @override
+  String get homeEditTitle => 'होम अनुकूलित करें';
+
+  @override
+  String get homeEditSubtitle =>
+      'केवल वही दिखाएँ जो काम आए। क्रम बदलने के लिए खींचें, अनावश्यक बंद करें।';
+
+  @override
+  String get homeEditHiddenTitle => 'छिपा हुआ';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'हमेशा चालू';
+
+  @override
+  String get homeEditEntryLabel => 'होम संपादित करें';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'पूरा सलात समय ट्रैकर इबादत में है, समय पंक्ति से एक टैप दूर।';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'सलात हीरो';
+
+  @override
+  String get homeModulePrayerStripTitle => 'सलात समय पंक्ति';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'पाँच नमाज़ों की संक्षिप्त पंक्ति, इबादत खोलती है।';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'चाँद की कला, सूर्योदय और सूर्यास्त।';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'आपके लिए: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'एक क्षण: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'अभी के लिए दुआएँ';

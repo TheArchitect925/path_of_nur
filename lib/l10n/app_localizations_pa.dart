@@ -2731,11 +2731,55 @@ class AppLocalizationsPa extends AppLocalizations {
   String get homeBadgeEarnedToday => 'ਅੱਜ ਪ੍ਰਾਪਤ';
 
   @override
-  String get homeTodayContentTitle => 'ਅੱਜ ਦੀ ਸਮੱਗਰੀ';
+  String get homeTodayContentTitle => 'ਅੱਜ';
 
   @override
   String get homeTodayContentSubtitle =>
       'ਅੱਜ ਦੀ ਆਯਤ, ਰਹਿਨੁਮਾਈ ਅਤੇ ਸਿੱਖਿਆ ਨੂੰ ਇੱਕ ਸ਼ਾਂਤ ਥਾਂ ਤੇ ਇਕੱਠੇ ਰੱਖੋ।';
+
+  @override
+  String get homeEditTitle => 'ਹੋਮ ਅਨੁਕੂਲਿਤ ਕਰੋ';
+
+  @override
+  String get homeEditSubtitle =>
+      'ਸਿਰਫ਼ ਉਹੀ ਦਿਖਾਓ ਜੋ ਕੰਮ ਆਵੇ। ਕ੍ਰਮ ਬਦਲਣ ਲਈ ਖਿੱਚੋ, ਬੇਲੋੜਾ ਬੰਦ ਕਰੋ।';
+
+  @override
+  String get homeEditHiddenTitle => 'ਲੁਕਿਆ ਹੋਇਆ';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'ਹਮੇਸ਼ਾ ਚਾਲੂ';
+
+  @override
+  String get homeEditEntryLabel => 'ਹੋਮ ਸੋਧੋ';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'ਪੂਰਾ ਸਲਾਤ ਸਮਾਂ ਟਰੈਕਰ ਇਬਾਦਤ ਵਿੱਚ ਹੈ, ਸਮਾਂ ਪੱਟੀ ਤੋਂ ਇੱਕ ਟੈਪ ਦੂਰ।';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'ਸਲਾਤ ਹੀਰੋ';
+
+  @override
+  String get homeModulePrayerStripTitle => 'ਸਲਾਤ ਸਮਾਂ ਪੱਟੀ';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'ਪੰਜ ਨਮਾਜ਼ਾਂ ਦੀ ਸੰਖੇਪ ਪੱਟੀ, ਇਬਾਦਤ ਖੋਲ੍ਹਦੀ ਹੈ।';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'ਚੰਦ ਦਾ ਪੜਾਅ, ਸੂਰਜ ਚੜ੍ਹਨਾ ਅਤੇ ਛਿਪਣਾ।';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'ਤੁਹਾਡੇ ਲਈ: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'ਇੱਕ ਪਲ: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'ਹੁਣ ਲਈ ਦੁਆਵਾਂ';

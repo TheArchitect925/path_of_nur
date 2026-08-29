@@ -2693,11 +2693,54 @@ class AppLocalizationsFa extends AppLocalizations {
   String get homeBadgeEarnedToday => 'نشان امروز به‌دست آمد';
 
   @override
-  String get homeTodayContentTitle => 'محتوای امروز';
+  String get homeTodayContentTitle => 'امروز';
 
   @override
   String get homeTodayContentSubtitle =>
       'آیه، هدایت و یادگیری امروز را در یک جای آرام کنار هم نگه دارید.';
+
+  @override
+  String get homeEditTitle => 'شخصی‌سازی خانه';
+
+  @override
+  String get homeEditSubtitle =>
+      'فقط آنچه به کارتان می‌آید نشان دهید. برای مرتب‌سازی بکشید و موارد غیرلازم را خاموش کنید.';
+
+  @override
+  String get homeEditHiddenTitle => 'پنهان';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'همیشه روشن';
+
+  @override
+  String get homeEditEntryLabel => 'ویرایش خانه';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'پیگیر کامل اوقات نماز در عبادت است، یک ضربه از نوار اوقات فاصله دارد.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';
+
+  @override
+  String get homeModulePrayerStripTitle => 'نوار اوقات نماز';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'نوار فشرده پنج نماز که عبادت را باز می‌کند.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'حالت ماه، طلوع و غروب خورشید.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'برای شما: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'یک لحظه: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'دعاهای اکنون';
@@ -44585,11 +44628,54 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get homeBadgeEarnedToday => 'نشان امروز به‌دست آمد';
 
   @override
-  String get homeTodayContentTitle => 'محتوای امروز';
+  String get homeTodayContentTitle => 'امروز';
 
   @override
   String get homeTodayContentSubtitle =>
       'آیه، هدایت و یادگیری امروز را در یک جای آرام کنار هم نگه دارید.';
+
+  @override
+  String get homeEditTitle => 'شخصی‌سازی خانه';
+
+  @override
+  String get homeEditSubtitle =>
+      'فقط آنچه به کارتان می‌آید نشان دهید. برای مرتب‌سازی بکشید و موارد غیرلازم را خاموش کنید.';
+
+  @override
+  String get homeEditHiddenTitle => 'پنهان';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'همیشه روشن';
+
+  @override
+  String get homeEditEntryLabel => 'ویرایش خانه';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'پیگیر کامل اوقات نماز در عبادت است، یک ضربه از نوار اوقات فاصله دارد.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'کارت اصلی نماز';
+
+  @override
+  String get homeModulePrayerStripTitle => 'نوار اوقات نماز';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'نوار فشرده پنج نماز که عبادت را باز می‌کند.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'حالت ماه، طلوع و غروب آفتاب.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'برای شما: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'یک لحظه: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'دعاهای اکنون';

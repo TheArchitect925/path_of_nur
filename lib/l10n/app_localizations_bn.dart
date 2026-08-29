@@ -2706,11 +2706,55 @@ class AppLocalizationsBn extends AppLocalizations {
   String get homeBadgeEarnedToday => 'আজ অর্জিত';
 
   @override
-  String get homeTodayContentTitle => 'আজকের বিষয়বস্তু';
+  String get homeTodayContentTitle => 'আজ';
 
   @override
   String get homeTodayContentSubtitle =>
       'আজকের আয়াত, দিকনির্দেশনা এবং শেখা এক শান্ত জায়গায় একসাথে রাখুন।';
+
+  @override
+  String get homeEditTitle => 'হোম কাস্টমাইজ করুন';
+
+  @override
+  String get homeEditSubtitle =>
+      'শুধু যা কাজে লাগে তা দেখান। টেনে সাজান, যা দরকার নেই তা বন্ধ করুন।';
+
+  @override
+  String get homeEditHiddenTitle => 'লুকানো';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'সবসময় চালু';
+
+  @override
+  String get homeEditEntryLabel => 'হোম সম্পাদনা';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'পূর্ণ সালাত সময় ট্র্যাকার ইবাদতে আছে, সময় সারি থেকে এক ট্যাপ দূরে।';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'সালাত হিরো';
+
+  @override
+  String get homeModulePrayerStripTitle => 'সালাত সময় সারি';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'পাঁচ ওয়াক্তের সংক্ষিপ্ত সারি, ইবাদত খোলে।';
+
+  @override
+  String get homeModuleCelestialSubtitle =>
+      'চাঁদের কলা, সূর্যোদয় ও সূর্যাস্ত।';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'আপনার জন্য: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'একটি মুহূর্ত: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'এখনকার দোয়া';

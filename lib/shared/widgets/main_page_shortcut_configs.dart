@@ -62,47 +62,6 @@ class MainPageShortcutPalettes {
   );
 }
 
-List<MainPageShortcutItem> buildHomePageShortcuts(
-  AppLocalizations l10n, {
-  String? salahProgressText,
-  String? dhikrProgressText,
-}) {
-  return [
-    MainPageShortcutItem(
-      label: l10n.quranTitle,
-      icon: Icons.menu_book_rounded,
-      routeName: 'quranExplorer',
-      style: MainPageShortcutPalettes.emerald,
-    ),
-    MainPageShortcutItem(
-      label: l10n.homeShortcutSalahLabel,
-      icon: IslamicIcons.prayer,
-      routeName: 'worshipPrayerPage',
-      style: MainPageShortcutPalettes.amber,
-      progressText: salahProgressText,
-    ),
-    MainPageShortcutItem(
-      label: l10n.homeShortcutDhikrLabel,
-      icon: IslamicIcons.tasbih,
-      routeName: 'worshipDhikrPage',
-      style: MainPageShortcutPalettes.plum,
-      progressText: dhikrProgressText,
-    ),
-    MainPageShortcutItem(
-      label: l10n.hadithPageTitle,
-      icon: Icons.format_quote_rounded,
-      routeName: 'learnHadithLanding',
-      style: MainPageShortcutPalettes.rose,
-    ),
-    MainPageShortcutItem(
-      label: l10n.homeShortcutQiblaLabel,
-      icon: IslamicIcons.qibla,
-      routeName: 'qiblaFinder',
-      style: MainPageShortcutPalettes.teal,
-    ),
-  ];
-}
-
 List<MainPageShortcutItem> buildWorshipPageShortcuts(
   AppLocalizations l10n, {
   String? salahProgressText,

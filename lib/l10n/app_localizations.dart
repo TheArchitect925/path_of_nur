@@ -4678,7 +4678,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeTodayContentTitle.
   ///
   /// In en, this message translates to:
-  /// **'Today\'\'s content'**
+  /// **'Today'**
   String get homeTodayContentTitle;
 
   /// No description provided for @homeTodayContentSubtitle.
@@ -4686,6 +4686,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep today\'\'s ayah, guidance, and learning together in one calm place.'**
   String get homeTodayContentSubtitle;
+
+  /// No description provided for @homeEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize Home'**
+  String get homeEditTitle;
+
+  /// No description provided for @homeEditSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show only what serves you. Drag to reorder, switch off what you don\'\'t need.'**
+  String get homeEditSubtitle;
+
+  /// No description provided for @homeEditHiddenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden'**
+  String get homeEditHiddenTitle;
+
+  /// No description provided for @homeEditAlwaysOnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Always on'**
+  String get homeEditAlwaysOnLabel;
+
+  /// No description provided for @homeEditEntryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Home'**
+  String get homeEditEntryLabel;
+
+  /// No description provided for @homeEditTrackerFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'The full salah timings tracker lives in Ibadah, one tap from the prayer times row.'**
+  String get homeEditTrackerFootnote;
+
+  /// No description provided for @homeModuleSalahHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah hero'**
+  String get homeModuleSalahHeroTitle;
+
+  /// No description provided for @homeModulePrayerStripTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times row'**
+  String get homeModulePrayerStripTitle;
+
+  /// No description provided for @homeModulePrayerStripSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Compact five-prayer strip that opens Ibadah.'**
+  String get homeModulePrayerStripSubtitle;
+
+  /// No description provided for @homeModuleCelestialSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase, sunrise and sunset.'**
+  String get homeModuleCelestialSubtitle;
+
+  /// No description provided for @homeTodayForYouChip.
+  ///
+  /// In en, this message translates to:
+  /// **'For you: {location}'**
+  String homeTodayForYouChip(Object location);
+
+  /// No description provided for @homeTodayMomentChip.
+  ///
+  /// In en, this message translates to:
+  /// **'A moment: {location}'**
+  String homeTodayMomentChip(Object location);
 
   /// No description provided for @homeRightNowTitle.
   ///

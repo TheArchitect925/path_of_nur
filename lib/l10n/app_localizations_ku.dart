@@ -2727,11 +2727,54 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Îro hate qezenc kirin';
 
   @override
-  String get homeTodayContentTitle => 'Naveroka îro';
+  String get homeTodayContentTitle => 'Îro';
 
   @override
   String get homeTodayContentSubtitle =>
       'Aya îro, rêberî û fêrbûnê li yek cihê aram bi hev re bigire.';
+
+  @override
+  String get homeEditTitle => 'Malperê Xweser Bike';
+
+  @override
+  String get homeEditSubtitle =>
+      'Tenê tiştên bikêr nîşan bide. Bikişîne ji bo rêzkirinê, yên nepêwîst vemirîne.';
+
+  @override
+  String get homeEditHiddenTitle => 'Veşartî';
+
+  @override
+  String get homeEditAlwaysOnLabel => 'Her dem vekirî';
+
+  @override
+  String get homeEditEntryLabel => 'Malperê Biguherîne';
+
+  @override
+  String get homeEditTrackerFootnote =>
+      'Şopînerê temam ê demên nimêjê di Îbadetê de ye, yek lêdan ji rêza deman dûr e.';
+
+  @override
+  String get homeModuleSalahHeroTitle => 'Karta nimêjê';
+
+  @override
+  String get homeModulePrayerStripTitle => 'Rêza demên nimêjê';
+
+  @override
+  String get homeModulePrayerStripSubtitle =>
+      'Rêza kurt a pênc nimêjan ku Îbadetê vedike.';
+
+  @override
+  String get homeModuleCelestialSubtitle => 'Qonaxa heyvê, rojhilat û rojava.';
+
+  @override
+  String homeTodayForYouChip(Object location) {
+    return 'Ji bo te: $location';
+  }
+
+  @override
+  String homeTodayMomentChip(Object location) {
+    return 'Kêliyek: $location';
+  }
 
   @override
   String get homeRightNowTitle => 'Duayên niha';

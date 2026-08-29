@@ -1580,8 +1580,30 @@
     }
   },
   "homeBadgeEarnedToday": "Earned today",
-  "homeTodayContentTitle": "Today''s content",
+  "homeTodayContentTitle": "Today",
   "homeTodayContentSubtitle": "Keep today''s ayah, guidance, and learning together in one calm place.",
+  "homeEditTitle": "Customize Home",
+  "homeEditSubtitle": "Show only what serves you. Drag to reorder, switch off what you don''t need.",
+  "homeEditHiddenTitle": "Hidden",
+  "homeEditAlwaysOnLabel": "Always on",
+  "homeEditEntryLabel": "Edit Home",
+  "homeEditTrackerFootnote": "The full salah timings tracker lives in Ibadah, one tap from the prayer times row.",
+  "homeModuleSalahHeroTitle": "Salah hero",
+  "homeModulePrayerStripTitle": "Prayer times row",
+  "homeModulePrayerStripSubtitle": "Compact five-prayer strip that opens Ibadah.",
+  "homeModuleCelestialSubtitle": "Moon phase, sunrise and sunset.",
+  "homeTodayForYouChip": "For you: {location}",
+  "@homeTodayForYouChip": {
+    "placeholders": {
+      "location": {}
+    }
+  },
+  "homeTodayMomentChip": "A moment: {location}",
+  "@homeTodayMomentChip": {
+    "placeholders": {
+      "location": {}
+    }
+  },
   "homeRightNowTitle": "Duas for right now",
   "homeRightNowSubtitle": "Duas matched to your time of day",
   "homeDailyLearningQuizzesTitle": "Daily learning & quizzes",
