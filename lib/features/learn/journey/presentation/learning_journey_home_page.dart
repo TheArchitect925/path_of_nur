@@ -504,41 +504,54 @@ class LearningJourneyHomePage extends ConsumerWidget {
               subtitle: l10n.learningPathAlsoExploringSubtitle,
             ),
             const SizedBox(height: 12),
-            SizedBox(
-              height: 168,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: secondaryJourneys.length,
-                separatorBuilder: (_, _) => const SizedBox(width: 10),
-                itemBuilder: (context, index) {
-                  final journey = secondaryJourneys[index];
-                  final stageCount = LearningJourneyRegistry.stagesForJourney(
-                    journey.id,
-                  ).length;
-                  final completedCount = progress.completedStageIds
-                      .where((id) => journey.stageIds.contains(id))
-                      .length;
-                  return SizedBox(
-                    width: 268,
-                    child: LearningJourneyCard(
-                      journey: journey,
-                      stageCount: stageCount,
-                      progress: _journeyProgressValue(
-                        stageCount,
-                        completedCount,
+            // Height follows the tallest card rather than a fixed number,
+            // which overflowed once the cards gained their island art and
+            // would drift again with longer titles or a larger text scale.
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (final journey in secondaryJourneys) ...[
+                      if (journey != secondaryJourneys.first)
+                        const SizedBox(width: 10),
+                      SizedBox(
+                        width: 268,
+                        child: Builder(
+                          builder: (context) {
+                            final stageCount =
+                                LearningJourneyRegistry.stagesForJourney(
+                                  journey.id,
+                                ).length;
+                            final completedCount = progress.completedStageIds
+                                .where((id) => journey.stageIds.contains(id))
+                                .length;
+                            return LearningJourneyCard(
+                              journey: journey,
+                              stageCount: stageCount,
+                              progress: _journeyProgressValue(
+                                stageCount,
+                                completedCount,
+                              ),
+                              onTap: () {
+                                ref
+                                    .read(
+                                      learningPathSelectionProvider.notifier,
+                                    )
+                                    .recordJourneyInteraction(journey.id);
+                                context.pushNamed(
+                                  'learnJourneyDetail',
+                                  pathParameters: {'journeyId': journey.id},
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
-                      onTap: () {
-                        ref
-                            .read(learningPathSelectionProvider.notifier)
-                            .recordJourneyInteraction(journey.id);
-                        context.pushNamed(
-                          'learnJourneyDetail',
-                          pathParameters: {'journeyId': journey.id},
-                        );
-                      },
-                    ),
-                  );
-                },
+                    ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 18),
@@ -627,38 +640,51 @@ class LearningJourneyHomePage extends ConsumerWidget {
                 : l10n.learningPathHomeNextSubtitle,
           ),
           const SizedBox(height: 12),
-          SizedBox(
-            height: 186,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: displayRecommendations.length,
-              separatorBuilder: (_, _) => const SizedBox(width: 10),
-              itemBuilder: (context, index) {
-                final journey = displayRecommendations[index];
-                final stageCount = LearningJourneyRegistry.stagesForJourney(
-                  journey.id,
-                ).length;
-                final completedCount = progress.completedStageIds
-                    .where((id) => journey.stageIds.contains(id))
-                    .length;
-                return SizedBox(
-                  width: 280,
-                  child: LearningJourneyCard(
-                    journey: journey,
-                    stageCount: stageCount,
-                    progress: _journeyProgressValue(stageCount, completedCount),
-                    onTap: () {
-                      ref
-                          .read(learningPathSelectionProvider.notifier)
-                          .recordJourneyInteraction(journey.id);
-                      context.pushNamed(
-                        'learnJourneyDetail',
-                        pathParameters: {'journeyId': journey.id},
-                      );
-                    },
-                  ),
-                );
-              },
+          // Same as the "Also exploring" strip: the row takes the height of
+          // its tallest card instead of a number that has to be maintained.
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (final journey in displayRecommendations) ...[
+                    if (journey != displayRecommendations.first)
+                      const SizedBox(width: 10),
+                    SizedBox(
+                      width: 280,
+                      child: Builder(
+                        builder: (context) {
+                          final stageCount =
+                              LearningJourneyRegistry.stagesForJourney(
+                                journey.id,
+                              ).length;
+                          final completedCount = progress.completedStageIds
+                              .where((id) => journey.stageIds.contains(id))
+                              .length;
+                          return LearningJourneyCard(
+                            journey: journey,
+                            stageCount: stageCount,
+                            progress: _journeyProgressValue(
+                              stageCount,
+                              completedCount,
+                            ),
+                            onTap: () {
+                              ref
+                                  .read(learningPathSelectionProvider.notifier)
+                                  .recordJourneyInteraction(journey.id);
+                              context.pushNamed(
+                                'learnJourneyDetail',
+                                pathParameters: {'journeyId': journey.id},
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 8),
