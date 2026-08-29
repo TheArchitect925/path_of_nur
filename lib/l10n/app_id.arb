@@ -77,7 +77,7 @@
   "notificationsCycleCheckBody": "Jika perlu, periksa dan perbarui status siklus Anda.",
   "notificationsMoonriseBody": "Bulan sedang terbit sekarang.",
   "notificationsMoonsetBody": "Bulan sedang terbenam sekarang.",
-  "notificationsRecoveredReminderBody": "Pengingat Anda kembali aktif.",
+  "notificationsRecoveredReminderBody": "You missed this reminder earlier. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
       "body": {
@@ -104,13 +104,13 @@
   "notificationsIftarTimeBody": "Semoga Allah menerima puasa Anda.",
   "notificationsFastingLiveFastBeginsTitle": "Puasa dimulai",
   "notificationsFastingLiveFastBeginsArabicTitle": "بداية الصيام",
-  "notificationsFastingLiveStartsIn": "Dimulai dalam {duration}",
+  "notificationsFastingLiveStartsIn": "Starts in",
   "notificationsFastingLiveRenewIntentionTitle": "Perbarui niat",
   "notificationsFastingLiveRenewIntentionArabic": "نَوَيْتُ صَوْمَ غَدٍ",
   "notificationsFastingLiveRenewIntentionTranslation": "Saya berniat berpuasa esok hari.",
   "notificationsFastingLiveFastEndsTitle": "Puasa berakhir",
   "notificationsFastingLiveFastEndsArabicTitle": "نهاية الصيام",
-  "notificationsFastingLiveEndsIn": "Berakhir dalam {duration}",
+  "notificationsFastingLiveEndsIn": "Ends in",
   "notificationsFastingLiveIftarDuaTitle": "Doa berbuka",
   "notificationsFastingLiveIftarDuaArabic": "اللهم لك صمت",
   "notificationsFastingLiveIftarDuaTranslation": "Ya Allah, untuk-Mu aku berpuasa.",
@@ -1062,7 +1062,7 @@
   "worshipPrayerTabStats": "Statistik",
   "worshipPrayerTabRakat": "Rakaat",
   "worshipPrayerSisterCyclePauseTitle": "Jeda siklus saudari",
-  "worshipPrayerCycleDay": "Hari siklus {day}",
+  "worshipPrayerCycleDay": "Hari siklus {dayNumber}",
   "@worshipPrayerCycleDay": {
     "placeholders": {
       "dayNumber": {
@@ -1103,7 +1103,7 @@
   "worshipPrayerHijriMonthDhuAlQidah": "Zulkaidah",
   "worshipPrayerHijriMonthDhuAlHijjah": "Zulhijah",
   "worshipPrayerSalahTimesTitle": "Waktu salat",
-  "worshipPrayerSalahWindowValue": "{start} • {end}",
+  "worshipPrayerSalahWindowValue": "{offerTime}  •  Salah Window: {windowStart}–{windowEnd}",
   "@worshipPrayerSalahWindowValue": {
     "placeholders": {
       "offerTime": {
@@ -1184,7 +1184,7 @@
       }
     }
   },
-  "worshipPrayerCompletionValue": "{completed}/{total} selesai",
+  "worshipPrayerCompletionValue": "Completion {value}%",
   "@worshipPrayerCompletionValue": {
     "placeholders": {
       "value": {
@@ -1198,10 +1198,10 @@
   "worshipPrayerMonthlyTrendTitle": "Tren bulanan",
   "worshipPrayerMonthlyTrendSubtitle": "Lihat ritme salat Anda bulan ini.",
   "worshipPrayerRakatGuideTitle": "Panduan rakaat",
-  "worshipPrayerRakatGuideValue": "{prayerName} • {rakat} rakaat",
+  "worshipPrayerRakatGuideValue": "Fajr: 2  •  Dhuhr: 4  •  Asr: 4  •  Maghrib: 3  •  Isha: 4",
   "worshipPrayerRakatGuideTip": "Gunakan ini sebagai panduan cepat sebelum salat.",
   "worshipPrayerMoonPhaseTitle": "Fase bulan",
-  "worshipPrayerMoonPhaseIllumination": "Pencahayaan {value}%",
+  "worshipPrayerMoonPhaseIllumination": "{phaseLabel} • {percent}% illuminated",
   "@worshipPrayerMoonPhaseIllumination": {
     "placeholders": {
       "phaseLabel": {
@@ -1264,7 +1264,7 @@
       }
     }
   },
-  "worshipPrayerOverlayLabel": "Tampilan salat",
+  "worshipPrayerOverlayLabel": "{prayerName} {time}",
   "@worshipPrayerOverlayLabel": {
     "placeholders": {
       "prayerName": {
@@ -1288,7 +1288,7 @@
   "worshipPrayerCadenceLight": "Ringan",
   "worshipPrayerCadenceSteady": "Stabil",
   "worshipPrayerCadenceFocused": "Fokus",
-  "worshipPrayerEstimatedDaysToClear": "Perkiraan selesai dalam {count} hari",
+  "worshipPrayerEstimatedDaysToClear": "Perkiraan selesai dalam {days} hari",
   "@worshipPrayerEstimatedDaysToClear": {
     "placeholders": {
       "days": {
@@ -1296,7 +1296,7 @@
       }
     }
   },
-  "worshipPrayerTodaysQadaTarget": "Target qada hari ini: {count}",
+  "worshipPrayerTodaysQadaTarget": "Today''s qada target: {completed} / {target}",
   "@worshipPrayerTodaysQadaTarget": {
     "placeholders": {
       "completed": {
@@ -1337,7 +1337,7 @@
       }
     }
   },
-  "worshipPrayerWeekLabel": "Pekan {number}",
+  "worshipPrayerWeekLabel": "Pekan {weekNumber}",
   "@worshipPrayerWeekLabel": {
     "placeholders": {
       "weekNumber": {
@@ -1504,7 +1504,7 @@
       "prayerName": {}
     }
   },
-  "homePrayerBecomesQada": "Menjadi qada pada {time}",
+  "homePrayerBecomesQada": "Menjadi qada pada {prayerName}",
   "@homePrayerBecomesQada": {
     "placeholders": {
       "prayerName": {}
@@ -1553,14 +1553,14 @@
     }
   },
   "homeDailyBadgesTitle": "Lencana harian",
-  "homeContinueQuranValue": "Lanjutkan Al-Qur’an",
+  "homeContinueQuranValue": "{surahName} {ayahNumber}",
   "@homeContinueQuranValue": {
     "placeholders": {
       "surahName": {},
       "ayahNumber": {}
     }
   },
-  "homeJourneyRingsValue": "{count} cincin",
+  "homeJourneyRingsValue": "P {prayerPercent}% · D {dhikrPercent}% · Q {quranPercent}%",
   "@homeJourneyRingsValue": {
     "placeholders": {
       "prayerPercent": {},
@@ -1595,7 +1595,7 @@
   "homePrayerCompletedTapHint": "Ketuk untuk memperbarui rincian salat",
   "homePrayerPostSalahDhikrAction": "Zikir setelah salat",
   "homePrayerPostSalahDhikrLogged": "Zikir setelah salat telah dicatat",
-  "homePrayerBeginsAt": "Mulai {time}",
+  "homePrayerBeginsAt": "Begins at",
   "homeDurationMinutes": "{minutes} menit",
   "@homeDurationMinutes": {
     "placeholders": {
@@ -1617,7 +1617,7 @@
   },
   "durationCompactHourSuffix": "h",
   "durationCompactMinuteSuffix": "m",
-  "homeLearnCategoryFallbackSubtitle": "Lanjutkan belajar dari tempat terakhir Anda berhenti.",
+  "homeLearnCategoryFallbackSubtitle": "Learn category • {category}",
   "@homeLearnCategoryFallbackSubtitle": {
     "placeholders": {
       "category": {
@@ -2066,7 +2066,7 @@
   "learnHubSavedAndNotesTitle": "Tersimpan & catatan",
   "learnHubSavedAndNotesSubtitle": "Kembali ke item yang Anda simpan atau catat.",
   "learnHubKnowledgeConstellationSubtitle": "Lihat hubungan antartema pembelajaran.",
-  "learnHubSavedNotesSummary": "{count} catatan tersimpan",
+  "learnHubSavedNotesSummary": "Saved items: {saved} • Notes: {notes}",
   "@learnHubSavedNotesSummary": {
     "placeholders": {
       "saved": {},
@@ -2084,7 +2084,7 @@
   "learnHubContinueWhereYouLeftOff": "Lanjutkan dari tempat terakhir",
   "learnHubResumeAction": "Lanjutkan",
   "learnHubDailyLearningTitle": "Belajar harian",
-  "learnHubDailyThemeLabel": "Tema hari ini",
+  "learnHubDailyThemeLabel": "Theme: {theme}",
   "@learnHubDailyThemeLabel": {
     "placeholders": {
       "theme": {}
@@ -2430,7 +2430,7 @@
   "learnHubFilterDifficultyTooltip": "Saring berdasarkan tingkat",
   "learnHubFilterPathTooltip": "Saring berdasarkan jalur",
   "learnHubTypeAnyLabel": "Semua jenis",
-  "learnHubTypeValueLabel": "Jenis: {value}",
+  "learnHubTypeValueLabel": "Jenis: {type}",
   "@learnHubTypeValueLabel": {
     "placeholders": {
       "type": {}
@@ -2438,7 +2438,7 @@
   },
   "learnHubAnyTypeOption": "Jenis apa pun",
   "learnHubThemeAnyLabel": "Semua tema",
-  "learnHubThemeValueLabel": "Tema: {value}",
+  "learnHubThemeValueLabel": "Tema: {theme}",
   "@learnHubThemeValueLabel": {
     "placeholders": {
       "theme": {}
@@ -2446,7 +2446,7 @@
   },
   "learnHubAnyThemeOption": "Tema apa pun",
   "learnHubDifficultyAnyLabel": "Semua tingkat",
-  "learnHubDifficultyValueLabel": "Tingkat: {value}",
+  "learnHubDifficultyValueLabel": "Tingkat: {difficulty}",
   "@learnHubDifficultyValueLabel": {
     "placeholders": {
       "difficulty": {}
@@ -2464,7 +2464,7 @@
     }
   },
   "learnHubNoMatchingItems": "Tidak ada item yang cocok.",
-  "learnHubPathProgress": "Progres jalur {progress}",
+  "learnHubPathProgress": "{completed} / {total} completed",
   "@learnHubPathProgress": {
     "placeholders": {
       "completed": {},
@@ -2494,7 +2494,7 @@
   "learnHubCategoryGroupPilgrimage": "Ziarah",
   "learningReferencesShowLess": "Tampilkan lebih sedikit",
   "learningReferencesShowAll": "Tampilkan semua",
-  "quranReferenceViewerReferenceLabel": "Rujukan",
+  "quranReferenceViewerReferenceLabel": "Qur’an {reference}",
   "@quranReferenceViewerReferenceLabel": {
     "placeholders": {
       "reference": {}
@@ -2899,7 +2899,7 @@
   },
   "triviaHomeSubtitle": "Bangun pengetahuan Anda dengan kuis singkat dan jalur terpandu.",
   "triviaHomeCurrentStreakLabel": "Rangkaian saat ini",
-  "triviaHomeLongestStreakCaption": "Rangkaian terpanjang",
+  "triviaHomeLongestStreakCaption": "Longest {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
       "count": {}
@@ -2920,7 +2920,7 @@
     }
   },
   "triviaHomeOceanDropsLabel": "Tetesan lautan",
-  "triviaHomeBestSurvivalCaption": "Hasil terbaik mode bertahan",
+  "triviaHomeBestSurvivalCaption": "Best survival {count}",
   "@triviaHomeBestSurvivalCaption": {
     "placeholders": {
       "count": {}
@@ -2956,7 +2956,7 @@
   "triviaHomeCategoriesTitle": "Kategori",
   "triviaHomeCategoriesSubtitle": "Fokus pada bidang pengetahuan tertentu.",
   "triviaHomeNoAnswersYet": "Belum ada jawaban.",
-  "triviaHomeCategoryAccuracy": "Akurasi kategori",
+  "triviaHomeCategoryAccuracy": "Accuracy {percent}%",
   "@triviaHomeCategoryAccuracy": {
     "placeholders": {
       "percent": {}
@@ -2969,7 +2969,7 @@
   "triviaHomeNoSessionsYetTitle": "Belum ada sesi",
   "triviaHomeNoSessionsYetSubtitle": "Mulai satu kuis untuk melihat progres Anda.",
   "triviaMixedLabel": "Campuran",
-  "triviaHomeRecentPerformanceSummary": "{correct} benar • {incorrect} salah",
+  "triviaHomeRecentPerformanceSummary": "{category} • {correct}/{total} correct • +{xp} XP",
   "@triviaHomeRecentPerformanceSummary": {
     "placeholders": {
       "category": {},
@@ -2984,14 +2984,14 @@
   "triviaResultsXpGainedLabel": "XP diperoleh",
   "triviaResultsPerfectBonusIncluded": "Bonus sempurna sudah termasuk",
   "triviaResultsReplayRewardsLighter": "Hadiah pengulangan lebih ringan",
-  "triviaResultsCompletedSummary": "{completed}/{total} selesai",
+  "triviaResultsCompletedSummary": "Completed in {seconds}s • {missed} missed",
   "@triviaResultsCompletedSummary": {
     "placeholders": {
       "seconds": {},
       "missed": {}
     }
   },
-  "triviaResultsBestRunInSession": "Rangkaian terbaik dalam sesi ini",
+  "triviaResultsBestRunInSession": "Best run in this session: {count}",
   "@triviaResultsBestRunInSession": {
     "placeholders": {
       "count": {}
@@ -3014,7 +3014,7 @@
   "triviaReviewNoQuestionsDueTitle": "Tidak ada pertanyaan yang jatuh tempo",
   "triviaReviewNoQuestionsDueSubtitle": "Kembali lagi nanti untuk sesi tinjauan berikutnya.",
   "triviaReviewStartSessionTitle": "Mulai sesi tinjauan",
-  "triviaReviewStartSessionSubtitle": "Lanjutkan dengan pertanyaan yang paling membutuhkan perhatian.",
+  "triviaReviewStartSessionSubtitle": "{count} items are ready. The queue favors what was recently missed or still unstable.",
   "@triviaReviewStartSessionSubtitle": {
     "placeholders": {
       "count": {}
@@ -3035,7 +3035,7 @@
   "triviaStageNotFoundTitle": "Tahap tidak ditemukan",
   "triviaStageNotFoundSubtitle": "Tahap ini tidak tersedia.",
   "triviaStageQuizTitle": "Kuis tahap",
-  "triviaStageQuizSubtitle": "Jawab pertanyaan untuk menyelesaikan tahap ini.",
+  "triviaStageQuizSubtitle": "Answer {count} focused questions. Wrong answers still feed your review queue.",
   "@triviaStageQuizSubtitle": {
     "placeholders": {
       "count": {}
@@ -3063,7 +3063,7 @@
   "triviaContinuePathAction": "Lanjutkan jalur",
   "triviaStagesTitle": "Tahap",
   "triviaStagesSubtitle": "Selesaikan tahap satu per satu.",
-  "triviaKnowledgeStageSummary": "{questionCount} pertanyaan • {status}",
+  "triviaKnowledgeStageSummary": "{count} questions • +{xp} XP",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -7422,24 +7422,13 @@
   "settingsCurrentLocation": "Lokasi saat ini",
   "settingsProfilePersonalizationTitle": "Profil & Personalisasi",
   "settingsProfilePersonalizationSubtitle": "Simpan nama, preferensi alamat, mode, dan pintasan terkait profil Anda di sini karena Profil tidak lagi menjadi tab tingkat atas.",
-  "settingsProfileDisplayNameSummary": "Nama tampilan: {name}",
+  "settingsProfileDisplayNameSummary": "{title} {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
       "title": {
         "type": "String"
       },
       "name": {
-        "type": "String"
-      }
-    }
-  },
-  "settingsProfileLevelStreakSummary": "Level {level} • {streak} hari berturut-turut",
-  "@settingsProfileLevelStreakSummary": {
-    "placeholders": {
-      "levelSummary": {
-        "type": "String"
-      },
-      "streakSummary": {
         "type": "String"
       }
     }
@@ -7523,7 +7512,7 @@
   "accountsSyncCurrentProfileSectionSubtitle": "Kelola profil yang sedang aktif di perangkat ini.",
   "accountsSyncNoActiveProfileTitle": "Belum ada profil aktif",
   "accountsSyncChooseProfileToBegin": "Pilih profil untuk memulai.",
-  "accountsSyncProfileStatusSummary": "{profileName} • {status}",
+  "accountsSyncProfileStatusSummary": "{profileType} • {syncMode}",
   "@accountsSyncProfileStatusSummary": {
     "placeholders": {
       "profileType": {
@@ -7538,7 +7527,7 @@
   "accountsSyncSwitchProfileSubtitle": "Pilih profil lain yang tersedia di perangkat ini.",
   "accountsSyncProfilesInAccountTitle": "Profil dalam akun ini",
   "accountsSyncProfilesInAccountCreateSubtitle": "Buat profil baru di akun ini.",
-  "accountsSyncProfilesInAccountManageSubtitle": "Kelola profil yang sudah ada di akun ini.",
+  "accountsSyncProfilesInAccountManageSubtitle": "Manage the profiles stored under {accountName}.",
   "@accountsSyncProfilesInAccountManageSubtitle": {
     "placeholders": {
       "accountName": {
@@ -7590,7 +7579,7 @@
   "accountsSyncSharedDeviceModeHelper": "Minta pemilihan profil saat aplikasi dibuka dan batasi akses sensitif.",
   "accountsSyncChooseProfileTitle": "Pilih profil",
   "accountsSyncChooseProfileSubtitle": "Pilih profil yang ingin digunakan.",
-  "accountsSyncProfileListSubtitle": "Profil yang tersedia di perangkat ini.",
+  "accountsSyncProfileListSubtitle": "{profileType} • {syncMode} • Last active {lastActive}",
   "@accountsSyncProfileListSubtitle": {
     "placeholders": {
       "profileType": {
@@ -7614,7 +7603,7 @@
   "accountsSyncEnterPinHint": "Masukkan PIN",
   "accountsSyncPinMismatch": "PIN tidak cocok.",
   "accountsSyncOpenProfileAction": "Buka profil",
-  "accountsSyncProfileActivated": "Profil diaktifkan.",
+  "accountsSyncProfileActivated": "{name} is now active.",
   "@accountsSyncProfileActivated": {
     "placeholders": {
       "name": {
@@ -7634,7 +7623,7 @@
   "accountsSyncDefaultNewProfileName": "Profil baru",
   "accountsSyncProfileCreated": "Profil dibuat.",
   "accountsSyncCreateProfileAction": "Buat profil",
-  "accountsSyncAccountSummary": "{provider} • {identifier}",
+  "accountsSyncAccountSummary": "{provider} • {identifier} • {syncMode}",
   "@accountsSyncAccountSummary": {
     "placeholders": {
       "provider": {
@@ -7930,7 +7919,7 @@
   "accountsSyncAutoLockAfterInactivity": "Kunci otomatis setelah tidak aktif",
   "accountsSyncRestrictChildProfileSettings": "Batasi pengaturan profil anak",
   "accountsSyncHideAdvancedToolsFromChildProfiles": "Sembunyikan alat lanjutan dari profil anak",
-  "accountsSyncDeviceSummary": "{deviceName} • {platform}",
+  "accountsSyncDeviceSummary": "{lastActive} • {platform}",
   "@accountsSyncDeviceSummary": {
     "placeholders": {
       "platform": {
@@ -8016,7 +8005,7 @@
   "accountsSyncSyncDetailsTitle": "Detail sinkronisasi",
   "accountsSyncSyncDetailsSubtitle": "Lihat provider, status, dan aktivitas sinkronisasi terbaru.",
   "accountsSyncCurrentProviderTitle": "Provider saat ini",
-  "accountsSyncCurrentProviderSummary": "Sinkronisasi dikelola melalui {provider}.",
+  "accountsSyncCurrentProviderSummary": "{syncMode} • {transport}",
   "@accountsSyncCurrentProviderSummary": {
     "placeholders": {
       "syncMode": {
@@ -8055,7 +8044,7 @@
   "accountsSyncSyncNowAction": "Sinkronkan sekarang",
   "accountsSyncLastSyncTitle": "Sinkronisasi terakhir",
   "accountsSyncPendingChangesTitle": "Perubahan tertunda",
-  "accountsSyncPendingChangesWaiting": "Menunggu untuk disinkronkan",
+  "accountsSyncPendingChangesWaiting": "{count, plural, =0 {0 changes waiting} =1 {1 change waiting} other {{count} changes waiting}}",
   "@accountsSyncPendingChangesWaiting": {
     "placeholders": {
       "count": {
@@ -8064,7 +8053,7 @@
     }
   },
   "accountsSyncTransportTitle": "Metode transfer",
-  "accountsSyncTransportSummary": "Data dipindahkan melalui {transport}.",
+  "accountsSyncTransportSummary": "{transport} • {status}",
   "@accountsSyncTransportSummary": {
     "placeholders": {
       "transport": {
@@ -8122,8 +8111,6 @@
   "accountsSyncDevicePlatformAndroidTv": "Android TV",
   "settingsAdhanTitle": "Adzan",
   "settingsAdhanSubtitle": "Pilih Adzan Subuh khusus, pratinjau klip yang dibundel, dan simpan audio doa secara offline.",
-  "settingsEnableAdhanAudioTitle": "Aktifkan audio Adzan",
-  "settingsEnableAdhanAudioSubtitle": "Pengingat salat dapat memutar Adzan yang dipilih saat ini aktif.",
   "settingsRegularAdhanTitle": "Adzan Biasa",
   "settingsFajrAdhanTitle": "Adzan Subuh",
   "settingsPreviewVolumeTitle": "Pratinjau & volume",
@@ -8141,8 +8128,6 @@
   "settingsAdhanPickerRegularSubtitle": "Pilih suara yang dipakai untuk salat lainnya.",
   "settingsAdhanPreviewStopTooltip": "Hentikan pratinjau",
   "settingsAdhanPreviewPlayTooltip": "Putar pratinjau",
-  "settingsTestRegularAdhan": "Tes Adzan Reguler",
-  "settingsTestFajrAdhan": "Tes Adzan Subuh",
   "settingsUseAppVolumeTitle": "Gunakan Volume Aplikasi",
   "settingsUseAppVolumeSubtitle": "Jaga agar pemutaran pratinjau tetap selaras dengan tingkat volume aplikasi.",
   "settingsAdhanPreviewVolume": "Volume pratinjau Adzan",
@@ -8166,17 +8151,11 @@
   "settingsThemeChoiceEasyRead": "Mudah Dibaca",
   "settingsThemeChangedSuccessfully": "Tema berhasil diubah",
   "settingsVisualPreferencesTitle": "Preferensi Visual",
-  "settingsDisableGlassTransparencyTitle": "Nonaktifkan Transparansi Kaca",
-  "settingsDisableGlassTransparencySubtitle": "Gunakan permukaan padat daripada kaca tembus pandang.",
   "settingsDisableColoredGlassTitle": "Nonaktifkan Kaca Berwarna",
   "settingsDisableColoredGlassSubtitle": "Jaga permukaan kaca saat menghilangkan perlakuan warna berwarna.",
-  "settingsGlassTransparencyTitle": "Transparansi Kaca",
-  "settingsGlassTransparencySubtitle": "Sesuaikan tampilan kartu kaca, pulau, pil, dan panel tembus pandang di seluruh aplikasi.",
-  "settingsGlassTransparencyDisabledSubtitle": "Nyalakan kembali kaca untuk menyesuaikan transparansi lagi.",
   "settingsVisualPreferenceUpdated": "Preferensi visual diperbarui",
   "settingsDisableBackgroundTitle": "Nonaktifkan Latar Belakang",
   "settingsDisableBackgroundSubtitle": "Sembunyikan citra latar belakang dekoratif untuk tampilan yang lebih bersih.",
-  "settingsAppearanceNoContentChangeNote": "Pengaturan ini mengubah tampilan aplikasi tanpa mengubah konten atau kemajuan Anda.",
   "settingsDefaultAppearanceActive": "Tampilan default aktif",
   "settingsAppearanceResetToDefault": "Tampilan disetel ulang ke default",
   "settingsResetAppearance": "Atur Ulang Penampilan",
@@ -8351,7 +8330,7 @@
       }
     }
   },
-  "settingsSuggestedAdjustmentChangeRow": "Perubahan yang disarankan: {value}",
+  "settingsSuggestedAdjustmentChangeRow": "{prayerName}: {currentValue} → {suggestedValue}",
   "@settingsSuggestedAdjustmentChangeRow": {
     "placeholders": {
       "prayerName": {
@@ -9906,7 +9885,7 @@
   "triviaKnowledgePathsPageSubtitle": "Pilih perjalanan belajar yang terstruktur.",
   "triviaKnowledgePathsEmptyTitle": "Belum ada jalur pengetahuan",
   "triviaKnowledgePathsEmptySubtitle": "Jalur akan muncul di sini saat tersedia.",
-  "triviaKnowledgePathsProgressLabel": "Progres",
+  "triviaKnowledgePathsProgressLabel": "{completed}/{total} stages completed",
   "@triviaKnowledgePathsProgressLabel": {
     "placeholders": {
       "completed": {
@@ -9966,7 +9945,7 @@
   "triviaStatsIncorrect": "Salah",
   "triviaStatsOverallAccuracy": "Akurasi keseluruhan",
   "triviaStatsDailyQuizStreak": "Rangkaian kuis harian",
-  "triviaStatsLongestStreak": "Rangkaian terpanjang",
+  "triviaStatsLongestStreak": "Longest streak: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -9978,7 +9957,7 @@
   "triviaStatsOceanDrops": "Tetesan lautan",
   "triviaStatsPerformanceSnapshotTitle": "Cuplikan performa",
   "triviaStatsNotEnoughData": "Data belum cukup.",
-  "triviaStatsPerformanceSnapshotBody": "Jawaban benar: {correct} • Salah: {incorrect}",
+  "triviaStatsPerformanceSnapshotBody": "Strongest: {strongest} • Weakest: {weakest} • Due now: {dueCount} • Mastered: {masteredCount}",
   "@triviaStatsPerformanceSnapshotBody": {
     "placeholders": {
       "strongest": {
@@ -9997,7 +9976,7 @@
   },
   "triviaStatsCategoryBreakdownTitle": "Rincian kategori",
   "triviaStatsCategoryBreakdownSubtitle": "Lihat performa per kategori.",
-  "triviaStatsCategoryBreakdownRow": "{category} • {accuracy}%",
+  "triviaStatsCategoryBreakdownRow": "{answered} answered • {accuracy}% accuracy • {quizzes} quizzes",
   "@triviaStatsCategoryBreakdownRow": {
     "placeholders": {
       "answered": {
@@ -10140,7 +10119,7 @@
   "batch9TryQuickQuizAction": "Coba kuis singkat",
   "batch9CheckAnswerAction": "Periksa jawaban",
   "batch9FinishLessonAction": "Selesaikan pelajaran",
-  "batch9AudioNotAddedYet": "Audio belum ditambahkan",
+  "batch9AudioNotAddedYet": "Audio for {label} is not added yet.",
   "@batch9AudioNotAddedYet": {
     "placeholders": {
       "label": {
@@ -10148,7 +10127,7 @@
       }
     }
   },
-  "batch9AudioReady": "Audio siap",
+  "batch9AudioReady": "Audio ready for {label}.",
   "@batch9AudioReady": {
     "placeholders": {
       "label": {
@@ -10690,7 +10669,7 @@
   "quranTeachingLessonFormFinal": "End",
   "quranTeachingLessonFormUnavailable": "—",
   "quranTeachingLessonNoForwardJoinHint": "This letter does not connect forward to the next letter.",
-  "batch9AudioCue": "Petunjuk audio",
+  "batch9AudioCue": "{context} • {label}",
   "@batch9AudioCue": {
     "placeholders": {
       "context": {
@@ -10710,7 +10689,7 @@
   "batch9QuranWordsSortMostFrequent": "Paling sering",
   "batch9QuranWordsSortRank": "Peringkat",
   "batch9QuranWordsSearchHint": "Cari kata",
-  "batch9QuranWordsMasteredSummary": "{count} kata telah dikuasai",
+  "batch9QuranWordsMasteredSummary": "{mastered} / {total} mastered",
   "@batch9QuranWordsMasteredSummary": {
     "placeholders": {
       "mastered": {
@@ -10771,7 +10750,7 @@
   "batch9QuranWordsMeaningExpansionTitle": "Meaning",
   "batch9QuranWordsDetailNotFoundTitle": "Word not found",
   "batch9QuranWordsDetailNotFoundSubtitle": "This word study entry is no longer available.",
-  "batch9QuranWordsOccurrenceSummary": "Muncul {count} kali",
+  "batch9QuranWordsOccurrenceSummary": "{meaning} • {count} times in Qur’an",
   "@batch9QuranWordsOccurrenceSummary": {
     "placeholders": {
       "meaning": {
@@ -10782,7 +10761,7 @@
       }
     }
   },
-  "batch9QuranWordsLoadError": "Gagal memuat daftar kata",
+  "batch9QuranWordsLoadError": "Unable to load Holy Qur''an words: {error}",
   "@batch9QuranWordsLoadError": {
     "placeholders": {
       "error": {
@@ -10967,7 +10946,7 @@
   "fastingSectionTitle": "Puasa",
   "fastingSectionSubtitle": "Lihat status puasa hari ini dan riwayat terbaru.",
   "fastingTodayTitle": "Puasa hari ini",
-  "fastingStatusValue": "Status: {status}",
+  "fastingStatusValue": "Status: {value}",
   "@fastingStatusValue": {
     "placeholders": {
       "value": {
@@ -10975,7 +10954,7 @@
       }
     }
   },
-  "fastingTypeValue": "Jenis: {type}",
+  "fastingTypeValue": "Jenis: {value}",
   "@fastingTypeValue": {
     "placeholders": {
       "value": {
@@ -10989,7 +10968,7 @@
   "fastingTodayStatusSubtitle": "Lihat keadaan puasa Anda untuk hari ini.",
   "fastingRecentHistoryTitle": "Riwayat terbaru",
   "fastingRecentHistorySubtitle": "Hari-hari puasa yang baru dicatat.",
-  "fastingHistoryEntry": "{date} • {status}",
+  "fastingHistoryEntry": "{type} • {status}",
   "@fastingHistoryEntry": {
     "placeholders": {
       "type": {
@@ -11018,7 +10997,7 @@
   "prayerQadaRuleIshaSummary": "Qada Isya dapat dilakukan pada malam hari atau setelahnya.",
   "prayerQadaRuleDefaultSummary": "Lakukan qada pada waktu yang aman dan tidak terlarang.",
   "prayerUnknownAdjustment": "Penyesuaian salat tidak dikenal.",
-  "prayerValidationMustRemainBefore": "{label} harus tetap sebelum {otherLabel}.",
+  "prayerValidationMustRemainBefore": "{current} must remain before {next}.",
   "@prayerValidationMustRemainBefore": {
     "placeholders": {
       "current": {
@@ -11064,7 +11043,7 @@
   "accountsSyncResultCompletedSuccessfully": "Sinkronisasi selesai dengan sukses.",
   "accountsSyncEventLocalOnlyModeActive": "Mode hanya lokal aktif",
   "accountsSyncEventNoChanges": "Tidak ada perubahan",
-  "accountsSyncEventUploadedChanges": "Perubahan berhasil diunggah",
+  "accountsSyncEventUploadedChanges": "Uploaded {count} changes",
   "@accountsSyncEventUploadedChanges": {
     "placeholders": {
       "count": {
@@ -11072,7 +11051,7 @@
       }
     }
   },
-  "accountsSyncEventAppliedInboundChanges": "Perubahan masuk berhasil diterapkan",
+  "accountsSyncEventAppliedInboundChanges": "Applied {count} inbound changes",
   "@accountsSyncEventAppliedInboundChanges": {
     "placeholders": {
       "count": {
@@ -18649,146 +18628,6 @@
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
   },
-  "@quranTeachingSectionTitle": null,
-  "@quranTeachingSectionSubtitle": null,
-  "@quranTeachingAlphabetOverviewTitle": null,
-  "@quranTeachingAlphabetOverviewForms": null,
-  "@quranTeachingAlphabetOverviewBrowseAction": null,
-  "@quranTeachingAlphabetOverviewShapesAction": null,
-  "@quranTeachingPathTitle": null,
-  "@quranTeachingPathSubtitle": null,
-  "@quranTeachingVisualModeOn": null,
-  "@quranTeachingVisualModeOff": null,
-  "@quranTeachingContinueTitle": null,
-  "@quranTeachingContinueEmpty": null,
-  "@quranTeachingStartLessonAction": null,
-  "@quranTeachingContinueLessonAction": null,
-  "@quranTeachingRecommendedTitle": null,
-  "@quranTeachingRecommendedEmpty": null,
-  "@quranTeachingOpenAction": null,
-  "@quranTeachingVisualModeTitle": null,
-  "@quranTeachingVisualModeSubtitle": null,
-  "@quranTeachingVisualModeToggle": null,
-  "@quranTeachingOpenListenOnlyAction": null,
-  "@quranTeachingReviewMistakesTitle": null,
-  "@quranTeachingReviewMistakesEmpty": null,
-  "@quranTeachingOpenReviewAction": null,
-  "@quranTeachingPracticeNowAction": null,
-  "@quranTeachingReviewProgressTitle": null,
-  "@quranTeachingPracticeRecommendationsTitle": null,
-  "@quranTeachingRecentlyLearnedTitle": null,
-  "@quranTeachingPracticeAgainTitle": null,
-  "@quranTeachingPracticeAgainSubtitle": null,
-  "@quranTeachingLearningPathTitle": null,
-  "@quranTeachingRecommendedBadge": null,
-  "@quranTeachingModuleLocked": null,
-  "@quranTeachingChooseLevelTitle": null,
-  "@quranTeachingChooseLevelSubtitle": null,
-  "@quranTeachingModeGuided": null,
-  "@quranTeachingModeBroad": null,
-  "@quranTeachingModeOpen": null,
-  "@quranTeachingLevelCompletelyNewTitle": null,
-  "@quranTeachingLevelCompletelyNewDescription": null,
-  "@quranTeachingLevelKnowSomeLettersTitle": null,
-  "@quranTeachingLevelKnowSomeLettersDescription": null,
-  "@quranTeachingLevelReadSlowlyTitle": null,
-  "@quranTeachingLevelReadSlowlyDescription": null,
-  "@quranTeachingLevelImproveReadingTitle": null,
-  "@quranTeachingLevelImproveReadingDescription": null,
-  "@quranTeachingLevelOpenReferenceTitle": null,
-  "@quranTeachingLevelOpenReferenceDescription": null,
-  "@quranTeachingModuleNextLessonTitle": null,
-  "@quranTeachingModuleNextLessonAction": null,
-  "@quranTeachingModuleListenOnlyAction": null,
-  "@quranTeachingModuleLearnWords": null,
-  "@quranTeachingModuleFoundInQuran": null,
-  "@quranTeachingModuleStarterSurahShelfTitle": null,
-  "@quranTeachingModuleLessonsTitle": null,
-  "@quranTeachingLessonHearThis": null,
-  "@quranTeachingLessonExamplesTitle": null,
-  "@quranTeachingLessonQuickQuizTitle": null,
-  "@quranTeachingLessonHearAudio": null,
-  "@quranTeachingLessonTapPiecesHint": null,
-  "@quranTeachingLessonCompleteTitle": null,
-  "@quranTeachingLessonBackToModule": null,
-  "@quranTeachingLessonLetterProfileTitle": null,
-  "@quranTeachingLessonFormsTitle": null,
-  "@quranTeachingLessonFormIsolated": null,
-  "@quranTeachingLessonFormInitial": null,
-  "@quranTeachingLessonFormMedial": null,
-  "@quranTeachingLessonFormFinal": null,
-  "@quranTeachingLessonFormUnavailable": null,
-  "@quranTeachingLessonNoForwardJoinHint": null,
-  "learningJourneyHomeRecommendedSubtitle": "A small set of paths that fit what you have already opened or completed.",
-  "batch9QuranWordsFlashCard": "Kartu hafalan",
-  "@batch9QuranWordsFlashCard": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      },
-      "meaning": {
-        "type": "String"
-      }
-    }
-  },
-  "homeGlassPreviewTitle": "Glass Style Preview",
-  "homeGlassPreviewSubtitle": "Temporary visual comparison of surface styles for calm homepage islands.",
-  "homeGlassPreviewFootnote": "Preview only — not yet applied across the app. This section is temporary and safe to remove after a glass direction is chosen.",
-  "homeGlassPreviewLegend": "Layered inner surface sample",
-  "homeGlassPreviewMetaBlur": "Blur",
-  "homeGlassPreviewMetaOpacity": "Opacity",
-  "homeGlassPreviewMetaReadability": "Readability",
-  "homeGlassPreviewReadabilityGentle": "Gentle",
-  "homeGlassPreviewReadabilityBalanced": "Balanced",
-  "homeGlassPreviewReadabilityHigh": "High",
-  "homeGlassPreviewWarmTitle": "Warm Glass",
-  "homeGlassPreviewWarmDescriptor": "Amber warmth with a calm devotional glow",
-  "homeGlassPreviewWarmBody": "Designed for prayer summaries, home reflections, and moments that should feel welcoming without becoming heavy. It keeps warmth close to the surface while preserving readable depth.",
-  "homeGlassPreviewWarmChip": "Prayer summary fit",
-  "homeGlassPreviewMilkyTitle": "Milky Glass",
-  "homeGlassPreviewMilkyDescriptor": "Cloudy ivory diffusion with softer transparency",
-  "homeGlassPreviewMilkyBody": "Designed for calm, readable surfaces with gentle depth. It feels especially strong for devotional cards, prayer summaries, and serene learning moments that need quiet clarity.",
-  "homeGlassPreviewMilkyChip": "Devotional favorite",
-  "homeGlassPreviewCrystalTitle": "Crystal Glass",
-  "homeGlassPreviewCrystalDescriptor": "Sharper clarity with cooler reflective lift",
-  "homeGlassPreviewCrystalBody": "Useful when you want the background to breathe through more clearly while still keeping titles crisp. It feels premium for highlights, featured insights, and polished showcase cards.",
-  "homeGlassPreviewCrystalChip": "Sharper focus",
-  "homeGlassPreviewNightTitle": "Night Glass",
-  "homeGlassPreviewNightDescriptor": "Smoky dusk layering with elegant low light",
-  "homeGlassPreviewNightBody": "A darker surface for late-evening atmosphere without sliding into harsh black panels. It works best for reflective content, deeper reading moments, and richer nighttime presentation.",
-  "homeGlassPreviewNightChip": "Night reflection",
-  "homeGlassPreviewTintedTitle": "Tinted Glass",
-  "homeGlassPreviewTintedDescriptor": "Soft color infusion with warm rosier undertones",
-  "homeGlassPreviewTintedBody": "This version brings a clearer sense of personality without turning neon or loud. It can suit featured reminders, curated editorial cards, and softer premium accents on home.",
-  "homeGlassPreviewTintedChip": "Editorial accent",
-  "homeGlassPreviewFrostedTitle": "Frosted Glass",
-  "homeGlassPreviewFrostedDescriptor": "Diffuse blur with quiet, paper-like softness",
-  "homeGlassPreviewFrostedBody": "A stronger blur treatment that protects readability first. It feels dependable for practical cards, utility summaries, and any surface where the content should lead over the material.",
-  "homeGlassPreviewFrostedChip": "Utility calm",
-  "homeGlassPreviewLayeredTitle": "Layered Glass",
-  "homeGlassPreviewLayeredDescriptor": "Primary glass surface with a nested inner veil",
-  "homeGlassPreviewLayeredBody": "Helpful when a card needs hierarchy inside hierarchy. The layered feel can support guided actions, richer dashboards, or sections where one calm panel sits inside another.",
-  "homeGlassPreviewLayeredChip": "Nested hierarchy",
-  "homeGlassPreviewEdgeLitTitle": "Edge-lit Glass",
-  "homeGlassPreviewEdgeLitDescriptor": "Subtle rim light with clearer luminous edges",
-  "homeGlassPreviewEdgeLitBody": "This style adds a little more presence around the perimeter while keeping the center calm. It can work for featured destinations, premium shortcuts, and attention-worthy highlights.",
-  "homeGlassPreviewEdgeLitChip": "Featured island",
-  "homeGlassPreviewAdaptiveTitle": "Adaptive Glass",
-  "homeGlassPreviewAdaptiveDescriptor": "Tint and mood that shift with the surrounding atmosphere",
-  "homeGlassPreviewAdaptiveBody": "Built to flex between warmer daylight and deeper evening surroundings. It aims for a stable middle ground that stays coherent across themes without demanding too much visual attention.",
-  "homeGlassPreviewAdaptiveChip": "Theme-aware",
-  "homeGlassPreviewSoftMatteTitle": "Soft Matte Glass",
-  "homeGlassPreviewSoftMatteDescriptor": "Velvety diffusion with reduced highlight sparkle",
-  "homeGlassPreviewSoftMatteBody": "This leans toward softness over shine, which can help content feel grounded and restful. It may suit journaling, daily checkpoints, and spaces that should feel gentle rather than glossy.",
-  "homeGlassPreviewSoftMatteChip": "Restful reading",
-  "homeGlassPreviewDenseSanctuaryTitle": "Dense Sanctuary Glass",
-  "homeGlassPreviewDenseSanctuaryDescriptor": "Clouded sanctuary depth with the strongest calm cover",
-  "homeGlassPreviewDenseSanctuaryBody": "One of the safest options for sacred, text-heavy moments because it shields the content from background noise. It feels especially fitting for duas, reflections, and focused spiritual summaries.",
-  "homeGlassPreviewDenseSanctuaryChip": "Sanctuary tone",
-  "homeGlassPreviewClearShowcaseTitle": "Clear Showcase Glass",
-  "homeGlassPreviewClearShowcaseDescriptor": "High transparency with brighter display energy",
-  "homeGlassPreviewClearShowcaseBody": "This is the most open and reflective option in the set. It is useful for comparison and premium showcase moments, though it needs careful contrast management before broader use.",
-  "homeGlassPreviewClearShowcaseChip": "Most transparent",
   "legalAttributionsAdhanBody": "Sumber klip pengingat azan bawaan:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nURL berkas asli:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nPenulis yang tercantum di halaman sumber: Jarih (karya sendiri)\nLisensi: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCatatan saat ini: aplikasi menyertakan varian azan cadangan offline sementara yang diturunkan dari klip bawaan ini sampai set pengganti hasil kurasi dipasang.",
   "legalAttributionsAdhanTitle": "Audio Notifikasi Azan",
   "legalAttributionsQuranBody": "Aplikasi ini saat ini menggunakan paket Flutter \"quran\" untuk integrasi teks Arab dan terjemahan.\n\nTautan sumber:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran",
@@ -18890,5 +18729,38 @@
   "occasionOfferDecline": "Nanti saja",
   "homeGreetingEidMubarak": "Selamat Hari Raya",
   "settingsLivingSkyTitle": "Langit yang hidup",
-  "settingsLivingSkySubtitle": "Noor Glass mengikuti hari — fajar merah jambu keemasan, Magrib kuning sawo, dan langit berbintang setelah gelap."
+  "settingsLivingSkySubtitle": "Noor Glass mengikuti hari — fajar merah jambu keemasan, Magrib kuning sawo, dan langit berbintang setelah gelap.",
+  "settingsGroupYouTitle": "Anda",
+  "settingsGroupWorshipTitle": "Salat & Pengingat",
+  "settingsGroupAppTitle": "Aplikasi",
+  "settingsGroupSupportTitle": "Bantuan & Tentang",
+  "settingsCategoryProfileSubtitle": "Nama Anda, cara aplikasi menyapa Anda, dan mode dukungan.",
+  "settingsCategoryAdhanSubtitle": "Pilih azan, dengarkan pratinjau, dan atur volumenya.",
+  "settingsSearchTitle": "Cari Pengaturan",
+  "settingsSearchSubtitle": "Temukan pengaturan apa pun berdasarkan namanya.",
+  "settingsSearchHint": "Cari pengaturan",
+  "settingsSearchTooltip": "Cari pengaturan",
+  "settingsSearchEmptyTitle": "Tidak ada yang cocok",
+  "settingsSearchEmptySubtitle": "Coba kata lain, atau jelajahi grup di halaman Pengaturan.",
+  "settingsSearchPromptTitle": "Ketik untuk mencari",
+  "settingsSearchPromptSubtitle": "Coba “azan”, “gelap”, “pengingat”, atau “cadangan”.",
+  "legalPrivacyTitle": "Kebijakan Privasi",
+  "legalPrivacySubtitle": "Bagaimana Path of Nūr menangani data Anda.",
+  "legalTermsTitle": "Ketentuan Penggunaan",
+  "legalTermsSubtitle": "Apa aplikasi ini, dan apa yang bukan.",
+  "legalSupportTitle": "Dukungan",
+  "legalSupportSubtitle": "Mendapatkan bantuan dan melaporkan masalah.",
+  "settingsLegalTitle": "Legal",
+  "settingsAccessibilityTitle": "Aksesibilitas",
+  "settingsOccasionThemesTitle": "Tema Momen",
+  "settingsOccasionThemesSubtitle": "Biarkan aplikasi berhias untuk Jumat, Ramadan, Lailatulqadar, dan Idulfitri.",
+  "quickActionsSettingsSubtitle": "Tampilan, azan, pengingat",
+  "quickActionsSearchSubtitle": "Al-Qur’an, hadis, doa, pelajaran",
+  "settingsSalahCalculationTitle": "Perhitungan",
+  "settingsSalahCalculationSubtitle": "Metode dan mazhab yang dipakai untuk menghitung waktu salat Anda.",
+  "settingsAdhanSoundTitle": "Suara Azan",
+  "settingsRemindersPerPrayerTitle": "Pengingat Tiap Salat",
+  "settingsOtherRemindersTitle": "Pengingat Lainnya",
+  "settingsPermissionsTitle": "Izin",
+  "settingsWhatOthersSeeTitle": "Yang Ditampilkan Aplikasi"
 }

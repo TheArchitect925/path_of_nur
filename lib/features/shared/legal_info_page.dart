@@ -18,15 +18,15 @@ class LegalInfoPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     final title = switch (kind) {
-      LegalInfoKind.privacy => l10n.profileTrackingPrivacyTitle,
-      LegalInfoKind.terms => l10n.profileAboutTitle,
-      LegalInfoKind.support => l10n.profileNotificationsTitle,
+      LegalInfoKind.privacy => l10n.legalPrivacyTitle,
+      LegalInfoKind.terms => l10n.legalTermsTitle,
+      LegalInfoKind.support => l10n.legalSupportTitle,
     };
 
     final subtitle = switch (kind) {
-      LegalInfoKind.privacy => l10n.profileTrackingPrivacySubtitle,
-      LegalInfoKind.terms => l10n.profileAboutSubtitle,
-      LegalInfoKind.support => l10n.profileNotificationsSubtitle,
+      LegalInfoKind.privacy => l10n.legalPrivacySubtitle,
+      LegalInfoKind.terms => l10n.legalTermsSubtitle,
+      LegalInfoKind.support => l10n.legalSupportSubtitle,
     };
 
     final body = switch (kind) {

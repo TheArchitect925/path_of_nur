@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../shared/widgets/display/hub_list_group.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../learn/presentation/widgets/learn_discovery_search_field.dart';
 import 'help_guide_content.dart';
@@ -39,12 +41,10 @@ class _HelpGuideHubPageState extends State<HelpGuideHubPage> {
         .where((entry) => entry.matchesQuery(query))
         .toList(growable: false);
 
-    return SectionHubScaffold(
+    return AppPageScaffold(
       headerIcon: Icons.help_center_outlined,
       title: l10n.settingsHelpGuideTitle,
       subtitle: l10n.settingsHelpGuideSubtitle,
-      shortcutOpenLabel: l10n.learnShortcutOpen,
-      shortcutCloseLabel: l10n.learnShortcutClose,
       children: [
         PremiumCard(
           child: LearnDiscoverySearchField(
@@ -63,7 +63,6 @@ class _HelpGuideHubPageState extends State<HelpGuideHubPage> {
               ? l10n.settingsHelpGuideBrowseSubtitle
               : l10n.settingsHelpGuideSearchResultsSubtitle,
         ),
-        const SizedBox(height: 8),
         if (filtered.isEmpty)
           PremiumCard(
             child: Column(
@@ -81,22 +80,25 @@ class _HelpGuideHubPageState extends State<HelpGuideHubPage> {
             ),
           )
         else
-          SectionHubActionGrid(
-            actions: filtered
-                .map(
-                  (entry) => SectionHubAction(
-                    title: entry.title,
-                    subtitle: entry.description,
-                    icon: entry.icon,
-                    color: entry.color,
-                    accentColor: entry.accentColor,
-                    onTap: () => context.pushNamed(
-                      'settingsHelpGuideDetail',
-                      pathParameters: <String, String>{'guideId': entry.id},
-                    ),
+          // Same row grammar as the Settings landing; the guides used to be
+          // pastel tiles carrying their own fixed, unthemed colours.
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (var i = 0; i < filtered.length; i++) ...[
+                if (i > 0) const SizedBox(height: 6),
+                CompactListTile(
+                  title: filtered[i].title,
+                  subtitle: filtered[i].description,
+                  leading: HubLeadingIcon(filtered[i].icon),
+                  trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                  onTap: () => context.pushNamed(
+                    'settingsHelpGuideDetail',
+                    pathParameters: <String, String>{'guideId': filtered[i].id},
                   ),
-                )
-                .toList(growable: false),
+                ),
+              ],
+            ],
           ),
       ],
     );

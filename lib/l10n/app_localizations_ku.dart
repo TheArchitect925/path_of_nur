@@ -67,7 +67,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaTitle(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaTitle(String prayerName) {
     return 'Bîranîna pencereya $prayerName';
   }
 
@@ -106,7 +106,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaBody(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaBody(String prayerName) {
     return 'Dema $prayerName nêzîkî bi dawî bûnê ye. Berî ku bibe qaza, wê pêk bîne.';
   }
 
@@ -208,9 +208,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get notificationsFastingLiveFastBeginsArabicTitle => 'يبدأ الصوم';
 
   @override
-  String notificationsFastingLiveStartsIn(Object duration) {
-    return 'Dest pê dike di';
-  }
+  String get notificationsFastingLiveStartsIn => 'Dest pê dike di';
 
   @override
   String get notificationsFastingLiveRenewIntentionTitle =>
@@ -230,9 +228,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get notificationsFastingLiveFastEndsArabicTitle => 'يفطر الصائم';
 
   @override
-  String notificationsFastingLiveEndsIn(Object duration) {
-    return 'Dawî dibe di';
-  }
+  String get notificationsFastingLiveEndsIn => 'Dawî dibe di';
 
   @override
   String get notificationsFastingLiveIftarDuaTitle => 'Duaya iftarê';
@@ -1992,7 +1988,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get worshipPrayerSisterCyclePauseTitle => 'Rawestana cycle ya xwişkê';
 
   @override
-  String worshipPrayerCycleDay(String dayNumber, Object day) {
+  String worshipPrayerCycleDay(String dayNumber) {
     return 'Roj $dayNumber yê cycle';
   }
 
@@ -2068,8 +2064,6 @@ class AppLocalizationsKu extends AppLocalizations {
     String offerTime,
     String windowStart,
     String windowEnd,
-    Object end,
-    Object start,
   ) {
     return '$offerTime  •  Pencereya salahê: $windowStart–$windowEnd';
   }
@@ -2155,11 +2149,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerCompletionValue(
-    String value,
-    Object completed,
-    Object total,
-  ) {
+  String worshipPrayerCompletionValue(String value) {
     return 'Temamkirin $value%';
   }
 
@@ -2184,14 +2174,8 @@ class AppLocalizationsKu extends AppLocalizations {
   String get worshipPrayerRakatGuideTitle => 'Rêbera rakatê (Fard)';
 
   @override
-  String worshipPrayerRakatGuideValue(
-    Object count,
-    Object prayer,
-    Object prayerName,
-    Object rakat,
-  ) {
-    return 'Fajr: 2  •  Dhuhr: 4  •  Asr: 4  •  Maghrib: 3  •  Isha: 4';
-  }
+  String get worshipPrayerRakatGuideValue =>
+      'Fajr: 2  •  Dhuhr: 4  •  Asr: 4  •  Maghrib: 3  •  Isha: 4';
 
   @override
   String get worshipPrayerRakatGuideTip =>
@@ -2201,11 +2185,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get worshipPrayerMoonPhaseTitle => 'Qonaxa heyvê';
 
   @override
-  String worshipPrayerMoonPhaseIllumination(
-    String phaseLabel,
-    String percent,
-    Object value,
-  ) {
+  String worshipPrayerMoonPhaseIllumination(String phaseLabel, String percent) {
     return '$phaseLabel • $percent% ronakbûyî';
   }
 
@@ -2291,16 +2271,12 @@ class AppLocalizationsKu extends AppLocalizations {
       'Ritma fokusdar: rojane 3 qaza di blokên biçûk û domdar de.';
 
   @override
-  String worshipPrayerEstimatedDaysToClear(String days, Object count) {
+  String worshipPrayerEstimatedDaysToClear(String days) {
     return 'Rojên texmînkirî ji bo paqijkirinê: $days';
   }
 
   @override
-  String worshipPrayerTodaysQadaTarget(
-    String completed,
-    String target,
-    Object count,
-  ) {
+  String worshipPrayerTodaysQadaTarget(String completed, String target) {
     return 'Armanca qezaya îro: $completed / $target';
   }
 
@@ -2355,7 +2331,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerWeekLabel(int weekNumber, Object index, Object number) {
+  String worshipPrayerWeekLabel(int weekNumber) {
     return 'H$weekNumber';
   }
 
@@ -2763,8 +2739,8 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String homePrayerBecomesQada(Object prayerName, Object prayer, Object time) {
-    return '$prayer dibe qaza di $time de';
+  String homePrayerBecomesQada(Object prayerName) {
+    return '$prayerName becomes qada';
   }
 
   @override
@@ -2792,31 +2768,26 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homePrayerForbiddenSunset => 'Salah not allowed now • Sunset';
 
   @override
-  String homeLevelValue(Object level, Object value) {
-    return 'Asta $value';
+  String homeLevelValue(Object level) {
+    return 'Asta $level';
   }
 
   @override
-  String homeXpValue(Object xp, Object value) {
-    return '$value XP';
+  String homeXpValue(Object xp) {
+    return '$xp XP';
   }
 
   @override
-  String homeXpToNextLevelValue(Object xp, Object value) {
-    return '$value XP bo asta din';
+  String homeXpToNextLevelValue(Object xp) {
+    return '$xp XP bo asta din';
   }
 
   @override
   String get homeDailyBadgesTitle => 'Badge-yên rojane';
 
   @override
-  String homeContinueQuranValue(
-    Object surahName,
-    Object ayahNumber,
-    Object surah,
-    Object verse,
-  ) {
-    return 'Qur’anê bidomîne';
+  String homeContinueQuranValue(Object surahName, Object ayahNumber) {
+    return '$surahName $ayahNumber';
   }
 
   @override
@@ -2824,11 +2795,8 @@ class AppLocalizationsKu extends AppLocalizations {
     Object prayerPercent,
     Object dhikrPercent,
     Object quranPercent,
-    Object completed,
-    Object count,
-    Object total,
   ) {
-    return 'Rings-ên rêwîtiyê';
+    return 'P $prayerPercent% · D $dhikrPercent% · Q $quranPercent%';
   }
 
   @override
@@ -2881,9 +2849,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homePrayerPostSalahDhikrLogged => 'Post-salah dhikr logged';
 
   @override
-  String homePrayerBeginsAt(Object time) {
-    return 'Di $time de dest pê dike';
-  }
+  String get homePrayerBeginsAt => 'Begins at';
 
   @override
   String homeDurationMinutes(String minutes) {
@@ -2903,7 +2869,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String homeLearnCategoryFallbackSubtitle(String category) {
-    return 'Ji bo bidestxistina dersên kurt û aram keşf bike.';
+    return 'Learn category • $category';
   }
 
   @override
@@ -4215,8 +4181,8 @@ class AppLocalizationsKu extends AppLocalizations {
       'Girêdanên di navbera mijaran de bi awayekî dîtbar keşf bike.';
 
   @override
-  String learnHubSavedNotesSummary(Object saved, Object notes, Object count) {
-    return '$count notên hilanîn';
+  String learnHubSavedNotesSummary(Object saved, Object notes) {
+    return 'Saved items: $saved • Notes: $notes';
   }
 
   @override
@@ -4243,7 +4209,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String learnHubDailyThemeLabel(Object theme) {
-    return 'Mijara îro';
+    return 'Theme: $theme';
   }
 
   @override
@@ -5258,8 +5224,8 @@ class AppLocalizationsKu extends AppLocalizations {
   String get learnHubTypeAnyLabel => 'Her cure';
 
   @override
-  String learnHubTypeValueLabel(Object type, Object value) {
-    return 'Cure: $value';
+  String learnHubTypeValueLabel(Object type) {
+    return 'Cure: $type';
   }
 
   @override
@@ -5269,8 +5235,8 @@ class AppLocalizationsKu extends AppLocalizations {
   String get learnHubThemeAnyLabel => 'Her mijar';
 
   @override
-  String learnHubThemeValueLabel(Object theme, Object value) {
-    return 'Mijar: $value';
+  String learnHubThemeValueLabel(Object theme) {
+    return 'Mijar: $theme';
   }
 
   @override
@@ -5280,8 +5246,8 @@ class AppLocalizationsKu extends AppLocalizations {
   String get learnHubDifficultyAnyLabel => 'Her ast';
 
   @override
-  String learnHubDifficultyValueLabel(Object difficulty, Object value) {
-    return 'Ast: $value';
+  String learnHubDifficultyValueLabel(Object difficulty) {
+    return 'Ast: $difficulty';
   }
 
   @override
@@ -5308,13 +5274,8 @@ class AppLocalizationsKu extends AppLocalizations {
   String get learnHubNoMatchingItems => 'Tiştek li hev nehat';
 
   @override
-  String learnHubPathProgress(
-    Object completed,
-    Object total,
-    Object progress,
-    Object value,
-  ) {
-    return 'Pêşketina rêçê $value';
+  String learnHubPathProgress(Object completed, Object total) {
+    return '$completed / $total completed';
   }
 
   @override
@@ -5388,7 +5349,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String quranReferenceViewerReferenceLabel(Object reference) {
-    return 'Referans';
+    return 'Qur’an $reference';
   }
 
   @override
@@ -6662,11 +6623,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get triviaHomeNoAnswersYet => 'Hêj bersiv tune';
 
   @override
-  String triviaHomeCategoryAccuracy(
-    Object percent,
-    Object accuracy,
-    Object category,
-  ) {
+  String triviaHomeCategoryAccuracy(Object percent) {
     return 'Rastî $percent%';
   }
 
@@ -6699,9 +6656,6 @@ class AppLocalizationsKu extends AppLocalizations {
     Object correct,
     Object total,
     Object xp,
-    Object accuracy,
-    Object incorrect,
-    Object sessions,
   ) {
     return '$category • $correct/$total rast • +$xp XP';
   }
@@ -6728,13 +6682,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Xelatên dubarekirinê siviktir in';
 
   @override
-  String triviaResultsCompletedSummary(
-    Object seconds,
-    Object missed,
-    Object completed,
-    Object correct,
-    Object total,
-  ) {
+  String triviaResultsCompletedSummary(Object seconds, Object missed) {
     return 'Di ${seconds}s de temam bû • $missed winda bûn';
   }
 
@@ -6897,16 +6845,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Bi rêzê herikî. Her stage-a temam ya din vedike.';
 
   @override
-  String triviaKnowledgeStageSummary(
-    Object count,
-    Object xp,
-    Object difficulty,
-    Object index,
-    Object questionCount,
-    Object questions,
-    Object status,
-    Object total,
-  ) {
+  String triviaKnowledgeStageSummary(Object count, Object xp) {
     return '$count pirs • +$xp XP';
   }
 
@@ -19278,13 +19217,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Ji bo destpêkirinê profîlek hilbijêre.';
 
   @override
-  String accountsSyncProfileStatusSummary(
-    String profileType,
-    String syncMode,
-    Object profile,
-    Object profileName,
-    Object status,
-  ) {
+  String accountsSyncProfileStatusSummary(String profileType, String syncMode) {
     return '$profileType • $syncMode';
   }
 
@@ -19502,8 +19435,6 @@ class AppLocalizationsKu extends AppLocalizations {
     String provider,
     String identifier,
     String syncMode,
-    Object account,
-    Object profiles,
   ) {
     return '$provider • $identifier • $syncMode';
   }
@@ -20189,13 +20120,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Amûrên pêşketî ji profîlên zarokan veşêre';
 
   @override
-  String accountsSyncDeviceSummary(
-    String platform,
-    String lastActive,
-    Object device,
-    Object deviceName,
-    Object status,
-  ) {
+  String accountsSyncDeviceSummary(String platform, String lastActive) {
     return '$platform • Çalakiya dawî $lastActive';
   }
 
@@ -20400,11 +20325,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get accountsSyncCurrentProviderTitle => 'Provider-a niha';
 
   @override
-  String accountsSyncCurrentProviderSummary(
-    String syncMode,
-    String transport,
-    Object provider,
-  ) {
+  String accountsSyncCurrentProviderSummary(String syncMode, String transport) {
     return '$syncMode • $transport';
   }
 
@@ -21061,9 +20982,6 @@ class AppLocalizationsKu extends AppLocalizations {
     String prayerName,
     String currentValue,
     String suggestedValue,
-    Object change,
-    Object prayer,
-    Object value,
   ) {
     return '$prayerName: $currentValue ← $suggestedValue';
   }
@@ -23849,8 +23767,6 @@ class AppLocalizationsKu extends AppLocalizations {
     String weakest,
     String dueCount,
     String masteredCount,
-    Object correct,
-    Object incorrect,
   ) {
     return 'Herî qewî: $strongest • Herî lawaz: $weakest • Niha li bendê: $dueCount • Master bûyî: $masteredCount';
   }
@@ -23867,9 +23783,6 @@ class AppLocalizationsKu extends AppLocalizations {
     String answered,
     String accuracy,
     String quizzes,
-    Object category,
-    Object correct,
-    Object total,
   ) {
     return '$answered hatine bersivdan • $accuracy% rastî • $quizzes quiz';
   }
@@ -24034,12 +23947,12 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String batch9AudioNotAddedYet(String label) {
-    return 'Hêj deng nehatiye zêdekirin';
+    return 'Audio for $label is not added yet.';
   }
 
   @override
   String batch9AudioReady(String label) {
-    return 'Deng amade ye';
+    return 'Audio ready for $label.';
   }
 
   @override
@@ -24871,7 +24784,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String batch9AudioCue(String context, String label) {
-    return 'Nîşana dengê';
+    return '$context • $label';
   }
 
   @override
@@ -24903,12 +24816,8 @@ class AppLocalizationsKu extends AppLocalizations {
   String get batch9QuranWordsSearchHint => 'Li peyvekê bigere';
 
   @override
-  String batch9QuranWordsMasteredSummary(
-    String mastered,
-    String total,
-    Object count,
-  ) {
-    return '$count hatine master kirin';
+  String batch9QuranWordsMasteredSummary(String mastered, String total) {
+    return '$mastered / $total mastered';
   }
 
   @override
@@ -24987,12 +24896,12 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String batch9QuranWordsOccurrenceSummary(String meaning, String count) {
-    return '$count caran derketiye holê';
+    return '$meaning • $count times in Qur’an';
   }
 
   @override
   String batch9QuranWordsLoadError(String error) {
-    return 'Barkirina peyvên Qur’anê têk çû';
+    return 'Unable to load Holy Qur\'an words: $error';
   }
 
   @override
@@ -25386,12 +25295,12 @@ class AppLocalizationsKu extends AppLocalizations {
   String get fastingTodayTitle => 'Îro';
 
   @override
-  String fastingStatusValue(String value, Object status) {
+  String fastingStatusValue(String value) {
     return 'Rewş: $value';
   }
 
   @override
-  String fastingTypeValue(String value, Object type) {
+  String fastingTypeValue(String value) {
     return 'Cure: $value';
   }
 
@@ -25417,7 +25326,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Pêşdîtineke kurt a berhev ji bo pêkanîna destpêkê.';
 
   @override
-  String fastingHistoryEntry(String type, String status, Object date) {
+  String fastingHistoryEntry(String type, String status) {
     return '$type • $status';
   }
 
@@ -25483,14 +25392,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get prayerUnknownAdjustment => 'Rastkirina namaza nenas.';
 
   @override
-  String prayerValidationMustRemainBefore(
-    String current,
-    String next,
-    Object first,
-    Object label,
-    Object otherLabel,
-    Object second,
-  ) {
+  String prayerValidationMustRemainBefore(String current, String next) {
     return '$current divê berî $next bimîne.';
   }
 
@@ -42635,4 +42537,109 @@ class AppLocalizationsKu extends AppLocalizations {
   @override
   String get settingsLivingSkySubtitle =>
       'نوور گڵاس لەگەڵ ڕۆژدا دەڕوات — بەرەبەیانی گوڵاوی-زێڕین، مەغریبی کارەبایی و ئاسمانی پڕئەستێرە دوای تاریکی.';
+
+  @override
+  String get settingsGroupYouTitle => 'تۆ';
+
+  @override
+  String get settingsGroupWorshipTitle => 'نوێژ و بیرخەرەوەکان';
+
+  @override
+  String get settingsGroupAppTitle => 'ئەپ';
+
+  @override
+  String get settingsGroupSupportTitle => 'یارمەتی و دەربارە';
+
+  @override
+  String get settingsCategoryProfileSubtitle =>
+      'ناوت، چۆنیەتی بانگکردنت لەلایەن ئەپەوە، و دۆخەکانی چاودێری.';
+
+  @override
+  String get settingsCategoryAdhanSubtitle =>
+      'بانگ هەڵبژێرە، گوێی لێبگرە و دەنگی ڕێکبخە.';
+
+  @override
+  String get settingsSearchTitle => 'گەڕان بە ڕێکخستنەکان';
+
+  @override
+  String get settingsSearchSubtitle => 'هەر ڕێکخستنێک بە ناوی بدۆزەرەوە.';
+
+  @override
+  String get settingsSearchHint => 'گەڕان بە ڕێکخستنەکان';
+
+  @override
+  String get settingsSearchTooltip => 'گەڕان بە ڕێکخستنەکان';
+
+  @override
+  String get settingsSearchEmptyTitle => 'هیچ نەدۆزرایەوە';
+
+  @override
+  String get settingsSearchEmptySubtitle =>
+      'وشەیەکی تر تاقی بکەرەوە، یان گروپەکانی پەڕەی ڕێکخستن بگەڕێ.';
+
+  @override
+  String get settingsSearchPromptTitle => 'بۆ گەڕان بنووسە';
+
+  @override
+  String get settingsSearchPromptSubtitle =>
+      '“بانگ”، “تاریک”، “بیرخەرەوە”، یان “پاڵپشت” تاقی بکەرەوە.';
+
+  @override
+  String get legalPrivacyTitle => 'سیاسەتی تایبەتمەندی';
+
+  @override
+  String get legalPrivacySubtitle => 'چۆن Path of Nūr داتاکانت بەڕێوە دەبات.';
+
+  @override
+  String get legalTermsTitle => 'مەرجەکانی بەکارهێنان';
+
+  @override
+  String get legalTermsSubtitle => 'ئەم ئەپە چییە و چی نییە.';
+
+  @override
+  String get legalSupportTitle => 'پشتگیری';
+
+  @override
+  String get legalSupportSubtitle => 'وەرگرتنی یارمەتی و ڕاپۆرتکردنی کێشە.';
+
+  @override
+  String get settingsLegalTitle => 'یاسایی';
+
+  @override
+  String get settingsAccessibilityTitle => 'دەستڕاگەیشتن';
+
+  @override
+  String get settingsOccasionThemesTitle => 'ڕووکاری بۆنەکان';
+
+  @override
+  String get settingsOccasionThemesSubtitle =>
+      'با ئەپەکە بۆ هەینی، ڕەمەزان، شەوی قەدر و جەژن خۆی بڕازێنێتەوە.';
+
+  @override
+  String get quickActionsSettingsSubtitle => 'ڕوخسار، بانگ، بیرخەرەوەکان';
+
+  @override
+  String get quickActionsSearchSubtitle => 'قورئان، حەدیس، دوعا، وانەکان';
+
+  @override
+  String get settingsSalahCalculationTitle => 'ژماردن';
+
+  @override
+  String get settingsSalahCalculationSubtitle =>
+      'ئەو ڕێباز و مەزهەبەی بۆ دیاریکردنی کاتەکانی نوێژت بەکاردێت.';
+
+  @override
+  String get settingsAdhanSoundTitle => 'دەنگی بانگ';
+
+  @override
+  String get settingsRemindersPerPrayerTitle => 'بیرخەرەوە بۆ هەر نوێژێک';
+
+  @override
+  String get settingsOtherRemindersTitle => 'بیرخەرەوەکانی تر';
+
+  @override
+  String get settingsPermissionsTitle => 'مۆڵەتەکان';
+
+  @override
+  String get settingsWhatOthersSeeTitle => 'ئەوەی ئەپەکە پیشانی دەدات';
 }

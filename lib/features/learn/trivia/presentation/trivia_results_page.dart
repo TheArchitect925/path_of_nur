@@ -26,17 +26,16 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
     final repository = ref.read(triviaRepositoryProvider);
     final result = state.lastResult;
     if (result == null) {
-      return const Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: TriviaEmptyStateCard(
-              title: 'No recent result',
-              subtitle:
-                  'Complete a trivia session and the result will appear here.',
-            ),
+      return LearnHubPageScaffold(
+        headerIcon: Icons.emoji_events_rounded,
+        title: l10n.triviaResultsTitle,
+        subtitle: l10n.triviaResultsSubtitle,
+        children: [
+          TriviaEmptyStateCard(
+            title: l10n.triviaSessionNoActiveTitle,
+            subtitle: l10n.triviaSessionNoActiveSubtitle,
           ),
-        ),
+        ],
       );
     }
 
@@ -89,9 +88,6 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                 l10n.triviaResultsCompletedSummary(
                   numberFormat.format(result.durationSeconds),
                   numberFormat.format(result.incorrectCount),
-                  numberFormat.format(result.totalAnswered),
-                  numberFormat.format(result.correctCount),
-                  numberFormat.format(result.totalAnswered),
                 ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,

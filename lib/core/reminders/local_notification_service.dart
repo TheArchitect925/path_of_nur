@@ -483,7 +483,6 @@ class LocalNotificationService {
       case ReminderKind.prayerBeforeQaza:
         return l10n.notificationsPrayerBeforeQazaTitle(
           _prayerName(l10n, item.prayerId),
-          _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.dhikr:
         return l10n.notificationsDhikrTitle;
@@ -515,7 +514,6 @@ class LocalNotificationService {
         return _prayerBodyFor(l10n, item.prayerId);
       case ReminderKind.prayerBeforeQaza:
         return l10n.notificationsPrayerBeforeQazaBody(
-          _prayerName(l10n, item.prayerId),
           _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.dhikr:

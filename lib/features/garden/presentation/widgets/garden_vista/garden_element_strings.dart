@@ -35,8 +35,7 @@ abstract final class GardenElementStrings {
       GardenSceneElementId.olive => l10n.gardenElementOliveMeaning,
       GardenSceneElementId.datePalm => l10n.gardenElementDatePalmMeaning,
       GardenSceneElementId.fig => l10n.gardenElementFigMeaning,
-      GardenSceneElementId.pomegranate =>
-        l10n.gardenElementPomegranateMeaning,
+      GardenSceneElementId.pomegranate => l10n.gardenElementPomegranateMeaning,
       GardenSceneElementId.grapeVine => l10n.gardenElementGrapeVineMeaning,
       GardenSceneElementId.gourd => l10n.gardenElementGourdMeaning,
       GardenSceneElementId.loteTree => l10n.gardenElementLoteTreeMeaning,

@@ -60,7 +60,10 @@ class _AttributionCard extends StatelessWidget {
           const SizedBox(height: 6),
           SelectableText(
             body,
-            style: const TextStyle(height: 1.35, color: Color(0xFF4A4036)),
+            style: TextStyle(
+              height: 1.35,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
         ],
       ),

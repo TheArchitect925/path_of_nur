@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_backgrounds.dart';
+import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
@@ -11,7 +12,6 @@ import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/reminders/adhan_audio_service.dart';
 import '../../../core/reminders/adhan_options.dart';
 import '../../../core/reminders/reminder_scheduler.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
@@ -21,10 +21,12 @@ import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../shared/widgets/display/expandable_tile.dart';
+import '../../../shared/widgets/display/hub_list_group.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/quran_reference_link.dart';
-import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
 import '../../editorial_dashboard/application/editorial_dashboard_access_provider.dart';
@@ -36,18 +38,11 @@ import '../../profile/domain/profile_age_preferences.dart';
 import '../../worship/application/sister_cycle_provider.dart';
 import '../../worship/domain/prayer_calendar_mode.dart';
 import 'adhan_option_picker_sheet.dart';
+import 'settings/settings_catalog.dart';
 
-enum SettingsCategory {
-  accountSync,
-  appearance,
-  prayerWorship,
-  learning,
-  notificationsReminders,
-  widgetsWatch,
-  languageDownloads,
-  privacyData,
-  about,
-}
+// The router builds every settings page from this file, so it keeps importing
+// the category enum from here even though the catalog now owns it.
+export 'settings/settings_catalog.dart' show SettingsCategory;
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key, this.category});
@@ -97,7 +92,9 @@ class SettingsPage extends ConsumerWidget {
       AppThemeMode.noGlassDark,
     ];
     if (category == null) {
-      return SectionHubScaffold(
+      // One list, one search — the same hub grammar the other tabs use, so
+      // Settings stops being the last page with its own tile-grid language.
+      return AppPageScaffold(
         headerIcon: Icons.settings_outlined,
         title: l10n.settingsLandingTitle,
         subtitle: localizedAppPageDescription(
@@ -105,104 +102,46 @@ class SettingsPage extends ConsumerWidget {
           AppPageDescriptionKey.settingsLanding,
           kidsMode: isKidsMode,
         ),
-        shortcutOpenLabel: l10n.learnShortcutOpen,
-        shortcutCloseLabel: l10n.learnShortcutClose,
-        children: [
-          SectionHubActionGrid(
-            actions: [
-              SectionHubAction(
-                title: l10n.settingsAccountsSyncTitle,
-                subtitle: l10n.settingsCategoryAccountSyncSubtitle,
-                icon: Icons.sync_outlined,
-                color: const Color(0xFFECE5D7),
-                accentColor: const Color(0xFF6F5A3E),
-                onTap: () => context.pushNamed('settingsAccountSync'),
-              ),
-              SectionHubAction(
-                title: l10n.profileAppearanceTitle,
-                subtitle: l10n.settingsCategoryAppearanceSubtitle,
-                icon: Icons.palette_outlined,
-                color: const Color(0xFFE4ECD9),
-                accentColor: const Color(0xFF597045),
-                onTap: () => context.pushNamed('settingsAppearance'),
-              ),
-              SectionHubAction(
-                title: l10n.profilePrayerSettingsTitle,
-                subtitle: l10n.settingsCategoryPrayerWorshipSubtitle,
-                icon: IslamicIcons.prayer,
-                color: const Color(0xFFF0E4D8),
-                accentColor: const Color(0xFF835E42),
-                onTap: () => context.pushNamed('settingsPrayerWorship'),
-              ),
-              SectionHubAction(
-                title: l10n.learnHubTitle,
-                subtitle: l10n.settingsCategoryLearningSubtitle,
-                icon: Icons.school_outlined,
-                color: const Color(0xFFE9E0EB),
-                accentColor: const Color(0xFF755C7C),
-                onTap: () => context.pushNamed('settingsLearning'),
-              ),
-              SectionHubAction(
-                title: l10n.profileNotificationsTitle,
-                subtitle: l10n.settingsCategoryNotificationsSubtitle,
-                icon: Icons.notifications_active_outlined,
-                color: const Color(0xFFE6EEF1),
-                accentColor: const Color(0xFF45636D),
-                onTap: () =>
-                    context.pushNamed('settingsNotificationsReminders'),
-              ),
-              SectionHubAction(
-                title: l10n.settingsCategoryWidgetsWatchTitle,
-                subtitle: l10n.settingsCategoryWidgetsWatchSubtitle,
-                icon: Icons.watch_later_outlined,
-                color: const Color(0xFFE4E7F5),
-                accentColor: const Color(0xFF4E5B8C),
-                onTap: () => context.pushNamed('settingsWidgetsWatch'),
-              ),
-              SectionHubAction(
-                title: l10n.languageOptionsTitle,
-                subtitle: l10n.settingsCategoryLanguageDownloadsSubtitle,
-                icon: Icons.language_outlined,
-                color: const Color(0xFFE5EFE9),
-                accentColor: const Color(0xFF4F6B59),
-                onTap: () => context.pushNamed('settingsLanguageDownloads'),
-              ),
-              SectionHubAction(
-                title: l10n.profileTrackingPrivacyTitle,
-                subtitle: l10n.settingsCategoryPrivacyDataSubtitle,
-                icon: Icons.shield_outlined,
-                color: const Color(0xFFEFE7DE),
-                accentColor: const Color(0xFF6D5740),
-                onTap: () => context.pushNamed('settingsPrivacyData'),
-              ),
-              SectionHubAction(
-                title: l10n.settingsHelpGuideTitle,
-                subtitle: l10n.settingsCategoryHelpGuideSubtitle,
-                icon: Icons.help_center_outlined,
-                color: const Color(0xFFE6ECEB),
-                accentColor: const Color(0xFF4E6C67),
-                onTap: () => context.pushNamed('settingsHelpGuide'),
-              ),
-              SectionHubAction(
-                title: l10n.profileAboutTitle,
-                subtitle: l10n.settingsCategoryAboutSubtitle,
-                icon: Icons.info_outline_rounded,
-                color: const Color(0xFFE8EAEE),
-                accentColor: const Color(0xFF596274),
-                onTap: () => context.pushNamed('settingsAbout'),
-              ),
-            ],
+        headerActions: [
+          IconButton(
+            onPressed: () => context.pushNamed('settingsSearch'),
+            icon: const Icon(Icons.search_rounded),
+            tooltip: l10n.settingsSearchTooltip,
           ),
+        ],
+        children: [
+          for (final group in settingsGroups(l10n)) ...[
+            HubListGroup(
+              title: group.title,
+              children: [
+                for (final destination in group.destinations)
+                  CompactListTile(
+                    title: destination.title,
+                    subtitle: destination.subtitle,
+                    leading: HubLeadingIcon(destination.icon),
+                    trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                    onTap: () => context.pushNamed(destination.routeName),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 14),
+          ],
         ],
       );
     }
 
+    // Pages that carry a single section let the page header be the heading;
+    // repeating the same title one line below it is noise. Only pages that
+    // stack two sections (Notifications) still label them.
     Widget wrapSection({
       required String title,
       required String subtitle,
       required Widget child,
+      bool titled = false,
     }) {
+      if (!titled) return child;
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SectionTitle(title: title, subtitle: subtitle),
           child,
@@ -229,7 +168,6 @@ class SettingsPage extends ConsumerWidget {
               subtitle: Text(
                 l10n.settingsProfileLevelUsageSummary(
                   l10n.homeLevelValue(
-                    _formatCount(context, profileSummary.level),
                     _formatCount(context, profileSummary.level),
                   ),
                   l10n.homeDaysCount(profileSummary.daysUsingApp),
@@ -265,133 +203,135 @@ class SettingsPage extends ConsumerWidget {
               },
             ),
             const Divider(height: 24),
-            ExpansionTile(
-              tilePadding: EdgeInsets.zero,
-              childrenPadding: EdgeInsets.zero,
-              initiallyExpanded: false,
+            // Was a Material ExpansionTile, which paints its own
+            // dividers and highlight over the glass card.
+            ExpandableTile(
               title: Text(l10n.settingsCareModesTitle),
               subtitle: Text(l10n.settingsCareModesSubtitle),
-              children: [
-                _ModeTile(
-                  icon: IslamicIcons.lantern,
-                  title: l10n.profileRamadanModeTitle,
-                  subtitle: l10n.profileRamadanModeSubtitle,
-                  value: specialMode.isRamadan,
-                  onChanged: profileSettingsNotifier.setRamadanModeEnabled,
-                ),
-                _ModeSupportCard(
-                  title: l10n.settingsCareModeRamadanTitle,
-                  body: l10n.settingsCareModeRamadanBody,
-                  references: [
-                    QuranReferenceLinkTile(
-                      referenceLabel: l10n.settingsCareModeRamadanReference,
-                      surahNumber: 2,
-                      fallbackStartAyah: 183,
-                    ),
-                  ],
-                ),
-                const Divider(height: 1),
-                _ModeTile(
-                  icon: IslamicIcons.community,
-                  title: l10n.profileLossModeTitle,
-                  subtitle: l10n.profileLossModeSubtitle,
-                  value: specialMode.isLoss,
-                  onChanged: profileSettingsNotifier.setLossModeEnabled,
-                ),
-                _ModeSupportCard(
-                  title: l10n.settingsCareModeLossTitle,
-                  body: l10n.settingsCareModeLossBody,
-                  supportingLines: [
-                    l10n.settingsCareModeLossPrayer,
-                    l10n.settingsCareModeLossHadith,
-                  ],
-                  references: [
-                    QuranReferenceLinkTile(
-                      referenceLabel: l10n.settingsCareModeLossReference,
-                      surahNumber: 2,
-                      fallbackStartAyah: 156,
-                      endAyahNumber: 157,
-                    ),
-                  ],
-                ),
-                const Divider(height: 1),
-                _ModeTile(
-                  icon: IslamicIcons.tasbih,
-                  title: l10n.profileGentleModeTitle,
-                  subtitle: l10n.settingsGentleModeReducedNotificationsSubtitle,
-                  value: specialMode.isGentle,
-                  onChanged: profileSettingsNotifier.setGentleModeEnabled,
-                ),
-                _ModeSupportCard(
-                  title: l10n.settingsCareModeGentleTitle,
-                  body: l10n.settingsCareModeGentleBody,
-                ),
-                const Divider(height: 1),
-                _ModeTile(
-                  icon: Icons.favorite_border_rounded,
-                  title: l10n.settingsUnwellModeTitle,
-                  subtitle: l10n.settingsUnwellModeSubtitle,
-                  value: specialMode.isUnwell,
-                  onChanged: profileSettingsNotifier.setUnwellModeEnabled,
-                ),
-                _ModeSupportCard(
-                  title: l10n.settingsCareModeUnwellTitle,
-                  body: l10n.settingsCareModeUnwellBody,
-                  supportingLines: [
-                    l10n.settingsCareModeUnwellPrayerEase,
-                    l10n.settingsCareModeUnwellHadith,
-                  ],
-                ),
-                if (userProfile.sex == UserSex.sister) ...[
-                  const Divider(height: 1),
+              leading: const HubLeadingIcon(Icons.favorite_border_rounded),
+              child: Column(
+                children: [
                   _ModeTile(
-                    icon: Icons.water_drop_outlined,
-                    title: l10n.settingsCycleDaysTitle,
-                    subtitle: l10n.settingsCycleDaysSubtitle,
-                    value: sisterCycle.active,
-                    onChanged: sisterCycleNotifier.setActive,
+                    icon: IslamicIcons.lantern,
+                    title: l10n.profileRamadanModeTitle,
+                    subtitle: l10n.profileRamadanModeSubtitle,
+                    value: specialMode.isRamadan,
+                    onChanged: profileSettingsNotifier.setRamadanModeEnabled,
                   ),
                   _ModeSupportCard(
-                    title: l10n.settingsCycleDaysSupportTitle,
-                    body: l10n.settingsCycleDaysSupportBody,
-                    supportingLines: [
-                      l10n.settingsCycleDaysReminderSupport,
-                      l10n.settingsCycleDaysStreakSupport,
+                    title: l10n.settingsCareModeRamadanTitle,
+                    body: l10n.settingsCareModeRamadanBody,
+                    references: [
+                      QuranReferenceLinkTile(
+                        referenceLabel: l10n.settingsCareModeRamadanReference,
+                        surahNumber: 2,
+                        fallbackStartAyah: 183,
+                      ),
                     ],
                   ),
+                  const Divider(height: 1),
+                  _ModeTile(
+                    icon: IslamicIcons.community,
+                    title: l10n.profileLossModeTitle,
+                    subtitle: l10n.profileLossModeSubtitle,
+                    value: specialMode.isLoss,
+                    onChanged: profileSettingsNotifier.setLossModeEnabled,
+                  ),
+                  _ModeSupportCard(
+                    title: l10n.settingsCareModeLossTitle,
+                    body: l10n.settingsCareModeLossBody,
+                    supportingLines: [
+                      l10n.settingsCareModeLossPrayer,
+                      l10n.settingsCareModeLossHadith,
+                    ],
+                    references: [
+                      QuranReferenceLinkTile(
+                        referenceLabel: l10n.settingsCareModeLossReference,
+                        surahNumber: 2,
+                        fallbackStartAyah: 156,
+                        endAyahNumber: 157,
+                      ),
+                    ],
+                  ),
+                  const Divider(height: 1),
+                  _ModeTile(
+                    icon: IslamicIcons.tasbih,
+                    title: l10n.profileGentleModeTitle,
+                    subtitle:
+                        l10n.settingsGentleModeReducedNotificationsSubtitle,
+                    value: specialMode.isGentle,
+                    onChanged: profileSettingsNotifier.setGentleModeEnabled,
+                  ),
+                  _ModeSupportCard(
+                    title: l10n.settingsCareModeGentleTitle,
+                    body: l10n.settingsCareModeGentleBody,
+                  ),
+                  const Divider(height: 1),
+                  _ModeTile(
+                    icon: Icons.favorite_border_rounded,
+                    title: l10n.settingsUnwellModeTitle,
+                    subtitle: l10n.settingsUnwellModeSubtitle,
+                    value: specialMode.isUnwell,
+                    onChanged: profileSettingsNotifier.setUnwellModeEnabled,
+                  ),
+                  _ModeSupportCard(
+                    title: l10n.settingsCareModeUnwellTitle,
+                    body: l10n.settingsCareModeUnwellBody,
+                    supportingLines: [
+                      l10n.settingsCareModeUnwellPrayerEase,
+                      l10n.settingsCareModeUnwellHadith,
+                    ],
+                  ),
+                  if (userProfile.sex == UserSex.sister) ...[
+                    const Divider(height: 1),
+                    _ModeTile(
+                      icon: Icons.water_drop_outlined,
+                      title: l10n.settingsCycleDaysTitle,
+                      subtitle: l10n.settingsCycleDaysSubtitle,
+                      value: sisterCycle.active,
+                      onChanged: sisterCycleNotifier.setActive,
+                    ),
+                    _ModeSupportCard(
+                      title: l10n.settingsCycleDaysSupportTitle,
+                      body: l10n.settingsCycleDaysSupportBody,
+                      supportingLines: [
+                        l10n.settingsCycleDaysReminderSupport,
+                        l10n.settingsCycleDaysStreakSupport,
+                      ],
+                    ),
+                  ],
                 ],
-              ],
-            ),
-            if (accountsSync.activeProfile != null &&
-                accountsSync.activeProfile!.profileType != ProfileKind.child &&
-                accountsSync.activeProfile!.profileType !=
-                    ProfileKind.guest) ...[
-              const Divider(height: 24),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: const Icon(IslamicIcons.family),
-                title: Text(l10n.familyLearningSettingsTitle),
-                subtitle: Text(l10n.familyLearningSettingsSubtitle),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () => context.pushNamed('learnFamilyManagement'),
               ),
-            ],
+            ),
           ],
         ),
       ),
     );
 
+    final familyLearningRow =
+        accountsSync.activeProfile != null &&
+            accountsSync.activeProfile!.profileType != ProfileKind.child &&
+            accountsSync.activeProfile!.profileType != ProfileKind.guest
+        ? CompactListTile(
+            title: l10n.familyLearningSettingsTitle,
+            subtitle: l10n.familyLearningSettingsSubtitle,
+            leading: const HubLeadingIcon(IslamicIcons.family),
+            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+            onTap: () => context.pushNamed('learnFamilyManagement'),
+          )
+        : const SizedBox.shrink();
+
     final accountsSyncSection = wrapSection(
       title: l10n.settingsAccountsSyncTitle,
       subtitle: l10n.settingsAccountsSyncSubtitle,
-      child: PremiumCard(
-        child: Column(
-          children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.settingsCurrentProfileTitle),
-              subtitle: Text(
-                accountsSync.activeProfile == null
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Column(
+            children: [
+              CompactListTile(
+                title: l10n.settingsCurrentProfileTitle,
+                subtitle: accountsSync.activeProfile == null
                     ? l10n.settingsNoProfileSelected
                     : l10n.settingsCurrentProfileSummary(
                         accountsSync.activeProfile!.displayName,
@@ -400,40 +340,39 @@ class SettingsPage extends ConsumerWidget {
                           l10n,
                         ),
                       ),
+                leading: const HubLeadingIcon(Icons.person_outline_rounded),
+                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                onTap: () => context.push('/accounts-sync'),
               ),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.push('/accounts-sync'),
-            ),
-            const Divider(height: 1),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.settingsSyncStatusTitle),
-              subtitle: Text(
-                l10n.settingsSyncStatusSummary(
+              const SizedBox(height: 6),
+              CompactListTile(
+                title: l10n.settingsSyncStatusTitle,
+                subtitle: l10n.settingsSyncStatusSummary(
                   accountsSync.syncStatus.pendingChangesCount,
                   _syncStateLabel(accountsSync.syncStatus.syncState, l10n),
                 ),
+                leading: const HubLeadingIcon(Icons.sync_outlined),
+                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                onTap: () => context.push('/accounts-sync/sync-details'),
               ),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.push('/accounts-sync/sync-details'),
-            ),
-            const Divider(height: 1),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.settingsBackupRestoreTitle),
-              subtitle: Text(
-                accountsSync.backupRecommended
+              const SizedBox(height: 6),
+              CompactListTile(
+                title: l10n.settingsBackupRestoreTitle,
+                subtitle: accountsSync.backupRecommended
                     ? l10n.settingsBackupRecommended
                     : accountsSync.backupRecord.lastExportAtIso == null
                     ? l10n.settingsNoManualBackupYet
                     : l10n.settingsLastExportRecorded,
+                leading: const HubLeadingIcon(Icons.cloud_download_outlined),
+                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                onTap: () => context.push('/accounts-sync/backup'),
               ),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.push('/accounts-sync/backup'),
-            ),
-            const Divider(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14),
+            ],
+          ),
+          const SizedBox(height: 14),
+          PremiumCard(
+            child: Padding(
+              padding: EdgeInsets.zero,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -453,10 +392,9 @@ class SettingsPage extends ConsumerWidget {
                             const SizedBox(height: 4),
                             Text(
                               l10n.kidsUiThemeSettingSubtitle,
-                              style: const TextStyle(
-                                color: Color(0xFF675B4E),
-                                height: 1.35,
-                              ),
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodySmall?.copyWith(height: 1.35),
                             ),
                           ],
                         ),
@@ -464,27 +402,8 @@ class SettingsPage extends ConsumerWidget {
                     ],
                   ),
                   const SizedBox(height: 14),
-                  DropdownButtonFormField<ProfileAgeRange>(
-                    initialValue: profileSettings.ageRange,
-                    decoration: InputDecoration(
-                      labelText: l10n.kidsUiAgeRangeTitle,
-                      isDense: true,
-                    ),
-                    items: ProfileAgeRange.values
-                        .map(
-                          (item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(_profileAgeRangeLabel(item, l10n)),
-                          ),
-                        )
-                        .toList(growable: false),
-                    onChanged: (value) {
-                      if (value != null) {
-                        profileSettingsNotifier.setAgeRange(value);
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 12),
+                  // Age range lives on the Learning page — one setting, one
+                  // home. This card only owns the kids UI theme mode.
                   DropdownButtonFormField<KidsUiThemeMode>(
                     initialValue: profileSettings.kidsUiThemeMode,
                     decoration: InputDecoration(
@@ -510,292 +429,276 @@ class SettingsPage extends ConsumerWidget {
                       }
                     },
                   ),
-                  if (accountsSync.activeProfile != null &&
-                      accountsSync.activeProfile!.profileType !=
-                          ProfileKind.child &&
-                      accountsSync.activeProfile!.profileType !=
-                          ProfileKind.guest) ...[
-                    const SizedBox(height: 12),
-                    const Divider(height: 1),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: const Icon(IslamicIcons.family),
-                      title: Text(l10n.familyLearningSettingsTitle),
-                      subtitle: Text(l10n.familyLearningSettingsSubtitle),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => context.pushNamed('learnFamilyManagement'),
-                    ),
-                  ],
+                  // Family learning is reached from Profile &
+                  // Personalization; it used to appear here as well.
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
     final adhanSection = wrapSection(
       title: l10n.settingsAdhanTitle,
       subtitle: l10n.settingsAdhanSubtitle,
-      child: PremiumCard(
-        child: Column(
-          children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.settingsAdhanChoiceTitle),
-              subtitle: Text(
-                adhanRepository
-                    .resolveRegular(prayerState.adhanSettings)
-                    .option
-                    .title,
-              ),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () async {
-                await showModalBottomSheet<void>(
-                  context: context,
-                  backgroundColor: Colors.transparent,
-                  isScrollControlled: true,
-                  builder: (context) => AdhanOptionPickerSheet(
-                    category: AdhanOptionCategory.regular,
-                    selectedId:
-                        prayerState.adhanSettings.selectedRegularAdhanId,
-                    settings: prayerState.adhanSettings,
-                    onSelected: prayerNotifier.selectRegularAdhan,
-                  ),
-                );
-              },
-            ),
-            const Divider(height: 1),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.settingsPreviewVolumeTitle,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 10),
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      OutlinedButton.icon(
-                        onPressed: () async {
-                          await adhanPreviewController.playRegular(
-                            prayerState.adhanSettings,
-                          );
-                        },
-                        icon: Icon(
-                          adhanPreview.playingOptionId ==
-                                      prayerState
-                                          .adhanSettings
-                                          .selectedRegularAdhanId &&
-                                  (adhanPreview.isPlaying ||
-                                      adhanPreview.isBuffering)
-                              ? Icons.stop_circle_outlined
-                              : Icons.play_circle_outline_rounded,
-                        ),
-                        label: Text(l10n.settingsTestAdhan),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SectionTitle(title: l10n.settingsAdhanSoundTitle),
+          CompactListTile(
+            title: l10n.settingsAdhanChoiceTitle,
+            subtitle: adhanRepository
+                .resolveRegular(prayerState.adhanSettings)
+                .option
+                .title,
+            leading: const HubLeadingIcon(Icons.volume_up_outlined),
+            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+            onTap: () async {
+              await showModalBottomSheet<void>(
+                context: context,
+                backgroundColor: Colors.transparent,
+                isScrollControlled: true,
+                builder: (context) => AdhanOptionPickerSheet(
+                  category: AdhanOptionCategory.regular,
+                  selectedId: prayerState.adhanSettings.selectedRegularAdhanId,
+                  settings: prayerState.adhanSettings,
+                  onSelected: prayerNotifier.selectRegularAdhan,
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 14),
+          SectionTitle(title: l10n.settingsPreviewVolumeTitle),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    OutlinedButton.icon(
+                      onPressed: () async {
+                        await adhanPreviewController.playRegular(
+                          prayerState.adhanSettings,
+                        );
+                      },
+                      icon: Icon(
+                        adhanPreview.playingOptionId ==
+                                    prayerState
+                                        .adhanSettings
+                                        .selectedRegularAdhanId &&
+                                (adhanPreview.isPlaying ||
+                                    adhanPreview.isBuffering)
+                            ? Icons.stop_circle_outlined
+                            : Icons.play_circle_outline_rounded,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  SwitchListTile.adaptive(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(l10n.settingsUseAppVolumeTitle),
-                    subtitle: Text(l10n.settingsUseAppVolumeSubtitle),
-                    value: prayerState.adhanSettings.useAppVolume,
-                    onChanged: prayerNotifier.setUseAppAdhanVolume,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    l10n.settingsAdhanPreviewVolume,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Slider(
-                    value: prayerState.adhanSettings.volume,
-                    onChanged: prayerState.adhanSettings.useAppVolume
-                        ? null
-                        : prayerNotifier.setAdhanVolume,
-                  ),
-                  Text(
-                    prayerState.adhanSettings.useAppVolume
-                        ? l10n.settingsUsingAppVolume
-                        : l10n.settingsPercentValue(
-                            _formatCount(
-                              context,
-                              (prayerState.adhanSettings.volume * 100).round(),
-                            ),
+                      label: Text(l10n.settingsTestAdhan),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsUseAppVolumeTitle),
+                  subtitle: Text(l10n.settingsUseAppVolumeSubtitle),
+                  value: prayerState.adhanSettings.useAppVolume,
+                  onChanged: prayerNotifier.setUseAppAdhanVolume,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  l10n.settingsAdhanPreviewVolume,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                Slider(
+                  value: prayerState.adhanSettings.volume,
+                  onChanged: prayerState.adhanSettings.useAppVolume
+                      ? null
+                      : prayerNotifier.setAdhanVolume,
+                ),
+                Text(
+                  prayerState.adhanSettings.useAppVolume
+                      ? l10n.settingsUsingAppVolume
+                      : l10n.settingsPercentValue(
+                          _formatCount(
+                            context,
+                            (prayerState.adhanSettings.volume * 100).round(),
                           ),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
-                    ),
+                        ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton.icon(
-                      onPressed: prayerNotifier.restoreDefaultAdhanSettings,
-                      icon: const Icon(Icons.refresh_rounded),
-                      label: Text(l10n.settingsRestoreDefaultAdhanSettings),
-                    ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: prayerNotifier.restoreDefaultAdhanSettings,
+                    icon: const Icon(Icons.refresh_rounded),
+                    label: Text(l10n.settingsRestoreDefaultAdhanSettings),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
     final prayerSettingsSection = wrapSection(
       title: l10n.profilePrayerSettingsTitle,
       subtitle: l10n.profilePrayerSettingsSubtitle,
-      child: PremiumCard(
-        child: Column(
-          children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.profileLocationLabel),
-              subtitle: Text(locationLabel),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () async {
-                final service = ref.read(prayerLocationSearchServiceProvider);
-                final recentLocations = ref.read(prayerRecentLocationsProvider);
-                final selection =
-                    await showModalBottomSheet<PrayerLocationPickerSelection>(
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      isScrollControlled: true,
-                      builder: (context) => PrayerLocationPickerSheet(
-                        currentLocationLabel: locationLabel,
-                        recentLocations: recentLocations,
-                        onSearch: service.search,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          CompactListTile(
+            title: l10n.profileLocationLabel,
+            subtitle: locationLabel,
+            leading: const HubLeadingIcon(Icons.place_outlined),
+            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+            onTap: () async {
+              final service = ref.read(prayerLocationSearchServiceProvider);
+              final recentLocations = ref.read(prayerRecentLocationsProvider);
+              final selection =
+                  await showModalBottomSheet<PrayerLocationPickerSelection>(
+                    context: context,
+                    backgroundColor: Colors.transparent,
+                    isScrollControlled: true,
+                    builder: (context) => PrayerLocationPickerSheet(
+                      currentLocationLabel: locationLabel,
+                      recentLocations: recentLocations,
+                      onSearch: service.search,
+                    ),
+                  );
+              if (selection == null) return;
+              if (selection.useDeviceLocation) {
+                await locationNotifier.requestWhileUsingApp();
+                prayerNotifier.useCurrentLocation();
+                return;
+              }
+              if (selection.latitude == null || selection.longitude == null) {
+                return;
+              }
+              await ref
+                  .read(prayerRecentLocationsStoreProvider)
+                  .save(
+                    PrayerRecentLocation(
+                      label: selection.label,
+                      latitude: selection.latitude!,
+                      longitude: selection.longitude!,
+                    ),
+                  );
+              prayerNotifier.setManualLocation(
+                label: selection.label,
+                latitude: selection.latitude!,
+                longitude: selection.longitude!,
+              );
+            },
+          ),
+          const SizedBox(height: 14),
+          // Was one card holding calculation, calendar, Jumu'ah, time mode
+          // and every adjustment — several thousand pixels of unbroken
+          // surface. Each concern is its own titled card now.
+          SectionTitle(
+            title: l10n.settingsSalahCalculationTitle,
+            subtitle: l10n.settingsSalahCalculationSubtitle,
+          ),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _PreferenceDropdown<PrayerMadhab>(
+                  label: l10n.profileMadhabLabel,
+                  value: prayerState.preferences.madhab,
+                  entries: const {
+                    PrayerMadhab.shafii: '',
+                    PrayerMadhab.hanafi: '',
+                    PrayerMadhab.maliki: '',
+                    PrayerMadhab.hanbali: '',
+                  },
+                  entryBuilder: (value) => _madhabLabel(value, l10n),
+                  onChanged: (value) {
+                    if (value != null) prayerNotifier.updateMadhab(value);
+                  },
+                ),
+                const Divider(height: 1),
+                _PreferenceDropdown<PrayerCalculationMethod>(
+                  label: l10n.profileCalculationMethodLabel,
+                  value: prayerState.preferences.calculationMethod,
+                  entries: const {
+                    PrayerCalculationMethod.muslimWorldLeague: '',
+                    PrayerCalculationMethod.egyptian: '',
+                    PrayerCalculationMethod.isna: '',
+                    PrayerCalculationMethod.karachi: '',
+                    PrayerCalculationMethod.ummAlQura: '',
+                  },
+                  entryBuilder: (value) => _calculationMethodLabel(value, l10n),
+                  onChanged: (value) {
+                    if (value != null) prayerNotifier.updateMethod(value);
+                  },
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          SectionTitle(
+            title: l10n.settingsPrayerCalendarDisplayTitle,
+            subtitle: l10n.settingsPrayerCalendarDisplaySubtitle,
+          ),
+          PremiumCard(
+            child: SizedBox(
+              width: double.infinity,
+              child: SegmentedButton<PrayerCalendarMode>(
+                segments: [
+                  ButtonSegment<PrayerCalendarMode>(
+                    value: PrayerCalendarMode.gregorian,
+                    label: Text(
+                      _prayerCalendarModeLabel(
+                        PrayerCalendarMode.gregorian,
+                        l10n,
                       ),
-                    );
-                if (selection == null) return;
-                if (selection.useDeviceLocation) {
-                  await locationNotifier.requestWhileUsingApp();
-                  prayerNotifier.useCurrentLocation();
-                  return;
-                }
-                if (selection.latitude == null || selection.longitude == null) {
-                  return;
-                }
-                await ref
-                    .read(prayerRecentLocationsStoreProvider)
-                    .save(
-                      PrayerRecentLocation(
-                        label: selection.label,
-                        latitude: selection.latitude!,
-                        longitude: selection.longitude!,
-                      ),
-                    );
-                prayerNotifier.setManualLocation(
-                  label: selection.label,
-                  latitude: selection.latitude!,
-                  longitude: selection.longitude!,
-                );
-              },
-            ),
-            const Divider(height: 1),
-            _PreferenceDropdown<PrayerMadhab>(
-              label: l10n.profileMadhabLabel,
-              value: prayerState.preferences.madhab,
-              entries: const {
-                PrayerMadhab.shafii: '',
-                PrayerMadhab.hanafi: '',
-                PrayerMadhab.maliki: '',
-                PrayerMadhab.hanbali: '',
-              },
-              entryBuilder: (value) => _madhabLabel(value, l10n),
-              onChanged: (value) {
-                if (value != null) prayerNotifier.updateMadhab(value);
-              },
-            ),
-            const Divider(height: 1),
-            _PreferenceDropdown<PrayerCalculationMethod>(
-              label: l10n.profileCalculationMethodLabel,
-              value: prayerState.preferences.calculationMethod,
-              entries: const {
-                PrayerCalculationMethod.muslimWorldLeague: '',
-                PrayerCalculationMethod.egyptian: '',
-                PrayerCalculationMethod.isna: '',
-                PrayerCalculationMethod.karachi: '',
-                PrayerCalculationMethod.ummAlQura: '',
-              },
-              entryBuilder: (value) => _calculationMethodLabel(value, l10n),
-              onChanged: (value) {
-                if (value != null) prayerNotifier.updateMethod(value);
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 14, bottom: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.settingsPrayerCalendarDisplayTitle,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    l10n.settingsPrayerCalendarDisplaySubtitle,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(height: 10),
-                  SegmentedButton<PrayerCalendarMode>(
-                    segments: [
-                      ButtonSegment<PrayerCalendarMode>(
-                        value: PrayerCalendarMode.gregorian,
-                        label: Text(
-                          _prayerCalendarModeLabel(
-                            PrayerCalendarMode.gregorian,
-                            l10n,
-                          ),
-                        ),
+                  ButtonSegment<PrayerCalendarMode>(
+                    value: PrayerCalendarMode.islamic,
+                    label: Text(
+                      _prayerCalendarModeLabel(
+                        PrayerCalendarMode.islamic,
+                        l10n,
                       ),
-                      ButtonSegment<PrayerCalendarMode>(
-                        value: PrayerCalendarMode.islamic,
-                        label: Text(
-                          _prayerCalendarModeLabel(
-                            PrayerCalendarMode.islamic,
-                            l10n,
-                          ),
-                        ),
-                      ),
-                    ],
-                    selected: {profileSettings.prayerCalendarMode},
-                    onSelectionChanged: (selection) {
-                      profileSettingsNotifier.setPrayerCalendarMode(
-                        selection.first,
-                      );
-                    },
+                    ),
                   ),
                 ],
+                selected: {profileSettings.prayerCalendarMode},
+                onSelectionChanged: (selection) {
+                  profileSettingsNotifier.setPrayerCalendarMode(
+                    selection.first,
+                  );
+                },
               ),
             ),
-            const Divider(height: 1),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              child: _PrayerTimeAdjustmentsSection(
-                l10n: l10n,
-                prayerState: prayerState,
-                prayerNotifier: prayerNotifier,
-              ),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 14),
+          _PrayerTimeAdjustmentsSection(
+            l10n: l10n,
+            prayerState: prayerState,
+            prayerNotifier: prayerNotifier,
+          ),
+        ],
       ),
     );
 
     final widgetsWatchSection = wrapSection(
       title: l10n.settingsCategoryWidgetsWatchTitle,
       subtitle: l10n.settingsCategoryWidgetsWatchSubtitle,
-      child: PremiumCard(
-        child: Column(
-          children: [
-            _SettingsToggleRow(
+      // Master switch on its own card, the two surfaces it governs on a
+      // second one, so the dimmed state reads as a group rather than as half
+      // of a single card fading out.
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          PremiumCard(
+            child: _SettingsToggleRow(
               label: l10n.settingsWidgetsEnabledTitle,
               subtitle: l10n.settingsWidgetsEnabledSubtitle,
               value:
@@ -806,34 +709,32 @@ class SettingsPage extends ConsumerWidget {
                 prayerNotifier.setStableLockScreenWidget(enabled);
               },
             ),
-            const Divider(height: 1),
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 180),
-              opacity:
-                  prayerState.preferences.useStableDynamicIsland ||
-                      prayerState.preferences.useStableLockScreenWidget
-                  ? 1
-                  : 0.55,
-              child: IgnorePointer(
-                ignoring:
-                    !prayerState.preferences.useStableDynamicIsland &&
-                    !prayerState.preferences.useStableLockScreenWidget,
+          ),
+          const SizedBox(height: 6),
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 180),
+            opacity:
+                prayerState.preferences.useStableDynamicIsland ||
+                    prayerState.preferences.useStableLockScreenWidget
+                ? 1
+                : 0.55,
+            child: IgnorePointer(
+              ignoring:
+                  !prayerState.preferences.useStableDynamicIsland &&
+                  !prayerState.preferences.useStableLockScreenWidget,
+              child: PremiumCard(
                 child: Column(
                   children: [
-                    SwitchListTile.adaptive(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(l10n.settingsStableDynamicIslandTitle),
-                      subtitle: Text(l10n.settingsStableDynamicIslandSubtitle),
+                    _SettingsToggleRow(
+                      label: l10n.settingsStableDynamicIslandTitle,
+                      subtitle: l10n.settingsStableDynamicIslandSubtitle,
                       value: prayerState.preferences.useStableDynamicIsland,
                       onChanged: prayerNotifier.setStableDynamicIsland,
                     ),
                     const Divider(height: 1),
-                    SwitchListTile.adaptive(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(l10n.settingsStableLockScreenWidgetTitle),
-                      subtitle: Text(
-                        l10n.settingsStableLockScreenWidgetSubtitle,
-                      ),
+                    _SettingsToggleRow(
+                      label: l10n.settingsStableLockScreenWidgetTitle,
+                      subtitle: l10n.settingsStableLockScreenWidgetSubtitle,
                       value: prayerState.preferences.useStableLockScreenWidget,
                       onChanged: prayerNotifier.setStableLockScreenWidget,
                     ),
@@ -841,111 +742,56 @@ class SettingsPage extends ConsumerWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
-    final appearanceSection = wrapSection(
-      title: l10n.profileAppearanceTitle,
-      subtitle: l10n.profileAppearanceSubtitle,
-      child: PremiumCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ExpansionTile(
-              tilePadding: EdgeInsets.zero,
-              childrenPadding: EdgeInsets.zero,
-              initiallyExpanded: false,
-              title: Text(l10n.profileThemeModeLabel),
-              subtitle: Text(l10n.settingsThemeModePickerHelper),
-              children: [
-                SwitchListTile.adaptive(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.settingsFollowSystemThemeTitle),
-                  subtitle: Text(l10n.settingsFollowSystemThemeSubtitle),
-                  value:
-                      profileSettings.themePreference ==
-                      ProfileThemePreference.system,
-                  onChanged: (value) {
-                    profileSettingsNotifier.setFollowSystemTheme(value);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                SwitchListTile.adaptive(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.settingsDressUpFridaysTitle),
-                  subtitle: Text(l10n.settingsDressUpFridaysSubtitle),
-                  value: profileSettings.dressUpFridays,
-                  onChanged: (value) {
-                    profileSettingsNotifier.setDressUpFridays(value);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                SwitchListTile.adaptive(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.settingsDressUpRamadanTitle),
-                  subtitle: Text(l10n.settingsDressUpRamadanSubtitle),
-                  value: profileSettings.dressUpRamadan,
-                  onChanged: (value) {
-                    profileSettingsNotifier.setDressUpRamadan(value);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                SwitchListTile.adaptive(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.settingsDressUpQadrTitle),
-                  subtitle: Text(l10n.settingsDressUpQadrSubtitle),
-                  value: profileSettings.dressUpQadrNights,
-                  onChanged: (value) {
-                    profileSettingsNotifier.setDressUpQadrNights(value);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                SwitchListTile.adaptive(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.settingsDressUpEidTitle),
-                  subtitle: Text(l10n.settingsDressUpEidSubtitle),
-                  value: profileSettings.dressUpEid,
-                  onChanged: (value) {
-                    profileSettingsNotifier.setDressUpEid(value);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                SwitchListTile.adaptive(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.settingsLivingSkyTitle),
-                  subtitle: Text(l10n.settingsLivingSkySubtitle),
-                  value: profileSettings.livingAtmosphere,
-                  onChanged: (value) {
-                    profileSettingsNotifier.setLivingAtmosphere(value);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                const SizedBox(height: 8),
-                ...visibleThemeModes.map(
-                  (mode) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: SizedBox(
-                      width: double.infinity,
+    // The theme picker is the reason people open this page, so it sits at the
+    // top, already open. Occasion dress-up and accessibility follow as their
+    // own cards instead of hiding inside the picker's expansion.
+    final appearanceSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SectionTitle(
+          title: l10n.profileThemeModeLabel,
+          subtitle: l10n.settingsThemeModePickerHelper,
+        ),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _SettingsToggleRow(
+                label: l10n.settingsFollowSystemThemeTitle,
+                subtitle: l10n.settingsFollowSystemThemeSubtitle,
+                value:
+                    profileSettings.themePreference ==
+                    ProfileThemePreference.system,
+                onChanged: (value) {
+                  profileSettingsNotifier.setFollowSystemTheme(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsThemeChangedSuccessfully,
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              // Ten full-width preview tiles stacked vertically pushed every
+              // other appearance control several screens down. As a carousel
+              // the whole set is one swipe and the rest of the page stays in
+              // reach.
+              SizedBox(
+                height: 296,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.zero,
+                  itemCount: visibleThemeModes.length,
+                  separatorBuilder: (_, _) =>
+                      const SizedBox(width: AppSpacing.xs + 2),
+                  itemBuilder: (context, index) {
+                    final mode = visibleThemeModes[index];
+                    return SizedBox(
+                      width: 186,
                       child: _ThemePreviewTile(
                         label: _themeModeLabel(mode, l10n),
                         description: _themeModeDescription(mode, l10n),
@@ -960,116 +806,206 @@ class SettingsPage extends ConsumerWidget {
                           );
                         },
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
+              ),
+              const SizedBox(height: 12),
+              if (profileSettings.appThemeMode == AppThemeMode.noorGlass &&
+                  !profileSettings.disableColoredGlass &&
+                  profileSettings.themePreference ==
+                      ProfileThemePreference.light &&
+                  !profileSettings.disableBackground) ...[
+                Text(
+                  l10n.settingsDefaultAppearanceActive,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 10),
               ],
-            ),
-            const SizedBox(height: 10),
-            Text(
-              l10n.settingsVisualPreferencesTitle,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            const SizedBox(height: 6),
-            _SettingsToggleRow(
-              label: l10n.settingsDisableColoredGlassTitle,
-              subtitle: l10n.settingsDisableColoredGlassSubtitle,
-              value: profileSettings.disableColoredGlass,
-              onChanged: (value) {
-                profileSettingsNotifier.setDisableColoredGlass(value);
-                _showAppearanceSnack(
-                  context,
-                  l10n.settingsVisualPreferenceUpdated,
-                );
-              },
-            ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.settingsDisableBackgroundTitle,
-              subtitle: l10n.settingsDisableBackgroundSubtitle,
-              value: profileSettings.disableBackground,
-              onChanged: (value) {
-                profileSettingsNotifier.setDisableBackground(value);
-                _showAppearanceSnack(
-                  context,
-                  l10n.settingsVisualPreferenceUpdated,
-                );
-              },
-            ),
-            if (profileSettings.appThemeMode == AppThemeMode.noorGlass &&
-                !profileSettings.disableColoredGlass &&
-                profileSettings.themePreference ==
-                    ProfileThemePreference.light &&
-                !profileSettings.disableBackground) ...[
-              const SizedBox(height: 6),
-              Text(
-                l10n.settingsDefaultAppearanceActive,
-                style: Theme.of(context).textTheme.bodySmall,
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    profileSettingsNotifier.resetAppearance();
+                    _showAppearanceSnack(
+                      context,
+                      l10n.settingsAppearanceResetToDefault,
+                    );
+                  },
+                  icon: const Icon(Icons.refresh_rounded),
+                  label: Text(l10n.settingsResetAppearance),
+                ),
               ),
             ],
-            const SizedBox(height: 10),
-            OutlinedButton.icon(
-              onPressed: () {
-                profileSettingsNotifier.resetAppearance();
-                _showAppearanceSnack(
-                  context,
-                  l10n.settingsAppearanceResetToDefault,
-                );
-              },
-              icon: const Icon(Icons.refresh_rounded),
-              label: Text(l10n.settingsResetAppearance),
-            ),
-            const SizedBox(height: 10),
-            DropdownButtonFormField<AppPageTransitionStyle>(
-              initialValue: profileSettings.pageTransitionStyle,
-              decoration: InputDecoration(
-                labelText: l10n.settingsPageTransitionsTitle,
-                helperText: l10n.settingsPageTransitionsSubtitle,
-                isDense: true,
-              ),
-              items: AppPageTransitionStyle.values
-                  .map(
-                    (item) => DropdownMenuItem(
-                      value: item,
-                      child: Text(_pageTransitionStyleLabel(item, l10n)),
-                    ),
-                  )
-                  .toList(growable: false),
-              onChanged: (value) {
-                if (value != null) {
-                  profileSettingsNotifier.setPageTransitionStyle(value);
-                }
-              },
-            ),
-            const SizedBox(height: 10),
-            _SettingsToggleRow(
-              label: l10n.profileReduceMotion,
-              subtitle: l10n.settingsReduceMotionTransitionOverrideSubtitle,
-              value: profileSettings.reduceMotion,
-              onChanged: profileSettingsNotifier.setReduceMotion,
-            ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.profileHighContrastText,
-              value: profileSettings.highContrastText,
-              onChanged: profileSettingsNotifier.setHighContrastText,
-            ),
-          ],
+          ),
         ),
-      ),
+        const SizedBox(height: 14),
+        ExpandableTile(
+          title: Text(l10n.settingsOccasionThemesTitle),
+          subtitle: Text(l10n.settingsOccasionThemesSubtitle),
+          leading: const HubLeadingIcon(Icons.auto_awesome_rounded),
+          child: Column(
+            children: [
+              _SettingsToggleRow(
+                label: l10n.settingsLivingSkyTitle,
+                subtitle: l10n.settingsLivingSkySubtitle,
+                value: profileSettings.livingAtmosphere,
+                onChanged: (value) {
+                  profileSettingsNotifier.setLivingAtmosphere(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsThemeChangedSuccessfully,
+                  );
+                },
+              ),
+              _SettingsToggleRow(
+                label: l10n.settingsDressUpFridaysTitle,
+                subtitle: l10n.settingsDressUpFridaysSubtitle,
+                value: profileSettings.dressUpFridays,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDressUpFridays(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsThemeChangedSuccessfully,
+                  );
+                },
+              ),
+              _SettingsToggleRow(
+                label: l10n.settingsDressUpRamadanTitle,
+                subtitle: l10n.settingsDressUpRamadanSubtitle,
+                value: profileSettings.dressUpRamadan,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDressUpRamadan(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsThemeChangedSuccessfully,
+                  );
+                },
+              ),
+              _SettingsToggleRow(
+                label: l10n.settingsDressUpQadrTitle,
+                subtitle: l10n.settingsDressUpQadrSubtitle,
+                value: profileSettings.dressUpQadrNights,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDressUpQadrNights(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsThemeChangedSuccessfully,
+                  );
+                },
+              ),
+              _SettingsToggleRow(
+                label: l10n.settingsDressUpEidTitle,
+                subtitle: l10n.settingsDressUpEidSubtitle,
+                value: profileSettings.dressUpEid,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDressUpEid(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsThemeChangedSuccessfully,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        SectionTitle(title: l10n.settingsVisualPreferencesTitle),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _SettingsToggleRow(
+                label: l10n.settingsDisableColoredGlassTitle,
+                subtitle: l10n.settingsDisableColoredGlassSubtitle,
+                value: profileSettings.disableColoredGlass,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDisableColoredGlass(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsVisualPreferenceUpdated,
+                  );
+                },
+              ),
+              const Divider(height: 1),
+              _SettingsToggleRow(
+                label: l10n.settingsDisableBackgroundTitle,
+                subtitle: l10n.settingsDisableBackgroundSubtitle,
+                value: profileSettings.disableBackground,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDisableBackground(value);
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsVisualPreferenceUpdated,
+                  );
+                },
+              ),
+              const SizedBox(height: 10),
+              DropdownButtonFormField<AppPageTransitionStyle>(
+                initialValue: profileSettings.pageTransitionStyle,
+                decoration: InputDecoration(
+                  labelText: l10n.settingsPageTransitionsTitle,
+                  helperText: l10n.settingsPageTransitionsSubtitle,
+                  isDense: true,
+                ),
+                items: AppPageTransitionStyle.values
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(_pageTransitionStyleLabel(item, l10n)),
+                      ),
+                    )
+                    .toList(growable: false),
+                onChanged: (value) {
+                  if (value != null) {
+                    profileSettingsNotifier.setPageTransitionStyle(value);
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        SectionTitle(title: l10n.settingsAccessibilityTitle),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _SettingsToggleRow(
+                label: l10n.profileReduceMotion,
+                subtitle: l10n.settingsReduceMotionTransitionOverrideSubtitle,
+                value: profileSettings.reduceMotion,
+                onChanged: profileSettingsNotifier.setReduceMotion,
+              ),
+              const Divider(height: 1),
+              _SettingsToggleRow(
+                label: l10n.profileHighContrastText,
+                value: profileSettings.highContrastText,
+                onChanged: profileSettingsNotifier.setHighContrastText,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
 
     final prayerNotificationsSection = wrapSection(
       title: l10n.settingsPrayerNotificationsTitle,
+      titled: true,
       subtitle: l10n.settingsPrayerNotificationsSubtitle,
       child: PremiumCard(
         child: Column(
           children: [
-            ListTile(
-              dense: true,
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.profilePrayerReminders),
-              subtitle: Text(
+            _SettingsToggleRow(
+              label: l10n.profilePrayerReminders,
+              subtitle: l10n.settingsPrayerRemindersToggleSubtitle,
+              value: profileSettings.prayerReminders,
+              onChanged: profileSettingsNotifier.setPrayerReminders,
+            ),
+            const Divider(height: 1),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
                 l10n.profilePlannedRemindersToday(
                   reminderPlan.items
                       .where(
@@ -1079,34 +1015,41 @@ class SettingsPage extends ConsumerWidget {
                       )
                       .length,
                 ),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
-            ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.profilePrayerReminders,
-              subtitle: l10n.settingsPrayerRemindersToggleSubtitle,
-              value: profileSettings.prayerReminders,
-              onChanged: profileSettingsNotifier.setPrayerReminders,
-            ),
-            const Divider(height: 1),
-            ..._buildPrayerNotificationTiles(
-              context: context,
-              settings: prayerState,
-              onChanged: prayerNotifier.updateNotificationMode,
-              l10n: l10n,
             ),
           ],
         ),
       ),
     );
 
+    final perPrayerNotificationsSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SectionTitle(title: l10n.settingsRemindersPerPrayerTitle),
+        PremiumCard(
+          child: Column(
+            children: _buildPrayerNotificationTiles(
+              context: context,
+              settings: prayerState,
+              onChanged: prayerNotifier.updateNotificationMode,
+              l10n: l10n,
+            ),
+          ),
+        ),
+      ],
+    );
+
     final privacySection = wrapSection(
       title: l10n.profileTrackingPrivacyTitle,
       subtitle: l10n.profileTrackingPrivacySubtitle,
-      child: PremiumCard(
-        child: Column(
-          children: [
-            ListTile(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SectionTitle(title: l10n.settingsPermissionsTitle),
+          PremiumCard(
+            child: ListTile(
+              contentPadding: EdgeInsets.zero,
               title: Text(l10n.profileLocationWhileUsingApp),
               subtitle: Text(
                 locationState.isGranted
@@ -1130,54 +1073,53 @@ class SettingsPage extends ConsumerWidget {
                       ),
                     ),
             ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.profilePrivateTrackingModeTitle,
-              subtitle: l10n.profilePrivateTrackingModeSubtitle,
-              value: profileSettings.privateTrackingMode,
-              onChanged: profileSettingsNotifier.setPrivateTrackingMode,
+          ),
+          const SizedBox(height: 14),
+          SectionTitle(title: l10n.settingsWhatOthersSeeTitle),
+          PremiumCard(
+            child: Column(
+              children: [
+                _SettingsToggleRow(
+                  label: l10n.profilePrivateTrackingModeTitle,
+                  subtitle: l10n.profilePrivateTrackingModeSubtitle,
+                  value: profileSettings.privateTrackingMode,
+                  onChanged: profileSettingsNotifier.setPrivateTrackingMode,
+                ),
+                const Divider(height: 1),
+                _SettingsToggleRow(
+                  label: l10n.profileMinimalTrackingModeTitle,
+                  subtitle: l10n.profileMinimalTrackingModeSubtitle,
+                  value: profileSettings.minimalTrackingMode,
+                  onChanged: profileSettingsNotifier.setMinimalTrackingMode,
+                ),
+                const Divider(height: 1),
+                _SettingsToggleRow(
+                  label: l10n.profileHideGrowthVisualsTitle,
+                  subtitle: l10n.profileHideGrowthVisualsSubtitle,
+                  value: profileSettings.hideGrowthVisuals,
+                  onChanged: profileSettingsNotifier.setHideGrowthVisuals,
+                ),
+                const Divider(height: 1),
+                _SettingsToggleRow(
+                  label: l10n.profileReflectionOnlyModeTitle,
+                  subtitle: l10n.profileReflectionOnlyModeSubtitle,
+                  value: profileSettings.reflectionOnlyMode,
+                  onChanged: profileSettingsNotifier.setReflectionOnlyMode,
+                ),
+              ],
             ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.profileMinimalTrackingModeTitle,
-              subtitle: l10n.profileMinimalTrackingModeSubtitle,
-              value: profileSettings.minimalTrackingMode,
-              onChanged: profileSettingsNotifier.setMinimalTrackingMode,
-            ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.profileHideGrowthVisualsTitle,
-              subtitle: l10n.profileHideGrowthVisualsSubtitle,
-              value: profileSettings.hideGrowthVisuals,
-              onChanged: profileSettingsNotifier.setHideGrowthVisuals,
-            ),
-            const Divider(height: 1),
-            _SettingsToggleRow(
-              label: l10n.profileReflectionOnlyModeTitle,
-              subtitle: l10n.profileReflectionOnlyModeSubtitle,
-              value: profileSettings.reflectionOnlyMode,
-              onChanged: profileSettingsNotifier.setReflectionOnlyMode,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
     final notificationsSection = wrapSection(
-      title: l10n.profileNotificationsTitle,
+      title: l10n.settingsOtherRemindersTitle,
+      titled: true,
       subtitle: l10n.profileNotificationsSubtitle,
       child: PremiumCard(
         child: Column(
           children: [
-            ListTile(
-              dense: true,
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.profileNotificationsSubtitle),
-              subtitle: Text(
-                l10n.profilePlannedRemindersToday(reminderPlan.items.length),
-              ),
-            ),
-            const Divider(height: 1),
             _SettingsToggleRow(
               label: l10n.profileDhikrReminders,
               value: profileSettings.dhikrReminders,
@@ -1222,27 +1164,38 @@ class SettingsPage extends ConsumerWidget {
               value: profileSettings.moonsetReminders,
               onChanged: profileSettingsNotifier.setMoonsetReminders,
             ),
+            const Divider(height: 1),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                l10n.profilePlannedRemindersToday(reminderPlan.items.length),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
           ],
         ),
       ),
     );
 
+    // A whole page for two languages does not need an expander in front of
+    // them — the choice is the page.
     final languageSection = wrapSection(
       title: l10n.languageOptionsTitle,
       subtitle: l10n.languageOptionsSubtitle,
-      child: ExpansionTile(
-        title: Text(l10n.profileLanguageExpandTitle),
-        subtitle: Text(l10n.profileLanguageExpandSubtitle),
-        children: [
-          PremiumCard(
-            child: Column(
-              children: [
-                _LanguageRow(l10n.languageEnglish, const Locale('en')),
-                _LanguageRow(l10n.languageGerman, const Locale('de')),
-              ],
+      child: PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _LanguageRow(l10n.languageEnglish, const Locale('en')),
+            const Divider(height: 1),
+            _LanguageRow(l10n.languageGerman, const Locale('de')),
+            const SizedBox(height: 8),
+            Text(
+              l10n.profileLanguageExpandSubtitle,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
 
@@ -1250,148 +1203,145 @@ class SettingsPage extends ConsumerWidget {
       title: l10n.learnHubTitle,
       subtitle: l10n.settingsCategoryLearningSubtitle,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          CompactListTile(
+            title: l10n.settingsLearningLevelTitle,
+            subtitle: _settingsLearningLevelLabel(
+              context,
+              learningPathSelection?.selectedLevel,
+            ),
+            leading: const HubLeadingIcon(Icons.route_rounded),
+            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+            onTap: () => context.pushNamed('learnLearningPath'),
+          ),
+          const SizedBox(height: 6),
+          CompactListTile(
+            title: l10n.settingsRunOnboardingTitle,
+            subtitle: l10n.settingsRunOnboardingSubtitle,
+            leading: const HubLeadingIcon(Icons.auto_awesome_rounded),
+            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+            onTap: () => context.push('/onboarding?preview=1'),
+          ),
+          const SizedBox(height: 14),
           PremiumCard(
-            child: Column(
-              children: [
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: const Icon(Icons.route_rounded),
-                  title: Text(l10n.settingsLearningLevelTitle),
-                  subtitle: Text(
-                    _settingsLearningLevelLabel(
-                      context,
-                      learningPathSelection?.selectedLevel,
+            child: DropdownButtonFormField<ProfileAgeRange>(
+              initialValue: profileSettings.ageRange,
+              decoration: InputDecoration(
+                labelText: l10n.kidsUiAgeRangeTitle,
+                helperText: _profileAgeRangeLabel(
+                  profileSettings.ageRange,
+                  l10n,
+                ),
+                isDense: true,
+              ),
+              items: ProfileAgeRange.values
+                  .map(
+                    (item) => DropdownMenuItem(
+                      value: item,
+                      child: Text(_profileAgeRangeLabel(item, l10n)),
                     ),
-                  ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
-                  onTap: () => context.pushNamed('learnLearningPath'),
-                ),
-                const Divider(height: 1),
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: const Icon(Icons.auto_awesome_rounded),
-                  title: Text(l10n.settingsRunOnboardingTitle),
-                  subtitle: Text(l10n.settingsRunOnboardingSubtitle),
-                  trailing: const Icon(Icons.chevron_right_rounded),
-                  onTap: () => context.push('/onboarding?preview=1'),
-                ),
-                const Divider(height: 1),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: DropdownButtonFormField<ProfileAgeRange>(
-                    initialValue: profileSettings.ageRange,
-                    decoration: InputDecoration(
-                      labelText: l10n.kidsUiAgeRangeTitle,
-                      helperText: _profileAgeRangeLabel(
-                        profileSettings.ageRange,
-                        l10n,
-                      ),
-                      isDense: true,
-                    ),
-                    items: ProfileAgeRange.values
-                        .map(
-                          (item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(_profileAgeRangeLabel(item, l10n)),
-                          ),
-                        )
-                        .toList(growable: false),
-                    onChanged: (value) {
-                      if (value != null) {
-                        profileSettingsNotifier.setAgeRange(value);
-                      }
-                    },
-                  ),
-                ),
-              ],
+                  )
+                  .toList(growable: false),
+              onChanged: (value) {
+                if (value != null) {
+                  profileSettingsNotifier.setAgeRange(value);
+                }
+              },
             ),
           ),
         ],
       ),
     );
 
-    final aboutSection = wrapSection(
-      title: l10n.profileAboutTitle,
-      subtitle: l10n.profileAboutSubtitle,
-      child: PremiumCard(
-        child: Column(
+    // The four legal links used to be unlabeled tonal buttons whose captions
+    // named other pages entirely (Terms read "About", Support read
+    // "Notifications & Reminders"). They are ordinary rows now, each carrying
+    // its own name.
+    final aboutSection = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        HubListGroup(
+          title: l10n.profileAboutTitle,
           children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.summarize_outlined),
-              title: Text(l10n.homeOverviewHeroTitle),
-              subtitle: Text(l10n.homeOverviewHeroSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
+            CompactListTile(
+              title: l10n.homeOverviewHeroTitle,
+              subtitle: l10n.homeOverviewHeroSubtitle,
+              leading: const HubLeadingIcon(Icons.summarize_outlined),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileSummary'),
             ),
-            const Divider(height: 1),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.new_releases_outlined),
-              title: Text(l10n.settingsWhatsNewTitle),
-              subtitle: Text(l10n.settingsWhatsNewSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
+            CompactListTile(
+              title: l10n.settingsWhatsNewTitle,
+              subtitle: l10n.settingsWhatsNewSubtitle,
+              leading: const HubLeadingIcon(Icons.new_releases_outlined),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileWhatsNew'),
             ),
-            const Divider(height: 1),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.upcoming_outlined),
-              title: Text(l10n.settingsComingSoonTitle),
-              subtitle: Text(l10n.settingsComingSoonSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
+            CompactListTile(
+              title: l10n.settingsComingSoonTitle,
+              subtitle: l10n.settingsComingSoonSubtitle,
+              leading: const HubLeadingIcon(Icons.upcoming_outlined),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileComingSoon'),
             ),
-            const Divider(height: 1),
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  FilledButton.tonal(
-                    onPressed: () => context.pushNamed('privacyPolicy'),
-                    child: Text(l10n.profileTrackingPrivacyTitle),
-                  ),
-                  FilledButton.tonal(
-                    onPressed: () => context.pushNamed('termsUsage'),
-                    child: Text(l10n.profileAboutTitle),
-                  ),
-                  FilledButton.tonal(
-                    onPressed: () => context.pushNamed('supportInfo'),
-                    child: Text(l10n.profileNotificationsTitle),
-                  ),
-                  FilledButton.tonal(
-                    onPressed: () => context.pushNamed('attributionsLicenses'),
-                    child: Text(l10n.settingsAttributionsLicensesTitle),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            const _EditorialDashboardUnlockFooter(),
           ],
         ),
-      ),
+        const SizedBox(height: 14),
+        HubListGroup(
+          title: l10n.settingsLegalTitle,
+          children: [
+            CompactListTile(
+              title: l10n.legalPrivacyTitle,
+              subtitle: l10n.legalPrivacySubtitle,
+              leading: const HubLeadingIcon(Icons.privacy_tip_outlined),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+              onTap: () => context.pushNamed('privacyPolicy'),
+            ),
+            CompactListTile(
+              title: l10n.legalTermsTitle,
+              subtitle: l10n.legalTermsSubtitle,
+              leading: const HubLeadingIcon(Icons.gavel_rounded),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+              onTap: () => context.pushNamed('termsUsage'),
+            ),
+            CompactListTile(
+              title: l10n.legalSupportTitle,
+              subtitle: l10n.legalSupportSubtitle,
+              leading: const HubLeadingIcon(Icons.support_agent_rounded),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+              onTap: () => context.pushNamed('supportInfo'),
+            ),
+            CompactListTile(
+              title: l10n.settingsAttributionsLicensesTitle,
+              subtitle: l10n.quranReaderSourcesLicensingTitle,
+              leading: const HubLeadingIcon(Icons.workspace_premium_outlined),
+              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+              onTap: () => context.pushNamed('attributionsLicenses'),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        const _EditorialDashboardUnlockFooter(),
+      ],
     );
 
     final sectionMap = <SettingsCategory, List<Widget>>{
-      SettingsCategory.accountSync: [
+      SettingsCategory.profile: [
         profilePersonalizationSection,
-        const SizedBox(height: 16),
-        accountsSyncSection,
+        const SizedBox(height: 12),
+        familyLearningRow,
       ],
+      SettingsCategory.accountSync: [accountsSyncSection],
       SettingsCategory.appearance: [appearanceSection],
-      SettingsCategory.prayerWorship: [
-        adhanSection,
-        const SizedBox(height: 16),
-        prayerSettingsSection,
-      ],
+      SettingsCategory.prayerWorship: [prayerSettingsSection],
+      SettingsCategory.adhan: [adhanSection],
       SettingsCategory.learning: [learningSection],
       SettingsCategory.notificationsReminders: [
         prayerNotificationsSection,
-        const SizedBox(height: 16),
+        const SizedBox(height: 14),
+        perPrayerNotificationsSection,
+        const SizedBox(height: 14),
         notificationsSection,
       ],
       SettingsCategory.widgetsWatch: [widgetsWatchSection],
@@ -1403,8 +1353,8 @@ class SettingsPage extends ConsumerWidget {
     final currentCategory = category!;
 
     return AppPageScaffold(
-      headerIcon: _settingsCategoryIcon(currentCategory),
-      title: _settingsCategoryTitle(currentCategory, l10n),
+      headerIcon: settingsCategoryIcon(currentCategory),
+      title: settingsCategoryTitle(currentCategory, l10n),
       subtitle: _settingsCategorySubtitle(
         context,
         currentCategory,
@@ -1463,62 +1413,13 @@ class _EditorialDashboardUnlockFooterState
         child: Center(
           child: Text(
             label,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
         ),
       ),
     );
-  }
-}
-
-IconData _settingsCategoryIcon(SettingsCategory category) {
-  switch (category) {
-    case SettingsCategory.accountSync:
-      return Icons.sync_outlined;
-    case SettingsCategory.appearance:
-      return Icons.palette_outlined;
-    case SettingsCategory.prayerWorship:
-      return IslamicIcons.prayer;
-    case SettingsCategory.learning:
-      return Icons.school_outlined;
-    case SettingsCategory.notificationsReminders:
-      return Icons.notifications_active_outlined;
-    case SettingsCategory.widgetsWatch:
-      return Icons.watch_later_outlined;
-    case SettingsCategory.languageDownloads:
-      return Icons.language_outlined;
-    case SettingsCategory.privacyData:
-      return Icons.shield_outlined;
-    case SettingsCategory.about:
-      return Icons.info_outline_rounded;
-  }
-}
-
-String _settingsCategoryTitle(
-  SettingsCategory category,
-  AppLocalizations l10n,
-) {
-  switch (category) {
-    case SettingsCategory.accountSync:
-      return l10n.settingsAccountsSyncTitle;
-    case SettingsCategory.appearance:
-      return l10n.profileAppearanceTitle;
-    case SettingsCategory.prayerWorship:
-      return l10n.profilePrayerSettingsTitle;
-    case SettingsCategory.learning:
-      return l10n.learnHubTitle;
-    case SettingsCategory.notificationsReminders:
-      return l10n.profileNotificationsTitle;
-    case SettingsCategory.widgetsWatch:
-      return l10n.settingsCategoryWidgetsWatchTitle;
-    case SettingsCategory.languageDownloads:
-      return l10n.languageOptionsTitle;
-    case SettingsCategory.privacyData:
-      return l10n.profileTrackingPrivacyTitle;
-    case SettingsCategory.about:
-      return l10n.profileAboutTitle;
   }
 }
 
@@ -1527,7 +1428,13 @@ String _settingsCategorySubtitle(
   SettingsCategory category, {
   required bool kidsMode,
 }) {
+  final l10n = AppLocalizations.of(context);
   switch (category) {
+    // Profile and Adhan were split out of the account-sync and prayer pages,
+    // so they carry the catalog copy rather than a kids-aware variant.
+    case SettingsCategory.profile:
+    case SettingsCategory.adhan:
+      return settingsCategorySubtitle(category, l10n);
     case SettingsCategory.accountSync:
       return localizedSettingsPageDescription(
         context,
@@ -1785,6 +1692,12 @@ class _HomepageProfileIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inner = size;
+    // Themed rather than fixed cream/gold — the old literals rendered as a
+    // pale blob on Midnight, Ramadan, and the other night themes.
+    final theme = Theme.of(context);
+    final appearance = theme.extension<AppAppearanceTheme>();
+    final accent = appearance?.accent ?? theme.colorScheme.primary;
+    final onSurface = theme.colorScheme.onSurface;
     return SizedBox(
       width: inner,
       height: inner,
@@ -1797,21 +1710,21 @@ class _HomepageProfileIcon extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: const Color(0xFFEEFA7C).withValues(alpha: 0.84),
+                color: accent.withValues(alpha: 0.72),
                 width: 3,
               ),
             ),
           ),
           CircleAvatar(
             radius: inner * 0.38,
-            backgroundColor: const Color(0xFFF8EFE2),
+            backgroundColor: accent.withValues(alpha: 0.14),
             child: CircleAvatar(
               radius: inner * 0.34,
-              backgroundColor: const Color(0xFFEFDFC9),
+              backgroundColor: accent.withValues(alpha: 0.22),
               child: Icon(
                 Icons.person,
                 size: inner * 0.34,
-                color: const Color(0xFF61422D).withValues(alpha: 0.86),
+                color: onSurface.withValues(alpha: 0.86),
               ),
             ),
           ),
@@ -1872,24 +1785,18 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
     const prayerIds = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _JumuahSettingsSection(
           l10n: l10n,
           prayerState: prayerState,
           prayerNotifier: prayerNotifier,
         ),
-        const SizedBox(height: 16),
-        Text(
-          l10n.settingsPrayerTimeModeTitle,
-          style: Theme.of(context).textTheme.titleMedium,
+        const SizedBox(height: 14),
+        SectionTitle(
+          title: l10n.settingsPrayerTimeModeTitle,
+          subtitle: l10n.settingsPrayerTimeModeSubtitle,
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsPrayerTimeModeSubtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        const SizedBox(height: 12),
         _PrayerTimeModeCard(
           title: l10n.settingsPrayerTimeModeCalculatedAdjustedTitle,
           description: l10n.settingsPrayerTimeModeCalculatedAdjustedDescription,
@@ -1931,7 +1838,7 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
           l10n.settingsPrayerTimeModeManualNote,
           style: Theme.of(context).textTheme.bodySmall,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 14),
         if (mode == PrayerTimeMode.calculatedAdjusted) ...[
           _CalculatedAdjustmentsContent(
             prayerState: prayerState,
@@ -2055,26 +1962,27 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          l10n.settingsPrayerTimeAdjustmentsTitle,
-          style: Theme.of(context).textTheme.titleMedium,
+        SectionTitle(
+          title: l10n.settingsPrayerTimeAdjustmentsTitle,
+          subtitle: l10n.settingsPrayerTimeAdjustmentsSubtitle,
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsPrayerTimeAdjustmentsSubtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsPrayerTimeAdjustmentsExample,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsPrayerTimeAdjustmentsScope,
-          style: Theme.of(context).textTheme.bodySmall,
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.settingsPrayerTimeAdjustmentsExample,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.settingsPrayerTimeAdjustmentsScope,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
         ),
         if (adjustments.hasAnyAdjustment) ...[
           const SizedBox(height: 12),
@@ -2210,18 +2118,12 @@ class _ManualPrayerTimesContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          l10n.settingsManualPrayerTimesTitle,
-          style: Theme.of(context).textTheme.titleMedium,
+        SectionTitle(
+          title: l10n.settingsManualPrayerTimesTitle,
+          subtitle: l10n.settingsManualPrayerTimesSubtitle,
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsManualPrayerTimesSubtitle,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-        const SizedBox(height: 14),
         ...prayerIds.map((prayerId) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -2357,18 +2259,12 @@ class _MosqueComparisonSection extends StatelessWidget {
         );
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          l10n.settingsMosqueTimeComparisonTitle,
-          style: Theme.of(context).textTheme.titleMedium,
+        SectionTitle(
+          title: l10n.settingsMosqueTimeComparisonTitle,
+          subtitle: l10n.settingsMosqueTimeComparisonSubtitle,
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsMosqueTimeComparisonSubtitle,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const SizedBox(height: 12),
         ...prayerIds.map((prayerId) {
           final baseItem = _scheduleItemById(baseSchedule, prayerId);
           final effectiveItem = _scheduleItemById(effectiveSchedule, prayerId);
@@ -2494,35 +2390,31 @@ class _JumuahSettingsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final preferences = prayerState.preferences;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          l10n.settingsJumuahSettingsTitle,
-          style: Theme.of(context).textTheme.titleMedium,
+        SectionTitle(
+          title: l10n.settingsJumuahSettingsTitle,
+          subtitle: l10n.settingsJumuahSettingsSubtitle,
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsJumuahSettingsSubtitle,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const SizedBox(height: 12),
-        SwitchListTile.adaptive(
-          contentPadding: EdgeInsets.zero,
-          title: Text(l10n.settingsEnableJumuahOverrideTitle),
-          subtitle: Text(l10n.settingsEnableJumuahOverrideSubtitle),
-          value: preferences.jumuahOverrideEnabled,
-          onChanged: (value) {
-            prayerNotifier.updateJumuahSettings(enabled: value);
-          },
+        PremiumCard(
+          child: _SettingsToggleRow(
+            label: l10n.settingsEnableJumuahOverrideTitle,
+            subtitle: l10n.settingsEnableJumuahOverrideSubtitle,
+            value: preferences.jumuahOverrideEnabled,
+            onChanged: (value) {
+              prayerNotifier.updateJumuahSettings(enabled: value);
+            },
+          ),
         ),
         if (preferences.jumuahOverrideEnabled) ...[
-          const SizedBox(height: 8),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.settingsJumuahTimeTitle),
-            subtitle: Text(l10n.settingsJumuahTimeSubtitle),
+          const SizedBox(height: 6),
+          CompactListTile(
+            title: l10n.settingsJumuahTimeTitle,
+            subtitle: l10n.settingsJumuahTimeSubtitle,
+            leading: const HubLeadingIcon(Icons.schedule_rounded),
             trailing: Text(
               _formatMinutesLabel(context, preferences.jumuahTimeMinutes, l10n),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             onTap: () async {
               final picked = await showTimePicker(
@@ -2537,34 +2429,34 @@ class _JumuahSettingsSection extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: FridayReminderMode.values
-                .map(
-                  (mode) => ChoiceChip(
-                    label: Text(_fridayReminderModeLabel(mode, l10n)),
-                    selected: preferences.fridayReminderMode == mode,
-                    onSelected: (_) {
-                      prayerNotifier.updateJumuahSettings(
-                        fridayReminderMode: mode,
-                      );
-                    },
-                  ),
-                )
-                .toList(),
+          const SizedBox(height: 6),
+          PremiumCard(
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: FridayReminderMode.values
+                  .map(
+                    (mode) => ChoiceChip(
+                      label: Text(_fridayReminderModeLabel(mode, l10n)),
+                      selected: preferences.fridayReminderMode == mode,
+                      onSelected: (_) {
+                        prayerNotifier.updateJumuahSettings(
+                          fridayReminderMode: mode,
+                        );
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         ],
-        const SizedBox(height: 16),
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.mosque_outlined),
-          title: Text(l10n.settingsJumuahMosqueTitle),
-          subtitle: Text(
-            preferences.jumuahMosqueName ?? l10n.settingsJumuahChooseMosque,
-          ),
-          trailing: const Icon(Icons.chevron_right_rounded),
+        const SizedBox(height: 6),
+        CompactListTile(
+          title: l10n.settingsJumuahMosqueTitle,
+          subtitle:
+              preferences.jumuahMosqueName ?? l10n.settingsJumuahChooseMosque,
+          leading: const HubLeadingIcon(Icons.mosque_outlined),
+          trailing: const Icon(Icons.chevron_right_rounded, size: 20),
           onTap: () async {
             final result = await showDialog<PrayerLocationSearchResult>(
               context: context,
@@ -2578,76 +2470,77 @@ class _JumuahSettingsSection extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.settingsJumuahLeaveReminderTitle,
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final mode in JumuahLeaveReminderMode.values)
-              ChoiceChip(
-                key: ValueKey('jumuah-leave-${mode.wireName}'),
-                label: Text(switch (mode) {
-                  JumuahLeaveReminderMode.off => l10n.settingsJumuahLeaveOff,
-                  JumuahLeaveReminderMode.fixedTravelTime =>
-                    l10n.settingsJumuahLeaveFixed,
-                  JumuahLeaveReminderMode.locationEstimate =>
-                    l10n.settingsJumuahLeaveEstimate,
-                }),
-                selected: preferences.jumuahLeaveReminderMode == mode,
-                onSelected: (_) {
-                  prayerNotifier.updateJumuahSettings(leaveReminderMode: mode);
-                },
+        const SizedBox(height: 14),
+        SectionTitle(title: l10n.settingsJumuahLeaveReminderTitle),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final mode in JumuahLeaveReminderMode.values)
+                    ChoiceChip(
+                      key: ValueKey('jumuah-leave-${mode.wireName}'),
+                      label: Text(switch (mode) {
+                        JumuahLeaveReminderMode.off =>
+                          l10n.settingsJumuahLeaveOff,
+                        JumuahLeaveReminderMode.fixedTravelTime =>
+                          l10n.settingsJumuahLeaveFixed,
+                        JumuahLeaveReminderMode.locationEstimate =>
+                          l10n.settingsJumuahLeaveEstimate,
+                      }),
+                      selected: preferences.jumuahLeaveReminderMode == mode,
+                      onSelected: (_) {
+                        prayerNotifier.updateJumuahSettings(
+                          leaveReminderMode: mode,
+                        );
+                      },
+                    ),
+                ],
               ),
-          ],
-        ),
-        if (preferences.jumuahLeaveReminderMode ==
-            JumuahLeaveReminderMode.fixedTravelTime) ...[
-          const SizedBox(height: 8),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.settingsJumuahTravelMinutesLabel),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.remove_circle_outline),
-                  onPressed: () => prayerNotifier.updateJumuahSettings(
-                    travelMinutes: (preferences.jumuahTravelMinutes - 5).clamp(
-                      5,
-                      120,
-                    ),
-                  ),
-                ),
-                Text(
-                  _formatCount(context, preferences.jumuahTravelMinutes),
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.add_circle_outline),
-                  onPressed: () => prayerNotifier.updateJumuahSettings(
-                    travelMinutes: (preferences.jumuahTravelMinutes + 5).clamp(
-                      5,
-                      120,
-                    ),
+              if (preferences.jumuahLeaveReminderMode ==
+                  JumuahLeaveReminderMode.fixedTravelTime) ...[
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.settingsJumuahTravelMinutesLabel),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.remove_circle_outline),
+                        onPressed: () => prayerNotifier.updateJumuahSettings(
+                          travelMinutes: (preferences.jumuahTravelMinutes - 5)
+                              .clamp(5, 120),
+                        ),
+                      ),
+                      Text(
+                        _formatCount(context, preferences.jumuahTravelMinutes),
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.add_circle_outline),
+                        onPressed: () => prayerNotifier.updateJumuahSettings(
+                          travelMinutes: (preferences.jumuahTravelMinutes + 5)
+                              .clamp(5, 120),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
-            ),
+              if (preferences.jumuahLeaveReminderMode ==
+                  JumuahLeaveReminderMode.locationEstimate) ...[
+                const SizedBox(height: 8),
+                Text(
+                  l10n.settingsJumuahEstimatePrivacyNote,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ],
           ),
-        ],
-        if (preferences.jumuahLeaveReminderMode ==
-            JumuahLeaveReminderMode.locationEstimate) ...[
-          const SizedBox(height: 8),
-          Text(
-            l10n.settingsJumuahEstimatePrivacyNote,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
+        ),
       ],
     );
   }
@@ -2909,17 +2802,6 @@ Future<void> _showSuggestedAdjustmentsSheet({
                           l10n,
                           context,
                         ),
-                        _formatAdjustmentLabel(
-                          suggestedAdjustments.offsetForPrayer(prayerId),
-                          l10n,
-                          context,
-                        ),
-                        _formatAdjustmentLabel(
-                          suggestedAdjustments.offsetForPrayer(prayerId),
-                          l10n,
-                          context,
-                        ),
-                        _prayerDisplayName(prayerId, l10n),
                         _formatAdjustmentLabel(
                           suggestedAdjustments.offsetForPrayer(prayerId),
                           l10n,
@@ -3703,28 +3585,38 @@ class _ThemePreviewTile extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
-                label,
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
+              // Flexible so a wrapped label or a larger text scale clips
+              // instead of overflowing the carousel's fixed row height.
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
-                description,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall?.copyWith(height: 1.3),
+              Flexible(
+                child: Text(
+                  description,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall?.copyWith(height: 1.3),
+                ),
               ),
               const SizedBox(height: 4),
-              Text(
-                helper,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: data.accent,
-                  fontWeight: FontWeight.w600,
-                  height: 1.25,
+              Flexible(
+                child: Text(
+                  helper,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: data.accent,
+                    fontWeight: FontWeight.w600,
+                    height: 1.25,
+                  ),
                 ),
               ),
             ],

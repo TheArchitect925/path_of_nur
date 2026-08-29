@@ -1504,7 +1504,7 @@
       "prayerName": {}
     }
   },
-  "homePrayerBecomesQada": "{prayer} kaza olur",
+  "homePrayerBecomesQada": "{prayerName} kaza olur",
   "@homePrayerBecomesQada": {
     "placeholders": {
       "prayerName": {}
@@ -1553,14 +1553,14 @@
     }
   },
   "homeDailyBadgesTitle": "Bugünün rozetleri",
-  "homeContinueQuranValue": "{surah}, {verse}. ayetten devam et",
+  "homeContinueQuranValue": "{surahName} {ayahNumber}",
   "@homeContinueQuranValue": {
     "placeholders": {
       "surahName": {},
       "ayahNumber": {}
     }
   },
-  "homeJourneyRingsValue": "{total} halkanın {completed} kadarı tamamlandı",
+  "homeJourneyRingsValue": "P {prayerPercent}% · D {dhikrPercent}% · Q {quranPercent}%",
   "@homeJourneyRingsValue": {
     "placeholders": {
       "prayerPercent": {},
@@ -1595,7 +1595,7 @@
   "homePrayerCompletedTapHint": "Namaz ayrintilarini guncellemek icin dokun",
   "homePrayerPostSalahDhikrAction": "Namaz sonrasi zikir",
   "homePrayerPostSalahDhikrLogged": "Namaz sonrasi zikir kaydedildi",
-  "homePrayerBeginsAt": "{time} vaktinde başlar",
+  "homePrayerBeginsAt": "Begins at",
   "homeDurationMinutes": "{minutes} dk",
   "@homeDurationMinutes": {
     "placeholders": {
@@ -1617,7 +1617,7 @@
   },
   "durationCompactHourSuffix": "h",
   "durationCompactMinuteSuffix": "m",
-  "homeLearnCategoryFallbackSubtitle": "Kısa ve net adımlarla öğrenmeye devam et.",
+  "homeLearnCategoryFallbackSubtitle": "Learn category • {category}",
   "@homeLearnCategoryFallbackSubtitle": {
     "placeholders": {
       "category": {
@@ -2066,7 +2066,7 @@
   "learnHubSavedAndNotesTitle": "Kaydedilenler ve notlar",
   "learnHubSavedAndNotesSubtitle": "Daha sonra dönmek istediklerini burada tut.",
   "learnHubKnowledgeConstellationSubtitle": "Bağlı konuları ve fikirleri birlikte gör.",
-  "learnHubSavedNotesSummary": "{count} kayıtlı not",
+  "learnHubSavedNotesSummary": "Saved items: {saved} • Notes: {notes}",
   "@learnHubSavedNotesSummary": {
     "placeholders": {
       "saved": {},
@@ -2084,7 +2084,7 @@
   "learnHubContinueWhereYouLeftOff": "Kaldığın yerden devam et",
   "learnHubResumeAction": "Devam et",
   "learnHubDailyLearningTitle": "Günlük öğrenme",
-  "learnHubDailyThemeLabel": "Günün teması",
+  "learnHubDailyThemeLabel": "Theme: {theme}",
   "@learnHubDailyThemeLabel": {
     "placeholders": {
       "theme": {}
@@ -2430,7 +2430,7 @@
   "learnHubFilterDifficultyTooltip": "Zorluğa göre filtrele",
   "learnHubFilterPathTooltip": "Yola göre filtrele",
   "learnHubTypeAnyLabel": "Her tür",
-  "learnHubTypeValueLabel": "Tür: {value}",
+  "learnHubTypeValueLabel": "Tür: {type}",
   "@learnHubTypeValueLabel": {
     "placeholders": {
       "type": {}
@@ -2438,7 +2438,7 @@
   },
   "learnHubAnyTypeOption": "Her tür",
   "learnHubThemeAnyLabel": "Her tema",
-  "learnHubThemeValueLabel": "Tema: {value}",
+  "learnHubThemeValueLabel": "Tema: {theme}",
   "@learnHubThemeValueLabel": {
     "placeholders": {
       "theme": {}
@@ -2446,7 +2446,7 @@
   },
   "learnHubAnyThemeOption": "Her tema",
   "learnHubDifficultyAnyLabel": "Her seviye",
-  "learnHubDifficultyValueLabel": "Seviye: {value}",
+  "learnHubDifficultyValueLabel": "Seviye: {difficulty}",
   "@learnHubDifficultyValueLabel": {
     "placeholders": {
       "difficulty": {}
@@ -2464,7 +2464,7 @@
     }
   },
   "learnHubNoMatchingItems": "Eşleşen öğe yok",
-  "learnHubPathProgress": "Yol ilerlemesi",
+  "learnHubPathProgress": "{completed} / {total} completed",
   "@learnHubPathProgress": {
     "placeholders": {
       "completed": {},
@@ -2494,7 +2494,7 @@
   "learnHubCategoryGroupPilgrimage": "Hac ve umre",
   "learningReferencesShowLess": "Daha az göster",
   "learningReferencesShowAll": "Tümünü göster",
-  "quranReferenceViewerReferenceLabel": "Referans",
+  "quranReferenceViewerReferenceLabel": "Qur’an {reference}",
   "@quranReferenceViewerReferenceLabel": {
     "placeholders": {
       "reference": {}
@@ -2899,28 +2899,28 @@
   },
   "triviaHomeSubtitle": "Kısa quizlerle bilgini güçlendir.",
   "triviaHomeCurrentStreakLabel": "Güncel seri",
-  "triviaHomeLongestStreakCaption": "En uzun seri",
+  "triviaHomeLongestStreakCaption": "Longest {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
       "count": {}
     }
   },
   "triviaHomeAccuracyLabel": "Doğruluk",
-  "triviaHomeAnsweredCount": "Yanıtlanan",
+  "triviaHomeAnsweredCount": "{count} answered",
   "@triviaHomeAnsweredCount": {
     "placeholders": {
       "count": {}
     }
   },
   "triviaHomeTriviaXpLabel": "Quiz XP",
-  "triviaHomeQuizzesCompletedCount": "Tamamlanan quizler",
+  "triviaHomeQuizzesCompletedCount": "{count} quizzes completed",
   "@triviaHomeQuizzesCompletedCount": {
     "placeholders": {
       "count": {}
     }
   },
   "triviaHomeOceanDropsLabel": "Okyanus damlaları",
-  "triviaHomeBestSurvivalCaption": "En iyi hayatta kalma turu",
+  "triviaHomeBestSurvivalCaption": "Best survival {count}",
   "@triviaHomeBestSurvivalCaption": {
     "placeholders": {
       "count": {}
@@ -2956,7 +2956,7 @@
   "triviaHomeCategoriesTitle": "Kategoriler",
   "triviaHomeCategoriesSubtitle": "Şu an ihtiyaç duyduğun konuları çalış.",
   "triviaHomeNoAnswersYet": "Henüz yanıt yok",
-  "triviaHomeCategoryAccuracy": "{category}: %{accuracy}",
+  "triviaHomeCategoryAccuracy": "Accuracy {percent}%",
   "@triviaHomeCategoryAccuracy": {
     "placeholders": {
       "percent": {}
@@ -2969,7 +2969,7 @@
   "triviaHomeNoSessionsYetTitle": "Henüz oturum yok",
   "triviaHomeNoSessionsYetSubtitle": "İlerlemeni görmek için bir quiz başlat.",
   "triviaMixedLabel": "Karışık",
-  "triviaHomeRecentPerformanceSummary": "{correct} doğru, {incorrect} yanlış",
+  "triviaHomeRecentPerformanceSummary": "{category} • {correct}/{total} correct • +{xp} XP",
   "@triviaHomeRecentPerformanceSummary": {
     "placeholders": {
       "category": {},
@@ -2984,14 +2984,14 @@
   "triviaResultsXpGainedLabel": "Kazanılan XP",
   "triviaResultsPerfectBonusIncluded": "Mükemmel bonusu dahil",
   "triviaResultsReplayRewardsLighter": "Tekrar oynanan turlar daha az ödül verir.",
-  "triviaResultsCompletedSummary": "{completed}/{total} tamamlandı",
+  "triviaResultsCompletedSummary": "Completed in {seconds}s • {missed} missed",
   "@triviaResultsCompletedSummary": {
     "placeholders": {
       "seconds": {},
       "missed": {}
     }
   },
-  "triviaResultsBestRunInSession": "Bu oturumdaki en iyi seri",
+  "triviaResultsBestRunInSession": "Best run in this session: {count}",
   "@triviaResultsBestRunInSession": {
     "placeholders": {
       "count": {}
@@ -3014,7 +3014,7 @@
   "triviaReviewNoQuestionsDueTitle": "Sırada soru yok",
   "triviaReviewNoQuestionsDueSubtitle": "Şimdilik her şey güncel.",
   "triviaReviewStartSessionTitle": "Gözden geçirmeyi başlat",
-  "triviaReviewStartSessionSubtitle": "Sıradaki soruları kısa bir turda tamamla.",
+  "triviaReviewStartSessionSubtitle": "{count} items are ready. The queue favors what was recently missed or still unstable.",
   "@triviaReviewStartSessionSubtitle": {
     "placeholders": {
       "count": {}
@@ -3035,7 +3035,7 @@
   "triviaStageNotFoundTitle": "Aşama bulunamadı",
   "triviaStageNotFoundSubtitle": "Bu aşama yüklenemedi.",
   "triviaStageQuizTitle": "Aşama quizi",
-  "triviaStageQuizSubtitle": "Bu aşamada öğrendiklerini kontrol et.",
+  "triviaStageQuizSubtitle": "Answer {count} focused questions. Wrong answers still feed your review queue.",
   "@triviaStageQuizSubtitle": {
     "placeholders": {
       "count": {}
@@ -3063,7 +3063,7 @@
   "triviaContinuePathAction": "Yola devam et",
   "triviaStagesTitle": "Aşamalar",
   "triviaStagesSubtitle": "Adım adım ilerle.",
-  "triviaKnowledgeStageSummary": "Aşama {index}/{total}",
+  "triviaKnowledgeStageSummary": "{count} questions • +{xp} XP",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -7422,24 +7422,13 @@
   "settingsCurrentLocation": "Mevcut konum",
   "settingsProfilePersonalizationTitle": "Profil ve Kişiselleştirme",
   "settingsProfilePersonalizationSubtitle": "Profil artık üst düzey bir sekme olmadığından adınızı, adres tercihinizi, modlarınızı ve profille ilgili kısayollarınızı burada tutun.",
-  "settingsProfileDisplayNameSummary": "Görünen ad: {name}",
+  "settingsProfileDisplayNameSummary": "{title} {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
       "title": {
         "type": "String"
       },
       "name": {
-        "type": "String"
-      }
-    }
-  },
-  "settingsProfileLevelStreakSummary": "Seviye {level} • {streakDays} istikrarlı gün",
-  "@settingsProfileLevelStreakSummary": {
-    "placeholders": {
-      "levelSummary": {
-        "type": "String"
-      },
-      "streakSummary": {
         "type": "String"
       }
     }
@@ -8122,8 +8111,6 @@
   "accountsSyncDevicePlatformAndroidTv": "Android TV",
   "settingsAdhanTitle": "Ezan",
   "settingsAdhanSubtitle": "Özel bir Sabah Ezanı seçin, paketteki klipleri önizleyin ve dua sesini çevrimdışı tutun.",
-  "settingsEnableAdhanAudioTitle": "Ezan sesini etkinleştir",
-  "settingsEnableAdhanAudioSubtitle": "Bu açıkken Salah hatırlatıcıları seçilen Ezan''ı çalabilir.",
   "settingsRegularAdhanTitle": "Düzenli Ezan",
   "settingsFajrAdhanTitle": "Sabah ezanı",
   "settingsPreviewVolumeTitle": "Önizleme ve ses seviyesi",
@@ -8141,8 +8128,6 @@
   "settingsAdhanPickerRegularSubtitle": "Öğle, ikindi, akşam ve yatsı için kullanılır.",
   "settingsAdhanPreviewStopTooltip": "Ön izlemeyi durdur",
   "settingsAdhanPreviewPlayTooltip": "Ön izlemeyi oynat",
-  "settingsTestRegularAdhan": "Normal Ezanı Test Edin",
-  "settingsTestFajrAdhan": "Sabah Ezanını Test Edin",
   "settingsUseAppVolumeTitle": "Uygulama Sesini Kullan",
   "settingsUseAppVolumeSubtitle": "Önizleme oynatmayı uygulamanın ses düzeyiyle aynı hizada tutun.",
   "settingsAdhanPreviewVolume": "Ezan önizleme hacmi",
@@ -8166,17 +8151,11 @@
   "settingsThemeChoiceEasyRead": "Kolay Okuma",
   "settingsThemeChangedSuccessfully": "Tema başarıyla değiştirildi",
   "settingsVisualPreferencesTitle": "Görsel Tercihler",
-  "settingsDisableGlassTransparencyTitle": "Cam Şeffaflığını Devre Dışı Bırak",
-  "settingsDisableGlassTransparencySubtitle": "Yarı saydam cam yerine katı yüzeyler kullanın.",
   "settingsDisableColoredGlassTitle": "Renkli Camı Devre Dışı Bırak",
   "settingsDisableColoredGlassSubtitle": "Renkli renk uygulamasını çıkarırken cam yüzeyleri koruyun.",
-  "settingsGlassTransparencyTitle": "Cam Şeffaflığı",
-  "settingsGlassTransparencySubtitle": "Uygulama genelinde yarı saydam cam kartların, adaların, hapların ve panellerin nasıl görüneceğini ayarlayın.",
-  "settingsGlassTransparencyDisabledSubtitle": "Şeffaflığı tekrar ayarlamak için camı tekrar açın.",
   "settingsVisualPreferenceUpdated": "Görsel tercih güncellendi",
   "settingsDisableBackgroundTitle": "Arka Planı Devre Dışı Bırak",
   "settingsDisableBackgroundSubtitle": "Daha temiz bir görünüm için dekoratif arka plan görüntülerini gizleyin.",
-  "settingsAppearanceNoContentChangeNote": "Bu ayarlar, içeriğinizi veya ilerleme durumunuzu değiştirmeden uygulamanın görünümünü değiştirir.",
   "settingsDefaultAppearanceActive": "Varsayılan görünüm etkin",
   "settingsAppearanceResetToDefault": "Görünüm varsayılana sıfırlandı",
   "settingsResetAppearance": "Görünümü Sıfırla",
@@ -9906,7 +9885,7 @@
   "triviaKnowledgePathsPageSubtitle": "Konuları yönlendirilmiş aşamalarla öğren.",
   "triviaKnowledgePathsEmptyTitle": "Bilgi yolu yok",
   "triviaKnowledgePathsEmptySubtitle": "İçerik eklendiğinde tekrar kontrol et.",
-  "triviaKnowledgePathsProgressLabel": "İlerleme",
+  "triviaKnowledgePathsProgressLabel": "{completed}/{total} stages completed",
   "@triviaKnowledgePathsProgressLabel": {
     "placeholders": {
       "completed": {
@@ -9966,7 +9945,7 @@
   "triviaStatsIncorrect": "Yanlış",
   "triviaStatsOverallAccuracy": "Genel doğruluk",
   "triviaStatsDailyQuizStreak": "Günlük quiz serisi",
-  "triviaStatsLongestStreak": "En uzun seri",
+  "triviaStatsLongestStreak": "Longest streak: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -9978,7 +9957,7 @@
   "triviaStatsOceanDrops": "Okyanus damlaları",
   "triviaStatsPerformanceSnapshotTitle": "Performans özeti",
   "triviaStatsNotEnoughData": "Henüz yeterli veri yok",
-  "triviaStatsPerformanceSnapshotBody": "Eğilimleri görmek için daha fazla soru yanıtla.",
+  "triviaStatsPerformanceSnapshotBody": "Strongest: {strongest} • Weakest: {weakest} • Due now: {dueCount} • Mastered: {masteredCount}",
   "@triviaStatsPerformanceSnapshotBody": {
     "placeholders": {
       "strongest": {
@@ -9997,7 +9976,7 @@
   },
   "triviaStatsCategoryBreakdownTitle": "Kategori dağılımı",
   "triviaStatsCategoryBreakdownSubtitle": "Hangi konularda güçlü olduğunu gör.",
-  "triviaStatsCategoryBreakdownRow": "{category}: {correct}/{total} doğru",
+  "triviaStatsCategoryBreakdownRow": "{answered} answered • {accuracy}% accuracy • {quizzes} quizzes",
   "@triviaStatsCategoryBreakdownRow": {
     "placeholders": {
       "answered": {
@@ -10140,7 +10119,7 @@
   "batch9TryQuickQuizAction": "Kısa bir test dene",
   "batch9CheckAnswerAction": "Cevabı kontrol et",
   "batch9FinishLessonAction": "Dersi bitir",
-  "batch9AudioNotAddedYet": "Ses henüz eklenmedi",
+  "batch9AudioNotAddedYet": "Audio for {label} is not added yet.",
   "@batch9AudioNotAddedYet": {
     "placeholders": {
       "label": {
@@ -10148,7 +10127,7 @@
       }
     }
   },
-  "batch9AudioReady": "Ses hazır",
+  "batch9AudioReady": "Audio ready for {label}.",
   "@batch9AudioReady": {
     "placeholders": {
       "label": {
@@ -10690,7 +10669,7 @@
   "quranTeachingLessonFormFinal": "End",
   "quranTeachingLessonFormUnavailable": "—",
   "quranTeachingLessonNoForwardJoinHint": "This letter does not connect forward to the next letter.",
-  "batch9AudioCue": "Ses ipucu",
+  "batch9AudioCue": "{context} • {label}",
   "@batch9AudioCue": {
     "placeholders": {
       "context": {
@@ -10710,7 +10689,7 @@
   "batch9QuranWordsSortMostFrequent": "En sık geçen",
   "batch9QuranWordsSortRank": "Sıralama",
   "batch9QuranWordsSearchHint": "Kelime ara",
-  "batch9QuranWordsMasteredSummary": "{count} kelime pekiştirildi",
+  "batch9QuranWordsMasteredSummary": "{mastered} / {total} mastered",
   "@batch9QuranWordsMasteredSummary": {
     "placeholders": {
       "mastered": {
@@ -10771,7 +10750,7 @@
   "batch9QuranWordsMeaningExpansionTitle": "Meaning",
   "batch9QuranWordsDetailNotFoundTitle": "Word not found",
   "batch9QuranWordsDetailNotFoundSubtitle": "This word study entry is no longer available.",
-  "batch9QuranWordsOccurrenceSummary": "{count} kez geçer",
+  "batch9QuranWordsOccurrenceSummary": "{meaning} • {count} times in Qur’an",
   "@batch9QuranWordsOccurrenceSummary": {
     "placeholders": {
       "meaning": {
@@ -10782,7 +10761,7 @@
       }
     }
   },
-  "batch9QuranWordsLoadError": "Kelime listesi yüklenemedi",
+  "batch9QuranWordsLoadError": "Unable to load Holy Qur''an words: {error}",
   "@batch9QuranWordsLoadError": {
     "placeholders": {
       "error": {
@@ -18649,136 +18628,6 @@
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
   },
-  "@quranTeachingSectionTitle": null,
-  "@quranTeachingSectionSubtitle": null,
-  "@quranTeachingAlphabetOverviewTitle": null,
-  "@quranTeachingAlphabetOverviewForms": null,
-  "@quranTeachingAlphabetOverviewBrowseAction": null,
-  "@quranTeachingAlphabetOverviewShapesAction": null,
-  "@quranTeachingPathTitle": null,
-  "@quranTeachingPathSubtitle": null,
-  "@quranTeachingVisualModeOn": null,
-  "@quranTeachingVisualModeOff": null,
-  "@quranTeachingContinueTitle": null,
-  "@quranTeachingContinueEmpty": null,
-  "@quranTeachingStartLessonAction": null,
-  "@quranTeachingContinueLessonAction": null,
-  "@quranTeachingRecommendedTitle": null,
-  "@quranTeachingRecommendedEmpty": null,
-  "@quranTeachingOpenAction": null,
-  "@quranTeachingVisualModeTitle": null,
-  "@quranTeachingVisualModeSubtitle": null,
-  "@quranTeachingVisualModeToggle": null,
-  "@quranTeachingOpenListenOnlyAction": null,
-  "@quranTeachingReviewMistakesTitle": null,
-  "@quranTeachingReviewMistakesEmpty": null,
-  "@quranTeachingOpenReviewAction": null,
-  "@quranTeachingPracticeNowAction": null,
-  "@quranTeachingReviewProgressTitle": null,
-  "@quranTeachingPracticeRecommendationsTitle": null,
-  "@quranTeachingRecentlyLearnedTitle": null,
-  "@quranTeachingPracticeAgainTitle": null,
-  "@quranTeachingPracticeAgainSubtitle": null,
-  "@quranTeachingLearningPathTitle": null,
-  "@quranTeachingRecommendedBadge": null,
-  "@quranTeachingModuleLocked": null,
-  "@quranTeachingChooseLevelTitle": null,
-  "@quranTeachingChooseLevelSubtitle": null,
-  "@quranTeachingModeGuided": null,
-  "@quranTeachingModeBroad": null,
-  "@quranTeachingModeOpen": null,
-  "@quranTeachingLevelCompletelyNewTitle": null,
-  "@quranTeachingLevelCompletelyNewDescription": null,
-  "@quranTeachingLevelKnowSomeLettersTitle": null,
-  "@quranTeachingLevelKnowSomeLettersDescription": null,
-  "@quranTeachingLevelReadSlowlyTitle": null,
-  "@quranTeachingLevelReadSlowlyDescription": null,
-  "@quranTeachingLevelImproveReadingTitle": null,
-  "@quranTeachingLevelImproveReadingDescription": null,
-  "@quranTeachingLevelOpenReferenceTitle": null,
-  "@quranTeachingLevelOpenReferenceDescription": null,
-  "@quranTeachingModuleNextLessonTitle": null,
-  "@quranTeachingModuleNextLessonAction": null,
-  "@quranTeachingModuleListenOnlyAction": null,
-  "@quranTeachingModuleLearnWords": null,
-  "@quranTeachingModuleFoundInQuran": null,
-  "@quranTeachingModuleStarterSurahShelfTitle": null,
-  "@quranTeachingModuleLessonsTitle": null,
-  "@quranTeachingLessonHearThis": null,
-  "@quranTeachingLessonExamplesTitle": null,
-  "@quranTeachingLessonQuickQuizTitle": null,
-  "@quranTeachingLessonHearAudio": null,
-  "@quranTeachingLessonTapPiecesHint": null,
-  "@quranTeachingLessonCompleteTitle": null,
-  "@quranTeachingLessonBackToModule": null,
-  "@quranTeachingLessonLetterProfileTitle": null,
-  "@quranTeachingLessonFormsTitle": null,
-  "@quranTeachingLessonFormIsolated": null,
-  "@quranTeachingLessonFormInitial": null,
-  "@quranTeachingLessonFormMedial": null,
-  "@quranTeachingLessonFormFinal": null,
-  "@quranTeachingLessonFormUnavailable": null,
-  "@quranTeachingLessonNoForwardJoinHint": null,
-  "learningJourneyHomeRecommendedSubtitle": "A small set of paths that fit what you have already opened or completed.",
-  "batch9QuranWordsFlashCard": "Bilgi kartı",
-  "homeGlassPreviewTitle": "Glass Style Preview",
-  "homeGlassPreviewSubtitle": "Temporary visual comparison of surface styles for calm homepage islands.",
-  "homeGlassPreviewFootnote": "Preview only — not yet applied across the app. This section is temporary and safe to remove after a glass direction is chosen.",
-  "homeGlassPreviewLegend": "Layered inner surface sample",
-  "homeGlassPreviewMetaBlur": "Blur",
-  "homeGlassPreviewMetaOpacity": "Opacity",
-  "homeGlassPreviewMetaReadability": "Readability",
-  "homeGlassPreviewReadabilityGentle": "Gentle",
-  "homeGlassPreviewReadabilityBalanced": "Balanced",
-  "homeGlassPreviewReadabilityHigh": "High",
-  "homeGlassPreviewWarmTitle": "Warm Glass",
-  "homeGlassPreviewWarmDescriptor": "Amber warmth with a calm devotional glow",
-  "homeGlassPreviewWarmBody": "Designed for prayer summaries, home reflections, and moments that should feel welcoming without becoming heavy. It keeps warmth close to the surface while preserving readable depth.",
-  "homeGlassPreviewWarmChip": "Prayer summary fit",
-  "homeGlassPreviewMilkyTitle": "Milky Glass",
-  "homeGlassPreviewMilkyDescriptor": "Cloudy ivory diffusion with softer transparency",
-  "homeGlassPreviewMilkyBody": "Designed for calm, readable surfaces with gentle depth. It feels especially strong for devotional cards, prayer summaries, and serene learning moments that need quiet clarity.",
-  "homeGlassPreviewMilkyChip": "Devotional favorite",
-  "homeGlassPreviewCrystalTitle": "Crystal Glass",
-  "homeGlassPreviewCrystalDescriptor": "Sharper clarity with cooler reflective lift",
-  "homeGlassPreviewCrystalBody": "Useful when you want the background to breathe through more clearly while still keeping titles crisp. It feels premium for highlights, featured insights, and polished showcase cards.",
-  "homeGlassPreviewCrystalChip": "Sharper focus",
-  "homeGlassPreviewNightTitle": "Night Glass",
-  "homeGlassPreviewNightDescriptor": "Smoky dusk layering with elegant low light",
-  "homeGlassPreviewNightBody": "A darker surface for late-evening atmosphere without sliding into harsh black panels. It works best for reflective content, deeper reading moments, and richer nighttime presentation.",
-  "homeGlassPreviewNightChip": "Night reflection",
-  "homeGlassPreviewTintedTitle": "Tinted Glass",
-  "homeGlassPreviewTintedDescriptor": "Soft color infusion with warm rosier undertones",
-  "homeGlassPreviewTintedBody": "This version brings a clearer sense of personality without turning neon or loud. It can suit featured reminders, curated editorial cards, and softer premium accents on home.",
-  "homeGlassPreviewTintedChip": "Editorial accent",
-  "homeGlassPreviewFrostedTitle": "Frosted Glass",
-  "homeGlassPreviewFrostedDescriptor": "Diffuse blur with quiet, paper-like softness",
-  "homeGlassPreviewFrostedBody": "A stronger blur treatment that protects readability first. It feels dependable for practical cards, utility summaries, and any surface where the content should lead over the material.",
-  "homeGlassPreviewFrostedChip": "Utility calm",
-  "homeGlassPreviewLayeredTitle": "Layered Glass",
-  "homeGlassPreviewLayeredDescriptor": "Primary glass surface with a nested inner veil",
-  "homeGlassPreviewLayeredBody": "Helpful when a card needs hierarchy inside hierarchy. The layered feel can support guided actions, richer dashboards, or sections where one calm panel sits inside another.",
-  "homeGlassPreviewLayeredChip": "Nested hierarchy",
-  "homeGlassPreviewEdgeLitTitle": "Edge-lit Glass",
-  "homeGlassPreviewEdgeLitDescriptor": "Subtle rim light with clearer luminous edges",
-  "homeGlassPreviewEdgeLitBody": "This style adds a little more presence around the perimeter while keeping the center calm. It can work for featured destinations, premium shortcuts, and attention-worthy highlights.",
-  "homeGlassPreviewEdgeLitChip": "Featured island",
-  "homeGlassPreviewAdaptiveTitle": "Adaptive Glass",
-  "homeGlassPreviewAdaptiveDescriptor": "Tint and mood that shift with the surrounding atmosphere",
-  "homeGlassPreviewAdaptiveBody": "Built to flex between warmer daylight and deeper evening surroundings. It aims for a stable middle ground that stays coherent across themes without demanding too much visual attention.",
-  "homeGlassPreviewAdaptiveChip": "Theme-aware",
-  "homeGlassPreviewSoftMatteTitle": "Soft Matte Glass",
-  "homeGlassPreviewSoftMatteDescriptor": "Velvety diffusion with reduced highlight sparkle",
-  "homeGlassPreviewSoftMatteBody": "This leans toward softness over shine, which can help content feel grounded and restful. It may suit journaling, daily checkpoints, and spaces that should feel gentle rather than glossy.",
-  "homeGlassPreviewSoftMatteChip": "Restful reading",
-  "homeGlassPreviewDenseSanctuaryTitle": "Dense Sanctuary Glass",
-  "homeGlassPreviewDenseSanctuaryDescriptor": "Clouded sanctuary depth with the strongest calm cover",
-  "homeGlassPreviewDenseSanctuaryBody": "One of the safest options for sacred, text-heavy moments because it shields the content from background noise. It feels especially fitting for duas, reflections, and focused spiritual summaries.",
-  "homeGlassPreviewDenseSanctuaryChip": "Sanctuary tone",
-  "homeGlassPreviewClearShowcaseTitle": "Clear Showcase Glass",
-  "homeGlassPreviewClearShowcaseDescriptor": "High transparency with brighter display energy",
-  "homeGlassPreviewClearShowcaseBody": "This is the most open and reflective option in the set. It is useful for comparison and premium showcase moments, though it needs careful contrast management before broader use.",
-  "homeGlassPreviewClearShowcaseChip": "Most transparent",
   "legalAttributionsAdhanBody": "Uygulamayla birlikte gelen ezan hatırlatma klibinin kaynağı:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOrijinal dosya URL’si:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nKaynak sayfada belirtilen yazar: Jarih (kendi çalışması)\nLisans: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nGüncel not: uygulama, derlenmiş yedek set hazır olana kadar bu klipten türetilen geçici çevrimdışı ezan varyantlarını içerir.",
   "legalAttributionsAdhanTitle": "Ezan Bildirim Sesi",
   "legalAttributionsQuranBody": "Uygulama şu anda Arapça metin ve meal entegrasyonları için \"quran\" adlı Flutter paketini kullanıyor.\n\nKaynak bağlantıları:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran",
@@ -18880,5 +18729,38 @@
   "occasionOfferDecline": "Şimdi değil",
   "homeGreetingEidMubarak": "Bayramın Mübarek Olsun",
   "settingsLivingSkyTitle": "Yaşayan gökyüzü",
-  "settingsLivingSkySubtitle": "Noor Glass günü izler — gül kurusu altın şafak, kehribar Akşam ve karanlıktan sonra yıldızlı gece."
+  "settingsLivingSkySubtitle": "Noor Glass günü izler — gül kurusu altın şafak, kehribar Akşam ve karanlıktan sonra yıldızlı gece.",
+  "settingsGroupYouTitle": "Sen",
+  "settingsGroupWorshipTitle": "Namaz ve Hatırlatmalar",
+  "settingsGroupAppTitle": "Uygulama",
+  "settingsGroupSupportTitle": "Yardım ve Hakkında",
+  "settingsCategoryProfileSubtitle": "Adınız, uygulamanın size nasıl hitap ettiği ve destek modları.",
+  "settingsCategoryAdhanSubtitle": "Ezanı seçin, dinleyin ve ses düzeyini ayarlayın.",
+  "settingsSearchTitle": "Ayarlarda Ara",
+  "settingsSearchSubtitle": "Herhangi bir ayarı adıyla bulun.",
+  "settingsSearchHint": "Ayarlarda ara",
+  "settingsSearchTooltip": "Ayarlarda ara",
+  "settingsSearchEmptyTitle": "Eşleşme yok",
+  "settingsSearchEmptySubtitle": "Başka bir kelime deneyin ya da Ayarlar sayfasındaki grupları inceleyin.",
+  "settingsSearchPromptTitle": "Aramak için yazın",
+  "settingsSearchPromptSubtitle": "“Ezan”, “Koyu”, “Hatırlatma” ya da “Yedek” deneyin.",
+  "legalPrivacyTitle": "Gizlilik Politikası",
+  "legalPrivacySubtitle": "Path of Nūr verilerinizi nasıl işler.",
+  "legalTermsTitle": "Kullanım Koşulları",
+  "legalTermsSubtitle": "Bu uygulama nedir, ne değildir.",
+  "legalSupportTitle": "Destek",
+  "legalSupportSubtitle": "Yardım almak ve bir sorunu bildirmek.",
+  "settingsLegalTitle": "Yasal",
+  "settingsAccessibilityTitle": "Erişilebilirlik",
+  "settingsOccasionThemesTitle": "Özel Gün Temaları",
+  "settingsOccasionThemesSubtitle": "Uygulamanın Cuma, Ramazan, Kadir Gecesi ve Bayram için süslenmesine izin verin.",
+  "quickActionsSettingsSubtitle": "Görünüm, ezan, hatırlatmalar",
+  "quickActionsSearchSubtitle": "Kur’an, hadis, dua, dersler",
+  "settingsSalahCalculationTitle": "Hesaplama",
+  "settingsSalahCalculationSubtitle": "Namaz vakitlerinizin hesaplanmasında kullanılan yöntem ve mezhep.",
+  "settingsAdhanSoundTitle": "Ezan Sesi",
+  "settingsRemindersPerPrayerTitle": "Namaz Başına Hatırlatma",
+  "settingsOtherRemindersTitle": "Diğer Hatırlatmalar",
+  "settingsPermissionsTitle": "İzinler",
+  "settingsWhatOthersSeeTitle": "Uygulamanın Gösterdikleri"
 }

@@ -197,8 +197,6 @@ class IslamicTriviaHomePage extends ConsumerWidget {
               ? l10n.triviaHomeNoAnswersYet
               : l10n.triviaHomeCategoryAccuracy(
                   numberFormat.format((categoryStats.accuracy * 100).round()),
-                  numberFormat.format((categoryStats.accuracy * 100).round()),
-                  category.title,
                 );
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),

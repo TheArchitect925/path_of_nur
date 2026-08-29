@@ -77,7 +77,7 @@
   "notificationsCycleCheckBody": "প্রয়োজন হলে আপনার সাইকেলের অবস্থা পরীক্ষা করে আপডেট করুন।",
   "notificationsMoonriseBody": "চাঁদ এখন উদিত হচ্ছে।",
   "notificationsMoonsetBody": "চাঁদ এখন অস্ত যাচ্ছে।",
-  "notificationsRecoveredReminderBody": "আপনার স্মরণিকাগুলো আবার সক্রিয় হয়েছে।",
+  "notificationsRecoveredReminderBody": "You missed this reminder earlier. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
       "body": {
@@ -104,13 +104,13 @@
   "notificationsIftarTimeBody": "আল্লাহ আপনার রোজা কবুল করুন।",
   "notificationsFastingLiveFastBeginsTitle": "রোজা শুরু",
   "notificationsFastingLiveFastBeginsArabicTitle": "بداية الصيام",
-  "notificationsFastingLiveStartsIn": "শুরু হবে {duration} পরে",
+  "notificationsFastingLiveStartsIn": "Starts in",
   "notificationsFastingLiveRenewIntentionTitle": "নিয়ত নবায়ন করুন",
   "notificationsFastingLiveRenewIntentionArabic": "نَوَيْتُ صَوْمَ غَدٍ",
   "notificationsFastingLiveRenewIntentionTranslation": "আমি আগামীকালের রোজার নিয়ত করলাম।",
   "notificationsFastingLiveFastEndsTitle": "রোজা শেষ",
   "notificationsFastingLiveFastEndsArabicTitle": "نهاية الصيام",
-  "notificationsFastingLiveEndsIn": "শেষ হবে {duration} পরে",
+  "notificationsFastingLiveEndsIn": "Ends in",
   "notificationsFastingLiveIftarDuaTitle": "ইফতারের দোআ",
   "notificationsFastingLiveIftarDuaArabic": "اللهم لك صمت",
   "notificationsFastingLiveIftarDuaTranslation": "হে আল্লাহ, আমি তোমার জন্য রোজা রেখেছি।",
@@ -1062,7 +1062,7 @@
   "worshipPrayerTabStats": "পরিসংখ্যান",
   "worshipPrayerTabRakat": "রাকাআত",
   "worshipPrayerSisterCyclePauseTitle": "বোনদের সাইকেল বিরতি",
-  "worshipPrayerCycleDay": "সাইকেল দিন {day}",
+  "worshipPrayerCycleDay": "সাইকেল দিন {dayNumber}",
   "@worshipPrayerCycleDay": {
     "placeholders": {
       "dayNumber": {
@@ -1103,7 +1103,7 @@
   "worshipPrayerHijriMonthDhuAlQidah": "জিলকদ",
   "worshipPrayerHijriMonthDhuAlHijjah": "জিলহজ্জ",
   "worshipPrayerSalahTimesTitle": "সালাতের সময়",
-  "worshipPrayerSalahWindowValue": "{start} • {end}",
+  "worshipPrayerSalahWindowValue": "{offerTime}  •  Salah Window: {windowStart}–{windowEnd}",
   "@worshipPrayerSalahWindowValue": {
     "placeholders": {
       "offerTime": {
@@ -1184,7 +1184,7 @@
       }
     }
   },
-  "worshipPrayerCompletionValue": "{completed}/{total} সম্পন্ন",
+  "worshipPrayerCompletionValue": "Completion {value}%",
   "@worshipPrayerCompletionValue": {
     "placeholders": {
       "value": {
@@ -1198,10 +1198,10 @@
   "worshipPrayerMonthlyTrendTitle": "মাসিক ধারা",
   "worshipPrayerMonthlyTrendSubtitle": "এই মাসে আপনার সালাতের গতি দেখুন।",
   "worshipPrayerRakatGuideTitle": "রাকাআত নির্দেশিকা",
-  "worshipPrayerRakatGuideValue": "{prayerName} • {rakat} রাকাআত",
+  "worshipPrayerRakatGuideValue": "Fajr: 2  •  Dhuhr: 4  •  Asr: 4  •  Maghrib: 3  •  Isha: 4",
   "worshipPrayerRakatGuideTip": "সালাতের আগে এটিকে দ্রুত নির্দেশিকা হিসেবে ব্যবহার করুন।",
   "worshipPrayerMoonPhaseTitle": "চাঁদের দশা",
-  "worshipPrayerMoonPhaseIllumination": "আলোকিত অংশ {value}%",
+  "worshipPrayerMoonPhaseIllumination": "{phaseLabel} • {percent}% illuminated",
   "@worshipPrayerMoonPhaseIllumination": {
     "placeholders": {
       "phaseLabel": {
@@ -1264,7 +1264,7 @@
       }
     }
   },
-  "worshipPrayerOverlayLabel": "সালাত ভিউ",
+  "worshipPrayerOverlayLabel": "{prayerName} {time}",
   "@worshipPrayerOverlayLabel": {
     "placeholders": {
       "prayerName": {
@@ -1288,7 +1288,7 @@
   "worshipPrayerCadenceLight": "হালকা",
   "worshipPrayerCadenceSteady": "স্থিতিশীল",
   "worshipPrayerCadenceFocused": "মনোযোগী",
-  "worshipPrayerEstimatedDaysToClear": "পরিষ্কার হতে আনুমানিক {count} দিন",
+  "worshipPrayerEstimatedDaysToClear": "পরিষ্কার হতে আনুমানিক {days} দিন",
   "@worshipPrayerEstimatedDaysToClear": {
     "placeholders": {
       "days": {
@@ -1296,7 +1296,7 @@
       }
     }
   },
-  "worshipPrayerTodaysQadaTarget": "আজকের কাযার লক্ষ্য: {count}",
+  "worshipPrayerTodaysQadaTarget": "Today''s qada target: {completed} / {target}",
   "@worshipPrayerTodaysQadaTarget": {
     "placeholders": {
       "completed": {
@@ -1337,7 +1337,7 @@
       }
     }
   },
-  "worshipPrayerWeekLabel": "সপ্তাহ {number}",
+  "worshipPrayerWeekLabel": "সপ্তাহ {weekNumber}",
   "@worshipPrayerWeekLabel": {
     "placeholders": {
       "weekNumber": {
@@ -1504,7 +1504,7 @@
       "prayerName": {}
     }
   },
-  "homePrayerBecomesQada": "{time}-এ কাযা হবে",
+  "homePrayerBecomesQada": "{prayerName}-এ কাযা হবে",
   "@homePrayerBecomesQada": {
     "placeholders": {
       "prayerName": {}
@@ -1553,14 +1553,14 @@
     }
   },
   "homeDailyBadgesTitle": "দৈনিক ব্যাজ",
-  "homeContinueQuranValue": "কুরআন চালিয়ে যান",
+  "homeContinueQuranValue": "{surahName} {ayahNumber}",
   "@homeContinueQuranValue": {
     "placeholders": {
       "surahName": {},
       "ayahNumber": {}
     }
   },
-  "homeJourneyRingsValue": "{count} রিং",
+  "homeJourneyRingsValue": "P {prayerPercent}% · D {dhikrPercent}% · Q {quranPercent}%",
   "@homeJourneyRingsValue": {
     "placeholders": {
       "prayerPercent": {},
@@ -1595,7 +1595,7 @@
   "homePrayerCompletedTapHint": "সালাতের বিবরণ আপডেট করতে ট্যাপ করুন",
   "homePrayerPostSalahDhikrAction": "সালাত-পরবর্তী যিকর",
   "homePrayerPostSalahDhikrLogged": "সালাত-পরবর্তী যিকর নথিভুক্ত হয়েছে",
-  "homePrayerBeginsAt": "শুরু {time}",
+  "homePrayerBeginsAt": "Begins at",
   "homeDurationMinutes": "{minutes} মিনিট",
   "@homeDurationMinutes": {
     "placeholders": {
@@ -1617,7 +1617,7 @@
   },
   "durationCompactHourSuffix": "h",
   "durationCompactMinuteSuffix": "m",
-  "homeLearnCategoryFallbackSubtitle": "যেখান থেকে থেমেছিলেন সেখান থেকেই শেখা চালিয়ে যান।",
+  "homeLearnCategoryFallbackSubtitle": "Learn category • {category}",
   "@homeLearnCategoryFallbackSubtitle": {
     "placeholders": {
       "category": {
@@ -2066,7 +2066,7 @@
   "learnHubSavedAndNotesTitle": "সংরক্ষিত ও নোটসমূহ",
   "learnHubSavedAndNotesSubtitle": "যা সংরক্ষণ বা নোট করেছিলেন, সেগুলোতে ফিরে যান।",
   "learnHubKnowledgeConstellationSubtitle": "শেখার থিমগুলোর সম্পর্ক দেখুন।",
-  "learnHubSavedNotesSummary": "{count}টি সংরক্ষিত নোট",
+  "learnHubSavedNotesSummary": "Saved items: {saved} • Notes: {notes}",
   "@learnHubSavedNotesSummary": {
     "placeholders": {
       "saved": {},
@@ -2084,7 +2084,7 @@
   "learnHubContinueWhereYouLeftOff": "যেখান থেকে থেমেছিলেন সেখান থেকে চালিয়ে যান",
   "learnHubResumeAction": "চালিয়ে যান",
   "learnHubDailyLearningTitle": "দৈনিক শিক্ষা",
-  "learnHubDailyThemeLabel": "আজকের থিম",
+  "learnHubDailyThemeLabel": "Theme: {theme}",
   "@learnHubDailyThemeLabel": {
     "placeholders": {
       "theme": {}
@@ -2430,7 +2430,7 @@
   "learnHubFilterDifficultyTooltip": "স্তর অনুযায়ী ফিল্টার করুন",
   "learnHubFilterPathTooltip": "পথ অনুযায়ী ফিল্টার করুন",
   "learnHubTypeAnyLabel": "সব ধরন",
-  "learnHubTypeValueLabel": "ধরন: {value}",
+  "learnHubTypeValueLabel": "ধরন: {type}",
   "@learnHubTypeValueLabel": {
     "placeholders": {
       "type": {}
@@ -2438,7 +2438,7 @@
   },
   "learnHubAnyTypeOption": "যেকোনো ধরন",
   "learnHubThemeAnyLabel": "সব থিম",
-  "learnHubThemeValueLabel": "থিম: {value}",
+  "learnHubThemeValueLabel": "থিম: {theme}",
   "@learnHubThemeValueLabel": {
     "placeholders": {
       "theme": {}
@@ -2446,7 +2446,7 @@
   },
   "learnHubAnyThemeOption": "যেকোনো থিম",
   "learnHubDifficultyAnyLabel": "সব স্তর",
-  "learnHubDifficultyValueLabel": "স্তর: {value}",
+  "learnHubDifficultyValueLabel": "স্তর: {difficulty}",
   "@learnHubDifficultyValueLabel": {
     "placeholders": {
       "difficulty": {}
@@ -2464,7 +2464,7 @@
     }
   },
   "learnHubNoMatchingItems": "মিলে যাওয়া কোনো আইটেম নেই।",
-  "learnHubPathProgress": "পথের অগ্রগতি {progress}",
+  "learnHubPathProgress": "{completed} / {total} completed",
   "@learnHubPathProgress": {
     "placeholders": {
       "completed": {},
@@ -2494,7 +2494,7 @@
   "learnHubCategoryGroupPilgrimage": "তীর্থযাত্রা",
   "learningReferencesShowLess": "কম দেখান",
   "learningReferencesShowAll": "সব দেখান",
-  "quranReferenceViewerReferenceLabel": "রেফারেন্স",
+  "quranReferenceViewerReferenceLabel": "Qur’an {reference}",
   "@quranReferenceViewerReferenceLabel": {
     "placeholders": {
       "reference": {}
@@ -2899,7 +2899,7 @@
   },
   "triviaHomeSubtitle": "ছোট কুইজ এবং নির্দেশিত পথের মাধ্যমে আপনার জ্ঞান গড়ে তুলুন।",
   "triviaHomeCurrentStreakLabel": "বর্তমান ধারাবাহিকতা",
-  "triviaHomeLongestStreakCaption": "সবচেয়ে দীর্ঘ ধারাবাহিকতা",
+  "triviaHomeLongestStreakCaption": "Longest {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
       "count": {}
@@ -2920,7 +2920,7 @@
     }
   },
   "triviaHomeOceanDropsLabel": "সমুদ্রবিন্দু",
-  "triviaHomeBestSurvivalCaption": "সারভাইভাল মোডে সেরা ফল",
+  "triviaHomeBestSurvivalCaption": "Best survival {count}",
   "@triviaHomeBestSurvivalCaption": {
     "placeholders": {
       "count": {}
@@ -2956,7 +2956,7 @@
   "triviaHomeCategoriesTitle": "ক্যাটাগরি",
   "triviaHomeCategoriesSubtitle": "নির্দিষ্ট জ্ঞানক্ষেত্রে মনোযোগ দিন।",
   "triviaHomeNoAnswersYet": "এখনও কোনো উত্তর নেই।",
-  "triviaHomeCategoryAccuracy": "ক্যাটাগরির সঠিকতা",
+  "triviaHomeCategoryAccuracy": "Accuracy {percent}%",
   "@triviaHomeCategoryAccuracy": {
     "placeholders": {
       "percent": {}
@@ -2969,7 +2969,7 @@
   "triviaHomeNoSessionsYetTitle": "এখনও কোনো সেশন নেই",
   "triviaHomeNoSessionsYetSubtitle": "আপনার অগ্রগতি দেখতে একটি কুইজ শুরু করুন।",
   "triviaMixedLabel": "মিশ্র",
-  "triviaHomeRecentPerformanceSummary": "{correct}টি সঠিক • {incorrect}টি ভুল",
+  "triviaHomeRecentPerformanceSummary": "{category} • {correct}/{total} correct • +{xp} XP",
   "@triviaHomeRecentPerformanceSummary": {
     "placeholders": {
       "category": {},
@@ -2984,14 +2984,14 @@
   "triviaResultsXpGainedLabel": "অর্জিত XP",
   "triviaResultsPerfectBonusIncluded": "পারফেক্ট বোনাস অন্তর্ভুক্ত",
   "triviaResultsReplayRewardsLighter": "পুনরায় খেলার পুরস্কার হালকা",
-  "triviaResultsCompletedSummary": "{completed}/{total} সম্পন্ন",
+  "triviaResultsCompletedSummary": "Completed in {seconds}s • {missed} missed",
   "@triviaResultsCompletedSummary": {
     "placeholders": {
       "seconds": {},
       "missed": {}
     }
   },
-  "triviaResultsBestRunInSession": "এই সেশনে সেরা ধারাবাহিকতা",
+  "triviaResultsBestRunInSession": "Best run in this session: {count}",
   "@triviaResultsBestRunInSession": {
     "placeholders": {
       "count": {}
@@ -3014,7 +3014,7 @@
   "triviaReviewNoQuestionsDueTitle": "কোনো প্রশ্ন এখন বাকি নেই",
   "triviaReviewNoQuestionsDueSubtitle": "পরবর্তী রিভিউ সেশনের জন্য পরে আবার ফিরে আসুন।",
   "triviaReviewStartSessionTitle": "রিভিউ সেশন শুরু করুন",
-  "triviaReviewStartSessionSubtitle": "যে প্রশ্নগুলো সবচেয়ে বেশি মনোযোগ চায়, সেগুলো দিয়ে শুরু করুন।",
+  "triviaReviewStartSessionSubtitle": "{count} items are ready. The queue favors what was recently missed or still unstable.",
   "@triviaReviewStartSessionSubtitle": {
     "placeholders": {
       "count": {}
@@ -3035,7 +3035,7 @@
   "triviaStageNotFoundTitle": "ধাপ পাওয়া যায়নি",
   "triviaStageNotFoundSubtitle": "এই ধাপটি উপলভ্য নয়।",
   "triviaStageQuizTitle": "ধাপের কুইজ",
-  "triviaStageQuizSubtitle": "এই ধাপটি সম্পন্ন করতে প্রশ্নগুলোর উত্তর দিন।",
+  "triviaStageQuizSubtitle": "Answer {count} focused questions. Wrong answers still feed your review queue.",
   "@triviaStageQuizSubtitle": {
     "placeholders": {
       "count": {}
@@ -3063,7 +3063,7 @@
   "triviaContinuePathAction": "পথ চালিয়ে যান",
   "triviaStagesTitle": "ধাপসমূহ",
   "triviaStagesSubtitle": "একটির পর একটি ধাপ সম্পন্ন করুন।",
-  "triviaKnowledgeStageSummary": "{questionCount}টি প্রশ্ন • {status}",
+  "triviaKnowledgeStageSummary": "{count} questions • +{xp} XP",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -7422,24 +7422,13 @@
   "settingsCurrentLocation": "বর্তমান অবস্থান",
   "settingsProfilePersonalizationTitle": "প্রোফাইল এবং ব্যক্তিগতকরণ",
   "settingsProfilePersonalizationSubtitle": "আপনার নাম, ঠিকানা পছন্দ, মোড এবং প্রোফাইল-সম্পর্কিত শর্টকাটগুলি এখানে রাখুন যে প্রোফাইল এখন আর একটি শীর্ষ-স্তরের ট্যাব নয়৷",
-  "settingsProfileDisplayNameSummary": "ডিসপ্লে নাম: {name}",
+  "settingsProfileDisplayNameSummary": "{title} {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
       "title": {
         "type": "String"
       },
       "name": {
-        "type": "String"
-      }
-    }
-  },
-  "settingsProfileLevelStreakSummary": "লেভেল {level} • {streak} দিনের ধারাবাহিকতা",
-  "@settingsProfileLevelStreakSummary": {
-    "placeholders": {
-      "levelSummary": {
-        "type": "String"
-      },
-      "streakSummary": {
         "type": "String"
       }
     }
@@ -7523,7 +7512,7 @@
   "accountsSyncCurrentProfileSectionSubtitle": "এই ডিভাইসে বর্তমানে সক্রিয় প্রোফাইলটি পরিচালনা করুন।",
   "accountsSyncNoActiveProfileTitle": "এখনও কোনো সক্রিয় প্রোফাইল নেই",
   "accountsSyncChooseProfileToBegin": "শুরু করতে একটি প্রোফাইল বেছে নিন।",
-  "accountsSyncProfileStatusSummary": "{profileName} • {status}",
+  "accountsSyncProfileStatusSummary": "{profileType} • {syncMode}",
   "@accountsSyncProfileStatusSummary": {
     "placeholders": {
       "profileType": {
@@ -7538,7 +7527,7 @@
   "accountsSyncSwitchProfileSubtitle": "এই ডিভাইসে থাকা আরেকটি প্রোফাইল বেছে নিন।",
   "accountsSyncProfilesInAccountTitle": "এই অ্যাকাউন্টের প্রোফাইলসমূহ",
   "accountsSyncProfilesInAccountCreateSubtitle": "এই অ্যাকাউন্টে একটি নতুন প্রোফাইল তৈরি করুন।",
-  "accountsSyncProfilesInAccountManageSubtitle": "এই অ্যাকাউন্টের বিদ্যমান প্রোফাইলগুলো পরিচালনা করুন।",
+  "accountsSyncProfilesInAccountManageSubtitle": "Manage the profiles stored under {accountName}.",
   "@accountsSyncProfilesInAccountManageSubtitle": {
     "placeholders": {
       "accountName": {
@@ -7590,7 +7579,7 @@
   "accountsSyncSharedDeviceModeHelper": "অ্যাপ খোলার সময় প্রোফাইল নির্বাচন চাইবে এবং সংবেদনশীল প্রবেশাধিকার সীমিত করবে।",
   "accountsSyncChooseProfileTitle": "প্রোফাইল বেছে নিন",
   "accountsSyncChooseProfileSubtitle": "যে প্রোফাইলটি ব্যবহার করতে চান সেটি বেছে নিন।",
-  "accountsSyncProfileListSubtitle": "এই ডিভাইসে থাকা প্রোফাইলগুলো।",
+  "accountsSyncProfileListSubtitle": "{profileType} • {syncMode} • Last active {lastActive}",
   "@accountsSyncProfileListSubtitle": {
     "placeholders": {
       "profileType": {
@@ -7614,7 +7603,7 @@
   "accountsSyncEnterPinHint": "PIN লিখুন",
   "accountsSyncPinMismatch": "PIN মেলেনি।",
   "accountsSyncOpenProfileAction": "প্রোফাইল খুলুন",
-  "accountsSyncProfileActivated": "প্রোফাইল সক্রিয় করা হয়েছে।",
+  "accountsSyncProfileActivated": "{name} is now active.",
   "@accountsSyncProfileActivated": {
     "placeholders": {
       "name": {
@@ -7634,7 +7623,7 @@
   "accountsSyncDefaultNewProfileName": "নতুন প্রোফাইল",
   "accountsSyncProfileCreated": "প্রোফাইল তৈরি হয়েছে।",
   "accountsSyncCreateProfileAction": "প্রোফাইল তৈরি করুন",
-  "accountsSyncAccountSummary": "{provider} • {identifier}",
+  "accountsSyncAccountSummary": "{provider} • {identifier} • {syncMode}",
   "@accountsSyncAccountSummary": {
     "placeholders": {
       "provider": {
@@ -7930,7 +7919,7 @@
   "accountsSyncAutoLockAfterInactivity": "নিষ্ক্রিয়তার পর স্বয়ংক্রিয় লক",
   "accountsSyncRestrictChildProfileSettings": "শিশু প্রোফাইলের সেটিংস সীমিত করুন",
   "accountsSyncHideAdvancedToolsFromChildProfiles": "শিশু প্রোফাইল থেকে উন্নত টুল লুকান",
-  "accountsSyncDeviceSummary": "{deviceName} • {platform}",
+  "accountsSyncDeviceSummary": "{lastActive} • {platform}",
   "@accountsSyncDeviceSummary": {
     "placeholders": {
       "platform": {
@@ -8016,7 +8005,7 @@
   "accountsSyncSyncDetailsTitle": "সিঙ্কের বিস্তারিত",
   "accountsSyncSyncDetailsSubtitle": "প্রোভাইডার, অবস্থা, এবং সাম্প্রতিক সিঙ্ক কার্যকলাপ দেখুন।",
   "accountsSyncCurrentProviderTitle": "বর্তমান প্রোভাইডার",
-  "accountsSyncCurrentProviderSummary": "সিঙ্ক {provider}-এর মাধ্যমে পরিচালিত হচ্ছে।",
+  "accountsSyncCurrentProviderSummary": "{syncMode} • {transport}",
   "@accountsSyncCurrentProviderSummary": {
     "placeholders": {
       "syncMode": {
@@ -8055,7 +8044,7 @@
   "accountsSyncSyncNowAction": "এখনই সিঙ্ক করুন",
   "accountsSyncLastSyncTitle": "সর্বশেষ সিঙ্ক",
   "accountsSyncPendingChangesTitle": "অপেক্ষমাণ পরিবর্তন",
-  "accountsSyncPendingChangesWaiting": "সিঙ্ক হওয়ার অপেক্ষায়",
+  "accountsSyncPendingChangesWaiting": "{count, plural, =0 {0 changes waiting} =1 {1 change waiting} other {{count} changes waiting}}",
   "@accountsSyncPendingChangesWaiting": {
     "placeholders": {
       "count": {
@@ -8064,7 +8053,7 @@
     }
   },
   "accountsSyncTransportTitle": "স্থানান্তর পদ্ধতি",
-  "accountsSyncTransportSummary": "ডেটা {transport}-এর মাধ্যমে স্থানান্তরিত হচ্ছে।",
+  "accountsSyncTransportSummary": "{transport} • {status}",
   "@accountsSyncTransportSummary": {
     "placeholders": {
       "transport": {
@@ -8122,8 +8111,6 @@
   "accountsSyncDevicePlatformAndroidTv": "অ্যান্ড্রয়েড টিভি",
   "settingsAdhanTitle": "আযান",
   "settingsAdhanSubtitle": "একটি উত্সর্গীকৃত ফজর আযান চয়ন করুন, বান্ডিল করা ক্লিপগুলির পূর্বরূপ দেখুন এবং প্রার্থনা অডিও অফলাইনে রাখুন।",
-  "settingsEnableAdhanAudioTitle": "আযান অডিও চালু করুন",
-  "settingsEnableAdhanAudioSubtitle": "সালাহ অনুস্মারক যখন এটি চালু থাকে তখন নির্বাচিত আযান বাজাতে পারে।",
   "settingsRegularAdhanTitle": "নিয়মিত আযান",
   "settingsFajrAdhanTitle": "ফজরের আজান",
   "settingsPreviewVolumeTitle": "পূর্বরূপ এবং ভলিউম",
@@ -8141,8 +8128,6 @@
   "settingsAdhanPickerRegularSubtitle": "অন্যান্য সালাতের জন্য ব্যবহৃত সাউন্ডটি বেছে নিন।",
   "settingsAdhanPreviewStopTooltip": "প্রিভিউ বন্ধ করুন",
   "settingsAdhanPreviewPlayTooltip": "প্রিভিউ চালান",
-  "settingsTestRegularAdhan": "নিয়মিত আযান পরীক্ষা করুন",
-  "settingsTestFajrAdhan": "ফজরের আজান পরীক্ষা করুন",
   "settingsUseAppVolumeTitle": "অ্যাপ ভলিউম ব্যবহার করুন",
   "settingsUseAppVolumeSubtitle": "প্রিভিউ প্লেব্যাক অ্যাপ ভলিউম স্তরের সাথে সারিবদ্ধ রাখুন।",
   "settingsAdhanPreviewVolume": "আযান প্রিভিউ ভলিউম",
@@ -8166,17 +8151,11 @@
   "settingsThemeChoiceEasyRead": "সহজ পড়া",
   "settingsThemeChangedSuccessfully": "থিম সফলভাবে পরিবর্তিত হয়েছে",
   "settingsVisualPreferencesTitle": "ভিজ্যুয়াল পছন্দসমূহ",
-  "settingsDisableGlassTransparencyTitle": "কাচের স্বচ্ছতা অক্ষম করুন",
-  "settingsDisableGlassTransparencySubtitle": "স্বচ্ছ কাচের পরিবর্তে কঠিন পৃষ্ঠ ব্যবহার করুন।",
   "settingsDisableColoredGlassTitle": "রঙিন গ্লাস অক্ষম করুন",
   "settingsDisableColoredGlassSubtitle": "টিন্টেড রঙের চিকিত্সা অপসারণের সময় কাচের পৃষ্ঠগুলি রাখুন।",
-  "settingsGlassTransparencyTitle": "কাচের স্বচ্ছতা",
-  "settingsGlassTransparencySubtitle": "অ্যাপ জুড়ে স্বচ্ছ কাচের কার্ড, দ্বীপ, বড়ি এবং প্যানেলগুলি কীভাবে প্রদর্শিত হবে তা সামঞ্জস্য করুন।",
-  "settingsGlassTransparencyDisabledSubtitle": "আবার স্বচ্ছতা সামঞ্জস্য করতে গ্লাস আবার চালু করুন।",
   "settingsVisualPreferenceUpdated": "ভিজ্যুয়াল পছন্দ আপডেট করা হয়েছে",
   "settingsDisableBackgroundTitle": "পটভূমি অক্ষম করুন",
   "settingsDisableBackgroundSubtitle": "একটি পরিষ্কার দৃশ্যের জন্য আলংকারিক পটভূমি চিত্র লুকান।",
-  "settingsAppearanceNoContentChangeNote": "এই সেটিংস আপনার বিষয়বস্তু বা অগ্রগতি পরিবর্তন না করেই অ্যাপের চেহারা পরিবর্তন করে।",
   "settingsDefaultAppearanceActive": "ডিফল্ট চেহারা সক্রিয়",
   "settingsAppearanceResetToDefault": "চেহারা ডিফল্টে রিসেট",
   "settingsResetAppearance": "চেহারা রিসেট করুন",
@@ -8351,7 +8330,7 @@
       }
     }
   },
-  "settingsSuggestedAdjustmentChangeRow": "প্রস্তাবিত পরিবর্তন: {value}",
+  "settingsSuggestedAdjustmentChangeRow": "{prayerName}: {currentValue} → {suggestedValue}",
   "@settingsSuggestedAdjustmentChangeRow": {
     "placeholders": {
       "prayerName": {
@@ -9906,7 +9885,7 @@
   "triviaKnowledgePathsPageSubtitle": "একটি গঠিত শেখার যাত্রা বেছে নিন।",
   "triviaKnowledgePathsEmptyTitle": "এখনও কোনো জ্ঞানপথ নেই",
   "triviaKnowledgePathsEmptySubtitle": "যখন পথগুলো উপলভ্য হবে, তখন এখানে দেখা যাবে।",
-  "triviaKnowledgePathsProgressLabel": "অগ্রগতি",
+  "triviaKnowledgePathsProgressLabel": "{completed}/{total} stages completed",
   "@triviaKnowledgePathsProgressLabel": {
     "placeholders": {
       "completed": {
@@ -9966,7 +9945,7 @@
   "triviaStatsIncorrect": "ভুল",
   "triviaStatsOverallAccuracy": "সামগ্রিক সঠিকতা",
   "triviaStatsDailyQuizStreak": "দৈনিক কুইজ ধারাবাহিকতা",
-  "triviaStatsLongestStreak": "সবচেয়ে দীর্ঘ ধারাবাহিকতা",
+  "triviaStatsLongestStreak": "Longest streak: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -9978,7 +9957,7 @@
   "triviaStatsOceanDrops": "সমুদ্রবিন্দু",
   "triviaStatsPerformanceSnapshotTitle": "পারফরম্যান্স ঝলক",
   "triviaStatsNotEnoughData": "এখনও যথেষ্ট ডেটা নেই।",
-  "triviaStatsPerformanceSnapshotBody": "সঠিক উত্তর: {correct} • ভুল: {incorrect}",
+  "triviaStatsPerformanceSnapshotBody": "Strongest: {strongest} • Weakest: {weakest} • Due now: {dueCount} • Mastered: {masteredCount}",
   "@triviaStatsPerformanceSnapshotBody": {
     "placeholders": {
       "strongest": {
@@ -9997,7 +9976,7 @@
   },
   "triviaStatsCategoryBreakdownTitle": "ক্যাটাগরি বিভাজন",
   "triviaStatsCategoryBreakdownSubtitle": "ক্যাটাগরি অনুযায়ী পারফরম্যান্স দেখুন।",
-  "triviaStatsCategoryBreakdownRow": "{category} • {accuracy}%",
+  "triviaStatsCategoryBreakdownRow": "{answered} answered • {accuracy}% accuracy • {quizzes} quizzes",
   "@triviaStatsCategoryBreakdownRow": {
     "placeholders": {
       "answered": {
@@ -10140,7 +10119,7 @@
   "batch9TryQuickQuizAction": "একটি ছোট কুইজ চেষ্টা করুন",
   "batch9CheckAnswerAction": "উত্তর যাচাই করুন",
   "batch9FinishLessonAction": "পাঠ শেষ করুন",
-  "batch9AudioNotAddedYet": "অডিও এখনও যোগ করা হয়নি",
+  "batch9AudioNotAddedYet": "Audio for {label} is not added yet.",
   "@batch9AudioNotAddedYet": {
     "placeholders": {
       "label": {
@@ -10148,7 +10127,7 @@
       }
     }
   },
-  "batch9AudioReady": "অডিও প্রস্তুত",
+  "batch9AudioReady": "Audio ready for {label}.",
   "@batch9AudioReady": {
     "placeholders": {
       "label": {
@@ -10690,7 +10669,7 @@
   "quranTeachingLessonFormFinal": "End",
   "quranTeachingLessonFormUnavailable": "—",
   "quranTeachingLessonNoForwardJoinHint": "This letter does not connect forward to the next letter.",
-  "batch9AudioCue": "অডিও সংকেত",
+  "batch9AudioCue": "{context} • {label}",
   "@batch9AudioCue": {
     "placeholders": {
       "context": {
@@ -10710,7 +10689,7 @@
   "batch9QuranWordsSortMostFrequent": "সর্বাধিক ব্যবহৃত",
   "batch9QuranWordsSortRank": "র‌্যাঙ্ক",
   "batch9QuranWordsSearchHint": "শব্দ খুঁজুন",
-  "batch9QuranWordsMasteredSummary": "{count}টি শব্দ আয়ত্ত হয়েছে",
+  "batch9QuranWordsMasteredSummary": "{mastered} / {total} mastered",
   "@batch9QuranWordsMasteredSummary": {
     "placeholders": {
       "mastered": {
@@ -10771,7 +10750,7 @@
   "batch9QuranWordsMeaningExpansionTitle": "Meaning",
   "batch9QuranWordsDetailNotFoundTitle": "Word not found",
   "batch9QuranWordsDetailNotFoundSubtitle": "This word study entry is no longer available.",
-  "batch9QuranWordsOccurrenceSummary": "{count} বার এসেছে",
+  "batch9QuranWordsOccurrenceSummary": "{meaning} • {count} times in Qur’an",
   "@batch9QuranWordsOccurrenceSummary": {
     "placeholders": {
       "meaning": {
@@ -10782,7 +10761,7 @@
       }
     }
   },
-  "batch9QuranWordsLoadError": "শব্দতালিকা লোড করা যায়নি",
+  "batch9QuranWordsLoadError": "Unable to load Holy Qur''an words: {error}",
   "@batch9QuranWordsLoadError": {
     "placeholders": {
       "error": {
@@ -10967,7 +10946,7 @@
   "fastingSectionTitle": "রোজা",
   "fastingSectionSubtitle": "আজকের রোজার অবস্থা এবং সাম্প্রতিক ইতিহাস দেখুন।",
   "fastingTodayTitle": "আজকের রোজা",
-  "fastingStatusValue": "অবস্থা: {status}",
+  "fastingStatusValue": "অবস্থা: {value}",
   "@fastingStatusValue": {
     "placeholders": {
       "value": {
@@ -10975,7 +10954,7 @@
       }
     }
   },
-  "fastingTypeValue": "ধরন: {type}",
+  "fastingTypeValue": "ধরন: {value}",
   "@fastingTypeValue": {
     "placeholders": {
       "value": {
@@ -10989,7 +10968,7 @@
   "fastingTodayStatusSubtitle": "আজকের জন্য আপনার রোজার অবস্থা দেখুন।",
   "fastingRecentHistoryTitle": "সাম্প্রতিক ইতিহাস",
   "fastingRecentHistorySubtitle": "সাম্প্রতিক নথিভুক্ত রোজার দিনগুলো।",
-  "fastingHistoryEntry": "{date} • {status}",
+  "fastingHistoryEntry": "{type} • {status}",
   "@fastingHistoryEntry": {
     "placeholders": {
       "type": {
@@ -11018,7 +10997,7 @@
   "prayerQadaRuleIshaSummary": "ইশার কাযা রাতে বা পরে আদায় করা যায়।",
   "prayerQadaRuleDefaultSummary": "নিরাপদ এবং নিষিদ্ধ নয় এমন সময়ে কাযা আদায় করুন।",
   "prayerUnknownAdjustment": "অজানা সালাত সমন্বয়।",
-  "prayerValidationMustRemainBefore": "{label} অবশ্যই {otherLabel}-এর আগে থাকতে হবে।",
+  "prayerValidationMustRemainBefore": "{current} must remain before {next}.",
   "@prayerValidationMustRemainBefore": {
     "placeholders": {
       "current": {
@@ -11064,7 +11043,7 @@
   "accountsSyncResultCompletedSuccessfully": "সিঙ্ক সফলভাবে সম্পন্ন হয়েছে।",
   "accountsSyncEventLocalOnlyModeActive": "শুধু লোকাল মোড সক্রিয়",
   "accountsSyncEventNoChanges": "কোনো পরিবর্তন নেই",
-  "accountsSyncEventUploadedChanges": "পরিবর্তন সফলভাবে আপলোড হয়েছে",
+  "accountsSyncEventUploadedChanges": "Uploaded {count} changes",
   "@accountsSyncEventUploadedChanges": {
     "placeholders": {
       "count": {
@@ -11072,7 +11051,7 @@
       }
     }
   },
-  "accountsSyncEventAppliedInboundChanges": "আগত পরিবর্তন সফলভাবে প্রয়োগ হয়েছে",
+  "accountsSyncEventAppliedInboundChanges": "Applied {count} inbound changes",
   "@accountsSyncEventAppliedInboundChanges": {
     "placeholders": {
       "count": {
@@ -18649,146 +18628,6 @@
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
   },
-  "@quranTeachingSectionTitle": null,
-  "@quranTeachingSectionSubtitle": null,
-  "@quranTeachingAlphabetOverviewTitle": null,
-  "@quranTeachingAlphabetOverviewForms": null,
-  "@quranTeachingAlphabetOverviewBrowseAction": null,
-  "@quranTeachingAlphabetOverviewShapesAction": null,
-  "@quranTeachingPathTitle": null,
-  "@quranTeachingPathSubtitle": null,
-  "@quranTeachingVisualModeOn": null,
-  "@quranTeachingVisualModeOff": null,
-  "@quranTeachingContinueTitle": null,
-  "@quranTeachingContinueEmpty": null,
-  "@quranTeachingStartLessonAction": null,
-  "@quranTeachingContinueLessonAction": null,
-  "@quranTeachingRecommendedTitle": null,
-  "@quranTeachingRecommendedEmpty": null,
-  "@quranTeachingOpenAction": null,
-  "@quranTeachingVisualModeTitle": null,
-  "@quranTeachingVisualModeSubtitle": null,
-  "@quranTeachingVisualModeToggle": null,
-  "@quranTeachingOpenListenOnlyAction": null,
-  "@quranTeachingReviewMistakesTitle": null,
-  "@quranTeachingReviewMistakesEmpty": null,
-  "@quranTeachingOpenReviewAction": null,
-  "@quranTeachingPracticeNowAction": null,
-  "@quranTeachingReviewProgressTitle": null,
-  "@quranTeachingPracticeRecommendationsTitle": null,
-  "@quranTeachingRecentlyLearnedTitle": null,
-  "@quranTeachingPracticeAgainTitle": null,
-  "@quranTeachingPracticeAgainSubtitle": null,
-  "@quranTeachingLearningPathTitle": null,
-  "@quranTeachingRecommendedBadge": null,
-  "@quranTeachingModuleLocked": null,
-  "@quranTeachingChooseLevelTitle": null,
-  "@quranTeachingChooseLevelSubtitle": null,
-  "@quranTeachingModeGuided": null,
-  "@quranTeachingModeBroad": null,
-  "@quranTeachingModeOpen": null,
-  "@quranTeachingLevelCompletelyNewTitle": null,
-  "@quranTeachingLevelCompletelyNewDescription": null,
-  "@quranTeachingLevelKnowSomeLettersTitle": null,
-  "@quranTeachingLevelKnowSomeLettersDescription": null,
-  "@quranTeachingLevelReadSlowlyTitle": null,
-  "@quranTeachingLevelReadSlowlyDescription": null,
-  "@quranTeachingLevelImproveReadingTitle": null,
-  "@quranTeachingLevelImproveReadingDescription": null,
-  "@quranTeachingLevelOpenReferenceTitle": null,
-  "@quranTeachingLevelOpenReferenceDescription": null,
-  "@quranTeachingModuleNextLessonTitle": null,
-  "@quranTeachingModuleNextLessonAction": null,
-  "@quranTeachingModuleListenOnlyAction": null,
-  "@quranTeachingModuleLearnWords": null,
-  "@quranTeachingModuleFoundInQuran": null,
-  "@quranTeachingModuleStarterSurahShelfTitle": null,
-  "@quranTeachingModuleLessonsTitle": null,
-  "@quranTeachingLessonHearThis": null,
-  "@quranTeachingLessonExamplesTitle": null,
-  "@quranTeachingLessonQuickQuizTitle": null,
-  "@quranTeachingLessonHearAudio": null,
-  "@quranTeachingLessonTapPiecesHint": null,
-  "@quranTeachingLessonCompleteTitle": null,
-  "@quranTeachingLessonBackToModule": null,
-  "@quranTeachingLessonLetterProfileTitle": null,
-  "@quranTeachingLessonFormsTitle": null,
-  "@quranTeachingLessonFormIsolated": null,
-  "@quranTeachingLessonFormInitial": null,
-  "@quranTeachingLessonFormMedial": null,
-  "@quranTeachingLessonFormFinal": null,
-  "@quranTeachingLessonFormUnavailable": null,
-  "@quranTeachingLessonNoForwardJoinHint": null,
-  "learningJourneyHomeRecommendedSubtitle": "A small set of paths that fit what you have already opened or completed.",
-  "batch9QuranWordsFlashCard": "ফ্ল্যাশ কার্ড",
-  "@batch9QuranWordsFlashCard": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      },
-      "meaning": {
-        "type": "String"
-      }
-    }
-  },
-  "homeGlassPreviewTitle": "Glass Style Preview",
-  "homeGlassPreviewSubtitle": "Temporary visual comparison of surface styles for calm homepage islands.",
-  "homeGlassPreviewFootnote": "Preview only — not yet applied across the app. This section is temporary and safe to remove after a glass direction is chosen.",
-  "homeGlassPreviewLegend": "Layered inner surface sample",
-  "homeGlassPreviewMetaBlur": "Blur",
-  "homeGlassPreviewMetaOpacity": "Opacity",
-  "homeGlassPreviewMetaReadability": "Readability",
-  "homeGlassPreviewReadabilityGentle": "Gentle",
-  "homeGlassPreviewReadabilityBalanced": "Balanced",
-  "homeGlassPreviewReadabilityHigh": "High",
-  "homeGlassPreviewWarmTitle": "Warm Glass",
-  "homeGlassPreviewWarmDescriptor": "Amber warmth with a calm devotional glow",
-  "homeGlassPreviewWarmBody": "Designed for prayer summaries, home reflections, and moments that should feel welcoming without becoming heavy. It keeps warmth close to the surface while preserving readable depth.",
-  "homeGlassPreviewWarmChip": "Prayer summary fit",
-  "homeGlassPreviewMilkyTitle": "Milky Glass",
-  "homeGlassPreviewMilkyDescriptor": "Cloudy ivory diffusion with softer transparency",
-  "homeGlassPreviewMilkyBody": "Designed for calm, readable surfaces with gentle depth. It feels especially strong for devotional cards, prayer summaries, and serene learning moments that need quiet clarity.",
-  "homeGlassPreviewMilkyChip": "Devotional favorite",
-  "homeGlassPreviewCrystalTitle": "Crystal Glass",
-  "homeGlassPreviewCrystalDescriptor": "Sharper clarity with cooler reflective lift",
-  "homeGlassPreviewCrystalBody": "Useful when you want the background to breathe through more clearly while still keeping titles crisp. It feels premium for highlights, featured insights, and polished showcase cards.",
-  "homeGlassPreviewCrystalChip": "Sharper focus",
-  "homeGlassPreviewNightTitle": "Night Glass",
-  "homeGlassPreviewNightDescriptor": "Smoky dusk layering with elegant low light",
-  "homeGlassPreviewNightBody": "A darker surface for late-evening atmosphere without sliding into harsh black panels. It works best for reflective content, deeper reading moments, and richer nighttime presentation.",
-  "homeGlassPreviewNightChip": "Night reflection",
-  "homeGlassPreviewTintedTitle": "Tinted Glass",
-  "homeGlassPreviewTintedDescriptor": "Soft color infusion with warm rosier undertones",
-  "homeGlassPreviewTintedBody": "This version brings a clearer sense of personality without turning neon or loud. It can suit featured reminders, curated editorial cards, and softer premium accents on home.",
-  "homeGlassPreviewTintedChip": "Editorial accent",
-  "homeGlassPreviewFrostedTitle": "Frosted Glass",
-  "homeGlassPreviewFrostedDescriptor": "Diffuse blur with quiet, paper-like softness",
-  "homeGlassPreviewFrostedBody": "A stronger blur treatment that protects readability first. It feels dependable for practical cards, utility summaries, and any surface where the content should lead over the material.",
-  "homeGlassPreviewFrostedChip": "Utility calm",
-  "homeGlassPreviewLayeredTitle": "Layered Glass",
-  "homeGlassPreviewLayeredDescriptor": "Primary glass surface with a nested inner veil",
-  "homeGlassPreviewLayeredBody": "Helpful when a card needs hierarchy inside hierarchy. The layered feel can support guided actions, richer dashboards, or sections where one calm panel sits inside another.",
-  "homeGlassPreviewLayeredChip": "Nested hierarchy",
-  "homeGlassPreviewEdgeLitTitle": "Edge-lit Glass",
-  "homeGlassPreviewEdgeLitDescriptor": "Subtle rim light with clearer luminous edges",
-  "homeGlassPreviewEdgeLitBody": "This style adds a little more presence around the perimeter while keeping the center calm. It can work for featured destinations, premium shortcuts, and attention-worthy highlights.",
-  "homeGlassPreviewEdgeLitChip": "Featured island",
-  "homeGlassPreviewAdaptiveTitle": "Adaptive Glass",
-  "homeGlassPreviewAdaptiveDescriptor": "Tint and mood that shift with the surrounding atmosphere",
-  "homeGlassPreviewAdaptiveBody": "Built to flex between warmer daylight and deeper evening surroundings. It aims for a stable middle ground that stays coherent across themes without demanding too much visual attention.",
-  "homeGlassPreviewAdaptiveChip": "Theme-aware",
-  "homeGlassPreviewSoftMatteTitle": "Soft Matte Glass",
-  "homeGlassPreviewSoftMatteDescriptor": "Velvety diffusion with reduced highlight sparkle",
-  "homeGlassPreviewSoftMatteBody": "This leans toward softness over shine, which can help content feel grounded and restful. It may suit journaling, daily checkpoints, and spaces that should feel gentle rather than glossy.",
-  "homeGlassPreviewSoftMatteChip": "Restful reading",
-  "homeGlassPreviewDenseSanctuaryTitle": "Dense Sanctuary Glass",
-  "homeGlassPreviewDenseSanctuaryDescriptor": "Clouded sanctuary depth with the strongest calm cover",
-  "homeGlassPreviewDenseSanctuaryBody": "One of the safest options for sacred, text-heavy moments because it shields the content from background noise. It feels especially fitting for duas, reflections, and focused spiritual summaries.",
-  "homeGlassPreviewDenseSanctuaryChip": "Sanctuary tone",
-  "homeGlassPreviewClearShowcaseTitle": "Clear Showcase Glass",
-  "homeGlassPreviewClearShowcaseDescriptor": "High transparency with brighter display energy",
-  "homeGlassPreviewClearShowcaseBody": "This is the most open and reflective option in the set. It is useful for comparison and premium showcase moments, though it needs careful contrast management before broader use.",
-  "homeGlassPreviewClearShowcaseChip": "Most transparent",
   "legalAttributionsAdhanBody": "বান্ডেল করা আযান স্মরণিকা ক্লিপের উৎস:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nমূল ফাইলের URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nউৎস পৃষ্ঠায় উল্লিখিত লেখক: Jarih (own work)\nলাইসেন্স: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nবর্তমান নোট: নির্বাচিত প্রতিস্থাপন সেট যুক্ত না হওয়া পর্যন্ত অ্যাপটি এই বান্ডেল করা ক্লিপ থেকে তৈরি অস্থায়ী অফলাইন ফলব্যাক আযান সংস্করণ সরবরাহ করে।",
   "legalAttributionsAdhanTitle": "আযান বিজ্ঞপ্তি অডিও",
   "legalAttributionsQuranBody": "অ্যাপটি বর্তমানে আরবি পাঠ ও অনুবাদ সংযুক্তির জন্য Flutter প্যাকেজ \"quran\" ব্যবহার করে।\n\nউৎস লিংক:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran",
@@ -18890,5 +18729,38 @@
   "occasionOfferDecline": "এখন নয়",
   "homeGreetingEidMubarak": "ঈদ মোবারক",
   "settingsLivingSkyTitle": "জীবন্ত আকাশ",
-  "settingsLivingSkySubtitle": "নূর গ্লাস দিনের সাথে চলে — গোলাপি-সোনালি ফজর, অ্যাম্বার মাগরিব, আর অন্ধকারের পরে তারাভরা রাত।"
+  "settingsLivingSkySubtitle": "নূর গ্লাস দিনের সাথে চলে — গোলাপি-সোনালি ফজর, অ্যাম্বার মাগরিব, আর অন্ধকারের পরে তারাভরা রাত।",
+  "settingsGroupYouTitle": "আপনি",
+  "settingsGroupWorshipTitle": "সালাত ও রিমাইন্ডার",
+  "settingsGroupAppTitle": "অ্যাপ",
+  "settingsGroupSupportTitle": "সহায়তা ও পরিচিতি",
+  "settingsCategoryProfileSubtitle": "আপনার নাম, অ্যাপ আপনাকে কীভাবে সম্বোধন করবে, এবং কেয়ার মোড।",
+  "settingsCategoryAdhanSubtitle": "আজান বেছে নিন, শুনে দেখুন এবং ভলিউম ঠিক করুন।",
+  "settingsSearchTitle": "সেটিংস খুঁজুন",
+  "settingsSearchSubtitle": "নাম দিয়ে যেকোনো সেটিং খুঁজুন।",
+  "settingsSearchHint": "সেটিংস খুঁজুন",
+  "settingsSearchTooltip": "সেটিংস খুঁজুন",
+  "settingsSearchEmptyTitle": "কিছু মেলেনি",
+  "settingsSearchEmptySubtitle": "অন্য শব্দ চেষ্টা করুন, অথবা সেটিংস পৃষ্ঠার গ্রুপগুলো দেখুন।",
+  "settingsSearchPromptTitle": "খুঁজতে টাইপ করুন",
+  "settingsSearchPromptSubtitle": "চেষ্টা করুন “আজান”, “ডার্ক”, “রিমাইন্ডার”, বা “ব্যাকআপ”।",
+  "legalPrivacyTitle": "গোপনীয়তা নীতি",
+  "legalPrivacySubtitle": "Path of Nūr কীভাবে আপনার তথ্য পরিচালনা করে।",
+  "legalTermsTitle": "ব্যবহারের শর্তাবলি",
+  "legalTermsSubtitle": "এই অ্যাপ কী, আর কী নয়।",
+  "legalSupportTitle": "সহায়তা",
+  "legalSupportSubtitle": "সহায়তা পাওয়া এবং সমস্যা জানানো।",
+  "settingsLegalTitle": "আইনি",
+  "settingsAccessibilityTitle": "অ্যাক্সেসিবিলিটি",
+  "settingsOccasionThemesTitle": "উপলক্ষের থিম",
+  "settingsOccasionThemesSubtitle": "শুক্রবার, রমজান, লাইলাতুল কদর ও ঈদে অ্যাপকে সাজতে দিন।",
+  "quickActionsSettingsSubtitle": "চেহারা, আজান, রিমাইন্ডার",
+  "quickActionsSearchSubtitle": "কুরআন, হাদিস, দোয়া, পাঠ",
+  "settingsSalahCalculationTitle": "গণনা",
+  "settingsSalahCalculationSubtitle": "আপনার সালাতের সময় নির্ণয়ে ব্যবহৃত পদ্ধতি ও মাযহাব।",
+  "settingsAdhanSoundTitle": "আজানের ধ্বনি",
+  "settingsRemindersPerPrayerTitle": "প্রতি সালাতের রিমাইন্ডার",
+  "settingsOtherRemindersTitle": "অন্যান্য রিমাইন্ডার",
+  "settingsPermissionsTitle": "অনুমতি",
+  "settingsWhatOthersSeeTitle": "অ্যাপ যা দেখায়"
 }

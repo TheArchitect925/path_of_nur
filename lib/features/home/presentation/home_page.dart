@@ -235,93 +235,83 @@ class _TopGreetingBlock extends StatelessWidget {
         // screen rather than on the space left over beside them.
         const SizedBox(width: _greetingTrailingIconsWidth),
         Expanded(
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () => context.goNamed('settings'),
-              borderRadius: BorderRadius.circular(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    l10n.greetingArabic,
-                    textAlign: TextAlign.center,
-                    textDirection: textDirectionForContent(l10n.greetingArabic),
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: foreground,
-                      height: 1.2,
-                      fontFamily: AppFonts.latinSerif,
-                    ),
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    '$_address ${userProfile.name}',
+          // The greeting is text, not a button. Settings has a labelled gear
+          // to its right; tapping the salam used to navigate away by accident.
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                l10n.greetingArabic,
+                textAlign: TextAlign.center,
+                textDirection: textDirectionForContent(l10n.greetingArabic),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: foreground,
+                  height: 1.2,
+                  fontFamily: AppFonts.latinSerif,
+                ),
+              ),
+              const SizedBox(height: 3),
+              Text(
+                '$_address ${userProfile.name}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  color: foreground,
+                  letterSpacing: 0.2,
+                  fontFamily: AppFonts.latinSerif,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Consumer(
+                builder: (context, ref, _) {
+                  // Sacred-time greeting: Eid Mubarak on the Eid days,
+                  // Jumu'ah Mubarak on Fridays, Ramadan Mubarak through
+                  // the month, salam otherwise.
+                  final now =
+                      ref.watch(dailyNowProvider).value ?? DateTime.now();
+                  final isRamadan = ref.watch(
+                    specialModeProvider.select((mode) => mode.isRamadan),
+                  );
+                  final ramadanEndIso = ref.watch(
+                    profileSettingsProvider.select((s) => s.ramadanEndDateIso),
+                  );
+                  final isEid =
+                      isEidAlFitrAt(ramadanEndIso: ramadanEndIso, now: now) ||
+                      isEidAlAdhaAt(now);
+                  final isFriday = now.weekday == DateTime.friday;
+                  final occasion = isEid
+                      ? l10n.homeGreetingEidMubarak
+                      : isFriday
+                      ? l10n.homeGreetingJumuahMubarak
+                      : isRamadan
+                      ? l10n.homeGreetingRamadanMubarak
+                      : null;
+                  final appearance = Theme.of(
+                    context,
+                  ).extension<AppAppearanceTheme>();
+                  return Text(
+                    occasion ?? l10n.peaceUponYou,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                      color: foreground,
-                      letterSpacing: 0.2,
+                      fontSize: occasion != null ? 14 : 13,
+                      fontWeight: occasion != null
+                          ? FontWeight.w600
+                          : FontWeight.w400,
+                      color: occasion != null
+                          ? (appearance?.accent ?? foreground)
+                          : foreground,
                       fontFamily: AppFonts.latinSerif,
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Consumer(
-                    builder: (context, ref, _) {
-                      // Sacred-time greeting: Eid Mubarak on the Eid days,
-                      // Jumu'ah Mubarak on Fridays, Ramadan Mubarak through
-                      // the month, salam otherwise.
-                      final now =
-                          ref.watch(dailyNowProvider).value ?? DateTime.now();
-                      final isRamadan = ref.watch(
-                        specialModeProvider.select((mode) => mode.isRamadan),
-                      );
-                      final ramadanEndIso = ref.watch(
-                        profileSettingsProvider.select(
-                          (s) => s.ramadanEndDateIso,
-                        ),
-                      );
-                      final isEid =
-                          isEidAlFitrAt(
-                            ramadanEndIso: ramadanEndIso,
-                            now: now,
-                          ) ||
-                          isEidAlAdhaAt(now);
-                      final isFriday = now.weekday == DateTime.friday;
-                      final occasion = isEid
-                          ? l10n.homeGreetingEidMubarak
-                          : isFriday
-                          ? l10n.homeGreetingJumuahMubarak
-                          : isRamadan
-                          ? l10n.homeGreetingRamadanMubarak
-                          : null;
-                      final appearance = Theme.of(
-                        context,
-                      ).extension<AppAppearanceTheme>();
-                      return Text(
-                        occasion ?? l10n.peaceUponYou,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: occasion != null ? 14 : 13,
-                          fontWeight: occasion != null
-                              ? FontWeight.w600
-                              : FontWeight.w400,
-                          color: occasion != null
-                              ? (appearance?.accent ?? foreground)
-                              : foreground,
-                          fontFamily: AppFonts.latinSerif,
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
+            ],
           ),
         ),
         IconButton(
@@ -330,9 +320,9 @@ class _TopGreetingBlock extends StatelessWidget {
           tooltip: l10n.homeSearchTooltip,
         ),
         IconButton(
-          onPressed: () => context.goNamed('settings'),
+          onPressed: () => context.pushNamed('settings'),
           icon: Icon(Icons.settings, size: 26, color: iconColor),
-          tooltip: l10n.profilePrayerSettingsTitle,
+          tooltip: l10n.settingsLandingTitle,
         ),
       ],
     );
@@ -420,7 +410,7 @@ class _SalahSummaryCard extends ConsumerWidget {
             l10n,
             current.overdueDateTime.difference(now),
           );
-    final offerByLabel = l10n.homePrayerBeginsAt(nextAt);
+    final offerByLabel = l10n.homePrayerBeginsAt;
     final offerByValue = nextAt;
     final trackedPrayerTotal = math.max(worship.prayerTotal, 5);
     final prayerCompletedValue = l10n.homeFractionValue(
@@ -467,11 +457,7 @@ class _SalahSummaryCard extends ConsumerWidget {
         if (current.hasDelayedMakeUpWindow)
           AppSalahHeroMetaChipData(
             icon: Icons.warning_amber_rounded,
-            label: l10n.homePrayerBecomesQada(
-              current.name,
-              current.name,
-              current.overdueAt,
-            ),
+            label: l10n.homePrayerBecomesQada(current.name),
             color: const Color(0xFF9A6D16),
           ),
       ],

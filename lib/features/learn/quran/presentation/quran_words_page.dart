@@ -199,7 +199,6 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                         l10n.batch9QuranWordsMasteredSummary(
                           '$masteredVisible',
                           '${visible.length}',
-                          masteredVisible,
                         ),
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),

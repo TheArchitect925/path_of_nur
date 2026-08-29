@@ -1780,7 +1780,7 @@
   "profileAboutSubtitle": "Bayanin samfur da app.",
   "profileMissionLine": "Abokin tafiya na ruhaniya mai nutsuwa da aka gina don ci gaba na gaskiya mai ɗorewa.",
   "profileVersionPlaceholder": "Siga ta 0.1.7 (wucin gadi)",
-  "profilePlannedRemindersToday": "_PH_0__ shirya tunatarwa yau",
+  "profilePlannedRemindersToday": "{count} planned reminders today",
   "@profilePlannedRemindersToday": {
     "placeholders": {
       "count": {
@@ -7325,7 +7325,7 @@
   "kidsUiThemeSettingTitle": "Jigon UI na Yara",
   "kidsUiThemeSettingSubtitle": "Yi amfani da kewayon shekaru da sauƙi mai sauƙi don ci gaba da koyo cikin sauƙin dubawa ga yara.",
   "kidsUiThemeSettingModeTitle": "Yanayin UI na yara",
-  "kidsUiThemeSettingModeHelper": "Sakamakon yanzu: _PH_0__",
+  "kidsUiThemeSettingModeHelper": "Current result: {state}",
   "@kidsUiThemeSettingModeHelper": {
     "placeholders": {
       "state": {}
@@ -7422,24 +7422,13 @@
   "settingsCurrentLocation": "Wuri na yanzu",
   "settingsProfilePersonalizationTitle": "Bayanan martaba & Keɓancewa",
   "settingsProfilePersonalizationSubtitle": "Ajiye sunanka, zaɓin adireshi, yanayin, da gajerun hanyoyi masu alaƙa da bayanan martaba a nan yanzu cewa Bayanan martaba ba shine babban matakin shafin ba.",
-  "settingsProfileDisplayNameSummary": "_PH_0__ _PH_1__",
+  "settingsProfileDisplayNameSummary": "{title} {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
       "title": {
         "type": "String"
       },
       "name": {
-        "type": "String"
-      }
-    }
-  },
-  "settingsProfileLevelStreakSummary": "_PH_0__ • _PH_1__",
-  "@settingsProfileLevelStreakSummary": {
-    "placeholders": {
-      "levelSummary": {
-        "type": "String"
-      },
-      "streakSummary": {
         "type": "String"
       }
     }
@@ -8122,12 +8111,10 @@
   "accountsSyncDevicePlatformAndroidTv": "talabijin Android",
   "settingsAdhanTitle": "Azan",
   "settingsAdhanSubtitle": "Zaɓi fajr Adhan da aka keɓe, duba shirye-shiryen shirye-shiryen da aka haɗa, da kiyaye sautin addu''a a layi.",
-  "settingsEnableAdhanAudioTitle": "Kunna Adhan audio",
-  "settingsEnableAdhanAudioSubtitle": "Tunasarwar Sallah na iya kunna zaɓaɓɓen Adhan lokacin da wannan ke kunne.",
   "settingsRegularAdhanTitle": "Adhan na yau da kullun",
   "settingsFajrAdhanTitle": "Azanar Fajr",
   "settingsPreviewVolumeTitle": "Preview & girma",
-  "settingsPercentValue": "_PH_0__%",
+  "settingsPercentValue": "{value}%",
   "@settingsPercentValue": {
     "placeholders": {
       "value": {
@@ -8141,8 +8128,6 @@
   "settingsAdhanPickerRegularSubtitle": "Ana amfani da shi don Dhuhr, Asr, Maghrib, da Isha.",
   "settingsAdhanPreviewStopTooltip": "Tsayar da preview",
   "settingsAdhanPreviewPlayTooltip": "Kunna preview",
-  "settingsTestRegularAdhan": "Gwada Adhan na yau da kullun",
-  "settingsTestFajrAdhan": "Gwada Fajr Adhan",
   "settingsUseAppVolumeTitle": "Yi amfani da ƙarar App",
   "settingsUseAppVolumeSubtitle": "Ci gaba da sake duban samfoti daidai da matakin ƙarar app.",
   "settingsAdhanPreviewVolume": "Ƙarar gwajin azan",
@@ -8166,17 +8151,11 @@
   "settingsThemeChoiceEasyRead": "Sauƙin Karatu",
   "settingsThemeChangedSuccessfully": "Jigon ya canza cikin nasara",
   "settingsVisualPreferencesTitle": "Zaɓuɓɓukan gani",
-  "settingsDisableGlassTransparencyTitle": "Kashe Bayyanar Gilashin",
-  "settingsDisableGlassTransparencySubtitle": "Yi amfani da daskararrun saman maimakon gilashin translucent.",
   "settingsDisableColoredGlassTitle": "Kashe Gilashin Launi",
   "settingsDisableColoredGlassSubtitle": "Rike saman gilashi yayin cire maganin launi mai launi.",
-  "settingsGlassTransparencyTitle": "Bayyanar Gilashin",
-  "settingsGlassTransparencySubtitle": "Daidaita yadda katunan gilashin, tsibirai, kwaya, da fafutoci ke bayyana a cikin ƙa''idar.",
-  "settingsGlassTransparencyDisabledSubtitle": "Kunna gilashin baya don daidaita bayyana gaskiya.",
   "settingsVisualPreferenceUpdated": "An sabunta zaɓi na gani",
   "settingsDisableBackgroundTitle": "Kashe Bayanan Bayani",
   "settingsDisableBackgroundSubtitle": "Ɓoye hotunan bangon ado na ado don kallon tsafta.",
-  "settingsAppearanceNoContentChangeNote": "Waɗannan saitunan suna canza kamannin ƙa''idar ba tare da canza abun ciki ko ci gaba ba.",
   "settingsDefaultAppearanceActive": "Siffar ta asali tana aiki",
   "settingsAppearanceResetToDefault": "Sake saitin bayyanar zuwa tsoho",
   "settingsResetAppearance": "Sake saitin Bayyanar",
@@ -8249,7 +8228,7 @@
   "settingsThemeModeCalmBeautifulDescription": "Tsohon salo na Path of Nur mai natsuwa tare da laushin dumi da zurfi da aka saba da shi.",
   "settingsThemeModeEasyReadDescription": "Mafi tsaftar filaye da bambanci mai ƙarfi don karatun mai da hankali. An ba da shawarar don dogon zaman karatu.",
   "settingsThemeModeDarkDescription": "A kwantar da hankula ƙananan haske don amfani da dare. An ba da shawarar don ƙananan haske.",
-  "settingsCurrentProfileSummary": "_PH_0__ • _PH_1__",
+  "settingsCurrentProfileSummary": "{name} • {syncMode}",
   "@settingsCurrentProfileSummary": {
     "placeholders": {
       "name": {
@@ -8260,7 +8239,7 @@
       }
     }
   },
-  "settingsSyncStatusSummary": "_PH_0__ yana jiran • _PH_1__",
+  "settingsSyncStatusSummary": "{count} pending • {syncState}",
   "@settingsSyncStatusSummary": {
     "placeholders": {
       "count": {
@@ -8271,7 +8250,7 @@
       }
     }
   },
-  "settingsMosqueTimeLabel": "Masallaci: _PH_0__",
+  "settingsMosqueTimeLabel": "Masjid: {time}",
   "@settingsMosqueTimeLabel": {
     "placeholders": {
       "time": {
@@ -8279,7 +8258,7 @@
       }
     }
   },
-  "settingsCalculatedTimeLabel": "An ƙididdigewa: _PH_0__",
+  "settingsCalculatedTimeLabel": "Calculated: {time}",
   "@settingsCalculatedTimeLabel": {
     "placeholders": {
       "time": {
@@ -8287,7 +8266,7 @@
       }
     }
   },
-  "settingsAdjustmentValueLabel": "Gyara: _PH_0__",
+  "settingsAdjustmentValueLabel": "Adjustment: {value}",
   "@settingsAdjustmentValueLabel": {
     "placeholders": {
       "value": {
@@ -8295,7 +8274,7 @@
       }
     }
   },
-  "settingsEffectiveTimeLabel": "Tasiri: _PH_0__",
+  "settingsEffectiveTimeLabel": "Effective: {time}",
   "@settingsEffectiveTimeLabel": {
     "placeholders": {
       "time": {
@@ -8303,7 +8282,7 @@
       }
     }
   },
-  "settingsDifferenceValueLabel": "Bambanci: _PH_0__",
+  "settingsDifferenceValueLabel": "Difference: {value}",
   "@settingsDifferenceValueLabel": {
     "placeholders": {
       "value": {
@@ -8311,7 +8290,7 @@
       }
     }
   },
-  "settingsMinutesValue": "_PH_0__ min",
+  "settingsMinutesValue": "{value} min",
   "@settingsMinutesValue": {
     "placeholders": {
       "value": {
@@ -8319,7 +8298,7 @@
       }
     }
   },
-  "settingsBaseTimeLabel": "Tushe: _PH_0__",
+  "settingsBaseTimeLabel": "Base: {time}",
   "@settingsBaseTimeLabel": {
     "placeholders": {
       "time": {
@@ -8327,7 +8306,7 @@
       }
     }
   },
-  "settingsFinalTimeLabel": "Karshe: _PH_0__",
+  "settingsFinalTimeLabel": "Final: {time}",
   "@settingsFinalTimeLabel": {
     "placeholders": {
       "time": {
@@ -8335,7 +8314,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "Lokacin ƙididdigewa: _PH_0__",
+  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "Base calculated time: {time}",
   "@settingsPrayerAdjustmentEditorBaseCalculatedTime": {
     "placeholders": {
       "time": {
@@ -8343,7 +8322,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorCurrentAdjustment": "Daidaitawa na yanzu: _PH_0__",
+  "settingsPrayerAdjustmentEditorCurrentAdjustment": "Current adjustment: {value}",
   "@settingsPrayerAdjustmentEditorCurrentAdjustment": {
     "placeholders": {
       "value": {
@@ -8351,7 +8330,7 @@
       }
     }
   },
-  "settingsSuggestedAdjustmentChangeRow": "_PH_0__: _PH_1__ → {suggestedValue}",
+  "settingsSuggestedAdjustmentChangeRow": "{prayerName}: {currentValue} → {suggestedValue}",
   "@settingsSuggestedAdjustmentChangeRow": {
     "placeholders": {
       "prayerName": {
@@ -8365,7 +8344,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorFinalEffectiveTime": "Lokacin ƙarshe na aiki: _PH_0__",
+  "settingsPrayerAdjustmentEditorFinalEffectiveTime": "Final effective time: {time}",
   "@settingsPrayerAdjustmentEditorFinalEffectiveTime": {
     "placeholders": {
       "time": {
@@ -18649,146 +18628,6 @@
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
   },
-  "@quranTeachingSectionTitle": null,
-  "@quranTeachingSectionSubtitle": null,
-  "@quranTeachingAlphabetOverviewTitle": null,
-  "@quranTeachingAlphabetOverviewForms": null,
-  "@quranTeachingAlphabetOverviewBrowseAction": null,
-  "@quranTeachingAlphabetOverviewShapesAction": null,
-  "@quranTeachingPathTitle": null,
-  "@quranTeachingPathSubtitle": null,
-  "@quranTeachingVisualModeOn": null,
-  "@quranTeachingVisualModeOff": null,
-  "@quranTeachingContinueTitle": null,
-  "@quranTeachingContinueEmpty": null,
-  "@quranTeachingStartLessonAction": null,
-  "@quranTeachingContinueLessonAction": null,
-  "@quranTeachingRecommendedTitle": null,
-  "@quranTeachingRecommendedEmpty": null,
-  "@quranTeachingOpenAction": null,
-  "@quranTeachingVisualModeTitle": null,
-  "@quranTeachingVisualModeSubtitle": null,
-  "@quranTeachingVisualModeToggle": null,
-  "@quranTeachingOpenListenOnlyAction": null,
-  "@quranTeachingReviewMistakesTitle": null,
-  "@quranTeachingReviewMistakesEmpty": null,
-  "@quranTeachingOpenReviewAction": null,
-  "@quranTeachingPracticeNowAction": null,
-  "@quranTeachingReviewProgressTitle": null,
-  "@quranTeachingPracticeRecommendationsTitle": null,
-  "@quranTeachingRecentlyLearnedTitle": null,
-  "@quranTeachingPracticeAgainTitle": null,
-  "@quranTeachingPracticeAgainSubtitle": null,
-  "@quranTeachingLearningPathTitle": null,
-  "@quranTeachingRecommendedBadge": null,
-  "@quranTeachingModuleLocked": null,
-  "@quranTeachingChooseLevelTitle": null,
-  "@quranTeachingChooseLevelSubtitle": null,
-  "@quranTeachingModeGuided": null,
-  "@quranTeachingModeBroad": null,
-  "@quranTeachingModeOpen": null,
-  "@quranTeachingLevelCompletelyNewTitle": null,
-  "@quranTeachingLevelCompletelyNewDescription": null,
-  "@quranTeachingLevelKnowSomeLettersTitle": null,
-  "@quranTeachingLevelKnowSomeLettersDescription": null,
-  "@quranTeachingLevelReadSlowlyTitle": null,
-  "@quranTeachingLevelReadSlowlyDescription": null,
-  "@quranTeachingLevelImproveReadingTitle": null,
-  "@quranTeachingLevelImproveReadingDescription": null,
-  "@quranTeachingLevelOpenReferenceTitle": null,
-  "@quranTeachingLevelOpenReferenceDescription": null,
-  "@quranTeachingModuleNextLessonTitle": null,
-  "@quranTeachingModuleNextLessonAction": null,
-  "@quranTeachingModuleListenOnlyAction": null,
-  "@quranTeachingModuleLearnWords": null,
-  "@quranTeachingModuleFoundInQuran": null,
-  "@quranTeachingModuleStarterSurahShelfTitle": null,
-  "@quranTeachingModuleLessonsTitle": null,
-  "@quranTeachingLessonHearThis": null,
-  "@quranTeachingLessonExamplesTitle": null,
-  "@quranTeachingLessonQuickQuizTitle": null,
-  "@quranTeachingLessonHearAudio": null,
-  "@quranTeachingLessonTapPiecesHint": null,
-  "@quranTeachingLessonCompleteTitle": null,
-  "@quranTeachingLessonBackToModule": null,
-  "@quranTeachingLessonLetterProfileTitle": null,
-  "@quranTeachingLessonFormsTitle": null,
-  "@quranTeachingLessonFormIsolated": null,
-  "@quranTeachingLessonFormInitial": null,
-  "@quranTeachingLessonFormMedial": null,
-  "@quranTeachingLessonFormFinal": null,
-  "@quranTeachingLessonFormUnavailable": null,
-  "@quranTeachingLessonNoForwardJoinHint": null,
-  "learningJourneyHomeRecommendedSubtitle": "A small set of paths that fit what you have already opened or completed.",
-  "batch9QuranWordsFlashCard": "Flash card: {transliteration} • {meaning}",
-  "@batch9QuranWordsFlashCard": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      },
-      "meaning": {
-        "type": "String"
-      }
-    }
-  },
-  "homeGlassPreviewTitle": "Glass Style Preview",
-  "homeGlassPreviewSubtitle": "Temporary visual comparison of surface styles for calm homepage islands.",
-  "homeGlassPreviewFootnote": "Preview only — not yet applied across the app. This section is temporary and safe to remove after a glass direction is chosen.",
-  "homeGlassPreviewLegend": "Layered inner surface sample",
-  "homeGlassPreviewMetaBlur": "Blur",
-  "homeGlassPreviewMetaOpacity": "Opacity",
-  "homeGlassPreviewMetaReadability": "Readability",
-  "homeGlassPreviewReadabilityGentle": "Gentle",
-  "homeGlassPreviewReadabilityBalanced": "Balanced",
-  "homeGlassPreviewReadabilityHigh": "High",
-  "homeGlassPreviewWarmTitle": "Warm Glass",
-  "homeGlassPreviewWarmDescriptor": "Amber warmth with a calm devotional glow",
-  "homeGlassPreviewWarmBody": "Designed for prayer summaries, home reflections, and moments that should feel welcoming without becoming heavy. It keeps warmth close to the surface while preserving readable depth.",
-  "homeGlassPreviewWarmChip": "Prayer summary fit",
-  "homeGlassPreviewMilkyTitle": "Milky Glass",
-  "homeGlassPreviewMilkyDescriptor": "Cloudy ivory diffusion with softer transparency",
-  "homeGlassPreviewMilkyBody": "Designed for calm, readable surfaces with gentle depth. It feels especially strong for devotional cards, prayer summaries, and serene learning moments that need quiet clarity.",
-  "homeGlassPreviewMilkyChip": "Devotional favorite",
-  "homeGlassPreviewCrystalTitle": "Crystal Glass",
-  "homeGlassPreviewCrystalDescriptor": "Sharper clarity with cooler reflective lift",
-  "homeGlassPreviewCrystalBody": "Useful when you want the background to breathe through more clearly while still keeping titles crisp. It feels premium for highlights, featured insights, and polished showcase cards.",
-  "homeGlassPreviewCrystalChip": "Sharper focus",
-  "homeGlassPreviewNightTitle": "Night Glass",
-  "homeGlassPreviewNightDescriptor": "Smoky dusk layering with elegant low light",
-  "homeGlassPreviewNightBody": "A darker surface for late-evening atmosphere without sliding into harsh black panels. It works best for reflective content, deeper reading moments, and richer nighttime presentation.",
-  "homeGlassPreviewNightChip": "Night reflection",
-  "homeGlassPreviewTintedTitle": "Tinted Glass",
-  "homeGlassPreviewTintedDescriptor": "Soft color infusion with warm rosier undertones",
-  "homeGlassPreviewTintedBody": "This version brings a clearer sense of personality without turning neon or loud. It can suit featured reminders, curated editorial cards, and softer premium accents on home.",
-  "homeGlassPreviewTintedChip": "Editorial accent",
-  "homeGlassPreviewFrostedTitle": "Frosted Glass",
-  "homeGlassPreviewFrostedDescriptor": "Diffuse blur with quiet, paper-like softness",
-  "homeGlassPreviewFrostedBody": "A stronger blur treatment that protects readability first. It feels dependable for practical cards, utility summaries, and any surface where the content should lead over the material.",
-  "homeGlassPreviewFrostedChip": "Utility calm",
-  "homeGlassPreviewLayeredTitle": "Layered Glass",
-  "homeGlassPreviewLayeredDescriptor": "Primary glass surface with a nested inner veil",
-  "homeGlassPreviewLayeredBody": "Helpful when a card needs hierarchy inside hierarchy. The layered feel can support guided actions, richer dashboards, or sections where one calm panel sits inside another.",
-  "homeGlassPreviewLayeredChip": "Nested hierarchy",
-  "homeGlassPreviewEdgeLitTitle": "Edge-lit Glass",
-  "homeGlassPreviewEdgeLitDescriptor": "Subtle rim light with clearer luminous edges",
-  "homeGlassPreviewEdgeLitBody": "This style adds a little more presence around the perimeter while keeping the center calm. It can work for featured destinations, premium shortcuts, and attention-worthy highlights.",
-  "homeGlassPreviewEdgeLitChip": "Featured island",
-  "homeGlassPreviewAdaptiveTitle": "Adaptive Glass",
-  "homeGlassPreviewAdaptiveDescriptor": "Tint and mood that shift with the surrounding atmosphere",
-  "homeGlassPreviewAdaptiveBody": "Built to flex between warmer daylight and deeper evening surroundings. It aims for a stable middle ground that stays coherent across themes without demanding too much visual attention.",
-  "homeGlassPreviewAdaptiveChip": "Theme-aware",
-  "homeGlassPreviewSoftMatteTitle": "Soft Matte Glass",
-  "homeGlassPreviewSoftMatteDescriptor": "Velvety diffusion with reduced highlight sparkle",
-  "homeGlassPreviewSoftMatteBody": "This leans toward softness over shine, which can help content feel grounded and restful. It may suit journaling, daily checkpoints, and spaces that should feel gentle rather than glossy.",
-  "homeGlassPreviewSoftMatteChip": "Restful reading",
-  "homeGlassPreviewDenseSanctuaryTitle": "Dense Sanctuary Glass",
-  "homeGlassPreviewDenseSanctuaryDescriptor": "Clouded sanctuary depth with the strongest calm cover",
-  "homeGlassPreviewDenseSanctuaryBody": "One of the safest options for sacred, text-heavy moments because it shields the content from background noise. It feels especially fitting for duas, reflections, and focused spiritual summaries.",
-  "homeGlassPreviewDenseSanctuaryChip": "Sanctuary tone",
-  "homeGlassPreviewClearShowcaseTitle": "Clear Showcase Glass",
-  "homeGlassPreviewClearShowcaseDescriptor": "High transparency with brighter display energy",
-  "homeGlassPreviewClearShowcaseBody": "This is the most open and reflective option in the set. It is useful for comparison and premium showcase moments, though it needs careful contrast management before broader use.",
-  "homeGlassPreviewClearShowcaseChip": "Most transparent",
   "legalAttributionsAdhanBody": "Tushen sautin tunatar da azan da aka haɗa cikin manhajar:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nAdireshin URL na asali:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nMawallafin da aka lissafa a shafin tushen: Jarih (aikin kansa)\nLasisi: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nBayani na yanzu: manhajar tana ɗauke da sautukan azan na wucin gadi da ake iya amfani da su ba tare da intanet ba, waɗanda aka samo daga wannan sautin da aka haɗa, har sai an sauya su da zaɓaɓɓun sautukan da za su maye gurbinsu.",
   "legalAttributionsAdhanTitle": "Sautin Sanarwar Azan",
   "legalAttributionsQuranBody": "A halin yanzu manhajar tana amfani da fakitin Flutter mai suna \"quran\" don rubutun Larabci da haɗakar fassarori.\n\nHanyoyin tushe:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran",
@@ -18890,5 +18729,38 @@
   "occasionOfferDecline": "Ba yanzu ba",
   "homeGreetingEidMubarak": "Barka da Sallah",
   "settingsLivingSkyTitle": "Sararin sama mai rai",
-  "settingsLivingSkySubtitle": "Noor Glass na bin yini — alfijir mai ruwan zinariya, magariba mai amber, da daren taurari bayan duhu."
+  "settingsLivingSkySubtitle": "Noor Glass na bin yini — alfijir mai ruwan zinariya, magariba mai amber, da daren taurari bayan duhu.",
+  "settingsGroupYouTitle": "Kai",
+  "settingsGroupWorshipTitle": "Sallah da Tunatarwa",
+  "settingsGroupAppTitle": "Manhaja",
+  "settingsGroupSupportTitle": "Taimako da Bayani",
+  "settingsCategoryProfileSubtitle": "Sunanka, yadda manhaja take kiranka, da yanayin kulawa.",
+  "settingsCategoryAdhanSubtitle": "Zaɓi adhan, saurara, sannan ka daidaita ƙarar sa.",
+  "settingsSearchTitle": "Nemi Saituna",
+  "settingsSearchSubtitle": "Nemo kowane saiti da sunansa.",
+  "settingsSearchHint": "Nemi saituna",
+  "settingsSearchTooltip": "Nemi saituna",
+  "settingsSearchEmptyTitle": "Babu abin da ya dace",
+  "settingsSearchEmptySubtitle": "Gwada wata kalma, ko duba ƙungiyoyi a shafin saituna.",
+  "settingsSearchPromptTitle": "Rubuta domin nema",
+  "settingsSearchPromptSubtitle": "Gwada “adhan”, “duhu”, “tunatarwa”, ko “ajiya”.",
+  "legalPrivacyTitle": "Manufar Sirri",
+  "legalPrivacySubtitle": "Yadda Path of Nūr ke sarrafa bayananka.",
+  "legalTermsTitle": "Sharuɗɗan Amfani",
+  "legalTermsSubtitle": "Menene wannan manhaja, kuma menene ba ita ba.",
+  "legalSupportTitle": "Tallafi",
+  "legalSupportSubtitle": "Samun taimako da bayar da rahoton matsala.",
+  "settingsLegalTitle": "Bayanan Doka",
+  "settingsAccessibilityTitle": "Sauƙin Amfani",
+  "settingsOccasionThemesTitle": "Jigogin Lokuta",
+  "settingsOccasionThemesSubtitle": "Bar manhaja ta yi ado domin Jumu’a, Ramadan, Lailatul Ƙadr, da Sallah.",
+  "quickActionsSettingsSubtitle": "Kamanni, adhan, tunatarwa",
+  "quickActionsSearchSubtitle": "Alƙur’ani, hadisi, addu’a, darussa",
+  "settingsSalahCalculationTitle": "Lissafi",
+  "settingsSalahCalculationSubtitle": "Hanyar da mazhabar da ake amfani da su wajen lissafin lokutan sallarka.",
+  "settingsAdhanSoundTitle": "Muryar Adhan",
+  "settingsRemindersPerPrayerTitle": "Tunatarwa ga Kowace Sallah",
+  "settingsOtherRemindersTitle": "Sauran Tunatarwa",
+  "settingsPermissionsTitle": "Izini",
+  "settingsWhatOthersSeeTitle": "Abin da Manhaja ke Nunawa"
 }

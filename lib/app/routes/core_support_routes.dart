@@ -31,6 +31,7 @@ import '../../features/profile/presentation/help_guide_detail_page.dart';
 import '../../features/profile/presentation/help_guide_hub_page.dart';
 import '../../features/profile/presentation/profile_summary_page.dart';
 import '../../features/profile/presentation/profile_whats_new_page.dart';
+import '../../features/profile/presentation/settings/settings_search_page.dart';
 import '../../features/profile/presentation/settings_page.dart';
 import '../../features/search/presentation/all_search_page.dart';
 import '../../features/shared/attributions_licenses_page.dart';
@@ -76,10 +77,33 @@ List<RouteBase> buildCoreSupportRoutes() {
           const MaterialPage(child: SettingsPage()),
     ),
     GoRoute(
+      path: '/settings/search',
+      name: 'settingsSearch',
+      pageBuilder: (context, state) => MaterialPage(
+        child: SettingsSearchPage(
+          initialQuery: state.uri.queryParameters['q'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/profile',
+      name: 'settingsProfile',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.profile),
+      ),
+    ),
+    GoRoute(
       path: '/settings/account-sync',
       name: 'settingsAccountSync',
       pageBuilder: (context, state) => const MaterialPage(
         child: SettingsPage(category: SettingsCategory.accountSync),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/adhan',
+      name: 'settingsAdhan',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.adhan),
       ),
     ),
     GoRoute(

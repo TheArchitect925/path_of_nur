@@ -109,9 +109,11 @@ DateTime? jumuahLeaveTimeFor({
           ? estimatedTravelMinutes
           : null) ??
       preferences.jumuahTravelMinutes;
-  return DateTime(day.year, day.month, day.day).add(
-    Duration(minutes: jumuahMinutes - travel - jumuahLeaveBufferMinutes),
-  );
+  return DateTime(
+    day.year,
+    day.month,
+    day.day,
+  ).add(Duration(minutes: jumuahMinutes - travel - jumuahLeaveBufferMinutes));
 }
 
 const int defaultJumuahDisplayMinutes = 13 * 60 + 30;
@@ -1719,10 +1721,6 @@ String? validatePrayerAdjustmentsForDate({
       return l10n.prayerValidationMustRemainBefore(
         _localizedPrayerName(current.id, l10n),
         _localizedPrayerName(next.id, l10n),
-        _localizedPrayerName(current.id, l10n),
-        _localizedPrayerName(current.id, l10n),
-        _localizedPrayerName(next.id, l10n),
-        _localizedPrayerName(next.id, l10n),
       );
     }
   }
@@ -1760,10 +1758,6 @@ String? validateManualPrayerTimesForDate({
       final l10n = _prayerL10n();
       return l10n.prayerValidationMustRemainBefore(
         _localizedPrayerName(schedule[i].id, l10n),
-        _localizedPrayerName(schedule[i + 1].id, l10n),
-        _localizedPrayerName(schedule[i].id, l10n),
-        _localizedPrayerName(schedule[i].id, l10n),
-        _localizedPrayerName(schedule[i + 1].id, l10n),
         _localizedPrayerName(schedule[i + 1].id, l10n),
       );
     }

@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../shared/widgets/display/hub_list_group.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../application/accounts_sync_controller.dart';
@@ -39,15 +41,11 @@ class _AccountsProfilesSyncPageState
       title: l10n.settingsAccountsSyncTitle,
       subtitle: l10n.settingsAccountsSyncSubtitle,
       children: [
+        SectionTitle(title: l10n.accountsSyncStatusCardTitle),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                l10n.accountsSyncStatusCardTitle,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 6),
               Text(
                 _connectionModeBody(
                   l10n,
@@ -120,51 +118,45 @@ class _AccountsProfilesSyncPageState
                       : l10n.accountsSyncProfileStatusSummary(
                           _profileKindLabel(l10n, activeProfile.profileType),
                           _syncModeLabel(l10n, activeProfile.syncMode),
-                          _profileKindLabel(l10n, activeProfile.profileType),
-                          activeProfile.displayName,
-                          _syncModeLabel(l10n, activeProfile.syncMode),
                         ),
                 ),
                 trailing: activeProfile?.pinProtected == true
                     ? const Icon(Icons.lock_outline_rounded)
                     : null,
               ),
-              const Divider(height: 1),
-              _NavRow(
-                title: l10n.accountsSyncSwitchProfileTitle,
-                subtitle: l10n.accountsSyncSwitchProfileSubtitle,
-                onTap: () => context.push('/accounts-sync/profiles'),
-              ),
-              const Divider(height: 1),
-              _NavRow(
-                title: l10n.accountsSyncProfilesInAccountTitle,
-                subtitle: activeAccount == null
-                    ? l10n.accountsSyncProfilesInAccountCreateSubtitle
-                    : l10n.accountsSyncProfilesInAccountManageSubtitle(
-                        activeAccount.displayName,
-                      ),
-                onTap: () => context.push('/accounts-sync/profiles'),
-              ),
             ],
           ),
+        ),
+        const SizedBox(height: 6),
+        _NavRow(
+          icon: Icons.switch_account_rounded,
+          title: l10n.accountsSyncSwitchProfileTitle,
+          subtitle: l10n.accountsSyncSwitchProfileSubtitle,
+          onTap: () => context.push('/accounts-sync/profiles'),
+        ),
+        const SizedBox(height: 6),
+        _NavRow(
+          icon: Icons.groups_outlined,
+          title: l10n.accountsSyncProfilesInAccountTitle,
+          subtitle: activeAccount == null
+              ? l10n.accountsSyncProfilesInAccountCreateSubtitle
+              : l10n.accountsSyncProfilesInAccountManageSubtitle(
+                  activeAccount.displayName,
+                ),
+          onTap: () => context.push('/accounts-sync/profiles'),
         ),
         const SizedBox(height: 16),
         SectionTitle(
           title: l10n.accountsSyncAccountsOnDeviceTitle,
           subtitle: l10n.accountsSyncAccountsOnDeviceSubtitle,
         ),
-        PremiumCard(
-          child: Column(
-            children: [
-              _NavRow(
-                title: l10n.accountsSyncSignedInAccountsTitle,
-                subtitle: l10n.accountsSyncAccountsAvailableCount(
-                  state.accounts.length,
-                ),
-                onTap: () => context.push('/accounts-sync/accounts'),
-              ),
-            ],
+        _NavRow(
+          icon: Icons.account_circle_outlined,
+          title: l10n.accountsSyncSignedInAccountsTitle,
+          subtitle: l10n.accountsSyncAccountsAvailableCount(
+            state.accounts.length,
           ),
+          onTap: () => context.push('/accounts-sync/accounts'),
         ),
         const SizedBox(height: 16),
         _AccountConnectionCard(
@@ -181,14 +173,11 @@ class _AccountsProfilesSyncPageState
           title: l10n.accountsSyncConnectedDevicesTitle,
           subtitle: l10n.accountsSyncConnectedDevicesSubtitle,
         ),
-        PremiumCard(
-          child: _NavRow(
-            title: l10n.accountsSyncConnectedDevicesTitle,
-            subtitle: l10n.accountsSyncDeviceCount(
-              state.connectedDevices.length,
-            ),
-            onTap: () => context.push('/accounts-sync/devices'),
-          ),
+        _NavRow(
+          icon: Icons.devices_other_rounded,
+          title: l10n.accountsSyncConnectedDevicesTitle,
+          subtitle: l10n.accountsSyncDeviceCount(state.connectedDevices.length),
+          onTap: () => context.push('/accounts-sync/devices'),
         ),
         const SizedBox(height: 16),
         SectionTitle(
@@ -197,53 +186,43 @@ class _AccountsProfilesSyncPageState
               ? l10n.accountsSyncBackupRestoreSectionSubtitleRecommended
               : l10n.accountsSyncBackupRestoreSectionSubtitleDefault,
         ),
-        PremiumCard(
-          child: Column(
-            children: [
-              _NavRow(
-                title: l10n.settingsBackupRestoreTitle,
-                subtitle: state.backupRecord.lastExportAtIso == null
-                    ? l10n.accountsSyncNoManualBackupExportedYet
-                    : l10n.accountsSyncLastExportLabel(
-                        _formatWhen(
-                          context,
-                          l10n,
-                          state.backupRecord.lastExportAtIso,
-                        ),
-                      ),
-                onTap: () => context.push('/accounts-sync/backup'),
-              ),
-            ],
-          ),
+        _NavRow(
+          icon: Icons.cloud_download_outlined,
+          title: l10n.settingsBackupRestoreTitle,
+          subtitle: state.backupRecord.lastExportAtIso == null
+              ? l10n.accountsSyncNoManualBackupExportedYet
+              : l10n.accountsSyncLastExportLabel(
+                  _formatWhen(
+                    context,
+                    l10n,
+                    state.backupRecord.lastExportAtIso,
+                  ),
+                ),
+          onTap: () => context.push('/accounts-sync/backup'),
         ),
         const SizedBox(height: 16),
         SectionTitle(
           title: l10n.accountsSyncSharedDeviceSafetyTitle,
           subtitle: l10n.accountsSyncSharedDeviceSafetySubtitle,
         ),
+        _NavRow(
+          icon: Icons.shield_outlined,
+          title: l10n.accountsSyncSharedDeviceSafetyTitle,
+          subtitle: state.sharedDeviceModeEnabled
+              ? l10n.accountsSyncSharedDeviceModeActive
+              : l10n.accountsSyncSharedDeviceModeDirectOpen,
+          onTap: () => context.push('/accounts-sync/shared-device'),
+        ),
+        const SizedBox(height: 6),
         PremiumCard(
-          child: Column(
-            children: [
-              _NavRow(
-                title: l10n.accountsSyncSharedDeviceSafetyTitle,
-                subtitle: state.sharedDeviceModeEnabled
-                    ? l10n.accountsSyncSharedDeviceModeActive
-                    : l10n.accountsSyncSharedDeviceModeDirectOpen,
-                onTap: () => context.push('/accounts-sync/shared-device'),
-              ),
-              const Divider(height: 1),
-              SwitchListTile.adaptive(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.accountsSyncSharedDeviceModeLabel),
-                subtitle: Text(l10n.accountsSyncSharedDeviceModeHelper),
-                value: state.sharedDeviceModeEnabled,
-                onChanged: (value) {
-                  ref
-                      .read(sharedDeviceModeControllerProvider)
-                      .setEnabled(value);
-                },
-              ),
-            ],
+          child: SwitchListTile.adaptive(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.accountsSyncSharedDeviceModeLabel),
+            subtitle: Text(l10n.accountsSyncSharedDeviceModeHelper),
+            value: state.sharedDeviceModeEnabled,
+            onChanged: (value) {
+              ref.read(sharedDeviceModeControllerProvider).setEnabled(value);
+            },
           ),
         ),
       ],
@@ -328,28 +307,25 @@ class _SharedDeviceProfilePickerPageState
           ),
         ),
         const SizedBox(height: 16),
-        PremiumCard(
-          child: Column(
-            children: [
-              _NavRow(
-                title: l10n.accountsSyncAddProfileTitle,
-                subtitle: l10n.accountsSyncAddProfileSubtitle,
-                onTap: () => context.push('/accounts-sync/profiles'),
-              ),
-              const Divider(height: 1),
-              _NavRow(
-                title: l10n.accountsSyncSignInAnotherAccountTitle,
-                subtitle: l10n.accountsSyncSignInAnotherAccountSubtitle,
-                onTap: () => context.push('/accounts-sync/accounts'),
-              ),
-              const Divider(height: 1),
-              _NavRow(
-                title: l10n.accountsSyncManageSharedDeviceSettingsTitle,
-                subtitle: l10n.accountsSyncManageSharedDeviceSettingsSubtitle,
-                onTap: () => context.push('/accounts-sync/shared-device'),
-              ),
-            ],
-          ),
+        _NavRow(
+          icon: Icons.person_add_alt_1_outlined,
+          title: l10n.accountsSyncAddProfileTitle,
+          subtitle: l10n.accountsSyncAddProfileSubtitle,
+          onTap: () => context.push('/accounts-sync/profiles'),
+        ),
+        const SizedBox(height: 6),
+        _NavRow(
+          icon: Icons.account_circle_outlined,
+          title: l10n.accountsSyncSignInAnotherAccountTitle,
+          subtitle: l10n.accountsSyncSignInAnotherAccountSubtitle,
+          onTap: () => context.push('/accounts-sync/accounts'),
+        ),
+        const SizedBox(height: 6),
+        _NavRow(
+          icon: Icons.shield_outlined,
+          title: l10n.accountsSyncManageSharedDeviceSettingsTitle,
+          subtitle: l10n.accountsSyncManageSharedDeviceSettingsSubtitle,
+          onTap: () => context.push('/accounts-sync/shared-device'),
         ),
         if (_profileIdAwaitingPin != null) ...[
           const SizedBox(height: 16),
@@ -655,8 +631,6 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
                       _accountProviderLabel(l10n, account.provider),
                       account.identifier,
                       _syncModeLabel(l10n, account.syncMode),
-                      _accountProviderLabel(l10n, account.provider),
-                      account.identifier,
                     ),
                   ),
                   trailing: account.accountId == state.activeAccountId
@@ -731,9 +705,12 @@ class _AccountConnectionCardState
           ),
           if (widget.onManageAccountsTap != null) ...[
             const Divider(height: 24),
-            _NavRow(
-              title: l10n.accountsSyncSignedInAccountsTitle,
-              subtitle: l10n.accountsSyncSignInAnotherAccountSubtitle,
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.account_circle_outlined),
+              title: Text(l10n.accountsSyncSignedInAccountsTitle),
+              subtitle: Text(l10n.accountsSyncSignInAnotherAccountSubtitle),
+              trailing: const Icon(Icons.chevron_right_rounded),
               onTap: widget.onManageAccountsTap!,
             ),
           ],
@@ -964,9 +941,6 @@ class ConnectedDevicesPage extends ConsumerWidget {
                   title: Text(_deviceNameLabel(l10n, device)),
                   subtitle: Text(
                     l10n.accountsSyncDeviceSummary(
-                      _devicePlatformLabel(l10n, device.platform),
-                      _formatWhen(context, l10n, device.lastActiveAtIso),
-                      _formatWhen(context, l10n, device.lastActiveAtIso),
                       _devicePlatformLabel(l10n, device.platform),
                       _formatWhen(context, l10n, device.lastActiveAtIso),
                     ),
@@ -1442,30 +1416,26 @@ class BackupRestoreHomePage extends ConsumerWidget {
             ),
           ),
         const SizedBox(height: 16),
-        PremiumCard(
-          child: Column(
-            children: [
-              _NavRow(
-                title: l10n.accountsSyncExportBackupTitle,
-                subtitle: state.backupRecord.lastExportAtIso == null
-                    ? l10n.accountsSyncExportBackupSubtitleDefault
-                    : l10n.accountsSyncLastExportLabel(
-                        _formatWhen(
-                          context,
-                          l10n,
-                          state.backupRecord.lastExportAtIso,
-                        ),
-                      ),
-                onTap: () => context.push('/accounts-sync/backup/export'),
-              ),
-              const Divider(height: 1),
-              _NavRow(
-                title: l10n.accountsSyncImportBackupTitle,
-                subtitle: l10n.accountsSyncImportBackupSubtitle,
-                onTap: () => context.push('/accounts-sync/backup/import'),
-              ),
-            ],
-          ),
+        _NavRow(
+          icon: Icons.ios_share_rounded,
+          title: l10n.accountsSyncExportBackupTitle,
+          subtitle: state.backupRecord.lastExportAtIso == null
+              ? l10n.accountsSyncExportBackupSubtitleDefault
+              : l10n.accountsSyncLastExportLabel(
+                  _formatWhen(
+                    context,
+                    l10n,
+                    state.backupRecord.lastExportAtIso,
+                  ),
+                ),
+          onTap: () => context.push('/accounts-sync/backup/export'),
+        ),
+        const SizedBox(height: 6),
+        _NavRow(
+          icon: Icons.download_rounded,
+          title: l10n.accountsSyncImportBackupTitle,
+          subtitle: l10n.accountsSyncImportBackupSubtitle,
+          onTap: () => context.push('/accounts-sync/backup/import'),
         ),
         const SizedBox(height: 16),
         PremiumCard(
@@ -1556,10 +1526,6 @@ class _RemoteRestorePreviewPageState
                       l10n.accountsSyncCurrentProviderSummary(
                         state.authenticatedAccount?.displayName ??
                             l10n.accountsSyncProviderNone,
-                        _remoteProviderLabel(
-                          l10n,
-                          preview.remoteMetadata.provider.name,
-                        ),
                         _remoteProviderLabel(
                           l10n,
                           preview.remoteMetadata.provider.name,
@@ -2214,7 +2180,6 @@ class SyncDetailsPage extends ConsumerWidget {
                   l10n.accountsSyncCurrentProviderSummary(
                     _syncModeLabel(l10n, sync.syncMode),
                     _transportLabel(l10n, sync.transportLabel),
-                    _transportLabel(l10n, sync.transportLabel),
                   ),
                 ),
               ),
@@ -2327,7 +2292,6 @@ class SyncStatusCard extends ConsumerWidget {
                   l10n.accountsSyncCurrentProviderSummary(
                     _syncModeLabel(l10n, sync.syncMode),
                     _transportLabel(l10n, sync.transportLabel),
-                    _transportLabel(l10n, sync.transportLabel),
                   ),
             ),
             trailing: Icon(switch (sync.syncState) {
@@ -2390,23 +2354,28 @@ class SyncStatusCard extends ConsumerWidget {
   }
 }
 
+/// One destination row. Was a bare [ListTile] with no icon and no chevron —
+/// nothing said it navigated — sitting inside a card with Material dividers.
 class _NavRow extends StatelessWidget {
   const _NavRow({
     required this.title,
     required this.subtitle,
     required this.onTap,
+    this.icon = Icons.chevron_right_rounded,
   });
 
   final String title;
   final String subtitle;
   final VoidCallback onTap;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(title),
-      subtitle: Text(subtitle),
+    return CompactListTile(
+      title: title,
+      subtitle: subtitle,
+      leading: HubLeadingIcon(icon),
+      trailing: const Icon(Icons.chevron_right_rounded, size: 20),
       onTap: onTap,
     );
   }

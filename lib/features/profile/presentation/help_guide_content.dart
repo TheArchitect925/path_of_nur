@@ -9,8 +9,6 @@ class HelpGuideEntry {
     required this.description,
     required this.steps,
     required this.icon,
-    required this.color,
-    required this.accentColor,
   });
 
   final String id;
@@ -18,8 +16,6 @@ class HelpGuideEntry {
   final String description;
   final List<String> steps;
   final IconData icon;
-  final Color color;
-  final Color accentColor;
 
   bool matchesQuery(String query) {
     final normalized = query.trim().toLowerCase();
@@ -44,8 +40,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideGettingStartedStep3,
       ],
       icon: Icons.play_circle_outline_rounded,
-      color: const Color(0xFFE8ECE2),
-      accentColor: const Color(0xFF5F7147),
     ),
     HelpGuideEntry(
       id: 'salah-reminders',
@@ -57,8 +51,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideSalahRemindersStep3,
       ],
       icon: Icons.notifications_active_outlined,
-      color: const Color(0xFFF0E4D8),
-      accentColor: const Color(0xFF835E42),
     ),
     HelpGuideEntry(
       id: 'quran',
@@ -70,8 +62,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideQuranStep3,
       ],
       icon: Icons.menu_book_outlined,
-      color: const Color(0xFFE4EBF3),
-      accentColor: const Color(0xFF496582),
     ),
     HelpGuideEntry(
       id: 'learning',
@@ -83,8 +73,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideLearningStep3,
       ],
       icon: Icons.school_outlined,
-      color: const Color(0xFFE9E0EB),
-      accentColor: const Color(0xFF755C7C),
     ),
     HelpGuideEntry(
       id: 'dhikr-adhkar',
@@ -96,8 +84,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideDhikrAdhkarStep3,
       ],
       icon: Icons.spa_outlined,
-      color: const Color(0xFFE5EFE9),
-      accentColor: const Color(0xFF4F6B59),
     ),
     HelpGuideEntry(
       id: 'growth-progress',
@@ -109,8 +95,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideGrowthProgressStep3,
       ],
       icon: Icons.trending_up_rounded,
-      color: const Color(0xFFE5E7F5),
-      accentColor: const Color(0xFF4E5B8C),
     ),
     HelpGuideEntry(
       id: 'notifications-settings',
@@ -122,8 +106,6 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideNotificationsSettingsStep3,
       ],
       icon: Icons.tune_rounded,
-      color: const Color(0xFFEFE7DE),
-      accentColor: const Color(0xFF6D5740),
     ),
   ];
 }

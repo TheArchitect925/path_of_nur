@@ -311,9 +311,7 @@ class _WorshipNowHero extends ConsumerWidget {
                     .markCompleted(currentPrayerName);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(
-                      l10n.quickActionsPrayerOffered(featuredName),
-                    ),
+                    content: Text(l10n.quickActionsPrayerOffered(featuredName)),
                   ),
                 );
               },

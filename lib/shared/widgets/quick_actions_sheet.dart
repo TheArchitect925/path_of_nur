@@ -84,9 +84,9 @@ class QuickActionsSheet extends ConsumerWidget {
       salahTitle = l10n.quickActionsMarkPrayer(localized);
       salahSubtitle = l10n.homeUntilTime(current.overdueAt);
       salahAction = () {
-        ref.read(prayerControllerProvider.notifier).markCompleted(
-          currentPrayerName,
-        );
+        ref
+            .read(prayerControllerProvider.notifier)
+            .markCompleted(currentPrayerName);
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(l10n.quickActionsPrayerOffered(localized))),
@@ -120,118 +120,153 @@ class QuickActionsSheet extends ConsumerWidget {
     }
 
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.s,
-          0,
-          AppSpacing.s,
-          AppSpacing.s,
-        ),
-        child: NoorGlassCard(
+      // Six tiles now; scrollable so a large text scale shortens the sheet
+      // instead of overflowing its 9/16-height constraint.
+      child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.fromLTRB(
-            AppSpacing.m + 2,
             AppSpacing.s,
-            AppSpacing.m + 2,
-            AppSpacing.m + 2,
+            0,
+            AppSpacing.s,
+            AppSpacing.s,
           ),
-          surfaceVariant: AppSurfaceVariant.panel,
-          borderRadius: AppRadii.glassCard,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Center(
-                child: Container(
-                  width: 36,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: subtle.withValues(alpha: 0.35),
-                  ),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s),
-              Text(
-                l10n.quickActionsTitle,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.s),
-              Row(
-                children: [
-                  Expanded(
-                    child: _QuickActionTile(
-                      icon: Icons.auto_stories_rounded,
-                      title: l10n.quickActionsContinueReading,
-                      subtitle: continueReading.locationLabel,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        context.pushNamed(
-                          'quranReader',
-                          pathParameters: {
-                            'surahNumber': '${continueReading.surahNumber}',
-                          },
-                          queryParameters: {
-                            'ayah': '${continueReading.ayahNumber}',
-                          },
-                        );
-                      },
+          child: NoorGlassCard(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.m + 2,
+              AppSpacing.s,
+              AppSpacing.m + 2,
+              AppSpacing.m + 2,
+            ),
+            surfaceVariant: AppSurfaceVariant.panel,
+            borderRadius: AppRadii.glassCard,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Center(
+                  child: Container(
+                    width: 36,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: subtle.withValues(alpha: 0.35),
                     ),
                   ),
-                  const SizedBox(width: AppSpacing.xs + 2),
-                  Expanded(
-                    child: _QuickActionTile(
-                      icon: Icons.favorite_outline_rounded,
-                      title: l10n.homeShortcutDhikrLabel,
-                      subtitle: l10n.homeFractionValue(
-                        countFormat.format(worship.dhikrCount),
-                        countFormat.format(ref.watch(dhikrDailyGoalProvider)),
+                ),
+                const SizedBox(height: AppSpacing.s),
+                Text(
+                  l10n.quickActionsTitle,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.s),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _QuickActionTile(
+                        icon: Icons.auto_stories_rounded,
+                        title: l10n.quickActionsContinueReading,
+                        subtitle: continueReading.locationLabel,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          context.pushNamed(
+                            'quranReader',
+                            pathParameters: {
+                              'surahNumber': '${continueReading.surahNumber}',
+                            },
+                            queryParameters: {
+                              'ayah': '${continueReading.ayahNumber}',
+                            },
+                          );
+                        },
                       ),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        context.pushNamed('worshipDhikrPage');
-                      },
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.xs + 2),
-              Row(
-                children: [
-                  Expanded(
-                    child: _QuickActionTile(
-                      icon: Icons.checklist_rounded,
-                      title: salahTitle,
-                      subtitle: salahSubtitle,
-                      highlighted:
-                          current != null &&
-                          currentPrayerName != null &&
-                          !currentCompleted,
-                      onTap: salahAction,
+                    const SizedBox(width: AppSpacing.xs + 2),
+                    Expanded(
+                      child: _QuickActionTile(
+                        icon: Icons.favorite_outline_rounded,
+                        title: l10n.homeShortcutDhikrLabel,
+                        subtitle: l10n.homeFractionValue(
+                          countFormat.format(worship.dhikrCount),
+                          countFormat.format(ref.watch(dhikrDailyGoalProvider)),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          context.pushNamed('worshipDhikrPage');
+                        },
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: AppSpacing.xs + 2),
-                  Expanded(
-                    child: _QuickActionTile(
-                      icon: Icons.explore_rounded,
-                      title: l10n.homeShortcutQiblaLabel,
-                      subtitle: l10n.worshipQiblaFinderSubtitle,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        context.pushNamed('qiblaFinder');
-                      },
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.xs + 2),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _QuickActionTile(
+                        icon: Icons.checklist_rounded,
+                        title: salahTitle,
+                        subtitle: salahSubtitle,
+                        highlighted:
+                            current != null &&
+                            currentPrayerName != null &&
+                            !currentCompleted,
+                        onTap: salahAction,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.s),
-              Text(
-                l10n.quickActionsHint,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodySmall?.copyWith(color: subtle),
-              ),
-            ],
+                    const SizedBox(width: AppSpacing.xs + 2),
+                    Expanded(
+                      child: _QuickActionTile(
+                        icon: Icons.explore_rounded,
+                        title: l10n.homeShortcutQiblaLabel,
+                        subtitle: l10n.worshipQiblaFinderSubtitle,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          context.pushNamed('qiblaFinder');
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.xs + 2),
+                // Settings and search used to live only in the Home header, so
+                // changing the adhan from inside the reader meant walking back
+                // to Home first.
+                Row(
+                  children: [
+                    Expanded(
+                      child: _QuickActionTile(
+                        icon: Icons.settings_outlined,
+                        title: l10n.settingsLandingTitle,
+                        subtitle: l10n.quickActionsSettingsSubtitle,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          context.pushNamed('settings');
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: AppSpacing.xs + 2),
+                    Expanded(
+                      child: _QuickActionTile(
+                        icon: Icons.search_rounded,
+                        title: l10n.homeSearchTooltip,
+                        subtitle: l10n.quickActionsSearchSubtitle,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          context.pushNamed('allSearch');
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.s),
+                Text(
+                  l10n.quickActionsHint,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodySmall?.copyWith(color: subtle),
+                ),
+              ],
+            ),
           ),
         ),
       ),

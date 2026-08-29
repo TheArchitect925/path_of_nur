@@ -67,7 +67,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaTitle(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaTitle(String prayerName) {
     return '$prayerName ਸਮਾਂ ਯਾਦ ਦਿਹਾਨੀ';
   }
 
@@ -106,7 +106,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaBody(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaBody(String prayerName) {
     return '$prayerName ਦਾ ਸਮਾਂ ਮੁਕਣ ਵਾਲਾ ਹੈ। ਇਸਨੂੰ ਕਜ਼ਾ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਅਦਾ ਕਰੋ।';
   }
 
@@ -207,9 +207,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get notificationsFastingLiveFastBeginsArabicTitle => 'يبدأ الصوم';
 
   @override
-  String notificationsFastingLiveStartsIn(Object duration) {
-    return 'ਸ਼ੁਰੂ ਹੋਣ ਵਿੱਚ';
-  }
+  String get notificationsFastingLiveStartsIn => 'ਸ਼ੁਰੂ ਹੋਣ ਵਿੱਚ';
 
   @override
   String get notificationsFastingLiveRenewIntentionTitle => 'ਨਿਯਤ ਨਵੀਂ ਕਰੋ';
@@ -228,9 +226,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get notificationsFastingLiveFastEndsArabicTitle => 'يفطر الصائم';
 
   @override
-  String notificationsFastingLiveEndsIn(Object duration) {
-    return 'ਖਤਮ ਹੋਣ ਵਿੱਚ';
-  }
+  String get notificationsFastingLiveEndsIn => 'ਖਤਮ ਹੋਣ ਵਿੱਚ';
 
   @override
   String get notificationsFastingLiveIftarDuaTitle => 'ਇਫ਼ਤਾਰ ਦੀ ਦੁਆ';
@@ -1979,7 +1975,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get worshipPrayerSisterCyclePauseTitle => 'ਭੈਣ ਦਾ ਚੱਕਰ ਵਿਰਾਮ';
 
   @override
-  String worshipPrayerCycleDay(String dayNumber, Object day) {
+  String worshipPrayerCycleDay(String dayNumber) {
     return 'ਚੱਕਰ ਦਾ ਦਿਨ $dayNumber';
   }
 
@@ -2053,8 +2049,6 @@ class AppLocalizationsPa extends AppLocalizations {
     String offerTime,
     String windowStart,
     String windowEnd,
-    Object end,
-    Object start,
   ) {
     return '$offerTime  •  ਨਮਾਜ਼ ਖਿੜਕੀ: $windowStart–$windowEnd';
   }
@@ -2139,11 +2133,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerCompletionValue(
-    String value,
-    Object completed,
-    Object total,
-  ) {
+  String worshipPrayerCompletionValue(String value) {
     return 'ਪੂਰਨਤਾ $value%';
   }
 
@@ -2166,14 +2156,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get worshipPrayerRakatGuideTitle => 'ਰਕਅਤ ਗਾਈਡ (ਫ਼ਰਜ਼)';
 
   @override
-  String worshipPrayerRakatGuideValue(
-    Object count,
-    Object prayer,
-    Object prayerName,
-    Object rakat,
-  ) {
-    return 'ਫਜਰ: 2  •  ਦੁਹਰ: 4  •  ਅਸਰ: 4  •  ਮਗਰਿਬ: 3  •  ਇਸ਼ਾ: 4';
-  }
+  String get worshipPrayerRakatGuideValue =>
+      'ਫਜਰ: 2  •  ਦੁਹਰ: 4  •  ਅਸਰ: 4  •  ਮਗਰਿਬ: 3  •  ਇਸ਼ਾ: 4';
 
   @override
   String get worshipPrayerRakatGuideTip =>
@@ -2183,11 +2167,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get worshipPrayerMoonPhaseTitle => 'ਚੰਨ ਦੀ ਅਵਸਥਾ';
 
   @override
-  String worshipPrayerMoonPhaseIllumination(
-    String phaseLabel,
-    String percent,
-    Object value,
-  ) {
+  String worshipPrayerMoonPhaseIllumination(String phaseLabel, String percent) {
     return '$phaseLabel • $percent% ਰੋਸ਼ਨ';
   }
 
@@ -2274,16 +2254,12 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਕੇਂਦਰਿਤ ਲਹਿਰ: ਲਗਾਤਾਰਤਾ ਨਾਲ ਛੋਟੇ ਹਿੱਸਿਆਂ ਵਿੱਚ ਰੋਜ਼ 3 ਕਜ਼ਾ।';
 
   @override
-  String worshipPrayerEstimatedDaysToClear(String days, Object count) {
+  String worshipPrayerEstimatedDaysToClear(String days) {
     return 'ਸਾਫ਼ ਹੋਣ ਦੇ ਅਨੁਮਾਨਿਤ ਦਿਨ: $days';
   }
 
   @override
-  String worshipPrayerTodaysQadaTarget(
-    String completed,
-    String target,
-    Object count,
-  ) {
+  String worshipPrayerTodaysQadaTarget(String completed, String target) {
     return 'ਅੱਜ ਦਾ ਕਜ਼ਾ ਲਕਸ਼: $completed / $target';
   }
 
@@ -2337,7 +2313,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerWeekLabel(int weekNumber, Object index, Object number) {
+  String worshipPrayerWeekLabel(int weekNumber) {
     return 'ਹਫ਼ਤਾ $weekNumber';
   }
 
@@ -2744,7 +2720,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String homePrayerBecomesQada(Object prayerName, Object prayer, Object time) {
+  String homePrayerBecomesQada(Object prayerName) {
     return '$prayerName ਕਜ਼ਾ ਹੋ ਜਾਂਦੀ ਹੈ';
   }
 
@@ -2783,17 +2759,17 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਇਸ ਵੇਲੇ ਸਲਾਹ ਅਦਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ • ਸੂਰਜ ਡੁੱਬਣਾ';
 
   @override
-  String homeLevelValue(Object level, Object value) {
+  String homeLevelValue(Object level) {
     return 'ਪੱਧਰ $level';
   }
 
   @override
-  String homeXpValue(Object xp, Object value) {
+  String homeXpValue(Object xp) {
     return '$xp XP';
   }
 
   @override
-  String homeXpToNextLevelValue(Object xp, Object value) {
+  String homeXpToNextLevelValue(Object xp) {
     return 'ਅਗਲੇ ਪੱਧਰ ਲਈ $xp XP';
   }
 
@@ -2801,12 +2777,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get homeDailyBadgesTitle => 'ਰੋਜ਼ਾਨਾ ਬੈਜ';
 
   @override
-  String homeContinueQuranValue(
-    Object surahName,
-    Object ayahNumber,
-    Object surah,
-    Object verse,
-  ) {
+  String homeContinueQuranValue(Object surahName, Object ayahNumber) {
     return '$surahName $ayahNumber';
   }
 
@@ -2815,9 +2786,6 @@ class AppLocalizationsPa extends AppLocalizations {
     Object prayerPercent,
     Object dhikrPercent,
     Object quranPercent,
-    Object completed,
-    Object count,
-    Object total,
   ) {
     return 'P $prayerPercent% · D $dhikrPercent% · Q $quranPercent%';
   }
@@ -2881,9 +2849,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਸਲਾਹ ਤੋਂ ਬਾਅਦ ਦਾ ਜ਼ਿਕਰ ਦਰਜ ਹੋ ਗਿਆ';
 
   @override
-  String homePrayerBeginsAt(Object time) {
-    return 'ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ';
-  }
+  String get homePrayerBeginsAt => 'ਸ਼ੁਰੂ ਹੁੰਦੀ ਹੈ';
 
   @override
   String homeDurationMinutes(String minutes) {
@@ -4213,7 +4179,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'Domains ਵਿੱਚ ਸਾਂਝੇ relationship graph ਨੂੰ ਵੇਖੋ।';
 
   @override
-  String learnHubSavedNotesSummary(Object saved, Object notes, Object count) {
+  String learnHubSavedNotesSummary(Object saved, Object notes) {
     return 'ਸੰਭਾਲੀਆਂ ਵਸਤੂਆਂ: $saved • ਨੋਟਸ: $notes';
   }
 
@@ -5259,7 +5225,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnHubTypeAnyLabel => 'ਕਿਸਮ: ਕੋਈ ਵੀ';
 
   @override
-  String learnHubTypeValueLabel(Object type, Object value) {
+  String learnHubTypeValueLabel(Object type) {
     return 'ਕਿਸਮ: $type';
   }
 
@@ -5270,7 +5236,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnHubThemeAnyLabel => 'ਥੀਮ: ਕੋਈ ਵੀ';
 
   @override
-  String learnHubThemeValueLabel(Object theme, Object value) {
+  String learnHubThemeValueLabel(Object theme) {
     return 'ਥੀਮ: $theme';
   }
 
@@ -5281,7 +5247,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnHubDifficultyAnyLabel => 'ਕਠਿਨਾਈ: ਕੋਈ ਵੀ';
 
   @override
-  String learnHubDifficultyValueLabel(Object difficulty, Object value) {
+  String learnHubDifficultyValueLabel(Object difficulty) {
     return 'ਕਠਿਨਾਈ: $difficulty';
   }
 
@@ -5310,12 +5276,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਕੋਈ ਮਿਲਦਾ ਆਈਟਮ ਨਹੀਂ। ਹੋਰ ਖੁੱਲ੍ਹੇ ਫਿਲਟਰ ਅਜ਼ਮਾਓ।';
 
   @override
-  String learnHubPathProgress(
-    Object completed,
-    Object total,
-    Object progress,
-    Object value,
-  ) {
+  String learnHubPathProgress(Object completed, Object total) {
     return '$completed / $total ਪੂਰੇ';
   }
 
@@ -6567,7 +6528,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaHomeLongestStreakCaption(Object count) {
-    return 'ਸਭ ਤੋਂ ਲੰਮੀ ਲੜੀ';
+    return 'Longest $count';
   }
 
   @override
@@ -6575,7 +6536,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaHomeAnsweredCount(Object count) {
-    return 'ਜਵਾਬ ਦਿੱਤੇ';
+    return '$count answered';
   }
 
   @override
@@ -6583,7 +6544,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaHomeQuizzesCompletedCount(Object count) {
-    return 'ਪੂਰੀਆਂ ਕਵਿਜ਼ਾਂ';
+    return '$count quizzes completed';
   }
 
   @override
@@ -6591,7 +6552,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaHomeBestSurvivalCaption(Object count) {
-    return 'ਸਭ ਤੋਂ ਵਧੀਆ ਸਰਵਾਈਵਲ ਦੌੜ';
+    return 'Best survival $count';
   }
 
   @override
@@ -6660,12 +6621,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get triviaHomeNoAnswersYet => 'ਹਾਲੇ ਕੋਈ ਜਵਾਬ ਨਹੀਂ';
 
   @override
-  String triviaHomeCategoryAccuracy(
-    Object percent,
-    Object accuracy,
-    Object category,
-  ) {
-    return '$category ਵਿੱਚ $accuracy ਸਹੀ';
+  String triviaHomeCategoryAccuracy(Object percent) {
+    return 'Accuracy $percent%';
   }
 
   @override
@@ -6697,11 +6654,8 @@ class AppLocalizationsPa extends AppLocalizations {
     Object correct,
     Object total,
     Object xp,
-    Object accuracy,
-    Object incorrect,
-    Object sessions,
   ) {
-    return 'ਪਿਛਲੇ $sessions ਸੈਸ਼ਨਾਂ ਵਿੱਚ $accuracy ਸਹੀ';
+    return '$category • $correct/$total correct • +$xp XP';
   }
 
   @override
@@ -6724,19 +6678,13 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਦੁਬਾਰਾ ਖੇਡਣ ਤੇ ਇਨਾਮ ਘੱਟ ਹੁੰਦੇ ਹਨ।';
 
   @override
-  String triviaResultsCompletedSummary(
-    Object seconds,
-    Object missed,
-    Object completed,
-    Object correct,
-    Object total,
-  ) {
-    return 'ਤੁਸੀਂ $total ਵਿੱਚੋਂ $correct ਸਹੀ ਕੀਤੇ।';
+  String triviaResultsCompletedSummary(Object seconds, Object missed) {
+    return 'Completed in ${seconds}s • $missed missed';
   }
 
   @override
   String triviaResultsBestRunInSession(Object count) {
-    return 'ਇਸ ਸੈਸ਼ਨ ਦੀ ਸਭ ਤੋਂ ਵਧੀਆ ਦੌੜ';
+    return 'Best run in this session: $count';
   }
 
   @override
@@ -6796,7 +6744,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaReviewStartSessionSubtitle(Object count) {
-    return 'ਬਾਕੀ ਸਵਾਲਾਂ ਨਾਲ ਇੱਕ ਕੇਂਦ੍ਰਿਤ ਸੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ।';
+    return '$count items are ready. The queue favors what was recently missed or still unstable.';
   }
 
   @override
@@ -6831,7 +6779,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaStageQuizSubtitle(Object count) {
-    return 'ਇਸ ਪੜਾਅ ਦੀ ਸਮਝ ਪਰਖੋ।';
+    return 'Answer $count focused questions. Wrong answers still feed your review queue.';
   }
 
   @override
@@ -6886,17 +6834,8 @@ class AppLocalizationsPa extends AppLocalizations {
   String get triviaStagesSubtitle => 'ਕਦਮ-ਦਰ-ਕਦਮ ਸਿੱਖੋ।';
 
   @override
-  String triviaKnowledgeStageSummary(
-    Object count,
-    Object xp,
-    Object difficulty,
-    Object index,
-    Object questionCount,
-    Object questions,
-    Object status,
-    Object total,
-  ) {
-    return '$questions ਸਵਾਲ • $difficulty';
+  String triviaKnowledgeStageSummary(Object count, Object xp) {
+    return '$count questions • +$xp XP';
   }
 
   @override
@@ -19258,13 +19197,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਇੱਕ ਪ੍ਰੋਫ਼ਾਈਲ ਚੁਣੋ।';
 
   @override
-  String accountsSyncProfileStatusSummary(
-    String profileType,
-    String syncMode,
-    Object profile,
-    Object profileName,
-    Object status,
-  ) {
+  String accountsSyncProfileStatusSummary(String profileType, String syncMode) {
     return '$profileType · $syncMode';
   }
 
@@ -19481,8 +19414,6 @@ class AppLocalizationsPa extends AppLocalizations {
     String provider,
     String identifier,
     String syncMode,
-    Object account,
-    Object profiles,
   ) {
     return '$provider · $identifier · $syncMode';
   }
@@ -20152,13 +20083,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਬੱਚਿਆਂ ਦੀਆਂ ਪ੍ਰੋਫ਼ਾਈਲਾਂ ਤੋਂ advanced tools ਲੁਕਾਓ';
 
   @override
-  String accountsSyncDeviceSummary(
-    String platform,
-    String lastActive,
-    Object device,
-    Object deviceName,
-    Object status,
-  ) {
+  String accountsSyncDeviceSummary(String platform, String lastActive) {
     return '$platform • ਆਖ਼ਰੀ ਵਾਰ ਸਰਗਰਮ $lastActive';
   }
 
@@ -20361,11 +20286,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get accountsSyncCurrentProviderTitle => 'ਮੌਜੂਦਾ provider';
 
   @override
-  String accountsSyncCurrentProviderSummary(
-    String syncMode,
-    String transport,
-    Object provider,
-  ) {
+  String accountsSyncCurrentProviderSummary(String syncMode, String transport) {
     return '$syncMode · $transport';
   }
 
@@ -21018,9 +20939,6 @@ class AppLocalizationsPa extends AppLocalizations {
     String prayerName,
     String currentValue,
     String suggestedValue,
-    Object change,
-    Object prayer,
-    Object value,
   ) {
     return '$prayerName: $currentValue ਤੋਂ $suggestedValue';
   }
@@ -23618,7 +23536,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaKnowledgePathsProgressLabel(String completed, String total) {
-    return 'ਤਰੱਕੀ';
+    return '$completed/$total stages completed';
   }
 
   @override
@@ -23780,7 +23698,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String triviaStatsLongestStreak(String value) {
-    return 'ਸਭ ਤੋਂ ਲੰਮੀ ਲੜੀ';
+    return 'Longest streak: $value';
   }
 
   @override
@@ -23801,10 +23719,8 @@ class AppLocalizationsPa extends AppLocalizations {
     String weakest,
     String dueCount,
     String masteredCount,
-    Object correct,
-    Object incorrect,
   ) {
-    return 'ਹੋਰ ਕੁਝ ਸੈਸ਼ਨ ਪੂਰੇ ਕਰੋ ਤਾਂ ਜੋ ਅਸੀਂ ਸਪਸ਼ਟ ਝਲਕ ਦਿਖਾ ਸਕੀਏ।';
+    return 'Strongest: $strongest • Weakest: $weakest • Due now: $dueCount • Mastered: $masteredCount';
   }
 
   @override
@@ -23819,11 +23735,8 @@ class AppLocalizationsPa extends AppLocalizations {
     String answered,
     String accuracy,
     String quizzes,
-    Object category,
-    Object correct,
-    Object total,
   ) {
-    return '$category • $accuracy ਸਹੀ • $answered ਜਵਾਬ';
+    return '$quizzes • $accuracy ਸਹੀ • $answered ਜਵਾਬ';
   }
 
   @override
@@ -24856,11 +24769,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get batch9QuranWordsSearchHint => 'ਲਿਪਾਂਤਰਨ ਜਾਂ ਅਰਥ ਖੋਜੋ';
 
   @override
-  String batch9QuranWordsMasteredSummary(
-    String mastered,
-    String total,
-    Object count,
-  ) {
+  String batch9QuranWordsMasteredSummary(String mastered, String total) {
     return '$mastered / $total ਵਿੱਚ ਨਿਪੁੰਨ';
   }
 
@@ -25337,12 +25246,12 @@ class AppLocalizationsPa extends AppLocalizations {
   String get fastingTodayTitle => 'ਅੱਜ';
 
   @override
-  String fastingStatusValue(String value, Object status) {
+  String fastingStatusValue(String value) {
     return 'ਹਾਲਤ: $value';
   }
 
   @override
-  String fastingTypeValue(String value, Object type) {
+  String fastingTypeValue(String value) {
     return 'ਕਿਸਮ: $value';
   }
 
@@ -25368,7 +25277,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਸ਼ੁਰੂਆਤੀ implementation ਲਈ ਇੱਕ ਛੋਟਾ mock preview।';
 
   @override
-  String fastingHistoryEntry(String type, String status, Object date) {
+  String fastingHistoryEntry(String type, String status) {
     return '$type • $status';
   }
 
@@ -25434,14 +25343,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get prayerUnknownAdjustment => 'ਅਣਜਾਣ ਨਮਾਜ਼ ਸਮਾਯੋਜਨ।';
 
   @override
-  String prayerValidationMustRemainBefore(
-    String current,
-    String next,
-    Object first,
-    Object label,
-    Object otherLabel,
-    Object second,
-  ) {
+  String prayerValidationMustRemainBefore(String current, String next) {
     return '$current ਨੂੰ $next ਤੋਂ ਪਹਿਲਾਂ ਰਹਿਣਾ ਚਾਹੀਦਾ ਹੈ।';
   }
 
@@ -42593,4 +42495,110 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get settingsLivingSkySubtitle =>
       'ਨੂਰ ਗਲਾਸ ਦਿਨ ਦੇ ਨਾਲ ਚੱਲਦਾ ਹੈ — ਗੁਲਾਬੀ-ਸੁਨਹਿਰੀ ਫਜਰ, ਅੰਬਰ ਮਗਰਿਬ, ਅਤੇ ਹਨੇਰੇ ਤੋਂ ਬਾਅਦ ਤਾਰਿਆਂ ਭਰੀ ਰਾਤ।';
+
+  @override
+  String get settingsGroupYouTitle => 'ਤੁਸੀਂ';
+
+  @override
+  String get settingsGroupWorshipTitle => 'ਨਮਾਜ਼ ਅਤੇ ਯਾਦ-ਦਿਹਾਨੀਆਂ';
+
+  @override
+  String get settingsGroupAppTitle => 'ਐਪ';
+
+  @override
+  String get settingsGroupSupportTitle => 'ਮਦਦ ਅਤੇ ਜਾਣਕਾਰੀ';
+
+  @override
+  String get settingsCategoryProfileSubtitle =>
+      'ਤੁਹਾਡਾ ਨਾਮ, ਐਪ ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਸੰਬੋਧਨ ਕਰੇ, ਅਤੇ ਕੇਅਰ ਮੋਡ।';
+
+  @override
+  String get settingsCategoryAdhanSubtitle =>
+      'ਅਜ਼ਾਨ ਚੁਣੋ, ਸੁਣ ਕੇ ਵੇਖੋ ਅਤੇ ਆਵਾਜ਼ ਸੈੱਟ ਕਰੋ।';
+
+  @override
+  String get settingsSearchTitle => 'ਸੈਟਿੰਗਾਂ ਖੋਜੋ';
+
+  @override
+  String get settingsSearchSubtitle => 'ਕਿਸੇ ਵੀ ਸੈਟਿੰਗ ਨੂੰ ਨਾਮ ਨਾਲ ਲੱਭੋ।';
+
+  @override
+  String get settingsSearchHint => 'ਸੈਟਿੰਗਾਂ ਖੋਜੋ';
+
+  @override
+  String get settingsSearchTooltip => 'ਸੈਟਿੰਗਾਂ ਖੋਜੋ';
+
+  @override
+  String get settingsSearchEmptyTitle => 'ਕੁਝ ਨਹੀਂ ਮਿਲਿਆ';
+
+  @override
+  String get settingsSearchEmptySubtitle =>
+      'ਕੋਈ ਹੋਰ ਸ਼ਬਦ ਅਜ਼ਮਾਓ, ਜਾਂ ਸੈਟਿੰਗ ਪੰਨੇ ਦੇ ਸਮੂਹ ਵੇਖੋ।';
+
+  @override
+  String get settingsSearchPromptTitle => 'ਖੋਜਣ ਲਈ ਟਾਈਪ ਕਰੋ';
+
+  @override
+  String get settingsSearchPromptSubtitle =>
+      '“ਅਜ਼ਾਨ”, “ਡਾਰਕ”, “ਰਿਮਾਈਂਡਰ”, ਜਾਂ “ਬੈਕਅੱਪ” ਅਜ਼ਮਾਓ।';
+
+  @override
+  String get legalPrivacyTitle => 'ਪਰਦੇਦਾਰੀ ਨੀਤੀ';
+
+  @override
+  String get legalPrivacySubtitle =>
+      'Path of Nūr ਤੁਹਾਡੇ ਡਾਟੇ ਨੂੰ ਕਿਵੇਂ ਸੰਭਾਲਦਾ ਹੈ।';
+
+  @override
+  String get legalTermsTitle => 'ਵਰਤੋਂ ਦੀਆਂ ਸ਼ਰਤਾਂ';
+
+  @override
+  String get legalTermsSubtitle => 'ਇਹ ਐਪ ਕੀ ਹੈ, ਅਤੇ ਕੀ ਨਹੀਂ।';
+
+  @override
+  String get legalSupportTitle => 'ਸਹਾਇਤਾ';
+
+  @override
+  String get legalSupportSubtitle => 'ਮਦਦ ਲੈਣਾ ਅਤੇ ਸਮੱਸਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰਨਾ।';
+
+  @override
+  String get settingsLegalTitle => 'ਕਾਨੂੰਨੀ';
+
+  @override
+  String get settingsAccessibilityTitle => 'ਪਹੁੰਚਯੋਗਤਾ';
+
+  @override
+  String get settingsOccasionThemesTitle => 'ਮੌਕੇ ਦੀਆਂ ਥੀਮਾਂ';
+
+  @override
+  String get settingsOccasionThemesSubtitle =>
+      'ਐਪ ਨੂੰ ਜੁੰਮੇ, ਰਮਜ਼ਾਨ, ਲੈਲਤੁਲ ਕਦਰ ਅਤੇ ਈਦ ਲਈ ਸਜਣ ਦਿਓ।';
+
+  @override
+  String get quickActionsSettingsSubtitle => 'ਦਿੱਖ, ਅਜ਼ਾਨ, ਯਾਦ-ਦਿਹਾਨੀਆਂ';
+
+  @override
+  String get quickActionsSearchSubtitle => 'ਕੁਰਆਨ, ਹਦੀਸ, ਦੁਆ, ਪਾਠ';
+
+  @override
+  String get settingsSalahCalculationTitle => 'ਗਣਨਾ';
+
+  @override
+  String get settingsSalahCalculationSubtitle =>
+      'ਤੁਹਾਡੀ ਨਮਾਜ਼ ਦੇ ਸਮੇਂ ਕੱਢਣ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਵਿਧੀ ਅਤੇ ਮਜ਼ਹਬ।';
+
+  @override
+  String get settingsAdhanSoundTitle => 'ਅਜ਼ਾਨ ਦੀ ਆਵਾਜ਼';
+
+  @override
+  String get settingsRemindersPerPrayerTitle => 'ਹਰ ਨਮਾਜ਼ ਲਈ ਯਾਦ-ਦਿਹਾਨੀਆਂ';
+
+  @override
+  String get settingsOtherRemindersTitle => 'ਹੋਰ ਯਾਦ-ਦਿਹਾਨੀਆਂ';
+
+  @override
+  String get settingsPermissionsTitle => 'ਇਜਾਜ਼ਤਾਂ';
+
+  @override
+  String get settingsWhatOthersSeeTitle => 'ਐਪ ਕੀ ਵਿਖਾਉਂਦਾ ਹੈ';
 }

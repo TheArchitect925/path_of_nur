@@ -106,8 +106,6 @@ class IslamicTriviaStatsPage extends ConsumerWidget {
                   ),
             numberFormat.format(controller.dueReviewCount),
             numberFormat.format(controller.masteredReviewCount),
-            numberFormat.format(controller.dueReviewCount),
-            numberFormat.format(controller.masteredReviewCount),
           ),
         ),
         const SizedBox(height: 14),
@@ -126,9 +124,6 @@ class IslamicTriviaStatsPage extends ConsumerWidget {
                 numberFormat.format(categoryStats.questionsAnswered),
                 numberFormat.format((categoryStats.accuracy * 100).round()),
                 numberFormat.format(categoryStats.quizzesCompleted),
-                localizedTriviaCategoryTitle(l10n, category),
-                numberFormat.format((categoryStats.accuracy * 100).round()),
-                numberFormat.format(categoryStats.questionsAnswered),
               ),
             ),
           );

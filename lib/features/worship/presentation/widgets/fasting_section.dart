@@ -41,19 +41,13 @@ class FastingSection extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                l10n.fastingStatusValue(
-                  fasting.todayStatus.label,
-                  fasting.todayStatus.label,
-                ),
+                l10n.fastingStatusValue(fasting.todayStatus.label),
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 4),
               Text(
-                l10n.fastingTypeValue(
-                  fasting.selectedType.label,
-                  fasting.selectedType.label,
-                ),
-                style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                l10n.fastingTypeValue(fasting.selectedType.label),
+                style: TextStyle(color: AppColors.onSurfaceSubtle),
               ),
               const SizedBox(height: 12),
               LinearProgressIndicator(
@@ -116,7 +110,7 @@ class FastingSection extends ConsumerWidget {
                   CircleAvatar(
                     radius: 17,
                     backgroundColor: AppColors.success,
-                    child: const Icon(
+                    child: Icon(
                       Icons.spa_outlined,
                       size: 18,
                       color: AppColors.onSurface,
@@ -136,9 +130,8 @@ class FastingSection extends ConsumerWidget {
                           l10n.fastingHistoryEntry(
                             entry.type.label,
                             entry.status.label,
-                            entry.dateLabel,
                           ),
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.onSurfaceSubtle,
                           ),
                         ),
@@ -269,7 +262,7 @@ class _FastingRhythmCard extends ConsumerWidget {
       rows.add(
         Row(
           children: [
-            const Icon(
+            Icon(
               Icons.tips_and_updates_outlined,
               size: 18,
               color: AppColors.accentGoldSoft,

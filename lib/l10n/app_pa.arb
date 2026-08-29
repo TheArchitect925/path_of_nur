@@ -2899,28 +2899,28 @@
   },
   "triviaHomeSubtitle": "ਹਰ ਰੋਜ਼ ਛੋਟੇ ਕਦਮਾਂ ਨਾਲ ਆਪਣੇ ਇਸਲਾਮੀ ਗਿਆਨ ਨੂੰ ਮਜ਼ਬੂਤ ਕਰੋ।",
   "triviaHomeCurrentStreakLabel": "ਮੌਜੂਦਾ ਲੜੀ",
-  "triviaHomeLongestStreakCaption": "ਸਭ ਤੋਂ ਲੰਮੀ ਲੜੀ",
+  "triviaHomeLongestStreakCaption": "Longest {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
       "count": {}
     }
   },
   "triviaHomeAccuracyLabel": "ਸਹੀ ਜਵਾਬ ਦਰ",
-  "triviaHomeAnsweredCount": "ਜਵਾਬ ਦਿੱਤੇ",
+  "triviaHomeAnsweredCount": "{count} answered",
   "@triviaHomeAnsweredCount": {
     "placeholders": {
       "count": {}
     }
   },
   "triviaHomeTriviaXpLabel": "ਟ੍ਰਿਵੀਆ XP",
-  "triviaHomeQuizzesCompletedCount": "ਪੂਰੀਆਂ ਕਵਿਜ਼ਾਂ",
+  "triviaHomeQuizzesCompletedCount": "{count} quizzes completed",
   "@triviaHomeQuizzesCompletedCount": {
     "placeholders": {
       "count": {}
     }
   },
   "triviaHomeOceanDropsLabel": "ਸਮੁੰਦਰੀ ਬੂੰਦਾਂ",
-  "triviaHomeBestSurvivalCaption": "ਸਭ ਤੋਂ ਵਧੀਆ ਸਰਵਾਈਵਲ ਦੌੜ",
+  "triviaHomeBestSurvivalCaption": "Best survival {count}",
   "@triviaHomeBestSurvivalCaption": {
     "placeholders": {
       "count": {}
@@ -2956,7 +2956,7 @@
   "triviaHomeCategoriesTitle": "ਸ਼੍ਰੇਣੀਆਂ",
   "triviaHomeCategoriesSubtitle": "ਵਿਸ਼ਿਆਂ ਅਨੁਸਾਰ ਸਿੱਖੋ ਅਤੇ ਸਮੀਖਿਆ ਕਰੋ।",
   "triviaHomeNoAnswersYet": "ਹਾਲੇ ਕੋਈ ਜਵਾਬ ਨਹੀਂ",
-  "triviaHomeCategoryAccuracy": "{category} ਵਿੱਚ {accuracy} ਸਹੀ",
+  "triviaHomeCategoryAccuracy": "Accuracy {percent}%",
   "@triviaHomeCategoryAccuracy": {
     "placeholders": {
       "percent": {}
@@ -2969,7 +2969,7 @@
   "triviaHomeNoSessionsYetTitle": "ਹਾਲੇ ਕੋਈ ਸੈਸ਼ਨ ਨਹੀਂ",
   "triviaHomeNoSessionsYetSubtitle": "ਪਹਿਲੀ ਕਵਿਜ਼ ਨਾਲ ਆਪਣਾ ਟ੍ਰਿਵੀਆ ਸਫਰ ਸ਼ੁਰੂ ਕਰੋ।",
   "triviaMixedLabel": "ਮਿਸ਼ਰਤ",
-  "triviaHomeRecentPerformanceSummary": "ਪਿਛਲੇ {sessions} ਸੈਸ਼ਨਾਂ ਵਿੱਚ {accuracy} ਸਹੀ",
+  "triviaHomeRecentPerformanceSummary": "{category} • {correct}/{total} correct • +{xp} XP",
   "@triviaHomeRecentPerformanceSummary": {
     "placeholders": {
       "category": {},
@@ -2984,14 +2984,14 @@
   "triviaResultsXpGainedLabel": "ਮਿਲਿਆ XP",
   "triviaResultsPerfectBonusIncluded": "ਪੂਰਨ ਬੋਨਸ ਸ਼ਾਮਲ ਹੈ",
   "triviaResultsReplayRewardsLighter": "ਦੁਬਾਰਾ ਖੇਡਣ ਤੇ ਇਨਾਮ ਘੱਟ ਹੁੰਦੇ ਹਨ।",
-  "triviaResultsCompletedSummary": "ਤੁਸੀਂ {total} ਵਿੱਚੋਂ {correct} ਸਹੀ ਕੀਤੇ।",
+  "triviaResultsCompletedSummary": "Completed in {seconds}s • {missed} missed",
   "@triviaResultsCompletedSummary": {
     "placeholders": {
       "seconds": {},
       "missed": {}
     }
   },
-  "triviaResultsBestRunInSession": "ਇਸ ਸੈਸ਼ਨ ਦੀ ਸਭ ਤੋਂ ਵਧੀਆ ਦੌੜ",
+  "triviaResultsBestRunInSession": "Best run in this session: {count}",
   "@triviaResultsBestRunInSession": {
     "placeholders": {
       "count": {}
@@ -3014,7 +3014,7 @@
   "triviaReviewNoQuestionsDueTitle": "ਕੋਈ ਸਵਾਲ ਬਾਕੀ ਨਹੀਂ",
   "triviaReviewNoQuestionsDueSubtitle": "ਚੰਗਾ ਕੰਮ। ਤੁਸੀਂ ਇਸ ਵੇਲੇ ਸਭ ਪਕੜ ਵਿੱਚ ਰੱਖਿਆ ਹੋਇਆ ਹੈ।",
   "triviaReviewStartSessionTitle": "ਸਮੀਖਿਆ ਸ਼ੁਰੂ ਕਰੋ",
-  "triviaReviewStartSessionSubtitle": "ਬਾਕੀ ਸਵਾਲਾਂ ਨਾਲ ਇੱਕ ਕੇਂਦ੍ਰਿਤ ਸੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ।",
+  "triviaReviewStartSessionSubtitle": "{count} items are ready. The queue favors what was recently missed or still unstable.",
   "@triviaReviewStartSessionSubtitle": {
     "placeholders": {
       "count": {}
@@ -3035,7 +3035,7 @@
   "triviaStageNotFoundTitle": "ਪੜਾਅ ਨਹੀਂ ਮਿਲਿਆ",
   "triviaStageNotFoundSubtitle": "ਇਹ ਪੜਾਅ ਇਸ ਵੇਲੇ ਉਪਲਬਧ ਨਹੀਂ।",
   "triviaStageQuizTitle": "ਪੜਾਅ ਕਵਿਜ਼",
-  "triviaStageQuizSubtitle": "ਇਸ ਪੜਾਅ ਦੀ ਸਮਝ ਪਰਖੋ।",
+  "triviaStageQuizSubtitle": "Answer {count} focused questions. Wrong answers still feed your review queue.",
   "@triviaStageQuizSubtitle": {
     "placeholders": {
       "count": {}
@@ -3063,7 +3063,7 @@
   "triviaContinuePathAction": "ਰਾਹ ਜਾਰੀ ਰੱਖੋ",
   "triviaStagesTitle": "ਪੜਾਅ",
   "triviaStagesSubtitle": "ਕਦਮ-ਦਰ-ਕਦਮ ਸਿੱਖੋ।",
-  "triviaKnowledgeStageSummary": "{questions} ਸਵਾਲ • {difficulty}",
+  "triviaKnowledgeStageSummary": "{count} questions • +{xp} XP",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -7437,17 +7437,6 @@
       }
     }
   },
-  "settingsProfileLevelStreakSummary": "{levelSummary} · {streakSummary}",
-  "@settingsProfileLevelStreakSummary": {
-    "placeholders": {
-      "levelSummary": {
-        "type": "String"
-      },
-      "streakSummary": {
-        "type": "String"
-      }
-    }
-  },
   "settingsWhatsNewTitle": "ਨਵਾਂ ਕੀ ਹੈ",
   "settingsWhatsNewSubtitle": "ਐਪ ਦੇ ਨਵੀਨਤਮ ਬਦਲਾਅ ਅਤੇ ਪੁਰਾਣੇ ਅੱਪਡੇਟ ਦੇਖੋ।",
   "settingsComingSoonTitle": "ਆਨ ਵਾਲੀ",
@@ -8126,8 +8115,6 @@
   "accountsSyncDevicePlatformAndroidTv": "ਐਂਡਰਾਇਡ ਟੀਵੀ",
   "settingsAdhanTitle": "ਅਧਾਨ",
   "settingsAdhanSubtitle": "ਇੱਕ ਸਮਰਪਿਤ ਫਜਰ ਅਜ਼ਾਨ ਚੁਣੋ, ਬੰਡਲ ਕੀਤੇ ਕਲਿੱਪਾਂ ਦਾ ਪੂਰਵਦਰਸ਼ਨ ਕਰੋ, ਅਤੇ ਪ੍ਰਾਰਥਨਾ ਆਡੀਓ ਨੂੰ ਔਫਲਾਈਨ ਰੱਖੋ।",
-  "settingsEnableAdhanAudioTitle": "ਅਧਾਨ ਆਡੀਓ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ",
-  "settingsEnableAdhanAudioSubtitle": "ਜਦੋਂ ਇਹ ਚਾਲੂ ਹੁੰਦਾ ਹੈ ਤਾਂ ਸਾਲਾਹ ਰੀਮਾਈਂਡਰ ਚੁਣੇ ਹੋਏ ਅਜ਼ਾਨ ਚਲਾ ਸਕਦੇ ਹਨ।",
   "settingsRegularAdhanTitle": "ਨਿਯਮਤ ਅਜ਼ਾਨ",
   "settingsFajrAdhanTitle": "ਫਜ਼ਰ ਦੀ ਅਜ਼ਾਨ",
   "settingsPreviewVolumeTitle": "ਪੂਰਵਦਰਸ਼ਨ ਅਤੇ ਵਾਲੀਅਮ",
@@ -8145,8 +8132,6 @@
   "settingsAdhanPickerRegularSubtitle": "ਇਹ ਦੁਹਰ, ਅਸਰ, ਮਗਰਿਬ ਅਤੇ ਇਸ਼ਾ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।",
   "settingsAdhanPreviewStopTooltip": "Preview ਰੋਕੋ",
   "settingsAdhanPreviewPlayTooltip": "Preview ਚਲਾਓ",
-  "settingsTestRegularAdhan": "ਨਿਯਮਤ ਅਜ਼ਾਨ ਦੀ ਜਾਂਚ ਕਰੋ",
-  "settingsTestFajrAdhan": "ਫਜ਼ਰ ਅਜ਼ਾਨ ਦੀ ਜਾਂਚ ਕਰੋ",
   "settingsUseAppVolumeTitle": "ਐਪ ਵਾਲੀਅਮ ਦੀ ਵਰਤੋਂ ਕਰੋ",
   "settingsUseAppVolumeSubtitle": "ਪ੍ਰੀਵਿਊ ਪਲੇਬੈਕ ਨੂੰ ਐਪ ਵਾਲੀਅਮ ਪੱਧਰ ਦੇ ਨਾਲ ਇਕਸਾਰ ਰੱਖੋ।",
   "settingsAdhanPreviewVolume": "ਅਧਾਨ ਪ੍ਰੀਵਿਊ ਵਾਲੀਅਮ",
@@ -8170,17 +8155,11 @@
   "settingsThemeChoiceEasyRead": "ਆਸਾਨ ਪੜ੍ਹੋ",
   "settingsThemeChangedSuccessfully": "ਥੀਮ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲਿਆ ਗਿਆ",
   "settingsVisualPreferencesTitle": "ਵਿਜ਼ੂਅਲ ਤਰਜੀਹਾਂ",
-  "settingsDisableGlassTransparencyTitle": "ਗਲਾਸ ਪਾਰਦਰਸ਼ਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ",
-  "settingsDisableGlassTransparencySubtitle": "ਪਾਰਦਰਸ਼ੀ ਕੱਚ ਦੀ ਬਜਾਏ ਠੋਸ ਸਤਹਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ।",
   "settingsDisableColoredGlassTitle": "ਰੰਗੀਨ ਗਲਾਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ",
   "settingsDisableColoredGlassSubtitle": "ਰੰਗੇ ਰੰਗ ਦੇ ਇਲਾਜ ਨੂੰ ਹਟਾਉਣ ਦੌਰਾਨ ਕੱਚ ਦੀਆਂ ਸਤਹਾਂ ਨੂੰ ਰੱਖੋ।",
-  "settingsGlassTransparencyTitle": "ਗਲਾਸ ਪਾਰਦਰਸ਼ਤਾ",
-  "settingsGlassTransparencySubtitle": "ਵਿਵਸਥਿਤ ਕਰੋ ਕਿ ਐਪ ਵਿੱਚ ਪਾਰਦਰਸ਼ੀ ਸ਼ੀਸ਼ੇ ਦੇ ਕਾਰਡ, ਟਾਪੂ, ਗੋਲੀਆਂ ਅਤੇ ਪੈਨਲ ਕਿਵੇਂ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ।",
-  "settingsGlassTransparencyDisabledSubtitle": "ਦੁਬਾਰਾ ਪਾਰਦਰਸ਼ਤਾ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰਨ ਲਈ ਗਲਾਸ ਨੂੰ ਵਾਪਸ ਚਾਲੂ ਕਰੋ।",
   "settingsVisualPreferenceUpdated": "ਵਿਜ਼ੂਅਲ ਤਰਜੀਹ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ",
   "settingsDisableBackgroundTitle": "ਬੈਕਗ੍ਰਾਊਂਡ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ",
   "settingsDisableBackgroundSubtitle": "ਸਾਫ਼-ਸੁਥਰੇ ਦ੍ਰਿਸ਼ ਲਈ ਸਜਾਵਟੀ ਪਿਛੋਕੜ ਚਿੱਤਰ ਨੂੰ ਲੁਕਾਓ।",
-  "settingsAppearanceNoContentChangeNote": "ਇਹ ਸੈਟਿੰਗਾਂ ਤੁਹਾਡੀ ਸਮੱਗਰੀ ਜਾਂ ਪ੍ਰਗਤੀ ਨੂੰ ਬਦਲੇ ਬਿਨਾਂ ਐਪ ਦੀ ਦਿੱਖ ਨੂੰ ਬਦਲਦੀਆਂ ਹਨ।",
   "settingsDefaultAppearanceActive": "ਪੂਰਵ-ਨਿਰਧਾਰਤ ਦਿੱਖ ਕਿਰਿਆਸ਼ੀਲ ਹੈ",
   "settingsAppearanceResetToDefault": "ਦਿੱਖ ਨੂੰ ਪੂਰਵ-ਨਿਰਧਾਰਤ ''ਤੇ ਰੀਸੈਟ ਕਰੋ",
   "settingsResetAppearance": "ਦਿੱਖ ਰੀਸੈਟ ਕਰੋ",
@@ -9910,7 +9889,7 @@
   "triviaKnowledgePathsPageSubtitle": "ਚੁਣੇ ਹੋਏ ਰਾਹਾਂ ਨਾਲ ਢਾਂਚਾਬੱਧ ਤਰੀਕੇ ਨਾਲ ਸਿੱਖੋ।",
   "triviaKnowledgePathsEmptyTitle": "ਹਾਲੇ ਕੋਈ ਰਾਹ ਨਹੀਂ",
   "triviaKnowledgePathsEmptySubtitle": "ਨਵੇਂ ਰਾਹ ਜਲਦੀ ਉਪਲਬਧ ਹੋਣਗੇ।",
-  "triviaKnowledgePathsProgressLabel": "ਤਰੱਕੀ",
+  "triviaKnowledgePathsProgressLabel": "{completed}/{total} stages completed",
   "@triviaKnowledgePathsProgressLabel": {
     "placeholders": {
       "completed": {
@@ -9970,7 +9949,7 @@
   "triviaStatsIncorrect": "ਗਲਤ",
   "triviaStatsOverallAccuracy": "ਕੁੱਲ ਸਹੀ ਦਰ",
   "triviaStatsDailyQuizStreak": "ਰੋਜ਼ਾਨਾ ਕਵਿਜ਼ ਲੜੀ",
-  "triviaStatsLongestStreak": "ਸਭ ਤੋਂ ਲੰਮੀ ਲੜੀ",
+  "triviaStatsLongestStreak": "Longest streak: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -9982,7 +9961,7 @@
   "triviaStatsOceanDrops": "ਸਮੁੰਦਰੀ ਬੂੰਦਾਂ",
   "triviaStatsPerformanceSnapshotTitle": "ਪ੍ਰਦਰਸ਼ਨ ਝਲਕ",
   "triviaStatsNotEnoughData": "ਹਾਲੇ ਕਾਫ਼ੀ ਡਾਟਾ ਨਹੀਂ",
-  "triviaStatsPerformanceSnapshotBody": "ਹੋਰ ਕੁਝ ਸੈਸ਼ਨ ਪੂਰੇ ਕਰੋ ਤਾਂ ਜੋ ਅਸੀਂ ਸਪਸ਼ਟ ਝਲਕ ਦਿਖਾ ਸਕੀਏ।",
+  "triviaStatsPerformanceSnapshotBody": "Strongest: {strongest} • Weakest: {weakest} • Due now: {dueCount} • Mastered: {masteredCount}",
   "@triviaStatsPerformanceSnapshotBody": {
     "placeholders": {
       "strongest": {
@@ -10001,7 +9980,7 @@
   },
   "triviaStatsCategoryBreakdownTitle": "ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਵੇਰਵਾ",
   "triviaStatsCategoryBreakdownSubtitle": "ਹਰ ਵਿਸ਼ੇ ਵਿੱਚ ਆਪਣੀ ਮਜ਼ਬੂਤੀ ਵੇਖੋ।",
-  "triviaStatsCategoryBreakdownRow": "{category} • {accuracy} ਸਹੀ • {answered} ਜਵਾਬ",
+  "triviaStatsCategoryBreakdownRow": "{quizzes} • {accuracy} ਸਹੀ • {answered} ਜਵਾਬ",
   "@triviaStatsCategoryBreakdownRow": {
     "placeholders": {
       "answered": {
@@ -18649,146 +18628,6 @@
   "@hadithActionBrowseAllHadith": {
     "description": "Action label to open the canonical hadith browse page."
   },
-  "@quranTeachingSectionTitle": null,
-  "@quranTeachingSectionSubtitle": null,
-  "@quranTeachingAlphabetOverviewTitle": null,
-  "@quranTeachingAlphabetOverviewForms": null,
-  "@quranTeachingAlphabetOverviewBrowseAction": null,
-  "@quranTeachingAlphabetOverviewShapesAction": null,
-  "@quranTeachingPathTitle": null,
-  "@quranTeachingPathSubtitle": null,
-  "@quranTeachingVisualModeOn": null,
-  "@quranTeachingVisualModeOff": null,
-  "@quranTeachingContinueTitle": null,
-  "@quranTeachingContinueEmpty": null,
-  "@quranTeachingStartLessonAction": null,
-  "@quranTeachingContinueLessonAction": null,
-  "@quranTeachingRecommendedTitle": null,
-  "@quranTeachingRecommendedEmpty": null,
-  "@quranTeachingOpenAction": null,
-  "@quranTeachingVisualModeTitle": null,
-  "@quranTeachingVisualModeSubtitle": null,
-  "@quranTeachingVisualModeToggle": null,
-  "@quranTeachingOpenListenOnlyAction": null,
-  "@quranTeachingReviewMistakesTitle": null,
-  "@quranTeachingReviewMistakesEmpty": null,
-  "@quranTeachingOpenReviewAction": null,
-  "@quranTeachingPracticeNowAction": null,
-  "@quranTeachingReviewProgressTitle": null,
-  "@quranTeachingPracticeRecommendationsTitle": null,
-  "@quranTeachingRecentlyLearnedTitle": null,
-  "@quranTeachingPracticeAgainTitle": null,
-  "@quranTeachingPracticeAgainSubtitle": null,
-  "@quranTeachingLearningPathTitle": null,
-  "@quranTeachingRecommendedBadge": null,
-  "@quranTeachingModuleLocked": null,
-  "@quranTeachingChooseLevelTitle": null,
-  "@quranTeachingChooseLevelSubtitle": null,
-  "@quranTeachingModeGuided": null,
-  "@quranTeachingModeBroad": null,
-  "@quranTeachingModeOpen": null,
-  "@quranTeachingLevelCompletelyNewTitle": null,
-  "@quranTeachingLevelCompletelyNewDescription": null,
-  "@quranTeachingLevelKnowSomeLettersTitle": null,
-  "@quranTeachingLevelKnowSomeLettersDescription": null,
-  "@quranTeachingLevelReadSlowlyTitle": null,
-  "@quranTeachingLevelReadSlowlyDescription": null,
-  "@quranTeachingLevelImproveReadingTitle": null,
-  "@quranTeachingLevelImproveReadingDescription": null,
-  "@quranTeachingLevelOpenReferenceTitle": null,
-  "@quranTeachingLevelOpenReferenceDescription": null,
-  "@quranTeachingModuleNextLessonTitle": null,
-  "@quranTeachingModuleNextLessonAction": null,
-  "@quranTeachingModuleListenOnlyAction": null,
-  "@quranTeachingModuleLearnWords": null,
-  "@quranTeachingModuleFoundInQuran": null,
-  "@quranTeachingModuleStarterSurahShelfTitle": null,
-  "@quranTeachingModuleLessonsTitle": null,
-  "@quranTeachingLessonHearThis": null,
-  "@quranTeachingLessonExamplesTitle": null,
-  "@quranTeachingLessonQuickQuizTitle": null,
-  "@quranTeachingLessonHearAudio": null,
-  "@quranTeachingLessonTapPiecesHint": null,
-  "@quranTeachingLessonCompleteTitle": null,
-  "@quranTeachingLessonBackToModule": null,
-  "@quranTeachingLessonLetterProfileTitle": null,
-  "@quranTeachingLessonFormsTitle": null,
-  "@quranTeachingLessonFormIsolated": null,
-  "@quranTeachingLessonFormInitial": null,
-  "@quranTeachingLessonFormMedial": null,
-  "@quranTeachingLessonFormFinal": null,
-  "@quranTeachingLessonFormUnavailable": null,
-  "@quranTeachingLessonNoForwardJoinHint": null,
-  "learningJourneyHomeRecommendedSubtitle": "A small set of paths that fit what you have already opened or completed.",
-  "batch9QuranWordsFlashCard": "ਫ਼ਲੈਸ਼ ਕਾਰਡ: {transliteration} • {meaning}",
-  "@batch9QuranWordsFlashCard": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      },
-      "meaning": {
-        "type": "String"
-      }
-    }
-  },
-  "homeGlassPreviewTitle": "Glass Style Preview",
-  "homeGlassPreviewSubtitle": "Temporary visual comparison of surface styles for calm homepage islands.",
-  "homeGlassPreviewFootnote": "Preview only — not yet applied across the app. This section is temporary and safe to remove after a glass direction is chosen.",
-  "homeGlassPreviewLegend": "Layered inner surface sample",
-  "homeGlassPreviewMetaBlur": "Blur",
-  "homeGlassPreviewMetaOpacity": "Opacity",
-  "homeGlassPreviewMetaReadability": "Readability",
-  "homeGlassPreviewReadabilityGentle": "Gentle",
-  "homeGlassPreviewReadabilityBalanced": "Balanced",
-  "homeGlassPreviewReadabilityHigh": "High",
-  "homeGlassPreviewWarmTitle": "Warm Glass",
-  "homeGlassPreviewWarmDescriptor": "Amber warmth with a calm devotional glow",
-  "homeGlassPreviewWarmBody": "Designed for prayer summaries, home reflections, and moments that should feel welcoming without becoming heavy. It keeps warmth close to the surface while preserving readable depth.",
-  "homeGlassPreviewWarmChip": "Prayer summary fit",
-  "homeGlassPreviewMilkyTitle": "Milky Glass",
-  "homeGlassPreviewMilkyDescriptor": "Cloudy ivory diffusion with softer transparency",
-  "homeGlassPreviewMilkyBody": "Designed for calm, readable surfaces with gentle depth. It feels especially strong for devotional cards, prayer summaries, and serene learning moments that need quiet clarity.",
-  "homeGlassPreviewMilkyChip": "Devotional favorite",
-  "homeGlassPreviewCrystalTitle": "Crystal Glass",
-  "homeGlassPreviewCrystalDescriptor": "Sharper clarity with cooler reflective lift",
-  "homeGlassPreviewCrystalBody": "Useful when you want the background to breathe through more clearly while still keeping titles crisp. It feels premium for highlights, featured insights, and polished showcase cards.",
-  "homeGlassPreviewCrystalChip": "Sharper focus",
-  "homeGlassPreviewNightTitle": "Night Glass",
-  "homeGlassPreviewNightDescriptor": "Smoky dusk layering with elegant low light",
-  "homeGlassPreviewNightBody": "A darker surface for late-evening atmosphere without sliding into harsh black panels. It works best for reflective content, deeper reading moments, and richer nighttime presentation.",
-  "homeGlassPreviewNightChip": "Night reflection",
-  "homeGlassPreviewTintedTitle": "Tinted Glass",
-  "homeGlassPreviewTintedDescriptor": "Soft color infusion with warm rosier undertones",
-  "homeGlassPreviewTintedBody": "This version brings a clearer sense of personality without turning neon or loud. It can suit featured reminders, curated editorial cards, and softer premium accents on home.",
-  "homeGlassPreviewTintedChip": "Editorial accent",
-  "homeGlassPreviewFrostedTitle": "Frosted Glass",
-  "homeGlassPreviewFrostedDescriptor": "Diffuse blur with quiet, paper-like softness",
-  "homeGlassPreviewFrostedBody": "A stronger blur treatment that protects readability first. It feels dependable for practical cards, utility summaries, and any surface where the content should lead over the material.",
-  "homeGlassPreviewFrostedChip": "Utility calm",
-  "homeGlassPreviewLayeredTitle": "Layered Glass",
-  "homeGlassPreviewLayeredDescriptor": "Primary glass surface with a nested inner veil",
-  "homeGlassPreviewLayeredBody": "Helpful when a card needs hierarchy inside hierarchy. The layered feel can support guided actions, richer dashboards, or sections where one calm panel sits inside another.",
-  "homeGlassPreviewLayeredChip": "Nested hierarchy",
-  "homeGlassPreviewEdgeLitTitle": "Edge-lit Glass",
-  "homeGlassPreviewEdgeLitDescriptor": "Subtle rim light with clearer luminous edges",
-  "homeGlassPreviewEdgeLitBody": "This style adds a little more presence around the perimeter while keeping the center calm. It can work for featured destinations, premium shortcuts, and attention-worthy highlights.",
-  "homeGlassPreviewEdgeLitChip": "Featured island",
-  "homeGlassPreviewAdaptiveTitle": "Adaptive Glass",
-  "homeGlassPreviewAdaptiveDescriptor": "Tint and mood that shift with the surrounding atmosphere",
-  "homeGlassPreviewAdaptiveBody": "Built to flex between warmer daylight and deeper evening surroundings. It aims for a stable middle ground that stays coherent across themes without demanding too much visual attention.",
-  "homeGlassPreviewAdaptiveChip": "Theme-aware",
-  "homeGlassPreviewSoftMatteTitle": "Soft Matte Glass",
-  "homeGlassPreviewSoftMatteDescriptor": "Velvety diffusion with reduced highlight sparkle",
-  "homeGlassPreviewSoftMatteBody": "This leans toward softness over shine, which can help content feel grounded and restful. It may suit journaling, daily checkpoints, and spaces that should feel gentle rather than glossy.",
-  "homeGlassPreviewSoftMatteChip": "Restful reading",
-  "homeGlassPreviewDenseSanctuaryTitle": "Dense Sanctuary Glass",
-  "homeGlassPreviewDenseSanctuaryDescriptor": "Clouded sanctuary depth with the strongest calm cover",
-  "homeGlassPreviewDenseSanctuaryBody": "One of the safest options for sacred, text-heavy moments because it shields the content from background noise. It feels especially fitting for duas, reflections, and focused spiritual summaries.",
-  "homeGlassPreviewDenseSanctuaryChip": "Sanctuary tone",
-  "homeGlassPreviewClearShowcaseTitle": "Clear Showcase Glass",
-  "homeGlassPreviewClearShowcaseDescriptor": "High transparency with brighter display energy",
-  "homeGlassPreviewClearShowcaseBody": "This is the most open and reflective option in the set. It is useful for comparison and premium showcase moments, though it needs careful contrast management before broader use.",
-  "homeGlassPreviewClearShowcaseChip": "Most transparent",
   "legalAttributionsAdhanBody": "ਬੰਡਲ ਕੀਤੀ ਅਜ਼ਾਨ ਰੀਮਾਈਂਡਰ ਕਲਿੱਪ ਦਾ ਸਰੋਤ:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nਮੂਲ ਫ਼ਾਈਲ URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nਸਰੋਤ ਪੰਨੇ ਉੱਤੇ ਦਰਜ ਲੇਖਕ: Jarih (own work)\nਲਾਇਸੰਸ: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nਮੌਜੂਦਾ ਨੋਟ: ਜਦੋਂ ਤੱਕ ਚੁਣਿਆ ਹੋਇਆ ਬਦਲਵਾਂ ਸੈੱਟ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ, ਐਪ ਇਸ ਬੰਡਲ ਕੀਤੀ ਕਲਿੱਪ ਤੋਂ ਬਣੇ ਆਰਜ਼ੀ ਔਫ਼ਲਾਈਨ ਫ਼ਾਲਬੈਕ ਅਜ਼ਾਨ ਰੂਪ ਸ਼ਾਮਲ ਕਰਦੀ ਹੈ।",
   "legalAttributionsAdhanTitle": "ਅਜ਼ਾਨ ਸੂਚਨਾ ਆਡੀਓ",
   "legalAttributionsQuranBody": "ਐਪ ਇਸ ਵੇਲੇ ਅਰਬੀ ਪਾਠ ਅਤੇ ਅਨੁਵਾਦ ਏਕੀਕਰਨ ਲਈ Flutter ਪੈਕੇਜ \"quran\" ਦੀ ਵਰਤੋਂ ਕਰਦੀ ਹੈ।\n\nਸਰੋਤ ਲਿੰਕ:\nhttps://pub.dev/packages/quran\nhttps://github.com/aqeelshamz/quran",
@@ -18890,5 +18729,38 @@
   "occasionOfferDecline": "ਹੁਣ ਨਹੀਂ",
   "homeGreetingEidMubarak": "ਈਦ ਮੁਬਾਰਕ",
   "settingsLivingSkyTitle": "ਜੀਵੰਤ ਅਸਮਾਨ",
-  "settingsLivingSkySubtitle": "ਨੂਰ ਗਲਾਸ ਦਿਨ ਦੇ ਨਾਲ ਚੱਲਦਾ ਹੈ — ਗੁਲਾਬੀ-ਸੁਨਹਿਰੀ ਫਜਰ, ਅੰਬਰ ਮਗਰਿਬ, ਅਤੇ ਹਨੇਰੇ ਤੋਂ ਬਾਅਦ ਤਾਰਿਆਂ ਭਰੀ ਰਾਤ।"
+  "settingsLivingSkySubtitle": "ਨੂਰ ਗਲਾਸ ਦਿਨ ਦੇ ਨਾਲ ਚੱਲਦਾ ਹੈ — ਗੁਲਾਬੀ-ਸੁਨਹਿਰੀ ਫਜਰ, ਅੰਬਰ ਮਗਰਿਬ, ਅਤੇ ਹਨੇਰੇ ਤੋਂ ਬਾਅਦ ਤਾਰਿਆਂ ਭਰੀ ਰਾਤ।",
+  "settingsGroupYouTitle": "ਤੁਸੀਂ",
+  "settingsGroupWorshipTitle": "ਨਮਾਜ਼ ਅਤੇ ਯਾਦ-ਦਿਹਾਨੀਆਂ",
+  "settingsGroupAppTitle": "ਐਪ",
+  "settingsGroupSupportTitle": "ਮਦਦ ਅਤੇ ਜਾਣਕਾਰੀ",
+  "settingsCategoryProfileSubtitle": "ਤੁਹਾਡਾ ਨਾਮ, ਐਪ ਤੁਹਾਨੂੰ ਕਿਵੇਂ ਸੰਬੋਧਨ ਕਰੇ, ਅਤੇ ਕੇਅਰ ਮੋਡ।",
+  "settingsCategoryAdhanSubtitle": "ਅਜ਼ਾਨ ਚੁਣੋ, ਸੁਣ ਕੇ ਵੇਖੋ ਅਤੇ ਆਵਾਜ਼ ਸੈੱਟ ਕਰੋ।",
+  "settingsSearchTitle": "ਸੈਟਿੰਗਾਂ ਖੋਜੋ",
+  "settingsSearchSubtitle": "ਕਿਸੇ ਵੀ ਸੈਟਿੰਗ ਨੂੰ ਨਾਮ ਨਾਲ ਲੱਭੋ।",
+  "settingsSearchHint": "ਸੈਟਿੰਗਾਂ ਖੋਜੋ",
+  "settingsSearchTooltip": "ਸੈਟਿੰਗਾਂ ਖੋਜੋ",
+  "settingsSearchEmptyTitle": "ਕੁਝ ਨਹੀਂ ਮਿਲਿਆ",
+  "settingsSearchEmptySubtitle": "ਕੋਈ ਹੋਰ ਸ਼ਬਦ ਅਜ਼ਮਾਓ, ਜਾਂ ਸੈਟਿੰਗ ਪੰਨੇ ਦੇ ਸਮੂਹ ਵੇਖੋ।",
+  "settingsSearchPromptTitle": "ਖੋਜਣ ਲਈ ਟਾਈਪ ਕਰੋ",
+  "settingsSearchPromptSubtitle": "“ਅਜ਼ਾਨ”, “ਡਾਰਕ”, “ਰਿਮਾਈਂਡਰ”, ਜਾਂ “ਬੈਕਅੱਪ” ਅਜ਼ਮਾਓ।",
+  "legalPrivacyTitle": "ਪਰਦੇਦਾਰੀ ਨੀਤੀ",
+  "legalPrivacySubtitle": "Path of Nūr ਤੁਹਾਡੇ ਡਾਟੇ ਨੂੰ ਕਿਵੇਂ ਸੰਭਾਲਦਾ ਹੈ।",
+  "legalTermsTitle": "ਵਰਤੋਂ ਦੀਆਂ ਸ਼ਰਤਾਂ",
+  "legalTermsSubtitle": "ਇਹ ਐਪ ਕੀ ਹੈ, ਅਤੇ ਕੀ ਨਹੀਂ।",
+  "legalSupportTitle": "ਸਹਾਇਤਾ",
+  "legalSupportSubtitle": "ਮਦਦ ਲੈਣਾ ਅਤੇ ਸਮੱਸਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰਨਾ।",
+  "settingsLegalTitle": "ਕਾਨੂੰਨੀ",
+  "settingsAccessibilityTitle": "ਪਹੁੰਚਯੋਗਤਾ",
+  "settingsOccasionThemesTitle": "ਮੌਕੇ ਦੀਆਂ ਥੀਮਾਂ",
+  "settingsOccasionThemesSubtitle": "ਐਪ ਨੂੰ ਜੁੰਮੇ, ਰਮਜ਼ਾਨ, ਲੈਲਤੁਲ ਕਦਰ ਅਤੇ ਈਦ ਲਈ ਸਜਣ ਦਿਓ।",
+  "quickActionsSettingsSubtitle": "ਦਿੱਖ, ਅਜ਼ਾਨ, ਯਾਦ-ਦਿਹਾਨੀਆਂ",
+  "quickActionsSearchSubtitle": "ਕੁਰਆਨ, ਹਦੀਸ, ਦੁਆ, ਪਾਠ",
+  "settingsSalahCalculationTitle": "ਗਣਨਾ",
+  "settingsSalahCalculationSubtitle": "ਤੁਹਾਡੀ ਨਮਾਜ਼ ਦੇ ਸਮੇਂ ਕੱਢਣ ਲਈ ਵਰਤੀ ਜਾਂਦੀ ਵਿਧੀ ਅਤੇ ਮਜ਼ਹਬ।",
+  "settingsAdhanSoundTitle": "ਅਜ਼ਾਨ ਦੀ ਆਵਾਜ਼",
+  "settingsRemindersPerPrayerTitle": "ਹਰ ਨਮਾਜ਼ ਲਈ ਯਾਦ-ਦਿਹਾਨੀਆਂ",
+  "settingsOtherRemindersTitle": "ਹੋਰ ਯਾਦ-ਦਿਹਾਨੀਆਂ",
+  "settingsPermissionsTitle": "ਇਜਾਜ਼ਤਾਂ",
+  "settingsWhatOthersSeeTitle": "ਐਪ ਕੀ ਵਿਖਾਉਂਦਾ ਹੈ"
 }

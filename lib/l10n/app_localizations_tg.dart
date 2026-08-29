@@ -67,7 +67,7 @@ class AppLocalizationsTg extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaTitle(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaTitle(String prayerName) {
     return 'Ёдовари равзанаи $prayerName';
   }
 
@@ -106,7 +106,7 @@ class AppLocalizationsTg extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaBody(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaBody(String prayerName) {
     return 'Вақти $prayerName қариб ба анҷом мерасад. Пеш аз қазо шуданаш онро адо кунед.';
   }
 
@@ -208,9 +208,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get notificationsFastingLiveFastBeginsArabicTitle => 'يبدأ الصوم';
 
   @override
-  String notificationsFastingLiveStartsIn(Object duration) {
-    return 'Оғоз дар';
-  }
+  String get notificationsFastingLiveStartsIn => 'Оғоз дар';
 
   @override
   String get notificationsFastingLiveRenewIntentionTitle =>
@@ -230,9 +228,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get notificationsFastingLiveFastEndsArabicTitle => 'يفطر الصائم';
 
   @override
-  String notificationsFastingLiveEndsIn(Object duration) {
-    return 'Анҷом дар';
-  }
+  String get notificationsFastingLiveEndsIn => 'Анҷом дар';
 
   @override
   String get notificationsFastingLiveIftarDuaTitle => 'Дуо ҳангоми ифтор';
@@ -1988,7 +1984,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get worshipPrayerSisterCyclePauseTitle => 'Таваққуфи давраи хоҳар';
 
   @override
-  String worshipPrayerCycleDay(String dayNumber, Object day) {
+  String worshipPrayerCycleDay(String dayNumber) {
     return 'Рӯзи давра $dayNumber';
   }
 
@@ -2062,8 +2058,6 @@ class AppLocalizationsTg extends AppLocalizations {
     String offerTime,
     String windowStart,
     String windowEnd,
-    Object end,
-    Object start,
   ) {
     return '$offerTime • Равзанаи намоз: $windowStart–$windowEnd';
   }
@@ -2148,11 +2142,7 @@ class AppLocalizationsTg extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerCompletionValue(
-    String value,
-    Object completed,
-    Object total,
-  ) {
+  String worshipPrayerCompletionValue(String value) {
     return 'Анҷом $value%';
   }
 
@@ -2175,14 +2165,8 @@ class AppLocalizationsTg extends AppLocalizations {
   String get worshipPrayerRakatGuideTitle => 'Роҳнамои ракъат (Фарз)';
 
   @override
-  String worshipPrayerRakatGuideValue(
-    Object count,
-    Object prayer,
-    Object prayerName,
-    Object rakat,
-  ) {
-    return 'Фаҷр: 2 • Зуҳр: 4 • Аср: 4 • Мағриб: 3 • Ишо: 4';
-  }
+  String get worshipPrayerRakatGuideValue =>
+      'Фаҷр: 2 • Зуҳр: 4 • Аср: 4 • Мағриб: 3 • Ишо: 4';
 
   @override
   String get worshipPrayerRakatGuideTip =>
@@ -2192,11 +2176,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get worshipPrayerMoonPhaseTitle => 'Марҳилаи моҳ';
 
   @override
-  String worshipPrayerMoonPhaseIllumination(
-    String phaseLabel,
-    String percent,
-    Object value,
-  ) {
+  String worshipPrayerMoonPhaseIllumination(String phaseLabel, String percent) {
     return '$phaseLabel • $percent% равшан';
   }
 
@@ -2284,16 +2264,12 @@ class AppLocalizationsTg extends AppLocalizations {
       'Суръати мутамарказ: ҳар рӯз 3 қазо дар қисмҳои хурд бо устуворӣ.';
 
   @override
-  String worshipPrayerEstimatedDaysToClear(String days, Object count) {
+  String worshipPrayerEstimatedDaysToClear(String days) {
     return 'Рӯзҳои тахминии холӣ шудан: $days';
   }
 
   @override
-  String worshipPrayerTodaysQadaTarget(
-    String completed,
-    String target,
-    Object count,
-  ) {
+  String worshipPrayerTodaysQadaTarget(String completed, String target) {
     return 'Ҳадафи қазои имрӯз: $completed / $target';
   }
 
@@ -2348,7 +2324,7 @@ class AppLocalizationsTg extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerWeekLabel(int weekNumber, Object index, Object number) {
+  String worshipPrayerWeekLabel(int weekNumber) {
     return 'Ҳ$weekNumber';
   }
 
@@ -2758,7 +2734,7 @@ class AppLocalizationsTg extends AppLocalizations {
   }
 
   @override
-  String homePrayerBecomesQada(Object prayerName, Object prayer, Object time) {
+  String homePrayerBecomesQada(Object prayerName) {
     return '$prayerName қазо мешавад';
   }
 
@@ -2796,17 +2772,17 @@ class AppLocalizationsTg extends AppLocalizations {
       'Ҳоло салоҳ иҷозат нест • Ғуруби офтоб';
 
   @override
-  String homeLevelValue(Object level, Object value) {
+  String homeLevelValue(Object level) {
     return 'Сатҳ $level';
   }
 
   @override
-  String homeXpValue(Object xp, Object value) {
+  String homeXpValue(Object xp) {
     return '$xp XP';
   }
 
   @override
-  String homeXpToNextLevelValue(Object xp, Object value) {
+  String homeXpToNextLevelValue(Object xp) {
     return '$xp XP то сатҳи баъдӣ';
   }
 
@@ -2814,12 +2790,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get homeDailyBadgesTitle => 'Нишонҳои рӯзона';
 
   @override
-  String homeContinueQuranValue(
-    Object surahName,
-    Object ayahNumber,
-    Object surah,
-    Object verse,
-  ) {
+  String homeContinueQuranValue(Object surahName, Object ayahNumber) {
     return '$surahName $ayahNumber';
   }
 
@@ -2828,9 +2799,6 @@ class AppLocalizationsTg extends AppLocalizations {
     Object prayerPercent,
     Object dhikrPercent,
     Object quranPercent,
-    Object completed,
-    Object count,
-    Object total,
   ) {
     return 'P $prayerPercent% · D $dhikrPercent% · Q $quranPercent%';
   }
@@ -2893,9 +2861,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get homePrayerPostSalahDhikrLogged => 'Зикри баъди салоҳ сабт шуд';
 
   @override
-  String homePrayerBeginsAt(Object time) {
-    return 'Оғоз дар';
-  }
+  String get homePrayerBeginsAt => 'Оғоз дар';
 
   @override
   String homeDurationMinutes(String minutes) {
@@ -4235,7 +4201,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Шабакаи муносибатҳои муштаракро дар саросари соҳаҳо омӯзед.';
 
   @override
-  String learnHubSavedNotesSummary(Object saved, Object notes, Object count) {
+  String learnHubSavedNotesSummary(Object saved, Object notes) {
     return 'Маводҳои захирашуда: $saved • Қайдҳо: $notes';
   }
 
@@ -5281,7 +5247,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get learnHubTypeAnyLabel => 'Навъ: Ҳар гуна';
 
   @override
-  String learnHubTypeValueLabel(Object type, Object value) {
+  String learnHubTypeValueLabel(Object type) {
     return 'Навъ: $type';
   }
 
@@ -5292,7 +5258,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get learnHubThemeAnyLabel => 'Мавзӯъ: Ҳар гуна';
 
   @override
-  String learnHubThemeValueLabel(Object theme, Object value) {
+  String learnHubThemeValueLabel(Object theme) {
     return 'Мавзӯъ: $theme';
   }
 
@@ -5303,7 +5269,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get learnHubDifficultyAnyLabel => 'Душворӣ: Ҳар гуна';
 
   @override
-  String learnHubDifficultyValueLabel(Object difficulty, Object value) {
+  String learnHubDifficultyValueLabel(Object difficulty) {
     return 'Душворӣ: $difficulty';
   }
 
@@ -5332,12 +5298,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Ягон маводи мувофиқ нест. Филтрҳои васеътарро санҷед.';
 
   @override
-  String learnHubPathProgress(
-    Object completed,
-    Object total,
-    Object progress,
-    Object value,
-  ) {
+  String learnHubPathProgress(Object completed, Object total) {
     return '$completed / $total анҷомшуда';
   }
 
@@ -6687,11 +6648,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get triviaHomeNoAnswersYet => 'Ҳанӯз ҷавобе нест';
 
   @override
-  String triviaHomeCategoryAccuracy(
-    Object percent,
-    Object accuracy,
-    Object category,
-  ) {
+  String triviaHomeCategoryAccuracy(Object percent) {
     return 'Дақиқӣ $percent%';
   }
 
@@ -6724,9 +6681,6 @@ class AppLocalizationsTg extends AppLocalizations {
     Object correct,
     Object total,
     Object xp,
-    Object accuracy,
-    Object incorrect,
-    Object sessions,
   ) {
     return '$category • $correct/$total дуруст • +$xp XP';
   }
@@ -6753,13 +6707,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Мукофотҳои такрорӣ сабуктар мешаванд';
 
   @override
-  String triviaResultsCompletedSummary(
-    Object seconds,
-    Object missed,
-    Object completed,
-    Object correct,
-    Object total,
-  ) {
+  String triviaResultsCompletedSummary(Object seconds, Object missed) {
     return 'Дар $secondsс анҷом шуд • $missed аз даст рафт';
   }
 
@@ -6923,16 +6871,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Бо тартиб ҳаракат кунед. Ҳар марҳилаи анҷомшуда баъдиро мекушояд.';
 
   @override
-  String triviaKnowledgeStageSummary(
-    Object count,
-    Object xp,
-    Object difficulty,
-    Object index,
-    Object questionCount,
-    Object questions,
-    Object status,
-    Object total,
-  ) {
+  String triviaKnowledgeStageSummary(Object count, Object xp) {
     return '$count савол • +$xp XP';
   }
 
@@ -19306,13 +19245,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Барои оғоз як профилро интихоб кунед.';
 
   @override
-  String accountsSyncProfileStatusSummary(
-    String profileType,
-    String syncMode,
-    Object profile,
-    Object profileName,
-    Object status,
-  ) {
+  String accountsSyncProfileStatusSummary(String profileType, String syncMode) {
     return '$profileType · $syncMode';
   }
 
@@ -19531,8 +19464,6 @@ class AppLocalizationsTg extends AppLocalizations {
     String provider,
     String identifier,
     String syncMode,
-    Object account,
-    Object profiles,
   ) {
     return '$provider · $identifier · $syncMode';
   }
@@ -20225,13 +20156,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Асбобҳои пешрафтаро аз профилҳои кӯдак пинҳон кунед';
 
   @override
-  String accountsSyncDeviceSummary(
-    String platform,
-    String lastActive,
-    Object device,
-    Object deviceName,
-    Object status,
-  ) {
+  String accountsSyncDeviceSummary(String platform, String lastActive) {
     return '$platform • Охирин фаъол $lastActive';
   }
 
@@ -20438,11 +20363,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get accountsSyncCurrentProviderTitle => 'Провайдери ҷорӣ';
 
   @override
-  String accountsSyncCurrentProviderSummary(
-    String syncMode,
-    String transport,
-    Object provider,
-  ) {
+  String accountsSyncCurrentProviderSummary(String syncMode, String transport) {
     return '$syncMode · $transport';
   }
 
@@ -21101,9 +21022,6 @@ class AppLocalizationsTg extends AppLocalizations {
     String prayerName,
     String currentValue,
     String suggestedValue,
-    Object change,
-    Object prayer,
-    Object value,
   ) {
     return '$prayerName: аз $currentValue ба $suggestedValue';
   }
@@ -23890,8 +23808,6 @@ class AppLocalizationsTg extends AppLocalizations {
     String weakest,
     String dueCount,
     String masteredCount,
-    Object correct,
-    Object incorrect,
   ) {
     return 'Қавитарин: $strongest • Заифтарин: $weakest • Ҳозир навбатдор: $dueCount • Азхудшуда: $masteredCount';
   }
@@ -23908,9 +23824,6 @@ class AppLocalizationsTg extends AppLocalizations {
     String answered,
     String accuracy,
     String quizzes,
-    Object category,
-    Object correct,
-    Object total,
   ) {
     return '$answered ҷавоб дода шуд • $accuracy% дақиқӣ • $quizzes викторина';
   }
@@ -24945,11 +24858,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get batch9QuranWordsSearchHint => 'Талаффуз ё маъниро ҷустуҷӯ кунед';
 
   @override
-  String batch9QuranWordsMasteredSummary(
-    String mastered,
-    String total,
-    Object count,
-  ) {
+  String batch9QuranWordsMasteredSummary(String mastered, String total) {
     return '$mastered / $total азхудшуда';
   }
 
@@ -25429,12 +25338,12 @@ class AppLocalizationsTg extends AppLocalizations {
   String get fastingTodayTitle => 'Имрӯз';
 
   @override
-  String fastingStatusValue(String value, Object status) {
+  String fastingStatusValue(String value) {
     return 'Ҳолат: $value';
   }
 
   @override
-  String fastingTypeValue(String value, Object type) {
+  String fastingTypeValue(String value) {
     return 'Навъ: $value';
   }
 
@@ -25460,7 +25369,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Як пешнамоиши фишурда барои татбиқи аввалия.';
 
   @override
-  String fastingHistoryEntry(String type, String status, Object date) {
+  String fastingHistoryEntry(String type, String status) {
     return '$type • $status';
   }
 
@@ -25526,14 +25435,7 @@ class AppLocalizationsTg extends AppLocalizations {
   String get prayerUnknownAdjustment => 'Танзими номаълуми намоз.';
 
   @override
-  String prayerValidationMustRemainBefore(
-    String current,
-    String next,
-    Object first,
-    Object label,
-    Object otherLabel,
-    Object second,
-  ) {
+  String prayerValidationMustRemainBefore(String current, String next) {
     return '$current бояд пеш аз $next боқӣ монад.';
   }
 
@@ -42721,4 +42623,111 @@ class AppLocalizationsTg extends AppLocalizations {
   @override
   String get settingsLivingSkySubtitle =>
       'Нур Глас ҳамроҳи рӯз меравад — субҳи гулобии заррин, Мағриби қаҳрабоӣ ва осмони пурситора пас аз торикӣ.';
+
+  @override
+  String get settingsGroupYouTitle => 'Шумо';
+
+  @override
+  String get settingsGroupWorshipTitle => 'Намоз ва ёдоварҳо';
+
+  @override
+  String get settingsGroupAppTitle => 'Барнома';
+
+  @override
+  String get settingsGroupSupportTitle => 'Кӯмак ва Дар бораи';
+
+  @override
+  String get settingsCategoryProfileSubtitle =>
+      'Номи шумо, тарзи муроҷиати барнома ба шумо ва ҳолатҳои ғамхорӣ.';
+
+  @override
+  String get settingsCategoryAdhanSubtitle =>
+      'Азонро интихоб кунед, гӯш кунед ва баландии овозро танзим намоед.';
+
+  @override
+  String get settingsSearchTitle => 'Ҷустуҷӯи танзимот';
+
+  @override
+  String get settingsSearchSubtitle => 'Ҳар танзимотро бо ном ёбед.';
+
+  @override
+  String get settingsSearchHint => 'Ҷустуҷӯи танзимот';
+
+  @override
+  String get settingsSearchTooltip => 'Ҷустуҷӯи танзимот';
+
+  @override
+  String get settingsSearchEmptyTitle => 'Чизе ёфт нашуд';
+
+  @override
+  String get settingsSearchEmptySubtitle =>
+      'Калимаи дигарро санҷед ё гурӯҳҳои саҳифаи Танзимотро аз назар гузаронед.';
+
+  @override
+  String get settingsSearchPromptTitle => 'Барои ҷустуҷӯ нависед';
+
+  @override
+  String get settingsSearchPromptSubtitle =>
+      '«Азон», «Торик», «Ёдовар» ё «Нусхабардорӣ»-ро санҷед.';
+
+  @override
+  String get legalPrivacyTitle => 'Сиёсати махфият';
+
+  @override
+  String get legalPrivacySubtitle =>
+      'Path of Nūr маълумоти шуморо чӣ гуна коркард мекунад.';
+
+  @override
+  String get legalTermsTitle => 'Шартҳои истифода';
+
+  @override
+  String get legalTermsSubtitle => 'Ин барнома чист ва чӣ нест.';
+
+  @override
+  String get legalSupportTitle => 'Дастгирӣ';
+
+  @override
+  String get legalSupportSubtitle =>
+      'Гирифтани кӯмак ва хабар додан дар бораи мушкилӣ.';
+
+  @override
+  String get settingsLegalTitle => 'Ҳуқуқӣ';
+
+  @override
+  String get settingsAccessibilityTitle => 'Дастрасӣ';
+
+  @override
+  String get settingsOccasionThemesTitle => 'Мавзӯъҳои муносибат';
+
+  @override
+  String get settingsOccasionThemesSubtitle =>
+      'Бигзор барнома барои ҷумъа, Рамазон, Шаби Қадр ва Ид ороиш ёбад.';
+
+  @override
+  String get quickActionsSettingsSubtitle => 'Намуд, азон, ёдоварҳо';
+
+  @override
+  String get quickActionsSearchSubtitle => 'Қуръон, ҳадис, дуо, дарсҳо';
+
+  @override
+  String get settingsSalahCalculationTitle => 'Ҳисоб';
+
+  @override
+  String get settingsSalahCalculationSubtitle =>
+      'Усул ва мазҳабе, ки барои ҳисоби вақтҳои намози шумо истифода мешавад.';
+
+  @override
+  String get settingsAdhanSoundTitle => 'Садои азон';
+
+  @override
+  String get settingsRemindersPerPrayerTitle => 'Ёдоварҳо барои ҳар намоз';
+
+  @override
+  String get settingsOtherRemindersTitle => 'Ёдоварҳои дигар';
+
+  @override
+  String get settingsPermissionsTitle => 'Иҷозатҳо';
+
+  @override
+  String get settingsWhatOthersSeeTitle => 'Он чи барнома нишон медиҳад';
 }

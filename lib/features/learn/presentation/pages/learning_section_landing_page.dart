@@ -81,7 +81,10 @@ class _LearningSectionLandingPageState
     );
   }
 
-  List<Widget> _buildAdultChildren(BuildContext context, AppLocalizations l10n) {
+  List<Widget> _buildAdultChildren(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
     return [
       const _PathMigrationCard(),
       const _LearnPathHeroCard(),
@@ -90,7 +93,8 @@ class _LearningSectionLandingPageState
       HubListGroup(
         title: l10n.learnLandingBrowseTitle,
         children: [
-          for (final group in _browseGroups) _buildGroupRow(context, l10n, group),
+          for (final group in _browseGroups)
+            _buildGroupRow(context, l10n, group),
           _buildExploreAllRow(context, l10n),
         ],
       ),
@@ -145,7 +149,8 @@ class _LearningSectionLandingPageState
         ref
             .read(learnAnalyticsServiceProvider)
             .logPrimaryCardOpened(
-              cardId: 'group_${LearnHubTaxonomy.categorySlug(group.categoryId)}',
+              cardId:
+                  'group_${LearnHubTaxonomy.categorySlug(group.categoryId)}',
               sourceSurface: 'learn_landing',
               domain: group.categoryId.name,
             );
@@ -213,7 +218,8 @@ class _KidsStarterPathHero extends ConsumerWidget {
     );
     return ArtHeaderCard(
       imageAsset:
-          guidedPathArtAsset(_pathId) ?? levelArtAsset(LearningPathLevel.beginner),
+          guidedPathArtAsset(_pathId) ??
+          levelArtAsset(LearningPathLevel.beginner),
       eyebrow: l10n.kidsLandingStarterEyebrow,
       title: localizedGuidedLearningPathTitle(l10n, _pathId),
       subtitle: path == null
@@ -312,9 +318,7 @@ class _KidsAdventureGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final subcategories = LearnHubTaxonomy.subcategories(l10n)
-        .where(
-          (item) => item.categoryId == LearnHubCategoryId.kidsLearning,
-        )
+        .where((item) => item.categoryId == LearnHubCategoryId.kidsLearning)
         .toList(growable: false);
     final byId = {for (final item in subcategories) item.id: item};
     final tiles = _tileOrder

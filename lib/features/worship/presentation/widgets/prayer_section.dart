@@ -156,7 +156,7 @@ class _PrayerTimesTab extends ConsumerWidget {
                   const SizedBox(height: 4),
                   Text(
                     sisterCycleGuidance.summary,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12.5,
                       color: AppColors.onSurfaceSubtle,
                       height: 1.35,
@@ -167,7 +167,6 @@ class _PrayerTimesTab extends ConsumerWidget {
                     Text(
                       AppLocalizations.of(context).worshipPrayerCycleDay(
                         _formatCount(context, sisterCycleGuidance.dayNumber),
-                        sisterCycleGuidance.dayNumber,
                       ),
                       style: const TextStyle(
                         fontSize: 12,
@@ -393,7 +392,7 @@ class _QadaBacklogBar extends StatelessWidget {
             ),
             Text(
               l10n.worshipPrayerQueuedCount(count),
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.onSurfaceSubtle,
                 fontWeight: FontWeight.w600,
               ),
@@ -407,7 +406,9 @@ class _QadaBacklogBar extends StatelessWidget {
             value: progress.clamp(0.0, 1.0),
             minHeight: 9,
             backgroundColor: AppColors.surfaceSoft,
-            color: count == 0 ? AppColors.success : const Color(0xFFC85E34),
+            color: count == 0
+                ? AppColors.success
+                : const Color(0xFFC85E34),
           ),
         ),
       ],
@@ -435,7 +436,7 @@ class _StatMiniTile extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11,
               color: AppColors.onSurfaceSubtle,
               fontWeight: FontWeight.w600,
@@ -630,13 +631,8 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                       context,
                       (completion * 100).toStringAsFixed(1),
                     ),
-                    (completion * 100).round(),
-                    _formatCount(
-                      context,
-                      (completion * 100).toStringAsFixed(1),
-                    ),
                   ),
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
               ],
             ),
@@ -655,7 +651,7 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
                   DateFormat.yMMMM(
                     Localizations.localeOf(context).toLanguageTag(),
                   ).format(selectedMonth),
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                  style: TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
                 _MonthlyTrackerGrid(
@@ -713,7 +709,7 @@ class _MonthSectionHeader extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 DateFormat.yMMMM(localeTag).format(selectedMonth),
-                style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                style: TextStyle(color: AppColors.onSurfaceSubtle),
               ),
             ],
           ),
@@ -838,6 +834,7 @@ class _MonthlyTrackerGrid extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: _statusColor(
+                                    context,
                                     daily[prayer] ?? PrayerStatus.pending,
                                   ),
                                 ),
@@ -855,7 +852,7 @@ class _MonthlyTrackerGrid extends StatelessWidget {
     );
   }
 
-  Color _statusColor(PrayerStatus status) {
+  Color _statusColor(BuildContext context, PrayerStatus status) {
     switch (status) {
       case PrayerStatus.completed:
         return AppColors.success;
@@ -877,7 +874,7 @@ class _WeekdayHead extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 11,
           color: AppColors.onSurfaceSubtle,
           fontWeight: FontWeight.w600,
@@ -921,7 +918,7 @@ class _QadaPlannerCard extends ConsumerWidget {
           const SizedBox(height: 8),
           Text(
             l10n.worshipPrayerCadenceValue(recommendedCadence),
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.onSurfaceSubtle,
               fontSize: 12.5,
             ),
@@ -930,7 +927,6 @@ class _QadaPlannerCard extends ConsumerWidget {
           Text(
             l10n.worshipPrayerEstimatedDaysToClear(
               _formatCount(context, estimatedDays),
-              estimatedDays,
             ),
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
@@ -949,9 +945,8 @@ class _QadaPlannerCard extends ConsumerWidget {
             l10n.worshipPrayerTodaysQadaTarget(
               _formatCount(context, dailyCompleted),
               _formatCount(context, dailyTarget),
-              dailyTarget,
             ),
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.onSurfaceSubtle,
               fontSize: 12,
             ),
@@ -1039,7 +1034,7 @@ class _TrendChartCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.onSurfaceSubtle,
               fontSize: 12.5,
             ),
@@ -1081,7 +1076,7 @@ class _TrendChartCard extends StatelessWidget {
                             const SizedBox(height: 6),
                             Text(
                               item.label,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 11,
                                 color: AppColors.onSurfaceSubtle,
                               ),
@@ -1129,7 +1124,10 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.worshipPrayerHeatmapSubtitle,
-            style: TextStyle(color: AppColors.onSurfaceSubtle, fontSize: 12.5),
+            style: TextStyle(
+              color: AppColors.onSurfaceSubtle,
+              fontSize: 12.5,
+            ),
           ),
           const SizedBox(height: 10),
           for (final prayer in obligatoryPrayerNames)
@@ -1160,6 +1158,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2),
                                   color: _heatmapColor(
+                                    context,
                                     monthRecords[day]?[prayer] ??
                                         PrayerStatus.pending,
                                   ),
@@ -1178,7 +1177,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
     );
   }
 
-  Color _heatmapColor(PrayerStatus status) {
+  Color _heatmapColor(BuildContext context, PrayerStatus status) {
     switch (status) {
       case PrayerStatus.completed:
         return AppColors.success;
@@ -1316,7 +1315,7 @@ class _RakatCardState extends State<_RakatCard> {
           ),
           Text(
             l10n.salahDailyGuideNote,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),
@@ -1621,7 +1620,7 @@ List<_TrendPoint> _buildWeeklyTrend(
     }
     points.add(
       _TrendPoint(
-        label: l10n.worshipPrayerWeekLabel(weeks - i, i, weeks - i),
+        label: l10n.worshipPrayerWeekLabel(weeks - i),
         completionRate: total == 0 ? 0 : (completed / total),
       ),
     );

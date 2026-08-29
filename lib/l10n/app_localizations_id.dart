@@ -67,7 +67,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaTitle(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaTitle(String prayerName) {
     return 'Waktu $prayerName hampir habis';
   }
 
@@ -106,7 +106,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String notificationsPrayerBeforeQazaBody(String prayerName, Object prayer) {
+  String notificationsPrayerBeforeQazaBody(String prayerName) {
     return 'Segera tunaikan $prayerName sebelum waktunya habis.';
   }
 
@@ -141,7 +141,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String notificationsRecoveredReminderBody(String body) {
-    return 'Pengingat Anda kembali aktif.';
+    return 'You missed this reminder earlier. $body';
   }
 
   @override
@@ -207,9 +207,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get notificationsFastingLiveFastBeginsArabicTitle => 'بداية الصيام';
 
   @override
-  String notificationsFastingLiveStartsIn(Object duration) {
-    return 'Dimulai dalam $duration';
-  }
+  String get notificationsFastingLiveStartsIn => 'Starts in';
 
   @override
   String get notificationsFastingLiveRenewIntentionTitle => 'Perbarui niat';
@@ -229,9 +227,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get notificationsFastingLiveFastEndsArabicTitle => 'نهاية الصيام';
 
   @override
-  String notificationsFastingLiveEndsIn(Object duration) {
-    return 'Berakhir dalam $duration';
-  }
+  String get notificationsFastingLiveEndsIn => 'Ends in';
 
   @override
   String get notificationsFastingLiveIftarDuaTitle => 'Doa berbuka';
@@ -1987,8 +1983,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get worshipPrayerSisterCyclePauseTitle => 'Jeda siklus saudari';
 
   @override
-  String worshipPrayerCycleDay(String dayNumber, Object day) {
-    return 'Hari siklus $day';
+  String worshipPrayerCycleDay(String dayNumber) {
+    return 'Hari siklus $dayNumber';
   }
 
   @override
@@ -2063,10 +2059,8 @@ class AppLocalizationsId extends AppLocalizations {
     String offerTime,
     String windowStart,
     String windowEnd,
-    Object end,
-    Object start,
   ) {
-    return '$start • $end';
+    return '$offerTime  •  Salah Window: $windowStart–$windowEnd';
   }
 
   @override
@@ -2141,12 +2135,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerCompletionValue(
-    String value,
-    Object completed,
-    Object total,
-  ) {
-    return '$completed/$total selesai';
+  String worshipPrayerCompletionValue(String value) {
+    return 'Completion $value%';
   }
 
   @override
@@ -2170,14 +2160,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get worshipPrayerRakatGuideTitle => 'Panduan rakaat';
 
   @override
-  String worshipPrayerRakatGuideValue(
-    Object count,
-    Object prayer,
-    Object prayerName,
-    Object rakat,
-  ) {
-    return '$prayerName • $rakat rakaat';
-  }
+  String get worshipPrayerRakatGuideValue =>
+      'Fajr: 2  •  Dhuhr: 4  •  Asr: 4  •  Maghrib: 3  •  Isha: 4';
 
   @override
   String get worshipPrayerRakatGuideTip =>
@@ -2187,12 +2171,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get worshipPrayerMoonPhaseTitle => 'Fase bulan';
 
   @override
-  String worshipPrayerMoonPhaseIllumination(
-    String phaseLabel,
-    String percent,
-    Object value,
-  ) {
-    return 'Pencahayaan $value%';
+  String worshipPrayerMoonPhaseIllumination(String phaseLabel, String percent) {
+    return '$phaseLabel • $percent% illuminated';
   }
 
   @override
@@ -2249,7 +2229,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String worshipPrayerOverlayLabel(String prayerName, String time) {
-    return 'Tampilan salat';
+    return '$prayerName $time';
   }
 
   @override
@@ -2274,17 +2254,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get worshipPrayerCadenceFocused => 'Fokus';
 
   @override
-  String worshipPrayerEstimatedDaysToClear(String days, Object count) {
-    return 'Perkiraan selesai dalam $count hari';
+  String worshipPrayerEstimatedDaysToClear(String days) {
+    return 'Perkiraan selesai dalam $days hari';
   }
 
   @override
-  String worshipPrayerTodaysQadaTarget(
-    String completed,
-    String target,
-    Object count,
-  ) {
-    return 'Target qada hari ini: $count';
+  String worshipPrayerTodaysQadaTarget(String completed, String target) {
+    return 'Today\'s qada target: $completed / $target';
   }
 
   @override
@@ -2336,8 +2312,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String worshipPrayerWeekLabel(int weekNumber, Object index, Object number) {
-    return 'Pekan $number';
+  String worshipPrayerWeekLabel(int weekNumber) {
+    return 'Pekan $weekNumber';
   }
 
   @override
@@ -2744,8 +2720,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String homePrayerBecomesQada(Object prayerName, Object prayer, Object time) {
-    return 'Menjadi qada pada $time';
+  String homePrayerBecomesQada(Object prayerName) {
+    return 'Menjadi qada pada $prayerName';
   }
 
   @override
@@ -2776,17 +2752,17 @@ class AppLocalizationsId extends AppLocalizations {
       'Salat tidak dapat ditunaikan sekarang • Matahari terbenam';
 
   @override
-  String homeLevelValue(Object level, Object value) {
+  String homeLevelValue(Object level) {
     return 'Tingkat $level';
   }
 
   @override
-  String homeXpValue(Object xp, Object value) {
+  String homeXpValue(Object xp) {
     return '$xp XP';
   }
 
   @override
-  String homeXpToNextLevelValue(Object xp, Object value) {
+  String homeXpToNextLevelValue(Object xp) {
     return '$xp XP ke level berikutnya';
   }
 
@@ -2794,13 +2770,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeDailyBadgesTitle => 'Lencana harian';
 
   @override
-  String homeContinueQuranValue(
-    Object surahName,
-    Object ayahNumber,
-    Object surah,
-    Object verse,
-  ) {
-    return 'Lanjutkan Al-Qur’an';
+  String homeContinueQuranValue(Object surahName, Object ayahNumber) {
+    return '$surahName $ayahNumber';
   }
 
   @override
@@ -2808,11 +2779,8 @@ class AppLocalizationsId extends AppLocalizations {
     Object prayerPercent,
     Object dhikrPercent,
     Object quranPercent,
-    Object completed,
-    Object count,
-    Object total,
   ) {
-    return '$count cincin';
+    return 'P $prayerPercent% · D $dhikrPercent% · Q $quranPercent%';
   }
 
   @override
@@ -2867,9 +2835,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Zikir setelah salat telah dicatat';
 
   @override
-  String homePrayerBeginsAt(Object time) {
-    return 'Mulai $time';
-  }
+  String get homePrayerBeginsAt => 'Begins at';
 
   @override
   String homeDurationMinutes(String minutes) {
@@ -2889,7 +2855,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String homeLearnCategoryFallbackSubtitle(String category) {
-    return 'Lanjutkan belajar dari tempat terakhir Anda berhenti.';
+    return 'Learn category • $category';
   }
 
   @override
@@ -4203,8 +4169,8 @@ class AppLocalizationsId extends AppLocalizations {
       'Lihat hubungan antartema pembelajaran.';
 
   @override
-  String learnHubSavedNotesSummary(Object saved, Object notes, Object count) {
-    return '$count catatan tersimpan';
+  String learnHubSavedNotesSummary(Object saved, Object notes) {
+    return 'Saved items: $saved • Notes: $notes';
   }
 
   @override
@@ -4231,7 +4197,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String learnHubDailyThemeLabel(Object theme) {
-    return 'Tema hari ini';
+    return 'Theme: $theme';
   }
 
   @override
@@ -5248,8 +5214,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnHubTypeAnyLabel => 'Semua jenis';
 
   @override
-  String learnHubTypeValueLabel(Object type, Object value) {
-    return 'Jenis: $value';
+  String learnHubTypeValueLabel(Object type) {
+    return 'Jenis: $type';
   }
 
   @override
@@ -5259,8 +5225,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnHubThemeAnyLabel => 'Semua tema';
 
   @override
-  String learnHubThemeValueLabel(Object theme, Object value) {
-    return 'Tema: $value';
+  String learnHubThemeValueLabel(Object theme) {
+    return 'Tema: $theme';
   }
 
   @override
@@ -5270,8 +5236,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnHubDifficultyAnyLabel => 'Semua tingkat';
 
   @override
-  String learnHubDifficultyValueLabel(Object difficulty, Object value) {
-    return 'Tingkat: $value';
+  String learnHubDifficultyValueLabel(Object difficulty) {
+    return 'Tingkat: $difficulty';
   }
 
   @override
@@ -5298,13 +5264,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnHubNoMatchingItems => 'Tidak ada item yang cocok.';
 
   @override
-  String learnHubPathProgress(
-    Object completed,
-    Object total,
-    Object progress,
-    Object value,
-  ) {
-    return 'Progres jalur $progress';
+  String learnHubPathProgress(Object completed, Object total) {
+    return '$completed / $total completed';
   }
 
   @override
@@ -5378,7 +5339,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String quranReferenceViewerReferenceLabel(Object reference) {
-    return 'Rujukan';
+    return 'Qur’an $reference';
   }
 
   @override
@@ -6565,7 +6526,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String triviaHomeLongestStreakCaption(Object count) {
-    return 'Rangkaian terpanjang';
+    return 'Longest $count';
   }
 
   @override
@@ -6589,7 +6550,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String triviaHomeBestSurvivalCaption(Object count) {
-    return 'Hasil terbaik mode bertahan';
+    return 'Best survival $count';
   }
 
   @override
@@ -6661,12 +6622,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get triviaHomeNoAnswersYet => 'Belum ada jawaban.';
 
   @override
-  String triviaHomeCategoryAccuracy(
-    Object percent,
-    Object accuracy,
-    Object category,
-  ) {
-    return 'Akurasi kategori';
+  String triviaHomeCategoryAccuracy(Object percent) {
+    return 'Accuracy $percent%';
   }
 
   @override
@@ -6698,11 +6655,8 @@ class AppLocalizationsId extends AppLocalizations {
     Object correct,
     Object total,
     Object xp,
-    Object accuracy,
-    Object incorrect,
-    Object sessions,
   ) {
-    return '$correct benar • $incorrect salah';
+    return '$category • $correct/$total correct • +$xp XP';
   }
 
   @override
@@ -6726,19 +6680,13 @@ class AppLocalizationsId extends AppLocalizations {
       'Hadiah pengulangan lebih ringan';
 
   @override
-  String triviaResultsCompletedSummary(
-    Object seconds,
-    Object missed,
-    Object completed,
-    Object correct,
-    Object total,
-  ) {
-    return '$completed/$total selesai';
+  String triviaResultsCompletedSummary(Object seconds, Object missed) {
+    return 'Completed in ${seconds}s • $missed missed';
   }
 
   @override
   String triviaResultsBestRunInSession(Object count) {
-    return 'Rangkaian terbaik dalam sesi ini';
+    return 'Best run in this session: $count';
   }
 
   @override
@@ -6798,7 +6746,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String triviaReviewStartSessionSubtitle(Object count) {
-    return 'Lanjutkan dengan pertanyaan yang paling membutuhkan perhatian.';
+    return '$count items are ready. The queue favors what was recently missed or still unstable.';
   }
 
   @override
@@ -6834,7 +6782,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String triviaStageQuizSubtitle(Object count) {
-    return 'Jawab pertanyaan untuk menyelesaikan tahap ini.';
+    return 'Answer $count focused questions. Wrong answers still feed your review queue.';
   }
 
   @override
@@ -6892,17 +6840,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get triviaStagesSubtitle => 'Selesaikan tahap satu per satu.';
 
   @override
-  String triviaKnowledgeStageSummary(
-    Object count,
-    Object xp,
-    Object difficulty,
-    Object index,
-    Object questionCount,
-    Object questions,
-    Object status,
-    Object total,
-  ) {
-    return '$questionCount pertanyaan • $status';
+  String triviaKnowledgeStageSummary(Object count, Object xp) {
+    return '$count questions • +$xp XP';
   }
 
   @override
@@ -18896,7 +18835,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String settingsProfileDisplayNameSummary(String title, String name) {
-    return 'Nama tampilan: $name';
+    return '$title $name';
   }
 
   @override
@@ -19276,14 +19215,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountsSyncChooseProfileToBegin => 'Pilih profil untuk memulai.';
 
   @override
-  String accountsSyncProfileStatusSummary(
-    String profileType,
-    String syncMode,
-    Object profile,
-    Object profileName,
-    Object status,
-  ) {
-    return '$profileName • $status';
+  String accountsSyncProfileStatusSummary(String profileType, String syncMode) {
+    return '$profileType • $syncMode';
   }
 
   @override
@@ -19302,7 +19235,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String accountsSyncProfilesInAccountManageSubtitle(String accountName) {
-    return 'Kelola profil yang sudah ada di akun ini.';
+    return 'Manage the profiles stored under $accountName.';
   }
 
   @override
@@ -19400,7 +19333,7 @@ class AppLocalizationsId extends AppLocalizations {
     String syncMode,
     String lastActive,
   ) {
-    return 'Profil yang tersedia di perangkat ini.';
+    return '$profileType • $syncMode • Last active $lastActive';
   }
 
   @override
@@ -19439,7 +19372,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String accountsSyncProfileActivated(String name) {
-    return 'Profil diaktifkan.';
+    return '$name is now active.';
   }
 
   @override
@@ -19485,10 +19418,8 @@ class AppLocalizationsId extends AppLocalizations {
     String provider,
     String identifier,
     String syncMode,
-    Object account,
-    Object profiles,
   ) {
-    return '$provider • $identifier';
+    return '$provider • $identifier • $syncMode';
   }
 
   @override
@@ -20173,14 +20104,8 @@ class AppLocalizationsId extends AppLocalizations {
       'Sembunyikan alat lanjutan dari profil anak';
 
   @override
-  String accountsSyncDeviceSummary(
-    String platform,
-    String lastActive,
-    Object device,
-    Object deviceName,
-    Object status,
-  ) {
-    return '$deviceName • $platform';
+  String accountsSyncDeviceSummary(String platform, String lastActive) {
+    return '$lastActive • $platform';
   }
 
   @override
@@ -20381,12 +20306,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountsSyncCurrentProviderTitle => 'Provider saat ini';
 
   @override
-  String accountsSyncCurrentProviderSummary(
-    String syncMode,
-    String transport,
-    Object provider,
-  ) {
-    return 'Sinkronisasi dikelola melalui $provider.';
+  String accountsSyncCurrentProviderSummary(String syncMode, String transport) {
+    return '$syncMode • $transport';
   }
 
   @override
@@ -20440,7 +20361,14 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String accountsSyncPendingChangesWaiting(int count) {
-    return 'Menunggu untuk disinkronkan';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count changes waiting',
+      one: '1 change waiting',
+      zero: '0 changes waiting',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -20448,7 +20376,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String accountsSyncTransportSummary(String transport, String status) {
-    return 'Data dipindahkan melalui $transport.';
+    return '$transport • $status';
   }
 
   @override
@@ -21027,11 +20955,8 @@ class AppLocalizationsId extends AppLocalizations {
     String prayerName,
     String currentValue,
     String suggestedValue,
-    Object change,
-    Object prayer,
-    Object value,
   ) {
-    return 'Perubahan yang disarankan: $value';
+    return '$prayerName: $currentValue → $suggestedValue';
   }
 
   @override
@@ -23635,7 +23560,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String triviaKnowledgePathsProgressLabel(String completed, String total) {
-    return 'Progres';
+    return '$completed/$total stages completed';
   }
 
   @override
@@ -23796,7 +23721,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String triviaStatsLongestStreak(String value) {
-    return 'Rangkaian terpanjang';
+    return 'Longest streak: $value';
   }
 
   @override
@@ -23817,10 +23742,8 @@ class AppLocalizationsId extends AppLocalizations {
     String weakest,
     String dueCount,
     String masteredCount,
-    Object correct,
-    Object incorrect,
   ) {
-    return 'Jawaban benar: $correct • Salah: $incorrect';
+    return 'Strongest: $strongest • Weakest: $weakest • Due now: $dueCount • Mastered: $masteredCount';
   }
 
   @override
@@ -23835,11 +23758,8 @@ class AppLocalizationsId extends AppLocalizations {
     String answered,
     String accuracy,
     String quizzes,
-    Object category,
-    Object correct,
-    Object total,
   ) {
-    return '$category • $accuracy%';
+    return '$answered answered • $accuracy% accuracy • $quizzes quizzes';
   }
 
   @override
@@ -24002,12 +23922,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String batch9AudioNotAddedYet(String label) {
-    return 'Audio belum ditambahkan';
+    return 'Audio for $label is not added yet.';
   }
 
   @override
   String batch9AudioReady(String label) {
-    return 'Audio siap';
+    return 'Audio ready for $label.';
   }
 
   @override
@@ -24839,7 +24759,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String batch9AudioCue(String context, String label) {
-    return 'Petunjuk audio';
+    return '$context • $label';
   }
 
   @override
@@ -24871,12 +24791,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get batch9QuranWordsSearchHint => 'Cari kata';
 
   @override
-  String batch9QuranWordsMasteredSummary(
-    String mastered,
-    String total,
-    Object count,
-  ) {
-    return '$count kata telah dikuasai';
+  String batch9QuranWordsMasteredSummary(String mastered, String total) {
+    return '$mastered / $total mastered';
   }
 
   @override
@@ -24955,12 +24871,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String batch9QuranWordsOccurrenceSummary(String meaning, String count) {
-    return 'Muncul $count kali';
+    return '$meaning • $count times in Qur’an';
   }
 
   @override
   String batch9QuranWordsLoadError(String error) {
-    return 'Gagal memuat daftar kata';
+    return 'Unable to load Holy Qur\'an words: $error';
   }
 
   @override
@@ -25354,13 +25270,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get fastingTodayTitle => 'Puasa hari ini';
 
   @override
-  String fastingStatusValue(String value, Object status) {
-    return 'Status: $status';
+  String fastingStatusValue(String value) {
+    return 'Status: $value';
   }
 
   @override
-  String fastingTypeValue(String value, Object type) {
-    return 'Jenis: $type';
+  String fastingTypeValue(String value) {
+    return 'Jenis: $value';
   }
 
   @override
@@ -25385,8 +25301,8 @@ class AppLocalizationsId extends AppLocalizations {
       'Hari-hari puasa yang baru dicatat.';
 
   @override
-  String fastingHistoryEntry(String type, String status, Object date) {
-    return '$date • $status';
+  String fastingHistoryEntry(String type, String status) {
+    return '$type • $status';
   }
 
   @override
@@ -25451,15 +25367,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get prayerUnknownAdjustment => 'Penyesuaian salat tidak dikenal.';
 
   @override
-  String prayerValidationMustRemainBefore(
-    String current,
-    String next,
-    Object first,
-    Object label,
-    Object otherLabel,
-    Object second,
-  ) {
-    return '$label harus tetap sebelum $otherLabel.';
+  String prayerValidationMustRemainBefore(String current, String next) {
+    return '$current must remain before $next.';
   }
 
   @override
@@ -25578,12 +25487,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String accountsSyncEventUploadedChanges(int count) {
-    return 'Perubahan berhasil diunggah';
+    return 'Uploaded $count changes';
   }
 
   @override
   String accountsSyncEventAppliedInboundChanges(int count) {
-    return 'Perubahan masuk berhasil diterapkan';
+    return 'Applied $count inbound changes';
   }
 
   @override
@@ -42621,4 +42530,112 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get settingsLivingSkySubtitle =>
       'Noor Glass mengikuti hari — fajar merah jambu keemasan, Magrib kuning sawo, dan langit berbintang setelah gelap.';
+
+  @override
+  String get settingsGroupYouTitle => 'Anda';
+
+  @override
+  String get settingsGroupWorshipTitle => 'Salat & Pengingat';
+
+  @override
+  String get settingsGroupAppTitle => 'Aplikasi';
+
+  @override
+  String get settingsGroupSupportTitle => 'Bantuan & Tentang';
+
+  @override
+  String get settingsCategoryProfileSubtitle =>
+      'Nama Anda, cara aplikasi menyapa Anda, dan mode dukungan.';
+
+  @override
+  String get settingsCategoryAdhanSubtitle =>
+      'Pilih azan, dengarkan pratinjau, dan atur volumenya.';
+
+  @override
+  String get settingsSearchTitle => 'Cari Pengaturan';
+
+  @override
+  String get settingsSearchSubtitle =>
+      'Temukan pengaturan apa pun berdasarkan namanya.';
+
+  @override
+  String get settingsSearchHint => 'Cari pengaturan';
+
+  @override
+  String get settingsSearchTooltip => 'Cari pengaturan';
+
+  @override
+  String get settingsSearchEmptyTitle => 'Tidak ada yang cocok';
+
+  @override
+  String get settingsSearchEmptySubtitle =>
+      'Coba kata lain, atau jelajahi grup di halaman Pengaturan.';
+
+  @override
+  String get settingsSearchPromptTitle => 'Ketik untuk mencari';
+
+  @override
+  String get settingsSearchPromptSubtitle =>
+      'Coba “azan”, “gelap”, “pengingat”, atau “cadangan”.';
+
+  @override
+  String get legalPrivacyTitle => 'Kebijakan Privasi';
+
+  @override
+  String get legalPrivacySubtitle =>
+      'Bagaimana Path of Nūr menangani data Anda.';
+
+  @override
+  String get legalTermsTitle => 'Ketentuan Penggunaan';
+
+  @override
+  String get legalTermsSubtitle => 'Apa aplikasi ini, dan apa yang bukan.';
+
+  @override
+  String get legalSupportTitle => 'Dukungan';
+
+  @override
+  String get legalSupportSubtitle =>
+      'Mendapatkan bantuan dan melaporkan masalah.';
+
+  @override
+  String get settingsLegalTitle => 'Legal';
+
+  @override
+  String get settingsAccessibilityTitle => 'Aksesibilitas';
+
+  @override
+  String get settingsOccasionThemesTitle => 'Tema Momen';
+
+  @override
+  String get settingsOccasionThemesSubtitle =>
+      'Biarkan aplikasi berhias untuk Jumat, Ramadan, Lailatulqadar, dan Idulfitri.';
+
+  @override
+  String get quickActionsSettingsSubtitle => 'Tampilan, azan, pengingat';
+
+  @override
+  String get quickActionsSearchSubtitle => 'Al-Qur’an, hadis, doa, pelajaran';
+
+  @override
+  String get settingsSalahCalculationTitle => 'Perhitungan';
+
+  @override
+  String get settingsSalahCalculationSubtitle =>
+      'Metode dan mazhab yang dipakai untuk menghitung waktu salat Anda.';
+
+  @override
+  String get settingsAdhanSoundTitle => 'Suara Azan';
+
+  @override
+  String get settingsRemindersPerPrayerTitle => 'Pengingat Tiap Salat';
+
+  @override
+  String get settingsOtherRemindersTitle => 'Pengingat Lainnya';
+
+  @override
+  String get settingsPermissionsTitle => 'Izin';
+
+  @override
+  String get settingsWhatOthersSeeTitle => 'Yang Ditampilkan Aplikasi';
 }
