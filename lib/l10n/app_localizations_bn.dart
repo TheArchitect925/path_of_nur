@@ -4131,6 +4131,15 @@ class AppLocalizationsBn extends AppLocalizations {
   String get learnPathMigrationDismiss => 'এখন নয়';
 
   @override
+  String get kidsLandingStarterEyebrow => 'আপনার শুরুর পথ';
+
+  @override
+  String get kidsLandingTonightTitle => 'আজ রাতের গল্প';
+
+  @override
+  String get kidsLandingExploreTitle => 'একটি অ্যাডভেঞ্চার বেছে নিন';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

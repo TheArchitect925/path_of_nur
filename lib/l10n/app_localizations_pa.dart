@@ -4156,6 +4156,15 @@ class AppLocalizationsPa extends AppLocalizations {
   String get learnPathMigrationDismiss => 'ਹੁਣ ਨਹੀਂ';
 
   @override
+  String get kidsLandingStarterEyebrow => 'ਤੁਹਾਡਾ ਸ਼ੁਰੂਆਤੀ ਰਾਹ';
+
+  @override
+  String get kidsLandingTonightTitle => 'ਅੱਜ ਰਾਤ ਦੀ ਕਹਾਣੀ';
+
+  @override
+  String get kidsLandingExploreTitle => 'ਇੱਕ ਸਾਹਸ ਚੁਣੋ';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

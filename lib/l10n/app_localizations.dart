@@ -7145,6 +7145,24 @@ abstract class AppLocalizations {
   /// **'Not now'**
   String get learnPathMigrationDismiss;
 
+  /// No description provided for @kidsLandingStarterEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Your starter path'**
+  String get kidsLandingStarterEyebrow;
+
+  /// No description provided for @kidsLandingTonightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight’s story'**
+  String get kidsLandingTonightTitle;
+
+  /// No description provided for @kidsLandingExploreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an adventure'**
+  String get kidsLandingExploreTitle;
+
   /// No description provided for @learnHubContinueJourneyTitle.
   ///
   /// In en, this message translates to:

@@ -4152,6 +4152,15 @@ class AppLocalizationsKu extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Ne niha';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Rêya destpêkê ya te';
+
+  @override
+  String get kidsLandingTonightTitle => 'Çîroka îşev';
+
+  @override
+  String get kidsLandingExploreTitle => 'Serpêhatiyekê hilbijêre';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

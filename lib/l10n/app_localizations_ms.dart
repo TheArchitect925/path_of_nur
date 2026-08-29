@@ -4140,6 +4140,15 @@ class AppLocalizationsMs extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Bukan sekarang';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Laluan permulaan anda';
+
+  @override
+  String get kidsLandingTonightTitle => 'Cerita malam ini';
+
+  @override
+  String get kidsLandingExploreTitle => 'Pilih pengembaraan';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

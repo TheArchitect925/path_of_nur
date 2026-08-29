@@ -4113,6 +4113,15 @@ class AppLocalizationsFa extends AppLocalizations {
   String get learnPathMigrationDismiss => 'حالا نه';
 
   @override
+  String get kidsLandingStarterEyebrow => 'مسیر شروع شما';
+
+  @override
+  String get kidsLandingTonightTitle => 'قصه امشب';
+
+  @override
+  String get kidsLandingExploreTitle => 'یک ماجراجویی انتخاب کن';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
@@ -46261,6 +46270,15 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get learnPathMigrationDismiss => 'حالا نه';
+
+  @override
+  String get kidsLandingStarterEyebrow => 'مسیر شروع شما';
+
+  @override
+  String get kidsLandingTonightTitle => 'قصه امشب';
+
+  @override
+  String get kidsLandingExploreTitle => 'یک ماجراجویی انتخاب کن';
 
   @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';

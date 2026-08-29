@@ -13,18 +13,17 @@ String? redirectChildLearningLocation({
     return null;
   }
   if (isKidsLearningLocationAllowed(matchedLocation)) {
-    if (matchedLocation == '/learn') {
-      return '/learn/category/kids-learning';
-    }
     return null;
   }
-  return '/learn/category/kids-learning';
+  // The Learn landing renders the kids landing for child profiles.
+  return '/learn';
 }
 
 bool isKidsLearningLocationAllowed(String matchedLocation) {
   return matchedLocation == '/learn' ||
       matchedLocation == '/learn/category/kids-learning' ||
       matchedLocation.startsWith('/learn/kids/') ||
+      matchedLocation.startsWith('/learn/paths/kids') ||
       matchedLocation.startsWith('/learn/quizzes/crossword') ||
       matchedLocation.startsWith('/learn/quizzes/word-search') ||
       matchedLocation.startsWith('/learn/quizzes/matching') ||

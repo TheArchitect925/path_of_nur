@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart';
+import 'package:path_of_nur/features/learn/journey/application/family_learning_provider.dart';
+import 'package:path_of_nur/features/learn/journey/domain/family_learning_models.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_category_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
@@ -103,6 +105,53 @@ void main() {
     await pumpRouteFrames(tester);
     await tapHubRow(tester, l10n.learnHubLandingExploreAllTitle);
     expect(find.byType(LearnExploreAllKnowledgePage), findsOneWidget);
+  });
+
+  testWidgets('child profiles land on the kids landing', (tester) async {
+    const childContext = ActiveFamilyLearningContext(
+      activeProfileId: 'kid-test',
+      activeGuardianProfileId: 'adult-test',
+      activeChildProfile: null,
+      familyGroup: null,
+      switchableProfileIds: <String>['kid-test'],
+      visibilityPolicy: FamilyLearningVisibilityPolicy(
+        isChildProfile: true,
+        isGuardianProfile: false,
+        guidedOnly: true,
+        showBrowseAll: false,
+        showLegacyLearning: false,
+        showAdvancedJourneys: false,
+        showSecondaryExploration: false,
+        showTrivia: true,
+        showDiscovery: true,
+      ),
+    );
+    await tester.binding.setSurfaceSize(const Size(1200, 3200));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final container = await makeTestContainer(
+      overrides: <Override>[
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+        ),
+        activeFamilyLearningContextProvider.overrideWithValue(childContext),
+      ],
+    );
+    addTearDown(container.dispose);
+    final router = container.read(appRouterProvider);
+    await tester.pumpWidget(buildRouterTestApp(container));
+    router.go('/learn');
+    await pumpRouteFrames(tester);
+
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    // Starter path hero + ten adventure tiles, all art cards.
+    expect(find.text(l10n.guidedPathKidsStarterTitle), findsOneWidget);
+    expect(find.text(l10n.kidsLandingExploreTitle), findsOneWidget);
+    expect(find.byType(ArtHeaderCard), findsNWidgets(11));
+    // Tonight's story row shows the featured bedtime pick.
+    expect(find.text(l10n.kidsLandingTonightTitle), findsOneWidget);
+    // The adult browse groups do not leak into the kids view.
+    expect(find.text(l10n.learnLandingBrowseTitle), findsNothing);
   });
 
   testWidgets('divine life lessons stays reachable from its new group', (

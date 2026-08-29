@@ -4168,6 +4168,15 @@ class AppLocalizationsHa extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Ba yanzu ba';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Hanyar farawa taka';
+
+  @override
+  String get kidsLandingTonightTitle => 'Labarin daren yau';
+
+  @override
+  String get kidsLandingExploreTitle => 'Zaɓi wani balaguro';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

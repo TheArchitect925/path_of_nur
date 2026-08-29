@@ -4139,6 +4139,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Nanti saja';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Jalur awal Anda';
+
+  @override
+  String get kidsLandingTonightTitle => 'Cerita malam ini';
+
+  @override
+  String get kidsLandingExploreTitle => 'Pilih petualangan';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

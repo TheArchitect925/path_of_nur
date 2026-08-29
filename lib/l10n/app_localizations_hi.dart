@@ -4162,6 +4162,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get learnPathMigrationDismiss => 'अभी नहीं';
 
   @override
+  String get kidsLandingStarterEyebrow => 'आपका शुरुआती पथ';
+
+  @override
+  String get kidsLandingTonightTitle => 'आज रात की कहानी';
+
+  @override
+  String get kidsLandingExploreTitle => 'एक रोमांच चुनें';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

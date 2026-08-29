@@ -4139,6 +4139,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Şimdi değil';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Başlangıç yolun';
+
+  @override
+  String get kidsLandingTonightTitle => 'Bu gecenin hikâyesi';
+
+  @override
+  String get kidsLandingExploreTitle => 'Bir macera seç';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

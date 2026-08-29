@@ -4223,6 +4223,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Nicht jetzt';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Dein Startpfad';
+
+  @override
+  String get kidsLandingTonightTitle => 'Geschichte für heute Abend';
+
+  @override
+  String get kidsLandingExploreTitle => 'Such dir ein Abenteuer aus';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Reise fortsetzen';
 
   @override

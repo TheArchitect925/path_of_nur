@@ -4147,6 +4147,15 @@ class AppLocalizationsPs extends AppLocalizations {
   String get learnPathMigrationDismiss => 'اوس نه';
 
   @override
+  String get kidsLandingStarterEyebrow => 'ستاسو د پیل لاره';
+
+  @override
+  String get kidsLandingTonightTitle => 'د نن شپې کیسه';
+
+  @override
+  String get kidsLandingExploreTitle => 'یوه ماجرا وټاکئ';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

@@ -4175,6 +4175,15 @@ class AppLocalizationsTg extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Ҳоло не';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Роҳи оғози шумо';
+
+  @override
+  String get kidsLandingTonightTitle => 'Қиссаи имшаб';
+
+  @override
+  String get kidsLandingExploreTitle => 'Саргузаште интихоб кунед';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

@@ -4158,6 +4158,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learnPathMigrationDismiss => 'Not now';
 
   @override
+  String get kidsLandingStarterEyebrow => 'Your starter path';
+
+  @override
+  String get kidsLandingTonightTitle => 'Tonight’s story';
+
+  @override
+  String get kidsLandingExploreTitle => 'Pick an adventure';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

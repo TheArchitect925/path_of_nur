@@ -15,6 +15,23 @@ String levelArtAsset(LearningPathLevel level) {
   };
 }
 
+/// Scene tile for a kids-learning subcategory; null when it has no art yet.
+String? kidsSubcategoryArtAsset(String subcategoryId) {
+  return switch (subcategoryId) {
+    'kids-quran' => '$_artRoot/kids_quran.webp',
+    'kids-arabic-learning' => '$_artRoot/kids_arabic.webp',
+    'kids-stories' => '$_artRoot/kids_story_library.webp',
+    'kids-prophet-stories' => '$_artRoot/kids_prophet_stories.webp',
+    'kids-dua-learning' => '$_artRoot/kids_duas.webp',
+    'kids-hadith' => '$_artRoot/kids_hadith.webp',
+    'kids-hadith-stories' => '$_artRoot/kids_hadith_stories.webp',
+    'kids-seerah-journeys' => '$_artRoot/kids_seerah.webp',
+    'kids-fun-learning' => '$_artRoot/kids_fun_learning.webp',
+    'kids-games' => '$_artRoot/kids_games.webp',
+    _ => null,
+  };
+}
+
 /// Scene for a guided learning path card; null when a path has no art yet.
 String? guidedPathArtAsset(String pathId) {
   return switch (pathId) {

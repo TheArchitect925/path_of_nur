@@ -4119,6 +4119,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get learnPathMigrationDismiss => 'ليس الآن';
 
   @override
+  String get kidsLandingStarterEyebrow => 'مسار البداية الخاص بك';
+
+  @override
+  String get kidsLandingTonightTitle => 'قصة الليلة';
+
+  @override
+  String get kidsLandingExploreTitle => 'اختر مغامرة';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override

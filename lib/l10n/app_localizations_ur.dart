@@ -4136,6 +4136,15 @@ class AppLocalizationsUr extends AppLocalizations {
   String get learnPathMigrationDismiss => 'ابھی نہیں';
 
   @override
+  String get kidsLandingStarterEyebrow => 'آپ کا آغاز کا راستہ';
+
+  @override
+  String get kidsLandingTonightTitle => 'آج رات کی کہانی';
+
+  @override
+  String get kidsLandingExploreTitle => 'ایک مہم منتخب کریں';
+
+  @override
   String get learnHubContinueJourneyTitle => 'Continue Your Journey';
 
   @override
