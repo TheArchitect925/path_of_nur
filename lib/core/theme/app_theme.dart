@@ -1115,8 +1115,13 @@ class AppTheme {
             if (states.contains(WidgetState.selected)) {
               return appearance.chipSelectedFill;
             }
-            return appearance.chipUnselectedFill.withValues(
-              alpha: appearance.isDark ? 0.76 : 0.88,
+            // Scale the fill's own alpha rather than replacing it: the night
+            // family's chipUnselectedFill is onSurface at 0.07, and forcing
+            // it to 0.76 painted an unselected segment as near-solid cream
+            // with cream label text on top of it.
+            final unselected = appearance.chipUnselectedFill;
+            return unselected.withValues(
+              alpha: unselected.a * (appearance.isDark ? 0.76 : 0.88),
             );
           }),
           side: WidgetStateProperty.resolveWith((states) {
