@@ -22918,144 +22918,144 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ihre neue Konsistenz trägt dazu bei, dass der gesamte Garten gesund und voll bleibt.';
 
   @override
-  String get homeModuleGardenTitle => 'Your Garden';
+  String get homeModuleGardenTitle => 'Dein Garten';
 
   @override
   String get homeModuleGardenSubtitle =>
-      'A living view of how your worship is growing.';
+      'Ein lebendiges Bild davon, wie dein Gottesdienst wächst.';
 
   @override
-  String get gardenElementCentralTreeTitle => 'The Good Tree';
+  String get gardenElementCentralTreeTitle => 'Der gute Baum';
 
   @override
   String get gardenElementCentralTreeMeaning =>
-      'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.';
+      'Ein gutes Wort ist wie ein guter Baum: seine Wurzeln fest verankert, seine Zweige in den Himmel reichend, der zu jeder Zeit seine Frucht gibt.';
 
   @override
-  String get gardenElementStreamTitle => 'The Flowing Stream';
+  String get gardenElementStreamTitle => 'Der fließende Bach';
 
   @override
   String get gardenElementStreamMeaning =>
-      'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.';
+      'Jede Andacht ist ein Tropfen. Gesammelt öffnen sie die Erde zu Quellen, und alles, was hier wächst, trinkt daraus.';
 
   @override
-  String get gardenElementOceanTitle => 'The Distant Sea';
+  String get gardenElementOceanTitle => 'Das ferne Meer';
 
   @override
   String get gardenElementOceanMeaning =>
-      'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.';
+      'Eine Erinnerung daran, dass das, worauf du zugehst, kein Ende hat: das Meer versiegte, ehe die Worte deines Herrn zu Ende gingen.';
 
   @override
-  String get gardenElementOliveTitle => 'The Olive';
+  String get gardenElementOliveTitle => 'Die Olive';
 
   @override
   String get gardenElementOliveMeaning =>
-      'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.';
+      'Der gesegnete Baum aus dem Lichtvers, weder östlich noch westlich, dessen Öl beinahe leuchtet, auch wenn kein Feuer es berührt hat.';
 
   @override
-  String get gardenElementDatePalmTitle => 'The Date Palm';
+  String get gardenElementDatePalmTitle => 'Die Dattelpalme';
 
   @override
   String get gardenElementDatePalmMeaning =>
-      'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.';
+      'In Maryams schwerster Stunde geschüttelt, ließ sie frische reife Datteln fallen: Versorgung, die genau im richtigen Moment kam.';
 
   @override
-  String get gardenElementFigTitle => 'The Fig';
+  String get gardenElementFigTitle => 'Die Feige';
 
   @override
   String get gardenElementFigMeaning =>
-      'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.';
+      'Bei der Feige und der Olive. Ein Schwur auf kleine, süße Dinge und auf Einsicht, die langsam und still reift.';
 
   @override
-  String get gardenElementPomegranateTitle => 'The Pomegranate';
+  String get gardenElementPomegranateTitle => 'Der Granatapfel';
 
   @override
   String get gardenElementPomegranateMeaning =>
-      'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.';
+      'Genannt unter den Früchten der Gärten. Er birgt hundert Kerne in einer einzigen Schale, so wie Weisheit sich aus vielen kleinen Gewinnen sammelt.';
 
   @override
-  String get gardenElementGrapeVineTitle => 'The Grapevine';
+  String get gardenElementGrapeVineTitle => 'Der Weinstock';
 
   @override
   String get gardenElementGrapeVineMeaning =>
-      'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.';
+      'Aus seiner Frucht gewinnt ihr gute Versorgung. Das ist die Ernte einer Gewohnheit, die geduldig gepflegt wird, Saison für Saison.';
 
   @override
-  String get gardenElementGourdTitle => 'The Gourd';
+  String get gardenElementGourdTitle => 'Der Kürbisstrauch';
 
   @override
   String get gardenElementGourdMeaning =>
-      'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.';
+      'Über Yunus wachsen lassen, als er entkräftet im Freien lag: Schatten, der als reine Barmherzigkeit kam, ehe jemand darum bat.';
 
   @override
-  String get gardenElementLoteTreeTitle => 'The Lote Tree';
+  String get gardenElementLoteTreeTitle => 'Der Lotusbaum';
 
   @override
   String get gardenElementLoteTreeMeaning =>
-      'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.';
+      'Sidrat al-Muntaha, der Lotusbaum der äußersten Grenze, am Rand dessen, was erreicht werden kann. Er erscheint erst nahe dem Gipfel.';
 
   @override
-  String get gardenElementRayhanTitle => 'Fragrant Rayhan';
+  String get gardenElementRayhanTitle => 'Duftender Rayhan';
 
   @override
   String get gardenElementRayhanMeaning =>
-      'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.';
+      'Duftende Kräuter, genannt neben dem Korn und der Spreu. Das Gedenken ist der Duft, den ein Garten trägt, ehe man ihn sieht.';
 
   @override
-  String get gardenElementBeeTitle => 'The Bee';
+  String get gardenElementBeeTitle => 'Die Biene';
 
   @override
   String get gardenElementBeeMeaning =>
-      'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.';
+      'Ihr wurde eingegeben, ihre Wege in Demut zu ziehen, und aus ihr kommt ein Trank verschiedener Farben, in dem Heilung ist. Kleine Arbeit, täglich getan.';
 
   @override
-  String get gardenElementAntTitle => 'The Ant';
+  String get gardenElementAntTitle => 'Die Ameise';
 
   @override
   String get gardenElementAntMeaning =>
-      'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.';
+      'Die Ameise, die ihr Volk in den Bau rief, damit es nicht unbemerkt zertreten werde: Fürsorge und Vorbereitung im kleinsten Maßstab.';
 
   @override
-  String get gardenElementHoopoeTitle => 'The Hoopoe';
+  String get gardenElementHoopoeTitle => 'Der Wiedehopf';
 
   @override
   String get gardenElementHoopoeMeaning =>
-      'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.';
+      'Er kam zu Sulaiman mit Nachricht aus einem Land, das dieser nie gesehen hatte. Wissen, geduldig gesucht und heimgebracht.';
 
   @override
-  String get gardenElementSongbirdsTitle => 'Birds in Rows';
+  String get gardenElementSongbirdsTitle => 'Vögel in Reihen';
 
   @override
   String get gardenElementSongbirdsMeaning =>
-      'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.';
+      'Alles in den Himmeln und auf der Erde preist Ihn, und die Vögel mit ausgebreiteten Flügeln, ein jeder kennt bereits sein Gebet.';
 
   @override
-  String get gardenElementFishTitle => 'The Fish';
+  String get gardenElementFishTitle => 'Der Fisch';
 
   @override
   String get gardenElementFishMeaning =>
-      'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.';
+      'Der Fisch, der am Zusammenfluss der beiden Meere entwich und die Stelle bezeichnete, an der eine lange Reise wirklich begann.';
 
   @override
-  String get gardenElementSheetSourceLabel => 'In the Qur\'an';
+  String get gardenElementSheetSourceLabel => 'Im Koran';
 
   @override
-  String get gardenElementSheetGrowsWithLabel => 'Grows with';
+  String get gardenElementSheetGrowsWithLabel => 'Wächst mit';
 
   @override
   String get gardenVistaExploreHint =>
-      'Tap a plant or creature in your garden to see what it means.';
+      'Berühre eine Pflanze oder ein Wesen in deinem Garten, um zu sehen, was es bedeutet.';
 
   @override
-  String get gardenVistaNewGrowthTitle => 'Something new has taken root';
+  String get gardenVistaNewGrowthTitle => 'Etwas Neues hat Wurzeln geschlagen';
 
   @override
   String get gardenVistaNewGrowthBody =>
-      'Your garden has changed since you were last here.';
+      'Dein Garten hat sich verändert, seit du zuletzt hier warst.';
 
   @override
   String get gardenVistaStageAdvancedTitle =>
-      'Your garden has entered a new stage';
+      'Dein Garten ist in eine neue Phase eingetreten';
 
   @override
   String get gardenRecentStory => 'Geschichte abgeschlossen';

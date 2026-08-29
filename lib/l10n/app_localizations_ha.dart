@@ -22705,144 +22705,143 @@ class AppLocalizationsHa extends AppLocalizations {
       'Your recent consistency is helping the whole garden stay healthy and full.';
 
   @override
-  String get homeModuleGardenTitle => 'Your Garden';
+  String get homeModuleGardenTitle => 'Lambunka';
 
   @override
   String get homeModuleGardenSubtitle =>
-      'A living view of how your worship is growing.';
+      'Hoto mai rai na yadda ibadarka ke girma.';
 
   @override
-  String get gardenElementCentralTreeTitle => 'The Good Tree';
+  String get gardenElementCentralTreeTitle => 'Itaciya Mai Kyau';
 
   @override
   String get gardenElementCentralTreeMeaning =>
-      'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.';
+      'Kalma mai kyau tana kama da itaciya mai kyau: saiwarta a kafe, rassanta sun miƙe zuwa sama, tana ba da \'ya\'yanta a kowane lokaci.';
 
   @override
-  String get gardenElementStreamTitle => 'The Flowing Stream';
+  String get gardenElementStreamTitle => 'Rafi Mai Gudana';
 
   @override
   String get gardenElementStreamMeaning =>
-      'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.';
+      'Kowace ibada digo ɗaya ce. Idan suka taru sai su buɗe ƙasa ta zama maɓuɓɓugai, kuma duk abin da ke girma a nan yana sha daga gare su.';
 
   @override
-  String get gardenElementOceanTitle => 'The Distant Sea';
+  String get gardenElementOceanTitle => 'Teku Mai Nisa';
 
   @override
   String get gardenElementOceanMeaning =>
-      'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.';
+      'Tunatarwa cewa abin da kake nufa ba shi da iyaka: teku zai ƙare kafin kalmomin Ubangijinka su ƙare.';
 
   @override
-  String get gardenElementOliveTitle => 'The Olive';
+  String get gardenElementOliveTitle => 'Zaitun';
 
   @override
   String get gardenElementOliveMeaning =>
-      'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.';
+      'Itaciya mai albarka a cikin Ayar Haske, ba ta gabas ba ba ta yamma ba, wadda mai nata kusan yana haskakawa ko da wuta ba ta taɓa shi ba.';
 
   @override
-  String get gardenElementDatePalmTitle => 'The Date Palm';
+  String get gardenElementDatePalmTitle => 'Itacen Dabino';
 
   @override
   String get gardenElementDatePalmMeaning =>
-      'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.';
+      'An girgiza ta ga Maryam a lokacinta mafi wahala, sai dabino sabo ya zubo: arziki da ya iso daidai lokacin da ake buƙata.';
 
   @override
-  String get gardenElementFigTitle => 'The Fig';
+  String get gardenElementFigTitle => 'Ɓaure';
 
   @override
   String get gardenElementFigMeaning =>
-      'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.';
+      'Na rantse da ɓaure da zaitun. Rantsuwa a kan ƙananan abubuwa masu daɗi, da kuma a kan fahimtar da ke nunawa a hankali cikin natsuwa.';
 
   @override
-  String get gardenElementPomegranateTitle => 'The Pomegranate';
+  String get gardenElementPomegranateTitle => 'Rumman';
 
   @override
   String get gardenElementPomegranateMeaning =>
-      'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.';
+      'An ambace shi cikin \'ya\'yan itacen Aljanna. Yana riƙe da ɗari na iri a cikin bawo ɗaya, kamar yadda hikima ke taruwa daga ƙananan ribobi masu yawa.';
 
   @override
-  String get gardenElementGrapeVineTitle => 'The Grapevine';
+  String get gardenElementGrapeVineTitle => 'Kurangar Inabi';
 
   @override
   String get gardenElementGrapeVineMeaning =>
-      'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.';
+      'Daga \'ya\'yanta kuke samun arziki mai kyau. Wannan shi ne girbin ɗabi\'ar da aka kula da ita cikin haƙuri, kaka bayan kaka.';
 
   @override
-  String get gardenElementGourdTitle => 'The Gourd';
+  String get gardenElementGourdTitle => 'Kabewa';
 
   @override
   String get gardenElementGourdMeaning =>
-      'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.';
+      'An tsirar da ita a kan Yunusa yayin da yake kwance cikin rauni a fili: inuwa da ta zo a matsayin rahama tsantsa, kafin a nemi ta.';
 
   @override
-  String get gardenElementLoteTreeTitle => 'The Lote Tree';
+  String get gardenElementLoteTreeTitle => 'Itacen Magarya';
 
   @override
   String get gardenElementLoteTreeMeaning =>
-      'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.';
+      'Sidratul Muntaha, itacen magarya a iyaka ta ƙarshe, a gefen abin da za a iya kaiwa. Yana bayyana kusa da kololuwa kawai.';
 
   @override
-  String get gardenElementRayhanTitle => 'Fragrant Rayhan';
+  String get gardenElementRayhanTitle => 'Rayhan Mai Ƙamshi';
 
   @override
   String get gardenElementRayhanMeaning =>
-      'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.';
+      'Ganyaye masu ƙamshi da aka ambata tare da hatsi da buntu. Zikiri shi ne ƙamshin da lambu ke ɗauke da shi kafin a gan shi.';
 
   @override
-  String get gardenElementBeeTitle => 'The Bee';
+  String get gardenElementBeeTitle => 'Ƙudan Zuma';
 
   @override
   String get gardenElementBeeMeaning =>
-      'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.';
+      'An yi mata wahayi ta bi hanyoyinta cikin tawali\'u, sai abin sha mai launuka daban-daban ya fito daga cikinta, a cikinsa akwai waraka. Ƙaramin aiki, ana yin sa kullum.';
 
   @override
-  String get gardenElementAntTitle => 'The Ant';
+  String get gardenElementAntTitle => 'Tururuwa';
 
   @override
   String get gardenElementAntMeaning =>
-      'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.';
+      'Tururuwar da ta kira mutanenta cikin gidajensu don kada a murƙushe su ba tare da sanin su ba: kulawa da shirye-shirye a matakin mafi ƙanƙanta.';
 
   @override
-  String get gardenElementHoopoeTitle => 'The Hoopoe';
+  String get gardenElementHoopoeTitle => 'Alhudhud';
 
   @override
   String get gardenElementHoopoeMeaning =>
-      'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.';
+      'Ya zo wa Sulaiman da labari daga wata ƙasa da bai taɓa gani ba. Ilimi, da aka nema cikin haƙuri aka kuma kawo gida.';
 
   @override
-  String get gardenElementSongbirdsTitle => 'Birds in Rows';
+  String get gardenElementSongbirdsTitle => 'Tsuntsaye A Layi';
 
   @override
   String get gardenElementSongbirdsMeaning =>
-      'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.';
+      'Duk abin da ke cikin sammai da ƙasa yana tsarkake Shi, da tsuntsaye masu buɗe fikafikai; kowanne ya riga ya san addu\'arsa.';
 
   @override
-  String get gardenElementFishTitle => 'The Fish';
+  String get gardenElementFishTitle => 'Kifi';
 
   @override
   String get gardenElementFishMeaning =>
-      'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.';
+      'Kifin da ya kuɓuce a mahaɗar tekuna biyu, alama ce ta wurin da doguwar tafiya ta fara da gaske.';
 
   @override
-  String get gardenElementSheetSourceLabel => 'In the Qur\'an';
+  String get gardenElementSheetSourceLabel => 'A cikin Alƙur\'ani';
 
   @override
-  String get gardenElementSheetGrowsWithLabel => 'Grows with';
+  String get gardenElementSheetGrowsWithLabel => 'Yana girma da';
 
   @override
   String get gardenVistaExploreHint =>
-      'Tap a plant or creature in your garden to see what it means.';
+      'Taɓa wata shuka ko halitta a lambunka don ganin ma\'anarta.';
 
   @override
-  String get gardenVistaNewGrowthTitle => 'Something new has taken root';
+  String get gardenVistaNewGrowthTitle => 'Wani sabon abu ya kafa saiwa';
 
   @override
   String get gardenVistaNewGrowthBody =>
-      'Your garden has changed since you were last here.';
+      'Lambunka ya canja tun ziyararka ta ƙarshe.';
 
   @override
-  String get gardenVistaStageAdvancedTitle =>
-      'Your garden has entered a new stage';
+  String get gardenVistaStageAdvancedTitle => 'Lambunka ya shiga sabon mataki';
 
   @override
   String get gardenRecentStory => 'Story completed';

@@ -22566,144 +22566,143 @@ class AppLocalizationsFa extends AppLocalizations {
       'Your recent consistency is helping the whole garden stay healthy and full.';
 
   @override
-  String get homeModuleGardenTitle => 'Your Garden';
+  String get homeModuleGardenTitle => 'باغ شما';
 
   @override
-  String get homeModuleGardenSubtitle =>
-      'A living view of how your worship is growing.';
+  String get homeModuleGardenSubtitle => 'نمایی زنده از رشد عبادت شما.';
 
   @override
-  String get gardenElementCentralTreeTitle => 'The Good Tree';
+  String get gardenElementCentralTreeTitle => 'درخت پاک';
 
   @override
   String get gardenElementCentralTreeMeaning =>
-      'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.';
+      'سخن پاک مانند درخت پاک است: ریشه‌اش استوار و شاخه‌هایش در آسمان، در هر فصل میوه می‌دهد.';
 
   @override
-  String get gardenElementStreamTitle => 'The Flowing Stream';
+  String get gardenElementStreamTitle => 'جویبار روان';
 
   @override
   String get gardenElementStreamMeaning =>
-      'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.';
+      'هر عبادت یک قطره است. چون گرد هم آیند، زمین را به چشمه‌ها می‌شکافند و هرچه اینجا می‌روید از آن می‌نوشد.';
 
   @override
-  String get gardenElementOceanTitle => 'The Distant Sea';
+  String get gardenElementOceanTitle => 'دریای دور';
 
   @override
   String get gardenElementOceanMeaning =>
-      'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.';
+      'یادآور اینکه آنچه به سویش می‌روی پایانی ندارد: دریا به پایان می‌رسد پیش از آنکه کلمات پروردگارت پایان یابد.';
 
   @override
-  String get gardenElementOliveTitle => 'The Olive';
+  String get gardenElementOliveTitle => 'زیتون';
 
   @override
   String get gardenElementOliveMeaning =>
-      'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.';
+      'درخت مبارک آیهٔ نور، نه شرقی و نه غربی، که روغنش نزدیک است روشنی دهد هرچند آتشی به آن نرسیده باشد.';
 
   @override
-  String get gardenElementDatePalmTitle => 'The Date Palm';
+  String get gardenElementDatePalmTitle => 'درخت خرما';
 
   @override
   String get gardenElementDatePalmMeaning =>
-      'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.';
+      'در سخت‌ترین ساعت مریم تکانده شد و خرمای تازه فرو ریخت: روزی که درست در لحظهٔ نیاز رسید.';
 
   @override
-  String get gardenElementFigTitle => 'The Fig';
+  String get gardenElementFigTitle => 'انجیر';
 
   @override
   String get gardenElementFigMeaning =>
-      'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.';
+      'سوگند به انجیر و زیتون. سوگندی بر چیزهای کوچک و شیرین، و بر فهمی که آرام و خاموش می‌رسد.';
 
   @override
-  String get gardenElementPomegranateTitle => 'The Pomegranate';
+  String get gardenElementPomegranateTitle => 'انار';
 
   @override
   String get gardenElementPomegranateMeaning =>
-      'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.';
+      'از میوه‌های نام‌بردهٔ بهشت. صد دانه را در یک پوست نگاه می‌دارد، چنانکه حکمت از سودهای کوچک بسیار فراهم می‌آید.';
 
   @override
-  String get gardenElementGrapeVineTitle => 'The Grapevine';
+  String get gardenElementGrapeVineTitle => 'تاک انگور';
 
   @override
   String get gardenElementGrapeVineMeaning =>
-      'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.';
+      'از میوه‌اش روزی نیکو می‌گیرید. این حاصل عادتی است که با شکیبایی، فصل به فصل نگاه داشته شود.';
 
   @override
-  String get gardenElementGourdTitle => 'The Gourd';
+  String get gardenElementGourdTitle => 'کدو';
 
   @override
   String get gardenElementGourdMeaning =>
-      'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.';
+      'بر یونس رویید آنگاه که ناتوان در فضای باز افتاده بود: سایه‌ای که رحمت محض بود، پیش از آنکه کسی بخواهد.';
 
   @override
-  String get gardenElementLoteTreeTitle => 'The Lote Tree';
+  String get gardenElementLoteTreeTitle => 'درخت سدر';
 
   @override
   String get gardenElementLoteTreeMeaning =>
-      'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.';
+      'سدرة المنتهی، درخت سدر در واپسین مرز، بر لبهٔ آنچه می‌توان به آن رسید. تنها نزدیک قله پدیدار می‌شود.';
 
   @override
-  String get gardenElementRayhanTitle => 'Fragrant Rayhan';
+  String get gardenElementRayhanTitle => 'ریحان خوشبو';
 
   @override
   String get gardenElementRayhanMeaning =>
-      'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.';
+      'گیاهان خوشبویی که در کنار دانه و کاه نام برده شده‌اند. ذکر آن عطری است که باغ پیش از دیده شدن با خود دارد.';
 
   @override
-  String get gardenElementBeeTitle => 'The Bee';
+  String get gardenElementBeeTitle => 'زنبور عسل';
 
   @override
   String get gardenElementBeeMeaning =>
-      'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.';
+      'به او الهام شد که راه‌های خود را فروتنانه بپیماید، و از او نوشیدنی رنگارنگ بیرون می‌آید که در آن شفاست. کاری کوچک، هر روز.';
 
   @override
-  String get gardenElementAntTitle => 'The Ant';
+  String get gardenElementAntTitle => 'مورچه';
 
   @override
   String get gardenElementAntMeaning =>
-      'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.';
+      'مورچه‌ای که قومش را به پناه خواند تا ناآگاهانه لگدمال نشوند: مراقبت و آمادگی در کوچک‌ترین اندازه.';
 
   @override
-  String get gardenElementHoopoeTitle => 'The Hoopoe';
+  String get gardenElementHoopoeTitle => 'هدهد';
 
   @override
   String get gardenElementHoopoeMeaning =>
-      'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.';
+      'نزد سلیمان آمد با خبری از سرزمینی که هرگز ندیده بود. دانشی که با شکیبایی جسته و به خانه آورده شد.';
 
   @override
-  String get gardenElementSongbirdsTitle => 'Birds in Rows';
+  String get gardenElementSongbirdsTitle => 'پرندگان صف‌کشیده';
 
   @override
   String get gardenElementSongbirdsMeaning =>
-      'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.';
+      'هرچه در آسمان‌ها و زمین است او را تسبیح می‌گوید، و پرندگان با بال‌های گشوده، هر یک نماز خود را می‌داند.';
 
   @override
-  String get gardenElementFishTitle => 'The Fish';
+  String get gardenElementFishTitle => 'ماهی';
 
   @override
   String get gardenElementFishMeaning =>
-      'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.';
+      'ماهی‌ای که در محل تلاقی دو دریا رها شد، نشانهٔ جایی که سفری دراز به‌راستی آغاز شده بود.';
 
   @override
-  String get gardenElementSheetSourceLabel => 'In the Qur\'an';
+  String get gardenElementSheetSourceLabel => 'در قرآن';
 
   @override
-  String get gardenElementSheetGrowsWithLabel => 'Grows with';
+  String get gardenElementSheetGrowsWithLabel => 'رشد می‌کند با';
 
   @override
   String get gardenVistaExploreHint =>
-      'Tap a plant or creature in your garden to see what it means.';
+      'در باغ خود گیاه یا جانداری را لمس کنید تا معنایش را ببینید.';
 
   @override
-  String get gardenVistaNewGrowthTitle => 'Something new has taken root';
+  String get gardenVistaNewGrowthTitle => 'چیزی تازه ریشه دوانده است';
 
   @override
   String get gardenVistaNewGrowthBody =>
-      'Your garden has changed since you were last here.';
+      'باغ شما از آخرین باری که اینجا بودید تغییر کرده است.';
 
   @override
   String get gardenVistaStageAdvancedTitle =>
-      'Your garden has entered a new stage';
+      'باغ شما به مرحله‌ای تازه وارد شده است';
 
   @override
   String get gardenRecentStory => 'Story completed';
@@ -65041,144 +65040,144 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Your recent consistency is helping the whole garden stay healthy and full.';
 
   @override
-  String get homeModuleGardenTitle => 'Your Garden';
+  String get homeModuleGardenTitle => 'باغ شما';
 
   @override
   String get homeModuleGardenSubtitle =>
-      'A living view of how your worship is growing.';
+      'نمای زنده از اینکه عبادت شما چگونه رشد می‌کند.';
 
   @override
-  String get gardenElementCentralTreeTitle => 'The Good Tree';
+  String get gardenElementCentralTreeTitle => 'درخت پاک';
 
   @override
   String get gardenElementCentralTreeMeaning =>
-      'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.';
+      'سخن پاک مانند درخت پاک است: ریشه‌اش استوار و شاخه‌هایش در آسمان، در هر فصل میوه می‌دهد.';
 
   @override
-  String get gardenElementStreamTitle => 'The Flowing Stream';
+  String get gardenElementStreamTitle => 'جویبار روان';
 
   @override
   String get gardenElementStreamMeaning =>
-      'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.';
+      'هر عبادت یک قطره است. چون گرد هم آیند، زمین را به چشمه‌ها می‌شکافند و هرچه اینجا می‌روید از آن می‌نوشد.';
 
   @override
-  String get gardenElementOceanTitle => 'The Distant Sea';
+  String get gardenElementOceanTitle => 'دریای دور';
 
   @override
   String get gardenElementOceanMeaning =>
-      'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.';
+      'یادآور اینکه آنچه به سویش می‌روی پایانی ندارد: دریا به پایان می‌رسد پیش از آنکه کلمات پروردگارت پایان یابد.';
 
   @override
-  String get gardenElementOliveTitle => 'The Olive';
+  String get gardenElementOliveTitle => 'زیتون';
 
   @override
   String get gardenElementOliveMeaning =>
-      'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.';
+      'درخت مبارک آیهٔ نور، نه شرقی و نه غربی، که روغنش نزدیک است روشنی دهد هرچند آتشی به آن نرسیده باشد.';
 
   @override
-  String get gardenElementDatePalmTitle => 'The Date Palm';
+  String get gardenElementDatePalmTitle => 'درخت خرما';
 
   @override
   String get gardenElementDatePalmMeaning =>
-      'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.';
+      'در سخت‌ترین ساعت مریم تکانده شد و خرمای تازه فرو ریخت: روزی که درست در لحظهٔ نیاز رسید.';
 
   @override
-  String get gardenElementFigTitle => 'The Fig';
+  String get gardenElementFigTitle => 'انجیر';
 
   @override
   String get gardenElementFigMeaning =>
-      'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.';
+      'سوگند به انجیر و زیتون. سوگندی بر چیزهای کوچک و شیرین، و بر فهمی که آرام و خاموش می‌رسد.';
 
   @override
-  String get gardenElementPomegranateTitle => 'The Pomegranate';
+  String get gardenElementPomegranateTitle => 'انار';
 
   @override
   String get gardenElementPomegranateMeaning =>
-      'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.';
+      'از میوه‌های نام‌بردهٔ بهشت. صد دانه را در یک پوست نگاه می‌دارد، چنانکه حکمت از سودهای کوچک بسیار فراهم می‌آید.';
 
   @override
-  String get gardenElementGrapeVineTitle => 'The Grapevine';
+  String get gardenElementGrapeVineTitle => 'تاک انگور';
 
   @override
   String get gardenElementGrapeVineMeaning =>
-      'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.';
+      'از میوه‌اش روزی نیکو می‌گیرید. این حاصل عادتی است که با شکیبایی، فصل به فصل نگاه داشته شود.';
 
   @override
-  String get gardenElementGourdTitle => 'The Gourd';
+  String get gardenElementGourdTitle => 'کدوی درختی';
 
   @override
   String get gardenElementGourdMeaning =>
-      'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.';
+      'بر یونس رویید آنگاه که ناتوان در فضای باز افتاده بود: سایه‌ای که رحمت محض بود، پیش از آنکه کسی بخواهد.';
 
   @override
-  String get gardenElementLoteTreeTitle => 'The Lote Tree';
+  String get gardenElementLoteTreeTitle => 'درخت سدر';
 
   @override
   String get gardenElementLoteTreeMeaning =>
-      'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.';
+      'سدرة المنتهی، درخت سدر در واپسین مرز، بر لبهٔ آنچه می‌توان به آن رسید. تنها نزدیک قله پدیدار می‌شود.';
 
   @override
-  String get gardenElementRayhanTitle => 'Fragrant Rayhan';
+  String get gardenElementRayhanTitle => 'ریحان خوشبو';
 
   @override
   String get gardenElementRayhanMeaning =>
-      'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.';
+      'گیاهان خوشبویی که در کنار دانه و کاه نام برده شده‌اند. ذکر آن عطری است که باغ پیش از دیده شدن با خود دارد.';
 
   @override
-  String get gardenElementBeeTitle => 'The Bee';
+  String get gardenElementBeeTitle => 'زنبور عسل';
 
   @override
   String get gardenElementBeeMeaning =>
-      'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.';
+      'به او الهام شد که راه‌های خود را فروتنانه بپیماید، و از او نوشیدنی رنگارنگ بیرون می‌آید که در آن شفاست. کاری کوچک، هر روز.';
 
   @override
-  String get gardenElementAntTitle => 'The Ant';
+  String get gardenElementAntTitle => 'مورچه';
 
   @override
   String get gardenElementAntMeaning =>
-      'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.';
+      'مورچه‌ای که قومش را به پناه خواند تا ناآگاهانه لگدمال نشوند: مراقبت و آمادگی در کوچک‌ترین اندازه.';
 
   @override
-  String get gardenElementHoopoeTitle => 'The Hoopoe';
+  String get gardenElementHoopoeTitle => 'هدهد';
 
   @override
   String get gardenElementHoopoeMeaning =>
-      'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.';
+      'نزد سلیمان آمد با خبری از سرزمینی که هرگز ندیده بود. دانشی که با شکیبایی جسته و به خانه آورده شد.';
 
   @override
-  String get gardenElementSongbirdsTitle => 'Birds in Rows';
+  String get gardenElementSongbirdsTitle => 'پرندگان صف‌کشیده';
 
   @override
   String get gardenElementSongbirdsMeaning =>
-      'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.';
+      'هرچه در آسمان‌ها و زمین است او را تسبیح می‌گوید، و پرندگان با بال‌های گشوده، هر یک نماز خود را می‌داند.';
 
   @override
-  String get gardenElementFishTitle => 'The Fish';
+  String get gardenElementFishTitle => 'ماهی';
 
   @override
   String get gardenElementFishMeaning =>
-      'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.';
+      'ماهی‌ای که در محل تلاقی دو دریا رها شد، نشانهٔ جایی که سفری دراز به‌راستی آغاز شده بود.';
 
   @override
-  String get gardenElementSheetSourceLabel => 'In the Qur\'an';
+  String get gardenElementSheetSourceLabel => 'در قرآن';
 
   @override
-  String get gardenElementSheetGrowsWithLabel => 'Grows with';
+  String get gardenElementSheetGrowsWithLabel => 'با این رشد می‌کند';
 
   @override
   String get gardenVistaExploreHint =>
-      'Tap a plant or creature in your garden to see what it means.';
+      'در باغ خود یک گیاه یا جاندار را لمس کنید تا معنای آن را ببینید.';
 
   @override
-  String get gardenVistaNewGrowthTitle => 'Something new has taken root';
+  String get gardenVistaNewGrowthTitle => 'چیزی تازه ریشه دوانده است';
 
   @override
   String get gardenVistaNewGrowthBody =>
-      'Your garden has changed since you were last here.';
+      'باغ شما از آخرین بازدید شما تغییر کرده است.';
 
   @override
   String get gardenVistaStageAdvancedTitle =>
-      'Your garden has entered a new stage';
+      'باغ شما به مرحله‌ای تازه وارد شده است';
 
   @override
   String get gardenRecentStory => 'Story completed';

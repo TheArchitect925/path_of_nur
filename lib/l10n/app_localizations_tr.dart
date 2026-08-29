@@ -22641,144 +22641,143 @@ class AppLocalizationsTr extends AppLocalizations {
       'Your recent consistency is helping the whole garden stay healthy and full.';
 
   @override
-  String get homeModuleGardenTitle => 'Your Garden';
+  String get homeModuleGardenTitle => 'Bahçen';
 
   @override
   String get homeModuleGardenSubtitle =>
-      'A living view of how your worship is growing.';
+      'İbadetinin nasıl büyüdüğünü gösteren canlı bir görünüm.';
 
   @override
-  String get gardenElementCentralTreeTitle => 'The Good Tree';
+  String get gardenElementCentralTreeTitle => 'Güzel Ağaç';
 
   @override
   String get gardenElementCentralTreeMeaning =>
-      'A good word is like a good tree: its roots held firm, its branches reaching into the sky, giving its fruit in every season.';
+      'Güzel bir söz, güzel bir ağaç gibidir: kökü sağlam, dalları göğe uzanır ve her mevsim meyvesini verir.';
 
   @override
-  String get gardenElementStreamTitle => 'The Flowing Stream';
+  String get gardenElementStreamTitle => 'Akan Dere';
 
   @override
   String get gardenElementStreamMeaning =>
-      'Every act of worship is one drop. Gathered together they open the earth into springs, and everything growing here drinks from them.';
+      'Her ibadet bir damladır. Bir araya geldiklerinde yeri pınarlara açarlar ve burada büyüyen her şey onlardan içer.';
 
   @override
-  String get gardenElementOceanTitle => 'The Distant Sea';
+  String get gardenElementOceanTitle => 'Uzaktaki Deniz';
 
   @override
   String get gardenElementOceanMeaning =>
-      'A reminder that what you are walking toward has no end: the sea would run dry before the words of your Lord were exhausted.';
+      'Yöneldiğin şeyin sonu olmadığının hatırlatması: Rabbinin sözleri tükenmeden deniz tükenirdi.';
 
   @override
-  String get gardenElementOliveTitle => 'The Olive';
+  String get gardenElementOliveTitle => 'Zeytin';
 
   @override
   String get gardenElementOliveMeaning =>
-      'The blessed tree of the Verse of Light, neither of the east nor of the west, whose oil would almost glow though no fire touched it.';
+      'Nur ayetindeki mübarek ağaç; ne doğuya ne batıya ait, ateş değmese bile yağı neredeyse ışık verecek.';
 
   @override
-  String get gardenElementDatePalmTitle => 'The Date Palm';
+  String get gardenElementDatePalmTitle => 'Hurma Ağacı';
 
   @override
   String get gardenElementDatePalmMeaning =>
-      'Shaken toward Maryam in her hardest hour, it let down fresh ripe dates: provision arriving at exactly the moment it was needed.';
+      'Meryem\'in en zor anında silkelendi ve taze hurmalar döküldü: tam ihtiyaç duyulan anda gelen rızık.';
 
   @override
-  String get gardenElementFigTitle => 'The Fig';
+  String get gardenElementFigTitle => 'İncir';
 
   @override
   String get gardenElementFigMeaning =>
-      'By the fig and the olive. An oath sworn over small sweet things, and over understanding that ripens slowly and quietly.';
+      'İncire ve zeytine yemin olsun. Küçük ve tatlı şeyler üzerine, ve yavaşça, sessizce olgunlaşan anlayış üzerine edilen bir yemin.';
 
   @override
-  String get gardenElementPomegranateTitle => 'The Pomegranate';
+  String get gardenElementPomegranateTitle => 'Nar';
 
   @override
   String get gardenElementPomegranateMeaning =>
-      'Named among the fruits of the gardens. It keeps a hundred seeds in a single shell, the way wisdom gathers from many small gains.';
+      'Cennet meyveleri arasında anılır. Tek bir kabukta yüz tane taşır; hikmetin pek çok küçük kazanımdan toplanması gibi.';
 
   @override
-  String get gardenElementGrapeVineTitle => 'The Grapevine';
+  String get gardenElementGrapeVineTitle => 'Asma';
 
   @override
   String get gardenElementGrapeVineMeaning =>
-      'From its fruit you take good provision. This is the harvest of a habit tended patiently, season after season.';
+      'Meyvesinden güzel bir rızık edinirsiniz. Bu, sabırla mevsim mevsim sürdürülen bir alışkanlığın hasadıdır.';
 
   @override
-  String get gardenElementGourdTitle => 'The Gourd';
+  String get gardenElementGourdTitle => 'Kabak';
 
   @override
   String get gardenElementGourdMeaning =>
-      'Grown over Yunus as he lay weakened on the open shore: shade that arrives as pure mercy, before anyone thinks to ask for it.';
+      'Yunus açık alanda bitkin yatarken üzerine bitirildi: kimse istemeden önce gelen saf bir rahmet gölgesi.';
 
   @override
-  String get gardenElementLoteTreeTitle => 'The Lote Tree';
+  String get gardenElementLoteTreeTitle => 'Sidre Ağacı';
 
   @override
   String get gardenElementLoteTreeMeaning =>
-      'Sidrat al-Muntaha, the lote tree of the utmost boundary, standing at the edge of what can be reached. It appears only near the summit.';
+      'Sidretü\'l-Münteha, ulaşılabilecek olanın sınırında duran sidre ağacı. Yalnızca zirveye yaklaşırken görünür.';
 
   @override
-  String get gardenElementRayhanTitle => 'Fragrant Rayhan';
+  String get gardenElementRayhanTitle => 'Hoş Kokulu Reyhan';
 
   @override
   String get gardenElementRayhanMeaning =>
-      'Sweet-scented herbs named beside the grain and the husk. Remembrance is the scent a garden carries before it comes into view.';
+      'Taneyle ve samanla birlikte anılan hoş kokulu bitkiler. Zikir, bahçenin görünmeden önce taşıdığı kokudur.';
 
   @override
-  String get gardenElementBeeTitle => 'The Bee';
+  String get gardenElementBeeTitle => 'Arı';
 
   @override
   String get gardenElementBeeMeaning =>
-      'Inspired to travel its paths in humility, it brings out a drink of varied colours in which there is healing. Small work, done daily.';
+      'Yollarını alçakgönüllülükle izlemesi ilham edildi; ondan içinde şifa bulunan, renkleri farklı bir içecek çıkar. Küçük iş, her gün yapılan.';
 
   @override
-  String get gardenElementAntTitle => 'The Ant';
+  String get gardenElementAntTitle => 'Karınca';
 
   @override
   String get gardenElementAntMeaning =>
-      'The ant who called her people into shelter so they would not be crushed unknowingly: care and preparation on the smallest scale.';
+      'Halkını, farkında olmadan ezilmesinler diye yuvalarına çağıran karınca: en küçük ölçekte özen ve hazırlık.';
 
   @override
-  String get gardenElementHoopoeTitle => 'The Hoopoe';
+  String get gardenElementHoopoeTitle => 'Hüdhüd';
 
   @override
   String get gardenElementHoopoeMeaning =>
-      'It came to Sulayman carrying news from a land he had never seen. Knowledge, sought out patiently and carried home.';
+      'Süleyman\'a hiç görmediği bir diyardan haber getirdi. Sabırla aranan ve eve taşınan bilgi.';
 
   @override
-  String get gardenElementSongbirdsTitle => 'Birds in Rows';
+  String get gardenElementSongbirdsTitle => 'Saf Saf Kuşlar';
 
   @override
   String get gardenElementSongbirdsMeaning =>
-      'All that is in the heavens and the earth glorifies Him, and the birds with wings outspread, each one already knowing its prayer.';
+      'Göklerde ve yerde olan her şey O\'nu tesbih eder, kanatlarını açmış kuşlar da; her biri kendi duasını bilir.';
 
   @override
-  String get gardenElementFishTitle => 'The Fish';
+  String get gardenElementFishTitle => 'Balık';
 
   @override
   String get gardenElementFishMeaning =>
-      'The fish that slipped away at the meeting of the two seas, marking the place where a long journey had truly begun.';
+      'İki denizin birleştiği yerde kaçıp giden balık; uzun bir yolculuğun gerçekten başladığı yeri işaretler.';
 
   @override
-  String get gardenElementSheetSourceLabel => 'In the Qur\'an';
+  String get gardenElementSheetSourceLabel => 'Kur\'an\'da';
 
   @override
-  String get gardenElementSheetGrowsWithLabel => 'Grows with';
+  String get gardenElementSheetGrowsWithLabel => 'Şununla büyür';
 
   @override
   String get gardenVistaExploreHint =>
-      'Tap a plant or creature in your garden to see what it means.';
+      'Ne anlama geldiğini görmek için bahçendeki bir bitkiye veya canlıya dokun.';
 
   @override
-  String get gardenVistaNewGrowthTitle => 'Something new has taken root';
+  String get gardenVistaNewGrowthTitle => 'Yeni bir şey kök saldı';
 
   @override
   String get gardenVistaNewGrowthBody =>
-      'Your garden has changed since you were last here.';
+      'Bahçen, son gelişinden bu yana değişti.';
 
   @override
-  String get gardenVistaStageAdvancedTitle =>
-      'Your garden has entered a new stage';
+  String get gardenVistaStageAdvancedTitle => 'Bahçen yeni bir aşamaya geçti';
 
   @override
   String get gardenRecentStory => 'Story completed';
