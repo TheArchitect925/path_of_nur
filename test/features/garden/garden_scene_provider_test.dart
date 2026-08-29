@@ -9,7 +9,7 @@ import 'package:path_of_nur/features/journey/xp/domain/journey_xp_models.dart';
 import 'package:path_of_nur/features/progression/domain/learner_progression_models.dart';
 import 'package:path_of_nur/shared/persistence/structured_data_scope.dart';
 
-import '../../test_helpers/app_test_harness.dart';
+import '../../test_helpers/garden_fixtures.dart' show makeGardenTestContainer;
 
 final _stubGardenState = StateProvider.family<GardenState, String>((
   ref,
@@ -19,7 +19,7 @@ final _stubGardenState = StateProvider.family<GardenState, String>((
 });
 
 Future<ProviderContainer> _makeContainer() {
-  return makeTestContainer(
+  return makeGardenTestContainer(
     overrides: [
       gardenStateProvider.overrideWith(
         (ref, String learnerId) => ref.watch(_stubGardenState(learnerId)),

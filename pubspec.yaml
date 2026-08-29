@@ -103,6 +103,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/backgrounds/
+    - assets/images/garden_art/
     - assets/images/prophets/
     - assets/images/prophets/Stories/
     - assets/images/prophets/bedtime_stories/covers/

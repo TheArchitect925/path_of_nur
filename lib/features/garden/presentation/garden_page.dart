@@ -7,8 +7,11 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../kids/bedtime_stories/application/bedtime_active_learner_service.dart';
 import '../../progression/domain/learner_progression_models.dart';
+import '../application/garden_scene_provider.dart';
 import '../application/garden_service.dart';
 import '../domain/garden_models.dart';
+import '../domain/garden_scene_models.dart';
+import 'widgets/garden_vista/garden_vista_view.dart';
 
 class GardenPage extends ConsumerWidget {
   const GardenPage({super.key});
@@ -19,6 +22,7 @@ class GardenPage extends ConsumerWidget {
     final activeLearner = ref.watch(bedtimeActiveLearnerProvider);
     final learners = ref.watch(bedtimeAvailableLearnersProvider);
     final garden = ref.watch(activeGardenStateProvider);
+    final scene = ref.watch(activeGardenSceneSpecProvider);
 
     return AppPageScaffold(
       headerIcon: Icons.local_florist_rounded,
@@ -47,7 +51,7 @@ class GardenPage extends ConsumerWidget {
           ),
           const SizedBox(height: 14),
         ],
-        _GardenHeroCard(garden: garden),
+        _GardenHeroCard(garden: garden, scene: scene),
         const SizedBox(height: 14),
         _SectionCard(
           title: l10n.gardenPageNextGrowthTitle,
@@ -176,9 +180,10 @@ class GardenPage extends ConsumerWidget {
 }
 
 class _GardenHeroCard extends StatelessWidget {
-  const _GardenHeroCard({required this.garden});
+  const _GardenHeroCard({required this.garden, required this.scene});
 
   final GardenState garden;
+  final GardenSceneSpec scene;
 
   @override
   Widget build(BuildContext context) {
@@ -196,27 +201,13 @@ class _GardenHeroCard extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    garden.currentVisualStage.assetPath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: _ambientColors(garden.ambientState),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.local_florist_rounded,
-                            size: 54,
-                            color: Color(0xFF2C2318),
-                          ),
-                        ),
-                      );
-                    },
+                  Positioned.fill(
+                    child: GardenVistaView(
+                      spec: scene,
+                      manageSeenLifecycle: true,
+                      semanticLabel:
+                          '${_localizedStageTitle(l10n, garden.currentVisualStage.stageId)} · ${l10n.gardenPageMaturityValue('${garden.maturityPercent}')}',
+                    ),
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
@@ -303,27 +294,6 @@ class _GardenHeroCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  static List<Color> _ambientColors(GardenAmbientState state) {
-    return switch (state) {
-      GardenAmbientState.quietDawn => const [
-        Color(0xFFE7DCC9),
-        Color(0xFFB8C7A3),
-      ],
-      GardenAmbientState.gentleMorning => const [
-        Color(0xFFF2E3C0),
-        Color(0xFF9AB780),
-      ],
-      GardenAmbientState.warmLight => const [
-        Color(0xFFF3DEAF),
-        Color(0xFFC98F54),
-      ],
-      GardenAmbientState.eveningGlow => const [
-        Color(0xFFDCC9B7),
-        Color(0xFF738B6B),
-      ],
-    };
   }
 
   static String _localizedAmbientLabel(
