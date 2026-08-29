@@ -25,8 +25,21 @@ class SalahPrayerDetailPage extends ConsumerWidget {
     final prayer = ref.watch(salahTrainerPrayerByIdProvider(prayerId));
     final settings = ref.watch(prayerSettingsProvider);
     if (prayer == null) {
-      return Scaffold(
-        body: Center(child: Text(l10n.salahPrayerDetailNotFound)),
+      return LearnHubPageScaffold(
+        title: l10n.salahPrayerDetailNotFound,
+        subtitle: l10n.learnContentNotFound,
+        children: [
+          PremiumCard(
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: FilledButton.tonalIcon(
+                onPressed: () => Navigator.of(context).maybePop(),
+                icon: const Icon(Icons.arrow_back_rounded),
+                label: Text(l10n.salahCloseAction),
+              ),
+            ),
+          ),
+        ],
       );
     }
     final madhhabKey =

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
@@ -44,7 +45,23 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
       surahPlaybackControllerProvider(widget.surahId).notifier,
     );
     if (surah == null) {
-      return const Scaffold(body: Center(child: Text('Surah not found.')));
+      final l10n = AppLocalizations.of(context);
+      return LearnHubPageScaffold(
+        title: l10n.learnContentNotFound,
+        subtitle: l10n.salahPrayerDetailNotFound,
+        children: [
+          PremiumCard(
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: FilledButton.tonalIcon(
+                onPressed: () => Navigator.of(context).maybePop(),
+                icon: const Icon(Icons.arrow_back_rounded),
+                label: Text(l10n.salahCloseAction),
+              ),
+            ),
+          ),
+        ],
+      );
     }
     final status =
         progressState.surahProgressById[surah.id] ??

@@ -67,8 +67,21 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
     final syncState = ref.watch(guidedPrayerSyncControllerProvider(_args));
     final sync = ref.read(guidedPrayerSyncControllerProvider(_args).notifier);
     if (prayer == null || steps.isEmpty) {
-      return Scaffold(
-        body: Center(child: Text(l10n.salahGuidedPrayerUnavailable)),
+      return LearnHubPageScaffold(
+        title: l10n.salahGuidedPrayerUnavailable,
+        subtitle: l10n.learnContentNotFound,
+        children: [
+          PremiumCard(
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: FilledButton.tonalIcon(
+                onPressed: () => Navigator.of(context).maybePop(),
+                icon: const Icon(Icons.arrow_back_rounded),
+                label: Text(l10n.salahCloseAction),
+              ),
+            ),
+          ),
+        ],
       );
     }
 
