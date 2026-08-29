@@ -32,7 +32,6 @@ import '../../features/profile/presentation/help_guide_hub_page.dart';
 import '../../features/profile/presentation/profile_summary_page.dart';
 import '../../features/profile/presentation/profile_whats_new_page.dart';
 import '../../features/profile/presentation/settings_page.dart';
-import '../../features/quran/presentation/quran_verse_page.dart';
 import '../../features/search/presentation/all_search_page.dart';
 import '../../features/shared/attributions_licenses_page.dart';
 import '../../features/shared/legal_info_page.dart';
@@ -343,22 +342,6 @@ List<RouteBase> buildCoreSupportRoutes() {
       name: 'qiblaFinder',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QiblaFinderPage()),
-    ),
-    GoRoute(
-      path: '/quran-verse',
-      name: 'quranVerse',
-      pageBuilder: (context, state) {
-        final params = state.uri.queryParameters;
-        final surah = int.tryParse(params['surah'] ?? '') ?? 1;
-        final ayah = int.tryParse(params['ayah'] ?? '') ?? 1;
-        return MaterialPage(
-          child: QuranVersePage(
-            surah: surah,
-            ayah: ayah,
-            ayahEnd: int.tryParse(params['ayahEnd'] ?? ''),
-          ),
-        );
-      },
     ),
     GoRoute(
       path: '/quran/explorer',

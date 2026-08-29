@@ -1,6 +1,5 @@
 bool isQuranLocation(String location) {
   return location.startsWith('/quran') ||
-      location.startsWith('/quran-verse') ||
       location.startsWith('/learn/quran') ||
       location.startsWith('/learn/hub/quran');
 }

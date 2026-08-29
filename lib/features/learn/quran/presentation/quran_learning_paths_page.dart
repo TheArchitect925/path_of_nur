@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_backgrounds.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'quran_ayah_insights_paths_page.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../application/quran_guided_learning_paths_provider.dart';
@@ -126,6 +127,8 @@ class _QuranLearningPathsPageState
               ],
             ),
           ),
+        const SizedBox(height: 20),
+        const QuranAyahInsightPathsSection(),
       ],
     );
   }

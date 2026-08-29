@@ -22,7 +22,6 @@ import '../../../features/learn/presentation/pages/games_island_page.dart';
 import '../../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../../features/learn/presentation/pages/learn_games_browse_all_page.dart';
-import '../../../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../../../features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
@@ -36,7 +35,7 @@ import '../../../features/learn/guided_paths/presentation/stories_path_next_step
 import '../../../features/learn/quran/presentation/quran_ayah_insights_browse_page.dart';
 import '../../../features/learn/quran/presentation/quran_ayah_insights_paths_page.dart';
 import '../../../features/learn/quran/presentation/quran_daily_companion_page.dart';
-import '../../../features/learn/quran/presentation/quran_knowledge_search_page.dart';
+import '../../../features/learn/quran/presentation/quran_khatm_plan_page.dart';
 import '../../../features/learn/quran/presentation/quran_learning_paths_page.dart';
 import '../../../features/learn/quran/presentation/quran_summary_page.dart';
 import '../../../features/learn/quran/presentation/quran_surah_summary_detail_page.dart';
@@ -44,8 +43,6 @@ import '../../../features/learn/quran/presentation/quran_guided_passage_readines
 import '../../../features/learn/quran/presentation/quran_readiness_bridge_page.dart';
 import '../../../features/learn/quran/presentation/quran_short_surah_readiness_page.dart';
 import '../../../features/learn/quran_teaching/data/quran_teaching_seed_data.dart';
-import '../../../features/learn/quran_teaching/presentation/quran_teaching_beginner_words_page.dart';
-import '../../../features/learn/quran_teaching/presentation/quran_teaching_daily_review_page.dart';
 import '../../../features/learn/quran_teaching/presentation/quran_teaching_lesson_page.dart';
 import '../../../features/learn/quran_teaching/presentation/quran_teaching_module_page.dart';
 import '../../../features/learn/quran_teaching/presentation/quran_teaching_section_page.dart';
@@ -57,17 +54,16 @@ List<RouteBase> buildLearnCoreRoutes() {
   return <RouteBase>[
     GoRoute(
       path: '/quran/learning',
+      // The learning hub folded into the reader-first Qur'an tab
+      // (calm-navigation Phase 7a); the name stays for old links.
       name: 'quranLearningHub',
-      pageBuilder: (context, state) => MaterialPage(
-        child: LearnQuranHubPage(
-          initialTab: switch (state.uri.queryParameters['tab']) {
-            'reflect' => LearnQuranHubTab.reflect,
-            'paths' => LearnQuranHubTab.paths,
-            'memorize' => LearnQuranHubTab.memorize,
-            _ => LearnQuranHubTab.understand,
-          },
-        ),
-      ),
+      redirect: (context, state) => '/quran',
+    ),
+    GoRoute(
+      path: '/quran/plan',
+      name: 'quranKhatmPlan',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranKhatmPlanPage()),
     ),
     GoRoute(
       path: '/quran/insights',
@@ -77,18 +73,24 @@ List<RouteBase> buildLearnCoreRoutes() {
     ),
     GoRoute(
       path: '/quran/knowledge-search',
+      // Folded into the one Qur'an search (calm-navigation Phase 7a).
       name: 'quranKnowledgeSearch',
-      pageBuilder: (context, state) => MaterialPage(
-        child: QuranKnowledgeSearchPage(
-          initialQuery: state.uri.queryParameters['q'] ?? '',
-        ),
-      ),
+      redirect: (context, state) {
+        final query = state.uri.queryParameters['q'];
+        return query == null || query.isEmpty
+            ? '/quran/search'
+            : Uri(
+                path: '/quran/search',
+                queryParameters: {'q': query},
+              ).toString();
+      },
     ),
     GoRoute(
       path: '/quran/insights/paths',
+      // The standalone insight-path list merged into Qur'an Pathways
+      // (calm-navigation Phase 7a); path details below stay canonical.
       name: 'quranAyahInsightsPaths',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranAyahInsightPathsPage()),
+      redirect: (context, state) => '/quran/paths',
     ),
     GoRoute(
       path: '/quran/insights/paths/:pathId',
@@ -191,21 +193,6 @@ List<RouteBase> buildLearnCoreRoutes() {
               : QuranTeachingLessonPage(lesson: lesson, module: module),
         );
       },
-    ),
-    GoRoute(
-      path: '/quran/arabic/words',
-      name: 'quranArabicWords',
-      pageBuilder: (context, state) => MaterialPage(
-        child: QuranTeachingBeginnerWordsPage(
-          initialWordId: state.uri.queryParameters['word'],
-        ),
-      ),
-    ),
-    GoRoute(
-      path: '/quran/arabic/review',
-      name: 'quranArabicDailyReview',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranTeachingDailyReviewPage()),
     ),
     GoRoute(
       path: '/quran/arabic/readiness',

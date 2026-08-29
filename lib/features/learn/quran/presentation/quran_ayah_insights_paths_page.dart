@@ -11,19 +11,29 @@ import '../application/quran_learning_progression_provider.dart';
 import '../application/quran_learning_personalization_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 
-class QuranAyahInsightPathsPage extends ConsumerWidget {
-  const QuranAyahInsightPathsPage({super.key});
+/// The ayah-insight pathways, as a section: merged into the Qur'an Pathways
+/// page in calm-navigation Phase 7a (the standalone list route redirects
+/// there; per-path detail routes remain canonical).
+class QuranAyahInsightPathsSection extends ConsumerWidget {
+  const QuranAyahInsightPathsSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final paths = ref.watch(quranAyahInsightPathsProvider);
 
-    return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
-      title: l10n.quranAyahInsightPathsTitle,
-      subtitle: l10n.quranAyahInsightPathsSubtitle,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(
+          l10n.quranAyahInsightPathsTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 4),
+        Text(l10n.quranAyahInsightPathsSubtitle),
+        const SizedBox(height: 10),
         if (paths.isEmpty)
           PremiumCard(child: Text(l10n.quranAyahInsightPathsEmpty))
         else

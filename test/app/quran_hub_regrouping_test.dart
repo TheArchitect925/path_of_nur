@@ -3,25 +3,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/quran_knowledge_search_page.dart';
+import 'package:path_of_nur/features/learn/quran/application/quran_khatm_provider.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_khatm_models.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_bookmarks_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_focus_recitation_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_khatm_plan_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_learning_paths_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_memorization_review_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_insight_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_summary_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_explorer_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_topic_explorer_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/quran_word_review_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_words_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/widgets/quran_learning_personalization_section.dart';
+import 'package:path_of_nur/features/learn/quran_teaching/presentation/quran_teaching_section_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
-import 'package:path_of_nur/shared/content/learning_quote.dart';
+import 'package:path_of_nur/shared/widgets/display/compact_list_tile.dart';
 import 'package:path_of_nur/shared/widgets/main_page_search_launcher.dart';
-import 'package:path_of_nur/shared/widgets/quran_quote_block.dart';
 
 import '../test_helpers/app_test_harness.dart';
 
+/// Phase 7a: the Qur'an tab is reader-first — continue hero, reading plan,
+/// today's ayah, then Read / Understand / Practice as one grouped list.
 void main() {
   Future<void> pumpRouteFrames(WidgetTester tester) async {
     await tester.pump();
@@ -29,8 +32,10 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
-  Future<ProviderContainer> makeContainer() {
-    return makeTestContainer(
+  Future<ProviderContainer> makeContainer(WidgetTester tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 3000));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final container = await makeTestContainer(
       overrides: <Override>[
         dailyNowProvider.overrideWith(
           (ref) =>
@@ -38,377 +43,169 @@ void main() {
         ),
       ],
     );
+    addTearDown(container.dispose);
+    return container;
   }
 
-  Finder pageScrollable(Finder pageFinder) {
-    return find.descendant(of: pageFinder, matching: find.byType(Scrollable));
-  }
-
-  // Matches text containing the label without spilling into longer words
-  // (e.g. a 'Memorize' label must not match a 'Memorized' stat chip).
-  Finder labelTextFinder(String labelFragment) {
-    return find.textContaining(
-      RegExp('${RegExp.escape(labelFragment)}(?!\\w)'),
+  Future<void> tapRow(WidgetTester tester, String label) async {
+    // Match the label inside a hub row (the hero repeats some labels as
+    // buttons, e.g. "All surahs").
+    final row = find.ancestor(
+      of: find.text(label),
+      matching: find.byType(CompactListTile),
     );
-  }
-
-  Future<void> scrollToFinder(
-    WidgetTester tester,
-    Finder pageFinder,
-    Finder target,
-  ) async {
-    final scrollable = pageScrollable(pageFinder).first;
-
-    for (var attempt = 0; attempt < 24; attempt += 1) {
-      if (target.hitTestable().evaluate().isNotEmpty) {
-        return;
-      }
-      if (target.evaluate().isEmpty) {
-        await tester.drag(scrollable, const Offset(0, -500));
-      } else if (attempt.isEven) {
-        await tester.ensureVisible(target.first);
-      } else {
-        await tester.drag(scrollable, const Offset(0, -140));
-      }
-      await pumpRouteFrames(tester);
-    }
-
-    expect(target.hitTestable(), findsWidgets);
-  }
-
-  Future<void> scrollToLabel(
-    WidgetTester tester,
-    Finder pageFinder,
-    String labelFragment,
-  ) async {
-    await scrollToFinder(tester, pageFinder, labelTextFinder(labelFragment));
-  }
-
-  Future<void> resetScroll(WidgetTester tester, Finder pageFinder) async {
-    tester
-        .state<ScrollableState>(pageScrollable(pageFinder).first)
-        .position
-        .jumpTo(0);
+    await tester.ensureVisible(row.first);
+    await pumpRouteFrames(tester);
+    await tester.tap(row.first);
     await pumpRouteFrames(tester);
   }
 
-  // Hub navigation actions live in the action grids and the related-tools
-  // chips; scoping avoids matching same-named labels on other hub cards
-  // (e.g. the intent focus card also shows a 'Memorize' label).
-  Finder hubActionSurface() {
-    return find.byWidgetPredicate((widget) {
-      final typeName = widget.runtimeType.toString();
-      return typeName == 'SectionHubActionGrid' ||
-          typeName == '_SecondaryToolChip';
-    });
-  }
-
-  Future<void> tapHubActionLabel(
-    WidgetTester tester,
-    Finder pageFinder,
-    String labelFragment,
-  ) async {
-    final target = find.descendant(
-      of: hubActionSurface(),
-      matching: labelTextFinder(labelFragment),
-    );
-    await scrollToFinder(tester, pageFinder, target);
-    await tester.tap(target.hitTestable().last);
-    await pumpRouteFrames(tester);
-  }
-
-  Future<void> tapAncestorInkWellForText(
-    WidgetTester tester,
-    String text,
-  ) async {
-    final inkWellFinder = find.ancestor(
-      of: find.text(text).first,
-      matching: find.byType(InkWell),
-    );
-    final inkWell = tester.widget<InkWell>(inkWellFinder.first);
-    inkWell.onTap?.call();
-    await pumpRouteFrames(tester);
-  }
-
-  testWidgets('main quran page prioritizes search and reading surfaces', (
+  testWidgets('quran tab is reader-first with three grouped lists', (
     tester,
   ) async {
-    final container = await makeContainer();
+    final container = await makeContainer(tester);
     final router = container.read(appRouterProvider);
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
     await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
-
     router.go('/quran');
     await pumpRouteFrames(tester);
+
     expect(find.byType(QuranAppHubPage), findsOneWidget);
-    expect(find.textContaining('Continue Learning'), findsNothing);
-    expect(find.textContaining('Journey of the Qur'), findsNothing);
-    expect(find.textContaining('Understanding Surah'), findsNothing);
-    expect(find.textContaining('Short Surahs'), findsNothing);
-    expect(find.textContaining('Memorize'), findsNothing);
-
-    await scrollToLabel(
-      tester,
-      find.byType(QuranAppHubPage),
-      l10n.quranDiscoverSectionTitle,
-    );
-    expect(find.text(l10n.quranDiscoverSectionTitle), findsOneWidget);
-  });
-
-  testWidgets(
-    'discover the quran card groups and collapses discovery surfaces',
-    (tester) async {
-      final container = await makeContainer();
-      final router = container.read(appRouterProvider);
-      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
-
-      router.go('/quran');
-      await pumpRouteFrames(tester);
-
-      final hubPage = find.byType(QuranAppHubPage);
-      await scrollToLabel(tester, hubPage, l10n.quranDiscoverSectionTitle);
-      expect(find.text(l10n.quranDiscoverSectionTitle), findsOneWidget);
-
-      // The discovery group starts collapsed; expand it to surface islands.
-      await tester.tap(find.text(l10n.quranDiscoverSectionTitle));
-      await pumpRouteFrames(tester);
-
-      for (final islandTitle in <String>[
-        l10n.quranSummaryIslandTitle,
-        l10n.quranThemeDiscoveryIslandTitle,
-        l10n.quranPathwaysIslandTitle,
-        l10n.quranSpiritualMomentHubTitle,
-        l10n.quranPersonalizationHubTitle,
-      ]) {
-        await scrollToLabel(tester, hubPage, islandTitle);
-        expect(find.text(islandTitle), findsOneWidget);
-      }
-
-      await resetScroll(tester, hubPage);
-      await scrollToLabel(tester, hubPage, l10n.quranDiscoverSectionTitle);
-      await tester.tap(find.text(l10n.quranDiscoverSectionTitle));
-      await pumpRouteFrames(tester);
-
-      expect(
-        find.text(l10n.quranSummaryIslandTitle).hitTestable(),
-        findsNothing,
-      );
-      expect(
-        find.text(l10n.quranThemeDiscoveryIslandTitle).hitTestable(),
-        findsNothing,
-      );
-      expect(
-        find.text(l10n.quranPathwaysIslandTitle).hitTestable(),
-        findsNothing,
-      );
-      expect(
-        find.text(l10n.quranSpiritualMomentHubTitle).hitTestable(),
-        findsNothing,
-      );
-      expect(
-        find.text(l10n.quranPersonalizationHubTitle).hitTestable(),
-        findsNothing,
-      );
-
-      await tester.tap(find.text(l10n.quranDiscoverSectionTitle));
-      await pumpRouteFrames(tester);
-
-      for (final islandTitle in <String>[
-        l10n.quranSummaryIslandTitle,
-        l10n.quranThemeDiscoveryIslandTitle,
-        l10n.quranPathwaysIslandTitle,
-      ]) {
-        await scrollToLabel(tester, hubPage, islandTitle);
-        expect(find.text(islandTitle), findsOneWidget);
-      }
-    },
-  );
-
-  testWidgets('summary and search surfaces keep expected routes', (
-    tester,
-  ) async {
-    final container = await makeContainer();
-    final router = container.read(appRouterProvider);
-    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-
-    await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
-
-    router.go('/quran');
-    await pumpRouteFrames(tester);
-    final hubPage = find.byType(QuranAppHubPage);
-    await scrollToLabel(tester, hubPage, l10n.quranDiscoverSectionTitle);
-    await tester.tap(find.text(l10n.quranDiscoverSectionTitle));
-    await pumpRouteFrames(tester);
-    await scrollToLabel(tester, hubPage, l10n.quranSummaryIslandTitle);
-    await tapAncestorInkWellForText(tester, l10n.quranSummaryIslandTitle);
-    expect(find.byType(QuranSummaryPage), findsOneWidget);
-
-    router.go('/quran');
-    await pumpRouteFrames(tester);
-    expect(find.byType(QuranAppHubPage), findsOneWidget);
-
-    await resetScroll(tester, find.byType(QuranAppHubPage));
-    final searchLauncherFinder = find.byType(MainPageSearchLauncher);
-    await scrollToFinder(
-      tester,
-      find.byType(QuranAppHubPage),
-      searchLauncherFinder,
-    );
-    final launcher = tester.widget<GestureDetector>(
-      find
-          .descendant(
-            of: searchLauncherFinder,
-            matching: find.byType(GestureDetector),
-          )
-          .first,
-    );
-    launcher.onTap?.call();
-    await pumpRouteFrames(tester);
-    expect(find.byType(EditableText), findsWidgets);
-    expect(find.byType(QuranSearchPage), findsNothing);
-  });
-
-  testWidgets('quran home no longer shows the shared quote block', (
-    tester,
-  ) async {
-    final container = await makeContainer();
-    final router = container.read(appRouterProvider);
-    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-
-    await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
-
-    router.go('/quran');
-    await pumpRouteFrames(tester);
-    // The hub keeps a dedicated Messenger-guidance entry quote, but the
-    // shared default learning quote must no longer appear on quran home.
-    final sharedLearningQuoteRef = buildLearningCompactQuote().ref;
-    final hubQuoteBlocks = tester.widgetList<QuranQuoteBlock>(
-      find.descendant(
-        of: find.byType(QuranAppHubPage),
-        matching: find.byType(QuranQuoteBlock),
-      ),
-    );
-    expect(
-      hubQuoteBlocks.where(
-        (block) => block.quote.ref == sharedLearningQuoteRef,
-      ),
-      isEmpty,
-    );
-
-    router.go('/quran/search');
-    await pumpRouteFrames(tester);
-    expect(find.byType(QuranSearchPage), findsOneWidget);
-
-    router.go('/quran/learning');
-    await pumpRouteFrames(tester);
-    expect(find.byType(LearnQuranHubPage), findsOneWidget);
-
-    final learnPage = find.byType(LearnQuranHubPage);
-    await scrollToLabel(tester, learnPage, l10n.quranHubStudyTitle);
-    expect(find.text(l10n.quranHubStudyTitle), findsOneWidget);
-
-    // The Qur'an Companion group starts collapsed; expand it so the
-    // personalization section mounts.
-    await scrollToLabel(tester, learnPage, l10n.quranCompanionSectionTitle);
-    await tester.tap(find.text(l10n.quranCompanionSectionTitle));
-    await pumpRouteFrames(tester);
-    await tester.scrollUntilVisible(
-      find.byType(QuranLearningPersonalizationSection),
-      400,
-      scrollable: pageScrollable(learnPage).first,
-      maxScrolls: 60,
-    );
-    expect(find.byType(QuranLearningPersonalizationSection), findsOneWidget);
-
-    await resetScroll(tester, learnPage);
-    for (final tabLabel in <String>[
-      l10n.learnQuranHubTabUnderstand,
-      l10n.learnQuranHubTabReflect,
-      l10n.learnQuranHubTabPaths,
-      l10n.learnQuranHubTabMemorize,
+    // Continue hero with resume state and actions.
+    expect(find.text(l10n.quranTabContinueAction), findsOneWidget);
+    expect(find.text(l10n.quranTabListenAction), findsOneWidget);
+    // Plan + today rows.
+    expect(find.text(l10n.quranTabPlanTitle), findsOneWidget);
+    expect(find.text(l10n.quranTabPlanNoneSubtitle), findsOneWidget);
+    expect(find.text(l10n.quranTabTodayAyahTitle), findsOneWidget);
+    // The three groups.
+    for (final group in <String>[
+      l10n.quranTabGroupRead,
+      l10n.quranTabGroupUnderstand,
+      l10n.quranTabGroupPractice,
     ]) {
-      await scrollToLabel(tester, learnPage, tabLabel);
-      expect(find.text(tabLabel), findsWidgets);
+      expect(find.text(group), findsOneWidget, reason: group);
     }
+    // Old machinery is gone: no search launcher card.
+    expect(find.byType(MainPageSearchLauncher), findsNothing);
   });
 
-  testWidgets(
-    'quran home routes quran learning through the canonical quran owner',
-    (tester) async {
-      final container = await makeContainer();
-      final router = container.read(appRouterProvider);
-
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
-
-      router.go('/quran');
-      await pumpRouteFrames(tester);
-      expect(find.byType(QuranAppHubPage), findsOneWidget);
-
-      await scrollToLabel(
-        tester,
-        find.byType(QuranAppHubPage),
-        'Qur’an Learning',
-      );
-      await tapAncestorInkWellForText(tester, 'Qur’an Learning');
-
-      expect(find.byType(LearnQuranHubPage), findsOneWidget);
-      expect(tester.takeException(), isNull);
-    },
-  );
-
-  testWidgets('quran home surfaces deeper study tools with working routes', (
-    tester,
-  ) async {
+  testWidgets('every hub row opens its destination', (tester) async {
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-    final routeCases = <({String label, Type pageType})>[
-      (
-        label: l10n.quranKnowledgeSearchTitle,
-        pageType: QuranKnowledgeSearchPage,
-      ),
-      (
-        label: l10n.quranHubMemorizeTitle,
-        pageType: QuranMemorizationReviewPage,
-      ),
-      (
-        label: l10n.quranSurahInsightsBrowseTitle,
-        pageType: QuranSurahInsightsBrowsePage,
-      ),
-      (label: l10n.quranLearningPathsTitle, pageType: QuranLearningPathsPage),
-      (label: l10n.quranTopicsTitle, pageType: QuranTopicExplorerPage),
-      (label: l10n.quranTopWordsTitle, pageType: QuranWordsPage),
-      (label: l10n.quranWordReviewTitle, pageType: QuranWordReviewPage),
+    final cases = <(String, Type)>[
+      (l10n.quranTabAllSurahsTitle, QuranSurahExplorerPage),
+      (l10n.quranTabBookmarksTitle, QuranBookmarksPage),
+      (l10n.quranTabListenTitle, QuranFocusRecitationPage),
+      (l10n.quranTabSummariesTitle, QuranSummaryPage),
+      (l10n.quranTabTopicsTitle, QuranTopicExplorerPage),
+      (l10n.quranTabPathwaysTitle, QuranLearningPathsPage),
+      (l10n.quranTabLearnArabicTitle, QuranTeachingSectionPage),
+      (l10n.quranTabMemorizationTitle, QuranMemorizationReviewPage),
+      (l10n.quranTabWordPracticeTitle, QuranWordsPage),
     ];
 
-    for (final routeCase in routeCases) {
-      final container = await makeContainer();
-      addTearDown(container.dispose);
+    for (final (label, pageType) in cases) {
+      final container = await makeContainer(tester);
       final router = container.read(appRouterProvider);
-
       await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
-
       router.go('/quran');
       await pumpRouteFrames(tester);
-      expect(find.byType(QuranAppHubPage), findsOneWidget);
 
-      await tapHubActionLabel(
-        tester,
-        find.byType(QuranAppHubPage),
-        routeCase.label,
-      );
-      expect(find.byType(routeCase.pageType), findsOneWidget);
-      expect(tester.takeException(), isNull);
+      await tapRow(tester, label);
+      expect(find.byType(pageType), findsOneWidget, reason: label);
+      expect(tester.takeException(), isNull, reason: label);
 
       await tester.pumpWidget(const SizedBox.shrink());
       await pumpRouteFrames(tester);
     }
+  });
+
+  testWidgets('retired quran routes redirect to their canonical owners', (
+    tester,
+  ) async {
+    final container = await makeContainer(tester);
+    final router = container.read(appRouterProvider);
+
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
+
+    router.go('/quran/learning?tab=reflect');
+    await pumpRouteFrames(tester);
+    expect(find.byType(QuranAppHubPage), findsOneWidget);
+    expect(router.state.uri.path, '/quran');
+
+    router.go('/quran/knowledge-search?q=mercy');
+    await pumpRouteFrames(tester);
+    expect(find.byType(QuranSearchPage), findsOneWidget);
+    expect(router.state.uri.path, '/quran/search');
+    expect(router.state.uri.queryParameters['q'], 'mercy');
+
+    router.go('/quran/insights/paths');
+    await pumpRouteFrames(tester);
+    expect(find.byType(QuranLearningPathsPage), findsOneWidget);
+    expect(router.state.uri.path, '/quran/paths');
+  });
+
+  testWidgets('pathways page carries the merged insight pathways section', (
+    tester,
+  ) async {
+    final container = await makeContainer(tester);
+    final router = container.read(appRouterProvider);
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+
+    await tester.pumpWidget(buildRouterTestApp(container));
+    router.go('/quran/paths');
+    await pumpRouteFrames(tester);
+
+    expect(find.byType(QuranLearningPathsPage), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text(l10n.quranAyahInsightPathsTitle),
+      600,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 80,
+    );
+    expect(find.text(l10n.quranAyahInsightPathsTitle), findsOneWidget);
+  });
+
+  testWidgets('khatm plan starts from the tab and tracks juz progress', (
+    tester,
+  ) async {
+    final container = await makeContainer(tester);
+    final router = container.read(appRouterProvider);
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+
+    await tester.pumpWidget(buildRouterTestApp(container));
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+
+    await tapRow(tester, l10n.quranTabPlanTitle);
+    expect(find.byType(QuranKhatmPlanPage), findsOneWidget);
+
+    await tester.tap(find.text(l10n.quranKhatmPaceOneJuz));
+    await pumpRouteFrames(tester);
+
+    final plan = container.read(quranKhatmPlanProvider);
+    expect(plan, isNotNull);
+    expect(plan!.paceMode, QuranKhatmPaceMode.juzPerDay);
+    expect(find.text(l10n.quranKhatmTodayPortionTitle), findsOneWidget);
+
+    // Marking today's portion advances the plan through juz 1 exactly.
+    await tester.ensureVisible(find.text(l10n.quranKhatmMarkDoneAction).first);
+    await pumpRouteFrames(tester);
+    await tester.tap(find.text(l10n.quranKhatmMarkDoneAction).first);
+    await pumpRouteFrames(tester);
+    expect(
+      container.read(quranKhatmPlanProvider)!.completedIndex,
+      QuranGlobalPosition.juzStartIndex(2) - 1,
+    );
+
+    // The tab row now reads "Juz 2 of 30 · today's portion read".
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    expect(
+      find.textContaining(l10n.quranTabPlanJuzLabel(2)),
+      findsWidgets,
+    );
   });
 }

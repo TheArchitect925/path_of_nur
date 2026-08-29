@@ -11,7 +11,7 @@ import 'package:path_of_nur/features/history/presentation/history_archive_page.d
 import 'package:path_of_nur/features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart';
 import 'package:path_of_nur/features/learn/hadith/presentation/hadith_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_category_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/application/learn_hub_providers.dart';
 import 'package:path_of_nur/features/learn/presentation/data/learn_category_catalog.dart';
 import 'package:path_of_nur/features/learn/presentation/data/learn_hub_taxonomy.dart';
@@ -116,7 +116,7 @@ void main() {
     router.go('/learn/category/quran-hadith');
     await pumpRouteFrames(tester);
     await tapActionCard(tester, l10n.learnCategoryQuranLearningTitle);
-    expect(find.byType(LearnQuranHubPage), findsOneWidget);
+    expect(find.byType(QuranAppHubPage), findsOneWidget);
 
     router.go('/learn/category/quran-hadith');
     await pumpRouteFrames(tester);
