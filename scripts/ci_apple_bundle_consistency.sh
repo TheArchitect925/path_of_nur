@@ -42,7 +42,6 @@ watch_bundle_id="$(printf '%s\n' "$watch_settings" | sed -n 's/^[[:space:]]*PROD
 watch_companion_id="$(printf '%s\n' "$watch_settings" | sed -n 's/^[[:space:]]*WK_COMPANION_APP_BUNDLE_IDENTIFIER = //p' | head -n1 | tr -d '[:space:]')"
 
 expected_watch_app_id="${base_bundle_id}.watchkitapp"
-expected_watch_extension_id="${expected_watch_app_id}.watchkitextension"
 
 if [[ "$runner_bundle_id" != "$base_bundle_id" ]]; then
   echo "Runner bundle identifier mismatch: expected $base_bundle_id, got $runner_bundle_id" >&2
@@ -69,8 +68,11 @@ if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_APP_BUN
   exit 1
 fi
 
-if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_EXTENSION_BUNDLE_ID)\";" "$PBXPROJ" >/dev/null; then
-  echo 'Expected watch extension watchOS override to use $(APP_WATCH_EXTENSION_BUNDLE_ID)' >&2
+# The watch runs a single-target watchOS layout, so there is no WatchKit
+# extension to pin any more; the one remaining extension is the complications
+# widget, whose id hangs off the watch app's.
+if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_APP_BUNDLE_ID).complications\";" "$PBXPROJ" >/dev/null; then
+  echo 'Expected complications watchOS override to use $(APP_WATCH_APP_BUNDLE_ID).complications' >&2
   exit 1
 fi
 
