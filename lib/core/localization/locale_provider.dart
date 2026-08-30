@@ -4,6 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../shared/persistence/local_store.dart';
 
 const _localeStorageKey = 'profile.locale';
+
+/// The locale to fall back to when the user has not picked one.
+///
+/// Do not reach for `AppLocalizations.supportedLocales.first` here: gen-l10n
+/// sorts that list alphabetically, so its first entry is Arabic, not English.
+const defaultAppLocale = Locale('en');
 const releaseSupportedLocales = <Locale>[
   Locale('en'),
   Locale('de'),
