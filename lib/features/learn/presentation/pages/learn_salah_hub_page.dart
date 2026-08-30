@@ -5,8 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../salah/application/salah_trainer_provider.dart';
 import '../../salah/models/salah_trainer_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
@@ -14,14 +15,18 @@ import '../widgets/learn_hub_page_scaffold.dart';
 enum _SalahTrainerTab { learn, guided, ayah, recitations, essentials, wudu }
 
 class LearnSalahHubPage extends ConsumerStatefulWidget {
-  const LearnSalahHubPage({super.key});
+  const LearnSalahHubPage({super.key, this.section});
+
+  /// Null keeps the salah structure itself as the landing; the other five are
+  /// destinations you can link to rather than segments behind a strip.
+  final String? section;
 
   @override
   ConsumerState<LearnSalahHubPage> createState() => _LearnSalahHubPageState();
 }
 
 class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
-  _SalahTrainerTab _tab = _SalahTrainerTab.learn;
+  late final _SalahTrainerTab _tab = _sectionFor(widget.section);
   final TextEditingController _surahSearchController = TextEditingController();
   final TextEditingController _recitationSearchController =
       TextEditingController();
@@ -120,13 +125,24 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
           ),
           const SizedBox(height: 10),
         ],
-        SegmentedPillControl<_SalahTrainerTab>(
-          items: _SalahTrainerTab.values,
-          selectedItem: _tab,
-          labelBuilder: _tabLabel,
-          onChanged: (value) => setState(() => _tab = value),
-        ),
-        const SizedBox(height: 10),
+        if (widget.section == null) ...[
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final tab in _SalahTrainerTab.values)
+                if (tab != _SalahTrainerTab.learn)
+                  CompactListTile(
+                    title: _tabLabel(tab),
+                    leading: HubLeadingIcon(_sectionIcon(tab)),
+                    onTap: () => context.pushNamed(
+                      'learnSalahHub',
+                      queryParameters: {'section': tab.name},
+                    ),
+                  ),
+            ],
+          ),
+          const SizedBox(height: 10),
+        ],
         PremiumCard(
           child: Wrap(
             spacing: 8,
@@ -204,6 +220,30 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
           const _WuduTab(),
       ],
     );
+  }
+
+  _SalahTrainerTab _sectionFor(String? id) {
+    for (final tab in _SalahTrainerTab.values) {
+      if (tab.name == id) return tab;
+    }
+    return _SalahTrainerTab.learn;
+  }
+
+  IconData _sectionIcon(_SalahTrainerTab tab) {
+    switch (tab) {
+      case _SalahTrainerTab.learn:
+        return Icons.school_rounded;
+      case _SalahTrainerTab.guided:
+        return Icons.self_improvement_rounded;
+      case _SalahTrainerTab.ayah:
+        return Icons.menu_book_rounded;
+      case _SalahTrainerTab.recitations:
+        return Icons.record_voice_over_rounded;
+      case _SalahTrainerTab.essentials:
+        return Icons.checklist_rounded;
+      case _SalahTrainerTab.wudu:
+        return Icons.water_drop_rounded;
+    }
   }
 
   String _tabLabel(_SalahTrainerTab tab) {

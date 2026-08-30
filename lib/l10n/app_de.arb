@@ -18817,5 +18817,6 @@
   "learnContainedStateBody": "Diese Ansicht ist bewusst eingeschränkt, statt unfertige Lerninhalte als vollständig darzustellen.",
   "learnContainedStateBackToLearnAction": "Zurück zu Lernen",
   "learnContainedStateBrowseKnowledgeAction": "Wissen durchsuchen",
-  "learnContainedStateOpenQuranLearningAction": "Koran-Lernbereich öffnen"
+  "learnContainedStateOpenQuranLearningAction": "Koran-Lernbereich öffnen",
+  "learnCategoryDivineLifeLessonsSubtitle": "Im Koran verwurzelte Lektionen für Reflexion, Charakter und ein geerdetes Leben."
 }

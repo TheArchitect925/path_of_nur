@@ -71179,6 +71179,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open Qur\'\'an learning'**
   String get learnContainedStateOpenQuranLearningAction;
+
+  /// No description provided for @learnCategoryDivineLifeLessonsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an-rooted lessons for reflection, character, and grounded living.'**
+  String get learnCategoryDivineLifeLessonsSubtitle;
 }
 
 class _AppLocalizationsDelegate

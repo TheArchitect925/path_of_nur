@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/data/learn_icon_registry.dart';
@@ -89,6 +92,10 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
     final isQuiz = ui.selectedTab == ProphetsTab.quiz;
     final isJourney = ui.selectedTab == ProphetsTab.journey;
     final isFamilyTree = ui.selectedTab == ProphetsTab.familyTree;
+    // Stories, timeline and map are three views of the same prophets — a
+    // control. Quiz, the revelation journey and the family tree are separate
+    // experiences, so they are destinations you can link to and come back from.
+    final isBrowsingProphets = !isQuiz && !isJourney && !isFamilyTree;
     final regions = _regions(allProphets);
     final filtered = _applyFilters(allProphets, ui);
     final lastOpened = ui.lastOpenedProphetId == null
@@ -152,12 +159,13 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _ProphetsSegmentedControl(
-                selected: ui.selectedTab,
-                onChanged: controller.setSelectedTab,
-              ),
-              const SizedBox(height: 10),
-              if (!isQuiz && !isJourney && !isFamilyTree) ...[
+              if (isBrowsingProphets)
+                _ProphetsViewControl(
+                  selected: ui.selectedTab,
+                  onChanged: controller.setSelectedTab,
+                ),
+              if (isBrowsingProphets) const SizedBox(height: 10),
+              if (isBrowsingProphets) ...[
                 LearnDiscoverySearchField(
                   controller: _searchController,
                   hintText: l10n.searchProphetsHint,
@@ -255,6 +263,24 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
           ),
         ),
         const SizedBox(height: 12),
+        if (isBrowsingProphets) ...[
+          const SizedBox(height: 12),
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final destination in _ProphetsDestination.values)
+                CompactListTile(
+                  title: destination.label(l10n),
+                  leading: HubLeadingIcon(destination.icon),
+                  onTap: () => context.pushNamed(
+                    'learnProphetsHub',
+                    queryParameters: {'tab': destination.tab.name},
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+        ],
         if (ui.selectedTab == ProphetsTab.stories)
           ProphetsStoriesView(
             prophets: filtered,
@@ -529,39 +555,65 @@ extension<T> on Iterable<T> {
   }
 }
 
-class _ProphetsSegmentedControl extends StatelessWidget {
-  const _ProphetsSegmentedControl({
-    required this.selected,
-    required this.onChanged,
-  });
+/// The three ways to look at the same prophets. A required one-of-N choice,
+/// which is what a segmented control is for.
+class _ProphetsViewControl extends StatelessWidget {
+  const _ProphetsViewControl({required this.selected, required this.onChanged});
+
+  static const _views = [
+    ProphetsTab.stories,
+    ProphetsTab.timeline,
+    ProphetsTab.map,
+  ];
 
   final ProphetsTab selected;
   final ValueChanged<ProphetsTab> onChanged;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SegmentedPillControl<ProphetsTab>(
-      items: ProphetsTab.values,
-      selectedItem: selected,
-      labelBuilder: _label,
+      items: _views,
+      selectedItem: _views.contains(selected) ? selected : ProphetsTab.stories,
+      labelBuilder: (tab) => _label(l10n, tab),
       onChanged: onChanged,
     );
   }
 
-  String _label(ProphetsTab tab) {
+  String _label(AppLocalizations l10n, ProphetsTab tab) {
     switch (tab) {
-      case ProphetsTab.stories:
-        return 'Stories';
       case ProphetsTab.timeline:
-        return 'Timeline';
+        return l10n.prophetsJourneyTimelineAction;
       case ProphetsTab.map:
-        return 'Map';
+        return l10n.learningJourneyToolProphetsMapTitle;
+      case ProphetsTab.stories:
       case ProphetsTab.quiz:
-        return 'Quiz';
       case ProphetsTab.journey:
-        return 'Journey';
       case ProphetsTab.familyTree:
-        return 'Family';
+        return l10n.learnHubMainIslandStoriesTitle;
+    }
+  }
+}
+
+/// The prophets sections that are places rather than views.
+enum _ProphetsDestination {
+  quiz(ProphetsTab.quiz, Icons.quiz_rounded),
+  journey(ProphetsTab.journey, Icons.route_rounded),
+  familyTree(ProphetsTab.familyTree, Icons.account_tree_rounded);
+
+  const _ProphetsDestination(this.tab, this.icon);
+
+  final ProphetsTab tab;
+  final IconData icon;
+
+  String label(AppLocalizations l10n) {
+    switch (this) {
+      case _ProphetsDestination.quiz:
+        return l10n.learnHubContentTypeQuiz;
+      case _ProphetsDestination.journey:
+        return l10n.prophetsJourneyTitle;
+      case _ProphetsDestination.familyTree:
+        return l10n.prophetsFamilyTreeTitle;
     }
   }
 }

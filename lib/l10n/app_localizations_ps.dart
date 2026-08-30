@@ -42604,4 +42604,8 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get learnContainedStateOpenQuranLearningAction =>
       'Open Qur\'an learning';
+
+  @override
+  String get learnCategoryDivineLifeLessonsSubtitle =>
+      'Qur\'an-rooted lessons for reflection, character, and grounded living.';
 }

@@ -42557,6 +42557,10 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get learnContainedStateOpenQuranLearningAction =>
       'Open Qur\'an learning';
+
+  @override
+  String get learnCategoryDivineLifeLessonsSubtitle =>
+      'Qur\'an-rooted lessons for reflection, character, and grounded living.';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).
@@ -85108,4 +85112,8 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get learnContainedStateOpenQuranLearningAction =>
       'Open Qur\'an learning';
+
+  @override
+  String get learnCategoryDivineLifeLessonsSubtitle =>
+      'Qur\'an-rooted lessons for reflection, character, and grounded living.';
 }

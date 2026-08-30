@@ -71,6 +71,7 @@ List<RouteBase> buildLearnContentDomainRoutes() {
         child: DivineLifeLessonsPage(
           initialThemeId: state.uri.queryParameters['themeId'],
           initialSituationId: state.uri.queryParameters['situationId'],
+          section: state.uri.queryParameters['section'],
         ),
       ),
     ),

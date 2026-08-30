@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -24,11 +26,16 @@ class DivineLifeLessonsPage extends ConsumerStatefulWidget {
     super.key,
     this.initialThemeId,
     this.initialSituationId,
+    this.section,
     this.initialTab,
   });
 
   final String? initialThemeId;
   final String? initialSituationId;
+
+  /// Null keeps the lesson list as the landing; the other three tabs are
+  /// destinations reachable from the list under the header.
+  final String? section;
   final DivineLifeTab? initialTab;
 
   @override
@@ -49,7 +56,10 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
     _searchController = TextEditingController();
     _selectedThemeId = widget.initialThemeId;
     _selectedSituationId = widget.initialSituationId;
-    if (widget.initialTab != null) {
+    final sectionTab = _sectionFor(widget.section);
+    if (sectionTab != null) {
+      _tab = sectionTab;
+    } else if (widget.initialTab != null) {
       _tab = widget.initialTab!;
     } else if (widget.initialThemeId != null) {
       _tab = DivineLifeTab.themes;
@@ -158,23 +168,32 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
 
     return LearnHubPageScaffold(
       headerIcon: Icons.lightbulb_rounded,
-      title: 'Divine Life Lessons',
-      subtitle:
-          'Qur’an-rooted lessons for reflection, character, and grounded living.',
+      title: l10n.learnCategoryDivineLifeLessonsTitle,
+      subtitle: l10n.learnCategoryDivineLifeLessonsSubtitle,
       children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SegmentedPillControl<DivineLifeTab>(
-                items: DivineLifeTab.values,
-                selectedItem: _tab,
-                labelBuilder: _tabLabel,
-                onChanged: (tab) => setState(() => _tab = tab),
-              ),
-            ],
+        if (widget.section == null)
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HubListGroup(
+                  title: l10n.learnLandingBrowseTitle,
+                  children: [
+                    for (final tab in DivineLifeTab.values)
+                      if (tab != DivineLifeTab.lessons)
+                        CompactListTile(
+                          title: _tabLabel(tab),
+                          leading: HubLeadingIcon(_sectionIcon(tab)),
+                          onTap: () => context.pushNamed(
+                            'learnLifeLanding',
+                            queryParameters: {'section': tab.name},
+                          ),
+                        ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
         const SizedBox(height: 10),
         PremiumCard(
           surfaceVariant: AppSurfaceVariant.panel,
@@ -368,6 +387,26 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
       'lifeLessonDetail',
       pathParameters: {'lessonId': lessonId},
     );
+  }
+
+  DivineLifeTab? _sectionFor(String? id) {
+    for (final tab in DivineLifeTab.values) {
+      if (tab.name == id) return tab;
+    }
+    return null;
+  }
+
+  IconData _sectionIcon(DivineLifeTab tab) {
+    switch (tab) {
+      case DivineLifeTab.lessons:
+        return Icons.menu_book_rounded;
+      case DivineLifeTab.themes:
+        return Icons.category_rounded;
+      case DivineLifeTab.situations:
+        return Icons.emoji_people_rounded;
+      case DivineLifeTab.reflection:
+        return Icons.self_improvement_rounded;
+    }
   }
 
   String _tabLabel(DivineLifeTab tab) {

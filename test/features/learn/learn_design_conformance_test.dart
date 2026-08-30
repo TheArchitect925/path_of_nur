@@ -59,8 +59,8 @@ void main() {
     // for a required one-of-N *control* — a sort order, a search scope, a
     // learning mode — where clearing the selection is not a valid state and a
     // FilterChipRow (which clears on re-tap) would be wrong. The list below is
-    // split accordingly: the first group is reviewed and kept, the second is
-    // debt that Phase L4 is still working through.
+    // split accordingly: every entry below is reviewed and kept.
+    // Phase L4 unpacked the strips that were really navigation.
     const allowed = <String>{
       // --- Required one-of-N controls. Reviewed and kept. ---
       // Sort order over one lesson list.
@@ -73,12 +73,10 @@ void main() {
       'lib/features/learn/quran/presentation/quran_surah_explorer_page.dart',
       // Chooses which control panel is expanded — a required one-of-N.
       'lib/features/learn/hadith/presentation/widgets/hadith_browse_helpers.dart',
+      // Stories / timeline / map — three views of the same prophets.
+      'lib/features/learn/prophets/presentation/prophets_page.dart',
       // Listen / practice / memory over the same surah — a mode, not a place.
       'lib/features/learn/salah/presentation/salah_surah_detail_page.dart',
-
-      // --- Still to unpack into destination lists (Phase L4). ---
-      'lib/features/learn/presentation/pages/learn_salah_hub_page.dart',
-      'lib/features/learn/prophets/presentation/prophets_page.dart',
     };
 
     _expectNoDrift(

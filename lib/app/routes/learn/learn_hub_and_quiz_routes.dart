@@ -440,8 +440,9 @@ List<RouteBase> buildLearnHubAndQuizRoutes() {
     GoRoute(
       path: '/learn/salah',
       name: 'learnSalahHub',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnSalahHubPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: LearnSalahHubPage(section: state.uri.queryParameters['section']),
+      ),
     ),
     GoRoute(
       path: '/learn/hub/salah',

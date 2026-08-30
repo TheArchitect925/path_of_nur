@@ -43256,4 +43256,8 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get learnContainedStateOpenQuranLearningAction =>
       'Koran-Lernbereich öffnen';
+
+  @override
+  String get learnCategoryDivineLifeLessonsSubtitle =>
+      'Im Koran verwurzelte Lektionen für Reflexion, Charakter und ein geerdetes Leben.';
 }
