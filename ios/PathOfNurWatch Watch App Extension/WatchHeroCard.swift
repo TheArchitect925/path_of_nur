@@ -1,6 +1,9 @@
 import SwiftUI
 
+/// Glass card mirroring the phone's PremiumCard: theme surface fill, an
+/// edge-light border, and a gold glow reserved for completed moments.
 struct WatchHeroCard<Content: View>: View {
+  @Environment(\.watchPalette) private var palette
   let glow: Bool
   @ViewBuilder let content: Content
 
@@ -20,8 +23,8 @@ struct WatchHeroCard<Content: View>: View {
         .fill(
           LinearGradient(
             colors: glow
-                ? [WatchTheme.accent.opacity(0.18), WatchTheme.card]
-                : [WatchTheme.card, WatchTheme.card],
+                ? [palette.accent.opacity(0.20), palette.cardFill]
+                : [palette.cardFill, palette.cardFillSoft],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
           )
@@ -29,8 +32,13 @@ struct WatchHeroCard<Content: View>: View {
     )
     .overlay(
       RoundedRectangle(cornerRadius: 18, style: .continuous)
-        .stroke(glow ? WatchTheme.accent.opacity(0.35) : WatchTheme.cardBorder, lineWidth: 1)
+        .strokeBorder(
+          glow
+              ? AnyShapeStyle(palette.accent.opacity(0.45))
+              : AnyShapeStyle(palette.cardBorderGradient),
+          lineWidth: 1
+        )
     )
-    .shadow(color: glow ? WatchTheme.accent.opacity(0.18) : .clear, radius: 10)
+    .shadow(color: glow ? palette.accent.opacity(0.20) : .clear, radius: 10)
   }
 }

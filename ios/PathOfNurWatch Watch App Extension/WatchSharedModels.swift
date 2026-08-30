@@ -390,6 +390,54 @@ enum WatchRootTab: String, CaseIterable, Identifiable {
   var id: String { rawValue }
 }
 
+/// Tool screens presented over the five-page spine (Home tiles, deep links).
+enum WatchAuxScreen: String, Identifiable {
+  case qibla
+  case names
+  case quranRemote
+
+  var id: String { rawValue }
+}
+
+/// Live Qur'an playback state fetched from the phone. `lastUpdatedAt` stays a
+/// raw string: the Dart side emits a local-time ISO stamp without an offset,
+/// and the remote only cares that the payload just arrived.
+struct WatchQuranPlaybackPayload: Codable {
+  let playbackSessionId: String
+  let sourceType: String
+  let isPlaying: Bool
+  let surahId: Int?
+  let surahName: String
+  let reciterId: String
+  let reciterName: String
+  let currentAyah: Int?
+  let positionSeconds: Int
+  let durationSeconds: Int?
+  let isBuffering: Bool
+  let lastUpdatedAt: String
+}
+
+#if targetEnvironment(simulator)
+extension WatchQuranPlaybackPayload {
+  static var simulatorSample: WatchQuranPlaybackPayload {
+    WatchQuranPlaybackPayload(
+      playbackSessionId: "sim-sample",
+      sourceType: "phone",
+      isPlaying: true,
+      surahId: 18,
+      surahName: "Al-Kahf",
+      reciterId: "husary",
+      reciterName: "Mahmoud Khalil Al-Husary",
+      currentAyah: 10,
+      positionSeconds: 204,
+      durationSeconds: 730,
+      isBuffering: false,
+      lastUpdatedAt: ""
+    )
+  }
+}
+#endif
+
 enum WatchPostPrayerAdhkarPhraseKind: String, Codable, CaseIterable, Identifiable {
   case subhanAllah
   case alhamdulillah
@@ -593,6 +641,8 @@ enum WatchStrings {
   static let complicationSpiritualPromptTitle = value("watch.complication.spiritualPrompt.title", "Spiritual Prompt")
   static let complicationSpiritualPromptDescription = value("watch.complication.spiritualPrompt.description", "Shows a short spiritual prompt from your synced Path of Nūr snapshot.")
   static let complicationPrayerProgressTitle = value("watch.complication.prayerProgress.title", "Prayer Progress")
+  static let complicationNameOfDayTitle = value("watch.complication.nameOfDay.title", "Name of the Day")
+  static let complicationNameOfDayDescription = value("watch.complication.nameOfDay.description", "A daily name of Allah with its meaning.")
   static let complicationStartSession = value("watch.complication.startSession", "Start a session")
   static let complicationOpenApp = value("watch.complication.openApp", "Open Path of Nūr")
   static let complicationPrayerProgressDone = value("watch.complication.prayerProgress.done", "Done today")
@@ -648,4 +698,36 @@ enum WatchStrings {
   static let autoDhikrPhraseAllahuAkbar = value("watch.dhikr.auto.phrase.allahuAkbar", "Allahu Akbar")
   static let autoDhikrPhraseAstaghfirullah = value("watch.dhikr.auto.phrase.astaghfirullah", "Astaghfirullah")
   static let autoDhikrPhraseGeneric = value("watch.dhikr.auto.phrase.generic", "Dhikr")
+  static let qiblaTitle = value("watch.qibla.title", "Qibla")
+  static let qiblaAligned = value("watch.qibla.aligned", "Facing the Qibla")
+  static let qiblaLocating = value("watch.qibla.locating", "Finding your location…")
+  static let qiblaLocationNeededTitle = value("watch.qibla.locationNeeded.title", "Location needed")
+  static let qiblaLocationNeededBody = value("watch.qibla.locationNeeded.body", "Allow location on your watch to find the Qibla direction.")
+  static let qiblaAllowLocation = value("watch.qibla.allowLocation", "Allow Location")
+  static let qiblaLocationDeniedBody = value("watch.qibla.locationDenied.body", "Location is off for this app. Enable it in watch Settings → Privacy → Location Services.")
+  static let qiblaApproximate = value("watch.qibla.approximate", "Using your last known location")
+  static func qiblaFromNorth(_ degrees: Int) -> String {
+    format("watch.qibla.fromNorthFormat", "%d° from North", degrees)
+  }
+  static func qiblaTurnHint(_ degrees: Int) -> String {
+    format("watch.qibla.turnHintFormat", "Face %d° from North", degrees)
+  }
+  static func qiblaDistance(_ formatted: String) -> String {
+    format("watch.qibla.distanceFormat", "%@ to Makkah", formatted)
+  }
+  static let namesTitle = value("watch.names.title", "Names of Allah")
+  static let namesShortTitle = value("watch.names.short", "99 Names")
+  static let quranShortTitle = value("watch.quran.short", "Qur\u{2019}an")
+  static let namesOfDayTitle = value("watch.names.ofDay", "Name of the day")
+  static let namesAllTitle = value("watch.names.all", "All 99 Names")
+  static let quranRemoteTitle = value("watch.quran.title", "Qur\u{2019}an Audio")
+  static let quranRemoteNowPlaying = value("watch.quran.nowPlaying", "Now playing")
+  static let quranRemotePaused = value("watch.quran.paused", "Paused")
+  static let quranRemoteBuffering = value("watch.quran.buffering", "Loading…")
+  static let quranRemoteIdleTitle = value("watch.quran.idle.title", "Nothing playing")
+  static let quranRemoteResumeLast = value("watch.quran.resumeLast", "Resume last recitation")
+  static let quranRemoteUnreachableBody = value("watch.quran.unreachable.body", "Open Path of Nūr on your iPhone to control recitation from your wrist.")
+  static func quranRemoteAyah(_ ayah: Int) -> String {
+    format("watch.quran.ayahFormat", "Ayah %d", ayah)
+  }
 }

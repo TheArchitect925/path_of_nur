@@ -13,9 +13,13 @@ final class WatchAppModel: ObservableObject {
   @Published private(set) var progressState: WatchProgressState?
   @Published private(set) var postPrayerAdhkarState: WatchPostPrayerAdhkarState?
   @Published private(set) var syncBadgeState: WatchSyncBadgeState = .cached
+  @Published private(set) var palette: WatchPalette = .midnight
   @Published var showDhikrAntiRushReminder = false
   @Published var focusedPrayerId: String?
   @Published var selectedTab: WatchRootTab = .home
+  @Published var presentedAuxScreen: WatchAuxScreen?
+  @Published private(set) var quranPlayback: WatchQuranPlaybackPayload?
+  @Published private(set) var quranRemoteBusy = false
   @Published var dhikrMode: WatchDhikrMode
   @Published var hapticsEnabled: Bool
 
@@ -34,6 +38,10 @@ final class WatchAppModel: ObservableObject {
     self.cacheStore = cacheStore
     self.syncService = syncService ?? WatchSyncService(cacheStore: cacheStore)
     self.hapticsEnabled = cacheStore.hapticsEnabled()
+
+    #if targetEnvironment(simulator)
+    cacheStore.seedSimulatorSampleDataIfNeeded()
+    #endif
 
     let cachedSnapshot = cacheStore.loadSnapshot()
     let cachedSettings = cacheStore.loadSettings()
@@ -579,6 +587,15 @@ final class WatchAppModel: ObservableObject {
     case "utility":
       selectedTab = .utility
       focusedPrayerId = nil
+    case "qibla":
+      presentedAuxScreen = .qibla
+      focusedPrayerId = nil
+    case "names":
+      presentedAuxScreen = .names
+      focusedPrayerId = nil
+    case "quran":
+      presentedAuxScreen = .quranRemote
+      focusedPrayerId = nil
     default:
       selectedTab = .home
       focusedPrayerId = nil
@@ -605,6 +622,72 @@ final class WatchAppModel: ObservableObject {
   func clearFocusedPrayer() {
     focusedPrayerId = nil
   }
+
+  func refreshQuranPlayback() async {
+    if let payload = await syncService.fetchQuranPlayback() {
+      quranPlayback = payload
+      return
+    }
+    #if targetEnvironment(simulator)
+    if quranPlayback == nil {
+      quranPlayback = .simulatorSample
+    }
+    #else
+    if !syncService.isReachable {
+      quranPlayback = nil
+    }
+    #endif
+  }
+
+  func sendQuranCommand(_ command: String) async {
+    quranRemoteBusy = true
+    defer { quranRemoteBusy = false }
+    WatchHaptics.confirmation(enabled: hapticsEnabled)
+    if let payload = await syncService.sendQuranCommand(command) {
+      quranPlayback = payload
+      return
+    }
+    #if targetEnvironment(simulator)
+    applySimulatedQuranCommand(command)
+    #endif
+  }
+
+  #if targetEnvironment(simulator)
+  /// Keeps the remote demoable in the simulator, where no phone answers.
+  private func applySimulatedQuranCommand(_ command: String) {
+    let current = quranPlayback ?? .simulatorSample
+    let playing: Bool
+    var position = current.positionSeconds
+    switch command {
+    case "pause":
+      playing = false
+    case "play", "resumeLast":
+      playing = true
+    case "seekForward15":
+      playing = current.isPlaying
+      position += 15
+    case "seekBack15":
+      playing = current.isPlaying
+      position = max(0, position - 15)
+    default:
+      playing = current.isPlaying
+    }
+    quranPlayback = WatchQuranPlaybackPayload(
+      playbackSessionId: current.playbackSessionId,
+      sourceType: current.sourceType,
+      isPlaying: playing,
+      surahId: current.surahId,
+      surahName: current.surahName,
+      reciterId: current.reciterId,
+      reciterName: current.reciterName,
+      currentAyah: current.currentAyah,
+      positionSeconds: position,
+      durationSeconds: current.durationSeconds,
+      isBuffering: false,
+      lastUpdatedAt: current.lastUpdatedAt
+    )
+  }
+  #endif
 
   private func focusPrayer(_ prayerId: String?) {
     guard let prayerId, !prayerId.isEmpty else {
@@ -952,6 +1035,10 @@ final class WatchAppModel: ObservableObject {
   }
 
   private func recomputeStates() {
+    let resolvedPalette = WatchPalette.palette(forPhoneThemeMode: settings?.watchThemeMode)
+    if palette != resolvedPalette {
+      palette = resolvedPalette
+    }
     if let snapshot {
       let nextPrayer = snapshot.resolvedNextPrayer(now: Date())
       dashboardState = WatchDashboardState(

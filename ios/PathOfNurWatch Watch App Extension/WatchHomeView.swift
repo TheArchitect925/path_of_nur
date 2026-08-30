@@ -2,33 +2,30 @@ import SwiftUI
 
 struct WatchHomeView: View {
   @EnvironmentObject private var model: WatchAppModel
+  @Environment(\.watchPalette) private var palette
 
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 12) {
-        HStack {
-          Text(WatchStrings.homeTitle)
-            .font(.system(size: 18, weight: .bold, design: .rounded))
-            .foregroundStyle(.white)
-          Spacer()
+        WatchScreenHeader(WatchStrings.homeTitle) {
           WatchSyncStatusBadge(state: model.syncBadgeState)
         }
         if let dashboard = model.dashboardState {
           WatchHeroCard(glow: dashboard.allPrayersComplete) {
             Text(dashboard.allPrayersComplete ? WatchStrings.allPrayersComplete : WatchStrings.nextPrayerTitle)
-              .font(.caption2.weight(.semibold))
-              .foregroundStyle(WatchTheme.secondaryText)
+              .font(WatchType.captionEmphasis)
+              .foregroundStyle(palette.onSurfaceSubtle)
             Text(dashboard.nextPrayerName)
-              .font(.system(size: 18, weight: .bold, design: .rounded))
-              .foregroundStyle(.white)
+              .font(WatchType.heroTitle)
+              .foregroundStyle(palette.onSurface)
             if let nextPrayerTime = dashboard.nextPrayerTime, !dashboard.allPrayersComplete {
               VStack(alignment: .leading, spacing: 2) {
                 Text(nextPrayerTime, style: .time)
-                  .font(.headline)
-                  .foregroundStyle(WatchTheme.accentSoft)
+                  .font(WatchType.value)
+                  .foregroundStyle(palette.accent)
                 Text(freshnessLabel(for: dashboard))
-                  .font(.caption2)
-                  .foregroundStyle(dashboard.isStale ? WatchTheme.warning : WatchTheme.secondaryText)
+                  .font(WatchType.caption)
+                  .foregroundStyle(dashboard.isStale ? palette.warning : palette.onSurfaceMuted)
               }
             }
             HStack(spacing: 12) {
@@ -38,14 +35,14 @@ struct WatchHomeView: View {
               )
               VStack(alignment: .leading, spacing: 6) {
                 Text(WatchStrings.prayerSummary)
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.secondaryText)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.onSurfaceSubtle)
                 Text("\(dashboard.completedPrayerCount)/\(dashboard.totalPrayerCount)")
-                  .font(.system(size: 20, weight: .bold, design: .rounded))
-                  .foregroundStyle(.white)
+                  .font(WatchType.value)
+                  .foregroundStyle(palette.onSurface)
                 Text("\(WatchStrings.streak): \(dashboard.streakDays)")
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.accentSoft)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.accentSoft)
               }
             }
           }
@@ -70,21 +67,41 @@ struct WatchHomeView: View {
               model.selectedTab = .progress
             }
           }
+          HStack(spacing: 8) {
+            WatchQuickActionButton(
+              title: WatchStrings.qiblaTitle,
+              systemImage: "location.north.circle"
+            ) {
+              model.presentedAuxScreen = .qibla
+            }
+            WatchQuickActionButton(
+              title: WatchStrings.namesShortTitle,
+              systemImage: "book.closed"
+            ) {
+              model.presentedAuxScreen = .names
+            }
+            WatchQuickActionButton(
+              title: WatchStrings.quranShortTitle,
+              systemImage: "waveform"
+            ) {
+              model.presentedAuxScreen = .quranRemote
+            }
+          }
         } else {
           WatchHeroCard {
             Text(WatchStrings.noSnapshotTitle)
-              .font(.headline)
-              .foregroundStyle(.white)
+              .font(WatchType.heroTitle)
+              .foregroundStyle(palette.onSurface)
             Text(WatchStrings.noSnapshotBody)
-              .font(.caption2)
-              .foregroundStyle(WatchTheme.secondaryText)
+              .font(WatchType.caption)
+              .foregroundStyle(palette.onSurfaceSubtle)
           }
         }
       }
       .padding(.horizontal, 12)
       .padding(.vertical, 10)
     }
-    .containerBackground(WatchTheme.backgroundGradient, for: .navigation)
+    .containerBackground(palette.backgroundGradient, for: .tabView)
   }
 
   private func freshnessLabel(for dashboard: WatchDashboardState) -> String {

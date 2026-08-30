@@ -1,5 +1,11 @@
 import Foundation
 
+struct WatchStoredQiblaLocation: Codable {
+  let latitude: Double
+  let longitude: Double
+  let savedAt: Date
+}
+
 final class WatchCacheStore {
   static let appGroupId = "group.com.pathofnur.watch"
 
@@ -13,6 +19,7 @@ final class WatchCacheStore {
     static let autoDhikrPreferences = "watch.auto_dhikr.preferences.v1"
     static let autoDhikrSession = "watch.auto_dhikr.session.v1"
     static let postPrayerAdhkar = "watch.post_prayer_adhkar.v1"
+    static let qiblaLocation = "watch.qibla.location.v1"
   }
 
   private let defaults: UserDefaults
@@ -104,6 +111,17 @@ final class WatchCacheStore {
     defaults.removeObject(forKey: Key.autoDhikrSession)
   }
 
+  func loadQiblaLocation() -> WatchStoredQiblaLocation? {
+    decode(WatchStoredQiblaLocation.self, forKey: Key.qiblaLocation)
+  }
+
+  func saveQiblaLocation(latitude: Double, longitude: Double) {
+    encode(
+      WatchStoredQiblaLocation(latitude: latitude, longitude: longitude, savedAt: Date()),
+      forKey: Key.qiblaLocation
+    )
+  }
+
   func loadPostPrayerAdhkarState() -> WatchPostPrayerAdhkarState? {
     decode(WatchPostPrayerAdhkarState.self, forKey: Key.postPrayerAdhkar)
   }
@@ -126,3 +144,103 @@ final class WatchCacheStore {
     return try? WatchCodec.decoder.decode(type, from: data)
   }
 }
+
+#if targetEnvironment(simulator)
+extension WatchCacheStore {
+  /// Simulator-only demo data so the watch app can be exercised without a
+  /// paired iPhone. Launching with
+  /// `SIMCTL_CHILD_WATCH_SAMPLE_THEME=<AppThemeMode name>` forces a theme
+  /// for visual checks; a real phone-synced snapshot for today is never
+  /// overwritten.
+  func seedSimulatorSampleDataIfNeeded() {
+    let themeOverride = ProcessInfo.processInfo.environment["WATCH_SAMPLE_THEME"]
+
+    let dayFormatter = DateFormatter()
+    dayFormatter.calendar = Calendar(identifier: .gregorian)
+    dayFormatter.locale = Locale(identifier: "en_US_POSIX")
+    dayFormatter.dateFormat = "yyyy-MM-dd"
+    let todayKey = dayFormatter.string(from: Date())
+
+    let existingSettings = loadSettings()
+    if themeOverride != nil || existingSettings == nil {
+      saveSettings(
+        WatchSettingsPayload(
+          schemaVersion: existingSettings?.schemaVersion ?? 1,
+          prayerNotificationsEnabled: existingSettings?.prayerNotificationsEnabled ?? true,
+          enabledPrayerIds: existingSettings?.enabledPrayerIds
+              ?? ["fajr", "dhuhr", "asr", "maghrib", "isha"],
+          followUpReminderEnabled: existingSettings?.followUpReminderEnabled ?? true,
+          followUpDelayMinutes: existingSettings?.followUpDelayMinutes ?? 20,
+          snoozeDurationMinutes: existingSettings?.snoozeDurationMinutes ?? 10,
+          dhikrReminderEnabled: existingSettings?.dhikrReminderEnabled ?? true,
+          quietModeEnabled: existingSettings?.quietModeEnabled ?? false,
+          watchThemeMode: themeOverride ?? existingSettings?.watchThemeMode ?? "midnight",
+          lastUpdatedAt: Date()
+        )
+      )
+    }
+
+    guard loadSnapshot()?.date != todayKey else { return }
+
+    let calendar = Calendar.current
+    func time(_ hour: Int, _ minute: Int) -> Date {
+      calendar.date(bySettingHour: hour, minute: minute, second: 0, of: Date()) ?? Date()
+    }
+
+    let prayers: [WatchPrayerPayload] = [
+      WatchPrayerPayload(
+        prayerId: "fajr", displayName: "Fajr", scheduledTime: time(5, 32),
+        status: .completed, completedAt: time(5, 41), timing: "on_time", source: "sample"
+      ),
+      WatchPrayerPayload(
+        prayerId: "dhuhr", displayName: "Dhuhr", scheduledTime: time(13, 12),
+        status: .completed, completedAt: time(13, 25), timing: "on_time", source: "sample"
+      ),
+      WatchPrayerPayload(
+        prayerId: "asr", displayName: "Asr", scheduledTime: time(16, 48),
+        status: .pending, completedAt: nil, timing: nil, source: "sample"
+      ),
+      WatchPrayerPayload(
+        prayerId: "maghrib", displayName: "Maghrib", scheduledTime: time(19, 58),
+        status: .pending, completedAt: nil, timing: nil, source: "sample"
+      ),
+      WatchPrayerPayload(
+        prayerId: "isha", displayName: "Isha", scheduledTime: time(21, 24),
+        status: .pending, completedAt: nil, timing: nil, source: "sample"
+      ),
+    ]
+
+    saveSnapshot(
+      WatchDailySnapshotPayload(
+        schemaVersion: 1,
+        snapshotId: "simulator-sample-\(todayKey)",
+        generatedAt: Date(),
+        date: todayKey,
+        timezone: TimeZone.current.identifier,
+        nextPrayerId: nil,
+        nextPrayerTime: nil,
+        currentPrayerId: nil,
+        completedPrayerCount: 2,
+        totalPrayerCount: 5,
+        dhikrTodayCount: 33,
+        xpToday: 45,
+        oceanDropsToday: 12,
+        streakDays: 6,
+        currentLevel: 4,
+        growthStageKey: "sapling",
+        prayers: prayers,
+        activeDhikrSession: nil,
+        spiritualPrompt: WatchSpiritualPromptPayload(
+          kind: "ayah",
+          title: "Remembrance",
+          shortText: "In the remembrance of Allah hearts find rest.",
+          inlineText: "Hearts find rest in dhikr",
+          circularText: "13:28"
+        ),
+        lastSyncAt: Date(),
+        sourceVersion: "sim-sample"
+      )
+    )
+  }
+}
+#endif

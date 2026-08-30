@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WatchSyncStatusBadge: View {
+  @Environment(\.watchPalette) private var palette
   let state: WatchSyncBadgeState
 
   var body: some View {
@@ -9,8 +10,8 @@ struct WatchSyncStatusBadge: View {
         .fill(color)
         .frame(width: 6, height: 6)
       Text(label)
-        .font(.caption2.weight(.semibold))
-        .foregroundStyle(WatchTheme.secondaryText)
+        .font(WatchType.caption)
+        .foregroundStyle(palette.onSurfaceMuted)
     }
   }
 
@@ -28,11 +29,11 @@ struct WatchSyncStatusBadge: View {
   private var color: Color {
     switch state {
     case .live:
-      return WatchTheme.success
+      return palette.success
     case .cached:
-      return WatchTheme.accent
+      return palette.accentSoft
     case .pending:
-      return WatchTheme.warning
+      return palette.warning
     }
   }
 }

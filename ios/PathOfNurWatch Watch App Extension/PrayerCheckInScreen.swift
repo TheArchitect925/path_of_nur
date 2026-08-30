@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PrayerCheckInScreen: View {
   @EnvironmentObject private var model: WatchAppModel
+  @Environment(\.watchPalette) private var palette
   @State private var selectedPrayer: WatchPrayerPayload?
   @State private var showingPostPrayerAdhkar = false
 
@@ -13,24 +14,24 @@ struct PrayerCheckInScreen: View {
             WatchHeroCard(glow: promptState.isComplete) {
               if promptState.isComplete {
                 Text(WatchStrings.adhkarCompletedTitle)
-                  .font(.headline.weight(.bold))
-                  .foregroundStyle(.white)
+                  .font(WatchType.heroTitle)
+                  .foregroundStyle(palette.onSurface)
                 Text(WatchStrings.adhkarCompletedBody)
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.secondaryText)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.onSurfaceSubtle)
                 Button(WatchStrings.done) {
                   model.finishPostPrayerAdhkarPrompt()
                   showingPostPrayerAdhkar = false
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(WatchTheme.accent)
+                .tint(palette.accent)
               } else if promptState.totalCompletedCount == 0 {
                 Text(WatchStrings.postPrayerCompletedTitle)
-                  .font(.headline.weight(.bold))
-                  .foregroundStyle(.white)
+                  .font(WatchType.heroTitle)
+                  .foregroundStyle(palette.onSurface)
                 Text(WatchStrings.postPrayerCompletedBody)
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.secondaryText)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.onSurfaceSubtle)
                 HStack(spacing: 8) {
                   Button(WatchStrings.postPrayerAdhkar) {
                     if let prayer = model.prayerState.prayers.first(where: { $0.prayerId == promptState.prayerId }) {
@@ -39,7 +40,7 @@ struct PrayerCheckInScreen: View {
                     showingPostPrayerAdhkar = true
                   }
                   .buttonStyle(.borderedProminent)
-                  .tint(WatchTheme.accent)
+                  .tint(palette.accent)
                   Button(WatchStrings.done) {
                     model.skipPostPrayerAdhkar()
                   }
@@ -47,17 +48,17 @@ struct PrayerCheckInScreen: View {
                 }
               } else {
                 Text(WatchStrings.adhkarTitle)
-                  .font(.headline.weight(.bold))
-                  .foregroundStyle(.white)
+                  .font(WatchType.heroTitle)
+                  .foregroundStyle(palette.onSurface)
                 Text(promptState.prayerName)
-                  .font(.caption2)
-                  .foregroundStyle(WatchTheme.accentSoft)
+                  .font(WatchType.caption)
+                  .foregroundStyle(palette.accentSoft)
                 HStack(spacing: 8) {
                   Button(WatchStrings.adhkarResume) {
                     showingPostPrayerAdhkar = true
                   }
                   .buttonStyle(.borderedProminent)
-                  .tint(WatchTheme.accent)
+                  .tint(palette.accent)
                   Button(WatchStrings.skip) {
                     model.skipPostPrayerAdhkar()
                   }
@@ -82,10 +83,13 @@ struct PrayerCheckInScreen: View {
             .contentShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
           }
           .buttonStyle(.plain)
+          .listRowBackground(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+              .fill(palette.cardFillSoft)
+          )
           .id(prayer.prayerId)
         }
       }
-      .listStyle(.carousel)
       .onChange(of: model.focusedPrayerId) { _, prayerId in
         guard let prayerId else { return }
         withAnimation(.easeInOut(duration: 0.2)) {
@@ -101,6 +105,7 @@ struct PrayerCheckInScreen: View {
     .sheet(isPresented: $showingPostPrayerAdhkar) {
       PostPrayerAdhkarFlow()
         .environmentObject(model)
+        .environment(\.watchPalette, model.palette)
     }
     .confirmationDialog(
       selectedPrayer?.displayName ?? WatchStrings.prayerTitle,
@@ -131,7 +136,7 @@ struct PrayerCheckInScreen: View {
         selectedPrayer = nil
       }
     }
-    .containerBackground(WatchTheme.backgroundGradient, for: .navigation)
+    .containerBackground(palette.backgroundGradient, for: .tabView)
   }
 
   private var promptState: WatchPostPrayerAdhkarState? {
@@ -141,6 +146,7 @@ struct PrayerCheckInScreen: View {
 
 private struct PostPrayerAdhkarFlow: View {
   @EnvironmentObject private var model: WatchAppModel
+  @Environment(\.watchPalette) private var palette
   @Environment(\.dismiss) private var dismiss
 
   var body: some View {
@@ -148,35 +154,35 @@ private struct PostPrayerAdhkarFlow: View {
       if let state = model.postPrayerAdhkarState {
         VStack(spacing: 14) {
           Text(WatchStrings.adhkarTitle)
-            .font(.system(size: 18, weight: .bold, design: .rounded))
-            .foregroundStyle(.white)
+            .font(WatchType.screenTitle)
+            .foregroundStyle(palette.accent)
 
           if state.isComplete {
             WatchHeroCard(glow: true) {
               Text(WatchStrings.adhkarCompletedTitle)
-                .font(.headline.weight(.bold))
-                .foregroundStyle(.white)
+                .font(WatchType.heroTitle)
+                .foregroundStyle(palette.onSurface)
               Text(WatchStrings.adhkarCompletedBody)
-                .font(.caption2)
-                .foregroundStyle(WatchTheme.secondaryText)
+                .font(WatchType.caption)
+                .foregroundStyle(palette.onSurfaceSubtle)
               Button(WatchStrings.done) {
                 model.finishPostPrayerAdhkarPrompt()
                 dismiss()
               }
               .buttonStyle(.borderedProminent)
-              .tint(WatchTheme.accent)
+              .tint(palette.accent)
             }
           } else if let step = state.currentStep {
             WatchHeroCard {
               Text(state.prayerName)
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(WatchTheme.accentSoft)
+                .font(WatchType.captionEmphasis)
+                .foregroundStyle(palette.accentSoft)
               Text(step.kind.title)
-                .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
+                .font(.system(size: 20, weight: .semibold, design: .serif))
+                .foregroundStyle(palette.onSurface)
               Text("\(WatchStrings.adhkarStepLabel) \(state.currentStepIndex + 1)/\(state.steps.count)")
-                .font(.caption2)
-                .foregroundStyle(WatchTheme.secondaryText)
+                .font(WatchType.caption)
+                .foregroundStyle(palette.onSurfaceSubtle)
 
               Button(action: model.advancePostPrayerAdhkar) {
                 VStack(spacing: 8) {
@@ -188,18 +194,24 @@ private struct PostPrayerAdhkarFlow: View {
                   .frame(width: 110, height: 110)
 
                   Text("\(min(step.count, step.kind.targetCount)) / \(step.kind.targetCount)")
-                    .font(.headline.weight(.semibold))
-                    .foregroundStyle(WatchTheme.accentSoft)
+                    .font(WatchType.label)
+                    .foregroundStyle(palette.accentSoft)
                   Text(WatchStrings.adhkarTap)
-                    .font(.headline.weight(.semibold))
-                    .foregroundStyle(.white)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(palette.onSurface)
                 }
                 .frame(maxWidth: .infinity, minHeight: 150)
+                .background(
+                  RoundedRectangle(cornerRadius: 26, style: .continuous)
+                    .fill(palette.accent.opacity(0.14))
+                )
+                .overlay(
+                  RoundedRectangle(cornerRadius: 26, style: .continuous)
+                    .strokeBorder(palette.accent.opacity(0.4), lineWidth: 1)
+                )
                 .contentShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
               }
-              .buttonStyle(.borderedProminent)
-              .tint(WatchTheme.accent)
-              .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+              .buttonStyle(.plain)
             }
 
             HStack(spacing: 8) {
@@ -222,6 +234,6 @@ private struct PostPrayerAdhkarFlow: View {
         .padding(.vertical, 10)
       }
     }
-    .containerBackground(WatchTheme.backgroundGradient, for: .navigation)
+    .containerBackground(palette.backgroundGradient, for: .navigation)
   }
 }

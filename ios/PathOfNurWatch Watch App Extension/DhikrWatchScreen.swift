@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DhikrWatchScreen: View {
   @EnvironmentObject private var model: WatchAppModel
+  @Environment(\.watchPalette) private var palette
   @State private var showEndConfirmation = false
   @State private var showAutoSessionControls = false
 
@@ -10,9 +11,7 @@ struct DhikrWatchScreen: View {
   var body: some View {
     ScrollView {
       VStack(spacing: 14) {
-        Text(WatchStrings.dhikrTitle)
-          .font(.system(size: 18, weight: .bold, design: .rounded))
-          .foregroundStyle(.white)
+        WatchScreenHeader(WatchStrings.dhikrTitle)
 
         modeSelector
 
@@ -25,7 +24,7 @@ struct DhikrWatchScreen: View {
       .padding(.horizontal, 12)
       .padding(.vertical, 10)
     }
-    .containerBackground(WatchTheme.backgroundGradient, for: .navigation)
+    .containerBackground(palette.backgroundGradient, for: .tabView)
     .onAppear {
       syncAutoSessionControlVisibility()
     }
@@ -67,8 +66,8 @@ struct DhikrWatchScreen: View {
     VStack(spacing: 14) {
       WatchHeroCard(glow: model.dhikrState.isComplete) {
         Text(model.dhikrState.phrase)
-          .font(.footnote.weight(.semibold))
-          .foregroundStyle(WatchTheme.secondaryText)
+          .font(.system(size: 14, weight: .semibold, design: .serif))
+          .foregroundStyle(palette.onSurfaceSubtle)
         Button(action: model.incrementDhikr) {
           VStack(spacing: 8) {
             WatchMiniProgressRing(
@@ -78,18 +77,24 @@ struct DhikrWatchScreen: View {
             )
             .frame(width: 100, height: 100)
             Text("\(min(model.dhikrState.count, model.dhikrState.target)) / \(model.dhikrState.target)")
-              .font(.caption.weight(.semibold))
-              .foregroundStyle(WatchTheme.accentSoft)
+              .font(WatchType.label)
+              .foregroundStyle(palette.accentSoft)
             Text(WatchStrings.tapToCount)
-              .font(.headline.weight(.semibold))
-              .foregroundStyle(.white)
+              .font(.system(size: 15, weight: .semibold))
+              .foregroundStyle(palette.onSurface)
           }
           .frame(maxWidth: .infinity, minHeight: 136)
+          .background(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+              .fill(palette.accent.opacity(0.14))
+          )
+          .overlay(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+              .strokeBorder(palette.accent.opacity(0.4), lineWidth: 1)
+          )
           .contentShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         }
-        .buttonStyle(.borderedProminent)
-        .tint(WatchTheme.accent)
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .buttonStyle(.plain)
       }
 
       Picker(WatchStrings.choosePreset, selection: Binding(
@@ -116,12 +121,12 @@ struct DhikrWatchScreen: View {
     VStack(spacing: 12) {
       WatchHeroCard(glow: model.autoDhikrState.isCompleted) {
         Text(WatchStrings.autoDhikrTitle)
-          .font(.footnote.weight(.semibold))
-          .foregroundStyle(WatchTheme.secondaryText)
+          .font(WatchType.captionEmphasis)
+          .foregroundStyle(palette.onSurfaceSubtle)
 
         Text(model.autoDhikrState.phrase.title)
-          .font(.headline.weight(.semibold))
-          .foregroundStyle(.white)
+          .font(.system(size: 16, weight: .semibold, design: .serif))
+          .foregroundStyle(palette.onSurface)
 
         WatchMiniProgressRing(
           progress: model.autoDhikrState.progressValue,
@@ -131,27 +136,27 @@ struct DhikrWatchScreen: View {
         .frame(width: 96, height: 96)
 
         Text("\(min(model.autoDhikrState.count, model.autoDhikrState.target)) / \(model.autoDhikrState.target)")
-          .font(.caption.weight(.semibold))
-          .foregroundStyle(WatchTheme.accentSoft)
+          .font(WatchType.label)
+          .foregroundStyle(palette.accentSoft)
 
         Text(autoStatusTitle)
-          .font(.caption2.weight(.bold))
-          .foregroundStyle(model.autoDhikrState.isCompleted ? WatchTheme.success : WatchTheme.accentSoft)
+          .font(WatchType.captionEmphasis)
+          .foregroundStyle(model.autoDhikrState.isCompleted ? palette.success : palette.accent)
 
         Text("\(WatchStrings.autoDhikrPace): \(model.autoDhikrState.intervalDisplay)")
-          .font(.caption2.weight(.semibold))
-          .foregroundStyle(WatchTheme.secondaryText)
+          .font(WatchType.caption)
+          .foregroundStyle(palette.onSurfaceSubtle)
 
         if model.autoDhikrState.isRunning && !showAutoSessionControls {
           Text(WatchStrings.autoDhikrMinimalHint)
-            .font(.caption2)
+            .font(WatchType.caption)
             .multilineTextAlignment(.center)
-            .foregroundStyle(WatchTheme.secondaryText)
+            .foregroundStyle(palette.onSurfaceMuted)
         } else if !model.autoDhikrState.isActive && !model.autoDhikrState.isCompleted {
           Text(WatchStrings.autoDhikrKeepFocus)
-            .font(.caption2)
+            .font(WatchType.caption)
             .multilineTextAlignment(.center)
-            .foregroundStyle(WatchTheme.secondaryText)
+            .foregroundStyle(palette.onSurfaceMuted)
         }
       }
       .onTapGesture {
@@ -193,8 +198,8 @@ struct DhikrWatchScreen: View {
   private var paceControls: some View {
     VStack(spacing: 8) {
       Text("\(WatchStrings.autoDhikrPace): \(model.autoDhikrState.intervalDisplay)")
-        .font(.caption.weight(.semibold))
-        .foregroundStyle(WatchTheme.secondaryText)
+        .font(WatchType.label)
+        .foregroundStyle(palette.onSurfaceSubtle)
 
       HStack(spacing: 8) {
         Button(WatchStrings.autoDhikrFaster, action: model.fasterAutoDhikr)
@@ -214,7 +219,7 @@ struct DhikrWatchScreen: View {
     VStack(spacing: 8) {
       Button(WatchStrings.autoDhikrBegin, action: model.beginAutoDhikr)
         .buttonStyle(.borderedProminent)
-        .tint(WatchTheme.accent)
+        .tint(palette.accent)
         .frame(maxWidth: .infinity, minHeight: 48)
     }
   }
@@ -229,7 +234,7 @@ struct DhikrWatchScreen: View {
         }
       }
       .buttonStyle(.borderedProminent)
-      .tint(model.autoDhikrState.isPaused ? WatchTheme.success : WatchTheme.accent)
+      .tint(model.autoDhikrState.isPaused ? palette.success : palette.accent)
       .frame(maxWidth: .infinity, minHeight: 50)
 
       if showAutoSessionControls || model.autoDhikrState.isPaused {
@@ -268,18 +273,18 @@ struct DhikrWatchScreen: View {
   private var completionCard: some View {
     WatchHeroCard(glow: true) {
       Text(WatchStrings.autoDhikrSessionCompleteTitle)
-        .font(.headline.weight(.semibold))
-        .foregroundStyle(.white)
+        .font(.system(size: 16, weight: .semibold, design: .serif))
+        .foregroundStyle(palette.onSurface)
       Text(model.autoDhikrState.phrase.title)
-        .font(.caption.weight(.semibold))
-        .foregroundStyle(WatchTheme.accentSoft)
+        .font(WatchType.label)
+        .foregroundStyle(palette.accentSoft)
       Text("\(model.autoDhikrState.target) • \(model.autoDhikrState.intervalDisplay)")
-        .font(.caption2.weight(.semibold))
-        .foregroundStyle(WatchTheme.secondaryText)
+        .font(WatchType.caption)
+        .foregroundStyle(palette.onSurfaceSubtle)
       Text(WatchStrings.autoDhikrSessionCompleteBody)
-        .font(.caption2)
+        .font(WatchType.caption)
         .multilineTextAlignment(.center)
-        .foregroundStyle(WatchTheme.secondaryText)
+        .foregroundStyle(palette.onSurfaceSubtle)
       HStack(spacing: 8) {
         Button(WatchStrings.done) {
           model.dismissAutoDhikrCompletion()
@@ -292,7 +297,7 @@ struct DhikrWatchScreen: View {
           model.beginAutoDhikr()
         }
         .buttonStyle(.borderedProminent)
-        .tint(WatchTheme.accent)
+        .tint(palette.accent)
         .frame(maxWidth: .infinity, minHeight: 44)
       }
     }
@@ -316,7 +321,7 @@ struct DhikrWatchScreen: View {
       model.setDhikrMode(mode)
     }
     .buttonStyle(.borderedProminent)
-    .tint(model.dhikrMode == mode ? WatchTheme.accent : Color.white.opacity(0.16))
+    .tint(model.dhikrMode == mode ? palette.accent : palette.surfaceSoft)
     .frame(maxWidth: .infinity, minHeight: 40)
     .disabled(mode == .manual && model.autoDhikrState.isRunning)
   }
