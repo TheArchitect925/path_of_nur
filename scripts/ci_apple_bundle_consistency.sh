@@ -76,4 +76,36 @@ if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_APP_BUN
   exit 1
 fi
 
+# Every source file the project builds must actually be in the repo. A stray
+# pbxproj commit once declared four Swift files that were only ever in a
+# working tree, and the watch target stopped building for everyone else.
+missing_sources="$(python3 - "$PBXPROJ" <<'PYEOF'
+import os, re, sys
+
+pbxproj = sys.argv[1]
+project_dir = os.path.dirname(os.path.dirname(pbxproj))
+with open(pbxproj, encoding="utf-8") as handle:
+    contents = handle.read()
+
+referenced = {
+    path for _, path in re.findall(r'path = ("?)([^";]+\.swift)\1;', contents)
+}
+on_disk = {
+    name
+    for _, _, files in os.walk(project_dir)
+    for name in files
+    if name.endswith(".swift")
+}
+for path in sorted(referenced):
+    if os.path.basename(path) not in on_disk:
+        print(path)
+PYEOF
+)"
+
+if [[ -n "$missing_sources" ]]; then
+  echo "Project file references sources that are not in the repo:" >&2
+  echo "$missing_sources" | sed 's/^/  /' >&2
+  exit 1
+fi
+
 echo "Apple bundle/signing consistency check passed"
