@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/nav_tabs.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../shared/application/learn_release_gate.dart';
 import '../application/family_learning_provider.dart';
@@ -50,7 +49,6 @@ class LearnBrowseAllPage extends ConsumerWidget {
       headerIcon: Icons.grid_view_rounded,
       title: l10n.learningJourneyBrowseAllTitle,
       subtitle: l10n.learningJourneyBrowseAllSubtitle,
-      quote: buildLearningCompactQuote(),
       children: [
         if ((visibilityPolicy.isChildProfile || kidsUi.enabled) &&
             !visibilityPolicy.showBrowseAll) ...[

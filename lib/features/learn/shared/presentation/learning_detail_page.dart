@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 
@@ -28,7 +27,7 @@ class LearningDetailPage extends StatelessWidget {
       headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
-      quote: quote ?? buildLearningCompactQuote(),
+      quote: quote,
       onQuoteTap: onQuoteTap,
       children: sections,
     );

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../accounts_sync/application/accounts_sync_controller.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
@@ -131,7 +130,6 @@ class LearningJourneyHomePage extends ConsumerWidget {
       headerIcon: Icons.hub_rounded,
       title: l10n.learningJourneyHomeTitle,
       subtitle: l10n.learningJourneyHomeSubtitle,
-      quote: buildLearningCompactQuote(),
       children: [
         if (switcherProfiles.length > 1 || guardianChildren.isNotEmpty)
           Padding(
@@ -724,25 +722,38 @@ class LearningJourneyHomePage extends ConsumerWidget {
             subtitle: l10n.learningJourneyHomeIslandsSubtitle,
           ),
           const SizedBox(height: 14),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: islands
-                .map((island) {
-                  return SizedBox(
-                    width: (MediaQuery.of(context).size.width - 42) / 2,
-                    child: LearningJourneyIslandCard(
-                      island: island,
-                      title: localizedIslandTitle(context, island),
-                      subtitle: localizedIslandSubtitle(context, island),
-                      onTap: () => context.pushNamed(
-                        'learnJourneyIsland',
-                        pathParameters: {'islandId': island.id},
-                      ),
-                    ),
-                  );
-                })
-                .toList(growable: false),
+          // Two columns sized from this Wrap's own constraints. Deriving the
+          // width from MediaQuery.size instead made the card wrong in any
+          // container narrower than the window, and went negative wherever
+          // the media query reports no size at all.
+          LayoutBuilder(
+            builder: (context, constraints) {
+              const spacing = 10.0;
+              final columnWidth = ((constraints.maxWidth - spacing) / 2).clamp(
+                0.0,
+                constraints.maxWidth,
+              );
+              return Wrap(
+                spacing: spacing,
+                runSpacing: spacing,
+                children: islands
+                    .map((island) {
+                      return SizedBox(
+                        width: columnWidth,
+                        child: LearningJourneyIslandCard(
+                          island: island,
+                          title: localizedIslandTitle(context, island),
+                          subtitle: localizedIslandSubtitle(context, island),
+                          onTap: () => context.pushNamed(
+                            'learnJourneyIsland',
+                            pathParameters: {'islandId': island.id},
+                          ),
+                        ),
+                      );
+                    })
+                    .toList(growable: false),
+              );
+            },
           ),
           const SizedBox(height: 6),
         ],

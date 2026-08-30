@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
@@ -101,7 +100,6 @@ class _LearnContentDetailPageState
       headerIcon: _headerIcon(widget.category),
       title: topic.title,
       subtitle: topic.subtitle,
-      quote: buildLearningCompactQuote(),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       sections: [
         LearningSection(

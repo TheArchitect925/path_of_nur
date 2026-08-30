@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
@@ -106,7 +105,6 @@ class LearningJourneyDetailPage extends ConsumerWidget {
       headerIcon: island?.icon ?? Icons.route_rounded,
       title: localizedJourneyTitle(context, journey),
       subtitle: localizedJourneySubtitle(context, journey),
-      quote: buildLearningCompactQuote(),
       children: [
         if (pathState != null && pathState.containsJourney(journey.id)) ...[
           _SectionBlock(

@@ -77,6 +77,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
       title: l10n.learnHubMainIslandLearningPathTitle,
       subtitle: l10n.learnHubMainIslandLearningPathSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
+      showDefaultQuote: true,
       children: [
         _SectionHeader(
           title: l10n.learnPersonalizationSectionTitle,

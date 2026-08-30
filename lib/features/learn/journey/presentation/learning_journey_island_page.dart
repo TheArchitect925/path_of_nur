@@ -8,7 +8,6 @@ import '../../../../shared/content/contextual_quran_quotes.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/quran_verse_content.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../glossary/domain/glossary_models.dart';
 import '../../glossary/presentation/widgets/glossary_widgets.dart';
 import '../../presentation/widgets/learn_cards.dart';
@@ -78,7 +77,6 @@ class LearningJourneyIslandPage extends ConsumerWidget {
         island,
         kidsMode: kidsUi.enabled,
       ),
-      quote: buildLearningCompactQuote(),
       children: [
         if (visibilityPolicy.isChildProfile && journeys.isEmpty)
           _wrapIbadahContainer(

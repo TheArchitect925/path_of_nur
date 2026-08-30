@@ -63,6 +63,7 @@ class _LearningSectionLandingPageState
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
+      showDefaultQuote: true,
       headerActions: [
         IconButton(
           onPressed: () {

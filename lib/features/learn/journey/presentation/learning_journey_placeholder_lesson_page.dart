@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
@@ -47,7 +46,6 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
       headerIcon: Icons.auto_stories_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: localizedStageSummary(context, stage),
-      quote: buildLearningCompactQuote(),
       children: [
         PlaceholderLessonPageScaffold(
           stageTitle: localizedStageTitle(context, stage),

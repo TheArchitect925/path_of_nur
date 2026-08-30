@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../content_linking/application/contextual_linking_providers.dart';
 import '../../../content_linking/presentation/contextual_related_content_section.dart';
 import '../application/family_learning_provider.dart';
@@ -120,7 +119,6 @@ class LearningJourneyLessonPage extends ConsumerWidget {
       headerIcon: Icons.menu_book_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: localizedStageSummary(context, stage),
-      quote: buildLearningCompactQuote(),
       children: [
         if (learnTogetherEligible &&
             activeFamily.activeGuardianProfileId != null &&
