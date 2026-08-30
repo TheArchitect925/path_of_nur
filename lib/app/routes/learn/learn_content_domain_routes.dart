@@ -212,8 +212,9 @@ List<RouteBase> buildLearnContentDomainRoutes() {
     GoRoute(
       path: '/learn/world',
       name: 'learnWorldLanding',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: WorldLandingPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: WorldLandingPage(section: state.uri.queryParameters['section']),
+      ),
     ),
     GoRoute(
       path: '/learn/world/theme/:themeId',
