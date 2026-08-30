@@ -303,6 +303,17 @@ NATIVE_TARGETS = (
     "PathOfNurWatchComplications",
     "PathOfNurHomeWidgets",
 )
+
+# A missing translation only blocks when the locale AND the surface both ship.
+# docs/release_target_readiness.md holds Apple TV back from V1 until its signed
+# build and physical QA land, so its untranslated deep copy is reported, not
+# enforced. Add it here the moment that changes and the gate turns red until
+# those strings are done — which is the point.
+SHIPPING_NATIVE_TARGETS = {
+    "PathOfNurWatch Watch App Extension",
+    "PathOfNurWatchComplications",
+    "PathOfNurHomeWidgets",
+}
 STRINGS_ENTRY = re.compile(r'^\s*"((?:[^"\\]|\\.)*)"\s*=\s*"((?:[^"\\]|\\.)*)"\s*;', re.M)
 FORMAT_SPEC = re.compile(r"%(?:\d+\$)?[@dfsu]|%%")
 
@@ -347,7 +358,8 @@ def check_native(release: set[str]) -> tuple[list[str], list[str]]:
                 # A partially translated table falls back per key, so this only
                 # blocks once the locale ships.
                 msg = f"{label}: {len(missing)} key(s) missing"
-                (failures if locale in release else notes).append(msg)
+                blocks = locale in release and target in SHIPPING_NATIVE_TARGETS
+                (failures if blocks else notes).append(msg)
     return failures, notes
 
 
