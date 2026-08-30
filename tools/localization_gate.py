@@ -323,6 +323,66 @@ def parse_strings(path: Path) -> dict[str, str]:
         path.read_text(encoding="utf-8"))}
 
 
+ANDROID_ROOTS = {
+    # (label, res dir, ships) — the Wear OS project is a separate Gradle build
+    # that the phone app does not include, so it reports rather than blocks.
+    "android": (Path(__file__).resolve().parent.parent / "android/app/src/main/res", True),
+    "wear_os_app": (Path(__file__).resolve().parent.parent / "wear_os_app/app/src/main/res", False),
+}
+ANDROID_STRING = re.compile(r'<string\s+name="([^"]+)"\s*>(.*?)</string>', re.S)
+# Android falls back to values/ per key, so a locale dir that would only repeat
+# the default is noise rather than a gap — only a *differing* value earns a file.
+ANDROID_LOCALE_DIR = re.compile(r"^values-([a-z]{2}(?:-r[A-Z]{2})?)$")
+
+
+def parse_android_strings(path: Path) -> dict[str, str]:
+    return {m.group(1): m.group(2).strip()
+            for m in ANDROID_STRING.finditer(path.read_text(encoding="utf-8"))}
+
+
+def check_android(release: set[str]) -> tuple[list[str], list[str]]:
+    """Key parity and format-specifier parity for Android string resources."""
+    failures, notes = [], []
+    for label, (res, ships) in ANDROID_ROOTS.items():
+        base = res / "values" / "strings.xml"
+        if not base.exists():
+            notes.append(f"{label}: no values/strings.xml")
+            continue
+        source = parse_android_strings(base)
+        for d in sorted(res.glob("values-*")):
+            m = ANDROID_LOCALE_DIR.match(d.name)
+            if not m:
+                continue  # values-night and friends are configurations, not locales
+            locale = m.group(1)
+            table = d / "strings.xml"
+            if not table.exists():
+                continue
+            data = parse_android_strings(table)
+            extra = sorted(set(data) - set(source))
+            bad = sorted(k for k in set(source) & set(data)
+                         if FORMAT_SPEC.findall(source[k]) != FORMAT_SPEC.findall(data[k]))
+            if extra:
+                failures.append(f"{label}/{locale}: {len(extra)} key(s) not in values/: {extra[:3]}")
+            if bad:
+                failures.append(f"{label}/{locale}: format-specifier mismatch: {bad[:3]}")
+            same = sorted(k for k in set(source) & set(data) if source[k] == data[k])
+            if same:
+                notes.append(f"{label}/{locale}: {len(same)} key(s) repeat the default "
+                             f"(values/ already covers them)")
+        # A shipping locale with no override is fine when the default is the
+        # brand name; only flag when the default is plainly English prose.
+        if ships:
+            for locale in sorted(release):
+                d = res / f"values-{locale}"
+                if not (d / "strings.xml").exists():
+                    prose = [k for k, v in source.items()
+                             if len(v.split()) > 2 and re.fullmatch(r"[\x20-\x7E]+", v)]
+                    if prose:
+                        notes.append(f"{label}/{locale}: no override; "
+                                     f"{len(prose)} English-looking default(s)")
+    return failures, notes
+
+
 def check_native(release: set[str]) -> tuple[list[str], list[str]]:
     """Key parity and format-specifier parity for every localized .strings table."""
     failures, notes = [], []
@@ -439,9 +499,12 @@ def main() -> int:
             f"{'':3}{issues}{('  [' + gate + ']') if gate else ''}"
         )
     native_failures, native_notes = check_native(release)
+    android_failures, android_notes = check_android(release)
+    native_failures += android_failures
+    native_notes += android_notes
     if not args.json:
         print()
-        print("native .strings (Apple TV, Watch, complications, widgets)")
+        print("native strings (Apple TV, Watch, complications, widgets, Android)")
         print("-" * 72)
         for note in native_notes:
             print(f"  warn  {note}")

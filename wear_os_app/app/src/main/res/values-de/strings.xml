@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- watch_app_name and tile_dhikr are identical in German; Android falls
+         back to values/ per key, so overriding them here would be noise. -->
+    <string name="tile_next_prayer">Nächstes Gebet</string>
+    <string name="tile_prayer_progress">Gebetsfortschritt</string>
+</resources>

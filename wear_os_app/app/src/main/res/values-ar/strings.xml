@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="watch_app_name">ساعة طريق النور</string>
+    <string name="tile_next_prayer">الصلاة القادمة</string>
+    <string name="tile_prayer_progress">تقدم الصلاة</string>
+    <string name="tile_dhikr">الذكر</string>
+</resources>

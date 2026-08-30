@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="watch_app_name">Path of Nūr Watch</string>
+    <string name="tile_next_prayer">Next Prayer</string>
+    <string name="tile_prayer_progress">Prayer Progress</string>
+    <string name="tile_dhikr">Dhikr</string>
+</resources>

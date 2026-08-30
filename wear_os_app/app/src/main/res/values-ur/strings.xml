@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="watch_app_name">پاتھ آف نور واچ</string>
+    <string name="tile_next_prayer">اگلی نماز</string>
+    <string name="tile_prayer_progress">نماز کی پیش رفت</string>
+    <string name="tile_dhikr">ذکر</string>
+</resources>
