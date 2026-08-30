@@ -19,8 +19,8 @@ class GardenSceneMementoRepository {
   const GardenSceneMementoRepository({
     required LocalStore store,
     required String scopeId,
-  })  : _store = store,
-        _scopeId = scopeId;
+  }) : _store = store,
+       _scopeId = scopeId;
 
   final LocalStore _store;
   final String _scopeId;
@@ -43,12 +43,12 @@ class GardenSceneMementoRepository {
 
 final gardenSceneMementoRepositoryProvider =
     Provider<GardenSceneMementoRepository>((ref) {
-  ref.watch(profileScopeVersionProvider);
-  return GardenSceneMementoRepository(
-    store: ref.watch(localStoreProvider),
-    scopeId: ref.watch(structuredDataScopeProvider),
-  );
-});
+      ref.watch(profileScopeVersionProvider);
+      return GardenSceneMementoRepository(
+        store: ref.watch(localStoreProvider),
+        scopeId: ref.watch(structuredDataScopeProvider),
+      );
+    });
 
 /// Bumped after every memento write so scene specs recompute and their
 /// newly-appeared flags clear once the moment has been acknowledged.
@@ -60,8 +60,9 @@ final gardenSceneSpecProvider = Provider.family<GardenSceneSpec, String>((
 ) {
   ref.watch(gardenSceneSeenVersionProvider);
   final garden = ref.watch(gardenStateProvider(learnerId));
-  final memento =
-      ref.watch(gardenSceneMementoRepositoryProvider).read(learnerId);
+  final memento = ref
+      .watch(gardenSceneMementoRepositoryProvider)
+      .read(learnerId);
   return ref
       .watch(gardenSceneComposerProvider)
       .compose(garden: garden, lastSeen: memento);
@@ -101,7 +102,8 @@ class GardenSceneSeenController {
   }
 }
 
-final gardenSceneSeenControllerProvider =
-    Provider<GardenSceneSeenController>((ref) {
+final gardenSceneSeenControllerProvider = Provider<GardenSceneSeenController>((
+  ref,
+) {
   return GardenSceneSeenController(ref);
 });

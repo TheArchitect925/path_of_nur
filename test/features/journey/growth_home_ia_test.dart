@@ -120,55 +120,54 @@ void main() {
     expect(find.text(l10n.mainPageSearchHint), findsNothing);
   });
 
-  testWidgets(
-    'growth home routes Browse All and Statistics rows correctly',
-    (tester) async {
-      await tester.binding.setSurfaceSize(const Size(1200, 2600));
-      addTearDown(() => tester.binding.setSurfaceSize(null));
+  testWidgets('growth home routes Browse All and Statistics rows correctly', (
+    tester,
+  ) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 2600));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
 
-      final container = await makeTestContainer(
-        overrides: <Override>[
-          dailyNowProvider.overrideWith(
-            (ref) =>
-                Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
-          ),
-        ],
-      );
+    final container = await makeTestContainer(
+      overrides: <Override>[
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+        ),
+      ],
+    );
 
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
-      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
-      final router = container.read(appRouterProvider);
-      router.go('/journey');
-      await pumpRouteFrames(tester);
+    final router = container.read(appRouterProvider);
+    router.go('/journey');
+    await pumpRouteFrames(tester);
 
-      await tapHubRow(tester, l10n.growthHomeBrowseAllTitle);
-      expect(find.text(l10n.growthBrowseAllDailyFocusTitle), findsOneWidget);
+    await tapHubRow(tester, l10n.growthHomeBrowseAllTitle);
+    expect(find.text(l10n.growthBrowseAllDailyFocusTitle), findsOneWidget);
 
-      router.go('/journey');
-      await pumpRouteFrames(tester);
+    router.go('/journey');
+    await pumpRouteFrames(tester);
 
-      await tapHubRow(tester, l10n.growthStatisticsTitle);
-      expect(find.text(l10n.growthStatisticsTitle), findsAtLeastNWidgets(1));
-      expect(
-        find.text(l10n.growthTrackingOverviewTitle),
-        findsAtLeastNWidgets(1),
-      );
-      expect(
-        find.text(l10n.journeyStatsQuranReadingTitle),
-        findsAtLeastNWidgets(1),
-      );
-      expect(
-        find.text(l10n.journeyStatsTimeReflectionTitle),
-        findsAtLeastNWidgets(1),
-      );
-      expect(
-        find.text(l10n.journeyStatsTotalAdhkarCompletedTitle),
-        findsAtLeastNWidgets(1),
-      );
-    },
-  );
+    await tapHubRow(tester, l10n.growthStatisticsTitle);
+    expect(find.text(l10n.growthStatisticsTitle), findsAtLeastNWidgets(1));
+    expect(
+      find.text(l10n.growthTrackingOverviewTitle),
+      findsAtLeastNWidgets(1),
+    );
+    expect(
+      find.text(l10n.journeyStatsQuranReadingTitle),
+      findsAtLeastNWidgets(1),
+    );
+    expect(
+      find.text(l10n.journeyStatsTimeReflectionTitle),
+      findsAtLeastNWidgets(1),
+    );
+    expect(
+      find.text(l10n.journeyStatsTotalAdhkarCompletedTitle),
+      findsAtLeastNWidgets(1),
+    );
+  });
 
   testWidgets('growth home rows open their dedicated destination pages', (
     tester,

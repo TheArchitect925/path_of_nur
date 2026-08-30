@@ -694,5 +694,4 @@ void main() {
     await tester.pump();
     expect(controller.stopped, isTrue);
   });
-
 }

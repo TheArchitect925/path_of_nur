@@ -39,8 +39,7 @@ class RightNowDuaRow extends ConsumerWidget {
               children: [
                 for (final suggestion in suggestions) ...[
                   _RightNowDuaTile(suggestion: suggestion),
-                  if (suggestion != suggestions.last)
-                    const SizedBox(width: 10),
+                  if (suggestion != suggestions.last) const SizedBox(width: 10),
                 ],
               ],
             ),

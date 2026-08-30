@@ -34,8 +34,7 @@ class FilterChipRow<T> extends StatelessWidget {
     final selectedText = appearance?.chipSelectedText ?? scheme.onPrimary;
     final unselectedFill =
         appearance?.chipUnselectedFill ?? scheme.surfaceContainerHighest;
-    final unselectedText =
-        appearance?.backgroundForeground ?? scheme.onSurface;
+    final unselectedText = appearance?.backgroundForeground ?? scheme.onSurface;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

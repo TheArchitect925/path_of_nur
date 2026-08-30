@@ -33,7 +33,10 @@ class GardenAmbientPalette {
   }
 
   /// Sky gradient stops (top to horizon) per ambient state and brightness.
-  static List<Color> skyColors(GardenAmbientState state, Brightness brightness) {
+  static List<Color> skyColors(
+    GardenAmbientState state,
+    Brightness brightness,
+  ) {
     if (brightness == Brightness.dark) {
       return switch (state) {
         GardenAmbientState.quietDawn => const [

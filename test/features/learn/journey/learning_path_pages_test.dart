@@ -97,10 +97,14 @@ void main() {
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     // All four beginner phases are listed.
-    expect(find.text(l10n.learningPathPhaseBeginnerFoundationsTitle),
-        findsOneWidget);
-    expect(find.text(l10n.learningPathPhaseBeginnerIdentityTitle),
-        findsOneWidget);
+    expect(
+      find.text(l10n.learningPathPhaseBeginnerFoundationsTitle),
+      findsOneWidget,
+    );
+    expect(
+      find.text(l10n.learningPathPhaseBeginnerIdentityTitle),
+      findsOneWidget,
+    );
     // The current phase is expanded: its guided path and quiz rows render.
     expect(find.text(l10n.guidedPathFoundationsTitle), findsOneWidget);
     expect(find.text(l10n.learnPathTestYourselfTitle), findsOneWidget);
@@ -111,10 +115,7 @@ void main() {
     await pumpRouteFrames(tester);
     await tester.tap(find.text(l10n.learnPathTestYourselfTitle).first);
     await pumpRouteFrames(tester);
-    expect(
-      find.byType(IslamicTriviaKnowledgePathDetailPage),
-      findsOneWidget,
-    );
+    expect(find.byType(IslamicTriviaKnowledgePathDetailPage), findsOneWidget);
   });
 
   testWidgets('migration card shows once and dismisses for good', (
@@ -131,10 +132,7 @@ void main() {
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     expect(find.text(l10n.learnPathMigrationTitle), findsOneWidget);
-    expect(
-      find.textContaining(l10n.learningPathPracticingTitle),
-      findsWidgets,
-    );
+    expect(find.textContaining(l10n.learningPathPracticingTitle), findsWidgets);
 
     await tester.tap(find.text(l10n.learnPathMigrationDismiss));
     await pumpRouteFrames(tester);

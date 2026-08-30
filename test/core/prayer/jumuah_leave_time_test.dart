@@ -10,11 +10,11 @@ void main() {
         jumuahLeaveTimeFor(
           day: friday,
           preferences: const PrayerPreferences(
-          location: 'Toronto',
-          madhab: PrayerMadhab.hanafi,
-          calculationMethod: PrayerCalculationMethod.isna,
-          useDeviceLocation: false,
-        ),
+            location: 'Toronto',
+            madhab: PrayerMadhab.hanafi,
+            calculationMethod: PrayerCalculationMethod.isna,
+            useDeviceLocation: false,
+          ),
         ),
         isNull,
       );

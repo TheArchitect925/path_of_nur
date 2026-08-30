@@ -27,9 +27,10 @@ class _IndexRailState extends State<IndexRail> {
   void _handlePosition(double dy, double height) {
     if (widget.labels.isEmpty || height <= 0) return;
     final fraction = (dy / height).clamp(0.0, 1.0);
-    final index = (fraction * widget.labels.length)
-        .floor()
-        .clamp(0, widget.labels.length - 1);
+    final index = (fraction * widget.labels.length).floor().clamp(
+      0,
+      widget.labels.length - 1,
+    );
     if (index != _activeIndex) {
       setState(() => _activeIndex = index);
       widget.onSelected(index);

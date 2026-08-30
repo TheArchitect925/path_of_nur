@@ -59,8 +59,9 @@ class GardenElementMeaningSheet extends StatelessWidget {
           children: [
             Text(
               GardenElementStrings.title(l10n, element.id),
-              style: theme.textTheme.titleLarge
-                  ?.copyWith(fontWeight: FontWeight.w800),
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w800,
+              ),
             ),
             if (meaning != null) ...[
               const SizedBox(height: 8),
@@ -69,8 +70,7 @@ class GardenElementMeaningSheet extends StatelessWidget {
                 // Ayah numerals follow the reader's locale.
                 reference: meaning.ayahReference.splitMapJoin(
                   RegExp(r'\d+'),
-                  onMatch: (match) =>
-                      numberFormat.format(int.parse(match[0]!)),
+                  onMatch: (match) => numberFormat.format(int.parse(match[0]!)),
                   onNonMatch: (text) => text,
                 ),
               ),
@@ -92,14 +92,12 @@ class GardenElementMeaningSheet extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 GardenElementStrings.dimensionTitle(l10n, dimension),
-                style: theme.textTheme.titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w700),
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 10),
-              ProgressBar(
-                value: dimensionScore,
-                color: appearance?.accent,
-              ),
+              ProgressBar(value: dimensionScore, color: appearance?.accent),
             ],
           ],
         ),

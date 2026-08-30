@@ -589,7 +589,8 @@ because gratitude was inside it.
     totalParts: 1,
     tags: ['eid', 'gratitude', 'celebration', 'thankfulness'],
     sortOrder: 280,
-    coverAssetPath: 'assets/images/kids_stories/covers/eid_gratitude_cover.webp',
+    coverAssetPath:
+        'assets/images/kids_stories/covers/eid_gratitude_cover.webp',
     backdropAssetPath:
         'assets/images/kids_stories/backdrops/eid_gratitude_backdrop.webp',
     narratorDisplayName: _generalNarratorDisplayName,

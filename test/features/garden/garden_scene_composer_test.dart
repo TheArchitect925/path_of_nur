@@ -12,27 +12,37 @@ void main() {
   const composer = GardenSceneComposer();
 
   group('GardenSceneComposer catalog sweep', () {
-    test('every rule crosses each variant threshold exactly at the boundary',
-        () {
-      for (final rule in gardenSceneElementRules) {
-        for (var i = 0; i < rule.variantThresholds.length; i++) {
-          final threshold = rule.variantThresholds[i];
-          final justBelow = threshold - (rule.driver == GardenSceneDriver.dimensionScore ? 0.01 : 1);
-          final below = composer.compose(
-            garden: _state(ruleValue: justBelow, rule: rule),
-            lastSeen: null,
-          );
-          final at = composer.compose(
-            garden: _state(ruleValue: threshold, rule: rule),
-            lastSeen: null,
-          );
-          expect(below.elementById(rule.id)!.variantLevel, i,
-              reason: '${rule.id.name} just below threshold ${i + 1}');
-          expect(at.elementById(rule.id)!.variantLevel, i + 1,
-              reason: '${rule.id.name} at threshold ${i + 1}');
+    test(
+      'every rule crosses each variant threshold exactly at the boundary',
+      () {
+        for (final rule in gardenSceneElementRules) {
+          for (var i = 0; i < rule.variantThresholds.length; i++) {
+            final threshold = rule.variantThresholds[i];
+            final justBelow =
+                threshold -
+                (rule.driver == GardenSceneDriver.dimensionScore ? 0.01 : 1);
+            final below = composer.compose(
+              garden: _state(ruleValue: justBelow, rule: rule),
+              lastSeen: null,
+            );
+            final at = composer.compose(
+              garden: _state(ruleValue: threshold, rule: rule),
+              lastSeen: null,
+            );
+            expect(
+              below.elementById(rule.id)!.variantLevel,
+              i,
+              reason: '${rule.id.name} just below threshold ${i + 1}',
+            );
+            expect(
+              at.elementById(rule.id)!.variantLevel,
+              i + 1,
+              reason: '${rule.id.name} at threshold ${i + 1}',
+            );
+          }
         }
-      }
-    });
+      },
+    );
 
     test('spec carries every catalog element, hidden ones at variant 0', () {
       final spec = composer.compose(garden: _state(), lastSeen: null);
@@ -82,10 +92,11 @@ void main() {
     });
 
     test('revision changes when a variant changes', () {
-      final low = composer.compose(
-          garden: _state(prayer: 0.2), lastSeen: null);
+      final low = composer.compose(garden: _state(prayer: 0.2), lastSeen: null);
       final high = composer.compose(
-          garden: _state(prayer: 0.3), lastSeen: null);
+        garden: _state(prayer: 0.3),
+        lastSeen: null,
+      );
       expect(low.revision, isNot(high.revision));
     });
   });
@@ -113,46 +124,62 @@ void main() {
   });
 
   group('memento diffing', () {
-    test('appearance, growth, stream, ocean and stage advances are detected',
-        () {
-      final before = composer.compose(
-        garden: _state(
-          prayer: 0.3, // olive v1
-          remembrance: 0.5, // rayhan v2
-          drops: 120, // tier 3
-          maturity: 26,
-        ),
-        lastSeen: null,
-      );
-      final memento =
-          GardenSceneMemento.fromSpec(before, savedAtIso: '2026-08-29T10:00:00');
-      final after = composer.compose(
-        garden: _state(
-          prayer: 0.3,
-          learning: 0.25, // fig appears
-          remembrance: 0.75, // rayhan grows v2 -> v3
-          drops: 520, // tier 4 + ocean glimpse
-          maturity: 41, // smallRoots -> smallTree
-        ),
-        lastSeen: memento,
-      );
-      expect(after.newlyAppeared, contains(GardenSceneElementId.fig));
-      expect(after.newlyAppeared, contains(GardenSceneElementId.oceanHorizon));
-      expect(after.newlyGrown, contains(GardenSceneElementId.rayhan));
-      expect(after.newlyGrown, contains(GardenSceneElementId.stream));
-      expect(after.treeStageAdvanced, isTrue);
-      expect(after.elementById(GardenSceneElementId.fig)!.isNewSinceLastVisit,
-          isTrue);
-      expect(after.elementById(GardenSceneElementId.olive)!.isNewSinceLastVisit,
-          isFalse);
-      expect(after.newlyAppeared, isNot(contains(GardenSceneElementId.olive)));
-    });
+    test(
+      'appearance, growth, stream, ocean and stage advances are detected',
+      () {
+        final before = composer.compose(
+          garden: _state(
+            prayer: 0.3, // olive v1
+            remembrance: 0.5, // rayhan v2
+            drops: 120, // tier 3
+            maturity: 26,
+          ),
+          lastSeen: null,
+        );
+        final memento = GardenSceneMemento.fromSpec(
+          before,
+          savedAtIso: '2026-08-29T10:00:00',
+        );
+        final after = composer.compose(
+          garden: _state(
+            prayer: 0.3,
+            learning: 0.25, // fig appears
+            remembrance: 0.75, // rayhan grows v2 -> v3
+            drops: 520, // tier 4 + ocean glimpse
+            maturity: 41, // smallRoots -> smallTree
+          ),
+          lastSeen: memento,
+        );
+        expect(after.newlyAppeared, contains(GardenSceneElementId.fig));
+        expect(
+          after.newlyAppeared,
+          contains(GardenSceneElementId.oceanHorizon),
+        );
+        expect(after.newlyGrown, contains(GardenSceneElementId.rayhan));
+        expect(after.newlyGrown, contains(GardenSceneElementId.stream));
+        expect(after.treeStageAdvanced, isTrue);
+        expect(
+          after.elementById(GardenSceneElementId.fig)!.isNewSinceLastVisit,
+          isTrue,
+        );
+        expect(
+          after.elementById(GardenSceneElementId.olive)!.isNewSinceLastVisit,
+          isFalse,
+        );
+        expect(
+          after.newlyAppeared,
+          isNot(contains(GardenSceneElementId.olive)),
+        );
+      },
+    );
 
     test('an unchanged garden diffs to nothing against its own memento', () {
       final garden = _state(prayer: 0.6, drops: 200, maturity: 50);
       final spec = composer.compose(garden: garden, lastSeen: null);
-      final memento =
-          GardenSceneMemento.fromSpec(spec, savedAtIso: '2026-08-29T10:00:00');
+      final memento = GardenSceneMemento.fromSpec(
+        spec,
+        savedAtIso: '2026-08-29T10:00:00',
+      );
       final again = composer.compose(garden: garden, lastSeen: memento);
       expect(again.hasNewGrowth, isFalse);
     });
@@ -162,8 +189,10 @@ void main() {
         garden: _state(prayer: 0.55, drops: 380, maturity: 44),
         lastSeen: null,
       );
-      final memento =
-          GardenSceneMemento.fromSpec(spec, savedAtIso: '2026-08-29T10:00:00');
+      final memento = GardenSceneMemento.fromSpec(
+        spec,
+        savedAtIso: '2026-08-29T10:00:00',
+      );
       final revived = GardenSceneMemento.fromJson(memento.toJson());
       expect(revived.elementVariantById, memento.elementVariantById);
       expect(revived.treeStageId, memento.treeStageId);
@@ -192,10 +221,14 @@ void main() {
         ),
         lastSeen: null,
       );
-      final visible =
-          spec.elements.where((e) => e.variantLevel > 0).map((e) => e.id);
-      expect(visible.length, greaterThanOrEqualTo(4),
-          reason: 'day-one-adjacent gardens must not feel barren');
+      final visible = spec.elements
+          .where((e) => e.variantLevel > 0)
+          .map((e) => e.id);
+      expect(
+        visible.length,
+        greaterThanOrEqualTo(4),
+        reason: 'day-one-adjacent gardens must not feel barren',
+      );
       expect(visible, contains(GardenSceneElementId.olive));
       expect(visible, contains(GardenSceneElementId.gourd));
       expect(spec.water.streamTier, 3);
@@ -204,17 +237,19 @@ void main() {
 
   group('dimension score source', () {
     test('prefers the dimensions list over named fallback fields', () {
-      final garden = _state(remembrance: 0, dimensions: const [
-        GardenDimensionState(
-          dimension: GardenGrowthDimension.remembranceLight,
-          score: 0.6,
-          emphasisPercent: 60,
-          summaryValue: 12,
-        ),
-      ]);
+      final garden = _state(
+        remembrance: 0,
+        dimensions: const [
+          GardenDimensionState(
+            dimension: GardenGrowthDimension.remembranceLight,
+            score: 0.6,
+            emphasisPercent: 60,
+            summaryValue: 12,
+          ),
+        ],
+      );
       final spec = composer.compose(garden: garden, lastSeen: null);
-      expect(
-          spec.elementById(GardenSceneElementId.songbirds)!.variantLevel, 1);
+      expect(spec.elementById(GardenSceneElementId.songbirds)!.variantLevel, 1);
       expect(spec.elementById(GardenSceneElementId.rayhan)!.variantLevel, 2);
     });
   });
@@ -230,9 +265,13 @@ void main() {
       expect(legacyGrowthStageForMaturity(64), GrowthGardenStage.flourishing);
       expect(legacyGrowthStageForMaturity(87), GrowthGardenStage.flourishing);
       expect(
-          legacyGrowthStageForMaturity(88), GrowthGardenStage.lightUponLight);
+        legacyGrowthStageForMaturity(88),
+        GrowthGardenStage.lightUponLight,
+      );
       expect(
-          legacyGrowthStageForMaturity(100), GrowthGardenStage.lightUponLight);
+        legacyGrowthStageForMaturity(100),
+        GrowthGardenStage.lightUponLight,
+      );
     });
   });
 }

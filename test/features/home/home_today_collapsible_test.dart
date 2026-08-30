@@ -47,8 +47,9 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('opens expanded so the day\'s ayah is not hidden by default',
-      (tester) async {
+  testWidgets('opens expanded so the day\'s ayah is not hidden by default', (
+    tester,
+  ) async {
     await pumpTile(tester, initiallyExpanded: true);
     expect(find.text('ayah-body'), findsOneWidget);
   });
@@ -58,8 +59,11 @@ void main() {
 
     await tester.tap(find.byType(ExpandableTile));
     await tester.pumpAndSettle();
-    expect(find.text('ayah-body'), findsNothing,
-        reason: 'the reader asked to tuck it away');
+    expect(
+      find.text('ayah-body'),
+      findsNothing,
+      reason: 'the reader asked to tuck it away',
+    );
 
     await tester.tap(find.byType(ExpandableTile));
     await tester.pumpAndSettle();
@@ -70,8 +74,12 @@ void main() {
     await pumpTile(tester, initiallyExpanded: false);
     final context = tester.element(find.byType(ExpandableTile));
     final l10n = AppLocalizations.of(context);
-    expect(find.text(l10n.homeTodayContentTitle), findsOneWidget,
-        reason: 'the header stays visible while collapsed, and HomeTodayCard '
-            'suppresses its own SectionTitle to avoid printing it twice');
+    expect(
+      find.text(l10n.homeTodayContentTitle),
+      findsOneWidget,
+      reason:
+          'the header stays visible while collapsed, and HomeTodayCard '
+          'suppresses its own SectionTitle to avoid printing it twice',
+    );
   });
 }

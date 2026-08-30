@@ -88,10 +88,7 @@ void main() {
       final store = LocalStore(prefs);
       final notifier = QuranReaderSettingsNotifier(store);
 
-      expect(
-        notifier.state.readerAtmosphere,
-        QuranReaderAtmosphere.followApp,
-      );
+      expect(notifier.state.readerAtmosphere, QuranReaderAtmosphere.followApp);
     });
 
     test('persists and reloads the reader atmosphere', () async {
@@ -101,16 +98,10 @@ void main() {
       final notifier = QuranReaderSettingsNotifier(store);
 
       notifier.setReaderAtmosphere(QuranReaderAtmosphere.midnight);
-      expect(
-        notifier.state.readerAtmosphere,
-        QuranReaderAtmosphere.midnight,
-      );
+      expect(notifier.state.readerAtmosphere, QuranReaderAtmosphere.midnight);
 
       final reloaded = QuranReaderSettingsNotifier(LocalStore(prefs));
-      expect(
-        reloaded.state.readerAtmosphere,
-        QuranReaderAtmosphere.midnight,
-      );
+      expect(reloaded.state.readerAtmosphere, QuranReaderAtmosphere.midnight);
     });
 
     test('falls back to follow-app for unknown stored atmosphere', () async {
@@ -121,10 +112,7 @@ void main() {
       final store = LocalStore(prefs);
       final notifier = QuranReaderSettingsNotifier(store);
 
-      expect(
-        notifier.state.readerAtmosphere,
-        QuranReaderAtmosphere.followApp,
-      );
+      expect(notifier.state.readerAtmosphere, QuranReaderAtmosphere.followApp);
     });
   });
 }

@@ -55,8 +55,7 @@ void main() {
         'hidden': <String>[],
       });
       expect(prefs.order.toSet(), HomeModule.values.toSet());
-      expect(prefs.order.take(2),
-          [HomeModule.prayerStrip, HomeModule.today]);
+      expect(prefs.order.take(2), [HomeModule.prayerStrip, HomeModule.today]);
     });
   });
 }

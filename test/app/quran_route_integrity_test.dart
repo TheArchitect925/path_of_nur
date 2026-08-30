@@ -82,8 +82,6 @@ void main() {
     );
   }
 
-
-
   testWidgets('canonical and compatibility quran reflections routes resolve', (
     tester,
   ) async {
@@ -104,21 +102,22 @@ void main() {
     }
   });
 
-  testWidgets('quran reflections stays reachable by name after the hub rebuild', (
-    tester,
-  ) async {
-    final container = await makeContainer();
-    final router = container.read(appRouterProvider);
+  testWidgets(
+    'quran reflections stays reachable by name after the hub rebuild',
+    (tester) async {
+      final container = await makeContainer();
+      final router = container.read(appRouterProvider);
 
-    await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
 
-    router.goNamed('quranReflections');
-    await pumpRouteFrames(tester);
+      router.goNamed('quranReflections');
+      await pumpRouteFrames(tester);
 
-    expect(find.byType(QuranReflectionsPage), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
+      expect(find.byType(QuranReflectionsPage), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('quran learning study hub routes load without exceptions', (
     tester,

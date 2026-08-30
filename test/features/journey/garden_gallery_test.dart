@@ -161,5 +161,4 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(Image), findsOneWidget);
   });
-
 }

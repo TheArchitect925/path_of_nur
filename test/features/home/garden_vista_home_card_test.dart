@@ -48,7 +48,9 @@ void main() {
         GoRoute(
           path: '/',
           builder: (context, state) => const Scaffold(
-            body: Center(child: SizedBox(width: 380, child: GardenVistaHomeCard())),
+            body: Center(
+              child: SizedBox(width: 380, child: GardenVistaHomeCard()),
+            ),
           ),
         ),
         GoRoute(
@@ -91,8 +93,10 @@ void main() {
     final container = await pumpCard(tester);
     await tester.pump(const Duration(seconds: 1));
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint && widget.painter is GardenMotionPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint && widget.painter is GardenMotionPainter,
+      ),
       findsNothing,
       reason: 'the Home card must not carry a ticker',
     );

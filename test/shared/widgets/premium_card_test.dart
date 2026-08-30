@@ -23,7 +23,9 @@ void main() {
   testWidgets('default density keeps the classic 36px glass radius', (
     tester,
   ) async {
-    await tester.pumpWidget(await _wrap(const PremiumCard(child: Text('content'))));
+    await tester.pumpWidget(
+      await _wrap(const PremiumCard(child: Text('content'))),
+    );
 
     final glass = tester.widget<AppLayeredSectionGlassCard>(
       find.byType(AppLayeredSectionGlassCard),
@@ -47,10 +49,7 @@ void main() {
               density: PremiumCardDensity.compact,
               child: Text('compact'),
             ),
-            PremiumCard(
-              density: PremiumCardDensity.tile,
-              child: Text('tile'),
-            ),
+            PremiumCard(density: PremiumCardDensity.tile, child: Text('tile')),
           ],
         ),
       ),
@@ -110,7 +109,9 @@ void main() {
   });
 
   testWidgets('card without header renders child directly', (tester) async {
-    await tester.pumpWidget(await _wrap(const PremiumCard(child: Text('solo'))));
+    await tester.pumpWidget(
+      await _wrap(const PremiumCard(child: Text('solo'))),
+    );
     expect(find.text('solo'), findsOneWidget);
     // No header row scaffolding should exist.
     expect(find.byType(Spacer), findsNothing);

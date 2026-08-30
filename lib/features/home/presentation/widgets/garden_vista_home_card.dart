@@ -52,8 +52,9 @@ class GardenVistaHomeCard extends ConsumerWidget {
                         l10n,
                         garden.currentVisualStage.stageId,
                       ),
-                      style: theme.textTheme.titleSmall
-                          ?.copyWith(fontWeight: FontWeight.w800),
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     const SizedBox(height: 2),
                     Text(

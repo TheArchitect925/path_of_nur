@@ -89,5 +89,4 @@ void main() {
       expect(state.stopAt, isNull);
     });
   });
-
 }

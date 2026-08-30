@@ -11,10 +11,8 @@ import 'garden_ambient_palette.dart';
 /// No confetti, no burst, no sound — the garden simply catches the light for
 /// a moment. Skipped entirely under reduce-motion.
 class GardenBloomPainter extends CustomPainter {
-  GardenBloomPainter({
-    required this.animation,
-    required this.anchors,
-  }) : super(repaint: animation);
+  GardenBloomPainter({required this.animation, required this.anchors})
+    : super(repaint: animation);
 
   final Animation<double> animation;
 
@@ -69,8 +67,9 @@ class GardenBloomPainter extends CustomPainter {
         centre,
         3.6,
         Paint()
-          ..color = GardenAmbientPalette.gold
-              .withValues(alpha: 0.75 * motePhase)
+          ..color = GardenAmbientPalette.gold.withValues(
+            alpha: 0.75 * motePhase,
+          )
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2.4),
       );
     }

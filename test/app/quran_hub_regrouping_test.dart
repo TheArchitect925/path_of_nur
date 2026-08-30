@@ -203,9 +203,6 @@ void main() {
     // The tab row now reads "Juz 2 of 30 · today's portion read".
     router.go('/quran');
     await pumpRouteFrames(tester);
-    expect(
-      find.textContaining(l10n.quranTabPlanJuzLabel(2)),
-      findsWidgets,
-    );
+    expect(find.textContaining(l10n.quranTabPlanJuzLabel(2)), findsWidgets);
   });
 }

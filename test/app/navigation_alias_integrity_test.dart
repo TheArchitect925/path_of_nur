@@ -126,22 +126,21 @@ void main() {
     );
   });
 
-  testWidgets(
-    'learn legacy route redirects to the Explore All browser',
-    (tester) async {
-      final container = await makeRoutingTestContainer();
-      final router = container.read(appRouterProvider);
+  testWidgets('learn legacy route redirects to the Explore All browser', (
+    tester,
+  ) async {
+    final container = await makeRoutingTestContainer();
+    final router = container.read(appRouterProvider);
 
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
 
-      router.go('/learn/legacy');
-      await pumpRouteFrames(tester);
+    router.go('/learn/legacy');
+    await pumpRouteFrames(tester);
 
-      expect(find.byType(LearnExploreAllKnowledgePage), findsOneWidget);
-      expect(find.textContaining('/learn/legacy'), findsNothing);
-    },
-  );
+    expect(find.byType(LearnExploreAllKnowledgePage), findsOneWidget);
+    expect(find.textContaining('/learn/legacy'), findsNothing);
+  });
 
   test('active learn catalog items avoid compatibility-only route targets', () {
     const disallowedRouteNames = <String>{

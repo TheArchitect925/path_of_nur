@@ -34,7 +34,12 @@ abstract final class GardenSceneLayout {
   static const double horizonY = 600;
 
   static const GardenLayerRect heroCrop = GardenLayerRect(130, 0, 1740, 1200);
-  static const GardenLayerRect homeCardCrop = GardenLayerRect(100, 280, 1800, 800);
+  static const GardenLayerRect homeCardCrop = GardenLayerRect(
+    100,
+    280,
+    1800,
+    800,
+  );
   static const GardenLayerRect groundRect = GardenLayerRect(0, 540, 2000, 660);
   static const GardenLayerRect waterRect = GardenLayerRect(1040, 560, 960, 640);
   static const GardenLayerRect beehiveRect = GardenLayerRect(826, 614, 92, 100);
@@ -108,9 +113,27 @@ abstract final class GardenSceneLayout {
     ),
   };
 
-  static const List<List<double>> streamCenterline = [[1490, 620], [1462, 750], [1396, 820], [1430, 890], [1352, 960], [1392, 1030], [1308, 1105], [1330, 1205]];
-  static const GardenLayerRect fireflyRegion = GardenLayerRect(600, 700, 700, 220);
-  static const List<List<double>> beeAnchors = [[700, 905], [940, 846], [610, 834]];
+  static const List<List<double>> streamCenterline = [
+    [1490, 620],
+    [1462, 750],
+    [1396, 820],
+    [1430, 890],
+    [1352, 960],
+    [1392, 1030],
+    [1308, 1105],
+    [1330, 1205],
+  ];
+  static const GardenLayerRect fireflyRegion = GardenLayerRect(
+    600,
+    700,
+    700,
+    220,
+  );
+  static const List<List<double>> beeAnchors = [
+    [700, 905],
+    [940, 846],
+    [610, 834],
+  ];
   static const List<double> fishAnchor = [1360, 1058];
   static const List<double> beehiveAnchor = [872, 664];
   static const double birdBandTop = 200;

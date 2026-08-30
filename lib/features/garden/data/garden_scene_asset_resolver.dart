@@ -10,7 +10,7 @@ import 'garden_scene_layout.g.dart';
 /// yet" — the vista's placeholder painter covers it, never a broken image.
 class GardenSceneAssetResolver {
   const GardenSceneAssetResolver({Set<String>? availableFiles})
-      : _available = availableFiles ?? GardenSceneLayout.availableGardenArtFiles;
+    : _available = availableFiles ?? GardenSceneLayout.availableGardenArtFiles;
 
   final Set<String> _available;
 

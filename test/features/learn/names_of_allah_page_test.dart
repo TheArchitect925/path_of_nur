@@ -32,9 +32,7 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('renders the names grid with a fast-scroll rail', (
-    tester,
-  ) async {
+  testWidgets('renders the names grid with a fast-scroll rail', (tester) async {
     await pumpPage(tester);
 
     expect(find.byType(GridView), findsNothing); // sliver grid, not GridView

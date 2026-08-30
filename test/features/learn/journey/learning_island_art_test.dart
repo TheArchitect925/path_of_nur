@@ -20,7 +20,8 @@ void main() {
       expect(
         asset,
         isNotNull,
-        reason: 'island ${island.id} has no scene, so its journeys fall back '
+        reason:
+            'island ${island.id} has no scene, so its journeys fall back '
             'to an icon while other islands show art',
       );
       expect(
@@ -38,7 +39,8 @@ void main() {
       expect(
         journeyIslandArtAsset(journey.islandId),
         isNotNull,
-        reason: 'journey ${journey.id} sits on island ${journey.islandId}, '
+        reason:
+            'journey ${journey.id} sits on island ${journey.islandId}, '
             'which has no scene',
       );
     }

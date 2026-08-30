@@ -98,10 +98,7 @@ void main() {
     test('one juz per day from zero covers exactly juz 1', () {
       final portion = khatmPortionFor(plan(), today);
       expect(portion.startIndex, 1);
-      expect(
-        portion.endIndex,
-        QuranGlobalPosition.juzStartIndex(2) - 1,
-      );
+      expect(portion.endIndex, QuranGlobalPosition.juzStartIndex(2) - 1);
     });
 
     test('a juz-per-day portion crosses juz boundaries correctly', () {
@@ -143,10 +140,7 @@ void main() {
     });
 
     test('the final portion never overruns the mushaf', () {
-      final portion = khatmPortionFor(
-        plan(completedIndex: 6230),
-        today,
-      );
+      final portion = khatmPortionFor(plan(completedIndex: 6230), today);
       expect(portion.endIndex, 6236);
       expect(portion.startIndex, 6231);
     });
@@ -177,10 +171,7 @@ void main() {
       final container = createContainer();
       addTearDown(container.dispose);
       final notifier = container.read(quranKhatmPlanProvider.notifier);
-      notifier.startPlan(
-        paceMode: QuranKhatmPaceMode.juzPerDay,
-        juzPerDay: 1,
-      );
+      notifier.startPlan(paceMode: QuranKhatmPaceMode.juzPerDay, juzPerDay: 1);
       notifier.markPortionDone(DateTime(2026, 8, 29));
 
       final plan = container.read(quranKhatmPlanProvider)!;
@@ -206,10 +197,7 @@ void main() {
       final notifier = container.read(quranKhatmPlanProvider.notifier);
       notifier.startPlan(paceMode: QuranKhatmPaceMode.pagesPerDay);
       notifier.setCompletedThrough(2, 142);
-      expect(
-        container.read(quranKhatmJuzEquivalentProvider),
-        closeTo(1, 0.01),
-      );
+      expect(container.read(quranKhatmJuzEquivalentProvider), closeTo(1, 0.01));
     });
   });
 }

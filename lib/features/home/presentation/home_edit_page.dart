@@ -173,7 +173,11 @@ class _ModuleRow extends StatelessWidget {
           if (dragIndex != null)
             ReorderableDragStartListener(
               index: dragIndex!,
-              child: Icon(Icons.drag_indicator_rounded, size: 20, color: subtle),
+              child: Icon(
+                Icons.drag_indicator_rounded,
+                size: 20,
+                color: subtle,
+              ),
             )
           else
             Icon(Icons.visibility_off_outlined, size: 18, color: subtle),

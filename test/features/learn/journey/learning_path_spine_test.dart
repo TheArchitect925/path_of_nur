@@ -36,9 +36,7 @@ void main() {
   });
 
   test('every phase mapping points at real guided and trivia paths', () {
-    final guidedIds = kGuidedLearningPaths
-        .map((path) => path.id)
-        .toSet();
+    final guidedIds = kGuidedLearningPaths.map((path) => path.id).toSet();
     final triviaIds = triviaKnowledgePaths.map((path) => path.id).toSet();
 
     for (final path in LearningPathRegistry.paths) {

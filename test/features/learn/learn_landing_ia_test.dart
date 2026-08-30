@@ -96,10 +96,7 @@ void main() {
     await tapHubRow(tester, l10n.learnHubCategoryCharacterAdabTitle);
     expect(find.byType(LearnCategoryPage), findsOneWidget);
     // Life lessons moved under Character in the Phase 4 taxonomy.
-    expect(
-      find.text(l10n.learnCategoryDivineLifeLessonsTitle),
-      findsWidgets,
-    );
+    expect(find.text(l10n.learnCategoryDivineLifeLessonsTitle), findsWidgets);
 
     router.go('/learn');
     await pumpRouteFrames(tester);

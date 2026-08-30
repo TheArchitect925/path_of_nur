@@ -60,8 +60,9 @@ class GardenMotionPainter extends CustomPainter {
       final fy = 0.5 + 0.38 * math.cos((t + phase) * 2 * math.pi * (2 + i % 2));
       final pulse =
           0.2 + 0.4 * (0.5 + 0.5 * math.sin((t * 6 + phase) * 2 * math.pi));
-      paint.color = GardenAmbientPalette.gold
-          .withValues(alpha: pulse * strength);
+      paint.color = GardenAmbientPalette.gold.withValues(
+        alpha: pulse * strength,
+      );
       canvas.drawCircle(
         Offset(region.x + region.w * fx, region.y + region.h * fy),
         3.2,
@@ -80,8 +81,9 @@ class GardenMotionPainter extends CustomPainter {
         height: 9 + phase * 2,
       ),
       Paint()
-        ..color = GardenAmbientPalette.ivory
-            .withValues(alpha: 0.10 + phase * 0.12),
+        ..color = GardenAmbientPalette.ivory.withValues(
+          alpha: 0.10 + phase * 0.12,
+        ),
     );
   }
 
@@ -99,9 +101,10 @@ class GardenMotionPainter extends CustomPainter {
       final f = scaled - index;
       final x = line[index][0] + (line[index + 1][0] - line[index][0]) * f;
       final y = line[index][1] + (line[index + 1][1] - line[index][1]) * f;
-      final depth = ((y - GardenSceneLayout.horizonY) /
-              (GardenSceneLayout.canvasHeight - GardenSceneLayout.horizonY))
-          .clamp(0.0, 1.0);
+      final depth =
+          ((y - GardenSceneLayout.horizonY) /
+                  (GardenSceneLayout.canvasHeight - GardenSceneLayout.horizonY))
+              .clamp(0.0, 1.0);
       // Fade in from the source, out toward the mouth.
       final alpha = 0.22 * math.sin(position * math.pi);
       if (alpha <= 0.01) {

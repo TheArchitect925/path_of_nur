@@ -48,9 +48,9 @@ void main() {
     await tester.pump(const Duration(milliseconds: 150));
   }
 
-  Offset moonOf(WidgetTester tester) =>
-      tester.widget<GlobalBackground>(find.byType(GlobalBackground))
-          .moonFraction;
+  Offset moonOf(WidgetTester tester) => tester
+      .widget<GlobalBackground>(find.byType(GlobalBackground))
+      .moonFraction;
 
   testWidgets('the moon sits left on Home', (tester) async {
     await pumpAt(tester, '/home');
@@ -103,5 +103,4 @@ void main() {
       expect(resolveMoonFraction(mirrored, TextDirection.rtl), original);
     });
   });
-
 }

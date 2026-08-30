@@ -1635,7 +1635,8 @@ Good night...
     tags: ['prophet', 'sulaiman', 'animals', 'ant', 'hoopoe', 'gratitude'],
     sortOrder: 100,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/sulaiman_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/sulaiman_backdrop.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageAssetDirectory/sulaiman_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1773,7 +1774,8 @@ Good night...
     tags: ['prophet', 'muhammad', 'childhood', 'makkah', 'character'],
     sortOrder: 110,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1933,7 +1935,8 @@ Good night...
     tags: ['prophet', 'muhammad', 'revelation', 'quran', 'patience'],
     sortOrder: 120,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -2070,7 +2073,8 @@ Good night...
     tags: ['prophet', 'muhammad', 'hijrah', 'madinah', 'community'],
     sortOrder: 130,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -2199,7 +2203,8 @@ Good night...
     tags: ['prophet', 'muhammad', 'mercy', 'forgiveness', 'makkah'],
     sortOrder: 140,
     coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,

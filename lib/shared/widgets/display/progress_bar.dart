@@ -23,10 +23,9 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final fill = color ?? appearance?.accent ?? Theme.of(context).colorScheme.primary;
-    final track =
-        backgroundColor ??
-        fill.withValues(alpha: 0.18);
+    final fill =
+        color ?? appearance?.accent ?? Theme.of(context).colorScheme.primary;
+    final track = backgroundColor ?? fill.withValues(alpha: 0.18);
     final clamped = value.isNaN ? 0.0 : value.clamp(0.0, 1.0);
 
     return Semantics(

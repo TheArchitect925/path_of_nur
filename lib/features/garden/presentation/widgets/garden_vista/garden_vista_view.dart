@@ -85,8 +85,7 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
       await controller.ensureBaseline(spec);
       return;
     }
-    final reduceMotion =
-        ref.read(profileSettingsProvider).reduceMotion;
+    final reduceMotion = ref.read(profileSettingsProvider).reduceMotion;
     if (!reduceMotion) {
       final bloom = _bloom ??= AnimationController(
         vsync: this,
@@ -156,7 +155,8 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
       ...?resolver.treeAssets(spec.treeStage),
       if (spec.treeStage.index < GardenVisualStageId.values.length - 1)
         ...?resolver.treeAssets(
-            GardenVisualStageId.values[spec.treeStage.index + 1]),
+          GardenVisualStageId.values[spec.treeStage.index + 1],
+        ),
     ];
     for (final path in paths) {
       if (path != null) {
@@ -191,20 +191,21 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
   }
 
   GardenLayerRect get _cropRect => switch (widget.crop) {
-        GardenVistaCrop.hero => GardenSceneLayout.heroCrop,
-        GardenVistaCrop.homeCard => GardenSceneLayout.homeCardCrop,
-        GardenVistaCrop.full => const GardenLayerRect(
-            0,
-            0,
-            GardenSceneLayout.canvasWidth,
-            GardenSceneLayout.canvasHeight,
-          ),
-      };
+    GardenVistaCrop.hero => GardenSceneLayout.heroCrop,
+    GardenVistaCrop.homeCard => GardenSceneLayout.homeCardCrop,
+    GardenVistaCrop.full => const GardenLayerRect(
+      0,
+      0,
+      GardenSceneLayout.canvasWidth,
+      GardenSceneLayout.canvasHeight,
+    ),
+  };
 
   @override
   Widget build(BuildContext context) {
-    final reduceMotion = ref
-        .watch(profileSettingsProvider.select((value) => value.reduceMotion));
+    final reduceMotion = ref.watch(
+      profileSettingsProvider.select((value) => value.reduceMotion),
+    );
     _syncMotion(reduceMotion);
     final motionActive = _wantsMotion && !reduceMotion;
     final brightness = Theme.of(context).brightness;
@@ -247,8 +248,9 @@ class _GardenVistaViewState extends ConsumerState<GardenVistaView>
                   Positioned.fill(
                     child: IgnorePointer(
                       child: DecoratedBox(
-                        decoration:
-                            BoxDecoration(color: _occasionTintFor(mode)),
+                        decoration: BoxDecoration(
+                          color: _occasionTintFor(mode),
+                        ),
                       ),
                     ),
                   ),
@@ -319,7 +321,11 @@ class _SceneLayers extends StatelessWidget {
         ),
       ),
     ];
-    void addLayer(String? assetPath, GardenLayerRect rect, {bool sway = false}) {
+    void addLayer(
+      String? assetPath,
+      GardenLayerRect rect, {
+      bool sway = false,
+    }) {
       if (assetPath == null) {
         return;
       }
@@ -355,14 +361,13 @@ class _SceneLayers extends StatelessWidget {
       resolver.waterAsset(spec.water.streamTier, brightness),
       GardenSceneLayout.waterRect,
     );
-    final elements = spec.elements
-        .where((element) => element.variantLevel > 0)
-        .toList()
-      ..sort((a, b) {
-        final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
-        final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
-        return za.compareTo(zb);
-      });
+    final elements =
+        spec.elements.where((element) => element.variantLevel > 0).toList()
+          ..sort((a, b) {
+            final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
+            final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
+            return za.compareTo(zb);
+          });
     for (final element in elements) {
       final placement = GardenSceneLayout.elementPlacements[element.id.name];
       if (placement == null || element.id == GardenSceneElementId.centralTree) {
@@ -383,11 +388,7 @@ class _SceneLayers extends StatelessWidget {
     final treeAssets = resolver.treeAssets(spec.treeStage);
     if (treePlacement != null && treeAssets != null) {
       for (final path in treeAssets) {
-        addLayer(
-          path,
-          treePlacement.rect,
-          sway: path.contains('_canopy'),
-        );
+        addLayer(path, treePlacement.rect, sway: path.contains('_canopy'));
       }
     }
     addLayer(resolver.vignetteAsset(), fullCanvas);
@@ -430,25 +431,25 @@ class _SceneLayers extends StatelessWidget {
     // two elements overlap the one drawn on top is the one you hit.
     final tapHandler = onElementTap;
     if (tapHandler != null) {
-      final targets = <GardenSceneElementSpec>[
-        ...elements,
-        // The tree is always present, even at variant 0 (it is the seed).
-        spec.elementById(GardenSceneElementId.centralTree) ??
-            const GardenSceneElementSpec(
-              id: GardenSceneElementId.centralTree,
-              kind: GardenSceneElementKind.tree,
-              dimension: null,
-              variantLevel: 1,
-              isNewSinceLastVisit: false,
-            ),
-      ]..sort((a, b) {
-          final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
-          final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
-          return za.compareTo(zb);
-        });
+      final targets =
+          <GardenSceneElementSpec>[
+            ...elements,
+            // The tree is always present, even at variant 0 (it is the seed).
+            spec.elementById(GardenSceneElementId.centralTree) ??
+                const GardenSceneElementSpec(
+                  id: GardenSceneElementId.centralTree,
+                  kind: GardenSceneElementKind.tree,
+                  dimension: null,
+                  variantLevel: 1,
+                  isNewSinceLastVisit: false,
+                ),
+          ]..sort((a, b) {
+            final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
+            final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
+            return za.compareTo(zb);
+          });
       for (final element in targets) {
-        final placement =
-            GardenSceneLayout.elementPlacements[element.id.name];
+        final placement = GardenSceneLayout.elementPlacements[element.id.name];
         if (placement == null) {
           continue;
         }

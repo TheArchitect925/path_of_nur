@@ -31,7 +31,8 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
     canvas.scale(scale);
     final palette = GardenAmbientPalette.scene(brightness);
     final night = brightness == Brightness.dark;
-    final seaVisible = spec.water.oceanHorizonVisible || spec.water.streamTier >= 4;
+    final seaVisible =
+        spec.water.oceanHorizonVisible || spec.water.streamTier >= 4;
 
     _paintSky(canvas, night);
     if (seaVisible) {
@@ -49,16 +50,19 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
   }
 
   Iterable<GardenSceneElementSpec> _plantsBackToFront() {
-    final visible = spec.elements
-        .where((element) =>
-            element.variantLevel > 0 &&
-            element.kind != GardenSceneElementKind.animal)
-        .toList()
-      ..sort((a, b) {
-        final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
-        final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
-        return za.compareTo(zb);
-      });
+    final visible =
+        spec.elements
+            .where(
+              (element) =>
+                  element.variantLevel > 0 &&
+                  element.kind != GardenSceneElementKind.animal,
+            )
+            .toList()
+          ..sort((a, b) {
+            final za = GardenSceneLayout.elementPlacements[a.id.name]?.z ?? 0;
+            final zb = GardenSceneLayout.elementPlacements[b.id.name]?.z ?? 0;
+            return za.compareTo(zb);
+          });
     return visible;
   }
 
@@ -82,17 +86,30 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
         final x = 60 + (seed % 1880).toDouble();
         seed = (seed * 48271) % 0x7fffffff;
         final y = 50 + (seed % 420).toDouble();
-        starPaint.color = GardenAmbientPalette.ivory
-            .withValues(alpha: 0.4 + (seed % 40) / 100);
+        starPaint.color = GardenAmbientPalette.ivory.withValues(
+          alpha: 0.4 + (seed % 40) / 100,
+        );
         canvas.drawCircle(Offset(x, y), 1.6 + (seed % 20) / 10, starPaint);
       }
-      _paintGlow(canvas, const Offset(330, 180), 140,
-          GardenAmbientPalette.ivory, 0.4);
+      _paintGlow(
+        canvas,
+        const Offset(330, 180),
+        140,
+        GardenAmbientPalette.ivory,
+        0.4,
+      );
       final crescent = Path()
-        ..addArc(Rect.fromCircle(center: const Offset(330, 180), radius: 64),
-            -math.pi / 2, math.pi)
-        ..arcTo(Rect.fromCircle(center: const Offset(330, 180), radius: 75.5),
-            math.pi / 2, -math.pi, false)
+        ..addArc(
+          Rect.fromCircle(center: const Offset(330, 180), radius: 64),
+          -math.pi / 2,
+          math.pi,
+        )
+        ..arcTo(
+          Rect.fromCircle(center: const Offset(330, 180), radius: 75.5),
+          math.pi / 2,
+          -math.pi,
+          false,
+        )
         ..close();
       canvas.drawPath(crescent, Paint()..color = GardenAmbientPalette.ivory);
       return;
@@ -111,7 +128,12 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
   }
 
   void _paintGlow(
-      Canvas canvas, Offset center, double radius, Color color, double alpha) {
+    Canvas canvas,
+    Offset center,
+    double radius,
+    Color color,
+    double alpha,
+  ) {
     canvas.drawCircle(
       center,
       radius,
@@ -136,16 +158,32 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
   }
 
   void _paintTerrain(
-      Canvas canvas, GardenScenePalette palette, bool seaVisible) {
+    Canvas canvas,
+    GardenScenePalette palette,
+    bool seaVisible,
+  ) {
     final dipTop = seaVisible ? 34.0 : 16.0;
     final dipBottom = seaVisible ? 96.0 : 26.0;
     final far = Path()
       ..moveTo(-60, _h)
       ..lineTo(-60, _horizon + 30)
       ..cubicTo(240, _horizon - 4, 560, _horizon + 36, 900, _horizon + 18)
-      ..cubicTo(1080, _horizon + 8, 1180, _horizon + 14, 1260, _horizon + dipTop)
-      ..cubicTo(1400, _horizon + dipBottom, 1720, _horizon + dipBottom, 1900,
-          _horizon + dipTop)
+      ..cubicTo(
+        1080,
+        _horizon + 8,
+        1180,
+        _horizon + 14,
+        1260,
+        _horizon + dipTop,
+      )
+      ..cubicTo(
+        1400,
+        _horizon + dipBottom,
+        1720,
+        _horizon + dipBottom,
+        1900,
+        _horizon + dipTop,
+      )
       ..cubicTo(1960, _horizon + 10, 2060, _horizon + 16, 2060, _horizon + 16)
       ..lineTo(2060, _h)
       ..close();
@@ -170,8 +208,11 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
     canvas.drawPath(
       meadow,
       Paint()
-        ..shader = ui.Gradient.linear(const Offset(0, 838), const Offset(0, _h),
-            [palette.meadowHi, palette.meadowLo]),
+        ..shader = ui.Gradient.linear(
+          const Offset(0, 838),
+          const Offset(0, _h),
+          [palette.meadowHi, palette.meadowLo],
+        ),
     );
 
     final near = Path()
@@ -183,8 +224,11 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
     canvas.drawPath(
       near,
       Paint()
-        ..shader = ui.Gradient.linear(const Offset(0, 1018), const Offset(0, _h),
-            [palette.nearHi, palette.nearLo]),
+        ..shader = ui.Gradient.linear(
+          const Offset(0, 1018),
+          const Offset(0, _h),
+          [palette.nearHi, palette.nearLo],
+        ),
     );
   }
 
@@ -192,13 +236,18 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
     final tier = spec.water.streamTier;
     if (tier <= 1) {
       final pond = Rect.fromCenter(
-          center: const Offset(1350, 1082), width: 172, height: 48);
+        center: const Offset(1350, 1082),
+        width: 172,
+        height: 48,
+      );
       canvas.drawOval(pond, Paint()..color = palette.waterLo);
       canvas.drawOval(
         pond.deflate(10),
         Paint()
-          ..shader = ui.Gradient.linear(pond.topCenter, pond.bottomCenter,
-              [palette.waterHi, palette.waterLo]),
+          ..shader = ui.Gradient.linear(pond.topCenter, pond.bottomCenter, [
+            palette.waterHi,
+            palette.waterLo,
+          ]),
       );
       return;
     }
@@ -224,8 +273,10 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
       path,
       Paint()
         ..shader = ui.Gradient.linear(
-            Offset(0, _horizon), const Offset(0, _h),
-            [palette.waterHi, palette.waterLo]),
+          Offset(0, _horizon),
+          const Offset(0, _h),
+          [palette.waterHi, palette.waterLo],
+        ),
     );
   }
 
@@ -235,19 +286,27 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
     final stageNumber = spec.treeStage.index + 1;
     final shadow = Paint()
       ..shader = ui.Gradient.radial(
-          Offset(baseX + 20, baseY + 4), 150 + stageNumber * 16,
-          [const Color(0x3D0E1710), const Color(0x000E1710)]);
+        Offset(baseX + 20, baseY + 4),
+        150 + stageNumber * 16,
+        [const Color(0x3D0E1710), const Color(0x000E1710)],
+      );
     canvas.drawOval(
-        Rect.fromCenter(
-            center: Offset(baseX + 20, baseY + 4),
-            width: (150 + stageNumber * 16) * 2,
-            height: 40 + stageNumber * 4),
-        shadow);
+      Rect.fromCenter(
+        center: Offset(baseX + 20, baseY + 4),
+        width: (150 + stageNumber * 16) * 2,
+        height: 40 + stageNumber * 4,
+      ),
+      shadow,
+    );
     if (stageNumber == 1) {
       canvas.drawOval(
-          Rect.fromCenter(
-              center: const Offset(baseX, baseY - 8), width: 52, height: 34),
-          Paint()..color = palette.trunk);
+        Rect.fromCenter(
+          center: const Offset(baseX, baseY - 8),
+          width: 52,
+          height: 34,
+        ),
+        Paint()..color = palette.trunk,
+      );
       return;
     }
     if (stageNumber <= 3) {
@@ -258,11 +317,20 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
         ..strokeCap = StrokeCap.round;
       final height = stageNumber == 2 ? 82.0 : 124.0;
       canvas.drawLine(
-          const Offset(baseX, baseY), Offset(baseX, baseY - height), stem);
-      canvas.drawCircle(Offset(baseX - 24, baseY - height + 14), 24,
-          Paint()..color = palette.canopyMid);
-      canvas.drawCircle(Offset(baseX + 22, baseY - height + 4), 26,
-          Paint()..color = palette.canopyLight);
+        const Offset(baseX, baseY),
+        Offset(baseX, baseY - height),
+        stem,
+      );
+      canvas.drawCircle(
+        Offset(baseX - 24, baseY - height + 14),
+        24,
+        Paint()..color = palette.canopyMid,
+      );
+      canvas.drawCircle(
+        Offset(baseX + 22, baseY - height + 4),
+        26,
+        Paint()..color = palette.canopyLight,
+      );
       return;
     }
     final t = (stageNumber - 4) / 6;
@@ -273,37 +341,72 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
     final trunk = Path()
       ..moveTo(baseX - trunkWidth * 0.55, baseY)
       ..cubicTo(
-          baseX - trunkWidth * 0.42, baseY - trunkHeight * 0.5,
-          baseX - trunkWidth * 0.3, baseY - trunkHeight * 0.82,
-          baseX - trunkWidth * 0.16, baseY - trunkHeight)
+        baseX - trunkWidth * 0.42,
+        baseY - trunkHeight * 0.5,
+        baseX - trunkWidth * 0.3,
+        baseY - trunkHeight * 0.82,
+        baseX - trunkWidth * 0.16,
+        baseY - trunkHeight,
+      )
       ..lineTo(baseX + trunkWidth * 0.16, baseY - trunkHeight)
       ..cubicTo(
-          baseX + trunkWidth * 0.28, baseY - trunkHeight * 0.78,
-          baseX + trunkWidth * 0.4, baseY - trunkHeight * 0.48,
-          baseX + trunkWidth * 0.55, baseY)
+        baseX + trunkWidth * 0.28,
+        baseY - trunkHeight * 0.78,
+        baseX + trunkWidth * 0.4,
+        baseY - trunkHeight * 0.48,
+        baseX + trunkWidth * 0.55,
+        baseY,
+      )
       ..close();
     canvas.drawPath(trunk, Paint()..color = palette.trunk);
     void blob(double dx, double dy, double r, Color color) {
-      canvas.drawCircle(Offset(baseX + dx, canopyY + dy), r,
-          Paint()..color = color);
+      canvas.drawCircle(
+        Offset(baseX + dx, canopyY + dy),
+        r,
+        Paint()..color = color,
+      );
     }
 
     blob(0, -canopyRadius * 0.06, canopyRadius * 0.95, palette.canopyShade);
     if (stageNumber >= 6) {
-      blob(-canopyRadius * 0.86, canopyRadius * 0.24, canopyRadius * 0.58,
-          palette.canopyShade);
-      blob(canopyRadius * 0.84, canopyRadius * 0.22, canopyRadius * 0.54,
-          palette.canopyShade);
-      blob(-canopyRadius * 0.5, canopyRadius * 0.05, canopyRadius * 0.5,
-          palette.canopyMid);
-      blob(canopyRadius * 0.5, canopyRadius * 0.05, canopyRadius * 0.48,
-          palette.canopyMid);
+      blob(
+        -canopyRadius * 0.86,
+        canopyRadius * 0.24,
+        canopyRadius * 0.58,
+        palette.canopyShade,
+      );
+      blob(
+        canopyRadius * 0.84,
+        canopyRadius * 0.22,
+        canopyRadius * 0.54,
+        palette.canopyShade,
+      );
+      blob(
+        -canopyRadius * 0.5,
+        canopyRadius * 0.05,
+        canopyRadius * 0.5,
+        palette.canopyMid,
+      );
+      blob(
+        canopyRadius * 0.5,
+        canopyRadius * 0.05,
+        canopyRadius * 0.48,
+        palette.canopyMid,
+      );
     }
     if (stageNumber >= 8) {
-      blob(-canopyRadius * 0.26, -canopyRadius * 0.48, canopyRadius * 0.5,
-          palette.canopyLight);
-      blob(canopyRadius * 0.36, -canopyRadius * 0.42, canopyRadius * 0.46,
-          palette.canopyLight);
+      blob(
+        -canopyRadius * 0.26,
+        -canopyRadius * 0.48,
+        canopyRadius * 0.5,
+        palette.canopyLight,
+      );
+      blob(
+        canopyRadius * 0.36,
+        -canopyRadius * 0.42,
+        canopyRadius * 0.46,
+        palette.canopyLight,
+      );
     }
     if (stageNumber >= 9) {
       final fruit = Paint()..color = GardenAmbientPalette.gold;
@@ -314,10 +417,13 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
         seed = (seed * 48271) % 0x7fffffff;
         final radius = canopyRadius * (0.4 + (seed % 50) / 100);
         canvas.drawCircle(
-            Offset(baseX + radius * math.cos(angle),
-                canopyY + radius * math.sin(angle) * 0.68),
-            7 + (seed % 6).toDouble(),
-            fruit);
+          Offset(
+            baseX + radius * math.cos(angle),
+            canopyY + radius * math.sin(angle) * 0.68,
+          ),
+          7 + (seed % 6).toDouble(),
+          fruit,
+        );
       }
     }
     if (stageNumber >= 10) {
@@ -330,16 +436,22 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
         seed = (seed * 48271) % 0x7fffffff;
         final radius = canopyRadius * (0.55 + (seed % 50) / 100);
         canvas.drawCircle(
-            Offset(baseX + radius * math.cos(angle),
-                canopyY + radius * math.sin(angle) * 0.7),
-            4 + (seed % 4).toDouble(),
-            blossom);
+          Offset(
+            baseX + radius * math.cos(angle),
+            canopyY + radius * math.sin(angle) * 0.7,
+          ),
+          4 + (seed % 4).toDouble(),
+          blossom,
+        );
       }
     }
   }
 
-  void _paintPlant(Canvas canvas, GardenScenePalette palette,
-      GardenSceneElementSpec element) {
+  void _paintPlant(
+    Canvas canvas,
+    GardenScenePalette palette,
+    GardenSceneElementSpec element,
+  ) {
     if (element.id == GardenSceneElementId.stream ||
         element.id == GardenSceneElementId.oceanHorizon ||
         element.id == GardenSceneElementId.centralTree) {
@@ -374,10 +486,14 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
           Offset(1.05, -0.25),
         ]) {
           canvas.drawLine(
-              tip,
-              tip + Offset(direction.dx * 180 * growth,
-                  direction.dy * 130 * growth),
-              frond);
+            tip,
+            tip +
+                Offset(
+                  direction.dx * 180 * growth,
+                  direction.dy * 130 * growth,
+                ),
+            frond,
+          );
         }
       case GardenSceneElementId.rayhan:
         final blade = Paint()
@@ -387,9 +503,10 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
           ..strokeCap = StrokeCap.round;
         for (var i = -2; i <= 2; i++) {
           canvas.drawLine(
-              Offset(baseX + i * 12 * growth, baseY),
-              Offset(baseX + i * 16 * growth, baseY - 48 * growth),
-              blade);
+            Offset(baseX + i * 12 * growth, baseY),
+            Offset(baseX + i * 16 * growth, baseY - 48 * growth),
+            blade,
+          );
         }
       case GardenSceneElementId.gourd:
         final vine = Paint()
@@ -397,14 +514,19 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
           ..style = PaintingStyle.stroke
           ..strokeWidth = 6 * growth
           ..strokeCap = StrokeCap.round;
-        canvas.drawLine(Offset(baseX - 70 * growth, baseY),
-            Offset(baseX + 70 * growth, baseY - 20 * growth), vine);
+        canvas.drawLine(
+          Offset(baseX - 70 * growth, baseY),
+          Offset(baseX + 70 * growth, baseY - 20 * growth),
+          vine,
+        );
         canvas.drawOval(
-            Rect.fromCenter(
-                center: Offset(baseX - 6 * growth, baseY - 14 * growth),
-                width: 32 * growth,
-                height: 24 * growth),
-            Paint()..color = const Color(0xFFD8C48E));
+          Rect.fromCenter(
+            center: Offset(baseX - 6 * growth, baseY - 14 * growth),
+            width: 32 * growth,
+            height: 24 * growth,
+          ),
+          Paint()..color = const Color(0xFFD8C48E),
+        );
       default:
         final trunkPaint = Paint()
           ..color = palette.trunk
@@ -412,33 +534,55 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
           ..strokeWidth = 9 * growth
           ..strokeCap = StrokeCap.round;
         final height = 84 * growth;
-        canvas.drawLine(Offset(baseX, baseY),
-            Offset(baseX, baseY - height), trunkPaint);
-        canvas.drawCircle(Offset(baseX - 26 * growth, baseY - height - 14),
-            30 * growth, Paint()..color = palette.canopyShade);
-        canvas.drawCircle(Offset(baseX + 24 * growth, baseY - height - 18),
-            28 * growth, Paint()..color = palette.canopyMid);
-        canvas.drawCircle(Offset(baseX, baseY - height - 40 * growth),
-            32 * growth, Paint()..color = palette.canopyLight);
+        canvas.drawLine(
+          Offset(baseX, baseY),
+          Offset(baseX, baseY - height),
+          trunkPaint,
+        );
+        canvas.drawCircle(
+          Offset(baseX - 26 * growth, baseY - height - 14),
+          30 * growth,
+          Paint()..color = palette.canopyShade,
+        );
+        canvas.drawCircle(
+          Offset(baseX + 24 * growth, baseY - height - 18),
+          28 * growth,
+          Paint()..color = palette.canopyMid,
+        );
+        canvas.drawCircle(
+          Offset(baseX, baseY - height - 40 * growth),
+          32 * growth,
+          Paint()..color = palette.canopyLight,
+        );
         if (element.id == GardenSceneElementId.loteTree) {
-          _paintGlow(canvas, Offset(baseX, baseY - height - 40 * growth),
-              150 * growth, GardenAmbientPalette.ivory, 0.35);
+          _paintGlow(
+            canvas,
+            Offset(baseX, baseY - height - 40 * growth),
+            150 * growth,
+            GardenAmbientPalette.ivory,
+            0.35,
+          );
         }
     }
   }
 
-  void _paintCreatures(
-      Canvas canvas, GardenScenePalette palette, bool night) {
+  void _paintCreatures(Canvas canvas, GardenScenePalette palette, bool night) {
     final bee = spec.elementById(GardenSceneElementId.bee);
     if (bee != null && bee.variantLevel > 0) {
       final paint = Paint()..color = GardenAmbientPalette.gold;
-      final count = bee.variantLevel == 1 ? 1 : GardenSceneLayout.beeAnchors.length;
+      final count = bee.variantLevel == 1
+          ? 1
+          : GardenSceneLayout.beeAnchors.length;
       for (var i = 0; i < count; i++) {
         final anchor = GardenSceneLayout.beeAnchors[i];
         canvas.drawOval(
-            Rect.fromCenter(
-                center: Offset(anchor[0], anchor[1]), width: 20, height: 14),
-            paint);
+          Rect.fromCenter(
+            center: Offset(anchor[0], anchor[1]),
+            width: 20,
+            height: 14,
+          ),
+          paint,
+        );
       }
     }
     final ant = spec.elementById(GardenSceneElementId.ant);
@@ -447,10 +591,10 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
       final placement = GardenSceneLayout.elementPlacements['ant']!;
       for (var i = 0; i < 4; i++) {
         canvas.drawCircle(
-            Offset(placement.rect.x + 30 + i * 28,
-                placement.baseY + 8 - i * 4),
-            4.4,
-            paint);
+          Offset(placement.rect.x + 30 + i * 28, placement.baseY + 8 - i * 4),
+          4.4,
+          paint,
+        );
       }
     }
     final hoopoe = spec.elementById(GardenSceneElementId.hoopoe);
@@ -459,35 +603,49 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
       final body = Paint()..color = const Color(0xFF8A6E52);
       final center = Offset(placement.baseX, placement.baseY + 14);
       canvas.drawOval(
-          Rect.fromCenter(center: center, width: 62, height: 40), body);
+        Rect.fromCenter(center: center, width: 62, height: 40),
+        body,
+      );
       canvas.drawCircle(
-          center + const Offset(-26, -16), 11, Paint()..color = const Color(0xFF9A7A58));
+        center + const Offset(-26, -16),
+        11,
+        Paint()..color = const Color(0xFF9A7A58),
+      );
       final crest = Paint()
         ..color = const Color(0xFFB4714A)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 4
         ..strokeCap = StrokeCap.round;
-      canvas.drawLine(center + const Offset(-28, -26),
-          center + const Offset(-24, -40), crest);
-      canvas.drawLine(center + const Offset(-22, -26),
-          center + const Offset(-14, -38), crest);
+      canvas.drawLine(
+        center + const Offset(-28, -26),
+        center + const Offset(-24, -40),
+        crest,
+      );
+      canvas.drawLine(
+        center + const Offset(-22, -26),
+        center + const Offset(-14, -38),
+        crest,
+      );
     }
     final fish = spec.elementById(GardenSceneElementId.fish);
     if (fish != null && fish.variantLevel > 0) {
       final anchor = GardenSceneLayout.fishAnchor;
       canvas.drawOval(
-          Rect.fromCenter(
-              center: Offset(anchor[0], anchor[1] + 7),
-              width: 56,
-              height: 14),
-          Paint()..color = const Color(0xFF18222E).withValues(alpha: 0.5));
+        Rect.fromCenter(
+          center: Offset(anchor[0], anchor[1] + 7),
+          width: 56,
+          height: 14,
+        ),
+        Paint()..color = const Color(0xFF18222E).withValues(alpha: 0.5),
+      );
       canvas.drawCircle(
-          Offset(anchor[0], anchor[1]),
-          22,
-          Paint()
-            ..color = GardenAmbientPalette.ivory.withValues(alpha: 0.35)
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 2.6);
+        Offset(anchor[0], anchor[1]),
+        22,
+        Paint()
+          ..color = GardenAmbientPalette.ivory.withValues(alpha: 0.35)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.6,
+      );
     }
     final songbirds = spec.elementById(GardenSceneElementId.songbirds);
     if (songbirds != null && songbirds.variantLevel > 0) {
@@ -521,10 +679,7 @@ class GardenVistaPlaceholderPainter extends CustomPainter {
         ..shader = ui.Gradient.radial(
           const Offset(_w * 0.5, _h * 0.46),
           _w * 0.72,
-          [
-            const Color(0x000D1018),
-            Color(night ? 0x570D1018 : 0x330D1018),
-          ],
+          [const Color(0x000D1018), Color(night ? 0x570D1018 : 0x330D1018)],
           const [0.62, 1.0],
         ),
     );

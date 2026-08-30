@@ -43,17 +43,19 @@ class ArtHeaderCard extends StatelessWidget {
               imageAsset,
               fit: BoxFit.cover,
               filterQuality: FilterQuality.low,
-              errorBuilder: (context, error, stackTrace) => ArtImageFallback(
-                icon: fallbackIcon,
-                color: fallbackColor,
-              ),
+              errorBuilder: (context, error, stackTrace) =>
+                  ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
             ),
             const DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Color(0x14000000), Color(0x2E000000), Color(0x8F000000)],
+                  colors: [
+                    Color(0x14000000),
+                    Color(0x2E000000),
+                    Color(0x8F000000),
+                  ],
                 ),
               ),
             ),
@@ -118,11 +120,7 @@ class ArtHeaderCard extends StatelessWidget {
     if (onTap == null) return card;
     return Material(
       color: Colors.transparent,
-      child: InkWell(
-        borderRadius: borderRadius,
-        onTap: onTap,
-        child: card,
-      ),
+      child: InkWell(borderRadius: borderRadius, onTap: onTap, child: card),
     );
   }
 }
@@ -179,9 +177,7 @@ class ArtImageFallback extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColoredBox(
       color: color.withValues(alpha: 0.24),
-      child: Center(
-        child: Icon(icon, color: color, size: 28),
-      ),
+      child: Center(child: Icon(icon, color: color, size: 28)),
     );
   }
 }

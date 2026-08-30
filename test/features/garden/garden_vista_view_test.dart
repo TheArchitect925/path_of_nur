@@ -36,8 +36,9 @@ void main() {
     return container;
   }
 
-  testWidgets('renders the placeholder-painted scene for any spec',
-      (tester) async {
+  testWidgets('renders the placeholder-painted scene for any spec', (
+    tester,
+  ) async {
     final spec = composer.compose(
       garden: makeGardenState(
         prayer: 0.6,
@@ -52,9 +53,11 @@ void main() {
     );
     await pumpVista(tester, vista: GardenVistaView(spec: spec));
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint &&
-          widget.painter is GardenVistaPlaceholderPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint &&
+            widget.painter is GardenVistaPlaceholderPainter,
+      ),
       findsOneWidget,
     );
     expect(tester.takeException(), isNull);
@@ -66,14 +69,16 @@ void main() {
       lastSeen: null,
     );
     for (final crop in GardenVistaCrop.values) {
-      await pumpVista(tester, vista: GardenVistaView(spec: spec, crop: crop));
+      await pumpVista(
+        tester,
+        vista: GardenVistaView(spec: spec, crop: crop),
+      );
       expect(tester.takeException(), isNull, reason: 'crop $crop');
     }
   });
 
   testWidgets('exposes the provided semantic label', (tester) async {
-    final spec =
-        composer.compose(garden: makeGardenState(), lastSeen: null);
+    final spec = composer.compose(garden: makeGardenState(), lastSeen: null);
     await pumpVista(
       tester,
       vista: GardenVistaView(spec: spec, semanticLabel: 'Seed · 0% grown'),
@@ -82,44 +87,54 @@ void main() {
   });
 
   testWidgets(
-      'manageSeenLifecycle writes the first-visit baseline memento silently',
-      (tester) async {
-    final spec = composer.compose(
-      garden: makeGardenState(prayer: 0.4, drops: 120, maturity: 26),
-      lastSeen: null,
-    );
-    final container = await pumpVista(
-      tester,
-      vista: GardenVistaView(spec: spec, manageSeenLifecycle: true),
-    );
-    await tester.pump();
-    final memento =
-        container.read(gardenSceneMementoRepositoryProvider).read('learner_1');
-    expect(memento, isNotNull);
-    expect(memento!.variantFor(spec.elements.first.id),
-        spec.elements.first.variantLevel);
-  });
+    'manageSeenLifecycle writes the first-visit baseline memento silently',
+    (tester) async {
+      final spec = composer.compose(
+        garden: makeGardenState(prayer: 0.4, drops: 120, maturity: 26),
+        lastSeen: null,
+      );
+      final container = await pumpVista(
+        tester,
+        vista: GardenVistaView(spec: spec, manageSeenLifecycle: true),
+      );
+      await tester.pump();
+      final memento = container
+          .read(gardenSceneMementoRepositoryProvider)
+          .read('learner_1');
+      expect(memento, isNotNull);
+      expect(
+        memento!.variantFor(spec.elements.first.id),
+        spec.elements.first.variantLevel,
+      );
+    },
+  );
 
-  testWidgets('hero crop runs the motion layer; reduce-motion stills it',
-      (tester) async {
+  testWidgets('hero crop runs the motion layer; reduce-motion stills it', (
+    tester,
+  ) async {
     final spec = composer.compose(
       garden: makeGardenState(prayer: 0.6, drops: 200, maturity: 55),
       lastSeen: null,
     );
-    final container = await pumpVista(tester, vista: GardenVistaView(spec: spec));
+    final container = await pumpVista(
+      tester,
+      vista: GardenVistaView(spec: spec),
+    );
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint && widget.painter is GardenMotionPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint && widget.painter is GardenMotionPainter,
+      ),
       findsOneWidget,
     );
 
-    container
-        .read(profileSettingsProvider.notifier)
-        .setReduceMotion(true);
+    container.read(profileSettingsProvider.notifier).setReduceMotion(true);
     await tester.pump();
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint && widget.painter is GardenMotionPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint && widget.painter is GardenMotionPainter,
+      ),
       findsNothing,
       reason: 'reduce-motion must unmount every animated layer',
     );
@@ -135,14 +150,17 @@ void main() {
       vista: GardenVistaView(spec: spec, crop: GardenVistaCrop.homeCard),
     );
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint && widget.painter is GardenMotionPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint && widget.painter is GardenMotionPainter,
+      ),
       findsNothing,
     );
   });
 
-  testWidgets('new growth plays the bloom once, then acknowledges it',
-      (tester) async {
+  testWidgets('new growth plays the bloom once, then acknowledges it', (
+    tester,
+  ) async {
     final container = await makeGardenTestContainer();
     addTearDown(container.dispose);
     final controller = container.read(gardenSceneSeenControllerProvider);
@@ -155,8 +173,9 @@ void main() {
     await controller.ensureBaseline(before, now: DateTime(2026, 8, 29));
     final grown = composer.compose(
       garden: makeGardenState(prayer: 0.6, drops: 120, maturity: 30),
-      lastSeen:
-          container.read(gardenSceneMementoRepositoryProvider).read('learner_1'),
+      lastSeen: container
+          .read(gardenSceneMementoRepositoryProvider)
+          .read('learner_1'),
     );
     expect(grown.hasNewGrowth, isTrue);
 
@@ -184,18 +203,24 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint && widget.painter is GardenBloomPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint && widget.painter is GardenBloomPainter,
+      ),
       findsOneWidget,
       reason: 'the calm bloom should be painting mid-animation',
     );
 
     await tester.pump(const Duration(milliseconds: 1200));
     await tester.pumpAndSettle();
-    final memento =
-        container.read(gardenSceneMementoRepositoryProvider).read('learner_1')!;
-    expect(memento.variantFor(GardenSceneElementId.olive), 2,
-        reason: 'growth must be acknowledged so it never replays');
+    final memento = container
+        .read(gardenSceneMementoRepositoryProvider)
+        .read('learner_1')!;
+    expect(
+      memento.variantFor(GardenSceneElementId.olive),
+      2,
+      reason: 'growth must be acknowledged so it never replays',
+    );
     final replay = composer.compose(
       garden: makeGardenState(prayer: 0.6, drops: 120, maturity: 30),
       lastSeen: memento,
@@ -203,20 +228,24 @@ void main() {
     expect(replay.hasNewGrowth, isFalse);
   });
 
-  testWidgets('reduce-motion skips the bloom but still acknowledges growth',
-      (tester) async {
+  testWidgets('reduce-motion skips the bloom but still acknowledges growth', (
+    tester,
+  ) async {
     final container = await makeGardenTestContainer();
     addTearDown(container.dispose);
     container.read(profileSettingsProvider.notifier).setReduceMotion(true);
     final controller = container.read(gardenSceneSeenControllerProvider);
 
-    final before =
-        composer.compose(garden: makeGardenState(prayer: 0.1), lastSeen: null);
+    final before = composer.compose(
+      garden: makeGardenState(prayer: 0.1),
+      lastSeen: null,
+    );
     await controller.ensureBaseline(before, now: DateTime(2026, 8, 29));
     final grown = composer.compose(
       garden: makeGardenState(prayer: 0.6),
-      lastSeen:
-          container.read(gardenSceneMementoRepositoryProvider).read('learner_1'),
+      lastSeen: container
+          .read(gardenSceneMementoRepositoryProvider)
+          .read('learner_1'),
     );
 
     await tester.pumpWidget(
@@ -236,8 +265,10 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(
-      find.byWidgetPredicate((widget) =>
-          widget is CustomPaint && widget.painter is GardenBloomPainter),
+      find.byWidgetPredicate(
+        (widget) =>
+            widget is CustomPaint && widget.painter is GardenBloomPainter,
+      ),
       findsNothing,
       reason: 'reduce-motion must skip the bloom entirely',
     );
@@ -250,8 +281,9 @@ void main() {
     );
   });
 
-  testWidgets('tapping a visible element reports it to the caller',
-      (tester) async {
+  testWidgets('tapping a visible element reports it to the caller', (
+    tester,
+  ) async {
     final spec = composer.compose(
       garden: makeGardenState(prayer: 0.9, drops: 400, maturity: 60),
       lastSeen: null,
@@ -269,16 +301,19 @@ void main() {
     final crop = GardenSceneLayout.heroCrop;
     final scale = vista.width / crop.w;
     final placement = GardenSceneLayout.elementPlacements['datePalm']!;
-    await tester.tapAt(Offset(
-      vista.left + (placement.rect.x + placement.rect.w / 2 - crop.x) * scale,
-      vista.top + (placement.rect.y + placement.rect.h / 2 - crop.y) * scale,
-    ));
+    await tester.tapAt(
+      Offset(
+        vista.left + (placement.rect.x + placement.rect.w / 2 - crop.x) * scale,
+        vista.top + (placement.rect.y + placement.rect.h / 2 - crop.y) * scale,
+      ),
+    );
     await tester.pump();
     expect(tapped, contains(GardenSceneElementId.datePalm));
   });
 
-  testWidgets('compact card without lifecycle management writes nothing',
-      (tester) async {
+  testWidgets('compact card without lifecycle management writes nothing', (
+    tester,
+  ) async {
     final spec = composer.compose(
       garden: makeGardenState(prayer: 0.4),
       lastSeen: null,

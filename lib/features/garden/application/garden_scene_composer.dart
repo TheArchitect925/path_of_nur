@@ -15,7 +15,8 @@ class GardenSceneComposer {
   }) {
     final drops = garden.totalOceanDrops;
     final dimensionScores = <GardenGrowthDimension, double>{
-      for (final dimension in garden.dimensions) dimension.dimension: dimension.score,
+      for (final dimension in garden.dimensions)
+        dimension.dimension: dimension.score,
     };
     double scoreFor(GardenGrowthDimension dimension) {
       final fromState = dimensionScores[dimension];
@@ -116,7 +117,8 @@ class GardenSceneComposer {
     final parts = elements
         .map((element) => '${element.id.name}:${element.variantLevel}')
         .join(',');
-    final ocean = '${water.oceanHorizonVisible ? 1 : 0}${water.oceanHorizonFull ? 1 : 0}';
+    final ocean =
+        '${water.oceanHorizonVisible ? 1 : 0}${water.oceanHorizonFull ? 1 : 0}';
     return '${stage.name}|t${water.streamTier}|o$ocean|$parts';
   }
 }

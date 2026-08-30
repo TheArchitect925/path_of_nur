@@ -11,10 +11,7 @@ void main() {
 
     test('is near full one half synodic month after the epoch', () {
       final nearFull = DateTime.utc(2000, 1, 21);
-      expect(
-        moonAgeDays(nearFull),
-        closeTo(lunarSynodicMonthDays / 2, 1.2),
-      );
+      expect(moonAgeDays(nearFull), closeTo(lunarSynodicMonthDays / 2, 1.2));
       expect(moonIlluminatedFraction(nearFull), greaterThan(0.9));
     });
 

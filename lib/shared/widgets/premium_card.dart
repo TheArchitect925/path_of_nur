@@ -160,9 +160,7 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
         child: Theme(
           data: theme.copyWith(
             textTheme: surfaceTextTheme,
-            iconTheme: theme.iconTheme.copyWith(
-              color: contentColors.iconColor,
-            ),
+            iconTheme: theme.iconTheme.copyWith(color: contentColors.iconColor),
             listTileTheme: theme.listTileTheme.copyWith(
               iconColor: contentColors.iconColor,
               textColor: contentColors.foreground,

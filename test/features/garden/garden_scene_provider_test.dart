@@ -38,39 +38,53 @@ void main() {
     final first = container.read(gardenSceneSpecProvider('learner_a'));
     expect(first.elementById(GardenSceneElementId.olive)!.variantLevel, 0);
 
-    container.read(_stubGardenState('learner_a').notifier).state =
-        _state(learnerId: 'learner_a', prayer: 0.3, drops: 120);
+    container.read(_stubGardenState('learner_a').notifier).state = _state(
+      learnerId: 'learner_a',
+      prayer: 0.3,
+      drops: 120,
+    );
     final second = container.read(gardenSceneSpecProvider('learner_a'));
     expect(second.elementById(GardenSceneElementId.olive)!.variantLevel, 1);
     expect(second.water.streamTier, 3);
   });
 
-  test('first visit is silent, growth after baseline celebrates, marking seen clears it',
-      () async {
-    final container = await _makeContainer();
-    addTearDown(container.dispose);
-    final controller = container.read(gardenSceneSeenControllerProvider);
+  test(
+    'first visit is silent, growth after baseline celebrates, marking seen clears it',
+    () async {
+      final container = await _makeContainer();
+      addTearDown(container.dispose);
+      final controller = container.read(gardenSceneSeenControllerProvider);
 
-    final first = container.read(gardenSceneSpecProvider('learner_a'));
-    expect(first.hasNewGrowth, isFalse);
-    await controller.ensureBaseline(first, now: DateTime(2026, 8, 29));
+      final first = container.read(gardenSceneSpecProvider('learner_a'));
+      expect(first.hasNewGrowth, isFalse);
+      await controller.ensureBaseline(first, now: DateTime(2026, 8, 29));
 
-    container.read(_stubGardenState('learner_a').notifier).state =
-        _state(learnerId: 'learner_a', prayer: 0.3, remembrance: 0.25);
-    final grown = container.read(gardenSceneSpecProvider('learner_a'));
-    expect(grown.newlyAppeared,
-        containsAll([GardenSceneElementId.olive, GardenSceneElementId.rayhan]));
-    expect(grown.elementById(GardenSceneElementId.olive)!.isNewSinceLastVisit,
-        isTrue);
+      container.read(_stubGardenState('learner_a').notifier).state = _state(
+        learnerId: 'learner_a',
+        prayer: 0.3,
+        remembrance: 0.25,
+      );
+      final grown = container.read(gardenSceneSpecProvider('learner_a'));
+      expect(
+        grown.newlyAppeared,
+        containsAll([GardenSceneElementId.olive, GardenSceneElementId.rayhan]),
+      );
+      expect(
+        grown.elementById(GardenSceneElementId.olive)!.isNewSinceLastVisit,
+        isTrue,
+      );
 
-    await controller.markSceneSeen(grown, now: DateTime(2026, 8, 29, 12));
-    final acknowledged = container.read(gardenSceneSpecProvider('learner_a'));
-    expect(acknowledged.hasNewGrowth, isFalse);
-    expect(
+      await controller.markSceneSeen(grown, now: DateTime(2026, 8, 29, 12));
+      final acknowledged = container.read(gardenSceneSpecProvider('learner_a'));
+      expect(acknowledged.hasNewGrowth, isFalse);
+      expect(
         acknowledged
-            .elementById(GardenSceneElementId.olive)!.isNewSinceLastVisit,
-        isFalse);
-  });
+            .elementById(GardenSceneElementId.olive)!
+            .isNewSinceLastVisit,
+        isFalse,
+      );
+    },
+  );
 
   test('ensureBaseline never overwrites an existing memento', () async {
     final container = await _makeContainer();
@@ -82,16 +96,23 @@ void main() {
     await controller.ensureBaseline(first, now: DateTime(2026, 8, 29));
     final saved = repository.read('learner_a')!;
 
-    container.read(_stubGardenState('learner_a').notifier).state =
-        _state(learnerId: 'learner_a', prayer: 0.9);
+    container.read(_stubGardenState('learner_a').notifier).state = _state(
+      learnerId: 'learner_a',
+      prayer: 0.9,
+    );
     final grown = container.read(gardenSceneSpecProvider('learner_a'));
     await controller.ensureBaseline(grown, now: DateTime(2026, 8, 30));
 
     final after = repository.read('learner_a')!;
-    expect(after.savedAtIso, saved.savedAtIso,
-        reason: 'baseline must not swallow pending celebrations');
-    expect(container.read(gardenSceneSpecProvider('learner_a')).hasNewGrowth,
-        isTrue);
+    expect(
+      after.savedAtIso,
+      saved.savedAtIso,
+      reason: 'baseline must not swallow pending celebrations',
+    );
+    expect(
+      container.read(gardenSceneSpecProvider('learner_a')).hasNewGrowth,
+      isTrue,
+    );
   });
 
   test('mementos are isolated per learner', () async {
@@ -103,24 +124,35 @@ void main() {
     await controller.ensureBaseline(specA, now: DateTime(2026, 8, 29));
 
     for (final learner in ['learner_a', 'learner_b']) {
-      container.read(_stubGardenState(learner).notifier).state =
-          _state(learnerId: learner, prayer: 0.4);
+      container.read(_stubGardenState(learner).notifier).state = _state(
+        learnerId: learner,
+        prayer: 0.4,
+      );
     }
-    expect(container.read(gardenSceneSpecProvider('learner_a')).newlyAppeared,
-        contains(GardenSceneElementId.olive));
-    expect(container.read(gardenSceneSpecProvider('learner_b')).hasNewGrowth,
-        isFalse, reason: 'learner_b has no baseline yet — first visit is silent');
+    expect(
+      container.read(gardenSceneSpecProvider('learner_a')).newlyAppeared,
+      contains(GardenSceneElementId.olive),
+    );
+    expect(
+      container.read(gardenSceneSpecProvider('learner_b')).hasNewGrowth,
+      isFalse,
+      reason: 'learner_b has no baseline yet — first visit is silent',
+    );
   });
 
-  test('memento keys are scoped so shared-device profiles never collide',
-      () async {
-    final container = await _makeContainer();
-    addTearDown(container.dispose);
-    final repository = container.read(gardenSceneMementoRepositoryProvider);
-    final scopeId = container.read(structuredDataScopeProvider);
-    expect(repository.keyForLearner('learner_a'),
-        'garden.scene.lastSeen.v1.$scopeId.learner_a');
-  });
+  test(
+    'memento keys are scoped so shared-device profiles never collide',
+    () async {
+      final container = await _makeContainer();
+      addTearDown(container.dispose);
+      final repository = container.read(gardenSceneMementoRepositoryProvider);
+      final scopeId = container.read(structuredDataScopeProvider);
+      expect(
+        repository.keyForLearner('learner_a'),
+        'garden.scene.lastSeen.v1.$scopeId.learner_a',
+      );
+    },
+  );
 
   test('activeGardenSceneSpecProvider follows the active learner', () async {
     final container = await _makeContainer();

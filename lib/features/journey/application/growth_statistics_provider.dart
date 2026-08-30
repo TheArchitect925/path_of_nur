@@ -368,9 +368,10 @@ final growthStatisticsDashboardProvider =
         monthlyTrend: monthlyTrend,
         bestDay: _buildBestDayInsight(rollups),
         rewardsInsight: rewardsInsight,
-        recentDailyRollups: _daysInclusive(today, 70)
-            .map((day) => _rollupForDay(rollups, day))
-            .toList(growable: false),
+        recentDailyRollups: _daysInclusive(
+          today,
+          70,
+        ).map((day) => _rollupForDay(rollups, day)).toList(growable: false),
       );
     });
 
