@@ -51,25 +51,37 @@ void main() {
     );
   });
 
-  test('Learn does not add in-page segmented tab strips', () {
+  test('Learn does not navigate with in-page segmented tab strips', () {
     // Decision 2 of the redesign was "one list, one search": destinations go
-    // into HubListGroup rows, and a genuine filter over one collection uses
-    // FilterChipRow. A SegmentedPillControl hides destinations behind a strip.
-    // Emptied by Phase L4.
+    // into HubListGroup rows, not behind a strip you have to re-find.
+    //
+    // A SegmentedPillControl is not drift by itself. It is the right widget
+    // for a required one-of-N *control* — a sort order, a search scope, a
+    // learning mode — where clearing the selection is not a valid state and a
+    // FilterChipRow (which clears on re-tap) would be wrong. The list below is
+    // split accordingly: the first group is reviewed and kept, the second is
+    // debt that Phase L4 is still working through.
     const allowed = <String>{
+      // --- Required one-of-N controls. Reviewed and kept. ---
+      // Sort order over one lesson list.
       'lib/features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart',
-      'lib/features/learn/dua/presentation/dua_hub_page.dart',
-      'lib/features/learn/glossary/presentation/glossary_page.dart',
-      'lib/features/learn/hadith/presentation/hadith_landing_page.dart',
+      // Search scope.
       'lib/features/learn/hadith/presentation/hadith_search_page.dart',
-      'lib/features/learn/hadith/presentation/widgets/hadith_browse_helpers.dart',
-      'lib/features/learn/life/presentation/life_landing_page.dart',
+      // Search type and field scope.
+      'lib/features/learn/quran/presentation/quran_search_page.dart',
+      // Sort order over the surah list.
+      'lib/features/learn/quran/presentation/quran_surah_explorer_page.dart',
+      // Listen / practice / memory over the same surah — a mode, not a place.
+      'lib/features/learn/salah/presentation/salah_surah_detail_page.dart',
+
+      // --- Still to unpack into destination lists (Phase L4). ---
+      'lib/features/learn/hadith/presentation/hadith_landing_page.dart',
       'lib/features/learn/presentation/pages/learn_salah_hub_page.dart',
       'lib/features/learn/prophets/presentation/prophets_page.dart',
-      'lib/features/learn/quran/presentation/quran_search_page.dart',
-      'lib/features/learn/quran/presentation/quran_surah_explorer_page.dart',
-      'lib/features/learn/salah/presentation/salah_surah_detail_page.dart',
-      'lib/features/learn/world/presentation/world_landing_page.dart',
+
+      // --- Optional filters that should become FilterChipRow (Phase L4). ---
+      'lib/features/learn/glossary/presentation/glossary_page.dart',
+      'lib/features/learn/hadith/presentation/widgets/hadith_browse_helpers.dart',
     };
 
     _expectNoDrift(
@@ -77,28 +89,25 @@ void main() {
       allowed: allowed,
       reason:
           'Group destinations with HubListGroup + CompactListTile. If the '
-          'strip is a real filter over one collection, use FilterChipRow.',
+          'strip is an optional filter over one collection, use FilterChipRow. '
+          'A required one-of-N control may keep the segmented control — add it '
+          'to the reviewed group in this test with a note saying why.',
     );
   });
 
   test('Learn draws progress with the display kit ProgressBar', () {
     // Emptied by Phase L5.
     const allowed = <String>{
-      'lib/features/learn/ayah_completion/presentation/ayah_completion_pack_page.dart',
       'lib/features/learn/crossword/presentation/crossword_home_page.dart',
-      'lib/features/learn/crossword/presentation/crossword_pack_page.dart',
       'lib/features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart',
       'lib/features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart',
       'lib/features/learn/guided_paths/presentation/guided_learning_path_detail_page.dart',
       'lib/features/learn/guided_paths/presentation/stories_path_next_steps_page.dart',
-      'lib/features/learn/hadith_reflection/presentation/hadith_reflection_pack_page.dart',
       'lib/features/learn/journey/presentation/family_learning_management_page.dart',
       'lib/features/learn/journey/presentation/widgets/learning_journey_widgets.dart',
       'lib/features/learn/knowledge_games/daily/presentation/daily_knowledge_challenge_hub_page.dart',
-      'lib/features/learn/life/presentation/life_landing_page.dart',
       'lib/features/learn/life/presentation/life_subcategory_page.dart',
       'lib/features/learn/life/presentation/life_theme_page.dart',
-      'lib/features/learn/matching/presentation/matching_pack_page.dart',
       'lib/features/learn/presentation/pages/learning_journey_island_hub_page.dart',
       'lib/features/learn/presentation/pages/learning_section_landing_page.dart',
       'lib/features/learn/presentation/widgets/learn_personalized_next_step_card.dart',
@@ -120,7 +129,6 @@ void main() {
       'lib/features/learn/trivia/presentation/trivia_knowledge_path_detail_page.dart',
       'lib/features/learn/trivia/presentation/trivia_session_page.dart',
       'lib/features/learn/trivia/presentation/widgets/trivia_widgets.dart',
-      'lib/features/learn/word_search/presentation/word_search_pack_page.dart',
       'lib/features/learn/world/presentation/pages/world_creation_category_page.dart',
       'lib/features/learn/world/presentation/widgets/world_creation_cards.dart',
       'lib/features/learn/world/presentation/world_subcategory_page.dart',
@@ -157,7 +165,6 @@ void main() {
       'lib/features/learn/life/baby_names/presentation/baby_names_favorites_page.dart',
       'lib/features/learn/life/baby_names/presentation/baby_names_generator_page.dart',
       'lib/features/learn/life/baby_names/presentation/baby_names_home_page.dart',
-      'lib/features/learn/life/presentation/life_landing_page.dart',
       'lib/features/learn/life/presentation/life_lesson_page.dart',
       'lib/features/learn/life/presentation/life_subcategory_page.dart',
       'lib/features/learn/life/presentation/life_theme_page.dart',

@@ -10,8 +10,8 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/filter_chip_row.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/dua_progress_provider.dart';
@@ -22,7 +22,12 @@ import 'dua_category_theme.dart';
 enum DuaHubTab { duas, categories, saved, daily }
 
 class DuaHubPage extends ConsumerStatefulWidget {
-  const DuaHubPage({super.key, this.initialQuery = ''});
+  const DuaHubPage({super.key, this.initialQuery = '', this.section});
+
+  /// Null keeps the duʿā list itself as the landing — it is the reason people
+  /// open this page, so it does not move a tap deeper. The other three are
+  /// real destinations reachable from the list below the header.
+  final String? section;
 
   final String initialQuery;
 
@@ -33,7 +38,7 @@ class DuaHubPage extends ConsumerStatefulWidget {
 class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   late final TextEditingController _searchController;
   String _query = '';
-  DuaHubTab _tab = DuaHubTab.duas;
+  late DuaHubTab _tab = _sectionFor(widget.section);
   String? _selectedCategoryId;
   String? _selectedSubcategoryId;
   String? _selectedSituation;
@@ -90,17 +95,25 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     final savedIds = userState.savedIds;
     return LearnHubPageScaffold(
       headerIcon: Icons.pan_tool_alt_rounded,
-      title: l10n.duaHubTitle,
+      title: _tab == DuaHubTab.duas ? l10n.duaHubTitle : _tabLabel(l10n, _tab),
       subtitle: l10n.duaHubSubtitle,
       children: [
-        PremiumCard(
-          child: SegmentedPillControl<DuaHubTab>(
-            items: DuaHubTab.values,
-            selectedItem: _tab,
-            labelBuilder: (tab) => _tabLabel(l10n, tab),
-            onChanged: (tab) => setState(() => _tab = tab),
+        if (widget.section == null)
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final item in DuaHubTab.values)
+                if (item != DuaHubTab.duas)
+                  CompactListTile(
+                    title: _tabLabel(l10n, item),
+                    leading: HubLeadingIcon(_sectionIcon(item)),
+                    onTap: () => context.pushNamed(
+                      'learnDuaHub',
+                      queryParameters: {'section': item.name},
+                    ),
+                  ),
+            ],
           ),
-        ),
         const SizedBox(height: 10),
         _searchCard(context, l10n),
         const SizedBox(height: 10),
@@ -734,6 +747,26 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         ],
       ),
     );
+  }
+
+  DuaHubTab _sectionFor(String? id) {
+    for (final tab in DuaHubTab.values) {
+      if (tab.name == id) return tab;
+    }
+    return DuaHubTab.duas;
+  }
+
+  IconData _sectionIcon(DuaHubTab tab) {
+    switch (tab) {
+      case DuaHubTab.duas:
+        return Icons.pan_tool_alt_rounded;
+      case DuaHubTab.categories:
+        return Icons.category_rounded;
+      case DuaHubTab.saved:
+        return Icons.bookmark_rounded;
+      case DuaHubTab.daily:
+        return Icons.today_rounded;
+    }
   }
 
   String _tabLabel(AppLocalizations l10n, DuaHubTab tab) {

@@ -13,6 +13,7 @@ import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/presentation/widgets/hadith_content_block.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -164,8 +165,7 @@ class _HadithReflectionPuzzlePageState
             hadithReflectionLocalizedCategory(l10n, puzzle.category),
           );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: hadithReflectionPuzzleTitle(l10n, puzzle),
       subtitle: subtitle,
       game: game,
