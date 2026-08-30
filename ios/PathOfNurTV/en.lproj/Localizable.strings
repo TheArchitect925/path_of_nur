@@ -953,3 +953,26 @@
 "Nothing ready yet" = "Nothing ready yet";
 "This shelf is not available on the current Apple TV build." = "This shelf is not available on the current Apple TV build.";
 "Keep exploring another section and return later." = "Keep exploring another section and return later.";
+
+/* Appearance (theme parity with the mobile app) */
+"Appearance" = "Appearance";
+"Choose how the room dresses — or let the evening and the calendar decide." = "Choose how the room dresses — or let the evening and the calendar decide.";
+"Living room auto" = "Living room auto";
+"Noor Glass" = "Noor Glass";
+"Midnight" = "Midnight";
+"Candlelight" = "Candlelight";
+"Masjid Emerald" = "Masjid Emerald";
+"Ramadan Layali" = "Ramadan Layali";
+"Cream by day, the starry Midnight sky after dark, with Jumu'ah and Ramadan arriving on their own." = "Cream by day, the starry Midnight sky after dark, with Jumu'ah and Ramadan arriving on their own.";
+"The warm cream glass of the mobile app's daytime sanctuary." = "The warm cream glass of the mobile app's daytime sanctuary.";
+"Deep indigo glass under a painted night sky and moon." = "Deep indigo glass under a painted night sky and moon.";
+"A warm ember room lit softly from above." = "A warm ember room lit softly from above.";
+"Dome green crowned by the golden mihrab arch." = "Dome green crowned by the golden mihrab arch.";
+"The violet Layali night lit by a hanging fanoos." = "The violet Layali night lit by a hanging fanoos.";
+"The Apple TV mirrors the phone's living atmosphere and occasion ladder on its own." = "The Apple TV mirrors the phone's living atmosphere and occasion ladder on its own.";
+"Keeps the daytime cream; after dark it rests into Midnight like the mobile app." = "Keeps the daytime cream; after dark it rests into Midnight like the mobile app.";
+"The signature night sanctuary, at any hour." = "The signature night sanctuary, at any hour.";
+"A gentle evening room for wind-down recitation." = "A gentle evening room for wind-down recitation.";
+"The Friday look, whenever the room wants it." = "The Friday look, whenever the room wants it.";
+"The month's violet night, on demand." = "The month's violet night, on demand.";
+"Appearance: %@" = "Appearance: %@";

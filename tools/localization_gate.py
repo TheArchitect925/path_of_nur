@@ -290,6 +290,67 @@ def advisory_notes(result: dict, release: bool) -> list[str]:
     return [c for c in COPY_QUALITY if c in result["findings"]]
 
 
+# ---------------------------------------------------------------- native .strings
+#
+# The Apple companion targets do not go through ARB/gen-l10n. They are plain
+# .strings tables, and their failure mode is different: a dropped %d or a
+# reordered %@ is a crash or a garbled string at runtime, not a compile error.
+
+IOS_DIR = Path(__file__).resolve().parent.parent / "ios"
+NATIVE_TARGETS = (
+    "PathOfNurTV",
+    "PathOfNurWatch Watch App Extension",
+    "PathOfNurWatchComplications",
+    "PathOfNurHomeWidgets",
+)
+STRINGS_ENTRY = re.compile(r'^\s*"((?:[^"\\]|\\.)*)"\s*=\s*"((?:[^"\\]|\\.)*)"\s*;', re.M)
+FORMAT_SPEC = re.compile(r"%(?:\d+\$)?[@dfsu]|%%")
+
+
+def parse_strings(path: Path) -> dict[str, str]:
+    return {m.group(1): m.group(2) for m in STRINGS_ENTRY.finditer(
+        path.read_text(encoding="utf-8"))}
+
+
+def check_native(release: set[str]) -> tuple[list[str], list[str]]:
+    """Key parity and format-specifier parity for every localized .strings table."""
+    failures, notes = [], []
+    for target in NATIVE_TARGETS:
+        base = IOS_DIR / target / "en.lproj" / "Localizable.strings"
+        if not base.exists():
+            failures.append(f"{target}: no en.lproj/Localizable.strings")
+            continue
+        source = parse_strings(base)
+        for lproj in sorted((IOS_DIR / target).glob("*.lproj")):
+            locale = lproj.name[:-6]
+            if locale == "en":
+                continue
+            table = lproj / "Localizable.strings"
+            if not table.exists():
+                notes.append(f"{target}/{locale}: not translated yet")
+                continue
+            data = parse_strings(table)
+            missing = sorted(set(source) - set(data))
+            extra = sorted(set(data) - set(source))
+            bad_format = sorted(
+                k for k in set(source) & set(data)
+                # Order matters: "%d of %@" and "%@ of %d" are not interchangeable.
+                if FORMAT_SPEC.findall(source[k]) != FORMAT_SPEC.findall(data[k])
+            )
+            label = f"{target}/{locale}"
+            if extra:
+                failures.append(f"{label}: {len(extra)} key(s) not in en: {extra[:3]}")
+            if bad_format:
+                failures.append(
+                    f"{label}: {len(bad_format)} format-specifier mismatch: {bad_format[:3]}")
+            if missing:
+                # A partially translated table falls back per key, so this only
+                # blocks once the locale ships.
+                msg = f"{label}: {len(missing)} key(s) missing"
+                (failures if locale in release else notes).append(msg)
+    return failures, notes
+
+
 LOCALE_PROVIDER = (
     Path(__file__).resolve().parent.parent
     / "lib" / "core" / "localization" / "locale_provider.dart"
@@ -365,6 +426,20 @@ def main() -> int:
             f"{'':3}{r['tier_b_untranslated']:>7}/{r['tier_b_total']:<4}"
             f"{'':3}{issues}{('  [' + gate + ']') if gate else ''}"
         )
+    native_failures, native_notes = check_native(release)
+    if not args.json:
+        print()
+        print("native .strings (Apple TV, Watch, complications, widgets)")
+        print("-" * 72)
+        for note in native_notes:
+            print(f"  warn  {note}")
+        for fail in native_failures:
+            print(f"  FAIL  {fail}")
+        if not native_failures and not native_notes:
+            print("  clean")
+    if native_failures:
+        failed = True
+
     if not args.json:
         for r in results:
             fails = blocking_failures(r, r["locale"] in release)
