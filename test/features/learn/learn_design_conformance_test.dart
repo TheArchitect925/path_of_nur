@@ -90,44 +90,14 @@ void main() {
     );
   });
 
-  test('Learn draws progress with the display kit ProgressBar', () {
-    // Emptied by Phase L5.
+  test('Learn draws determinate progress with the display kit ProgressBar', () {
+    // ProgressBar takes a required value, so it cannot express indeterminate
+    // progress. The files below show a busy bar while something loads, which
+    // is the one thing a bare LinearProgressIndicator is still right for.
     const allowed = <String>{
-      'lib/features/learn/crossword/presentation/crossword_home_page.dart',
-      'lib/features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart',
-      'lib/features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart',
-      'lib/features/learn/guided_paths/presentation/guided_learning_path_detail_page.dart',
-      'lib/features/learn/guided_paths/presentation/stories_path_next_steps_page.dart',
-      'lib/features/learn/journey/presentation/family_learning_management_page.dart',
-      'lib/features/learn/journey/presentation/widgets/learning_journey_widgets.dart',
-      'lib/features/learn/knowledge_games/daily/presentation/daily_knowledge_challenge_hub_page.dart',
-      'lib/features/learn/life/presentation/life_subcategory_page.dart',
-      'lib/features/learn/life/presentation/life_theme_page.dart',
-      'lib/features/learn/presentation/pages/learning_journey_island_hub_page.dart',
-      'lib/features/learn/presentation/pages/learning_section_landing_page.dart',
-      'lib/features/learn/presentation/widgets/learn_personalized_next_step_card.dart',
-      'lib/features/learn/prophets/presentation/journey_of_revelation_page.dart',
-      'lib/features/learn/quran/presentation/quran_khatm_plan_page.dart',
-      'lib/features/learn/quran/presentation/quran_learning_paths_page.dart',
       'lib/features/learn/quran/presentation/quran_reader_page.dart',
       'lib/features/learn/quran/presentation/quran_word_detail_page.dart',
       'lib/features/learn/quran/presentation/quran_words_page.dart',
-      'lib/features/learn/quran_teaching/presentation/quran_teaching_lesson_page.dart',
-      'lib/features/learn/quran_teaching/presentation/quran_teaching_listen_only_page.dart',
-      'lib/features/learn/quran_teaching/presentation/quran_teaching_module_page.dart',
-      'lib/features/learn/quran_teaching/presentation/quran_teaching_section_page.dart',
-      'lib/features/learn/quran_teaching/presentation/widgets/quran_teaching_adult_overview_card.dart',
-      'lib/features/learn/quran_teaching/presentation/widgets/quran_teaching_review_widgets.dart',
-      'lib/features/learn/salah/presentation/salah_guided_prayer_page.dart',
-      'lib/features/learn/salah/presentation/wudu_quiz_page.dart',
-      'lib/features/learn/salah/widgets/wudu_trainer_widgets.dart',
-      'lib/features/learn/trivia/presentation/trivia_knowledge_path_detail_page.dart',
-      'lib/features/learn/trivia/presentation/trivia_session_page.dart',
-      'lib/features/learn/trivia/presentation/widgets/trivia_widgets.dart',
-      'lib/features/learn/world/presentation/pages/world_creation_category_page.dart',
-      'lib/features/learn/world/presentation/widgets/world_creation_cards.dart',
-      'lib/features/learn/world/presentation/world_subcategory_page.dart',
-      'lib/features/learn/world/presentation/world_theme_page.dart',
     };
 
     _expectNoDrift(
@@ -135,7 +105,8 @@ void main() {
       allowed: allowed,
       reason:
           'Use ProgressBar from lib/shared/widgets/display/progress_bar.dart '
-          'so height, radius and track colour match the rest of the app.',
+          'so height, radius and track colour match the rest of the app. It '
+          'clips itself, so it does not need a ClipRRect around it.',
     );
   });
 

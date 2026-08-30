@@ -20,7 +20,8 @@ const quranTeacherPlaceholderImagePath =
 const quranTeacherVisualManifest = <String, QuranTeacherVisualAssetEntry>{
   'letter_alif_apple': QuranTeacherVisualAssetEntry(
     id: 'letter_alif_apple',
-    assetPath: 'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
+    assetPath:
+        'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
     label: 'Alif Apple',
     category: 'letters',
   ),
@@ -38,7 +39,8 @@ const quranTeacherVisualManifest = <String, QuranTeacherVisualAssetEntry>{
   ),
   'letter_jeem_juice': QuranTeacherVisualAssetEntry(
     id: 'letter_jeem_juice',
-    assetPath: 'assets/images/quran_teacher/visual_mode/letters/jeem_juice.webp',
+    assetPath:
+        'assets/images/quran_teacher/visual_mode/letters/jeem_juice.webp',
     label: 'Jeem Juice',
     category: 'letters',
   ),

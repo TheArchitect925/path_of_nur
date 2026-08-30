@@ -199,22 +199,19 @@ QuranKhatmPortion khatmPortionFor(QuranKhatmPlan plan, DateTime today) {
         start.clamp(1, QuranGlobalPosition.totalAyahs),
       );
       final page = q.getPageNumber(surah, ayah);
-      final endPage = (page + plan.pagesPerDay - 1).clamp(
-        1,
-        q.totalPagesCount,
-      );
+      final endPage = (page + plan.pagesPerDay - 1).clamp(1, q.totalPagesCount);
       end = QuranGlobalPosition.pageEndIndex(endPage);
     case QuranKhatmPaceMode.finishBy:
       final target = DateTime.tryParse(plan.targetDateIso ?? '');
       final daysLeft = target == null
           ? 30
-          : (DateTime(
-                  target.year,
-                  target.month,
-                  target.day,
-                ).difference(DateTime(today.year, today.month, today.day)).inDays +
-                1)
-              .clamp(1, 100000);
+          : (DateTime(target.year, target.month, target.day)
+                        .difference(
+                          DateTime(today.year, today.month, today.day),
+                        )
+                        .inDays +
+                    1)
+                .clamp(1, 100000);
       final remaining = QuranGlobalPosition.totalAyahs - plan.completedIndex;
       end = plan.completedIndex + (remaining / daysLeft).ceil();
   }

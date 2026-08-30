@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -107,13 +108,7 @@ class _ProgressCard extends ConsumerWidget {
             ),
             const SizedBox(height: 8),
           ],
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              value: status.progressFraction,
-              minHeight: 8,
-            ),
-          ),
+          ProgressBar(value: status.progressFraction, height: 8),
           const SizedBox(height: 8),
           Text(
             l10n.quranKhatmProgressLabel(
@@ -274,10 +269,8 @@ class _PacePickerCard extends ConsumerWidget {
               ChoiceChip(
                 label: Text(l10n.quranKhatmPaceHalfJuz),
                 selected: isJuz(0.5),
-                onSelected: (_) => apply(
-                  mode: QuranKhatmPaceMode.juzPerDay,
-                  juzPerDay: 0.5,
-                ),
+                onSelected: (_) =>
+                    apply(mode: QuranKhatmPaceMode.juzPerDay, juzPerDay: 0.5),
               ),
               ChoiceChip(
                 label: Text(l10n.quranKhatmPaceOneJuz),

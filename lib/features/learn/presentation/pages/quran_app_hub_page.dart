@@ -137,8 +137,9 @@ class _ContinueReadingHero extends ConsumerWidget {
     final summary = ref.watch(quranContinueReadingSummaryProvider);
     final surahs = ref.watch(quranRepositoryProvider).getSurahs();
     final surah = surahs[summary.surahNumber - 1];
-    final percent =
-        ((summary.ayahNumber / surah.verseCount) * 100).round().clamp(0, 100);
+    final percent = ((summary.ayahNumber / surah.verseCount) * 100)
+        .round()
+        .clamp(0, 100);
 
     void openReader() => context.pushNamed(
       'quranReader',

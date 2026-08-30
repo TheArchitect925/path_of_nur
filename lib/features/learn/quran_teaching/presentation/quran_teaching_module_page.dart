@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../arabic/data/arabic_alphabet_catalog.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_controller.dart';
@@ -81,14 +82,13 @@ class _QuranTeachingModulePageState
                 ],
               ),
               const SizedBox(height: 14),
-              LinearProgressIndicator(
+              ProgressBar(
                 value: moduleCompletionPercent(
                   module: widget.module,
                   catalog: catalog,
                   progress: progress,
                 ),
-                minHeight: 8,
-                borderRadius: BorderRadius.circular(999),
+                height: 8,
               ),
               const SizedBox(height: 10),
               Wrap(

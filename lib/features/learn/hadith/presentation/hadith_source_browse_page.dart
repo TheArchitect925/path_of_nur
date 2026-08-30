@@ -298,17 +298,17 @@ class _HadithBrowseEntryTile extends StatelessWidget {
           if (narrator != null && narrator.isNotEmpty) ...[
             Text(
               narrator,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontStyle: FontStyle.italic,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
             ),
             const SizedBox(height: 6),
           ],
           Text(
             entry.displayEnglishText,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              height: 1.5,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.5),
           ),
           const SizedBox(height: 8),
           Row(

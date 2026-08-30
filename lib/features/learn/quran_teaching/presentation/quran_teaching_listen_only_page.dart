@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_asset_resolver.dart';
@@ -181,10 +182,9 @@ class _QuranTeachingListenOnlyPageState
                   textAlign: TextAlign.center,
                 ),
               const SizedBox(height: 8),
-              LinearProgressIndicator(
+              ProgressBar(
                 value: items.isEmpty ? 0 : (safeIndex + 1) / items.length,
-                minHeight: 8,
-                borderRadius: BorderRadius.circular(999),
+                height: 8,
               ),
               if (selectedPack != null) ...[
                 const SizedBox(height: 8),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/wudu_trainer_controller.dart';
@@ -94,13 +95,7 @@ class WuduProgressHeader extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 10,
-              value: progress.clamp(0.0, 1.0),
-            ),
-          ),
+          ProgressBar(value: progress.clamp(0.0, 1.0), height: 10),
         ],
       ),
     );

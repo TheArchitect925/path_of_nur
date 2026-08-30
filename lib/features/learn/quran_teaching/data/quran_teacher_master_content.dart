@@ -2084,7 +2084,8 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Meem',
     meaning: 'Letter Meem',
     audioAsset: 'assets/audio/quran_teacher/letters/meem.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
     visualHint: 'Moon',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_4',
@@ -2095,7 +2096,8 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Noon',
     meaning: 'Letter Noon',
     audioAsset: 'assets/audio/quran_teacher/letters/noon.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
     visualHint: 'Nest',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_4',
@@ -2521,7 +2523,8 @@ const quranTeacherQuizSeeds = <QuranTeacherQuizSeed>[
     quizId: 'quiz_visual_moon_meem',
     quizType: QuranTeachingQuizType.matchPictureToLetter,
     prompt: 'Which letter matches the Moon memory aid?',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
     options: <QuranTeachingQuizOption>[
       QuranTeachingQuizOption(
         id: 'meem',
@@ -2699,7 +2702,8 @@ const quranTeacherQuizSeeds = <QuranTeacherQuizSeed>[
     quizId: 'quiz_visual_water_waw',
     quizType: QuranTeachingQuizType.matchPictureToLetter,
     prompt: 'Which letter matches the Water memory aid?',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
     options: <QuranTeachingQuizOption>[
       QuranTeachingQuizOption(
         id: 'waw',

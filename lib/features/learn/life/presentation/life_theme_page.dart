@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/life_progress_provider.dart';
@@ -62,13 +63,7 @@ class LifeThemePage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: progress.ratio,
-                  minHeight: 8,
-                ),
-              ),
+              ProgressBar(value: progress.ratio, height: 8),
             ],
           ),
         ),

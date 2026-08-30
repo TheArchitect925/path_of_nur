@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/theme/islamic_icons.dart';
 import '../../../../../shared/widgets/display/art_header_card.dart';
@@ -68,14 +69,11 @@ class JourneyProgressBar extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(999),
-          child: LinearProgressIndicator(
-            value: clamped,
-            minHeight: 7,
-            backgroundColor: const Color(0xFFE8DED1),
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF8B6A44)),
-          ),
+        ProgressBar(
+          value: clamped,
+          height: 7,
+          color: Color(0xFF8B6A44),
+          backgroundColor: const Color(0xFFE8DED1),
         ),
         if (label != null) ...[
           const SizedBox(height: 6),

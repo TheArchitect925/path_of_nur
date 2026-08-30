@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
@@ -84,10 +85,7 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        LinearProgressIndicator(
-          value: controller.pathCompletionRatio(path.id),
-          minHeight: 8,
-        ),
+        ProgressBar(value: controller.pathCompletionRatio(path.id), height: 8),
         const SizedBox(height: 14),
         TriviaSectionHeader(
           title: l10n.triviaStagesTitle,

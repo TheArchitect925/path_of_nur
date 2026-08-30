@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/world_creation_provider.dart';
@@ -55,10 +56,7 @@ class WorldCreationCategoryPage extends ConsumerWidget {
                 '${lessons.length} lessons • ${(progress * 100).round()}% complete',
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: progress, minHeight: 7),
-              ),
+              ProgressBar(value: progress, height: 7),
             ],
           ),
         ),

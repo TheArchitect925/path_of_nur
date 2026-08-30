@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../arabic/domain/arabic_learning_continuity_models.dart';
 import '../../domain/quran_teaching_adult_overview_models.dart';
@@ -56,11 +57,7 @@ class QuranTeachingAdultOverviewCard extends StatelessWidget {
             ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF66594C)),
           ),
           const SizedBox(height: 14),
-          LinearProgressIndicator(
-            value: progress.overallProgress,
-            minHeight: 10,
-            borderRadius: BorderRadius.circular(999),
-          ),
+          ProgressBar(value: progress.overallProgress, height: 10),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,

@@ -33,10 +33,7 @@ class LearningPathPickerPage extends ConsumerWidget {
           ArtHeaderCard(
             imageAsset: levelArtAsset(path.level),
             title: LearningPathRegistry.localizedPathTitle(l10n, path),
-            subtitle: LearningPathRegistry.localizedPathDescription(
-              l10n,
-              path,
-            ),
+            subtitle: LearningPathRegistry.localizedPathDescription(l10n, path),
             eyebrow: path.level == selectedLevel
                 ? l10n.learnPathPickerCurrentBadge
                 : null,

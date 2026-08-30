@@ -38,10 +38,7 @@ class QuranKhatmPlanNotifier extends Notifier<QuranKhatmPlan?> {
         pagesPerDay: pagesPerDay,
         targetDateIso: targetDate?.toIso8601String(),
         startedAtIso: DateTime.now().toIso8601String(),
-        completedIndex: completedIndex.clamp(
-          0,
-          QuranGlobalPosition.totalAyahs,
-        ),
+        completedIndex: completedIndex.clamp(0, QuranGlobalPosition.totalAyahs),
         lastPortionDayKey: null,
       ),
     );
@@ -138,8 +135,7 @@ final quranKhatmStatusProvider = Provider<QuranKhatmStatus?>((ref) {
     plan: plan,
     portion: portion,
     currentJuz: plan.isComplete ? 30 : QuranGlobalPosition.juzOf(nextIndex),
-    progressFraction:
-        plan.completedIndex / QuranGlobalPosition.totalAyahs,
+    progressFraction: plan.completedIndex / QuranGlobalPosition.totalAyahs,
     portionDoneToday:
         plan.lastPortionDayKey == LocalStore.todayKey(now) || plan.isComplete,
     portionLabel: startSurah == endSurah

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
@@ -538,15 +539,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(999),
-                  child: LinearProgressIndicator(
-                    value: phaseProgress,
-                    minHeight: 6,
-                  ),
-                ),
-              ),
+              Expanded(child: ProgressBar(value: phaseProgress, height: 6)),
               const SizedBox(width: 10),
               Text(
                 l10n.learnLandingPhaseOfLabel(

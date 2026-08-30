@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/utils/reward_feedback.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../journey/drops/application/journey_drops_providers.dart';
@@ -96,14 +97,11 @@ class _DailyKnowledgeChallengeHubPageState
                         ],
                       ),
                       const SizedBox(height: 12),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(999),
-                        child: LinearProgressIndicator(
-                          minHeight: 8,
-                          value: bundle.games.isEmpty
-                              ? 0
-                              : bundle.completedCount / bundle.games.length,
-                        ),
+                      ProgressBar(
+                        value: bundle.games.isEmpty
+                            ? 0
+                            : bundle.completedCount / bundle.games.length,
+                        height: 8,
                       ),
                       const SizedBox(height: 10),
                       Text(l10n.dailyKnowledgeHubJourneySummary),

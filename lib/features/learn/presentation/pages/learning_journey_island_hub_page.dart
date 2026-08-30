@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -434,15 +435,12 @@ class _ContinueGuidedPathCard extends ConsumerWidget {
             ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              value: progressValue.clamp(0, 1),
-              minHeight: 8,
-              backgroundColor: Theme.of(
-                context,
-              ).colorScheme.surfaceContainerHighest,
-            ),
+          ProgressBar(
+            value: progressValue.clamp(0, 1),
+            height: 8,
+            backgroundColor: Theme.of(
+              context,
+            ).colorScheme.surfaceContainerHighest,
           ),
           const SizedBox(height: 6),
           Text(
@@ -684,14 +682,11 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(999),
-                    child: LinearProgressIndicator(
-                      value: progressValue.clamp(0, 1),
-                      minHeight: 7,
-                      backgroundColor: surfaceStyle.iconBackgroundColor,
-                      valueColor: AlwaysStoppedAnimation<Color>(accent),
-                    ),
+                  ProgressBar(
+                    value: progressValue.clamp(0, 1),
+                    height: 7,
+                    color: accent,
+                    backgroundColor: surfaceStyle.iconBackgroundColor,
                   ),
                   Text(
                     l10n.guidedLearningPathProgressValue(

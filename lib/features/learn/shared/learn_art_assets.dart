@@ -8,8 +8,7 @@ const _artRoot = 'assets/images/learn_art';
 String levelArtAsset(LearningPathLevel level) {
   return switch (level) {
     LearningPathLevel.beginner => '$_artRoot/level_new_to_islam.webp',
-    LearningPathLevel.practicing =>
-      '$_artRoot/level_building_consistency.webp',
+    LearningPathLevel.practicing => '$_artRoot/level_building_consistency.webp',
     LearningPathLevel.seeker => '$_artRoot/level_deepening_knowledge.webp',
     LearningPathLevel.advanced => '$_artRoot/level_refinement.webp',
   };

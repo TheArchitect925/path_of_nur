@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../arabic/data/arabic_alphabet_catalog.dart';
 import '../../../arabic/domain/arabic_alphabet_models.dart';
@@ -118,10 +119,9 @@ class _QuranTeachingLessonPageState
           ),
         ),
         const SizedBox(height: 8),
-        LinearProgressIndicator(
+        ProgressBar(
           value: totalPages == 0 ? 0 : currentPage / totalPages,
-          minHeight: 8,
-          borderRadius: BorderRadius.circular(999),
+          height: 8,
         ),
         const SizedBox(height: 16),
         PremiumCard(

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
@@ -82,9 +83,9 @@ class _IslamicTriviaSessionPageState
         ),
       ],
       children: [
-        LinearProgressIndicator(
+        ProgressBar(
           value: progress,
-          minHeight: 8,
+          height: 8,
           color: context.palette.accentSoft,
           backgroundColor: context.palette.surfaceSoft,
         ),

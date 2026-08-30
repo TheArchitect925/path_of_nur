@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/trivia_models.dart';
 import '../trivia_ui_localization.dart';
@@ -374,9 +375,9 @@ class TriviaKnowledgePathCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          LinearProgressIndicator(
+          ProgressBar(
             value: progress.clamp(0.0, 1.0),
-            minHeight: 8,
+            height: 8,
             color: context.palette.accentSoft,
             backgroundColor: context.palette.surfaceSoft,
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -115,12 +116,9 @@ class _QuestionCard extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: questionNumber / content.questions.length,
-                  minHeight: 10,
-                ),
+              ProgressBar(
+                value: questionNumber / content.questions.length,
+                height: 10,
               ),
               const SizedBox(height: 14),
               Text(

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_palette.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
@@ -600,13 +601,7 @@ class _OverviewCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 8,
-              value: summary.completionFraction,
-            ),
-          ),
+          ProgressBar(value: summary.completionFraction, height: 8),
           if (onOpen != null) ...[
             const SizedBox(height: 10),
             FilledButton.tonalIcon(
@@ -687,13 +682,7 @@ class _PackCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 8,
-              value: summary.completionFraction,
-            ),
-          ),
+          ProgressBar(value: summary.completionFraction, height: 8),
           const SizedBox(height: 10),
           Text(
             l10n.crosswordPackProgressLabel(

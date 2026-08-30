@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../quran/application/quran_providers.dart';
@@ -112,7 +113,7 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                 l10n.salahGuidedPrayerCurrentRakahValue(current.rakahNumber),
               ),
               const SizedBox(height: 10),
-              LinearProgressIndicator(value: progressRatio, minHeight: 8),
+              ProgressBar(value: progressRatio, height: 8),
               const SizedBox(height: 8),
               Text(
                 l10n.salahGuidedPrayerStepProgressValue(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_reference_block.dart';
 import '../../domain/world_creation_models.dart';
@@ -47,10 +48,7 @@ class WorldCategoryHeroCard extends StatelessWidget {
               '$lessonCount lessons • ${(progress * 100).round()}% complete',
             ),
             const SizedBox(height: 8),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(value: progress, minHeight: 7),
-            ),
+            ProgressBar(value: progress, height: 7),
           ],
         ),
       ),

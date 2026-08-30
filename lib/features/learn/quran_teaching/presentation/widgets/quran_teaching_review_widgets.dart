@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/quran_teaching_smart_review_controller.dart';
 import '../../domain/quran_teaching_review_models.dart';
@@ -296,11 +297,7 @@ class QuranTeachingReviewSessionHeader extends StatelessWidget {
           const SizedBox(height: 8),
           Text(summary),
           const SizedBox(height: 12),
-          LinearProgressIndicator(
-            value: progress,
-            minHeight: 8,
-            borderRadius: BorderRadius.circular(999),
-          ),
+          ProgressBar(value: progress, height: 8),
           const SizedBox(height: 8),
           Text(l10n.quranTeachingReviewSessionHeaderProgress(current, total)),
         ],

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_backgrounds.dart';
 import '../../../../l10n/app_localizations.dart';
 import 'quran_ayah_insights_paths_page.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../application/quran_guided_learning_paths_provider.dart';
@@ -837,14 +838,11 @@ class _ProgressStrip extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(999),
-          child: LinearProgressIndicator(
-            value: progress.clamp(0, 1),
-            minHeight: 8,
-            backgroundColor: palette.progressTrack,
-            valueColor: AlwaysStoppedAnimation<Color>(palette.progressFill),
-          ),
+        ProgressBar(
+          value: progress.clamp(0, 1),
+          height: 8,
+          color: palette.progressFill,
+          backgroundColor: palette.progressTrack,
         ),
       ],
     );

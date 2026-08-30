@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../accounts_sync/application/accounts_sync_controller.dart';
@@ -187,13 +188,9 @@ class _FamilyLearningManagementPageState
                         ],
                       ),
                       const SizedBox(height: 12),
-                      LinearProgressIndicator(
+                      ProgressBar(
                         value: progress.progressValue.clamp(0.0, 1.0),
-                        minHeight: 7,
-                        backgroundColor: const Color(0xFFE8DED1),
-                        valueColor: const AlwaysStoppedAnimation<Color>(
-                          Color(0xFF8B6A44),
-                        ),
+                        height: 7,
                       ),
                       const SizedBox(height: 10),
                       Text(

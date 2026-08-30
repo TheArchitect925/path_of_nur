@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_detail_repository.dart';
 import '../application/revelation_progress_service.dart';
@@ -79,10 +80,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: completionPercent),
-              ),
+              ProgressBar(value: completionPercent),
               const SizedBox(height: 6),
               Text(
                 l10n.prophetsJourneyProgressSummary(

@@ -22,6 +22,7 @@ import '../../quran/application/quran_short_surah_readiness_provider.dart';
 import '../../quran/domain/quran_guided_passage_readiness_models.dart';
 import '../../quran/domain/quran_short_surah_readiness_models.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_teaching_adult_overview_provider.dart';
@@ -537,11 +538,7 @@ class _QuranTeachingSectionPageState
                 ],
               ),
               const SizedBox(height: 14),
-              LinearProgressIndicator(
-                value: percent,
-                minHeight: 10,
-                borderRadius: BorderRadius.circular(999),
-              ),
+              ProgressBar(value: percent, height: 10),
               const SizedBox(height: 10),
               Text(
                 l10n.quranTeachingProgressSummary(
@@ -988,11 +985,7 @@ class _QuranTeachingSectionPageState
                         ],
                       ),
                       const SizedBox(height: 12),
-                      LinearProgressIndicator(
-                        value: completion,
-                        minHeight: 8,
-                        borderRadius: BorderRadius.circular(999),
-                      ),
+                      ProgressBar(value: completion, height: 8),
                       const SizedBox(height: 8),
                       Text(
                         unlocked
