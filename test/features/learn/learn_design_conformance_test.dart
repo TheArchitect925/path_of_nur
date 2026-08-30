@@ -75,7 +75,6 @@ void main() {
       'lib/features/learn/salah/presentation/salah_surah_detail_page.dart',
 
       // --- Still to unpack into destination lists (Phase L4). ---
-      'lib/features/learn/dua/presentation/dua_hub_page.dart',
       'lib/features/learn/hadith/presentation/hadith_landing_page.dart',
       'lib/features/learn/presentation/pages/learn_salah_hub_page.dart',
       'lib/features/learn/prophets/presentation/prophets_page.dart',
