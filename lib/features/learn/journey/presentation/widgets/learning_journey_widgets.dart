@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
@@ -46,7 +47,10 @@ class JourneyHomeSectionHeader extends StatelessWidget {
                 subtitle,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
             ],
           ),
@@ -142,7 +146,10 @@ class LearningJourneyIslandCard extends StatelessWidget {
               subtitle ?? localizedIslandSubtitle(context, island),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           ],
         ),
@@ -216,9 +223,9 @@ class LearningJourneyCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       localizedJourneySubtitle(context, journey),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12.8,
-                        color: Color(0xFF675B4E),
+                        color: context.palette.onSurfaceSubtle,
                         height: 1.35,
                       ),
                       maxLines: 2,
@@ -515,8 +522,8 @@ class LearningJourneyStageCard extends StatelessWidget {
                           localizedStageSummary(context, stage),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -631,8 +638,8 @@ class LearningJourneyToolCard extends StatelessWidget {
                     subtitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -737,7 +744,10 @@ class RelatedToolsSection extends StatelessWidget {
             subtitle,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 12),
           Wrap(
@@ -802,7 +812,10 @@ class PlaceholderLessonPageScaffold extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 summary,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
               const SizedBox(height: 12),
               Text(
@@ -815,14 +828,17 @@ class PlaceholderLessonPageScaffold extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 message,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
               if (note != null && note!.trim().isNotEmpty) ...[
                 const SizedBox(height: 12),
                 Text(
                   note!,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -852,7 +868,10 @@ class PlaceholderLessonPageScaffold extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 learnBody,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../accounts_sync/application/accounts_sync_controller.dart';
@@ -295,8 +296,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                                 learningCommunity.weekDrops,
                               ))
                       : l10n.learningCommunitySummaryEmpty,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -400,8 +401,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
                     l10n,
                     pathState.currentPhase,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -951,7 +952,10 @@ class _LearningProfileSwitcherCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 10),
           Text(
@@ -1044,7 +1048,10 @@ class _ContinueJourneyCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             stageTitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           if (progress != null) ...[
             const SizedBox(height: 12),
@@ -1125,8 +1132,8 @@ class _TodayLightCard extends StatelessWidget {
                   subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),

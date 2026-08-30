@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/companion_surfaces_ui_state.dart';
@@ -212,7 +213,10 @@ class _CharacterCompanionPageState
                 const SizedBox(height: 6),
                 Text(
                   l10n.learnCharacterCompanionPracticeTodaySubtitle,
-                  style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
+                    height: 1.4,
+                  ),
                 ),
                 if (selectedTrait.nextStep != null) ...[
                   const SizedBox(height: 10),

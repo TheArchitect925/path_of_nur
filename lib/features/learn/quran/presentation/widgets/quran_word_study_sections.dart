@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_reference_link.dart';
@@ -28,7 +29,7 @@ class QuranWordExampleAyahSection extends StatelessWidget {
     if (exampleRef == null) {
       return Text(
         AppLocalizations.of(context).batch9QuranWordsNoUsageAvailable,
-        style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.3),
+        style: TextStyle(color: context.palette.onSurfaceSubtle, height: 1.3),
       );
     }
 
@@ -99,7 +100,7 @@ Future<void> showQuranWordUsageSheet(
                   summary.ayahCount,
                 ),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFF6A5A4A),
+                  color: context.palette.onSurfaceSubtle,
                   height: 1.35,
                 ),
               ),

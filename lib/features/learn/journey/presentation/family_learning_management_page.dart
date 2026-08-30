@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
@@ -47,7 +48,10 @@ class _FamilyLearningManagementPageState
           PremiumCard(
             child: Text(
               l10n.familyLearningManagementUnavailable,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           )
         else ...[
@@ -70,8 +74,8 @@ class _FamilyLearningManagementPageState
                       const SizedBox(height: 4),
                       Text(
                         activeProfile.displayName,
-                        style: const TextStyle(
-                          color: Color(0xFF675B4E),
+                        style: TextStyle(
+                          color: context.palette.onSurfaceSubtle,
                           height: 1.35,
                         ),
                       ),
@@ -102,8 +106,8 @@ class _FamilyLearningManagementPageState
                   const SizedBox(height: 8),
                   Text(
                     l10n.familyLearningEmptySubtitle,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -172,8 +176,8 @@ class _FamilyLearningManagementPageState
                                     l10n,
                                     path!,
                                   ),
-                                  style: const TextStyle(
-                                    color: Color(0xFF675B4E),
+                                  style: TextStyle(
+                                    color: context.palette.onSurfaceSubtle,
                                     height: 1.35,
                                   ),
                                 ),
@@ -212,8 +216,8 @@ class _FamilyLearningManagementPageState
                               currentPhase,
                             ),
                           ),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -223,8 +227,8 @@ class _FamilyLearningManagementPageState
                           l10n.familyLearningCurrentJourneyLabel(
                             localizedJourneyTitle(context, currentJourney),
                           ),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -234,8 +238,8 @@ class _FamilyLearningManagementPageState
                         l10n.familyLearningStreakLabel(
                           progress.currentStreakDays,
                         ),
-                        style: const TextStyle(
-                          color: Color(0xFF675B4E),
+                        style: TextStyle(
+                          color: context.palette.onSurfaceSubtle,
                           height: 1.35,
                         ),
                       ),
@@ -245,8 +249,8 @@ class _FamilyLearningManagementPageState
                           l10n.familyLearningRecentActivityLabel(
                             localizedStageTitle(context, recentStage),
                           ),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -273,8 +277,8 @@ class _FamilyLearningManagementPageState
                         ),
                         child: Text(
                           _sharedPrompt(l10n, progress.currentJourneyId),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),

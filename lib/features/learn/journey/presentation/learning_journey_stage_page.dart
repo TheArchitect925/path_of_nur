@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../application/learn_together_provider.dart';
@@ -71,7 +72,7 @@ class _LearningJourneyStagePageState
         children: [
           Text(
             l10n.learningJourneyStageNotFoundBody,
-            style: TextStyle(color: Color(0xFF675B4E)),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       );
@@ -245,7 +246,7 @@ class _LearningJourneyStagePageState
             stageUnlocked
                 ? l10n.learningJourneyStageLaunchingBody
                 : l10n.learningJourneyStageLockedRedirectBody,
-            style: TextStyle(color: Color(0xFF675B4E)),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ),
       ],
@@ -339,7 +340,10 @@ class _UnavailableStagePage extends StatelessWidget {
       children: [
         Text(
           l10n.learningJourneyStageUnavailableBody,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
         const SizedBox(height: 14),
         LearningJourneyToolCard(

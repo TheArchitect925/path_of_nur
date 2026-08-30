@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
@@ -346,7 +347,7 @@ class _AnimatedExpandedPlayerSummary extends StatelessWidget {
               subtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: const Color(0xFF6A5A4A),
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
           ],

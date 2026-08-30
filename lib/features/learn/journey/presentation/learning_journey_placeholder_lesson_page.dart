@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../application/learn_together_provider.dart';
@@ -93,8 +94,8 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
                   Expanded(
                     child: Text(
                       item,
-                      style: const TextStyle(
-                        color: Color(0xFF675B4E),
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         height: 1.35,
                       ),
                     ),

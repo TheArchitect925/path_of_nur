@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -60,7 +61,9 @@ class QuranBookmarksPage extends ConsumerWidget {
                             const SizedBox(height: 2),
                             Text(
                               '${bookmark.surahNumber}:${bookmark.ayahNumber}',
-                              style: const TextStyle(color: Color(0xFF6A5A4A)),
+                              style: TextStyle(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                             ),
                           ],
                         ),

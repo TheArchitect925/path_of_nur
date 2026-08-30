@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
@@ -118,8 +119,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       pathState.path,
                     ),
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -177,7 +178,10 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               const SizedBox(height: 12),
               Text(
                 localizedJourneyDescription(context, journey),
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
               const SizedBox(height: 12),
               Text(
@@ -208,8 +212,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                           Expanded(
                             child: Text(
                               item,
-                              style: const TextStyle(
-                                color: Color(0xFF675B4E),
+                              style: TextStyle(
+                                color: context.palette.onSurfaceSubtle,
                                 height: 1.35,
                               ),
                             ),
@@ -230,8 +234,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Text(
                   localizedJourneyWhyThisMatters(context, journey)!,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -296,8 +300,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.learningJourneyDetailCompletionSubtitle,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -307,8 +311,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                     l10n.learningPathNextJourneyLabel(
                       localizedJourneyTitle(context, pathNextJourney),
                     ),
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                       fontWeight: FontWeight.w600,
                     ),
@@ -330,8 +334,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.learnTogetherJourneyIntro,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -397,7 +401,10 @@ class LearningJourneyDetailPage extends ConsumerWidget {
             title: l10n.learningJourneyDetailCurrentMappingTitle,
             child: Text(
               localizedJourneyMappingNotes(context, journey),
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           ),
         ],
@@ -589,7 +596,7 @@ class _LearningJourneyDetailMissingPage extends StatelessWidget {
       children: [
         Text(
           l10n.learningJourneyDetailMissingBody,
-          style: TextStyle(color: Color(0xFF675B4E)),
+          style: TextStyle(color: context.palette.onSurfaceSubtle),
         ),
       ],
     );

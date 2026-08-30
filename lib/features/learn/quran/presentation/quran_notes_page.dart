@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
@@ -116,9 +117,9 @@ class QuranNotesPage extends ConsumerWidget {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       key,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF6A5A4A),
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ),
@@ -162,9 +163,9 @@ class QuranNotesPage extends ConsumerWidget {
                                 padding: const EdgeInsets.only(bottom: 6),
                                 child: Text(
                                   note.highlightLabel!,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 12.5,
-                                    color: Color(0xFF6A5A4A),
+                                    color: context.palette.onSurfaceSubtle,
                                   ),
                                 ),
                               ),

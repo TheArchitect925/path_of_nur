@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/contextual_quran_quotes.dart';
@@ -82,7 +83,10 @@ class LearningJourneyIslandPage extends ConsumerWidget {
             islandId: island.id,
             child: Text(
               l10n.familyLearningIslandReducedSubtitle,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           ),
         if (island.id != 'core-knowledge')
@@ -217,8 +221,8 @@ class LearningJourneyIslandPage extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Text(
                     why,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -344,7 +348,9 @@ class _LearningJourneyMissingPage extends StatelessWidget {
       headerIcon: Icons.error_outline_rounded,
       title: title,
       subtitle: subtitle,
-      children: [Text(body, style: TextStyle(color: Color(0xFF675B4E)))],
+      children: [
+        Text(body, style: TextStyle(color: context.palette.onSurfaceSubtle)),
+      ],
     );
   }
 }
