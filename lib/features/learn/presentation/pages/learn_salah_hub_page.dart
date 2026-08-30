@@ -532,26 +532,20 @@ class _AyahTab extends ConsumerWidget {
               surah.id == 'al_fatihah' || unlockedSurahIds.contains(surah.id);
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: PremiumCard(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text('${surah.name} (${surah.surahNumber})'),
-                subtitle: Text(
-                  unlocked
-                      ? l10n.learnSalahHubSurahCardSubtitle(
-                          surah.verses.length,
-                          _statusLabel(l10n, status),
-                        )
-                      : l10n.learnSalahHubSurahLockedSubtitle,
-                ),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: unlocked
-                    ? () => context.pushNamed(
-                        'learnSalahSurahDetail',
-                        pathParameters: {'surahId': surah.id},
-                      )
-                    : null,
-              ),
+            child: CompactListTile(
+              title: '${surah.name} (${surah.surahNumber})',
+              subtitle: unlocked
+                  ? l10n.learnSalahHubSurahCardSubtitle(
+                      surah.verses.length,
+                      _statusLabel(l10n, status),
+                    )
+                  : l10n.learnSalahHubSurahLockedSubtitle,
+              onTap: unlocked
+                  ? () => context.pushNamed(
+                      'learnSalahSurahDetail',
+                      pathParameters: {'surahId': surah.id},
+                    )
+                  : null,
             ),
           );
         }),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
@@ -161,21 +162,13 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
         ),
         const SizedBox(height: 12),
         if (nameOfDay != null)
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                l10n.babyNamesNameOfDay,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(
+          CompactListTile(
+            title: l10n.babyNamesNameOfDay,
+            subtitle:
                 '${nameOfDay.name} • ${nameOfDay.arabic}\n${nameOfDay.meaning}',
-              ),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.pushNamed(
-                'babyNameDetail',
-                pathParameters: {'nameId': nameOfDay.id},
-              ),
+            onTap: () => context.pushNamed(
+              'babyNameDetail',
+              pathParameters: {'nameId': nameOfDay.id},
             ),
           ),
         const SizedBox(height: 10),

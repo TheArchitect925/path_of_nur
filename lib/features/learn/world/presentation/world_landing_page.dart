@@ -114,35 +114,21 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
           _DailySignCard(sign: dailySign),
           const SizedBox(height: 10),
           if (recentLessons.isNotEmpty)
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.worldContinueLearningTitle,
-                    style: TextStyle(fontWeight: FontWeight.w700),
+            HubListGroup(
+              title: l10n.worldContinueLearningTitle,
+              children: [
+                for (final lesson in recentLessons.take(3))
+                  CompactListTile(
+                    title: lesson.title,
+                    subtitle: l10n.quranReferenceViewerReferenceLabel(
+                      lesson.quranVerses.first.referenceLabel,
+                    ),
+                    onTap: () => context.pushNamed(
+                      'worldCreationLessonDetail',
+                      pathParameters: {'lessonId': lesson.id},
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  ...recentLessons
-                      .take(3)
-                      .map(
-                        (lesson) => ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(lesson.title),
-                          subtitle: Text(
-                            l10n.quranReferenceViewerReferenceLabel(
-                              lesson.quranVerses.first.referenceLabel,
-                            ),
-                          ),
-                          trailing: const Icon(Icons.chevron_right_rounded),
-                          onTap: () => context.pushNamed(
-                            'worldCreationLessonDetail',
-                            pathParameters: {'lessonId': lesson.id},
-                          ),
-                        ),
-                      ),
-                ],
-              ),
+              ],
             ),
           if (recentLessons.isNotEmpty) const SizedBox(height: 10),
           ...categories.map(
@@ -316,17 +302,10 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
               ),
         ],
         if (section == _WorldHubSection.scientists) ...[
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                l10n.worldLandingMuslimScientistsTitle,
-                style: TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(l10n.worldLandingMuslimScientistsSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.pushNamed('worldMuslimScientists'),
-            ),
+          CompactListTile(
+            title: l10n.worldLandingMuslimScientistsTitle,
+            subtitle: l10n.worldLandingMuslimScientistsSubtitle,
+            onTap: () => context.pushNamed('worldMuslimScientists'),
           ),
           const SizedBox(height: 10),
           ...scientists
@@ -334,14 +313,10 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
               .map(
                 (profile) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: PremiumCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(profile.name),
-                      subtitle: Text('${profile.discipline} • ${profile.era}'),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => context.pushNamed('worldMuslimScientists'),
-                    ),
+                  child: CompactListTile(
+                    title: profile.name,
+                    subtitle: '${profile.discipline} • ${profile.era}',
+                    onTap: () => context.pushNamed('worldMuslimScientists'),
                   ),
                 ),
               ),

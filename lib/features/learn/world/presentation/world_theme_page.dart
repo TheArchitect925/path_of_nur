@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -69,16 +70,12 @@ class WorldThemePage extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         if (nextSubcategory != null)
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.worldThemeNextSubcategoryTitle),
-              subtitle: Text(nextSubcategory.title),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.pushNamed(
-                'worldSubcategoryDetail',
-                pathParameters: {'subcategoryId': nextSubcategory!.id},
-              ),
+          CompactListTile(
+            title: l10n.worldThemeNextSubcategoryTitle,
+            subtitle: nextSubcategory.title,
+            onTap: () => context.pushNamed(
+              'worldSubcategoryDetail',
+              pathParameters: {'subcategoryId': nextSubcategory!.id},
             ),
           ),
         if (nextSubcategory != null) const SizedBox(height: 12),

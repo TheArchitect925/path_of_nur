@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
@@ -199,30 +200,26 @@ class _QuranAyahInsightsBrowsePageState
             ...filteredCategories.map(
               (category) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
-                child: PremiumCard(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(_titleForCategory(l10n, category.id)),
-                    subtitle: Text(
+                child: CompactListTile(
+                  title: _titleForCategory(l10n, category.id),
+                  subtitle:
                       '${_subtitleForCategory(l10n, category.id)}\n${l10n.quranAyahInsightsBrowseCount(category.count)}',
-                    ),
-                    onTap: () {
-                      ref
-                          .read(
-                            quranLearningPersonalizationStateProvider.notifier,
-                          )
-                          .markDomainOpened(category.id);
-                      context.pushNamed(
-                        'quranAyahInsightsDomain',
-                        pathParameters: {'domainId': category.id},
-                        queryParameters: {
-                          if (_selectedTag != null) 'tag': _selectedTag!.name,
-                          if (_selectedLessonType != null)
-                            'lessonType': _selectedLessonType!.name,
-                        },
-                      );
-                    },
-                  ),
+                  onTap: () {
+                    ref
+                        .read(
+                          quranLearningPersonalizationStateProvider.notifier,
+                        )
+                        .markDomainOpened(category.id);
+                    context.pushNamed(
+                      'quranAyahInsightsDomain',
+                      pathParameters: {'domainId': category.id},
+                      queryParameters: {
+                        if (_selectedTag != null) 'tag': _selectedTag!.name,
+                        if (_selectedLessonType != null)
+                          'lessonType': _selectedLessonType!.name,
+                      },
+                    );
+                  },
                 ),
               ),
             ),

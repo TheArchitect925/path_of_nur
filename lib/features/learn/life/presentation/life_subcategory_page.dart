@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -59,17 +60,10 @@ class LifeSubcategoryPage extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         if (sub.themeId == 'family')
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                l10n.babyNamesTitle,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(l10n.babyNamesSubtitle),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.pushNamed('babyNamesHome'),
-            ),
+          CompactListTile(
+            title: l10n.babyNamesTitle,
+            subtitle: l10n.babyNamesSubtitle,
+            onTap: () => context.pushNamed('babyNamesHome'),
           ),
         if (sub.themeId == 'family') const SizedBox(height: 12),
         PremiumCard(

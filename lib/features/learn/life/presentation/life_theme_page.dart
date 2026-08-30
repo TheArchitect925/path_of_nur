@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -69,31 +70,20 @@ class LifeThemePage extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         if (nextSubcategory != null)
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.lifeThemeNextSubcategoryTitle),
-              subtitle: Text(nextSubcategory.title),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.pushNamed(
-                'lifeSubcategoryDetail',
-                pathParameters: {'subcategoryId': nextSubcategory!.id},
-              ),
+          CompactListTile(
+            title: l10n.lifeThemeNextSubcategoryTitle,
+            subtitle: nextSubcategory.title,
+            onTap: () => context.pushNamed(
+              'lifeSubcategoryDetail',
+              pathParameters: {'subcategoryId': nextSubcategory!.id},
             ),
           ),
         if (nextSubcategory != null) const SizedBox(height: 12),
         if (theme.id == 'family')
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                l10n.babyNamesTitle,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(l10n.babyNamesSubtitle),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.pushNamed('babyNamesHome'),
-            ),
+          CompactListTile(
+            title: l10n.babyNamesTitle,
+            subtitle: l10n.babyNamesSubtitle,
+            onTap: () => context.pushNamed('babyNamesHome'),
           ),
         if (theme.id == 'family') const SizedBox(height: 12),
         PremiumCard(

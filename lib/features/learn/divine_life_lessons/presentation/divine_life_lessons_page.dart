@@ -635,16 +635,11 @@ class _LessonsTab extends StatelessWidget {
           ...featuredLessons.map(
             (lesson) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(lesson.title),
-                  subtitle: Text(
+              child: CompactListTile(
+                title: lesson.title,
+                subtitle:
                     '${lesson.quranReference} • ${lesson.estimatedReadMinutes} min',
-                  ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
-                  onTap: () => onOpenLesson(lesson.id),
-                ),
+                onTap: () => onOpenLesson(lesson.id),
               ),
             ),
           ),

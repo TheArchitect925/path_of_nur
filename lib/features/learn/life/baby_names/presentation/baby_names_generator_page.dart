@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
@@ -254,21 +255,13 @@ class _BabyNamesGeneratorPageState
               ..._generated.map(
                 (entry) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: PremiumCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        '${entry.name} • ${entry.arabic}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      subtitle: Text(
+                  child: CompactListTile(
+                    title: '${entry.name} • ${entry.arabic}',
+                    subtitle:
                         '${entry.meaning}\n${_reasonsFor(entry).join(' · ')}',
-                      ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => context.pushNamed(
-                        'babyNameDetail',
-                        pathParameters: {'nameId': entry.id},
-                      ),
+                    onTap: () => context.pushNamed(
+                      'babyNameDetail',
+                      pathParameters: {'nameId': entry.id},
                     ),
                   ),
                 ),

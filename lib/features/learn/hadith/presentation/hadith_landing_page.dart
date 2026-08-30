@@ -203,20 +203,15 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
           ...collections.map(
             (collection) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(collection.title),
-                  subtitle: Text(
-                    l10n.hadithCollectionCardSummary(
-                      collection.subtitle,
-                      collection.entryCount,
-                    ),
-                  ),
-                  onTap: () => context.pushNamed(
-                    'hadithCollectionDetail',
-                    pathParameters: {'collectionId': collection.id},
-                  ),
+              child: CompactListTile(
+                title: collection.title,
+                subtitle: l10n.hadithCollectionCardSummary(
+                  collection.subtitle,
+                  collection.entryCount,
+                ),
+                onTap: () => context.pushNamed(
+                  'hadithCollectionDetail',
+                  pathParameters: {'collectionId': collection.id},
                 ),
               ),
             ),
@@ -260,15 +255,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             ...savedEntries.map(
               (entry) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
-                child: PremiumCard(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(entry.title),
-                    subtitle: Text('${entry.source} • ${entry.grading}'),
-                    onTap: () => context.pushNamed(
-                      'hadithLessonDetail',
-                      pathParameters: {'lessonId': entry.id},
-                    ),
+                child: CompactListTile(
+                  title: entry.title,
+                  subtitle: '${entry.source} • ${entry.grading}',
+                  onTap: () => context.pushNamed(
+                    'hadithLessonDetail',
+                    pathParameters: {'lessonId': entry.id},
                   ),
                 ),
               ),
@@ -534,17 +526,13 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             ...dueReviewEntries.map(
               (entry) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: PremiumCard(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(entry.title),
-                    subtitle: Text(
+                child: CompactListTile(
+                  title: entry.title,
+                  subtitle:
                       '${entry.displaySourceCollection} • ${entry.grading}',
-                    ),
-                    onTap: () => context.pushNamed(
-                      'hadithLessonDetail',
-                      pathParameters: {'lessonId': entry.id},
-                    ),
+                  onTap: () => context.pushNamed(
+                    'hadithLessonDetail',
+                    pathParameters: {'lessonId': entry.id},
                   ),
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -87,18 +88,13 @@ class WorldCreationCategoryPage extends ConsumerWidget {
           ...lessons.map(
             (lesson) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(lesson.title),
-                  subtitle: Text(
+              child: CompactListTile(
+                title: lesson.title,
+                subtitle:
                     '${lesson.summary}\nQur\'an ${lesson.quranVerses.first.referenceLabel}',
-                  ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
-                  onTap: () => context.pushNamed(
-                    'worldCreationLessonDetail',
-                    pathParameters: {'lessonId': lesson.id},
-                  ),
+                onTap: () => context.pushNamed(
+                  'worldCreationLessonDetail',
+                  pathParameters: {'lessonId': lesson.id},
                 ),
               ),
             ),

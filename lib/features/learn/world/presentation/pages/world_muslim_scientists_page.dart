@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
-import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/world_creation_provider.dart';
 import '../../domain/world_creation_models.dart';
 
@@ -22,14 +22,10 @@ class WorldMuslimScientistsPage extends ConsumerWidget {
         ...scientists.map(
           (profile) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: PremiumCard(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(profile.name),
-                subtitle: Text('${profile.discipline} • ${profile.era}'),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () => _showProfileSheet(context, profile),
-              ),
+            child: CompactListTile(
+              title: profile.name,
+              subtitle: '${profile.discipline} • ${profile.era}',
+              onTap: () => _showProfileSheet(context, profile),
             ),
           ),
         ),
