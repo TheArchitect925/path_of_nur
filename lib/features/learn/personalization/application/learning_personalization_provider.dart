@@ -181,9 +181,7 @@ final learningPersonalizationSummaryProvider =
 
 final localizedLearningPersonalizationSummaryProvider =
     Provider<LocalizedLearningPersonalizationSummary>((ref) {
-      final locale =
-          ref.watch(appLocaleProvider) ??
-          AppLocalizations.supportedLocales.first;
+      final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
       final l10n = lookupAppLocalizations(locale);
       final summary = ref.watch(learningPersonalizationSummaryProvider);
       final localizedPaths = ref.watch(localizedGuidedLearningPathsProvider);
