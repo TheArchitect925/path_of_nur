@@ -11813,5 +11813,6 @@
   "learnContainedStateBody": "This route is intentionally contained for now instead of presenting unfinished learning content as complete.",
   "learnContainedStateBackToLearnAction": "Back to Learn",
   "learnContainedStateBrowseKnowledgeAction": "Browse knowledge",
-  "learnContainedStateOpenQuranLearningAction": "Open Qur''an learning"
+  "learnContainedStateOpenQuranLearningAction": "Open Qur''an learning",
+  "learnCategoryDivineLifeLessonsSubtitle": "Qur''an-rooted lessons for reflection, character, and grounded living."
 }
