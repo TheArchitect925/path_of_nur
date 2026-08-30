@@ -18762,5 +18762,14 @@
   "settingsRemindersPerPrayerTitle": "প্রতি সালাতের রিমাইন্ডার",
   "settingsOtherRemindersTitle": "অন্যান্য রিমাইন্ডার",
   "settingsPermissionsTitle": "অনুমতি",
-  "settingsWhatOthersSeeTitle": "অ্যাপ যা দেখায়"
+  "settingsWhatOthersSeeTitle": "অ্যাপ যা দেখায়",
+  "learnContainedStateIslandSubtitle": "This learning area is being kept calm and production-safe.",
+  "learnContainedStateJourneySubtitle": "This journey surface is being kept contained until its next safe pass.",
+  "learnContainedStateGuidesSubtitle": "These guides are being held in a contained state for now.",
+  "learnContainedStateQuranMappingTitle": "Qur''an lesson mapping",
+  "learnContainedStateQuranMappingSubtitle": "This mapping surface is contained until more lesson links are ready.",
+  "learnContainedStateBody": "This route is intentionally contained for now instead of presenting unfinished learning content as complete.",
+  "learnContainedStateBackToLearnAction": "Back to Learn",
+  "learnContainedStateBrowseKnowledgeAction": "Browse knowledge",
+  "learnContainedStateOpenQuranLearningAction": "Open Qur''an learning"
 }

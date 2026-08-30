@@ -18762,5 +18762,14 @@
   "settingsRemindersPerPrayerTitle": "بیرخەرەوە بۆ هەر نوێژێک",
   "settingsOtherRemindersTitle": "بیرخەرەوەکانی تر",
   "settingsPermissionsTitle": "مۆڵەتەکان",
-  "settingsWhatOthersSeeTitle": "ئەوەی ئەپەکە پیشانی دەدات"
+  "settingsWhatOthersSeeTitle": "ئەوەی ئەپەکە پیشانی دەدات",
+  "learnContainedStateIslandSubtitle": "This learning area is being kept calm and production-safe.",
+  "learnContainedStateJourneySubtitle": "This journey surface is being kept contained until its next safe pass.",
+  "learnContainedStateGuidesSubtitle": "These guides are being held in a contained state for now.",
+  "learnContainedStateQuranMappingTitle": "Qur''an lesson mapping",
+  "learnContainedStateQuranMappingSubtitle": "This mapping surface is contained until more lesson links are ready.",
+  "learnContainedStateBody": "This route is intentionally contained for now instead of presenting unfinished learning content as complete.",
+  "learnContainedStateBackToLearnAction": "Back to Learn",
+  "learnContainedStateBrowseKnowledgeAction": "Browse knowledge",
+  "learnContainedStateOpenQuranLearningAction": "Open Qur''an learning"
 }

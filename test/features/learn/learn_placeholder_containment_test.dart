@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/journey/data/learning_journey_registry.dart';
 import 'package:path_of_nur/features/learn/journey/presentation/learning_journey_lesson_page.dart';
-import 'package:path_of_nur/features/learn/presentation/widgets/learn_contained_state_localizations.dart';
 import 'package:path_of_nur/features/learn/shared/application/learn_release_gate.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';

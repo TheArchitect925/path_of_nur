@@ -266,7 +266,19 @@
   "quranAppHubSearchHint": "Search the Holy Qur''an",
   "quranTabContinueEyebrow": "Continue reading",
   "quranTabContinueProgressLabel": "Ayah {ayah} of {total} · {percent}% through",
-  "@quranTabContinueProgressLabel": {"placeholders": {"ayah": {"type": "int"}, "total": {"type": "int"}, "percent": {"type": "int"}}},
+  "@quranTabContinueProgressLabel": {
+    "placeholders": {
+      "ayah": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "quranTabContinueAction": "Continue",
   "quranTabListenAction": "Listen",
   "quranTabAllSurahsTitle": "All surahs",
@@ -274,13 +286,31 @@
   "quranTabPlanTitle": "Reading plan",
   "quranTabPlanNoneSubtitle": "Set a pace and finish the whole Qur’an",
   "quranTabPlanJuzLabel": "Juz {juz} of 30",
-  "@quranTabPlanJuzLabel": {"placeholders": {"juz": {"type": "int"}}},
+  "@quranTabPlanJuzLabel": {
+    "placeholders": {
+      "juz": {
+        "type": "int"
+      }
+    }
+  },
   "quranTabPlanDoneSuffix": "today’s portion read ✓",
   "quranTabPlanTodaySuffix": "today: {portion}",
-  "@quranTabPlanTodaySuffix": {"placeholders": {"portion": {"type": "String"}}},
+  "@quranTabPlanTodaySuffix": {
+    "placeholders": {
+      "portion": {
+        "type": "String"
+      }
+    }
+  },
   "quranTabTodayAyahTitle": "Today’s ayah",
   "quranTabTodayAyahSubtitle": "{reference} · with a short reflection",
-  "@quranTabTodayAyahSubtitle": {"placeholders": {"reference": {"type": "String"}}},
+  "@quranTabTodayAyahSubtitle": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
   "quranTabGroupRead": "Read",
   "quranTabGroupUnderstand": "Understand",
   "quranTabGroupPractice": "Practice",
@@ -308,7 +338,13 @@
   "quranKhatmPaceOneJuz": "One juz a day",
   "quranKhatmPaceTwoJuz": "Two juz a day",
   "quranKhatmPacePages": "{pages} pages a day",
-  "@quranKhatmPacePages": {"placeholders": {"pages": {"type": "int"}}},
+  "@quranKhatmPacePages": {
+    "placeholders": {
+      "pages": {
+        "type": "int"
+      }
+    }
+  },
   "quranKhatmPaceFinishBy": "Finish by a date",
   "quranKhatmPaceRamadan": "Finish in 30 days (Ramadan pace)",
   "quranKhatmTodayPortionTitle": "Today’s portion",
@@ -316,13 +352,28 @@
   "quranKhatmPortionDoneLabel": "Today’s portion is read — ma sha Allah",
   "quranKhatmContinueAction": "Continue reading",
   "quranKhatmProgressLabel": "{percent}% of the Qur’an · Juz {juz} of 30",
-  "@quranKhatmProgressLabel": {"placeholders": {"percent": {"type": "int"}, "juz": {"type": "int"}}},
+  "@quranKhatmProgressLabel": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      },
+      "juz": {
+        "type": "int"
+      }
+    }
+  },
   "quranKhatmSyncAction": "Set to where I’m reading",
   "quranKhatmStopAction": "Remove plan",
   "quranKhatmCompleteTitle": "Khatm complete — may Allah accept it",
   "quranKhatmStartAction": "Start plan",
   "quranKhatmAyahCountLabel": "{count} ayahs",
-  "@quranKhatmAyahCountLabel": {"placeholders": {"count": {"type": "int"}}},
+  "@quranKhatmAyahCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "growthHabitsQuranPlanRowSubtitle": "Your khatm plan now lives in the Qur’an tab",
   "quranDiscoverSectionTitle": "Discover the Qur’an",
   "quranDiscoverSectionSubtitle": "Keep the summary, topics, pathways, current moment, and your next recommendation together in one calm place.",
@@ -1587,7 +1638,13 @@
   "homeShortcutDhikrLabel": "Dhikr",
   "homeShortcutDailyCaption": "Daily",
   "homeSalahTahajjudBonusCaption": "Daily · +{count} Tahajjud",
-  "@homeSalahTahajjudBonusCaption": {"placeholders": {"count": {"type": "String"}}},
+  "@homeSalahTahajjudBonusCaption": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
   "homeShortcutMissedCount": "{count, plural, =0 {0 missed} =1 {1 missed} other {{count} missed}}",
   "@homeShortcutMissedCount": {
     "placeholders": {
@@ -2180,7 +2237,16 @@
   "learnLandingChoosePathTitle": "Choose your learning path",
   "learnLandingChoosePathSubtitle": "Answer a few questions and follow calm, step-by-step lessons.",
   "learnLandingPhaseOfLabel": "Phase {current} of {total}",
-  "@learnLandingPhaseOfLabel": {"placeholders": {"current": {"type": "int"}, "total": {"type": "int"}}},
+  "@learnLandingPhaseOfLabel": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "learnLandingNextUpLabel": "Next up",
   "learnLandingContinueAction": "Continue",
   "learnLandingViewPathAction": "View path",
@@ -2196,7 +2262,13 @@
   "learnPathPickerCurrentBadge": "Current",
   "learnPathMigrationTitle": "Your path is ready",
   "learnPathMigrationBody": "Your learning now lives on one path: {level}. Everything you completed already counts.",
-  "@learnPathMigrationBody": {"placeholders": {"level": {"type": "String"}}},
+  "@learnPathMigrationBody": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "learnPathMigrationAction": "See your path",
   "learnPathMigrationDismiss": "Not now",
   "kidsLandingStarterEyebrow": "Your starter path",
@@ -16925,10 +16997,22 @@
   "quranFocusRecitationKeepScreenAwakeAction": "Keep screen awake",
   "quranFocusRecitationKeepScreenAwakeSleepTimerHint": "Off while the sleep timer runs, so the screen can rest",
   "quranFocusRecitationSleepTimerHoursLabel": "{hours} hr",
-  "@quranFocusRecitationSleepTimerHoursLabel": {"placeholders": {"hours": {"type": "String"}}},
+  "@quranFocusRecitationSleepTimerHoursLabel": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
   "quranFocusRecitationSleepTimerStopAtAction": "Stop at a time",
   "quranFocusRecitationSleepTimerStopAtLabel": "Stops at {time}",
-  "@quranFocusRecitationSleepTimerStopAtLabel": {"placeholders": {"time": {"type": "String"}}},
+  "@quranFocusRecitationSleepTimerStopAtLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "quranPlaybackDismissPlayerAction": "Dismiss player",
   "quranFocusRecitationRepeatCurrentAyahAction": "Repeat current ayah",
   "quranFocusRecitationSleepTimerAction": "Sleep timer",
@@ -18914,5 +18998,14 @@
   "settingsRemindersPerPrayerTitle": "Per-Salah Reminders",
   "settingsOtherRemindersTitle": "Other Reminders",
   "settingsPermissionsTitle": "Permissions",
-  "settingsWhatOthersSeeTitle": "What the App Shows"
+  "settingsWhatOthersSeeTitle": "What the App Shows",
+  "learnContainedStateIslandSubtitle": "This learning area is being kept calm and production-safe.",
+  "learnContainedStateJourneySubtitle": "This journey surface is being kept contained until its next safe pass.",
+  "learnContainedStateGuidesSubtitle": "These guides are being held in a contained state for now.",
+  "learnContainedStateQuranMappingTitle": "Qur''an lesson mapping",
+  "learnContainedStateQuranMappingSubtitle": "This mapping surface is contained until more lesson links are ready.",
+  "learnContainedStateBody": "This route is intentionally contained for now instead of presenting unfinished learning content as complete.",
+  "learnContainedStateBackToLearnAction": "Back to Learn",
+  "learnContainedStateBrowseKnowledgeAction": "Browse knowledge",
+  "learnContainedStateOpenQuranLearningAction": "Open Qur''an learning"
 }

@@ -42625,4 +42625,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsWhatOthersSeeTitle => 'What the App Shows';
+
+  @override
+  String get learnContainedStateIslandSubtitle =>
+      'This learning area is being kept calm and production-safe.';
+
+  @override
+  String get learnContainedStateJourneySubtitle =>
+      'This journey surface is being kept contained until its next safe pass.';
+
+  @override
+  String get learnContainedStateGuidesSubtitle =>
+      'These guides are being held in a contained state for now.';
+
+  @override
+  String get learnContainedStateQuranMappingTitle => 'Qur\'an lesson mapping';
+
+  @override
+  String get learnContainedStateQuranMappingSubtitle =>
+      'This mapping surface is contained until more lesson links are ready.';
+
+  @override
+  String get learnContainedStateBody =>
+      'This route is intentionally contained for now instead of presenting unfinished learning content as complete.';
+
+  @override
+  String get learnContainedStateBackToLearnAction => 'Back to Learn';
+
+  @override
+  String get learnContainedStateBrowseKnowledgeAction => 'Browse knowledge';
+
+  @override
+  String get learnContainedStateOpenQuranLearningAction =>
+      'Open Qur\'an learning';
 }

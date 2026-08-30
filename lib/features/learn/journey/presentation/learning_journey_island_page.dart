@@ -12,7 +12,6 @@ import '../../glossary/domain/glossary_models.dart';
 import '../../glossary/presentation/widgets/glossary_widgets.dart';
 import '../../presentation/widgets/learn_cards.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_localized_metadata.dart';

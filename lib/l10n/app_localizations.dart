@@ -71111,6 +71111,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'What the App Shows'**
   String get settingsWhatOthersSeeTitle;
+
+  /// No description provided for @learnContainedStateIslandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This learning area is being kept calm and production-safe.'**
+  String get learnContainedStateIslandSubtitle;
+
+  /// No description provided for @learnContainedStateJourneySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This journey surface is being kept contained until its next safe pass.'**
+  String get learnContainedStateJourneySubtitle;
+
+  /// No description provided for @learnContainedStateGuidesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'These guides are being held in a contained state for now.'**
+  String get learnContainedStateGuidesSubtitle;
+
+  /// No description provided for @learnContainedStateQuranMappingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an lesson mapping'**
+  String get learnContainedStateQuranMappingTitle;
+
+  /// No description provided for @learnContainedStateQuranMappingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This mapping surface is contained until more lesson links are ready.'**
+  String get learnContainedStateQuranMappingSubtitle;
+
+  /// No description provided for @learnContainedStateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This route is intentionally contained for now instead of presenting unfinished learning content as complete.'**
+  String get learnContainedStateBody;
+
+  /// No description provided for @learnContainedStateBackToLearnAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Learn'**
+  String get learnContainedStateBackToLearnAction;
+
+  /// No description provided for @learnContainedStateBrowseKnowledgeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse knowledge'**
+  String get learnContainedStateBrowseKnowledgeAction;
+
+  /// No description provided for @learnContainedStateOpenQuranLearningAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Qur\'\'an learning'**
+  String get learnContainedStateOpenQuranLearningAction;
 }
 
 class _AppLocalizationsDelegate

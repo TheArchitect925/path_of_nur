@@ -18806,5 +18806,14 @@
   "settingsRemindersPerPrayerTitle": "Erinnerungen je Gebet",
   "settingsOtherRemindersTitle": "Weitere Erinnerungen",
   "settingsPermissionsTitle": "Berechtigungen",
-  "settingsWhatOthersSeeTitle": "Was die App anzeigt"
+  "settingsWhatOthersSeeTitle": "Was die App anzeigt",
+  "learnContainedStateIslandSubtitle": "Dieser Lernbereich wird bewusst ruhig und veröffentlichungssicher gehalten.",
+  "learnContainedStateJourneySubtitle": "Diese Reiseansicht bleibt eingeschränkt, bis sie sicher überarbeitet ist.",
+  "learnContainedStateGuidesSubtitle": "Diese Leitfäden werden vorerst in einem eingeschränkten Zustand gehalten.",
+  "learnContainedStateQuranMappingTitle": "Zuordnung der Koranlektionen",
+  "learnContainedStateQuranMappingSubtitle": "Diese Zuordnung bleibt eingeschränkt, bis weitere Lektionsverknüpfungen bereitstehen.",
+  "learnContainedStateBody": "Diese Ansicht ist bewusst eingeschränkt, statt unfertige Lerninhalte als vollständig darzustellen.",
+  "learnContainedStateBackToLearnAction": "Zurück zu Lernen",
+  "learnContainedStateBrowseKnowledgeAction": "Wissen durchsuchen",
+  "learnContainedStateOpenQuranLearningAction": "Koran-Lernbereich öffnen"
 }

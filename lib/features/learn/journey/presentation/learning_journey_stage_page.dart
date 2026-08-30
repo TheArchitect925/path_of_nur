@@ -11,7 +11,6 @@ import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
 import '../../dua/presentation/dua_hub_page.dart';
 import '../../hadith/presentation/hadith_landing_page.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../prophets/domain/prophets_tab.dart';

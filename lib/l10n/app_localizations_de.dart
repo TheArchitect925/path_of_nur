@@ -43216,4 +43216,38 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsWhatOthersSeeTitle => 'Was die App anzeigt';
+
+  @override
+  String get learnContainedStateIslandSubtitle =>
+      'Dieser Lernbereich wird bewusst ruhig und veröffentlichungssicher gehalten.';
+
+  @override
+  String get learnContainedStateJourneySubtitle =>
+      'Diese Reiseansicht bleibt eingeschränkt, bis sie sicher überarbeitet ist.';
+
+  @override
+  String get learnContainedStateGuidesSubtitle =>
+      'Diese Leitfäden werden vorerst in einem eingeschränkten Zustand gehalten.';
+
+  @override
+  String get learnContainedStateQuranMappingTitle =>
+      'Zuordnung der Koranlektionen';
+
+  @override
+  String get learnContainedStateQuranMappingSubtitle =>
+      'Diese Zuordnung bleibt eingeschränkt, bis weitere Lektionsverknüpfungen bereitstehen.';
+
+  @override
+  String get learnContainedStateBody =>
+      'Diese Ansicht ist bewusst eingeschränkt, statt unfertige Lerninhalte als vollständig darzustellen.';
+
+  @override
+  String get learnContainedStateBackToLearnAction => 'Zurück zu Lernen';
+
+  @override
+  String get learnContainedStateBrowseKnowledgeAction => 'Wissen durchsuchen';
+
+  @override
+  String get learnContainedStateOpenQuranLearningAction =>
+      'Koran-Lernbereich öffnen';
 }

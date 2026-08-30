@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
 
 class IslamicGuidesPage extends StatelessWidget {
