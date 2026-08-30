@@ -20,6 +20,7 @@
 | PON-E-localization-integrity | Localization integrity — shippable locales, clean ARB parity, German release quality | in_progress |
 | PON-E-learn-design-parity | Learn sub-pages rejoin the app's design language | in_progress |
 | PON-E-onboarding-carousel | Startup carousel rejoins the app (design language, three-theme setup, plainer copy) | done |
+| PON-E-font-asset-integrity | Bundled font asset integrity | done |
 
 ### Stories
 
@@ -114,6 +115,8 @@
 | PON-S-onboarding-theme-step | PON-E-onboarding-carousel | Cut the setup theme step to three curated appearances — Living Sky, Candlelight, Midnight — with real previews | 5 | done |
 | PON-S-onboarding-design-language | PON-E-onboarding-carousel | Put the carousel chrome on theme tokens and the display kit instead of hard-coded creams and bare Material | 5 | done |
 | PON-S-onboarding-copy | PON-E-onboarding-carousel | Rewrite the setup copy and repair the age bands that had drifted apart across locales | 3 | done |
+| PON-S-arabic-font-assets-restored | PON-E-font-asset-integrity | Replace corrupt Arabic font assets with genuine Noto builds | 3 | done |
+| PON-S-font-asset-guard-test | PON-E-font-asset-integrity | Fail the build when a declared font asset is not a real font | 1 | done |
 
 ## Smoke Tests
 
@@ -363,3 +366,6 @@
 | PON-T-244 | Wear prayer rows no longer show raw enum names | Open the Prayers screen in any language. Expected: each row's secondary label reads a translated "Pending" or "Completed". It previously rendered prayer.status.name, printing the raw Kotlin enum constant regardless of locale. | ⬜ | epic:PON-E-localization-integrity · story:PON-S-wear-kotlin-l10n · sprint:2026-08-30 |
 | PON-T-245 | Wear notifications and actions are translated | Let a prayer reminder fire in each language and check the channel name in system settings, the notification title and body, and the three actions (mark prayed, snooze, open app). Expected: all translated, and the prayer name substitutes correctly in titles like "%1$s time has begun". | ⬜ | epic:PON-E-localization-integrity · story:PON-S-wear-kotlin-l10n · sprint:2026-08-30 |
 | PON-T-246 | Wear tiles are translated | Add the Next Prayer, Prayer Progress and Dhikr tiles in each language. Expected: tile titles and the Open App / Reset buttons are translated. Note German and French deliberately fall back to the default for the watch name, Dhikr, XP, Pause and Sync, where the words are identical. | ⬜ | epic:PON-E-localization-integrity · story:PON-S-wear-kotlin-l10n · sprint:2026-08-30 |
+| PON-T-247 | Kids Arabic letters render in the real Naskh face | Learn → search "Arabic" → Kids Learning → Arabic Learning → Start Arabic → open a letter lesson. Expected: the large letter card and the Arabic name (e.g. ألف) render in Noto Naskh Arabic — calligraphic Naskh strokes with tapered terminals, not the system Arabic face. Header "Letter ا" and the "Trace and hear ألف" subtitle show joined Arabic, never boxes or disconnected letters. | ⬜ | epic:PON-E-font-asset-integrity · story:PON-S-arabic-font-assets-restored · sprint:2026-08-29 · The bundled file was a GitHub 404 HTML page, so every Kids Arabic screen silently fell back to the platform font |
+| PON-T-248 | Home and Learn Arabic lines render correctly | Open Home, then Learn. Expected: the Arabic greeting on Home, the "رَبِّ زِدْنِي عِلْمًا" card on Learn, and the Kids Learning ayah all render with correctly joined letters and diacritics sitting on the right glyphs; no tofu boxes and no letters rendered in isolated form. | ⬜ | epic:PON-E-font-asset-integrity · story:PON-S-arabic-font-assets-restored · sprint:2026-08-29 |
+| PON-T-249 | Font assets are validated by the test suite | Run `flutter test test/core/font_assets_test.dart`. Expected: every font declared under `flutter: fonts:` in pubspec.yaml exists, starts with an sfnt signature, and is accepted by the engine font parser. Replacing any of them with a non-font file (e.g. an HTML error page) must make the test fail. | ⬜ | epic:PON-E-font-asset-integrity · story:PON-S-font-asset-guard-test · sprint:2026-08-29 |
