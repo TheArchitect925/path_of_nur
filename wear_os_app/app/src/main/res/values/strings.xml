@@ -1,7 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Manifest labels -->
     <string name="watch_app_name">Path of Nūr Watch</string>
     <string name="tile_next_prayer">Next Prayer</string>
     <string name="tile_prayer_progress">Prayer Progress</string>
     <string name="tile_dhikr">Dhikr</string>
+
+    <!-- Tile content -->
+    <string name="tile_open_app">Open App</string>
+    <string name="tile_todays_prayers">Today’s Prayers</string>
+    <string name="tile_reset">Reset</string>
+
+    <!-- Shared actions -->
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_play">Play</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_start">Start</string>
+    <string name="action_resume">Resume</string>
+    <string name="action_stop">Stop</string>
+
+    <!-- Stat labels -->
+    <string name="label_next_prayer">Next Prayer</string>
+    <string name="label_prayers">Prayers</string>
+    <string name="label_dhikr">Dhikr</string>
+    <string name="label_streak">Streak</string>
+    <string name="label_progress">Progress</string>
+    <string name="label_quran_audio">Qur’an Audio</string>
+    <string name="label_xp">XP</string>
+    <string name="label_ocean_drops">Ocean Drops</string>
+    <string name="label_sync">Sync</string>
+    <string name="sync_up_to_date">Up to date</string>
+    <string name="sync_pending">Pending %1$d</string>
+
+    <!-- Prayer status. These were rendering the raw Kotlin enum name. -->
+    <string name="prayer_status_pending">Pending</string>
+    <string name="prayer_status_completed">Completed</string>
+
+    <!-- Dhikr -->
+    <string name="dhikr_mode_manual">Manual</string>
+    <string name="dhikr_mode_silent">Silent</string>
+    <string name="dhikr_mode_guided">Guided</string>
+    <string name="dhikr_preset_33_complete">33 complete</string>
+    <string name="dhikr_preset_99_complete">99 complete</string>
+    <string name="dhikr_session_complete">Session complete</string>
+    <string name="dhikr_pace_slower">Slower</string>
+    <string name="dhikr_pace_faster">Faster</string>
+    <string name="dhikr_follow_pulse">Follow the pulse calmly.</string>
+    <string name="dhikr_tap_to_count">Tap to count</string>
+    <string name="dhikr_start_new_question">Start a new dhikr session?</string>
+    <string name="dhikr_start_new">Start New</string>
+    <string name="dhikr_reset_question">Reset session?</string>
+    <string name="dhikr_take_your_time">Take your time</string>
+    <string name="dhikr_reflection_over_rushing">Dhikr is better with reflection than rushing.</string>
+    <string name="dhikr_keep_pace">Keep pace</string>
+    <string name="dhikr_steady_pace">Steady pace</string>
+    <string name="dhikr_free">Free</string>
+    <string name="dhikr_pulse">Pulse %1$s</string>
+    <string name="dhikr_today_total">Today %1$d</string>
+
+    <!-- Qur’an audio -->
+    <string name="quran_playing_on_phone">Playing on: Phone</string>
+    <string name="quran_playing_on_watch">Playing on: Watch</string>
+    <string name="quran_resume_last">Resume Last Recitation</string>
+    <string name="quran_switch_output">Switch Output</string>
+    <string name="quran_listening_mode">Listening Mode</string>
+    <string name="quran_watch_needs_download">Watch playback requires downloaded audio.</string>
+    <string name="quran_output">Output</string>
+    <string name="quran_output_phone">Phone / Device</string>
+    <string name="quran_output_phone_selected">Phone / Device ✓</string>
+    <string name="quran_output_watch">Watch</string>
+    <string name="quran_output_watch_selected">Watch ✓</string>
+    <string name="quran_ayah">Ayah %1$d</string>
+    <string name="quran_return_to_player">Return to Player</string>
+    <string name="quran_status_finished">Playback finished</string>
+    <string name="quran_status_phone_unavailable">Phone unavailable</string>
+    <string name="quran_status_playing_phone">Playing on Phone</string>
+    <string name="quran_status_playing_watch">Playing on Watch</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_name">Prayer reminders</string>
+    <string name="notif_channel_description">Path of Nūr prayer reminders</string>
+    <string name="notif_initial_title">%1$s time has begun</string>
+    <string name="notif_initial_body">Time for %1$s</string>
+    <string name="notif_followup_title">%1$s is still pending</string>
+    <string name="notif_followup_body">You haven’t logged %1$s yet</string>
+    <string name="notif_snooze_title">%1$s reminder</string>
+    <string name="notif_snooze_body">Still pending</string>
+    <string name="notif_dhikr_body">A short dhikr break?</string>
+    <string name="notif_mark_or_snooze">Mark prayed or snooze</string>
+    <string name="notif_open_dhikr">Open Dhikr</string>
+    <string name="notif_action_mark_prayed">Mark prayed</string>
+    <string name="notif_action_snooze">Snooze</string>
+    <string name="notif_action_open_app">Open app</string>
+    <string name="prayer_fallback_name">Prayer</string>
 </resources>

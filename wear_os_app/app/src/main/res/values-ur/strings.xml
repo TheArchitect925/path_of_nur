@@ -4,4 +4,86 @@
     <string name="tile_next_prayer">اگلی نماز</string>
     <string name="tile_prayer_progress">نماز کی پیش رفت</string>
     <string name="tile_dhikr">ذکر</string>
+
+    <string name="tile_open_app">ایپ کھولیں</string>
+    <string name="tile_todays_prayers">آج کی نمازیں</string>
+    <string name="tile_reset">دوبارہ ترتیب دیں</string>
+
+    <string name="action_back">واپس</string>
+    <string name="action_cancel">منسوخ</string>
+    <string name="action_reset">دوبارہ ترتیب دیں</string>
+    <string name="action_play">چلائیں</string>
+    <string name="action_pause">وقفہ</string>
+    <string name="action_start">شروع کریں</string>
+    <string name="action_resume">دوبارہ شروع</string>
+    <string name="action_stop">روکیں</string>
+
+    <string name="label_next_prayer">اگلی نماز</string>
+    <string name="label_prayers">نمازیں</string>
+    <string name="label_dhikr">ذکر</string>
+    <string name="label_streak">تسلسل</string>
+    <string name="label_progress">پیش رفت</string>
+    <string name="label_quran_audio">قرآن آڈیو</string>
+    <string name="label_ocean_drops">سمندر کے قطرے</string>
+    <string name="label_sync">ہم آہنگی</string>
+    <string name="sync_up_to_date">تازہ ترین</string>
+    <string name="sync_pending">%1$d زیرِ التوا</string>
+
+    <string name="prayer_status_pending">زیرِ التوا</string>
+    <string name="prayer_status_completed">ادا شدہ</string>
+
+    <string name="dhikr_mode_manual">دستی</string>
+    <string name="dhikr_mode_silent">خاموش</string>
+    <string name="dhikr_mode_guided">رہنمائی شدہ</string>
+    <string name="dhikr_preset_33_complete">٣٣ مکمل</string>
+    <string name="dhikr_preset_99_complete">٩٩ مکمل</string>
+    <string name="dhikr_session_complete">نشست مکمل</string>
+    <string name="dhikr_pace_slower">آہستہ</string>
+    <string name="dhikr_pace_faster">تیز</string>
+    <string name="dhikr_follow_pulse">سکون سے دھڑکن کے ساتھ چلیں۔</string>
+    <string name="dhikr_tap_to_count">گننے کے لیے ٹیپ کریں</string>
+    <string name="dhikr_start_new_question">ذکر کی نئی نشست شروع کریں؟</string>
+    <string name="dhikr_start_new">نئی شروع کریں</string>
+    <string name="dhikr_reset_question">نشست دوبارہ ترتیب دیں؟</string>
+    <string name="dhikr_take_your_time">اطمینان سے کریں</string>
+    <string name="dhikr_reflection_over_rushing">ذکر جلدی سے نہیں، غور و فکر سے بہتر ہے۔</string>
+    <string name="dhikr_keep_pace">رفتار برقرار رکھیں</string>
+    <string name="dhikr_steady_pace">یکساں رفتار</string>
+    <string name="dhikr_free">آزاد</string>
+    <string name="dhikr_pulse">دھڑکن %1$s</string>
+    <string name="dhikr_today_total">آج %1$d</string>
+
+    <string name="quran_playing_on_phone">چل رہا ہے: فون</string>
+    <string name="quran_playing_on_watch">چل رہا ہے: گھڑی</string>
+    <string name="quran_resume_last">آخری تلاوت دوبارہ شروع کریں</string>
+    <string name="quran_switch_output">آؤٹ پٹ بدلیں</string>
+    <string name="quran_listening_mode">سننے کا موڈ</string>
+    <string name="quran_watch_needs_download">گھڑی پر چلانے کے لیے ڈاؤن لوڈ شدہ آڈیو درکار ہے۔</string>
+    <string name="quran_output">آؤٹ پٹ</string>
+    <string name="quran_output_phone">فون / ڈیوائس</string>
+    <string name="quran_output_phone_selected">فون / ڈیوائس ✓</string>
+    <string name="quran_output_watch">گھڑی</string>
+    <string name="quran_output_watch_selected">گھڑی ✓</string>
+    <string name="quran_ayah">آیت %1$d</string>
+    <string name="quran_return_to_player">پلیئر پر واپس</string>
+    <string name="quran_status_finished">تلاوت مکمل</string>
+    <string name="quran_status_phone_unavailable">فون دستیاب نہیں</string>
+    <string name="quran_status_playing_phone">فون پر چل رہا ہے</string>
+    <string name="quran_status_playing_watch">گھڑی پر چل رہا ہے</string>
+
+    <string name="notif_channel_name">نماز کی یاد دہانیاں</string>
+    <string name="notif_channel_description">پاتھ آف نور کی نماز یاد دہانیاں</string>
+    <string name="notif_initial_title">%1$s کا وقت شروع ہو گیا</string>
+    <string name="notif_initial_body">%1$s کا وقت ہے</string>
+    <string name="notif_followup_title">%1$s ابھی باقی ہے</string>
+    <string name="notif_followup_body">آپ نے %1$s ابھی درج نہیں کی</string>
+    <string name="notif_snooze_title">%1$s کی یاد دہانی</string>
+    <string name="notif_snooze_body">ابھی باقی ہے</string>
+    <string name="notif_dhikr_body">مختصر ذکر کا وقفہ؟</string>
+    <string name="notif_mark_or_snooze">ادا شدہ نشان زد کریں یا بعد میں یاد دلائیں</string>
+    <string name="notif_open_dhikr">ذکر کھولیں</string>
+    <string name="notif_action_mark_prayed">ادا شدہ نشان زد کریں</string>
+    <string name="notif_action_snooze">بعد میں یاد دلائیں</string>
+    <string name="notif_action_open_app">ایپ کھولیں</string>
+    <string name="prayer_fallback_name">نماز</string>
 </resources>

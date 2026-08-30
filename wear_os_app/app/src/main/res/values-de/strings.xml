@@ -1,7 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- watch_app_name and tile_dhikr are identical in German; Android falls
-         back to values/ per key, so overriding them here would be noise. -->
+    <!-- Keys identical in German (watch_app_name, tile_dhikr, label_dhikr,
+         label_xp, action_pause, label_sync) are omitted: Android falls back to values/ per key. -->
     <string name="tile_next_prayer">Nächstes Gebet</string>
     <string name="tile_prayer_progress">Gebetsfortschritt</string>
+
+    <string name="tile_open_app">App öffnen</string>
+    <string name="tile_todays_prayers">Gebete heute</string>
+    <string name="tile_reset">Zurücksetzen</string>
+
+    <string name="action_back">Zurück</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_reset">Zurücksetzen</string>
+    <string name="action_play">Abspielen</string>
+    <string name="action_start">Starten</string>
+    <string name="action_resume">Fortsetzen</string>
+    <string name="action_stop">Beenden</string>
+
+    <string name="label_next_prayer">Nächstes Gebet</string>
+    <string name="label_prayers">Gebete</string>
+    <string name="label_streak">Serie</string>
+    <string name="label_progress">Fortschritt</string>
+    <string name="label_quran_audio">Koran-Audio</string>
+    <string name="label_ocean_drops">Ozeantropfen</string>
+    <string name="sync_up_to_date">Aktuell</string>
+    <string name="sync_pending">%1$d ausstehend</string>
+
+    <string name="prayer_status_pending">Ausstehend</string>
+    <string name="prayer_status_completed">Erledigt</string>
+
+    <string name="dhikr_mode_manual">Manuell</string>
+    <string name="dhikr_mode_silent">Still</string>
+    <string name="dhikr_mode_guided">Geführt</string>
+    <string name="dhikr_preset_33_complete">33 erreicht</string>
+    <string name="dhikr_preset_99_complete">99 erreicht</string>
+    <string name="dhikr_session_complete">Sitzung abgeschlossen</string>
+    <string name="dhikr_pace_slower">Langsamer</string>
+    <string name="dhikr_pace_faster">Schneller</string>
+    <string name="dhikr_follow_pulse">Folgen Sie dem Puls in Ruhe.</string>
+    <string name="dhikr_tap_to_count">Zum Zählen tippen</string>
+    <string name="dhikr_start_new_question">Neue Dhikr-Sitzung beginnen?</string>
+    <string name="dhikr_start_new">Neu beginnen</string>
+    <string name="dhikr_reset_question">Sitzung zurücksetzen?</string>
+    <string name="dhikr_take_your_time">Lassen Sie sich Zeit</string>
+    <string name="dhikr_reflection_over_rushing">Dhikr lebt mehr von Achtsamkeit als von Eile.</string>
+    <string name="dhikr_keep_pace">Tempo behalten</string>
+    <string name="dhikr_steady_pace">Ruhiges Tempo</string>
+    <string name="dhikr_free">Frei</string>
+    <string name="dhikr_pulse">Puls %1$s</string>
+    <string name="dhikr_today_total">Heute %1$d</string>
+
+    <string name="quran_playing_on_phone">Läuft auf: Telefon</string>
+    <string name="quran_playing_on_watch">Läuft auf: Uhr</string>
+    <string name="quran_resume_last">Letzte Rezitation fortsetzen</string>
+    <string name="quran_switch_output">Ausgabe wechseln</string>
+    <string name="quran_listening_mode">Hörmodus</string>
+    <string name="quran_watch_needs_download">Wiedergabe auf der Uhr erfordert heruntergeladene Audiodateien.</string>
+    <string name="quran_output">Ausgabe</string>
+    <string name="quran_output_phone">Telefon / Gerät</string>
+    <string name="quran_output_phone_selected">Telefon / Gerät ✓</string>
+    <string name="quran_output_watch">Uhr</string>
+    <string name="quran_output_watch_selected">Uhr ✓</string>
+    <string name="quran_ayah">Aya %1$d</string>
+    <string name="quran_return_to_player">Zurück zum Player</string>
+    <string name="quran_status_finished">Wiedergabe beendet</string>
+    <string name="quran_status_phone_unavailable">Telefon nicht erreichbar</string>
+    <string name="quran_status_playing_phone">Läuft auf dem Telefon</string>
+    <string name="quran_status_playing_watch">Läuft auf der Uhr</string>
+
+    <string name="notif_channel_name">Gebetserinnerungen</string>
+    <string name="notif_channel_description">Gebetserinnerungen von Path of Nūr</string>
+    <string name="notif_initial_title">Zeit für %1$s hat begonnen</string>
+    <string name="notif_initial_body">Zeit für %1$s</string>
+    <string name="notif_followup_title">%1$s steht noch aus</string>
+    <string name="notif_followup_body">Sie haben %1$s noch nicht erfasst</string>
+    <string name="notif_snooze_title">Erinnerung an %1$s</string>
+    <string name="notif_snooze_body">Steht noch aus</string>
+    <string name="notif_dhikr_body">Eine kurze Dhikr-Pause?</string>
+    <string name="notif_mark_or_snooze">Als gebetet markieren oder später erinnern</string>
+    <string name="notif_open_dhikr">Dhikr öffnen</string>
+    <string name="notif_action_mark_prayed">Als gebetet markieren</string>
+    <string name="notif_action_snooze">Später erinnern</string>
+    <string name="notif_action_open_app">App öffnen</string>
+    <string name="prayer_fallback_name">Gebet</string>
 </resources>

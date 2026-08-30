@@ -1,10 +1,14 @@
 package com.pathofnur.watch.ui.screens
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.Text
+import com.pathofnur.watch.R
 import com.pathofnur.watch.domain.QuranPlaybackCommand
 import com.pathofnur.watch.domain.QuranPlaybackSnapshot
+import com.pathofnur.watch.domain.QuranPlaybackSourceType
 import com.pathofnur.watch.domain.WatchAudioAvailabilitySnapshot
 import com.pathofnur.watch.ui.components.WatchStatCard
 
@@ -17,23 +21,34 @@ fun QuranPlayerScreen(
     onListeningMode: () -> Unit,
     onBack: () -> Unit
 ) {
-    WatchStatCard("Qur’an Audio", snapshot.surahName)
+    WatchStatCard(stringResource(R.string.label_quran_audio), snapshot.surahName)
     Text(snapshot.reciterName)
-    Text(if (snapshot.sourceType.name == "Phone") "Playing on: Phone" else "Playing on: Watch")
+    Text(
+        stringResource(
+            if (snapshot.sourceType == QuranPlaybackSourceType.Phone) {
+                R.string.quran_playing_on_phone
+            } else {
+                R.string.quran_playing_on_watch
+            }
+        )
+    )
     if (!snapshot.isPlaying) {
-        Chip(onClick = { onCommand(QuranPlaybackCommand.ResumeLast) }, label = { Text("Resume Last Recitation") })
+        Chip(
+            onClick = { onCommand(QuranPlaybackCommand.ResumeLast) },
+            label = { Text(stringResource(R.string.quran_resume_last)) }
+        )
     }
     Button(onClick = { onCommand(QuranPlaybackCommand.Previous) }) { Text("<<") }
     Button(onClick = { onCommand(if (snapshot.isPlaying) QuranPlaybackCommand.Pause else QuranPlaybackCommand.Play) }) {
-        Text(if (snapshot.isPlaying) "Pause" else "Play")
+        Text(stringResource(if (snapshot.isPlaying) R.string.action_pause else R.string.action_play))
     }
     Button(onClick = { onCommand(QuranPlaybackCommand.Next) }) { Text(">>") }
-    Chip(onClick = onOutput, label = { Text("Switch Output") })
+    Chip(onClick = onOutput, label = { Text(stringResource(R.string.quran_switch_output)) })
     if (snapshot.isPlaying || snapshot.positionSeconds > 0) {
-        Chip(onClick = onListeningMode, label = { Text("Listening Mode") })
+        Chip(onClick = onListeningMode, label = { Text(stringResource(R.string.quran_listening_mode)) })
     }
-    if (!availability.watchPlaybackAvailable && snapshot.sourceType.name == "Watch") {
-        Text("Watch playback requires downloaded audio.")
+    if (!availability.watchPlaybackAvailable && snapshot.sourceType == QuranPlaybackSourceType.Watch) {
+        Text(stringResource(R.string.quran_watch_needs_download))
     }
-    Chip(onClick = onBack, label = { Text("Back") })
+    Chip(onClick = onBack, label = { Text(stringResource(R.string.action_back)) })
 }

@@ -1,10 +1,12 @@
 package com.pathofnur.watch.ui.screens
 
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringResource
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.CompactChip
 import androidx.wear.compose.material.Text
+import com.pathofnur.watch.R
 import com.pathofnur.watch.domain.DhikrMode
 import com.pathofnur.watch.domain.DhikrInteractionMode
 import com.pathofnur.watch.domain.WatchDhikrSession
@@ -31,51 +33,61 @@ fun DhikrScreen(
     var confirmReset by remember { mutableStateOf(false) }
     var showPaceReminder by remember { mutableStateOf(false) }
 
-    WatchStatCard("Dhikr", "${session.currentCount}")
+    WatchStatCard(stringResource(R.string.label_dhikr), "${session.currentCount}")
     Chip(
         onClick = {
             if (session.currentCount > 0 && session.interactionMode != DhikrInteractionMode.ManualTap) pendingInteractionMode = DhikrInteractionMode.ManualTap else onInteractionMode(DhikrInteractionMode.ManualTap)
         },
-        label = { Text("Manual") }
+        label = { Text(stringResource(R.string.dhikr_mode_manual)) }
     )
     Chip(
         onClick = {
             if (session.currentCount > 0 && session.interactionMode != DhikrInteractionMode.SilentTap) pendingInteractionMode = DhikrInteractionMode.SilentTap else onInteractionMode(DhikrInteractionMode.SilentTap)
         },
-        label = { Text("Silent") }
+        label = { Text(stringResource(R.string.dhikr_mode_silent)) }
     )
     Chip(
         onClick = {
             if (session.currentCount > 0 && session.interactionMode != DhikrInteractionMode.GuidedPulse) pendingInteractionMode = DhikrInteractionMode.GuidedPulse else onInteractionMode(DhikrInteractionMode.GuidedPulse)
         },
-        label = { Text("Guided") }
+        label = { Text(stringResource(R.string.dhikr_mode_guided)) }
     )
     if (session.targetCount != null) {
         Text("${minOf(session.currentCount, session.targetCount)} / ${session.targetCount}")
     }
     if (session.completed) {
-        Text(if (session.mode == DhikrMode.Preset33) "33 complete" else if (session.mode == DhikrMode.Preset99) "99 complete" else "Session complete")
+        Text(
+            stringResource(
+                when (session.mode) {
+                    DhikrMode.Preset33 -> R.string.dhikr_preset_33_complete
+                    DhikrMode.Preset99 -> R.string.dhikr_preset_99_complete
+                    DhikrMode.Free -> R.string.dhikr_session_complete
+                }
+            )
+        )
     }
     if (session.interactionMode == DhikrInteractionMode.GuidedPulse) {
-        Text("Pulse ${String.format("%.2fs", session.pulseIntervalSeconds ?: 2.5).replace(".00", "")}")
-        Chip(onClick = onPulseSlower, label = { Text("Slower") })
+        Text(stringResource(R.string.dhikr_pulse, String.format("%.2fs", session.pulseIntervalSeconds ?: 2.5).replace(".00", "")))
+        Chip(onClick = onPulseSlower, label = { Text(stringResource(R.string.dhikr_pace_slower)) })
         Chip(onClick = {
             if (!onPulseFaster()) {
                 showPaceReminder = true
             }
-        }, label = { Text("Faster") })
+        }, label = { Text(stringResource(R.string.dhikr_pace_faster)) })
         if (session.isPulseRunning) {
-            Button(onClick = onGuidedPause) { Text("Pause") }
+            Button(onClick = onGuidedPause) { Text(stringResource(R.string.action_pause)) }
         } else {
-            Button(onClick = onGuidedStart) { Text(if (session.currentCount == 0) "Start" else "Resume") }
+            Button(onClick = onGuidedStart) {
+                Text(stringResource(if (session.currentCount == 0) R.string.action_start else R.string.action_resume))
+            }
         }
-        CompactChip(onClick = onGuidedStop, label = { Text("Stop") })
-        Text("Follow the pulse calmly.")
+        CompactChip(onClick = onGuidedStop, label = { Text(stringResource(R.string.action_stop)) })
+        Text(stringResource(R.string.dhikr_follow_pulse))
     } else {
-        Button(onClick = onIncrement) { Text("Tap to count") }
+        Button(onClick = onIncrement) { Text(stringResource(R.string.dhikr_tap_to_count)) }
     }
     if (pendingMode != null || pendingInteractionMode != null) {
-        Text("Start a new dhikr session?")
+        Text(stringResource(R.string.dhikr_start_new_question))
         CompactChip(
             onClick = {
                 pendingMode?.let(onMode)
@@ -83,35 +95,35 @@ fun DhikrScreen(
                 pendingMode = null
                 pendingInteractionMode = null
             },
-            label = { Text("Start New") }
+            label = { Text(stringResource(R.string.dhikr_start_new)) }
         )
         CompactChip(onClick = {
             pendingMode = null
             pendingInteractionMode = null
-        }, label = { Text("Cancel") })
+        }, label = { Text(stringResource(R.string.action_cancel)) })
     } else if (confirmReset) {
-        Text("Reset session?")
+        Text(stringResource(R.string.dhikr_reset_question))
         CompactChip(
             onClick = {
                 onReset()
                 confirmReset = false
             },
-            label = { Text("Reset") }
+            label = { Text(stringResource(R.string.action_reset)) }
         )
-        CompactChip(onClick = { confirmReset = false }, label = { Text("Cancel") })
+        CompactChip(onClick = { confirmReset = false }, label = { Text(stringResource(R.string.action_cancel)) })
     } else if (showPaceReminder) {
-        Text("Take your time")
-        Text("Dhikr is better with reflection than rushing.")
+        Text(stringResource(R.string.dhikr_take_your_time))
+        Text(stringResource(R.string.dhikr_reflection_over_rushing))
         CompactChip(
             onClick = { showPaceReminder = false },
-            label = { Text("Keep pace") }
+            label = { Text(stringResource(R.string.dhikr_keep_pace)) }
         )
         CompactChip(
             onClick = {
                 onPulseResetSteady()
                 showPaceReminder = false
             },
-            label = { Text("Steady pace") }
+            label = { Text(stringResource(R.string.dhikr_steady_pace)) }
         )
     } else {
         Chip(
@@ -130,10 +142,10 @@ fun DhikrScreen(
             onClick = {
                 if (session.currentCount > 0 && session.mode != DhikrMode.Free) pendingMode = DhikrMode.Free else onMode(DhikrMode.Free)
             },
-            label = { Text("Free") }
+            label = { Text(stringResource(R.string.dhikr_free)) }
         )
-        CompactChip(onClick = { if (session.currentCount > 0) confirmReset = true else onReset() }, label = { Text("Reset") })
+        CompactChip(onClick = { if (session.currentCount > 0) confirmReset = true else onReset() }, label = { Text(stringResource(R.string.action_reset)) })
     }
-    Text("Today $todayTotal")
-    Chip(onClick = onBack, label = { Text("Back") })
+    Text(stringResource(R.string.dhikr_today_total, todayTotal))
+    Chip(onClick = onBack, label = { Text(stringResource(R.string.action_back)) })
 }
