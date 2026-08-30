@@ -10,6 +10,7 @@ import 'app_localizations_bn.dart';
 import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_fa.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_ha.dart';
 import 'app_localizations_hi.dart';
 import 'app_localizations_id.dart';
@@ -113,6 +114,7 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('fa'),
     Locale('fa', 'AF'),
+    Locale('fr'),
     Locale('ha'),
     Locale('hi'),
     Locale('id'),
@@ -5907,6 +5909,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'German'**
   String get languageGerman;
+
+  /// No description provided for @languageFrench.
+  ///
+  /// In en, this message translates to:
+  /// **'French'**
+  String get languageFrench;
 
   /// No description provided for @languageFarsi.
   ///
@@ -63155,6 +63163,12 @@ abstract class AppLocalizations {
   /// **'German (Deutsch)'**
   String get onboardingLanguageGerman;
 
+  /// No description provided for @onboardingLanguageFrench.
+  ///
+  /// In en, this message translates to:
+  /// **'French (Français)'**
+  String get onboardingLanguageFrench;
+
   /// No description provided for @onboardingLanguageUrdu.
   ///
   /// In en, this message translates to:
@@ -71183,6 +71197,7 @@ class _AppLocalizationsDelegate
     'de',
     'en',
     'fa',
+    'fr',
     'ha',
     'hi',
     'id',
@@ -71224,6 +71239,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'fa':
       return AppLocalizationsFa();
+    case 'fr':
+      return AppLocalizationsFr();
     case 'ha':
       return AppLocalizationsHa();
     case 'hi':

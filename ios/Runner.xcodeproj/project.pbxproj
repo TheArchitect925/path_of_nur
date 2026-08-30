@@ -224,6 +224,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		000000003F74F221DA8077C8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		00000000515D8D5BE7EB9B8B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		000000005B25B6F9CE701850 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0000000076494C09D80B37FC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		000E21735A9118F437E3ED34 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03B96E21B615785805E99AEA /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		082F37242538FF6A06B401B9 /* WatchUtilityScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchUtilityScreen.swift; sourceTree = "<group>"; };
@@ -1009,6 +1013,7 @@
 				de,
 				ar,
 				ur,
+				fr,
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
@@ -1407,6 +1412,7 @@
 				000000006E79C3AEFD10AB6F /* de */,
 				00000000381CA36139C69CBB /* ar */,
 				00000000239348C62CA102AB /* ur */,
+				0000000076494C09D80B37FC /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1418,6 +1424,7 @@
 				0000000070299693B7B12BEB /* de */,
 				00000000468A9DB134639793 /* ar */,
 				000000003103CAC24D4E6B41 /* ur */,
+				000000005B25B6F9CE701850 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1429,6 +1436,7 @@
 				0000000034CD13B6E2E3C5EB /* de */,
 				0000000069AC7E14F7873A08 /* ar */,
 				000000004F7C9E03D4C57865 /* ur */,
+				00000000515D8D5BE7EB9B8B /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1440,6 +1448,7 @@
 				000000003896C470CFB2DD25 /* de */,
 				000000002941653FFE1CCE7F /* ar */,
 				00000000157C3763D75F1279 /* ur */,
+				000000003F74F221DA8077C8 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

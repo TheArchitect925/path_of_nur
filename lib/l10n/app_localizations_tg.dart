@@ -3431,6 +3431,9 @@ class AppLocalizationsTg extends AppLocalizations {
   String get languageGerman => 'олмонӣ';
 
   @override
+  String get languageFrench => 'Фаронсавӣ';
+
+  @override
   String get languageFarsi => 'форсӣ (форсӣ)';
 
   @override
@@ -38111,6 +38114,9 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get onboardingLanguageGerman => 'Олмонӣ (Deutsch)';
+
+  @override
+  String get onboardingLanguageFrench => 'Фаронсавӣ (Français)';
 
   @override
   String get onboardingLanguageUrdu => 'Урду (اردو)';

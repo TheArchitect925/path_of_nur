@@ -1193,6 +1193,8 @@ class SettingsPage extends ConsumerWidget {
             _LanguageRow(l10n.languageArabic, const Locale('ar')),
             const Divider(height: 1),
             _LanguageRow(l10n.languageUrdu, const Locale('ur')),
+            const Divider(height: 1),
+            _LanguageRow(l10n.languageFrench, const Locale('fr')),
             const SizedBox(height: 8),
             Text(
               l10n.profileLanguageExpandSubtitle,

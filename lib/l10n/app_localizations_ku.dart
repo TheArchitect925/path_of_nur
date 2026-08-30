@@ -3414,6 +3414,9 @@ class AppLocalizationsKu extends AppLocalizations {
   String get languageGerman => 'German';
 
   @override
+  String get languageFrench => 'Fransî';
+
+  @override
   String get languageFarsi => 'Persian (Farsi)';
 
   @override
@@ -38037,6 +38040,9 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get onboardingLanguageGerman => 'ئەڵمانی (Deutsch)';
+
+  @override
+  String get onboardingLanguageFrench => 'Fransî (Français)';
 
   @override
   String get onboardingLanguageUrdu => 'ئوردوو (اردو)';

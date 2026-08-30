@@ -9,6 +9,7 @@ const releaseSupportedLocales = <Locale>[
   Locale('de'),
   Locale('ar'),
   Locale('ur'),
+  Locale('fr'),
 ];
 
 Locale? resolveStoredAppLocale(LocalStore store) {

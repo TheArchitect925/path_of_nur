@@ -39,7 +39,10 @@ void main() {
       notifier.setLocale(const Locale('ur'));
       expect(container.read(appLocaleProvider), const Locale('ur'));
 
-      notifier.setLocale(const Locale('fr', 'FR'));
+      notifier.setLocale(const Locale('fr'));
+      expect(container.read(appLocaleProvider), const Locale('fr'));
+
+      notifier.setLocale(const Locale('ja', 'JP'));
       expect(container.read(appLocaleProvider), isNull);
     },
   );
@@ -103,11 +106,11 @@ void main() {
       expect(Directionality.of(urduContext), TextDirection.rtl);
       expect(tester.takeException(), isNull);
 
-      localeNotifier.setLocale(const Locale('fr', 'FR'));
+      localeNotifier.setLocale(const Locale('ja', 'JP'));
       await pumpRouteFrames(tester);
 
       final fallbackContext = tester.element(find.byType(SettingsPage));
-      expect(Localizations.localeOf(fallbackContext).languageCode, isNot('fr'));
+      expect(Localizations.localeOf(fallbackContext).languageCode, isNot('ja'));
       expect(tester.takeException(), isNull);
     },
   );
@@ -146,6 +149,7 @@ void main() {
       const Locale('en'),
       const Locale('de'),
       const Locale('ar'),
+      const Locale('fr'),
     ];
     for (final locale in localeSteps) {
       localeNotifier.setLocale(locale);
@@ -170,11 +174,11 @@ void main() {
       }
     }
 
-    localeNotifier.setLocale(const Locale('fr', 'FR'));
+    localeNotifier.setLocale(const Locale('ja', 'JP'));
     await pumpRouteFrames(tester);
     final fallbackLocale =
         container.read(appLocaleProvider) ?? const Locale('en');
-    expect(fallbackLocale.languageCode, isNot('fr'));
+    expect(fallbackLocale.languageCode, isNot('ja'));
 
     router.go('/settings');
     await pumpRouteFrames(tester);

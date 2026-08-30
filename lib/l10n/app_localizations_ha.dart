@@ -3426,6 +3426,9 @@ class AppLocalizationsHa extends AppLocalizations {
   String get languageGerman => 'Jamusanci';
 
   @override
+  String get languageFrench => 'Faransanci';
+
+  @override
   String get languageFarsi => 'Farisa (Farsi)';
 
   @override
@@ -38084,6 +38087,9 @@ class AppLocalizationsHa extends AppLocalizations {
 
   @override
   String get onboardingLanguageGerman => 'Jamusanci (Deutsch)';
+
+  @override
+  String get onboardingLanguageFrench => 'Faransanci (Français)';
 
   @override
   String get onboardingLanguageUrdu => 'Yaren Urdu (اردو)';

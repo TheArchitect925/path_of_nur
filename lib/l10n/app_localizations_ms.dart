@@ -3404,6 +3404,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get languageGerman => 'Jerman';
 
   @override
+  String get languageFrench => 'Perancis';
+
+  @override
   String get languageFarsi => 'Parsi (Farsi)';
 
   @override
@@ -38012,6 +38015,9 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get onboardingLanguageGerman => 'Bahasa Jerman (Deutsch)';
+
+  @override
+  String get onboardingLanguageFrench => 'Perancis (Français)';
 
   @override
   String get onboardingLanguageUrdu => 'Bahasa Urdu (اردو)';

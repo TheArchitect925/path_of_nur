@@ -3401,6 +3401,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get languageGerman => 'Almanca';
 
   @override
+  String get languageFrench => 'Fransızca';
+
+  @override
   String get languageFarsi => 'Farsça (Farsça)';
 
   @override
@@ -38001,6 +38004,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get onboardingLanguageGerman => 'Almanca (Deutsch)';
+
+  @override
+  String get onboardingLanguageFrench => 'Fransızca (Français)';
 
   @override
   String get onboardingLanguageUrdu => 'Urduca (اردو)';

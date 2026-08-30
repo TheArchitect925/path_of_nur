@@ -1521,6 +1521,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         label: l10n.onboardingLanguageUrdu,
         locale: const Locale('ur'),
       ),
+      _LanguageChoice(
+        id: 'fr',
+        label: l10n.onboardingLanguageFrench,
+        locale: const Locale('fr'),
+      ),
     ];
   }
 
@@ -1534,6 +1539,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         return const _LanguageChoice(id: 'ar', label: '', locale: Locale('ar'));
       case 'ur':
         return const _LanguageChoice(id: 'ur', label: '', locale: Locale('ur'));
+      case 'fr':
+        return const _LanguageChoice(id: 'fr', label: '', locale: Locale('fr'));
       default:
         return const _LanguageChoice(id: 'en', label: '', locale: Locale('en'));
     }

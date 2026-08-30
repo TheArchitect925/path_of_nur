@@ -3373,6 +3373,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get languageGerman => 'آلمانی';
 
   @override
+  String get languageFrench => 'فرانسوی';
+
+  @override
   String get languageFarsi => 'فارسی (فارسی)';
 
   @override
@@ -37918,6 +37921,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get onboardingLanguageGerman => 'آلمانی (Deutsch)';
 
   @override
+  String get onboardingLanguageFrench => 'فرانسوی (Français)';
+
+  @override
   String get onboardingLanguageUrdu => 'اردو (اردو)';
 
   @override
@@ -45919,6 +45925,9 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get languageGerman => 'آلمانی';
+
+  @override
+  String get languageFrench => 'فرانسوی';
 
   @override
   String get languageFarsi => 'فارسی (فارسی)';
@@ -80461,6 +80470,9 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get onboardingLanguageGerman => 'آلمانی (Deutsch)';
+
+  @override
+  String get onboardingLanguageFrench => 'فرانسوی (Français)';
 
   @override
   String get onboardingLanguageUrdu => 'اردو (اردو)';
