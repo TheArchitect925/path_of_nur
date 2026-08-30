@@ -71,16 +71,14 @@ void main() {
       'lib/features/learn/quran/presentation/quran_search_page.dart',
       // Sort order over the surah list.
       'lib/features/learn/quran/presentation/quran_surah_explorer_page.dart',
+      // Chooses which control panel is expanded — a required one-of-N.
+      'lib/features/learn/hadith/presentation/widgets/hadith_browse_helpers.dart',
       // Listen / practice / memory over the same surah — a mode, not a place.
       'lib/features/learn/salah/presentation/salah_surah_detail_page.dart',
 
       // --- Still to unpack into destination lists (Phase L4). ---
       'lib/features/learn/presentation/pages/learn_salah_hub_page.dart',
       'lib/features/learn/prophets/presentation/prophets_page.dart',
-
-      // --- Optional filters that should become FilterChipRow (Phase L4). ---
-      'lib/features/learn/glossary/presentation/glossary_page.dart',
-      'lib/features/learn/hadith/presentation/widgets/hadith_browse_helpers.dart',
     };
 
     _expectNoDrift(

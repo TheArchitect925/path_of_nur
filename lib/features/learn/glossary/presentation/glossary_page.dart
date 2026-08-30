@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
+import '../../../../shared/widgets/display/filter_chip_row.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/glossary_catalog.dart';
@@ -72,17 +72,23 @@ class _GlossaryPageState extends ConsumerState<GlossaryPage> {
                 },
               ),
               const SizedBox(height: 8),
-              SegmentedPillControl<GlossaryCategory?>(
-                items: const [
-                  null,
-                  GlossaryCategory.practice,
-                  GlossaryCategory.sources,
-                  GlossaryCategory.places,
+              // An optional filter over one list: FilterChipRow clears the
+              // selection when the active chip is tapped again, which is what
+              // the explicit "all" segment used to be for.
+              FilterChipRow<GlossaryCategory>(
+                items: [
+                  for (final category in const [
+                    GlossaryCategory.practice,
+                    GlossaryCategory.sources,
+                    GlossaryCategory.places,
+                  ])
+                    FilterChipItem(
+                      value: category,
+                      label: localizedGlossaryCategoryLabel(context, category),
+                    ),
                 ],
-                selectedItem: _selectedCategory,
-                labelBuilder: (category) =>
-                    localizedGlossaryCategoryLabel(context, category),
-                onChanged: (category) {
+                selected: _selectedCategory,
+                onSelected: (category) {
                   setState(() => _selectedCategory = category);
                 },
               ),
