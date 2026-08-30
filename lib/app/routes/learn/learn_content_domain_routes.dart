@@ -320,8 +320,11 @@ List<RouteBase> buildLearnContentDomainRoutes() {
     GoRoute(
       path: '/learn/hadith',
       name: 'learnHadithLanding',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: HadithLandingPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: HadithLandingPage(
+          initialTabName: state.uri.queryParameters['section'],
+        ),
+      ),
     ),
     GoRoute(
       path: '/learn/hadith/browse',

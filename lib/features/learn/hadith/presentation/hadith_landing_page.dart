@@ -8,10 +8,11 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../journey/application/journey_progression_provider.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/hadith_daily_reflection_service.dart';
 import '../application/hadith_foundation_repository.dart';
@@ -33,7 +34,8 @@ class HadithLandingPage extends ConsumerStatefulWidget {
 }
 
 class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
-  _HadithTab _selectedTab = _HadithTab.themes;
+  late final _HadithTab _selectedTab =
+      _parseInitialTab(widget.initialTabName) ?? _HadithTab.themes;
   late final QuranQuote _entryQuote;
 
   @override
@@ -43,10 +45,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     // trigger an assignment once after the first frame; the bundle provider no
     // longer performs this side effect itself.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final initialTab = _parseInitialTab(widget.initialTabName);
-      if (initialTab != null) {
-        setState(() => _selectedTab = initialTab);
-      }
       final entries = ref.read(hadithEntriesProvider);
       ref
           .read(hadithDailyReflectionControllerProvider.notifier)
@@ -98,13 +96,26 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
       subtitle: l10n.hadithPageSubtitle,
       quote: _entryQuote,
       children: [
-        SegmentedPillControl<_HadithTab>(
-          items: _HadithTab.values,
-          selectedItem: _selectedTab,
-          labelBuilder: (tab) => _tabLabel(tab, l10n),
-          onChanged: (tab) => setState(() => _selectedTab = tab),
-        ),
-        const SizedBox(height: 12),
+        // Themes is the landing; the other five are destinations rather than
+        // segments you have to know to look behind.
+        if (widget.initialTabName == null) ...[
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final tab in _HadithTab.values)
+                if (tab != _HadithTab.themes)
+                  CompactListTile(
+                    title: _tabLabel(tab, l10n),
+                    leading: HubLeadingIcon(_sectionIcon(tab)),
+                    onTap: () => context.pushNamed(
+                      'learnHadithLanding',
+                      queryParameters: {'section': tab.name},
+                    ),
+                  ),
+            ],
+          ),
+          const SizedBox(height: 12),
+        ],
         if (_selectedTab == _HadithTab.themes) ...[
           if (dailyBundle.entry != null) ...[
             _DailyHadithHero(bundle: dailyBundle),
@@ -665,6 +676,23 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
         if (index < themes.length - 1) const SizedBox(height: 10),
       ],
     ];
+  }
+
+  IconData _sectionIcon(_HadithTab tab) {
+    switch (tab) {
+      case _HadithTab.themes:
+        return Icons.category_rounded;
+      case _HadithTab.collections:
+        return Icons.library_books_rounded;
+      case _HadithTab.saved:
+        return Icons.bookmark_rounded;
+      case _HadithTab.daily:
+        return Icons.today_rounded;
+      case _HadithTab.review:
+        return Icons.replay_rounded;
+      case _HadithTab.paths:
+        return Icons.route_rounded;
+    }
   }
 
   String _tabLabel(_HadithTab tab, AppLocalizations l10n) {
