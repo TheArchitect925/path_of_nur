@@ -82,6 +82,7 @@ class _ReaderPlaybackHarness extends ConsumerWidget {
             showTranslation: true,
             showTransliteration: false,
             showWordByWord: false,
+            wordGlossary: const {},
             showActions: false,
             hifzRevealMode: HifzRevealMode.full,
             arabicFontSize: 24,

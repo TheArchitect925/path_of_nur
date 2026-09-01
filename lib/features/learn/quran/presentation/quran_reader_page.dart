@@ -38,7 +38,9 @@ import '../application/quran_audio_resilience.dart';
 import '../application/quran_personalization_provider.dart';
 import '../application/quran_player_controller.dart';
 import '../application/quran_spiritual_moment_provider.dart';
+import '../application/quran_reader_level_controller.dart';
 import '../application/quran_words_provider.dart';
+import '../domain/quran_reader_level.dart';
 import '../application/quran_reader_follow_mode_coordinator.dart';
 import '../application/quran_reader_playback_controller.dart';
 import '../data/quran_translation_registry.dart';
@@ -175,6 +177,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     _readerControlsExpanded = store.getBool(_controlsExpandedKey) ?? true;
     _recentReaderSearches = _loadRecentReaderSearches(store);
     _resumeReadingSession();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _maybeAnnounceSeededReaderLevel();
+    });
   }
 
   @override
@@ -473,6 +479,14 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       scrollController: _scrollController,
       headerIcon: Icons.menu_book_rounded,
       headerActions: [
+        _ReaderLevelChip(
+          level: settings.readerLevel,
+          tooltip: l10n.quranReaderLevelChipTooltip,
+          label: settings.readerLevel == null
+              ? null
+              : quranReaderLevelTitle(l10n, settings.readerLevel!),
+          onTap: _showReaderLevelSheet,
+        ),
         IconButton(
           tooltip: l10n.accessibilitySourcesAndLicensing,
           onPressed: () => _showSourcesInfoSheet(context),
@@ -4130,6 +4144,80 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       ),
     );
     setState(() {});
+  }
+
+  void _maybeAnnounceSeededReaderLevel() {
+    final seeded = ref.read(quranReaderLevelControllerProvider).maybeSeed();
+    if (seeded == null || !mounted) return;
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          l10n.quranReaderLevelSeededNote(quranReaderLevelTitle(l10n, seeded)),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showReaderLevelSheet() async {
+    final l10n = AppLocalizations.of(context);
+    final chosen = await showModalBottomSheet<QuranReaderLevel>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        final current = ref.read(quranReaderSettingsProvider).readerLevel;
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.quranReaderLevelSheetTitle,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  l10n.quranReaderLevelSheetSubtitle,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    height: 1.35,
+                    color: QuranPresentationStyle.quranSupportTextColor(
+                      sheetContext,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                for (final level in QuranReaderLevel.values) ...[
+                  _ReaderLevelOptionTile(
+                    key: ValueKey('quran-reader-level-option-${level.name}'),
+                    title: quranReaderLevelTitle(l10n, level),
+                    body: switch (level) {
+                      QuranReaderLevel.newReader =>
+                        l10n.quranReaderLevelNewReaderBody,
+                      QuranReaderLevel.learning =>
+                        l10n.quranReaderLevelLearningBody,
+                      QuranReaderLevel.fluent =>
+                        l10n.quranReaderLevelFluentBody,
+                    },
+                    selected: current == level,
+                    onTap: () => Navigator.of(sheetContext).pop(level),
+                  ),
+                  const SizedBox(height: 8),
+                ],
+              ],
+            ),
+          ),
+        );
+      },
+    );
+    if (chosen == null || !mounted) return;
+    ref.read(quranReaderLevelControllerProvider).apply(chosen);
   }
 
   Future<void> _onWordTap(
