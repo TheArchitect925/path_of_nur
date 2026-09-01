@@ -59,6 +59,8 @@ import '../data/quran_repository.dart';
 import '../data/quran_word_glossary.dart';
 import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
+import '../data/quran_guided_passage_readiness_data.dart';
+import '../data/quran_short_surah_readiness_data.dart';
 import '../domain/quran_khatm_models.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_audio_resilience_models.dart';
@@ -576,6 +578,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             ),
           ),
           SliverToBoxAdapter(child: _buildSurahEndFooter(context, l10n)),
+          if (_surahPracticeRoute() != null)
+            SliverToBoxAdapter(child: _buildPracticeSurahCard(context, l10n)),
           const SliverToBoxAdapter(child: SizedBox(height: 96)),
         ],
       ],
@@ -4274,6 +4278,68 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
           },
         );
       },
+    );
+  }
+
+  /// The guided-practice ladder covers Al-Fatihah (guided passages) and the
+  /// seeded short surahs. When the open surah is one of them, the reader
+  /// bridges into step-by-step practice with the bundled audio.
+  (String, Map<String, String>)? _surahPracticeRoute() {
+    if (quranGuidedPassageReadinessSeeds.any(
+      (seed) => seed.ref.surah == widget.surahNumber,
+    )) {
+      return ('quranArabicReadiness', const <String, String>{});
+    }
+    if (quranShortSurahReadinessSeeds.any(
+      (seed) => seed.surahNumber == widget.surahNumber,
+    )) {
+      return (
+        'quranArabicShortSurahs',
+        <String, String>{'surah': widget.surahNumber.toString()},
+      );
+    }
+    return null;
+  }
+
+  Widget _buildPracticeSurahCard(BuildContext context, AppLocalizations l10n) {
+    final route = _surahPracticeRoute();
+    if (route == null) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+      child: PremiumCard(
+        child: Row(
+          children: [
+            const Icon(Icons.record_voice_over_rounded, size: 22),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.quranReaderPracticeSurahTitle,
+                    style: const TextStyle(fontWeight: FontWeight.w800),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    l10n.quranReaderPracticeSurahBody,
+                    style: const TextStyle(
+                      fontSize: 12.5,
+                      color: Color(0xFF6A5A4A),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            FilledButton.tonal(
+              key: const ValueKey('quran-reader-practice-surah-action'),
+              onPressed: () =>
+                  context.pushNamed(route.$1, queryParameters: route.$2),
+              child: Text(l10n.quranReaderPracticeSurahAction),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

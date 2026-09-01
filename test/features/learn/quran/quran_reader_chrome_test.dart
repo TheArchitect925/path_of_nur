@@ -174,4 +174,32 @@ void main() {
     );
     await drainReader(tester);
   });
+
+  testWidgets('ladder surahs carry the practice bridge; others do not', (
+    tester,
+  ) async {
+    await openReader(tester, surah: 112);
+    expect(
+      find.byKey(
+        const ValueKey('quran-reader-practice-surah-action'),
+        skipOffstage: false,
+      ),
+      findsOneWidget,
+    );
+    await drainReader(tester);
+  });
+
+  testWidgets('a surah outside the ladder shows no practice bridge', (
+    tester,
+  ) async {
+    await openReader(tester, surah: 3);
+    expect(
+      find.byKey(
+        const ValueKey('quran-reader-practice-surah-action'),
+        skipOffstage: false,
+      ),
+      findsNothing,
+    );
+    await drainReader(tester);
+  });
 }
