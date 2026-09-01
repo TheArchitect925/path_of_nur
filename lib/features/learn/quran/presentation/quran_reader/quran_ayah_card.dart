@@ -16,6 +16,7 @@ class QuranAyahCard extends StatefulWidget {
     required this.showTranslation,
     required this.showTransliteration,
     required this.showWordByWord,
+    required this.wordGlossary,
     required this.showActions,
     required this.hifzRevealMode,
     required this.arabicFontSize,
@@ -55,6 +56,7 @@ class QuranAyahCard extends StatefulWidget {
   final bool showTranslation;
   final bool showTransliteration;
   final bool showWordByWord;
+  final Map<String, QuranWordGloss> wordGlossary;
   final bool showActions;
   final HifzRevealMode hifzRevealMode;
   final double arabicFontSize;
@@ -307,7 +309,11 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                   Wrap(
                     spacing: 6,
                     runSpacing: 6,
-                    children: buildWordGlosses(widget.ayah.arabic)
+                    children:
+                        buildWordGlosses(
+                              widget.ayah.arabic,
+                              glossary: widget.wordGlossary,
+                            )
                         .map(
                           (word) => InkWell(
                             borderRadius: BorderRadius.circular(12),

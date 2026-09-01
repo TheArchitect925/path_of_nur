@@ -38,6 +38,7 @@ import '../application/quran_audio_resilience.dart';
 import '../application/quran_personalization_provider.dart';
 import '../application/quran_player_controller.dart';
 import '../application/quran_spiritual_moment_provider.dart';
+import '../application/quran_words_provider.dart';
 import '../application/quran_reader_follow_mode_coordinator.dart';
 import '../application/quran_reader_playback_controller.dart';
 import '../data/quran_translation_registry.dart';
@@ -4542,6 +4543,10 @@ class _QuranReaderAyahListItem extends ConsumerWidget {
       quranThemesForVerseProvider((ayah.surahNumber, ayah.ayahNumber)),
     );
 
+    final wordGlossary =
+        ref.watch(quranWordGlossaryProvider).valueOrNull ??
+        const <String, QuranWordGloss>{};
+
     return QuranAyahCard(
       ayah: ayah,
       isHighlighted: isHighlighted,
@@ -4556,6 +4561,7 @@ class _QuranReaderAyahListItem extends ConsumerWidget {
       showTranslation: showTranslation,
       showTransliteration: showTransliteration,
       showWordByWord: showWordByWord,
+      wordGlossary: wordGlossary,
       showActions: showActions,
       hifzRevealMode: hifzRevealMode,
       arabicFontSize: arabicFontSize,
