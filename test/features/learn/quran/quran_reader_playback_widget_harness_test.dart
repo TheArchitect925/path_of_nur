@@ -3,7 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_providers.dart';
-import 'package:path_of_nur/features/learn/quran/application/quran_reference_graph_provider.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_reference_models.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
@@ -143,28 +142,16 @@ void main() {
           isHighlighted: false,
           isNowPlaying: true,
           activeWordIndex: 1,
-          isBookmarked: false,
-          isMarkedForMemorization: false,
-          notesCount: 0,
-          onBookmark: () {},
-          onAddNote: () {},
           showArabic: true,
           showTranslation: true,
           showTransliteration: true,
           showWordByWord: false,
           wordGlossary: const {},
-          showActions: false,
           hifzRevealMode: HifzRevealMode.full,
           arabicFontSize: 24,
           transliterationFontSize: 15,
           translationFontSize: 14,
           harakatColor: null,
-          resolvedExplanation: null,
-          actionRecommendation: null,
-          spiritualMomentBundle: null,
-          personalizedRecommendation: null,
-          contextualLinks: const [],
-          themeTopics: const [],
           readerSearchQuery: '',
           readerSearchMatchField: null,
           readerSearchTranslationHighlights: const [],
@@ -172,10 +159,7 @@ void main() {
           readerSearchArabicHighlights: const [],
           studyMode: QuranReaderStudyMode.reading,
           onTap: () {},
-          onPlayAyah: () {},
-          onToggleMemorization: () {},
           onPlayWord: (_) async {},
-          onMistakeCheckpoint: () {},
         ),
       ),
     );
@@ -193,265 +177,4 @@ void main() {
     );
     expect(hasHighlightedSpan, isTrue);
   });
-
-  testWidgets('ayah card learn more chip opens explanation sheet first', (
-    tester,
-  ) async {
-    const ayah = QuranAyah(
-      surahNumber: 2,
-      ayahNumber: 153,
-      arabic: 'يَا أَيُّهَا الَّذِينَ آمَنُوا',
-      transliteration: 'Ya ayyuhalladhina amanu',
-      translation: 'O you who have believed...',
-    );
-
-    await tester.pumpWidget(
-      await wrapHarness(
-        QuranAyahCard(
-          ayah: ayah,
-          isHighlighted: false,
-          isNowPlaying: false,
-          activeWordIndex: null,
-          isBookmarked: false,
-          isMarkedForMemorization: false,
-          notesCount: 0,
-          onBookmark: () {},
-          onAddNote: () {},
-          showArabic: true,
-          showTranslation: true,
-          showTransliteration: true,
-          showWordByWord: false,
-          wordGlossary: const {},
-          showActions: false,
-          hifzRevealMode: HifzRevealMode.full,
-          arabicFontSize: 24,
-          transliterationFontSize: 15,
-          translationFontSize: 14,
-          harakatColor: null,
-          resolvedExplanation: null,
-          actionRecommendation: null,
-          spiritualMomentBundle: null,
-          personalizedRecommendation: null,
-          contextualLinks: const [
-            QuranRelatedKnowledgeLink(
-              id: 'hadith-test',
-              title: 'Patience in difficulty',
-              subtitle: 'Sahih Muslim',
-              category: QuranRelatedKnowledgeCategory.hadith,
-              knowledgeType: QuranKnowledgeType.hadith,
-              connectionStrength: QuranConnectionStrength.direct,
-              routeName: 'learnHadithLanding',
-              relationReason:
-                  'This Hadith reinforces the same lesson of patience and seeking help through worship.',
-            ),
-          ],
-          themeTopics: const [],
-          readerSearchQuery: '',
-          readerSearchMatchField: null,
-          readerSearchTranslationHighlights: const [],
-          readerSearchTransliterationHighlights: const [],
-          readerSearchArabicHighlights: const [],
-          studyMode: QuranReaderStudyMode.study,
-          onTap: () {},
-          onPlayAyah: () {},
-          onToggleMemorization: () {},
-          onPlayWord: (_) async {},
-          onMistakeCheckpoint: () {},
-        ),
-      ),
-    );
-
-    await tester.tap(find.text('Patience in difficulty'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Why this is related'), findsOneWidget);
-    expect(
-      find.text(
-        'This Hadith reinforces the same lesson of patience and seeking help through worship.',
-      ),
-      findsOneWidget,
-    );
-    expect(find.text('Open Hadith lesson'), findsOneWidget);
-  });
-
-  testWidgets('ayah card keeps Learn More ahead of broader themes', (
-    tester,
-  ) async {
-    const ayah = QuranAyah(
-      surahNumber: 2,
-      ayahNumber: 153,
-      arabic: 'يَا أَيُّهَا الَّذِينَ آمَنُوا',
-      transliteration: 'Ya ayyuhalladhina amanu',
-      translation: 'O you who have believed...',
-    );
-
-    await tester.pumpWidget(
-      await wrapHarness(
-        QuranAyahCard(
-          ayah: ayah,
-          isHighlighted: false,
-          isNowPlaying: false,
-          activeWordIndex: null,
-          isBookmarked: false,
-          isMarkedForMemorization: true,
-          notesCount: 0,
-          onBookmark: () {},
-          onAddNote: () {},
-          showArabic: true,
-          showTranslation: true,
-          showTransliteration: true,
-          showWordByWord: false,
-          wordGlossary: const {},
-          showActions: false,
-          hifzRevealMode: HifzRevealMode.full,
-          arabicFontSize: 24,
-          transliterationFontSize: 15,
-          translationFontSize: 14,
-          harakatColor: null,
-          resolvedExplanation: null,
-          actionRecommendation: null,
-          spiritualMomentBundle: null,
-          personalizedRecommendation: null,
-          contextualLinks: const [
-            QuranRelatedKnowledgeLink(
-              id: 'hadith-test',
-              title: 'Patience in difficulty',
-              subtitle: 'Sahih Muslim',
-              category: QuranRelatedKnowledgeCategory.hadith,
-              knowledgeType: QuranKnowledgeType.hadith,
-              connectionStrength: QuranConnectionStrength.direct,
-              routeName: 'learnHadithLanding',
-            ),
-            QuranRelatedKnowledgeLink(
-              id: 'journey-test',
-              title: 'Journey through patience',
-              subtitle: 'Character journey',
-              category: QuranRelatedKnowledgeCategory.learningJourney,
-              knowledgeType: QuranKnowledgeType.journey,
-              connectionStrength: QuranConnectionStrength.related,
-              routeName: 'learnJourneyLanding',
-            ),
-          ],
-          themeTopics: const [
-            QuranTopic(
-              id: 'patience',
-              title: 'Patience',
-              description: 'Stay steady with sabr.',
-              primaryReferenceId: '2:153',
-              suggestedReaderMode: QuranReaderStudyMode.study,
-              verseReferences: ['2:153'],
-              relatedLessons: ['character-sabr'],
-              relatedHadith: ['patience'],
-              relatedProphets: ['ayyub'],
-              relatedSurahNumbers: [2],
-            ),
-          ],
-          activeTopicId: 'patience',
-          readerSearchQuery: '',
-          readerSearchMatchField: null,
-          readerSearchTranslationHighlights: const [],
-          readerSearchTransliterationHighlights: const [],
-          readerSearchArabicHighlights: const [],
-          studyMode: QuranReaderStudyMode.study,
-          onTap: () {},
-          onPlayAyah: () {},
-          onToggleMemorization: () {},
-          onPlayWord: (_) async {},
-          onMistakeCheckpoint: () {},
-        ),
-      ),
-    );
-
-    expect(find.text('Hadith'), findsOneWidget);
-    expect(find.text('Journey lesson'), findsOneWidget);
-    expect(find.text('Themes'), findsOneWidget);
-
-    final learnMoreY = tester.getTopLeft(find.text('Learn More')).dy;
-    final themesY = tester.getTopLeft(find.text('Themes')).dy;
-    expect(learnMoreY, lessThan(themesY));
-  });
-
-  testWidgets(
-    'ayah card keeps theme context ahead of learn more in theme mode',
-    (tester) async {
-      const ayah = QuranAyah(
-        surahNumber: 55,
-        ayahNumber: 13,
-        arabic: 'فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ',
-        transliteration: 'Fabia ayyi alaa i rabbikuma tukaththiban',
-        translation: 'So which of the favors of your Lord would you deny?',
-      );
-
-      await tester.pumpWidget(
-        await wrapHarness(
-          QuranAyahCard(
-            ayah: ayah,
-            isHighlighted: false,
-            isNowPlaying: false,
-            activeWordIndex: null,
-            isBookmarked: false,
-            isMarkedForMemorization: false,
-            notesCount: 0,
-            onBookmark: () {},
-            onAddNote: () {},
-            showArabic: true,
-            showTranslation: true,
-            showTransliteration: true,
-            showWordByWord: false,
-            wordGlossary: const {},
-            showActions: false,
-            hifzRevealMode: HifzRevealMode.full,
-            arabicFontSize: 24,
-            transliterationFontSize: 15,
-            translationFontSize: 14,
-            harakatColor: null,
-            resolvedExplanation: null,
-            actionRecommendation: null,
-            spiritualMomentBundle: null,
-            personalizedRecommendation: null,
-            contextualLinks: const [
-              QuranRelatedKnowledgeLink(
-                id: 'life-test',
-                title: 'Gratitude in daily life',
-                subtitle: 'Divine Life',
-                category: QuranRelatedKnowledgeCategory.divineLife,
-                knowledgeType: QuranKnowledgeType.lifeLesson,
-                connectionStrength: QuranConnectionStrength.strong,
-                routeName: 'lifeLanding',
-              ),
-            ],
-            themeTopics: const [
-              QuranTopic(
-                id: 'gratitude',
-                title: 'Gratitude',
-                description: 'Receive blessings with shukr.',
-                primaryReferenceId: '55:13',
-                suggestedReaderMode: QuranReaderStudyMode.theme,
-                verseReferences: ['55:13'],
-                relatedLessons: ['character-gratitude'],
-                relatedHadith: ['gratitude'],
-                relatedProphets: [],
-              ),
-            ],
-            activeTopicId: 'gratitude',
-            readerSearchQuery: '',
-            readerSearchMatchField: null,
-            readerSearchTranslationHighlights: const [],
-            readerSearchTransliterationHighlights: const [],
-            readerSearchArabicHighlights: const [],
-            studyMode: QuranReaderStudyMode.theme,
-            onTap: () {},
-            onPlayAyah: () {},
-            onToggleMemorization: () {},
-            onPlayWord: (_) async {},
-            onMistakeCheckpoint: () {},
-          ),
-        ),
-      );
-
-      final themesY = tester.getTopLeft(find.text('Themes')).dy;
-      final learnMoreY = tester.getTopLeft(find.text('Learn More')).dy;
-      expect(themesY, lessThan(learnMoreY));
-    },
-  );
 }

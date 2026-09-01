@@ -7,80 +7,48 @@ class QuranAyahCard extends StatefulWidget {
     required this.isHighlighted,
     required this.isNowPlaying,
     required this.activeWordIndex,
-    required this.isBookmarked,
-    required this.isMarkedForMemorization,
-    required this.notesCount,
-    required this.onBookmark,
-    required this.onAddNote,
     required this.showArabic,
     required this.showTranslation,
     required this.showTransliteration,
     required this.showWordByWord,
     required this.wordGlossary,
-    required this.showActions,
     required this.hifzRevealMode,
     required this.arabicFontSize,
     required this.transliterationFontSize,
     required this.translationFontSize,
     required this.harakatColor,
-    required this.resolvedExplanation,
-    required this.actionRecommendation,
-    required this.spiritualMomentBundle,
-    required this.personalizedRecommendation,
-    required this.contextualLinks,
-    required this.themeTopics,
     required this.readerSearchQuery,
     required this.readerSearchMatchField,
     required this.readerSearchTranslationHighlights,
     required this.readerSearchTransliterationHighlights,
     required this.readerSearchArabicHighlights,
     required this.studyMode,
-    this.activeTopicId,
     this.onTap,
-    this.onPlayAyah,
-    required this.onToggleMemorization,
     required this.onPlayWord,
-    required this.onMistakeCheckpoint,
   });
 
   final QuranAyah ayah;
   final bool isHighlighted;
   final bool isNowPlaying;
   final int? activeWordIndex;
-  final bool isBookmarked;
-  final bool isMarkedForMemorization;
-  final int notesCount;
-  final VoidCallback onBookmark;
-  final VoidCallback onAddNote;
   final bool showArabic;
   final bool showTranslation;
   final bool showTransliteration;
   final bool showWordByWord;
   final Map<String, QuranWordGloss> wordGlossary;
-  final bool showActions;
   final HifzRevealMode hifzRevealMode;
   final double arabicFontSize;
   final double transliterationFontSize;
   final double translationFontSize;
   final Color? harakatColor;
-  final QuranAyahResolvedExplanation? resolvedExplanation;
-  final QuranAyahActionRecommendation? actionRecommendation;
-  final QuranSpiritualMomentBundle? spiritualMomentBundle;
-  final QuranRecommendedAyah? personalizedRecommendation;
-  final List<QuranRelatedKnowledgeLink> contextualLinks;
-  final List<QuranTopic> themeTopics;
   final String readerSearchQuery;
   final QuranSearchMatchField? readerSearchMatchField;
   final List<String> readerSearchTranslationHighlights;
   final List<String> readerSearchTransliterationHighlights;
   final List<String> readerSearchArabicHighlights;
   final QuranReaderStudyMode studyMode;
-  final String? activeTopicId;
   final VoidCallback? onTap;
-  final VoidCallback? onPlayAyah;
-  final VoidCallback onToggleMemorization;
   final Future<void> Function(QuranWordGloss word) onPlayWord;
-  final VoidCallback onMistakeCheckpoint;
 
   @override
   State<QuranAyahCard> createState() => _QuranAyahCardState();
@@ -95,21 +63,6 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
         .split(RegExp(r'\s+'))
         .where((word) => word.isNotEmpty)
         .length;
-    final visibleContextualLinks = _visibleContextualLinks(
-      widget.contextualLinks,
-      widget.studyMode,
-    );
-    final groupedContextualLinks = _groupKnowledgeLinksByCategory(
-      visibleContextualLinks,
-    );
-    final visibleThemes = _visibleThemeTopics(
-      widget.themeTopics,
-      widget.studyMode,
-      widget.activeTopicId,
-    );
-    final showThemesFirst =
-        widget.studyMode == QuranReaderStudyMode.theme &&
-        visibleThemes.isNotEmpty;
 
     return Material(
       color: Colors.transparent,
@@ -167,75 +120,6 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                         Icons.play_arrow_rounded,
                         color: Color(0xFF7C5D3A),
                         size: 20,
-                      ),
-                    if (widget.showActions)
-                      IconButton(
-                        tooltip: l10n.quranBookmark,
-                        onPressed: widget.onBookmark,
-                        icon: Icon(
-                          widget.isBookmarked
-                              ? Icons.bookmark
-                              : Icons.bookmark_outline_rounded,
-                        ),
-                      ),
-                    if (widget.showActions)
-                      IconButton(
-                        tooltip: widget.isMarkedForMemorization
-                            ? l10n.quranMemorizationRemoveAction
-                            : l10n.quranMemorizationMarkAction,
-                        onPressed: widget.onToggleMemorization,
-                        icon: Icon(
-                          widget.isMarkedForMemorization
-                              ? Icons.school_rounded
-                              : Icons.school_outlined,
-                        ),
-                      ),
-                    if (widget.showActions && widget.onPlayAyah != null)
-                      IconButton(
-                        key: ValueKey(
-                          'quran-reader-play-ayah-${widget.ayah.surahNumber}:${widget.ayah.ayahNumber}',
-                        ),
-                        tooltip: l10n.quranPlayAyahTooltip,
-                        onPressed: widget.onPlayAyah,
-                        icon: const Icon(Icons.volume_up_rounded),
-                      ),
-                    if (widget.showActions)
-                      IconButton(
-                        tooltip: l10n.quranHifzCheckpointTooltip,
-                        onPressed: widget.onMistakeCheckpoint,
-                        icon: const Icon(Icons.flag_outlined),
-                      ),
-                    if (widget.showActions)
-                      IconButton(
-                        tooltip: l10n.quranAddNote,
-                        onPressed: widget.onAddNote,
-                        icon: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            const Icon(Icons.sticky_note_2_outlined),
-                            if (widget.notesCount > 0)
-                              Positioned(
-                                right: -4,
-                                top: -4,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF7C5D3A),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Text(
-                                    widget.notesCount.toString(),
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
                       ),
                   ],
                 ),
@@ -314,68 +198,71 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                               widget.ayah.arabic,
                               glossary: widget.wordGlossary,
                             )
-                        .map(
-                          (word) => InkWell(
-                            borderRadius: BorderRadius.circular(12),
-                            onTap: () => widget.onPlayWord(word),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
+                            .map(
+                              (word) => InkWell(
                                 borderRadius: BorderRadius.circular(12),
-                                color: const Color(0xFFF1E7D8),
-                                border: Border.all(
-                                  color: const Color(0xFFD9C4A2),
+                                onTap: () => widget.onPlayWord(word),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 6,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFF1E7D8),
+                                    border: Border.all(
+                                      color: const Color(0xFFD9C4A2),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        word.arabic,
+                                        textAlign: textAlignForContent(
+                                          word.arabic,
+                                        ),
+                                        textDirection: textDirectionForContent(
+                                          word.arabic,
+                                        ),
+                                        style: AppTextStyles.arabicLearning(
+                                          size: 16,
+                                          weight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        word.transliteration,
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          color:
+                                              QuranPresentationStyle.quranSupportTextColor(
+                                                context,
+                                              ),
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 1),
+                                      Text(
+                                        l10n.quranReaderWordTranslationPrefix(
+                                          word.gloss,
+                                        ),
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          color:
+                                              QuranPresentationStyle.quranSupportTextColor(
+                                                context,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    word.arabic,
-                                    textAlign: textAlignForContent(word.arabic),
-                                    textDirection: textDirectionForContent(
-                                      word.arabic,
-                                    ),
-                                    style: AppTextStyles.arabicLearning(
-                                      size: 16,
-                                      weight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    word.transliteration,
-                                    style: TextStyle(
-                                      fontSize: 10.5,
-                                      color:
-                                          QuranPresentationStyle.quranSupportTextColor(
-                                            context,
-                                          ),
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 1),
-                                  Text(
-                                    l10n.quranReaderWordTranslationPrefix(
-                                      word.gloss,
-                                    ),
-                                    style: TextStyle(
-                                      fontSize: 10.5,
-                                      color:
-                                          QuranPresentationStyle.quranSupportTextColor(
-                                            context,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
+                            )
+                            .toList(),
                   ),
                 ],
                 if (widget.showTransliteration) ...[
@@ -430,176 +317,6 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       searchHighlightTerms:
                           widget.readerSearchTranslationHighlights,
                     ),
-                  ),
-                ],
-                if (widget.resolvedExplanation != null) ...[
-                  const SizedBox(height: 10),
-                  QuranAyahExplanationSection(
-                    explanation: widget.resolvedExplanation!,
-                    style: QuranAyahExplanationSectionStyle.reader,
-                    studyMode: widget.studyMode,
-                    initiallyExpanded:
-                        widget.studyMode == QuranReaderStudyMode.study ||
-                        widget.studyMode == QuranReaderStudyMode.reflection ||
-                        widget.studyMode == QuranReaderStudyMode.theme,
-                  ),
-                ],
-                if (widget.resolvedExplanation != null &&
-                    widget.actionRecommendation != null) ...[
-                  const SizedBox(height: 10),
-                  QuranAyahActionSection(
-                    recommendation: widget.actionRecommendation!,
-                    style: QuranAyahActionSectionStyle.reader,
-                  ),
-                ],
-                if (widget.spiritualMomentBundle != null) ...[
-                  const SizedBox(height: 10),
-                  QuranSpiritualMomentCard(
-                    bundle: widget.spiritualMomentBundle!,
-                    surface: QuranSpiritualMomentSurface.reader,
-                  ),
-                ],
-                if (widget.resolvedExplanation != null &&
-                    widget.personalizedRecommendation != null) ...[
-                  const SizedBox(height: 10),
-                  QuranPersonalizedRecommendationCard(
-                    bundle: QuranRecommendationBundle(
-                      surface: QuranPersonalizationSurface.reader,
-                      preferKids: false,
-                      generatedDateKey: LocalStore.todayKey(DateTime.now()),
-                      primary: widget.personalizedRecommendation!,
-                      suggestedJourney:
-                          widget.personalizedRecommendation!.suggestedJourney,
-                    ),
-                    surface: QuranPersonalizationSurface.reader,
-                  ),
-                ],
-                if (showThemesFirst) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    l10n.quranThemeMapRelatedThemesTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF5A4A3A),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: visibleThemes
-                        .map(
-                          (topic) => ActionChip(
-                            avatar: widget.activeTopicId == topic.id
-                                ? const Icon(
-                                    Icons.auto_awesome_rounded,
-                                    size: 16,
-                                  )
-                                : null,
-                            label: Text(
-                              localizedQuranTopicTitle(l10n, topic.id),
-                            ),
-                            backgroundColor: widget.activeTopicId == topic.id
-                                ? const Color(0xFFF1E1B8)
-                                : null,
-                            onPressed: () => context.pushNamed(
-                              'quranTopicDetail',
-                              pathParameters: {'topicId': topic.id},
-                            ),
-                          ),
-                        )
-                        .toList(growable: false),
-                  ),
-                ],
-                if (groupedContextualLinks.isNotEmpty) ...[
-                  const SizedBox(height: 10),
-                  Text(
-                    l10n.quranLearnMoreSectionTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF5A4A3A),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  ...groupedContextualLinks.entries.map((entry) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            quranRelatedKnowledgeCategoryLabel(l10n, entry.key),
-                            style: Theme.of(context).textTheme.labelLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color:
-                                      QuranPresentationStyle.translucentColor(
-                                        context,
-                                        const Color(0xFF6A5A4A),
-                                      ),
-                                ),
-                          ),
-                          const SizedBox(height: 6),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: entry.value
-                                .map(
-                                  (link) => ActionChip(
-                                    label: Text(link.title),
-                                    onPressed: () =>
-                                        showQuranRelatedKnowledgeDetailSheet(
-                                          context,
-                                          link: link,
-                                          anchorLabel: l10n
-                                              .quranReferenceViewerReferenceLabel(
-                                                '${widget.ayah.surahNumber}:${widget.ayah.ayahNumber}',
-                                              ),
-                                        ),
-                                  ),
-                                )
-                                .toList(growable: false),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-                ],
-                if (!showThemesFirst && visibleThemes.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    l10n.quranThemeMapRelatedThemesTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF5A4A3A),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: visibleThemes
-                        .map(
-                          (topic) => ActionChip(
-                            avatar: widget.activeTopicId == topic.id
-                                ? const Icon(
-                                    Icons.auto_awesome_rounded,
-                                    size: 16,
-                                  )
-                                : null,
-                            label: Text(
-                              localizedQuranTopicTitle(l10n, topic.id),
-                            ),
-                            backgroundColor: widget.activeTopicId == topic.id
-                                ? const Color(0xFFF1E1B8)
-                                : null,
-                            onPressed: () => context.pushNamed(
-                              'quranTopicDetail',
-                              pathParameters: {'topicId': topic.id},
-                            ),
-                          ),
-                        )
-                        .toList(growable: false),
                   ),
                 ],
               ],
