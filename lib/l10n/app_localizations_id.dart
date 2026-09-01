@@ -33604,6 +33604,77 @@ class AppLocalizationsId extends AppLocalizations {
   String get quranReaderNextSurahAction => 'Surah berikutnya';
 
   @override
+  String get quranReaderLevelChipTooltip => 'Tingkat membaca';
+
+  @override
+  String get quranReaderLevelNewReaderTitle => 'Pembaca baru';
+
+  @override
+  String get quranReaderLevelLearningTitle => 'Sedang belajar';
+
+  @override
+  String get quranReaderLevelFluentTitle => 'Lancar';
+
+  @override
+  String get quranReaderLevelSheetTitle =>
+      'Bagaimana pembaca menyesuaikan diri dengan Anda?';
+
+  @override
+  String get quranReaderLevelSheetSubtitle =>
+      'Satu tingkat mengatur ukuran teks, alat bantu, dan kecepatan audio sekaligus. Semua tetap dapat diubah satu per satu.';
+
+  @override
+  String get quranReaderLevelNewReaderBody =>
+      'Teks Arab besar dengan transliterasi dan terjemahan, serta tilawah lambat yang menyorot setiap kata.';
+
+  @override
+  String get quranReaderLevelLearningBody =>
+      'Arti kata di bawah setiap ayat dan tempo lebih tenang sambil kecepatan membaca Anda tumbuh.';
+
+  @override
+  String get quranReaderLevelFluentBody =>
+      'Halaman bersih — hanya teks Arab, dengan kecepatan penuh.';
+
+  @override
+  String quranReaderLevelSeededNote(String level) {
+    return 'Pembaca disesuaikan dengan jalur belajar Anda: $level';
+  }
+
+  @override
+  String get quranReaderTapAyahHint =>
+      'Ketuk ayat mana pun untuk arti, audio, dan alat belajar.';
+
+  @override
+  String get quranReaderJumpSheetTitle => 'Pergi ke';
+
+  @override
+  String get quranReaderJumpSurahTab => 'Surah';
+
+  @override
+  String get quranReaderJumpJuzTab => 'Juz';
+
+  @override
+  String quranReaderJumpJuzLabel(int number) {
+    return 'Juz $number';
+  }
+
+  @override
+  String get quranReaderPracticeSurahTitle => 'Latih surah ini';
+
+  @override
+  String get quranReaderPracticeSurahBody =>
+      'Latihan langkah demi langkah dengan audio tersedia untuk surah ini.';
+
+  @override
+  String get quranReaderPracticeSurahAction => 'Buka latihan';
+
+  @override
+  String get quranAyahDetailsMeaningTitle => 'Arti';
+
+  @override
+  String get quranAyahDetailsWordByWordTitle => 'Kata demi kata';
+
+  @override
   String get quranReaderAdjacentSurahUnavailable =>
       'Tidak dapat membuka surah itu saat ini.';
 

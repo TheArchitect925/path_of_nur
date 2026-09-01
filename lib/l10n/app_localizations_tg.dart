@@ -33683,6 +33683,77 @@ class AppLocalizationsTg extends AppLocalizations {
   String get quranReaderNextSurahAction => 'Next surah';
 
   @override
+  String get quranReaderLevelChipTooltip => 'Сатҳи хониш';
+
+  @override
+  String get quranReaderLevelNewReaderTitle => 'Хонандаи нав';
+
+  @override
+  String get quranReaderLevelLearningTitle => 'Дар омӯзиш';
+
+  @override
+  String get quranReaderLevelFluentTitle => 'Равон';
+
+  @override
+  String get quranReaderLevelSheetTitle =>
+      'Хонишгар чӣ гуна ба шумо мувофиқ шавад?';
+
+  @override
+  String get quranReaderLevelSheetSubtitle =>
+      'Як сатҳ андозаи матн, воситаҳои ёрирасон ва суръати садоро якҷоя танзим мекунад. Ҳар танзим баъдан алоҳида иваз мешавад.';
+
+  @override
+  String get quranReaderLevelNewReaderBody =>
+      'Матни калони арабӣ бо талаффуз ва тарҷума, ва тиловати оҳиста, ки ҳар калимаро равшан мекунад.';
+
+  @override
+  String get quranReaderLevelLearningBody =>
+      'Маънои калимаҳо зери ҳар оят ва суръати нармтар, то хониши шумо тезтар шавад.';
+
+  @override
+  String get quranReaderLevelFluentBody =>
+      'Саҳифаи тоза — танҳо арабӣ, бо суръати пурра.';
+
+  @override
+  String quranReaderLevelSeededNote(String level) {
+    return 'Хонишгар ба роҳи омӯзиши шумо мувофиқ шуд: $level';
+  }
+
+  @override
+  String get quranReaderTapAyahHint =>
+      'Барои маъно, садо ва абзорҳои омӯзиш ба ягон оят пахш кунед.';
+
+  @override
+  String get quranReaderJumpSheetTitle => 'Гузаштан ба';
+
+  @override
+  String get quranReaderJumpSurahTab => 'Сура';
+
+  @override
+  String get quranReaderJumpJuzTab => 'Ҷузъ';
+
+  @override
+  String quranReaderJumpJuzLabel(int number) {
+    return 'Ҷузъи $number';
+  }
+
+  @override
+  String get quranReaderPracticeSurahTitle => 'Ин сураро машқ кунед';
+
+  @override
+  String get quranReaderPracticeSurahBody =>
+      'Барои ин сура машқи қадам ба қадам бо садо омода аст.';
+
+  @override
+  String get quranReaderPracticeSurahAction => 'Кушодани машқ';
+
+  @override
+  String get quranAyahDetailsMeaningTitle => 'Маъно';
+
+  @override
+  String get quranAyahDetailsWordByWordTitle => 'Калима ба калима';
+
+  @override
   String get quranReaderAdjacentSurahUnavailable =>
       'Unable to open that surah right now.';
 

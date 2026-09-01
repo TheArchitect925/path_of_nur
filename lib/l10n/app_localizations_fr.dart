@@ -33771,6 +33771,77 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quranReaderNextSurahAction => 'Sourate suivante';
 
   @override
+  String get quranReaderLevelChipTooltip => 'Niveau de lecture';
+
+  @override
+  String get quranReaderLevelNewReaderTitle => 'Nouveau lecteur';
+
+  @override
+  String get quranReaderLevelLearningTitle => 'En apprentissage';
+
+  @override
+  String get quranReaderLevelFluentTitle => 'À l’aise';
+
+  @override
+  String get quranReaderLevelSheetTitle =>
+      'Comment le lecteur doit-il s’adapter à vous ?';
+
+  @override
+  String get quranReaderLevelSheetSubtitle =>
+      'Un niveau règle à la fois la taille du texte, les aides et le rythme audio. Chaque réglage reste modifiable ensuite.';
+
+  @override
+  String get quranReaderLevelNewReaderBody =>
+      'Grand texte arabe avec translittération et traduction, et une récitation lente qui illumine chaque mot.';
+
+  @override
+  String get quranReaderLevelLearningBody =>
+      'Le sens des mots sous chaque verset et un rythme plus doux pendant que votre lecture s’affermit.';
+
+  @override
+  String get quranReaderLevelFluentBody =>
+      'Une page épurée — uniquement l’arabe, à pleine vitesse.';
+
+  @override
+  String quranReaderLevelSeededNote(String level) {
+    return 'Lecteur ajusté à votre parcours d’apprentissage : $level';
+  }
+
+  @override
+  String get quranReaderTapAyahHint =>
+      'Touchez un verset pour le sens, l’audio et les outils d’étude.';
+
+  @override
+  String get quranReaderJumpSheetTitle => 'Aller à';
+
+  @override
+  String get quranReaderJumpSurahTab => 'Sourate';
+
+  @override
+  String get quranReaderJumpJuzTab => 'Juz';
+
+  @override
+  String quranReaderJumpJuzLabel(int number) {
+    return 'Juz $number';
+  }
+
+  @override
+  String get quranReaderPracticeSurahTitle => 'S’exercer sur cette sourate';
+
+  @override
+  String get quranReaderPracticeSurahBody =>
+      'Un entraînement pas à pas avec audio est prêt pour cette sourate.';
+
+  @override
+  String get quranReaderPracticeSurahAction => 'Ouvrir l’entraînement';
+
+  @override
+  String get quranAyahDetailsMeaningTitle => 'Sens';
+
+  @override
+  String get quranAyahDetailsWordByWordTitle => 'Mot à mot';
+
+  @override
   String get quranReaderAdjacentSurahUnavailable =>
       'Impossible d’ouvrir cette sourate pour l’instant.';
 

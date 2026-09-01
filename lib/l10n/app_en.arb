@@ -15209,6 +15209,40 @@
   "quranReaderReturnToCurrentAyahAction": "Return to current ayah",
   "quranReaderPreviousSurahAction": "Previous surah",
   "quranReaderNextSurahAction": "Next surah",
+  "quranReaderLevelChipTooltip": "Reading level",
+  "quranReaderLevelNewReaderTitle": "New reader",
+  "quranReaderLevelLearningTitle": "Learning",
+  "quranReaderLevelFluentTitle": "Fluent",
+  "quranReaderLevelSheetTitle": "How should the reader fit you?",
+  "quranReaderLevelSheetSubtitle": "A level sets text size, helpers, and audio pace together. Every switch stays adjustable afterwards.",
+  "quranReaderLevelNewReaderBody": "Large Arabic with transliteration and translation, and slow recitation that lights up each word.",
+  "quranReaderLevelLearningBody": "Word meanings under every ayah and a gentler pace while you build reading speed.",
+  "quranReaderLevelFluentBody": "A clean page — just the Arabic, at full pace.",
+  "quranReaderLevelSeededNote": "Reader matched to your learning path: {level}",
+  "quranReaderTapAyahHint": "Tap any ayah for meaning, audio, and study tools.",
+  "quranReaderJumpSheetTitle": "Go to",
+  "quranReaderJumpSurahTab": "Surah",
+  "quranReaderJumpJuzTab": "Juz",
+  "quranReaderJumpJuzLabel": "Juz {number}",
+  "quranReaderPracticeSurahTitle": "Practice this surah",
+  "quranReaderPracticeSurahBody": "Step-by-step practice with audio is ready for this surah.",
+  "quranReaderPracticeSurahAction": "Open practice",
+  "quranAyahDetailsMeaningTitle": "Meaning",
+  "quranAyahDetailsWordByWordTitle": "Word by word",
+  "@quranReaderLevelSeededNote": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "@quranReaderJumpJuzLabel": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "quranReaderAdjacentSurahUnavailable": "Unable to open that surah right now.",
   "quranReaderRepeatRangeSummary": "Repeat ayahs {startAyah}–{endAyah}",
   "@quranReaderRepeatRangeSummary": {

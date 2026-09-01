@@ -55918,6 +55918,126 @@ abstract class AppLocalizations {
   /// **'Next surah'**
   String get quranReaderNextSurahAction;
 
+  /// No description provided for @quranReaderLevelChipTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading level'**
+  String get quranReaderLevelChipTooltip;
+
+  /// No description provided for @quranReaderLevelNewReaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New reader'**
+  String get quranReaderLevelNewReaderTitle;
+
+  /// No description provided for @quranReaderLevelLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning'**
+  String get quranReaderLevelLearningTitle;
+
+  /// No description provided for @quranReaderLevelFluentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fluent'**
+  String get quranReaderLevelFluentTitle;
+
+  /// No description provided for @quranReaderLevelSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How should the reader fit you?'**
+  String get quranReaderLevelSheetTitle;
+
+  /// No description provided for @quranReaderLevelSheetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A level sets text size, helpers, and audio pace together. Every switch stays adjustable afterwards.'**
+  String get quranReaderLevelSheetSubtitle;
+
+  /// No description provided for @quranReaderLevelNewReaderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Large Arabic with transliteration and translation, and slow recitation that lights up each word.'**
+  String get quranReaderLevelNewReaderBody;
+
+  /// No description provided for @quranReaderLevelLearningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Word meanings under every ayah and a gentler pace while you build reading speed.'**
+  String get quranReaderLevelLearningBody;
+
+  /// No description provided for @quranReaderLevelFluentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A clean page — just the Arabic, at full pace.'**
+  String get quranReaderLevelFluentBody;
+
+  /// No description provided for @quranReaderLevelSeededNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader matched to your learning path: {level}'**
+  String quranReaderLevelSeededNote(String level);
+
+  /// No description provided for @quranReaderTapAyahHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any ayah for meaning, audio, and study tools.'**
+  String get quranReaderTapAyahHint;
+
+  /// No description provided for @quranReaderJumpSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to'**
+  String get quranReaderJumpSheetTitle;
+
+  /// No description provided for @quranReaderJumpSurahTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah'**
+  String get quranReaderJumpSurahTab;
+
+  /// No description provided for @quranReaderJumpJuzTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Juz'**
+  String get quranReaderJumpJuzTab;
+
+  /// No description provided for @quranReaderJumpJuzLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Juz {number}'**
+  String quranReaderJumpJuzLabel(int number);
+
+  /// No description provided for @quranReaderPracticeSurahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice this surah'**
+  String get quranReaderPracticeSurahTitle;
+
+  /// No description provided for @quranReaderPracticeSurahBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Step-by-step practice with audio is ready for this surah.'**
+  String get quranReaderPracticeSurahBody;
+
+  /// No description provided for @quranReaderPracticeSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open practice'**
+  String get quranReaderPracticeSurahAction;
+
+  /// No description provided for @quranAyahDetailsMeaningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning'**
+  String get quranAyahDetailsMeaningTitle;
+
+  /// No description provided for @quranAyahDetailsWordByWordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word by word'**
+  String get quranAyahDetailsWordByWordTitle;
+
   /// No description provided for @quranReaderAdjacentSurahUnavailable.
   ///
   /// In en, this message translates to:

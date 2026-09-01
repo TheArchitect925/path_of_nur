@@ -33616,6 +33616,76 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quranReaderNextSurahAction => 'Next surah';
 
   @override
+  String get quranReaderLevelChipTooltip => 'Reading level';
+
+  @override
+  String get quranReaderLevelNewReaderTitle => 'New reader';
+
+  @override
+  String get quranReaderLevelLearningTitle => 'Learning';
+
+  @override
+  String get quranReaderLevelFluentTitle => 'Fluent';
+
+  @override
+  String get quranReaderLevelSheetTitle => 'How should the reader fit you?';
+
+  @override
+  String get quranReaderLevelSheetSubtitle =>
+      'A level sets text size, helpers, and audio pace together. Every switch stays adjustable afterwards.';
+
+  @override
+  String get quranReaderLevelNewReaderBody =>
+      'Large Arabic with transliteration and translation, and slow recitation that lights up each word.';
+
+  @override
+  String get quranReaderLevelLearningBody =>
+      'Word meanings under every ayah and a gentler pace while you build reading speed.';
+
+  @override
+  String get quranReaderLevelFluentBody =>
+      'A clean page — just the Arabic, at full pace.';
+
+  @override
+  String quranReaderLevelSeededNote(String level) {
+    return 'Reader matched to your learning path: $level';
+  }
+
+  @override
+  String get quranReaderTapAyahHint =>
+      'Tap any ayah for meaning, audio, and study tools.';
+
+  @override
+  String get quranReaderJumpSheetTitle => 'Go to';
+
+  @override
+  String get quranReaderJumpSurahTab => 'Surah';
+
+  @override
+  String get quranReaderJumpJuzTab => 'Juz';
+
+  @override
+  String quranReaderJumpJuzLabel(int number) {
+    return 'Juz $number';
+  }
+
+  @override
+  String get quranReaderPracticeSurahTitle => 'Practice this surah';
+
+  @override
+  String get quranReaderPracticeSurahBody =>
+      'Step-by-step practice with audio is ready for this surah.';
+
+  @override
+  String get quranReaderPracticeSurahAction => 'Open practice';
+
+  @override
+  String get quranAyahDetailsMeaningTitle => 'Meaning';
+
+  @override
+  String get quranAyahDetailsWordByWordTitle => 'Word by word';
+
+  @override
   String get quranReaderAdjacentSurahUnavailable =>
       'Unable to open that surah right now.';
 
