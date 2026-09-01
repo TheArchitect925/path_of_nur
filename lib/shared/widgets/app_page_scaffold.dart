@@ -32,6 +32,7 @@ class AppPageScaffold extends ConsumerStatefulWidget {
     this.quotePool,
     this.quoteUseOuterChrome = true,
     this.headerIcon,
+    this.onTitleTap,
     this.headerIconSize = 24,
     this.headerIconSpacing = 12,
     this.headerAlignment = AppPageHeaderAlignment.start,
@@ -55,6 +56,10 @@ class AppPageScaffold extends ConsumerStatefulWidget {
   final List<QuranQuote>? quotePool;
   final bool quoteUseOuterChrome;
   final IconData? headerIcon;
+
+  /// When set, the title block becomes tappable (e.g. the Qur'an reader's
+  /// surah title opening its go-to picker).
+  final VoidCallback? onTitleTap;
   final double headerIconSize;
   final double headerIconSpacing;
   final AppPageHeaderAlignment headerAlignment;
@@ -136,23 +141,26 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
             if (widget.headerIcon != null)
               SizedBox(width: widget.headerIconSpacing),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.title,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleLarge?.copyWith(color: foreground),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    widget.subtitle,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
-                  ),
-                ],
+              child: _MaybeTappable(
+                onTap: widget.onTitleTap,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge?.copyWith(color: foreground),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      widget.subtitle,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
+                    ),
+                  ],
+                ),
               ),
             ),
             if (widget.headerActions != null) ...[
@@ -376,6 +384,29 @@ class _AnimatedQuoteHeaderState extends State<_AnimatedQuoteHeader> {
       curve: Curves.easeOutCubic,
       offset: _visible ? Offset.zero : const Offset(0, 0.024),
       child: widget.child,
+    );
+  }
+}
+
+class _MaybeTappable extends StatelessWidget {
+  const _MaybeTappable({required this.onTap, required this.child});
+
+  final VoidCallback? onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (onTap == null) return child;
+    // Self-sufficient Material: the page header renders above any Scaffold
+    // material, so the ink needs its own surface to paint on.
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        key: const ValueKey('app-page-title-tap'),
+        borderRadius: BorderRadius.circular(12),
+        onTap: onTap,
+        child: child,
+      ),
     );
   }
 }

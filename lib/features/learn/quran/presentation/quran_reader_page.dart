@@ -59,6 +59,7 @@ import '../data/quran_repository.dart';
 import '../data/quran_word_glossary.dart';
 import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
+import '../domain/quran_khatm_models.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_audio_resilience_models.dart';
 import '../domain/quran_playback_request.dart';
@@ -450,6 +451,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
           color: const Color(0xFF3A3026),
         ),
       ],
+      onTitleTap: _showReaderJumpSheet,
       title: surah == null
           ? l10n.quranUnknownSurah
           : '${surah.transliteratedName} • ${surah.arabicName}',
@@ -573,6 +575,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               },
             ),
           ),
+          SliverToBoxAdapter(child: _buildSurahEndFooter(context, l10n)),
           const SliverToBoxAdapter(child: SizedBox(height: 96)),
         ],
       ],
@@ -2208,6 +2211,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     }
     if (widget.autoPlay) {
       await _startSurahPlayback(ayahs: ayahs, initialIndex: 0);
+      return;
+    }
+    // No explicit target: resume within the surah where reading left off.
+    final reading = ref.read(quranReadingProgressProvider);
+    if (reading.surahNumber == widget.surahNumber &&
+        reading.ayahNumber > 1 &&
+        ayahs.any((ayah) => ayah.ayahNumber == reading.ayahNumber)) {
+      final ready = await _waitForAyahTargetReady(reading.ayahNumber);
+      if (!mounted || !ready) return;
+      await _runProgrammaticScrollToAyah(reading.ayahNumber, retries: 6);
     }
   }
 
@@ -2446,6 +2459,50 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     required List<QuranWordFavorite> wordFavorites,
   }) {
     final widgets = <Widget>[
+      // The quick row: the three switches people actually reach for, ahead
+      // of the grouped sections.
+      Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          key: const ValueKey('quran-reader-quick-controls'),
+          children: [
+            IconButton(
+              key: const ValueKey('quran-reader-quick-text-smaller'),
+              tooltip: l10n.quranArabicTextSize,
+              onPressed: settings.arabicScalePercent > 70
+                  ? () => settingsNotifier.setArabicScalePercent(
+                      settings.arabicScalePercent - 10,
+                    )
+                  : null,
+              icon: const Icon(Icons.text_decrease_rounded),
+            ),
+            IconButton(
+              key: const ValueKey('quran-reader-quick-text-larger'),
+              tooltip: l10n.quranArabicTextSize,
+              onPressed: settings.arabicScalePercent < 160
+                  ? () => settingsNotifier.setArabicScalePercent(
+                      settings.arabicScalePercent + 10,
+                    )
+                  : null,
+              icon: const Icon(Icons.text_increase_rounded),
+            ),
+            const Spacer(),
+            FilterChip(
+              key: const ValueKey('quran-reader-quick-transliteration'),
+              label: Text(l10n.quranShowTransliteration),
+              selected: settings.showTransliteration,
+              onSelected: settingsNotifier.setShowTransliteration,
+            ),
+            const SizedBox(width: 8),
+            FilterChip(
+              key: const ValueKey('quran-reader-quick-translation'),
+              label: Text(l10n.quranShowTranslation),
+              selected: settings.showTranslation,
+              onSelected: settingsNotifier.setShowTranslation,
+            ),
+          ],
+        ),
+      ),
       _SettingsGroupCard(
         title: l10n.quranReaderReadingDisplaySectionTitle,
         subtitle: l10n.quranReaderReadingDisplaySectionSubtitle,
@@ -4105,6 +4162,171 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
           l10n.quranReaderLevelSeededNote(quranReaderLevelTitle(l10n, seeded)),
         ),
       ),
+    );
+  }
+
+  Future<void> _showReaderJumpSheet() async {
+    final l10n = AppLocalizations.of(context);
+    final surahs = ref.read(quranRepositoryProvider).getSurahs();
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.8,
+          minChildSize: 0.5,
+          maxChildSize: 0.95,
+          builder: (context, scrollController) {
+            return DefaultTabController(
+              length: 2,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: [
+                        Text(
+                          l10n.quranReaderJumpSheetTitle,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: TabBar(
+                            tabs: [
+                              Tab(text: l10n.quranReaderJumpSurahTab),
+                              Tab(text: l10n.quranReaderJumpJuzTab),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        ListView.builder(
+                          controller: scrollController,
+                          itemCount: surahs.length,
+                          itemBuilder: (context, index) {
+                            final entry = surahs[index];
+                            final selected = entry.number == widget.surahNumber;
+                            return ListTile(
+                              key: ValueKey(
+                                'quran-reader-jump-surah-${entry.number}',
+                              ),
+                              selected: selected,
+                              leading: Text(
+                                entry.number.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              title: Text(entry.transliteratedName),
+                              trailing: Text(
+                                entry.arabicName,
+                                textDirection: TextDirection.rtl,
+                              ),
+                              onTap: () {
+                                Navigator.of(sheetContext).pop();
+                                if (!selected) {
+                                  _goToSurah(entry.number);
+                                }
+                              },
+                            );
+                          },
+                        ),
+                        ListView.builder(
+                          itemCount: 30,
+                          itemBuilder: (context, index) {
+                            final juzNumber = index + 1;
+                            final (
+                              surahNumber,
+                              ayahNumber,
+                            ) = QuranGlobalPosition.positionOf(
+                              QuranGlobalPosition.juzStartIndex(juzNumber),
+                            );
+                            return ListTile(
+                              key: ValueKey('quran-reader-jump-juz-$juzNumber'),
+                              title: Text(
+                                l10n.quranReaderJumpJuzLabel(juzNumber),
+                              ),
+                              subtitle: Text(
+                                '${surahs.where((s) => s.number == surahNumber).firstOrNull?.transliteratedName ?? ''} • $surahNumber:$ayahNumber',
+                              ),
+                              onTap: () {
+                                Navigator.of(sheetContext).pop();
+                                _goToSurah(surahNumber, ayah: ayahNumber);
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  /// Reaching the end of a surah offers the neighbours without audio: quiet
+  /// reading continues without a trip back to the hub.
+  Widget _buildSurahEndFooter(BuildContext context, AppLocalizations l10n) {
+    final surahMap = ref.read(quranSurahMapProvider);
+    final previous = surahMap[widget.surahNumber - 1];
+    final next = surahMap[widget.surahNumber + 1];
+    if (previous == null && next == null) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+      child: Row(
+        children: [
+          if (previous != null)
+            Expanded(
+              child: OutlinedButton.icon(
+                key: const ValueKey('quran-reader-footer-previous-surah'),
+                onPressed: () => _goToSurah(previous.number),
+                icon: const Icon(Icons.arrow_back_rounded, size: 16),
+                label: Text(
+                  '${l10n.quranReaderPreviousSurahAction} • ${previous.transliteratedName}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          if (previous != null && next != null) const SizedBox(width: 10),
+          if (next != null)
+            Expanded(
+              child: FilledButton.tonalIcon(
+                key: const ValueKey('quran-reader-footer-next-surah'),
+                onPressed: () => _goToSurah(next.number),
+                icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+                label: Text(
+                  '${l10n.quranReaderNextSurahAction} • ${next.transliteratedName}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  /// Swaps the reader to another surah in place, so back still leaves the
+  /// reader entirely instead of unwinding a jump history.
+  void _goToSurah(int surahNumber, {int? ayah}) {
+    context.pushReplacementNamed(
+      'quranReader',
+      pathParameters: {'surahNumber': surahNumber.toString()},
+      queryParameters: {if (ayah != null && ayah > 1) 'ayah': ayah.toString()},
     );
   }
 
