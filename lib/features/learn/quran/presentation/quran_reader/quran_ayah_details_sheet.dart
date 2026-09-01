@@ -269,12 +269,10 @@ class _QuranAyahDetailsSheetBody extends ConsumerWidget {
             ),
           ],
           const SizedBox(height: 6),
-          ListTile(
+          CompactListTile(
             key: const ValueKey('quran-ayah-sheet-reflection'),
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.lifeAddReflectionTitle),
-            subtitle: Text(l10n.lifeAddReflectionSubtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
+            title: l10n.lifeAddReflectionTitle,
+            subtitle: l10n.lifeAddReflectionSubtitle,
             onTap: () {
               Navigator.of(context).pop();
               context.pushNamed('journalCreate');

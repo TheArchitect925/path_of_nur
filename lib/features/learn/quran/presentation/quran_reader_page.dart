@@ -59,6 +59,7 @@ import '../data/quran_repository.dart';
 import '../data/quran_word_glossary.dart';
 import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../data/quran_guided_passage_readiness_data.dart';
 import '../data/quran_short_surah_readiness_data.dart';
 import '../domain/quran_khatm_models.dart';
