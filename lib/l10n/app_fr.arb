@@ -12194,5 +12194,20 @@
   "dhikrBuilderCustomMeaning": "Sens (facultatif)",
   "dhikrBuilderCustomCount": "Nombre de répétitions",
   "dhikrBuilderCustomAddAction": "Ajouter à la routine",
-  "dhikrCustomRoutineFallbackName": "Ma routine"
+  "dhikrCustomRoutineFallbackName": "Ma routine",
+  "divineLifeReflectionModeTitle": "Mode réflexion",
+  "divineLifeReflectionModeSubtitle": "Une lecture calme et concentrée",
+  "worldAtmosphereLayersSubtitle": "Une vue simple des couches du ciel et de leur protection.",
+  "worldSignsExplorerSubtitle": "Parcourez la création par grands domaines et entrez dans les leçons.",
+  "worldDeepOceanTitle": "Explorateur des profondeurs",
+  "worldDeepOceanSubtitle": "Une méditation verticale sur la profondeur, l’obscurité et la vie cachée.",
+  "worldCosmicScaleTitle": "Explorateur des échelles cosmiques",
+  "worldCosmicScaleSubtitle": "De l’infime à l’immense, observez proportions et perspectives.",
+  "worldMuslimScientistsSubtitle": "Curiosité, observation et rigueur dans l’érudition musulmane.",
+  "worldReflectionModeProgress": "{current} sur {total}",
+  "worldReflectionModeEmpty": "Aucune leçon de réflexion n’est disponible pour le moment.",
+  "quranUniverseTitle": "Univers du Qur’an",
+  "quranUniverseSubtitle": "Les liens entre versets, prophètes, thèmes, lieux, leçons et habitudes.",
+  "knowledgeConstellationSubtitle": "Une carte interactive reliant Qur’an, hadith, prophètes et thèmes.",
+  "babyNamesDetailUnavailable": "Impossible d’ouvrir les détails."
 }

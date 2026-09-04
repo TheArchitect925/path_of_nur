@@ -44280,4 +44280,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dhikrCustomRoutineFallbackName => 'Ma routine';
+
+  @override
+  String get divineLifeReflectionModeTitle => 'Mode réflexion';
+
+  @override
+  String get divineLifeReflectionModeSubtitle =>
+      'Une lecture calme et concentrée';
+
+  @override
+  String get worldAtmosphereLayersSubtitle =>
+      'Une vue simple des couches du ciel et de leur protection.';
+
+  @override
+  String get worldSignsExplorerSubtitle =>
+      'Parcourez la création par grands domaines et entrez dans les leçons.';
+
+  @override
+  String get worldDeepOceanTitle => 'Explorateur des profondeurs';
+
+  @override
+  String get worldDeepOceanSubtitle =>
+      'Une méditation verticale sur la profondeur, l’obscurité et la vie cachée.';
+
+  @override
+  String get worldCosmicScaleTitle => 'Explorateur des échelles cosmiques';
+
+  @override
+  String get worldCosmicScaleSubtitle =>
+      'De l’infime à l’immense, observez proportions et perspectives.';
+
+  @override
+  String get worldMuslimScientistsSubtitle =>
+      'Curiosité, observation et rigueur dans l’érudition musulmane.';
+
+  @override
+  String worldReflectionModeProgress(int current, int total) {
+    return '$current sur $total';
+  }
+
+  @override
+  String get worldReflectionModeEmpty =>
+      'Aucune leçon de réflexion n’est disponible pour le moment.';
+
+  @override
+  String get quranUniverseTitle => 'Univers du Qur’an';
+
+  @override
+  String get quranUniverseSubtitle =>
+      'Les liens entre versets, prophètes, thèmes, lieux, leçons et habitudes.';
+
+  @override
+  String get knowledgeConstellationSubtitle =>
+      'Une carte interactive reliant Qur’an, hadith, prophètes et thèmes.';
+
+  @override
+  String get babyNamesDetailUnavailable => 'Impossible d’ouvrir les détails.';
 }

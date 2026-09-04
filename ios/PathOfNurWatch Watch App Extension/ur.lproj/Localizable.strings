@@ -138,3 +138,20 @@
 "watch.quran.ayahFormat" = "آیت %d";
 "watch.complication.nameOfDay.title" = "آج کا نام";
 "watch.complication.nameOfDay.description" = "اللہ کا ایک روزانہ نام اس کے معنی کے ساتھ۔";
+
+"watch.dhikr.routines.title" = "معمولات";
+"watch.dhikr.routines.subtitle" = "آپ کے فون سے رہنمائی شدہ اذکار";
+"watch.dhikr.routines.empty" = "اپنے معمولات لوڈ کرنے کے لیے ایک بار فون کھولیں۔";
+"watch.dhikr.routines.doneToday" = "آج مکمل";
+"watch.dhikr.routines.continue" = "جاری رکھیں";
+"watch.dhikr.routines.begin" = "شروع کریں";
+"watch.dhikr.routines.undo" = "واپس لیں";
+"watch.dhikr.routines.skip" = "قدم چھوڑیں";
+"watch.dhikr.routines.leave" = "باہر جائیں";
+"watch.dhikr.routines.restart" = "دوبارہ شروع کریں";
+"watch.dhikr.routines.complete.title" = "معمول مکمل";
+"watch.dhikr.routines.complete.body" = "آج کے ذکر کے ساتھ آپ کے فون میں محفوظ ہو گیا۔";
+"watch.dhikr.routines.tapToCount" = "گننے کے لیے تھپتھپائیں";
+"watch.dhikr.routines.stepOfFormat" = "قدم %d از %d";
+"watch.dhikr.routines.metaFormat" = "%d اذکار • تقریباً %d منٹ";
+"watch.dhikr.routines.ofTargetFormat" = "%d از %d";

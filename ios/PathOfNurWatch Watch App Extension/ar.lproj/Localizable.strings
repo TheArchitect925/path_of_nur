@@ -138,3 +138,20 @@
 "watch.quran.ayahFormat" = "الآية %d";
 "watch.complication.nameOfDay.title" = "اسم اليوم";
 "watch.complication.nameOfDay.description" = "اسم من أسماء الله كل يوم مع معناه.";
+
+"watch.dhikr.routines.title" = "الأوراد";
+"watch.dhikr.routines.subtitle" = "أوراد موجهة من هاتفك";
+"watch.dhikr.routines.empty" = "افتح الهاتف مرة واحدة لتحميل أورادك.";
+"watch.dhikr.routines.doneToday" = "أُنجز اليوم";
+"watch.dhikr.routines.continue" = "متابعة";
+"watch.dhikr.routines.begin" = "ابدأ";
+"watch.dhikr.routines.undo" = "تراجع";
+"watch.dhikr.routines.skip" = "تخطي الخطوة";
+"watch.dhikr.routines.leave" = "خروج";
+"watch.dhikr.routines.restart" = "البدء من جديد";
+"watch.dhikr.routines.complete.title" = "اكتمل الورد";
+"watch.dhikr.routines.complete.body" = "سُجّل في هاتفك مع ذكر اليوم.";
+"watch.dhikr.routines.tapToCount" = "انقر للعد";
+"watch.dhikr.routines.stepOfFormat" = "الخطوة %d من %d";
+"watch.dhikr.routines.metaFormat" = "%d أذكار • نحو %d دقيقة";
+"watch.dhikr.routines.ofTargetFormat" = "%d من %d";

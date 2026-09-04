@@ -138,3 +138,20 @@
 "watch.quran.ayahFormat" = "Verset %d";
 "watch.complication.nameOfDay.title" = "Nom du jour";
 "watch.complication.nameOfDay.description" = "Un nom d’Allah chaque jour, avec son sens.";
+
+"watch.dhikr.routines.title" = "Routines";
+"watch.dhikr.routines.subtitle" = "Ensembles guidés depuis votre téléphone";
+"watch.dhikr.routines.empty" = "Ouvrez le téléphone une fois pour charger vos routines.";
+"watch.dhikr.routines.doneToday" = "Fait aujourd’hui";
+"watch.dhikr.routines.continue" = "Continuer";
+"watch.dhikr.routines.begin" = "Commencer";
+"watch.dhikr.routines.undo" = "Annuler";
+"watch.dhikr.routines.skip" = "Passer l’étape";
+"watch.dhikr.routines.leave" = "Quitter";
+"watch.dhikr.routines.restart" = "Recommencer";
+"watch.dhikr.routines.complete.title" = "Routine terminée";
+"watch.dhikr.routines.complete.body" = "Enregistrée sur votre téléphone avec le rappel du jour.";
+"watch.dhikr.routines.tapToCount" = "Touchez pour compter";
+"watch.dhikr.routines.stepOfFormat" = "Étape %d sur %d";
+"watch.dhikr.routines.metaFormat" = "%d adhkar • environ %d min";
+"watch.dhikr.routines.ofTargetFormat" = "%d sur %d";
