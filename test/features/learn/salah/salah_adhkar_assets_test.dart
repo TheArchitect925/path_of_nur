@@ -43,7 +43,11 @@ void main() {
       final name = file.uri.pathSegments.last;
       expect(name.endsWith('.mp3'), isTrue, reason: '$name is not an mp3');
       final stem = name.substring(0, name.length - 4);
-      expect(slots, contains(stem), reason: '$name is not a slot the app plays');
+      expect(
+        slots,
+        contains(stem),
+        reason: '$name is not a slot the app plays',
+      );
       expect(file.lengthSync(), greaterThan(1024), reason: '$name is empty');
       // An MPEG audio stream starts with an ID3 tag or a frame sync.
       final head = file.openSync().readSync(3);
