@@ -8,6 +8,7 @@ import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../salah/application/salah_sync_controller.dart';
 import '../../salah/application/salah_trainer_provider.dart';
 import '../../salah/models/salah_trainer_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
@@ -172,24 +173,38 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
-                ...recentPrayers
-                    .take(2)
-                    .map(
-                      (prayer) => ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(prayer.title),
-                        subtitle: Text(
-                          '${prayer.fardRakahs} • ${prayer.recitationStyle}',
-                        ),
-                        trailing: FilledButton.tonal(
-                          onPressed: () => context.pushNamed(
-                            'learnSalahGuidedPrayer',
-                            pathParameters: {'prayerId': prayer.id.name},
-                          ),
-                          child: Text(l10n.wuduTrainerResumeAction),
-                        ),
+                ...recentPrayers.take(2).map((prayer) {
+                  final session = progress.sessionFor(prayer.id);
+                  final sessionSurah = session == null
+                      ? null
+                      : ref.watch(
+                          salahTrainerSurahByIdProvider(session.surahId),
+                        );
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(prayer.title),
+                    subtitle: Text(
+                      session != null && session.hasProgress
+                          ? l10n.salahTrainerHubResumeSubtitle(
+                              session.stepIndex + 1,
+                              session.totalSteps,
+                              sessionSurah?.name ?? session.surahId,
+                            )
+                          : '${prayer.fardRakahs} • ${prayer.recitationStyle}',
+                    ),
+                    trailing: FilledButton.tonal(
+                      onPressed: () => context.pushNamed(
+                        'learnSalahGuidedPrayer',
+                        pathParameters: {'prayerId': prayer.id.name},
+                      ),
+                      child: Text(
+                        session != null && session.hasProgress
+                            ? l10n.salahTrainerResumeAction
+                            : l10n.learnSalahHubStartGuidedSalahAction,
                       ),
                     ),
+                  );
+                }),
               ],
             ),
           ),
@@ -585,6 +600,8 @@ class _RecitationsTab extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final progress = ref.watch(salahTrainerProgressProvider);
     final notifier = ref.read(salahTrainerProgressProvider.notifier);
+    final playingId = ref.watch(recitationPlaybackControllerProvider);
+    final player = ref.read(recitationPlaybackControllerProvider.notifier);
     return Column(
       children: [
         PremiumCard(
@@ -627,6 +644,7 @@ class _RecitationsTab extends ConsumerWidget {
                   Text(
                     recitation.arabicText,
                     textAlign: TextAlign.right,
+                    textDirection: TextDirection.rtl,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
@@ -634,10 +652,31 @@ class _RecitationsTab extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Text(recitation.translation),
                   const SizedBox(height: 10),
-                  FilledButton.tonal(
-                    onPressed: () =>
-                        notifier.markRecitationLearned(recitation.id),
-                    child: Text(l10n.learnSalahHubMarkReviewedAction),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      FilledButton.tonalIcon(
+                        onPressed: playingId == recitation.id
+                            ? player.stop
+                            : () => player.play(recitation),
+                        icon: Icon(
+                          playingId == recitation.id
+                              ? Icons.stop_rounded
+                              : Icons.volume_up_rounded,
+                        ),
+                        label: Text(
+                          playingId == recitation.id
+                              ? l10n.salahTrainerStopAction
+                              : l10n.salahTrainerListenAction,
+                        ),
+                      ),
+                      OutlinedButton(
+                        onPressed: () =>
+                            notifier.markRecitationLearned(recitation.id),
+                        child: Text(l10n.learnSalahHubMarkReviewedAction),
+                      ),
+                    ],
                   ),
                 ],
               ),

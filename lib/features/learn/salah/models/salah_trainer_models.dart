@@ -1,3 +1,5 @@
+import '../../../../core/prayer/prayer_preferences.dart';
+
 enum SalahPrayerId { fajr, dhuhr, asr, maghrib, isha, witr, jummah }
 
 enum SalahRecitationKind {
@@ -307,14 +309,10 @@ class PrayerStepModel {
 }
 
 class RakaaModel {
-  const RakaaModel({
-    required this.index,
-    required this.title,
-    required this.steps,
-  });
+  const RakaaModel({required this.index, required this.steps});
 
+  /// 1-based position in the prayer; the label is localized at display time.
   final int index;
-  final String title;
   final List<PrayerStepModel> steps;
 }
 
@@ -329,7 +327,7 @@ class PrayerModel {
     required this.recitationStyle,
     required this.overview,
     required this.guidedRakahs,
-    this.madhhabGuidance = const <String, String>{},
+    this.madhhabGuidance = const <PrayerMadhab, String>{},
     this.specialNotes = const <String>[],
   });
 
@@ -342,7 +340,9 @@ class PrayerModel {
   final String recitationStyle;
   final String overview;
   final List<RakaaModel> guidedRakahs;
-  final Map<String, String> madhhabGuidance;
+
+  /// School-specific notes, keyed by the learner's madhhab setting.
+  final Map<PrayerMadhab, String> madhhabGuidance;
   final List<String> specialNotes;
 }
 

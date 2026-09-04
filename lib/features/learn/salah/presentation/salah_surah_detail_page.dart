@@ -1,15 +1,17 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/salah_sync_controller.dart';
 import '../application/salah_trainer_provider.dart';
 import '../models/salah_trainer_models.dart';
+import '../widgets/salah_trainer_widgets.dart';
 import '../widgets/synced_ayah_text.dart';
 
 class SalahSurahDetailPage extends ConsumerStatefulWidget {
@@ -25,18 +27,13 @@ class SalahSurahDetailPage extends ConsumerStatefulWidget {
 class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
   SurahLearningMode _mode = SurahLearningMode.listen;
 
-  @override
-  void dispose() {
-    unawaited(
-      ref
-          .read(surahPlaybackControllerProvider(widget.surahId).notifier)
-          .pause(),
-    );
-    super.dispose();
-  }
+  bool get _showTransliteration =>
+      _mode != SurahLearningMode.practice && _mode != SurahLearningMode.memory;
+  bool get _showTranslation => _mode != SurahLearningMode.memory;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final surah = ref.watch(salahTrainerSurahByIdProvider(widget.surahId));
     final notifier = ref.read(salahTrainerProgressProvider.notifier);
     final progressState = ref.watch(salahTrainerProgressProvider);
@@ -45,7 +42,6 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
       surahPlaybackControllerProvider(widget.surahId).notifier,
     );
     if (surah == null) {
-      final l10n = AppLocalizations.of(context);
       return LearnHubPageScaffold(
         title: l10n.learnContentNotFound,
         subtitle: l10n.salahPrayerDetailNotFound,
@@ -63,13 +59,18 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
         ],
       );
     }
+    final textTheme = Theme.of(context).textTheme;
+    final subtle = textTheme.bodySmall?.copyWith(
+      color: context.palette.onSurfaceSubtle,
+    );
     final status =
         progressState.surahProgressById[surah.id] ??
         SalahSurahProgress.notStarted;
     final currentVerse = surah.verses[playback.currentAyahIndex];
+    final activeTiming = playback.activeTiming ?? RecitationTimingModel.empty;
 
     return LearnHubPageScaffold(
-      title: 'Learn Ayah - ${surah.name}',
+      title: l10n.salahTrainerLearnAyahTitle(surah.name),
       subtitle: surah.summary,
       children: [
         PremiumCard(
@@ -78,10 +79,20 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
             children: [
               Text(
                 surah.arabicName,
-                style: Theme.of(context).textTheme.headlineSmall,
+                textDirection: TextDirection.rtl,
+                style: QuranPresentationStyle.translucentTextStyle(
+                  context,
+                  AppTextStyles.quranVerse(size: 28),
+                ),
               ),
-              const SizedBox(height: 8),
-              Text('Surah ${surah.surahNumber} • ${surah.verses.length} ayahs'),
+              const SizedBox(height: 6),
+              Text(
+                l10n.salahTrainerSurahMeta(
+                  surah.surahNumber,
+                  surah.verses.length,
+                ),
+                style: subtle,
+              ),
               const SizedBox(height: 8),
               Text(surah.reflection),
             ],
@@ -91,76 +102,86 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
         SegmentedPillControl<SurahLearningMode>(
           items: SurahLearningMode.values,
           selectedItem: _mode,
-          labelBuilder: _modeLabel,
+          labelBuilder: (mode) => _modeLabel(l10n, mode),
           onChanged: (value) => setState(() => _mode = value),
+        ),
+        const SizedBox(height: 6),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: Text(_modeHint(l10n, _mode), style: subtle),
         ),
         const SizedBox(height: 10),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: FilledButton.icon(
+                      onPressed: playback.isPlaying
+                          ? playbackNotifier.pause
+                          : () => playbackNotifier.playSurah(mode: _mode),
+                      icon: Icon(
+                        playback.isPlaying
+                            ? Icons.pause_rounded
+                            : Icons.play_arrow_rounded,
+                      ),
+                      label: Text(
+                        playback.isPlaying
+                            ? l10n.salahGuidedPrayerPauseAction
+                            : l10n.salahTrainerPlayFullSurahAction,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: playbackNotifier.playCurrentAyah,
+                      child: Text(l10n.salahTrainerPlayCurrentAyahAction),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  FilledButton.tonal(
-                    onPressed: playback.isPlaying
-                        ? playbackNotifier.pause
-                        : () => playbackNotifier.playSurah(mode: _mode),
-                    child: Text(
-                      playback.isPlaying ? 'Pause' : 'Play Full Surah',
-                    ),
-                  ),
-                  OutlinedButton(
-                    onPressed: () => playbackNotifier.playCurrentAyah(),
-                    child: const Text('Play Current Ayah'),
-                  ),
-                  OutlinedButton(
-                    onPressed: () =>
+                  SalahPill(
+                    icon: Icons.slow_motion_video_rounded,
+                    label: l10n.salahTrainerSlowPlaybackLabel,
+                    selected: playback.slowMode,
+                    onTap: () =>
                         playbackNotifier.setSlowMode(!playback.slowMode),
-                    child: Text(
-                      playback.slowMode ? 'Slow Mode On' : 'Slow Playback',
-                    ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  ChoiceChip(
-                    label: const Text('Pause After Ayah'),
+                  SalahPill(
+                    icon: Icons.pause_circle_outline_rounded,
+                    label: l10n.salahTrainerPauseAfterAyahLabel,
                     selected: playback.pauseAfterAyah,
-                    onSelected: (value) =>
-                        playbackNotifier.setPauseAfterAyah(value),
-                  ),
-                  ...[1, 2, 3].map(
-                    (repeat) => ChoiceChip(
-                      label: Text('Repeat x$repeat'),
-                      selected: playback.repeatCount == repeat,
-                      onSelected: (_) =>
-                          playbackNotifier.setRepeatCount(repeat),
+                    onTap: () => playbackNotifier.setPauseAfterAyah(
+                      !playback.pauseAfterAyah,
                     ),
                   ),
+                  for (final repeat in const [1, 2, 3])
+                    SalahPill(
+                      label: l10n.salahTrainerRepeatTimesLabel(repeat),
+                      selected: playback.repeatCount == repeat,
+                      onTap: () => playbackNotifier.setRepeatCount(repeat),
+                    ),
                 ],
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: SalahSurahProgress.values
-                    .map((value) {
-                      return ChoiceChip(
-                        label: Text(_statusLabel(value)),
-                        selected: status == value,
-                        onSelected: (_) =>
-                            notifier.setSurahProgress(surah.id, value),
-                      );
-                    })
-                    .toList(growable: false),
               ),
             ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        PremiumCard(
+          child: SalahPillChoice<SalahSurahProgress>(
+            label: l10n.salahTrainerYourProgressLabel,
+            values: SalahSurahProgress.values,
+            selected: status,
+            labelOf: (value) => _statusLabel(l10n, value),
+            onChanged: (value) => notifier.setSurahProgress(surah.id, value),
           ),
         ),
         const SizedBox(height: 10),
@@ -169,36 +190,29 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Now highlighting ayah ${currentVerse.ayahNumber}',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                l10n.salahTrainerNowOnAyah(currentVerse.ayahNumber),
+                style: textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 10),
               SyncedAyahText(
                 arabicText: currentVerse.arabicText,
-                transliteration:
-                    _mode == SurahLearningMode.practice ||
-                        _mode == SurahLearningMode.memory
-                    ? ''
-                    : currentVerse.transliteration,
-                translation: _mode == SurahLearningMode.memory
-                    ? ''
-                    : currentVerse.translation,
-                timing: playback.activeTiming ?? RecitationTimingModel.empty,
+                transliteration: currentVerse.transliteration,
+                translation: currentVerse.translation,
+                timing: activeTiming,
                 activeWordIndex: playback.currentWordIndex,
-                showTransliteration:
-                    _mode != SurahLearningMode.practice &&
-                    _mode != SurahLearningMode.memory,
-                showTranslation: _mode != SurahLearningMode.memory,
-                highlightEntireAyah: playback.activeTiming?.isEmpty ?? true,
+                showTransliteration: _showTransliteration,
+                showTranslation: _showTranslation,
+                highlightEntireAyah: playback.isPlaying && activeTiming.isEmpty,
               ),
             ],
           ),
         ),
         const SizedBox(height: 10),
-        ...surah.verses.map(
-          (verse) => Padding(
+        ...surah.verses.map((verse) {
+          final isCurrent = playback.currentAyahIndex == verse.ayahNumber - 1;
+          return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: PremiumCard(
               child: Column(
@@ -206,14 +220,22 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        'Ayah ${verse.ayahNumber}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      Expanded(
+                        child: Text(
+                          l10n.salahTrainerAyahLabel(verse.ayahNumber),
+                          style: textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
-                      const Spacer(),
-                      if (playback.currentAyahIndex == verse.ayahNumber - 1)
-                        const Icon(Icons.graphic_eq_rounded, size: 18),
+                      if (isCurrent && playback.isPlaying)
+                        Icon(
+                          Icons.graphic_eq_rounded,
+                          size: 18,
+                          color: context.palette.accent,
+                        ),
                       IconButton(
+                        tooltip: l10n.salahTrainerPlayCurrentAyahAction,
                         onPressed: () {
                           playbackNotifier.setCurrentAyahIndex(
                             verse.ayahNumber - 1,
@@ -226,61 +248,65 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
                   ),
                   SyncedAyahText(
                     arabicText: verse.arabicText,
-                    transliteration:
-                        _mode == SurahLearningMode.practice ||
-                            _mode == SurahLearningMode.memory
-                        ? ''
-                        : verse.transliteration,
-                    translation: _mode == SurahLearningMode.memory
-                        ? ''
-                        : verse.translation,
-                    timing: playback.currentAyahIndex == verse.ayahNumber - 1
-                        ? playback.activeTiming ?? RecitationTimingModel.empty
+                    transliteration: verse.transliteration,
+                    translation: verse.translation,
+                    timing: isCurrent
+                        ? activeTiming
                         : RecitationTimingModel.empty,
-                    activeWordIndex:
-                        playback.currentAyahIndex == verse.ayahNumber - 1
-                        ? playback.currentWordIndex
-                        : -1,
-                    showTransliteration:
-                        _mode != SurahLearningMode.practice &&
-                        _mode != SurahLearningMode.memory,
-                    showTranslation: _mode != SurahLearningMode.memory,
+                    activeWordIndex: isCurrent ? playback.currentWordIndex : -1,
+                    showTransliteration: _showTransliteration,
+                    showTranslation: _showTranslation,
                     highlightEntireAyah:
-                        playback.currentAyahIndex == verse.ayahNumber - 1 &&
-                        (playback.activeTiming?.isEmpty ?? true),
+                        isCurrent && playback.isPlaying && activeTiming.isEmpty,
+                    emphasis: isCurrent || !playback.isPlaying
+                        ? SyncedTextEmphasis.active
+                        : SyncedTextEmphasis.upcoming,
                   ),
                 ],
               ),
             ),
-          ),
-        ),
+          );
+        }),
       ],
     );
   }
 
-  String _modeLabel(SurahLearningMode mode) {
+  String _modeLabel(AppLocalizations l10n, SurahLearningMode mode) {
     switch (mode) {
       case SurahLearningMode.listen:
-        return 'Listen';
+        return l10n.salahTrainerModeListen;
       case SurahLearningMode.repeat:
-        return 'Repeat After Ayah';
+        return l10n.salahTrainerModeRepeat;
       case SurahLearningMode.practice:
-        return 'Practice';
+        return l10n.salahTrainerModePractice;
       case SurahLearningMode.memory:
-        return 'Memory Mode';
+        return l10n.salahTrainerModeMemory;
     }
   }
 
-  String _statusLabel(SalahSurahProgress value) {
+  String _modeHint(AppLocalizations l10n, SurahLearningMode mode) {
+    switch (mode) {
+      case SurahLearningMode.listen:
+        return l10n.salahTrainerModeListenHint;
+      case SurahLearningMode.repeat:
+        return l10n.salahTrainerModeRepeatHint;
+      case SurahLearningMode.practice:
+        return l10n.salahTrainerModePracticeHint;
+      case SurahLearningMode.memory:
+        return l10n.salahTrainerModeMemoryHint;
+    }
+  }
+
+  String _statusLabel(AppLocalizations l10n, SalahSurahProgress value) {
     switch (value) {
       case SalahSurahProgress.notStarted:
-        return 'Not started';
+        return l10n.learnSalahHubStatusNotStarted;
       case SalahSurahProgress.learning:
-        return 'Learning';
+        return l10n.learnSalahHubStatusLearning;
       case SalahSurahProgress.practiced:
-        return 'Practiced';
+        return l10n.learnSalahHubStatusPracticed;
       case SalahSurahProgress.memorized:
-        return 'Memorized';
+        return l10n.learnSalahHubStatusMemorized;
     }
   }
 }

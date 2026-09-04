@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/localization/locale_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
 import '../data/salah_trainer_data.dart';
@@ -14,10 +16,6 @@ const _guidanceNoticeKey = 'learn.salah.trainer.guidanceNoticeAccepted.v1';
 /// three, plus the next surah in the pool for every surah practiced or
 /// memorized.
 Set<String> salahUnlockedSurahIdsFor(SalahTrainerProgressState state) {
-  final pool = salahSurahs
-      .where((surah) => surah.id != 'al_fatihah')
-      .map((surah) => surah.id)
-      .toList(growable: false);
   final practicedCount = state.surahProgressById.values
       .where(
         (value) =>
@@ -27,10 +25,13 @@ Set<String> salahUnlockedSurahIdsFor(SalahTrainerProgressState state) {
       .length;
   final unlocked = <String>{
     for (final id in initialUnlockedSurahIds)
-      if (pool.contains(id)) id,
+      if (salahShortSurahIds.contains(id)) id,
   };
-  final target = (unlocked.length + practicedCount).clamp(0, pool.length);
-  for (final id in pool) {
+  final target = (unlocked.length + practicedCount).clamp(
+    0,
+    salahShortSurahIds.length,
+  );
+  for (final id in salahShortSurahIds) {
     if (unlocked.length >= target) break;
     unlocked.add(id);
   }
@@ -241,22 +242,35 @@ final salahTrainerGuidanceNoticeProvider =
       return SalahTrainerGuidanceNoticeNotifier(ref.watch(localStoreProvider));
     });
 
+/// The trainer's content in the app language. Rebuilds when the learner
+/// changes language, so every open page re-reads its copy.
+final salahTrainerContentProvider = Provider<SalahTrainerContent>((ref) {
+  final locale = ref.watch(appLocaleProvider) ?? defaultAppLocale;
+  AppLocalizations l10n;
+  try {
+    l10n = lookupAppLocalizations(locale);
+  } catch (_) {
+    l10n = lookupAppLocalizations(defaultAppLocale);
+  }
+  return buildSalahTrainerContent(l10n);
+});
+
 final salahTrainerPrayersProvider = Provider<List<PrayerModel>>((ref) {
-  return salahPrayers;
+  return ref.watch(salahTrainerContentProvider).prayers;
 });
 
 final salahTrainerSurahsProvider = Provider<List<SurahModel>>((ref) {
-  return salahSurahs;
+  return ref.watch(salahTrainerContentProvider).surahs;
 });
 
 final salahTrainerRecitationsProvider = Provider<List<RecitationModel>>((ref) {
-  return salahRecitations;
+  return ref.watch(salahTrainerContentProvider).recitations;
 });
 
 final salahTrainerEssentialsProvider = Provider<List<SalahEssentialTopic>>((
   ref,
 ) {
-  return salahEssentials;
+  return ref.watch(salahTrainerContentProvider).essentials;
 });
 
 final salahTrainerPrayerByIdProvider =

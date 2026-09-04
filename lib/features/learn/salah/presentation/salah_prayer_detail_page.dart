@@ -3,11 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/expandable_tile.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
+import '../application/salah_guided_settings_provider.dart';
 import '../application/salah_trainer_provider.dart';
 import '../models/salah_trainer_models.dart';
+import '../widgets/prayer_posture_animator.dart';
+import '../widgets/salah_trainer_widgets.dart';
 
 class SalahPrayerDetailPage extends ConsumerWidget {
   const SalahPrayerDetailPage({
@@ -17,6 +25,8 @@ class SalahPrayerDetailPage extends ConsumerWidget {
   });
 
   final SalahPrayerId prayerId;
+
+  /// Opens with every rakah expanded and the structure ahead of the notes.
   final bool focusSteps;
 
   @override
@@ -24,6 +34,9 @@ class SalahPrayerDetailPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final prayer = ref.watch(salahTrainerPrayerByIdProvider(prayerId));
     final settings = ref.watch(prayerSettingsProvider);
+    final tasbihRepeats = ref.watch(
+      salahGuidedSettingsProvider.select((value) => value.tasbihRepeats),
+    );
     if (prayer == null) {
       return LearnHubPageScaffold(
         title: l10n.salahPrayerDetailNotFound,
@@ -42,71 +55,71 @@ class SalahPrayerDetailPage extends ConsumerWidget {
         ],
       );
     }
-    final madhhabKey =
-        prayerMadhabKey[settings.preferences.madhab] ?? "Shafi'i";
+    final textTheme = Theme.of(context).textTheme;
     final madhhabLabel = settings.preferences.madhab.localizedLabel(l10n);
-    final madhhabNote = prayer.madhhabGuidance[madhhabKey];
+    final madhhabNote = prayer.madhhabGuidance[settings.preferences.madhab];
+    final hasNotes = madhhabNote != null || prayer.specialNotes.isNotEmpty;
 
-    return LearnHubPageScaffold(
-      title: prayer.title,
-      subtitle: prayer.shortDescription,
-      children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    final overview = PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            prayer.arabicTitle,
+            textDirection: TextDirection.rtl,
+            style: QuranPresentationStyle.translucentTextStyle(
+              context,
+              AppTextStyles.quranVerse(size: 26),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
-              Text(
-                prayer.arabicTitle,
-                style: Theme.of(context).textTheme.titleLarge,
+              SalahPill(
+                label: prayer.sunnahRakahs,
+                icon: Icons.wb_twilight_rounded,
               ),
-              const SizedBox(height: 10),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  _chip(prayer.sunnahRakahs),
-                  _chip(prayer.fardRakahs),
-                  _chip(prayer.recitationStyle),
-                ],
-              ),
-              const SizedBox(height: 12),
-              Text(prayer.overview),
-              if (focusSteps) ...[
-                const SizedBox(height: 10),
-                Text(
-                  'Step view focus enabled. Review the movement order slowly from top to bottom.',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-              const SizedBox(height: 12),
-              FilledButton.tonalIcon(
-                onPressed: () => context.pushNamed(
-                  'learnSalahGuidedPrayer',
-                  pathParameters: {'prayerId': prayer.id.name},
-                ),
-                icon: const Icon(Icons.play_arrow_rounded),
-                label: Text(l10n.learnSalahHubStartGuidedSalahAction),
+              SalahPill(label: prayer.fardRakahs, icon: Icons.star_rounded),
+              SalahPill(
+                label: prayer.recitationStyle,
+                icon: Icons.volume_up_rounded,
               ),
             ],
           ),
-        ),
-        if (madhhabNote != null || prayer.specialNotes.isNotEmpty) ...[
-          const SizedBox(height: 10),
-          PremiumCard(
+          const SizedBox(height: 12),
+          Text(prayer.overview),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            onPressed: () => context.pushNamed(
+              'learnSalahGuidedPrayer',
+              pathParameters: {'prayerId': prayer.id.name},
+            ),
+            icon: const Icon(Icons.play_arrow_rounded),
+            label: Text(l10n.learnSalahHubStartGuidedSalahAction),
+          ),
+        ],
+      ),
+    );
+
+    final notes = !hasNotes
+        ? null
+        : PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Guidance Notes',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  l10n.salahTrainerGuidanceNotesTitle,
+                  style: textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 if (madhhabNote != null) ...[
                   const SizedBox(height: 8),
                   Text(
-                    '$madhhabLabel guidance',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    l10n.salahTrainerMadhhabGuidanceTitle(madhhabLabel),
+                    style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -115,107 +128,147 @@ class SalahPrayerDetailPage extends ConsumerWidget {
                 ],
                 if (prayer.specialNotes.isNotEmpty) ...[
                   const SizedBox(height: 10),
-                  ...prayer.specialNotes.map(
-                    (note) => Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 4),
-                            child: Icon(Icons.circle, size: 6),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(child: Text(note)),
-                        ],
-                      ),
-                    ),
-                  ),
+                  for (final note in prayer.specialNotes)
+                    SalahBulletRow(text: note),
                 ],
               ],
             ),
-          ),
-        ],
-        const SizedBox(height: 10),
-        ...prayer.guidedRakahs.map(
-          (rakah) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    rakah.title,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ...rakah.steps.map(
-                    (step) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: _StepRow(step: step),
-                    ),
-                  ),
-                ],
+          );
+
+    final structure = <Widget>[
+      Padding(
+        padding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.salahTrainerStructureTitle,
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
               ),
+            ),
+            if (focusSteps) ...[
+              const SizedBox(height: 4),
+              Text(
+                l10n.salahTrainerStepsFocusHint,
+                style: textTheme.bodySmall?.copyWith(
+                  color: context.palette.onSurfaceSubtle,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+      for (final rakah in prayer.guidedRakahs)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: ExpandableTile(
+            leading: CompactTileBadge(label: '${rakah.index}'),
+            title: Text(l10n.salahTrainerRakahTitle(rakah.index)),
+            subtitle: Text(l10n.salahTrainerRakahStepCount(rakah.steps.length)),
+            initiallyExpanded: focusSteps || rakah.index == 1,
+            child: Column(
+              children: [
+                for (final step in rakah.steps)
+                  _StepRow(step: step, tasbihRepeats: tasbihRepeats),
+              ],
             ),
           ),
         ),
-      ],
-    );
-  }
+    ];
 
-  Widget _chip(String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(label),
+    return LearnHubPageScaffold(
+      title: prayer.title,
+      subtitle: prayer.shortDescription,
+      children: [
+        overview,
+        const SizedBox(height: 10),
+        if (focusSteps) ...[
+          ...structure,
+          ?notes,
+        ] else ...[
+          if (notes != null) ...[notes, const SizedBox(height: 10)],
+          ...structure,
+        ],
+      ],
     );
   }
 }
 
 class _StepRow extends StatelessWidget {
-  const _StepRow({required this.step});
+  const _StepRow({required this.step, required this.tasbihRepeats});
 
   final PrayerStepModel step;
+  final int tasbihRepeats;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 5),
-          child: Icon(Icons.circle, size: 7),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                step.title,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              if (step.helperText != null) ...[
-                const SizedBox(height: 3),
-                Text(
-                  step.helperText!,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-              const SizedBox(height: 4),
-              Text(step.translation),
-            ],
+    final l10n = AppLocalizations.of(context);
+    final textTheme = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PrayerPostureAnimator(
+            posture: step.posture,
+            size: 34,
+            showMat: false,
+            duration: Duration.zero,
           ),
-        ),
-      ],
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 4,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      step.title,
+                      style: textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    if (step.isOptional)
+                      SalahPill(
+                        label: l10n.salahTrainerOptionalBadge,
+                        compact: true,
+                      ),
+                    if (step.entryTakbir)
+                      SalahPill(
+                        label: l10n.salahTrainerTakbirBadge,
+                        icon: Icons.south_rounded,
+                        compact: true,
+                      ),
+                    if (step.isTasbih)
+                      SalahPill(
+                        label: l10n.salahTrainerTasbihBadge(tasbihRepeats),
+                        icon: Icons.repeat_rounded,
+                        compact: true,
+                      ),
+                  ],
+                ),
+                if (step.helperText != null) ...[
+                  const SizedBox(height: 3),
+                  Text(
+                    step.helperText!,
+                    style: textTheme.bodySmall?.copyWith(
+                      color: context.palette.onSurfaceSubtle,
+                    ),
+                  ),
+                ],
+                if (!step.isSilent || step.isDynamicSurah) ...[
+                  const SizedBox(height: 4),
+                  Text(step.translation, style: textTheme.bodySmall),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

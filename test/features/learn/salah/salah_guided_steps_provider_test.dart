@@ -4,8 +4,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/learn/salah/application/salah_trainer_provider.dart';
 import 'package:path_of_nur/features/learn/salah/data/salah_trainer_data.dart';
 import 'package:path_of_nur/features/learn/salah/models/salah_trainer_models.dart';
+import 'package:path_of_nur/l10n/app_localizations_en.dart';
 
 void main() {
+  /// English content without a locale store behind it.
+  ProviderContainer makeContainer() {
+    final container = ProviderContainer(
+      overrides: [
+        salahTrainerContentProvider.overrideWithValue(
+          buildSalahTrainerContent(AppLocalizationsEn()),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+    return container;
+  }
+
   List<GuidedPrayerStep> stepsFor(
     ProviderContainer container,
     SalahPrayerId prayerId, {
@@ -17,8 +31,7 @@ void main() {
   }
 
   test('al-Fatihah recites its seven ayahs from the bundled Husary clips', () {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
+    final container = makeContainer();
 
     final steps = stepsFor(container, SalahPrayerId.fajr);
     final fatihah = steps.firstWhere(
@@ -36,8 +49,7 @@ void main() {
   });
 
   test('the chosen short surah fills the additional-surah step', () {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
+    final container = makeContainer();
 
     final steps = stepsFor(container, SalahPrayerId.fajr, surahId: 'al_ikhlas');
     final extra = steps
@@ -55,8 +67,7 @@ void main() {
   });
 
   test('an unknown surah leaves the placeholder silent', () {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
+    final container = makeContainer();
 
     final steps = stepsFor(container, SalahPrayerId.fajr, surahId: 'nope');
     final extra = steps.firstWhere(
@@ -68,8 +79,7 @@ void main() {
   });
 
   test('tasbih steps repeat three times and are entered with a takbir', () {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
+    final container = makeContainer();
 
     final steps = stepsFor(container, SalahPrayerId.fajr);
     final ruku = steps.firstWhere((item) => item.step.id == 'ruku');
@@ -91,8 +101,7 @@ void main() {
   });
 
   test('later rakahs rise with a plain takbir and skip the extra surah', () {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
+    final container = makeContainer();
 
     final steps = stepsFor(container, SalahPrayerId.dhuhr);
     final rakahThree = steps.where((item) => item.rakahNumber == 3).toList();
@@ -112,8 +121,7 @@ void main() {
   });
 
   test('Witr keeps qunut before ruku in its final rakah', () {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
+    final container = makeContainer();
 
     final steps = stepsFor(container, SalahPrayerId.witr);
     final ids = steps
@@ -127,7 +135,9 @@ void main() {
   });
 
   test('every adhkar slot is a declared recording id', () {
-    for (final prayer in salahPrayers) {
+    for (final prayer in buildSalahTrainerContent(
+      AppLocalizationsEn(),
+    ).prayers) {
       for (final rakah in prayer.guidedRakahs) {
         for (final step in rakah.steps) {
           if (step.isSilent || step.surahId != null) continue;

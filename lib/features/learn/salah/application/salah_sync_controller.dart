@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../data/salah_trainer_data.dart';
 import '../models/salah_trainer_models.dart';
 import 'salah_audio_service.dart';
 import 'salah_guided_settings_provider.dart';
@@ -302,7 +301,11 @@ class GuidedPrayerSyncController extends StateNotifier<GuidedPrayerSyncState> {
         phase: GuidedStepPhase.entryTakbir,
         activePosture: step.posture,
       );
-      await _playSegment(session, salahTakbirSegment, highlight: false);
+      await _playSegment(
+        session,
+        _ref.read(salahTrainerContentProvider).takbirSegment,
+        highlight: false,
+      );
       if (session != _session) return;
       await _sleep(_takbirGap);
       if (session != _session) return;
@@ -407,6 +410,49 @@ class GuidedPrayerSyncController extends StateNotifier<GuidedPrayerSyncState> {
     super.dispose();
   }
 }
+
+/// Plays one recitation from the hub's list, segment by segment. The state
+/// is the id of the recitation playing, or null.
+class RecitationPlaybackController extends StateNotifier<String?> {
+  RecitationPlaybackController(Ref ref)
+    : _audio = ref.read(salahAudioServiceProvider),
+      super(null);
+
+  final SalahAudioService _audio;
+  int _session = 0;
+
+  Future<void> play(RecitationModel recitation) async {
+    final session = ++_session;
+    state = recitation.id;
+    for (final segment in recitation.segments) {
+      if (session != _session) return;
+      final prepared = await _audio.prepare(segment);
+      if (session != _session) return;
+      await _audio.play(prepared);
+    }
+    if (session == _session) state = null;
+  }
+
+  Future<void> stop() async {
+    _session += 1;
+    state = null;
+    await _audio.stop();
+  }
+
+  @override
+  void dispose() {
+    _session += 1;
+    unawaited(_audio.stop());
+    super.dispose();
+  }
+}
+
+final recitationPlaybackControllerProvider =
+    StateNotifierProvider.autoDispose<RecitationPlaybackController, String?>((
+      ref,
+    ) {
+      return RecitationPlaybackController(ref);
+    });
 
 final surahPlaybackControllerProvider = StateNotifierProvider.autoDispose
     .family<SurahPlaybackController, SurahPlaybackState, String>((
