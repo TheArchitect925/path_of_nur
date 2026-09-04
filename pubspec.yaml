@@ -125,6 +125,7 @@ flutter:
     - assets/audio/ambient/
     - assets/audio/effects/
     - assets/audio/salah/husary/
+    - assets/audio/salah/adhkar/
     - assets/audio/bedtime_stories/prophets/
     - assets/audio/bedtime_stories/prophets/en/path_of_nur/
     - assets/audio/kids_dua/en/path_of_nur/

@@ -185,14 +185,13 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
                 translation: _mode == SurahLearningMode.memory
                     ? ''
                     : currentVerse.translation,
-                timing: currentVerse.audio.timing,
+                timing: playback.activeTiming ?? RecitationTimingModel.empty,
                 activeWordIndex: playback.currentWordIndex,
                 showTransliteration:
                     _mode != SurahLearningMode.practice &&
                     _mode != SurahLearningMode.memory,
                 showTranslation: _mode != SurahLearningMode.memory,
-                highlightEntireAyah:
-                    currentVerse.audio.timing.wordTimings.isEmpty,
+                highlightEntireAyah: playback.activeTiming?.isEmpty ?? true,
               ),
             ],
           ),
@@ -235,7 +234,9 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
                     translation: _mode == SurahLearningMode.memory
                         ? ''
                         : verse.translation,
-                    timing: verse.audio.timing,
+                    timing: playback.currentAyahIndex == verse.ayahNumber - 1
+                        ? playback.activeTiming ?? RecitationTimingModel.empty
+                        : RecitationTimingModel.empty,
                     activeWordIndex:
                         playback.currentAyahIndex == verse.ayahNumber - 1
                         ? playback.currentWordIndex
@@ -244,7 +245,9 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
                         _mode != SurahLearningMode.practice &&
                         _mode != SurahLearningMode.memory,
                     showTranslation: _mode != SurahLearningMode.memory,
-                    highlightEntireAyah: verse.audio.timing.wordTimings.isEmpty,
+                    highlightEntireAyah:
+                        playback.currentAyahIndex == verse.ayahNumber - 1 &&
+                        (playback.activeTiming?.isEmpty ?? true),
                   ),
                 ],
               ),

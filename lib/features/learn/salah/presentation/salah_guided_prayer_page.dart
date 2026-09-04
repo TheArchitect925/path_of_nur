@@ -8,9 +8,10 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
-import '../../quran/application/quran_providers.dart';
+import '../application/salah_guided_settings_provider.dart';
 import '../application/salah_sync_controller.dart';
 import '../application/salah_trainer_provider.dart';
+import '../data/salah_trainer_data.dart';
 import '../models/salah_trainer_models.dart';
 import '../widgets/prayer_posture_animator.dart';
 import '../widgets/synced_ayah_text.dart';
@@ -26,9 +27,8 @@ class SalahGuidedPrayerPage extends ConsumerStatefulWidget {
 }
 
 class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
-  bool _showTransliteration = true;
-  bool _showTranslation = true;
   late final String _surahId;
+  int? _resumeIndex;
 
   ({SalahPrayerId prayerId, String surahId}) get _args =>
       (prayerId: widget.prayerId, surahId: _surahId);
@@ -36,11 +36,14 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
   @override
   void initState() {
     super.initState();
-    final settings = ref.read(quranReaderSettingsProvider);
-    _showTransliteration = settings.showTransliteration;
-    _showTranslation = settings.showTranslation;
     final notifier = ref.read(salahTrainerProgressProvider.notifier);
+    final session = ref
+        .read(salahTrainerProgressProvider)
+        .sessionFor(widget.prayerId);
     _surahId = notifier.chooseGuidedSurahId(prayerId: widget.prayerId);
+    if (session != null && session.hasProgress && session.surahId == _surahId) {
+      _resumeIndex = session.stepIndex;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       ref
@@ -67,6 +70,8 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
     final steps = ref.watch(salahGuidedStepsProvider(_args));
     final syncState = ref.watch(guidedPrayerSyncControllerProvider(_args));
     final sync = ref.read(guidedPrayerSyncControllerProvider(_args).notifier);
+    final settings = ref.watch(salahGuidedSettingsProvider);
+    final settingsNotifier = ref.read(salahGuidedSettingsProvider.notifier);
     if (prayer == null || steps.isEmpty) {
       return LearnHubPageScaffold(
         title: l10n.salahGuidedPrayerUnavailable,
@@ -90,7 +95,12 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
     final progressRatio = steps.length <= 1
         ? 1.0
         : (syncState.currentStepIndex + 1) / steps.length;
-    final timing = _timingForStep(current.step);
+    final resumeIndex = _resumeIndex;
+    final offerResume =
+        resumeIndex != null &&
+        resumeIndex < steps.length &&
+        syncState.currentStepIndex == 0 &&
+        !syncState.isPlaying;
 
     return LearnHubPageScaffold(
       title: l10n.salahGuidedPrayerPageTitle(prayer.title),
@@ -98,6 +108,49 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
         surah?.name ?? l10n.salahGuidedPrayerSurahNotSet,
       ),
       children: [
+        if (offerResume) ...[
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.wuduTrainerResumeTitle,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.wuduTrainerResumeSubtitle(resumeIndex + 1, steps.length),
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    FilledButton.tonal(
+                      onPressed: () {
+                        sync.setCurrentStep(resumeIndex);
+                        setState(() => _resumeIndex = null);
+                      },
+                      child: Text(l10n.wuduTrainerResumeAction),
+                    ),
+                    OutlinedButton(
+                      onPressed: () {
+                        ref
+                            .read(salahTrainerProgressProvider.notifier)
+                            .clearGuidedSession(widget.prayerId);
+                        setState(() => _resumeIndex = null);
+                      },
+                      child: Text(l10n.wuduTrainerStartAgainActionText),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+        ],
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,13 +190,30 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                current.step.title,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      current.step.title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  if (current.step.isTasbih &&
+                      syncState.phase == GuidedStepPhase.reciting)
+                    Text(
+                      '${syncState.repeatIteration} / ${settings.tasbihRepeats}',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  if (syncState.phase == GuidedStepPhase.holding)
+                    Text(
+                      '${(syncState.holdRemainingMs / 1000).ceil()} s',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                ],
               ),
-              if (current.surahId != null) ...[
+              if (current.step.isDynamicSurah) ...[
                 const SizedBox(height: 4),
                 Text(
                   l10n.salahGuidedPrayerFromSurahValue(
@@ -152,17 +222,34 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
+              if (syncState.phase == GuidedStepPhase.entryTakbir) ...[
+                const SizedBox(height: 8),
+                Text(
+                  salahTakbirArabic,
+                  textAlign: TextAlign.right,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
               const SizedBox(height: 12),
-              SyncedAyahText(
-                arabicText: current.step.arabicText,
-                transliteration: current.step.transliteration,
-                translation: current.step.translation,
-                timing: timing,
-                activeWordIndex: syncState.currentWordIndex,
-                showTransliteration: _showTransliteration,
-                showTranslation: _showTranslation,
-                highlightEntireAyah: timing.wordTimings.isEmpty,
-              ),
+              for (var i = 0; i < current.step.segments.length; i += 1) ...[
+                if (i > 0) const SizedBox(height: 14),
+                SyncedAyahText(
+                  arabicText: current.step.segments[i].arabicText,
+                  transliteration: current.step.segments[i].transliteration,
+                  translation: current.step.segments[i].translation,
+                  timing: i == syncState.currentSegmentIndex
+                      ? syncState.activeTiming ?? RecitationTimingModel.empty
+                      : RecitationTimingModel.empty,
+                  activeWordIndex: i == syncState.currentSegmentIndex
+                      ? syncState.currentWordIndex
+                      : -1,
+                  showTransliteration: settings.showTransliteration,
+                  showTranslation: settings.showTranslation,
+                  highlightEntireAyah:
+                      i == syncState.currentSegmentIndex &&
+                      (syncState.activeTiming?.isEmpty ?? true),
+                ),
+              ],
               if (current.step.helperText != null) ...[
                 const SizedBox(height: 10),
                 Text(
@@ -179,15 +266,14 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
             children: [
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                value: _showTransliteration,
-                onChanged: (value) =>
-                    setState(() => _showTransliteration = value),
+                value: settings.showTransliteration,
+                onChanged: settingsNotifier.setShowTransliteration,
                 title: Text(l10n.salahGuidedPrayerShowTransliteration),
               ),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                value: _showTranslation,
-                onChanged: (value) => setState(() => _showTranslation = value),
+                value: settings.showTranslation,
+                onChanged: settingsNotifier.setShowTranslation,
                 title: Text(l10n.salahGuidedPrayerShowTranslation),
               ),
             ],
@@ -256,52 +342,7 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
       ],
     );
   }
-
-  RecitationTimingModel _timingForStep(PrayerStepModel step) {
-    final arabicWords = step.arabicText
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
-    if (arabicWords.isEmpty) {
-      return const RecitationTimingModel(
-        totalDurationMs: 1000,
-        wordTimings: <RecitationWordTimingModel>[],
-      );
-    }
-    final transliterationWords = step.transliteration
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
-    final translationWords = step.translation
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((item) => item.isNotEmpty)
-        .toList(growable: false);
-    final totalDurationMs = 900 + (arabicWords.length * 300);
-    final segmentSize = (totalDurationMs / arabicWords.length).round();
-    return RecitationTimingModel(
-      totalDurationMs: totalDurationMs,
-      wordTimings: List<RecitationWordTimingModel>.generate(
-        arabicWords.length,
-        (index) {
-          return RecitationWordTimingModel(
-            wordId: '${step.id}-$index',
-            arabicText: arabicWords[index],
-            transliteration: index < transliterationWords.length
-                ? transliterationWords[index]
-                : '',
-            translation: index < translationWords.length
-                ? translationWords[index]
-                : '',
-            startMs: segmentSize * index,
-            endMs: index == arabicWords.length - 1
-                ? totalDurationMs
-                : segmentSize * (index + 1),
-          );
-        },
-      ),
-    );
-  }
 }
+
+/// The takbir shown while a posture is entered.
+String get salahTakbirArabic => salahTakbirSegment.arabicText;

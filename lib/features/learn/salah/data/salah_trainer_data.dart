@@ -6,6 +6,37 @@ String _husaryAyahAssetPath(int surahNumber, int ayahNumber) {
   return 'assets/audio/salah/husary/$code.mp3';
 }
 
+/// Where a human recording of a dhikr or dua lives once it ships. The audio
+/// service falls back to speech while the slot is empty, so declaring a path
+/// here never breaks playback.
+String salahAdhkarAssetPath(String audioId) =>
+    'assets/audio/salah/adhkar/$audioId.mp3';
+
+/// Every recording slot the trainer can fill. Drop `<id>.mp3` files with
+/// these names into `assets/audio/salah/adhkar/` to replace speech.
+const salahAdhkarAudioIds = <String>[
+  'takbir',
+  'opening_supplication',
+  'qunut',
+  'ruku',
+  'standing_after_ruku',
+  'sujud',
+  'sitting_between_sujud',
+  'tashahhud',
+  'salawat',
+  'final_dua',
+  'taslim',
+];
+
+/// "Allahu akbar" as recited when moving between postures.
+final RecitationSegment salahTakbirSegment = RecitationSegment(
+  id: 'takbir',
+  arabicText: 'اللَّهُ أَكْبَرُ',
+  transliteration: 'Allahu akbar.',
+  translation: 'Allah is the Greatest.',
+  audioAssetPath: salahAdhkarAssetPath('takbir'),
+);
+
 PrayerStepModel _step({
   required String id,
   required String title,
@@ -16,6 +47,11 @@ PrayerStepModel _step({
   required String translation,
   required int pauseAfterMs,
   String? helperText,
+  String? audioId,
+  String? surahId,
+  int repeatCount = 1,
+  bool entryTakbir = false,
+  bool isSilent = false,
   bool isOptional = false,
   bool isDynamicSurah = false,
 }) {
@@ -24,69 +60,23 @@ PrayerStepModel _step({
     title: title,
     kind: kind,
     posture: posture,
-    arabicText: arabic,
-    transliteration: transliteration,
-    translation: translation,
+    segments: [
+      RecitationSegment(
+        id: id,
+        arabicText: arabic,
+        transliteration: transliteration,
+        translation: translation,
+        audioAssetPath: isSilent ? null : salahAdhkarAssetPath(audioId ?? id),
+      ),
+    ],
     pauseAfterMs: pauseAfterMs,
     helperText: helperText,
+    surahId: surahId,
+    repeatCount: repeatCount,
+    entryTakbir: entryTakbir,
+    isSilent: isSilent,
     isOptional: isOptional,
     isDynamicSurah: isDynamicSurah,
-    ttsText: arabic,
-  );
-}
-
-List<String> _splitWords(String text) {
-  return text
-      .trim()
-      .split(RegExp(r'\s+'))
-      .where((item) => item.trim().isNotEmpty)
-      .toList(growable: false);
-}
-
-RecitationTimingModel _timingForVerse({
-  required String idPrefix,
-  required String arabic,
-  required String transliteration,
-  required String translation,
-  required int totalDurationMs,
-}) {
-  final arabicWords = _splitWords(arabic);
-  final transliterationWords = _splitWords(transliteration);
-  final translationWords = _splitWords(translation);
-  if (arabicWords.isEmpty) {
-    return const RecitationTimingModel(
-      totalDurationMs: 1400,
-      wordTimings: <RecitationWordTimingModel>[],
-    );
-  }
-
-  final weights = arabicWords
-      .map((word) => word.runes.length.clamp(2, 12))
-      .toList(growable: false);
-  final totalWeight = weights.fold<int>(0, (sum, value) => sum + value);
-  final segments = <RecitationWordTimingModel>[];
-  var cursor = 0;
-  for (var i = 0; i < arabicWords.length; i += 1) {
-    final width = ((weights[i] / totalWeight) * totalDurationMs).round();
-    final end = i == arabicWords.length - 1 ? totalDurationMs : cursor + width;
-    segments.add(
-      RecitationWordTimingModel(
-        wordId: '$idPrefix-$i',
-        arabicText: arabicWords[i],
-        transliteration: i < transliterationWords.length
-            ? transliterationWords[i]
-            : '',
-        translation: i < translationWords.length ? translationWords[i] : '',
-        startMs: cursor,
-        endMs: end,
-      ),
-    );
-    cursor = end;
-  }
-
-  return RecitationTimingModel(
-    totalDurationMs: totalDurationMs,
-    wordTimings: segments,
   );
 }
 
@@ -100,6 +90,7 @@ final PrayerStepModel niyyahReminderStep = _step(
   translation:
       'Intention is in the heart. Make a quiet intention for the prayer you are beginning.',
   pauseAfterMs: 1200,
+  isSilent: true,
   helperText:
       'No verbal formula is required. Simply know which prayer you are offering.',
 );
@@ -113,6 +104,20 @@ final PrayerStepModel takbirStep = _step(
   transliteration: 'Allahu akbar.',
   translation: 'Allah is the Greatest.',
   pauseAfterMs: 1400,
+  audioId: 'takbir',
+);
+
+final PrayerStepModel risingTakbirStep = _step(
+  id: 'takbir_rising',
+  title: 'Takbir (rising)',
+  kind: SalahRecitationKind.takbir,
+  posture: PrayerPostureType.qiyam,
+  arabic: 'اللَّهُ أَكْبَرُ',
+  transliteration: 'Allahu akbar.',
+  translation: 'Allah is the Greatest.',
+  pauseAfterMs: 1000,
+  audioId: 'takbir',
+  helperText: 'Rise into the next rakah saying the takbir.',
 );
 
 final PrayerStepModel openingSupplicationStep = _step(
@@ -142,6 +147,7 @@ final PrayerStepModel fatihahStep = _step(
   translation:
       'Recite Surah al-Fatihah with calmness and reflection in every rakah.',
   pauseAfterMs: 2600,
+  surahId: 'al_fatihah',
   helperText: 'This is required in every rakah.',
 );
 
@@ -155,6 +161,7 @@ final PrayerStepModel additionalSurahStep = _step(
   translation:
       'Recite one short surah from your learned surah pool after al-Fatihah in the first two rakahs.',
   pauseAfterMs: 1800,
+  isSilent: true,
   helperText: 'The guided mode will insert a selected surah here.',
   isDynamicSurah: true,
 );
@@ -184,6 +191,8 @@ final PrayerStepModel rukuStep = _step(
   transliteration: 'Subhana rabbiyal azim.',
   translation: 'Glory is to my Lord, the Magnificent.',
   pauseAfterMs: 1800,
+  repeatCount: 3,
+  entryTakbir: true,
 );
 
 final PrayerStepModel standingAfterRukuStep = _step(
@@ -207,6 +216,9 @@ final PrayerStepModel firstSujudStep = _step(
   transliteration: 'Subhana rabbiyal a\'la.',
   translation: 'Glory is to my Lord, the Most High.',
   pauseAfterMs: 1800,
+  audioId: 'sujud',
+  repeatCount: 3,
+  entryTakbir: true,
 );
 
 final PrayerStepModel sittingBetweenSujudStep = _step(
@@ -220,6 +232,7 @@ final PrayerStepModel sittingBetweenSujudStep = _step(
   translation:
       'My Lord, forgive me, have mercy on me, guide me, strengthen me, grant me well-being, and provide for me.',
   pauseAfterMs: 2200,
+  entryTakbir: true,
 );
 
 final PrayerStepModel secondSujudStep = _step(
@@ -231,6 +244,9 @@ final PrayerStepModel secondSujudStep = _step(
   transliteration: 'Subhana rabbiyal a\'la.',
   translation: 'Glory is to my Lord, the Most High.',
   pauseAfterMs: 1800,
+  audioId: 'sujud',
+  repeatCount: 3,
+  entryTakbir: true,
 );
 
 final PrayerStepModel tashahhudStep = _step(
@@ -245,6 +261,7 @@ final PrayerStepModel tashahhudStep = _step(
   translation:
       'All greetings, prayers, and pure words belong to Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god except Allah, and I bear witness that Muhammad is His servant and Messenger.',
   pauseAfterMs: 4200,
+  entryTakbir: true,
 );
 
 final PrayerStepModel salawatStep = _step(
@@ -285,6 +302,7 @@ final PrayerStepModel taslimRightStep = _step(
   transliteration: 'As-salamu alaykum wa rahmatullah.',
   translation: 'Peace and the mercy of Allah be upon you.',
   pauseAfterMs: 1200,
+  audioId: 'taslim',
 );
 
 final PrayerStepModel taslimLeftStep = _step(
@@ -296,11 +314,13 @@ final PrayerStepModel taslimLeftStep = _step(
   transliteration: 'As-salamu alaykum wa rahmatullah.',
   translation: 'Peace and the mercy of Allah be upon you.',
   pauseAfterMs: 1200,
+  audioId: 'taslim',
 );
 
 List<PrayerStepModel> _firstTwoRakahSteps({required bool includeOpening}) => [
   if (includeOpening) niyyahReminderStep,
-  takbirStep,
+  // The opening takbir happens once; every later rakah rises with a plain one.
+  includeOpening ? takbirStep : risingTakbirStep,
   if (includeOpening) openingSupplicationStep,
   fatihahStep,
   additionalSurahStep,
@@ -312,7 +332,7 @@ List<PrayerStepModel> _firstTwoRakahSteps({required bool includeOpening}) => [
 ];
 
 List<PrayerStepModel> _laterRakahSteps({required bool includeTakbir}) => [
-  if (includeTakbir) takbirStep,
+  if (includeTakbir) risingTakbirStep,
   fatihahStep,
   rukuStep,
   standingAfterRukuStep,
@@ -462,7 +482,7 @@ final salahPrayers = <PrayerModel>[
         secondSujudStep,
       ],
       [
-        takbirStep,
+        risingTakbirStep,
         fatihahStep,
         additionalSurahStep,
         rukuStep,
@@ -473,7 +493,7 @@ final salahPrayers = <PrayerModel>[
         tashahhudStep,
       ],
       [
-        takbirStep,
+        risingTakbirStep,
         fatihahStep,
         additionalSurahStep,
         qunutStep,
@@ -534,137 +554,99 @@ final salahRecitations = <RecitationModel>[
     id: 'takbir',
     title: 'Opening Takbir',
     category: 'Opening',
-    arabicText: takbirStep.arabicText,
-    transliteration: takbirStep.transliteration,
-    translation: takbirStep.translation,
+    segments: takbirStep.segments,
     searchTags: const ['takbir', 'allahu akbar', 'opening'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: takbirStep.arabicText,
   ),
   RecitationModel(
     id: 'opening_supplication',
     title: 'Opening Supplication',
     category: 'Opening',
-    arabicText: openingSupplicationStep.arabicText,
-    transliteration: openingSupplicationStep.transliteration,
-    translation: openingSupplicationStep.translation,
+    segments: openingSupplicationStep.segments,
     searchTags: const ['thana', 'opening supplication', 'subhanaka'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: openingSupplicationStep.arabicText,
   ),
   RecitationModel(
     id: 'fatihah',
     title: 'Surah al-Fatihah',
     category: 'Standing',
-    arabicText:
-        'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ الرَّحْمَٰنِ الرَّحِيمِ مَالِكِ يَوْمِ الدِّينِ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',
-    transliteration:
-        'Bismillahir-Rahmanir-Rahim. Alhamdu lillahi rabbil alamin. Ar-Rahmanir-Rahim. Maliki yawmid-din. Iyyaka na\'budu wa iyyaka nasta\'in. Ihdinas-siratal-mustaqim. Siratal-ladhina an\'amta alayhim ghayril-maghdubi alayhim wa lad-dallin.',
-    translation:
-        'In the name of Allah, the Entirely Merciful, the Especially Merciful... Guide us to the straight path.',
+    segments: salahSurahs
+        .firstWhere((surah) => surah.id == 'al_fatihah')
+        .segments,
     searchTags: const ['fatihah', 'surah al fatihah', 'standing'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText:
-        'بسم الله الرحمن الرحيم الحمد لله رب العالمين الرحمن الرحيم مالك يوم الدين إياك نعبد وإياك نستعين اهدنا الصراط المستقيم صراط الذين أنعمت عليهم غير المغضوب عليهم ولا الضالين',
   ),
   RecitationModel(
     id: 'ruku',
     title: 'Ruku Dhikr',
     category: 'Ruku',
-    arabicText: rukuStep.arabicText,
-    transliteration: rukuStep.transliteration,
-    translation: rukuStep.translation,
+    segments: rukuStep.segments,
     searchTags: const ['ruku', 'subhana rabbiyal azim'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: rukuStep.arabicText,
   ),
   RecitationModel(
     id: 'standing_after_ruku',
     title: 'Standing After Ruku',
     category: 'Standing',
-    arabicText: standingAfterRukuStep.arabicText,
-    transliteration: standingAfterRukuStep.transliteration,
-    translation: standingAfterRukuStep.translation,
+    segments: standingAfterRukuStep.segments,
     searchTags: const ['sami allahu liman hamidah', 'standing after ruku'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: standingAfterRukuStep.arabicText,
   ),
   RecitationModel(
     id: 'sujud',
     title: 'Sujud Dhikr',
     category: 'Sujud',
-    arabicText: firstSujudStep.arabicText,
-    transliteration: firstSujudStep.transliteration,
-    translation: firstSujudStep.translation,
+    segments: firstSujudStep.segments,
     searchTags: const ['sujud', 'subhana rabbiyal ala'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: firstSujudStep.arabicText,
   ),
   RecitationModel(
     id: 'between_sujud',
     title: 'Sitting Between Sujud',
     category: 'Sitting',
-    arabicText: sittingBetweenSujudStep.arabicText,
-    transliteration: sittingBetweenSujudStep.transliteration,
-    translation: sittingBetweenSujudStep.translation,
+    segments: sittingBetweenSujudStep.segments,
     searchTags: const ['between sujud', 'rabbighfir li'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: sittingBetweenSujudStep.arabicText,
   ),
   RecitationModel(
     id: 'tashahhud',
     title: 'Tashahhud',
     category: 'Final Sitting',
-    arabicText: tashahhudStep.arabicText,
-    transliteration: tashahhudStep.transliteration,
-    translation: tashahhudStep.translation,
+    segments: tashahhudStep.segments,
     searchTags: const ['tashahhud', 'attahiyyatu'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: tashahhudStep.arabicText,
   ),
   RecitationModel(
     id: 'salawat',
     title: 'Salawat Ibrahimiyyah',
     category: 'Final Sitting',
-    arabicText: salawatStep.arabicText,
-    transliteration: salawatStep.transliteration,
-    translation: salawatStep.translation,
+    segments: salawatStep.segments,
     searchTags: const ['salawat', 'allahumma salli ala muhammad'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: salawatStep.arabicText,
   ),
   RecitationModel(
     id: 'final_dua',
     title: 'Final Dua',
     category: 'Final Sitting',
-    arabicText: finalDuaStep.arabicText,
-    transliteration: finalDuaStep.transliteration,
-    translation: finalDuaStep.translation,
+    segments: finalDuaStep.segments,
     searchTags: const ['final dua', 'allahumma inni audhu bika'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: finalDuaStep.arabicText,
   ),
   RecitationModel(
     id: 'qunut',
     title: 'Dua al-Qunut',
     category: 'Witr',
-    arabicText: qunutStep.arabicText,
-    transliteration: qunutStep.transliteration,
-    translation: qunutStep.translation,
+    segments: qunutStep.segments,
     searchTags: const ['qunut', 'witr dua', 'night prayer'],
     relatedPrayerIds: const [SalahPrayerId.witr],
-    ttsText: qunutStep.arabicText,
   ),
   RecitationModel(
     id: 'taslim',
     title: 'Taslim',
     category: 'Closing',
-    arabicText: taslimRightStep.arabicText,
-    transliteration: taslimRightStep.transliteration,
-    translation: taslimRightStep.translation,
+    segments: taslimRightStep.segments,
     searchTags: const ['taslim', 'assalamu alaykum'],
     relatedPrayerIds: SalahPrayerId.values,
-    ttsText: taslimRightStep.arabicText,
   ),
 ];
 
@@ -740,26 +722,6 @@ SurahModel _surah({
   required String reflection,
   required List<(int, String, String, String)> verses,
 }) {
-  final ayahAudio = verses
-      .map((verse) {
-        final totalDurationMs =
-            1100 + (_splitWords(verse.$2).length * 320).clamp(0, 4000);
-        return AyahAudioModel(
-          surahNumber: surahNumber,
-          ayahNumber: verse.$1,
-          localAudioAssetPath: _husaryAyahAssetPath(surahNumber, verse.$1),
-          totalDurationMs: totalDurationMs,
-          timing: _timingForVerse(
-            idPrefix: '$id-${verse.$1}',
-            arabic: verse.$2,
-            transliteration: verse.$3,
-            translation: verse.$4,
-            totalDurationMs: totalDurationMs,
-          ),
-        );
-      })
-      .toList(growable: false);
-
   return SurahModel(
     id: id,
     surahNumber: surahNumber,
@@ -767,21 +729,21 @@ SurahModel _surah({
     arabicName: arabicName,
     summary: summary,
     reflection: reflection,
-    verses: List<SurahVerseModel>.generate(verses.length, (index) {
-      final verse = verses[index];
-      return SurahVerseModel(
-        ayahNumber: verse.$1,
-        arabicText: verse.$2,
-        transliteration: verse.$3,
-        translation: verse.$4,
-        audio: ayahAudio[index],
-      );
-    }),
-    audio: SurahAudioModel(
-      surahId: id,
-      reciterId: 'local_guided',
-      ayahs: ayahAudio,
-    ),
+    verses: verses
+        .map(
+          (verse) => SurahVerseModel(
+            ayahNumber: verse.$1,
+            arabicText: verse.$2,
+            transliteration: verse.$3,
+            translation: verse.$4,
+            audio: AyahAudioModel(
+              surahNumber: surahNumber,
+              ayahNumber: verse.$1,
+              localAudioAssetPath: _husaryAyahAssetPath(surahNumber, verse.$1),
+            ),
+          ),
+        )
+        .toList(growable: false),
   );
 }
 

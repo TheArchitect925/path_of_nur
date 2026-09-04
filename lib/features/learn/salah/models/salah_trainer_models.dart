@@ -33,6 +33,68 @@ enum PrayerPostureType {
   salamLeft,
 }
 
+/// How long the guided flow rests in each posture after the recitation ends.
+enum SalahTrainerPace { unhurried, steady, brisk }
+
+extension SalahTrainerPaceX on SalahTrainerPace {
+  double get holdMultiplier {
+    switch (this) {
+      case SalahTrainerPace.unhurried:
+        return 1.8;
+      case SalahTrainerPace.steady:
+        return 1.0;
+      case SalahTrainerPace.brisk:
+        return 0.55;
+    }
+  }
+}
+
+/// Where the guided flow is inside the current step.
+enum GuidedStepPhase { idle, entryTakbir, reciting, holding, completed }
+
+/// What actually produced the sound for a recitation.
+enum SalahAudioSourceKind { asset, tts, silent }
+
+/// One recited unit: an ayah, a dhikr, or a dua. A step recites its segments
+/// in order; a step with several segments is a surah played ayah by ayah.
+class RecitationSegment {
+  const RecitationSegment({
+    required this.id,
+    required this.arabicText,
+    required this.transliteration,
+    this.translation = '',
+    this.audioAssetPath,
+    this.surahNumber,
+    this.ayahNumber,
+  });
+
+  final String id;
+  final String arabicText;
+  final String transliteration;
+  final String translation;
+
+  /// Bundled clip for this segment, if a recording ships. The audio service
+  /// checks the asset manifest before trusting the path, so a slot can be
+  /// declared before its file exists.
+  final String? audioAssetPath;
+  final int? surahNumber;
+  final int? ayahNumber;
+
+  bool get isAyah => surahNumber != null && ayahNumber != null;
+
+  RecitationSegment copyWith({String? translation}) {
+    return RecitationSegment(
+      id: id,
+      arabicText: arabicText,
+      transliteration: transliteration,
+      translation: translation ?? this.translation,
+      audioAssetPath: audioAssetPath,
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber,
+    );
+  }
+}
+
 class RecitationWordTimingModel {
   const RecitationWordTimingModel({
     required this.wordId,
@@ -57,8 +119,92 @@ class RecitationTimingModel {
     required this.wordTimings,
   });
 
+  static const RecitationTimingModel empty = RecitationTimingModel(
+    totalDurationMs: 0,
+    wordTimings: <RecitationWordTimingModel>[],
+  );
+
   final int totalDurationMs;
   final List<RecitationWordTimingModel> wordTimings;
+
+  bool get isEmpty => wordTimings.isEmpty;
+
+  /// Splits on whitespace the way every highlighter in the trainer does, so a
+  /// timing built here always has one entry per rendered word.
+  static List<String> splitWords(String text) {
+    return text
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((item) => item.trim().isNotEmpty)
+        .toList(growable: false);
+  }
+
+  /// A rough spoken length for text with no recording behind it.
+  static int estimateSpokenMs(String arabic, {bool slow = false}) {
+    final words = splitWords(arabic).length;
+    final base = 900 + words * 300;
+    return slow ? (base * 1.5).round() : base;
+  }
+
+  /// Spreads [totalDurationMs] across the words of [arabic], weighting longer
+  /// words heavier. It is an approximation until real word timings exist, but
+  /// it always ends exactly when the audio does.
+  static RecitationTimingModel estimate({
+    required String idPrefix,
+    required String arabic,
+    required String transliteration,
+    required String translation,
+    required int totalDurationMs,
+  }) {
+    final arabicWords = splitWords(arabic);
+    if (arabicWords.isEmpty || totalDurationMs <= 0) {
+      return RecitationTimingModel(
+        totalDurationMs: totalDurationMs < 0 ? 0 : totalDurationMs,
+        wordTimings: const <RecitationWordTimingModel>[],
+      );
+    }
+    final transliterationWords = splitWords(transliteration);
+    final translationWords = splitWords(translation);
+    final weights = arabicWords
+        .map((word) => word.runes.length.clamp(2, 12))
+        .toList(growable: false);
+    final totalWeight = weights.fold<int>(0, (sum, value) => sum + value);
+    final segments = <RecitationWordTimingModel>[];
+    var cursor = 0;
+    for (var i = 0; i < arabicWords.length; i += 1) {
+      final width = ((weights[i] / totalWeight) * totalDurationMs).round();
+      final end = i == arabicWords.length - 1
+          ? totalDurationMs
+          : (cursor + width).clamp(cursor, totalDurationMs);
+      segments.add(
+        RecitationWordTimingModel(
+          wordId: '$idPrefix-$i',
+          arabicText: arabicWords[i],
+          transliteration: i < transliterationWords.length
+              ? transliterationWords[i]
+              : '',
+          translation: i < translationWords.length ? translationWords[i] : '',
+          startMs: cursor,
+          endMs: end,
+        ),
+      );
+      cursor = end;
+    }
+    return RecitationTimingModel(
+      totalDurationMs: totalDurationMs,
+      wordTimings: segments,
+    );
+  }
+
+  /// The word under the playhead at [elapsedMs], or the last word once the
+  /// clip has run out.
+  int activeWordAt(int elapsedMs) {
+    if (wordTimings.isEmpty) return -1;
+    for (var i = 0; i < wordTimings.length; i += 1) {
+      if (elapsedMs < wordTimings[i].endMs) return i;
+    }
+    return wordTimings.length - 1;
+  }
 }
 
 class AyahAudioModel {
@@ -66,73 +212,80 @@ class AyahAudioModel {
     required this.surahNumber,
     required this.ayahNumber,
     required this.localAudioAssetPath,
-    required this.totalDurationMs,
-    required this.timing,
   });
 
   final int surahNumber;
   final int ayahNumber;
   final String? localAudioAssetPath;
-  final int totalDurationMs;
-  final RecitationTimingModel timing;
-}
-
-class SurahAudioModel {
-  const SurahAudioModel({
-    required this.surahId,
-    required this.reciterId,
-    required this.ayahs,
-  });
-
-  final String surahId;
-  final String reciterId;
-  final List<AyahAudioModel> ayahs;
 }
 
 class PrayerStepModel {
-  const PrayerStepModel({
+  PrayerStepModel({
     required this.id,
     required this.title,
     required this.kind,
     required this.posture,
-    required this.arabicText,
-    required this.transliteration,
-    required this.translation,
+    required this.segments,
     required this.pauseAfterMs,
-    this.audioAssetPath,
-    this.ttsText,
     this.isOptional = false,
     this.isDynamicSurah = false,
+    this.surahId,
+    this.repeatCount = 1,
+    this.entryTakbir = false,
+    this.isSilent = false,
     this.helperText,
-  });
+  }) : assert(segments.isNotEmpty, 'a step recites at least one segment');
 
   final String id;
   final String title;
   final SalahRecitationKind kind;
   final PrayerPostureType posture;
-  final String arabicText;
-  final String transliteration;
-  final String translation;
+  final List<RecitationSegment> segments;
+
+  /// Base rest after the recitation, before the pace multiplier.
   final int pauseAfterMs;
-  final String? audioAssetPath;
-  final String? ttsText;
   final bool isOptional;
+
+  /// The learner's chosen surah replaces this step's segments.
   final bool isDynamicSurah;
+
+  /// A fixed surah (al-Fatihah) whose verses become this step's segments.
+  final String? surahId;
+
+  /// How many times the segments are recited; tasbih steps use three.
+  final int repeatCount;
+
+  /// The posture is entered with "Allahu akbar" before the recitation.
+  final bool entryTakbir;
+
+  /// A reminder that is shown, not recited.
+  final bool isSilent;
   final String? helperText;
+
+  String get arabicText =>
+      segments.map((segment) => segment.arabicText).join(' ');
+  String get transliteration =>
+      segments.map((segment) => segment.transliteration).join(' ');
+  String get translation => segments
+      .map((segment) => segment.translation)
+      .where((value) => value.trim().isNotEmpty)
+      .join(' ');
+
+  bool get isTasbih => repeatCount > 1;
 
   PrayerStepModel copyWith({
     String? id,
     String? title,
     SalahRecitationKind? kind,
     PrayerPostureType? posture,
-    String? arabicText,
-    String? transliteration,
-    String? translation,
+    List<RecitationSegment>? segments,
     int? pauseAfterMs,
-    String? audioAssetPath,
-    String? ttsText,
     bool? isOptional,
     bool? isDynamicSurah,
+    String? surahId,
+    int? repeatCount,
+    bool? entryTakbir,
+    bool? isSilent,
     String? helperText,
   }) {
     return PrayerStepModel(
@@ -140,14 +293,14 @@ class PrayerStepModel {
       title: title ?? this.title,
       kind: kind ?? this.kind,
       posture: posture ?? this.posture,
-      arabicText: arabicText ?? this.arabicText,
-      transliteration: transliteration ?? this.transliteration,
-      translation: translation ?? this.translation,
+      segments: segments ?? this.segments,
       pauseAfterMs: pauseAfterMs ?? this.pauseAfterMs,
-      audioAssetPath: audioAssetPath ?? this.audioAssetPath,
-      ttsText: ttsText ?? this.ttsText,
       isOptional: isOptional ?? this.isOptional,
       isDynamicSurah: isDynamicSurah ?? this.isDynamicSurah,
+      surahId: surahId ?? this.surahId,
+      repeatCount: repeatCount ?? this.repeatCount,
+      entryTakbir: entryTakbir ?? this.entryTakbir,
+      isSilent: isSilent ?? this.isSilent,
       helperText: helperText ?? this.helperText,
     );
   }
@@ -207,6 +360,18 @@ class SurahVerseModel {
   final String transliteration;
   final String translation;
   final AyahAudioModel audio;
+
+  RecitationSegment toSegment(String surahId) {
+    return RecitationSegment(
+      id: '${surahId}_$ayahNumber',
+      arabicText: arabicText,
+      transliteration: transliteration,
+      translation: translation,
+      audioAssetPath: audio.localAudioAssetPath,
+      surahNumber: audio.surahNumber,
+      ayahNumber: ayahNumber,
+    );
+  }
 }
 
 class SurahModel {
@@ -218,7 +383,6 @@ class SurahModel {
     required this.summary,
     required this.reflection,
     required this.verses,
-    required this.audio,
   });
 
   final String id;
@@ -228,7 +392,9 @@ class SurahModel {
   final String summary;
   final String reflection;
   final List<SurahVerseModel> verses;
-  final SurahAudioModel audio;
+
+  List<RecitationSegment> get segments =>
+      verses.map((verse) => verse.toSegment(id)).toList(growable: false);
 }
 
 class RecitationModel {
@@ -236,25 +402,24 @@ class RecitationModel {
     required this.id,
     required this.title,
     required this.category,
-    required this.arabicText,
-    required this.transliteration,
-    required this.translation,
+    required this.segments,
     required this.searchTags,
     required this.relatedPrayerIds,
-    this.audioAssetPath,
-    this.ttsText,
   });
 
   final String id;
   final String title;
   final String category;
-  final String arabicText;
-  final String transliteration;
-  final String translation;
+  final List<RecitationSegment> segments;
   final List<String> searchTags;
   final List<SalahPrayerId> relatedPrayerIds;
-  final String? audioAssetPath;
-  final String? ttsText;
+
+  String get arabicText =>
+      segments.map((segment) => segment.arabicText).join(' ');
+  String get transliteration =>
+      segments.map((segment) => segment.transliteration).join(' ');
+  String get translation =>
+      segments.map((segment) => segment.translation).join(' ');
 }
 
 class SalahEssentialTopic {
@@ -282,6 +447,8 @@ class GuidedPrayerStep {
   final SalahPrayerId prayerId;
   final int rakahNumber;
   final PrayerStepModel step;
+
+  /// Set when the step recites a surah, whether fixed (al-Fatihah) or chosen.
   final String? surahId;
 }
 
@@ -294,6 +461,8 @@ class SurahPlaybackState {
     required this.repeatCount,
     required this.pauseAfterAyah,
     required this.slowMode,
+    this.activeTiming,
+    this.sourceKind,
   });
 
   final bool isPlaying;
@@ -304,6 +473,10 @@ class SurahPlaybackState {
   final bool pauseAfterAyah;
   final bool slowMode;
 
+  /// Word timing for the ayah being played, scaled to the clip's real length.
+  final RecitationTimingModel? activeTiming;
+  final SalahAudioSourceKind? sourceKind;
+
   SurahPlaybackState copyWith({
     bool? isPlaying,
     int? currentAyahIndex,
@@ -312,6 +485,9 @@ class SurahPlaybackState {
     int? repeatCount,
     bool? pauseAfterAyah,
     bool? slowMode,
+    RecitationTimingModel? activeTiming,
+    bool clearActiveTiming = false,
+    SalahAudioSourceKind? sourceKind,
   }) {
     return SurahPlaybackState(
       isPlaying: isPlaying ?? this.isPlaying,
@@ -321,6 +497,10 @@ class SurahPlaybackState {
       repeatCount: repeatCount ?? this.repeatCount,
       pauseAfterAyah: pauseAfterAyah ?? this.pauseAfterAyah,
       slowMode: slowMode ?? this.slowMode,
+      activeTiming: clearActiveTiming
+          ? null
+          : activeTiming ?? this.activeTiming,
+      sourceKind: sourceKind ?? this.sourceKind,
     );
   }
 }
@@ -332,6 +512,12 @@ class GuidedPrayerSyncState {
     required this.currentWordIndex,
     required this.positionMs,
     required this.activePosture,
+    this.currentSegmentIndex = 0,
+    this.repeatIteration = 1,
+    this.phase = GuidedStepPhase.idle,
+    this.activeTiming,
+    this.holdRemainingMs = 0,
+    this.sourceKind,
   });
 
   final bool isPlaying;
@@ -340,12 +526,33 @@ class GuidedPrayerSyncState {
   final int positionMs;
   final PrayerPostureType activePosture;
 
+  /// Which of the step's segments is being recited.
+  final int currentSegmentIndex;
+
+  /// 1-based pass through a repeated (tasbih) step.
+  final int repeatIteration;
+  final GuidedStepPhase phase;
+
+  /// Word timing for the active segment, scaled to the clip's real length.
+  final RecitationTimingModel? activeTiming;
+
+  /// Countdown while resting in the posture after the recitation.
+  final int holdRemainingMs;
+  final SalahAudioSourceKind? sourceKind;
+
   GuidedPrayerSyncState copyWith({
     bool? isPlaying,
     int? currentStepIndex,
     int? currentWordIndex,
     int? positionMs,
     PrayerPostureType? activePosture,
+    int? currentSegmentIndex,
+    int? repeatIteration,
+    GuidedStepPhase? phase,
+    RecitationTimingModel? activeTiming,
+    bool clearActiveTiming = false,
+    int? holdRemainingMs,
+    SalahAudioSourceKind? sourceKind,
   }) {
     return GuidedPrayerSyncState(
       isPlaying: isPlaying ?? this.isPlaying,
@@ -353,6 +560,69 @@ class GuidedPrayerSyncState {
       currentWordIndex: currentWordIndex ?? this.currentWordIndex,
       positionMs: positionMs ?? this.positionMs,
       activePosture: activePosture ?? this.activePosture,
+      currentSegmentIndex: currentSegmentIndex ?? this.currentSegmentIndex,
+      repeatIteration: repeatIteration ?? this.repeatIteration,
+      phase: phase ?? this.phase,
+      activeTiming: clearActiveTiming
+          ? null
+          : activeTiming ?? this.activeTiming,
+      holdRemainingMs: holdRemainingMs ?? this.holdRemainingMs,
+      sourceKind: sourceKind ?? this.sourceKind,
+    );
+  }
+}
+
+/// Where a learner stopped inside a guided prayer, so the hub can resume it.
+class SalahGuidedSession {
+  const SalahGuidedSession({
+    required this.prayerId,
+    required this.surahId,
+    required this.stepIndex,
+    required this.totalSteps,
+    required this.updatedAt,
+  });
+
+  final SalahPrayerId prayerId;
+  final String surahId;
+  final int stepIndex;
+  final int totalSteps;
+  final DateTime updatedAt;
+
+  bool get hasProgress => stepIndex > 0 && stepIndex < totalSteps;
+
+  Map<String, dynamic> toJson() => {
+    'prayerId': prayerId.name,
+    'surahId': surahId,
+    'stepIndex': stepIndex,
+    'totalSteps': totalSteps,
+    'updatedAt': updatedAt.toIso8601String(),
+  };
+
+  static SalahGuidedSession? fromJson(dynamic raw) {
+    if (raw is! Map) return null;
+    final prayerName = raw['prayerId']?.toString();
+    SalahPrayerId? prayerId;
+    for (final item in SalahPrayerId.values) {
+      if (item.name == prayerName) prayerId = item;
+    }
+    final surahId = raw['surahId']?.toString();
+    final stepIndex = (raw['stepIndex'] as num?)?.toInt();
+    final totalSteps = (raw['totalSteps'] as num?)?.toInt();
+    if (prayerId == null ||
+        surahId == null ||
+        surahId.isEmpty ||
+        stepIndex == null ||
+        totalSteps == null) {
+      return null;
+    }
+    return SalahGuidedSession(
+      prayerId: prayerId,
+      surahId: surahId,
+      stepIndex: stepIndex,
+      totalSteps: totalSteps,
+      updatedAt:
+          DateTime.tryParse(raw['updatedAt']?.toString() ?? '') ??
+          DateTime.fromMillisecondsSinceEpoch(0),
     );
   }
 }
@@ -366,6 +636,7 @@ class SalahTrainerProgressState {
     required this.guidedSurahMode,
     required this.fixedSurahId,
     required this.practiceSurahId,
+    this.sessionsByPrayerId = const <String, SalahGuidedSession>{},
   });
 
   final Map<String, SalahSurahProgress> surahProgressById;
@@ -375,6 +646,10 @@ class SalahTrainerProgressState {
   final GuidedSurahMode guidedSurahMode;
   final String? fixedSurahId;
   final String? practiceSurahId;
+  final Map<String, SalahGuidedSession> sessionsByPrayerId;
+
+  SalahGuidedSession? sessionFor(SalahPrayerId prayerId) =>
+      sessionsByPrayerId[prayerId.name];
 
   SalahTrainerProgressState copyWith({
     Map<String, SalahSurahProgress>? surahProgressById,
@@ -384,6 +659,7 @@ class SalahTrainerProgressState {
     GuidedSurahMode? guidedSurahMode,
     String? fixedSurahId,
     String? practiceSurahId,
+    Map<String, SalahGuidedSession>? sessionsByPrayerId,
     bool clearFixedSurah = false,
     bool clearPracticeSurah = false,
   }) {
@@ -397,6 +673,7 @@ class SalahTrainerProgressState {
       practiceSurahId: clearPracticeSurah
           ? null
           : practiceSurahId ?? this.practiceSurahId,
+      sessionsByPrayerId: sessionsByPrayerId ?? this.sessionsByPrayerId,
     );
   }
 
@@ -411,6 +688,10 @@ class SalahTrainerProgressState {
     'guidedSurahMode': guidedSurahMode.name,
     'fixedSurahId': fixedSurahId,
     'practiceSurahId': practiceSurahId,
+    'sessionsByPrayerId': {
+      for (final entry in sessionsByPrayerId.entries)
+        entry.key: entry.value.toJson(),
+    },
   };
 
   static SalahTrainerProgressState fromJson(Map<String, dynamic>? json) {
@@ -443,6 +724,15 @@ class SalahTrainerProgressState {
       orElse: () => GuidedSurahMode.random,
     );
 
+    final sessions = <String, SalahGuidedSession>{};
+    final rawSessions = json?['sessionsByPrayerId'];
+    if (rawSessions is Map) {
+      for (final entry in rawSessions.entries) {
+        final session = SalahGuidedSession.fromJson(entry.value);
+        if (session != null) sessions[entry.key.toString()] = session;
+      }
+    }
+
     return SalahTrainerProgressState(
       surahProgressById: surahProgressById,
       recentPrayerIds: toStringList(json?['recentPrayerIds']),
@@ -451,6 +741,80 @@ class SalahTrainerProgressState {
       guidedSurahMode: guidedSurahMode,
       fixedSurahId: json?['fixedSurahId']?.toString(),
       practiceSurahId: json?['practiceSurahId']?.toString(),
+      sessionsByPrayerId: sessions,
+    );
+  }
+}
+
+/// Learner preferences for the guided flow, persisted separately from
+/// progress so resetting one never touches the other.
+class SalahGuidedSettings {
+  const SalahGuidedSettings({
+    required this.pace,
+    required this.tasbihRepeats,
+    required this.showTransliteration,
+    required this.showTranslation,
+    required this.focusMode,
+  });
+
+  static const List<int> tasbihRepeatOptions = <int>[1, 3, 5];
+
+  final SalahTrainerPace pace;
+
+  /// How many times a ruku or sujud tasbih is recited.
+  final int tasbihRepeats;
+  final bool showTransliteration;
+  final bool showTranslation;
+
+  /// Large text and hidden chrome for following along hands-free.
+  final bool focusMode;
+
+  SalahGuidedSettings copyWith({
+    SalahTrainerPace? pace,
+    int? tasbihRepeats,
+    bool? showTransliteration,
+    bool? showTranslation,
+    bool? focusMode,
+  }) {
+    return SalahGuidedSettings(
+      pace: pace ?? this.pace,
+      tasbihRepeats: tasbihRepeats ?? this.tasbihRepeats,
+      showTransliteration: showTransliteration ?? this.showTransliteration,
+      showTranslation: showTranslation ?? this.showTranslation,
+      focusMode: focusMode ?? this.focusMode,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'pace': pace.name,
+    'tasbihRepeats': tasbihRepeats,
+    'showTransliteration': showTransliteration,
+    'showTranslation': showTranslation,
+    'focusMode': focusMode,
+  };
+
+  static SalahGuidedSettings fromJson(
+    Map<String, dynamic>? json, {
+    required SalahGuidedSettings defaults,
+  }) {
+    if (json == null) return defaults;
+    final rawPace = json['pace']?.toString();
+    final pace = SalahTrainerPace.values.firstWhere(
+      (item) => item.name == rawPace,
+      orElse: () => defaults.pace,
+    );
+    final rawRepeats = (json['tasbihRepeats'] as num?)?.toInt();
+    return SalahGuidedSettings(
+      pace: pace,
+      tasbihRepeats:
+          rawRepeats != null && tasbihRepeatOptions.contains(rawRepeats)
+          ? rawRepeats
+          : defaults.tasbihRepeats,
+      showTransliteration:
+          json['showTransliteration'] as bool? ?? defaults.showTransliteration,
+      showTranslation:
+          json['showTranslation'] as bool? ?? defaults.showTranslation,
+      focusMode: json['focusMode'] as bool? ?? defaults.focusMode,
     );
   }
 }
