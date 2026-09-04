@@ -24,6 +24,7 @@ import '../widgets/learn_hub_page_scaffold.dart';
 import '../widgets/learn_personalized_next_step_card.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class LearningJourneyIslandHubPage extends ConsumerWidget {
   const LearningJourneyIslandHubPage({super.key});
@@ -82,7 +83,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
       showDefaultQuote: true,
       children: [
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnPersonalizationSectionTitle,
           subtitle: l10n.learnPersonalizationSectionSubtitle,
         ),
@@ -90,7 +91,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
         LearnPersonalizedNextStepCard(summary: personalizedNextStep),
         if (pendingMilestone != null || learningMemories.isNotEmpty) ...[
           const SizedBox(height: 18),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.learnEnrichmentSectionTitle,
             subtitle: l10n.learnEnrichmentSectionSubtitle,
           ),
@@ -106,7 +107,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
             ),
         ],
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnHubContinueJourneyTitle,
           subtitle: l10n.learnHubContinueJourneySubtitle,
         ),
@@ -139,14 +140,14 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
             ),
           ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnHubDailyLearningTitle,
           subtitle: l10n.learnHubDailyLearningLandingSubtitle,
         ),
         const SizedBox(height: 10),
         _DailyLearningCard(summary: summary),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnHubStartJourneyTitle,
           subtitle: visibilityPolicy.isChildProfile
               ? l10n.guidedLearningPathsSectionKidsSubtitle
@@ -157,30 +158,6 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
           paths: visiblePaths,
           activePathId: pathResume.activePath?.id,
         ),
-      ],
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
       ],
     );
   }

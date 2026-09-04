@@ -284,7 +284,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     contentPadding: EdgeInsets.zero,
                     title: Text(_pathTitle(l10n, path.id)),
                     subtitle: Text(_pathDescription(l10n, path.id)),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'quranAyahInsightsPathDetail',
                       pathParameters: {'pathId': path.id},
@@ -315,7 +314,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     subtitle: Text(
                       localizedQuranTopicRouteSubtitle(l10n, route),
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       route.routeName,
                       pathParameters: route.pathParameters,
@@ -370,7 +368,6 @@ class _SurahInsightClusterCard extends ConsumerWidget {
                   '${l10n.quranReferenceViewerReferenceLabel(localizedEntry.ref.locationLabel)}\n${localizedEntry.summary}',
                 ),
                 isThreeLine: true,
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => openQuranReferenceLocation(
                   context,
                   ref: localizedEntry.ref,

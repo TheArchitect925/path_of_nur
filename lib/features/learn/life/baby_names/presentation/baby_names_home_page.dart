@@ -239,7 +239,6 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                                 ),
                               ),
                               subtitle: Text(collection.subtitle),
-                              trailing: const Icon(Icons.chevron_right_rounded),
                               onTap: () => context.pushNamed(
                                 'babyNamesBrowse',
                                 queryParameters: {'collection': collection.id},
@@ -348,7 +347,6 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                         contentPadding: EdgeInsets.zero,
                         title: Text('${entry.name} • ${entry.arabic}'),
                         subtitle: Text(entry.meaning),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => context.pushNamed(
                           'babyNameDetail',
                           pathParameters: {'nameId': entry.id},

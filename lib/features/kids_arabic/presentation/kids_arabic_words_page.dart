@@ -11,6 +11,7 @@ import '../application/kids_arabic_words_provider.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsArabicWordsPage extends ConsumerWidget {
   const KidsArabicWordsPage({super.key});
@@ -56,7 +57,7 @@ class KidsArabicWordsPage extends ConsumerWidget {
         const SizedBox(height: 12),
         _MiniPhrasesCard(initialPhraseId: phrase?.id, heardCount: heardPhrases),
         const SizedBox(height: 12),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicWordsJoiningTitle,
           subtitle: l10n.kidsArabicWordsJoiningSubtitle,
         ),
@@ -83,7 +84,7 @@ class KidsArabicWordsPage extends ConsumerWidget {
               .toList(growable: false),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicWordsStartSetTitle,
           subtitle: l10n.kidsArabicWordsStartSetSubtitle,
         ),
@@ -442,38 +443,6 @@ class _JoiningCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: context.palette.onSurface,
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: context.palette.onSurfaceSubtle,
-            height: 1.35,
-          ),
-        ),
-      ],
     );
   }
 }

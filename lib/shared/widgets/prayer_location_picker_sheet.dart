@@ -225,10 +225,6 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                       child: CompactListTile(
                         title: recent.label,
                         leading: const HubLeadingIcon(AppIcons.recent),
-                        trailing: const Icon(
-                          Icons.chevron_right_rounded,
-                          size: 20,
-                        ),
                         onTap: () => Navigator.of(context).pop(
                           PrayerLocationPickerSelection.manual(
                             label: recent.label,
@@ -271,7 +267,6 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                             return ListTile(
                               contentPadding: EdgeInsets.zero,
                               title: Text(result.label),
-                              trailing: const Icon(Icons.chevron_right_rounded),
                               onTap: () => Navigator.of(context).pop(
                                 PrayerLocationPickerSelection.manual(
                                   label: result.label,

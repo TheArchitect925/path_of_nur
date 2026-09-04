@@ -116,7 +116,6 @@ class CirclesDiscoveryPage extends ConsumerWidget {
                         '${circle.description}\n${circle.city} • ${circle.focus}',
                       ),
                       isThreeLine: true,
-                      trailing: const Icon(Icons.chevron_right_rounded),
                       onTap: () => context.pushNamed(
                         'circleDetail',
                         pathParameters: {'circleId': circle.id},
@@ -142,7 +141,6 @@ class CirclesDiscoveryPage extends ConsumerWidget {
                     '${circle.description}\n${circle.city} • ${circle.focus}',
                   ),
                   isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'circleDetail',
                     pathParameters: {'circleId': circle.id},

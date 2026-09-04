@@ -212,7 +212,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
               contentPadding: EdgeInsets.zero,
               title: Text(nextLesson.title),
               subtitle: Text(nextLesson.subtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.pushNamed(
                 'worldLessonDetail',
                 pathParameters: {'lessonId': nextLesson!.id},
@@ -294,7 +293,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.worldAddReflectionTitle),
             subtitle: Text(l10n.worldAddReflectionSubtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('journalCreate'),
           ),
         ),
@@ -304,7 +302,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.worldObservationCtaTitle),
             subtitle: Text(l10n.worldObservationCtaSubtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('journalCreate'),
           ),
         ),

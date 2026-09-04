@@ -84,7 +84,6 @@ class LifeSubcategoryPage extends ConsumerWidget {
                     subtitle: Text(
                       '${lesson.subtitle}\n${_statusLabel(l10n, p?.status)}',
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'lifeLessonDetail',
                       pathParameters: {'lessonId': lesson.id},

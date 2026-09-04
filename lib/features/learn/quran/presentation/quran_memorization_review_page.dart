@@ -15,6 +15,7 @@ import '../domain/quran_learning_models.dart';
 import '../domain/quran_reference_models.dart';
 import 'quran_theme_copy.dart';
 import 'widgets/quran_related_reference_detail_sheet.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class QuranMemorizationReviewPage extends ConsumerWidget {
   const QuranMemorizationReviewPage({super.key});
@@ -134,7 +135,7 @@ class _ReviewSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _ReviewSectionHeader(title: title),
+        SectionTitle(title: title),
         const SizedBox(height: 8),
         ...entries.map(
           (entry) => Padding(
@@ -144,22 +145,6 @@ class _ReviewSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
       ],
-    );
-  }
-}
-
-class _ReviewSectionHeader extends StatelessWidget {
-  const _ReviewSectionHeader({required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: Theme.of(
-        context,
-      ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
     );
   }
 }

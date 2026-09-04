@@ -84,7 +84,6 @@ class HistoryEventDetailPage extends ConsumerWidget {
                         (hook) => ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(_historyHookTitle(context, hook)),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () => context.pushNamed(
                             hook.routeName,
                             pathParameters: hook.pathParameters,

@@ -109,7 +109,6 @@ class _SettingsSearchPageState extends State<SettingsSearchPage> {
                   CompactListTile(
                     title: entry.title,
                     leading: HubLeadingIcon(settingsCategoryIcon(category)),
-                    trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                     onTap: () =>
                         context.pushNamed(settingsCategoryRouteName(category)),
                   ),

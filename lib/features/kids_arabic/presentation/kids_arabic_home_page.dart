@@ -39,6 +39,7 @@ import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsArabicHomePage extends ConsumerStatefulWidget {
   const KidsArabicHomePage({super.key});
@@ -298,7 +299,7 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
           ],
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicRecommendedTitle,
           subtitle: l10n.kidsArabicRecommendedSubtitle,
         ),
@@ -325,7 +326,7 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
           ),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicAlphabetTitle,
           subtitle: l10n.kidsArabicAlphabetSubtitle,
         ),
@@ -874,38 +875,6 @@ class _DailyJourneyCard extends StatelessWidget {
             ),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: context.palette.onSurface,
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: context.palette.onSurfaceSubtle,
-            height: 1.35,
-          ),
-        ),
-      ],
     );
   }
 }

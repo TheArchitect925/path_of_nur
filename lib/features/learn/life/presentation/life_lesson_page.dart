@@ -202,7 +202,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
               contentPadding: EdgeInsets.zero,
               title: Text(nextLesson.title),
               subtitle: Text(nextLesson.subtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.pushNamed(
                 'lifeLessonDetail',
                 pathParameters: {'lessonId': nextLesson!.id},
@@ -282,7 +281,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.lifeAddReflectionTitle),
             subtitle: Text(l10n.lifeAddReflectionSubtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('journalCreate'),
           ),
         ),

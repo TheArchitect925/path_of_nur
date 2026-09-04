@@ -92,7 +92,6 @@ class _HelpGuideHubPageState extends State<HelpGuideHubPage> {
                   title: filtered[i].title,
                   subtitle: filtered[i].description,
                   leading: HubLeadingIcon(filtered[i].icon),
-                  trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                   onTap: () => context.pushNamed(
                     'settingsHelpGuideDetail',
                     pathParameters: <String, String>{'guideId': filtered[i].id},

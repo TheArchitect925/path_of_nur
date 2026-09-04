@@ -463,7 +463,6 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () {
                             final query = trimmedValue;
                             Navigator.of(context).pop(
@@ -505,7 +504,6 @@ class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () {
                             Navigator.of(context).pop(
                               _ReaderSearchSheetResult._(

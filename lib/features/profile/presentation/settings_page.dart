@@ -120,7 +120,6 @@ class SettingsPage extends ConsumerWidget {
                     title: destination.title,
                     subtitle: destination.subtitle,
                     leading: HubLeadingIcon(destination.icon),
-                    trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                     onTap: () => context.pushNamed(destination.routeName),
                   ),
               ],
@@ -317,7 +316,6 @@ class SettingsPage extends ConsumerWidget {
             title: l10n.familyLearningSettingsTitle,
             subtitle: l10n.familyLearningSettingsSubtitle,
             leading: const HubLeadingIcon(AppIcons.family),
-            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () => context.pushNamed('learnFamilyManagement'),
           )
         : const SizedBox.shrink();
@@ -342,7 +340,6 @@ class SettingsPage extends ConsumerWidget {
                         ),
                       ),
                 leading: const HubLeadingIcon(AppIcons.profile),
-                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                 onTap: () => context.push('/accounts-sync'),
               ),
               const SizedBox(height: 6),
@@ -353,7 +350,6 @@ class SettingsPage extends ConsumerWidget {
                   _syncStateLabel(accountsSync.syncStatus.syncState, l10n),
                 ),
                 leading: const HubLeadingIcon(AppIcons.backup),
-                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                 onTap: () => context.push('/accounts-sync/sync-details'),
               ),
               const SizedBox(height: 6),
@@ -365,7 +361,6 @@ class SettingsPage extends ConsumerWidget {
                     ? l10n.settingsNoManualBackupYet
                     : l10n.settingsLastExportRecorded,
                 leading: const HubLeadingIcon(AppIcons.download),
-                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                 onTap: () => context.push('/accounts-sync/backup'),
               ),
             ],
@@ -454,7 +449,6 @@ class SettingsPage extends ConsumerWidget {
                 .option
                 .title,
             leading: const HubLeadingIcon(AppIcons.adhan),
-            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () async {
               await showModalBottomSheet<void>(
                 context: context,
@@ -556,7 +550,6 @@ class SettingsPage extends ConsumerWidget {
             title: l10n.profileLocationLabel,
             subtitle: locationLabel,
             leading: const HubLeadingIcon(AppIcons.location),
-            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () async {
               final service = ref.read(prayerLocationSearchServiceProvider);
               final recentLocations = ref.read(prayerRecentLocationsProvider);
@@ -1219,7 +1212,6 @@ class SettingsPage extends ConsumerWidget {
               learningPathSelection?.selectedLevel,
             ),
             leading: const HubLeadingIcon(AppIcons.path),
-            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () => context.pushNamed('learnLearningPath'),
           ),
           const SizedBox(height: 6),
@@ -1227,7 +1219,6 @@ class SettingsPage extends ConsumerWidget {
             title: l10n.settingsRunOnboardingTitle,
             subtitle: l10n.settingsRunOnboardingSubtitle,
             leading: const HubLeadingIcon(AppIcons.occasions),
-            trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () => context.push('/onboarding?preview=1'),
           ),
           const SizedBox(height: 14),
@@ -1275,21 +1266,18 @@ class SettingsPage extends ConsumerWidget {
               title: l10n.homeOverviewHeroTitle,
               subtitle: l10n.homeOverviewHeroSubtitle,
               leading: const HubLeadingIcon(AppIcons.summary),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileSummary'),
             ),
             CompactListTile(
               title: l10n.settingsWhatsNewTitle,
               subtitle: l10n.settingsWhatsNewSubtitle,
               leading: const HubLeadingIcon(AppIcons.whatsNew),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileWhatsNew'),
             ),
             CompactListTile(
               title: l10n.settingsComingSoonTitle,
               subtitle: l10n.settingsComingSoonSubtitle,
               leading: const HubLeadingIcon(AppIcons.comingSoon),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileComingSoon'),
             ),
           ],
@@ -1302,28 +1290,24 @@ class SettingsPage extends ConsumerWidget {
               title: l10n.legalPrivacyTitle,
               subtitle: l10n.legalPrivacySubtitle,
               leading: const HubLeadingIcon(AppIcons.privacy),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('privacyPolicy'),
             ),
             CompactListTile(
               title: l10n.legalTermsTitle,
               subtitle: l10n.legalTermsSubtitle,
               leading: const HubLeadingIcon(AppIcons.legal),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('termsUsage'),
             ),
             CompactListTile(
               title: l10n.legalSupportTitle,
               subtitle: l10n.legalSupportSubtitle,
               leading: const HubLeadingIcon(AppIcons.support),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('supportInfo'),
             ),
             CompactListTile(
               title: l10n.settingsAttributionsLicensesTitle,
               subtitle: l10n.quranReaderSourcesLicensingTitle,
               leading: const HubLeadingIcon(AppIcons.licenses),
-              trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('attributionsLicenses'),
             ),
           ],
@@ -2463,7 +2447,6 @@ class _JumuahSettingsSection extends StatelessWidget {
           subtitle:
               preferences.jumuahMosqueName ?? l10n.settingsJumuahChooseMosque,
           leading: const HubLeadingIcon(AppIcons.mosque),
-          trailing: const Icon(Icons.chevron_right_rounded, size: 20),
           onTap: () async {
             final result = await showDialog<PrayerLocationSearchResult>(
               context: context,

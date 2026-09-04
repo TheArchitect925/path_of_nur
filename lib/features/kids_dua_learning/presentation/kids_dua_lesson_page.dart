@@ -21,6 +21,8 @@ import '../domain/kids_dua_models.dart';
 import 'kids_dua_read_along_view.dart';
 import 'kids_dua_tap_repeat_view.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsDuaLessonPage extends ConsumerStatefulWidget {
   const KidsDuaLessonPage({super.key, required this.lessonId});
@@ -63,9 +65,9 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
     final learner = ref.watch(kidsDuaActiveLearnerProvider);
 
     if (lesson == null) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text(l10n.routerNotFoundTitle)),
+      return AppPageScaffold(
+        title: l10n.kidsDuaLandingTitle,
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
 

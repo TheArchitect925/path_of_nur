@@ -95,7 +95,6 @@ class WorldThemePage extends ConsumerWidget {
                     subtitle: Text(
                       '${sub.summary}\n${l10n.worldSubcategoryProgress(p.completedLessons, p.totalLessons)}',
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'worldSubcategoryDetail',
                       pathParameters: {'subcategoryId': sub.id},

@@ -10,6 +10,7 @@ import '../domain/kids_arabic_models.dart';
 import '../domain/kids_arabic_word_models.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsArabicPracticePage extends ConsumerWidget {
   const KidsArabicPracticePage({super.key});
@@ -30,7 +31,7 @@ class KidsArabicPracticePage extends ConsumerWidget {
           const SizedBox(height: 12),
         ],
         if (plan.continueLetter != null || plan.continueWord != null) ...[
-          _SectionHeader(
+          SectionTitle(
             title: l10n.kidsArabicPracticeContinueSectionTitle,
             subtitle: l10n.kidsArabicPracticeContinueSectionSubtitle,
           ),
@@ -61,7 +62,7 @@ class KidsArabicPracticePage extends ConsumerWidget {
           const SizedBox(height: 18),
         ],
         if (plan.reviewLetters.isNotEmpty || plan.reviewWords.isNotEmpty) ...[
-          _SectionHeader(
+          SectionTitle(
             title: l10n.kidsArabicPracticeReviewSectionTitle,
             subtitle: l10n.kidsArabicPracticeReviewSectionSubtitle,
           ),
@@ -586,38 +587,6 @@ class _CompletedChip extends StatelessWidget {
           color: context.palette.onSurface,
         ),
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: context.palette.onSurface,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: context.palette.onSurfaceSubtle,
-            height: 1.35,
-          ),
-        ),
-      ],
     );
   }
 }

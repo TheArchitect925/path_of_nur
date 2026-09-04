@@ -140,7 +140,6 @@ class _WorldCreationLessonPageState
                     contentPadding: EdgeInsets.zero,
                     title: Text(item.title),
                     subtitle: Text(item.summary),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'worldCreationLessonDetail',
                       pathParameters: {'lessonId': item.id},

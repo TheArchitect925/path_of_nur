@@ -152,25 +152,7 @@ void main() {
     // theme foreground elsewhere. A private `_SectionHeader` freezes its own
     // colours and goes dark-on-dark on Midnight. HD-4 retires these.
     const allowed = <String>{
-      'lib/features/kids/bedtime_routines/presentation/bedtime_companion_page.dart',
-      'lib/features/kids/bedtime_stories/presentation/kids_story_library_page.dart',
-      'lib/features/kids/seerah/presentation/seerah_journeys_page.dart',
-      'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart',
-      'lib/features/kids_arabic/presentation/kids_arabic_practice_page.dart',
-      'lib/features/kids_arabic/presentation/kids_arabic_progress_map_page.dart',
-      'lib/features/kids_arabic/presentation/kids_arabic_rewards_page.dart',
-      'lib/features/kids_arabic/presentation/kids_arabic_word_lesson_page.dart',
-      'lib/features/kids_arabic/presentation/kids_arabic_words_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_landing_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_my_day_page.dart',
-      'lib/features/learn/companion_surfaces/presentation/character_companion_page.dart',
-      'lib/features/learn/companion_surfaces/presentation/daily_wisdom_companion_page.dart',
-      'lib/features/learn/companion_surfaces/presentation/seerah_companion_page.dart',
-      'lib/features/learn/presentation/pages/games_island_page.dart',
-      'lib/features/learn/presentation/pages/learn_category_page.dart',
-      'lib/features/learn/presentation/pages/learning_journey_island_hub_page.dart',
-      'lib/features/learn/quran/presentation/quran_memorization_review_page.dart',
-      'lib/features/worship/presentation/widgets/prayer_section.dart',
+      // HD-4 retired the last nineteen copies; nothing is exempt.
     };
 
     _expectRatchet(
@@ -195,21 +177,13 @@ void main() {
       // Full-screen flows that deliberately run outside the shell.
       'lib/features/onboarding/presentation/onboarding_page.dart',
       'lib/features/startup/presentation/app_loading_screen.dart',
-      // Still to convert (R1 in the header audit).
+      // Immersive tools that need the whole viewport: a drawing canvas, two
+      // pinch-to-zoom viewers and a story player. Their not-found guards do
+      // use AppPageScaffold; only the main surface keeps a Material shell.
       'lib/features/journey/drops/presentation/garden_image_viewer_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_category_page.dart',
       'lib/features/kids_dua_learning/presentation/kids_dua_drawing_page.dart',
       'lib/features/kids_dua_learning/presentation/kids_dua_drawing_view_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_drawings_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_lesson_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_my_day_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_parent_dashboard_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_practice_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_rewards_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_stories_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_story_browse_page.dart',
       'lib/features/kids_dua_learning/presentation/kids_dua_story_player_page.dart',
-      'lib/features/salah/presentation/salah_page.dart',
     };
 
     _expectRatchet(
@@ -223,6 +197,20 @@ void main() {
       reason:
           'Build on AppPageScaffold so the page gets the app background and '
           'the shared header.',
+    );
+  });
+
+  test('Rows carry no trailing disclosure chevron', () {
+    // Decision from the header audit (S2): rows are arrowless everywhere, as
+    // Learn's rows already were. A tappable row is a card; the chevron only
+    // repeated what the card already says.
+    final offenders = _filesMatching(
+      RegExp(r'trailing:\s*(const\s+)?Icon\(\s*\n?\s*Icons\.chevron_right'),
+    );
+    expect(
+      offenders.toList()..sort(),
+      isEmpty,
+      reason: 'Drop the trailing chevron; the row is the affordance.',
     );
   });
 

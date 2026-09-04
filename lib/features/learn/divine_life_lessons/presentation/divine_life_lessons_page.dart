@@ -275,7 +275,6 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
                         contentPadding: EdgeInsets.zero,
                         title: Text(lesson.title),
                         subtitle: Text(lesson.quranReference),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => _openLesson(context, lesson.id),
                       ),
                     ),
@@ -671,7 +670,6 @@ class _LessonsTab extends StatelessWidget {
                           subtitle: Text(
                             '${lesson.quranReference} • ${lesson.estimatedReadMinutes} min',
                           ),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () => onOpenLesson(lesson.id),
                         ),
                       ),
@@ -746,7 +744,6 @@ class _ThemesTab extends StatelessWidget {
                         dense: true,
                         title: Text(lesson.title),
                         subtitle: Text(lesson.quranReference),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => onOpenLesson(lesson.id),
                       );
                     }),
@@ -814,7 +811,6 @@ class _SituationsTab extends StatelessWidget {
                         dense: true,
                         title: Text(lesson.title),
                         subtitle: Text(lesson.quranReference),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => onOpenLesson(lesson.id),
                       );
                     }),

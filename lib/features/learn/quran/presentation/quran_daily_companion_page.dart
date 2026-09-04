@@ -204,7 +204,6 @@ class QuranDailyCompanionPage extends ConsumerWidget {
                       subtitle: Text(
                         '${quranKnowledgeTypeLabel(l10n, link.knowledgeType)} • ${link.subtitle}',
                       ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
                       onTap: () => showQuranRelatedKnowledgeDetailSheet(
                         context,
                         link: link,

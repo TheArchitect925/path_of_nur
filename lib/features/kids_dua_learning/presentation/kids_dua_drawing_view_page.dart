@@ -7,6 +7,8 @@ import '../../../l10n/app_localizations.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../domain/kids_dua_models.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsDuaDrawingViewPage extends ConsumerWidget {
   const KidsDuaDrawingViewPage({super.key, required this.drawingId});
@@ -24,9 +26,9 @@ class KidsDuaDrawingViewPage extends ConsumerWidget {
       }
     }
     if (drawing == null) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text(l10n.routerNotFoundTitle)),
+      return AppPageScaffold(
+        title: l10n.kidsDuaDrawingsTitle,
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
     final lesson = ref.watch(kidsDuaLessonByIdProvider(drawing.duaId));

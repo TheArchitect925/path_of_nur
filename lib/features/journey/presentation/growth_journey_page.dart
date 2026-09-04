@@ -485,7 +485,6 @@ class GrowthJourneyPage extends ConsumerWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'growthPathDetail',
                     pathParameters: {'pathId': path.path.id},

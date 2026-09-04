@@ -20,6 +20,7 @@ import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsArabicWordLessonPage extends ConsumerStatefulWidget {
   const KidsArabicWordLessonPage({
@@ -251,7 +252,7 @@ class _KidsArabicWordLessonPageState
               ref.read(kidsArabicAudioServiceProvider).speakWord(word),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicWordsJoiningTitle,
           subtitle: l10n.kidsArabicWordsWordLessonJoiningSubtitle,
         ),
@@ -273,7 +274,7 @@ class _KidsArabicWordLessonPageState
               .toList(growable: false),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicWordTraceTitle,
           subtitle: l10n.kidsArabicWordTraceSubtitle,
         ),
@@ -617,38 +618,6 @@ class _WordLetterChip extends StatelessWidget {
           color: context.palette.onSurfaceSubtle,
         ),
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: context.palette.onSurface,
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: context.palette.onSurfaceSubtle,
-            height: 1.35,
-          ),
-        ),
-      ],
     );
   }
 }

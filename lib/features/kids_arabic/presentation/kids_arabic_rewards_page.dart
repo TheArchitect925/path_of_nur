@@ -8,6 +8,7 @@ import '../application/kids_arabic_achievements_provider.dart';
 import '../domain/kids_arabic_achievement_models.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsArabicRewardsPage extends ConsumerWidget {
   const KidsArabicRewardsPage({super.key});
@@ -74,7 +75,7 @@ class KidsArabicRewardsPage extends ConsumerWidget {
           _LatestAchievementCard(achievement: latestAchievement),
         ],
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicMilestonesSectionTitle,
           subtitle: l10n.kidsArabicMilestonesSectionSubtitle,
         ),
@@ -86,7 +87,7 @@ class KidsArabicRewardsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicBadgesSectionTitle,
           subtitle: l10n.kidsArabicBadgesSectionSubtitle,
         ),
@@ -239,38 +240,6 @@ class _AchievementCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: context.palette.onSurface,
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: context.palette.onSurfaceSubtle,
-            height: 1.35,
-          ),
-        ),
-      ],
     );
   }
 }

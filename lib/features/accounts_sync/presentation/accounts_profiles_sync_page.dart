@@ -711,7 +711,6 @@ class _AccountConnectionCardState
               leading: const Icon(Icons.account_circle_rounded),
               title: Text(l10n.accountsSyncSignedInAccountsTitle),
               subtitle: Text(l10n.accountsSyncSignInAnotherAccountSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
               onTap: widget.onManageAccountsTap!,
             ),
           ],
@@ -2376,7 +2375,6 @@ class _NavRow extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       leading: HubLeadingIcon(icon),
-      trailing: const Icon(Icons.chevron_right_rounded, size: 20),
       onTap: onTap,
     );
   }

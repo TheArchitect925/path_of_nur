@@ -102,7 +102,6 @@ class LifeThemePage extends ConsumerWidget {
                     subtitle: Text(
                       '${sub.summary}\n${l10n.lifeSubcategoryProgress(p.completedLessons, p.totalLessons)}',
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
                     onTap: () => context.pushNamed(
                       'lifeSubcategoryDetail',
                       pathParameters: {'subcategoryId': sub.id},

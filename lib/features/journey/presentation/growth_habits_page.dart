@@ -212,7 +212,6 @@ class GrowthHabitsPage extends ConsumerWidget {
                   leading: const Icon(Icons.flag_circle_rounded),
                   title: Text(l10n.quranTabPlanTitle),
                   subtitle: Text(l10n.growthHabitsQuranPlanRowSubtitle),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed('quranKhatmPlan'),
                 ),
               ],

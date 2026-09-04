@@ -119,7 +119,6 @@ class _TopicTile extends ConsumerWidget {
               ),
             ],
           ),
-          trailing: const Icon(Icons.chevron_right_rounded),
         ),
       ),
     );

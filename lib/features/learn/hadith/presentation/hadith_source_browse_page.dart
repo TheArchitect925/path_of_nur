@@ -64,7 +64,6 @@ class _HadithSourceCollectionListPage extends ConsumerWidget {
                     : l10n.hadithSourceBrowseCollectionCountOnly(
                         collection.entryCount,
                       ),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.pushNamed(
                   'hadithSourceDetail',
                   pathParameters: {'sourceId': collection.id},
@@ -156,7 +155,6 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
                   chapterSecondaryLabel(chapter, l10n),
                   chapter.entryCount,
                 ),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.pushNamed(
                   'hadithSourceChapterDetail',
                   pathParameters: {

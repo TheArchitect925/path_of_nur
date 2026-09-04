@@ -9,6 +9,8 @@ import '../application/kids_dua_progress_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../application/kids_dua_story_illustration_service.dart';
 import '../application/kids_dua_story_repository.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsDuaStoryPlayerPage extends ConsumerStatefulWidget {
   const KidsDuaStoryPlayerPage({super.key, required this.storyId});
@@ -51,9 +53,9 @@ class _KidsDuaStoryPlayerPageState
     final l10n = AppLocalizations.of(context);
     final story = ref.watch(kidsDuaStoryByIdProvider(widget.storyId));
     if (story == null) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text(l10n.routerNotFoundTitle)),
+      return AppPageScaffold(
+        title: l10n.kidsDuaStoriesTitle,
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
     final lesson = ref.watch(kidsDuaLessonByIdProvider(story.duaId));

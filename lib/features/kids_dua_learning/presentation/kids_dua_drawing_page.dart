@@ -8,6 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/app_localizations.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_repository.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsDuaDrawingPage extends ConsumerStatefulWidget {
   const KidsDuaDrawingPage({super.key, required this.lessonId});
@@ -43,9 +45,9 @@ class _KidsDuaDrawingPageState extends ConsumerState<KidsDuaDrawingPage> {
     final l10n = AppLocalizations.of(context);
     final lesson = ref.watch(kidsDuaLessonByIdProvider(widget.lessonId));
     if (lesson == null) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text(l10n.routerNotFoundTitle)),
+      return AppPageScaffold(
+        title: l10n.kidsDuaDrawTitle,
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
 

@@ -110,7 +110,6 @@ class _EditorialContentBrowserPageState
                       ],
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'editorialContentEditor',
                     pathParameters: {

@@ -10,6 +10,7 @@ import '../application/learn_hub_providers.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class LearnCategoryPage extends ConsumerWidget {
   const LearnCategoryPage({
@@ -77,7 +78,7 @@ class LearnCategoryPage extends ConsumerWidget {
       subtitle: pageSubtitle,
       children: [
         if (showSiblingSubcategories && subcategories.isNotEmpty) ...[
-          _LearnSectionHeader(
+          SectionTitle(
             title: l10n.learnHubSubcategoriesSectionTitle,
             subtitle: l10n.learnHubSubcategoriesSectionSubtitle,
           ),
@@ -102,7 +103,7 @@ class LearnCategoryPage extends ConsumerWidget {
           const SizedBox(height: 18),
         ],
         if (showKnowledgeSection) ...[
-          _LearnSectionHeader(
+          SectionTitle(
             title: l10n.learnHubKnowledgeSectionTitle,
             subtitle: l10n.learnHubKnowledgeSectionSubtitle,
           ),
@@ -204,30 +205,6 @@ class LearnCategoryPage extends ConsumerWidget {
       return true;
     }
     return !_hasListableItemsForSubcategory(knowledgeItems, subcategory.id);
-  }
-}
-
-class _LearnSectionHeader extends StatelessWidget {
-  const _LearnSectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
-      ],
-    );
   }
 }
 

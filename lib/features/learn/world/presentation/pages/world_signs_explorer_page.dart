@@ -29,7 +29,6 @@ class WorldSignsExplorerPage extends ConsumerWidget {
                 subtitle: const Text(
                   'Explore relevant lessons, reflections, and observation prompts.',
                 ),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () {
                   final category = WorldCreationCategoryId.values.firstWhere(
                     (item) => item.name == domain.$2,

@@ -13,6 +13,7 @@ import '../application/kids_dua_my_day_provider.dart';
 import '../application/kids_dua_story_repository.dart';
 import '../domain/kids_dua_models.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsDuaLandingPage extends ConsumerWidget {
   const KidsDuaLandingPage({super.key});
@@ -94,7 +95,7 @@ class KidsDuaLandingPage extends ConsumerWidget {
           onTap: () => context.pushNamed('kidsDuaMyDay'),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsDuaCategoriesTitle,
           subtitle: l10n.kidsDuaCategoriesSubtitle,
         ),
@@ -495,31 +496,6 @@ class _QuickEntryCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: TextStyle(color: context.palette.onSurfaceSubtle),
-        ),
-      ],
     );
   }
 }

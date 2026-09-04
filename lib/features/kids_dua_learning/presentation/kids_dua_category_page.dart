@@ -11,6 +11,7 @@ import '../application/kids_dua_experience_provider.dart';
 import '../application/kids_dua_progress_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../domain/kids_dua_models.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 
 class KidsDuaCategoryPage extends ConsumerWidget {
   const KidsDuaCategoryPage({super.key, required this.categoryId});
@@ -27,9 +28,9 @@ class KidsDuaCategoryPage extends ConsumerWidget {
         .watch(kidsDuaCategoryProgressListProvider)
         .firstWhere((item) => item.category.id == categoryId);
     if (category == null) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text(l10n.routerNotFoundTitle)),
+      return AppPageScaffold(
+        title: l10n.kidsDuaLandingTitle,
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
     return LearnHubPageScaffold(

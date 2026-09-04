@@ -35,7 +35,6 @@ class CirclesJoinedPage extends ConsumerWidget {
                   title: Text(circle.title),
                   subtitle: Text('${circle.description}\n${circle.city}'),
                   isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'circleDetail',
                     pathParameters: {'circleId': circle.id},

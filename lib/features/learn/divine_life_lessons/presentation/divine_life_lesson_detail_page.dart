@@ -238,7 +238,6 @@ class _DivineLifeLessonDetailPageState
                       contentPadding: EdgeInsets.zero,
                       title: Text(item.title),
                       subtitle: Text(item.quranReference),
-                      trailing: const Icon(Icons.chevron_right_rounded),
                       onTap: () => context.pushNamed(
                         'lifeLessonDetail',
                         pathParameters: {'lessonId': item.id},

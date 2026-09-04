@@ -562,7 +562,7 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _MonthSectionHeader(
+                _MonthStepperHeader(
                   title: l10n.worshipPrayerMonthlyOverviewTitle,
                   selectedMonth: selectedMonth,
                   canGoToNextMonth: canGoToNextMonth,
@@ -682,8 +682,8 @@ class _PrayerStatsTabState extends ConsumerState<_PrayerStatsTab> {
   }
 }
 
-class _MonthSectionHeader extends StatelessWidget {
-  const _MonthSectionHeader({
+class _MonthStepperHeader extends StatelessWidget {
+  const _MonthStepperHeader({
     required this.title,
     required this.selectedMonth,
     required this.canGoToNextMonth,

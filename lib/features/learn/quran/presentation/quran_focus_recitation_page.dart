@@ -344,7 +344,6 @@ class _QuranFocusRecitationPageState
                           contentPadding: EdgeInsets.zero,
                           leading: const Icon(Icons.repeat_rounded),
                           title: Text(l10n.quranMemorizationReviewTitle),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () {
                             Navigator.of(sheetContext).pop();
                             final router = GoRouter.of(context);
@@ -359,7 +358,6 @@ class _QuranFocusRecitationPageState
                             title: Text(
                               l10n.shellQuranMiniPlayerOpenReaderAction,
                             ),
-                            trailing: const Icon(Icons.chevron_right_rounded),
                             onTap: () {
                               Navigator.of(sheetContext).pop();
                               final router = GoRouter.of(context);

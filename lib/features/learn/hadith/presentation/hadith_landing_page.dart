@@ -726,7 +726,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
               return ListTile(
                 title: Text(theme.title),
                 subtitle: Text(theme.subtitle),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () {
                   Navigator.of(context).pop();
                   this.context.pushNamed(
@@ -761,7 +760,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
               return ListTile(
                 title: Text(path.title),
                 subtitle: Text(path.subtitle ?? path.description),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () {
                   Navigator.of(context).pop();
                   this.context.pushNamed(
@@ -1036,7 +1034,6 @@ class _DailyHadithHero extends ConsumerWidget {
       ),
       leading: const Icon(Icons.wb_twilight_rounded),
       title: Text(l10n.hadithTitleDailyReflection),
-      trailing: const Icon(Icons.chevron_right_rounded),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -15,6 +15,7 @@ import '../../seerah/application/seerah_journey_repository.dart';
 import 'bedtime_story_cover_card.dart';
 import 'bedtime_story_mini_player.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class KidsStoryLibraryPage extends ConsumerWidget {
   const KidsStoryLibraryPage({super.key, this.initialCollectionId});
@@ -138,7 +139,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
           ),
           const SizedBox(height: 18),
         ],
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsStoryBrowseCollectionsTitle,
           subtitle: l10n.kidsStoryBrowseCollectionsSubtitle,
         ),
@@ -150,7 +151,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsStoryBedtimeEligibleTitle,
           subtitle: l10n.kidsStoryBedtimeEligibleSubtitle,
         ),
@@ -164,7 +165,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
               ),
             ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsStoryFeaturedStoriesTitle,
           subtitle: l10n.kidsStoryFeaturedStoriesSubtitle,
         ),
@@ -332,30 +333,6 @@ class _HeroCard extends StatelessWidget {
           Text(subtitle, style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
-      ],
     );
   }
 }

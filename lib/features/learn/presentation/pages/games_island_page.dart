@@ -15,6 +15,7 @@ import '../widgets/learn_hub_page_scaffold.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class GamesIslandPage extends ConsumerStatefulWidget {
   const GamesIslandPage({super.key, this.initialSectionId});
@@ -106,7 +107,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
           _BrowseAllCard(resultCount: searchMatches.length),
           if (_searchController.text.trim().isNotEmpty) ...[
             const SizedBox(height: 18),
-            _SectionHeader(
+            SectionTitle(
               title: l10n.learnGamesSearchResultsTitleText,
               subtitle: l10n.learnGamesSearchResultsCountText(
                 searchMatches.length,
@@ -135,7 +136,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
           ],
           for (final section in visibleSections) ...[
             const SizedBox(height: 18),
-            _SectionHeader(title: section.title, subtitle: section.subtitle),
+            SectionTitle(title: section.title, subtitle: section.subtitle),
             const SizedBox(height: 10),
             SectionHubActionGrid(
               actions: [
@@ -158,7 +159,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
             ),
           ],
           const SizedBox(height: 18),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.learnGamesIslandKidsEntryTitle,
             subtitle: l10n.learnGamesIslandKidsEntrySubtitle,
           ),
@@ -435,30 +436,6 @@ class _KidsRedirectCard extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
-      ],
     );
   }
 }
