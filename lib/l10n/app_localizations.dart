@@ -71305,6 +71305,1752 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Qur\'\'an-rooted lessons for reflection, character, and grounded living.'**
   String get learnCategoryDivineLifeLessonsSubtitle;
+
+  /// No description provided for @salahTrainerStepNiyyahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Niyyah reminder'**
+  String get salahTrainerStepNiyyahTitle;
+
+  /// No description provided for @salahTrainerStepNiyyahHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'No verbal formula is required. Simply know which prayer you are offering.'**
+  String get salahTrainerStepNiyyahHelper;
+
+  /// No description provided for @salahTrainerStepTakbirAlIhramTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Takbir al-Ihram'**
+  String get salahTrainerStepTakbirAlIhramTitle;
+
+  /// No description provided for @salahTrainerStepTakbirRisingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Takbir (rising)'**
+  String get salahTrainerStepTakbirRisingTitle;
+
+  /// No description provided for @salahTrainerStepTakbirRisingHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Rise into the next rakah saying the takbir.'**
+  String get salahTrainerStepTakbirRisingHelper;
+
+  /// No description provided for @salahTrainerStepOpeningSupplicationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening supplication'**
+  String get salahTrainerStepOpeningSupplicationTitle;
+
+  /// No description provided for @salahTrainerStepFatihahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah al-Fatihah'**
+  String get salahTrainerStepFatihahTitle;
+
+  /// No description provided for @salahTrainerStepFatihahHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'This is required in every rakah.'**
+  String get salahTrainerStepFatihahHelper;
+
+  /// No description provided for @salahTrainerStepAdditionalSurahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional surah'**
+  String get salahTrainerStepAdditionalSurahTitle;
+
+  /// No description provided for @salahTrainerStepAdditionalSurahHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'The guided mode will insert a selected surah here.'**
+  String get salahTrainerStepAdditionalSurahHelper;
+
+  /// No description provided for @salahTrainerStepQunutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua al-Qunut'**
+  String get salahTrainerStepQunutTitle;
+
+  /// No description provided for @salahTrainerStepQunutHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Often recited in Witr. The exact placement and wording can vary by madhhab.'**
+  String get salahTrainerStepQunutHelper;
+
+  /// No description provided for @salahTrainerStepRukuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruku'**
+  String get salahTrainerStepRukuTitle;
+
+  /// No description provided for @salahTrainerStepStandingAfterRukuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing after ruku'**
+  String get salahTrainerStepStandingAfterRukuTitle;
+
+  /// No description provided for @salahTrainerStepFirstSujudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First sujud'**
+  String get salahTrainerStepFirstSujudTitle;
+
+  /// No description provided for @salahTrainerStepSittingBetweenSujudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sitting between sujud'**
+  String get salahTrainerStepSittingBetweenSujudTitle;
+
+  /// No description provided for @salahTrainerStepSecondSujudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Second sujud'**
+  String get salahTrainerStepSecondSujudTitle;
+
+  /// No description provided for @salahTrainerStepTashahhudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tashahhud'**
+  String get salahTrainerStepTashahhudTitle;
+
+  /// No description provided for @salahTrainerStepSalawatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salawat Ibrahimiyyah'**
+  String get salahTrainerStepSalawatTitle;
+
+  /// No description provided for @salahTrainerStepFinalDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Final dua'**
+  String get salahTrainerStepFinalDuaTitle;
+
+  /// No description provided for @salahTrainerStepTaslimRightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Taslim right'**
+  String get salahTrainerStepTaslimRightTitle;
+
+  /// No description provided for @salahTrainerStepTaslimLeftTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Taslim left'**
+  String get salahTrainerStepTaslimLeftTitle;
+
+  /// No description provided for @salahTrainerStepNiyyahTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Intention is in the heart. Make a quiet intention for the prayer you are beginning.'**
+  String get salahTrainerStepNiyyahTranslation;
+
+  /// No description provided for @salahTrainerStepTakbirTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Allah is the Greatest.'**
+  String get salahTrainerStepTakbirTranslation;
+
+  /// No description provided for @salahTrainerStepOpeningSupplicationTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Glory is to You, O Allah, and praise. Blessed is Your Name, exalted is Your majesty, and none has the right to be worshipped besides You.'**
+  String get salahTrainerStepOpeningSupplicationTranslation;
+
+  /// No description provided for @salahTrainerStepFatihahTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Recite Surah al-Fatihah with calmness and reflection in every rakah.'**
+  String get salahTrainerStepFatihahTranslation;
+
+  /// No description provided for @salahTrainerStepAdditionalSurahTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Recite one short surah from your learned surah pool after al-Fatihah in the first two rakahs.'**
+  String get salahTrainerStepAdditionalSurahTranslation;
+
+  /// No description provided for @salahTrainerStepQunutTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, guide me among those You have guided, grant me well-being among those You have granted well-being, take me into Your care among those You have taken into Your care, bless for me what You have given, and protect me from the evil of what You have decreed. Indeed, You decree and none can decree over You.'**
+  String get salahTrainerStepQunutTranslation;
+
+  /// No description provided for @salahTrainerStepRukuTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Glory is to my Lord, the Magnificent.'**
+  String get salahTrainerStepRukuTranslation;
+
+  /// No description provided for @salahTrainerStepStandingAfterRukuTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Allah hears the one who praises Him. Our Lord, and to You belongs all praise.'**
+  String get salahTrainerStepStandingAfterRukuTranslation;
+
+  /// No description provided for @salahTrainerStepSujudTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Glory is to my Lord, the Most High.'**
+  String get salahTrainerStepSujudTranslation;
+
+  /// No description provided for @salahTrainerStepSittingBetweenSujudTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'My Lord, forgive me, have mercy on me, guide me, strengthen me, grant me well-being, and provide for me.'**
+  String get salahTrainerStepSittingBetweenSujudTranslation;
+
+  /// No description provided for @salahTrainerStepTashahhudTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'All greetings, prayers, and pure words belong to Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god except Allah, and I bear witness that Muhammad is His servant and Messenger.'**
+  String get salahTrainerStepTashahhudTranslation;
+
+  /// No description provided for @salahTrainerStepSalawatTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, send prayers upon Muhammad and upon the family of Muhammad as You sent prayers upon Ibrahim and the family of Ibrahim; indeed, You are Praiseworthy and Glorious. O Allah, bless Muhammad and the family of Muhammad as You blessed Ibrahim and the family of Ibrahim; indeed, You are Praiseworthy and Glorious.'**
+  String get salahTrainerStepSalawatTranslation;
+
+  /// No description provided for @salahTrainerStepFinalDuaTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, I seek refuge in You from the punishment of Hell, the punishment of the grave, the trials of life and death, and the evil trial of the false messiah.'**
+  String get salahTrainerStepFinalDuaTranslation;
+
+  /// No description provided for @salahTrainerStepTaslimTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Peace and the mercy of Allah be upon you.'**
+  String get salahTrainerStepTaslimTranslation;
+
+  /// No description provided for @salahTrainerRakahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rakah {index}'**
+  String salahTrainerRakahTitle(Object index);
+
+  /// No description provided for @salahTrainerPrayerFajrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get salahTrainerPrayerFajrTitle;
+
+  /// No description provided for @salahTrainerPrayerFajrDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The opening prayer of the day, prayed before sunrise.'**
+  String get salahTrainerPrayerFajrDescription;
+
+  /// No description provided for @salahTrainerPrayerFajrSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Sunnah'**
+  String get salahTrainerPrayerFajrSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerFajrFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Fard'**
+  String get salahTrainerPrayerFajrFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerFajrRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loud recitation in the fard prayer.'**
+  String get salahTrainerPrayerFajrRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerFajrOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr begins the day with calmness, clarity, and dependence on Allah. The guided trainer focuses on the 2 fard rakahs while still showing the sunnah overview.'**
+  String get salahTrainerPrayerFajrOverview;
+
+  /// No description provided for @salahTrainerPrayerDhuhrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr'**
+  String get salahTrainerPrayerDhuhrTitle;
+
+  /// No description provided for @salahTrainerPrayerDhuhrDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The midday prayer offered after the sun passes its peak.'**
+  String get salahTrainerPrayerDhuhrDescription;
+
+  /// No description provided for @salahTrainerPrayerDhuhrSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'4 Sunnah before, 2 Sunnah after'**
+  String get salahTrainerPrayerDhuhrSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerDhuhrFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'4 Fard'**
+  String get salahTrainerPrayerDhuhrFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerDhuhrRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent recitation.'**
+  String get salahTrainerPrayerDhuhrRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerDhuhrOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr centers the middle of the day. The guided trainer follows the 4 fard rakahs, with the first two including an additional surah after al-Fatihah.'**
+  String get salahTrainerPrayerDhuhrOverview;
+
+  /// No description provided for @salahTrainerPrayerAsrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr'**
+  String get salahTrainerPrayerAsrTitle;
+
+  /// No description provided for @salahTrainerPrayerAsrDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The late afternoon prayer before sunset.'**
+  String get salahTrainerPrayerAsrDescription;
+
+  /// No description provided for @salahTrainerPrayerAsrSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'4 Sunnah optional before'**
+  String get salahTrainerPrayerAsrSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerAsrFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'4 Fard'**
+  String get salahTrainerPrayerAsrFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerAsrRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent recitation.'**
+  String get salahTrainerPrayerAsrRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerAsrOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr is a prayer of steadfastness. The trainer keeps the structure simple and repeatable so the user can focus on calm movement and consistency.'**
+  String get salahTrainerPrayerAsrOverview;
+
+  /// No description provided for @salahTrainerPrayerMaghribTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib'**
+  String get salahTrainerPrayerMaghribTitle;
+
+  /// No description provided for @salahTrainerPrayerMaghribDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The sunset prayer offered immediately after sunset.'**
+  String get salahTrainerPrayerMaghribDescription;
+
+  /// No description provided for @salahTrainerPrayerMaghribSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Sunnah after'**
+  String get salahTrainerPrayerMaghribSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerMaghribFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'3 Fard'**
+  String get salahTrainerPrayerMaghribFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerMaghribRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loud in the first two rakahs, quieter in the third.'**
+  String get salahTrainerPrayerMaghribRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerMaghribOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib closes the day quickly after sunset. The first two rakahs include an added surah; the third rakah returns to al-Fatihah only before the final sitting.'**
+  String get salahTrainerPrayerMaghribOverview;
+
+  /// No description provided for @salahTrainerPrayerIshaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get salahTrainerPrayerIshaTitle;
+
+  /// No description provided for @salahTrainerPrayerIshaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The night prayer that closes the daily five prayers.'**
+  String get salahTrainerPrayerIshaDescription;
+
+  /// No description provided for @salahTrainerPrayerIshaSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Sunnah after'**
+  String get salahTrainerPrayerIshaSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerIshaFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'4 Fard'**
+  String get salahTrainerPrayerIshaFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerIshaRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loud in the first two rakahs, quieter in the last two.'**
+  String get salahTrainerPrayerIshaRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerIshaOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Isha closes the day with stillness. The trainer walks through the 4 fard rakahs and is designed to pair well with slower recitation practice at night.'**
+  String get salahTrainerPrayerIshaOverview;
+
+  /// No description provided for @salahTrainerPrayerWitrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Witr'**
+  String get salahTrainerPrayerWitrTitle;
+
+  /// No description provided for @salahTrainerPrayerWitrDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The odd-numbered night prayer prayed after Isha before sleep or before Fajr.'**
+  String get salahTrainerPrayerWitrDescription;
+
+  /// No description provided for @salahTrainerPrayerWitrSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Night prayer and Witr'**
+  String get salahTrainerPrayerWitrSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerWitrFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Commonly 1 or 3 Witr'**
+  String get salahTrainerPrayerWitrFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerWitrRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually audible enough to hear yourself at night.'**
+  String get salahTrainerPrayerWitrRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerWitrOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Witr closes the night prayer with an odd number of rakahs. This trainer models a common 3-rakah flow and includes Qunut guidance in the final rakah.'**
+  String get salahTrainerPrayerWitrOverview;
+
+  /// No description provided for @salahTrainerWitrGuidanceHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanafi guidance commonly treats Witr as 3 rakahs together, with Qunut after the surah in the third rakah before ruku.'**
+  String get salahTrainerWitrGuidanceHanafi;
+
+  /// No description provided for @salahTrainerWitrGuidanceShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Shafi\'\'i guidance allows 1 or 3 rakahs of Witr, with Qunut commonly associated with the latter part of Ramadan in Fajr and variations in Witr practice.'**
+  String get salahTrainerWitrGuidanceShafii;
+
+  /// No description provided for @salahTrainerWitrGuidanceMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Maliki practice commonly emphasizes Witr as a distinct odd closing prayer, often prayed as one rakah after shaf.'**
+  String get salahTrainerWitrGuidanceMaliki;
+
+  /// No description provided for @salahTrainerWitrGuidanceHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanbali guidance allows multiple valid forms of Witr, including 1, 3, 5, and more, while keeping the prayer odd-numbered.'**
+  String get salahTrainerWitrGuidanceHanbali;
+
+  /// No description provided for @salahTrainerWitrNote1.
+  ///
+  /// In en, this message translates to:
+  /// **'Valid Witr forms differ across madhhabs and established teaching traditions.'**
+  String get salahTrainerWitrNote1;
+
+  /// No description provided for @salahTrainerWitrNote2.
+  ///
+  /// In en, this message translates to:
+  /// **'This trainer shows one common guided flow, not the only valid form.'**
+  String get salahTrainerWitrNote2;
+
+  /// No description provided for @salahTrainerPrayerJummahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'\'ah'**
+  String get salahTrainerPrayerJummahTitle;
+
+  /// No description provided for @salahTrainerPrayerJummahDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The Friday congregational prayer that replaces Dhuhr for those obligated to attend.'**
+  String get salahTrainerPrayerJummahDescription;
+
+  /// No description provided for @salahTrainerPrayerJummahSunnahRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunnah before and after vary'**
+  String get salahTrainerPrayerJummahSunnahRakahs;
+
+  /// No description provided for @salahTrainerPrayerJummahFardRakahs.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Fard after khutbah'**
+  String get salahTrainerPrayerJummahFardRakahs;
+
+  /// No description provided for @salahTrainerPrayerJummahRecitationStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recited aloud in congregation.'**
+  String get salahTrainerPrayerJummahRecitationStyle;
+
+  /// No description provided for @salahTrainerPrayerJummahOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'\'ah includes the khutbah before the prayer and two rakahs prayed in congregation. The guided flow here focuses on the two prayer rakahs and reminds the user of the khutbah context.'**
+  String get salahTrainerPrayerJummahOverview;
+
+  /// No description provided for @salahTrainerJummahGuidanceHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanafi guidance emphasizes the congregational obligation, khutbah conditions, and attending before the imam ascends the pulpit.'**
+  String get salahTrainerJummahGuidanceHanafi;
+
+  /// No description provided for @salahTrainerJummahGuidanceShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Shafi\'\'i guidance places detailed conditions on congregation size, khutbah order, and settlement context.'**
+  String get salahTrainerJummahGuidanceShafii;
+
+  /// No description provided for @salahTrainerJummahGuidanceMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Maliki guidance emphasizes the imam-led khutbah, congregation, and the public nature of Jumu\'\'ah.'**
+  String get salahTrainerJummahGuidanceMaliki;
+
+  /// No description provided for @salahTrainerJummahGuidanceHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanbali guidance emphasizes congregational attendance, khutbah attentiveness, and the replacement of Dhuhr by Jumu\'\'ah for those obligated.'**
+  String get salahTrainerJummahGuidanceHanbali;
+
+  /// No description provided for @salahTrainerJummahNote1.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'\'ah includes two khutbahs before the prayer itself.'**
+  String get salahTrainerJummahNote1;
+
+  /// No description provided for @salahTrainerJummahNote2.
+  ///
+  /// In en, this message translates to:
+  /// **'If Jumu\'\'ah is missed or not obligatory in a person\'\'s circumstance, Dhuhr remains the fallback prayer.'**
+  String get salahTrainerJummahNote2;
+
+  /// No description provided for @salahTrainerRecitationTakbirTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening Takbir'**
+  String get salahTrainerRecitationTakbirTitle;
+
+  /// No description provided for @salahTrainerRecitationOpeningSupplicationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening Supplication'**
+  String get salahTrainerRecitationOpeningSupplicationTitle;
+
+  /// No description provided for @salahTrainerRecitationFatihahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah al-Fatihah'**
+  String get salahTrainerRecitationFatihahTitle;
+
+  /// No description provided for @salahTrainerRecitationRukuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruku Dhikr'**
+  String get salahTrainerRecitationRukuTitle;
+
+  /// No description provided for @salahTrainerRecitationStandingAfterRukuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing After Ruku'**
+  String get salahTrainerRecitationStandingAfterRukuTitle;
+
+  /// No description provided for @salahTrainerRecitationSujudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sujud Dhikr'**
+  String get salahTrainerRecitationSujudTitle;
+
+  /// No description provided for @salahTrainerRecitationBetweenSujudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sitting Between Sujud'**
+  String get salahTrainerRecitationBetweenSujudTitle;
+
+  /// No description provided for @salahTrainerRecitationTashahhudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tashahhud'**
+  String get salahTrainerRecitationTashahhudTitle;
+
+  /// No description provided for @salahTrainerRecitationSalawatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salawat Ibrahimiyyah'**
+  String get salahTrainerRecitationSalawatTitle;
+
+  /// No description provided for @salahTrainerRecitationFinalDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Final Dua'**
+  String get salahTrainerRecitationFinalDuaTitle;
+
+  /// No description provided for @salahTrainerRecitationQunutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua al-Qunut'**
+  String get salahTrainerRecitationQunutTitle;
+
+  /// No description provided for @salahTrainerRecitationTaslimTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Taslim'**
+  String get salahTrainerRecitationTaslimTitle;
+
+  /// No description provided for @salahTrainerRecitationCategoryOpening.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening'**
+  String get salahTrainerRecitationCategoryOpening;
+
+  /// No description provided for @salahTrainerRecitationCategoryStanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Standing'**
+  String get salahTrainerRecitationCategoryStanding;
+
+  /// No description provided for @salahTrainerRecitationCategoryRuku.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruku'**
+  String get salahTrainerRecitationCategoryRuku;
+
+  /// No description provided for @salahTrainerRecitationCategorySujud.
+  ///
+  /// In en, this message translates to:
+  /// **'Sujud'**
+  String get salahTrainerRecitationCategorySujud;
+
+  /// No description provided for @salahTrainerRecitationCategorySitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Sitting'**
+  String get salahTrainerRecitationCategorySitting;
+
+  /// No description provided for @salahTrainerRecitationCategoryFinalSitting.
+  ///
+  /// In en, this message translates to:
+  /// **'Final Sitting'**
+  String get salahTrainerRecitationCategoryFinalSitting;
+
+  /// No description provided for @salahTrainerRecitationCategoryWitr.
+  ///
+  /// In en, this message translates to:
+  /// **'Witr'**
+  String get salahTrainerRecitationCategoryWitr;
+
+  /// No description provided for @salahTrainerRecitationCategoryClosing.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing'**
+  String get salahTrainerRecitationCategoryClosing;
+
+  /// No description provided for @salahTrainerEssentialConditionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Conditions of salah'**
+  String get salahTrainerEssentialConditionsTitle;
+
+  /// No description provided for @salahTrainerEssentialConditionsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Before salah begins, the foundations around it must be in place.'**
+  String get salahTrainerEssentialConditionsSummary;
+
+  /// No description provided for @salahTrainerEssentialConditionsBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah time must have entered.'**
+  String get salahTrainerEssentialConditionsBullet1;
+
+  /// No description provided for @salahTrainerEssentialConditionsBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'The body, clothing, and place of salah should be clean.'**
+  String get salahTrainerEssentialConditionsBullet2;
+
+  /// No description provided for @salahTrainerEssentialConditionsBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Awrah should be covered appropriately.'**
+  String get salahTrainerEssentialConditionsBullet3;
+
+  /// No description provided for @salahTrainerEssentialConditionsBullet4.
+  ///
+  /// In en, this message translates to:
+  /// **'Face the qiblah as best as you can.'**
+  String get salahTrainerEssentialConditionsBullet4;
+
+  /// No description provided for @salahTrainerEssentialConditionsBullet5.
+  ///
+  /// In en, this message translates to:
+  /// **'Make the intention in the heart for the salah you are offering.'**
+  String get salahTrainerEssentialConditionsBullet5;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What invalidates salah'**
+  String get salahTrainerEssentialInvalidatorsTitle;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Some things break salah and require starting again.'**
+  String get salahTrainerEssentialInvalidatorsSummary;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'Breaking wudu invalidates the salah.'**
+  String get salahTrainerEssentialInvalidatorsBullet1;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'Intentional speaking unrelated to salah invalidates it.'**
+  String get salahTrainerEssentialInvalidatorsBullet2;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Large unnecessary movements break the calmness and can invalidate salah.'**
+  String get salahTrainerEssentialInvalidatorsBullet3;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsBullet4.
+  ///
+  /// In en, this message translates to:
+  /// **'Intentionally eating or drinking invalidates salah.'**
+  String get salahTrainerEssentialInvalidatorsBullet4;
+
+  /// No description provided for @salahTrainerEssentialInvalidatorsBullet5.
+  ///
+  /// In en, this message translates to:
+  /// **'Losing awareness of the salah entirely or deliberately turning away from the qiblah invalidates it.'**
+  String get salahTrainerEssentialInvalidatorsBullet5;
+
+  /// No description provided for @salahTrainerEssentialLoudSilentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loud vs silent salahs'**
+  String get salahTrainerEssentialLoudSilentTitle;
+
+  /// No description provided for @salahTrainerEssentialLoudSilentSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Some salahs are recited aloud in the fard salah and others silently.'**
+  String get salahTrainerEssentialLoudSilentSummary;
+
+  /// No description provided for @salahTrainerEssentialLoudSilentBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr is recited aloud.'**
+  String get salahTrainerEssentialLoudSilentBullet1;
+
+  /// No description provided for @salahTrainerEssentialLoudSilentBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib and Isha are recited aloud in the first two rakahs.'**
+  String get salahTrainerEssentialLoudSilentBullet2;
+
+  /// No description provided for @salahTrainerEssentialLoudSilentBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr and Asr are recited silently.'**
+  String get salahTrainerEssentialLoudSilentBullet3;
+
+  /// No description provided for @salahTrainerEssentialLoudSilentBullet4.
+  ///
+  /// In en, this message translates to:
+  /// **'A person praying alone may still follow the normal style of the salah.'**
+  String get salahTrainerEssentialLoudSilentBullet4;
+
+  /// No description provided for @salahTrainerEssentialMistakesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Common beginner mistakes'**
+  String get salahTrainerEssentialMistakesTitle;
+
+  /// No description provided for @salahTrainerEssentialMistakesSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Many mistakes come from rushing or uncertainty rather than neglect.'**
+  String get salahTrainerEssentialMistakesSummary;
+
+  /// No description provided for @salahTrainerEssentialMistakesBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'Rushing through ruku and sujud without pausing calmly.'**
+  String get salahTrainerEssentialMistakesBullet1;
+
+  /// No description provided for @salahTrainerEssentialMistakesBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'Not standing fully after ruku before going down to sujud.'**
+  String get salahTrainerEssentialMistakesBullet2;
+
+  /// No description provided for @salahTrainerEssentialMistakesBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgetting that al-Fatihah is recited in every rakah.'**
+  String get salahTrainerEssentialMistakesBullet3;
+
+  /// No description provided for @salahTrainerEssentialMistakesBullet4.
+  ///
+  /// In en, this message translates to:
+  /// **'Confusing the final sitting with the middle sitting in 3- and 4-rakah prayers.'**
+  String get salahTrainerEssentialMistakesBullet4;
+
+  /// No description provided for @salahTrainerEssentialMistakesBullet5.
+  ///
+  /// In en, this message translates to:
+  /// **'Letting worry about perfection remove the calmness of salah.'**
+  String get salahTrainerEssentialMistakesBullet5;
+
+  /// No description provided for @salahTrainerEssentialIntentionTimingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Intention and salah timing'**
+  String get salahTrainerEssentialIntentionTimingTitle;
+
+  /// No description provided for @salahTrainerEssentialIntentionTimingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah is strongest when offered on time with presence.'**
+  String get salahTrainerEssentialIntentionTimingSummary;
+
+  /// No description provided for @salahTrainerEssentialIntentionTimingBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'Intention is a quiet inward act, not a required spoken formula.'**
+  String get salahTrainerEssentialIntentionTimingBullet1;
+
+  /// No description provided for @salahTrainerEssentialIntentionTimingBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'Try to pray early in the prayer window when possible.'**
+  String get salahTrainerEssentialIntentionTimingBullet2;
+
+  /// No description provided for @salahTrainerEssentialIntentionTimingBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Build consistency before chasing complexity.'**
+  String get salahTrainerEssentialIntentionTimingBullet3;
+
+  /// No description provided for @salahTrainerEssentialIntentionTimingBullet4.
+  ///
+  /// In en, this message translates to:
+  /// **'If you are learning, steady accuracy matters more than speed.'**
+  String get salahTrainerEssentialIntentionTimingBullet4;
+
+  /// No description provided for @salahTrainerSurahAlFatihahSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'The opening surah recited in every rakah of salah.'**
+  String get salahTrainerSurahAlFatihahSummary;
+
+  /// No description provided for @salahTrainerSurahAlFatihahReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Fatihah gathers praise, worship, dependence, and dua into one foundational surah repeated throughout the day.'**
+  String get salahTrainerSurahAlFatihahReflection;
+
+  /// No description provided for @salahTrainerSurahAlFilSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A short surah about the defeat of the army of the elephant.'**
+  String get salahTrainerSurahAlFilSummary;
+
+  /// No description provided for @salahTrainerSurahAlFilReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah strengthens trust that Allah protects His sacred signs and can overturn overwhelming power.'**
+  String get salahTrainerSurahAlFilReflection;
+
+  /// No description provided for @salahTrainerSurahQurayshSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A reminder to Quraysh to worship the Lord who secured and provided for them.'**
+  String get salahTrainerSurahQurayshSummary;
+
+  /// No description provided for @salahTrainerSurahQurayshReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah joins gratitude to worship. Security and provision should deepen obedience, not forgetfulness.'**
+  String get salahTrainerSurahQurayshReflection;
+
+  /// No description provided for @salahTrainerSurahAlMaunSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A warning against neglecting prayer and withholding small acts of care.'**
+  String get salahTrainerSurahAlMaunSummary;
+
+  /// No description provided for @salahTrainerSurahAlMaunReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah without mercy and sincerity becomes hollow. This surah keeps ibadah tied to character.'**
+  String get salahTrainerSurahAlMaunReflection;
+
+  /// No description provided for @salahTrainerSurahAlKawtharSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A short surah of abundance, salah, and sacrifice for Allah alone.'**
+  String get salahTrainerSurahAlKawtharSummary;
+
+  /// No description provided for @salahTrainerSurahAlKawtharReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah teaches the heart to answer blessing with salah and sincere devotion.'**
+  String get salahTrainerSurahAlKawtharReflection;
+
+  /// No description provided for @salahTrainerSurahAlKafirunSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A clear declaration of worshipping Allah alone without compromise.'**
+  String get salahTrainerSurahAlKafirunSummary;
+
+  /// No description provided for @salahTrainerSurahAlKafirunReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah steadies intention. Ibadah belongs to Allah alone, without negotiation or blending.'**
+  String get salahTrainerSurahAlKafirunReflection;
+
+  /// No description provided for @salahTrainerSurahAnNasrSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah about Allah\'\'s help, victory, and ending success with praise and repentance.'**
+  String get salahTrainerSurahAnNasrSummary;
+
+  /// No description provided for @salahTrainerSurahAnNasrReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Even in victory, the believer responds with tasbih, gratitude, and repentance rather than self-congratulation.'**
+  String get salahTrainerSurahAnNasrReflection;
+
+  /// No description provided for @salahTrainerSurahAlMasadSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A warning against arrogance, hostility, and relying on wealth.'**
+  String get salahTrainerSurahAlMasadSummary;
+
+  /// No description provided for @salahTrainerSurahAlMasadReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah reminds the heart that lineage, wealth, and status do not protect a person from truth or accountability.'**
+  String get salahTrainerSurahAlMasadReflection;
+
+  /// No description provided for @salahTrainerSurahAlIkhlasSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A foundational surah on the oneness and uniqueness of Allah.'**
+  String get salahTrainerSurahAlIkhlasSummary;
+
+  /// No description provided for @salahTrainerSurahAlIkhlasReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah purifies belief and centers the heart on Allah alone. It is short, but immense in meaning.'**
+  String get salahTrainerSurahAlIkhlasReflection;
+
+  /// No description provided for @salahTrainerSurahAlFalaqSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah of seeking Allah\'\'s protection from external harms.'**
+  String get salahTrainerSurahAlFalaqSummary;
+
+  /// No description provided for @salahTrainerSurahAlFalaqReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah trains the heart to seek refuge in Allah when harm, envy, darkness, or hidden evil feels close.'**
+  String get salahTrainerSurahAlFalaqReflection;
+
+  /// No description provided for @salahTrainerSurahAnNasSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah of seeking Allah\'\'s protection from inward whisperings.'**
+  String get salahTrainerSurahAnNasSummary;
+
+  /// No description provided for @salahTrainerSurahAnNasReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah builds inward vigilance. It reminds the believer to return to the Lord of humankind when whispers disturb the heart.'**
+  String get salahTrainerSurahAnNasReflection;
+
+  /// No description provided for @salahTrainerSurahStepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah {name}'**
+  String salahTrainerSurahStepTitle(Object name);
+
+  /// No description provided for @salahTrainerResumeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up where you left off'**
+  String get salahTrainerResumeTitle;
+
+  /// No description provided for @salahTrainerResumeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You reached step {step} of {total}.'**
+  String salahTrainerResumeSubtitle(Object step, Object total);
+
+  /// No description provided for @salahTrainerResumeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get salahTrainerResumeAction;
+
+  /// No description provided for @salahTrainerStartOverAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start over'**
+  String get salahTrainerStartOverAction;
+
+  /// No description provided for @salahTrainerHubResumeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total} · {surah}'**
+  String salahTrainerHubResumeSubtitle(Object step, Object total, Object surah);
+
+  /// No description provided for @salahTrainerSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer settings'**
+  String get salahTrainerSettingsTitle;
+
+  /// No description provided for @salahTrainerPaceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pace'**
+  String get salahTrainerPaceLabel;
+
+  /// No description provided for @salahTrainerPaceUnhurried.
+  ///
+  /// In en, this message translates to:
+  /// **'Unhurried'**
+  String get salahTrainerPaceUnhurried;
+
+  /// No description provided for @salahTrainerPaceSteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady'**
+  String get salahTrainerPaceSteady;
+
+  /// No description provided for @salahTrainerPaceBrisk.
+  ///
+  /// In en, this message translates to:
+  /// **'Brisk'**
+  String get salahTrainerPaceBrisk;
+
+  /// No description provided for @salahTrainerPaceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'How long you rest in each posture after the recitation.'**
+  String get salahTrainerPaceHint;
+
+  /// No description provided for @salahTrainerTasbihRepeatsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tasbih in ruku and sujud'**
+  String get salahTrainerTasbihRepeatsLabel;
+
+  /// No description provided for @salahTrainerTasbihRepeatsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}×'**
+  String salahTrainerTasbihRepeatsValue(Object count);
+
+  /// No description provided for @salahTrainerFocusModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hands-free focus'**
+  String get salahTrainerFocusModeLabel;
+
+  /// No description provided for @salahTrainerFocusModeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Large text, the screen stays awake, and the controls step aside.'**
+  String get salahTrainerFocusModeHint;
+
+  /// No description provided for @salahTrainerExitFocusAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Show controls'**
+  String get salahTrainerExitFocusAction;
+
+  /// No description provided for @salahTrainerEntryTakbirLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Say the takbir as you move'**
+  String get salahTrainerEntryTakbirLabel;
+
+  /// No description provided for @salahTrainerHoldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold · {seconds} s'**
+  String salahTrainerHoldLabel(Object seconds);
+
+  /// No description provided for @salahTrainerRepeatCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {total}'**
+  String salahTrainerRepeatCounter(Object current, Object total);
+
+  /// No description provided for @salahTrainerAudioSourceTts.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoken by your device’s Arabic voice until recordings ship.'**
+  String get salahTrainerAudioSourceTts;
+
+  /// No description provided for @salahTrainerAudioSourceSilent.
+  ///
+  /// In en, this message translates to:
+  /// **'No Arabic voice on this device — read along with the highlight.'**
+  String get salahTrainerAudioSourceSilent;
+
+  /// No description provided for @salahTrainerCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer complete'**
+  String get salahTrainerCompletedTitle;
+
+  /// No description provided for @salahTrainerCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You walked through every rakah of {prayer}. Repeat it until the order feels natural, then pray it without the app.'**
+  String salahTrainerCompletedBody(Object prayer);
+
+  /// No description provided for @salahTrainerReviewStructureAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Review the structure'**
+  String get salahTrainerReviewStructureAction;
+
+  /// No description provided for @salahTrainerPracticeSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice {surah}'**
+  String salahTrainerPracticeSurahAction(Object surah);
+
+  /// No description provided for @salahTrainerPrayAgainAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Pray it again'**
+  String get salahTrainerPrayAgainAction;
+
+  /// No description provided for @salahTrainerJumpToRakahLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to a rakah'**
+  String get salahTrainerJumpToRakahLabel;
+
+  /// No description provided for @salahTrainerOptionalBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get salahTrainerOptionalBadge;
+
+  /// No description provided for @salahTrainerTakbirBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Takbir'**
+  String get salahTrainerTakbirBadge;
+
+  /// No description provided for @salahTrainerTasbihBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'×{count}'**
+  String salahTrainerTasbihBadge(Object count);
+
+  /// No description provided for @salahTrainerRakahStepCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} steps'**
+  String salahTrainerRakahStepCount(Object count);
+
+  /// No description provided for @salahTrainerStructureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rakah by rakah'**
+  String get salahTrainerStructureTitle;
+
+  /// No description provided for @salahTrainerStepsFocusHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the order from top to bottom. Every rakah is listed with its postures.'**
+  String get salahTrainerStepsFocusHint;
+
+  /// No description provided for @salahTrainerGuidanceNotesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance notes'**
+  String get salahTrainerGuidanceNotesTitle;
+
+  /// No description provided for @salahTrainerMadhhabGuidanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{madhhab} guidance'**
+  String salahTrainerMadhhabGuidanceTitle(Object madhhab);
+
+  /// No description provided for @salahTrainerLearnAyahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn {surah}'**
+  String salahTrainerLearnAyahTitle(Object surah);
+
+  /// No description provided for @salahTrainerSurahMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah {number} · {count} ayahs'**
+  String salahTrainerSurahMeta(Object number, Object count);
+
+  /// No description provided for @salahTrainerPlayFullSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play the surah'**
+  String get salahTrainerPlayFullSurahAction;
+
+  /// No description provided for @salahTrainerPlayCurrentAyahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play this ayah'**
+  String get salahTrainerPlayCurrentAyahAction;
+
+  /// No description provided for @salahTrainerSlowPlaybackLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow recitation'**
+  String get salahTrainerSlowPlaybackLabel;
+
+  /// No description provided for @salahTrainerPauseAfterAyahLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause after each ayah'**
+  String get salahTrainerPauseAfterAyahLabel;
+
+  /// No description provided for @salahTrainerRepeatTimesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat ×{count}'**
+  String salahTrainerRepeatTimesLabel(Object count);
+
+  /// No description provided for @salahTrainerModeListen.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen'**
+  String get salahTrainerModeListen;
+
+  /// No description provided for @salahTrainerModeRepeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat after'**
+  String get salahTrainerModeRepeat;
+
+  /// No description provided for @salahTrainerModePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get salahTrainerModePractice;
+
+  /// No description provided for @salahTrainerModeMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'From memory'**
+  String get salahTrainerModeMemory;
+
+  /// No description provided for @salahTrainerModeListenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hear each ayah with the words lit as they are recited.'**
+  String get salahTrainerModeListenHint;
+
+  /// No description provided for @salahTrainerModeRepeatHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The recitation pauses after every ayah so you can say it back.'**
+  String get salahTrainerModeRepeatHint;
+
+  /// No description provided for @salahTrainerModePracticeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic and meaning only; the transliteration is hidden.'**
+  String get salahTrainerModePracticeHint;
+
+  /// No description provided for @salahTrainerModeMemoryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic only. Recite along, then check yourself.'**
+  String get salahTrainerModeMemoryHint;
+
+  /// No description provided for @salahTrainerNowOnAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Now on ayah {number}'**
+  String salahTrainerNowOnAyah(Object number);
+
+  /// No description provided for @salahTrainerAyahLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah {number}'**
+  String salahTrainerAyahLabel(Object number);
+
+  /// No description provided for @salahTrainerYourProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your progress with this surah'**
+  String get salahTrainerYourProgressLabel;
+
+  /// No description provided for @salahTrainerListenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen'**
+  String get salahTrainerListenAction;
+
+  /// No description provided for @salahTrainerStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get salahTrainerStopAction;
+
+  /// No description provided for @dhikrLandingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remembrance, one bead at a time.'**
+  String get dhikrLandingSubtitle;
+
+  /// No description provided for @dhikrNowEyebrowAfterPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Now · after {prayer}'**
+  String dhikrNowEyebrowAfterPrayer(String prayer);
+
+  /// No description provided for @dhikrNowEyebrowContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue where you left off'**
+  String get dhikrNowEyebrowContinue;
+
+  /// No description provided for @dhikrNowEyebrowAnytime.
+  ///
+  /// In en, this message translates to:
+  /// **'Whenever you finish a prayer'**
+  String get dhikrNowEyebrowAnytime;
+
+  /// No description provided for @dhikrNowEyebrowMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Now · morning'**
+  String get dhikrNowEyebrowMorning;
+
+  /// No description provided for @dhikrNowEyebrowEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Now · evening'**
+  String get dhikrNowEyebrowEvening;
+
+  /// No description provided for @dhikrNowMeta.
+  ///
+  /// In en, this message translates to:
+  /// **'{steps} adhkar · about {minutes} min'**
+  String dhikrNowMeta(int steps, int minutes);
+
+  /// No description provided for @dhikrNowNotYetToday.
+  ///
+  /// In en, this message translates to:
+  /// **'not yet today'**
+  String get dhikrNowNotYetToday;
+
+  /// No description provided for @dhikrNowDoneToday.
+  ///
+  /// In en, this message translates to:
+  /// **'done today'**
+  String get dhikrNowDoneToday;
+
+  /// No description provided for @dhikrNowStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String dhikrNowStepOf(int current, int total);
+
+  /// No description provided for @dhikrBeginAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin'**
+  String get dhikrBeginAction;
+
+  /// No description provided for @dhikrContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get dhikrContinueAction;
+
+  /// No description provided for @dhikrFreeCountAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Free count'**
+  String get dhikrFreeCountAction;
+
+  /// No description provided for @dhikrFreeCountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Free count'**
+  String get dhikrFreeCountTitle;
+
+  /// No description provided for @dhikrTodayOfGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'of {goal} today'**
+  String dhikrTodayOfGoal(String goal);
+
+  /// No description provided for @dhikrStreakCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'day streak'**
+  String get dhikrStreakCaption;
+
+  /// No description provided for @dhikrSessionsTodayCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'sessions today'**
+  String get dhikrSessionsTodayCaption;
+
+  /// No description provided for @dhikrRoutinesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Routines'**
+  String get dhikrRoutinesTitle;
+
+  /// No description provided for @dhikrRoutineAfterSalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'After salah'**
+  String get dhikrRoutineAfterSalahTitle;
+
+  /// No description provided for @dhikrRoutineAfterSalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'33 · 33 · 33, then one closing · about {minutes} min'**
+  String dhikrRoutineAfterSalahSubtitle(int minutes);
+
+  /// No description provided for @dhikrRoutineMorningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning adhkar'**
+  String get dhikrRoutineMorningTitle;
+
+  /// No description provided for @dhikrRoutineMorningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'After Fajr · {count} adhkar'**
+  String dhikrRoutineMorningSubtitle(int count);
+
+  /// No description provided for @dhikrRoutineEveningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening adhkar'**
+  String get dhikrRoutineEveningTitle;
+
+  /// No description provided for @dhikrRoutineEveningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'After ʿAsr until ʿIsha · {count} adhkar'**
+  String dhikrRoutineEveningSubtitle(int count);
+
+  /// No description provided for @dhikrRoutineDoneAt.
+  ///
+  /// In en, this message translates to:
+  /// **'done {time}'**
+  String dhikrRoutineDoneAt(String time);
+
+  /// No description provided for @dhikrRoutineNowBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get dhikrRoutineNowBadge;
+
+  /// No description provided for @dhikrRoutineAfterPrayerEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'After salah · {prayer}'**
+  String dhikrRoutineAfterPrayerEyebrow(String prayer);
+
+  /// No description provided for @dhikrFreeTasbihTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Free tasbih'**
+  String get dhikrFreeTasbihTitle;
+
+  /// No description provided for @dhikrLastSessionValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Last: {phrase} {count} · {time}'**
+  String dhikrLastSessionValue(String phrase, String count, String time);
+
+  /// No description provided for @dhikrInProgressValue.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress: {phrase} {current} of {target}'**
+  String dhikrInProgressValue(String phrase, String current, String target);
+
+  /// No description provided for @dhikrCountAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get dhikrCountAction;
+
+  /// No description provided for @dhikrTargetValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Target {value}'**
+  String dhikrTargetValue(String value);
+
+  /// No description provided for @dhikrThisMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get dhikrThisMonthTitle;
+
+  /// No description provided for @dhikrInsightsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Insights'**
+  String get dhikrInsightsAction;
+
+  /// No description provided for @dhikrHeatmapSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks} weeks · {days} days with dhikr'**
+  String dhikrHeatmapSummary(int weeks, int days);
+
+  /// No description provided for @dhikrLoopValue.
+  ///
+  /// In en, this message translates to:
+  /// **'loop {current} of {total}'**
+  String dhikrLoopValue(int current, int total);
+
+  /// No description provided for @dhikrOfTargetValue.
+  ///
+  /// In en, this message translates to:
+  /// **'of {target}'**
+  String dhikrOfTargetValue(String target);
+
+  /// No description provided for @dhikrTapAnywhere.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap anywhere here to count'**
+  String get dhikrTapAnywhere;
+
+  /// No description provided for @dhikrUndoAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get dhikrUndoAction;
+
+  /// No description provided for @dhikrFinishWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish · {count}'**
+  String dhikrFinishWithCount(String count);
+
+  /// No description provided for @dhikrRoutineNextEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Next · moves on at {count}'**
+  String dhikrRoutineNextEyebrow(String count);
+
+  /// No description provided for @dhikrRoutineNextValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{phrase} × {count}'**
+  String dhikrRoutineNextValue(String phrase, String count);
+
+  /// No description provided for @dhikrRoutineLastStepHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Last step · finishes at {count}'**
+  String dhikrRoutineLastStepHint(String count);
+
+  /// No description provided for @dhikrRoutineSkipStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip this step'**
+  String get dhikrRoutineSkipStepAction;
+
+  /// No description provided for @dhikrRoutineCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{routine} complete'**
+  String dhikrRoutineCompleteTitle(String routine);
+
+  /// No description provided for @dhikrSessionCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Session complete'**
+  String get dhikrSessionCompleteTitle;
+
+  /// No description provided for @dhikrCompleteRemembrances.
+  ///
+  /// In en, this message translates to:
+  /// **'remembrances'**
+  String get dhikrCompleteRemembrances;
+
+  /// No description provided for @dhikrCompleteUnhurried.
+  ///
+  /// In en, this message translates to:
+  /// **'unhurried'**
+  String get dhikrCompleteUnhurried;
+
+  /// No description provided for @dhikrCompleteTodayLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {goal} today · logged to your journey'**
+  String dhikrCompleteTodayLine(String current, String goal);
+
+  /// No description provided for @dhikrDoneAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get dhikrDoneAction;
+
+  /// No description provided for @dhikrKeepCountingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep counting'**
+  String get dhikrKeepCountingAction;
+
+  /// No description provided for @dhikrMenuTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'More options'**
+  String get dhikrMenuTooltip;
+
+  /// No description provided for @dhikrSessionLabelPostSalah.
+  ///
+  /// In en, this message translates to:
+  /// **'Post-salah dhikr'**
+  String get dhikrSessionLabelPostSalah;
+
+  /// No description provided for @dhikrInsightsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your remembrance'**
+  String get dhikrInsightsTitle;
+
+  /// No description provided for @dhikrInsightsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Counted since {date}'**
+  String dhikrInsightsSubtitle(String date);
+
+  /// No description provided for @dhikrInsightsSubtitleEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Your history begins with the first finished session.'**
+  String get dhikrInsightsSubtitleEmpty;
+
+  /// No description provided for @dhikrInsightsThisWeekCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'this week · last week {value}'**
+  String dhikrInsightsThisWeekCaption(String value);
+
+  /// No description provided for @dhikrInsightsStreakValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String dhikrInsightsStreakValue(String count);
+
+  /// No description provided for @dhikrInsightsStreakCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'current streak · best {value}'**
+  String dhikrInsightsStreakCaption(String value);
+
+  /// No description provided for @dhikrInsightsLifetimeCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'lifetime remembrances'**
+  String get dhikrInsightsLifetimeCaption;
+
+  /// No description provided for @dhikrInsightsFavoriteCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'most repeated · {count}'**
+  String dhikrInsightsFavoriteCaption(String count);
+
+  /// No description provided for @dhikrInsightsWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get dhikrInsightsWeekTitle;
+
+  /// No description provided for @dhikrInsightsGoalPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'goal {goal} a day'**
+  String dhikrInsightsGoalPerDay(String goal);
+
+  /// No description provided for @dhikrInsightsByRoutineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'By routine'**
+  String get dhikrInsightsByRoutineTitle;
+
+  /// No description provided for @dhikrInsightsRoutineDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} days'**
+  String dhikrInsightsRoutineDays(String done, String total);
+
+  /// No description provided for @dhikrInsightsRoutineRuns.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} prayers'**
+  String dhikrInsightsRoutineRuns(String done, String total);
+
+  /// No description provided for @dhikrInsightsFreeSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sessions'**
+  String dhikrInsightsFreeSessions(String count);
+
+  /// No description provided for @dhikrInsightsObservationQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'{routine} is the quiet gap this week. It takes about {minutes} min.'**
+  String dhikrInsightsObservationQuiet(String routine, int minutes);
+
+  /// No description provided for @dhikrInsightsObservationSteady.
+  ///
+  /// In en, this message translates to:
+  /// **'A steady week. Keep the rhythm.'**
+  String get dhikrInsightsObservationSteady;
 }
 
 class _AppLocalizationsDelegate

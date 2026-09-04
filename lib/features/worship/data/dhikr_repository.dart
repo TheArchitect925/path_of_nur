@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../features/accounts_sync/application/accounts_sync_controller.dart';
@@ -5,6 +7,7 @@ import '../../../features/accounts_sync/application/sync_foundation.dart';
 import '../../../shared/persistence/app_database.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../../../shared/persistence/structured_data_scope.dart';
+import '../domain/dhikr_day_total.dart';
 import '../domain/dhikr_session.dart';
 
 class DhikrStoredState {
@@ -15,6 +18,8 @@ class DhikrStoredState {
     required this.currentSessionStartedAt,
     required this.recentSessions,
     required this.updatedAtIso,
+    this.dailyTotals = const <String, DhikrDayTotal>{},
+    this.phraseTotals = const <String, int>{},
   });
 
   final String selectedPresetId;
@@ -23,6 +28,8 @@ class DhikrStoredState {
   final DateTime? currentSessionStartedAt;
   final List<DhikrSession> recentSessions;
   final String updatedAtIso;
+  final Map<String, DhikrDayTotal> dailyTotals;
+  final Map<String, int> phraseTotals;
 }
 
 class DhikrRepository {
@@ -42,6 +49,7 @@ class DhikrRepository {
   final SyncMutationRecorder? _syncRecorder;
 
   String get _migrationKey => 'migration.dhikr.v1.$_scopeId';
+  String get _totalsMigrationKey => 'migration.dhikr.totals.v1.$_scopeId';
 
   void ensureMigrated() {
     final migrationState = _database.meta(_migrationKey);
@@ -114,6 +122,7 @@ class DhikrRepository {
 
   DhikrStoredState load() {
     ensureMigrated();
+    _ensureTotalsBackfilled();
     final stateRows = _database.select(
       '''
       SELECT selected_preset_id, target, current_count, updated_at_iso
@@ -165,7 +174,144 @@ class DhikrRepository {
                 DateTime.now(),
           ),
       ],
+      dailyTotals: loadDailyTotals(),
+      phraseTotals: loadPhraseTotals(),
     );
+  }
+
+  /// Per-day totals, newest first, capped at roughly two years.
+  Map<String, DhikrDayTotal> loadDailyTotals() {
+    final rows = _database.select(
+      '''
+      SELECT date_key, count, sessions, routines_json
+      FROM dhikr_daily_totals
+      WHERE scope_id = ?
+      ORDER BY date_key DESC
+      LIMIT 800;
+      ''',
+      <Object?>[_scopeId],
+    );
+    final totals = <String, DhikrDayTotal>{};
+    for (final row in rows) {
+      final dateKey = row['date_key'] as String;
+      totals[dateKey] = DhikrDayTotal(
+        dateKey: dateKey,
+        count: (row['count'] as int?) ?? 0,
+        sessions: (row['sessions'] as int?) ?? 0,
+        routineEntries: _decodeRoutineEntries(row['routines_json']),
+      );
+    }
+    return totals;
+  }
+
+  Map<String, int> loadPhraseTotals() {
+    final rows = _database.select(
+      'SELECT phrase_label, count FROM dhikr_phrase_totals WHERE scope_id = ?;',
+      <Object?>[_scopeId],
+    );
+    return <String, int>{
+      for (final row in rows)
+        row['phrase_label'] as String: (row['count'] as int?) ?? 0,
+    };
+  }
+
+  void upsertDayTotal(DhikrDayTotal total) {
+    ensureMigrated();
+    _writeDayTotal(total);
+  }
+
+  void _writeDayTotal(DhikrDayTotal total) {
+    _database.execute(
+      '''
+      INSERT OR REPLACE INTO dhikr_daily_totals(
+        scope_id, date_key, count, sessions, routines_json, updated_at_iso
+      ) VALUES (?, ?, ?, ?, ?, ?);
+      ''',
+      <Object?>[
+        _scopeId,
+        total.dateKey,
+        total.count,
+        total.sessions,
+        jsonEncode(total.routineEntries),
+        DateTime.now().toIso8601String(),
+      ],
+    );
+  }
+
+  void setPhraseTotal(String phraseLabel, int count) {
+    ensureMigrated();
+    _database.execute(
+      '''
+      INSERT OR REPLACE INTO dhikr_phrase_totals(scope_id, phrase_label, count)
+      VALUES (?, ?, ?);
+      ''',
+      <Object?>[_scopeId, phraseLabel, count],
+    );
+  }
+
+  /// Totals arrived after sessions did. The first load folds whatever
+  /// sessions survive (at most thirty) into the new tables so existing users
+  /// start with some history rather than none.
+  void _ensureTotalsBackfilled() {
+    if (_database.meta(_totalsMigrationKey) == 'done') return;
+    final existing = _database.select(
+      'SELECT 1 FROM dhikr_daily_totals WHERE scope_id = ? LIMIT 1;',
+      <Object?>[_scopeId],
+    );
+    if (existing.isEmpty) {
+      final sessionRows = _database.select(
+        '''
+        SELECT phrase_label, count, finished_at_iso
+        FROM dhikr_sessions
+        WHERE scope_id = ?;
+        ''',
+        <Object?>[_scopeId],
+      );
+      final totals = <String, DhikrDayTotal>{};
+      final phrases = <String, int>{};
+      for (final row in sessionRows) {
+        final finishedAt = DateTime.tryParse(row['finished_at_iso'] as String);
+        final count = (row['count'] as int?) ?? 0;
+        if (finishedAt == null || count <= 0) continue;
+        final key = dhikrDayKey(finishedAt);
+        final day =
+            totals[key] ?? DhikrDayTotal(dateKey: key, count: 0, sessions: 0);
+        totals[key] = day.copyWith(
+          count: day.count + count,
+          sessions: day.sessions + 1,
+        );
+        final label = row['phrase_label'] as String;
+        phrases[label] = (phrases[label] ?? 0) + count;
+      }
+      _database.transaction<void>(() {
+        for (final total in totals.values) {
+          _writeDayTotal(total);
+        }
+        for (final entry in phrases.entries) {
+          _database.execute(
+            '''
+            INSERT OR REPLACE INTO dhikr_phrase_totals(scope_id, phrase_label, count)
+            VALUES (?, ?, ?);
+            ''',
+            <Object?>[_scopeId, entry.key, entry.value],
+          );
+        }
+      });
+    }
+    _database.setMeta(_totalsMigrationKey, 'done');
+  }
+
+  static List<String> _decodeRoutineEntries(Object? raw) {
+    if (raw is! String || raw.isEmpty) return const <String>[];
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is List) {
+        return decoded.map((item) => item.toString()).toList(growable: false);
+      }
+    } catch (_) {
+      // A malformed row loses its routine marks, never the day's count.
+    }
+    return const <String>[];
   }
 
   void saveState({

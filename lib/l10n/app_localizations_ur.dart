@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -42710,4 +42711,1093 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get learnCategoryDivineLifeLessonsSubtitle =>
       'Qur\'an-rooted lessons for reflection, character, and grounded living.';
+
+  @override
+  String get salahTrainerStepNiyyahTitle => 'نیت کی یاد دہانی';
+
+  @override
+  String get salahTrainerStepNiyyahHelper =>
+      'زبان سے کوئی مخصوص الفاظ کہنا ضروری نہیں۔ بس یہ جانیں کہ آپ کون سی نماز پڑھ رہے ہیں۔';
+
+  @override
+  String get salahTrainerStepTakbirAlIhramTitle => 'تکبیرِ تحریمہ';
+
+  @override
+  String get salahTrainerStepTakbirRisingTitle => 'تکبیر (اٹھتے ہوئے)';
+
+  @override
+  String get salahTrainerStepTakbirRisingHelper =>
+      'تکبیر کہتے ہوئے اگلی رکعت کے لیے کھڑے ہوں۔';
+
+  @override
+  String get salahTrainerStepOpeningSupplicationTitle => 'ثنا (دعائے استفتاح)';
+
+  @override
+  String get salahTrainerStepFatihahTitle => 'سورۃ الفاتحہ';
+
+  @override
+  String get salahTrainerStepFatihahHelper => 'یہ ہر رکعت میں ضروری ہے۔';
+
+  @override
+  String get salahTrainerStepAdditionalSurahTitle => 'اضافی سورت';
+
+  @override
+  String get salahTrainerStepAdditionalSurahHelper =>
+      'رہنمائی والا موڈ یہاں منتخب کردہ سورت شامل کرے گا۔';
+
+  @override
+  String get salahTrainerStepQunutTitle => 'دعائے قنوت';
+
+  @override
+  String get salahTrainerStepQunutHelper =>
+      'عموماً وتر میں پڑھی جاتی ہے۔ اس کی جگہ اور الفاظ مذہب کے لحاظ سے مختلف ہو سکتے ہیں۔';
+
+  @override
+  String get salahTrainerStepRukuTitle => 'رکوع';
+
+  @override
+  String get salahTrainerStepStandingAfterRukuTitle => 'رکوع کے بعد قیام';
+
+  @override
+  String get salahTrainerStepFirstSujudTitle => 'پہلا سجدہ';
+
+  @override
+  String get salahTrainerStepSittingBetweenSujudTitle =>
+      'دو سجدوں کے درمیان جلسہ';
+
+  @override
+  String get salahTrainerStepSecondSujudTitle => 'دوسرا سجدہ';
+
+  @override
+  String get salahTrainerStepTashahhudTitle => 'تشہد';
+
+  @override
+  String get salahTrainerStepSalawatTitle => 'درودِ ابراہیمی';
+
+  @override
+  String get salahTrainerStepFinalDuaTitle => 'آخری دعا';
+
+  @override
+  String get salahTrainerStepTaslimRightTitle => 'دائیں طرف سلام';
+
+  @override
+  String get salahTrainerStepTaslimLeftTitle => 'بائیں طرف سلام';
+
+  @override
+  String get salahTrainerStepNiyyahTranslation =>
+      'نیت دل میں ہوتی ہے۔ جو نماز شروع کر رہے ہیں اس کی خاموشی سے نیت کریں۔';
+
+  @override
+  String get salahTrainerStepTakbirTranslation => 'اللہ سب سے بڑا ہے۔';
+
+  @override
+  String get salahTrainerStepOpeningSupplicationTranslation =>
+      'اے اللہ، تو پاک ہے اور تیری ہی تعریف ہے، تیرا نام بابرکت ہے، تیری شان بلند ہے، اور تیرے سوا کوئی معبود نہیں۔';
+
+  @override
+  String get salahTrainerStepFatihahTranslation =>
+      'ہر رکعت میں سورۃ الفاتحہ اطمینان اور غور کے ساتھ پڑھیں۔';
+
+  @override
+  String get salahTrainerStepAdditionalSurahTranslation =>
+      'پہلی دو رکعتوں میں الفاتحہ کے بعد اپنی یاد کی ہوئی سورتوں میں سے ایک چھوٹی سورت پڑھیں۔';
+
+  @override
+  String get salahTrainerStepQunutTranslation =>
+      'اے اللہ، مجھے ان لوگوں میں ہدایت دے جنہیں تو نے ہدایت دی، مجھے ان میں عافیت دے جنہیں تو نے عافیت دی، مجھے ان میں اپنی سرپرستی میں لے جنہیں تو نے اپنی سرپرستی میں لیا، جو تو نے مجھے دیا اس میں برکت دے، اور جو تو نے مقدر کیا اس کے شر سے مجھے بچا۔ بے شک تو ہی فیصلہ کرتا ہے اور تیرے خلاف کوئی فیصلہ نہیں کر سکتا۔';
+
+  @override
+  String get salahTrainerStepRukuTranslation =>
+      'پاک ہے میرا رب جو عظمت والا ہے۔';
+
+  @override
+  String get salahTrainerStepStandingAfterRukuTranslation =>
+      'اللہ نے اس کی سن لی جس نے اس کی تعریف کی۔ اے ہمارے رب، تیرے ہی لیے تمام تعریف ہے۔';
+
+  @override
+  String get salahTrainerStepSujudTranslation =>
+      'پاک ہے میرا رب جو سب سے بلند ہے۔';
+
+  @override
+  String get salahTrainerStepSittingBetweenSujudTranslation =>
+      'اے میرے رب، مجھے بخش دے، مجھ پر رحم فرما، مجھے ہدایت دے، مجھے مضبوط کر، مجھے عافیت دے، اور مجھے رزق عطا فرما۔';
+
+  @override
+  String get salahTrainerStepTashahhudTranslation =>
+      'تمام تعظیمیں، عبادتیں اور پاکیزہ کلمات اللہ ہی کے لیے ہیں۔ اے نبی، آپ پر سلام ہو اور اللہ کی رحمت اور اس کی برکتیں۔ ہم پر اور اللہ کے نیک بندوں پر سلام ہو۔ میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبود نہیں، اور میں گواہی دیتا ہوں کہ محمد اس کے بندے اور رسول ہیں۔';
+
+  @override
+  String get salahTrainerStepSalawatTranslation =>
+      'اے اللہ، محمد اور آلِ محمد پر رحمت نازل فرما جیسے تو نے ابراہیم اور آلِ ابراہیم پر رحمت نازل فرمائی؛ بے شک تو تعریف والا، بزرگی والا ہے۔ اے اللہ، محمد اور آلِ محمد پر برکت نازل فرما جیسے تو نے ابراہیم اور آلِ ابراہیم پر برکت نازل فرمائی؛ بے شک تو تعریف والا، بزرگی والا ہے۔';
+
+  @override
+  String get salahTrainerStepFinalDuaTranslation =>
+      'اے اللہ، میں جہنم کے عذاب سے، قبر کے عذاب سے، زندگی اور موت کے فتنے سے، اور مسیح دجال کے فتنے کے شر سے تیری پناہ مانگتا ہوں۔';
+
+  @override
+  String get salahTrainerStepTaslimTranslation =>
+      'آپ پر سلامتی اور اللہ کی رحمت ہو۔';
+
+  @override
+  String salahTrainerRakahTitle(Object index) {
+    return 'رکعت $index';
+  }
+
+  @override
+  String get salahTrainerPrayerFajrTitle => 'فجر';
+
+  @override
+  String get salahTrainerPrayerFajrDescription =>
+      'دن کی پہلی نماز، جو طلوعِ آفتاب سے پہلے پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerFajrSunnahRakahs => '2 سنت';
+
+  @override
+  String get salahTrainerPrayerFajrFardRakahs => '2 فرض';
+
+  @override
+  String get salahTrainerPrayerFajrRecitationStyle =>
+      'فرض نماز میں بلند آواز سے قراءت۔';
+
+  @override
+  String get salahTrainerPrayerFajrOverview =>
+      'فجر دن کا آغاز سکون، وضاحت اور اللہ پر بھروسے کے ساتھ کرتی ہے۔ رہنمائی والا ٹرینر 2 فرض رکعتوں پر توجہ دیتا ہے اور ساتھ ہی سنتوں کا خلاصہ بھی دکھاتا ہے۔';
+
+  @override
+  String get salahTrainerPrayerDhuhrTitle => 'ظہر';
+
+  @override
+  String get salahTrainerPrayerDhuhrDescription =>
+      'دوپہر کی نماز، جو سورج کے زوال کے بعد پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerDhuhrSunnahRakahs => '4 سنت پہلے، 2 سنت بعد';
+
+  @override
+  String get salahTrainerPrayerDhuhrFardRakahs => '4 فرض';
+
+  @override
+  String get salahTrainerPrayerDhuhrRecitationStyle => 'آہستہ قراءت۔';
+
+  @override
+  String get salahTrainerPrayerDhuhrOverview =>
+      'ظہر دن کے وسط کا مرکز ہے۔ رہنمائی والا ٹرینر 4 فرض رکعتوں کی پیروی کرتا ہے، جن میں پہلی دو میں الفاتحہ کے بعد ایک اضافی سورت شامل ہوتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerAsrTitle => 'عصر';
+
+  @override
+  String get salahTrainerPrayerAsrDescription =>
+      'سہ پہر کی نماز، غروبِ آفتاب سے پہلے۔';
+
+  @override
+  String get salahTrainerPrayerAsrSunnahRakahs => '4 سنت پہلے (اختیاری)';
+
+  @override
+  String get salahTrainerPrayerAsrFardRakahs => '4 فرض';
+
+  @override
+  String get salahTrainerPrayerAsrRecitationStyle => 'آہستہ قراءت۔';
+
+  @override
+  String get salahTrainerPrayerAsrOverview =>
+      'عصر ثابت قدمی کی نماز ہے۔ ٹرینر ساخت کو سادہ اور دہرانے کے قابل رکھتا ہے تاکہ آپ پرسکون حرکات اور مستقل مزاجی پر توجہ دے سکیں۔';
+
+  @override
+  String get salahTrainerPrayerMaghribTitle => 'مغرب';
+
+  @override
+  String get salahTrainerPrayerMaghribDescription =>
+      'غروبِ آفتاب کی نماز، جو سورج ڈوبنے کے فوراً بعد پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerMaghribSunnahRakahs => '2 سنت بعد';
+
+  @override
+  String get salahTrainerPrayerMaghribFardRakahs => '3 فرض';
+
+  @override
+  String get salahTrainerPrayerMaghribRecitationStyle =>
+      'پہلی دو رکعتوں میں بلند آواز سے، تیسری میں آہستہ۔';
+
+  @override
+  String get salahTrainerPrayerMaghribOverview =>
+      'مغرب غروبِ آفتاب کے فوراً بعد دن کا اختتام کرتی ہے۔ پہلی دو رکعتوں میں ایک اضافی سورت شامل ہوتی ہے؛ تیسری رکعت میں آخری قعدے سے پہلے صرف الفاتحہ پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerIshaTitle => 'عشاء';
+
+  @override
+  String get salahTrainerPrayerIshaDescription =>
+      'رات کی نماز جو پانچ روزانہ نمازوں کا اختتام کرتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerIshaSunnahRakahs => '2 سنت بعد';
+
+  @override
+  String get salahTrainerPrayerIshaFardRakahs => '4 فرض';
+
+  @override
+  String get salahTrainerPrayerIshaRecitationStyle =>
+      'پہلی دو رکعتوں میں بلند آواز سے، آخری دو میں آہستہ۔';
+
+  @override
+  String get salahTrainerPrayerIshaOverview =>
+      'عشاء سکون کے ساتھ دن کا اختتام کرتی ہے۔ ٹرینر 4 فرض رکعتوں سے گزرتا ہے اور رات کے وقت آہستہ تلاوت کی مشق کے لیے موزوں ہے۔';
+
+  @override
+  String get salahTrainerPrayerWitrTitle => 'وتر';
+
+  @override
+  String get salahTrainerPrayerWitrDescription =>
+      'طاق رکعتوں والی رات کی نماز، جو عشاء کے بعد سونے سے پہلے یا فجر سے پہلے پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerWitrSunnahRakahs => 'رات کی نماز اور وتر';
+
+  @override
+  String get salahTrainerPrayerWitrFardRakahs => 'عموماً 1 یا 3 وتر';
+
+  @override
+  String get salahTrainerPrayerWitrRecitationStyle =>
+      'عام طور پر رات میں اتنی آواز سے کہ آپ خود سن سکیں۔';
+
+  @override
+  String get salahTrainerPrayerWitrOverview =>
+      'وتر طاق رکعتوں کے ساتھ رات کی نماز کا اختتام کرتی ہے۔ یہ ٹرینر 3 رکعتوں کا عام طریقہ دکھاتا ہے اور آخری رکعت میں قنوت کی رہنمائی شامل کرتا ہے۔';
+
+  @override
+  String get salahTrainerWitrGuidanceHanafi =>
+      'حنفی رہنمائی کے مطابق وتر عموماً 3 رکعتیں ملا کر پڑھی جاتی ہیں، اور تیسری رکعت میں سورت کے بعد رکوع سے پہلے قنوت پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerWitrGuidanceShafii =>
+      'شافعی رہنمائی وتر کی 1 یا 3 رکعتوں کی اجازت دیتی ہے؛ قنوت عموماً فجر اور رمضان کے آخری حصے سے وابستہ ہے، اور وتر کے طریقے میں فرق پایا جاتا ہے۔';
+
+  @override
+  String get salahTrainerWitrGuidanceMaliki =>
+      'مالکی عمل میں وتر کو عموماً ایک الگ طاق اختتامی نماز کے طور پر پڑھا جاتا ہے، اکثر شفع کے بعد ایک رکعت۔';
+
+  @override
+  String get salahTrainerWitrGuidanceHanbali =>
+      'حنبلی رہنمائی وتر کی کئی درست صورتوں کی اجازت دیتی ہے، جن میں 1، 3، 5 اور اس سے زیادہ رکعتیں شامل ہیں، بشرطیکہ تعداد طاق رہے۔';
+
+  @override
+  String get salahTrainerWitrNote1 =>
+      'وتر کی درست صورتیں مذاہب اور مستند تعلیمی روایات کے لحاظ سے مختلف ہیں۔';
+
+  @override
+  String get salahTrainerWitrNote2 =>
+      'یہ ٹرینر ایک عام رہنمائی شدہ طریقہ دکھاتا ہے، واحد درست صورت نہیں۔';
+
+  @override
+  String get salahTrainerPrayerJummahTitle => 'جمعہ';
+
+  @override
+  String get salahTrainerPrayerJummahDescription =>
+      'جمعے کی باجماعت نماز جو ان لوگوں کے لیے ظہر کی جگہ لیتی ہے جن پر یہ فرض ہے۔';
+
+  @override
+  String get salahTrainerPrayerJummahSunnahRakahs =>
+      'پہلے اور بعد کی سنتیں مختلف ہیں';
+
+  @override
+  String get salahTrainerPrayerJummahFardRakahs => 'خطبے کے بعد 2 فرض';
+
+  @override
+  String get salahTrainerPrayerJummahRecitationStyle =>
+      'جماعت میں بلند آواز سے پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerPrayerJummahOverview =>
+      'جمعہ میں نماز سے پہلے خطبہ اور جماعت کے ساتھ دو رکعتیں شامل ہیں۔ یہاں رہنمائی شدہ طریقہ نماز کی دو رکعتوں پر توجہ دیتا ہے اور خطبے کے پس منظر کی یاد دہانی کراتا ہے۔';
+
+  @override
+  String get salahTrainerJummahGuidanceHanafi =>
+      'حنفی رہنمائی جماعت کی فرضیت، خطبے کی شرائط اور امام کے منبر پر چڑھنے سے پہلے حاضری پر زور دیتی ہے۔';
+
+  @override
+  String get salahTrainerJummahGuidanceShafii =>
+      'شافعی رہنمائی جماعت کی تعداد، خطبے کی ترتیب اور آبادی کے تناظر پر تفصیلی شرائط رکھتی ہے۔';
+
+  @override
+  String get salahTrainerJummahGuidanceMaliki =>
+      'مالکی رہنمائی امام کے خطبے، جماعت اور جمعہ کی عوامی نوعیت پر زور دیتی ہے۔';
+
+  @override
+  String get salahTrainerJummahGuidanceHanbali =>
+      'حنبلی رہنمائی جماعت میں حاضری اور خطبے کو توجہ سے سننے پر زور دیتی ہے، اور یہ کہ جن پر جمعہ فرض ہے ان کے لیے یہ ظہر کی جگہ لیتا ہے۔';
+
+  @override
+  String get salahTrainerJummahNote1 =>
+      'جمعہ میں نماز سے پہلے دو خطبے ہوتے ہیں۔';
+
+  @override
+  String get salahTrainerJummahNote2 =>
+      'اگر جمعہ چھوٹ جائے یا کسی کی صورتِ حال میں فرض نہ ہو تو ظہر کی نماز ہی متبادل رہتی ہے۔';
+
+  @override
+  String get salahTrainerRecitationTakbirTitle => 'پہلی تکبیر';
+
+  @override
+  String get salahTrainerRecitationOpeningSupplicationTitle =>
+      'ثنا (دعائے استفتاح)';
+
+  @override
+  String get salahTrainerRecitationFatihahTitle => 'سورۃ الفاتحہ';
+
+  @override
+  String get salahTrainerRecitationRukuTitle => 'رکوع کا ذکر';
+
+  @override
+  String get salahTrainerRecitationStandingAfterRukuTitle => 'رکوع کے بعد قیام';
+
+  @override
+  String get salahTrainerRecitationSujudTitle => 'سجدے کا ذکر';
+
+  @override
+  String get salahTrainerRecitationBetweenSujudTitle =>
+      'دو سجدوں کے درمیان جلسہ';
+
+  @override
+  String get salahTrainerRecitationTashahhudTitle => 'تشہد';
+
+  @override
+  String get salahTrainerRecitationSalawatTitle => 'درودِ ابراہیمی';
+
+  @override
+  String get salahTrainerRecitationFinalDuaTitle => 'آخری دعا';
+
+  @override
+  String get salahTrainerRecitationQunutTitle => 'دعائے قنوت';
+
+  @override
+  String get salahTrainerRecitationTaslimTitle => 'سلام';
+
+  @override
+  String get salahTrainerRecitationCategoryOpening => 'آغاز';
+
+  @override
+  String get salahTrainerRecitationCategoryStanding => 'قیام';
+
+  @override
+  String get salahTrainerRecitationCategoryRuku => 'رکوع';
+
+  @override
+  String get salahTrainerRecitationCategorySujud => 'سجدہ';
+
+  @override
+  String get salahTrainerRecitationCategorySitting => 'جلسہ';
+
+  @override
+  String get salahTrainerRecitationCategoryFinalSitting => 'آخری قعدہ';
+
+  @override
+  String get salahTrainerRecitationCategoryWitr => 'وتر';
+
+  @override
+  String get salahTrainerRecitationCategoryClosing => 'اختتام';
+
+  @override
+  String get salahTrainerEssentialConditionsTitle => 'نماز کی شرائط';
+
+  @override
+  String get salahTrainerEssentialConditionsSummary =>
+      'نماز شروع ہونے سے پہلے اس کے ارد گرد کی بنیادی باتوں کا پورا ہونا ضروری ہے۔';
+
+  @override
+  String get salahTrainerEssentialConditionsBullet1 =>
+      'نماز کا وقت داخل ہو چکا ہو۔';
+
+  @override
+  String get salahTrainerEssentialConditionsBullet2 =>
+      'جسم، کپڑے اور نماز کی جگہ پاک ہونی چاہیے۔';
+
+  @override
+  String get salahTrainerEssentialConditionsBullet3 =>
+      'ستر مناسب طور پر ڈھکا ہونا چاہیے۔';
+
+  @override
+  String get salahTrainerEssentialConditionsBullet4 =>
+      'جہاں تک ممکن ہو قبلہ رخ ہوں۔';
+
+  @override
+  String get salahTrainerEssentialConditionsBullet5 =>
+      'جو نماز پڑھ رہے ہیں اس کی دل میں نیت کریں۔';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsTitle =>
+      'نماز کو کیا توڑ دیتا ہے';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsSummary =>
+      'کچھ چیزیں نماز توڑ دیتی ہیں اور دوبارہ شروع کرنا پڑتا ہے۔';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsBullet1 =>
+      'وضو ٹوٹنے سے نماز ٹوٹ جاتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsBullet2 =>
+      'جان بوجھ کر نماز سے غیر متعلق بات کرنے سے نماز ٹوٹ جاتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsBullet3 =>
+      'بڑی غیر ضروری حرکتیں سکون ختم کر دیتی ہیں اور نماز کو توڑ سکتی ہیں۔';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsBullet4 =>
+      'جان بوجھ کر کھانے یا پینے سے نماز ٹوٹ جاتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialInvalidatorsBullet5 =>
+      'نماز سے مکمل طور پر غافل ہو جانا یا جان بوجھ کر قبلے سے منہ پھیرنا نماز کو توڑ دیتا ہے۔';
+
+  @override
+  String get salahTrainerEssentialLoudSilentTitle => 'جہری اور سری نمازیں';
+
+  @override
+  String get salahTrainerEssentialLoudSilentSummary =>
+      'کچھ نمازوں میں فرض کی قراءت بلند آواز سے ہوتی ہے اور کچھ میں آہستہ۔';
+
+  @override
+  String get salahTrainerEssentialLoudSilentBullet1 =>
+      'فجر میں بلند آواز سے قراءت ہوتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialLoudSilentBullet2 =>
+      'مغرب اور عشاء کی پہلی دو رکعتوں میں بلند آواز سے قراءت ہوتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialLoudSilentBullet3 =>
+      'ظہر اور عصر میں آہستہ قراءت ہوتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialLoudSilentBullet4 =>
+      'اکیلے نماز پڑھنے والا بھی نماز کے معمول کے طریقے پر عمل کر سکتا ہے۔';
+
+  @override
+  String get salahTrainerEssentialMistakesTitle =>
+      'نئے سیکھنے والوں کی عام غلطیاں';
+
+  @override
+  String get salahTrainerEssentialMistakesSummary =>
+      'بہت سی غلطیاں غفلت سے نہیں بلکہ جلد بازی یا بے یقینی سے ہوتی ہیں۔';
+
+  @override
+  String get salahTrainerEssentialMistakesBullet1 =>
+      'رکوع اور سجدے میں اطمینان سے رکے بغیر جلدی کرنا۔';
+
+  @override
+  String get salahTrainerEssentialMistakesBullet2 =>
+      'رکوع کے بعد سجدے میں جانے سے پہلے پوری طرح سیدھا کھڑا نہ ہونا۔';
+
+  @override
+  String get salahTrainerEssentialMistakesBullet3 =>
+      'یہ بھول جانا کہ الفاتحہ ہر رکعت میں پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerEssentialMistakesBullet4 =>
+      '3 اور 4 رکعت والی نمازوں میں آخری قعدے کو درمیانی قعدے سے ملا دینا۔';
+
+  @override
+  String get salahTrainerEssentialMistakesBullet5 =>
+      'کمال کی فکر کو نماز کا سکون چھین لینے دینا۔';
+
+  @override
+  String get salahTrainerEssentialIntentionTimingTitle => 'نیت اور نماز کا وقت';
+
+  @override
+  String get salahTrainerEssentialIntentionTimingSummary =>
+      'نماز اس وقت سب سے مضبوط ہوتی ہے جب وقت پر اور حضورِ قلب کے ساتھ ادا کی جائے۔';
+
+  @override
+  String get salahTrainerEssentialIntentionTimingBullet1 =>
+      'نیت دل کا خاموش عمل ہے، زبان سے کہنا ضروری نہیں۔';
+
+  @override
+  String get salahTrainerEssentialIntentionTimingBullet2 =>
+      'جب ممکن ہو نماز کے وقت کے شروع میں پڑھنے کی کوشش کریں۔';
+
+  @override
+  String get salahTrainerEssentialIntentionTimingBullet3 =>
+      'پیچیدگی کے پیچھے جانے سے پہلے مستقل مزاجی پیدا کریں۔';
+
+  @override
+  String get salahTrainerEssentialIntentionTimingBullet4 =>
+      'اگر آپ سیکھ رہے ہیں تو رفتار سے زیادہ مستقل درستی اہم ہے۔';
+
+  @override
+  String get salahTrainerSurahAlFatihahSummary =>
+      'افتتاحی سورت جو نماز کی ہر رکعت میں پڑھی جاتی ہے۔';
+
+  @override
+  String get salahTrainerSurahAlFatihahReflection =>
+      'الفاتحہ حمد، عبادت، توکل اور دعا کو ایک بنیادی سورت میں جمع کرتی ہے جو دن بھر دہرائی جاتی ہے۔';
+
+  @override
+  String get salahTrainerSurahAlFilSummary =>
+      'ہاتھی والے لشکر کی شکست کے بارے میں ایک چھوٹی سورت۔';
+
+  @override
+  String get salahTrainerSurahAlFilReflection =>
+      'یہ سورت اس بھروسے کو مضبوط کرتی ہے کہ اللہ اپنی مقدس نشانیوں کی حفاظت کرتا ہے اور بڑی سے بڑی طاقت کو الٹ سکتا ہے۔';
+
+  @override
+  String get salahTrainerSurahQurayshSummary =>
+      'قریش کو اس رب کی عبادت کی یاد دہانی جس نے انہیں امن اور رزق دیا۔';
+
+  @override
+  String get salahTrainerSurahQurayshReflection =>
+      'یہ سورت شکر کو عبادت سے جوڑتی ہے۔ امن اور رزق سے اطاعت گہری ہونی چاہیے، غفلت نہیں۔';
+
+  @override
+  String get salahTrainerSurahAlMaunSummary =>
+      'نماز میں غفلت اور چھوٹی چھوٹی مدد روکنے کے خلاف تنبیہ۔';
+
+  @override
+  String get salahTrainerSurahAlMaunReflection =>
+      'رحم اور اخلاص کے بغیر نماز کھوکھلی ہو جاتی ہے۔ یہ سورت عبادت کو کردار سے جوڑے رکھتی ہے۔';
+
+  @override
+  String get salahTrainerSurahAlKawtharSummary =>
+      'خیرِ کثیر، نماز اور صرف اللہ کے لیے قربانی کے بارے میں ایک چھوٹی سورت۔';
+
+  @override
+  String get salahTrainerSurahAlKawtharReflection =>
+      'یہ سورت دل کو سکھاتی ہے کہ نعمت کا جواب نماز اور خالص بندگی سے دے۔';
+
+  @override
+  String get salahTrainerSurahAlKafirunSummary =>
+      'بغیر کسی سمجھوتے کے صرف اللہ کی عبادت کا واضح اعلان۔';
+
+  @override
+  String get salahTrainerSurahAlKafirunReflection =>
+      'یہ سورت نیت کو مضبوط کرتی ہے۔ عبادت صرف اللہ کے لیے ہے، نہ کوئی سودے بازی نہ ملاوٹ۔';
+
+  @override
+  String get salahTrainerSurahAnNasrSummary =>
+      'اللہ کی مدد، فتح، اور کامیابی کو حمد اور توبہ پر ختم کرنے کے بارے میں ایک سورت۔';
+
+  @override
+  String get salahTrainerSurahAnNasrReflection =>
+      'فتح میں بھی مومن خود ستائی کے بجائے تسبیح، شکر اور توبہ سے جواب دیتا ہے۔';
+
+  @override
+  String get salahTrainerSurahAlMasadSummary =>
+      'تکبر، دشمنی اور مال پر بھروسے کے خلاف تنبیہ۔';
+
+  @override
+  String get salahTrainerSurahAlMasadReflection =>
+      'یہ سورت دل کو یاد دلاتی ہے کہ نسب، مال اور مرتبہ کسی کو حق اور حساب سے نہیں بچا سکتے۔';
+
+  @override
+  String get salahTrainerSurahAlIkhlasSummary =>
+      'اللہ کی وحدانیت اور یکتائی پر ایک بنیادی سورت۔';
+
+  @override
+  String get salahTrainerSurahAlIkhlasReflection =>
+      'یہ سورت عقیدے کو پاک کرتی ہے اور دل کو صرف اللہ پر مرکوز کرتی ہے۔ یہ مختصر ہے مگر معنی میں بے حد عظیم۔';
+
+  @override
+  String get salahTrainerSurahAlFalaqSummary =>
+      'بیرونی نقصانات سے اللہ کی پناہ مانگنے کی سورت۔';
+
+  @override
+  String get salahTrainerSurahAlFalaqReflection =>
+      'یہ سورت دل کو سکھاتی ہے کہ جب نقصان، حسد، اندھیرا یا چھپی برائی قریب محسوس ہو تو اللہ کی پناہ لے۔';
+
+  @override
+  String get salahTrainerSurahAnNasSummary =>
+      'اندرونی وسوسوں سے اللہ کی پناہ مانگنے کی سورت۔';
+
+  @override
+  String get salahTrainerSurahAnNasReflection =>
+      'یہ سورت اندرونی چوکسی پیدا کرتی ہے۔ یہ مومن کو یاد دلاتی ہے کہ جب وسوسے دل کو بے چین کریں تو انسانوں کے رب کی طرف لوٹے۔';
+
+  @override
+  String salahTrainerSurahStepTitle(Object name) {
+    return 'سورۃ $name';
+  }
+
+  @override
+  String get salahTrainerResumeTitle =>
+      'وہیں سے جاری رکھیں جہاں آپ نے چھوڑا تھا';
+
+  @override
+  String salahTrainerResumeSubtitle(Object step, Object total) {
+    return 'آپ $total میں سے مرحلہ $step تک پہنچے۔';
+  }
+
+  @override
+  String get salahTrainerResumeAction => 'جاری رکھیں';
+
+  @override
+  String get salahTrainerStartOverAction => 'دوبارہ شروع کریں';
+
+  @override
+  String salahTrainerHubResumeSubtitle(
+    Object step,
+    Object total,
+    Object surah,
+  ) {
+    return '$total میں سے مرحلہ $step · $surah';
+  }
+
+  @override
+  String get salahTrainerSettingsTitle => 'ٹرینر کی ترتیبات';
+
+  @override
+  String get salahTrainerPaceLabel => 'رفتار';
+
+  @override
+  String get salahTrainerPaceUnhurried => 'اطمینان سے';
+
+  @override
+  String get salahTrainerPaceSteady => 'معتدل';
+
+  @override
+  String get salahTrainerPaceBrisk => 'تیز';
+
+  @override
+  String get salahTrainerPaceHint =>
+      'قراءت کے بعد آپ ہر حالت میں کتنی دیر ٹھہرتے ہیں۔';
+
+  @override
+  String get salahTrainerTasbihRepeatsLabel => 'رکوع اور سجدے میں تسبیح';
+
+  @override
+  String salahTrainerTasbihRepeatsValue(Object count) {
+    return '$count×';
+  }
+
+  @override
+  String get salahTrainerFocusModeLabel => 'ہاتھ لگائے بغیر توجہ';
+
+  @override
+  String get salahTrainerFocusModeHint =>
+      'بڑا متن، اسکرین جاگتی رہتی ہے، اور کنٹرول ایک طرف ہٹ جاتے ہیں۔';
+
+  @override
+  String get salahTrainerExitFocusAction => 'کنٹرول دکھائیں';
+
+  @override
+  String get salahTrainerEntryTakbirLabel => 'حرکت کرتے ہوئے تکبیر کہیں';
+
+  @override
+  String salahTrainerHoldLabel(Object seconds) {
+    return 'ٹھہریں · $seconds سیکنڈ';
+  }
+
+  @override
+  String salahTrainerRepeatCounter(Object current, Object total) {
+    return '$total میں سے $current';
+  }
+
+  @override
+  String get salahTrainerAudioSourceTts =>
+      'ریکارڈنگز آنے تک آپ کے آلے کی عربی آواز سے پڑھا جاتا ہے۔';
+
+  @override
+  String get salahTrainerAudioSourceSilent =>
+      'اس آلے پر عربی آواز دستیاب نہیں — نمایاں الفاظ کے ساتھ پڑھتے جائیں۔';
+
+  @override
+  String get salahTrainerCompletedTitle => 'نماز مکمل ہوئی';
+
+  @override
+  String salahTrainerCompletedBody(Object prayer) {
+    return 'آپ $prayer کی ہر رکعت سے گزرے۔ اسے دہرائیں جب تک ترتیب فطری نہ لگنے لگے، پھر ایپ کے بغیر پڑھیں۔';
+  }
+
+  @override
+  String get salahTrainerReviewStructureAction => 'ساخت کا جائزہ لیں';
+
+  @override
+  String salahTrainerPracticeSurahAction(Object surah) {
+    return '$surah کی مشق کریں';
+  }
+
+  @override
+  String get salahTrainerPrayAgainAction => 'دوبارہ پڑھیں';
+
+  @override
+  String get salahTrainerJumpToRakahLabel => 'کسی رکعت پر جائیں';
+
+  @override
+  String get salahTrainerOptionalBadge => 'اختیاری';
+
+  @override
+  String get salahTrainerTakbirBadge => 'تکبیر';
+
+  @override
+  String salahTrainerTasbihBadge(Object count) {
+    return '×$count';
+  }
+
+  @override
+  String salahTrainerRakahStepCount(Object count) {
+    return '$count مراحل';
+  }
+
+  @override
+  String get salahTrainerStructureTitle => 'رکعت بہ رکعت';
+
+  @override
+  String get salahTrainerStepsFocusHint =>
+      'اوپر سے نیچے ترتیب کی پیروی کریں۔ ہر رکعت اپنی حالتوں کے ساتھ درج ہے۔';
+
+  @override
+  String get salahTrainerGuidanceNotesTitle => 'رہنمائی کے نوٹس';
+
+  @override
+  String salahTrainerMadhhabGuidanceTitle(Object madhhab) {
+    return '$madhhab رہنمائی';
+  }
+
+  @override
+  String salahTrainerLearnAyahTitle(Object surah) {
+    return '$surah سیکھیں';
+  }
+
+  @override
+  String salahTrainerSurahMeta(Object number, Object count) {
+    return 'سورت $number · $count آیات';
+  }
+
+  @override
+  String get salahTrainerPlayFullSurahAction => 'سورت چلائیں';
+
+  @override
+  String get salahTrainerPlayCurrentAyahAction => 'یہ آیت چلائیں';
+
+  @override
+  String get salahTrainerSlowPlaybackLabel => 'آہستہ تلاوت';
+
+  @override
+  String get salahTrainerPauseAfterAyahLabel => 'ہر آیت کے بعد وقفہ';
+
+  @override
+  String salahTrainerRepeatTimesLabel(Object count) {
+    return 'دہرائیں ×$count';
+  }
+
+  @override
+  String get salahTrainerModeListen => 'سنیں';
+
+  @override
+  String get salahTrainerModeRepeat => 'سن کر دہرائیں';
+
+  @override
+  String get salahTrainerModePractice => 'مشق';
+
+  @override
+  String get salahTrainerModeMemory => 'زبانی';
+
+  @override
+  String get salahTrainerModeListenHint =>
+      'ہر آیت سنیں، تلاوت کے ساتھ الفاظ نمایاں ہوتے جائیں گے۔';
+
+  @override
+  String get salahTrainerModeRepeatHint =>
+      'ہر آیت کے بعد تلاوت رکتی ہے تاکہ آپ اسے دہرا سکیں۔';
+
+  @override
+  String get salahTrainerModePracticeHint =>
+      'صرف عربی اور معنی؛ نقل حرفی چھپی ہوئی ہے۔';
+
+  @override
+  String get salahTrainerModeMemoryHint =>
+      'صرف عربی۔ ساتھ ساتھ تلاوت کریں، پھر خود کو جانچیں۔';
+
+  @override
+  String salahTrainerNowOnAyah(Object number) {
+    return 'اب آیت $number پر';
+  }
+
+  @override
+  String salahTrainerAyahLabel(Object number) {
+    return 'آیت $number';
+  }
+
+  @override
+  String get salahTrainerYourProgressLabel => 'اس سورت میں آپ کی پیش رفت';
+
+  @override
+  String get salahTrainerListenAction => 'سنیں';
+
+  @override
+  String get salahTrainerStopAction => 'روکیں';
+
+  @override
+  String get dhikrLandingSubtitle => 'Remembrance, one bead at a time.';
+
+  @override
+  String dhikrNowEyebrowAfterPrayer(String prayer) {
+    return 'Now · after $prayer';
+  }
+
+  @override
+  String get dhikrNowEyebrowContinue => 'Continue where you left off';
+
+  @override
+  String get dhikrNowEyebrowAnytime => 'Whenever you finish a prayer';
+
+  @override
+  String get dhikrNowEyebrowMorning => 'Now · morning';
+
+  @override
+  String get dhikrNowEyebrowEvening => 'Now · evening';
+
+  @override
+  String dhikrNowMeta(int steps, int minutes) {
+    return '$steps adhkar · about $minutes min';
+  }
+
+  @override
+  String get dhikrNowNotYetToday => 'not yet today';
+
+  @override
+  String get dhikrNowDoneToday => 'done today';
+
+  @override
+  String dhikrNowStepOf(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get dhikrBeginAction => 'Begin';
+
+  @override
+  String get dhikrContinueAction => 'Continue';
+
+  @override
+  String get dhikrFreeCountAction => 'Free count';
+
+  @override
+  String get dhikrFreeCountTitle => 'Free count';
+
+  @override
+  String dhikrTodayOfGoal(String goal) {
+    return 'of $goal today';
+  }
+
+  @override
+  String get dhikrStreakCaption => 'day streak';
+
+  @override
+  String get dhikrSessionsTodayCaption => 'sessions today';
+
+  @override
+  String get dhikrRoutinesTitle => 'Routines';
+
+  @override
+  String get dhikrRoutineAfterSalahTitle => 'After salah';
+
+  @override
+  String dhikrRoutineAfterSalahSubtitle(int minutes) {
+    return '33 · 33 · 33, then one closing · about $minutes min';
+  }
+
+  @override
+  String get dhikrRoutineMorningTitle => 'Morning adhkar';
+
+  @override
+  String dhikrRoutineMorningSubtitle(int count) {
+    return 'After Fajr · $count adhkar';
+  }
+
+  @override
+  String get dhikrRoutineEveningTitle => 'Evening adhkar';
+
+  @override
+  String dhikrRoutineEveningSubtitle(int count) {
+    return 'After ʿAsr until ʿIsha · $count adhkar';
+  }
+
+  @override
+  String dhikrRoutineDoneAt(String time) {
+    return 'done $time';
+  }
+
+  @override
+  String get dhikrRoutineNowBadge => 'Now';
+
+  @override
+  String dhikrRoutineAfterPrayerEyebrow(String prayer) {
+    return 'After salah · $prayer';
+  }
+
+  @override
+  String get dhikrFreeTasbihTitle => 'Free tasbih';
+
+  @override
+  String dhikrLastSessionValue(String phrase, String count, String time) {
+    return 'Last: $phrase $count · $time';
+  }
+
+  @override
+  String dhikrInProgressValue(String phrase, String current, String target) {
+    return 'In progress: $phrase $current of $target';
+  }
+
+  @override
+  String get dhikrCountAction => 'Count';
+
+  @override
+  String dhikrTargetValue(String value) {
+    return 'Target $value';
+  }
+
+  @override
+  String get dhikrThisMonthTitle => 'This month';
+
+  @override
+  String get dhikrInsightsAction => 'Insights';
+
+  @override
+  String dhikrHeatmapSummary(int weeks, int days) {
+    return '$weeks weeks · $days days with dhikr';
+  }
+
+  @override
+  String dhikrLoopValue(int current, int total) {
+    return 'loop $current of $total';
+  }
+
+  @override
+  String dhikrOfTargetValue(String target) {
+    return 'of $target';
+  }
+
+  @override
+  String get dhikrTapAnywhere => 'Tap anywhere here to count';
+
+  @override
+  String get dhikrUndoAction => 'Undo';
+
+  @override
+  String dhikrFinishWithCount(String count) {
+    return 'Finish · $count';
+  }
+
+  @override
+  String dhikrRoutineNextEyebrow(String count) {
+    return 'Next · moves on at $count';
+  }
+
+  @override
+  String dhikrRoutineNextValue(String phrase, String count) {
+    return '$phrase × $count';
+  }
+
+  @override
+  String dhikrRoutineLastStepHint(String count) {
+    return 'Last step · finishes at $count';
+  }
+
+  @override
+  String get dhikrRoutineSkipStepAction => 'Skip this step';
+
+  @override
+  String dhikrRoutineCompleteTitle(String routine) {
+    return '$routine complete';
+  }
+
+  @override
+  String get dhikrSessionCompleteTitle => 'Session complete';
+
+  @override
+  String get dhikrCompleteRemembrances => 'remembrances';
+
+  @override
+  String get dhikrCompleteUnhurried => 'unhurried';
+
+  @override
+  String dhikrCompleteTodayLine(String current, String goal) {
+    return '$current of $goal today · logged to your journey';
+  }
+
+  @override
+  String get dhikrDoneAction => 'Done';
+
+  @override
+  String get dhikrKeepCountingAction => 'Keep counting';
+
+  @override
+  String get dhikrMenuTooltip => 'More options';
+
+  @override
+  String get dhikrSessionLabelPostSalah => 'Post-salah dhikr';
+
+  @override
+  String get dhikrInsightsTitle => 'Your remembrance';
+
+  @override
+  String dhikrInsightsSubtitle(String date) {
+    return 'Counted since $date';
+  }
+
+  @override
+  String get dhikrInsightsSubtitleEmpty =>
+      'Your history begins with the first finished session.';
+
+  @override
+  String dhikrInsightsThisWeekCaption(String value) {
+    return 'this week · last week $value';
+  }
+
+  @override
+  String dhikrInsightsStreakValue(String count) {
+    return '$count days';
+  }
+
+  @override
+  String dhikrInsightsStreakCaption(String value) {
+    return 'current streak · best $value';
+  }
+
+  @override
+  String get dhikrInsightsLifetimeCaption => 'lifetime remembrances';
+
+  @override
+  String dhikrInsightsFavoriteCaption(String count) {
+    return 'most repeated · $count';
+  }
+
+  @override
+  String get dhikrInsightsWeekTitle => 'This week';
+
+  @override
+  String dhikrInsightsGoalPerDay(String goal) {
+    return 'goal $goal a day';
+  }
+
+  @override
+  String get dhikrInsightsByRoutineTitle => 'By routine';
+
+  @override
+  String dhikrInsightsRoutineDays(String done, String total) {
+    return '$done of $total days';
+  }
+
+  @override
+  String dhikrInsightsRoutineRuns(String done, String total) {
+    return '$done of $total prayers';
+  }
+
+  @override
+  String dhikrInsightsFreeSessions(String count) {
+    return '$count sessions';
+  }
+
+  @override
+  String dhikrInsightsObservationQuiet(String routine, int minutes) {
+    return '$routine is the quiet gap this week. It takes about $minutes min.';
+  }
+
+  @override
+  String get dhikrInsightsObservationSteady =>
+      'A steady week. Keep the rhythm.';
 }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/learn/dua/presentation/dua_hub_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_counter_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_insights_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_routine_page.dart';
 import '../../features/worship/presentation/worship_section_pages.dart';
 
 List<RouteBase> buildWorshipRoutes() {
@@ -17,6 +20,28 @@ List<RouteBase> buildWorshipRoutes() {
       name: 'worshipDhikrPage',
       pageBuilder: (context, state) =>
           const MaterialPage(child: WorshipDhikrPage()),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/count',
+      name: 'worshipDhikrCounter',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DhikrCounterPage()),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/routine/:routineId',
+      name: 'worshipDhikrRoutine',
+      pageBuilder: (context, state) => MaterialPage(
+        child: DhikrRoutinePage(
+          routineId: state.pathParameters['routineId'] ?? '',
+          prayerId: state.uri.queryParameters['prayer'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/insights',
+      name: 'worshipDhikrInsights',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DhikrInsightsPage()),
     ),
     GoRoute(
       path: '/worship/fasting',

@@ -6,7 +6,7 @@ import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
-import 'widgets/dhikr_section.dart';
+import 'dhikr/dhikr_landing_page.dart';
 import 'widgets/fasting_section.dart';
 import 'widgets/prayer_section.dart';
 
@@ -26,20 +26,13 @@ class WorshipPrayerPage extends StatelessWidget {
   }
 }
 
+/// The dhikr route. The hub itself lives in [DhikrLandingPage]; this shell
+/// keeps the route name every entry point already links to.
 class WorshipDhikrPage extends StatelessWidget {
   const WorshipDhikrPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return _WorshipSectionScaffold(
-      headerIcon: IslamicIcons.tasbih,
-      title: l10n.dhikrSectionTitle,
-      subtitle: l10n.dhikrSectionSubtitle,
-      quote: buildContextualQuranQuote(ContextualQuranQuoteKey.worshipDhikr),
-      child: const DhikrSection(),
-    );
-  }
+  Widget build(BuildContext context) => const DhikrLandingPage();
 }
 
 class WorshipFastingPage extends StatelessWidget {
