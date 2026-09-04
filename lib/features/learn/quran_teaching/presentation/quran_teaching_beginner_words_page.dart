@@ -12,6 +12,7 @@ import '../../../arabic/presentation/widgets/arabic_learning_playback_speed_togg
 import '../application/quran_teaching_audio_playback_service.dart';
 import '../application/quran_teaching_controller.dart';
 import '../domain/quran_teaching_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingBeginnerWordsPage extends ConsumerStatefulWidget {
   const QuranTeachingBeginnerWordsPage({super.key, this.initialWordId});
@@ -133,7 +134,7 @@ class _QuranTeachingBeginnerWordsPageState
                               textDirection: TextDirection.rtl,
                               style: const TextStyle(
                                 fontSize: 42,
-                                fontFamily: 'AmiriQuran',
+                                fontFamily: AppFonts.quranArabic,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -281,7 +282,7 @@ class _QuranTeachingBeginnerWordsPageState
                   textDirection: TextDirection.rtl,
                   style: const TextStyle(
                     fontSize: 26,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -291,7 +292,7 @@ class _QuranTeachingBeginnerWordsPageState
                   textDirection: TextDirection.rtl,
                   style: const TextStyle(
                     fontSize: 30,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     color: Color(0xFF5E462A),
                     fontWeight: FontWeight.w700,
                   ),

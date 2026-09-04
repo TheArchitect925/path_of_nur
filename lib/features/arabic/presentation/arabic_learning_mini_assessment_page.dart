@@ -13,6 +13,7 @@ import '../domain/arabic_learning_audio_models.dart';
 import '../domain/arabic_learning_continuity_models.dart';
 import 'arabic_learning_route_target_navigation.dart';
 import 'widgets/arabic_learning_playback_speed_toggle.dart';
+import '../../../core/theme/app_fonts.dart';
 
 class ArabicLearningMiniAssessmentPage extends ConsumerStatefulWidget {
   const ArabicLearningMiniAssessmentPage({required this.audience, super.key});
@@ -306,7 +307,7 @@ class _QuestionCard extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   fontSize: isKids ? 42 : 38,
-                  fontFamily: 'AmiriQuran',
+                  fontFamily: AppFonts.quranArabic,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -418,7 +419,7 @@ class _HearChooseOption extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 28,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               fontWeight: FontWeight.w700,
             ),
           ),

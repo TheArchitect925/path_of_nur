@@ -37,6 +37,7 @@ import 'quran_teaching_module_page.dart';
 import 'quran_teaching_review_page.dart';
 import 'widgets/quran_teaching_adult_overview_card.dart';
 import 'widgets/quran_teaching_review_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingSectionPage extends ConsumerStatefulWidget {
   const QuranTeachingSectionPage({super.key});
@@ -337,7 +338,7 @@ class _QuranTeachingSectionPageState
                   textDirection: TextDirection.rtl,
                   style: const TextStyle(
                     fontSize: 26,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -392,7 +393,7 @@ class _QuranTeachingSectionPageState
                 textDirection: TextDirection.rtl,
                 style: const TextStyle(
                   fontSize: 30,
-                  fontFamily: 'AmiriQuran',
+                  fontFamily: AppFonts.quranArabic,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -460,7 +461,7 @@ class _QuranTeachingSectionPageState
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 28,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                   ),
                 ),
               ),
@@ -1107,7 +1108,7 @@ class _ShortSurahsAdultCard extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 30,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               fontWeight: FontWeight.w700,
             ),
           ),

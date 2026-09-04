@@ -16,6 +16,7 @@ import '../domain/quran_teaching_models.dart';
 import '../domain/quran_teaching_review_models.dart';
 import 'quran_teaching_listen_only_page.dart';
 import 'widgets/quran_teaching_asset_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingLessonPage extends ConsumerStatefulWidget {
   const QuranTeachingLessonPage({
@@ -422,7 +423,7 @@ class _LessonStepBody extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: const TextStyle(
                   fontSize: 44,
-                  fontFamily: 'AmiriQuran',
+                  fontFamily: AppFonts.quranArabic,
                   height: 1.5,
                 ),
               ),
@@ -517,7 +518,7 @@ class _LessonStepBody extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: const TextStyle(
                               fontSize: 28,
-                              fontFamily: 'AmiriQuran',
+                              fontFamily: AppFonts.quranArabic,
                             ),
                           ),
                           if (example.transliteration != null)
@@ -644,7 +645,7 @@ class _QuizBody extends StatelessWidget {
             quiz.promptArabic!,
             textAlign: TextAlign.center,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(fontSize: 34, fontFamily: 'AmiriQuran'),
+            style: const TextStyle(fontSize: 34, fontFamily: AppFonts.quranArabic),
           ),
         ],
         if (quiz.promptSecondary != null) ...[
@@ -691,7 +692,7 @@ class _QuizBody extends StatelessWidget {
                   ? l10n.quranTeachingLessonTapPiecesHint
                   : buildSelection.join('  '),
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
+              style: const TextStyle(fontSize: 30, fontFamily: AppFonts.quranArabic),
             ),
           ),
         ] else if (quiz.type == QuranTeachingQuizType.trueFalse) ...[
@@ -770,7 +771,7 @@ class _QuizBody extends StatelessWidget {
                                 textDirection: TextDirection.rtl,
                                 style: const TextStyle(
                                   fontSize: 26,
-                                  fontFamily: 'AmiriQuran',
+                                  fontFamily: AppFonts.quranArabic,
                                 ),
                               ),
                             Text(option.label),
@@ -960,7 +961,7 @@ class _LetterFormTile extends StatelessWidget {
           Text(
             glyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(fontSize: 26, fontFamily: 'AmiriQuran'),
+            style: const TextStyle(fontSize: 26, fontFamily: AppFonts.quranArabic),
           ),
         ],
       ),

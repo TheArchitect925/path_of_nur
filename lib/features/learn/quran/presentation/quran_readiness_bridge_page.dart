@@ -24,6 +24,7 @@ import '../../quran_teaching/domain/quran_teaching_models.dart';
 import '../domain/quran_guided_passage_readiness_models.dart';
 import '../domain/quran_readiness_bridge_models.dart';
 import '../domain/quran_short_surah_readiness_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranReadinessBridgePage extends ConsumerStatefulWidget {
   const QuranReadinessBridgePage({
@@ -597,7 +598,7 @@ class _QuranReadinessBridgePageState
   }) {
     final baseStyle = const TextStyle(
       fontSize: 38,
-      fontFamily: 'AmiriQuran',
+      fontFamily: AppFonts.quranArabic,
       fontWeight: FontWeight.w700,
       height: 1.6,
     );
@@ -655,10 +656,10 @@ class _QuranReadinessBridgePageState
     final baseStyle =
         Theme.of(context).textTheme.headlineSmall?.copyWith(
           height: 1.7,
-          fontFamily: 'AmiriQuran',
+          fontFamily: AppFonts.quranArabic,
           fontWeight: FontWeight.w700,
         ) ??
-        const TextStyle(fontSize: 30, height: 1.7, fontFamily: 'AmiriQuran');
+        const TextStyle(fontSize: 30, height: 1.7, fontFamily: AppFonts.quranArabic);
     final start = ayahArabic.indexOf(snippetArabic);
     if (start < 0) {
       return buildQuranTextWithColoredHarakat(ayahArabic, baseStyle);
@@ -911,7 +912,7 @@ class _BridgeToVocabularyThemeCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: const TextStyle(
                 fontSize: 24,
-                fontFamily: 'AmiriQuran',
+                fontFamily: AppFonts.quranArabic,
                 fontWeight: FontWeight.w700,
               ),
             ),

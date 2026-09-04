@@ -19,6 +19,7 @@ import '../../learn/journey/application/learning_path_provider.dart';
 import '../application/onboarding_preferences_provider.dart';
 import '../application/onboarding_state_provider.dart';
 import '../domain/onboarding_preferences.dart';
+import '../../../core/theme/app_fonts.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -337,7 +338,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     style: TextStyle(
                       fontSize: 28,
                       height: 1.6,
-                      fontFamily: 'AmiriQuran',
+                      fontFamily: AppFonts.quranArabic,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -707,7 +708,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   _previewArabicForHarakat(_harakatChoice),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontSize: 30 * _arabicTextScale,
                     height: 1.6,
                   ),
@@ -949,7 +950,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             const SizedBox(height: 12),
             const Text(
               'رَبِّ زِدْنِي عِلْمًا',
-              style: TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
+              style: TextStyle(fontSize: 30, fontFamily: AppFonts.quranArabic),
             ),
             const SizedBox(height: 4),
             Text(

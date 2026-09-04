@@ -28,6 +28,8 @@ void main() {
     expect(assets, isNotEmpty);
   });
 
+  _familyLiteralGuard();
+
   for (final asset in assets) {
     test('$asset is a real font', () async {
       final file = File(asset);
@@ -89,3 +91,46 @@ List<String> _declaredFontAssets() {
   }
   return assets;
 }
+
+/// A font family referenced by name must actually be declared in pubspec —
+/// Flutter renders unknown families in the system fallback without a word.
+/// 43 call sites once wrote 'AmiriQuran' where pubspec declares 'Amiri Quran'
+/// and every one silently lost the Qur'an face.
+void _familyLiteralGuard() {
+  test('every fontFamily string literal names a declared family', () {
+    final declared = _declaredFontFamilies();
+    expect(declared, contains('Amiri Quran'));
+    final offenders = <String>[];
+    final libDir = Directory('lib');
+    final pattern = RegExp("fontFamily:\\s*'([^']+)'");
+    for (final entity in libDir.listSync(recursive: true)) {
+      if (entity is! File || !entity.path.endsWith('.dart')) continue;
+      final content = entity.readAsStringSync();
+      for (final match in pattern.allMatches(content)) {
+        final family = match.group(1)!;
+        if (!declared.contains(family)) {
+          offenders.add('${entity.path}: $family');
+        }
+      }
+    }
+    expect(
+      offenders,
+      isEmpty,
+      reason:
+          'These fontFamily literals do not match any pubspec family and '
+          'will silently render in the system fallback. Use the AppFonts '
+          'constants.',
+    );
+  });
+}
+
+Set<String> _declaredFontFamilies() {
+  final lines = File('pubspec.yaml').readAsLinesSync();
+  final families = <String>{};
+  for (final line in lines) {
+    final match = RegExp(r'-\s*family:\s*(.+)$').firstMatch(line.trim());
+    if (match != null) families.add(match.group(1)!.trim());
+  }
+  return families;
+}
+

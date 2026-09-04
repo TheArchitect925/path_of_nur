@@ -5,6 +5,7 @@ import '../../../learn/presentation/widgets/learn_discovery_search_field.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../domain/arabic_learning_search_models.dart';
 import '../arabic_learning_lesson_pack_localizations.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 enum ArabicLearningDiscoveryVariant { kids, adult }
 
@@ -209,7 +210,7 @@ class _ResultCard extends StatelessWidget {
                             item.type == ArabicLearningSearchItemType.letter
                             ? 30
                             : 26,
-                        fontFamily: 'AmiriQuran',
+                        fontFamily: AppFonts.quranArabic,
                         fontWeight: FontWeight.w700,
                       ),
                     ),

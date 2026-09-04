@@ -19,6 +19,7 @@ import '../application/quran_providers.dart';
 import '../domain/quran_guided_passage_readiness_models.dart';
 import '../domain/quran_playback_request.dart';
 import '../domain/quran_readiness_bridge_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranGuidedPassageReadinessPage extends ConsumerStatefulWidget {
   const QuranGuidedPassageReadinessPage({
@@ -706,13 +707,13 @@ class _GuidedPassageAyahCard extends StatelessWidget {
               ayah.arabic,
               Theme.of(context).textTheme.headlineSmall?.copyWith(
                     height: 1.7,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ) ??
                   const TextStyle(
                     fontSize: 30,
                     height: 1.7,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ),
             ),

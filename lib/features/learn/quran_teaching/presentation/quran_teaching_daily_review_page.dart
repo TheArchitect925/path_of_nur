@@ -14,6 +14,7 @@ import 'quran_teaching_review_presenter.dart';
 import 'quran_teaching_theme.dart';
 import 'widgets/quran_teaching_asset_widgets.dart';
 import 'widgets/quran_teaching_review_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingDailyReviewPage extends ConsumerStatefulWidget {
   const QuranTeachingDailyReviewPage({super.key});
@@ -370,7 +371,7 @@ class _RecordReviewCard extends StatelessWidget {
                 record.promptArabic!,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(fontSize: 36, fontFamily: 'AmiriQuran'),
+                style: const TextStyle(fontSize: 36, fontFamily: AppFonts.quranArabic),
               ),
             ),
           ],
@@ -434,7 +435,7 @@ class _RecordReviewCard extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: const TextStyle(
                               fontSize: 24,
-                              fontFamily: 'AmiriQuran',
+                              fontFamily: AppFonts.quranArabic,
                             ),
                           ),
                         Text(option.label),
@@ -524,7 +525,7 @@ class _MistakeReviewCard extends StatelessWidget {
                 item.promptArabic!,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(fontSize: 34, fontFamily: 'AmiriQuran'),
+                style: const TextStyle(fontSize: 34, fontFamily: AppFonts.quranArabic),
               ),
             ),
           ],
@@ -606,7 +607,7 @@ class _MistakeReviewCard extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             style: const TextStyle(
                               fontSize: 24,
-                              fontFamily: 'AmiriQuran',
+                              fontFamily: AppFonts.quranArabic,
                             ),
                           ),
                         Text(option.label),

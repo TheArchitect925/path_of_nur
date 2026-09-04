@@ -12,6 +12,7 @@ import '../domain/quran_teaching_models.dart';
 import 'quran_teaching_beginner_words_page.dart';
 import 'quran_teaching_lesson_page.dart';
 import 'quran_teaching_listen_only_page.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingModulePage extends ConsumerStatefulWidget {
   const QuranTeachingModulePage({super.key, required this.module});
@@ -273,7 +274,7 @@ class _QuranTeachingModulePageState
                                   textDirection: TextDirection.rtl,
                                   style: const TextStyle(
                                     fontSize: 30,
-                                    fontFamily: 'AmiriQuran',
+                                    fontFamily: AppFonts.quranArabic,
                                   ),
                                 ),
                                 Text(
@@ -309,7 +310,7 @@ class _QuranTeachingModulePageState
                                     textDirection: TextDirection.rtl,
                                     style: const TextStyle(
                                       fontSize: 24,
-                                      fontFamily: 'AmiriQuran',
+                                      fontFamily: AppFonts.quranArabic,
                                     ),
                                   ),
                                 ],
@@ -375,7 +376,7 @@ class _QuranTeachingModulePageState
                                   textDirection: TextDirection.rtl,
                                   style: const TextStyle(
                                     fontSize: 28,
-                                    fontFamily: 'AmiriQuran',
+                                    fontFamily: AppFonts.quranArabic,
                                   ),
                                 ),
                                 Text(

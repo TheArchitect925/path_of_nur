@@ -10,6 +10,7 @@ import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
 import '../domain/quran_teaching_models.dart';
 import 'widgets/quran_teaching_asset_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 enum _ReviewSessionFilter { all, quick, recent, hardest }
 
@@ -159,7 +160,7 @@ class _QuranTeachingReviewPageState
                     textDirection: TextDirection.rtl,
                     style: const TextStyle(
                       fontSize: 34,
-                      fontFamily: 'AmiriQuran',
+                      fontFamily: AppFonts.quranArabic,
                     ),
                   ),
                 ],
@@ -361,7 +362,7 @@ class _QuranTeachingReviewPageState
                         textDirection: TextDirection.rtl,
                         style: const TextStyle(
                           fontSize: 26,
-                          fontFamily: 'AmiriQuran',
+                          fontFamily: AppFonts.quranArabic,
                         ),
                       ),
                     Text(option.label),

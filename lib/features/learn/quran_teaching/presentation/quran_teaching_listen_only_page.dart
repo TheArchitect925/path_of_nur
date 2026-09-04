@@ -12,6 +12,7 @@ import '../application/quran_teaching_asset_resolver.dart';
 import '../application/quran_teaching_controller.dart';
 import '../domain/quran_teaching_models.dart';
 import 'widgets/quran_teaching_asset_widgets.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingListenOnlyPage extends ConsumerStatefulWidget {
   const QuranTeachingListenOnlyPage({super.key, this.initialPackId});
@@ -563,7 +564,7 @@ class _ListenOnlyContent extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 42,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               height: 1.5,
             ),
           ),

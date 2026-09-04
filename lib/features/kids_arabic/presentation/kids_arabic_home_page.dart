@@ -36,6 +36,7 @@ import '../application/kids_arabic_progress_provider.dart';
 import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_fonts.dart';
 
 class KidsArabicHomePage extends ConsumerStatefulWidget {
   const KidsArabicHomePage({super.key});
@@ -395,7 +396,7 @@ class _ShortSurahsCard extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 30,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -517,7 +518,7 @@ class _QuranReadinessCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: const TextStyle(
                 fontSize: 30,
-                fontFamily: 'AmiriQuran',
+                fontFamily: AppFonts.quranArabic,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF7A5622),
               ),
