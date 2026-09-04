@@ -4,11 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/worship/application/dhikr_controller.dart';
+import 'package:path_of_nur/features/worship/application/dhikr_custom_routines_provider.dart';
 import 'package:path_of_nur/features/worship/application/dhikr_routine_catalog.dart';
 import 'package:path_of_nur/features/worship/application/dhikr_routine_controller.dart';
 import 'package:path_of_nur/features/worship/presentation/dhikr/dhikr_counter_page.dart';
 import 'package:path_of_nur/features/worship/presentation/dhikr/dhikr_insights_page.dart';
 import 'package:path_of_nur/features/worship/presentation/dhikr/dhikr_landing_page.dart';
+import 'package:path_of_nur/features/worship/presentation/dhikr/dhikr_routine_builder_page.dart';
 import 'package:path_of_nur/features/worship/presentation/dhikr/dhikr_routine_page.dart';
 import 'package:path_of_nur/features/worship/presentation/dhikr/widgets/misbaha_ring.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
@@ -101,7 +103,10 @@ void main() {
     await tester.tap(find.byKey(const Key('dhikr-counter-finish')));
     await pumpRouteFrames(tester);
     expect(container.read(dhikrControllerProvider).currentCount, 0);
-    expect(container.read(dhikrControllerProvider).recentSessions, hasLength(1));
+    expect(
+      container.read(dhikrControllerProvider).recentSessions,
+      hasLength(1),
+    );
     expect(container.read(dhikrControllerProvider).dailyTotals, hasLength(1));
     expect(tester.takeException(), isNull);
   });
@@ -130,6 +135,58 @@ void main() {
     await tester.tap(find.byKey(const Key('dhikr-routine-skip')));
     await tester.pump(const Duration(milliseconds: 300));
     expect(container.read(dhikrRoutineControllerProvider)?.stepIndex, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('the builder saves a custom routine that the landing lists', (
+    tester,
+  ) async {
+    final container = await makeContainer();
+    addTearDown(container.dispose);
+    final router = container.read(appRouterProvider);
+
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
+    router.go('/worship/dhikr/routine-builder');
+    await pumpRouteFrames(tester);
+    expect(find.byType(DhikrRoutineBuilderPage), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('dhikr-builder-save')));
+    await pumpRouteFrames(tester);
+    expect(find.byKey(const Key('dhikr-builder-error')), findsOneWidget);
+    expect(container.read(dhikrCustomRoutinesProvider), isEmpty);
+
+    await tester.enterText(
+      find.byKey(const Key('dhikr-builder-name')),
+      'Walk home',
+    );
+    await tester.tap(find.byKey(const Key('dhikr-builder-add-step')));
+    await pumpRouteFrames(tester);
+    await tester.tap(
+      find.byKey(const Key('dhikr-builder-phrase-alhamdulillah')),
+    );
+    await pumpRouteFrames(tester);
+    expect(find.byKey(const ValueKey('dhikr-builder-step-0')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('dhikr-builder-save')));
+    await pumpRouteFrames(tester);
+    final saved = container.read(dhikrCustomRoutinesProvider);
+    expect(saved, hasLength(1));
+    expect(saved.single.name, 'Walk home');
+    expect(saved.single.steps.single.id, 'alhamdulillah');
+    expect(saved.single.steps.single.count, 33);
+
+    router.go('/worship/dhikr');
+    await pumpRouteFrames(tester);
+    final row = find.byKey(Key('dhikr-routine-${saved.single.id}'));
+    await tester.dragUntilVisible(
+      row,
+      find.byType(Scrollable).first,
+      const Offset(0, -240),
+    );
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(row, findsOneWidget);
+    expect(find.byKey(const Key('dhikr-routine-new')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 

@@ -4,6 +4,7 @@ import '../../learn/dua/application/dua_repository.dart';
 import '../../learn/dua/domain/dua_models.dart';
 import '../domain/dhikr_preset.dart';
 import '../domain/dhikr_routine.dart';
+import 'dhikr_custom_routines_provider.dart';
 
 const String kDhikrRoutineAfterSalahId = 'after-salah';
 const String kDhikrRoutineMorningId = 'morning';
@@ -164,9 +165,15 @@ List<DhikrRoutine> buildDhikrRoutines(DuaDataset? dataset) {
   return routines;
 }
 
+/// Built-in routines first, then the user's own in the order they were made.
 final dhikrRoutinesProvider = Provider<List<DhikrRoutine>>((ref) {
   final dataset = ref.watch(duaDatasetProvider).valueOrNull;
-  return buildDhikrRoutines(dataset);
+  final custom = ref.watch(dhikrCustomRoutinesProvider);
+  return <DhikrRoutine>[
+    ...buildDhikrRoutines(dataset),
+    for (final routine in custom)
+      if (routine.steps.isNotEmpty) routine.toRoutine(),
+  ];
 });
 
 final dhikrRoutineByIdProvider = Provider.family<DhikrRoutine?, String>((

@@ -670,3 +670,58 @@ Future<bool> showDhikrCompletionSheet(
   );
   return result ?? true;
 }
+
+/// Asks for a whole number (a repeat count). Returns null when dismissed.
+Future<int?> showDhikrNumberSheet(
+  BuildContext context, {
+  required String title,
+  required int initial,
+  String? confirmLabel,
+}) {
+  final l10n = AppLocalizations.of(context);
+  final controller = TextEditingController(text: '$initial');
+  return showDhikrSheet<int>(
+    context,
+    builder: (sheetContext) => Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _sheetTitle(sheetContext, title),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final value in const <int>[1, 3, 7, 10, 33, 100])
+              DhikrChoicePill(
+                label: '$value',
+                isSelected: initial == value,
+                onTap: () => Navigator.of(sheetContext).pop(value),
+              ),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.m),
+        TextField(
+          controller: controller,
+          keyboardType: TextInputType.number,
+          autofocus: true,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            isDense: true,
+          ),
+        ),
+        const SizedBox(height: AppSpacing.m),
+        DhikrPillButton(
+          label: confirmLabel ?? l10n.dhikrApplyAction,
+          emphasized: true,
+          expand: true,
+          onTap: () {
+            final value = int.tryParse(controller.text.trim());
+            Navigator.of(
+              sheetContext,
+            ).pop(value != null && value > 0 ? value : null);
+          },
+        ),
+      ],
+    ),
+  );
+}

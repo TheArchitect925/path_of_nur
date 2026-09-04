@@ -1,6 +1,6 @@
 /// A guided dhikr routine: an ordered list of (phrase, repeat count) steps
 /// that the counter advances through on its own.
-enum DhikrRoutineKind { afterSalah, morning, evening, sleep }
+enum DhikrRoutineKind { afterSalah, morning, evening, sleep, custom }
 
 class DhikrRoutineStep {
   const DhikrRoutineStep({
@@ -24,6 +24,45 @@ class DhikrRoutineStep {
   /// Long duʿās read as a paragraph rather than a phrase; the player gives
   /// them a scrolling text block and a smaller ring.
   bool get isLongText => arabic.length > 70;
+
+  DhikrRoutineStep copyWith({int? count}) {
+    return DhikrRoutineStep(
+      id: id,
+      title: title,
+      arabic: arabic,
+      transliteration: transliteration,
+      translation: translation,
+      count: count ?? this.count,
+      sourceRef: sourceRef,
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'title': title,
+    'arabic': arabic,
+    'transliteration': transliteration,
+    'translation': translation,
+    'count': count,
+    'sourceRef': sourceRef,
+  };
+
+  static DhikrRoutineStep? fromJson(Map<String, dynamic>? json) {
+    if (json == null) return null;
+    final title = json['title']?.toString() ?? '';
+    final id = json['id']?.toString() ?? '';
+    if (id.isEmpty || title.isEmpty) return null;
+    final count = (json['count'] as num?)?.toInt() ?? 1;
+    return DhikrRoutineStep(
+      id: id,
+      title: title,
+      arabic: json['arabic']?.toString() ?? '',
+      transliteration: json['transliteration']?.toString() ?? '',
+      translation: json['translation']?.toString() ?? '',
+      count: count < 1 ? 1 : count,
+      sourceRef: json['sourceRef']?.toString() ?? '',
+    );
+  }
 }
 
 class DhikrRoutine {
@@ -32,12 +71,19 @@ class DhikrRoutine {
     required this.kind,
     required this.steps,
     this.sourceRef,
+    this.customName,
   });
 
   final String id;
   final DhikrRoutineKind kind;
   final List<DhikrRoutineStep> steps;
   final String? sourceRef;
+
+  /// User-given name of a custom routine; built-in kinds are titled from
+  /// the localizations instead.
+  final String? customName;
+
+  bool get isCustom => kind == DhikrRoutineKind.custom;
 
   int get totalCount => steps.fold<int>(0, (sum, step) => sum + step.count);
 
@@ -63,6 +109,9 @@ class DhikrRoutine {
         return 'Evening adhkar';
       case DhikrRoutineKind.sleep:
         return 'Before-sleep adhkar';
+      case DhikrRoutineKind.custom:
+        final name = customName?.trim() ?? '';
+        return name.isEmpty ? 'Custom routine' : name;
     }
   }
 }

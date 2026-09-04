@@ -5,6 +5,16 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../domain/dhikr_routine.dart';
 
+/// Title for any routine: built-in kinds from the localizations, custom
+/// routines from their own name.
+String dhikrRoutineDisplayTitle(AppLocalizations l10n, DhikrRoutine routine) {
+  if (routine.isCustom) {
+    final name = routine.customName?.trim() ?? '';
+    return name.isEmpty ? l10n.dhikrCustomRoutineFallbackName : name;
+  }
+  return dhikrRoutineTitle(l10n, routine.kind);
+}
+
 String dhikrRoutineTitle(AppLocalizations l10n, DhikrRoutineKind kind) {
   switch (kind) {
     case DhikrRoutineKind.afterSalah:
@@ -15,6 +25,8 @@ String dhikrRoutineTitle(AppLocalizations l10n, DhikrRoutineKind kind) {
       return l10n.dhikrRoutineEveningTitle;
     case DhikrRoutineKind.sleep:
       return l10n.dhikrRoutineSleepTitle;
+    case DhikrRoutineKind.custom:
+      return l10n.dhikrCustomRoutineFallbackName;
   }
 }
 
@@ -28,6 +40,8 @@ String dhikrRoutineSubtitle(AppLocalizations l10n, DhikrRoutine routine) {
       return l10n.dhikrRoutineEveningSubtitle(routine.steps.length);
     case DhikrRoutineKind.sleep:
       return l10n.dhikrRoutineSleepSubtitle(routine.steps.length);
+    case DhikrRoutineKind.custom:
+      return l10n.dhikrNowMeta(routine.steps.length, routine.estimatedMinutes);
   }
 }
 
@@ -41,6 +55,8 @@ IconData dhikrRoutineIcon(DhikrRoutineKind kind) {
       return Icons.nights_stay_rounded;
     case DhikrRoutineKind.sleep:
       return Icons.bedtime_rounded;
+    case DhikrRoutineKind.custom:
+      return Icons.favorite_border_rounded;
   }
 }
 

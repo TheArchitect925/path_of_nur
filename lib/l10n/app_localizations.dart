@@ -73069,6 +73069,402 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Now · before sleep'**
   String get dhikrNowEyebrowSleep;
+
+  /// No description provided for @salahTrainerNoteTakbirHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the hands to the ears for the opening takbir, then fold them below the navel, right over left.'**
+  String get salahTrainerNoteTakbirHanafi;
+
+  /// No description provided for @salahTrainerNoteTakbirShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the hands to shoulder level, then fold them on the chest or just below it, right over left.'**
+  String get salahTrainerNoteTakbirShafii;
+
+  /// No description provided for @salahTrainerNoteTakbirMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the hands to shoulder level. In the obligatory prayer many Malikis then let the arms rest at the sides (sadl); folding them is also accepted.'**
+  String get salahTrainerNoteTakbirMaliki;
+
+  /// No description provided for @salahTrainerNoteTakbirHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the hands to shoulder level, then fold them below the navel, right over left.'**
+  String get salahTrainerNoteTakbirHanbali;
+
+  /// No description provided for @salahTrainerNoteOpeningHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.'**
+  String get salahTrainerNoteOpeningHanafi;
+
+  /// No description provided for @salahTrainerNoteOpeningShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'The opening dua commonly taught is Wajjahtu wajhiya, recited quietly in the first rakah.'**
+  String get salahTrainerNoteOpeningShafii;
+
+  /// No description provided for @salahTrainerNoteOpeningMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'No opening dua is recited; after the takbir, go straight to al-Fatihah.'**
+  String get salahTrainerNoteOpeningMaliki;
+
+  /// No description provided for @salahTrainerNoteOpeningHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.'**
+  String get salahTrainerNoteOpeningHanbali;
+
+  /// No description provided for @salahTrainerNoteFatihahHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Say the bismillah quietly before reciting, and say Amin quietly at the end.'**
+  String get salahTrainerNoteFatihahHanafi;
+
+  /// No description provided for @salahTrainerNoteFatihahShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'The bismillah is part of al-Fatihah and is recited aloud in the loud prayers; say Amin aloud after it.'**
+  String get salahTrainerNoteFatihahShafii;
+
+  /// No description provided for @salahTrainerNoteFatihahMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'The bismillah is commonly left out in the obligatory prayer; say Amin quietly.'**
+  String get salahTrainerNoteFatihahMaliki;
+
+  /// No description provided for @salahTrainerNoteFatihahHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Say the bismillah quietly before reciting, and say Amin aloud in the loud prayers.'**
+  String get salahTrainerNoteFatihahHanbali;
+
+  /// No description provided for @salahTrainerNoteRukuHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Bow without raising the hands. Grip the knees with the fingers spread and keep the back level.'**
+  String get salahTrainerNoteRukuHanafi;
+
+  /// No description provided for @salahTrainerNoteRukuShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.'**
+  String get salahTrainerNoteRukuShafii;
+
+  /// No description provided for @salahTrainerNoteRukuMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Bow without raising the hands, grip the knees, and keep the back level.'**
+  String get salahTrainerNoteRukuMaliki;
+
+  /// No description provided for @salahTrainerNoteRukuHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.'**
+  String get salahTrainerNoteRukuHanbali;
+
+  /// No description provided for @salahTrainerNoteSittingHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit on the left foot with the right foot upright (iftirash) in every sitting.'**
+  String get salahTrainerNoteSittingHanafi;
+
+  /// No description provided for @salahTrainerNoteSittingShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.'**
+  String get salahTrainerNoteSittingShafii;
+
+  /// No description provided for @salahTrainerNoteSittingMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit with the left hip on the ground and the feet out to the right (tawarruk) in every sitting.'**
+  String get salahTrainerNoteSittingMaliki;
+
+  /// No description provided for @salahTrainerNoteSittingHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.'**
+  String get salahTrainerNoteSittingHanbali;
+
+  /// No description provided for @salahTrainerNoteTashahhudHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the index finger at \'\'la ilaha\'\' and lower it at \'\'illa Allah\'\'. The final sitting is also in iftirash.'**
+  String get salahTrainerNoteTashahhudHanafi;
+
+  /// No description provided for @salahTrainerNoteTashahhudShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise the index finger at \'\'illa Allah\'\' and keep it raised. In the final tashahhud sit in tawarruk, the left hip on the ground.'**
+  String get salahTrainerNoteTashahhudShafii;
+
+  /// No description provided for @salahTrainerNoteTashahhudMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the index finger gently from side to side through the tashahhud, seated in tawarruk.'**
+  String get salahTrainerNoteTashahhudMaliki;
+
+  /// No description provided for @salahTrainerNoteTashahhudHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Point the index finger whenever Allah\'\'s name is said. Sit in tawarruk only in the final tashahhud of a prayer with two.'**
+  String get salahTrainerNoteTashahhudHanbali;
+
+  /// No description provided for @salahTrainerNoteTaslimHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Both salams are required (wajib); turn the head fully to each side.'**
+  String get salahTrainerNoteTaslimHanafi;
+
+  /// No description provided for @salahTrainerNoteTaslimShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'The first salam completes the prayer; the second is sunnah.'**
+  String get salahTrainerNoteTaslimShafii;
+
+  /// No description provided for @salahTrainerNoteTaslimMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'A single salam to the right completes the prayer; Malikis do not add a second.'**
+  String get salahTrainerNoteTaslimMaliki;
+
+  /// No description provided for @salahTrainerNoteTaslimHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Both salams are required; turn the head fully to each side.'**
+  String get salahTrainerNoteTaslimHanbali;
+
+  /// No description provided for @salahTrainerNoteFajrQunutShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Qunut in Fajr is a confirmed sunnah: recite it after rising from ruku in the second rakah, with the hands raised.'**
+  String get salahTrainerNoteFajrQunutShafii;
+
+  /// No description provided for @salahTrainerNoteFajrQunutMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Qunut in Fajr is recommended: recite it quietly before ruku in the second rakah.'**
+  String get salahTrainerNoteFajrQunutMaliki;
+
+  /// No description provided for @salahTrainerStepOpeningWajjahtuTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'I have turned my face toward the One who created the heavens and the earth, inclining to truth, and I am not of those who associate others with Allah. My prayer, my rites, my living and my dying are for Allah, Lord of the worlds. He has no partner; so I have been commanded, and I am of the Muslims.'**
+  String get salahTrainerStepOpeningWajjahtuTranslation;
+
+  /// No description provided for @salahTrainerMadhhabFollowingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes follow the {madhhab} school. Change it under Settings › Salah.'**
+  String salahTrainerMadhhabFollowingLabel(Object madhhab);
+
+  /// No description provided for @dhikrBuilderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New routine'**
+  String get dhikrBuilderTitle;
+
+  /// No description provided for @dhikrBuilderEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit routine'**
+  String get dhikrBuilderEditTitle;
+
+  /// No description provided for @dhikrBuilderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Phrases and adhkar in the order you say them.'**
+  String get dhikrBuilderSubtitle;
+
+  /// No description provided for @dhikrBuilderNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get dhikrBuilderNameLabel;
+
+  /// No description provided for @dhikrBuilderNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening tasbih, after Fajr, on the way home…'**
+  String get dhikrBuilderNameHint;
+
+  /// No description provided for @dhikrBuilderStepsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps'**
+  String get dhikrBuilderStepsTitle;
+
+  /// No description provided for @dhikrBuilderStepsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the phrases and adhkar you want to count, in order.'**
+  String get dhikrBuilderStepsEmpty;
+
+  /// No description provided for @dhikrBuilderAddStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add step'**
+  String get dhikrBuilderAddStepAction;
+
+  /// No description provided for @dhikrBuilderSaveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save routine'**
+  String get dhikrBuilderSaveAction;
+
+  /// No description provided for @dhikrBuilderDeleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete routine'**
+  String get dhikrBuilderDeleteAction;
+
+  /// No description provided for @dhikrBuilderDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this routine?'**
+  String get dhikrBuilderDeleteTitle;
+
+  /// No description provided for @dhikrBuilderDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Its past sessions stay in your history.'**
+  String get dhikrBuilderDeleteBody;
+
+  /// No description provided for @dhikrBuilderMoveUpTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Move up'**
+  String get dhikrBuilderMoveUpTooltip;
+
+  /// No description provided for @dhikrBuilderMoveDownTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Move down'**
+  String get dhikrBuilderMoveDownTooltip;
+
+  /// No description provided for @dhikrBuilderRemoveTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove step'**
+  String get dhikrBuilderRemoveTooltip;
+
+  /// No description provided for @dhikrBuilderCountTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat count'**
+  String get dhikrBuilderCountTooltip;
+
+  /// No description provided for @dhikrBuilderCountSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat count'**
+  String get dhikrBuilderCountSheetTitle;
+
+  /// No description provided for @dhikrBuilderNeedsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Give the routine a name.'**
+  String get dhikrBuilderNeedsName;
+
+  /// No description provided for @dhikrBuilderNeedsSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one step.'**
+  String get dhikrBuilderNeedsSteps;
+
+  /// No description provided for @dhikrBuilderNewRowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New routine'**
+  String get dhikrBuilderNewRowTitle;
+
+  /// No description provided for @dhikrBuilderNewRowSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build your own from phrases and adhkar'**
+  String get dhikrBuilderNewRowSubtitle;
+
+  /// No description provided for @dhikrBuilderEditTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit routine'**
+  String get dhikrBuilderEditTooltip;
+
+  /// No description provided for @dhikrBuilderSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a step'**
+  String get dhikrBuilderSheetTitle;
+
+  /// No description provided for @dhikrBuilderSegmentPhrases.
+  ///
+  /// In en, this message translates to:
+  /// **'Phrases'**
+  String get dhikrBuilderSegmentPhrases;
+
+  /// No description provided for @dhikrBuilderSegmentAdhkar.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhkar'**
+  String get dhikrBuilderSegmentAdhkar;
+
+  /// No description provided for @dhikrBuilderSegmentCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get dhikrBuilderSegmentCustom;
+
+  /// No description provided for @dhikrBuilderSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search adhkar'**
+  String get dhikrBuilderSearchHint;
+
+  /// No description provided for @dhikrBuilderCustomLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get dhikrBuilderCustomLabel;
+
+  /// No description provided for @dhikrBuilderCustomArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic (optional)'**
+  String get dhikrBuilderCustomArabic;
+
+  /// No description provided for @dhikrBuilderCustomTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration (optional)'**
+  String get dhikrBuilderCustomTransliteration;
+
+  /// No description provided for @dhikrBuilderCustomMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning (optional)'**
+  String get dhikrBuilderCustomMeaning;
+
+  /// No description provided for @dhikrBuilderCustomCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat count'**
+  String get dhikrBuilderCustomCount;
+
+  /// No description provided for @dhikrBuilderCustomAddAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to routine'**
+  String get dhikrBuilderCustomAddAction;
+
+  /// No description provided for @dhikrCustomRoutineFallbackName.
+  ///
+  /// In en, this message translates to:
+  /// **'My routine'**
+  String get dhikrCustomRoutineFallbackName;
 }
 
 class _AppLocalizationsDelegate

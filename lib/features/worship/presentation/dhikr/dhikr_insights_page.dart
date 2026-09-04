@@ -234,7 +234,7 @@ class DhikrInsightsPage extends ConsumerWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                dhikrRoutineTitle(l10n, routine.kind),
+                                dhikrRoutineDisplayTitle(l10n, routine),
                                 style: theme.textTheme.titleSmall,
                               ),
                             ),
@@ -289,7 +289,7 @@ class DhikrInsightsPage extends ConsumerWidget {
                             ? l10n.dhikrInsightsSubtitleEmpty
                             : l10n.dhikrInsightsObservationSteady)
                       : l10n.dhikrInsightsObservationQuiet(
-                          dhikrRoutineTitle(l10n, quietRoutine.kind),
+                          dhikrRoutineDisplayTitle(l10n, quietRoutine),
                           quietRoutine.estimatedMinutes,
                         ),
                   style: theme.textTheme.bodyMedium,

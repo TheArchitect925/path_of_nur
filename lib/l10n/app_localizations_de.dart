@@ -44436,4 +44436,241 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get dhikrNowEyebrowSleep => 'Jetzt · vor dem Schlafen';
+
+  @override
+  String get salahTrainerNoteTakbirHanafi =>
+      'Raise the hands to the ears for the opening takbir, then fold them below the navel, right over left.';
+
+  @override
+  String get salahTrainerNoteTakbirShafii =>
+      'Raise the hands to shoulder level, then fold them on the chest or just below it, right over left.';
+
+  @override
+  String get salahTrainerNoteTakbirMaliki =>
+      'Raise the hands to shoulder level. In the obligatory prayer many Malikis then let the arms rest at the sides (sadl); folding them is also accepted.';
+
+  @override
+  String get salahTrainerNoteTakbirHanbali =>
+      'Raise the hands to shoulder level, then fold them below the navel, right over left.';
+
+  @override
+  String get salahTrainerNoteOpeningHanafi =>
+      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+
+  @override
+  String get salahTrainerNoteOpeningShafii =>
+      'The opening dua commonly taught is Wajjahtu wajhiya, recited quietly in the first rakah.';
+
+  @override
+  String get salahTrainerNoteOpeningMaliki =>
+      'No opening dua is recited; after the takbir, go straight to al-Fatihah.';
+
+  @override
+  String get salahTrainerNoteOpeningHanbali =>
+      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+
+  @override
+  String get salahTrainerNoteFatihahHanafi =>
+      'Say the bismillah quietly before reciting, and say Amin quietly at the end.';
+
+  @override
+  String get salahTrainerNoteFatihahShafii =>
+      'The bismillah is part of al-Fatihah and is recited aloud in the loud prayers; say Amin aloud after it.';
+
+  @override
+  String get salahTrainerNoteFatihahMaliki =>
+      'The bismillah is commonly left out in the obligatory prayer; say Amin quietly.';
+
+  @override
+  String get salahTrainerNoteFatihahHanbali =>
+      'Say the bismillah quietly before reciting, and say Amin aloud in the loud prayers.';
+
+  @override
+  String get salahTrainerNoteRukuHanafi =>
+      'Bow without raising the hands. Grip the knees with the fingers spread and keep the back level.';
+
+  @override
+  String get salahTrainerNoteRukuShafii =>
+      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+
+  @override
+  String get salahTrainerNoteRukuMaliki =>
+      'Bow without raising the hands, grip the knees, and keep the back level.';
+
+  @override
+  String get salahTrainerNoteRukuHanbali =>
+      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+
+  @override
+  String get salahTrainerNoteSittingHanafi =>
+      'Sit on the left foot with the right foot upright (iftirash) in every sitting.';
+
+  @override
+  String get salahTrainerNoteSittingShafii =>
+      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+
+  @override
+  String get salahTrainerNoteSittingMaliki =>
+      'Sit with the left hip on the ground and the feet out to the right (tawarruk) in every sitting.';
+
+  @override
+  String get salahTrainerNoteSittingHanbali =>
+      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+
+  @override
+  String get salahTrainerNoteTashahhudHanafi =>
+      'Raise the index finger at \'la ilaha\' and lower it at \'illa Allah\'. The final sitting is also in iftirash.';
+
+  @override
+  String get salahTrainerNoteTashahhudShafii =>
+      'Raise the index finger at \'illa Allah\' and keep it raised. In the final tashahhud sit in tawarruk, the left hip on the ground.';
+
+  @override
+  String get salahTrainerNoteTashahhudMaliki =>
+      'Move the index finger gently from side to side through the tashahhud, seated in tawarruk.';
+
+  @override
+  String get salahTrainerNoteTashahhudHanbali =>
+      'Point the index finger whenever Allah\'s name is said. Sit in tawarruk only in the final tashahhud of a prayer with two.';
+
+  @override
+  String get salahTrainerNoteTaslimHanafi =>
+      'Both salams are required (wajib); turn the head fully to each side.';
+
+  @override
+  String get salahTrainerNoteTaslimShafii =>
+      'The first salam completes the prayer; the second is sunnah.';
+
+  @override
+  String get salahTrainerNoteTaslimMaliki =>
+      'A single salam to the right completes the prayer; Malikis do not add a second.';
+
+  @override
+  String get salahTrainerNoteTaslimHanbali =>
+      'Both salams are required; turn the head fully to each side.';
+
+  @override
+  String get salahTrainerNoteFajrQunutShafii =>
+      'Qunut in Fajr is a confirmed sunnah: recite it after rising from ruku in the second rakah, with the hands raised.';
+
+  @override
+  String get salahTrainerNoteFajrQunutMaliki =>
+      'Qunut in Fajr is recommended: recite it quietly before ruku in the second rakah.';
+
+  @override
+  String get salahTrainerStepOpeningWajjahtuTranslation =>
+      'I have turned my face toward the One who created the heavens and the earth, inclining to truth, and I am not of those who associate others with Allah. My prayer, my rites, my living and my dying are for Allah, Lord of the worlds. He has no partner; so I have been commanded, and I am of the Muslims.';
+
+  @override
+  String salahTrainerMadhhabFollowingLabel(Object madhhab) {
+    return 'Notes follow the $madhhab school. Change it under Settings › Salah.';
+  }
+
+  @override
+  String get dhikrBuilderTitle => 'Neue Routine';
+
+  @override
+  String get dhikrBuilderEditTitle => 'Routine bearbeiten';
+
+  @override
+  String get dhikrBuilderSubtitle =>
+      'Phrasen und Adhkar in der Reihenfolge, in der Sie sie sprechen.';
+
+  @override
+  String get dhikrBuilderNameLabel => 'Name';
+
+  @override
+  String get dhikrBuilderNameHint =>
+      'Abend-Tasbih, nach Fajr, auf dem Heimweg …';
+
+  @override
+  String get dhikrBuilderStepsTitle => 'Schritte';
+
+  @override
+  String get dhikrBuilderStepsEmpty =>
+      'Fügen Sie die Phrasen und Adhkar hinzu, die Sie zählen möchten, in Reihenfolge.';
+
+  @override
+  String get dhikrBuilderAddStepAction => 'Schritt hinzufügen';
+
+  @override
+  String get dhikrBuilderSaveAction => 'Routine speichern';
+
+  @override
+  String get dhikrBuilderDeleteAction => 'Routine löschen';
+
+  @override
+  String get dhikrBuilderDeleteTitle => 'Diese Routine löschen?';
+
+  @override
+  String get dhikrBuilderDeleteBody =>
+      'Ihre bisherigen Sitzungen bleiben in Ihrer Historie.';
+
+  @override
+  String get dhikrBuilderMoveUpTooltip => 'Nach oben';
+
+  @override
+  String get dhikrBuilderMoveDownTooltip => 'Nach unten';
+
+  @override
+  String get dhikrBuilderRemoveTooltip => 'Schritt entfernen';
+
+  @override
+  String get dhikrBuilderCountTooltip => 'Wiederholungen';
+
+  @override
+  String get dhikrBuilderCountSheetTitle => 'Wiederholungen';
+
+  @override
+  String get dhikrBuilderNeedsName => 'Geben Sie der Routine einen Namen.';
+
+  @override
+  String get dhikrBuilderNeedsSteps =>
+      'Fügen Sie mindestens einen Schritt hinzu.';
+
+  @override
+  String get dhikrBuilderNewRowTitle => 'Neue Routine';
+
+  @override
+  String get dhikrBuilderNewRowSubtitle =>
+      'Eigene Routine aus Phrasen und Adhkar zusammenstellen';
+
+  @override
+  String get dhikrBuilderEditTooltip => 'Routine bearbeiten';
+
+  @override
+  String get dhikrBuilderSheetTitle => 'Schritt hinzufügen';
+
+  @override
+  String get dhikrBuilderSegmentPhrases => 'Phrasen';
+
+  @override
+  String get dhikrBuilderSegmentAdhkar => 'Adhkar';
+
+  @override
+  String get dhikrBuilderSegmentCustom => 'Eigene';
+
+  @override
+  String get dhikrBuilderSearchHint => 'Adhkar suchen';
+
+  @override
+  String get dhikrBuilderCustomLabel => 'Bezeichnung';
+
+  @override
+  String get dhikrBuilderCustomArabic => 'Arabisch (optional)';
+
+  @override
+  String get dhikrBuilderCustomTransliteration => 'Umschrift (optional)';
+
+  @override
+  String get dhikrBuilderCustomMeaning => 'Bedeutung (optional)';
+
+  @override
+  String get dhikrBuilderCustomCount => 'Wiederholungen';
+
+  @override
+  String get dhikrBuilderCustomAddAction => 'Zur Routine hinzufügen';
+
+  @override
+  String get dhikrCustomRoutineFallbackName => 'Meine Routine';
 }

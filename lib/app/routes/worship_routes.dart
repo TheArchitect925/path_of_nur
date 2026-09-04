@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/learn/dua/presentation/dua_hub_page.dart';
 import '../../features/worship/presentation/dhikr/dhikr_counter_page.dart';
 import '../../features/worship/presentation/dhikr/dhikr_insights_page.dart';
+import '../../features/worship/presentation/dhikr/dhikr_routine_builder_page.dart';
 import '../../features/worship/presentation/dhikr/dhikr_routine_page.dart';
 import '../../features/worship/presentation/worship_section_pages.dart';
 
@@ -34,6 +35,15 @@ List<RouteBase> buildWorshipRoutes() {
         child: DhikrRoutinePage(
           routineId: state.pathParameters['routineId'] ?? '',
           prayerId: state.uri.queryParameters['prayer'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/worship/dhikr/routine-builder',
+      name: 'worshipDhikrRoutineBuilder',
+      pageBuilder: (context, state) => MaterialPage(
+        child: DhikrRoutineBuilderPage(
+          routineId: state.uri.queryParameters['id'],
         ),
       ),
     ),

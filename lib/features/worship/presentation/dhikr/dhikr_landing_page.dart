@@ -12,7 +12,6 @@ import '../../../../shared/application/app_summary_providers.dart';
 import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/contextual_quran_quotes.dart';
-import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/utils/compact_duration_formatter.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/display/activity_heatmap.dart';
@@ -37,6 +36,7 @@ import '../../domain/dhikr_session.dart';
 import 'dhikr_routine_labels.dart';
 import 'widgets/dhikr_pill_button.dart';
 import 'widgets/dhikr_sheets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The dhikr hub. Opens on what this moment asks for, then today's numbers,
 /// the routines, free tasbih, and the month's history.
@@ -51,7 +51,7 @@ class DhikrLandingPage extends ConsumerWidget {
     );
     return AppPageScaffold(
       ownsBackground: false,
-      headerIcon: IslamicIcons.tasbih,
+      headerIcon: AppIcons.dhikr,
       title: l10n.dhikrSectionTitle,
       subtitle: l10n.dhikrLandingSubtitle,
       children: [
@@ -133,7 +133,7 @@ class _DhikrNowCard extends ConsumerWidget {
 
     final title = routine == null
         ? l10n.dhikrFreeCountTitle
-        : dhikrRoutineTitle(l10n, routine.kind);
+        : dhikrRoutineDisplayTitle(l10n, routine);
     final String meta;
     if (routine == null) {
       meta = l10n.dhikrTargetValue(_formatCount(context, dhikr.target));
@@ -149,7 +149,7 @@ class _DhikrNowCard extends ConsumerWidget {
           '$base · ${suggestion.doneToday ? l10n.dhikrNowDoneToday : l10n.dhikrNowNotYetToday}';
     }
     final icon = routine == null
-        ? IslamicIcons.tasbih
+        ? AppIcons.dhikr
         : dhikrRoutineIcon(routine.kind);
 
     return NoorGlassCard(
@@ -380,7 +380,22 @@ class _DhikrRoutinesGroup extends ConsumerWidget {
                     '$subtitle · ${l10n.dhikrRoutineDoneAt(_formatTime(context, latest.finishedAt))}';
               }
               Widget? trailing;
-              if (isActive && progress != null) {
+              if (routine.isCustom) {
+                trailing = IconButton(
+                  key: Key('dhikr-routine-edit-${routine.id}'),
+                  tooltip: l10n.dhikrBuilderEditTooltip,
+                  visualDensity: VisualDensity.compact,
+                  onPressed: () => context.pushNamed(
+                    'worshipDhikrRoutineBuilder',
+                    queryParameters: <String, String>{'id': routine.id},
+                  ),
+                  icon: Icon(
+                    Icons.edit_rounded,
+                    size: 18,
+                    color: palette.accentSoft,
+                  ),
+                );
+              } else if (isActive && progress != null) {
                 trailing = Text(
                   l10n.dhikrNowStepOf(
                     progress.stepIndex + 1,
@@ -402,7 +417,7 @@ class _DhikrRoutinesGroup extends ConsumerWidget {
               }
               return CompactListTile(
                 key: Key('dhikr-routine-${routine.id}'),
-                title: dhikrRoutineTitle(l10n, routine.kind),
+                title: dhikrRoutineDisplayTitle(l10n, routine),
                 subtitle: subtitle,
                 leading: HubLeadingIcon(dhikrRoutineIcon(routine.kind)),
                 trailing: trailing,
@@ -416,6 +431,13 @@ class _DhikrRoutinesGroup extends ConsumerWidget {
               );
             },
           ),
+        CompactListTile(
+          key: const Key('dhikr-routine-new'),
+          title: l10n.dhikrBuilderNewRowTitle,
+          subtitle: l10n.dhikrBuilderNewRowSubtitle,
+          leading: const HubLeadingIcon(Icons.add_rounded),
+          onTap: () => context.pushNamed('worshipDhikrRoutineBuilder'),
+        ),
       ],
     );
   }

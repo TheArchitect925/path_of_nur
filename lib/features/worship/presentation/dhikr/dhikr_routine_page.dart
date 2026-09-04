@@ -128,7 +128,7 @@ class _DhikrRoutinePageState extends ConsumerState<DhikrRoutinePage>
     await showDhikrCompletionSheet(
       context,
       title: l10n.dhikrRoutineCompleteTitle(
-        dhikrRoutineTitle(l10n, routine.kind),
+        dhikrRoutineDisplayTitle(l10n, routine),
       ),
       subtitle: routine.steps
           .map((step) => '${step.title} × ${step.count}')
@@ -207,7 +207,7 @@ class _DhikrRoutinePageState extends ConsumerState<DhikrRoutinePage>
     final eyebrow =
         prayerId != null && routine.kind == DhikrRoutineKind.afterSalah
         ? l10n.dhikrRoutineAfterPrayerEyebrow(dhikrPrayerLabel(l10n, prayerId))
-        : dhikrRoutineTitle(l10n, routine.kind);
+        : dhikrRoutineDisplayTitle(l10n, routine);
 
     return DhikrPageBody(
       builder: (context, compact) => [
