@@ -3740,7 +3740,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnSalahHubSubtitle =>
-      'Learn the structure of salah, practice with guidance, and memorize surahs calmly.';
+      'Learn the structure of salah, practice with guidance, and build a calm memorization path for surahs and recitations.';
 
   @override
   String get learnSalahHubGuidanceNoticeTitle =>
@@ -4285,7 +4285,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnHubLandingCalmSubtitle =>
-      'Organized teachings, essential topics and guided study paths, easy to follow and revisit.';
+      'Discover organized teachings, essential topics, and guided study paths that make learning easier to follow and more rewarding to revisit.';
 
   @override
   String get learnLandingPathEyebrow => 'Your path';
@@ -4334,11 +4334,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get learnPathPhaseCompletedLabel => 'Completed';
 
   @override
-  String get learnPathPickerTitle => 'Choose Your Level';
+  String get learnPathPickerTitle => 'Choose your level';
 
   @override
   String get learnPathPickerSubtitle =>
-      'Pick the path that matches where you are. Change it anytime; your progress stays.';
+      'Pick the path that matches where you are. You can change it anytime — your progress always stays.';
 
   @override
   String get learnPathPickerCurrentBadge => 'Current';
@@ -4496,7 +4496,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnDiscoveryExploreSubtitle =>
-      'Guided paths, focused lessons and calm starting points, without losing your way.';
+      'Find guided paths, focused lessons, and calm starting points without getting lost in the wider library.';
 
   @override
   String get learnHubCategoryOverviewTitle => 'Category Overview';
@@ -6149,7 +6149,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get quranAyahInsightPathsSubtitle =>
-      'Short, curated Qur\'anic learning sequences built from the Ayah Insights.';
+      'Follow short, curated Qur\'anic learning sequences built from the existing Ayah Insights content.';
 
   @override
   String get quranAyahInsightPathsEmpty =>
@@ -6907,7 +6907,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnQuizzesHubSubtitle =>
-      'Practice what you have learned across every learning section in one place.';
+      'Practice what you have learned across the different learning sections with one organized quiz hub.';
 
   @override
   String get learnQuizzesSearchHint => 'Search quiz titles, modules, topics...';
@@ -9153,7 +9153,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get journalDetailPageSubtitle =>
-      'Revisit one entry with its context, notes and reflections.';
+      'Open one entry, revisit its context, and keep your notes, reflections, and journal writing connected.';
 
   @override
   String get journalDetailEntryBodyTitle => 'Entry';
@@ -9180,7 +9180,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get assistantQuickActionsTitle => 'Quick actions';
 
   @override
-  String get circlesJoinedPageTitle => 'Joined Circles';
+  String get circlesJoinedPageTitle => 'Joined circles';
 
   @override
   String get circlesJoinedPageSubtitle =>
@@ -9419,7 +9419,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Community forum + mosque buddy spaces are local-first and respectful.';
 
   @override
-  String get circlesEventsCalendarTitle => 'Events Calendar';
+  String get circlesEventsCalendarTitle => 'Events calendar';
 
   @override
   String get circlesEventsCalendarSubtitle =>
@@ -9440,14 +9440,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Reporting, trust level, and content policy surfaces.';
 
   @override
-  String get circlesAccountabilityTitle => 'Accountability Groups';
+  String get circlesAccountabilityTitle => 'Accountability groups';
 
   @override
   String get circlesAccountabilitySubtitle =>
       'Private support groups for prayer and habit streaks.';
 
   @override
-  String get circlesNearbyMosquesTitle => 'Nearby Mosques';
+  String get circlesNearbyMosquesTitle => 'Nearby mosques';
 
   @override
   String get circlesNearbyMosquesSubtitle =>
@@ -10177,7 +10177,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'A calmer learning home: journeys, today\'s guidance and clear learning islands.';
+      'A calmer learning home built around journeys, today’s guidance, and clear learning islands.';
 
   @override
   String get learningJourneyHomeContinueBadge => 'Continue your Journey';
@@ -11540,7 +11540,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseAllSubtitle =>
-      'The journey map first, then related tools, collections and the original library.';
+      'Browse the journey architecture first, then reach for related tools, collections, and the original learning library where needed.';
 
   @override
   String get learningJourneyBrowseIslandsTitle => 'Journey Islands';
@@ -18454,7 +18454,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get familyLearningManagementSubtitle =>
-      'Child learning profiles, guided paths, and separate progress on shared devices.';
+      'Create child learning profiles, guide their path, and keep shared-device progress separate.';
 
   @override
   String get familyLearningManagementUnavailable =>
@@ -18927,7 +18927,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get shellQuranPlaybackResumeTooltip => 'Resume Qur\'an playback';
 
   @override
-  String get shellQuranMiniPlayerTitle => 'Qur\'an Playback';
+  String get shellQuranMiniPlayerTitle => 'Qur\'an playback';
 
   @override
   String get shellQuranMiniPlayerPlaying => 'Playing now';
@@ -24293,7 +24293,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get quranTeachingBeginnerWordsTitle => 'Beginner Words';
+  String get quranTeachingBeginnerWordsTitle => 'Beginner words';
 
   @override
   String get quranTeachingBeginnerWordsSubtitle =>
@@ -25045,7 +25045,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get batch9FaqSubtitle =>
-      'Clear, gentle answers to common questions about Islam.';
+      'Clear, gentle answers to common questions about Islam, with calm clarification where misconceptions exist.';
 
   @override
   String get batch9FaqScholarNote =>
@@ -27623,7 +27623,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnGlossarySubtitle =>
-      'Common Islamic terms in short, beginner-friendly explanations you can open any time.';
+      'Learn common Islamic terms through short, beginner-friendly explanations you can open any time.';
 
   @override
   String get learnGlossaryCardTitle => 'Glossary';
@@ -30006,7 +30006,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Set one intention, notice meaningful actions, and reflect without noise.';
 
   @override
-  String get spiritualGrowthChooseIntentionAction => 'Choose Intention';
+  String get spiritualGrowthChooseIntentionAction => 'Choose intention';
 
   @override
   String get spiritualGrowthChooseIntentionSubtitle =>
@@ -30061,7 +30061,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Mark a few small acts without turning them into performance.';
 
   @override
-  String get spiritualGrowthReflectionTitle => 'Daily Reflection';
+  String get spiritualGrowthReflectionTitle => 'Daily reflection';
 
   @override
   String get spiritualGrowthReflectionPageSubtitle =>
@@ -30091,7 +30091,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Reflection saved for today.';
 
   @override
-  String get spiritualGrowthThemeSummaryTitle => 'Theme Focus';
+  String get spiritualGrowthThemeSummaryTitle => 'Theme focus';
 
   @override
   String get spiritualGrowthThemeSummarySubtitle =>
@@ -30708,7 +30708,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get contentBuilderSubtitle =>
-      'Normalize, validate, preview and export drafts without touching the live catalog.';
+      'Normalize, validate, preview, and export internal content drafts without changing the live game catalog.';
 
   @override
   String get contentBuilderCatalogTitle => 'Current content snapshot';
@@ -30892,7 +30892,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get bedtimeStoriesSubtitle =>
-      'Calm prophet stories for winding down and remembering Allah before sleep.';
+      'Calm prophet stories for winding down, listening together, and remembering Allah before sleep.';
 
   @override
   String get bedtimeStoriesHeroTitle => 'Prophet stories for quiet nights';
@@ -31194,7 +31194,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get bedtimeStoryQuizTitle => 'Story Quiz';
+  String get bedtimeStoryQuizTitle => 'Story quiz';
 
   @override
   String get bedtimeStoryQuizUnavailableSubtitle =>
@@ -31240,7 +31240,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bedtimeStoryQuizReviewAction => 'Review quiz';
 
   @override
-  String get bedtimeStoryMemoryTitle => 'Memory Cards';
+  String get bedtimeStoryMemoryTitle => 'Memory cards';
 
   @override
   String get bedtimeStoryMemoryUnavailableSubtitle =>
@@ -31289,7 +31289,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get kidsStoryLibrarySubtitle =>
-      'Prophets, good manners, daily life and seasonal stories in one calm library.';
+      'Browse prophets, good manners, daily-life, and seasonal Islamic stories in one calm library.';
 
   @override
   String get kidsStoryLibraryHeroTitle =>
@@ -31414,7 +31414,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get kidsSeerahJourneysSubtitle =>
-      'A calm, child-friendly path through the life of Prophet Muhammad ﷺ and his companions.';
+      'Follow a calm, child-friendly path through key moments in the life of Prophet Muhammad ﷺ and a few beloved companions.';
 
   @override
   String get kidsSeerahJourneysHeroTitle => 'A guided Seerah path for children';
@@ -31646,7 +31646,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bedtimeFamilyModeSwitchTitle => 'View progress for';
 
   @override
-  String get bedtimeParentDashboardTitle => 'Kids Learning Summary';
+  String get bedtimeParentDashboardTitle => 'Kids learning summary for parents';
 
   @override
   String get bedtimeParentDashboardSubtitle =>
@@ -32357,7 +32357,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'End gently and rest peacefully.';
 
   @override
-  String get progressionPageTitle => 'Progress & Badges';
+  String get progressionPageTitle => 'Progress & badges';
 
   @override
   String get progressionPageSubtitle =>
@@ -33457,7 +33457,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Return to today\'s ayah and continue your reflection.';
 
   @override
-  String get quranDailyCompanionTitle => 'Daily Qur\'an Companion';
+  String get quranDailyCompanionTitle => 'Daily Qur\'an companion';
 
   @override
   String get quranDailyCompanionSubtitle =>
@@ -33593,7 +33593,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Complete a few reflections to build your streak.';
 
   @override
-  String get quranReflectionsTitle => 'Saved Reflections';
+  String get quranReflectionsTitle => 'Saved reflections';
 
   @override
   String get quranReflectionsSubtitle =>
@@ -33886,7 +33886,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnGamesHubSubtitleText =>
-      'Daily challenges, knowledge games, Qur\'an practice, reflection and themed packs.';
+      'Browse daily challenges, knowledge games, Qur’an practice, reflection, spiritual tools, and themed packs from one place.';
 
   @override
   String get learnGamesSearchHintText => 'Search quizzes and games';
@@ -33918,7 +33918,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnGamesBrowseAllPageSubtitleText =>
-      'Every quiz, game, challenge and pack in one searchable list.';
+      'Search or scan every available quiz, game, challenge, and pack without bouncing through thin category pages.';
 
   @override
   String get learnGamesDailyKnowledgeTodayTitleText =>
@@ -33991,7 +33991,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get learnGamesPackDailyRotationTitleText => 'Daily Rotation';
 
   @override
-  String get kidsArabicWordsTitle => 'Arabic Words';
+  String get kidsArabicWordsTitle => 'Arabic words';
 
   @override
   String get kidsArabicWordsSubtitle =>
@@ -34005,7 +34005,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsArabicWordsOpenAction => 'Open words';
 
   @override
-  String get kidsArabicMiniPhrasesTitle => 'Mini Phrases';
+  String get kidsArabicMiniPhrasesTitle => 'Mini phrases';
 
   @override
   String get kidsArabicMiniPhrasesSubtitle =>
@@ -34068,7 +34068,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsArabicMiniPhrasesWordsReadingAction => 'Open word reading';
 
   @override
-  String get kidsArabicReadingModeTitle => 'Reading Mode';
+  String get kidsArabicReadingModeTitle => 'Reading mode';
 
   @override
   String get kidsArabicReadingModeSubtitle =>
@@ -34107,7 +34107,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsArabicReadingModeTraceWordAction => 'Trace word';
 
   @override
-  String get kidsArabicMasteryMapTitle => 'Mastery Map';
+  String get kidsArabicMasteryMapTitle => 'Mastery map';
 
   @override
   String get kidsArabicMasteryMapSubtitle =>
@@ -34237,7 +34237,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get kidsQuranAyahInsightsTitle => 'Ayah Insights for Kids';
+  String get kidsQuranAyahInsightsTitle => 'Ayah insights for kids';
 
   @override
   String get kidsQuranAyahInsightsSubtitle =>
@@ -36257,14 +36257,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get arabicLearningPlaybackModeSlow => 'Slow';
 
   @override
-  String get quranReadinessKidsPageTitle => 'Qur’an Readiness';
+  String get quranReadinessKidsPageTitle => 'Qur’an readiness';
 
   @override
   String get quranReadinessKidsPageSubtitle =>
       'Spot very short real Qur’an phrases you already know.';
 
   @override
-  String get quranReadinessAdultPageTitle => 'Qur’an Readiness';
+  String get quranReadinessAdultPageTitle => 'Qur’an readiness';
 
   @override
   String get quranReadinessAdultPageSubtitle =>
@@ -36477,14 +36477,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quranReadinessAdultReviewAction => 'Review Qur’an phrases';
 
   @override
-  String get quranShortSurahsKidsPageTitle => 'First Short Surahs';
+  String get quranShortSurahsKidsPageTitle => 'First short surahs';
 
   @override
   String get quranShortSurahsKidsPageSubtitle =>
       'Move from tiny Qur’an snippets into full short surahs, one calm step at a time.';
 
   @override
-  String get quranShortSurahsAdultPageTitle => 'Short Surah Reading';
+  String get quranShortSurahsAdultPageTitle => 'Short surah reading';
 
   @override
   String get quranShortSurahsAdultPageSubtitle =>
@@ -37028,7 +37028,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsArabicMiniAssessmentCardAction => 'Let’s practice';
 
   @override
-  String get kidsArabicMiniAssessmentPageTitle => 'Quick Practice';
+  String get kidsArabicMiniAssessmentPageTitle => 'Quick practice';
 
   @override
   String get kidsArabicMiniAssessmentPageSubtitle =>
@@ -37080,7 +37080,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Continue with review';
 
   @override
-  String get quranTeachingMiniAssessmentPageTitle => 'Quick Practice';
+  String get quranTeachingMiniAssessmentPageTitle => 'Quick practice';
 
   @override
   String get quranTeachingMiniAssessmentPageSubtitle =>
@@ -37160,18 +37160,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get arabicLearningMiniAssessmentContentPhrase => 'phrase';
 
   @override
-  String get quranGuidedPassagesKidsPageTitle => 'Longer Qur’an Passages';
+  String get quranGuidedPassagesKidsPageTitle => 'Longer Qur’an passages';
 
   @override
   String get quranGuidedPassagesKidsPageSubtitle =>
       'Take one more calm step from very short surahs into slightly longer Qur’an reading.';
 
   @override
-  String get quranGuidedPassagesAdultPageTitle => 'Guided Qur’an Passages';
+  String get quranGuidedPassagesAdultPageTitle => 'Guided Qur’an passages';
 
   @override
   String get quranGuidedPassagesAdultPageSubtitle =>
-      'Move from short surahs into slightly longer guided passages, still on the beginner bridge.';
+      'Move from short surahs into slightly longer guided passages without leaving the beginner bridge.';
 
   @override
   String get quranGuidedPassagesKidsIntroTitle => 'A gentle next reading step';
@@ -37932,13 +37932,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Cela nous aide à garder des exemples et des recommandations adaptés à votre étape de vie.';
 
   @override
-  String get onboardingAgeRangeUnder18 => '0–6';
+  String get onboardingAgeRangeUnder18 => '0-7';
 
   @override
-  String get onboardingAgeRange18To24 => '7–13';
+  String get onboardingAgeRange18To24 => '7-14';
 
   @override
-  String get onboardingAgeRange25To34 => '14–20';
+  String get onboardingAgeRange25To34 => '14-21';
 
   @override
   String get onboardingAgeRange35To44 => '21+';
@@ -38867,7 +38867,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get quranThemeDiscoveryPageSubtitle =>
-      'Curated themes, related surahs, key ayahs and gentle study pathways.';
+      'Discover the Qur\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.';
 
   @override
   String get quranThemeDiscoveryHeroEyebrow => 'Thematic Discovery';
@@ -39654,7 +39654,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get guidedLearningPathsTitle => 'Guided Paths';
+  String get guidedLearningPathsTitle => 'Guided paths';
 
   @override
   String get guidedLearningPathsSectionTitle => 'Start a Journey';
@@ -40024,7 +40024,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Practice Bismillah, then choose where to learn more next.';
 
   @override
-  String get learnKidsStarterBridgeTitle => 'Let’s Learn Together';
+  String get learnKidsStarterBridgeTitle => 'Let’s learn together';
 
   @override
   String get learnKidsStarterBridgeSubtitle =>
@@ -40049,7 +40049,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get learnKidsStarterBridgeBeginAction => 'Start with Alif';
 
   @override
-  String get learnKidsStarterNextStepsTitle => 'You’re Ready for More';
+  String get learnKidsStarterNextStepsTitle => 'You’re ready for more';
 
   @override
   String get learnKidsStarterNextStepsSubtitle =>
@@ -40086,7 +40086,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Learn more short duas for everyday moments and happy routines.';
 
   @override
-  String get learnStoriesPathBridgeTitle => 'Let’s Learn through Stories';
+  String get learnStoriesPathBridgeTitle => 'Let’s learn through stories';
 
   @override
   String get learnStoriesPathBridgeSubtitle =>
@@ -40111,7 +40111,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get learnStoriesPathBridgeBeginAction => 'Start with the Prophets';
 
   @override
-  String get learnStoriesPathNextStepsTitle => 'Carry the Lessons Forward';
+  String get learnStoriesPathNextStepsTitle => 'Carry the lessons forward';
 
   @override
   String get learnStoriesPathNextStepsSubtitle =>
@@ -40489,7 +40489,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnDailyDhikrNextStepsSubtitle =>
-      'You began with meaning. Now practice gently and let dhikr join the rest of your worship.';
+      'You have started with meaning and simplicity. Now you can practice gently and connect dhikr to the rest of your worship.';
 
   @override
   String get learnDailyDhikrNextStepsIntroTitle =>
@@ -40522,7 +40522,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnQuranBeginnerSoftBridgeSubtitle =>
-      'You do not need to feel ready. Start small, stay calm, and let understanding grow.';
+      'You do not need to feel fully prepared before you begin. Start small, stay calm, and let understanding grow over time.';
 
   @override
   String get learnQuranBeginnerSoftBridgeIntroTitle =>
@@ -41049,7 +41049,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Browse editable content items and open a structured editor with version history.';
 
   @override
-  String get editorialDashboardContentEditorTitle => 'Content Editor';
+  String get editorialDashboardContentEditorTitle => 'Content editor';
 
   @override
   String editorialDashboardContentVersionCount(Object count) {
@@ -42278,7 +42278,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hadithActionBrowseSources => 'Browse by source';
 
   @override
-  String get hadithSourceBrowseTitle => 'Browse by Source';
+  String get hadithSourceBrowseTitle => 'Browse by source';
 
   @override
   String get hadithSourceBrowseSubtitle =>
@@ -42948,58 +42948,60 @@ class AppLocalizationsFr extends AppLocalizations {
       'Qur\'an-rooted lessons for reflection, character, and grounded living.';
 
   @override
-  String get salahTrainerStepNiyyahTitle => 'Niyyah reminder';
+  String get salahTrainerStepNiyyahTitle => 'Rappel de la niyyah';
 
   @override
   String get salahTrainerStepNiyyahHelper =>
-      'No verbal formula is required. Simply know which prayer you are offering.';
+      'Aucune formule orale n’est requise. Sachez simplement quelle prière vous accomplissez.';
 
   @override
-  String get salahTrainerStepTakbirAlIhramTitle => 'Takbir al-Ihram';
+  String get salahTrainerStepTakbirAlIhramTitle => 'Takbir al-ihram';
 
   @override
-  String get salahTrainerStepTakbirRisingTitle => 'Takbir (rising)';
+  String get salahTrainerStepTakbirRisingTitle => 'Takbir (relèvement)';
 
   @override
   String get salahTrainerStepTakbirRisingHelper =>
-      'Rise into the next rakah saying the takbir.';
+      'Relevez-vous vers la rakah suivante en disant le takbir.';
 
   @override
-  String get salahTrainerStepOpeningSupplicationTitle => 'Opening supplication';
+  String get salahTrainerStepOpeningSupplicationTitle =>
+      'Invocation d’ouverture';
 
   @override
-  String get salahTrainerStepFatihahTitle => 'Surah al-Fatihah';
+  String get salahTrainerStepFatihahTitle => 'Sourate al-Fatiha';
 
   @override
   String get salahTrainerStepFatihahHelper =>
-      'This is required in every rakah.';
+      'Elle est requise dans chaque rakah.';
 
   @override
-  String get salahTrainerStepAdditionalSurahTitle => 'Additional surah';
+  String get salahTrainerStepAdditionalSurahTitle => 'Sourate supplémentaire';
 
   @override
   String get salahTrainerStepAdditionalSurahHelper =>
-      'The guided mode will insert a selected surah here.';
+      'Le mode guidé insérera ici une sourate choisie.';
 
   @override
   String get salahTrainerStepQunutTitle => 'Dua al-Qunut';
 
   @override
   String get salahTrainerStepQunutHelper =>
-      'Often recited in Witr. The exact placement and wording can vary by madhhab.';
+      'Souvent récitée dans le Witr. Son emplacement exact et sa formulation varient selon les madhhabs.';
 
   @override
   String get salahTrainerStepRukuTitle => 'Ruku';
 
   @override
-  String get salahTrainerStepStandingAfterRukuTitle => 'Standing after ruku';
+  String get salahTrainerStepStandingAfterRukuTitle =>
+      'Redressement après le ruku';
 
   @override
-  String get salahTrainerStepFirstSujudTitle => 'First sujud';
+  String get salahTrainerStepFirstSujudTitle => 'Premier sujud';
 
   @override
   String get salahTrainerStepSittingBetweenSujudTitle =>
-      'Sitting between sujud';
+      'Assise entre les deux sujuds';
 
   @override
   String get salahTrainerStepSecondSujudTitle => 'Second sujud';
@@ -43011,68 +43013,68 @@ class AppLocalizationsFr extends AppLocalizations {
   String get salahTrainerStepSalawatTitle => 'Salawat Ibrahimiyyah';
 
   @override
-  String get salahTrainerStepFinalDuaTitle => 'Final dua';
+  String get salahTrainerStepFinalDuaTitle => 'Dua finale';
 
   @override
-  String get salahTrainerStepTaslimRightTitle => 'Taslim right';
+  String get salahTrainerStepTaslimRightTitle => 'Taslim à droite';
 
   @override
-  String get salahTrainerStepTaslimLeftTitle => 'Taslim left';
+  String get salahTrainerStepTaslimLeftTitle => 'Taslim à gauche';
 
   @override
   String get salahTrainerStepNiyyahTranslation =>
-      'Intention is in the heart. Make a quiet intention for the prayer you are beginning.';
+      'L’intention réside dans le cœur. Formez en silence l’intention de la prière que vous commencez.';
 
   @override
-  String get salahTrainerStepTakbirTranslation => 'Allah is the Greatest.';
+  String get salahTrainerStepTakbirTranslation => 'Allah est le Plus Grand.';
 
   @override
   String get salahTrainerStepOpeningSupplicationTranslation =>
-      'Glory is to You, O Allah, and praise. Blessed is Your Name, exalted is Your majesty, and none has the right to be worshipped besides You.';
+      'Gloire à Toi, ô Allah, et louange à Toi. Béni est Ton nom, exaltée est Ta majesté, et nul n’est digne d’adoration en dehors de Toi.';
 
   @override
   String get salahTrainerStepFatihahTranslation =>
-      'Recite Surah al-Fatihah with calmness and reflection in every rakah.';
+      'Récitez la sourate al-Fatiha avec calme et recueillement dans chaque rakah.';
 
   @override
   String get salahTrainerStepAdditionalSurahTranslation =>
-      'Recite one short surah from your learned surah pool after al-Fatihah in the first two rakahs.';
+      'Récitez une courte sourate de votre répertoire après al-Fatiha dans les deux premières rakahs.';
 
   @override
   String get salahTrainerStepQunutTranslation =>
-      'O Allah, guide me among those You have guided, grant me well-being among those You have granted well-being, take me into Your care among those You have taken into Your care, bless for me what You have given, and protect me from the evil of what You have decreed. Indeed, You decree and none can decree over You.';
+      'Ô Allah, guide-moi parmi ceux que Tu as guidés, accorde-moi le bien-être parmi ceux à qui Tu l’as accordé, prends-moi sous Ta protection parmi ceux que Tu as pris sous Ta protection, bénis ce que Tu m’as donné et protège-moi du mal de ce que Tu as décrété. C’est Toi qui décrètes, et nul ne décrète contre Toi.';
 
   @override
   String get salahTrainerStepRukuTranslation =>
-      'Glory is to my Lord, the Magnificent.';
+      'Gloire à mon Seigneur, l’Immense.';
 
   @override
   String get salahTrainerStepStandingAfterRukuTranslation =>
-      'Allah hears the one who praises Him. Our Lord, and to You belongs all praise.';
+      'Allah entend celui qui Le loue. Notre Seigneur, à Toi toute la louange.';
 
   @override
   String get salahTrainerStepSujudTranslation =>
-      'Glory is to my Lord, the Most High.';
+      'Gloire à mon Seigneur, le Très-Haut.';
 
   @override
   String get salahTrainerStepSittingBetweenSujudTranslation =>
-      'My Lord, forgive me, have mercy on me, guide me, strengthen me, grant me well-being, and provide for me.';
+      'Mon Seigneur, pardonne-moi, fais-moi miséricorde, guide-moi, fortifie-moi, accorde-moi le bien-être et pourvois à mes besoins.';
 
   @override
   String get salahTrainerStepTashahhudTranslation =>
-      'All greetings, prayers, and pure words belong to Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god except Allah, and I bear witness that Muhammad is His servant and Messenger.';
+      'Les salutations, les prières et les bonnes paroles appartiennent à Allah. Que la paix soit sur toi, ô Prophète, ainsi que la miséricorde d’Allah et Ses bénédictions. Que la paix soit sur nous et sur les serviteurs vertueux d’Allah. J’atteste que nul n’est digne d’adoration en dehors d’Allah, et j’atteste que Muhammad est Son serviteur et Son messager.';
 
   @override
   String get salahTrainerStepSalawatTranslation =>
-      'O Allah, send prayers upon Muhammad and upon the family of Muhammad as You sent prayers upon Ibrahim and the family of Ibrahim; indeed, You are Praiseworthy and Glorious. O Allah, bless Muhammad and the family of Muhammad as You blessed Ibrahim and the family of Ibrahim; indeed, You are Praiseworthy and Glorious.';
+      'Ô Allah, prie sur Muhammad et sur la famille de Muhammad comme Tu as prié sur Ibrahim et sur la famille d’Ibrahim ; Tu es certes Digne de louange et de gloire. Ô Allah, bénis Muhammad et la famille de Muhammad comme Tu as béni Ibrahim et la famille d’Ibrahim ; Tu es certes Digne de louange et de gloire.';
 
   @override
   String get salahTrainerStepFinalDuaTranslation =>
-      'O Allah, I seek refuge in You from the punishment of Hell, the punishment of the grave, the trials of life and death, and the evil trial of the false messiah.';
+      'Ô Allah, je cherche refuge auprès de Toi contre le châtiment de l’Enfer, le châtiment de la tombe, les épreuves de la vie et de la mort, et le mal de l’épreuve du faux messie.';
 
   @override
   String get salahTrainerStepTaslimTranslation =>
-      'Peace and the mercy of Allah be upon you.';
+      'Que la paix et la miséricorde d’Allah soient sur vous.';
 
   @override
   String salahTrainerRakahTitle(Object index) {
@@ -43084,218 +43086,220 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get salahTrainerPrayerFajrDescription =>
-      'The opening prayer of the day, prayed before sunrise.';
+      'La prière qui ouvre la journée, accomplie avant le lever du soleil.';
 
   @override
-  String get salahTrainerPrayerFajrSunnahRakahs => '2 Sunnah';
+  String get salahTrainerPrayerFajrSunnahRakahs => '2 sunnah';
 
   @override
-  String get salahTrainerPrayerFajrFardRakahs => '2 Fard';
+  String get salahTrainerPrayerFajrFardRakahs => '2 fard';
 
   @override
   String get salahTrainerPrayerFajrRecitationStyle =>
-      'Loud recitation in the fard prayer.';
+      'Récitation à voix haute dans la prière fard.';
 
   @override
   String get salahTrainerPrayerFajrOverview =>
-      'Fajr begins the day with calmness, clarity, and dependence on Allah. The guided trainer focuses on the 2 fard rakahs while still showing the sunnah overview.';
+      'Le Fajr ouvre la journée dans le calme, la clarté et la confiance en Allah. L’entraîneur guidé se concentre sur les 2 rakahs fard tout en montrant l’aperçu de la sunnah.';
 
   @override
   String get salahTrainerPrayerDhuhrTitle => 'Dhuhr';
 
   @override
   String get salahTrainerPrayerDhuhrDescription =>
-      'The midday prayer offered after the sun passes its peak.';
+      'La prière de la mi-journée, accomplie après le zénith.';
 
   @override
   String get salahTrainerPrayerDhuhrSunnahRakahs =>
-      '4 Sunnah before, 2 Sunnah after';
+      '4 sunnah avant, 2 sunnah après';
 
   @override
-  String get salahTrainerPrayerDhuhrFardRakahs => '4 Fard';
+  String get salahTrainerPrayerDhuhrFardRakahs => '4 fard';
 
   @override
-  String get salahTrainerPrayerDhuhrRecitationStyle => 'Silent recitation.';
+  String get salahTrainerPrayerDhuhrRecitationStyle =>
+      'Récitation silencieuse.';
 
   @override
   String get salahTrainerPrayerDhuhrOverview =>
-      'Dhuhr centers the middle of the day. The guided trainer follows the 4 fard rakahs, with the first two including an additional surah after al-Fatihah.';
+      'Le Dhuhr recentre le milieu de la journée. L’entraîneur guidé suit les 4 rakahs fard, les deux premières comprenant une sourate supplémentaire après al-Fatiha.';
 
   @override
   String get salahTrainerPrayerAsrTitle => 'Asr';
 
   @override
   String get salahTrainerPrayerAsrDescription =>
-      'The late afternoon prayer before sunset.';
+      'La prière de la fin d’après-midi, avant le coucher du soleil.';
 
   @override
-  String get salahTrainerPrayerAsrSunnahRakahs => '4 Sunnah optional before';
+  String get salahTrainerPrayerAsrSunnahRakahs => '4 sunnah facultatives avant';
 
   @override
-  String get salahTrainerPrayerAsrFardRakahs => '4 Fard';
+  String get salahTrainerPrayerAsrFardRakahs => '4 fard';
 
   @override
-  String get salahTrainerPrayerAsrRecitationStyle => 'Silent recitation.';
+  String get salahTrainerPrayerAsrRecitationStyle => 'Récitation silencieuse.';
 
   @override
   String get salahTrainerPrayerAsrOverview =>
-      'Asr is a prayer of steadfastness. The trainer keeps the structure simple and repeatable so the user can focus on calm movement and consistency.';
+      'L’Asr est une prière de constance. L’entraîneur garde une structure simple et répétable pour que l’on se concentre sur des gestes calmes et réguliers.';
 
   @override
   String get salahTrainerPrayerMaghribTitle => 'Maghrib';
 
   @override
   String get salahTrainerPrayerMaghribDescription =>
-      'The sunset prayer offered immediately after sunset.';
+      'La prière du couchant, accomplie aussitôt après le coucher du soleil.';
 
   @override
-  String get salahTrainerPrayerMaghribSunnahRakahs => '2 Sunnah after';
+  String get salahTrainerPrayerMaghribSunnahRakahs => '2 sunnah après';
 
   @override
-  String get salahTrainerPrayerMaghribFardRakahs => '3 Fard';
+  String get salahTrainerPrayerMaghribFardRakahs => '3 fard';
 
   @override
   String get salahTrainerPrayerMaghribRecitationStyle =>
-      'Loud in the first two rakahs, quieter in the third.';
+      'À voix haute dans les deux premières rakahs, plus bas dans la troisième.';
 
   @override
   String get salahTrainerPrayerMaghribOverview =>
-      'Maghrib closes the day quickly after sunset. The first two rakahs include an added surah; the third rakah returns to al-Fatihah only before the final sitting.';
+      'Le Maghrib clôt la journée juste après le coucher du soleil. Les deux premières rakahs comprennent une sourate ajoutée ; la troisième revient à al-Fatiha seule avant l’assise finale.';
 
   @override
   String get salahTrainerPrayerIshaTitle => 'Isha';
 
   @override
   String get salahTrainerPrayerIshaDescription =>
-      'The night prayer that closes the daily five prayers.';
+      'La prière de la nuit, qui clôt les cinq prières quotidiennes.';
 
   @override
-  String get salahTrainerPrayerIshaSunnahRakahs => '2 Sunnah after';
+  String get salahTrainerPrayerIshaSunnahRakahs => '2 sunnah après';
 
   @override
-  String get salahTrainerPrayerIshaFardRakahs => '4 Fard';
+  String get salahTrainerPrayerIshaFardRakahs => '4 fard';
 
   @override
   String get salahTrainerPrayerIshaRecitationStyle =>
-      'Loud in the first two rakahs, quieter in the last two.';
+      'À voix haute dans les deux premières rakahs, plus bas dans les deux dernières.';
 
   @override
   String get salahTrainerPrayerIshaOverview =>
-      'Isha closes the day with stillness. The trainer walks through the 4 fard rakahs and is designed to pair well with slower recitation practice at night.';
+      'L’Isha clôt la journée dans la quiétude. L’entraîneur parcourt les 4 rakahs fard et se prête bien à une récitation plus lente le soir.';
 
   @override
   String get salahTrainerPrayerWitrTitle => 'Witr';
 
   @override
   String get salahTrainerPrayerWitrDescription =>
-      'The odd-numbered night prayer prayed after Isha before sleep or before Fajr.';
+      'La prière nocturne au nombre impair de rakahs, accomplie après l’Isha, avant de dormir ou avant le Fajr.';
 
   @override
-  String get salahTrainerPrayerWitrSunnahRakahs => 'Night prayer and Witr';
+  String get salahTrainerPrayerWitrSunnahRakahs => 'Prière de nuit et Witr';
 
   @override
-  String get salahTrainerPrayerWitrFardRakahs => 'Commonly 1 or 3 Witr';
+  String get salahTrainerPrayerWitrFardRakahs => 'Généralement 1 ou 3 Witr';
 
   @override
   String get salahTrainerPrayerWitrRecitationStyle =>
-      'Usually audible enough to hear yourself at night.';
+      'Généralement assez audible pour s’entendre la nuit.';
 
   @override
   String get salahTrainerPrayerWitrOverview =>
-      'Witr closes the night prayer with an odd number of rakahs. This trainer models a common 3-rakah flow and includes Qunut guidance in the final rakah.';
+      'Le Witr clôt la prière de nuit par un nombre impair de rakahs. Cet entraîneur modélise un déroulé courant en 3 rakahs et inclut le Qunut dans la dernière.';
 
   @override
   String get salahTrainerWitrGuidanceHanafi =>
-      'Hanafi guidance commonly treats Witr as 3 rakahs together, with Qunut after the surah in the third rakah before ruku.';
+      'L’école hanafite traite couramment le Witr comme 3 rakahs d’un seul tenant, avec le Qunut après la sourate de la troisième rakah, avant le ruku.';
 
   @override
   String get salahTrainerWitrGuidanceShafii =>
-      'Shafi\'i guidance allows 1 or 3 rakahs of Witr, with Qunut commonly associated with the latter part of Ramadan in Fajr and variations in Witr practice.';
+      'L’école shaféite admet 1 ou 3 rakahs de Witr ; le Qunut y est surtout associé à la fin du Ramadan dans le Fajr, avec des variantes dans le Witr.';
 
   @override
   String get salahTrainerWitrGuidanceMaliki =>
-      'Maliki practice commonly emphasizes Witr as a distinct odd closing prayer, often prayed as one rakah after shaf.';
+      'La pratique malikite présente le Witr comme une prière impaire distincte de clôture, souvent une seule rakah après le shaf.';
 
   @override
   String get salahTrainerWitrGuidanceHanbali =>
-      'Hanbali guidance allows multiple valid forms of Witr, including 1, 3, 5, and more, while keeping the prayer odd-numbered.';
+      'L’école hanbalite admet plusieurs formes valides de Witr — 1, 3, 5 rakahs et plus — tant que le nombre reste impair.';
 
   @override
   String get salahTrainerWitrNote1 =>
-      'Valid Witr forms differ across madhhabs and established teaching traditions.';
+      'Les formes valides du Witr diffèrent selon les madhhabs et les traditions d’enseignement établies.';
 
   @override
   String get salahTrainerWitrNote2 =>
-      'This trainer shows one common guided flow, not the only valid form.';
+      'Cet entraîneur montre un déroulé guidé courant, non l’unique forme valide.';
 
   @override
   String get salahTrainerPrayerJummahTitle => 'Jumu\'ah';
 
   @override
   String get salahTrainerPrayerJummahDescription =>
-      'The Friday congregational prayer that replaces Dhuhr for those obligated to attend.';
+      'La prière du vendredi en congrégation, qui remplace le Dhuhr pour ceux qui y sont tenus.';
 
   @override
   String get salahTrainerPrayerJummahSunnahRakahs =>
-      'Sunnah before and after vary';
+      'Les sunnah avant et après varient';
 
   @override
-  String get salahTrainerPrayerJummahFardRakahs => '2 Fard after khutbah';
+  String get salahTrainerPrayerJummahFardRakahs => '2 fard après la khutbah';
 
   @override
   String get salahTrainerPrayerJummahRecitationStyle =>
-      'Recited aloud in congregation.';
+      'Récitée à voix haute en congrégation.';
 
   @override
   String get salahTrainerPrayerJummahOverview =>
-      'Jumu\'ah includes the khutbah before the prayer and two rakahs prayed in congregation. The guided flow here focuses on the two prayer rakahs and reminds the user of the khutbah context.';
+      'La Jumu’ah comprend la khutbah avant la prière, puis deux rakahs en congrégation. Le déroulé guidé se concentre sur les deux rakahs et rappelle le contexte de la khutbah.';
 
   @override
   String get salahTrainerJummahGuidanceHanafi =>
-      'Hanafi guidance emphasizes the congregational obligation, khutbah conditions, and attending before the imam ascends the pulpit.';
+      'L’école hanafite insiste sur l’obligation de la congrégation, les conditions de la khutbah et l’arrivée avant que l’imam monte en chaire.';
 
   @override
   String get salahTrainerJummahGuidanceShafii =>
-      'Shafi\'i guidance places detailed conditions on congregation size, khutbah order, and settlement context.';
+      'L’école shaféite pose des conditions détaillées sur la taille de l’assemblée, l’ordre de la khutbah et le contexte de résidence.';
 
   @override
   String get salahTrainerJummahGuidanceMaliki =>
-      'Maliki guidance emphasizes the imam-led khutbah, congregation, and the public nature of Jumu\'ah.';
+      'L’école malikite met l’accent sur la khutbah dirigée par l’imam, la congrégation et le caractère public de la Jumu’ah.';
 
   @override
   String get salahTrainerJummahGuidanceHanbali =>
-      'Hanbali guidance emphasizes congregational attendance, khutbah attentiveness, and the replacement of Dhuhr by Jumu\'ah for those obligated.';
+      'L’école hanbalite insiste sur la présence à la congrégation, l’attention à la khutbah et le remplacement du Dhuhr par la Jumu’ah pour ceux qui y sont tenus.';
 
   @override
   String get salahTrainerJummahNote1 =>
-      'Jumu\'ah includes two khutbahs before the prayer itself.';
+      'La Jumu’ah comprend deux khutbahs avant la prière elle-même.';
 
   @override
   String get salahTrainerJummahNote2 =>
-      'If Jumu\'ah is missed or not obligatory in a person\'s circumstance, Dhuhr remains the fallback prayer.';
+      'Si la Jumu’ah est manquée ou non obligatoire dans la situation d’une personne, le Dhuhr reste la prière de repli.';
 
   @override
-  String get salahTrainerRecitationTakbirTitle => 'Opening Takbir';
+  String get salahTrainerRecitationTakbirTitle => 'Takbir d’ouverture';
 
   @override
   String get salahTrainerRecitationOpeningSupplicationTitle =>
-      'Opening Supplication';
+      'Invocation d’ouverture';
 
   @override
-  String get salahTrainerRecitationFatihahTitle => 'Surah al-Fatihah';
+  String get salahTrainerRecitationFatihahTitle => 'Sourate al-Fatiha';
 
   @override
-  String get salahTrainerRecitationRukuTitle => 'Ruku Dhikr';
+  String get salahTrainerRecitationRukuTitle => 'Dhikr du ruku';
 
   @override
   String get salahTrainerRecitationStandingAfterRukuTitle =>
-      'Standing After Ruku';
+      'Redressement après le ruku';
 
   @override
-  String get salahTrainerRecitationSujudTitle => 'Sujud Dhikr';
+  String get salahTrainerRecitationSujudTitle => 'Dhikr du sujud';
 
   @override
-  String get salahTrainerRecitationBetweenSujudTitle => 'Sitting Between Sujud';
+  String get salahTrainerRecitationBetweenSujudTitle =>
+      'Assise entre les deux sujuds';
 
   @override
   String get salahTrainerRecitationTashahhudTitle => 'Tashahhud';
@@ -43304,7 +43308,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get salahTrainerRecitationSalawatTitle => 'Salawat Ibrahimiyyah';
 
   @override
-  String get salahTrainerRecitationFinalDuaTitle => 'Final Dua';
+  String get salahTrainerRecitationFinalDuaTitle => 'Dua finale';
 
   @override
   String get salahTrainerRecitationQunutTitle => 'Dua al-Qunut';
@@ -43328,7 +43332,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get salahTrainerRecitationCategorySitting => 'Sitting';
 
   @override
-  String get salahTrainerRecitationCategoryFinalSitting => 'Final Sitting';
+  String get salahTrainerRecitationCategoryFinalSitting => 'Assise finale';
 
   @override
   String get salahTrainerRecitationCategoryWitr => 'Witr';
@@ -43337,219 +43341,223 @@ class AppLocalizationsFr extends AppLocalizations {
   String get salahTrainerRecitationCategoryClosing => 'Closing';
 
   @override
-  String get salahTrainerEssentialConditionsTitle => 'Conditions of salah';
+  String get salahTrainerEssentialConditionsTitle => 'Conditions de la salah';
 
   @override
   String get salahTrainerEssentialConditionsSummary =>
-      'Before salah begins, the foundations around it must be in place.';
+      'Avant que la salah commence, ses fondations doivent être en place.';
 
   @override
   String get salahTrainerEssentialConditionsBullet1 =>
-      'Salah time must have entered.';
+      'L’heure de la salah doit être entrée.';
 
   @override
   String get salahTrainerEssentialConditionsBullet2 =>
-      'The body, clothing, and place of salah should be clean.';
+      'Le corps, les vêtements et le lieu de la salah doivent être propres.';
 
   @override
   String get salahTrainerEssentialConditionsBullet3 =>
-      'Awrah should be covered appropriately.';
+      'La awrah doit être couverte convenablement.';
 
   @override
   String get salahTrainerEssentialConditionsBullet4 =>
-      'Face the qiblah as best as you can.';
+      'Orientez-vous vers la qiblah du mieux que vous pouvez.';
 
   @override
   String get salahTrainerEssentialConditionsBullet5 =>
-      'Make the intention in the heart for the salah you are offering.';
+      'Formez dans le cœur l’intention de la salah que vous accomplissez.';
 
   @override
-  String get salahTrainerEssentialInvalidatorsTitle => 'What invalidates salah';
+  String get salahTrainerEssentialInvalidatorsTitle =>
+      'Ce qui invalide la salah';
 
   @override
   String get salahTrainerEssentialInvalidatorsSummary =>
-      'Some things break salah and require starting again.';
+      'Certaines choses rompent la salah et obligent à recommencer.';
 
   @override
   String get salahTrainerEssentialInvalidatorsBullet1 =>
-      'Breaking wudu invalidates the salah.';
+      'Rompre les ablutions invalide la salah.';
 
   @override
   String get salahTrainerEssentialInvalidatorsBullet2 =>
-      'Intentional speaking unrelated to salah invalidates it.';
+      'Parler volontairement de choses étrangères à la salah l’invalide.';
 
   @override
   String get salahTrainerEssentialInvalidatorsBullet3 =>
-      'Large unnecessary movements break the calmness and can invalidate salah.';
+      'De grands mouvements inutiles rompent le calme et peuvent invalider la salah.';
 
   @override
   String get salahTrainerEssentialInvalidatorsBullet4 =>
-      'Intentionally eating or drinking invalidates salah.';
+      'Manger ou boire volontairement invalide la salah.';
 
   @override
   String get salahTrainerEssentialInvalidatorsBullet5 =>
-      'Losing awareness of the salah entirely or deliberately turning away from the qiblah invalidates it.';
+      'Perdre toute conscience de la salah ou se détourner délibérément de la qiblah l’invalide.';
 
   @override
-  String get salahTrainerEssentialLoudSilentTitle => 'Loud vs silent salahs';
+  String get salahTrainerEssentialLoudSilentTitle =>
+      'Salahs à voix haute et silencieuses';
 
   @override
   String get salahTrainerEssentialLoudSilentSummary =>
-      'Some salahs are recited aloud in the fard salah and others silently.';
+      'Certaines salahs se récitent à voix haute dans la prière fard, d’autres en silence.';
 
   @override
-  String get salahTrainerEssentialLoudSilentBullet1 => 'Fajr is recited aloud.';
+  String get salahTrainerEssentialLoudSilentBullet1 =>
+      'Le Fajr se récite à voix haute.';
 
   @override
   String get salahTrainerEssentialLoudSilentBullet2 =>
-      'Maghrib and Isha are recited aloud in the first two rakahs.';
+      'Le Maghrib et l’Isha se récitent à voix haute dans les deux premières rakahs.';
 
   @override
   String get salahTrainerEssentialLoudSilentBullet3 =>
-      'Dhuhr and Asr are recited silently.';
+      'Le Dhuhr et l’Asr se récitent en silence.';
 
   @override
   String get salahTrainerEssentialLoudSilentBullet4 =>
-      'A person praying alone may still follow the normal style of the salah.';
+      'Une personne qui prie seule peut suivre le style habituel de la salah.';
 
   @override
-  String get salahTrainerEssentialMistakesTitle => 'Common beginner mistakes';
+  String get salahTrainerEssentialMistakesTitle =>
+      'Erreurs fréquentes des débutants';
 
   @override
   String get salahTrainerEssentialMistakesSummary =>
-      'Many mistakes come from rushing or uncertainty rather than neglect.';
+      'Beaucoup d’erreurs viennent de la hâte ou de l’incertitude, non de la négligence.';
 
   @override
   String get salahTrainerEssentialMistakesBullet1 =>
-      'Rushing through ruku and sujud without pausing calmly.';
+      'Précipiter le ruku et le sujud sans marquer une pause calme.';
 
   @override
   String get salahTrainerEssentialMistakesBullet2 =>
-      'Not standing fully after ruku before going down to sujud.';
+      'Ne pas se redresser complètement après le ruku avant de descendre en sujud.';
 
   @override
   String get salahTrainerEssentialMistakesBullet3 =>
-      'Forgetting that al-Fatihah is recited in every rakah.';
+      'Oublier qu’al-Fatiha se récite dans chaque rakah.';
 
   @override
   String get salahTrainerEssentialMistakesBullet4 =>
-      'Confusing the final sitting with the middle sitting in 3- and 4-rakah prayers.';
+      'Confondre l’assise finale et l’assise médiane dans les prières de 3 et 4 rakahs.';
 
   @override
   String get salahTrainerEssentialMistakesBullet5 =>
-      'Letting worry about perfection remove the calmness of salah.';
+      'Laisser le souci de perfection ôter le calme de la salah.';
 
   @override
   String get salahTrainerEssentialIntentionTimingTitle =>
-      'Intention and salah timing';
+      'Intention et horaire de la salah';
 
   @override
   String get salahTrainerEssentialIntentionTimingSummary =>
-      'Salah is strongest when offered on time with presence.';
+      'La salah est la plus forte quand elle est accomplie à l’heure, avec présence.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet1 =>
-      'Intention is a quiet inward act, not a required spoken formula.';
+      'L’intention est un acte intérieur silencieux, non une formule à prononcer.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet2 =>
-      'Try to pray early in the prayer window when possible.';
+      'Essayez de prier tôt dans la plage horaire quand c’est possible.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet3 =>
-      'Build consistency before chasing complexity.';
+      'Construisez la régularité avant de chercher la complexité.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet4 =>
-      'If you are learning, steady accuracy matters more than speed.';
+      'Si vous apprenez, une exactitude posée compte plus que la vitesse.';
 
   @override
   String get salahTrainerSurahAlFatihahSummary =>
-      'The opening surah recited in every rakah of salah.';
+      'La sourate d’ouverture, récitée dans chaque rakah de la salah.';
 
   @override
   String get salahTrainerSurahAlFatihahReflection =>
-      'Al-Fatihah gathers praise, worship, dependence, and dua into one foundational surah repeated throughout the day.';
+      'Al-Fatiha rassemble louange, adoration, confiance et dua en une sourate fondatrice répétée tout au long de la journée.';
 
   @override
   String get salahTrainerSurahAlFilSummary =>
-      'A short surah about the defeat of the army of the elephant.';
+      'Une courte sourate sur la défaite de l’armée de l’éléphant.';
 
   @override
   String get salahTrainerSurahAlFilReflection =>
-      'This surah strengthens trust that Allah protects His sacred signs and can overturn overwhelming power.';
+      'Cette sourate affermit la confiance qu’Allah protège Ses signes sacrés et peut renverser une puissance écrasante.';
 
   @override
   String get salahTrainerSurahQurayshSummary =>
-      'A reminder to Quraysh to worship the Lord who secured and provided for them.';
+      'Un rappel à Quraysh d’adorer le Seigneur qui les a mis en sécurité et pourvus.';
 
   @override
   String get salahTrainerSurahQurayshReflection =>
-      'This surah joins gratitude to worship. Security and provision should deepen obedience, not forgetfulness.';
+      'Cette sourate lie la gratitude à l’adoration. La sécurité et la subsistance doivent approfondir l’obéissance, non l’oubli.';
 
   @override
   String get salahTrainerSurahAlMaunSummary =>
-      'A warning against neglecting prayer and withholding small acts of care.';
+      'Une mise en garde contre la négligence de la prière et le refus des petits gestes d’entraide.';
 
   @override
   String get salahTrainerSurahAlMaunReflection =>
-      'Salah without mercy and sincerity becomes hollow. This surah keeps ibadah tied to character.';
+      'Une salah sans miséricorde ni sincérité devient creuse. Cette sourate garde l’ibadah liée au caractère.';
 
   @override
   String get salahTrainerSurahAlKawtharSummary =>
-      'A short surah of abundance, salah, and sacrifice for Allah alone.';
+      'Une courte sourate sur l’abondance, la salah et le sacrifice pour Allah seul.';
 
   @override
   String get salahTrainerSurahAlKawtharReflection =>
-      'This surah teaches the heart to answer blessing with salah and sincere devotion.';
+      'Cette sourate apprend au cœur à répondre au bienfait par la salah et une dévotion sincère.';
 
   @override
   String get salahTrainerSurahAlKafirunSummary =>
-      'A clear declaration of worshipping Allah alone without compromise.';
+      'Une déclaration claire d’adorer Allah seul, sans compromis.';
 
   @override
   String get salahTrainerSurahAlKafirunReflection =>
-      'This surah steadies intention. Ibadah belongs to Allah alone, without negotiation or blending.';
+      'Cette sourate affermit l’intention. L’ibadah appartient à Allah seul, sans négociation ni mélange.';
 
   @override
   String get salahTrainerSurahAnNasrSummary =>
-      'A surah about Allah\'s help, victory, and ending success with praise and repentance.';
+      'Une sourate sur le secours d’Allah, la victoire, et une réussite conclue par la louange et le repentir.';
 
   @override
   String get salahTrainerSurahAnNasrReflection =>
-      'Even in victory, the believer responds with tasbih, gratitude, and repentance rather than self-congratulation.';
+      'Même dans la victoire, le croyant répond par le tasbih, la gratitude et le repentir plutôt que par l’autosatisfaction.';
 
   @override
   String get salahTrainerSurahAlMasadSummary =>
-      'A warning against arrogance, hostility, and relying on wealth.';
+      'Une mise en garde contre l’arrogance, l’hostilité et la confiance dans la richesse.';
 
   @override
   String get salahTrainerSurahAlMasadReflection =>
-      'This surah reminds the heart that lineage, wealth, and status do not protect a person from truth or accountability.';
+      'Cette sourate rappelle au cœur que la lignée, la richesse et le rang ne protègent personne de la vérité ni des comptes à rendre.';
 
   @override
   String get salahTrainerSurahAlIkhlasSummary =>
-      'A foundational surah on the oneness and uniqueness of Allah.';
+      'Une sourate fondatrice sur l’unicité et l’incomparabilité d’Allah.';
 
   @override
   String get salahTrainerSurahAlIkhlasReflection =>
-      'This surah purifies belief and centers the heart on Allah alone. It is short, but immense in meaning.';
+      'Cette sourate purifie la croyance et centre le cœur sur Allah seul. Courte, mais immense de sens.';
 
   @override
   String get salahTrainerSurahAlFalaqSummary =>
-      'A surah of seeking Allah\'s protection from external harms.';
+      'Une sourate pour chercher la protection d’Allah contre les maux extérieurs.';
 
   @override
   String get salahTrainerSurahAlFalaqReflection =>
-      'This surah trains the heart to seek refuge in Allah when harm, envy, darkness, or hidden evil feels close.';
+      'Cette sourate entraîne le cœur à chercher refuge auprès d’Allah quand le mal, l’envie, l’obscurité ou un danger caché se rapprochent.';
 
   @override
   String get salahTrainerSurahAnNasSummary =>
-      'A surah of seeking Allah\'s protection from inward whisperings.';
+      'Une sourate pour chercher la protection d’Allah contre les murmures intérieurs.';
 
   @override
   String get salahTrainerSurahAnNasReflection =>
-      'This surah builds inward vigilance. It reminds the believer to return to the Lord of humankind when whispers disturb the heart.';
+      'Cette sourate cultive la vigilance intérieure. Elle rappelle au croyant de revenir au Seigneur des hommes quand des murmures troublent le cœur.';
 
   @override
   String salahTrainerSurahStepTitle(Object name) {
@@ -43557,18 +43565,18 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get salahTrainerResumeTitle => 'Pick up where you left off';
+  String get salahTrainerResumeTitle => 'Reprenez où vous en étiez';
 
   @override
   String salahTrainerResumeSubtitle(Object step, Object total) {
-    return 'You reached step $step of $total.';
+    return 'Vous étiez à l’étape $step sur $total.';
   }
 
   @override
   String get salahTrainerResumeAction => 'Resume';
 
   @override
-  String get salahTrainerStartOverAction => 'Start over';
+  String get salahTrainerStartOverAction => 'Recommencer';
 
   @override
   String salahTrainerHubResumeSubtitle(
@@ -43576,11 +43584,11 @@ class AppLocalizationsFr extends AppLocalizations {
     Object total,
     Object surah,
   ) {
-    return 'Step $step of $total · $surah';
+    return 'Étape $step sur $total · $surah';
   }
 
   @override
-  String get salahTrainerSettingsTitle => 'Trainer settings';
+  String get salahTrainerSettingsTitle => 'Réglages de l’entraîneur';
 
   @override
   String get salahTrainerPaceLabel => 'Pace';
@@ -43596,10 +43604,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get salahTrainerPaceHint =>
-      'How long you rest in each posture after the recitation.';
+      'Le temps de repos dans chaque posture après la récitation.';
 
   @override
-  String get salahTrainerTasbihRepeatsLabel => 'Tasbih in ruku and sujud';
+  String get salahTrainerTasbihRepeatsLabel =>
+      'Tasbih dans le ruku et le sujud';
 
   @override
   String salahTrainerTasbihRepeatsValue(Object count) {
@@ -43607,21 +43616,21 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get salahTrainerFocusModeLabel => 'Hands-free focus';
+  String get salahTrainerFocusModeLabel => 'Concentration mains libres';
 
   @override
   String get salahTrainerFocusModeHint =>
-      'Large text, the screen stays awake, and the controls step aside.';
+      'Grand texte, écran toujours allumé, et les commandes s’effacent.';
 
   @override
-  String get salahTrainerExitFocusAction => 'Show controls';
+  String get salahTrainerExitFocusAction => 'Afficher les commandes';
 
   @override
-  String get salahTrainerEntryTakbirLabel => 'Say the takbir as you move';
+  String get salahTrainerEntryTakbirLabel => 'Dites le takbir en bougeant';
 
   @override
   String salahTrainerHoldLabel(Object seconds) {
-    return 'Hold · $seconds s';
+    return 'Maintien · $seconds s';
   }
 
   @override
@@ -43631,22 +43640,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get salahTrainerAudioSourceTts =>
-      'Spoken by your device’s Arabic voice until recordings ship.';
+      'Lu par la voix arabe de votre appareil en attendant les enregistrements.';
 
   @override
   String get salahTrainerAudioSourceSilent =>
-      'No Arabic voice on this device — read along with the highlight.';
+      'Pas de voix arabe sur cet appareil — suivez le texte surligné.';
 
   @override
-  String get salahTrainerCompletedTitle => 'Prayer complete';
+  String get salahTrainerCompletedTitle => 'Prière terminée';
 
   @override
   String salahTrainerCompletedBody(Object prayer) {
-    return 'You walked through every rakah of $prayer. Repeat it until the order feels natural, then pray it without the app.';
+    return 'Vous avez parcouru chaque rakah de $prayer. Répétez-la jusqu’à ce que l’ordre devienne naturel, puis priez-la sans l’application.';
   }
 
   @override
-  String get salahTrainerReviewStructureAction => 'Review the structure';
+  String get salahTrainerReviewStructureAction => 'Revoir la structure';
 
   @override
   String salahTrainerPracticeSurahAction(Object surah) {
@@ -43654,10 +43663,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get salahTrainerPrayAgainAction => 'Pray it again';
+  String get salahTrainerPrayAgainAction => 'La prier à nouveau';
 
   @override
-  String get salahTrainerJumpToRakahLabel => 'Jump to a rakah';
+  String get salahTrainerJumpToRakahLabel => 'Aller à une rakah';
 
   @override
   String get salahTrainerOptionalBadge => 'Optional';
@@ -43676,14 +43685,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get salahTrainerStructureTitle => 'Rakah by rakah';
+  String get salahTrainerStructureTitle => 'Rakah par rakah';
 
   @override
   String get salahTrainerStepsFocusHint =>
-      'Follow the order from top to bottom. Every rakah is listed with its postures.';
+      'Suivez l’ordre de haut en bas. Chaque rakah est listée avec ses postures.';
 
   @override
-  String get salahTrainerGuidanceNotesTitle => 'Guidance notes';
+  String get salahTrainerGuidanceNotesTitle => 'Notes d’orientation';
 
   @override
   String salahTrainerMadhhabGuidanceTitle(Object madhhab) {
@@ -43697,57 +43706,57 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String salahTrainerSurahMeta(Object number, Object count) {
-    return 'Surah $number · $count ayahs';
+    return 'Sourate $number · $count versets';
   }
 
   @override
-  String get salahTrainerPlayFullSurahAction => 'Play the surah';
+  String get salahTrainerPlayFullSurahAction => 'Écouter la sourate';
 
   @override
-  String get salahTrainerPlayCurrentAyahAction => 'Play this ayah';
+  String get salahTrainerPlayCurrentAyahAction => 'Écouter ce verset';
 
   @override
-  String get salahTrainerSlowPlaybackLabel => 'Slow recitation';
+  String get salahTrainerSlowPlaybackLabel => 'Récitation lente';
 
   @override
-  String get salahTrainerPauseAfterAyahLabel => 'Pause after each ayah';
+  String get salahTrainerPauseAfterAyahLabel => 'Pause après chaque verset';
 
   @override
   String salahTrainerRepeatTimesLabel(Object count) {
-    return 'Repeat ×$count';
+    return 'Répéter ×$count';
   }
 
   @override
   String get salahTrainerModeListen => 'Listen';
 
   @override
-  String get salahTrainerModeRepeat => 'Repeat after';
+  String get salahTrainerModeRepeat => 'Répéter après';
 
   @override
   String get salahTrainerModePractice => 'Practice';
 
   @override
-  String get salahTrainerModeMemory => 'From memory';
+  String get salahTrainerModeMemory => 'De mémoire';
 
   @override
   String get salahTrainerModeListenHint =>
-      'Hear each ayah with the words lit as they are recited.';
+      'Écoutez chaque verset, les mots s’illuminant à mesure qu’ils sont récités.';
 
   @override
   String get salahTrainerModeRepeatHint =>
-      'The recitation pauses after every ayah so you can say it back.';
+      'La récitation marque une pause après chaque verset pour que vous le redisiez.';
 
   @override
   String get salahTrainerModePracticeHint =>
-      'Arabic and meaning only; the transliteration is hidden.';
+      'Arabe et sens seulement ; la translittération est masquée.';
 
   @override
   String get salahTrainerModeMemoryHint =>
-      'Arabic only. Recite along, then check yourself.';
+      'Arabe seul. Récitez en même temps, puis vérifiez-vous.';
 
   @override
   String salahTrainerNowOnAyah(Object number) {
-    return 'Now on ayah $number';
+    return 'Verset $number en cours';
   }
 
   @override
@@ -43756,7 +43765,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get salahTrainerYourProgressLabel => 'Your progress with this surah';
+  String get salahTrainerYourProgressLabel =>
+      'Votre progression sur cette sourate';
 
   @override
   String get salahTrainerListenAction => 'Listen';
@@ -43765,39 +43775,39 @@ class AppLocalizationsFr extends AppLocalizations {
   String get salahTrainerStopAction => 'Stop';
 
   @override
-  String get dhikrLandingSubtitle => 'Remembrance, one bead at a time.';
+  String get dhikrLandingSubtitle => 'Le rappel d’Allah, une perle à la fois.';
 
   @override
   String dhikrNowEyebrowAfterPrayer(String prayer) {
-    return 'Now · after $prayer';
+    return 'Maintenant · après $prayer';
   }
 
   @override
-  String get dhikrNowEyebrowContinue => 'Continue where you left off';
+  String get dhikrNowEyebrowContinue => 'Reprenez où vous en étiez';
 
   @override
-  String get dhikrNowEyebrowAnytime => 'Whenever you finish a prayer';
+  String get dhikrNowEyebrowAnytime => 'Après chaque prière';
 
   @override
-  String get dhikrNowEyebrowMorning => 'Now · morning';
+  String get dhikrNowEyebrowMorning => 'Maintenant · matin';
 
   @override
-  String get dhikrNowEyebrowEvening => 'Now · evening';
+  String get dhikrNowEyebrowEvening => 'Maintenant · soir';
 
   @override
   String dhikrNowMeta(int steps, int minutes) {
-    return '$steps adhkar · about $minutes min';
+    return '$steps adhkar · environ $minutes min';
   }
 
   @override
-  String get dhikrNowNotYetToday => 'not yet today';
+  String get dhikrNowNotYetToday => 'pas encore aujourd’hui';
 
   @override
-  String get dhikrNowDoneToday => 'done today';
+  String get dhikrNowDoneToday => 'fait aujourd’hui';
 
   @override
   String dhikrNowStepOf(int current, int total) {
-    return 'Step $current of $total';
+    return 'Étape $current sur $total';
   }
 
   @override
@@ -43807,47 +43817,47 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dhikrContinueAction => 'Continue';
 
   @override
-  String get dhikrFreeCountAction => 'Free count';
+  String get dhikrFreeCountAction => 'Compteur libre';
 
   @override
-  String get dhikrFreeCountTitle => 'Free count';
+  String get dhikrFreeCountTitle => 'Compteur libre';
 
   @override
   String dhikrTodayOfGoal(String goal) {
-    return 'of $goal today';
+    return 'sur $goal aujourd’hui';
   }
 
   @override
-  String get dhikrStreakCaption => 'day streak';
+  String get dhikrStreakCaption => 'jours d’affilée';
 
   @override
-  String get dhikrSessionsTodayCaption => 'sessions today';
+  String get dhikrSessionsTodayCaption => 'sessions aujourd’hui';
 
   @override
   String get dhikrRoutinesTitle => 'Routines';
 
   @override
-  String get dhikrRoutineAfterSalahTitle => 'After salah';
+  String get dhikrRoutineAfterSalahTitle => 'Après la salah';
 
   @override
   String dhikrRoutineAfterSalahSubtitle(int minutes) {
-    return '33 · 33 · 33, then one closing · about $minutes min';
+    return '33 · 33 · 33, puis une clôture · environ $minutes min';
   }
 
   @override
-  String get dhikrRoutineMorningTitle => 'Morning adhkar';
+  String get dhikrRoutineMorningTitle => 'Adhkar du matin';
 
   @override
   String dhikrRoutineMorningSubtitle(int count) {
-    return 'After Fajr · $count adhkar';
+    return 'Après le Fajr · $count adhkar';
   }
 
   @override
-  String get dhikrRoutineEveningTitle => 'Evening adhkar';
+  String get dhikrRoutineEveningTitle => 'Adhkar du soir';
 
   @override
   String dhikrRoutineEveningSubtitle(int count) {
-    return 'After ʿAsr until ʿIsha · $count adhkar';
+    return 'Après le ʿAsr jusqu’au ʿIsha · $count adhkar';
   }
 
   @override
@@ -43860,20 +43870,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String dhikrRoutineAfterPrayerEyebrow(String prayer) {
-    return 'After salah · $prayer';
+    return 'Après la salah · $prayer';
   }
 
   @override
-  String get dhikrFreeTasbihTitle => 'Free tasbih';
+  String get dhikrFreeTasbihTitle => 'Tasbih libre';
 
   @override
   String dhikrLastSessionValue(String phrase, String count, String time) {
-    return 'Last: $phrase $count · $time';
+    return 'Dernière : $phrase $count · $time';
   }
 
   @override
   String dhikrInProgressValue(String phrase, String current, String target) {
-    return 'In progress: $phrase $current of $target';
+    return 'En cours : $phrase $current sur $target';
   }
 
   @override
@@ -43885,19 +43895,19 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dhikrThisMonthTitle => 'This month';
+  String get dhikrThisMonthTitle => 'Ce mois-ci';
 
   @override
   String get dhikrInsightsAction => 'Insights';
 
   @override
   String dhikrHeatmapSummary(int weeks, int days) {
-    return '$weeks weeks · $days days with dhikr';
+    return '$weeks semaines · $days jours avec dhikr';
   }
 
   @override
   String dhikrLoopValue(int current, int total) {
-    return 'loop $current of $total';
+    return 'tour $current sur $total';
   }
 
   @override
@@ -43906,19 +43916,19 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dhikrTapAnywhere => 'Tap anywhere here to count';
+  String get dhikrTapAnywhere => 'Touchez n’importe où ici pour compter';
 
   @override
   String get dhikrUndoAction => 'Undo';
 
   @override
   String dhikrFinishWithCount(String count) {
-    return 'Finish · $count';
+    return 'Terminer · $count';
   }
 
   @override
   String dhikrRoutineNextEyebrow(String count) {
-    return 'Next · moves on at $count';
+    return 'Suivant · passe à $count';
   }
 
   @override
@@ -43928,11 +43938,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String dhikrRoutineLastStepHint(String count) {
-    return 'Last step · finishes at $count';
+    return 'Dernière étape · se termine à $count';
   }
 
   @override
-  String get dhikrRoutineSkipStepAction => 'Skip this step';
+  String get dhikrRoutineSkipStepAction => 'Passer cette étape';
 
   @override
   String dhikrRoutineCompleteTitle(String routine) {
@@ -43940,7 +43950,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dhikrSessionCompleteTitle => 'Session complete';
+  String get dhikrSessionCompleteTitle => 'Session terminée';
 
   @override
   String get dhikrCompleteRemembrances => 'remembrances';
@@ -43950,36 +43960,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String dhikrCompleteTodayLine(String current, String goal) {
-    return '$current of $goal today · logged to your journey';
+    return '$current sur $goal aujourd’hui · ajouté à votre parcours';
   }
 
   @override
   String get dhikrDoneAction => 'Done';
 
   @override
-  String get dhikrKeepCountingAction => 'Keep counting';
+  String get dhikrKeepCountingAction => 'Continuer à compter';
 
   @override
-  String get dhikrMenuTooltip => 'More options';
+  String get dhikrMenuTooltip => 'Plus d’options';
 
   @override
-  String get dhikrSessionLabelPostSalah => 'Post-salah dhikr';
+  String get dhikrSessionLabelPostSalah => 'Dhikr après la salah';
 
   @override
-  String get dhikrInsightsTitle => 'Your Remembrance';
+  String get dhikrInsightsTitle => 'Votre rappel d’Allah';
 
   @override
   String dhikrInsightsSubtitle(String date) {
-    return 'Counted since $date';
+    return 'Compté depuis le $date';
   }
 
   @override
   String get dhikrInsightsSubtitleEmpty =>
-      'Your history begins with the first finished session.';
+      'Votre historique commence avec la première session terminée.';
 
   @override
   String dhikrInsightsThisWeekCaption(String value) {
-    return 'this week · last week $value';
+    return 'cette semaine · semaine dernière $value';
   }
 
   @override
@@ -43989,36 +43999,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String dhikrInsightsStreakCaption(String value) {
-    return 'current streak · best $value';
+    return 'série en cours · record $value';
   }
 
   @override
-  String get dhikrInsightsLifetimeCaption => 'lifetime remembrances';
+  String get dhikrInsightsLifetimeCaption => 'rappels au total';
 
   @override
   String dhikrInsightsFavoriteCaption(String count) {
-    return 'most repeated · $count';
+    return 'le plus répété · $count';
   }
 
   @override
-  String get dhikrInsightsWeekTitle => 'This week';
+  String get dhikrInsightsWeekTitle => 'Cette semaine';
 
   @override
   String dhikrInsightsGoalPerDay(String goal) {
-    return 'goal $goal a day';
+    return 'objectif $goal par jour';
   }
 
   @override
-  String get dhikrInsightsByRoutineTitle => 'By routine';
+  String get dhikrInsightsByRoutineTitle => 'Par routine';
 
   @override
   String dhikrInsightsRoutineDays(String done, String total) {
-    return '$done of $total days';
+    return '$done jours sur $total';
   }
 
   @override
   String dhikrInsightsRoutineRuns(String done, String total) {
-    return '$done of $total prayers';
+    return '$done prières sur $total';
   }
 
   @override
@@ -44028,226 +44038,226 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String dhikrInsightsObservationQuiet(String routine, int minutes) {
-    return '$routine is the quiet gap this week. It takes about $minutes min.';
+    return '$routine est le creux discret de la semaine. Environ $minutes min suffisent.';
   }
 
   @override
   String get dhikrInsightsObservationSteady =>
-      'A steady week. Keep the rhythm.';
+      'Une semaine régulière. Gardez le rythme.';
 
   @override
-  String get dhikrRoutineSleepTitle => 'Before sleep';
+  String get dhikrRoutineSleepTitle => 'Avant de dormir';
 
   @override
   String dhikrRoutineSleepSubtitle(int count) {
-    return 'After ʿIsha · $count adhkar';
+    return 'Après le ʿIsha · $count adhkar';
   }
 
   @override
-  String get dhikrNowEyebrowSleep => 'Now · before sleep';
+  String get dhikrNowEyebrowSleep => 'Maintenant · avant de dormir';
 
   @override
   String get salahTrainerNoteTakbirHanafi =>
-      'Raise the hands to the ears for the opening takbir, then fold them below the navel, right over left.';
+      'Levez les mains jusqu’aux oreilles pour le takbir d’ouverture, puis croisez-les sous le nombril, la droite sur la gauche.';
 
   @override
   String get salahTrainerNoteTakbirShafii =>
-      'Raise the hands to shoulder level, then fold them on the chest or just below it, right over left.';
+      'Levez les mains à hauteur des épaules, puis croisez-les sur la poitrine ou juste en dessous, la droite sur la gauche.';
 
   @override
   String get salahTrainerNoteTakbirMaliki =>
-      'Raise the hands to shoulder level. In the obligatory prayer many Malikis then let the arms rest at the sides (sadl); folding them is also accepted.';
+      'Levez les mains à hauteur des épaules. Dans la prière obligatoire, beaucoup de malikites laissent ensuite les bras le long du corps (sadl) ; les croiser est aussi admis.';
 
   @override
   String get salahTrainerNoteTakbirHanbali =>
-      'Raise the hands to shoulder level, then fold them below the navel, right over left.';
+      'Levez les mains à hauteur des épaules, puis croisez-les sous le nombril, la droite sur la gauche.';
 
   @override
   String get salahTrainerNoteOpeningHanafi =>
-      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+      'Récitez Subhanaka à voix basse avant al-Fatiha, dans la première rakah seulement.';
 
   @override
   String get salahTrainerNoteOpeningShafii =>
-      'The opening dua commonly taught is Wajjahtu wajhiya, recited quietly in the first rakah.';
+      'L’invocation d’ouverture couramment enseignée est Wajjahtu wajhiya, récitée à voix basse dans la première rakah.';
 
   @override
   String get salahTrainerNoteOpeningMaliki =>
-      'No opening dua is recited; after the takbir, go straight to al-Fatihah.';
+      'Aucune invocation d’ouverture n’est récitée ; après le takbir, passez directement à al-Fatiha.';
 
   @override
   String get salahTrainerNoteOpeningHanbali =>
-      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+      'Récitez Subhanaka à voix basse avant al-Fatiha, dans la première rakah seulement.';
 
   @override
   String get salahTrainerNoteFatihahHanafi =>
-      'Say the bismillah quietly before reciting, and say Amin quietly at the end.';
+      'Dites la basmala à voix basse avant de réciter, et dites Amin à voix basse à la fin.';
 
   @override
   String get salahTrainerNoteFatihahShafii =>
-      'The bismillah is part of al-Fatihah and is recited aloud in the loud prayers; say Amin aloud after it.';
+      'La basmala fait partie d’al-Fatiha et se récite à voix haute dans les prières à voix haute ; dites Amin à voix haute ensuite.';
 
   @override
   String get salahTrainerNoteFatihahMaliki =>
-      'The bismillah is commonly left out in the obligatory prayer; say Amin quietly.';
+      'La basmala est généralement omise dans la prière obligatoire ; dites Amin à voix basse.';
 
   @override
   String get salahTrainerNoteFatihahHanbali =>
-      'Say the bismillah quietly before reciting, and say Amin aloud in the loud prayers.';
+      'Dites la basmala à voix basse avant de réciter, et dites Amin à voix haute dans les prières à voix haute.';
 
   @override
   String get salahTrainerNoteRukuHanafi =>
-      'Bow without raising the hands. Grip the knees with the fingers spread and keep the back level.';
+      'Inclinez-vous sans lever les mains. Saisissez les genoux, doigts écartés, et gardez le dos droit.';
 
   @override
   String get salahTrainerNoteRukuShafii =>
-      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+      'Levez les mains aux épaules avec le takbir en vous inclinant, puis saisissez les genoux et gardez le dos droit.';
 
   @override
   String get salahTrainerNoteRukuMaliki =>
-      'Bow without raising the hands, grip the knees, and keep the back level.';
+      'Inclinez-vous sans lever les mains, saisissez les genoux et gardez le dos droit.';
 
   @override
   String get salahTrainerNoteRukuHanbali =>
-      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+      'Levez les mains aux épaules avec le takbir en vous inclinant, puis saisissez les genoux et gardez le dos droit.';
 
   @override
   String get salahTrainerNoteSittingHanafi =>
-      'Sit on the left foot with the right foot upright (iftirash) in every sitting.';
+      'Asseyez-vous sur le pied gauche, le pied droit dressé (iftirash), à chaque assise.';
 
   @override
   String get salahTrainerNoteSittingShafii =>
-      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+      'Asseyez-vous sur le pied gauche, le pied droit dressé (iftirash), ici et au premier tashahhud.';
 
   @override
   String get salahTrainerNoteSittingMaliki =>
-      'Sit with the left hip on the ground and the feet out to the right (tawarruk) in every sitting.';
+      'Asseyez-vous la hanche gauche au sol, les pieds vers la droite (tawarruk), à chaque assise.';
 
   @override
   String get salahTrainerNoteSittingHanbali =>
-      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+      'Asseyez-vous sur le pied gauche, le pied droit dressé (iftirash), ici et au premier tashahhud.';
 
   @override
   String get salahTrainerNoteTashahhudHanafi =>
-      'Raise the index finger at \'la ilaha\' and lower it at \'illa Allah\'. The final sitting is also in iftirash.';
+      'Levez l’index à « la ilaha » et abaissez-le à « illa Allah ». L’assise finale se fait aussi en iftirash.';
 
   @override
   String get salahTrainerNoteTashahhudShafii =>
-      'Raise the index finger at \'illa Allah\' and keep it raised. In the final tashahhud sit in tawarruk, the left hip on the ground.';
+      'Levez l’index à « illa Allah » et gardez-le levé. Au tashahhud final, asseyez-vous en tawarruk, la hanche gauche au sol.';
 
   @override
   String get salahTrainerNoteTashahhudMaliki =>
-      'Move the index finger gently from side to side through the tashahhud, seated in tawarruk.';
+      'Remuez doucement l’index d’un côté à l’autre pendant le tashahhud, assis en tawarruk.';
 
   @override
   String get salahTrainerNoteTashahhudHanbali =>
-      'Point the index finger whenever Allah\'s name is said. Sit in tawarruk only in the final tashahhud of a prayer with two.';
+      'Pointez l’index chaque fois que le nom d’Allah est prononcé. Ne vous asseyez en tawarruk qu’au tashahhud final d’une prière qui en compte deux.';
 
   @override
   String get salahTrainerNoteTaslimHanafi =>
-      'Both salams are required (wajib); turn the head fully to each side.';
+      'Les deux salams sont requis (wajib) ; tournez pleinement la tête de chaque côté.';
 
   @override
   String get salahTrainerNoteTaslimShafii =>
-      'The first salam completes the prayer; the second is sunnah.';
+      'Le premier salam conclut la prière ; le second est sunnah.';
 
   @override
   String get salahTrainerNoteTaslimMaliki =>
-      'A single salam to the right completes the prayer; Malikis do not add a second.';
+      'Un seul salam vers la droite conclut la prière ; les malikites n’en ajoutent pas de second.';
 
   @override
   String get salahTrainerNoteTaslimHanbali =>
-      'Both salams are required; turn the head fully to each side.';
+      'Les deux salams sont requis ; tournez pleinement la tête de chaque côté.';
 
   @override
   String get salahTrainerNoteFajrQunutShafii =>
-      'Qunut in Fajr is a confirmed sunnah: recite it after rising from ruku in the second rakah, with the hands raised.';
+      'Le Qunut du Fajr est une sunnah confirmée : récitez-le après le redressement du ruku de la seconde rakah, mains levées.';
 
   @override
   String get salahTrainerNoteFajrQunutMaliki =>
-      'Qunut in Fajr is recommended: recite it quietly before ruku in the second rakah.';
+      'Le Qunut du Fajr est recommandé : récitez-le à voix basse avant le ruku de la seconde rakah.';
 
   @override
   String get salahTrainerStepOpeningWajjahtuTranslation =>
-      'I have turned my face toward the One who created the heavens and the earth, inclining to truth, and I am not of those who associate others with Allah. My prayer, my rites, my living and my dying are for Allah, Lord of the worlds. He has no partner; so I have been commanded, and I am of the Muslims.';
+      'J’ai tourné mon visage vers Celui qui a créé les cieux et la terre, en monothéiste sincère, et je ne suis pas de ceux qui associent. Ma prière, mes rites, ma vie et ma mort appartiennent à Allah, Seigneur des mondes. Il n’a aucun associé ; c’est ce qui m’a été ordonné, et je suis du nombre des musulmans.';
 
   @override
   String salahTrainerMadhhabFollowingLabel(Object madhhab) {
-    return 'Notes follow the $madhhab school. Change it under Settings › Salah.';
+    return 'Les notes suivent l’école $madhhab. Modifiez-la dans Réglages › Salah.';
   }
 
   @override
-  String get dhikrBuilderTitle => 'New routine';
+  String get dhikrBuilderTitle => 'Nouvelle routine';
 
   @override
-  String get dhikrBuilderEditTitle => 'Edit Routine';
+  String get dhikrBuilderEditTitle => 'Modifier la routine';
 
   @override
   String get dhikrBuilderSubtitle =>
-      'Phrases and adhkar in the order you say them.';
+      'Les phrases et adhkar dans l’ordre où vous les dites.';
 
   @override
   String get dhikrBuilderNameLabel => 'Name';
 
   @override
   String get dhikrBuilderNameHint =>
-      'Evening tasbih, after Fajr, on the way home…';
+      'Tasbih du soir, après le Fajr, sur le chemin du retour…';
 
   @override
   String get dhikrBuilderStepsTitle => 'Steps';
 
   @override
   String get dhikrBuilderStepsEmpty =>
-      'Add the phrases and adhkar you want to count, in order.';
+      'Ajoutez les phrases et adhkar à compter, dans l’ordre.';
 
   @override
-  String get dhikrBuilderAddStepAction => 'Add step';
+  String get dhikrBuilderAddStepAction => 'Ajouter une étape';
 
   @override
-  String get dhikrBuilderSaveAction => 'Save routine';
+  String get dhikrBuilderSaveAction => 'Enregistrer la routine';
 
   @override
-  String get dhikrBuilderDeleteAction => 'Delete routine';
+  String get dhikrBuilderDeleteAction => 'Supprimer la routine';
 
   @override
-  String get dhikrBuilderDeleteTitle => 'Delete this routine?';
+  String get dhikrBuilderDeleteTitle => 'Supprimer cette routine ?';
 
   @override
   String get dhikrBuilderDeleteBody =>
-      'Its past sessions stay in your history.';
+      'Ses sessions passées restent dans votre historique.';
 
   @override
-  String get dhikrBuilderMoveUpTooltip => 'Move up';
+  String get dhikrBuilderMoveUpTooltip => 'Monter';
 
   @override
-  String get dhikrBuilderMoveDownTooltip => 'Move down';
+  String get dhikrBuilderMoveDownTooltip => 'Descendre';
 
   @override
-  String get dhikrBuilderRemoveTooltip => 'Remove step';
+  String get dhikrBuilderRemoveTooltip => 'Retirer l’étape';
 
   @override
-  String get dhikrBuilderCountTooltip => 'Repeat count';
+  String get dhikrBuilderCountTooltip => 'Nombre de répétitions';
 
   @override
-  String get dhikrBuilderCountSheetTitle => 'Repeat count';
+  String get dhikrBuilderCountSheetTitle => 'Nombre de répétitions';
 
   @override
-  String get dhikrBuilderNeedsName => 'Give the routine a name.';
+  String get dhikrBuilderNeedsName => 'Donnez un nom à la routine.';
 
   @override
-  String get dhikrBuilderNeedsSteps => 'Add at least one step.';
+  String get dhikrBuilderNeedsSteps => 'Ajoutez au moins une étape.';
 
   @override
-  String get dhikrBuilderNewRowTitle => 'New routine';
+  String get dhikrBuilderNewRowTitle => 'Nouvelle routine';
 
   @override
   String get dhikrBuilderNewRowSubtitle =>
-      'Build your own from phrases and adhkar';
+      'Composez la vôtre à partir de phrases et d’adhkar';
 
   @override
-  String get dhikrBuilderEditTooltip => 'Edit routine';
+  String get dhikrBuilderEditTooltip => 'Modifier la routine';
 
   @override
-  String get dhikrBuilderSheetTitle => 'Add a step';
+  String get dhikrBuilderSheetTitle => 'Ajouter une étape';
 
   @override
   String get dhikrBuilderSegmentPhrases => 'Phrases';
@@ -44259,83 +44269,85 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dhikrBuilderSegmentCustom => 'Custom';
 
   @override
-  String get dhikrBuilderSearchHint => 'Search adhkar';
+  String get dhikrBuilderSearchHint => 'Rechercher des adhkar';
 
   @override
   String get dhikrBuilderCustomLabel => 'Label';
 
   @override
-  String get dhikrBuilderCustomArabic => 'Arabic (optional)';
+  String get dhikrBuilderCustomArabic => 'Arabe (facultatif)';
 
   @override
-  String get dhikrBuilderCustomTransliteration => 'Transliteration (optional)';
+  String get dhikrBuilderCustomTransliteration =>
+      'Translittération (facultatif)';
 
   @override
-  String get dhikrBuilderCustomMeaning => 'Meaning (optional)';
+  String get dhikrBuilderCustomMeaning => 'Sens (facultatif)';
 
   @override
-  String get dhikrBuilderCustomCount => 'Repeat count';
+  String get dhikrBuilderCustomCount => 'Nombre de répétitions';
 
   @override
-  String get dhikrBuilderCustomAddAction => 'Add to routine';
+  String get dhikrBuilderCustomAddAction => 'Ajouter à la routine';
 
   @override
-  String get dhikrCustomRoutineFallbackName => 'My routine';
+  String get dhikrCustomRoutineFallbackName => 'Ma routine';
 
   @override
-  String get divineLifeReflectionModeTitle => 'Reflection Mode';
+  String get divineLifeReflectionModeTitle => 'Mode réflexion';
 
   @override
-  String get divineLifeReflectionModeSubtitle => 'Quiet, focused reading';
+  String get divineLifeReflectionModeSubtitle =>
+      'Une lecture calme et concentrée';
 
   @override
   String get worldAtmosphereLayersSubtitle =>
-      'A simple view of layered sky structure and protection.';
+      'Une vue simple des couches du ciel et de leur protection.';
 
   @override
   String get worldSignsExplorerSubtitle =>
-      'Browse creation by broad domains and move into lessons.';
+      'Parcourez la création par grands domaines et entrez dans les leçons.';
 
   @override
-  String get worldDeepOceanTitle => 'Deep Ocean Explorer';
+  String get worldDeepOceanTitle => 'Explorateur des profondeurs';
 
   @override
   String get worldDeepOceanSubtitle =>
-      'A vertical reflection on depth, darkness, and hidden life.';
+      'Une méditation verticale sur la profondeur, l’obscurité et la vie cachée.';
 
   @override
-  String get worldCosmicScaleTitle => 'Cosmic Scale Explorer';
+  String get worldCosmicScaleTitle => 'Explorateur des échelles cosmiques';
 
   @override
   String get worldCosmicScaleSubtitle =>
-      'From tiny to vast, observe proportion and perspective.';
+      'De l’infime à l’immense, observez proportions et perspectives.';
 
   @override
   String get worldMuslimScientistsSubtitle =>
-      'Curiosity, observation, and disciplined inquiry in Muslim scholarship.';
+      'Curiosité, observation et rigueur dans l’érudition musulmane.';
 
   @override
   String worldReflectionModeProgress(int current, int total) {
-    return '$current of $total';
+    return '$current sur $total';
   }
 
   @override
   String get worldReflectionModeEmpty =>
-      'No reflection lessons are available yet.';
+      'Aucune leçon de réflexion n’est disponible pour le moment.';
 
   @override
-  String get quranUniverseTitle => 'Qur\'an Universe';
+  String get quranUniverseTitle => 'Univers du Qur’an';
 
   @override
   String get quranUniverseSubtitle =>
-      'Connections between verses, prophets, themes, places, lessons, and habits.';
+      'Les liens entre versets, prophètes, thèmes, lieux, leçons et habitudes.';
 
   @override
   String get knowledgeConstellationSubtitle =>
-      'An interactive map linking Qur\'an, Hadith, Prophets, and Themes.';
+      'Une carte interactive reliant Qur’an, hadith, prophètes et thèmes.';
 
   @override
-  String get babyNamesDetailUnavailable => 'Unable to open details.';
+  String get babyNamesDetailUnavailable => 'Impossible d’ouvrir les détails.';
 
   @override
   String get kidsDoorStoriesTitle => 'Stories';
