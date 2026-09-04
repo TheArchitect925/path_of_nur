@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:path_of_nur/core/prayer/prayer_preferences.dart';
 import 'package:path_of_nur/features/learn/salah/application/salah_trainer_provider.dart';
 import 'package:path_of_nur/features/learn/salah/data/salah_trainer_data.dart';
 import 'package:path_of_nur/features/learn/salah/models/salah_trainer_models.dart';
@@ -8,12 +9,15 @@ import 'package:path_of_nur/l10n/app_localizations_en.dart';
 
 void main() {
   /// English content without a locale store behind it.
-  ProviderContainer makeContainer() {
+  ProviderContainer makeContainer({
+    PrayerMadhab madhhab = PrayerMadhab.hanafi,
+  }) {
     final container = ProviderContainer(
       overrides: [
         salahTrainerContentProvider.overrideWithValue(
           buildSalahTrainerContent(AppLocalizationsEn()),
         ),
+        salahTrainerMadhhabProvider.overrideWithValue(madhhab),
       ],
     );
     addTearDown(container.dispose);
@@ -152,5 +156,110 @@ void main() {
         }
       }
     }
+  });
+
+  group('madhhab', () {
+    List<String> fajrRakahTwo(ProviderContainer container) =>
+        stepsFor(container, SalahPrayerId.fajr)
+            .where((item) => item.rakahNumber == 2)
+            .map((item) => item.step.id)
+            .toList();
+
+    test(
+      'Shafi\'i Fajr recites qunut after rising from ruku, opens with Wajjahtu',
+      () {
+        final container = makeContainer(madhhab: PrayerMadhab.shafii);
+        final ids = fajrRakahTwo(container);
+
+        expect(
+          ids.indexOf('qunut_fajr'),
+          ids.indexOf('standing_after_ruku') + 1,
+        );
+        final opening = stepsFor(
+          container,
+          SalahPrayerId.fajr,
+        ).firstWhere((item) => item.step.id == 'opening_supplication');
+        expect(opening.step.segments.single.id, 'opening_wajjahtu');
+        expect(
+          opening.step.segments.single.audioAssetPath,
+          salahAdhkarAssetPath('opening_wajjahtu'),
+        );
+        expect(ids.last, 'taslim_left');
+      },
+    );
+
+    test(
+      'Maliki Fajr puts qunut before ruku, skips the opening dua and the second salam',
+      () {
+        final container = makeContainer(madhhab: PrayerMadhab.maliki);
+        final ids = fajrRakahTwo(container);
+
+        expect(ids.indexOf('qunut_fajr'), ids.indexOf('ruku') - 1);
+        expect(ids, isNot(contains('taslim_left')));
+        expect(ids.last, 'taslim_right');
+        final all = stepsFor(
+          container,
+          SalahPrayerId.fajr,
+        ).map((item) => item.step.id);
+        expect(all, isNot(contains('opening_supplication')));
+        final qunut = stepsFor(
+          container,
+          SalahPrayerId.fajr,
+        ).firstWhere((item) => item.step.id == 'qunut_fajr');
+        expect(qunut.step.isOptional, isTrue);
+        expect(qunut.step.madhhabNotes[PrayerMadhab.maliki], isNotNull);
+      },
+    );
+
+    test('Hanafi and Hanbali Fajr have no qunut and keep Subhanaka', () {
+      for (final madhhab in [PrayerMadhab.hanafi, PrayerMadhab.hanbali]) {
+        final container = makeContainer(madhhab: madhhab);
+        final ids = fajrRakahTwo(container);
+        expect(ids, isNot(contains('qunut_fajr')), reason: madhhab.name);
+        final opening = stepsFor(
+          container,
+          SalahPrayerId.fajr,
+        ).firstWhere((item) => item.step.id == 'opening_supplication');
+        expect(opening.step.segments.single.id, 'opening_supplication');
+      }
+    });
+
+    test('qunut is only added to Fajr', () {
+      final container = makeContainer(madhhab: PrayerMadhab.shafii);
+      for (final prayer in [
+        SalahPrayerId.dhuhr,
+        SalahPrayerId.asr,
+        SalahPrayerId.isha,
+      ]) {
+        expect(
+          stepsFor(container, prayer).map((item) => item.step.id),
+          isNot(contains('qunut_fajr')),
+          reason: prayer.name,
+        );
+      }
+    });
+
+    test('every step note is written for the school it is shown to', () {
+      final content = buildSalahTrainerContent(AppLocalizationsEn());
+      final noted = <String>{};
+      for (final prayer in content.prayers) {
+        for (final rakah in prayer.guidedRakahs) {
+          for (final step in rakah.steps) {
+            if (step.madhhabNotes.isNotEmpty) {
+              noted.add(step.id);
+              expect(
+                step.madhhabNotes.keys,
+                PrayerMadhab.values.toSet(),
+                reason: '${step.id} notes every school',
+              );
+            }
+          }
+        }
+      }
+      expect(
+        noted,
+        containsAll(['takbir_al_ihram', 'ruku', 'tashahhud', 'taslim_right']),
+      );
+    });
   });
 }

@@ -20491,7 +20491,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'ڈیفالٹ اذان کی ترتیبات کو بحال کریں۔';
 
   @override
-  String get settingsMadhabShafii => 'شفیع';
+  String get settingsMadhabShafii => 'شافعی';
 
   @override
   String get settingsMadhabHanafi => 'حنفی';
@@ -20500,7 +20500,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settingsMadhabMaliki => 'مالکی';
 
   @override
-  String get settingsMadhabHanbali => 'حنبلی۔';
+  String get settingsMadhabHanbali => 'حنبلی';
 
   @override
   String get settingsCalculationMethodMuslimWorldLeague => 'مسلم ورلڈ لیگ';
@@ -43814,131 +43814,131 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get salahTrainerNoteTakbirHanafi =>
-      'Raise the hands to the ears for the opening takbir, then fold them below the navel, right over left.';
+      'تکبیرِ تحریمہ کے لیے ہاتھ کانوں تک اٹھائیں، پھر ناف کے نیچے باندھ لیں، دایاں ہاتھ بائیں پر۔';
 
   @override
   String get salahTrainerNoteTakbirShafii =>
-      'Raise the hands to shoulder level, then fold them on the chest or just below it, right over left.';
+      'ہاتھ کندھوں تک اٹھائیں، پھر سینے پر یا اس سے ذرا نیچے باندھ لیں، دایاں ہاتھ بائیں پر۔';
 
   @override
   String get salahTrainerNoteTakbirMaliki =>
-      'Raise the hands to shoulder level. In the obligatory prayer many Malikis then let the arms rest at the sides (sadl); folding them is also accepted.';
+      'ہاتھ کندھوں تک اٹھائیں۔ فرض نماز میں بہت سے مالکی پھر ہاتھ پہلوؤں میں لٹکا لیتے ہیں (سدل)؛ ہاتھ باندھنا بھی جائز ہے۔';
 
   @override
   String get salahTrainerNoteTakbirHanbali =>
-      'Raise the hands to shoulder level, then fold them below the navel, right over left.';
+      'ہاتھ کندھوں تک اٹھائیں، پھر ناف کے نیچے باندھ لیں، دایاں ہاتھ بائیں پر۔';
 
   @override
   String get salahTrainerNoteOpeningHanafi =>
-      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+      'الفاتحہ سے پہلے ثنا (سبحانک اللہم) آہستہ پڑھیں، صرف پہلی رکعت میں۔';
 
   @override
   String get salahTrainerNoteOpeningShafii =>
-      'The opening dua commonly taught is Wajjahtu wajhiya, recited quietly in the first rakah.';
+      'عام طور پر سکھائی جانے والی دعائے استفتاح «وجّہتُ وجہی» ہے، جو پہلی رکعت میں آہستہ پڑھی جاتی ہے۔';
 
   @override
   String get salahTrainerNoteOpeningMaliki =>
-      'No opening dua is recited; after the takbir, go straight to al-Fatihah.';
+      'کوئی دعائے استفتاح نہیں پڑھی جاتی؛ تکبیر کے بعد سیدھے الفاتحہ شروع کریں۔';
 
   @override
   String get salahTrainerNoteOpeningHanbali =>
-      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+      'الفاتحہ سے پہلے ثنا (سبحانک اللہم) آہستہ پڑھیں، صرف پہلی رکعت میں۔';
 
   @override
   String get salahTrainerNoteFatihahHanafi =>
-      'Say the bismillah quietly before reciting, and say Amin quietly at the end.';
+      'قراءت سے پہلے بسم اللہ آہستہ پڑھیں، اور آخر میں آمین بھی آہستہ کہیں۔';
 
   @override
   String get salahTrainerNoteFatihahShafii =>
-      'The bismillah is part of al-Fatihah and is recited aloud in the loud prayers; say Amin aloud after it.';
+      'بسم اللہ الفاتحہ کا حصہ ہے اور جہری نمازوں میں بلند آواز سے پڑھی جاتی ہے؛ اس کے بعد آمین بلند آواز سے کہیں۔';
 
   @override
   String get salahTrainerNoteFatihahMaliki =>
-      'The bismillah is commonly left out in the obligatory prayer; say Amin quietly.';
+      'فرض نماز میں عموماً بسم اللہ نہیں پڑھی جاتی؛ آمین آہستہ کہیں۔';
 
   @override
   String get salahTrainerNoteFatihahHanbali =>
-      'Say the bismillah quietly before reciting, and say Amin aloud in the loud prayers.';
+      'قراءت سے پہلے بسم اللہ آہستہ پڑھیں، اور جہری نمازوں میں آمین بلند آواز سے کہیں۔';
 
   @override
   String get salahTrainerNoteRukuHanafi =>
-      'Bow without raising the hands. Grip the knees with the fingers spread and keep the back level.';
+      'ہاتھ اٹھائے بغیر رکوع میں جائیں۔ انگلیاں کھلی رکھ کر گھٹنوں کو پکڑیں اور کمر سیدھی رکھیں۔';
 
   @override
   String get salahTrainerNoteRukuShafii =>
-      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+      'رکوع میں جاتے ہوئے تکبیر کے ساتھ ہاتھ کندھوں تک اٹھائیں، پھر گھٹنوں کو پکڑیں اور کمر سیدھی رکھیں۔';
 
   @override
   String get salahTrainerNoteRukuMaliki =>
-      'Bow without raising the hands, grip the knees, and keep the back level.';
+      'ہاتھ اٹھائے بغیر رکوع میں جائیں، گھٹنوں کو پکڑیں اور کمر سیدھی رکھیں۔';
 
   @override
   String get salahTrainerNoteRukuHanbali =>
-      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+      'رکوع میں جاتے ہوئے تکبیر کے ساتھ ہاتھ کندھوں تک اٹھائیں، پھر گھٹنوں کو پکڑیں اور کمر سیدھی رکھیں۔';
 
   @override
   String get salahTrainerNoteSittingHanafi =>
-      'Sit on the left foot with the right foot upright (iftirash) in every sitting.';
+      'ہر قعدے میں بایاں پاؤں بچھا کر اس پر بیٹھیں اور دایاں پاؤں کھڑا رکھیں (افتراش)۔';
 
   @override
   String get salahTrainerNoteSittingShafii =>
-      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+      'یہاں اور پہلے تشہد میں بایاں پاؤں بچھا کر اس پر بیٹھیں اور دایاں پاؤں کھڑا رکھیں (افتراش)۔';
 
   @override
   String get salahTrainerNoteSittingMaliki =>
-      'Sit with the left hip on the ground and the feet out to the right (tawarruk) in every sitting.';
+      'ہر قعدے میں بائیں سرین کو زمین پر رکھ کر بیٹھیں اور دونوں پاؤں دائیں طرف نکال لیں (تورک)۔';
 
   @override
   String get salahTrainerNoteSittingHanbali =>
-      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+      'یہاں اور پہلے تشہد میں بایاں پاؤں بچھا کر اس پر بیٹھیں اور دایاں پاؤں کھڑا رکھیں (افتراش)۔';
 
   @override
   String get salahTrainerNoteTashahhudHanafi =>
-      'Raise the index finger at \'la ilaha\' and lower it at \'illa Allah\'. The final sitting is also in iftirash.';
+      '«لا الٰہ» پر شہادت کی انگلی اٹھائیں اور «الا اللہ» پر جھکا لیں۔ آخری قعدہ بھی افتراش میں ہوتا ہے۔';
 
   @override
   String get salahTrainerNoteTashahhudShafii =>
-      'Raise the index finger at \'illa Allah\' and keep it raised. In the final tashahhud sit in tawarruk, the left hip on the ground.';
+      '«الا اللہ» پر شہادت کی انگلی اٹھائیں اور اٹھائے رکھیں۔ آخری تشہد میں تورک کر کے بیٹھیں، بائیں سرین زمین پر۔';
 
   @override
   String get salahTrainerNoteTashahhudMaliki =>
-      'Move the index finger gently from side to side through the tashahhud, seated in tawarruk.';
+      'پورے تشہد کے دوران شہادت کی انگلی کو آہستہ سے دائیں بائیں حرکت دیتے رہیں، تورک میں بیٹھ کر۔';
 
   @override
   String get salahTrainerNoteTashahhudHanbali =>
-      'Point the index finger whenever Allah\'s name is said. Sit in tawarruk only in the final tashahhud of a prayer with two.';
+      'جب بھی اللہ کا نام آئے شہادت کی انگلی سے اشارہ کریں۔ تورک صرف اس نماز کے آخری تشہد میں کریں جس میں دو تشہد ہوں۔';
 
   @override
   String get salahTrainerNoteTaslimHanafi =>
-      'Both salams are required (wajib); turn the head fully to each side.';
+      'دونوں سلام ضروری (واجب) ہیں؛ ہر طرف چہرہ پوری طرح پھیریں۔';
 
   @override
   String get salahTrainerNoteTaslimShafii =>
-      'The first salam completes the prayer; the second is sunnah.';
+      'پہلا سلام نماز مکمل کر دیتا ہے؛ دوسرا سنت ہے۔';
 
   @override
   String get salahTrainerNoteTaslimMaliki =>
-      'A single salam to the right completes the prayer; Malikis do not add a second.';
+      'دائیں طرف ایک ہی سلام سے نماز مکمل ہو جاتی ہے؛ مالکی دوسرا سلام نہیں پھیرتے۔';
 
   @override
   String get salahTrainerNoteTaslimHanbali =>
-      'Both salams are required; turn the head fully to each side.';
+      'دونوں سلام ضروری ہیں؛ ہر طرف چہرہ پوری طرح پھیریں۔';
 
   @override
   String get salahTrainerNoteFajrQunutShafii =>
-      'Qunut in Fajr is a confirmed sunnah: recite it after rising from ruku in the second rakah, with the hands raised.';
+      'فجر میں قنوت سنتِ مؤکدہ ہے: دوسری رکعت میں رکوع سے اٹھنے کے بعد ہاتھ اٹھا کر پڑھیں۔';
 
   @override
   String get salahTrainerNoteFajrQunutMaliki =>
-      'Qunut in Fajr is recommended: recite it quietly before ruku in the second rakah.';
+      'فجر میں قنوت مستحب ہے: دوسری رکعت میں رکوع سے پہلے آہستہ پڑھیں۔';
 
   @override
   String get salahTrainerStepOpeningWajjahtuTranslation =>
-      'I have turned my face toward the One who created the heavens and the earth, inclining to truth, and I am not of those who associate others with Allah. My prayer, my rites, my living and my dying are for Allah, Lord of the worlds. He has no partner; so I have been commanded, and I am of the Muslims.';
+      'میں نے اپنا رخ اس ذات کی طرف کر لیا جس نے آسمانوں اور زمین کو پیدا کیا، یکسو ہو کر، اور میں مشرکوں میں سے نہیں ہوں۔ بے شک میری نماز، میری قربانی، میرا جینا اور میرا مرنا اللہ ہی کے لیے ہے جو تمام جہانوں کا رب ہے۔ اس کا کوئی شریک نہیں؛ مجھے اسی کا حکم دیا گیا ہے اور میں مسلمانوں میں سے ہوں۔';
 
   @override
   String salahTrainerMadhhabFollowingLabel(Object madhhab) {
-    return 'Notes follow the $madhhab school. Change it under Settings › Salah.';
+    return 'یہ رہنمائی $madhhab مذہب کے مطابق ہے۔ مذہب ترتیبات › نماز میں تبدیل کیا جا سکتا ہے۔';
   }
 
   @override

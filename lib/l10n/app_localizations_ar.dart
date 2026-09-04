@@ -43557,131 +43557,131 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get salahTrainerNoteTakbirHanafi =>
-      'Raise the hands to the ears for the opening takbir, then fold them below the navel, right over left.';
+      'ارفع يديك حذو أذنيك عند تكبيرة الإحرام، ثم ضعهما تحت السرة، اليمنى على اليسرى.';
 
   @override
   String get salahTrainerNoteTakbirShafii =>
-      'Raise the hands to shoulder level, then fold them on the chest or just below it, right over left.';
+      'ارفع يديك حذو منكبيك، ثم ضعهما على صدرك أو تحته بقليل، اليمنى على اليسرى.';
 
   @override
   String get salahTrainerNoteTakbirMaliki =>
-      'Raise the hands to shoulder level. In the obligatory prayer many Malikis then let the arms rest at the sides (sadl); folding them is also accepted.';
+      'ارفع يديك حذو منكبيك. وفي الفريضة يُرسل كثير من المالكية أيديهم إلى جانبيهم (السدل)، والقبض جائز أيضًا.';
 
   @override
   String get salahTrainerNoteTakbirHanbali =>
-      'Raise the hands to shoulder level, then fold them below the navel, right over left.';
+      'ارفع يديك حذو منكبيك، ثم ضعهما تحت السرة، اليمنى على اليسرى.';
 
   @override
   String get salahTrainerNoteOpeningHanafi =>
-      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+      'اقرأ دعاء الاستفتاح «سبحانك اللهم» سرًّا قبل الفاتحة، في الركعة الأولى فقط.';
 
   @override
   String get salahTrainerNoteOpeningShafii =>
-      'The opening dua commonly taught is Wajjahtu wajhiya, recited quietly in the first rakah.';
+      'دعاء الاستفتاح المعتاد تعليمه هو «وجّهت وجهي»، يُقرأ سرًّا في الركعة الأولى.';
 
   @override
   String get salahTrainerNoteOpeningMaliki =>
-      'No opening dua is recited; after the takbir, go straight to al-Fatihah.';
+      'لا يُقرأ دعاء استفتاح؛ فبعد التكبير ابدأ بالفاتحة مباشرة.';
 
   @override
   String get salahTrainerNoteOpeningHanbali =>
-      'Recite Subhanaka quietly before al-Fatihah, in the first rakah only.';
+      'اقرأ دعاء الاستفتاح «سبحانك اللهم» سرًّا قبل الفاتحة، في الركعة الأولى فقط.';
 
   @override
   String get salahTrainerNoteFatihahHanafi =>
-      'Say the bismillah quietly before reciting, and say Amin quietly at the end.';
+      'اقرأ البسملة سرًّا قبل القراءة، وقل «آمين» سرًّا في نهاية الفاتحة.';
 
   @override
   String get salahTrainerNoteFatihahShafii =>
-      'The bismillah is part of al-Fatihah and is recited aloud in the loud prayers; say Amin aloud after it.';
+      'البسملة آية من الفاتحة وتُقرأ جهرًا في الصلوات الجهرية؛ وقل «آمين» جهرًا بعدها.';
 
   @override
   String get salahTrainerNoteFatihahMaliki =>
-      'The bismillah is commonly left out in the obligatory prayer; say Amin quietly.';
+      'تُترك البسملة عادةً في الفريضة؛ وقل «آمين» سرًّا.';
 
   @override
   String get salahTrainerNoteFatihahHanbali =>
-      'Say the bismillah quietly before reciting, and say Amin aloud in the loud prayers.';
+      'اقرأ البسملة سرًّا قبل القراءة، وقل «آمين» جهرًا في الصلوات الجهرية.';
 
   @override
   String get salahTrainerNoteRukuHanafi =>
-      'Bow without raising the hands. Grip the knees with the fingers spread and keep the back level.';
+      'اركع من غير رفع اليدين. أمسك ركبتيك بأصابع مفرَّجة، واجعل ظهرك مستويًا.';
 
   @override
   String get salahTrainerNoteRukuShafii =>
-      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+      'ارفع يديك حذو منكبيك مع تكبيرة الركوع، ثم أمسك ركبتيك واجعل ظهرك مستويًا.';
 
   @override
   String get salahTrainerNoteRukuMaliki =>
-      'Bow without raising the hands, grip the knees, and keep the back level.';
+      'اركع من غير رفع اليدين، وأمسك ركبتيك، واجعل ظهرك مستويًا.';
 
   @override
   String get salahTrainerNoteRukuHanbali =>
-      'Raise the hands to the shoulders with the takbir as you bow, then grip the knees and keep the back level.';
+      'ارفع يديك حذو منكبيك مع تكبيرة الركوع، ثم أمسك ركبتيك واجعل ظهرك مستويًا.';
 
   @override
   String get salahTrainerNoteSittingHanafi =>
-      'Sit on the left foot with the right foot upright (iftirash) in every sitting.';
+      'اجلس على قدمك اليسرى وانصب اليمنى (الافتراش) في كل جلوس.';
 
   @override
   String get salahTrainerNoteSittingShafii =>
-      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+      'اجلس على قدمك اليسرى وانصب اليمنى (الافتراش) هنا وفي التشهد الأول.';
 
   @override
   String get salahTrainerNoteSittingMaliki =>
-      'Sit with the left hip on the ground and the feet out to the right (tawarruk) in every sitting.';
+      'اجلس على وركك الأيسر مُخرجًا قدميك عن يمينك (التورك) في كل جلوس.';
 
   @override
   String get salahTrainerNoteSittingHanbali =>
-      'Sit on the left foot with the right foot upright (iftirash) here and in the first tashahhud.';
+      'اجلس على قدمك اليسرى وانصب اليمنى (الافتراش) هنا وفي التشهد الأول.';
 
   @override
   String get salahTrainerNoteTashahhudHanafi =>
-      'Raise the index finger at \'la ilaha\' and lower it at \'illa Allah\'. The final sitting is also in iftirash.';
+      'ارفع السبابة عند «لا إله» واخفضها عند «إلا الله». والجلسة الأخيرة أيضًا بالافتراش.';
 
   @override
   String get salahTrainerNoteTashahhudShafii =>
-      'Raise the index finger at \'illa Allah\' and keep it raised. In the final tashahhud sit in tawarruk, the left hip on the ground.';
+      'ارفع السبابة عند «إلا الله» وأبقها مرفوعة. وفي التشهد الأخير اجلس متوركًا، ووركك الأيسر على الأرض.';
 
   @override
   String get salahTrainerNoteTashahhudMaliki =>
-      'Move the index finger gently from side to side through the tashahhud, seated in tawarruk.';
+      'حرّك السبابة تحريكًا خفيفًا يمينًا وشمالًا طوال التشهد، وأنت جالس متوركًا.';
 
   @override
   String get salahTrainerNoteTashahhudHanbali =>
-      'Point the index finger whenever Allah\'s name is said. Sit in tawarruk only in the final tashahhud of a prayer with two.';
+      'أشر بالسبابة كلما ذُكر اسم الله. ولا تتورك إلا في التشهد الأخير من صلاة ذات تشهدين.';
 
   @override
   String get salahTrainerNoteTaslimHanafi =>
-      'Both salams are required (wajib); turn the head fully to each side.';
+      'كلتا التسليمتين واجبة؛ التفت برأسك التفاتًا كاملًا إلى كل جهة.';
 
   @override
   String get salahTrainerNoteTaslimShafii =>
-      'The first salam completes the prayer; the second is sunnah.';
+      'التسليمة الأولى تُتم الصلاة؛ والثانية سنّة.';
 
   @override
   String get salahTrainerNoteTaslimMaliki =>
-      'A single salam to the right completes the prayer; Malikis do not add a second.';
+      'تسليمة واحدة عن اليمين تُتم الصلاة؛ ولا يزيد المالكية تسليمة ثانية.';
 
   @override
   String get salahTrainerNoteTaslimHanbali =>
-      'Both salams are required; turn the head fully to each side.';
+      'كلتا التسليمتين لازمة؛ التفت برأسك التفاتًا كاملًا إلى كل جهة.';
 
   @override
   String get salahTrainerNoteFajrQunutShafii =>
-      'Qunut in Fajr is a confirmed sunnah: recite it after rising from ruku in the second rakah, with the hands raised.';
+      'القنوت في الفجر سنّة مؤكدة: اقرأه بعد الرفع من الركوع في الركعة الثانية، رافعًا يديك.';
 
   @override
   String get salahTrainerNoteFajrQunutMaliki =>
-      'Qunut in Fajr is recommended: recite it quietly before ruku in the second rakah.';
+      'القنوت في الفجر مستحب: اقرأه سرًّا قبل الركوع في الركعة الثانية.';
 
   @override
   String get salahTrainerStepOpeningWajjahtuTranslation =>
-      'I have turned my face toward the One who created the heavens and the earth, inclining to truth, and I am not of those who associate others with Allah. My prayer, my rites, my living and my dying are for Allah, Lord of the worlds. He has no partner; so I have been commanded, and I am of the Muslims.';
+      'إعلان بتوجيه الوجه والقلب إلى الله خالق السماوات والأرض، مائلًا عن الباطل إلى الحق، والبراءة من الشرك؛ وأن الصلاة والنسك والحياة والموت كلها لله رب العالمين لا شريك له، وبذلك أُمر المصلي، وهو من المسلمين.';
 
   @override
   String salahTrainerMadhhabFollowingLabel(Object madhhab) {
-    return 'Notes follow the $madhhab school. Change it under Settings › Salah.';
+    return 'هذه التوجيهات وفق المذهب المختار: $madhhab. يمكنك تغيير المذهب من الإعدادات › الصلاة.';
   }
 
   @override

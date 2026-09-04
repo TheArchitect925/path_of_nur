@@ -37,6 +37,8 @@ class SalahPrayerDetailPage extends ConsumerWidget {
     final tasbihRepeats = ref.watch(
       salahGuidedSettingsProvider.select((value) => value.tasbihRepeats),
     );
+    final madhhab = ref.watch(salahTrainerMadhhabProvider);
+    final rakahs = ref.watch(salahPrayerRakahsProvider(prayerId));
     if (prayer == null) {
       return LearnHubPageScaffold(
         title: l10n.salahPrayerDetailNotFound,
@@ -159,7 +161,7 @@ class SalahPrayerDetailPage extends ConsumerWidget {
           ],
         ),
       ),
-      for (final rakah in prayer.guidedRakahs)
+      for (final rakah in rakahs)
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: ExpandableTile(
@@ -170,7 +172,14 @@ class SalahPrayerDetailPage extends ConsumerWidget {
             child: Column(
               children: [
                 for (final step in rakah.steps)
-                  _StepRow(step: step, tasbihRepeats: tasbihRepeats),
+                  _StepRow(
+                    step: step,
+                    tasbihRepeats: tasbihRepeats,
+                    madhhabNote: step.madhhabNotes[madhhab],
+                    madhhabLabel: l10n.salahTrainerMadhhabGuidanceTitle(
+                      madhhabLabel,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -196,10 +205,17 @@ class SalahPrayerDetailPage extends ConsumerWidget {
 }
 
 class _StepRow extends StatelessWidget {
-  const _StepRow({required this.step, required this.tasbihRepeats});
+  const _StepRow({
+    required this.step,
+    required this.tasbihRepeats,
+    required this.madhhabNote,
+    required this.madhhabLabel,
+  });
 
   final PrayerStepModel step;
   final int tasbihRepeats;
+  final String? madhhabNote;
+  final String madhhabLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -263,6 +279,10 @@ class _StepRow extends StatelessWidget {
                 if (!step.isSilent || step.isDynamicSurah) ...[
                   const SizedBox(height: 4),
                   Text(step.translation, style: textTheme.bodySmall),
+                ],
+                if (madhhabNote case final note?) ...[
+                  const SizedBox(height: 6),
+                  SalahMadhhabNote(label: madhhabLabel, note: note),
                 ],
               ],
             ),

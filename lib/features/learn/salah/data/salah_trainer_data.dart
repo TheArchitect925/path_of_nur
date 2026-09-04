@@ -21,6 +21,7 @@ String salahAdhkarAssetPath(String audioId) =>
 const salahAdhkarAudioIds = <String>[
   'takbir',
   'opening_supplication',
+  'opening_wajjahtu',
   'qunut',
   'ruku',
   'standing_after_ruku',
@@ -60,6 +61,7 @@ class SalahTrainerContent {
     required this.recitations,
     required this.essentials,
     required this.takbirSegment,
+    required this.fajrQunutStep,
   });
 
   final List<PrayerModel> prayers;
@@ -69,6 +71,37 @@ class SalahTrainerContent {
 
   /// "Allahu akbar" as recited when moving between postures.
   final RecitationSegment takbirSegment;
+
+  /// Qunut as some schools recite it in Fajr; inserted by [rakahsFor].
+  final PrayerStepModel fajrQunutStep;
+
+  /// The prayer's rakahs as [madhhab] performs them: steps that school
+  /// skips are dropped, its own wording replaces the shared one, and Fajr
+  /// gains qunut where the school places it.
+  List<RakaaModel> rakahsFor(PrayerModel prayer, PrayerMadhab madhhab) {
+    return prayer.guidedRakahs
+        .map((rakah) {
+          final steps = <PrayerStepModel>[];
+          final fajrSecond =
+              prayer.id == SalahPrayerId.fajr && rakah.index == 2;
+          for (final step in rakah.steps) {
+            if (step.omittedFor.contains(madhhab)) continue;
+            if (fajrSecond &&
+                madhhab == PrayerMadhab.maliki &&
+                step.id == 'ruku') {
+              steps.add(fajrQunutStep);
+            }
+            steps.add(step.forMadhhab(madhhab));
+            if (fajrSecond &&
+                madhhab == PrayerMadhab.shafii &&
+                step.id == 'standing_after_ruku') {
+              steps.add(fajrQunutStep);
+            }
+          }
+          return RakaaModel(index: rakah.index, steps: steps);
+        })
+        .toList(growable: false);
+  }
 
   PrayerModel? prayerById(SalahPrayerId id) {
     for (final prayer in prayers) {
@@ -94,6 +127,7 @@ SalahTrainerContent buildSalahTrainerContent(AppLocalizations l10n) {
     surahs: surahs,
     recitations: _buildRecitations(l10n, steps, fatihah),
     essentials: _buildEssentials(l10n),
+    fajrQunutStep: steps.fajrQunutStep,
     takbirSegment: RecitationSegment(
       id: 'takbir',
       arabicText: steps.takbirStep.segments.single.arabicText,
@@ -121,6 +155,10 @@ PrayerStepModel _step({
   bool isSilent = false,
   bool isOptional = false,
   bool isDynamicSurah = false,
+  Map<PrayerMadhab, String> madhhabNotes = const <PrayerMadhab, String>{},
+  Map<PrayerMadhab, List<RecitationSegment>> segmentsByMadhhab =
+      const <PrayerMadhab, List<RecitationSegment>>{},
+  Set<PrayerMadhab> omittedFor = const <PrayerMadhab>{},
 }) {
   return PrayerStepModel(
     id: id,
@@ -144,12 +182,31 @@ PrayerStepModel _step({
     isSilent: isSilent,
     isOptional: isOptional,
     isDynamicSurah: isDynamicSurah,
+    madhhabNotes: madhhabNotes,
+    segmentsByMadhhab: segmentsByMadhhab,
+    omittedFor: omittedFor,
   );
+}
+
+/// Notes for the four schools, from four keys.
+Map<PrayerMadhab, String> _schools({
+  required String hanafi,
+  required String shafii,
+  required String maliki,
+  required String hanbali,
+}) {
+  return {
+    PrayerMadhab.hanafi: hanafi,
+    PrayerMadhab.shafii: shafii,
+    PrayerMadhab.maliki: maliki,
+    PrayerMadhab.hanbali: hanbali,
+  };
 }
 
 /// The building blocks of every rakah, in one language.
 class _SalahSteps {
-  _SalahSteps(AppLocalizations l10n) {
+  _SalahSteps(this._l10n) {
+    final l10n = _l10n;
     niyyahReminderStep = _step(
       id: 'niyyah',
       title: l10n.salahTrainerStepNiyyahTitle,
@@ -172,6 +229,12 @@ class _SalahSteps {
       translation: l10n.salahTrainerStepTakbirTranslation,
       pauseAfterMs: 1400,
       audioId: 'takbir',
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteTakbirHanafi,
+        shafii: l10n.salahTrainerNoteTakbirShafii,
+        maliki: l10n.salahTrainerNoteTakbirMaliki,
+        hanbali: l10n.salahTrainerNoteTakbirHanbali,
+      ),
     );
     risingTakbirStep = _step(
       id: 'takbir_rising',
@@ -197,6 +260,26 @@ class _SalahSteps {
       translation: l10n.salahTrainerStepOpeningSupplicationTranslation,
       pauseAfterMs: 2200,
       isOptional: true,
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteOpeningHanafi,
+        shafii: l10n.salahTrainerNoteOpeningShafii,
+        maliki: l10n.salahTrainerNoteOpeningMaliki,
+        hanbali: l10n.salahTrainerNoteOpeningHanbali,
+      ),
+      segmentsByMadhhab: {
+        PrayerMadhab.shafii: [
+          RecitationSegment(
+            id: 'opening_wajjahtu',
+            arabicText:
+                'وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَاوَاتِ وَالْأَرْضَ حَنِيفًا وَمَا أَنَا مِنَ الْمُشْرِكِينَ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ لَا شَرِيكَ لَهُ وَبِذَٰلِكَ أُمِرْتُ وَأَنَا مِنَ الْمُسْلِمِينَ',
+            transliteration:
+                'Wajjahtu wajhiya lilladhi fataras-samawati wal-arda hanifan wa ma ana minal-mushrikin. Inna salati wa nusuki wa mahyaya wa mamati lillahi rabbil-alamin, la sharika lahu wa bidhalika umirtu wa ana minal-muslimin.',
+            translation: l10n.salahTrainerStepOpeningWajjahtuTranslation,
+            audioAssetPath: salahAdhkarAssetPath('opening_wajjahtu'),
+          ),
+        ],
+      },
+      omittedFor: const {PrayerMadhab.maliki},
     );
     fatihahStep = _step(
       id: 'surah_al_fatihah',
@@ -211,6 +294,12 @@ class _SalahSteps {
       pauseAfterMs: 2600,
       helperText: l10n.salahTrainerStepFatihahHelper,
       surahId: 'al_fatihah',
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteFatihahHanafi,
+        shafii: l10n.salahTrainerNoteFatihahShafii,
+        maliki: l10n.salahTrainerNoteFatihahMaliki,
+        hanbali: l10n.salahTrainerNoteFatihahHanbali,
+      ),
     );
     additionalSurahStep = _step(
       id: 'additional_surah',
@@ -249,6 +338,12 @@ class _SalahSteps {
       pauseAfterMs: 1800,
       repeatCount: 3,
       entryTakbir: true,
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteRukuHanafi,
+        shafii: l10n.salahTrainerNoteRukuShafii,
+        maliki: l10n.salahTrainerNoteRukuMaliki,
+        hanbali: l10n.salahTrainerNoteRukuHanbali,
+      ),
     );
     standingAfterRukuStep = _step(
       id: 'standing_after_ruku',
@@ -285,6 +380,12 @@ class _SalahSteps {
       translation: l10n.salahTrainerStepSittingBetweenSujudTranslation,
       pauseAfterMs: 2200,
       entryTakbir: true,
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteSittingHanafi,
+        shafii: l10n.salahTrainerNoteSittingShafii,
+        maliki: l10n.salahTrainerNoteSittingMaliki,
+        hanbali: l10n.salahTrainerNoteSittingHanbali,
+      ),
     );
     secondSujudStep = _step(
       id: 'second_sujud',
@@ -311,6 +412,12 @@ class _SalahSteps {
       translation: l10n.salahTrainerStepTashahhudTranslation,
       pauseAfterMs: 4200,
       entryTakbir: true,
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteTashahhudHanafi,
+        shafii: l10n.salahTrainerNoteTashahhudShafii,
+        maliki: l10n.salahTrainerNoteTashahhudMaliki,
+        hanbali: l10n.salahTrainerNoteTashahhudHanbali,
+      ),
     );
     salawatStep = _step(
       id: 'salawat',
@@ -347,6 +454,12 @@ class _SalahSteps {
       translation: l10n.salahTrainerStepTaslimTranslation,
       pauseAfterMs: 1200,
       audioId: 'taslim',
+      madhhabNotes: _schools(
+        hanafi: l10n.salahTrainerNoteTaslimHanafi,
+        shafii: l10n.salahTrainerNoteTaslimShafii,
+        maliki: l10n.salahTrainerNoteTaslimMaliki,
+        hanbali: l10n.salahTrainerNoteTaslimHanbali,
+      ),
     );
     taslimLeftStep = _step(
       id: 'taslim_left',
@@ -358,8 +471,11 @@ class _SalahSteps {
       translation: l10n.salahTrainerStepTaslimTranslation,
       pauseAfterMs: 1200,
       audioId: 'taslim',
+      omittedFor: const {PrayerMadhab.maliki},
     );
   }
+
+  final AppLocalizations _l10n;
 
   late final PrayerStepModel niyyahReminderStep;
   late final PrayerStepModel takbirStep;
@@ -378,6 +494,19 @@ class _SalahSteps {
   late final PrayerStepModel finalDuaStep;
   late final PrayerStepModel taslimRightStep;
   late final PrayerStepModel taslimLeftStep;
+
+  /// Qunut as recited in Fajr: Shafi'is after ruku of the second rakah,
+  /// Malikis quietly before it. Built lazily from [qunutStep].
+  late final PrayerStepModel fajrQunutStep = qunutStep.copyWith(
+    id: 'qunut_fajr',
+    isOptional: true,
+    entryTakbir: false,
+    helperText: null,
+    madhhabNotes: {
+      PrayerMadhab.shafii: _l10n.salahTrainerNoteFajrQunutShafii,
+      PrayerMadhab.maliki: _l10n.salahTrainerNoteFajrQunutMaliki,
+    },
+  );
 
   List<PrayerStepModel> firstTwoRakahs({required bool includeOpening}) => [
     if (includeOpening) niyyahReminderStep,

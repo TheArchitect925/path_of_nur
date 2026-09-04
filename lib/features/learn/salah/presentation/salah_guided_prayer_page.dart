@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/expandable_tile.dart';
@@ -19,6 +20,7 @@ import '../models/salah_trainer_models.dart';
 import '../widgets/prayer_posture_animator.dart';
 import '../widgets/salah_trainer_widgets.dart';
 import '../widgets/synced_ayah_text.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class SalahGuidedPrayerPage extends ConsumerStatefulWidget {
   const SalahGuidedPrayerPage({super.key, required this.prayerId});
@@ -79,6 +81,7 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
     final sync = ref.read(guidedPrayerSyncControllerProvider(_args).notifier);
     final settings = ref.watch(salahGuidedSettingsProvider);
     final settingsNotifier = ref.read(salahGuidedSettingsProvider.notifier);
+    final madhhab = ref.watch(salahTrainerMadhhabProvider);
     ref.listen(
       guidedPrayerSyncControllerProvider(_args).select(
         (state) => (
@@ -225,10 +228,15 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
           syncState: syncState,
           settings: settings,
           focus: focus,
+          madhhab: madhhab,
         ),
         if (!focus) ...[
           const SizedBox(height: 10),
-          _SettingsTile(settings: settings, notifier: settingsNotifier),
+          _SettingsTile(
+            settings: settings,
+            notifier: settingsNotifier,
+            madhhab: madhhab,
+          ),
         ],
       ],
     );
@@ -316,6 +324,7 @@ class _StepCard extends StatelessWidget {
     required this.syncState,
     required this.settings,
     required this.focus,
+    required this.madhhab,
   });
 
   final GlobalKey activeSegmentKey;
@@ -324,6 +333,7 @@ class _StepCard extends StatelessWidget {
   final GuidedPrayerSyncState syncState;
   final SalahGuidedSettings settings;
   final bool focus;
+  final PrayerMadhab madhhab;
 
   @override
   Widget build(BuildContext context) {
@@ -454,6 +464,15 @@ class _StepCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(model.helperText!, style: subtle),
           ],
+          if (model.madhhabNotes[madhhab] case final note?) ...[
+            const SizedBox(height: 10),
+            SalahMadhhabNote(
+              label: l10n.salahTrainerMadhhabGuidanceTitle(
+                madhhab.localizedLabel(l10n),
+              ),
+              note: note,
+            ),
+          ],
           if (!model.isSilent &&
               syncState.sourceKind != null &&
               syncState.sourceKind != SalahAudioSourceKind.asset) ...[
@@ -462,8 +481,8 @@ class _StepCard extends StatelessWidget {
               children: [
                 Icon(
                   syncState.sourceKind == SalahAudioSourceKind.tts
-                      ? Icons.record_voice_over_outlined
-                      : Icons.volume_off_outlined,
+                      ? Icons.record_voice_over_rounded
+                      : Icons.volume_off_rounded,
                   size: 14,
                   color: context.palette.onSurfaceSubtle,
                 ),
@@ -486,16 +505,21 @@ class _StepCard extends StatelessWidget {
 }
 
 class _SettingsTile extends StatelessWidget {
-  const _SettingsTile({required this.settings, required this.notifier});
+  const _SettingsTile({
+    required this.settings,
+    required this.notifier,
+    required this.madhhab,
+  });
 
   final SalahGuidedSettings settings;
   final SalahGuidedSettingsNotifier notifier;
+  final PrayerMadhab madhhab;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return ExpandableTile(
-      leading: const HubLeadingIcon(Icons.tune_rounded),
+      leading: const HubLeadingIcon(AppIcons.adjust),
       title: Text(l10n.salahTrainerSettingsTitle),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -539,6 +563,15 @@ class _SettingsTile extends StatelessWidget {
             onChanged: notifier.setFocusMode,
             title: Text(l10n.salahTrainerFocusModeLabel),
             subtitle: Text(l10n.salahTrainerFocusModeHint),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            l10n.salahTrainerMadhhabFollowingLabel(
+              madhhab.localizedLabel(l10n),
+            ),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
         ],
       ),

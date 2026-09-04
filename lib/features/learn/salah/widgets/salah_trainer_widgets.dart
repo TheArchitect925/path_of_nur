@@ -51,7 +51,9 @@ class SalahPill extends StatelessWidget {
             Icon(icon, size: compact ? 13 : 15),
             SizedBox(width: compact ? 4 : 6),
           ],
-          Text(label, style: textStyle),
+          // Long labels (a recitation style, a rakah summary) wrap inside
+          // the pill instead of running past the line.
+          Flexible(child: Text(label, style: textStyle, softWrap: true)),
         ],
       ),
     );
@@ -279,12 +281,41 @@ class SalahBulletRow extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 6),
-            child: Icon(Icons.circle, size: 6, color: context.palette.accent),
+            child: Icon(
+              Icons.circle_rounded,
+              size: 6,
+              color: context.palette.accent,
+            ),
           ),
           const SizedBox(width: 8),
           Expanded(child: Text(text)),
         ],
       ),
+    );
+  }
+}
+
+/// A school's note on a step: a small labelled pill above the text.
+class SalahMadhhabNote extends StatelessWidget {
+  const SalahMadhhabNote({super.key, required this.label, required this.note});
+
+  final String label;
+  final String note;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SalahPill(icon: Icons.school_rounded, label: label, compact: true),
+        const SizedBox(height: 6),
+        Text(
+          note,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: context.palette.onSurfaceSubtle,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/localization/locale_provider.dart';
+import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
@@ -255,6 +256,23 @@ final salahTrainerContentProvider = Provider<SalahTrainerContent>((ref) {
   return buildSalahTrainerContent(l10n);
 });
 
+/// The school the trainer follows: the learner's madhhab from Salah
+/// settings.
+final salahTrainerMadhhabProvider = Provider<PrayerMadhab>((ref) {
+  return ref.watch(
+    prayerSettingsProvider.select((state) => state.preferences.madhab),
+  );
+});
+
+/// A prayer's rakahs as the learner's school performs them.
+final salahPrayerRakahsProvider =
+    Provider.family<List<RakaaModel>, SalahPrayerId>((ref, prayerId) {
+      final content = ref.watch(salahTrainerContentProvider);
+      final prayer = content.prayerById(prayerId);
+      if (prayer == null) return const <RakaaModel>[];
+      return content.rakahsFor(prayer, ref.watch(salahTrainerMadhhabProvider));
+    });
+
 final salahTrainerPrayersProvider = Provider<List<PrayerModel>>((ref) {
   return ref.watch(salahTrainerContentProvider).prayers;
 });
@@ -331,7 +349,7 @@ final salahGuidedStepsProvider =
       if (prayer == null) return const <GuidedPrayerStep>[];
 
       final steps = <GuidedPrayerStep>[];
-      for (final rakah in prayer.guidedRakahs) {
+      for (final rakah in ref.watch(salahPrayerRakahsProvider(args.prayerId))) {
         for (final step in rakah.steps) {
           final surahId = step.isDynamicSurah ? args.surahId : step.surahId;
           final surah = surahId == null

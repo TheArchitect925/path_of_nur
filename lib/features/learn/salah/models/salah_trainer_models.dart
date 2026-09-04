@@ -236,6 +236,9 @@ class PrayerStepModel {
     this.entryTakbir = false,
     this.isSilent = false,
     this.helperText,
+    this.madhhabNotes = const <PrayerMadhab, String>{},
+    this.segmentsByMadhhab = const <PrayerMadhab, List<RecitationSegment>>{},
+    this.omittedFor = const <PrayerMadhab>{},
   }) : assert(segments.isNotEmpty, 'a step recites at least one segment');
 
   final String id;
@@ -264,6 +267,22 @@ class PrayerStepModel {
   final bool isSilent;
   final String? helperText;
 
+  /// How this step is commonly taught in each school, shown for the
+  /// learner's madhhab setting.
+  final Map<PrayerMadhab, String> madhhabNotes;
+
+  /// Schools that recite a different text here (the Shafi'i opening dua).
+  final Map<PrayerMadhab, List<RecitationSegment>> segmentsByMadhhab;
+
+  /// Schools that skip this step altogether.
+  final Set<PrayerMadhab> omittedFor;
+
+  /// The step as the given school recites it.
+  PrayerStepModel forMadhhab(PrayerMadhab madhhab) {
+    final variant = segmentsByMadhhab[madhhab];
+    return variant == null ? this : copyWith(segments: variant);
+  }
+
   String get arabicText =>
       segments.map((segment) => segment.arabicText).join(' ');
   String get transliteration =>
@@ -289,6 +308,9 @@ class PrayerStepModel {
     bool? entryTakbir,
     bool? isSilent,
     String? helperText,
+    Map<PrayerMadhab, String>? madhhabNotes,
+    Map<PrayerMadhab, List<RecitationSegment>>? segmentsByMadhhab,
+    Set<PrayerMadhab>? omittedFor,
   }) {
     return PrayerStepModel(
       id: id ?? this.id,
@@ -304,6 +326,9 @@ class PrayerStepModel {
       entryTakbir: entryTakbir ?? this.entryTakbir,
       isSilent: isSilent ?? this.isSilent,
       helperText: helperText ?? this.helperText,
+      madhhabNotes: madhhabNotes ?? this.madhhabNotes,
+      segmentsByMadhhab: segmentsByMadhhab ?? this.segmentsByMadhhab,
+      omittedFor: omittedFor ?? this.omittedFor,
     );
   }
 }
