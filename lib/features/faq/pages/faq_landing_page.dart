@@ -22,6 +22,7 @@ class FaqLandingPage extends ConsumerStatefulWidget {
 
 class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   late final TextEditingController _searchController;
+  bool _searchOpen = false;
 
   @override
   void initState() {
@@ -51,23 +52,38 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
       headerIcon: Icons.help_outline_rounded,
       title: l10n.batch9FaqTitle,
       subtitle: l10n.batch9FaqSubtitle,
-      children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.batch9FaqScholarNote,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: context.palette.onSurfaceSubtle,
-                ),
-              ),
-              const SizedBox(height: 10),
-              _searchField(context),
-            ],
+      headerActions: [
+        IconButton(
+          key: const ValueKey('faq-header-search'),
+          tooltip: l10n.learningJourneyToolSearchTitle,
+          onPressed: () => setState(() {
+            _searchOpen = !_searchOpen;
+            if (!_searchOpen) _searchController.clear();
+          }),
+          icon: Icon(
+            _searchOpen ? Icons.search_off_rounded : Icons.search_rounded,
           ),
         ),
-        const SizedBox(height: 12),
+      ],
+      children: [
+        if (_searchOpen) ...[
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.batch9FaqScholarNote,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: context.palette.onSurfaceSubtle,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _searchField(context),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
         if (query.isNotEmpty)
           searchAsync.when(
             data: (results) => _searchResults(context, results, query),
@@ -173,6 +189,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
         Expanded(
           child: TextField(
             controller: _searchController,
+            autofocus: true,
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
               border: InputBorder.none,

@@ -26,6 +26,7 @@ class GamesIslandPage extends ConsumerStatefulWidget {
 
 class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
   late final TextEditingController _searchController;
+  bool _searchOpen = false;
 
   @override
   void initState() {
@@ -68,22 +69,39 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
       headerIcon: Icons.sports_esports_rounded,
       title: l10n.learnGamesHubTitleText,
       subtitle: l10n.learnGamesHubSubtitleText,
+      headerActions: [
+        if (!visibilityPolicy.isChildProfile)
+          IconButton(
+            key: const ValueKey('games-header-search'),
+            tooltip: l10n.learningJourneyToolSearchTitle,
+            onPressed: () => setState(() {
+              _searchOpen = !_searchOpen;
+              if (!_searchOpen) _searchController.clear();
+            }),
+            icon: Icon(
+              _searchOpen ? Icons.search_off_rounded : Icons.search_rounded,
+            ),
+          ),
+      ],
       children: [
         if (visibilityPolicy.isChildProfile)
           const _KidsRedirectCard()
         else ...[
           const _DailyHeroCard(),
           const SizedBox(height: 18),
-          LearnDiscoverySearchField(
-            controller: _searchController,
-            hintText: l10n.learnGamesSearchHintText,
-            onChanged: (_) => setState(() {}),
-            onClear: () {
-              _searchController.clear();
-              setState(() {});
-            },
-          ),
-          const SizedBox(height: 10),
+          if (_searchOpen) ...[
+            LearnDiscoverySearchField(
+              controller: _searchController,
+              hintText: l10n.learnGamesSearchHintText,
+              autofocus: true,
+              onChanged: (_) => setState(() {}),
+              onClear: () {
+                _searchController.clear();
+                setState(() {});
+              },
+            ),
+            const SizedBox(height: 10),
+          ],
           _BrowseAllCard(resultCount: searchMatches.length),
           if (_searchController.text.trim().isNotEmpty) ...[
             const SizedBox(height: 18),

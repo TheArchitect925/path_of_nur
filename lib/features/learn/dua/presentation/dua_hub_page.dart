@@ -37,6 +37,7 @@ class DuaHubPage extends ConsumerStatefulWidget {
 
 class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   late final TextEditingController _searchController;
+  late bool _searchOpen = widget.initialQuery.trim().isNotEmpty;
   String _query = '';
   late DuaHubTab _tab = _sectionFor(widget.section);
   String? _selectedCategoryId;
@@ -97,6 +98,19 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
       headerIcon: Icons.pan_tool_alt_rounded,
       title: _tab == DuaHubTab.duas ? l10n.duaHubTitle : _tabLabel(l10n, _tab),
       subtitle: l10n.duaHubSubtitle,
+      headerActions: [
+        IconButton(
+          key: const ValueKey('dua-header-search'),
+          tooltip: l10n.learningJourneyToolSearchTitle,
+          onPressed: () => setState(() {
+            _searchOpen = !_searchOpen;
+            if (!_searchOpen) _searchController.clear();
+          }),
+          icon: Icon(
+            _searchOpen ? Icons.search_off_rounded : Icons.search_rounded,
+          ),
+        ),
+      ],
       children: [
         if (widget.section == null)
           HubListGroup(
@@ -115,8 +129,10 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             ],
           ),
         const SizedBox(height: 10),
-        _searchCard(context, l10n),
-        const SizedBox(height: 10),
+        if (_searchOpen) ...[
+          _searchCard(context, l10n),
+          const SizedBox(height: 10),
+        ],
         datasetAsync.when(
           data: (dataset) {
             final verified = _filteredVerifiedItems(dataset);
@@ -207,6 +223,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
       surfaceVariant: AppSurfaceVariant.panel,
       child: LearnDiscoverySearchField(
         controller: _searchController,
+        autofocus: true,
         hintText: l10n.searchDuasHint,
         onClear: _searchController.clear,
       ),
