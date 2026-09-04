@@ -63,8 +63,7 @@ class _JournalEntryDetailPageState
     final entry = ref.watch(journalEntryByIdProvider(widget.entryId));
     if (entry == null) {
       return AppPageScaffold(
-        title: l10n.journalDetailMissingTitle,
-        subtitle: l10n.journalDetailMissingSubtitle,
+        title: l10n.journalTitle,
         children: [PremiumCard(child: Text(l10n.journalDetailMissingBody))],
       );
     }

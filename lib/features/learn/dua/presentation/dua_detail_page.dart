@@ -50,7 +50,6 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
 
     return LearnHubPageScaffold(
       title: l10n.duaDetailAppBarTitle,
-      subtitle: itemAsync.valueOrNull?.title ?? l10n.duaHubTitle,
       headerActions: [
         IconButton(
           onPressed: () =>

@@ -6,6 +6,7 @@ import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/world_creation_provider.dart';
 import '../../domain/world_creation_models.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldSignsExplorerPage extends ConsumerWidget {
   const WorldSignsExplorerPage({super.key});
@@ -15,8 +16,8 @@ class WorldSignsExplorerPage extends ConsumerWidget {
     final domains = ref.watch(worldCreationExploreDomainsProvider);
 
     return AppPageScaffold(
-      title: 'Signs Explorer',
-      subtitle: 'Browse creation by broad domains and move into lessons.',
+      title: AppLocalizations.of(context).worldLandingSignsExplorerAction,
+      subtitle: AppLocalizations.of(context).worldSignsExplorerSubtitle,
       children: [
         ...domains.map(
           (domain) => Padding(

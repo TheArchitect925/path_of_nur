@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -224,6 +225,153 @@ void main() {
           'the shared header.',
     );
   });
+
+  test('Page titles and subtitles come from the ARB, not string literals', () {
+    // HD-3 (decision C1): every header string is localized. A literal here is
+    // a page German (and the other sixteen locales) will never see translated.
+    final offenders = <String>[];
+    for (final call in _scaffoldCalls()) {
+      for (final entry in call.args.entries) {
+        if (entry.key != 'title' && entry.key != 'subtitle') continue;
+        final v = entry.value;
+        final literal = v.startsWith("'") || v.startsWith('"');
+        final template = v.startsWith("'\${") || v.startsWith('"\${');
+        if (literal && !template) {
+          offenders.add('${call.file}:${call.line} ${entry.key}');
+        }
+      }
+    }
+    expect(
+      offenders..sort(),
+      isEmpty,
+      reason: 'Move the string into app_en.arb (and every other locale).',
+    );
+  });
+
+  test('Status text never sits in the header', () {
+    // "Route not found", "Loading…", "Unavailable" describe the body, not the
+    // page. The header keeps the section title; the state renders below it.
+    final en = _englishArb();
+    final status = RegExp(
+      r'(not found|unavailable|not available|loading|preparing|try again|'
+      r'try reopening|try another|try opening|could not|no active|'
+      r'no matches|not part of|not fully|\blocked\b|opens after|'
+      r'finish the earlier)',
+      caseSensitive: false,
+    );
+    final offenders = <String>[];
+    for (final call in _scaffoldCalls()) {
+      for (final entry in call.args.entries) {
+        if (entry.key != 'title' && entry.key != 'subtitle') continue;
+        final key = _arbKey(entry.value);
+        final value = key == null ? null : en[key];
+        if (value is String && status.hasMatch(value)) {
+          offenders.add('${call.file}:${call.line} ${entry.key}: $key');
+        }
+      }
+    }
+    expect(
+      offenders..sort(),
+      isEmpty,
+      reason: 'Keep the section title; put the state in a body card.',
+    );
+  });
+
+  test('Page subtitles stay short', () {
+    // One line of orientation, not the page pitch: the English copy is capped
+    // at 92 characters (the audit found 34 running to three or four lines).
+    final en = _englishArb();
+    final offenders = <String>[];
+    for (final call in _scaffoldCalls()) {
+      final key = _arbKey(call.args['subtitle'] ?? '');
+      final value = key == null ? null : en[key];
+      if (value is String && value.length > 92) {
+        offenders.add('${call.file}:${call.line} $key (${value.length})');
+      }
+    }
+    expect(
+      offenders..sort(),
+      isEmpty,
+      reason: 'Shorten the subtitle in app_en.arb (and de).',
+    );
+  });
+}
+
+Map<String, dynamic> _englishArb() =>
+    jsonDecode(File('lib/l10n/app_en.arb').readAsStringSync())
+        as Map<String, dynamic>;
+
+/// `l10n.someKey`, `AppLocalizations.of(context).someKey(...)` → `someKey`.
+String? _arbKey(String expr) {
+  final m = RegExp(r'\.([A-Za-z0-9_]+)\s*(\(|$)').firstMatch(expr.trim());
+  return m?.group(1);
+}
+
+class _ScaffoldCall {
+  _ScaffoldCall(this.file, this.line, this.args);
+  final String file;
+  final int line;
+
+  /// The call's own named arguments (depth 0), name → value source.
+  final Map<String, String> args;
+}
+
+/// Every AppPageScaffold / LearnHubPageScaffold / SectionHubScaffold call in
+/// lib, with its top-level named arguments.
+Iterable<_ScaffoldCall> _scaffoldCalls() sync* {
+  final open = RegExp(
+    r'(?<![A-Za-z0-9_])(AppPageScaffold|LearnHubPageScaffold|SectionHubScaffold)\(',
+  );
+  for (final file in _dartFiles()) {
+    if (file.path.endsWith('_scaffold.dart')) continue;
+    final src = file.readAsStringSync();
+    for (final m in open.allMatches(src)) {
+      final args = <String, String>{};
+      var depth = 0;
+      var i = m.end;
+      String? quote;
+      String? name;
+      var valueStart = -1;
+      void closeArg(int end) {
+        if (name != null) args[name!] = src.substring(valueStart, end).trim();
+        name = null;
+      }
+
+      while (i < src.length) {
+        final c = src[i];
+        if (quote != null) {
+          if (c == r'\') {
+            i += 2;
+            continue;
+          }
+          if (c == quote) quote = null;
+        } else if (c == "'" || c == '"') {
+          quote = c;
+        } else if (c == '(' || c == '[' || c == '{') {
+          depth++;
+        } else if (c == ')' || c == ']' || c == '}') {
+          if (depth == 0) {
+            closeArg(i);
+            break;
+          }
+          depth--;
+        } else if (depth == 0 && c == ',') {
+          closeArg(i);
+        } else if (depth == 0 && name == null) {
+          final am = RegExp(r'([A-Za-z_]\w*):\s*').matchAsPrefix(src, i);
+          if (am != null && (i == 0 || ' \n\t,('.contains(src[i - 1]))) {
+            name = am.group(1);
+            valueStart = am.end;
+            i = am.end;
+            continue;
+          }
+        }
+        i++;
+      }
+      final line = src.substring(0, m.start).split('\n').length;
+      yield _ScaffoldCall(file.path, line, args);
+    }
+  }
 }
 
 Iterable<File> _dartFiles({String root = 'lib', String? skipDir}) sync* {

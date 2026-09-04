@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldAtmosphereLayersPage extends StatelessWidget {
   const WorldAtmosphereLayersPage({super.key});
@@ -20,8 +21,8 @@ class WorldAtmosphereLayersPage extends StatelessWidget {
     ];
 
     return AppPageScaffold(
-      title: 'Atmosphere Layers',
-      subtitle: 'A simple view of layered sky structure and protection.',
+      title: AppLocalizations.of(context).worldLandingAtmosphereLayersAction,
+      subtitle: AppLocalizations.of(context).worldAtmosphereLayersSubtitle,
       children: [
         PremiumCard(
           child: Column(

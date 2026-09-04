@@ -28,7 +28,6 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
     if (habit == null) {
       return AppPageScaffold(
         title: l10n.growthHabitDetailPageTitle,
-        subtitle: l10n.growthHabitUnavailableMessage,
         children: [
           PremiumCard(child: Text(l10n.growthHabitUnavailableMessage)),
         ],

@@ -73,7 +73,6 @@ class _AyahCompletionPuzzlePageState
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).ayahCompletionHomeTitle,
-      subtitle: AppLocalizations.of(context).ayahCompletionLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -81,7 +80,6 @@ class _AyahCompletionPuzzlePageState
   Widget _buildLoadError(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).ayahCompletionHomeTitle,
-      subtitle: AppLocalizations.of(context).ayahCompletionLoadErrorSubtitle,
       children: [
         PremiumCard(
           child: Text(
@@ -95,7 +93,6 @@ class _AyahCompletionPuzzlePageState
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).ayahCompletionHomeTitle,
-      subtitle: AppLocalizations.of(context).ayahCompletionNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).ayahCompletionNotFoundTitle),
@@ -118,7 +115,6 @@ class _AyahCompletionPuzzlePageState
     if (isChildProfile && puzzle.mode != AyahCompletionMode.kids) {
       return AppPageScaffold(
         title: l10n.ayahCompletionHomeTitle,
-        subtitle: l10n.ayahCompletionNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.ayahCompletionKidsOnlyTitle))],
       );
     }

@@ -56,7 +56,6 @@ class _EditorialContentEditorPageState
     if (currentSnapshot == null) {
       return AppPageScaffold(
         title: l10n.editorialDashboardContentEditorTitle,
-        subtitle: l10n.editorialDashboardEmptyTitle,
         children: [
           PremiumCard(
             child: Padding(

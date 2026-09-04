@@ -43,8 +43,7 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
     }
     if (path == null || stage == null) {
       return LearnHubPageScaffold(
-        title: l10n.triviaStageNotFoundTitle,
-        subtitle: l10n.triviaStageNotFoundSubtitle,
+        title: l10n.triviaKnowledgePathsPageTitle,
         children: [
           TriviaEmptyStateCard(
             title: l10n.triviaKnowledgePathsEmptyTitle,

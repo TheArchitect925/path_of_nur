@@ -23,7 +23,6 @@ class LifeSubcategoryPage extends ConsumerWidget {
     if (sub == null) {
       return AppPageScaffold(
         title: l10n.learnLifeSectionTitle,
-        subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }

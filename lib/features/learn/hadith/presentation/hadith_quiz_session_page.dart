@@ -61,7 +61,6 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
     if (session == null) {
       return AppPageScaffold(
         title: title,
-        subtitle: l10n.batch9Unavailable,
         children: [PremiumCard(child: Text(l10n.batch9HadithQuizUnavailable))],
       );
     }

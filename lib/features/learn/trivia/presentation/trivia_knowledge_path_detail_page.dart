@@ -24,8 +24,7 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
     final path = controller.knowledgePathById(pathId);
     if (path == null) {
       return LearnHubPageScaffold(
-        title: l10n.triviaKnowledgePathNotFoundTitle,
-        subtitle: l10n.triviaKnowledgePathNotFoundSubtitle,
+        title: l10n.triviaKnowledgePathsPageTitle,
         children: [
           TriviaEmptyStateCard(
             title: l10n.triviaKnowledgePathsEmptyTitle,

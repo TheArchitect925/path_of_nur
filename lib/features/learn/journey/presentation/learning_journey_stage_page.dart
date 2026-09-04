@@ -66,8 +66,7 @@ class _LearningJourneyStagePageState
     final kidsUi = ref.watch(activeKidsUiThemeProvider);
     if (journey == null || stage == null || stage.journeyId != journey.id) {
       return LearnHubPageScaffold(
-        title: l10n.learningJourneyStageNotFoundTitle,
-        subtitle: l10n.learningJourneyStageNotFoundSubtitle,
+        title: l10n.learnHubMainIslandLearningPathTitle,
         children: [
           Text(
             l10n.learningJourneyStageNotFoundBody,
@@ -231,9 +230,6 @@ class _LearningJourneyStagePageState
 
     return LearnHubPageScaffold(
       title: localizedStageTitle(context, stage),
-      subtitle: stageUnlocked
-          ? l10n.learningJourneyStageOpeningSubtitle
-          : l10n.learningJourneyStageLockedRedirectSubtitle,
       children: [
         SizedBox(height: 32),
         Center(child: CircularProgressIndicator()),
@@ -332,7 +328,6 @@ class _UnavailableStagePage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return LearnHubPageScaffold(
       title: localizedStageTitle(context, stage),
-      subtitle: l10n.learningJourneyStageUnavailableTitle,
       children: [
         Text(
           l10n.learningJourneyStageUnavailableBody,

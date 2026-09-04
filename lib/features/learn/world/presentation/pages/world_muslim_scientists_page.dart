@@ -5,6 +5,7 @@ import '../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../application/world_creation_provider.dart';
 import '../../domain/world_creation_models.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldMuslimScientistsPage extends ConsumerWidget {
   const WorldMuslimScientistsPage({super.key});
@@ -14,9 +15,8 @@ class WorldMuslimScientistsPage extends ConsumerWidget {
     final scientists = ref.watch(worldCreationScientistsProvider);
 
     return AppPageScaffold(
-      title: 'Muslim Scientists',
-      subtitle:
-          'Curiosity, observation, and disciplined inquiry in Muslim scholarship.',
+      title: AppLocalizations.of(context).worldLandingMuslimScientistsTitle,
+      subtitle: AppLocalizations.of(context).worldMuslimScientistsSubtitle,
       children: [
         ...scientists.map(
           (profile) => Padding(

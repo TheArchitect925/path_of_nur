@@ -22,7 +22,6 @@ class WorldSubcategoryPage extends ConsumerWidget {
     if (sub == null) {
       return AppPageScaffold(
         title: l10n.learnWorldSectionTitle,
-        subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }

@@ -37,8 +37,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
     if (story == null) {
       return AppPageScaffold(
         title: l10n.bedtimeStoriesTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.routerNotFoundTitle)],
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
 

@@ -587,8 +587,7 @@ class _LearningJourneyDetailMissingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      title: l10n.learningJourneyDetailMissingTitle,
-      subtitle: l10n.learningJourneyDetailMissingSubtitle,
+      title: l10n.learnHubMainIslandLearningPathTitle,
       children: [
         Text(
           l10n.learningJourneyDetailMissingBody,

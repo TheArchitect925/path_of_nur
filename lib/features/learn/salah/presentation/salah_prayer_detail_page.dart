@@ -41,8 +41,7 @@ class SalahPrayerDetailPage extends ConsumerWidget {
     final rakahs = ref.watch(salahPrayerRakahsProvider(prayerId));
     if (prayer == null) {
       return LearnHubPageScaffold(
-        title: l10n.salahPrayerDetailNotFound,
-        subtitle: l10n.learnContentNotFound,
+        title: l10n.learnSalahHubTitle,
         children: [
           PremiumCard(
             child: Align(

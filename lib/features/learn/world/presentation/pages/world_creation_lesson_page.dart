@@ -8,6 +8,7 @@ import '../../application/world_creation_provider.dart';
 import '../../data/world_creation_data.dart';
 import '../../domain/world_creation_models.dart';
 import '../widgets/world_creation_cards.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldCreationLessonPage extends ConsumerStatefulWidget {
   const WorldCreationLessonPage({super.key, required this.lessonId});
@@ -39,9 +40,8 @@ class _WorldCreationLessonPageState
   Widget build(BuildContext context) {
     final lesson = worldCreationLessonById(widget.lessonId);
     if (lesson == null) {
-      return const AppPageScaffold(
-        title: 'World & Creation',
-        subtitle: 'Lesson not found',
+      return AppPageScaffold(
+        title: AppLocalizations.of(context).worldLandingTitle,
         children: [
           PremiumCard(child: Text('The requested lesson could not be found.')),
         ],

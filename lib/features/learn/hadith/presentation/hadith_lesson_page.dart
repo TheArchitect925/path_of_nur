@@ -74,12 +74,10 @@ class _HadithLessonPageState extends ConsumerState<HadithLessonPage> {
     if (entry == null) {
       return AppPageScaffold(
         title: l10n.hadithPageTitle,
-        subtitle: l10n.hadithLessonNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithLessonNotFoundBody))],
       );
     }
 
-    final theme = ref.watch(hadithThemeByIdProvider(entry.themeId));
     final pathsProgress = ref.watch(hadithLearningPathsProgressProvider);
     final readingStatus = ref.watch(hadithReadingStatusProvider);
     final readerSettings = ref.watch(hadithReaderSettingsProvider);
@@ -170,7 +168,6 @@ class _HadithLessonPageState extends ConsumerState<HadithLessonPage> {
 
     return AppPageScaffold(
       title: entry.title,
-      subtitle: theme?.title ?? l10n.hadithPageTitle,
       headerActions: [
         IconButton(
           tooltip: l10n.hadithReaderDisplaySettingsAction,

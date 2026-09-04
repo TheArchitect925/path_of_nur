@@ -42,8 +42,7 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         final name = byId[widget.nameId];
         if (name == null) {
           return AppPageScaffold(
-            title: 'Name not found',
-            subtitle: 'The selected entry is unavailable.',
+            title: AppLocalizations.of(context).babyNamesTitle,
             children: const [PremiumCard(child: Text('Name not found.'))],
           );
         }
@@ -260,8 +259,7 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         );
       },
       loading: () => AppPageScaffold(
-        title: 'Baby Names',
-        subtitle: 'Loading name details',
+        title: AppLocalizations.of(context).babyNamesTitle,
         children: const [
           PremiumCard(
             child: SizedBox(
@@ -272,8 +270,7 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         ],
       ),
       error: (_, _) => AppPageScaffold(
-        title: 'Baby Names',
-        subtitle: 'Unable to open details',
+        title: AppLocalizations.of(context).babyNamesTitle,
         children: const [
           PremiumCard(child: Text('Unable to open this name right now.')),
         ],
@@ -294,6 +291,11 @@ class _Section extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          PremiumCard(
+            child: Text(
+              AppLocalizations.of(context).babyNamesDetailUnavailable,
+            ),
+          ),
           Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 8),
           child,

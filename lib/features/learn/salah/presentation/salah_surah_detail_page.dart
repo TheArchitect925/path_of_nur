@@ -43,8 +43,7 @@ class _SalahSurahDetailPageState extends ConsumerState<SalahSurahDetailPage> {
     );
     if (surah == null) {
       return LearnHubPageScaffold(
-        title: l10n.learnContentNotFound,
-        subtitle: l10n.salahPrayerDetailNotFound,
+        title: l10n.learnSalahHubTitle,
         children: [
           PremiumCard(
             child: Align(

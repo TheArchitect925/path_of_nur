@@ -41,7 +41,6 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
     if (collection == null) {
       return AppPageScaffold(
         title: l10n.hadithCollectionPageTitle,
-        subtitle: l10n.hadithCollectionNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithCollectionNotFoundBody))],
       );
     }

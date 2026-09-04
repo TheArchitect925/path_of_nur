@@ -21,6 +21,7 @@ import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsArabicLessonPage extends ConsumerStatefulWidget {
   const KidsArabicLessonPage({
@@ -203,16 +204,14 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
     final letter = notifier.letterById(widget.letterId);
     if (letter == null) {
       return LearnHubPageScaffold(
-        title: l10n.kidsArabicLetterMissingTitle,
-        subtitle: l10n.kidsArabicLetterMissingSubtitle,
-        children: [Text(l10n.kidsArabicLetterMissingBody)],
+        title: l10n.kidsArabicHomeTitle,
+        children: [PremiumCard(child: Text(l10n.kidsArabicLetterMissingBody))],
       );
     }
     if (!unlockedLetterIds.contains(letter.id)) {
       return LearnHubPageScaffold(
-        title: l10n.kidsArabicLockedTitle,
-        subtitle: l10n.kidsArabicLockedSubtitle,
-        children: [Text(l10n.kidsArabicLockedBody)],
+        title: l10n.kidsArabicHomeTitle,
+        children: [PremiumCard(child: Text(l10n.kidsArabicLockedBody))],
       );
     }
     final nextLetter = nextKidsArabicLetter(letter.id);

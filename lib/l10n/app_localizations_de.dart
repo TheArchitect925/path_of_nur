@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -1683,7 +1682,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get duaHubSubtitle =>
-      'Verifizierte koranische und prophetische Gebete, organisiert für das tägliche Leben, den Gottesdienst, die Familie, Reisen und Not.';
+      'Verifizierte koranische und prophetische Bittgebete für Alltag, Anbetung, Familie und Reisen.';
 
   @override
   String get duaHubTabLearn => 'Lernen';
@@ -3762,7 +3761,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnSalahHubSubtitle =>
-      'Lernen Sie die Struktur der Salah, üben Sie unter Anleitung und bauen Sie einen ruhigen Weg zum Auswendiglernen von Suren und Rezitationen auf.';
+      'Lernen Sie den Aufbau der Salah, üben Sie mit Anleitung und lernen Sie Suren ruhig auswendig.';
 
   @override
   String get learnSalahHubGuidanceNoticeTitle => 'Leitfaden für Gebet-Trainer';
@@ -4368,7 +4367,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnPathPickerSubtitle =>
-      'Wählen Sie den Weg, der zu Ihnen passt. Sie können ihn jederzeit ändern — Ihr Fortschritt bleibt immer erhalten.';
+      'Wählen Sie den Weg, der zu Ihnen passt. Jederzeit änderbar; Ihr Fortschritt bleibt.';
 
   @override
   String get learnPathPickerCurrentBadge => 'Aktuell';
@@ -4526,7 +4525,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnDiscoveryExploreSubtitle =>
-      'Finden Sie geführte Pfade, fokussierte Lektionen und ruhige Einstiege, ohne sich in der größeren Bibliothek zu verlieren.';
+      'Geführte Pfade, fokussierte Lektionen und ruhige Einstiege, ohne sich zu verlieren.';
 
   @override
   String get learnHubCategoryOverviewTitle => 'Kategorieübersicht';
@@ -6208,7 +6207,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranAyahInsightPathsSubtitle =>
-      'Folgen Sie kurzen, kuratierten Koran-Lernsequenzen, die auf den vorhandenen Vers Insights-Inhalten basieren.';
+      'Kurze, kuratierte Koran-Lernsequenzen aus den Vers-Einsichten.';
 
   @override
   String get quranAyahInsightPathsEmpty =>
@@ -6974,7 +6973,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnQuizzesHubSubtitle =>
-      'Üben Sie das Gelernte in den verschiedenen Lernabschnitten mit einem organisierten Quiz-Hub.';
+      'Üben Sie das Gelernte aus allen Lernbereichen an einem Ort.';
 
   @override
   String get learnQuizzesSearchHint =>
@@ -9237,7 +9236,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get journalDetailPageSubtitle =>
-      'Öffnen Sie einen Eintrag, schauen Sie sich seinen Kontext noch einmal an und halten Sie Ihre Notizen, Überlegungen und Tagebucheinträge miteinander in Verbindung.';
+      'Einen Eintrag mit Kontext, Notizen und Überlegungen noch einmal ansehen.';
 
   @override
   String get journalDetailEntryBodyTitle => 'Eintrag';
@@ -10267,7 +10266,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyHomeSubtitle =>
-      'Ein ruhigeres Lernhaus, das rund um Reisen, heutige Führung und klare Inseln gebaut ist.';
+      'Ein ruhigeres Lernzuhause: Reisen, heutige Führung und klare Lerninseln.';
 
   @override
   String get learningJourneyHomeContinueBadge => 'Setzen Sie Ihre Reise fort';
@@ -11649,7 +11648,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyBrowseAllSubtitle =>
-      'Durchsuchen Sie zunächst die Journey-Architektur und greifen Sie dann bei Bedarf nach zugehörigen Tools, Sammlungen und der Original-Lernbibliothek.';
+      'Zuerst die Journey-Karte, dann zugehörige Tools, Sammlungen und die ursprüngliche Bibliothek.';
 
   @override
   String get learningJourneyBrowseIslandsTitle => 'Reiseinseln';
@@ -18613,7 +18612,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get familyLearningManagementSubtitle =>
-      'Erstellen Sie Lernprofile für Kinder, leiten Sie sie auf ihrem Weg und halten Sie den Fortschritt bei gemeinsam genutzten Geräten getrennt.';
+      'Lernprofile für Kinder, geführte Wege und getrennter Fortschritt auf geteilten Geräten.';
 
   @override
   String get familyLearningManagementUnavailable =>
@@ -19320,7 +19319,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsAccountsSyncSubtitle =>
-      'Verwalten Sie gemeinsam genutzte Geräte, geschützte Profile und Backups, ohne Ihre aktuelle Reise zu stören.';
+      'Geteilte Geräte, geschützte Profile und Backups, ohne Ihre Reise zu stören.';
 
   @override
   String get settingsCareModesTitle => 'Fürsorge & Lebensphasen';
@@ -19549,7 +19548,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accountsSyncSharedDeviceSafetyPageSubtitle =>
-      'Verlange die Profilauswahl beim Start, schütze Erwachsenenprofile und halte Kindererlebnisse sicherer.';
+      'Profilauswahl beim Start verlangen, Erwachsenenprofile schützen und Kinder besser absichern.';
 
   @override
   String get accountsSyncSharedDeviceModeActive =>
@@ -20390,7 +20389,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accountsSyncExportBackupPageSubtitle =>
-      'Erstellen Sie eine wiederherstellbare Kopie Ihrer Reise, die Sie lokal behalten, per AirDrop verschieben oder in Dateien speichern können.';
+      'Eine wiederherstellbare Kopie Ihrer Reise, lokal, per AirDrop oder in Dateien gespeichert.';
 
   @override
   String get accountsSyncCurrentProfileOnlyTitle => 'Nur aktuelles Profil';
@@ -25245,7 +25244,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get batch9FaqSubtitle =>
-      'Klare, sanfte Antworten auf häufige Fragen zum Islam, mit ruhiger Klärung, wo Missverständnisse bestehen.';
+      'Klare, sanfte Antworten auf häufige Fragen zum Islam.';
 
   @override
   String get batch9FaqScholarNote =>
@@ -27573,7 +27572,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get growthHabitSettingsSubtitle =>
-      'Wählen Sie aus, was sichtbar bleibt, was verfolgt wird, und fügen Sie Ihre eigenen benutzerdefinierten Gewohnheiten und Kategorien hinzu.';
+      'Wählen Sie, was sichtbar und verfolgt bleibt, und fügen Sie eigene Gewohnheiten und Kategorien hinzu.';
 
   @override
   String get growthHabitSettingsCustomCategoriesTitle =>
@@ -27858,7 +27857,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnGlossarySubtitle =>
-      'Lernen Sie gängige islamische Begriffe durch kurze, anfängerfreundliche Erklärungen, die Sie jederzeit öffnen können.';
+      'Gängige islamische Begriffe in kurzen, anfängerfreundlichen Erklärungen, jederzeit greifbar.';
 
   @override
   String get learnGlossaryCardTitle => 'Glossar';
@@ -30972,7 +30971,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get contentBuilderSubtitle =>
-      'Normalisieren, validieren, zeigen Sie eine Vorschau an und exportieren Sie interne Inhaltsentwürfe, ohne den Live-Spielekatalog zu ändern.';
+      'Entwürfe normalisieren, prüfen, ansehen und exportieren, ohne den Live-Katalog zu ändern.';
 
   @override
   String get contentBuilderCatalogTitle => 'Aktueller Content-Snapshot';
@@ -31158,7 +31157,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bedtimeStoriesSubtitle =>
-      'Ruhige Prophetengeschichten zum Herunterkommen, gemeinsamen Zuhören und Gedenken Allahs vor dem Schlaf.';
+      'Ruhige Prophetengeschichten zum Zur-Ruhe-Kommen und Gedenken Allahs vor dem Schlafen.';
 
   @override
   String get bedtimeStoriesHeroTitle =>
@@ -31559,7 +31558,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsStoryLibrarySubtitle =>
-      'Stöbern Sie in einer ruhigen Bibliothek in Propheten, guten Manieren, Alltagsgeschichten und saisonalen islamischen Geschichten.';
+      'Propheten, gute Manieren, Alltag und saisonale Geschichten in einer ruhigen Bibliothek.';
 
   @override
   String get kidsStoryLibraryHeroTitle =>
@@ -31686,7 +31685,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsSeerahJourneysSubtitle =>
-      'Folgen Sie einem ruhigen, kinderfreundlichen Weg durch Schlüsselmomente im Leben des Propheten Muhammad ﷺ und einiger geliebter Gefährten.';
+      'Ein ruhiger, kinderfreundlicher Weg durch das Leben des Propheten Muhammad ﷺ und seiner Gefährten.';
 
   @override
   String get kidsSeerahJourneysHeroTitle => 'Ein geführter Sira-Weg für Kinder';
@@ -34201,7 +34200,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnGamesHubSubtitleText =>
-      'Durchsuchen Sie tägliche Herausforderungen, Wissensspiele, Koranübungen, Reflexion, spirituelle Werkzeuge und Themenpakete an einem Ort.';
+      'Tägliche Herausforderungen, Wissensspiele, Koranübungen, Reflexion und Themenpakete.';
 
   @override
   String get learnGamesSearchHintText => 'Suchen Sie nach Quizzen und Spielen';
@@ -34233,7 +34232,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnGamesBrowseAllPageSubtitleText =>
-      'Durchsuchen oder scannen Sie jedes verfügbare Quiz, Spiel, jede Herausforderung und jedes Paket, ohne durch dünne Kategorieseiten zu springen.';
+      'Jedes Quiz, Spiel, jede Herausforderung und jedes Paket in einer durchsuchbaren Liste.';
 
   @override
   String get learnGamesDailyKnowledgeTodayTitleText =>
@@ -37511,7 +37510,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranGuidedPassagesAdultPageSubtitle =>
-      'Gehe von kurzen Suren zu etwas längeren geführten Abschnitten, ohne den Einsteiger-Brückenpfad zu verlassen.';
+      'Von kurzen Suren zu etwas längeren geführten Abschnitten, weiter auf dem Einsteigerpfad.';
 
   @override
   String get quranGuidedPassagesKidsIntroTitle =>
@@ -39023,7 +39022,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranSummaryPageSubtitle =>
-      'Durchsuche jede Sure mit einer knappen Übersicht, Offenbarungskontext und lernfreundlichen Details.';
+      'Jede Sure mit knapper Übersicht, Offenbarungskontext und Lernhinweisen.';
 
   @override
   String get quranSummarySearchHint =>
@@ -39211,7 +39210,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranThemeDiscoveryPageSubtitle =>
-      'Entdecken Sie den Koran durch kuratierte Themen, verwandte Suren, wichtige Ayah-Anker und sanfte Lernpfade.';
+      'Kuratierte Themen, verwandte Suren, Schlüsselverse und sanfte Lernpfade.';
 
   @override
   String get quranThemeDiscoveryHeroEyebrow => 'Thematische Entdeckung';
@@ -40856,7 +40855,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnDailyDhikrNextStepsSubtitle =>
-      'Sie haben mit Bedeutung und Einfachheit begonnen. Jetzt können Sie sanft weiterüben und das Dhikr mit dem Rest Ihrer Anbetung verbinden.';
+      'Sie haben mit Bedeutung begonnen. Üben Sie nun sanft weiter und verbinden Sie das Dhikr mit Ihrer Anbetung.';
 
   @override
   String get learnDailyDhikrNextStepsIntroTitle =>
@@ -40890,7 +40889,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnQuranBeginnerSoftBridgeSubtitle =>
-      'Sie müssen sich nicht vollkommen bereit fühlen, bevor Sie beginnen. Starten Sie klein, bleiben Sie ruhig und lassen Sie das Verständnis mit der Zeit wachsen.';
+      'Sie müssen sich nicht bereit fühlen. Klein anfangen, ruhig bleiben, Verständnis wachsen lassen.';
 
   @override
   String get learnQuranBeginnerSoftBridgeIntroTitle =>
@@ -44673,4 +44672,61 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get dhikrCustomRoutineFallbackName => 'Meine Routine';
+
+  @override
+  String get divineLifeReflectionModeTitle => 'Reflexionsmodus';
+
+  @override
+  String get divineLifeReflectionModeSubtitle =>
+      'Ruhiges, konzentriertes Lesen';
+
+  @override
+  String get worldAtmosphereLayersSubtitle =>
+      'Ein einfacher Blick auf den Schichtaufbau und Schutz des Himmels.';
+
+  @override
+  String get worldSignsExplorerSubtitle =>
+      'Die Schöpfung nach großen Bereichen durchstöbern und in Lektionen eintauchen.';
+
+  @override
+  String get worldDeepOceanTitle => 'Tiefsee-Entdecker';
+
+  @override
+  String get worldDeepOceanSubtitle =>
+      'Eine vertikale Reflexion über Tiefe, Dunkelheit und verborgenes Leben.';
+
+  @override
+  String get worldCosmicScaleTitle => 'Kosmische Größenordnungen';
+
+  @override
+  String get worldCosmicScaleSubtitle =>
+      'Vom Winzigen zum Riesigen: Proportion und Perspektive beobachten.';
+
+  @override
+  String get worldMuslimScientistsSubtitle =>
+      'Neugier, Beobachtung und disziplinierte Forschung in der muslimischen Gelehrsamkeit.';
+
+  @override
+  String worldReflectionModeProgress(int current, int total) {
+    return '$current von $total';
+  }
+
+  @override
+  String get worldReflectionModeEmpty =>
+      'Noch keine Reflexionslektionen verfügbar.';
+
+  @override
+  String get quranUniverseTitle => 'Koran-Universum';
+
+  @override
+  String get quranUniverseSubtitle =>
+      'Verbindungen zwischen Versen, Propheten, Themen, Orten, Lektionen und Gewohnheiten.';
+
+  @override
+  String get knowledgeConstellationSubtitle =>
+      'Eine interaktive Karte, die Koran, Hadith, Propheten und Themen verbindet.';
+
+  @override
+  String get babyNamesDetailUnavailable =>
+      'Details können nicht geöffnet werden.';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldCosmicScalePage extends StatelessWidget {
   const WorldCosmicScalePage({super.key});
@@ -22,8 +23,8 @@ class WorldCosmicScalePage extends StatelessWidget {
     ];
 
     return AppPageScaffold(
-      title: 'Cosmic Scale Explorer',
-      subtitle: 'From tiny to vast, observe proportion and perspective.',
+      title: AppLocalizations.of(context).worldCosmicScaleTitle,
+      subtitle: AppLocalizations.of(context).worldCosmicScaleSubtitle,
       children: [
         ...steps.asMap().entries.map(
           (entry) => Padding(

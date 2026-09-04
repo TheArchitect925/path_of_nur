@@ -30,7 +30,6 @@ class CircleDetailPage extends ConsumerWidget {
     if (circle == null) {
       return AppPageScaffold(
         title: l10n.circlesTitle,
-        subtitle: l10n.circlesNotFound,
         children: [PremiumCard(child: Text(l10n.circlesNotFound))],
       );
     }

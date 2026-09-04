@@ -14,6 +14,7 @@ import '../../prophets/domain/prophet_entry.dart';
 import '../../prophets/presentation/prophet_detail_page.dart';
 import '../data/seeded_quran_universe_data.dart';
 import '../domain/quran_universe_links.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class KnowledgeConstellationPage extends ConsumerStatefulWidget {
   const KnowledgeConstellationPage({super.key});
@@ -69,9 +70,10 @@ class _KnowledgeConstellationPageState
     final prophets = ref.watch(prophetsProvider);
 
     return LearnHubPageScaffold(
-      title: 'Knowledge Constellation',
-      subtitle:
-          'An interactive map linking Qur’an, Hadith, Prophets, and Themes.',
+      title: AppLocalizations.of(
+        context,
+      ).learningJourneyToolKnowledgeConstellationTitle,
+      subtitle: AppLocalizations.of(context).knowledgeConstellationSubtitle,
       children: [
         PremiumCard(
           child: Column(

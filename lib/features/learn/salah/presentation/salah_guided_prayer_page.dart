@@ -115,8 +115,7 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
     );
     if (prayer == null || steps.isEmpty) {
       return LearnHubPageScaffold(
-        title: l10n.salahGuidedPrayerUnavailable,
-        subtitle: l10n.learnContentNotFound,
+        title: l10n.learnSalahHubTitle,
         children: [
           PremiumCard(
             child: Align(

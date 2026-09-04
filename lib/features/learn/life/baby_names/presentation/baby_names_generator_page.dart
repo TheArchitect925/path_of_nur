@@ -10,6 +10,7 @@ import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class BabyNamesGeneratorPage extends ConsumerStatefulWidget {
   const BabyNamesGeneratorPage({super.key});
@@ -76,9 +77,8 @@ class _BabyNamesGeneratorPageState
     final options = ref.watch(babyNamesFilterOptionsProvider);
 
     return AppPageScaffold(
-      title: 'Name Generator',
-      subtitle:
-          'Generate 1 to 3 name suggestions from your selected preferences',
+      title: AppLocalizations.of(context).babyNamesGeneratorTitle,
+      subtitle: AppLocalizations.of(context).babyNamesGeneratorSubtitle,
       children: [
         indexAsync.when(
           data: (index) => Column(

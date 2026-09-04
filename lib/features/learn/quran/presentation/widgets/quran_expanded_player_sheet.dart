@@ -160,7 +160,6 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
     return AppPageScaffold(
       key: const ValueKey('quran-global-player-sheet'),
       title: l10n.shellQuranMiniPlayerTitle,
-      subtitle: nowPlayingLabel ?? l10n.quranReaderSubtitle,
       headerActions: [
         IconButton(
           key: const ValueKey('quran-global-player-collapse'),

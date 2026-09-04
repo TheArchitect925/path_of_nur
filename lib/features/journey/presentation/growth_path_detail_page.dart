@@ -28,7 +28,6 @@ class GrowthPathDetailPage extends ConsumerWidget {
     if (progress == null) {
       return AppPageScaffold(
         title: l10n.growthPathDetailPageTitle,
-        subtitle: l10n.growthPathUnavailableMessage,
         children: [PremiumCard(child: Text(l10n.growthPathUnavailableMessage))],
       );
     }

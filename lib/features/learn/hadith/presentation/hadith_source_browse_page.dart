@@ -91,7 +91,6 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
     if (collection == null) {
       return AppPageScaffold(
         title: l10n.hadithSourceBrowseTitle,
-        subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
         children: [
           PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody)),
         ],
@@ -220,7 +219,6 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
     if (collection == null || chapter == null) {
       return AppPageScaffold(
         title: l10n.hadithSourceBrowseTitle,
-        subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
         children: [
           PremiumCard(child: Text(l10n.hadithSourceBrowseNotFoundBody)),
         ],

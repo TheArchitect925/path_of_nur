@@ -73,7 +73,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).wordSearchHomeTitle,
-      subtitle: AppLocalizations.of(context).wordSearchLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -93,7 +92,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).wordSearchHomeTitle,
-      subtitle: AppLocalizations.of(context).wordSearchNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).wordSearchNotFoundTitle),
@@ -116,7 +114,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
     if (isChildProfile && puzzle.mode != WordSearchMode.kids) {
       return AppPageScaffold(
         title: l10n.wordSearchHomeTitle,
-        subtitle: l10n.wordSearchNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.wordSearchKidsOnlyTitle))],
       );
     }

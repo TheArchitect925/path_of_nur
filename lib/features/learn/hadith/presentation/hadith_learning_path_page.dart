@@ -27,7 +27,6 @@ class HadithLearningPathPage extends ConsumerWidget {
     if (path == null) {
       return AppPageScaffold(
         title: l10n.hadithPathPageTitle,
-        subtitle: l10n.hadithPathNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithPathNotFoundBody))],
       );
     }
@@ -39,7 +38,6 @@ class HadithLearningPathPage extends ConsumerWidget {
 
     return AppPageScaffold(
       title: path.title,
-      subtitle: path.subtitle ?? l10n.hadithPathDefaultSubtitle,
       children: [
         LearningSection(
           title: l10n.hadithPathProgressTitle,

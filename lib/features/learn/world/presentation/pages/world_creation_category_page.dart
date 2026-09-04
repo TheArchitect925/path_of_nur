@@ -10,6 +10,7 @@ import '../../application/world_creation_provider.dart';
 import '../../data/world_creation_data.dart';
 import '../../domain/world_creation_models.dart';
 import '../../../../../core/theme/app_icons.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldCreationCategoryPage extends ConsumerWidget {
   const WorldCreationCategoryPage({super.key, required this.categoryName});
@@ -24,9 +25,8 @@ class WorldCreationCategoryPage extends ConsumerWidget {
     );
     final categoryData = worldCreationCategoryById(category);
     if (categoryData == null) {
-      return const AppPageScaffold(
-        title: 'World & Creation',
-        subtitle: 'Category not found',
+      return AppPageScaffold(
+        title: AppLocalizations.of(context).worldLandingTitle,
         children: [
           PremiumCard(child: Text('This category could not be found.')),
         ],

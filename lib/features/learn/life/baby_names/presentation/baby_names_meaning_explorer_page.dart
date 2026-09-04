@@ -7,6 +7,7 @@ import '../../../../../../shared/widgets/premium_card.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
 import '../../../../../core/theme/app_icons.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class BabyNamesMeaningExplorerPage extends ConsumerWidget {
   const BabyNamesMeaningExplorerPage({super.key});
@@ -16,8 +17,8 @@ class BabyNamesMeaningExplorerPage extends ConsumerWidget {
     final indexAsync = ref.watch(babyNamesIndexProvider);
 
     return AppPageScaffold(
-      title: 'Meaning Explorer',
-      subtitle: 'Browse names by spiritual and character themes',
+      title: AppLocalizations.of(context).babyNamesMeaningExplorerTitle,
+      subtitle: AppLocalizations.of(context).babyNamesMeaningExplorerSubtitle,
       children: [
         indexAsync.when(
           data: (index) {

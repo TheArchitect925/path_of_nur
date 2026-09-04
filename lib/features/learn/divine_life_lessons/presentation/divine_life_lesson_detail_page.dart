@@ -11,6 +11,7 @@ import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
 import '../domain/divine_life_models.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class DivineLifeLessonDetailPage extends ConsumerStatefulWidget {
   const DivineLifeLessonDetailPage({super.key, required this.lessonId});
@@ -53,9 +54,8 @@ class _DivineLifeLessonDetailPageState
   Widget build(BuildContext context) {
     final lesson = divineLifeLessonById(widget.lessonId);
     if (lesson == null) {
-      return const AppPageScaffold(
-        title: 'Divine Life Lessons',
-        subtitle: 'Lesson not found',
+      return AppPageScaffold(
+        title: AppLocalizations.of(context).learnCategoryDivineLifeLessonsTitle,
         children: [PremiumCard(child: Text('This lesson could not be found.'))],
       );
     }

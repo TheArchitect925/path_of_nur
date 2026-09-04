@@ -8,6 +8,7 @@ import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_coloring_provider.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsArabicColoringViewerPage extends ConsumerWidget {
   const KidsArabicColoringViewerPage({super.key, required this.pageId});
@@ -23,17 +24,17 @@ class KidsArabicColoringViewerPage extends ConsumerWidget {
 
     if (page == null) {
       return LearnHubPageScaffold(
-        title: l10n.kidsArabicColoringMissingTitle,
-        subtitle: l10n.kidsArabicColoringMissingSubtitle,
-        children: [Text(l10n.kidsArabicColoringMissingBody)],
+        title: l10n.kidsArabicColoringPagesTitle,
+        children: [
+          PremiumCard(child: Text(l10n.kidsArabicColoringMissingBody)),
+        ],
       );
     }
 
     if (!page.isUnlocked) {
       return LearnHubPageScaffold(
-        title: l10n.kidsArabicColoringLockedTitle,
-        subtitle: l10n.kidsArabicColoringLockedSubtitle,
-        children: [Text(l10n.kidsArabicColoringUnlockHint)],
+        title: l10n.kidsArabicColoringPagesTitle,
+        children: [PremiumCard(child: Text(l10n.kidsArabicColoringUnlockHint))],
       );
     }
 

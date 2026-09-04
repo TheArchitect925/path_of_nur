@@ -40,7 +40,6 @@ class _IslamicTriviaSessionPageState
     if (session == null || question == null) {
       return LearnHubPageScaffold(
         title: l10n.triviaSessionPageTitle,
-        subtitle: l10n.triviaSessionNoActiveTitle,
         children: [
           TriviaEmptyStateCard(
             title: l10n.triviaSessionNoActiveTitle,

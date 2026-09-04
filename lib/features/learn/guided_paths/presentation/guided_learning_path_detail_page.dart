@@ -30,7 +30,6 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
     if (localizedPath == null) {
       return LearnHubPageScaffold(
         title: l10n.guidedLearningPathsTitle,
-        subtitle: l10n.guidedLearningPathMissingSubtitle,
         children: [
           PremiumCard(child: Text(l10n.guidedLearningPathMissingBody)),
         ],
@@ -57,7 +56,6 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
         localizedPath.path.audience != GuidedLearningPathAudience.kids) {
       return LearnHubPageScaffold(
         title: l10n.guidedLearningPathsTitle,
-        subtitle: l10n.guidedLearningPathUnavailableSubtitle,
         children: [
           PremiumCard(child: Text(l10n.guidedLearningPathUnavailableBody)),
         ],

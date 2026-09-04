@@ -19,6 +19,7 @@ import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsArabicWordLessonPage extends ConsumerStatefulWidget {
   const KidsArabicWordLessonPage({
@@ -140,9 +141,8 @@ class _KidsArabicWordLessonPageState
     final word = kidsArabicBeginnerWordById(widget.wordId);
     if (word == null) {
       return LearnHubPageScaffold(
-        title: l10n.kidsArabicWordsMissingTitle,
-        subtitle: l10n.kidsArabicWordsMissingSubtitle,
-        children: [Text(l10n.kidsArabicWordsMissingBody)],
+        title: l10n.kidsArabicWordsTitle,
+        children: [PremiumCard(child: Text(l10n.kidsArabicWordsMissingBody))],
       );
     }
 
@@ -155,8 +155,7 @@ class _KidsArabicWordLessonPageState
     );
     if (!unlocked) {
       return LearnHubPageScaffold(
-        title: l10n.kidsArabicWordsLockedTitle,
-        subtitle: l10n.kidsArabicWordsLockedSubtitle,
+        title: l10n.kidsArabicWordsTitle,
         children: [
           Text(
             localizedKidsArabicRequiredLettersLabel(l10n, word.joiningExamples),

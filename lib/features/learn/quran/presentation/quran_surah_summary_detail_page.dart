@@ -48,7 +48,6 @@ class QuranSurahSummaryDetailPage extends ConsumerWidget {
 
     return AppPageScaffold(
       title: entry.transliteratedName,
-      subtitle: l10n.quranSummaryDetailPageSubtitle(entry.surahNumber),
       backgroundOverlayColor: palette.pageOverlay,
       backgroundAtmosphere: AppBackgroundAtmosphere.quran,
       children: [

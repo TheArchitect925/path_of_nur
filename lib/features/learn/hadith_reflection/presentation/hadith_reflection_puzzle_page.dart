@@ -70,7 +70,6 @@ class _HadithReflectionPuzzlePageState
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).hadithReflectionHomeTitle,
-      subtitle: AppLocalizations.of(context).hadithReflectionLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -78,7 +77,6 @@ class _HadithReflectionPuzzlePageState
   Widget _buildLoadError(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).hadithReflectionHomeTitle,
-      subtitle: AppLocalizations.of(context).hadithReflectionLoadErrorSubtitle,
       children: [
         PremiumCard(
           child: Text(
@@ -92,7 +90,6 @@ class _HadithReflectionPuzzlePageState
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).hadithReflectionHomeTitle,
-      subtitle: AppLocalizations.of(context).hadithReflectionNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(
@@ -117,7 +114,6 @@ class _HadithReflectionPuzzlePageState
     if (isChildProfile && puzzle.mode != HadithReflectionMode.kids) {
       return AppPageScaffold(
         title: l10n.hadithReflectionHomeTitle,
-        subtitle: l10n.hadithReflectionNotFoundSubtitle,
         children: [
           PremiumCard(child: Text(l10n.hadithReflectionKidsOnlyTitle)),
         ],

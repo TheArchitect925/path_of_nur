@@ -67,7 +67,6 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).matchingHomeTitle,
-      subtitle: AppLocalizations.of(context).matchingLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -75,7 +74,6 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
   Widget _buildLoadError(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).matchingHomeTitle,
-      subtitle: AppLocalizations.of(context).matchingLoadErrorSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).matchingLoadErrorTitle),
@@ -110,7 +108,6 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
     if (isChildProfile && puzzle.mode != MatchingMode.kids) {
       return AppPageScaffold(
         title: l10n.matchingHomeTitle,
-        subtitle: l10n.matchingNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.matchingKidsOnlyTitle))],
       );
     }

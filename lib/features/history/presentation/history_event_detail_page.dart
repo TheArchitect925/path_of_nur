@@ -28,9 +28,10 @@ class HistoryEventDetailPage extends ConsumerWidget {
       data: (event) {
         if (event == null) {
           return AppPageScaffold(
-            title: l10n.historyDetailNotFoundTitle,
-            subtitle: l10n.historyDetailNotFoundSubtitle,
-            children: [Text(l10n.historyDetailNotFoundSubtitle)],
+            title: l10n.historyArchiveTitle,
+            children: [
+              PremiumCard(child: Text(l10n.historyDetailNotFoundSubtitle)),
+            ],
           );
         }
         final contextualRelatedAsync = ref.watch(
@@ -130,13 +131,13 @@ class HistoryEventDetailPage extends ConsumerWidget {
       },
       loading: () => AppPageScaffold(
         title: l10n.historyDetailLoadingTitle,
-        subtitle: l10n.historyDetailLoadingSubtitle,
         children: const [Center(child: CircularProgressIndicator())],
       ),
       error: (_, _) => AppPageScaffold(
-        title: l10n.historyDetailNotFoundTitle,
-        subtitle: l10n.historyDetailNotFoundSubtitle,
-        children: [Text(l10n.historyDetailNotFoundSubtitle)],
+        title: l10n.historyArchiveTitle,
+        children: [
+          PremiumCard(child: Text(l10n.historyDetailNotFoundSubtitle)),
+        ],
       ),
     );
   }

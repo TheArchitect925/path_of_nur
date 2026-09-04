@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 enum _FavoritesSort { alphabetical, quranicFirst, recentlyViewed }
 
@@ -50,8 +51,8 @@ class _BabyNamesFavoritesPageState
     }
 
     return AppPageScaffold(
-      title: 'Saved Names',
-      subtitle: 'Your personal shortlist for thoughtful comparison',
+      title: AppLocalizations.of(context).babyNamesFavoritesTitle,
+      subtitle: AppLocalizations.of(context).babyNamesFavoritesSubtitle,
       children: [
         PremiumCard(
           child: Row(

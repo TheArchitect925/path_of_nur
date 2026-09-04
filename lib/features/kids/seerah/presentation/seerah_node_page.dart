@@ -37,8 +37,9 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
     if (summary == null || node == null) {
       return AppPageScaffold(
         title: l10n.kidsSeerahJourneysTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.kidsSeerahJourneyUnavailableSubtitle)],
+        children: [
+          PremiumCard(child: Text(l10n.kidsSeerahJourneyUnavailableSubtitle)),
+        ],
       );
     }
 

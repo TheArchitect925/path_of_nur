@@ -56,7 +56,6 @@ class _LearnContentDetailPageState
     if (topic == null) {
       return AppPageScaffold(
         title: l10n.learnContentTopicLabel,
-        subtitle: l10n.learnContentUnavailableSubtitle,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }

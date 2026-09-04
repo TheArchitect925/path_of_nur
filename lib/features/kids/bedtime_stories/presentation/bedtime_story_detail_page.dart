@@ -61,8 +61,7 @@ class _BedtimeStoryDetailPageState
     if (story == null) {
       return AppPageScaffold(
         title: l10n.bedtimeStoriesTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.routerNotFoundTitle)],
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
     final progress = ref.watch(

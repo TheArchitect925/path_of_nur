@@ -87,7 +87,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).crosswordHomeTitle,
-      subtitle: AppLocalizations.of(context).crosswordLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -107,7 +106,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).crosswordHomeTitle,
-      subtitle: AppLocalizations.of(context).crosswordNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).crosswordNotFoundTitle),
@@ -130,7 +128,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     if (isChildProfile && puzzle.mode != CrosswordMode.kids) {
       return AppPageScaffold(
         title: l10n.crosswordHomeTitle,
-        subtitle: l10n.crosswordNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.crosswordKidsOnlyTitle))],
       );
     }

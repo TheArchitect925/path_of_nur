@@ -34,7 +34,6 @@ class _HadithThemePageState extends ConsumerState<HadithThemePage> {
     if (theme == null) {
       return AppPageScaffold(
         title: l10n.hadithPageTitle,
-        subtitle: l10n.hadithThemeNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithThemeNotFoundBody))],
       );
     }
