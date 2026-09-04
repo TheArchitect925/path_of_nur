@@ -13,9 +13,17 @@ const List<PrayerName> obligatoryPrayerNames = <PrayerName>[
   PrayerName.isha,
 ];
 
+/// The clock behind date-less prayer labels ("today"). Dhuhr renames itself
+/// to Jumu'ah on Fridays, so a hard DateTime.now() here made every widget
+/// without a date in scope — and every test that seeded its own clock —
+/// change behaviour on real Fridays. Production keeps the real clock; tests
+/// pin it.
+@visibleForTesting
+DateTime Function() prayerLabelClock = DateTime.now;
+
 extension PrayerNameX on PrayerName {
   String localizedLabel(AppLocalizations l10n) {
-    return localizedLabelForDate(l10n, DateTime.now());
+    return localizedLabelForDate(l10n, prayerLabelClock());
   }
 
   String localizedLabelForDate(AppLocalizations l10n, DateTime date) {

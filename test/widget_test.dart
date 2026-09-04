@@ -12,6 +12,7 @@ import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:path_of_nur/shared/widgets/app_scaffold.dart';
 import 'package:path_of_nur/features/salah/presentation/salah_page.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_section_pages.dart';
+import 'package:path_of_nur/features/worship/domain/prayer_name.dart';
 
 void main() {
   testWidgets('Legal support page renders', (WidgetTester tester) async {
@@ -49,15 +50,30 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
+    // Date-less prayer labels ("today") read prayerLabelClock, which is the
+    // real clock by default — on real Fridays that renames Dhuhr to Jumu'ah
+    // under the test's feet. Pin it to the seeded date.
+    prayerLabelClock = () => DateTime.parse('2026-03-22T12:00:00');
+    addTearDown(() => prayerLabelClock = DateTime.now);
+
+    // Hydrate the seeded clock before the first build; consumers fall back
+    // to the real clock while the stream is still loading, which flips the
+    // Dhuhr slot to Jumu'ah when the suite happens to run on a Friday.
+    final container = ProviderContainer(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+    await container.read(dailyNowProvider.future);
+
     await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          sharedPreferencesProvider.overrideWithValue(prefs),
-          dailyNowProvider.overrideWith(
-            (ref) =>
-                Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
-          ),
-        ],
+      UncontrolledProviderScope(
+        container: container,
         child: MaterialApp(
           localizationsDelegates: [
             AppLocalizations.delegate,
