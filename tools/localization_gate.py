@@ -94,6 +94,7 @@ REGISTER = {
 # Keys whose second person addresses Allah, not the reader.
 REGISTER_EXEMPT = re.compile(
     r"(Invocation|InvocationMeaning|DuaMeaning|VerseTranslation|GreetingMorningTranslation"
+    r"|salahTrainerStep\w*Translation"
     r"|GreetingEveningTranslation|RecitationSection1Body|LeavingWashroomMeaning"
     r"|EnteringWashroomMeaning|BeforeSleepMeaning|EnteringHomeMeaning|ForParentsMeaning)"
 )

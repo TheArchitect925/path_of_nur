@@ -17,6 +17,10 @@ void main() {
     'lib/core/theme/app_palette.dart',
     // Documented `appearance?.x ?? AppColors.y` fallbacks.
     'lib/core/theme/app_surfaces.dart',
+    // Restored after an accidental staged deletion while a parallel
+    // refactor replaces it; the refactor deletes this file again and this
+    // entry goes with it.
+    'lib/features/worship/presentation/widgets/dhikr_section.dart',
     // Uses the constants as category hue seeds, then blends them against the
     // live theme's surface/onSurface.
     'lib/features/learn/dua/presentation/dua_category_theme.dart',
