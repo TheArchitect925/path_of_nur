@@ -22,7 +22,6 @@
 | PON-E-learn-design-parity | Learn sub-pages rejoin the app's design language | in_progress |
 | PON-E-onboarding-carousel | Startup carousel rejoins the app (design language, three-theme setup, plainer copy) | done |
 | PON-E-font-asset-integrity | Bundled font asset integrity | done |
-| PON-E-header-redesign | Page headers and icons: one anatomy, one icon vocabulary, honest copy | in_progress |
 | PON-E-apple-device-packaging | Apple device packaging — iPhone IPA, embedded watch app, Apple TV build | in_progress |
 | PON-E-dhikr-redesign | Dhikr redesign: routine-first hub, misbaha counter, guided routines, history | done |
 | PON-E-salah-trainer | Salah trainer: real recitation, practice-grade pacing, localized copy, display-kit pages, madhhab-aware steps | done |
