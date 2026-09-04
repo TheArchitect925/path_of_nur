@@ -18,12 +18,14 @@ import '../../../features/learn/journey/presentation/learning_path_picker_page.d
 import '../../../features/learn/journey/presentation/learning_journey_stage_page.dart';
 import '../../../features/learn/knowledge_games/content_expansion/presentation/internal_content_builder_page.dart';
 import '../../../features/learn/presentation/data/learn_hub_taxonomy.dart';
+import '../../../features/learn/presentation/models/learn_hub_models.dart';
 import '../../../features/learn/presentation/pages/games_island_page.dart';
 import '../../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../../features/learn/presentation/pages/learn_games_browse_all_page.dart';
 import '../../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_section_landing_page.dart';
+import '../../../features/kids/shared/presentation/kids_landing_page.dart';
 import '../../../features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
 import '../../../features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart';
 import '../../../features/learn/guided_paths/presentation/guided_learning_path_detail_page.dart';
@@ -43,6 +45,8 @@ import '../../../features/learn/quran/presentation/quran_guided_passage_readines
 import '../../../features/learn/quran/presentation/quran_readiness_bridge_page.dart';
 import '../../../features/learn/quran/presentation/quran_short_surah_readiness_page.dart';
 import '../../../features/learn/quran_teaching/data/quran_teaching_seed_data.dart';
+import '../../../features/learn/quran_teaching/presentation/quran_teaching_beginner_words_page.dart';
+import '../../../features/learn/quran_teaching/presentation/quran_teaching_daily_review_page.dart';
 import '../../../features/learn/quran_teaching/presentation/quran_teaching_lesson_page.dart';
 import '../../../features/learn/quran_teaching/presentation/quran_teaching_module_page.dart';
 import '../../../features/learn/quran_teaching/presentation/quran_teaching_section_page.dart';
@@ -193,6 +197,21 @@ List<RouteBase> buildLearnCoreRoutes() {
               : QuranTeachingLessonPage(lesson: lesson, module: module),
         );
       },
+    ),
+    GoRoute(
+      path: '/quran/arabic/words',
+      name: 'quranArabicWords',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranTeachingBeginnerWordsPage(
+          initialWordId: state.uri.queryParameters['word'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/quran/arabic/review',
+      name: 'quranArabicDailyReview',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranTeachingDailyReviewPage()),
     ),
     GoRoute(
       path: '/quran/arabic/readiness',
@@ -455,6 +474,10 @@ List<RouteBase> buildLearnCoreRoutes() {
         );
         if (categoryId == null) {
           return const MaterialPage(child: LearningSectionLandingPage());
+        }
+        // Kids Learning is a world with four doors, not a category listing.
+        if (categoryId == LearnHubCategoryId.kidsLearning) {
+          return const MaterialPage(child: KidsLandingPage());
         }
         return MaterialPage(
           child: LearnCategoryPage(

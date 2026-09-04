@@ -38238,7 +38238,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String onboardingProgressValue(Object current, Object total) {
-    return '$current / $total';
+    return 'Schritt $current von $total';
   }
 
   @override
@@ -38271,40 +38271,40 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingLanguageSubtitle =>
-      'Wählen Sie die Sprache, die Sie in der App verwenden möchten.';
+      'Die App wechselt, sobald Sie wählen.';
 
   @override
-  String get onboardingAgeRangeTitle => 'In welcher Altersgruppe sind Sie?';
+  String get onboardingAgeRangeTitle => 'Welche Altersgruppe passt zu Ihnen?';
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'Das hilft uns, Beispiele und Empfehlungen passend zu Ihrer Lebensphase zu halten.';
+      'Damit wählen wir Ihren Lernpfad und passende Beispiele.';
 
   @override
-  String get onboardingAgeRangeUnder18 => 'Under 18';
+  String get onboardingAgeRangeUnder18 => '0–6';
 
   @override
-  String get onboardingAgeRange18To24 => '18-24';
+  String get onboardingAgeRange18To24 => '7–13';
 
   @override
-  String get onboardingAgeRange25To34 => '25-34';
+  String get onboardingAgeRange25To34 => '14–20';
 
   @override
-  String get onboardingAgeRange35To44 => '35-44';
+  String get onboardingAgeRange35To44 => '21+';
 
   @override
-  String get onboardingAgeRange45To54 => '45-54';
+  String get onboardingAgeRange45To54 => '21+';
 
   @override
-  String get onboardingAgeRange55Plus => '55+';
+  String get onboardingAgeRange55Plus => '21+';
 
   @override
   String get onboardingExperienceTitle =>
-      'Welche Beschreibung passt am besten zu Ihrem Weg mit dem Islam?';
+      'Wo stehen Sie auf Ihrem Weg mit dem Islam?';
 
   @override
   String get onboardingExperienceSubtitle =>
-      'Damit wählen wir einen besseren Anfangston, das Tempo und die Lerntiefe für Ihre Erfahrung. Ihre Auswahl wird gespeichert und prägt die Hinweise in der ganzen App.';
+      'Das bestimmt Ton, Tempo und Tiefe der Inhalte zu Beginn. Nichts davon ist ein Test, und Sie können es später ändern.';
 
   @override
   String get onboardingExperienceExploring => 'Ich erkunde den Islam';
@@ -38404,7 +38404,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingArabicReadModeTitle =>
-      'Wie lesen Sie den Koran am liebsten?';
+      'Wie soll der Qur’an angezeigt werden?';
 
   @override
   String get onboardingArabicReadModeSubtitle =>
@@ -42151,11 +42151,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingFinalWelcomeClosingBody =>
-      'Gehe einen aufrichtigen Schritt nach dem anderen. Bedeutsamer Fortschritt entsteht durch kleine, stetige Taten.';
+      'Gehen Sie einen aufrichtigen Schritt nach dem anderen. Bedeutsamer Fortschritt entsteht durch kleine, stetige Taten.';
 
   @override
-  String get onboardingDisclaimerTitle =>
-      'Ein sanfter Hinweis, bevor Sie beginnen';
+  String get onboardingDisclaimerTitle => 'Bevor wir beginnen';
 
   @override
   String get onboardingDisclaimerIntroBody =>
@@ -42190,14 +42189,26 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingThemeSubtitle =>
-      'Wählen Sie die Atmosphäre, die sich auf Ihrer Reise am passendsten anfühlt. Änderungen werden sofort angewendet, während Sie die Vorschauen unten erkunden.';
+      'Die ganze App wechselt beim Antippen — wählen Sie, was Sie jeden Tag öffnen möchten.';
+
+  @override
+  String get onboardingThemeChoiceLivingSkyBody =>
+      'Folgt dem Tag — sanfte Dämmerung, heller Mittag, dann Sternenhimmel.';
+
+  @override
+  String get onboardingThemeChoiceCandlelightBody =>
+      'Warmer Kerzenschein, den ganzen Tag. Wenig Blaulicht, schont müde Augen.';
+
+  @override
+  String get onboardingThemeChoiceMidnightBody =>
+      'Sternenhimmel, den ganzen Tag. Ideal für OLED-Displays und Lesen bei Nacht.';
 
   @override
   String get onboardingThemePreviewTitle => 'Live-Vorschau';
 
   @override
   String get onboardingThemePreviewSubtitle =>
-      'Nutzen Sie diesen Beispieltext und das Kartenlayout, um Lesbarkeit, Wärme und Kartentiefe zu vergleichen, bevor Sie fortfahren.';
+      'Echte Karten und Texte aus der App, im gewählten Design.';
 
   @override
   String get onboardingThemeSampleTitle =>
@@ -42205,7 +42216,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingThemeSampleBody =>
-      'Ihr Design beeinflusst, wie sich Lesen, Reflexion und tägliche Hinweise in der App anfühlen. Wählen Sie das, zu dem Sie gerne in Ruhe zurückkehren.';
+      'Wählen Sie das, zu dem Sie gerne zurückkehren.';
 
   @override
   String get onboardingThemeSampleChipPrayer => 'Gebet';
@@ -42221,7 +42232,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingThemeSampleCardBody =>
-      'Ein sanfteres Erscheinungsbild kann Lesen und Reflexion ruhiger wirken lassen. Ein kontrastreicheres Design kann längere Sitzungen erleichtern.';
+      'Sanfter zu lesen oder kontrastreicher.';
 
   @override
   String get mainPageSearchHint => 'Bereiche und Werkzeuge durchsuchen';
@@ -44729,4 +44740,46 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get babyNamesDetailUnavailable =>
       'Details können nicht geöffnet werden.';
+
+  @override
+  String get kidsDoorStoriesTitle => 'Geschichten';
+
+  @override
+  String get kidsDoorStoriesSubtitle =>
+      'Propheten, gutes Benehmen und Gutenachtgeschichten';
+
+  @override
+  String get kidsDoorLettersTitle => 'Buchstaben';
+
+  @override
+  String get kidsDoorLettersSubtitle => 'Arabisch nachfahren, hören und lesen';
+
+  @override
+  String get kidsDoorDuasTitle => 'Duʿās';
+
+  @override
+  String get kidsDoorDuasSubtitle => 'Kleine Worte für jeden Teil des Tages';
+
+  @override
+  String get kidsDoorPlayTitle => 'Spielen';
+
+  @override
+  String get kidsDoorPlaySubtitle => 'Spiele, Ausmalen und Zeichnen';
+
+  @override
+  String get kidsDoorParentsTitle => 'Eltern';
+
+  @override
+  String get kidsDoorParentsSubtitle =>
+      'Fortschritt, Einstellungen und Familienprofile';
+
+  @override
+  String get kidsPlaySubtitle =>
+      'Übungsspiele, Geschichten-Quiz, Ausmalen und Zeichnen.';
+
+  @override
+  String get kidsPlayGamesSectionTitle => 'Spiele';
+
+  @override
+  String get kidsPlayMakeSectionTitle => 'Malen und Zeichnen';
 }

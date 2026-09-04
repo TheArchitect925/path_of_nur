@@ -141,10 +141,20 @@ void main() {
     await pumpRouteFrames(tester);
 
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-    // Starter path hero + ten adventure tiles, all art cards.
+    // Starter path hero + the four doors (Stories, Letters, Duʿās, Play),
+    // all art cards. Ten tiles became four doors in K1 of the kids redesign.
     expect(find.text(l10n.guidedPathKidsStarterTitle), findsOneWidget);
     expect(find.text(l10n.kidsLandingExploreTitle), findsOneWidget);
-    expect(find.byType(ArtHeaderCard), findsNWidgets(11));
+    expect(find.byType(ArtHeaderCard), findsNWidgets(5));
+    for (final door in [
+      l10n.kidsDoorStoriesTitle,
+      l10n.kidsDoorLettersTitle,
+      l10n.kidsDoorDuasTitle,
+      l10n.kidsDoorPlayTitle,
+      l10n.kidsDoorParentsTitle,
+    ]) {
+      expect(find.text(door), findsWidgets, reason: 'missing door: $door');
+    }
     // Tonight's story row shows the featured bedtime pick.
     expect(find.text(l10n.kidsLandingTonightTitle), findsOneWidget);
     // The adult browse groups do not leak into the kids view.

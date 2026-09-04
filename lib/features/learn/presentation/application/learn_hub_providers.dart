@@ -295,16 +295,22 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       ],
     ),
     LearnHubKnowledgeItem(
-      id: 'kids_games:hub',
-      title: l10n.learnHubSubcategoryKidsGamesTitle,
+      id: 'kids_play:hub',
+      title: l10n.kidsDoorPlayTitle,
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
-      summary: l10n.learnHubSubcategoryKidsGamesSubtitle,
+      summary: l10n.kidsPlaySubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-games',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      subcategoryId: 'kids-play',
+      subcategoryTitle: l10n.kidsDoorPlayTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsGames'),
-      searchKeywords: const ['kids games', 'kids puzzles', 'kids quiz games'],
+      searchKeywords: const [
+        'kids games',
+        'kids puzzles',
+        'kids quiz games',
+        'kids fun learning',
+        'coloring',
+      ],
     ),
     LearnHubKnowledgeItem(
       id: 'kids_arabic_learning:hub',
@@ -323,18 +329,6 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
         'letters',
         'arabic review',
       ],
-    ),
-    LearnHubKnowledgeItem(
-      id: 'kids_fun_learning:hub',
-      title: l10n.learnHubSubcategoryKidsFunLearningTitle,
-      subtitle: l10n.learnHubCategoryKidsLearningTitle,
-      summary: l10n.learnHubSubcategoryKidsFunLearningSubtitle,
-      categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
-      contentType: LearnHubContentType.tool,
-      routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsFunLearning'),
-      searchKeywords: const ['kids fun learning', 'stories', 'coloring'],
     ),
     LearnHubKnowledgeItem(
       id: 'journey:home',
@@ -404,7 +398,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.crosswordKidsModeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-games',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnCrosswordHome'),
@@ -438,7 +432,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.wordSearchKidsModeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-games',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnWordSearchHome'),
@@ -472,7 +466,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.matchingKidsModeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-games',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnMatchingHome'),
@@ -508,7 +502,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.ayahCompletionKidsModeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-games',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(
@@ -546,7 +540,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.hadithReflectionKidsModeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-games',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(
@@ -565,7 +559,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.learnHubKidsPracticeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaPractice'),
@@ -577,7 +571,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.learnHubKidsRewardsSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaRewards'),
@@ -589,7 +583,7 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.learnHubKidsColoringSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
+      subcategoryId: 'kids-play',
       subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(
@@ -827,7 +821,7 @@ List<LearnHubKnowledgeItem> _kidsQuranHadithHubEntries(
       subtitle: l10n.learnHubSubcategoryKidsQuranTitleText,
       summary: l10n.kidsQuranPageSubtitleText,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-quran',
+      subcategoryId: 'kids-arabic-learning',
       subcategoryTitle: l10n.learnHubSubcategoryKidsQuranTitleText,
       contentType: LearnHubContentType.lesson,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsQuran'),
@@ -844,7 +838,7 @@ List<LearnHubKnowledgeItem> _kidsQuranHadithHubEntries(
       subtitle: l10n.learnHubSubcategoryKidsHadithTitleText,
       summary: l10n.kidsHadithPageSubtitleText,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-hadith',
+      subcategoryId: 'kids-stories',
       subcategoryTitle: l10n.learnHubSubcategoryKidsHadithTitleText,
       contentType: LearnHubContentType.lesson,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsHadith'),
@@ -860,7 +854,7 @@ List<LearnHubKnowledgeItem> _kidsQuranHadithHubEntries(
       subtitle: l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
       summary: l10n.kidsHadithStoriesPageSubtitleText,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-hadith-stories',
+      subcategoryId: 'kids-stories',
       subcategoryTitle: l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(
@@ -916,7 +910,7 @@ List<LearnHubKnowledgeItem> _kidsBedtimeStoryHubEntries(AppLocalizations l10n) {
       subtitle: l10n.kidsStoryCollectionProphets,
       summary: l10n.bedtimeStoriesSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-prophet-stories',
+      subcategoryId: 'kids-stories',
       subcategoryTitle: l10n.kidsStoryCollectionProphets,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsBedtimeStories'),
@@ -963,7 +957,7 @@ List<LearnHubKnowledgeItem> _kidsSeerahJourneyHubEntries(
       subtitle: l10n.kidsSeerahJourneysTitle,
       summary: l10n.kidsSeerahJourneysSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-seerah-journeys',
+      subcategoryId: 'kids-stories',
       subcategoryTitle: l10n.kidsSeerahJourneysTitle,
       contentType: LearnHubContentType.journey,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsSeerahJourneys'),
@@ -993,7 +987,7 @@ List<LearnHubKnowledgeItem> _kidsStoriesKnowledgeEntries(
           subtitle: lesson?.title ?? story.category,
           summary: story.introLine,
           categoryId: LearnHubCategoryId.kidsLearning,
-          subcategoryId: 'kids-fun-learning',
+          subcategoryId: 'kids-play',
           subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
           contentType: LearnHubContentType.story,
           routeTarget: LearnHubRouteTarget(
@@ -1018,20 +1012,10 @@ List<LearnHubKnowledgeItem> _kidsBedtimeStoriesKnowledgeEntries(
 ) {
   return stories
       .map((story) {
-        final subcategoryId = switch (story.sourceCategory) {
-          KidsIslamicStorySourceCategory.hadith => 'kids-hadith-stories',
-          _
-              when story.collectionType ==
-                  KidsIslamicStoryCollectionType.prophets =>
-            'kids-prophet-stories',
-          _ => 'kids-stories',
-        };
-        final subcategoryTitle = switch (subcategoryId) {
-          'kids-hadith-stories' =>
-            l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
-          'kids-prophet-stories' => l10n.kidsStoryCollectionProphets,
-          _ => l10n.learnHubSubcategoryKidsStoriesTitle,
-        };
+        // Every story sits behind the one Stories door (K1); the shelf it
+        // belongs to is the story's collection, not a subcategory.
+        const subcategoryId = 'kids-stories';
+        final subcategoryTitle = l10n.kidsDoorStoriesTitle;
         final routeName =
             story.sourceCategory == KidsIslamicStorySourceCategory.hadith
             ? 'learnKidsHadithStoriesDetail'
@@ -1078,7 +1062,7 @@ List<LearnHubKnowledgeItem> _kidsSeerahJourneyKnowledgeEntries(
           subtitle: l10n.kidsSeerahJourneysTitle,
           summary: journey.description,
           categoryId: LearnHubCategoryId.kidsLearning,
-          subcategoryId: 'kids-fun-learning',
+          subcategoryId: 'kids-play',
           subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
           contentType: LearnHubContentType.journey,
           routeTarget: LearnHubRouteTarget(
@@ -1117,7 +1101,7 @@ List<LearnHubKnowledgeItem> _kidsSalahKnowledgeEntries(
         subtitle: sectionTitleByDuaId[lesson.id] ?? l10n.kidsDuaMyDayTitle,
         summary: lesson.whenToSay,
         categoryId: LearnHubCategoryId.kidsLearning,
-        subcategoryId: 'kids-fun-learning',
+        subcategoryId: 'kids-play',
         subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
         contentType: LearnHubContentType.lesson,
         routeTarget: LearnHubRouteTarget(

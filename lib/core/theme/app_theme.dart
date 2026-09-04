@@ -955,6 +955,13 @@ class AppTheme {
     final sansOrLocaleUi = localeUsesRtlUiFont
         ? localeUiFont
         : AppFonts.latinSans;
+    // The kids theme reads bigger and rounder: headings in the kids display
+    // face (which carries Arabic script too), every slot a step larger, and
+    // more line height for early readers. Body copy keeps the reading face.
+    final kids = mode == AppThemeMode.noorKids;
+    final headingFamily = kids ? AppFonts.kidsDisplay : serifOrLocaleUi;
+    double sz(double base, double kidsSize) => kids ? kidsSize : base;
+    final bodyHeight = kids ? 1.55 : 1.45;
 
     final themeData = ThemeData(
       useMaterial3: true,
@@ -979,56 +986,56 @@ class AppTheme {
       textTheme: TextTheme(
         displayLarge: TextStyle(
           color: onSurface,
-          fontSize: 34,
+          fontSize: sz(34, 38),
           fontWeight: FontWeight.w700,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         titleLarge: TextStyle(
           color: onSurface,
-          fontSize: 25,
+          fontSize: sz(25, 28),
           fontWeight: FontWeight.w700,
           letterSpacing: 0.2,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         titleMedium: TextStyle(
           color: onSurface,
-          fontSize: 19,
+          fontSize: sz(19, 22),
           fontWeight: FontWeight.w600,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         titleSmall: TextStyle(
           color: onSurface,
-          fontSize: 17,
+          fontSize: sz(17, 19),
           fontWeight: FontWeight.w600,
-          fontFamily: serifOrLocaleUi,
+          fontFamily: headingFamily,
         ),
         bodyLarge: TextStyle(
           color: onSurface,
-          fontSize: 15,
+          fontSize: sz(15, 18),
           fontWeight: FontWeight.w500,
-          height: 1.45,
+          height: bodyHeight,
           fontFamily: sansOrLocaleUi,
         ),
         bodyMedium: TextStyle(
           color: onSurfaceSubtle,
-          fontSize: 14,
-          height: 1.45,
+          fontSize: sz(14, 16),
+          height: bodyHeight,
           fontFamily: sansOrLocaleUi,
         ),
         bodySmall: TextStyle(
           color: onSurfaceSubtle,
-          fontSize: 13,
+          fontSize: sz(13, 14),
           fontFamily: sansOrLocaleUi,
         ),
         labelLarge: TextStyle(
           color: onSurface,
           fontWeight: FontWeight.w700,
-          fontSize: 14,
+          fontSize: sz(14, 16),
           fontFamily: sansOrLocaleUi,
         ),
         labelMedium: TextStyle(
           color: onSurface,
-          fontSize: 12,
+          fontSize: sz(12, 13),
           fontFamily: sansOrLocaleUi,
         ),
       ),

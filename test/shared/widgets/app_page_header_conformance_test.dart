@@ -44,10 +44,12 @@ void main() {
       'lib/features/journey/presentation/growth_tracking_dashboard_page.dart',
       'lib/features/journey/spiritual_growth/presentation/spiritual_growth_page.dart',
       'lib/features/kids/bedtime_routines/presentation/bedtime_companion_page.dart',
-      'lib/features/kids/bedtime_stories/presentation/bedtime_stories_page.dart',
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart',
       'lib/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart',
       'lib/features/kids/bedtime_stories/presentation/kids_story_library_page.dart',
+      // The four kids doors (K1): the room itself and the Play door.
+      'lib/features/kids/play/presentation/kids_play_page.dart',
+      'lib/features/kids/shared/presentation/kids_landing_page.dart',
       'lib/features/kids/seerah/presentation/seerah_journeys_page.dart',
       'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart',
       'lib/features/kids_arabic/presentation/kids_arabic_parent_dashboard_page.dart',
@@ -76,8 +78,6 @@ void main() {
       'lib/features/learn/presentation/pages/learn_category_page.dart',
       'lib/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart',
       'lib/features/learn/presentation/pages/learn_games_browse_all_page.dart',
-      'lib/features/learn/presentation/pages/learn_kids_fun_learning_page.dart',
-      'lib/features/learn/presentation/pages/learn_kids_games_page.dart',
       'lib/features/learn/presentation/pages/learn_quizzes_hub_page.dart',
       'lib/features/learn/presentation/pages/learn_salah_hub_page.dart',
       'lib/features/learn/presentation/pages/learning_journey_island_hub_page.dart',
@@ -122,6 +122,8 @@ void main() {
         'lib/shared/widgets/app_page_scaffold.dart',
         'lib/shared/widgets/section_hub_scaffold.dart',
         'lib/features/learn/presentation/widgets/learn_hub_page_scaffold.dart',
+        // The kids shell (K1) forwards its caller's headerIcon the same way.
+        'lib/features/kids/shared/presentation/kids_page_scaffold.dart',
       },
     );
 

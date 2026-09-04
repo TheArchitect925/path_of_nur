@@ -126,6 +126,11 @@ class _HomePageState extends ConsumerState<HomePage> {
           child: RightNowDuaRow(),
         );
       case HomeModule.onThisDay:
+        // Historical dates and moon phases are grown-up reading; a child's
+        // Home keeps prayer times, today and the duʿās for right now.
+        if (isKidsMode) {
+          return const SizedBox.shrink();
+        }
         final l10n = AppLocalizations.of(context);
         return Padding(
           padding: const EdgeInsets.only(top: 12),
@@ -137,6 +142,9 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
         );
       case HomeModule.celestial:
+        if (isKidsMode) {
+          return const SizedBox.shrink();
+        }
         return const Padding(
           padding: EdgeInsets.only(top: 12),
           child: CelestialCycleCard(
@@ -607,16 +615,17 @@ class _ModeAwareHomeCard extends ConsumerWidget {
         title = l10n.kidsModeTitle;
         subtitle = l10n.kidsHomeHint;
         icon = Icons.child_care_rounded;
+        // The two doors a child opens most, straight from Home.
         actions = [
           _ModeActionChip(
-            icon: Icons.menu_book_rounded,
-            label: l10n.kidsHomeQuickLearning,
-            onTap: () => goToTab(context, NavTab.learn),
+            icon: Icons.auto_stories_rounded,
+            label: l10n.kidsDoorStoriesTitle,
+            onTap: () => context.pushNamed('kidsStoryLibrary'),
           ),
           _ModeActionChip(
-            icon: Icons.auto_stories_rounded,
-            label: l10n.kidsHomeQuickJournal,
-            onTap: () => context.pushNamed('journalTimeline'),
+            icon: Icons.abc_rounded,
+            label: l10n.kidsDoorLettersTitle,
+            onTap: () => context.pushNamed('kidsArabicHome'),
           ),
         ];
         break;

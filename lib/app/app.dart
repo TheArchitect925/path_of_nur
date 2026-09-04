@@ -52,13 +52,19 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(prayerLiveActivityBootstrapProvider);
     final occasionNow = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final specialMode = ref.watch(specialModeProvider);
-    final effectiveThemeMode = resolveOccasionThemeMode(
-      baseMode: profileSettings.appThemeMode,
-      dressUpFridays: profileSettings.dressUpFridays,
-      dressUpRamadan: profileSettings.dressUpRamadan,
-      isRamadan: specialMode.isRamadan || specialMode.ramadanDateWindowActive,
-      now: occasionNow,
-    );
+    // A child (or an adult who switched the kids UI on) gets the daylight
+    // kids theme whatever the base theme, the occasion or the hour: the
+    // living sky and the night themes are for grown-up reading.
+    final effectiveThemeMode = specialMode.isKids
+        ? AppThemeMode.noorKids
+        : resolveOccasionThemeMode(
+            baseMode: profileSettings.appThemeMode,
+            dressUpFridays: profileSettings.dressUpFridays,
+            dressUpRamadan: profileSettings.dressUpRamadan,
+            isRamadan:
+                specialMode.isRamadan || specialMode.ramadanDateWindowActive,
+            now: occasionNow,
+          );
     // Living Atmosphere: after dark a Noor Glass app becomes Midnight.
     // Applied after occasion resolution and after the day/night pairing so
     // the flip survives both paths.

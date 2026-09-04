@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../../arabic/application/arabic_learning_asset_bundle.dart';
 import '../../arabic/application/arabic_learning_assessment_provider.dart';
 import '../../arabic/application/arabic_learning_lesson_packs_provider.dart';
@@ -146,10 +146,13 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
       });
     }
 
-    return LearnHubPageScaffold(
+    return KidsPageScaffold(
       headerIcon: AppIcons.letters,
       title: l10n.kidsArabicHomeTitle,
       subtitle: l10n.kidsArabicHomeSubtitle,
+      heroAsset: 'assets/images/learn_art/kids_arabic.webp',
+      heroTitle: l10n.kidsDoorLettersTitle,
+      heroSubtitle: l10n.kidsDoorLettersSubtitle,
       children: [
         if (guidedLetter != null &&
             (parentActivity!.source ==

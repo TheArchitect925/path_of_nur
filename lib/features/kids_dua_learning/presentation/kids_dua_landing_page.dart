@@ -6,7 +6,7 @@ import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_experience_provider.dart';
 import '../application/kids_dua_my_day_provider.dart';
@@ -31,10 +31,13 @@ class KidsDuaLandingPage extends ConsumerWidget {
     final creative = ref.watch(kidsDuaCreativeProvider);
     final stories = ref.watch(kidsDuaStoriesProvider);
 
-    return LearnHubPageScaffold(
+    return KidsPageScaffold(
       headerIcon: AppIcons.dua,
       title: l10n.kidsDuaLandingTitle,
       subtitle: l10n.kidsDuaLandingSubtitle,
+      heroAsset: 'assets/images/learn_art/kids_duas.webp',
+      heroTitle: l10n.kidsDoorDuasTitle,
+      heroSubtitle: l10n.kidsDoorDuasSubtitle,
       children: [
         _HeroCard(summary: summary),
         const SizedBox(height: 12),

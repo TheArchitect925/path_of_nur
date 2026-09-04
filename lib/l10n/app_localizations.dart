@@ -62626,7 +62626,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingProgressValue.
   ///
   /// In en, this message translates to:
-  /// **'{current} / {total}'**
+  /// **'Step {current} of {total}'**
   String onboardingProgressValue(Object current, Object total);
 
   /// No description provided for @onboardingSettingsHintBody.
@@ -62680,37 +62680,37 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingLanguageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Select the language you would like to use in the app.'**
+  /// **'The app switches over as soon as you choose.'**
   String get onboardingLanguageSubtitle;
 
   /// No description provided for @onboardingAgeRangeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Which age range are you in?'**
+  /// **'Which age range fits you?'**
   String get onboardingAgeRangeTitle;
 
   /// No description provided for @onboardingAgeRangeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This helps us keep examples and recommendations relevant to your stage of life.'**
+  /// **'This picks your learning path and keeps examples suited to it.'**
   String get onboardingAgeRangeSubtitle;
 
   /// No description provided for @onboardingAgeRangeUnder18.
   ///
   /// In en, this message translates to:
-  /// **'0-7'**
+  /// **'0–6'**
   String get onboardingAgeRangeUnder18;
 
   /// No description provided for @onboardingAgeRange18To24.
   ///
   /// In en, this message translates to:
-  /// **'7-14'**
+  /// **'7–13'**
   String get onboardingAgeRange18To24;
 
   /// No description provided for @onboardingAgeRange25To34.
   ///
   /// In en, this message translates to:
-  /// **'14-21'**
+  /// **'14–20'**
   String get onboardingAgeRange25To34;
 
   /// No description provided for @onboardingAgeRange35To44.
@@ -62734,13 +62734,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingExperienceTitle.
   ///
   /// In en, this message translates to:
-  /// **'Which description fits your journey with Islam best?'**
+  /// **'Where are you in your journey with Islam?'**
   String get onboardingExperienceTitle;
 
   /// No description provided for @onboardingExperienceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.'**
+  /// **'This sets the starting tone, pace, and depth of what you are shown. Nothing here is a test, and you can change it later.'**
   String get onboardingExperienceSubtitle;
 
   /// No description provided for @onboardingExperienceExploring.
@@ -62914,7 +62914,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingArabicReadModeTitle.
   ///
   /// In en, this message translates to:
-  /// **'What is your Qur’an reading preference?'**
+  /// **'How would you like the Qur’an to appear?'**
   String get onboardingArabicReadModeTitle;
 
   /// No description provided for @onboardingArabicReadModeSubtitle.
@@ -69268,7 +69268,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingDisclaimerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Disclaimer and Note'**
+  /// **'Before we begin'**
   String get onboardingDisclaimerTitle;
 
   /// No description provided for @onboardingDisclaimerIntroBody.
@@ -69322,8 +69322,26 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Pick the atmosphere that feels most at home in your journey. Changes apply instantly as you explore the previews below.'**
+  /// **'The whole app repaints as you tap — pick what you would like to open every day.'**
   String get onboardingThemeSubtitle;
+
+  /// No description provided for @onboardingThemeChoiceLivingSkyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows the day — soft dawn, bright noon, then a starry night.'**
+  String get onboardingThemeChoiceLivingSkyBody;
+
+  /// No description provided for @onboardingThemeChoiceCandlelightBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A warm candlelit room, all day. Low blue light, easy on tired eyes.'**
+  String get onboardingThemeChoiceCandlelightBody;
+
+  /// No description provided for @onboardingThemeChoiceMidnightBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A starry night sky, all day. Best for OLED screens and night reading.'**
+  String get onboardingThemeChoiceMidnightBody;
 
   /// No description provided for @onboardingThemePreviewTitle.
   ///
@@ -69334,7 +69352,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingThemePreviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use this sample text and card layout to compare readability, warmth, and card depth before you continue.'**
+  /// **'Real cards and text from the app, in the theme you picked.'**
   String get onboardingThemePreviewSubtitle;
 
   /// No description provided for @onboardingThemeSampleTitle.
@@ -69346,7 +69364,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingThemeSampleBody.
   ///
   /// In en, this message translates to:
-  /// **'Your theme affects how reading, reflection, and daily guidance feel across the app. Choose the one that feels steady and comfortable to return to.'**
+  /// **'Pick the one you will be glad to come back to.'**
   String get onboardingThemeSampleBody;
 
   /// No description provided for @onboardingThemeSampleChipPrayer.
@@ -69376,7 +69394,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingThemeSampleCardBody.
   ///
   /// In en, this message translates to:
-  /// **'A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.'**
+  /// **'Softer to read, or higher contrast.'**
   String get onboardingThemeSampleCardBody;
 
   /// No description provided for @mainPageSearchHint.
@@ -73555,6 +73573,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to open details.'**
   String get babyNamesDetailUnavailable;
+
+  /// No description provided for @kidsDoorStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories'**
+  String get kidsDoorStoriesTitle;
+
+  /// No description provided for @kidsDoorStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets, good manners and bedtime tales'**
+  String get kidsDoorStoriesSubtitle;
+
+  /// No description provided for @kidsDoorLettersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters'**
+  String get kidsDoorLettersTitle;
+
+  /// No description provided for @kidsDoorLettersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace, hear and read Arabic'**
+  String get kidsDoorLettersSubtitle;
+
+  /// No description provided for @kidsDoorDuasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duʿās'**
+  String get kidsDoorDuasTitle;
+
+  /// No description provided for @kidsDoorDuasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Little words for every part of the day'**
+  String get kidsDoorDuasSubtitle;
+
+  /// No description provided for @kidsDoorPlayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get kidsDoorPlayTitle;
+
+  /// No description provided for @kidsDoorPlaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games, colouring and drawing'**
+  String get kidsDoorPlaySubtitle;
+
+  /// No description provided for @kidsDoorParentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Parents'**
+  String get kidsDoorParentsTitle;
+
+  /// No description provided for @kidsDoorParentsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress, settings and family profiles'**
+  String get kidsDoorParentsSubtitle;
+
+  /// No description provided for @kidsPlaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice games, story quizzes, colouring and drawing.'**
+  String get kidsPlaySubtitle;
+
+  /// No description provided for @kidsPlayGamesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get kidsPlayGamesSectionTitle;
+
+  /// No description provided for @kidsPlayMakeSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make and colour'**
+  String get kidsPlayMakeSectionTitle;
 }
 
 class _AppLocalizationsDelegate

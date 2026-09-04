@@ -7,9 +7,9 @@ import '../../../features/kids/bedtime_stories/presentation/bedtime_story_family
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_memory_cards_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_quiz_page.dart';
-import '../../../features/kids/bedtime_stories/presentation/bedtime_stories_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
+import '../../../features/kids/play/presentation/kids_play_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journey_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journeys_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_node_page.dart';
@@ -41,8 +41,6 @@ import '../../../features/kids_dua_learning/presentation/kids_dua_story_browse_p
 import '../../../features/kids_dua_learning/presentation/kids_dua_story_player_page.dart';
 import '../../../features/kids_dua_learning/presentation/kids_dua_stories_page.dart';
 import '../../../features/learn/hadith/presentation/kids_hadith_page.dart';
-import '../../../features/learn/presentation/pages/learn_kids_fun_learning_page.dart';
-import '../../../features/learn/presentation/pages/learn_kids_games_page.dart';
 import '../../../features/learn/quran/presentation/kids_quran_page.dart';
 import '../../../features/learn/quran/presentation/kids_quran_surah_page.dart';
 import '../../../features/learn/quran/presentation/quran_guided_passage_readiness_page.dart';
@@ -55,11 +53,13 @@ import '../../../features/arabic/presentation/arabic_learning_mini_assessment_pa
 
 List<RouteBase> buildLearnKidsRoutes() {
   return <RouteBase>[
+    // "Kids Games" and "Fun Learning" were two link lists over the same six
+    // destinations; both names now open the one Play page.
     GoRoute(
       path: '/learn/kids/games',
       name: 'learnKidsGames',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnKidsGamesPage()),
+          const MaterialPage(child: KidsPlayPage()),
     ),
     GoRoute(
       path: '/learn/kids/arabic-learning',
@@ -106,7 +106,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       path: '/learn/kids/fun-learning',
       name: 'learnKidsFunLearning',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnKidsFunLearningPage()),
+          const MaterialPage(child: KidsPlayPage()),
     ),
     GoRoute(
       path: '/learn/kids/quran-insights',
@@ -254,11 +254,14 @@ List<RouteBase> buildLearnKidsRoutes() {
         ),
       ),
     ),
+    // The bedtime page was a third library over the same stories; it is now
+    // the bedtime shelf of the one library.
     GoRoute(
       path: '/learn/kids/bedtime-stories',
       name: 'kidsBedtimeStories',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: BedtimeStoriesPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsStoryLibraryPage(initialCollectionId: 'bedtime'),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/seerah',

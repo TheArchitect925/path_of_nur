@@ -171,8 +171,6 @@ void main() {
           10,
       'lib/features/kids/bedtime_routines/presentation/bedtime_routine_step_card.dart':
           1,
-      'lib/features/kids/bedtime_stories/presentation/bedtime_stories_page.dart':
-          13,
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_completion_banner.dart':
           2,
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_cover_card.dart':
@@ -199,8 +197,6 @@ void main() {
           1,
       'lib/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart':
           1,
-      'lib/features/kids/bedtime_stories/presentation/kids_story_library_page.dart':
-          3,
       'lib/features/kids/seerah/presentation/seerah_journey_page.dart': 7,
       'lib/features/kids/seerah/presentation/seerah_journeys_page.dart': 1,
       'lib/features/kids/seerah/presentation/seerah_node_page.dart': 3,
@@ -257,9 +253,6 @@ void main() {
       'lib/features/learn/guided_paths/presentation/kids_starter_path_next_steps_page.dart':
           5,
       'lib/features/learn/hadith/presentation/kids_hadith_page.dart': 1,
-      'lib/features/learn/presentation/pages/learn_kids_fun_learning_page.dart':
-          5,
-      'lib/features/learn/presentation/pages/learn_kids_games_page.dart': 6,
     };
     _expectCountsOnlyFall(
       pattern: RegExp(r'(^|[^A-Za-z0-9_])Icons\.'),

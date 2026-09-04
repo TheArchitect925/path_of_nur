@@ -10,10 +10,8 @@ import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
-import '../../../kids/bedtime_stories/application/bedtime_story_repository.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../analytics/domain/learn_analytics_models.dart';
-import '../../guided_paths/application/guided_learning_paths_provider.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../journey/application/learning_path_provider.dart';
 import '../../journey/data/learning_journey_localized_metadata.dart';
@@ -26,6 +24,7 @@ import '../../shared/learn_art_assets.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../kids/shared/presentation/kids_landing_body.dart';
 import '../../../../core/theme/app_icons.dart';
 
 class LearningSectionLandingPage extends ConsumerStatefulWidget {
@@ -182,181 +181,9 @@ class _LearningSectionLandingPageState
   }
 
   List<Widget> _buildKidsChildren(BuildContext context, AppLocalizations l10n) {
-    return [
-      const _KidsStarterPathHero(),
-      const SizedBox(height: 14),
-      const _KidsTonightStoryRow(),
-      HubListGroup(
-        title: l10n.kidsLandingExploreTitle,
-        children: const [_KidsAdventureGrid()],
-      ),
-    ];
-  }
-}
-
-/// The Kids Starter Path as the child-profile hero: its scene art, live step
-/// progress, and a tap straight into the guided path.
-class _KidsStarterPathHero extends ConsumerWidget {
-  const _KidsStarterPathHero();
-
-  static const _pathId = 'kids-starter';
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final path = ref
-        .watch(guidedLearningPathsProvider)
-        .where((item) => item.id == _pathId)
-        .firstOrNull;
-    final completed = ref.watch(
-      guidedLearningPathsControllerProvider.select(
-        (state) => state.progressByPathId[_pathId]?.completedStepIds.length,
-      ),
-    );
-    return ArtHeaderCard(
-      imageAsset:
-          guidedPathArtAsset(_pathId) ??
-          levelArtAsset(LearningPathLevel.beginner),
-      eyebrow: l10n.kidsLandingStarterEyebrow,
-      title: localizedGuidedLearningPathTitle(l10n, _pathId),
-      subtitle: path == null
-          ? null
-          : l10n.guidedLearningPathProgressValue(
-              completed ?? 0,
-              path.steps.length,
-            ),
-      fallbackIcon: Icons.flag_rounded,
-      fallbackColor: Theme.of(context).colorScheme.primary,
-      aspectRatio: 16 / 9,
-      onTap: () {
-        ref
-            .read(learnAnalyticsServiceProvider)
-            .logPrimaryCardOpened(
-              cardId: 'kids_starter_hero',
-              sourceSurface: 'learn_landing',
-              domain: 'kids',
-              audience: LearnAnalyticsAudience.kids,
-            );
-        context.pushNamed(
-          'learnGuidedPathDetail',
-          pathParameters: {'pathId': _pathId},
-        );
-      },
-    );
-  }
-}
-
-/// Tonight's featured bedtime story, one calm row. Hidden when the library
-/// has no featured pick.
-class _KidsTonightStoryRow extends ConsumerWidget {
-  const _KidsTonightStoryRow();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final story = ref.watch(featuredKidsStoryProvider);
-    if (story == null) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        HubListGroup(
-          title: l10n.kidsLandingTonightTitle,
-          children: [
-            CompactListTile(
-              leading: ArtLeadingThumb(
-                imageAsset: kidsSubcategoryArtAsset('kids-stories')!,
-                fallbackIcon: Icons.auto_stories_rounded,
-                fallbackColor: Theme.of(context).colorScheme.primary,
-              ),
-              title: story.title,
-              subtitle: story.summary.isEmpty ? null : story.summary,
-              onTap: () {
-                ref
-                    .read(learnAnalyticsServiceProvider)
-                    .logPrimaryCardOpened(
-                      cardId: 'kids_tonight_story',
-                      sourceSurface: 'learn_landing',
-                      domain: 'stories',
-                      audience: LearnAnalyticsAudience.kids,
-                    );
-                context.pushNamed(
-                  'kidsBedtimeStoryDetail',
-                  pathParameters: {'storyId': story.id},
-                );
-              },
-            ),
-          ],
-        ),
-        const SizedBox(height: 14),
-      ],
-    );
-  }
-}
-
-/// The ten kids destinations as illustrated storybook tiles, two per row —
-/// each subcategory wearing its own scene instead of the shared peach chip.
-class _KidsAdventureGrid extends ConsumerWidget {
-  const _KidsAdventureGrid();
-
-  static const List<String> _tileOrder = [
-    'kids-quran',
-    'kids-arabic-learning',
-    'kids-stories',
-    'kids-prophet-stories',
-    'kids-dua-learning',
-    'kids-hadith',
-    'kids-hadith-stories',
-    'kids-seerah-journeys',
-    'kids-fun-learning',
-    'kids-games',
-  ];
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final subcategories = LearnHubTaxonomy.subcategories(l10n)
-        .where((item) => item.categoryId == LearnHubCategoryId.kidsLearning)
-        .toList(growable: false);
-    final byId = {for (final item in subcategories) item.id: item};
-    final tiles = _tileOrder
-        .map((id) => byId[id])
-        .whereType<LearnHubSubcategoryDescriptor>()
-        .toList(growable: false);
-    return GridView.count(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      childAspectRatio: 4 / 3,
-      children: [
-        for (final tile in tiles)
-          ArtHeaderCard(
-            imageAsset:
-                kidsSubcategoryArtAsset(tile.id) ??
-                kidsSubcategoryArtAsset('kids-stories')!,
-            title: tile.title,
-            fallbackIcon: Icons.auto_awesome_rounded,
-            fallbackColor: Theme.of(context).colorScheme.primary,
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            onTap: () {
-              ref
-                  .read(learnAnalyticsServiceProvider)
-                  .logPrimaryCardOpened(
-                    cardId: 'kids_tile_${tile.id}',
-                    sourceSurface: 'learn_landing',
-                    domain: 'kids',
-                    audience: LearnAnalyticsAudience.kids,
-                  );
-              context.pushNamed(
-                tile.routeTarget.routeName,
-                pathParameters: tile.routeTarget.pathParameters,
-                queryParameters: tile.routeTarget.queryParameters,
-              );
-            },
-          ),
-      ],
-    );
+    // The kids world lives in one shared body so the Learn tab and the Kids
+    // Learning category route open onto the same room.
+    return const [KidsLandingBody()];
   }
 }
 

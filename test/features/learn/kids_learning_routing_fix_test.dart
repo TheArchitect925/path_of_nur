@@ -5,19 +5,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
+import 'package:path_of_nur/features/kids/play/presentation/kids_play_page.dart';
+import 'package:path_of_nur/features/kids/shared/presentation/kids_landing_page.dart';
+import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_home_page.dart';
 import 'package:path_of_nur/features/kids_dua_learning/presentation/kids_dua_landing_page.dart';
 import 'package:path_of_nur/features/learn/hadith/presentation/kids_hadith_page.dart';
-import 'package:path_of_nur/features/learn/presentation/kids_learning_localizations.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_category_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_kids_fun_learning_page.dart';
-import 'package:path_of_nur/features/learn/presentation/pages/learn_kids_games_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/kids_quran_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
-import 'package:path_of_nur/shared/widgets/section_hub_scaffold.dart';
 
 import '../../test_helpers/app_test_harness.dart';
 
+/// Kids Learning is one room with four doors (K1 of the kids redesign).
+/// Every door opens its real destination, the old tile routes still resolve,
+/// and the pages that were folded into the doors are reachable from inside.
 void main() {
   Future<ProviderContainer> makeRoutingTestContainer() {
     return makeTestContainer(
@@ -36,7 +37,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
-  Future<void> tapActionCard(WidgetTester tester, String label) async {
+  Future<void> tapDoor(WidgetTester tester, String label) async {
     if (find.text(label).evaluate().isEmpty) {
       final scrollableFinder = find.byType(Scrollable).first;
       tester.state<ScrollableState>(scrollableFinder).position.jumpTo(0);
@@ -52,103 +53,118 @@ void main() {
     final labelFinder = find.text(label).first;
     await tester.ensureVisible(labelFinder);
     await pumpRouteFrames(tester);
-    final cardFinder = find.ancestor(
-      of: labelFinder,
-      matching: find.byType(SectionHubActionCard),
-    );
-    await tester.tap(cardFinder.first);
+    await tester.tap(labelFinder, warnIfMissed: false);
     await pumpRouteFrames(tester);
   }
 
-  testWidgets(
-    'kids learning islands open their real kids destinations instead of generic category fallbacks',
-    (tester) async {
-      final container = await makeRoutingTestContainer();
-      final router = container.read(appRouterProvider);
+  Future<AppLocalizations> english() =>
+      AppLocalizations.delegate.load(const Locale('en'));
 
-      await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
-
-      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-
-      router.go('/learn/category/kids-learning');
-      await pumpRouteFrames(tester);
-      expect(find.byType(LearnCategoryPage), findsOneWidget);
-
-      await tapActionCard(tester, l10n.learnHubSubcategoryKidsQuranTitleText);
-      expect(find.byType(KidsQuranPage), findsOneWidget);
-
-      router.go('/learn/category/kids-learning');
-      await pumpRouteFrames(tester);
-      await tapActionCard(tester, l10n.learnHubSubcategoryKidsHadithTitleText);
-      expect(find.byType(KidsHadithPage), findsOneWidget);
-
-      router.go('/learn/category/kids-learning');
-      await pumpRouteFrames(tester);
-      await tapActionCard(
-        tester,
-        l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
-      );
-      expect(find.byType(KidsHadithStoriesPage), findsOneWidget);
-
-      router.go('/learn/category/kids-learning');
-      await pumpRouteFrames(tester);
-      await tapActionCard(tester, l10n.kidsStoryCollectionProphets);
-      expect(find.byType(KidsStoryLibraryPage), findsOneWidget);
-      expect(find.text(l10n.kidsStoryCollectionProphets), findsWidgets);
-
-      router.go('/learn/category/kids-learning');
-      await pumpRouteFrames(tester);
-      await tapActionCard(tester, l10n.learnHubSubcategoryKidsStoriesTitle);
-      expect(find.byType(KidsStoryLibraryPage), findsOneWidget);
-      expect(find.text(l10n.kidsStoryLibraryTitle), findsWidgets);
-
-      router.go('/learn/category/kids-learning');
-      await pumpRouteFrames(tester);
-      await tapActionCard(tester, l10n.kidsDuaLandingTitle);
-      expect(find.byType(KidsDuaLandingPage), findsOneWidget);
-    },
-  );
-
-  testWidgets('Kids Games routes to a non-empty games destination', (
+  testWidgets('Kids Learning is a room with four doors and a parents row', (
     tester,
   ) async {
     final container = await makeRoutingTestContainer();
     final router = container.read(appRouterProvider);
-
     await tester.pumpWidget(buildRouterTestApp(container));
     await pumpRouteFrames(tester);
-
-    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    final l10n = await english();
 
     router.go('/learn/category/kids-learning');
     await pumpRouteFrames(tester);
-    await tapActionCard(tester, l10n.learnHubSubcategoryKidsGamesTitle);
 
-    expect(find.byType(LearnKidsGamesPage), findsOneWidget);
-    expect(find.text(l10n.kidsArabicPracticeTitle), findsOneWidget);
-    expect(find.text(l10n.kidsDuaPracticeTitle), findsOneWidget);
-    expect(find.text(l10n.kidsArabicColoringPagesTitle), findsOneWidget);
+    expect(find.byType(KidsLandingPage), findsOneWidget);
+    for (final door in [
+      l10n.kidsDoorStoriesTitle,
+      l10n.kidsDoorLettersTitle,
+      l10n.kidsDoorDuasTitle,
+      l10n.kidsDoorPlayTitle,
+      l10n.kidsDoorParentsTitle,
+    ]) {
+      await tester.scrollUntilVisible(
+        find.text(door),
+        300,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 40,
+      );
+      expect(find.text(door), findsWidgets, reason: 'missing door: $door');
+    }
   });
 
-  testWidgets('Fun Learning no longer routes to an empty misleading page', (
+  testWidgets('each door opens its real destination', (tester) async {
+    final container = await makeRoutingTestContainer();
+    final router = container.read(appRouterProvider);
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
+    final l10n = await english();
+
+    router.go('/learn/category/kids-learning');
+    await pumpRouteFrames(tester);
+    await tapDoor(tester, l10n.kidsDoorStoriesTitle);
+    expect(find.byType(KidsStoryLibraryPage), findsOneWidget);
+
+    router.go('/learn/category/kids-learning');
+    await pumpRouteFrames(tester);
+    await tapDoor(tester, l10n.kidsDoorLettersTitle);
+    expect(find.byType(KidsArabicHomePage), findsOneWidget);
+
+    router.go('/learn/category/kids-learning');
+    await pumpRouteFrames(tester);
+    await tapDoor(tester, l10n.kidsDoorDuasTitle);
+    expect(find.byType(KidsDuaLandingPage), findsOneWidget);
+
+    router.go('/learn/category/kids-learning');
+    await pumpRouteFrames(tester);
+    await tapDoor(tester, l10n.kidsDoorPlayTitle);
+    expect(find.byType(KidsPlayPage), findsOneWidget);
+    // The rows sit below the hero art, past the test viewport's fold.
+    for (final row in [
+      l10n.kidsArabicPracticeTitle,
+      l10n.kidsDuaPracticeTitle,
+      l10n.kidsArabicColoringPagesTitle,
+    ]) {
+      await tester.scrollUntilVisible(
+        find.text(row),
+        300,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 40,
+      );
+      expect(find.text(row), findsOneWidget, reason: 'missing row: $row');
+    }
+  });
+
+  testWidgets('the retired tile routes still resolve to their new homes', (
     tester,
   ) async {
     final container = await makeRoutingTestContainer();
     final router = container.read(appRouterProvider);
-
     await tester.pumpWidget(buildRouterTestApp(container));
     await pumpRouteFrames(tester);
 
-    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
-
-    router.go('/learn/category/kids-learning');
+    // "Kids Games" and "Fun Learning" both open Play.
+    router.go('/learn/kids/games');
     await pumpRouteFrames(tester);
-    await tapActionCard(tester, l10n.learnHubSubcategoryKidsFunLearningTitle);
+    expect(find.byType(KidsPlayPage), findsOneWidget);
 
-    expect(find.byType(LearnKidsFunLearningPage), findsOneWidget);
-    expect(find.text(l10n.kidsStoryLibraryTitle), findsOneWidget);
-    expect(find.text(l10n.kidsSeerahJourneysTitle), findsWidgets);
-    expect(find.text(l10n.kidsDuaStoriesTitle), findsOneWidget);
+    router.go('/learn/kids/fun-learning');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsPlayPage), findsOneWidget);
+
+    // The bedtime page is now the bedtime shelf of the one library.
+    router.go('/learn/kids/bedtime-stories');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsStoryLibraryPage), findsOneWidget);
+
+    // The pages folded behind Stories keep their own routes.
+    router.go('/learn/kids/quran');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsQuranPage), findsOneWidget);
+
+    router.go('/learn/kids/hadith');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsHadithPage), findsOneWidget);
+
+    router.go('/learn/kids/hadith-stories');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsHadithStoriesPage), findsOneWidget);
   });
 }

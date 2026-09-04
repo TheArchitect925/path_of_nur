@@ -16855,12 +16855,12 @@
   "onboardingLanguageSubtitle": "وہ زبان منتخب کریں جو آپ ایپ میں استعمال کرنا چاہتے ہیں۔",
   "onboardingAgeRangeTitle": "آپ کس عمر کے درجے میں ہیں؟",
   "onboardingAgeRangeSubtitle": "اس سے ہمیں مثالیں اور سفارشات آپ کی زندگی کے مرحلے کے مطابق رکھنے میں مدد ملتی ہے۔",
-  "onboardingAgeRangeUnder18": "Under 18",
-  "onboardingAgeRange18To24": "18-24",
-  "onboardingAgeRange25To34": "25-34",
-  "onboardingAgeRange35To44": "35-44",
-  "onboardingAgeRange45To54": "45-54",
-  "onboardingAgeRange55Plus": "55+",
+  "onboardingAgeRangeUnder18": "0–6",
+  "onboardingAgeRange18To24": "7–13",
+  "onboardingAgeRange25To34": "14–20",
+  "onboardingAgeRange35To44": "21+",
+  "onboardingAgeRange45To54": "21+",
+  "onboardingAgeRange55Plus": "21+",
   "onboardingExperienceTitle": "اسلام کے ساتھ آپ کے سفر کو کون سی وضاحت سب سے بہتر بیان کرتی ہے؟",
   "onboardingExperienceSubtitle": "ہم اس کی مدد سے آپ کے تجربے کے مطابق آغاز کی فضا، رفتار اور سیکھنے کی گہرائی بہتر بناتے ہیں۔ آپ کا انتخاب محفوظ ہوگا اور پوری ایپ میں رہنمائی کو اسی کے مطابق ڈھالا جائے گا۔",
   "onboardingExperienceExploring": "اسلام کو جان رہا/رہی ہوں",
@@ -18243,6 +18243,9 @@
   "onboardingDisclaimerFooter": "آپ کے سفر میں مدد کے لیے بنایا گیا ہے، علمائے کرام کا بدل نہیں۔",
   "onboardingThemeTitle": "اپنی تھیم منتخب کریں",
   "onboardingThemeSubtitle": "وہ ماحول منتخب کریں جو آپ کے سفر میں سب سے زیادہ مانوس محسوس ہو۔ نیچے دی گئی جھلکیوں کو دیکھتے ہوئے تبدیلیاں فوراً لاگو ہوں گی۔",
+  "onboardingThemeChoiceLivingSkyBody": "Follows the day — soft dawn, bright noon, then a starry night.",
+  "onboardingThemeChoiceCandlelightBody": "A warm candlelit room, all day. Low blue light, easy on tired eyes.",
+  "onboardingThemeChoiceMidnightBody": "A starry night sky, all day. Best for OLED screens and night reading.",
   "onboardingThemePreviewTitle": "براہِ راست پیش نظارہ",
   "onboardingThemePreviewSubtitle": "آگے بڑھنے سے پہلے پڑھنے میں آسانی، نرمی، اور کارڈ کی گہرائی کا موازنہ کرنے کے لیے اس نمونہ متن اور کارڈ ترتیب کو استعمال کریں۔",
   "onboardingThemeSampleTitle": "آپ کے دن کے لیے ایک پُرسکون ساتھی",
@@ -19165,10 +19168,32 @@
   "worldCosmicScaleSubtitle": "From tiny to vast, observe proportion and perspective.",
   "worldMuslimScientistsSubtitle": "Curiosity, observation, and disciplined inquiry in Muslim scholarship.",
   "worldReflectionModeProgress": "{current} of {total}",
-  "@worldReflectionModeProgress": {"placeholders": {"current": {"type": "int"}, "total": {"type": "int"}}},
+  "@worldReflectionModeProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "worldReflectionModeEmpty": "No reflection lessons are available yet.",
   "quranUniverseTitle": "Qur''an Universe",
   "quranUniverseSubtitle": "Connections between verses, prophets, themes, places, lessons, and habits.",
   "knowledgeConstellationSubtitle": "An interactive map linking Qur''an, Hadith, Prophets, and Themes.",
-  "babyNamesDetailUnavailable": "Unable to open details."
+  "babyNamesDetailUnavailable": "Unable to open details.",
+  "kidsDoorStoriesTitle": "Stories",
+  "kidsDoorStoriesSubtitle": "Prophets, good manners and bedtime tales",
+  "kidsDoorLettersTitle": "Letters",
+  "kidsDoorLettersSubtitle": "Trace, hear and read Arabic",
+  "kidsDoorDuasTitle": "Duʿās",
+  "kidsDoorDuasSubtitle": "Little words for every part of the day",
+  "kidsDoorPlayTitle": "Play",
+  "kidsDoorPlaySubtitle": "Games, colouring and drawing",
+  "kidsDoorParentsTitle": "Parents",
+  "kidsDoorParentsSubtitle": "Progress, settings and family profiles",
+  "kidsPlaySubtitle": "Practice games, story quizzes, colouring and drawing.",
+  "kidsPlayGamesSectionTitle": "Games",
+  "kidsPlayMakeSectionTitle": "Make and colour"
 }
