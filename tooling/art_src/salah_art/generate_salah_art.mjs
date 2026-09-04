@@ -1,4 +1,4 @@
-// Path of Nur — salah posture art (8 scenes, 16:9).
+// Path of Nur — salah posture art (9 scenes, 16:9).
 // Same visual language as learn_art v2 / kids_art: gradient sky anchored to
 // the app's Dawn Amber recipe, calm silhouettes, warm ivory light, gold
 // accents. The praying figure is a faceless robed silhouette — the one
@@ -109,88 +109,109 @@ function mat(cx, y, w, h) {
 
 // ------------------------------------------------------------ the figure --
 // All poses are drawn in a local frame: x=0 under the hips, y=0 on the mat,
-// the figure facing left (toward the mihrab). Two tones make the posture
-// legible without a face: an ivory thobe with shaded sleeves, and warm-brown
-// hands, feet and head. A kufi tilts with the head, so where the head points
-// is always visible; hands sit where the posture puts them.
-const ROBE = '#F2E6C8', ROBE_SHADE = '#DCCBA4', ROBE_LINE = '#B9A67E';
-const SKIN = '#8A5A3C', KUFI = '#2E5D48', KUFI_LINE = '#1E4B3A';
+// the figure facing left (toward the mihrab). What makes a posture legible
+// without a face: ink outlines around every shape, a coloured kurta over
+// ivory trousers so the legs read as legs, mitten hands placed where the
+// posture puts them, and a cap and beard that turn with the head.
+const LINE = '#3A2A1E';
+const KURTA = '#4E8A6C', KURTA_SHADE = '#3E7358';
+const TROUSER = '#F2E6C8', TROUSER_SHADE = '#DCCBA4';
+const SKIN = '#B57A52', BEARD = '#4A2F22';
+const CAP = '#F5EFDD', CAP_BAND = '#B98A3E';
 
-const robe = (d) =>
-  `<path d="${d}" fill="${ROBE}" stroke="${ROBE_LINE}" stroke-width="4" stroke-linejoin="round"/>`;
-const sleeve = (pts, w = 40) => {
+const shape = (d, fill) =>
+  `<path d="${d}" fill="${fill}" stroke="${LINE}" stroke-width="5" stroke-linejoin="round"/>`;
+const limb = (pts, w, fill) => {
   const d = `M ${pts.map(([x, y]) => `${x} ${y}`).join(' L ')}`;
-  return `<path d="${d}" stroke="${ROBE_LINE}" stroke-width="${w + 6}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>` +
-    `<path d="${d}" stroke="${ROBE_SHADE}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+  return `<path d="${d}" stroke="${LINE}" stroke-width="${w + 9}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>` +
+    `<path d="${d}" stroke="${fill}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
 };
-const hand = (cx, cy, r = 19) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${SKIN}"/>`;
-const flatHand = (cx, cy) => `<ellipse cx="${cx}" cy="${cy}" rx="27" ry="12" fill="${SKIN}"/>`;
-const foot = (cx, cy, rx = 42, ry = 12) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${SKIN}"/>`;
+const sleeve = (pts, w = 40) => limb(pts, w, KURTA_SHADE);
+const trouserLeg = (pts, w = 52) => limb(pts, w, TROUSER);
+// A mitten: an ellipse with a thumb bump, rotated to the wrist's angle.
+const hand = (cx, cy, angle = 0, s = 1) =>
+  `<g transform="translate(${cx} ${cy}) rotate(${angle}) scale(${s})">` +
+  `<ellipse cx="0" cy="0" rx="26" ry="19" fill="${SKIN}" stroke="${LINE}" stroke-width="5"/>` +
+  `<circle cx="-10" cy="-16" r="9" fill="${SKIN}" stroke="${LINE}" stroke-width="4"/></g>`;
+const foot = (cx, cy, angle = 0) =>
+  `<ellipse cx="${cx}" cy="${cy}" rx="44" ry="14" transform="rotate(${angle} ${cx} ${cy})" fill="${SKIN}" stroke="${LINE}" stroke-width="5"/>`;
 const shadow = (cx, cy, rx) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="16" fill="${GROUND}" opacity="0.35"/>`;
 
-// The head: a brown disc under a kufi. `tilt` rotates the cap so a bowed or
-// prostrating head is unmistakable; the face stays blank.
+// The head, facing left: a blank face, a beard on the front-underside, a
+// cap with a gold band. `tilt` rotates everything, so a bowed head shows
+// the crown of the cap and a prostrating head the beard against the mat.
 function head(cx, cy, tilt = 0, r = 46) {
   return `<g transform="rotate(${tilt} ${cx} ${cy})">` +
-    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${SKIN}"/>` +
-    `<path d="M ${cx - r} ${cy - 6} A ${r} ${r} 0 0 1 ${cx + r} ${cy - 6} Z" fill="${KUFI}"/>` +
-    `<path d="M ${cx - r} ${cy - 6} L ${cx + r} ${cy - 6}" stroke="${KUFI_LINE}" stroke-width="5" stroke-linecap="round"/>` +
+    `<path d="M ${cx - r + 6} ${cy + 14} Q ${cx - r - 10} ${cy + 60} ${cx - 8} ${cy + 62} Q ${cx + 30} ${cy + 56} ${cx + 34} ${cy + 26} Z" fill="${BEARD}" stroke="${LINE}" stroke-width="5" stroke-linejoin="round"/>` +
+    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${SKIN}" stroke="${LINE}" stroke-width="5"/>` +
+    `<path d="M ${cx - r} ${cy - 4} A ${r} ${r} 0 0 1 ${cx + r} ${cy - 4} Z" fill="${CAP}" stroke="${LINE}" stroke-width="5" stroke-linejoin="round"/>` +
+    `<path d="M ${cx - r + 2} ${cy - 4} L ${cx + r - 2} ${cy - 4}" stroke="${CAP_BAND}" stroke-width="8" stroke-linecap="round"/>` +
     `</g>`;
 }
 
 // A gold cue for the salam: the head turns this way.
 function turnCue(cx, cy, dir) {
-  const x1 = cx + dir * 110, y1 = cy + 44;
+  const x1 = cx + dir * 120, y1 = cy + 40;
   const arrow = dir > 0
     ? `M ${x1 - 16} ${y1 - 22} L ${x1 + 4} ${y1} L ${x1 - 22} ${y1 + 8} Z`
     : `M ${x1 + 16} ${y1 - 22} L ${x1 - 4} ${y1} L ${x1 + 22} ${y1 + 8} Z`;
-  return `<path d="M ${cx} ${cy - 70} Q ${cx + dir * 100} ${cy - 66} ${x1} ${y1}" stroke="${GOLD}" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.95"/>` +
+  return `<path d="M ${cx} ${cy - 78} Q ${cx + dir * 110} ${cy - 74} ${x1} ${y1}" stroke="${GOLD}" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.95"/>` +
     `<path d="${arrow}" fill="${GOLD}" opacity="0.95"/>`;
 }
 
-const standingRobe = robe('M -80 -420 Q -110 -250 -118 -8 L 118 -8 Q 110 -250 82 -420 Q 0 -452 -80 -420 Z');
+// Standing: trousers from the hem down, a kurta to just below the knee.
+const standingLegs = () =>
+  trouserLeg([[30, -220], [34, -30]], 54) + foot(46, -6) +
+  trouserLeg([[-44, -220], [-52, -30]], 56) + foot(-64, -8);
+const standingKurta = () =>
+  shape('M -80 -420 Q -106 -300 -110 -196 L 112 -196 Q 108 -300 82 -420 Q 0 -452 -80 -420 Z', KURTA);
 
 const POSES = {
-  // Standing, forearms folded across the chest, both hands showing.
+  // The opening takbir: hands raised beside the ears, palms forward.
+  takbir: () =>
+    shadow(0, 2, 150) + standingLegs() + standingKurta() +
+    hand(52, -456, -80, 0.9) +
+    sleeve([[-24, -400], [-84, -372], [-96, -440]]) + hand(-98, -472, -80) +
+    head(-10, -488),
+  // Standing, forearms folded across the chest, the far hand under the near.
   qiyam: () =>
-    shadow(0, 2, 150) + foot(-58, -8) + foot(40, -4, 34, 10) + standingRobe +
-    // upper arm down the side, forearm level across the chest and out
-    // past the robe's front, so the fold is unmistakable
-    sleeve([[-20, -404], [-40, -330], [-134, -326]]) +
-    hand(-138, -324) + hand(-104, -306, 15) +
+    shadow(0, 2, 150) + standingLegs() + standingKurta() +
+    sleeve([[48, -318], [-66, -312]], 36) + hand(-72, -306, 10, 0.9) +
+    sleeve([[-20, -404], [-40, -330], [-124, -326]]) + hand(-134, -322, -10) +
     head(-10, -488),
-  // Standing after ruku, the near arm hanging, the hand by the thigh.
+  // Standing after ruku, arms at the sides.
   qawmah: () =>
-    shadow(0, 2, 150) + foot(-58, -8) + foot(40, -4, 34, 10) + standingRobe +
-    sleeve([[-40, -404], [-82, -312], [-92, -216]]) +
-    hand(-94, -210) +
+    shadow(0, 2, 150) + standingLegs() + standingKurta() +
+    hand(78, -224, 80, 0.9) +
+    sleeve([[-36, -404], [-84, -320], [-92, -226]]) + hand(-96, -212, 80) +
     head(-10, -488),
-  // Bowing: back level, both hands on the knees, the kufi pointing down.
+  // Bowing: back level, both hands gripping the knees, the cap facing down.
   ruku: () =>
-    shadow(-80, 2, 220) + foot(-58, -8) + foot(40, -4, 34, 10) +
-    robe('M -84 -330 Q -110 -190 -114 -8 L 114 -8 Q 106 -190 84 -330 Z') +
-    robe('M -350 -352 Q -374 -300 -320 -276 L 80 -286 Q 122 -320 70 -360 Z') +
-    // arms straight down from the shoulders, hands gripping the knees
-    sleeve([[-300, -318], [-200, -240], [-100, -184]]) +
-    sleeve([[-262, -314], [-166, -232], [-72, -178]], 34) +
-    hand(-98, -182) + hand(-70, -176, 17) +
+    shadow(-80, 2, 220) +
+    trouserLeg([[30, -220], [34, -30]], 54) + foot(46, -6) +
+    trouserLeg([[-44, -220], [-52, -30]], 56) + foot(-64, -8) +
+    shape('M -84 -330 Q -108 -250 -110 -196 L 112 -196 Q 106 -250 84 -330 Z', KURTA) +
+    shape('M -350 -352 Q -374 -300 -320 -276 L 80 -286 Q 122 -320 70 -360 Z', KURTA) +
+    sleeve([[-262, -314], [-166, -232], [-64, -180]], 34) + hand(-58, -176, 20, 0.9) +
+    sleeve([[-300, -318], [-200, -240], [-96, -186]]) + hand(-96, -180, 20) +
     head(-392, -300, -75),
-  // Prostrating: forehead on the mat, palms flat beside the head, toes
-  // upright behind.
+  // Prostrating: forehead on the mat, palms flat beside the head, shins on
+  // the mat and toes upright behind.
   sujud: () =>
     shadow(-40, 2, 330) +
-    robe('M -70 -262 Q 120 -300 196 -150 Q 224 -50 160 -8 L -60 -8 Q -84 -120 -70 -262 Z') +
-    `<ellipse cx="236" cy="-24" rx="16" ry="26" fill="${SKIN}"/><ellipse cx="268" cy="-20" rx="14" ry="22" fill="${SKIN}"/>` +
-    robe('M -40 -290 Q 40 -300 46 -230 L -220 -84 Q -292 -52 -318 -122 Z') +
-    sleeve([[-270, -110], [-340, -72], [-408, -26]]) +
-    sleeve([[-236, -92], [-300, -56], [-364, -20]], 34) +
-    flatHand(-420, -14) + flatHand(-372, -12) +
+    trouserLeg([[0, -60], [232, -34]], 60) +
+    `<ellipse cx="248" cy="-40" rx="18" ry="30" fill="${SKIN}" stroke="${LINE}" stroke-width="5"/>` +
+    shape('M -70 -262 Q 120 -300 196 -150 Q 214 -90 160 -46 L -40 -46 Q -84 -160 -70 -262 Z', KURTA) +
+    shape('M -40 -290 Q 40 -300 46 -230 L -220 -84 Q -292 -52 -318 -122 Z', KURTA) +
+    sleeve([[-236, -92], [-300, -56], [-364, -20]], 34) + hand(-378, -14, 0, 0.9) +
+    sleeve([[-270, -110], [-340, -72], [-408, -26]]) + hand(-426, -14, 0) +
     head(-338, -48, -100),
   // Sitting between the two sujud, hands resting on the thighs.
   jalsah: () => sitting(),
   // Final sitting for tashahhud, the index finger raised.
   tashahhud: () => sitting() +
-    `<path d="M -126 -128 L -168 -150" stroke="${SKIN}" stroke-width="11" stroke-linecap="round"/>`,
+    `<path d="M -126 -132 L -172 -150" stroke="${LINE}" stroke-width="20" stroke-linecap="round"/>` +
+    `<path d="M -126 -132 L -172 -150" stroke="${SKIN}" stroke-width="11" stroke-linecap="round"/>`,
   // Salam: the head turns to the right, then to the left.
   salamRight: () => sitting(18) + turnCue(-12, -410, 1),
   salamLeft: () => sitting(-18) + turnCue(-12, -410, -1),
@@ -198,13 +219,15 @@ const POSES = {
 
 function sitting(turn = 0) {
   return shadow(0, 2, 210) +
-    robe('M -180 -8 Q -176 -70 -128 -84 L 60 -186 Q 150 -212 184 -118 Q 202 -40 166 -8 Z') +
-    foot(178, -12, 40, 12) +
-    robe('M -56 -338 Q -78 -250 -70 -176 L 108 -176 Q 96 -250 64 -338 Q 0 -364 -56 -338 Z') +
-    sleeve([[-40, -322], [-70, -230], [-124, -130]]) +
-    sleeve([[26, -318], [10, -226], [-40, -132]], 34) +
-    hand(-126, -128, 18) + hand(-42, -130, 16) +
+    // shins along the mat, feet tucked behind, thighs up to the lap
+    trouserLeg([[-120, -70], [150, -40]], 58) + foot(176, -18, -10) +
+    trouserLeg([[-140, -80], [40, -170]], 60) +
+    shape('M -56 -338 Q -78 -250 -70 -176 L 108 -176 Q 96 -250 64 -338 Q 0 -364 -56 -338 Z', KURTA) +
+    shape('M -70 -176 Q -110 -150 -130 -96 L 60 -100 Q 100 -140 108 -176 Z', KURTA) +
+    sleeve([[26, -318], [10, -226], [-40, -132]], 34) + hand(-46, -126, 20, 0.9) +
+    sleeve([[-40, -322], [-70, -230], [-124, -130]]) + hand(-128, -124, 20) +
     `<g transform="rotate(${turn} -6 -352)">` +
+    `<path d="M -22 -366 L -2 -344" stroke="${LINE}" stroke-width="32" stroke-linecap="round"/>` +
     `<path d="M -22 -366 L -2 -344" stroke="${SKIN}" stroke-width="24" stroke-linecap="round"/>` +
     head(-12, -410) +
     `</g>`;

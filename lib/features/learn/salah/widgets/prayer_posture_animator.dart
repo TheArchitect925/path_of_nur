@@ -119,6 +119,20 @@ class _Pose {
     handB: Offset(0.51, 0.47),
   );
 
+  static const _handsRaised = _Pose(
+    head: Offset(0.50, 0.17),
+    neck: Offset(0.50, 0.29),
+    hip: Offset(0.50, 0.57),
+    kneeF: Offset(0.47, 0.76),
+    kneeB: Offset(0.53, 0.76),
+    footF: Offset(0.44, 0.93),
+    footB: Offset(0.56, 0.93),
+    elbowF: Offset(0.36, 0.36),
+    handF: Offset(0.38, 0.18),
+    elbowB: Offset(0.64, 0.36),
+    handB: Offset(0.62, 0.18),
+  );
+
   static const _armsDown = _Pose(
     head: Offset(0.50, 0.17),
     neck: Offset(0.50, 0.29),
@@ -191,6 +205,8 @@ class _Pose {
 
   static _Pose of(PrayerPostureType posture) {
     switch (posture) {
+      case PrayerPostureType.takbir:
+        return _handsRaised;
       case PrayerPostureType.qiyam:
         return _standing;
       case PrayerPostureType.qawmah:

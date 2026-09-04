@@ -25,6 +25,8 @@ enum GuidedSurahMode { random, fixed, practiceSpecific }
 enum SurahLearningMode { listen, repeat, practice, memory }
 
 enum PrayerPostureType {
+  /// Standing with the hands raised for the takbir.
+  takbir,
   qiyam,
   ruku,
   qawmah,
