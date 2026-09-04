@@ -19,12 +19,9 @@ class LearnHubPageScaffold extends StatelessWidget {
   const LearnHubPageScaffold({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.children,
     this.headerIcon,
-    this.headerIconSize = 24,
-    this.headerIconSpacing = 12,
-    this.headerAlignment = AppPageHeaderAlignment.start,
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
     this.quote,
@@ -37,11 +34,10 @@ class LearnHubPageScaffold extends StatelessWidget {
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
+
+  /// Landing pages only — see [AppPageScaffold.headerIcon].
   final IconData? headerIcon;
-  final double headerIconSize;
-  final double headerIconSpacing;
-  final AppPageHeaderAlignment headerAlignment;
   final String? backgroundAssetPath;
   final Color? backgroundOverlayColor;
   final List<Widget> children;
@@ -57,9 +53,6 @@ class LearnHubPageScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppPageScaffold(
       headerIcon: headerIcon,
-      headerIconSize: headerIconSize,
-      headerIconSpacing: headerIconSpacing,
-      headerAlignment: headerAlignment,
       title: title,
       subtitle: subtitle,
       quote: showDefaultQuote ? (quote ?? buildLearningCompactQuote()) : quote,

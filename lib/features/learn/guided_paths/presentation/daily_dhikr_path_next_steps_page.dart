@@ -32,7 +32,6 @@ class DailyDhikrPathNextStepsPage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.self_improvement_rounded,
       title: l10n.learnDailyDhikrNextStepsTitle,
       subtitle: l10n.learnDailyDhikrNextStepsSubtitle,
       children: [

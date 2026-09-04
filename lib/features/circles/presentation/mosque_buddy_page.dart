@@ -38,7 +38,6 @@ class MosqueBuddyPage extends ConsumerWidget {
     final notifier = ref.read(circlesProvider.notifier);
 
     return AppPageScaffold(
-      headerIcon: Icons.mosque_outlined,
       title: l10n.circlesMosqueBuddyPrefsTitle,
       subtitle: l10n.circlesMosqueBuddyPrefsSubtitle,
       children: [

@@ -33,7 +33,6 @@ class KidsDuaCategoryPage extends ConsumerWidget {
       );
     }
     return LearnHubPageScaffold(
-      headerIcon: category.icon,
       title: category.title,
       subtitle: category.subtitle,
       children: [

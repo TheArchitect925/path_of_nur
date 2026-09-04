@@ -32,7 +32,6 @@ class FoundationsPathNextStepsPage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.alt_route_rounded,
       title: l10n.learnFoundationsNextStepsTitle,
       subtitle: l10n.learnFoundationsNextStepsSubtitle,
       children: [

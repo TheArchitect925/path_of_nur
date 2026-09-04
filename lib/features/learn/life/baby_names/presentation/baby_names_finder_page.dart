@@ -72,7 +72,6 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
         (!hasFatherMatch || !hasMotherMatch);
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_awesome_rounded,
       title: 'Parent-inspired Name Tool',
       subtitle:
           'Get ranked suggestions based on family inputs and meaning themes',

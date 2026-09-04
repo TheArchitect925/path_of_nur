@@ -76,7 +76,6 @@ class GamePackItem {
 class GamePackView extends StatelessWidget {
   const GamePackView({
     super.key,
-    required this.headerIcon,
     required this.title,
     required this.subtitle,
     required this.summaryChips,
@@ -86,7 +85,6 @@ class GamePackView extends StatelessWidget {
     this.onPrimaryAction,
   });
 
-  final IconData headerIcon;
   final String title;
   final String subtitle;
   final List<String> summaryChips;
@@ -104,7 +102,6 @@ class GamePackView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
       children: [
@@ -202,14 +199,12 @@ class _GamePackItemCard extends StatelessWidget {
 class GameStatePage extends StatelessWidget {
   const GameStatePage({
     super.key,
-    required this.headerIcon,
     required this.title,
     required this.subtitle,
     this.message,
     this.isLoading = false,
   });
 
-  final IconData headerIcon;
   final String title;
   final String subtitle;
   final String? message;
@@ -218,7 +213,6 @@ class GameStatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
       children: [

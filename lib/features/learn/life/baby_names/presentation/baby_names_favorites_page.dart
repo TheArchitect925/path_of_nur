@@ -50,7 +50,6 @@ class _BabyNamesFavoritesPageState
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.favorite_outline_rounded,
       title: 'Saved Names',
       subtitle: 'Your personal shortlist for thoughtful comparison',
       children: [

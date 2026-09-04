@@ -18,7 +18,6 @@ class CirclesJoinedPage extends ConsumerWidget {
     final accountability = ref.watch(joinedAccountabilityGroupsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.group_work_outlined,
       title: l10n.circlesJoinedPageTitle,
       subtitle: l10n.circlesJoinedPageSubtitle,
       children: [

@@ -19,7 +19,6 @@ class QuranBookmarksPage extends ConsumerWidget {
     final notifier = ref.read(quranBookmarksProvider.notifier);
 
     return AppPageScaffold(
-      headerIcon: Icons.bookmark_outline_rounded,
       title: l10n.learnQuranBookmarksTitle,
       subtitle: l10n.quranBookmarksPageSubtitle,
       children: [

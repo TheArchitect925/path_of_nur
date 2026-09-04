@@ -49,7 +49,6 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
         .contains(widget.duaId);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.pan_tool_alt_rounded,
       title: l10n.duaDetailAppBarTitle,
       subtitle: itemAsync.valueOrNull?.title ?? l10n.duaHubTitle,
       headerActions: [

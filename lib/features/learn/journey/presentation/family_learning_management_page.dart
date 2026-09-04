@@ -40,7 +40,6 @@ class _FamilyLearningManagementPageState
         activeProfile.profileType != ProfileKind.guest;
 
     return AppPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
       title: l10n.familyLearningManagementTitle,
       subtitle: l10n.familyLearningManagementSubtitle,
       children: [

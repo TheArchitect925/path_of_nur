@@ -103,7 +103,6 @@ class _BedtimeStoryDetailPageState
       scrollController: _scrollController,
       title: story.title,
       subtitle: story.lesson,
-      headerIcon: Icons.nightlight_round,
       headerActions: [
         IconButton(
           onPressed: () => showBedtimeStoryFullPlayerSheet(context, ref),

@@ -20,7 +20,6 @@ class CommunityModerationPage extends ConsumerWidget {
     final canModerate = trustLevel == CommunityTrustLevel.steward;
 
     return AppPageScaffold(
-      headerIcon: Icons.gavel_outlined,
       title: l10n.circlesModerationTitle,
       subtitle: l10n.circlesModerationSubtitle,
       children: [

@@ -72,7 +72,6 @@ class _HadithBrowsePageState extends ConsumerState<HadithBrowsePage> {
     final subcategoryCount = subcategoryOptions.length;
 
     return AppPageScaffold(
-      headerIcon: Icons.tune_rounded,
       title: l10n.hadithBrowsePageTitle,
       subtitle: l10n.hadithBrowsePageSubtitle,
       bodySlivers: [

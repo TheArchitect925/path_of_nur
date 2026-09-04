@@ -47,7 +47,6 @@ class _DivineLifeReflectionPageState
     final lesson = divineLifeLessons[_index];
 
     return AppPageScaffold(
-      headerIcon: Icons.nights_stay_rounded,
       title: 'Reflection Mode',
       subtitle: 'Quiet, focused reading',
       children: [

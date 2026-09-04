@@ -4,6 +4,7 @@
 ## Backlog
 
 ### Epics
+| PON-E-header-redesign | Page headers and icons: one anatomy, one icon vocabulary, honest copy | in_progress |
 
 | Epic ID | Title | Status |
 | --- | --- | --- |
@@ -23,6 +24,11 @@
 | PON-E-font-asset-integrity | Bundled font asset integrity | done |
 
 ### Stories
+| PON-S-header-guards | PON-E-header-redesign | HD-0: header conformance ratchet (landing-only icons, rounded icons, SectionTitle, no raw AppBar) | 2 | done |
+| PON-S-header-primitive | PON-E-header-redesign | HD-1: AppPageScaffold reshaped — nav row on pushed pages, accent chip on landings, actions on the title line, optional subtitle, deep-link return | 5 | done |
+| PON-S-header-icon-vocabulary | PON-E-header-redesign | HD-2: AppIcons semantic vocabulary, registry collapse, wrong-world glyph replacement | 5 | backlog |
+| PON-S-header-copy | PON-E-header-redesign | HD-3: status text out of the subtitle slot, filler removed, Title Case, 44 literals into ARB | 5 | backlog |
+| PON-S-section-title-adoption | PON-E-header-redesign | HD-4: retire 16 private section headers onto SectionTitle, settle the chevron rule, kids-dua AppBar conversion | 3 | backlog |
 
 | Story ID | Epic ID | Title | Points | Status |
 | --- | --- | --- | --- | --- |
@@ -387,3 +393,9 @@
 | PON-T-270 | Hub browse rows and grids stay intact under large text | In Quizzes & Games the Browse All row shows its full description on normal lines (previously one word per line beside an oversized button). In Islam FAQ, set the largest system text size and reopen: category cards grow with their content instead of clipping — no yellow/black overflow stripes. Notes & Writing opens with its content at the top, no decorative quote pushing everything below the fold. | ⬜ | epic:PON-E-learn-design-parity · story:PON-S-learn-look-feel-fonts-colours · sprint:2026-08-30 |
 | PON-T-271 | Learn colours follow every theme | In Midnight (and Candlelight) open kids Arabic home and a lesson, a hadith lesson, a world creation page, a trivia session, and the Qur'an teaching pages. Expected: inks, cards, borders and status greens/ambers all recolour with the theme — no baked light-theme browns or creams on the dark grounds. Positive/caution accents keep their hue family (green stays green) but read clearly in both light and night themes. | ⬜ | epic:PON-E-learn-design-parity · story:PON-S-learn-look-feel-fonts-colours · sprint:2026-08-30 · ~450 near-token hex literals now resolve through context.palette, incl. new successInk/cautionInk |
 | PON-T-272 | Landing search lives in the header | Open Islam FAQ, Quizzes & Games, and Duas. Expected: each opens without a search box; a search icon sits in the header, tapping it reveals the live search focused and ready, tapping again closes and clears it. A dua deep link with ?q= still opens with search visible and prefilled. A child profile on the games hub sees neither search box nor icon. | ⬜ | epic:PON-E-learn-design-parity · story:PON-S-learn-look-feel-fonts-colours · sprint:2026-08-30 |
+| PON-T-288 | Pushed page header: back row, then a full-width title | Open Learn → Hadith → Collections. Expect: a back arrow on its own row at the top-left, the title 'Hadith' starting at the page margin directly below it, no book icon beside the title, the subtitle wrapping from the same margin. | ⬜ | epic:PON-E-header-redesign · story:PON-S-header-primitive · sprint:2026-09-04 · phase:HD-1 |
+| PON-T-289 | Landing header wears the accent chip | Open the Ibadah tab. Expect: the prayer glyph inside a 38 px rounded accent chip beside 'Ibadah' (same chip style as the rows below), the search icon level with the title on the right. | ⬜ | epic:PON-E-header-redesign · story:PON-S-header-primitive · sprint:2026-09-04 · phase:HD-1 |
+| PON-T-290 | Root actions align with the title, not the paragraph | Open the Learn tab (four-line subtitle). Expect: the cap chip and the search icon both sit on the 'Learning Hub' title line; nothing floats beside the middle of the subtitle. | ⬜ | epic:PON-E-header-redesign · story:PON-S-header-primitive · sprint:2026-09-04 · phase:HD-1 |
+| PON-T-291 | Deep link still offers a way back | From Safari open pathofnur:///learn/hadith. Expect: the Hadith page opens with a back arrow in the header; tapping it returns to the Learn tab rather than doing nothing. | ⬜ | epic:PON-E-header-redesign · story:PON-S-header-primitive · sprint:2026-09-04 · phase:HD-1 |
+| PON-T-292 | Header buttons share one tone | On the Midnight theme open Ibadah, then Ibadah → Prayer. Expect: back arrow, search icon and any other header buttons render in the same ivory as the title (not white, not gold). | ⬜ | epic:PON-E-header-redesign · story:PON-S-header-primitive · sprint:2026-09-04 · phase:HD-1 |
+| PON-T-293 | Header ratchet blocks new drift | Run `flutter test test/shared/widgets/app_page_header_conformance_test.dart`. Expect: 4 tests pass. Add `headerIcon: Icons.abc_rounded` to any pushed page (e.g. quran_bookmarks_page) and rerun: the first test fails naming that file. | ⬜ | epic:PON-E-header-redesign · story:PON-S-header-guards · sprint:2026-09-04 · phase:HD-0 |

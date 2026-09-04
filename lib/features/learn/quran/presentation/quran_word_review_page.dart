@@ -29,7 +29,6 @@ class _QuranWordReviewPageState extends ConsumerState<QuranWordReviewPage> {
 
     if (deck.isEmpty) {
       return AppPageScaffold(
-        headerIcon: Icons.style_outlined,
         title: l10n.quranWordReviewTitle,
         subtitle: l10n.quranWordReviewSubtitle,
         children: [PremiumCard(child: Text(l10n.quranWordReviewEmpty))],
@@ -40,7 +39,6 @@ class _QuranWordReviewPageState extends ConsumerState<QuranWordReviewPage> {
     final word = deck[safeIndex];
 
     return AppPageScaffold(
-      headerIcon: Icons.style_outlined,
       title: l10n.quranWordReviewTitle,
       subtitle: l10n.quranWordReviewProgressLabel(safeIndex + 1, deck.length),
       children: [

@@ -6,7 +6,6 @@ import '../../../../shared/widgets/quran_quote_block.dart';
 class LearningDetailPage extends StatelessWidget {
   const LearningDetailPage({
     super.key,
-    required this.headerIcon,
     required this.title,
     required this.subtitle,
     this.quote,
@@ -14,7 +13,6 @@ class LearningDetailPage extends StatelessWidget {
     required this.sections,
   });
 
-  final IconData headerIcon;
   final String title;
   final String subtitle;
   final QuranQuote? quote;
@@ -24,7 +22,6 @@ class LearningDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPageScaffold(
-      headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
       quote: quote,

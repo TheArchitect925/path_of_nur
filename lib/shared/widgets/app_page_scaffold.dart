@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../app/nav_tabs.dart';
 import '../../core/theme/app_backgrounds.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
+import 'display/hub_list_group.dart';
 import 'global_background.dart';
 import 'quran_navigation.dart';
 import 'quran_quote_block.dart';
@@ -17,8 +20,29 @@ class PageLayoutConfig {
   static const immersive = PageLayoutConfig(extendBehindBottomNav: true);
 }
 
-enum AppPageHeaderAlignment { start, center }
-
+/// The one page header.
+///
+/// Anatomy (header redesign, decision A1):
+///
+/// * A page that can go back gets a **navigation row** first — the back
+///   button on the left, any [headerActions] on the right — and then the
+///   title block, full width from the page margin. The icon that used to sit
+///   between the arrow and the title is gone: it repeated the row that opened
+///   the page and pushed the title a hundred pixels in.
+/// * A tab root or a deep-linked page has no navigation row; the title block
+///   is the first line and the actions sit on it, aligned to the title, never
+///   to the middle of a long subtitle.
+/// * [headerIcon] renders as the same 38 px accent chip the hub rows use
+///   ([HubLeadingIcon]), so a landing's header and the row that leads to it
+///   share one language. Only landings pass it; the header conformance test
+///   keeps pushed pages icon-free.
+/// * [subtitle] is optional. A page with nothing to say under its title says
+///   nothing; status text belongs in the body, not the subtitle slot.
+///
+/// A page opened by a deep link replaces the navigation stack, so it cannot
+/// pop. When such a page is not a tab root, the navigation row still shows a
+/// back button that returns to the page's own tab, so the header never
+/// strands the reader.
 class AppPageScaffold extends ConsumerStatefulWidget {
   static const double _homeMatchedBottomContentPadding = 136;
   static const double _homeMatchedFloatingBottomOffset = 92;
@@ -26,16 +50,13 @@ class AppPageScaffold extends ConsumerStatefulWidget {
   const AppPageScaffold({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     this.quote,
     this.quoteHeader,
     this.quotePool,
     this.quoteUseOuterChrome = true,
     this.headerIcon,
     this.onTitleTap,
-    this.headerIconSize = 24,
-    this.headerIconSpacing = 12,
-    this.headerAlignment = AppPageHeaderAlignment.start,
     this.onQuoteTap,
     this.scrollController,
     this.headerActions,
@@ -50,19 +71,18 @@ class AppPageScaffold extends ConsumerStatefulWidget {
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final QuranQuote? quote;
   final Widget? quoteHeader;
   final List<QuranQuote>? quotePool;
   final bool quoteUseOuterChrome;
+
+  /// Landing pages only: drawn as the accent chip beside the title.
   final IconData? headerIcon;
 
   /// When set, the title block becomes tappable (e.g. the Qur'an reader's
   /// surah title opening its go-to picker).
   final VoidCallback? onTitleTap;
-  final double headerIconSize;
-  final double headerIconSpacing;
-  final AppPageHeaderAlignment headerAlignment;
   final ValueChanged<QuranQuote>? onQuoteTap;
   final ScrollController? scrollController;
   final List<Widget>? headerActions;
@@ -93,9 +113,26 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
     super.dispose();
   }
 
+  /// The tab to return to when the page cannot pop but is not a tab root —
+  /// the deep-link case. Null when the page is a root, or when there is no
+  /// router at all (widget tests build the scaffold bare).
+  NavTab? _deepLinkReturnTab(BuildContext context) {
+    final router = GoRouter.maybeOf(context);
+    if (router == null) return null;
+    final location = router.routerDelegate.currentConfiguration.uri.path;
+    for (final tab in NavTab.values) {
+      if (location == tab.path) return null;
+    }
+    for (final tab in NavTab.values) {
+      if (location.startsWith('${tab.path}/')) return tab;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final canPop = Navigator.canPop(context);
+    final returnTab = canPop ? null : _deepLinkReturnTab(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final foreground =
         appearance?.backgroundForeground ?? const Color(0xFF3A3026);
@@ -115,79 +152,121 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
     final bottomInset = widget.layoutConfig.extendBehindBottomNav
         ? 0.0
         : AppPageScaffold._homeMatchedBottomContentPadding;
-    final headerCrossAxisAlignment =
-        widget.headerAlignment == AppPageHeaderAlignment.center
-        ? CrossAxisAlignment.center
-        : CrossAxisAlignment.start;
-    final headerContent = <Widget>[
-      if (canPop || widget.headerIcon != null)
-        Row(
-          crossAxisAlignment: headerCrossAxisAlignment,
-          children: [
-            if (canPop)
-              IconButton(
-                onPressed: () => Navigator.of(context).maybePop(),
-                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-                icon: const BackButtonIcon(),
-                color: foreground,
-              ),
-            if (canPop && widget.headerIcon != null) const SizedBox(width: 4),
-            if (widget.headerIcon != null)
-              Icon(
-                widget.headerIcon,
-                color: foreground,
-                size: widget.headerIconSize,
-              ),
-            if (widget.headerIcon != null)
-              SizedBox(width: widget.headerIconSpacing),
-            Expanded(
-              child: _MaybeTappable(
-                onTap: widget.onTitleTap,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleLarge?.copyWith(color: foreground),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      widget.subtitle,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            if (widget.headerActions != null) ...[
-              const SizedBox(width: 8),
-              ...widget.headerActions!,
-            ],
-          ],
-        )
-      else
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(color: foreground),
-            ),
+    final subtitle = widget.subtitle;
+    final hasSubtitle = subtitle != null && subtitle.trim().isNotEmpty;
+    final hasActions =
+        widget.headerActions != null && widget.headerActions!.isNotEmpty;
+    final hasNavRow = canPop || returnTab != null;
+
+    // Every icon button in the header — back, home, the page's own actions —
+    // takes the header foreground, so the header reads as one object rather
+    // than three tones (H3 in the audit).
+    final headerIconButtonTheme = IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: foreground,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        minimumSize: const Size(40, 40),
+        padding: const EdgeInsets.all(8),
+      ),
+    );
+
+    Widget backButton() {
+      return IconButton(
+        key: const ValueKey('app-page-back'),
+        onPressed: () {
+          if (canPop) {
+            Navigator.of(context).maybePop();
+          } else if (returnTab != null) {
+            context.go(returnTab.path);
+          }
+        },
+        tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+        icon: const BackButtonIcon(),
+      );
+    }
+
+    Widget actionsRow() {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: widget.headerActions!,
+      );
+    }
+
+    final titleBlock = _MaybeTappable(
+      onTap: widget.onTitleTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.title,
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(color: foreground),
+          ),
+          if (hasSubtitle) ...[
             const SizedBox(height: 6),
             Text(
-              widget.subtitle,
+              subtitle,
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
             ),
           ],
+        ],
+      ),
+    );
+
+    final headerContent = <Widget>[
+      IconButtonTheme(
+        data: headerIconButtonTheme,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (hasNavRow) ...[
+              // Navigation row: back on the left, actions on the right. The
+              // back button sits 8 px outside the text margin so its glyph
+              // lines up with the title below it.
+              Padding(
+                padding: const EdgeInsets.only(left: 0, bottom: 6),
+                child: Row(
+                  children: [
+                    Transform.translate(
+                      offset: const Offset(-8, 0),
+                      child: backButton(),
+                    ),
+                    const Spacer(),
+                    if (hasActions) actionsRow(),
+                  ],
+                ),
+              ),
+            ],
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (widget.headerIcon != null) ...[
+                  Padding(
+                    // Centres the 38 px chip on the 30 px title line.
+                    padding: const EdgeInsets.only(top: 0),
+                    child: HubLeadingIcon(widget.headerIcon!),
+                  ),
+                  const SizedBox(width: 12),
+                ],
+                Expanded(child: titleBlock),
+                if (hasActions && !hasNavRow) ...[
+                  const SizedBox(width: 8),
+                  // Root pages keep their actions on the title line. The
+                  // button is 40 px against a 30 px title line, so it is
+                  // nudged up to share the title's optical centre.
+                  Transform.translate(
+                    offset: const Offset(8, -5),
+                    child: actionsRow(),
+                  ),
+                ],
+              ],
+            ),
+          ],
         ),
+      ),
       const SizedBox(height: 12),
       if (widget.quoteHeader != null) ...[
         const SizedBox(height: 12),

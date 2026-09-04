@@ -126,7 +126,6 @@ class _ArabicLearningMiniAssessmentPageState
 
     if (widget.audience == ArabicLearningAudience.kids) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.self_improvement_rounded,
         title: l10n.kidsArabicMiniAssessmentPageTitle,
         subtitle: l10n.kidsArabicMiniAssessmentPageSubtitle,
         children: children,

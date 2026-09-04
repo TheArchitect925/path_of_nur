@@ -22,7 +22,6 @@ class WorldCosmicScalePage extends StatelessWidget {
     ];
 
     return AppPageScaffold(
-      headerIcon: Icons.straighten_rounded,
       title: 'Cosmic Scale Explorer',
       subtitle: 'From tiny to vast, observe proportion and perspective.',
       children: [

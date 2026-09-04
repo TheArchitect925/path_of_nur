@@ -39,7 +39,6 @@ class _IslamicTriviaSessionPageState
 
     if (session == null || question == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.quiz_rounded,
         title: l10n.triviaSessionPageTitle,
         subtitle: l10n.triviaSessionNoActiveTitle,
         children: [
@@ -70,7 +69,6 @@ class _IslamicTriviaSessionPageState
             .clamp(0.0, 1.0);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.quiz_rounded,
       title:
           session.knowledgeStageTitle ??
           localizedTriviaModeLabel(l10n, session.mode),

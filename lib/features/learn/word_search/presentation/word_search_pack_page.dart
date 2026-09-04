@@ -15,8 +15,6 @@ import 'word_search_ui_helpers.dart';
 class WordSearchPackPage extends ConsumerWidget {
   const WordSearchPackPage({super.key, required this.packId});
 
-  static const _icon = Icons.text_fields_rounded;
-
   final String packId;
 
   @override
@@ -32,13 +30,11 @@ class WordSearchPackPage extends ConsumerWidget {
 
     return catalogAsync.when(
       loading: () => GameStatePage(
-        headerIcon: _icon,
         title: l10n.wordSearchHomeTitle,
         subtitle: l10n.wordSearchLoadingSubtitle,
         isLoading: true,
       ),
       error: (_, _) => GameStatePage(
-        headerIcon: _icon,
         title: l10n.wordSearchHomeTitle,
         subtitle: l10n.wordSearchLoadErrorSubtitle,
         message: l10n.wordSearchLoadErrorTitle,
@@ -47,7 +43,6 @@ class WordSearchPackPage extends ConsumerWidget {
         final pack = catalog.packsById[packId];
         if (pack == null) {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.wordSearchHomeTitle,
             subtitle: l10n.wordSearchNotFoundSubtitle,
             message: l10n.wordSearchNotFoundTitle,
@@ -55,7 +50,6 @@ class WordSearchPackPage extends ConsumerWidget {
         }
         if (isChildProfile && pack.mode != 'kids' && pack.mode != 'mixed') {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.wordSearchHomeTitle,
             subtitle: l10n.wordSearchNotFoundSubtitle,
             message: l10n.wordSearchKidsOnlyTitle,
@@ -94,7 +88,6 @@ class WordSearchPackPage extends ConsumerWidget {
         );
 
         return GamePackView(
-          headerIcon: _icon,
           title: wordSearchPackTitle(l10n, pack),
           subtitle: wordSearchPackSubtitle(l10n, pack),
           summaryChips: [

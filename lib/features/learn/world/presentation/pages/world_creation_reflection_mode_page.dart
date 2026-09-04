@@ -26,7 +26,6 @@ class _WorldCreationReflectionModePageState
         .toList(growable: false);
     if (pool.isEmpty) {
       return const AppPageScaffold(
-        headerIcon: Icons.self_improvement_rounded,
         title: 'Reflection Mode',
         subtitle: 'No reflection lessons available',
         children: [PremiumCard(child: Text('Please check back later.'))],
@@ -38,7 +37,6 @@ class _WorldCreationReflectionModePageState
     final verse = lesson.quranVerses.first;
 
     return AppPageScaffold(
-      headerIcon: Icons.self_improvement_rounded,
       title: 'Reflection Mode',
       subtitle: '${cappedIndex + 1} of ${pool.length}',
       children: [

@@ -22,7 +22,6 @@ class LifeThemePage extends ConsumerWidget {
     final theme = lifeThemeById(themeId);
     if (theme == null) {
       return AppPageScaffold(
-        headerIcon: Icons.family_restroom_rounded,
         title: l10n.learnLifeSectionTitle,
         subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
@@ -42,7 +41,6 @@ class LifeThemePage extends ConsumerWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: theme.title,
       subtitle: theme.summary,
       children: [

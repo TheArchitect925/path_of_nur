@@ -110,7 +110,6 @@ class _BedtimeStoryMemoryCardsPageState
     return AppPageScaffold(
       title: l10n.bedtimeStoryMemoryTitle,
       subtitle: story.shortTitle,
-      headerIcon: Icons.style_rounded,
       children: [
         PremiumCard(
           child: Column(

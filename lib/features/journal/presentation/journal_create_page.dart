@@ -44,7 +44,6 @@ class _JournalCreatePageState extends ConsumerState<JournalCreatePage> {
       specialModeProvider.select((mode) => mode.isKids),
     );
     return AppPageScaffold(
-      headerIcon: Icons.edit_note,
       title: l10n.journalCreateTitle,
       subtitle: localizedAppPageDescription(
         context,

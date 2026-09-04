@@ -414,7 +414,6 @@ class _QuranShortSurahReadinessPageState
     if (isKids) {
       return LearnHubPageScaffold(
         showDefaultQuote: false,
-        headerIcon: Icons.auto_stories_rounded,
         title: l10n.quranShortSurahsKidsPageTitle,
         subtitle: l10n.quranShortSurahsKidsPageSubtitle,
         children: content,

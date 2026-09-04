@@ -23,7 +23,6 @@ class KidsArabicParentSettingsPage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.tune_rounded,
       title: l10n.kidsArabicParentSettingsTitle,
       subtitle: l10n.kidsArabicParentSettingsSubtitle,
       children: [

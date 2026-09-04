@@ -47,7 +47,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
     final lesson = lifeLessonById(widget.lessonId);
     if (lesson == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnLifeSectionTitle,
         subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
@@ -125,7 +124,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
         .toList(growable: false);
 
     return LearningDetailPage(
-      headerIcon: Icons.menu_book_rounded,
       title: lesson.title,
       subtitle: lesson.subtitle,
       sections: [

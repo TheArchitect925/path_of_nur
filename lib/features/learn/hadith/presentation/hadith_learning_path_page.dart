@@ -26,7 +26,6 @@ class HadithLearningPathPage extends ConsumerWidget {
     final path = ref.watch(hadithLearningPathByIdProvider(pathId));
     if (path == null) {
       return AppPageScaffold(
-        headerIcon: Icons.route_rounded,
         title: l10n.hadithPathPageTitle,
         subtitle: l10n.hadithPathNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithPathNotFoundBody))],
@@ -39,7 +38,6 @@ class HadithLearningPathPage extends ConsumerWidget {
     final milestones = ref.watch(hadithPathMilestonesProvider(path.id));
 
     return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
       title: path.title,
       subtitle: path.subtitle ?? l10n.hadithPathDefaultSubtitle,
       children: [

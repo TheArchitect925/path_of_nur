@@ -24,7 +24,6 @@ class IslamicTriviaStatsPage extends ConsumerWidget {
     final weakest = controller.weakestCategoryId();
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.bar_chart_rounded,
       title: l10n.triviaStatsTitle,
       subtitle: l10n.triviaStatsSubtitle,
       children: [

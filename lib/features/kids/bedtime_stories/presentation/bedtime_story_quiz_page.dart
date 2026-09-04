@@ -112,7 +112,6 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
     return AppPageScaffold(
       title: l10n.bedtimeStoryQuizTitle,
       subtitle: story.shortTitle,
-      headerIcon: Icons.quiz_rounded,
       children: [
         PremiumCard(
           child: Column(

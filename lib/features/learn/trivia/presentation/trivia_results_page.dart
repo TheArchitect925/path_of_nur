@@ -27,7 +27,6 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
     final result = state.lastResult;
     if (result == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.emoji_events_rounded,
         title: l10n.triviaResultsTitle,
         subtitle: l10n.triviaResultsSubtitle,
         children: [
@@ -51,7 +50,6 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
         result.knowledgeStageTitle ?? result.mode.localizedLabel(l10n);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.emoji_events_rounded,
       title: l10n.triviaResultsTitle,
       subtitle: l10n.triviaResultsSubtitle,
       children: [

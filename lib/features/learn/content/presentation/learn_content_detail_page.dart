@@ -55,7 +55,6 @@ class _LearnContentDetailPageState
     final topic = topicById(widget.category, widget.topicId);
     if (topic == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnContentTopicLabel,
         subtitle: l10n.learnContentUnavailableSubtitle,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
@@ -97,7 +96,6 @@ class _LearnContentDetailPageState
     const referenceItems = <LearningReferenceItem>[];
 
     return LearningDetailPage(
-      headerIcon: _headerIcon(widget.category),
       title: topic.title,
       subtitle: topic.subtitle,
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
@@ -254,16 +252,5 @@ String _categoryParam(LearnTopicCategory category) {
       return 'world';
     case LearnTopicCategory.hadith:
       return 'hadith';
-  }
-}
-
-IconData _headerIcon(LearnTopicCategory category) {
-  switch (category) {
-    case LearnTopicCategory.life:
-      return Icons.family_restroom_rounded;
-    case LearnTopicCategory.world:
-      return Icons.public_rounded;
-    case LearnTopicCategory.hadith:
-      return Icons.menu_book_rounded;
   }
 }

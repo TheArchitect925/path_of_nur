@@ -40,7 +40,6 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
     final finished = _questionIndex >= 5;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.quiz_rounded,
       title: l10n.kidsArabicReviewTitle,
       subtitle: l10n.kidsArabicReviewSubtitle,
       children: [

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/utils/reward_feedback.dart';
-import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/wudu_quiz_controller.dart';
@@ -33,7 +32,6 @@ class _WuduQuizView extends ConsumerWidget {
     final state = ref.watch(wuduQuizControllerProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: IslamicIcons.wudhu,
       title: content.title,
       subtitle: content.subtitle,
       children: [

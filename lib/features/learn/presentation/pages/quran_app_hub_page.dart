@@ -7,7 +7,6 @@ import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
-import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../quran/application/quran_khatm_provider.dart';
@@ -28,7 +27,6 @@ class QuranAppHubPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       headerIcon: IslamicIcons.quran,
-      headerAlignment: AppPageHeaderAlignment.center,
       title: l10n.quranAppHubTitle,
       subtitle: localizedAppPageDescription(
         context,

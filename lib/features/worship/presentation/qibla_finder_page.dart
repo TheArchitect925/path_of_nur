@@ -41,7 +41,6 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
     final position = _position;
     final isIpad = _isIpad(context);
     return AppPageScaffold(
-      headerIcon: Icons.explore_rounded,
       title: l10n.worshipQiblaFinderTitle,
       subtitle: l10n.worshipQiblaFinderSubtitle,
       children: [

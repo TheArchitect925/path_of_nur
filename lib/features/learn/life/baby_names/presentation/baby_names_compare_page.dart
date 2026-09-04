@@ -14,7 +14,6 @@ class BabyNamesComparePage extends ConsumerWidget {
     final favorites = ref.watch(babyNamesFavoritesProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.compare_arrows_rounded,
       title: 'Name Comparison',
       subtitle: 'Use your saved names to compare meaning and style',
       children: [

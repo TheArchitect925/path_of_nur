@@ -37,7 +37,6 @@ class WorldDeepOceanPage extends StatelessWidget {
     ];
 
     return AppPageScaffold(
-      headerIcon: Icons.water_rounded,
       title: 'Deep Ocean Explorer',
       subtitle: 'A vertical reflection on depth, darkness, and hidden life.',
       children: [

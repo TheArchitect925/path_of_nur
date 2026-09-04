@@ -59,7 +59,6 @@ class LearningJourneyIslandPage extends ConsumerWidget {
     }
     if (!isProductionSafeLearningJourneyIsland(island)) {
       return LearnContainedStatePage(
-        headerIcon: island.icon,
         title: localizedIslandTitle(context, island),
         subtitle: l10n.learnContainedStateIslandSubtitle,
         body: l10n.learnContainedStateBody,

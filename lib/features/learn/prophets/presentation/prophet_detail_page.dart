@@ -70,7 +70,6 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
     final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       scrollController: _scrollController,
-      headerIcon: Icons.menu_book_rounded,
       title: widget.content.titledHonoredName,
       subtitle: widget.content.honoredArabicName,
       quote: buildProphetStoriesQuote(),

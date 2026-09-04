@@ -60,7 +60,6 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
 
     if (session == null) {
       return AppPageScaffold(
-        headerIcon: Icons.quiz_outlined,
         title: title,
         subtitle: l10n.batch9Unavailable,
         children: [PremiumCard(child: Text(l10n.batch9HadithQuizUnavailable))],
@@ -75,7 +74,6 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
     final progress = (_index + 1) / session.questions.length;
 
     return AppPageScaffold(
-      headerIcon: Icons.quiz_outlined,
       title: session.title,
       subtitle: session.subtitle,
       children: [
@@ -247,7 +245,6 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
     final percent = total <= 0 ? 0 : ((result.score / total) * 100).round();
 
     return AppPageScaffold(
-      headerIcon: Icons.check_circle_outline_rounded,
       title: l10n.batch9QuizResultsTitle,
       subtitle: session.title,
       children: [

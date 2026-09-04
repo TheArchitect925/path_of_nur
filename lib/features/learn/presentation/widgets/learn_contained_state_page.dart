@@ -6,7 +6,6 @@ import 'learn_hub_page_scaffold.dart';
 class LearnContainedStatePage extends StatelessWidget {
   const LearnContainedStatePage({
     super.key,
-    required this.headerIcon,
     required this.title,
     required this.subtitle,
     required this.body,
@@ -16,7 +15,6 @@ class LearnContainedStatePage extends StatelessWidget {
     this.onSecondaryAction,
   });
 
-  final IconData headerIcon;
   final String title;
   final String subtitle;
   final String body;
@@ -28,7 +26,6 @@ class LearnContainedStatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
       children: [

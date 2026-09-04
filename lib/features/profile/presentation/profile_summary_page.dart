@@ -39,7 +39,6 @@ class ProfileSummaryPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.summarize_outlined,
       title: l10n.homeOverviewHeroTitle,
       subtitle: l10n.homeOverviewHeroSubtitle,
       children: [

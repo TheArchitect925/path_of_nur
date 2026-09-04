@@ -23,7 +23,6 @@ class KidsArabicColoringViewerPage extends ConsumerWidget {
 
     if (page == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.format_paint_rounded,
         title: l10n.kidsArabicColoringMissingTitle,
         subtitle: l10n.kidsArabicColoringMissingSubtitle,
         children: [Text(l10n.kidsArabicColoringMissingBody)],
@@ -32,7 +31,6 @@ class KidsArabicColoringViewerPage extends ConsumerWidget {
 
     if (!page.isUnlocked) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.lock_outline_rounded,
         title: l10n.kidsArabicColoringLockedTitle,
         subtitle: l10n.kidsArabicColoringLockedSubtitle,
         children: [Text(l10n.kidsArabicColoringUnlockHint)],
@@ -40,7 +38,6 @@ class KidsArabicColoringViewerPage extends ConsumerWidget {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.format_paint_rounded,
       title: localizedKidsArabicColoringTitle(l10n, page.titleKey),
       subtitle: l10n.kidsArabicColoringViewerSubtitle,
       children: [

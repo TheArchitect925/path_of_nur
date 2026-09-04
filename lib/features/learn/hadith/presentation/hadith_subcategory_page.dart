@@ -40,7 +40,6 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
     );
     if (collection == null) {
       return AppPageScaffold(
-        headerIcon: Icons.collections_bookmark_rounded,
         title: l10n.hadithCollectionPageTitle,
         subtitle: l10n.hadithCollectionNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithCollectionNotFoundBody))],
@@ -85,7 +84,6 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.collections_bookmark_rounded,
       title: collection.title,
       subtitle: collection.subtitle,
       bodySlivers: [

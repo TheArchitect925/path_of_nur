@@ -32,7 +32,6 @@ class StoriesPathNextStepsPage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.learnStoriesPathNextStepsTitle,
       subtitle: l10n.learnStoriesPathNextStepsSubtitle,
       showDefaultQuote: false,

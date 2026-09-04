@@ -28,7 +28,6 @@ class QuranMemorizationReviewPage extends ConsumerWidget {
     final dueEntries = ref.watch(quranMemorizationDueProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.repeat_rounded,
       title: l10n.quranMemorizationReviewTitle,
       subtitle: l10n.quranMemorizationReviewSubtitle,
       children: [

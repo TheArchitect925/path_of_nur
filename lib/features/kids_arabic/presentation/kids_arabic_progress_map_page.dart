@@ -25,7 +25,6 @@ class KidsArabicProgressMapPage extends ConsumerWidget {
     final achievementSummary = ref.watch(kidsArabicAchievementSummaryProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.map_rounded,
       title: l10n.kidsArabicMasteryMapTitle,
       subtitle: l10n.kidsArabicMasteryMapSubtitle,
       children: [

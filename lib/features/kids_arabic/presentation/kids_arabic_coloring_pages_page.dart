@@ -18,7 +18,6 @@ class KidsArabicColoringPagesPage extends ConsumerWidget {
     final unlockedCount = pages.where((page) => page.isUnlocked).length;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.format_paint_rounded,
       title: l10n.kidsArabicColoringPagesTitle,
       subtitle: l10n.kidsArabicColoringPagesSubtitle,
       children: [

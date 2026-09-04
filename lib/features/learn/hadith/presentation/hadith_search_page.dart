@@ -133,7 +133,6 @@ class _HadithSearchPageState extends ConsumerState<HadithSearchPage> {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.search_rounded,
       title: l10n.hadithSearchTitle,
       subtitle: l10n.hadithSearchSubtitle,
       children: [

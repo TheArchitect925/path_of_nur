@@ -34,8 +34,11 @@ void main() {
     );
     await tester.pumpAndSettle();
 
+    // Pushed pages no longer carry a header icon (header redesign, A1);
+    // the page is identified by its title.
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     expect(find.byType(LegalInfoPage), findsOneWidget);
-    expect(find.byIcon(Icons.support_agent_rounded), findsOneWidget);
+    expect(find.text(l10n.legalSupportTitle), findsOneWidget);
   });
 
   testWidgets('worship page moon card shows all five prayers with times', (

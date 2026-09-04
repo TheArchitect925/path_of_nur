@@ -20,7 +20,6 @@ class KidsArabicPracticePage extends ConsumerWidget {
     final plan = ref.watch(kidsArabicPracticePlanProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.refresh_rounded,
       title: l10n.kidsArabicPracticeTitle,
       subtitle: l10n.kidsArabicPracticeSubtitle,
       children: [

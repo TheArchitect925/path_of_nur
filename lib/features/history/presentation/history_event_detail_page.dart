@@ -30,7 +30,6 @@ class HistoryEventDetailPage extends ConsumerWidget {
           return AppPageScaffold(
             title: l10n.historyDetailNotFoundTitle,
             subtitle: l10n.historyDetailNotFoundSubtitle,
-            headerIcon: Icons.history_toggle_off_rounded,
             children: [Text(l10n.historyDetailNotFoundSubtitle)],
           );
         }
@@ -40,7 +39,6 @@ class HistoryEventDetailPage extends ConsumerWidget {
         return AppPageScaffold(
           title: event.title,
           subtitle: event.summaryShort,
-          headerIcon: Icons.history_edu_rounded,
           children: [
             _HistoryHeaderCard(event: event),
             const SizedBox(height: 14),
@@ -133,13 +131,11 @@ class HistoryEventDetailPage extends ConsumerWidget {
       loading: () => AppPageScaffold(
         title: l10n.historyDetailLoadingTitle,
         subtitle: l10n.historyDetailLoadingSubtitle,
-        headerIcon: Icons.history_edu_rounded,
         children: const [Center(child: CircularProgressIndicator())],
       ),
       error: (_, _) => AppPageScaffold(
         title: l10n.historyDetailNotFoundTitle,
         subtitle: l10n.historyDetailNotFoundSubtitle,
-        headerIcon: Icons.history_toggle_off_rounded,
         children: [Text(l10n.historyDetailNotFoundSubtitle)],
       ),
     );

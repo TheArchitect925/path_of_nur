@@ -16,8 +16,6 @@ import 'crossword_ui_helpers.dart';
 class CrosswordPackPage extends ConsumerWidget {
   const CrosswordPackPage({super.key, required this.packId});
 
-  static const _icon = Icons.grid_view_rounded;
-
   final String packId;
 
   @override
@@ -33,13 +31,11 @@ class CrosswordPackPage extends ConsumerWidget {
 
     return catalogAsync.when(
       loading: () => GameStatePage(
-        headerIcon: _icon,
         title: l10n.crosswordHomeTitle,
         subtitle: l10n.crosswordLoadingSubtitle,
         isLoading: true,
       ),
       error: (_, _) => GameStatePage(
-        headerIcon: _icon,
         title: l10n.crosswordHomeTitle,
         subtitle: l10n.crosswordLoadErrorSubtitle,
         message: l10n.crosswordLoadErrorTitle,
@@ -48,7 +44,6 @@ class CrosswordPackPage extends ConsumerWidget {
         final pack = catalog.packsById[packId];
         if (pack == null) {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.crosswordHomeTitle,
             subtitle: l10n.crosswordNotFoundSubtitle,
             message: l10n.crosswordNotFoundTitle,
@@ -56,7 +51,6 @@ class CrosswordPackPage extends ConsumerWidget {
         }
         if (isChildProfile && pack.mode != 'kids') {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.crosswordHomeTitle,
             subtitle: l10n.crosswordNotFoundSubtitle,
             message: l10n.crosswordKidsOnlyTitle,
@@ -104,7 +98,6 @@ class CrosswordPackPage extends ConsumerWidget {
         );
 
         return GamePackView(
-          headerIcon: _icon,
           title: crosswordPackTitle(l10n, pack),
           subtitle: crosswordPackSubtitle(l10n, pack),
           summaryChips: [

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../shared/learn_art_assets.dart';
@@ -24,8 +23,6 @@ class LearningPathPickerPage extends ConsumerWidget {
     final selectedLevel = selection?.selectedLevel;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
-      headerAlignment: AppPageHeaderAlignment.center,
       title: l10n.learnPathPickerTitle,
       subtitle: l10n.learnPathPickerSubtitle,
       children: [

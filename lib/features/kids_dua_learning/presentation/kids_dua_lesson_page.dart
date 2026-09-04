@@ -76,7 +76,6 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
     final activeSegmentId = audioState.activeSegmentId ?? _selectedSegmentId;
 
     return LearnHubPageScaffold(
-      headerIcon: lesson.icon,
       title: lesson.title,
       subtitle: lesson.whenToSay,
       children: [

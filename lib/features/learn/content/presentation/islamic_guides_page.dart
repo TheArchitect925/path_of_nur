@@ -11,7 +11,6 @@ class IslamicGuidesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return LearnContainedStatePage(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.homeSearchGuidanceHubTitle,
       subtitle: l10n.learnContainedStateGuidesSubtitle,
       body: l10n.learnContainedStateBody,

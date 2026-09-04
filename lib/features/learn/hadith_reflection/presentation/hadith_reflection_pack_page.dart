@@ -15,8 +15,6 @@ import 'hadith_reflection_ui_helpers.dart';
 class HadithReflectionPackPage extends ConsumerWidget {
   const HadithReflectionPackPage({super.key, required this.packId});
 
-  static const _icon = Icons.menu_book_rounded;
-
   final String packId;
 
   @override
@@ -32,13 +30,11 @@ class HadithReflectionPackPage extends ConsumerWidget {
 
     return catalogAsync.when(
       loading: () => GameStatePage(
-        headerIcon: _icon,
         title: l10n.hadithReflectionHomeTitle,
         subtitle: l10n.hadithReflectionLoadingSubtitle,
         isLoading: true,
       ),
       error: (_, _) => GameStatePage(
-        headerIcon: _icon,
         title: l10n.hadithReflectionHomeTitle,
         subtitle: l10n.hadithReflectionLoadErrorSubtitle,
         message: l10n.hadithReflectionLoadErrorTitle,
@@ -47,7 +43,6 @@ class HadithReflectionPackPage extends ConsumerWidget {
         final pack = catalog.packsById[packId];
         if (pack == null) {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.hadithReflectionHomeTitle,
             subtitle: l10n.hadithReflectionNotFoundSubtitle,
             message: l10n.hadithReflectionNotFoundTitle,
@@ -55,7 +50,6 @@ class HadithReflectionPackPage extends ConsumerWidget {
         }
         if (isChildProfile && pack.mode == 'adult') {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.hadithReflectionHomeTitle,
             subtitle: l10n.hadithReflectionNotFoundSubtitle,
             message: l10n.hadithReflectionKidsOnlyTitle,
@@ -94,7 +88,6 @@ class HadithReflectionPackPage extends ConsumerWidget {
         );
 
         return GamePackView(
-          headerIcon: _icon,
           title: hadithReflectionPackTitle(l10n, pack),
           subtitle: hadithReflectionPackSubtitle(l10n, pack),
           summaryChips: [

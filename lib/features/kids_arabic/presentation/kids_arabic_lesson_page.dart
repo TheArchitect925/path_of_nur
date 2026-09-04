@@ -203,7 +203,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
     final letter = notifier.letterById(widget.letterId);
     if (letter == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.error_outline_rounded,
         title: l10n.kidsArabicLetterMissingTitle,
         subtitle: l10n.kidsArabicLetterMissingSubtitle,
         children: [Text(l10n.kidsArabicLetterMissingBody)],
@@ -211,7 +210,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
     }
     if (!unlockedLetterIds.contains(letter.id)) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.lock_outline_rounded,
         title: l10n.kidsArabicLockedTitle,
         subtitle: l10n.kidsArabicLockedSubtitle,
         children: [Text(l10n.kidsArabicLockedBody)],
@@ -252,7 +250,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
       ),
     ];
     return LearnHubPageScaffold(
-      headerIcon: Icons.draw_rounded,
       title: l10n.kidsArabicLessonTitle(letter.glyph),
       subtitle: l10n.kidsArabicLessonSubtitle(letter.nameAr),
       children: [

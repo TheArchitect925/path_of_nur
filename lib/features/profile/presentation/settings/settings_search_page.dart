@@ -47,7 +47,6 @@ class _SettingsSearchPageState extends State<SettingsSearchPage> {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.search_rounded,
       title: l10n.settingsSearchTitle,
       subtitle: l10n.settingsSearchSubtitle,
       children: [

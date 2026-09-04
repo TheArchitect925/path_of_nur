@@ -65,7 +65,6 @@ class QuranWordDetailPage extends ConsumerWidget {
     final mastered = progress.masteredRanks.contains(word.rank);
 
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.batch9QuranWordsStudyPageTitle,
       subtitle: word.transliteration,
       children: [

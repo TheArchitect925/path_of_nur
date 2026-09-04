@@ -15,7 +15,6 @@ class WorldSignsExplorerPage extends ConsumerWidget {
     final domains = ref.watch(worldCreationExploreDomainsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.hub_rounded,
       title: 'Signs Explorer',
       subtitle: 'Browse creation by broad domains and move into lessons.',
       children: [

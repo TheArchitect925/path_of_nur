@@ -55,7 +55,6 @@ class _EditorialContentEditorPageState
     );
     if (currentSnapshot == null) {
       return AppPageScaffold(
-        headerIcon: Icons.edit_off_outlined,
         title: l10n.editorialDashboardContentEditorTitle,
         subtitle: l10n.editorialDashboardEmptyTitle,
         children: [
@@ -72,7 +71,6 @@ class _EditorialContentEditorPageState
     final fieldDefinitions = _fieldDefinitionsFor(widget.contentType, l10n);
 
     return AppPageScaffold(
-      headerIcon: Icons.edit_note_rounded,
       title: l10n.editorialDashboardContentEditorTitle,
       subtitle: _contentTypeLabel(l10n, widget.contentType),
       children: [

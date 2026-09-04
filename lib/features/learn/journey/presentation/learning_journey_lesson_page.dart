@@ -117,7 +117,6 @@ class LearningJourneyLessonPage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: localizedStageSummary(context, stage),
       children: [

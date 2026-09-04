@@ -53,7 +53,6 @@ class _DivineLifeLessonDetailPageState
     final lesson = divineLifeLessonById(widget.lessonId);
     if (lesson == null) {
       return const AppPageScaffold(
-        headerIcon: Icons.menu_book_rounded,
         title: 'Divine Life Lessons',
         subtitle: 'Lesson not found',
         children: [PremiumCard(child: Text('This lesson could not be found.'))],
@@ -77,7 +76,6 @@ class _DivineLifeLessonDetailPageState
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: lesson.title,
       subtitle: lesson.quranReference,
       children: [

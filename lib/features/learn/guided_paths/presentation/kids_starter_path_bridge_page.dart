@@ -15,7 +15,6 @@ class KidsStarterPathBridgePage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     const analytics = LearnAnalyticsService();
     return LearnHubPageScaffold(
-      headerIcon: Icons.child_friendly_rounded,
       title: l10n.learnKidsStarterBridgeTitle,
       subtitle: l10n.learnKidsStarterBridgeSubtitle,
       showDefaultQuote: false,

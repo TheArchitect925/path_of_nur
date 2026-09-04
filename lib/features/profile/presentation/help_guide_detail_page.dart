@@ -19,7 +19,6 @@ class HelpGuideDetailPage extends StatelessWidget {
     final guide = findHelpGuideEntry(l10n, guideId);
     if (guide == null) {
       return AppPageScaffold(
-        headerIcon: Icons.help_center_outlined,
         title: l10n.settingsHelpGuideTitle,
         subtitle: l10n.settingsHelpGuideSubtitle,
         children: [
@@ -43,7 +42,6 @@ class HelpGuideDetailPage extends StatelessWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: guide.icon,
       title: guide.title,
       subtitle: guide.description,
       children: [

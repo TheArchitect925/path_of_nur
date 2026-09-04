@@ -41,7 +41,6 @@ class _QuranKidsAyahInsightsPageState
 
     return LearnHubPageScaffold(
       showDefaultQuote: false,
-      headerIcon: Icons.auto_stories_rounded,
       title: l10n.kidsQuranAyahInsightsTitle,
       subtitle: l10n.kidsQuranAyahInsightsSubtitle,
       children: [

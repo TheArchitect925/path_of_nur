@@ -15,8 +15,6 @@ import 'ayah_completion_ui_helpers.dart';
 class AyahCompletionPackPage extends ConsumerWidget {
   const AyahCompletionPackPage({super.key, required this.packId});
 
-  static const _icon = Icons.auto_stories_rounded;
-
   final String packId;
 
   @override
@@ -32,13 +30,11 @@ class AyahCompletionPackPage extends ConsumerWidget {
 
     return catalogAsync.when(
       loading: () => GameStatePage(
-        headerIcon: _icon,
         title: l10n.ayahCompletionHomeTitle,
         subtitle: l10n.ayahCompletionLoadingSubtitle,
         isLoading: true,
       ),
       error: (_, _) => GameStatePage(
-        headerIcon: _icon,
         title: l10n.ayahCompletionHomeTitle,
         subtitle: l10n.ayahCompletionLoadErrorSubtitle,
         message: l10n.ayahCompletionLoadErrorTitle,
@@ -47,7 +43,6 @@ class AyahCompletionPackPage extends ConsumerWidget {
         final pack = catalog.packsById[packId];
         if (pack == null) {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.ayahCompletionHomeTitle,
             subtitle: l10n.ayahCompletionNotFoundSubtitle,
             message: l10n.ayahCompletionNotFoundTitle,
@@ -55,7 +50,6 @@ class AyahCompletionPackPage extends ConsumerWidget {
         }
         if (isChildProfile && pack.mode != 'kids' && pack.mode != 'mixed') {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.ayahCompletionHomeTitle,
             subtitle: l10n.ayahCompletionNotFoundSubtitle,
             message: l10n.ayahCompletionKidsOnlyTitle,
@@ -94,7 +88,6 @@ class AyahCompletionPackPage extends ConsumerWidget {
         );
 
         return GamePackView(
-          headerIcon: _icon,
           title: ayahCompletionPackTitle(l10n, pack),
           subtitle: ayahCompletionPackSubtitle(l10n, pack),
           summaryChips: [

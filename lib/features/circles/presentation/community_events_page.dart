@@ -81,7 +81,6 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
     ];
 
     return AppPageScaffold(
-      headerIcon: Icons.event,
       title: l10n.circlesEventsCalendarTitle,
       subtitle: l10n.circlesEventsCalendarSubtitle,
       children: [

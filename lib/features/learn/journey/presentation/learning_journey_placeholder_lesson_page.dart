@@ -44,7 +44,6 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
         ? localizedStageNotes(context, stage)
         : localizedStageSummary(context, stage);
     return LearnHubPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: localizedStageSummary(context, stage),
       children: [

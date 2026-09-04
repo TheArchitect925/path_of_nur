@@ -22,7 +22,6 @@ class LifeSubcategoryPage extends ConsumerWidget {
     final sub = lifeSubcategoryById(subcategoryId);
     if (sub == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnLifeSectionTitle,
         subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
@@ -34,7 +33,6 @@ class LifeSubcategoryPage extends ConsumerWidget {
     final progress = ref.watch(lifeSubcategoryProgressProvider(sub.id));
 
     return AppPageScaffold(
-      headerIcon: Icons.list_alt_rounded,
       title: sub.title,
       subtitle: sub.summary,
       children: [

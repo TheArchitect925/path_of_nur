@@ -24,7 +24,6 @@ class WorldCreationCategoryPage extends ConsumerWidget {
     final categoryData = worldCreationCategoryById(category);
     if (categoryData == null) {
       return const AppPageScaffold(
-        headerIcon: Icons.public_rounded,
         title: 'World & Creation',
         subtitle: 'Category not found',
         children: [
@@ -41,7 +40,6 @@ class WorldCreationCategoryPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_rounded,
       title: categoryData.title,
       subtitle: categoryData.description,
       children: [

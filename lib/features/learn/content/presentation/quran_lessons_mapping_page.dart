@@ -11,7 +11,6 @@ class QuranLessonsMappingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return LearnContainedStatePage(
-      headerIcon: Icons.fact_check_outlined,
       title: l10n.learnContainedStateQuranMappingTitle,
       subtitle: l10n.learnContainedStateQuranMappingSubtitle,
       body: l10n.learnContainedStateBody,

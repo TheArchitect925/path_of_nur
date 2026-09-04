@@ -15,7 +15,6 @@ class KidsStarterPathNextStepsPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     const analytics = LearnAnalyticsService();
     return LearnHubPageScaffold(
-      headerIcon: Icons.celebration_rounded,
       title: l10n.learnKidsStarterNextStepsTitle,
       subtitle: l10n.learnKidsStarterNextStepsSubtitle,
       showDefaultQuote: false,

@@ -474,7 +474,6 @@ class _QuranReadinessBridgePageState
     if (isKids) {
       return LearnHubPageScaffold(
         showDefaultQuote: false,
-        headerIcon: Icons.menu_book_rounded,
         title: l10n.quranReadinessKidsPageTitle,
         subtitle: l10n.quranReadinessKidsPageSubtitle,
         children: content,

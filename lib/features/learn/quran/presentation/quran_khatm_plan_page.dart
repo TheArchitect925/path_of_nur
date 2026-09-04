@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/application/daily_clock_provider.dart';
-import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_khatm_provider.dart';
@@ -24,7 +23,6 @@ class QuranKhatmPlanPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       headerIcon: Icons.flag_circle_outlined,
-      headerAlignment: AppPageHeaderAlignment.center,
       title: l10n.quranKhatmPageTitle,
       subtitle: l10n.quranKhatmPageSubtitle,
       children: status == null

@@ -74,7 +74,6 @@ class _InternalContentBuilderPageState
     final systemReport = repository.validateSnapshot();
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.construction_rounded,
       title: l10n.contentBuilderTitle,
       subtitle: l10n.contentBuilderSubtitle,
       children: [

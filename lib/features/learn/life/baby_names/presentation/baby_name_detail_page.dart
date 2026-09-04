@@ -42,7 +42,6 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         final name = byId[widget.nameId];
         if (name == null) {
           return AppPageScaffold(
-            headerIcon: Icons.badge_outlined,
             title: 'Name not found',
             subtitle: 'The selected entry is unavailable.',
             children: const [PremiumCard(child: Text('Name not found.'))],
@@ -58,7 +57,6 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         final isFavorite = state.favorites.contains(name.id);
 
         return AppPageScaffold(
-          headerIcon: Icons.badge_outlined,
           title: name.name,
           subtitle: name.meaning,
           children: [
@@ -262,7 +260,6 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         );
       },
       loading: () => AppPageScaffold(
-        headerIcon: Icons.badge_outlined,
         title: 'Baby Names',
         subtitle: 'Loading name details',
         children: const [
@@ -275,7 +272,6 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
         ],
       ),
       error: (_, _) => AppPageScaffold(
-        headerIcon: Icons.badge_outlined,
         title: 'Baby Names',
         subtitle: 'Unable to open details',
         children: const [

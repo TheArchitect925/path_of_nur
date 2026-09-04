@@ -101,7 +101,6 @@ class _KidsArabicReadingModePageState
 
     if (activeWord == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.menu_book_rounded,
         title: l10n.kidsArabicReadingModeTitle,
         subtitle: l10n.kidsArabicReadingModeSubtitle,
         children: [
@@ -165,7 +164,6 @@ class _KidsArabicReadingModePageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.kidsArabicReadingModeTitle,
       subtitle: l10n.kidsArabicReadingModeSubtitle,
       children: [

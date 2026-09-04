@@ -69,7 +69,6 @@ class _KnowledgeConstellationPageState
     final prophets = ref.watch(prophetsProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.hub_rounded,
       title: 'Knowledge Constellation',
       subtitle:
           'An interactive map linking Qur’an, Hadith, Prophets, and Themes.',

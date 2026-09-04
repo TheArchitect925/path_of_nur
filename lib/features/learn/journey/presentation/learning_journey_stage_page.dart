@@ -66,7 +66,6 @@ class _LearningJourneyStagePageState
     final kidsUi = ref.watch(activeKidsUiThemeProvider);
     if (journey == null || stage == null || stage.journeyId != journey.id) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.error_outline_rounded,
         title: l10n.learningJourneyStageNotFoundTitle,
         subtitle: l10n.learningJourneyStageNotFoundSubtitle,
         children: [
@@ -79,7 +78,6 @@ class _LearningJourneyStagePageState
     }
     if (!isProductionSafeLearningJourney(journey)) {
       return LearnContainedStatePage(
-        headerIcon: Icons.auto_stories_rounded,
         title: localizedStageTitle(context, stage),
         subtitle: l10n.learnContainedStateJourneySubtitle,
         body: l10n.learnContainedStateBody,
@@ -232,7 +230,6 @@ class _LearningJourneyStagePageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.open_in_new_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: stageUnlocked
           ? l10n.learningJourneyStageOpeningSubtitle
@@ -334,7 +331,6 @@ class _UnavailableStagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return LearnHubPageScaffold(
-      headerIcon: Icons.offline_bolt_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: l10n.learningJourneyStageUnavailableTitle,
       children: [

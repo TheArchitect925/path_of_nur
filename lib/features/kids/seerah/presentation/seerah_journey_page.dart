@@ -51,7 +51,6 @@ class _KidsSeerahJourneyPageState extends ConsumerState<KidsSeerahJourneyPage> {
     return AppPageScaffold(
       title: summary.journey.title,
       subtitle: summary.journey.description,
-      headerIcon: Icons.route_rounded,
       floatingBottom: const BedtimeStoryMiniPlayer(),
       children: [
         PremiumCard(

@@ -40,7 +40,6 @@ class _EditorialContentBrowserPageState
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.edit_note_rounded,
       title: _contentTypeLabel(l10n, widget.contentType),
       subtitle: l10n.editorialDashboardContentBrowserSubtitle,
       children: [

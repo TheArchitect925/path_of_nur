@@ -35,14 +35,7 @@ class LegalInfoPage extends StatelessWidget {
       LegalInfoKind.support => l10n.legalSupportBody,
     };
 
-    final icon = switch (kind) {
-      LegalInfoKind.privacy => Icons.privacy_tip_outlined,
-      LegalInfoKind.terms => Icons.gavel_rounded,
-      LegalInfoKind.support => Icons.support_agent_rounded,
-    };
-
     return AppPageScaffold(
-      headerIcon: icon,
       title: title,
       subtitle: subtitle,
       children: [

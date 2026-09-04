@@ -65,7 +65,6 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
     return AppPageScaffold(
       title: node.title,
       subtitle: stage.stage.title,
-      headerIcon: Icons.route_rounded,
       children: [
         PremiumCard(
           child: Column(

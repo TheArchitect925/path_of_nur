@@ -583,6 +583,13 @@ void main() {
 
       expect(find.text(l10n.quranSavedSearches), findsOneWidget);
       expect(find.text(l10n.quranRecentSearches), findsOneWidget);
+      // The header's navigation row pushes the third section below the
+      // 600 px test viewport; the list builds it lazily, so scroll to it.
+      await tester.scrollUntilVisible(
+        find.text(l10n.quranSuggestedSearches),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.text(l10n.quranSuggestedSearches), findsOneWidget);
       expect(find.text('rahman'), findsWidgets);
       expect(find.text('father'), findsWidgets);

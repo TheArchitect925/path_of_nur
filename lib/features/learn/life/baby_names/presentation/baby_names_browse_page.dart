@@ -149,7 +149,6 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
     final collectionsAsync = ref.watch(babyNamesCollectionsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.manage_search_rounded,
       title: l10n.babyNamesBrowseSearchTitle,
       subtitle: l10n.babyNamesBrowseSearchSubtitle,
       children: [

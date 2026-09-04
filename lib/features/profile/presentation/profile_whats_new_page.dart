@@ -18,7 +18,6 @@ class _ProfileWhatsNewPageState extends State<ProfileWhatsNewPage> {
     final l10n = AppLocalizations.of(context);
     final entries = _buildEntries(l10n);
     return AppPageScaffold(
-      headerIcon: Icons.new_releases_outlined,
       title: l10n.settingsWhatsNewTitle,
       subtitle: l10n.settingsWhatsNewSubtitle,
       children: [

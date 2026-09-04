@@ -18,7 +18,6 @@ class OnThisDayMatchesPage extends ConsumerWidget {
     return AppPageScaffold(
       title: l10n.historyOnThisDayMatchesTitle,
       subtitle: l10n.historyOnThisDayMatchesSubtitle,
-      headerIcon: Icons.history_toggle_off_rounded,
       children: [
         todayAsync.when(
           data: (todayState) {

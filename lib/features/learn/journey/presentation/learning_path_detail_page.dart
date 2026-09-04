@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/expandable_tile.dart';
@@ -32,7 +31,6 @@ class LearningPathDetailPage extends ConsumerWidget {
     if (pathState == null) {
       return LearnHubPageScaffold(
         headerIcon: Icons.route_rounded,
-        headerAlignment: AppPageHeaderAlignment.center,
         title: l10n.learnPathDetailTitle,
         subtitle: l10n.learnLandingChoosePathSubtitle,
         children: [
@@ -53,7 +51,6 @@ class LearningPathDetailPage extends ConsumerWidget {
     final path = pathState.path;
     return LearnHubPageScaffold(
       headerIcon: Icons.route_rounded,
-      headerAlignment: AppPageHeaderAlignment.center,
       title: l10n.learnPathDetailTitle,
       subtitle: LearningPathRegistry.localizedPathDescription(l10n, path),
       children: [

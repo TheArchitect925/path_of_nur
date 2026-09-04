@@ -54,12 +54,9 @@ class SectionHubScaffold extends StatefulWidget {
   const SectionHubScaffold({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.children,
     this.headerIcon,
-    this.headerIconSize = 24,
-    this.headerIconSpacing = 12,
-    this.headerAlignment = AppPageHeaderAlignment.start,
     this.quote,
     this.quoteHeader,
     this.quoteUseOuterChrome = true,
@@ -76,11 +73,8 @@ class SectionHubScaffold extends StatefulWidget {
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final IconData? headerIcon;
-  final double headerIconSize;
-  final double headerIconSpacing;
-  final AppPageHeaderAlignment headerAlignment;
   final QuranQuote? quote;
   final Widget? quoteHeader;
   final bool quoteUseOuterChrome;
@@ -107,9 +101,6 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
   Widget build(BuildContext context) {
     return AppPageScaffold(
       headerIcon: widget.headerIcon,
-      headerIconSize: widget.headerIconSize,
-      headerIconSpacing: widget.headerIconSpacing,
-      headerAlignment: widget.headerAlignment,
       title: widget.title,
       subtitle: widget.subtitle,
       quote: widget.quote,

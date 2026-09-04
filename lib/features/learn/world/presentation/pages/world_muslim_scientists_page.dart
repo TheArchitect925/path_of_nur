@@ -14,7 +14,6 @@ class WorldMuslimScientistsPage extends ConsumerWidget {
     final scientists = ref.watch(worldCreationScientistsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.biotech_rounded,
       title: 'Muslim Scientists',
       subtitle:
           'Curiosity, observation, and disciplined inquiry in Muslim scholarship.',

@@ -437,7 +437,6 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
 
     return AppPageScaffold(
       scrollController: _scrollController,
-      headerIcon: Icons.menu_book_rounded,
       headerActions: [
         _ReaderLevelChip(
           level: settings.readerLevel,

@@ -15,8 +15,6 @@ import 'matching_ui_helpers.dart';
 class MatchingPackPage extends ConsumerWidget {
   const MatchingPackPage({super.key, required this.packId});
 
-  static const _icon = Icons.view_week_rounded;
-
   final String packId;
 
   @override
@@ -32,13 +30,11 @@ class MatchingPackPage extends ConsumerWidget {
 
     return catalogAsync.when(
       loading: () => GameStatePage(
-        headerIcon: _icon,
         title: l10n.matchingHomeTitle,
         subtitle: l10n.matchingLoadingSubtitle,
         isLoading: true,
       ),
       error: (_, _) => GameStatePage(
-        headerIcon: _icon,
         title: l10n.matchingHomeTitle,
         subtitle: l10n.matchingLoadErrorSubtitle,
         message: l10n.matchingLoadErrorTitle,
@@ -47,7 +43,6 @@ class MatchingPackPage extends ConsumerWidget {
         final pack = catalog.packsById[packId];
         if (pack == null) {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.matchingHomeTitle,
             subtitle: l10n.matchingNotFoundSubtitle,
             message: l10n.matchingNotFoundTitle,
@@ -55,7 +50,6 @@ class MatchingPackPage extends ConsumerWidget {
         }
         if (isChildProfile && pack.mode != 'kids' && pack.mode != 'mixed') {
           return GameStatePage(
-            headerIcon: _icon,
             title: l10n.matchingHomeTitle,
             subtitle: l10n.matchingNotFoundSubtitle,
             message: l10n.matchingKidsOnlyTitle,
@@ -94,7 +88,6 @@ class MatchingPackPage extends ConsumerWidget {
         );
 
         return GamePackView(
-          headerIcon: _icon,
           title: matchingPackTitle(l10n, pack),
           subtitle: matchingPackSubtitle(l10n, pack),
           summaryChips: [

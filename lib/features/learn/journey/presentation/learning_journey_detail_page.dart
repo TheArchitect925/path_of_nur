@@ -39,7 +39,6 @@ class LearningJourneyDetailPage extends ConsumerWidget {
     }
     if (!isProductionSafeLearningJourney(journey)) {
       return LearnContainedStatePage(
-        headerIcon: Icons.route_rounded,
         title: localizedJourneyTitle(context, journey),
         subtitle: l10n.learnContainedStateJourneySubtitle,
         body: l10n.learnContainedStateBody,
@@ -49,7 +48,6 @@ class LearningJourneyDetailPage extends ConsumerWidget {
         onSecondaryAction: () => context.pushNamed('quranLearningHub'),
       );
     }
-    final island = LearningJourneyRegistry.islandById(journey.islandId);
     final stages = LearningJourneyRegistry.stagesForJourney(journey.id);
     final progress = ref.watch(learningJourneyProgressProvider);
     final pathState = ref.watch(learningPathStateProvider);
@@ -102,7 +100,6 @@ class LearningJourneyDetailPage extends ConsumerWidget {
         .firstOrNull;
 
     return LearnHubPageScaffold(
-      headerIcon: island?.icon ?? Icons.route_rounded,
       title: localizedJourneyTitle(context, journey),
       subtitle: localizedJourneySubtitle(context, journey),
       children: [
@@ -590,7 +587,6 @@ class _LearningJourneyDetailMissingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: Icons.error_outline_rounded,
       title: l10n.learningJourneyDetailMissingTitle,
       subtitle: l10n.learningJourneyDetailMissingSubtitle,
       children: [

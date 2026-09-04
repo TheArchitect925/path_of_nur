@@ -76,7 +76,6 @@ class _BabyNamesGeneratorPageState
     final options = ref.watch(babyNamesFilterOptionsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.casino_outlined,
       title: 'Name Generator',
       subtitle:
           'Generate 1 to 3 name suggestions from your selected preferences',

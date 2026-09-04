@@ -33,7 +33,6 @@ class _HadithThemePageState extends ConsumerState<HadithThemePage> {
     final theme = ref.watch(hadithThemeByIdProvider(widget.themeId));
     if (theme == null) {
       return AppPageScaffold(
-        headerIcon: Icons.menu_book_rounded,
         title: l10n.hadithPageTitle,
         subtitle: l10n.hadithThemeNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithThemeNotFoundBody))],
@@ -75,7 +74,6 @@ class _HadithThemePageState extends ConsumerState<HadithThemePage> {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: theme.title,
       subtitle: theme.subtitle,
       bodySlivers: [

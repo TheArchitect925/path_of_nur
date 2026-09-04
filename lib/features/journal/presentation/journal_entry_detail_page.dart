@@ -63,7 +63,6 @@ class _JournalEntryDetailPageState
     final entry = ref.watch(journalEntryByIdProvider(widget.entryId));
     if (entry == null) {
       return AppPageScaffold(
-        headerIcon: Icons.auto_stories_outlined,
         title: l10n.journalDetailMissingTitle,
         subtitle: l10n.journalDetailMissingSubtitle,
         children: [PremiumCard(child: Text(l10n.journalDetailMissingBody))],
@@ -76,7 +75,6 @@ class _JournalEntryDetailPageState
         : entry.title;
 
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_outlined,
       title: pageTitle,
       subtitle: l10n.journalDetailPageSubtitle,
       children: [

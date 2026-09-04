@@ -36,7 +36,6 @@ class IslamicTriviaReviewPage extends ConsumerWidget {
         .length;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.replay_circle_filled_rounded,
       title: l10n.triviaReviewMistakesTitle,
       subtitle: l10n.triviaReviewMistakesSubtitle,
       children: [

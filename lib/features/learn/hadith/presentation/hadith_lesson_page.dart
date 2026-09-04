@@ -73,7 +73,6 @@ class _HadithLessonPageState extends ConsumerState<HadithLessonPage> {
     final entry = ref.watch(hadithEntryByIdProvider(widget.lessonId));
     if (entry == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.hadithPageTitle,
         subtitle: l10n.hadithLessonNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithLessonNotFoundBody))],
@@ -170,7 +169,6 @@ class _HadithLessonPageState extends ConsumerState<HadithLessonPage> {
           );
 
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: entry.title,
       subtitle: theme?.title ?? l10n.hadithPageTitle,
       headerActions: [

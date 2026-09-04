@@ -44,7 +44,6 @@ class _HadithSourceCollectionListPage extends ConsumerWidget {
     final collections = ref.watch(hadithSourceBrowseCollectionsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_rounded,
       title: l10n.hadithSourceBrowseTitle,
       subtitle: l10n.hadithSourceBrowseSubtitle,
       children: [
@@ -91,7 +90,6 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
     );
     if (collection == null) {
       return AppPageScaffold(
-        headerIcon: Icons.library_books_rounded,
         title: l10n.hadithSourceBrowseTitle,
         subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
         children: [
@@ -118,7 +116,6 @@ class _HadithSourceCollectionDetailPage extends ConsumerWidget {
         : null;
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_rounded,
       title: collection.title,
       subtitle: chapters.isEmpty
           ? l10n.hadithSourceBrowseCollectionCountOnly(collection.entryCount)
@@ -222,7 +219,6 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
     );
     if (collection == null || chapter == null) {
       return AppPageScaffold(
-        headerIcon: Icons.library_books_rounded,
         title: l10n.hadithSourceBrowseTitle,
         subtitle: l10n.hadithSourceBrowseNotFoundSubtitle,
         children: [
@@ -249,7 +245,6 @@ class _HadithSourceChapterDetailPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.library_books_rounded,
       title: chapterPrimaryLabel(chapter, l10n),
       subtitle: l10n.hadithSourceBrowseChapterPageSubtitle(
         collection.title,

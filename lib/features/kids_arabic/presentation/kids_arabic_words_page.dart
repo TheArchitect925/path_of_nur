@@ -27,7 +27,6 @@ class KidsArabicWordsPage extends ConsumerWidget {
     final readyCount = statuses.where((item) => item.unlocked).length;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.abc_rounded,
       title: l10n.kidsArabicWordsTitle,
       subtitle: l10n.kidsArabicWordsSubtitle,
       children: [

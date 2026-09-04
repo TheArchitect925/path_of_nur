@@ -422,7 +422,6 @@ class _QuranGuidedPassageReadinessPageState
     if (isKids) {
       return LearnHubPageScaffold(
         showDefaultQuote: false,
-        headerIcon: Icons.auto_stories_rounded,
         title: l10n.quranGuidedPassagesKidsPageTitle,
         subtitle: l10n.quranGuidedPassagesKidsPageSubtitle,
         children: content,

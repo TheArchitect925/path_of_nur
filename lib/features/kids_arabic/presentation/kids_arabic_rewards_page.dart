@@ -32,7 +32,6 @@ class KidsArabicRewardsPage extends ConsumerWidget {
         )
         .toList(growable: false);
     return LearnHubPageScaffold(
-      headerIcon: Icons.emoji_events_rounded,
       title: l10n.kidsArabicRewardsTitle,
       subtitle: l10n.kidsArabicRewardsSubtitle,
       children: [

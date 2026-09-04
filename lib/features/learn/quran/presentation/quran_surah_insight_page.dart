@@ -21,7 +21,6 @@ class QuranSurahInsightsBrowsePage extends ConsumerWidget {
     final insights = ref.watch(quranSurahInsightsBrowseProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_outlined,
       title: l10n.quranSurahInsightsBrowseTitle,
       subtitle: l10n.quranSurahInsightsBrowseSubtitle,
       children: [
@@ -68,7 +67,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
 
     if (insight == null) {
       return AppPageScaffold(
-        headerIcon: Icons.layers_outlined,
         title: l10n.quranSurahInsightsBrowseTitle,
         subtitle: l10n.quranSurahInsightsBrowseSubtitle,
         children: [PremiumCard(child: Text(l10n.quranSurahInsightsEmpty))],
@@ -76,7 +74,6 @@ class QuranSurahInsightPage extends ConsumerWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_outlined,
       title:
           '${insight.surah.transliteratedName} • ${insight.surah.arabicName}',
       subtitle: insight.surah.englishName,

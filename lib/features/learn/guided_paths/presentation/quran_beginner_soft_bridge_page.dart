@@ -15,7 +15,6 @@ class QuranBeginnerSoftBridgePage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     const analytics = LearnAnalyticsService();
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.learnQuranBeginnerSoftBridgeTitle,
       subtitle: l10n.learnQuranBeginnerSoftBridgeSubtitle,
       showDefaultQuote: false,

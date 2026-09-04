@@ -219,7 +219,6 @@ class _QuranSearchPageState extends ConsumerState<QuranSearchPage> {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.search,
       title: l10n.quranSearchTitle,
       subtitle: l10n.quranSearchSubtitle,
       children: [

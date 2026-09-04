@@ -24,7 +24,6 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
     final path = controller.knowledgePathById(pathId);
     if (path == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.route_rounded,
         title: l10n.triviaKnowledgePathNotFoundTitle,
         subtitle: l10n.triviaKnowledgePathNotFoundSubtitle,
         children: [
@@ -57,7 +56,6 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
           );
 
     return LearnHubPageScaffold(
-      headerIcon: path.icon,
       title: localizedTriviaKnowledgePathTitle(l10n, path),
       subtitle: localizedTriviaKnowledgePathDescription(l10n, path),
       children: [

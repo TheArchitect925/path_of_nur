@@ -20,7 +20,6 @@ class WorldAtmosphereLayersPage extends StatelessWidget {
     ];
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_rounded,
       title: 'Atmosphere Layers',
       subtitle: 'A simple view of layered sky structure and protection.',
       children: [

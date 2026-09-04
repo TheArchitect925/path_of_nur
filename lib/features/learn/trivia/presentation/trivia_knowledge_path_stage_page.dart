@@ -43,7 +43,6 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
     }
     if (path == null || stage == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.route_rounded,
         title: l10n.triviaStageNotFoundTitle,
         subtitle: l10n.triviaStageNotFoundSubtitle,
         children: [
@@ -69,7 +68,6 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
         activeSession?.knowledgeStageId == resolvedStage.id;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
       title: resolvedStage.title,
       subtitle: path.title,
       children: [

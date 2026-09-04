@@ -27,7 +27,6 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
     final habit = ref.watch(growthHabitsByIdProvider)[widget.habitId];
     if (habit == null) {
       return AppPageScaffold(
-        headerIcon: Icons.track_changes_rounded,
         title: l10n.growthHabitDetailPageTitle,
         subtitle: l10n.growthHabitUnavailableMessage,
         children: [
@@ -44,7 +43,6 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
     )[habit.stage];
 
     return AppPageScaffold(
-      headerIcon: Icons.track_changes_rounded,
       title: habit.title,
       subtitle: habit.subtitle,
       children: [

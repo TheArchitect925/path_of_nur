@@ -14,7 +14,6 @@ class ProfileComingSoonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
-      headerIcon: Icons.upcoming_outlined,
       title: l10n.settingsComingSoonTitle,
       subtitle: l10n.settingsComingSoonSubtitle,
       children: [

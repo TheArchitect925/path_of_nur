@@ -15,7 +15,6 @@ class BabyNamesMeaningExplorerPage extends ConsumerWidget {
     final indexAsync = ref.watch(babyNamesIndexProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_awesome_mosaic_rounded,
       title: 'Meaning Explorer',
       subtitle: 'Browse names by spiritual and character themes',
       children: [

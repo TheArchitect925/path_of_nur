@@ -140,7 +140,6 @@ class _KidsArabicWordLessonPageState
     final word = kidsArabicBeginnerWordById(widget.wordId);
     if (word == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.error_outline_rounded,
         title: l10n.kidsArabicWordsMissingTitle,
         subtitle: l10n.kidsArabicWordsMissingSubtitle,
         children: [Text(l10n.kidsArabicWordsMissingBody)],
@@ -156,7 +155,6 @@ class _KidsArabicWordLessonPageState
     );
     if (!unlocked) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.lock_outline_rounded,
         title: l10n.kidsArabicWordsLockedTitle,
         subtitle: l10n.kidsArabicWordsLockedSubtitle,
         children: [
@@ -173,7 +171,6 @@ class _KidsArabicWordLessonPageState
         ? words[index + 1]
         : null;
     return LearnHubPageScaffold(
-      headerIcon: Icons.spellcheck_rounded,
       title: l10n.kidsArabicWordLessonTitle(word.wordAr),
       subtitle: l10n.kidsArabicWordLessonSubtitle(
         localizedKidsArabicWordMeaning(l10n, word.id),

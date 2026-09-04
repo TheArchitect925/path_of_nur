@@ -28,7 +28,6 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
       title: l10n.bedtimeFamilyModeTitle,
       subtitle: l10n.bedtimeFamilyModeSubtitle,
       children: [

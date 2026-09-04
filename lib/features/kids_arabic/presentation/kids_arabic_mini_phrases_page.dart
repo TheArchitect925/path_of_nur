@@ -107,7 +107,6 @@ class _KidsArabicMiniPhrasesPageState
 
     if (activePhrase == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.chat_bubble_outline_rounded,
         title: l10n.kidsArabicMiniPhrasesTitle,
         subtitle: l10n.kidsArabicMiniPhrasesSubtitle,
         children: [Text(l10n.kidsArabicMiniPhrasesEmptyBody)],
@@ -135,7 +134,6 @@ class _KidsArabicMiniPhrasesPageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.chat_bubble_outline_rounded,
       title: l10n.kidsArabicMiniPhrasesTitle,
       subtitle: l10n.kidsArabicMiniPhrasesSubtitle,
       children: [

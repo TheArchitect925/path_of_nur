@@ -44,7 +44,6 @@ class _EditorialDashboardPinPageState
     final l10n = AppLocalizations.of(context);
 
     return AppPageScaffold(
-      headerIcon: Icons.lock_outline_rounded,
       title: l10n.editorialDashboardPinTitle,
       subtitle: l10n.editorialDashboardPinSubtitle,
       children: [

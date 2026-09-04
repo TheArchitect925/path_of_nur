@@ -40,7 +40,6 @@ class _WorldCreationLessonPageState
     final lesson = worldCreationLessonById(widget.lessonId);
     if (lesson == null) {
       return const AppPageScaffold(
-        headerIcon: Icons.public_rounded,
         title: 'World & Creation',
         subtitle: 'Lesson not found',
         children: [
@@ -59,7 +58,6 @@ class _WorldCreationLessonPageState
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.public_rounded,
       title: lesson.title,
       subtitle:
           worldCreationCategoryById(lesson.category)?.title ??

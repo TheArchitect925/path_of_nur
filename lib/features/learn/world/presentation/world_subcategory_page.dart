@@ -21,7 +21,6 @@ class WorldSubcategoryPage extends ConsumerWidget {
     final sub = worldSubcategoryById(subcategoryId);
     if (sub == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnWorldSectionTitle,
         subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
@@ -33,7 +32,6 @@ class WorldSubcategoryPage extends ConsumerWidget {
     final progress = ref.watch(worldSubcategoryProgressProvider(sub.id));
 
     return AppPageScaffold(
-      headerIcon: Icons.list_alt_rounded,
       title: sub.title,
       subtitle: sub.summary,
       children: [

@@ -11,7 +11,6 @@ class AttributionsLicensesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
-      headerIcon: Icons.verified_outlined,
       title: l10n.settingsAttributionsLicensesTitle,
       subtitle: l10n.legalAttributionsSubtitle,
       children: [

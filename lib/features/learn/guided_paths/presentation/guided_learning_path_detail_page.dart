@@ -65,9 +65,6 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: GuidedLearningPathIconRegistry.iconForPathId(
-        localizedPath.path.id,
-      ),
       title: localizedPath.title,
       subtitle: localizedPath.subtitle,
       children: [

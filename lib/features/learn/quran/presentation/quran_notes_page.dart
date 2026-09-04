@@ -35,7 +35,6 @@ class QuranNotesPage extends ConsumerWidget {
     final groupKeys = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
 
     return AppPageScaffold(
-      headerIcon: Icons.sticky_note_2_outlined,
       title: l10n.quranNotesTitle,
       subtitle: l10n.quranNotesSubtitle,
       children: [

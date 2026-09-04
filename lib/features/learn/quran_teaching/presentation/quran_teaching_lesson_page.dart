@@ -75,7 +75,6 @@ class _QuranTeachingLessonPageState
         : null;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: widget.lesson.title,
       subtitle: widget.module.title,
       headerActions: [
@@ -645,7 +644,10 @@ class _QuizBody extends StatelessWidget {
             quiz.promptArabic!,
             textAlign: TextAlign.center,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(fontSize: 34, fontFamily: AppFonts.quranArabic),
+            style: const TextStyle(
+              fontSize: 34,
+              fontFamily: AppFonts.quranArabic,
+            ),
           ),
         ],
         if (quiz.promptSecondary != null) ...[
@@ -692,7 +694,10 @@ class _QuizBody extends StatelessWidget {
                   ? l10n.quranTeachingLessonTapPiecesHint
                   : buildSelection.join('  '),
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 30, fontFamily: AppFonts.quranArabic),
+              style: const TextStyle(
+                fontSize: 30,
+                fontFamily: AppFonts.quranArabic,
+              ),
             ),
           ),
         ] else if (quiz.type == QuranTeachingQuizType.trueFalse) ...[
@@ -961,7 +966,10 @@ class _LetterFormTile extends StatelessWidget {
           Text(
             glyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(fontSize: 26, fontFamily: AppFonts.quranArabic),
+            style: const TextStyle(
+              fontSize: 26,
+              fontFamily: AppFonts.quranArabic,
+            ),
           ),
         ],
       ),

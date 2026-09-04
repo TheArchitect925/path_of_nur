@@ -7,7 +7,6 @@ import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
-import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
@@ -52,15 +51,10 @@ class _LearningSectionLandingPageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final headerIconSize =
-        (Theme.of(context).textTheme.titleLarge?.fontSize ?? 22) * 1.2;
     final visibilityPolicy = ref.watch(learnHubVisibilityPolicyProvider);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
-      headerIconSize: headerIconSize,
-      headerIconSpacing: 10,
-      headerAlignment: AppPageHeaderAlignment.center,
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),

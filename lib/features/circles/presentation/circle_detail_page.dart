@@ -28,7 +28,6 @@ class CircleDetailPage extends ConsumerWidget {
 
     if (circle == null) {
       return AppPageScaffold(
-        headerIcon: Icons.groups,
         title: l10n.circlesTitle,
         subtitle: l10n.circlesNotFound,
         children: [PremiumCard(child: Text(l10n.circlesNotFound))],
@@ -41,7 +40,6 @@ class CircleDetailPage extends ConsumerWidget {
     final saved = state.savedIds.contains(resolvedCircle.id);
 
     return AppPageScaffold(
-      headerIcon: Icons.group,
       title: resolvedCircle.title,
       subtitle: resolvedCircle.category,
       children: [
