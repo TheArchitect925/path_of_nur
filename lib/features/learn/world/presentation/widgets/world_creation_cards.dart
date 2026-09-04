@@ -5,6 +5,7 @@ import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_reference_block.dart';
 import '../../domain/world_creation_models.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class WorldCategoryHeroCard extends StatelessWidget {
   const WorldCategoryHeroCard({
@@ -104,9 +105,9 @@ class ScienceLensCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color(0xFFFAF3E8),
+              color: context.palette.surface,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFFCEB07D)),
+              border: Border.all(color: context.palette.caution),
             ),
             child: Text('Care note: ${content.cautionNote}'),
           ),

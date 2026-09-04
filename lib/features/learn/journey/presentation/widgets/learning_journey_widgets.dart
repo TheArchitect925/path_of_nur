@@ -36,10 +36,10 @@ class JourneyHomeSectionHeader extends StatelessWidget {
                 title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF2E261F),
+                  color: context.palette.onSurface,
                 ),
               ),
               const SizedBox(height: 6),
@@ -83,10 +83,10 @@ class JourneyProgressBar extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             label!,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12.2,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF7A6650),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
         ],
@@ -188,7 +188,7 @@ class LearningJourneyCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFF7F1E8),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(18),
             border: Border.all(color: const Color(0xFFE0CEB4)),
           ),
@@ -213,9 +213,9 @@ class LearningJourneyCard extends StatelessWidget {
                   children: [
                     Text(
                       localizedJourneyTitle(context, journey),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF30281F),
+                        color: context.palette.onSurface,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -251,7 +251,7 @@ class LearningJourneyCard extends StatelessWidget {
                         _MetaPill(
                           label: l10n.learningJourneyCardStageCount(stageCount),
                           color: const Color(0xFFF4EBDE),
-                          textColor: const Color(0xFF866A49),
+                          textColor: context.palette.onSurfaceSubtle,
                         ),
                         if (showFeaturedBadge && journey.isFeatured)
                           _MetaPill(
@@ -274,10 +274,10 @@ class LearningJourneyCard extends StatelessWidget {
                         const SizedBox(height: 6),
                         Text(
                           l10n.learningJourneyCardActionContinue,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12.2,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF7A6650),
+                            color: context.palette.onSurfaceSubtle,
                           ),
                         ),
                       ],
@@ -383,10 +383,10 @@ class LearningJourneyStageCard extends StatelessWidget {
                       ),
                     ),
                     child: isLocked
-                        ? const Icon(
+                        ? Icon(
                             Icons.lock_outline_rounded,
                             size: 16,
-                            color: Color(0xFF7A6A57),
+                            color: context.palette.onSurfaceSubtle,
                           )
                         : isCompleted
                         ? const Icon(
@@ -405,7 +405,7 @@ class LearningJourneyStageCard extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: isLocked
-                                  ? const Color(0xFF7A6A57)
+                                  ? context.palette.onSurfaceSubtle
                                   : isCurrent
                                   ? const Color(0xFF6B4E2D)
                                   : const Color(0xFF71593C),
@@ -435,9 +435,9 @@ class LearningJourneyStageCard extends StatelessWidget {
                               localizedStageTitle(context, stage),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                color: Color(0xFF30281F),
+                                color: context.palette.onSurface,
                               ),
                             ),
                             if (isCurrent)
@@ -604,9 +604,9 @@ class LearningJourneyToolCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: const Color(0xFFF7F1E8),
+          color: context.palette.surface,
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE3D6C4)),
+          border: Border.all(color: context.palette.border),
         ),
         child: Row(
           children: [
@@ -628,9 +628,9 @@ class LearningJourneyToolCard extends StatelessWidget {
                     title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF30281F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -722,9 +722,9 @@ class RelatedToolsSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -733,10 +733,10 @@ class RelatedToolsSection extends StatelessWidget {
             title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -794,19 +794,19 @@ class PlaceholderLessonPageScaffold extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFF7F1E8),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: const Color(0xFFE3D6C4)),
+            border: Border.all(color: context.palette.border),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 stageTitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 18,
-                  color: Color(0xFF2E261F),
+                  color: context.palette.onSurface,
                 ),
               ),
               const SizedBox(height: 8),
@@ -850,19 +850,19 @@ class PlaceholderLessonPageScaffold extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFF7F1E8),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: const Color(0xFFE3D6C4)),
+            border: Border.all(color: context.palette.border),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 learnLabel,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
-                  color: Color(0xFF2E261F),
+                  color: context.palette.onSurface,
                 ),
               ),
               const SizedBox(height: 8),

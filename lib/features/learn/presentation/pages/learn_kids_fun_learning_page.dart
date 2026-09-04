@@ -7,6 +7,7 @@ import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../../kids_dua_learning/application/kids_dua_creative_provider.dart';
 import '../../../kids_dua_learning/application/kids_dua_story_repository.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class LearnKidsFunLearningPage extends ConsumerWidget {
   const LearnKidsFunLearningPage({super.key});
@@ -28,40 +29,40 @@ class LearnKidsFunLearningPage extends ConsumerWidget {
               title: l10n.kidsStoryLibraryTitle,
               subtitle: l10n.kidsStoryLibrarySubtitle,
               icon: Icons.auto_stories_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsStoryLibrary'),
             ),
             SectionHubAction(
               title: l10n.kidsSeerahJourneysTitle,
               subtitle: l10n.kidsSeerahJourneysSubtitle,
               icon: Icons.route_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsSeerahJourneys'),
             ),
             SectionHubAction(
               title: l10n.kidsArabicColoringPagesTitle,
               subtitle: l10n.kidsArabicColoringPagesSubtitle,
               icon: Icons.format_paint_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsArabicColoringPages'),
             ),
             SectionHubAction(
               title: l10n.kidsDuaStoriesTitle,
               subtitle: l10n.kidsDuaStoriesLandingSubtitle(stories.length),
               icon: Icons.menu_book_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsDuaStories'),
             ),
             SectionHubAction(
               title: l10n.kidsDuaDrawingsTitle,
               subtitle: l10n.kidsDuaDrawingsLandingSubtitle(drawings.length),
               icon: Icons.brush_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsDuaDrawings'),
             ),
           ],

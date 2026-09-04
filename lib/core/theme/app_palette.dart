@@ -72,6 +72,14 @@ class AppPalette {
   Color get caution => AppColors.caution;
 
   Color get error => _scheme.error;
+
+  /// Ink versions of the status hues: [success] and [caution] are pastel
+  /// fills, unreadable as text or icons on the light grounds. Deriving the
+  /// ink from the fill and the theme's own foreground keeps the hue family
+  /// while adapting to every appearance, without a per-theme table.
+  Color get successInk => Color.lerp(success, onSurface, 0.55)!;
+
+  Color get cautionInk => Color.lerp(caution, onSurface, 0.55)!;
 }
 
 extension AppPaletteContext on BuildContext {

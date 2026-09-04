@@ -290,10 +290,10 @@ class _QuranTeachingBeginnerWordsPageState
                 Text(
                   item.displayGlyph,
                   textDirection: TextDirection.rtl,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 30,
                     fontFamily: AppFonts.quranArabic,
-                    color: Color(0xFF5E462A),
+                    color: context.palette.onSurface,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

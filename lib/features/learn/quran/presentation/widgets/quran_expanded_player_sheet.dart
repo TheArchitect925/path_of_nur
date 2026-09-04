@@ -211,7 +211,7 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
       children: [
         PremiumCard(
           surfaceVariant: AppSurfaceVariant.panel,
-          surfaceTintColor: const Color(0xFFDABE8D),
+          surfaceTintColor: context.palette.accent,
           surfaceAlphaOverride: 0.62,
           child: _AnimatedExpandedPlayerSummary(
             transitionKey: ayahTransitionKey,

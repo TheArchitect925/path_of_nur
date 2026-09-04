@@ -165,7 +165,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       journey.totalLessons,
                     ),
                     color: const Color(0xFFF4EBDE),
-                    textColor: const Color(0xFF866A49),
+                    textColor: context.palette.onSurfaceSubtle,
                   ),
                   if (journey.isFeatured)
                     _ProgressChip(
@@ -200,12 +200,12 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(top: 4),
                             child: Icon(
                               Icons.circle,
                               size: 7,
-                              color: Color(0xFF7B694F),
+                              color: context.palette.onSurfaceSubtle,
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -449,7 +449,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
         const SizedBox(height: 8),
         AppHeroGlassShell(
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-          tintColor: const Color(0xFFE7C98C),
+          tintColor: context.palette.accent,
           surfaceAlphaOverride: 0.2,
           radius: 36,
           borderColor: const Color(0x42FFFFFF),
@@ -528,19 +528,19 @@ class _SectionBlock extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),

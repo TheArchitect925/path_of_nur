@@ -8,6 +8,7 @@ import '../../../kids/bedtime_stories/application/bedtime_story_repository.dart'
 import '../../../kids/bedtime_stories/domain/bedtime_story_models.dart';
 import '../../../kids_dua_learning/application/kids_dua_creative_provider.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class LearnKidsGamesPage extends ConsumerWidget {
   const LearnKidsGamesPage({super.key});
@@ -29,16 +30,16 @@ class LearnKidsGamesPage extends ConsumerWidget {
               title: l10n.kidsArabicPracticeTitle,
               subtitle: l10n.kidsArabicPracticeSubtitle,
               icon: Icons.refresh_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsArabicPractice'),
             ),
             SectionHubAction(
               title: l10n.kidsDuaPracticeTitle,
               subtitle: l10n.kidsDuaPracticeModeMatchSituation,
               icon: Icons.quiz_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsDuaPractice'),
             ),
             if (featuredStory != null)
@@ -63,16 +64,16 @@ class LearnKidsGamesPage extends ConsumerWidget {
               title: l10n.kidsArabicColoringPagesTitle,
               subtitle: l10n.kidsArabicColoringPagesSubtitle,
               icon: Icons.format_paint_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsArabicColoringPages'),
             ),
             SectionHubAction(
               title: l10n.kidsDuaDrawingsTitle,
               subtitle: l10n.kidsDuaDrawingsLandingSubtitle(drawings.length),
               icon: Icons.brush_rounded,
-              color: const Color(0xFFF9E6D8),
-              accentColor: const Color(0xFFBF6F1F),
+              color: context.palette.surfaceSoft,
+              accentColor: context.palette.cautionInk,
               onTap: () => context.pushNamed('kidsDuaDrawings'),
             ),
           ],
@@ -93,8 +94,8 @@ class LearnKidsGamesPage extends ConsumerWidget {
       title: title,
       subtitle: subtitle,
       icon: icon,
-      color: const Color(0xFFF9E6D8),
-      accentColor: const Color(0xFFBF6F1F),
+      color: context.palette.surfaceSoft,
+      accentColor: context.palette.cautionInk,
       onTap: () =>
           context.pushNamed(routeName, pathParameters: {'storyId': story.id}),
     );

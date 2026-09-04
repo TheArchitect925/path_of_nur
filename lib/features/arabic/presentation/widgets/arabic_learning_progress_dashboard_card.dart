@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/arabic_learning_continuity_models.dart';
 import '../../domain/arabic_learning_progress_models.dart';
+import '../../../../core/theme/app_palette.dart';
 
 enum ArabicLearningProgressDashboardVariant { kids, adult }
 
@@ -76,9 +77,9 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               _recentLabel(l10n, summary.recentActivity!),
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: context.palette.onSurface,
+              ),
             ),
           ],
           const SizedBox(height: 10),
@@ -86,7 +87,7 @@ class ArabicLearningProgressDashboardCard extends StatelessWidget {
             _nextStepLabel(l10n),
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
+            ).textTheme.bodyMedium?.copyWith(color: context.palette.onSurface),
           ),
           const SizedBox(height: 14),
           Row(

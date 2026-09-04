@@ -14,6 +14,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/guided_learning_paths_provider.dart';
 import '../domain/guided_learning_path_icon_registry.dart';
 import '../domain/guided_learning_path_models.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class GuidedLearningPathDetailPage extends ConsumerWidget {
   const GuidedLearningPathDetailPage({super.key, required this.pathId});
@@ -373,7 +374,7 @@ class _GuidedLearningPathStepCard extends StatelessWidget {
     final accent = switch (localizedPath.path.bucketId) {
       'quran' => Theme.of(context).colorScheme.primary,
       'worship' => const Color(0xFF2B7A78),
-      'character' => const Color(0xFF8A5A44),
+      'character' => context.palette.error,
       'kids' => const Color(0xFF8F6AE3),
       _ => const Color(0xFF7A5C2E),
     };

@@ -13,6 +13,7 @@ import '../models/game_discovery_models.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class GamesIslandPage extends ConsumerStatefulWidget {
   const GamesIslandPage({super.key, this.initialSectionId});
@@ -150,7 +151,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
                 subtitle: l10n.learnGamesIslandKidsEntryActionSubtitle,
                 icon: Icons.child_care_rounded,
                 color: const Color(0xFFF8E7D7),
-                accentColor: const Color(0xFFBF6F1F),
+                accentColor: context.palette.cautionInk,
                 onTap: () => context.pushNamed('learnKidsGames'),
               ),
             ],

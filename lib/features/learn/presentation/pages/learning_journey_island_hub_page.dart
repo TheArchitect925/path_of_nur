@@ -22,6 +22,7 @@ import '../../shared/application/learn_system_engine_provider.dart';
 import '../../shared/domain/learn_system_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../widgets/learn_personalized_next_step_card.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class LearningJourneyIslandHubPage extends ConsumerWidget {
   const LearningJourneyIslandHubPage({super.key});
@@ -539,7 +540,7 @@ class _GuidedLearningPathCard extends ConsumerWidget {
     final accent = switch (localizedPath.path.bucketId) {
       'quran' => const Color(0xFF2C6E5B),
       'worship' => const Color(0xFF2A7A78),
-      'character' => const Color(0xFF8A5A44),
+      'character' => context.palette.error,
       'kids' => const Color(0xFF7A61D1),
       _ => const Color(0xFF8B6B44),
     };

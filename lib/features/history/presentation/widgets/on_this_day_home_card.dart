@@ -11,6 +11,7 @@ import '../../../../shared/widgets/home_feature_card_header.dart';
 import '../../application/historical_calendar_providers.dart';
 import '../../domain/historical_event_models.dart';
 import '../../presentation/history_ui_helpers.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class OnThisDayHomeCard extends ConsumerStatefulWidget {
   const OnThisDayHomeCard({super.key});
@@ -29,7 +30,7 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
 
     return AppHeroGlassShell(
       padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-      tintColor: const Color(0xFFE7C98C),
+      tintColor: context.palette.accent,
       surfaceAlphaOverride: 0.2,
       radius: 36,
       borderColor: const Color(0x42FFFFFF),
@@ -191,7 +192,7 @@ class _HistoricalEventPreview extends StatelessWidget {
               border: Border.all(
                 color: night
                     ? appearance!.onSurface.withValues(alpha: 0.16)
-                    : const Color(0xFFE7C98C).withValues(alpha: 0.36),
+                    : context.palette.accent.withValues(alpha: 0.36),
               ),
             ),
             child: Padding(

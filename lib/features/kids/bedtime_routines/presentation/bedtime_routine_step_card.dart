@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../domain/bedtime_routine_models.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class BedtimeRoutineStepCard extends StatelessWidget {
   const BedtimeRoutineStepCard({
@@ -59,7 +60,7 @@ class BedtimeRoutineStepCard extends StatelessWidget {
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF675B4E),
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 10),

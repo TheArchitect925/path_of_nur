@@ -4,6 +4,7 @@ import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../arabic/domain/arabic_learning_continuity_models.dart';
 import '../../domain/quran_teaching_adult_overview_models.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class QuranTeachingAdultOverviewCard extends StatelessWidget {
   const QuranTeachingAdultOverviewCard({
@@ -109,9 +110,9 @@ class QuranTeachingAdultOverviewCard extends StatelessWidget {
                 progress.recentActivity!.arabicText ??
                     progress.recentActivity!.title,
               ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: context.palette.onSurface,
+              ),
             ),
           ],
           const SizedBox(height: 8),
@@ -123,7 +124,7 @@ class QuranTeachingAdultOverviewCard extends StatelessWidget {
             ),
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: const Color(0xFF53483E)),
+            ).textTheme.bodyMedium?.copyWith(color: context.palette.onSurface),
           ),
           const SizedBox(height: 14),
           Row(

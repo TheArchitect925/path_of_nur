@@ -37,6 +37,7 @@ import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicHomePage extends ConsumerStatefulWidget {
   const KidsArabicHomePage({super.key});
@@ -451,10 +452,10 @@ class _QuickPracticeCard extends StatelessWidget {
         children: [
           Text(
             l10n.kidsArabicMiniAssessmentCardTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -497,10 +498,10 @@ class _QuranReadinessCard extends StatelessWidget {
           children: [
             Text(
               l10n.quranReadinessKidsCardTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 6),
@@ -570,9 +571,9 @@ class _GuidedPassagesCard extends StatelessWidget {
         children: [
           Text(
             l10n.quranGuidedPassagesKidsCardTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -582,7 +583,7 @@ class _GuidedPassagesCard extends StatelessWidget {
                     _guidedPassageTitle(l10n, summary.passage.id),
                   )
                 : l10n.quranGuidedPassagesKidsCardStartSubtitle,
-            style: const TextStyle(color: Color(0xFF5D4A36), height: 1.35),
+            style: TextStyle(color: context.palette.onSurface, height: 1.35),
           ),
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
@@ -625,9 +626,9 @@ class _ColoringPagesCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F2E8),
+          color: context.palette.surface,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE5D5C1)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Row(
           children: [
@@ -635,12 +636,12 @@ class _ColoringPagesCard extends StatelessWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: const Color(0xFFFFFBF5),
+                color: context.palette.surface,
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.format_paint_rounded,
-                color: Color(0xFF8A6C49),
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
             const SizedBox(width: 12),
@@ -650,15 +651,15 @@ class _ColoringPagesCard extends StatelessWidget {
                 children: [
                   Text(
                     l10n.kidsArabicColoringPagesTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     l10n.kidsArabicColoringPagesProgressValue(unlockedCount, 5),
-                    style: const TextStyle(color: Color(0xFF675B4E)),
+                    style: TextStyle(color: context.palette.onSurfaceSubtle),
                   ),
                 ],
               ),
@@ -693,9 +694,11 @@ class _MiniPhrasesCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFEFF6E6),
+          color: context.palette.success.withValues(alpha: 0.25),
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFD4E4C0)),
+          border: Border.all(
+            color: context.palette.success.withValues(alpha: 0.45),
+          ),
         ),
         child: Row(
           children: [
@@ -706,9 +709,9 @@ class _MiniPhrasesCard extends StatelessWidget {
                 color: const Color(0xFFFCFFF8),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.chat_bubble_outline_rounded,
-                color: Color(0xFF64873B),
+                color: context.palette.successInk,
               ),
             ),
             const SizedBox(width: 12),
@@ -718,16 +721,16 @@ class _MiniPhrasesCard extends StatelessWidget {
                 children: [
                   Text(
                     l10n.kidsArabicMiniPhrasesHomeTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     l10n.kidsArabicMiniPhrasesHomeSubtitle(heardCount),
-                    style: const TextStyle(
-                      color: Color(0xFF52713A),
+                    style: TextStyle(
+                      color: context.palette.successInk,
                       height: 1.3,
                     ),
                   ),
@@ -763,10 +766,14 @@ class _DailyJourneyCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: completed ? const Color(0xFFEFF6E6) : const Color(0xFFFFF5E7),
+        color: completed
+            ? context.palette.success.withValues(alpha: 0.25)
+            : context.palette.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: completed ? const Color(0xFFD4E4C0) : const Color(0xFFE8D8BE),
+          color: completed
+              ? context.palette.success.withValues(alpha: 0.45)
+              : context.palette.surfaceSoft,
         ),
       ),
       child: Column(
@@ -774,10 +781,10 @@ class _DailyJourneyCard extends StatelessWidget {
         children: [
           Text(
             l10n.kidsArabicDailyJourneyTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -785,10 +792,10 @@ class _DailyJourneyCard extends StatelessWidget {
             completed
                 ? l10n.kidsArabicDailyJourneyCompletedSubtitle
                 : localizedKidsArabicDailyMissionTitle(l10n, mission, letter),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5D4A36),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -800,7 +807,10 @@ class _DailyJourneyCard extends StatelessWidget {
                     mission,
                     letter,
                   ),
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 12),
           Wrap(
@@ -856,9 +866,9 @@ class _DailyJourneyCard extends StatelessWidget {
           else
             Text(
               l10n.kidsArabicDailyJourneyTomorrowHint,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
+                color: context.palette.successInk,
               ),
             ),
         ],
@@ -880,16 +890,19 @@ class _SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF2E261F),
+            color: context.palette.onSurface,
           ),
         ),
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
       ],
     );
@@ -906,12 +919,12 @@ class _SummaryPill extends StatelessWidget {
     return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       fillColor: Colors.white,
-      borderColor: const Color(0xFFE2D2BC),
+      borderColor: context.palette.surfaceSoft,
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: Color(0xFF6B583F),
+          color: context.palette.onSurfaceSubtle,
         ),
       ),
     );
@@ -951,10 +964,10 @@ class _ActionRow extends StatelessWidget {
                         Text(
                           item.label,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12.5,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF5D4A36),
+                            color: context.palette.onSurface,
                           ),
                         ),
                       ],
@@ -1013,16 +1026,16 @@ class _AchievementsCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFFFFF4EA),
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE7D6C0)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               l10n.kidsArabicAchievementsHomeTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 6),
@@ -1030,10 +1043,10 @@ class _AchievementsCard extends StatelessWidget {
               latest == null
                   ? l10n.kidsArabicAchievementsHomeEmptyTitle
                   : localizedKidsArabicAchievementTitle(l10n, latest),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF8A6C49),
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
             const SizedBox(height: 6),
@@ -1041,7 +1054,10 @@ class _AchievementsCard extends StatelessWidget {
               latest == null
                   ? l10n.kidsArabicAchievementsHomeEmptySubtitle
                   : localizedKidsArabicAchievementSubtitle(l10n, latest),
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
             const SizedBox(height: 12),
             Wrap(
@@ -1068,9 +1084,9 @@ class _AchievementsCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               l10n.kidsArabicAchievementsNextStepLabel(nextStep),
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF5D4A36),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 8),
@@ -1135,24 +1151,24 @@ class _MasterySnapshotCard extends StatelessWidget {
           children: [
             Text(
               l10n.kidsArabicMasteryHomeTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 6),
             Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
+                color: context.palette.successInk,
               ),
             ),
             const SizedBox(height: 6),
             Text(
               subtitle,
-              style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+              style: TextStyle(color: context.palette.successInk, height: 1.35),
             ),
             const SizedBox(height: 12),
             Wrap(
@@ -1307,9 +1323,9 @@ class _LetterCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F2E8),
+          color: context.palette.surface,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE5D5C1)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Row(
           children: [
@@ -1324,11 +1340,11 @@ class _LetterCard extends StatelessWidget {
               child: Text(
                 letter.glyph,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 42,
                   fontFamily: 'Noto Naskh Arabic',
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF5E462A),
+                  color: context.palette.onSurface,
                 ),
               ),
             ),
@@ -1351,10 +1367,10 @@ class _LetterCard extends StatelessWidget {
                         ),
                         child: Text(
                           badgeLabel!,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 11.5,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF52713A),
+                            color: context.palette.successInk,
                           ),
                         ),
                       ),
@@ -1362,9 +1378,9 @@ class _LetterCard extends StatelessWidget {
                   Text(
                     letter.nameAr,
                     textDirection: TextDirection.rtl,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                       fontSize: 16,
                     ),
                   ),
@@ -1372,8 +1388,8 @@ class _LetterCard extends StatelessWidget {
                   if (showTransliteration) ...[
                     Text(
                       letter.transliteration,
-                      style: const TextStyle(
-                        color: Color(0xFF8A6C49),
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -1382,8 +1398,8 @@ class _LetterCard extends StatelessWidget {
                   Text(
                     childLine,
                     textDirection: Directionality.of(context),
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -1396,10 +1412,10 @@ class _LetterCard extends StatelessWidget {
                         : AppLocalizations.of(
                             context,
                           ).kidsArabicLessonsDoneValue(lessonsCompleted),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8A6C49),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],
@@ -1502,9 +1518,9 @@ class _FamilySummaryCard extends StatelessWidget {
         children: [
           Text(
             l10n.kidsArabicFamilySummaryTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -1513,7 +1529,7 @@ class _FamilySummaryCard extends StatelessWidget {
               summary.currentStreak,
               summary.earnedStickerCount,
             ),
-            style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+            style: TextStyle(color: context.palette.successInk, height: 1.35),
           ),
           const SizedBox(height: 12),
           Align(
@@ -1549,23 +1565,23 @@ class _GlyphButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final background = locked
-        ? const Color(0xFFF2EEE7)
+        ? context.palette.surface
         : needsReview
         ? const Color(0xFFFFF0DC)
         : practicing
         ? const Color(0xFFFFF4DF)
         : completed
         ? const Color(0xFFE9F4DF)
-        : const Color(0xFFF8F2E8);
+        : context.palette.surface;
     final border = locked
-        ? const Color(0xFFD8CFC2)
+        ? context.palette.surfaceSoft
         : needsReview
         ? const Color(0xFFE5B77B)
         : practicing
         ? const Color(0xFFE6C485)
         : completed
         ? const Color(0xFFC4DAA9)
-        : const Color(0xFFE5D5C1);
+        : context.palette.surfaceSoft;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(18),
@@ -1581,11 +1597,11 @@ class _GlyphButton extends StatelessWidget {
         child: Text(
           letter.glyph,
           textDirection: TextDirection.rtl,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 32,
             fontFamily: 'Noto Naskh Arabic',
             fontWeight: FontWeight.w700,
-            color: Color(0xFF5E462A),
+            color: context.palette.onSurface,
           ),
         ),
       ),

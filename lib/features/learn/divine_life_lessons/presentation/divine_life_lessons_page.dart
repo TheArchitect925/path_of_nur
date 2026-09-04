@@ -441,8 +441,8 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
-          border: Border.all(color: const Color(0xFFCEB07D)),
-          color: const Color(0xFFFAF3E8),
+          border: Border.all(color: context.palette.caution),
+          color: context.palette.surface,
         ),
         child: Text(label, style: const TextStyle(fontSize: 12.5)),
       ),
@@ -454,8 +454,8 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: const Color(0xFFFAF3E8),
-        border: Border.all(color: const Color(0xFFCEB07D)),
+        color: context.palette.surface,
+        border: Border.all(color: context.palette.caution),
       ),
       child: Text('$label: $value'),
     );

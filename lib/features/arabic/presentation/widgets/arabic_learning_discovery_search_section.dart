@@ -6,6 +6,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../domain/arabic_learning_search_models.dart';
 import '../arabic_learning_lesson_pack_localizations.dart';
 import '../../../../core/theme/app_fonts.dart';
+import '../../../../core/theme/app_palette.dart';
 
 enum ArabicLearningDiscoveryVariant { kids, adult }
 
@@ -162,12 +163,12 @@ class _ResultCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: item.isAvailable ? Colors.white : const Color(0xFFF2EEE7),
+          color: item.isAvailable ? Colors.white : context.palette.surface,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: item.isAvailable
                 ? (isKids ? const Color(0xFFE0D1BD) : const Color(0xFFD8D5CF))
-                : const Color(0xFFD8CFC2),
+                : context.palette.surfaceSoft,
           ),
         ),
         child: Row(
@@ -195,7 +196,7 @@ class _ResultCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.labelMedium
                               ?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: const Color(0xFF8A6C49),
+                                color: context.palette.onSurfaceSubtle,
                               ),
                         ),
                     ],
@@ -285,7 +286,7 @@ class _EmptyState extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: isKids ? const Color(0xFFFFFBF4) : const Color(0xFFFBFAF7),
+        color: isKids ? context.palette.surface : const Color(0xFFFBFAF7),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: const Color(0xFFE8DDCD)),
       ),

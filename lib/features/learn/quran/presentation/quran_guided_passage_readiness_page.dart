@@ -658,7 +658,9 @@ class _GuidedReadinessChoicePill extends StatelessWidget {
           label,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             fontWeight: FontWeight.w700,
-            color: selected ? const Color(0xFF8A5A1F) : const Color(0xFF5A4A39),
+            color: selected
+                ? context.palette.cautionInk
+                : const Color(0xFF5A4A39),
           ),
         ),
       ),

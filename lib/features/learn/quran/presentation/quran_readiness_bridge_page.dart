@@ -659,7 +659,11 @@ class _QuranReadinessBridgePageState
           fontFamily: AppFonts.quranArabic,
           fontWeight: FontWeight.w700,
         ) ??
-        const TextStyle(fontSize: 30, height: 1.7, fontFamily: AppFonts.quranArabic);
+        const TextStyle(
+          fontSize: 30,
+          height: 1.7,
+          fontFamily: AppFonts.quranArabic,
+        );
     final start = ayahArabic.indexOf(snippetArabic);
     if (start < 0) {
       return buildQuranTextWithColoredHarakat(ayahArabic, baseStyle);
@@ -676,7 +680,7 @@ class _QuranReadinessBridgePageState
           text: snippetArabic,
           style: baseStyle.copyWith(
             color: isPlaying
-                ? const Color(0xFF8A5A1F)
+                ? context.palette.cautionInk
                 : context.palette.accentSoft,
             backgroundColor:
                 (isPlaying ? const Color(0xFFFFE5B6) : const Color(0xFFF9EBCF))
@@ -745,7 +749,7 @@ class _QuranReadinessBridgePageState
       case QuranReadinessPronunciationHintType.stretch:
         return const Color(0xFF7E6BBD);
       case QuranReadinessPronunciationHintType.bounce:
-        return const Color(0xFF8A5A1F);
+        return context.palette.cautionInk;
       case QuranReadinessPronunciationHintType.nasal:
         return const Color(0xFF4F7D73);
     }

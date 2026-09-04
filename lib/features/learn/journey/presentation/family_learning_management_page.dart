@@ -66,9 +66,9 @@ class _FamilyLearningManagementPageState
                     children: [
                       Text(
                         l10n.familyLearningGuardianTitle,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF2E261F),
+                          color: context.palette.onSurface,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -98,9 +98,9 @@ class _FamilyLearningManagementPageState
                 children: [
                   Text(
                     l10n.familyLearningEmptyTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -165,9 +165,9 @@ class _FamilyLearningManagementPageState
                               children: [
                                 Text(
                                   child.displayName,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xFF2E261F),
+                                    color: context.palette.onSurface,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -202,9 +202,9 @@ class _FamilyLearningManagementPageState
                           progress.completedJourneyCount,
                           progress.totalJourneyCount,
                         ),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF7A6650),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -259,8 +259,8 @@ class _FamilyLearningManagementPageState
                         const SizedBox(height: 4),
                         Text(
                           l10n.learnTogetherLearnedTogetherLabel,
-                          style: const TextStyle(
-                            color: Color(0xFF866A49),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                             fontWeight: FontWeight.w700,
                           ),
@@ -271,9 +271,9 @@ class _FamilyLearningManagementPageState
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF7F1E8),
+                          color: context.palette.surface,
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFFE3D6C4)),
+                          border: Border.all(color: context.palette.border),
                         ),
                         child: Text(
                           _sharedPrompt(l10n, progress.currentJourneyId),

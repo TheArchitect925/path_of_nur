@@ -682,7 +682,7 @@ class _ReadinessChoicePill extends StatelessWidget {
       tintColor: selected ? context.palette.accentSoft : null,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       foregroundColor: selected
-          ? const Color(0xFF8A5A1F)
+          ? context.palette.cautionInk
           : context.palette.onSurfaceSubtle,
     );
   }
@@ -702,7 +702,11 @@ class _SurahAyahCard extends StatelessWidget {
           fontFamily: AppFonts.quranArabic,
           fontWeight: FontWeight.w700,
         ) ??
-        const TextStyle(fontSize: 30, height: 1.7, fontFamily: AppFonts.quranArabic);
+        const TextStyle(
+          fontSize: 30,
+          height: 1.7,
+          fontFamily: AppFonts.quranArabic,
+        );
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
@@ -734,7 +738,7 @@ class _SurahAyahCard extends StatelessWidget {
             text: buildQuranTextWithColoredHarakat(
               ayah.arabic,
               baseStyle.copyWith(
-                color: highlighted ? const Color(0xFF8A5A1F) : null,
+                color: highlighted ? context.palette.cautionInk : null,
               ),
             ),
           ),

@@ -260,12 +260,12 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(top: 4),
                               child: Icon(
                                 Icons.circle,
                                 size: 7,
-                                color: Color(0xFF7B694F),
+                                color: context.palette.onSurfaceSubtle,
                               ),
                             ),
                             const SizedBox(width: 10),
@@ -292,10 +292,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
         if (lesson.invocations.isNotEmpty) ...[
           Text(
             l10n.learningJourneyLessonSectionArabicMeaning,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
@@ -318,12 +318,12 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(top: 4),
                           child: Icon(
                             Icons.circle,
                             size: 7,
-                            color: Color(0xFF7B694F),
+                            color: context.palette.onSurfaceSubtle,
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -472,10 +472,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           const SizedBox(height: 14),
           Text(
             l10n.learningJourneyLessonSectionExploreNow,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
@@ -683,9 +683,9 @@ class _SectionCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(comfortable ? 18 : 16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -695,7 +695,7 @@ class _SectionCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: comfortable ? 17 : 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           SizedBox(height: comfortable ? 10 : 8),
@@ -716,28 +716,28 @@ class _InvocationCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             invocation.title,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             invocation.arabic,
             textAlign: TextAlign.right,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 24,
               height: 1.7,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
@@ -760,7 +760,10 @@ class _InvocationCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             invocation.context,
-            style: const TextStyle(color: Color(0xFF7B694F), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 10),
           Container(

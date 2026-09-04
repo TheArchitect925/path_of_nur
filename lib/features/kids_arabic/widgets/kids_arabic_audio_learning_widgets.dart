@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicRepeatAfterMeCard extends StatefulWidget {
   const KidsArabicRepeatAfterMeCard({
@@ -107,10 +108,12 @@ class _KidsArabicRepeatAfterMeCardState
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
       decoration: BoxDecoration(
-        color: _isPlaying ? const Color(0xFFF1F6FF) : const Color(0xFFF8F2E8),
+        color: _isPlaying ? const Color(0xFFF1F6FF) : context.palette.surface,
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: _isPlaying ? const Color(0xFFC8D8F3) : const Color(0xFFE5D5C1),
+          color: _isPlaying
+              ? const Color(0xFFC8D8F3)
+              : context.palette.surfaceSoft,
         ),
         boxShadow: _isPlaying
             ? const [
@@ -132,16 +135,19 @@ class _KidsArabicRepeatAfterMeCardState
             children: [
               Text(
                 widget.title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF2E261F),
+                  color: context.palette.onSurface,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 widget.subtitle,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
               const SizedBox(height: 14),
               Center(
@@ -161,11 +167,11 @@ class _KidsArabicRepeatAfterMeCardState
                       widget.displayText,
                       textDirection: widget.textDirection,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Noto Naskh Arabic',
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF5E462A),
+                        color: context.palette.onSurface,
                       ),
                     ),
                   ),
@@ -182,24 +188,30 @@ class _KidsArabicRepeatAfterMeCardState
                           vertical: 10,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEFF6E6),
+                          color: context.palette.success.withValues(
+                            alpha: 0.25,
+                          ),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFFD4E4C0)),
+                          border: Border.all(
+                            color: context.palette.success.withValues(
+                              alpha: 0.45,
+                            ),
+                          ),
                         ),
                         child: Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.record_voice_over_rounded,
                               size: 18,
-                              color: Color(0xFF64873B),
+                              color: context.palette.successInk,
                             ),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
                                 widget.repeatPromptLabel,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xFF52713A),
+                                  color: context.palette.successInk,
                                 ),
                               ),
                             ),
@@ -272,7 +284,9 @@ class _KidsArabicAudioChipButtonState extends State<KidsArabicAudioChipButton> {
         color: _isPlaying ? const Color(0xFFEAF4FF) : Colors.white,
         borderRadius: BorderRadius.circular(999),
         border: Border.all(
-          color: _isPlaying ? const Color(0xFFC8D8F3) : const Color(0xFFE2D2BC),
+          color: _isPlaying
+              ? const Color(0xFFC8D8F3)
+              : context.palette.surfaceSoft,
         ),
       ),
       child: InkWell(
@@ -288,14 +302,14 @@ class _KidsArabicAudioChipButtonState extends State<KidsArabicAudioChipButton> {
                     ? Icons.volume_up_rounded
                     : Icons.play_circle_outline_rounded,
                 size: 18,
-                color: const Color(0xFF6B583F),
+                color: context.palette.onSurfaceSubtle,
               ),
               const SizedBox(width: 6),
               Text(
                 widget.label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF6B583F),
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],

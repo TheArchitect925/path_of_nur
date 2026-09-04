@@ -908,7 +908,7 @@ class _FocusRecitationControls extends StatelessWidget {
         : AppSurfaceTheme.resolve(
             context,
             variant: AppSurfaceVariant.panel,
-            tintColor: const Color(0xFFDABE8D),
+            tintColor: context.palette.accent,
             surfaceAlphaOverride: 0.62,
           );
     // Moonlit Tonal (dark themes): brighter ivory tonal fills, and explicit

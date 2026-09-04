@@ -14,6 +14,7 @@ import '../application/world_creation_provider.dart';
 import '../data/world_creation_data.dart';
 import '../domain/world_creation_models.dart';
 import 'widgets/world_creation_cards.dart';
+import '../../../../core/theme/app_palette.dart';
 
 /// The landing's four destinations. [id] is what appears in the route, so
 /// these values are part of the URL contract and must not be renamed freely.
@@ -329,9 +330,9 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFFFAF3E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFCEB07D)),
+        border: Border.all(color: context.palette.caution),
       ),
       child: Text('$label: $value'),
     );
@@ -445,7 +446,7 @@ class _ExploreActionCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: isTonal ? const Color(0xFFF3EEE6) : Colors.transparent,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFFE3D6C4)),
+            border: Border.all(color: context.palette.border),
           ),
           child: Row(
             children: [

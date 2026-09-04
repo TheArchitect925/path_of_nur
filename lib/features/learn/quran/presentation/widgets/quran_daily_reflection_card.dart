@@ -19,6 +19,7 @@ import '../../domain/quran_content_refs.dart';
 import '../../domain/quran_reflection_entry.dart';
 import 'quran_reflection_note_dialog.dart';
 import 'quran_ayah_action_section.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class QuranDailyReflectionCard extends ConsumerWidget {
   const QuranDailyReflectionCard({
@@ -292,7 +293,7 @@ class QuranDailyReflectionCard extends ConsumerWidget {
     if (useHeroGlassShell) {
       return AppHeroGlassShell(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-        tintColor: const Color(0xFFE7C98C),
+        tintColor: context.palette.accent,
         surfaceAlphaOverride: 0.2,
         radius: 36,
         borderColor: const Color(0x42FFFFFF),

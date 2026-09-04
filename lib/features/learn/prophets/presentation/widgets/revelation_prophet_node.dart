@@ -41,7 +41,7 @@ class RevelationProphetNode extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final lineColor = context.palette.accentSoft.withValues(alpha: 0.48);
     final nodeColor = completed
-        ? const Color(0xFF2D8F58)
+        ? context.palette.successInk
         : current
         ? context.palette.accent
         : const Color(0xFF85796B);

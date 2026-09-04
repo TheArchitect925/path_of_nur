@@ -69,10 +69,10 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
           const SizedBox(height: 14),
           Text(
             l10n.learningJourneyPlaceholderPlannedIncludesTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
@@ -82,12 +82,12 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 4),
                     child: Icon(
                       Icons.circle,
                       size: 7,
-                      color: Color(0xFF7B694F),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(width: 10),

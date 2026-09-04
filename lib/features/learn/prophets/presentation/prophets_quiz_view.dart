@@ -148,9 +148,9 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                               : context.palette.surface.withValues(alpha: 0.25),
                           border: Border.all(
                             color: showCorrect
-                                ? const Color(0xFF2D8F58)
+                                ? context.palette.successInk
                                 : showWrong
-                                ? const Color(0xFFA55050)
+                                ? context.palette.error
                                 : (selectedThis
                                       ? context.palette.accent.withValues(
                                           alpha: 0.65,
@@ -164,15 +164,15 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                           children: [
                             Expanded(child: Text(option)),
                             if (showCorrect)
-                              const Icon(
+                              Icon(
                                 Icons.check_circle_rounded,
-                                color: Color(0xFF2D8F58),
+                                color: context.palette.successInk,
                                 size: 18,
                               ),
                             if (showWrong)
-                              const Icon(
+                              Icon(
                                 Icons.cancel_rounded,
-                                color: Color(0xFFA55050),
+                                color: context.palette.error,
                                 size: 18,
                               ),
                           ],
@@ -190,8 +190,8 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: isCorrect
-                          ? const Color(0xFF2D8F58)
-                          : const Color(0xFFA55050),
+                          ? context.palette.successInk
+                          : context.palette.error,
                     ),
                   ),
                   const SizedBox(height: 4),

@@ -20,6 +20,7 @@ import '../domain/kids_arabic_models.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicLessonPage extends ConsumerStatefulWidget {
   const KidsArabicLessonPage({
@@ -380,18 +381,18 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                 width: 84,
                 height: 84,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFFBF5),
+                  color: context.palette.surface,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 alignment: Alignment.center,
                 child: Text(
                   letter.exampleWordAr,
                   textDirection: TextDirection.rtl,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 26,
                     fontFamily: 'Noto Naskh Arabic',
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF5E462A),
+                    color: context.palette.onSurface,
                   ),
                 ),
               ),
@@ -404,17 +405,17 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                       parentPreferences.showTransliteration
                           ? letter.transliteration
                           : letter.exampleWordEn,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF2E261F),
+                        color: context.palette.onSurface,
                       ),
                     ),
                     const SizedBox(height: 6),
                     Text(
                       localizedKidsArabicChildLine(l10n, letter.id),
-                      style: const TextStyle(
-                        color: Color(0xFF675B4E),
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         height: 1.35,
                       ),
                     ),
@@ -428,18 +429,20 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFEFF6E6),
+            color: context.palette.success.withValues(alpha: 0.25),
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFD4E4C0)),
+            border: Border.all(
+              color: context.palette.success.withValues(alpha: 0.45),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 l10n.kidsArabicLessonRewardTitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF2E261F),
+                  color: context.palette.onSurface,
                 ),
               ),
               const SizedBox(height: 6),
@@ -489,7 +492,7 @@ class _GlyphHero extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFFFFF7EC),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: const Color(0xFFE7D6C0)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Row(
           children: [
@@ -504,11 +507,11 @@ class _GlyphHero extends StatelessWidget {
               child: Text(
                 letter.glyph,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 72,
                   fontFamily: 'Noto Naskh Arabic',
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF5E462A),
+                  color: context.palette.onSurface,
                 ),
               ),
             ),
@@ -520,25 +523,25 @@ class _GlyphHero extends StatelessWidget {
                   Text(
                     letter.nameAr,
                     textDirection: TextDirection.rtl,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     letter.transliteration,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8A6C49),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     childLine,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -568,25 +571,28 @@ class _SectionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8F2E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE5D5C1)),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 12),
           child,
@@ -612,18 +618,18 @@ class _TraceStatusCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF5),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE5D5C1)),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             progressLabel,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
           const SizedBox(height: 8),
@@ -639,8 +645,8 @@ class _TraceStatusCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             encouragement,
-            style: const TextStyle(
-              color: Color(0xFF675B4E),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -677,9 +683,11 @@ class _TraceCompletionCard extends StatelessWidget {
       duration: const Duration(milliseconds: 220),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFEFF6E6),
+        color: context.palette.success.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFD4E4C0)),
+        border: Border.all(
+          color: context.palette.success.withValues(alpha: 0.45),
+        ),
         boxShadow: const [
           BoxShadow(
             color: Color(0x14000000),
@@ -693,18 +701,18 @@ class _TraceCompletionCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.auto_awesome_rounded,
                 size: 18,
-                color: Color(0xFF64873B),
+                color: context.palette.successInk,
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
               ),
@@ -713,20 +721,26 @@ class _TraceCompletionCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             encouragement,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF52713A),
+              color: context.palette.successInk,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             rewardLabel,
-            style: const TextStyle(fontSize: 12, color: Color(0xFF675B4E)),
+            style: TextStyle(
+              fontSize: 12,
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 12),
           Row(
@@ -790,18 +804,18 @@ class _CompletionSheet extends ConsumerWidget {
                   width: 78,
                   height: 78,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEFF6E6),
+                    color: context.palette.success.withValues(alpha: 0.25),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     letter.glyph,
                     textDirection: TextDirection.rtl,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 42,
                       fontFamily: 'Noto Naskh Arabic',
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF52713A),
+                      color: context.palette.successInk,
                     ),
                   ),
                 ),
@@ -812,16 +826,19 @@ class _CompletionSheet extends ConsumerWidget {
               l10n.kidsArabicCompletionTitle(
                 localizedKidsArabicTraceResult(l10n, result.traceResult),
               ),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               l10n.kidsArabicCompletionSubtitle(letter.glyph, result.xpAwarded),
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
             const SizedBox(height: 14),
             Text(
@@ -830,7 +847,10 @@ class _CompletionSheet extends ConsumerWidget {
                 xp: result.xpAwarded,
                 drops: result.oceanDropsAwarded,
               ),
-              style: const TextStyle(fontSize: 12, color: Color(0xFF675B4E)),
+              style: TextStyle(
+                fontSize: 12,
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
             if (result.dailyMissionResult != null) ...[
               const SizedBox(height: 10),
@@ -838,18 +858,18 @@ class _CompletionSheet extends ConsumerWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFF5E7),
+                  color: context.palette.surface,
                   borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: const Color(0xFFE7D6C0)),
+                  border: Border.all(color: context.palette.surfaceSoft),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       l10n.kidsArabicDailyMissionCompletedTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF2E261F),
+                        color: context.palette.onSurface,
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -857,8 +877,8 @@ class _CompletionSheet extends ConsumerWidget {
                       l10n.kidsArabicDailyMissionCompletedSubtitle(
                         result.dailyMissionResult!.currentStreak,
                       ),
-                      style: const TextStyle(
-                        color: Color(0xFF675B4E),
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         height: 1.35,
                       ),
                     ),
@@ -869,25 +889,25 @@ class _CompletionSheet extends ConsumerWidget {
                         xp: result.dailyMissionResult!.xpAwarded,
                         drops: result.dailyMissionResult!.oceanDropsAwarded,
                       ),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFF675B4E),
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                     if (result.dailyMissionResult!.graceUsed) ...[
                       const SizedBox(height: 6),
                       Text(
                         l10n.kidsArabicDailyMissionGraceUsed,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF8A6C49),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                     ],
                     const SizedBox(height: 6),
                     Text(
                       l10n.kidsArabicDailyMissionTomorrowPrompt,
-                      style: const TextStyle(color: Color(0xFF675B4E)),
+                      style: TextStyle(color: context.palette.onSurfaceSubtle),
                     ),
                   ],
                 ),
@@ -897,9 +917,9 @@ class _CompletionSheet extends ConsumerWidget {
               const SizedBox(height: 8),
               Text(
                 l10n.kidsArabicCompletionNextUnlock(nextLetter!.glyph),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF8A6C49),
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],
@@ -907,9 +927,9 @@ class _CompletionSheet extends ConsumerWidget {
             if (result.newStickerIds.isNotEmpty)
               Text(
                 l10n.kidsArabicStickerUnlocked(result.newStickerIds.length),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF52713A),
+                  color: context.palette.successInk,
                 ),
               ),
             if (achievement != null) ...[
@@ -985,7 +1005,7 @@ class _AchievementRevealCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF5E7),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: achievement.color.withValues(alpha: 0.42)),
       ),
@@ -1008,9 +1028,9 @@ class _AchievementRevealCard extends StatelessWidget {
               children: [
                 Text(
                   l10n.kidsArabicAchievementCelebrateTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -1024,8 +1044,8 @@ class _AchievementRevealCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   localizedKidsArabicAchievementSubtitle(l10n, achievement),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),

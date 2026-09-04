@@ -14,6 +14,7 @@ import '../domain/arabic_learning_continuity_models.dart';
 import 'arabic_learning_route_target_navigation.dart';
 import 'widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_palette.dart';
 
 class ArabicLearningMiniAssessmentPage extends ConsumerStatefulWidget {
   const ArabicLearningMiniAssessmentPage({required this.audience, super.key});
@@ -269,10 +270,10 @@ class _QuestionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: isKids ? const Color(0xFFF8F2E8) : Colors.white,
+        color: isKids ? context.palette.surface : Colors.white,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: isKids ? const Color(0xFFE5D5C1) : const Color(0xFFE3DDD2),
+          color: isKids ? context.palette.surfaceSoft : const Color(0xFFE3DDD2),
         ),
       ),
       child: Column(

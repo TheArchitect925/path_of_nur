@@ -7,6 +7,7 @@ import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
 import '../domain/kids_arabic_achievement_models.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicRewardsPage extends ConsumerWidget {
   const KidsArabicRewardsPage({super.key});
@@ -38,9 +39,9 @@ class KidsArabicRewardsPage extends ConsumerWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFFFF5E7),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFE8D8BE)),
+            border: Border.all(color: context.palette.surfaceSoft),
           ),
           child: Wrap(
             spacing: 8,
@@ -113,9 +114,11 @@ class _LatestAchievementCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: const Color(0xFFEFF6E6),
+        color: context.palette.success.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFD4E4C0)),
+        border: Border.all(
+          color: context.palette.success.withValues(alpha: 0.45),
+        ),
       ),
       child: Row(
         children: [
@@ -135,25 +138,25 @@ class _LatestAchievementCard extends StatelessWidget {
               children: [
                 Text(
                   l10n.kidsArabicLatestAchievementTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   localizedKidsArabicAchievementTitle(l10n, achievement),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF52713A),
+                    color: context.palette.successInk,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   localizedKidsArabicAchievementSubtitle(l10n, achievement),
-                  style: const TextStyle(
-                    color: Color(0xFF5A6A4A),
+                  style: TextStyle(
+                    color: context.palette.successInk,
                     height: 1.35,
                   ),
                 ),
@@ -178,7 +181,7 @@ class _AchievementCard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: status.unlocked
-            ? const Color(0xFFF8F2E8)
+            ? context.palette.surface
             : const Color(0xFFF5F1EB),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
@@ -205,9 +208,9 @@ class _AchievementCard extends StatelessWidget {
               children: [
                 Text(
                   localizedKidsArabicAchievementTitle(l10n, status.definition),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -216,8 +219,8 @@ class _AchievementCard extends StatelessWidget {
                     l10n,
                     status.definition,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -231,8 +234,8 @@ class _AchievementCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               color: status.unlocked
-                  ? const Color(0xFF52713A)
-                  : const Color(0xFF8A6C49),
+                  ? context.palette.successInk
+                  : context.palette.onSurfaceSubtle,
             ),
           ),
         ],
@@ -254,16 +257,19 @@ class _SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF2E261F),
+            color: context.palette.onSurface,
           ),
         ),
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
       ],
     );
@@ -280,12 +286,12 @@ class _SummaryPill extends StatelessWidget {
     return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       fillColor: Colors.white,
-      borderColor: const Color(0xFFE2D2BC),
+      borderColor: context.palette.surfaceSoft,
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: Color(0xFF6B583F),
+          color: context.palette.onSurfaceSubtle,
         ),
       ),
     );

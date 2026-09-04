@@ -10,6 +10,7 @@ import '../application/kids_arabic_phrases_provider.dart';
 import '../application/kids_arabic_words_provider.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicWordsPage extends ConsumerWidget {
   const KidsArabicWordsPage({super.key});
@@ -33,9 +34,9 @@ class KidsArabicWordsPage extends ConsumerWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFFFF5E7),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFE8D8BE)),
+            border: Border.all(color: context.palette.surfaceSoft),
           ),
           child: Wrap(
             spacing: 10,
@@ -111,26 +112,28 @@ class _NextWordCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: const Color(0xFFEFF6E6),
+        color: context.palette.success.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFD4E4C0)),
+        border: Border.all(
+          color: context.palette.success.withValues(alpha: 0.45),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             l10n.kidsArabicWordsNextTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             l10n.kidsArabicWordsNextSubtitle(wordAr),
             textDirection: TextDirection.rtl,
-            style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+            style: TextStyle(color: context.palette.successInk, height: 1.35),
           ),
           const SizedBox(height: 12),
           FilledButton(
@@ -224,15 +227,15 @@ class _WordCard extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: status.unlocked
-              ? const Color(0xFFF8F2E8)
-              : const Color(0xFFF2EEE7),
+              ? context.palette.surface
+              : context.palette.surface,
           borderRadius: BorderRadius.circular(22),
           border: Border.all(
             color: status.completed
                 ? const Color(0xFFC4DAA9)
                 : status.unlocked
-                ? const Color(0xFFE5D5C1)
-                : const Color(0xFFD8CFC2),
+                ? context.palette.surfaceSoft
+                : context.palette.surfaceSoft,
           ),
         ),
         child: Row(
@@ -248,11 +251,11 @@ class _WordCard extends ConsumerWidget {
               child: Text(
                 status.word.wordAr,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 32,
                   fontFamily: 'Noto Naskh Arabic',
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF5E462A),
+                  color: context.palette.onSurface,
                 ),
               ),
             ),
@@ -263,24 +266,24 @@ class _WordCard extends ConsumerWidget {
                 children: [
                   Text(
                     status.word.transliteration,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     localizedKidsArabicWordMeaning(l10n, status.word.id),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8A6C49),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     body,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -292,10 +295,10 @@ class _WordCard extends ConsumerWidget {
                     children: [
                       Text(
                         actionLabel,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF8A6C49),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                       if (status.unlocked)
@@ -395,47 +398,47 @@ class _JoiningCard extends StatelessWidget {
         children: [
           Text(
             letterName,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             l10n.kidsArabicWordsAloneLabel,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
           Text(
             standaloneGlyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 28,
               fontFamily: 'Noto Naskh Arabic',
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5E462A),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             l10n.kidsArabicWordsInWordLabel,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
           Text(
             joinedGlyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 28,
               fontFamily: 'Noto Naskh Arabic',
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5E462A),
+              color: context.palette.onSurface,
             ),
           ),
         ],
@@ -457,16 +460,19 @@ class _SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF2E261F),
+            color: context.palette.onSurface,
           ),
         ),
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
       ],
     );
@@ -483,12 +489,12 @@ class _SummaryPill extends StatelessWidget {
     return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       fillColor: Colors.white,
-      borderColor: const Color(0xFFE2D2BC),
+      borderColor: context.palette.surfaceSoft,
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: Color(0xFF6B583F),
+          color: context.palette.onSurfaceSubtle,
         ),
       ),
     );

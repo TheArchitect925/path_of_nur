@@ -37,7 +37,7 @@ class QuranWordExampleAyahSection extends StatelessWidget {
       width: double.infinity,
       padding: padding,
       decoration: BoxDecoration(
-        color: const Color(0xFFF8F2E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

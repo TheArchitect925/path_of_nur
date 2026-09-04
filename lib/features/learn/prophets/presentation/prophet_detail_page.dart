@@ -293,7 +293,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
     final l10n = AppLocalizations.of(context);
     return AppHeroGlassShell(
       padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-      tintColor: const Color(0xFFE7C98C),
+      tintColor: context.palette.accent,
       surfaceAlphaOverride: 0.2,
       radius: 36,
       borderColor: const Color(0x42FFFFFF),

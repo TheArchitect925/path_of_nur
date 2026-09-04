@@ -592,10 +592,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               children: [
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.repeat_rounded,
                       size: 18,
-                      color: Color(0xFF7C5D3A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
@@ -615,7 +615,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     height: 1.45,
                     color: QuranPresentationStyle.translucentColor(
                       context,
-                      const Color(0xFF5A4A3A),
+                      context.palette.onSurface,
                     ),
                   ),
                 ),
@@ -657,10 +657,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               children: [
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.alt_route_rounded,
                       size: 18,
-                      color: Color(0xFF7C5D3A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
@@ -683,7 +683,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     height: 1.45,
                     color: QuranPresentationStyle.translucentColor(
                       context,
-                      const Color(0xFF5A4A3A),
+                      context.palette.onSurface,
                     ),
                   ),
                 ),
@@ -741,7 +741,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               Icon(
                 _readerStudyModeIcon(effectiveStudyMode),
                 size: 18,
-                color: const Color(0xFF7C5D3A),
+                color: context.palette.onSurfaceSubtle,
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -776,7 +776,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         height: 1.45,
                         color: QuranPresentationStyle.translucentColor(
                           context,
-                          const Color(0xFF5A4A3A),
+                          context.palette.onSurface,
                         ),
                       ),
                     ),
@@ -840,10 +840,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               children: [
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.layers_outlined,
                       size: 18,
-                      color: Color(0xFF7C5D3A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
@@ -863,7 +863,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     height: 1.45,
                     color: QuranPresentationStyle.translucentColor(
                       context,
-                      const Color(0xFF5A4A3A),
+                      context.palette.onSurface,
                     ),
                   ),
                 ),
@@ -1540,7 +1540,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       activeCounterLabel,
                       key: const ValueKey('quran-reader-search-pill-count'),
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: const Color(0xFF7C5D3A),
+                        color: context.palette.onSurfaceSubtle,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

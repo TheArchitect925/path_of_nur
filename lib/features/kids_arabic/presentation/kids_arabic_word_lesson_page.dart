@@ -18,6 +18,7 @@ import '../domain/kids_arabic_models.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicWordLessonPage extends ConsumerStatefulWidget {
   const KidsArabicWordLessonPage({
@@ -188,9 +189,9 @@ class _KidsArabicWordLessonPageState
           child: Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: const Color(0xFFF8F2E8),
+              color: context.palette.surface,
               borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: const Color(0xFFE5D5C1)),
+              border: Border.all(color: context.palette.surfaceSoft),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,26 +199,26 @@ class _KidsArabicWordLessonPageState
                 Text(
                   word.wordAr,
                   textDirection: TextDirection.rtl,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 40,
                     fontFamily: 'Noto Naskh Arabic',
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF5E462A),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   word.transliteration,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF8A6C49),
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   localizedKidsArabicWordSummary(l10n, word.id),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -402,16 +403,19 @@ class _WordCompletionSheet extends StatelessWidget {
             Text(
               l10n.kidsArabicWordCompleteTitle(wordAr),
               textDirection: TextDirection.rtl,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               l10n.kidsArabicWordCompleteSubtitle,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
             if (achievement != null) ...[
               const SizedBox(height: 14),
@@ -465,7 +469,7 @@ class _WordAchievementRevealCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF5E7),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: achievement.color.withValues(alpha: 0.42)),
       ),
@@ -488,9 +492,9 @@ class _WordAchievementRevealCard extends StatelessWidget {
               children: [
                 Text(
                   l10n.kidsArabicAchievementCelebrateTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF2E261F),
+                    color: context.palette.onSurface,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -504,8 +508,8 @@ class _WordAchievementRevealCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   localizedKidsArabicAchievementSubtitle(l10n, achievement),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -545,47 +549,47 @@ class _JoiningCard extends StatelessWidget {
         children: [
           Text(
             letterName,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             l10n.kidsArabicWordsAloneLabel,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
           Text(
             standaloneGlyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 28,
               fontFamily: 'Noto Naskh Arabic',
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5E462A),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             l10n.kidsArabicWordsInWordLabel,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
           Text(
             joinedGlyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 28,
               fontFamily: 'Noto Naskh Arabic',
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5E462A),
+              color: context.palette.onSurface,
             ),
           ),
         ],
@@ -607,14 +611,14 @@ class _WordLetterChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE2D2BC)),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Text(
         '$joinedGlyph $name',
         textDirection: TextDirection.rtl,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: Color(0xFF6B583F),
+          color: context.palette.onSurfaceSubtle,
         ),
       ),
     );
@@ -634,16 +638,19 @@ class _SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF2E261F),
+            color: context.palette.onSurface,
           ),
         ),
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
       ],
     );
