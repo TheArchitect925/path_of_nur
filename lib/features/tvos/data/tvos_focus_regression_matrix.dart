@@ -158,16 +158,17 @@ const List<TVOSFocusQaScenario> tvosFocusQaScenarios = <TVOSFocusQaScenario>[
     defaultSectionId: 'dhikr.modes',
     orderedSectionIds: <String>[
       'dhikr.modes',
+      'dhikr.routines',
       'dhikr.guidedFlow',
       'dhikr.companion',
     ],
     requiresLeftEdgeNavigationEscape: true,
     requiresContentFocusRestore: true,
     requiresNavigationRestore: true,
-    requiresModalReturnCoverage: false,
+    requiresModalReturnCoverage: true,
     risk: TVOSFocusRegressionRisk.medium,
     notes:
-        'Dhikr needs guided-flow stability without losing the quick return into sidebar navigation.',
+        'Dhikr needs guided-flow stability without losing the quick return into sidebar navigation; the routine player is a full-screen modal that must hand focus back to the routines shelf.',
   ),
   TVOSFocusQaScenario(
     surfaceId: TVOSSurfaceId.kids,

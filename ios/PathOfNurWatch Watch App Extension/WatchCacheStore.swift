@@ -19,6 +19,7 @@ final class WatchCacheStore {
     static let autoDhikrPreferences = "watch.auto_dhikr.preferences.v1"
     static let autoDhikrSession = "watch.auto_dhikr.session.v1"
     static let postPrayerAdhkar = "watch.post_prayer_adhkar.v1"
+    static let dhikrRoutineProgress = "watch.dhikr.routine.progress.v1"
     static let qiblaLocation = "watch.qibla.location.v1"
   }
 
@@ -120,6 +121,18 @@ final class WatchCacheStore {
       WatchStoredQiblaLocation(latitude: latitude, longitude: longitude, savedAt: Date()),
       forKey: Key.qiblaLocation
     )
+  }
+
+  func loadDhikrRoutineProgress() -> WatchDhikrRoutineProgress? {
+    decode(WatchDhikrRoutineProgress.self, forKey: Key.dhikrRoutineProgress)
+  }
+
+  func saveDhikrRoutineProgress(_ progress: WatchDhikrRoutineProgress) {
+    encode(progress, forKey: Key.dhikrRoutineProgress)
+  }
+
+  func clearDhikrRoutineProgress() {
+    defaults.removeObject(forKey: Key.dhikrRoutineProgress)
   }
 
   func loadPostPrayerAdhkarState() -> WatchPostPrayerAdhkarState? {
@@ -230,6 +243,35 @@ extension WatchCacheStore {
         growthStageKey: "sapling",
         prayers: prayers,
         activeDhikrSession: nil,
+        dhikrRoutines: [
+          WatchDhikrRoutinePayload(
+            id: "after-salah",
+            kind: "afterSalah",
+            title: "After salah",
+            sessionLabel: "After-salah tasbih",
+            totalCount: 100,
+            estimatedMinutes: 4,
+            steps: [
+              WatchDhikrRoutineStepPayload(id: "subhanallah", title: "SubhanAllah", arabic: "سُبْحَانَ ٱللَّهِ", transliteration: "SubhanAllah", translation: "Glory be to Allah", count: 33),
+              WatchDhikrRoutineStepPayload(id: "alhamdulillah", title: "Alhamdulillah", arabic: "ٱلْحَمْدُ لِلَّهِ", transliteration: "Alhamdulillah", translation: "All praise is for Allah", count: 33),
+              WatchDhikrRoutineStepPayload(id: "allahukbar", title: "Allahu Akbar", arabic: "ٱللَّهُ أَكْبَرُ", transliteration: "Allahu Akbar", translation: "Allah is Most Great", count: 33),
+              WatchDhikrRoutineStepPayload(id: "tahlil-closing", title: "La ilaha illAllah (closing)", arabic: "لَا إِلَٰهَ إِلَّا ٱللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ", transliteration: "La ilaha illAllahu wahdahu la sharika lah", translation: "There is no god but Allah alone, without partner.", count: 1),
+            ]
+          ),
+          WatchDhikrRoutinePayload(
+            id: "morning",
+            kind: "morning",
+            title: "Morning adhkar",
+            sessionLabel: "Morning adhkar",
+            totalCount: 9,
+            estimatedMinutes: 3,
+            steps: [
+              WatchDhikrRoutineStepPayload(id: "m1", title: "Upon Entering the Morning", arabic: "اَللّٰهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوْتُ وَإِلَيْكَ النُّشُوْرُ", transliteration: "Allahumma bika asbahna wa bika amsayna wa bika nahya wa bika namutu wa ilaykan-nushur.", translation: "O Allah, by You we have entered the morning and by You we enter upon the evening. By You we live and we die, and to You is the resurrection.", count: 1),
+              WatchDhikrRoutineStepPayload(id: "m2", title: "Ask Allah for Good Health and Protection", arabic: "اَللّٰهُمَّ عَافِنِيْ فِيْ بَدَنِيْ", transliteration: "Allahumma afini fi badani", translation: "O Allah, grant my body health.", count: 3),
+            ]
+          ),
+        ],
+        completedRoutineEntriesToday: [],
         spiritualPrompt: WatchSpiritualPromptPayload(
           kind: "ayah",
           title: "Remembrance",

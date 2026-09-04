@@ -62,9 +62,79 @@ struct WatchDailySnapshotPayload: Codable {
   let growthStageKey: String
   var prayers: [WatchPrayerPayload]
   var activeDhikrSession: WatchDhikrSessionPayload?
+  var dhikrRoutines: [WatchDhikrRoutinePayload]?
+  var completedRoutineEntriesToday: [String]?
   var spiritualPrompt: WatchSpiritualPromptPayload?
   var lastSyncAt: Date
   let sourceVersion: String
+
+  var routines: [WatchDhikrRoutinePayload] { dhikrRoutines ?? [] }
+  var completedRoutineEntries: [String] { completedRoutineEntriesToday ?? [] }
+}
+
+struct WatchDhikrRoutineStepPayload: Codable, Identifiable, Hashable {
+  let id: String
+  let title: String
+  let arabic: String
+  let transliteration: String
+  let translation: String
+  let count: Int
+
+  /// Long duʿās read as a paragraph; the player gives them a scrolling
+  /// block and a smaller ring.
+  var isLongText: Bool { arabic.count > 70 }
+}
+
+struct WatchDhikrRoutinePayload: Codable, Identifiable, Hashable {
+  let id: String
+  let kind: String
+  let title: String
+  let sessionLabel: String
+  let totalCount: Int
+  let estimatedMinutes: Int
+  let steps: [WatchDhikrRoutineStepPayload]
+
+  var isAfterSalah: Bool { kind == "afterSalah" }
+
+  var systemImage: String {
+    switch kind {
+    case "afterSalah": return "hands.sparkles.fill"
+    case "morning": return "sun.max.fill"
+    case "evening": return "moon.stars.fill"
+    case "sleep": return "bed.double.fill"
+    default: return "heart.fill"
+    }
+  }
+
+  /// Entry stored in the day's totals: after-salah runs are keyed by the
+  /// prayer they follow so several fit in one day.
+  func completionEntry(prayerId: String?) -> String {
+    if isAfterSalah, let prayerId, !prayerId.isEmpty {
+      return "\(id):\(prayerId)"
+    }
+    return id
+  }
+}
+
+/// Where the watch is inside a routine it started; persisted so leaving
+/// the sheet resumes at the same bead.
+struct WatchDhikrRoutineProgress: Codable {
+  let routineId: String
+  var stepIndex: Int
+  var stepCount: Int
+  let startedAt: Date
+  var updatedAt: Date
+  var prayerId: String?
+}
+
+/// What finished, for the completion card.
+struct WatchDhikrRoutineCompletion: Identifiable {
+  let routine: WatchDhikrRoutinePayload
+  let startedAt: Date
+  let finishedAt: Date
+
+  var id: String { "\(routine.id)|\(startedAt.timeIntervalSince1970)" }
+  var duration: TimeInterval { finishedAt.timeIntervalSince(startedAt) }
 }
 
 struct WatchSettingsPayload: Codable {
@@ -153,6 +223,7 @@ enum WatchSyncActionType: String, Codable {
   case dhikrIncrement = "dhikr_increment"
   case dhikrReset = "dhikr_reset"
   case dhikrSessionCompleted = "dhikr_session_completed"
+  case dhikrRoutineCompleted = "dhikr_routine_completed"
   case postPrayerAdhkarCompleted = "post_prayer_adhkar_completed"
   case snoozeRequested = "snooze_requested"
   case notificationActionLogged = "notification_action_logged"
@@ -395,6 +466,7 @@ enum WatchAuxScreen: String, Identifiable {
   case qibla
   case names
   case quranRemote
+  case dhikrRoutines
 
   var id: String { rawValue }
 }
@@ -673,6 +745,28 @@ enum WatchStrings {
   static let dhikrAntiRushAcknowledge = value("watch.dhikr.antiRush.acknowledge", "Continue")
   static let dhikrModeManual = value("watch.dhikr.mode.manual", "Manual")
   static let dhikrModeAuto = value("watch.dhikr.mode.auto", "Auto")
+  static let dhikrRoutinesTitle = value("watch.dhikr.routines.title", "Routines")
+  static let dhikrRoutinesSubtitle = value("watch.dhikr.routines.subtitle", "Guided sets from your phone")
+  static let dhikrRoutinesEmpty = value("watch.dhikr.routines.empty", "Open the phone once to load your routines.")
+  static let dhikrRoutineDoneToday = value("watch.dhikr.routines.doneToday", "Done today")
+  static let dhikrRoutineContinue = value("watch.dhikr.routines.continue", "Continue")
+  static let dhikrRoutineBegin = value("watch.dhikr.routines.begin", "Begin")
+  static let dhikrRoutineUndo = value("watch.dhikr.routines.undo", "Undo")
+  static let dhikrRoutineSkip = value("watch.dhikr.routines.skip", "Skip step")
+  static let dhikrRoutineLeave = value("watch.dhikr.routines.leave", "Leave")
+  static let dhikrRoutineRestart = value("watch.dhikr.routines.restart", "Start over")
+  static let dhikrRoutineCompleteTitle = value("watch.dhikr.routines.complete.title", "Routine complete")
+  static let dhikrRoutineCompleteBody = value("watch.dhikr.routines.complete.body", "Logged to your phone with today's remembrance.")
+  static let dhikrRoutineTapToCount = value("watch.dhikr.routines.tapToCount", "Tap to count")
+  static func dhikrRoutineStepOf(_ current: Int, _ total: Int) -> String {
+    format("watch.dhikr.routines.stepOfFormat", "Step %d of %d", current, total)
+  }
+  static func dhikrRoutineMeta(_ steps: Int, _ minutes: Int) -> String {
+    format("watch.dhikr.routines.metaFormat", "%d adhkar • about %d min", steps, minutes)
+  }
+  static func dhikrRoutineOfTarget(_ count: Int, _ target: Int) -> String {
+    format("watch.dhikr.routines.ofTargetFormat", "%d of %d", count, target)
+  }
   static let autoDhikrTitle = value("watch.dhikr.auto.title", "Auto Dhikr")
   static let autoDhikrBegin = value("watch.dhikr.auto.begin", "Begin")
   static let autoDhikrPause = value("watch.dhikr.auto.pause", "Pause")

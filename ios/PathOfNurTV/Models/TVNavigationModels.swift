@@ -241,6 +241,7 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     case .dhikr:
       return [
         TVFocusSectionId.dhikrModes,
+        TVFocusSectionId.dhikrRoutines,
         TVFocusSectionId.dhikrGuidedFlow,
         TVFocusSectionId.dhikrCompanion,
       ]
@@ -285,6 +286,7 @@ enum TVFocusSectionId {
   static let favoritesSaved = "favorites.saved"
   static let favoritesSupport = "favorites.support"
   static let settingsStartup = "settings.startup"
+  static let settingsAppearance = "settings.appearance"
   static let settingsListening = "settings.listening"
   static let settingsSupport = "settings.support"
   static let arabicPrimary = "arabic.primary"
@@ -301,6 +303,7 @@ enum TVFocusSectionId {
   static let prayerSchedule = "prayer.schedule"
   static let prayerCompanion = "prayer.companion"
   static let dhikrModes = "dhikr.modes"
+  static let dhikrRoutines = "dhikr.routines"
   static let dhikrGuidedFlow = "dhikr.guidedFlow"
   static let dhikrCompanion = "dhikr.companion"
   static let kidsPrimary = "kids.primary"

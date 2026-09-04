@@ -18,6 +18,7 @@ enum TVOSContentModuleId {
   prayerSchedule,
   prayerCompanion,
   dhikrModes,
+  dhikrRoutines,
   dhikrGuidedFlow,
   dhikrCompanion,
   kidsPrimaryPaths,

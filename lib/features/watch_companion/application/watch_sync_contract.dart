@@ -14,10 +14,13 @@ import '../../learn/dua/application/daily_dua_content_service.dart';
 import '../../ocean/application/ocean_drops_provider.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../worship/application/dhikr_controller.dart';
+import '../../worship/application/dhikr_routine_catalog.dart';
 import '../../worship/application/prayer_controller.dart';
 import '../../worship/data/dhikr_repository.dart';
 import '../../worship/data/prayer_log_repository.dart';
+import '../../worship/domain/dhikr_day_total.dart';
 import '../../worship/domain/dhikr_session.dart';
+import '../../worship/presentation/dhikr/dhikr_routine_labels.dart';
 import '../../worship/domain/prayer_name.dart';
 import '../../worship/domain/prayer_status.dart';
 import '../../worship/domain/prayer_tracker_fields.dart';
@@ -38,6 +41,7 @@ enum WatchActionType {
   dhikrIncrement,
   dhikrReset,
   dhikrSessionCompleted,
+  dhikrRoutineCompleted,
   postPrayerAdhkarCompleted,
   snoozeRequested,
   notificationActionLogged,
@@ -71,6 +75,8 @@ class WatchDailySnapshot {
     required this.growthStageKey,
     required this.prayers,
     required this.activeDhikrSession,
+    this.dhikrRoutines = const <WatchDhikrRoutineSnapshot>[],
+    this.completedRoutineEntriesToday = const <String>[],
     required this.spiritualPrompt,
     required this.lastSyncAt,
     required this.sourceVersion,
@@ -94,6 +100,14 @@ class WatchDailySnapshot {
   final String growthStageKey;
   final List<WatchPrayerStatusContract> prayers;
   final WatchDhikrSessionSnapshot? activeDhikrSession;
+
+  /// The routines the watch can play: the built-in four plus the user's
+  /// own, with every step's text so the watch works offline.
+  final List<WatchDhikrRoutineSnapshot> dhikrRoutines;
+
+  /// Routine entries already completed today (`morning`,
+  /// `after-salah:asr`), so the watch can mark rows done.
+  final List<String> completedRoutineEntriesToday;
   final WatchSpiritualPromptSnapshot? spiritualPrompt;
   final DateTime lastSyncAt;
   final String sourceVersion;
@@ -117,6 +131,8 @@ class WatchDailySnapshot {
     'growthStageKey': growthStageKey,
     'prayers': prayers.map((item) => item.toJson()).toList(),
     'activeDhikrSession': activeDhikrSession?.toJson(),
+    'dhikrRoutines': dhikrRoutines.map((item) => item.toJson()).toList(),
+    'completedRoutineEntriesToday': completedRoutineEntriesToday,
     'spiritualPrompt': spiritualPrompt?.toJson(),
     'lastSyncAt': lastSyncAt.toIso8601String(),
     'sourceVersion': sourceVersion,
@@ -213,6 +229,63 @@ class WatchDhikrSessionSnapshot {
   };
 }
 
+class WatchDhikrRoutineStepSnapshot {
+  const WatchDhikrRoutineStepSnapshot({
+    required this.id,
+    required this.title,
+    required this.arabic,
+    required this.transliteration,
+    required this.translation,
+    required this.count,
+  });
+
+  final String id;
+  final String title;
+  final String arabic;
+  final String transliteration;
+  final String translation;
+  final int count;
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'title': title,
+    'arabic': arabic,
+    'transliteration': transliteration,
+    'translation': translation,
+    'count': count,
+  };
+}
+
+class WatchDhikrRoutineSnapshot {
+  const WatchDhikrRoutineSnapshot({
+    required this.id,
+    required this.kind,
+    required this.title,
+    required this.sessionLabel,
+    required this.totalCount,
+    required this.estimatedMinutes,
+    required this.steps,
+  });
+
+  final String id;
+  final String kind;
+  final String title;
+  final String sessionLabel;
+  final int totalCount;
+  final int estimatedMinutes;
+  final List<WatchDhikrRoutineStepSnapshot> steps;
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'id': id,
+    'kind': kind,
+    'title': title,
+    'sessionLabel': sessionLabel,
+    'totalCount': totalCount,
+    'estimatedMinutes': estimatedMinutes,
+    'steps': steps.map((item) => item.toJson()).toList(),
+  };
+}
+
 class WatchSettingsSnapshot {
   const WatchSettingsSnapshot({
     required this.schemaVersion,
@@ -303,6 +376,7 @@ class WatchActionEnvelope {
       'dhikr_increment' => WatchActionType.dhikrIncrement,
       'dhikr_reset' => WatchActionType.dhikrReset,
       'dhikr_session_completed' => WatchActionType.dhikrSessionCompleted,
+      'dhikr_routine_completed' => WatchActionType.dhikrRoutineCompleted,
       'post_prayer_adhkar_completed' =>
         WatchActionType.postPrayerAdhkarCompleted,
       'snooze_requested' => WatchActionType.snoozeRequested,
@@ -336,6 +410,7 @@ class WatchActionEnvelope {
       WatchActionType.dhikrIncrement => 'dhikr_increment',
       WatchActionType.dhikrReset => 'dhikr_reset',
       WatchActionType.dhikrSessionCompleted => 'dhikr_session_completed',
+      WatchActionType.dhikrRoutineCompleted => 'dhikr_routine_completed',
       WatchActionType.postPrayerAdhkarCompleted =>
         'post_prayer_adhkar_completed',
       WatchActionType.snoozeRequested => 'snooze_requested',
@@ -611,6 +686,31 @@ class WatchDailySnapshotBuilder {
           ),
       ],
       activeDhikrSession: activeDhikr,
+      dhikrRoutines: [
+        for (final routine in _ref.read(dhikrRoutinesProvider))
+          WatchDhikrRoutineSnapshot(
+            id: routine.id,
+            kind: routine.kind.name,
+            title: dhikrRoutineDisplayTitle(l10n, routine),
+            sessionLabel: routine.sessionLabel,
+            totalCount: routine.totalCount,
+            estimatedMinutes: routine.estimatedMinutes,
+            steps: [
+              for (final step in routine.steps)
+                WatchDhikrRoutineStepSnapshot(
+                  id: step.id,
+                  title: step.title,
+                  arabic: step.arabic,
+                  transliteration: step.transliteration,
+                  translation: step.translation,
+                  count: step.count,
+                ),
+            ],
+          ),
+      ],
+      completedRoutineEntriesToday:
+          dhikr.dailyTotals[dhikrDayKey(now)]?.routineEntries ??
+          const <String>[],
       spiritualPrompt: _spiritualPromptSnapshot(
         l10n: l10n,
         bundle: spiritualBundle,
@@ -955,6 +1055,9 @@ class WatchActionReconciler {
       WatchActionType.dhikrIncrement => _reconcileDhikrIncrement(action),
       WatchActionType.dhikrReset => _reconcileDhikrReset(action),
       WatchActionType.dhikrSessionCompleted => _reconcileDhikrCompleted(action),
+      WatchActionType.dhikrRoutineCompleted => _reconcileDhikrRoutineCompleted(
+        action,
+      ),
       WatchActionType.postPrayerAdhkarCompleted => _simpleAck(
         action,
         WatchAckResultType.applied,
@@ -1408,6 +1511,80 @@ class WatchActionReconciler {
           action.createdAt,
       finishedAt: action.createdAt,
     );
+    return _persistAck(_simpleAck(action, WatchAckResultType.applied));
+  }
+
+  /// A routine finished on the watch: log it once as a routine session on
+  /// the phone (which awards the usual drop and XP and marks the routine
+  /// done for the day). Replays of the same run are ignored.
+  Future<WatchSyncAck> _reconcileDhikrRoutineCompleted(
+    WatchActionEnvelope action,
+  ) async {
+    final routineId = action.payload['routineId']?.toString() ?? '';
+    final count = _payloadInt(action.payload, 'count') ?? 0;
+    if (routineId.isEmpty || count <= 0) {
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Missing routineId or count',
+        ),
+      );
+    }
+    final startedAt =
+        DateTime.tryParse(action.payload['startedAt']?.toString() ?? '') ??
+        action.createdAt;
+    final finishedAt = action.createdAt.isBefore(startedAt)
+        ? startedAt
+        : action.createdAt;
+    final sessionKey = 'routine|$routineId|${startedAt.toIso8601String()}';
+    final ackService = _ref.read(watchSyncAckServiceProvider);
+    if (ackService.dhikrSession(sessionKey)?['completed'] == true) {
+      WatchSyncDiagnostics.log('dhikr_routine_duplicate', <String, Object?>{
+        'actionId': action.actionId,
+        'routineId': routineId,
+      });
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.ignoredDuplicate,
+          notes: 'Routine run already logged',
+        ),
+      );
+    }
+    final routine = _ref.read(dhikrRoutineByIdProvider(routineId));
+    final label =
+        routine?.sessionLabel ??
+        (action.payload['routineLabel']?.toString().trim().isNotEmpty == true
+            ? action.payload['routineLabel'].toString().trim()
+            : 'Custom routine');
+    final prayerId = action.payload['prayerId']?.toString();
+    _ref
+        .read(dhikrControllerProvider.notifier)
+        .logRoutineSession(
+          routineId: routineId,
+          phraseLabel: label,
+          count: count,
+          startedAt: startedAt,
+          finishedAt: finishedAt,
+          prayerId: prayerId == null || prayerId.isEmpty ? null : prayerId,
+        );
+    await _persistDhikrSession(<String, dynamic>{
+      'sessionId': sessionKey,
+      'logicalDate': action.logicalDate,
+      'mode': 'routine',
+      'targetCount': count,
+      'currentCount': count,
+      'startedAt': startedAt.toIso8601String(),
+      'updatedAt': finishedAt.toIso8601String(),
+      'completed': true,
+      'rewardApplied': true,
+    });
+    WatchSyncDiagnostics.log('dhikr_routine_applied', <String, Object?>{
+      'actionId': action.actionId,
+      'routineId': routineId,
+      'count': count,
+    });
     return _persistAck(_simpleAck(action, WatchAckResultType.applied));
   }
 

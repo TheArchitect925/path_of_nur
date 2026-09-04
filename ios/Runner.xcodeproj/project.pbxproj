@@ -107,6 +107,8 @@
 		A30000000000000000000027 /* TVDhikrModeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000027 /* TVDhikrModeCard.swift */; };
 		A30000000000000000000028 /* TVDhikrSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000028 /* TVDhikrSupportCard.swift */; };
 		A30000000000000000000029 /* TVDhikrScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000029 /* TVDhikrScreen.swift */; };
+		A30000000000000000000D01 /* TVDhikrRoutineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D01 /* TVDhikrRoutineData.swift */; };
+		A30000000000000000000D02 /* TVDhikrRoutinePlayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D02 /* TVDhikrRoutinePlayerScreen.swift */; };
 		A3000000000000000000002A /* TVKidsSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002A /* TVKidsSupportCard.swift */; };
 		A3000000000000000000002B /* TVKidsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002B /* TVKidsScreen.swift */; };
 		A3000000000000000000002C /* TVArabicLetterGroupCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002C /* TVArabicLetterGroupCard.swift */; };
@@ -343,6 +345,8 @@
 		A20000000000000000000027 /* TVDhikrModeCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrModeCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000028 /* TVDhikrSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrSupportCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000029 /* TVDhikrScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000D01 /* TVDhikrRoutineData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrRoutineData.swift; sourceTree = "<group>"; };
+		A20000000000000000000D02 /* TVDhikrRoutinePlayerScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrRoutinePlayerScreen.swift; sourceTree = "<group>"; };
 		A2000000000000000000002A /* TVKidsSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVKidsSupportCard.swift; sourceTree = "<group>"; };
 		A2000000000000000000002B /* TVKidsScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVKidsScreen.swift; sourceTree = "<group>"; };
 		A2000000000000000000002C /* TVArabicLetterGroupCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVArabicLetterGroupCard.swift; sourceTree = "<group>"; };
@@ -665,6 +669,7 @@
 				A20000000000000000000022 /* TVLearnScreen.swift */,
 				A20000000000000000000026 /* TVPrayerScreen.swift */,
 				A20000000000000000000029 /* TVDhikrScreen.swift */,
+				A20000000000000000000D02 /* TVDhikrRoutinePlayerScreen.swift */,
 				A2000000000000000000002B /* TVKidsScreen.swift */,
 			);
 			path = Screens;
@@ -729,6 +734,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000000000000000000009 /* TVSeedRepository.swift */,
+				A20000000000000000000D01 /* TVDhikrRoutineData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1325,6 +1331,8 @@
 				A30000000000000000000027 /* TVDhikrModeCard.swift in Sources */,
 				A30000000000000000000028 /* TVDhikrSupportCard.swift in Sources */,
 				A30000000000000000000029 /* TVDhikrScreen.swift in Sources */,
+				A30000000000000000000D01 /* TVDhikrRoutineData.swift in Sources */,
+				A30000000000000000000D02 /* TVDhikrRoutinePlayerScreen.swift in Sources */,
 				A3000000000000000000002A /* TVKidsSupportCard.swift in Sources */,
 				A3000000000000000000002B /* TVKidsScreen.swift in Sources */,
 				A3000000000000000000002C /* TVArabicLetterGroupCard.swift in Sources */,

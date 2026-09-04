@@ -138,3 +138,20 @@
 "watch.quran.ayahFormat" = "Aya %d";
 "watch.complication.nameOfDay.title" = "Name des Tages";
 "watch.complication.nameOfDay.description" = "Ein täglicher Name Allahs mit seiner Bedeutung.";
+
+"watch.dhikr.routines.title" = "Routinen";
+"watch.dhikr.routines.subtitle" = "Geführte Sets von Ihrem iPhone";
+"watch.dhikr.routines.empty" = "Öffnen Sie einmal das iPhone, um Ihre Routinen zu laden.";
+"watch.dhikr.routines.doneToday" = "Heute erledigt";
+"watch.dhikr.routines.continue" = "Fortsetzen";
+"watch.dhikr.routines.begin" = "Beginnen";
+"watch.dhikr.routines.undo" = "Rückgängig";
+"watch.dhikr.routines.skip" = "Schritt überspringen";
+"watch.dhikr.routines.leave" = "Verlassen";
+"watch.dhikr.routines.restart" = "Neu beginnen";
+"watch.dhikr.routines.complete.title" = "Routine abgeschlossen";
+"watch.dhikr.routines.complete.body" = "Auf dem iPhone mit dem heutigen Gedenken vermerkt.";
+"watch.dhikr.routines.tapToCount" = "Zum Zählen tippen";
+"watch.dhikr.routines.stepOfFormat" = "Schritt %d von %d";
+"watch.dhikr.routines.metaFormat" = "%d Adhkar • etwa %d Min.";
+"watch.dhikr.routines.ofTargetFormat" = "%d von %d";

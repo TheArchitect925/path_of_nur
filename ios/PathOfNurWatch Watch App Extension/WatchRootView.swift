@@ -36,6 +36,8 @@ struct WatchRootView: View {
       WatchNamesScreen()
     case .quranRemote:
       WatchQuranRemoteScreen()
+    case .dhikrRoutines:
+      WatchDhikrRoutinesScreen()
     }
   }
 }

@@ -67,6 +67,21 @@ final class TVAppViewModel: ObservableObject {
     selectedRoute = settingsViewModel.startupPreference.resolvedRoute(
       lastUsedRoute: profilesViewModel.routeForActiveProfile()
     )
+    #if targetEnvironment(simulator)
+    // Simulator-only, like TV_SAMPLE_THEME: open straight on a route so a
+    // screen can be screenshotted without driving the sidebar.
+    if let forced = ProcessInfo.processInfo.environment["TV_SAMPLE_ROUTE"],
+       let route = TVRoute(rawValue: forced) {
+      selectedRoute = route
+    }
+    if let section = ProcessInfo.processInfo.environment["TV_SAMPLE_SECTION"] {
+      markContentSectionFocused(section, for: selectedRoute)
+    }
+    if let routineId = ProcessInfo.processInfo.environment["TV_SAMPLE_ROUTINE"],
+       let routine = dhikrViewModel.routines.first(where: { $0.id == routineId }) {
+      dhikrViewModel.openRoutine(routine)
+    }
+    #endif
     quranViewModel.onDiagnosticsEvent = { [weak self] name, metadata in
       guard let self else { return }
       TVTelemetry.logEvent(name, metadata: metadata, userDefaults: self.userDefaults)
@@ -913,12 +928,185 @@ final class TVPrayerViewModel: ObservableObject {
 final class TVDhikrViewModel: ObservableObject {
   @Published private(set) var hero: TVHeroContent = TVSeedRepository.dhikrHero()
   @Published private(set) var modes: [TVDhikrModeCard] = TVSeedRepository.dhikrModes()
+  @Published private(set) var routines: [TVDhikrRoutine] = TVDhikrRoutineData.routines
+  @Published var isRoutinePlayerPresented = false
+  @Published private(set) var activeRoutine: TVDhikrRoutine?
+  @Published private(set) var routineStepIndex = 0
+  @Published private(set) var routineStepCount = 0
+  @Published private(set) var isRoutinePacing = false
+  @Published private(set) var routineCompletedAt: Date?
+  @Published private(set) var completedRoutineIdsToday: Set<String> = []
+  private var routineStartedAt: Date?
+  private var routinePaceTimer: Timer?
+  private static let completedRoutinesKey = "PathOfNurTV.dhikr.routinesCompleted"
+
+  var routinesTitle: String { tvLocalized("Routines") }
+
+  var routinesSubtitle: String {
+    tvLocalized("The same guided sets as the phone. Select one to play it phrase by phrase, on your own pace or the room's.")
+  }
+
+  var routineStep: TVDhikrRoutineStep? {
+    guard let routine = activeRoutine, routine.steps.indices.contains(routineStepIndex) else {
+      return nil
+    }
+    return routine.steps[routineStepIndex]
+  }
+
+  var routineNextStep: TVDhikrRoutineStep? {
+    guard let routine = activeRoutine else { return nil }
+    let next = routineStepIndex + 1
+    return routine.steps.indices.contains(next) ? routine.steps[next] : nil
+  }
+
+  var isRoutineComplete: Bool { routineCompletedAt != nil }
+
+  var routineElapsedLabel: String {
+    guard let startedAt = routineStartedAt else { return "0:00" }
+    let end = routineCompletedAt ?? Date()
+    let seconds = max(Int(end.timeIntervalSince(startedAt).rounded()), 0)
+    return String(format: "%d:%02d", seconds / 60, seconds % 60)
+  }
+
+  func isRoutineDoneToday(_ routine: TVDhikrRoutine) -> Bool {
+    completedRoutineIdsToday.contains(routine.id)
+  }
+
+  func openRoutine(_ routine: TVDhikrRoutine) {
+    stopRoutinePacing()
+    activeRoutine = routine
+    routineStepIndex = 0
+    routineStepCount = 0
+    routineCompletedAt = nil
+    routineStartedAt = Date()
+    isRoutinePlayerPresented = true
+  }
+
+  func closeRoutinePlayer() {
+    stopRoutinePacing()
+    isRoutinePlayerPresented = false
+    activeRoutine = nil
+    routineCompletedAt = nil
+  }
+
+  /// One remembrance: counts the current step, moves on when it is full.
+  func countRoutine() {
+    guard let routine = activeRoutine, let step = routineStep, !isRoutineComplete else { return }
+    let next = routineStepCount + 1
+    if next < step.count {
+      routineStepCount = next
+      return
+    }
+    let isLast = routineStepIndex >= routine.steps.count - 1
+    if isLast {
+      routineStepCount = step.count
+      completeRoutine(routine)
+    } else {
+      routineStepIndex += 1
+      routineStepCount = 0
+    }
+  }
+
+  func skipRoutineStep() {
+    guard let routine = activeRoutine, !isRoutineComplete else { return }
+    let isLast = routineStepIndex >= routine.steps.count - 1
+    if isLast {
+      completeRoutine(routine)
+    } else {
+      routineStepIndex += 1
+      routineStepCount = 0
+    }
+  }
+
+  func undoRoutine() {
+    guard let routine = activeRoutine, !isRoutineComplete else { return }
+    if routineStepCount > 0 {
+      routineStepCount -= 1
+    } else if routineStepIndex > 0 {
+      routineStepIndex -= 1
+      routineStepCount = max(routine.steps[routineStepIndex].count - 1, 0)
+    }
+  }
+
+  func restartRoutine() {
+    guard let routine = activeRoutine else { return }
+    openRoutine(routine)
+  }
+
+  /// Lets the room follow along without a remote in hand: one count every
+  /// few seconds, slower on the long duʿās.
+  func toggleRoutinePacing() {
+    if isRoutinePacing {
+      stopRoutinePacing()
+    } else {
+      startRoutinePacing()
+    }
+  }
+
+  private func startRoutinePacing() {
+    guard !isRoutineComplete else { return }
+    isRoutinePacing = true
+    scheduleNextRoutineTick()
+  }
+
+  private func scheduleNextRoutineTick() {
+    routinePaceTimer?.invalidate()
+    guard isRoutinePacing, let step = routineStep else { return }
+    let interval: TimeInterval = step.isLongText ? 18 : 3
+    routinePaceTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
+      guard let self, self.isRoutinePacing else { return }
+      self.countRoutine()
+      if self.isRoutineComplete {
+        self.stopRoutinePacing()
+      } else {
+        self.scheduleNextRoutineTick()
+      }
+    }
+  }
+
+  private func stopRoutinePacing() {
+    routinePaceTimer?.invalidate()
+    routinePaceTimer = nil
+    isRoutinePacing = false
+  }
+
+  private func completeRoutine(_ routine: TVDhikrRoutine) {
+    routineCompletedAt = Date()
+    stopRoutinePacing()
+    completedRoutineIdsToday.insert(routine.id)
+    persistCompletedRoutines()
+  }
+
+  private func todayKey() -> String {
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: Date())
+  }
+
+  private func loadCompletedRoutines() {
+    let stored = UserDefaults.standard.dictionary(forKey: Self.completedRoutinesKey)
+    guard let day = stored?["date"] as? String, day == todayKey(),
+          let ids = stored?["ids"] as? [String] else {
+      completedRoutineIdsToday = []
+      return
+    }
+    completedRoutineIdsToday = Set(ids)
+  }
+
+  private func persistCompletedRoutines() {
+    UserDefaults.standard.set(
+      ["date": todayKey(), "ids": Array(completedRoutineIdsToday).sorted()],
+      forKey: Self.completedRoutinesKey
+    )
+  }
   @Published private(set) var supportCards: [TVDhikrSupportCard] =
       TVSeedRepository.dhikrSupportCards()
   @Published private(set) var selectedModeId: String
 
   init() {
     selectedModeId = TVSeedRepository.dhikrModes().first?.id ?? ""
+    loadCompletedRoutines()
   }
 
   var modesTitle: String {
