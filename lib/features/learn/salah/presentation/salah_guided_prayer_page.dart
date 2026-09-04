@@ -17,7 +17,7 @@ import '../application/salah_guided_settings_provider.dart';
 import '../application/salah_sync_controller.dart';
 import '../application/salah_trainer_provider.dart';
 import '../models/salah_trainer_models.dart';
-import '../widgets/prayer_posture_animator.dart';
+import '../widgets/salah_posture_art.dart';
 import '../widgets/salah_trainer_widgets.dart';
 import '../widgets/synced_ayah_text.dart';
 import '../../../../core/theme/app_icons.dart';
@@ -353,13 +353,8 @@ class _StepCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: PrayerPostureAnimator(
-              posture: syncState.activePosture,
-              size: focus ? 200 : 160,
-            ),
-          ),
-          const SizedBox(height: 8),
+          SalahPostureArt(posture: syncState.activePosture),
+          const SizedBox(height: 12),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
