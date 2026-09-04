@@ -371,7 +371,10 @@ class _RecordReviewCard extends StatelessWidget {
                 record.promptArabic!,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(fontSize: 36, fontFamily: AppFonts.quranArabic),
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontFamily: AppFonts.quranArabic,
+                ),
               ),
             ),
           ],
@@ -525,7 +528,10 @@ class _MistakeReviewCard extends StatelessWidget {
                 item.promptArabic!,
                 textAlign: TextAlign.center,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(fontSize: 34, fontFamily: AppFonts.quranArabic),
+                style: const TextStyle(
+                  fontSize: 34,
+                  fontFamily: AppFonts.quranArabic,
+                ),
               ),
             ),
           ],

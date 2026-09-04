@@ -12,10 +12,7 @@ void main() {
 
     test('folds the Uthmani waw-dagger spelling to plain alef', () {
       // الصلوة in the mushaf is الصلاة in plain script.
-      expect(
-        normalizeQuranWordForGlossary('ٱلصَّلَوٰةَ'),
-        'الصلاة',
-      );
+      expect(normalizeQuranWordForGlossary('ٱلصَّلَوٰةَ'), 'الصلاة');
     });
   });
 
@@ -74,10 +71,7 @@ void main() {
     });
 
     test('an unknown word yields no chip at all', () {
-      expect(
-        buildWordGlosses('قَسْوَرَةٍ', glossary: const {}),
-        isEmpty,
-      );
+      expect(buildWordGlosses('قَسْوَرَةٍ', glossary: const {}), isEmpty);
     });
 
     test('covers a meaningful share of a long real surah', () {

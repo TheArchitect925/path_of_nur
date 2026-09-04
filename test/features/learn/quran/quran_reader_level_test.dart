@@ -57,17 +57,15 @@ void main() {
         .read(learningPathSelectionProvider.notifier)
         .setLevel(LearningPathLevel.beginner);
 
-    final seeded = container.read(quranReaderLevelControllerProvider)
+    final seeded = container
+        .read(quranReaderLevelControllerProvider)
         .maybeSeed();
 
     expect(seeded, QuranReaderLevel.newReader);
     final settings = container.read(quranReaderSettingsProvider);
     expect(settings.readerLevel, QuranReaderLevel.newReader);
     expect(settings.arabicScalePercent, 130);
-    expect(
-      settings.explanationDetailLevel,
-      QuranExplanationDetailLevel.simple,
-    );
+    expect(settings.explanationDetailLevel, QuranExplanationDetailLevel.simple);
     expect(container.read(quranAudioSettingsProvider).playbackSpeed, 0.7);
   });
 
@@ -82,7 +80,8 @@ void main() {
         .read(quranReaderSettingsProvider.notifier)
         .setCleanReadingMode(true);
 
-    final seeded = container.read(quranReaderLevelControllerProvider)
+    final seeded = container
+        .read(quranReaderLevelControllerProvider)
         .maybeSeed();
 
     expect(seeded, isNull);
