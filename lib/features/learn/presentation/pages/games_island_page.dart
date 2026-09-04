@@ -12,6 +12,7 @@ import '../data/games_island_catalog.dart';
 import '../models/game_discovery_models.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 
 class GamesIslandPage extends ConsumerStatefulWidget {
   const GamesIslandPage({super.key, this.initialSectionId});
@@ -234,38 +235,13 @@ class _BrowseAllCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
-      child: Row(
-        children: [
-          const Icon(Icons.travel_explore_rounded),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.learnGamesBrowseAllTitleText,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  resultCount > 0
-                      ? l10n.learnGamesSearchResultsCountText(resultCount)
-                      : l10n.learnGamesBrowseAllSubtitleText,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          FilledButton.tonal(
-            onPressed: () => context.pushNamed('learnGamesBrowseAll'),
-            child: Text(l10n.learnGamesBrowseAllActionText),
-          ),
-        ],
-      ),
+    return CompactListTile(
+      title: l10n.learnGamesBrowseAllTitleText,
+      subtitle: resultCount > 0
+          ? l10n.learnGamesSearchResultsCountText(resultCount)
+          : l10n.learnGamesBrowseAllSubtitleText,
+      leading: const Icon(Icons.travel_explore_rounded),
+      onTap: () => context.pushNamed('learnGamesBrowseAll'),
     );
   }
 }

@@ -9,6 +9,7 @@ import '../application/learn_progress_provider.dart';
 import '../data/learn_content_data.dart';
 import '../domain/learn_content_page_data.dart';
 import '../domain/learn_topic_category.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class LearnTopicLandingPage extends ConsumerWidget {
   const LearnTopicLandingPage({super.key, required this.category});
@@ -81,7 +82,7 @@ class _TopicTile extends ConsumerWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: const Color(0xFFD8C49A).withValues(alpha: 0.22),
+              color: context.palette.accent.withValues(alpha: 0.22),
             ),
             child: Icon(_topicIcon(category), size: 18),
           ),

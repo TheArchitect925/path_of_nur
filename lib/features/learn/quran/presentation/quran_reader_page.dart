@@ -494,18 +494,18 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 child: Row(
                   key: const ValueKey('quran-reader-tap-ayah-hint'),
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.touch_app_rounded,
                       size: 16,
-                      color: Color(0xFF6A5A4A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         l10n.quranReaderTapAyahHint,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12.5,
-                          color: Color(0xFF6A5A4A),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                     ),
@@ -634,7 +634,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: QuranPresentationStyle.translucentColor(
                         context,
-                        const Color(0xFF6A5A4A),
+                        context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ),
@@ -754,7 +754,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         fontWeight: FontWeight.w700,
                         color: QuranPresentationStyle.translucentColor(
                           context,
-                          const Color(0xFF6A5A4A),
+                          context.palette.onSurfaceSubtle,
                         ),
                       ),
                     ),
@@ -875,7 +875,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       fontWeight: FontWeight.w700,
                       color: QuranPresentationStyle.translucentColor(
                         context,
-                        const Color(0xFF6A5A4A),
+                        context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ),
@@ -904,7 +904,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       fontWeight: FontWeight.w700,
                       color: QuranPresentationStyle.translucentColor(
                         context,
-                        const Color(0xFF6A5A4A),
+                        context.palette.onSurfaceSubtle,
                       ),
                     ),
                   ),
@@ -993,10 +993,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     padding: const EdgeInsets.symmetric(vertical: 2),
                     child: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.tune_rounded,
                           size: 18,
-                          color: Color(0xFF6A5A4A),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                         const SizedBox(width: 8),
                         Expanded(
@@ -1010,7 +1010,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF6A5A4A),
+                            color: context.palette.onSurfaceSubtle,
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -1388,7 +1388,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       )
                       .requestReturnToCurrentAyah(),
                   icon: const Icon(Icons.my_location_rounded, size: 20),
-                  color: const Color(0xFF6A5A4A),
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ),
@@ -1514,10 +1514,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.search_rounded,
                     size: 18,
-                    color: Color(0xFF6A5A4A),
+                    color: context.palette.onSurfaceSubtle,
                   ),
                   const SizedBox(width: 8),
                   ConstrainedBox(
@@ -1561,7 +1561,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         Icons.keyboard_arrow_up_rounded,
                         size: 20,
                       ),
-                      color: const Color(0xFF6A5A4A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                     IconButton(
                       key: const ValueKey('quran-reader-search-next-button'),
@@ -1577,7 +1577,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         Icons.keyboard_arrow_down_rounded,
                         size: 20,
                       ),
-                      color: const Color(0xFF6A5A4A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                     IconButton(
                       key: const ValueKey('quran-reader-search-clear-button'),
@@ -1585,7 +1585,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       tooltip: l10n.quranReaderSearchClearAction,
                       onPressed: _clearActiveReaderSearch,
                       icon: const Icon(Icons.close_rounded, size: 18),
-                      color: const Color(0xFF6A5A4A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ],
                 ],
@@ -2735,9 +2735,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   const Spacer(),
                   Text(
                     '${effectivePlaybackSpeed.toStringAsFixed(2)}x',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: Color(0xFF6A5A4A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],
@@ -2760,8 +2760,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   alignment: Alignment.centerLeft,
                   child: Text(
                     l10n.quranReaderPlaybackSpeedLockedHint,
-                    style: const TextStyle(
-                      color: Color(0xFF6A5A4A),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       fontSize: 12,
                     ),
                   ),
@@ -2882,8 +2882,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 const SizedBox(height: 6),
                 Text(
                   l10n.quranLoopRangeHint,
-                  style: const TextStyle(
-                    color: Color(0xFF6A5A4A),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     fontSize: 12,
                   ),
                 ),
@@ -2946,8 +2946,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   const SizedBox(height: 8),
                   Text(
                     l10n.quranReaderAudioDownloadNote,
-                    style: const TextStyle(
-                      color: Color(0xFF6A5A4A),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       fontSize: 12,
                       height: 1.4,
                     ),
@@ -3012,16 +3012,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               const SizedBox(height: 8),
               Text(
                 l10n.quranDailyRevisionPlanLabel(revisionPlan.length),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF6A5A4A),
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 6),
               if (revisionPlan.isEmpty)
                 Text(
                   l10n.quranDailyRevisionEmpty,
-                  style: const TextStyle(color: Color(0xFF6A5A4A)),
+                  style: TextStyle(color: context.palette.onSurfaceSubtle),
                 )
               else
                 Wrap(
@@ -4081,7 +4081,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   SizedBox(height: 12),
                   Text(
                     l10n.quranReaderSourcesLaunchNote,
-                    style: TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
+                      height: 1.35,
+                    ),
                   ),
                 ],
               ),
@@ -4323,9 +4326,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   const SizedBox(height: 2),
                   Text(
                     l10n.quranReaderPracticeSurahBody,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12.5,
-                      color: Color(0xFF6A5A4A),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],

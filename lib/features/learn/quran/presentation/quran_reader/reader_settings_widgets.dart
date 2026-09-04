@@ -167,10 +167,10 @@ class _ReaderLevelChip extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(
+                Icon(
                   Icons.tune_rounded,
                   size: 15,
-                  color: Color(0xFF6A5A4A),
+                  color: context.palette.onSurfaceSubtle,
                 ),
                 const SizedBox(width: 5),
                 Text(

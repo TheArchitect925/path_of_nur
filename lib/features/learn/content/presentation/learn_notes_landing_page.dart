@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../journal/application/journal_provider.dart';
 import '../application/learn_notes_provider.dart';
 import 'learn_notes_localizations.dart';
@@ -13,6 +12,7 @@ import '../../shared/application/learn_unified_provider.dart';
 import '../application/learn_progress_provider.dart';
 import '../../quran/application/quran_providers.dart';
 import '../../quran/application/quran_reflections_provider.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class LearnNotesLandingPage extends ConsumerWidget {
   const LearnNotesLandingPage({super.key});
@@ -32,7 +32,6 @@ class LearnNotesLandingPage extends ConsumerWidget {
       headerIcon: Icons.sticky_note_2_outlined,
       title: l10n.learnNotesSectionTitle,
       subtitle: l10n.learnNotesSectionSubtitle,
-      quotePool: reflectionFocusedQuotePool,
       children: [
         PremiumCard(
           child: Text(
@@ -40,6 +39,10 @@ class LearnNotesLandingPage extends ConsumerWidget {
               learnSummary.startedCount,
               learnSummary.completedCount,
               learnSummary.favoriteCount,
+            ),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w600,
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
         ),
