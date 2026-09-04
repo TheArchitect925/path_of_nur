@@ -44425,4 +44425,15 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get dhikrInsightsObservationSteady =>
       'Eine beständige Woche. Behalten Sie den Rhythmus bei.';
+
+  @override
+  String get dhikrRoutineSleepTitle => 'Vor dem Schlafen';
+
+  @override
+  String dhikrRoutineSleepSubtitle(int count) {
+    return 'Nach ʿIsha · $count Adhkar';
+  }
+
+  @override
+  String get dhikrNowEyebrowSleep => 'Jetzt · vor dem Schlafen';
 }

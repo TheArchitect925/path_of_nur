@@ -10,7 +10,7 @@ import 'dhikr_routine_catalog.dart';
 import 'dhikr_routine_controller.dart';
 import 'prayer_controller.dart';
 
-enum DhikrNowKind { continueRoutine, afterSalah, morning, evening, free }
+enum DhikrNowKind { continueRoutine, afterSalah, morning, evening, sleep, free }
 
 /// What the dhikr landing puts in its "Now" card.
 class DhikrNowSuggestion {
@@ -59,6 +59,13 @@ class DhikrDayWindows {
     final start = asr ?? DateTime(now.year, now.month, now.day, 15);
     final end = isha ?? DateTime(now.year, now.month, now.day, 21);
     return !now.isBefore(start) && now.isBefore(end);
+  }
+
+  /// From ʿIsha until Fajr: the hours one goes to sleep in.
+  bool isNight(DateTime now) {
+    final start = isha ?? DateTime(now.year, now.month, now.day, 21);
+    final dawn = fajr ?? DateTime(now.year, now.month, now.day, 4);
+    return !now.isBefore(start) || now.isBefore(dawn);
   }
 }
 
@@ -115,6 +122,16 @@ DhikrNowSuggestion resolveDhikrNowSuggestion({
       kind: DhikrNowKind.evening,
       routineId: kDhikrRoutineEveningId,
       doneToday: eveningDone,
+    );
+  }
+
+  final sleepDone = today?.hasRoutine(kDhikrRoutineSleepId) ?? false;
+  if (availableRoutineIds.contains(kDhikrRoutineSleepId) &&
+      windows.isNight(now)) {
+    return DhikrNowSuggestion(
+      kind: DhikrNowKind.sleep,
+      routineId: kDhikrRoutineSleepId,
+      doneToday: sleepDone,
     );
   }
 

@@ -39,6 +39,7 @@ void main() {
         kDhikrRoutineAfterSalahId,
         kDhikrRoutineMorningId,
         kDhikrRoutineEveningId,
+        kDhikrRoutineSleepId,
       ]);
 
       final morning = routines[1];
@@ -53,10 +54,28 @@ void main() {
       expect(evening.steps, hasLength(5));
       expect(evening.steps.map((step) => step.count), [1, 1, 1, 3, 3]);
       expect(
-        evening.steps.map((step) => step.id).toSet().intersection(
-          morning.steps.map((step) => step.id).toSet(),
-        ),
+        evening.steps
+            .map((step) => step.id)
+            .toSet()
+            .intersection(morning.steps.map((step) => step.id).toSet()),
         isEmpty,
+      );
+    });
+
+    test('before sleep recites the Quran first and skips the waking duas', () {
+      final sleep = buildDhikrRoutines(duaSeedDataset).last;
+      expect(sleep.kind, DhikrRoutineKind.sleep);
+      expect(sleep.steps.map((step) => step.id), [
+        'stub_011_daily_life_sleep',
+        'stub_012_daily_life_sleep',
+        'stub_013_daily_life_sleep',
+        'sunnah_before_sleep',
+        'sunnah_bedtime_surrender_dua',
+      ]);
+      expect(sleep.steps.map((step) => step.count), [1, 1, 3, 1, 1]);
+      expect(
+        sleep.steps.any((step) => step.title.toLowerCase().contains('waking')),
+        isFalse,
       );
     });
 
@@ -66,6 +85,7 @@ void main() {
         'After-salah tasbih',
         'Morning adhkar',
         'Evening adhkar',
+        'Before-sleep adhkar',
       ]);
     });
   });

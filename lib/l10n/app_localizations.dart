@@ -73051,6 +73051,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A steady week. Keep the rhythm.'**
   String get dhikrInsightsObservationSteady;
+
+  /// No description provided for @dhikrRoutineSleepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Before sleep'**
+  String get dhikrRoutineSleepTitle;
+
+  /// No description provided for @dhikrRoutineSleepSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'After ʿIsha · {count} adhkar'**
+  String dhikrRoutineSleepSubtitle(int count);
+
+  /// No description provided for @dhikrNowEyebrowSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Now · before sleep'**
+  String get dhikrNowEyebrowSleep;
 }
 
 class _AppLocalizationsDelegate

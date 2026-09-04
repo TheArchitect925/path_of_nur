@@ -19129,5 +19129,8 @@
   "dhikrInsightsRoutineRuns": "{done} von {total} Gebeten",
   "dhikrInsightsFreeSessions": "{count} Sitzungen",
   "dhikrInsightsObservationQuiet": "{routine} ist diese Woche die stille Lücke. Es dauert etwa {minutes} Min.",
-  "dhikrInsightsObservationSteady": "Eine beständige Woche. Behalten Sie den Rhythmus bei."
+  "dhikrInsightsObservationSteady": "Eine beständige Woche. Behalten Sie den Rhythmus bei.",
+  "dhikrRoutineSleepTitle": "Vor dem Schlafen",
+  "dhikrRoutineSleepSubtitle": "Nach ʿIsha · {count} Adhkar",
+  "dhikrNowEyebrowSleep": "Jetzt · vor dem Schlafen"
 }

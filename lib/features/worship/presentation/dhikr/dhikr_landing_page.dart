@@ -125,6 +125,8 @@ class _DhikrNowCard extends ConsumerWidget {
         eyebrow = l10n.dhikrNowEyebrowMorning;
       case DhikrNowKind.evening:
         eyebrow = l10n.dhikrNowEyebrowEvening;
+      case DhikrNowKind.sleep:
+        eyebrow = l10n.dhikrNowEyebrowSleep;
       case DhikrNowKind.free:
         eyebrow = l10n.dhikrNowEyebrowAnytime;
     }

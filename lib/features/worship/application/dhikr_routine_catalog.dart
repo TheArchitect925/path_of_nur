@@ -8,6 +8,7 @@ import '../domain/dhikr_routine.dart';
 const String kDhikrRoutineAfterSalahId = 'after-salah';
 const String kDhikrRoutineMorningId = 'morning';
 const String kDhikrRoutineEveningId = 'evening';
+const String kDhikrRoutineSleepId = 'sleep';
 
 /// Reads a repeat count out of a duʿā's "when to say" note. The seed writes
 /// these as prose ("Three times in the morning."), so the routine builder
@@ -89,9 +90,44 @@ List<DhikrRoutineStep> _stepsFromDuas(
   ];
 }
 
-/// Builds the routines the dhikr hub offers. Morning and evening reuse the
-/// sourced adhkar already seeded in the Duas library, so they only appear
-/// once that dataset has loaded.
+/// The bedtime set: what the Duas library files under `sleep`, minus the
+/// waking duʿās, with the Qur'anic recitations (Āyat al-Kursī, the closing
+/// verses of al-Baqarah, the three Quls) before the spoken ones.
+List<DhikrRoutineStep> _sleepSteps(Iterable<DuaItem> items) {
+  bool isWaking(DuaItem item) {
+    final text = '${item.title} ${item.whenToSay}'.toLowerCase();
+    return item.tags.contains('morning') || text.contains('wak');
+  }
+
+  final chosen = <DuaItem>[
+    for (final item in items)
+      if (item.subcategory == 'sleep' &&
+          item.tags.contains('sleep') &&
+          item.arabic.trim().isNotEmpty &&
+          !isWaking(item))
+        item,
+  ];
+  final ordered = <DuaItem>[
+    ...chosen.where((item) => item.tags.contains('quran')),
+    ...chosen.where((item) => !item.tags.contains('quran')),
+  ];
+  return <DhikrRoutineStep>[
+    for (final item in ordered)
+      DhikrRoutineStep(
+        id: item.id,
+        title: item.title,
+        arabic: item.arabic,
+        transliteration: item.transliteration,
+        translation: item.translation,
+        count: parseDhikrRepeatCount(item.whenToSay),
+        sourceRef: item.sourceRef,
+      ),
+  ];
+}
+
+/// Builds the routines the dhikr hub offers. Morning, evening and before
+/// sleep reuse the sourced adhkar already seeded in the Duas library, so
+/// they only appear once that dataset has loaded.
 List<DhikrRoutine> buildDhikrRoutines(DuaDataset? dataset) {
   final routines = <DhikrRoutine>[buildAfterSalahRoutine()];
   if (dataset == null) return routines;
@@ -112,6 +148,16 @@ List<DhikrRoutine> buildDhikrRoutines(DuaDataset? dataset) {
         id: kDhikrRoutineEveningId,
         kind: DhikrRoutineKind.evening,
         steps: evening,
+      ),
+    );
+  }
+  final sleep = _sleepSteps(dataset.items);
+  if (sleep.isNotEmpty) {
+    routines.add(
+      DhikrRoutine(
+        id: kDhikrRoutineSleepId,
+        kind: DhikrRoutineKind.sleep,
+        steps: sleep,
       ),
     );
   }

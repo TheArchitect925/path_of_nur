@@ -17,6 +17,7 @@ void main() {
     kDhikrRoutineAfterSalahId,
     kDhikrRoutineMorningId,
     kDhikrRoutineEveningId,
+    kDhikrRoutineSleepId,
   };
 
   DhikrNowSuggestion resolve({
@@ -93,7 +94,7 @@ void main() {
   test('morning window runs from Fajr to noon and remembers completion', () {
     expect(
       resolve(now: day.add(const Duration(hours: 4))).kind,
-      DhikrNowKind.afterSalah,
+      DhikrNowKind.sleep,
     );
     final morning = resolve(now: day.add(const Duration(hours: 6)));
     expect(morning.kind, DhikrNowKind.morning);
@@ -122,8 +123,41 @@ void main() {
     );
     expect(
       resolve(now: day.add(const Duration(hours: 22))).kind,
-      DhikrNowKind.afterSalah,
+      DhikrNowKind.sleep,
     );
+  });
+
+  test('night window runs from Isha until Fajr and remembers completion', () {
+    final late = resolve(now: day.add(const Duration(hours: 23)));
+    expect(late.kind, DhikrNowKind.sleep);
+    expect(late.doneToday, isFalse);
+    expect(
+      resolve(now: day.add(const Duration(hours: 2))).kind,
+      DhikrNowKind.sleep,
+    );
+    expect(
+      resolve(now: day.add(const Duration(hours: 4, minutes: 30))).kind,
+      DhikrNowKind.sleep,
+    );
+    expect(
+      resolve(now: day.add(const Duration(hours: 5, minutes: 30))).kind,
+      DhikrNowKind.morning,
+    );
+    final done = resolve(
+      now: day.add(const Duration(hours: 23)),
+      today: const DhikrDayTotal(
+        dateKey: '2026-09-04',
+        count: 7,
+        sessions: 1,
+        routineEntries: ['sleep'],
+      ),
+    );
+    expect(done.doneToday, isTrue);
+    final without = resolve(
+      now: day.add(const Duration(hours: 23)),
+      available: const {kDhikrRoutineAfterSalahId, kDhikrRoutineEveningId},
+    );
+    expect(without.kind, DhikrNowKind.afterSalah);
   });
 
   test('without any routine the card offers free count', () {
@@ -140,5 +174,8 @@ void main() {
     expect(fallback.isMorning(day.add(const Duration(hours: 13))), isFalse);
     expect(fallback.isEvening(day.add(const Duration(hours: 18))), isTrue);
     expect(fallback.isEvening(day.add(const Duration(hours: 22))), isFalse);
+    expect(fallback.isNight(day.add(const Duration(hours: 22))), isTrue);
+    expect(fallback.isNight(day.add(const Duration(hours: 3))), isTrue);
+    expect(fallback.isNight(day.add(const Duration(hours: 7))), isFalse);
   });
 }

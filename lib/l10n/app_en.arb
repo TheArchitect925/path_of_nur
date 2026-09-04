@@ -19681,5 +19681,15 @@
       }
     }
   },
-  "dhikrInsightsObservationSteady": "A steady week. Keep the rhythm."
+  "dhikrInsightsObservationSteady": "A steady week. Keep the rhythm.",
+  "dhikrRoutineSleepTitle": "Before sleep",
+  "dhikrRoutineSleepSubtitle": "After ʿIsha · {count} adhkar",
+  "@dhikrRoutineSleepSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dhikrNowEyebrowSleep": "Now · before sleep"
 }

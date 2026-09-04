@@ -13,6 +13,8 @@ String dhikrRoutineTitle(AppLocalizations l10n, DhikrRoutineKind kind) {
       return l10n.dhikrRoutineMorningTitle;
     case DhikrRoutineKind.evening:
       return l10n.dhikrRoutineEveningTitle;
+    case DhikrRoutineKind.sleep:
+      return l10n.dhikrRoutineSleepTitle;
   }
 }
 
@@ -24,6 +26,8 @@ String dhikrRoutineSubtitle(AppLocalizations l10n, DhikrRoutine routine) {
       return l10n.dhikrRoutineMorningSubtitle(routine.steps.length);
     case DhikrRoutineKind.evening:
       return l10n.dhikrRoutineEveningSubtitle(routine.steps.length);
+    case DhikrRoutineKind.sleep:
+      return l10n.dhikrRoutineSleepSubtitle(routine.steps.length);
   }
 }
 
@@ -35,6 +39,8 @@ IconData dhikrRoutineIcon(DhikrRoutineKind kind) {
       return Icons.wb_sunny_rounded;
     case DhikrRoutineKind.evening:
       return Icons.nights_stay_rounded;
+    case DhikrRoutineKind.sleep:
+      return Icons.bedtime_rounded;
   }
 }
 
@@ -48,6 +54,8 @@ String localizedDhikrSessionLabel(AppLocalizations l10n, String label) {
       return l10n.dhikrRoutineMorningTitle;
     case 'Evening adhkar':
       return l10n.dhikrRoutineEveningTitle;
+    case 'Before-sleep adhkar':
+      return l10n.dhikrRoutineSleepTitle;
     case 'Post-Salah Dhikr':
       return l10n.dhikrSessionLabelPostSalah;
     default:

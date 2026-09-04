@@ -1,6 +1,6 @@
 /// A guided dhikr routine: an ordered list of (phrase, repeat count) steps
 /// that the counter advances through on its own.
-enum DhikrRoutineKind { afterSalah, morning, evening }
+enum DhikrRoutineKind { afterSalah, morning, evening, sleep }
 
 class DhikrRoutineStep {
   const DhikrRoutineStep({
@@ -61,6 +61,8 @@ class DhikrRoutine {
         return 'Morning adhkar';
       case DhikrRoutineKind.evening:
         return 'Evening adhkar';
+      case DhikrRoutineKind.sleep:
+        return 'Before-sleep adhkar';
     }
   }
 }
