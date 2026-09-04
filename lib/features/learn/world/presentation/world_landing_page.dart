@@ -15,6 +15,7 @@ import '../data/world_creation_data.dart';
 import '../domain/world_creation_models.dart';
 import 'widgets/world_creation_cards.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The landing's four destinations. [id] is what appears in the route, so
 /// these values are part of the URL contract and must not be renamed freely.
@@ -65,7 +66,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     final section = _WorldHubSection.fromId(widget.section);
 
     return AppPageScaffold(
-      headerIcon: Icons.public_rounded,
+      headerIcon: AppIcons.world,
       title: section == null
           ? l10n.worldLandingTitle
           : _sectionLabel(l10n, section),
@@ -212,7 +213,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                     ),
                     _ExploreActionData(
                       title: l10n.worldLandingSignsExplorerAction,
-                      icon: Icons.hub_outlined,
+                      icon: Icons.hub_rounded,
                       onTap: () => context.pushNamed('worldSignsExplorer'),
                     ),
                     _ExploreActionData(
@@ -285,7 +286,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                 FilledButton.tonalIcon(
                   onPressed: () =>
                       context.pushNamed('worldCreationReflectionMode'),
-                  icon: const Icon(Icons.self_improvement_rounded),
+                  icon: const Icon(AppIcons.reflection),
                   label: Text(l10n.worldLandingStartReflectionModeAction),
                 ),
               ],
@@ -373,7 +374,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
       case _WorldHubSection.explore:
         return Icons.travel_explore_rounded;
       case _WorldHubSection.reflection:
-        return Icons.self_improvement_rounded;
+        return AppIcons.reflection;
       case _WorldHubSection.scientists:
         return Icons.science_rounded;
     }

@@ -10,6 +10,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_khatm_provider.dart';
 import '../application/quran_providers.dart';
 import '../domain/quran_khatm_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The whole-Qur'an reading plan: pick a pace, see today's portion, and keep
 /// a khatm moving. Replaces the old manual Ramadan juz slider.
@@ -22,7 +23,7 @@ class QuranKhatmPlanPage extends ConsumerWidget {
     final status = ref.watch(quranKhatmStatusProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.flag_circle_outlined,
+      headerIcon: AppIcons.readingPlan,
       title: l10n.quranKhatmPageTitle,
       subtitle: l10n.quranKhatmPageSubtitle,
       children: status == null

@@ -16,6 +16,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
 import '../domain/divine_life_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum DivineLifeTab { lessons, themes, situations, reflection }
 
@@ -167,7 +168,7 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.lightbulb_rounded,
+      headerIcon: AppIcons.lessons,
       title: l10n.learnCategoryDivineLifeLessonsTitle,
       subtitle: l10n.learnCategoryDivineLifeLessonsSubtitle,
       children: [
@@ -405,7 +406,7 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
       case DivineLifeTab.situations:
         return Icons.emoji_people_rounded;
       case DivineLifeTab.reflection:
-        return Icons.self_improvement_rounded;
+        return AppIcons.reflection;
     }
   }
 

@@ -94,7 +94,7 @@ class QuranDailyReflectionCard extends ConsumerWidget {
             ),
             if (summary.currentStreak > 0)
               _Badge(
-                icon: Icons.local_fire_department_outlined,
+                icon: Icons.local_fire_department_rounded,
                 label: l10n.quranDailyReflectionStreakValue(
                   summary.currentStreak,
                 ),
@@ -196,7 +196,7 @@ class QuranDailyReflectionCard extends ConsumerWidget {
                 },
                 icon: Icon(
                   savedEntry == null
-                      ? Icons.bookmark_add_outlined
+                      ? Icons.bookmark_add_rounded
                       : Icons.bookmark_rounded,
                 ),
                 label: Text(
@@ -385,7 +385,7 @@ class _InsightLine extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.only(top: 4),
-          child: Icon(Icons.circle, size: 8),
+          child: Icon(Icons.circle_rounded, size: 8),
         ),
         const SizedBox(width: 10),
         Expanded(

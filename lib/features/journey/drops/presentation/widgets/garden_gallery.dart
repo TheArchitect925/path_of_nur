@@ -8,6 +8,7 @@ import '../../application/journey_drops_providers.dart';
 import '../../domain/garden_asset_paths.dart';
 import '../../domain/journey_drops_models.dart';
 import '../garden_image_viewer_page.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class GardenGallery extends ConsumerWidget {
   const GardenGallery({super.key});
@@ -220,7 +221,7 @@ class _GardenLockedPanel extends StatelessWidget {
       ),
       child: Center(
         child: Icon(
-          Icons.spa_outlined,
+          AppIcons.reflection,
           size: 30,
           color: const Color(0xFF6A5A4A).withValues(alpha: 0.32),
         ),

@@ -9,6 +9,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/khusu_settings_controller.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class KhusuSection extends ConsumerWidget {
   const KhusuSection({super.key});
@@ -42,19 +43,19 @@ class KhusuSection extends ConsumerWidget {
         ),
         const SizedBox(height: 14),
         _FocusCard(
-          icon: Icons.spa_outlined,
+          icon: AppIcons.khushu,
           title: l10n.khusuSalahFocusTitle,
           subtitle: l10n.khusuSalahFocusSubtitle,
         ),
         const SizedBox(height: 10),
         _FocusCard(
-          icon: Icons.auto_awesome,
+          icon: Icons.auto_awesome_rounded,
           title: l10n.khusuDhikrFocusTitle,
           subtitle: l10n.khusuDhikrFocusSubtitle,
         ),
         const SizedBox(height: 10),
         _FocusCard(
-          icon: Icons.pause_circle_filled_outlined,
+          icon: Icons.pause_circle_filled_rounded,
           title: l10n.khusuReflectionPauseTitle,
           subtitle: l10n.khusuReflectionPauseSubtitle,
         ),

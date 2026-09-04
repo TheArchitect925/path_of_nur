@@ -12,6 +12,7 @@ import '../../application/fasting_controller.dart';
 import '../../application/fasting_insights_provider.dart';
 import '../../domain/fasting_status.dart';
 import '../../domain/fasting_type.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class FastingSection extends ConsumerWidget {
   const FastingSection({super.key});
@@ -111,7 +112,7 @@ class FastingSection extends ConsumerWidget {
                     radius: 17,
                     backgroundColor: context.palette.success,
                     child: Icon(
-                      Icons.spa_outlined,
+                      AppIcons.reflection,
                       size: 18,
                       color: context.palette.onSurface,
                     ),
@@ -263,7 +264,7 @@ class _FastingRhythmCard extends ConsumerWidget {
         Row(
           children: [
             Icon(
-              Icons.tips_and_updates_outlined,
+              Icons.tips_and_updates_rounded,
               size: 18,
               color: context.palette.accentSoft,
             ),

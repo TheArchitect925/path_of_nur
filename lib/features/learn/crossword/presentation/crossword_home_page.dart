@@ -17,6 +17,7 @@ import '../application/crossword_progress_provider.dart';
 import '../application/crossword_repository.dart';
 import '../domain/crossword_models.dart';
 import 'crossword_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class CrosswordHomePage extends ConsumerWidget {
   const CrosswordHomePage({super.key});
@@ -36,7 +37,7 @@ class CrosswordHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.grid_view_rounded,
+      headerIcon: AppIcons.crossword,
       title: l10n.crosswordHomeTitle,
       subtitle: l10n.crosswordHomeSubtitle,
       children: [

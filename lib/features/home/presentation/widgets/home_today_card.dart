@@ -13,6 +13,7 @@ import '../../../learn/quran/application/quran_spiritual_moment_provider.dart';
 import '../../../learn/quran/domain/quran_personalization_models.dart';
 import '../../../learn/quran/domain/quran_spiritual_moment_models.dart';
 import '../../../learn/quran/presentation/widgets/quran_daily_reflection_card.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The one "Today" unit on the Mihrab Home. The daily reflection is the
 /// primary content; the personalized recommendation and spiritual moment —
@@ -72,7 +73,7 @@ class HomeTodayCard extends ConsumerWidget {
                 ),
               if (spiritualMoment != null)
                 _TodayFollowUpChip(
-                  icon: Icons.self_improvement_rounded,
+                  icon: AppIcons.reflection,
                   label: l10n.homeTodayMomentChip(
                     spiritualMoment!.primary.ref.locationLabel,
                   ),

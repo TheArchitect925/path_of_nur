@@ -21,6 +21,7 @@ import '../application/hadith_path_quiz_service.dart';
 import '../domain/hadith_foundation_models.dart';
 import '../domain/hadith_learning_path.dart';
 import 'widgets/hadith_content_block.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _HadithTab { themes, collections, saved, daily, review, paths }
 
@@ -91,7 +92,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     final reviewState = ref.watch(hadithQuizReviewControllerProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: AppIcons.hadith,
       title: l10n.hadithPageTitle,
       subtitle: l10n.hadithPageSubtitle,
       quote: _entryQuote,
@@ -487,7 +488,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                 FilledButton.tonalIcon(
                   onPressed: () =>
                       _openThemeReviewSelector(context, ref, themes),
-                  icon: const Icon(Icons.palette_outlined),
+                  icon: const Icon(Icons.palette_rounded),
                   label: Text(l10n.hadithActionReviewByTheme),
                 ),
                 const SizedBox(height: 8),

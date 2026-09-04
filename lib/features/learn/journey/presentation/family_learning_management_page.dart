@@ -57,7 +57,7 @@ class _FamilyLearningManagementPageState
           PremiumCard(
             child: Row(
               children: [
-                const CircleAvatar(child: Icon(Icons.verified_user_outlined)),
+                const CircleAvatar(child: Icon(Icons.verified_user_rounded)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -185,7 +185,7 @@ class _FamilyLearningManagementPageState
                           ),
                           IconButton(
                             onPressed: () => _showEditChildSheet(child),
-                            icon: const Icon(Icons.edit_outlined),
+                            icon: const Icon(Icons.edit_rounded),
                             tooltip: l10n.familyLearningEditChildAction,
                           ),
                         ],

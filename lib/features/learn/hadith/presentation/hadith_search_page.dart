@@ -547,7 +547,7 @@ class _HadithSearchResultCard extends StatelessWidget {
                   IconButton(
                     onPressed: onShare,
                     tooltip: l10n.hadithActionShare,
-                    icon: const Icon(Icons.share_outlined),
+                    icon: const Icon(Icons.share_rounded),
                   ),
                 ],
               ),

@@ -19,6 +19,7 @@ import '../domain/family_learning_models.dart';
 import '../domain/learning_journey_models.dart';
 import '../domain/learning_path_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyHomePage extends ConsumerWidget {
   const LearningJourneyHomePage({super.key});
@@ -128,7 +129,7 @@ class LearningJourneyHomePage extends ConsumerWidget {
         ? l10n.learningPathTodayLightBadge
         : _localizedTodayLightBadge(todayLight.kind, l10n);
     return LearnHubPageScaffold(
-      headerIcon: Icons.hub_rounded,
+      headerIcon: AppIcons.journeys,
       title: l10n.learningJourneyHomeTitle,
       subtitle: l10n.learningJourneyHomeSubtitle,
       children: [

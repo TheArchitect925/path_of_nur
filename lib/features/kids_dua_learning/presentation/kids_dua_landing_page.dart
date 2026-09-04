@@ -12,6 +12,7 @@ import '../application/kids_dua_experience_provider.dart';
 import '../application/kids_dua_my_day_provider.dart';
 import '../application/kids_dua_story_repository.dart';
 import '../domain/kids_dua_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 class KidsDuaLandingPage extends ConsumerWidget {
   const KidsDuaLandingPage({super.key});
@@ -30,7 +31,7 @@ class KidsDuaLandingPage extends ConsumerWidget {
     final stories = ref.watch(kidsDuaStoriesProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.volunteer_activism_rounded,
+      headerIcon: AppIcons.dua,
       title: l10n.kidsDuaLandingTitle,
       subtitle: l10n.kidsDuaLandingSubtitle,
       children: [

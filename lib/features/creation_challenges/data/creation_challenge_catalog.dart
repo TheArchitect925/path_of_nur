@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../creation_explorer/domain/creation_explorer_models.dart';
 import '../domain/creation_challenge_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 CreationChallenge _challenge({
   required String id,
@@ -263,7 +264,7 @@ final creationChallengePool = <CreationChallenge>[
         'Look at the early sky before sunrise and notice its calm change.',
     type: CreationChallengeType.observe,
     rule: CreationChallengeRuleType.manualConfirm,
-    icon: Icons.wb_sunny_outlined,
+    icon: Icons.wb_sunny_rounded,
     category: CreationCategoryId.sky,
     verseId: 'creation_sky_3190',
     difficulty: CreationChallengeDifficulty.steady,
@@ -407,7 +408,7 @@ final creationChallengePool = <CreationChallenge>[
         'Take one undistracted minute to observe any part of creation around you.',
     type: CreationChallengeType.observe,
     rule: CreationChallengeRuleType.manualConfirm,
-    icon: Icons.self_improvement_rounded,
+    icon: AppIcons.reflection,
     verseId: 'creation_sky_3190',
   ),
   _challenge(

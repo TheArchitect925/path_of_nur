@@ -254,7 +254,7 @@ class QuranWordDetailPage extends ConsumerWidget {
                       transliterationScale: transliterationScale,
                       translationScale: translationScale,
                     ),
-                    icon: const Icon(Icons.menu_book_outlined),
+                    icon: const Icon(Icons.menu_book_rounded),
                     label: Text(
                       l10n.batch9QuranWordsViewOccurrences(
                         usageSummary.ayahCount,

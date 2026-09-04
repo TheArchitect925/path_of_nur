@@ -16,6 +16,7 @@ import '../data/learning_path_registry.dart';
 import '../data/learning_journey_localized_metadata.dart';
 import '../domain/learning_journey_models.dart';
 import '../domain/learning_path_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The one spine: the leveled learning path with its phases laid out top to
 /// bottom. Completed phases collapse, the current phase opens with its
@@ -30,7 +31,7 @@ class LearningPathDetailPage extends ConsumerWidget {
 
     if (pathState == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.route_rounded,
+        headerIcon: AppIcons.path,
         title: l10n.learnPathDetailTitle,
         subtitle: l10n.learnLandingChoosePathSubtitle,
         children: [
@@ -39,7 +40,7 @@ class LearningPathDetailPage extends ConsumerWidget {
             eyebrow: l10n.learnLandingPathEyebrow,
             title: l10n.learnLandingChoosePathTitle,
             subtitle: l10n.learnLandingChoosePathSubtitle,
-            fallbackIcon: Icons.flag_rounded,
+            fallbackIcon: AppIcons.goal,
             fallbackColor: Theme.of(context).colorScheme.primary,
             aspectRatio: 16 / 9,
             onTap: () => context.pushNamed('learnLearningPath'),
@@ -50,7 +51,7 @@ class LearningPathDetailPage extends ConsumerWidget {
 
     final path = pathState.path;
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: l10n.learnPathDetailTitle,
       subtitle: LearningPathRegistry.localizedPathDescription(l10n, path),
       children: [
@@ -62,7 +63,7 @@ class LearningPathDetailPage extends ConsumerWidget {
             pathState.phaseIndex + 1,
             path.phases.length,
           ),
-          fallbackIcon: Icons.route_rounded,
+          fallbackIcon: AppIcons.path,
           fallbackColor: Theme.of(context).colorScheme.primary,
           aspectRatio: 16 / 9,
         ),
@@ -119,7 +120,7 @@ class _PhaseTile extends ConsumerWidget {
             ? Icons.check_circle_rounded
             : isCurrent
             ? Icons.play_circle_outline_rounded
-            : Icons.circle_outlined,
+            : Icons.radio_button_unchecked_rounded,
         color: isCompleted || isCurrent
             ? accent
             : Theme.of(context).colorScheme.outline,
@@ -156,7 +157,7 @@ class _PhaseTile extends ConsumerWidget {
                 leading: Icon(
                   completedJourneyIds.contains(journey.id)
                       ? Icons.check_circle_rounded
-                      : Icons.circle_outlined,
+                      : Icons.radio_button_unchecked_rounded,
                   size: 20,
                   color: completedJourneyIds.contains(journey.id)
                       ? accent
@@ -177,7 +178,7 @@ class _PhaseTile extends ConsumerWidget {
             ),
           if (phase.triviaPathId != null)
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.quiz_rounded),
+              leading: const HubLeadingIcon(AppIcons.quiz),
               title: l10n.learnPathTestYourselfTitle,
               subtitle: l10n.learnPathTestYourselfSubtitle,
               onTap: () => context.pushNamed(
@@ -211,10 +212,10 @@ class _GuidedPathRow extends ConsumerWidget {
     final artAsset = guidedPathArtAsset(pathId);
     return CompactListTile(
       leading: artAsset == null
-          ? const HubLeadingIcon(Icons.flag_rounded)
+          ? const HubLeadingIcon(AppIcons.goal)
           : ArtLeadingThumb(
               imageAsset: artAsset,
-              fallbackIcon: Icons.flag_rounded,
+              fallbackIcon: AppIcons.goal,
               fallbackColor: Theme.of(context).colorScheme.primary,
               size: 44,
             ),

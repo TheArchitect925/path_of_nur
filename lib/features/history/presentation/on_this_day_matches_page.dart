@@ -88,7 +88,7 @@ class _EmptyTodayMatchesState extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 32),
         child: Column(
           children: [
-            const Icon(Icons.history_edu_outlined, size: 42),
+            const Icon(Icons.history_edu_rounded, size: 42),
             const SizedBox(height: 12),
             Text(
               l10n.historyEmptyTodayTitle,

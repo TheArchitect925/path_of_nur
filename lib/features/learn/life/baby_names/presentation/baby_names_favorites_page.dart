@@ -123,7 +123,7 @@ class _BabyNamesFavoritesPageState
                       '${name.meaning}${name.isQuranic ? ' • Quranic' : ''}',
                     ),
                     trailing: IconButton(
-                      icon: const Icon(Icons.favorite),
+                      icon: const Icon(Icons.favorite_rounded),
                       onPressed: () => controller.toggleFavorite(name.id),
                     ),
                     onTap: () => context.pushNamed(

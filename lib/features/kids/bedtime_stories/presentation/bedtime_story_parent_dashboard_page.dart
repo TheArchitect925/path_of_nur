@@ -11,6 +11,7 @@ import '../application/bedtime_active_learner_service.dart';
 import '../application/bedtime_story_parent_dashboard_service.dart';
 import '../domain/bedtime_story_learning_models.dart';
 import '../domain/bedtime_story_parent_dashboard_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class BedtimeStoryParentDashboardPage extends ConsumerWidget {
   const BedtimeStoryParentDashboardPage({super.key});
@@ -23,7 +24,7 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
     final learners = ref.watch(bedtimeAvailableLearnersProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
+      headerIcon: AppIcons.family,
       title: l10n.bedtimeParentDashboardTitle,
       subtitle: l10n.bedtimeParentDashboardSubtitle,
       children: [

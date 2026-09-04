@@ -15,6 +15,7 @@ import '../application/word_search_progress_provider.dart';
 import '../application/word_search_repository.dart';
 import '../domain/word_search_models.dart';
 import 'word_search_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class WordSearchHomePage extends ConsumerWidget {
   const WordSearchHomePage({super.key});
@@ -34,7 +35,7 @@ class WordSearchHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.text_fields_rounded,
+      headerIcon: AppIcons.wordSearch,
       title: l10n.wordSearchHomeTitle,
       subtitle: l10n.wordSearchHomeSubtitle,
       children: [

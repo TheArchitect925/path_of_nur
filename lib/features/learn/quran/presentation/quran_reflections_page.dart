@@ -107,7 +107,7 @@ class _QuranReflectionsPageState extends ConsumerState<QuranReflectionsPage> {
                 ? l10n.quranReflectionsEmptySubtitle
                 : l10n.quranReflectionsNoMatchesSubtitle,
             palette: palette,
-            icon: Icons.menu_book_outlined,
+            icon: Icons.menu_book_rounded,
           )
         else
           ...filtered.map(

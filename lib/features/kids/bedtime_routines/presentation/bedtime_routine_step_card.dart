@@ -12,7 +12,7 @@ class BedtimeRoutineStepCard extends StatelessWidget {
     required this.progress,
     required this.actionLabel,
     required this.onTap,
-    this.icon = Icons.nightlight_round,
+    this.icon = Icons.nightlight_round_rounded,
   });
 
   final String title;

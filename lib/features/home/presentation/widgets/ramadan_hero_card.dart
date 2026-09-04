@@ -53,7 +53,7 @@ class RamadanHeroCard extends ConsumerWidget {
       detail = l10n.homeRamadanSuhoorEndsAt(fajr.windowStart);
     } else if (maghrib != null && now.isBefore(maghrib.windowStartDateTime)) {
       // Fasting hours: count down to iftar.
-      icon = Icons.nightlight_round;
+      icon = Icons.nightlight_round_rounded;
       headline = l10n.homeRamadanIftarIn(
         _formatCountdown(maghrib.windowStartDateTime.difference(now)),
       );
@@ -65,7 +65,7 @@ class RamadanHeroCard extends ConsumerWidget {
       headline = l10n.homeRamadanSuhoorEndsAt(fajr.windowStart);
       detail = null;
     } else {
-      icon = Icons.nightlight_round;
+      icon = Icons.nightlight_round_rounded;
       headline = l10n.modeRamadanHomeSubtitle;
       detail = null;
     }

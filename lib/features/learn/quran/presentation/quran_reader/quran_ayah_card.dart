@@ -595,7 +595,7 @@ class _KnowledgeLinkWrap extends StatelessWidget {
 IconData _readerStudyModeIcon(QuranReaderStudyMode mode) {
   return switch (mode) {
     QuranReaderStudyMode.reading => Icons.chrome_reader_mode_rounded,
-    QuranReaderStudyMode.reflection => Icons.self_improvement_rounded,
+    QuranReaderStudyMode.reflection => AppIcons.reflection,
     QuranReaderStudyMode.study => Icons.school_rounded,
     QuranReaderStudyMode.memorization => Icons.repeat_rounded,
     QuranReaderStudyMode.theme => Icons.auto_awesome_rounded,

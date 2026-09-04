@@ -13,6 +13,7 @@ import '../../journey/domain/learning_journey_models.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learn_companion_content.dart';
 import '../domain/learn_companion_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class CharacterCompanionPage extends ConsumerStatefulWidget {
   const CharacterCompanionPage({super.key, this.initialFocus});
@@ -122,7 +123,7 @@ class _CharacterCompanionPageState
     final focus = _selectedTraitId;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.favorite_outline_rounded,
+      headerIcon: AppIcons.character,
       title: l10n.learningJourneyBeautifulCharacterTitle,
       subtitle: l10n.learningJourneyBeautifulCharacterSubtitle,
       children: [

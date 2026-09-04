@@ -22,6 +22,7 @@ import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class PrayerSection extends ConsumerWidget {
   const PrayerSection({super.key});
@@ -750,21 +751,21 @@ class _PrayerRakatTab extends StatelessWidget {
           CompactListTile(
             title: l10n.learningJourneyToolWuduGuideTitle,
             subtitle: l10n.learningJourneyToolWuduGuideSubtitle,
-            leading: const HubLeadingIcon(Icons.water_drop_outlined),
+            leading: const HubLeadingIcon(AppIcons.wudu),
             onTap: () => context.pushNamed('learnWuduGuide'),
           ),
           const SizedBox(height: 6),
           CompactListTile(
             title: l10n.wuduTrainerPageTitle,
             subtitle: l10n.wuduTrainerPageSubtitle,
-            leading: const HubLeadingIcon(Icons.route_rounded),
+            leading: const HubLeadingIcon(AppIcons.path),
             onTap: () => context.pushNamed('learnWuduTrainer'),
           ),
           const SizedBox(height: 6),
           CompactListTile(
             title: l10n.worshipLearnToPrayTitle,
             subtitle: l10n.worshipLearnToPraySubtitle,
-            leading: const HubLeadingIcon(Icons.school_outlined),
+            leading: const HubLeadingIcon(AppIcons.learn),
             onTap: () => context.pushNamed('learnSalahHub'),
           ),
         ],

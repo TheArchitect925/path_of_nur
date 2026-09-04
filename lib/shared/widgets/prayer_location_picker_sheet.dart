@@ -9,6 +9,7 @@ import '../../core/prayer/prayer_location_search_service.dart';
 import 'display/compact_list_tile.dart';
 import 'display/hub_list_group.dart';
 import 'premium_card.dart';
+import '../../core/theme/app_icons.dart';
 
 class PrayerLocationPickerSheet extends StatefulWidget {
   const PrayerLocationPickerSheet({
@@ -223,7 +224,7 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                       padding: const EdgeInsets.only(bottom: AppSpacing.xxs),
                       child: CompactListTile(
                         title: recent.label,
-                        leading: const HubLeadingIcon(Icons.history_rounded),
+                        leading: const HubLeadingIcon(AppIcons.recent),
                         trailing: const Icon(
                           Icons.chevron_right_rounded,
                           size: 20,

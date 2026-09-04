@@ -16,6 +16,7 @@ import '../../creation_challenges/application/creation_challenge_services.dart';
 import '../../creation_challenges/domain/creation_challenge_models.dart';
 import '../application/celestial_services.dart';
 import '../domain/celestial_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 class CelestialExplorerPage extends ConsumerStatefulWidget {
   const CelestialExplorerPage({super.key});
@@ -68,7 +69,7 @@ class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
     return DefaultTabController(
       length: 3,
       child: AppPageScaffold(
-        headerIcon: Icons.wb_twilight_rounded,
+        headerIcon: AppIcons.sky,
         title: l10n.celestialExplorerPageTitle,
         subtitle: localizedAppPageDescription(
           context,

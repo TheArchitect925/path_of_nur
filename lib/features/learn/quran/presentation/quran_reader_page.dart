@@ -77,6 +77,7 @@ import 'widgets/quran_continue_listening_card.dart';
 import 'widgets/quran_playback_controls_card.dart';
 import 'widgets/quran_related_reference_detail_sheet.dart';
 import 'widgets/quran_reference_viewer.dart';
+import '../../../../core/theme/app_icons.dart';
 
 part 'quran_reader/quran_ayah_card.dart';
 part 'quran_reader/quran_ayah_details_sheet.dart';
@@ -840,7 +841,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 Row(
                   children: [
                     Icon(
-                      Icons.layers_outlined,
+                      Icons.layers_rounded,
                       size: 18,
                       color: context.palette.onSurfaceSubtle,
                     ),
@@ -963,7 +964,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       'surahNumber': widget.surahNumber.toString(),
                     },
                   ),
-                  icon: const Icon(Icons.layers_outlined),
+                  icon: const Icon(Icons.layers_rounded),
                   label: Text(l10n.quranSurahInsightsEntryAction),
                 ),
               ],
@@ -3049,7 +3050,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             const SizedBox(height: 10),
             TextButton.icon(
               onPressed: () => context.pushNamed('quranWordReview'),
-              icon: const Icon(Icons.style_outlined),
+              icon: const Icon(Icons.style_rounded),
               label: Text(l10n.quranOpenReviewDeckLabel(wordFavorites.length)),
             ),
           ],
@@ -4524,9 +4525,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         );
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(
-                    pinned ? Icons.push_pin_rounded : Icons.push_pin_outlined,
-                  ),
+                  icon: Icon(pinned ? Icons.push_pin_rounded : AppIcons.pinOff),
                   label: Text(
                     pinned
                         ? l10n.quranUnpinWordLabel

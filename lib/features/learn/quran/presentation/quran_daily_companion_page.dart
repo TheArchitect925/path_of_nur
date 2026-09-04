@@ -26,6 +26,7 @@ import 'quran_theme_copy.dart';
 import 'widgets/quran_daily_reflection_card.dart';
 import 'widgets/quran_reflection_note_dialog.dart';
 import 'widgets/quran_related_reference_detail_sheet.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranDailyCompanionPage extends ConsumerWidget {
   const QuranDailyCompanionPage({super.key});
@@ -48,7 +49,7 @@ class QuranDailyCompanionPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.wb_twilight_rounded,
+      headerIcon: AppIcons.daily,
       title: l10n.quranDailyCompanionTitle,
       subtitle: l10n.quranDailyCompanionSubtitle,
       children: [
@@ -172,7 +173,7 @@ class QuranDailyCompanionPage extends ConsumerWidget {
                     'quranTopicDetail',
                     pathParameters: {'topicId': summary.themes.first.id},
                   ),
-                  icon: const Icon(Icons.account_tree_outlined),
+                  icon: const Icon(Icons.account_tree_rounded),
                   label: Text(l10n.quranDailyCompanionOpenThemeAction),
                 ),
               ],
@@ -317,7 +318,7 @@ List<Widget> _buildContinueActions(
                     ayahNumber: entry.ref.ayah,
                   );
             },
-            icon: const Icon(Icons.bookmark_add_outlined),
+            icon: const Icon(Icons.bookmark_add_rounded),
             label: Text(l10n.quranMemorizationMarkAction),
           ),
         );
@@ -332,7 +333,7 @@ List<Widget> _buildContinueActions(
               'quranTopicDetail',
               pathParameters: {'topicId': summary.themes.first.id},
             ),
-            icon: const Icon(Icons.account_tree_outlined),
+            icon: const Icon(Icons.account_tree_rounded),
             label: Text(l10n.quranDailyCompanionOpenThemeAction),
           ),
         );
@@ -384,7 +385,7 @@ List<Widget> _buildContinueActions(
           'quranTopicDetail',
           pathParameters: {'topicId': summary.themes.first.id},
         ),
-        icon: const Icon(Icons.account_tree_outlined),
+        icon: const Icon(Icons.account_tree_rounded),
         label: Text(l10n.quranDailyCompanionOpenThemeAction),
       ),
     );
@@ -410,7 +411,7 @@ List<Widget> _buildContinueActions(
                   ayahNumber: entry.ref.ayah,
                 );
           },
-          icon: const Icon(Icons.bookmark_add_outlined),
+          icon: const Icon(Icons.bookmark_add_rounded),
           label: Text(l10n.quranMemorizationMarkAction),
         ),
       );

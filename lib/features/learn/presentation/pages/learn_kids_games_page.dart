@@ -9,6 +9,7 @@ import '../../../kids/bedtime_stories/domain/bedtime_story_models.dart';
 import '../../../kids_dua_learning/application/kids_dua_creative_provider.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnKidsGamesPage extends ConsumerWidget {
   const LearnKidsGamesPage({super.key});
@@ -20,7 +21,7 @@ class LearnKidsGamesPage extends ConsumerWidget {
     final drawings = ref.watch(kidsDuaDrawingsProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.sports_esports_rounded,
+      headerIcon: AppIcons.games,
       title: l10n.learnHubSubcategoryKidsGamesTitle,
       subtitle: l10n.learnHubSubcategoryKidsGamesSubtitle,
       children: [

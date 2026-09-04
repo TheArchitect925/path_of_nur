@@ -6,13 +6,13 @@ import '../../../../../core/theme/app_spacing.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../core/theme/app_theme.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../../shared/theme/islamic_icons.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../shared/widgets/display/index_rail.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../data/names_of_allah_data.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class NamesOfAllahPage extends ConsumerStatefulWidget {
   const NamesOfAllahPage({super.key});
@@ -129,7 +129,7 @@ class _NamesOfAllahPageState extends ConsumerState<NamesOfAllahPage> {
     return Stack(
       children: [
         AppPageScaffold(
-          headerIcon: IslamicIcons.allahText,
+          headerIcon: AppIcons.namesOfAllah,
           title: l10n.quranNamesOfAllahTitle,
           subtitle: l10n.batch9NamesOfAllahSubtitle,
           scrollController: _scrollController,

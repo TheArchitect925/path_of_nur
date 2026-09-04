@@ -547,7 +547,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualHint: 'Moon helps you remember Meem.',
         visualImageAsset:
             'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
-        visualIcon: Icons.nightlight_round,
+        visualIcon: Icons.nightlight_round_rounded,
       ),
       'noon': _QuranTeacherLetterPresentationSeed(
         simpleExplanation: 'Noon makes an n sound.',
@@ -1957,7 +1957,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualHint: 'Moon helps you remember Meem.',
     visualImageAsset:
         'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
-    visualIcon: Icons.nightlight_round,
+    visualIcon: Icons.nightlight_round_rounded,
   ),
   QuranTeacherLetterSeed(
     id: 'visual_noon',

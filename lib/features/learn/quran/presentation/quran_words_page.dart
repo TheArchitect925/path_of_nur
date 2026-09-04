@@ -16,6 +16,7 @@ import '../application/quran_providers.dart';
 import '../application/quran_words_provider.dart';
 import '../domain/quran_core_word.dart';
 import 'widgets/quran_word_study_sections.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _BandFilter { top25, top50, top100, all }
 
@@ -50,7 +51,7 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
     final translationScale = readerSettings.translationScalePercent / 100.0;
 
     return AppPageScaffold(
-      headerIcon: Icons.translate_rounded,
+      headerIcon: AppIcons.arabic,
       title: l10n.quranTopWordsTitle,
       subtitle: l10n.batch9QuranWordsSubtitle,
       children: [

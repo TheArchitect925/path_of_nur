@@ -186,7 +186,7 @@ class WuduReminderCard extends StatelessWidget {
               _SectionList(
                 title: l10n.wuduGuideSunnahEnhancementsTitle,
                 items: sunnahEnhancements,
-                icon: Icons.auto_awesome_outlined,
+                icon: Icons.auto_awesome_rounded,
               ),
             ],
           ),
@@ -211,7 +211,7 @@ class WuduReminderCard extends StatelessWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(top: 3),
-                        child: Icon(Icons.circle, size: 8),
+                        child: Icon(Icons.circle_rounded, size: 8),
                       ),
                       const SizedBox(width: 8),
                       Expanded(child: Text(item)),

@@ -83,7 +83,7 @@ class LearnHubTaxonomy {
         return const LearnHubCategoryStyle(
           baseColor: Color(0xFFF0E5D4),
           accentColor: Color(0xFF8A6A42),
-          icon: Icons.sticky_note_2_outlined,
+          icon: Icons.sticky_note_2_rounded,
         );
       case LearnHubCategoryId.toolsExplore:
         return const LearnHubCategoryStyle(

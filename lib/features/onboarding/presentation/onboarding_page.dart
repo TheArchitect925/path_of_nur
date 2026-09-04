@@ -20,6 +20,7 @@ import '../application/onboarding_preferences_provider.dart';
 import '../application/onboarding_state_provider.dart';
 import '../domain/onboarding_preferences.dart';
 import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_icons.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -490,8 +491,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 dense: true,
                 leading: Icon(
                   _languageChoice.id == choice.id
-                      ? Icons.radio_button_checked
-                      : Icons.radio_button_unchecked,
+                      ? Icons.radio_button_checked_rounded
+                      : Icons.radio_button_unchecked_rounded,
                   size: 20,
                 ),
                 title: Text(choice.label),
@@ -1008,7 +1009,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                                 .read(accountsAuthRepositoryProvider)
                                 .signInWithGoogle(),
                           ),
-                    icon: const Icon(Icons.account_circle_outlined),
+                    icon: const Icon(Icons.account_circle_rounded),
                     label: Text(l10n.accountsSyncContinueWithGoogleAction),
                   ),
                   const SizedBox(height: 12),
@@ -1020,7 +1021,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                                 .read(accountsAuthRepositoryProvider)
                                 .signInWithEmail(),
                           ),
-                    icon: const Icon(Icons.email_outlined),
+                    icon: const Icon(Icons.email_rounded),
                     label: Text(l10n.accountsSyncContinueWithEmailAction),
                   ),
                   const SizedBox(height: 8),
@@ -1127,8 +1128,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               dense: true,
               leading: Icon(
                 entry.key == value
-                    ? Icons.radio_button_checked
-                    : Icons.radio_button_unchecked,
+                    ? Icons.radio_button_checked_rounded
+                    : Icons.radio_button_unchecked_rounded,
                 size: 20,
               ),
               title: Text(entry.value),
@@ -1567,7 +1568,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       _OnboardingOption(
         id: _growthInterestStrengtheningSalah,
         title: l10n.onboardingInterestStrengtheningSalah,
-        icon: Icons.mosque_rounded,
+        icon: AppIcons.mosque,
       ),
       _OnboardingOption(
         id: _growthInterestDhikrRemembrance,
@@ -1592,12 +1593,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       _OnboardingOption(
         id: _growthInterestPersonalGrowth,
         title: l10n.onboardingInterestPersonalGrowth,
-        icon: Icons.self_improvement_rounded,
+        icon: AppIcons.spiritualGrowth,
       ),
       _OnboardingOption(
         id: _growthInterestDailyInspiration,
         title: l10n.onboardingInterestDailyInspiration,
-        icon: Icons.wb_sunny_outlined,
+        icon: Icons.wb_sunny_rounded,
       ),
     ];
   }

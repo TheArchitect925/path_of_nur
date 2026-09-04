@@ -87,7 +87,7 @@ class KidsArabicColoringPagesPage extends ConsumerWidget {
                           ),
                         ),
                         child: Icon(
-                          Icons.image_outlined,
+                          Icons.image_rounded,
                           size: 44,
                           color: context.palette.onSurfaceSubtle,
                         ),

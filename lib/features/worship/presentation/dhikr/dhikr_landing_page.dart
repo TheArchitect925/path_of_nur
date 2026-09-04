@@ -435,7 +435,7 @@ class _DhikrRoutinesGroup extends ConsumerWidget {
           key: const Key('dhikr-routine-new'),
           title: l10n.dhikrBuilderNewRowTitle,
           subtitle: l10n.dhikrBuilderNewRowSubtitle,
-          leading: const HubLeadingIcon(Icons.add_rounded),
+          leading: const HubLeadingIcon(AppIcons.add),
           onTap: () => context.pushNamed('worshipDhikrRoutineBuilder'),
         ),
       ],

@@ -38,6 +38,7 @@ import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../core/theme/app_icons.dart';
 
 class KidsArabicHomePage extends ConsumerStatefulWidget {
   const KidsArabicHomePage({super.key});
@@ -145,7 +146,7 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.text_fields_rounded,
+      headerIcon: AppIcons.letters,
       title: l10n.kidsArabicHomeTitle,
       subtitle: l10n.kidsArabicHomeSubtitle,
       children: [
@@ -463,7 +464,7 @@ class _QuickPracticeCard extends StatelessWidget {
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
             onPressed: () => context.pushNamed('kidsArabicMiniAssessment'),
-            icon: const Icon(Icons.self_improvement_rounded),
+            icon: const Icon(AppIcons.practice),
             label: Text(l10n.kidsArabicMiniAssessmentCardAction),
           ),
         ],

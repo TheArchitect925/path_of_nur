@@ -9,6 +9,7 @@ import '../application/companion_surfaces_ui_state.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learn_companion_content.dart';
 import '../domain/learn_companion_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class DailyWisdomCompanionPage extends ConsumerStatefulWidget {
   const DailyWisdomCompanionPage({super.key, this.initialFocus});
@@ -102,7 +103,7 @@ class _DailyWisdomCompanionPageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.wb_sunny_outlined,
+      headerIcon: AppIcons.daily,
       title: l10n.learningJourneyDailyWisdomTitle,
       subtitle: l10n.learningJourneyDailyWisdomSubtitle,
       children: [

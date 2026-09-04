@@ -9,6 +9,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_kids_ayah_insights_provider.dart';
 import '../application/quran_learning_progression_provider.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranKidsAyahInsightsPage extends ConsumerStatefulWidget {
   const QuranKidsAyahInsightsPage({super.key});
@@ -173,14 +174,13 @@ class _QuranKidsAyahInsightsPageState
 
   IconData _categoryIcon(KidsQuranAyahInsightCategory category) {
     return switch (category) {
-      KidsQuranAyahInsightCategory.signsInCreation => Icons.wb_sunny_outlined,
-      KidsQuranAyahInsightCategory.prayerAndRemembrance =>
-        Icons.mosque_outlined,
+      KidsQuranAyahInsightCategory.signsInCreation => Icons.wb_sunny_rounded,
+      KidsQuranAyahInsightCategory.prayerAndRemembrance => AppIcons.mosque,
       KidsQuranAyahInsightCategory.gratitudeAndTrust =>
         Icons.favorite_outline_rounded,
       KidsQuranAyahInsightCategory.kindnessAndGoodManners =>
-        Icons.volunteer_activism_outlined,
-      KidsQuranAyahInsightCategory.prophetLessons => Icons.menu_book_outlined,
+        Icons.volunteer_activism_rounded,
+      KidsQuranAyahInsightCategory.prophetLessons => Icons.menu_book_rounded,
     };
   }
 

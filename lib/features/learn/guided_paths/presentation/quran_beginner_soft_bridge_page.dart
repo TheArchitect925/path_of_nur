@@ -6,6 +6,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../analytics/domain/learn_analytics_models.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranBeginnerSoftBridgePage extends StatelessWidget {
   const QuranBeginnerSoftBridgePage({super.key});
@@ -33,12 +34,12 @@ class QuranBeginnerSoftBridgePage extends StatelessWidget {
               Text(l10n.learnQuranBeginnerSoftBridgeIntroBody),
               const SizedBox(height: 14),
               _HintRow(
-                icon: Icons.spa_outlined,
+                icon: AppIcons.reflection,
                 text: l10n.learnQuranBeginnerSoftBridgeHintStartSmall,
               ),
               const SizedBox(height: 10),
               _HintRow(
-                icon: Icons.headphones_outlined,
+                icon: Icons.headphones_rounded,
                 text: l10n.learnQuranBeginnerSoftBridgeHintPace,
               ),
               const SizedBox(height: 16),

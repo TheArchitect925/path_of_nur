@@ -88,7 +88,7 @@ class AdhanOptionPickerSheet extends ConsumerWidget {
                             : l10n.settingsAdhanPreviewPlayTooltip,
                         icon: Icon(
                           isPlaying
-                              ? Icons.stop_circle_outlined
+                              ? Icons.stop_circle_rounded
                               : Icons.play_circle_outline_rounded,
                           color: accent,
                         ),

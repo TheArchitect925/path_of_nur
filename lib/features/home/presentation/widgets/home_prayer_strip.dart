@@ -141,7 +141,7 @@ class _PrayerStripTile extends StatelessWidget {
           completed
               ? Icon(Icons.check_rounded, size: 13, color: success)
               : Icon(
-                  Icons.circle_outlined,
+                  Icons.radio_button_unchecked_rounded,
                   size: 12,
                   color: highlighted ? accent : subtle.withValues(alpha: 0.55),
                 ),

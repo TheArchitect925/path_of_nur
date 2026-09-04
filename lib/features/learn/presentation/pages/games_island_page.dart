@@ -14,6 +14,7 @@ import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class GamesIslandPage extends ConsumerStatefulWidget {
   const GamesIslandPage({super.key, this.initialSectionId});
@@ -66,7 +67,7 @@ class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
     final searchMatches = _searchMatches(sections, _searchController.text);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.sports_esports_rounded,
+      headerIcon: AppIcons.games,
       title: l10n.learnGamesHubTitleText,
       subtitle: l10n.learnGamesHubSubtitleText,
       headerActions: [

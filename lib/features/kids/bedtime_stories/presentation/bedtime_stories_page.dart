@@ -17,6 +17,7 @@ import '../domain/bedtime_story_models.dart';
 import '../../seerah/application/seerah_journey_repository.dart';
 import 'bedtime_story_cover_card.dart';
 import 'bedtime_story_mini_player.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class BedtimeStoriesPage extends ConsumerWidget {
   const BedtimeStoriesPage({super.key});
@@ -41,7 +42,7 @@ class BedtimeStoriesPage extends ConsumerWidget {
     final seerahJourney = ref.watch(featuredKidsSeerahJourneyProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.nightlight_round,
+      headerIcon: AppIcons.bedtimeStories,
       title: l10n.bedtimeStoriesTitle,
       subtitle: l10n.bedtimeStoriesSubtitle,
       headerActions: [

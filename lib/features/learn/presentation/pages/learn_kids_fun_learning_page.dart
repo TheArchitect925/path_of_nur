@@ -8,6 +8,7 @@ import '../../../kids_dua_learning/application/kids_dua_creative_provider.dart';
 import '../../../kids_dua_learning/application/kids_dua_story_repository.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnKidsFunLearningPage extends ConsumerWidget {
   const LearnKidsFunLearningPage({super.key});
@@ -19,7 +20,7 @@ class LearnKidsFunLearningPage extends ConsumerWidget {
     final stories = ref.watch(kidsDuaStoriesProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.celebration_rounded,
+      headerIcon: AppIcons.fun,
       title: l10n.learnHubSubcategoryKidsFunLearningTitle,
       subtitle: l10n.learnHubSubcategoryKidsFunLearningSubtitle,
       children: [

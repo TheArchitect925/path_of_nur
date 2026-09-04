@@ -18,6 +18,7 @@ import '../application/app_summary_providers.dart';
 import '../application/daily_clock_provider.dart';
 import '../persistence/local_store.dart';
 import 'noor_glass_card.dart';
+import '../../core/theme/app_icons.dart';
 
 const String _quickActionsHintShownKey = 'home.quickActionsHintShown.v1';
 
@@ -217,7 +218,7 @@ class QuickActionsSheet extends ConsumerWidget {
                     const SizedBox(width: AppSpacing.xs + 2),
                     Expanded(
                       child: _QuickActionTile(
-                        icon: Icons.explore_rounded,
+                        icon: AppIcons.qibla,
                         title: l10n.homeShortcutQiblaLabel,
                         subtitle: l10n.worshipQiblaFinderSubtitle,
                         onTap: () {
@@ -236,7 +237,7 @@ class QuickActionsSheet extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: _QuickActionTile(
-                        icon: Icons.settings_outlined,
+                        icon: Icons.settings_rounded,
                         title: l10n.settingsLandingTitle,
                         subtitle: l10n.quickActionsSettingsSubtitle,
                         onTap: () {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../../shared/theme/islamic_icons.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// Every settings surface the landing list can send you to.
 ///
@@ -40,18 +40,17 @@ String settingsCategoryRouteName(SettingsCategory category) {
 
 IconData settingsCategoryIcon(SettingsCategory category) {
   return switch (category) {
-    SettingsCategory.profile => Icons.person_outline_rounded,
-    SettingsCategory.accountSync => Icons.sync_outlined,
-    SettingsCategory.appearance => Icons.palette_outlined,
-    SettingsCategory.prayerWorship => IslamicIcons.prayer,
-    SettingsCategory.adhan => Icons.volume_up_outlined,
-    SettingsCategory.learning => Icons.school_outlined,
-    SettingsCategory.notificationsReminders =>
-      Icons.notifications_active_outlined,
-    SettingsCategory.widgetsWatch => Icons.watch_later_outlined,
-    SettingsCategory.languageDownloads => Icons.language_outlined,
-    SettingsCategory.privacyData => Icons.shield_outlined,
-    SettingsCategory.about => Icons.info_outline_rounded,
+    SettingsCategory.profile => AppIcons.profile,
+    SettingsCategory.accountSync => AppIcons.sync,
+    SettingsCategory.appearance => AppIcons.appearance,
+    SettingsCategory.prayerWorship => AppIcons.salah,
+    SettingsCategory.adhan => AppIcons.adhan,
+    SettingsCategory.learning => AppIcons.learn,
+    SettingsCategory.notificationsReminders => AppIcons.notifications,
+    SettingsCategory.widgetsWatch => AppIcons.widgetsWatch,
+    SettingsCategory.languageDownloads => AppIcons.language,
+    SettingsCategory.privacyData => AppIcons.privacy,
+    SettingsCategory.about => AppIcons.about,
   };
 }
 
@@ -167,7 +166,7 @@ List<SettingsGroup> settingsGroups(AppLocalizations l10n) {
       destinations: [
         SettingsDestination(
           routeName: 'settingsHelpGuide',
-          icon: Icons.help_center_outlined,
+          icon: Icons.help_center_rounded,
           title: l10n.settingsHelpGuideTitle,
           subtitle: l10n.settingsCategoryHelpGuideSubtitle,
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../core/theme/app_icons.dart';
 
 enum PrayerName { fajr, dhuhr, asr, maghrib, isha, tahajjud }
 
@@ -84,7 +85,7 @@ extension PrayerNameX on PrayerName {
       case PrayerName.asr:
         return IslamicIcons.qibla;
       case PrayerName.maghrib:
-        return IslamicIcons.mosque;
+        return AppIcons.mosque;
       case PrayerName.isha:
         return IslamicIcons.lantern;
       case PrayerName.tahajjud:

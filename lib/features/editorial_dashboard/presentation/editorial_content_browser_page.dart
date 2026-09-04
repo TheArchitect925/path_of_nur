@@ -53,7 +53,7 @@ class _EditorialContentBrowserPageState
                   controller: _searchController,
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search_rounded),
                     hintText: l10n.editorialDashboardSearchHint,
                   ),
                 ),

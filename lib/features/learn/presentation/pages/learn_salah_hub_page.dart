@@ -12,6 +12,7 @@ import '../../salah/application/salah_sync_controller.dart';
 import '../../salah/application/salah_trainer_provider.dart';
 import '../../salah/models/salah_trainer_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _SalahTrainerTab { learn, guided, ayah, recitations, essentials, wudu }
 
@@ -77,7 +78,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: IslamicIcons.prayer,
+      headerIcon: AppIcons.salah,
       title: l10n.learnSalahHubTitle,
       subtitle: l10n.learnSalahHubSubtitle,
       children: [
@@ -249,7 +250,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
       case _SalahTrainerTab.learn:
         return Icons.school_rounded;
       case _SalahTrainerTab.guided:
-        return Icons.self_improvement_rounded;
+        return AppIcons.guidedPrayer;
       case _SalahTrainerTab.ayah:
         return Icons.menu_book_rounded;
       case _SalahTrainerTab.recitations:
@@ -721,7 +722,7 @@ class _EssentialsTab extends StatelessWidget {
                           children: [
                             const Padding(
                               padding: EdgeInsets.only(top: 4),
-                              child: Icon(Icons.circle, size: 6),
+                              child: Icon(Icons.circle_rounded, size: 6),
                             ),
                             const SizedBox(width: 8),
                             Expanded(child: Text(bullet)),

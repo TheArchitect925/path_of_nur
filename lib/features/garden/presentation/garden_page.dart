@@ -15,6 +15,7 @@ import '../domain/garden_scene_models.dart';
 import 'widgets/garden_vista/garden_element_meaning_sheet.dart';
 import 'widgets/garden_vista/garden_element_strings.dart';
 import 'widgets/garden_vista/garden_vista_view.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GardenPage extends ConsumerWidget {
   const GardenPage({super.key});
@@ -28,7 +29,7 @@ class GardenPage extends ConsumerWidget {
     final scene = ref.watch(activeGardenSceneSpecProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.local_florist_rounded,
+      headerIcon: AppIcons.garden,
       title: l10n.gardenPageTitle,
       subtitle: l10n.gardenPageSubtitle,
       children: [
@@ -161,7 +162,7 @@ class GardenPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               _MeaningLine(
-                icon: Icons.wb_sunny_outlined,
+                icon: Icons.wb_sunny_rounded,
                 title: l10n.gardenPageLightMeaningTitle,
                 body: l10n.gardenPageLightMeaningBody,
               ),
@@ -173,7 +174,7 @@ class GardenPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               _MeaningLine(
-                icon: Icons.spa_outlined,
+                icon: AppIcons.reflection,
                 title: l10n.gardenPageFruitMeaningTitle,
                 body: l10n.gardenPageFruitMeaningBody,
               ),
@@ -188,9 +189,9 @@ class GardenPage extends ConsumerWidget {
     return switch (dimension) {
       GardenGrowthDimension.prayerFoundation => Icons.account_tree_rounded,
       GardenGrowthDimension.learningGrowth => Icons.auto_stories_rounded,
-      GardenGrowthDimension.remembranceLight => Icons.wb_sunny_outlined,
+      GardenGrowthDimension.remembranceLight => Icons.wb_sunny_rounded,
       GardenGrowthDimension.mercyWater => Icons.water_drop_rounded,
-      GardenGrowthDimension.wisdomFruit => Icons.spa_outlined,
+      GardenGrowthDimension.wisdomFruit => AppIcons.reflection,
       GardenGrowthDimension.consistencyBloom => Icons.calendar_month_rounded,
     };
   }
@@ -615,7 +616,7 @@ class _RecentGrowthTile extends StatelessWidget {
       LearnerProgressionActivityType.kidsArabicLessonCompletion =>
         Icons.draw_rounded,
       LearnerProgressionActivityType.kidsArabicDailyMissionCompletion =>
-        Icons.wb_sunny_outlined,
+        Icons.wb_sunny_rounded,
       LearnerProgressionActivityType.bedtimeStoryCompletion =>
         Icons.auto_stories_rounded,
       LearnerProgressionActivityType.bedtimeQuizCompletion =>
@@ -627,7 +628,7 @@ class _RecentGrowthTile extends StatelessWidget {
       LearnerProgressionActivityType.duaPracticeCompletion =>
         Icons.repeat_rounded,
       LearnerProgressionActivityType.duaMyDayCompletion =>
-        Icons.wb_sunny_outlined,
+        Icons.wb_sunny_rounded,
       LearnerProgressionActivityType.bedtimeRoutineCompletion =>
         Icons.bedtime_rounded,
       LearnerProgressionActivityType.seerahNodeCompletion =>
@@ -703,9 +704,7 @@ class _MilestoneTile extends StatelessWidget {
                                 colors: [Color(0xFFE7D7AE), Color(0xFF8BA06B)],
                               ),
                             ),
-                            child: Center(
-                              child: Icon(Icons.local_florist_rounded),
-                            ),
+                            child: Center(child: Icon(AppIcons.garden)),
                           );
                         },
                       )

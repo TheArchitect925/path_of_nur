@@ -420,7 +420,7 @@ class _HadithReflectionPuzzlePageState
                     FilledButton.tonalIcon(
                       onPressed: () =>
                           context.goNamed('learnHadithReflectionHome'),
-                      icon: const Icon(Icons.home_outlined),
+                      icon: const Icon(Icons.home_rounded),
                       label: Text(l10n.hadithReflectionBackHomeAction),
                     ),
                   ],
@@ -623,7 +623,9 @@ class _ChoiceCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
-                selected ? Icons.radio_button_checked : Icons.circle_outlined,
+                selected
+                    ? Icons.radio_button_checked_rounded
+                    : Icons.radio_button_unchecked_rounded,
                 size: 20,
               ),
               const SizedBox(width: 10),

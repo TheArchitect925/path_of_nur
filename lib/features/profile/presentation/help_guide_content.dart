@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../core/theme/app_icons.dart';
 
 class HelpGuideEntry {
   const HelpGuideEntry({
@@ -50,7 +51,7 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideSalahRemindersStep2,
         l10n.helpGuideSalahRemindersStep3,
       ],
-      icon: Icons.notifications_active_outlined,
+      icon: Icons.notifications_active_rounded,
     ),
     HelpGuideEntry(
       id: 'quran',
@@ -61,7 +62,7 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideQuranStep2,
         l10n.helpGuideQuranStep3,
       ],
-      icon: Icons.menu_book_outlined,
+      icon: Icons.menu_book_rounded,
     ),
     HelpGuideEntry(
       id: 'learning',
@@ -72,7 +73,7 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideLearningStep2,
         l10n.helpGuideLearningStep3,
       ],
-      icon: Icons.school_outlined,
+      icon: Icons.school_rounded,
     ),
     HelpGuideEntry(
       id: 'dhikr-adhkar',
@@ -83,7 +84,7 @@ List<HelpGuideEntry> buildHelpGuideEntries(AppLocalizations l10n) {
         l10n.helpGuideDhikrAdhkarStep2,
         l10n.helpGuideDhikrAdhkarStep3,
       ],
-      icon: Icons.spa_outlined,
+      icon: AppIcons.reflection,
     ),
     HelpGuideEntry(
       id: 'growth-progress',

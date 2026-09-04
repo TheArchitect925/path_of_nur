@@ -9,6 +9,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../application/home_module_prefs_provider.dart';
 import '../domain/home_modules.dart';
+import '../../../core/theme/app_icons.dart';
 
 /// "Customize Home": reorder and toggle the Mihrab Home's modules. The salah
 /// hero is pinned; hidden modules park at the bottom, one switch from
@@ -71,7 +72,7 @@ class HomeEditPage extends ConsumerWidget {
           density: PremiumCardDensity.compact,
           child: Row(
             children: [
-              Icon(Icons.push_pin_outlined, size: 20, color: subtle),
+              Icon(AppIcons.pinOff, size: 20, color: subtle),
               const SizedBox(width: AppSpacing.s),
               Expanded(
                 child: Text(
@@ -180,7 +181,7 @@ class _ModuleRow extends StatelessWidget {
               ),
             )
           else
-            Icon(Icons.visibility_off_outlined, size: 18, color: subtle),
+            Icon(Icons.visibility_off_rounded, size: 18, color: subtle),
           const SizedBox(width: AppSpacing.s),
           Expanded(
             child: Column(

@@ -23,6 +23,7 @@ import '../../shared/domain/learn_system_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../widgets/learn_personalized_next_step_card.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyIslandHubPage extends ConsumerWidget {
   const LearningJourneyIslandHubPage({super.key});
@@ -75,7 +76,7 @@ class LearningJourneyIslandHubPage extends ConsumerWidget {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: l10n.learnHubMainIslandLearningPathTitle,
       subtitle: l10n.learnHubMainIslandLearningPathSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
@@ -263,7 +264,7 @@ class _BrowseJourneysCard extends StatelessWidget {
     return _LearnLandingNoorCard(
       child: Row(
         children: [
-          const Icon(Icons.route_rounded),
+          const Icon(AppIcons.path),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

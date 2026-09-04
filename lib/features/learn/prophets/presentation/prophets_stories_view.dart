@@ -101,7 +101,7 @@ class _StoryCard extends StatelessWidget {
                           ),
                         ),
                         child: Icon(
-                          Icons.auto_stories,
+                          Icons.auto_stories_rounded,
                           color: prophet.eraGroup.tint,
                           size: 20,
                         ),

@@ -219,7 +219,7 @@ class QuranFeatureEmptyState extends ConsumerWidget {
     required this.title,
     required this.subtitle,
     required this.palette,
-    this.icon = Icons.auto_stories_outlined,
+    this.icon = Icons.auto_stories_rounded,
   });
 
   final String title;

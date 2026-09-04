@@ -27,7 +27,7 @@ const kidsDuaMyDaySections = <KidsDuaDaySection>[
   KidsDuaDaySection(
     id: 'night',
     titleKey: 'kidsDuaMyDayNightTitle',
-    icon: Icons.nightlight_round,
+    icon: Icons.nightlight_round_rounded,
     duaIds: <String>['before-sleep', 'astaghfirullah'],
     order: 4,
   ),

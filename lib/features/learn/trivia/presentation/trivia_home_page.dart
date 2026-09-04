@@ -11,6 +11,7 @@ import '../application/trivia_repository.dart';
 import '../domain/trivia_models.dart';
 import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class IslamicTriviaHomePage extends ConsumerWidget {
   const IslamicTriviaHomePage({super.key});
@@ -32,7 +33,7 @@ class IslamicTriviaHomePage extends ConsumerWidget {
         state.dailyQuizState?.completed == true;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.quiz_rounded,
+      headerIcon: AppIcons.quiz,
       title: l10n.learnCategoryIslamicTriviaTitle,
       subtitle: l10n.triviaHomeSubtitle,
       children: [

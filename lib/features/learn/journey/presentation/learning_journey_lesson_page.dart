@@ -21,6 +21,7 @@ import '../domain/learning_journey_lesson_models.dart';
 import '../domain/learning_journey_models.dart';
 import '../domain/learning_path_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyLessonPage extends ConsumerWidget {
   const LearningJourneyLessonPage({
@@ -262,7 +263,7 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 4),
                               child: Icon(
-                                Icons.circle,
+                                Icons.circle_rounded,
                                 size: 7,
                                 color: context.palette.onSurfaceSubtle,
                               ),
@@ -320,7 +321,7 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 4),
                           child: Icon(
-                            Icons.circle,
+                            Icons.circle_rounded,
                             size: 7,
                             color: context.palette.onSurfaceSubtle,
                           ),
@@ -481,7 +482,7 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           if (lesson.showDhikrCounterAction) ...[
             FilledButton.tonalIcon(
               onPressed: () => context.pushNamed('worshipDhikrPage'),
-              icon: const Icon(Icons.self_improvement_rounded),
+              icon: const Icon(AppIcons.dhikr),
               label: Text(
                 kidsUi.enabled
                     ? l10n.kidsJourneyLessonActionOpenDhikrCounter

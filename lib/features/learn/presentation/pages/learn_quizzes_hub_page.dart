@@ -14,6 +14,7 @@ import '../../prophets/domain/prophet_quiz.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 import '../widgets/learn_section_header.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum LearnQuizFilter {
   all,
@@ -100,7 +101,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.quiz_rounded,
+      headerIcon: AppIcons.quiz,
       title: l10n.learnCategoryQuizzesTitle,
       subtitle: l10n.learnQuizzesHubSubtitle,
       children: [

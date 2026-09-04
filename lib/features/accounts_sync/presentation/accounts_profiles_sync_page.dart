@@ -18,6 +18,7 @@ import '../application/accounts_sync_services.dart';
 import '../application/sync_scope_support.dart';
 import '../application/sync_foundation.dart';
 import '../domain/accounts_sync_models.dart';
+import '../../../core/theme/app_icons.dart';
 
 class AccountsProfilesSyncPage extends ConsumerStatefulWidget {
   const AccountsProfilesSyncPage({super.key});
@@ -37,7 +38,7 @@ class _AccountsProfilesSyncPageState
     final activeProfile = state.activeProfile;
     final activeAccount = state.activeAccount;
     return AppPageScaffold(
-      headerIcon: Icons.manage_accounts_rounded,
+      headerIcon: AppIcons.accounts,
       title: l10n.settingsAccountsSyncTitle,
       subtitle: l10n.settingsAccountsSyncSubtitle,
       children: [
@@ -136,7 +137,7 @@ class _AccountsProfilesSyncPageState
         ),
         const SizedBox(height: 6),
         _NavRow(
-          icon: Icons.groups_outlined,
+          icon: Icons.groups_rounded,
           title: l10n.accountsSyncProfilesInAccountTitle,
           subtitle: activeAccount == null
               ? l10n.accountsSyncProfilesInAccountCreateSubtitle
@@ -151,7 +152,7 @@ class _AccountsProfilesSyncPageState
           subtitle: l10n.accountsSyncAccountsOnDeviceSubtitle,
         ),
         _NavRow(
-          icon: Icons.account_circle_outlined,
+          icon: Icons.account_circle_rounded,
           title: l10n.accountsSyncSignedInAccountsTitle,
           subtitle: l10n.accountsSyncAccountsAvailableCount(
             state.accounts.length,
@@ -174,7 +175,7 @@ class _AccountsProfilesSyncPageState
           subtitle: l10n.accountsSyncConnectedDevicesSubtitle,
         ),
         _NavRow(
-          icon: Icons.devices_other_rounded,
+          icon: AppIcons.devices,
           title: l10n.accountsSyncConnectedDevicesTitle,
           subtitle: l10n.accountsSyncDeviceCount(state.connectedDevices.length),
           onTap: () => context.push('/accounts-sync/devices'),
@@ -187,7 +188,7 @@ class _AccountsProfilesSyncPageState
               : l10n.accountsSyncBackupRestoreSectionSubtitleDefault,
         ),
         _NavRow(
-          icon: Icons.cloud_download_outlined,
+          icon: Icons.cloud_download_rounded,
           title: l10n.settingsBackupRestoreTitle,
           subtitle: state.backupRecord.lastExportAtIso == null
               ? l10n.accountsSyncNoManualBackupExportedYet
@@ -206,7 +207,7 @@ class _AccountsProfilesSyncPageState
           subtitle: l10n.accountsSyncSharedDeviceSafetySubtitle,
         ),
         _NavRow(
-          icon: Icons.shield_outlined,
+          icon: Icons.shield_rounded,
           title: l10n.accountsSyncSharedDeviceSafetyTitle,
           subtitle: state.sharedDeviceModeEnabled
               ? l10n.accountsSyncSharedDeviceModeActive
@@ -254,7 +255,7 @@ class _SharedDeviceProfilePickerPageState
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
-      headerIcon: Icons.people_alt_outlined,
+      headerIcon: AppIcons.profiles,
       title: l10n.accountsSyncChooseProfileTitle,
       subtitle: l10n.accountsSyncChooseProfileSubtitle,
       children: [
@@ -308,21 +309,21 @@ class _SharedDeviceProfilePickerPageState
         ),
         const SizedBox(height: 16),
         _NavRow(
-          icon: Icons.person_add_alt_1_outlined,
+          icon: Icons.person_add_alt_1_rounded,
           title: l10n.accountsSyncAddProfileTitle,
           subtitle: l10n.accountsSyncAddProfileSubtitle,
           onTap: () => context.push('/accounts-sync/profiles'),
         ),
         const SizedBox(height: 6),
         _NavRow(
-          icon: Icons.account_circle_outlined,
+          icon: Icons.account_circle_rounded,
           title: l10n.accountsSyncSignInAnotherAccountTitle,
           subtitle: l10n.accountsSyncSignInAnotherAccountSubtitle,
           onTap: () => context.push('/accounts-sync/accounts'),
         ),
         const SizedBox(height: 6),
         _NavRow(
-          icon: Icons.shield_outlined,
+          icon: Icons.shield_rounded,
           title: l10n.accountsSyncManageSharedDeviceSettingsTitle,
           subtitle: l10n.accountsSyncManageSharedDeviceSettingsSubtitle,
           onTap: () => context.push('/accounts-sync/shared-device'),
@@ -425,7 +426,7 @@ class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
-      headerIcon: Icons.badge_outlined,
+      headerIcon: AppIcons.profileBadge,
       title: l10n.accountsSyncProfilesInAccountTitle,
       subtitle: l10n.accountsSyncProfilesInAccountPageSubtitle,
       children: [
@@ -615,7 +616,7 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
-      headerIcon: Icons.devices_other_rounded,
+      headerIcon: AppIcons.devices,
       title: l10n.accountsSyncSignedInAccountsTitle,
       subtitle: l10n.accountsSyncSignedInAccountsSubtitle,
       children: [
@@ -707,7 +708,7 @@ class _AccountConnectionCardState
             const Divider(height: 24),
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.account_circle_outlined),
+              leading: const Icon(Icons.account_circle_rounded),
               title: Text(l10n.accountsSyncSignedInAccountsTitle),
               subtitle: Text(l10n.accountsSyncSignInAnotherAccountSubtitle),
               trailing: const Icon(Icons.chevron_right_rounded),
@@ -742,7 +743,7 @@ class _AccountConnectionCardState
                           .read(accountsAuthRepositoryProvider)
                           .signInWithGoogle(),
                     ),
-              icon: const Icon(Icons.account_circle_outlined),
+              icon: const Icon(Icons.account_circle_rounded),
               label: Text(l10n.accountsSyncContinueWithGoogleAction),
             ),
             const SizedBox(height: 12),
@@ -755,7 +756,7 @@ class _AccountConnectionCardState
                         .read(accountsAuthRepositoryProvider)
                         .signInWithEmail(),
                   ),
-            icon: const Icon(Icons.email_outlined),
+            icon: const Icon(Icons.email_rounded),
             label: Text(l10n.accountsSyncContinueWithEmailAction),
           ),
           const SizedBox(height: 8),
@@ -835,7 +836,7 @@ class SharedDeviceSafetyPage extends ConsumerWidget {
     final state = ref.watch(accountsSyncControllerProvider);
     final settings = state.sharedDeviceSafety;
     return AppPageScaffold(
-      headerIcon: Icons.shield_moon_outlined,
+      headerIcon: AppIcons.sharedDeviceSafety,
       title: l10n.accountsSyncSharedDeviceSafetyTitle,
       subtitle: l10n.accountsSyncSharedDeviceSafetyPageSubtitle,
       children: [
@@ -928,7 +929,7 @@ class ConnectedDevicesPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final devices = ref.watch(accountsSyncControllerProvider).connectedDevices;
     return AppPageScaffold(
-      headerIcon: Icons.devices_rounded,
+      headerIcon: AppIcons.devices,
       title: l10n.accountsSyncConnectedDevicesTitle,
       subtitle: l10n.accountsSyncConnectedDevicesSubtitle,
       children: [
@@ -972,7 +973,7 @@ class BackupRestoreHomePage extends ConsumerWidget {
     final syncScopePreferences = ref.watch(syncScopePreferencesProvider);
     final syncScopeSummary = buildBackupScopeSummary(syncScopePreferences);
     return AppPageScaffold(
-      headerIcon: Icons.backup_outlined,
+      headerIcon: AppIcons.backup,
       title: l10n.settingsBackupRestoreTitle,
       subtitle: l10n.accountsSyncBackupRestorePageSubtitle,
       children: [
@@ -1417,7 +1418,7 @@ class BackupRestoreHomePage extends ConsumerWidget {
           ),
         const SizedBox(height: 16),
         _NavRow(
-          icon: Icons.ios_share_rounded,
+          icon: AppIcons.export,
           title: l10n.accountsSyncExportBackupTitle,
           subtitle: state.backupRecord.lastExportAtIso == null
               ? l10n.accountsSyncExportBackupSubtitleDefault
@@ -1502,7 +1503,7 @@ class _RemoteRestorePreviewPageState
     final remoteScope = preview.importPreview.metadata.scopeSummary;
     final currentScope = buildBackupScopeSummary(state.syncScopePreferences);
     return AppPageScaffold(
-      headerIcon: Icons.compare_arrows_rounded,
+      headerIcon: AppIcons.compare,
       title: l10n.accountsSyncRemoteRestorePreviewTitle,
       subtitle: l10n.accountsSyncRemoteRestorePreviewSubtitle,
       children: [
@@ -1880,7 +1881,7 @@ class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
-      headerIcon: Icons.ios_share_rounded,
+      headerIcon: AppIcons.export,
       title: l10n.accountsSyncExportBackupTitle,
       subtitle: l10n.accountsSyncExportBackupPageSubtitle,
       children: [
@@ -1991,7 +1992,7 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
-      headerIcon: Icons.restore_page_outlined,
+      headerIcon: AppIcons.import,
       title: l10n.accountsSyncImportBackupTitle,
       subtitle: l10n.accountsSyncImportBackupPageSubtitle,
       children: [
@@ -2010,7 +2011,7 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
               const SizedBox(height: 12),
               FilledButton.icon(
                 onPressed: _busy ? null : () => _pickAndValidate(l10n),
-                icon: const Icon(Icons.file_open_outlined),
+                icon: const Icon(Icons.file_open_rounded),
                 label: Text(l10n.accountsSyncChooseBackupFileAction),
               ),
               const SizedBox(height: 12),
@@ -2166,7 +2167,7 @@ class SyncDetailsPage extends ConsumerWidget {
     final state = ref.watch(accountsSyncControllerProvider);
     final sync = state.syncStatus;
     return AppPageScaffold(
-      headerIcon: Icons.sync_alt_rounded,
+      headerIcon: AppIcons.sync,
       title: l10n.accountsSyncSyncDetailsTitle,
       subtitle: l10n.accountsSyncSyncDetailsSubtitle,
       children: [
@@ -2295,9 +2296,9 @@ class SyncStatusCard extends ConsumerWidget {
                   ),
             ),
             trailing: Icon(switch (sync.syncState) {
-              SyncStateKind.allCaughtUp => Icons.cloud_done_outlined,
+              SyncStateKind.allCaughtUp => Icons.cloud_done_rounded,
               SyncStateKind.syncing => Icons.sync_rounded,
-              SyncStateKind.offlinePending => Icons.cloud_off_outlined,
+              SyncStateKind.offlinePending => Icons.cloud_off_rounded,
               SyncStateKind.needsAttention => Icons.warning_amber_rounded,
               SyncStateKind.localOnly => Icons.phone_iphone_rounded,
               SyncStateKind.iCloudActive => Icons.cloud_queue_rounded,

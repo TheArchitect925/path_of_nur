@@ -586,7 +586,7 @@ class _NameListCard extends ConsumerWidget {
         ),
         trailing: IconButton(
           icon: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+            isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
           ),
           onPressed: () => notifier.toggleFavorite(entry.id),
         ),

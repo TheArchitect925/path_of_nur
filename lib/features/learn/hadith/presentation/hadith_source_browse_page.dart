@@ -54,7 +54,7 @@ class _HadithSourceCollectionListPage extends ConsumerWidget {
             (collection) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: CompactListTile(
-                leading: const Icon(Icons.menu_book_outlined),
+                leading: const Icon(Icons.menu_book_rounded),
                 title: collection.title,
                 subtitle: collection.hasChapters
                     ? l10n.hadithSourceBrowseCollectionSummary(
@@ -313,7 +313,7 @@ class _HadithBrowseEntryTile extends StatelessWidget {
                 onPressed: () => _shareCompactHadith(context, entry),
                 tooltip: l10n.hadithActionShare,
                 visualDensity: VisualDensity.compact,
-                icon: const Icon(Icons.share_outlined, size: 20),
+                icon: const Icon(Icons.share_rounded, size: 20),
               ),
               IconButton(
                 onPressed: () => pushHadithLessonDetail(

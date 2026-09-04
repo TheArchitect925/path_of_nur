@@ -186,7 +186,7 @@ class GrowthPathDetailPage extends ConsumerWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  trailing: const Icon(Icons.chevron_right),
+                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'growthHabitDetail',
                     pathParameters: {'habitId': habit.id},

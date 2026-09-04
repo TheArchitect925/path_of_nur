@@ -128,7 +128,7 @@ class _EditorialContentEditorPageState
                       onPressed: _isSaving
                           ? null
                           : () => _previewAndSave(context, currentSnapshot),
-                      icon: const Icon(Icons.save_outlined),
+                      icon: const Icon(Icons.save_rounded),
                       label: Text(l10n.editorialDashboardSaveVersionAction),
                     ),
                     OutlinedButton.icon(

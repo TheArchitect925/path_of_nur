@@ -14,6 +14,7 @@ import '../../seerah/application/seerah_journey_progress_service.dart';
 import '../../seerah/application/seerah_journey_repository.dart';
 import 'bedtime_story_cover_card.dart';
 import 'bedtime_story_mini_player.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class KidsStoryLibraryPage extends ConsumerWidget {
   const KidsStoryLibraryPage({super.key, this.initialCollectionId});
@@ -30,7 +31,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
       );
       final seerahJourney = ref.watch(featuredKidsSeerahJourneyProvider);
       return LearnHubPageScaffold(
-        headerIcon: Icons.auto_stories_rounded,
+        headerIcon: AppIcons.stories,
         title: _collectionTitle(l10n, selectedCollection),
         subtitle: _collectionSubtitle(l10n, selectedCollection),
         floatingBottom: const BedtimeStoryMiniPlayer(),
@@ -99,7 +100,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
     ];
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
+      headerIcon: AppIcons.stories,
       title: l10n.kidsStoryLibraryTitle,
       subtitle: l10n.kidsStoryLibrarySubtitle,
       floatingBottom: const BedtimeStoryMiniPlayer(),
@@ -499,7 +500,7 @@ class _StoryListTile extends ConsumerWidget {
                 width: dense ? 46 : 54,
                 height: dense ? 46 : 54,
                 decoration: _kidsNoorPanelDecoration(context),
-                child: const Icon(Icons.auto_stories_rounded),
+                child: const Icon(AppIcons.stories),
               ),
               const SizedBox(width: 12),
               Expanded(

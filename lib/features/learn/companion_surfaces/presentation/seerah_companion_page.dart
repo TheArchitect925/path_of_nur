@@ -12,6 +12,7 @@ import '../../journey/domain/learning_journey_models.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learn_companion_content.dart';
 import '../domain/learn_companion_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class SeerahCompanionPage extends ConsumerStatefulWidget {
   const SeerahCompanionPage({super.key, this.initialFocus});
@@ -126,7 +127,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.seerah,
       title: l10n.learningJourneySeerahJourneyTitle,
       subtitle: l10n.learningJourneySeerahJourneySubtitle,
       children: [

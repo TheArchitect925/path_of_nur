@@ -39,6 +39,7 @@ import '../../worship/application/sister_cycle_provider.dart';
 import '../../worship/domain/prayer_calendar_mode.dart';
 import 'adhan_option_picker_sheet.dart';
 import 'settings/settings_catalog.dart';
+import '../../../core/theme/app_icons.dart';
 
 // The router builds every settings page from this file, so it keeps importing
 // the category enum from here even though the catalog now owns it.
@@ -95,7 +96,7 @@ class SettingsPage extends ConsumerWidget {
       // One list, one search — the same hub grammar the other tabs use, so
       // Settings stops being the last page with its own tile-grid language.
       return AppPageScaffold(
-        headerIcon: Icons.settings_outlined,
+        headerIcon: AppIcons.settings,
         title: l10n.settingsLandingTitle,
         subtitle: localizedAppPageDescription(
           context,
@@ -208,7 +209,7 @@ class SettingsPage extends ConsumerWidget {
             ExpandableTile(
               title: Text(l10n.settingsCareModesTitle),
               subtitle: Text(l10n.settingsCareModesSubtitle),
-              leading: const HubLeadingIcon(Icons.favorite_border_rounded),
+              leading: const HubLeadingIcon(AppIcons.care),
               child: Column(
                 children: [
                   _ModeTile(
@@ -268,7 +269,7 @@ class SettingsPage extends ConsumerWidget {
                   ),
                   const Divider(height: 1),
                   _ModeTile(
-                    icon: Icons.favorite_border_rounded,
+                    icon: AppIcons.care,
                     title: l10n.settingsUnwellModeTitle,
                     subtitle: l10n.settingsUnwellModeSubtitle,
                     value: specialMode.isUnwell,
@@ -285,7 +286,7 @@ class SettingsPage extends ConsumerWidget {
                   if (userProfile.sex == UserSex.sister) ...[
                     const Divider(height: 1),
                     _ModeTile(
-                      icon: Icons.water_drop_outlined,
+                      icon: Icons.water_drop_rounded,
                       title: l10n.settingsCycleDaysTitle,
                       subtitle: l10n.settingsCycleDaysSubtitle,
                       value: sisterCycle.active,
@@ -315,7 +316,7 @@ class SettingsPage extends ConsumerWidget {
         ? CompactListTile(
             title: l10n.familyLearningSettingsTitle,
             subtitle: l10n.familyLearningSettingsSubtitle,
-            leading: const HubLeadingIcon(IslamicIcons.family),
+            leading: const HubLeadingIcon(AppIcons.family),
             trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () => context.pushNamed('learnFamilyManagement'),
           )
@@ -340,7 +341,7 @@ class SettingsPage extends ConsumerWidget {
                           l10n,
                         ),
                       ),
-                leading: const HubLeadingIcon(Icons.person_outline_rounded),
+                leading: const HubLeadingIcon(AppIcons.profile),
                 trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                 onTap: () => context.push('/accounts-sync'),
               ),
@@ -351,7 +352,7 @@ class SettingsPage extends ConsumerWidget {
                   accountsSync.syncStatus.pendingChangesCount,
                   _syncStateLabel(accountsSync.syncStatus.syncState, l10n),
                 ),
-                leading: const HubLeadingIcon(Icons.sync_outlined),
+                leading: const HubLeadingIcon(AppIcons.backup),
                 trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                 onTap: () => context.push('/accounts-sync/sync-details'),
               ),
@@ -363,7 +364,7 @@ class SettingsPage extends ConsumerWidget {
                     : accountsSync.backupRecord.lastExportAtIso == null
                     ? l10n.settingsNoManualBackupYet
                     : l10n.settingsLastExportRecorded,
-                leading: const HubLeadingIcon(Icons.cloud_download_outlined),
+                leading: const HubLeadingIcon(AppIcons.download),
                 trailing: const Icon(Icons.chevron_right_rounded, size: 20),
                 onTap: () => context.push('/accounts-sync/backup'),
               ),
@@ -378,7 +379,7 @@ class SettingsPage extends ConsumerWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(IslamicIcons.family, size: 20),
+                      const Icon(AppIcons.family, size: 20),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -452,7 +453,7 @@ class SettingsPage extends ConsumerWidget {
                 .resolveRegular(prayerState.adhanSettings)
                 .option
                 .title,
-            leading: const HubLeadingIcon(Icons.volume_up_outlined),
+            leading: const HubLeadingIcon(AppIcons.adhan),
             trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () async {
               await showModalBottomSheet<void>(
@@ -491,7 +492,7 @@ class SettingsPage extends ConsumerWidget {
                                         .selectedRegularAdhanId &&
                                 (adhanPreview.isPlaying ||
                                     adhanPreview.isBuffering)
-                            ? Icons.stop_circle_outlined
+                            ? Icons.stop_circle_rounded
                             : Icons.play_circle_outline_rounded,
                       ),
                       label: Text(l10n.settingsTestAdhan),
@@ -554,7 +555,7 @@ class SettingsPage extends ConsumerWidget {
           CompactListTile(
             title: l10n.profileLocationLabel,
             subtitle: locationLabel,
-            leading: const HubLeadingIcon(Icons.place_outlined),
+            leading: const HubLeadingIcon(AppIcons.location),
             trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () async {
               final service = ref.read(prayerLocationSearchServiceProvider);
@@ -843,7 +844,7 @@ class SettingsPage extends ConsumerWidget {
         ExpandableTile(
           title: Text(l10n.settingsOccasionThemesTitle),
           subtitle: Text(l10n.settingsOccasionThemesSubtitle),
-          leading: const HubLeadingIcon(Icons.auto_awesome_rounded),
+          leading: const HubLeadingIcon(AppIcons.occasions),
           child: Column(
             children: [
               _SettingsToggleRow(
@@ -1217,7 +1218,7 @@ class SettingsPage extends ConsumerWidget {
               context,
               learningPathSelection?.selectedLevel,
             ),
-            leading: const HubLeadingIcon(Icons.route_rounded),
+            leading: const HubLeadingIcon(AppIcons.path),
             trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () => context.pushNamed('learnLearningPath'),
           ),
@@ -1225,7 +1226,7 @@ class SettingsPage extends ConsumerWidget {
           CompactListTile(
             title: l10n.settingsRunOnboardingTitle,
             subtitle: l10n.settingsRunOnboardingSubtitle,
-            leading: const HubLeadingIcon(Icons.auto_awesome_rounded),
+            leading: const HubLeadingIcon(AppIcons.occasions),
             trailing: const Icon(Icons.chevron_right_rounded, size: 20),
             onTap: () => context.push('/onboarding?preview=1'),
           ),
@@ -1273,21 +1274,21 @@ class SettingsPage extends ConsumerWidget {
             CompactListTile(
               title: l10n.homeOverviewHeroTitle,
               subtitle: l10n.homeOverviewHeroSubtitle,
-              leading: const HubLeadingIcon(Icons.summarize_outlined),
+              leading: const HubLeadingIcon(AppIcons.summary),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileSummary'),
             ),
             CompactListTile(
               title: l10n.settingsWhatsNewTitle,
               subtitle: l10n.settingsWhatsNewSubtitle,
-              leading: const HubLeadingIcon(Icons.new_releases_outlined),
+              leading: const HubLeadingIcon(AppIcons.whatsNew),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileWhatsNew'),
             ),
             CompactListTile(
               title: l10n.settingsComingSoonTitle,
               subtitle: l10n.settingsComingSoonSubtitle,
-              leading: const HubLeadingIcon(Icons.upcoming_outlined),
+              leading: const HubLeadingIcon(AppIcons.comingSoon),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('profileComingSoon'),
             ),
@@ -1300,28 +1301,28 @@ class SettingsPage extends ConsumerWidget {
             CompactListTile(
               title: l10n.legalPrivacyTitle,
               subtitle: l10n.legalPrivacySubtitle,
-              leading: const HubLeadingIcon(Icons.privacy_tip_outlined),
+              leading: const HubLeadingIcon(AppIcons.privacy),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('privacyPolicy'),
             ),
             CompactListTile(
               title: l10n.legalTermsTitle,
               subtitle: l10n.legalTermsSubtitle,
-              leading: const HubLeadingIcon(Icons.gavel_rounded),
+              leading: const HubLeadingIcon(AppIcons.legal),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('termsUsage'),
             ),
             CompactListTile(
               title: l10n.legalSupportTitle,
               subtitle: l10n.legalSupportSubtitle,
-              leading: const HubLeadingIcon(Icons.support_agent_rounded),
+              leading: const HubLeadingIcon(AppIcons.support),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('supportInfo'),
             ),
             CompactListTile(
               title: l10n.settingsAttributionsLicensesTitle,
               subtitle: l10n.quranReaderSourcesLicensingTitle,
-              leading: const HubLeadingIcon(Icons.workspace_premium_outlined),
+              leading: const HubLeadingIcon(AppIcons.licenses),
               trailing: const Icon(Icons.chevron_right_rounded, size: 20),
               onTap: () => context.pushNamed('attributionsLicenses'),
             ),
@@ -1728,7 +1729,7 @@ class _HomepageProfileIcon extends StatelessWidget {
               radius: inner * 0.34,
               backgroundColor: accent.withValues(alpha: 0.22),
               child: Icon(
-                Icons.person,
+                Icons.person_rounded,
                 size: inner * 0.34,
                 color: onSurface.withValues(alpha: 0.86),
               ),
@@ -2417,7 +2418,7 @@ class _JumuahSettingsSection extends StatelessWidget {
           CompactListTile(
             title: l10n.settingsJumuahTimeTitle,
             subtitle: l10n.settingsJumuahTimeSubtitle,
-            leading: const HubLeadingIcon(Icons.schedule_rounded),
+            leading: const HubLeadingIcon(AppIcons.schedule),
             trailing: Text(
               _formatMinutesLabel(context, preferences.jumuahTimeMinutes, l10n),
               style: Theme.of(context).textTheme.titleSmall,
@@ -2461,7 +2462,7 @@ class _JumuahSettingsSection extends StatelessWidget {
           title: l10n.settingsJumuahMosqueTitle,
           subtitle:
               preferences.jumuahMosqueName ?? l10n.settingsJumuahChooseMosque,
-          leading: const HubLeadingIcon(Icons.mosque_outlined),
+          leading: const HubLeadingIcon(AppIcons.mosque),
           trailing: const Icon(Icons.chevron_right_rounded, size: 20),
           onTap: () async {
             final result = await showDialog<PrayerLocationSearchResult>(
@@ -2515,7 +2516,7 @@ class _JumuahSettingsSection extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.remove_circle_outline),
+                        icon: const Icon(Icons.remove_circle_outline_rounded),
                         onPressed: () => prayerNotifier.updateJumuahSettings(
                           travelMinutes: (preferences.jumuahTravelMinutes - 5)
                               .clamp(5, 120),
@@ -2526,7 +2527,7 @@ class _JumuahSettingsSection extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       IconButton(
-                        icon: const Icon(Icons.add_circle_outline),
+                        icon: const Icon(Icons.add_circle_outline_rounded),
                         onPressed: () => prayerNotifier.updateJumuahSettings(
                           travelMinutes: (preferences.jumuahTravelMinutes + 5)
                               .clamp(5, 120),
@@ -2626,7 +2627,7 @@ class _JumuahMosquePickerDialogState
                     for (final result in _results)
                       ListTile(
                         dense: true,
-                        leading: const Icon(Icons.mosque_outlined),
+                        leading: const Icon(AppIcons.mosque),
                         title: Text(
                           result.label,
                           maxLines: 2,
@@ -3729,7 +3730,9 @@ class _LanguageRow extends ConsumerWidget {
       title: Text(label),
       subtitle: Text(locale.toLanguageTag()),
       trailing: Icon(
-        isCurrent ? Icons.radio_button_checked : Icons.radio_button_off,
+        isCurrent
+            ? Icons.radio_button_checked_rounded
+            : Icons.radio_button_unchecked_rounded,
       ),
     );
   }

@@ -221,7 +221,7 @@ class ChallengeCard extends StatelessWidget {
               if (onCapture != null)
                 OutlinedButton.icon(
                   onPressed: onCapture,
-                  icon: const Icon(Icons.add_a_photo_outlined),
+                  icon: const Icon(Icons.add_a_photo_rounded),
                   label: const Text('Capture sign'),
                 ),
             ],
@@ -262,7 +262,7 @@ class GalleryTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 color: const Color(0xFFF1E4CC),
               ),
-              child: const Icon(Icons.image_outlined),
+              child: const Icon(Icons.image_rounded),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -312,7 +312,11 @@ class _TimelineBlock extends StatelessWidget {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(top: 4),
-                  child: Icon(Icons.circle, size: 8, color: Color(0xFF9B7A47)),
+                  child: Icon(
+                    Icons.circle_rounded,
+                    size: 8,
+                    color: Color(0xFF9B7A47),
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Expanded(

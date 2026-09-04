@@ -194,7 +194,10 @@ class QuranNotesPage extends ConsumerWidget {
                                   'ayah': note.ayahNumber.toString(),
                                 },
                               ),
-                              icon: const Icon(Icons.open_in_new, size: 16),
+                              icon: const Icon(
+                                Icons.open_in_new_rounded,
+                                size: 16,
+                              ),
                               label: Text(l10n.quranOpenInReader),
                             ),
                           ],

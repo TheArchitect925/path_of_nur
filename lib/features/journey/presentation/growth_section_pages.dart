@@ -6,13 +6,13 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/content/page_description_copy.dart';
-import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import 'growth_journey_page.dart';
 import 'growth_paths_page.dart';
 import 'growth_reflection_page.dart';
 import 'growth_today_page.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthTodaySectionPage extends StatelessWidget {
   const GrowthTodaySectionPage({super.key});
@@ -102,7 +102,7 @@ class _GrowthSectionScaffold extends StatelessWidget {
         final quote = buildGrowthReflectionQuote();
 
         return SectionHubScaffold(
-          headerIcon: IslamicIcons.tasbih,
+          headerIcon: AppIcons.growth,
           title: title,
           subtitle: localizedAppPageDescription(
             context,

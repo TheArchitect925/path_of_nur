@@ -14,6 +14,7 @@ import '../application/ayah_completion_progress_provider.dart';
 import '../application/ayah_completion_repository.dart';
 import '../domain/ayah_completion_models.dart';
 import 'ayah_completion_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class AyahCompletionHomePage extends ConsumerWidget {
   const AyahCompletionHomePage({super.key});
@@ -33,7 +34,7 @@ class AyahCompletionHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
+      headerIcon: AppIcons.memorize,
       title: l10n.ayahCompletionHomeTitle,
       subtitle: l10n.ayahCompletionHomeSubtitle,
       children: [

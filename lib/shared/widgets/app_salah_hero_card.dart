@@ -95,7 +95,7 @@ class AppSalahHeroCard extends StatelessWidget {
                     return Row(
                       children: [
                         Icon(
-                          Icons.location_on_outlined,
+                          Icons.location_on_rounded,
                           size: 15,
                           color: accent,
                         ),

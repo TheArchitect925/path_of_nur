@@ -14,6 +14,7 @@ import '../../prophets/domain/prophets_tab.dart';
 import '../../prophets/presentation/prophet_detail_page.dart';
 import '../data/seeded_quran_universe_data.dart';
 import '../domain/quran_universe_links.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _UniverseMode { prophet, theme, location, lesson }
 
@@ -33,7 +34,7 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
     final prophetById = {for (final p in prophets) p.id: p};
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.hub_rounded,
+      headerIcon: AppIcons.universe,
       title: 'Qur\'an Universe',
       subtitle:
           'Explore connections between verses, prophets, themes, locations, lessons, and growth habits.',

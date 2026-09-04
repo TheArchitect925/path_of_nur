@@ -17,6 +17,7 @@ import '../application/bedtime_session_service.dart';
 import '../data/bedtime_routine_seed.dart';
 import '../domain/bedtime_routine_models.dart';
 import 'bedtime_routine_step_card.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class BedtimeCompanionPage extends ConsumerWidget {
   const BedtimeCompanionPage({super.key});
@@ -36,7 +37,7 @@ class BedtimeCompanionPage extends ConsumerWidget {
         : ref.watch(bedtimeStoryByIdProvider(session!.suggestedStoryId!));
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.bedtime_rounded,
+      headerIcon: AppIcons.bedtime,
       title: l10n.bedtimeCompanionTitle,
       subtitle: l10n.bedtimeCompanionSubtitle,
       floatingBottom: const BedtimeStoryMiniPlayer(),
@@ -594,7 +595,7 @@ IconData _iconFor(BedtimeRoutineStepType type) {
     case BedtimeRoutineStepType.gratitudeReflection:
       return Icons.favorite_outline_rounded;
     case BedtimeRoutineStepType.sleepReadyFinish:
-      return Icons.nightlight_round;
+      return Icons.nightlight_round_rounded;
     case BedtimeRoutineStepType.readAlong:
       return Icons.chrome_reader_mode_rounded;
     case BedtimeRoutineStepType.dhikrLight:

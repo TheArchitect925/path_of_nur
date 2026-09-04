@@ -168,7 +168,7 @@ class QuranSurahInsightPage extends ConsumerWidget {
                       children: [
                         const Padding(
                           padding: EdgeInsets.only(top: 6),
-                          child: Icon(Icons.circle, size: 8),
+                          child: Icon(Icons.circle_rounded, size: 8),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -234,7 +234,7 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(top: 6),
-                        child: Icon(Icons.circle, size: 8),
+                        child: Icon(Icons.circle_rounded, size: 8),
                       ),
                       const SizedBox(width: 10),
                       Expanded(child: Text(lesson)),

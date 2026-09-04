@@ -18,6 +18,7 @@ import '../application/growth_statistics_share_service.dart';
 import '../application/journey_stats_provider.dart';
 import '../drops/application/journey_drops_providers.dart';
 import 'growth_statistics_localizations.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthTrackingDashboardPage extends ConsumerWidget {
   const GrowthTrackingDashboardPage({super.key});
@@ -67,7 +68,7 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
     }
 
     return AppPageScaffold(
-      headerIcon: Icons.query_stats_rounded,
+      headerIcon: AppIcons.statistics,
       title: l10n.growthStatisticsTitleText,
       subtitle: l10n.growthStatisticsSubtitleText,
       children: [
@@ -331,7 +332,7 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
                   ),
                   FilledButton.tonalIcon(
                     onPressed: shareMonthly,
-                    icon: const Icon(Icons.share_outlined),
+                    icon: const Icon(Icons.share_rounded),
                     label: Text(l10n.growthStatisticsShareMonthlyActionText),
                   ),
                   OutlinedButton.icon(

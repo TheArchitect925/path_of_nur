@@ -5,13 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
-import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../quran/application/quran_khatm_provider.dart';
 import '../../quran/application/quran_providers.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The Qur'an tab, reader-first: continue exactly where you left off, keep a
 /// khatm moving, then Read / Understand / Practice — every destination once.
@@ -26,7 +26,7 @@ class QuranAppHubPage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: IslamicIcons.quran,
+      headerIcon: AppIcons.quran,
       title: l10n.quranAppHubTitle,
       subtitle: localizedAppPageDescription(
         context,
@@ -51,19 +51,19 @@ class QuranAppHubPage extends ConsumerWidget {
           title: l10n.quranTabGroupRead,
           children: [
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.menu_book_rounded),
+              leading: const HubLeadingIcon(AppIcons.surahs),
               title: l10n.quranTabAllSurahsTitle,
               subtitle: l10n.quranTabAllSurahsSubtitle,
               onTap: () => context.pushNamed('quranExplorer'),
             ),
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.bookmark_border_rounded),
+              leading: const HubLeadingIcon(AppIcons.bookmarkOff),
               title: l10n.quranTabBookmarksTitle,
               subtitle: l10n.quranTabBookmarksSubtitle,
               onTap: () => context.pushNamed('quranBookmarks'),
             ),
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.headphones_rounded),
+              leading: const HubLeadingIcon(AppIcons.listen),
               title: l10n.quranTabListenTitle,
               subtitle: l10n.quranTabListenSubtitle,
               onTap: () => context.pushNamed('quranFocusRecitation'),
@@ -75,19 +75,19 @@ class QuranAppHubPage extends ConsumerWidget {
           title: l10n.quranTabGroupUnderstand,
           children: [
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.auto_stories_rounded),
+              leading: const HubLeadingIcon(AppIcons.summary),
               title: l10n.quranTabSummariesTitle,
               subtitle: l10n.quranTabSummariesSubtitle,
               onTap: () => context.pushNamed('quranSummaryPage'),
             ),
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.category_rounded),
+              leading: const HubLeadingIcon(AppIcons.topics),
               title: l10n.quranTabTopicsTitle,
               subtitle: l10n.quranTabTopicsSubtitle,
               onTap: () => context.pushNamed('quranTopicExplorer'),
             ),
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.route_rounded),
+              leading: const HubLeadingIcon(AppIcons.path),
               title: l10n.quranTabPathwaysTitle,
               subtitle: l10n.quranTabPathwaysSubtitle,
               onTap: () => context.pushNamed('quranLearningPaths'),
@@ -99,20 +99,20 @@ class QuranAppHubPage extends ConsumerWidget {
           title: l10n.quranTabGroupPractice,
           children: [
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.abc_rounded),
+              leading: const HubLeadingIcon(AppIcons.arabic),
               title: l10n.quranTabLearnArabicTitle,
               subtitle: l10n.quranTabLearnArabicSubtitle,
               trailing: HubNewBadge(label: l10n.quranTabStartHereBadge),
               onTap: () => context.pushNamed('quranArabic'),
             ),
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.psychology_alt_outlined),
+              leading: const HubLeadingIcon(AppIcons.memorize),
               title: l10n.quranTabMemorizationTitle,
               subtitle: l10n.quranTabMemorizationSubtitle,
               onTap: () => context.pushNamed('quranMemorizationReview'),
             ),
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.style_rounded),
+              leading: const HubLeadingIcon(AppIcons.wordDeck),
               title: l10n.quranTabWordPracticeTitle,
               subtitle: l10n.quranTabWordPracticeSubtitle,
               onTap: () => context.pushNamed('quranTopWords'),
@@ -213,7 +213,7 @@ class _ContinueReadingHero extends ConsumerWidget {
                       'ayah': '${summary.ayahNumber}',
                     },
                   ),
-                  icon: const Icon(Icons.headphones_rounded, size: 18),
+                  icon: const Icon(AppIcons.listen, size: 18),
                   label: Text(l10n.quranTabListenAction),
                 ),
               ),
@@ -237,7 +237,7 @@ class _ReadingPlanRow extends ConsumerWidget {
         : '${l10n.quranTabPlanJuzLabel(status.currentJuz)} · '
               '${status.portionDoneToday ? l10n.quranTabPlanDoneSuffix : l10n.quranTabPlanTodaySuffix(status.portionLabel)}';
     return CompactListTile(
-      leading: const HubLeadingIcon(Icons.flag_circle_outlined),
+      leading: const HubLeadingIcon(AppIcons.readingPlan),
       title: l10n.quranTabPlanTitle,
       subtitle: subtitle,
       onTap: () => context.pushNamed('quranKhatmPlan'),
@@ -253,7 +253,7 @@ class _TodayAyahRow extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final verse = ref.watch(quranDailyVerseProvider);
     return CompactListTile(
-      leading: const HubLeadingIcon(Icons.wb_sunny_rounded),
+      leading: const HubLeadingIcon(AppIcons.daily),
       title: l10n.quranTabTodayAyahTitle,
       subtitle: l10n.quranTabTodayAyahSubtitle(verse.locationLabel),
       onTap: () => context.pushNamed('quranDailyCompanion'),

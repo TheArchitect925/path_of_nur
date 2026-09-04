@@ -124,7 +124,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                           habitId: habit.id,
                           status: GrowthHabitStatus.completed,
                         ),
-                    icon: const Icon(Icons.check_circle_outline),
+                    icon: const Icon(Icons.check_circle_outline_rounded),
                     label: Text(l10n.growthHabitCompleteAction),
                   ),
                   FilledButton.tonal(

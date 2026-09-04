@@ -181,7 +181,7 @@ class _QuranAyahDetailsSheetBody extends ConsumerWidget {
                     ),
                 icon: Icon(
                   isBookmarked
-                      ? Icons.bookmark
+                      ? Icons.bookmark_rounded
                       : Icons.bookmark_outline_rounded,
                 ),
               ),
@@ -199,7 +199,7 @@ class _QuranAyahDetailsSheetBody extends ConsumerWidget {
                 icon: Icon(
                   isMarkedForMemorization
                       ? Icons.school_rounded
-                      : Icons.school_outlined,
+                      : AppIcons.studyOff,
                 ),
               ),
               IconButton(
@@ -211,7 +211,7 @@ class _QuranAyahDetailsSheetBody extends ConsumerWidget {
                       surahNumber: ayah.surahNumber,
                       ayahNumber: ayah.ayahNumber,
                     ),
-                icon: const Icon(Icons.flag_outlined),
+                icon: const Icon(Icons.outlined_flag_rounded),
               ),
               IconButton(
                 key: const ValueKey('quran-ayah-sheet-note'),
@@ -220,7 +220,7 @@ class _QuranAyahDetailsSheetBody extends ConsumerWidget {
                 icon: Badge(
                   isLabelVisible: notesCount > 0,
                   label: Text(notesCount.toString()),
-                  child: const Icon(Icons.sticky_note_2_outlined),
+                  child: const Icon(Icons.sticky_note_2_rounded),
                 ),
               ),
             ],

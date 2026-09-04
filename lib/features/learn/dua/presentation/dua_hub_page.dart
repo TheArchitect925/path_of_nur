@@ -18,6 +18,7 @@ import '../application/dua_progress_provider.dart';
 import '../application/dua_repository.dart';
 import '../domain/dua_models.dart';
 import 'dua_category_theme.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum DuaHubTab { duas, categories, saved, daily }
 
@@ -95,7 +96,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     final userState = ref.watch(duaLearningProvider);
     final savedIds = userState.savedIds;
     return LearnHubPageScaffold(
-      headerIcon: Icons.pan_tool_alt_rounded,
+      headerIcon: AppIcons.dua,
       title: _tab == DuaHubTab.duas ? l10n.duaHubTitle : _tabLabel(l10n, _tab),
       subtitle: l10n.duaHubSubtitle,
       headerActions: [
@@ -444,29 +445,29 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   IconData _situationIcon(String situation) {
     switch (situation) {
       case 'forgiveness':
-        return Icons.volunteer_activism_outlined;
+        return Icons.volunteer_activism_rounded;
       case 'gratitude':
         return Icons.favorite_outline_rounded;
       case 'anxiety':
-        return Icons.psychology_outlined;
+        return Icons.psychology_rounded;
       case 'sadness':
-        return Icons.water_drop_outlined;
+        return Icons.water_drop_rounded;
       case 'anger':
-        return Icons.whatshot_outlined;
+        return Icons.whatshot_rounded;
       case 'hardship':
-        return Icons.terrain_outlined;
+        return Icons.terrain_rounded;
       case 'illness':
-        return Icons.healing_outlined;
+        return Icons.healing_rounded;
       case 'good_news':
-        return Icons.celebration_outlined;
+        return Icons.celebration_rounded;
       case 'sneezing':
         return Icons.air_rounded;
       case 'protection':
-        return Icons.shield_outlined;
+        return Icons.shield_rounded;
       case 'guidance':
-        return Icons.explore_outlined;
+        return Icons.explore_rounded;
       case 'social_interactions':
-        return Icons.groups_outlined;
+        return Icons.groups_rounded;
     }
     return Icons.label_outline_rounded;
   }
@@ -776,7 +777,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   IconData _sectionIcon(DuaHubTab tab) {
     switch (tab) {
       case DuaHubTab.duas:
-        return Icons.pan_tool_alt_rounded;
+        return AppIcons.dua;
       case DuaHubTab.categories:
         return Icons.category_rounded;
       case DuaHubTab.saved:

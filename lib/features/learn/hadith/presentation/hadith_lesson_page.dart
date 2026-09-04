@@ -818,13 +818,13 @@ class _HadithReaderTaxonomyChips extends StatelessWidget {
       children: [
         if (categoryTitle != null)
           Chip(
-            avatar: const Icon(Icons.category_outlined, size: 18),
+            avatar: const Icon(Icons.category_rounded, size: 18),
             label: Text(categoryTitle),
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
         if (subcategoryTitle != null)
           ActionChip(
-            avatar: const Icon(Icons.sell_outlined, size: 18),
+            avatar: const Icon(Icons.sell_rounded, size: 18),
             label: Text(subcategoryTitle),
             onPressed: subcategoryId == null
                 ? null
@@ -979,7 +979,7 @@ class _HadithReaderActionRow extends ConsumerWidget {
             onPressed: () =>
                 _toggleHadithSaved(context, ref, entry, isSaved: isSaved),
             icon: Icon(
-              isSaved ? Icons.bookmark_rounded : Icons.bookmark_add_outlined,
+              isSaved ? Icons.bookmark_rounded : Icons.bookmark_add_rounded,
             ),
             label: Text(
               isSaved ? l10n.hadithActionSaved : l10n.hadithActionSave,
@@ -992,7 +992,7 @@ class _HadithReaderActionRow extends ConsumerWidget {
           ),
           FilledButton.tonalIcon(
             onPressed: () => _shareHadith(context, entry),
-            icon: const Icon(Icons.share_outlined),
+            icon: const Icon(Icons.share_rounded),
             label: Text(l10n.hadithActionShare),
           ),
           FilledButton.tonalIcon(

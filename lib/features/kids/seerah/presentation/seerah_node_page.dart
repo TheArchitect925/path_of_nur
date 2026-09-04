@@ -183,7 +183,7 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Row(
                       children: [
-                        const Icon(Icons.circle, size: 8),
+                        const Icon(Icons.circle_rounded, size: 8),
                         const SizedBox(width: 8),
                         Expanded(child: Text(choice)),
                       ],

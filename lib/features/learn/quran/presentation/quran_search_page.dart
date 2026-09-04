@@ -256,7 +256,7 @@ class _QuranSearchPageState extends ConsumerState<QuranSearchPage> {
                     fieldFilter: fieldFilter,
                   );
                 },
-                icon: const Icon(Icons.close, size: 18),
+                icon: const Icon(Icons.close_rounded, size: 18),
               ),
             ),
           ),
@@ -315,7 +315,7 @@ class _QuranSearchPageState extends ConsumerState<QuranSearchPage> {
               icon: Icon(
                 isSavedSearch
                     ? Icons.bookmark_rounded
-                    : Icons.bookmark_add_outlined,
+                    : Icons.bookmark_add_rounded,
                 size: 18,
               ),
               label: Text(

@@ -126,7 +126,7 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
                         onPressed: () => notifier.toggleFavorite(name.id),
                         icon: Icon(
                           isFavorite
-                              ? Icons.favorite
+                              ? Icons.favorite_rounded
                               : Icons.favorite_border_rounded,
                         ),
                         label: Text(isFavorite ? 'Saved' : 'Save name'),

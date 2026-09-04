@@ -9,6 +9,7 @@ import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/world_creation_provider.dart';
 import '../../data/world_creation_data.dart';
 import '../../domain/world_creation_models.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class WorldCreationCategoryPage extends ConsumerWidget {
   const WorldCreationCategoryPage({super.key, required this.categoryName});
@@ -76,7 +77,7 @@ class WorldCreationCategoryPage extends ConsumerWidget {
                 if (category == WorldCreationCategoryId.muslimScientists)
                   FilledButton.tonalIcon(
                     onPressed: () => context.pushNamed('worldMuslimScientists'),
-                    icon: const Icon(Icons.biotech_rounded),
+                    icon: const Icon(AppIcons.science),
                     label: const Text('Open Muslim Scientists'),
                   ),
               ],

@@ -10,6 +10,7 @@ import '../application/quran_ayah_enrichment_provider.dart';
 import '../application/quran_learning_progression_provider.dart';
 import '../application/quran_learning_personalization_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// The ayah-insight pathways, as a section: merged into the Qur'an Pathways
 /// page in calm-navigation Phase 7a (the standalone list route redirects
@@ -82,7 +83,7 @@ class QuranAyahInsightPathDetailPage extends ConsumerWidget {
 
     if (resolvedPath == null) {
       return AppPageScaffold(
-        headerIcon: Icons.route_rounded,
+        headerIcon: AppIcons.path,
         title: l10n.quranAyahInsightPathsTitle,
         subtitle: l10n.quranAyahInsightPathsSubtitle,
         children: [PremiumCard(child: Text(l10n.quranAyahInsightPathsEmpty))],
@@ -93,7 +94,7 @@ class QuranAyahInsightPathDetailPage extends ConsumerWidget {
     final firstEntry = resolvedPath.entries.first;
 
     return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: _pathTitle(l10n, path.id),
       subtitle: _pathDescription(l10n, path.id),
       children: [

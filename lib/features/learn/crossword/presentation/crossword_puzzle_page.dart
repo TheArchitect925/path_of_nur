@@ -588,7 +588,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
           Icon(
             achieved
                 ? Icons.check_circle_rounded
-                : Icons.radio_button_unchecked,
+                : Icons.radio_button_unchecked_rounded,
             size: 18,
             color: achieved ? Theme.of(context).colorScheme.primary : null,
           ),
@@ -741,7 +741,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                   onPressed: canViewExtraHint
                       ? () => _handleViewExtraHint(puzzle: puzzle, clue: clue)
                       : null,
-                  icon: const Icon(Icons.tips_and_updates_outlined),
+                  icon: const Icon(Icons.tips_and_updates_rounded),
                   label: Text(
                     extraHintViewed
                         ? l10n.crosswordExtraHintViewedAction

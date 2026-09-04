@@ -200,7 +200,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                           Padding(
                             padding: EdgeInsets.only(top: 4),
                             child: Icon(
-                              Icons.circle,
+                              Icons.circle_rounded,
                               size: 7,
                               color: context.palette.onSurfaceSubtle,
                             ),

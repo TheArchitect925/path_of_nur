@@ -9,6 +9,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../learn/presentation/widgets/learn_discovery_search_field.dart';
 import 'help_guide_content.dart';
+import '../../../core/theme/app_icons.dart';
 
 class HelpGuideHubPage extends StatefulWidget {
   const HelpGuideHubPage({super.key});
@@ -42,7 +43,7 @@ class _HelpGuideHubPageState extends State<HelpGuideHubPage> {
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.help_center_outlined,
+      headerIcon: AppIcons.help,
       title: l10n.settingsHelpGuideTitle,
       subtitle: l10n.settingsHelpGuideSubtitle,
       children: [

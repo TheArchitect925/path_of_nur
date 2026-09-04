@@ -288,7 +288,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                         'kidsBedtimeStoryDetail',
                         pathParameters: {'storyId': story.id},
                       ),
-                      icon: const Icon(Icons.nightlight_round),
+                      icon: const Icon(Icons.nightlight_round_rounded),
                       label: Text(l10n.bedtimeStoryBackToStoryAction),
                     ),
                     if (nextSuggestion != null &&

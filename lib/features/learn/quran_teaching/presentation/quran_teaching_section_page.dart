@@ -38,6 +38,7 @@ import 'quran_teaching_review_page.dart';
 import 'widgets/quran_teaching_adult_overview_card.dart';
 import 'widgets/quran_teaching_review_widgets.dart';
 import '../../../../core/theme/app_fonts.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranTeachingSectionPage extends ConsumerStatefulWidget {
   const QuranTeachingSectionPage({super.key});
@@ -199,7 +200,7 @@ class _QuranTeachingSectionPageState
     final completedLessons = progress.completedLessonIds.length;
     final percent = totalLessons == 0 ? 0.0 : completedLessons / totalLessons;
     return LearnHubPageScaffold(
-      headerIcon: Icons.school_rounded,
+      headerIcon: AppIcons.arabic,
       title: l10n.quranTeachingSectionTitle,
       subtitle: l10n.quranTeachingSectionSubtitle,
       children: [
@@ -273,7 +274,7 @@ class _QuranTeachingSectionPageState
               const SizedBox(height: 12),
               FilledButton.tonalIcon(
                 onPressed: () => context.pushNamed('quranArabicMiniAssessment'),
-                icon: const Icon(Icons.self_improvement_rounded),
+                icon: const Icon(AppIcons.practice),
                 label: Text(l10n.quranTeachingMiniAssessmentCardAction),
               ),
             ],

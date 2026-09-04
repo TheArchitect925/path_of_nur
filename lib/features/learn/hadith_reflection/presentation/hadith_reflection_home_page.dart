@@ -14,6 +14,7 @@ import '../application/hadith_reflection_progress_provider.dart';
 import '../application/hadith_reflection_repository.dart';
 import '../domain/hadith_reflection_models.dart';
 import 'hadith_reflection_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class HadithReflectionHomePage extends ConsumerWidget {
   const HadithReflectionHomePage({super.key});
@@ -33,7 +34,7 @@ class HadithReflectionHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: AppIcons.hadith,
       title: l10n.hadithReflectionHomeTitle,
       subtitle: l10n.hadithReflectionHomeSubtitle,
       children: [

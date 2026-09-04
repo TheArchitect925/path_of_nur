@@ -12,6 +12,7 @@ import '../models/faq_item.dart';
 import '../providers/faq_providers.dart';
 import '../widgets/faq_category_card.dart';
 import '../widgets/faq_question_tile.dart';
+import '../../../core/theme/app_icons.dart';
 
 class FaqLandingPage extends ConsumerStatefulWidget {
   const FaqLandingPage({super.key});
@@ -49,7 +50,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
     return LearnHubPageScaffold(
       quote: null,
       showDefaultQuote: false,
-      headerIcon: Icons.help_outline_rounded,
+      headerIcon: AppIcons.faq,
       title: l10n.batch9FaqTitle,
       subtitle: l10n.batch9FaqSubtitle,
       headerActions: [
@@ -297,13 +298,13 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   IconData _categoryIcon(String categoryId) {
     switch (categoryId) {
       case 'foundations_of_islam':
-        return Icons.mosque_outlined;
+        return AppIcons.mosque;
       case 'worship_and_practice':
-        return Icons.front_hand_outlined;
+        return Icons.front_hand_rounded;
       case 'misconceptions_about_islam':
         return Icons.lightbulb_outline_rounded;
       case 'women_in_islam':
-        return Icons.groups_2_outlined;
+        return Icons.groups_2_rounded;
       case 'science_and_quran':
         return Icons.travel_explore_rounded;
       case 'quran_and_revelation':
@@ -311,13 +312,13 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
       case 'prophets_and_history':
         return Icons.history_edu_rounded;
       case 'ethics_and_lifestyle':
-        return Icons.self_improvement_rounded;
+        return AppIcons.character;
       case 'afterlife_and_purpose':
         return Icons.nightlight_round_rounded;
       case 'islam_in_the_modern_world':
         return Icons.public_rounded;
       default:
-        return Icons.help_outline_rounded;
+        return AppIcons.faq;
     }
   }
 }

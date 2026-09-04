@@ -20,6 +20,7 @@ import '../domain/kids_dua_learning_models.dart';
 import '../domain/kids_dua_models.dart';
 import 'kids_dua_read_along_view.dart';
 import 'kids_dua_tap_repeat_view.dart';
+import '../../../core/theme/app_icons.dart';
 
 class KidsDuaLessonPage extends ConsumerStatefulWidget {
   const KidsDuaLessonPage({super.key, required this.lessonId});
@@ -121,7 +122,7 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
                   ButtonSegment<KidsDuaRepeatMode>(
                     value: KidsDuaRepeatMode.gentlePractice,
                     label: Text(l10n.kidsDuaModeGentlePractice),
-                    icon: const Icon(Icons.self_improvement_rounded),
+                    icon: const Icon(AppIcons.practice),
                   ),
                 ],
                 selected: <KidsDuaRepeatMode>{_mode},

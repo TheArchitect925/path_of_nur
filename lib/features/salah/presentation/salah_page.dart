@@ -149,7 +149,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
-                    Icons.location_on_outlined,
+                    Icons.location_on_rounded,
                     size: 14,
                     color: Color(0xFF7A5A33),
                   ),

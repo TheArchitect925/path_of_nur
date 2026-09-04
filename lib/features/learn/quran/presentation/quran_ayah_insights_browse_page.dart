@@ -11,6 +11,7 @@ import '../application/quran_ayah_enrichment_provider.dart';
 import '../application/quran_learning_personalization_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import 'widgets/quran_learning_personalization_section.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranAyahInsightsBrowsePage extends ConsumerStatefulWidget {
   const QuranAyahInsightsBrowsePage({super.key});
@@ -65,7 +66,7 @@ class _QuranAyahInsightsBrowsePageState
         _selectedLessonType != null;
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_awesome_outlined,
+      headerIcon: AppIcons.insights,
       title: l10n.quranAyahInsightsBrowseTitle,
       subtitle: l10n.quranAyahInsightsBrowseSubtitle,
       children: [
@@ -247,7 +248,7 @@ class QuranAyahInsightsDomainPage extends ConsumerWidget {
 
     if (category == null) {
       return AppPageScaffold(
-        headerIcon: Icons.auto_awesome_outlined,
+        headerIcon: AppIcons.insights,
         title: l10n.quranAyahInsightsBrowseTitle,
         subtitle: l10n.quranAyahInsightsBrowseSubtitle,
         children: [
@@ -284,7 +285,7 @@ class QuranAyahInsightsDomainPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_awesome_outlined,
+      headerIcon: AppIcons.insights,
       title: title,
       subtitle: _subtitleForCategory(l10n, category.id),
       children: [

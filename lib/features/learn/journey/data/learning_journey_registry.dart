@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/islamic_icons.dart';
 import '../domain/learning_journey_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyRegistry {
   static final bool _validated = _validate();
@@ -36,7 +37,7 @@ class LearningJourneyRegistry {
       description:
           'Understand the essentials of belief, practice, and historical development with clarity.',
       order: 3,
-      icon: IslamicIcons.mosque,
+      icon: AppIcons.mosque,
       color: Color(0xFFF0E4D8),
       accentColor: Color(0xFF835E42),
     ),

@@ -400,7 +400,7 @@ class _InternalContentBuilderPageState
                 children: [
                   FilledButton.icon(
                     onPressed: () => _validateDraft(repository),
-                    icon: const Icon(Icons.verified_outlined),
+                    icon: const Icon(Icons.verified_rounded),
                     label: Text(l10n.contentBuilderValidateAction),
                   ),
                   FilledButton.tonalIcon(

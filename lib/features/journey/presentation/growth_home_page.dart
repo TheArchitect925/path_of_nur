@@ -6,13 +6,13 @@ import '../../../l10n/app_localizations.dart';
 import '../../learn/quran/application/quran_personalization_provider.dart';
 import '../../learn/quran/domain/quran_personalization_models.dart';
 import '../../learn/quran/presentation/widgets/quran_personalized_recommendation_card.dart';
-import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/display/activity_heatmap.dart';
 import '../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../shared/widgets/display/hub_list_group.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../application/growth_statistics_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthHomePage extends ConsumerWidget {
   const GrowthHomePage({super.key});
@@ -23,7 +23,7 @@ class GrowthHomePage extends ConsumerWidget {
 
     return SectionHubScaffold(
       ownsBackground: false,
-      headerIcon: IslamicIcons.tasbih,
+      headerIcon: AppIcons.growth,
       title: l10n.journeyTitle,
       subtitle: l10n.growthHomeHeaderSubtitle,
       shortcutOpenLabel: l10n.learnShortcutOpen,
@@ -45,25 +45,25 @@ class GrowthHomePage extends ConsumerWidget {
             CompactListTile(
               title: l10n.growthTabToday,
               subtitle: l10n.growthHomeTodaySubtitle,
-              leading: const HubLeadingIcon(Icons.today_rounded),
+              leading: const HubLeadingIcon(AppIcons.today),
               onTap: () => context.pushNamed('growthTodayPage'),
             ),
             CompactListTile(
               title: l10n.growthTabHabits,
               subtitle: l10n.growthHomeHabitsSubtitle,
-              leading: const HubLeadingIcon(Icons.checklist_rtl_rounded),
+              leading: const HubLeadingIcon(AppIcons.habits),
               onTap: () => context.pushNamed('growthHabitsPage'),
             ),
             CompactListTile(
               title: l10n.growthStatisticsTitle,
               subtitle: l10n.growthStatisticsSubtitle,
-              leading: const HubLeadingIcon(Icons.query_stats_rounded),
+              leading: const HubLeadingIcon(AppIcons.statistics),
               onTap: () => context.pushNamed('growthStatisticsPage'),
             ),
             CompactListTile(
               title: l10n.journalTitle,
               subtitle: l10n.journalSubtitle,
-              leading: const HubLeadingIcon(Icons.edit_note_rounded),
+              leading: const HubLeadingIcon(AppIcons.journal),
               trailing: HubNewBadge(label: l10n.hubNewBadgeLabel),
               onTap: () => context.pushNamed('journalTimeline'),
             ),
@@ -76,25 +76,25 @@ class GrowthHomePage extends ConsumerWidget {
             CompactListTile(
               title: l10n.growthTabPaths,
               subtitle: l10n.growthHomePathsSubtitle,
-              leading: const HubLeadingIcon(Icons.alt_route_rounded),
+              leading: const HubLeadingIcon(AppIcons.growthPaths),
               onTap: () => context.pushNamed('growthPathsPage'),
             ),
             CompactListTile(
               title: l10n.growthTabJourney,
               subtitle: l10n.growthHomeJourneySubtitle,
-              leading: const HubLeadingIcon(Icons.route_rounded),
+              leading: const HubLeadingIcon(AppIcons.path),
               onTap: () => context.pushNamed('growthJourneyPage'),
             ),
             CompactListTile(
               title: l10n.spiritualGrowthTitle,
               subtitle: l10n.spiritualGrowthShortcutSubtitle,
-              leading: const HubLeadingIcon(Icons.self_improvement_rounded),
+              leading: const HubLeadingIcon(AppIcons.spiritualGrowth),
               onTap: () => context.pushNamed('spiritualGrowthPage'),
             ),
             CompactListTile(
               title: l10n.growthTabReflection,
               subtitle: l10n.growthHomeReflectionSubtitle,
-              leading: const HubLeadingIcon(Icons.auto_stories_rounded),
+              leading: const HubLeadingIcon(AppIcons.reflection),
               onTap: () => context.pushNamed('growthReflectionPage'),
             ),
           ],
@@ -106,19 +106,19 @@ class GrowthHomePage extends ConsumerWidget {
             CompactListTile(
               title: l10n.gardenPageTitle,
               subtitle: l10n.gardenPageEntryHomeSubtitle,
-              leading: const HubLeadingIcon(Icons.local_florist_rounded),
+              leading: const HubLeadingIcon(AppIcons.garden),
               onTap: () => context.pushNamed('gardenPage'),
             ),
             CompactListTile(
               title: l10n.oceanTitle,
               subtitle: l10n.oceanSubtitle,
-              leading: const HubLeadingIcon(Icons.water_drop_outlined),
+              leading: const HubLeadingIcon(AppIcons.drops),
               onTap: () => context.pushNamed('oceanDrops'),
             ),
             CompactListTile(
               title: l10n.wallpaperLibraryTitle,
               subtitle: l10n.wallpaperLibrarySubtitle,
-              leading: const HubLeadingIcon(Icons.wallpaper_rounded),
+              leading: const HubLeadingIcon(AppIcons.wallpapers),
               onTap: () => context.pushNamed('wallpaperLibrary'),
             ),
           ],
@@ -130,7 +130,7 @@ class GrowthHomePage extends ConsumerWidget {
             CompactListTile(
               title: l10n.circlesTitle,
               subtitle: l10n.circlesSubtitle,
-              leading: const HubLeadingIcon(Icons.groups_2_outlined),
+              leading: const HubLeadingIcon(AppIcons.community),
               trailing: HubNewBadge(label: l10n.hubNewBadgeLabel),
               onTap: () => context.pushNamed('circlesDiscovery'),
             ),
@@ -140,7 +140,7 @@ class GrowthHomePage extends ConsumerWidget {
         CompactListTile(
           title: l10n.growthHomeBrowseAllTitle,
           subtitle: l10n.growthHomeBrowseAllSubtitle,
-          leading: const HubLeadingIcon(Icons.grid_view_rounded),
+          leading: const HubLeadingIcon(AppIcons.browseAll),
           onTap: () => context.pushNamed('growthBrowseAllPage'),
         ),
       ],

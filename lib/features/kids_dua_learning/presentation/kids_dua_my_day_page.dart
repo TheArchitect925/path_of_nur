@@ -110,7 +110,7 @@ class _KidsDuaMyDayPageState extends ConsumerState<KidsDuaMyDayPage> {
                 if (!state.isDayComplete && guidance.nextUpLesson != null) ...[
                   const SizedBox(height: 10),
                   _GuidanceCard(
-                    icon: Icons.arrow_circle_right_outlined,
+                    icon: Icons.arrow_circle_right_rounded,
                     title: l10n.kidsDuaMyDayNextUpTitle,
                     subtitle: guidance.nextUpLesson!.title,
                     detail: _sectionLabel(l10n, guidance.nextUpSection),

@@ -6,6 +6,7 @@ import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class BabyNamesMeaningExplorerPage extends ConsumerWidget {
   const BabyNamesMeaningExplorerPage({super.key});
@@ -131,7 +132,7 @@ const _themeDefinitions = <_ThemeDefinition>[
     id: 'light',
     title: 'Light',
     description: 'Names associated with illumination, guidance, and radiance.',
-    icon: Icons.light_mode_outlined,
+    icon: Icons.light_mode_rounded,
   ),
   _ThemeDefinition(
     id: 'mercy',
@@ -143,19 +144,19 @@ const _themeDefinitions = <_ThemeDefinition>[
     id: 'faith',
     title: 'Faith',
     description: 'Names connected to belief, devotion, and sincerity.',
-    icon: Icons.mosque_outlined,
+    icon: AppIcons.mosque,
   ),
   _ThemeDefinition(
     id: 'guidance',
     title: 'Guidance',
     description: 'Names reflecting direction, clarity, and right path.',
-    icon: Icons.explore_outlined,
+    icon: Icons.explore_rounded,
   ),
   _ThemeDefinition(
     id: 'wisdom',
     title: 'Wisdom',
     description: 'Names linked to insight, understanding, and sound judgment.',
-    icon: Icons.auto_stories_outlined,
+    icon: Icons.auto_stories_rounded,
   ),
   _ThemeDefinition(
     id: 'patience',
@@ -167,85 +168,85 @@ const _themeDefinitions = <_ThemeDefinition>[
     id: 'strength',
     title: 'Strength',
     description: 'Names associated with courage, resolve, and dignity.',
-    icon: Icons.shield_outlined,
+    icon: Icons.shield_rounded,
   ),
   _ThemeDefinition(
     id: 'beauty',
     title: 'Beauty',
     description: 'Names reflecting grace, elegance, and goodness.',
-    icon: Icons.spa_outlined,
+    icon: AppIcons.reflection,
   ),
   _ThemeDefinition(
     id: 'purity',
     title: 'Purity',
     description: 'Names tied to inner cleanliness and upright character.',
-    icon: Icons.water_drop_outlined,
+    icon: Icons.water_drop_rounded,
   ),
   _ThemeDefinition(
     id: 'hope',
     title: 'Hope',
     description: 'Names expressing optimism, glad tidings, and renewal.',
-    icon: Icons.wb_twilight_outlined,
+    icon: Icons.wb_twilight_rounded,
   ),
   _ThemeDefinition(
     id: 'gratitude',
     title: 'Gratitude',
     description: 'Names connected to praise, thanks, and appreciation.',
-    icon: Icons.volunteer_activism_outlined,
+    icon: Icons.volunteer_activism_rounded,
   ),
   _ThemeDefinition(
     id: 'peace',
     title: 'Peace',
     description: 'Names carrying calm, safety, and wholeness.',
-    icon: Icons.self_improvement_outlined,
+    icon: AppIcons.reflection,
   ),
   _ThemeDefinition(
     id: 'generosity',
     title: 'Generosity',
     description:
         'Names associated with giving, kindness, and open-heartedness.',
-    icon: Icons.card_giftcard_outlined,
+    icon: Icons.card_giftcard_rounded,
   ),
   _ThemeDefinition(
     id: 'nobility',
     title: 'Nobility',
     description: 'Names linked with honor, dignity, and elevated character.',
-    icon: Icons.workspace_premium_outlined,
+    icon: Icons.workspace_premium_rounded,
   ),
   _ThemeDefinition(
     id: 'joy',
     title: 'Joy',
     description: 'Names reflecting happiness, delight, and positive spirit.',
-    icon: Icons.sentiment_satisfied_alt_outlined,
+    icon: Icons.sentiment_satisfied_alt_rounded,
   ),
   _ThemeDefinition(
     id: 'protection',
     title: 'Protection',
     description: 'Names associated with safety, care, and guardianship.',
-    icon: Icons.health_and_safety_outlined,
+    icon: Icons.health_and_safety_rounded,
   ),
   _ThemeDefinition(
     id: 'blessing',
     title: 'Blessing',
     description: 'Names connected to increase, barakah, and goodness.',
-    icon: Icons.auto_awesome_outlined,
+    icon: Icons.auto_awesome_rounded,
   ),
   _ThemeDefinition(
     id: 'knowledge',
     title: 'Knowledge',
     description: 'Names connected with learning, understanding, and clarity.',
-    icon: Icons.menu_book_outlined,
+    icon: Icons.menu_book_rounded,
   ),
   _ThemeDefinition(
     id: 'devotion',
     title: 'Devotion',
     description: 'Names that reflect worship, commitment, and sincerity.',
-    icon: Icons.nightlight_outlined,
+    icon: Icons.nightlight_rounded,
   ),
   _ThemeDefinition(
     id: 'kindness',
     title: 'Kindness',
     description: 'Names associated with gentleness, warmth, and care.',
-    icon: Icons.front_hand_outlined,
+    icon: Icons.front_hand_rounded,
   ),
 ];

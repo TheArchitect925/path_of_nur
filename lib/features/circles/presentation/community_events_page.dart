@@ -129,7 +129,7 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
                   FilledButton.tonalIcon(
                     onPressed: () =>
                         _openCreateEventDialog(context, l10n, notifier),
-                    icon: const Icon(Icons.add),
+                    icon: const Icon(Icons.add_rounded),
                     label: Text(l10n.circlesCreateEvent),
                   ),
                 ],
@@ -147,7 +147,7 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
                         );
                       });
                     },
-                    icon: const Icon(Icons.chevron_left),
+                    icon: const Icon(Icons.chevron_left_rounded),
                   ),
                   Expanded(
                     child: Text(
@@ -166,7 +166,7 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
                         );
                       });
                     },
-                    icon: const Icon(Icons.chevron_right),
+                    icon: const Icon(Icons.chevron_right_rounded),
                   ),
                 ],
               ),
@@ -545,7 +545,7 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
                           );
                         });
                       },
-                      icon: const Icon(Icons.event_available_outlined),
+                      icon: const Icon(Icons.event_available_rounded),
                       label: Text(
                         l10n.circlesCreateEventDateValue(
                           _dateLabel(selectedDate),

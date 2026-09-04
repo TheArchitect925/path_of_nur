@@ -26,6 +26,7 @@ import '../../shared/learn_art_assets.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningSectionLandingPage extends ConsumerStatefulWidget {
   const LearningSectionLandingPage({super.key});
@@ -54,7 +55,7 @@ class _LearningSectionLandingPageState
     final visibilityPolicy = ref.watch(learnHubVisibilityPolicyProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.school_rounded,
+      headerIcon: AppIcons.learn,
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
@@ -165,7 +166,7 @@ class _LearningSectionLandingPageState
 
   Widget _buildExploreAllRow(BuildContext context, AppLocalizations l10n) {
     return CompactListTile(
-      leading: const HubLeadingIcon(Icons.travel_explore_rounded),
+      leading: const HubLeadingIcon(AppIcons.explore),
       title: l10n.learnHubLandingExploreAllTitle,
       subtitle: l10n.learnHubLandingExploreAllSubtitle,
       onTap: () {
@@ -624,7 +625,7 @@ class _TodayLearningSection extends ConsumerWidget {
           title: l10n.learnLandingTodayTitle,
           children: [
             CompactListTile(
-              leading: const HubLeadingIcon(Icons.wb_sunny_rounded),
+              leading: const HubLeadingIcon(AppIcons.daily),
               title: localizedJourneyTitle(context, journey),
               subtitle: localizedJourneySubtitle(context, journey),
               onTap: () {

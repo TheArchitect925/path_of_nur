@@ -94,12 +94,12 @@ class _OccasionOfferSheet extends StatelessWidget {
 
     final (IconData icon, String title, String body) = switch (kind) {
       OccasionOfferKind.qadrNights => (
-        Icons.auto_awesome,
+        Icons.auto_awesome_rounded,
         l10n.occasionOfferQadrTitle,
         l10n.occasionOfferQadrBody,
       ),
       OccasionOfferKind.eid => (
-        Icons.celebration_outlined,
+        Icons.celebration_rounded,
         l10n.occasionOfferEidTitle,
         l10n.occasionOfferEidBody,
       ),

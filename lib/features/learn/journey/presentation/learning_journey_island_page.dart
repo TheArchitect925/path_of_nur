@@ -21,6 +21,7 @@ import '../data/learning_journey_registry.dart';
 import '../../shared/application/learn_release_gate.dart';
 import '../domain/learning_journey_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyIslandPage extends ConsumerWidget {
   const LearningJourneyIslandPage({super.key, required this.islandId});
@@ -131,7 +132,7 @@ class LearningJourneyIslandPage extends ConsumerWidget {
             child: LearnActionCard(
               title: l10n.wuduPracticeCardTitle,
               subtitle: l10n.wuduPracticeCardSubtitle,
-              icon: Icons.water_drop_outlined,
+              icon: Icons.water_drop_rounded,
               onTap: () => context.pushNamed('learnWuduTrainer'),
             ),
           ),
@@ -344,7 +345,7 @@ class _LearningJourneyMissingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: Icons.error_outline_rounded,
+      headerIcon: AppIcons.notFound,
       title: title,
       subtitle: subtitle,
       children: [

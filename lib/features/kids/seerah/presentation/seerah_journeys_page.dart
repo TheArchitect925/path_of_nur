@@ -9,6 +9,7 @@ import '../../bedtime_stories/application/bedtime_story_repository.dart';
 import '../../bedtime_stories/presentation/bedtime_story_mini_player.dart';
 import '../application/seerah_journey_progress_service.dart';
 import '../application/seerah_journey_repository.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class KidsSeerahJourneysPage extends ConsumerWidget {
   const KidsSeerahJourneysPage({super.key});
@@ -23,7 +24,7 @@ class KidsSeerahJourneysPage extends ConsumerWidget {
     final muhammadSeries = ref.watch(bedtimeStorySeriesProvider('muhammad'));
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.seerah,
       title: l10n.kidsSeerahJourneysTitle,
       subtitle: l10n.kidsSeerahJourneysSubtitle,
       floatingBottom: const BedtimeStoryMiniPlayer(),

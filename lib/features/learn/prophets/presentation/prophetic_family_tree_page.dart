@@ -95,7 +95,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
                 onChanged: (_) => setState(() {}),
                 decoration: InputDecoration(
                   hintText: l10n.prophetsSearchHint,
-                  prefixIcon: const Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search_rounded),
                 ),
               ),
               const SizedBox(height: 8),

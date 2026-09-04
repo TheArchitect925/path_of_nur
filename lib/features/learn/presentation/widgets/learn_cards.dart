@@ -69,7 +69,7 @@ class LearnActionCard extends StatelessWidget {
               ),
               if (showChevron)
                 Icon(
-                  Icons.chevron_right,
+                  Icons.chevron_right_rounded,
                   color: context.palette.onSurfaceSubtle,
                 ),
             ],
@@ -106,7 +106,7 @@ class LearnTopicGrid extends StatelessWidget {
                     onTap: onTopicTap == null ? null : () => onTopicTap!(topic),
                     child: Row(
                       children: [
-                        const Icon(Icons.auto_stories_outlined, size: 18),
+                        const Icon(Icons.auto_stories_rounded, size: 18),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(

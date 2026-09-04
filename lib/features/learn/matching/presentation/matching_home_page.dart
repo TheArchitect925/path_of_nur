@@ -15,6 +15,7 @@ import '../application/matching_progress_provider.dart';
 import '../application/matching_repository.dart';
 import '../domain/matching_models.dart';
 import 'matching_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class MatchingHomePage extends ConsumerWidget {
   const MatchingHomePage({super.key});
@@ -34,7 +35,7 @@ class MatchingHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.view_week_rounded,
+      headerIcon: AppIcons.matching,
       title: l10n.matchingHomeTitle,
       subtitle: l10n.matchingHomeSubtitle,
       children: [

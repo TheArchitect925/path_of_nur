@@ -15,7 +15,6 @@ import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
-import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
 import '../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../shared/widgets/display/hub_list_group.dart';
@@ -30,6 +29,7 @@ import '../domain/fasting_status.dart';
 import '../domain/prayer_name.dart';
 import '../domain/prayer_status.dart';
 import 'widgets/salah_timings_tracker_card.dart';
+import '../../../core/theme/app_icons.dart';
 
 /// The Ibadah landing — "The Prayer Room". The page opens on NOW: the
 /// current prayer window with its countdown and situational chips
@@ -47,7 +47,7 @@ class WorshipPage extends ConsumerWidget {
 
     return SectionHubScaffold(
       ownsBackground: false,
-      headerIcon: IslamicIcons.prayer,
+      headerIcon: AppIcons.salah,
       title: l10n.worshipTitle,
       subtitle: localizedAppPageDescription(
         context,
@@ -81,7 +81,7 @@ class WorshipPage extends ConsumerWidget {
             CompactListTile(
               title: l10n.worshipSectionLandingPrayerTitle,
               subtitle: l10n.worshipSalahHubSubtitle,
-              leading: const HubLeadingIcon(IslamicIcons.prayer),
+              leading: const HubLeadingIcon(AppIcons.salah),
               onTap: () => context.pushNamed('worshipPrayerPage'),
             ),
             Consumer(
@@ -96,7 +96,7 @@ class WorshipPage extends ConsumerWidget {
                   subtitle: l10n.worshipDhikrTodaySubtitle(
                     _formatCount(context, dhikrCount),
                   ),
-                  leading: const HubLeadingIcon(IslamicIcons.tasbih),
+                  leading: const HubLeadingIcon(AppIcons.dhikr),
                   onTap: () => context.pushNamed('worshipDhikrPage'),
                 );
               },
@@ -104,7 +104,7 @@ class WorshipPage extends ConsumerWidget {
             CompactListTile(
               title: l10n.worshipSectionLandingDuasTitle,
               subtitle: l10n.worshipSectionLandingDuasSubtitle,
-              leading: const HubLeadingIcon(IslamicIcons.lantern),
+              leading: const HubLeadingIcon(AppIcons.dua),
               onTap: () => context.pushNamed('worshipDuasPage'),
             ),
             Consumer(
@@ -115,7 +115,7 @@ class WorshipPage extends ConsumerWidget {
                   subtitle:
                       suggestion?.label(l10n) ??
                       l10n.worshipSectionLandingFastingSubtitle,
-                  leading: const HubLeadingIcon(Icons.nightlight_outlined),
+                  leading: const HubLeadingIcon(AppIcons.fasting),
                   onTap: () => context.pushNamed('worshipFastingPage'),
                 );
               },
@@ -129,7 +129,7 @@ class WorshipPage extends ConsumerWidget {
             CompactListTile(
               title: l10n.worshipQiblaFinderTitle,
               subtitle: l10n.worshipQiblaFinderSubtitle,
-              leading: const HubLeadingIcon(Icons.explore_rounded),
+              leading: const HubLeadingIcon(AppIcons.qibla),
               onTap: () => context.pushNamed('qiblaFinder'),
             ),
             Consumer(
@@ -141,9 +141,7 @@ class WorshipPage extends ConsumerWidget {
                 return CompactListTile(
                   title: l10n.worshipRemindersAdhanTitle,
                   subtitle: l10n.profilePlannedRemindersToday(plannedCount),
-                  leading: const HubLeadingIcon(
-                    Icons.notifications_active_outlined,
-                  ),
+                  leading: const HubLeadingIcon(AppIcons.notifications),
                   onTap: () =>
                       context.pushNamed('settingsNotificationsReminders'),
                 );
@@ -152,7 +150,7 @@ class WorshipPage extends ConsumerWidget {
             CompactListTile(
               title: l10n.worshipLearnToPrayTitle,
               subtitle: l10n.worshipLearnToPraySubtitle,
-              leading: const HubLeadingIcon(Icons.school_outlined),
+              leading: const HubLeadingIcon(AppIcons.learn),
               onTap: () => context.pushNamed('learnSalahHub'),
             ),
           ],
@@ -379,7 +377,7 @@ class _WorshipNowHero extends ConsumerWidget {
         final materialL10n = MaterialLocalizations.of(context);
         chips.add(
           _HeroChip(
-            icon: IslamicIcons.mosque,
+            icon: AppIcons.mosque,
             label: l10n.worshipJumuahLeaveBy(
               materialL10n.formatTimeOfDay(TimeOfDay.fromDateTime(leaveAt)),
             ),
@@ -405,7 +403,7 @@ class _WorshipNowHero extends ConsumerWidget {
       if (fajr != null && now.isBefore(fajr.offerDateTime)) {
         chips.add(
           _HeroChip(
-            icon: Icons.nightlight_round,
+            icon: Icons.nightlight_round_rounded,
             label: l10n.homeRamadanSuhoorEndsIn(
               format(fajr.offerDateTime.difference(now)),
             ),

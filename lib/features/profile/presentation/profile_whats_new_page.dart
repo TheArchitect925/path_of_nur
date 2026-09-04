@@ -83,7 +83,7 @@ class _WhatsNewEntryCard extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 7),
-                    child: Icon(Icons.circle, size: 6),
+                    child: Icon(Icons.circle_rounded, size: 6),
                   ),
                   const SizedBox(width: 10),
                   Expanded(

@@ -10,6 +10,7 @@ import '../data/learn_content_data.dart';
 import '../domain/learn_content_page_data.dart';
 import '../domain/learn_topic_category.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnTopicLandingPage extends ConsumerWidget {
   const LearnTopicLandingPage({super.key, required this.category});
@@ -101,24 +102,24 @@ class _TopicTile extends ConsumerWidget {
                 children: [
                   if (completed)
                     _TopicStateChip(
-                      icon: Icons.check_circle,
+                      icon: Icons.check_circle_rounded,
                       label: l10n.learnContentMarkComplete,
                     ),
                   if (saved)
                     _TopicStateChip(
-                      icon: Icons.bookmark,
+                      icon: Icons.bookmark_rounded,
                       label: l10n.learnContentSaved,
                     ),
                   if (favorite)
                     _TopicStateChip(
-                      icon: Icons.favorite,
+                      icon: Icons.favorite_rounded,
                       label: l10n.learnContentFavorited,
                     ),
                 ],
               ),
             ],
           ),
-          trailing: const Icon(Icons.chevron_right),
+          trailing: const Icon(Icons.chevron_right_rounded),
         ),
       ),
     );
@@ -176,11 +177,11 @@ String _subtitle(AppLocalizations l10n, LearnTopicCategory category) {
 IconData _headerIcon(LearnTopicCategory category) {
   switch (category) {
     case LearnTopicCategory.life:
-      return Icons.family_restroom_rounded;
+      return AppIcons.family;
     case LearnTopicCategory.world:
-      return Icons.public_rounded;
+      return AppIcons.world;
     case LearnTopicCategory.hadith:
-      return Icons.menu_book_rounded;
+      return AppIcons.hadith;
   }
 }
 
@@ -191,7 +192,7 @@ IconData _topicIcon(LearnTopicCategory category) {
     case LearnTopicCategory.world:
       return Icons.landscape_rounded;
     case LearnTopicCategory.hadith:
-      return Icons.auto_stories_outlined;
+      return Icons.auto_stories_rounded;
   }
 }
 

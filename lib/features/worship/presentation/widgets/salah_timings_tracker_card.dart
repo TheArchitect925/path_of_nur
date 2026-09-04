@@ -201,7 +201,7 @@ class SalahTimingsTrackerCard extends ConsumerWidget {
               IconButton(
                 onPressed: () => context.pushNamed('settingsPrayerWorship'),
                 icon: const Icon(
-                  Icons.settings_outlined,
+                  Icons.settings_rounded,
                   color: Color(0xFF8A7A6B),
                 ),
                 tooltip: l10n.profilePrayerSettingsTitle,

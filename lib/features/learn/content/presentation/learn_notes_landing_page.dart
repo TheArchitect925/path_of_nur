@@ -13,6 +13,7 @@ import '../application/learn_progress_provider.dart';
 import '../../quran/application/quran_providers.dart';
 import '../../quran/application/quran_reflections_provider.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnNotesLandingPage extends ConsumerWidget {
   const LearnNotesLandingPage({super.key});
@@ -29,7 +30,7 @@ class LearnNotesLandingPage extends ConsumerWidget {
     final notesSummary = ref.watch(learnNotesSummaryProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.sticky_note_2_outlined,
+      headerIcon: AppIcons.notes,
       title: l10n.learnNotesSectionTitle,
       subtitle: l10n.learnNotesSectionSubtitle,
       children: [
@@ -82,7 +83,7 @@ class LearnNotesLandingPage extends ConsumerWidget {
           _EntryCard(
             title: l10n.learnContentContinueTitle,
             subtitle: unified.continueItem!.title,
-            icon: Icons.history_edu_outlined,
+            icon: Icons.history_edu_rounded,
             onTap: () => context.pushNamed(
               unified.continueItem!.routeName,
               pathParameters: unified.continueItem!.pathParameters,
@@ -106,7 +107,7 @@ class LearnNotesLandingPage extends ConsumerWidget {
         _EntryCard(
           title: l10n.learnNotesBrowseAllActionText,
           subtitle: l10n.learnNotesBrowseActionSubtitleText,
-          icon: Icons.library_books_outlined,
+          icon: Icons.library_books_rounded,
           onTap: () => context.pushNamed('learnNotesBrowseAll'),
         ),
         _EntryCard(
@@ -119,7 +120,7 @@ class LearnNotesLandingPage extends ConsumerWidget {
           title: l10n.learnNotesQuranReflectionsTitle,
           subtitle:
               '${quranReflections.length} ${l10n.learnNotesQuranReflectionsSubtitle}',
-          icon: Icons.rate_review_outlined,
+          icon: Icons.rate_review_rounded,
           tileKey: const Key('learnNotesQuranReflectionsCard'),
           onTap: () => context.pushNamed('quranReflections'),
         ),
@@ -127,20 +128,20 @@ class LearnNotesLandingPage extends ConsumerWidget {
           title: l10n.learnNotesJournalTitle,
           subtitle:
               '${journal.entries.length} ${l10n.learnNotesJournalSubtitle}',
-          icon: Icons.auto_stories_outlined,
+          icon: Icons.auto_stories_rounded,
           tileKey: const Key('learnNotesJournalCard'),
           onTap: () => context.pushNamed('journalTimeline'),
         ),
         _EntryCard(
           title: l10n.learnNotesHighlightsTitle,
           subtitle: '${quranBookmarks.length} ${l10n.quranSavedLocations}',
-          icon: Icons.highlight_alt_outlined,
+          icon: Icons.highlight_alt_rounded,
           onTap: () => context.pushNamed('quranBookmarks'),
         ),
         _EntryCard(
           title: l10n.learnNotesContinueTitle,
           subtitle: l10n.learnNotesContinueSubtitle,
-          icon: Icons.history_edu_outlined,
+          icon: Icons.history_edu_rounded,
           onTap: () => context.pushNamed('quranExplorer'),
         ),
       ],

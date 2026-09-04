@@ -48,6 +48,7 @@ import 'widgets/garden_vista_home_card.dart';
 import 'widgets/ramadan_hero_card.dart';
 import 'widgets/right_now_dua_row.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
+import '../../../core/theme/app_icons.dart';
 
 String _formatLocalizedCount(BuildContext context, num value) {
   return NumberFormat.decimalPattern(
@@ -194,7 +195,7 @@ class _HomeEditEntryButton extends StatelessWidget {
     return Center(
       child: TextButton.icon(
         onPressed: () => context.pushNamed('homeEdit'),
-        icon: Icon(Icons.edit_outlined, size: 15, color: subtle),
+        icon: Icon(Icons.edit_rounded, size: 15, color: subtle),
         label: Text(
           l10n.homeEditEntryLabel,
           style: Theme.of(
@@ -321,7 +322,7 @@ class _TopGreetingBlock extends StatelessWidget {
         ),
         IconButton(
           onPressed: () => context.pushNamed('settings'),
-          icon: Icon(Icons.settings, size: 26, color: iconColor),
+          icon: Icon(Icons.settings_rounded, size: 26, color: iconColor),
           tooltip: l10n.settingsLandingTitle,
         ),
       ],
@@ -499,7 +500,7 @@ class _SalahSummaryCard extends ConsumerWidget {
           title: l10n.streakLabel,
           value: _formatLocalizedCount(context, journey.currentStreakDays),
           subtitle: l10n.homeDaysLabel,
-          icon: Icons.local_fire_department_outlined,
+          icon: Icons.local_fire_department_rounded,
           tint: const Color(0xFFB56D43),
         ),
       ],
@@ -546,20 +547,20 @@ class _ModeAwareHomeCard extends ConsumerWidget {
       case AppSpecialMode.ramadan:
         title = l10n.modeRamadanHomeTitle;
         subtitle = l10n.modeRamadanHomeSubtitle;
-        icon = Icons.nightlight_round;
+        icon = Icons.nightlight_round_rounded;
         actions = [
           _ModeActionChip(
-            icon: Icons.fastfood_outlined,
+            icon: AppIcons.fasting,
             label: l10n.modeRamadanActionFasting,
             onTap: () => context.pushNamed('worshipFastingPage'),
           ),
           _ModeActionChip(
-            icon: Icons.menu_book_outlined,
+            icon: Icons.menu_book_rounded,
             label: l10n.modeRamadanActionQuran,
             onTap: () => context.pushNamed('quranExplorer'),
           ),
           _ModeActionChip(
-            icon: Icons.rate_review_outlined,
+            icon: Icons.rate_review_rounded,
             label: l10n.modeRamadanActionReflect,
             onTap: () => context.pushNamed('learnNotesLanding'),
           ),
@@ -568,15 +569,15 @@ class _ModeAwareHomeCard extends ConsumerWidget {
       case AppSpecialMode.loss:
         title = l10n.modeLossHomeTitle;
         subtitle = l10n.modeLossHomeSubtitle;
-        icon = Icons.favorite_border;
+        icon = Icons.favorite_border_rounded;
         actions = [
           _ModeActionChip(
-            icon: Icons.self_improvement_rounded,
+            icon: AppIcons.reflection,
             label: l10n.modeLossActionDhikr,
             onTap: () => goToTab(context, NavTab.worship),
           ),
           _ModeActionChip(
-            icon: Icons.menu_book_outlined,
+            icon: Icons.menu_book_rounded,
             label: l10n.modeLossActionMercy,
             onTap: () => context.pushNamed('quranExplorer'),
           ),
@@ -585,15 +586,15 @@ class _ModeAwareHomeCard extends ConsumerWidget {
       case AppSpecialMode.unwell:
         title = l10n.settingsCareModeUnwellTitle;
         subtitle = l10n.settingsCareModeUnwellBody;
-        icon = Icons.local_hospital_outlined;
+        icon = Icons.local_hospital_rounded;
         actions = [
           _ModeActionChip(
-            icon: Icons.self_improvement_rounded,
+            icon: AppIcons.reflection,
             label: l10n.modeLossActionDhikr,
             onTap: () => goToTab(context, NavTab.worship),
           ),
           _ModeActionChip(
-            icon: Icons.menu_book_outlined,
+            icon: Icons.menu_book_rounded,
             label: l10n.modeRamadanActionQuran,
             onTap: () => context.pushNamed('quranExplorer'),
           ),
@@ -605,15 +606,15 @@ class _ModeAwareHomeCard extends ConsumerWidget {
         if (!summary.mode.isKidsMode) return const SizedBox.shrink();
         title = l10n.kidsModeTitle;
         subtitle = l10n.kidsHomeHint;
-        icon = Icons.child_care_outlined;
+        icon = Icons.child_care_rounded;
         actions = [
           _ModeActionChip(
-            icon: Icons.menu_book_outlined,
+            icon: Icons.menu_book_rounded,
             label: l10n.kidsHomeQuickLearning,
             onTap: () => goToTab(context, NavTab.learn),
           ),
           _ModeActionChip(
-            icon: Icons.auto_stories_outlined,
+            icon: Icons.auto_stories_rounded,
             label: l10n.kidsHomeQuickJournal,
             onTap: () => context.pushNamed('journalTimeline'),
           ),

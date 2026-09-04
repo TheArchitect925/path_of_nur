@@ -28,7 +28,7 @@ class ProfileComingSoonPage extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         _ComingSoonCard(
-          icon: Icons.quiz_outlined,
+          icon: Icons.quiz_rounded,
           title: l10n.profileComingSoonCard2Title,
           description: l10n.profileComingSoonCard2Description,
         ),
@@ -40,7 +40,7 @@ class ProfileComingSoonPage extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         _ComingSoonCard(
-          icon: Icons.auto_awesome_outlined,
+          icon: Icons.auto_awesome_rounded,
           title: l10n.profileComingSoonCard4Title,
           description: l10n.profileComingSoonCard4Description,
         ),

@@ -9,6 +9,7 @@ import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class BabyNamesHomePage extends ConsumerStatefulWidget {
   const BabyNamesHomePage({super.key});
@@ -38,7 +39,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
     final notifier = ref.read(babyNamesControllerProvider.notifier);
 
     return AppPageScaffold(
-      headerIcon: Icons.child_care_rounded,
+      headerIcon: AppIcons.babyNames,
       title: l10n.babyNamesTitle,
       subtitle: l10n.babyNamesSubtitle,
       children: [
@@ -210,7 +211,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
               child: _ActionTile(
                 title: l10n.babyNamesGeneratorTitle,
                 subtitle: l10n.babyNamesGeneratorSubtitle,
-                icon: Icons.casino_outlined,
+                icon: AppIcons.random,
                 onTap: () => context.pushNamed('babyNamesGenerator'),
               ),
             ),

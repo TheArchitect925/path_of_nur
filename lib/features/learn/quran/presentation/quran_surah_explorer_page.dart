@@ -18,6 +18,7 @@ import '../application/quran_providers.dart';
 import '../domain/quran_reading_progress.dart';
 import '../domain/quran_surah.dart';
 import 'widgets/quran_compact_search_results_section.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _QuranExplorerSort { surahNumber, revelation }
 
@@ -85,7 +86,7 @@ class _QuranSurahExplorerPageState
     return Stack(
       children: [
         AppPageScaffold(
-          headerIcon: Icons.explore_outlined,
+          headerIcon: AppIcons.surahs,
           title: l10n.quranExplorerTitle,
           subtitle: l10n.quranExplorerSubtitle,
           scrollController: _scrollController,

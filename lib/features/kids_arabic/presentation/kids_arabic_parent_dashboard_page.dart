@@ -13,6 +13,7 @@ import '../domain/kids_arabic_parent_overview_models.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_palette.dart';
+import '../../../core/theme/app_icons.dart';
 
 class KidsArabicParentDashboardPage extends ConsumerWidget {
   const KidsArabicParentDashboardPage({super.key});
@@ -36,7 +37,7 @@ class KidsArabicParentDashboardPage extends ConsumerWidget {
         : notifier.letterById(preferences.parentAssignedLetterId!);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
+      headerIcon: AppIcons.family,
       title: l10n.kidsArabicParentDashboardTitle,
       subtitle: l10n.kidsArabicParentDashboardSubtitle,
       children: [

@@ -10,6 +10,7 @@ import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthHabitsPage extends ConsumerWidget {
   const GrowthHabitsPage({super.key});
@@ -28,7 +29,7 @@ class GrowthHabitsPage extends ConsumerWidget {
     final encouragement = ref.watch(growthEncouragementCopyProvider);
 
     return SectionHubScaffold(
-      headerIcon: Icons.checklist_rtl_rounded,
+      headerIcon: AppIcons.habits,
       title: l10n.growthTodayHabitTrackerTitle,
       subtitle: l10n.growthHabitsPageSubtitle,
       quote: buildGrowthReflectionQuote(),
@@ -208,7 +209,7 @@ class GrowthHabitsPage extends ConsumerWidget {
                 // completion now (garden unlocks read it too).
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: const Icon(Icons.flag_circle_outlined),
+                  leading: const Icon(Icons.flag_circle_rounded),
                   title: Text(l10n.quranTabPlanTitle),
                   subtitle: Text(l10n.growthHabitsQuranPlanRowSubtitle),
                   trailing: const Icon(Icons.chevron_right_rounded),
@@ -349,7 +350,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                         child: Icon(
                                           completed
                                               ? Icons.check_circle_rounded
-                                              : Icons.radio_button_unchecked,
+                                              : Icons
+                                                    .radio_button_unchecked_rounded,
                                           key: ValueKey<bool>(completed),
                                           color: completed
                                               ? const Color(0xFF7A5C35)

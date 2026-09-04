@@ -14,6 +14,7 @@ import '../../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../../presentation/widgets/learn_section_header.dart';
 import '../application/daily_knowledge_challenge_hub_provider.dart';
 import '../domain/daily_knowledge_challenge_models.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class DailyKnowledgeChallengeHubPage extends ConsumerStatefulWidget {
   const DailyKnowledgeChallengeHubPage({super.key});
@@ -39,7 +40,7 @@ class _DailyKnowledgeChallengeHubPageState
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.today_rounded,
+      headerIcon: AppIcons.today,
       title: l10n.dailyKnowledgeHubTitle,
       subtitle: l10n.dailyKnowledgeHubSubtitle,
       children: [
@@ -210,7 +211,7 @@ class _DailyKnowledgeChallengeHubPageState
                             Icon(
                               item.isCompleted
                                   ? Icons.check_circle_rounded
-                                  : Icons.circle_outlined,
+                                  : Icons.radio_button_unchecked_rounded,
                             ),
                             const SizedBox(width: 12),
                             Expanded(

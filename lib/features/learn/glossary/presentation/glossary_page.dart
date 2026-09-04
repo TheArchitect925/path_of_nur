@@ -11,6 +11,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/glossary_catalog.dart';
 import '../domain/glossary_models.dart';
 import 'widgets/glossary_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class GlossaryPage extends ConsumerStatefulWidget {
   const GlossaryPage({super.key});
@@ -53,7 +54,7 @@ class _GlossaryPageState extends ConsumerState<GlossaryPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: AppIcons.glossary,
       title: l10n.learnGlossaryTitle,
       subtitle: l10n.learnGlossarySubtitle,
       children: [

@@ -10,6 +10,7 @@ import '../../quran/application/quran_reference_graph_provider.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
 import '../domain/divine_life_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class DivineLifeLessonDetailPage extends ConsumerStatefulWidget {
   const DivineLifeLessonDetailPage({super.key, required this.lessonId});
@@ -135,7 +136,7 @@ class _DivineLifeLessonDetailPageState
                       'divineLifeReflection',
                       queryParameters: {'lessonId': lesson.id},
                     ),
-                    icon: const Icon(Icons.self_improvement_rounded),
+                    icon: const Icon(AppIcons.reflection),
                     label: const Text('Reflection mode'),
                   ),
                 ],
