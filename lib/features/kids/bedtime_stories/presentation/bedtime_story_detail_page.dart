@@ -146,6 +146,23 @@ class _BedtimeStoryDetailPageState
           ),
         ),
         const SizedBox(height: 12),
+        // Without narration, reading is the whole point of the page: one
+        // large button under the cover takes the reader straight to the text.
+        if (!(mediaAsync.valueOrNull?.audio.isAvailable ?? false)) ...[
+          FilledButton.icon(
+            onPressed: _scrollToTranscript,
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(56),
+            ),
+            icon: const Icon(Icons.menu_book_rounded),
+            label: Text(
+              story.bedtimeEligible
+                  ? l10n.bedtimeStoriesReadTonightAction
+                  : l10n.kidsStoryReadStoryAction,
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,14 +179,17 @@ class _BedtimeStoryDetailPageState
               Text(story.summary.isNotEmpty ? story.summary : story.lesson),
               const SizedBox(height: 10),
               Text(story.lesson),
-              const SizedBox(height: 10),
-              Text(
-                l10n.bedtimeStoriesNarratedByLabel(
-                  mediaAsync.valueOrNull?.audio.entry.narratorDisplayName ??
-                      story.narratorDisplayName,
+              // A narrator is credited only once there is narration to hear.
+              if (mediaAsync.valueOrNull?.audio.isAvailable ?? false) ...[
+                const SizedBox(height: 10),
+                Text(
+                  l10n.bedtimeStoriesNarratedByLabel(
+                    mediaAsync.valueOrNull?.audio.entry.narratorDisplayName ??
+                        story.narratorDisplayName,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              ],
             ],
           ),
         ),
@@ -259,54 +279,16 @@ class _BedtimeStoryDetailPageState
                   : l10n.kidsStoryAudioUnavailableSubtitle,
             ),
           ),
-          data: (media) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BedtimeStoryPlayerBar(
-                story: story,
-                media: media,
-                onReadAlong: _scrollToTranscript,
-              ),
-              if (!media.audio.isAvailable) ...[
-                const SizedBox(height: 12),
-                PremiumCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        media.hasAnyArtwork
-                            ? l10n.bedtimeStoriesArtOnlyTitle
-                            : (story.bedtimeEligible
-                                  ? l10n.bedtimeStoriesReadAlongPrimaryTitle
-                                  : l10n.kidsStoryReadAlongPrimaryTitle),
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        media.hasAnyArtwork
-                            ? l10n.bedtimeStoriesArtOnlySubtitle
-                            : (story.bedtimeEligible
-                                  ? l10n.bedtimeStoriesAudioUnavailableSubtitle
-                                  : l10n.kidsStoryAudioUnavailableSubtitle),
-                      ),
-                      const SizedBox(height: 12),
-                      FilledButton.icon(
-                        onPressed: _scrollToTranscript,
-                        icon: const Icon(Icons.menu_book_rounded),
-                        label: Text(
-                          story.bedtimeEligible
-                              ? l10n.bedtimeStoriesReadTonightAction
-                              : l10n.kidsStoryReadStoryAction,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ],
-          ),
+          // With narration the player bar carries the controls. Without it
+          // the story is read, so the only action is the one that gets the
+          // reader to the text; the transcript card below carries it.
+          data: (media) => media.audio.isAvailable
+              ? BedtimeStoryPlayerBar(
+                  story: story,
+                  media: media,
+                  onReadAlong: _scrollToTranscript,
+                )
+              : const SizedBox.shrink(),
         ),
         if (story.sceneIllustrations.isNotEmpty) ...[
           const SizedBox(height: 12),
@@ -415,10 +397,8 @@ class _BedtimeStoryDetailPageState
                 ? l10n.bedtimeStoriesTranscriptSectionTitle
                 : l10n.kidsStoryTranscriptSectionTitle,
             rawText: story.ttsText,
-            primaryActionLabel: story.bedtimeEligible
-                ? l10n.bedtimeStoriesStartReadingAction
-                : l10n.kidsStoryReadStoryAction,
-            onPrimaryAction: _scrollToTranscript,
+            // The card *is* the reading; a button that scrolls to itself
+            // only adds a third "read" control to the page.
             completionButton: FilledButton.icon(
               onPressed: () => _markComplete(context, story),
               icon: Icon(

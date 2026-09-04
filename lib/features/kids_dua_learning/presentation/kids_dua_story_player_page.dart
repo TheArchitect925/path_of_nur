@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
 import '../application/kids_dua_progress_provider.dart';
 import '../application/kids_dua_repository.dart';
@@ -66,99 +67,19 @@ class _KidsDuaStoryPlayerPageState
     );
     final sceneVisual = scene.resolvedVisual;
     final sceneAsset = illustrationService.getSceneAsset(scene);
+    final textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(title: Text(story.title)),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+    // The scene controls float above the tab bar so the primary action is
+    // always reachable; the trailing spacer keeps the last line of a scene
+    // from sliding underneath them.
+    return AppPageScaffold(
+      title: story.title,
+      floatingBottom: PremiumCard(
+        density: PremiumCardDensity.compact,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF8EF),
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: const Color(0xFFE8DDD0)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    story.title,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    l10n.kidsDuaStoriesSceneValue(
-                      _sceneIndex + 1,
-                      story.sceneCount,
-                    ),
-                    style: const TextStyle(color: Color(0xFF675B4E)),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: GestureDetector(
-                onTap: isLast ? null : () => _nextScene(story.sceneCount),
-                child: Container(
-                  padding: const EdgeInsets.all(22),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(color: const Color(0xFFE8DDD0)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 180,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFF8EF),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: Image.asset(
-                          sceneAsset,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          errorBuilder: (context, error, stackTrace) {
-                            return ColoredBox(
-                              color: const Color(0xFFFFF8EF),
-                              child: Center(
-                                child: Icon(
-                                  illustrationService.fallbackIconForVisual(
-                                    sceneVisual,
-                                  ),
-                                  size: 72,
-                                  color: const Color(0xFF8A6A45),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      Text(
-                        scene.text,
-                        style: const TextStyle(
-                          fontSize: 22,
-                          height: 1.5,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF40372F),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -193,23 +114,78 @@ class _KidsDuaStoryPlayerPageState
               onPressed: isLast
                   ? () => _finishStory(context, story.duaId)
                   : () => _nextScene(story.sceneCount),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(56),
+              ),
               child: Text(
                 isLast
                     ? l10n.kidsDuaStoriesSayDuaAction
                     : l10n.kidsDuaStoriesNextAction,
               ),
             ),
-            if (lesson != null) ...[
-              const SizedBox(height: 8),
-              Text(
-                l10n.kidsDuaStoriesLessonHint(lesson.title),
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Color(0xFF675B4E)),
-              ),
-            ],
           ],
         ),
       ),
+      children: [
+        PremiumCard(
+          onTap: isLast ? null : () => _nextScene(story.sceneCount),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.kidsDuaStoriesSceneValue(
+                  _sceneIndex + 1,
+                  story.sceneCount,
+                ),
+                style: textTheme.bodySmall,
+              ),
+              const SizedBox(height: 12),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: SizedBox(
+                  height: 220,
+                  width: double.infinity,
+                  child: Image.asset(
+                    sceneAsset,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return ColoredBox(
+                        color: context.palette.surfaceSoft,
+                        child: Center(
+                          child: Icon(
+                            illustrationService.fallbackIconForVisual(
+                              sceneVisual,
+                            ),
+                            size: 72,
+                            color: context.palette.accent,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 18),
+              Text(
+                scene.text,
+                style: textTheme.headlineSmall?.copyWith(
+                  height: 1.4,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (lesson != null) ...[
+          const SizedBox(height: 12),
+          Text(
+            l10n.kidsDuaStoriesLessonHint(lesson.title),
+            textAlign: TextAlign.center,
+            style: textTheme.bodySmall,
+          ),
+        ],
+        const SizedBox(height: 168),
+      ],
     );
   }
 
@@ -252,6 +228,7 @@ class _KidsDuaStoryPlayerPageState
       showDragHandle: true,
       builder: (context) {
         final l10n = AppLocalizations.of(context);
+        final textTheme = Theme.of(context).textTheme;
         final mediaQuery = MediaQuery.of(context);
         final maxHeight = mediaQuery.size.height * 0.82;
         return Padding(
@@ -274,8 +251,7 @@ class _KidsDuaStoryPlayerPageState
                       children: [
                         Text(
                           l10n.kidsDuaStoriesCompleteTitle,
-                          style: const TextStyle(
-                            fontSize: 20,
+                          style: textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -284,10 +260,7 @@ class _KidsDuaStoryPlayerPageState
                           ref
                               .read(kidsDuaStoryByIdProvider(widget.storyId))!
                               .closingLine,
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
-                            height: 1.4,
-                          ),
+                          style: textTheme.bodyMedium?.copyWith(height: 1.4),
                         ),
                       ],
                     ),

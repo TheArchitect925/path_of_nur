@@ -177,13 +177,13 @@ void main() {
       // Full-screen flows that deliberately run outside the shell.
       'lib/features/onboarding/presentation/onboarding_page.dart',
       'lib/features/startup/presentation/app_loading_screen.dart',
-      // Immersive tools that need the whole viewport: a drawing canvas, two
-      // pinch-to-zoom viewers and a story player. Their not-found guards do
-      // use AppPageScaffold; only the main surface keeps a Material shell.
+      // Immersive tools that need the whole viewport: a drawing canvas and a
+      // pinch-to-zoom viewer. Their not-found guards do use AppPageScaffold;
+      // only the main surface keeps a Material shell. (K0 of the kids
+      // redesign moved the duʿā story player and drawing viewer onto the
+      // app scaffold; the canvas follows in K2.)
       'lib/features/journey/drops/presentation/garden_image_viewer_page.dart',
       'lib/features/kids_dua_learning/presentation/kids_dua_drawing_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_drawing_view_page.dart',
-      'lib/features/kids_dua_learning/presentation/kids_dua_story_player_page.dart',
     };
 
     _expectRatchet(
