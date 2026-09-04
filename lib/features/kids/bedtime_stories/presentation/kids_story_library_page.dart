@@ -182,6 +182,16 @@ class KidsStoryLibraryPage extends ConsumerWidget {
 
 const String _fallbackArt = 'assets/images/learn_art/kids_story_library.webp';
 
+/// The stories on a shelf. Bedtime is not a collection in the seed but a
+/// flag on any story, so it reads the bedtime-eligible list.
+ProviderListenable<List<BedtimeStorySeed>> _shelfStoriesProvider(
+  KidsIslamicStoryCollectionType type,
+) {
+  return type == KidsIslamicStoryCollectionType.bedtime
+      ? bedtimeEligibleStoriesProvider
+      : kidsStoriesByCollectionProvider(type);
+}
+
 String _collectionId(KidsIslamicStoryCollectionType type) {
   switch (type) {
     case KidsIslamicStoryCollectionType.bedtime:
@@ -274,7 +284,7 @@ class _CollectionView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final stories = ref.watch(kidsStoriesByCollectionProvider(collection));
+    final stories = ref.watch(_shelfStoriesProvider(collection));
     final seerahJourney = ref.watch(featuredKidsSeerahJourneyProvider);
     final tonight = collection == KidsIslamicStoryCollectionType.bedtime
         ? ref.watch(tonightBedtimeStoryProvider)
@@ -444,7 +454,7 @@ class _CollectionCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final stories = ref.watch(kidsStoriesByCollectionProvider(type));
+    final stories = ref.watch(_shelfStoriesProvider(type));
     if (stories.isEmpty) return const SizedBox.shrink();
     return CompactListTile(
       leading: ArtLeadingThumb(
