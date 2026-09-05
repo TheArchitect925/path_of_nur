@@ -34,6 +34,9 @@ const OUT = {
 };
 const ONLY = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 
+// The reader shows a scene in a wide card, cropping a 4:3 picture to its
+// middle band: keep every subject between y=215 and y=985 of 1200.
+
 // ------------------------------------------------------------- palette --
 const IVORY = '#F0E4C0', CREAM = '#F5E7BE', GOLD = '#E2C177', DEEPGOLD = '#B98A3E';
 const INK = '#3A2A1E', INK_SOFT = '#4A3626';
@@ -601,9 +604,9 @@ add('atlas', 'garden_day', 1600, 1200, () => scene([
   skyRect(SKY.dayClear), sun(280, 220, 70, CREAM, '#E8C089'), cloud(900, 200, 120, 36, 0.55), cloud(1300, 300, 100, 30, 0.45),
   hills('#7C9F6E', 700, 60), hills('#5F8A5A', 800, 50),
   `<path d="M 0 1010 Q 400 940 800 1000 T 1600 980 V 1200 H 0 Z" fill="#4F7C9A" opacity="0.8"/>`,
-  hills('#3F7A5E', 1080, 30), tree(300, 900, 1.1), tree(1250, 880, 1.3), tree(760, 940, 0.8),
-  grass(3, 1085, 60, '#2E5D48'),
-  [[200, 1060], [420, 1040], [640, 1070], [1000, 1050], [1400, 1060], [1520, 1090]].map(([x, y]) => sparkle(x, y, 12, '#E2C177', 0.9) + sparkle(x + 40, y + 16, 9, '#F0E4C0', 0.8)).join(''),
+  hills('#3F7A5E', 960, 30), tree(300, 900, 1.1), tree(1250, 880, 1.3), tree(760, 940, 0.8),
+  grass(3, 985, 60, '#2E5D48'),
+  [[200, 960], [420, 945], [640, 970], [1000, 950], [1400, 960], [1520, 985]].map(([x, y]) => sparkle(x, y, 12, '#E2C177', 0.9) + sparkle(x + 40, y + 16, 9, '#F0E4C0', 0.8)).join(''),
   vignette(0.14),
 ]));
 
@@ -652,14 +655,14 @@ add('scenes', 'yunus_shore', 1600, 1200, () => scene([
   `<path d="M 0 1200 V 980 Q 500 900 900 980 Q 1300 1060 1600 960 V 1200 Z" fill="${SAND_LIGHT}"/>`,
   `<path d="M 900 900 Q 1300 1000 1600 860" stroke="${SEA_FOAM}" stroke-width="14" fill="none" opacity="0.6"/>`,
   fish(300, 760, 0.45, '#0F2438', '#183A55', false, true),
-  `<ellipse cx="1180" cy="1010" rx="14" ry="9" fill="${IVORY}"/><ellipse cx="1320" cy="1060" rx="12" ry="8" fill="${CREAM}"/><ellipse cx="640" cy="1080" rx="16" ry="10" fill="${IVORY}"/>`,
+  `<ellipse cx="1180" cy="960" rx="14" ry="9" fill="${IVORY}"/><ellipse cx="1320" cy="975" rx="12" ry="8" fill="${CREAM}"/><ellipse cx="640" cy="985" rx="16" ry="10" fill="${IVORY}"/>`,
   firefly(1420, 700, 1.2), vignette(0.16),
 ]));
 
 add('scenes', 'yunus_plant', 1600, 1200, () => scene([
   skyRect(SKY.amber), sun(280, 220, 90, CREAM, '#E8B36A', 14), cloud(1200, 240, 120, 36, 0.4),
-  dunes(SAND, SAND_DARK, 820), `<ellipse cx="880" cy="1040" rx="420" ry="70" fill="#8A5348" opacity="0.45"/>`,
-  gourdPlant(700, 1000, 1.2), grass(6, 1080, 30, '#2E5D48'), firefly(1260, 620, 1.2), vignette(0.16),
+  dunes(SAND, SAND_DARK, 820), `<ellipse cx="880" cy="975" rx="420" ry="70" fill="#8A5348" opacity="0.45"/>`,
+  gourdPlant(700, 960, 1.2), grass(6, 985, 30, '#2E5D48'), firefly(1260, 620, 1.2), vignette(0.16),
 ]));
 
 // =================================================================== nuh ==
@@ -668,7 +671,7 @@ add('scenes', 'nuh_idols', 1600, 1200, () => scene([
   mountains('#4A3560', 720, [[0, 720], [400, 580], [800, 700], [1200, 560], [1600, 680]], 0.7),
   hills('#6E4038', 860, 40), `<rect x="0" y="960" width="${W}" height="240" fill="#4A2F22"/>`,
   `<rect x="300" y="900" width="1000" height="70" rx="10" fill="${STONE}"/>`,
-  statue(520, 900, 0.9, STONE_DARK), statue(800, 900, 1.05, STONE_DARK), statue(1080, 900, 0.9, STONE_DARK),
+  statue(520, 900, 0.85, STONE_DARK), statue(800, 900, 1.0, STONE_DARK), statue(1080, 900, 0.85, STONE_DARK),
   firefly(1360, 760, 1.2), vignette(0.24),
 ]));
 
@@ -684,8 +687,8 @@ add('scenes', 'nuh_ark_dry', 1600, 1200, () => scene([
   skyRect(SKY.amber), sun(1260, 240, 90, CREAM, '#E8B36A', 12), cloud(300, 200, 140, 40, 0.5),
   dunes(SAND, SAND_DARK, 780), `<rect x="0" y="1000" width="${W}" height="200" fill="#8A5348"/>`,
   `<rect x="280" y="940" width="120" height="70" fill="${WOOD_DARK}"/><rect x="1200" y="940" width="120" height="70" fill="${WOOD_DARK}"/>`,
-  ark(800, 960, 0.95), plank(120, 1020, 260, 34, -6), plank(140, 1060, 260, 34, 4), plank(1280, 1040, 240, 32, 6),
-  nails(3, 14, 1180, 1400, 1000, 1080), hammer(1440, 900, 0.7, -30), saw(60, 900, 0.7, 12),
+  ark(800, 960, 0.95), plank(120, 940, 260, 34, -6), plank(140, 980, 260, 34, 4), plank(1280, 960, 240, 32, 6),
+  nails(3, 14, 1180, 1400, 930, 985), hammer(1440, 900, 0.7, -30), saw(60, 900, 0.7, 12),
   firefly(1120, 660, 1.2), vignette(0.16),
 ]));
 
@@ -693,10 +696,10 @@ add('scenes', 'nuh_animals', 1600, 1200, () => scene([
   skyRect(SKY.day), sun(260, 200, 70), cloud(1000, 180, 140, 40, 0.5), cloud(1400, 300, 100, 30, 0.4),
   hills('#7C9F6E', 760, 50), `<rect x="0" y="1000" width="${W}" height="200" fill="#5F8A5A"/>`,
   ark(1120, 860, 0.8),
-  `<path d="M 260 1060 L 900 780 L 900 830 L 300 1100 Z" fill="${WOOD_LIGHT}"/><path d="M 260 1060 L 900 780" stroke="${WOOD_DARK}" stroke-width="8"/>`,
-  sheep(420, 1050, 0.9), sheep(520, 1005, 0.9), camel(700, 940, 0.9), camel(820, 890, 0.85),
+  `<path d="M 260 985 L 900 780 L 900 830 L 300 1020 Z" fill="${WOOD_LIGHT}"/><path d="M 260 985 L 900 780" stroke="${WOOD_DARK}" stroke-width="8"/>`,
+  sheep(420, 985, 0.9), sheep(520, 950, 0.9), camel(700, 900, 0.9), camel(820, 870, 0.85),
   dove(980, 640, 1.1), dove(1060, 600, 0.9, IVORY, true), bird(520, 500, 3), bird(600, 470, 2.6),
-  sheep(160, 1130, 0.8, IVORY, INK_SOFT), sheep(80, 1160, 0.7, '#E8DCC0', INK_SOFT),
+  sheep(160, 985, 0.8, IVORY, INK_SOFT), sheep(80, 985, 0.7, '#E8DCC0', INK_SOFT),
   firefly(1380, 560, 1.2), vignette(0.16),
 ]));
 
@@ -721,7 +724,7 @@ add('scenes', 'nuh_judi', 1600, 1200, () => scene([
   mountains('#3F5A48', 900, [[0, 900], [300, 700], [560, 820], [1600, 600]], 0.55),
   mountains('#2E4A3A', 1000, [[0, 1000], [500, 560], [800, 380], [1100, 600], [1600, 900]]),
   `<path d="M 700 500 L 800 380 L 900 500 Z" fill="${IVORY}" opacity="0.5"/>`, ark(800, 520, 0.36),
-  hills('#5F8A5A', 1080, 30), tree(220, 1120, 0.7), tree(1400, 1100, 0.8), bird(1000, 400, 3), bird(1060, 370, 2.4),
+  hills('#5F8A5A', 960, 30), tree(220, 985, 0.7), tree(1400, 985, 0.8), bird(1000, 400, 3), bird(1060, 370, 2.4),
   firefly(520, 760, 1.2), vignette(0.16),
 ]));
 
@@ -744,15 +747,15 @@ add('scenes', 'yusuf_dream', 1600, 1200, () => scene([
 add('scenes', 'yusuf_well', 1600, 1200, () => scene([
   skyRect(SKY.violetDusk), stars(3, 30, 0, W, 0, 400), crescent(1300, 200, 60),
   mountains('#4A3560', 760, [[0, 760], [400, 620], [800, 720], [1200, 580], [1600, 700]], 0.6),
-  dunes('#B0743B', '#8A5348', 840), well(800, 1040, 1.0, false), rock(200, 1120, 90, 40, '#6E4038'), rock(1400, 1100, 120, 50, '#6E4038'),
+  dunes('#B0743B', '#8A5348', 840), well(800, 985, 1.0, false), rock(200, 985, 90, 40, '#6E4038'), rock(1400, 985, 120, 50, '#6E4038'),
   tree(1280, 940, 0.8, WOOD_DARK, '#3F5A48', '#4A6A50'), firefly(1020, 760, 1.2), vignette(0.22),
 ]));
 
 add('scenes', 'yusuf_caravan', 1600, 1200, () => scene([
   skyRect(SKY.amber), sun(1280, 260, 100, CREAM, '#E8B36A', 12),
   dunes(SAND, SAND_DARK, 760), camel(1180, 760, 0.7), camel(1320, 780, 0.65), camel(1040, 800, 0.72),
-  `<rect x="0" y="1000" width="${W}" height="200" fill="#8A5348"/>`,
-  well(560, 1120, 1.0, true), rope(560, 750, 560, 900), bucket(560, 900, 1.0), glow(560, 900, 160, CREAM, 0.45),
+  `<rect x="0" y="900" width="${W}" height="300" fill="#8A5348"/>`,
+  well(560, 990, 1.0, true), rope(560, 620, 560, 780), bucket(560, 780, 1.0), glow(560, 780, 160, CREAM, 0.45),
   firefly(900, 620, 1.2), vignette(0.16),
 ]));
 
@@ -770,9 +773,9 @@ add('scenes', 'yusuf_cows', 1600, 1200, () => scene([
   skyRect(SKY.day), sun(300, 220, 70), cloud(1100, 220, 140, 40, 0.5),
   hills('#7C9F6E', 720, 50), `<path d="M 0 900 Q 400 840 800 900 T 1600 880 V 1200 H 0 Z" fill="#4F7C9A"/>`,
   `<path d="M 0 900 Q 400 840 800 900 T 1600 880" stroke="${SEA_FOAM}" stroke-width="8" fill="none" opacity="0.5"/>`,
-  hills('#5F8A5A', 1020, 30),
-  [0, 1, 2, 3, 4, 5, 6].map((i) => cow(180 + i * 200, 860 - (i % 2) * 30, 0.62, true)).join(''),
-  [0, 1, 2, 3, 4, 5, 6].map((i) => cow(240 + i * 190, 1140 - (i % 2) * 20, 0.62, false)).join(''),
+  hills('#5F8A5A', 900, 30),
+  [0, 1, 2, 3, 4, 5, 6].map((i) => cow(180 + i * 200, 800 - (i % 2) * 30, 0.62, true)).join(''),
+  [0, 1, 2, 3, 4, 5, 6].map((i) => cow(240 + i * 190, 985 - (i % 2) * 20, 0.62, false)).join(''),
   firefly(1460, 640, 1.2), vignette(0.16),
 ]));
 
@@ -781,9 +784,9 @@ add('scenes', 'yusuf_grain', 1600, 1200, () => scene([
   dunes(SAND, SAND_DARK, 760),
   `<rect x="880" y="520" width="640" height="440" fill="${WALL_DEEP}"/><path d="M 860 520 L 1200 380 L 1540 520 Z" fill="${WOOD}"/>`,
   `<path d="M 1130 960 V 760 A 70 70 0 0 1 1270 760 V 960 Z" fill="#3B2A1E"/><rect x="920" y="620" width="60" height="80" rx="30" fill="#3B2A1E"/><rect x="1420" y="620" width="60" height="80" rx="30" fill="#3B2A1E"/>`,
-  `<rect x="0" y="960" width="${W}" height="240" fill="#8A5348"/>`,
-  sack(260, 1040, 1.0), sack(420, 1060, 0.9), sack(340, 940, 0.85), jar(600, 1050, 0.9), jar(720, 1070, 0.8),
-  wheat(120, 1000, 1.2), wheat(170, 1010, 1.0), wheat(90, 1020, 0.9), wheat(1400, 1080, 1.1), wheat(1460, 1090, 0.9),
+  `<rect x="0" y="900" width="${W}" height="300" fill="#8A5348"/>`,
+  sack(260, 960, 1.0), sack(420, 975, 0.9), sack(340, 880, 0.85), jar(600, 965, 0.9), jar(720, 980, 0.8),
+  wheat(120, 940, 1.2), wheat(170, 950, 1.0), wheat(90, 960, 0.9), wheat(1400, 970, 1.1), wheat(1460, 980, 0.9),
   firefly(1060, 660, 1.2), vignette(0.16),
 ]));
 
@@ -799,17 +802,17 @@ add('scenes', 'yusuf_bowing', 1600, 1200, () => scene([
 const roomFloorY = () => H * 0.72;
 add('scenes', 'pillars_fallen', 1600, 1200, () => scene([
   room(true), archWindow(1220, 140, 260, 360, false), hangLine(380, 420, 0.9), lantern(380, 420, 0.9),
-  blanket(800, 1040, 700, 160, '#4A5D8A', 0.3),
-  cushion(560, 1060, 180, 60, CUSHION_COLORS[0], -18), cushion(1020, 1050, 180, 60, CUSHION_COLORS[1], 22), cushion(800, 1090, 170, 60, CUSHION_COLORS[2], 6),
-  child('safa', { x: 330, y: 1090, s: 1.0, arms: 'out' }), child('zayn', { x: 1290, y: 1100, s: 0.88, arms: 'down', flip: true }),
+  blanket(800, 975, 700, 160, '#4A5D8A', 0.3),
+  cushion(560, 985, 180, 60, CUSHION_COLORS[0], -18), cushion(1020, 980, 180, 60, CUSHION_COLORS[1], 22), cushion(800, 990, 170, 60, CUSHION_COLORS[2], 6),
+  child('safa', { x: 330, y: 985, s: 1.0, arms: 'out' }), child('zayn', { x: 1290, y: 985, s: 0.88, arms: 'down', flip: true }),
   firefly(1000, 640, 1.2), vignette(0.16),
 ]));
 
 add('scenes', 'pillars_cushions', 1600, 1200, () => scene([
   room(true), archWindow(1220, 140, 260, 360, false), hangLine(380, 420, 0.9), lantern(380, 420, 0.9),
-  [0, 1, 2, 3, 4].map((i) => cushion(560 + i * 120, 1000, 100, 150, CUSHION_COLORS[i])).join(''),
-  blanket(800, 1000, 760, 120, '#4A5D8A', 0.2),
-  child('zayn', { x: 330, y: 1090, s: 0.9, pose: 'sit' }), child('safa', { x: 1290, y: 1090, s: 1.0, pose: 'sit', flip: true }),
+  [0, 1, 2, 3, 4].map((i) => cushion(560 + i * 120, 975, 100, 150, CUSHION_COLORS[i])).join(''),
+  blanket(800, 975, 760, 120, '#4A5D8A', 0.2),
+  child('zayn', { x: 330, y: 985, s: 0.9, pose: 'sit' }), child('safa', { x: 1290, y: 985, s: 1.0, pose: 'sit', flip: true }),
   firefly(1000, 700, 1.2), vignette(0.16),
 ]));
 
@@ -831,30 +834,30 @@ add('scenes', 'pillars_mat', 1600, 1200, () => scene([
 
 add('scenes', 'pillars_coins', 1600, 1200, () => scene([
   room(false), archWindow(400, 140, 260, 360, true), hangLine(1240, 420, 0.9), lantern(1240, 420, 0.9),
-  table(H * 0.72), coinBox(1000, 860, 1.0), coin(930, 640, 0.9, 20), coin(1160, 700, 0.7, -30), coin(600, 900, 0.8, 10), coin(700, 880, 0.7, 40),
-  child('zayn', { x: 560, y: 1150, s: 1.05, arms: 'up' }), firefly(1320, 660, 1.2), vignette(0.16),
+  table(H * 0.72), coinBox(1000, 900, 1.0), coin(930, 660, 0.9, 20), coin(1160, 720, 0.7, -30), coin(600, 930, 0.8, 10), coin(700, 910, 0.7, 40),
+  child('zayn', { x: 560, y: 985, s: 1.05, arms: 'up' }), firefly(1320, 660, 1.2), vignette(0.16),
 ]));
 
 add('scenes', 'pillars_dates', 1600, 1200, () => scene([
   room(false), archWindow(800, 100, 320, 420, true), hangLine(260, 400, 0.9), lantern(260, 400, 0.9), hangLine(1340, 400, 0.9), lantern(1340, 400, 0.9),
-  table(H * 0.72), bowlOfDates(800, 1000, 1.05), glass(1080, 1000, 1.0), glass(520, 1000, 0.9),
-  child('safa', { x: 1290, y: 1150, s: 1.0, pose: 'sit', flip: true }), firefly(560, 700, 1.2), vignette(0.18),
+  table(H * 0.72), bowlOfDates(800, 970, 1.05), glass(1080, 970, 1.0), glass(520, 970, 0.9),
+  child('safa', { x: 1290, y: 985, s: 1.0, pose: 'sit', flip: true }), firefly(560, 700, 1.2), vignette(0.18),
 ]));
 
 add('scenes', 'pillars_kaaba', 1600, 1200, () => scene([
   skyRect(SKY.dayClear), sun(280, 220, 70), cloud(1100, 200, 140, 40, 0.5), cloud(1400, 340, 100, 30, 0.4),
   `<rect x="0" y="760" width="${W}" height="440" fill="${IVORY}"/>`, `<rect x="0" y="760" width="${W}" height="16" fill="${DEEPGOLD}" opacity="0.5"/>`,
   minaret(120, 760, 420, 40, STONE_LIGHT), minaret(1480, 760, 420, 40, STONE_LIGHT), minaret(400, 760, 300, 30, '#C9BFAA'), minaret(1200, 760, 300, 30, '#C9BFAA'),
-  `<ellipse cx="800" cy="1060" rx="520" ry="110" fill="${STONE_LIGHT}" opacity="0.5"/>`, glow(800, 900, 420, CREAM, 0.3),
-  kaaba(800, 1060, 0.95), dove(1120, 560, 0.9), dove(500, 600, 0.8, IVORY, true), firefly(1280, 780, 1.2), vignette(0.14),
+  `<ellipse cx="800" cy="985" rx="520" ry="110" fill="${STONE_LIGHT}" opacity="0.5"/>`, glow(800, 860, 420, CREAM, 0.3),
+  kaaba(800, 985, 0.95), dove(1120, 560, 0.9), dove(500, 600, 0.8, IVORY, true), firefly(1280, 780, 1.2), vignette(0.14),
 ]));
 
 add('scenes', 'pillars_standing', 1600, 1200, () => scene([
   room(true), archWindow(1220, 140, 260, 360, false), hangLine(380, 420, 0.9), lantern(380, 420, 0.9),
-  [0, 1, 2, 3, 4].map((i) => cushion(560 + i * 120, 1060, 100, 160, CUSHION_COLORS[i])).join(''),
-  `<path d="M 440 900 L 800 620 L 1160 900 Z" fill="#4A5D8A"/><path d="M 470 900 L 800 660 L 1130 900 Z" fill="#5A6FA0" opacity="0.5"/><rect x="440" y="896" width="720" height="14" rx="7" fill="#3A4A70"/>`,
-  child('safa', { x: 330, y: 1090, s: 1.0, arms: 'up' }), child('zayn', { x: 1290, y: 1100, s: 0.88, arms: 'up', flip: true }),
-  sparkle(800, 560, 16), sparkle(700, 620, 10), sparkle(900, 640, 12), firefly(1010, 760, 1.2), vignette(0.16),
+  [0, 1, 2, 3, 4].map((i) => cushion(560 + i * 120, 985, 100, 160, CUSHION_COLORS[i])).join(''),
+  `<path d="M 440 830 L 800 560 L 1160 830 Z" fill="#4A5D8A"/><path d="M 470 830 L 800 600 L 1130 830 Z" fill="#5A6FA0" opacity="0.5"/><rect x="440" y="826" width="720" height="14" rx="7" fill="#3A4A70"/>`,
+  child('safa', { x: 330, y: 985, s: 1.0, arms: 'up' }), child('zayn', { x: 1290, y: 985, s: 0.88, arms: 'up', flip: true }),
+  sparkle(800, 500, 16), sparkle(700, 560, 10), sparkle(900, 580, 12), firefly(1010, 720, 1.2), vignette(0.16),
 ]));
 
 // ================================================================ covers ==
