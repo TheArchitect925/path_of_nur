@@ -20,6 +20,7 @@ BedtimeStorySeed kidsPictureBook({
   required KidsIslamicStoryCollectionType collectionType,
   required KidsIslamicStoryType storyType,
   required List<KidsBookSpread> spreads,
+  required String refrain,
   required String lesson,
   required String bedtimeClosing,
   required String coverAssetPath,
@@ -41,7 +42,6 @@ BedtimeStorySeed kidsPictureBook({
   bool isFeatured = false,
   bool bedtimeEligible = true,
   bool recommendedForTonight = false,
-  bool suitableForYoungerLearners = false,
   List<String> relatedStoryIds = const <String>[],
   List<String> quizRefs = const <String>[],
   List<String> memoryRefs = const <String>[],
@@ -98,7 +98,8 @@ BedtimeStorySeed kidsPictureBook({
     bedtimeEligible: bedtimeEligible,
     routineEligible: true,
     quietReflectionFriendly: true,
-    suitableForYoungerLearners: suitableForYoungerLearners,
+    // The age band (K6) reads ageGroup; no reader looks at the older
+    // suitableForYoungerLearners flag, so a book never sets it.
     sceneIllustrations: [
       for (var i = 0; i < spreads.length; i++)
         if (spreads[i].hasOwnPicture)
@@ -115,6 +116,7 @@ BedtimeStorySeed kidsPictureBook({
     ],
     spreads: spreads,
     bedtimeClosing: bedtimeClosing,
+    refrain: refrain,
   );
 }
 

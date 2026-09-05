@@ -351,6 +351,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -360,6 +361,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -369,6 +371,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -389,6 +392,7 @@ List<RouteBase> buildLearnKidsRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: KidsStoryReaderPage(
           storyId: state.pathParameters['storyId'] ?? '',
+          bedtime: _openedAtBedtime(state),
         ),
       ),
     ),
@@ -518,3 +522,8 @@ List<RouteBase> buildLearnKidsRoutes() {
     ),
   ];
 }
+
+/// The Bedtime shelf opens a story with `?bedtime=1`; the story page then
+/// says "Read tonight" and the reader adds the book's bedtime closing page.
+bool _openedAtBedtime(GoRouterState state) =>
+    state.uri.queryParameters['bedtime'] == '1';

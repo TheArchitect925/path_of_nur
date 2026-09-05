@@ -71,7 +71,7 @@ def _story_blocks() -> list[tuple[str, str]]:
     so the last story in a file never borrows the next file's fields."""
     blocks: list[tuple[str, str]] = []
     for path in sorted(DATA_DIR.rglob("*.dart")):
-        parts = re.split(r"(?m)^\s+id: '(story_[a-z0-9_]+)',\n", path.read_text())
+        parts = re.split(r"(?m)^\s+id: '((?:story|book)_[a-z0-9_]+)',\n", path.read_text())
         # parts = [prefix, id1, body1, id2, body2, ...]
         for i in range(1, len(parts), 2):
             blocks.append((parts[i], parts[i + 1]))
@@ -88,7 +88,9 @@ def stories() -> list[Story]:
         text = _first(r"ttsText: '''(.*?)'''", body, re.S)
         if text is None:
             # A picture book reads its spreads; each `lines: [...]` is one page.
-            pages = re.findall(r"lines: (?:const )?\[(.*?)\]", body, re.S)
+            pages = re.findall(r"lines: (?:const )?\[(.*?)\]", body, re.S) or re.findall(
+                r"KidsBookSpread\(\s*(?:const )?\[(.*?)\]", body, re.S
+            )
             text = "\n\n".join(
                 "\n".join(re.findall(r"'((?:[^'\\]|\\.)*)'", page)) for page in pages
             )

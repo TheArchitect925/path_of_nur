@@ -26,9 +26,17 @@ import 'bedtime_story_player_bar.dart';
 import 'kids_story_about_section.dart';
 
 class BedtimeStoryDetailPage extends ConsumerStatefulWidget {
-  const BedtimeStoryDetailPage({super.key, required this.storyId});
+  const BedtimeStoryDetailPage({
+    super.key,
+    required this.storyId,
+    this.bedtime = false,
+  });
 
   final String storyId;
+
+  /// Reached from the Bedtime shelf: the button says "Read tonight" and the
+  /// reader adds the book's bedtime closing page.
+  final bool bedtime;
 
   @override
   ConsumerState<BedtimeStoryDetailPage> createState() =>
@@ -162,7 +170,7 @@ class _BedtimeStoryDetailPageState
             ),
             icon: const Icon(Icons.menu_book_rounded),
             label: Text(
-              story.bedtimeEligible
+              widget.bedtime
                   ? l10n.bedtimeStoriesReadTonightAction
                   : l10n.kidsStoryReadStoryAction,
             ),
@@ -473,6 +481,7 @@ class _BedtimeStoryDetailPageState
     context.pushNamed(
       'kidsStoryReader',
       pathParameters: {'storyId': widget.storyId},
+      queryParameters: {if (widget.bedtime) 'bedtime': '1'},
     );
   }
 }

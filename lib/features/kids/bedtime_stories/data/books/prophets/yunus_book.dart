@@ -21,6 +21,7 @@ final BedtimeStorySeed yunusBook = kidsPictureBook(
   collectionType: KidsIslamicStoryCollectionType.prophets,
   storyType: KidsIslamicStoryType.prophet,
   themes: const [KidsIslamicStoryTheme.dua, KidsIslamicStoryTheme.forgiveness],
+  refrain: 'Allah always hears.',
   lesson:
       'If you make a mistake, turn back to Allah. Allah listens and forgives '
       'sincerely.',

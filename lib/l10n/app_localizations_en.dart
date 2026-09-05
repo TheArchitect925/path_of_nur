@@ -10543,7 +10543,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Legacy learning still contains real material, but it should be boxed into its own island so the newer journey system can stay clear and intentional.';
 
   @override
-  String get kidsArabicHomeTitle => 'Write and Learn Arabic Letters';
+  String get kidsArabicHomeTitle => 'Letters';
 
   @override
   String get kidsArabicHomeSubtitle =>
@@ -25546,7 +25546,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountsSyncErrorTransportFailure => 'Transport failure';
 
   @override
-  String get kidsDuaLandingTitle => 'Kids Dua Learning';
+  String get kidsDuaLandingTitle => 'Duʿās';
 
   @override
   String get kidsDuaLandingSubtitle =>
@@ -31147,7 +31147,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bedtimeStoryBackToStoryAction => 'Back to story';
 
   @override
-  String get kidsStoryLibraryTitle => 'Kids Stories';
+  String get kidsStoryLibraryTitle => 'Stories';
 
   @override
   String get kidsStoryLibrarySubtitle =>
@@ -31270,7 +31270,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get kidsStoryReadAlongPrimaryTitle => 'Read the story';
 
   @override
-  String get kidsStoryReadStoryAction => 'Read story';
+  String get kidsStoryReadStoryAction => 'Read';
 
   @override
   String get kidsStoryScenesSectionTitle => 'Story scenes';
@@ -44241,6 +44241,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kidsStickerBookTitle => 'My stickers';
+
+  @override
+  String get kidsStoryReaderTryItAction => 'Try it';
+
+  @override
+  String kidsStoryReaderQuranRefLabel(int surah, int ayah) {
+    return 'Qur’an $surah:$ayah';
+  }
 
   @override
   String get kidsStickerBookSubtitle =>

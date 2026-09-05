@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_fonts.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_reference_link.dart';
 import '../../rewards/domain/kids_sticker_models.dart';
 import '../../shared/application/kids_age_band_provider.dart';
 import '../../shared/domain/kids_age_band.dart';
@@ -23,9 +25,17 @@ import 'kids_story_about_section.dart';
 /// every line, and nothing else on the screen. The lesson, the Qur'an and
 /// the hadith wait behind "About this story" for a parent.
 class KidsStoryReaderPage extends ConsumerStatefulWidget {
-  const KidsStoryReaderPage({super.key, required this.storyId});
+  const KidsStoryReaderPage({
+    super.key,
+    required this.storyId,
+    this.bedtime = false,
+  });
 
   final String storyId;
+
+  /// Opened from the Bedtime shelf: a picture book ends on its bedtime
+  /// closing page ("Now close your eyes…") before The End.
+  final bool bedtime;
 
   @override
   ConsumerState<KidsStoryReaderPage> createState() =>
@@ -61,7 +71,10 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
         children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
-    final pages = kidsStoryPagesFor(story);
+    final pages = kidsStoryPagesFor(story, bedtime: widget.bedtime);
+    final refrain = story.refrain.isEmpty
+        ? null
+        : kidsBookRefrainCore(story.refrain);
     final readAloud = ref.watch(kidsReadAloudControllerProvider);
     final voice = ref.read(kidsReadAloudControllerProvider.notifier);
     final isEnd = _pageIndex >= pages.length;
@@ -155,8 +168,12 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
                 ? l10n.kidsStoryReaderTapToHearHint
                 : null,
             largeType: band == KidsAgeBand.early,
+            refrainLine: refrain,
             speakingLineId: readAloud.speakingId,
             onLineTap: canHear ? (line) => voice.speak(line) : null,
+            onTryIt: page.spread?.tryItRoute == null
+                ? null
+                : () => context.push(page.spread!.tryItRoute!),
             onNext: () => _go(1),
             onBack: _pageIndex == 0 ? null : () => _go(-1),
           )
@@ -208,6 +225,8 @@ class _StoryPageCard extends StatelessWidget {
     required this.onNext,
     required this.onBack,
     this.largeType = false,
+    this.refrainLine,
+    this.onTryIt,
   });
 
   final bool largeType;
@@ -219,12 +238,25 @@ class _StoryPageCard extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback? onBack;
 
+  /// The book's refrain, set apart wherever it appears so a child who
+  /// cannot read yet can still say it.
+  final String? refrainLine;
+
+  /// Opens the tool a First Steps book ends in.
+  final VoidCallback? onTryIt;
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final textTheme = Theme.of(context).textTheme;
+    final spread = page.spread;
     final lineStyle =
         (largeType ? textTheme.headlineMedium : textTheme.headlineSmall)
             ?.copyWith(height: 1.4, fontWeight: FontWeight.w700);
+    final arabicStyle = textTheme.headlineSmall?.copyWith(
+      fontFamily: AppFonts.quranArabic,
+      height: 1.9,
+    );
     return GestureDetector(
       // A page turns the way a book does: swipe left for the next one.
       onHorizontalDragEnd: (details) {
@@ -261,6 +293,7 @@ class _StoryPageCard extends StatelessWidget {
                 text: page.lines[i],
                 style: lineStyle,
                 speaking: speakingLineId == 'page-${page.index}-line-$i',
+                refrainPhrase: refrainLine,
                 onTap: onLineTap == null
                     ? null
                     : () => onLineTap!(
@@ -270,6 +303,49 @@ class _StoryPageCard extends StatelessWidget {
                         ),
                       ),
               ),
+            // What a picture book carries beyond its lines: a duʿā or an
+            // ayah in Arabic, the ayah it rests on, and the tool it ends in.
+            if ((spread?.arabicLine ?? '').isNotEmpty) ...[
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Text(
+                  spread!.arabicLine!,
+                  textDirection: TextDirection.rtl,
+                  textAlign: TextAlign.center,
+                  style: arabicStyle,
+                ),
+              ),
+            ],
+            if (spread?.quranRef != null) ...[
+              const SizedBox(height: 10),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: QuranReferenceLinkTile.forRef(
+                  referenceLabel: l10n.kidsStoryReaderQuranRefLabel(
+                    spread!.quranRef!.surah,
+                    spread.quranRef!.ayah,
+                  ),
+                  ref: spread.quranRef!,
+                  margin: EdgeInsets.zero,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
+                  showTrailingIcon: false,
+                ),
+              ),
+            ],
+            if (onTryIt != null) ...[
+              const SizedBox(height: 14),
+              FilledButton.tonal(
+                onPressed: onTryIt,
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(56),
+                ),
+                child: Text(l10n.kidsStoryReaderTryItAction),
+              ),
+            ],
             if (hint != null) ...[
               const SizedBox(height: 10),
               Text(hint!, style: textTheme.bodySmall),
@@ -287,6 +363,7 @@ class _StoryLine extends StatelessWidget {
     required this.style,
     required this.speaking,
     required this.onTap,
+    this.refrainPhrase,
   });
 
   final String text;
@@ -294,18 +371,46 @@ class _StoryLine extends StatelessWidget {
   final bool speaking;
   final VoidCallback? onTap;
 
+  /// The book's refrain, without its closing punctuation. Wherever it sits
+  /// inside this line it reads in the accent colour and a heavier weight;
+  /// the line being spoken sits on a soft ground, so both cues survive
+  /// together.
+  final String? refrainPhrase;
+
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    final phrase = refrainPhrase ?? '';
+    final at = phrase.isEmpty ? -1 : text.indexOf(phrase);
+    final base = style?.copyWith(color: speaking ? palette.accent : null);
+    final lit = style?.copyWith(
+      color: palette.accent,
+      fontWeight: FontWeight.w800,
+    );
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
-      child: Padding(
+      child: Container(
+        decoration: speaking
+            ? BoxDecoration(
+                color: palette.surfaceSoft,
+                borderRadius: BorderRadius.circular(12),
+              )
+            : null,
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-        child: Text(
-          text,
-          style: style?.copyWith(color: speaking ? palette.accent : null),
-        ),
+        child: at < 0
+            ? Text(text, style: base)
+            : Text.rich(
+                TextSpan(
+                  style: base,
+                  children: [
+                    if (at > 0) TextSpan(text: text.substring(0, at)),
+                    TextSpan(text: phrase, style: lit),
+                    if (at + phrase.length < text.length)
+                      TextSpan(text: text.substring(at + phrase.length)),
+                  ],
+                ),
+              ),
       ),
     );
   }

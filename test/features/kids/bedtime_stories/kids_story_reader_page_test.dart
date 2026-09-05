@@ -4,6 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/application/bedtime_story_progress_service.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/books/first_steps/five_pillars_book.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/books/prophets/yunus_book.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_islamic_story_seed.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_pages.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
@@ -27,8 +29,9 @@ void main() {
   }
 
   Future<(ProviderContainer, _RecordingEngine)> openReader(
-    WidgetTester tester,
-  ) async {
+    WidgetTester tester, {
+    String location = '/learn/kids/stories/$storyId/read',
+  }) async {
     final engine = _RecordingEngine();
     final container = await makeTestContainer(
       overrides: <Override>[
@@ -43,10 +46,74 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(430, 1400));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(buildRouterTestApp(container));
-    container.read(appRouterProvider).go('/learn/kids/stories/$storyId/read');
+    container.read(appRouterProvider).go(location);
     await pumpFrames(tester);
     return (container, engine);
   }
+
+  Future<void> turnPages(WidgetTester tester, int count) async {
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    for (var i = 0; i < count; i++) {
+      await tester.tap(find.text(l10n.kidsStoryReaderNextAction));
+      await pumpFrames(tester);
+    }
+  }
+
+  // C2a: a picture book shows what its spreads carry.
+  testWidgets('a picture book shows its Arabic line and its ayah', (
+    tester,
+  ) async {
+    await openReader(
+      tester,
+      location: '/learn/kids/stories/${yunusBook.id}/read',
+    );
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    final duaSpread = yunusBook.spreads.firstWhere(
+      (s) => (s.arabicLine ?? '').isNotEmpty,
+    );
+    await turnPages(tester, yunusBook.spreads.indexOf(duaSpread));
+
+    expect(find.text(duaSpread.arabicLine!), findsOneWidget);
+    expect(
+      find.text(
+        l10n.kidsStoryReaderQuranRefLabel(
+          duaSpread.quranRef!.surah,
+          duaSpread.quranRef!.ayah,
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text(l10n.kidsStoryReaderTryItAction), findsNothing);
+  });
+
+  testWidgets('opened at bedtime, a book ends on its closing page', (
+    tester,
+  ) async {
+    await openReader(
+      tester,
+      location: '/learn/kids/stories/${yunusBook.id}/read?bedtime=1',
+    );
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    final pageCount = yunusBook.spreads.length + 1;
+    expect(
+      find.text(l10n.kidsStoryReaderPageValue(1, pageCount)),
+      findsOneWidget,
+    );
+    await turnPages(tester, yunusBook.spreads.length);
+    expect(find.text(yunusBook.bedtimeClosing), findsOneWidget);
+    // Opened by day, the same book has no such page.
+    expect(kidsStoryPagesFor(yunusBook).length, yunusBook.spreads.length);
+  });
+
+  testWidgets('a First Steps book ends in a tool', (tester) async {
+    await openReader(
+      tester,
+      location: '/learn/kids/stories/${fivePillarsBook.id}/read',
+    );
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+    await turnPages(tester, fivePillarsBook.spreads.length - 1);
+    expect(find.text(l10n.kidsStoryReaderTryItAction), findsOneWidget);
+  });
 
   testWidgets('opens on the first page with its lines and a page count', (
     tester,

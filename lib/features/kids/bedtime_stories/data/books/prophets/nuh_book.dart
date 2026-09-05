@@ -22,6 +22,7 @@ final BedtimeStorySeed nuhBook = kidsPictureBook(
     KidsIslamicStoryTheme.trustInAllah,
     KidsIslamicStoryTheme.patience,
   ],
+  refrain: 'Allah told him what to do, and Nuh did it.',
   lesson:
       'Keep doing what is right, even when people laugh. Allah helps those '
       'who obey Him and keep going.',

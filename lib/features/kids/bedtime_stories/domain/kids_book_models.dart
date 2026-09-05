@@ -99,3 +99,9 @@ int _words(String line) {
   final trimmed = line.trim();
   return trimmed.isEmpty ? 0 : trimmed.split(RegExp(r'\s+')).length;
 }
+
+/// The refrain as it is matched inside a line: without its closing
+/// punctuation, so "Allah always hears." is found in "Allah always hears,"
+/// said Mama' as well as in 'But Allah always hears.'
+String kidsBookRefrainCore(String refrain) =>
+    refrain.trim().replaceAll(RegExp(r'[.!?,;:]+$'), '');

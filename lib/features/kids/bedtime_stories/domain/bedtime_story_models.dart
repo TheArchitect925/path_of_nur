@@ -129,6 +129,7 @@ class BedtimeStorySeed {
     this.sceneIllustrations = const <BedtimeStorySceneIllustration>[],
     this.spreads = const <KidsBookSpread>[],
     this.bedtimeClosing = '',
+    this.refrain = '',
   });
 
   final String id;
@@ -188,6 +189,10 @@ class BedtimeStorySeed {
   /// The closing spread the reader adds only when the book is opened at
   /// bedtime ("Now close your eyes…"). Never part of the story itself.
   final String bedtimeClosing;
+
+  /// The phrase a child can say along ("Allah always hears."). It sits
+  /// inside a line on every refrain spread, and the reader lights it there.
+  final String refrain;
 
   bool get isPictureBook => spreads.isNotEmpty;
 
@@ -263,6 +268,7 @@ class BedtimeStorySeed {
       sceneIllustrations: sceneIllustrations,
       spreads: spreads,
       bedtimeClosing: bedtimeClosing,
+      refrain: refrain,
     );
   }
 }

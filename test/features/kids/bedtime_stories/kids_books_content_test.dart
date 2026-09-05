@@ -85,12 +85,23 @@ void main() {
 
     test('has a refrain that comes back', () {
       for (final book in books) {
-        final refrains = book.spreads.where((s) => s.isRefrain).length;
+        expect(book.refrain.trim(), isNotEmpty, reason: '${book.id} refrain');
+        final core = kidsBookRefrainCore(book.refrain);
+        final refrains = book.spreads.where((s) => s.isRefrain).toList();
         expect(
-          refrains,
+          refrains.length,
           greaterThanOrEqualTo(kKidsBookRefrainMinCount),
-          reason: '${book.id} marks $refrains refrain spreads',
+          reason: '${book.id} marks ${refrains.length} refrain spreads',
         );
+        for (final spread in refrains) {
+          expect(
+            spread.lines.any((line) => line.contains(core)),
+            isTrue,
+            reason:
+                '${book.id} refrain spread "${spread.text}" does not carry '
+                '"$core"',
+          );
+        }
       }
     });
 
@@ -166,6 +177,18 @@ void main() {
       expect(pages[3].illustrationAsset, book.backdropAssetPath);
     });
 
+    test('adds its bedtime closing only at bedtime, and knows its refrain', () {
+      final byDay = kidsStoryPagesFor(book);
+      final atBedtime = kidsStoryPagesFor(book, bedtime: true);
+      expect(byDay.length, book.spreads.length);
+      expect(byDay.any((page) => page.isBedtimeClosing), isFalse);
+      expect(atBedtime.length, book.spreads.length + 1);
+      expect(atBedtime.last.isBedtimeClosing, isTrue);
+      expect(atBedtime.last.lines, [book.bedtimeClosing]);
+      expect(atBedtime.last.illustrationAsset, isNotNull);
+      expect(kidsBookRefrainCore(book.refrain), 'Allah always hears');
+    });
+
     test('lists only its own pictures in the scene manifest', () {
       expect(book.sceneIllustrations.length, 1);
       expect(book.sceneIllustrations.single.imageAssetPath, _ownScene);
@@ -194,6 +217,7 @@ BedtimeStorySeed _fixtureBook() {
     category: BedtimeStoryCategory.foundations,
     collectionType: KidsIslamicStoryCollectionType.foundations,
     storyType: KidsIslamicStoryType.foundations,
+    refrain: 'Allah always hears.',
     lesson: 'Allah always hears.',
     bedtimeClosing: 'Now close your eyes. Allah hears you in your bed too.',
     coverAssetPath: _cover,

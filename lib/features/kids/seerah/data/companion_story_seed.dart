@@ -68,7 +68,7 @@ This story teaches us that helping someone in a hard moment is a beautiful act o
     tags: ['companion', 'khadijah', 'seerah', 'support', 'belief'],
     sortOrder: 245,
     coverAssetPath:
-        '$kidsStoryImageCoverAssetDirectory/companion_khadijah_cover.png',
+        '$kidsStoryImageCoverAssetDirectory/companion_khadijah_cover.webp',
     backdropAssetPath:
         '$kidsStoryImageBackdropAssetDirectory/companion_khadijah_backdrop.png',
     narratorDisplayName: 'Path of Nur Stories',
@@ -150,7 +150,7 @@ and trust in Allah.
     tags: ['companion', 'abu bakr', 'hijrah', 'friendship', 'seerah'],
     sortOrder: 246,
     coverAssetPath:
-        '$kidsStoryImageCoverAssetDirectory/companion_abu_bakr_cover.png',
+        '$kidsStoryImageCoverAssetDirectory/companion_abu_bakr_cover.webp',
     backdropAssetPath:
         '$kidsStoryImageBackdropAssetDirectory/companion_abu_bakr_backdrop.png',
     narratorDisplayName: 'Path of Nur Stories',
@@ -227,7 +227,7 @@ and patience is beautiful.
     tags: ['companion', 'bilal', 'patience', 'faith', 'seerah'],
     sortOrder: 247,
     coverAssetPath:
-        '$kidsStoryImageCoverAssetDirectory/companion_bilal_cover.png',
+        '$kidsStoryImageCoverAssetDirectory/companion_bilal_cover.webp',
     backdropAssetPath:
         '$kidsStoryImageBackdropAssetDirectory/companion_bilal_backdrop.png',
     narratorDisplayName: 'Path of Nur Stories',

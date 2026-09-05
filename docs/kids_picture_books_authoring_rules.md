@@ -11,7 +11,8 @@ Plan and rationale: the Kids Bookshelf Rewrite artifact (2026-09-04).
 - **8 to 14 spreads.** Fourteen is a full story. Eight is the short book a prophet with a line or two in the Qur'an gets.
 - **A spread is one to three lines and never more than 20 words.** One picture per spread; the writer decides the page breaks, not an algorithm.
 - **One refrain, three times.** Mark those spreads `isRefrain: true`. A child who cannot read yet can still say the refrain.
-- **Day voice.** No "…" trailing off, no whispered pacing, no "Good night" in the text. Bedtime is a mode: put the closing spread in `bedtimeClosing` and the reader shows it only when the book is opened at bedtime.
+- **Day voice.** No "…" trailing off, no whispered pacing, no "Good night" in the text. Bedtime is a mode: put the closing spread in `bedtimeClosing` and the reader shows it only when the book is opened at bedtime (the Bedtime shelf and Tonight's pick open a story with `?bedtime=1`; the story page then says "Read tonight").
+- **What the reader shows from a spread** (C2a): the refrain line in the accent colour and a heavier weight, `arabicLine` under the lines in the Qur'an face, `quranRef` as a small tappable "Qur'an s:a" chip, `tryItRoute` as a "Try it" button. Nothing else on the page.
 - **The first spread names the prophet in full once** ("Prophet Yunus, peace be upon him"); the story then uses the name alone.
 - **The last spread is Remember:** the lesson in the child's words, usually carrying the refrain. First Steps books end in a `tryItRoute` instead, opening a real tool.
 - **`summary` and `lesson` are required.** They are what a parent reads on the story page and in About this story.

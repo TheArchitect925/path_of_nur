@@ -334,7 +334,10 @@ class _CollectionView extends ConsumerWidget {
         ...stories.map(
           (story) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _StoryListTile(story: story),
+            child: _StoryListTile(
+              story: story,
+              bedtime: collection == KidsIslamicStoryCollectionType.bedtime,
+            ),
           ),
         ),
       ],
@@ -377,6 +380,8 @@ class _StoryHeroCard extends ConsumerWidget {
           context.pushNamed(
             'kidsStoryDetail',
             pathParameters: {'storyId': story.id},
+            // Tonight's pick is read at bedtime: the book gets its closing.
+            queryParameters: {if (startsTonightQueue) 'bedtime': '1'},
           );
         }
       },
@@ -489,9 +494,12 @@ class _CollectionCard extends ConsumerWidget {
 }
 
 class _StoryListTile extends ConsumerWidget {
-  const _StoryListTile({required this.story});
+  const _StoryListTile({required this.story, this.bedtime = false});
 
   final BedtimeStorySeed story;
+
+  /// On the Bedtime shelf: the story opens in bedtime mode.
+  final bool bedtime;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -507,6 +515,7 @@ class _StoryListTile extends ConsumerWidget {
       onTap: () => context.pushNamed(
         'kidsStoryDetail',
         pathParameters: {'storyId': story.id},
+        queryParameters: {if (bedtime) 'bedtime': '1'},
       ),
       child: Row(
         children: [

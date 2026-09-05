@@ -7,11 +7,15 @@ class KidsStoryPage {
     required this.lines,
     required this.illustrationAsset,
     this.spread,
+    this.isBedtimeClosing = false,
   });
 
   final int index;
   final List<String> lines;
   final String? illustrationAsset;
+
+  /// The page a picture book adds only at bedtime ("Now close your eyes…").
+  final bool isBedtimeClosing;
 
   /// The spread this page shows when the story is a picture book, so the
   /// reader can set the refrain apart or open a Try-it link. Null for the
@@ -33,8 +37,11 @@ const int _pageMaxLines = 4;
 /// ("Long, long ago..." / "Before there were cities..."). A beat stays on
 /// one page; a page takes beats until it reaches a comfortable length. Every
 /// line of the text appears exactly once, in order.
-List<KidsStoryPage> kidsStoryPagesFor(BedtimeStorySeed story) {
-  if (story.isPictureBook) return _pagesFromSpreads(story);
+List<KidsStoryPage> kidsStoryPagesFor(
+  BedtimeStorySeed story, {
+  bool bedtime = false,
+}) {
+  if (story.isPictureBook) return _pagesFromSpreads(story, bedtime: bedtime);
   final beats = story.ttsText
       .trim()
       .split(RegExp(r'\n\s*\n'))
@@ -118,11 +125,15 @@ List<String?> _illustrationsFor(BedtimeStorySeed story, int pageCount) {
 /// A picture book is already paged by its writer: one spread is one page.
 /// A spread shows its own picture, else the atlas scene it borrows, else
 /// the cover (first page) or backdrop, so every page has art to show.
-List<KidsStoryPage> _pagesFromSpreads(BedtimeStorySeed story) {
+List<KidsStoryPage> _pagesFromSpreads(
+  BedtimeStorySeed story, {
+  required bool bedtime,
+}) {
   final cover = story.coverAssetPath.isEmpty ? null : story.coverAssetPath;
   final backdrop = story.backdropAssetPath.isEmpty
       ? cover
       : story.backdropAssetPath;
+  final closing = story.bedtimeClosing.trim();
   return [
     for (var i = 0; i < story.spreads.length; i++)
       KidsStoryPage(
@@ -133,6 +144,15 @@ List<KidsStoryPage> _pagesFromSpreads(BedtimeStorySeed story) {
             : story.spreads[i].atlasScene?.assetPath ??
                   (i == 0 ? cover : backdrop),
         spread: story.spreads[i],
+      ),
+    // Bedtime is a mode, not a text: the closing page exists only when the
+    // book was opened from the Bedtime shelf.
+    if (bedtime && closing.isNotEmpty)
+      KidsStoryPage(
+        index: story.spreads.length,
+        lines: [closing],
+        illustrationAsset: KidsBookAtlasScene.bedroom.assetPath,
+        isBedtimeClosing: true,
       ),
   ];
 }

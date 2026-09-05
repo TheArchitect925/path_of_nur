@@ -19,7 +19,7 @@ final BedtimeStorySeed fivePillarsBook = kidsPictureBook(
   storyType: KidsIslamicStoryType.foundations,
   themes: const [KidsIslamicStoryTheme.trustInAllah],
   ageGroup: BedtimeStoryAgeGroup.kids,
-  suitableForYoungerLearners: true,
+  refrain: 'Strong things hold it up.',
   lesson:
       'Islam stands on five pillars: the shahada, salah, zakah, fasting '
       'Ramadan, and Hajj. Strong things hold it up.',

@@ -73736,6 +73736,18 @@ abstract class AppLocalizations {
   /// **'Tap a line to hear it.'**
   String get kidsStoryReaderTapToHearHint;
 
+  /// No description provided for @kidsStoryReaderTryItAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Try it'**
+  String get kidsStoryReaderTryItAction;
+
+  /// No description provided for @kidsStoryReaderQuranRefLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an {surah}:{ayah}'**
+  String kidsStoryReaderQuranRefLabel(int surah, int ayah);
+
   /// No description provided for @kidsStoryReaderLessonEyebrow.
   ///
   /// In en, this message translates to:

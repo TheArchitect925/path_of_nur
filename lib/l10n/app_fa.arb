@@ -19222,6 +19222,8 @@
   "kidsStoryReaderReadAgainAction": "Read it again",
   "kidsStoryReaderAboutAction": "About this story",
   "kidsStoryReaderTapToHearHint": "Tap a line to hear it.",
+  "kidsStoryReaderTryItAction": "Try it",
+  "kidsStoryReaderQuranRefLabel": "Qur’an {surah}:{ayah}",
   "kidsStoryReaderLessonEyebrow": "What we learned",
   "kidsStickerBookTitle": "My stickers",
   "kidsStickerBookSubtitle": "Every story, letter and duʿā you finish earns one.",

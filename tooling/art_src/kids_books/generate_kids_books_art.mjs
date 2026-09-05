@@ -31,6 +31,7 @@ const OUT = {
   covers: join(ROOT, 'assets/images/kids_books/covers'),
   pbCovers: join(ROOT, 'assets/images/prophets/bedtime_stories/covers'),
   pbBackdrops: join(ROOT, 'assets/images/prophets/bedtime_stories/backdrops'),
+  ksCovers: join(ROOT, 'assets/images/kids_stories/covers'),
 };
 const ONLY = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 
@@ -883,6 +884,53 @@ add('covers', 'five_pillars_cover', 1024, 1024, () => scene([
   skyRect(SKY.emeraldLift), stars(31, 30, 0, W, 0, 400, CREAM, 2), glow(512, 560, 420, CREAM, 0.3),
   hills('#3F5A48', 820, 30), `<rect x="0" y="880" width="${W}" height="144" fill="#2E4A3A"/>`,
   pillarHouse(512, 880, 0.78), sparkle(160, 200, 16), sparkle(860, 180, 14), firefly(800, 520, 1.2), vignette(0.16),
+]));
+
+// The three companion stories never had covers on disk (their seeds named
+// .png files that did not exist). Told through what the companions saw.
+function spiderWeb(cx, cy, r, color = IVORY, op = 0.75) {
+  let out = `<g stroke="${color}" stroke-width="3" fill="none" opacity="${op}">`;
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2;
+    out += `<line x1="${cx}" y1="${cy}" x2="${f(cx + Math.cos(a) * r)}" y2="${f(cy + Math.sin(a) * r)}"/>`;
+  }
+  for (let k = 1; k <= 5; k++) {
+    const rr = (r * k) / 5;
+    let d = '';
+    for (let i = 0; i <= 8; i++) {
+      const a = (i / 8) * Math.PI * 2, b = a + Math.PI / 8;
+      const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr;
+      const qx = cx + Math.cos(b) * rr * 0.9, qy = cy + Math.sin(b) * rr * 0.9;
+      d += (i === 0 ? `M ${f(x)} ${f(y)}` : ` Q ${f(qx)} ${f(qy)} ${f(x)} ${f(y)}`);
+    }
+    out += `<path d="${d}"/>`;
+  }
+  return out + '</g>';
+}
+
+add('ksCovers', 'companion_khadijah_cover', 1024, 1024, () => scene([
+  skyRect(SKY.night), stars(19, 70, 0, W, 0, 600), crescent(200, 180, 50),
+  city(760, '#1A1F33', GOLD, 5, 0.8), `<rect x="0" y="760" width="${W}" height="264" fill="#0E1120"/>`,
+  archWindow(512, 300, 300, 420, true),
+  hangLine(512, 560, 1.1), lantern(512, 560, 1.1), glow(512, 560, 260, CREAM, 0.35),
+  firefly(760, 420, 1.2), vignette(0.22),
+]));
+
+add('ksCovers', 'companion_abu_bakr_cover', 1024, 1024, () => scene([
+  skyRect(SKY.dawn), sun(820, 200, 60, CREAM, '#E8B36A'), cloud(240, 200, 120, 36, 0.5),
+  mountains('#8A5348', 640, [[0, 640], [300, 380], [620, 520], [1024, 300]]),
+  `<path d="M 330 1024 V 700 Q 330 470 512 470 Q 694 470 694 700 V 1024 Z" fill="#2A1A12"/>`,
+  `<path d="M 380 1024 V 720 Q 380 530 512 530 Q 644 530 644 720 V 1024 Z" fill="#120A06"/>`,
+  spiderWeb(512, 700, 190), dove(430, 560, 0.7), `<ellipse cx="600" cy="600" rx="34" ry="14" fill="${WOOD_LIGHT}"/>`,
+  `<rect x="0" y="940" width="${W}" height="84" fill="#4A2F22"/>`, firefly(760, 760, 1.2), vignette(0.2),
+]));
+
+add('ksCovers', 'companion_bilal_cover', 1024, 1024, () => scene([
+  skyRect(SKY.dawn), lightRays(512, 300, 9, 900, 1.5, CREAM, 0.12), sun(512, 300, 70, CREAM, '#E8B36A', 14),
+  cloud(200, 420, 140, 40, 0.5), cloud(840, 380, 120, 36, 0.45),
+  city(820, '#6E4629', null, 7, 0.9), minaret(512, 820, 560, 70, '#3A2A1E'),
+  crescent(512, 210, 30, GOLD), `<rect x="0" y="820" width="${W}" height="204" fill="#4A2F22"/>`,
+  dove(300, 300, 0.8), dove(740, 260, 0.7, IVORY, true), firefly(700, 620, 1.2), vignette(0.18),
 ]));
 
 // ============================================================= backdrops ==

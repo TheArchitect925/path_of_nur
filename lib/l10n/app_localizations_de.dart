@@ -10682,7 +10682,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Legacy-Learning enthält immer noch echtes Material, sollte aber in einer eigenen Insel untergebracht werden, damit das neuere Reisesystem klar und zielgerichtet bleibt.';
 
   @override
-  String get kidsArabicHomeTitle => 'Arabische Buchstaben schreiben und lernen';
+  String get kidsArabicHomeTitle => 'Buchstaben';
 
   @override
   String get kidsArabicHomeSubtitle =>
@@ -25885,7 +25885,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get accountsSyncErrorTransportFailure => 'Transportfehler';
 
   @override
-  String get kidsDuaLandingTitle => 'Dua-Lernen für Kinder';
+  String get kidsDuaLandingTitle => 'Duʿās';
 
   @override
   String get kidsDuaLandingSubtitle =>
@@ -31280,7 +31280,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bedtimeStoriesMediaLoadingLabel => 'Story-Medien vorbereiten...';
 
   @override
-  String get bedtimeStoriesReadTonightAction => 'Lesen Sie heute Abend';
+  String get bedtimeStoriesReadTonightAction => 'Heute Abend lesen';
 
   @override
   String get bedtimeStoriesStartReadingAction => 'Beginnen Sie mit dem Lesen';
@@ -31568,7 +31568,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bedtimeStoryBackToStoryAction => 'Zurück zur Geschichte';
 
   @override
-  String get kidsStoryLibraryTitle => 'Kindergeschichten';
+  String get kidsStoryLibraryTitle => 'Geschichten';
 
   @override
   String get kidsStoryLibrarySubtitle =>
@@ -31693,7 +31693,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kidsStoryReadAlongPrimaryTitle => 'Lesen Sie die Geschichte';
 
   @override
-  String get kidsStoryReadStoryAction => 'Geschichte lesen';
+  String get kidsStoryReadStoryAction => 'Lesen';
 
   @override
   String get kidsStoryScenesSectionTitle => 'Story-Szenen';
@@ -44842,6 +44842,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsStickerBookTitle => 'Meine Sticker';
+
+  @override
+  String get kidsStoryReaderTryItAction => 'Probier es';
+
+  @override
+  String kidsStoryReaderQuranRefLabel(int surah, int ayah) {
+    return 'Koran $surah:$ayah';
+  }
 
   @override
   String get kidsStickerBookSubtitle =>

@@ -23,6 +23,7 @@ final BedtimeStorySeed yusufBook = kidsPictureBook(
     KidsIslamicStoryTheme.forgiveness,
     KidsIslamicStoryTheme.trustInAllah,
   ],
+  refrain: 'Allah was with Yusuf.',
   lesson:
       'Be patient and honest, and forgive. Allah is with you in the hard '
       'times and the good ones.',

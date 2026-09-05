@@ -44427,6 +44427,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsStoryReaderTapToHearHint => 'Tap a line to hear it.';
 
   @override
+  String get kidsStoryReaderTryItAction => 'Try it';
+
+  @override
+  String kidsStoryReaderQuranRefLabel(int surah, int ayah) {
+    return 'Qur’an $surah:$ayah';
+  }
+
+  @override
   String get kidsStoryReaderLessonEyebrow => 'What we learned';
   String get kidsDoorParentsSubtitle =>
       'Progress, settings and family profiles';
