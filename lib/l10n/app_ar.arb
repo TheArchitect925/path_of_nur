@@ -4937,6 +4937,14 @@
   "kidsArabicTraceReadyBadge": "جاهز للمتابعة",
   "kidsArabicWordCardTitle": "كلمة صديقة",
   "kidsArabicWordCardSubtitle": "كلمة بسيطة تساعد الحرف أن يبقى قريبًا.",
+  "kidsArabicPictureCardTitle": "صديق الصورة",
+  "kidsArabicPictureLine": "{letter} مثل {word}.",
+  "@kidsArabicPictureLine": {
+    "placeholders": {
+      "letter": {"type": "String"},
+      "word": {"type": "String"}
+    }
+  },
   "kidsArabicLessonRewardTitle": "مكافأة الدرس",
   "kidsArabicLessonRewardFooter": "+{xp} نقطة و+{drops} قطرة بحر لهذا الدرس.",
   "@kidsArabicLessonRewardFooter": {

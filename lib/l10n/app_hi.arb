@@ -4937,6 +4937,14 @@
   "kidsArabicTraceReadyBadge": "जारी रखने के लिए तैयार",
   "kidsArabicWordCardTitle": "शब्द मित्र",
   "kidsArabicWordCardSubtitle": "एक साधारण शब्द पत्र को करीब रहने में मदद करता है।",
+  "kidsArabicPictureCardTitle": "चित्र मित्र",
+  "kidsArabicPictureLine": "{letter} यानी {word}।",
+  "@kidsArabicPictureLine": {
+    "placeholders": {
+      "letter": {"type": "String"},
+      "word": {"type": "String"}
+    }
+  },
   "kidsArabicLessonRewardTitle": "सबक इनाम",
   "kidsArabicLessonRewardFooter": "इस पाठ के लिए +{xp} XP और +{drops} महासागर ड्रॉप।",
   "@kidsArabicLessonRewardFooter": {

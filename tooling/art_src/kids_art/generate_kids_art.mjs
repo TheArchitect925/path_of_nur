@@ -1089,6 +1089,167 @@ add('qt', 'kitab_book', 1024, 768, qtScene('pastelWarm', () =>
   closedBook(512, 390, 1.15) +
   `<ellipse cx="512" cy="530" rx="240" ry="26" fill="#B98A3E" opacity="0.25"/>`));
 
+
+// ================================================ letter pictures (K3b) ==
+// The twenty letters that had no picture. Same rules as the eight above:
+// one calm object per picture, no figures, no text; the word starts with
+// the letter's sound in English where English has it, and is a familiar
+// Arabic word (khayma, hisan, dhurra…) where it does not.
+const OUTLINE = '#54382A';
+const spool = (cx, baseY, s, wood = '#B8683C', thread = '#4A6E96') =>
+  `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+  `<ellipse cx="0" cy="0" rx="120" ry="30" fill="${wood}"/><rect x="-120" y="-220" width="240" height="220" fill="${wood}"/>` +
+  `<rect x="-96" y="-196" width="192" height="172" fill="${thread}"/>` +
+  `<path d="M -96 -180 h 192 M -96 -150 h 192 M -96 -120 h 192 M -96 -90 h 192 M -96 -60 h 192" stroke="#31547A" stroke-width="5" opacity="0.5"/>` +
+  `<ellipse cx="0" cy="-220" rx="120" ry="30" fill="${wood}"/><ellipse cx="0" cy="-220" rx="70" ry="16" fill="#8A4A28"/>` +
+  `<path d="M 96 -70 q 120 20 180 120" stroke="${thread}" stroke-width="7" fill="none" stroke-linecap="round"/></g>`;
+
+function horse(cx, baseY, s, body = '#8A5A36', mane = '#54382A') {
+  return `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+    `<ellipse cx="0" cy="-150" rx="170" ry="90" fill="${body}"/>` +
+    `<rect x="-130" y="-120" width="34" height="120" rx="14" fill="${body}"/><rect x="-70" y="-120" width="34" height="120" rx="14" fill="${body}"/>` +
+    `<rect x="40" y="-120" width="34" height="120" rx="14" fill="${body}"/><rect x="100" y="-120" width="34" height="120" rx="14" fill="${body}"/>` +
+    `<path d="M 120 -200 q 60 -90 90 -180 q 40 10 60 40 q -20 60 -70 90 q -40 30 -80 50 Z" fill="${body}"/>` +
+    `<path d="M 200 -330 q 40 -10 70 30 q -10 30 -60 30 Z" fill="${body}"/>` +
+    `<path d="M 130 -230 q 40 -70 70 -120" stroke="${mane}" stroke-width="18" fill="none" stroke-linecap="round"/>` +
+    `<path d="M -170 -180 q -60 20 -70 100" stroke="${mane}" stroke-width="18" fill="none" stroke-linecap="round"/></g>`;
+}
+
+const tent = (cx, baseY, s, cloth = '#C97B63', dark = '#8A4A28') =>
+  `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+  `<path d="M -260 0 L 0 -320 L 260 0 Z" fill="${cloth}"/><path d="M -60 0 L 0 -180 L 60 0 Z" fill="${dark}"/>` +
+  `<path d="M 0 -320 v -50" stroke="${OUTLINE}" stroke-width="10" stroke-linecap="round"/>` +
+  `<path d="M -260 0 l -60 40 M 260 0 l 60 40" stroke="${OUTLINE}" stroke-width="8" stroke-linecap="round"/>` +
+  `<circle cx="0" cy="-380" r="14" fill="${GOLD}"/></g>`;
+
+const duck = (cx, baseY, s, body = '#E8C089', beak = '#E8965A') =>
+  `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+  `<ellipse cx="0" cy="-60" rx="150" ry="80" fill="${body}"/><path d="M -150 -80 q -60 -40 -40 -110 q 30 40 60 60 Z" fill="${body}"/>` +
+  `<circle cx="120" cy="-170" r="60" fill="${body}"/><path d="M 170 -170 l 80 20 l -80 24 Z" fill="${beak}"/>` +
+  `<circle cx="132" cy="-184" r="8" fill="${OUTLINE}"/>` +
+  `<path d="M -40 -70 q 60 -50 120 -20" stroke="#D9A05B" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.7"/></g>`;
+
+function corn(cx, cy, s, kernel = '#E8C089', husk = '#5E8A6A') {
+  let out = `<g transform="translate(${cx} ${cy}) scale(${s})"><path d="M -70 -200 q 70 -60 140 0 v 260 q -70 80 -140 0 Z" fill="${kernel}"/>`;
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 3; c++) out += `<ellipse cx="${-40 + c * 40}" cy="${-170 + r * 60 + (c % 2) * 20}" rx="16" ry="22" fill="#D9A05B" opacity="0.7"/>`;
+  out += `<path d="M -70 -60 q -120 40 -110 220 q 90 -30 110 -120 Z" fill="${husk}"/><path d="M 70 -60 q 120 40 110 220 q -90 -30 -110 -120 Z" fill="#4A7A58"/>`;
+  return out + `</g>`;
+}
+
+const rabbit = (cx, baseY, s, body = '#C9BFAA', dark = '#A99F8A') =>
+  `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+  `<ellipse cx="0" cy="-90" rx="150" ry="90" fill="${body}"/><circle cx="130" cy="-170" r="70" fill="${body}"/>` +
+  `<ellipse cx="100" cy="-290" rx="24" ry="80" fill="${body}"/><ellipse cx="160" cy="-295" rx="24" ry="80" fill="${body}"/>` +
+  `<ellipse cx="100" cy="-290" rx="10" ry="56" fill="#E0B8A8" opacity="0.8"/><ellipse cx="160" cy="-295" rx="10" ry="56" fill="#E0B8A8" opacity="0.8"/>` +
+  `<circle cx="-150" cy="-110" r="34" fill="${CREAM}"/><circle cx="150" cy="-170" r="8" fill="${OUTLINE}"/>` +
+  `<ellipse cx="-60" cy="-10" rx="60" ry="22" fill="${dark}"/><ellipse cx="70" cy="-10" rx="60" ry="22" fill="${dark}"/></g>`;
+
+function zebra(cx, baseY, s) {
+  const body = CREAM, stripe = '#3A3F5C';
+  let out = `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+    `<ellipse cx="0" cy="-150" rx="170" ry="90" fill="${body}"/>` +
+    `<rect x="-130" y="-120" width="34" height="120" rx="14" fill="${body}"/><rect x="-70" y="-120" width="34" height="120" rx="14" fill="${body}"/>` +
+    `<rect x="40" y="-120" width="34" height="120" rx="14" fill="${body}"/><rect x="100" y="-120" width="34" height="120" rx="14" fill="${body}"/>` +
+    `<path d="M 120 -200 q 60 -90 90 -180 q 40 10 60 40 q -20 60 -70 90 q -40 30 -80 50 Z" fill="${body}"/>` +
+    `<path d="M 200 -330 q 40 -10 70 30 q -10 30 -60 30 Z" fill="${body}"/>`;
+  for (let i = 0; i < 6; i++) out += `<path d="M ${-130 + i * 50} -235 q 20 60 0 130" stroke="${stripe}" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.85"/>`;
+  out += `<path d="M 150 -300 q 20 30 0 60 M 180 -330 q 20 30 0 60" stroke="${stripe}" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.85"/>` +
+    `<path d="M 130 -230 q 40 -70 70 -120" stroke="${stripe}" stroke-width="18" fill="none" stroke-linecap="round"/>` +
+    `<path d="M -170 -180 q -60 20 -70 100" stroke="${stripe}" stroke-width="14" fill="none" stroke-linecap="round"/>`;
+  return out + `</g>`;
+}
+
+const falcon = (cx, cy, s, body = '#54382A', light = '#8A5A36') =>
+  `<g transform="translate(${cx} ${cy}) scale(${s})">` +
+  `<path d="M -40 0 q -160 -120 -320 -60 q 120 20 200 80 q 60 40 120 30 Z" fill="${body}"/>` +
+  `<path d="M 40 0 q 160 -120 320 -60 q -120 20 -200 80 q -60 40 -120 30 Z" fill="${body}"/>` +
+  `<ellipse cx="0" cy="20" rx="60" ry="90" fill="${light}"/><circle cx="0" cy="-70" r="40" fill="${body}"/>` +
+  `<path d="M 30 -76 l 40 8 l -40 14 Z" fill="${GOLD}"/><path d="M -30 100 l 30 70 l 30 -70 Z" fill="${body}"/></g>`;
+
+const frog = (cx, baseY, s, body = '#5E8A6A', dark = '#4A7A58') =>
+  `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+  `<ellipse cx="0" cy="0" rx="230" ry="40" fill="${dark}" opacity="0.8"/>` +
+  `<ellipse cx="0" cy="-90" rx="150" ry="90" fill="${body}"/>` +
+  `<ellipse cx="-150" cy="-40" rx="60" ry="30" fill="${dark}"/><ellipse cx="150" cy="-40" rx="60" ry="30" fill="${dark}"/>` +
+  `<circle cx="-70" cy="-170" r="42" fill="${body}"/><circle cx="70" cy="-170" r="42" fill="${body}"/>` +
+  `<circle cx="-70" cy="-176" r="16" fill="${CREAM}"/><circle cx="70" cy="-176" r="16" fill="${CREAM}"/>` +
+  `<circle cx="-66" cy="-176" r="7" fill="${OUTLINE}"/><circle cx="74" cy="-176" r="7" fill="${OUTLINE}"/>` +
+  `<path d="M -60 -110 q 60 40 120 0" stroke="${dark}" stroke-width="8" fill="none" stroke-linecap="round"/></g>`;
+
+const drum = (cx, baseY, s, shell = '#C97B63', skin = CREAM) =>
+  `<g transform="translate(${cx} ${baseY}) scale(${s})">` +
+  `<ellipse cx="0" cy="0" rx="190" ry="50" fill="#8A4A28"/><rect x="-190" y="-200" width="380" height="200" fill="${shell}"/>` +
+  `<path d="M -150 -190 l 60 180 l 60 -180 l 60 180 l 60 -180 l 60 180" stroke="${GOLD}" stroke-width="10" fill="none" stroke-linejoin="round"/>` +
+  `<ellipse cx="0" cy="-200" rx="190" ry="50" fill="${skin}"/><ellipse cx="0" cy="-200" rx="190" ry="50" fill="none" stroke="${GOLD}" stroke-width="12"/>` +
+  `<path d="M -60 -230 l -110 -130 M 60 -230 l 110 -130" stroke="${OUTLINE}" stroke-width="12" stroke-linecap="round"/>` +
+  `<circle cx="-170" cy="-360" r="20" fill="${OUTLINE}"/><circle cx="170" cy="-360" r="20" fill="${OUTLINE}"/></g>`;
+
+const envelope = (cx, cy, w, h, paper = CREAM, edge = '#B8683C') =>
+  `<g transform="translate(${cx} ${cy})"><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="18" fill="${paper}"/>` +
+  `<path d="M ${-w / 2} ${-h / 2 + 10} L 0 ${h * 0.15} L ${w / 2} ${-h / 2 + 10}" stroke="${edge}" stroke-width="10" fill="none" stroke-linejoin="round"/>` +
+  `<path d="M ${-w / 2} ${h / 2} L ${-w * 0.12} ${-h * 0.02} M ${w / 2} ${h / 2} L ${w * 0.12} ${-h * 0.02}" stroke="${edge}" stroke-width="7" opacity="0.6"/>` +
+  `<circle cx="0" cy="${h * 0.15}" r="22" fill="${GOLD}"/></g>`;
+
+function grapes(cx, cy, s, fruit = '#6B4A8A', leaf = '#5E8A6A') {
+  const rows = [[0], [-1, 1], [-2, 0, 2], [-1, 1], [0]];
+  let out = `<g transform="translate(${cx} ${cy}) scale(${s})"><path d="M 0 -200 q 10 -60 40 -90" stroke="#8A5A36" stroke-width="12" fill="none" stroke-linecap="round"/>` +
+    `<path d="M 0 -210 q -110 -60 -150 20 q 80 40 150 -20 Z" fill="${leaf}"/>`;
+  rows.forEach((r, i) => r.forEach((c) => { out += `<circle cx="${c * 46}" cy="${-150 + i * 70}" r="40" fill="${fruit}"/><circle cx="${c * 46 - 12}" cy="${-162 + i * 70}" r="10" fill="${CREAM}" opacity="0.35"/>`; }));
+  return out + `</g>`;
+}
+
+const pen = (cx, cy, s, a = -35, body = '#31547A', cap = GOLD) =>
+  `<g transform="translate(${cx} ${cy}) rotate(${a}) scale(${s})">` +
+  `<rect x="-36" y="-220" width="72" height="330" rx="20" fill="${body}"/><rect x="-36" y="-220" width="72" height="90" rx="20" fill="${cap}"/>` +
+  `<path d="M -36 110 L 0 200 L 36 110 Z" fill="${CREAM}"/><path d="M -14 140 L 0 200 L 14 140 Z" fill="${OUTLINE}"/>` +
+  `<rect x="20" y="-210" width="12" height="70" rx="6" fill="#B98A3E"/></g>`;
+
+const kite = (cx, cy, s, cloth = '#C97B63', cloth2 = GOLD) =>
+  `<g transform="translate(${cx} ${cy}) scale(${s})">` +
+  `<path d="M 0 -170 L 130 0 L 0 230 L -130 0 Z" fill="${cloth}"/><path d="M 0 -170 L 130 0 L 0 0 Z" fill="${cloth2}"/><path d="M 0 0 L -130 0 L 0 230 Z" fill="${cloth2}"/>` +
+  `<path d="M 0 -170 V 230 M -130 0 H 130" stroke="${OUTLINE}" stroke-width="6" opacity="0.6"/>` +
+  `<path d="M 0 230 q -60 80 -20 160 q 40 70 -10 150" stroke="${OUTLINE}" stroke-width="6" fill="none"/>` +
+  `<path d="M -40 300 l 30 -20 l 10 36 Z M -10 400 l 30 -20 l 10 36 Z" fill="${cloth}"/></g>`;
+
+const lemon = (cx, cy, s, skin = '#E8C94A', leaf = '#5E8A6A') =>
+  `<g transform="translate(${cx} ${cy}) scale(${s})">` +
+  `<path d="M -150 0 q 0 -110 150 -110 q 150 0 150 110 q 0 110 -150 110 q -150 0 -150 -110 Z" fill="${skin}"/>` +
+  `<path d="M 150 0 l 40 -10 l -6 20 Z M -150 0 l -40 -10 l 6 20 Z" fill="${skin}"/>` +
+  `<path d="M -60 -60 q 40 -30 90 -10" stroke="${CREAM}" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.5"/>` +
+  `<path d="M 60 -110 q 60 -70 140 -40 q -60 60 -140 40 Z" fill="${leaf}"/></g>`;
+
+const yoyo = (cx, cy, s, disc = '#C97B63', ring = GOLD) =>
+  `<g transform="translate(${cx} ${cy}) scale(${s})">` +
+  `<path d="M 0 -160 q 60 -140 40 -260" stroke="${OUTLINE}" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="40" cy="-430" r="16" fill="none" stroke="${OUTLINE}" stroke-width="7"/>` +
+  `<circle cx="0" cy="0" r="160" fill="${disc}"/><circle cx="0" cy="0" r="120" fill="none" stroke="${ring}" stroke-width="14"/><circle cx="0" cy="0" r="40" fill="${CREAM}"/>` +
+  `<circle cx="-60" cy="-70" r="24" fill="${CREAM}" opacity="0.35"/></g>`;
+
+const qtShadow = (cx, cy, rx, color = '#B98A3E', op = 0.22) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="24" fill="${color}" opacity="${op}"/>`;
+const meadow = `<path d="M0 640 Q 256 600 512 628 T 1024 620 V 768 H 0 Z" fill="#A9C79B"/><rect x="0" y="700" width="1024" height="68" fill="#8FB48A"/>`;
+const sandy = `<path d="M0 640 Q 256 610 512 632 T 1024 626 V 768 H 0 Z" fill="#E8C089"/><rect x="0" y="700" width="1024" height="68" fill="#DDBE94"/>`;
+const pond = `<path d="M0 600 Q 256 570 512 596 T 1024 588 V 768 H 0 Z" fill="#A6BBCB"/><path d="M0 660 Q 256 636 512 656 T 1024 650 V 768 H 0 Z" fill="#8FA9BC"/>`;
+
+add('qt', 'tha_thread', 1024, 768, qtScene('pastelWarm', () => spool(512, 540, 1.1) + qtShadow(512, 548, 200)));
+add('qt', 'ha_horse', 1024, 768, qtScene('pastelSky', () => cloud(200, 170, 120, 40, 0.7) + horse(512, 640, 0.95), meadow));
+add('qt', 'kha_tent', 1024, 768, qtScene('pastelWarm', () => crescent(820, 200, 46, '#F0E4C0') + tent(512, 640, 0.95), sandy));
+add('qt', 'dal_duck', 1024, 768, qtScene('pastelBlue', () => cloud(240, 190, 120, 40, 0.6) + duck(512, 600, 1.05), pond));
+add('qt', 'dhal_corn', 1024, 768, qtScene('pastelWarm', () => corn(512, 400, 1.15) + qtShadow(512, 560, 170)));
+add('qt', 'ra_rabbit', 1024, 768, qtScene('pastelSky', () => rabbit(512, 640, 1.0) + flower(250, 600, 0.9) + flower(790, 610, 0.8), meadow));
+add('qt', 'zay_zebra', 1024, 768, qtScene('pastelWarm', () => sun(840, 200, 70) + zebra(512, 640, 0.95), sandy));
+add('qt', 'sheen_ship', 1024, 768, qtScene('pastelBlue', () => cloud(220, 180, 120, 40, 0.6) + cloud(800, 230, 100, 34, 0.5) + ark(512, 540, 1.15), pond));
+add('qt', 'sad_falcon', 1024, 768, qtScene('pastelSky', () => cloud(820, 240, 120, 40, 0.5) + falcon(512, 360, 1.2), sandy));
+add('qt', 'dad_frog', 1024, 768, qtScene('pastelSky', () => frog(512, 600, 1.05), pond));
+add('qt', 'taa_drum', 1024, 768, qtScene('pastelWarm', () => drum(512, 580, 1.0) + qtShadow(512, 588, 230)));
+add('qt', 'zaa_envelope', 1024, 768, qtScene('pastelSky', () => sparkle(300, 220, 14, DEEPGOLD, 0.5) + sparkle(760, 200, 12, DEEPGOLD, 0.45) + envelope(512, 400, 380, 250) + qtShadow(512, 548, 220, '#31547A', 0.16)));
+add('qt', 'ain_grapes', 1024, 768, qtScene('pastelWarm', () => grapes(512, 420, 1.25) + qtShadow(512, 560, 170)));
+add('qt', 'ghain_cloud', 1024, 768, qtScene('pastelBlue', () => sun(780, 230, 80) + cloud(512, 380, 260, 96, 0.98) + cloud(240, 300, 110, 38, 0.7) + cloud(860, 420, 100, 34, 0.6), meadow));
+add('qt', 'fa_fish', 1024, 768, qtScene('pastelBlue', () => fish(512, 400, 1.7) + `<circle cx="700" cy="300" r="12" fill="#A9C4BC"/><circle cx="740" cy="250" r="8" fill="#A9C4BC"/>`, pond));
+add('qt', 'qaf_pen', 1024, 768, qtScene('pastelWarm', () => pen(512, 380, 1.15) + `<path d="M 330 590 q 90 -50 180 0 t 180 0" stroke="#31547A" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.7"/>` + qtShadow(512, 600, 220)));
+add('qt', 'kaf_kite', 1024, 768, qtScene('pastelSky', () => cloud(220, 180, 120, 40, 0.6) + cloud(820, 300, 100, 34, 0.5) + kite(560, 300, 1.0) + `<path d="M 560 530 q -120 100 -220 240" stroke="#54382A" stroke-width="5" fill="none"/>`, meadow));
+add('qt', 'lam_lemon', 1024, 768, qtScene('pastelWarm', () => lemon(512, 400, 1.25) + qtShadow(512, 548, 220)));
+add('qt', 'ha2_gift', 1024, 768, qtScene('pastelWarm', () => sparkle(300, 220, 16, DEEPGOLD, 0.55) + sparkle(760, 200, 13, DEEPGOLD, 0.5) + giftBox(512, 580, 1.4) + qtShadow(512, 588, 220)));
+add('qt', 'ya_yoyo', 1024, 768, qtScene('pastelSky', () => yoyo(512, 470, 1.0) + qtShadow(512, 640, 180, '#31547A', 0.16)));
+
 // ------------------------------------------------------------------ write --
 
 const byDir = {};

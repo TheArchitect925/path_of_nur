@@ -4937,6 +4937,14 @@
   "kidsArabicTraceReadyBadge": "Ready to continue",
   "kidsArabicWordCardTitle": "Word friend",
   "kidsArabicWordCardSubtitle": "A simple word helps the letter stay close.",
+  "kidsArabicPictureCardTitle": "Rakan gambar",
+  "kidsArabicPictureLine": "{letter} untuk {word}.",
+  "@kidsArabicPictureLine": {
+    "placeholders": {
+      "letter": {"type": "String"},
+      "word": {"type": "String"}
+    }
+  },
   "kidsArabicLessonRewardTitle": "Lesson reward",
   "kidsArabicLessonRewardFooter": "+{xp} XP and +{drops} Ocean Drop for this lesson.",
   "@kidsArabicLessonRewardFooter": {

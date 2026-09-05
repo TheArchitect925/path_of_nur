@@ -10787,6 +10787,14 @@ class AppLocalizationsBn extends AppLocalizations {
       'A simple word helps the letter stay close.';
 
   @override
+  String get kidsArabicPictureCardTitle => 'ছবির বন্ধু';
+
+  @override
+  String kidsArabicPictureLine(String letter, String word) {
+    return '$letter মানে $word।';
+  }
+
+  @override
   String get kidsArabicLessonRewardTitle => 'Lesson reward';
 
   @override

@@ -18596,6 +18596,18 @@ abstract class AppLocalizations {
   /// **'A simple word helps the letter stay close.'**
   String get kidsArabicWordCardSubtitle;
 
+  /// No description provided for @kidsArabicPictureCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Picture friend'**
+  String get kidsArabicPictureCardTitle;
+
+  /// No description provided for @kidsArabicPictureLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{letter} is for {word}.'**
+  String kidsArabicPictureLine(String letter, String word);
+
   /// No description provided for @kidsArabicLessonRewardTitle.
   ///
   /// In en, this message translates to:

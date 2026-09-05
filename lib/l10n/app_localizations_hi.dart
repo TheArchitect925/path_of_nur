@@ -10824,6 +10824,14 @@ class AppLocalizationsHi extends AppLocalizations {
       'एक साधारण शब्द पत्र को करीब रहने में मदद करता है।';
 
   @override
+  String get kidsArabicPictureCardTitle => 'चित्र मित्र';
+
+  @override
+  String kidsArabicPictureLine(String letter, String word) {
+    return '$letter यानी $word।';
+  }
+
+  @override
   String get kidsArabicLessonRewardTitle => 'सबक इनाम';
 
   @override

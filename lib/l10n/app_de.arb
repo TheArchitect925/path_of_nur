@@ -4937,6 +4937,14 @@
   "kidsArabicTraceReadyBadge": "Bereit, weiterzumachen",
   "kidsArabicWordCardTitle": "Wortfreund",
   "kidsArabicWordCardSubtitle": "Ein einfaches Wort hilft dem Buchstaben im Gedächtnis zu bleiben.",
+  "kidsArabicPictureCardTitle": "Bildfreund",
+  "kidsArabicPictureLine": "{letter} wie {word}.",
+  "@kidsArabicPictureLine": {
+    "placeholders": {
+      "letter": {"type": "String"},
+      "word": {"type": "String"}
+    }
+  },
   "kidsArabicLessonRewardTitle": "Belohnung für die Lektion",
   "kidsArabicLessonRewardFooter": "+{xp} XP und +{drops} Ozean-Tropfen für diese Lektion.",
   "@kidsArabicLessonRewardFooter": {

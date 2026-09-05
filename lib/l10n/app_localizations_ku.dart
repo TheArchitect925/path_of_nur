@@ -10823,6 +10823,14 @@ class AppLocalizationsKu extends AppLocalizations {
       'A simple word helps the letter stay close.';
 
   @override
+  String get kidsArabicPictureCardTitle => 'Picture friend';
+
+  @override
+  String kidsArabicPictureLine(String letter, String word) {
+    return '$letter is for $word.';
+  }
+
+  @override
   String get kidsArabicLessonRewardTitle => 'Lesson reward';
 
   @override

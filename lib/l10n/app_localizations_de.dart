@@ -10973,6 +10973,14 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein einfaches Wort hilft dem Buchstaben im Gedächtnis zu bleiben.';
 
   @override
+  String get kidsArabicPictureCardTitle => 'Bildfreund';
+
+  @override
+  String kidsArabicPictureLine(String letter, String word) {
+    return '$letter wie $word.';
+  }
+
+  @override
   String get kidsArabicLessonRewardTitle => 'Belohnung für die Lektion';
 
   @override

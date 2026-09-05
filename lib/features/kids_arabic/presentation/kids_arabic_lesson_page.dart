@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../arabic/data/arabic_letter_pictures.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/utils/reward_feedback.dart';
 import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
@@ -280,6 +281,14 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
           onTap: () =>
               ref.read(kidsArabicAudioServiceProvider).speakLetter(letter),
         ),
+        if (arabicLetterPictureFor(letter.id) case final picture?) ...[
+          const SizedBox(height: 12),
+          _PictureCard(
+            picture: picture,
+            title: l10n.kidsArabicPictureCardTitle,
+            line: l10n.kidsArabicPictureLine(letter.nameEn, picture.spokenWord),
+          ),
+        ],
         if (parentPreferences.lessonSupportLevel !=
             KidsArabicLessonSupportLevel.standard) ...[
           const SizedBox(height: 12),
@@ -568,6 +577,58 @@ class _GlyphHero extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// The letter's picture friend: one calm object whose name starts with the
+/// letter's sound, the same picture the Qur'an teacher's visual mode shows.
+class _PictureCard extends StatelessWidget {
+  const _PictureCard({
+    required this.picture,
+    required this.title,
+    required this.line,
+  });
+
+  final ArabicLetterPicture picture;
+  final String title;
+  final String line;
+
+  @override
+  Widget build(BuildContext context) {
+    // A thumbnail beside the word, the same shape as the Word friend card
+    // above it, so the page keeps its rhythm and the trace pad its room.
+    return _SectionCard(
+      title: title,
+      subtitle: line,
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: SizedBox(
+              width: 112,
+              height: 84,
+              child: Image.asset(
+                picture.assetPath,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    ColoredBox(color: context.palette.surfaceSoft),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              picture.spokenWord,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: context.palette.onSurface,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
