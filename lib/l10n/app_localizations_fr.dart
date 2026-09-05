@@ -34244,7 +34244,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get kidsQuranAyahInsightsTitle => 'Ayah insights for kids';
+  String get kidsQuranAyahInsightsTitle => 'Ayah Insights for Kids';
 
   @override
   String get kidsQuranAyahInsightsSubtitle =>
@@ -44523,4 +44523,150 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get kidsInvitationStartAction => 'Let’s go';
+  String get learnHubSubcategoryKidsQuranTitleText => 'Qur’an for Kids';
+
+  @override
+  String get learnHubSubcategoryKidsQuranSubtitleText =>
+      'Browse every surah in a simpler Qur’an experience for younger learners.';
+
+  @override
+  String get learnHubSubcategoryKidsHadithTitleText => 'Hadith for Kids';
+
+  @override
+  String get learnHubSubcategoryKidsHadithSubtitleText =>
+      'Short, gentle hadith cards with simple meanings and daily lessons.';
+
+  @override
+  String get learnHubSubcategoryKidsHadithStoriesTitleText => 'Hadith Stories';
+
+  @override
+  String get learnHubSubcategoryKidsHadithStoriesSubtitleText =>
+      'Open story time inspired by authentic hadith and kind daily moments.';
+
+  @override
+  String get kidsQuranPageTitleText => 'Qur’an for Kids';
+
+  @override
+  String get kidsQuranPageSubtitleText =>
+      'A calm way to browse every surah with Arabic and translation.';
+
+  @override
+  String get kidsQuranIntroTitleText => 'Start with any surah';
+
+  @override
+  String get kidsQuranIntroSubtitleText =>
+      'Choose a surah, read gently, and open any ayah in the full reader when you need more detail.';
+
+  @override
+  String get kidsQuranOpenSurahActionText => 'Open surah';
+
+  @override
+  String kidsQuranSurahMetaText(int ayahs, Object place) {
+    return '$ayahs ayahs • $place';
+  }
+
+  @override
+  String kidsQuranSurahSubtitleText(Object transliterated, Object english) {
+    return '$transliterated • $english';
+  }
+
+  @override
+  String get kidsQuranRevelationMakkah => 'Makkah';
+
+  @override
+  String get kidsQuranRevelationMadinah => 'Madinah';
+
+  @override
+  String get kidsQuranOpenAyahHintText =>
+      'Open this ayah in the full Qur’an reader';
+
+  @override
+  String get kidsQuranBackToSurahsActionText => 'All surahs';
+
+  @override
+  String get kidsQuranSurahMissingText => 'Surah not found.';
+
+  @override
+  String get kidsHadithPageTitleText => 'Hadith for Kids';
+
+  @override
+  String get kidsHadithPageSubtitleText =>
+      'Short hadith with gentle meanings, simple lessons, and child-friendly reminders.';
+
+  @override
+  String get kidsHadithIntroTitleText => 'Small hadith, big lessons';
+
+  @override
+  String get kidsHadithIntroSubtitleText =>
+      'These hadith are kept short and easy to revisit, so children can grow in kindness, honesty, mercy, and love of learning.';
+
+  @override
+  String get kidsHadithStoriesCardTitleText => 'Hadith stories';
+
+  @override
+  String get kidsHadithStoriesCardSubtitleText =>
+      'Open story time shaped by real hadith lessons children can recognize in daily life.';
+
+  @override
+  String get kidsHadithStoriesOpenActionText => 'Open stories';
+
+  @override
+  String get kidsHadithMeaningTitleText => 'Simple meaning';
+
+  @override
+  String get kidsHadithLessonTitleText => 'Little lesson';
+
+  @override
+  String get kidsHadithStoriesPageTitleText => 'Kids Hadith Stories';
+
+  @override
+  String get kidsHadithStoriesPageSubtitleText =>
+      'Stories shaped by authentic hadith and everyday moments of kindness, adab, and mercy.';
+
+  @override
+  String get kidsHadithStoriesHeroTitleText =>
+      'Stories from real Sunnah lessons';
+
+  @override
+  String get kidsHadithStoriesHeroSubtitleText =>
+      'Each story keeps the meaning gentle while staying tied to an authentic hadith reference.';
+
+  @override
+  String get kidsHadithStoriesSourceLabelText => 'Hadith source';
+
+  @override
+  String get kidsHadithStoriesStatusReadyText => 'Ready to read';
+
+  @override
+  String get kidsHadithStoriesStatusContinueText => 'Continue';
+
+  @override
+  String get kidsHadithStoriesStatusReadAgainText => 'Read again';
+
+  @override
+  String get kidsHadithStoriesHadithChipText => 'Hadith';
+
+  @override
+  String get kidsHadithStoriesEmptyTitleText =>
+      'More hadith stories are on the way';
+
+  @override
+  String get kidsHadithStoriesEmptySubtitleText =>
+      'The existing kids story library is ready, and more hadith-based stories can be added safely in later passes.';
+
+  @override
+  String get kidsAgeBandLabel => 'Age';
+
+  @override
+  String get kidsAgeBandEarly => '3–5 · not reading yet';
+
+  @override
+  String get kidsAgeBandCore => '6–8 · early reader';
+
+  @override
+  String get kidsAgeBandPlus => '9–12 · fluent reader';
+
+  @override
+  String get kidsAgeBandHelper =>
+      'Sets how big the type is and which stories come first.';
 }

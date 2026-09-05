@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import 'kids_quran_labels.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
-import '../../presentation/kids_learning_localizations.dart';
 import '../application/quran_ayah_action_provider.dart';
 import '../application/quran_ayah_explanation_provider.dart';
 import '../application/quran_personalization_provider.dart';
@@ -101,9 +101,19 @@ class KidsQuranSurahPage extends ConsumerWidget {
 
     return AppPageScaffold(
       title: surah.arabicName,
-      subtitle: l10n.kidsQuranSurahSubtitleText(surah),
+      subtitle: l10n.kidsQuranSurahSubtitleText(
+        surah.transliteratedName,
+        surah.englishName,
+      ),
       children: [
-        PremiumCard(child: Text(l10n.kidsQuranSurahMetaText(surah))),
+        PremiumCard(
+          child: Text(
+            l10n.kidsQuranSurahMetaText(
+              surah.verseCount,
+              kidsQuranRevelationPlaceLabel(l10n, surah),
+            ),
+          ),
+        ),
         const SizedBox(height: 12),
         PremiumCard(
           child: SwitchListTile.adaptive(

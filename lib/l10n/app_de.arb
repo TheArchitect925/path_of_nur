@@ -19296,5 +19296,62 @@
   "kidsParentsKidsUiRowSubtitle": "Lege fest, ob die App wie eine Kinder-App aussieht und liest.",
   "kidsParentsLettersDashboardSubtitle": "Nachgefahrene Buchstaben, fällige Wiederholungen und der nächste Schritt.",
   "kidsParentsLettersSettingsSubtitle": "Geführte Reihenfolge, Fokusbuchstaben und Wiederholungseinstellungen.",
-  "kidsParentsDuasDashboardSubtitle": "Gelernte Duʿās, Zeichnungen und der Schalter für die Elternansicht."
+  "kidsParentsDuasDashboardSubtitle": "Gelernte Duʿās, Zeichnungen und der Schalter für die Elternansicht.",
+  "learnHubSubcategoryKidsQuranTitleText": "Qur’an für Kinder",
+  "learnHubSubcategoryKidsQuranSubtitleText": "Jede Sure in einer einfacheren Qur’an-Ansicht für jüngere Lernende.",
+  "learnHubSubcategoryKidsHadithTitleText": "Hadith für Kinder",
+  "learnHubSubcategoryKidsHadithSubtitleText": "Kurze, sanfte Hadith-Karten mit einfachen Bedeutungen und Lektionen für den Alltag.",
+  "learnHubSubcategoryKidsHadithStoriesTitleText": "Hadith-Geschichten",
+  "learnHubSubcategoryKidsHadithStoriesSubtitleText": "Vorlesezeit, inspiriert von authentischen Hadithen und freundlichen Momenten im Alltag.",
+  "kidsQuranPageTitleText": "Qur’an für Kinder",
+  "kidsQuranPageSubtitleText": "Ein ruhiger Weg, jede Sure mit Arabisch und Übersetzung zu entdecken.",
+  "kidsQuranIntroTitleText": "Fang mit irgendeiner Sure an",
+  "kidsQuranIntroSubtitleText": "Wähle eine Sure, lies in Ruhe und öffne jede Aya im vollständigen Leser, wenn du mehr wissen willst.",
+  "kidsQuranOpenSurahActionText": "Sure öffnen",
+  "kidsQuranSurahMetaText": "{ayahs} Ayat • {place}",
+  "@kidsQuranSurahMetaText": {
+    "placeholders": {
+      "ayahs": {
+        "type": "int"
+      },
+      "place": {}
+    }
+  },
+  "kidsQuranSurahSubtitleText": "{transliterated} • {english}",
+  "@kidsQuranSurahSubtitleText": {
+    "placeholders": {
+      "transliterated": {},
+      "english": {}
+    }
+  },
+  "kidsQuranRevelationMakkah": "Mekka",
+  "kidsQuranRevelationMadinah": "Medina",
+  "kidsQuranOpenAyahHintText": "Diese Aya im vollständigen Qur’an-Leser öffnen",
+  "kidsQuranBackToSurahsActionText": "Alle Suren",
+  "kidsQuranSurahMissingText": "Sure nicht gefunden.",
+  "kidsHadithPageTitleText": "Hadith für Kinder",
+  "kidsHadithPageSubtitleText": "Kurze Hadithe mit sanften Bedeutungen, einfachen Lektionen und kindgerechten Erinnerungen.",
+  "kidsHadithIntroTitleText": "Kleine Hadithe, große Lektionen",
+  "kidsHadithIntroSubtitleText": "Diese Hadithe sind kurz und leicht wieder aufzugreifen, damit Kinder in Güte, Ehrlichkeit, Barmherzigkeit und Freude am Lernen wachsen.",
+  "kidsHadithStoriesCardTitleText": "Hadith-Geschichten",
+  "kidsHadithStoriesCardSubtitleText": "Vorlesezeit, geformt von echten Hadith-Lektionen, die Kinder im Alltag wiedererkennen.",
+  "kidsHadithStoriesOpenActionText": "Geschichten öffnen",
+  "kidsHadithMeaningTitleText": "Einfache Bedeutung",
+  "kidsHadithLessonTitleText": "Kleine Lektion",
+  "kidsHadithStoriesPageTitleText": "Hadith-Geschichten für Kinder",
+  "kidsHadithStoriesPageSubtitleText": "Geschichten, geformt von authentischen Hadithen und alltäglichen Momenten von Güte, Adab und Barmherzigkeit.",
+  "kidsHadithStoriesHeroTitleText": "Geschichten aus echten Sunna-Lektionen",
+  "kidsHadithStoriesHeroSubtitleText": "Jede Geschichte hält die Bedeutung sanft und bleibt an eine authentische Hadith-Quelle gebunden.",
+  "kidsHadithStoriesSourceLabelText": "Hadith-Quelle",
+  "kidsHadithStoriesStatusReadyText": "Bereit zum Lesen",
+  "kidsHadithStoriesStatusContinueText": "Weiter",
+  "kidsHadithStoriesStatusReadAgainText": "Noch einmal lesen",
+  "kidsHadithStoriesHadithChipText": "Hadith",
+  "kidsHadithStoriesEmptyTitleText": "Weitere Hadith-Geschichten sind unterwegs",
+  "kidsHadithStoriesEmptySubtitleText": "Die Kinder-Bibliothek ist bereit, und weitere Hadith-Geschichten können später sicher ergänzt werden.",
+  "kidsAgeBandLabel": "Alter",
+  "kidsAgeBandEarly": "3–5 · liest noch nicht",
+  "kidsAgeBandCore": "6–8 · Leseanfänger",
+  "kidsAgeBandPlus": "9–12 · liest flüssig",
+  "kidsAgeBandHelper": "Bestimmt, wie groß die Schrift ist und welche Geschichten zuerst kommen."
 }

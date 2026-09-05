@@ -273,8 +273,7 @@ List<File> _kidsFiles() {
     r'presentation/pages/learn_kids_[a-z_]+\.dart|'
     r'quran/presentation/kids_quran[a-z_]*\.dart|'
     r'hadith/presentation/kids_hadith_page\.dart|'
-    r'guided_paths/presentation/kids_starter_path_[a-z_]+\.dart|'
-    r'presentation/kids_learning_localizations\.dart'
+    r'guided_paths/presentation/kids_starter_path_[a-z_]+\.dart'
     r')$',
   );
   for (final entity in Directory(

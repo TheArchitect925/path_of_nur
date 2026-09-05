@@ -8,6 +8,8 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../rewards/domain/kids_sticker_models.dart';
+import '../../shared/application/kids_age_band_provider.dart';
+import '../../shared/domain/kids_age_band.dart';
 import '../../rewards/presentation/kids_celebration.dart';
 import '../../shared/application/kids_read_aloud.dart';
 import '../application/bedtime_story_learning_repository.dart';
@@ -65,6 +67,9 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
     final isEnd = _pageIndex >= pages.length;
     final page = isEnd ? null : pages[_pageIndex];
     final canHear = readAloud.available ?? false;
+    // A pre-reader gets bigger lines and the tap-to-hear hint on every page;
+    // a fluent reader gets neither (K6).
+    final band = ref.watch(kidsAgeBandProvider);
 
     return AppPageScaffold(
       title: story.title,
@@ -146,7 +151,10 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
               page.index + 1,
               pages.length,
             ),
-            hint: canHear ? l10n.kidsStoryReaderTapToHearHint : null,
+            hint: canHear && band != KidsAgeBand.plus
+                ? l10n.kidsStoryReaderTapToHearHint
+                : null,
+            largeType: band == KidsAgeBand.early,
             speakingLineId: readAloud.speakingId,
             onLineTap: canHear ? (line) => voice.speak(line) : null,
             onNext: () => _go(1),
@@ -199,8 +207,10 @@ class _StoryPageCard extends StatelessWidget {
     required this.onLineTap,
     required this.onNext,
     required this.onBack,
+    this.largeType = false,
   });
 
+  final bool largeType;
   final KidsStoryPage page;
   final String pageLabel;
   final String? hint;
@@ -212,10 +222,9 @@ class _StoryPageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final lineStyle = textTheme.headlineSmall?.copyWith(
-      height: 1.4,
-      fontWeight: FontWeight.w700,
-    );
+    final lineStyle =
+        (largeType ? textTheme.headlineMedium : textTheme.headlineSmall)
+            ?.copyWith(height: 1.4, fontWeight: FontWeight.w700);
     return GestureDetector(
       // A page turns the way a book does: swipe left for the next one.
       onHorizontalDragEnd: (details) {

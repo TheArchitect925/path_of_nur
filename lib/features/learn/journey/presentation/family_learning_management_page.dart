@@ -1,3 +1,4 @@
+import '../../../kids/shared/domain/kids_age_band.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -395,6 +396,7 @@ class _FamilyLearningManagementPageState
                 learningLevel: payload.learningLevel,
                 avatarReference: payload.avatarReference,
                 kidsUiThemeMode: payload.kidsUiThemeMode,
+                ageBand: payload.ageBand,
                 browsingMode: payload.browsingMode,
                 permissions: payload.permissions,
               );
@@ -415,6 +417,7 @@ class _FamilyLearningManagementPageState
         initialAgeGroup: child.ageGroup,
         initialLevel: child.learningLevel,
         initialKidsUiThemeMode: child.kidsUiThemeMode,
+        initialAgeBand: child.ageBand,
         initialBrowsingMode: child.browsingMode,
         initialPermissions: child.permissions,
         onSave: (payload) async {
@@ -434,6 +437,7 @@ class _FamilyLearningManagementPageState
                   assignedPathId: assignedPath.id,
                   avatarReference: payload.avatarReference,
                   kidsUiThemeMode: payload.kidsUiThemeMode,
+                  ageBand: payload.ageBand,
                   browsingMode: payload.browsingMode,
                   contentSafetyMode:
                       payload.browsingMode == ChildBrowsingMode.guidedOnly
@@ -471,6 +475,7 @@ class _ChildProfileEditorPayload {
     required this.kidsUiThemeMode,
     required this.browsingMode,
     required this.permissions,
+    required this.ageBand,
   });
 
   final String displayName;
@@ -480,6 +485,7 @@ class _ChildProfileEditorPayload {
   final KidsUiThemeMode kidsUiThemeMode;
   final ChildBrowsingMode browsingMode;
   final ChildLearningPermissions permissions;
+  final KidsAgeBand ageBand;
 }
 
 class _ChildProfileEditorSheet extends StatefulWidget {
@@ -493,6 +499,7 @@ class _ChildProfileEditorSheet extends StatefulWidget {
     required this.initialBrowsingMode,
     required this.initialPermissions,
     required this.onSave,
+    this.initialAgeBand = KidsAgeBand.core,
   });
 
   final String Function(AppLocalizations l10n) titleBuilder;
@@ -504,6 +511,7 @@ class _ChildProfileEditorSheet extends StatefulWidget {
   final ChildBrowsingMode initialBrowsingMode;
   final ChildLearningPermissions initialPermissions;
   final Future<void> Function(_ChildProfileEditorPayload payload) onSave;
+  final KidsAgeBand initialAgeBand;
 
   @override
   State<_ChildProfileEditorSheet> createState() =>
@@ -518,6 +526,7 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
   late KidsUiThemeMode _kidsUiThemeMode;
   late ChildBrowsingMode _browsingMode;
   late ChildLearningPermissions _permissions;
+  late KidsAgeBand _ageBand;
   bool _saving = false;
 
   @override
@@ -530,6 +539,7 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
     _kidsUiThemeMode = widget.initialKidsUiThemeMode;
     _browsingMode = widget.initialBrowsingMode;
     _permissions = widget.initialPermissions;
+    _ageBand = widget.initialAgeBand;
   }
 
   @override
@@ -607,6 +617,29 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     },
                   ),
                   const SizedBox(height: 12),
+                  // The one age vocabulary (K6): sets the type scale and which
+                  // stories come first. Only children have a band.
+                  if (_ageGroup == LearningAgeGroup.kids) ...[
+                    DropdownButtonFormField<KidsAgeBand>(
+                      initialValue: _ageBand,
+                      decoration: InputDecoration(
+                        labelText: l10n.kidsAgeBandLabel,
+                        helperText: l10n.kidsAgeBandHelper,
+                      ),
+                      items: [
+                        for (final band in KidsAgeBand.values)
+                          DropdownMenuItem(
+                            value: band,
+                            child: Text(_ageBandLabel(l10n, band)),
+                          ),
+                      ],
+                      onChanged: (value) {
+                        if (value == null) return;
+                        setState(() => _ageBand = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                  ],
                   DropdownButtonFormField<LearningPathLevel>(
                     initialValue: _level,
                     decoration: InputDecoration(
@@ -762,6 +795,7 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                                       ageGroup: _ageGroup,
                                       learningLevel: _level,
                                       kidsUiThemeMode: _kidsUiThemeMode,
+                                      ageBand: _ageBand,
                                       browsingMode: _browsingMode,
                                       permissions: _permissions,
                                     ),
@@ -810,4 +844,15 @@ String _kidsUiModeLabel(AppLocalizations l10n, KidsUiThemeMode mode) {
 
 extension<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
+}
+
+String _ageBandLabel(AppLocalizations l10n, KidsAgeBand band) {
+  switch (band) {
+    case KidsAgeBand.early:
+      return l10n.kidsAgeBandEarly;
+    case KidsAgeBand.core:
+      return l10n.kidsAgeBandCore;
+    case KidsAgeBand.plus:
+      return l10n.kidsAgeBandPlus;
+  }
 }

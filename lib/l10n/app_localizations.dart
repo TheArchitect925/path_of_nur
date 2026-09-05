@@ -73873,6 +73873,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Duʿās learned, drawings, and the parent view switch.'**
   String get kidsParentsDuasDashboardSubtitle;
+
+  /// No description provided for @learnHubSubcategoryKidsQuranTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an for Kids'**
+  String get learnHubSubcategoryKidsQuranTitleText;
+
+  /// No description provided for @learnHubSubcategoryKidsQuranSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse every surah in a simpler Qur’an experience for younger learners.'**
+  String get learnHubSubcategoryKidsQuranSubtitleText;
+
+  /// No description provided for @learnHubSubcategoryKidsHadithTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith for Kids'**
+  String get learnHubSubcategoryKidsHadithTitleText;
+
+  /// No description provided for @learnHubSubcategoryKidsHadithSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Short, gentle hadith cards with simple meanings and daily lessons.'**
+  String get learnHubSubcategoryKidsHadithSubtitleText;
+
+  /// No description provided for @learnHubSubcategoryKidsHadithStoriesTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Stories'**
+  String get learnHubSubcategoryKidsHadithStoriesTitleText;
+
+  /// No description provided for @learnHubSubcategoryKidsHadithStoriesSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story time inspired by authentic hadith and kind daily moments.'**
+  String get learnHubSubcategoryKidsHadithStoriesSubtitleText;
+
+  /// No description provided for @kidsQuranPageTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an for Kids'**
+  String get kidsQuranPageTitleText;
+
+  /// No description provided for @kidsQuranPageSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm way to browse every surah with Arabic and translation.'**
+  String get kidsQuranPageSubtitleText;
+
+  /// No description provided for @kidsQuranIntroTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with any surah'**
+  String get kidsQuranIntroTitleText;
+
+  /// No description provided for @kidsQuranIntroSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a surah, read gently, and open any ayah in the full reader when you need more detail.'**
+  String get kidsQuranIntroSubtitleText;
+
+  /// No description provided for @kidsQuranOpenSurahActionText.
+  ///
+  /// In en, this message translates to:
+  /// **'Open surah'**
+  String get kidsQuranOpenSurahActionText;
+
+  /// No description provided for @kidsQuranSurahMetaText.
+  ///
+  /// In en, this message translates to:
+  /// **'{ayahs} ayahs • {place}'**
+  String kidsQuranSurahMetaText(int ayahs, Object place);
+
+  /// No description provided for @kidsQuranSurahSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'{transliterated} • {english}'**
+  String kidsQuranSurahSubtitleText(Object transliterated, Object english);
+
+  /// No description provided for @kidsQuranRevelationMakkah.
+  ///
+  /// In en, this message translates to:
+  /// **'Makkah'**
+  String get kidsQuranRevelationMakkah;
+
+  /// No description provided for @kidsQuranRevelationMadinah.
+  ///
+  /// In en, this message translates to:
+  /// **'Madinah'**
+  String get kidsQuranRevelationMadinah;
+
+  /// No description provided for @kidsQuranOpenAyahHintText.
+  ///
+  /// In en, this message translates to:
+  /// **'Open this ayah in the full Qur’an reader'**
+  String get kidsQuranOpenAyahHintText;
+
+  /// No description provided for @kidsQuranBackToSurahsActionText.
+  ///
+  /// In en, this message translates to:
+  /// **'All surahs'**
+  String get kidsQuranBackToSurahsActionText;
+
+  /// No description provided for @kidsQuranSurahMissingText.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah not found.'**
+  String get kidsQuranSurahMissingText;
+
+  /// No description provided for @kidsHadithPageTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith for Kids'**
+  String get kidsHadithPageTitleText;
+
+  /// No description provided for @kidsHadithPageSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Short hadith with gentle meanings, simple lessons, and child-friendly reminders.'**
+  String get kidsHadithPageSubtitleText;
+
+  /// No description provided for @kidsHadithIntroTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Small hadith, big lessons'**
+  String get kidsHadithIntroTitleText;
+
+  /// No description provided for @kidsHadithIntroSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'These hadith are kept short and easy to revisit, so children can grow in kindness, honesty, mercy, and love of learning.'**
+  String get kidsHadithIntroSubtitleText;
+
+  /// No description provided for @kidsHadithStoriesCardTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith stories'**
+  String get kidsHadithStoriesCardTitleText;
+
+  /// No description provided for @kidsHadithStoriesCardSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story time shaped by real hadith lessons children can recognize in daily life.'**
+  String get kidsHadithStoriesCardSubtitleText;
+
+  /// No description provided for @kidsHadithStoriesOpenActionText.
+  ///
+  /// In en, this message translates to:
+  /// **'Open stories'**
+  String get kidsHadithStoriesOpenActionText;
+
+  /// No description provided for @kidsHadithMeaningTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple meaning'**
+  String get kidsHadithMeaningTitleText;
+
+  /// No description provided for @kidsHadithLessonTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Little lesson'**
+  String get kidsHadithLessonTitleText;
+
+  /// No description provided for @kidsHadithStoriesPageTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Hadith Stories'**
+  String get kidsHadithStoriesPageTitleText;
+
+  /// No description provided for @kidsHadithStoriesPageSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories shaped by authentic hadith and everyday moments of kindness, adab, and mercy.'**
+  String get kidsHadithStoriesPageSubtitleText;
+
+  /// No description provided for @kidsHadithStoriesHeroTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories from real Sunnah lessons'**
+  String get kidsHadithStoriesHeroTitleText;
+
+  /// No description provided for @kidsHadithStoriesHeroSubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'Each story keeps the meaning gentle while staying tied to an authentic hadith reference.'**
+  String get kidsHadithStoriesHeroSubtitleText;
+
+  /// No description provided for @kidsHadithStoriesSourceLabelText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith source'**
+  String get kidsHadithStoriesSourceLabelText;
+
+  /// No description provided for @kidsHadithStoriesStatusReadyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to read'**
+  String get kidsHadithStoriesStatusReadyText;
+
+  /// No description provided for @kidsHadithStoriesStatusContinueText.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get kidsHadithStoriesStatusContinueText;
+
+  /// No description provided for @kidsHadithStoriesStatusReadAgainText.
+  ///
+  /// In en, this message translates to:
+  /// **'Read again'**
+  String get kidsHadithStoriesStatusReadAgainText;
+
+  /// No description provided for @kidsHadithStoriesHadithChipText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get kidsHadithStoriesHadithChipText;
+
+  /// No description provided for @kidsHadithStoriesEmptyTitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'More hadith stories are on the way'**
+  String get kidsHadithStoriesEmptyTitleText;
+
+  /// No description provided for @kidsHadithStoriesEmptySubtitleText.
+  ///
+  /// In en, this message translates to:
+  /// **'The existing kids story library is ready, and more hadith-based stories can be added safely in later passes.'**
+  String get kidsHadithStoriesEmptySubtitleText;
+
+  /// No description provided for @kidsAgeBandLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get kidsAgeBandLabel;
+
+  /// No description provided for @kidsAgeBandEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'3–5 · not reading yet'**
+  String get kidsAgeBandEarly;
+
+  /// No description provided for @kidsAgeBandCore.
+  ///
+  /// In en, this message translates to:
+  /// **'6–8 · early reader'**
+  String get kidsAgeBandCore;
+
+  /// No description provided for @kidsAgeBandPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'9–12 · fluent reader'**
+  String get kidsAgeBandPlus;
+
+  /// No description provided for @kidsAgeBandHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Sets how big the type is and which stories come first.'**
+  String get kidsAgeBandHelper;
 }
 
 class _AppLocalizationsDelegate

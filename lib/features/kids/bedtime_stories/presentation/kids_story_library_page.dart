@@ -9,10 +9,11 @@ import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../learn/presentation/kids_learning_localizations.dart';
 import '../../../learn/shared/learn_art_assets.dart';
 import '../../seerah/application/seerah_journey_progress_service.dart';
 import '../../seerah/application/seerah_journey_repository.dart';
+import '../../shared/application/kids_age_band_provider.dart';
+import '../../shared/domain/kids_age_band.dart';
 import '../../shared/presentation/kids_page_scaffold.dart';
 import '../application/bedtime_story_learning_loop_service.dart';
 import '../application/bedtime_story_player_controller.dart';
@@ -295,7 +296,11 @@ class _CollectionView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final stories = ref.watch(_shelfStoriesProvider(collection));
+    // The child's own age band reads first on every shelf (K6).
+    final stories = kidsStoriesOrderedForBand(
+      ref.watch(_shelfStoriesProvider(collection)),
+      ref.watch(kidsAgeBandProvider),
+    );
     final seerahJourney = ref.watch(featuredKidsSeerahJourneyProvider);
     final tonight = collection == KidsIslamicStoryCollectionType.bedtime
         ? ref.watch(tonightBedtimeStoryProvider)

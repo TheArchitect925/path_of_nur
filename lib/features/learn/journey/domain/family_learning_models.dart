@@ -1,3 +1,4 @@
+import '../../../kids/shared/domain/kids_age_band.dart';
 import 'learning_path_models.dart';
 import '../../../profile/domain/profile_age_preferences.dart';
 
@@ -157,6 +158,7 @@ class ChildLearningProfile {
     required this.preferredLanguageTag,
     required this.avatarReference,
     required this.kidsUiThemeMode,
+    this.ageBand = KidsAgeBand.core,
     required this.contentSafetyMode,
     required this.browsingMode,
     required this.permissions,
@@ -172,6 +174,9 @@ class ChildLearningProfile {
   final String preferredLanguageTag;
   final String avatarReference;
   final KidsUiThemeMode kidsUiThemeMode;
+
+  /// One of three bands a parent picks; see [KidsAgeBand].
+  final KidsAgeBand ageBand;
   final ChildContentSafetyMode contentSafetyMode;
   final ChildBrowsingMode browsingMode;
   final ChildLearningPermissions permissions;
@@ -186,6 +191,7 @@ class ChildLearningProfile {
     String? preferredLanguageTag,
     String? avatarReference,
     KidsUiThemeMode? kidsUiThemeMode,
+    KidsAgeBand? ageBand,
     ChildContentSafetyMode? contentSafetyMode,
     ChildBrowsingMode? browsingMode,
     ChildLearningPermissions? permissions,
@@ -200,6 +206,7 @@ class ChildLearningProfile {
       preferredLanguageTag: preferredLanguageTag ?? this.preferredLanguageTag,
       avatarReference: avatarReference ?? this.avatarReference,
       kidsUiThemeMode: kidsUiThemeMode ?? this.kidsUiThemeMode,
+      ageBand: ageBand ?? this.ageBand,
       contentSafetyMode: contentSafetyMode ?? this.contentSafetyMode,
       browsingMode: browsingMode ?? this.browsingMode,
       permissions: permissions ?? this.permissions,
@@ -219,6 +226,7 @@ class ChildLearningProfile {
     'preferredLanguageTag': preferredLanguageTag,
     'avatarReference': avatarReference,
     'kidsUiThemeMode': kidsUiThemeMode.name,
+    'ageBand': ageBand.name,
     'contentSafetyMode': contentSafetyMode.name,
     'browsingMode': browsingMode.name,
     'permissions': permissions.toJson(),
@@ -242,6 +250,7 @@ class ChildLearningProfile {
       kidsUiThemeMode: KidsUiThemeMode.values.byName(
         json['kidsUiThemeMode']?.toString() ?? KidsUiThemeMode.auto.name,
       ),
+      ageBand: KidsAgeBand.fromStorageName(json['ageBand']?.toString()),
       contentSafetyMode: ChildContentSafetyMode.values.byName(
         json['contentSafetyMode']?.toString() ??
             ChildContentSafetyMode.guided.name,

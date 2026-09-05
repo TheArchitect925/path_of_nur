@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'kids_quran_labels.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../presentation/kids_learning_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_providers.dart';
 import '../domain/quran_surah.dart';
@@ -103,10 +103,18 @@ class _KidsQuranSurahTile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Text(l10n.kidsQuranSurahSubtitleText(surah)),
+                    Text(
+                      l10n.kidsQuranSurahSubtitleText(
+                        surah.transliteratedName,
+                        surah.englishName,
+                      ),
+                    ),
                     const SizedBox(height: 4),
                     Text(
-                      l10n.kidsQuranSurahMetaText(surah),
+                      l10n.kidsQuranSurahMetaText(
+                        surah.verseCount,
+                        kidsQuranRevelationPlaceLabel(l10n, surah),
+                      ),
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],

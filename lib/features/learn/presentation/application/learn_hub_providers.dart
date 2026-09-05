@@ -24,7 +24,6 @@ import '../../shared/domain/learn_system_models.dart';
 import '../../trivia/data/trivia_knowledge_paths.dart';
 import '../../world/data/world_creation_data.dart';
 import '../../world/data/world_curriculum_data.dart';
-import '../kids_learning_localizations.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
 

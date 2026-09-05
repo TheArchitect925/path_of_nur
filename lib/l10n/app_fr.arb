@@ -9412,7 +9412,7 @@
   "quranDailyReflectionStreakValue": "{days} day streak",
   "quranDailyReflectionBestStreakValue": "Best streak: {streak}",
   "quranAyahInsightPathsCompletedCount": "{completed} of {total} completed",
-  "kidsQuranAyahInsightsTitle": "Ayah insights for kids",
+  "kidsQuranAyahInsightsTitle": "Ayah Insights for Kids",
   "kidsQuranAyahInsightsSubtitle": "Short Qur''an lessons with simple meanings and gentle questions.",
   "kidsQuranAyahInsightsIntroTitle": "Small ayahs, big reminders",
   "kidsQuranAyahInsightsIntroSubtitle": "These cards help children notice Allah''s signs, remember Him, and build kind character through Qur''anic lessons.",
@@ -12292,5 +12292,62 @@
   "kidsParentsKidsUiRowSubtitle": "Choose whether the app looks and reads like a kids app.",
   "kidsParentsLettersDashboardSubtitle": "Letters traced, review due, and what to assign next.",
   "kidsParentsLettersSettingsSubtitle": "Guided order, focus letters and review settings.",
-  "kidsParentsDuasDashboardSubtitle": "Duʿās learned, drawings, and the parent view switch."
+  "kidsParentsDuasDashboardSubtitle": "Duʿās learned, drawings, and the parent view switch.",
+  "learnHubSubcategoryKidsQuranTitleText": "Qur’an for Kids",
+  "learnHubSubcategoryKidsQuranSubtitleText": "Browse every surah in a simpler Qur’an experience for younger learners.",
+  "learnHubSubcategoryKidsHadithTitleText": "Hadith for Kids",
+  "learnHubSubcategoryKidsHadithSubtitleText": "Short, gentle hadith cards with simple meanings and daily lessons.",
+  "learnHubSubcategoryKidsHadithStoriesTitleText": "Hadith Stories",
+  "learnHubSubcategoryKidsHadithStoriesSubtitleText": "Open story time inspired by authentic hadith and kind daily moments.",
+  "kidsQuranPageTitleText": "Qur’an for Kids",
+  "kidsQuranPageSubtitleText": "A calm way to browse every surah with Arabic and translation.",
+  "kidsQuranIntroTitleText": "Start with any surah",
+  "kidsQuranIntroSubtitleText": "Choose a surah, read gently, and open any ayah in the full reader when you need more detail.",
+  "kidsQuranOpenSurahActionText": "Open surah",
+  "kidsQuranSurahMetaText": "{ayahs} ayahs • {place}",
+  "@kidsQuranSurahMetaText": {
+    "placeholders": {
+      "ayahs": {
+        "type": "int"
+      },
+      "place": {}
+    }
+  },
+  "kidsQuranSurahSubtitleText": "{transliterated} • {english}",
+  "@kidsQuranSurahSubtitleText": {
+    "placeholders": {
+      "transliterated": {},
+      "english": {}
+    }
+  },
+  "kidsQuranRevelationMakkah": "Makkah",
+  "kidsQuranRevelationMadinah": "Madinah",
+  "kidsQuranOpenAyahHintText": "Open this ayah in the full Qur’an reader",
+  "kidsQuranBackToSurahsActionText": "All surahs",
+  "kidsQuranSurahMissingText": "Surah not found.",
+  "kidsHadithPageTitleText": "Hadith for Kids",
+  "kidsHadithPageSubtitleText": "Short hadith with gentle meanings, simple lessons, and child-friendly reminders.",
+  "kidsHadithIntroTitleText": "Small hadith, big lessons",
+  "kidsHadithIntroSubtitleText": "These hadith are kept short and easy to revisit, so children can grow in kindness, honesty, mercy, and love of learning.",
+  "kidsHadithStoriesCardTitleText": "Hadith stories",
+  "kidsHadithStoriesCardSubtitleText": "Open story time shaped by real hadith lessons children can recognize in daily life.",
+  "kidsHadithStoriesOpenActionText": "Open stories",
+  "kidsHadithMeaningTitleText": "Simple meaning",
+  "kidsHadithLessonTitleText": "Little lesson",
+  "kidsHadithStoriesPageTitleText": "Kids Hadith Stories",
+  "kidsHadithStoriesPageSubtitleText": "Stories shaped by authentic hadith and everyday moments of kindness, adab, and mercy.",
+  "kidsHadithStoriesHeroTitleText": "Stories from real Sunnah lessons",
+  "kidsHadithStoriesHeroSubtitleText": "Each story keeps the meaning gentle while staying tied to an authentic hadith reference.",
+  "kidsHadithStoriesSourceLabelText": "Hadith source",
+  "kidsHadithStoriesStatusReadyText": "Ready to read",
+  "kidsHadithStoriesStatusContinueText": "Continue",
+  "kidsHadithStoriesStatusReadAgainText": "Read again",
+  "kidsHadithStoriesHadithChipText": "Hadith",
+  "kidsHadithStoriesEmptyTitleText": "More hadith stories are on the way",
+  "kidsHadithStoriesEmptySubtitleText": "The existing kids story library is ready, and more hadith-based stories can be added safely in later passes.",
+  "kidsAgeBandLabel": "Age",
+  "kidsAgeBandEarly": "3–5 · not reading yet",
+  "kidsAgeBandCore": "6–8 · early reader",
+  "kidsAgeBandPlus": "9–12 · fluent reader",
+  "kidsAgeBandHelper": "Sets how big the type is and which stories come first."
 }

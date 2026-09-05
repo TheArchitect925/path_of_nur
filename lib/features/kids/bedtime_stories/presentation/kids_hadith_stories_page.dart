@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../learn/presentation/kids_learning_localizations.dart';
 import '../../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/bedtime_story_progress_service.dart';
 import '../application/bedtime_story_repository.dart';
