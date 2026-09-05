@@ -13,6 +13,7 @@ import '../../../learn/guided_paths/application/guided_learning_paths_provider.d
 import '../../../learn/journey/domain/learning_path_models.dart';
 import '../../../learn/shared/learn_art_assets.dart';
 import '../../bedtime_stories/application/bedtime_story_repository.dart';
+import '../../rewards/presentation/kids_reward_strip.dart';
 import 'kids_door_card.dart';
 
 /// The kids world in one screen: today's path, tonight's story, four doors
@@ -38,6 +39,8 @@ class KidsLandingBody extends ConsumerWidget {
           children: [_KidsDoors(sourceSurface: sourceSurface)],
         ),
         const SizedBox(height: 14),
+        const KidsRewardStrip(),
+        const SizedBox(height: 10),
         CompactListTile(
           leading: const HubLeadingIcon(AppIcons.family),
           title: l10n.kidsDoorParentsTitle,

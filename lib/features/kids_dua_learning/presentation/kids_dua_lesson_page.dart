@@ -23,6 +23,8 @@ import 'kids_dua_tap_repeat_view.dart';
 import '../../../core/theme/app_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../kids/rewards/domain/kids_sticker_models.dart';
+import '../../kids/rewards/presentation/kids_celebration.dart';
 
 class KidsDuaLessonPage extends ConsumerStatefulWidget {
   const KidsDuaLessonPage({super.key, required this.lessonId});
@@ -269,13 +271,28 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
             'kidsDuaDrawing',
             pathParameters: {'lessonId': lesson.id},
           ),
-          onComplete: () {
+          onComplete: () async {
             final result = ref
                 .read(kidsDuaLearningProvider.notifier)
                 .completeLesson(lesson.id);
             final myDayResult = ref
                 .read(kidsDuaMyDayProvider.notifier)
                 .completeDuaForToday(lesson.id);
+            // The first time a duʿā is learned it becomes a sticker (K4).
+            if (result.firstCompletion) {
+              await showKidsCelebration(
+                context,
+                ref,
+                sticker: KidsSticker(
+                  id: 'dua:${lesson.id}',
+                  kind: KidsStickerKind.dua,
+                  title: lesson.title,
+                  subtitle: lesson.arabic,
+                  icon: AppIcons.dua,
+                ),
+              );
+              if (!context.mounted) return;
+            }
             showModalBottomSheet<void>(
               context: context,
               showDragHandle: true,

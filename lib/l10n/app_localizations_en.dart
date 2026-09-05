@@ -44230,4 +44230,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kidsStoryReaderLessonEyebrow => 'What we learned';
+
+  @override
+  String get kidsStickerBookTitle => 'My stickers';
+
+  @override
+  String get kidsStickerBookSubtitle =>
+      'Every story, letter and duʿā you finish earns one.';
+
+  @override
+  String get kidsStickerBookEmptyTitle => 'No stickers yet';
+
+  @override
+  String get kidsStickerBookEmptySubtitle =>
+      'Finish a story, a letter or a duʿā to earn your first one.';
+
+  @override
+  String get kidsStickerBookSpecialSection => 'Special stickers';
+
+  @override
+  String kidsRewardStreakValue(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days day streak',
+      one: '1 day streak',
+      zero: 'No streak yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String kidsRewardStickersCountValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stickers',
+      one: '1 sticker',
+      zero: 'No stickers yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get kidsCelebrationTitle => 'You earned a sticker!';
+
+  @override
+  String get kidsCelebrationDismissAction => 'Yay!';
+
+  @override
+  String get kidsInvitationFirstStoryTitle => 'Pick your first story';
+
+  @override
+  String get kidsInvitationFirstStorySubtitle =>
+      'Open a story and read it to the end.';
+
+  @override
+  String get kidsInvitationFirstLetterTitle => 'Trace your first letter';
+
+  @override
+  String get kidsInvitationFirstLetterSubtitle =>
+      'Start with Alif: hear it, trace it, earn a sticker.';
+
+  @override
+  String get kidsInvitationFirstDuaTitle => 'Learn your first duʿā';
+
+  @override
+  String get kidsInvitationFirstDuaSubtitle =>
+      'A little one for today. Say it, and earn a sticker.';
+
+  @override
+  String get kidsInvitationStartAction => 'Let’s go';
 }

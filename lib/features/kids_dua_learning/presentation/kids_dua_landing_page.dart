@@ -6,6 +6,8 @@ import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../kids/rewards/presentation/kids_invitation_card.dart';
+import '../../kids/rewards/presentation/kids_reward_strip.dart';
 import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_experience_provider.dart';
@@ -27,7 +29,6 @@ class KidsDuaLandingPage extends ConsumerWidget {
     final categoryProgress = ref.watch(kidsDuaCategoryProgressListProvider);
     final myDayState = ref.watch(kidsDuaMyDayProvider);
     final myDayGuidance = ref.watch(kidsDuaMyDayGuidanceProvider);
-    final lightSummary = ref.watch(kidsDuaLightSummaryProvider);
     final creative = ref.watch(kidsDuaCreativeProvider);
     final stories = ref.watch(kidsDuaStoriesProvider);
 
@@ -39,9 +40,23 @@ class KidsDuaLandingPage extends ConsumerWidget {
       heroTitle: l10n.kidsDoorDuasTitle,
       heroSubtitle: l10n.kidsDoorDuasSubtitle,
       children: [
-        _HeroCard(summary: summary),
+        // A first-time child gets one thing to do, not a row of zeros; the
+        // "light" and its streak fold into the one sticker book (K4).
+        if (summary.learnedLessons == 0)
+          KidsInvitationCard(
+            title: l10n.kidsInvitationFirstDuaTitle,
+            subtitle: l10n.kidsInvitationFirstDuaSubtitle,
+            onTap: () => todayFocus == null
+                ? context.pushNamed('kidsDuaMyDay')
+                : context.pushNamed(
+                    'kidsDuaLesson',
+                    pathParameters: {'lessonId': todayFocus.lesson.id},
+                  ),
+          )
+        else
+          _HeroCard(summary: summary),
         const SizedBox(height: 12),
-        _LightCard(summary: lightSummary),
+        const KidsRewardStrip(),
         const SizedBox(height: 12),
         if (todayFocus != null) ...[
           _FeatureCard(
@@ -137,7 +152,7 @@ class KidsDuaLandingPage extends ConsumerWidget {
           icon: Icons.emoji_events_rounded,
           title: l10n.kidsDuaRewardsTitle,
           subtitle: l10n.kidsDuaRewardsEncouragement,
-          onTap: () => context.pushNamed('kidsDuaRewards'),
+          onTap: () => context.pushNamed('kidsStickerBook'),
         ),
         const SizedBox(height: 10),
         _QuickEntryCard(
@@ -149,52 +164,6 @@ class KidsDuaLandingPage extends ConsumerWidget {
           onTap: () => context.pushNamed('kidsDuaParentDashboard'),
         ),
       ],
-    );
-  }
-}
-
-class _LightCard extends StatelessWidget {
-  const _LightCard({required this.summary});
-
-  final KidsDuaLightSummary summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.kidsDuaLightCardTitle,
-            style: const TextStyle(fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.kidsDuaLightValue(_lightLabel(context, summary.lightLabelKey)),
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: TextStyle(color: context.palette.accent),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            _localizedCopy(context, summary.lightDescriptionKey),
-            style: TextStyle(
-              color: context.palette.onSurfaceSubtle,
-              height: 1.4,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            _localizedCopy(context, summary.reminderPrompt.bodyKey),
-            style: TextStyle(color: context.palette.onSurfaceSubtle),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -213,61 +182,6 @@ String _myDayLandingDetail(
   };
   if (guidance.nextUpLesson == null) return reason;
   return l10n.kidsDuaMyDayLandingDetail(reason, guidance.nextUpLesson!.title);
-}
-
-String _lightLabel(BuildContext context, String key) =>
-    _localizedCopy(context, key);
-
-String _localizedCopy(BuildContext context, String key) {
-  final l10n = AppLocalizations.of(context);
-  switch (key) {
-    case 'kidsDuaLightSeedLabel':
-      return l10n.kidsDuaLightSeedLabel;
-    case 'kidsDuaLightGlowLabel':
-      return l10n.kidsDuaLightGlowLabel;
-    case 'kidsDuaLightLanternLabel':
-      return l10n.kidsDuaLightLanternLabel;
-    case 'kidsDuaLightMoonLabel':
-      return l10n.kidsDuaLightMoonLabel;
-    case 'kidsDuaLightStarLabel':
-      return l10n.kidsDuaLightStarLabel;
-    case 'kidsDuaLightRadiantLabel':
-      return l10n.kidsDuaLightRadiantLabel;
-    case 'kidsDuaLightStartMessage':
-      return l10n.kidsDuaLightStartMessage;
-    case 'kidsDuaLightBuildMessage':
-      return l10n.kidsDuaLightBuildMessage;
-    case 'kidsDuaLightSteadyMessage':
-      return l10n.kidsDuaLightSteadyMessage;
-    case 'kidsDuaLightRadiantMessage':
-      return l10n.kidsDuaLightRadiantMessage;
-    case 'kidsDuaLightRecoveryMessage':
-      return l10n.kidsDuaLightRecoveryMessage;
-    case 'kidsDuaLightCompleteTodayMessage':
-      return l10n.kidsDuaLightCompleteTodayMessage;
-    case 'kidsDuaReminderMorningTitle':
-      return l10n.kidsDuaReminderMorningTitle;
-    case 'kidsDuaReminderMorningBody':
-      return l10n.kidsDuaReminderMorningBody;
-    case 'kidsDuaReminderMiddayTitle':
-      return l10n.kidsDuaReminderMiddayTitle;
-    case 'kidsDuaReminderMiddayBody':
-      return l10n.kidsDuaReminderMiddayBody;
-    case 'kidsDuaReminderEveningTitle':
-      return l10n.kidsDuaReminderEveningTitle;
-    case 'kidsDuaReminderEveningBody':
-      return l10n.kidsDuaReminderEveningBody;
-    case 'kidsDuaReminderBedtimeTitle':
-      return l10n.kidsDuaReminderBedtimeTitle;
-    case 'kidsDuaReminderBedtimeBody':
-      return l10n.kidsDuaReminderBedtimeBody;
-    case 'kidsDuaReminderRecoveryTitle':
-      return l10n.kidsDuaReminderRecoveryTitle;
-    case 'kidsDuaReminderRecoveryBody':
-      return l10n.kidsDuaReminderRecoveryBody;
-    default:
-      return key;
-  }
 }
 
 class _HeroCard extends StatelessWidget {
@@ -308,9 +222,6 @@ class _HeroCard extends StatelessWidget {
                 label: l10n.kidsDuaCategoryCountValue(
                   summary.completedCategories,
                 ),
-              ),
-              _Pill(
-                label: l10n.kidsDuaRewardsCountValue(summary.unlockedRewards),
               ),
             ],
           ),

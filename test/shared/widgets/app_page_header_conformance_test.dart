@@ -47,8 +47,10 @@ void main() {
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart',
       'lib/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart',
       'lib/features/kids/bedtime_stories/presentation/kids_story_library_page.dart',
-      // The four kids doors (K1): the room itself and the Play door.
+      // The four kids doors (K1): the room itself and the Play door, and the
+      // sticker book (K4).
       'lib/features/kids/play/presentation/kids_play_page.dart',
+      'lib/features/kids/rewards/presentation/kids_sticker_book_page.dart',
       'lib/features/kids/shared/presentation/kids_landing_page.dart',
       'lib/features/kids/seerah/presentation/seerah_journeys_page.dart',
       'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart',

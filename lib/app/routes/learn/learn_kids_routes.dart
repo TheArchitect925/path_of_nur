@@ -11,6 +11,7 @@ import '../../../features/kids/bedtime_stories/presentation/kids_hadith_stories_
 import '../../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
 import '../../../features/kids/play/presentation/kids_play_page.dart';
+import '../../../features/kids/rewards/presentation/kids_sticker_book_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journey_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journeys_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_node_page.dart';
@@ -303,6 +304,13 @@ List<RouteBase> buildLearnKidsRoutes() {
       name: 'kidsBedtimeStoriesParentDashboard',
       pageBuilder: (context, state) =>
           const MaterialPage(child: BedtimeStoryParentDashboardPage()),
+    ),
+    // The one reward world (K4): every sticker a child has earned.
+    GoRoute(
+      path: '/learn/kids/stickers',
+      name: 'kidsStickerBook',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsStickerBookPage()),
     ),
     GoRoute(
       path: '/learn/kids/progression',

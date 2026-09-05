@@ -50,16 +50,17 @@ void main() {
     await pumpHome(tester);
 
     expect(find.text('Write and Learn Arabic Letters'), findsOneWidget);
+    // A first-time child is invited to Alif instead of shown a row of
+    // zeros (K4); the progress card appears once a letter is finished.
     await tester.scrollUntilVisible(
-      find.text('Arabic progress'),
+      find.text('Trace your first letter'),
       400,
       scrollable: find.byType(Scrollable).first,
       maxScrolls: 60,
     );
-    expect(find.text('Arabic progress'), findsOneWidget);
-    expect(find.text('0 letters learned'), findsOneWidget);
-    expect(find.text('0 words practiced'), findsOneWidget);
-    expect(find.text('0 phrases heard'), findsOneWidget);
+    expect(find.text('Trace your first letter'), findsOneWidget);
+    expect(find.text('Arabic progress'), findsNothing);
+    expect(find.text('0 letters learned'), findsNothing);
     await tester.scrollUntilVisible(
       find.text('Beginner letters'),
       300,

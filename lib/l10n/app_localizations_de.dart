@@ -44831,4 +44831,77 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsStoryReaderLessonEyebrow => 'Was wir gelernt haben';
+
+  @override
+  String get kidsStickerBookTitle => 'Meine Sticker';
+
+  @override
+  String get kidsStickerBookSubtitle =>
+      'Jede Geschichte, jeder Buchstabe und jedes Duʿā, das du schaffst, bringt einen.';
+
+  @override
+  String get kidsStickerBookEmptyTitle => 'Noch keine Sticker';
+
+  @override
+  String get kidsStickerBookEmptySubtitle =>
+      'Beende eine Geschichte, einen Buchstaben oder ein Duʿā für deinen ersten.';
+
+  @override
+  String get kidsStickerBookSpecialSection => 'Besondere Sticker';
+
+  @override
+  String kidsRewardStreakValue(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days Tage in Folge',
+      one: '1 Tag in Folge',
+      zero: 'Noch keine Serie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String kidsRewardStickersCountValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Sticker',
+      one: '1 Sticker',
+      zero: 'Noch keine Sticker',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get kidsCelebrationTitle => 'Du hast einen Sticker verdient!';
+
+  @override
+  String get kidsCelebrationDismissAction => 'Juhu!';
+
+  @override
+  String get kidsInvitationFirstStoryTitle =>
+      'Such dir deine erste Geschichte aus';
+
+  @override
+  String get kidsInvitationFirstStorySubtitle =>
+      'Öffne eine Geschichte und lies sie bis zum Ende.';
+
+  @override
+  String get kidsInvitationFirstLetterTitle =>
+      'Fahre deinen ersten Buchstaben nach';
+
+  @override
+  String get kidsInvitationFirstLetterSubtitle =>
+      'Fang mit Alif an: hören, nachfahren, Sticker verdienen.';
+
+  @override
+  String get kidsInvitationFirstDuaTitle => 'Lerne dein erstes Duʿā';
+
+  @override
+  String get kidsInvitationFirstDuaSubtitle =>
+      'Ein kleines für heute. Sag es und verdiene einen Sticker.';
+
+  @override
+  String get kidsInvitationStartAction => 'Los geht’s';
 }

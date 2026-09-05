@@ -22,6 +22,8 @@ import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
 import '../../../core/theme/app_palette.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../kids/rewards/domain/kids_sticker_models.dart';
+import '../../kids/rewards/presentation/kids_celebration.dart';
 
 class KidsArabicLessonPage extends ConsumerStatefulWidget {
   const KidsArabicLessonPage({
@@ -162,6 +164,10 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
     setState(() {
       _isCompleting = true;
     });
+    final wasCompleted = ref
+        .read(kidsArabicProgressProvider)
+        .completedLetterIds
+        .contains(letter.id);
     final result = ref
         .read(kidsArabicProgressProvider.notifier)
         .completeLesson(letter: letter, traceResult: liveResult);
@@ -172,6 +178,22 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
           .markCelebrationSeen(achievement.id);
     }
     if (!mounted) return;
+    // The first time a letter is finished it becomes a sticker (K4); the
+    // completion sheet with the next step follows.
+    if (!wasCompleted) {
+      await showKidsCelebration(
+        context,
+        ref,
+        sticker: KidsSticker(
+          id: 'letter:${letter.id}',
+          kind: KidsStickerKind.letter,
+          title: letter.nameEn,
+          subtitle: letter.transliteration,
+          glyph: letter.glyph,
+        ),
+      );
+      if (!mounted) return;
+    }
     await showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,

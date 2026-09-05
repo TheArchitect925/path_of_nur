@@ -73729,6 +73729,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'What we learned'**
   String get kidsStoryReaderLessonEyebrow;
+
+  /// No description provided for @kidsStickerBookTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My stickers'**
+  String get kidsStickerBookTitle;
+
+  /// No description provided for @kidsStickerBookSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Every story, letter and duʿā you finish earns one.'**
+  String get kidsStickerBookSubtitle;
+
+  /// No description provided for @kidsStickerBookEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No stickers yet'**
+  String get kidsStickerBookEmptyTitle;
+
+  /// No description provided for @kidsStickerBookEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish a story, a letter or a duʿā to earn your first one.'**
+  String get kidsStickerBookEmptySubtitle;
+
+  /// No description provided for @kidsStickerBookSpecialSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Special stickers'**
+  String get kidsStickerBookSpecialSection;
+
+  /// No description provided for @kidsRewardStreakValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{No streak yet} =1{1 day streak} other{{days} day streak}}'**
+  String kidsRewardStreakValue(int days);
+
+  /// No description provided for @kidsRewardStickersCountValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No stickers yet} =1{1 sticker} other{{count} stickers}}'**
+  String kidsRewardStickersCountValue(int count);
+
+  /// No description provided for @kidsCelebrationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You earned a sticker!'**
+  String get kidsCelebrationTitle;
+
+  /// No description provided for @kidsCelebrationDismissAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Yay!'**
+  String get kidsCelebrationDismissAction;
+
+  /// No description provided for @kidsInvitationFirstStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick your first story'**
+  String get kidsInvitationFirstStoryTitle;
+
+  /// No description provided for @kidsInvitationFirstStorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a story and read it to the end.'**
+  String get kidsInvitationFirstStorySubtitle;
+
+  /// No description provided for @kidsInvitationFirstLetterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace your first letter'**
+  String get kidsInvitationFirstLetterTitle;
+
+  /// No description provided for @kidsInvitationFirstLetterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with Alif: hear it, trace it, earn a sticker.'**
+  String get kidsInvitationFirstLetterSubtitle;
+
+  /// No description provided for @kidsInvitationFirstDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn your first duʿā'**
+  String get kidsInvitationFirstDuaTitle;
+
+  /// No description provided for @kidsInvitationFirstDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A little one for today. Say it, and earn a sticker.'**
+  String get kidsInvitationFirstDuaSubtitle;
+
+  /// No description provided for @kidsInvitationStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s go'**
+  String get kidsInvitationStartAction;
 }
 
 class _AppLocalizationsDelegate

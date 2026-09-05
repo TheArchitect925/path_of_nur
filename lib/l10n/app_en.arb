@@ -19822,5 +19822,35 @@
   "kidsStoryReaderReadAgainAction": "Read it again",
   "kidsStoryReaderAboutAction": "About this story",
   "kidsStoryReaderTapToHearHint": "Tap a line to hear it.",
-  "kidsStoryReaderLessonEyebrow": "What we learned"
+  "kidsStoryReaderLessonEyebrow": "What we learned",
+  "kidsStickerBookTitle": "My stickers",
+  "kidsStickerBookSubtitle": "Every story, letter and duʿā you finish earns one.",
+  "kidsStickerBookEmptyTitle": "No stickers yet",
+  "kidsStickerBookEmptySubtitle": "Finish a story, a letter or a duʿā to earn your first one.",
+  "kidsStickerBookSpecialSection": "Special stickers",
+  "kidsRewardStreakValue": "{days, plural, =0{No streak yet} =1{1 day streak} other{{days} day streak}}",
+  "@kidsRewardStreakValue": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsRewardStickersCountValue": "{count, plural, =0{No stickers yet} =1{1 sticker} other{{count} stickers}}",
+  "@kidsRewardStickersCountValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsCelebrationTitle": "You earned a sticker!",
+  "kidsCelebrationDismissAction": "Yay!",
+  "kidsInvitationFirstStoryTitle": "Pick your first story",
+  "kidsInvitationFirstStorySubtitle": "Open a story and read it to the end.",
+  "kidsInvitationFirstLetterTitle": "Trace your first letter",
+  "kidsInvitationFirstLetterSubtitle": "Start with Alif: hear it, trace it, earn a sticker.",
+  "kidsInvitationFirstDuaTitle": "Learn your first duʿā",
+  "kidsInvitationFirstDuaSubtitle": "A little one for today. Say it, and earn a sticker.",
+  "kidsInvitationStartAction": "Let’s go"
 }

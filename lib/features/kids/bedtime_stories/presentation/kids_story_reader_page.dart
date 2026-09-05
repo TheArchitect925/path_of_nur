@@ -7,6 +7,8 @@ import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../rewards/domain/kids_sticker_models.dart';
+import '../../rewards/presentation/kids_celebration.dart';
 import '../../shared/application/kids_read_aloud.dart';
 import '../application/bedtime_story_learning_repository.dart';
 import '../application/bedtime_story_progress_service.dart';
@@ -173,10 +175,17 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
         .completeStory(story, completionSource: 'reader');
     setState(() => _finished = true);
     if (!outcome.firstCompletion) return;
-    // K4 turns this moment into a sticker and a sound.
-    final l10n = AppLocalizations.of(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.bedtimeStoriesCompletionSnackQuiet)),
+    // The first time through, the story becomes a sticker (K4).
+    showKidsCelebration(
+      context,
+      ref,
+      sticker: KidsSticker(
+        id: 'story:${story.id}',
+        kind: KidsStickerKind.story,
+        title: story.shortTitle,
+        imageAsset: story.coverAssetPath.isEmpty ? null : story.coverAssetPath,
+        icon: AppIcons.stories,
+      ),
     );
   }
 }

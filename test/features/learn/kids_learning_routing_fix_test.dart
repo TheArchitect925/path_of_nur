@@ -7,6 +7,7 @@ import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_hadi
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
 import 'package:path_of_nur/features/kids/play/presentation/kids_play_page.dart';
+import 'package:path_of_nur/features/kids/rewards/presentation/kids_sticker_book_page.dart';
 import 'package:path_of_nur/features/kids/shared/presentation/kids_landing_page.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_home_page.dart';
 import 'package:path_of_nur/features/kids_dua_learning/presentation/kids_dua_landing_page.dart';
@@ -172,5 +173,10 @@ void main() {
     router.go('/learn/kids/stories/story_telling_the_truth_v1/read');
     await pumpRouteFrames(tester);
     expect(find.byType(KidsStoryReaderPage), findsOneWidget);
+
+    // One sticker book for everything a child finishes (K4).
+    router.go('/learn/kids/stickers');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsStickerBookPage), findsOneWidget);
   });
 }
