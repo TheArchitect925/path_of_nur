@@ -52,6 +52,8 @@ void main() {
       'lib/features/kids/play/presentation/kids_play_page.dart',
       'lib/features/kids/rewards/presentation/kids_sticker_book_page.dart',
       'lib/features/kids/shared/presentation/kids_landing_page.dart',
+      // The grown-up gate (K5) fronts the parents section.
+      'lib/features/kids/parents/presentation/kids_parent_gate.dart',
       'lib/features/kids/seerah/presentation/seerah_journeys_page.dart',
       'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart',
       'lib/features/kids_arabic/presentation/kids_arabic_parent_dashboard_page.dart',

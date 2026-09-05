@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/app/app_router.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
@@ -178,5 +179,10 @@ void main() {
     router.go('/learn/kids/stickers');
     await pumpRouteFrames(tester);
     expect(find.byType(KidsStickerBookPage), findsOneWidget);
+
+    // One parents door (K5); an adult profile is not gated.
+    router.go('/learn/kids/parents');
+    await pumpRouteFrames(tester);
+    expect(find.byType(BedtimeStoryParentDashboardPage), findsOneWidget);
   });
 }

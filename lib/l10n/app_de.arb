@@ -19288,5 +19288,13 @@
   "kidsInvitationFirstLetterSubtitle": "Fang mit Alif an: hören, nachfahren, Sticker verdienen.",
   "kidsInvitationFirstDuaTitle": "Lerne dein erstes Duʿā",
   "kidsInvitationFirstDuaSubtitle": "Ein kleines für heute. Sag es und verdiene einen Sticker.",
-  "kidsInvitationStartAction": "Los geht’s"
+  "kidsInvitationStartAction": "Los geht’s",
+  "kidsParentGateTitle": "Nur für Erwachsene",
+  "kidsParentGateBody": "Halte den Knopf gedrückt, um den Elternbereich zu öffnen.",
+  "kidsParentGateHoldAction": "Gedrückt halten",
+  "kidsParentsFamilySection": "Familie und Einstellungen",
+  "kidsParentsKidsUiRowSubtitle": "Lege fest, ob die App wie eine Kinder-App aussieht und liest.",
+  "kidsParentsLettersDashboardSubtitle": "Nachgefahrene Buchstaben, fällige Wiederholungen und der nächste Schritt.",
+  "kidsParentsLettersSettingsSubtitle": "Geführte Reihenfolge, Fokusbuchstaben und Wiederholungseinstellungen.",
+  "kidsParentsDuasDashboardSubtitle": "Gelernte Duʿās, Zeichnungen und der Schalter für die Elternansicht."
 }

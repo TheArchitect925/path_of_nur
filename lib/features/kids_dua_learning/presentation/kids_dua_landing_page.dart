@@ -154,15 +154,6 @@ class KidsDuaLandingPage extends ConsumerWidget {
           subtitle: l10n.kidsDuaRewardsEncouragement,
           onTap: () => context.pushNamed('kidsStickerBook'),
         ),
-        const SizedBox(height: 10),
-        _QuickEntryCard(
-          icon: Icons.family_restroom_rounded,
-          title: l10n.kidsDuaParentTitle,
-          subtitle: creative.parentViewEnabled
-              ? l10n.kidsDuaParentLandingEnabled
-              : l10n.kidsDuaParentLandingDisabled,
-          onTap: () => context.pushNamed('kidsDuaParentDashboard'),
-        ),
       ],
     );
   }

@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/xp/presentation/widgets/journey_xp_progress_card.dart';
 import '../../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
@@ -23,9 +25,11 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
     final activeLearner = ref.watch(bedtimeActiveLearnerProvider);
     final learners = ref.watch(bedtimeAvailableLearnersProvider);
 
+    // The one parents door (K5): this summary is what a grown-up opens, and
+    // every other parent page is a row on it.
     return LearnHubPageScaffold(
       headerIcon: AppIcons.family,
-      title: l10n.bedtimeParentDashboardTitle,
+      title: l10n.bedtimeParentEntryTitle,
       subtitle: l10n.bedtimeParentDashboardSubtitle,
       children: [
         if (learners.where((item) => !item.isArchived).length > 1) ...[
@@ -65,6 +69,42 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
         ],
+        HubListGroup(
+          title: l10n.kidsParentsFamilySection,
+          children: [
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.family),
+              title: l10n.bedtimeFamilyModeTitle,
+              subtitle: l10n.bedtimeFamilyModeSubtitle,
+              onTap: () => context.pushNamed('kidsBedtimeStoriesFamilyMode'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.letters),
+              title: l10n.kidsArabicParentDashboardTitle,
+              subtitle: l10n.kidsParentsLettersDashboardSubtitle,
+              onTap: () => context.pushNamed('kidsArabicParentDashboard'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.letters),
+              title: l10n.kidsArabicParentSettingsTitle,
+              subtitle: l10n.kidsParentsLettersSettingsSubtitle,
+              onTap: () => context.pushNamed('kidsArabicParentSettings'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.dua),
+              title: l10n.kidsDuaParentTitle,
+              subtitle: l10n.kidsParentsDuasDashboardSubtitle,
+              onTap: () => context.pushNamed('kidsDuaParentDashboard'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.kids),
+              title: l10n.kidsUiThemeSettingTitle,
+              subtitle: l10n.kidsParentsKidsUiRowSubtitle,
+              onTap: () => context.pushNamed('settings'),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
         _HeroCard(
           learnerName: summary.overview.learnerDisplayName,
           streak: summary.habitSummary.currentStreak,

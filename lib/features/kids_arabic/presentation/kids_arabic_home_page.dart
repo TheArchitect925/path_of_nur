@@ -292,16 +292,6 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
               label: l10n.kidsArabicRewardsTitle,
               onTap: () => context.pushNamed('kidsStickerBook'),
             ),
-            _ActionRowItem(
-              icon: Icons.family_restroom_rounded,
-              label: l10n.kidsArabicParentDashboardTitle,
-              onTap: () => context.pushNamed('kidsArabicParentDashboard'),
-            ),
-            _ActionRowItem(
-              icon: Icons.tune_rounded,
-              label: l10n.kidsArabicParentSettingsTitle,
-              onTap: () => context.pushNamed('kidsArabicParentSettings'),
-            ),
           ],
         ),
         const SizedBox(height: 18),
@@ -1297,7 +1287,7 @@ class _FamilySummaryCard extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: TextButton(
-              onPressed: () => context.pushNamed('kidsArabicParentDashboard'),
+              onPressed: () => context.pushNamed('kidsParents'),
               child: Text(l10n.kidsArabicFamilySummaryAction),
             ),
           ),

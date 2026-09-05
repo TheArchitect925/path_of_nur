@@ -73825,6 +73825,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Let’s go'**
   String get kidsInvitationStartAction;
+
+  /// No description provided for @kidsParentGateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-ups only'**
+  String get kidsParentGateTitle;
+
+  /// No description provided for @kidsParentGateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Press and hold the button to open the parents area.'**
+  String get kidsParentGateBody;
+
+  /// No description provided for @kidsParentGateHoldAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold to open'**
+  String get kidsParentGateHoldAction;
+
+  /// No description provided for @kidsParentsFamilySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Family and settings'**
+  String get kidsParentsFamilySection;
+
+  /// No description provided for @kidsParentsKidsUiRowSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose whether the app looks and reads like a kids app.'**
+  String get kidsParentsKidsUiRowSubtitle;
+
+  /// No description provided for @kidsParentsLettersDashboardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters traced, review due, and what to assign next.'**
+  String get kidsParentsLettersDashboardSubtitle;
+
+  /// No description provided for @kidsParentsLettersSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided order, focus letters and review settings.'**
+  String get kidsParentsLettersSettingsSubtitle;
+
+  /// No description provided for @kidsParentsDuasDashboardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duʿās learned, drawings, and the parent view switch.'**
+  String get kidsParentsDuasDashboardSubtitle;
 }
 
 class _AppLocalizationsDelegate

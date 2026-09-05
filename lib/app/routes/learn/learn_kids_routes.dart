@@ -10,6 +10,7 @@ import '../../../features/kids/bedtime_stories/presentation/bedtime_story_quiz_p
 import '../../../features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
+import '../../../features/kids/parents/presentation/kids_parent_gate.dart';
 import '../../../features/kids/play/presentation/kids_play_page.dart';
 import '../../../features/kids/rewards/presentation/kids_sticker_book_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journey_page.dart';
@@ -232,14 +233,16 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/arabic/parent',
       name: 'kidsArabicParentDashboard',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsArabicParentDashboardPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: KidsArabicParentDashboardPage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/arabic/parent/settings',
       name: 'kidsArabicParentSettings',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsArabicParentSettingsPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: KidsArabicParentSettingsPage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/arabic/coloring',
@@ -302,8 +305,18 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/bedtime-stories/parents',
       name: 'kidsBedtimeStoriesParentDashboard',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: BedtimeStoryParentDashboardPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: BedtimeStoryParentDashboardPage()),
+      ),
+    ),
+    // The one parents door (K5): the merged summary behind the grown-up
+    // gate. Every other parent page is reached from here.
+    GoRoute(
+      path: '/learn/kids/parents',
+      name: 'kidsParents',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: BedtimeStoryParentDashboardPage()),
+      ),
     ),
     // The one reward world (K4): every sticker a child has earned.
     GoRoute(
@@ -315,14 +328,16 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/progression',
       name: 'kidsLearnerProgression',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnerProgressionPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: LearnerProgressionPage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/bedtime-stories/family',
       name: 'kidsBedtimeStoriesFamilyMode',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: BedtimeStoryFamilyModePage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: BedtimeStoryFamilyModePage()),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/bedtime-stories/companion',
@@ -497,8 +512,9 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/dua/parent',
       name: 'kidsDuaParentDashboard',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsDuaParentDashboardPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsParentGate(child: KidsDuaParentDashboardPage()),
+      ),
     ),
   ];
 }

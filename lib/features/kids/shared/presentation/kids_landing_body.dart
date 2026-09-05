@@ -45,7 +45,7 @@ class KidsLandingBody extends ConsumerWidget {
           leading: const HubLeadingIcon(AppIcons.family),
           title: l10n.kidsDoorParentsTitle,
           subtitle: l10n.kidsDoorParentsSubtitle,
-          onTap: () => context.pushNamed('kidsBedtimeStoriesParentDashboard'),
+          onTap: () => context.pushNamed('kidsParents'),
         ),
       ],
     );

@@ -12284,5 +12284,13 @@
   "kidsInvitationFirstLetterSubtitle": "Start with Alif: hear it, trace it, earn a sticker.",
   "kidsInvitationFirstDuaTitle": "Learn your first duʿā",
   "kidsInvitationFirstDuaSubtitle": "A little one for today. Say it, and earn a sticker.",
-  "kidsInvitationStartAction": "Let’s go"
+  "kidsInvitationStartAction": "Let’s go",
+  "kidsParentGateTitle": "Grown-ups only",
+  "kidsParentGateBody": "Press and hold the button to open the parents area.",
+  "kidsParentGateHoldAction": "Hold to open",
+  "kidsParentsFamilySection": "Family and settings",
+  "kidsParentsKidsUiRowSubtitle": "Choose whether the app looks and reads like a kids app.",
+  "kidsParentsLettersDashboardSubtitle": "Letters traced, review due, and what to assign next.",
+  "kidsParentsLettersSettingsSubtitle": "Guided order, focus letters and review settings.",
+  "kidsParentsDuasDashboardSubtitle": "Duʿās learned, drawings, and the parent view switch."
 }

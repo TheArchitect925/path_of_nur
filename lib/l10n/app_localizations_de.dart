@@ -44904,4 +44904,33 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsInvitationStartAction => 'Los geht’s';
+
+  @override
+  String get kidsParentGateTitle => 'Nur für Erwachsene';
+
+  @override
+  String get kidsParentGateBody =>
+      'Halte den Knopf gedrückt, um den Elternbereich zu öffnen.';
+
+  @override
+  String get kidsParentGateHoldAction => 'Gedrückt halten';
+
+  @override
+  String get kidsParentsFamilySection => 'Familie und Einstellungen';
+
+  @override
+  String get kidsParentsKidsUiRowSubtitle =>
+      'Lege fest, ob die App wie eine Kinder-App aussieht und liest.';
+
+  @override
+  String get kidsParentsLettersDashboardSubtitle =>
+      'Nachgefahrene Buchstaben, fällige Wiederholungen und der nächste Schritt.';
+
+  @override
+  String get kidsParentsLettersSettingsSubtitle =>
+      'Geführte Reihenfolge, Fokusbuchstaben und Wiederholungseinstellungen.';
+
+  @override
+  String get kidsParentsDuasDashboardSubtitle =>
+      'Gelernte Duʿās, Zeichnungen und der Schalter für die Elternansicht.';
 }

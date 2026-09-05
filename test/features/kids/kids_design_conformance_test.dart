@@ -199,7 +199,7 @@ void main() {
           1,
       'lib/features/kids_arabic/presentation/kids_arabic_coloring_viewer_page.dart':
           1,
-      'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart': 8,
+      'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart': 6,
       'lib/features/kids_arabic/presentation/kids_arabic_lesson_page.dart': 1,
       'lib/features/kids_arabic/presentation/kids_arabic_mini_phrases_page.dart':
           6,
@@ -226,7 +226,7 @@ void main() {
       'lib/features/kids_dua_learning/presentation/kids_dua_drawings_page.dart':
           1,
       'lib/features/kids_dua_learning/presentation/kids_dua_landing_page.dart':
-          10,
+          9,
       'lib/features/kids_dua_learning/presentation/kids_dua_lesson_page.dart':
           13,
       'lib/features/kids_dua_learning/presentation/kids_dua_my_day_page.dart':
