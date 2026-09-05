@@ -4905,7 +4905,7 @@
   "kidsArabicPronunciationAction": "Anhören",
   "kidsArabicClearTraceAction": "Versuchen Sie es erneut",
   "kidsArabicTraceTitle": "Gemeinsam verfolgen",
-  "kidsArabicTraceSubtitle": "Probieren Sie {count} sanfte Strichformen aus.",
+  "kidsArabicTraceSubtitle": "{count, plural, =1{Probiere einen sanften Strich.} other{Probiere {count} sanfte Striche.}}",
   "@kidsArabicTraceSubtitle": {
     "placeholders": {
       "count": {
@@ -19239,5 +19239,22 @@
   "kidsDoorParentsSubtitle": "Fortschritt, Einstellungen und Familienprofile",
   "kidsPlaySubtitle": "Übungsspiele, Geschichten-Quiz, Ausmalen und Zeichnen.",
   "kidsPlayGamesSectionTitle": "Spiele",
-  "kidsPlayMakeSectionTitle": "Malen und Zeichnen"
+  "kidsPlayMakeSectionTitle": "Malen und Zeichnen",
+  "kidsStoryReaderPageValue": "Seite {current} von {total}",
+  "@kidsStoryReaderPageValue": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "kidsStoryReaderListenAction": "Diese Seite anhören",
+  "kidsStoryReaderStopAction": "Stopp",
+  "kidsStoryReaderNextAction": "Nächste Seite",
+  "kidsStoryReaderBackAction": "Zurück",
+  "kidsStoryReaderTheEndTitle": "Ende",
+  "kidsStoryReaderFinishAction": "Ich habe es gelesen!",
+  "kidsStoryReaderReadAgainAction": "Noch einmal lesen",
+  "kidsStoryReaderAboutAction": "Über diese Geschichte",
+  "kidsStoryReaderTapToHearHint": "Tippe auf eine Zeile, um sie zu hören.",
+  "kidsStoryReaderLessonEyebrow": "Was wir gelernt haben"
 }

@@ -9,6 +9,7 @@ import '../../../features/kids/bedtime_stories/presentation/bedtime_story_parent
 import '../../../features/kids/bedtime_stories/presentation/bedtime_story_quiz_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import '../../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
+import '../../../features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
 import '../../../features/kids/play/presentation/kids_play_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journey_page.dart';
 import '../../../features/kids/seerah/presentation/seerah_journeys_page.dart';
@@ -353,6 +354,17 @@ List<RouteBase> buildLearnKidsRoutes() {
       name: 'kidsBedtimeStoryQuiz',
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryQuizPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    // The storybook (K2): one picture and a few lines per page, a voice for
+    // every line. Both story families read here.
+    GoRoute(
+      path: '/learn/kids/stories/:storyId/read',
+      name: 'kidsStoryReader',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsStoryReaderPage(
           storyId: state.pathParameters['storyId'] ?? '',
         ),
       ),

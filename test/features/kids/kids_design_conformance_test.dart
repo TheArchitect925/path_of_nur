@@ -18,10 +18,8 @@ import 'package:flutter_test/flutter_test.dart';
 /// it does the seed must follow.
 void main() {
   test('Kids pages build on the app scaffold, not a bare Scaffold', () {
-    const allowed = <String>{
-      // Full-screen drawing canvas; needs the immersive layout from K2.
-      'lib/features/kids_dua_learning/presentation/kids_dua_drawing_page.dart',
-    };
+    // K2 moved the drawing canvas onto the kids shell; nothing is left.
+    const allowed = <String>{};
     _expectNoDrift(
       pattern: RegExp(r'(^|[^A-Za-z0-9_])Scaffold\('),
       allowed: allowed,
@@ -33,10 +31,7 @@ void main() {
   });
 
   test('Kids pages do not raise a Material AppBar', () {
-    const allowed = <String>{
-      // Same canvas page as above; the AppBar goes with the Scaffold in K2.
-      'lib/features/kids_dua_learning/presentation/kids_dua_drawing_page.dart',
-    };
+    const allowed = <String>{};
     _expectNoDrift(
       pattern: RegExp(r'(^|[^A-Za-z0-9_])(Sliver)?AppBar\('),
       allowed: allowed,
@@ -130,7 +125,7 @@ void main() {
       'lib/features/kids_dua_learning/presentation/kids_dua_category_page.dart':
           8,
       'lib/features/kids_dua_learning/presentation/kids_dua_drawing_page.dart':
-          11,
+          9,
       'lib/features/kids_dua_learning/presentation/kids_dua_drawings_page.dart':
           2,
       'lib/features/kids_dua_learning/presentation/kids_dua_lesson_page.dart':
@@ -176,7 +171,7 @@ void main() {
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_cover_card.dart':
           1,
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_detail_page.dart':
-          8,
+          6,
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_family_mode_page.dart':
           5,
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_full_player_sheet.dart':
@@ -193,8 +188,6 @@ void main() {
           2,
       'lib/features/kids/bedtime_stories/presentation/bedtime_story_quiz_page.dart':
           2,
-      'lib/features/kids/bedtime_stories/presentation/bedtime_story_transcript_view.dart':
-          1,
       'lib/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart':
           1,
       'lib/features/kids/seerah/presentation/seerah_journey_page.dart': 7,

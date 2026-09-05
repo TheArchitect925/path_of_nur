@@ -10917,7 +10917,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String kidsArabicTraceSubtitle(int count) {
-    return 'Probieren Sie $count sanfte Strichformen aus.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Probiere $count sanfte Striche.',
+      one: 'Probiere einen sanften Strich.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -44782,4 +44788,40 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsPlayMakeSectionTitle => 'Malen und Zeichnen';
+
+  @override
+  String kidsStoryReaderPageValue(Object current, Object total) {
+    return 'Seite $current von $total';
+  }
+
+  @override
+  String get kidsStoryReaderListenAction => 'Diese Seite anhören';
+
+  @override
+  String get kidsStoryReaderStopAction => 'Stopp';
+
+  @override
+  String get kidsStoryReaderNextAction => 'Nächste Seite';
+
+  @override
+  String get kidsStoryReaderBackAction => 'Zurück';
+
+  @override
+  String get kidsStoryReaderTheEndTitle => 'Ende';
+
+  @override
+  String get kidsStoryReaderFinishAction => 'Ich habe es gelesen!';
+
+  @override
+  String get kidsStoryReaderReadAgainAction => 'Noch einmal lesen';
+
+  @override
+  String get kidsStoryReaderAboutAction => 'Über diese Geschichte';
+
+  @override
+  String get kidsStoryReaderTapToHearHint =>
+      'Tippe auf eine Zeile, um sie zu hören.';
+
+  @override
+  String get kidsStoryReaderLessonEyebrow => 'Was wir gelernt haben';
 }

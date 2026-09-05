@@ -106,7 +106,9 @@ class BedtimeStoryAudioController
       } else if (initialPosition > Duration.zero || state.isCompleted) {
         await _player.seek(initialPosition);
       }
-      _ref.read(bedtimeStoryProgressProvider.notifier).openStory(story.id);
+      _ref
+          .read(bedtimeStoryProgressProvider.notifier)
+          .openStory(story.id, story: story);
       state = state.copyWith(
         currentStoryId: story.id,
         playbackSource: resolved.playbackSource,

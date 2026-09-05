@@ -18509,7 +18509,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicTraceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try {count} gentle stroke shapes.'**
+  /// **'{count, plural, =1{Try one gentle stroke.} other{Try {count} gentle strokes.}}'**
   String kidsArabicTraceSubtitle(int count);
 
   /// No description provided for @kidsArabicTraceStrokeProgress.
@@ -73651,6 +73651,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Make and colour'**
   String get kidsPlayMakeSectionTitle;
+
+  /// No description provided for @kidsStoryReaderPageValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {current} of {total}'**
+  String kidsStoryReaderPageValue(Object current, Object total);
+
+  /// No description provided for @kidsStoryReaderListenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to this page'**
+  String get kidsStoryReaderListenAction;
+
+  /// No description provided for @kidsStoryReaderStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get kidsStoryReaderStopAction;
+
+  /// No description provided for @kidsStoryReaderNextAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next page'**
+  String get kidsStoryReaderNextAction;
+
+  /// No description provided for @kidsStoryReaderBackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get kidsStoryReaderBackAction;
+
+  /// No description provided for @kidsStoryReaderTheEndTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The end'**
+  String get kidsStoryReaderTheEndTitle;
+
+  /// No description provided for @kidsStoryReaderFinishAction.
+  ///
+  /// In en, this message translates to:
+  /// **'I read it!'**
+  String get kidsStoryReaderFinishAction;
+
+  /// No description provided for @kidsStoryReaderReadAgainAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Read it again'**
+  String get kidsStoryReaderReadAgainAction;
+
+  /// No description provided for @kidsStoryReaderAboutAction.
+  ///
+  /// In en, this message translates to:
+  /// **'About this story'**
+  String get kidsStoryReaderAboutAction;
+
+  /// No description provided for @kidsStoryReaderTapToHearHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a line to hear it.'**
+  String get kidsStoryReaderTapToHearHint;
+
+  /// No description provided for @kidsStoryReaderLessonEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'What we learned'**
+  String get kidsStoryReaderLessonEyebrow;
 }
 
 class _AppLocalizationsDelegate

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
@@ -29,6 +31,8 @@ class _KidsDuaDrawingPageState extends ConsumerState<KidsDuaDrawingPage> {
   bool _eraseMode = false;
   bool _saving = false;
 
+  // The crayons. These are content, not chrome: a child's palette stays the
+  // same on every theme.
   static const _palette = <Color>[
     Color(0xFF2E2A25),
     Color(0xFF8A6A45),
@@ -51,110 +55,87 @@ class _KidsDuaDrawingPageState extends ConsumerState<KidsDuaDrawingPage> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.kidsDuaDrawTitle)),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  lesson.title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  l10n.kidsDuaDrawHint,
-                  style: const TextStyle(color: Color(0xFF675B4E)),
-                ),
-              ],
+    return KidsPageScaffold(
+      title: lesson.title,
+      subtitle: l10n.kidsDuaDrawHint,
+      floatingBottom: PremiumCard(
+        density: PremiumCardDensity.compact,
+        child: Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: _strokes.isNotEmpty
+                    ? () => setState(() {
+                        final last = _strokes.removeLast();
+                        _redo.add(last);
+                      })
+                    : null,
+                child: Text(l10n.kidsDuaDrawUndoAction),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _Toolbar(
-              selectedColor: _selectedColor,
-              selectedWidth: _selectedWidth,
-              eraseMode: _eraseMode,
-              onColorSelected: (color) {
-                setState(() {
-                  _selectedColor = color;
-                  _eraseMode = false;
-                });
-              },
-              onWidthSelected: (width) =>
-                  setState(() => _selectedWidth = width),
-              onEraseToggled: () => setState(() => _eraseMode = !_eraseMode),
-              onClear: () => setState(() {
-                _strokes.clear();
-                _redo.clear();
-              }),
-              palette: _palette,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: RepaintBoundary(
-                key: _boundaryKey,
-                child: GestureDetector(
-                  onPanStart: (details) => _startStroke(details.localPosition),
-                  onPanUpdate: (details) => _appendPoint(details.localPosition),
-                  onPanEnd: (_) => _endStroke(),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(color: const Color(0xFFE8DDD0)),
-                    ),
-                    child: CustomPaint(
-                      painter: _DrawingPainter(_strokes),
-                      child: const SizedBox.expand(),
-                    ),
-                  ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: FilledButton(
+                onPressed: _strokes.isEmpty || _saving
+                    ? null
+                    : () => _saveDrawing(context),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(52),
+                ),
+                child: Text(
+                  _saving
+                      ? l10n.kidsDuaDrawSavingAction
+                      : l10n.kidsDuaDrawSaveAction,
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-            child: Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: _strokes.isNotEmpty
-                        ? () => setState(() {
-                            final last = _strokes.removeLast();
-                            _redo.add(last);
-                          })
-                        : null,
-                    child: Text(l10n.kidsDuaDrawUndoAction),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: FilledButton(
-                    onPressed: _strokes.isEmpty || _saving
-                        ? null
-                        : () => _saveDrawing(context),
-                    child: Text(
-                      _saving
-                          ? l10n.kidsDuaDrawSavingAction
-                          : l10n.kidsDuaDrawSaveAction,
-                    ),
-                  ),
-                ),
-              ],
+          ],
+        ),
+      ),
+      children: [
+        _Toolbar(
+          selectedColor: _selectedColor,
+          selectedWidth: _selectedWidth,
+          eraseMode: _eraseMode,
+          onColorSelected: (color) {
+            setState(() {
+              _selectedColor = color;
+              _eraseMode = false;
+            });
+          },
+          onWidthSelected: (width) => setState(() => _selectedWidth = width),
+          onEraseToggled: () => setState(() => _eraseMode = !_eraseMode),
+          onClear: () => setState(() {
+            _strokes.clear();
+            _redo.clear();
+          }),
+          palette: _palette,
+        ),
+        const SizedBox(height: 12),
+        RepaintBoundary(
+          key: _boundaryKey,
+          child: GestureDetector(
+            onPanStart: (details) => _startStroke(details.localPosition),
+            onPanUpdate: (details) => _appendPoint(details.localPosition),
+            onPanEnd: (_) => _endStroke(),
+            child: Container(
+              height: 440,
+              decoration: BoxDecoration(
+                // Paper is white on every theme; the drawing is saved as
+                // seen.
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(color: context.palette.border),
+              ),
+              child: CustomPaint(
+                painter: _DrawingPainter(_strokes),
+                child: const SizedBox.expand(),
+              ),
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 120),
+      ],
     );
   }
 
@@ -230,75 +211,87 @@ class _Toolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Column(
-      children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: palette
-              .map(
-                (color) => GestureDetector(
-                  onTap: () => onColorSelected(color),
-                  child: Container(
-                    width: 34,
-                    height: 34,
-                    decoration: BoxDecoration(
-                      color: color,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: selectedColor == color && !eraseMode
-                            ? Colors.black
-                            : Colors.transparent,
-                        width: 2,
+    return PremiumCard(
+      density: PremiumCardDensity.compact,
+      child: Column(
+        children: [
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: palette
+                .map(
+                  (color) => Semantics(
+                    button: true,
+                    selected: selectedColor == color && !eraseMode,
+                    child: GestureDetector(
+                      onTap: () => onColorSelected(color),
+                      child: Container(
+                        // 44 pt: a crayon a small finger can pick.
+                        width: 44,
+                        height: 44,
+                        decoration: BoxDecoration(
+                          color: color,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: selectedColor == color && !eraseMode
+                                ? context.palette.onSurface
+                                : Colors.transparent,
+                            width: 3,
+                          ),
+                        ),
                       ),
                     ),
                   ),
+                )
+                .toList(growable: false),
+          ),
+          const SizedBox(height: 12),
+          // The brush sizes take the whole row: in the kids type scale the
+          // three labels do not fit beside the tool buttons.
+          SegmentedButton<double>(
+            segments: <ButtonSegment<double>>[
+              ButtonSegment<double>(
+                value: 4,
+                label: Text(l10n.kidsDuaDrawBrushSmall),
+              ),
+              ButtonSegment<double>(
+                value: 8,
+                label: Text(l10n.kidsDuaDrawBrushMedium),
+              ),
+              ButtonSegment<double>(
+                value: 14,
+                label: Text(l10n.kidsDuaDrawBrushLarge),
+              ),
+            ],
+            selected: <double>{selectedWidth},
+            onSelectionChanged: (value) => onWidthSelected(value.first),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: FilledButton.tonalIcon(
+                  onPressed: onEraseToggled,
+                  icon: Icon(
+                    eraseMode
+                        ? Icons.auto_fix_off_rounded
+                        : Icons.cleaning_services_rounded,
+                  ),
+                  label: Text(l10n.kidsDuaDrawEraseAction),
                 ),
-              )
-              .toList(growable: false),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: SegmentedButton<double>(
-                segments: <ButtonSegment<double>>[
-                  ButtonSegment<double>(
-                    value: 4,
-                    label: Text(l10n.kidsDuaDrawBrushSmall),
-                  ),
-                  ButtonSegment<double>(
-                    value: 8,
-                    label: Text(l10n.kidsDuaDrawBrushMedium),
-                  ),
-                  ButtonSegment<double>(
-                    value: 14,
-                    label: Text(l10n.kidsDuaDrawBrushLarge),
-                  ),
-                ],
-                selected: <double>{selectedWidth},
-                onSelectionChanged: (value) => onWidthSelected(value.first),
               ),
-            ),
-            const SizedBox(width: 8),
-            IconButton.filledTonal(
-              onPressed: onEraseToggled,
-              icon: Icon(
-                eraseMode
-                    ? Icons.auto_fix_off_rounded
-                    : Icons.cleaning_services_rounded,
+              const SizedBox(width: 10),
+              Expanded(
+                child: FilledButton.tonalIcon(
+                  onPressed: onClear,
+                  icon: const Icon(Icons.delete_sweep_rounded),
+                  label: Text(l10n.kidsDuaDrawClearAction),
+                ),
               ),
-              tooltip: l10n.kidsDuaDrawEraseAction,
-            ),
-            const SizedBox(width: 8),
-            IconButton.filledTonal(
-              onPressed: onClear,
-              icon: const Icon(Icons.delete_sweep_rounded),
-              tooltip: l10n.kidsDuaDrawClearAction,
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

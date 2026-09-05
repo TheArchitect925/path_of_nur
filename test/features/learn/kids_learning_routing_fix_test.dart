@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
 import 'package:path_of_nur/features/kids/play/presentation/kids_play_page.dart';
 import 'package:path_of_nur/features/kids/shared/presentation/kids_landing_page.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_home_page.dart';
@@ -166,5 +167,10 @@ void main() {
     router.go('/learn/kids/hadith-stories');
     await pumpRouteFrames(tester);
     expect(find.byType(KidsHadithStoriesPage), findsOneWidget);
+
+    // Every story reads in the storybook (K2).
+    router.go('/learn/kids/stories/story_telling_the_truth_v1/read');
+    await pumpRouteFrames(tester);
+    expect(find.byType(KidsStoryReaderPage), findsOneWidget);
   });
 }

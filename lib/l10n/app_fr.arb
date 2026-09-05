@@ -12235,5 +12235,22 @@
   "kidsDoorParentsSubtitle": "Progress, settings and family profiles",
   "kidsPlaySubtitle": "Practice games, story quizzes, colouring and drawing.",
   "kidsPlayGamesSectionTitle": "Games",
-  "kidsPlayMakeSectionTitle": "Make and colour"
+  "kidsPlayMakeSectionTitle": "Make and colour",
+  "kidsStoryReaderPageValue": "Page {current} of {total}",
+  "@kidsStoryReaderPageValue": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "kidsStoryReaderListenAction": "Listen to this page",
+  "kidsStoryReaderStopAction": "Stop",
+  "kidsStoryReaderNextAction": "Next page",
+  "kidsStoryReaderBackAction": "Back",
+  "kidsStoryReaderTheEndTitle": "The end",
+  "kidsStoryReaderFinishAction": "I read it!",
+  "kidsStoryReaderReadAgainAction": "Read it again",
+  "kidsStoryReaderAboutAction": "About this story",
+  "kidsStoryReaderTapToHearHint": "Tap a line to hear it.",
+  "kidsStoryReaderLessonEyebrow": "What we learned"
 }

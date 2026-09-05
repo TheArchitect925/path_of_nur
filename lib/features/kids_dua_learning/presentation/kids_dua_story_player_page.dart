@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../kids/shared/application/kids_read_aloud.dart';
 import '../application/kids_dua_progress_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../application/kids_dua_story_illustration_service.dart';
@@ -27,16 +28,24 @@ class _KidsDuaStoryPlayerPageState
     extends ConsumerState<KidsDuaStoryPlayerPage> {
   int _sceneIndex = 0;
   bool _autoplay = false;
-  Timer? _timer;
+
+  /// Bumped when autoplay stops so a running loop knows to end.
+  int _autoplayRun = 0;
+
+  /// How long a scene stays up in autoplay when there is no voice, and the
+  /// least it stays up when there is.
+  static const _sceneDwell = Duration(seconds: 4);
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
       final progress = ref
           .read(kidsDuaLearningProvider)
           .storyProgressById[widget.storyId];
       ref.read(kidsDuaLearningProvider.notifier).openStory(widget.storyId);
+      ref.read(kidsReadAloudControllerProvider.notifier).prepare();
       if (progress != null && progress.viewedSceneCount > 0) {
         setState(() => _sceneIndex = progress.viewedSceneCount - 1);
       }
@@ -45,7 +54,7 @@ class _KidsDuaStoryPlayerPageState
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _autoplayRun++;
     super.dispose();
   }
 
@@ -68,6 +77,9 @@ class _KidsDuaStoryPlayerPageState
     final sceneVisual = scene.resolvedVisual;
     final sceneAsset = illustrationService.getSceneAsset(scene);
     final textTheme = Theme.of(context).textTheme;
+    final readAloud = ref.watch(kidsReadAloudControllerProvider);
+    final canHear = readAloud.available ?? false;
+    final sceneLineId = 'scene-$_sceneIndex';
 
     // The scene controls float above the tab bar so the primary action is
     // always reachable; the trailing spacer keeps the last line of a scene
@@ -86,7 +98,10 @@ class _KidsDuaStoryPlayerPageState
                   child: OutlinedButton.icon(
                     onPressed: _sceneIndex == 0
                         ? null
-                        : () => setState(() => _sceneIndex -= 1),
+                        : () {
+                            _stopAutoplay();
+                            setState(() => _sceneIndex -= 1);
+                          },
                     icon: const Icon(Icons.arrow_back_rounded),
                     label: Text(l10n.kidsDuaStoriesBackAction),
                   ),
@@ -113,7 +128,10 @@ class _KidsDuaStoryPlayerPageState
             FilledButton(
               onPressed: isLast
                   ? () => _finishStory(context, story.duaId)
-                  : () => _nextScene(story.sceneCount),
+                  : () {
+                      _stopAutoplay();
+                      _nextScene(story.sceneCount);
+                    },
               style: FilledButton.styleFrom(
                 minimumSize: const Size.fromHeight(56),
               ),
@@ -128,7 +146,12 @@ class _KidsDuaStoryPlayerPageState
       ),
       children: [
         PremiumCard(
-          onTap: isLast ? null : () => _nextScene(story.sceneCount),
+          onTap: isLast
+              ? null
+              : () {
+                  _stopAutoplay();
+                  _nextScene(story.sceneCount);
+                },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -166,13 +189,40 @@ class _KidsDuaStoryPlayerPageState
                 ),
               ),
               const SizedBox(height: 18),
-              Text(
-                scene.text,
-                style: textTheme.headlineSmall?.copyWith(
-                  height: 1.4,
-                  fontWeight: FontWeight.w700,
+              // Every line has a voice: tap it to hear it (K2).
+              InkWell(
+                onTap: canHear
+                    ? () => ref
+                          .read(kidsReadAloudControllerProvider.notifier)
+                          .speak(
+                            KidsReadAloudLine(
+                              id: sceneLineId,
+                              text: scene.text,
+                            ),
+                          )
+                    : null,
+                borderRadius: BorderRadius.circular(12),
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: Text(
+                    scene.text,
+                    style: textTheme.headlineSmall?.copyWith(
+                      height: 1.4,
+                      fontWeight: FontWeight.w700,
+                      color: readAloud.speakingId == sceneLineId
+                          ? context.palette.accent
+                          : null,
+                    ),
+                  ),
                 ),
               ),
+              if (canHear) ...[
+                const SizedBox(height: 8),
+                Text(
+                  l10n.kidsStoryReaderTapToHearHint,
+                  style: textTheme.bodySmall,
+                ),
+              ],
             ],
           ),
         ),
@@ -201,25 +251,47 @@ class _KidsDuaStoryPlayerPageState
   }
 
   void _toggleAutoplay(int sceneCount) {
-    setState(() => _autoplay = !_autoplay);
-    _timer?.cancel();
     if (_autoplay) {
-      _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
-        if (_sceneIndex >= sceneCount - 1) {
-          timer.cancel();
-          if (mounted) {
-            setState(() => _autoplay = false);
-          }
-          return;
-        }
-        if (mounted) {
-          _nextScene(sceneCount);
-        }
-      });
+      _stopAutoplay();
+      return;
+    }
+    setState(() => _autoplay = true);
+    unawaited(_runAutoplay(sceneCount));
+  }
+
+  void _stopAutoplay() {
+    if (!_autoplay) return;
+    _autoplayRun++;
+    ref.read(kidsReadAloudControllerProvider.notifier).stop();
+    setState(() => _autoplay = false);
+  }
+
+  /// Reads each scene aloud and turns to the next when the voice finishes,
+  /// never sooner than [_sceneDwell]; without a voice it is a slide show.
+  Future<void> _runAutoplay(int sceneCount) async {
+    final run = ++_autoplayRun;
+    final voice = ref.read(kidsReadAloudControllerProvider.notifier);
+    while (mounted && _autoplay && run == _autoplayRun) {
+      final story = ref.read(kidsDuaStoryByIdProvider(widget.storyId));
+      if (story == null) break;
+      final index = _sceneIndex;
+      await Future.wait<void>([
+        voice.speak(
+          KidsReadAloudLine(id: 'scene-$index', text: story.scenes[index].text),
+        ),
+        Future<void>.delayed(_sceneDwell),
+      ]);
+      if (!mounted || !_autoplay || run != _autoplayRun) return;
+      if (_sceneIndex >= sceneCount - 1) {
+        setState(() => _autoplay = false);
+        return;
+      }
+      _nextScene(sceneCount);
     }
   }
 
   void _finishStory(BuildContext context, String duaId) {
+    _stopAutoplay();
     ref.read(kidsDuaLearningProvider.notifier).completeStory(widget.storyId);
     showModalBottomSheet<void>(
       context: context,
