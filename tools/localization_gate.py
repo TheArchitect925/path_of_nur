@@ -91,9 +91,12 @@ REGISTER = {
         "expect": "formal",
     },
 }
-# Keys whose second person addresses Allah, not the reader.
+# Keys whose second person addresses Allah, not the reader — plus the kids
+# area, whose copy addresses the child and is correctly informal in every
+# register language. Kids keys naming Parent stay held to the formal register.
 REGISTER_EXEMPT = re.compile(
-    r"(Invocation|InvocationMeaning|DuaMeaning|VerseTranslation|GreetingMorningTranslation"
+    r"(^kids(?!\w*Parent)"
+    r"|Invocation|InvocationMeaning|DuaMeaning|VerseTranslation|GreetingMorningTranslation"
     r"|salahTrainerStep\w*Translation"
     r"|GreetingEveningTranslation|RecitationSection1Body|LeavingWashroomMeaning"
     r"|EnteringWashroomMeaning|BeforeSleepMeaning|EnteringHomeMeaning|ForParentsMeaning)"
