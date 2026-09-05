@@ -324,7 +324,7 @@ class _AyahInsightsRelatedAyahTile extends ConsumerWidget {
                       children: [
                         _ReflectionIconButton(
                           icon: savedEntry == null
-                              ? Icons.bookmark_add_outlined
+                              ? Icons.bookmark_add_rounded
                               : Icons.bookmark_rounded,
                           tooltip: savedEntry == null
                               ? l10n.quranReflectionsSaveAction
@@ -619,7 +619,7 @@ class _AyahInsightsItemTile extends ConsumerWidget {
                                 ),
                               _ReflectionIconButton(
                                 icon: savedEntry == null
-                                    ? Icons.bookmark_add_outlined
+                                    ? Icons.bookmark_add_rounded
                                     : Icons.bookmark_rounded,
                                 tooltip: savedEntry == null
                                     ? l10n.quranReflectionsSaveAction

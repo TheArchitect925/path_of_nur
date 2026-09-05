@@ -118,6 +118,38 @@ class QuranAudioRepository {
     return file.path;
   }
 
+  /// The app ships Husary recitation for Al-Fatihah and the short surahs
+  /// (105–114) inside the bundle — the salah trainer's clips, in everyayah's
+  /// naming — so a brand-new reader can follow their first surahs offline
+  /// before anything is downloaded.
+  static const Set<int> bundledHusarySurahs = {
+    1,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+  };
+
+  static const String _bundledHusaryReciterId = 'husary';
+
+  String? bundledAssetUriForAyah({
+    required String reciterId,
+    required int surahNumber,
+    required int ayahNumber,
+  }) {
+    if (reciterId != _bundledHusaryReciterId) return null;
+    if (!bundledHusarySurahs.contains(surahNumber)) return null;
+    final code =
+        '${surahNumber.toString().padLeft(3, '0')}${ayahNumber.toString().padLeft(3, '0')}';
+    return 'asset:///assets/audio/salah/husary/$code.mp3';
+  }
+
   Future<String> resolveAyahSource({
     required String reciterId,
     required int surahNumber,
@@ -129,6 +161,12 @@ class QuranAudioRepository {
       ayahNumber: ayahNumber,
     );
     if (local != null) return local;
+    final bundled = bundledAssetUriForAyah(
+      reciterId: reciterId,
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber,
+    );
+    if (bundled != null) return bundled;
     return verseUri(
       reciterId: reciterId,
       surahNumber: surahNumber,
@@ -143,11 +181,20 @@ class QuranAudioRepository {
     QuranPlaybackSourceType? preferredSourceType,
   }) async {
     final collection = collectionMetadata(reciterId);
-    final localSource = await localAyahPath(
+    final downloadedSource = await localAyahPath(
       reciterId: reciterId,
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
     );
+    // A bundled asset is on-device audio just like a download, so it rides
+    // the localDownload tier for resilience purposes.
+    final localSource =
+        downloadedSource ??
+        bundledAssetUriForAyah(
+          reciterId: reciterId,
+          surahNumber: surahNumber,
+          ayahNumber: ayahNumber,
+        );
     final remoteSource = verseUri(
       reciterId: reciterId,
       surahNumber: surahNumber,

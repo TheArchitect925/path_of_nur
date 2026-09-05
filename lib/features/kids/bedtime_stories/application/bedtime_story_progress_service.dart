@@ -53,7 +53,14 @@ class BedtimeStoryProgressController
     return state.storyProgressById[storyId] ?? const BedtimeStoryProgress();
   }
 
-  void openStory(String storyId, {DateTime? occurredAt}) {
+  /// Records that a story was opened. Pass the [story] the page already has:
+  /// the repository watches this provider, so reading the story back through
+  /// it from here is a circular dependency once a library page has built.
+  void openStory(
+    String storyId, {
+    DateTime? occurredAt,
+    BedtimeStorySeed? story,
+  }) {
     final now = occurredAt ?? DateTime.now();
     final current = progressFor(storyId);
     final next = current.copyWith(
@@ -61,7 +68,6 @@ class BedtimeStoryProgressController
       lastAccessedAtIso: now.toIso8601String(),
     );
     _writeStoryProgress(storyId, next);
-    final story = _ref.read(bedtimeStoryByIdProvider(storyId));
     _ref
         .read(kidsActivityLogProvider.notifier)
         .log(

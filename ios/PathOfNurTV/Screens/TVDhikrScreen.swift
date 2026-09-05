@@ -45,6 +45,29 @@ struct TVDhikrScreen: View {
         }
 
         TVSectionHeader(
+          title: viewModel.routinesTitle,
+          subtitle: viewModel.routinesSubtitle
+        )
+
+        ScrollView(.horizontal, showsIndicators: false) {
+          HStack(spacing: TVTheme.railSpacing) {
+            ForEach(Array(viewModel.routines.enumerated()), id: \.element.id) { index, routine in
+              Button {
+                viewModel.openRoutine(routine)
+              } label: {
+                routineCard(routine)
+              }
+              .buttonStyle(.plain)
+              .focused(
+                $focusedSection,
+                equals: index == 0 ? TVFocusSectionId.dhikrRoutines : "dhikr.routines.\(routine.id)"
+              )
+            }
+          }
+          .padding(.vertical, 8)
+        }
+
+        TVSectionHeader(
           title: viewModel.guidedFlowTitle,
           subtitle: viewModel.guidedFlowSubtitle
         )
@@ -164,6 +187,8 @@ struct TVDhikrScreen: View {
       guard let section else { return }
       if section.hasPrefix("dhikr.modes") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrModes, for: .dhikr)
+      } else if section.hasPrefix("dhikr.routines") {
+        appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrRoutines, for: .dhikr)
       } else if section.hasPrefix("dhikr.guidedFlow") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrGuidedFlow, for: .dhikr)
       } else if section.hasPrefix("dhikr.companion") {
@@ -174,6 +199,48 @@ struct TVDhikrScreen: View {
       guard direction == .left else { return }
       appViewModel.focusNavigation()
     }
+    .fullScreenCover(isPresented: $viewModel.isRoutinePlayerPresented) {
+      TVDhikrRoutinePlayerScreen(viewModel: viewModel)
+    }
+  }
+
+  private func routineCard(_ routine: TVDhikrRoutine) -> some View {
+    let done = viewModel.isRoutineDoneToday(routine)
+    return VStack(alignment: .leading, spacing: 14) {
+      HStack(alignment: .top) {
+        Text(tvLocalized("Routine").uppercased())
+          .font(TVTypography.badge)
+          .foregroundColor(TVTheme.focus)
+        Spacer(minLength: 0)
+        Image(systemName: done ? "checkmark.circle.fill" : routine.systemImage)
+          .font(.system(size: 24, weight: .semibold))
+          .foregroundColor(TVTheme.accentStrong)
+      }
+
+      Text(routine.title)
+        .font(TVTypography.featureTitle)
+        .foregroundColor(TVTheme.textPrimary)
+        .lineLimit(2)
+
+      Text(routine.subtitle)
+        .font(TVTypography.featureSubtitle)
+        .foregroundColor(TVTheme.textSecondary)
+        .lineLimit(2)
+
+      Spacer(minLength: 0)
+
+      Text(
+        done
+          ? tvLocalized("Done today · play again")
+          : tvLocalized("%d remembrances · about %d min", routine.totalCount, routine.estimatedMinutes)
+      )
+      .font(TVTypography.detail)
+      .foregroundColor(TVTheme.textMuted)
+    }
+    .frame(width: 350, height: 220, alignment: .leading)
+    .padding(TVTheme.cardPadding)
+    .tvSurfaceCard(elevated: true, emphasized: done)
+    .tvFocusableCard()
   }
 
   private func restorePreferredFocus() {

@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class BabyNamesHomePage extends ConsumerStatefulWidget {
   const BabyNamesHomePage({super.key});
@@ -37,7 +39,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
     final notifier = ref.read(babyNamesControllerProvider.notifier);
 
     return AppPageScaffold(
-      headerIcon: Icons.child_care_rounded,
+      headerIcon: AppIcons.babyNames,
       title: l10n.babyNamesTitle,
       subtitle: l10n.babyNamesSubtitle,
       children: [
@@ -161,21 +163,13 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
         ),
         const SizedBox(height: 12),
         if (nameOfDay != null)
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                l10n.babyNamesNameOfDay,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(
+          CompactListTile(
+            title: l10n.babyNamesNameOfDay,
+            subtitle:
                 '${nameOfDay.name} • ${nameOfDay.arabic}\n${nameOfDay.meaning}',
-              ),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.pushNamed(
-                'babyNameDetail',
-                pathParameters: {'nameId': nameOfDay.id},
-              ),
+            onTap: () => context.pushNamed(
+              'babyNameDetail',
+              pathParameters: {'nameId': nameOfDay.id},
             ),
           ),
         const SizedBox(height: 10),
@@ -217,7 +211,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
               child: _ActionTile(
                 title: l10n.babyNamesGeneratorTitle,
                 subtitle: l10n.babyNamesGeneratorSubtitle,
-                icon: Icons.casino_outlined,
+                icon: AppIcons.random,
                 onTap: () => context.pushNamed('babyNamesGenerator'),
               ),
             ),
@@ -245,7 +239,6 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                                 ),
                               ),
                               subtitle: Text(collection.subtitle),
-                              trailing: const Icon(Icons.chevron_right_rounded),
                               onTap: () => context.pushNamed(
                                 'babyNamesBrowse',
                                 queryParameters: {'collection': collection.id},
@@ -354,7 +347,6 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                         contentPadding: EdgeInsets.zero,
                         title: Text('${entry.name} • ${entry.arabic}'),
                         subtitle: Text(entry.meaning),
-                        trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => context.pushNamed(
                           'babyNameDetail',
                           pathParameters: {'nameId': entry.id},

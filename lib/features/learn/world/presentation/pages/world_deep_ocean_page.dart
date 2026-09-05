@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldDeepOceanPage extends StatelessWidget {
   const WorldDeepOceanPage({super.key});
@@ -37,9 +38,8 @@ class WorldDeepOceanPage extends StatelessWidget {
     ];
 
     return AppPageScaffold(
-      headerIcon: Icons.water_rounded,
-      title: 'Deep Ocean Explorer',
-      subtitle: 'A vertical reflection on depth, darkness, and hidden life.',
+      title: AppLocalizations.of(context).worldDeepOceanTitle,
+      subtitle: AppLocalizations.of(context).worldDeepOceanSubtitle,
       children: [
         PremiumCard(
           child: Column(

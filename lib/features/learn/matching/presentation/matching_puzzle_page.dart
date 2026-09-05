@@ -11,6 +11,7 @@ import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../journey/xp/application/journey_xp_providers.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -66,7 +67,6 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).matchingHomeTitle,
-      subtitle: AppLocalizations.of(context).matchingLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -74,7 +74,6 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
   Widget _buildLoadError(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).matchingHomeTitle,
-      subtitle: AppLocalizations.of(context).matchingLoadErrorSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).matchingLoadErrorTitle),
@@ -109,7 +108,6 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
     if (isChildProfile && puzzle.mode != MatchingMode.kids) {
       return AppPageScaffold(
         title: l10n.matchingHomeTitle,
-        subtitle: l10n.matchingNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.matchingKidsOnlyTitle))],
       );
     }
@@ -161,8 +159,7 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
             puzzle.pairs.length.toString(),
           );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: title,
       subtitle: subtitle,
       game: game,

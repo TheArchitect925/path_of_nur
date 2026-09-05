@@ -13,6 +13,7 @@ import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../journey/xp/application/journey_xp_providers.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -72,7 +73,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).wordSearchHomeTitle,
-      subtitle: AppLocalizations.of(context).wordSearchLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -92,7 +92,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).wordSearchHomeTitle,
-      subtitle: AppLocalizations.of(context).wordSearchNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).wordSearchNotFoundTitle),
@@ -115,7 +114,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
     if (isChildProfile && puzzle.mode != WordSearchMode.kids) {
       return AppPageScaffold(
         title: l10n.wordSearchHomeTitle,
-        subtitle: l10n.wordSearchNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.wordSearchKidsOnlyTitle))],
       );
     }
@@ -163,8 +161,7 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
       orElse: () => '',
     );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: title,
       subtitle: subtitle,
       game: game,

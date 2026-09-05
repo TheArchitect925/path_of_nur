@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
@@ -159,8 +160,6 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
     return AppPageScaffold(
       key: const ValueKey('quran-global-player-sheet'),
       title: l10n.shellQuranMiniPlayerTitle,
-      subtitle: nowPlayingLabel ?? l10n.quranReaderSubtitle,
-      headerIcon: Icons.headphones_rounded,
       headerActions: [
         IconButton(
           key: const ValueKey('quran-global-player-collapse'),
@@ -210,7 +209,7 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
       children: [
         PremiumCard(
           surfaceVariant: AppSurfaceVariant.panel,
-          surfaceTintColor: const Color(0xFFDABE8D),
+          surfaceTintColor: context.palette.accent,
           surfaceAlphaOverride: 0.62,
           child: _AnimatedExpandedPlayerSummary(
             transitionKey: ayahTransitionKey,
@@ -346,7 +345,7 @@ class _AnimatedExpandedPlayerSummary extends StatelessWidget {
               subtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: const Color(0xFF6A5A4A),
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
           ],

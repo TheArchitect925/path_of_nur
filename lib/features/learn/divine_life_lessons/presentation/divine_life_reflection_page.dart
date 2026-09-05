@@ -7,6 +7,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class DivineLifeReflectionPage extends ConsumerStatefulWidget {
   const DivineLifeReflectionPage({super.key, this.initialLessonId});
@@ -47,9 +48,8 @@ class _DivineLifeReflectionPageState
     final lesson = divineLifeLessons[_index];
 
     return AppPageScaffold(
-      headerIcon: Icons.nights_stay_rounded,
-      title: 'Reflection Mode',
-      subtitle: 'Quiet, focused reading',
+      title: AppLocalizations.of(context).divineLifeReflectionModeTitle,
+      subtitle: AppLocalizations.of(context).divineLifeReflectionModeSubtitle,
       children: [
         PremiumCard(
           child: Column(

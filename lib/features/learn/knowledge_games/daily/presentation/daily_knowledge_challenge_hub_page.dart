@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/utils/reward_feedback.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../journey/drops/application/journey_drops_providers.dart';
@@ -13,6 +14,7 @@ import '../../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../../presentation/widgets/learn_section_header.dart';
 import '../application/daily_knowledge_challenge_hub_provider.dart';
 import '../domain/daily_knowledge_challenge_models.dart';
+import '../../../../../core/theme/app_icons.dart';
 
 class DailyKnowledgeChallengeHubPage extends ConsumerStatefulWidget {
   const DailyKnowledgeChallengeHubPage({super.key});
@@ -38,7 +40,7 @@ class _DailyKnowledgeChallengeHubPageState
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.today_rounded,
+      headerIcon: AppIcons.today,
       title: l10n.dailyKnowledgeHubTitle,
       subtitle: l10n.dailyKnowledgeHubSubtitle,
       children: [
@@ -96,14 +98,11 @@ class _DailyKnowledgeChallengeHubPageState
                         ],
                       ),
                       const SizedBox(height: 12),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(999),
-                        child: LinearProgressIndicator(
-                          minHeight: 8,
-                          value: bundle.games.isEmpty
-                              ? 0
-                              : bundle.completedCount / bundle.games.length,
-                        ),
+                      ProgressBar(
+                        value: bundle.games.isEmpty
+                            ? 0
+                            : bundle.completedCount / bundle.games.length,
+                        height: 8,
                       ),
                       const SizedBox(height: 10),
                       Text(l10n.dailyKnowledgeHubJourneySummary),
@@ -212,7 +211,7 @@ class _DailyKnowledgeChallengeHubPageState
                             Icon(
                               item.isCompleted
                                   ? Icons.check_circle_rounded
-                                  : Icons.circle_outlined,
+                                  : Icons.radio_button_unchecked_rounded,
                             ),
                             const SizedBox(width: 12),
                             Expanded(

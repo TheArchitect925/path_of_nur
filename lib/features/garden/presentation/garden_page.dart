@@ -7,8 +7,15 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../kids/bedtime_stories/application/bedtime_active_learner_service.dart';
 import '../../progression/domain/learner_progression_models.dart';
+import '../../../core/theme/app_theme.dart';
+import '../application/garden_scene_provider.dart';
 import '../application/garden_service.dart';
 import '../domain/garden_models.dart';
+import '../domain/garden_scene_models.dart';
+import 'widgets/garden_vista/garden_element_meaning_sheet.dart';
+import 'widgets/garden_vista/garden_element_strings.dart';
+import 'widgets/garden_vista/garden_vista_view.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GardenPage extends ConsumerWidget {
   const GardenPage({super.key});
@@ -19,9 +26,10 @@ class GardenPage extends ConsumerWidget {
     final activeLearner = ref.watch(bedtimeActiveLearnerProvider);
     final learners = ref.watch(bedtimeAvailableLearnersProvider);
     final garden = ref.watch(activeGardenStateProvider);
+    final scene = ref.watch(activeGardenSceneSpecProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.local_florist_rounded,
+      headerIcon: AppIcons.garden,
       title: l10n.gardenPageTitle,
       subtitle: l10n.gardenPageSubtitle,
       children: [
@@ -47,7 +55,7 @@ class GardenPage extends ConsumerWidget {
           ),
           const SizedBox(height: 14),
         ],
-        _GardenHeroCard(garden: garden),
+        _GardenHeroCard(garden: garden, scene: scene),
         const SizedBox(height: 14),
         _SectionCard(
           title: l10n.gardenPageNextGrowthTitle,
@@ -56,12 +64,38 @@ class GardenPage extends ConsumerWidget {
         const SizedBox(height: 14),
         _SectionCard(
           title: l10n.gardenPageBreakdownTitle,
-          child: Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: garden.dimensions
-                .map((dimension) => _DimensionCard(dimension: dimension))
-                .toList(growable: false),
+          // Two even columns rather than fixed-width tiles, so these match
+          // the full-width cards around them instead of leaving a ragged
+          // gap at the end of each row.
+          child: Column(
+            children: [
+              for (var row = 0; row < garden.dimensions.length; row += 2)
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: row + 2 < garden.dimensions.length ? 10 : 0,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          child: _DimensionCard(
+                            dimension: garden.dimensions[row],
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: row + 1 < garden.dimensions.length
+                              ? _DimensionCard(
+                                  dimension: garden.dimensions[row + 1],
+                                )
+                              : const SizedBox.shrink(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
         const SizedBox(height: 14),
@@ -128,7 +162,7 @@ class GardenPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               _MeaningLine(
-                icon: Icons.wb_sunny_outlined,
+                icon: Icons.wb_sunny_rounded,
                 title: l10n.gardenPageLightMeaningTitle,
                 body: l10n.gardenPageLightMeaningBody,
               ),
@@ -140,7 +174,7 @@ class GardenPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               _MeaningLine(
-                icon: Icons.spa_outlined,
+                icon: AppIcons.reflection,
                 title: l10n.gardenPageFruitMeaningTitle,
                 body: l10n.gardenPageFruitMeaningBody,
               ),
@@ -155,9 +189,9 @@ class GardenPage extends ConsumerWidget {
     return switch (dimension) {
       GardenGrowthDimension.prayerFoundation => Icons.account_tree_rounded,
       GardenGrowthDimension.learningGrowth => Icons.auto_stories_rounded,
-      GardenGrowthDimension.remembranceLight => Icons.wb_sunny_outlined,
+      GardenGrowthDimension.remembranceLight => Icons.wb_sunny_rounded,
       GardenGrowthDimension.mercyWater => Icons.water_drop_rounded,
-      GardenGrowthDimension.wisdomFruit => Icons.spa_outlined,
+      GardenGrowthDimension.wisdomFruit => AppIcons.reflection,
       GardenGrowthDimension.consistencyBloom => Icons.calendar_month_rounded,
     };
   }
@@ -175,10 +209,88 @@ class GardenPage extends ConsumerWidget {
   }
 }
 
+/// The quiet caption under the vista when the garden has changed since the
+/// last visit — a note, never a popup or a reward screen.
+class _NewGrowthNote extends StatelessWidget {
+  const _NewGrowthNote({required this.scene});
+
+  final GardenSceneSpec scene;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final appearance = theme.extension<AppAppearanceTheme>();
+    final tint = appearance?.accent ?? theme.colorScheme.primary;
+    final title = scene.newlyAppeared.isNotEmpty
+        ? l10n.gardenVistaNewGrowthTitle
+        : l10n.gardenVistaStageAdvancedTitle;
+    final named = <String>[
+      for (final id in [...scene.newlyAppeared, ...scene.newlyGrown].take(3))
+        GardenElementStrings.title(l10n, id),
+    ];
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(Icons.auto_awesome_rounded, size: 18, color: tint),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                named.isEmpty
+                    ? l10n.gardenVistaNewGrowthBody
+                    : named.join(' · '),
+                style: theme.textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _GardenHeroCard extends StatelessWidget {
-  const _GardenHeroCard({required this.garden});
+  const _GardenHeroCard({required this.garden, required this.scene});
 
   final GardenState garden;
+  final GardenSceneSpec scene;
+
+  /// Current strength of whatever grows this element, for the detail sheet.
+  static double _dimensionScore(
+    GardenState garden,
+    GardenSceneElementSpec element,
+  ) {
+    final dimension = element.dimension;
+    if (dimension == null) {
+      return (garden.maturityPercent / 100).clamp(0.0, 1.0);
+    }
+    for (final state in garden.dimensions) {
+      if (state.dimension == dimension) {
+        return state.score;
+      }
+    }
+    return switch (dimension) {
+      GardenGrowthDimension.prayerFoundation => garden.prayerFoundationScore,
+      GardenGrowthDimension.learningGrowth => garden.learningGrowthScore,
+      GardenGrowthDimension.remembranceLight => garden.remembranceLightScore,
+      GardenGrowthDimension.consistencyBloom => garden.consistencyScore,
+      GardenGrowthDimension.wisdomFruit => garden.wisdomFruitScore,
+      GardenGrowthDimension.mercyWater => (garden.totalOceanDrops / 1000).clamp(
+        0.0,
+        1.0,
+      ),
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -196,37 +308,32 @@ class _GardenHeroCard extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    garden.currentVisualStage.assetPath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: _ambientColors(garden.ambientState),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.local_florist_rounded,
-                            size: 54,
-                            color: Color(0xFF2C2318),
-                          ),
-                        ),
-                      );
-                    },
+                  Positioned.fill(
+                    child: GardenVistaView(
+                      spec: scene,
+                      manageSeenLifecycle: true,
+                      onElementTap: (element) => showGardenElementMeaningSheet(
+                        context,
+                        element: element,
+                        dimensionScore: _dimensionScore(garden, element),
+                      ),
+                      semanticLabel:
+                          '${_localizedStageTitle(l10n, garden.currentVisualStage.stageId)} · ${l10n.gardenPageMaturityValue('${garden.maturityPercent}')}',
+                    ),
                   ),
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          const Color(0xFF1E1915).withValues(alpha: 0.48),
-                        ],
+                  // Scrim and caption must not swallow taps meant for the
+                  // plants and creatures beneath them.
+                  IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            const Color(0xFF1E1915).withValues(alpha: 0.48),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -234,35 +341,45 @@ class _GardenHeroCard extends StatelessWidget {
                     left: 16,
                     right: 16,
                     bottom: 16,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _localizedStageTitle(
-                            l10n,
-                            garden.currentVisualStage.stageId,
+                    child: IgnorePointer(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _localizedStageTitle(
+                              l10n,
+                              garden.currentVisualStage.stageId,
+                            ),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w800,
+                                ),
                           ),
-                          style: Theme.of(context).textTheme.titleLarge
-                              ?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                              ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          _localizedAmbientLabel(l10n, garden.ambientState),
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color: Colors.white.withValues(alpha: 0.92),
-                              ),
-                        ),
-                      ],
+                          const SizedBox(height: 4),
+                          Text(
+                            _localizedAmbientLabel(l10n, garden.ambientState),
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.92),
+                                ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
+          const SizedBox(height: 12),
+          if (scene.hasNewGrowth)
+            _NewGrowthNote(scene: scene)
+          else
+            Text(
+              l10n.gardenVistaExploreHint,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           const SizedBox(height: 14),
           Text(
             l10n.gardenPageHeroTitle,
@@ -305,27 +422,6 @@ class _GardenHeroCard extends StatelessWidget {
     );
   }
 
-  static List<Color> _ambientColors(GardenAmbientState state) {
-    return switch (state) {
-      GardenAmbientState.quietDawn => const [
-        Color(0xFFE7DCC9),
-        Color(0xFFB8C7A3),
-      ],
-      GardenAmbientState.gentleMorning => const [
-        Color(0xFFF2E3C0),
-        Color(0xFF9AB780),
-      ],
-      GardenAmbientState.warmLight => const [
-        Color(0xFFF3DEAF),
-        Color(0xFFC98F54),
-      ],
-      GardenAmbientState.eveningGlow => const [
-        Color(0xFFDCC9B7),
-        Color(0xFF738B6B),
-      ],
-    };
-  }
-
   static String _localizedAmbientLabel(
     AppLocalizations l10n,
     GardenAmbientState state,
@@ -341,20 +437,7 @@ class _GardenHeroCard extends StatelessWidget {
   static String _localizedStageTitle(
     AppLocalizations l10n,
     GardenVisualStageId stageId,
-  ) {
-    return switch (stageId) {
-      GardenVisualStageId.seed => l10n.gardenStageSeed,
-      GardenVisualStageId.sprout => l10n.gardenStageSprout,
-      GardenVisualStageId.smallRoots => l10n.gardenStageRoots,
-      GardenVisualStageId.youngStem => l10n.gardenStageStem,
-      GardenVisualStageId.smallTree => l10n.gardenStageYoungTree,
-      GardenVisualStageId.strengtheningTrunk => l10n.gardenStageTrunk,
-      GardenVisualStageId.branchGrowth => l10n.gardenStageBranches,
-      GardenVisualStageId.leafGrowth => l10n.gardenStageLeaves,
-      GardenVisualStageId.fruitBeginning => l10n.gardenStageFruit,
-      GardenVisualStageId.flourishingTree => l10n.gardenStageFlourishing,
-    };
-  }
+  ) => GardenElementStrings.stageTitle(l10n, stageId);
 }
 
 class _NextGrowthCard extends StatelessWidget {
@@ -407,46 +490,43 @@ class _DimensionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return SizedBox(
-      width: 170,
-      child: PremiumCard(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(
-              GardenPage._iconForDimension(dimension.dimension),
-              color: const Color(0xFF72553C),
+    return PremiumCard(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            GardenPage._iconForDimension(dimension.dimension),
+            color: const Color(0xFF72553C),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            _dimensionTitle(l10n, dimension.dimension),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            _dimensionBody(l10n, dimension.dimension),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: dimension.score,
+              minHeight: 7,
             ),
-            const SizedBox(height: 8),
-            Text(
-              _dimensionTitle(l10n, dimension.dimension),
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.gardenPageDimensionStrengthValue(
+              '${dimension.emphasisPercent}',
             ),
-            const SizedBox(height: 4),
-            Text(
-              _dimensionBody(l10n, dimension.dimension),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 10),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(
-                value: dimension.score,
-                minHeight: 7,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.gardenPageDimensionStrengthValue(
-                '${dimension.emphasisPercent}',
-              ),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }
@@ -536,7 +616,7 @@ class _RecentGrowthTile extends StatelessWidget {
       LearnerProgressionActivityType.kidsArabicLessonCompletion =>
         Icons.draw_rounded,
       LearnerProgressionActivityType.kidsArabicDailyMissionCompletion =>
-        Icons.wb_sunny_outlined,
+        Icons.wb_sunny_rounded,
       LearnerProgressionActivityType.bedtimeStoryCompletion =>
         Icons.auto_stories_rounded,
       LearnerProgressionActivityType.bedtimeQuizCompletion =>
@@ -548,7 +628,7 @@ class _RecentGrowthTile extends StatelessWidget {
       LearnerProgressionActivityType.duaPracticeCompletion =>
         Icons.repeat_rounded,
       LearnerProgressionActivityType.duaMyDayCompletion =>
-        Icons.wb_sunny_outlined,
+        Icons.wb_sunny_rounded,
       LearnerProgressionActivityType.bedtimeRoutineCompletion =>
         Icons.bedtime_rounded,
       LearnerProgressionActivityType.seerahNodeCompletion =>
@@ -611,31 +691,41 @@ class _MilestoneTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Image.asset(
-                      visual.assetPath,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return DecoratedBox(
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xFFE7D7AE), Color(0xFF8BA06B)],
+                // Milestone art is the reward for reaching it: until then the
+                // tile stays covered rather than showing a dimmed preview.
+                child: visual.unlocked
+                    ? Image.asset(
+                        visual.assetPath,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xFFE7D7AE), Color(0xFF8BA06B)],
+                              ),
                             ),
+                            child: Center(child: Icon(AppIcons.garden)),
+                          );
+                        },
+                      )
+                    : DecoratedBox(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0xFFE9E2D6), Color(0xFFD9D0C2)],
                           ),
-                          child: const Center(
-                            child: Icon(Icons.local_florist_rounded),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.lock_rounded,
+                            size: 26,
+                            color: const Color(
+                              0xFF6A5A4A,
+                            ).withValues(alpha: 0.42),
                           ),
-                        );
-                      },
-                    ),
-                    if (!visual.unlocked)
-                      Container(
-                        color: const Color(0xFF1E1915).withValues(alpha: 0.34),
+                        ),
                       ),
-                  ],
-                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 14),

@@ -1,8 +1,11 @@
+import '../../../kids/shared/domain/kids_age_band.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../accounts_sync/application/accounts_sync_controller.dart';
@@ -38,7 +41,6 @@ class _FamilyLearningManagementPageState
         activeProfile.profileType != ProfileKind.guest;
 
     return AppPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
       title: l10n.familyLearningManagementTitle,
       subtitle: l10n.familyLearningManagementSubtitle,
       children: [
@@ -46,14 +48,17 @@ class _FamilyLearningManagementPageState
           PremiumCard(
             child: Text(
               l10n.familyLearningManagementUnavailable,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           )
         else ...[
           PremiumCard(
             child: Row(
               children: [
-                const CircleAvatar(child: Icon(Icons.verified_user_outlined)),
+                const CircleAvatar(child: Icon(Icons.verified_user_rounded)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -61,16 +66,16 @@ class _FamilyLearningManagementPageState
                     children: [
                       Text(
                         l10n.familyLearningGuardianTitle,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF2E261F),
+                          color: context.palette.onSurface,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         activeProfile.displayName,
-                        style: const TextStyle(
-                          color: Color(0xFF675B4E),
+                        style: TextStyle(
+                          color: context.palette.onSurfaceSubtle,
                           height: 1.35,
                         ),
                       ),
@@ -93,16 +98,16 @@ class _FamilyLearningManagementPageState
                 children: [
                   Text(
                     l10n.familyLearningEmptyTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     l10n.familyLearningEmptySubtitle,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -160,9 +165,9 @@ class _FamilyLearningManagementPageState
                               children: [
                                 Text(
                                   child.displayName,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xFF2E261F),
+                                    color: context.palette.onSurface,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -171,8 +176,8 @@ class _FamilyLearningManagementPageState
                                     l10n,
                                     path!,
                                   ),
-                                  style: const TextStyle(
-                                    color: Color(0xFF675B4E),
+                                  style: TextStyle(
+                                    color: context.palette.onSurfaceSubtle,
                                     height: 1.35,
                                   ),
                                 ),
@@ -181,19 +186,15 @@ class _FamilyLearningManagementPageState
                           ),
                           IconButton(
                             onPressed: () => _showEditChildSheet(child),
-                            icon: const Icon(Icons.edit_outlined),
+                            icon: const Icon(Icons.edit_rounded),
                             tooltip: l10n.familyLearningEditChildAction,
                           ),
                         ],
                       ),
                       const SizedBox(height: 12),
-                      LinearProgressIndicator(
+                      ProgressBar(
                         value: progress.progressValue.clamp(0.0, 1.0),
-                        minHeight: 7,
-                        backgroundColor: const Color(0xFFE8DED1),
-                        valueColor: const AlwaysStoppedAnimation<Color>(
-                          Color(0xFF8B6A44),
-                        ),
+                        height: 7,
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -201,9 +202,9 @@ class _FamilyLearningManagementPageState
                           progress.completedJourneyCount,
                           progress.totalJourneyCount,
                         ),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF7A6650),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -215,8 +216,8 @@ class _FamilyLearningManagementPageState
                               currentPhase,
                             ),
                           ),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -226,8 +227,8 @@ class _FamilyLearningManagementPageState
                           l10n.familyLearningCurrentJourneyLabel(
                             localizedJourneyTitle(context, currentJourney),
                           ),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -237,8 +238,8 @@ class _FamilyLearningManagementPageState
                         l10n.familyLearningStreakLabel(
                           progress.currentStreakDays,
                         ),
-                        style: const TextStyle(
-                          color: Color(0xFF675B4E),
+                        style: TextStyle(
+                          color: context.palette.onSurfaceSubtle,
                           height: 1.35,
                         ),
                       ),
@@ -248,8 +249,8 @@ class _FamilyLearningManagementPageState
                           l10n.familyLearningRecentActivityLabel(
                             localizedStageTitle(context, recentStage),
                           ),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -258,8 +259,8 @@ class _FamilyLearningManagementPageState
                         const SizedBox(height: 4),
                         Text(
                           l10n.learnTogetherLearnedTogetherLabel,
-                          style: const TextStyle(
-                            color: Color(0xFF866A49),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                             fontWeight: FontWeight.w700,
                           ),
@@ -270,14 +271,14 @@ class _FamilyLearningManagementPageState
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF7F1E8),
+                          color: context.palette.surface,
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFFE3D6C4)),
+                          border: Border.all(color: context.palette.border),
                         ),
                         child: Text(
                           _sharedPrompt(l10n, progress.currentJourneyId),
-                          style: const TextStyle(
-                            color: Color(0xFF675B4E),
+                          style: TextStyle(
+                            color: context.palette.onSurfaceSubtle,
                             height: 1.35,
                           ),
                         ),
@@ -395,6 +396,7 @@ class _FamilyLearningManagementPageState
                 learningLevel: payload.learningLevel,
                 avatarReference: payload.avatarReference,
                 kidsUiThemeMode: payload.kidsUiThemeMode,
+                ageBand: payload.ageBand,
                 browsingMode: payload.browsingMode,
                 permissions: payload.permissions,
               );
@@ -415,6 +417,7 @@ class _FamilyLearningManagementPageState
         initialAgeGroup: child.ageGroup,
         initialLevel: child.learningLevel,
         initialKidsUiThemeMode: child.kidsUiThemeMode,
+        initialAgeBand: child.ageBand,
         initialBrowsingMode: child.browsingMode,
         initialPermissions: child.permissions,
         onSave: (payload) async {
@@ -434,6 +437,7 @@ class _FamilyLearningManagementPageState
                   assignedPathId: assignedPath.id,
                   avatarReference: payload.avatarReference,
                   kidsUiThemeMode: payload.kidsUiThemeMode,
+                  ageBand: payload.ageBand,
                   browsingMode: payload.browsingMode,
                   contentSafetyMode:
                       payload.browsingMode == ChildBrowsingMode.guidedOnly
@@ -471,6 +475,7 @@ class _ChildProfileEditorPayload {
     required this.kidsUiThemeMode,
     required this.browsingMode,
     required this.permissions,
+    required this.ageBand,
   });
 
   final String displayName;
@@ -480,6 +485,7 @@ class _ChildProfileEditorPayload {
   final KidsUiThemeMode kidsUiThemeMode;
   final ChildBrowsingMode browsingMode;
   final ChildLearningPermissions permissions;
+  final KidsAgeBand ageBand;
 }
 
 class _ChildProfileEditorSheet extends StatefulWidget {
@@ -493,6 +499,7 @@ class _ChildProfileEditorSheet extends StatefulWidget {
     required this.initialBrowsingMode,
     required this.initialPermissions,
     required this.onSave,
+    this.initialAgeBand = KidsAgeBand.core,
   });
 
   final String Function(AppLocalizations l10n) titleBuilder;
@@ -504,6 +511,7 @@ class _ChildProfileEditorSheet extends StatefulWidget {
   final ChildBrowsingMode initialBrowsingMode;
   final ChildLearningPermissions initialPermissions;
   final Future<void> Function(_ChildProfileEditorPayload payload) onSave;
+  final KidsAgeBand initialAgeBand;
 
   @override
   State<_ChildProfileEditorSheet> createState() =>
@@ -518,6 +526,7 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
   late KidsUiThemeMode _kidsUiThemeMode;
   late ChildBrowsingMode _browsingMode;
   late ChildLearningPermissions _permissions;
+  late KidsAgeBand _ageBand;
   bool _saving = false;
 
   @override
@@ -530,6 +539,7 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
     _kidsUiThemeMode = widget.initialKidsUiThemeMode;
     _browsingMode = widget.initialBrowsingMode;
     _permissions = widget.initialPermissions;
+    _ageBand = widget.initialAgeBand;
   }
 
   @override
@@ -607,6 +617,29 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                     },
                   ),
                   const SizedBox(height: 12),
+                  // The one age vocabulary (K6): sets the type scale and which
+                  // stories come first. Only children have a band.
+                  if (_ageGroup == LearningAgeGroup.kids) ...[
+                    DropdownButtonFormField<KidsAgeBand>(
+                      initialValue: _ageBand,
+                      decoration: InputDecoration(
+                        labelText: l10n.kidsAgeBandLabel,
+                        helperText: l10n.kidsAgeBandHelper,
+                      ),
+                      items: [
+                        for (final band in KidsAgeBand.values)
+                          DropdownMenuItem(
+                            value: band,
+                            child: Text(_ageBandLabel(l10n, band)),
+                          ),
+                      ],
+                      onChanged: (value) {
+                        if (value == null) return;
+                        setState(() => _ageBand = value);
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                  ],
                   DropdownButtonFormField<LearningPathLevel>(
                     initialValue: _level,
                     decoration: InputDecoration(
@@ -762,6 +795,7 @@ class _ChildProfileEditorSheetState extends State<_ChildProfileEditorSheet> {
                                       ageGroup: _ageGroup,
                                       learningLevel: _level,
                                       kidsUiThemeMode: _kidsUiThemeMode,
+                                      ageBand: _ageBand,
                                       browsingMode: _browsingMode,
                                       permissions: _permissions,
                                     ),
@@ -810,4 +844,15 @@ String _kidsUiModeLabel(AppLocalizations l10n, KidsUiThemeMode mode) {
 
 extension<T> on Iterable<T> {
   T? get firstOrNull => isEmpty ? null : first;
+}
+
+String _ageBandLabel(AppLocalizations l10n, KidsAgeBand band) {
+  switch (band) {
+    case KidsAgeBand.early:
+      return l10n.kidsAgeBandEarly;
+    case KidsAgeBand.core:
+      return l10n.kidsAgeBandCore;
+    case KidsAgeBand.plus:
+      return l10n.kidsAgeBandPlus;
+  }
 }

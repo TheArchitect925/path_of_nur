@@ -4,6 +4,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../models/game_discovery_models.dart';
 import '../models/learn_hub_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class GamesIslandCatalog {
   const GamesIslandCatalog._();
@@ -172,7 +173,7 @@ class GamesIslandCatalog {
             id: 'hadith-patience',
             title: l10n.learnGamesHadithPatienceTitleText,
             subtitle: l10n.hadithReflectionPackPatienceSubtitle,
-            icon: Icons.self_improvement_rounded,
+            icon: AppIcons.reflection,
             baseColor: const Color(0xFFE8EEF7),
             accentColor: const Color(0xFF556A91),
             routeTarget: const LearnHubRouteTarget(
@@ -283,7 +284,7 @@ class GamesIslandCatalog {
             id: 'spiritual-intentions',
             title: l10n.learnGamesGrowthChooseIntentionTitleText,
             subtitle: l10n.spiritualGrowthChooseIntentionSubtitle,
-            icon: Icons.flag_outlined,
+            icon: Icons.outlined_flag_rounded,
             baseColor: const Color(0xFFF0E8F6),
             accentColor: const Color(0xFF7B5A9B),
             routeTarget: const LearnHubRouteTarget(

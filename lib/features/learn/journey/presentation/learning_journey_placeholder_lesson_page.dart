@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
@@ -44,10 +44,8 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
         ? localizedStageNotes(context, stage)
         : localizedStageSummary(context, stage);
     return LearnHubPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: localizedStageSummary(context, stage),
-      quote: buildLearningCompactQuote(),
       children: [
         PlaceholderLessonPageScaffold(
           stageTitle: localizedStageTitle(context, stage),
@@ -70,10 +68,10 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
           const SizedBox(height: 14),
           Text(
             l10n.learningJourneyPlaceholderPlannedIncludesTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
@@ -83,20 +81,20 @@ class LearningJourneyPlaceholderLessonPage extends ConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 4),
                     child: Icon(
-                      Icons.circle,
+                      Icons.circle_rounded,
                       size: 7,
-                      color: Color(0xFF7B694F),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       item,
-                      style: const TextStyle(
-                        color: Color(0xFF675B4E),
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         height: 1.35,
                       ),
                     ),

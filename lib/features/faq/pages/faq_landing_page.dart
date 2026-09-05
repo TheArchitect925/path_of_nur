@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../models/faq_item.dart';
 import '../providers/faq_providers.dart';
 import '../widgets/faq_category_card.dart';
 import '../widgets/faq_question_tile.dart';
+import '../../../core/theme/app_icons.dart';
 
 class FaqLandingPage extends ConsumerStatefulWidget {
   const FaqLandingPage({super.key});
@@ -21,6 +23,7 @@ class FaqLandingPage extends ConsumerStatefulWidget {
 
 class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   late final TextEditingController _searchController;
+  bool _searchOpen = false;
 
   @override
   void initState() {
@@ -38,7 +41,6 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final query = _searchController.text.trim();
-    final datasetAsync = ref.watch(faqDatasetProvider);
     final categoriesAsync = ref.watch(faqCategorySummariesProvider);
     final featuredAsync = ref.watch(featuredFaqItemsProvider);
     final searchAsync = ref.watch(
@@ -48,26 +50,41 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
     return LearnHubPageScaffold(
       quote: null,
       showDefaultQuote: false,
-      headerIcon: Icons.help_outline_rounded,
+      headerIcon: AppIcons.faq,
       title: l10n.batch9FaqTitle,
       subtitle: l10n.batch9FaqSubtitle,
-      children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.batch9FaqScholarNote,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
-                ),
-              ),
-              const SizedBox(height: 10),
-              _searchField(context),
-            ],
+      headerActions: [
+        IconButton(
+          key: const ValueKey('faq-header-search'),
+          tooltip: l10n.learningJourneyToolSearchTitle,
+          onPressed: () => setState(() {
+            _searchOpen = !_searchOpen;
+            if (!_searchOpen) _searchController.clear();
+          }),
+          icon: Icon(
+            _searchOpen ? Icons.search_off_rounded : Icons.search_rounded,
           ),
         ),
-        const SizedBox(height: 12),
+      ],
+      children: [
+        if (_searchOpen) ...[
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.batch9FaqScholarNote,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: context.palette.onSurfaceSubtle,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _searchField(context),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
         if (query.isNotEmpty)
           searchAsync.when(
             data: (results) => _searchResults(context, results, query),
@@ -75,66 +92,13 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
             error: (error, _) => _errorCard(error),
           )
         else ...[
-          datasetAsync.when(
-            data: (dataset) => _overviewCard(context, dataset),
-            loading: () => const SizedBox.shrink(),
-            error: (error, _) => _errorCard(error),
-          ),
-          const SizedBox(height: 12),
-          PremiumCard(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final compact = constraints.maxWidth < 560;
-                final content = Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.batch9FaqBrowseAllAction,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      l10n.batch9FaqBrowseAllSubtitle,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
-                      ),
-                    ),
-                  ],
-                );
-                final button = FilledButton.tonalIcon(
-                  onPressed: () => context.pushNamed(
-                    'learnExploreAllKnowledge',
-                    queryParameters: const {'category': 'faq'},
-                  ),
-                  icon: const Icon(Icons.open_in_new_rounded),
-                  label: Text(l10n.batch9FaqBrowseAllAction),
-                );
-
-                if (compact) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Icon(Icons.travel_explore_rounded),
-                      const SizedBox(height: 12),
-                      content,
-                      const SizedBox(height: 12),
-                      SizedBox(width: double.infinity, child: button),
-                    ],
-                  );
-                }
-
-                return Row(
-                  children: [
-                    const Icon(Icons.travel_explore_rounded),
-                    const SizedBox(width: 12),
-                    Expanded(child: content),
-                    const SizedBox(width: 12),
-                    button,
-                  ],
-                );
-              },
+          CompactListTile(
+            title: l10n.batch9FaqBrowseAllAction,
+            subtitle: l10n.batch9FaqBrowseAllSubtitle,
+            leading: const Icon(Icons.travel_explore_rounded),
+            onTap: () => context.pushNamed(
+              'learnExploreAllKnowledge',
+              queryParameters: const {'category': 'faq'},
             ),
           ),
           const SizedBox(height: 12),
@@ -163,29 +127,47 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
                 final crossAxisCount = width >= 1040
                     ? 3
                     : (width >= 620 ? 2 : 1);
-                final mainAxisExtent = crossAxisCount == 1 ? 186.0 : 214.0;
-                return GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: categories.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    mainAxisExtent: mainAxisExtent,
-                  ),
-                  itemBuilder: (context, index) {
-                    final summary = categories[index];
-                    return FaqCategoryCard(
-                      summary: summary,
-                      icon: _categoryIcon(summary.id),
-                      onTap: () => context.pushNamed(
-                        'faqCategory',
-                        pathParameters: {'categoryId': summary.id},
+                // Rows of equal-height cards that size to their content —
+                // a fixed grid extent overflows the moment text wraps once
+                // more than expected (large type, verbose locales).
+                final rows = <Widget>[];
+                for (var i = 0; i < categories.length; i += crossAxisCount) {
+                  final slice = categories.skip(i).take(crossAxisCount);
+                  rows.add(
+                    Padding(
+                      padding: EdgeInsets.only(top: i == 0 ? 0 : 10),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            for (final (j, summary) in slice.indexed) ...[
+                              if (j > 0) const SizedBox(width: 10),
+                              Expanded(
+                                child: FaqCategoryCard(
+                                  summary: summary,
+                                  icon: _categoryIcon(summary.id),
+                                  onTap: () => context.pushNamed(
+                                    'faqCategory',
+                                    pathParameters: {'categoryId': summary.id},
+                                  ),
+                                ),
+                              ),
+                            ],
+                            for (
+                              var j = slice.length;
+                              j < crossAxisCount;
+                              j += 1
+                            ) ...[
+                              const SizedBox(width: 10),
+                              const Expanded(child: SizedBox.shrink()),
+                            ],
+                          ],
+                        ),
                       ),
-                    );
-                  },
-                );
+                    ),
+                  );
+                }
+                return Column(children: rows);
               },
             ),
             loading: () => const Center(child: CircularProgressIndicator()),
@@ -202,12 +184,13 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
       children: [
         Icon(
           Icons.search_rounded,
-          color: AppColors.onSurface.withValues(alpha: 0.75),
+          color: context.palette.onSurface.withValues(alpha: 0.75),
         ),
         const SizedBox(width: 10),
         Expanded(
           child: TextField(
             controller: _searchController,
+            autofocus: true,
             onChanged: (_) => setState(() {}),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -222,30 +205,6 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
             icon: const Icon(Icons.close_rounded),
           ),
       ],
-    );
-  }
-
-  Widget _overviewCard(BuildContext context, FaqDataset dataset) {
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            dataset.datasetName,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            l10n.batch9FaqOverviewSummary(
-              '${dataset.items.length}',
-              '${dataset.categoryLabels.length}',
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -304,7 +263,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
                 Text(
                   l10n.batch9FaqSearchEmptySubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -339,13 +298,13 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   IconData _categoryIcon(String categoryId) {
     switch (categoryId) {
       case 'foundations_of_islam':
-        return Icons.mosque_outlined;
+        return AppIcons.mosque;
       case 'worship_and_practice':
-        return Icons.front_hand_outlined;
+        return Icons.front_hand_rounded;
       case 'misconceptions_about_islam':
         return Icons.lightbulb_outline_rounded;
       case 'women_in_islam':
-        return Icons.groups_2_outlined;
+        return Icons.groups_2_rounded;
       case 'science_and_quran':
         return Icons.travel_explore_rounded;
       case 'quran_and_revelation':
@@ -353,13 +312,13 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
       case 'prophets_and_history':
         return Icons.history_edu_rounded;
       case 'ethics_and_lifestyle':
-        return Icons.self_improvement_rounded;
+        return AppIcons.character;
       case 'afterlife_and_purpose':
         return Icons.nightlight_round_rounded;
       case 'islam_in_the_modern_world':
         return Icons.public_rounded;
       default:
-        return Icons.help_outline_rounded;
+        return AppIcons.faq;
     }
   }
 }

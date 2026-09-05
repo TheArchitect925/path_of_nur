@@ -28,7 +28,6 @@ class QuranSurahSummaryDetailPage extends ConsumerWidget {
 
     if (entry == null) {
       return AppPageScaffold(
-        headerIcon: Icons.auto_stories_rounded,
         title: l10n.quranSummaryPageTitle,
         subtitle: l10n.quranSummaryDetailMissingSubtitle,
         backgroundOverlayColor: palette.pageOverlay,
@@ -48,9 +47,7 @@ class QuranSurahSummaryDetailPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: entry.transliteratedName,
-      subtitle: l10n.quranSummaryDetailPageSubtitle(entry.surahNumber),
       backgroundOverlayColor: palette.pageOverlay,
       backgroundAtmosphere: AppBackgroundAtmosphere.quran,
       children: [

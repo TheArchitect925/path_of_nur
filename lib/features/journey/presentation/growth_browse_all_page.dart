@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthBrowseAllPage extends StatelessWidget {
   const GrowthBrowseAllPage({super.key});
@@ -13,7 +14,7 @@ class GrowthBrowseAllPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return AppPageScaffold(
-      headerIcon: Icons.grid_view_rounded,
+      headerIcon: AppIcons.browseAll,
       title: l10n.growthHomeBrowseAllTitle,
       subtitle: l10n.growthHomeBrowseAllSubtitle,
       children: [
@@ -59,7 +60,7 @@ class GrowthBrowseAllPage extends StatelessWidget {
             _BrowseItem(
               title: l10n.spiritualGrowthTitle,
               subtitle: l10n.spiritualGrowthShortcutSubtitle,
-              icon: Icons.self_improvement_rounded,
+              icon: AppIcons.spiritualGrowth,
               onTap: () => context.pushNamed('spiritualGrowthPage'),
             ),
           ],

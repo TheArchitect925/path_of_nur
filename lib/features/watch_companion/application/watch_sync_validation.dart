@@ -132,6 +132,18 @@ List<WatchValidationIssue> validateWatchActionEnvelope(
         issues.add(const WatchValidationIssue('payload.sessionId is required'));
       }
       break;
+    case WatchActionType.dhikrRoutineCompleted:
+      final routineId = action.payload['routineId']?.toString();
+      if (routineId == null || routineId.isEmpty) {
+        issues.add(const WatchValidationIssue('payload.routineId is required'));
+      }
+      final count = int.tryParse(action.payload['count']?.toString() ?? '');
+      if (count == null || count <= 0) {
+        issues.add(
+          const WatchValidationIssue('payload.count must be positive'),
+        );
+      }
+      break;
     case WatchActionType.postPrayerAdhkarCompleted:
       final prayerId = action.payload['prayerId']?.toString();
       if (prayerId == null ||

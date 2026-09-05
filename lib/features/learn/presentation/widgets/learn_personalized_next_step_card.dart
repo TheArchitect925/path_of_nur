@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../personalization/domain/learning_personalization_models.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 
@@ -80,15 +81,12 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
           if (summary.progressLabel != null &&
               summary.progressValue != null) ...[
             const SizedBox(height: 12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(
-                value: summary.progressValue!.clamp(0, 1),
-                minHeight: 8,
-                backgroundColor: Theme.of(
-                  context,
-                ).colorScheme.surfaceContainerHighest,
-              ),
+            ProgressBar(
+              value: summary.progressValue!.clamp(0, 1),
+              height: 8,
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest,
             ),
             const SizedBox(height: 6),
             Text(
@@ -189,7 +187,7 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
                                 suggestion.subtitle,
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
-                                      color: AppColors.onSurfaceSubtle,
+                                      color: context.palette.onSurfaceSubtle,
                                     ),
                               ),
                             ],

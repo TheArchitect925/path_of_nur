@@ -12,6 +12,7 @@ import '../../shared/persistence/local_store.dart';
 import '../../shared/utils/hijri_date_utils.dart';
 import '../../features/worship/domain/prayer_status.dart';
 import '../prayer/prayer_preferences.dart';
+import '../../features/worship/application/jumuah_leave_provider.dart';
 import 'local_notification_service.dart';
 
 enum ReminderKind {
@@ -26,6 +27,7 @@ enum ReminderKind {
   cycleCheck,
   moonrise,
   moonset,
+  jumuahLeave,
 }
 
 class ReminderPlanItem {
@@ -66,6 +68,30 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
   final dayKey = LocalStore.todayKey(now);
 
   final items = <ReminderPlanItem>[];
+
+  // Jumu'ah "time to leave" reminder: fixed travel minutes, or a distance
+  // estimate from the device's location to the chosen masjid.
+  if (now.weekday == DateTime.friday && profileSettings.prayerReminders) {
+    final travelEstimate = ref
+        .watch(jumuahTravelEstimateMinutesProvider)
+        .valueOrNull;
+    final leaveAt = jumuahLeaveTimeFor(
+      day: now,
+      preferences: prayerSettings.preferences,
+      estimatedTravelMinutes: travelEstimate,
+    );
+    if (leaveAt != null && leaveAt.isAfter(now)) {
+      items.add(
+        ReminderPlanItem(
+          id: 'jumuah.leave',
+          kind: ReminderKind.jumuahLeave,
+          prayerId: null,
+          when: leaveAt,
+          notificationMode: null,
+        ),
+      );
+    }
+  }
   final isSisterCycleActive =
       sisterCycle.active && userProfile.sex == UserSex.sister;
   final shouldAutoAdjustForCycle =

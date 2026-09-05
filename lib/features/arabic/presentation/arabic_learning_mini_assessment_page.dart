@@ -13,6 +13,8 @@ import '../domain/arabic_learning_audio_models.dart';
 import '../domain/arabic_learning_continuity_models.dart';
 import 'arabic_learning_route_target_navigation.dart';
 import 'widgets/arabic_learning_playback_speed_toggle.dart';
+import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_palette.dart';
 
 class ArabicLearningMiniAssessmentPage extends ConsumerStatefulWidget {
   const ArabicLearningMiniAssessmentPage({required this.audience, super.key});
@@ -124,7 +126,6 @@ class _ArabicLearningMiniAssessmentPageState
 
     if (widget.audience == ArabicLearningAudience.kids) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.self_improvement_rounded,
         title: l10n.kidsArabicMiniAssessmentPageTitle,
         subtitle: l10n.kidsArabicMiniAssessmentPageSubtitle,
         children: children,
@@ -268,10 +269,10 @@ class _QuestionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: isKids ? const Color(0xFFF8F2E8) : Colors.white,
+        color: isKids ? context.palette.surface : Colors.white,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: isKids ? const Color(0xFFE5D5C1) : const Color(0xFFE3DDD2),
+          color: isKids ? context.palette.surfaceSoft : const Color(0xFFE3DDD2),
         ),
       ),
       child: Column(
@@ -306,7 +307,7 @@ class _QuestionCard extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   fontSize: isKids ? 42 : 38,
-                  fontFamily: 'AmiriQuran',
+                  fontFamily: AppFonts.quranArabic,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -418,7 +419,7 @@ class _HearChooseOption extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 28,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               fontWeight: FontWeight.w700,
             ),
           ),

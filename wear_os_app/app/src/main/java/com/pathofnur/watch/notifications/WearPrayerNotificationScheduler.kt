@@ -35,10 +35,10 @@ class WearPrayerNotificationScheduler(private val context: Context) {
         manager.createNotificationChannel(
             NotificationChannel(
                 CHANNEL_PRAYER,
-                "Prayer reminders",
+                appContext.getString(R.string.notif_channel_name),
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
-                description = "Path of Nūr prayer reminders"
+                description = appContext.getString(R.string.notif_channel_description)
             }
         )
     }
@@ -56,11 +56,23 @@ class WearPrayerNotificationScheduler(private val context: Context) {
                 return@forEach
             }
             if (policy.shouldScheduleInitial(prayer, scheduledAt, now, settings, dedupStates)) {
-                schedule(prayer.prayerId, WatchNotificationKind.Initial, scheduledAt, "${prayer.displayName} time has begun", "Time for ${prayer.displayName}")
+                schedule(
+                    prayer.prayerId,
+                    WatchNotificationKind.Initial,
+                    scheduledAt,
+                    appContext.getString(R.string.notif_initial_title, prayer.displayName),
+                    appContext.getString(R.string.notif_initial_body, prayer.displayName)
+                )
             }
             val followUpAt = scheduledAt.plusSeconds((settings.followUpDelayMinutes * 60).toLong())
             if (policy.shouldScheduleFollowUp(prayer, followUpAt, settings, now, dedupStates)) {
-                schedule(prayer.prayerId, WatchNotificationKind.FollowUp, followUpAt, "${prayer.displayName} is still pending", "You haven’t logged ${prayer.displayName} yet")
+                schedule(
+                    prayer.prayerId,
+                    WatchNotificationKind.FollowUp,
+                    followUpAt,
+                    appContext.getString(R.string.notif_followup_title, prayer.displayName),
+                    appContext.getString(R.string.notif_followup_body, prayer.displayName)
+                )
             }
         }
     }
@@ -69,7 +81,13 @@ class WearPrayerNotificationScheduler(private val context: Context) {
         val settings = stateStore.settings()
         val snoozeAt = Instant.now().plusSeconds((settings.snoozeDurationMinutes * 60).toLong())
         if (!policy.shouldAllowSnooze(prayerId, snoozeAt, stateStore.loadDedupStates())) return
-        schedule(prayerId, WatchNotificationKind.Snooze, snoozeAt, "${displayName(prayerId)} reminder", "Still pending")
+        schedule(
+            prayerId,
+            WatchNotificationKind.Snooze,
+            snoozeAt,
+            appContext.getString(R.string.notif_snooze_title, displayName(prayerId)),
+            appContext.getString(R.string.notif_snooze_body)
+        )
     }
 
     fun cancelPendingForPrayer(prayerId: String) {
@@ -95,15 +113,15 @@ class WearPrayerNotificationScheduler(private val context: Context) {
             return
         }
         val title = when (kind) {
-            WatchNotificationKind.Initial -> "${prayer.displayName} time has begun"
-            WatchNotificationKind.FollowUp -> "${prayer.displayName} is still pending"
-            WatchNotificationKind.Snooze -> "${prayer.displayName} reminder"
-            WatchNotificationKind.Dhikr -> "A short dhikr break?"
+            WatchNotificationKind.Initial -> appContext.getString(R.string.notif_initial_title, prayer.displayName)
+            WatchNotificationKind.FollowUp -> appContext.getString(R.string.notif_followup_title, prayer.displayName)
+            WatchNotificationKind.Snooze -> appContext.getString(R.string.notif_snooze_title, prayer.displayName)
+            WatchNotificationKind.Dhikr -> appContext.getString(R.string.notif_dhikr_body)
         }
         val body = when (kind) {
-            WatchNotificationKind.Initial -> "Time for ${prayer.displayName}"
-            WatchNotificationKind.FollowUp, WatchNotificationKind.Snooze -> "Mark prayed or snooze"
-            WatchNotificationKind.Dhikr -> "Open Dhikr"
+            WatchNotificationKind.Initial -> appContext.getString(R.string.notif_initial_body, prayer.displayName)
+            WatchNotificationKind.FollowUp, WatchNotificationKind.Snooze -> appContext.getString(R.string.notif_mark_or_snooze)
+            WatchNotificationKind.Dhikr -> appContext.getString(R.string.notif_open_dhikr)
         }
 
         NotificationManagerCompat.from(appContext).notify(
@@ -114,9 +132,9 @@ class WearPrayerNotificationScheduler(private val context: Context) {
                 .setContentText(body)
                 .setAutoCancel(true)
                 .setContentIntent(openAppIntent(TileRoutes.SCREEN_TODAY))
-                .addAction(0, "Mark prayed", actionIntent(ACTION_MARK_PRAYED, prayerId))
-                .addAction(0, "Snooze", actionIntent(ACTION_SNOOZE, prayerId))
-                .addAction(0, "Open app", openAppIntent(TileRoutes.SCREEN_TODAY))
+                .addAction(0, appContext.getString(R.string.notif_action_mark_prayed), actionIntent(ACTION_MARK_PRAYED, prayerId))
+                .addAction(0, appContext.getString(R.string.notif_action_snooze), actionIntent(ACTION_SNOOZE, prayerId))
+                .addAction(0, appContext.getString(R.string.notif_action_open_app), openAppIntent(TileRoutes.SCREEN_TODAY))
                 .build()
         )
     }
@@ -207,7 +225,7 @@ class WearPrayerNotificationScheduler(private val context: Context) {
 
     private fun notificationId(prayerId: String, kind: WatchNotificationKind): Int = "${prayerId}_${kind.name}".hashCode()
 
-    private fun displayName(prayerId: String): String = repository.prayers().firstOrNull { it.prayerId == prayerId }?.displayName ?: "Prayer"
+    private fun displayName(prayerId: String): String = repository.prayers().firstOrNull { it.prayerId == prayerId }?.displayName ?: appContext.getString(R.string.prayer_fallback_name)
 
     private fun logAction(action: WatchNotificationActionType, prayerId: String?) {
         stateStore.appendActionLog(

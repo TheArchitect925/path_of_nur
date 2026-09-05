@@ -5,23 +5,30 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
+import '../../salah/application/salah_sync_controller.dart';
 import '../../salah/application/salah_trainer_provider.dart';
 import '../../salah/models/salah_trainer_models.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _SalahTrainerTab { learn, guided, ayah, recitations, essentials, wudu }
 
 class LearnSalahHubPage extends ConsumerStatefulWidget {
-  const LearnSalahHubPage({super.key});
+  const LearnSalahHubPage({super.key, this.section});
+
+  /// Null keeps the salah structure itself as the landing; the other five are
+  /// destinations you can link to rather than segments behind a strip.
+  final String? section;
 
   @override
   ConsumerState<LearnSalahHubPage> createState() => _LearnSalahHubPageState();
 }
 
 class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
-  _SalahTrainerTab _tab = _SalahTrainerTab.learn;
+  late final _SalahTrainerTab _tab = _sectionFor(widget.section);
   final TextEditingController _surahSearchController = TextEditingController();
   final TextEditingController _recitationSearchController =
       TextEditingController();
@@ -71,7 +78,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: IslamicIcons.prayer,
+      headerIcon: AppIcons.salah,
       title: l10n.learnSalahHubTitle,
       subtitle: l10n.learnSalahHubSubtitle,
       children: [
@@ -120,13 +127,24 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
           ),
           const SizedBox(height: 10),
         ],
-        SegmentedPillControl<_SalahTrainerTab>(
-          items: _SalahTrainerTab.values,
-          selectedItem: _tab,
-          labelBuilder: _tabLabel,
-          onChanged: (value) => setState(() => _tab = value),
-        ),
-        const SizedBox(height: 10),
+        if (widget.section == null) ...[
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final tab in _SalahTrainerTab.values)
+                if (tab != _SalahTrainerTab.learn)
+                  CompactListTile(
+                    title: _tabLabel(tab),
+                    leading: HubLeadingIcon(_sectionIcon(tab)),
+                    onTap: () => context.pushNamed(
+                      'learnSalahHub',
+                      queryParameters: {'section': tab.name},
+                    ),
+                  ),
+            ],
+          ),
+          const SizedBox(height: 10),
+        ],
         PremiumCard(
           child: Wrap(
             spacing: 8,
@@ -156,24 +174,38 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
-                ...recentPrayers
-                    .take(2)
-                    .map(
-                      (prayer) => ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(prayer.title),
-                        subtitle: Text(
-                          '${prayer.fardRakahs} • ${prayer.recitationStyle}',
-                        ),
-                        trailing: FilledButton.tonal(
-                          onPressed: () => context.pushNamed(
-                            'learnSalahGuidedPrayer',
-                            pathParameters: {'prayerId': prayer.id.name},
-                          ),
-                          child: Text(l10n.wuduTrainerResumeAction),
-                        ),
+                ...recentPrayers.take(2).map((prayer) {
+                  final session = progress.sessionFor(prayer.id);
+                  final sessionSurah = session == null
+                      ? null
+                      : ref.watch(
+                          salahTrainerSurahByIdProvider(session.surahId),
+                        );
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(prayer.title),
+                    subtitle: Text(
+                      session != null && session.hasProgress
+                          ? l10n.salahTrainerHubResumeSubtitle(
+                              session.stepIndex + 1,
+                              session.totalSteps,
+                              sessionSurah?.name ?? session.surahId,
+                            )
+                          : '${prayer.fardRakahs} • ${prayer.recitationStyle}',
+                    ),
+                    trailing: FilledButton.tonal(
+                      onPressed: () => context.pushNamed(
+                        'learnSalahGuidedPrayer',
+                        pathParameters: {'prayerId': prayer.id.name},
+                      ),
+                      child: Text(
+                        session != null && session.hasProgress
+                            ? l10n.salahTrainerResumeAction
+                            : l10n.learnSalahHubStartGuidedSalahAction,
                       ),
                     ),
+                  );
+                }),
               ],
             ),
           ),
@@ -204,6 +236,30 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
           const _WuduTab(),
       ],
     );
+  }
+
+  _SalahTrainerTab _sectionFor(String? id) {
+    for (final tab in _SalahTrainerTab.values) {
+      if (tab.name == id) return tab;
+    }
+    return _SalahTrainerTab.learn;
+  }
+
+  IconData _sectionIcon(_SalahTrainerTab tab) {
+    switch (tab) {
+      case _SalahTrainerTab.learn:
+        return Icons.school_rounded;
+      case _SalahTrainerTab.guided:
+        return AppIcons.guidedPrayer;
+      case _SalahTrainerTab.ayah:
+        return Icons.menu_book_rounded;
+      case _SalahTrainerTab.recitations:
+        return Icons.record_voice_over_rounded;
+      case _SalahTrainerTab.essentials:
+        return Icons.checklist_rounded;
+      case _SalahTrainerTab.wudu:
+        return Icons.water_drop_rounded;
+    }
   }
 
   String _tabLabel(_SalahTrainerTab tab) {
@@ -492,26 +548,20 @@ class _AyahTab extends ConsumerWidget {
               surah.id == 'al_fatihah' || unlockedSurahIds.contains(surah.id);
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: PremiumCard(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text('${surah.name} (${surah.surahNumber})'),
-                subtitle: Text(
-                  unlocked
-                      ? l10n.learnSalahHubSurahCardSubtitle(
-                          surah.verses.length,
-                          _statusLabel(l10n, status),
-                        )
-                      : l10n.learnSalahHubSurahLockedSubtitle,
-                ),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: unlocked
-                    ? () => context.pushNamed(
-                        'learnSalahSurahDetail',
-                        pathParameters: {'surahId': surah.id},
-                      )
-                    : null,
-              ),
+            child: CompactListTile(
+              title: '${surah.name} (${surah.surahNumber})',
+              subtitle: unlocked
+                  ? l10n.learnSalahHubSurahCardSubtitle(
+                      surah.verses.length,
+                      _statusLabel(l10n, status),
+                    )
+                  : l10n.learnSalahHubSurahLockedSubtitle,
+              onTap: unlocked
+                  ? () => context.pushNamed(
+                      'learnSalahSurahDetail',
+                      pathParameters: {'surahId': surah.id},
+                    )
+                  : null,
             ),
           );
         }),
@@ -551,6 +601,8 @@ class _RecitationsTab extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final progress = ref.watch(salahTrainerProgressProvider);
     final notifier = ref.read(salahTrainerProgressProvider.notifier);
+    final playingId = ref.watch(recitationPlaybackControllerProvider);
+    final player = ref.read(recitationPlaybackControllerProvider.notifier);
     return Column(
       children: [
         PremiumCard(
@@ -593,6 +645,7 @@ class _RecitationsTab extends ConsumerWidget {
                   Text(
                     recitation.arabicText,
                     textAlign: TextAlign.right,
+                    textDirection: TextDirection.rtl,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
@@ -600,10 +653,31 @@ class _RecitationsTab extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Text(recitation.translation),
                   const SizedBox(height: 10),
-                  FilledButton.tonal(
-                    onPressed: () =>
-                        notifier.markRecitationLearned(recitation.id),
-                    child: Text(l10n.learnSalahHubMarkReviewedAction),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      FilledButton.tonalIcon(
+                        onPressed: playingId == recitation.id
+                            ? player.stop
+                            : () => player.play(recitation),
+                        icon: Icon(
+                          playingId == recitation.id
+                              ? Icons.stop_rounded
+                              : Icons.volume_up_rounded,
+                        ),
+                        label: Text(
+                          playingId == recitation.id
+                              ? l10n.salahTrainerStopAction
+                              : l10n.salahTrainerListenAction,
+                        ),
+                      ),
+                      OutlinedButton(
+                        onPressed: () =>
+                            notifier.markRecitationLearned(recitation.id),
+                        child: Text(l10n.learnSalahHubMarkReviewedAction),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -648,7 +722,7 @@ class _EssentialsTab extends StatelessWidget {
                           children: [
                             const Padding(
                               padding: EdgeInsets.only(top: 4),
-                              child: Icon(Icons.circle, size: 6),
+                              child: Icon(Icons.circle_rounded, size: 6),
                             ),
                             const SizedBox(width: 8),
                             Expanded(child: Text(bullet)),
@@ -680,7 +754,6 @@ class _WuduTab extends StatelessWidget {
             leading: const Icon(IslamicIcons.wudhu),
             title: Text(l10n.learnSalahHubWuduGuideTitle),
             subtitle: Text(l10n.learnSalahHubWuduGuideSubtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('learnWuduGuide'),
           ),
         ),
@@ -691,7 +764,6 @@ class _WuduTab extends StatelessWidget {
             leading: const Icon(Icons.play_circle_fill_rounded),
             title: Text(l10n.wuduTrainerPageTitle),
             subtitle: Text(l10n.learnSalahHubWuduTrainerSubtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('learnWuduTrainer'),
           ),
         ),

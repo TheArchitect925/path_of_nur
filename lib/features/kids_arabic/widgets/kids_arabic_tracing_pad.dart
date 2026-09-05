@@ -7,6 +7,7 @@ import '../application/kids_arabic_starter_tracing.dart';
 import '../application/kids_arabic_tracing_engine.dart';
 import '../application/kids_arabic_vector_tracing.dart';
 import '../domain/kids_arabic_models.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicTracingColorOption {
   const KidsArabicTracingColorOption({
@@ -260,7 +261,7 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFFFFFBF5),
+                                color: context.palette.surface,
                                 borderRadius: BorderRadius.circular(24),
                                 border: Border.all(
                                   color: ready
@@ -308,10 +309,10 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            const Icon(
+                                            Icon(
                                               Icons.celebration_rounded,
                                               size: 16,
-                                              color: Color(0xFF64873B),
+                                              color: context.palette.successInk,
                                             ),
                                             const SizedBox(width: 6),
                                             Text(
@@ -347,9 +348,9 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
           children: [
             Text(
               widget.traceColorLabel,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF5E462A),
+                color: context.palette.onSurface,
               ),
             ),
             ...widget.colorOptions.map(
@@ -377,10 +378,10 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.check_circle_rounded,
                       size: 16,
-                      color: Color(0xFF64873B),
+                      color: context.palette.successInk,
                     ),
                     const SizedBox(width: 6),
                     Text(

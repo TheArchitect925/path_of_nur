@@ -8,6 +8,8 @@ import '../../../../shared/widgets/quran_reference_link.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_kids_ayah_insights_provider.dart';
 import '../application/quran_learning_progression_provider.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranKidsAyahInsightsPage extends ConsumerStatefulWidget {
   const QuranKidsAyahInsightsPage({super.key});
@@ -40,7 +42,6 @@ class _QuranKidsAyahInsightsPageState
 
     return LearnHubPageScaffold(
       showDefaultQuote: false,
-      headerIcon: Icons.auto_stories_rounded,
       title: l10n.kidsQuranAyahInsightsTitle,
       subtitle: l10n.kidsQuranAyahInsightsSubtitle,
       children: [
@@ -173,14 +174,13 @@ class _QuranKidsAyahInsightsPageState
 
   IconData _categoryIcon(KidsQuranAyahInsightCategory category) {
     return switch (category) {
-      KidsQuranAyahInsightCategory.signsInCreation => Icons.wb_sunny_outlined,
-      KidsQuranAyahInsightCategory.prayerAndRemembrance =>
-        Icons.mosque_outlined,
+      KidsQuranAyahInsightCategory.signsInCreation => Icons.wb_sunny_rounded,
+      KidsQuranAyahInsightCategory.prayerAndRemembrance => AppIcons.mosque,
       KidsQuranAyahInsightCategory.gratitudeAndTrust =>
         Icons.favorite_outline_rounded,
       KidsQuranAyahInsightCategory.kindnessAndGoodManners =>
-        Icons.volunteer_activism_outlined,
-      KidsQuranAyahInsightCategory.prophetLessons => Icons.menu_book_outlined,
+        Icons.volunteer_activism_rounded,
+      KidsQuranAyahInsightCategory.prophetLessons => Icons.menu_book_rounded,
     };
   }
 
@@ -215,7 +215,7 @@ class _KidsAyahInsightCard extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF5),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(22),
         border: Border.all(color: const Color(0xFFE7DBC8)),
       ),
@@ -224,10 +224,10 @@ class _KidsAyahInsightCard extends ConsumerWidget {
         children: [
           Text(
             _itemTitle(l10n, item.id),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),

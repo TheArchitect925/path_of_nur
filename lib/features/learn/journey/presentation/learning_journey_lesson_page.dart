@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../content_linking/application/contextual_linking_providers.dart';
 import '../../../content_linking/presentation/contextual_related_content_section.dart';
 import '../application/family_learning_provider.dart';
@@ -21,6 +21,7 @@ import '../domain/learning_journey_lesson_models.dart';
 import '../domain/learning_journey_models.dart';
 import '../domain/learning_path_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyLessonPage extends ConsumerWidget {
   const LearningJourneyLessonPage({
@@ -117,10 +118,8 @@ class LearningJourneyLessonPage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: localizedStageSummary(context, stage),
-      quote: buildLearningCompactQuote(),
       children: [
         if (learnTogetherEligible &&
             activeFamily.activeGuardianProfileId != null &&
@@ -135,7 +134,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.learnTogetherLessonIntro,
-                  style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
+                    height: 1.4,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 Wrap(
@@ -197,8 +199,8 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         '• $item',
-                        style: const TextStyle(
-                          color: Color(0xFF675B4E),
+                        style: TextStyle(
+                          color: context.palette.onSurfaceSubtle,
                           height: 1.4,
                         ),
                       ),
@@ -213,7 +215,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             comfortable: kidsUi.enabled,
             child: Text(
               learnTogetherPrompt.parentGuidance,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.4,
+              ),
             ),
           ),
           const SizedBox(height: 14),
@@ -225,7 +230,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           comfortable: kidsUi.enabled,
           child: Text(
             lesson.introduction,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.4,
+            ),
           ),
         ),
         const SizedBox(height: 14),
@@ -239,8 +247,8 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                 children: [
                   Text(
                     section.body,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.4,
                     ),
                   ),
@@ -252,20 +260,20 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(top: 4),
                               child: Icon(
-                                Icons.circle,
+                                Icons.circle_rounded,
                                 size: 7,
-                                color: Color(0xFF7B694F),
+                                color: context.palette.onSurfaceSubtle,
                               ),
                             ),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
                                 bullet,
-                                style: const TextStyle(
-                                  color: Color(0xFF675B4E),
+                                style: TextStyle(
+                                  color: context.palette.onSurfaceSubtle,
                                   height: 1.35,
                                 ),
                               ),
@@ -284,10 +292,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
         if (lesson.invocations.isNotEmpty) ...[
           Text(
             l10n.learningJourneyLessonSectionArabicMeaning,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
@@ -310,20 +318,20 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(top: 4),
                           child: Icon(
-                            Icons.circle,
+                            Icons.circle_rounded,
                             size: 7,
-                            color: Color(0xFF7B694F),
+                            color: context.palette.onSurfaceSubtle,
                           ),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
                             item,
-                            style: const TextStyle(
-                              color: Color(0xFF675B4E),
+                            style: TextStyle(
+                              color: context.palette.onSurfaceSubtle,
                               height: 1.35,
                             ),
                           ),
@@ -341,7 +349,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           comfortable: kidsUi.enabled,
           child: Text(
             lesson.reflectionPrompt,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.4,
+            ),
           ),
         ),
         if (lesson.actionStep != null) ...[
@@ -351,7 +362,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             comfortable: kidsUi.enabled,
             child: Text(
               lesson.actionStep!,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.4,
+              ),
             ),
           ),
         ],
@@ -362,7 +376,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             comfortable: kidsUi.enabled,
             child: Text(
               lesson.reviewSuggestion!,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.4,
+              ),
             ),
           ),
         ],
@@ -455,17 +472,17 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           const SizedBox(height: 14),
           Text(
             l10n.learningJourneyLessonSectionExploreNow,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
           if (lesson.showDhikrCounterAction) ...[
             FilledButton.tonalIcon(
               onPressed: () => context.pushNamed('worshipDhikrPage'),
-              icon: const Icon(Icons.self_improvement_rounded),
+              icon: const Icon(AppIcons.dhikr),
               label: Text(
                 kidsUi.enabled
                     ? l10n.kidsJourneyLessonActionOpenDhikrCounter
@@ -491,7 +508,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
               l10n.learningJourneyLessonActionStudyInQuranSubtitle(
                 quranContextEntry.referenceLabel,
               ),
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
             if (filteredRelatedTools.isNotEmpty) const SizedBox(height: 10),
           ],
@@ -510,7 +530,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             comfortable: kidsUi.enabled,
             child: Text(
               learnTogetherPrompt.familyPrompt,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.4,
+              ),
             ),
           ),
         ],
@@ -520,7 +543,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             title: l10n.learningJourneyLessonSectionRewardsTitle,
             child: Text(
               l10n.learningJourneyLessonSectionProgressSubtitle,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.4,
+              ),
             ),
           ),
           const SizedBox(height: 14),
@@ -657,9 +683,9 @@ class _SectionCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(comfortable ? 18 : 16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -669,7 +695,7 @@ class _SectionCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: comfortable ? 17 : 16,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           SizedBox(height: comfortable ? 10 : 8),
@@ -690,48 +716,54 @@ class _InvocationCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             invocation.title,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             invocation.arabic,
             textAlign: TextAlign.right,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 24,
               height: 1.7,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             invocation.transliteration,
-            style: const TextStyle(
+            style: TextStyle(
               fontStyle: FontStyle.italic,
-              color: Color(0xFF675B4E),
+              color: context.palette.onSurfaceSubtle,
               height: 1.35,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             invocation.meaning,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.4,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             invocation.context,
-            style: const TextStyle(color: Color(0xFF7B694F), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 10),
           Container(

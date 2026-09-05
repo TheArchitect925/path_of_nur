@@ -9,6 +9,7 @@ import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/journal_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class JournalTimelinePage extends ConsumerStatefulWidget {
   const JournalTimelinePage({super.key});
@@ -39,7 +40,7 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_outlined,
+      headerIcon: AppIcons.journal,
       title: l10n.journalTitle,
       subtitle: localizedAppPageDescription(
         context,
@@ -84,7 +85,7 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
                       _searchController.clear();
                       notifier.setSearchQuery('');
                     },
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(Icons.close_rounded),
                   ),
                 ),
                 onSubmitted: notifier.setSearchQuery,
@@ -233,8 +234,8 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
                                       notifier.toggleFavorite(entry.id),
                                   icon: Icon(
                                     entry.favorite
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
+                                        ? Icons.favorite_rounded
+                                        : Icons.favorite_border_rounded,
                                   ),
                                 ),
                               ],

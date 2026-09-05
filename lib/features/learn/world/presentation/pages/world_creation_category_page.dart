@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/world_creation_provider.dart';
 import '../../data/world_creation_data.dart';
 import '../../domain/world_creation_models.dart';
+import '../../../../../core/theme/app_icons.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class WorldCreationCategoryPage extends ConsumerWidget {
   const WorldCreationCategoryPage({super.key, required this.categoryName});
@@ -21,10 +25,8 @@ class WorldCreationCategoryPage extends ConsumerWidget {
     );
     final categoryData = worldCreationCategoryById(category);
     if (categoryData == null) {
-      return const AppPageScaffold(
-        headerIcon: Icons.public_rounded,
-        title: 'World & Creation',
-        subtitle: 'Category not found',
+      return AppPageScaffold(
+        title: AppLocalizations.of(context).worldLandingTitle,
         children: [
           PremiumCard(child: Text('This category could not be found.')),
         ],
@@ -39,7 +41,6 @@ class WorldCreationCategoryPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.layers_rounded,
       title: categoryData.title,
       subtitle: categoryData.description,
       children: [
@@ -55,10 +56,7 @@ class WorldCreationCategoryPage extends ConsumerWidget {
                 '${lessons.length} lessons • ${(progress * 100).round()}% complete',
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: progress, minHeight: 7),
-              ),
+              ProgressBar(value: progress, height: 7),
             ],
           ),
         ),
@@ -79,7 +77,7 @@ class WorldCreationCategoryPage extends ConsumerWidget {
                 if (category == WorldCreationCategoryId.muslimScientists)
                   FilledButton.tonalIcon(
                     onPressed: () => context.pushNamed('worldMuslimScientists'),
-                    icon: const Icon(Icons.biotech_rounded),
+                    icon: const Icon(AppIcons.science),
                     label: const Text('Open Muslim Scientists'),
                   ),
               ],
@@ -89,18 +87,13 @@ class WorldCreationCategoryPage extends ConsumerWidget {
           ...lessons.map(
             (lesson) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(lesson.title),
-                  subtitle: Text(
+              child: CompactListTile(
+                title: lesson.title,
+                subtitle:
                     '${lesson.summary}\nQur\'an ${lesson.quranVerses.first.referenceLabel}',
-                  ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
-                  onTap: () => context.pushNamed(
-                    'worldCreationLessonDetail',
-                    pathParameters: {'lessonId': lesson.id},
-                  ),
+                onTap: () => context.pushNamed(
+                  'worldCreationLessonDetail',
+                  pathParameters: {'lessonId': lesson.id},
                 ),
               ),
             ),

@@ -13,6 +13,7 @@ import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../journey/xp/application/journey_xp_providers.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -72,7 +73,6 @@ class _AyahCompletionPuzzlePageState
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).ayahCompletionHomeTitle,
-      subtitle: AppLocalizations.of(context).ayahCompletionLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -80,7 +80,6 @@ class _AyahCompletionPuzzlePageState
   Widget _buildLoadError(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).ayahCompletionHomeTitle,
-      subtitle: AppLocalizations.of(context).ayahCompletionLoadErrorSubtitle,
       children: [
         PremiumCard(
           child: Text(
@@ -94,7 +93,6 @@ class _AyahCompletionPuzzlePageState
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).ayahCompletionHomeTitle,
-      subtitle: AppLocalizations.of(context).ayahCompletionNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).ayahCompletionNotFoundTitle),
@@ -117,7 +115,6 @@ class _AyahCompletionPuzzlePageState
     if (isChildProfile && puzzle.mode != AyahCompletionMode.kids) {
       return AppPageScaffold(
         title: l10n.ayahCompletionHomeTitle,
-        subtitle: l10n.ayahCompletionNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.ayahCompletionKidsOnlyTitle))],
       );
     }
@@ -164,8 +161,7 @@ class _AyahCompletionPuzzlePageState
       orElse: () => '',
     );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: title,
       subtitle: subtitle,
       game: game,

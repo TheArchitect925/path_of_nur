@@ -16,7 +16,28 @@ struct WatchRootView: View {
       WatchUtilityScreen()
         .tag(WatchRootTab.utility)
     }
-    .tabViewStyle(.carousel)
-    .background(WatchTheme.backgroundGradient.ignoresSafeArea())
+    .tabViewStyle(.verticalPage)
+    .environment(\.watchPalette, model.palette)
+    .background(model.palette.backgroundGradient.ignoresSafeArea())
+    .animation(.easeInOut(duration: 0.3), value: model.palette)
+    .sheet(item: $model.presentedAuxScreen) { screen in
+      auxScreen(screen)
+        .environmentObject(model)
+        .environment(\.watchPalette, model.palette)
+    }
+  }
+
+  @ViewBuilder
+  private func auxScreen(_ screen: WatchAuxScreen) -> some View {
+    switch screen {
+    case .qibla:
+      WatchQiblaScreen()
+    case .names:
+      WatchNamesScreen()
+    case .quranRemote:
+      WatchQuranRemoteScreen()
+    case .dhikrRoutines:
+      WatchDhikrRoutinesScreen()
+    }
   }
 }

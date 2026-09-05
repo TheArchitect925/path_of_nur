@@ -10,6 +10,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import 'widgets/qibla_compass_widget.dart';
+import '../../../core/theme/app_icons.dart';
 
 class QiblaFinderPage extends StatefulWidget {
   const QiblaFinderPage({super.key});
@@ -41,7 +42,6 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
     final position = _position;
     final isIpad = _isIpad(context);
     return AppPageScaffold(
-      headerIcon: Icons.explore_rounded,
       title: l10n.worshipQiblaFinderTitle,
       subtitle: l10n.worshipQiblaFinderSubtitle,
       children: [
@@ -122,9 +122,7 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
                 FilledButton.tonalIcon(
                   onPressed: () => setState(() => _arMode = !_arMode),
                   icon: Icon(
-                    _arMode
-                        ? Icons.view_in_ar_rounded
-                        : Icons.view_in_ar_outlined,
+                    _arMode ? Icons.view_in_ar_rounded : AppIcons.arOff,
                   ),
                   label: Text(
                     _arMode

@@ -89,7 +89,6 @@ class _EditorialRelationTile extends StatelessWidget {
             ),
           ],
         ),
-        trailing: const Icon(Icons.chevron_right_rounded),
         onTap: () => context.pushNamed(
           link.routeName,
           pathParameters: link.pathParameters,

@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../kids/rewards/presentation/kids_invitation_card.dart';
+import '../../kids/rewards/presentation/kids_reward_strip.dart';
+import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_experience_provider.dart';
 import '../application/kids_dua_my_day_provider.dart';
 import '../application/kids_dua_story_repository.dart';
 import '../domain/kids_dua_models.dart';
+import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/section_title.dart';
 
 class KidsDuaLandingPage extends ConsumerWidget {
   const KidsDuaLandingPage({super.key});
@@ -25,18 +29,34 @@ class KidsDuaLandingPage extends ConsumerWidget {
     final categoryProgress = ref.watch(kidsDuaCategoryProgressListProvider);
     final myDayState = ref.watch(kidsDuaMyDayProvider);
     final myDayGuidance = ref.watch(kidsDuaMyDayGuidanceProvider);
-    final lightSummary = ref.watch(kidsDuaLightSummaryProvider);
     final creative = ref.watch(kidsDuaCreativeProvider);
     final stories = ref.watch(kidsDuaStoriesProvider);
 
-    return LearnHubPageScaffold(
-      headerIcon: Icons.volunteer_activism_rounded,
+    return KidsPageScaffold(
+      headerIcon: AppIcons.dua,
       title: l10n.kidsDuaLandingTitle,
       subtitle: l10n.kidsDuaLandingSubtitle,
+      heroAsset: 'assets/images/learn_art/kids_duas.webp',
+      heroTitle: l10n.kidsDoorDuasTitle,
+      heroSubtitle: l10n.kidsDoorDuasSubtitle,
       children: [
-        _HeroCard(summary: summary),
+        // A first-time child gets one thing to do, not a row of zeros; the
+        // "light" and its streak fold into the one sticker book (K4).
+        if (summary.learnedLessons == 0)
+          KidsInvitationCard(
+            title: l10n.kidsInvitationFirstDuaTitle,
+            subtitle: l10n.kidsInvitationFirstDuaSubtitle,
+            onTap: () => todayFocus == null
+                ? context.pushNamed('kidsDuaMyDay')
+                : context.pushNamed(
+                    'kidsDuaLesson',
+                    pathParameters: {'lessonId': todayFocus.lesson.id},
+                  ),
+          )
+        else
+          _HeroCard(summary: summary),
         const SizedBox(height: 12),
-        _LightCard(summary: lightSummary),
+        const KidsRewardStrip(),
         const SizedBox(height: 12),
         if (todayFocus != null) ...[
           _FeatureCard(
@@ -93,7 +113,7 @@ class KidsDuaLandingPage extends ConsumerWidget {
           onTap: () => context.pushNamed('kidsDuaMyDay'),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsDuaCategoriesTitle,
           subtitle: l10n.kidsDuaCategoriesSubtitle,
         ),
@@ -132,64 +152,9 @@ class KidsDuaLandingPage extends ConsumerWidget {
           icon: Icons.emoji_events_rounded,
           title: l10n.kidsDuaRewardsTitle,
           subtitle: l10n.kidsDuaRewardsEncouragement,
-          onTap: () => context.pushNamed('kidsDuaRewards'),
-        ),
-        const SizedBox(height: 10),
-        _QuickEntryCard(
-          icon: Icons.family_restroom_rounded,
-          title: l10n.kidsDuaParentTitle,
-          subtitle: creative.parentViewEnabled
-              ? l10n.kidsDuaParentLandingEnabled
-              : l10n.kidsDuaParentLandingDisabled,
-          onTap: () => context.pushNamed('kidsDuaParentDashboard'),
+          onTap: () => context.pushNamed('kidsStickerBook'),
         ),
       ],
-    );
-  }
-}
-
-class _LightCard extends StatelessWidget {
-  const _LightCard({required this.summary});
-
-  final KidsDuaLightSummary summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.kidsDuaLightCardTitle,
-            style: const TextStyle(fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.kidsDuaLightValue(_lightLabel(context, summary.lightLabelKey)),
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: const TextStyle(color: AppColors.accentGold),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            _localizedCopy(context, summary.lightDescriptionKey),
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
-              height: 1.4,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            _localizedCopy(context, summary.reminderPrompt.bodyKey),
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -208,61 +173,6 @@ String _myDayLandingDetail(
   };
   if (guidance.nextUpLesson == null) return reason;
   return l10n.kidsDuaMyDayLandingDetail(reason, guidance.nextUpLesson!.title);
-}
-
-String _lightLabel(BuildContext context, String key) =>
-    _localizedCopy(context, key);
-
-String _localizedCopy(BuildContext context, String key) {
-  final l10n = AppLocalizations.of(context);
-  switch (key) {
-    case 'kidsDuaLightSeedLabel':
-      return l10n.kidsDuaLightSeedLabel;
-    case 'kidsDuaLightGlowLabel':
-      return l10n.kidsDuaLightGlowLabel;
-    case 'kidsDuaLightLanternLabel':
-      return l10n.kidsDuaLightLanternLabel;
-    case 'kidsDuaLightMoonLabel':
-      return l10n.kidsDuaLightMoonLabel;
-    case 'kidsDuaLightStarLabel':
-      return l10n.kidsDuaLightStarLabel;
-    case 'kidsDuaLightRadiantLabel':
-      return l10n.kidsDuaLightRadiantLabel;
-    case 'kidsDuaLightStartMessage':
-      return l10n.kidsDuaLightStartMessage;
-    case 'kidsDuaLightBuildMessage':
-      return l10n.kidsDuaLightBuildMessage;
-    case 'kidsDuaLightSteadyMessage':
-      return l10n.kidsDuaLightSteadyMessage;
-    case 'kidsDuaLightRadiantMessage':
-      return l10n.kidsDuaLightRadiantMessage;
-    case 'kidsDuaLightRecoveryMessage':
-      return l10n.kidsDuaLightRecoveryMessage;
-    case 'kidsDuaLightCompleteTodayMessage':
-      return l10n.kidsDuaLightCompleteTodayMessage;
-    case 'kidsDuaReminderMorningTitle':
-      return l10n.kidsDuaReminderMorningTitle;
-    case 'kidsDuaReminderMorningBody':
-      return l10n.kidsDuaReminderMorningBody;
-    case 'kidsDuaReminderMiddayTitle':
-      return l10n.kidsDuaReminderMiddayTitle;
-    case 'kidsDuaReminderMiddayBody':
-      return l10n.kidsDuaReminderMiddayBody;
-    case 'kidsDuaReminderEveningTitle':
-      return l10n.kidsDuaReminderEveningTitle;
-    case 'kidsDuaReminderEveningBody':
-      return l10n.kidsDuaReminderEveningBody;
-    case 'kidsDuaReminderBedtimeTitle':
-      return l10n.kidsDuaReminderBedtimeTitle;
-    case 'kidsDuaReminderBedtimeBody':
-      return l10n.kidsDuaReminderBedtimeBody;
-    case 'kidsDuaReminderRecoveryTitle':
-      return l10n.kidsDuaReminderRecoveryTitle;
-    case 'kidsDuaReminderRecoveryBody':
-      return l10n.kidsDuaReminderRecoveryBody;
-    default:
-      return key;
-  }
 }
 
 class _HeroCard extends StatelessWidget {
@@ -285,8 +195,8 @@ class _HeroCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.kidsDuaHeroSubtitle,
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
               height: 1.4,
             ),
           ),
@@ -303,9 +213,6 @@ class _HeroCard extends StatelessWidget {
                 label: l10n.kidsDuaCategoryCountValue(
                   summary.completedCategories,
                 ),
-              ),
-              _Pill(
-                label: l10n.kidsDuaRewardsCountValue(summary.unlockedRewards),
               ),
             ],
           ),
@@ -345,7 +252,7 @@ class _FeatureCard extends StatelessWidget {
                 width: 52,
                 height: 52,
                 decoration: _kidsNoorPanelDecoration(context, radius: 18),
-                child: Icon(icon, color: AppColors.accentGold),
+                child: Icon(icon, color: context.palette.accent),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -372,7 +279,7 @@ class _FeatureCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             detail,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
           const SizedBox(height: 12),
           SizedBox(
@@ -407,7 +314,7 @@ class _CategoryCard extends StatelessWidget {
               width: 54,
               height: 54,
               decoration: _kidsNoorPanelDecoration(context, radius: 18),
-              child: Icon(item.category.icon, color: AppColors.accentGold),
+              child: Icon(item.category.icon, color: context.palette.accent),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -421,7 +328,7 @@ class _CategoryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     item.category.subtitle,
-                    style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                    style: TextStyle(color: context.palette.onSurfaceSubtle),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -429,18 +336,15 @@ class _CategoryCard extends StatelessWidget {
                       item.learnedCount,
                       item.totalCount,
                     ),
-                    style: const TextStyle(
-                      color: AppColors.accentGold,
+                    style: TextStyle(
+                      color: context.palette.accent,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.accentGold,
-            ),
+            Icon(Icons.chevron_right_rounded, color: context.palette.accent),
           ],
         ),
       ),
@@ -474,7 +378,7 @@ class _QuickEntryCard extends StatelessWidget {
               width: 52,
               height: 52,
               decoration: _kidsNoorPanelDecoration(context, radius: 18),
-              child: Icon(icon, color: AppColors.accentGold),
+              child: Icon(icon, color: context.palette.accent),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -488,43 +392,15 @@ class _QuickEntryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                    style: TextStyle(color: context.palette.onSurfaceSubtle),
                   ),
                 ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.accentGold,
-            ),
+            Icon(Icons.chevron_right_rounded, color: context.palette.accent),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: const TextStyle(color: AppColors.onSurfaceSubtle),
-        ),
-      ],
     );
   }
 }

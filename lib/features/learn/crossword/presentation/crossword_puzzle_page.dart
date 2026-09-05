@@ -13,6 +13,7 @@ import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../journey/xp/application/journey_xp_providers.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/user_learning_profile_provider.dart';
+import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../../knowledge_games/application/knowledge_game_variation_engine.dart';
 import '../../knowledge_games/daily/domain/daily_knowledge_challenge_models.dart';
 import '../../knowledge_games/domain/knowledge_game_variations.dart';
@@ -86,7 +87,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
   Widget _buildLoading(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).crosswordHomeTitle,
-      subtitle: AppLocalizations.of(context).crosswordLoadingSubtitle,
       children: const [Center(child: CircularProgressIndicator())],
     );
   }
@@ -106,7 +106,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
   Widget _buildNotFound(BuildContext context) {
     return AppPageScaffold(
       title: AppLocalizations.of(context).crosswordHomeTitle,
-      subtitle: AppLocalizations.of(context).crosswordNotFoundSubtitle,
       children: [
         PremiumCard(
           child: Text(AppLocalizations.of(context).crosswordNotFoundTitle),
@@ -129,7 +128,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     if (isChildProfile && puzzle.mode != CrosswordMode.kids) {
       return AppPageScaffold(
         title: l10n.crosswordHomeTitle,
-        subtitle: l10n.crosswordNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.crosswordKidsOnlyTitle))],
       );
     }
@@ -188,8 +186,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
             puzzle.gridSize.toString(),
           );
 
-    return adapter.buildScreen(
-      context: context,
+    return KnowledgeGameScreen(
       title: title,
       subtitle: subtitle,
       game: knowledgeGame,
@@ -588,7 +585,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
           Icon(
             achieved
                 ? Icons.check_circle_rounded
-                : Icons.radio_button_unchecked,
+                : Icons.radio_button_unchecked_rounded,
             size: 18,
             color: achieved ? Theme.of(context).colorScheme.primary : null,
           ),
@@ -741,7 +738,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                   onPressed: canViewExtraHint
                       ? () => _handleViewExtraHint(puzzle: puzzle, clue: clue)
                       : null,
-                  icon: const Icon(Icons.tips_and_updates_outlined),
+                  icon: const Icon(Icons.tips_and_updates_rounded),
                   label: Text(
                     extraHintViewed
                         ? l10n.crosswordExtraHintViewedAction

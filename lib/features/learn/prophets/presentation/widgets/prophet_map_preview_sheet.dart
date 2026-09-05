@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/prophet_entry.dart';
@@ -39,14 +39,14 @@ class ProphetMapPreviewSheet extends StatelessWidget {
               Text(
                 lead.honoredArabicName,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               )
             else
               Text(
                 lead.regionLabel,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             const SizedBox(height: 6),
@@ -60,8 +60,9 @@ class ProphetMapPreviewSheet extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _chip(locationLabel),
+                _chip(context, locationLabel),
                 _chip(
+                  context,
                   localizedProphetLocationConfidenceLabel(
                     l10n,
                     _highestConfidence(prophets),
@@ -75,9 +76,9 @@ class ProphetMapPreviewSheet extends StatelessWidget {
                 l10n,
                 _highestConfidence(prophets),
               ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
             const SizedBox(height: 10),
             if (prophets.length == 1)
@@ -100,7 +101,9 @@ class ProphetMapPreviewSheet extends StatelessWidget {
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
-                              color: AppColors.surface.withValues(alpha: 0.28),
+                              color: context.palette.surface.withValues(
+                                alpha: 0.28,
+                              ),
                               border: Border.all(
                                 color: prophet.eraGroup.tint.withValues(
                                   alpha: 0.35,
@@ -143,14 +146,14 @@ class ProphetMapPreviewSheet extends StatelessWidget {
         );
   }
 
-  Widget _chip(String text) {
+  Widget _chip(BuildContext context, String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.34),
+        color: context.palette.surface.withValues(alpha: 0.34),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.35),
+          color: context.palette.accentSoft.withValues(alpha: 0.35),
         ),
       ),
       child: Text(text, style: const TextStyle(fontSize: 12)),

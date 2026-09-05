@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
 
 class IslamicGuidesPage extends StatelessWidget {
@@ -12,7 +11,6 @@ class IslamicGuidesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return LearnContainedStatePage(
-      headerIcon: Icons.menu_book_rounded,
       title: l10n.homeSearchGuidanceHubTitle,
       subtitle: l10n.learnContainedStateGuidesSubtitle,
       body: l10n.learnContainedStateBody,

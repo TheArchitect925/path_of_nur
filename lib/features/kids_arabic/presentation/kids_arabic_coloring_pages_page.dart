@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_coloring_provider.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicColoringPagesPage extends ConsumerWidget {
   const KidsArabicColoringPagesPage({super.key});
@@ -17,25 +18,24 @@ class KidsArabicColoringPagesPage extends ConsumerWidget {
     final unlockedCount = pages.where((page) => page.isUnlocked).length;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.format_paint_rounded,
       title: l10n.kidsArabicColoringPagesTitle,
       subtitle: l10n.kidsArabicColoringPagesSubtitle,
       children: [
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFFFF5E7),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFE8D8BE)),
+            border: Border.all(color: context.palette.surfaceSoft),
           ),
           child: Text(
             l10n.kidsArabicColoringPagesProgressValue(
               unlockedCount,
               pages.length,
             ),
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5D4A36),
+              color: context.palette.onSurface,
             ),
           ),
         ),
@@ -64,12 +64,12 @@ class KidsArabicColoringPagesPage extends ConsumerWidget {
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   color: page.isUnlocked
-                      ? const Color(0xFFF8F2E8)
+                      ? context.palette.surface
                       : const Color(0xFFF3EFE9),
                   borderRadius: BorderRadius.circular(22),
                   border: Border.all(
                     color: page.isUnlocked
-                        ? const Color(0xFFE5D5C1)
+                        ? context.palette.surfaceSoft
                         : const Color(0xFFE6DDD2),
                   ),
                 ),
@@ -82,21 +82,23 @@ class KidsArabicColoringPagesPage extends ConsumerWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE5D5C1)),
+                          border: Border.all(
+                            color: context.palette.surfaceSoft,
+                          ),
                         ),
-                        child: const Icon(
-                          Icons.image_outlined,
+                        child: Icon(
+                          Icons.image_rounded,
                           size: 44,
-                          color: Color(0xFF8A6C49),
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                     ),
                     const SizedBox(height: 10),
                     Text(
                       localizedKidsArabicColoringTitle(l10n, page.titleKey),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF2E261F),
+                        color: context.palette.onSurface,
                       ),
                     ),
                     const SizedBox(height: 6),
@@ -106,8 +108,8 @@ class KidsArabicColoringPagesPage extends ConsumerWidget {
                           : l10n.kidsArabicColoringUnlockHint,
                       style: TextStyle(
                         color: page.isUnlocked
-                            ? const Color(0xFF52713A)
-                            : const Color(0xFF8A6C49),
+                            ? context.palette.successInk
+                            : context.palette.onSurfaceSubtle,
                         fontWeight: FontWeight.w700,
                       ),
                     ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_fonts.dart';
 import '../../core/theme/app_surfaces.dart';
+import '../../core/theme/app_theme.dart';
 import 'arabic_text_utils.dart';
 import 'app_hero_glass_shell.dart';
 import 'noor_glass_card.dart';
@@ -81,29 +83,40 @@ class AppSalahHeroCard extends StatelessWidget {
                 includeShadow: false,
                 mode: NoorLiquidGlassMode.fake,
                 borderRadius: 16,
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.location_on_outlined,
-                      size: 15,
-                      color: Color(0xFF7A5A33),
-                    ),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(
-                        locationLabel,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Color(0xFF4D4036),
-                          fontSize: 12.8,
-                          fontWeight: FontWeight.w700,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Color(0xFF7A5A33),
+                child: Builder(
+                  builder: (context) {
+                    final appearance = Theme.of(
+                      context,
+                    ).extension<AppAppearanceTheme>();
+                    final accent =
+                        appearance?.accentSoft ?? const Color(0xFF7A5A33);
+                    final ink =
+                        appearance?.onSurface ?? const Color(0xFF4D4036);
+                    return Row(
+                      children: [
+                        Icon(
+                          Icons.location_on_rounded,
+                          size: 15,
+                          color: accent,
                         ),
-                      ),
-                    ),
-                  ],
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            locationLabel,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: ink,
+                              fontSize: 12.8,
+                              fontWeight: FontWeight.w700,
+                              decoration: TextDecoration.underline,
+                              decorationColor: accent,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),
@@ -179,6 +192,10 @@ class _AppSalahHeroStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final tint = appearance?.isDark == true
+        ? Color.lerp(stat.tint, Colors.white, 0.45) ?? stat.tint
+        : stat.tint;
     final card = NoorGlassCard(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       surfaceVariant: AppSurfaceVariant.panel,
@@ -192,7 +209,7 @@ class _AppSalahHeroStatCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(stat.icon, size: 14, color: stat.tint),
+              Icon(stat.icon, size: 14, color: tint),
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
@@ -202,7 +219,7 @@ class _AppSalahHeroStatCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.w700,
-                    color: stat.tint,
+                    color: tint,
                   ),
                 ),
               ),
@@ -213,10 +230,10 @@ class _AppSalahHeroStatCard extends StatelessWidget {
             stat.value,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2F2923),
+              color: appearance?.onSurface ?? const Color(0xFF2F2923),
             ),
           ),
           const SizedBox(height: 2),
@@ -224,9 +241,9 @@ class _AppSalahHeroStatCard extends StatelessWidget {
             stat.subtitle,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11.2,
-              color: Color(0xFF6E5D4C),
+              color: appearance?.onSurfaceSubtle ?? const Color(0xFF6E5D4C),
               height: 1.25,
             ),
           ),
@@ -252,6 +269,9 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final ink = appearance?.onSurface ?? const Color(0xFF202228);
+    final subtleInk = appearance?.onSurfaceSubtle ?? const Color(0xFF6E5D4C);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -282,11 +302,11 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
             children: [
               Text(
                 nextName,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 23.25,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF202228),
-                  fontFamily: 'serif',
+                  color: ink,
+                  fontFamily: AppFonts.latinSerif,
                   height: 1.0,
                 ),
               ),
@@ -295,10 +315,10 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
                 nextArabic,
                 textAlign: textAlignForContent(nextArabic),
                 textDirection: textDirectionForContent(nextArabic),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12.4,
-                  color: Color(0xFF4D4036),
-                  fontFamily: 'serif',
+                  color: subtleInk,
+                  fontFamily: AppFonts.latinSerif,
                 ),
               ),
             ],
@@ -310,16 +330,16 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
           children: [
             Text(
               offerByValue,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18.75,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF202228),
-                fontFamily: 'serif',
+                color: ink,
+                fontFamily: AppFonts.latinSerif,
               ),
             ),
             Text(
               offerByLabel,
-              style: const TextStyle(fontSize: 12.5, color: Color(0xFF6E5D4C)),
+              style: TextStyle(fontSize: 12.5, color: subtleInk),
             ),
           ],
         ),
@@ -335,6 +355,11 @@ class _AppSalahHeroMetaChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    // Dark grounds keep the chip's semantic hue but lift it into legibility.
+    final content = appearance?.isDark == true
+        ? Color.lerp(data.color, Colors.white, 0.45) ?? data.color
+        : data.color;
     return NoorGlassCard(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       surfaceVariant: AppSurfaceVariant.pill,
@@ -345,7 +370,7 @@ class _AppSalahHeroMetaChip extends StatelessWidget {
       borderRadius: 14,
       child: Row(
         children: [
-          Icon(data.icon, size: 15, color: data.color),
+          Icon(data.icon, size: 15, color: content),
           const SizedBox(width: 6),
           Expanded(
             child: Text(
@@ -353,7 +378,7 @@ class _AppSalahHeroMetaChip extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12.5,
                 fontWeight: FontWeight.w600,
-                color: data.color,
+                color: content,
                 height: 1.3,
               ),
             ),

@@ -12,6 +12,7 @@ import '../../journey/xp/application/journey_xp_providers.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../worship/application/dhikr_controller.dart';
 import '../../worship/application/prayer_controller.dart';
+import 'watch_quran_audio_contract.dart';
 import 'watch_sync_contract.dart';
 
 const _appleWatchSyncChannel = MethodChannel('path_of_nur/watch_sync');
@@ -84,6 +85,14 @@ class AppleWatchRuntimeBridge with WidgetsBindingObserver {
             .ingestActionPayload(
               raw.map((key, value) => MapEntry(key.toString(), value)),
             );
+      case 'requestQuranPlaybackSnapshot':
+        return _ref
+            .read(appleWatchQuranBridgeAdapterProvider)
+            .buildPlaybackPayload();
+      case 'applyQuranPlaybackCommand':
+        return _ref
+            .read(appleWatchQuranBridgeAdapterProvider)
+            .applyCommand(call.arguments as String? ?? 'resumeLast');
       default:
         throw PlatformException(
           code: 'unimplemented',

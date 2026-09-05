@@ -8,7 +8,8 @@ import 'package:intl/intl.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/prayer/prayer_location_search_service.dart';
 import '../../../../core/prayer/prayer_preferences.dart';
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_theme.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
 import '../../../../shared/application/daily_clock_provider.dart';
@@ -21,6 +22,20 @@ import '../../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../application/celestial_services.dart';
 import '../../domain/celestial_models.dart';
+
+Color _celestialInk(BuildContext context) =>
+    Theme.of(context).extension<AppAppearanceTheme>()?.onSurface ??
+    context.palette.onSurface;
+
+Color _celestialSubtleInk(BuildContext context) =>
+    Theme.of(context).extension<AppAppearanceTheme>()?.onSurfaceSubtle ??
+    context.palette.onSurfaceSubtle;
+
+Color _celestialAccent(BuildContext context) {
+  final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+  if (appearance?.isNightFamily == true) return appearance!.accentSoft;
+  return const Color(0xFF7A5A33);
+}
 
 class CelestialCycleCard extends ConsumerStatefulWidget {
   const CelestialCycleCard({
@@ -207,14 +222,14 @@ class _CollapsibleHeader extends StatelessWidget {
                 title,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColors.onSurface,
+                  color: _celestialInk(context),
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: _celestialSubtleInk(context),
                 ),
               ),
             ],
@@ -223,14 +238,17 @@ class _CollapsibleHeader extends StatelessWidget {
         IconButton(
           onPressed: onOpenExplorer,
           tooltip: title,
-          icon: const Icon(Icons.open_in_new_rounded, color: Color(0xFF8A7A6B)),
+          icon: Icon(
+            Icons.open_in_new_rounded,
+            color: _celestialSubtleInk(context),
+          ),
         ),
         IconButton(
           onPressed: onToggleExpanded,
           tooltip: title,
           icon: Icon(
             expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded,
-            color: const Color(0xFF8A7A6B),
+            color: _celestialSubtleInk(context),
           ),
         ),
       ],
@@ -281,7 +299,7 @@ class _CelestialCardBody extends StatelessWidget {
                     onPressed: onPickLocation,
                     tooltip: l10n.worshipPrayerChooseLocationTitle,
                     splashRadius: 20,
-                    icon: const Icon(Icons.location_on_outlined),
+                    icon: const Icon(Icons.location_on_rounded),
                   ),
                   _SkyStateChip(state: snapshot.solarData.state),
                 ],
@@ -296,7 +314,7 @@ class _CelestialCardBody extends StatelessWidget {
                     snapshot.locationLabel,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
-                      color: AppColors.onSurface,
+                      color: _celestialInk(context),
                     ),
                   ),
                 ),
@@ -304,7 +322,7 @@ class _CelestialCardBody extends StatelessWidget {
                   onPressed: onPickLocation,
                   tooltip: l10n.worshipPrayerChooseLocationTitle,
                   splashRadius: 20,
-                  icon: const Icon(Icons.location_on_outlined),
+                  icon: const Icon(Icons.location_on_rounded),
                 ),
                 _SkyStateChip(state: snapshot.solarData.state),
               ],
@@ -315,9 +333,9 @@ class _CelestialCardBody extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: onPreviousDay,
-                icon: const Icon(
+                icon: Icon(
                   Icons.chevron_left_rounded,
-                  color: Color(0xFF7A5A33),
+                  color: _celestialAccent(context),
                 ),
                 tooltip: l10n.homePrayerPreviousDayTooltip,
               ),
@@ -327,15 +345,15 @@ class _CelestialCardBody extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.onSurface,
+                    color: _celestialInk(context),
                   ),
                 ),
               ),
               IconButton(
                 onPressed: onNextDay,
-                icon: const Icon(
+                icon: Icon(
                   Icons.chevron_right_rounded,
-                  color: Color(0xFF7A5A33),
+                  color: _celestialAccent(context),
                 ),
                 tooltip: l10n.homePrayerNextDayTooltip,
               ),
@@ -714,17 +732,25 @@ class _InfoPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final night = appearance?.isNightFamily == true;
     final chipTint = shellTint ?? tint?.surfaceTint ?? const Color(0xFFE7C98C);
-    final innerTop = Color.lerp(chipTint, Colors.white, 0.42) ?? Colors.white;
-    final innerBottom =
-        Color.lerp(chipTint, const Color(0xFFF7E8CC), 0.20) ?? chipTint;
-    final innerBorder =
-        Color.lerp(
-          Colors.white.withValues(alpha: 0.88),
-          chipTint.withValues(alpha: 0.36),
-          0.40,
-        ) ??
-        Colors.white.withValues(alpha: 0.88);
+    // Night themes keep the pill on the standard dark glass; the solar and
+    // lunar tint identities only color the daylight themes.
+    final innerTop = night
+        ? appearance!.onSurface.withValues(alpha: 0.10)
+        : Color.lerp(chipTint, Colors.white, 0.42) ?? Colors.white;
+    final innerBottom = night
+        ? appearance!.onSurface.withValues(alpha: 0.05)
+        : Color.lerp(chipTint, const Color(0xFFF7E8CC), 0.20) ?? chipTint;
+    final innerBorder = night
+        ? appearance!.onSurface.withValues(alpha: 0.16)
+        : Color.lerp(
+                Colors.white.withValues(alpha: 0.88),
+                chipTint.withValues(alpha: 0.36),
+                0.40,
+              ) ??
+              Colors.white.withValues(alpha: 0.88);
     return NoorGlassCard(
       padding: const EdgeInsets.all(4),
       surfaceVariant: AppSurfaceVariant.pill,
@@ -744,12 +770,14 @@ class _InfoPill extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                innerTop.withValues(alpha: 0.94),
-                innerBottom.withValues(alpha: 0.88),
-                if (tint != null)
-                  tint!.gradientColors.last.withValues(alpha: 0.18),
-              ],
+              colors: night
+                  ? [innerTop, innerBottom]
+                  : [
+                      innerTop.withValues(alpha: 0.94),
+                      innerBottom.withValues(alpha: 0.88),
+                      if (tint != null)
+                        tint!.gradientColors.last.withValues(alpha: 0.18),
+                    ],
             ),
           ),
           child: Column(
@@ -759,7 +787,9 @@ class _InfoPill extends StatelessWidget {
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color:
+                      appearance?.onSurfaceSubtle ??
+                      context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 2),
@@ -769,7 +799,9 @@ class _InfoPill extends StatelessWidget {
                 Text(
                   footnote!,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color:
+                        appearance?.onSurfaceSubtle ??
+                        context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],

@@ -8,6 +8,7 @@ import androidx.wear.tiles.TileBuilders
 import androidx.wear.tiles.TileService
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
+import com.pathofnur.watch.R
 import com.pathofnur.watch.glance.GlanceDataProvider
 
 class PrayerProgressTileService : TileService() {
@@ -15,7 +16,7 @@ class PrayerProgressTileService : TileService() {
         val data = GlanceDataProvider(this).data()
         val nextPrayer = GlanceDataProvider(this).getNextPrayer()?.displayName ?: data.nextPrayerName
         val root = materialTile(
-            title = "Today's Prayers",
+            title = getString(R.string.tile_todays_prayers),
             main = listOf(
                 text("${data.todayPrayerProgress} Completed", 22f, true),
                 text("Next: $nextPrayer", 16f, false)

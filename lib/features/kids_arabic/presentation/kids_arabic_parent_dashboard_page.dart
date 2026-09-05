@@ -11,6 +11,9 @@ import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progress_provider.dart';
 import '../domain/kids_arabic_parent_overview_models.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_palette.dart';
+import '../../../core/theme/app_icons.dart';
 
 class KidsArabicParentDashboardPage extends ConsumerWidget {
   const KidsArabicParentDashboardPage({super.key});
@@ -34,7 +37,7 @@ class KidsArabicParentDashboardPage extends ConsumerWidget {
         : notifier.letterById(preferences.parentAssignedLetterId!);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.family_restroom_rounded,
+      headerIcon: AppIcons.family,
       title: l10n.kidsArabicParentDashboardTitle,
       subtitle: l10n.kidsArabicParentDashboardSubtitle,
       children: [
@@ -191,10 +194,10 @@ class _OverviewHeroCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -265,7 +268,7 @@ class _StatPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      fillColor: const Color(0xFFFFFBF4),
+      fillColor: context.palette.surface,
       borderColor: const Color(0xFFE3D7C5),
       borderRadius: 18,
       child: Text(
@@ -302,24 +305,27 @@ class _InfoCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8F2E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE5D5C1)),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             body,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           if (arabicPreview != null) ...[
             const SizedBox(height: 10),
@@ -328,7 +334,7 @@ class _InfoCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: const TextStyle(
                 fontSize: 26,
-                fontFamily: 'AmiriQuran',
+                fontFamily: AppFonts.quranArabic,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF7B5D2E),
               ),
@@ -360,7 +366,7 @@ class _ConsistencyDot extends StatelessWidget {
       width: 44,
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: completed ? const Color(0xFFE6F2DE) : const Color(0xFFFFFBF4),
+        color: completed ? const Color(0xFFE6F2DE) : context.palette.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: completed ? const Color(0xFFC6D9B4) : const Color(0xFFE3D7C5),
@@ -401,7 +407,7 @@ class _HeroChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF4),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(999),
         border: Border.all(color: const Color(0xFFE2D7C7)),
       ),

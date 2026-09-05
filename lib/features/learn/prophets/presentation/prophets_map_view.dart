@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../domain/prophet_entry.dart';
@@ -111,7 +111,7 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
               Text(
                 l10n.prophetsMapLocationGuidanceSubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 8),
@@ -175,9 +175,9 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        color: AppColors.surface.withValues(alpha: 0.32),
+        color: context.palette.surface.withValues(alpha: 0.32),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.36),
+          color: context.palette.accentSoft.withValues(alpha: 0.36),
         ),
       ),
       child: Column(
@@ -254,7 +254,7 @@ class _MapMarker extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final lead = group.prophets.first;
-    final color = focused ? AppColors.accentGold : lead.eraGroup.tint;
+    final color = focused ? context.palette.accent : lead.eraGroup.tint;
     final label = group.prophets.length == 1
         ? lead.honoredName
         : group.locationLabel;
@@ -295,7 +295,7 @@ class _MapMarker extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: color,
                     border: Border.all(
-                      color: AppColors.accentGoldSoft,
+                      color: context.palette.accentSoft,
                       width: 1.4,
                     ),
                     boxShadow: [
@@ -316,11 +316,11 @@ class _MapMarker extends StatelessWidget {
                       color: color,
                       border: Border(
                         right: BorderSide(
-                          color: AppColors.accentGoldSoft,
+                          color: context.palette.accentSoft,
                           width: 1.1,
                         ),
                         bottom: BorderSide(
-                          color: AppColors.accentGoldSoft,
+                          color: context.palette.accentSoft,
                           width: 1.1,
                         ),
                       ),

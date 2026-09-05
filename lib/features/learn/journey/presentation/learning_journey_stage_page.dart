@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
 import '../../dua/presentation/dua_hub_page.dart';
 import '../../hadith/presentation/hadith_landing_page.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../prophets/domain/prophets_tab.dart';
@@ -67,20 +66,17 @@ class _LearningJourneyStagePageState
     final kidsUi = ref.watch(activeKidsUiThemeProvider);
     if (journey == null || stage == null || stage.journeyId != journey.id) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.error_outline_rounded,
-        title: l10n.learningJourneyStageNotFoundTitle,
-        subtitle: l10n.learningJourneyStageNotFoundSubtitle,
+        title: l10n.learnHubMainIslandLearningPathTitle,
         children: [
           Text(
             l10n.learningJourneyStageNotFoundBody,
-            style: TextStyle(color: Color(0xFF675B4E)),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       );
     }
     if (!isProductionSafeLearningJourney(journey)) {
       return LearnContainedStatePage(
-        headerIcon: Icons.auto_stories_rounded,
         title: localizedStageTitle(context, stage),
         subtitle: l10n.learnContainedStateJourneySubtitle,
         body: l10n.learnContainedStateBody,
@@ -233,12 +229,7 @@ class _LearningJourneyStagePageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.open_in_new_rounded,
       title: localizedStageTitle(context, stage),
-      subtitle: stageUnlocked
-          ? l10n.learningJourneyStageOpeningSubtitle
-          : l10n.learningJourneyStageLockedRedirectSubtitle,
-      quote: buildLearningCompactQuote(),
       children: [
         SizedBox(height: 32),
         Center(child: CircularProgressIndicator()),
@@ -248,7 +239,7 @@ class _LearningJourneyStagePageState
             stageUnlocked
                 ? l10n.learningJourneyStageLaunchingBody
                 : l10n.learningJourneyStageLockedRedirectBody,
-            style: TextStyle(color: Color(0xFF675B4E)),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ),
       ],
@@ -336,13 +327,14 @@ class _UnavailableStagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return LearnHubPageScaffold(
-      headerIcon: Icons.offline_bolt_rounded,
       title: localizedStageTitle(context, stage),
-      subtitle: l10n.learningJourneyStageUnavailableTitle,
       children: [
         Text(
           l10n.learningJourneyStageUnavailableBody,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
         const SizedBox(height: 14),
         LearningJourneyToolCard(

@@ -42,7 +42,6 @@ watch_bundle_id="$(printf '%s\n' "$watch_settings" | sed -n 's/^[[:space:]]*PROD
 watch_companion_id="$(printf '%s\n' "$watch_settings" | sed -n 's/^[[:space:]]*WK_COMPANION_APP_BUNDLE_IDENTIFIER = //p' | head -n1 | tr -d '[:space:]')"
 
 expected_watch_app_id="${base_bundle_id}.watchkitapp"
-expected_watch_extension_id="${expected_watch_app_id}.watchkitextension"
 
 if [[ "$runner_bundle_id" != "$base_bundle_id" ]]; then
   echo "Runner bundle identifier mismatch: expected $base_bundle_id, got $runner_bundle_id" >&2
@@ -69,8 +68,43 @@ if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_APP_BUN
   exit 1
 fi
 
-if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_EXTENSION_BUNDLE_ID)\";" "$PBXPROJ" >/dev/null; then
-  echo 'Expected watch extension watchOS override to use $(APP_WATCH_EXTENSION_BUNDLE_ID)' >&2
+# The watch runs a single-target watchOS layout, so there is no WatchKit
+# extension to pin any more; the one remaining extension is the complications
+# widget, whose id hangs off the watch app's.
+if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_APP_BUNDLE_ID).complications\";" "$PBXPROJ" >/dev/null; then
+  echo 'Expected complications watchOS override to use $(APP_WATCH_APP_BUNDLE_ID).complications' >&2
+  exit 1
+fi
+
+# Every source file the project builds must actually be in the repo. A stray
+# pbxproj commit once declared four Swift files that were only ever in a
+# working tree, and the watch target stopped building for everyone else.
+missing_sources="$(python3 - "$PBXPROJ" <<'PYEOF'
+import os, re, sys
+
+pbxproj = sys.argv[1]
+project_dir = os.path.dirname(os.path.dirname(pbxproj))
+with open(pbxproj, encoding="utf-8") as handle:
+    contents = handle.read()
+
+referenced = {
+    path for _, path in re.findall(r'path = ("?)([^";]+\.swift)\1;', contents)
+}
+on_disk = {
+    name
+    for _, _, files in os.walk(project_dir)
+    for name in files
+    if name.endswith(".swift")
+}
+for path in sorted(referenced):
+    if os.path.basename(path) not in on_disk:
+        print(path)
+PYEOF
+)"
+
+if [[ -n "$missing_sources" ]]; then
+  echo "Project file references sources that are not in the repo:" >&2
+  echo "$missing_sources" | sed 's/^/  /' >&2
   exit 1
 fi
 

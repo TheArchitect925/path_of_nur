@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -12,6 +12,7 @@ import '../../../arabic/presentation/widgets/arabic_learning_playback_speed_togg
 import '../application/quran_teaching_audio_playback_service.dart';
 import '../application/quran_teaching_controller.dart';
 import '../domain/quran_teaching_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranTeachingBeginnerWordsPage extends ConsumerStatefulWidget {
   const QuranTeachingBeginnerWordsPage({super.key, this.initialWordId});
@@ -133,7 +134,7 @@ class _QuranTeachingBeginnerWordsPageState
                               textDirection: TextDirection.rtl,
                               style: const TextStyle(
                                 fontSize: 42,
-                                fontFamily: 'AmiriQuran',
+                                fontFamily: AppFonts.quranArabic,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -168,7 +169,7 @@ class _QuranTeachingBeginnerWordsPageState
                         activeWord.exampleReference!,
                       ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
+                        color: context.palette.onSurfaceSubtle,
                       ),
                     ),
                   const SizedBox(height: 16),
@@ -270,8 +271,8 @@ class _QuranTeachingBeginnerWordsPageState
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: AppColors.surfaceSoft.withValues(alpha: 0.45),
-              border: Border.all(color: AppColors.surfaceSoft),
+              color: context.palette.surfaceSoft.withValues(alpha: 0.45),
+              border: Border.all(color: context.palette.surfaceSoft),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -281,7 +282,7 @@ class _QuranTeachingBeginnerWordsPageState
                   textDirection: TextDirection.rtl,
                   style: const TextStyle(
                     fontSize: 26,
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -289,10 +290,10 @@ class _QuranTeachingBeginnerWordsPageState
                 Text(
                   item.displayGlyph,
                   textDirection: TextDirection.rtl,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 30,
-                    fontFamily: 'AmiriQuran',
-                    color: Color(0xFF5E462A),
+                    fontFamily: AppFonts.quranArabic,
+                    color: context.palette.onSurface,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -304,7 +305,7 @@ class _QuranTeachingBeginnerWordsPageState
                 Text(
                   _formLabel(l10n, item.displayForm),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -390,7 +391,7 @@ class _WordSummaryChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.45),
       ),
       child: Text(
         label,

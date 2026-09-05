@@ -73,14 +73,11 @@ class _HadithLessonPageState extends ConsumerState<HadithLessonPage> {
     final entry = ref.watch(hadithEntryByIdProvider(widget.lessonId));
     if (entry == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.hadithPageTitle,
-        subtitle: l10n.hadithLessonNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithLessonNotFoundBody))],
       );
     }
 
-    final theme = ref.watch(hadithThemeByIdProvider(entry.themeId));
     final pathsProgress = ref.watch(hadithLearningPathsProgressProvider);
     final readingStatus = ref.watch(hadithReadingStatusProvider);
     final readerSettings = ref.watch(hadithReaderSettingsProvider);
@@ -170,9 +167,7 @@ class _HadithLessonPageState extends ConsumerState<HadithLessonPage> {
           );
 
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
       title: entry.title,
-      subtitle: theme?.title ?? l10n.hadithPageTitle,
       headerActions: [
         IconButton(
           tooltip: l10n.hadithReaderDisplaySettingsAction,
@@ -820,13 +815,13 @@ class _HadithReaderTaxonomyChips extends StatelessWidget {
       children: [
         if (categoryTitle != null)
           Chip(
-            avatar: const Icon(Icons.category_outlined, size: 18),
+            avatar: const Icon(Icons.category_rounded, size: 18),
             label: Text(categoryTitle),
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           ),
         if (subcategoryTitle != null)
           ActionChip(
-            avatar: const Icon(Icons.sell_outlined, size: 18),
+            avatar: const Icon(Icons.sell_rounded, size: 18),
             label: Text(subcategoryTitle),
             onPressed: subcategoryId == null
                 ? null
@@ -981,7 +976,7 @@ class _HadithReaderActionRow extends ConsumerWidget {
             onPressed: () =>
                 _toggleHadithSaved(context, ref, entry, isSaved: isSaved),
             icon: Icon(
-              isSaved ? Icons.bookmark_rounded : Icons.bookmark_add_outlined,
+              isSaved ? Icons.bookmark_rounded : Icons.bookmark_add_rounded,
             ),
             label: Text(
               isSaved ? l10n.hadithActionSaved : l10n.hadithActionSave,
@@ -994,7 +989,7 @@ class _HadithReaderActionRow extends ConsumerWidget {
           ),
           FilledButton.tonalIcon(
             onPressed: () => _shareHadith(context, entry),
-            icon: const Icon(Icons.share_outlined),
+            icon: const Icon(Icons.share_rounded),
             label: Text(l10n.hadithActionShare),
           ),
           FilledButton.tonalIcon(

@@ -5,27 +5,51 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../../creation_challenges/application/creation_challenge_services.dart';
 import '../../../creation_challenges/domain/creation_challenge_models.dart';
 import '../application/world_creation_provider.dart';
 import '../data/world_creation_data.dart';
 import '../domain/world_creation_models.dart';
 import 'widgets/world_creation_cards.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../core/theme/app_icons.dart';
 
-enum _WorldHubTab { lessons, explore, reflection, scientists }
+/// The landing's four destinations. [id] is what appears in the route, so
+/// these values are part of the URL contract and must not be renamed freely.
+enum _WorldHubSection {
+  lessons('lessons'),
+  explore('explore'),
+  reflection('reflection'),
+  scientists('scientists');
+
+  const _WorldHubSection(this.id);
+
+  final String id;
+
+  static _WorldHubSection? fromId(String? id) {
+    for (final section in values) {
+      if (section.id == id) return section;
+    }
+    return null;
+  }
+}
 
 class WorldLandingPage extends ConsumerStatefulWidget {
-  const WorldLandingPage({super.key});
+  const WorldLandingPage({super.key, this.section});
+
+  /// When null the page is the hub — a list of its four destinations. When set
+  /// it renders that one destination, so each is a real place you can link to
+  /// and come back from, rather than a tab you have to re-find.
+  final String? section;
 
   @override
   ConsumerState<WorldLandingPage> createState() => _WorldLandingPageState();
 }
 
 class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
-  _WorldHubTab _tab = _WorldHubTab.lessons;
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -39,18 +63,15 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
       (item) => item.slot == ChallengeSlot.daily,
     );
 
+    final section = _WorldHubSection.fromId(widget.section);
+
     return AppPageScaffold(
-      headerIcon: Icons.public_rounded,
-      title: l10n.worldLandingTitle,
+      headerIcon: AppIcons.world,
+      title: section == null
+          ? l10n.worldLandingTitle
+          : _sectionLabel(l10n, section),
       subtitle: l10n.worldLandingSubtitle,
       children: [
-        SegmentedPillControl<_WorldHubTab>(
-          items: _WorldHubTab.values,
-          selectedItem: _tab,
-          labelBuilder: (tab) => _tabLabel(l10n, tab),
-          onChanged: (value) => setState(() => _tab = value),
-        ),
-        const SizedBox(height: 10),
         PremiumCard(
           child: Wrap(
             spacing: 8,
@@ -76,39 +97,40 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
           ),
         ),
         const SizedBox(height: 10),
-        if (_tab == _WorldHubTab.lessons) ...[
+        if (section == null)
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final item in _WorldHubSection.values)
+                CompactListTile(
+                  title: _sectionLabel(l10n, item),
+                  leading: HubLeadingIcon(_sectionIcon(item)),
+                  onTap: () => context.pushNamed(
+                    'learnWorldLanding',
+                    queryParameters: {'section': item.id},
+                  ),
+                ),
+            ],
+          ),
+        if (section == _WorldHubSection.lessons) ...[
           _DailySignCard(sign: dailySign),
           const SizedBox(height: 10),
           if (recentLessons.isNotEmpty)
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.worldContinueLearningTitle,
-                    style: TextStyle(fontWeight: FontWeight.w700),
+            HubListGroup(
+              title: l10n.worldContinueLearningTitle,
+              children: [
+                for (final lesson in recentLessons.take(3))
+                  CompactListTile(
+                    title: lesson.title,
+                    subtitle: l10n.quranReferenceViewerReferenceLabel(
+                      lesson.quranVerses.first.referenceLabel,
+                    ),
+                    onTap: () => context.pushNamed(
+                      'worldCreationLessonDetail',
+                      pathParameters: {'lessonId': lesson.id},
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  ...recentLessons
-                      .take(3)
-                      .map(
-                        (lesson) => ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(lesson.title),
-                          subtitle: Text(
-                            l10n.quranReferenceViewerReferenceLabel(
-                              lesson.quranVerses.first.referenceLabel,
-                            ),
-                          ),
-                          trailing: const Icon(Icons.chevron_right_rounded),
-                          onTap: () => context.pushNamed(
-                            'worldCreationLessonDetail',
-                            pathParameters: {'lessonId': lesson.id},
-                          ),
-                        ),
-                      ),
-                ],
-              ),
+              ],
             ),
           if (recentLessons.isNotEmpty) const SizedBox(height: 10),
           ...categories.map(
@@ -127,7 +149,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             ),
           ),
         ],
-        if (_tab == _WorldHubTab.explore) ...[
+        if (section == _WorldHubSection.explore) ...[
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +213,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                     ),
                     _ExploreActionData(
                       title: l10n.worldLandingSignsExplorerAction,
-                      icon: Icons.hub_outlined,
+                      icon: Icons.hub_rounded,
                       onTap: () => context.pushNamed('worldSignsExplorer'),
                     ),
                     _ExploreActionData(
@@ -249,7 +271,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             ),
           ),
         ],
-        if (_tab == _WorldHubTab.reflection) ...[
+        if (section == _WorldHubSection.reflection) ...[
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,7 +286,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                 FilledButton.tonalIcon(
                   onPressed: () =>
                       context.pushNamed('worldCreationReflectionMode'),
-                  icon: const Icon(Icons.self_improvement_rounded),
+                  icon: const Icon(AppIcons.reflection),
                   label: Text(l10n.worldLandingStartReflectionModeAction),
                 ),
               ],
@@ -281,18 +303,11 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                 ),
               ),
         ],
-        if (_tab == _WorldHubTab.scientists) ...[
-          PremiumCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                l10n.worldLandingMuslimScientistsTitle,
-                style: TextStyle(fontWeight: FontWeight.w700),
-              ),
-              subtitle: Text(l10n.worldLandingMuslimScientistsSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.pushNamed('worldMuslimScientists'),
-            ),
+        if (section == _WorldHubSection.scientists) ...[
+          CompactListTile(
+            title: l10n.worldLandingMuslimScientistsTitle,
+            subtitle: l10n.worldLandingMuslimScientistsSubtitle,
+            onTap: () => context.pushNamed('worldMuslimScientists'),
           ),
           const SizedBox(height: 10),
           ...scientists
@@ -300,14 +315,10 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
               .map(
                 (profile) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: PremiumCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(profile.name),
-                      subtitle: Text('${profile.discipline} • ${profile.era}'),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => context.pushNamed('worldMuslimScientists'),
-                    ),
+                  child: CompactListTile(
+                    title: profile.name,
+                    subtitle: '${profile.discipline} • ${profile.era}',
+                    onTap: () => context.pushNamed('worldMuslimScientists'),
                   ),
                 ),
               ),
@@ -320,9 +331,9 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFFFAF3E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFCEB07D)),
+        border: Border.all(color: context.palette.caution),
       ),
       child: Text('$label: $value'),
     );
@@ -343,16 +354,29 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     );
   }
 
-  String _tabLabel(AppLocalizations l10n, _WorldHubTab tab) {
-    switch (tab) {
-      case _WorldHubTab.lessons:
+  String _sectionLabel(AppLocalizations l10n, _WorldHubSection section) {
+    switch (section) {
+      case _WorldHubSection.lessons:
         return l10n.worldLessonsTitle;
-      case _WorldHubTab.explore:
+      case _WorldHubSection.explore:
         return l10n.worldLandingTabExplore;
-      case _WorldHubTab.reflection:
+      case _WorldHubSection.reflection:
         return l10n.worldLandingTabReflection;
-      case _WorldHubTab.scientists:
+      case _WorldHubSection.scientists:
         return l10n.worldLandingTabScientists;
+    }
+  }
+
+  IconData _sectionIcon(_WorldHubSection section) {
+    switch (section) {
+      case _WorldHubSection.lessons:
+        return Icons.menu_book_rounded;
+      case _WorldHubSection.explore:
+        return Icons.travel_explore_rounded;
+      case _WorldHubSection.reflection:
+        return AppIcons.reflection;
+      case _WorldHubSection.scientists:
+        return Icons.science_rounded;
     }
   }
 }
@@ -423,7 +447,7 @@ class _ExploreActionCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: isTonal ? const Color(0xFFF3EEE6) : Colors.transparent,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFFE3D6C4)),
+            border: Border.all(color: context.palette.border),
           ),
           child: Row(
             children: [

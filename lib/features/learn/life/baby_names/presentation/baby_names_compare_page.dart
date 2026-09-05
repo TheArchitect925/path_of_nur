@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class BabyNamesComparePage extends ConsumerWidget {
   const BabyNamesComparePage({super.key});
@@ -14,9 +15,8 @@ class BabyNamesComparePage extends ConsumerWidget {
     final favorites = ref.watch(babyNamesFavoritesProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.compare_arrows_rounded,
-      title: 'Name Comparison',
-      subtitle: 'Use your saved names to compare meaning and style',
+      title: AppLocalizations.of(context).babyNamesCompareTitle,
+      subtitle: AppLocalizations.of(context).babyNamesCompareSubtitle,
       children: [
         const PremiumCard(
           child: Text(

@@ -5,6 +5,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
+import '../domain/quran_reader_atmosphere.dart';
 import 'quran_playback_orchestrator.dart';
 import 'quran_playback_policy.dart';
 import 'quran_search_normalization.dart';
@@ -21,6 +22,7 @@ import '../domain/quran_ayah.dart';
 import '../domain/quran_bookmark.dart';
 import '../domain/quran_content_refs.dart';
 import '../domain/quran_daily_verse.dart';
+import '../domain/quran_reader_level.dart';
 import '../domain/quran_reference_models.dart';
 import '../domain/quran_note.dart';
 import '../domain/quran_reading_progress.dart';
@@ -55,6 +57,7 @@ const _focusRecitationShowTransliterationKey =
     'learn.quran.focusRecitationShowTransliteration';
 const _focusRecitationKeepScreenAwakeKey =
     'learn.quran.focusRecitationKeepScreenAwake';
+const _readerAtmosphereKey = 'learn.quran.readerAtmosphere';
 const _kidsExplanationEnabledKey = 'learn.quran.kidsExplanationEnabled';
 const _wordFavoritesKey = 'learn.quran.wordFavorites';
 const _wordReviewProgressKey = 'learn.quran.wordReviewProgress';
@@ -63,6 +66,7 @@ const _hifzSettingsKey = 'learn.quran.hifzSettings';
 const _notesFilterFolderKey = 'learn.quran.notesFilterFolder';
 const _notesFilterTagKey = 'learn.quran.notesFilterTag';
 const _recitationSessionKey = 'learn.quran.recitationSession';
+const _readerLevelKey = 'learn.quran.readerLevel';
 
 final quranAudioFunctionEnabledProvider = Provider<bool>((ref) => true);
 
@@ -88,6 +92,8 @@ class QuranReaderSettings {
     required this.focusRecitationShowTranslation,
     required this.focusRecitationShowTransliteration,
     required this.focusRecitationKeepScreenAwake,
+    required this.readerAtmosphere,
+    this.readerLevel,
   });
 
   final String translationCode;
@@ -107,6 +113,10 @@ class QuranReaderSettings {
   final bool focusRecitationShowTranslation;
   final bool focusRecitationShowTransliteration;
   final bool focusRecitationKeepScreenAwake;
+  final QuranReaderAtmosphere readerAtmosphere;
+
+  /// The last applied reading-level preset; null until chosen or seeded.
+  final QuranReaderLevel? readerLevel;
 
   QuranReaderSettings copyWith({
     String? translationCode,
@@ -126,6 +136,8 @@ class QuranReaderSettings {
     bool? focusRecitationShowTranslation,
     bool? focusRecitationShowTransliteration,
     bool? focusRecitationKeepScreenAwake,
+    QuranReaderAtmosphere? readerAtmosphere,
+    QuranReaderLevel? readerLevel,
   }) {
     return QuranReaderSettings(
       translationCode: translationCode ?? this.translationCode,
@@ -153,6 +165,8 @@ class QuranReaderSettings {
           this.focusRecitationShowTransliteration,
       focusRecitationKeepScreenAwake:
           focusRecitationKeepScreenAwake ?? this.focusRecitationKeepScreenAwake,
+      readerAtmosphere: readerAtmosphere ?? this.readerAtmosphere,
+      readerLevel: readerLevel ?? this.readerLevel,
     );
   }
 }
@@ -426,6 +440,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           focusRecitationShowTranslation: true,
           focusRecitationShowTransliteration: true,
           focusRecitationKeepScreenAwake: false,
+          readerAtmosphere: QuranReaderAtmosphere.followApp,
         ),
       ) {
     _load();
@@ -522,6 +537,53 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setBool(_focusRecitationKeepScreenAwakeKey, value);
   }
 
+  void setReaderAtmosphere(QuranReaderAtmosphere value) {
+    state = state.copyWith(readerAtmosphere: value);
+    _store.setString(_readerAtmosphereKey, value.wireName);
+  }
+
+  /// Applies a reading-level preset: writes each bundled setting through the
+  /// normal setters' persistence so the choice survives restarts and every
+  /// knob stays individually adjustable afterwards.
+  void applyReaderLevel(QuranReaderLevel level) {
+    final preset = presetForQuranReaderLevel(level);
+    state = state.copyWith(
+      readerLevel: level,
+      arabicScalePercent: preset.arabicScalePercent,
+      showTransliteration: preset.showTransliteration,
+      showTranslation: preset.showTranslation,
+      showWordByWord: preset.showWordByWord,
+      followPlayback: preset.followPlayback,
+      wordSyncHighlightBeta: preset.wordSyncHighlightBeta,
+      cleanReadingMode: preset.cleanReadingMode,
+      explanationDetailLevel: preset.explanationDetailLevel,
+    );
+    _store.setString(_readerLevelKey, level.storageValue);
+    _store.setInt(_arabicScalePercentKey, preset.arabicScalePercent);
+    _store.setBool(_showTransliterationKey, preset.showTransliteration);
+    _store.setBool(_showTranslationKey, preset.showTranslation);
+    _store.setBool(_showWordByWordKey, preset.showWordByWord);
+    _store.setBool(_followPlaybackKey, preset.followPlayback);
+    _store.setBool(_wordSyncHighlightBetaKey, preset.wordSyncHighlightBeta);
+    _store.setBool(_cleanReadingModeKey, preset.cleanReadingMode);
+    _store.setString(
+      _explanationDetailLevelKey,
+      preset.explanationDetailLevel.name,
+    );
+  }
+
+  /// Seeding must never stomp a reader someone already shaped by hand:
+  /// it only runs while no level was ever chosen and none of the
+  /// preset-controlled display settings has a stored value.
+  bool get canSeedReaderLevel {
+    if (state.readerLevel != null) return false;
+    return _store.getInt(_arabicScalePercentKey) == null &&
+        _store.getBool(_showTransliterationKey) == null &&
+        _store.getBool(_showTranslationKey) == null &&
+        _store.getBool(_showWordByWordKey) == null &&
+        _store.getBool(_cleanReadingModeKey) == null;
+  }
+
   void _load() {
     final code = _store.getString(_translationCodeKey);
     final showArabic = _store.getBool(_showArabicKey);
@@ -549,6 +611,10 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     );
     final focusRecitationKeepScreenAwake = _store.getBool(
       _focusRecitationKeepScreenAwakeKey,
+    );
+    final readerAtmosphereRaw = _store.getString(_readerAtmosphereKey);
+    final readerLevel = QuranReaderLevel.tryParse(
+      _store.getString(_readerLevelKey),
     );
 
     state = state.copyWith(
@@ -579,6 +645,10 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
       focusRecitationKeepScreenAwake:
           focusRecitationKeepScreenAwake ??
           state.focusRecitationKeepScreenAwake,
+      readerAtmosphere: readerAtmosphereRaw == null
+          ? state.readerAtmosphere
+          : QuranReaderAtmosphere.parse(readerAtmosphereRaw),
+      readerLevel: readerLevel,
     );
   }
 }

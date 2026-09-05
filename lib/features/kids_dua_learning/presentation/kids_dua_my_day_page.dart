@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -11,6 +11,8 @@ import '../application/kids_dua_my_day_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../application/kids_dua_story_repository.dart';
 import '../domain/kids_dua_models.dart';
+import '../../../shared/widgets/section_title.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 
 class KidsDuaMyDayPage extends ConsumerStatefulWidget {
   const KidsDuaMyDayPage({super.key});
@@ -42,128 +44,122 @@ class _KidsDuaMyDayPageState extends ConsumerState<KidsDuaMyDayPage> {
             kidsDuaStoriesForLessonProvider(guidance.rightNowLesson!.id),
           );
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.kidsDuaMyDayTitle)),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
-        children: [
-          PremiumCard(
-            surfaceVariant: AppSurfaceVariant.island,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.kidsDuaMyDayTitle,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
+    return AppPageScaffold(
+      title: l10n.kidsDuaMyDayTitle,
+      children: [
+        PremiumCard(
+          surfaceVariant: AppSurfaceVariant.island,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.kidsDuaMyDayTitle,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  state.isDayComplete
-                      ? l10n.kidsDuaMyDayCompleteBody
-                      : l10n.kidsDuaMyDaySubtitle,
-                  style: const TextStyle(
-                    color: AppColors.onSurfaceSubtle,
-                    height: 1.4,
-                  ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                state.isDayComplete
+                    ? l10n.kidsDuaMyDayCompleteBody
+                    : l10n.kidsDuaMyDaySubtitle,
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.4,
                 ),
+              ),
+              const SizedBox(height: 14),
+              _LightProgressCard(summary: lightSummary),
+              if (!state.isDayComplete && guidance.rightNowLesson != null) ...[
                 const SizedBox(height: 14),
-                _LightProgressCard(summary: lightSummary),
-                if (!state.isDayComplete &&
-                    guidance.rightNowLesson != null) ...[
-                  const SizedBox(height: 14),
-                  _GuidanceCard(
-                    icon: Icons.wb_twilight_rounded,
-                    title: l10n.kidsDuaMyDayRightNowTitle,
-                    subtitle: guidance.rightNowLesson!.title,
-                    detail: _myDayReasonLabel(l10n, guidance.rightNowReasonKey),
-                    actionLabel: switch (guidance.rightNowState) {
-                      KidsDuaDailyDuaState.notLearned =>
-                        l10n.kidsDuaSuggestedLearnNow,
-                      KidsDuaDailyDuaState.inProgress =>
-                        l10n.kidsDuaContinueAction,
-                      KidsDuaDailyDuaState.learned =>
-                        state.completedDuaIds.contains(
-                              guidance.rightNowLesson!.id,
-                            )
-                            ? l10n.kidsDuaSuggestedPracticeNow
-                            : l10n.kidsDuaMyDayUseNowAction,
-                      null => l10n.kidsDuaSuggestedLearnNow,
-                    },
-                    onTap: () => context.pushNamed(
+                _GuidanceCard(
+                  icon: Icons.wb_twilight_rounded,
+                  title: l10n.kidsDuaMyDayRightNowTitle,
+                  subtitle: guidance.rightNowLesson!.title,
+                  detail: _myDayReasonLabel(l10n, guidance.rightNowReasonKey),
+                  actionLabel: switch (guidance.rightNowState) {
+                    KidsDuaDailyDuaState.notLearned =>
+                      l10n.kidsDuaSuggestedLearnNow,
+                    KidsDuaDailyDuaState.inProgress =>
+                      l10n.kidsDuaContinueAction,
+                    KidsDuaDailyDuaState.learned =>
                       state.completedDuaIds.contains(
                             guidance.rightNowLesson!.id,
                           )
-                          ? 'kidsDuaPractice'
-                          : 'kidsDuaLesson',
-                      pathParameters:
-                          state.completedDuaIds.contains(
-                            guidance.rightNowLesson!.id,
-                          )
-                          ? const <String, String>{}
-                          : {'lessonId': guidance.rightNowLesson!.id},
-                    ),
+                          ? l10n.kidsDuaSuggestedPracticeNow
+                          : l10n.kidsDuaMyDayUseNowAction,
+                    null => l10n.kidsDuaSuggestedLearnNow,
+                  },
+                  onTap: () => context.pushNamed(
+                    state.completedDuaIds.contains(guidance.rightNowLesson!.id)
+                        ? 'kidsDuaPractice'
+                        : 'kidsDuaLesson',
+                    pathParameters:
+                        state.completedDuaIds.contains(
+                          guidance.rightNowLesson!.id,
+                        )
+                        ? const <String, String>{}
+                        : {'lessonId': guidance.rightNowLesson!.id},
                   ),
-                ],
-                if (!state.isDayComplete && guidance.nextUpLesson != null) ...[
-                  const SizedBox(height: 10),
-                  _GuidanceCard(
-                    icon: Icons.arrow_circle_right_outlined,
-                    title: l10n.kidsDuaMyDayNextUpTitle,
-                    subtitle: guidance.nextUpLesson!.title,
-                    detail: _sectionLabel(l10n, guidance.nextUpSection),
-                    actionLabel: l10n.kidsDuaMyDayNextUpAction,
-                    onTap: () => context.pushNamed(
-                      'kidsDuaLesson',
-                      pathParameters: {'lessonId': guidance.nextUpLesson!.id},
-                    ),
-                  ),
-                ],
-                if (!state.isDayComplete && rightNowStories.isNotEmpty) ...[
-                  const SizedBox(height: 10),
-                  _GuidanceCard(
-                    icon: Icons.menu_book_rounded,
-                    title: l10n.kidsDuaStoriesTitle,
-                    subtitle: rightNowStories.first.title,
-                    detail: l10n.kidsDuaStoriesMyDayDetail,
-                    actionLabel: l10n.kidsDuaStoriesAction,
-                    onTap: () => context.pushNamed(
-                      'kidsDuaStoryPlayer',
-                      pathParameters: {'storyId': rightNowStories.first.id},
-                    ),
-                  ),
-                ],
+                ),
               ],
+              if (!state.isDayComplete && guidance.nextUpLesson != null) ...[
+                const SizedBox(height: 10),
+                _GuidanceCard(
+                  icon: Icons.arrow_circle_right_rounded,
+                  title: l10n.kidsDuaMyDayNextUpTitle,
+                  subtitle: guidance.nextUpLesson!.title,
+                  detail: _sectionLabel(l10n, guidance.nextUpSection),
+                  actionLabel: l10n.kidsDuaMyDayNextUpAction,
+                  onTap: () => context.pushNamed(
+                    'kidsDuaLesson',
+                    pathParameters: {'lessonId': guidance.nextUpLesson!.id},
+                  ),
+                ),
+              ],
+              if (!state.isDayComplete && rightNowStories.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                _GuidanceCard(
+                  icon: Icons.menu_book_rounded,
+                  title: l10n.kidsDuaStoriesTitle,
+                  subtitle: rightNowStories.first.title,
+                  detail: l10n.kidsDuaStoriesMyDayDetail,
+                  actionLabel: l10n.kidsDuaStoriesAction,
+                  onTap: () => context.pushNamed(
+                    'kidsDuaStoryPlayer',
+                    pathParameters: {'storyId': rightNowStories.first.id},
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        SectionTitle(
+          title: l10n.kidsDuaMyDayJourneyTitle,
+          subtitle: l10n.kidsDuaMyDayJourneySubtitle,
+        ),
+        const SizedBox(height: 10),
+        ...sections.map((section) {
+          final sectionDone = state.completedSectionIds.contains(section.id);
+          final highlighted =
+              guidance.activeSection.id == section.id && !state.isDayComplete;
+          final upcoming =
+              guidance.nextUpSection?.id == section.id && !highlighted;
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: _SectionCard(
+              section: section,
+              lessons: lessons,
+              completedDuaIds: state.completedDuaIds,
+              completed: sectionDone,
+              highlighted: highlighted,
+              upcoming: upcoming,
             ),
-          ),
-          const SizedBox(height: 14),
-          _SectionHeader(
-            title: l10n.kidsDuaMyDayJourneyTitle,
-            subtitle: l10n.kidsDuaMyDayJourneySubtitle,
-          ),
-          const SizedBox(height: 10),
-          ...sections.map((section) {
-            final sectionDone = state.completedSectionIds.contains(section.id);
-            final highlighted =
-                guidance.activeSection.id == section.id && !state.isDayComplete;
-            final upcoming =
-                guidance.nextUpSection?.id == section.id && !highlighted;
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: _SectionCard(
-                section: section,
-                lessons: lessons,
-                completedDuaIds: state.completedDuaIds,
-                completed: sectionDone,
-                highlighted: highlighted,
-                upcoming: upcoming,
-              ),
-            );
-          }),
-        ],
-      ),
+          );
+        }),
+      ],
     );
   }
 }
@@ -196,14 +192,14 @@ class _LightProgressCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: const TextStyle(color: AppColors.accentGold),
+            style: TextStyle(color: context.palette.accent),
           ),
           const SizedBox(height: 6),
           Text(
             summary.todayCompleted
                 ? l10n.kidsDuaMyDayLightComplete
                 : l10n.kidsDuaMyDayLightContinue,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            style: TextStyle(color: context.palette.onSurfaceSubtle),
           ),
         ],
       ),
@@ -266,7 +262,7 @@ class _SectionCard extends ConsumerWidget {
                   width: 48,
                   height: 48,
                   decoration: _kidsNoorPanelDecoration(context),
-                  child: Icon(section.icon, color: AppColors.accentGold),
+                  child: Icon(section.icon, color: context.palette.accent),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -338,7 +334,7 @@ class _DuaRow extends StatelessWidget {
               style: TextStyle(
                 color: completed
                     ? const Color(0xFF4E7A39)
-                    : AppColors.accentGold,
+                    : context.palette.accent,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -417,7 +413,7 @@ class _GuidanceCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon, color: AppColors.accentGold),
+                Icon(icon, color: context.palette.accent),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
@@ -435,38 +431,13 @@ class _GuidanceCard extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               detail,
-              style: const TextStyle(color: AppColors.onSurfaceSubtle),
+              style: TextStyle(color: context.palette.onSurfaceSubtle),
             ),
             const SizedBox(height: 12),
             FilledButton(onPressed: onTap, child: Text(actionLabel)),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: const TextStyle(color: AppColors.onSurfaceSubtle),
-        ),
-      ],
     );
   }
 }

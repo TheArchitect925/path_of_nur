@@ -7,6 +7,8 @@ import '../../../l10n/app_localizations.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_coloring_provider.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
+import '../../../shared/widgets/premium_card.dart';
 
 class KidsArabicColoringViewerPage extends ConsumerWidget {
   const KidsArabicColoringViewerPage({super.key, required this.pageId});
@@ -22,33 +24,30 @@ class KidsArabicColoringViewerPage extends ConsumerWidget {
 
     if (page == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.format_paint_rounded,
-        title: l10n.kidsArabicColoringMissingTitle,
-        subtitle: l10n.kidsArabicColoringMissingSubtitle,
-        children: [Text(l10n.kidsArabicColoringMissingBody)],
+        title: l10n.kidsArabicColoringPagesTitle,
+        children: [
+          PremiumCard(child: Text(l10n.kidsArabicColoringMissingBody)),
+        ],
       );
     }
 
     if (!page.isUnlocked) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.lock_outline_rounded,
-        title: l10n.kidsArabicColoringLockedTitle,
-        subtitle: l10n.kidsArabicColoringLockedSubtitle,
-        children: [Text(l10n.kidsArabicColoringUnlockHint)],
+        title: l10n.kidsArabicColoringPagesTitle,
+        children: [PremiumCard(child: Text(l10n.kidsArabicColoringUnlockHint))],
       );
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.format_paint_rounded,
       title: localizedKidsArabicColoringTitle(l10n, page.titleKey),
       subtitle: l10n.kidsArabicColoringViewerSubtitle,
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFFF8F2E8),
+            color: context.palette.surface,
             borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFE5D5C1)),
+            border: Border.all(color: context.palette.surfaceSoft),
           ),
           child: AspectRatio(
             aspectRatio: 0.707,
@@ -82,7 +81,10 @@ class KidsArabicColoringViewerPage extends ConsumerWidget {
         const SizedBox(height: 12),
         Text(
           l10n.kidsArabicColoringViewerHint,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+          style: TextStyle(
+            color: context.palette.onSurfaceSubtle,
+            height: 1.35,
+          ),
         ),
       ],
     );

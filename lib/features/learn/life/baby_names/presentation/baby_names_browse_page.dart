@@ -149,7 +149,6 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
     final collectionsAsync = ref.watch(babyNamesCollectionsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.manage_search_rounded,
       title: l10n.babyNamesBrowseSearchTitle,
       subtitle: l10n.babyNamesBrowseSearchSubtitle,
       children: [
@@ -587,7 +586,7 @@ class _NameListCard extends ConsumerWidget {
         ),
         trailing: IconButton(
           icon: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+            isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
           ),
           onPressed: () => notifier.toggleFavorite(entry.id),
         ),

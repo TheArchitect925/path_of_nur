@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
@@ -175,7 +175,7 @@ class HadithContentBlock extends StatelessWidget {
         color: Colors.white.withValues(alpha: 0.72),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: AppColors.onSurfaceSubtle.withValues(alpha: 0.16),
+          color: context.palette.onSurfaceSubtle.withValues(alpha: 0.16),
         ),
       ),
       child: Column(
@@ -185,7 +185,7 @@ class HadithContentBlock extends StatelessWidget {
             item.label,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.w700,
-              color: AppColors.onSurfaceSubtle,
+              color: context.palette.onSurfaceSubtle,
               letterSpacing: 0.2,
             ),
           ),
@@ -200,9 +200,9 @@ class HadithContentBlock extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               item.supportingText!,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
           ],
         ],

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/world_progress_provider.dart';
@@ -20,9 +21,7 @@ class WorldSubcategoryPage extends ConsumerWidget {
     final sub = worldSubcategoryById(subcategoryId);
     if (sub == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnWorldSectionTitle,
-        subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }
@@ -32,7 +31,6 @@ class WorldSubcategoryPage extends ConsumerWidget {
     final progress = ref.watch(worldSubcategoryProgressProvider(sub.id));
 
     return AppPageScaffold(
-      headerIcon: Icons.list_alt_rounded,
       title: sub.title,
       subtitle: sub.summary,
       children: [
@@ -52,13 +50,7 @@ class WorldSubcategoryPage extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: progress.ratio,
-                  minHeight: 8,
-                ),
-              ),
+              ProgressBar(value: progress.ratio, height: 8),
             ],
           ),
         ),
@@ -84,7 +76,6 @@ class WorldSubcategoryPage extends ConsumerWidget {
                     subtitle: Text(
                       '${lesson.subtitle}\n${_statusLabel(l10n, p?.status)}',
                     ),
-                    trailing: const Icon(Icons.chevron_right),
                     onTap: () => context.pushNamed(
                       'worldLessonDetail',
                       pathParameters: {'lessonId': lesson.id},

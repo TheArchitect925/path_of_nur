@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
-import '../kids_learning_localizations.dart';
 import '../models/learn_hub_models.dart';
 
 class LearnHubTaxonomy {
@@ -14,7 +13,8 @@ class LearnHubTaxonomy {
     LearnHubCategoryId.prophetsStories,
     LearnHubCategoryId.worshipPractice,
     LearnHubCategoryId.characterAdab,
-    LearnHubCategoryId.arabicLanguage,
+    // arabicLanguage stays a valid deep-link target but is folded into
+    // Qur'an & Sunnah in the browse hierarchy (its subcategory lives there).
     LearnHubCategoryId.kidsLearning,
     LearnHubCategoryId.quizzesChallenges,
     LearnHubCategoryId.faq,
@@ -82,7 +82,7 @@ class LearnHubTaxonomy {
         return const LearnHubCategoryStyle(
           baseColor: Color(0xFFF0E5D4),
           accentColor: Color(0xFF8A6A42),
-          icon: Icons.sticky_note_2_outlined,
+          icon: Icons.sticky_note_2_rounded,
         );
       case LearnHubCategoryId.toolsExplore:
         return const LearnHubCategoryStyle(
@@ -131,12 +131,11 @@ class LearnHubTaxonomy {
 
   static LearnHubRouteTarget categoryRouteTarget(LearnHubCategoryId id) {
     switch (id) {
-      case LearnHubCategoryId.characterAdab:
-        return const LearnHubRouteTarget(routeName: 'learnCharacterCompanion');
       case LearnHubCategoryId.arabicLanguage:
         return const LearnHubRouteTarget(routeName: 'quranArabic');
       case LearnHubCategoryId.faq:
         return const LearnHubRouteTarget(routeName: 'faqLanding');
+      case LearnHubCategoryId.characterAdab:
       case LearnHubCategoryId.foundations:
       case LearnHubCategoryId.quranHadith:
       case LearnHubCategoryId.prophetsStories:
@@ -263,14 +262,14 @@ class LearnHubTaxonomy {
         id: 'divine-life-lessons',
         title: l10n.learnCategoryDivineLifeLessonsTitle,
         subtitle: l10n.learnHubSubcategoryDivineLifeLessonsSubtitle,
-        categoryId: LearnHubCategoryId.quranHadith,
+        categoryId: LearnHubCategoryId.characterAdab,
         routeTarget: const LearnHubRouteTarget(routeName: 'learnLifeLanding'),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'world-creation',
         title: l10n.learnCategoryWorldCreationTitle,
         subtitle: l10n.learnHubSubcategoryWorldCreationSubtitle,
-        categoryId: LearnHubCategoryId.quranHadith,
+        categoryId: LearnHubCategoryId.foundations,
         routeTarget: const LearnHubRouteTarget(routeName: 'learnWorldLanding'),
       ),
       LearnHubSubcategoryDescriptor(
@@ -393,86 +392,41 @@ class LearnHubTaxonomy {
         id: 'arabic-learning',
         title: l10n.learnHubSubcategoryArabicLearningTitle,
         subtitle: l10n.learnHubSubcategoryArabicLearningSubtitle,
-        categoryId: LearnHubCategoryId.arabicLanguage,
+        categoryId: LearnHubCategoryId.quranHadith,
         routeTarget: const LearnHubRouteTarget(routeName: 'quranArabic'),
       ),
+      // Kids Learning has four doors. Qur'an for Kids, Hadith for Kids, the
+      // hadith and prophet story shelves and the seerah journey live behind
+      // Stories and Letters now, not as tiles of their own.
       LearnHubSubcategoryDescriptor(
-        id: 'kids-games',
-        title: l10n.learnHubSubcategoryKidsGamesTitle,
-        subtitle: l10n.learnHubSubcategoryKidsGamesSubtitle,
+        id: 'kids-stories',
+        title: l10n.kidsDoorStoriesTitle,
+        subtitle: l10n.kidsDoorStoriesSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsGames'),
+        routeTarget: const LearnHubRouteTarget(routeName: 'kidsStoryLibrary'),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'kids-arabic-learning',
-        title: l10n.learnHubSubcategoryKidsArabicLearningTitle,
-        subtitle: l10n.learnHubSubcategoryKidsArabicLearningSubtitle,
+        title: l10n.kidsDoorLettersTitle,
+        subtitle: l10n.kidsDoorLettersSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
         routeTarget: const LearnHubRouteTarget(
           routeName: 'learnKidsArabicLearning',
         ),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'kids-quran',
-        title: l10n.learnHubSubcategoryKidsQuranTitleText,
-        subtitle: l10n.learnHubSubcategoryKidsQuranSubtitleText,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsQuran'),
-      ),
-      LearnHubSubcategoryDescriptor(
-        id: 'kids-hadith',
-        title: l10n.learnHubSubcategoryKidsHadithTitleText,
-        subtitle: l10n.learnHubSubcategoryKidsHadithSubtitleText,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsHadith'),
-      ),
-      LearnHubSubcategoryDescriptor(
-        id: 'kids-hadith-stories',
-        title: l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
-        subtitle: l10n.learnHubSubcategoryKidsHadithStoriesSubtitleText,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnKidsHadithStories',
-        ),
-      ),
-      LearnHubSubcategoryDescriptor(
-        id: 'kids-prophet-stories',
-        title: l10n.kidsStoryCollectionProphets,
-        subtitle: l10n.kidsStoryCollectionProphetsSubtitle,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnKidsProphetStories',
-        ),
-      ),
-      LearnHubSubcategoryDescriptor(
-        id: 'kids-stories',
-        title: l10n.learnHubSubcategoryKidsStoriesTitle,
-        subtitle: l10n.learnHubSubcategoryKidsStoriesSubtitle,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'kidsStoryLibrary'),
-      ),
-      LearnHubSubcategoryDescriptor(
         id: 'kids-dua-learning',
-        title: l10n.kidsDuaLandingTitle,
-        subtitle: l10n.kidsDuaLandingSubtitle,
+        title: l10n.kidsDoorDuasTitle,
+        subtitle: l10n.kidsDoorDuasSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
         routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaLanding'),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'kids-seerah-journeys',
-        title: l10n.kidsSeerahJourneysTitle,
-        subtitle: l10n.kidsSeerahJourneysSubtitle,
+        id: 'kids-play',
+        title: l10n.kidsDoorPlayTitle,
+        subtitle: l10n.kidsDoorPlaySubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'kidsSeerahJourneys'),
-      ),
-      LearnHubSubcategoryDescriptor(
-        id: 'kids-fun-learning',
-        title: l10n.learnHubSubcategoryKidsFunLearningTitle,
-        subtitle: l10n.learnHubSubcategoryKidsFunLearningSubtitle,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnKidsFunLearning',
-        ),
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsGames'),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'games-island',

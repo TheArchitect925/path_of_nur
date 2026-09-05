@@ -22,6 +22,7 @@ import '../../core/theme/app_theme.dart';
 import '../state/shell_state.dart';
 import 'app_hero_glass_shell.dart';
 import 'global_background.dart';
+import 'quick_actions_sheet.dart';
 
 class AppShellScaffold extends ConsumerWidget {
   static const double _mainTabSwipeMinDistance = 72;
@@ -64,7 +65,14 @@ class AppShellScaffold extends ConsumerWidget {
       extendBody: true,
       body: Stack(
         children: [
-          const GlobalBackground(),
+          // Only Home's own page centres its greeting; everywhere else,
+          // including pages pushed inside the Home tab, keeps the moon on
+          // the right where it clears left-aligned titles.
+          GlobalBackground(
+            moonFraction: activeTab == NavTab.home && isRootTabPage
+                ? kMoonFractionHome
+                : kMoonFractionDefault,
+          ),
           _MainTabSwipeWrapper(
             enabled: isRootTabPage,
             activeTab: activeTab,
@@ -171,6 +179,10 @@ class AppShellScaffold extends ConsumerWidget {
           );
         },
         openTooltip: l10n.quranPlaybackOpenPlayerAction,
+        // Stop and clear the live session so the pill goes away; the reading
+        // position is persisted first so the reader still resumes here.
+        onDismiss: () => unawaited(controller.stop()),
+        dismissTooltip: l10n.quranPlaybackDismissPlayerAction,
       ),
     );
   }
@@ -270,6 +282,11 @@ class AppShellScaffold extends ConsumerWidget {
         label: label,
         child: InkWell(
           onTap: () => context.go(tab.path),
+          // Holding the Home tab opens the global quick-actions sheet — the
+          // one shortcut affordance that replaced the per-tab floating docks.
+          onLongPress: tab == NavTab.home
+              ? () => showQuickActionsSheet(context)
+              : null,
           borderRadius: BorderRadius.circular(20),
           child: SizedBox(
             height: 74,
@@ -414,16 +431,31 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
   bool _tracking = false;
   bool _verticalRejected = false;
   bool _tabCommitted = false;
+  bool _horizontalScrollConsumed = false;
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      behavior: HitTestBehavior.translucent,
-      onPointerDown: _handlePointerDown,
-      onPointerMove: _handlePointerMove,
-      onPointerUp: _handlePointerUp,
-      onPointerCancel: _reset,
-      child: widget.child,
+    // This detector reads raw pointer events, so it never enters the gesture
+    // arena and cannot lose to a nested scrollable on its own. Watch for a
+    // horizontal scroll inside the page (the "right now" dua row, chip rows,
+    // carousels) and stand down when one is driving, otherwise swiping such a
+    // row would also flip to the next tab.
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (notification.metrics.axis == Axis.horizontal &&
+            notification is ScrollUpdateNotification) {
+          _horizontalScrollConsumed = true;
+        }
+        return false;
+      },
+      child: Listener(
+        behavior: HitTestBehavior.translucent,
+        onPointerDown: _handlePointerDown,
+        onPointerMove: _handlePointerMove,
+        onPointerUp: _handlePointerUp,
+        onPointerCancel: _reset,
+        child: widget.child,
+      ),
     );
   }
 
@@ -441,6 +473,7 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
     _tracking = true;
     _verticalRejected = false;
     _tabCommitted = false;
+    _horizontalScrollConsumed = false;
     _velocityTracker = VelocityTracker.withKind(event.kind)
       ..addPosition(event.timeStamp, event.position);
   }
@@ -466,7 +499,7 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
       return;
     }
     _velocityTracker?.addPosition(event.timeStamp, event.position);
-    if (!_verticalRejected) {
+    if (!_verticalRejected && !_horizontalScrollConsumed) {
       final start = _startGlobal;
       final velocity = _velocityTracker?.getVelocity();
       final dx = start == null ? 0.0 : event.position.dx - start.dx;
@@ -499,6 +532,7 @@ class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
     _tracking = false;
     _verticalRejected = false;
     _tabCommitted = false;
+    _horizontalScrollConsumed = false;
     _velocityTracker = null;
   }
 }
@@ -630,6 +664,8 @@ class QuranPlayerLauncherPill extends StatelessWidget {
     required this.onTogglePlayback,
     required this.onOpenPlayer,
     required this.openTooltip,
+    required this.onDismiss,
+    required this.dismissTooltip,
   });
 
   final String? label;
@@ -639,6 +675,8 @@ class QuranPlayerLauncherPill extends StatelessWidget {
   final VoidCallback? onTogglePlayback;
   final VoidCallback onOpenPlayer;
   final String openTooltip;
+  final VoidCallback onDismiss;
+  final String dismissTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -758,6 +796,21 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                 ),
                 color: appearance?.navLabelActive ?? contentColors.foreground,
                 icon: const Icon(Icons.open_in_full_rounded),
+              ),
+            ),
+            Tooltip(
+              message: dismissTooltip,
+              child: IconButton(
+                key: const ValueKey('quran-shell-player-dismiss'),
+                onPressed: onDismiss,
+                iconSize: 20,
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints.tightFor(
+                  width: 32,
+                  height: 36,
+                ),
+                color: contentColors.subtleForeground,
+                icon: const Icon(Icons.close_rounded),
               ),
             ),
           ],

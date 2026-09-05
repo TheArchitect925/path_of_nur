@@ -18,7 +18,6 @@ class CirclesJoinedPage extends ConsumerWidget {
     final accountability = ref.watch(joinedAccountabilityGroupsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.group_work_outlined,
       title: l10n.circlesJoinedPageTitle,
       subtitle: l10n.circlesJoinedPageSubtitle,
       children: [
@@ -36,7 +35,6 @@ class CirclesJoinedPage extends ConsumerWidget {
                   title: Text(circle.title),
                   subtitle: Text('${circle.description}\n${circle.city}'),
                   isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.pushNamed(
                     'circleDetail',
                     pathParameters: {'circleId': circle.id},

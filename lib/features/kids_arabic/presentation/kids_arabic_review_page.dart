@@ -8,6 +8,7 @@ import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progression.dart';
 import '../application/kids_arabic_progress_provider.dart';
 import '../domain/kids_arabic_models.dart';
+import '../../../core/theme/app_palette.dart';
 
 enum _KidsArabicReviewMode { matchLetterToSound, tapCorrectLetter }
 
@@ -39,7 +40,6 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
     final finished = _questionIndex >= 5;
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.quiz_rounded,
       title: l10n.kidsArabicReviewTitle,
       subtitle: l10n.kidsArabicReviewSubtitle,
       children: [
@@ -219,18 +219,18 @@ class _ReviewQuestionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8F2E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE5D5C1)),
+        border: Border.all(color: context.palette.surfaceSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             l10n.kidsArabicQuestionCounter(questionNumber, 5),
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF8A6C49),
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
           const SizedBox(height: 12),
@@ -240,10 +240,10 @@ class _ReviewQuestionCard extends StatelessWidget {
                 : l10n.kidsArabicReviewQuestionTapCorrect(
                     target.transliteration,
                   ),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 16),
@@ -266,9 +266,9 @@ class _ReviewQuestionCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: unlockedLetterIds.contains(option.id)
                             ? Colors.white
-                            : const Color(0xFFF2EEE7),
+                            : context.palette.surface,
                         borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color: const Color(0xFFE5D5C1)),
+                        border: Border.all(color: context.palette.surfaceSoft),
                       ),
                       child: Center(
                         child: Text(
@@ -289,7 +289,7 @@ class _ReviewQuestionCard extends StatelessWidget {
                                 ? null
                                 : 'Noto Naskh Arabic',
                             fontWeight: FontWeight.w700,
-                            color: const Color(0xFF5E462A),
+                            color: context.palette.onSurface,
                           ),
                         ),
                       ),
@@ -316,17 +316,23 @@ class _ReviewFeedbackBanner extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: positive ? const Color(0xFFEFF6E6) : const Color(0xFFFFF4E5),
+        color: positive
+            ? context.palette.success.withValues(alpha: 0.25)
+            : const Color(0xFFFFF4E5),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: positive ? const Color(0xFFD4E4C0) : const Color(0xFFE7D6C0),
+          color: positive
+              ? context.palette.success.withValues(alpha: 0.45)
+              : context.palette.surfaceSoft,
         ),
       ),
       child: Text(
         label,
         style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: positive ? const Color(0xFF52713A) : const Color(0xFF8A6C49),
+          color: positive
+              ? context.palette.successInk
+              : context.palette.onSurfaceSubtle,
         ),
       ),
     );
@@ -350,19 +356,21 @@ class _ReviewSummaryCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: const Color(0xFFEFF6E6),
+        color: context.palette.success.withValues(alpha: 0.25),
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFD4E4C0)),
+        border: Border.all(
+          color: context.palette.success.withValues(alpha: 0.45),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             l10n.kidsArabicReviewFinishedTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 8),
@@ -377,9 +385,9 @@ class _ReviewSummaryCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               l10n.kidsArabicDailyMissionCompletedTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 6),
@@ -396,12 +404,15 @@ class _ReviewSummaryCard extends StatelessWidget {
                 xp: dailyMissionResult!.xpAwarded,
                 drops: dailyMissionResult!.oceanDropsAwarded,
               ),
-              style: const TextStyle(fontSize: 12, color: Color(0xFF675B4E)),
+              style: TextStyle(
+                fontSize: 12,
+                color: context.palette.onSurfaceSubtle,
+              ),
             ),
             const SizedBox(height: 6),
             Text(
               l10n.kidsArabicDailyMissionTomorrowPrompt,
-              style: const TextStyle(color: Color(0xFF675B4E)),
+              style: TextStyle(color: context.palette.onSurfaceSubtle),
             ),
           ],
         ],

@@ -48,9 +48,7 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
     final lesson = worldLessonById(widget.lessonId);
     if (lesson == null) {
       return AppPageScaffold(
-        headerIcon: Icons.article_outlined,
         title: l10n.learnWorldSectionTitle,
-        subtitle: l10n.learnContentNotFound,
         children: [PremiumCard(child: Text(l10n.learnContentNotFound))],
       );
     }
@@ -126,7 +124,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
         .toList(growable: false);
 
     return LearningDetailPage(
-      headerIcon: Icons.menu_book_rounded,
       title: lesson.title,
       subtitle: lesson.subtitle,
       sections: [
@@ -215,7 +212,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
               contentPadding: EdgeInsets.zero,
               title: Text(nextLesson.title),
               subtitle: Text(nextLesson.subtitle),
-              trailing: const Icon(Icons.chevron_right),
               onTap: () => context.pushNamed(
                 'worldLessonDetail',
                 pathParameters: {'lessonId': nextLesson!.id},
@@ -297,7 +293,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.worldAddReflectionTitle),
             subtitle: Text(l10n.worldAddReflectionSubtitle),
-            trailing: const Icon(Icons.chevron_right),
             onTap: () => context.pushNamed('journalCreate'),
           ),
         ),
@@ -307,7 +302,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.worldObservationCtaTitle),
             subtitle: Text(l10n.worldObservationCtaSubtitle),
-            trailing: const Icon(Icons.chevron_right),
             onTap: () => context.pushNamed('journalCreate'),
           ),
         ),

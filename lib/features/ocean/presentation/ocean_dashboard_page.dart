@@ -10,6 +10,7 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../journey/drops/application/journey_drops_providers.dart';
 import '../../journey/drops/presentation/widgets/garden_cards.dart';
 import '../application/ocean_drops_provider.dart';
+import '../../../core/theme/app_icons.dart';
 
 class OceanDashboardPage extends ConsumerWidget {
   const OceanDashboardPage({super.key});
@@ -25,7 +26,7 @@ class OceanDashboardPage extends ConsumerWidget {
     final nextGardenMilestone = ref.watch(nextGardenMilestoneProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.water_drop_rounded,
+      headerIcon: AppIcons.drops,
       title: l10n.growthOceanDashboardTitle,
       subtitle: l10n.growthOceanDashboardSubtitle,
       children: [

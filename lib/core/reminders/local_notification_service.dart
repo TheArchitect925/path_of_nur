@@ -483,7 +483,6 @@ class LocalNotificationService {
       case ReminderKind.prayerBeforeQaza:
         return l10n.notificationsPrayerBeforeQazaTitle(
           _prayerName(l10n, item.prayerId),
-          _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.dhikr:
         return l10n.notificationsDhikrTitle;
@@ -501,6 +500,8 @@ class LocalNotificationService {
         return l10n.notificationsMoonriseTitle;
       case ReminderKind.moonset:
         return l10n.notificationsMoonsetTitle;
+      case ReminderKind.jumuahLeave:
+        return l10n.notificationsJumuahLeaveTitle;
     }
   }
 
@@ -513,7 +514,6 @@ class LocalNotificationService {
         return _prayerBodyFor(l10n, item.prayerId);
       case ReminderKind.prayerBeforeQaza:
         return l10n.notificationsPrayerBeforeQazaBody(
-          _prayerName(l10n, item.prayerId),
           _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.dhikr:
@@ -532,6 +532,8 @@ class LocalNotificationService {
         return l10n.notificationsMoonriseBody;
       case ReminderKind.moonset:
         return l10n.notificationsMoonsetBody;
+      case ReminderKind.jumuahLeave:
+        return l10n.notificationsJumuahLeaveBody;
     }
   }
 
@@ -768,6 +770,9 @@ class LocalNotificationService {
       ).encode(),
       ReminderKind.dhikr => ReminderNotificationPayload.routeOnly(
         '/worship',
+      ).encode(),
+      ReminderKind.jumuahLeave => ReminderNotificationPayload.routeOnly(
+        '/salah-times',
       ).encode(),
       ReminderKind.quran => ReminderNotificationPayload.routeOnly(
         '/quran',

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../../arabic/application/arabic_learning_asset_bundle.dart';
 import '../../arabic/application/arabic_learning_assessment_provider.dart';
 import '../../arabic/application/arabic_learning_lesson_packs_provider.dart';
@@ -26,16 +26,20 @@ import '../../learn/quran/domain/quran_guided_passage_readiness_models.dart';
 import '../../learn/quran/domain/quran_readiness_bridge_models.dart';
 import '../../learn/quran/domain/quran_short_surah_readiness_models.dart';
 import '../application/kids_arabic_achievements_provider.dart';
-import '../application/kids_arabic_mastery_provider.dart';
 import '../application/kids_arabic_phrases_provider.dart';
 import '../application/kids_arabic_progression.dart';
 import '../application/kids_arabic_words_provider.dart';
 import '../application/kids_arabic_coloring_provider.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progress_provider.dart';
-import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_palette.dart';
+import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/section_title.dart';
+import '../../kids/rewards/presentation/kids_invitation_card.dart';
+import '../../kids/rewards/presentation/kids_reward_strip.dart';
 
 class KidsArabicHomePage extends ConsumerStatefulWidget {
   const KidsArabicHomePage({super.key});
@@ -74,10 +78,6 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
     final unlockedLetterIds = ref.watch(kidsArabicUnlockedLetterIdsProvider);
     final unlockedColoringPages = ref.watch(
       kidsArabicUnlockedColoringPagesCountProvider,
-    );
-    final masterySummary = ref.watch(kidsArabicMasterySummaryProvider);
-    final masteryRecommendation = ref.watch(
-      kidsArabicMasteryRecommendationProvider,
     );
     final achievementSummary = ref.watch(kidsArabicAchievementSummaryProvider);
     final progressSummary = ref.watch(
@@ -142,10 +142,13 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
       });
     }
 
-    return LearnHubPageScaffold(
-      headerIcon: Icons.text_fields_rounded,
+    return KidsPageScaffold(
+      headerIcon: AppIcons.letters,
       title: l10n.kidsArabicHomeTitle,
       subtitle: l10n.kidsArabicHomeSubtitle,
+      heroAsset: 'assets/images/learn_art/kids_arabic.webp',
+      heroTitle: l10n.kidsDoorLettersTitle,
+      heroSubtitle: l10n.kidsDoorLettersSubtitle,
       children: [
         if (guidedLetter != null &&
             (parentActivity!.source ==
@@ -160,7 +163,9 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
           ),
           const SizedBox(height: 12),
         ],
-        if (dailyMission != null) ...[
+        // Until the first letter is done the invitation below is the one
+        // next thing; the daily journey card would only say it twice.
+        if (dailyMission != null && progress.completedLetterIds.isNotEmpty) ...[
           _DailyJourneyCard(
             mission: dailyMission,
             dailyProgress: dailyProgress,
@@ -171,26 +176,37 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
           ),
           const SizedBox(height: 12),
         ],
-        ArabicLearningProgressDashboardCard(
-          variant: ArabicLearningProgressDashboardVariant.kids,
-          summary: progressSummary,
-          kidsHighlight: achievementSummary.latestAchievement == null
-              ? null
-              : localizedKidsArabicAchievementTitle(
-                  l10n,
-                  achievementSummary.latestAchievement!,
-                ),
-          onPrimaryTap: () => openArabicLearningRouteTarget(
-            context,
-            target: progressSummary.continuation.primaryTarget,
+        // A first-time child gets one thing to do, not a row of zeros (K4).
+        if (progress.completedLetterIds.isEmpty)
+          KidsInvitationCard(
+            title: l10n.kidsInvitationFirstLetterTitle,
+            subtitle: l10n.kidsInvitationFirstLetterSubtitle,
+            onTap: () => context.pushNamed(
+              'kidsArabicLesson',
+              pathParameters: const {'letterId': 'alif'},
+            ),
+          )
+        else
+          ArabicLearningProgressDashboardCard(
+            variant: ArabicLearningProgressDashboardVariant.kids,
+            summary: progressSummary,
+            kidsHighlight: achievementSummary.latestAchievement == null
+                ? null
+                : localizedKidsArabicAchievementTitle(
+                    l10n,
+                    achievementSummary.latestAchievement!,
+                  ),
+            onPrimaryTap: () => openArabicLearningRouteTarget(
+              context,
+              target: progressSummary.continuation.primaryTarget,
+            ),
+            onSecondaryTap: progressSummary.reviewSuggestion == null
+                ? null
+                : () => openArabicLearningRouteTarget(
+                    context,
+                    target: progressSummary.reviewSuggestion!.target,
+                  ),
           ),
-          onSecondaryTap: progressSummary.reviewSuggestion == null
-              ? null
-              : () => openArabicLearningRouteTarget(
-                  context,
-                  target: progressSummary.reviewSuggestion!.target,
-                ),
-        ),
         const SizedBox(height: 12),
         ArabicLearningQuickResumeSection(
           variant: ArabicLearningQuickResumeSectionVariant.kids,
@@ -240,15 +256,9 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
           ),
         ),
         const SizedBox(height: 12),
-        _MasterySnapshotCard(
-          summary: masterySummary,
-          recommendation: masteryRecommendation,
-        ),
-        const SizedBox(height: 12),
-        _AchievementsCard(
-          summary: achievementSummary,
-          recommendation: masteryRecommendation,
-        ),
+        // Mastery levels and achievement counts were two more currencies;
+        // the one sticker book stands in for both (K4).
+        const KidsRewardStrip(),
         const SizedBox(height: 12),
         _BeginnerWordsCard(
           nextWordId: nextWord?.id,
@@ -280,22 +290,12 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
             _ActionRowItem(
               icon: Icons.emoji_events_rounded,
               label: l10n.kidsArabicRewardsTitle,
-              onTap: () => context.pushNamed('kidsArabicRewards'),
-            ),
-            _ActionRowItem(
-              icon: Icons.family_restroom_rounded,
-              label: l10n.kidsArabicParentDashboardTitle,
-              onTap: () => context.pushNamed('kidsArabicParentDashboard'),
-            ),
-            _ActionRowItem(
-              icon: Icons.tune_rounded,
-              label: l10n.kidsArabicParentSettingsTitle,
-              onTap: () => context.pushNamed('kidsArabicParentSettings'),
+              onTap: () => context.pushNamed('kidsStickerBook'),
             ),
           ],
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicRecommendedTitle,
           subtitle: l10n.kidsArabicRecommendedSubtitle,
         ),
@@ -322,7 +322,7 @@ class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
           ),
         ),
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.kidsArabicAlphabetTitle,
           subtitle: l10n.kidsArabicAlphabetSubtitle,
         ),
@@ -395,7 +395,7 @@ class _ShortSurahsCard extends StatelessWidget {
             textDirection: TextDirection.rtl,
             style: const TextStyle(
               fontSize: 30,
-              fontFamily: 'AmiriQuran',
+              fontFamily: AppFonts.quranArabic,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -450,10 +450,10 @@ class _QuickPracticeCard extends StatelessWidget {
         children: [
           Text(
             l10n.kidsArabicMiniAssessmentCardTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -461,7 +461,7 @@ class _QuickPracticeCard extends StatelessWidget {
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
             onPressed: () => context.pushNamed('kidsArabicMiniAssessment'),
-            icon: const Icon(Icons.self_improvement_rounded),
+            icon: const Icon(AppIcons.practice),
             label: Text(l10n.kidsArabicMiniAssessmentCardAction),
           ),
         ],
@@ -496,10 +496,10 @@ class _QuranReadinessCard extends StatelessWidget {
           children: [
             Text(
               l10n.quranReadinessKidsCardTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
+                color: context.palette.onSurface,
               ),
             ),
             const SizedBox(height: 6),
@@ -517,7 +517,7 @@ class _QuranReadinessCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: const TextStyle(
                 fontSize: 30,
-                fontFamily: 'AmiriQuran',
+                fontFamily: AppFonts.quranArabic,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF7A5622),
               ),
@@ -569,9 +569,9 @@ class _GuidedPassagesCard extends StatelessWidget {
         children: [
           Text(
             l10n.quranGuidedPassagesKidsCardTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -581,7 +581,7 @@ class _GuidedPassagesCard extends StatelessWidget {
                     _guidedPassageTitle(l10n, summary.passage.id),
                   )
                 : l10n.quranGuidedPassagesKidsCardStartSubtitle,
-            style: const TextStyle(color: Color(0xFF5D4A36), height: 1.35),
+            style: TextStyle(color: context.palette.onSurface, height: 1.35),
           ),
           const SizedBox(height: 12),
           FilledButton.tonalIcon(
@@ -624,9 +624,9 @@ class _ColoringPagesCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F2E8),
+          color: context.palette.surface,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE5D5C1)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Row(
           children: [
@@ -634,12 +634,12 @@ class _ColoringPagesCard extends StatelessWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: const Color(0xFFFFFBF5),
+                color: context.palette.surface,
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.format_paint_rounded,
-                color: Color(0xFF8A6C49),
+                color: context.palette.onSurfaceSubtle,
               ),
             ),
             const SizedBox(width: 12),
@@ -649,15 +649,15 @@ class _ColoringPagesCard extends StatelessWidget {
                 children: [
                   Text(
                     l10n.kidsArabicColoringPagesTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     l10n.kidsArabicColoringPagesProgressValue(unlockedCount, 5),
-                    style: const TextStyle(color: Color(0xFF675B4E)),
+                    style: TextStyle(color: context.palette.onSurfaceSubtle),
                   ),
                 ],
               ),
@@ -692,9 +692,11 @@ class _MiniPhrasesCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFEFF6E6),
+          color: context.palette.success.withValues(alpha: 0.25),
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFD4E4C0)),
+          border: Border.all(
+            color: context.palette.success.withValues(alpha: 0.45),
+          ),
         ),
         child: Row(
           children: [
@@ -705,9 +707,9 @@ class _MiniPhrasesCard extends StatelessWidget {
                 color: const Color(0xFFFCFFF8),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.chat_bubble_outline_rounded,
-                color: Color(0xFF64873B),
+                color: context.palette.successInk,
               ),
             ),
             const SizedBox(width: 12),
@@ -717,16 +719,16 @@ class _MiniPhrasesCard extends StatelessWidget {
                 children: [
                   Text(
                     l10n.kidsArabicMiniPhrasesHomeTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     l10n.kidsArabicMiniPhrasesHomeSubtitle(heardCount),
-                    style: const TextStyle(
-                      color: Color(0xFF52713A),
+                    style: TextStyle(
+                      color: context.palette.successInk,
                       height: 1.3,
                     ),
                   ),
@@ -762,10 +764,14 @@ class _DailyJourneyCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: completed ? const Color(0xFFEFF6E6) : const Color(0xFFFFF5E7),
+        color: completed
+            ? context.palette.success.withValues(alpha: 0.25)
+            : context.palette.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: completed ? const Color(0xFFD4E4C0) : const Color(0xFFE8D8BE),
+          color: completed
+              ? context.palette.success.withValues(alpha: 0.45)
+              : context.palette.surfaceSoft,
         ),
       ),
       child: Column(
@@ -773,10 +779,10 @@ class _DailyJourneyCard extends StatelessWidget {
         children: [
           Text(
             l10n.kidsArabicDailyJourneyTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -784,10 +790,10 @@ class _DailyJourneyCard extends StatelessWidget {
             completed
                 ? l10n.kidsArabicDailyJourneyCompletedSubtitle
                 : localizedKidsArabicDailyMissionTitle(l10n, mission, letter),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF5D4A36),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -799,22 +805,22 @@ class _DailyJourneyCard extends StatelessWidget {
                     mission,
                     letter,
                   ),
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
-              _SummaryPill(
-                label: l10n.kidsArabicDailyJourneyStreakValue(
-                  dailyProgress.currentStreak,
-                ),
-              ),
-              if (dailyProgress.graceDaysAvailable > 0)
+              // A streak is shown once there is one; grace days are a
+              // parent's detail and live on the parent dashboard.
+              if (dailyProgress.currentStreak > 0)
                 _SummaryPill(
-                  label: l10n.kidsArabicDailyJourneyGraceValue(
-                    dailyProgress.graceDaysAvailable,
+                  label: l10n.kidsArabicDailyJourneyStreakValue(
+                    dailyProgress.currentStreak,
                   ),
                 ),
             ],
@@ -855,42 +861,13 @@ class _DailyJourneyCard extends StatelessWidget {
           else
             Text(
               l10n.kidsArabicDailyJourneyTomorrowHint,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
+                color: context.palette.successInk,
               ),
             ),
         ],
       ),
-    );
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF2E261F),
-          ),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
-        ),
-      ],
     );
   }
 }
@@ -903,14 +880,16 @@ class _SummaryPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppLayeredGlassPill(
+      // The pill sits in a Wrap; the default expands it to the full row.
+      expandToWidth: false,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       fillColor: Colors.white,
-      borderColor: const Color(0xFFE2D2BC),
+      borderColor: context.palette.surfaceSoft,
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w700,
-          color: Color(0xFF6B583F),
+          color: context.palette.onSurfaceSubtle,
         ),
       ),
     );
@@ -950,10 +929,10 @@ class _ActionRow extends StatelessWidget {
                         Text(
                           item.label,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12.5,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF5D4A36),
+                            color: context.palette.onSurface,
                           ),
                         ),
                       ],
@@ -978,216 +957,6 @@ class _ActionRowItem {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
-}
-
-class _AchievementsCard extends StatelessWidget {
-  const _AchievementsCard({
-    required this.summary,
-    required this.recommendation,
-  });
-
-  final KidsArabicAchievementSummary summary;
-  final KidsArabicMasteryRecommendation? recommendation;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final latest = summary.latestAchievement;
-    final nextStep = switch (recommendation?.type) {
-      KidsArabicMasteryRecommendationType.reviewLetter =>
-        l10n.kidsArabicMasteryReviewLetterTitle(recommendation!.letter.nameAr),
-      KidsArabicMasteryRecommendationType.continueSequence =>
-        l10n.kidsArabicMasteryContinueLetterTitle(
-          recommendation!.letter.nameAr,
-        ),
-      KidsArabicMasteryRecommendationType.celebrateProgress =>
-        l10n.kidsArabicMasteryCelebrateTitle,
-      null => l10n.kidsArabicPracticeTitle,
-    };
-    return InkWell(
-      onTap: () => context.pushNamed('kidsArabicRewards'),
-      borderRadius: BorderRadius.circular(22),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFFFFF4EA),
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE7D6C0)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.kidsArabicAchievementsHomeTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              latest == null
-                  ? l10n.kidsArabicAchievementsHomeEmptyTitle
-                  : localizedKidsArabicAchievementTitle(l10n, latest),
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF8A6C49),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              latest == null
-                  ? l10n.kidsArabicAchievementsHomeEmptySubtitle
-                  : localizedKidsArabicAchievementSubtitle(l10n, latest),
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _SummaryPill(
-                  label: l10n.kidsArabicBadgesUnlockedValue(
-                    summary.badgesUnlocked,
-                  ),
-                ),
-                _SummaryPill(
-                  label: l10n.kidsArabicMilestonesUnlockedValue(
-                    summary.milestonesUnlocked,
-                  ),
-                ),
-                _SummaryPill(
-                  label: l10n.kidsArabicWordsCompletedValue(
-                    summary.wordsCompleted,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Text(
-              l10n.kidsArabicAchievementsNextStepLabel(nextStep),
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF5D4A36),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => context.pushNamed('kidsArabicRewards'),
-                child: Text(l10n.kidsArabicAchievementsOpenAction),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _MasterySnapshotCard extends StatelessWidget {
-  const _MasterySnapshotCard({
-    required this.summary,
-    required this.recommendation,
-  });
-
-  final KidsArabicMasterySummary summary;
-  final KidsArabicMasteryRecommendation? recommendation;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final title = switch (recommendation?.type) {
-      KidsArabicMasteryRecommendationType.reviewLetter =>
-        l10n.kidsArabicMasteryReviewLetterTitle(recommendation!.letter.nameAr),
-      KidsArabicMasteryRecommendationType.continueSequence =>
-        l10n.kidsArabicMasteryContinueLetterTitle(
-          recommendation!.letter.nameAr,
-        ),
-      KidsArabicMasteryRecommendationType.celebrateProgress =>
-        l10n.kidsArabicMasteryCelebrateTitle,
-      null => l10n.kidsArabicMasteryMapTitle,
-    };
-    final subtitle = switch (recommendation?.type) {
-      KidsArabicMasteryRecommendationType.reviewLetter =>
-        l10n.kidsArabicMasteryReviewLetterBody,
-      KidsArabicMasteryRecommendationType.continueSequence =>
-        l10n.kidsArabicMasteryContinueLetterBody,
-      KidsArabicMasteryRecommendationType.celebrateProgress =>
-        l10n.kidsArabicMasteryCelebrateBody(recommendation!.letter.nameAr),
-      null => l10n.kidsArabicMasteryHomeSubtitle,
-    };
-    return InkWell(
-      onTap: () => context.pushNamed('kidsArabicProgressMap'),
-      borderRadius: BorderRadius.circular(22),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF1F8EF),
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFD5E6CF)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.kidsArabicMasteryHomeTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              subtitle,
-              style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _SummaryPill(
-                  label: l10n.kidsArabicLettersCompletedValue(
-                    summary.completedCount,
-                  ),
-                ),
-                _SummaryPill(
-                  label: l10n.kidsArabicMasteryPracticingCountValue(
-                    summary.practicingCount,
-                  ),
-                ),
-                _SummaryPill(
-                  label: l10n.kidsArabicMasteryReviewCountValue(
-                    summary.reviewCount,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => context.pushNamed('kidsArabicProgressMap'),
-                child: Text(l10n.kidsArabicMasteryOpenMapAction),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class _BeginnerWordsCard extends StatelessWidget {
@@ -1306,9 +1075,9 @@ class _LetterCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F2E8),
+          color: context.palette.surface,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE5D5C1)),
+          border: Border.all(color: context.palette.surfaceSoft),
         ),
         child: Row(
           children: [
@@ -1323,11 +1092,11 @@ class _LetterCard extends StatelessWidget {
               child: Text(
                 letter.glyph,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 42,
                   fontFamily: 'Noto Naskh Arabic',
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF5E462A),
+                  color: context.palette.onSurface,
                 ),
               ),
             ),
@@ -1350,10 +1119,10 @@ class _LetterCard extends StatelessWidget {
                         ),
                         child: Text(
                           badgeLabel!,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 11.5,
                             fontWeight: FontWeight.w700,
-                            color: Color(0xFF52713A),
+                            color: context.palette.successInk,
                           ),
                         ),
                       ),
@@ -1361,9 +1130,9 @@ class _LetterCard extends StatelessWidget {
                   Text(
                     letter.nameAr,
                     textDirection: TextDirection.rtl,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2E261F),
+                      color: context.palette.onSurface,
                       fontSize: 16,
                     ),
                   ),
@@ -1371,8 +1140,8 @@ class _LetterCard extends StatelessWidget {
                   if (showTransliteration) ...[
                     Text(
                       letter.transliteration,
-                      style: const TextStyle(
-                        color: Color(0xFF8A6C49),
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -1381,8 +1150,8 @@ class _LetterCard extends StatelessWidget {
                   Text(
                     childLine,
                     textDirection: Directionality.of(context),
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -1395,10 +1164,10 @@ class _LetterCard extends StatelessWidget {
                         : AppLocalizations.of(
                             context,
                           ).kidsArabicLessonsDoneValue(lessonsCompleted),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8A6C49),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                 ],
@@ -1501,9 +1270,9 @@ class _FamilySummaryCard extends StatelessWidget {
         children: [
           Text(
             l10n.kidsArabicFamilySummaryTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 6),
@@ -1512,13 +1281,13 @@ class _FamilySummaryCard extends StatelessWidget {
               summary.currentStreak,
               summary.earnedStickerCount,
             ),
-            style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+            style: TextStyle(color: context.palette.successInk, height: 1.35),
           ),
           const SizedBox(height: 12),
           Align(
             alignment: Alignment.centerLeft,
             child: TextButton(
-              onPressed: () => context.pushNamed('kidsArabicParentDashboard'),
+              onPressed: () => context.pushNamed('kidsParents'),
               child: Text(l10n.kidsArabicFamilySummaryAction),
             ),
           ),
@@ -1548,23 +1317,23 @@ class _GlyphButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final background = locked
-        ? const Color(0xFFF2EEE7)
+        ? context.palette.surface
         : needsReview
         ? const Color(0xFFFFF0DC)
         : practicing
         ? const Color(0xFFFFF4DF)
         : completed
         ? const Color(0xFFE9F4DF)
-        : const Color(0xFFF8F2E8);
+        : context.palette.surface;
     final border = locked
-        ? const Color(0xFFD8CFC2)
+        ? context.palette.surfaceSoft
         : needsReview
         ? const Color(0xFFE5B77B)
         : practicing
         ? const Color(0xFFE6C485)
         : completed
         ? const Color(0xFFC4DAA9)
-        : const Color(0xFFE5D5C1);
+        : context.palette.surfaceSoft;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(18),
@@ -1580,11 +1349,11 @@ class _GlyphButton extends StatelessWidget {
         child: Text(
           letter.glyph,
           textDirection: TextDirection.rtl,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 32,
             fontFamily: 'Noto Naskh Arabic',
             fontWeight: FontWeight.w700,
-            color: Color(0xFF5E462A),
+            color: context.palette.onSurface,
           ),
         ),
       ),

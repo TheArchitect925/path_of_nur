@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -24,6 +24,7 @@ import '../../quran_teaching/domain/quran_teaching_models.dart';
 import '../domain/quran_guided_passage_readiness_models.dart';
 import '../domain/quran_readiness_bridge_models.dart';
 import '../domain/quran_short_surah_readiness_models.dart';
+import '../../../../core/theme/app_fonts.dart';
 
 class QuranReadinessBridgePage extends ConsumerStatefulWidget {
   const QuranReadinessBridgePage({
@@ -204,7 +205,7 @@ class _QuranReadinessBridgePageState
               color: isPlaying
                   ? (isKids
                         ? const Color(0xFF9ED081)
-                        : AppColors.accentGoldSoft)
+                        : context.palette.accentSoft)
                   : const Color(0xFFE2D9CB),
               width: isPlaying ? 1.6 : 1,
             ),
@@ -214,7 +215,7 @@ class _QuranReadinessBridgePageState
                       color:
                           (isKids
                                   ? const Color(0xFFB8E39E)
-                                  : AppColors.accentGoldSoft)
+                                  : context.palette.accentSoft)
                               .withValues(alpha: 0.22),
                       blurRadius: 18,
                     ),
@@ -406,7 +407,7 @@ class _QuranReadinessBridgePageState
                 Text(
                   activeSnippet.ayahTranslation,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -473,7 +474,6 @@ class _QuranReadinessBridgePageState
     if (isKids) {
       return LearnHubPageScaffold(
         showDefaultQuote: false,
-        headerIcon: Icons.menu_book_rounded,
         title: l10n.quranReadinessKidsPageTitle,
         subtitle: l10n.quranReadinessKidsPageSubtitle,
         children: content,
@@ -597,7 +597,7 @@ class _QuranReadinessBridgePageState
   }) {
     final baseStyle = const TextStyle(
       fontSize: 38,
-      fontFamily: 'AmiriQuran',
+      fontFamily: AppFonts.quranArabic,
       fontWeight: FontWeight.w700,
       height: 1.6,
     );
@@ -655,10 +655,14 @@ class _QuranReadinessBridgePageState
     final baseStyle =
         Theme.of(context).textTheme.headlineSmall?.copyWith(
           height: 1.7,
-          fontFamily: 'AmiriQuran',
+          fontFamily: AppFonts.quranArabic,
           fontWeight: FontWeight.w700,
         ) ??
-        const TextStyle(fontSize: 30, height: 1.7, fontFamily: 'AmiriQuran');
+        const TextStyle(
+          fontSize: 30,
+          height: 1.7,
+          fontFamily: AppFonts.quranArabic,
+        );
     final start = ayahArabic.indexOf(snippetArabic);
     if (start < 0) {
       return buildQuranTextWithColoredHarakat(ayahArabic, baseStyle);
@@ -675,8 +679,8 @@ class _QuranReadinessBridgePageState
           text: snippetArabic,
           style: baseStyle.copyWith(
             color: isPlaying
-                ? const Color(0xFF8A5A1F)
-                : AppColors.accentGoldSoft,
+                ? context.palette.cautionInk
+                : context.palette.accentSoft,
             backgroundColor:
                 (isPlaying ? const Color(0xFFFFE5B6) : const Color(0xFFF9EBCF))
                     .withValues(alpha: 0.9),
@@ -744,7 +748,7 @@ class _QuranReadinessBridgePageState
       case QuranReadinessPronunciationHintType.stretch:
         return const Color(0xFF7E6BBD);
       case QuranReadinessPronunciationHintType.bounce:
-        return const Color(0xFF8A5A1F);
+        return context.palette.cautionInk;
       case QuranReadinessPronunciationHintType.nasal:
         return const Color(0xFF4F7D73);
     }
@@ -911,7 +915,7 @@ class _BridgeToVocabularyThemeCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               style: const TextStyle(
                 fontSize: 24,
-                fontFamily: 'AmiriQuran',
+                fontFamily: AppFonts.quranArabic,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -972,7 +976,7 @@ class _BridgeSummaryChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.55),
+        color: context.palette.surfaceSoft.withValues(alpha: 0.55),
       ),
       child: Text(
         label,

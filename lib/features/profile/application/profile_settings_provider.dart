@@ -58,6 +58,12 @@ class ProfileSettingsState {
     required this.prayerCalendarMode,
     required this.disableGlassTransparency,
     required this.disableColoredGlass,
+    required this.dressUpFridays,
+    required this.dressUpRamadan,
+    required this.dressUpQadrNights,
+    required this.dressUpEid,
+    required this.occasionOffersSeen,
+    required this.livingAtmosphere,
     required this.glassTransparencyLevel,
     required this.disableBackground,
     this.ramadanStartDateIso,
@@ -94,6 +100,26 @@ class ProfileSettingsState {
   final PrayerCalendarMode prayerCalendarMode;
   final bool disableGlassTransparency;
   final bool disableColoredGlass;
+
+  /// Wear the Jumu'ah (Masjid Emerald) theme every Friday, reverting after.
+  final bool dressUpFridays;
+
+  /// Wear the Ramadan (Layali) theme through the month, reverting after.
+  final bool dressUpRamadan;
+
+  /// Wear the Night of Power theme on the odd last-ten nights of Ramadan.
+  final bool dressUpQadrNights;
+
+  /// Wear the Eid theme through the Eid days (al-Fitr and al-Adha).
+  final bool dressUpEid;
+
+  /// Occasion dress-up offers already shown (consent sheet keys); each
+  /// occasion is offered once and never nags again.
+  final List<String> occasionOffersSeen;
+
+  /// Noor Glass follows the day: painted dawn/day/Maghrib skies, and the
+  /// Midnight theme arriving on its own after dark.
+  final bool livingAtmosphere;
   final double glassTransparencyLevel;
   final bool disableBackground;
   final String? ramadanStartDateIso;
@@ -139,6 +165,12 @@ class ProfileSettingsState {
     PrayerCalendarMode? prayerCalendarMode,
     bool? disableGlassTransparency,
     bool? disableColoredGlass,
+    bool? dressUpFridays,
+    bool? dressUpRamadan,
+    bool? dressUpQadrNights,
+    bool? dressUpEid,
+    List<String>? occasionOffersSeen,
+    bool? livingAtmosphere,
     double? glassTransparencyLevel,
     bool? disableBackground,
     String? ramadanStartDateIso,
@@ -180,6 +212,12 @@ class ProfileSettingsState {
       disableGlassTransparency:
           disableGlassTransparency ?? this.disableGlassTransparency,
       disableColoredGlass: disableColoredGlass ?? this.disableColoredGlass,
+      dressUpFridays: dressUpFridays ?? this.dressUpFridays,
+      dressUpRamadan: dressUpRamadan ?? this.dressUpRamadan,
+      dressUpQadrNights: dressUpQadrNights ?? this.dressUpQadrNights,
+      dressUpEid: dressUpEid ?? this.dressUpEid,
+      occasionOffersSeen: occasionOffersSeen ?? this.occasionOffersSeen,
+      livingAtmosphere: livingAtmosphere ?? this.livingAtmosphere,
       glassTransparencyLevel: glassTransparencyLevel == null
           ? this.glassTransparencyLevel
           : normalizedGlassTransparencyLevel(glassTransparencyLevel),
@@ -224,6 +262,12 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           prayerCalendarMode: PrayerCalendarMode.gregorian,
           disableGlassTransparency: false,
           disableColoredGlass: false,
+          dressUpFridays: false,
+          dressUpRamadan: false,
+          dressUpQadrNights: false,
+          dressUpEid: false,
+          occasionOffersSeen: <String>[],
+          livingAtmosphere: true,
           glassTransparencyLevel: kGlassTransparencyLevelDefault,
           disableBackground: false,
         ),
@@ -447,6 +491,41 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setDressUpFridays(bool value) {
+    state = state.copyWith(dressUpFridays: value);
+    _save();
+  }
+
+  void setDressUpRamadan(bool value) {
+    state = state.copyWith(dressUpRamadan: value);
+    _save();
+  }
+
+  void setDressUpQadrNights(bool value) {
+    state = state.copyWith(dressUpQadrNights: value);
+    _save();
+  }
+
+  void setDressUpEid(bool value) {
+    state = state.copyWith(dressUpEid: value);
+    _save();
+  }
+
+  void setLivingAtmosphere(bool value) {
+    state = state.copyWith(livingAtmosphere: value);
+    _save();
+  }
+
+  /// Records that an occasion's dress-up offer has been shown, so the
+  /// consent sheet never asks about that occasion again.
+  void markOccasionOfferSeen(String occasionKey) {
+    if (state.occasionOffersSeen.contains(occasionKey)) return;
+    state = state.copyWith(
+      occasionOffersSeen: <String>[...state.occasionOffersSeen, occasionKey],
+    );
+    _save();
+  }
+
   void setGlassTransparencyLevel(double value) {
     state = state.copyWith(glassTransparencyLevel: value);
     _save();
@@ -589,6 +668,18 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           state.disableGlassTransparency,
       disableColoredGlass:
           data['disableColoredGlass'] as bool? ?? state.disableColoredGlass,
+      dressUpFridays: data['dressUpFridays'] as bool? ?? state.dressUpFridays,
+      dressUpRamadan: data['dressUpRamadan'] as bool? ?? state.dressUpRamadan,
+      dressUpQadrNights:
+          data['dressUpQadrNights'] as bool? ?? state.dressUpQadrNights,
+      dressUpEid: data['dressUpEid'] as bool? ?? state.dressUpEid,
+      occasionOffersSeen:
+          (data['occasionOffersSeen'] as List<dynamic>?)
+              ?.whereType<String>()
+              .toList() ??
+          state.occasionOffersSeen,
+      livingAtmosphere:
+          data['livingAtmosphere'] as bool? ?? state.livingAtmosphere,
       glassTransparencyLevel: normalizedGlassTransparencyLevel(
         (data['glassTransparencyLevel'] as num?)?.toDouble() ??
             kGlassTransparencyLevelDefault,
@@ -635,6 +726,12 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'prayerCalendarMode': state.prayerCalendarMode.name,
       'disableGlassTransparency': state.disableGlassTransparency,
       'disableColoredGlass': state.disableColoredGlass,
+      'dressUpFridays': state.dressUpFridays,
+      'dressUpRamadan': state.dressUpRamadan,
+      'dressUpQadrNights': state.dressUpQadrNights,
+      'dressUpEid': state.dressUpEid,
+      'occasionOffersSeen': state.occasionOffersSeen,
+      'livingAtmosphere': state.livingAtmosphere,
       'glassTransparencyLevel': state.glassTransparencyLevel,
       'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,

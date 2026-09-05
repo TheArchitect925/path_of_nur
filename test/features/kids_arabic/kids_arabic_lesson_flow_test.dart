@@ -200,6 +200,12 @@ void main() {
     await tester.tap(find.text('Continue'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 600));
+    // The first completion of a letter earns a sticker (K4): the celebration
+    // shows before the completion sheet and "Yay!" dismisses it.
+    expect(find.text('You earned a sticker!'), findsOneWidget);
+    await tester.tap(find.text('Yay!'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
 
     final state = container.read(kidsArabicProgressProvider);
     expect(state.completedLetterIds, contains('alif'));

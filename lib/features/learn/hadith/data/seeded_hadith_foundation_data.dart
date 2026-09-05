@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../domain/hadith_foundation_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 const _faithThemeId = 'faith_intention';
 const _prayerThemeId = 'prayer';
@@ -5029,7 +5030,7 @@ const List<HadithTheme> seededHadithThemes = [
         'Keep your heart connected to Allah through supplication and remembrance.',
     description:
         'This theme explores the teachings of the Prophet ﷺ about remembering Allah, making duʿā, and keeping the heart spiritually awake throughout daily life.',
-    icon: Icons.spa_outlined,
+    icon: AppIcons.reflection,
     hadithIds: [
       'example_remembers_allah',
       'dua_worship',

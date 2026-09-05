@@ -83,7 +83,7 @@ class _AnswerOptionTile extends StatelessWidget {
             Icon(
               selected
                   ? Icons.check_circle_rounded
-                  : Icons.radio_button_unchecked,
+                  : Icons.radio_button_unchecked_rounded,
               size: 20,
             ),
           ],

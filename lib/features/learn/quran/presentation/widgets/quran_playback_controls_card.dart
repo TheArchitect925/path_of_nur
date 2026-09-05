@@ -4,6 +4,7 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../application/quran_reader_playback_controller.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class QuranPlaybackControlsCard extends StatelessWidget {
   const QuranPlaybackControlsCard({
@@ -90,13 +91,13 @@ class QuranPlaybackControlsCard extends StatelessWidget {
     final panelStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: const Color(0xFFDABE8D),
+      tintColor: context.palette.accent,
       surfaceAlphaOverride: 0.62,
     );
 
     return PremiumCard(
       surfaceVariant: AppSurfaceVariant.panel,
-      surfaceTintColor: const Color(0xFFDABE8D),
+      surfaceTintColor: context.palette.accent,
       surfaceAlphaOverride: 0.62,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       child: Column(

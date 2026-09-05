@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import 'package:path_of_nur/features/learn/hadith/presentation/kids_hadith_page.dart';
-import 'package:path_of_nur/features/learn/presentation/kids_learning_localizations.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/kids_quran_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 

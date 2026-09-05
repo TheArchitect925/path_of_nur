@@ -37,8 +37,9 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
     if (summary == null || node == null) {
       return AppPageScaffold(
         title: l10n.kidsSeerahJourneysTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.kidsSeerahJourneyUnavailableSubtitle)],
+        children: [
+          PremiumCard(child: Text(l10n.kidsSeerahJourneyUnavailableSubtitle)),
+        ],
       );
     }
 
@@ -65,7 +66,6 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
     return AppPageScaffold(
       title: node.title,
       subtitle: stage.stage.title,
-      headerIcon: Icons.route_rounded,
       children: [
         PremiumCard(
           child: Column(
@@ -184,7 +184,7 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Row(
                       children: [
-                        const Icon(Icons.circle, size: 8),
+                        const Icon(Icons.circle_rounded, size: 8),
                         const SizedBox(width: 8),
                         Expanded(child: Text(choice)),
                       ],

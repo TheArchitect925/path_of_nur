@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
+import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../shared/learn_art_assets.dart';
 import '../../enrichment/application/learn_enrichment_provider.dart';
 import '../../enrichment/presentation/widgets/learn_enrichment_cards.dart';
 import '../../journey/application/family_learning_provider.dart';
@@ -11,6 +14,7 @@ import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/guided_learning_paths_provider.dart';
 import '../domain/guided_learning_path_icon_registry.dart';
 import '../domain/guided_learning_path_models.dart';
+import '../../../../core/theme/app_palette.dart';
 
 class GuidedLearningPathDetailPage extends ConsumerWidget {
   const GuidedLearningPathDetailPage({super.key, required this.pathId});
@@ -26,7 +30,6 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
     if (localizedPath == null) {
       return LearnHubPageScaffold(
         title: l10n.guidedLearningPathsTitle,
-        subtitle: l10n.guidedLearningPathMissingSubtitle,
         children: [
           PremiumCard(child: Text(l10n.guidedLearningPathMissingBody)),
         ],
@@ -53,7 +56,6 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
         localizedPath.path.audience != GuidedLearningPathAudience.kids) {
       return LearnHubPageScaffold(
         title: l10n.guidedLearningPathsTitle,
-        subtitle: l10n.guidedLearningPathUnavailableSubtitle,
         children: [
           PremiumCard(child: Text(l10n.guidedLearningPathUnavailableBody)),
         ],
@@ -61,12 +63,22 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: GuidedLearningPathIconRegistry.iconForPathId(
-        localizedPath.path.id,
-      ),
       title: localizedPath.title,
       subtitle: localizedPath.subtitle,
       children: [
+        if (guidedPathArtAsset(pathId) != null) ...[
+          ArtHeaderCard(
+            imageAsset: guidedPathArtAsset(pathId)!,
+            title: localizedPath.title,
+            subtitle: localizedPath.subtitle,
+            fallbackIcon: GuidedLearningPathIconRegistry.iconForPathId(
+              localizedPath.path.id,
+            ),
+            fallbackColor: Theme.of(context).colorScheme.primary,
+            aspectRatio: 21 / 9,
+          ),
+          const SizedBox(height: 12),
+        ],
         if (completionEnrichment != null) ...[
           LearnPathCompletionCard(
             pathId: pathId,
@@ -83,15 +95,12 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 12),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: totalCount == 0 ? 0 : completedCount / totalCount,
-                  minHeight: 8,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest,
-                ),
+              ProgressBar(
+                value: totalCount == 0 ? 0 : completedCount / totalCount,
+                height: 8,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
               ),
               const SizedBox(height: 12),
               Wrap(
@@ -360,7 +369,7 @@ class _GuidedLearningPathStepCard extends StatelessWidget {
     final accent = switch (localizedPath.path.bucketId) {
       'quran' => Theme.of(context).colorScheme.primary,
       'worship' => const Color(0xFF2B7A78),
-      'character' => const Color(0xFF8A5A44),
+      'character' => context.palette.error,
       'kids' => const Color(0xFF8F6AE3),
       _ => const Color(0xFF7A5C2E),
     };

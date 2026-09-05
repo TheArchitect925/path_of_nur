@@ -7,6 +7,7 @@ import '../../../core/localization/locale_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../../shared/persistence/local_store.dart';
+import '../../learn/quran/application/quran_khatm_provider.dart';
 import 'growth_controller.dart';
 import 'growth_garden.dart';
 import 'growth_models.dart';
@@ -757,6 +758,14 @@ final growthJourneyStatsProvider = Provider<GrowthJourneyStats>((ref) {
   );
 });
 
+/// Legacy unlockable-gating score — NOT the user-facing garden.
+///
+/// The canonical garden is `GardenService` (10 stages, weighted maturity);
+/// see `activeGardenStateProvider`. This five-stage score survives only
+/// because every seeded unlockable's `requiredGardenStage` is calibrated
+/// against it: re-basing it onto maturity would silently shift when
+/// wallpapers, themes and titles unlock. Use it for reward gating only —
+/// never to show the user what stage their garden is at.
 final growthGardenProgressProvider = Provider<GrowthGardenProgressView>((ref) {
   final state = ref.watch(growthControllerProvider);
   final stats = ref.watch(growthJourneyStatsProvider);
@@ -840,7 +849,13 @@ final growthEligibleUnlockablesProvider = Provider<List<GrowthUnlockable>>((
         _gardenStageIndex(unlock.requiredGardenStage)) {
       return false;
     }
-    if (quranTracker.currentJuzProgress < unlock.requiredQuranJuz) {
+    // Qur'an completion now comes from the khatm plan (Phase 7a); the max
+    // with the legacy slider value keeps unlocks users already earned.
+    final quranJuzProgress = math.max(
+      quranTracker.currentJuzProgress,
+      ref.watch(quranKhatmJuzEquivalentProvider),
+    );
+    if (quranJuzProgress < unlock.requiredQuranJuz) {
       return false;
     }
     if (fastCompletions < unlock.requiredFastCompletions) {

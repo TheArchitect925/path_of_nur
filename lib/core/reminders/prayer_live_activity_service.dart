@@ -445,7 +445,7 @@ _FastingLivePresentation? _buildFastingPresentation({
     return _FastingLivePresentation(
       title: l10n.notificationsFastingLiveFastBeginsTitle,
       arabicTitle: l10n.notificationsFastingLiveFastBeginsArabicTitle,
-      metricLabel: l10n.notificationsFastingLiveStartsIn(''),
+      metricLabel: l10n.notificationsFastingLiveStartsIn,
       remaining: _nonNegative(fajrStart.difference(now)),
       targetTime: fajrStart,
       targetRoute: '/learn/duas/stub_092_special_days_ramadan',
@@ -465,7 +465,7 @@ _FastingLivePresentation? _buildFastingPresentation({
     return _FastingLivePresentation(
       title: l10n.notificationsFastingLiveFastEndsTitle,
       arabicTitle: l10n.notificationsFastingLiveFastEndsArabicTitle,
-      metricLabel: l10n.notificationsFastingLiveEndsIn(''),
+      metricLabel: l10n.notificationsFastingLiveEndsIn,
       remaining: _nonNegative(maghribStart.difference(now)),
       targetTime: maghribStart,
       targetRoute: '/learn/duas/stub_091_special_days_ramadan',

@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.20+40
+version: 1.3.0+50
 
 environment:
   sdk: ^3.11.1
@@ -98,14 +98,41 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # NOTE: asset directory entries are NON-recursive — every subdirectory that
+  # contains runtime files needs its own line here.
   assets:
     - assets/images/
     - assets/images/backgrounds/
+    - assets/images/garden_art/
     - assets/images/prophets/
+    - assets/images/prophets/bedtime_stories/covers/
+    - assets/images/prophets/bedtime_stories/backdrops/
+    - assets/images/kids_stories/covers/
+    - assets/images/kids_stories/backdrops/
+    - assets/images/kids_stories/scenes/
+    - assets/images/kids_books/atlas/
+    - assets/images/kids_books/covers/
+    - assets/images/kids_books/scenes/
+    - assets/images/quran_teacher/placeholders/
+    - assets/images/quran_teacher/visual_mode/letters/
+    - assets/images/quran_teacher/visual_mode/words/
     - assets/images/kids_arabic_coloring/
+    - assets/images/kids_dua_stories/
+    - assets/images/learn_art/
+    - assets/images/wudu/
+    - assets/images/salah_art/
     - assets/icons/
     - assets/audio/
-    # Includes bundled Adhan assets under assets/audio/adhan/regular and fajr.
+    - assets/audio/adhan/fajr/
+    - assets/audio/adhan/regular/
+    - assets/audio/ambient/
+    - assets/audio/effects/
+    - assets/audio/salah/husary/
+    - assets/audio/salah/adhkar/
+    - assets/audio/bedtime_stories/prophets/
+    - assets/audio/bedtime_stories/prophets/en/path_of_nur/
+    - assets/audio/kids_dua/en/path_of_nur/
+    - assets/audio/kids_stories/en/path_of_nur/
     - assets/video/
     - assets/animations/
     - assets/data/
@@ -135,6 +162,31 @@ flutter:
     - family: Noto Sans Arabic
       fonts:
         - asset: assets/fonts/NotoSansArabic-Regular.ttf
+    - family: Lora
+      fonts:
+        - asset: assets/fonts/Lora-Regular.ttf
+        - asset: assets/fonts/Lora-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Lora-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Lora-Italic.ttf
+          style: italic
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree-Regular.ttf
+        - asset: assets/fonts/Figtree-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Figtree-SemiBold.ttf
+          weight: 600
+    # Kids headings: one rounded face that covers Latin and Arabic script,
+    # so a child sees the same voice in "Stories" and "قصص". OFL, see
+    # assets/fonts/BalooBhaijaan2-OFL.txt.
+    - family: Baloo Bhaijaan 2
+      fonts:
+        - asset: assets/fonts/BalooBhaijaan2-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/BalooBhaijaan2-SemiBold.ttf
+          weight: 600
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

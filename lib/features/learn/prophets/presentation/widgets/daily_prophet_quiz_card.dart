@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -101,15 +101,15 @@ class DailyProphetQuizCard extends StatelessWidget {
                       ? const Color(0x332D8F58)
                       : showWrong
                       ? const Color(0x33A55050)
-                      : AppColors.surface.withValues(alpha: 0.26),
+                      : context.palette.surface.withValues(alpha: 0.26),
                   border: Border.all(
                     color: showCorrect
-                        ? const Color(0xFF2D8F58)
+                        ? context.palette.successInk
                         : showWrong
-                        ? const Color(0xFFA55050)
+                        ? context.palette.error
                         : (selected
-                              ? AppColors.accentGold.withValues(alpha: 0.65)
-                              : AppColors.accentGoldSoft.withValues(
+                              ? context.palette.accent.withValues(alpha: 0.65)
+                              : context.palette.accentSoft.withValues(
                                   alpha: 0.34,
                                 )),
                   ),
@@ -118,15 +118,15 @@ class DailyProphetQuizCard extends StatelessWidget {
                   children: [
                     Expanded(child: Text(option)),
                     if (showCorrect)
-                      const Icon(
+                      Icon(
                         Icons.check_circle_rounded,
-                        color: Color(0xFF2D8F58),
+                        color: context.palette.successInk,
                         size: 18,
                       ),
                     if (showWrong)
-                      const Icon(
+                      Icon(
                         Icons.cancel_rounded,
-                        color: Color(0xFFA55050),
+                        color: context.palette.error,
                         size: 18,
                       ),
                   ],
@@ -142,8 +142,8 @@ class DailyProphetQuizCard extends StatelessWidget {
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.w700,
               color: isCorrect
-                  ? const Color(0xFF2D8F58)
-                  : const Color(0xFFA55050),
+                  ? context.palette.successInk
+                  : context.palette.error,
             ),
           ),
           const SizedBox(height: 4),
@@ -171,7 +171,7 @@ class DailyProphetQuizCard extends StatelessWidget {
     if (useHeroGlassShell) {
       return AppHeroGlassShell(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-        tintColor: const Color(0xFFE7C98C),
+        tintColor: context.palette.accent,
         surfaceAlphaOverride: 0.2,
         radius: 36,
         borderColor: const Color(0x42FFFFFF),

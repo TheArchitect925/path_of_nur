@@ -8,7 +8,10 @@ import 'app_quick_actions.dart';
 import '../core/localization/locale_provider.dart';
 import '../core/reminders/prayer_live_activity_service.dart';
 import '../core/reminders/reminder_scheduler.dart';
+import '../core/prayer/prayer_preferences.dart';
 import '../core/theme/app_theme.dart';
+import '../core/theme/living_atmosphere.dart';
+import '../core/theme/occasion_theme.dart';
 import '../features/journey/application/growth_reminder_scheduler.dart';
 import '../features/journey/application/growth_providers.dart';
 import '../features/journey/application/growth_widget_support.dart';
@@ -21,6 +24,8 @@ import '../features/accounts_sync/application/auto_backup_engine.dart';
 import '../features/ios_widgets/application/iphone_home_widget_sync_service.dart';
 import '../features/profile/application/profile_settings_provider.dart';
 import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
+import '../shared/application/daily_clock_provider.dart';
+import '../shared/application/special_mode_provider.dart';
 import '../l10n/app_localizations.dart';
 
 class PathOfNurApp extends ConsumerWidget {
@@ -45,8 +50,46 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
+    final occasionNow = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final specialMode = ref.watch(specialModeProvider);
+    // A child (or an adult who switched the kids UI on) gets the daylight
+    // kids theme whatever the base theme, the occasion or the hour: the
+    // living sky and the night themes are for grown-up reading.
+    final effectiveThemeMode = specialMode.isKids
+        ? AppThemeMode.noorKids
+        : resolveOccasionThemeMode(
+            baseMode: profileSettings.appThemeMode,
+            dressUpFridays: profileSettings.dressUpFridays,
+            dressUpRamadan: profileSettings.dressUpRamadan,
+            isRamadan:
+                specialMode.isRamadan || specialMode.ramadanDateWindowActive,
+            now: occasionNow,
+          );
+    // Living Atmosphere: after dark a Noor Glass app becomes Midnight.
+    // Applied after occasion resolution and after the day/night pairing so
+    // the flip survives both paths.
+    final schedule = ref.watch(prayerScheduleContextProvider);
+    DateTime? scheduleStart(String id) {
+      for (final item in schedule.items) {
+        if (item.id == id) return item.windowStartDateTime;
+      }
+      return null;
+    }
+
+    final skyPhase = noorSkyPhaseAt(
+      now: occasionNow,
+      fajrStart: scheduleStart('fajr'),
+      maghribStart: scheduleStart('maghrib'),
+      ishaStart: scheduleStart('isha'),
+    );
+    AppThemeMode withLivingSky(AppThemeMode mode) =>
+        resolveLivingAtmosphereMode(
+          mode: mode,
+          livingAtmosphere: profileSettings.livingAtmosphere,
+          phase: skyPhase,
+        );
     final manualTheme = AppTheme.themeFor(
-      mode: profileSettings.appThemeMode,
+      mode: withLivingSky(effectiveThemeMode),
       pageTransitionStyle: profileSettings.pageTransitionStyle,
       reduceMotion: profileSettings.reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
@@ -58,8 +101,8 @@ class PathOfNurApp extends ConsumerWidget {
     );
     final useSystemTheme =
         profileSettings.themePreference == ProfileThemePreference.system;
-    final lightMode = _lightThemeModeFor(profileSettings.appThemeMode);
-    final darkMode = _darkThemeModeFor(profileSettings.appThemeMode);
+    final lightMode = withLivingSky(_lightThemeModeFor(effectiveThemeMode));
+    final darkMode = withLivingSky(_darkThemeModeFor(effectiveThemeMode));
     final lightTheme = AppTheme.themeFor(
       mode: lightMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,
@@ -109,6 +152,15 @@ AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
       return AppThemeMode.noorGlass;
     case AppThemeMode.noGlassDark:
       return AppThemeMode.noGlass;
+    // The night themes pair with Noor Glass when the OS switches to light.
+    case AppThemeMode.midnight:
+    case AppThemeMode.candlelight:
+      return AppThemeMode.noorGlass;
+    // The occasions hold day and night alike.
+    case AppThemeMode.jummah:
+      return AppThemeMode.jummah;
+    case AppThemeMode.ramadan:
+      return AppThemeMode.ramadan;
     default:
       return mode;
   }
@@ -116,8 +168,9 @@ AppThemeMode _lightThemeModeFor(AppThemeMode mode) {
 
 AppThemeMode _darkThemeModeFor(AppThemeMode mode) {
   switch (mode) {
+    // OS dark mode now lands on the starry Midnight theme.
     case AppThemeMode.noorGlass:
-      return AppThemeMode.noorGlassDark;
+      return AppThemeMode.midnight;
     case AppThemeMode.noGlass:
       return AppThemeMode.noGlassDark;
     default:

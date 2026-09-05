@@ -20,6 +20,11 @@ import '../domain/kids_dua_learning_models.dart';
 import '../domain/kids_dua_models.dart';
 import 'kids_dua_read_along_view.dart';
 import 'kids_dua_tap_repeat_view.dart';
+import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/widgets/premium_card.dart';
+import '../../kids/rewards/domain/kids_sticker_models.dart';
+import '../../kids/rewards/presentation/kids_celebration.dart';
 
 class KidsDuaLessonPage extends ConsumerStatefulWidget {
   const KidsDuaLessonPage({super.key, required this.lessonId});
@@ -62,9 +67,9 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
     final learner = ref.watch(kidsDuaActiveLearnerProvider);
 
     if (lesson == null) {
-      return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: Text(l10n.routerNotFoundTitle)),
+      return AppPageScaffold(
+        title: l10n.kidsDuaLandingTitle,
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
 
@@ -76,7 +81,6 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
     final activeSegmentId = audioState.activeSegmentId ?? _selectedSegmentId;
 
     return LearnHubPageScaffold(
-      headerIcon: lesson.icon,
       title: lesson.title,
       subtitle: lesson.whenToSay,
       children: [
@@ -122,7 +126,7 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
                   ButtonSegment<KidsDuaRepeatMode>(
                     value: KidsDuaRepeatMode.gentlePractice,
                     label: Text(l10n.kidsDuaModeGentlePractice),
-                    icon: const Icon(Icons.self_improvement_rounded),
+                    icon: const Icon(AppIcons.practice),
                   ),
                 ],
                 selected: <KidsDuaRepeatMode>{_mode},
@@ -267,13 +271,28 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
             'kidsDuaDrawing',
             pathParameters: {'lessonId': lesson.id},
           ),
-          onComplete: () {
+          onComplete: () async {
             final result = ref
                 .read(kidsDuaLearningProvider.notifier)
                 .completeLesson(lesson.id);
             final myDayResult = ref
                 .read(kidsDuaMyDayProvider.notifier)
                 .completeDuaForToday(lesson.id);
+            // The first time a duʿā is learned it becomes a sticker (K4).
+            if (result.firstCompletion) {
+              await showKidsCelebration(
+                context,
+                ref,
+                sticker: KidsSticker(
+                  id: 'dua:${lesson.id}',
+                  kind: KidsStickerKind.dua,
+                  title: lesson.title,
+                  subtitle: lesson.arabic,
+                  icon: AppIcons.dua,
+                ),
+              );
+              if (!context.mounted) return;
+            }
             showModalBottomSheet<void>(
               context: context,
               showDragHandle: true,

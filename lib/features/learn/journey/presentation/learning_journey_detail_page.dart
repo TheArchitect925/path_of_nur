@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
 import '../../shared/application/learn_release_gate.dart';
@@ -40,7 +39,6 @@ class LearningJourneyDetailPage extends ConsumerWidget {
     }
     if (!isProductionSafeLearningJourney(journey)) {
       return LearnContainedStatePage(
-        headerIcon: Icons.route_rounded,
         title: localizedJourneyTitle(context, journey),
         subtitle: l10n.learnContainedStateJourneySubtitle,
         body: l10n.learnContainedStateBody,
@@ -50,7 +48,6 @@ class LearningJourneyDetailPage extends ConsumerWidget {
         onSecondaryAction: () => context.pushNamed('quranLearningHub'),
       );
     }
-    final island = LearningJourneyRegistry.islandById(journey.islandId);
     final stages = LearningJourneyRegistry.stagesForJourney(journey.id);
     final progress = ref.watch(learningJourneyProgressProvider);
     final pathState = ref.watch(learningPathStateProvider);
@@ -103,10 +100,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
         .firstOrNull;
 
     return LearnHubPageScaffold(
-      headerIcon: island?.icon ?? Icons.route_rounded,
       title: localizedJourneyTitle(context, journey),
       subtitle: localizedJourneySubtitle(context, journey),
-      quote: buildLearningCompactQuote(),
       children: [
         if (pathState != null && pathState.containsJourney(journey.id)) ...[
           _SectionBlock(
@@ -121,8 +116,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       pathState.path,
                     ),
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -167,7 +162,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       journey.totalLessons,
                     ),
                     color: const Color(0xFFF4EBDE),
-                    textColor: const Color(0xFF866A49),
+                    textColor: context.palette.onSurfaceSubtle,
                   ),
                   if (journey.isFeatured)
                     _ProgressChip(
@@ -180,7 +175,10 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               const SizedBox(height: 12),
               Text(
                 localizedJourneyDescription(context, journey),
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+                style: TextStyle(
+                  color: context.palette.onSurfaceSubtle,
+                  height: 1.35,
+                ),
               ),
               const SizedBox(height: 12),
               Text(
@@ -199,20 +197,20 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(top: 4),
                             child: Icon(
-                              Icons.circle,
+                              Icons.circle_rounded,
                               size: 7,
-                              color: Color(0xFF7B694F),
+                              color: context.palette.onSurfaceSubtle,
                             ),
                           ),
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
                               item,
-                              style: const TextStyle(
-                                color: Color(0xFF675B4E),
+                              style: TextStyle(
+                                color: context.palette.onSurfaceSubtle,
                                 height: 1.35,
                               ),
                             ),
@@ -233,8 +231,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Text(
                   localizedJourneyWhyThisMatters(context, journey)!,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -299,8 +297,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.learningJourneyDetailCompletionSubtitle,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -310,8 +308,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                     l10n.learningPathNextJourneyLabel(
                       localizedJourneyTitle(context, pathNextJourney),
                     ),
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                       fontWeight: FontWeight.w600,
                     ),
@@ -333,8 +331,8 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.learnTogetherJourneyIntro,
-                  style: const TextStyle(
-                    color: Color(0xFF675B4E),
+                  style: TextStyle(
+                    color: context.palette.onSurfaceSubtle,
                     height: 1.35,
                   ),
                 ),
@@ -400,7 +398,10 @@ class LearningJourneyDetailPage extends ConsumerWidget {
             title: l10n.learningJourneyDetailCurrentMappingTitle,
             child: Text(
               localizedJourneyMappingNotes(context, journey),
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           ),
         ],
@@ -445,7 +446,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
         const SizedBox(height: 8),
         AppHeroGlassShell(
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-          tintColor: const Color(0xFFE7C98C),
+          tintColor: context.palette.accent,
           surfaceAlphaOverride: 0.2,
           radius: 36,
           borderColor: const Color(0x42FFFFFF),
@@ -524,19 +525,19 @@ class _SectionBlock extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
+        color: context.palette.surface,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D6C4)),
+        border: Border.all(color: context.palette.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+              color: context.palette.onSurface,
             ),
           ),
           const SizedBox(height: 10),
@@ -586,13 +587,11 @@ class _LearningJourneyDetailMissingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: Icons.error_outline_rounded,
-      title: l10n.learningJourneyDetailMissingTitle,
-      subtitle: l10n.learningJourneyDetailMissingSubtitle,
+      title: l10n.learnHubMainIslandLearningPathTitle,
       children: [
         Text(
           l10n.learningJourneyDetailMissingBody,
-          style: TextStyle(color: Color(0xFF675B4E)),
+          style: TextStyle(color: context.palette.onSurfaceSubtle),
         ),
       ],
     );

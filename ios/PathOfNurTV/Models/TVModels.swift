@@ -161,6 +161,46 @@ struct TVDhikrGuideStep: Identifiable, Hashable {
   let helperLine: String
 }
 
+struct TVDhikrRoutineStep: Identifiable, Hashable {
+  let id: String
+  let title: String
+  let arabic: String
+  let transliteration: String
+  let translation: String
+  let count: Int
+  let sourceRef: String
+
+  /// Long duʿās read as a paragraph; the player paces them slower.
+  var isLongText: Bool { arabic.count > 70 }
+}
+
+/// A guided routine mirrored from the phone catalog (generated data).
+struct TVDhikrRoutine: Identifiable, Hashable {
+  let id: String
+  let kind: String
+  let title: String
+  let subtitle: String
+  let sourceRef: String
+  let steps: [TVDhikrRoutineStep]
+
+  var totalCount: Int { steps.reduce(0) { $0 + $1.count } }
+
+  var estimatedMinutes: Int {
+    let seconds = steps.reduce(0) { $0 + $1.count * ($1.isLongText ? 20 : 2) }
+    return max(1, Int((Double(seconds) / 60).rounded(.up)))
+  }
+
+  var systemImage: String {
+    switch kind {
+    case "afterSalah": return "hands.sparkles.fill"
+    case "morning": return "sun.max.fill"
+    case "evening": return "moon.stars.fill"
+    case "sleep": return "bed.double.fill"
+    default: return "heart.fill"
+    }
+  }
+}
+
 struct TVDhikrSupportCard: Identifiable, Hashable {
   let id: String
   let eyebrow: String

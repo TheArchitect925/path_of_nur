@@ -37,8 +37,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
     if (story == null) {
       return AppPageScaffold(
         title: l10n.bedtimeStoriesTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.routerNotFoundTitle)],
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
 
@@ -112,7 +111,6 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
     return AppPageScaffold(
       title: l10n.bedtimeStoryQuizTitle,
       subtitle: story.shortTitle,
-      headerIcon: Icons.quiz_rounded,
       children: [
         PremiumCard(
           child: Column(
@@ -289,7 +287,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                         'kidsBedtimeStoryDetail',
                         pathParameters: {'storyId': story.id},
                       ),
-                      icon: const Icon(Icons.nightlight_round),
+                      icon: const Icon(Icons.nightlight_round_rounded),
                       label: Text(l10n.bedtimeStoryBackToStoryAction),
                     ),
                     if (nextSuggestion != null &&

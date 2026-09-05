@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
-import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
@@ -12,6 +11,7 @@ import '../../../learn/knowledge_games/daily/application/daily_knowledge_challen
 import '../../application/journey_progression_provider.dart';
 import '../application/spiritual_growth_provider.dart';
 import 'spiritual_growth_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class SpiritualGrowthPage extends ConsumerWidget {
   const SpiritualGrowthPage({super.key});
@@ -34,7 +34,7 @@ class SpiritualGrowthPage extends ConsumerWidget {
     final hubProgress = ref.watch(dailyKnowledgeChallengeHubProgressProvider);
 
     return SectionHubScaffold(
-      headerIcon: IslamicIcons.tasbih,
+      headerIcon: AppIcons.spiritualGrowth,
       title: l10n.spiritualGrowthTitle,
       subtitle: l10n.spiritualGrowthSubtitle,
       quote: quote,
@@ -144,7 +144,7 @@ class SpiritualGrowthPage extends ConsumerWidget {
                       Icon(
                         item.isCompleted
                             ? Icons.check_circle_rounded
-                            : Icons.circle_outlined,
+                            : Icons.radio_button_unchecked_rounded,
                         size: 20,
                         color: item.isCompleted
                             ? const Color(0xFF597045)

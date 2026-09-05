@@ -71,6 +71,7 @@ List<RouteBase> buildLearnContentDomainRoutes() {
         child: DivineLifeLessonsPage(
           initialThemeId: state.uri.queryParameters['themeId'],
           initialSituationId: state.uri.queryParameters['situationId'],
+          section: state.uri.queryParameters['section'],
         ),
       ),
     ),
@@ -212,8 +213,9 @@ List<RouteBase> buildLearnContentDomainRoutes() {
     GoRoute(
       path: '/learn/world',
       name: 'learnWorldLanding',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: WorldLandingPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: WorldLandingPage(section: state.uri.queryParameters['section']),
+      ),
     ),
     GoRoute(
       path: '/learn/world/theme/:themeId',
@@ -319,8 +321,11 @@ List<RouteBase> buildLearnContentDomainRoutes() {
     GoRoute(
       path: '/learn/hadith',
       name: 'learnHadithLanding',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: HadithLandingPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: HadithLandingPage(
+          initialTabName: state.uri.queryParameters['section'],
+        ),
+      ),
     ),
     GoRoute(
       path: '/learn/hadith/browse',

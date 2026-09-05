@@ -13,17 +13,19 @@ import '../../../features/learn/journey/presentation/family_learning_management_
 import '../../../features/learn/journey/presentation/learning_journey_detail_page.dart';
 import '../../../features/learn/journey/presentation/learning_journey_home_page.dart';
 import '../../../features/learn/journey/presentation/learning_journey_island_page.dart';
+import '../../../features/learn/journey/presentation/learning_path_detail_page.dart';
+import '../../../features/learn/journey/presentation/learning_path_picker_page.dart';
 import '../../../features/learn/journey/presentation/learning_journey_stage_page.dart';
 import '../../../features/learn/knowledge_games/content_expansion/presentation/internal_content_builder_page.dart';
 import '../../../features/learn/presentation/data/learn_hub_taxonomy.dart';
+import '../../../features/learn/presentation/models/learn_hub_models.dart';
 import '../../../features/learn/presentation/pages/games_island_page.dart';
 import '../../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../../features/learn/presentation/pages/learn_games_browse_all_page.dart';
-import '../../../features/learn/presentation/pages/learn_quran_hub_page.dart';
-import '../../../features/learn/presentation/pages/learn_self_learning_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_section_landing_page.dart';
+import '../../../features/kids/shared/presentation/kids_landing_page.dart';
 import '../../../features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
 import '../../../features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart';
 import '../../../features/learn/guided_paths/presentation/guided_learning_path_detail_page.dart';
@@ -35,7 +37,7 @@ import '../../../features/learn/guided_paths/presentation/stories_path_next_step
 import '../../../features/learn/quran/presentation/quran_ayah_insights_browse_page.dart';
 import '../../../features/learn/quran/presentation/quran_ayah_insights_paths_page.dart';
 import '../../../features/learn/quran/presentation/quran_daily_companion_page.dart';
-import '../../../features/learn/quran/presentation/quran_knowledge_search_page.dart';
+import '../../../features/learn/quran/presentation/quran_khatm_plan_page.dart';
 import '../../../features/learn/quran/presentation/quran_learning_paths_page.dart';
 import '../../../features/learn/quran/presentation/quran_summary_page.dart';
 import '../../../features/learn/quran/presentation/quran_surah_summary_detail_page.dart';
@@ -56,17 +58,16 @@ List<RouteBase> buildLearnCoreRoutes() {
   return <RouteBase>[
     GoRoute(
       path: '/quran/learning',
+      // The learning hub folded into the reader-first Qur'an tab
+      // (calm-navigation Phase 7a); the name stays for old links.
       name: 'quranLearningHub',
-      pageBuilder: (context, state) => MaterialPage(
-        child: LearnQuranHubPage(
-          initialTab: switch (state.uri.queryParameters['tab']) {
-            'reflect' => LearnQuranHubTab.reflect,
-            'paths' => LearnQuranHubTab.paths,
-            'memorize' => LearnQuranHubTab.memorize,
-            _ => LearnQuranHubTab.understand,
-          },
-        ),
-      ),
+      redirect: (context, state) => '/quran',
+    ),
+    GoRoute(
+      path: '/quran/plan',
+      name: 'quranKhatmPlan',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranKhatmPlanPage()),
     ),
     GoRoute(
       path: '/quran/insights',
@@ -76,18 +77,24 @@ List<RouteBase> buildLearnCoreRoutes() {
     ),
     GoRoute(
       path: '/quran/knowledge-search',
+      // Folded into the one Qur'an search (calm-navigation Phase 7a).
       name: 'quranKnowledgeSearch',
-      pageBuilder: (context, state) => MaterialPage(
-        child: QuranKnowledgeSearchPage(
-          initialQuery: state.uri.queryParameters['q'] ?? '',
-        ),
-      ),
+      redirect: (context, state) {
+        final query = state.uri.queryParameters['q'];
+        return query == null || query.isEmpty
+            ? '/quran/search'
+            : Uri(
+                path: '/quran/search',
+                queryParameters: {'q': query},
+              ).toString();
+      },
     ),
     GoRoute(
       path: '/quran/insights/paths',
+      // The standalone insight-path list merged into Qur'an Pathways
+      // (calm-navigation Phase 7a); path details below stay canonical.
       name: 'quranAyahInsightsPaths',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranAyahInsightPathsPage()),
+      redirect: (context, state) => '/quran/paths',
     ),
     GoRoute(
       path: '/quran/insights/paths/:pathId',
@@ -250,16 +257,29 @@ List<RouteBase> buildLearnCoreRoutes() {
     GoRoute(
       path: '/learn/legacy',
       name: 'learnLegacy',
-      // Compatibility surface retained for hidden catalog items and older
-      // Learning Journey metadata that still reference the original library.
-      pageBuilder: (context, state) {
+      // The Self Learning library is retired; older catalog entries and
+      // Learning Journey metadata that still push this name land on the
+      // Explore All browser instead.
+      redirect: (context, state) {
         const analytics = LearnAnalyticsService();
         analytics.logLegacyRouteOpened(
           routeKey: '/learn/legacy',
           matchedLocation: state.matchedLocation,
         );
-        return const MaterialPage(child: LearnSelfLearningHubPage());
+        return '/learn/explore';
       },
+    ),
+    GoRoute(
+      path: '/learn/path',
+      name: 'learnPathDetail',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearningPathDetailPage()),
+    ),
+    GoRoute(
+      path: '/learn/path/level',
+      name: 'learnLearningPath',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearningPathPickerPage()),
     ),
     GoRoute(
       path: '/learn/journey-home',
@@ -454,6 +474,10 @@ List<RouteBase> buildLearnCoreRoutes() {
         );
         if (categoryId == null) {
           return const MaterialPage(child: LearningSectionLandingPage());
+        }
+        // Kids Learning is a world with four doors, not a category listing.
+        if (categoryId == LearnHubCategoryId.kidsLearning) {
+          return const MaterialPage(child: KidsLandingPage());
         }
         return MaterialPage(
           child: LearnCategoryPage(

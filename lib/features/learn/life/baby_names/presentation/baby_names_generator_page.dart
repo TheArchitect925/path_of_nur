@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
 import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class BabyNamesGeneratorPage extends ConsumerStatefulWidget {
   const BabyNamesGeneratorPage({super.key});
@@ -75,10 +77,8 @@ class _BabyNamesGeneratorPageState
     final options = ref.watch(babyNamesFilterOptionsProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.casino_outlined,
-      title: 'Name Generator',
-      subtitle:
-          'Generate 1 to 3 name suggestions from your selected preferences',
+      title: AppLocalizations.of(context).babyNamesGeneratorTitle,
+      subtitle: AppLocalizations.of(context).babyNamesGeneratorSubtitle,
       children: [
         indexAsync.when(
           data: (index) => Column(
@@ -254,21 +254,13 @@ class _BabyNamesGeneratorPageState
               ..._generated.map(
                 (entry) => Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: PremiumCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        '${entry.name} • ${entry.arabic}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      subtitle: Text(
+                  child: CompactListTile(
+                    title: '${entry.name} • ${entry.arabic}',
+                    subtitle:
                         '${entry.meaning}\n${_reasonsFor(entry).join(' · ')}',
-                      ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => context.pushNamed(
-                        'babyNameDetail',
-                        pathParameters: {'nameId': entry.id},
-                      ),
+                    onTap: () => context.pushNamed(
+                      'babyNameDetail',
+                      pathParameters: {'nameId': entry.id},
                     ),
                   ),
                 ),

@@ -7,6 +7,7 @@ import '../../features/editorial_dashboard/presentation/editorial_dashboard_page
 import '../../features/editorial_dashboard/presentation/editorial_dashboard_pin_page.dart';
 import '../../features/editorial_dashboard/presentation/editorial_content_browser_page.dart';
 import '../../features/editorial_dashboard/presentation/editorial_content_editor_page.dart';
+import '../../features/home/presentation/home_edit_page.dart';
 import '../../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
 import '../../features/learn/quran/presentation/quran_focus_recitation_page.dart';
@@ -30,13 +31,11 @@ import '../../features/profile/presentation/help_guide_detail_page.dart';
 import '../../features/profile/presentation/help_guide_hub_page.dart';
 import '../../features/profile/presentation/profile_summary_page.dart';
 import '../../features/profile/presentation/profile_whats_new_page.dart';
+import '../../features/profile/presentation/settings/settings_search_page.dart';
 import '../../features/profile/presentation/settings_page.dart';
-import '../../features/quran/presentation/quran_verse_page.dart';
 import '../../features/search/presentation/all_search_page.dart';
-import '../../features/salah/presentation/salah_page.dart';
 import '../../features/shared/attributions_licenses_page.dart';
 import '../../features/shared/legal_info_page.dart';
-import '../../features/worship/presentation/khusu_focus_page.dart';
 import '../../features/worship/presentation/qibla_finder_page.dart';
 
 String _redirectWithQuery(String path, GoRouterState state) {
@@ -58,11 +57,18 @@ String _redirectWithPathAndQuery(String pathTemplate, GoRouterState state) {
 
 List<RouteBase> buildCoreSupportRoutes() {
   return <RouteBase>[
+    // /salah-times merged into the Salah Hub's Times tab
+    // (calm-navigation Phase 3b); the name stays for notification deep links.
     GoRoute(
       path: '/salah-times',
       name: 'salahTimes',
+      redirect: (context, state) => '/worship/prayer',
+    ),
+    GoRoute(
+      path: '/home/edit',
+      name: 'homeEdit',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: SalahTimesPage()),
+          const MaterialPage(child: HomeEditPage()),
     ),
     GoRoute(
       path: '/settings',
@@ -71,10 +77,33 @@ List<RouteBase> buildCoreSupportRoutes() {
           const MaterialPage(child: SettingsPage()),
     ),
     GoRoute(
+      path: '/settings/search',
+      name: 'settingsSearch',
+      pageBuilder: (context, state) => MaterialPage(
+        child: SettingsSearchPage(
+          initialQuery: state.uri.queryParameters['q'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/profile',
+      name: 'settingsProfile',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.profile),
+      ),
+    ),
+    GoRoute(
       path: '/settings/account-sync',
       name: 'settingsAccountSync',
       pageBuilder: (context, state) => const MaterialPage(
         child: SettingsPage(category: SettingsCategory.accountSync),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/adhan',
+      name: 'settingsAdhan',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.adhan),
       ),
     ),
     GoRoute(
@@ -325,33 +354,18 @@ List<RouteBase> buildCoreSupportRoutes() {
       pageBuilder: (context, state) =>
           const MaterialPage(child: AttributionsLicensesPage()),
     ),
+    // Khushu focus was cut from the IA (calm-navigation Phase 3b) — the
+    // built-but-unwired KhusuSection stays parked for a future revival.
     GoRoute(
       path: '/khusu-focus',
       name: 'khusuFocus',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KhusuFocusPage()),
+      redirect: (context, state) => '/worship',
     ),
     GoRoute(
       path: '/qibla-finder',
       name: 'qiblaFinder',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QiblaFinderPage()),
-    ),
-    GoRoute(
-      path: '/quran-verse',
-      name: 'quranVerse',
-      pageBuilder: (context, state) {
-        final params = state.uri.queryParameters;
-        final surah = int.tryParse(params['surah'] ?? '') ?? 1;
-        final ayah = int.tryParse(params['ayah'] ?? '') ?? 1;
-        return MaterialPage(
-          child: QuranVersePage(
-            surah: surah,
-            ayah: ayah,
-            ayahEnd: int.tryParse(params['ayahEnd'] ?? ''),
-          ),
-        );
-      },
     ),
     GoRoute(
       path: '/quran/explorer',

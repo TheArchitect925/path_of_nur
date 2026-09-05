@@ -12,10 +12,16 @@ final class WatchAppModel: ObservableObject {
   @Published private(set) var autoDhikrState: WatchAutoDhikrSessionState
   @Published private(set) var progressState: WatchProgressState?
   @Published private(set) var postPrayerAdhkarState: WatchPostPrayerAdhkarState?
+  @Published private(set) var dhikrRoutineProgress: WatchDhikrRoutineProgress?
+  @Published var dhikrRoutineCompletion: WatchDhikrRoutineCompletion?
   @Published private(set) var syncBadgeState: WatchSyncBadgeState = .cached
+  @Published private(set) var palette: WatchPalette = .midnight
   @Published var showDhikrAntiRushReminder = false
   @Published var focusedPrayerId: String?
   @Published var selectedTab: WatchRootTab = .home
+  @Published var presentedAuxScreen: WatchAuxScreen?
+  @Published private(set) var quranPlayback: WatchQuranPlaybackPayload?
+  @Published private(set) var quranRemoteBusy = false
   @Published var dhikrMode: WatchDhikrMode
   @Published var hapticsEnabled: Bool
 
@@ -35,6 +41,10 @@ final class WatchAppModel: ObservableObject {
     self.syncService = syncService ?? WatchSyncService(cacheStore: cacheStore)
     self.hapticsEnabled = cacheStore.hapticsEnabled()
 
+    #if targetEnvironment(simulator)
+    cacheStore.seedSimulatorSampleDataIfNeeded()
+    #endif
+
     let cachedSnapshot = cacheStore.loadSnapshot()
     let cachedSettings = cacheStore.loadSettings()
     let cachedPostPrayerAdhkarState = cacheStore.loadPostPrayerAdhkarState()
@@ -46,6 +56,7 @@ final class WatchAppModel: ObservableObject {
     self.settings = cachedSettings
     self.prayerState = WatchPrayerState(prayers: cachedSnapshot?.prayers ?? [])
     self.postPrayerAdhkarState = cachedPostPrayerAdhkarState
+    self.dhikrRoutineProgress = cacheStore.loadDhikrRoutineProgress()
     self.dhikrSessionId = cachedSnapshot?.activeDhikrSession?.sessionId
         ?? "watch-dhikr-\(UUID().uuidString)"
     self.dhikrState = WatchDhikrSessionState(
@@ -508,6 +519,193 @@ final class WatchAppModel: ObservableObject {
     return true
   }
 
+  // MARK: - Guided routines
+
+  /// Routines the phone sent with its last snapshot: the built-in four plus
+  /// the user's own.
+  var dhikrRoutines: [WatchDhikrRoutinePayload] {
+    snapshot?.routines ?? []
+  }
+
+  func dhikrRoutine(withId id: String) -> WatchDhikrRoutinePayload? {
+    dhikrRoutines.first(where: { $0.id == id })
+  }
+
+  var activeDhikrRoutine: WatchDhikrRoutinePayload? {
+    guard let progress = dhikrRoutineProgress else { return nil }
+    return dhikrRoutine(withId: progress.routineId)
+  }
+
+  func isDhikrRoutineDoneToday(_ routine: WatchDhikrRoutinePayload) -> Bool {
+    guard let snapshot, snapshot.date == currentDayKey() else { return false }
+    return snapshot.completedRoutineEntries.contains { entry in
+      entry == routine.id || entry.hasPrefix("\(routine.id):")
+    }
+  }
+
+  func openDhikrRoutines() {
+    presentedAuxScreen = .dhikrRoutines
+  }
+
+  /// Starts [routine], or resumes it when it is the active one. Starting a
+  /// different routine abandons the previous run.
+  func startDhikrRoutine(_ routine: WatchDhikrRoutinePayload, prayerId: String? = nil) {
+    dhikrRoutineCompletion = nil
+    if let current = dhikrRoutineProgress, current.routineId == routine.id {
+      return
+    }
+    let progress = WatchDhikrRoutineProgress(
+      routineId: routine.id,
+      stepIndex: 0,
+      stepCount: 0,
+      startedAt: Date(),
+      updatedAt: Date(),
+      prayerId: prayerId
+    )
+    dhikrRoutineProgress = progress
+    cacheStore.saveDhikrRoutineProgress(progress)
+    WatchHaptics.confirmation(enabled: hapticsEnabled)
+  }
+
+  func tapDhikrRoutine() {
+    guard var progress = dhikrRoutineProgress,
+          let routine = dhikrRoutine(withId: progress.routineId),
+          !routine.steps.isEmpty else { return }
+    let stepIndex = min(max(progress.stepIndex, 0), routine.steps.count - 1)
+    let step = routine.steps[stepIndex]
+    let nextCount = progress.stepCount + 1
+    if shouldPresentDhikrAntiRushReminder(at: Date()) {
+      showDhikrAntiRushReminder = true
+      WatchHaptics.antiRush(enabled: hapticsEnabled)
+      return
+    }
+    if nextCount < step.count {
+      progress.stepIndex = stepIndex
+      progress.stepCount = nextCount
+      progress.updatedAt = Date()
+      dhikrRoutineProgress = progress
+      cacheStore.saveDhikrRoutineProgress(progress)
+      WatchHaptics.increment(enabled: hapticsEnabled)
+      return
+    }
+    progress.stepIndex = stepIndex
+    advanceDhikrRoutine(routine, from: progress)
+  }
+
+  /// Marks the current step done without counting the rest of it.
+  func skipDhikrRoutineStep() {
+    guard let progress = dhikrRoutineProgress,
+          let routine = dhikrRoutine(withId: progress.routineId),
+          !routine.steps.isEmpty else { return }
+    advanceDhikrRoutine(routine, from: progress)
+  }
+
+  private func advanceDhikrRoutine(
+    _ routine: WatchDhikrRoutinePayload,
+    from progress: WatchDhikrRoutineProgress
+  ) {
+    var next = progress
+    let isLast = progress.stepIndex >= routine.steps.count - 1
+    if !isLast {
+      next.stepIndex = progress.stepIndex + 1
+      next.stepCount = 0
+      next.updatedAt = Date()
+      dhikrRoutineProgress = next
+      cacheStore.saveDhikrRoutineProgress(next)
+      WatchHaptics.milestone(enabled: hapticsEnabled)
+      return
+    }
+    let finishedAt = Date()
+    let completion = WatchDhikrRoutineCompletion(
+      routine: routine,
+      startedAt: progress.startedAt,
+      finishedAt: finishedAt
+    )
+    dhikrRoutineProgress = nil
+    cacheStore.clearDhikrRoutineProgress()
+    recentDhikrTapTimes.removeAll()
+    WatchHaptics.completion(enabled: hapticsEnabled)
+
+    if var snapshot {
+      let delta = WatchRewardProjection.dhikrCompletionDelta(completedTarget: true)
+      snapshot.dhikrTodayCount += routine.totalCount
+      snapshot.xpToday += delta.xp
+      snapshot.oceanDropsToday += delta.drops
+      var entries = snapshot.completedRoutineEntries
+      entries.append(routine.completionEntry(prayerId: progress.prayerId))
+      snapshot.completedRoutineEntriesToday = entries
+      self.snapshot = snapshot
+      cacheStore.saveSnapshot(snapshot)
+      refreshDerivedSnapshotFields()
+    }
+    dhikrRoutineCompletion = completion
+    sendDhikrRoutineCompletion(completion, prayerId: progress.prayerId)
+  }
+
+  func undoDhikrRoutine() {
+    guard var progress = dhikrRoutineProgress,
+          let routine = dhikrRoutine(withId: progress.routineId) else { return }
+    if progress.stepCount > 0 {
+      progress.stepCount -= 1
+    } else if progress.stepIndex > 0 {
+      let previousIndex = progress.stepIndex - 1
+      progress.stepIndex = previousIndex
+      progress.stepCount = max(routine.steps[previousIndex].count - 1, 0)
+    } else {
+      return
+    }
+    progress.updatedAt = Date()
+    dhikrRoutineProgress = progress
+    cacheStore.saveDhikrRoutineProgress(progress)
+  }
+
+  func abandonDhikrRoutine() {
+    dhikrRoutineProgress = nil
+    cacheStore.clearDhikrRoutineProgress()
+    recentDhikrTapTimes.removeAll()
+  }
+
+  func restartDhikrRoutine() {
+    guard let routine = activeDhikrRoutine else { return }
+    abandonDhikrRoutine()
+    startDhikrRoutine(routine)
+  }
+
+  func dismissDhikrRoutineCompletion() {
+    dhikrRoutineCompletion = nil
+  }
+
+  private func sendDhikrRoutineCompletion(
+    _ completion: WatchDhikrRoutineCompletion,
+    prayerId: String?
+  ) {
+    var payload: [String: String] = [
+      "routineId": completion.routine.id,
+      "routineLabel": completion.routine.sessionLabel,
+      "count": "\(completion.routine.totalCount)",
+      "startedAt": WatchCodec.iso8601.string(from: completion.startedAt),
+    ]
+    if let prayerId, !prayerId.isEmpty {
+      payload["prayerId"] = prayerId
+    }
+    let action = WatchActionEnvelopePayload(
+      actionId: UUID().uuidString,
+      deviceType: "apple_watch",
+      actionType: .dhikrRoutineCompleted,
+      createdAt: completion.finishedAt,
+      logicalDate: snapshot?.date ?? currentDayKey(),
+      payload: payload,
+      sourceVersion: "1"
+    )
+    Task {
+      if let response = await syncService.sendAction(action) {
+        self.snapshot = response.snapshot
+        refreshDerivedSnapshotFields()
+      }
+      recomputeStates()
+    }
+  }
+
   func startPostPrayerAdhkar(for prayer: WatchPrayerPayload) {
     let state = WatchPostPrayerAdhkarState.default(for: prayer)
     postPrayerAdhkarState = state
@@ -579,6 +777,15 @@ final class WatchAppModel: ObservableObject {
     case "utility":
       selectedTab = .utility
       focusedPrayerId = nil
+    case "qibla":
+      presentedAuxScreen = .qibla
+      focusedPrayerId = nil
+    case "names":
+      presentedAuxScreen = .names
+      focusedPrayerId = nil
+    case "quran":
+      presentedAuxScreen = .quranRemote
+      focusedPrayerId = nil
     default:
       selectedTab = .home
       focusedPrayerId = nil
@@ -605,6 +812,72 @@ final class WatchAppModel: ObservableObject {
   func clearFocusedPrayer() {
     focusedPrayerId = nil
   }
+
+  func refreshQuranPlayback() async {
+    if let payload = await syncService.fetchQuranPlayback() {
+      quranPlayback = payload
+      return
+    }
+    #if targetEnvironment(simulator)
+    if quranPlayback == nil {
+      quranPlayback = .simulatorSample
+    }
+    #else
+    if !syncService.isReachable {
+      quranPlayback = nil
+    }
+    #endif
+  }
+
+  func sendQuranCommand(_ command: String) async {
+    quranRemoteBusy = true
+    defer { quranRemoteBusy = false }
+    WatchHaptics.confirmation(enabled: hapticsEnabled)
+    if let payload = await syncService.sendQuranCommand(command) {
+      quranPlayback = payload
+      return
+    }
+    #if targetEnvironment(simulator)
+    applySimulatedQuranCommand(command)
+    #endif
+  }
+
+  #if targetEnvironment(simulator)
+  /// Keeps the remote demoable in the simulator, where no phone answers.
+  private func applySimulatedQuranCommand(_ command: String) {
+    let current = quranPlayback ?? .simulatorSample
+    let playing: Bool
+    var position = current.positionSeconds
+    switch command {
+    case "pause":
+      playing = false
+    case "play", "resumeLast":
+      playing = true
+    case "seekForward15":
+      playing = current.isPlaying
+      position += 15
+    case "seekBack15":
+      playing = current.isPlaying
+      position = max(0, position - 15)
+    default:
+      playing = current.isPlaying
+    }
+    quranPlayback = WatchQuranPlaybackPayload(
+      playbackSessionId: current.playbackSessionId,
+      sourceType: current.sourceType,
+      isPlaying: playing,
+      surahId: current.surahId,
+      surahName: current.surahName,
+      reciterId: current.reciterId,
+      reciterName: current.reciterName,
+      currentAyah: current.currentAyah,
+      positionSeconds: position,
+      durationSeconds: current.durationSeconds,
+      isBuffering: false,
+      lastUpdatedAt: current.lastUpdatedAt
+    )
+  }
+  #endif
 
   private func focusPrayer(_ prayerId: String?) {
     guard let prayerId, !prayerId.isEmpty else {
@@ -952,6 +1225,10 @@ final class WatchAppModel: ObservableObject {
   }
 
   private func recomputeStates() {
+    let resolvedPalette = WatchPalette.palette(forPhoneThemeMode: settings?.watchThemeMode)
+    if palette != resolvedPalette {
+      palette = resolvedPalette
+    }
     if let snapshot {
       let nextPrayer = snapshot.resolvedNextPrayer(now: Date())
       dashboardState = WatchDashboardState(

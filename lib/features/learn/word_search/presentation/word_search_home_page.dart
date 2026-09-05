@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
@@ -15,6 +15,7 @@ import '../application/word_search_progress_provider.dart';
 import '../application/word_search_repository.dart';
 import '../domain/word_search_models.dart';
 import 'word_search_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class WordSearchHomePage extends ConsumerWidget {
   const WordSearchHomePage({super.key});
@@ -34,7 +35,7 @@ class WordSearchHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.text_fields_rounded,
+      headerIcon: AppIcons.wordSearch,
       title: l10n.wordSearchHomeTitle,
       subtitle: l10n.wordSearchHomeSubtitle,
       children: [
@@ -51,7 +52,7 @@ class WordSearchHomePage extends ConsumerWidget {
                 Text(
                   l10n.wordSearchLoadErrorSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],

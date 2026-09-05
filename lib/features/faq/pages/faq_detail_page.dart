@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
@@ -243,7 +243,7 @@ class FaqDetailPage extends ConsumerWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -257,7 +257,7 @@ class FaqDetailPage extends ConsumerWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.accentGold,
+            color: context.palette.accent,
             fontWeight: FontWeight.w600,
           ),
         ),

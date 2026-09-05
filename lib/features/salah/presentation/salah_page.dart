@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
-import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_palette.dart';
+import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
@@ -15,16 +15,20 @@ import '../../../features/worship/domain/prayer_tracker_fields.dart';
 import '../../../features/worship/domain/prayer_status.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/state/location_permission_state.dart';
-import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/arabic_text_utils.dart';
-import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 
 class SalahTimesPage extends ConsumerStatefulWidget {
-  const SalahTimesPage({super.key});
+  const SalahTimesPage({super.key, this.embedded = false});
+
+  /// When true the page renders as inline content (no Scaffold, background,
+  /// back header, or verse header) — used as the Salah Hub's Times tab in
+  /// the calm-navigation merge.
+  final bool embedded;
 
   @override
   ConsumerState<SalahTimesPage> createState() => _SalahTimesPageState();
@@ -119,290 +123,231 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
         (settings.preferences.useDeviceLocation
             ? l10n.worshipQiblaLocationLabel
             : settings.preferences.location);
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(
+    final contentChildren = <Widget>[
+      _SalahSummaryHeader(
+        schedule: schedule,
+        scheduleContext: scheduleContext,
+        now: now,
+        onJumpToCurrent: () =>
+            _jumpToCurrentSalah(scheduleContext.currentPrayerId),
+      ),
+      const SizedBox(height: 10),
+      _DailySalahProgressStrip(trackedCount: trackedCount, totalCount: 5),
+      Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 4,
+        runSpacing: 4,
         children: [
-          const GlobalBackground(),
-          SafeArea(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                      color: const Color(0xFF3C2F25),
-                    ),
-                    const SizedBox(width: 4),
-                    const Icon(
-                      IslamicIcons.prayer,
-                      color: Color(0xFF3C2F25),
-                      size: 24,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        l10n.homePrayerSectionTitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 26,
-                          fontFamily: 'serif',
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF32251D),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                _SalahVerseHeader(
-                  quote: salahQuote,
-                  onOpenQuran: () =>
-                      openQuranQuoteLocation(context, salahQuote),
-                ),
-                const SizedBox(height: 12),
-                _SalahSummaryHeader(
-                  schedule: schedule,
-                  scheduleContext: scheduleContext,
-                  now: now,
-                  onJumpToCurrent: () =>
-                      _jumpToCurrentSalah(scheduleContext.currentPrayerId),
-                ),
-                const SizedBox(height: 10),
-                _DailySalahProgressStrip(
-                  trackedCount: trackedCount,
-                  totalCount: 5,
-                ),
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 4,
-                  runSpacing: 4,
-                  children: [
-                    InkWell(
-                      borderRadius: BorderRadius.circular(999),
-                      onTap: () =>
-                          _showLocationPicker(context, ref, locationLabel),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 2,
-                          vertical: 2,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              size: 14,
-                              color: Color(0xFF7A5A33),
-                            ),
-                            SizedBox(width: 2),
-                          ],
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(999),
-                      onTap: () =>
-                          _showLocationPicker(context, ref, locationLabel),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 2,
-                          vertical: 2,
-                        ),
-                        child: Text(
-                          locationLabel,
-                          style: const TextStyle(
-                            color: Color(0xFF4D4036),
-                            fontSize: 12.8,
-                            fontWeight: FontWeight.w700,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color(0xFF7A5A33),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '· ${settings.preferences.madhab.localizedLabel(l10n)} · ${settings.preferences.calculationMethod.localizedLabel(l10n)}',
-                      style: const TextStyle(
-                        color: Color(0xFF4D4036),
-                        fontSize: 12.8,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                const _SalahRakatGuideCard(),
-                const SizedBox(height: 16),
-                ...List.generate(schedule.length, (index) {
-                  final entry = schedule[index];
-                  final isNext = scheduleContext.nextPrayerId == entry.id;
-                  final isCurrent = scheduleContext.currentPrayerId == entry.id;
-                  final trackerEntry = tracker.records[_toPrayerName(entry.id)];
-                  final isMostRecentUntracked =
-                      mostRecentUntrackedId == entry.id;
-                  final highlightCard = isCurrent || isMostRecentUntracked;
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      bottom: index == schedule.length - 1 ? 0 : 14,
-                    ),
-                    child: PremiumCard(
-                      key: _salahCardKeys[entry.id],
-                      child: Padding(
-                        padding: const EdgeInsets.all(14),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (highlightCard)
-                              _SalahStatusPill(
-                                label: isCurrent
-                                    ? l10n.salahTrackCurrentSalah
-                                    : l10n.salahMostRecentUntracked,
-                                color: isCurrent
-                                    ? const Color(0xFF5E8D58)
-                                    : const Color(0xFFB58D46),
-                                margin: const EdgeInsets.only(bottom: 10),
-                              ),
-                            if (isNext || isCurrent)
-                              _SalahStatusPill(
-                                label: isCurrent
-                                    ? l10n.salahCurrentSalahTitle
-                                    : l10n.nextSalah,
-                                color: isCurrent
-                                    ? const Color(0xFF8FAF89)
-                                    : const Color(0xFFB58D46),
-                                margin: const EdgeInsets.only(bottom: 8),
-                              ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        _toPrayerName(
-                                          entry.id,
-                                        ).localizedLabel(l10n),
-                                        style: const TextStyle(
-                                          fontSize: 22,
-                                          fontFamily: 'serif',
-                                          fontWeight: FontWeight.w700,
-                                          color: Color(0xFF33281F),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 2),
-                                      Text(
-                                        entry.arabicName,
-                                        textAlign: textAlignForContent(
-                                          entry.arabicName,
-                                        ),
-                                        textDirection: textDirectionForContent(
-                                          entry.arabicName,
-                                        ),
-                                        style: AppTextStyles.arabicLearning(
-                                          size: 18,
-                                          color: const Color(0xFF3F332C),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                _SalahStatusPill(
-                                  label: l10n.salahRakatsLabel(
-                                    '${entry.totalRakats}',
-                                  ),
-                                  color: AppColors.accentGoldSoft,
-                                  dense: true,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            _MetaRow(
-                              label: l10n.salahOfferTimeLabel,
-                              value: entry.offerTime,
-                            ),
-                            const SizedBox(height: 6),
-                            _MetaRow(
-                              label: l10n.salahOfferWindowLabel,
-                              value: l10n.salahWindowValue(
-                                entry.windowStart,
-                                entry.windowEnd,
-                              ),
-                            ),
-                            const SizedBox(height: 6),
-                            _MetaRow(
-                              label: l10n.salahBecomesQadaAfterLabel,
-                              value: entry.overdueAt,
-                            ),
-                            const SizedBox(height: 6),
-                            _MetaRow(
-                              label: l10n.salahTimeRemainingToOfferLabel,
-                              value: _offerTimingText(context, entry, now),
-                            ),
-                            if (entry.hasDelayedMakeUpWindow) ...[
-                              const SizedBox(height: 6),
-                              _MetaRow(
-                                label: l10n.salahMakeUpFromLabel,
-                                value: entry.makeUpFrom,
-                              ),
-                            ],
-                            const SizedBox(height: 6),
-                            _QadaRuleRow(summary: entry.qadaRuleSummary),
-                            const SizedBox(height: 10),
-                            _SalahTrackerInlineSection(
-                              prayerId: entry.id,
-                              entry: trackerEntry,
-                              isCurrent: isCurrent,
-                              onQuickSelect: (timing) {
-                                trackerNotifier.setEntry(
-                                  _toPrayerName(entry.id),
-                                  status: PrayerStatus.completed,
-                                  timing: timing,
-                                  place: PrayerOfferPlace.alone,
-                                );
-                              },
-                              onOpenDetails: () async {
-                                final result =
-                                    await showModalBottomSheet<
-                                      _SalahTrackerSheetResult
-                                    >(
-                                      context: context,
-                                      backgroundColor: Colors.transparent,
-                                      isScrollControlled: true,
-                                      builder: (context) => _SalahTrackerSheet(
-                                        prayerName: _toPrayerName(
-                                          entry.id,
-                                        ).localizedLabel(l10n),
-                                        initialEntry:
-                                            trackerEntry ??
-                                            const PrayerTrackerEntry(),
-                                      ),
-                                    );
-                                if (result == null) return;
-                                trackerNotifier.setEntry(
-                                  _toPrayerName(entry.id),
-                                  status: result.status,
-                                  timing: result.timing,
-                                  place: result.place,
-                                  notes: result.notes,
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-              ],
+          InkWell(
+            borderRadius: BorderRadius.circular(999),
+            onTap: () => _showLocationPicker(context, ref, locationLabel),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.location_on_rounded,
+                    size: 14,
+                    color: Color(0xFF7A5A33),
+                  ),
+                  SizedBox(width: 2),
+                ],
+              ),
             ),
+          ),
+          InkWell(
+            borderRadius: BorderRadius.circular(999),
+            onTap: () => _showLocationPicker(context, ref, locationLabel),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+              child: Text(
+                locationLabel,
+                style: const TextStyle(
+                  color: Color(0xFF4D4036),
+                  fontSize: 12.8,
+                  fontWeight: FontWeight.w700,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Color(0xFF7A5A33),
+                ),
+              ),
+            ),
+          ),
+          Text(
+            '· ${settings.preferences.madhab.localizedLabel(l10n)} · ${settings.preferences.calculationMethod.localizedLabel(l10n)}',
+            style: const TextStyle(color: Color(0xFF4D4036), fontSize: 12.8),
           ),
         ],
       ),
+      const SizedBox(height: 16),
+      const _SalahRakatGuideCard(),
+      const SizedBox(height: 16),
+      ...List.generate(schedule.length, (index) {
+        final entry = schedule[index];
+        final isNext = scheduleContext.nextPrayerId == entry.id;
+        final isCurrent = scheduleContext.currentPrayerId == entry.id;
+        final trackerEntry = tracker.records[_toPrayerName(entry.id)];
+        final isMostRecentUntracked = mostRecentUntrackedId == entry.id;
+        final highlightCard = isCurrent || isMostRecentUntracked;
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: index == schedule.length - 1 ? 0 : 14,
+          ),
+          child: PremiumCard(
+            key: _salahCardKeys[entry.id],
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (highlightCard)
+                    _SalahStatusPill(
+                      label: isCurrent
+                          ? l10n.salahTrackCurrentSalah
+                          : l10n.salahMostRecentUntracked,
+                      color: isCurrent
+                          ? const Color(0xFF5E8D58)
+                          : const Color(0xFFB58D46),
+                      margin: const EdgeInsets.only(bottom: 10),
+                    ),
+                  if (isNext || isCurrent)
+                    _SalahStatusPill(
+                      label: isCurrent
+                          ? l10n.salahCurrentSalahTitle
+                          : l10n.nextSalah,
+                      color: isCurrent
+                          ? const Color(0xFF8FAF89)
+                          : const Color(0xFFB58D46),
+                      margin: const EdgeInsets.only(bottom: 8),
+                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _toPrayerName(entry.id).localizedLabel(l10n),
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontFamily: AppFonts.latinSerif,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF33281F),
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              entry.arabicName,
+                              textAlign: textAlignForContent(entry.arabicName),
+                              textDirection: textDirectionForContent(
+                                entry.arabicName,
+                              ),
+                              style: AppTextStyles.arabicLearning(
+                                size: 18,
+                                color: const Color(0xFF3F332C),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      _SalahStatusPill(
+                        label: l10n.salahRakatsLabel('${entry.totalRakats}'),
+                        color: context.palette.accentSoft,
+                        dense: true,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  _MetaRow(
+                    label: l10n.salahOfferTimeLabel,
+                    value: entry.offerTime,
+                  ),
+                  const SizedBox(height: 6),
+                  _MetaRow(
+                    label: l10n.salahOfferWindowLabel,
+                    value: l10n.salahWindowValue(
+                      entry.windowStart,
+                      entry.windowEnd,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  _MetaRow(
+                    label: l10n.salahBecomesQadaAfterLabel,
+                    value: entry.overdueAt,
+                  ),
+                  const SizedBox(height: 6),
+                  _MetaRow(
+                    label: l10n.salahTimeRemainingToOfferLabel,
+                    value: _offerTimingText(context, entry, now),
+                  ),
+                  if (entry.hasDelayedMakeUpWindow) ...[
+                    const SizedBox(height: 6),
+                    _MetaRow(
+                      label: l10n.salahMakeUpFromLabel,
+                      value: entry.makeUpFrom,
+                    ),
+                  ],
+                  const SizedBox(height: 6),
+                  _QadaRuleRow(summary: entry.qadaRuleSummary),
+                  const SizedBox(height: 10),
+                  _SalahTrackerInlineSection(
+                    prayerId: entry.id,
+                    entry: trackerEntry,
+                    isCurrent: isCurrent,
+                    onQuickSelect: (timing) {
+                      trackerNotifier.setEntry(
+                        _toPrayerName(entry.id),
+                        status: PrayerStatus.completed,
+                        timing: timing,
+                        place: PrayerOfferPlace.alone,
+                      );
+                    },
+                    onOpenDetails: () async {
+                      final result =
+                          await showModalBottomSheet<_SalahTrackerSheetResult>(
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            isScrollControlled: true,
+                            builder: (context) => _SalahTrackerSheet(
+                              prayerName: _toPrayerName(
+                                entry.id,
+                              ).localizedLabel(l10n),
+                              initialEntry:
+                                  trackerEntry ?? const PrayerTrackerEntry(),
+                            ),
+                          );
+                      if (result == null) return;
+                      trackerNotifier.setEntry(
+                        _toPrayerName(entry.id),
+                        status: result.status,
+                        timing: result.timing,
+                        place: result.place,
+                        notes: result.notes,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    ];
+
+    if (widget.embedded) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: contentChildren,
+      );
+    }
+
+    return AppPageScaffold(
+      title: l10n.homePrayerSectionTitle,
+      quoteHeader: _SalahVerseHeader(
+        quote: salahQuote,
+        onOpenQuran: () => openQuranQuoteLocation(context, salahQuote),
+      ),
+      children: contentChildren,
     );
   }
 }
@@ -925,7 +870,7 @@ class _SalahVerseHeader extends StatelessWidget {
       context,
       variant: AppSurfaceVariant.panel,
       treatment: AppSurfaceTreatment.denseSanctuary,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return Container(
       decoration: style.decoration(radius: 20),
@@ -1003,7 +948,7 @@ class _SalahTrackerInlineSection extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      tintColor: AppColors.accentGold,
+      tintColor: context.palette.accent,
     );
     return Container(
       padding: const EdgeInsets.all(12),
@@ -1142,7 +1087,7 @@ class _TrackerSummaryPill extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGoldSoft,
+      tintColor: context.palette.accentSoft,
     );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
@@ -1212,7 +1157,7 @@ class _SalahChoicePill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = accentColor ?? AppColors.accentGold;
+    final color = accentColor ?? context.palette.accent;
     return InkWell(
       borderRadius: BorderRadius.circular(999),
       onTap: onTap,

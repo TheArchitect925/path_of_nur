@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../knowledge_games/domain/knowledge_game_adapter.dart';
 import '../../knowledge_games/domain/knowledge_game_models.dart';
-import '../../knowledge_games/presentation/knowledge_game_screen.dart';
 import '../domain/hadith_reflection_models.dart';
 
 class HadithReflectionGameAdapter
@@ -60,26 +58,6 @@ class HadithReflectionGameAdapter
       perfect: progress.isBestChoice,
       xpEarned: xpEarned,
       dropsEarned: dropsEarned,
-    );
-  }
-
-  @override
-  Widget buildScreen({
-    required BuildContext context,
-    required String title,
-    required String subtitle,
-    required KnowledgeGame game,
-    KnowledgeGameSession? session,
-    KnowledgeGameResult? result,
-    required List<Widget> children,
-  }) {
-    return KnowledgeGameScreen(
-      title: title,
-      subtitle: subtitle,
-      game: game,
-      session: session,
-      result: result,
-      children: children,
     );
   }
 }

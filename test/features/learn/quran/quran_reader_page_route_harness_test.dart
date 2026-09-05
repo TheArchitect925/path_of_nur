@@ -451,17 +451,22 @@ void main() {
       expect(feed.playing, isFalse);
       expect(feed.hasPlaybackSource, isFalse);
 
-      final ayahPlayButton = find.byKey(
-        const ValueKey('quran-reader-play-ayah-1:2'),
+      final ayahCardForPlay = find.byKey(
+        const ValueKey('quran-ayah-card-1:2'),
         skipOffstage: false,
       );
       await tester.scrollUntilVisible(
-        ayahPlayButton,
+        ayahCardForPlay,
         300,
         scrollable: find.byType(Scrollable).first,
       );
       await tester.pumpAndSettle();
-      await tester.tap(ayahPlayButton);
+      // Play moved into the tap-an-ayah details sheet in phase 7b.
+      await tester.tap(ayahCardForPlay);
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-ayah-1:2')),
+      );
       await tester.pumpAndSettle();
 
       expect(
@@ -600,7 +605,10 @@ void main() {
         scrollable: find.byType(Scrollable).first,
       );
       await tester.pumpAndSettle();
+      // Tapping the card now opens the details sheet; play lives inside it.
       await tester.tap(ayahCard);
+      await tester.pumpAndSettle();
+      await tester.tap(ayahPlayButton);
       await tester.pumpAndSettle();
 
       expect(feed.hasPlaybackSource, isTrue);
@@ -623,10 +631,12 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.scrollUntilVisible(
-        ayahPlayButton,
+        ayahCard,
         300,
         scrollable: find.byType(Scrollable).first,
       );
+      await tester.pumpAndSettle();
+      await tester.tap(ayahCard);
       await tester.pumpAndSettle();
       await tester.tap(ayahPlayButton);
       await tester.pumpAndSettle();
@@ -693,17 +703,21 @@ void main() {
         isTrue,
       );
 
-      final ayahThreePlayButton = find.byKey(
-        const ValueKey('quran-reader-play-ayah-1:3'),
+      final ayahThreeCard = find.byKey(
+        const ValueKey('quran-ayah-card-1:3'),
         skipOffstage: false,
       );
       await tester.scrollUntilVisible(
-        ayahThreePlayButton,
+        ayahThreeCard,
         300,
         scrollable: find.byType(Scrollable).first,
       );
       await tester.pumpAndSettle();
-      await tester.tap(ayahThreePlayButton);
+      await tester.tap(ayahThreeCard);
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-ayah-1:3')),
+      );
       await tester.pumpAndSettle();
 
       expect(feed.currentIndex, 2);

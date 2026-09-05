@@ -75,9 +75,6 @@ class BedtimeStoryCoverCard extends StatelessWidget {
                             ? l10n.bedtimeStoriesAudioReadyBadge
                             : l10n.bedtimeStoriesReadAlongBadge,
                       ),
-                      _MediaChip(
-                        label: l10n.bedtimeStoriesIncludedOfflineBadge,
-                      ),
                       if (!media.hasAnyArtwork)
                         _MediaChip(
                           label: l10n.bedtimeStoriesArtComingSoonBadge,

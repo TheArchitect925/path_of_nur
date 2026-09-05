@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1080 990 150 120"><defs><filter id="rough227" x="-12%" y="-12%" width="124%" height="124%"><feTurbulence type="fractalNoise" baseFrequency="0.030 0.045" numOctaves="2" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="11"/></filter><radialGradient id="sh228"><stop offset="0" stop-color="#0E1710" stop-opacity="0.18"/><stop offset="1" stop-color="#0E1710" stop-opacity="0"/></radialGradient></defs><ellipse cx="1150" cy="1080" rx="34" ry="7" fill="url(#sh228)"/><g filter="url(#rough227)">
+      <ellipse cx="1150" cy="1060" rx="31" ry="20" fill="#A5764F"/>
+      <path d="M 1172 1056 L 1212 1072 L 1210 1080 L 1170 1069 Z" fill="#2E2419"/>
+      <path d="M 1176 1061 L 1208 1074 L 1207 1077 L 1175 1066 Z" fill="#F0E4C0" opacity="0.85"/>
+      <path d="M 1136 1056 q 20 -8 36 4 q -18 12 -36 6 Z" fill="#2E2419"/>
+      <path d="M 1140 1059 q 14 -4 26 3" stroke="#F0E4C0" stroke-width="3" fill="none" opacity="0.8"/>
+      <circle cx="1124" cy="1044" r="13" fill="#B98A5E"/>
+      <path d="M 1106 1046 l -20 5 l 20 4 Z" fill="#2E2419"/>
+      <circle cx="1120" cy="1042" r="2.6" fill="#241A10"/>
+      <path d="M 1128 1026 q 4 -12 2 -20 M 1135 1027 q 7 -11 8 -19 M 1121 1027 q -1 -12 -5 -18" stroke="#B4714A" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <circle cx="1127" cy="1005" r="3" fill="#2E2419"/>
+      <circle cx="1143" cy="1007" r="3" fill="#2E2419"/>
+      <circle cx="1115" cy="1008" r="3" fill="#2E2419"/>
+      <path d="M 1144 1078 l -2 12 M 1156 1078 l 1 12" stroke="#7A5A34" stroke-width="3.4" stroke-linecap="round"/>
+    </g></svg>

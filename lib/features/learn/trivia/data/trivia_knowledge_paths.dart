@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../domain/trivia_models.dart';
+import '../../../../core/theme/app_icons.dart';
 
 const List<TriviaKnowledgePath> triviaKnowledgePaths = [
   TriviaKnowledgePath(
@@ -201,7 +202,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
     title: 'Learning Salah',
     description:
         'Build a steady understanding of prayer through preparation, structure, congregational practice, and spiritual focus.',
-    icon: Icons.self_improvement_rounded,
+    icon: AppIcons.salah,
     stages: [
       TriviaKnowledgeStage(
         id: 'five_daily_prayers',

@@ -27,9 +27,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
     final habit = ref.watch(growthHabitsByIdProvider)[widget.habitId];
     if (habit == null) {
       return AppPageScaffold(
-        headerIcon: Icons.track_changes_rounded,
         title: l10n.growthHabitDetailPageTitle,
-        subtitle: l10n.growthHabitUnavailableMessage,
         children: [
           PremiumCard(child: Text(l10n.growthHabitUnavailableMessage)),
         ],
@@ -44,7 +42,6 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
     )[habit.stage];
 
     return AppPageScaffold(
-      headerIcon: Icons.track_changes_rounded,
       title: habit.title,
       subtitle: habit.subtitle,
       children: [
@@ -126,7 +123,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                           habitId: habit.id,
                           status: GrowthHabitStatus.completed,
                         ),
-                    icon: const Icon(Icons.check_circle_outline),
+                    icon: const Icon(Icons.check_circle_outline_rounded),
                     label: Text(l10n.growthHabitCompleteAction),
                   ),
                   FilledButton.tonal(

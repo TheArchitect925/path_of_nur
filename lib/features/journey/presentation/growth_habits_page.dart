@@ -10,6 +10,7 @@ import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
+import '../../../core/theme/app_icons.dart';
 
 class GrowthHabitsPage extends ConsumerWidget {
   const GrowthHabitsPage({super.key});
@@ -20,7 +21,6 @@ class GrowthHabitsPage extends ConsumerWidget {
     final selectedDate = ref.watch(growthSelectedDateProvider);
     final seasonal = ref.watch(growthSeasonalContextProvider);
     final ramadanDashboard = ref.watch(growthRamadanDashboardProvider);
-    final quranTracker = ref.watch(growthRamadanQuranTrackerProvider);
     final fastTracking = ref.watch(growthFastTrackingProvider);
     final summary = ref.watch(growthTodaySummaryProvider);
     final sections = ref.watch(growthDueHabitSectionsProvider);
@@ -29,7 +29,7 @@ class GrowthHabitsPage extends ConsumerWidget {
     final encouragement = ref.watch(growthEncouragementCopyProvider);
 
     return SectionHubScaffold(
-      headerIcon: Icons.checklist_rtl_rounded,
+      headerIcon: AppIcons.habits,
       title: l10n.growthTodayHabitTrackerTitle,
       subtitle: l10n.growthHabitsPageSubtitle,
       quote: buildGrowthReflectionQuote(),
@@ -204,55 +204,15 @@ class GrowthHabitsPage extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(l10n.growthHabitsQuranCompletionPlan),
-                    const SizedBox(width: 10),
-                    DropdownButton<int>(
-                      value: quranTracker.planDays,
-                      items: const [30, 15, 10]
-                          .map(
-                            (days) => DropdownMenuItem(
-                              value: days,
-                              child: Text(l10n.homeDaysCount(days)),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        if (value == null) return;
-                        ref
-                            .read(growthControllerProvider.notifier)
-                            .setRamadanQuranPlanDays(value);
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  l10n.growthHabitsJuzJourneySummary(
-                    quranTracker.currentJuzProgress.toStringAsFixed(1),
-                    quranTracker.remainingJuz.toStringAsFixed(1),
-                  ),
-                ),
-                Text(
-                  l10n.growthHabitsGentlePaceSummary(
-                    quranTracker.estimatedDailyJuzNeeded.toStringAsFixed(2),
-                    '${quranTracker.estimatedDaysRemaining}',
-                  ),
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFF6A5A4A),
-                  ),
-                ),
-                Slider(
-                  value: quranTracker.currentJuzProgress,
-                  min: 0,
-                  max: 30,
-                  divisions: 60,
-                  label: quranTracker.currentJuzProgress.toStringAsFixed(1),
-                  onChanged: (value) => ref
-                      .read(growthControllerProvider.notifier)
-                      .setRamadanQuranCompletedJuz(value),
+                // The manual juz slider retired in calm-navigation Phase 7a:
+                // the khatm plan on the Qur'an tab is the source of Qur'an
+                // completion now (garden unlocks read it too).
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.flag_circle_rounded),
+                  title: Text(l10n.quranTabPlanTitle),
+                  subtitle: Text(l10n.growthHabitsQuranPlanRowSubtitle),
+                  onTap: () => context.pushNamed('quranKhatmPlan'),
                 ),
               ],
             ),
@@ -389,7 +349,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                         child: Icon(
                                           completed
                                               ? Icons.check_circle_rounded
-                                              : Icons.radio_button_unchecked,
+                                              : Icons
+                                                    .radio_button_unchecked_rounded,
                                           key: ValueKey<bool>(completed),
                                           color: completed
                                               ? const Color(0xFF7A5C35)

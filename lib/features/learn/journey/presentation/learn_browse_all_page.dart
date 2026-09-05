@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/nav_tabs.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../shared/application/learn_release_gate.dart';
 import '../application/family_learning_provider.dart';
@@ -14,6 +13,7 @@ import '../data/learning_journey_registry.dart';
 import '../data/learning_journey_localized_metadata.dart';
 import '../domain/learning_journey_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearnBrowseAllPage extends ConsumerWidget {
   const LearnBrowseAllPage({super.key});
@@ -47,10 +47,9 @@ class LearnBrowseAllPage extends ConsumerWidget {
         .where((journey) => journey.isFeatured)
         .toList(growable: false);
     return LearnHubPageScaffold(
-      headerIcon: Icons.grid_view_rounded,
+      headerIcon: AppIcons.browseAll,
       title: l10n.learningJourneyBrowseAllTitle,
       subtitle: l10n.learningJourneyBrowseAllSubtitle,
-      quote: buildLearningCompactQuote(),
       children: [
         if ((visibilityPolicy.isChildProfile || kidsUi.enabled) &&
             !visibilityPolicy.showBrowseAll) ...[
@@ -181,7 +180,7 @@ class LearnBrowseAllPage extends ConsumerWidget {
           LearningJourneyToolCard(
             title: l10n.learningJourneyBrowseNotesTitle,
             subtitle: l10n.learningJourneyBrowseNotesSubtitle,
-            icon: Icons.sticky_note_2_outlined,
+            icon: Icons.sticky_note_2_rounded,
             onTap: () => context.pushNamed('learnNotesLanding'),
           ),
           const SizedBox(height: 10),
@@ -195,7 +194,7 @@ class LearnBrowseAllPage extends ConsumerWidget {
           LearningJourneyToolCard(
             title: l10n.learningJourneyBrowseQuranNotesTitle,
             subtitle: l10n.learningJourneyBrowseQuranNotesSubtitle,
-            icon: Icons.note_alt_outlined,
+            icon: Icons.note_alt_rounded,
             onTap: () => context.pushNamed('quranNotes'),
           ),
           const SizedBox(height: 10),
@@ -204,7 +203,7 @@ class LearnBrowseAllPage extends ConsumerWidget {
               title: l10n.learningJourneyBrowseKnowledgeConstellationTitle,
               subtitle:
                   l10n.learningJourneyBrowseKnowledgeConstellationSubtitle,
-              icon: Icons.hub_outlined,
+              icon: Icons.hub_rounded,
               onTap: () => context.pushNamed('knowledgeConstellation'),
             ),
             const SizedBox(height: 10),

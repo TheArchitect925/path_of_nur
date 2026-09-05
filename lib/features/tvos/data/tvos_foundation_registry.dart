@@ -606,6 +606,16 @@ final List<TVOSSectionFlag> tvosSectionFlags = <TVOSSectionFlag>[
     notes: 'Guided remembrance mode selector for the tvOS Dhikr route.',
   ),
   const TVOSSectionFlag(
+    sectionKey: 'dhikr.routines',
+    routePath: '/worship/dhikr',
+    availability: TVOSFeatureAvailability.enabled,
+    releaseStage: TVOSReleaseStage.testflight,
+    parityHealth: TVOSParityHealth.adaptationRequired,
+    requiresSharedParityPayload: false,
+    notes:
+        'Playable routine shelf generated from the phone catalog; opens the paced routine player.',
+  ),
+  const TVOSSectionFlag(
     sectionKey: 'dhikr.guidedFlow',
     routePath: '/worship/dhikr',
     availability: TVOSFeatureAvailability.enabled,

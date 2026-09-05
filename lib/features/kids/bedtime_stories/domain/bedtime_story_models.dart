@@ -1,5 +1,8 @@
 import '../../../learn/quran/domain/quran_content_refs.dart';
 import 'bedtime_story_illustration_models.dart';
+import 'kids_book_models.dart';
+
+export 'kids_book_models.dart';
 
 enum BedtimeStoryCategory {
   prophets,
@@ -8,6 +11,7 @@ enum BedtimeStoryCategory {
   dailyLifeDuas,
   ramadanEid,
   familyKindness,
+  foundations,
 }
 
 enum KidsIslamicStoryCollectionType {
@@ -17,6 +21,7 @@ enum KidsIslamicStoryCollectionType {
   dailyLifeDuas,
   ramadanEid,
   familyKindness,
+  foundations,
   bedtime,
 }
 
@@ -37,6 +42,7 @@ enum KidsIslamicStoryType {
   family,
   forgiveness,
   animals,
+  foundations,
 }
 
 enum KidsIslamicStoryTheme {
@@ -121,6 +127,8 @@ class BedtimeStorySeed {
     this.quietReflectionFriendly = true,
     this.suitableForYoungerLearners = false,
     this.sceneIllustrations = const <BedtimeStorySceneIllustration>[],
+    this.spreads = const <KidsBookSpread>[],
+    this.bedtimeClosing = '',
   });
 
   final String id;
@@ -171,6 +179,17 @@ class BedtimeStorySeed {
   final bool quietReflectionFriendly;
   final bool suitableForYoungerLearners;
   final List<BedtimeStorySceneIllustration> sceneIllustrations;
+
+  /// The book, page by page. Empty for the older seeds, which the reader
+  /// splits from [ttsText] instead; a picture book derives [ttsText] from
+  /// these so the voice, the quizzes and the pager keep one contract.
+  final List<KidsBookSpread> spreads;
+
+  /// The closing spread the reader adds only when the book is opened at
+  /// bedtime ("Now close your eyes…"). Never part of the story itself.
+  final String bedtimeClosing;
+
+  bool get isPictureBook => spreads.isNotEmpty;
 
   Duration get estimatedDuration => Duration(seconds: estimatedDurationSeconds);
   String get effectiveStoryFamilyId => storyFamilyId.isNotEmpty
@@ -242,6 +261,8 @@ class BedtimeStorySeed {
       quietReflectionFriendly: quietReflectionFriendly,
       suitableForYoungerLearners: suitableForYoungerLearners,
       sceneIllustrations: sceneIllustrations,
+      spreads: spreads,
+      bedtimeClosing: bedtimeClosing,
     );
   }
 }

@@ -28,10 +28,10 @@ class HistoryEventDetailPage extends ConsumerWidget {
       data: (event) {
         if (event == null) {
           return AppPageScaffold(
-            title: l10n.historyDetailNotFoundTitle,
-            subtitle: l10n.historyDetailNotFoundSubtitle,
-            headerIcon: Icons.history_toggle_off_rounded,
-            children: [Text(l10n.historyDetailNotFoundSubtitle)],
+            title: l10n.historyArchiveTitle,
+            children: [
+              PremiumCard(child: Text(l10n.historyDetailNotFoundSubtitle)),
+            ],
           );
         }
         final contextualRelatedAsync = ref.watch(
@@ -40,7 +40,6 @@ class HistoryEventDetailPage extends ConsumerWidget {
         return AppPageScaffold(
           title: event.title,
           subtitle: event.summaryShort,
-          headerIcon: Icons.history_edu_rounded,
           children: [
             _HistoryHeaderCard(event: event),
             const SizedBox(height: 14),
@@ -85,7 +84,6 @@ class HistoryEventDetailPage extends ConsumerWidget {
                         (hook) => ListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(_historyHookTitle(context, hook)),
-                          trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () => context.pushNamed(
                             hook.routeName,
                             pathParameters: hook.pathParameters,
@@ -132,15 +130,13 @@ class HistoryEventDetailPage extends ConsumerWidget {
       },
       loading: () => AppPageScaffold(
         title: l10n.historyDetailLoadingTitle,
-        subtitle: l10n.historyDetailLoadingSubtitle,
-        headerIcon: Icons.history_edu_rounded,
         children: const [Center(child: CircularProgressIndicator())],
       ),
       error: (_, _) => AppPageScaffold(
-        title: l10n.historyDetailNotFoundTitle,
-        subtitle: l10n.historyDetailNotFoundSubtitle,
-        headerIcon: Icons.history_toggle_off_rounded,
-        children: [Text(l10n.historyDetailNotFoundSubtitle)],
+        title: l10n.historyArchiveTitle,
+        children: [
+          PremiumCard(child: Text(l10n.historyDetailNotFoundSubtitle)),
+        ],
       ),
     );
   }
@@ -284,7 +280,7 @@ class _BulletList extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 6),
-                    child: Icon(Icons.circle, size: 6),
+                    child: Icon(Icons.circle_rounded, size: 6),
                   ),
                   const SizedBox(width: 8),
                   Expanded(child: Text(item)),

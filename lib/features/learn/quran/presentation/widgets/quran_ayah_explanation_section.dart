@@ -86,62 +86,73 @@ class QuranAyahExplanationSection extends StatelessWidget {
 
     return Container(
       decoration: surfaceStyle.decoration(radius: 18, includeShadow: true),
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          key: ValueKey(
-            'quran-ayah-explanation-${explanation.surahNumber}:${explanation.ayahNumber}-${explanation.requestedDetail.name}-${studyMode?.name ?? 'none'}',
-          ),
-          tilePadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-          childrenPadding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-          initiallyExpanded: initiallyExpanded,
-          title: Text(
-            l10n.quranAyahExplanationTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          subtitle: Padding(
-            padding: const EdgeInsets.only(top: 6),
-            child: Text(
-              explanation.previewText,
-              maxLines: initiallyExpanded ? 3 : 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                height: 1.45,
-                color: contentColors.subtleForeground,
+      // The ExpansionTile's ListTile paints ink on the nearest Material;
+      // without this transparent layer it would try to paint on one above
+      // the decorated box and debug builds assert.
+      child: Material(
+        type: MaterialType.transparency,
+        borderRadius: BorderRadius.circular(18),
+        clipBehavior: Clip.antiAlias,
+        child: Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            key: ValueKey(
+              'quran-ayah-explanation-${explanation.surahNumber}:${explanation.ayahNumber}-${explanation.requestedDetail.name}-${studyMode?.name ?? 'none'}',
+            ),
+            tilePadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 2,
+            ),
+            childrenPadding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+            initiallyExpanded: initiallyExpanded,
+            title: Text(
+              l10n.quranAyahExplanationTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                explanation.previewText,
+                maxLines: initiallyExpanded ? 3 : 2,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  height: 1.45,
+                  color: contentColors.subtleForeground,
+                ),
               ),
             ),
-          ),
-          trailing: _DetailChip(
-            label: _detailLabel(l10n, explanation.resolvedDetail),
-          ),
-          children: [
-            _ExplanationBody(
-              title: null,
-              body: explanation.body,
-              foreground: contentColors.foreground,
-              subtleForeground: contentColors.subtleForeground,
-              captionForeground: contentColors.captionForeground,
-              bodyMaxLines: null,
-              detailLabel: null,
-              keyLessons: showKeyLessons
-                  ? explanation.keyLessons
-                  : const <String>[],
-              keyLessonsTitle: l10n.quranAyahExplanationKeyLessonsTitle,
-              renderKeyLessonsAsChips: true,
-              reflectionPrompt: showReflectionPrompt
-                  ? explanation.reflectionPrompt
-                  : null,
-              reflectionPromptTitle:
-                  l10n.quranAyahExplanationReflectionPromptTitle,
-              sourceLine: showSources
-                  ? explanation.usedFallback
-                        ? l10n.quranAyahExplanationFallbackSourceLine
-                        : l10n.quranAyahExplanationTrustedSourceLine
-                  : null,
+            trailing: _DetailChip(
+              label: _detailLabel(l10n, explanation.resolvedDetail),
             ),
-          ],
+            children: [
+              _ExplanationBody(
+                title: null,
+                body: explanation.body,
+                foreground: contentColors.foreground,
+                subtleForeground: contentColors.subtleForeground,
+                captionForeground: contentColors.captionForeground,
+                bodyMaxLines: null,
+                detailLabel: null,
+                keyLessons: showKeyLessons
+                    ? explanation.keyLessons
+                    : const <String>[],
+                keyLessonsTitle: l10n.quranAyahExplanationKeyLessonsTitle,
+                renderKeyLessonsAsChips: true,
+                reflectionPrompt: showReflectionPrompt
+                    ? explanation.reflectionPrompt
+                    : null,
+                reflectionPromptTitle:
+                    l10n.quranAyahExplanationReflectionPromptTitle,
+                sourceLine: showSources
+                    ? explanation.usedFallback
+                          ? l10n.quranAyahExplanationFallbackSourceLine
+                          : l10n.quranAyahExplanationTrustedSourceLine
+                    : null,
+              ),
+            ],
+          ),
         ),
       ),
     );

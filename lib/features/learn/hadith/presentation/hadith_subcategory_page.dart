@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_expandable_section.dart';
@@ -39,9 +40,7 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
     );
     if (collection == null) {
       return AppPageScaffold(
-        headerIcon: Icons.collections_bookmark_rounded,
         title: l10n.hadithCollectionPageTitle,
-        subtitle: l10n.hadithCollectionNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithCollectionNotFoundBody))],
       );
     }
@@ -84,7 +83,6 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.collections_bookmark_rounded,
       title: collection.title,
       subtitle: collection.subtitle,
       bodySlivers: [
@@ -134,21 +132,16 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
                   padding: EdgeInsets.only(
                     bottom: index == visibleEntries.length - 1 ? 0 : 10,
                   ),
-                  child: PremiumCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(entry.title),
-                      subtitle: Text(
-                        l10n.hadithCollectionEntrySubtitle(
-                          entry.source,
-                          entry.grading,
-                        ),
-                      ),
-                      onTap: () => pushHadithLessonDetail(
-                        context,
-                        lessonId: entry.id,
-                        laneContext: laneContext,
-                      ),
+                  child: CompactListTile(
+                    title: entry.title,
+                    subtitle: l10n.hadithCollectionEntrySubtitle(
+                      entry.source,
+                      entry.grading,
+                    ),
+                    onTap: () => pushHadithLessonDetail(
+                      context,
+                      lessonId: entry.id,
+                      laneContext: laneContext,
                     ),
                   ),
                 );
@@ -182,15 +175,10 @@ class _HadithCollectionPageState extends ConsumerState<HadithCollectionPage> {
                   .map(
                     (subcategory) => Padding(
                       padding: const EdgeInsets.only(bottom: 10),
-                      child: PremiumCard(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(subcategory.title),
-                          subtitle: Text(
-                            l10n.hadithCollectionSubcategoryCount(
-                              subcategory.entryCount,
-                            ),
-                          ),
+                      child: CompactListTile(
+                        title: subcategory.title,
+                        subtitle: l10n.hadithCollectionSubcategoryCount(
+                          subcategory.entryCount,
                         ),
                       ),
                     ),

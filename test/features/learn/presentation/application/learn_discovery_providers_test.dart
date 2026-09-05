@@ -79,6 +79,8 @@ void main() {
           'quranExplorer',
           'quranLearningPaths',
           'quranDailyCompanion',
+          // Arabic learning folded into Qur'an & Sunnah in Phase 4.
+          'quranArabic',
         ),
       );
     },

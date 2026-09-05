@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_backgrounds.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'quran_ayah_insights_paths_page.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../application/quran_guided_learning_paths_provider.dart';
@@ -16,6 +18,7 @@ import 'quran_summary_theme.dart';
 import 'widgets/quran_feature_components.dart';
 import 'widgets/quran_feature_header.dart';
 import 'widgets/quran_reflection_capture.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class QuranLearningPathsPage extends ConsumerStatefulWidget {
   const QuranLearningPathsPage({super.key});
@@ -44,7 +47,7 @@ class _QuranLearningPathsPageState
         .toList(growable: false);
 
     return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: l10n.quranLearningPathsTitle,
       subtitle: l10n.quranLearningPathsSubtitle,
       backgroundOverlayColor: palette.pageOverlay,
@@ -109,7 +112,7 @@ class _QuranLearningPathsPageState
             title: l10n.quranPathwaysEmptyTitle,
             subtitle: l10n.quranPathwaysEmptySubtitle,
             palette: palette,
-            icon: Icons.route_outlined,
+            icon: AppIcons.path,
           )
         else
           QuranFeatureSectionCard(
@@ -126,6 +129,8 @@ class _QuranLearningPathsPageState
               ],
             ),
           ),
+        const SizedBox(height: 20),
+        const QuranAyahInsightPathsSection(),
       ],
     );
   }
@@ -143,7 +148,7 @@ class QuranLearningPathDetailPage extends ConsumerWidget {
     final path = ref.watch(quranGuidedLearningPathByIdProvider(pathId));
     if (path == null) {
       return AppPageScaffold(
-        headerIcon: Icons.route_rounded,
+        headerIcon: AppIcons.path,
         title: l10n.quranLearningPathsTitle,
         subtitle: l10n.quranLearningPathsSubtitle,
         backgroundOverlayColor: palette.pageOverlay,
@@ -152,7 +157,7 @@ class QuranLearningPathDetailPage extends ConsumerWidget {
             title: l10n.quranPathwaysMissingTitle,
             subtitle: l10n.quranPathwaysMissingSubtitle,
             palette: palette,
-            icon: Icons.route_outlined,
+            icon: AppIcons.path,
           ),
         ],
       );
@@ -170,7 +175,7 @@ class QuranLearningPathDetailPage extends ConsumerWidget {
         .firstWhere((item) => item != null, orElse: () => null);
 
     return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: localizedQuranLearningPathTitle(l10n, path.id),
       subtitle: localizedQuranLearningPathSubtitle(l10n, path.id),
       backgroundOverlayColor: palette.pageOverlay,
@@ -252,7 +257,7 @@ class QuranLearningPathDetailPage extends ConsumerWidget {
                     icon: Icon(
                       isStarted
                           ? Icons.play_circle_outline_rounded
-                          : Icons.route_rounded,
+                          : AppIcons.path,
                     ),
                     label: Text(
                       isStarted
@@ -366,7 +371,7 @@ class _QuranLearningPathStopDetailPageState
     final path = ref.watch(quranGuidedLearningPathByIdProvider(widget.pathId));
     if (path == null) {
       return AppPageScaffold(
-        headerIcon: Icons.route_rounded,
+        headerIcon: AppIcons.path,
         title: l10n.quranLearningPathsTitle,
         subtitle: l10n.quranLearningPathsSubtitle,
         backgroundOverlayColor: palette.pageOverlay,
@@ -375,7 +380,7 @@ class _QuranLearningPathStopDetailPageState
             title: l10n.quranPathwaysMissingTitle,
             subtitle: l10n.quranPathwaysMissingSubtitle,
             palette: palette,
-            icon: Icons.route_outlined,
+            icon: AppIcons.path,
           ),
         ],
       );
@@ -384,7 +389,7 @@ class _QuranLearningPathStopDetailPageState
     final stop = _findStop(path, widget.stopId);
     if (stop == null) {
       return AppPageScaffold(
-        headerIcon: Icons.route_rounded,
+        headerIcon: AppIcons.path,
         title: localizedQuranLearningPathTitle(l10n, path.id),
         subtitle: localizedQuranLearningPathSubtitle(l10n, path.id),
         backgroundOverlayColor: palette.pageOverlay,
@@ -393,7 +398,7 @@ class _QuranLearningPathStopDetailPageState
             title: l10n.quranPathwaysStopMissingTitle,
             subtitle: l10n.quranPathwaysStopMissingSubtitle,
             palette: palette,
-            icon: Icons.route_outlined,
+            icon: AppIcons.path,
           ),
         ],
       );
@@ -412,7 +417,7 @@ class _QuranLearningPathStopDetailPageState
         : stop.ayahReferences.first;
 
     return AppPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.path,
       title: localizedQuranLearningPathTitle(l10n, path.id),
       subtitle: localizedQuranLearningPathStepTitle(l10n, stop.id),
       backgroundOverlayColor: palette.pageOverlay,
@@ -834,14 +839,11 @@ class _ProgressStrip extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(999),
-          child: LinearProgressIndicator(
-            value: progress.clamp(0, 1),
-            minHeight: 8,
-            backgroundColor: palette.progressTrack,
-            valueColor: AlwaysStoppedAnimation<Color>(palette.progressFill),
-          ),
+        ProgressBar(
+          value: progress.clamp(0, 1),
+          height: 8,
+          color: palette.progressFill,
+          backgroundColor: palette.progressTrack,
         ),
       ],
     );
@@ -896,10 +898,9 @@ void _openLinkedDestination(
 IconData _iconForStepKind(QuranGuidedLearningStepKind kind) {
   return switch (kind) {
     QuranGuidedLearningStepKind.surahSummary => Icons.auto_stories_rounded,
-    QuranGuidedLearningStepKind.themeDetail => Icons.account_tree_outlined,
-    QuranGuidedLearningStepKind.ayahReflection => Icons.menu_book_outlined,
-    QuranGuidedLearningStepKind.guidedReflection =>
-      Icons.self_improvement_rounded,
+    QuranGuidedLearningStepKind.themeDetail => Icons.account_tree_rounded,
+    QuranGuidedLearningStepKind.ayahReflection => Icons.menu_book_rounded,
+    QuranGuidedLearningStepKind.guidedReflection => AppIcons.reflection,
     QuranGuidedLearningStepKind.readerEntry => Icons.menu_book_rounded,
     QuranGuidedLearningStepKind.prophetStoryAnchor =>
       Icons.travel_explore_rounded,

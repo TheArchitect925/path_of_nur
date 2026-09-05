@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
@@ -16,6 +17,7 @@ import '../application/crossword_progress_provider.dart';
 import '../application/crossword_repository.dart';
 import '../domain/crossword_models.dart';
 import 'crossword_ui_helpers.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class CrosswordHomePage extends ConsumerWidget {
   const CrosswordHomePage({super.key});
@@ -35,7 +37,7 @@ class CrosswordHomePage extends ConsumerWidget {
     );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.grid_view_rounded,
+      headerIcon: AppIcons.crossword,
       title: l10n.crosswordHomeTitle,
       subtitle: l10n.crosswordHomeSubtitle,
       children: [
@@ -52,7 +54,7 @@ class CrosswordHomePage extends ConsumerWidget {
                 Text(
                   l10n.crosswordLoadErrorSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -238,7 +240,9 @@ class CrosswordHomePage extends ConsumerWidget {
                               ),
                             ),
                             style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(color: AppColors.onSurfaceSubtle),
+                                ?.copyWith(
+                                  color: context.palette.onSurfaceSubtle,
+                                ),
                           ),
                         ],
                         const SizedBox(height: 12),
@@ -507,9 +511,9 @@ class _ContinuePuzzleCard extends StatelessWidget {
               puzzle.clues.length.toString(),
               progress.solvedClueIds.length.toString(),
             ),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
@@ -565,9 +569,9 @@ class _OverviewCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 10),
           Wrap(
@@ -598,13 +602,7 @@ class _OverviewCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 8,
-              value: summary.completionFraction,
-            ),
-          ),
+          ProgressBar(value: summary.completionFraction, height: 8),
           if (onOpen != null) ...[
             const SizedBox(height: 10),
             FilledButton.tonalIcon(
@@ -680,18 +678,12 @@ class _PackCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             crosswordPackSubtitle(l10n, pack),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
-          ),
-          const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 8,
-              value: summary.completionFraction,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: context.palette.onSurfaceSubtle,
             ),
           ),
+          const SizedBox(height: 10),
+          ProgressBar(value: summary.completionFraction, height: 8),
           const SizedBox(height: 10),
           Text(
             l10n.crosswordPackProgressLabel(
@@ -759,7 +751,7 @@ class _DailyHistoryRow extends StatelessWidget {
               Text(
                 dateKey,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 2),
@@ -773,7 +765,7 @@ class _DailyHistoryRow extends StatelessWidget {
               Text(
                 themeLabel,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                 ),
               ),
             ],

@@ -10,6 +10,8 @@ import '../../quran/application/quran_reference_graph_provider.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
 import '../domain/divine_life_models.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class DivineLifeLessonDetailPage extends ConsumerStatefulWidget {
   const DivineLifeLessonDetailPage({super.key, required this.lessonId});
@@ -52,10 +54,8 @@ class _DivineLifeLessonDetailPageState
   Widget build(BuildContext context) {
     final lesson = divineLifeLessonById(widget.lessonId);
     if (lesson == null) {
-      return const AppPageScaffold(
-        headerIcon: Icons.menu_book_rounded,
-        title: 'Divine Life Lessons',
-        subtitle: 'Lesson not found',
+      return AppPageScaffold(
+        title: AppLocalizations.of(context).learnCategoryDivineLifeLessonsTitle,
         children: [PremiumCard(child: Text('This lesson could not be found.'))],
       );
     }
@@ -77,7 +77,6 @@ class _DivineLifeLessonDetailPageState
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_stories_rounded,
       title: lesson.title,
       subtitle: lesson.quranReference,
       children: [
@@ -137,7 +136,7 @@ class _DivineLifeLessonDetailPageState
                       'divineLifeReflection',
                       queryParameters: {'lessonId': lesson.id},
                     ),
-                    icon: const Icon(Icons.self_improvement_rounded),
+                    icon: const Icon(AppIcons.reflection),
                     label: const Text('Reflection mode'),
                   ),
                 ],
@@ -239,7 +238,6 @@ class _DivineLifeLessonDetailPageState
                       contentPadding: EdgeInsets.zero,
                       title: Text(item.title),
                       subtitle: Text(item.quranReference),
-                      trailing: const Icon(Icons.chevron_right_rounded),
                       onTap: () => context.pushNamed(
                         'lifeLessonDetail',
                         pathParameters: {'lessonId': item.id},

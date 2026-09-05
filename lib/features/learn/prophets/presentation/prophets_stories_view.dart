@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_image_resolver.dart';
@@ -95,11 +95,13 @@ class _StoryCard extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: prophet.eraGroup.tint.withValues(alpha: 0.16),
                           border: Border.all(
-                            color: AppColors.accentGold.withValues(alpha: 0.38),
+                            color: context.palette.accent.withValues(
+                              alpha: 0.38,
+                            ),
                           ),
                         ),
                         child: Icon(
-                          Icons.auto_stories,
+                          Icons.auto_stories_rounded,
                           color: prophet.eraGroup.tint,
                           size: 20,
                         ),
@@ -114,13 +116,15 @@ class _StoryCard extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleMedium
                                   ?.copyWith(
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.onSurface,
+                                    color: context.palette.onSurface,
                                   ),
                             ),
                             Text(
                               prophet.honoredArabicName,
                               style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(color: AppColors.onSurfaceSubtle),
+                                  ?.copyWith(
+                                    color: context.palette.onSurfaceSubtle,
+                                  ),
                             ),
                           ],
                         ),
@@ -142,7 +146,7 @@ class _StoryCard extends StatelessWidget {
                   Text(
                     prophet.shortSummary,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.onSurface,
+                      color: context.palette.onSurface,
                     ),
                   ),
                 ],
@@ -329,14 +333,14 @@ class _MetaPill extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.32),
+        color: context.palette.surface.withValues(alpha: 0.32),
         border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
+          color: context.palette.accentSoft.withValues(alpha: 0.34),
         ),
       ),
       child: Text(
         text,
-        style: const TextStyle(fontSize: 11.5, color: AppColors.onSurface),
+        style: TextStyle(fontSize: 11.5, color: context.palette.onSurface),
       ),
     );
   }

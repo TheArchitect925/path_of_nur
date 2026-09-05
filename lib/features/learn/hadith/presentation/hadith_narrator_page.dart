@@ -21,9 +21,7 @@ class HadithNarratorPage extends ConsumerWidget {
     final detail = ref.watch(hadithNarratorDetailProvider(narratorId));
     if (detail == null) {
       return AppPageScaffold(
-        headerIcon: Icons.person_outline_rounded,
         title: l10n.hadithPageTitle,
-        subtitle: l10n.hadithNarratorNotFoundSubtitle,
         children: [PremiumCard(child: Text(l10n.hadithNarratorNotFoundBody))],
       );
     }
@@ -40,9 +38,7 @@ class HadithNarratorPage extends ConsumerWidget {
     );
 
     return AppPageScaffold(
-      headerIcon: Icons.person_outline_rounded,
       title: detail.displayName,
-      subtitle: l10n.hadithNarratorPageSubtitle,
       bodySlivers: [
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

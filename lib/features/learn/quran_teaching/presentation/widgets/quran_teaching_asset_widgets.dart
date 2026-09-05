@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_palette.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../application/quran_teaching_asset_resolver.dart';
 import '../../domain/quran_teaching_models.dart';
@@ -76,8 +76,8 @@ class QuranTeachingVisualAssetTile extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            color: AppColors.surfaceSoft.withValues(alpha: 0.6),
-            border: Border.all(color: AppColors.surfaceSoft),
+            color: context.palette.surfaceSoft.withValues(alpha: 0.6),
+            border: Border.all(color: context.palette.surfaceSoft),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -107,7 +107,7 @@ class QuranTeachingVisualAssetTile extends StatelessWidget {
                       Text(
                         hint,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
+                          color: context.palette.onSurfaceSubtle,
                         ),
                       ),
                   ],
@@ -134,7 +134,7 @@ class _FallbackIcon extends StatelessWidget {
       height: compact ? 32 : 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColors.surfaceSoft,
+        color: context.palette.surfaceSoft,
       ),
       child: Icon(icon, size: compact ? 18 : 22),
     );

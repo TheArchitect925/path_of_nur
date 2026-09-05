@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
@@ -31,7 +32,6 @@ class FoundationsPathNextStepsPage extends ConsumerWidget {
         .toList(growable: false);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.alt_route_rounded,
       title: l10n.learnFoundationsNextStepsTitle,
       subtitle: l10n.learnFoundationsNextStepsSubtitle,
       children: [
@@ -185,15 +185,12 @@ class _NextPathCard extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             if (progress.isStarted) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: totalCount == 0 ? 0 : completedCount / totalCount,
-                  minHeight: 8,
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest,
-                ),
+              ProgressBar(
+                value: totalCount == 0 ? 0 : completedCount / totalCount,
+                height: 8,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
               ),
               const SizedBox(height: 6),
             ],

@@ -82,6 +82,7 @@ void main() {
     final modules = tvosContentModulesForRoute('/worship/dhikr');
     expect(modules.map((module) => module.sectionKey), <String>[
       'dhikr.modes',
+      'dhikr.routines',
       'dhikr.guidedFlow',
       'dhikr.companion',
     ]);
@@ -166,7 +167,7 @@ void main() {
       expect(gamesModules, hasLength(3));
       expect(profilesModules, hasLength(3));
       expect(prayerModules, hasLength(3));
-      expect(dhikrModules, hasLength(3));
+      expect(dhikrModules, hasLength(4));
       expect(kidsModules, hasLength(3));
       expect(learnModules, hasLength(8));
       expect(

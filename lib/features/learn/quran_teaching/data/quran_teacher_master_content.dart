@@ -380,7 +380,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'apple',
         visualHint: 'Apple helps you remember Alif.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+            'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
         visualIcon: Icons.filter_vintage_rounded,
       ),
       'ba': _QuranTeacherLetterPresentationSeed(
@@ -391,7 +391,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'ball',
         visualHint: 'Ball helps you remember Ba.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/ba_ball.png',
+            'assets/images/quran_teacher/visual_mode/letters/ba_ball.webp',
         visualIcon: Icons.sports_baseball_rounded,
       ),
       'ta': _QuranTeacherLetterPresentationSeed(
@@ -402,7 +402,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'tree',
         visualHint: 'Tree helps you remember Ta.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/ta_tree.png',
+            'assets/images/quran_teacher/visual_mode/letters/ta_tree.webp',
         visualIcon: Icons.park_rounded,
       ),
       'tha': _QuranTeacherLetterPresentationSeed(
@@ -419,7 +419,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'juice',
         visualHint: 'Juice helps you remember Jeem.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/jeem_juice.png',
+            'assets/images/quran_teacher/visual_mode/letters/jeem_juice.webp',
         visualIcon: Icons.local_drink_rounded,
       ),
       'ha': _QuranTeacherLetterPresentationSeed(
@@ -469,7 +469,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'sun',
         visualHint: 'Sun helps you remember Seen.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/seen_sun.png',
+            'assets/images/quran_teacher/visual_mode/letters/seen_sun.webp',
         visualIcon: Icons.wb_sunny_rounded,
       ),
       'sheen': _QuranTeacherLetterPresentationSeed(
@@ -546,8 +546,8 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'moon',
         visualHint: 'Moon helps you remember Meem.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
-        visualIcon: Icons.nightlight_round,
+            'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
+        visualIcon: Icons.nightlight_round_rounded,
       ),
       'noon': _QuranTeacherLetterPresentationSeed(
         simpleExplanation: 'Noon makes an n sound.',
@@ -557,7 +557,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'nest',
         visualHint: 'Nest helps you remember Noon.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
+            'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
         visualIcon: Icons.egg_alt_rounded,
       ),
       'ha2': _QuranTeacherLetterPresentationSeed(
@@ -576,7 +576,7 @@ const _quranTeacherLetterPresentationByCanonicalId =
         visualModeAnchorId: 'water',
         visualHint: 'Water helps you remember Waw.',
         visualImageAsset:
-            'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
+            'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
         visualIcon: Icons.water_drop_rounded,
       ),
       'ya': _QuranTeacherLetterPresentationSeed(
@@ -1316,7 +1316,7 @@ final quranTeacherFirst100Words = <QuranTeacherWordSeed>[
     audioAsset: 'assets/audio/quran_teacher/words/shams.mp3',
     category: 'creation',
     exampleVerse: 'Qur’an 91:1',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/words/shams_sun.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/words/shams_sun.webp',
   ),
   QuranTeacherWordSeed(
     id: 'word_qamar',
@@ -1326,7 +1326,7 @@ final quranTeacherFirst100Words = <QuranTeacherWordSeed>[
     audioAsset: 'assets/audio/quran_teacher/words/qamar.mp3',
     category: 'creation',
     exampleVerse: 'Qur’an 54:1',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/words/qamar_moon.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/words/qamar_moon.webp',
   ),
   QuranTeacherWordSeed(
     id: 'word_layl',
@@ -1354,7 +1354,7 @@ final quranTeacherFirst100Words = <QuranTeacherWordSeed>[
     audioAsset: 'assets/audio/quran_teacher/words/maa.mp3',
     category: 'creation',
     exampleVerse: 'Qur’an 2:22',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/words/maa_water.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/words/maa_water.webp',
   ),
   QuranTeacherWordSeed(
     id: 'word_bahr',
@@ -1876,7 +1876,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'apple',
     visualHint: 'Apple helps you remember Alif.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+        'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
     visualIcon: Icons.filter_vintage_rounded,
   ),
   QuranTeacherLetterSeed(
@@ -1892,7 +1892,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'ball',
     visualHint: 'Ball helps you remember Ba.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/ba_ball.png',
+        'assets/images/quran_teacher/visual_mode/letters/ba_ball.webp',
     visualIcon: Icons.sports_baseball_rounded,
   ),
   QuranTeacherLetterSeed(
@@ -1908,7 +1908,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'tree',
     visualHint: 'Tree helps you remember Ta.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/ta_tree.png',
+        'assets/images/quran_teacher/visual_mode/letters/ta_tree.webp',
     visualIcon: Icons.park_rounded,
   ),
   QuranTeacherLetterSeed(
@@ -1924,7 +1924,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'juice',
     visualHint: 'Juice helps you remember Jeem.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/jeem_juice.png',
+        'assets/images/quran_teacher/visual_mode/letters/jeem_juice.webp',
     visualIcon: Icons.local_drink_rounded,
   ),
   QuranTeacherLetterSeed(
@@ -1940,7 +1940,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'sun',
     visualHint: 'Sun helps you remember Seen.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/seen_sun.png',
+        'assets/images/quran_teacher/visual_mode/letters/seen_sun.webp',
     visualIcon: Icons.wb_sunny_rounded,
   ),
   QuranTeacherLetterSeed(
@@ -1956,8 +1956,8 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'moon',
     visualHint: 'Moon helps you remember Meem.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
-    visualIcon: Icons.nightlight_round,
+        'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
+    visualIcon: Icons.nightlight_round_rounded,
   ),
   QuranTeacherLetterSeed(
     id: 'visual_noon',
@@ -1972,7 +1972,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'nest',
     visualHint: 'Nest helps you remember Noon.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
+        'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
     visualIcon: Icons.egg_alt_rounded,
   ),
   QuranTeacherLetterSeed(
@@ -1988,7 +1988,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     visualModeAnchorId: 'water',
     visualHint: 'Water helps you remember Waw.',
     visualImageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
+        'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
     visualIcon: Icons.water_drop_rounded,
   ),
 ];
@@ -2001,7 +2001,7 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     meaning: 'Letter Alif',
     audioAsset: 'assets/audio/quran_teacher/letters/alif.mp3',
     imageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+        'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
     visualHint: 'Apple',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_1',
@@ -2012,7 +2012,7 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Ba',
     meaning: 'Letter Ba',
     audioAsset: 'assets/audio/quran_teacher/letters/ba.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/ba_ball.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/ba_ball.webp',
     visualHint: 'Ball',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_1',
@@ -2023,7 +2023,7 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Ta',
     meaning: 'Letter Ta',
     audioAsset: 'assets/audio/quran_teacher/letters/ta.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/ta_tree.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/ta_tree.webp',
     visualHint: 'Tree',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_1',
@@ -2044,7 +2044,7 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     meaning: 'Letter Jeem',
     audioAsset: 'assets/audio/quran_teacher/letters/jeem.mp3',
     imageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/jeem_juice.png',
+        'assets/images/quran_teacher/visual_mode/letters/jeem_juice.webp',
     visualHint: 'Juice',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_1',
@@ -2073,7 +2073,7 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Seen',
     meaning: 'Letter Seen',
     audioAsset: 'assets/audio/quran_teacher/letters/seen.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/seen_sun.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/seen_sun.webp',
     visualHint: 'Sun',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_3',
@@ -2084,7 +2084,8 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Meem',
     meaning: 'Letter Meem',
     audioAsset: 'assets/audio/quran_teacher/letters/meem.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
     visualHint: 'Moon',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_4',
@@ -2095,7 +2096,8 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Noon',
     meaning: 'Letter Noon',
     audioAsset: 'assets/audio/quran_teacher/letters/noon.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
     visualHint: 'Nest',
     moduleId: 'foundations',
     lessonId: 'alphabet_letters_4',
@@ -2283,7 +2285,7 @@ final quranTeacherListenItemSeeds = <QuranTeacherListenItemSeed>[
     transliteration: 'Maa',
     meaning: 'Water',
     audioAsset: 'assets/audio/quran_teacher/words/maa.mp3',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/words/maa_water.png',
+    imageAsset: 'assets/images/quran_teacher/visual_mode/words/maa_water.webp',
     visualHint: 'Water',
     moduleId: 'recognize_words',
     lessonId: 'creation_signs_words_intro',
@@ -2483,35 +2485,35 @@ const quranTeacherQuizSeeds = <QuranTeacherQuizSeed>[
     quizType: QuranTeachingQuizType.matchPictureToLetter,
     prompt: 'Which letter matches the Apple memory aid?',
     imageAsset:
-        'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+        'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
     options: <QuranTeachingQuizOption>[
       QuranTeachingQuizOption(
         id: 'alif',
         label: 'Alif',
         arabic: 'ا',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/alif_apple.png',
+            'assets/images/quran_teacher/visual_mode/letters/alif_apple.webp',
       ),
       QuranTeachingQuizOption(
         id: 'ba',
         label: 'Ba',
         arabic: 'ب',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/ba_ball.png',
+            'assets/images/quran_teacher/visual_mode/letters/ba_ball.webp',
       ),
       QuranTeachingQuizOption(
         id: 'ta',
         label: 'Ta',
         arabic: 'ت',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/ta_tree.png',
+            'assets/images/quran_teacher/visual_mode/letters/ta_tree.webp',
       ),
       QuranTeachingQuizOption(
         id: 'jeem',
         label: 'Jeem',
         arabic: 'ج',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/jeem_juice.png',
+            'assets/images/quran_teacher/visual_mode/letters/jeem_juice.webp',
       ),
     ],
     correctAnswerIds: <String>['alif'],
@@ -2521,35 +2523,36 @@ const quranTeacherQuizSeeds = <QuranTeacherQuizSeed>[
     quizId: 'quiz_visual_moon_meem',
     quizType: QuranTeachingQuizType.matchPictureToLetter,
     prompt: 'Which letter matches the Moon memory aid?',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
     options: <QuranTeachingQuizOption>[
       QuranTeachingQuizOption(
         id: 'meem',
         label: 'Meem',
         arabic: 'م',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
+            'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
       ),
       QuranTeachingQuizOption(
         id: 'noon',
         label: 'Noon',
         arabic: 'ن',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
+            'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
       ),
       QuranTeachingQuizOption(
         id: 'waw',
         label: 'Waw',
         arabic: 'و',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
+            'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
       ),
       QuranTeachingQuizOption(
         id: 'seen',
         label: 'Seen',
         arabic: 'س',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/seen_sun.png',
+            'assets/images/quran_teacher/visual_mode/letters/seen_sun.webp',
       ),
     ],
     correctAnswerIds: <String>['meem'],
@@ -2565,25 +2568,25 @@ const quranTeacherQuizSeeds = <QuranTeacherQuizSeed>[
         id: 'ball',
         label: 'Ball',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/ba_ball.png',
+            'assets/images/quran_teacher/visual_mode/letters/ba_ball.webp',
       ),
       QuranTeachingQuizOption(
         id: 'tree',
         label: 'Tree',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/ta_tree.png',
+            'assets/images/quran_teacher/visual_mode/letters/ta_tree.webp',
       ),
       QuranTeachingQuizOption(
         id: 'sun',
         label: 'Sun',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/seen_sun.png',
+            'assets/images/quran_teacher/visual_mode/letters/seen_sun.webp',
       ),
       QuranTeachingQuizOption(
         id: 'moon',
         label: 'Moon',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
+            'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
       ),
     ],
     correctAnswerIds: <String>['ball'],
@@ -2699,35 +2702,36 @@ const quranTeacherQuizSeeds = <QuranTeacherQuizSeed>[
     quizId: 'quiz_visual_water_waw',
     quizType: QuranTeachingQuizType.matchPictureToLetter,
     prompt: 'Which letter matches the Water memory aid?',
-    imageAsset: 'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
+    imageAsset:
+        'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
     options: <QuranTeachingQuizOption>[
       QuranTeachingQuizOption(
         id: 'waw',
         label: 'Waw',
         arabic: 'و',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/waw_water.png',
+            'assets/images/quran_teacher/visual_mode/letters/waw_water.webp',
       ),
       QuranTeachingQuizOption(
         id: 'noon',
         label: 'Noon',
         arabic: 'ن',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/noon_nest.png',
+            'assets/images/quran_teacher/visual_mode/letters/noon_nest.webp',
       ),
       QuranTeachingQuizOption(
         id: 'meem',
         label: 'Meem',
         arabic: 'م',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/meem_moon.png',
+            'assets/images/quran_teacher/visual_mode/letters/meem_moon.webp',
       ),
       QuranTeachingQuizOption(
         id: 'ba',
         label: 'Ba',
         arabic: 'ب',
         imageAssetPath:
-            'assets/images/quran_teacher/visual_mode/letters/ba_ball.png',
+            'assets/images/quran_teacher/visual_mode/letters/ba_ball.webp',
       ),
     ],
     correctAnswerIds: <String>['waw'],

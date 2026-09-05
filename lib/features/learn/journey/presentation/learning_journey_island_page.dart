@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_palette.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/contextual_quran_quotes.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/quran_verse_content.dart';
-import '../../../../shared/content/learning_quote.dart';
 import '../../glossary/domain/glossary_models.dart';
 import '../../glossary/presentation/widgets/glossary_widgets.dart';
 import '../../presentation/widgets/learn_cards.dart';
 import '../../presentation/widgets/learn_contained_state_page.dart';
-import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_localized_metadata.dart';
@@ -22,6 +21,7 @@ import '../data/learning_journey_registry.dart';
 import '../../shared/application/learn_release_gate.dart';
 import '../domain/learning_journey_models.dart';
 import 'widgets/learning_journey_widgets.dart';
+import '../../../../core/theme/app_icons.dart';
 
 class LearningJourneyIslandPage extends ConsumerWidget {
   const LearningJourneyIslandPage({super.key, required this.islandId});
@@ -60,7 +60,6 @@ class LearningJourneyIslandPage extends ConsumerWidget {
     }
     if (!isProductionSafeLearningJourneyIsland(island)) {
       return LearnContainedStatePage(
-        headerIcon: island.icon,
         title: localizedIslandTitle(context, island),
         subtitle: l10n.learnContainedStateIslandSubtitle,
         body: l10n.learnContainedStateBody,
@@ -78,14 +77,16 @@ class LearningJourneyIslandPage extends ConsumerWidget {
         island,
         kidsMode: kidsUi.enabled,
       ),
-      quote: buildLearningCompactQuote(),
       children: [
         if (visibilityPolicy.isChildProfile && journeys.isEmpty)
           _wrapIbadahContainer(
             islandId: island.id,
             child: Text(
               l10n.familyLearningIslandReducedSubtitle,
-              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+              style: TextStyle(
+                color: context.palette.onSurfaceSubtle,
+                height: 1.35,
+              ),
             ),
           ),
         if (island.id != 'core-knowledge')
@@ -131,7 +132,7 @@ class LearningJourneyIslandPage extends ConsumerWidget {
             child: LearnActionCard(
               title: l10n.wuduPracticeCardTitle,
               subtitle: l10n.wuduPracticeCardSubtitle,
-              icon: Icons.water_drop_outlined,
+              icon: Icons.water_drop_rounded,
               onTap: () => context.pushNamed('learnWuduTrainer'),
             ),
           ),
@@ -220,8 +221,8 @@ class LearningJourneyIslandPage extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Text(
                     why,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.35,
                     ),
                   ),
@@ -344,10 +345,12 @@ class _LearningJourneyMissingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LearnHubPageScaffold(
-      headerIcon: Icons.error_outline_rounded,
+      headerIcon: AppIcons.notFound,
       title: title,
       subtitle: subtitle,
-      children: [Text(body, style: TextStyle(color: Color(0xFF675B4E)))],
+      children: [
+        Text(body, style: TextStyle(color: context.palette.onSurfaceSubtle)),
+      ],
     );
   }
 }

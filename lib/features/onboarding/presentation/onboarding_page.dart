@@ -19,6 +19,8 @@ import '../../learn/journey/application/learning_path_provider.dart';
 import '../application/onboarding_preferences_provider.dart';
 import '../application/onboarding_state_provider.dart';
 import '../domain/onboarding_preferences.dart';
+import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_icons.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -337,7 +339,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     style: TextStyle(
                       fontSize: 28,
                       height: 1.6,
-                      fontFamily: 'AmiriQuran',
+                      fontFamily: AppFonts.quranArabic,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -489,8 +491,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 dense: true,
                 leading: Icon(
                   _languageChoice.id == choice.id
-                      ? Icons.radio_button_checked
-                      : Icons.radio_button_unchecked,
+                      ? Icons.radio_button_checked_rounded
+                      : Icons.radio_button_unchecked_rounded,
                   size: 20,
                 ),
                 title: Text(choice.label),
@@ -707,7 +709,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   _previewArabicForHarakat(_harakatChoice),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: 'AmiriQuran',
+                    fontFamily: AppFonts.quranArabic,
                     fontSize: 30 * _arabicTextScale,
                     height: 1.6,
                   ),
@@ -949,7 +951,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             const SizedBox(height: 12),
             const Text(
               'رَبِّ زِدْنِي عِلْمًا',
-              style: TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
+              style: TextStyle(fontSize: 30, fontFamily: AppFonts.quranArabic),
             ),
             const SizedBox(height: 4),
             Text(
@@ -1007,7 +1009,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                                 .read(accountsAuthRepositoryProvider)
                                 .signInWithGoogle(),
                           ),
-                    icon: const Icon(Icons.account_circle_outlined),
+                    icon: const Icon(Icons.account_circle_rounded),
                     label: Text(l10n.accountsSyncContinueWithGoogleAction),
                   ),
                   const SizedBox(height: 12),
@@ -1019,7 +1021,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                                 .read(accountsAuthRepositoryProvider)
                                 .signInWithEmail(),
                           ),
-                    icon: const Icon(Icons.email_outlined),
+                    icon: const Icon(Icons.email_rounded),
                     label: Text(l10n.accountsSyncContinueWithEmailAction),
                   ),
                   const SizedBox(height: 8),
@@ -1126,8 +1128,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               dense: true,
               leading: Icon(
                 entry.key == value
-                    ? Icons.radio_button_checked
-                    : Icons.radio_button_unchecked,
+                    ? Icons.radio_button_checked_rounded
+                    : Icons.radio_button_unchecked_rounded,
                 size: 20,
               ),
               title: Text(entry.value),
@@ -1511,6 +1513,21 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         label: l10n.onboardingLanguageGerman,
         locale: const Locale('de'),
       ),
+      _LanguageChoice(
+        id: 'ar',
+        label: l10n.onboardingLanguageArabic,
+        locale: const Locale('ar'),
+      ),
+      _LanguageChoice(
+        id: 'ur',
+        label: l10n.onboardingLanguageUrdu,
+        locale: const Locale('ur'),
+      ),
+      _LanguageChoice(
+        id: 'fr',
+        label: l10n.onboardingLanguageFrench,
+        locale: const Locale('fr'),
+      ),
     ];
   }
 
@@ -1520,6 +1537,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         return const _LanguageChoice(id: 'en', label: '', locale: Locale('en'));
       case 'de':
         return const _LanguageChoice(id: 'de', label: '', locale: Locale('de'));
+      case 'ar':
+        return const _LanguageChoice(id: 'ar', label: '', locale: Locale('ar'));
+      case 'ur':
+        return const _LanguageChoice(id: 'ur', label: '', locale: Locale('ur'));
+      case 'fr':
+        return const _LanguageChoice(id: 'fr', label: '', locale: Locale('fr'));
       default:
         return const _LanguageChoice(id: 'en', label: '', locale: Locale('en'));
     }
@@ -1545,7 +1568,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       _OnboardingOption(
         id: _growthInterestStrengtheningSalah,
         title: l10n.onboardingInterestStrengtheningSalah,
-        icon: Icons.mosque_rounded,
+        icon: AppIcons.mosque,
       ),
       _OnboardingOption(
         id: _growthInterestDhikrRemembrance,
@@ -1570,12 +1593,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       _OnboardingOption(
         id: _growthInterestPersonalGrowth,
         title: l10n.onboardingInterestPersonalGrowth,
-        icon: Icons.self_improvement_rounded,
+        icon: AppIcons.spiritualGrowth,
       ),
       _OnboardingOption(
         id: _growthInterestDailyInspiration,
         title: l10n.onboardingInterestDailyInspiration,
-        icon: Icons.wb_sunny_outlined,
+        icon: Icons.wb_sunny_rounded,
       ),
     ];
   }
@@ -1612,6 +1635,18 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeChoiceNoorMidnightManuscript;
     case AppThemeMode.noorKids:
       return l10n.settingsThemeChoiceNoorKids;
+    case AppThemeMode.midnight:
+      return l10n.quranReaderAtmosphereMidnight;
+    case AppThemeMode.candlelight:
+      return l10n.quranReaderAtmosphereCandlelight;
+    case AppThemeMode.jummah:
+      return l10n.settingsThemeChoiceJummah;
+    case AppThemeMode.ramadan:
+      return l10n.settingsThemeChoiceRamadan;
+    case AppThemeMode.laylatAlQadr:
+      return l10n.settingsThemeChoiceLaylatAlQadr;
+    case AppThemeMode.eid:
+      return l10n.settingsThemeChoiceEid;
   }
 }
 

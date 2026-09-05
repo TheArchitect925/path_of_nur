@@ -9,6 +9,7 @@ import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../application/quran_ayah_action_provider.dart';
 import '../../application/quran_spiritual_moment_provider.dart';
 import '../../domain/quran_spiritual_moment_models.dart';
+import '../../../../../core/theme/app_palette.dart';
 
 class QuranSpiritualMomentCard extends ConsumerStatefulWidget {
   const QuranSpiritualMomentCard({
@@ -180,7 +181,7 @@ class _QuranSpiritualMomentCardState
     if (widget.useHeroGlassShell) {
       return AppHeroGlassShell(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
-        tintColor: const Color(0xFFE7C98C),
+        tintColor: context.palette.accent,
         surfaceAlphaOverride: 0.2,
         radius: 36,
         borderColor: const Color(0x42FFFFFF),

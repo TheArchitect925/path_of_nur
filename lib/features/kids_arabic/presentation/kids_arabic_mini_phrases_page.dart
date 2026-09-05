@@ -12,6 +12,7 @@ import '../application/kids_arabic_phrases_provider.dart';
 import '../domain/kids_arabic_phrase_models.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import 'kids_arabic_localized_content.dart';
+import '../../../core/theme/app_palette.dart';
 
 class KidsArabicMiniPhrasesPage extends ConsumerStatefulWidget {
   const KidsArabicMiniPhrasesPage({super.key, this.initialPhraseId});
@@ -106,7 +107,6 @@ class _KidsArabicMiniPhrasesPageState
 
     if (activePhrase == null) {
       return LearnHubPageScaffold(
-        headerIcon: Icons.chat_bubble_outline_rounded,
         title: l10n.kidsArabicMiniPhrasesTitle,
         subtitle: l10n.kidsArabicMiniPhrasesSubtitle,
         children: [Text(l10n.kidsArabicMiniPhrasesEmptyBody)],
@@ -134,7 +134,6 @@ class _KidsArabicMiniPhrasesPageState
     }
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.chat_bubble_outline_rounded,
       title: l10n.kidsArabicMiniPhrasesTitle,
       subtitle: l10n.kidsArabicMiniPhrasesSubtitle,
       children: [
@@ -166,12 +165,12 @@ class _KidsArabicMiniPhrasesPageState
           decoration: BoxDecoration(
             color: _isPlaying
                 ? const Color(0xFFF1F6FF)
-                : const Color(0xFFF8F2E8),
+                : context.palette.surface,
             borderRadius: BorderRadius.circular(26),
             border: Border.all(
               color: _isPlaying
                   ? const Color(0xFFC8D8F3)
-                  : const Color(0xFFE5D5C1),
+                  : context.palette.surfaceSoft,
             ),
             boxShadow: _isPlaying
                 ? const [
@@ -204,28 +203,28 @@ class _KidsArabicMiniPhrasesPageState
                   const SizedBox(height: 10),
                   Text(
                     activePhrase.transliteration,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF8A6C49),
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     localizedKidsArabicMiniPhraseMeaning(l10n, activePhrase.id),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF5D4A36),
+                      color: context.palette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     localizedKidsArabicMiniPhraseSummary(l10n, activePhrase.id),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFF675B4E),
+                    style: TextStyle(
+                      color: context.palette.onSurfaceSubtle,
                       height: 1.4,
                     ),
                   ),
@@ -235,8 +234,8 @@ class _KidsArabicMiniPhrasesPageState
                         ? l10n.kidsArabicRepeatAfterMePrompt
                         : l10n.kidsArabicMiniPhrasesTapHint,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(0xFF5A6A4A),
+                    style: TextStyle(
+                      color: context.palette.successInk,
                       fontWeight: FontWeight.w600,
                       height: 1.35,
                     ),

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/quran_reference_link.dart';
+import '../../../../shared/widgets/display/expandable_tile.dart';
 import '../application/bedtime_story_audio_service.dart';
 import '../application/bedtime_story_learning_loop_service.dart';
 import '../application/bedtime_story_learning_progress_service.dart';
@@ -22,7 +23,7 @@ import 'bedtime_story_completion_banner.dart';
 import 'bedtime_story_full_player_sheet.dart';
 import 'bedtime_story_mini_player.dart';
 import 'bedtime_story_player_bar.dart';
-import 'bedtime_story_transcript_view.dart';
+import 'kids_story_about_section.dart';
 
 class BedtimeStoryDetailPage extends ConsumerStatefulWidget {
   const BedtimeStoryDetailPage({super.key, required this.storyId});
@@ -37,14 +38,19 @@ class BedtimeStoryDetailPage extends ConsumerStatefulWidget {
 class _BedtimeStoryDetailPageState
     extends ConsumerState<BedtimeStoryDetailPage> {
   late final ScrollController _scrollController;
-  final GlobalKey _transcriptKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(bedtimeStoryProgressProvider.notifier).openStory(widget.storyId);
+      if (!mounted) return;
+      ref
+          .read(bedtimeStoryProgressProvider.notifier)
+          .openStory(
+            widget.storyId,
+            story: ref.read(bedtimeStoryByIdProvider(widget.storyId)),
+          );
     });
   }
 
@@ -61,8 +67,7 @@ class _BedtimeStoryDetailPageState
     if (story == null) {
       return AppPageScaffold(
         title: l10n.bedtimeStoriesTitle,
-        subtitle: l10n.routerNotFoundTitle,
-        children: [Text(l10n.routerNotFoundTitle)],
+        children: [PremiumCard(child: Text(l10n.routerNotFoundTitle))],
       );
     }
     final progress = ref.watch(
@@ -103,7 +108,6 @@ class _BedtimeStoryDetailPageState
       scrollController: _scrollController,
       title: story.title,
       subtitle: story.lesson,
-      headerIcon: Icons.nightlight_round,
       headerActions: [
         IconButton(
           onPressed: () => showBedtimeStoryFullPlayerSheet(context, ref),
@@ -148,109 +152,45 @@ class _BedtimeStoryDetailPageState
           ),
         ),
         const SizedBox(height: 12),
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                story.bedtimeEligible
-                    ? l10n.bedtimeStoriesLessonSectionTitle
-                    : l10n.kidsStoryLessonSectionTitle,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 8),
-              Text(story.summary.isNotEmpty ? story.summary : story.lesson),
-              const SizedBox(height: 10),
-              Text(story.lesson),
-              const SizedBox(height: 10),
-              Text(
-                l10n.bedtimeStoriesNarratedByLabel(
-                  mediaAsync.valueOrNull?.audio.entry.narratorDisplayName ??
-                      story.narratorDisplayName,
-                ),
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
+        // Reading is the whole point of the page: one large button under
+        // the cover opens the storybook.
+        ...[
+          FilledButton.icon(
+            onPressed: _openReader,
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(56),
+            ),
+            icon: const Icon(Icons.menu_book_rounded),
+            label: Text(
+              story.bedtimeEligible
+                  ? l10n.bedtimeStoriesReadTonightAction
+                  : l10n.kidsStoryReadStoryAction,
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
+        // The lesson, the Qur'an, the hadith and the source note are for a
+        // parent or an older reader; they wait behind one row (K2).
+        ExpandableTile(
+          leading: const Icon(AppIcons.about, size: 20),
+          title: Text(l10n.kidsStoryReaderAboutAction),
+          subtitle: Text(
+            story.lesson,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          child: KidsStoryAboutSection(
+            story: story,
+            // A narrator is credited only once there is narration to hear.
+            narratorLabel: (mediaAsync.valueOrNull?.audio.isAvailable ?? false)
+                ? l10n.bedtimeStoriesNarratedByLabel(
+                    mediaAsync.valueOrNull?.audio.entry.narratorDisplayName ??
+                        story.narratorDisplayName,
+                  )
+                : null,
           ),
         ),
         const SizedBox(height: 12),
-        if (story.hasQuranReference) ...[
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.bedtimeStoriesQuranQuoteSectionTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  story.quranQuote!,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge?.copyWith(height: 1.5),
-                ),
-                const SizedBox(height: 10),
-                QuranReferenceLinkTile.forRef(
-                  referenceLabel: story.quranReference!,
-                  ref: story.quranQuoteRef!,
-                  subtitle: l10n.bedtimeStoriesQuranTapSubtitle,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-        ],
-        if (story.hasHadithReference) ...[
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.kidsStoryHadithSectionTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  story.hadithQuote!,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyLarge?.copyWith(height: 1.5),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  story.hadithReference!,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-        ],
-        if ((story.sourceNote ?? '').isNotEmpty) ...[
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.kidsStorySourceNoteSectionTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                Text(story.sourceNote!),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-        ],
         mediaAsync.when(
           loading: () =>
               PremiumCard(child: Text(l10n.bedtimeStoriesAudioCheckingLabel)),
@@ -261,54 +201,16 @@ class _BedtimeStoryDetailPageState
                   : l10n.kidsStoryAudioUnavailableSubtitle,
             ),
           ),
-          data: (media) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BedtimeStoryPlayerBar(
-                story: story,
-                media: media,
-                onReadAlong: _scrollToTranscript,
-              ),
-              if (!media.audio.isAvailable) ...[
-                const SizedBox(height: 12),
-                PremiumCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        media.hasAnyArtwork
-                            ? l10n.bedtimeStoriesArtOnlyTitle
-                            : (story.bedtimeEligible
-                                  ? l10n.bedtimeStoriesReadAlongPrimaryTitle
-                                  : l10n.kidsStoryReadAlongPrimaryTitle),
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        media.hasAnyArtwork
-                            ? l10n.bedtimeStoriesArtOnlySubtitle
-                            : (story.bedtimeEligible
-                                  ? l10n.bedtimeStoriesAudioUnavailableSubtitle
-                                  : l10n.kidsStoryAudioUnavailableSubtitle),
-                      ),
-                      const SizedBox(height: 12),
-                      FilledButton.icon(
-                        onPressed: _scrollToTranscript,
-                        icon: const Icon(Icons.menu_book_rounded),
-                        label: Text(
-                          story.bedtimeEligible
-                              ? l10n.bedtimeStoriesReadTonightAction
-                              : l10n.kidsStoryReadStoryAction,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ],
-          ),
+          // With narration the player bar carries the controls. Without it
+          // the story is read, so the only action is the one that gets the
+          // reader to the text; the transcript card below carries it.
+          data: (media) => media.audio.isAvailable
+              ? BedtimeStoryPlayerBar(
+                  story: story,
+                  media: media,
+                  onReadAlong: _openReader,
+                )
+              : const SizedBox.shrink(),
         ),
         if (story.sceneIllustrations.isNotEmpty) ...[
           const SizedBox(height: 12),
@@ -409,33 +311,6 @@ class _BedtimeStoryDetailPageState
             ),
           ),
         ],
-        const SizedBox(height: 12),
-        KeyedSubtree(
-          key: _transcriptKey,
-          child: BedtimeStoryTranscriptView(
-            title: story.bedtimeEligible
-                ? l10n.bedtimeStoriesTranscriptSectionTitle
-                : l10n.kidsStoryTranscriptSectionTitle,
-            rawText: story.ttsText,
-            primaryActionLabel: story.bedtimeEligible
-                ? l10n.bedtimeStoriesStartReadingAction
-                : l10n.kidsStoryReadStoryAction,
-            onPrimaryAction: _scrollToTranscript,
-            completionButton: FilledButton.icon(
-              onPressed: () => _markComplete(context, story),
-              icon: Icon(
-                progress.isCompleted
-                    ? Icons.check_circle_rounded
-                    : Icons.done_all_rounded,
-              ),
-              label: Text(
-                progress.isCompleted
-                    ? l10n.bedtimeStoriesCompletedAction
-                    : l10n.bedtimeStoriesMarkCompleteAction,
-              ),
-            ),
-          ),
-        ),
         if (quiz != null || memoryDeck != null) ...[
           const SizedBox(height: 12),
           Text(
@@ -555,22 +430,6 @@ class _BedtimeStoryDetailPageState
     );
   }
 
-  Future<void> _markComplete(
-    BuildContext context,
-    BedtimeStorySeed story,
-  ) async {
-    final outcome = ref
-        .read(bedtimeStoryProgressProvider.notifier)
-        .completeStory(story, completionSource: 'manual_read_along');
-    if (!mounted || !outcome.firstCompletion) {
-      return;
-    }
-    final l10n = AppLocalizations.of(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.bedtimeStoriesCompletionSnackQuiet)),
-    );
-  }
-
   Widget _fallbackCoverCard(
     BuildContext context,
     BedtimeStorySeed story,
@@ -610,16 +469,10 @@ class _BedtimeStoryDetailPageState
     );
   }
 
-  Future<void> _scrollToTranscript() async {
-    final context = _transcriptKey.currentContext;
-    if (context == null) {
-      return;
-    }
-    await Scrollable.ensureVisible(
-      context,
-      alignment: 0.08,
-      duration: const Duration(milliseconds: 350),
-      curve: Curves.easeOutCubic,
+  void _openReader() {
+    context.pushNamed(
+      'kidsStoryReader',
+      pathParameters: {'storyId': widget.storyId},
     );
   }
 }

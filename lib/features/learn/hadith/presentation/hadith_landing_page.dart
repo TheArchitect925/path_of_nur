@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_palette.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../journey/application/journey_progression_provider.dart';
+import '../../../../shared/widgets/display/progress_bar.dart';
+import '../../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../../shared/widgets/display/hub_list_group.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
-import '../../../../shared/widgets/segmented_pill_control.dart';
-import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/hadith_daily_reflection_service.dart';
 import '../application/hadith_foundation_repository.dart';
@@ -20,6 +21,7 @@ import '../application/hadith_path_quiz_service.dart';
 import '../domain/hadith_foundation_models.dart';
 import '../domain/hadith_learning_path.dart';
 import 'widgets/hadith_content_block.dart';
+import '../../../../core/theme/app_icons.dart';
 
 enum _HadithTab { themes, collections, saved, daily, review, paths }
 
@@ -33,8 +35,8 @@ class HadithLandingPage extends ConsumerStatefulWidget {
 }
 
 class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
-  _HadithTab _selectedTab = _HadithTab.themes;
-  final TextEditingController _searchController = TextEditingController();
+  late final _HadithTab _selectedTab =
+      _parseInitialTab(widget.initialTabName) ?? _HadithTab.themes;
   late final QuranQuote _entryQuote;
 
   @override
@@ -44,10 +46,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     // trigger an assignment once after the first frame; the bundle provider no
     // longer performs this side effect itself.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final initialTab = _parseInitialTab(widget.initialTabName);
-      if (initialTab != null) {
-        setState(() => _selectedTab = initialTab);
-      }
       final entries = ref.read(hadithEntriesProvider);
       ref
           .read(hadithDailyReflectionControllerProvider.notifier)
@@ -57,7 +55,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
 
   @override
   void dispose() {
-    _searchController.dispose();
     super.dispose();
   }
 
@@ -95,66 +92,76 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     final reviewState = ref.watch(hadithQuizReviewControllerProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: AppIcons.hadith,
       title: l10n.hadithPageTitle,
       subtitle: l10n.hadithPageSubtitle,
       quote: _entryQuote,
       children: [
-        SegmentedPillControl<_HadithTab>(
-          items: _HadithTab.values,
-          selectedItem: _selectedTab,
-          labelBuilder: (tab) => _tabLabel(tab, l10n),
-          onChanged: (tab) => setState(() => _selectedTab = tab),
-        ),
-        const SizedBox(height: 12),
-        if (_selectedTab == _HadithTab.themes) ...[
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.hadithTitleEssentialStarter,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  l10n.hadithSubtitleEssentialStarter,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 10),
-                FilledButton.tonalIcon(
-                  onPressed: () => context.pushNamed('learnHadithImportant'),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  label: Text(l10n.hadithActionStartEssential),
-                ),
-              ],
-            ),
+        // Themes is the landing; the other five are destinations rather than
+        // segments you have to know to look behind.
+        if (widget.initialTabName == null) ...[
+          HubListGroup(
+            title: l10n.learnLandingBrowseTitle,
+            children: [
+              for (final tab in _HadithTab.values)
+                if (tab != _HadithTab.themes)
+                  CompactListTile(
+                    title: _tabLabel(tab, l10n),
+                    leading: HubLeadingIcon(_sectionIcon(tab)),
+                    onTap: () => context.pushNamed(
+                      'learnHadithLanding',
+                      queryParameters: {'section': tab.name},
+                    ),
+                  ),
+            ],
           ),
           const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
+        ],
+        if (_selectedTab == _HadithTab.themes) ...[
+          if (dailyBundle.entry != null) ...[
+            _DailyHadithHero(bundle: dailyBundle),
+            const SizedBox(height: 12),
+          ],
+          Row(
             children: [
-              FilledButton.tonalIcon(
-                onPressed: () => context.pushNamed('hadithBrowse'),
-                icon: const Icon(Icons.tune_rounded),
-                label: Text(l10n.hadithActionBrowseAllHadith),
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.play_arrow_rounded,
+                  label: l10n.hadithTitleEssentialStarter,
+                  onTap: () => context.pushNamed('learnHadithImportant'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.tune_rounded,
+                  label: l10n.hadithActionBrowseAllHadith,
+                  onTap: () => context.pushNamed('hadithBrowse'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.library_books_rounded,
+                  label: l10n.hadithActionBrowseSources,
+                  onTap: () => context.pushNamed('hadithSourceBrowse'),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _HadithFeatureTile(
+                  icon: Icons.search_rounded,
+                  label: l10n.hadithSearchTitle,
+                  onTap: () => context.pushNamed('hadithSearch'),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          PremiumCard(
-            surfaceVariant: AppSurfaceVariant.panel,
-            child: LearnDiscoverySearchField(
-              controller: _searchController,
-              hintText: l10n.searchHadithHint,
-              readOnly: true,
-              onTap: () => context.pushNamed('hadithSearch'),
-            ),
-          ),
-          const SizedBox(height: 10),
           ..._buildThemeRows(context, themes, savedIds),
         ],
         if (_selectedTab == _HadithTab.collections) ...[
@@ -197,20 +204,15 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
           ...collections.map(
             (collection) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(collection.title),
-                  subtitle: Text(
-                    l10n.hadithCollectionCardSummary(
-                      collection.subtitle,
-                      collection.entryCount,
-                    ),
-                  ),
-                  onTap: () => context.pushNamed(
-                    'hadithCollectionDetail',
-                    pathParameters: {'collectionId': collection.id},
-                  ),
+              child: CompactListTile(
+                title: collection.title,
+                subtitle: l10n.hadithCollectionCardSummary(
+                  collection.subtitle,
+                  collection.entryCount,
+                ),
+                onTap: () => context.pushNamed(
+                  'hadithCollectionDetail',
+                  pathParameters: {'collectionId': collection.id},
                 ),
               ),
             ),
@@ -254,15 +256,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             ...savedEntries.map(
               (entry) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
-                child: PremiumCard(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(entry.title),
-                    subtitle: Text('${entry.source} • ${entry.grading}'),
-                    onTap: () => context.pushNamed(
-                      'hadithLessonDetail',
-                      pathParameters: {'lessonId': entry.id},
-                    ),
+                child: CompactListTile(
+                  title: entry.title,
+                  subtitle: '${entry.source} • ${entry.grading}',
+                  onTap: () => context.pushNamed(
+                    'hadithLessonDetail',
+                    pathParameters: {'lessonId': entry.id},
                   ),
                 ),
               ),
@@ -285,7 +284,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                     context,
                   ).formatFullDate(dailyBundle.date),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -309,14 +308,14 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                   Text(
                     '${dailyBundle.entry!.displaySourceCollection}${dailyBundle.entry!.displaySourceReference == null ? '' : ' • ${dailyBundle.entry!.displaySourceReference}'}',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     l10n.hadithGradeLabel(dailyBundle.entry!.grading),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -402,7 +401,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                       dailyBundle.bestStreak == 1 ? '' : 's',
                     ),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+                      color: context.palette.onSurfaceSubtle,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -457,7 +456,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                     reviewState.completedQuizIds.length,
                   ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                    color: context.palette.onSurfaceSubtle,
                   ),
                 ),
               ],
@@ -489,7 +488,7 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                 FilledButton.tonalIcon(
                   onPressed: () =>
                       _openThemeReviewSelector(context, ref, themes),
-                  icon: const Icon(Icons.palette_outlined),
+                  icon: const Icon(Icons.palette_rounded),
                   label: Text(l10n.hadithActionReviewByTheme),
                 ),
                 const SizedBox(height: 8),
@@ -528,17 +527,13 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             ...dueReviewEntries.map(
               (entry) => Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: PremiumCard(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(entry.title),
-                    subtitle: Text(
+                child: CompactListTile(
+                  title: entry.title,
+                  subtitle:
                       '${entry.displaySourceCollection} • ${entry.grading}',
-                    ),
-                    onTap: () => context.pushNamed(
-                      'hadithLessonDetail',
-                      pathParameters: {'lessonId': entry.id},
-                    ),
+                  onTap: () => context.pushNamed(
+                    'hadithLessonDetail',
+                    pathParameters: {'lessonId': entry.id},
                   ),
                 ),
               ),
@@ -601,8 +596,8 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                                   ? Icons.check_circle_rounded
                                   : Icons.chevron_right_rounded,
                               color: isDone
-                                  ? AppColors.onSurface
-                                  : AppColors.onSurfaceSubtle,
+                                  ? context.palette.onSurface
+                                  : context.palette.onSurfaceSubtle,
                             ),
                           ],
                         ),
@@ -612,22 +607,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                         Text(
                           l10n.hadithPathLessonCount(completed, total),
                           style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: AppColors.onSurfaceSubtle),
+                              ?.copyWith(
+                                color: context.palette.onSurfaceSubtle,
+                              ),
                         ),
                         const SizedBox(height: 6),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(999),
-                          child: LinearProgressIndicator(
-                            minHeight: 7,
-                            value: ratio,
-                            backgroundColor: AppColors.surface.withValues(
-                              alpha: 0.4,
-                            ),
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              AppColors.onSurface.withValues(alpha: 0.72),
-                            ),
-                          ),
-                        ),
+                        ProgressBar(value: ratio, height: 7),
                       ],
                     ),
                   ),
@@ -682,6 +667,23 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     ];
   }
 
+  IconData _sectionIcon(_HadithTab tab) {
+    switch (tab) {
+      case _HadithTab.themes:
+        return Icons.category_rounded;
+      case _HadithTab.collections:
+        return Icons.library_books_rounded;
+      case _HadithTab.saved:
+        return Icons.bookmark_rounded;
+      case _HadithTab.daily:
+        return Icons.today_rounded;
+      case _HadithTab.review:
+        return Icons.replay_rounded;
+      case _HadithTab.paths:
+        return Icons.route_rounded;
+    }
+  }
+
   String _tabLabel(_HadithTab tab, AppLocalizations l10n) {
     switch (tab) {
       case _HadithTab.themes:
@@ -724,7 +726,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
               return ListTile(
                 title: Text(theme.title),
                 subtitle: Text(theme.subtitle),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () {
                   Navigator.of(context).pop();
                   this.context.pushNamed(
@@ -759,7 +760,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
               return ListTile(
                 title: Text(path.title),
                 subtitle: Text(path.subtitle ?? path.description),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () {
                   Navigator.of(context).pop();
                   this.context.pushNamed(
@@ -925,19 +925,16 @@ class _ThemeCard extends ConsumerWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color: context.palette.onSurfaceSubtle,
                   height: 1.35,
                 ),
               ),
               const SizedBox(height: 12),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(
-                  value: progressRatio,
-                  minHeight: 7,
-                  backgroundColor: surfaceStyle.iconBackgroundColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(accent),
-                ),
+              ProgressBar(
+                value: progressRatio,
+                height: 7,
+                color: accent,
+                backgroundColor: surfaceStyle.iconBackgroundColor,
               ),
               const SizedBox(height: 6),
               Text(
@@ -1014,5 +1011,76 @@ Color _hadithThemeIconBaseColor(String themeId) {
       return const Color(0xFFE4E7EE);
     default:
       return const Color(0xFFECE5D7);
+  }
+}
+
+class _DailyHadithHero extends ConsumerWidget {
+  const _DailyHadithHero({required this.bundle});
+
+  final HadithDailyReflectionBundle bundle;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final entry = bundle.entry!;
+    final sourceLine =
+        '${entry.displaySourceCollection}'
+        '${entry.displaySourceReference == null ? '' : ' \u2022 ${entry.displaySourceReference}'}';
+    return PremiumCard(
+      density: PremiumCardDensity.compact,
+      onTap: () => context.pushNamed(
+        'hadithLessonDetail',
+        pathParameters: {'lessonId': entry.id},
+      ),
+      leading: const Icon(Icons.wb_twilight_rounded),
+      title: Text(l10n.hadithTitleDailyReflection),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            entry.title,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(sourceLine, style: Theme.of(context).textTheme.bodySmall),
+        ],
+      ),
+    );
+  }
+}
+
+class _HadithFeatureTile extends StatelessWidget {
+  const _HadithFeatureTile({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      density: PremiumCardDensity.compact,
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 22),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ],
+      ),
+    );
   }
 }

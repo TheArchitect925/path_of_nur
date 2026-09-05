@@ -96,6 +96,25 @@ class AppDatabase {
       );
     ''');
     _db.execute('''
+      CREATE TABLE IF NOT EXISTS dhikr_daily_totals(
+        scope_id TEXT NOT NULL,
+        date_key TEXT NOT NULL,
+        count INTEGER NOT NULL,
+        sessions INTEGER NOT NULL,
+        routines_json TEXT NOT NULL DEFAULT '[]',
+        updated_at_iso TEXT NOT NULL,
+        PRIMARY KEY(scope_id, date_key)
+      );
+    ''');
+    _db.execute('''
+      CREATE TABLE IF NOT EXISTS dhikr_phrase_totals(
+        scope_id TEXT NOT NULL,
+        phrase_label TEXT NOT NULL,
+        count INTEGER NOT NULL,
+        PRIMARY KEY(scope_id, phrase_label)
+      );
+    ''');
+    _db.execute('''
       CREATE TABLE IF NOT EXISTS ocean_events(
         scope_id TEXT NOT NULL,
         event_id TEXT PRIMARY KEY,
@@ -297,6 +316,12 @@ class AppDatabase {
     ]);
     execute('DELETE FROM dhikr_state WHERE scope_id = ?;', <Object?>[scopeId]);
     execute('DELETE FROM dhikr_sessions WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
+    execute('DELETE FROM dhikr_daily_totals WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
+    execute('DELETE FROM dhikr_phrase_totals WHERE scope_id = ?;', <Object?>[
       scopeId,
     ]);
     execute('DELETE FROM ocean_events WHERE scope_id = ?;', <Object?>[scopeId]);

@@ -12,6 +12,8 @@ import '../../journey/domain/learning_journey_models.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learn_companion_content.dart';
 import '../domain/learn_companion_models.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class SeerahCompanionPage extends ConsumerStatefulWidget {
   const SeerahCompanionPage({super.key, this.initialFocus});
@@ -126,7 +128,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           );
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.route_rounded,
+      headerIcon: AppIcons.seerah,
       title: l10n.learningJourneySeerahJourneyTitle,
       subtitle: l10n.learningJourneySeerahJourneySubtitle,
       children: [
@@ -188,7 +190,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           ),
         ),
         const SizedBox(height: 20),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnSeerahCompanionFocusTitle,
           subtitle: l10n.learnSeerahCompanionFocusSubtitle,
         ),
@@ -238,7 +240,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           ),
         ],
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnContentContinueTitle,
           subtitle: l10n.learnCompanionContinueSubtitle,
         ),
@@ -261,7 +263,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           ),
         ),
         const SizedBox(height: 20),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnSeerahCompanionPeriodsTitle,
           subtitle: l10n.learnSeerahCompanionPeriodsSubtitle,
         ),
@@ -273,7 +275,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           ),
         ),
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnSeerahCompanionMomentsTitle,
           subtitle: l10n.learnSeerahCompanionMomentsSubtitle,
         ),
@@ -285,7 +287,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           ),
         ),
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnCompanionSourcesTitle,
           subtitle: l10n.learnCompanionSourcesSubtitle,
         ),
@@ -297,7 +299,7 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
           ),
         ),
         const SizedBox(height: 16),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.learnSeerahCompanionExploreTitle,
           subtitle: l10n.learnSeerahCompanionExploreSubtitle,
         ),
@@ -428,38 +430,6 @@ class _SeerahCompanionPageState extends ConsumerState<SeerahCompanionPage> {
       }
     }
     return ranked;
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          subtitle,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            height: 1.45,
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-      ],
-    );
   }
 }
 
@@ -601,7 +571,6 @@ class _LinkCard extends StatelessWidget {
               ],
             ],
           ),
-          trailing: const Icon(Icons.chevron_right_rounded),
           onTap: () => context.pushNamed(
             item.routeTarget.routeName,
             pathParameters: item.routeTarget.pathParameters,

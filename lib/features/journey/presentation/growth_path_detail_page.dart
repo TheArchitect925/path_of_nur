@@ -27,9 +27,7 @@ class GrowthPathDetailPage extends ConsumerWidget {
 
     if (progress == null) {
       return AppPageScaffold(
-        headerIcon: Icons.alt_route_rounded,
         title: l10n.growthPathDetailPageTitle,
-        subtitle: l10n.growthPathUnavailableMessage,
         children: [PremiumCard(child: Text(l10n.growthPathUnavailableMessage))],
       );
     }
@@ -45,7 +43,6 @@ class GrowthPathDetailPage extends ConsumerWidget {
     )[p.path.stage];
 
     return AppPageScaffold(
-      headerIcon: growthPathIcon(p.path.icon),
       title: p.path.title,
       subtitle: p.path.subtitle,
       children: [
@@ -188,7 +185,6 @@ class GrowthPathDetailPage extends ConsumerWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.pushNamed(
                     'growthHabitDetail',
                     pathParameters: {'habitId': habit.id},

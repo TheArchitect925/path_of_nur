@@ -17,6 +17,8 @@ import '../application/bedtime_session_service.dart';
 import '../data/bedtime_routine_seed.dart';
 import '../domain/bedtime_routine_models.dart';
 import 'bedtime_routine_step_card.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/section_title.dart';
 
 class BedtimeCompanionPage extends ConsumerWidget {
   const BedtimeCompanionPage({super.key});
@@ -36,7 +38,7 @@ class BedtimeCompanionPage extends ConsumerWidget {
         : ref.watch(bedtimeStoryByIdProvider(session!.suggestedStoryId!));
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.bedtime_rounded,
+      headerIcon: AppIcons.bedtime,
       title: l10n.bedtimeCompanionTitle,
       subtitle: l10n.bedtimeCompanionSubtitle,
       floatingBottom: const BedtimeStoryMiniPlayer(),
@@ -92,7 +94,7 @@ class BedtimeCompanionPage extends ConsumerWidget {
         ),
         if (primaryDua != null) ...[
           const SizedBox(height: 8),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.bedtimeCompanionTonightDuaTitle,
             subtitle: l10n.bedtimeCompanionTonightDuaSubtitle,
           ),
@@ -111,7 +113,7 @@ class BedtimeCompanionPage extends ConsumerWidget {
         ],
         if (story != null) ...[
           const SizedBox(height: 18),
-          _SectionHeader(
+          SectionTitle(
             title: l10n.bedtimeCompanionTonightStoryTitle,
             subtitle: l10n.bedtimeCompanionTonightStorySubtitle,
           ),
@@ -119,7 +121,7 @@ class BedtimeCompanionPage extends ConsumerWidget {
           _StoryCard(storyId: story.id),
         ],
         const SizedBox(height: 18),
-        _SectionHeader(
+        SectionTitle(
           title: l10n.bedtimeCompanionReflectionTitle,
           subtitle: l10n.bedtimeCompanionReflectionSubtitle,
         ),
@@ -470,30 +472,6 @@ class _SleepReadyCard extends StatelessWidget {
   }
 }
 
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(subtitle),
-      ],
-    );
-  }
-}
-
 class _Tag extends StatelessWidget {
   const _Tag({required this.label});
 
@@ -594,7 +572,7 @@ IconData _iconFor(BedtimeRoutineStepType type) {
     case BedtimeRoutineStepType.gratitudeReflection:
       return Icons.favorite_outline_rounded;
     case BedtimeRoutineStepType.sleepReadyFinish:
-      return Icons.nightlight_round;
+      return Icons.nightlight_round_rounded;
     case BedtimeRoutineStepType.readAlong:
       return Icons.chrome_reader_mode_rounded;
     case BedtimeRoutineStepType.dhikrLight:
