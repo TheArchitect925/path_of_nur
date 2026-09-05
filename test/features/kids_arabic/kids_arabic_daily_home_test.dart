@@ -49,7 +49,8 @@ void main() {
   ) async {
     await pumpHome(tester);
 
-    expect(find.text('Write and Learn Arabic Letters'), findsOneWidget);
+    // The Letters door names its page (C2a copy pass).
+    expect(find.text('Letters'), findsWidgets);
     // A first-time child is invited to Alif instead of shown a row of
     // zeros (K4); the progress card appears once a letter is finished.
     await tester.scrollUntilVisible(
