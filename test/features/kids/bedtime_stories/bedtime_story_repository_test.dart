@@ -79,8 +79,15 @@ void main() {
         final libraryStories = container.read(kidsIslamicStoriesProvider);
         final bedtimeStories = container.read(bedtimeStoriesProvider);
 
-        expect(libraryStories.length, 27);
+        // 14 prophet books, 10 manners stories, 3 companions, 1 First Steps.
+        expect(libraryStories.length, 28);
         expect(libraryStories.any((story) => !story.isProphetStory), isTrue);
+        expect(
+          libraryStories.any(
+            (story) => story.id == 'book_first_steps_five_pillars_v1',
+          ),
+          isTrue,
+        );
         expect(
           libraryStories.any(
             (story) => story.id == 'story_companion_khadijah_support_v1',

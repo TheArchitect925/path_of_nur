@@ -80,7 +80,15 @@ enum KidsBookAtlasScene {
   homeEvening('assets/images/kids_dua_stories/scene_home_evening_calm.webp'),
   table('assets/images/kids_dua_stories/scene_table_day_happy.webp'),
   bedroom('assets/images/kids_dua_stories/scene_bedroom_night_calm.webp'),
-  learning('assets/images/kids_dua_stories/scene_learning_day_calm.webp');
+  learning('assets/images/kids_dua_stories/scene_learning_day_calm.webp'),
+  // Drawn for the picture books (tooling/art_src/kids_books).
+  sea('assets/images/kids_books/atlas/sea_day.webp'),
+  seaNight('assets/images/kids_books/atlas/sea_night.webp'),
+  desertRoad('assets/images/kids_books/atlas/desert_road_dusk.webp'),
+  cityMorning('assets/images/kids_books/atlas/city_morning.webp'),
+  cityNight('assets/images/kids_books/atlas/city_night.webp'),
+  garden('assets/images/kids_books/atlas/garden_day.webp'),
+  masjid('assets/images/kids_books/atlas/masjid_day.webp');
 
   const KidsBookAtlasScene(this.assetPath);
 

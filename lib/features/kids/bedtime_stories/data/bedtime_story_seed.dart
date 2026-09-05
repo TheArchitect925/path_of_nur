@@ -1,11 +1,14 @@
 import '../../../learn/quran/domain/quran_content_refs.dart';
 import '../domain/bedtime_story_models.dart';
 import 'bedtime_story_audio_manifest.dart';
+import 'books/prophets/nuh_book.dart';
+import 'books/prophets/yunus_book.dart';
+import 'books/prophets/yusuf_book.dart';
 
 const _narratorDisplayName = 'Path of Nur Bedtime Narration';
 
-const List<BedtimeStorySeed> kBedtimeProphetStories = [
-  BedtimeStorySeed(
+final List<BedtimeStorySeed> kBedtimeProphetStories = [
+  const BedtimeStorySeed(
     id: 'story_prophet_adam_bedtime_v1',
     prophetId: 'adam',
     title: 'Prophet Adam – Bedtime Story',
@@ -130,132 +133,8 @@ Good night...
     recommendedForTonight: true,
     relatedStoryIds: ['story_prophet_nuh_bedtime_v1'],
   ),
-  BedtimeStorySeed(
-    id: 'story_prophet_nuh_bedtime_v1',
-    prophetId: 'nuh',
-    title: 'Prophet Nuh – Bedtime Story',
-    shortTitle: 'Prophet Nuh',
-    category: BedtimeStoryCategory.prophets,
-    ageGroup: BedtimeStoryAgeGroup.kids,
-    audioFileName: 'prophet_nuh_bedtime_v1.mp3',
-    ttsText: '''
-Bismillah...
-
-Long ago...
-
-People began to forget Allah.
-
-They stopped doing good things.
-
-Allah sent a kind prophet.
-
-His name was Nuh.
-
-He spoke gently.
-
-He said...
-
-Worship Allah.
-
-Be kind.
-
-But many people did not listen.
-
-They laughed at him.
-
-Still...
-
-Nuh did not give up.
-
-He stayed patient.
-
-Then Allah gave him a command.
-
-Build a great Ark.
-
-A huge ship.
-
-Even though there was no rain...
-
-Nuh obeyed.
-
-People laughed again.
-
-But Nuh trusted Allah.
-
-When the Ark was ready...
-
-Allah told him...
-
-Bring your family.
-
-And the animals.
-
-Then the rain began.
-
-And it kept falling...
-
-And falling...
-
-Water was everywhere.
-
-But inside the Ark...
-
-They were safe.
-
-Allah protected them.
-
-After many days...
-
-The rain stopped.
-
-The water went down.
-
-The Ark rested on land.
-
-It was a new beginning.
-
-Nuh thanked Allah.
-
-Now remember...
-
-Always do what is right.
-
-Even if others don’t listen.
-
-Allah helps those who are patient.
-
-Good night...
-''',
-    lesson:
-        'Always do what is right, even if others do not listen. Allah helps those who are patient.',
-    quranQuote:
-        'Indeed, We sent Nuh to his people, saying, “Warn your people before a painful punishment comes to them.”',
-    quranReference: 'Qur’an 71:1',
-    quranQuoteRef: QuranQuoteRef(surah: 71, ayah: 1),
-    estimatedDurationSeconds: 100,
-    isFeatured: true,
-    isMultipart: false,
-    partNumber: 1,
-    totalParts: 1,
-    tags: ['prophet', 'nuh', 'ark', 'patience', 'trust'],
-    sortOrder: 20,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/nuh_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/nuh_backdrop.webp',
-    narratorDisplayName: _narratorDisplayName,
-    isLocked: false,
-    unlockXp: 0,
-    oceanDropsReward: 1,
-    xpReward: 5,
-    isDownloadedByDefault: true,
-    isAvailableOffline: true,
-    recommendedForTonight: true,
-    relatedStoryIds: [
-      'story_prophet_adam_bedtime_v1',
-      'story_prophet_ibrahim_bedtime_v1',
-    ],
-  ),
-  BedtimeStorySeed(
+  nuhBook,
+  const BedtimeStorySeed(
     id: 'story_prophet_ibrahim_bedtime_v1',
     prophetId: 'ibrahim',
     title: 'Prophet Ibrahim – Bedtime Story',
@@ -465,7 +344,7 @@ Good night...
       'story_prophet_adam_bedtime_v1',
     ],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_ismail_bedtime_v1',
     prophetId: 'ismail',
     title: 'Prophet Ismail – Bedtime Story',
@@ -619,213 +498,8 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_ibrahim_bedtime_v1'],
   ),
-  BedtimeStorySeed(
-    id: 'story_prophet_yusuf_bedtime_v1',
-    prophetId: 'yusuf',
-    title: 'Prophet Yusuf – Bedtime Story',
-    shortTitle: 'Prophet Yusuf',
-    category: BedtimeStoryCategory.prophets,
-    ageGroup: BedtimeStoryAgeGroup.kids,
-    audioFileName: 'prophet_yusuf_bedtime_v1.mp3',
-    ttsText: '''
-Bismillah...
-
-Long ago...
-
-There was a young boy named Yusuf.
-
-He was kind.
-
-Gentle.
-
-And very handsome.
-
-But what made him truly special...
-
-Was his pure heart.
-
-And his love for Allah.
-
-Yusuf had a loving father.
-
-His name was Yaqub.
-
-One night...
-
-Yusuf had a dream.
-
-He saw eleven stars...
-
-The sun...
-
-And the moon...
-
-All bowing down to him.
-
-He told his father about the dream.
-
-His father smiled.
-
-And said...
-
-My dear son...
-
-This dream is special.
-
-Allah has a beautiful plan for you.
-
-But Yusuf's brothers became jealous.
-
-They thought their father loved Yusuf more.
-
-One day...
-
-They took Yusuf far away.
-
-To a deep well.
-
-And they left him there.
-
-Alone.
-
-It was dark.
-
-And quiet.
-
-But Yusuf trusted Allah.
-
-Soon...
-
-Some travelers passed by.
-
-They found Yusuf.
-
-And took him away to another land.
-
-Yusuf grew up far from home.
-
-But he stayed honest.
-
-And kind.
-
-As he grew older...
-
-He faced difficult tests.
-
-He was treated unfairly.
-
-And even put in prison.
-
-Even though he had done nothing wrong.
-
-Still...
-
-Yusuf did not lose hope.
-
-He remembered Allah.
-
-Even in prison...
-
-He helped others.
-
-Allah gave Yusuf a special gift.
-
-He could understand dreams.
-
-One day...
-
-The king had a strange dream.
-
-No one could explain it.
-
-But Yusuf could.
-
-He explained it wisely.
-
-The king was amazed.
-
-Soon...
-
-Yusuf was freed.
-
-And given an important position.
-
-Years later...
-
-His brothers came to him.
-
-But they did not recognize him.
-
-Yusuf knew exactly who they were.
-
-He could have been angry.
-
-He could have punished them.
-
-But instead...
-
-He forgave them.
-
-He chose kindness.
-
-Later...
-
-Yusuf was reunited with his father.
-
-After so many years...
-
-They were together again.
-
-And Yusuf's childhood dream came true.
-
-Everything that happened...
-
-The well...
-
-The journey...
-
-The hardship...
-
-Was part of Allah's perfect plan.
-
-Now remember...
-
-Be patient.
-
-Never lose hope in Allah.
-
-And always forgive others.
-
-Good night...
-''',
-    lesson: 'Be patient, never lose hope in Allah, and always forgive others.',
-    quranQuote:
-        'Indeed, my Lord is subtle in what He wills. Indeed, it is He who is the Knowing, the Wise.',
-    quranReference: 'Qur’an 12:100',
-    quranQuoteRef: QuranQuoteRef(surah: 12, ayah: 100),
-    estimatedDurationSeconds: 145,
-    isFeatured: true,
-    isMultipart: false,
-    partNumber: 1,
-    totalParts: 1,
-    tags: ['prophet', 'yusuf', 'dreams', 'patience', 'forgiveness'],
-    sortOrder: 50,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/yusuf_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/yusuf_backdrop.webp',
-    narratorDisplayName: _narratorDisplayName,
-    isLocked: false,
-    unlockXp: 0,
-    oceanDropsReward: 1,
-    xpReward: 5,
-    isDownloadedByDefault: true,
-    isAvailableOffline: true,
-    recommendedForTonight: true,
-    relatedStoryIds: [
-      'story_prophet_yunus_bedtime_v1',
-      'story_prophet_muhammad_part4_bedtime_v1',
-    ],
-  ),
-  BedtimeStorySeed(
+  yusufBook,
+  const BedtimeStorySeed(
     id: 'story_prophet_musa_bedtime_v1',
     prophetId: 'musa',
     title: 'Prophet Musa – Bedtime Story',
@@ -1028,168 +702,8 @@ Good night...
       'story_prophet_yunus_bedtime_v1',
     ],
   ),
-  BedtimeStorySeed(
-    id: 'story_prophet_yunus_bedtime_v1',
-    prophetId: 'yunus',
-    title: 'Prophet Yunus – Bedtime Story',
-    shortTitle: 'Prophet Yunus',
-    category: BedtimeStoryCategory.prophets,
-    ageGroup: BedtimeStoryAgeGroup.kids,
-    audioFileName: 'prophet_yunus_bedtime_v1.mp3',
-    ttsText: '''
-Bismillah...
-
-Long ago...
-
-There was a prophet named Yunus.
-
-He was kind.
-
-And wanted the best for his people.
-
-Allah sent him to guide them.
-
-To teach them to worship Allah alone.
-
-But the people did not listen.
-
-Again and again.
-
-Yunus became very sad.
-
-He thought...
-
-Maybe they will never listen.
-
-So he left the city.
-
-Before Allah told him to leave.
-
-He boarded a ship.
-
-The ship sailed across the sea.
-
-But suddenly...
-
-Dark clouds came.
-
-Strong winds blew.
-
-The waves became very big.
-
-The ship shook from side to side.
-
-Everyone was afraid.
-
-They decided that someone must leave the ship.
-
-They drew lots.
-
-And each time...
-
-The name chosen was Yunus.
-
-Yunus understood.
-
-This was part of Allah's plan.
-
-He went into the sea.
-
-Then...
-
-A huge whale swallowed him.
-
-Inside the whale...
-
-It was very dark.
-
-Dark in the whale.
-
-Dark in the sea.
-
-Dark in the night.
-
-Yunus was alone.
-
-But he was not forgotten.
-
-He realized his mistake.
-
-And he turned to Allah.
-
-He made a beautiful dua.
-
-There is no god but You.
-
-Glory be to You.
-
-I was wrong.
-
-He kept praying.
-
-He kept asking Allah for forgiveness.
-
-Allah heard him.
-
-Allah is always near.
-
-Allah commanded the whale to release Yunus.
-
-The whale brought him safely to land.
-
-Allah gave him another chance.
-
-Yunus returned to his people.
-
-And this time...
-
-They listened.
-
-They believed.
-
-And they changed.
-
-Now remember...
-
-If you make a mistake...
-
-Turn back to Allah.
-
-Allah listens.
-
-Allah forgives those who ask sincerely.
-
-Good night...
-''',
-    lesson:
-        'If you make a mistake, turn back to Allah. Allah listens and forgives sincerely.',
-    quranQuote:
-        'There is no god except You; exalted are You. Indeed, I have been of the wrongdoers.',
-    quranReference: 'Qur’an 21:87',
-    quranQuoteRef: QuranQuoteRef(surah: 21, ayah: 87),
-    estimatedDurationSeconds: 110,
-    isFeatured: true,
-    isMultipart: false,
-    partNumber: 1,
-    totalParts: 1,
-    tags: ['prophet', 'yunus', 'dua', 'whale', 'forgiveness'],
-    sortOrder: 70,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/yunus_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/yunus_backdrop.webp',
-    narratorDisplayName: _narratorDisplayName,
-    isLocked: false,
-    unlockXp: 0,
-    oceanDropsReward: 1,
-    xpReward: 5,
-    isDownloadedByDefault: true,
-    isAvailableOffline: true,
-    recommendedForTonight: true,
-    relatedStoryIds: [
-      'story_prophet_yusuf_bedtime_v1',
-      'story_prophet_muhammad_part3_bedtime_v1',
-    ],
-  ),
-  BedtimeStorySeed(
+  yunusBook,
+  const BedtimeStorySeed(
     id: 'story_prophet_dawud_bedtime_v1',
     prophetId: 'dawud',
     title: 'Prophet Dawud – Bedtime Story',
@@ -1337,7 +851,7 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_sulaiman_bedtime_v1'],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_isa_bedtime_v1',
     prophetId: 'isa',
     title: 'Prophet Isa – Bedtime Story',
@@ -1488,7 +1002,7 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_muhammad_part1_bedtime_v1'],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_sulaiman_bedtime_v1',
     prophetId: 'sulaiman',
     title: 'Prophet Sulaiman – Bedtime Story',
@@ -1647,7 +1161,7 @@ Good night...
     recommendedForTonight: true,
     relatedStoryIds: ['story_prophet_dawud_bedtime_v1'],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_muhammad_part1_bedtime_v1',
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 1',
@@ -1786,7 +1300,7 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_muhammad_part2_bedtime_v1'],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_muhammad_part2_bedtime_v1',
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 2',
@@ -1950,7 +1464,7 @@ Good night...
       'story_prophet_muhammad_part3_bedtime_v1',
     ],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_muhammad_part3_bedtime_v1',
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 3',
@@ -2088,7 +1602,7 @@ Good night...
       'story_prophet_muhammad_part4_bedtime_v1',
     ],
   ),
-  BedtimeStorySeed(
+  const BedtimeStorySeed(
     id: 'story_prophet_muhammad_part4_bedtime_v1',
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 4',

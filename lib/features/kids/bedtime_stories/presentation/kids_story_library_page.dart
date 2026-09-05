@@ -234,7 +234,7 @@ String _collectionArt(KidsIslamicStoryCollectionType type) {
     case KidsIslamicStoryCollectionType.familyKindness:
       return 'assets/images/kids_stories/covers/helping_parents_cover.webp';
     case KidsIslamicStoryCollectionType.foundations:
-      return _fallbackArt;
+      return 'assets/images/kids_books/covers/five_pillars_cover.webp';
   }
 }
 

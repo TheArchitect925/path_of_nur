@@ -110,6 +110,9 @@ flutter:
     - assets/images/kids_stories/covers/
     - assets/images/kids_stories/backdrops/
     - assets/images/kids_stories/scenes/
+    - assets/images/kids_books/atlas/
+    - assets/images/kids_books/covers/
+    - assets/images/kids_books/scenes/
     - assets/images/quran_teacher/placeholders/
     - assets/images/quran_teacher/visual_mode/letters/
     - assets/images/quran_teacher/visual_mode/words/
