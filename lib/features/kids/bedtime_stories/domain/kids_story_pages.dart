@@ -6,11 +6,17 @@ class KidsStoryPage {
     required this.index,
     required this.lines,
     required this.illustrationAsset,
+    this.spread,
   });
 
   final int index;
   final List<String> lines;
   final String? illustrationAsset;
+
+  /// The spread this page shows when the story is a picture book, so the
+  /// reader can set the refrain apart or open a Try-it link. Null for the
+  /// older seeds that are split from their text.
+  final KidsBookSpread? spread;
 
   int get wordCount => lines.fold(0, (count, line) => count + _words(line));
 }
@@ -28,6 +34,7 @@ const int _pageMaxLines = 4;
 /// one page; a page takes beats until it reaches a comfortable length. Every
 /// line of the text appears exactly once, in order.
 List<KidsStoryPage> kidsStoryPagesFor(BedtimeStorySeed story) {
+  if (story.isPictureBook) return _pagesFromSpreads(story);
   final beats = story.ttsText
       .trim()
       .split(RegExp(r'\n\s*\n'))
@@ -106,6 +113,28 @@ List<String?> _illustrationsFor(BedtimeStorySeed story, int pageCount) {
       ? cover
       : story.backdropAssetPath;
   return [for (var i = 0; i < pageCount; i++) i == 0 ? cover : backdrop];
+}
+
+/// A picture book is already paged by its writer: one spread is one page.
+/// A spread shows its own picture, else the atlas scene it borrows, else
+/// the cover (first page) or backdrop, so every page has art to show.
+List<KidsStoryPage> _pagesFromSpreads(BedtimeStorySeed story) {
+  final cover = story.coverAssetPath.isEmpty ? null : story.coverAssetPath;
+  final backdrop = story.backdropAssetPath.isEmpty
+      ? cover
+      : story.backdropAssetPath;
+  return [
+    for (var i = 0; i < story.spreads.length; i++)
+      KidsStoryPage(
+        index: i,
+        lines: story.spreads[i].lines,
+        illustrationAsset: story.spreads[i].hasOwnPicture
+            ? story.spreads[i].illustrationAsset
+            : story.spreads[i].atlasScene?.assetPath ??
+                  (i == 0 ? cover : backdrop),
+        spread: story.spreads[i],
+      ),
+  ];
 }
 
 int _words(String line) =>

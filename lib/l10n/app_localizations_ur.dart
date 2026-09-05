@@ -31180,6 +31180,13 @@ class AppLocalizationsUr extends AppLocalizations {
       'مدد کرنے، اشتراک کرنے، دیکھ بھال کرنے، اور نرم دلوں کے بارے میں پُرجوش کہانیاں۔';
 
   @override
+  String get kidsStoryCollectionFoundations => 'First Steps';
+
+  @override
+  String get kidsStoryCollectionFoundationsSubtitle =>
+      'Who Allah is, the five pillars, and the first things a Muslim child learns.';
+
+  @override
   String get kidsStoryBedtimeEligibleTitle => 'سونے کے وقت دوستانہ کہانیاں';
 
   @override

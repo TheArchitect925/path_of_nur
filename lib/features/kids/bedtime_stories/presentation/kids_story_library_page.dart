@@ -151,6 +151,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
   static const _shelfOrder = <KidsIslamicStoryCollectionType>[
     KidsIslamicStoryCollectionType.bedtime,
     KidsIslamicStoryCollectionType.prophets,
+    KidsIslamicStoryCollectionType.foundations,
     KidsIslamicStoryCollectionType.companions,
     KidsIslamicStoryCollectionType.characterAdab,
     KidsIslamicStoryCollectionType.dailyLifeDuas,
@@ -174,6 +175,8 @@ class KidsStoryLibraryPage extends ConsumerWidget {
         return KidsIslamicStoryCollectionType.ramadanEid;
       case 'family-kindness':
         return KidsIslamicStoryCollectionType.familyKindness;
+      case 'first-steps':
+        return KidsIslamicStoryCollectionType.foundations;
       default:
         return null;
     }
@@ -208,6 +211,8 @@ String _collectionId(KidsIslamicStoryCollectionType type) {
       return 'ramadan-eid';
     case KidsIslamicStoryCollectionType.familyKindness:
       return 'family-kindness';
+    case KidsIslamicStoryCollectionType.foundations:
+      return 'first-steps';
   }
 }
 
@@ -228,6 +233,8 @@ String _collectionArt(KidsIslamicStoryCollectionType type) {
       return 'assets/images/kids_stories/covers/ramadan_kindness_cover.webp';
     case KidsIslamicStoryCollectionType.familyKindness:
       return 'assets/images/kids_stories/covers/helping_parents_cover.webp';
+    case KidsIslamicStoryCollectionType.foundations:
+      return _fallbackArt;
   }
 }
 
@@ -250,6 +257,8 @@ String _collectionTitle(
       return l10n.kidsStoryCollectionRamadanEid;
     case KidsIslamicStoryCollectionType.familyKindness:
       return l10n.kidsStoryCollectionFamilyKindness;
+    case KidsIslamicStoryCollectionType.foundations:
+      return l10n.kidsStoryCollectionFoundations;
   }
 }
 
@@ -272,6 +281,8 @@ String _collectionSubtitle(
       return l10n.kidsStoryCollectionRamadanEidSubtitle;
     case KidsIslamicStoryCollectionType.familyKindness:
       return l10n.kidsStoryCollectionFamilyKindnessSubtitle;
+    case KidsIslamicStoryCollectionType.foundations:
+      return l10n.kidsStoryCollectionFoundationsSubtitle;
   }
 }
 

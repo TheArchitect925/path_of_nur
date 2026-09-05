@@ -31250,6 +31250,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'मदद करने, साझा करने, देखभाल करने और कोमल दिलों के बारे में गर्मजोशी भरी कहानियाँ।';
 
   @override
+  String get kidsStoryCollectionFoundations => 'First Steps';
+
+  @override
+  String get kidsStoryCollectionFoundationsSubtitle =>
+      'Who Allah is, the five pillars, and the first things a Muslim child learns.';
+
+  @override
   String get kidsStoryBedtimeEligibleTitle => 'सोने के समय के अनुकूल कहानियाँ';
 
   @override

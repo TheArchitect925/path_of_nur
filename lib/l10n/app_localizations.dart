@@ -51786,6 +51786,18 @@ abstract class AppLocalizations {
   /// **'Warm stories about helping, sharing, caring, and soft hearts.'**
   String get kidsStoryCollectionFamilyKindnessSubtitle;
 
+  /// No description provided for @kidsStoryCollectionFoundations.
+  ///
+  /// In en, this message translates to:
+  /// **'First Steps'**
+  String get kidsStoryCollectionFoundations;
+
+  /// No description provided for @kidsStoryCollectionFoundationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who Allah is, the five pillars, and the first things a Muslim child learns.'**
+  String get kidsStoryCollectionFoundationsSubtitle;
+
   /// No description provided for @kidsStoryBedtimeEligibleTitle.
   ///
   /// In en, this message translates to:

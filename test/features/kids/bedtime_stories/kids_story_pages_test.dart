@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/bedtime_story_seed.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/books/kids_picture_books.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_islamic_story_seed.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_pages.dart';
 
@@ -7,7 +8,11 @@ import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_page
 /// seeded stories a run of short pages that, read in order, is exactly the
 /// story's text.
 void main() {
-  final stories = [...kBedtimeProphetStories, ...kKidsIslamicStories];
+  final stories = [
+    ...kBedtimeProphetStories,
+    ...kKidsIslamicStories,
+    ...kKidsPictureBooks,
+  ];
 
   test('every seeded story splits into several short pages', () {
     for (final story in stories) {

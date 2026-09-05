@@ -31641,6 +31641,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Herzliche Geschichten über Helfen, Teilen, Fürsorge und weiche Herzen.';
 
   @override
+  String get kidsStoryCollectionFoundations => 'Erste Schritte';
+
+  @override
+  String get kidsStoryCollectionFoundationsSubtitle =>
+      'Wer Allah ist, die fünf Säulen und die ersten Dinge, die ein muslimisches Kind lernt.';
+
+  @override
   String get kidsStoryBedtimeEligibleTitle => 'Gute-Nacht-Geschichten';
 
   @override
