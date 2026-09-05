@@ -1,15 +1,17 @@
 import '../../../learn/quran/domain/quran_content_refs.dart';
 import '../domain/bedtime_story_models.dart';
-import 'bedtime_story_audio_manifest.dart';
+import 'bedtime_story_media_manifest.dart';
 import 'books/prophets/nuh_book.dart';
 import 'books/prophets/yunus_book.dart';
 import 'books/prophets/yusuf_book.dart';
+import 'kids_story_scene_plans.dart';
 
 const _narratorDisplayName = 'Path of Nur Bedtime Narration';
 
 final List<BedtimeStorySeed> kBedtimeProphetStories = [
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_adam_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_adam_bedtime_v1'),
     prophetId: 'adam',
     title: 'Prophet Adam – Bedtime Story',
     shortTitle: 'Prophet Adam',
@@ -121,8 +123,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'adam', 'forgiveness', 'beginning', 'jannah'],
     sortOrder: 10,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/adam_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/adam_backdrop.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/adam_cover.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageBackdropAssetDirectory/adam_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -134,8 +137,9 @@ Good night...
     relatedStoryIds: ['story_prophet_nuh_bedtime_v1'],
   ),
   nuhBook,
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_ibrahim_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_ibrahim_bedtime_v1'),
     prophetId: 'ibrahim',
     title: 'Prophet Ibrahim – Bedtime Story',
     shortTitle: 'Prophet Ibrahim',
@@ -329,8 +333,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'ibrahim', 'truth', 'fire', 'idols', 'courage'],
     sortOrder: 30,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/ibrahim_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/ibrahim_backdrop.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/ibrahim_cover.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageBackdropAssetDirectory/ibrahim_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -344,8 +349,9 @@ Good night...
       'story_prophet_adam_bedtime_v1',
     ],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_ismail_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_ismail_bedtime_v1'),
     prophetId: 'ismail',
     title: 'Prophet Ismail – Bedtime Story',
     shortTitle: 'Prophet Ismail',
@@ -486,8 +492,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'ismail', 'trust', 'eid', 'obedience', 'sacrifice'],
     sortOrder: 40,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/ismail_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/ismail_backdrop.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/ismail_cover.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageBackdropAssetDirectory/ismail_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -499,8 +506,9 @@ Good night...
     relatedStoryIds: ['story_prophet_ibrahim_bedtime_v1'],
   ),
   yusufBook,
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_musa_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_musa_bedtime_v1'),
     prophetId: 'musa',
     title: 'Prophet Musa – Bedtime Story',
     shortTitle: 'Prophet Musa',
@@ -687,8 +695,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'musa', 'sea', 'firawn', 'courage', 'trust'],
     sortOrder: 60,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/musa_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/musa_backdrop.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/musa_cover.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageBackdropAssetDirectory/musa_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -703,8 +712,9 @@ Good night...
     ],
   ),
   yunusBook,
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_dawud_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_dawud_bedtime_v1'),
     prophetId: 'dawud',
     title: 'Prophet Dawud – Bedtime Story',
     shortTitle: 'Prophet Dawud',
@@ -839,8 +849,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'dawud', 'jalut', 'justice', 'voice', 'strength'],
     sortOrder: 80,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/dawud_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/dawud_backdrop.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/dawud_cover.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageBackdropAssetDirectory/dawud_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -851,8 +862,9 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_sulaiman_bedtime_v1'],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_isa_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_isa_bedtime_v1'),
     prophetId: 'isa',
     title: 'Prophet Isa – Bedtime Story',
     shortTitle: 'Prophet Isa',
@@ -990,8 +1002,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'isa', 'maryam', 'miracles', 'compassion'],
     sortOrder: 90,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/isa_cover.webp',
-    backdropAssetPath: '$bedtimeStoryImageAssetDirectory/isa_backdrop.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/isa_cover.webp',
+    backdropAssetPath:
+        '$bedtimeStoryImageBackdropAssetDirectory/isa_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1002,8 +1015,9 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_muhammad_part1_bedtime_v1'],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_sulaiman_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes('story_prophet_sulaiman_bedtime_v1'),
     prophetId: 'sulaiman',
     title: 'Prophet Sulaiman – Bedtime Story',
     shortTitle: 'Prophet Sulaiman',
@@ -1148,9 +1162,9 @@ Good night...
     totalParts: 1,
     tags: ['prophet', 'sulaiman', 'animals', 'ant', 'hoopoe', 'gratitude'],
     sortOrder: 100,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/sulaiman_cover.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/sulaiman_cover.webp',
     backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/sulaiman_backdrop.webp',
+        '$bedtimeStoryImageBackdropAssetDirectory/sulaiman_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1161,8 +1175,11 @@ Good night...
     recommendedForTonight: true,
     relatedStoryIds: ['story_prophet_dawud_bedtime_v1'],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_muhammad_part1_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes(
+      'story_prophet_muhammad_part1_bedtime_v1',
+    ),
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 1',
     shortTitle: 'Muhammad ﷺ Part 1',
@@ -1287,9 +1304,9 @@ Good night...
     totalParts: 4,
     tags: ['prophet', 'muhammad', 'childhood', 'makkah', 'character'],
     sortOrder: 110,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/muhammad_cover.webp',
     backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+        '$bedtimeStoryImageBackdropAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1300,8 +1317,11 @@ Good night...
     recommendedForTonight: false,
     relatedStoryIds: ['story_prophet_muhammad_part2_bedtime_v1'],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_muhammad_part2_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes(
+      'story_prophet_muhammad_part2_bedtime_v1',
+    ),
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 2',
     shortTitle: 'Muhammad ﷺ Part 2',
@@ -1448,9 +1468,9 @@ Good night...
     totalParts: 4,
     tags: ['prophet', 'muhammad', 'revelation', 'quran', 'patience'],
     sortOrder: 120,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/muhammad_cover.webp',
     backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+        '$bedtimeStoryImageBackdropAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1464,8 +1484,11 @@ Good night...
       'story_prophet_muhammad_part3_bedtime_v1',
     ],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_muhammad_part3_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes(
+      'story_prophet_muhammad_part3_bedtime_v1',
+    ),
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 3',
     shortTitle: 'Muhammad ﷺ Part 3',
@@ -1586,9 +1609,9 @@ Good night...
     totalParts: 4,
     tags: ['prophet', 'muhammad', 'hijrah', 'madinah', 'community'],
     sortOrder: 130,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/muhammad_cover.webp',
     backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+        '$bedtimeStoryImageBackdropAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,
@@ -1602,8 +1625,11 @@ Good night...
       'story_prophet_muhammad_part4_bedtime_v1',
     ],
   ),
-  const BedtimeStorySeed(
+  BedtimeStorySeed(
     id: 'story_prophet_muhammad_part4_bedtime_v1',
+    sceneIllustrations: kidsStoryScenes(
+      'story_prophet_muhammad_part4_bedtime_v1',
+    ),
     prophetId: 'muhammad',
     title: 'Prophet Muhammad ﷺ – Bedtime Story Part 4',
     shortTitle: 'Muhammad ﷺ Part 4',
@@ -1716,9 +1742,9 @@ Good night...
     totalParts: 4,
     tags: ['prophet', 'muhammad', 'mercy', 'forgiveness', 'makkah'],
     sortOrder: 140,
-    coverAssetPath: '$bedtimeStoryImageAssetDirectory/muhammad_cover.webp',
+    coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/muhammad_cover.webp',
     backdropAssetPath:
-        '$bedtimeStoryImageAssetDirectory/muhammad_backdrop.webp',
+        '$bedtimeStoryImageBackdropAssetDirectory/muhammad_backdrop.webp',
     narratorDisplayName: _narratorDisplayName,
     isLocked: false,
     unlockXp: 0,

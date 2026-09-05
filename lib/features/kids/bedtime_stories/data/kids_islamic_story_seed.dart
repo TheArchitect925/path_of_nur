@@ -1,6 +1,7 @@
 import '../../../learn/quran/domain/quran_content_refs.dart';
 import '../domain/bedtime_story_illustration_models.dart';
 import '../domain/bedtime_story_models.dart';
+import 'kids_story_scene_plans.dart';
 
 const _generalNarratorDisplayName = 'Path of Nur Kids Story Narration';
 
@@ -126,6 +127,7 @@ and full of blessing.
   ),
   BedtimeStorySeed(
     id: 'story_sharing_with_others_v1',
+    sceneIllustrations: kidsStoryScenes('story_sharing_with_others_v1'),
     storyFamilyId: 'sharing_with_others',
     title: 'Sharing With Others',
     shortTitle: 'Sharing With Others',
@@ -201,6 +203,7 @@ Both boys said,
   ),
   BedtimeStorySeed(
     id: 'story_telling_the_truth_v1',
+    sceneIllustrations: kidsStoryScenes('story_telling_the_truth_v1'),
     storyFamilyId: 'telling_the_truth',
     title: 'Telling the Truth',
     shortTitle: 'Telling the Truth',
@@ -272,6 +275,7 @@ Maryam felt light again.
   ),
   BedtimeStorySeed(
     id: 'story_helping_parents_v1',
+    sceneIllustrations: kidsStoryScenes('story_helping_parents_v1'),
     storyFamilyId: 'helping_parents',
     title: 'Helping Parents',
     shortTitle: 'Helping Parents',
@@ -342,6 +346,7 @@ because kindness begins at home.
   ),
   BedtimeStorySeed(
     id: 'story_kindness_to_animals_v1',
+    sceneIllustrations: kidsStoryScenes('story_kindness_to_animals_v1'),
     storyFamilyId: 'kindness_to_animals',
     title: 'Kindness to Animals',
     shortTitle: 'Kindness to Animals',
@@ -412,6 +417,7 @@ and thanked Allah for letting her be kind.
   ),
   BedtimeStorySeed(
     id: 'story_masjid_manners_v1',
+    sceneIllustrations: kidsStoryScenes('story_masjid_manners_v1'),
     storyFamilyId: 'masjid_manners',
     title: 'Good Manners in the Masjid',
     shortTitle: 'Masjid Manners',
@@ -474,6 +480,7 @@ Hasan learned that respect can be soft and beautiful.
   ),
   BedtimeStorySeed(
     id: 'story_ramadan_kindness_v1',
+    sceneIllustrations: kidsStoryScenes('story_ramadan_kindness_v1'),
     storyFamilyId: 'ramadan_kindness',
     title: 'A Ramadan Kindness Story',
     shortTitle: 'Ramadan Kindness',
@@ -543,6 +550,7 @@ It was also about giving.
   ),
   BedtimeStorySeed(
     id: 'story_eid_gratitude_v1',
+    sceneIllustrations: kidsStoryScenes('story_eid_gratitude_v1'),
     storyFamilyId: 'eid_gratitude',
     title: 'An Eid Gratitude Story',
     shortTitle: 'Eid Gratitude',
@@ -610,6 +618,7 @@ because gratitude was inside it.
   ),
   BedtimeStorySeed(
     id: 'story_patience_v1',
+    sceneIllustrations: kidsStoryScenes('story_patience_v1'),
     storyFamilyId: 'patience_story',
     title: 'A Story About Patience',
     shortTitle: 'Patience',
@@ -677,6 +686,7 @@ Patience had been growing in her too.
   ),
   BedtimeStorySeed(
     id: 'story_saying_sorry_and_forgiving_v1',
+    sceneIllustrations: kidsStoryScenes('story_saying_sorry_and_forgiving_v1'),
     storyFamilyId: 'saying_sorry_and_forgiving',
     title: 'Saying Sorry and Forgiving',
     shortTitle: 'Sorry and Forgiving',

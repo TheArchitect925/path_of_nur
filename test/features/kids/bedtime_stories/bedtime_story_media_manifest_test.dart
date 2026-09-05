@@ -29,8 +29,9 @@ void main() {
     );
     final entries = bedtimeStoryIllustrationManifestFor(story);
 
-    expect(entries.length, 2);
-    expect(entries.first.assetPath, contains('/covers/'));
-    expect(entries.last.assetPath, contains('/backdrops/'));
+    // One cover, one backdrop, and since K3 the story's page scenes.
+    expect(entries.length, 2 + story.sceneIllustrations.length);
+    expect(entries.where((e) => e.assetPath.contains('/covers/')).length, 1);
+    expect(entries.where((e) => e.assetPath.contains('/backdrops/')).length, 1);
   });
 }
