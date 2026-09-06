@@ -51741,7 +51741,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionCompanions.
   ///
   /// In en, this message translates to:
-  /// **'Companions'**
+  /// **'Friends of the Prophet ﷺ'**
   String get kidsStoryCollectionCompanions;
 
   /// No description provided for @kidsStoryCollectionCompanionsSubtitle.

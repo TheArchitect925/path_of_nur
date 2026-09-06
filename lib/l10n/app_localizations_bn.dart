@@ -31126,7 +31126,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'The bedtime prophet collection and longer faith-filled story journeys.';
 
   @override
-  String get kidsStoryCollectionCompanions => 'Companions';
+  String get kidsStoryCollectionCompanions => 'Friends of the Prophet ﷺ';
 
   @override
   String get kidsStoryCollectionCompanionsSubtitle =>

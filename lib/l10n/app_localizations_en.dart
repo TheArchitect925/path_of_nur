@@ -31198,7 +31198,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Every prophet from Adam to Muhammad ﷺ, one book each.';
 
   @override
-  String get kidsStoryCollectionCompanions => 'Companions';
+  String get kidsStoryCollectionCompanions => 'Friends of the Prophet ﷺ';
 
   @override
   String get kidsStoryCollectionCompanionsSubtitle =>
