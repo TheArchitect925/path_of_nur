@@ -12,6 +12,7 @@ enum BedtimeStoryCategory {
   ramadanEid,
   familyKindness,
   foundations,
+  quranStories,
 }
 
 enum KidsIslamicStoryCollectionType {
@@ -22,6 +23,7 @@ enum KidsIslamicStoryCollectionType {
   ramadanEid,
   familyKindness,
   foundations,
+  quranStories,
   bedtime,
 }
 
@@ -43,6 +45,7 @@ enum KidsIslamicStoryType {
   forgiveness,
   animals,
   foundations,
+  quranStory,
 }
 
 enum KidsIslamicStoryTheme {

@@ -153,6 +153,7 @@ class KidsStoryLibraryPage extends ConsumerWidget {
     KidsIslamicStoryCollectionType.bedtime,
     KidsIslamicStoryCollectionType.prophets,
     KidsIslamicStoryCollectionType.foundations,
+    KidsIslamicStoryCollectionType.quranStories,
     KidsIslamicStoryCollectionType.companions,
     KidsIslamicStoryCollectionType.characterAdab,
     KidsIslamicStoryCollectionType.dailyLifeDuas,
@@ -178,6 +179,8 @@ class KidsStoryLibraryPage extends ConsumerWidget {
         return KidsIslamicStoryCollectionType.familyKindness;
       case 'first-steps':
         return KidsIslamicStoryCollectionType.foundations;
+      case 'quran-stories':
+        return KidsIslamicStoryCollectionType.quranStories;
       default:
         return null;
     }
@@ -214,6 +217,8 @@ String _collectionId(KidsIslamicStoryCollectionType type) {
       return 'family-kindness';
     case KidsIslamicStoryCollectionType.foundations:
       return 'first-steps';
+    case KidsIslamicStoryCollectionType.quranStories:
+      return 'quran-stories';
   }
 }
 
@@ -236,6 +241,8 @@ String _collectionArt(KidsIslamicStoryCollectionType type) {
       return 'assets/images/kids_stories/covers/helping_parents_cover.webp';
     case KidsIslamicStoryCollectionType.foundations:
       return 'assets/images/kids_books/covers/five_pillars_cover.webp';
+    case KidsIslamicStoryCollectionType.quranStories:
+      return 'assets/images/kids_books/covers/sleepers_cover.webp';
   }
 }
 
@@ -260,6 +267,8 @@ String _collectionTitle(
       return l10n.kidsStoryCollectionFamilyKindness;
     case KidsIslamicStoryCollectionType.foundations:
       return l10n.kidsStoryCollectionFoundations;
+    case KidsIslamicStoryCollectionType.quranStories:
+      return l10n.kidsStoryCollectionQuranStories;
   }
 }
 
@@ -284,6 +293,8 @@ String _collectionSubtitle(
       return l10n.kidsStoryCollectionFamilyKindnessSubtitle;
     case KidsIslamicStoryCollectionType.foundations:
       return l10n.kidsStoryCollectionFoundationsSubtitle;
+    case KidsIslamicStoryCollectionType.quranStories:
+      return l10n.kidsStoryCollectionQuranStoriesSubtitle;
   }
 }
 

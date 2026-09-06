@@ -37,6 +37,7 @@ Plan and rationale: the Kids Bookshelf Rewrite artifact (2026-09-04).
 ## Where a book lives
 
 - One file per book under `data/books/<shelf>/<book>.dart`, built with `kidsPictureBook(...)`, which derives `ttsText`, the duration and the scene manifest.
+- **Stories from the Qur'an** (`data/books/quran_stories/`, ids `book_quran_<slug>_v1`, sortOrder 400+): each page carries a `quranRef` to the ayah it retells, the source note names the passage, and anything taken from the seerah rather than the Qur'an is said so in the note. These books may borrow scenes from the prophet books (Maryam uses Isa's, the Ant uses Sulayman's); they never use the child cast, and no person is ever drawn.
 - **A rewrite keeps the id of the seed it replaces** and replaces that entry in the older list (`kBedtimeProphetStories`, `kKidsIslamicStories`, `kKidsSeerahCompanionStories`). Quizzes, memory decks, progress and related-story links are all keyed on the id.
 - A new book goes in `kKidsPictureBooks`; a prophet book goes in `kBedtimeProphetStories`, whose `sortOrder` values run in the order of the chain (Adam 10 … Muhammad ﷺ 140) and must stay unique. Write the book's `id:` as a literal string: the narration kit finds stories by that line.
 - English now; each file is shaped so the locale-keyed seed (K6) can take it mechanically. German follows once the voice is approved.

@@ -18161,7 +18161,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicHomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Write and Learn Arabic Letters'**
+  /// **'Letters'**
   String get kidsArabicHomeTitle;
 
   /// No description provided for @kidsArabicHomeSubtitle.
@@ -42233,7 +42233,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsDuaLandingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Kids Dua Learning'**
+  /// **'Duʿās'**
   String get kidsDuaLandingTitle;
 
   /// No description provided for @kidsDuaLandingSubtitle.
@@ -50997,7 +50997,7 @@ abstract class AppLocalizations {
   /// No description provided for @bedtimeStoriesCountLabel.
   ///
   /// In en, this message translates to:
-  /// **'{count} stories prepared'**
+  /// **'{count, plural, =1{1 story} other{{count} stories}}'**
   String bedtimeStoriesCountLabel(int count);
 
   /// No description provided for @bedtimeStoriesTonightTitle.
@@ -51663,13 +51663,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryLibraryTitle.
   ///
   /// In en, this message translates to:
-  /// **'Kids Stories'**
+  /// **'Stories'**
   String get kidsStoryLibraryTitle;
 
   /// No description provided for @kidsStoryLibrarySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Prophets, good manners, daily life and seasonal stories in one calm library.'**
+  /// **'Prophets, first steps, good manners and duʿās. Pick a book.'**
   String get kidsStoryLibrarySubtitle;
 
   /// No description provided for @kidsStoryLibraryHeroTitle.
@@ -51735,7 +51735,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionProphetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'The bedtime prophet collection and longer faith-filled story journeys.'**
+  /// **'Every prophet from Adam to Muhammad ﷺ, one book each.'**
   String get kidsStoryCollectionProphetsSubtitle;
 
   /// No description provided for @kidsStoryCollectionCompanions.
@@ -51747,7 +51747,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionCompanionsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle stories of loyalty, support, patience, and faith from the Prophet’s ﷺ companions.'**
+  /// **'The Prophet’s ﷺ friends, and the stories he told.'**
   String get kidsStoryCollectionCompanionsSubtitle;
 
   /// No description provided for @kidsStoryCollectionCharacterAdab.
@@ -51759,7 +51759,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionCharacterAdabSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle stories about honesty, patience, apology, and kindness.'**
+  /// **'Being honest, patient and kind.'**
   String get kidsStoryCollectionCharacterAdabSubtitle;
 
   /// No description provided for @kidsStoryCollectionDailyLife.
@@ -51771,7 +51771,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionDailyLifeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Simple Islamic moments around food, home, routines, and the masjid.'**
+  /// **'Duʿās for eating, sleeping and going out.'**
   String get kidsStoryCollectionDailyLifeSubtitle;
 
   /// No description provided for @kidsStoryCollectionRamadanEid.
@@ -51783,7 +51783,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionRamadanEidSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Seasonal stories about gratitude, generosity, and joyful worship.'**
+  /// **'The month we wait for, and the two Eids.'**
   String get kidsStoryCollectionRamadanEidSubtitle;
 
   /// No description provided for @kidsStoryCollectionFamilyKindness.
@@ -51795,7 +51795,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryCollectionFamilyKindnessSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Warm stories about helping, sharing, caring, and soft hearts.'**
+  /// **'Helping at home and loving your family.'**
   String get kidsStoryCollectionFamilyKindnessSubtitle;
 
   /// No description provided for @kidsStoryCollectionFoundations.
@@ -51809,6 +51809,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Who Allah is, the five pillars, and the first things a Muslim child learns.'**
   String get kidsStoryCollectionFoundationsSubtitle;
+
+  /// No description provided for @kidsStoryCollectionQuranStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories from the Qur’an'**
+  String get kidsStoryCollectionQuranStories;
+
+  /// No description provided for @kidsStoryCollectionQuranStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The sleepers, the elephant, Luqman’s advice, and more, told for children.'**
+  String get kidsStoryCollectionQuranStoriesSubtitle;
 
   /// No description provided for @kidsStoryBedtimeEligibleTitle.
   ///
@@ -51879,7 +51891,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsStoryReadStoryAction.
   ///
   /// In en, this message translates to:
-  /// **'Read story'**
+  /// **'Read'**
   String get kidsStoryReadStoryAction;
 
   /// No description provided for @kidsStoryScenesSectionTitle.

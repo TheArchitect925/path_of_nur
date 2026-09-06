@@ -31132,6 +31132,13 @@ class AppLocalizationsFa extends AppLocalizations {
       'Who Allah is, the five pillars, and the first things a Muslim child learns.';
 
   @override
+  String get kidsStoryCollectionQuranStories => 'Stories from the Qur’an';
+
+  @override
+  String get kidsStoryCollectionQuranStoriesSubtitle =>
+      'The sleepers, the elephant, Luqman’s advice, and more, told for children.';
+
+  @override
   String get kidsStoryBedtimeEligibleTitle => 'Bedtime-friendly stories';
 
   @override
@@ -75501,6 +75508,20 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'Warm stories about helping, sharing, caring, and soft hearts.';
 
   @override
+  String get kidsStoryCollectionFoundations => 'First Steps';
+
+  @override
+  String get kidsStoryCollectionFoundationsSubtitle =>
+      'Who Allah is, the five pillars, and the first things a Muslim child learns.';
+
+  @override
+  String get kidsStoryCollectionQuranStories => 'Stories from the Qur’an';
+
+  @override
+  String get kidsStoryCollectionQuranStoriesSubtitle =>
+      'The sleepers, the elephant, Luqman’s advice, and more, told for children.';
+
+  @override
   String get kidsStoryBedtimeEligibleTitle => 'Bedtime-friendly stories';
 
   @override
@@ -75571,13 +75592,6 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get kidsSeerahFeaturedJourneySubtitle =>
-  @override
-  String get kidsStoryCollectionFoundations => 'First Steps';
-
-  @override
-  String get kidsStoryCollectionFoundationsSubtitle =>
-      'Who Allah is, the five pillars, and the first things a Muslim child learns.';
-
       'Start a structured story path through the Seerah with calm stages and clear next steps.';
 
   @override

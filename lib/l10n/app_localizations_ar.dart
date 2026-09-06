@@ -31008,6 +31008,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'Who Allah is, the five pillars, and the first things a Muslim child learns.';
 
   @override
+  String get kidsStoryCollectionQuranStories => 'Stories from the Qur’an';
+
+  @override
+  String get kidsStoryCollectionQuranStoriesSubtitle =>
+      'The sleepers, the elephant, Luqman’s advice, and more, told for children.';
+
+  @override
   String get kidsStoryBedtimeEligibleTitle => 'قصص مناسبة لوقت النوم';
 
   @override

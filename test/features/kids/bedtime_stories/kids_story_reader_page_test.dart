@@ -6,6 +6,7 @@ import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/application/bedtime_story_progress_service.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/books/first_steps/five_pillars_book.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/books/prophets/yunus_book.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/data/books/quran_stories/two_gardens_book.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_islamic_story_seed.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_pages.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/presentation/kids_story_reader_page.dart';
@@ -84,6 +85,29 @@ void main() {
       findsOneWidget,
     );
     expect(find.text(l10n.kidsStoryReaderTryItAction), findsNothing);
+  });
+
+  // C4a: a refrain that sits inside a sentence is lit, letters kept.
+  testWidgets('a Qur’an story lights its refrain mid-sentence', (tester) async {
+    await openReader(
+      tester,
+      location: '/learn/kids/stories/${twoGardensBook.id}/read',
+    );
+    final last = twoGardensBook.spreads.last;
+    await turnPages(tester, twoGardensBook.spreads.length - 1);
+
+    expect(find.text(last.arabicLine!), findsOneWidget);
+    final line = tester.widget<Text>(find.text(last.lines.last));
+    final spans = <TextSpan>[];
+    line.textSpan!.visitChildren((span) {
+      if (span is TextSpan) spans.add(span);
+      return true;
+    });
+    final lit = spans.firstWhere((span) => span.text == 'as Allah wills');
+    expect(lit.style?.fontWeight, FontWeight.w800);
+    expect(spans.where((span) => span.style?.fontWeight == FontWeight.w800), [
+      lit,
+    ]);
   });
 
   testWidgets('opened at bedtime, a book ends on its closing page', (

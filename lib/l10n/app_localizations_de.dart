@@ -31183,7 +31183,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String bedtimeStoriesCountLabel(int count) {
-    return '$count Geschichten vorbereitet';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Geschichten',
+      one: '1 Geschichte',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -31572,7 +31578,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsStoryLibrarySubtitle =>
-      'Propheten, gute Manieren, Alltag und saisonale Geschichten in einer ruhigen Bibliothek.';
+      'Propheten, erste Schritte, gute Manieren und Duʿās. Such dir ein Buch aus.';
 
   @override
   String get kidsStoryLibraryHeroTitle =>
@@ -31611,42 +31617,42 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsStoryCollectionProphetsSubtitle =>
-      'Die Gute-Nacht-Propheten-Sammlung und längere, vom Glauben erfüllte Geschichtenreisen.';
+      'Jeder Prophet von Adam bis Muhammad ﷺ, ein Buch für jeden.';
 
   @override
   String get kidsStoryCollectionCompanions => 'Gefährten';
 
   @override
   String get kidsStoryCollectionCompanionsSubtitle =>
-      'Sanfte Geschichten über Loyalität, Unterstützung, Geduld und Glauben von den Gefährten des Propheten.';
+      'Die Freunde des Propheten ﷺ und die Geschichten, die er erzählte.';
 
   @override
   String get kidsStoryCollectionCharacterAdab => 'Charakter & Adab';
 
   @override
   String get kidsStoryCollectionCharacterAdabSubtitle =>
-      'Sanfte Geschichten über Ehrlichkeit, Geduld, Entschuldigung und Freundlichkeit.';
+      'Ehrlich, geduldig und freundlich sein.';
 
   @override
   String get kidsStoryCollectionDailyLife => 'Alltag und Duas';
 
   @override
   String get kidsStoryCollectionDailyLifeSubtitle =>
-      'Einfache islamische Momente rund um Essen, Zuhause, Routinen und die Moschee.';
+      'Duʿās fürs Essen, Schlafen und Rausgehen.';
 
   @override
   String get kidsStoryCollectionRamadanEid => 'Ramadan und Eid';
 
   @override
   String get kidsStoryCollectionRamadanEidSubtitle =>
-      'Saisonale Geschichten über Dankbarkeit, Großzügigkeit und freudige Anbetung.';
+      'Der Monat, auf den wir warten, und die beiden Eid-Feste.';
 
   @override
   String get kidsStoryCollectionFamilyKindness => 'Familie und Freundlichkeit';
 
   @override
   String get kidsStoryCollectionFamilyKindnessSubtitle =>
-      'Herzliche Geschichten über Helfen, Teilen, Fürsorge und weiche Herzen.';
+      'Zu Hause helfen und die Familie lieb haben.';
 
   @override
   String get kidsStoryCollectionFoundations => 'Erste Schritte';
@@ -31654,6 +31660,13 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get kidsStoryCollectionFoundationsSubtitle =>
       'Wer Allah ist, die fünf Säulen und die ersten Dinge, die ein muslimisches Kind lernt.';
+
+  @override
+  String get kidsStoryCollectionQuranStories => 'Geschichten aus dem Koran';
+
+  @override
+  String get kidsStoryCollectionQuranStoriesSubtitle =>
+      'Die Schläfer, der Elefant, Luqmans Rat und mehr, für Kinder erzählt.';
 
   @override
   String get kidsStoryBedtimeEligibleTitle => 'Gute-Nacht-Geschichten';
@@ -44838,18 +44851,18 @@ class AppLocalizationsDe extends AppLocalizations {
       'Tippe auf eine Zeile, um sie zu hören.';
 
   @override
-  String get kidsStoryReaderLessonEyebrow => 'Was wir gelernt haben';
-
-  @override
-  String get kidsStickerBookTitle => 'Meine Sticker';
-
-  @override
   String get kidsStoryReaderTryItAction => 'Probier es';
 
   @override
   String kidsStoryReaderQuranRefLabel(int surah, int ayah) {
     return 'Koran $surah:$ayah';
   }
+
+  @override
+  String get kidsStoryReaderLessonEyebrow => 'Was wir gelernt haben';
+
+  @override
+  String get kidsStickerBookTitle => 'Meine Sticker';
 
   @override
   String get kidsStickerBookSubtitle =>
