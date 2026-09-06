@@ -98,7 +98,7 @@ const _kidsArabicLetterContentById = <String, _KidsArabicLetterContent>{
     childFriendlyLine: 'Zay reminds us of zakah.',
   ),
   'seen': _KidsArabicLetterContent(
-    strokeCount: 3,
+    strokeCount: 1,
     exampleWord: 'sujood',
     exampleWordAr: 'سجود',
     exampleWordEn: 'Sujood',
@@ -140,14 +140,14 @@ const _kidsArabicLetterContentById = <String, _KidsArabicLetterContent>{
     childFriendlyLine: 'Za reminds us of Zuhr.',
   ),
   'ain': _KidsArabicLetterContent(
-    strokeCount: 2,
+    strokeCount: 1,
     exampleWord: 'ilm',
     exampleWordAr: 'علم',
     exampleWordEn: 'Ilm',
     childFriendlyLine: 'Ain reminds us of ilm.',
   ),
   'ghain': _KidsArabicLetterContent(
-    strokeCount: 3,
+    strokeCount: 2,
     exampleWord: 'ghafoor',
     exampleWordAr: 'غفور',
     exampleWordEn: 'Ghafoor',

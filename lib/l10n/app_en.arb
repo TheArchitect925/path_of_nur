@@ -5194,6 +5194,23 @@
   "kidsArabicReviewCorrectFeedback": "Great job.",
   "kidsArabicReviewRetryFeedback": "Let’s try again together.",
   "kidsArabicReviewFinishedTitle": "Review finished",
+  "kidsArabicReviewNeedsLettersTitle": "Learn one more letter first",
+  "kidsArabicReviewNeedsLettersBody": "Review opens once two letters are done. {letterName} is next.",
+  "kidsArabicReviewNeedsLettersAction": "Open {letterName}",
+  "@kidsArabicReviewNeedsLettersBody": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "@kidsArabicReviewNeedsLettersAction": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
   "kidsArabicReviewFinishedSubtitle": "You answered {correct} of {total}. Keep going gently.",
   "@kidsArabicReviewFinishedSubtitle": {
     "placeholders": {
@@ -16655,10 +16672,12 @@
   "quranTeachingMiniAssessmentPageTitle": "Quick Practice",
   "quranTeachingMiniAssessmentPageSubtitle": "A short recognition check to reinforce recent letters, words, and phrases.",
   "arabicLearningMiniAssessmentIntroTitle": "Let’s practice gently",
-  "arabicLearningMiniAssessmentIntroBody": "{count} quick questions. No scores, no timers, and you can leave any time.",
+  "arabicLearningMiniAssessmentIntroBody": "{count, plural, =1{One quick question. No scores, no timers, and you can leave any time.} other{{count} quick questions. No scores, no timers, and you can leave any time.}}",
   "@arabicLearningMiniAssessmentIntroBody": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningMiniAssessmentQuestionCounter": "Question {current} of {total}",

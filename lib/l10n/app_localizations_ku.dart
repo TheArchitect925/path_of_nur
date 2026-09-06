@@ -10912,6 +10912,19 @@ class AppLocalizationsKu extends AppLocalizations {
   String get kidsArabicReviewFinishedTitle => 'Review finished';
 
   @override
+  String get kidsArabicReviewNeedsLettersTitle => 'Learn one more letter first';
+
+  @override
+  String kidsArabicReviewNeedsLettersBody(String letterName) {
+    return 'Review opens once two letters are done. $letterName is next.';
+  }
+
+  @override
+  String kidsArabicReviewNeedsLettersAction(String letterName) {
+    return 'Open $letterName';
+  }
+
+  @override
   String kidsArabicReviewFinishedSubtitle(int correct, int total) {
     return 'You answered $correct of $total. Keep going gently.';
   }
@@ -36966,7 +36979,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get arabicLearningMiniAssessmentIntroTitle => 'Let’s practice gently';
 
   @override
-  String arabicLearningMiniAssessmentIntroBody(Object count) {
+  String arabicLearningMiniAssessmentIntroBody(int count) {
     return '$count quick questions. No scores, no timers, and you can leave any time.';
   }
 

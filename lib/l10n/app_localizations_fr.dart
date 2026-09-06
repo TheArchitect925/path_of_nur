@@ -10963,6 +10963,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsArabicReviewFinishedTitle => 'Review finished';
 
   @override
+  String get kidsArabicReviewNeedsLettersTitle => 'Learn one more letter first';
+
+  @override
+  String kidsArabicReviewNeedsLettersBody(String letterName) {
+    return 'Review opens once two letters are done. $letterName is next.';
+  }
+
+  @override
+  String kidsArabicReviewNeedsLettersAction(String letterName) {
+    return 'Open $letterName';
+  }
+
+  @override
   String kidsArabicReviewFinishedSubtitle(int correct, int total) {
     return 'You answered $correct of $total. Keep going gently.';
   }
@@ -31297,7 +31310,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get kidsStoryLibrarySubtitle =>
-      'Browse prophets, good manners, daily-life, and seasonal Islamic stories in one calm library.';
+      'Prophets, good manners, daily life and seasonal stories in one calm library.';
 
   @override
   String get kidsStoryLibraryHeroTitle =>
@@ -37112,7 +37125,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get arabicLearningMiniAssessmentIntroTitle => 'Let’s practice gently';
 
   @override
-  String arabicLearningMiniAssessmentIntroBody(Object count) {
+  String arabicLearningMiniAssessmentIntroBody(int count) {
     return '$count quick questions. No scores, no timers, and you can leave any time.';
   }
 
@@ -44400,6 +44413,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsDoorParentsTitle => 'Parents';
 
   @override
+  String get kidsDoorParentsSubtitle =>
+      'Progress, settings and family profiles';
+
+  @override
+  String get kidsPlaySubtitle =>
+      'Practice games, story quizzes, colouring and drawing.';
+
+  @override
+  String get kidsPlayGamesSectionTitle => 'Games';
+
+  @override
+  String get kidsPlayMakeSectionTitle => 'Make and colour';
 
   @override
   String kidsStoryReaderPageValue(Object current, Object total) {
@@ -44443,12 +44468,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get kidsStoryReaderLessonEyebrow => 'What we learned';
-  String get kidsDoorParentsSubtitle =>
-      'Progress, settings and family profiles';
 
   @override
-  String get kidsPlaySubtitle =>
-      'Practice games, story quizzes, colouring and drawing.';
+  String get kidsStickerBookTitle => 'My stickers';
 
   @override
   String get kidsStickerBookSubtitle =>
@@ -44516,6 +44538,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'A little one for today. Say it, and earn a sticker.';
 
   @override
+  String get kidsInvitationStartAction => 'Let’s go';
+
+  @override
   String get kidsParentGateTitle => 'Grown-ups only';
 
   @override
@@ -44545,7 +44570,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'Duʿās learned, drawings, and the parent view switch.';
 
   @override
-  String get kidsInvitationStartAction => 'Let’s go';
   String get learnHubSubcategoryKidsQuranTitleText => 'Qur’an for Kids';
 
   @override

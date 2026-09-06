@@ -5041,6 +5041,9 @@
   "kidsArabicReviewCorrectFeedback": "أحسنت.",
   "kidsArabicReviewRetryFeedback": "لنحاول معًا مرة أخرى.",
   "kidsArabicReviewFinishedTitle": "انتهت المراجعة",
+  "kidsArabicReviewNeedsLettersTitle": "Learn one more letter first",
+  "kidsArabicReviewNeedsLettersBody": "Review opens once two letters are done. {letterName} is next.",
+  "kidsArabicReviewNeedsLettersAction": "Open {letterName}",
   "kidsArabicReviewFinishedSubtitle": "أجبت عن {correct} من {total}. واصل بلطف.",
   "@kidsArabicReviewFinishedSubtitle": {
     "placeholders": {
@@ -16440,7 +16443,9 @@
   "arabicLearningMiniAssessmentIntroBody": "{count} quick questions. No scores, no timers, and you can leave any time.",
   "@arabicLearningMiniAssessmentIntroBody": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningMiniAssessmentQuestionCounter": "Question {current} of {total}",

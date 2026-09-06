@@ -259,9 +259,12 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
                         child: Stack(
                           fit: StackFit.expand,
                           children: [
+                            // Border only. The painter underneath draws the
+                            // paper, the guide and the child's own stroke; a
+                            // fill here sat on top of all three and left the
+                            // pad blank on every device.
                             Container(
                               decoration: BoxDecoration(
-                                color: context.palette.surface,
                                 borderRadius: BorderRadius.circular(24),
                                 border: Border.all(
                                   color: ready
@@ -364,36 +367,6 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
                 },
               ),
             ),
-            if (ready)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEAF5D6),
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(color: const Color(0xFFC7DBA0)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.check_circle_rounded,
-                      size: 16,
-                      color: context.palette.successInk,
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      widget.readyBadgeLabel,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF557131),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
           ],
         ),
         const SizedBox(height: 10),

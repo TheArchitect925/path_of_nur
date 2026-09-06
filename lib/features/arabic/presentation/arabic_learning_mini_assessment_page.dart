@@ -312,7 +312,11 @@ class _QuestionCard extends StatelessWidget {
                 ),
               ),
             ),
-            if (question.meaning != null) ...[
+            // A letter's "meaning" is its sound hint, which is the answer
+            // to the question above it.
+            if (question.meaning != null &&
+                question.contentType !=
+                    ArabicLearningContinuationContentType.letter) ...[
               const SizedBox(height: 8),
               Center(child: Text(question.meaning!)),
             ],

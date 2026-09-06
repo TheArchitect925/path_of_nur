@@ -4744,7 +4744,7 @@
       "phrase": {}
     }
   },
-  "kidsArabicProgressTitle": "Heute in Briefen",
+  "kidsArabicProgressTitle": "Heute bei den Buchstaben",
   "kidsArabicLettersCompletedValue": "{count} Buchstaben",
   "@kidsArabicLettersCompletedValue": {
     "placeholders": {
@@ -4777,7 +4777,7 @@
       }
     }
   },
-  "kidsArabicReviewTitle": "Briefbesprechung",
+  "kidsArabicReviewTitle": "Buchstaben wiederholen",
   "kidsArabicReviewSubtitle": "Kurze, sanfte Wiederholungsrunden für gelernte Buchstaben.",
   "kidsArabicRewardsTitle": "Belohnungen und Sticker",
   "kidsArabicRewardsSubtitle": "Warme kleine Belohnungen durch stetiges Buchstabenlernen.",
@@ -4815,7 +4815,7 @@
       }
     }
   },
-  "kidsArabicDailyMissionNewLetterTitle": "Lernen Sie {letterName}",
+  "kidsArabicDailyMissionNewLetterTitle": "Lerne {letterName}",
   "@kidsArabicDailyMissionNewLetterTitle": {
     "placeholders": {
       "letterName": {}
@@ -4845,14 +4845,14 @@
       "letterName": {}
     }
   },
-  "kidsArabicDailyMissionTraceDescription": "Verfolgen Sie {letterName} noch einmal, um es in der Nähe zu halten.",
+  "kidsArabicDailyMissionTraceDescription": "Fahre {letterName} noch einmal nach, damit er vertraut bleibt.",
   "@kidsArabicDailyMissionTraceDescription": {
     "placeholders": {
       "letterName": {}
     }
   },
   "kidsArabicDailyMissionCompletedTitle": "Tägliche Mission abgeschlossen",
-  "kidsArabicDailyMissionCompletedSubtitle": "Ihr Streak beträgt jetzt {streak} Tage.",
+  "kidsArabicDailyMissionCompletedSubtitle": "Deine Serie ist jetzt {streak} Tage lang.",
   "@kidsArabicDailyMissionCompletedSubtitle": {
     "placeholders": {
       "streak": {
@@ -4875,15 +4875,15 @@
   "kidsArabicDailyMissionGraceUsed": "Ein Schutztag wurde genutzt, damit die Serie weitergeht.",
   "kidsArabicRecommendedTitle": "Beginne mit diesen Buchstaben",
   "kidsArabicRecommendedSubtitle": "Beginne mit Alif, Ba, Meem, Noon und Seen.",
-  "kidsArabicStartHereBadge": "Beginnen Sie hier",
+  "kidsArabicStartHereBadge": "Hier anfangen",
   "kidsArabicAlphabetTitle": "Alle Buchstaben",
   "kidsArabicAlphabetSubtitle": "Schließe einen Buchstaben ab, damit sich der nächste sanft öffnet.",
-  "kidsArabicLockedTitle": "Gehen Sie vorsichtig weiter",
+  "kidsArabicLockedTitle": "Schritt für Schritt",
   "kidsArabicLockedSubtitle": "Dieser Buchstabe öffnet sich, wenn der vorige fertig ist.",
-  "kidsArabicLockedBody": "Beenden Sie zuerst den vorherigen Buchstaben, dann wird dieser freigeschaltet.",
+  "kidsArabicLockedBody": "Mach zuerst den Buchstaben davor fertig, dann öffnet sich dieser.",
   "kidsArabicLockedStatus": "Vorerst gesperrt",
   "kidsArabicReadyToStart": "Bereit",
-  "kidsArabicLessonTitle": "Brief {glyph}",
+  "kidsArabicLessonTitle": "Buchstabe {glyph}",
   "@kidsArabicLessonTitle": {
     "placeholders": {
       "glyph": {
@@ -4899,12 +4899,12 @@
       }
     }
   },
-  "kidsArabicLetterMissingTitle": "Brief nicht gefunden",
+  "kidsArabicLetterMissingTitle": "Buchstabe nicht gefunden",
   "kidsArabicLetterMissingSubtitle": "Diese Buchstabenlektion konnte nicht geöffnet werden.",
   "kidsArabicLetterMissingBody": "Gehe zurück zur Buchstabenseite und wähle eine andere Lektion.",
   "kidsArabicPronunciationAction": "Anhören",
-  "kidsArabicClearTraceAction": "Versuchen Sie es erneut",
-  "kidsArabicTraceTitle": "Gemeinsam verfolgen",
+  "kidsArabicClearTraceAction": "Noch einmal",
+  "kidsArabicTraceTitle": "Gemeinsam nachfahren",
   "kidsArabicTraceSubtitle": "{count, plural, =1{Probiere einen sanften Strich.} other{Probiere {count} sanfte Striche.}}",
   "@kidsArabicTraceSubtitle": {
     "placeholders": {
@@ -4985,7 +4985,7 @@
       }
     }
   },
-  "kidsArabicBackToLettersAction": "Briefe nach Hause",
+  "kidsArabicBackToLettersAction": "Zurück zu den Buchstaben",
   "kidsArabicNextLetterAction": "Als nächstes",
   "kidsArabicCompletionRewardRow": "+{xp} XP und +{drops} Ozean-Tropfen",
   "@kidsArabicCompletionRewardRow": {
@@ -5010,7 +5010,7 @@
   "kidsArabicTraceResultGood": "Tolle Arbeit",
   "kidsArabicTraceResultExcellent": "Schöne Arbeit",
   "kidsArabicReviewModeMatchSound": "Passender Ton",
-  "kidsArabicReviewModeTapCorrectLetter": "Tippen Sie auf den Buchstaben",
+  "kidsArabicReviewModeTapCorrectLetter": "Tipp auf den Buchstaben",
   "kidsArabicQuestionCounter": "Frage {current} von {total}",
   "@kidsArabicQuestionCounter": {
     "placeholders": {
@@ -5041,7 +5041,24 @@
   "kidsArabicReviewCorrectFeedback": "Tolle Arbeit.",
   "kidsArabicReviewRetryFeedback": "Versuchen wir es noch einmal gemeinsam.",
   "kidsArabicReviewFinishedTitle": "Rezension beendet",
-  "kidsArabicReviewFinishedSubtitle": "Sie haben {correct} von {total} beantwortet. Gehen Sie vorsichtig weiter.",
+  "kidsArabicReviewNeedsLettersTitle": "Lerne erst noch einen Buchstaben",
+  "kidsArabicReviewNeedsLettersBody": "Die Wiederholung öffnet sich, sobald zwei Buchstaben fertig sind. Als Nächstes kommt {letterName}.",
+  "kidsArabicReviewNeedsLettersAction": "{letterName} öffnen",
+  "@kidsArabicReviewNeedsLettersBody": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "@kidsArabicReviewNeedsLettersAction": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsArabicReviewFinishedSubtitle": "Du hast {correct} von {total} richtig. Mach ruhig weiter.",
   "@kidsArabicReviewFinishedSubtitle": {
     "placeholders": {
       "correct": {
@@ -5052,17 +5069,17 @@
       }
     }
   },
-  "kidsArabicStickerFirstLetterTitle": "Erster Brief",
+  "kidsArabicStickerFirstLetterTitle": "Erster Buchstabe",
   "kidsArabicStickerFirstLetterSubtitle": "Der erste sanfte Schritt ist getan.",
   "kidsArabicStickerFirstFiveTitle": "Erste fünf",
   "kidsArabicStickerFirstFiveSubtitle": "Die ersten fünf Startbuchstaben sind unterwegs.",
   "kidsArabicStickerTenLettersTitle": "Stetige Zehn",
   "kidsArabicStickerTenLettersSubtitle": "Zehn Buchstaben gehören jetzt zum Weg.",
   "kidsArabicStickerFullAlphabetTitle": "Vollständiges Alphabet",
-  "kidsArabicStickerFullAlphabetSubtitle": "Alle 28 Briefe wurden mindestens einmal ausgefüllt.",
+  "kidsArabicStickerFullAlphabetSubtitle": "Alle 28 Buchstaben wurden mindestens einmal geschafft.",
   "kidsArabicStickerEarned": "Verdient",
   "kidsArabicStickerLocked": "Gesperrt",
-  "kidsArabicLettersCompletedLabel": "Briefe abgeschlossen",
+  "kidsArabicLettersCompletedLabel": "Buchstaben geschafft",
   "kidsArabicLessonsDoneLabel": "Gesamte Lektionen erledigt",
   "kidsArabicCurrentStreakLabel": "Aktuelle Serie",
   "kidsArabicParentBestStreakLabel": "Beste Serie",
@@ -5071,7 +5088,7 @@
   "kidsArabicParentTodayMissionCompleted": "Abgeschlossen",
   "kidsArabicParentTodayMissionPending": "Noch zu erledigen",
   "kidsArabicParentReviewNeededTitle": "Buchstaben zum Wiederholen",
-  "kidsArabicParentReviewNeededEmpty": "Im Moment müssen keine Briefe überprüft werden.",
+  "kidsArabicParentReviewNeededEmpty": "Im Moment muss kein Buchstabe wiederholt werden.",
   "kidsArabicParentOverviewStartTitle": "Beginnen Sie mit einem ruhigen Schritt",
   "kidsArabicParentOverviewStartBody": "Das Arabischlernen hat noch nicht begonnen. Starten Sie mit der ersten sanften Buchstabenlektion und halten Sie das Tempo leicht.",
   "kidsArabicParentOverviewProgressTitle": "Das Arabischlernen kommt sanft voran",
@@ -5122,7 +5139,7 @@
     }
   },
   "kidsArabicColoringPagesTitle": "Malvorlagen",
-  "kidsArabicColoringPagesSubtitle": "Druckbare Briefseiten werden freigeschaltet, sobald jeder Brief fertig ist.",
+  "kidsArabicColoringPagesSubtitle": "Ausmalseiten werden freigeschaltet, sobald ein Buchstabe fertig ist.",
   "kidsArabicColoringPagesProgressValue": "{unlocked} von {total} Seiten freigeschaltet",
   "@kidsArabicColoringPagesProgressValue": {
     "placeholders": {
@@ -5266,7 +5283,7 @@
   "kidsArabicLetterAlifChildLine": "Alif erinnert uns an Allah.",
   "kidsArabicLetterBaChildLine": "Ba beginnt Bismillah.",
   "kidsArabicLetterTaChildLine": "Ta erinnert uns an Taqwa.",
-  "kidsArabicLetterThaChildLine": "Das erinnert uns an Thawab.",
+  "kidsArabicLetterThaChildLine": "Tha erinnert uns an Thawab.",
   "kidsArabicLetterJimChildLine": "Jeem erinnert uns an Jannah.",
   "kidsArabicLetterHaChildLine": "Ha erinnert uns an Halal.",
   "kidsArabicLetterKhaChildLine": "Kha erinnert uns an Khayr.",
@@ -14630,11 +14647,11 @@
   "progressionMilestoneBedtimeWeekDescription": "Es entsteht ein schöner Schlafrhythmus.",
   "progressionMilestoneLearningMonthTitle": "30-tägiger Lernabschnitt",
   "progressionMilestoneLearningMonthDescription": "Konsistenz wird Teil der Reise.",
-  "kidsArabicRepeatAfterMeTitle": "Hören Sie zu und wiederholen Sie es",
-  "kidsArabicRepeatAfterMeLetterSubtitle": "Hören Sie den Brief, machen Sie eine Pause und sagen Sie ihn nach dem Ton sanft.",
-  "kidsArabicRepeatAfterMeWordSubtitle": "Hören Sie das Wort, machen Sie eine Pause und sagen Sie es nach dem Ton sanft.",
+  "kidsArabicRepeatAfterMeTitle": "Hör zu und sprich nach",
+  "kidsArabicRepeatAfterMeLetterSubtitle": "Hör dir den Buchstaben an, warte kurz und sprich ihn dann leise nach.",
+  "kidsArabicRepeatAfterMeWordSubtitle": "Hör dir das Wort an, warte kurz und sprich es dann leise nach.",
   "kidsArabicRepeatAfterMePrompt": "Sag es jetzt leise mit mir.",
-  "kidsArabicWordsListenAction": "Hören Sie dieses Wort",
+  "kidsArabicWordsListenAction": "Hör dir das Wort an",
   "kidsArabicAchievementsHomeTitle": "Meilensteine und Abzeichen",
   "kidsArabicAchievementsHomeEmptyTitle": "Ihr erstes Abzeichen wartet auf Sie",
   "kidsArabicAchievementsHomeEmptySubtitle": "Beenden Sie eine Buchstaben- oder Wortlektion, dann wird Ihr neuester Erfolg hier angezeigt, damit Kinder und Eltern gemeinsam feiern können.",
@@ -14645,12 +14662,12 @@
   "kidsArabicBadgesSectionTitle": "Abzeichen",
   "kidsArabicBadgesSectionSubtitle": "Abzeichenaufkleber bleiben an den echten Arabisch-Fortschritt gebunden und werden nur einmal freigeschaltet.",
   "kidsArabicAchievementCelebrateTitle": "Eine neue Feier",
-  "kidsArabicMilestoneThreeLettersTitle": "Drei Briefe fertig",
-  "kidsArabicMilestoneThreeLettersSubtitle": "Drei aufgespürte Briefe gehören nun zur Reise.",
+  "kidsArabicMilestoneThreeLettersTitle": "Drei Buchstaben geschafft",
+  "kidsArabicMilestoneThreeLettersSubtitle": "Drei nachgefahrene Buchstaben gehören jetzt zur Reise.",
   "kidsArabicMilestoneFirstWordTitle": "Erstes Wort vollständig",
   "kidsArabicMilestoneFirstWordSubtitle": "Ein erstes nachgezeichnetes Wort ist nun Teil des Lesepfades.",
   "kidsArabicMilestoneFirstReviewTitle": "Erste Rezension abgeschlossen",
-  "kidsArabicMilestoneFirstReviewSubtitle": "Eine ruhige Rezensionsrunde trug dazu bei, dass sich ein vertrauter Brief stärker fühlte.",
+  "kidsArabicMilestoneFirstReviewSubtitle": "Eine ruhige Wiederholungsrunde hat einen vertrauten Buchstaben gefestigt.",
   "kidsArabicMilestoneBeginnerSetTitle": "Anfänger-Wörterset komplett",
   "kidsArabicMilestoneBeginnerSetSubtitle": "Der erste kurze Wortsatz ist vollständig und bereit für eine vorsichtige Durchsicht.",
   "kidsArabicAchievementsNextStepLabel": "Nächster Schritt: {step}",
@@ -15174,19 +15191,19 @@
   "learnGamesPackDuasTitleText": "Duas & Bedeutungen",
   "learnGamesPackDailyRotationTitleText": "Tägliche Rotation",
   "kidsArabicWordsTitle": "Arabische Wörter",
-  "kidsArabicWordsSubtitle": "Bilden Sie kurze Anfängerwörter aus Buchstaben, die Kinder bereits kennen.",
-  "kidsArabicWordsHomeSubtitle": "Überprüfen Sie die freigeschalteten Wörter oder fahren Sie mit dem nächsten empfohlenen Wort fort.",
+  "kidsArabicWordsSubtitle": "Bilde kurze Anfängerwörter aus Buchstaben, die du schon kennst.",
+  "kidsArabicWordsHomeSubtitle": "Wiederhole die freigeschalteten Wörter oder mach mit dem nächsten empfohlenen Wort weiter.",
   "kidsArabicWordsOpenAction": "Offene Worte",
   "kidsArabicMiniPhrasesTitle": "Mini-Wendungen",
   "kidsArabicMiniPhrasesSubtitle": "Hören, wiederholen und sicher werden mit sehr kurzen arabischen Alltagswendungen.",
   "kidsArabicMiniPhrasesHomeTitle": "Mini-Wendungen",
-  "kidsArabicMiniPhrasesHomeSubtitle": "{count} bisher gehört. Öffnen Sie eine ruhige Wendungskarte und hören Sie erneut zu.",
+  "kidsArabicMiniPhrasesHomeSubtitle": "{count} bisher gehört. Öffne eine ruhige Satzkarte und hör noch einmal zu.",
   "@kidsArabicMiniPhrasesHomeSubtitle": {
     "placeholders": {
       "count": {}
     }
   },
-  "kidsArabicMiniPhrasesWordsCardSubtitle": "{count} Wendungen gehört. Fügen Sie nach dem Wortlesen eine kurze Wendung hinzu.",
+  "kidsArabicMiniPhrasesWordsCardSubtitle": "{count} Sätze gehört. Nach dem Wortlesen kommt ein kurzer Satz dazu.",
   "@kidsArabicMiniPhrasesWordsCardSubtitle": {
     "placeholders": {
       "count": {}
@@ -15208,7 +15225,7 @@
     }
   },
   "kidsArabicMiniPhrasesHeardBadge": "Heard",
-  "kidsArabicMiniPhrasesTapHint": "Tippen Sie auf die Wendung, um sie langsam zu hören.",
+  "kidsArabicMiniPhrasesTapHint": "Tipp auf den Satz, um ihn langsam zu hören.",
   "kidsArabicMiniPhrasesListenAction": "Wendung hören",
   "kidsArabicMiniPhrasesListenAgainAction": "Noch einmal hören",
   "kidsArabicMiniPhrasesRepeatSubtitle": "Hören Sie genau hin und wiederholen Sie die kurze Wendung dann mit ruhiger Stimme.",
@@ -15228,18 +15245,18 @@
   "kidsArabicReadingModeNextAction": "Als nächstes",
   "kidsArabicReadingModeTraceWordAction": "Wort verfolgen",
   "kidsArabicMasteryMapTitle": "Meisterschaftskarte",
-  "kidsArabicMasteryMapSubtitle": "Sehen Sie, welche Briefe vollständig sind, welche überprüft werden müssen und was als nächstes kommt.",
+  "kidsArabicMasteryMapSubtitle": "Zeigt, welche Buchstaben fertig sind, welche wiederholt werden sollten und was als Nächstes kommt.",
   "kidsArabicMasteryProgressMapSectionTitle": "Fortschrittskarte",
   "kidsArabicMasteryProgressMapSectionSubtitle": "Ein ruhiger Blick auf die aktuelle Beherrschung des Alphabetpfads.",
-  "kidsArabicMasteryCompletedSectionTitle": "Abgeschlossene Briefe",
+  "kidsArabicMasteryCompletedSectionTitle": "Fertige Buchstaben",
   "kidsArabicMasteryOpenMapAction": "Öffne die Meisterschaftskarte",
   "kidsArabicMasteryHomeTitle": "Meisterschaft",
   "kidsArabicMasteryHomeSubtitle": "Verfolgen Sie den Fortschritt, gehen Sie die Bewertungsschreiben noch einmal durch und halten Sie die Dynamik aufrecht.",
   "kidsArabicMasteryReviewAction": "Rezension",
   "kidsArabicMasteryContinueAction": "Weiter",
   "kidsArabicMasteryNextStepTitle": "Empfohlener nächster Schritt",
-  "kidsArabicMasteryReviewSectionTitle": "Überprüfen Sie Briefe",
-  "kidsArabicMasteryReviewSectionSubtitle": "Diese Briefe würden von einem weiteren kurzen Blick profitieren.",
+  "kidsArabicMasteryReviewSectionTitle": "Buchstaben wiederholen",
+  "kidsArabicMasteryReviewSectionSubtitle": "Diese Buchstaben vertragen noch einen kurzen Blick.",
   "kidsArabicMasteryStateCompleted": "Abgeschlossen",
   "kidsArabicMasteryStatePracticing": "Üben",
   "kidsArabicMasteryStateNotStarted": "Nicht gestartet",
@@ -15561,7 +15578,7 @@
       "nextWord": {}
     }
   },
-  "kidsArabicMasteryCompletedSectionSubtitle": "{completed} von {total} Briefen sind vollständig.",
+  "kidsArabicMasteryCompletedSectionSubtitle": "{completed} von {total} Buchstaben sind fertig.",
   "@kidsArabicMasteryCompletedSectionSubtitle": {
     "placeholders": {
       "completed": {},
@@ -15593,7 +15610,7 @@
     }
   },
   "kidsArabicMasteryContinueLetterBody": "Fahren Sie mit dem nächsten Buchstaben in Ihrer Reihenfolge fort.",
-  "kidsArabicMasteryContinueLetterWithCountBody": "Sie haben {count} weitere Briefe bereit, um fortzufahren.",
+  "kidsArabicMasteryContinueLetterWithCountBody": "{count} weitere Buchstaben sind bereit zum Weitermachen.",
   "@kidsArabicMasteryContinueLetterWithCountBody": {
     "placeholders": {
       "count": {}
@@ -15613,7 +15630,7 @@
       "letter": {}
     }
   },
-  "kidsArabicPracticeDailyNewLetterTitle": "Neuer Brief: {letter}",
+  "kidsArabicPracticeDailyNewLetterTitle": "Neuer Buchstabe: {letter}",
   "@kidsArabicPracticeDailyNewLetterTitle": {
     "placeholders": {
       "letter": {}
@@ -15626,7 +15643,7 @@
       "letter": {}
     }
   },
-  "kidsArabicPracticeDailyReviewBody": "Sehen Sie sich einen kürzlich verfassten Brief noch einmal an, um ihn stark zu machen.",
+  "kidsArabicPracticeDailyReviewBody": "Schau dir einen zuletzt gelernten Buchstaben noch einmal an, damit er sitzt.",
   "kidsArabicPracticeDailyTraceTitle": "Trace-Buchstabe: {letter}",
   "@kidsArabicPracticeDailyTraceTitle": {
     "placeholders": {
@@ -15659,7 +15676,7 @@
       "letter": {}
     }
   },
-  "kidsArabicPracticeReviewLetterBody": "Eine kurze Rezension trägt dazu bei, dass dieser Brief bekannt bleibt.",
+  "kidsArabicPracticeReviewLetterBody": "Eine kurze Wiederholung hält diesen Buchstaben vertraut.",
   "kidsArabicPracticeReviewWordTitle": "Rezension {word}",
   "@kidsArabicPracticeReviewWordTitle": {
     "placeholders": {
@@ -15667,8 +15684,8 @@
     }
   },
   "kidsArabicPracticeReviewWordBody": "Denken Sie noch einmal über dieses Wort nach und lesen Sie es noch einmal sorgfältig.",
-  "kidsArabicPracticeReviewLettersTitle": "Überprüfen Sie Briefe",
-  "kidsArabicPracticeReviewLettersBody": "Öffnen Sie einen Schnellüberprüfungssatz für Briefe, die noch einmal überprüft werden müssen.",
+  "kidsArabicPracticeReviewLettersTitle": "Buchstaben wiederholen",
+  "kidsArabicPracticeReviewLettersBody": "Öffne eine kurze Wiederholung für Buchstaben, die noch einmal dran sind.",
   "kidsArabicPracticeReviewWordsTitle": "Wiederholen Sie die Wörter",
   "kidsArabicPracticeReviewWordsBody": "Üben Sie vertraute Wörter, um das Lesen zusammengefügter Buchstaben zu stärken.",
   "kidsArabicTraceCompletionTitle": "Verfolgung abgeschlossen",
@@ -15680,7 +15697,7 @@
     }
   },
   "kidsArabicTryAgainAction": "Versuchen Sie es erneut",
-  "kidsArabicPreviousLetterAction": "Vorheriger Brief",
+  "kidsArabicPreviousLetterAction": "Vorheriger Buchstabe",
   "wuduTrainerProgressOf": "Schritt {current} von {total}",
   "@wuduTrainerProgressOf": {
     "placeholders": {
@@ -16488,10 +16505,12 @@
   "quranTeachingMiniAssessmentPageTitle": "Kurze Übung",
   "quranTeachingMiniAssessmentPageSubtitle": "Eine kurze Erkennungsprüfung, um jüngste Buchstaben, Wörter und Wendungen zu festigen.",
   "arabicLearningMiniAssessmentIntroTitle": "Lassen Sie uns sanft üben",
-  "arabicLearningMiniAssessmentIntroBody": "{count} schnelle Fragen. Keine Punkte, keine Zeitmesser, und Sie können jederzeit aufhören.",
+  "arabicLearningMiniAssessmentIntroBody": "{count, plural, =1{Eine schnelle Frage. Keine Punkte, keine Zeitmesser, und Sie können jederzeit aufhören.} other{{count} schnelle Fragen. Keine Punkte, keine Zeitmesser, und Sie können jederzeit aufhören.}}",
   "@arabicLearningMiniAssessmentIntroBody": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningMiniAssessmentQuestionCounter": "Frage {current} von {total}",

@@ -18734,6 +18734,24 @@ abstract class AppLocalizations {
   /// **'Review finished'**
   String get kidsArabicReviewFinishedTitle;
 
+  /// No description provided for @kidsArabicReviewNeedsLettersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn one more letter first'**
+  String get kidsArabicReviewNeedsLettersTitle;
+
+  /// No description provided for @kidsArabicReviewNeedsLettersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Review opens once two letters are done. {letterName} is next.'**
+  String kidsArabicReviewNeedsLettersBody(String letterName);
+
+  /// No description provided for @kidsArabicReviewNeedsLettersAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open {letterName}'**
+  String kidsArabicReviewNeedsLettersAction(String letterName);
+
   /// No description provided for @kidsArabicReviewFinishedSubtitle.
   ///
   /// In en, this message translates to:
@@ -61356,8 +61374,8 @@ abstract class AppLocalizations {
   /// No description provided for @arabicLearningMiniAssessmentIntroBody.
   ///
   /// In en, this message translates to:
-  /// **'{count} quick questions. No scores, no timers, and you can leave any time.'**
-  String arabicLearningMiniAssessmentIntroBody(Object count);
+  /// **'{count, plural, =1{One quick question. No scores, no timers, and you can leave any time.} other{{count} quick questions. No scores, no timers, and you can leave any time.}}'**
+  String arabicLearningMiniAssessmentIntroBody(int count);
 
   /// No description provided for @arabicLearningMiniAssessmentQuestionCounter.
   ///

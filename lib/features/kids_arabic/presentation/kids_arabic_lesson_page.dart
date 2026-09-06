@@ -428,10 +428,10 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // The word's own name; the letter's sound belongs to the
+                    // hero above, not beside a whole word.
                     Text(
-                      parentPreferences.showTransliteration
-                          ? letter.transliteration
-                          : letter.exampleWordEn,
+                      letter.exampleWordEn,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,

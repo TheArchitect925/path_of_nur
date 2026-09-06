@@ -548,6 +548,8 @@ class _SummaryPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppLayeredGlassPill(
+      // The pill sits in a Wrap; the default expands it to the full row.
+      expandToWidth: false,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       fillColor: Colors.white,
       borderColor: const Color(0xFFE3D7C8),

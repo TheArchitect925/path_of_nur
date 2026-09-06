@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/utils/reward_feedback.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../application/kids_arabic_audio_service.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progression.dart';
 import '../application/kids_arabic_progress_provider.dart';
 import '../domain/kids_arabic_models.dart';
-import '../../../core/theme/app_palette.dart';
+import '../widgets/kids_arabic_audio_learning_widgets.dart';
 
 enum _KidsArabicReviewMode { matchLetterToSound, tapCorrectLetter }
+
+const int _questionsPerRound = 5;
 
 class KidsArabicReviewPage extends ConsumerStatefulWidget {
   const KidsArabicReviewPage({super.key});
@@ -33,11 +39,23 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
     final progress = ref.watch(kidsArabicProgressProvider);
     final dailyMission = ref.watch(kidsArabicDailyMissionProvider);
     final parentReviewLetter = ref.watch(kidsArabicParentReviewLetterProvider);
-    final unlocked = ref.watch(kidsArabicUnlockedLetterIdsProvider);
     final pool = _reviewPool(progress, dailyMission, parentReviewLetter);
+
+    if (pool.length < 2) {
+      // A quiz over one letter has one answer. Invite the next lesson instead
+      // of pretending to ask a question.
+      return LearnHubPageScaffold(
+        title: l10n.kidsArabicReviewTitle,
+        subtitle: l10n.kidsArabicReviewSubtitle,
+        children: [
+          _ReviewNeedsLettersCard(nextLetter: _nextLetterToLearn(progress)),
+        ],
+      );
+    }
+
     final target = pool[_questionIndex % pool.length];
-    final options = _optionsFor(target, pool);
-    final finished = _questionIndex >= 5;
+    final options = _optionsFor(target, pool, _questionIndex);
+    final finished = _questionIndex >= _questionsPerRound;
 
     return LearnHubPageScaffold(
       title: l10n.kidsArabicReviewTitle,
@@ -78,7 +96,7 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
         if (finished)
           _ReviewSummaryCard(
             correctAnswers: _correctAnswers,
-            totalQuestions: 5,
+            totalQuestions: _questionsPerRound,
             dailyMissionResult: _dailyMissionResult,
           )
         else
@@ -86,8 +104,10 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
             mode: _mode,
             target: target,
             options: options,
-            unlockedLetterIds: unlocked,
             questionNumber: _questionIndex + 1,
+            totalQuestions: _questionsPerRound,
+            onListen: () =>
+                ref.read(kidsArabicAudioServiceProvider).speakLetter(target),
             onAnswer: (selected) {
               final correct = selected.id == target.id;
               ref
@@ -112,6 +132,8 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
     );
   }
 
+  /// Letters the child has finished, the parent's or the day's review letter
+  /// first. Never a letter the child has not met: a quiz cannot ask about it.
   List<KidsArabicLetter> _reviewPool(
     KidsArabicProgressState progress,
     KidsArabicDailyMission? dailyMission,
@@ -120,37 +142,18 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
     final completed = kidsArabicProgressionLetters
         .where((letter) => progress.completedLetterIds.contains(letter.id))
         .toList(growable: false);
-    final prioritized = _prioritizeTargets(
-      completed,
-      dailyMission,
-      parentReviewLetter,
-    );
-    if (prioritized.length >= 2) return prioritized;
-    final unlocked = kidsArabicProgressionLetters
-        .where(
-          (letter) => isKidsArabicLetterUnlocked(
-            letterId: letter.id,
-            completedLetterIds: progress.completedLetterIds,
-          ),
-        )
-        .toList(growable: false);
-    final unlockedPrioritized = _prioritizeTargets(
-      unlocked,
-      dailyMission,
-      parentReviewLetter,
-    );
-    if (unlockedPrioritized.length >= 2) return unlockedPrioritized;
-    return _prioritizeTargets(
-      kidsArabicStarterReleaseOrderIds
-          .map(
-            (id) => kidsArabicProgressionLetters.firstWhere(
-              (letter) => letter.id == id,
-            ),
-          )
-          .toList(growable: false),
-      dailyMission,
-      parentReviewLetter,
-    );
+    return _prioritizeTargets(completed, dailyMission, parentReviewLetter);
+  }
+
+  KidsArabicLetter _nextLetterToLearn(KidsArabicProgressState progress) {
+    final unlocked = unlockedKidsArabicLetterIds(progress.completedLetterIds);
+    for (final letter in kidsArabicProgressionLetters) {
+      if (unlocked.contains(letter.id) &&
+          !progress.completedLetterIds.contains(letter.id)) {
+        return letter;
+      }
+    }
+    return kidsArabicProgressionLetters.first;
   }
 
   List<KidsArabicLetter> _prioritizeTargets(
@@ -178,40 +181,39 @@ class _KidsArabicReviewPageState extends ConsumerState<KidsArabicReviewPage> {
     return ordered;
   }
 
+  /// Up to four options: the target and three other learned letters, with
+  /// the target's position moving from question to question so the right
+  /// answer is never simply the first chip.
   List<KidsArabicLetter> _optionsFor(
     KidsArabicLetter target,
-    List<KidsArabicLetter> reviewPool,
+    List<KidsArabicLetter> pool,
+    int questionIndex,
   ) {
-    final pool = [...reviewPool];
-    final startIndex = pool.indexWhere((letter) => letter.id == target.id);
-    final selected = <KidsArabicLetter>[target];
-    for (
-      var offset = 1;
-      selected.length < 4 && offset < pool.length;
-      offset += 1
-    ) {
-      selected.add(pool[(startIndex + offset * 3) % pool.length]);
+    final rest = pool
+        .where((letter) => letter.id != target.id)
+        .toList(growable: false);
+    final picked = <KidsArabicLetter>[];
+    for (var i = 0; i < rest.length && picked.length < 3; i += 1) {
+      final candidate = rest[(questionIndex + i * 3) % rest.length];
+      if (!picked.contains(candidate)) picked.add(candidate);
     }
-    return selected.toSet().toList(growable: false);
+    for (final letter in rest) {
+      if (picked.length >= 3) break;
+      if (!picked.contains(letter)) picked.add(letter);
+    }
+    final options = <KidsArabicLetter>[target, ...picked];
+    final shift = questionIndex % options.length;
+    return <KidsArabicLetter>[
+      ...options.sublist(options.length - shift),
+      ...options.sublist(0, options.length - shift),
+    ];
   }
 }
 
-class _ReviewQuestionCard extends StatelessWidget {
-  const _ReviewQuestionCard({
-    required this.mode,
-    required this.target,
-    required this.options,
-    required this.unlockedLetterIds,
-    required this.questionNumber,
-    required this.onAnswer,
-  });
+class _ReviewNeedsLettersCard extends StatelessWidget {
+  const _ReviewNeedsLettersCard({required this.nextLetter});
 
-  final _KidsArabicReviewMode mode;
-  final KidsArabicLetter target;
-  final List<KidsArabicLetter> options;
-  final Set<String> unlockedLetterIds;
-  final int questionNumber;
-  final ValueChanged<KidsArabicLetter> onAnswer;
+  final KidsArabicLetter nextLetter;
 
   @override
   Widget build(BuildContext context) {
@@ -226,8 +228,102 @@ class _ReviewQuestionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: context.palette.surfaceSoft,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Text(
+                  nextLetter.glyph,
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    fontSize: 34,
+                    fontFamily: AppFonts.arabicLearning,
+                    fontWeight: FontWeight.w700,
+                    color: context.palette.onSurface,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Text(
+                  l10n.kidsArabicReviewNeedsLettersTitle,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: context.palette.onSurface,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
           Text(
-            l10n.kidsArabicQuestionCounter(questionNumber, 5),
+            l10n.kidsArabicReviewNeedsLettersBody(nextLetter.nameEn),
+            style: TextStyle(
+              color: context.palette.onSurfaceSubtle,
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 14),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: () => context.pushNamed(
+                'kidsArabicLesson',
+                pathParameters: {'letterId': nextLetter.id},
+              ),
+              child: Text(
+                l10n.kidsArabicReviewNeedsLettersAction(nextLetter.nameEn),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ReviewQuestionCard extends StatelessWidget {
+  const _ReviewQuestionCard({
+    required this.mode,
+    required this.target,
+    required this.options,
+    required this.questionNumber,
+    required this.totalQuestions,
+    required this.onListen,
+    required this.onAnswer,
+  });
+
+  final _KidsArabicReviewMode mode;
+  final KidsArabicLetter target;
+  final List<KidsArabicLetter> options;
+  final int questionNumber;
+  final int totalQuestions;
+  final Future<void> Function() onListen;
+  final ValueChanged<KidsArabicLetter> onAnswer;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final showsGlyph = mode == _KidsArabicReviewMode.matchLetterToSound;
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: context.palette.surface,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: context.palette.surfaceSoft),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsArabicQuestionCounter(questionNumber, totalQuestions),
             style: TextStyle(
               fontWeight: FontWeight.w700,
               color: context.palette.onSurfaceSubtle,
@@ -235,7 +331,7 @@ class _ReviewQuestionCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            mode == _KidsArabicReviewMode.matchLetterToSound
+            showsGlyph
                 ? l10n.kidsArabicReviewQuestionMatchSound(target.glyph)
                 : l10n.kidsArabicReviewQuestionTapCorrect(
                     target.transliteration,
@@ -246,6 +342,43 @@ class _ReviewQuestionCard extends StatelessWidget {
               color: context.palette.onSurface,
             ),
           ),
+          const SizedBox(height: 14),
+          // The letter the question is about, big enough to be the point of
+          // the card, and a way to hear it in either mode.
+          if (showsGlyph) ...[
+            Center(
+              child: InkWell(
+                onTap: onListen,
+                borderRadius: BorderRadius.circular(24),
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: context.palette.surfaceSoft,
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: Text(
+                    target.glyph,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontSize: 64,
+                      fontFamily: AppFonts.arabicLearning,
+                      fontWeight: FontWeight.w700,
+                      color: context.palette.onSurface,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
+          Center(
+            child: KidsArabicAudioChipButton(
+              label: l10n.kidsArabicPronunciationAction,
+              onPlay: onListen,
+            ),
+          ),
           const SizedBox(height: 16),
           Wrap(
             spacing: 10,
@@ -253,9 +386,7 @@ class _ReviewQuestionCard extends StatelessWidget {
             children: options
                 .map(
                   (option) => InkWell(
-                    onTap: unlockedLetterIds.contains(option.id)
-                        ? () => onAnswer(option)
-                        : null,
+                    onTap: () => onAnswer(option),
                     borderRadius: BorderRadius.circular(18),
                     child: Container(
                       width: 156,
@@ -264,30 +395,19 @@ class _ReviewQuestionCard extends StatelessWidget {
                         vertical: 20,
                       ),
                       decoration: BoxDecoration(
-                        color: unlockedLetterIds.contains(option.id)
-                            ? Colors.white
-                            : context.palette.surface,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(color: context.palette.surfaceSoft),
                       ),
                       child: Center(
                         child: Text(
-                          mode == _KidsArabicReviewMode.matchLetterToSound
-                              ? option.transliteration
-                              : option.glyph,
-                          textDirection:
-                              mode == _KidsArabicReviewMode.matchLetterToSound
-                              ? null
-                              : TextDirection.rtl,
+                          showsGlyph ? option.transliteration : option.glyph,
+                          textDirection: showsGlyph ? null : TextDirection.rtl,
                           style: TextStyle(
-                            fontSize:
-                                mode == _KidsArabicReviewMode.matchLetterToSound
-                                ? 18
-                                : 34,
-                            fontFamily:
-                                mode == _KidsArabicReviewMode.matchLetterToSound
+                            fontSize: showsGlyph ? 18 : 34,
+                            fontFamily: showsGlyph
                                 ? null
-                                : 'Noto Naskh Arabic',
+                                : AppFonts.arabicLearning,
                             fontWeight: FontWeight.w700,
                             color: context.palette.onSurface,
                           ),

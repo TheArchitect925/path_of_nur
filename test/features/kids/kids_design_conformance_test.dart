@@ -118,7 +118,7 @@ void main() {
       'lib/features/kids_arabic/presentation/kids_arabic_words_page.dart': 11,
       'lib/features/kids_arabic/widgets/kids_arabic_audio_learning_widgets.dart':
           5,
-      'lib/features/kids_arabic/widgets/kids_arabic_tracing_pad.dart': 38,
+      'lib/features/kids_arabic/widgets/kids_arabic_tracing_pad.dart': 35,
       'lib/features/kids_dua_learning/application/kids_dua_sticker_service.dart':
           8,
       'lib/features/kids_dua_learning/data/kids_dua_seed_data.dart': 8,
@@ -209,7 +209,7 @@ void main() {
           6,
       'lib/features/kids_arabic/widgets/kids_arabic_audio_learning_widgets.dart':
           5,
-      'lib/features/kids_arabic/widgets/kids_arabic_tracing_pad.dart': 3,
+      'lib/features/kids_arabic/widgets/kids_arabic_tracing_pad.dart': 2,
       'lib/features/kids_dua_learning/application/kids_dua_my_day_service.dart':
           4,
       'lib/features/kids_dua_learning/application/kids_dua_sticker_service.dart':

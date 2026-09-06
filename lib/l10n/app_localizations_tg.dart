@@ -10936,6 +10936,19 @@ class AppLocalizationsTg extends AppLocalizations {
   String get kidsArabicReviewFinishedTitle => 'Review finished';
 
   @override
+  String get kidsArabicReviewNeedsLettersTitle => 'Learn one more letter first';
+
+  @override
+  String kidsArabicReviewNeedsLettersBody(String letterName) {
+    return 'Review opens once two letters are done. $letterName is next.';
+  }
+
+  @override
+  String kidsArabicReviewNeedsLettersAction(String letterName) {
+    return 'Open $letterName';
+  }
+
+  @override
   String kidsArabicReviewFinishedSubtitle(int correct, int total) {
     return 'You answered $correct of $total. Keep going gently.';
   }
@@ -37027,7 +37040,7 @@ class AppLocalizationsTg extends AppLocalizations {
       'Биёед ором тамрин кунем';
 
   @override
-  String arabicLearningMiniAssessmentIntroBody(Object count) {
+  String arabicLearningMiniAssessmentIntroBody(int count) {
     return '$count саволи зуд. На хол ҳаст, на вақтсанҷ, ва шумо ҳар вақт метавонед берун шавед.';
   }
 
