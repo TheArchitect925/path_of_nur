@@ -36,7 +36,7 @@ final BedtimeStorySeed fivePillarsBook = kidsPictureBook(
       'The five pillars are the hadith of Ibn Umar in Bukhari and Muslim. '
       'Safa, Zayn and the blanket house are ours.',
   tags: const ['five pillars', 'islam', 'shahada', 'salah', 'first steps'],
-  sortOrder: 300,
+  sortOrder: 303,
   isFeatured: true,
   bedtimeEligible: false,
   coverAssetPath: 'assets/images/kids_books/covers/five_pillars_cover.webp',
