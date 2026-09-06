@@ -37,7 +37,7 @@ final BedtimeStorySeed dawudBook = kidsPictureBook(
       '38:26.',
   audioFileName: 'prophet_dawud_bedtime_v1.mp3',
   tags: const ['prophet', 'dawud', 'jalut', 'justice', 'voice', 'strength'],
-  sortOrder: 80,
+  sortOrder: 70,
   isFeatured: true,
   coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/dawud_cover.webp',
   backdropAssetPath:

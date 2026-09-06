@@ -19,7 +19,7 @@ const String _p4 = 'story_prophet_muhammad_part4_bedtime_v1';
 
 /// Part 1: The Trustworthy One. Surah ad-Duha 93:6–8 and the early seerah.
 final BedtimeStorySeed muhammadBook1 = kidsPictureBook(
-  id: _p1,
+  id: 'story_prophet_muhammad_part1_bedtime_v1',
   prophetId: 'muhammad',
   title: 'Our Prophet ﷺ: The Trustworthy One',
   shortTitle: 'Muhammad ﷺ Part 1',
@@ -115,7 +115,7 @@ final BedtimeStorySeed muhammadBook1 = kidsPictureBook(
 
 /// Part 2: Read. Surah al-Alaq 96:1–5 and Sahih al-Bukhari 3.
 final BedtimeStorySeed muhammadBook2 = kidsPictureBook(
-  id: _p2,
+  id: 'story_prophet_muhammad_part2_bedtime_v1',
   prophetId: 'muhammad',
   title: 'Our Prophet ﷺ: Read!',
   shortTitle: 'Muhammad ﷺ Part 2',
@@ -215,7 +215,7 @@ final BedtimeStorySeed muhammadBook2 = kidsPictureBook(
 /// Part 3: The Journey to Madinah. Surah at-Tawbah 9:40 and the Hijrah in
 /// Sahih al-Bukhari 3905.
 final BedtimeStorySeed muhammadBook3 = kidsPictureBook(
-  id: _p3,
+  id: 'story_prophet_muhammad_part3_bedtime_v1',
   prophetId: 'muhammad',
   title: 'Our Prophet ﷺ: The Journey to Madinah',
   shortTitle: 'Muhammad ﷺ Part 3',
@@ -320,7 +320,7 @@ final BedtimeStorySeed muhammadBook3 = kidsPictureBook(
 /// Part 4: The City of Mercy. Surah al-Anbiya 21:107, at-Tawbah 9:128, the
 /// conquest of Makkah and the farewell sermon (Sahih Muslim 1218).
 final BedtimeStorySeed muhammadBook4 = kidsPictureBook(
-  id: _p4,
+  id: 'story_prophet_muhammad_part4_bedtime_v1',
   prophetId: 'muhammad',
   title: 'Our Prophet ﷺ: A Mercy to the Worlds',
   shortTitle: 'Muhammad ﷺ Part 4',

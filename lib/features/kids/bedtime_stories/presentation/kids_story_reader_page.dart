@@ -380,8 +380,12 @@ class _StoryLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.palette;
+    // The refrain may open a sentence or sit inside one, so the match
+    // ignores case and the lit span keeps the line's own letters.
     final phrase = refrainPhrase ?? '';
-    final at = phrase.isEmpty ? -1 : text.indexOf(phrase);
+    final at = phrase.isEmpty
+        ? -1
+        : text.toLowerCase().indexOf(phrase.toLowerCase());
     final base = style?.copyWith(color: speaking ? palette.accent : null);
     final lit = style?.copyWith(
       color: palette.accent,
@@ -405,7 +409,10 @@ class _StoryLine extends StatelessWidget {
                   style: base,
                   children: [
                     if (at > 0) TextSpan(text: text.substring(0, at)),
-                    TextSpan(text: phrase, style: lit),
+                    TextSpan(
+                      text: text.substring(at, at + phrase.length),
+                      style: lit,
+                    ),
                     if (at + phrase.length < text.length)
                       TextSpan(text: text.substring(at + phrase.length)),
                   ],

@@ -36,7 +36,7 @@ final BedtimeStorySeed sulaymanBook = kidsPictureBook(
   sourceNote: 'Follows an-Naml 27:15–44 and Saba 34:12.',
   audioFileName: 'prophet_sulaiman_bedtime_v1.mp3',
   tags: const ['prophet', 'sulaiman', 'animals', 'ant', 'hoopoe', 'gratitude'],
-  sortOrder: 100,
+  sortOrder: 72,
   isFeatured: true,
   recommendedForTonight: true,
   coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/sulaiman_cover.webp',

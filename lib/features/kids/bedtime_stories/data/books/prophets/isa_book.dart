@@ -36,7 +36,7 @@ final BedtimeStorySeed isaBook = kidsPictureBook(
       'al-Ma’idah 5:110.',
   audioFileName: 'prophet_isa_bedtime_v1.mp3',
   tags: const ['prophet', 'isa', 'maryam', 'miracles', 'compassion'],
-  sortOrder: 90,
+  sortOrder: 80,
   isFeatured: true,
   coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/isa_cover.webp',
   backdropAssetPath:

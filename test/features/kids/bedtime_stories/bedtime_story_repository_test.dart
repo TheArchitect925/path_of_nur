@@ -8,24 +8,42 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('BedtimeStoryRepository', () {
-    test('seed contains the full V1 prophet bedtime catalog', () {
-      expect(kBedtimeProphetStories.length, 14);
+    test('the Prophets shelf holds the whole chain, Adam to Muhammad ﷺ', () {
+      // 21 single books, three shared ones, and the four-part ﷺ series.
+      expect(kBedtimeProphetStories.length, 25);
       expect(
         kBedtimeProphetStories.map((story) => story.prophetId),
         containsAll(<String>{
           'adam',
+          'idris',
           'nuh',
+          'hud',
+          'salih',
           'ibrahim',
+          'lut',
           'ismail',
+          'ishaq',
           'yusuf',
+          'shuayb',
+          'ayyub',
+          'dhul_kifl',
           'musa',
-          'yunus',
+          'harun',
           'dawud',
-          'isa',
           'sulaiman',
+          'ilyas',
+          'yunus',
+          'zakariya',
+          'isa',
           'muhammad',
         }),
       );
+      // The shelf reads in the order of the chain.
+      final orders = kBedtimeProphetStories.map((s) => s.sortOrder).toList();
+      final sorted = [...orders]..sort();
+      expect(orders, sorted);
+      expect(orders.toSet().length, orders.length, reason: 'sortOrder clash');
+      expect(kBedtimeProphetStories.every((s) => s.isPictureBook), isTrue);
     });
 
     test('muhammad series is complete and ordered as four parts', () async {
@@ -79,8 +97,8 @@ void main() {
         final libraryStories = container.read(kidsIslamicStoriesProvider);
         final bedtimeStories = container.read(bedtimeStoriesProvider);
 
-        // 14 prophet books, 10 manners stories, 3 companions, 1 First Steps.
-        expect(libraryStories.length, 28);
+        // 25 prophet books, 10 manners stories, 3 companions, 1 First Steps.
+        expect(libraryStories.length, 39);
         expect(libraryStories.any((story) => !story.isProphetStory), isTrue);
         expect(
           libraryStories.any(

@@ -39,7 +39,7 @@ final BedtimeStorySeed yunusBook = kidsPictureBook(
       'explanation of 21:87.',
   audioFileName: 'prophet_yunus_bedtime_v1.mp3',
   tags: const ['prophet', 'yunus', 'dua', 'whale', 'forgiveness'],
-  sortOrder: 70,
+  sortOrder: 76,
   isFeatured: true,
   recommendedForTonight: true,
   coverAssetPath: '$bedtimeStoryImageCoverAssetDirectory/yunus_cover.webp',

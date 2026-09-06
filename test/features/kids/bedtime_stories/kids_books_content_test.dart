@@ -95,7 +95,9 @@ void main() {
         );
         for (final spread in refrains) {
           expect(
-            spread.lines.any((line) => line.contains(core)),
+            spread.lines.any(
+              (line) => line.toLowerCase().contains(core.toLowerCase()),
+            ),
             isTrue,
             reason:
                 '${book.id} refrain spread "${spread.text}" does not carry '
