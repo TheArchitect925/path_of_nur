@@ -3322,7 +3322,7 @@
     }
   },
   "kidsArabicReviewTitle": "Letter Review",
-  "kidsArabicReviewSubtitle": "Short, gentle review rounds for learned letters.",
+  "kidsArabicReviewSubtitle": "Five questions on the letters you know.",
   "kidsArabicRewardsTitle": "Rewards & Stickers",
   "kidsArabicRewardsSubtitle": "Warm little rewards from steady letter learning.",
   "kidsArabicParentDashboardTitle": "Parent Dashboard",
@@ -3364,14 +3364,6 @@
     }
   },
   "kidsArabicDailyMissionCompletedTitle": "Daily mission complete",
-  "kidsArabicDailyMissionCompletedSubtitle": "Your streak is now {streak} days.",
-  "@kidsArabicDailyMissionCompletedSubtitle": {
-    "placeholders": {
-      "streak": {
-        "type": "int"
-      }
-    }
-  },
   "kidsArabicDailyMissionTomorrowPrompt": "A new mission will be waiting tomorrow.",
   "kidsArabicAlphabetTitle": "All letters",
   "kidsArabicAlphabetSubtitle": "Finish one letter to gently unlock the next in order.",
@@ -3462,8 +3454,8 @@
   "kidsArabicTraceResultCompleted": "Nice tracing",
   "kidsArabicTraceResultGood": "Great job",
   "kidsArabicTraceResultExcellent": "Beautiful work",
-  "kidsArabicReviewModeMatchSound": "Match sound",
-  "kidsArabicReviewModeTapCorrectLetter": "Tap the letter",
+  "kidsArabicReviewModeMatchSound": "Hear it, tap it",
+  "kidsArabicReviewModeTapCorrectLetter": "See it, hear it",
   "kidsArabicQuestionCounter": "Question {current} of {total}",
   "@kidsArabicQuestionCounter": {
     "placeholders": {
@@ -3475,33 +3467,28 @@
       }
     }
   },
-  "kidsArabicReviewQuestionMatchSound": "Which sound matches this letter?",
-  "@kidsArabicReviewQuestionMatchSound": {
-    "placeholders": {
-      "glyph": {
-        "type": "String"
-      }
-    }
-  },
-  "kidsArabicReviewQuestionTapCorrect": "Tap the letter for {transliteration}.",
-  "@kidsArabicReviewQuestionTapCorrect": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      }
-    }
-  },
-  "kidsArabicReviewCorrectFeedback": "Great job.",
+  "kidsArabicReviewQuestionMatchSound": "Which letter did you hear?",
   "kidsArabicReviewRetryFeedback": "Let’s try again together.",
   "kidsArabicReviewFinishedTitle": "Review finished",
   "kidsArabicNextLetterDoneSubtitle": "Today’s step is done. {letterName} is ready whenever you are.",
   "kidsArabicNextLetterTitle": "Next up: {letterName}",
   "kidsArabicParentMoreArabicTitle": "More Arabic practice",
   "kidsArabicHomeDoorsTitle": "After the letters",
+  "kidsArabicReviewQuestionSeeHear": "Which sound does this letter make?",
+  "kidsArabicReviewHearTapHint": "Listen, then find the letter.",
+  "kidsArabicReviewSeeHearHint": "Hear each sound, then choose.",
+  "kidsArabicReviewCheckAction": "Check",
+  "kidsArabicReviewCorrectLetterFeedback": "Yes, that’s {letterName}!",
+  "kidsArabicFormsTitle": "How {letterName} looks in a word",
+  "kidsArabicFormsSubtitle": "The same letter in three places.",
+  "kidsArabicFormAlone": "Alone",
+  "kidsArabicFormStart": "Start",
+  "kidsArabicFormMiddle": "Middle",
+  "kidsArabicFormEnd": "End",
   "kidsArabicReviewNeedsLettersTitle": "Learn one more letter first",
   "kidsArabicReviewNeedsLettersBody": "Review opens once two letters are done. {letterName} is next.",
   "kidsArabicReviewNeedsLettersAction": "Open {letterName}",
-  "kidsArabicReviewFinishedSubtitle": "You answered {correct} of {total}. Keep going gently.",
+  "kidsArabicReviewFinishedSubtitle": "{correct} of {total} right.",
   "@kidsArabicReviewFinishedSubtitle": {
     "placeholders": {
       "correct": {
@@ -12817,7 +12804,6 @@
   "kidsArabicPracticeTitle": "Practice",
   "kidsArabicPracticeSubtitle": "A short daily routine for review, reading, and tracing.",
   "kidsArabicPracticePrimaryTitle": "Today’s practice",
-  "kidsArabicPracticeHomeSubtitle": "Short, focused review helps children keep letters and words fresh.",
   "kidsArabicPracticeContinueSectionTitle": "Continue",
   "kidsArabicPracticeContinueSectionSubtitle": "Pick up where the child left off.",
   "kidsArabicPracticeReviewSectionTitle": "Review",
@@ -13928,7 +13914,6 @@
   "arabicQuickResumeStartAction": "Арабиро оғоз кунед",
   "arabicQuickResumeContinueAction": "Арабиро идома диҳед",
   "arabicQuickResumeReviewAction": "Арабиро такрор кунед",
-  "kidsArabicMiniAssessmentCardTitle": "Тамрини зуд",
   "kidsArabicMiniAssessmentPageTitle": "Тамрини зуд",
   "kidsArabicMiniAssessmentPageSubtitle": "Санҷиши кӯтоҳу ором, ки ҳарфҳо, калимаҳо ва ибораҳоро ошнотар мекунад.",
   "quranTeachingMiniAssessmentCardTitle": "Тамрини зуд",

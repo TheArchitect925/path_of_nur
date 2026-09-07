@@ -119,12 +119,6 @@ class KidsArabicParentDashboardPage extends ConsumerWidget {
           title: l10n.kidsArabicParentMoreArabicTitle,
           children: [
             CompactListTile(
-              leading: const HubLeadingIcon(AppIcons.practice),
-              title: l10n.kidsArabicMiniAssessmentCardTitle,
-              subtitle: l10n.kidsArabicPracticeHomeSubtitle,
-              onTap: () => context.pushNamed('kidsArabicMiniAssessment'),
-            ),
-            CompactListTile(
               leading: const HubLeadingIcon(AppIcons.listen),
               title: l10n.kidsArabicMiniPhrasesHomeTitle,
               subtitle: l10n.kidsArabicMiniPhrasesSubtitle,

@@ -52,7 +52,6 @@ import '../../../features/learn/quran/presentation/quran_short_surah_readiness_p
 import '../../../features/learn/quran/presentation/quran_kids_ayah_insights_page.dart';
 import '../../../features/progression/presentation/learner_progression_page.dart';
 import '../../../features/arabic/domain/arabic_learning_continuity_models.dart';
-import '../../../features/arabic/presentation/arabic_learning_mini_assessment_page.dart';
 
 List<RouteBase> buildLearnKidsRoutes() {
   return <RouteBase>[
@@ -147,11 +146,10 @@ List<RouteBase> buildLearnKidsRoutes() {
     GoRoute(
       path: '/learn/kids/arabic/practice/quick',
       name: 'kidsArabicMiniAssessment',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: ArabicLearningMiniAssessmentPage(
-          audience: ArabicLearningAudience.kids,
-        ),
-      ),
+      // One review engine for children (L3): the quick check opens the
+      // sound-first Letter Review.
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsArabicReviewPage()),
     ),
     GoRoute(
       path: '/learn/kids/arabic/words',

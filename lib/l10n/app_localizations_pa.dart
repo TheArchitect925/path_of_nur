@@ -7730,7 +7730,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get kidsArabicReviewSubtitle =>
-      'Short, gentle review rounds for learned letters.';
+      'Five questions on the letters you know.';
 
   @override
   String get kidsArabicRewardsTitle => 'Rewards & Stickers';
@@ -7778,11 +7778,6 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get kidsArabicDailyMissionCompletedTitle => 'Daily mission complete';
-
-  @override
-  String kidsArabicDailyMissionCompletedSubtitle(int streak) {
-    return 'Your streak is now $streak days.';
-  }
 
   @override
   String get kidsArabicDailyMissionTomorrowPrompt =>
@@ -7899,10 +7894,10 @@ class AppLocalizationsPa extends AppLocalizations {
   String get kidsArabicTraceResultExcellent => 'Beautiful work';
 
   @override
-  String get kidsArabicReviewModeMatchSound => 'Match sound';
+  String get kidsArabicReviewModeMatchSound => 'Hear it, tap it';
 
   @override
-  String get kidsArabicReviewModeTapCorrectLetter => 'Tap the letter';
+  String get kidsArabicReviewModeTapCorrectLetter => 'See it, hear it';
 
   @override
   String kidsArabicQuestionCounter(int current, int total) {
@@ -7910,17 +7905,7 @@ class AppLocalizationsPa extends AppLocalizations {
   }
 
   @override
-  String kidsArabicReviewQuestionMatchSound(String glyph) {
-    return 'Which sound matches this letter?';
-  }
-
-  @override
-  String kidsArabicReviewQuestionTapCorrect(String transliteration) {
-    return 'Tap the letter for $transliteration.';
-  }
-
-  @override
-  String get kidsArabicReviewCorrectFeedback => 'Great job.';
+  String get kidsArabicReviewQuestionMatchSound => 'Which letter did you hear?';
 
   @override
   String get kidsArabicReviewRetryFeedback => 'Let’s try again together.';
@@ -7945,6 +7930,44 @@ class AppLocalizationsPa extends AppLocalizations {
   String get kidsArabicHomeDoorsTitle => 'After the letters';
 
   @override
+  String get kidsArabicReviewQuestionSeeHear =>
+      'Which sound does this letter make?';
+
+  @override
+  String get kidsArabicReviewHearTapHint => 'Listen, then find the letter.';
+
+  @override
+  String get kidsArabicReviewSeeHearHint => 'Hear each sound, then choose.';
+
+  @override
+  String get kidsArabicReviewCheckAction => 'Check';
+
+  @override
+  String kidsArabicReviewCorrectLetterFeedback(String letterName) {
+    return 'Yes, that’s $letterName!';
+  }
+
+  @override
+  String kidsArabicFormsTitle(String letterName) {
+    return 'How $letterName looks in a word';
+  }
+
+  @override
+  String get kidsArabicFormsSubtitle => 'The same letter in three places.';
+
+  @override
+  String get kidsArabicFormAlone => 'Alone';
+
+  @override
+  String get kidsArabicFormStart => 'Start';
+
+  @override
+  String get kidsArabicFormMiddle => 'Middle';
+
+  @override
+  String get kidsArabicFormEnd => 'End';
+
+  @override
   String get kidsArabicReviewNeedsLettersTitle => 'Learn one more letter first';
 
   @override
@@ -7959,7 +7982,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String kidsArabicReviewFinishedSubtitle(int correct, int total) {
-    return 'You answered $correct of $total. Keep going gently.';
+    return '$correct of $total right.';
   }
 
   @override
@@ -29428,10 +29451,6 @@ class AppLocalizationsPa extends AppLocalizations {
   String get kidsArabicPracticePrimaryTitle => 'Today’s practice';
 
   @override
-  String get kidsArabicPracticeHomeSubtitle =>
-      'Short, focused review helps children keep letters and words fresh.';
-
-  @override
   String get kidsArabicPracticeContinueSectionTitle => 'Continue';
 
   @override
@@ -32020,9 +32039,6 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get arabicQuickResumeReviewAction => 'ਅਰਬੀ ਦਾ ਦੁਹਰਾਵਾ ਕਰੋ';
-
-  @override
-  String get kidsArabicMiniAssessmentCardTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';
 
   @override
   String get kidsArabicMiniAssessmentPageTitle => 'ਤੁਰੰਤ ਅਭਿਆਸ';

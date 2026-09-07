@@ -1,11 +1,11 @@
 {
   "note": "Copy-lint ratchet. Counts may only go down; lower them with `python3 tools/copy_lint.py --write-baseline` after a real fix.",
   "counts": {
-    "tone-self-described": 468,
+    "tone-self-described": 466,
     "tone-list-of-three": 482,
     "tone-tail": 134,
-    "tone-cheer": 9,
-    "tone-gamified": 73,
+    "tone-cheer": 8,
+    "tone-gamified": 72,
     "studio-vocabulary": 150,
     "roadmap-speak": 37,
     "apostrophe-straight": 0,

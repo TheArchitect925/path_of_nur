@@ -3322,7 +3322,7 @@
     }
   },
   "kidsArabicReviewTitle": "Buchstaben wiederholen",
-  "kidsArabicReviewSubtitle": "Kurze, sanfte Wiederholungsrunden für gelernte Buchstaben.",
+  "kidsArabicReviewSubtitle": "Fünf Fragen zu den Buchstaben, die du kennst.",
   "kidsArabicRewardsTitle": "Belohnungen und Sticker",
   "kidsArabicRewardsSubtitle": "Warme kleine Belohnungen durch stetiges Buchstabenlernen.",
   "kidsArabicParentDashboardTitle": "Elternübersicht",
@@ -3364,14 +3364,6 @@
     }
   },
   "kidsArabicDailyMissionCompletedTitle": "Tägliche Mission abgeschlossen",
-  "kidsArabicDailyMissionCompletedSubtitle": "Deine Serie ist jetzt {streak} Tage lang.",
-  "@kidsArabicDailyMissionCompletedSubtitle": {
-    "placeholders": {
-      "streak": {
-        "type": "int"
-      }
-    }
-  },
   "kidsArabicDailyMissionTomorrowPrompt": "Morgen wartet eine neue Mission.",
   "kidsArabicAlphabetTitle": "Alle Buchstaben",
   "kidsArabicAlphabetSubtitle": "Tipp auf einen Buchstaben, um ihn zu hören. Schaff einen, dann öffnet sich der nächste.",
@@ -3462,8 +3454,8 @@
   "kidsArabicTraceResultCompleted": "Schön nachgefahren",
   "kidsArabicTraceResultGood": "Tolle Arbeit",
   "kidsArabicTraceResultExcellent": "Schöne Arbeit",
-  "kidsArabicReviewModeMatchSound": "Passender Ton",
-  "kidsArabicReviewModeTapCorrectLetter": "Tipp auf den Buchstaben",
+  "kidsArabicReviewModeMatchSound": "Hören und tippen",
+  "kidsArabicReviewModeTapCorrectLetter": "Sehen und hören",
   "kidsArabicQuestionCounter": "Frage {current} von {total}",
   "@kidsArabicQuestionCounter": {
     "placeholders": {
@@ -3475,23 +3467,7 @@
       }
     }
   },
-  "kidsArabicReviewQuestionMatchSound": "Welcher Laut passt zu diesem Buchstaben?",
-  "@kidsArabicReviewQuestionMatchSound": {
-    "placeholders": {
-      "glyph": {
-        "type": "String"
-      }
-    }
-  },
-  "kidsArabicReviewQuestionTapCorrect": "Tippe auf den Buchstaben für {transliteration}.",
-  "@kidsArabicReviewQuestionTapCorrect": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      }
-    }
-  },
-  "kidsArabicReviewCorrectFeedback": "Tolle Arbeit.",
+  "kidsArabicReviewQuestionMatchSound": "Welchen Buchstaben hast du gehört?",
   "kidsArabicReviewRetryFeedback": "Versuchen wir es noch einmal gemeinsam.",
   "kidsArabicReviewFinishedTitle": "Rezension beendet",
   "kidsArabicNextLetterDoneSubtitle": "Der Schritt für heute ist geschafft. {letterName} wartet, wann immer du magst.",
@@ -3512,6 +3488,31 @@
   },
   "kidsArabicParentMoreArabicTitle": "Mehr Arabisch üben",
   "kidsArabicHomeDoorsTitle": "Nach den Buchstaben",
+  "kidsArabicReviewQuestionSeeHear": "Welchen Laut macht dieser Buchstabe?",
+  "kidsArabicReviewHearTapHint": "Hör zu und finde den Buchstaben.",
+  "kidsArabicReviewSeeHearHint": "Hör dir jeden Laut an und wähle dann.",
+  "kidsArabicReviewCheckAction": "Prüfen",
+  "kidsArabicReviewCorrectLetterFeedback": "Ja, das ist {letterName}!",
+  "@kidsArabicReviewCorrectLetterFeedback": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsArabicFormsTitle": "So sieht {letterName} in einem Wort aus",
+  "@kidsArabicFormsTitle": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsArabicFormsSubtitle": "Derselbe Buchstabe an drei Stellen.",
+  "kidsArabicFormAlone": "Allein",
+  "kidsArabicFormStart": "Anfang",
+  "kidsArabicFormMiddle": "Mitte",
+  "kidsArabicFormEnd": "Ende",
   "kidsArabicReviewNeedsLettersTitle": "Lerne erst noch einen Buchstaben",
   "kidsArabicReviewNeedsLettersBody": "Die Wiederholung öffnet sich, sobald zwei Buchstaben fertig sind. Als Nächstes kommt {letterName}.",
   "kidsArabicReviewNeedsLettersAction": "{letterName} öffnen",
@@ -3529,7 +3530,7 @@
       }
     }
   },
-  "kidsArabicReviewFinishedSubtitle": "Du hast {correct} von {total} richtig. Mach ruhig weiter.",
+  "kidsArabicReviewFinishedSubtitle": "{correct} von {total} richtig.",
   "@kidsArabicReviewFinishedSubtitle": {
     "placeholders": {
       "correct": {
@@ -12896,7 +12897,6 @@
   "kidsArabicPracticeTitle": "Üben",
   "kidsArabicPracticeSubtitle": "Eine kurze tägliche Routine zum Durchsehen, Lesen und Nachzeichnen.",
   "kidsArabicPracticePrimaryTitle": "Die heutige Praxis",
-  "kidsArabicPracticeHomeSubtitle": "Eine kurze, gezielte Wiederholung hilft Kindern, Buchstaben und Wörter frisch zu halten.",
   "kidsArabicPracticeContinueSectionTitle": "Weiter",
   "kidsArabicPracticeContinueSectionSubtitle": "Machen Sie dort weiter, wo das Kind aufgehört hat.",
   "kidsArabicPracticeReviewSectionTitle": "Rezension",
@@ -14007,7 +14007,6 @@
   "arabicQuickResumeStartAction": "Arabisch beginnen",
   "arabicQuickResumeContinueAction": "Arabisch fortsetzen",
   "arabicQuickResumeReviewAction": "Arabisch wiederholen",
-  "kidsArabicMiniAssessmentCardTitle": "Kurze Übung",
   "kidsArabicMiniAssessmentPageTitle": "Kurze Übung",
   "kidsArabicMiniAssessmentPageSubtitle": "Eine kurze, ruhige Überprüfung, damit Buchstaben, Wörter und Wendungen vertrauter werden.",
   "quranTeachingMiniAssessmentCardTitle": "Kurze Übung",

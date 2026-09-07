@@ -9,6 +9,8 @@ import '../../../core/theme/app_icons.dart';
 import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../arabic/data/arabic_alphabet_catalog.dart';
+import '../../arabic/domain/arabic_alphabet_models.dart';
 import '../../arabic/data/arabic_letter_pictures.dart';
 import '../../kids/rewards/domain/kids_sticker_models.dart';
 import '../../kids/rewards/presentation/kids_celebration.dart';
@@ -379,6 +381,11 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
             ],
           ),
         ),
+        // See it in a word: the same letter in its places (L4).
+        if (arabicAlphabetLetterById(letter.id) case final catalogLetter?) ...[
+          const SizedBox(height: 14),
+          _FormsCard(letter: letter, forms: catalogLetter.positionalForms),
+        ],
         // Remember it: one picture, and the word the letter opens.
         if (picture != null) ...[
           const SizedBox(height: 14),
@@ -393,6 +400,71 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
           ),
         ],
       ],
+    );
+  }
+}
+
+/// The same letter alone, at the start, in the middle and at the end, so the
+/// squiggle inside a word is recognised as the letter just traced.
+class _FormsCard extends StatelessWidget {
+  const _FormsCard({required this.letter, required this.forms});
+
+  final KidsArabicLetter letter;
+  final ArabicLetterPositionalForms forms;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final places = <(String, String)>[
+      (l10n.kidsArabicFormAlone, forms.isolated),
+      if (forms.initial case final initial?)
+        (l10n.kidsArabicFormStart, initial),
+      if (forms.medial case final medial?) (l10n.kidsArabicFormMiddle, medial),
+      if (forms.finalForm case final end?) (l10n.kidsArabicFormEnd, end),
+    ];
+    return _SectionCard(
+      title: l10n.kidsArabicFormsTitle(letter.nameEn),
+      subtitle: l10n.kidsArabicFormsSubtitle,
+      child: Wrap(
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          for (final (label, glyph) in places)
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 68,
+                  height: 68,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: context.palette.surfaceSoft,
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  child: Text(
+                    glyph,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: AppFonts.arabicLearning,
+                      fontWeight: FontWeight.w700,
+                      color: context.palette.onSurface,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w700,
+                    color: context.palette.onSurfaceSubtle,
+                  ),
+                ),
+              ],
+            ),
+        ],
+      ),
     );
   }
 }

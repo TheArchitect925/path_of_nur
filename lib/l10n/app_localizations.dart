@@ -13408,7 +13408,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicReviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Short, gentle review rounds for learned letters.'**
+  /// **'Five questions on the letters you know.'**
   String get kidsArabicReviewSubtitle;
 
   /// No description provided for @kidsArabicRewardsTitle.
@@ -13476,12 +13476,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Daily mission complete'**
   String get kidsArabicDailyMissionCompletedTitle;
-
-  /// No description provided for @kidsArabicDailyMissionCompletedSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Your streak is now {streak} days.'**
-  String kidsArabicDailyMissionCompletedSubtitle(int streak);
 
   /// No description provided for @kidsArabicDailyMissionTomorrowPrompt.
   ///
@@ -13678,13 +13672,13 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicReviewModeMatchSound.
   ///
   /// In en, this message translates to:
-  /// **'Match sound'**
+  /// **'Hear it, tap it'**
   String get kidsArabicReviewModeMatchSound;
 
   /// No description provided for @kidsArabicReviewModeTapCorrectLetter.
   ///
   /// In en, this message translates to:
-  /// **'Tap the letter'**
+  /// **'See it, hear it'**
   String get kidsArabicReviewModeTapCorrectLetter;
 
   /// No description provided for @kidsArabicQuestionCounter.
@@ -13696,20 +13690,8 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicReviewQuestionMatchSound.
   ///
   /// In en, this message translates to:
-  /// **'Which sound matches this letter?'**
-  String kidsArabicReviewQuestionMatchSound(String glyph);
-
-  /// No description provided for @kidsArabicReviewQuestionTapCorrect.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap the letter for {transliteration}.'**
-  String kidsArabicReviewQuestionTapCorrect(String transliteration);
-
-  /// No description provided for @kidsArabicReviewCorrectFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Great job.'**
-  String get kidsArabicReviewCorrectFeedback;
+  /// **'Which letter did you hear?'**
+  String get kidsArabicReviewQuestionMatchSound;
 
   /// No description provided for @kidsArabicReviewRetryFeedback.
   ///
@@ -13747,6 +13729,72 @@ abstract class AppLocalizations {
   /// **'After the letters'**
   String get kidsArabicHomeDoorsTitle;
 
+  /// No description provided for @kidsArabicReviewQuestionSeeHear.
+  ///
+  /// In en, this message translates to:
+  /// **'Which sound does this letter make?'**
+  String get kidsArabicReviewQuestionSeeHear;
+
+  /// No description provided for @kidsArabicReviewHearTapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen, then find the letter.'**
+  String get kidsArabicReviewHearTapHint;
+
+  /// No description provided for @kidsArabicReviewSeeHearHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hear each sound, then choose.'**
+  String get kidsArabicReviewSeeHearHint;
+
+  /// No description provided for @kidsArabicReviewCheckAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Check'**
+  String get kidsArabicReviewCheckAction;
+
+  /// No description provided for @kidsArabicReviewCorrectLetterFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, that’s {letterName}!'**
+  String kidsArabicReviewCorrectLetterFeedback(String letterName);
+
+  /// No description provided for @kidsArabicFormsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How {letterName} looks in a word'**
+  String kidsArabicFormsTitle(String letterName);
+
+  /// No description provided for @kidsArabicFormsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The same letter in three places.'**
+  String get kidsArabicFormsSubtitle;
+
+  /// No description provided for @kidsArabicFormAlone.
+  ///
+  /// In en, this message translates to:
+  /// **'Alone'**
+  String get kidsArabicFormAlone;
+
+  /// No description provided for @kidsArabicFormStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get kidsArabicFormStart;
+
+  /// No description provided for @kidsArabicFormMiddle.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle'**
+  String get kidsArabicFormMiddle;
+
+  /// No description provided for @kidsArabicFormEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'End'**
+  String get kidsArabicFormEnd;
+
   /// No description provided for @kidsArabicReviewNeedsLettersTitle.
   ///
   /// In en, this message translates to:
@@ -13768,7 +13816,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicReviewFinishedSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You answered {correct} of {total}. Keep going gently.'**
+  /// **'{correct} of {total} right.'**
   String kidsArabicReviewFinishedSubtitle(int correct, int total);
 
   /// No description provided for @kidsArabicStickerFirstLetterTitle.
@@ -48964,12 +49012,6 @@ abstract class AppLocalizations {
   /// **'Today’s practice'**
   String get kidsArabicPracticePrimaryTitle;
 
-  /// No description provided for @kidsArabicPracticeHomeSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Short, focused review helps children keep letters and words fresh.'**
-  String get kidsArabicPracticeHomeSubtitle;
-
   /// No description provided for @kidsArabicPracticeContinueSectionTitle.
   ///
   /// In en, this message translates to:
@@ -53158,12 +53200,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Review Arabic'**
   String get arabicQuickResumeReviewAction;
-
-  /// No description provided for @kidsArabicMiniAssessmentCardTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Quick practice'**
-  String get kidsArabicMiniAssessmentCardTitle;
 
   /// No description provided for @kidsArabicMiniAssessmentPageTitle.
   ///

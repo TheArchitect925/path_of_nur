@@ -7851,7 +7851,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicReviewSubtitle =>
-      'Kurze, sanfte Wiederholungsrunden für gelernte Buchstaben.';
+      'Fünf Fragen zu den Buchstaben, die du kennst.';
 
   @override
   String get kidsArabicRewardsTitle => 'Belohnungen und Sticker';
@@ -7900,11 +7900,6 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get kidsArabicDailyMissionCompletedTitle =>
       'Tägliche Mission abgeschlossen';
-
-  @override
-  String kidsArabicDailyMissionCompletedSubtitle(int streak) {
-    return 'Deine Serie ist jetzt $streak Tage lang.';
-  }
 
   @override
   String get kidsArabicDailyMissionTomorrowPrompt =>
@@ -8027,10 +8022,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kidsArabicTraceResultExcellent => 'Schöne Arbeit';
 
   @override
-  String get kidsArabicReviewModeMatchSound => 'Passender Ton';
+  String get kidsArabicReviewModeMatchSound => 'Hören und tippen';
 
   @override
-  String get kidsArabicReviewModeTapCorrectLetter => 'Tipp auf den Buchstaben';
+  String get kidsArabicReviewModeTapCorrectLetter => 'Sehen und hören';
 
   @override
   String kidsArabicQuestionCounter(int current, int total) {
@@ -8038,17 +8033,8 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String kidsArabicReviewQuestionMatchSound(String glyph) {
-    return 'Welcher Laut passt zu diesem Buchstaben?';
-  }
-
-  @override
-  String kidsArabicReviewQuestionTapCorrect(String transliteration) {
-    return 'Tippe auf den Buchstaben für $transliteration.';
-  }
-
-  @override
-  String get kidsArabicReviewCorrectFeedback => 'Tolle Arbeit.';
+  String get kidsArabicReviewQuestionMatchSound =>
+      'Welchen Buchstaben hast du gehört?';
 
   @override
   String get kidsArabicReviewRetryFeedback =>
@@ -8074,6 +8060,45 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kidsArabicHomeDoorsTitle => 'Nach den Buchstaben';
 
   @override
+  String get kidsArabicReviewQuestionSeeHear =>
+      'Welchen Laut macht dieser Buchstabe?';
+
+  @override
+  String get kidsArabicReviewHearTapHint => 'Hör zu und finde den Buchstaben.';
+
+  @override
+  String get kidsArabicReviewSeeHearHint =>
+      'Hör dir jeden Laut an und wähle dann.';
+
+  @override
+  String get kidsArabicReviewCheckAction => 'Prüfen';
+
+  @override
+  String kidsArabicReviewCorrectLetterFeedback(String letterName) {
+    return 'Ja, das ist $letterName!';
+  }
+
+  @override
+  String kidsArabicFormsTitle(String letterName) {
+    return 'So sieht $letterName in einem Wort aus';
+  }
+
+  @override
+  String get kidsArabicFormsSubtitle => 'Derselbe Buchstabe an drei Stellen.';
+
+  @override
+  String get kidsArabicFormAlone => 'Allein';
+
+  @override
+  String get kidsArabicFormStart => 'Anfang';
+
+  @override
+  String get kidsArabicFormMiddle => 'Mitte';
+
+  @override
+  String get kidsArabicFormEnd => 'Ende';
+
+  @override
   String get kidsArabicReviewNeedsLettersTitle =>
       'Lerne erst noch einen Buchstaben';
 
@@ -8089,7 +8114,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String kidsArabicReviewFinishedSubtitle(int correct, int total) {
-    return 'Du hast $correct von $total richtig. Mach ruhig weiter.';
+    return '$correct von $total richtig.';
   }
 
   @override
@@ -29874,10 +29899,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get kidsArabicPracticePrimaryTitle => 'Die heutige Praxis';
 
   @override
-  String get kidsArabicPracticeHomeSubtitle =>
-      'Eine kurze, gezielte Wiederholung hilft Kindern, Buchstaben und Wörter frisch zu halten.';
-
-  @override
   String get kidsArabicPracticeContinueSectionTitle => 'Weiter';
 
   @override
@@ -32491,9 +32512,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get arabicQuickResumeReviewAction => 'Arabisch wiederholen';
-
-  @override
-  String get kidsArabicMiniAssessmentCardTitle => 'Kurze Übung';
 
   @override
   String get kidsArabicMiniAssessmentPageTitle => 'Kurze Übung';

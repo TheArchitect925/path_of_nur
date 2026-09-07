@@ -3322,7 +3322,7 @@
     }
   },
   "kidsArabicReviewTitle": "مراجعة الحروف",
-  "kidsArabicReviewSubtitle": "جولات مراجعة قصيرة ولطيفة للحروف المتعلّمة.",
+  "kidsArabicReviewSubtitle": "خمسة أسئلة عن الحروف التي تعرفها.",
   "kidsArabicRewardsTitle": "المكافآت والملصقات",
   "kidsArabicRewardsSubtitle": "مكافآت دافئة من تعلّم الحروف بثبات.",
   "kidsArabicParentDashboardTitle": "لوحة الوالدين",
@@ -3364,14 +3364,6 @@
     }
   },
   "kidsArabicDailyMissionCompletedTitle": "اكتملت مهمة اليوم",
-  "kidsArabicDailyMissionCompletedSubtitle": "أصبحت سلسلتك الآن {streak} أيام.",
-  "@kidsArabicDailyMissionCompletedSubtitle": {
-    "placeholders": {
-      "streak": {
-        "type": "int"
-      }
-    }
-  },
   "kidsArabicDailyMissionTomorrowPrompt": "مهمة جديدة ستكون بانتظارك غدًا.",
   "kidsArabicAlphabetTitle": "كل الحروف",
   "kidsArabicAlphabetSubtitle": "أكمِل حرفًا ليفتح الحرف التالي بلطف.",
@@ -3462,8 +3454,8 @@
   "kidsArabicTraceResultCompleted": "تتبّع جميل",
   "kidsArabicTraceResultGood": "أحسنت",
   "kidsArabicTraceResultExcellent": "عمل جميل",
-  "kidsArabicReviewModeMatchSound": "طابق الصوت",
-  "kidsArabicReviewModeTapCorrectLetter": "اضغط الحرف",
+  "kidsArabicReviewModeMatchSound": "اسمع ثم اضغط",
+  "kidsArabicReviewModeTapCorrectLetter": "انظر ثم اسمع",
   "kidsArabicQuestionCounter": "السؤال {current} من {total}",
   "@kidsArabicQuestionCounter": {
     "placeholders": {
@@ -3475,33 +3467,28 @@
       }
     }
   },
-  "kidsArabicReviewQuestionMatchSound": "أي صوت يطابق هذا الحرف؟",
-  "@kidsArabicReviewQuestionMatchSound": {
-    "placeholders": {
-      "glyph": {
-        "type": "String"
-      }
-    }
-  },
-  "kidsArabicReviewQuestionTapCorrect": "Tap the letter for {transliteration}.",
-  "@kidsArabicReviewQuestionTapCorrect": {
-    "placeholders": {
-      "transliteration": {
-        "type": "String"
-      }
-    }
-  },
-  "kidsArabicReviewCorrectFeedback": "أحسنت.",
+  "kidsArabicReviewQuestionMatchSound": "أي حرف سمعت؟",
   "kidsArabicReviewRetryFeedback": "لنحاول معًا مرة أخرى.",
   "kidsArabicReviewFinishedTitle": "انتهت المراجعة",
   "kidsArabicNextLetterDoneSubtitle": "Today’s step is done. {letterName} is ready whenever you are.",
   "kidsArabicNextLetterTitle": "Next up: {letterName}",
   "kidsArabicParentMoreArabicTitle": "More Arabic practice",
   "kidsArabicHomeDoorsTitle": "After the letters",
+  "kidsArabicReviewQuestionSeeHear": "ما صوت هذا الحرف؟",
+  "kidsArabicReviewHearTapHint": "اسمع، ثم ابحث عن الحرف.",
+  "kidsArabicReviewSeeHearHint": "اسمع كل صوت، ثم اختر.",
+  "kidsArabicReviewCheckAction": "تحقق",
+  "kidsArabicReviewCorrectLetterFeedback": "نعم، هذا {letterName}!",
+  "kidsArabicFormsTitle": "شكل {letterName} داخل الكلمة",
+  "kidsArabicFormsSubtitle": "الحرف نفسه في ثلاثة مواضع.",
+  "kidsArabicFormAlone": "منفرد",
+  "kidsArabicFormStart": "في البداية",
+  "kidsArabicFormMiddle": "في الوسط",
+  "kidsArabicFormEnd": "في النهاية",
   "kidsArabicReviewNeedsLettersTitle": "Learn one more letter first",
   "kidsArabicReviewNeedsLettersBody": "Review opens once two letters are done. {letterName} is next.",
   "kidsArabicReviewNeedsLettersAction": "Open {letterName}",
-  "kidsArabicReviewFinishedSubtitle": "أجبت عن {correct} من {total}. واصل بلطف.",
+  "kidsArabicReviewFinishedSubtitle": "{correct} من {total} صحيحة.",
   "@kidsArabicReviewFinishedSubtitle": {
     "placeholders": {
       "correct": {
@@ -12817,7 +12804,6 @@
   "kidsArabicPracticeTitle": "ممارسة",
   "kidsArabicPracticeSubtitle": "روتين يومي قصير للمراجعة والقراءة والتتبع.",
   "kidsArabicPracticePrimaryTitle": "ممارسة اليوم",
-  "kidsArabicPracticeHomeSubtitle": "تساعد المراجعة القصيرة والمركزة الأطفال على إبقاء الحروف والكلمات متجددة.",
   "kidsArabicPracticeContinueSectionTitle": "متابعة",
   "kidsArabicPracticeContinueSectionSubtitle": "التقط من حيث توقف الطفل.",
   "kidsArabicPracticeReviewSectionTitle": "مراجعة",
@@ -13928,7 +13914,6 @@
   "arabicQuickResumeStartAction": "Start Arabic",
   "arabicQuickResumeContinueAction": "Continue Arabic",
   "arabicQuickResumeReviewAction": "Review Arabic",
-  "kidsArabicMiniAssessmentCardTitle": "Quick practice",
   "kidsArabicMiniAssessmentPageTitle": "Quick Practice",
   "kidsArabicMiniAssessmentPageSubtitle": "A short, calm check to help letters, words, and phrases feel more familiar.",
   "quranTeachingMiniAssessmentCardTitle": "Quick practice",
