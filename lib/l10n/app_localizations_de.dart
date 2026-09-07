@@ -30901,8 +30901,14 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String learnGamesIslandDailyHistoryLabel(Object count) {
-    return '$count letzte Tage verfolgt';
+  String learnGamesIslandDailyHistoryLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count letzte Tage verfolgt',
+      one: '1 Tag zuletzt verfolgt',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -34283,7 +34289,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnGamesDailyKnowledgeTodayTitleText =>
-      'Tägliche Wissensherausforderung – Heute';
+      'Tägliche Wissensherausforderung';
 
   @override
   String get learnGamesKnowledgeCrosswordTitleText => 'Kreuzworträtsel';

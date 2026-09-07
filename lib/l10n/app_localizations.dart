@@ -50517,8 +50517,8 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesIslandDailyHistoryLabel.
   ///
   /// In en, this message translates to:
-  /// **'{count} recent days tracked'**
-  String learnGamesIslandDailyHistoryLabel(Object count);
+  /// **'{count, plural, =1{1 recent day tracked} other{{count} recent days tracked}}'**
+  String learnGamesIslandDailyHistoryLabel(int count);
 
   /// No description provided for @learnGamesIslandInProgressBadge.
   ///
@@ -56219,7 +56219,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnGamesDailyKnowledgeTodayTitleText.
   ///
   /// In en, this message translates to:
-  /// **'Daily Knowledge Challenge - Today'**
+  /// **'Daily Knowledge Challenge'**
   String get learnGamesDailyKnowledgeTodayTitleText;
 
   /// No description provided for @learnGamesKnowledgeCrosswordTitleText.

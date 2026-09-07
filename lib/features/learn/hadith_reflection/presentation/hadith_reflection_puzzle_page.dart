@@ -436,19 +436,22 @@ class _HadithReflectionPuzzlePageState
     if (_boundPuzzle?.id == puzzle.id) return;
     _boundPuzzle = puzzle;
     final now = DateTime.now();
-    ref
-        .read(hadithReflectionProgressProvider.notifier)
-        .markPuzzlePlayed(puzzleId: puzzle.id, occurredAt: now);
-    if (daily != null) {
-      ref
-          .read(hadithReflectionProgressProvider.notifier)
-          .markDailyStarted(
-            dateKey: daily.dateKey,
-            puzzleId: puzzle.id,
-            weekdayTheme: daily.weekdayTheme,
-            occurredAt: now,
-          );
-    }
+    // Runs from build, so the progress write has to wait for the frame like
+    // the other four puzzle families do. Writing synchronously here tripped
+    // Riverpod's "modified a provider while building" guard on every open.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final notifier = ref.read(hadithReflectionProgressProvider.notifier);
+      notifier.markPuzzlePlayed(puzzleId: puzzle.id, occurredAt: now);
+      if (daily != null) {
+        notifier.markDailyStarted(
+          dateKey: daily.dateKey,
+          puzzleId: puzzle.id,
+          weekdayTheme: daily.weekdayTheme,
+          occurredAt: now,
+        );
+      }
+    });
   }
 
   void _showHelp(BuildContext context, HadithReflectionPuzzle puzzle) {

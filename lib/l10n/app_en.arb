@@ -5030,7 +5030,7 @@
   "kidsArabicRecommendedSubtitle": "Begin with Alif, Ba, Meem, Noon, and Seen.",
   "kidsArabicStartHereBadge": "Start here",
   "kidsArabicAlphabetTitle": "All letters",
-  "kidsArabicAlphabetSubtitle": "Finish one letter to gently unlock the next in order.",
+  "kidsArabicAlphabetSubtitle": "Tap a letter to hear it. Finish one to open the next.",
   "kidsArabicLockedTitle": "Keep going gently",
   "kidsArabicLockedSubtitle": "This letter opens after the one before it is complete.",
   "kidsArabicLockedBody": "Finish the previous letter first, then this one will unlock.",
@@ -5044,7 +5044,7 @@
       }
     }
   },
-  "kidsArabicLessonSubtitle": "Trace and hear {letterName} with a calm guided lesson.",
+  "kidsArabicLessonSubtitle": "Hear {letterName}, then trace it.",
   "@kidsArabicLessonSubtitle": {
     "placeholders": {
       "letterName": {
@@ -5194,6 +5194,24 @@
   "kidsArabicReviewCorrectFeedback": "Great job.",
   "kidsArabicReviewRetryFeedback": "Let’s try again together.",
   "kidsArabicReviewFinishedTitle": "Review finished",
+  "kidsArabicNextLetterDoneSubtitle": "Today’s step is done. {letterName} is ready whenever you are.",
+  "@kidsArabicNextLetterDoneSubtitle": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsArabicNextLetterTitle": "Next up: {letterName}",
+  "@kidsArabicNextLetterTitle": {
+    "placeholders": {
+      "letterName": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsArabicParentMoreArabicTitle": "More Arabic practice",
+  "kidsArabicHomeDoorsTitle": "After the letters",
   "kidsArabicReviewNeedsLettersTitle": "Learn one more letter first",
   "kidsArabicReviewNeedsLettersBody": "Review opens once two letters are done. {letterName} is next.",
   "kidsArabicReviewNeedsLettersAction": "Open {letterName}",
@@ -13669,10 +13687,12 @@
       "count": {}
     }
   },
-  "learnGamesIslandDailyHistoryLabel": "{count} recent days tracked",
+  "learnGamesIslandDailyHistoryLabel": "{count, plural, =1{1 recent day tracked} other{{count} recent days tracked}}",
   "@learnGamesIslandDailyHistoryLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "learnGamesIslandInProgressBadge": "In progress",
@@ -15334,7 +15354,7 @@
   "learnGamesBrowseAllActionText": "Open Browse All",
   "learnGamesBrowseAllPageTitleText": "Browse All Games",
   "learnGamesBrowseAllPageSubtitleText": "Every quiz, game, challenge and pack in one searchable list.",
-  "learnGamesDailyKnowledgeTodayTitleText": "Daily Knowledge Challenge - Today",
+  "learnGamesDailyKnowledgeTodayTitleText": "Daily Knowledge Challenge",
   "learnGamesKnowledgeCrosswordTitleText": "Crossword Puzzles",
   "learnGamesKnowledgeWordSearchTitleText": "Word Search",
   "learnGamesKnowledgeMatchingTitleText": "Matching Games",

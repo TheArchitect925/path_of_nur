@@ -5041,6 +5041,10 @@
   "kidsArabicReviewCorrectFeedback": "Great job.",
   "kidsArabicReviewRetryFeedback": "Let’s try again together.",
   "kidsArabicReviewFinishedTitle": "Review finished",
+  "kidsArabicNextLetterDoneSubtitle": "Today’s step is done. {letterName} is ready whenever you are.",
+  "kidsArabicNextLetterTitle": "Next up: {letterName}",
+  "kidsArabicParentMoreArabicTitle": "More Arabic practice",
+  "kidsArabicHomeDoorsTitle": "After the letters",
   "kidsArabicReviewNeedsLettersTitle": "Learn one more letter first",
   "kidsArabicReviewNeedsLettersBody": "Review opens once two letters are done. {letterName} is next.",
   "kidsArabicReviewNeedsLettersAction": "Open {letterName}",
@@ -13454,7 +13458,9 @@
   "learnGamesIslandDailyHistoryLabel": "{count} recent days tracked",
   "@learnGamesIslandDailyHistoryLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "learnGamesIslandInProgressBadge": "In progress",

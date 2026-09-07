@@ -30445,7 +30445,7 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String learnGamesIslandDailyHistoryLabel(Object count) {
+  String learnGamesIslandDailyHistoryLabel(int count) {
     return '$count حالیہ دنوں کا پتہ لگایا گیا۔';
   }
 

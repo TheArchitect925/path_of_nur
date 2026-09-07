@@ -30264,7 +30264,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String learnGamesIslandDailyHistoryLabel(Object count) {
+  String learnGamesIslandDailyHistoryLabel(int count) {
     return 'تم تتبع $count أيام أخيرة';
   }
 

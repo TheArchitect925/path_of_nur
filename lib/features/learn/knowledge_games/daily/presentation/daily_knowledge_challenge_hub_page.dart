@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../ayah_completion/presentation/ayah_completion_ui_helpers.dart';
+import '../../../crossword/presentation/crossword_ui_helpers.dart';
+import '../../../hadith_reflection/presentation/hadith_reflection_ui_helpers.dart';
+import '../../../matching/presentation/matching_ui_helpers.dart';
+import '../../../word_search/presentation/word_search_ui_helpers.dart';
 import '../../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../../shared/utils/reward_feedback.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -74,7 +80,9 @@ class _DailyKnowledgeChallengeHubPageState
                         children: [
                           _chip(
                             context,
-                            l10n.dailyKnowledgeHubDateLabel(bundle.dateKey),
+                            l10n.dailyKnowledgeHubDateLabel(
+                              _formatDateKey(l10n, bundle.dateKey),
+                            ),
                           ),
                           _chip(
                             context,
@@ -289,6 +297,13 @@ class _DailyKnowledgeChallengeHubPageState
     });
   }
 
+  /// Bundle keys are `yyyy-MM-dd`; the player should read a date, not a key.
+  String _formatDateKey(AppLocalizations l10n, String dateKey) {
+    final date = DateTime.tryParse(dateKey);
+    if (date == null) return dateKey;
+    return DateFormat.MMMMEEEEd(l10n.localeName).format(date);
+  }
+
   String _adaptiveGameLabel(AppLocalizations l10n, String gameType) {
     return switch (gameType) {
       'crossword' => l10n.dailyKnowledgeHubAdaptiveGameCrossword,
@@ -338,12 +353,7 @@ class _GameCard extends StatelessWidget {
                     runSpacing: 8,
                     children: [
                       _chip(context, _categoryForGame(l10n, game)),
-                      _chip(
-                        context,
-                        l10n.dailyKnowledgeHubDifficultyLabel(
-                          game.difficulty.toString(),
-                        ),
-                      ),
+                      _chip(context, _difficultyLabel(l10n, game)),
                       _chip(
                         context,
                         isCompleted
@@ -370,6 +380,23 @@ class _GameCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Each family already names its difficulty bands on its own pages; the
+  /// hub used to print the raw number instead.
+  String _difficultyLabel(AppLocalizations l10n, KnowledgeGameRef game) {
+    switch (game.gameType) {
+      case DailyKnowledgeGameType.crossword:
+        return crosswordDifficultyLabel(l10n, game.difficulty);
+      case DailyKnowledgeGameType.wordSearch:
+        return wordSearchDifficultyLabel(l10n, game.difficulty);
+      case DailyKnowledgeGameType.matching:
+        return matchingDifficultyLabel(l10n, game.difficulty);
+      case DailyKnowledgeGameType.ayahCompletion:
+        return ayahCompletionDifficultyLabel(l10n, game.difficulty);
+      case DailyKnowledgeGameType.hadithReflection:
+        return hadithReflectionDifficultyLabel(l10n, game.difficulty);
+    }
   }
 
   IconData _iconForGame(DailyKnowledgeGameType type) {
