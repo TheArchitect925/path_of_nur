@@ -3709,34 +3709,34 @@
   "kidsArabicParentSupportNoteTitle": "Unterstützung der Eltern",
   "kidsArabicParentSupportNoteGentle": "Nimm einen kleinen Schritt und halte es leicht.",
   "kidsArabicParentSupportNoteExtraHelp": "Geh langsam, höre noch einmal zu und fahre mit etwas mehr Hilfe nach.",
-  "kidsArabicLetterAlifChildLine": "Alif erinnert uns an Allah.",
-  "kidsArabicLetterBaChildLine": "Ba beginnt Bismillah.",
-  "kidsArabicLetterTaChildLine": "Ta erinnert uns an Taqwa.",
-  "kidsArabicLetterThaChildLine": "Tha erinnert uns an Thawab.",
-  "kidsArabicLetterJimChildLine": "Jeem erinnert uns an Jannah.",
-  "kidsArabicLetterHaChildLine": "Ha erinnert uns an Halal.",
-  "kidsArabicLetterKhaChildLine": "Kha erinnert uns an Khayr.",
-  "kidsArabicLetterDalChildLine": "Dal erinnert uns an Deen.",
-  "kidsArabicLetterDhalChildLine": "Dhal erinnert uns an Dhikr.",
-  "kidsArabicLetterRaChildLine": "Ra erinnert uns an Rahmah.",
-  "kidsArabicLetterZayChildLine": "Zay erinnert uns an die Zakah.",
-  "kidsArabicLetterSeenChildLine": "Gesehen erinnert uns an Sujood.",
-  "kidsArabicLetterSheenChildLine": "Sheen erinnert uns an Shukr.",
-  "kidsArabicLetterSadChildLine": "Sad erinnert uns an Salah.",
-  "kidsArabicLetterDadChildLine": "Papa erinnert uns an Licht.",
-  "kidsArabicLetterTaaChildLine": "Ta erinnert uns an Taharah.",
-  "kidsArabicLetterZaaChildLine": "Za erinnert uns an Zuhr.",
-  "kidsArabicLetterAinChildLine": "Ain erinnert uns an ILM.",
-  "kidsArabicLetterGhainChildLine": "Ghain erinnert uns an Barmherzigkeit.",
-  "kidsArabicLetterFaChildLine": "Fa erinnert uns an Fajr.",
-  "kidsArabicLetterQafChildLine": "Qaf erinnert uns an den Koran.",
-  "kidsArabicLetterKafChildLine": "Kaf erinnert uns an Kitab.",
-  "kidsArabicLetterLamChildLine": "Lam erinnert uns an Layl.",
-  "kidsArabicLetterMeemChildLine": "Meem erinnert uns an die Moschee.",
-  "kidsArabicLetterNoonChildLine": "Noon erinnert uns an Noor.",
-  "kidsArabicLetterHa2ChildLine": "Ha erinnert uns an Huda.",
-  "kidsArabicLetterWawChildLine": "Waw erinnert uns an Wudu.",
-  "kidsArabicLetterYaChildLine": "Ya erinnert uns an Yaqeen.",
+  "kidsArabicLetterAlifChildLine": "Alif sagt a, wie Apfel.",
+  "kidsArabicLetterBaChildLine": "Ba sagt b, wie Ball.",
+  "kidsArabicLetterTaChildLine": "Ta sagt t, wie Tasse.",
+  "kidsArabicLetterThaChildLine": "Tha ist ein gehauchtes s: die Zunge zwischen den Zähnen.",
+  "kidsArabicLetterJimChildLine": "Jeem sagt dsch, wie Dschungel.",
+  "kidsArabicLetterHaChildLine": "Ha kommt tief aus dem Hals, wie hisan, ein Pferd.",
+  "kidsArabicLetterKhaChildLine": "Kha kratzt wie das ch in Bach, wie khayma, ein Zelt.",
+  "kidsArabicLetterDalChildLine": "Dal sagt d, wie Dach.",
+  "kidsArabicLetterDhalChildLine": "Dhal ist ein summendes th, wie dhurra, Mais.",
+  "kidsArabicLetterRaChildLine": "Ra rollt, wie Rakete.",
+  "kidsArabicLetterZayChildLine": "Zay summt wie das s in Rose.",
+  "kidsArabicLetterSeenChildLine": "Seen sagt s, wie Sonne.",
+  "kidsArabicLetterSheenChildLine": "Sheen sagt sch, wie Schiff.",
+  "kidsArabicLetterSadChildLine": "Sad ist ein schweres s, wie saqr, ein Falke.",
+  "kidsArabicLetterDadChildLine": "Dad ist ein schweres d, wie dafda, ein Frosch.",
+  "kidsArabicLetterTaaChildLine": "Taa ist ein schweres t, wie tabl, eine Trommel.",
+  "kidsArabicLetterZaaChildLine": "Zaa ist ein schweres z, wie zarf, ein Umschlag.",
+  "kidsArabicLetterAinChildLine": "Ain kommt tief aus dem Hals, wie inab, Trauben.",
+  "kidsArabicLetterGhainChildLine": "Ghain klingt wie ein gegurgeltes r, wie ghaym, eine Wolke.",
+  "kidsArabicLetterFaChildLine": "Fa sagt f, wie Fisch.",
+  "kidsArabicLetterQafChildLine": "Qaf ist ein tiefes k, wie qalam, ein Stift.",
+  "kidsArabicLetterKafChildLine": "Kaf sagt k, wie Katze.",
+  "kidsArabicLetterLamChildLine": "Lam sagt l, wie Limone.",
+  "kidsArabicLetterMeemChildLine": "Meem sagt m, wie Mond.",
+  "kidsArabicLetterNoonChildLine": "Noon sagt n, wie Nest.",
+  "kidsArabicLetterHa2ChildLine": "Ha sagt h, wie hadiya, ein Geschenk.",
+  "kidsArabicLetterWawChildLine": "Waw sagt w, wie Wasser.",
+  "kidsArabicLetterYaChildLine": "Ya sagt j, wie Jojo.",
   "learningJourneyDetailAboutTitle": "Über diese Reise",
   "learningJourneyDetailLearnTitle": "Was Sie lernen werden",
   "learningJourneyDetailWhyThisMattersTitle": "Warum das wichtig ist",
@@ -12864,19 +12864,19 @@
   "kidsArabicMiniPhrasesTapHint": "Tipp auf den Satz, um ihn langsam zu hören.",
   "kidsArabicMiniPhrasesListenAction": "Wendung hören",
   "kidsArabicMiniPhrasesListenAgainAction": "Noch einmal hören",
-  "kidsArabicMiniPhrasesRepeatSubtitle": "Hören Sie genau hin und wiederholen Sie die kurze Wendung dann mit ruhiger Stimme.",
+  "kidsArabicMiniPhrasesRepeatSubtitle": "Hör genau hin und sprich den kurzen Satz dann nach.",
   "kidsArabicMiniPhrasesPreviousAction": "Previous",
   "kidsArabicMiniPhrasesNextAction": "Next",
   "kidsArabicMiniPhrasesWordsReadingAction": "Wortlesen öffnen",
   "kidsArabicReadingModeTitle": "Lesemodus",
-  "kidsArabicReadingModeSubtitle": "Lesen Sie freigeschaltete Wörter in einem ruhigen, konzentrierten Fluss durch.",
-  "kidsArabicReadingModeHomeSubtitle": "Öffnen Sie einen einfachen Lesefluss, um Wort für Wort zu hören, zu wiederholen und sich fortzubewegen.",
+  "kidsArabicReadingModeSubtitle": "Lies die freigeschalteten Wörter der Reihe nach.",
+  "kidsArabicReadingModeHomeSubtitle": "Hör jedes Wort, sprich es nach und geh zum nächsten.",
   "kidsArabicReadingModeOpenAction": "Lesemodus öffnen",
   "kidsArabicReadingModeLockedTitle": "Lesemodus gesperrt",
-  "kidsArabicReadingModeLockedBody": "Schalten Sie zunächst ein paar Wörter frei, um den Lesemodus zu starten.",
+  "kidsArabicReadingModeLockedBody": "Schalte zuerst ein paar Wörter frei, dann geht das Lesen los.",
   "kidsArabicReadingModeCompletedBadge": "Abgeschlossen",
-  "kidsArabicReadingModeTapHint": "Tippen Sie auf das Wort, um es noch einmal anzuhören.",
-  "kidsArabicReadingModeListenAction": "Hören Sie",
+  "kidsArabicReadingModeTapHint": "Tipp auf das Wort, um es noch einmal zu hören.",
+  "kidsArabicReadingModeListenAction": "Anhören",
   "kidsArabicReadingModePreviousAction": "Zurück",
   "kidsArabicReadingModeNextAction": "Als nächstes",
   "kidsArabicReadingModeTraceWordAction": "Wort verfolgen",
@@ -12898,16 +12898,16 @@
   "kidsArabicPracticeSubtitle": "Eine kurze tägliche Routine zum Durchsehen, Lesen und Nachzeichnen.",
   "kidsArabicPracticePrimaryTitle": "Die heutige Praxis",
   "kidsArabicPracticeContinueSectionTitle": "Weiter",
-  "kidsArabicPracticeContinueSectionSubtitle": "Machen Sie dort weiter, wo das Kind aufgehört hat.",
+  "kidsArabicPracticeContinueSectionSubtitle": "Mach dort weiter, wo du aufgehört hast.",
   "kidsArabicPracticeReviewSectionTitle": "Rezension",
-  "kidsArabicPracticeReviewSectionSubtitle": "Überdenken Sie Buchstaben und Wörter, die noch einmal abgeändert werden müssen.",
+  "kidsArabicPracticeReviewSectionSubtitle": "Buchstaben und Wörter, die noch einmal dran sind.",
   "kidsArabicPracticeTodayAction": "Der heutige Plan",
-  "kidsArabicPracticeContinueAction": "Üben Sie weiter",
+  "kidsArabicPracticeContinueAction": "Weiter üben",
   "kidsArabicPracticeReviewAction": "Rezension",
   "kidsArabicPracticeReadAction": "Lesen",
   "kidsArabicPracticeTodayDoneTitle": "Übung abgeschlossen",
   "kidsArabicPracticeTodayTitle": "Der heutige Schwerpunkt",
-  "kidsArabicPracticeTodayBody": "Öffnen Sie den nächsten empfohlenen Übungsschritt und halten Sie den Schwung konstant.",
+  "kidsArabicPracticeTodayBody": "Öffne den nächsten Übungsschritt und bleib dran.",
   "kidsArabicPracticeTodayDoneBody": "Die heute empfohlene Übung ist abgeschlossen.",
   "kidsArabicPracticeTodayDoneBadge": "Heute erledigt",
   "quranDailyReflectionStreakValue": "{days} Tagesserie",
@@ -13124,11 +13124,11 @@
     }
   },
   "kidsArabicWordsJoiningTitle": "Buchstaben fügen sich zusammen",
-  "kidsArabicWordsJoiningSubtitle": "Sehen Sie, wie sich bekannte Buchstaben verändern, wenn sie in einem Wort vorkommen.",
+  "kidsArabicWordsJoiningSubtitle": "Sieh, wie sich bekannte Buchstaben verändern, wenn sie in einem Wort stehen.",
   "kidsArabicWordsStartSetTitle": "Starter-Wortsatz",
-  "kidsArabicWordsStartSetSubtitle": "Öffnen Sie jedes Wort, hören Sie es, verfolgen Sie es und lesen Sie es mit Zuversicht.",
+  "kidsArabicWordsStartSetSubtitle": "Öffne jedes Wort, hör es an, fahre es nach und lies es.",
   "kidsArabicWordsNextTitle": "Empfohlenes nächstes Wort",
-  "kidsArabicWordsNextSubtitle": "Fahren Sie mit {word} fort und üben Sie, es reibungslos zu lesen.",
+  "kidsArabicWordsNextSubtitle": "Mach mit {word} weiter und übe, es flüssig zu lesen.",
   "@kidsArabicWordsNextSubtitle": {
     "placeholders": {
       "word": {}
@@ -13173,23 +13173,23 @@
   "kidsArabicMiniPhraseAssalamuAlaikumSummary": "Ein sanfter Gruß, den Kinder bei Familie und Freunden verwenden können.",
   "kidsArabicMiniPhraseInshaAllahMeaning": "So Allah will",
   "kidsArabicMiniPhraseInshaAllahSummary": "Eine hilfreiche Wendung, wenn man hofft, später etwas Gutes zu tun.",
-  "kidsArabicWordLessonTitle": "Lernen Sie {word}",
+  "kidsArabicWordLessonTitle": "Lerne {word}",
   "@kidsArabicWordLessonTitle": {
     "placeholders": {
       "word": {}
     }
   },
-  "kidsArabicWordLessonSubtitle": "Hören Sie sich {word} an, verfolgen Sie es und lesen Sie es sorgfältig.",
+  "kidsArabicWordLessonSubtitle": "Hör dir {word} an, fahre es nach und lies es.",
   "@kidsArabicWordLessonSubtitle": {
     "placeholders": {
       "word": {}
     }
   },
-  "kidsArabicWordListenAction": "Hören Sie",
-  "kidsArabicWordsWordLessonJoiningSubtitle": "Beachten Sie, wie jeder Buchstabe für sich und im Wort aussieht.",
-  "kidsArabicWordTraceTitle": "Verfolgen Sie das Wort",
-  "kidsArabicWordTraceSubtitle": "Verfolgen Sie das Wort langsam und versuchen Sie dann, das Wort selbst zu lesen.",
-  "kidsArabicWordTryAgainAction": "Versuchen Sie es erneut",
+  "kidsArabicWordListenAction": "Anhören",
+  "kidsArabicWordsWordLessonJoiningSubtitle": "Sieh, wie jeder Buchstabe allein und im Wort aussieht.",
+  "kidsArabicWordTraceTitle": "Das Wort nachfahren",
+  "kidsArabicWordTraceSubtitle": "Fahre das Wort langsam nach und lies es dann selbst.",
+  "kidsArabicWordTryAgainAction": "Noch einmal",
   "kidsArabicWordReadyBadge": "Bereit",
   "kidsArabicWordCompleteTitle": "{word} ist bereit",
   "@kidsArabicWordCompleteTitle": {
@@ -13197,7 +13197,7 @@
       "word": {}
     }
   },
-  "kidsArabicWordCompleteSubtitle": "Sie haben diese Wortlektion beendet. Halten Sie den Klang und die Form mit einer weiteren Lektüre frisch.",
+  "kidsArabicWordCompleteSubtitle": "Du hast dieses Wort geschafft. Lies es noch einmal, damit Klang und Form bleiben.",
   "kidsArabicWordNextAction": "Weiter: {nextWord}",
   "@kidsArabicWordNextAction": {
     "placeholders": {
@@ -13235,7 +13235,7 @@
       "letter": {}
     }
   },
-  "kidsArabicMasteryContinueLetterBody": "Fahren Sie mit dem nächsten Buchstaben in Ihrer Reihenfolge fort.",
+  "kidsArabicMasteryContinueLetterBody": "Mach mit dem nächsten Buchstaben in deiner Reihenfolge weiter.",
   "kidsArabicMasteryReviewLetterTitle": "Rezension {letter}",
   "@kidsArabicMasteryReviewLetterTitle": {
     "placeholders": {
@@ -13243,8 +13243,8 @@
     }
   },
   "kidsArabicMasteryReviewLetterBody": "Eine kurze Überprüfung stärkt das Erkennen und Erinnern.",
-  "kidsArabicMasteryCelebrateTitle": "Feiern Sie den Fortschritt",
-  "kidsArabicMasteryCelebrateBody": "Schöne Arbeit.{letter} ist Teil Ihres wachsenden Lese-Toolkits.",
+  "kidsArabicMasteryCelebrateTitle": "Schau, wie weit du bist",
+  "kidsArabicMasteryCelebrateBody": "{letter} gehört jetzt zu den Buchstaben, die du lesen kannst.",
   "@kidsArabicMasteryCelebrateBody": {
     "placeholders": {
       "letter": {}
@@ -13256,7 +13256,7 @@
       "letter": {}
     }
   },
-  "kidsArabicPracticeDailyNewLetterBody": "Lernen Sie einen neuen Buchstaben kennen und konzentrieren Sie sich auf seinen Klang und seine Form.",
+  "kidsArabicPracticeDailyNewLetterBody": "Lerne einen neuen Buchstaben kennen: seinen Klang und seine Form.",
   "kidsArabicPracticeDailyReviewTitle": "Bewertungsschreiben: {letter}",
   "@kidsArabicPracticeDailyReviewTitle": {
     "placeholders": {
@@ -13270,21 +13270,21 @@
       "letter": {}
     }
   },
-  "kidsArabicPracticeDailyTraceBody": "Verwenden Sie die Nachverfolgung, um Bewegung, Klang und Erinnerung zu verbinden.",
+  "kidsArabicPracticeDailyTraceBody": "Fahre den Buchstaben nach, damit Hand, Klang und Bild zusammenkommen.",
   "kidsArabicPracticeContinueLetterTitle": "Weiter mit {letter}",
   "@kidsArabicPracticeContinueLetterTitle": {
     "placeholders": {
       "letter": {}
     }
   },
-  "kidsArabicPracticeContinueLetterBody": "Gehen Sie die Sequenz in einem ruhigen Tempo weiter.",
+  "kidsArabicPracticeContinueLetterBody": "Mach in deinem Tempo mit dem nächsten Buchstaben weiter.",
   "kidsArabicPracticeContinueWordTitle": "Wort fortsetzen: {word}",
   "@kidsArabicPracticeContinueWordTitle": {
     "placeholders": {
       "word": {}
     }
   },
-  "kidsArabicPracticeContinueWordBody": "Kehren Sie zu {word} zurück und stärken Sie das Lesevertrauen.",
+  "kidsArabicPracticeContinueWordBody": "Kehr zu {word} zurück und lies es noch einmal.",
   "@kidsArabicPracticeContinueWordBody": {
     "placeholders": {
       "word": {}
@@ -13303,13 +13303,13 @@
       "word": {}
     }
   },
-  "kidsArabicPracticeReviewWordBody": "Denken Sie noch einmal über dieses Wort nach und lesen Sie es noch einmal sorgfältig.",
+  "kidsArabicPracticeReviewWordBody": "Schau dir dieses Wort noch einmal an und lies es.",
   "kidsArabicPracticeReviewLettersTitle": "Buchstaben wiederholen",
   "kidsArabicPracticeReviewLettersBody": "Öffne eine kurze Wiederholung für Buchstaben, die noch einmal dran sind.",
-  "kidsArabicPracticeReviewWordsTitle": "Wiederholen Sie die Wörter",
-  "kidsArabicPracticeReviewWordsBody": "Üben Sie vertraute Wörter, um das Lesen zusammengefügter Buchstaben zu stärken.",
+  "kidsArabicPracticeReviewWordsTitle": "Wörter wiederholen",
+  "kidsArabicPracticeReviewWordsBody": "Übe bekannte Wörter, damit das Lesen verbundener Buchstaben leichter wird.",
   "kidsArabicTraceCompletionTitle": "Verfolgung abgeschlossen",
-  "kidsArabicTryAgainAction": "Versuchen Sie es erneut",
+  "kidsArabicTryAgainAction": "Noch einmal",
   "wuduTrainerProgressOf": "Schritt {current} von {total}",
   "@wuduTrainerProgressOf": {
     "placeholders": {
@@ -15696,7 +15696,7 @@
   "gardenPageRecentGrowthTracked": "Erfasst",
   "hadithLessonCompletedQuiet": "Lektion abgeschlossen.",
   "bedtimeStoryLearningCompletionSnackQuiet": "Aktivität abgeschlossen.",
-  "kidsArabicTraceCompletionSubtitleQuiet": "Ihr Fortschritt wurde gespeichert.",
+  "kidsArabicTraceCompletionSubtitleQuiet": "Dein Fortschritt ist gespeichert.",
   "learningJourneyLessonSectionProgressSubtitle": "Schließen Sie diesen Abschnitt ab, um Ihren Fortschritt zu speichern.",
   "rewardQuietProgressSaved": "Fortschritt gespeichert.",
   "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} von {total} richtig",

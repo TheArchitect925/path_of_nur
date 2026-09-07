@@ -8444,90 +8444,100 @@ class AppLocalizationsDe extends AppLocalizations {
       'Geh langsam, höre noch einmal zu und fahre mit etwas mehr Hilfe nach.';
 
   @override
-  String get kidsArabicLetterAlifChildLine => 'Alif erinnert uns an Allah.';
+  String get kidsArabicLetterAlifChildLine => 'Alif sagt a, wie Apfel.';
 
   @override
-  String get kidsArabicLetterBaChildLine => 'Ba beginnt Bismillah.';
+  String get kidsArabicLetterBaChildLine => 'Ba sagt b, wie Ball.';
 
   @override
-  String get kidsArabicLetterTaChildLine => 'Ta erinnert uns an Taqwa.';
+  String get kidsArabicLetterTaChildLine => 'Ta sagt t, wie Tasse.';
 
   @override
-  String get kidsArabicLetterThaChildLine => 'Tha erinnert uns an Thawab.';
+  String get kidsArabicLetterThaChildLine =>
+      'Tha ist ein gehauchtes s: die Zunge zwischen den Zähnen.';
 
   @override
-  String get kidsArabicLetterJimChildLine => 'Jeem erinnert uns an Jannah.';
+  String get kidsArabicLetterJimChildLine => 'Jeem sagt dsch, wie Dschungel.';
 
   @override
-  String get kidsArabicLetterHaChildLine => 'Ha erinnert uns an Halal.';
+  String get kidsArabicLetterHaChildLine =>
+      'Ha kommt tief aus dem Hals, wie hisan, ein Pferd.';
 
   @override
-  String get kidsArabicLetterKhaChildLine => 'Kha erinnert uns an Khayr.';
+  String get kidsArabicLetterKhaChildLine =>
+      'Kha kratzt wie das ch in Bach, wie khayma, ein Zelt.';
 
   @override
-  String get kidsArabicLetterDalChildLine => 'Dal erinnert uns an Deen.';
+  String get kidsArabicLetterDalChildLine => 'Dal sagt d, wie Dach.';
 
   @override
-  String get kidsArabicLetterDhalChildLine => 'Dhal erinnert uns an Dhikr.';
+  String get kidsArabicLetterDhalChildLine =>
+      'Dhal ist ein summendes th, wie dhurra, Mais.';
 
   @override
-  String get kidsArabicLetterRaChildLine => 'Ra erinnert uns an Rahmah.';
+  String get kidsArabicLetterRaChildLine => 'Ra rollt, wie Rakete.';
 
   @override
-  String get kidsArabicLetterZayChildLine => 'Zay erinnert uns an die Zakah.';
+  String get kidsArabicLetterZayChildLine => 'Zay summt wie das s in Rose.';
 
   @override
-  String get kidsArabicLetterSeenChildLine => 'Gesehen erinnert uns an Sujood.';
+  String get kidsArabicLetterSeenChildLine => 'Seen sagt s, wie Sonne.';
 
   @override
-  String get kidsArabicLetterSheenChildLine => 'Sheen erinnert uns an Shukr.';
+  String get kidsArabicLetterSheenChildLine => 'Sheen sagt sch, wie Schiff.';
 
   @override
-  String get kidsArabicLetterSadChildLine => 'Sad erinnert uns an Salah.';
+  String get kidsArabicLetterSadChildLine =>
+      'Sad ist ein schweres s, wie saqr, ein Falke.';
 
   @override
-  String get kidsArabicLetterDadChildLine => 'Papa erinnert uns an Licht.';
+  String get kidsArabicLetterDadChildLine =>
+      'Dad ist ein schweres d, wie dafda, ein Frosch.';
 
   @override
-  String get kidsArabicLetterTaaChildLine => 'Ta erinnert uns an Taharah.';
+  String get kidsArabicLetterTaaChildLine =>
+      'Taa ist ein schweres t, wie tabl, eine Trommel.';
 
   @override
-  String get kidsArabicLetterZaaChildLine => 'Za erinnert uns an Zuhr.';
+  String get kidsArabicLetterZaaChildLine =>
+      'Zaa ist ein schweres z, wie zarf, ein Umschlag.';
 
   @override
-  String get kidsArabicLetterAinChildLine => 'Ain erinnert uns an ILM.';
+  String get kidsArabicLetterAinChildLine =>
+      'Ain kommt tief aus dem Hals, wie inab, Trauben.';
 
   @override
   String get kidsArabicLetterGhainChildLine =>
-      'Ghain erinnert uns an Barmherzigkeit.';
+      'Ghain klingt wie ein gegurgeltes r, wie ghaym, eine Wolke.';
 
   @override
-  String get kidsArabicLetterFaChildLine => 'Fa erinnert uns an Fajr.';
+  String get kidsArabicLetterFaChildLine => 'Fa sagt f, wie Fisch.';
 
   @override
-  String get kidsArabicLetterQafChildLine => 'Qaf erinnert uns an den Koran.';
+  String get kidsArabicLetterQafChildLine =>
+      'Qaf ist ein tiefes k, wie qalam, ein Stift.';
 
   @override
-  String get kidsArabicLetterKafChildLine => 'Kaf erinnert uns an Kitab.';
+  String get kidsArabicLetterKafChildLine => 'Kaf sagt k, wie Katze.';
 
   @override
-  String get kidsArabicLetterLamChildLine => 'Lam erinnert uns an Layl.';
+  String get kidsArabicLetterLamChildLine => 'Lam sagt l, wie Limone.';
 
   @override
-  String get kidsArabicLetterMeemChildLine =>
-      'Meem erinnert uns an die Moschee.';
+  String get kidsArabicLetterMeemChildLine => 'Meem sagt m, wie Mond.';
 
   @override
-  String get kidsArabicLetterNoonChildLine => 'Noon erinnert uns an Noor.';
+  String get kidsArabicLetterNoonChildLine => 'Noon sagt n, wie Nest.';
 
   @override
-  String get kidsArabicLetterHa2ChildLine => 'Ha erinnert uns an Huda.';
+  String get kidsArabicLetterHa2ChildLine =>
+      'Ha sagt h, wie hadiya, ein Geschenk.';
 
   @override
-  String get kidsArabicLetterWawChildLine => 'Waw erinnert uns an Wudu.';
+  String get kidsArabicLetterWawChildLine => 'Waw sagt w, wie Wasser.';
 
   @override
-  String get kidsArabicLetterYaChildLine => 'Ya erinnert uns an Yaqeen.';
+  String get kidsArabicLetterYaChildLine => 'Ya sagt j, wie Jojo.';
 
   @override
   String get learningJourneyDetailAboutTitle => 'Über diese Reise';
@@ -29792,7 +29802,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicMiniPhrasesRepeatSubtitle =>
-      'Hören Sie genau hin und wiederholen Sie die kurze Wendung dann mit ruhiger Stimme.';
+      'Hör genau hin und sprich den kurzen Satz dann nach.';
 
   @override
   String get kidsArabicMiniPhrasesPreviousAction => 'Previous';
@@ -29808,11 +29818,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicReadingModeSubtitle =>
-      'Lesen Sie freigeschaltete Wörter in einem ruhigen, konzentrierten Fluss durch.';
+      'Lies die freigeschalteten Wörter der Reihe nach.';
 
   @override
   String get kidsArabicReadingModeHomeSubtitle =>
-      'Öffnen Sie einen einfachen Lesefluss, um Wort für Wort zu hören, zu wiederholen und sich fortzubewegen.';
+      'Hör jedes Wort, sprich es nach und geh zum nächsten.';
 
   @override
   String get kidsArabicReadingModeOpenAction => 'Lesemodus öffnen';
@@ -29822,17 +29832,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicReadingModeLockedBody =>
-      'Schalten Sie zunächst ein paar Wörter frei, um den Lesemodus zu starten.';
+      'Schalte zuerst ein paar Wörter frei, dann geht das Lesen los.';
 
   @override
   String get kidsArabicReadingModeCompletedBadge => 'Abgeschlossen';
 
   @override
   String get kidsArabicReadingModeTapHint =>
-      'Tippen Sie auf das Wort, um es noch einmal anzuhören.';
+      'Tipp auf das Wort, um es noch einmal zu hören.';
 
   @override
-  String get kidsArabicReadingModeListenAction => 'Hören Sie';
+  String get kidsArabicReadingModeListenAction => 'Anhören';
 
   @override
   String get kidsArabicReadingModePreviousAction => 'Zurück';
@@ -29903,20 +29913,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicPracticeContinueSectionSubtitle =>
-      'Machen Sie dort weiter, wo das Kind aufgehört hat.';
+      'Mach dort weiter, wo du aufgehört hast.';
 
   @override
   String get kidsArabicPracticeReviewSectionTitle => 'Rezension';
 
   @override
   String get kidsArabicPracticeReviewSectionSubtitle =>
-      'Überdenken Sie Buchstaben und Wörter, die noch einmal abgeändert werden müssen.';
+      'Buchstaben und Wörter, die noch einmal dran sind.';
 
   @override
   String get kidsArabicPracticeTodayAction => 'Der heutige Plan';
 
   @override
-  String get kidsArabicPracticeContinueAction => 'Üben Sie weiter';
+  String get kidsArabicPracticeContinueAction => 'Weiter üben';
 
   @override
   String get kidsArabicPracticeReviewAction => 'Rezension';
@@ -29932,7 +29942,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicPracticeTodayBody =>
-      'Öffnen Sie den nächsten empfohlenen Übungsschritt und halten Sie den Schwung konstant.';
+      'Öffne den nächsten Übungsschritt und bleib dran.';
 
   @override
   String get kidsArabicPracticeTodayDoneBody =>
@@ -30398,21 +30408,21 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicWordsJoiningSubtitle =>
-      'Sehen Sie, wie sich bekannte Buchstaben verändern, wenn sie in einem Wort vorkommen.';
+      'Sieh, wie sich bekannte Buchstaben verändern, wenn sie in einem Wort stehen.';
 
   @override
   String get kidsArabicWordsStartSetTitle => 'Starter-Wortsatz';
 
   @override
   String get kidsArabicWordsStartSetSubtitle =>
-      'Öffnen Sie jedes Wort, hören Sie es, verfolgen Sie es und lesen Sie es mit Zuversicht.';
+      'Öffne jedes Wort, hör es an, fahre es nach und lies es.';
 
   @override
   String get kidsArabicWordsNextTitle => 'Empfohlenes nächstes Wort';
 
   @override
   String kidsArabicWordsNextSubtitle(Object word) {
-    return 'Fahren Sie mit $word fort und üben Sie, es reibungslos zu lesen.';
+    return 'Mach mit $word weiter und übe, es flüssig zu lesen.';
   }
 
   @override
@@ -30517,30 +30527,30 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String kidsArabicWordLessonTitle(Object word) {
-    return 'Lernen Sie $word';
+    return 'Lerne $word';
   }
 
   @override
   String kidsArabicWordLessonSubtitle(Object word) {
-    return 'Hören Sie sich $word an, verfolgen Sie es und lesen Sie es sorgfältig.';
+    return 'Hör dir $word an, fahre es nach und lies es.';
   }
 
   @override
-  String get kidsArabicWordListenAction => 'Hören Sie';
+  String get kidsArabicWordListenAction => 'Anhören';
 
   @override
   String get kidsArabicWordsWordLessonJoiningSubtitle =>
-      'Beachten Sie, wie jeder Buchstabe für sich und im Wort aussieht.';
+      'Sieh, wie jeder Buchstabe allein und im Wort aussieht.';
 
   @override
-  String get kidsArabicWordTraceTitle => 'Verfolgen Sie das Wort';
+  String get kidsArabicWordTraceTitle => 'Das Wort nachfahren';
 
   @override
   String get kidsArabicWordTraceSubtitle =>
-      'Verfolgen Sie das Wort langsam und versuchen Sie dann, das Wort selbst zu lesen.';
+      'Fahre das Wort langsam nach und lies es dann selbst.';
 
   @override
-  String get kidsArabicWordTryAgainAction => 'Versuchen Sie es erneut';
+  String get kidsArabicWordTryAgainAction => 'Noch einmal';
 
   @override
   String get kidsArabicWordReadyBadge => 'Bereit';
@@ -30552,7 +30562,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicWordCompleteSubtitle =>
-      'Sie haben diese Wortlektion beendet. Halten Sie den Klang und die Form mit einer weiteren Lektüre frisch.';
+      'Du hast dieses Wort geschafft. Lies es noch einmal, damit Klang und Form bleiben.';
 
   @override
   String kidsArabicWordNextAction(Object nextWord) {
@@ -30589,7 +30599,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicMasteryContinueLetterBody =>
-      'Fahren Sie mit dem nächsten Buchstaben in Ihrer Reihenfolge fort.';
+      'Mach mit dem nächsten Buchstaben in deiner Reihenfolge weiter.';
 
   @override
   String kidsArabicMasteryReviewLetterTitle(Object letter) {
@@ -30601,11 +30611,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Eine kurze Überprüfung stärkt das Erkennen und Erinnern.';
 
   @override
-  String get kidsArabicMasteryCelebrateTitle => 'Feiern Sie den Fortschritt';
+  String get kidsArabicMasteryCelebrateTitle => 'Schau, wie weit du bist';
 
   @override
   String kidsArabicMasteryCelebrateBody(Object letter) {
-    return 'Schöne Arbeit.$letter ist Teil Ihres wachsenden Lese-Toolkits.';
+    return '$letter gehört jetzt zu den Buchstaben, die du lesen kannst.';
   }
 
   @override
@@ -30615,7 +30625,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicPracticeDailyNewLetterBody =>
-      'Lernen Sie einen neuen Buchstaben kennen und konzentrieren Sie sich auf seinen Klang und seine Form.';
+      'Lerne einen neuen Buchstaben kennen: seinen Klang und seine Form.';
 
   @override
   String kidsArabicPracticeDailyReviewTitle(Object letter) {
@@ -30633,7 +30643,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicPracticeDailyTraceBody =>
-      'Verwenden Sie die Nachverfolgung, um Bewegung, Klang und Erinnerung zu verbinden.';
+      'Fahre den Buchstaben nach, damit Hand, Klang und Bild zusammenkommen.';
 
   @override
   String kidsArabicPracticeContinueLetterTitle(Object letter) {
@@ -30642,7 +30652,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicPracticeContinueLetterBody =>
-      'Gehen Sie die Sequenz in einem ruhigen Tempo weiter.';
+      'Mach in deinem Tempo mit dem nächsten Buchstaben weiter.';
 
   @override
   String kidsArabicPracticeContinueWordTitle(Object word) {
@@ -30651,7 +30661,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String kidsArabicPracticeContinueWordBody(Object word) {
-    return 'Kehren Sie zu $word zurück und stärken Sie das Lesevertrauen.';
+    return 'Kehr zu $word zurück und lies es noch einmal.';
   }
 
   @override
@@ -30670,7 +30680,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicPracticeReviewWordBody =>
-      'Denken Sie noch einmal über dieses Wort nach und lesen Sie es noch einmal sorgfältig.';
+      'Schau dir dieses Wort noch einmal an und lies es.';
 
   @override
   String get kidsArabicPracticeReviewLettersTitle => 'Buchstaben wiederholen';
@@ -30680,17 +30690,17 @@ class AppLocalizationsDe extends AppLocalizations {
       'Öffne eine kurze Wiederholung für Buchstaben, die noch einmal dran sind.';
 
   @override
-  String get kidsArabicPracticeReviewWordsTitle => 'Wiederholen Sie die Wörter';
+  String get kidsArabicPracticeReviewWordsTitle => 'Wörter wiederholen';
 
   @override
   String get kidsArabicPracticeReviewWordsBody =>
-      'Üben Sie vertraute Wörter, um das Lesen zusammengefügter Buchstaben zu stärken.';
+      'Übe bekannte Wörter, damit das Lesen verbundener Buchstaben leichter wird.';
 
   @override
   String get kidsArabicTraceCompletionTitle => 'Verfolgung abgeschlossen';
 
   @override
-  String get kidsArabicTryAgainAction => 'Versuchen Sie es erneut';
+  String get kidsArabicTryAgainAction => 'Noch einmal';
 
   @override
   String wuduTrainerProgressOf(Object current, Object total) {
@@ -36945,7 +36955,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kidsArabicTraceCompletionSubtitleQuiet =>
-      'Ihr Fortschritt wurde gespeichert.';
+      'Dein Fortschritt ist gespeichert.';
 
   @override
   String get learningJourneyLessonSectionProgressSubtitle =>

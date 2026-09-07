@@ -8329,88 +8329,98 @@ class AppLocalizationsEn extends AppLocalizations {
       'Go slowly, listen once more, and trace with a little extra care.';
 
   @override
-  String get kidsArabicLetterAlifChildLine => 'Alif reminds us of Allah.';
+  String get kidsArabicLetterAlifChildLine => 'Alif says a, like apple.';
 
   @override
-  String get kidsArabicLetterBaChildLine => 'Ba begins Bismillah.';
+  String get kidsArabicLetterBaChildLine => 'Ba says b, like ball.';
 
   @override
-  String get kidsArabicLetterTaChildLine => 'Ta reminds us of taqwa.';
+  String get kidsArabicLetterTaChildLine => 'Ta says t, like tree.';
 
   @override
-  String get kidsArabicLetterThaChildLine => 'Tha reminds us of thawab.';
+  String get kidsArabicLetterThaChildLine => 'Tha says th, like thread.';
 
   @override
-  String get kidsArabicLetterJimChildLine => 'Jeem reminds us of Jannah.';
+  String get kidsArabicLetterJimChildLine => 'Jeem says j, like juice.';
 
   @override
-  String get kidsArabicLetterHaChildLine => 'Ha reminds us of halal.';
+  String get kidsArabicLetterHaChildLine =>
+      'Ha comes from deep in your throat, like hisan, a horse.';
 
   @override
-  String get kidsArabicLetterKhaChildLine => 'Kha reminds us of khayr.';
+  String get kidsArabicLetterKhaChildLine =>
+      'Kha is a scratchy kh, like khayma, a tent.';
 
   @override
-  String get kidsArabicLetterDalChildLine => 'Dal reminds us of deen.';
+  String get kidsArabicLetterDalChildLine => 'Dal says d, like duck.';
 
   @override
-  String get kidsArabicLetterDhalChildLine => 'Dhal reminds us of dhikr.';
+  String get kidsArabicLetterDhalChildLine =>
+      'Dhal says th as in this, like dhurra, corn.';
 
   @override
-  String get kidsArabicLetterRaChildLine => 'Ra reminds us of rahmah.';
+  String get kidsArabicLetterRaChildLine => 'Ra rolls, like rabbit.';
 
   @override
-  String get kidsArabicLetterZayChildLine => 'Zay reminds us of zakah.';
+  String get kidsArabicLetterZayChildLine => 'Zay says z, like zebra.';
 
   @override
-  String get kidsArabicLetterSeenChildLine => 'Seen reminds us of sujood.';
+  String get kidsArabicLetterSeenChildLine => 'Seen says s, like sun.';
 
   @override
-  String get kidsArabicLetterSheenChildLine => 'Sheen reminds us of shukr.';
+  String get kidsArabicLetterSheenChildLine => 'Sheen says sh, like ship.';
 
   @override
-  String get kidsArabicLetterSadChildLine => 'Sad reminds us of salah.';
+  String get kidsArabicLetterSadChildLine =>
+      'Sad is a heavy s, like saqr, a falcon.';
 
   @override
-  String get kidsArabicLetterDadChildLine => 'Dad reminds us of light.';
+  String get kidsArabicLetterDadChildLine =>
+      'Dad is a heavy d, like dafda, a frog.';
 
   @override
-  String get kidsArabicLetterTaaChildLine => 'Ta reminds us of taharah.';
+  String get kidsArabicLetterTaaChildLine =>
+      'Taa is a heavy t, like tabl, a drum.';
 
   @override
-  String get kidsArabicLetterZaaChildLine => 'Za reminds us of Zuhr.';
+  String get kidsArabicLetterZaaChildLine =>
+      'Zaa is a heavy z, like zarf, an envelope.';
 
   @override
-  String get kidsArabicLetterAinChildLine => 'Ain reminds us of ilm.';
+  String get kidsArabicLetterAinChildLine =>
+      'Ain comes from deep in your throat, like inab, grapes.';
 
   @override
-  String get kidsArabicLetterGhainChildLine => 'Ghain reminds us of mercy.';
+  String get kidsArabicLetterGhainChildLine =>
+      'Ghain is a gargly gh, like ghaym, a cloud.';
 
   @override
-  String get kidsArabicLetterFaChildLine => 'Fa reminds us of Fajr.';
+  String get kidsArabicLetterFaChildLine => 'Fa says f, like fish.';
 
   @override
-  String get kidsArabicLetterQafChildLine => 'Qaf reminds us of Qur’an.';
+  String get kidsArabicLetterQafChildLine =>
+      'Qaf is a deep q, like qalam, a pen.';
 
   @override
-  String get kidsArabicLetterKafChildLine => 'Kaf reminds us of kitab.';
+  String get kidsArabicLetterKafChildLine => 'Kaf says k, like kite.';
 
   @override
-  String get kidsArabicLetterLamChildLine => 'Lam reminds us of layl.';
+  String get kidsArabicLetterLamChildLine => 'Lam says l, like lemon.';
 
   @override
-  String get kidsArabicLetterMeemChildLine => 'Meem reminds us of masjid.';
+  String get kidsArabicLetterMeemChildLine => 'Meem says m, like moon.';
 
   @override
-  String get kidsArabicLetterNoonChildLine => 'Noon reminds us of noor.';
+  String get kidsArabicLetterNoonChildLine => 'Noon says n, like nest.';
 
   @override
-  String get kidsArabicLetterHa2ChildLine => 'Ha reminds us of huda.';
+  String get kidsArabicLetterHa2ChildLine => 'Ha says h, like hadiya, a gift.';
 
   @override
-  String get kidsArabicLetterWawChildLine => 'Waw reminds us of wudu.';
+  String get kidsArabicLetterWawChildLine => 'Waw says w, like water.';
 
   @override
-  String get kidsArabicLetterYaChildLine => 'Ya reminds us of yaqeen.';
+  String get kidsArabicLetterYaChildLine => 'Ya says y, like yoyo.';
 
   @override
   String get learningJourneyDetailAboutTitle => 'About this journey';

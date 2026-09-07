@@ -14356,169 +14356,169 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicLetterAlifChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Alif reminds us of Allah.'**
+  /// **'Alif says a, like apple.'**
   String get kidsArabicLetterAlifChildLine;
 
   /// No description provided for @kidsArabicLetterBaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ba begins Bismillah.'**
+  /// **'Ba says b, like ball.'**
   String get kidsArabicLetterBaChildLine;
 
   /// No description provided for @kidsArabicLetterTaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ta reminds us of taqwa.'**
+  /// **'Ta says t, like tree.'**
   String get kidsArabicLetterTaChildLine;
 
   /// No description provided for @kidsArabicLetterThaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Tha reminds us of thawab.'**
+  /// **'Tha says th, like thread.'**
   String get kidsArabicLetterThaChildLine;
 
   /// No description provided for @kidsArabicLetterJimChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Jeem reminds us of Jannah.'**
+  /// **'Jeem says j, like juice.'**
   String get kidsArabicLetterJimChildLine;
 
   /// No description provided for @kidsArabicLetterHaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ha reminds us of halal.'**
+  /// **'Ha comes from deep in your throat, like hisan, a horse.'**
   String get kidsArabicLetterHaChildLine;
 
   /// No description provided for @kidsArabicLetterKhaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Kha reminds us of khayr.'**
+  /// **'Kha is a scratchy kh, like khayma, a tent.'**
   String get kidsArabicLetterKhaChildLine;
 
   /// No description provided for @kidsArabicLetterDalChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Dal reminds us of deen.'**
+  /// **'Dal says d, like duck.'**
   String get kidsArabicLetterDalChildLine;
 
   /// No description provided for @kidsArabicLetterDhalChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Dhal reminds us of dhikr.'**
+  /// **'Dhal says th as in this, like dhurra, corn.'**
   String get kidsArabicLetterDhalChildLine;
 
   /// No description provided for @kidsArabicLetterRaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ra reminds us of rahmah.'**
+  /// **'Ra rolls, like rabbit.'**
   String get kidsArabicLetterRaChildLine;
 
   /// No description provided for @kidsArabicLetterZayChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Zay reminds us of zakah.'**
+  /// **'Zay says z, like zebra.'**
   String get kidsArabicLetterZayChildLine;
 
   /// No description provided for @kidsArabicLetterSeenChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Seen reminds us of sujood.'**
+  /// **'Seen says s, like sun.'**
   String get kidsArabicLetterSeenChildLine;
 
   /// No description provided for @kidsArabicLetterSheenChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Sheen reminds us of shukr.'**
+  /// **'Sheen says sh, like ship.'**
   String get kidsArabicLetterSheenChildLine;
 
   /// No description provided for @kidsArabicLetterSadChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Sad reminds us of salah.'**
+  /// **'Sad is a heavy s, like saqr, a falcon.'**
   String get kidsArabicLetterSadChildLine;
 
   /// No description provided for @kidsArabicLetterDadChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Dad reminds us of light.'**
+  /// **'Dad is a heavy d, like dafda, a frog.'**
   String get kidsArabicLetterDadChildLine;
 
   /// No description provided for @kidsArabicLetterTaaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ta reminds us of taharah.'**
+  /// **'Taa is a heavy t, like tabl, a drum.'**
   String get kidsArabicLetterTaaChildLine;
 
   /// No description provided for @kidsArabicLetterZaaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Za reminds us of Zuhr.'**
+  /// **'Zaa is a heavy z, like zarf, an envelope.'**
   String get kidsArabicLetterZaaChildLine;
 
   /// No description provided for @kidsArabicLetterAinChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ain reminds us of ilm.'**
+  /// **'Ain comes from deep in your throat, like inab, grapes.'**
   String get kidsArabicLetterAinChildLine;
 
   /// No description provided for @kidsArabicLetterGhainChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ghain reminds us of mercy.'**
+  /// **'Ghain is a gargly gh, like ghaym, a cloud.'**
   String get kidsArabicLetterGhainChildLine;
 
   /// No description provided for @kidsArabicLetterFaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Fa reminds us of Fajr.'**
+  /// **'Fa says f, like fish.'**
   String get kidsArabicLetterFaChildLine;
 
   /// No description provided for @kidsArabicLetterQafChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Qaf reminds us of Qur’an.'**
+  /// **'Qaf is a deep q, like qalam, a pen.'**
   String get kidsArabicLetterQafChildLine;
 
   /// No description provided for @kidsArabicLetterKafChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Kaf reminds us of kitab.'**
+  /// **'Kaf says k, like kite.'**
   String get kidsArabicLetterKafChildLine;
 
   /// No description provided for @kidsArabicLetterLamChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Lam reminds us of layl.'**
+  /// **'Lam says l, like lemon.'**
   String get kidsArabicLetterLamChildLine;
 
   /// No description provided for @kidsArabicLetterMeemChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Meem reminds us of masjid.'**
+  /// **'Meem says m, like moon.'**
   String get kidsArabicLetterMeemChildLine;
 
   /// No description provided for @kidsArabicLetterNoonChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Noon reminds us of noor.'**
+  /// **'Noon says n, like nest.'**
   String get kidsArabicLetterNoonChildLine;
 
   /// No description provided for @kidsArabicLetterHa2ChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ha reminds us of huda.'**
+  /// **'Ha says h, like hadiya, a gift.'**
   String get kidsArabicLetterHa2ChildLine;
 
   /// No description provided for @kidsArabicLetterWawChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Waw reminds us of wudu.'**
+  /// **'Waw says w, like water.'**
   String get kidsArabicLetterWawChildLine;
 
   /// No description provided for @kidsArabicLetterYaChildLine.
   ///
   /// In en, this message translates to:
-  /// **'Ya reminds us of yaqeen.'**
+  /// **'Ya says y, like yoyo.'**
   String get kidsArabicLetterYaChildLine;
 
   /// No description provided for @learningJourneyDetailAboutTitle.
