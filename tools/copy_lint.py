@@ -55,7 +55,7 @@ SACRED_SUFFIX = re.compile(
     r"(Translation|Transliteration|Arabic|Meaning|Invocation\w*|Translit|"
     r"Verse|VerseText|AyahText|Matn)$"
 )
-LABEL_SUFFIX = re.compile(r"(Title|Action|Label|Badge|Eyebrow|Tab|Chip|Button|Name)$")
+LABEL_SUFFIX = re.compile(r"(Title|Action|Label|Badge|Eyebrow|Tab|Chip|Button)$")
 CASING_SUFFIX = re.compile(
     r"(Action|Label|Badge|Eyebrow|Tab|Chip|Button|Subtitle|Hint|SectionTitle|Caption)$"
 )
@@ -71,7 +71,7 @@ PROPER = {
     "Turkish", "French", "Hindi", "Bengali", "Indonesian", "Malay", "Punjabi",
     "Pashto", "Kurdish", "Hausa", "Islam", "Islamic", "Muslim", "Muslims",
     "Prophet", "Prophets", "Muhammad", "Al-Fatihah", "Fatihah", "Nur", "Nūr",
-    "Path", "Apple", "Google", "iCloud", "Watch", "TV", "Dynamic", "Island",
+    "Apple", "Google", "iCloud", "Watch", "TV", "Dynamic", "Island",
     "Hajj", "Umrah", "Zakat", "Tahajjud", "Witr", "Tarawih", "Iftar", "Suhoor",
     "Qibla", "Adhan", "Ayat", "Kursi", "Yasin", "Kahf", "Mulk", "Rahman",
     "Bukhari", "Tirmidhi", "Sahih", "Laylat", "Qadr", "Ashura", "Muharram",
@@ -81,13 +81,28 @@ PROPER = {
     "Bakr", "Aishah", "Khadijah", "Fatimah", "Bilal", "Anas", "Jibril", "Hira",
     "Badr", "Uhud", "Hudaybiyyah", "Khandaq", "Tabuk", "Ansar", "Muhajirun",
     "Companions", "Companion", "I", "PDF", "OK", "AR", "GPS", "ID", "FAQ",
-    "App", "Store", "Play", "Misbaha", "Khatm", "Juz", "Hizb", "Tajweed",
-    "Ayah", "Hadith", "Dhikr", "Salah", "Dua", "Wudu", "Khushu", "Ibadah",
-    "Fiqh", "Aqidah", "Shahada", "Bismillah", "Salawat", "Tasbih", "Hifz",
-    "Alhamdulillah", "Subhanallah", "Allahu", "Akbar", "Sabr", "Shukr",
-    "Ikhlas", "Tawbah", "Taqwa", "Barakah", "Sadaqah", "Khayr", "Deen",
-    "Iman", "Ihsan", "Ummah", "Sahaba", "Ansar", "Hijrah", "Masjid",
+    "App", "Store", "Play", "Shahada", "Bismillah", "Allahu", "Akbar",
+    "Sahaba", "Hijrah", "Holy",
+    # Tabs and sections a button can point at ("Back to Learn", "Edit Home").
+    "Home", "Learn", "Worship", "Ibadah", "Growth", "Kids", "Settings",
+    "Profile", "Garden", "Ocean", "Creation", "Explore", "Khusū",
 }
+APP_NAME = re.compile(r"Path of N[uū]r")
+SMALL_WORDS = {"of", "in", "and", "with", "the", "for", "to", "a", "an", "vs", "through", "by", "on", "at", "or", "from"}
+
+
+def is_title_case(value: str) -> bool:
+    """Two or more words, every major word capitalized: a Title Case title."""
+    ws = [w.strip(".,:;!?()[]“”\"'’") for w in words(value)]
+    ws = [w for w in ws if w and not w.startswith("{") and not w[0].isdigit()]
+    if len(ws) < 2:
+        return False
+    major = [w for w in ws if w.lower() not in SMALL_WORDS]
+    return len(major) >= 2 and all(w[0].isupper() or not w[0].isalpha() for w in major)
+# Names of things, exempt from the sentence-case rule by key.
+NAMED_THING_KEYS = re.compile(
+    r"^(settingsThemeChoice|settingsThemeMode|quranReaderAtmosphere|settingsLivingSky)"
+)
 
 
 def load_arb(path: Path = ARB) -> dict[str, str]:
@@ -167,8 +182,8 @@ def cheer(key: str, value: str) -> bool:
 
 
 _HONORIFIC = re.compile(
-    r"(?:\bProphet Muhammad\b|\bMuhammad\b|\bthe Prophet\b(?:[’']s)?(?! [A-Z])|"
-    r"\bthe Messenger of Allah\b|\bthe Messenger\b|\bFinal Messenger\b)"
+    r"(?:\bProphet Muhammad\b|\bMuhammad\b|\bthe Prophet(?:[’']s)?\b(?![’']s)(?! [A-Z])|"
+    r"\bthe Messenger of Allah\b|\bthe Messenger\b(?! of Allah)|\bFinal Messenger\b)"
     r"(?! ﷺ)(?!s\b)"
 )
 
@@ -179,16 +194,41 @@ def honorific(key: str, value: str) -> bool:
     return bool(_HONORIFIC.search(value))
 
 
+_ABBREVIATION = re.compile(r"\b(Approx|etc|vs|No)\.$")
+
+
+TERM_CASING = re.compile(
+    r"(?<=[a-z,;:] )(?:Salah|Duas?|Dhikr|Hadiths?|Wudu|Ayahs?|Surahs|Sunnah|Qada|"
+    r"Iftar|Suhoor|Adhan|Tajweed|Khushu|Fiqh|Aqidah|Tawbah|Taqwa|Ihsan|"
+    r"Sabr|Shukr|Ikhlas)\b(?! [A-Z\d])|(?<=[a-z,;:] )Surah\b(?! [A-Z\d])"
+)
+
+
+_TERM_CASING_NAMES = re.compile(
+    r"^(helpGuideLearningStep1|learningJourneyTodayLightDhikrSubtitleFallback|"
+    r"learnEnrichmentMilestoneFoundationsCompletedBody)$"
+)
+
+
+def term_casing(key: str, value: str) -> bool:
+    if is_title_case(value) or _TERM_CASING_NAMES.match(key):
+        return False
+    return bool(TERM_CASING.search(value))
+
+
 def label_period(key: str, value: str) -> bool:
-    if not LABEL_SUFFIX.search(key):
+    if not LABEL_SUFFIX.search(key) or "Semantics" in key:
         return False
     v = value.strip()
+    if _ABBREVIATION.search(v):
+        return False
     return v.endswith(".") and not v.endswith("...") and len(words(v)) <= 6
 
 
 def title_case_outside_titles(key: str, value: str) -> bool:
-    if not CASING_SUFFIX.search(key):
+    if not CASING_SUFFIX.search(key) or NAMED_THING_KEYS.match(key):
         return False
+    value = APP_NAME.sub("", value)
     ws = [w.strip(".,:;!?()") for w in words(value)]
     ws = [w for w in ws if w and not w.startswith("{")]
     if len(ws) < 2:
@@ -282,14 +322,14 @@ RULES: list[Rule] = [
         "quran-spelling", "prose",
         "Quran without the apostrophe.",
         "Qur’an, Qur’anic.",
-        rx(r"\bQuran(?:ic)?\b"),
+        rx(r"(?<!Clear )(?<!package:)\bQuran(?:ic)?\b(?!\.com)"),
     ),
     Rule(
         "term-spelling", "prose",
         "A spelling the glossary does not use (Qaza, Taraweeh, Noor, Mecca, InshaAllah…).",
         "See the glossary in docs/voice_and_copy_guide.md.",
         rx(
-            r"\b(Qaza|qaza|Taraweeh|Noor|Hadeeth|Zikr|Namaz|Wudhu|Ramadhan|Mecca|Medina|"
+            r"\b(Qaza|qaza|Taraweeh|Hadeeth|Zikr|Namaz|Wudhu|Ramadhan|Mecca|Medina|"
             r"Sirah|Seera|Sahabah?)\b|"
             r"\b[Ii]nsha ?[Aa]llah\b|\b[Ii]nshallah\b|\b[Mm]asha ?[Aa]llah\b|\b[Mm]ashallah\b|"
             r"\bAlhamdulilah\b|\bJazak ?[Aa]llah\b"
@@ -309,12 +349,8 @@ RULES: list[Rule] = [
     Rule(
         "term-casing", "prose",
         "An Islamic common noun capitalized mid-sentence (the Hadith library, daily Dhikr).",
-        "Lowercase salah, du’a, dhikr, hadith, wudu, ayah, surah unless it starts the sentence or names something (Surah Yusuf).",
-        rx(
-            r"(?<=[a-z,;:] )(?:Salah|Duas?|Dhikr|Hadiths?|Wudu|Ayahs?|Surahs|Sunnah|Qada|"
-            r"Iftar|Suhoor|Adhan|Tajweed|Khushu|Ibadah|Fiqh|Aqidah|Tawbah|Taqwa|Ihsan|"
-            r"Sabr|Shukr|Ikhlas)\b(?! [A-Z\d])|(?<=[a-z,;:] )Surah\b(?! [A-Z\d])"
-        ),
+        "Lowercase salah, du’a, dhikr, hadith, wudu, ayah, surah unless it starts the sentence, names something (Surah Yusuf) or sits in a Title Case title.",
+        term_casing,
     ),
     Rule(
         "honorific-missing", "prose",
@@ -332,7 +368,7 @@ RULES: list[Rule] = [
         "dash", "chrome",
         "An em-dash or a spaced hyphen used as a dash in chrome copy.",
         "A period, a comma, or a middle dot (·) between values.",
-        rx(r"—|\s-\s"),
+        lambda key, value: value.strip() != "—" and bool(re.search(r"—|\s-\s", value)),
     ),
     Rule(
         "label-period", "chrome",

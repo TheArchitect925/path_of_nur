@@ -39,7 +39,7 @@ void main() {
         ),
       );
 
-      expect(label, 'Recitation الفاتحة • Verse 1:2');
+      expect(label, 'Recitation الفاتحة · verse 1:2');
     },
   );
 }

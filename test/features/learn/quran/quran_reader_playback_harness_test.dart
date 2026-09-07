@@ -177,7 +177,7 @@ void main() {
       await tester.pump();
 
       expect(find.text('1:2'), findsOneWidget);
-      expect(find.textContaining('Verse 1:2'), findsWidgets);
+      expect(find.textContaining('verse 1:2'), findsWidgets);
       expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
       feed.update(playing: false, processingState: ProcessingState.ready);
@@ -195,7 +195,7 @@ void main() {
       feed.emitPosition();
       await tester.pump();
       expect(find.text('1:3'), findsOneWidget);
-      expect(find.textContaining('Verse 1:3'), findsWidgets);
+      expect(find.textContaining('verse 1:3'), findsWidgets);
 
       container
           .read(quranAudioSettingsProvider.notifier)
