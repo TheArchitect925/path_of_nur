@@ -10726,7 +10726,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kidsArabicAlphabetSubtitle =>
-      'Finish one letter to gently unlock the next in order.';
+      'Tap a letter to hear it. Finish one to open the next.';
 
   @override
   String get kidsArabicLockedTitle => 'Keep going gently';
@@ -10752,7 +10752,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String kidsArabicLessonSubtitle(String letterName) {
-    return 'Trace and hear $letterName with a calm guided lesson.';
+    return 'Hear $letterName, then trace it.';
   }
 
   @override
@@ -10919,6 +10919,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kidsArabicReviewFinishedTitle => 'Review finished';
+
+  @override
+  String kidsArabicNextLetterDoneSubtitle(String letterName) {
+    return 'Today’s step is done. $letterName is ready whenever you are.';
+  }
+
+  @override
+  String kidsArabicNextLetterTitle(String letterName) {
+    return 'Next up: $letterName';
+  }
+
+  @override
+  String get kidsArabicParentMoreArabicTitle => 'More Arabic practice';
+
+  @override
+  String get kidsArabicHomeDoorsTitle => 'After the letters';
 
   @override
   String get kidsArabicReviewNeedsLettersTitle => 'Learn one more letter first';

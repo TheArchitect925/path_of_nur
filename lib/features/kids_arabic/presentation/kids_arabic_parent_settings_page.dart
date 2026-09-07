@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../domain/kids_arabic_models.dart';
@@ -49,6 +50,13 @@ class KidsArabicParentSettingsPage extends ConsumerWidget {
           subtitle: l10n.kidsArabicParentAudioAutoplaySubtitle,
           value: preferences.audioAutoplay,
           onChanged: notifier.setAudioAutoplay,
+        ),
+        // Normal / slow playback moved here from the child's lesson (L1).
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 4),
+          child: ArabicLearningPlaybackSpeedToggle(
+            variant: ArabicLearningPlaybackToggleVariant.kids,
+          ),
         ),
         _SettingToggle(
           title: l10n.kidsArabicParentAllowAssignedFocusTitle,

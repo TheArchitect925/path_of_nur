@@ -18425,7 +18425,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicAlphabetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Finish one letter to gently unlock the next in order.'**
+  /// **'Tap a letter to hear it. Finish one to open the next.'**
   String get kidsArabicAlphabetSubtitle;
 
   /// No description provided for @kidsArabicLockedTitle.
@@ -18467,7 +18467,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsArabicLessonSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trace and hear {letterName} with a calm guided lesson.'**
+  /// **'Hear {letterName}, then trace it.'**
   String kidsArabicLessonSubtitle(String letterName);
 
   /// No description provided for @kidsArabicLetterMissingTitle.
@@ -18733,6 +18733,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Review finished'**
   String get kidsArabicReviewFinishedTitle;
+
+  /// No description provided for @kidsArabicNextLetterDoneSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s step is done. {letterName} is ready whenever you are.'**
+  String kidsArabicNextLetterDoneSubtitle(String letterName);
+
+  /// No description provided for @kidsArabicNextLetterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next up: {letterName}'**
+  String kidsArabicNextLetterTitle(String letterName);
+
+  /// No description provided for @kidsArabicParentMoreArabicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More Arabic practice'**
+  String get kidsArabicParentMoreArabicTitle;
+
+  /// No description provided for @kidsArabicHomeDoorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'After the letters'**
+  String get kidsArabicHomeDoorsTitle;
 
   /// No description provided for @kidsArabicReviewNeedsLettersTitle.
   ///

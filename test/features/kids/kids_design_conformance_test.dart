@@ -99,8 +99,7 @@ void main() {
       'lib/features/kids_arabic/domain/kids_arabic_achievement_models.dart': 8,
       'lib/features/kids_arabic/presentation/kids_arabic_coloring_pages_page.dart':
           2,
-      'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart': 27,
-      'lib/features/kids_arabic/presentation/kids_arabic_lesson_page.dart': 8,
+      'lib/features/kids_arabic/presentation/kids_arabic_lesson_page.dart': 7,
       'lib/features/kids_arabic/presentation/kids_arabic_mini_phrases_page.dart':
           6,
       'lib/features/kids_arabic/presentation/kids_arabic_parent_dashboard_page.dart':
@@ -199,8 +198,6 @@ void main() {
           1,
       'lib/features/kids_arabic/presentation/kids_arabic_coloring_viewer_page.dart':
           1,
-      'lib/features/kids_arabic/presentation/kids_arabic_home_page.dart': 6,
-      'lib/features/kids_arabic/presentation/kids_arabic_lesson_page.dart': 1,
       'lib/features/kids_arabic/presentation/kids_arabic_mini_phrases_page.dart':
           6,
       'lib/features/kids_arabic/presentation/kids_arabic_parent_dashboard_page.dart':

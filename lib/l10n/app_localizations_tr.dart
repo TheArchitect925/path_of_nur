@@ -10880,6 +10880,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get kidsArabicReviewFinishedTitle => 'Review finished';
 
   @override
+  String kidsArabicNextLetterDoneSubtitle(String letterName) {
+    return 'Today’s step is done. $letterName is ready whenever you are.';
+  }
+
+  @override
+  String kidsArabicNextLetterTitle(String letterName) {
+    return 'Next up: $letterName';
+  }
+
+  @override
+  String get kidsArabicParentMoreArabicTitle => 'More Arabic practice';
+
+  @override
+  String get kidsArabicHomeDoorsTitle => 'After the letters';
+
+  @override
   String get kidsArabicReviewNeedsLettersTitle => 'Learn one more letter first';
 
   @override

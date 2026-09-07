@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../shared/widgets/display/hub_list_group.dart';
 import '../../arabic/presentation/arabic_learning_route_target_navigation.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
@@ -109,6 +111,50 @@ class KidsArabicParentDashboardPage extends ConsumerWidget {
                 )
                 .toList(growable: false),
           ),
+        ),
+        const SizedBox(height: 18),
+        // The Qur'an bridge, the quick check and the phrases left the child's
+        // Letters page (L2); a grown-up can still open them from here.
+        HubListGroup(
+          title: l10n.kidsArabicParentMoreArabicTitle,
+          children: [
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.practice),
+              title: l10n.kidsArabicMiniAssessmentCardTitle,
+              subtitle: l10n.kidsArabicPracticeHomeSubtitle,
+              onTap: () => context.pushNamed('kidsArabicMiniAssessment'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.listen),
+              title: l10n.kidsArabicMiniPhrasesHomeTitle,
+              subtitle: l10n.kidsArabicMiniPhrasesSubtitle,
+              onTap: () => context.pushNamed('kidsArabicMiniPhrases'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.quran),
+              title: l10n.quranReadinessKidsCardTitle,
+              subtitle: l10n.quranReadinessKidsCardStartSubtitle,
+              onTap: () => context.pushNamed('kidsArabicQuranReadiness'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.surahs),
+              title: l10n.quranShortSurahsKidsCardTitle,
+              subtitle: l10n.quranShortSurahsKidsCardStartSubtitle,
+              onTap: () => context.pushNamed('kidsArabicShortSurahs'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.lesson),
+              title: l10n.quranGuidedPassagesKidsCardTitle,
+              subtitle: l10n.quranGuidedPassagesKidsCardStartSubtitle,
+              onTap: () => context.pushNamed('kidsArabicGuidedPassages'),
+            ),
+            CompactListTile(
+              leading: const HubLeadingIcon(AppIcons.statistics),
+              title: l10n.kidsArabicMasteryMapTitle,
+              subtitle: l10n.kidsArabicMasteryMapSubtitle,
+              onTap: () => context.pushNamed('kidsArabicProgressMap'),
+            ),
+          ],
         ),
       ],
     );

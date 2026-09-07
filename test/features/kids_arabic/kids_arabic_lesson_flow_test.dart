@@ -161,6 +161,8 @@ void main() {
     );
 
     expect(find.text('Listen and repeat'), findsOneWidget);
+    // Autoplay is on for a child by default (L1); count from there.
+    final baseline = audio.speakCount;
 
     await tester.scrollUntilVisible(
       find.text('Listen').first,
@@ -170,7 +172,7 @@ void main() {
     await tester.tap(find.text('Listen').first);
     await tester.pump();
 
-    expect(audio.speakCount, 1);
+    expect(audio.speakCount, baseline + 1);
     expect(find.text('Now say it softly with me.'), findsOneWidget);
   });
 

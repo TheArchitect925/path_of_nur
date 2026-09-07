@@ -15,6 +15,8 @@ class KidsArabicRepeatAfterMeCard extends StatefulWidget {
     required this.onPlay,
     this.autoplayEnabled = false,
     this.textDirection = TextDirection.rtl,
+    this.caption,
+    this.displayFontSize = 30,
   });
 
   final String autoplayToken;
@@ -26,6 +28,12 @@ class KidsArabicRepeatAfterMeCard extends StatefulWidget {
   final Future<void> Function() onPlay;
   final bool autoplayEnabled;
   final TextDirection textDirection;
+
+  /// A small line under the big text: the letter's name and its sound.
+  final String? caption;
+
+  /// The big text's size; a lesson shows its letter at hero size.
+  final double displayFontSize;
 
   @override
   State<KidsArabicRepeatAfterMeCard> createState() =>
@@ -168,7 +176,7 @@ class _KidsArabicRepeatAfterMeCardState
                       textDirection: widget.textDirection,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: widget.displayFontSize,
                         fontFamily: 'Noto Naskh Arabic',
                         fontWeight: FontWeight.w700,
                         color: context.palette.onSurface,
@@ -177,6 +185,19 @@ class _KidsArabicRepeatAfterMeCardState
                   ),
                 ),
               ),
+              if (widget.caption != null) ...[
+                const SizedBox(height: 6),
+                Center(
+                  child: Text(
+                    widget.caption!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: context.palette.onSurfaceSubtle,
+                    ),
+                  ),
+                ),
+              ],
               const SizedBox(height: 14),
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),

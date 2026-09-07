@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../arabic/data/arabic_letter_pictures.dart';
+import '../../../core/theme/app_fonts.dart';
+import '../../../core/theme/app_icons.dart';
+import '../../../core/theme/app_palette.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/utils/reward_feedback.dart';
-import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
-import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../../shared/widgets/premium_card.dart';
+import '../../arabic/data/arabic_letter_pictures.dart';
+import '../../kids/rewards/domain/kids_sticker_models.dart';
+import '../../kids/rewards/presentation/kids_celebration.dart';
+import '../../kids/shared/presentation/kids_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
 import '../application/kids_arabic_audio_service.dart';
 import '../application/kids_arabic_parent_provider.dart';
@@ -21,11 +25,8 @@ import '../domain/kids_arabic_models.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import '../widgets/kids_arabic_tracing_pad.dart';
 import 'kids_arabic_localized_content.dart';
-import '../../../core/theme/app_palette.dart';
-import '../../../shared/widgets/premium_card.dart';
-import '../../kids/rewards/domain/kids_sticker_models.dart';
-import '../../kids/rewards/presentation/kids_celebration.dart';
 
+/// One letter, three moves: hear it, trace it, remember it by a picture.
 class KidsArabicLessonPage extends ConsumerStatefulWidget {
   const KidsArabicLessonPage({
     super.key,
@@ -159,7 +160,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
     required KidsArabicLetter letter,
     required KidsArabicTraceResult liveResult,
     required KidsArabicLetter? nextLetter,
-    required KidsArabicLetter? previousLetter,
   }) async {
     if (_isCompleting) return;
     setState(() {
@@ -203,7 +203,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
           letter: letter,
           result: result,
           nextLetter: nextLetter,
-          previousLetter: previousLetter,
           achievement: achievement,
           onTryAgain: () {
             Navigator.of(sheetContext).pop();
@@ -226,19 +225,18 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
     final parentPreferences = ref.watch(kidsArabicParentPreferencesProvider);
     final letter = notifier.letterById(widget.letterId);
     if (letter == null) {
-      return LearnHubPageScaffold(
+      return KidsPageScaffold(
         title: l10n.kidsArabicHomeTitle,
         children: [PremiumCard(child: Text(l10n.kidsArabicLetterMissingBody))],
       );
     }
     if (!unlockedLetterIds.contains(letter.id)) {
-      return LearnHubPageScaffold(
+      return KidsPageScaffold(
         title: l10n.kidsArabicHomeTitle,
         children: [PremiumCard(child: Text(l10n.kidsArabicLockedBody))],
       );
     }
     final nextLetter = nextKidsArabicLetter(letter.id);
-    final previousLetter = previousKidsArabicLetter(letter.id);
     final guide = kidsArabicSupportsVectorTracing(letter.id)
         ? null
         : kidsArabicTracingGuideFor(letter.id);
@@ -249,6 +247,7 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
       liveResult,
     );
     final traceReady = _metrics.minimumEffortMet;
+    final picture = arabicLetterPictureFor(letter.id);
     final tracingColors = <KidsArabicTracingColorOption>[
       KidsArabicTracingColorOption(
         id: 'gold',
@@ -271,24 +270,27 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
         label: l10n.kidsArabicTraceColorPlum,
       ),
     ];
-    return LearnHubPageScaffold(
-      title: l10n.kidsArabicLessonTitle(letter.glyph),
+    return KidsPageScaffold(
+      title: letter.nameEn,
       subtitle: l10n.kidsArabicLessonSubtitle(letter.nameAr),
       children: [
-        _GlyphHero(
-          letter: letter,
-          childLine: localizedKidsArabicChildLine(l10n, letter.id),
-          onTap: () =>
+        // Hear it. The letter itself is the hero: tap it and it speaks, and
+        // for a child it speaks on its own when the page opens.
+        KidsArabicRepeatAfterMeCard(
+          autoplayToken: letter.id,
+          displayText: letter.glyph,
+          displayFontSize: 72,
+          caption: parentPreferences.showTransliteration
+              ? '${letter.nameAr} · ${letter.transliteration}'
+              : letter.nameAr,
+          title: l10n.kidsArabicRepeatAfterMeTitle,
+          subtitle: l10n.kidsArabicRepeatAfterMeLetterSubtitle,
+          listenLabel: l10n.kidsArabicPronunciationAction,
+          repeatPromptLabel: l10n.kidsArabicRepeatAfterMePrompt,
+          autoplayEnabled: parentPreferences.audioAutoplay,
+          onPlay: () =>
               ref.read(kidsArabicAudioServiceProvider).speakLetter(letter),
         ),
-        if (arabicLetterPictureFor(letter.id) case final picture?) ...[
-          const SizedBox(height: 12),
-          _PictureCard(
-            picture: picture,
-            title: l10n.kidsArabicPictureCardTitle,
-            line: l10n.kidsArabicPictureLine(letter.nameEn, picture.spokenWord),
-          ),
-        ],
         if (parentPreferences.lessonSupportLevel !=
             KidsArabicLessonSupportLevel.standard) ...[
           const SizedBox(height: 12),
@@ -302,23 +304,8 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
             child: const SizedBox.shrink(),
           ),
         ],
-        const SizedBox(height: 12),
-        const ArabicLearningPlaybackSpeedToggle(
-          variant: ArabicLearningPlaybackToggleVariant.kids,
-        ),
         const SizedBox(height: 14),
-        KidsArabicRepeatAfterMeCard(
-          autoplayToken: letter.id,
-          displayText: letter.nameAr,
-          title: l10n.kidsArabicRepeatAfterMeTitle,
-          subtitle: l10n.kidsArabicRepeatAfterMeLetterSubtitle,
-          listenLabel: l10n.kidsArabicPronunciationAction,
-          repeatPromptLabel: l10n.kidsArabicRepeatAfterMePrompt,
-          autoplayEnabled: parentPreferences.audioAutoplay,
-          onPlay: () =>
-              ref.read(kidsArabicAudioServiceProvider).speakLetter(letter),
-        ),
-        const SizedBox(height: 14),
+        // Trace it.
         _SectionCard(
           title: l10n.kidsArabicTraceTitle,
           subtitle: l10n.kidsArabicTraceSubtitle(letter.strokeCount),
@@ -373,11 +360,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                           title: l10n.kidsArabicTraceCompletionTitle,
                           subtitle: l10n.kidsArabicTraceCompletionSubtitleQuiet,
                           encouragement: encouragement,
-                          rewardLabel: buildCompactRewardSummary(
-                            l10n,
-                            xp: letter.rewardXp,
-                            drops: letter.rewardDrops,
-                          ),
                           tryAgainLabel: l10n.kidsArabicTryAgainAction,
                           continueLabel: l10n.kidsArabicCompleteLessonAction,
                           onTryAgain: _resetTrace,
@@ -387,7 +369,6 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                                   letter: letter,
                                   liveResult: liveResult,
                                   nextLetter: nextLetter,
-                                  previousLetter: previousLetter,
                                 ),
                         ),
                       )
@@ -398,211 +379,47 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
             ],
           ),
         ),
-        const SizedBox(height: 14),
-        _SectionCard(
-          title: l10n.kidsArabicWordCardTitle,
-          subtitle: l10n.kidsArabicWordCardSubtitle,
-          child: Row(
-            children: [
-              Container(
-                width: 84,
-                height: 84,
-                decoration: BoxDecoration(
-                  color: context.palette.surface,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  letter.exampleWordAr,
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontFamily: 'Noto Naskh Arabic',
-                    fontWeight: FontWeight.w700,
-                    color: context.palette.onSurface,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // The word's own name; the letter's sound belongs to the
-                    // hero above, not beside a whole word.
-                    Text(
-                      letter.exampleWordEn,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: context.palette.onSurface,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      localizedKidsArabicChildLine(l10n, letter.id),
-                      style: TextStyle(
-                        color: context.palette.onSurfaceSubtle,
-                        height: 1.35,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 14),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: context.palette.success.withValues(alpha: 0.25),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(
-              color: context.palette.success.withValues(alpha: 0.45),
+        // Remember it: one picture, and the word the letter opens.
+        if (picture != null) ...[
+          const SizedBox(height: 14),
+          _PictureCard(
+            picture: picture,
+            title: l10n.kidsArabicPictureLine(
+              letter.nameEn,
+              picture.spokenWord,
             ),
+            childLine: localizedKidsArabicChildLine(l10n, letter.id),
+            letter: letter,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.kidsArabicLessonRewardTitle,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: context.palette.onSurface,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                l10n.kidsArabicLessonRewardFooter(
-                  letter.rewardXp,
-                  letter.rewardDrops,
-                ),
-                style: const TextStyle(color: Color(0xFF4A5E32), height: 1.35),
-              ),
-              if (!traceReady) ...[
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: null,
-                    child: Text(l10n.kidsArabicCompleteLessonAction),
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
+        ],
       ],
     );
   }
 }
 
-class _GlyphHero extends StatelessWidget {
-  const _GlyphHero({
-    required this.letter,
-    required this.childLine,
-    required this.onTap,
-  });
-
-  final KidsArabicLetter letter;
-  final String childLine;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(24),
-      child: Container(
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          color: context.palette.surface,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: context.palette.border),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 108,
-              height: 126,
-              decoration: BoxDecoration(
-                color: context.palette.surfaceSoft,
-                borderRadius: BorderRadius.circular(24),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                letter.glyph,
-                textDirection: TextDirection.rtl,
-                style: TextStyle(
-                  fontSize: 72,
-                  fontFamily: 'Noto Naskh Arabic',
-                  fontWeight: FontWeight.w700,
-                  color: context.palette.onSurface,
-                ),
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    letter.nameAr,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: context.palette.onSurface,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    letter.transliteration,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: context.palette.onSurfaceSubtle,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    childLine,
-                    style: TextStyle(
-                      color: context.palette.onSurfaceSubtle,
-                      height: 1.35,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 /// The letter's picture friend: one calm object whose name starts with the
-/// letter's sound, the same picture the Qur'an teacher's visual mode shows.
+/// letter's sound, the same picture the Qur'an teacher's visual mode shows,
+/// with the word from the child's own world beside it.
 class _PictureCard extends StatelessWidget {
   const _PictureCard({
     required this.picture,
     required this.title,
-    required this.line,
+    required this.childLine,
+    required this.letter,
   });
 
   final ArabicLetterPicture picture;
   final String title;
-  final String line;
+  final String childLine;
+  final KidsArabicLetter letter;
 
   @override
   Widget build(BuildContext context) {
-    // A thumbnail beside the word, the same shape as the Word friend card
-    // above it, so the page keeps its rhythm and the trace pad its room.
     return _SectionCard(
       title: title,
-      subtitle: line,
+      subtitle: childLine,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -619,13 +436,43 @@ class _PictureCard extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              picture.spokenWord,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: context.palette.onSurface,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  picture.spokenWord,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: context.palette.onSurface,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Text(
+                      letter.exampleWordAr,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontFamily: AppFonts.arabicLearning,
+                        fontWeight: FontWeight.w700,
+                        color: context.palette.onSurface,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        letter.exampleWordEn,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: context.palette.onSurfaceSubtle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
@@ -740,7 +587,6 @@ class _TraceCompletionCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.encouragement,
-    required this.rewardLabel,
     required this.tryAgainLabel,
     required this.continueLabel,
     required this.onTryAgain,
@@ -750,7 +596,6 @@ class _TraceCompletionCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String encouragement;
-  final String rewardLabel;
   final String tryAgainLabel;
   final String continueLabel;
   final VoidCallback onTryAgain;
@@ -780,11 +625,7 @@ class _TraceCompletionCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.auto_awesome_rounded,
-                size: 18,
-                color: context.palette.successInk,
-              ),
+              Icon(AppIcons.fun, size: 18, color: context.palette.successInk),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
@@ -813,14 +654,6 @@ class _TraceCompletionCard extends StatelessWidget {
               color: context.palette.successInk,
             ),
           ),
-          const SizedBox(height: 6),
-          Text(
-            rewardLabel,
-            style: TextStyle(
-              fontSize: 12,
-              color: context.palette.onSurfaceSubtle,
-            ),
-          ),
           const SizedBox(height: 12),
           Row(
             children: [
@@ -845,12 +678,13 @@ class _TraceCompletionCard extends StatelessWidget {
   }
 }
 
+/// After the sticker: the letter, one line, and the next letter. Nothing a
+/// child has to read to move on.
 class _CompletionSheet extends ConsumerWidget {
   const _CompletionSheet({
     required this.letter,
     required this.result,
     required this.nextLetter,
-    required this.previousLetter,
     required this.achievement,
     required this.onTryAgain,
   });
@@ -858,7 +692,6 @@ class _CompletionSheet extends ConsumerWidget {
   final KidsArabicLetter letter;
   final KidsArabicCompletionResult result;
   final KidsArabicLetter? nextLetter;
-  final KidsArabicLetter? previousLetter;
   final KidsArabicAchievementDefinition? achievement;
   final VoidCallback onTryAgain;
 
@@ -892,7 +725,7 @@ class _CompletionSheet extends ConsumerWidget {
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
                       fontSize: 42,
-                      fontFamily: 'Noto Naskh Arabic',
+                      fontFamily: AppFonts.arabicLearning,
                       fontWeight: FontWeight.w700,
                       color: context.palette.successInk,
                     ),
@@ -919,76 +752,13 @@ class _CompletionSheet extends ConsumerWidget {
                 height: 1.35,
               ),
             ),
-            const SizedBox(height: 14),
-            Text(
-              buildCompactRewardSummary(
-                l10n,
-                xp: result.xpAwarded,
-                drops: result.oceanDropsAwarded,
-              ),
-              style: TextStyle(
-                fontSize: 12,
-                color: context.palette.onSurfaceSubtle,
-              ),
-            ),
             if (result.dailyMissionResult != null) ...[
               const SizedBox(height: 10),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: context.palette.surface,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: context.palette.surfaceSoft),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.kidsArabicDailyMissionCompletedTitle,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: context.palette.onSurface,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      l10n.kidsArabicDailyMissionCompletedSubtitle(
-                        result.dailyMissionResult!.currentStreak,
-                      ),
-                      style: TextStyle(
-                        color: context.palette.onSurfaceSubtle,
-                        height: 1.35,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      buildCompactRewardSummary(
-                        l10n,
-                        xp: result.dailyMissionResult!.xpAwarded,
-                        drops: result.dailyMissionResult!.oceanDropsAwarded,
-                      ),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: context.palette.onSurfaceSubtle,
-                      ),
-                    ),
-                    if (result.dailyMissionResult!.graceUsed) ...[
-                      const SizedBox(height: 6),
-                      Text(
-                        l10n.kidsArabicDailyMissionGraceUsed,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: context.palette.onSurfaceSubtle,
-                        ),
-                      ),
-                    ],
-                    const SizedBox(height: 6),
-                    Text(
-                      l10n.kidsArabicDailyMissionTomorrowPrompt,
-                      style: TextStyle(color: context.palette.onSurfaceSubtle),
-                    ),
-                  ],
+              Text(
+                l10n.kidsArabicDailyMissionCompletedTitle,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: context.palette.successInk,
                 ),
               ),
             ],
@@ -1002,68 +772,44 @@ class _CompletionSheet extends ConsumerWidget {
                 ),
               ),
             ],
-            const SizedBox(height: 14),
-            if (result.newStickerIds.isNotEmpty)
-              Text(
-                l10n.kidsArabicStickerUnlocked(result.newStickerIds.length),
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: context.palette.successInk,
-                ),
-              ),
             if (achievement != null) ...[
               const SizedBox(height: 12),
               _AchievementRevealCard(achievement: achievement!),
             ],
-            const SizedBox(height: 14),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: onTryAgain,
-                    child: Text(l10n.kidsArabicTryAgainAction),
-                  ),
-                ),
-                if (nextLetter != null) ...[
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        context.pushReplacementNamed(
-                          'kidsArabicLesson',
-                          pathParameters: {'letterId': nextLetter!.id},
-                        );
-                      },
-                      child: Text(l10n.kidsArabicNextLetterAction),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-            if (previousLetter != null) ...[
-              const SizedBox(height: 10),
+            const SizedBox(height: 16),
+            if (nextLetter != null)
               SizedBox(
                 width: double.infinity,
-                child: OutlinedButton(
+                child: FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(56),
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop();
                     context.pushReplacementNamed(
                       'kidsArabicLesson',
-                      pathParameters: {'letterId': previousLetter!.id},
+                      pathParameters: {'letterId': nextLetter!.id},
                     );
                   },
-                  child: Text(l10n.kidsArabicPreviousLetterAction),
+                  child: Text(l10n.kidsArabicNextLetterAction),
                 ),
               ),
-            ],
-            const SizedBox(height: 10),
-            SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(l10n.kidsArabicBackToLettersAction),
-              ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: onTryAgain,
+                    child: Text(l10n.kidsArabicTryAgainAction),
+                  ),
+                ),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(l10n.kidsArabicBackToLettersAction),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
