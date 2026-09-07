@@ -133,6 +133,7 @@ flutter:
     - assets/audio/bedtime_stories/prophets/en/path_of_nur/
     - assets/audio/kids_dua/en/path_of_nur/
     - assets/audio/kids_stories/en/path_of_nur/
+    - assets/audio/quran_teacher/letters/
     - assets/video/
     - assets/animations/
     - assets/data/
