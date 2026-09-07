@@ -40,6 +40,53 @@ final BedtimeStorySeed ourProphetBook = kidsPictureBook(
     'story_prophet_muhammad_part1_bedtime_v1',
     'book_first_steps_shahada_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Unser Prophet ﷺ',
+    shortTitle: 'Unser Prophet ﷺ',
+    summary:
+        'Eine erste Begegnung mit dem Propheten ﷺ: wer er war, wie er lebte und was wir sagen, wenn wir seinen Namen hören.',
+    lesson:
+        'Liebe den Propheten ﷺ, sprich Segen über ihn und folge dem, wie er lebte.',
+    refrain: 'Friede sei mit ihm.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu und sag seinen Namen noch einmal, mit Liebe. Gute Nacht.',
+    spreads: [
+      [
+        'Es gibt einen Namen, den wir jeden Tag mit Liebe sagen.',
+        'Muhammad. Friede sei mit ihm.',
+      ],
+      [
+        'Er wurde in Mekka geboren, vor langer Zeit.',
+        'Allah wählte ihn als den letzten Propheten.',
+      ],
+      [
+        'Er war ehrlich, so ehrlich, dass die Leute ihn den Vertrauenswürdigen nannten.',
+        'Er war sanft zu allen.',
+      ],
+      [
+        'Er liebte Kinder. Er spielte mit ihnen, und er tat keinem je weh.',
+        'Er lächelte mehr als jeder andere.',
+      ],
+      [
+        'Er war gut zu Tieren, und zu Menschen, die unfreundlich waren.',
+        'Allah nennt ihn eine Barmherzigkeit für die Welten.',
+      ],
+      [
+        'Er lehrte uns, wie man betet, wie man teilt, wie man gut ist.',
+        'Alles in diesen Büchern hat er zuerst gelehrt.',
+      ],
+      [
+        'Wenn wir seinen Namen hören, sagen wir: sallallahu alayhi wa sallam.',
+        'Friede sei mit ihm.',
+      ],
+      ['Allah und die Engel sprechen Segen über ihn.', 'Wir auch, jeden Tag.'],
+      ['Eines Tages, wenn Allah will, treffen wir ihn.', 'Friede sei mit ihm.'],
+      [
+        'Seine ganze Geschichte ist vier Bücher lang.',
+        'Fangen wir am Anfang an, in Mekka.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

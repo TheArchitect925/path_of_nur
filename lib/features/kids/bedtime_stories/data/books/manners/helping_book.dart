@@ -48,6 +48,46 @@ final BedtimeStorySeed helpingBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_helping_parents_v1'],
   memoryRefs: const ['memory_story_helping_parents_v1'],
+  de: const KidsBookTranslation(
+    title: 'Ich kann helfen!',
+    shortTitle: 'Ich kann helfen',
+    summary:
+        'Taschen an der Tür, müde Hände und ein Junge, der nicht wartete, bis man ihn bat.',
+    lesson:
+        'Unseren Eltern mit Güte zu helfen ist eine schöne Tat, die Allah liebt.',
+    refrain: 'Ich kann helfen!',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Jemand hat dich heute getragen, irgendwie. Morgen trägst du etwas zurück. Gute Nacht.',
+    spreads: [
+      [
+        'Zayn hörte Taschen an der Tür rascheln.',
+        'Baba sah müde aus. Mamas Arme waren voller Obst.',
+      ],
+      ['Zayn lief hin. „Ich kann helfen!“'],
+      [
+        'Er trug die leichte Tasche, vorsichtig, mit beiden Händen.',
+        'Nicht die schwere. Die, die er tragen konnte.',
+      ],
+      [
+        'Dann brachte er Mama ein Glas Wasser.',
+        'Niemand hatte ihn darum gebeten.',
+      ],
+      [
+        'Baba lächelte. Mama lächelte.',
+        'Zayn wurde innen warm, wie Sonnenschein.',
+      ],
+      [
+        'Allah sagt uns, sanft zu unseren Eltern zu sein,',
+        'wie ein Vogel, der seinen Flügel über sie legt.',
+      ],
+      ['Güte beginnt zu Hause. Bei den Menschen, die dich tragen.'],
+      [
+        'Eine Tasche. Ein Glas Wasser. Eine Umarmung. Kleine Dinge zählen.',
+        'Ich kann helfen!',
+      ],
+      ['Wenn du morgen müde Hände siehst, sag es: Ich kann helfen!'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Zayn heard bags rustle at the door.',

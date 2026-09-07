@@ -48,6 +48,50 @@ final BedtimeStorySeed ramadanKindnessBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_ramadan_kindness_v1'],
   memoryRefs: const ['memory_story_ramadan_kindness_v1'],
+  de: const KidsBookTranslation(
+    title: 'Datteln für die Nachbarn',
+    shortTitle: 'Ramadan-Güte',
+    summary:
+        'Ein goldener Himmel, knurrende Bäuche und ein Tablett, Schritt für Schritt zur Tür der Nachbarn getragen.',
+    lesson:
+        'Ramadan lehrt uns, mit Großzügigkeit und weichen Herzen für andere zu sorgen.',
+    refrain: 'Ramadan ist zum Geben da.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Irgendwo lächelt ein Nachbar wegen eines Tellers. Gute Nacht.',
+    spreads: [
+      [
+        'Der Himmel wurde golden. Iftar war fast da.',
+        'Safa und Zayn hatten den halben Tag gefastet.',
+      ],
+      ['Ihre Bäuche knurrten. Aber Mama hatte eine Aufgabe für sie.'],
+      [
+        '„Legt drei Datteln auf jeden Teller. Gießt das Wasser ein.“',
+        '„Die sind für unsere Nachbarn.“',
+      ],
+      ['Safa zählte Datteln. Zayn goss langsam ein, ohne zu kleckern.'],
+      ['Sie trugen das Tablett zur Tür, Schritt für vorsichtigen Schritt.'],
+      [
+        '„Dschazakallahu khairan!“, sagten die Nachbarn.',
+        'Ihre Gesichter leuchteten wie der Himmel.',
+      ],
+      [
+        'Dann kam der Adhan, und es war Zeit zu essen.',
+        'Die Datteln schmeckten an diesem Abend süßer.',
+      ],
+      [
+        'Ramadan ist zum Geben da.',
+        'Allah gab uns das Fasten, damit wir mit anderen fühlen.',
+      ],
+      [
+        'Der Hunger lehrte sie etwas: Jeder braucht eine gütige Hand.',
+        'Ramadan ist zum Geben da.',
+      ],
+      [
+        'Trag in diesem Ramadan jemandem einen Teller hin.',
+        'Ramadan ist zum Geben da.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'The sky turned gold. Iftar was almost here.',

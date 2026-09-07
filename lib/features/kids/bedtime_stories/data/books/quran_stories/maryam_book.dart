@@ -37,6 +37,56 @@ final BedtimeStorySeed maryamBook = kidsPictureBook(
     'story_prophet_isa_bedtime_v1',
     'story_prophet_zakariya_yahya_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Maryam und die Palme',
+    shortTitle: 'Maryam',
+    summary:
+        'Ein Versprechen vor ihrer Geburt, Früchte aus dem Nichts und eine trockene Palme, die süße Datteln gab.',
+    lesson:
+        'Allah sorgt für die, die Ihm vertrauen, auch wenn sie allein sind.',
+    refrain: 'Allah sorgte für sie.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah ließ für Maryam einen Bach fließen, und Allah sorgt für dich. Gute Nacht.',
+    spreads: [
+      [
+        'Bevor Maryam geboren wurde, gab ihre Mutter Allah ein Versprechen.',
+        '„Dieses Kind wird Dir dienen.“',
+      ],
+      [
+        'Maryam wuchs in Allahs Haus auf, still und rein.',
+        'Zakariya kümmerte sich um sie.',
+      ],
+      [
+        'Jedes Mal, wenn Zakariya kam, fand er Früchte an ihrer Seite.',
+        'Winterfrüchte im Sommer, Sommerfrüchte im Winter.',
+      ],
+      ['„Maryam, woher ist das?“ „Von Allah.“', 'Allah sorgte für sie.'],
+      [
+        'Eines Tages kam ein Engel mit einer Nachricht: ein Sohn, durch Allahs Wort.',
+        'Maryam hatte Angst, aber sie vertraute Allah.',
+      ],
+      [
+        'Sie ging weit weg, ganz allein, zu einer trockenen Palme.',
+        'Sie war müde und traurig.',
+      ],
+      [
+        'Dann eine Stimme: „Sei nicht traurig. Allah hat einen Bach zu deinen Füßen gemacht.“',
+        'Allah sorgte für sie.',
+      ],
+      [
+        '„Schüttel die Palme, und frische Datteln fallen für dich herab.“',
+        'Der trockene Baum gab ihr süße Datteln.',
+      ],
+      [
+        'Als sie mit dem Baby nach Hause kam, sagten die Leute unfreundliche Dinge.',
+        'Da ließ Allah das Baby für sie sprechen.',
+      ],
+      [
+        'Allah nennt Maryam die beste der Frauen.',
+        'Allah sorgte für sie, und Er sorgt für dich.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

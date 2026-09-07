@@ -45,6 +45,46 @@ final BedtimeStorySeed truthBook = kidsPictureBook(
   relatedStoryIds: const ['story_saying_sorry_and_forgiving_v1'],
   quizRefs: const ['quiz_story_telling_the_truth_v1'],
   memoryRefs: const ['memory_story_telling_the_truth_v1'],
+  de: const KidsBookTranslation(
+    title: 'Safa und die blaue Tasse',
+    shortTitle: 'Die blaue Tasse',
+    summary:
+        'Eine umgekippte Tasse, ein Herz, das pocht, und der kleine Satz, der alles wieder leicht machte.',
+    lesson:
+        'Ehrlichkeit bringt dem Herzen Frieden, auch wenn wir einen Fehler gemacht haben.',
+    refrain: 'Die Wahrheit macht dich leicht.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Heute Nacht liegt nichts Schweres auf deinem Herzen. Gute Nacht.',
+    spreads: [
+      [
+        'Safa griff nach der blauen Tasse. Rums! Sie kippte um.',
+        'Wasser lief über den Tisch.',
+      ],
+      [
+        'Niemand hatte es gesehen. Safas Herz pochte.',
+        'Sie könnte sagen: „Ich war das nicht.“',
+      ],
+      ['Aber eine Lüge ist schwer. Sie liegt auf deinem Herzen wie ein Stein.'],
+      ['Safa holte tief Luft. „Mama, ich habe das Wasser verschüttet.“'],
+      [
+        'Mama kam näher. Sie war nicht böse.',
+        '„Danke, dass du die Wahrheit sagst, Safa.“',
+      ],
+      [
+        'Zusammen wischten sie den Tisch sauber.',
+        'Der Stein war weg. Die Wahrheit macht dich leicht.',
+      ],
+      ['Allah sagt: Sei mit denen, die die Wahrheit sagen.'],
+      [
+        'Ein Fehler ist klein. Eine Lüge macht ihn groß.',
+        'Die Wahrheit macht dich leicht.',
+      ],
+      [
+        'Wenn dein Herz pocht, sag, was passiert ist.',
+        'Die Wahrheit macht dich leicht.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Safa reached for the blue cup. Bump! It tipped over.',

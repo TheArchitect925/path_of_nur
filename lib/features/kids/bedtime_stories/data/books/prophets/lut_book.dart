@@ -47,6 +47,59 @@ final BedtimeStorySeed lutBook = kidsPictureBook(
   backdropAssetPath:
       '$bedtimeStoryImageBackdropAssetDirectory/lut_backdrop.webp',
   relatedStoryIds: const ['story_prophet_ibrahim_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Lut und die Reise in der Nacht',
+    shortTitle: 'Prophet Lut',
+    summary:
+        'Eine Stadt, die Unrecht tat, Gäste, die Engel waren, und eine Familie, die in der Nacht fortging.',
+    lesson:
+        'Halt dich fern von dem, was falsch ist, auch wenn alle um dich herum es tun. Allah rettet die, die das tun.',
+    refrain: 'Schau nicht zurück.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Lut ging hinaus in die Nacht, und Allah führte ihn in Sicherheit. Gute Nacht.',
+    spreads: [
+      [
+        'Prophet Lut, Friede sei mit ihm, war Ibrahims Neffe.',
+        'Allah schickte ihn in eine Stadt, in der die Menschen Unrecht taten.',
+      ],
+      [
+        'Sie waren unfreundlich zu Reisenden und stolz auf schlechte Dinge.',
+        'Lut sagte ihnen: Hört auf und fürchtet Allah.',
+      ],
+      [
+        '„Wenn es dir nicht gefällt, geh!“, sagten sie.',
+        'Nur Luts Familie hörte auf ihn.',
+      ],
+      [
+        'Eines Abends kamen Gäste in Luts Haus.',
+        'Es waren Engel, von Allah geschickt, aber Lut wusste es nicht.',
+      ],
+      [
+        'Die Leute der Stadt kamen zur Tür und schrien.',
+        'Lut hatte Angst um seine Gäste.',
+      ],
+      [
+        '„Fürchte dich nicht“, sagten die Engel. „Wir sind von Allah.“',
+        '„Geh heute Nacht mit deiner Familie. Schau nicht zurück.“',
+      ],
+      [
+        'Also gingen Lut und seine Familie hinaus in die Nacht.',
+        'Schau nicht zurück.',
+      ],
+      [
+        'Am Morgen war die Stadt fort.',
+        'Allah hatte sie umgestürzt, und Luts Familie war weit weg und in Sicherheit.',
+      ],
+      [
+        'Lut hatte die Wahrheit gesagt, auch als niemand sie wollte.',
+        'Allah rettete ihn.',
+      ],
+      [
+        'Wenn du etwas Schlechtes hinter dir lässt, geh weiter.',
+        'Schau nicht zurück.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

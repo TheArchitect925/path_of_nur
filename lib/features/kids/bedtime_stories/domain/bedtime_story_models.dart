@@ -133,6 +133,8 @@ class BedtimeStorySeed {
     this.spreads = const <KidsBookSpread>[],
     this.bedtimeClosing = '',
     this.refrain = '',
+    this.translations = const <String, KidsBookTranslation>{},
+    this.contentLanguage = 'en',
   });
 
   final String id;
@@ -197,7 +199,50 @@ class BedtimeStorySeed {
   /// inside a line on every refrain spread, and the reader lights it there.
   final String refrain;
 
+  /// Other languages this book is written in, by language code ("de").
+  /// Resolved once by the repository for the app locale; see [localized].
+  final Map<String, KidsBookTranslation> translations;
+
+  /// The language this seed's text is in: "en" as written, or the code
+  /// [localized] swapped in.
+  final String contentLanguage;
+
   bool get isPictureBook => spreads.isNotEmpty;
+
+  /// The BCP-47 tag the read-aloud voice uses for this text.
+  String get readAloudLanguageCode => switch (contentLanguage) {
+    'de' => 'de-DE',
+    _ => 'en-US',
+  };
+
+  /// This book in [languageCode] when it carries that translation, else as
+  /// written. Pictures, refs, Arabic and every flag stay; the title,
+  /// summary, lesson, refrain, closing and lines change, and the read-aloud
+  /// text and duration follow the new lines. A translation whose spread
+  /// count drifts from the book is ignored rather than mis-paged.
+  BedtimeStorySeed localized(String languageCode) {
+    if (languageCode == contentLanguage) return this;
+    final translation = translations[languageCode];
+    if (translation == null || translation.spreads.length != spreads.length) {
+      return this;
+    }
+    final localizedSpreads = <KidsBookSpread>[
+      for (var i = 0; i < spreads.length; i++)
+        spreads[i].withLines(translation.spreads[i]),
+    ];
+    return copyWith(
+      title: translation.title,
+      shortTitle: translation.shortTitle,
+      summary: translation.summary,
+      lesson: translation.lesson,
+      refrain: translation.refrain,
+      bedtimeClosing: translation.bedtimeClosing,
+      spreads: localizedSpreads,
+      ttsText: kidsBookReadAloudText(localizedSpreads),
+      estimatedDurationSeconds: kidsBookDurationSeconds(localizedSpreads),
+      contentLanguage: languageCode,
+    );
+  }
 
   Duration get estimatedDuration => Duration(seconds: estimatedDurationSeconds);
   String get effectiveStoryFamilyId => storyFamilyId.isNotEmpty
@@ -219,6 +264,12 @@ class BedtimeStorySeed {
     String? sourceNote,
     bool clearSourceNote = false,
     List<String>? tags,
+    String? refrain,
+    String? bedtimeClosing,
+    List<KidsBookSpread>? spreads,
+    String? ttsText,
+    int? estimatedDurationSeconds,
+    String? contentLanguage,
   }) {
     return BedtimeStorySeed(
       id: id,
@@ -233,7 +284,7 @@ class BedtimeStorySeed {
       summary: summary ?? this.summary,
       audioFileName: audioFileName,
       audioManifestRef: audioManifestRef,
-      ttsText: ttsText,
+      ttsText: ttsText ?? this.ttsText,
       lesson: lesson ?? this.lesson,
       quranQuote: quranQuote,
       quranReference: quranReference,
@@ -242,7 +293,8 @@ class BedtimeStorySeed {
       hadithReference: hadithReference,
       sourceCategory: sourceCategory,
       sourceNote: clearSourceNote ? null : sourceNote ?? this.sourceNote,
-      estimatedDurationSeconds: estimatedDurationSeconds,
+      estimatedDurationSeconds:
+          estimatedDurationSeconds ?? this.estimatedDurationSeconds,
       isFeatured: isFeatured,
       isMultipart: isMultipart,
       partNumber: partNumber,
@@ -269,9 +321,11 @@ class BedtimeStorySeed {
       quietReflectionFriendly: quietReflectionFriendly,
       suitableForYoungerLearners: suitableForYoungerLearners,
       sceneIllustrations: sceneIllustrations,
-      spreads: spreads,
-      bedtimeClosing: bedtimeClosing,
-      refrain: refrain,
+      spreads: spreads ?? this.spreads,
+      bedtimeClosing: bedtimeClosing ?? this.bedtimeClosing,
+      refrain: refrain ?? this.refrain,
+      translations: translations,
+      contentLanguage: contentLanguage ?? this.contentLanguage,
     );
   }
 }

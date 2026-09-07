@@ -43,6 +43,52 @@ final BedtimeStorySeed eidBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_eid_gratitude_v1'],
   memoryRefs: const ['memory_story_eid_gratitude_v1'],
+  de: const KidsBookTranslation(
+    title: 'Der Morgen des Eid',
+    shortTitle: 'Eid-Morgen',
+    summary:
+        'Neue Kleider, süße Düfte, ein Junge, der nicht stillstehen kann, und ein Atemzug voll Dank vor dem Spaß.',
+    lesson:
+        'Die Freude am Eid wird noch schöner, wenn sie voller Dank an Allah ist.',
+    refrain: 'Alhamdulillah für diesen Tag.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Alhamdulillah für diesen Tag, wie auch immer er war. Gute Nacht.',
+    spreads: [
+      [
+        'Eid-Morgen! Das Haus war hell und voller Leben.',
+        'Süße Düfte kamen aus der Küche.',
+      ],
+      [
+        'Neue Kleider hingen am Fenster, frisch und sauber.',
+        'Zayn konnte nicht stillstehen.',
+      ],
+      [
+        'Er rannte zum Fenster. Er rannte in die Küche.',
+        'Süßigkeiten! Geschenke! Die Cousins kommen!',
+      ],
+      [
+        'Oma rief leise: „Zayn. Vor dem Spaß: Denk daran, wer uns diesen Tag geschenkt hat.“',
+      ],
+      [
+        'Zayn blieb stehen. Er schaute sich im Zimmer um.',
+        'Neue Kleider. Warmes Essen. Seine Familie.',
+      ],
+      ['„Alhamdulillah für diesen Tag“, sagte er.'],
+      ['Allah sagt: Wenn ihr dankbar seid, gebe Ich euch mehr.'],
+      [
+        'Dann rannte Zayn mit Safa nach draußen: Eid Mubarak!',
+        'Die Freude war noch da, aber jetzt voller.',
+      ],
+      [
+        'Dankbarkeit ist wie Zucker im Tee. Sie macht alles süßer.',
+        'Alhamdulillah für diesen Tag.',
+      ],
+      [
+        'An deinem nächsten schönen Tag halt kurz an und sag es:',
+        'Alhamdulillah für diesen Tag.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Eid morning! The house was bright and busy.',

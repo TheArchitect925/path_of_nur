@@ -42,6 +42,53 @@ final BedtimeStorySeed fiveTimesADayBook = kidsPictureBook(
     'book_first_steps_wudu_v1',
     'book_first_steps_the_call_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Fünfmal am Tag',
+    shortTitle: 'Fünfmal am Tag',
+    summary:
+        'Safas Wecker, fünf Gebete und was passiert, wenn sich die ganze Welt zusammen zu Allah wendet.',
+    lesson:
+        'Bete fünfmal am Tag. So sprechen wir mit Allah, und so hält Er uns rein.',
+    refrain: 'Fünfmal am Tag.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Morgen beginnt mit Fadschr, und Allah wird warten. Gute Nacht.',
+    spreads: [
+      [
+        'Bevor die Sonne aufgeht, klingelt Safas Wecker.',
+        'Fadschr. Das erste Gebet des Tages.',
+      ],
+      [
+        'Muslime beten fünfmal am Tag.',
+        'Fadschr, Dhuhr, Asr, Maghrib, Ischa. Fünfmal am Tag.',
+      ],
+      [
+        'Warum? Weil Allah uns darum gebeten hat.',
+        '„Verrichtet das Gebet, um an Mich zu denken“, sagt Allah.',
+      ],
+      [
+        'Das Gebet ist Sprechen mit Allah.',
+        'Wir stehen, wir verbeugen uns, wir legen die Stirn auf den Boden.',
+      ],
+      ['Stehen: Allahu Akbar. Allah ist der Größte.', 'Zayn steht ganz still.'],
+      [
+        'Sudschud: So nah wie möglich bei Allah.',
+        'Safa flüstert dort ihr Bittgebet.',
+      ],
+      [
+        'Fünfmal am Tag hält die ganze Welt an und wendet sich zu Allah.',
+        'Millionen Menschen, alle auf einmal.',
+      ],
+      [
+        'Das Gebet wäscht kleine Fehler weg, wie ein Fluss den Staub wegwäscht.',
+        'Fünfmal am Tag.',
+      ],
+      [
+        'Wenn du den Adhan hörst, komm und stell dich neben deine Familie.',
+        'Auch ein Gebet ist ein Anfang.',
+      ],
+      ['Wann ist das nächste Gebet?', 'Schauen wir nach.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Before the sun comes up, Safa\'s alarm rings.',

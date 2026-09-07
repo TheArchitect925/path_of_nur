@@ -42,6 +42,45 @@ final BedtimeStorySeed dhulKiflBook = kidsPictureBook(
     'story_prophet_ayyub_bedtime_v1',
     'story_prophet_idris_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Dhul-Kifl hielt sein Versprechen',
+    shortTitle: 'Prophet Dhul-Kifl',
+    summary:
+        'Ein Prophet, den der Quran geduldig und gut nennt, und das Versprechen, das er jeden Tag hielt.',
+    lesson:
+        'Halte deine Versprechen, auch wenn es schwer ist. Allah zählt die, die das tun, zu den Guten.',
+    refrain: 'Er hielt sein Versprechen.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Ein gehaltenes Versprechen ist ein guter Tag. Gute Nacht.',
+    spreads: [
+      [
+        'Allah erzählt von einem Propheten namens Dhul-Kifl, Friede sei mit ihm.',
+        'Sein Name bedeutet: der es auf sich nahm.',
+      ],
+      ['Der Quran sagt, er war geduldig.', 'Und dass er zu den Guten gehörte.'],
+      [
+        'Vor langer Zeit, so erzählt man, versprach er drei Dinge:',
+        'nachts beten, tagsüber fasten und ohne Zorn urteilen.',
+      ],
+      [
+        'Es war schwer. Aber er hielt sein Versprechen.',
+        'Jeden Tag und jede Nacht.',
+      ],
+      [
+        'Wir kennen nicht viele Geschichten über ihn.',
+        'Aber Allah nannte ihn im Quran, neben Ismail und Idris.',
+      ],
+      [
+        'Allah sagt: Wir nahmen sie in Unsere Barmherzigkeit auf. Sie gehörten zu den Guten.',
+        'Er hielt sein Versprechen.',
+      ],
+      [
+        'Wenn du sagst, dass du etwas tust, dann tu es.',
+        'Auch wenn es schwer ist.',
+      ],
+      ['Sei wie Dhul-Kifl.', 'Er hielt sein Versprechen.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

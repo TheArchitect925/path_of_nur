@@ -46,6 +46,59 @@ final BedtimeStorySeed ishaqYaqubBook = kidsPictureBook(
     'story_prophet_ibrahim_bedtime_v1',
     'story_prophet_yusuf_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Ishaq und Yaqub, eine Familie von Propheten',
+    shortTitle: 'Ishaq und Yaqub',
+    summary:
+        'Gute Nachricht für ein altes Paar, ein Sohn und ein Enkel, die Propheten wurden, und die schöne Geduld eines Vaters.',
+    lesson:
+        'Allah hält Seine Versprechen. Sei geduldig wie Yaqub und vertrau Ihm weiter.',
+    refrain: 'Allahs Versprechen werden wahr.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah hielt jedes Versprechen an diese Familie, und Er hält Seine Versprechen an dich. Gute Nacht.',
+    spreads: [
+      [
+        'Ibrahim und seine Frau Sara waren alt und hatten keine Kinder.',
+        'Dann kamen Gäste mit guter Nachricht.',
+      ],
+      [
+        '„Ihr bekommt einen Sohn namens Ishaq“, sagten die Engel.',
+        'Sara lachte. Ein Baby, jetzt?',
+      ],
+      [
+        'Aber Allahs Versprechen werden wahr.',
+        'Ishaq, Friede sei mit ihm, wurde geboren und wuchs zu einem Propheten heran.',
+      ],
+      [
+        'Ishaq hatte einen Sohn namens Yaqub, Friede sei mit ihm.',
+        'Auch er wurde ein Prophet. Drei Propheten in einer Familie.',
+      ],
+      [
+        'Yaqub hatte zwölf Söhne.',
+        'Einer von ihnen war Yusuf, der Junge mit dem Traum.',
+      ],
+      [
+        'Als Yusuf verloren war, weinte Yaqub, bis seine Augen weiß wurden.',
+        'Aber er hörte nie auf, Allah zu vertrauen.',
+      ],
+      [
+        '„Schöne Geduld“, sagte er. „Allah bringt sie alle zu mir zurück.“',
+        'Allahs Versprechen werden wahr.',
+      ],
+      [
+        'Jahre später wurde Yusufs Hemd über das Gesicht seines Vaters gelegt.',
+        'Und Yaqub konnte wieder sehen.',
+      ],
+      [
+        'Bevor er starb, fragte Yaqub: Was werdet ihr nach mir anbeten?',
+        '„Allah allein“, sagten seine Söhne.',
+      ],
+      [
+        'Ein Großvater, ein Vater und ein Sohn, alle Propheten.',
+        'Allahs Versprechen werden wahr.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

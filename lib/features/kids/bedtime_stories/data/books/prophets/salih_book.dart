@@ -46,6 +46,60 @@ final BedtimeStorySeed salihBook = kidsPictureBook(
     'story_prophet_hud_bedtime_v1',
     'story_prophet_ibrahim_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Salih und die Kamelstute',
+    shortTitle: 'Prophet Salih',
+    summary:
+        'Eine Kamelstute als Zeichen, ein Brunnen, den man sich abwechselnd teilte, und eine Warnung, die keiner hörte.',
+    lesson:
+        'Sei gut zu Tieren und hör auf guten Rat. Allahs Zeichen verdienen Sorgfalt, nicht Schaden.',
+    refrain: 'Tut ihr nichts.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Sei sanft mit jedem Tier, und Allah ist sanft mit dir. Gute Nacht.',
+    spreads: [
+      [
+        'Nach Ad kam das Volk von Thamud.',
+        'Sie hauten ihre Häuser in die Berge.',
+      ],
+      [
+        'Allah schickte ihnen den Propheten Salih, Friede sei mit ihm.',
+        '„Betet Allah allein an“, sagte er ihnen.',
+      ],
+      [
+        '„Zeig uns ein Zeichen“, sagten die Leute.',
+        'Also schickte Allah ihnen ein Zeichen: eine Kamelstute.',
+      ],
+      [
+        '„Dieses Kamel ist von Allah“, sagte Salih.',
+        '„Lasst sie fressen und trinken. Tut ihr nichts.“',
+      ],
+      [
+        'An einem Tag trank das Kamel aus dem Brunnen.',
+        'Am nächsten tranken die Leute. Alle hatten genug.',
+      ],
+      [
+        'Manche Leute glaubten Salih.',
+        'Aber andere waren wütend, dass ein Kamel ihr Wasser teilte.',
+      ],
+      ['Salih warnte sie noch einmal: Tut ihr nichts.', 'Allah schaut zu.'],
+      [
+        'Aber sie taten dem Kamel weh.',
+        'Dann tat es ihnen leid, aber es war zu spät.',
+      ],
+      [
+        'Allah schickte ein großes Beben, und ihre starken Häuser konnten sie nicht retten.',
+        'Salih und die Gläubigen waren in Sicherheit.',
+      ],
+      [
+        'Salih sagte: Ich habe euch guten Rat gegeben, aber ihr wolltet ihn nicht.',
+        'Und er ging traurig fort.',
+      ],
+      [
+        'Allahs Geschöpfe sind uns anvertraut.',
+        'Tut ihr nichts, und keinem von ihnen.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

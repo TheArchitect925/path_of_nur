@@ -50,6 +50,46 @@ final BedtimeStorySeed bismillahBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_bismillah_before_eating_v1'],
   memoryRefs: const ['memory_story_bismillah_before_eating_v1'],
+  de: const KidsBookTranslation(
+    title: 'Bismillah vor dem Essen',
+    shortTitle: 'Bismillah vor dem Essen',
+    summary:
+        'Warme Suppe, eine hungrige Hand, die in der Luft stehen bleibt, und die Worte, die wir zuerst sagen.',
+    lesson:
+        'Wir beginnen mit Allahs Namen, bevor wir essen, und danken Ihm, wenn wir fertig sind.',
+    refrain: 'Zuerst Bismillah.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Alhamdulillah für das Essen von heute, und für dich. Gute Nacht.',
+    spreads: [
+      ['Amina saß am Tisch. Warme Suppe! Weiches Brot!', 'Ihr Bauch knurrte.'],
+      [
+        'Ihre kleine Hand griff schnell nach vorn.',
+        'Dann blieb sie in der Luft stehen.',
+      ],
+      [
+        '„Was sagen wir zuerst?“, fragte Mama.',
+        'Amina lächelte. „Zuerst Bismillah.“',
+      ],
+      [
+        'Im Namen Allahs. Er hat uns dieses Essen gegeben.',
+        'Zuerst Bismillah.',
+      ],
+      [
+        'Jetzt aß Amina langsam, mit der rechten Hand.',
+        'Sie nahm, was vor ihr lag.',
+      ],
+      ['Sie brach ihr Brot und gab Zayn die Hälfte.', '„Danke, Amina!“'],
+      [
+        'Als die Schüssel leer war, sagte sie: „Alhamdulillah.“',
+        'Aller Dank gehört Allah.',
+      ],
+      ['Die Suppe war einfach. Aber sie schmeckte wie ein Segen.'],
+      [
+        'Wenn du das nächste Mal am Tisch sitzt, mach es wie Amina.',
+        'Zuerst Bismillah.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Amina sat at the table. Warm soup! Soft bread!',

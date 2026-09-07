@@ -46,6 +46,51 @@ final BedtimeStorySeed idrisBook = kidsPictureBook(
     'story_prophet_adam_bedtime_v1',
     'story_prophet_nuh_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Idris, der als Erster schrieb',
+    shortTitle: 'Prophet Idris',
+    summary:
+        'Der Prophet, der das Lernen liebte: der Erste, der schrieb, der Erste, der nähte, von Allah hoch erhoben.',
+    lesson:
+        'Liebe das Lernen, sag die Wahrheit und sei geduldig. Allah erhebt die, die das tun.',
+    refrain: 'ehrlich und geduldig.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Idris schaute zu den Sternen, und dieselben Sterne stehen über dir. Gute Nacht.',
+    spreads: [
+      [
+        'Vor langer Zeit, nach Adam, lebte ein Prophet namens Idris, Friede sei mit ihm.',
+        'Er war ehrlich und geduldig.',
+      ],
+      [
+        'Idris liebte das Lernen.',
+        'Nachts schaute er zu den Sternen und staunte über das, was Allah gemacht hatte.',
+      ],
+      [
+        'Man sagt, Idris war der Erste, der mit einem Stift schrieb.',
+        'Er schrieb auf, was er lernte.',
+      ],
+      [
+        'Er war der Erste, der Kleider mit einer Nadel nähte.',
+        'Er machte Dinge mit seinen eigenen Händen.',
+      ],
+      [
+        'Er sagte seinem Volk: Betet Allah allein an.',
+        'Seid ehrlich und geduldig, wie Idris.',
+      ],
+      [
+        'Allah sagt, Idris war ein Mann der Wahrheit und ein Prophet.',
+        'Allah erhob ihn an einen hohen Ort.',
+      ],
+      [
+        'Wir wissen nicht alles über Idris.',
+        'Aber wir wissen, dass Allah seine Wahrheit liebte.',
+      ],
+      [
+        'Lern heute etwas Neues und schreib es auf.',
+        'Sei wie Idris: ehrlich und geduldig.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

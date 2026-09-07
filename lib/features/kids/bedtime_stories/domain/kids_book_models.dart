@@ -54,6 +54,64 @@ class KidsBookSpread {
   int get wordCount => lines.fold(0, (count, line) => count + _words(line));
 
   bool get hasOwnPicture => (illustrationAsset ?? '').isNotEmpty;
+
+  /// The same spread with another language's lines: picture, refrain flag,
+  /// Arabic, ayah and Try it stay as the English spread set them.
+  KidsBookSpread withLines(List<String> lines) => KidsBookSpread(
+    lines,
+    illustrationAsset: illustrationAsset,
+    atlasScene: atlasScene,
+    isRefrain: isRefrain,
+    highlightPhrase: highlightPhrase,
+    arabicLine: arabicLine,
+    quranRef: quranRef,
+    tryItRoute: tryItRoute,
+  );
+}
+
+/// One language's text for a picture book (C6): everything a child reads
+/// or hears, spread for spread. Pictures, refs and Arabic live on the
+/// English spreads; [spreads] carries only the lines, in the same order and
+/// number, so `kids_books_content_test.dart` can hold the two together.
+/// A translation may run a little longer than the English: up to
+/// [kKidsBookTranslatedSpreadMaxWords] words a spread.
+class KidsBookTranslation {
+  const KidsBookTranslation({
+    required this.title,
+    required this.shortTitle,
+    required this.summary,
+    required this.lesson,
+    required this.refrain,
+    required this.bedtimeClosing,
+    required this.spreads,
+  });
+
+  final String title;
+  final String shortTitle;
+  final String summary;
+  final String lesson;
+  final String refrain;
+  final String bedtimeClosing;
+
+  /// The lines of every spread, English order.
+  final List<List<String>> spreads;
+}
+
+/// German (and any later language) runs longer than English; a translated
+/// spread may carry this many words.
+const int kKidsBookTranslatedSpreadMaxWords = 24;
+
+/// The text the voice reads and the older tools index: the spreads in
+/// order, one blank line between them, so the beat splitter would page it
+/// the same way if it ever had to.
+String kidsBookReadAloudText(List<KidsBookSpread> spreads) =>
+    spreads.map((spread) => spread.text).join('\n\n');
+
+/// A parent reads a picture book at about two words a second and pauses
+/// on every picture.
+int kidsBookDurationSeconds(List<KidsBookSpread> spreads) {
+  final words = spreads.fold<int>(0, (count, s) => count + s.wordCount);
+  return (words / 2).round() + spreads.length * 3;
 }
 
 /// A spread never carries more words than this.

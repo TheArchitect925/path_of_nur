@@ -45,6 +45,59 @@ final BedtimeStorySeed abuBakrBook = kidsPictureBook(
     'story_companion_bilal_patience_v1',
     'story_companion_ali_bed_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Abu Bakr, der Freund in der Höhle',
+    shortTitle: 'Abu Bakr',
+    summary:
+        'Ein bester Freund, eine Flucht bei Nacht, eine Höhle mit einem Spinnennetz und die Worte: Allah ist mit uns.',
+    lesson:
+        'Ein wahrer Freund bleibt, wenn es unheimlich wird, und vertraut Allah.',
+    refrain: 'Allah ist mit uns.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Wo du auch bist, Allah ist mit dir. Gute Nacht.',
+    spreads: [
+      [
+        'Abu Bakr war der engste Freund des Propheten ﷺ.',
+        'Als er die Botschaft hörte, glaubte er sofort.',
+      ],
+      [
+        'Er gab sein Geld, um Menschen freizukaufen, die schlecht behandelt wurden.',
+        'Bilal war einer von ihnen.',
+      ],
+      [
+        'Dann wurde Mekka gefährlich. Der Prophet ﷺ musste gehen.',
+        '„Nimm mich mit“, sagte Abu Bakr.',
+      ],
+      [
+        'Bei Nacht schlichen sie zu einer Höhle am Berg Thaur.',
+        'Abu Bakr ging zuerst hinein, um nachzusehen.',
+      ],
+      [
+        'Bald standen die Männer, die sie jagten, direkt davor.',
+        'Abu Bakr flüsterte: „Wenn sie nach unten schauen, sehen sie uns!“',
+      ],
+      [
+        'Der Prophet ﷺ sagte: „Sei nicht traurig. Allah ist mit uns.“',
+        'Was sind zwei, wenn Allah der Dritte ist?',
+      ],
+      [
+        'Eine Spinne hatte ein Netz über den Eingang gesponnen.',
+        'Eine Taube saß auf ihrem Nest. Die Männer gingen weg.',
+      ],
+      [
+        'Drei Tage später zogen sie durch die Wüste nach Medina.',
+        'Allah ist mit uns.',
+      ],
+      [
+        'Medina empfing sie mit Liedern.',
+        'Abu Bakr hatte seinen Freund beschützt, und Allah hatte beide beschützt.',
+      ],
+      [
+        'Ein wahrer Freund bleibt, wenn es unheimlich wird.',
+        'Und wer Allah vertraut, kann sagen: Allah ist mit uns.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Abu Bakr was the Prophet’s ﷺ closest friend.',

@@ -38,6 +38,59 @@ final BedtimeStorySeed qarunBook = kidsPictureBook(
     'book_quran_two_gardens_v1',
     'book_first_steps_sharing_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Qaruns Schatz',
+    shortTitle: 'Qarun',
+    summary:
+        'Schlüssel, zu schwer zum Tragen, eine Parade aus Gold und der Boden, der sich öffnete.',
+    lesson:
+        'Alles, was wir haben, kommt von Allah. Sei dankbar, teile es und sei niemals stolz.',
+    refrain: 'Sei nicht stolz.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Alles, was du hast, ist ein Geschenk, und der Schenkende schaut zu. Gute Nacht.',
+    spreads: [
+      [
+        'Qarun lebte beim Volk von Musa.',
+        'Allah gab ihm so viel Schatz, dass die Schlüssel schwer zu tragen waren.',
+      ],
+      [
+        'Starke Männer stöhnten unter dem Gewicht seiner Schlüssel.',
+        'Raum um Raum voller Gold und Juwelen.',
+      ],
+      [
+        'Sie sagten: „Sei nicht stolz. Allah liebt die Stolzen nicht.“',
+        '„Tu Gutes, so wie Allah dir Gutes getan hat.“',
+      ],
+      [
+        'Qarun lachte. „Das habe ich mir selbst verdient“, sagte er. „Ich bin klug.“',
+        'Er vergaß, wer es ihm gegeben hatte.',
+      ],
+      [
+        'Eines Tages zog er in all seinem Gold durch die Straßen.',
+        '„Hätten wir das doch!“, seufzten manche Leute.',
+      ],
+      [
+        'Aber die Weisen sagten: „Allahs Lohn ist besser.“',
+        '„Er ist für die, die glauben und Gutes tun.“',
+      ],
+      [
+        'Dann öffnete sich die Erde unter Qarun.',
+        'Sein Haus, sein Gold, seine Schlüssel: alles versank.',
+      ],
+      [
+        'Niemand konnte ihm helfen. Nicht sein Gold. Nicht seine Freunde.',
+        'Nur Allah hätte es gekonnt, und Qarun hatte sich abgewandt.',
+      ],
+      [
+        'Die Leute, die geseufzt hatten, sagten jetzt: „Allah sei Dank sind wir nicht wie er.“',
+        'Sei nicht stolz.',
+      ],
+      [
+        'Wenn du etwas Schönes hast, denk daran, wer es dir gegeben hat.',
+        'Teile es. Sei nicht stolz.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

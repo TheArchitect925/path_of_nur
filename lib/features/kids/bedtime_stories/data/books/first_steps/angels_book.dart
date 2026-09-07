@@ -41,6 +41,56 @@ final BedtimeStorySeed angelsBook = kidsPictureBook(
     'book_first_steps_what_we_believe_v1',
     'story_prophet_muhammad_part2_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Engel überall',
+    shortTitle: 'Engel',
+    summary:
+        'Aus Licht gemacht, nie müde: die Engel, die bringen, die beschützen, die schreiben und die Amin sagen.',
+    lesson:
+        'Engel sind überall um dich, und sie tun, was Allah sagt. Tu gute Dinge; sie schreiben mit.',
+    refrain: 'Engel überall.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Die Engel halten heute Nacht Wache. Gute Nacht.',
+    spreads: [
+      ['Du kannst sie nicht sehen, aber sie sind da.', 'Engel überall.'],
+      [
+        'Allah hat die Engel aus Licht gemacht.',
+        'Sie werden nie müde, und sie tun immer, was Allah sagt.',
+      ],
+      [
+        'Dschibril brachte dem Propheten ﷺ den Quran.',
+        'Er ist der größte der Engel.',
+      ],
+      [
+        'Mikail kümmert sich um den Regen und die Pflanzen.',
+        'Israfil wartet mit einer Trompete auf den Letzten Tag.',
+      ],
+      [
+        'Zwei Engel sitzen bei dir, einer auf jeder Seite.',
+        'Sie schreiben die guten Dinge auf, die du tust, und die unguten.',
+      ],
+      [
+        'Wenn du etwas Gutes tust, schreibt der Engel rechts es auf.',
+        'Engel überall.',
+      ],
+      [
+        'Engel beschützen dich, vorne und hinten, auf Allahs Befehl.',
+        'Amina schläft, und sie ist nicht allein.',
+      ],
+      [
+        'Engel kommen und hören zu, wenn Menschen den Quran lesen.',
+        'Und sie sagen Amin zu deinem Bittgebet.',
+      ],
+      [
+        'Sag Bismillah, wenn du hineingehst, sag Alhamdulillah, wenn du isst.',
+        'Die Engel schreiben mit. Engel überall.',
+      ],
+      [
+        'Lass uns das Bittgebet vor dem Schlafen lernen.',
+        'Die Engel werden es hören.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       ['You cannot see them, but they are there.', 'Angels all around.'],

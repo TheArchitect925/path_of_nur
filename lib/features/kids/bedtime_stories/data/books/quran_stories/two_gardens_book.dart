@@ -34,6 +34,56 @@ final BedtimeStorySeed twoGardensBook = kidsPictureBook(
   sortOrder: 404,
   coverAssetPath: 'assets/images/kids_books/covers/two_gardens_cover.webp',
   relatedStoryIds: const ['book_quran_qarun_v1', 'book_quran_sleepers_v1'],
+  de: const KidsBookTranslation(
+    title: 'Der Mann mit den zwei Gärten',
+    shortTitle: 'Zwei Gärten',
+    summary:
+        'Zwei schöne Gärten, ein Mann, der prahlte, und die Worte, die er vergaß zu sagen.',
+    lesson:
+        'Alles Gute kommt von Allah. Sag ma scha Allah, und sei niemals stolz.',
+    refrain: 'Wie Allah will.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Alles Gute kommt von Allah, wie Allah will. Gute Nacht.',
+    spreads: [
+      [
+        'Ein Mann hatte zwei Gärten voller Trauben und Datteln, mit einem Fluss dazwischen.',
+        'Alles wuchs, und nichts ging ein.',
+      ],
+      [
+        'Er ging mit seinem Freund hindurch und prahlte.',
+        '„Ich habe mehr als du! Ich bin größer als du!“',
+      ],
+      [
+        '„Das hört nie auf“, sagte er.',
+        '„Und wenn es einen Letzten Tag gibt, bekomme ich noch mehr.“',
+      ],
+      [
+        'Sein Freund sagte: „Vergisst du, wer dich aus Staub gemacht hat?“',
+        '„Ich aber sage: Allah ist mein Herr.“',
+      ],
+      [
+        '„Wenn du deinen Garten betrittst, sag: Wie Allah will.',
+        'Es gibt keine Kraft außer bei Allah.“',
+      ],
+      ['Der Mann lachte. Er sagte es nicht.', 'In dieser Nacht kam ein Sturm.'],
+      [
+        'Am Morgen lagen die Reben am Boden.',
+        'Die Früchte waren weg. Der Fluss war trocken.',
+      ],
+      [
+        'Der Mann rang die Hände. „Hätte ich doch nichts Allah gleichgestellt.“',
+        'Aber es war zu spät.',
+      ],
+      [
+        'Alles Gute kommt von Allah. Nicht von uns.',
+        'Wenn also etwas gut ist, sag: Wie Allah will.',
+      ],
+      [
+        'Deine Spielsachen, dein Zuhause, dein Garten.',
+        'Sag es mit mir: Wie Allah will. Ma scha Allah.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

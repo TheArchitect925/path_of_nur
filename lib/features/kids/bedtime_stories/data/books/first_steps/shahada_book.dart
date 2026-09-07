@@ -38,6 +38,52 @@ final BedtimeStorySeed shahadaBook = kidsPictureBook(
     'book_first_steps_who_is_allah_v1',
     'book_first_steps_five_pillars_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Die Worte, die wir sagen',
+    shortTitle: 'Die Worte, die wir sagen',
+    summary:
+        'Zayn lernt die zwei Sätze, die jeder Muslim sagt, und was jeder davon bedeutet.',
+    lesson:
+        'Es gibt keinen Gott außer Allah, und Muhammad ist Sein Gesandter. Sag es, versteh es und leb es.',
+    refrain: 'La ilaha illallah.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu und sag die Worte noch einmal. Gute Nacht.',
+    spreads: [
+      [
+        'Jeder Muslim kennt zwei besondere Sätze.',
+        'Safa kennt sie. Zayn lernt sie gerade.',
+      ],
+      ['Der erste: La ilaha illallah.', 'Es gibt keinen Gott außer Allah.'],
+      [
+        'Das heißt: Nur Allah hat uns gemacht, nur Allah beten wir an.',
+        'Nicht die Sonne, keine Statue, niemanden sonst.',
+      ],
+      [
+        'Der zweite: Muhammadur rasulullah.',
+        'Muhammad ist der Gesandte Allahs.',
+      ],
+      [
+        'Allah schickte ihn, um uns den Weg zu zeigen, und wir folgen ihm.',
+        'Frieden und Segen seien auf ihm.',
+      ],
+      [
+        'Zusammen heißen die zwei Sätze Schahada.',
+        'Sag sie, und du bist ein Muslim.',
+      ],
+      [
+        'Zayn sagte es langsam. Dann schneller. Dann mit einem großen Lächeln.',
+        'La ilaha illallah.',
+      ],
+      [
+        'Wir sagen es, wenn wir aufwachen und wenn wir schlafen gehen.',
+        'Wir sagen es mit dem Herzen.',
+      ],
+      [
+        'Sag es mit mir, leise: La ilaha illallah, Muhammadur rasulullah.',
+        'Jetzt lernen wir ein Bittgebet dazu.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Every Muslim knows two special sentences.',

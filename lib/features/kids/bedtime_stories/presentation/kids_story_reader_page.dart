@@ -116,8 +116,10 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
                             child: Text(l10n.kidsStoryReaderStopAction),
                           )
                         : OutlinedButton.icon(
-                            onPressed: () =>
-                                voice.speakSequence(_linesOf(page)),
+                            onPressed: () => voice.speakSequence(
+                              _linesOf(page),
+                              languageCode: story.readAloudLanguageCode,
+                            ),
                             icon: const Icon(AppIcons.listen),
                             label: Text(l10n.kidsStoryReaderListenAction),
                           ),
@@ -170,7 +172,12 @@ class _KidsStoryReaderPageState extends ConsumerState<KidsStoryReaderPage> {
             largeType: band == KidsAgeBand.early,
             refrainLine: refrain,
             speakingLineId: readAloud.speakingId,
-            onLineTap: canHear ? (line) => voice.speak(line) : null,
+            onLineTap: canHear
+                ? (line) => voice.speak(
+                    line,
+                    languageCode: story.readAloudLanguageCode,
+                  )
+                : null,
             onTryIt: page.spread?.tryItRoute == null
                 ? null
                 : () => context.push(page.spread!.tryItRoute!),

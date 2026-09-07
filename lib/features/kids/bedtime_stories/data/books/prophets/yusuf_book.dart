@@ -50,6 +50,82 @@ final BedtimeStorySeed yusufBook = kidsPictureBook(
     'story_prophet_yunus_bedtime_v1',
     'story_prophet_muhammad_part4_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Yusuf und der Traum',
+    shortTitle: 'Prophet Yusuf',
+    summary:
+        'Von einem Brunnen ins Gefängnis und in die Vorratshäuser des Königs: Yusuf bleibt geduldig und ehrlich, und Allahs Plan wird wahr.',
+    lesson:
+        'Sei geduldig und ehrlich, und vergib. Allah ist mit dir in schweren und in guten Zeiten.',
+    refrain: 'Allah war mit Yusuf.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah ist mit dir, im Dunkeln und im Licht. Gute Nacht.',
+    spreads: [
+      [
+        'Prophet Yusuf, Friede sei mit ihm, war ein Junge mit einem Traum.',
+        'Elf Sterne, die Sonne und der Mond verbeugten sich.',
+      ],
+      [
+        '„Erzähl es niemandem“, sagte sein Vater Yaqub, der auch ein Prophet war.',
+        '„Allah hat dich für etwas ausgewählt.“',
+      ],
+      [
+        'Yusufs Brüder waren eifersüchtig.',
+        'Sie brachten ihn weit weg und warfen ihn in einen tiefen, dunklen Brunnen.',
+      ],
+      [
+        'Yusuf war allein ganz unten.',
+        'Aber nicht wirklich allein.',
+        'Allah war mit Yusuf.',
+      ],
+      [
+        'Eine Karawane hielt an, um Wasser zu holen. Der Eimer ging hinunter.',
+        'Und Yusuf kam herauf!',
+        'Sie nahmen ihn mit nach Ägypten.',
+      ],
+      [
+        'Yusuf wuchs im Haus eines reichen Mannes auf, weit weg von zu Hause.',
+        'Er blieb ehrlich und gütig.',
+      ],
+      [
+        'Eines Tages gab man ihm die Schuld für etwas, das er nicht getan hatte.',
+        'Sie steckten ihn ins Gefängnis.',
+      ],
+      [
+        'Sogar im Gefängnis half Yusuf den Menschen.',
+        'Allah lehrte ihn, was Träume bedeuten.',
+        'Allah war mit Yusuf.',
+      ],
+      [
+        'Der König hatte einen Traum.',
+        'Sieben dünne Kühe fraßen sieben fette Kühe.',
+        'Niemand konnte ihn erklären.',
+      ],
+      [
+        'Yusuf konnte es.',
+        '„Sieben gute Jahre, dann sieben hungrige Jahre“, sagte er.',
+        '„Spart das Korn auf!“',
+      ],
+      [
+        'Der König machte Yusuf zum Hüter über alles Essen in Ägypten.',
+        'Die hungrigen Jahre kamen, und es war genug da.',
+      ],
+      [
+        'Dann kamen seine Brüder, hungrig, von weit her.',
+        'Sie erkannten ihn nicht. Yusuf erkannte sie.',
+      ],
+      [
+        'Yusuf vergab ihnen.',
+        'Seine ganze Familie kam nach Ägypten, und sie verbeugten sich.',
+        'Der Traum war wahr geworden.',
+      ],
+      [
+        'In einem Brunnen, im Gefängnis, in einem Palast:',
+        'Allah war mit Yusuf.',
+        'Und Allah ist mit dir.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

@@ -49,6 +49,83 @@ final BedtimeStorySeed yunusBook = kidsPictureBook(
     'story_prophet_yusuf_bedtime_v1',
     'story_prophet_muhammad_part3_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Yunus und der große Fisch',
+    shortTitle: 'Prophet Yunus',
+    summary:
+        'Yunus verlässt seine Stadt zu früh, wird von einem großen Fisch '
+        'verschluckt und ruft aus dem Dunkeln zu Allah.',
+    lesson:
+        'Wenn du einen Fehler machst, kehr zu Allah zurück. Allah hört zu '
+        'und vergibt.',
+    refrain: 'Allah hört immer.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah hört dich im Meer, im Dunkeln und in '
+        'deinem Bett. Gute Nacht.',
+    spreads: [
+      [
+        'Allah schickte den Propheten Yunus, Friede sei mit ihm, in eine große Stadt.',
+        '„Betet Allah allein an“, sagte er den Menschen.',
+      ],
+      [
+        'Die Menschen hörten nicht zu.',
+        'Yunus sagte es noch einmal. Und noch einmal.',
+        'Sie hörten immer noch nicht zu.',
+      ],
+      [
+        'Yunus wurde müde und traurig.',
+        'Er verließ die Stadt, ohne auf Allahs Befehl zu warten.',
+      ],
+      [
+        'Er stieg auf ein Schiff.',
+        'Das Meer war ruhig und der Himmel blau.',
+        'Dann begann der Wind zu wehen.',
+      ],
+      [
+        'Die Wellen wurden hoch. Das Schiff schaukelte und knarrte.',
+        'Es war zu schwer.',
+        'Jemand musste ins Meer springen.',
+      ],
+      [
+        'Die Seeleute zogen Lose.',
+        'Yunus’ Name kam heraus. Sie zogen noch einmal. Yunus.',
+        'Und noch einmal. Yunus.',
+      ],
+      [
+        'Yunus sprang ins dunkle Wasser.',
+        'Ein großer Fisch öffnete sein Maul und verschluckte ihn ganz.',
+      ],
+      [
+        'Dunkel im Fisch.',
+        'Dunkel im Meer. Dunkel in der Nacht.',
+        'Aber Allah hört immer.',
+      ],
+      [
+        'Yunus rief:',
+        'Es gibt keinen Gott außer Dir. Gepriesen bist Du.',
+        'Ich habe Unrecht getan.',
+      ],
+      [
+        'Allah hörte ihn. Allah hört immer.',
+        'Der Fisch schwamm zum Ufer und legte Yunus sanft in den Sand.',
+      ],
+      [
+        'Yunus war schwach.',
+        'Allah ließ eine Pflanze mit großen Blättern über ihm wachsen,',
+        'die ihm Schatten gab, bis er wieder stark war.',
+      ],
+      [
+        'Dann ging Yunus zurück in seine Stadt.',
+        'Diesmal glaubten die Menschen.',
+        'Alle.',
+      ],
+      [
+        'Wenn du an einem dunklen Ort bist, mach es wie Yunus.',
+        'Ruf zu Allah.',
+        'Allah hört immer.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

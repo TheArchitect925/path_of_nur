@@ -42,6 +42,59 @@ final BedtimeStorySeed zakariyaYahyaBook = kidsPictureBook(
     'story_prophet_isa_bedtime_v1',
     'story_prophet_yunus_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Zakariyas Gebet und Yahya',
+    shortTitle: 'Zakariya und Yahya',
+    summary:
+        'Das geflüsterte Gebet eines alten Mannes, ein Zeichen von drei stillen Nächten und ein sanfter Junge namens Yahya.',
+    lesson:
+        'Allah hört jedes Gebet, sogar ein Flüstern. Bitte Ihn, und sei sanft wie Yahya.',
+    refrain: 'Allah hört ein leises Gebet.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Zakariya flüsterte, und Allah hörte. Flüster, und Er hört dich. Gute Nacht.',
+    spreads: [
+      [
+        'Prophet Zakariya, Friede sei mit ihm, war alt, und sein Haar war weiß.',
+        'Er hatte keine Kinder.',
+      ],
+      [
+        'Er kümmerte sich um Maryam im Mihrab.',
+        'Wenn er sie besuchte, fand er Früchte, die niemand gebracht hatte.',
+      ],
+      [
+        '„Allah gibt, wem Er will“, sagte Maryam.',
+        'Da betete Zakariya, ganz leise.',
+      ],
+      [
+        '„Mein Herr, meine Knochen sind schwach und mein Haar ist weiß. Schenk mir einen Sohn.“',
+        'Allah hört ein leises Gebet.',
+      ],
+      [
+        'Die Engel riefen: Allah schenkt dir einen Jungen, Yahya.',
+        'Einen Namen, den vorher niemand hatte.',
+      ],
+      [
+        '„Wie, wo ich doch so alt bin?“, fragte Zakariya.',
+        '„Für Allah ist es leicht“, kam die Antwort.',
+      ],
+      [
+        '„Dein Zeichen: Drei Nächte lang wirst du nicht sprechen.“',
+        'Also dankte er Allah mit seinen Händen, nicht mit seiner Stimme.',
+      ],
+      [
+        'Yahya, Friede sei mit ihm, wurde geboren.',
+        'Allah gab ihm Weisheit, als er noch ein Junge war.',
+      ],
+      [
+        'Yahya war sanft und gut zu seinen Eltern, und gut zu jedem Geschöpf.',
+        'Allah hört ein leises Gebet.',
+      ],
+      [
+        'Flüster heute Nacht dein Bittgebet, wie Zakariya.',
+        'Allah hört ein leises Gebet.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

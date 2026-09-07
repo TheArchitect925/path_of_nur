@@ -43,6 +43,53 @@ final BedtimeStorySeed sharingBook = kidsPictureBook(
     'book_first_steps_five_pillars_v1',
     'story_sharing_with_others_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Teilen, was Allah gab',
+    shortTitle: 'Teilen',
+    summary:
+        'Aminas zwei Kekse, das Samenkorn, aus dem hundert Körner werden, und warum Geben dich nie ärmer macht.',
+    lesson:
+        'Teile, was Allah dir gab. Zakat für die Großen, Sadaqa für alle, und jede gute Tat zählt.',
+    refrain: 'Teilen lässt es wachsen.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Jede gute Tat von heute wächst. Gute Nacht.',
+    spreads: [
+      ['Amina hatte zwei Kekse.', 'Zayn hatte keinen. Amina dachte nach.'],
+      [
+        'Dann gab sie ihm einen. Jetzt hatten beide einen.',
+        'Und zwei Lächeln statt einem.',
+      ],
+      [
+        'Alles, was wir haben, hat Allah uns gegeben.',
+        'Unser Essen, unsere Spielsachen, unsere Münzen. Allah bittet uns, etwas davon zu teilen.',
+      ],
+      [
+        'Erwachsene geben jedes Jahr Zakat, für Menschen in Not.',
+        'Kinder können Sadaqa geben: alles, jederzeit.',
+      ],
+      [
+        'Allah sagt, Geben ist wie ein Samenkorn pflanzen.',
+        'Aus einem Korn wachsen sieben Ähren, und jede Ähre trägt hundert Körner.',
+      ],
+      ['Teilen lässt es wachsen.'],
+      [
+        'Der Prophet ﷺ sagte: Geben macht dich nie ärmer.',
+        'Teilen lässt es wachsen.',
+      ],
+      [
+        'Der Prophet ﷺ sagte: Jede gute Tat ist Sadaqa.',
+        'Ein Lächeln. Ein freundliches Wort. Eine helfende Hand.',
+      ],
+      [
+        'Aminas Keks war klein. Ihre Sadaqa war groß.',
+        'Teilen lässt es wachsen.',
+      ],
+      [
+        'Was kannst du heute teilen?',
+        'Zakat ist eine der fünf Säulen. Schauen wir uns das Haus noch mal an.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Amina had two biscuits.',

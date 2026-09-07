@@ -35,6 +35,52 @@ final BedtimeStorySeed cowBook = kidsPictureBook(
     'story_prophet_musa_bedtime_v1',
     'story_prophet_harun_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Die Kuh der Kinder Israels',
+    shortTitle: 'Die Kuh',
+    summary:
+        'Ein einfacher Befehl, Frage um Frage und die gelbe Kuh, die sie endlich fanden.',
+    lesson:
+        'Wenn Allah etwas verlangt, tu es, und mach es nicht mit Ausreden schwerer.',
+    refrain: 'Tu einfach, was Allah sagt.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Einfache Dinge sind einfach, wenn wir sie einfach tun. Gute Nacht.',
+    spreads: [
+      [
+        'Vor langer Zeit wurde in Musas Stadt jemand verletzt, und niemand wusste, wer es war.',
+        'Jeder beschuldigte jeden.',
+      ],
+      [
+        'Allah sagte zu Musa: „Sag ihnen, sie sollen eine Kuh opfern.“',
+        'Irgendeine Kuh. So einfach war das.',
+      ],
+      [
+        'Aber die Leute fragten: „Was für eine Kuh? Wie alt?“',
+        'Allah sagte: nicht alt, nicht jung, dazwischen.',
+      ],
+      [
+        '„Welche Farbe?“, fragten sie.',
+        '„Leuchtend gelb“, sagte Allah, „eine Kuh, die jeden erfreut, der sie sieht.“',
+      ],
+      [
+        '„Welche gelbe Kuh?“, fragten sie. Noch mehr Fragen!',
+        '„Eine, die nie auf dem Feld gearbeitet hat und keine Flecken hat.“',
+      ],
+      [
+        'Endlich fanden sie sie, und sie taten, was Allah gesagt hatte.',
+        'All das Fragen hatte es schwer gemacht.',
+      ],
+      [
+        'Dann zeigte Allah ihnen die Wahrheit über den Mann, der verletzt worden war.',
+        'Tu einfach, was Allah sagt.',
+      ],
+      ['Die erste Kuh hätte gereicht.', 'Tu einfach, was Allah sagt.'],
+      [
+        'Wenn Allah etwas Kleines von dir verlangt, tu es sofort.',
+        'Tu einfach, was Allah sagt.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

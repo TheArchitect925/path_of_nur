@@ -42,6 +42,53 @@ final BedtimeStorySeed quranBook = kidsPictureBook(
     'story_prophet_muhammad_part2_bedtime_v1',
     'book_first_steps_what_we_believe_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Allahs eigene Worte',
+    shortTitle: 'Der Quran',
+    summary:
+        'Das besonderste Buch im Haus: woher es kam, warum es sich nie verändert hat und wie Safa darin liest.',
+    lesson:
+        'Der Quran sind Allahs eigene Worte. Lies ihn, lern ihn und lass ihn dich leiten.',
+    refrain: 'Allahs eigene Worte.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allahs Worte liegen im Regal und warten morgen auf dich. Gute Nacht.',
+    spreads: [
+      [
+        'Im Regal, in ein Tuch gehüllt, liegt das besonderste Buch im Haus.',
+        'Der Quran.',
+      ],
+      [
+        'Er ist nicht wie andere Bücher. Niemand hat ihn geschrieben.',
+        'Allah hat ihn gesandt, Wort für Wort. Allahs eigene Worte.',
+      ],
+      [
+        'Der Engel Dschibril brachte ihn dem Propheten ﷺ in einer Höhle.',
+        'Das erste Wort war: Lies.',
+      ],
+      [
+        'Er kam über dreiundzwanzig Jahre, Stück für Stück.',
+        'Der Prophet ﷺ lehrte jeden Teil seine Freunde.',
+      ],
+      [
+        'Heute ist der Quran genau so wie damals.',
+        'Kein einziges Wort hat sich verändert.',
+      ],
+      [
+        'Safa liest jeden Tag ein bisschen, mit dem Finger unter der Zeile.',
+        'Zayn hört zu und spricht die Worte nach.',
+      ],
+      [
+        'Der Prophet ﷺ sagte: Die Besten von euch lernen den Quran und lehren ihn.',
+        'Allahs eigene Worte.',
+      ],
+      [
+        'Manche Kinder lernen den ganzen Quran auswendig.',
+        'Eine Sure nach der anderen, angefangen mit den kurzen.',
+      ],
+      ['Wenn du ihn liest, spricht Allah zu dir.', 'Allahs eigene Worte.'],
+      ['Öffnen wir zusammen eine kurze Sure.', 'Fang mit al-Fatiha an.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'On the shelf, wrapped in a cloth, is the most special book in the house.',

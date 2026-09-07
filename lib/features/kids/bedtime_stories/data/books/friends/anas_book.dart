@@ -42,6 +42,59 @@ final BedtimeStorySeed anasBook = kidsPictureBook(
     'story_helping_parents_v1',
     'story_companion_fatimah_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Anas, der Junge, der half',
+    shortTitle: 'Anas',
+    summary:
+        'Ein zehnjähriger Helfer, ein Botengang, der zum Spiel wurde, und die sanfteste Hand auf seiner Schulter.',
+    lesson:
+        'Güte lehrt mehr als Schimpfen. Sei geduldig mit Menschen, die langsam sind oder Fehler machen.',
+    refrain: 'Er sagte nie uff.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Wer dir heute geholfen hat und wem du geholfen hast, Allah hat es gesehen. Gute Nacht.',
+    spreads: [
+      [
+        'Als der Prophet ﷺ nach Medina kam, brachte eine Mutter ihren Sohn.',
+        '„Das ist Anas. Lass ihn dir helfen.“',
+      ],
+      [
+        'Anas war zehn Jahre alt.',
+        'Von dem Tag an machte er Botengänge, trug Wasser und öffnete die Tür.',
+      ],
+      [
+        'Manchmal machte Anas etwas falsch. Manchmal war er langsam.',
+        'Er sagte nie uff.',
+      ],
+      [
+        'Eines Tages wurde Anas losgeschickt und sah Jungen spielen.',
+        'Er blieb stehen und spielte mit.',
+      ],
+      [
+        'Eine sanfte Hand berührte seine Schulter. Der Prophet ﷺ lächelte.',
+        '„Anas, bist du dahin gegangen, wo ich dich hingeschickt habe?“',
+      ],
+      [
+        '„Ich gehe jetzt, o Gesandter Allahs!“',
+        'Kein Schreien. Kein Ärger. Er sagte nie uff.',
+      ],
+      [
+        'Zehn Jahre diente Anas ihm. „Er fragte mich nie, warum ich etwas getan hatte“,',
+        '„oder warum nicht.“',
+      ],
+      [
+        'Der Prophet ﷺ betete für Anas: ein langes Leben, viele Kinder und das Paradies.',
+        'Alles davon wurde wahr.',
+      ],
+      [
+        'Anas wurde alt und erzählte der Welt, was er gesehen hatte.',
+        'Güte lehrte ihn mehr, als Schimpfen je gekonnt hätte.',
+      ],
+      [
+        'Wenn jemand langsam ist oder Fehler macht, mach es wie er.',
+        'Er sagte nie uff.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'When the Prophet ﷺ came to Madinah, a mother brought her son.',

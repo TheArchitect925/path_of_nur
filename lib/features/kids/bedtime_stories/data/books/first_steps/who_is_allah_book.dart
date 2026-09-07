@@ -36,6 +36,57 @@ final BedtimeStorySeed whoIsAllahBook = kidsPictureBook(
   bedtimeEligible: false,
   coverAssetPath: 'assets/images/kids_books/covers/who_is_allah_cover.webp',
   relatedStoryIds: const ['book_first_steps_shahada_v1'],
+  de: const KidsBookTranslation(
+    title: 'Wer ist Allah?',
+    shortTitle: 'Wer ist Allah?',
+    summary:
+        'Zayn fragt, wer die Sonne gemacht hat, und Safa weiß es: Allah, der alles gemacht hat und der nie schläft.',
+    lesson:
+        'Allah ist Einer. Er hat alles gemacht, Er sieht alles, und Er liebt dich.',
+    refrain: 'Allah hat alles gemacht.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah schläft nicht, also kannst du schlafen. Gute Nacht.',
+    spreads: [
+      [
+        '„Wer hat die Sonne gemacht?“, fragte Zayn.',
+        '„Allah hat sie gemacht“, sagte Safa. „Und den Mond. Und die Sterne.“',
+      ],
+      [
+        'Allah hat das Meer und die Berge gemacht.',
+        'Die Vögel, die Blumen, die Katze von nebenan.',
+        'Allah hat alles gemacht.',
+      ],
+      [
+        'Allah hat auch dich gemacht. Deine Augen, deine Hände, dein Herz.',
+        'Und Allah hat deine Mutter und deinen Vater gemacht.',
+      ],
+      ['Allah ist Einer.', 'Niemand ist wie Er, und Er braucht niemanden.'],
+      [
+        'Allah schläft nicht und wird nicht müde.',
+        'Tag und Nacht kümmert Er sich um alles.',
+      ],
+      [
+        'Allah sieht dich, wenn niemand sonst dich sieht.',
+        'Im Dunkeln, im Flüstern, in deinem Herzen.',
+      ],
+      [
+        'Allah liebt dich.',
+        'Er hat dir alles gegeben, was du hast, und Er vergibt, wenn du Entschuldigung sagst.',
+      ],
+      [
+        'Allah hat schöne Namen.',
+        'Der Barmherzige. Der Gütige. Der Hörende. Der Sehende.',
+      ],
+      [
+        'Schau heute Nacht nach oben und zähl die Sterne.',
+        'Allah hat alles gemacht.',
+      ],
+      [
+        'Sag es mit mir: Allah hat alles gemacht.',
+        'Und jetzt lernen wir ein paar Seiner schönen Namen.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       '"Who made the sun?" asked Zayn.',

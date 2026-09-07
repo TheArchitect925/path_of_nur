@@ -45,6 +45,56 @@ final BedtimeStorySeed harunBook = kidsPictureBook(
     'story_prophet_musa_bedtime_v1',
     'story_helping_parents_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Harun, der Bruder, der half',
+    shortTitle: 'Prophet Harun',
+    summary:
+        'Musas großer Bruder, der für ihn sprach, ihm zur Seite stand und sich um das Volk kümmerte, als er fort war.',
+    lesson:
+        'Hilf den Menschen, die du liebst, sprich freundlich und sei jemand, auf den andere sich stützen können.',
+    refrain: 'Brüder helfen einander.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah gab Musa einen Bruder, und Allah gibt dir Menschen, die helfen. Gute Nacht.',
+    spreads: [
+      [
+        'Musa hatte einen großen Bruder namens Harun, Friede sei mit ihnen beiden.',
+        'Harun sprach klar und ruhig.',
+      ],
+      [
+        'Als Allah Musa zu Firaun schickte, bat Musa:',
+        '„Schick meinen Bruder Harun mit mir. Er spricht besser als ich.“',
+      ],
+      [
+        'Allah sagte ja.',
+        '„Ich mache dich stark durch deinen Bruder.“ Brüder helfen einander.',
+      ],
+      [
+        'Zusammen gingen sie in den Palast von Firaun.',
+        'Zwei Brüder, eine Botschaft: Lass unser Volk gehen.',
+      ],
+      [
+        'Harun stand an jedem schweren Tag neben Musa.',
+        'Brüder helfen einander.',
+      ],
+      [
+        'Als sich das Meer geöffnet hatte, ging Musa auf den Berg, um mit Allah zu sprechen.',
+        'Harun blieb und kümmerte sich um das Volk.',
+      ],
+      [
+        'Während Musa fort war, machten manche Leute ein Kalb aus Gold.',
+        'Sie verbeugten sich davor.',
+      ],
+      [
+        'Harun sagte ihnen: Das ist eine Prüfung! Euer Herr ist Allah. Folgt mir.',
+        'Aber sie wollten nicht hören.',
+      ],
+      [
+        'Als Musa zurückkam, war er wütend.',
+        'Harun sagte: Mein Bruder, gib nicht mir die Schuld. Ich habe es versucht.',
+      ],
+      ['Musa betete: Vergib mir und meinem Bruder.', 'Brüder helfen einander.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

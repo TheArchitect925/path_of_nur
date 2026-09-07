@@ -46,6 +46,42 @@ final BedtimeStorySeed sorryBook = kidsPictureBook(
   relatedStoryIds: const ['story_telling_the_truth_v1', 'story_patience_v1'],
   quizRefs: const ['quiz_story_saying_sorry_and_forgiving_v1'],
   memoryRefs: const ['memory_story_saying_sorry_and_forgiving_v1'],
+  de: const KidsBookTranslation(
+    title: 'Der Turm, der umfiel',
+    shortTitle: 'Entschuldigen und verzeihen',
+    summary:
+        'Ein Turm aus Bauklötzen, ein Rums, heiße Wangen und die zwei kleinen Sätze, die ihn wieder aufbauten.',
+    lesson:
+        'Sich zu entschuldigen und einander zu verzeihen bringt Herzen wieder zusammen.',
+    refrain: 'Ich verzeihe dir.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Wenn noch etwas schwer ist, sag im Herzen Entschuldigung, und verzeih. Gute Nacht.',
+    spreads: [
+      [
+        'Safa baute einen Turm aus Klötzen. Hoch. Höher. Am höchsten.',
+        'Zayn kam angerannt.',
+      ],
+      ['Rums! Der Turm fiel um, alles auf einmal.', 'Safas Gesicht fiel auch.'],
+      ['Zayn wollte weglaufen. Seine Wangen wurden heiß.'],
+      [
+        'Aber ihm fiel etwas Besseres ein als Weglaufen.',
+        '„Es tut mir leid, Safa“, sagte er.',
+      ],
+      ['Er hob einen Klotz auf. Dann noch einen. Und noch einen.'],
+      ['Safa schaute ihm zu. Dann lächelte sie. „Ich verzeihe dir.“'],
+      [
+        'Allah sagt: Verzeiht und lasst los. Wollt ihr nicht, dass Allah euch verzeiht?',
+      ],
+      [
+        'Zusammen bauten sie den Turm wieder auf, höher als vorher.',
+        'Entschuldigung, und dann: Ich verzeihe dir.',
+      ],
+      [
+        'Entschuldigung ist ein kleines Wort, das große Dinge repariert.',
+        'Und genauso: Ich verzeihe dir.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Safa built a tower of blocks. Tall. Taller. Tallest.',

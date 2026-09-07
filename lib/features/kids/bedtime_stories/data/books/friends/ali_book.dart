@@ -38,6 +38,59 @@ final BedtimeStorySeed aliBook = kidsPictureBook(
     'story_companion_abu_bakr_friendship_v1',
     'story_prophet_muhammad_part3_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Ali schläft im Bett des Propheten ﷺ',
+    shortTitle: 'Ali',
+    summary:
+        'Ein grüner Umhang, eine Nacht voller Gefahr und der mutige Junge, der sich ins Bett seines Cousins legte.',
+    lesson:
+        'Das Richtige zu tun kann unheimlich sein. Vertrau Allah und tu es trotzdem.',
+    refrain: 'Ali hatte keine Angst.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu, zieh die Decke hoch und ruh dich aus wie Ali. Allah behütet dich. Gute Nacht.',
+    spreads: [
+      [
+        'Ali wuchs im Haus des Propheten ﷺ auf.',
+        'Er war der erste Junge, der glaubte.',
+      ],
+      [
+        'Eines Nachts musste der Prophet ﷺ Mekka heimlich verlassen.',
+        'Böse Männer kamen zu seiner Tür.',
+      ],
+      [
+        '„Ali, schlaf heute Nacht in meinem Bett“, sagte er, „unter meinem grünen Umhang.“',
+        '„Niemand wird dir etwas tun.“',
+      ],
+      [
+        'Ali legte sich hin und zog den Umhang hoch.',
+        'Draußen warteten die Männer mit Schwertern.',
+      ],
+      [
+        'Ali hatte keine Angst.',
+        'Er vertraute Allah, und er vertraute dem Wort seines Cousins.',
+      ],
+      [
+        'Am Morgen stürmten die Männer herein. Es war Ali!',
+        'Der Prophet ﷺ war schon weit weg.',
+      ],
+      [
+        'Ali blieb noch drei Tage.',
+        'Er gab alles zurück, was die Leute dem Propheten ﷺ zur Aufbewahrung gegeben hatten.',
+      ],
+      [
+        'Dann ging er allein nach Medina, den ganzen Weg.',
+        'Ali hatte keine Angst.',
+      ],
+      [
+        'Der Prophet ﷺ sagte ihm: „Du bist für mich wie Harun für Musa.“',
+        'Später führte Ali die Muslime.',
+      ],
+      [
+        'Wenn eine gute Tat unheimlich ist, denk an den Jungen unter dem Umhang.',
+        'Ali hatte keine Angst.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Ali grew up in the Prophet’s ﷺ own home.',

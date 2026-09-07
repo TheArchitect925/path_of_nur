@@ -42,6 +42,64 @@ final BedtimeStorySeed ibrahimBook = kidsPictureBook(
     'story_prophet_ismail_bedtime_v1',
     'story_prophet_adam_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Ibrahim und das kühle Feuer',
+    shortTitle: 'Prophet Ibrahim',
+    summary:
+        'Ein Junge, der fragte, wer die Sterne gemacht hat, und ein Feuer, das Allah kühl machte.',
+    lesson:
+        'Steh immer für die Wahrheit ein. Allah beschützt die, die an Ihn glauben.',
+    refrain: 'Allah hat sie alle gemacht.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Das Feuer war kühl für Ibrahim, und Allah beschützt dich. Gute Nacht.',
+    spreads: [
+      [
+        'Prophet Ibrahim, Friede sei mit ihm, wuchs in einer Stadt voller Statuen auf.',
+        'Die Leute verbeugten sich vor Stein, den sie selbst geschnitzt hatten.',
+      ],
+      [
+        'Ibrahim schaute zum Himmel und wunderte sich.',
+        'Wer hat das alles gemacht?',
+      ],
+      [
+        'Nachts sah er einen hellen Stern.',
+        '„Ist das mein Herr?“ Aber der Stern ging weg.',
+      ],
+      [
+        'Dann ging der Mond auf, groß und schön.',
+        '„Ist das mein Herr?“ Aber auch der Mond ging weg.',
+      ],
+      [
+        'Am Morgen kam die Sonne, strahlend.',
+        '„Das muss mein Herr sein!“ Aber die Sonne ging unter.',
+      ],
+      [
+        '„Ich bete nichts an, das weggeht“, sagte Ibrahim.',
+        '„Allah hat sie alle gemacht.“',
+      ],
+      [
+        'Ibrahim sagte seinem Volk: Statuen können euch nicht hören und nicht helfen.',
+        'Allah hat sie alle gemacht.',
+      ],
+      [
+        'Eines Tages zerbrach er die Statuen, alle außer der größten.',
+        '„Fragt die große, was passiert ist!“',
+      ],
+      [
+        'Die Leute waren wütend.',
+        'Sie machten ein riesiges Feuer und warfen Ibrahim hinein.',
+      ],
+      [
+        'Allah sagte: „O Feuer, sei kühl und sicher für Ibrahim.“',
+        'Und das Feuer verbrannte ihn nicht.',
+      ],
+      [
+        'Ibrahim ging aus dem Feuer, unversehrt.',
+        'Die Leute hatten die Wahrheit mit eigenen Augen gesehen.',
+      ],
+      ['Ibrahim wurde der Freund Allahs.', 'Allah hat sie alle gemacht.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

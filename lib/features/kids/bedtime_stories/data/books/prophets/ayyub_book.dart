@@ -44,6 +44,56 @@ final BedtimeStorySeed ayyubBook = kidsPictureBook(
     'story_prophet_yusuf_bedtime_v1',
     'story_patience_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Ayyub, der Geduldige',
+    shortTitle: 'Prophet Ayyub',
+    summary:
+        'Ein Mann, der alles verlor und dankbar blieb, und die kühle Quelle, die Allah ihm gab.',
+    lesson:
+        'Sei geduldig in schweren Zeiten und dankbar in guten. Allahs Hilfe kommt immer.',
+    refrain: 'geduldig und dankbar.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Schwere Tage gehen vorbei, und Allahs Hilfe kommt. Gute Nacht.',
+    spreads: [
+      [
+        'Prophet Ayyub, Friede sei mit ihm, hatte alles.',
+        'Eine große Familie, grüne Felder, viele Tiere und Gesundheit.',
+      ],
+      ['Und er dankte Allah für all das.', 'Jeden einzelnen Tag.'],
+      [
+        'Dann kamen schwere Zeiten.',
+        'Seine Tiere starben. Seine Felder vertrockneten. Seine Kinder waren fort.',
+      ],
+      [
+        'Dann wurde Ayyub sehr krank, für eine lange, lange Zeit.',
+        'Aber er blieb geduldig und dankbar.',
+      ],
+      [
+        'Er sagte nie: Warum ich?',
+        'Er sagte: Mein Herr, Not hat mich berührt, und Du bist der Barmherzigste.',
+      ],
+      [
+        'Seine Frau blieb bei ihm und pflegte ihn.',
+        'Auch sie war geduldig und dankbar.',
+      ],
+      [
+        'Allah erhörte ihn.',
+        '„Stampf mit dem Fuß auf den Boden“, sagte Allah. „Hier ist kühles Wasser zum Waschen und Trinken.“',
+      ],
+      [
+        'Ayyub wusch sich in der Quelle, und er war wieder gesund.',
+        'Allah gab ihm seine Familie zurück, und noch mehr.',
+      ],
+      [
+        'Allah sagt über Ayyub: Wir fanden ihn geduldig. Was für ein guter Diener!',
+        'Er war geduldig und dankbar.',
+      ],
+      [
+        'Wenn du krank oder traurig bist, denk an Ayyub.',
+        'Sei geduldig und dankbar, und warte auf Allahs Hilfe.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Prophet Ayyub, peace be upon him, had everything.',

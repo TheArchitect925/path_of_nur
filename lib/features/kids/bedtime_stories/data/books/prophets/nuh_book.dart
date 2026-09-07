@@ -49,6 +49,73 @@ final BedtimeStorySeed nuhBook = kidsPictureBook(
     'story_prophet_adam_bedtime_v1',
     'story_prophet_ibrahim_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Nuh und das Schiff',
+    shortTitle: 'Prophet Nuh',
+    summary:
+        'Nuh baut ein Schiff auf trockenem Land, weil Allah es ihm sagte, und die Flut gibt ihm recht.',
+    lesson:
+        'Tu weiter das Richtige, auch wenn die Leute lachen. Allah hilft denen, die Ihm gehorchen und weitermachen.',
+    refrain: 'Allah sagte ihm, was zu tun war, und Nuh tat es.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Der Regen hat aufgehört, das Schiff ruht, und du bist sicher. Gute Nacht.',
+    spreads: [
+      [
+        'Lange nach Adam vergaßen die Menschen Allah.',
+        'Sie verbeugten sich vor Statuen, die sie mit eigenen Händen gemacht hatten.',
+      ],
+      [
+        'Allah schickte ihnen den Propheten Nuh, Friede sei mit ihm.',
+        '„Betet Allah allein an“, sagte er. „Er hat euch gemacht.“',
+      ],
+      [
+        'Nuh sprach am Tag. Nuh sprach in der Nacht.',
+        'Jahr um Jahr um Jahr.',
+        'Die meisten Leute lachten über ihn.',
+      ],
+      [
+        'Nuh hörte nicht auf.',
+        'Allah sagte ihm, was zu tun war, und Nuh tat es.',
+      ],
+      [
+        'Dann sagte Allah Nuh, er solle ein Schiff bauen.',
+        'Ein großes Schiff aus Brettern und Nägeln,',
+        'weit weg von jedem Wasser.',
+      ],
+      [
+        'Die Leute lachten noch lauter. Ein Schiff auf trockenem Land!',
+        'Aber Nuh hämmerte und sägte und baute.',
+      ],
+      [
+        '„Bring von jedem Tier zwei“, sagte Allah.',
+        'Zwei Schafe, zwei Vögel, zwei von allem.',
+      ],
+      [
+        'Die Planke hinauf gingen sie, immer zu zweit.',
+        'Allah sagte ihm, was zu tun war, und Nuh tat es.',
+      ],
+      [
+        'Der Regen begann. Die Quellen brachen aus dem Boden.',
+        'Das Wasser stieg und stieg und stieg.',
+      ],
+      [
+        'Das Schiff schwamm auf Wellen so hoch wie Berge.',
+        'Drinnen waren Nuhs Familie und die Tiere in Sicherheit.',
+      ],
+      [
+        'Dann sagte Allah: O Erde, schluck dein Wasser. O Himmel, halt ein.',
+        'Und die Flut hörte auf.',
+      ],
+      [
+        'Das Schiff kam auf einem Berg namens Dschudi zur Ruhe.',
+        'Nuh trat hinaus in eine saubere neue Welt.',
+      ],
+      [
+        'Mach weiter wie Nuh, auch wenn die Leute lachen.',
+        'Allah sagte ihm, was zu tun war, und Nuh tat es.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

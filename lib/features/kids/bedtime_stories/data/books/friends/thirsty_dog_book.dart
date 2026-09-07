@@ -42,6 +42,48 @@ final BedtimeStorySeed thirstyDogBook = kidsPictureBook(
     'story_kindness_to_animals_v1',
     'story_companion_three_in_cave_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Der Mann und der durstige Hund',
+    shortTitle: 'Der durstige Hund',
+    summary:
+        'Eine heiße Straße, ein tiefer Brunnen, ein hechelnder Hund und ein Schuh voll Wasser, in den Zähnen hinaufgetragen.',
+    lesson: 'Güte zu jedem Lebewesen wird von Allah gesehen und belohnt.',
+    refrain: 'Allah sah seine Güte.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Jede gute Tat von heute hat Allah gesehen. Gute Nacht.',
+    spreads: [
+      [
+        'Der Prophet ﷺ erzählte diese Geschichte.',
+        'Ein Mann ging auf einer heißen Straße, und er war sehr durstig.',
+      ],
+      ['Er fand einen Brunnen. Er stieg hinab, trank und stieg wieder hinauf.'],
+      [
+        'Am Brunnen saß ein Hund und hechelte.',
+        'Seine Zunge hing heraus. Er leckte den nassen Schlamm.',
+      ],
+      ['„Dieser Hund ist so durstig, wie ich es war“, dachte der Mann.'],
+      [
+        'Er stieg noch einmal hinab. Er füllte seinen Schuh mit Wasser.',
+        'Er hielt ihn mit den Zähnen und kletterte hinauf.',
+      ],
+      [
+        'Er gab dem Hund das Wasser, und der Hund trank.',
+        'Allah sah seine Güte.',
+      ],
+      [
+        'Allah dankte dem Mann und vergab ihm alle seine Sünden.',
+        'Allah sah seine Güte.',
+      ],
+      [
+        'Die Freunde fragten: „Bekommen wir auch für Tiere einen Lohn?“',
+        '„Für jedes Lebewesen gibt es einen Lohn.“',
+      ],
+      [
+        'Ein Napf Wasser für eine Katze. Körner für die Vögel.',
+        'Allah sah seine Güte. Er sieht deine.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'The Prophet ﷺ told this story.',

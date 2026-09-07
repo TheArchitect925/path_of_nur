@@ -39,6 +39,59 @@ final BedtimeStorySeed theCallBook = kidsPictureBook(
     'book_first_steps_five_times_a_day_v1',
     'story_companion_bilal_patience_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Der Ruf vom Minarett',
+    shortTitle: 'Der Ruf',
+    summary:
+        'Zayn hört eine Stimme vom Minarett, lernt, was sie sagt, und wer sie zuerst rief.',
+    lesson:
+        'Wenn du den Adhan hörst, halt an, sprich ihn leise nach und geh zum Gebet.',
+    refrain: 'Kommt zum Gebet.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Morgen kommt der Ruf, und du weißt, was er sagt. Gute Nacht.',
+    spreads: [
+      [
+        'Zayn spielte Ball, als er es hörte.',
+        'Eine Stimme vom Minarett, hoch und klar.',
+      ],
+      [
+        'Allahu Akbar! Allah ist der Größte.',
+        'Das ist der Adhan, der Ruf zum Gebet.',
+      ],
+      [
+        'Vor langer Zeit, in Medina, wählte der Prophet ﷺ einen Mann mit einer schönen Stimme.',
+        'Sein Name war Bilal.',
+      ],
+      [
+        'Bilal stieg hoch hinauf und rief: Allahu Akbar!',
+        'Und die Menschen kamen zum Gebet.',
+      ],
+      [
+        'Der Adhan sagt: Es gibt keinen Gott außer Allah.',
+        'Muhammad ist Sein Gesandter. Kommt zum Gebet.',
+      ],
+      [
+        'Kommt zum Erfolg!',
+        'Allah ist der Größte. Es gibt keinen Gott außer Allah.',
+      ],
+      [
+        'Wenn du den Adhan hörst, halt an und hör zu.',
+        'Sprich die Worte leise nach.',
+      ],
+      [
+        'Dann geh. Zayn ließ seinen Ball liegen und ging zur Moschee.',
+        'Kommt zum Gebet.',
+      ],
+      [
+        'Fünfmal am Tag, auf der ganzen Welt, geht der Ruf hinaus.',
+        'Und auf der ganzen Welt kommen die Menschen.',
+      ],
+      [
+        'Wenn du ihn das nächste Mal hörst: halt an, hör zu und geh.',
+        'Kommt zum Gebet. Lernen wir, wie.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Zayn was playing ball when he heard it.',

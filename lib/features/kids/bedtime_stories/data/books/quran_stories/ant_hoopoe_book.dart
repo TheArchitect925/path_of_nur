@@ -40,6 +40,59 @@ final BedtimeStorySeed antHoopoeBook = kidsPictureBook(
     'story_prophet_sulaiman_bedtime_v1',
     'story_kindness_to_animals_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Die Ameise und der Wiedehopf',
+    shortTitle: 'Ameise und Wiedehopf',
+    summary:
+        'Eine winzige Ameise, die ihre Freunde warnte, und ein kleiner Vogel, der die Wahrheit brachte.',
+    lesson:
+        'Niemand ist zu klein, um für Allah wichtig zu sein oder etwas Gutes zu tun.',
+    refrain: 'Auch die Kleinsten zählen.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah hört die Ameise, und Er hört dich. Gute Nacht.',
+    spreads: [
+      [
+        'In einem grünen Tal hörte eine winzige Ameise ein Grollen.',
+        'Ein Heer kam: Sulaymans Heer.',
+      ],
+      [
+        '„Schnell!“, rief sie. „In eure Häuser, sonst werdet ihr zertreten!“',
+        'Die Ameisen rannten.',
+      ],
+      [
+        'Sulayman hörte ihre kleine Stimme und lächelte.',
+        'Dann dankte er Allah, der ihn sie hören ließ.',
+      ],
+      [
+        'Auch die Kleinsten zählen.',
+        'Allah sah die Ameise und schrieb sie in den Quran.',
+      ],
+      [
+        'An einem anderen Tag suchte Sulayman einen kleinen Vogel: den Wiedehopf.',
+        'Er war weg.',
+      ],
+      [
+        'Der Wiedehopf flog zurück mit Neuigkeiten von weit her.',
+        '„Ich habe eine Königin gesehen, deren Volk die Sonne anbetet!“',
+      ],
+      [
+        '„Bring ihnen diesen Brief“, sagte Sulayman.',
+        'Der kleine Vogel trug eine große Botschaft.',
+      ],
+      [
+        'Die Königin las den Brief und kam, um selbst zu sehen.',
+        'Am Ende glaubte sie an Allah.',
+      ],
+      [
+        'Eine winzige Ameise rettete ihr Volk. Ein kleiner Vogel brachte die Wahrheit.',
+        'Auch die Kleinsten zählen.',
+      ],
+      [
+        'Du bist auch klein. Und du kannst große Dinge für Allah tun.',
+        'Auch die Kleinsten zählen.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

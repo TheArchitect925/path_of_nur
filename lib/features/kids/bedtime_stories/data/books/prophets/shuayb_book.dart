@@ -43,6 +43,59 @@ final BedtimeStorySeed shuaybBook = kidsPictureBook(
     'story_prophet_musa_bedtime_v1',
     'story_telling_the_truth_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Shuayb und die ehrliche Waage',
+    shortTitle: 'Prophet Shuayb',
+    summary:
+        'Ein Markt, auf dem betrogen wurde, ein Prophet, der eine ehrliche Waage verlangte, und eine Stadt, die nicht hören wollte.',
+    lesson:
+        'Sei ehrlich in allem, was du gibst und nimmst. Allah liebt die, die gerecht sind.',
+    refrain: 'Wiegt ehrlich ab.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Sei morgen gerecht, und Allah wird zufrieden mit dir sein. Gute Nacht.',
+    spreads: [
+      [
+        'In einer Stadt namens Madyan liebten die Leute ihre Märkte.',
+        'Aber sie betrogen beim Wiegen und Messen.',
+      ],
+      [
+        'Sie gaben weniger, als sie sollten, und nahmen mehr, als sie durften.',
+        'Sie dachten, niemand merkt es.',
+      ],
+      [
+        'Allah schickte ihnen den Propheten Shuayb, Friede sei mit ihm.',
+        '„Betet Allah allein an“, sagte er, „und wiegt ehrlich ab.“',
+      ],
+      [
+        '„Betrügt die Leute nicht um ihre Sachen“, sagte Shuayb.',
+        '„Was Allah euch lässt, ist besser, wenn ihr glaubt.“',
+      ],
+      [
+        'Die reichen Leute lachten.',
+        '„Sagt dir dein Gebet, was wir mit unserem Geld tun dürfen?“',
+      ],
+      [
+        'Shuayb blieb sanft und geduldig.',
+        '„Ich will nur, dass es richtig wird“, sagte er.',
+      ],
+      [
+        'Manche glaubten ihm. Die meisten nicht.',
+        'Sie sagten: Verlass unsere Stadt, Shuayb!',
+      ],
+      [
+        'Dann kam ein großes Beben, und die Stadt der Betrüger wurde still.',
+        'Shuayb und die Gläubigen waren in Sicherheit.',
+      ],
+      [
+        'Gerecht zu sein ist nicht klein. Allah achtet auf jedes Gramm.',
+        'Wiegt ehrlich ab.',
+      ],
+      [
+        'Wenn du teilst, teil gerecht. Wenn du tauschst, tausch gerecht.',
+        'Wiegt ehrlich ab.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

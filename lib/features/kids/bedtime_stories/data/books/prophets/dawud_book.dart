@@ -43,6 +43,60 @@ final BedtimeStorySeed dawudBook = kidsPictureBook(
   backdropAssetPath:
       '$bedtimeStoryImageBackdropAssetDirectory/dawud_backdrop.webp',
   relatedStoryIds: const ['story_prophet_sulaiman_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Dawud und der Riese',
+    shortTitle: 'Prophet Dawud',
+    summary:
+        'Ein kleiner Stein, ein Riese und eine Stimme, mit der die Berge mitsangen.',
+    lesson:
+        'Wahre Stärke kommt vom Vertrauen auf Allah. Sei gerecht, hilfsbereit und nutze deine Gaben für Gutes.',
+    refrain: 'Stärke kommt von Allah.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Der Riese war groß, aber Allah ist größer. Gute Nacht.',
+    spreads: [
+      [
+        'Vor langer Zeit machte ein Riese namens Dschalut allen Angst.',
+        'Er war groß und stark, und sein Heer war noch größer.',
+      ],
+      [
+        'Ein junger Mann namens Dawud, Friede sei mit ihm, hatte keine Angst.',
+        'Er wusste, woher wahre Stärke kommt.',
+      ],
+      [
+        'Dawud nahm nur eine Schleuder und einen kleinen Stein.',
+        'Stärke kommt von Allah.',
+      ],
+      [
+        'Er betete: „Unser Herr, gieß Geduld über uns und mach unsere Füße fest.“',
+        'Dann warf er.',
+      ],
+      ['Ein sorgfältiger Wurf.', 'Mit Allahs Hilfe fiel der Riese.'],
+      [
+        'Allah machte Dawud zum König und zum Propheten.',
+        'Er gab ihm eine Stimme, schöner als jede andere.',
+      ],
+      [
+        'Wenn Dawud Allah pries, priesen die Berge mit ihm.',
+        'Die Vögel kamen und sangen mit.',
+      ],
+      [
+        'Allah machte Eisen in seinen Händen weich, und er machte Rüstungen daraus.',
+        'Er arbeitete mit seinen eigenen Händen.',
+      ],
+      [
+        'Als König hörte er allen zu und urteilte gerecht.',
+        'Stärke kommt von Allah.',
+      ],
+      [
+        'Er war stark, und er war gerecht.',
+        'Und er vergaß nie, Wer ihn stark gemacht hatte.',
+      ],
+      [
+        'Wenn etwas zu groß für dich aussieht, denk an Dawud.',
+        'Stärke kommt von Allah.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

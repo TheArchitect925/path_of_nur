@@ -40,6 +40,57 @@ final BedtimeStorySeed fivePillarsBook = kidsPictureBook(
   isFeatured: true,
   bedtimeEligible: false,
   coverAssetPath: 'assets/images/kids_books/covers/five_pillars_cover.webp',
+  de: const KidsBookTranslation(
+    title: 'Ein Haus mit fünf Säulen',
+    shortTitle: 'Fünf Säulen',
+    summary:
+        'Safas und Zayns Deckenhaus fällt immer wieder um, bis Baba ihnen zeigt, was ein Haus hält und was den Islam hält.',
+    lesson:
+        'Der Islam steht auf fünf Säulen: Schahada, Gebet, Zakat, Fasten im Ramadan und Haddsch. Starke Dinge halten ihn hoch.',
+    refrain: 'Starke Dinge halten es hoch.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Fünf Säulen halten das Haus, und Allah hält dich. Gute Nacht.',
+    spreads: [
+      [
+        'Safa und Zayn bauten ein Haus aus Decken und Kissen.',
+        'Es wackelte. Es fiel um.',
+      ],
+      ['„Es braucht Säulen“, sagte Baba.', '„Starke Dinge halten es hoch.“'],
+      [
+        '„Der Islam ist wie ein Haus“, sagte Baba.',
+        '„Er steht auf fünf Säulen.“',
+      ],
+      [
+        'Die erste Säule sind die Worte, die wir sagen.',
+        'La ilaha illallah, Muhammadur rasulullah.',
+      ],
+      [
+        'Die zweite ist das Gebet, fünfmal am Tag.',
+        'Safa zählte an ihren Fingern. Fünf.',
+      ],
+      [
+        'Die dritte ist die Zakat: teilen, was Allah uns gab.',
+        'Zayn steckte eine Münze in die Dose.',
+      ],
+      [
+        'Die vierte ist der Ramadan, der Monat, in dem wir fasten.',
+        'Warten auf die Dattel bei Sonnenuntergang.',
+      ],
+      [
+        'Die fünfte ist der Haddsch, die große Reise zur Kaaba.',
+        'Einmal, wenn wir können.',
+      ],
+      [
+        'Safa und Zayn bauten das Haus noch einmal. Fünf Kissen darunter.',
+        'Starke Dinge halten es hoch.',
+        'Es stand.',
+      ],
+      [
+        'Der Islam steht auf fünf Säulen. Starke Dinge halten es hoch.',
+        'Und jetzt: Wann ist das nächste Gebet?',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Safa and Zayn built a house of blankets and cushions.',

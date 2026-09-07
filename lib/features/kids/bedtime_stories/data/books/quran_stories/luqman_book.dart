@@ -34,6 +34,56 @@ final BedtimeStorySeed luqmanBook = kidsPictureBook(
   sortOrder: 402,
   coverAssetPath: 'assets/images/kids_books/covers/luqman_cover.webp',
   relatedStoryIds: const ['story_helping_parents_v1', 'story_patience_v1'],
+  de: const KidsBookTranslation(
+    title: 'Luqman spricht mit seinem Sohn',
+    shortTitle: 'Luqman',
+    summary:
+        'Ein weiser Vater, ein Sohn unter einem Baum und der Rat, den Allah im Quran für uns alle aufbewahrt hat.',
+    lesson:
+        'Bete Allah allein an, ehre deine Eltern, bete, sei geduldig und geh sanft.',
+    refrain: 'O mein Sohn.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Geh sanft, sprich leise, und schlaf gut. Gute Nacht.',
+    spreads: [
+      [
+        'Luqman war ein weiser Mann. Allah hatte ihm Weisheit geschenkt.',
+        'Eines Tages saß er mit seinem Sohn unter einem Baum.',
+      ],
+      [
+        '„O mein Sohn“, sagte er, „stell niemals etwas Allah gleich.“',
+        '„Allah ist Einer.“',
+      ],
+      [
+        '„Sei gut zu deiner Mutter und deinem Vater.',
+        'Deine Mutter trug dich und wurde schwach, um dir das Leben zu schenken.“',
+      ],
+      [
+        '„O mein Sohn, selbst eine Tat so klein wie ein Senfkorn,',
+        'versteckt in einem Felsen, bringt Allah ans Licht.“',
+      ],
+      [
+        '„Bete. Sag den Menschen, Gutes zu tun. Halt auf, was falsch ist.',
+        'Und sei geduldig, wenn schwere Dinge passieren.“',
+      ],
+      [
+        '„Dreh den Menschen nicht die Wange weg, und geh nicht stolz umher.',
+        'Allah liebt keine Angeber.“',
+      ],
+      [
+        '„Geh sanft. Sprich leise.',
+        'Die lauteste Stimme von allen ist die des Esels.“',
+      ],
+      [
+        'Der Sohn hörte auf jedes Wort.',
+        'Und Allah schrieb Luqmans Worte in den Quran, für uns alle.',
+      ],
+      [
+        'Geh sanft. Sprich leise. Bete. Sei geduldig.',
+        'O mein Sohn, o meine Tochter: Das ist auch für dich.',
+      ],
+      ['Welches von Luqmans Worten nimmst du heute mit?', 'Such dir eins aus.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

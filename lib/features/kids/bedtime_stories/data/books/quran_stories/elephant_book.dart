@@ -40,6 +40,55 @@ final BedtimeStorySeed elephantBook = kidsPictureBook(
     'book_first_steps_hajj_v1',
     'story_prophet_muhammad_part1_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Das Jahr des Elefanten',
+    shortTitle: 'Der Elefant',
+    summary:
+        'Ein Heer mit Elefanten, ein Himmel voller kleiner Vögel und das Haus, das nicht fiel.',
+    lesson:
+        'Nichts ist stärker als Allah. Er beschützt, was Ihm gehört, und Er beschützt dich.',
+    refrain: 'Allah beschützt Sein Haus.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Die Vögel kamen, das Haus stand, und Allah wacht noch immer darüber. Gute Nacht.',
+    spreads: [
+      [
+        'Vor langer Zeit baute ein König namens Abraha eine riesige Kirche.',
+        'Er wollte, dass die Menschen sie besuchen statt der Kaaba.',
+      ],
+      [
+        'Aber die Menschen gingen weiter nach Mekka, zur Kaaba, dem Haus Allahs.',
+        'Allah beschützt Sein Haus.',
+      ],
+      [
+        'Er sammelte ein großes Heer, mit Elefanten vorneweg.',
+        '„Ich reiße die Kaaba nieder“, sagte er.',
+      ],
+      [
+        'Die Menschen von Mekka konnten gegen so ein Heer nicht kämpfen.',
+        'Sie gingen hinauf in die Berge und beteten.',
+      ],
+      [
+        'Am Rand von Mekka blieb der größte Elefant stehen.',
+        'Er kniete sich hin und ging nicht weiter.',
+      ],
+      [
+        'Dann füllte sich der Himmel mit Vögeln. Kleine Vögel, in Schwärmen.',
+        'Jeder trug winzige Steine.',
+      ],
+      [
+        'Die Steine fielen auf das Heer wie Regen.',
+        'Abrahas Soldaten rannten davon, und die Kaaba stand.',
+      ],
+      [
+        'Allah beschützt Sein Haus.',
+        'Im selben Jahr wurde in Mekka der Prophet ﷺ geboren.',
+      ],
+      [
+        'Wenn etwas zu stark scheint, um dagegen zu kämpfen, denk an die Vögel.',
+        'Allah beschützt Sein Haus. Allah beschützt dich.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Long ago, a king called Abraha built a huge church.',

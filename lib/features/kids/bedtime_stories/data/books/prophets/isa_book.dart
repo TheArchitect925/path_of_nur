@@ -42,6 +42,67 @@ final BedtimeStorySeed isaBook = kidsPictureBook(
   backdropAssetPath:
       '$bedtimeStoryImageBackdropAssetDirectory/isa_backdrop.webp',
   relatedStoryIds: const ['story_prophet_muhammad_part1_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Isa, das Baby, das sprach',
+    shortTitle: 'Prophet Isa',
+    summary:
+        'Maryam, eine Palme an einem Bach und ein Baby, das aus der Wiege sprach.',
+    lesson: 'Sei gütig, hilf anderen und vertrau Allah. Er kann alles.',
+    refrain: 'Allah kann alles.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah sorgte für Maryam und Isa, und Allah sorgt für dich. Gute Nacht.',
+    spreads: [
+      [
+        'Maryam, Friede sei mit ihr, verbrachte ihre Tage damit, Allah anzubeten.',
+        'Wenn Zakariya kam, fand er Früchte, die niemand gebracht hatte.',
+      ],
+      [
+        'Eines Tages kam ein Engel zu Maryam.',
+        '„Allah schenkt dir einen reinen Sohn“, sagte er.',
+      ],
+      [
+        '„Wie kann ich einen Sohn haben?“, fragte sie.',
+        'Der Engel sagte: Für Allah ist das leicht.',
+        'Allah kann alles.',
+      ],
+      [
+        'Maryam ging fort zu einer Palme an einem Bach.',
+        'Dort wurde das Baby geboren: Isa, Friede sei mit ihm.',
+      ],
+      [
+        'Allah sagte: Schüttel die Palme, und Datteln fallen. Trink aus dem Bach.',
+        'Allah sorgte für beide.',
+      ],
+      [
+        'Als Maryam nach Hause kam, stellten die Leute Fragen.',
+        'Da zeigte sie auf das Baby.',
+      ],
+      [
+        'Und das Baby sprach!',
+        '„Ich bin der Diener Allahs. Er hat mich zum Propheten gemacht.“',
+      ],
+      [
+        'Isa wuchs auf. Mit Allahs Erlaubnis heilte er Kranke und Blinde.',
+        'Allah kann alles.',
+      ],
+      [
+        'Er formte einen Vogel aus Lehm, und mit Allahs Erlaubnis flog er.',
+        'Er gab den Armen zu essen und tröstete die Traurigen.',
+      ],
+      [
+        'Manche Menschen wollten Isa etwas tun.',
+        'Aber Allah beschützte ihn und erhob ihn zu Sich.',
+      ],
+      [
+        'Isa war ein Prophet Allahs, wie Adam, erschaffen durch Allahs Wort: Sei.',
+        'Allah kann alles.',
+      ],
+      [
+        'Sei gütig und hilf Menschen, wie Isa es tat.',
+        'Allah hat ihn gemacht, und Allah hat dich gemacht.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

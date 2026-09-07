@@ -11,6 +11,9 @@ const String _bookNarratorDisplayName = 'Path of Nur Kids Story Narration';
 ///
 /// Rewritten books keep the id of the seed they replace: quizzes, memory
 /// decks, progress and related-story links are all keyed on it.
+///
+/// A book written in English may carry its German as [de] (C6); the
+/// repository hands out `story.localized(languageCode)` for the app locale.
 BedtimeStorySeed kidsPictureBook({
   required String id,
   required String title,
@@ -49,6 +52,7 @@ BedtimeStorySeed kidsPictureBook({
   String audioManifestRef = '',
   int partNumber = 1,
   int totalParts = 1,
+  KidsBookTranslation? de,
 }) {
   return BedtimeStorySeed(
     id: id,
@@ -117,18 +121,6 @@ BedtimeStorySeed kidsPictureBook({
     spreads: spreads,
     bedtimeClosing: bedtimeClosing,
     refrain: refrain,
+    translations: {'de': ?de},
   );
-}
-
-/// The text the voice reads and the older tools index: the spreads in
-/// order, one blank line between them, so the beat splitter would page it
-/// the same way if it ever had to.
-String kidsBookReadAloudText(List<KidsBookSpread> spreads) =>
-    spreads.map((spread) => spread.text).join('\n\n');
-
-/// A parent reads a picture book at about two words a second and pauses
-/// on every picture.
-int kidsBookDurationSeconds(List<KidsBookSpread> spreads) {
-  final words = spreads.fold<int>(0, (count, s) => count + s.wordCount);
-  return (words / 2).round() + spreads.length * 3;
 }

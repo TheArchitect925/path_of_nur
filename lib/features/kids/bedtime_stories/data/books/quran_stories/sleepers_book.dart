@@ -36,6 +36,63 @@ final BedtimeStorySeed sleepersBook = kidsPictureBook(
     'book_quran_two_gardens_v1',
     'story_prophet_muhammad_part3_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Die Schläfer in der Höhle',
+    shortTitle: 'Die Schläfer',
+    summary:
+        'Junge Männer, die sich nicht verbeugen wollten, eine Höhle, ein Hund an der Tür und ein Schlaf von dreihundert Jahren.',
+    lesson:
+        'Halt fest an dem, was du glaubst. Allah beschützt die, die Ihm vertrauen.',
+    refrain: 'Allah beschützte sie.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah wachte über die Schläfer, und Er wacht über dich. Gute Nacht.',
+    spreads: [
+      [
+        'Vor langer Zeit, in einer Stadt voller Statuen, glaubten ein paar junge Männer an Allah.',
+        'Nur an Allah.',
+      ],
+      [
+        'Der König war wütend. „Verbeugt euch vor unseren Göttern, sonst!“',
+        'Die jungen Männer wollten nicht.',
+      ],
+      [
+        'Also liefen sie in die Berge und fanden eine Höhle.',
+        'Ihr Hund kam mit und legte sich an die Tür.',
+      ],
+      [
+        '„Unser Herr, schenk uns Barmherzigkeit“, beteten sie.',
+        'Allah beschützte sie.',
+      ],
+      [
+        'Allah ließ sie schlafen. Einen langen, langen Schlaf.',
+        'Die Sonne zog an der Höhle vorbei, morgens und abends, und weckte sie nie.',
+      ],
+      [
+        'Allah drehte sie sanft um, nach links und nach rechts, damit sie gut ruhten.',
+        'Dreihundert Jahre. Und neun.',
+      ],
+      [
+        'Dann wachten sie auf. „Wie lange haben wir geschlafen?“ „Einen Tag, vielleicht.“',
+        'Einer ging los, um Essen zu kaufen.',
+      ],
+      [
+        'Auf dem Markt hielt er seine Münze hin.',
+        'Die Leute starrten. Sie war dreihundert Jahre alt!',
+      ],
+      [
+        'Die ganze Stadt hatte sich verändert. Jetzt glaubten alle an Allah.',
+        'Allah beschützte sie.',
+      ],
+      [
+        'Allah erzählt ihre Geschichte, damit wir wissen:',
+        'Wenn du dich an Allah festhältst, hält Er dich fest.',
+      ],
+      [
+        'Wenn du je Angst hast wegen dem, was du glaubst, denk an die Höhle.',
+        'Allah beschützte sie.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

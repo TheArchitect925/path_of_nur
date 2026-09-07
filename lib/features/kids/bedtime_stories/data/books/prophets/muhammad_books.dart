@@ -51,6 +51,58 @@ final BedtimeStorySeed muhammadBook1 = kidsPictureBook(
   coverAssetPath: _cover,
   backdropAssetPath: _backdrop,
   relatedStoryIds: const [_p2],
+  de: const KidsBookTranslation(
+    title: 'Unser Prophet ﷺ: Der Vertrauenswürdige',
+    shortTitle: 'Muhammad ﷺ Teil 1',
+    summary:
+        'Ein Waisenkind in Mekka, das so ehrlich aufwuchs, dass alle ihn den Vertrauenswürdigen nannten.',
+    lesson:
+        'Sei ehrlich und gütig. Auch wenn das Leben schwer ist, ist Allah bei dir.',
+    refrain: 'Ehrlich und gütig, immer.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah war bei dem Waisenjungen, und Allah ist bei dir. Gute Nacht.',
+    spreads: [
+      [
+        'In der Stadt Mekka wurde ein besonderes Baby geboren.',
+        'Sein Name war Muhammad, Frieden und Segen seien auf ihm.',
+      ],
+      [
+        'Sein Vater starb, bevor er geboren wurde.',
+        'Seine Mutter starb, als er sechs war.',
+        'Er war ein Waisenkind.',
+      ],
+      [
+        'Aber er war nie allein. Allah war bei ihm.',
+        'Sein Großvater kümmerte sich um ihn, dann sein Onkel Abu Talib.',
+      ],
+      [
+        'Als Junge hütete er Schafe auf den Hügeln von Mekka.',
+        'Ehrlich und gütig, immer.',
+      ],
+      ['Als er groß war, wurde er Händler.', 'Er betrog nie. Er log nie.'],
+      [
+        'Die Leute vertrauten ihm so sehr, dass sie ihn Al-Amin nannten, den Vertrauenswürdigen.',
+        'Ehrlich und gütig, immer.',
+      ],
+      [
+        'Eine edle Frau, Khadija, bat ihn, für sie zu handeln.',
+        'Sie sah seine Ehrlichkeit, und später heirateten sie.',
+      ],
+      [
+        'Die Leute von Mekka verbeugten sich vor Statuen.',
+        'Muhammad ﷺ tat das nie. Er liebte die Wahrheit.',
+      ],
+      [
+        'Er stieg gern zu einer stillen Höhle namens Hira hinauf.',
+        'Dort saß er, dachte nach und gedachte Allahs.',
+      ],
+      [
+        'Allah bereitete ihn auf etwas sehr Wichtiges vor.',
+        'Etwas, das die ganze Welt hören würde.',
+      ],
+      ['Sei wie er, zu Hause und in der Schule.', 'Ehrlich und gütig, immer.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'In the city of Makkah a special baby was born.',
@@ -147,6 +199,59 @@ final BedtimeStorySeed muhammadBook2 = kidsPictureBook(
   coverAssetPath: _cover,
   backdropAssetPath: _backdrop,
   relatedStoryIds: const [_p1, _p3],
+  de: const KidsBookTranslation(
+    title: 'Unser Prophet ﷺ: Lies!',
+    shortTitle: 'Muhammad ﷺ Teil 2',
+    summary: 'Eine Höhle, ein Engel und das erste Wort des Quran: Lies.',
+    lesson:
+        'Steh für das Richtige ein, sei geduldig und lass Güte den Weg zeigen.',
+    refrain: 'Lies, im Namen deines Herrn.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Das erste Wort war Lies, und morgen kannst du wieder lesen. Gute Nacht.',
+    spreads: [
+      [
+        'Muhammad ﷺ war vierzig Jahre alt.',
+        'Eines Nachts in der Höhle Hira kam ein Engel.',
+      ],
+      ['Es war Dschibril, der Engel Allahs.', 'Er sagte: „Lies!“'],
+      [
+        '„Ich kann nicht lesen“, sagte Muhammad ﷺ.',
+        'Der Engel hielt ihn fest und sagte noch einmal: „Lies, im Namen deines Herrn.“',
+      ],
+      [
+        'Das waren die ersten Worte des Quran.',
+        'Allahs eigene Worte, gesandt an den letzten Propheten.',
+      ],
+      [
+        'Er eilte zitternd nach Hause. „Deckt mich zu, deckt mich zu!“',
+        'Khadija wickelte ihn in eine Decke.',
+      ],
+      [
+        '„Allah wird dich nie im Stich lassen“, sagte sie. „Du bist gütig zu allen.“',
+        'Sie glaubte als Erste an ihn.',
+      ],
+      [
+        'Leise erzählte er es seiner Familie und seinen engen Freunden.',
+        'Abu Bakr glaubte. Ali glaubte. Bilal glaubte.',
+      ],
+      [
+        'Viele Leute in Mekka waren wütend.',
+        'Sie lachten über ihn und taten den Gläubigen weh.',
+      ],
+      [
+        'Er blieb geduldig. Er blieb gütig.',
+        'Langsam glaubten mehr Menschen. Lies, im Namen deines Herrn.',
+      ],
+      [
+        'Jahr für Jahr kamen die Worte des Quran,',
+        'und der Prophet ﷺ lehrte jedes einzelne davon.',
+      ],
+      [
+        'Wenn du den Quran öffnest, denk an die Höhle.',
+        'Lies, im Namen deines Herrn.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Muhammad ﷺ was forty years old.',
@@ -248,6 +353,67 @@ final BedtimeStorySeed muhammadBook3 = kidsPictureBook(
   coverAssetPath: _cover,
   backdropAssetPath: _backdrop,
   relatedStoryIds: const [_p2, _p4],
+  de: const KidsBookTranslation(
+    title: 'Unser Prophet ﷺ: Die Reise nach Medina',
+    shortTitle: 'Muhammad ﷺ Teil 3',
+    summary:
+        'Eine Höhle, ein Spinnennetz und die Reise, die Medina zu einem Zuhause machte.',
+    lesson:
+        'Vertrau Allah in schweren Zeiten, hilf anderen und sei sanft und gerecht.',
+    refrain: 'Sei nicht traurig. Allah ist mit uns.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah war bei ihnen in der Höhle, und Allah ist bei dir. Gute Nacht.',
+    spreads: [
+      [
+        'Nach dreizehn Jahren war Mekka nicht mehr sicher.',
+        'Allah sagte dem Propheten ﷺ: Geh nach Medina.',
+      ],
+      [
+        'Diese Reise heißt Hidschra.',
+        'Der Prophet ﷺ brach in der Nacht auf, mit seinem Freund Abu Bakr.',
+      ],
+      [
+        'Männer aus Mekka kamen und suchten sie.',
+        'Also versteckten sich die zwei Freunde in einer Höhle am Berg Thaur.',
+      ],
+      [
+        'Eine Spinne spann ein Netz über den Eingang.',
+        'Eine Taube baute ein Nest daneben.',
+      ],
+      [
+        'Die Männer kamen bis direkt an die Höhle.',
+        'Abu Bakr flüsterte: Sie werden uns sehen!',
+      ],
+      [
+        'Der Prophet ﷺ sagte: „Sei nicht traurig. Allah ist mit uns.“',
+        'Und die Männer gingen weg.',
+      ],
+      [
+        'Sie ritten tagelang durch die Wüste.',
+        'Sei nicht traurig. Allah ist mit uns.',
+      ],
+      [
+        'Die Menschen von Medina warteten auf den Dächern.',
+        'Als sie ihn sahen, sangen sie vor Freude.',
+      ],
+      [
+        'Jeder wollte ihn in seinem Haus haben.',
+        '„Lasst mein Kamel wählen“, sagte er. Es kniete an Abu Ayyubs Tür.',
+      ],
+      [
+        'Sie bauten zusammen eine Moschee und trugen die Ziegel Seite an Seite.',
+        'Auch der Prophet ﷺ trug Ziegel.',
+      ],
+      [
+        'In Medina wurden die Gläubigen eine Familie.',
+        'Die Reichen halfen den Armen, und die Starken halfen den Schwachen.',
+      ],
+      [
+        'Wenn du Angst hast, sag, was er in der Höhle sagte.',
+        'Sei nicht traurig. Allah ist mit uns.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'After thirteen years, Makkah was not safe.',
@@ -361,6 +527,63 @@ final BedtimeStorySeed muhammadBook4 = kidsPictureBook(
   coverAssetPath: _cover,
   backdropAssetPath: _backdrop,
   relatedStoryIds: const [_p3, 'story_prophet_yusuf_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Unser Prophet ﷺ: Eine Barmherzigkeit für die Welten',
+    shortTitle: 'Muhammad ﷺ Teil 4',
+    summary:
+        'Die Rückkehr nach Mekka, die Worte „Ihr seid alle frei“ und eine Barmherzigkeit, die die ganze Welt erreichte.',
+    lesson:
+        'Vergib anderen, sei gütig, sei gerecht und folge dem schönen Vorbild des Propheten ﷺ.',
+    refrain: 'Eine Barmherzigkeit für die Welten.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Er vergab, er lächelte, und er liebte dich, bevor du geboren warst. Gute Nacht.',
+    spreads: [
+      [
+        'Jahre später kehrte der Prophet ﷺ nach Mekka zurück.',
+        'Nicht mit Zorn. Mit zehntausend Gläubigen, und mit Frieden.',
+      ],
+      [
+        'Die Menschen, die ihm wehgetan hatten, warteten voller Angst.',
+        'Was würde er mit ihnen tun?',
+      ],
+      [
+        'Er sagte: „Geht. Ihr seid alle frei.“',
+        'Er vergab ihnen. Eine Barmherzigkeit für die Welten.',
+      ],
+      [
+        'Er ging in die Kaaba und nahm die Statuen herunter.',
+        'Mekka betete wieder Allah allein an.',
+      ],
+      [
+        'Er war sanft zu Kindern und gut zu Tieren.',
+        'Er lächelte mehr als jeder andere.',
+      ],
+      [
+        'Er sagte: Die Besten von euch sind die Besten zu ihrer Familie.',
+        'Eine Barmherzigkeit für die Welten.',
+      ],
+      [
+        'Gegen Ende sprach er beim Haddsch zu allen.',
+        '„Ich lasse euch den Quran. Haltet euch daran fest.“',
+      ],
+      [
+        '„Euer Herr ist Einer. Euer Vater ist einer.',
+        'Niemand ist besser als ein anderer, außer durch gute Taten.“',
+      ],
+      [
+        'Dann starb der Prophet ﷺ, und Medina weinte.',
+        'Aber seine Botschaft endete nicht.',
+      ],
+      [
+        'Heute, auf der ganzen Welt, sagen Herzen seinen Namen noch immer mit Liebe.',
+        'Eine Barmherzigkeit für die Welten.',
+      ],
+      [
+        'Folge ihm: vergib, sei gütig, sei gerecht.',
+        'Halt dich am Quran fest.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Years later, the Prophet ﷺ returned to Makkah.',

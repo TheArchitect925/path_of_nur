@@ -53,6 +53,56 @@ final BedtimeStorySeed jannahBook = kidsPictureBook(
     'book_first_steps_who_is_allah_v1',
     'story_prophet_adam_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Dschanna',
+    shortTitle: 'Dschanna',
+    summary:
+        'Amina fragt, wie Dschanna ist, und Safa erzählt ihr: Flüsse, Früchte, kein Abschied und Allah sehen.',
+    lesson:
+        'Dschanna ist Allahs Lohn für die, die glauben und Gutes tun. Bitte Ihn jeden Tag darum.',
+    refrain: 'Besser als alles.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Dschanna wartet, besser als alles. Gute Nacht.',
+    spreads: [
+      ['„Wie ist Dschanna?“, fragte Amina.', '„Besser als alles“, sagte Safa.'],
+      [
+        'Dschanna ist der Garten, den Allah für die Menschen gemacht hat, die Ihn lieben.',
+        'Er wartet.',
+      ],
+      [
+        'Flüsse fließen hindurch. Flüsse aus Wasser, aus Milch, aus Honig.',
+        'Süß und kühl und klar.',
+      ],
+      [
+        'Bäume voller Früchte, immer reif, immer in Reichweite.',
+        'Keine Dornen und kein Warten.',
+      ],
+      [
+        'Niemand ist dort je krank. Niemand ist je traurig.',
+        'Niemand muss je Abschied nehmen.',
+      ],
+      [
+        'Der Prophet ﷺ sagte: Dort gibt es, was kein Auge gesehen und kein Ohr gehört hat.',
+        'Besser als alles.',
+      ],
+      [
+        'Das Beste von allem: Die Menschen dort sehen Allah.',
+        'Und Er ist zufrieden mit ihnen.',
+      ],
+      [
+        'Wie kommen wir dorthin? Glaub an Allah und tu Gutes.',
+        'Bete, teile, sag die Wahrheit, sei gütig.',
+      ],
+      [
+        'Bitte Allah jeden Tag darum: Rabbana atina fil-akhirati hasanah.',
+        'Besser als alles.',
+      ],
+      [
+        'Sag SubhanAllah, Alhamdulillah, La ilaha illallah, Allahu Akbar.',
+        'Der Prophet ﷺ liebte diese Worte. Sagen wir sie jetzt.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

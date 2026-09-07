@@ -47,6 +47,60 @@ final BedtimeStorySeed whatWeBelieveBook = kidsPictureBook(
     'book_first_steps_angels_v1',
     'book_first_steps_quran_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Was Muslime glauben',
+    shortTitle: 'Was wir glauben',
+    summary:
+        'Der Engel, der in Weiß gekleidet kam, und die sechs Dinge, die jeder Muslim glaubt.',
+    lesson:
+        'Glaub an Allah, Seine Engel, Seine Bücher, Seine Propheten, den Letzten Tag und dass Allah alles bestimmt.',
+    refrain: 'Wir glauben.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Sechs Laternen, alle an, und Allah wacht über dich. Gute Nacht.',
+    spreads: [
+      [
+        'Eines Tages fragte ein Mann in Weiß den Propheten ﷺ: Was ist Iman?',
+        'Iman heißt: was wir glauben.',
+      ],
+      [
+        'Der Prophet ﷺ sagte, es sind sechs Dinge.',
+        'Sechs Laternen, nennt Safa sie.',
+      ],
+      [
+        'Eins: Wir glauben an Allah.',
+        'Ein Gott, der alles gemacht hat. Wir glauben.',
+      ],
+      [
+        'Zwei: Wir glauben an die Engel.',
+        'Aus Licht gemacht, sie tun, was Allah ihnen sagt.',
+      ],
+      [
+        'Drei: Wir glauben an Allahs Bücher.',
+        'Die Taurat, den Zabur, das Indschil und den Quran.',
+      ],
+      [
+        'Vier: Wir glauben an die Propheten.',
+        'Von Adam bis Muhammad ﷺ, eine Kette von Gesandten.',
+      ],
+      [
+        'Fünf: Wir glauben an den Letzten Tag.',
+        'Eines Tages steht jeder vor Allah, und Er wird gerecht sein.',
+      ],
+      [
+        'Sechs: Wir glauben, dass Allah alles bestimmt.',
+        'Das Gute und das Schwere. Nichts passiert ohne Ihn.',
+      ],
+      ['Sechs Laternen, alle an. Wir glauben.'],
+      [
+        'Der Mann in Weiß war der Engel Dschibril.',
+        'Er kam, um uns zu lehren.',
+      ],
+      [
+        'Jetzt lern die Propheten kennen, einen nach dem anderen.',
+        'Wir glauben.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'One day a man in white asked the Prophet ﷺ: what is iman?',

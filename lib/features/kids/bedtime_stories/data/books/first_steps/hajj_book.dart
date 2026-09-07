@@ -41,6 +41,63 @@ final BedtimeStorySeed hajjBook = kidsPictureBook(
     'book_first_steps_five_pillars_v1',
     'story_prophet_ismail_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Die große Reise',
+    shortTitle: 'Haddsch',
+    summary:
+        'Baba packt zwei weiße Tücher für die große Reise, und Safa und Zayn lernen, was beim Haddsch passiert.',
+    lesson:
+        'Der Haddsch ist die Reise zu Allahs Haus, einmal im Leben für die, die können. Alle gleich, alle sagen: Hier bin ich.',
+    refrain: 'Labbaik, hier bin ich.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Die Kaaba steht in Mekka, und dein Herz kann sich von hier aus zu ihr wenden. Gute Nacht.',
+    spreads: [
+      [
+        'Baba packte eine kleine Tasche: zwei weiße Tücher und Sandalen.',
+        '„Ich fahre nach Mekka“, sagte er. „Zum Haddsch.“',
+      ],
+      [
+        'Der Haddsch ist die große Reise zur Kaaba, dem Haus Allahs.',
+        'Jeder Muslim, der kann, geht einmal hin.',
+      ],
+      [
+        'Alle tragen dasselbe einfache Weiß.',
+        'Könige und Bauern, Seite an Seite. Alle gleich vor Allah.',
+      ],
+      [
+        'Und alle sagen dieselben Worte: Labbaik Allahumma labbaik.',
+        'Labbaik, hier bin ich.',
+      ],
+      [
+        'Sie gehen siebenmal um die Kaaba herum.',
+        'Wie ein Fluss aus Menschen, alle zu Allah gewandt.',
+      ],
+      [
+        'Sie gehen zwischen zwei Hügeln hin und her, wie Hadschar, als sie Wasser suchte.',
+        'Und trinken Zamzam, das Wasser, das Allah ihr gab.',
+      ],
+      [
+        'Am Tag von Arafat stehen sie auf einer weiten Ebene und beten den ganzen Tag.',
+        'Labbaik, hier bin ich.',
+      ],
+      [
+        'Sie werfen kleine Steine und denken an Ibrahim.',
+        'Und sie teilen Fleisch mit Menschen, die es brauchen.',
+      ],
+      [
+        'Baba kam mit einem neuen Herzen und einer Tasche Zamzam nach Hause.',
+        '„Allah hat mir alles vergeben“, sagte er.',
+      ],
+      [
+        'Eines Tages, wenn Allah will, gehst du auch.',
+        'Labbaik, hier bin ich.',
+      ],
+      [
+        'Wo du auch bist, du kannst dich jetzt zur Kaaba wenden.',
+        'Suchen wir die Richtung.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Baba packed a small bag: two white cloths and sandals.',

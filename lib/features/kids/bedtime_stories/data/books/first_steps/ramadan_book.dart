@@ -42,6 +42,60 @@ final BedtimeStorySeed ramadanBook = kidsPictureBook(
     'story_ramadan_kindness_v1',
     'story_eid_gratitude_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Der Monat, auf den wir warten',
+    shortTitle: 'Ramadan',
+    summary:
+        'Eine dünne Mondsichel auf dem Dach, Suhur vor der Dämmerung, eine Dattel bei Sonnenuntergang und der Monat, in dem alles besser ist.',
+    lesson:
+        'Ramadan ist der Monat des Quran, des Fastens und der Güte. Warte auf ihn, und liebe ihn.',
+    refrain: 'Der Monat, auf den wir warten.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Der Mond ist heute Nacht dünn, und der Ramadan kommt. Gute Nacht.',
+    spreads: [
+      [
+        'Safa und Zayn standen bei Sonnenuntergang auf dem Dach und suchten eine dünne neue Mondsichel.',
+        '„Da!“, rief Zayn.',
+      ],
+      ['Der Ramadan war da.', 'Der Monat, auf den wir warten.'],
+      [
+        'Ramadan ist der Monat, in dem der Quran zum Propheten ﷺ herabkam.',
+        'Der beste Monat des ganzen Jahres.',
+      ],
+      [
+        'Im Ramadan fasten die Erwachsenen: kein Essen, kein Trinken, von der Dämmerung bis zum Sonnenuntergang.',
+        'Kinder probieren ein bisschen und wachsen hinein.',
+      ],
+      [
+        'Vor der Dämmerung isst die Familie zusammen: Suhur.',
+        'Dann beginnt der Tag.',
+      ],
+      [
+        'Bei Sonnenuntergang warten alle auf den Adhan.',
+        'Dann eine Dattel und ein Schluck Wasser. Iftar!',
+      ],
+      [
+        'Nachts ist die Moschee voll und hell.',
+        'Lange Gebete, der Quran von Anfang bis Ende gelesen.',
+      ],
+      [
+        'Ramadan macht uns gütig. Wir teilen mehr, wir geben mehr, wir beten mehr.',
+        'Der Monat, auf den wir warten.',
+      ],
+      [
+        'Gegen Ende kommt eine Nacht, besser als tausend Monate.',
+        'Lailat al-Qadr, in den letzten zehn Nächten.',
+      ],
+      [
+        'Dann wieder die neue Mondsichel, und Eid!',
+        'Neue Kleider, Süßigkeiten und danke, Allah.',
+      ],
+      [
+        'Zähl mit mir die Tage bis zum Ramadan.',
+        'Der Monat, auf den wir warten.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Safa and Zayn stood on the roof at sunset, looking for a thin new moon.',

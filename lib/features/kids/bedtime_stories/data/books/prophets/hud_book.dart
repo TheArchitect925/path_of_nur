@@ -47,6 +47,57 @@ final BedtimeStorySeed hudBook = kidsPictureBook(
     'story_prophet_nuh_bedtime_v1',
     'story_prophet_salih_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Hud und der Wind',
+    shortTitle: 'Prophet Hud',
+    summary:
+        'Ein stolzes Volk mit hohen Türmen, eine Wolke, die kein Regen war, und ein Prophet, der beschützt wurde.',
+    lesson:
+        'Stark zu sein ist ein Geschenk von Allah. Dank Ihm dafür, und sei niemals stolz.',
+    refrain: 'Allah ist stärker.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Der Wind ist vorbei, und Allah beschützt dich. Gute Nacht.',
+    spreads: [
+      [
+        'Nach Nuh lebte ein Volk namens Ad.',
+        'Sie bauten hohe Türme und starke Häuser aus Stein.',
+      ],
+      ['Sie waren stolz.', '„Wer ist stärker als wir?“, sagten sie.'],
+      [
+        'Allah schickte ihnen den Propheten Hud, Friede sei mit ihm.',
+        '„Betet Allah allein an“, sagte er. „Er hat euch stark gemacht.“',
+      ],
+      [
+        '„Bittet Allah um Vergebung, und Er schickt euch Regen“, sagte Hud.',
+        'Allah ist stärker.',
+      ],
+      [
+        'Aber die Leute lachten.',
+        '„Wir lassen unsere Götter nicht für dich“, sagten sie.',
+      ],
+      [
+        'Der Regen blieb aus.',
+        'Das Land wurde trocken, und trotzdem hörten sie nicht.',
+      ],
+      [
+        'Dann kam eines Tages eine dunkle Wolke über das Tal.',
+        '„Endlich Regen!“, jubelten sie.',
+      ],
+      [
+        'Es war kein Regen. Es war ein Wind.',
+        'Ein Wind, der sieben Nächte und acht Tage blies.',
+      ],
+      ['Die Türme von Ad fielen wie leere Dattelpalmen.', 'Allah ist stärker.'],
+      [
+        'Hud und die Gläubigen waren in Sicherheit.',
+        'Allah beschützt die, die Ihm vertrauen.',
+      ],
+      [
+        'Wenn jemand sagt „Niemand ist stärker als ich“, denk an Ad.',
+        'Allah ist stärker.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

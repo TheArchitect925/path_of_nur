@@ -45,6 +45,60 @@ final BedtimeStorySeed bilalBook = kidsPictureBook(
     'story_companion_abu_bakr_friendship_v1',
     'story_prophet_muhammad_part4_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Bilal, die Stimme des Adhan',
+    shortTitle: 'Bilal',
+    summary:
+        'Glühender Sand, ein Wort, immer wieder gesagt, und die Stimme, die eine ganze Stadt zum Gebet rief.',
+    lesson:
+        'Halt dich an Allah fest, wenn Menschen unfreundlich sind. Geduld für Ihn wird belohnt.',
+    refrain: 'Allah ist Einer.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu und sag es leise, wie Bilal: Ahad. Allah ist Einer. Gute Nacht.',
+    spreads: [
+      [
+        'Bilal kam aus Afrika, und in Mekka war er ein Sklave.',
+        'Sein Herr war grausam.',
+      ],
+      [
+        'Als Bilal an Allah glaubte, wurde sein Herr wütend.',
+        'Er zerrte ihn auf den glühenden Sand.',
+      ],
+      [
+        'Er legte ihm einen schweren Stein auf die Brust. „Gib deinen Glauben auf!“',
+        'Bilal sagte nur: „Ahad, Ahad.“ Allah ist Einer.',
+      ],
+      [
+        'Abu Bakr sah es. Er bezahlte den Herrn und machte Bilal frei.',
+        'Jetzt gehörte Bilal niemandem mehr außer Allah.',
+      ],
+      [
+        'In Medina brauchten die Muslime einen Ruf zum Gebet.',
+        '„Bilal, du hast die schönste Stimme“, sagte der Prophet ﷺ.',
+      ],
+      [
+        'Bilal stieg hoch hinauf und rief: Allahu Akbar! Allah ist der Größte!',
+        'Die ganze Stadt hörte ihn.',
+      ],
+      [
+        'Jeden Tag, fünfmal, füllte Bilals Stimme den Himmel.',
+        'Kommt zum Gebet. Kommt zum Erfolg.',
+      ],
+      [
+        'Jahre später kehrten die Muslime in Frieden nach Mekka zurück.',
+        'Bilal stieg auf die Kaaba und rief dort den Adhan.',
+      ],
+      [
+        'Der Prophet ﷺ sagte ihm: „Ich habe deine Schritte im Paradies gehört.“',
+        'Bilals Geduld hatte ihren Lohn.',
+      ],
+      [
+        'Wenn Menschen unfreundlich sind wegen dem, was du glaubst, denk an Bilal.',
+        'Allah ist Einer.',
+      ],
+      ['Sag es leise, wie er: Ahad. Allah ist Einer.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Bilal came from Africa, and in Makkah he was a slave.',

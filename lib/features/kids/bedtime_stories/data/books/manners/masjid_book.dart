@@ -44,6 +44,43 @@ final BedtimeStorySeed masjidBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_masjid_manners_v1'],
   memoryRefs: const ['memory_story_masjid_manners_v1'],
+  de: const KidsBookTranslation(
+    title: 'Leise Schritte in der Moschee',
+    shortTitle: 'In der Moschee',
+    summary:
+        'Schuhe in einer ordentlichen Reihe, ein Gang wie eine Wolke und ein Flüstern in Allahs Haus.',
+    lesson:
+        'Die Moschee ist ein Ort des Friedens, des Respekts und des Gedenkens an Allah.',
+    refrain: 'Leise Schritte, leise Stimme.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Ganz still, wie die Moschee in der Nacht. Gute Nacht.',
+    spreads: [
+      [
+        'Zayn hielt Babas Hand an der Tür der Moschee.',
+        '„Das ist Allahs Haus“, sagte Baba.',
+      ],
+      [
+        'Zayn zog seine Schuhe aus und stellte sie ordentlich in die Reihe.',
+        'Dann trat er mit dem rechten Fuß hinein.',
+      ],
+      ['Drinnen war es kühl und still. Leise Schritte, leise Stimme.'],
+      [
+        'Zayn rannte nicht. Er ging wie eine Wolke.',
+        'Er rief nicht. Er flüsterte.',
+      ],
+      [
+        'Ein Mann las im Quran. Zayn setzte sich leise in die Nähe.',
+        'Er machte anderen Platz.',
+      ],
+      ['Allah liebt Häuser, in denen an Seinen Namen gedacht wird.'],
+      ['Als das Gebet begann, stand Zayn in der Reihe, still und gerade.'],
+      ['Respekt kann leise und schön sein.', 'Leise Schritte, leise Stimme.'],
+      [
+        'Wenn du das nächste Mal eine Moschee betrittst, denk an Zayn.',
+        'Leise Schritte, leise Stimme.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Zayn held Baba’s hand at the masjid door.',

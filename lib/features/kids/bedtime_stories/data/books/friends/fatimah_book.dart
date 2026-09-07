@@ -42,6 +42,59 @@ final BedtimeStorySeed fatimahBook = kidsPictureBook(
     'story_companion_ali_bed_v1',
     'story_companion_khadijah_support_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Fatima und die Worte vor dem Schlafen',
+    shortTitle: 'Fatima',
+    summary:
+        'Wunde Hände von der Mühle, ein Wunsch nach Hilfe und die Worte, die ihr Vater ihr stattdessen gab.',
+    lesson:
+        'Sag vor dem Schlafen SubhanAllah, Alhamdulillah und Allahu Akbar. Sie machen dich stark.',
+    refrain: 'Besser als eine Hilfe.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu und sag sie: SubhanAllah, Alhamdulillah, Allahu Akbar. Gute Nacht.',
+    spreads: [
+      [
+        'Fatima war die jüngste Tochter des Propheten ﷺ.',
+        'Er liebte sie so sehr, dass er sie ein Stück von sich nannte.',
+      ],
+      [
+        'Fatima arbeitete hart zu Hause.',
+        'Sie mahlte Mehl mit der Hand, bis ihre Hände wehtaten.',
+      ],
+      [
+        'Sie trug Wasser in einem Schlauch, bis ihre Schulter schmerzte.',
+        'Das Haus war voller Arbeit.',
+      ],
+      [
+        'Eines Tages hörte sie, ihr Vater habe Helfer zu verteilen.',
+        'Sie ging hin, um um einen zu bitten.',
+      ],
+      [
+        'Am Abend kam er, als Fatima und Ali im Bett lagen.',
+        '„Soll ich euch etwas sagen, das besser als eine Hilfe ist?“',
+      ],
+      [
+        '„Wenn ihr ins Bett geht, sagt dreiunddreißigmal SubhanAllah.“',
+        '„Dreiunddreißigmal Alhamdulillah. Vierunddreißigmal Allahu Akbar.“',
+      ],
+      [
+        '„Das ist besser als eine Hilfe für euch.“',
+        'Fatima lächelte. Sie vergaß diese Worte nie.',
+      ],
+      [
+        'Jede Nacht sagte sie sie, und jede Nacht fühlte sie sich stark.',
+        'Allahs Worte waren ihre Ruhe.',
+      ],
+      [
+        'Fatima ist eine der besten Frauen, die je gelebt haben.',
+        'Ihr Vater sagte, sie führt die Frauen im Paradies an.',
+      ],
+      [
+        'Heute Nacht, wenn dein Kopf auf dem Kissen liegt, sag sie auch.',
+        'Besser als eine Hilfe.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Fatimah was the Prophet’s ﷺ youngest daughter.',

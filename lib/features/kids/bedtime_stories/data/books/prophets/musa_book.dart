@@ -45,6 +45,73 @@ final BedtimeStorySeed musaBook = kidsPictureBook(
     'story_prophet_nuh_bedtime_v1',
     'story_prophet_yunus_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Musa und das Meer, das sich öffnete',
+    shortTitle: 'Prophet Musa',
+    summary:
+        'Ein Baby in einem Korb, ein Feuer auf einem Berg und ein Meer, das sich öffnete.',
+    lesson:
+        'Vertrau Allah auch in unheimlichen Zeiten, sei mutig und steh für das Richtige ein.',
+    refrain: 'Allah ist mit mir.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah war mit Musa, und Allah ist mit dir. Gute Nacht.',
+    spreads: [
+      [
+        'Vor langer Zeit gab es in Ägypten einen grausamen König, Firaun.',
+        'Er befahl, jeden kleinen Jungen wegzunehmen.',
+      ],
+      [
+        'Musas Mutter versteckte ihn, so lange sie konnte.',
+        'Allah sagte ihr: Leg ihn in einen Korb auf den Fluss.',
+      ],
+      [
+        '„Hab keine Angst“, sagte Allah. „Ich bringe ihn zu dir zurück.“',
+        'Und der Korb trieb davon.',
+      ],
+      [
+        'Der Korb kam zum Palast von Firaun.',
+        'Firauns Frau liebte das Baby, und Musa wuchs sicher auf.',
+      ],
+      [
+        'Seine eigene Mutter wurde gefunden, um ihn zu stillen.',
+        'Allah hatte Sein Versprechen gehalten.',
+      ],
+      [
+        'Als Musa groß war, sah er ein Feuer auf einem Berg.',
+        'Er ging näher, und Allah sprach zu ihm.',
+      ],
+      [
+        '„Musa, Ich bin Allah. Geh zu Firaun“, sagte Allah.',
+        'Musa sagte: Allah ist mit mir.',
+      ],
+      [
+        'Musa zeigte Firaun die Zeichen Allahs.',
+        'Sein Stab wurde eine Schlange. Seine Hand leuchtete weiß.',
+      ],
+      [
+        'Firaun wollte nicht hören.',
+        'Also führte Musa sein Volk in der Nacht fort.',
+      ],
+      [
+        'Firauns Heer kam hinter ihnen her.',
+        'Vorne das Meer. Hinten die Soldaten.',
+        'Die Leute riefen: Wir sind gefangen!',
+      ],
+      [
+        'Musa sagte: „Nein! Allah ist mit mir. Er zeigt mir den Weg.“',
+        'Dann sagte Allah: Schlag auf das Meer.',
+      ],
+      [
+        'Das Meer öffnete sich.',
+        'Ein trockener Weg in der Mitte, mit Wasser wie Berge auf beiden Seiten.',
+      ],
+      [
+        'Musa und sein Volk gingen sicher hindurch.',
+        'Das Meer schloss sich hinter ihnen.',
+      ],
+      ['Wenn du Angst hast, sag, was Musa sagte.', 'Allah ist mit mir.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

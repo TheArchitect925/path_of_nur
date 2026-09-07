@@ -44,6 +44,60 @@ final BedtimeStorySeed threeInCaveBook = kidsPictureBook(
     'story_companion_thirsty_dog_v1',
     'story_helping_parents_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Drei Männer und ein Felsen',
+    shortTitle: 'Drei in der Höhle',
+    summary:
+        'Ein Sturm, eine Höhle, ein Felsen vor der Tür und drei gute Taten, nur für Allah getan.',
+    lesson:
+        'Eine gute Tat, nur für Allah getan, ist nie verloren. Sie kann sogar einen Felsen bewegen.',
+    refrain: 'Öffne uns den Weg.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Denk an eine gute Sache, die du heute nur für Allah getan hast. Gute Nacht.',
+    spreads: [
+      [
+        'Der Prophet ﷺ erzählte diese Geschichte.',
+        'Drei Männer waren unterwegs, als ein Sturm kam.',
+      ],
+      [
+        'Sie liefen in eine Höhle. Dann rollte ein großer Felsen herab',
+        'und verschloss die Tür. Dunkel.',
+      ],
+      [
+        '„Nichts kann diesen Felsen bewegen“, sagten sie, „außer Allah.“',
+        '„Erzählen wir Ihm jeder unsere beste Tat.“',
+      ],
+      [
+        'Der Erste sagte: „Meine alten Eltern tranken ihre Milch vor allen anderen.“',
+        '„Eines Nachts kam ich spät. Sie schliefen.“',
+      ],
+      [
+        '„Ich stand mit der Schale da bis zum Morgen und weckte sie nicht.“',
+        '„Nur für Dich. Öffne uns den Weg.“',
+      ],
+      [
+        'Der Felsen bewegte sich ein wenig. Nicht genug.',
+        'Der Zweite sagte: „Ein Arbeiter ging ohne seinen Lohn.“',
+      ],
+      [
+        '„Ich ließ seinen Lohn zu einer ganzen Herde wachsen.“',
+        '„Als er zurückkam, gab ich ihm alles.“',
+      ],
+      [
+        '„Nur für Dich, o Allah. Öffne uns den Weg.“',
+        'Der Felsen bewegte sich mehr. Immer noch nicht genug.',
+      ],
+      [
+        'Der Dritte hatte sich von etwas Falschem abgewandt, nur für Allah.',
+        '„Öffne uns den Weg“, betete er.',
+      ],
+      ['Der Felsen rollte weg. Sonnenlicht! Die Männer gingen frei hinaus.'],
+      [
+        'Eine gute Tat, nur für Allah getan, kann einen Felsen bewegen.',
+        'Öffne uns den Weg.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'The Prophet ﷺ told this story.',

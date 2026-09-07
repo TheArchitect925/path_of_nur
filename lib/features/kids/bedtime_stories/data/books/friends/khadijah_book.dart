@@ -52,6 +52,63 @@ final BedtimeStorySeed khadijahBook = kidsPictureBook(
     'story_prophet_muhammad_part2_bedtime_v1',
     'story_companion_abu_bakr_friendship_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Khadija, die als Erste glaubte',
+    shortTitle: 'Khadija',
+    summary:
+        'Eine weise Frau mit Karawanen, ein ehrlicher junger Mann und die Nacht, in der sie ihn in eine Decke hüllte und glaubte.',
+    lesson:
+        'Wenn jemand die Wahrheit sagt, steh ihm zur Seite. Khadija glaubte als Erste, und sie blieb.',
+    refrain: 'Sie glaubte an ihn.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Jemand glaubt an dich, so wie Khadija glaubte. Gute Nacht.',
+    spreads: [
+      [
+        'In Mekka lebte eine gütige und weise Frau namens Khadija.',
+        'Ihre Karawanen trugen Waren weit und breit.',
+      ],
+      [
+        'Sie hörte von einem jungen Mann, der nie log.',
+        'Die Leute nannten ihn al-Amin, den Vertrauenswürdigen.',
+      ],
+      [
+        'Sie bat ihn, ihre Waren nach Syrien zu bringen.',
+        'Er kam zurück, ehrlich und gütig.',
+      ],
+      [
+        'Khadija heiratete ihn. Sie war seine beste Freundin.',
+        'Später wählte Allah ihn zu Seinem Propheten ﷺ.',
+      ],
+      [
+        'Eines Nachts, in einer Höhle auf dem Berg, kam der Engel Dschibril.',
+        'Er sagte: Lies!',
+      ],
+      [
+        'Der Prophet ﷺ eilte zitternd nach Hause. „Hüllt mich ein!“',
+        'Khadija wickelte ihn in eine Decke.',
+      ],
+      [
+        '„Niemals!“, sagte sie. „Allah wird dich nie im Stich lassen.“',
+        '„Du bist gut zu deiner Familie, zu Gästen, zu den Armen.“',
+      ],
+      [
+        'Sie glaubte an ihn.',
+        'Vor allen anderen auf der Welt glaubte Khadija.',
+      ],
+      [
+        'Als die schweren Jahre kamen, stand sie an seiner Seite.',
+        'Sie glaubte an ihn.',
+      ],
+      [
+        'Dschibril brachte ihr Salam von Allah,',
+        'und die Nachricht von einem Haus im Paradies aus Perlen.',
+      ],
+      [
+        'Wenn jemand die Wahrheit sagt, mach es wie Khadija.',
+        'Sie glaubte an ihn.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'In Makkah lived a kind and wise woman called Khadijah.',

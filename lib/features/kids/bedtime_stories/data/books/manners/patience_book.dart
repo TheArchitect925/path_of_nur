@@ -42,6 +42,47 @@ final BedtimeStorySeed patienceBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_patience_v1'],
   memoryRefs: const ['memory_story_patience_v1'],
+  de: const KidsBookTranslation(
+    title: 'Aminas Samenkorn',
+    shortTitle: 'Aminas Samenkorn',
+    summary:
+        'Ein Samenkorn im Becher, Morgen ohne etwas zu sehen und der grüne Spross, der kam, als er bereit war.',
+    lesson:
+        'Geduld heißt, Allah zu vertrauen, während wir warten, dass Gutes wächst.',
+    refrain: 'Gute Dinge wachsen langsam.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Etwas Gutes wächst in dir, sogar während du schläfst. Gute Nacht.',
+    spreads: [
+      [
+        'Amina pflanzte ein Samenkorn in einen Becher mit Erde.',
+        'Sie stellte ihn auf die Fensterbank.',
+      ],
+      ['Am nächsten Morgen rannte sie hin. Eine Blume?', 'Noch nichts.'],
+      [
+        'Am Tag danach: immer noch nichts. Amina runzelte die Stirn.',
+        '„Vielleicht ist das Samenkorn kaputt.“',
+      ],
+      [
+        '„Es ist nicht kaputt“, sagte Opa. „Es arbeitet, unten im Dunkeln.“',
+        '„Gute Dinge wachsen langsam.“',
+      ],
+      [
+        'Also goss Amina den Becher jeden Tag. Und wartete.',
+        'Warten ist schwer, wenn man vier ist.',
+      ],
+      ['Allah ist mit den Geduldigen.'],
+      ['An einem stillen Morgen war er da: ein winziger grüner Spross.'],
+      [
+        'Amina klatschte leise, um ihn nicht zu erschrecken.',
+        'Gute Dinge wachsen langsam.',
+      ],
+      ['Noch etwas war gewachsen, in Amina drin.', 'Geduld.'],
+      [
+        'Wenn du warten musst, denk an das Samenkorn.',
+        'Gute Dinge wachsen langsam.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Amina planted a seed in a cup of soil.',

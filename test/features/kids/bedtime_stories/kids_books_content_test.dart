@@ -204,6 +204,114 @@ void main() {
       expect(book.backdropAssetPath, book.coverAssetPath);
     });
   });
+
+  // C6: a book's German is checked against the same rules, spread for
+  // spread, and the localized seed keeps every picture and ref.
+  group('every German translation', () {
+    final translated = [
+      for (final book in books)
+        if (book.translations['de'] != null) book,
+    ];
+
+    test('every book on the shelves carries German', () {
+      final missing = [
+        for (final story in everyStory)
+          if (story.isPictureBook && story.translations['de'] == null) story.id,
+      ];
+      expect(missing, isEmpty, reason: 'no German: $missing');
+    });
+
+    test('matches its book spread for spread and keeps the rules', () {
+      for (final book in translated) {
+        final de = book.translations['de']!;
+        expect(
+          de.spreads.length,
+          book.spreads.length,
+          reason: '${book.id}: German has ${de.spreads.length} spreads',
+        );
+        for (final field in [
+          de.title,
+          de.shortTitle,
+          de.summary,
+          de.lesson,
+          de.refrain,
+          de.bedtimeClosing,
+        ]) {
+          expect(field.trim(), isNotEmpty, reason: '${book.id} German field');
+        }
+        final core = kidsBookRefrainCore(de.refrain).toLowerCase();
+        var refrains = 0;
+        for (var i = 0; i < de.spreads.length; i++) {
+          final lines = de.spreads[i];
+          expect(
+            lines.length,
+            inInclusiveRange(1, kKidsBookSpreadMaxLines),
+            reason: '${book.id} German spread ${i + 1} lines',
+          );
+          final words = lines.fold<int>(
+            0,
+            (n, l) => n + l.trim().split(RegExp(r'\s+')).length,
+          );
+          expect(
+            words,
+            lessThanOrEqualTo(kKidsBookTranslatedSpreadMaxWords),
+            reason: '${book.id} German spread ${i + 1} is $words words',
+          );
+          for (final line in lines) {
+            expect(line.trim(), isNotEmpty);
+            expect(
+              line.trimRight().endsWith('…') ||
+                  line.trimRight().endsWith('...'),
+              isFalse,
+              reason: '${book.id} German spread ${i + 1} trails off',
+            );
+            expect(
+              line.toLowerCase().contains('gute nacht'),
+              isFalse,
+              reason: '${book.id} German spread ${i + 1} says good night',
+            );
+          }
+          if (lines.join(' ').toLowerCase().contains(core)) refrains++;
+        }
+        expect(
+          refrains,
+          greaterThanOrEqualTo(kKidsBookRefrainMinCount),
+          reason:
+              '${book.id}: German refrain "${de.refrain}" returns $refrains times',
+        );
+      }
+    });
+
+    test('localized swaps the text and keeps the pictures', () {
+      for (final book in translated) {
+        final de = book.translations['de']!;
+        final localized = book.localized('de');
+        expect(localized.contentLanguage, 'de');
+        expect(localized.readAloudLanguageCode, 'de-DE');
+        expect(localized.id, book.id);
+        expect(localized.title, de.title);
+        expect(localized.refrain, de.refrain);
+        expect(localized.bedtimeClosing, de.bedtimeClosing);
+        expect(localized.spreads.length, book.spreads.length);
+        for (var i = 0; i < book.spreads.length; i++) {
+          expect(localized.spreads[i].lines, de.spreads[i]);
+          expect(
+            localized.spreads[i].illustrationAsset,
+            book.spreads[i].illustrationAsset,
+          );
+          expect(localized.spreads[i].atlasScene, book.spreads[i].atlasScene);
+          expect(localized.spreads[i].quranRef, book.spreads[i].quranRef);
+          expect(localized.spreads[i].arabicLine, book.spreads[i].arabicLine);
+          expect(localized.spreads[i].isRefrain, book.spreads[i].isRefrain);
+        }
+        expect(localized.ttsText, kidsBookReadAloudText(localized.spreads));
+        expect(localized.sceneIllustrations, book.sceneIllustrations);
+        // A language the book does not carry reads as written.
+        expect(identical(book.localized('fr'), book), isTrue);
+        expect(identical(localized.localized('de'), localized), isTrue);
+      }
+    });
+  });
 }
 
 const _cover = 'assets/images/prophets/bedtime_stories/covers/yunus_cover.webp';

@@ -45,6 +45,69 @@ final BedtimeStorySeed adamBook = kidsPictureBook(
   backdropAssetPath:
       '$bedtimeStoryImageBackdropAssetDirectory/adam_backdrop.webp',
   relatedStoryIds: const ['story_prophet_nuh_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Adam und der Garten',
+    shortTitle: 'Prophet Adam',
+    summary:
+        'Der erste Mensch, ein Baum, ein Fehler und die Entschuldigung, die Allah annahm.',
+    lesson:
+        'Jeder macht Fehler, aber Allah liebt die, die zu Ihm zurückkehren und es noch mal versuchen.',
+    refrain: 'Sag Entschuldigung und versuch es noch mal.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Allah hat Adam vergeben, und Allah liebt dich. Gute Nacht.',
+    spreads: [
+      [
+        'Bevor es Menschen gab, war die Welt still.',
+        'Allah erschuf den Himmel, die Sterne, die Berge und die Meere.',
+      ],
+      [
+        'Dann erschuf Allah den ersten Menschen.',
+        'Sein Name war Adam, Friede sei mit ihm.',
+      ],
+      [
+        'Allah lehrte Adam die Namen von allem.',
+        'Die Engel staunten, was Adam alles wusste.',
+      ],
+      [
+        'Allah gab Adam einen Garten namens Dschanna.',
+        'Bäume, Flüsse, süße Früchte und Frieden.',
+      ],
+      [
+        'Adam war allein, also erschuf Allah Hawwa.',
+        'Jetzt waren sie zu zweit, und sie waren glücklich.',
+      ],
+      [
+        '„Genießt alles“, sagte Allah zu ihnen.',
+        '„Aber geht nicht in die Nähe dieses einen Baumes.“',
+      ],
+      [
+        'Iblis mochte Adam nicht.',
+        'Er flüsterte und flüsterte, bis sie es vergaßen.',
+      ],
+      [
+        'Sie aßen von dem Baum.',
+        'Dann spürten sie es. Sie hatten Unrecht getan.',
+      ],
+      [
+        'Adam und Hawwa versteckten sich nicht.',
+        'Sie sagten Allah Entschuldigung.',
+        'Sag Entschuldigung und versuch es noch mal.',
+      ],
+      [
+        'Allah vergab ihnen.',
+        'Allah vergibt immer denen, die zu Ihm zurückkehren.',
+        'Sag Entschuldigung und versuch es noch mal.',
+      ],
+      [
+        'Dann war es Zeit, auf der Erde zu leben.',
+        'Adam wurde der erste Prophet und lehrte seine Kinder über Allah.',
+      ],
+      [
+        'Jeder macht Fehler. Sogar der erste Mensch.',
+        'Sag Entschuldigung und versuch es noch mal.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Before there were people, the world was quiet.',

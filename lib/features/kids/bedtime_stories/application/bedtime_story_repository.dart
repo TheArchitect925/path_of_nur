@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/localization/locale_provider.dart';
 import '../../../editorial_dashboard/application/editorial_content_versions_provider.dart';
 import '../data/bedtime_story_media_manifest.dart';
 import '../domain/bedtime_story_models.dart';
@@ -7,6 +8,21 @@ import 'bedtime_story_progress_service.dart';
 
 final bedtimeStoryRepositoryProvider = Provider<BedtimeStoryRepository>((ref) {
   return BedtimeStoryRepository(ref);
+});
+
+/// Every story in the language of the app locale (C6): a book that carries
+/// that translation reads in it, any other reads as written. Resolved here
+/// once, so the library, the reader, the voice and the quizzes all see the
+/// same seed.
+final localizedBedtimeStorySeedsProvider = Provider<List<BedtimeStorySeed>>((
+  ref,
+) {
+  final language =
+      (ref.watch(appLocaleProvider) ?? defaultAppLocale).languageCode;
+  return [
+    for (final story in ref.watch(editorialBedtimeStorySeedsProvider))
+      story.localized(language),
+  ];
 });
 
 final bedtimeStoriesProvider = Provider<List<BedtimeStorySeed>>((ref) {
@@ -93,7 +109,7 @@ class BedtimeStoryRepository {
   final Ref _ref;
 
   List<BedtimeStorySeed> get allStories =>
-      _ref.watch(editorialBedtimeStorySeedsProvider);
+      _ref.watch(localizedBedtimeStorySeedsProvider);
 
   List<BedtimeStorySeed> get bedtimeStories => bedtimeEligibleStories;
 

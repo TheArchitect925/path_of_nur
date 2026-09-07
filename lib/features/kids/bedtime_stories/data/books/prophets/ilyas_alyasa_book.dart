@@ -45,6 +45,48 @@ final BedtimeStorySeed ilyasAlyasaBook = kidsPictureBook(
     'story_prophet_ibrahim_bedtime_v1',
     'story_prophet_sulaiman_bedtime_v1',
   ],
+  de: const KidsBookTranslation(
+    title: 'Ilyas und Alyasa',
+    shortTitle: 'Ilyas und Alyasa',
+    summary:
+        'Eine Statue namens Baal, ein Prophet, der fragte, wer die Berge gemacht hat, und der Prophet, der nach ihm kam.',
+    lesson:
+        'Nur Allah hat alles gemacht. Verbeug dich nie vor etwas, das Er gemacht hat.',
+    refrain: 'Der beste Schöpfer.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Die Berge, der Regen und du: gemacht vom besten Schöpfer. Gute Nacht.',
+    spreads: [
+      [
+        'Lange nach Musa vergaßen die Menschen Allah wieder.',
+        'Sie verbeugten sich vor einer Statue, die sie Baal nannten.',
+      ],
+      [
+        'Allah schickte ihnen den Propheten Ilyas, Friede sei mit ihm.',
+        '„Wollt ihr Allah nicht fürchten?“, fragte er.',
+      ],
+      [
+        '„Ruft ihr Baal an und verlasst Allah? Er ist der beste Schöpfer.“',
+        '„Allah ist euer Herr.“',
+      ],
+      [
+        'Schaut auf die Berge, den Regen, die Vögel.',
+        'Eine Statue hat nichts davon gemacht. Der beste Schöpfer hat es gemacht.',
+      ],
+      [
+        'Die meisten Menschen wollten Ilyas nicht zuhören.',
+        'Aber manche taten es, und Allah beschützte sie.',
+      ],
+      [
+        'Allah sagt: Friede sei mit Ilyas.',
+        'Allah gedenkt derer, die die Wahrheit sagen.',
+      ],
+      [
+        'Nach Ilyas kam der Prophet Alyasa, Friede sei mit ihm.',
+        'Allah sagt, er war einer der besten Menschen.',
+      ],
+      ['Zwei Propheten, eine Botschaft.', 'Betet Ihn an: der beste Schöpfer.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

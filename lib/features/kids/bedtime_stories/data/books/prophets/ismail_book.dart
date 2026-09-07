@@ -43,6 +43,58 @@ final BedtimeStorySeed ismailBook = kidsPictureBook(
   backdropAssetPath:
       '$bedtimeStoryImageBackdropAssetDirectory/ismail_backdrop.webp',
   relatedStoryIds: const ['story_prophet_ibrahim_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Ismail und der Widder',
+    shortTitle: 'Prophet Ismail',
+    summary:
+        'Der Traum eines Vaters, das Vertrauen eines Sohnes und der Widder, den Allah stattdessen schickte.',
+    lesson:
+        'Vertrau Allah, auch wenn es schwer ist. Allah belohnt die, die geduldig und aufrichtig sind.',
+    refrain: 'Wir vertrauen Allah.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Ismail vertraute Allah, und Allah sorgte für ihn. Gute Nacht.',
+    spreads: [
+      [
+        'Ibrahim, Friede sei mit ihm, hatte einen Sohn namens Ismail, Friede sei mit ihm.',
+        'Er war gütig, sanft und hilfsbereit.',
+      ],
+      [
+        'Als Ismail ein Baby war, lief Hadschar zwischen zwei Hügeln hin und her, um Wasser zu suchen.',
+        'Wasser sprudelte aus dem Sand: Zamzam.',
+      ],
+      [
+        'Ismail wuchs auf und liebte Allah, wie sein Vater.',
+        'Sie arbeiteten und beteten Seite an Seite.',
+      ],
+      [
+        'Eines Nachts hatte Ibrahim einen Traum.',
+        'Es war kein gewöhnlicher Traum. Es war eine Botschaft von Allah.',
+      ],
+      [
+        '„Mein Sohn, ich sah im Traum, dass ich dich für Allah hergeben muss.“',
+        'Ibrahims Herz war schwer.',
+      ],
+      [
+        'Ismail sagte: „Vater, tu, was Allah verlangt.“',
+        '„Wenn Allah will, werde ich geduldig sein.“',
+        'Wir vertrauen Allah.',
+      ],
+      [
+        'Sie gingen zusammen, Schritt für Schritt.',
+        'Beide bereit. Beide voller Vertrauen.',
+      ],
+      [
+        'Dann rief Allah: „O Ibrahim! Du hast es schon getan.“',
+        'Es war eine Prüfung, und sie hatten sie bestanden.',
+      ],
+      ['Allah schickte stattdessen einen Widder.', 'Wir vertrauen Allah.'],
+      [
+        'Jedes Jahr, am Eid al-Adha, denken wir an diesen Tag.',
+        'Ein Vater, ein Sohn und ein großes Vertrauen.',
+      ],
+      ['Wenn etwas schwer ist, mach es wie Ismail.', 'Wir vertrauen Allah.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Ibrahim, peace be upon him, had a son called Ismail, peace be upon him.',

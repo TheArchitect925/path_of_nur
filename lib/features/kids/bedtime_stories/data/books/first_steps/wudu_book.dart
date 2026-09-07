@@ -38,6 +38,57 @@ final BedtimeStorySeed wuduBook = kidsPictureBook(
   bedtimeEligible: false,
   coverAssetPath: 'assets/images/kids_books/covers/wudu_cover.webp',
   relatedStoryIds: const ['book_first_steps_five_times_a_day_v1'],
+  de: const KidsBookTranslation(
+    title: 'Fertig machen zum Gebet',
+    shortTitle: 'Fertig machen',
+    summary:
+        'Zayn krempelt die Ärmel hoch: Hände, Mund, Nase, Gesicht, Arme, Kopf, Ohren und Füße, und er ist bereit zum Beten.',
+    lesson:
+        'Wasch dich, bevor du betest, so wie der Prophet ﷺ es gelehrt hat. Außen sauber, innen ruhig.',
+    refrain: 'Sauber und bereit.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu, sauber und bereit für morgen. Gute Nacht.',
+    spreads: [
+      [
+        'Bevor wir beten, machen wir uns fertig.',
+        'Zayn krempelt die Ärmel hoch. Wasserzeit!',
+      ],
+      [
+        'Das heißt Wudu.',
+        'Allah hat uns gebeten, uns zu waschen, bevor wir vor Ihm stehen.',
+      ],
+      [
+        'Bismillah. Wasch deine Hände, dreimal.',
+        'Spül deinen Mund. Wasch deine Nase.',
+      ],
+      [
+        'Wasch dein Gesicht, von der Stirn bis zum Kinn.',
+        'Zayn spritzt. Safa lacht.',
+      ],
+      [
+        'Wasch deine Arme bis zu den Ellbogen.',
+        'Streich mit nassen Händen über den Kopf. Streich über die Ohren.',
+      ],
+      ['Zuletzt wasch deine Füße, bis zu den Knöcheln.', 'Sauber und bereit.'],
+      [
+        'Der Prophet ﷺ sagte: Wenn du dich wäschst, fließen deine kleinen Fehler mit dem Wasser weg.',
+        'Sogar unter den Fingernägeln hervor.',
+      ],
+      [
+        'Jetzt steht Safa auf dem Teppich, frisch und ruhig.',
+        'Sauber und bereit.',
+      ],
+      [
+        'Wudu bleibt, bis du schläfst oder auf die Toilette gehst oder pupst.',
+        'Dann wäschst du dich noch mal. Das ist alles.',
+      ],
+      ['Sag Bismillah, und fang mit den Händen an.', 'Sauber und bereit.'],
+      [
+        'Üben wir, Schritt für Schritt.',
+        'Tipp auf jeden Schritt, während du gehst.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Before we pray, we get ready.',

@@ -49,6 +49,46 @@ final BedtimeStorySeed kindnessAnimalsBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_kindness_to_animals_v1'],
   memoryRefs: const ['memory_story_kindness_to_animals_v1'],
+  de: const KidsBookTranslation(
+    title: 'Das Kätzchen an der Mauer',
+    shortTitle: 'Das Kätzchen',
+    summary:
+        'Eine winzige Stimme an der Gartenmauer, ein leerer Napf, und wie Misk zu Safa kam.',
+    lesson:
+        'Barmherzigkeit mit Tieren gehört zu einem weichen, gläubigen Herzen.',
+    refrain: 'Allah liebt Barmherzigkeit.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Alle Tiere ruhen jetzt, und Allah wacht über sie alle. Gute Nacht.',
+    spreads: [
+      ['An der Gartenmauer hörte Safa eine winzige Stimme. Miau.'],
+      [
+        'Ein kleines graues Kätzchen. Sein Napf war leer.',
+        'Seine Zunge war trocken.',
+      ],
+      [
+        'Safa lief ins Haus und füllte den Napf mit Wasser.',
+        'Sie stellte ihn sanft hin.',
+      ],
+      ['Das Kätzchen trank und trank. Sein kleiner Schwanz ging hoch.'],
+      ['Oma schaute von der Tür zu. „Allah liebt Barmherzigkeit“, sagte sie.'],
+      [
+        'Der Prophet ﷺ erzählte von einem Mann, der einem durstigen Hund Wasser gab.',
+        'Allah vergab ihm dafür.',
+      ],
+      [
+        'Jedes Lebewesen ist Allahs Geschöpf.',
+        'Gut zu ihm zu sein ist eine gute Tat.',
+      ],
+      [
+        'Das Kätzchen blieb. Safa nannte es Misk.',
+        'Allah liebt Barmherzigkeit.',
+      ],
+      [
+        'Ein Napf Wasser. Eine sanfte Hand. Allah liebt Barmherzigkeit.',
+        'Und Er liebt die Barmherzigen.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'By the garden wall, Safa heard a tiny voice. Mew.',

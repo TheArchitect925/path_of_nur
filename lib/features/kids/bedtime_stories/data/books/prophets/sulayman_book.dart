@@ -43,6 +43,70 @@ final BedtimeStorySeed sulaymanBook = kidsPictureBook(
   backdropAssetPath:
       '$bedtimeStoryImageBackdropAssetDirectory/sulaiman_backdrop.webp',
   relatedStoryIds: const ['story_prophet_dawud_bedtime_v1'],
+  de: const KidsBookTranslation(
+    title: 'Sulayman und die Ameise',
+    shortTitle: 'Prophet Sulayman',
+    summary:
+        'Ein König, der eine Ameise hörte, ein Vogel mit großen Neuigkeiten und ein Thron, der flog.',
+    lesson:
+        'Sei dankbar für das, was du hast, nutze deine Gaben für Gutes und bleib bescheiden.',
+    refrain: 'Danke, Allah.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Sulayman hörte die Ameise, und Allah hört dich. Gute Nacht.',
+    spreads: [
+      [
+        'Sulayman, Friede sei mit ihm, war Dawuds Sohn und ein König.',
+        'Allah lehrte ihn, was die Vögel und Tiere sagen.',
+      ],
+      [
+        'Eines Tages zog sein großes Heer durch ein Tal.',
+        'Eine winzige Ameise sah sie kommen.',
+      ],
+      [
+        '„O Ameisen, geht in eure Häuser“, rief sie, „damit Sulaymans Heer euch nicht zertritt!“',
+      ],
+      [
+        'Sulayman hörte sie, und er lächelte.',
+        'Er betete: „Mein Herr, hilf mir, dankbar zu sein.“ Danke, Allah.',
+      ],
+      [
+        'Der Wind trug Sulayman, wohin er wollte.',
+        'Eine Reise am Morgen war so weit wie ein Monat, am Abend genauso.',
+      ],
+      [
+        'Eines Tages fehlte ein kleiner Vogel: der Wiedehopf.',
+        'Dann kam er zurück mit großen Neuigkeiten.',
+      ],
+      [
+        '„Ich habe ein Land gefunden, das eine Königin regiert“, sagte der Wiedehopf.',
+        '„Ihr Volk betet die Sonne an statt Allah.“',
+      ],
+      [
+        'Sulayman schickte der Königin einen Brief: Komm zu Allah.',
+        'Die Königin kam, weise und vorsichtig.',
+      ],
+      [
+        'Bevor sie ankam, stand ihr Thron vor Sulayman.',
+        'Mit Allahs Erlaubnis, in einem Augenblick.',
+      ],
+      [
+        '„Das ist von meinem Herrn“, sagte Sulayman, „um zu prüfen, ob ich dankbar bin.“',
+        'Danke, Allah.',
+      ],
+      [
+        'Die Königin sah die Wahrheit und glaubte mit Sulayman an Allah.',
+        'Das ganze Königreich tat es.',
+      ],
+      [
+        'Bei all dieser Macht blieb Sulayman bescheiden.',
+        'Jede Nacht dachte er daran, Wer sie ihm gegeben hatte.',
+      ],
+      [
+        'Wenn Allah dir etwas Gutes gibt, mach es wie Sulayman.',
+        'Danke, Allah.',
+      ],
+    ],
+  ),
   spreads: const [
     KidsBookSpread(
       [

@@ -46,6 +46,42 @@ final BedtimeStorySeed sharingBook = kidsPictureBook(
   ],
   quizRefs: const ['quiz_story_sharing_with_others_v1'],
   memoryRefs: const ['memory_story_sharing_with_others_v1'],
+  de: const KidsBookTranslation(
+    title: 'Zwei Datteln unter dem Baum',
+    shortTitle: 'Zwei Datteln',
+    summary:
+        'Zwei Datteln in der Brotdose, eine leere Dose daneben, und was Zayn dann tat.',
+    lesson: 'Teilen um Allahs willen füllt kleine Momente mit Güte.',
+    refrain: 'Wir können teilen.',
+    bedtimeClosing:
+        'Jetzt mach die Augen zu. Denk an eine Sache, die du morgen teilen kannst. Gute Nacht.',
+    spreads: [
+      [
+        'Zayn öffnete seine Brotdose unter dem Baum. Zwei Datteln waren noch da.',
+        'Er wollte beide.',
+      ],
+      [
+        'Dann sah er Amina. Ihre Brotdose war leer.',
+        'Sie hatte ihren Snack vergessen.',
+      ],
+      [
+        'Zayn schaute auf die Datteln. Er schaute Amina an.',
+        'Zwei Datteln. Eine für jeden?',
+      ],
+      ['„Wir können teilen“, sagte Zayn und legte ihr eine Dattel in die Hand.'],
+      [
+        'Amina lächelte ein großes Lächeln.',
+        'Die Dattel war klein. Die Güte fühlte sich groß an.',
+      ],
+      ['Beide sagten „Alhamdulillah“ und aßen zusammen unter dem Baum.'],
+      ['Allah liebt Menschen, die geben, auch wenn sie es selbst gern hätten.'],
+      [
+        'Teilen macht dein Essen nicht weniger. Wir können teilen,',
+        'und unsere Herzen werden größer.',
+      ],
+      ['Wenn du zwei von etwas hast, denk an Zayn.', 'Wir können teilen.'],
+    ],
+  ),
   spreads: const [
     KidsBookSpread([
       'Zayn opened his lunchbox under the tree. Two dates left.',
