@@ -30,6 +30,7 @@
 | PON-E-kids-bookshelf | Kids bookshelf rewrite: every kids story a picture book (spreads, refrain, firefly, cast) across six shelves | in_progress |
 | PON-E-games-redesign | Games audit follow-through: fix, one front door, board-first play, real puzzles | in_progress |
 | PON-E-kids-letters | Kids Letters door: a child can see the letter, trace it, hear it and be asked about it; the page is the alphabet, not the adult Arabic track | in_progress |
+| PON-E-voice-and-copy | Voice and copy: the app stops narrating its calm — one voice, one glossary, a lint that only ratchets down (audit 2026-09-05) | in_progress |
 
 ### Stories
 
@@ -171,6 +172,15 @@
 | PON-S-games-g0-fixes | PON-E-games-redesign | G0: crossword board fits its card, Hadith Reflection opens, adaptive guidance only with real data, word-search filler, daily hub copy, host-form deep links; widget tests for all five puzzle pages | 3 | done |
 | PON-S-kids-letters-see-it | PON-E-kids-letters | L0: the tracing pad paints its letter and the child’s stroke (pixel guard), Letter Review shows and plays the letter with shuffled answers from learned letters only, Quick Practice stops printing the answer and pluralises, Word friend names the word, stroke counts match the guides, one Ready badge, Words/Practice pills hug their text, German says Buchstabe and du | 5 | done |
 | PON-S-kids-letters-lesson-and-page | PON-E-kids-letters | L1+L2: the lesson opens on the letter (hear it, trace it, one picture) on the kids shell with autoplay for a child and the playback toggle moved to Parents; the Letters page becomes the alphabet — one next-step card, 28 speaking tiles with visible locks, three doors after the letters — and the adult Arabic track (search, lesson packs, Qur’an bridge, quick check) moves to the parents page | 8 | done |
+| PON-S-voice-v0-foundation | PON-E-voice-and-copy | V0: voice guide (docs/voice_and_copy_guide.md), copy lint with 20 rules + ratchet baseline + guard test, 1,492 dead ARB keys deleted from 17 locales, delta mode for translate_arb.py (--changed-since/--keys, merge), CLAUDE.md copy section | 3 | done |
+| PON-S-voice-v1-mechanics | PON-E-voice-and-copy | V1: scripted, reviewed diff — one apostrophe glyph, glossary spellings, term casing, ﷺ on every mention, UK→US, typos, dashes, label periods, duplicate-label unification, kids dialogue quotes; German gets the glyph and term pass | 3 | ready |
+| PON-S-voice-v2a-first-run | PON-E-voice-and-copy | V2a: hand rewrite of notifications, onboarding, home, navigation, settings and profile copy in the voice; de/ar/ur re-translated in the same commit | 5 | backlog |
+| PON-S-voice-v2b-learn-worship | PON-E-voice-and-copy | V2b: Learn hubs and landings, Qur’an tab, Worship, Dhikr and Growth chrome rewritten; page names lose Hub/Island/Insights | 5 | backlog |
+| PON-S-voice-v2c-kids | PON-E-voice-and-copy | V2c: Kids, bedtime, kids du’a and kids Arabic chrome rewritten for the child (and the parent rows for the parent); streak/XP words renamed | 5 | backlog |
+| PON-S-voice-v2d-long-tail | PON-E-voice-and-copy | V2d: games, circles, baby names, history, world, accounts, help and legal chrome rewritten | 5 | backlog |
+| PON-S-voice-v3-prose | PON-E-voice-and-copy | V3: lesson prose in the ARB and the Dart content files edited for mechanics, studio vocabulary, lists and tails; scholarship kept; du’a and Qur’an translations only repunctuated | 8 | backlog |
+| PON-S-voice-v4-native | PON-E-voice-and-copy | V4: Apple TV (976 strings; parity sentences gone), Watch, complications and widgets in the voice; XP/Drops/Streak renamed; .strings tables re-translated | 3 | backlog |
+| PON-S-voice-v5-lock | PON-E-voice-and-copy | V5: every baseline at zero, the lint runs as its own CI step, the voice guide linked from onboarding docs | 1 | backlog |
 
 ## Smoke Tests
 

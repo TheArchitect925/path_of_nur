@@ -1,0 +1,168 @@
+# Path of Nur — Voice and Copy Guide
+
+Last updated: 2026-09-07
+
+Gentle, calm, kind, Islamic. As rules the copy follows, not words it uses.
+
+This guide is the source of truth for every English string in the app: the ARB
+(`lib/l10n/app_en.arb`), the Dart content files under `lib/features/*/data/`,
+and the Apple TV, Watch, complication and widget `.strings` tables.
+`tools/copy_lint.py` checks the ARB against it and
+`test/app/copy_lint_ratchet_test.dart` fails CI when a rule's count rises.
+
+Audit and rationale: the Path of Nur Voice Audit artifact (2026-09-05).
+Decisions 1–4 below were made on 2026-09-07.
+
+## Why
+
+The audit found the copy grammatical and rarely salesy, yet unmistakably
+machine-written, for five countable reasons: it named its own tone ("a calm
+space for…", 1,300 times), it listed three things in every subtitle (874
+times), it shipped design-document sentences to the screen ("boxed into its own
+island so the newer journey system can stay clear", 192 times), it padded lines
+with tails ("right now", "in one place", 270 times), and it never settled its
+Islamic conventions (two apostrophe glyphs, six spellings of one term, ﷺ missing
+on 21 mentions). Each rule below closes one of those gaps.
+
+## The rules
+
+1. **Say less.** A subtitle says what the page is in one breath, not what it
+   contains. Aim for eight words; 92 characters is the ceiling the header guard
+   enforces.
+   *A calm knowledge space for short quizzes, daily review, and gentle
+   reinforcement.* → *Short quizzes and daily review.*
+
+2. **Be calm; never say calm.** calm, gentle, quiet, steady, soft, peaceful,
+   meaningful, intentional, mindful are banned in chrome (titles, subtitles,
+   buttons, labels, hints, badges). They stay allowed in lesson prose and when
+   literal (a quiet adhan sound, quiet hours).
+
+3. **Speak to one person.** "You", present tense, active voice. No "users", no
+   "the app" as an actor, no "we" except in shared worship ("Why we pray"). The
+   app names itself at most once per screen, always as *Path of Nur*.
+
+4. **Leave the studio vocabulary in the studio.** Never on screen: surface,
+   island, hub, module, flow, layer, system, legacy, migration, parity,
+   canonical, scaffold, owner, entry point, enrichment, dataset, route,
+   utility. Say what the person sees: a page, a lesson, the reader, search.
+   *Secondary tools and utility surfaces live here without replacing the
+   journey-first structure.* → *Tools and search.*
+
+5. **Invite rather than instruct.** Buttons are verbs (Read, Listen, Save,
+   Continue). Subtitles are nouns or quiet invitations, not commands. No
+   "Tap to", no "Get started", no "Unlock".
+
+6. **Kind in failure, honest in emptiness.** An error says what happened and
+   what to do, without "Oops", "Please" or apology:
+   *Couldn’t load duas. Check your connection and try again.*
+   An empty state says what is here and never mentions the roadmap:
+   *No lessons here yet.* Never *will appear here as content grows*, never
+   *coming soon*, never *placeholder*, never *for now*.
+
+7. **One list, rarely; three, almost never.** A list of three or more nouns in
+   chrome needs a reason. If a page has five features, the subtitle names the
+   purpose, not the five.
+
+8. **No tails.** Drop "right now", "today", "in one place", "at your own pace",
+   "when you want", "with intention" unless the sentence is untrue without them.
+
+9. **Islamic conventions are fixed, not felt.** The glossary below is the source
+   of truth: one spelling, one casing, one honorific rule. Du’a, Qur’an and
+   hadith translations are never reworded, only repunctuated.
+
+10. **Let the deen carry the warmth.** Where another app would cheer ("Great
+    job!"), Path of Nur may say alhamdulillah, masha’Allah, or simply state the
+    fact. Praise is quiet and true; it never inflates.
+    *Great job - 1 day in a row.* → *One day in a row, masha’Allah.*
+
+11. **Children hear a storyteller.** Kids copy addresses the child as "you", one
+    idea per line, dialogue in quotation marks (“Bismillah,” said Mama.),
+    "Let’s" and an occasional exclamation mark allowed. Parent-facing rows say
+    "your child" and use the adult voice. See also
+    `docs/kids_picture_books_authoring_rules.md`.
+
+12. **Mechanics.** US spelling. One apostrophe glyph (’). No em-dash and no
+    spaced hyphen in chrome; a period, a comma or a middle dot (·) between
+    values. Labels and titles carry no terminal period; sentences carry one.
+    Numbers only where they change what the reader does.
+
+## Decisions (2026-09-07)
+
+1. **Gamification: rename, keep the mechanics.** Streaks, XP and badges stay as
+   features; the words go. *days in a row* for streak, *light* for XP, the
+   thing actually done for a badge ("Ten stories read"). The Watch face
+   follows. Drops, the garden and the ocean are the app’s visual metaphors and
+   stay.
+2. **Sentence case** for buttons, section titles, subtitles, labels, hints and
+   badges: *Continue reading*, *Start here*. Page titles keep Title Case (header
+   redesign, decision C1, 2026-09-04).
+3. **ﷺ after every mention of the Prophet**, including possessives (*the
+   Prophet’s ﷺ life*) and *Muhammad ﷺ*. Plain *Allah*, never ﷻ or SWT.
+   Companions: *may Allah be pleased with him/her* on first mention per page,
+   then the name alone. No "peace be upon him" in English chrome; the kids
+   picture books keep it in their first spread by their own rules.
+4. **Lesson prose (V3)** is edited for mechanics, studio vocabulary, lists and
+   tails. Its substance and scholarship are kept.
+
+## Glossary
+
+| Use | Not | Note |
+| --- | --- | --- |
+| Qur’an, Qur’anic | Quran, Qur'an | the glyph is the change |
+| salah, du’a, dhikr, hadith, wudu, ayah, surah | Salah, Dua, Dhikr mid-sentence | capital only at sentence start or in a name (Surah Yusuf) |
+| ayahs, surahs, duas | ayat, suwar, ad’iyah | English plurals |
+| qada | qaza | |
+| rakat, rakats | rak’ah | kept: the form the app already uses everywhere |
+| Fajr, Dhuhr, Asr, Maghrib, Isha, Jumu’ah, Tarawih, Tahajjud, Witr | Taraweeh, Juma | prayer names are proper names |
+| Makkah, Madinah, Seerah | Mecca, Medina, Sirah | |
+| Path of Nūr *or* Path of Nur (open, V1) | Noor | the home-screen name is Nūr (`CFBundleDisplayName`), the ARB app title is Nur; 43 strings mix them. Pick one in V1 and the lint will hold it |
+| the Prophet ﷺ, Muhammad ﷺ, the Messenger of Allah ﷺ | the Prophet, Prophet Muhammad, PBUH | every mention |
+| Allah | God, Allah ﷻ, SWT | |
+| alhamdulillah, masha’Allah, insha’Allah, bismillah | Alhamdulilah, MashaAllah, InshAllah | lowercase when used as words |
+| days in a row · light | streak · XP | decision 1 |
+| memorization, color, practice (verb and noun) | memorisation, colour, practise | US spelling |
+
+## How the lint works
+
+```bash
+python3 tools/copy_lint.py                 # counts against the baseline
+python3 tools/copy_lint.py --list tone-tail # the offending keys for one rule
+python3 tools/copy_lint.py --write-baseline # after a real fix, lock it
+python3 tools/prune_dead_l10n_keys.py      # delete keys no Dart file uses
+```
+
+Scopes: *chrome* is every key that is not lesson prose (`…Body`,
+`…Description`, `…Takeaway1`, …) and not sacred text (`…Translation`,
+`…Meaning`, `…Arabic`, …). Tone rules run on chrome only; mechanics run on
+everything but sacred text; the apostrophe rule runs on everything.
+
+The ratchet test fails when a count rises (new drift: fix the string) and when
+it falls (lock it: `--write-baseline`). Never raise a baseline by hand.
+
+## Re-translating what you rewrote
+
+German, Arabic and Urdu ship, and `tools/localization_gate.py` allows at most
+5% of tier-A prose to sit in English. Every rewritten key is re-translated in
+the same commit:
+
+```bash
+python3 tools/translate_arb.py --source lib/l10n/app_en.arb --outdir lib/l10n \
+  --languages de ar ur --changed-since HEAD
+```
+
+`--changed-since` translates only the keys whose English changed since that
+ref and merges them into the existing locale files; `--keys` and
+`--keys-file` select keys by hand; `--dry-run` lists what would be sent.
+Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
+--release-from-source`.
+
+## The phases
+
+| Phase | What lands |
+| --- | --- |
+| V0 · Foundation (done 2026-09-07) | this guide, the lint, the ratchet test, dead keys deleted, delta translation |
+| V1 · Mechanics | scripted, reviewed diff: apostrophes, terms, casing, honorifics, UK→US, typos, dashes, label periods, duplicate labels, kids dialogue quotes |
+| V2 · Chrome by exposure | (a) notifications, onboarding, home, navigation, settings, profile · (b) Learn hubs, Qur’an, Worship, Dhikr, Growth · (c) Kids · (d) games, circles, baby names, history, world, accounts |
+| V3 · Prose | the content keys and the Dart content files: mechanics, studio vocabulary, lists, tails |
+| V4 · Native | Apple TV, Watch, complications, widgets |
+| V5 · Lock | baselines to zero, lint blocks CI on its own step |

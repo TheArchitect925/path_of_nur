@@ -23,6 +23,19 @@ Usage:
       --languages ur ar de hi tr fr id \
       --model gpt-4.1-mini \
       --batch-size 80
+
+Delta mode (V0 of the voice and copy work, 2026-09-07): translate only the
+keys you rewrote and merge them into the existing locale files, so a copy
+slice can re-translate de/ar/ur in the same commit:
+
+    python tools/translate_arb.py --source lib/l10n/app_en.arb --outdir lib/l10n \
+      --languages de ar ur --changed-since HEAD          # keys whose English changed
+    python tools/translate_arb.py ... --keys homeTitle homeSubtitle
+    python tools/translate_arb.py ... --keys-file rewritten.json   # JSON list
+    python tools/translate_arb.py ... --changed-since HEAD --dry-run  # list only
+
+Any key selection implies --merge: untouched keys keep their existing
+translation and the output stays in English key order with full key parity.
 """
 
 from __future__ import annotations
@@ -295,6 +308,74 @@ def validate_batch(source_batch: dict[str, str], translated_batch: dict[str, str
             )
 
 
+def changed_keys_since(source_path: Path, ref: str) -> set[str]:
+    """Keys whose English value is new or different from `ref`'s ARB."""
+    import subprocess
+
+    repo_root = subprocess.run(
+        ["git", "rev-parse", "--show-toplevel"],
+        capture_output=True, text=True, check=True, cwd=source_path.parent,
+    ).stdout.strip()
+    rel = source_path.resolve().relative_to(Path(repo_root)).as_posix()
+    old_text = subprocess.run(
+        ["git", "show", f"{ref}:{rel}"],
+        capture_output=True, text=True, check=True, cwd=repo_root,
+    ).stdout
+    old = json.loads(old_text)
+    new = load_json(source_path)
+    return {
+        key
+        for key, value in new.items()
+        if not key.startswith("@") and isinstance(value, str) and old.get(key) != value
+    }
+
+
+def select_keys(
+    source_arb: dict[str, object],
+    keys: list[str] | None,
+    keys_file: str | None,
+    changed_since: str | None,
+    source_path: Path,
+) -> set[str] | None:
+    """The keys to translate, or None for the whole file."""
+    if not keys and not keys_file and not changed_since:
+        return None
+    chosen: set[str] = set(keys or [])
+    if keys_file:
+        chosen.update(json.loads(Path(keys_file).read_text(encoding="utf-8")))
+    if changed_since:
+        chosen.update(changed_keys_since(source_path, changed_since))
+    unknown = sorted(k for k in chosen if k not in source_arb)
+    if unknown:
+        raise ValueError(f"Keys not in source ARB: {unknown}")
+    return chosen
+
+
+def merge_translation(
+    source_arb: dict[str, object],
+    fixed: dict[str, object],
+    translated: dict[str, str],
+    existing: dict[str, object] | None,
+) -> dict[str, object]:
+    """Rebuild a locale file in English key order.
+
+    Translated keys win; untouched keys keep their existing translation; a key
+    the locale never had falls back to English so parity holds; keys the
+    English template dropped disappear.
+    """
+    output: dict[str, object] = {}
+    for key, value in source_arb.items():
+        if key in translated:
+            output[key] = translated[key]
+        elif key in fixed:
+            output[key] = fixed[key]
+        elif existing is not None and key in existing:
+            output[key] = existing[key]
+        else:
+            output[key] = value
+    return output
+
+
 def translate_language(
     client: Any,
     model: str,
@@ -302,6 +383,8 @@ def translate_language(
     lang_code: str,
     batch_size: int,
     outdir: Path,
+    keys: set[str] | None = None,
+    dry_run: bool = False,
 ) -> Path:
     if lang_code not in LANGUAGE_CONFIG:
         raise ValueError(f"Unsupported language code: {lang_code}")
@@ -312,12 +395,22 @@ def translate_language(
     language_rules = config["rules"]
 
     fixed, translatable = split_translatable_entries(source_arb)
+    outpath = outdir / filename
+    existing: dict[str, object] | None = None
+    if keys is not None:
+        translatable = {k: v for k, v in translatable.items() if k in keys}
+        if outpath.exists():
+            existing = load_json(outpath)
     chunks = chunk_items(translatable, batch_size)
 
     translated_all: dict[str, str] = {}
 
     print(f"\n=== Translating {language_name} ({lang_code}) ===")
     print(f"Total keys: {len(translatable)} in {len(chunks)} batch(es)")
+    if dry_run:
+        for key in translatable:
+            print(f"  {key}")
+        return outpath
 
     system_prompt = build_system_prompt(language_name, language_rules)
 
@@ -333,16 +426,18 @@ def translate_language(
         validate_batch(batch, translated_batch)
         translated_all.update(translated_batch)
 
-    output = deepcopy(fixed)
-    for key in source_arb.keys():
-        if key in translated_all:
-            output[key] = translated_all[key]
-        elif key in fixed:
-            output[key] = fixed[key]
-        else:
-            raise ValueError(f"Missing key during rebuild: {key}")
+    if keys is None:
+        output = deepcopy(fixed)
+        for key in source_arb.keys():
+            if key in translated_all:
+                output[key] = translated_all[key]
+            elif key in fixed:
+                output[key] = fixed[key]
+            else:
+                raise ValueError(f"Missing key during rebuild: {key}")
+    else:
+        output = merge_translation(source_arb, fixed, translated_all, existing)
 
-    outpath = outdir / filename
     save_json(outpath, output)
     print(f"Saved: {outpath}")
     return outpath
@@ -373,18 +468,57 @@ def main() -> int:
         default=80,
         help="Keys per batch",
     )
+    parser.add_argument(
+        "--keys",
+        nargs="+",
+        help="Translate only these keys and merge into the existing locale file",
+    )
+    parser.add_argument(
+        "--keys-file",
+        help="JSON list of keys to translate (merged into the existing locale file)",
+    )
+    parser.add_argument(
+        "--changed-since",
+        metavar="GIT_REF",
+        help="Translate only keys whose English changed since this ref (e.g. HEAD)",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="List the keys that would be translated and exit",
+    )
     args = parser.parse_args()
+
+    source_path = Path(args.source)
+    outdir = Path(args.outdir)
+    source_arb = load_json(source_path)
+    keys = select_keys(
+        source_arb, args.keys, args.keys_file, args.changed_since, source_path
+    )
+    if keys is not None and not keys:
+        print("No keys selected; nothing to translate.")
+        return 0
+
+    if args.dry_run:
+        for lang in args.languages:
+            translate_language(
+                client=None,
+                model=args.model,
+                source_arb=source_arb,
+                lang_code=lang,
+                batch_size=args.batch_size,
+                outdir=outdir,
+                keys=keys,
+                dry_run=True,
+            )
+        return 0
 
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         print("Missing OPENAI_API_KEY", file=sys.stderr)
         return 1
 
-    source_path = Path(args.source)
-    outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
-
-    source_arb = load_json(source_path)
     client = make_client(api_key)
 
     generated: list[Path] = []
@@ -397,6 +531,7 @@ def main() -> int:
                 lang_code=lang,
                 batch_size=args.batch_size,
                 outdir=outdir,
+                keys=keys,
             ),
         )
 
