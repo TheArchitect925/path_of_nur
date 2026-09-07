@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/bedtime_story_seed.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/books/kids_picture_books.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_islamic_story_seed.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/domain/bedtime_story_models.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_pages.dart';
 
 /// K2: every story is a picture book. The splitter must give each of the
@@ -65,10 +66,46 @@ void main() {
   });
 
   test('a beat stays on one page unless it is longer than a page', () {
-    // "Telling the Truth" opens with two one-line beats that fit together;
-    // its three-line beat about the quiet moment must not be split.
-    final story = kKidsIslamicStories.firstWhere(
-      (item) => item.id == 'story_telling_the_truth_v1',
+    // Every seeded story is a picture book now, so the beat splitter is
+    // exercised on a prose fixture: two one-line beats that fit together,
+    // then a three-line beat about the quiet moment that must not be split.
+    const story = BedtimeStorySeed(
+      id: 'story_fixture_prose_v1',
+      title: 'A Prose Fixture',
+      shortTitle: 'Prose',
+      category: BedtimeStoryCategory.characterAdab,
+      ageGroup: BedtimeStoryAgeGroup.kids,
+      audioFileName: 'fixture.mp3',
+      ttsText: '''
+Maryam knocked over the blue cup.
+
+Water slipped across the table.
+
+For one quiet moment,
+she thought about saying,
+"I did not do it."
+
+But her heart felt heavy.
+''',
+      lesson: 'Truth brings peace.',
+      estimatedDurationSeconds: 30,
+      isFeatured: false,
+      isMultipart: false,
+      partNumber: 1,
+      totalParts: 1,
+      tags: <String>[],
+      sortOrder: 1,
+      coverAssetPath: 'assets/images/kids_stories/covers/patience_cover.webp',
+      backdropAssetPath: '',
+      narratorDisplayName: 'Fixture',
+      isLocked: false,
+      unlockXp: 0,
+      oceanDropsReward: 0,
+      xpReward: 0,
+      isDownloadedByDefault: false,
+      isAvailableOffline: false,
+      recommendedForTonight: false,
+      relatedStoryIds: <String>[],
     );
     final pages = kidsStoryPagesFor(story);
     final quietMoment = pages.firstWhere(

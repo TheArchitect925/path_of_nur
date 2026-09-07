@@ -3,13 +3,12 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/bedtime_story_seed.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_islamic_story_seed.dart';
-import 'package:path_of_nur/features/kids/bedtime_stories/data/kids_story_scene_plans.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/domain/bedtime_story_models.dart';
 import 'package:path_of_nur/features/kids/bedtime_stories/domain/kids_story_pages.dart';
 
 /// K3: every story a child can open shows a real picture on every page, and
-/// the pictures change as the story moves. The picture books carry their
-/// own; the older stories get theirs from the scene plans.
+/// the pictures change as the story moves. Every story is a picture book now
+/// and carries its own scene manifest, derived from its spreads.
 void main() {
   final stories = <BedtimeStorySeed>[
     ...kBedtimeProphetStories,
@@ -49,13 +48,6 @@ void main() {
   test('scene ids stay unique across every story', () {
     final ids = stories.expand((s) => s.sceneIllustrations.map((i) => i.id));
     expect(ids.toSet().length, ids.length);
-  });
-
-  test('a plan only ever names a real story', () {
-    final known = stories.map((s) => s.id).toSet();
-    for (final id in kidsStoryScenePlanIds) {
-      expect(known, contains(id), reason: '$id has a plan but no seed');
-    }
   });
 
   test('the reader shows a picture on every page and turns it over', () {
