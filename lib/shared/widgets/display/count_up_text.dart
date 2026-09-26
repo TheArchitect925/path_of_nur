@@ -14,6 +14,8 @@ class CountUpText extends ConsumerWidget {
     this.textAlign,
     this.format,
     this.fromZero = true,
+    this.maxLines,
+    this.overflow,
   });
 
   final num value;
@@ -25,6 +27,8 @@ class CountUpText extends ConsumerWidget {
 
   /// Count up from zero on first build; false starts at the value.
   final bool fromZero;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,6 +43,8 @@ class CountUpText extends ConsumerWidget {
         return Text(
           shown,
           textAlign: textAlign,
+          maxLines: maxLines,
+          overflow: overflow,
           style: (style ?? const TextStyle()).copyWith(
             fontFeatures: const [FontFeature.tabularFigures()],
           ),

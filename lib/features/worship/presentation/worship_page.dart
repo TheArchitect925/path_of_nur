@@ -17,6 +17,7 @@ import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
 import '../../../shared/widgets/display/compact_list_tile.dart';
+import '../../../shared/widgets/display/count_up_text.dart';
 import '../../../shared/widgets/display/hub_list_group.dart';
 import '../../../shared/widgets/noor_glass_card.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
@@ -492,9 +493,11 @@ class _WorshipTodayNumbersRow extends ConsumerWidget {
     return Row(
       children: [
         Expanded(
+          // The offered count counts up on arrival; the total holds still.
           child: _TodayNumberTile(
-            value: l10n.homeFractionValue(
-              _formatCount(context, summary.prayerCompleted),
+            count: summary.prayerCompleted,
+            format: (value) => l10n.homeFractionValue(
+              _formatCount(context, value.round()),
               _formatCount(
                 context,
                 summary.prayerTotal < 5 ? 5 : summary.prayerTotal,
@@ -506,8 +509,9 @@ class _WorshipTodayNumbersRow extends ConsumerWidget {
         const SizedBox(width: AppSpacing.xs),
         Expanded(
           child: _TodayNumberTile(
-            value: l10n.homeFractionValue(
-              _formatCount(context, summary.dhikrCount),
+            count: summary.dhikrCount,
+            format: (value) => l10n.homeFractionValue(
+              _formatCount(context, value.round()),
               _formatCount(context, dhikrGoal),
             ),
             label: l10n.homeShortcutDhikrLabel,
@@ -526,9 +530,23 @@ class _WorshipTodayNumbersRow extends ConsumerWidget {
 }
 
 class _TodayNumberTile extends StatelessWidget {
-  const _TodayNumberTile({required this.value, required this.label});
+  const _TodayNumberTile({
+    this.value,
+    this.count,
+    this.format,
+    required this.label,
+  }) : assert(
+         value != null || (count != null && format != null),
+         'A tile shows either a fixed value or a count with its format.',
+       );
 
-  final String value;
+  /// A fixed label (the fasting state).
+  final String? value;
+
+  /// A number that counts to its value on arrival and glides to each new
+  /// one, printed through [format].
+  final num? count;
+  final String Function(num value)? format;
   final String label;
 
   @override
@@ -546,14 +564,23 @@ class _TodayNumberTile extends StatelessWidget {
       includeShadow: false,
       child: Column(
         children: [
-          Text(
-            value,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.titleSmall?.copyWith(
-              fontFeatures: const [FontFeature.tabularFigures()],
+          if (count != null)
+            CountUpText(
+              count!,
+              format: format,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.titleSmall,
+            )
+          else
+            Text(
+              value!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontFeatures: const [FontFeature.tabularFigures()],
+              ),
             ),
-          ),
           const SizedBox(height: 2),
           Text(
             label,
