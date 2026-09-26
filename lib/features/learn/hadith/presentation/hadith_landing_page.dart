@@ -7,6 +7,7 @@ import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../journey/application/journey_progression_provider.dart';
+import '../../../../shared/motion/ink_reveal.dart';
 import '../../../../shared/widgets/display/progress_bar.dart';
 import '../../../../shared/widgets/display/compact_list_tile.dart';
 import '../../../../shared/widgets/display/hub_list_group.dart';
@@ -1037,14 +1038,24 @@ class _DailyHadithHero extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            entry.title,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          // The day's hadith inks in, in the reading direction of the
+          // locale; its source follows a beat later.
+          InkReveal(
+            textDirection: Directionality.of(context),
+            child: Text(
+              entry.title,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
           ),
           const SizedBox(height: 4),
-          Text(sourceLine, style: Theme.of(context).textTheme.bodySmall),
+          FadeRise(
+            child: Text(
+              sourceLine,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ),
         ],
       ),
     );
