@@ -1,8 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../core/theme/app_motion.dart';
 import '../../../../../core/theme/app_palette.dart';
+import '../../../../../shared/motion/motion_preferences.dart';
 
 /// Which beads of a misbaha to light for a given count. A string holds 33
 /// beads; longer targets run several loops, and a target that is not a
@@ -57,8 +60,9 @@ class MisbahaLoopLayout {
 }
 
 /// The bead ring with the count in the middle. Every colour comes from the
-/// active palette, so Midnight and Ramadan get their own glow.
-class MisbahaRing extends StatelessWidget {
+/// active palette, so Midnight and Ramadan get their own glow. Each count
+/// slides the newest bead along the string into its place.
+class MisbahaRing extends ConsumerWidget {
   const MisbahaRing({
     super.key,
     required this.layout,
@@ -77,20 +81,35 @@ class MisbahaRing extends StatelessWidget {
   final double glow;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final palette = context.palette;
     final theme = Theme.of(context);
+    final reduceMotion = ref.watch(effectiveReduceMotionProvider);
+    // The loop index is part of the tween so a new loop starts from an
+    // empty string instead of sliding 33 beads backwards.
+    final beadPosition =
+        layout.loopIndex * layout.beadsPerLoop + layout.filledBeads;
     return SizedBox.square(
       dimension: size,
-      child: CustomPaint(
-        painter: _MisbahaPainter(
-          beads: layout.beadsPerLoop,
-          filled: layout.filledBeads,
-          active: layout.activeBeads,
-          accent: palette.accent,
-          accentSoft: palette.accentSoft,
-          glow: glow.clamp(0, 1),
-        ),
+      child: TweenAnimationBuilder<double>(
+        tween: Tween<double>(end: beadPosition.toDouble()),
+        duration: reduceMotion ? AppMotion.instant : AppMotion.beadSlide,
+        curve: AppMotion.settleCurve,
+        builder: (context, animatedPosition, child) {
+          final inLoop =
+              animatedPosition - layout.loopIndex * layout.beadsPerLoop;
+          return CustomPaint(
+            painter: _MisbahaPainter(
+              beads: layout.beadsPerLoop,
+              filled: inLoop.clamp(0, layout.activeBeads.toDouble()),
+              active: layout.activeBeads,
+              accent: palette.accent,
+              accentSoft: palette.accentSoft,
+              glow: glow.clamp(0, 1),
+            ),
+            child: child,
+          );
+        },
         child: Center(
           child: Padding(
             padding: EdgeInsets.all(size * 0.18),
@@ -140,7 +159,10 @@ class _MisbahaPainter extends CustomPainter {
   });
 
   final int beads;
-  final int filled;
+
+  /// Lit beads, fractional while the newest one is still sliding into its
+  /// slot from the slot before it.
+  final double filled;
   final int active;
   final Color accent;
   final Color accentSoft;
@@ -186,22 +208,34 @@ class _MisbahaPainter extends CustomPainter {
       ..strokeWidth = 1
       ..color = accent.withValues(alpha: 0.22);
     final beadRadius = beads > 24 ? 6.0 : 7.0;
+    final settled = filled.floor();
+    final sliding = filled - settled;
+
+    double angleOf(int k) => -math.pi / 2 + 2 * math.pi * k / beads;
+    Offset positionAt(double angle) => Offset(
+      center.dx + ringRadius * math.cos(angle),
+      center.dy + ringRadius * math.sin(angle),
+    );
 
     for (var k = 0; k < beads; k++) {
-      final angle = -math.pi / 2 + 2 * math.pi * k / beads;
-      final position = Offset(
-        center.dx + ringRadius * math.cos(angle),
-        center.dy + ringRadius * math.sin(angle),
-      );
+      final position = positionAt(angleOf(k));
       if (k == 0) {
         canvas.drawCircle(position, beadRadius + 1.5, marker);
-      } else if (k < filled) {
+      } else if (k < settled) {
         canvas.drawCircle(position, beadRadius, fill);
       } else if (k < active) {
         canvas.drawCircle(position, beadRadius, outline);
       } else {
         canvas.drawCircle(position, beadRadius, inactive);
       }
+    }
+
+    // The newest bead, on its way from the previous slot to its own.
+    if (sliding > 0 && settled >= 1 && settled < active) {
+      final from = angleOf(settled - 1);
+      final to = angleOf(settled);
+      final angle = from + (to - from) * sliding;
+      canvas.drawCircle(positionAt(angle), beadRadius, fill);
     }
   }
 

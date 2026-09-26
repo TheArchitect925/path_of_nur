@@ -12,6 +12,7 @@ import '../../application/historical_calendar_providers.dart';
 import '../../domain/historical_event_models.dart';
 import '../../presentation/history_ui_helpers.dart';
 import '../../../../core/theme/app_palette.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class OnThisDayHomeCard extends ConsumerStatefulWidget {
   const OnThisDayHomeCard({super.key});
@@ -148,10 +149,7 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
             ],
           );
         },
-        loading: () => const SizedBox(
-          height: 140,
-          child: Center(child: CircularProgressIndicator()),
-        ),
+        loading: () => const SkeletonParagraph(lines: [1.0, 0.85, 0.6]),
         error: (_, _) => _UpcomingHistoryState(l10n: l10n, upcoming: null),
       ),
     );

@@ -6,6 +6,8 @@ import '../../app/nav_tabs.dart';
 import '../../core/theme/app_backgrounds.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
+import '../motion/motion_preferences.dart';
+import '../motion/settle_in.dart';
 import 'display/hub_list_group.dart';
 import 'global_background.dart';
 import 'quran_navigation.dart';
@@ -143,9 +145,7 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
         (widget.quotePool == null
             ? null
             : quoteFromPoolForToday(widget.quotePool!));
-    final reduceMotion = ref.watch(
-      profileSettingsProvider.select((value) => value.reduceMotion),
-    );
+    final reduceMotion = ref.watch(effectiveReduceMotionProvider);
     final pageTransitionStyle = ref.watch(
       profileSettingsProvider.select((value) => value.pageTransitionStyle),
     );
@@ -251,7 +251,10 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
                   ),
                   const SizedBox(width: 12),
                 ],
-                Expanded(child: titleBlock),
+                // The title is the first thing to settle; the cards follow.
+                Expanded(
+                  child: SettleIn(index: 0, fade: true, child: titleBlock),
+                ),
                 if (hasActions && !hasNavRow) ...[
                   const SizedBox(width: 8),
                   // Root pages keep their actions on the title line. The
@@ -270,16 +273,11 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
       const SizedBox(height: 12),
       if (widget.quoteHeader != null) ...[
         const SizedBox(height: 12),
-        _AnimatedQuoteHeader(
-          reduceMotion: reduceMotion,
-          style: pageTransitionStyle,
-          child: widget.quoteHeader!,
-        ),
+        SettleIn(index: 1, child: widget.quoteHeader!),
       ] else if (resolvedQuote != null) ...[
         const SizedBox(height: 12),
-        _AnimatedQuoteHeader(
-          reduceMotion: reduceMotion,
-          style: pageTransitionStyle,
+        SettleIn(
+          index: 1,
           child: QuranQuoteBlock(
             quote: resolvedQuote,
             useOuterChrome: widget.quoteUseOuterChrome,
@@ -296,9 +294,12 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
       const SizedBox(height: 20),
     ];
     final hasCustomSlivers = widget.bodySlivers != null;
-    return _AnimatedPageEntrance(
-      reduceMotion: reduceMotion,
-      style: pageTransitionStyle,
+    // Page arrival: the title, then the first cards, settle in one after
+    // the other (the stagger lives in SettleIn, which every card claims).
+    return MotionStaggerScope(
+      enabled:
+          !reduceMotion &&
+          pageTransitionStyle != AppPageTransitionStyle.noAnimation,
       child: Stack(
         children: [
           if (widget.ownsBackground)
@@ -363,106 +364,6 @@ class _AppPageScaffoldState extends ConsumerState<AppPageScaffold> {
             ),
         ],
       ),
-    );
-  }
-}
-
-class _AnimatedQuoteHeader extends StatefulWidget {
-  const _AnimatedQuoteHeader({
-    required this.child,
-    required this.reduceMotion,
-    required this.style,
-  });
-
-  final Widget child;
-  final bool reduceMotion;
-  final AppPageTransitionStyle style;
-
-  @override
-  State<_AnimatedQuoteHeader> createState() => _AnimatedQuoteHeaderState();
-}
-
-class _AnimatedPageEntrance extends StatefulWidget {
-  const _AnimatedPageEntrance({
-    required this.child,
-    required this.reduceMotion,
-    required this.style,
-  });
-
-  final Widget child;
-  final bool reduceMotion;
-  final AppPageTransitionStyle style;
-
-  @override
-  State<_AnimatedPageEntrance> createState() => _AnimatedPageEntranceState();
-}
-
-class _AnimatedPageEntranceState extends State<_AnimatedPageEntrance> {
-  bool _visible = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      setState(() => _visible = true);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.reduceMotion) return widget.child;
-    if (widget.style == AppPageTransitionStyle.noAnimation) {
-      return widget.child;
-    }
-    if (widget.style == AppPageTransitionStyle.gentleFade) {
-      return AnimatedOpacity(
-        duration: const Duration(milliseconds: 220),
-        curve: Curves.easeOutCubic,
-        opacity: _visible ? 1 : 0,
-        child: widget.child,
-      );
-    }
-    return AnimatedSlide(
-      duration: const Duration(milliseconds: 260),
-      curve: Curves.easeOutCubic,
-      offset: _visible ? Offset.zero : const Offset(0, 0.012),
-      child: widget.child,
-    );
-  }
-}
-
-class _AnimatedQuoteHeaderState extends State<_AnimatedQuoteHeader> {
-  bool _visible = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      setState(() => _visible = true);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.reduceMotion) return widget.child;
-    if (widget.style == AppPageTransitionStyle.noAnimation) {
-      return widget.child;
-    }
-    if (widget.style == AppPageTransitionStyle.gentleFade) {
-      return AnimatedOpacity(
-        duration: const Duration(milliseconds: 280),
-        curve: Curves.easeOutCubic,
-        opacity: _visible ? 1 : 0,
-        child: widget.child,
-      );
-    }
-    return AnimatedSlide(
-      duration: const Duration(milliseconds: 420),
-      curve: Curves.easeOutCubic,
-      offset: _visible ? Offset.zero : const Offset(0, 0.024),
-      child: widget.child,
     );
   }
 }

@@ -16,6 +16,7 @@ import '../application/matching_repository.dart';
 import '../domain/matching_models.dart';
 import 'matching_ui_helpers.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class MatchingHomePage extends ConsumerWidget {
   const MatchingHomePage({super.key});
@@ -40,9 +41,7 @@ class MatchingHomePage extends ConsumerWidget {
       subtitle: l10n.matchingHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

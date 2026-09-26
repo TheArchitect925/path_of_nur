@@ -9,6 +9,7 @@ import '../../core/theme/living_atmosphere.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/wallpaper/application/wallpaper_provider.dart';
 import '../application/daily_clock_provider.dart';
+import '../motion/ambient_motion.dart';
 import 'night_sky.dart';
 
 const double _backgroundDecodeScale = 1.1;
@@ -98,13 +99,7 @@ class GlobalBackground extends ConsumerWidget {
                   moonShadowColor: const Color(0xFF352B54),
                 ),
               ),
-              CustomPaint(
-                painter: FanoosLanternPainter(
-                  glowStrength: fanoosGlowStrengthFor(now),
-                  // Hangs left of the page titles, opposite the crescent.
-                  lanternFraction: const Offset(0.14, 0.0),
-                ),
-              ),
+              _BreathingFanoos(now: now),
             ] else if (isQadr) ...[
               CustomPaint(
                 painter: MidnightSkyPainter(
@@ -232,6 +227,37 @@ class GlobalBackground extends ConsumerWidget {
           ),
           if (overlayColor != null) ColoredBox(color: overlayColor!),
         ],
+      ),
+    );
+  }
+}
+
+/// The Ramadan fanoos, breathing on the ambient cycle. It hangs left of the
+/// page titles, opposite the crescent, and paints in its own layer so the
+/// sky behind it never repaints with it.
+class _BreathingFanoos extends StatelessWidget {
+  const _BreathingFanoos({required this.now});
+
+  final DateTime now;
+
+  static const Offset _lanternFraction = Offset(0.14, 0.0);
+
+  @override
+  Widget build(BuildContext context) {
+    final base = fanoosGlowStrengthFor(now);
+    final animation = AmbientMotion.maybeOf(context);
+    Widget paint(double breath) => CustomPaint(
+      painter: FanoosLanternPainter(
+        glowStrength: (base * (0.82 + 0.18 * breath)).clamp(0.0, 1.0),
+        lanternFraction: _lanternFraction,
+      ),
+    );
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: animation ?? kAlwaysCompleteAnimation,
+        builder: (context, _) => paint(
+          animation == null ? 0.35 : AmbientMotion.breath(animation.value),
+        ),
       ),
     );
   }

@@ -18,6 +18,7 @@ import '../application/crossword_repository.dart';
 import '../domain/crossword_models.dart';
 import 'crossword_ui_helpers.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class CrosswordHomePage extends ConsumerWidget {
   const CrosswordHomePage({super.key});
@@ -42,9 +43,7 @@ class CrosswordHomePage extends ConsumerWidget {
       subtitle: l10n.crosswordHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

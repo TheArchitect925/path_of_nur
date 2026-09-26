@@ -9,6 +9,7 @@ import '../../../app/nav_tabs.dart';
 import '../../../core/prayer/prayer_forbidden_periods.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
+import '../../../core/prayer/prayer_moments.dart';
 import '../../../core/theme/app_palette.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_surfaces.dart';
@@ -26,7 +27,11 @@ import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/user_profile_state.dart';
+import '../../../shared/motion/ambient_motion.dart';
+import '../../../shared/motion/motion_preferences.dart';
+import '../../../shared/motion/settle_in.dart';
 import '../../../shared/widgets/arabic_text_utils.dart';
+import '../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../shared/widgets/app_salah_hero_card.dart';
 import '../../../shared/widgets/display/expandable_tile.dart';
 import '../../../shared/widgets/noor_glass_card.dart';
@@ -160,6 +165,14 @@ class _HomePageState extends ConsumerState<HomePage> {
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
     final modules = ref.watch(homeModulePrefsProvider).visible;
+    final staggerEnabled =
+        !ref.watch(effectiveReduceMotionProvider) &&
+        ref.watch(
+              profileSettingsProvider.select(
+                (value) => value.pageTransitionStyle,
+              ),
+            ) !=
+            AppPageTransitionStyle.noAnimation;
 
     return SafeArea(
       child: Stack(
@@ -169,19 +182,37 @@ class _HomePageState extends ConsumerState<HomePage> {
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.fromLTRB(18, 8, 18, 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
-                const SizedBox(height: 12),
-                const RamadanHeroCard(),
-                _SalahSummaryCard(l10n: l10n),
-                const SizedBox(height: 12),
-                const _ModeAwareHomeCard(),
-                for (final module in modules) _buildModule(module),
-                const SizedBox(height: 18),
-                const _HomeEditEntryButton(),
-              ],
+            // Home settles in like every page: greeting first, then the hero
+            // and the first modules, one after the other.
+            child: MotionStaggerScope(
+              enabled: staggerEnabled,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SettleIn(
+                    index: 0,
+                    fade: true,
+                    child: _TopGreetingBlock(
+                      l10n: l10n,
+                      userProfile: userProfile,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  const RamadanHeroCard(),
+                  // When a prayer comes in, the hero kindles for a minute.
+                  KindleGlow(
+                    active: ref.watch(prayerJustArrivedProvider) != null,
+                    color: context.palette.accent,
+                    borderRadius: AppHeroGlassShell.globalCardRadius,
+                    child: _SalahSummaryCard(l10n: l10n),
+                  ),
+                  const SizedBox(height: 12),
+                  const _ModeAwareHomeCard(),
+                  for (final module in modules) _buildModule(module),
+                  const SizedBox(height: 18),
+                  const _HomeEditEntryButton(),
+                ],
+              ),
             ),
           ),
         ],

@@ -6,6 +6,7 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../application/historical_calendar_providers.dart';
 import 'history_ui_helpers.dart';
 import 'widgets/historical_event_list_tile.dart';
+import '../../../shared/widgets/display/app_skeleton.dart';
 
 class OnThisDayMatchesPage extends ConsumerWidget {
   const OnThisDayMatchesPage({super.key});
@@ -68,7 +69,7 @@ class OnThisDayMatchesPage extends ConsumerWidget {
               ],
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const SkeletonCard(),
           error: (_, _) => _EmptyTodayMatchesState(l10n: l10n),
         ),
       ],

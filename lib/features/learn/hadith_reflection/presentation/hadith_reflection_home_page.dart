@@ -15,6 +15,7 @@ import '../application/hadith_reflection_repository.dart';
 import '../domain/hadith_reflection_models.dart';
 import 'hadith_reflection_ui_helpers.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class HadithReflectionHomePage extends ConsumerWidget {
   const HadithReflectionHomePage({super.key});
@@ -39,9 +40,7 @@ class HadithReflectionHomePage extends ConsumerWidget {
       subtitle: l10n.hadithReflectionHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -150,6 +150,8 @@ class AppSalahHeroCard extends StatelessWidget {
     return AppHeroGlassShell(
       padding: EdgeInsets.zero,
       onTap: onOpenSalahTimes,
+      // The one hero on the screen: the ambient light band crosses it.
+      specular: true,
       child: content,
     );
   }

@@ -305,6 +305,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
     if (pathState == null) {
       return ArtHeaderCard(
         imageAsset: levelArtAsset(LearningPathLevel.beginner),
+        heroTag: learnLevelArtHeroTag(LearningPathLevel.beginner),
         eyebrow: l10n.learnLandingPathEyebrow,
         title: l10n.learnLandingChoosePathTitle,
         subtitle: l10n.learnLandingChoosePathSubtitle,
@@ -343,6 +344,7 @@ class _LearnPathHeroCard extends ConsumerWidget {
         children: [
           ArtHeaderCard(
             imageAsset: levelArtAsset(level),
+            heroTag: learnLevelArtHeroTag(level),
             eyebrow: l10n.learnLandingPathEyebrow,
             title: LearningPathRegistry.localizedPathTitle(
               l10n,

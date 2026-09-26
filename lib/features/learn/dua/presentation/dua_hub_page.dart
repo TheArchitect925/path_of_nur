@@ -19,6 +19,7 @@ import '../application/dua_repository.dart';
 import '../domain/dua_models.dart';
 import 'dua_category_theme.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 enum DuaHubTab { duas, categories, saved, daily }
 
@@ -212,7 +213,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               ],
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const SkeletonCard(),
           error: (error, _) => _errorCard(error),
         ),
       ],

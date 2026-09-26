@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../motion/settle_in.dart';
+
 /// Scenic art header used by hero cards across the Learn surfaces: a 4:3
 /// illustration under a three-stop scrim with the title resting on the darkest
 /// band. Falls back to an icon-on-tint block when the asset is missing, so a
@@ -17,6 +19,7 @@ class ArtHeaderCard extends StatelessWidget {
     this.aspectRatio = 4 / 3,
     this.borderRadius = const BorderRadius.all(Radius.circular(20)),
     this.onTap,
+    this.heroTag,
   });
 
   final String imageAsset;
@@ -30,6 +33,11 @@ class ArtHeaderCard extends StatelessWidget {
   final BorderRadius borderRadius;
   final VoidCallback? onTap;
 
+  /// Shared-element tag: the art flies from an [ArtLeadingThumb] (or another
+  /// header) carrying the same tag on the route that opened this one. Only
+  /// for art that appears once per page; heroes must be unique on a route.
+  final Object? heroTag;
+
   @override
   Widget build(BuildContext context) {
     final card = ClipRRect(
@@ -39,12 +47,16 @@ class ArtHeaderCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              imageAsset,
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.low,
-              errorBuilder: (context, error, stackTrace) =>
-                  ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
+            _maybeHero(
+              heroTag,
+              borderRadius,
+              Image.asset(
+                imageAsset,
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.low,
+                errorBuilder: (context, error, stackTrace) =>
+                    ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
+              ),
             ),
             const DecoratedBox(
               decoration: BoxDecoration(
@@ -117,12 +129,23 @@ class ArtHeaderCard extends StatelessWidget {
         ),
       ),
     );
-    if (onTap == null) return card;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(borderRadius: borderRadius, onTap: onTap, child: card),
+    if (onTap == null) return SettleIn(fade: true, child: card);
+    return SettleIn(
+      fade: true,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(borderRadius: borderRadius, onTap: onTap, child: card),
+      ),
     );
   }
+}
+
+Widget _maybeHero(Object? tag, BorderRadius borderRadius, Widget image) {
+  if (tag == null) return image;
+  return Hero(
+    tag: tag,
+    child: ClipRRect(borderRadius: borderRadius, child: image),
+  );
 }
 
 /// Small rounded art thumbnail for list rows — the illustrated counterpart of
@@ -135,6 +158,7 @@ class ArtLeadingThumb extends StatelessWidget {
     required this.fallbackColor,
     this.size = 52,
     this.borderRadius,
+    this.heroTag,
   });
 
   /// Null renders the icon fallback, so callers can pass a resolver result
@@ -145,24 +169,32 @@ class ArtLeadingThumb extends StatelessWidget {
   final double size;
   final BorderRadius? borderRadius;
 
+  /// Shared-element tag matching the [ArtHeaderCard] the row opens.
+  final Object? heroTag;
+
   @override
   Widget build(BuildContext context) {
     final asset = imageAsset;
-    return ClipRRect(
-      borderRadius: borderRadius ?? BorderRadius.circular(14),
-      child: SizedBox(
-        width: size,
-        height: size,
-        child: asset == null
-            ? ArtImageFallback(icon: fallbackIcon, color: fallbackColor)
-            : Image.asset(
-                asset,
-                fit: BoxFit.cover,
-                filterQuality: FilterQuality.low,
-                errorBuilder: (context, error, stackTrace) =>
-                    ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
-              ),
-      ),
+    final radius = borderRadius ?? BorderRadius.circular(14);
+    final image = asset == null
+        ? ArtImageFallback(icon: fallbackIcon, color: fallbackColor)
+        : Image.asset(
+            asset,
+            fit: BoxFit.cover,
+            filterQuality: FilterQuality.low,
+            errorBuilder: (context, error, stackTrace) =>
+                ArtImageFallback(icon: fallbackIcon, color: fallbackColor),
+          );
+    final tag = asset == null ? null : heroTag;
+    return SizedBox(
+      width: size,
+      height: size,
+      child: tag == null
+          ? ClipRRect(borderRadius: radius, child: image)
+          : Hero(
+              tag: tag,
+              child: ClipRRect(borderRadius: radius, child: image),
+            ),
     );
   }
 }

@@ -11,6 +11,7 @@ import '../domain/historical_event_models.dart';
 import 'history_ui_helpers.dart';
 import 'widgets/historical_event_list_tile.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/display/app_skeleton.dart';
 
 class HistoryArchivePage extends ConsumerStatefulWidget {
   const HistoryArchivePage({super.key});
@@ -103,7 +104,7 @@ class _HistoryArchivePageState extends ConsumerState<HistoryArchivePage> {
               ],
             );
           },
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const SkeletonCard(),
           error: (_, _) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 32),
             child: Text(l10n.historyArchiveLoadError),

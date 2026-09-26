@@ -13,6 +13,7 @@ import '../providers/faq_providers.dart';
 import '../widgets/faq_category_card.dart';
 import '../widgets/faq_question_tile.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../shared/widgets/display/app_skeleton.dart';
 
 class FaqLandingPage extends ConsumerStatefulWidget {
   const FaqLandingPage({super.key});
@@ -88,7 +89,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
         if (query.isNotEmpty)
           searchAsync.when(
             data: (results) => _searchResults(context, results, query),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const SkeletonCard(),
             error: (error, _) => _errorCard(error),
           )
         else ...[
@@ -110,7 +111,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           const SizedBox(height: 8),
           featuredAsync.when(
             data: (items) => _featuredRow(context, items),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const SkeletonCard(),
             error: (error, _) => _errorCard(error),
           ),
           const SizedBox(height: 12),
@@ -170,7 +171,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
                 return Column(children: rows);
               },
             ),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const SkeletonCard(),
             error: (error, _) => _errorCard(error),
           ),
         ],

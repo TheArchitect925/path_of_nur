@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_surfaces.dart';
+import '../motion/ambient_motion.dart';
+import '../motion/settle_in.dart';
 import 'noor_liquid_glass.dart';
 
 class AppHeroGlassShell extends StatelessWidget {
@@ -30,6 +32,7 @@ class AppHeroGlassShell extends StatelessWidget {
     this.highlightGradientColors = globalCardHighlightGradientColors,
     this.highlightGradientStops = globalCardHighlightGradientStops,
     this.onTap,
+    this.specular = false,
   });
 
   final Widget child;
@@ -42,9 +45,12 @@ class AppHeroGlassShell extends StatelessWidget {
   final List<double> highlightGradientStops;
   final VoidCallback? onTap;
 
+  /// The ambient light band ([SpecularSweep]). One hero per screen, at most.
+  final bool specular;
+
   @override
   Widget build(BuildContext context) {
-    final glass = NoorLiquidGlassContainer(
+    Widget glass = NoorLiquidGlassContainer(
       spec: NoorLiquidGlassSpec.card(
         mode: NoorLiquidGlassMode.liquid,
         padding: padding,
@@ -56,19 +62,25 @@ class AppHeroGlassShell extends StatelessWidget {
         highlightGradientColors: highlightGradientColors,
         highlightGradientStops: highlightGradientStops,
       ).copyWith(borderRadius: radius, borderWidth: 1),
-      child: child,
+      // The glass never fades; the content inside it does.
+      child: SettleFade(child: child),
     );
-
-    if (onTap == null) {
-      return glass;
+    if (specular) {
+      glass = SpecularSweep(borderRadius: radius, child: glass);
     }
 
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(radius),
-        child: glass,
+    if (onTap == null) {
+      return SettleIn(child: glass);
+    }
+
+    return SettleIn(
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(radius),
+          child: glass,
+        ),
       ),
     );
   }

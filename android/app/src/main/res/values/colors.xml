@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The launch window matches the app's daylight ground, so the first
+         Flutter frame arrives without a white flash. -->
+    <color name="launch_background">#EDE6DF</color>
+</resources>

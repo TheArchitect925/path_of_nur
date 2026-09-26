@@ -115,6 +115,8 @@ class QuranDailyReflectionCard extends ConsumerWidget {
               center: false,
               dense: compact,
               arabicBaseSize: compact ? 28 : 30,
+              // The day's ayah inks in; it is the moment of the card.
+              revealOnArrival: true,
             ),
           ),
         ),

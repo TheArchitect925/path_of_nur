@@ -5,6 +5,7 @@ import '../../../../core/theme/app_icons.dart';
 import '../../../../shared/widgets/display/art_header_card.dart';
 import '../../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_age_band_provider.dart';
+import 'kids_door_card.dart';
 
 /// The page shell for everything a child opens.
 ///
@@ -71,6 +72,7 @@ class KidsPageScaffold extends ConsumerWidget {
         if (heroAsset != null) ...[
           ArtHeaderCard(
             imageAsset: heroAsset!,
+            heroTag: kidsArtHeroTag(heroAsset!),
             title: heroTitle ?? title,
             subtitle: heroSubtitle,
             eyebrow: heroEyebrow,

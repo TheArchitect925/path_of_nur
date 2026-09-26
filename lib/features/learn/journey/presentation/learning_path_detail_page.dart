@@ -37,6 +37,7 @@ class LearningPathDetailPage extends ConsumerWidget {
         children: [
           ArtHeaderCard(
             imageAsset: levelArtAsset(LearningPathLevel.beginner),
+            heroTag: learnLevelArtHeroTag(LearningPathLevel.beginner),
             eyebrow: l10n.learnLandingPathEyebrow,
             title: l10n.learnLandingChoosePathTitle,
             subtitle: l10n.learnLandingChoosePathSubtitle,
@@ -57,6 +58,7 @@ class LearningPathDetailPage extends ConsumerWidget {
       children: [
         ArtHeaderCard(
           imageAsset: levelArtAsset(path.level),
+          heroTag: learnLevelArtHeroTag(path.level),
           eyebrow: l10n.learnLandingPathEyebrow,
           title: LearningPathRegistry.localizedPathTitle(l10n, path),
           subtitle: l10n.learnLandingPhaseOfLabel(
@@ -215,6 +217,7 @@ class _GuidedPathRow extends ConsumerWidget {
           ? const HubLeadingIcon(AppIcons.goal)
           : ArtLeadingThumb(
               imageAsset: artAsset,
+              heroTag: guidedPathArtHeroTag(pathId),
               fallbackIcon: AppIcons.goal,
               fallbackColor: Theme.of(context).colorScheme.primary,
               size: 44,

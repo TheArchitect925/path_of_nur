@@ -29,6 +29,7 @@ class LearningPathPickerPage extends ConsumerWidget {
         for (final path in LearningPathRegistry.paths) ...[
           ArtHeaderCard(
             imageAsset: levelArtAsset(path.level),
+            heroTag: learnLevelArtHeroTag(path.level),
             title: LearningPathRegistry.localizedPathTitle(l10n, path),
             subtitle: LearningPathRegistry.localizedPathDescription(l10n, path),
             eyebrow: path.level == selectedLevel

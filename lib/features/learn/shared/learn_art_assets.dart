@@ -60,3 +60,12 @@ String? guidedPathArtAsset(String pathId) {
     _ => null,
   };
 }
+
+/// Shared-element tags for the art flights. A level's art flies from the
+/// Learn landing hero to the path detail banner and on to the picker card;
+/// a guided path's thumbnail flies into its detail banner. One tag per art,
+/// unique on every route that shows it.
+String learnLevelArtHeroTag(LearningPathLevel level) =>
+    'learn-level-art:${level.name}';
+
+String guidedPathArtHeroTag(String pathId) => 'guided-path-art:$pathId';

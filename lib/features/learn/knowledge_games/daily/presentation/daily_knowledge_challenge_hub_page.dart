@@ -21,6 +21,7 @@ import '../../../presentation/widgets/learn_section_header.dart';
 import '../application/daily_knowledge_challenge_hub_provider.dart';
 import '../domain/daily_knowledge_challenge_models.dart';
 import '../../../../../core/theme/app_icons.dart';
+import '../../../../../shared/widgets/display/app_skeleton.dart';
 
 class DailyKnowledgeChallengeHubPage extends ConsumerStatefulWidget {
   const DailyKnowledgeChallengeHubPage({super.key});
@@ -51,9 +52,7 @@ class _DailyKnowledgeChallengeHubPageState
       subtitle: l10n.dailyKnowledgeHubSubtitle,
       children: [
         bundleAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

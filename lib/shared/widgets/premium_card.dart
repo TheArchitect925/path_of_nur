@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_radii.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_surfaces.dart';
-import '../../features/profile/application/profile_settings_provider.dart';
+import '../../core/theme/app_motion.dart';
+import '../motion/motion_preferences.dart';
+import '../motion/settle_in.dart';
 import 'app_layered_section_glass_card.dart';
 
 /// Visual density of a [PremiumCard]. Density chooses the corner radius and
@@ -135,9 +137,7 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
 
   @override
   Widget build(BuildContext context) {
-    final reduceMotion = ref.watch(
-      profileSettingsProvider.select((value) => value.reduceMotion),
-    );
+    final reduceMotion = ref.watch(effectiveReduceMotionProvider);
     final theme = Theme.of(context);
     final contentColors = AppSurfaceTheme.contentColors(
       context,
@@ -172,7 +172,8 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
               style:
                   surfaceTextTheme.bodyMedium ??
                   TextStyle(color: contentColors.subtleForeground),
-              child: _buildContent(surfaceTextTheme),
+              // The glass never fades; the content inside it does.
+              child: SettleFade(child: _buildContent(surfaceTextTheme)),
             ),
           ),
         ),
@@ -190,15 +191,17 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
       );
     }
 
-    return Listener(
-      onPointerDown: (_) => _setPressed(true),
-      onPointerUp: (_) => _setPressed(false),
-      onPointerCancel: (_) => _setPressed(false),
-      child: AnimatedScale(
-        scale: reduceMotion ? 1 : (_pressed ? 0.992 : 1),
-        duration: Duration(milliseconds: reduceMotion ? 0 : 140),
-        curve: Curves.easeOutCubic,
-        child: card,
+    return SettleIn(
+      child: Listener(
+        onPointerDown: (_) => _setPressed(true),
+        onPointerUp: (_) => _setPressed(false),
+        onPointerCancel: (_) => _setPressed(false),
+        child: AnimatedScale(
+          scale: reduceMotion ? 1 : (_pressed ? 0.992 : 1),
+          duration: reduceMotion ? AppMotion.instant : AppMotion.quick,
+          curve: AppMotion.settleCurve,
+          child: card,
+        ),
       ),
     );
   }

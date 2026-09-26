@@ -27,6 +27,8 @@ class KidsDoorCard extends StatelessWidget {
       label: subtitle == null ? title : '$title. $subtitle',
       child: ArtHeaderCard(
         imageAsset: imageAsset,
+        // The door's picture flies into the room's banner when they match.
+        heroTag: kidsArtHeroTag(imageAsset),
         title: title,
         subtitle: subtitle,
         fallbackIcon: fallbackIcon,
@@ -67,3 +69,8 @@ class KidsDoorGrid extends StatelessWidget {
     return Column(children: rows);
   }
 }
+
+/// Shared-element tag for a kids picture: a door on the landing and the
+/// banner of the room it opens carry the same one when they show the same
+/// art, so the picture flies from one to the other.
+String kidsArtHeroTag(String imageAsset) => 'kids-art:$imageAsset';

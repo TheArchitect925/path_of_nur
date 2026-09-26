@@ -69,6 +69,7 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
         if (guidedPathArtAsset(pathId) != null) ...[
           ArtHeaderCard(
             imageAsset: guidedPathArtAsset(pathId)!,
+            heroTag: guidedPathArtHeroTag(pathId),
             title: localizedPath.title,
             subtitle: localizedPath.subtitle,
             fallbackIcon: GuidedLearningPathIconRegistry.iconForPathId(

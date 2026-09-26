@@ -26,6 +26,8 @@ import '../features/profile/application/profile_settings_provider.dart';
 import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
 import '../shared/application/daily_clock_provider.dart';
 import '../shared/application/special_mode_provider.dart';
+import '../shared/motion/ambient_motion.dart';
+import '../shared/motion/motion_preferences.dart';
 import '../l10n/app_localizations.dart';
 
 class PathOfNurApp extends ConsumerWidget {
@@ -35,6 +37,8 @@ class PathOfNurApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocaleProvider);
     final profileSettings = ref.watch(profileSettingsProvider);
+    // The app's Reduce Motion setting or the OS switch, whichever is on.
+    final reduceMotion = ref.watch(effectiveReduceMotionProvider);
     final scopeVersion = ref.watch(profileScopeVersionProvider);
     ref.watch(reminderSchedulerBootstrapProvider);
     ref.watch(growthReminderBootstrapProvider);
@@ -91,7 +95,7 @@ class PathOfNurApp extends ConsumerWidget {
     final manualTheme = AppTheme.themeFor(
       mode: withLivingSky(effectiveThemeMode),
       pageTransitionStyle: profileSettings.pageTransitionStyle,
-      reduceMotion: profileSettings.reduceMotion,
+      reduceMotion: reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
       disableColoredGlass: profileSettings.disableColoredGlass,
       disableBackground: profileSettings.disableBackground,
@@ -106,7 +110,7 @@ class PathOfNurApp extends ConsumerWidget {
     final lightTheme = AppTheme.themeFor(
       mode: lightMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,
-      reduceMotion: profileSettings.reduceMotion,
+      reduceMotion: reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
       disableColoredGlass: profileSettings.disableColoredGlass,
       disableBackground: profileSettings.disableBackground,
@@ -117,7 +121,7 @@ class PathOfNurApp extends ConsumerWidget {
     final darkTheme = AppTheme.themeFor(
       mode: darkMode,
       pageTransitionStyle: profileSettings.pageTransitionStyle,
-      reduceMotion: profileSettings.reduceMotion,
+      reduceMotion: reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
       disableColoredGlass: profileSettings.disableColoredGlass,
       disableBackground: profileSettings.disableBackground,
@@ -134,6 +138,9 @@ class PathOfNurApp extends ConsumerWidget {
       darkTheme: useSystemTheme ? darkTheme : manualTheme,
       themeMode: useSystemTheme ? ThemeMode.system : ThemeMode.light,
       routerConfig: ref.read(appRouterProvider),
+      // One ticker for all ambient life, above every route.
+      builder: (context, child) =>
+          AmbientMotion(child: child ?? const SizedBox.shrink()),
       locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,

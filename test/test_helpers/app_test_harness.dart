@@ -16,6 +16,7 @@ class _ImmediateStartupLoadingController extends StartupLoadingController {
   void start({
     required bool onboardingCompleted,
     required AccountsSyncState accountsSyncState,
+    List<StartupCheckpoint> checkpoints = const [],
   }) {
     final targetLocation = !onboardingCompleted
         ? '/onboarding'

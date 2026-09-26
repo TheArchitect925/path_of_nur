@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/motion/glint_sweep.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../garden/application/garden_scene_provider.dart';
 import '../../../garden/application/garden_service.dart';
@@ -29,8 +30,11 @@ class GardenVistaHomeCard extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(18),
+          // One glint when the garden grew while the reader was away; the
+          // scene itself stays still.
+          GlintSweep(
+            play: scene.hasNewGrowth,
+            borderRadius: 18,
             child: RepaintBoundary(
               child: GardenVistaView(
                 spec: scene,

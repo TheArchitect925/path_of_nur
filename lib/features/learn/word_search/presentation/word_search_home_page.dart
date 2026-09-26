@@ -16,6 +16,7 @@ import '../application/word_search_repository.dart';
 import '../domain/word_search_models.dart';
 import 'word_search_ui_helpers.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class WordSearchHomePage extends ConsumerWidget {
   const WordSearchHomePage({super.key});
@@ -40,9 +41,7 @@ class WordSearchHomePage extends ConsumerWidget {
       subtitle: l10n.wordSearchHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

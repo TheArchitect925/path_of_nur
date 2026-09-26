@@ -15,6 +15,7 @@ import '../application/ayah_completion_repository.dart';
 import '../domain/ayah_completion_models.dart';
 import 'ayah_completion_ui_helpers.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../../shared/widgets/display/app_skeleton.dart';
 
 class AyahCompletionHomePage extends ConsumerWidget {
   const AyahCompletionHomePage({super.key});
@@ -39,9 +40,7 @@ class AyahCompletionHomePage extends ConsumerWidget {
       subtitle: l10n.ayahCompletionHomeSubtitle,
       children: [
         catalogAsync.when(
-          loading: () => const PremiumCard(
-            child: Center(child: CircularProgressIndicator()),
-          ),
+          loading: () => const SkeletonCard(),
           error: (_, _) => PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
