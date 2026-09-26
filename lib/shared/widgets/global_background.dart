@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -112,6 +114,13 @@ class GlobalBackground extends ConsumerWidget {
               CustomPaint(painter: QadrDescentPainter()),
             ] else if (appearance.mode == AppThemeMode.jummah)
               CustomPaint(painter: MihrabArchPainter()),
+            // The painted moon breathes on the ambient cycle: the night's
+            // counterpart of the lantern, and the shell's only ambient life.
+            if (isMidnight || isRamadan || isQadr)
+              _MoonBreath(
+                key: const Key('shell-moon-breath'),
+                moonFraction: moonFraction,
+              ),
             IgnorePointer(
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -257,6 +266,83 @@ class _BreathingFanoos extends StatelessWidget {
         animation: animation ?? kAlwaysCompleteAnimation,
         builder: (context, _) => paint(
           animation == null ? 0.35 : AmbientMotion.breath(animation.value),
+        ),
+      ),
+    );
+  }
+}
+
+/// A soft halo behind the painted moon that swells and settles on the
+/// ambient cycle. It covers only the disc's surroundings, takes no taps, and
+/// paints in its own layer so the sky never repaints with it. Off (Reduce
+/// Motion, background, tests) it holds a quiet resting glow.
+class _MoonBreath extends StatelessWidget {
+  const _MoonBreath({super.key, required this.moonFraction});
+
+  /// The resolved fraction the sky painter uses, so the halo sits on the disc.
+  final Offset moonFraction;
+
+  static const Color _moonLight = Color(0xFFEDE5CE);
+  static const double _restingBreath = 0.35;
+
+  /// The disc the sky painter draws: the same radius and centre as
+  /// [MidnightSkyPainter], so the halo sits exactly on it.
+  Rect _moonBounds(Size size) {
+    final r = math.min(size.width, size.height) * 0.052;
+    final center = Offset(
+      size.width * moonFraction.dx,
+      size.height * moonFraction.dy,
+    );
+    return Rect.fromCircle(center: center, radius: r);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = AmbientMotion.maybeOf(context);
+    return Positioned.fill(
+      child: IgnorePointer(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final moon = _moonBounds(constraints.biggest);
+            final halo = Rect.fromCircle(
+              center: moon.center,
+              radius: moon.width * 1.6,
+            );
+            return Stack(
+              children: [
+                Positioned.fromRect(
+                  rect: halo,
+                  child: RepaintBoundary(
+                    child: AnimatedBuilder(
+                      animation: animation ?? kAlwaysCompleteAnimation,
+                      builder: (context, _) {
+                        final breath = animation == null
+                            ? _restingBreath
+                            : AmbientMotion.breath(animation.value);
+                        return Transform.scale(
+                          scale: 0.92 + 0.12 * breath,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(
+                                colors: [
+                                  _moonLight.withValues(
+                                    alpha: 0.10 + 0.14 * breath,
+                                  ),
+                                  _moonLight.withValues(alpha: 0),
+                                ],
+                                stops: const [0.2, 1.0],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
