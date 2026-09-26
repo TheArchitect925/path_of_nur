@@ -61,7 +61,8 @@ void main() {
       expect(
         slots,
         contains('$folder$name'),
-        reason: '$name matches no letter; see tools/import_kids_letter_audio.py --check',
+        reason:
+            '$name matches no letter; see tools/import_kids_letter_audio.py --check',
       );
     }
   });
