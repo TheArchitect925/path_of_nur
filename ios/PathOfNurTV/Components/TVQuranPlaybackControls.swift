@@ -83,61 +83,65 @@ struct TVQuranTransport: View {
   }
 }
 
-/// Who recites, and the way into listening mode.
+/// The way into the player, and into what it is heard and read with.
 struct TVQuranListenBar: View {
   @ObservedObject var viewModel: TVQuranViewModel
   var focusedSection: FocusState<String?>.Binding
   /// The viewer moved past the first control, toward the rail.
   var onLeaveTowardRail: () -> Void
+  var onOpenOptions: () -> Void
 
   @Environment(\.layoutDirection) private var layoutDirection
 
   var body: some View {
     HStack(spacing: 14) {
-      ForEach(Array(TVQuranReciter.allCases.enumerated()), id: \.element) { index, reciter in
-        let isChosen = viewModel.selectedReciter == reciter
-
-        Button {
-          viewModel.selectReciter(reciter)
-        } label: {
-          Text(reciter.shortLabel)
-            .font(TVTypography.chip)
-            .foregroundColor(isChosen ? TVTheme.prayerCurrentText : TVTheme.textPrimary)
-            .padding(.horizontal, 18)
-            .padding(.vertical, 12)
-            .background(
-              isChosen ? TVTheme.prayerCurrent : TVTheme.surfaceSoft,
-              in: Capsule()
-            )
-        }
-        .buttonStyle(TVCardButtonStyle(shape: .capsule))
-        .tvFocusID(focusedSection, TVFocusSectionId.quranReciter(reciter.rawValue))
-        .accessibilityLabel(tvLocalized("Switch reciter to %@.", reciter.displayName))
-        .accessibilityValue(isChosen ? tvLocalized("Selected") : "")
-        .onMoveCommand { direction in
-          if index == 0 && direction == .towardRail(in: layoutDirection) {
-            onLeaveTowardRail()
-          }
-        }
-      }
-
       Button {
         viewModel.openListeningMode()
       } label: {
         Label(
-          tvLocalized("Open listening mode"),
-          systemImage: "speaker.wave.2.bubble.left.fill"
+          tvLocalized("Listen full screen"),
+          systemImage: "play.rectangle.fill"
         )
-        .font(TVTypography.chip)
+        .font(TVTypography.figtreeMedium(22))
+        .foregroundColor(TVTheme.prayerCurrentText)
+        .padding(.horizontal, 22)
+        .padding(.vertical, 12)
+        .background(TVTheme.prayerCurrent, in: Capsule())
+      }
+      .buttonStyle(TVCardButtonStyle(shape: .capsule))
+      .tvFocusID(focusedSection, TVFocusSectionId.quranPlaybackListening)
+      .accessibilityLabel(tvLocalized("Listen full screen"))
+      .accessibilityHint(tvLocalized("Opens the ayah full screen."))
+      .onMoveCommand { direction in
+        if direction == .towardRail(in: layoutDirection) {
+          onLeaveTowardRail()
+        }
+      }
+
+      Button {
+        onOpenOptions()
+      } label: {
+        Label(
+          optionsLine,
+          systemImage: "slider.horizontal.3"
+        )
+        .font(TVTypography.figtreeMedium(22))
+        .lineLimit(1)
         .foregroundColor(TVTheme.textPrimary)
-        .padding(.horizontal, 20)
+        .padding(.horizontal, 22)
         .padding(.vertical, 12)
         .background(TVTheme.surfaceSoft, in: Capsule())
       }
       .buttonStyle(TVCardButtonStyle(shape: .capsule))
-      .tvFocusID(focusedSection, TVFocusSectionId.quranPlaybackListening)
-      .accessibilityLabel(tvLocalized("Open listening mode"))
-      .accessibilityHint(tvLocalized("Opens the ayah full screen."))
+      .tvFocusID(focusedSection, TVFocusSectionId.quranPlaybackOptions)
+      .accessibilityLabel(tvLocalized("Listening options"))
+      .accessibilityValue(optionsLine)
     }
+  }
+
+  /// "Mishary Rashid Alafasy · English"
+  private var optionsLine: String {
+    let translation = viewModel.translation?.languageName ?? tvLocalized("No translation")
+    return "\(viewModel.selectedReciter.name) · \(translation)"
   }
 }

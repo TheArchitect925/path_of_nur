@@ -1,6 +1,9 @@
 import AVFoundation
 import Combine
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// The time. In the simulator it can be given, so that a Friday, a night or
 /// a day of the year can be looked at without waiting for it:
@@ -58,6 +61,7 @@ final class TVAppViewModel: ObservableObject {
     // read, whatever an earlier launch left behind.
     if ProcessInfo.processInfo.environment["TV_SAMPLE_FRESH"] == "1" {
       userDefaults.removeObject(forKey: TVQuranViewModel.placeStorageKey)
+      userDefaults.removeObject(forKey: TVQuranTranslationChoice.storageKey)
       userDefaults.removeObject(forKey: TVDhikrViewModel.completedRoutinesKey)
       userDefaults.removeObject(forKey: TVDhikrViewModel.routineInProgressKey)
     }
@@ -146,6 +150,18 @@ final class TVAppViewModel: ObservableObject {
     if ProcessInfo.processInfo.environment["TV_SAMPLE_LISTENING"] == "1" {
       quranViewModel.openListeningMode()
     }
+    // TV_SAMPLE_OPTIONS=1 opens the player's options beside it.
+    if ProcessInfo.processInfo.environment["TV_SAMPLE_OPTIONS"] == "1" {
+      quranViewModel.isPlayerOptionsPresented = true
+    }
+    // TV_SAMPLE_TRANSLATION=bn (or none) and TV_SAMPLE_RECITER=sudais.
+    if let id = ProcessInfo.processInfo.environment["TV_SAMPLE_TRANSLATION"] {
+      quranViewModel.selectTranslation(TVQuranTranslation.withID(id))
+    }
+    if let id = ProcessInfo.processInfo.environment["TV_SAMPLE_RECITER"],
+       let reciter = TVQuranReciter(rawValue: id) {
+      quranViewModel.selectReciter(reciter)
+    }
     #endif
     quranViewModel.onDiagnosticsEvent = { [weak self] name, metadata in
       guard let self else { return }
@@ -156,6 +172,13 @@ final class TVAppViewModel: ObservableObject {
     quranViewModel.onReciterChosen = { [weak self] reciter in
       guard let self else { return }
       self.settingsViewModel.selectDefaultReciter(reciter)
+      self.persistSessionState()
+    }
+    // So is what is shown while listening, chosen beside the recitation.
+    quranViewModel.onListeningTextChosen = { [weak self] translation, transliteration in
+      guard let self else { return }
+      self.settingsViewModel.setShowListeningTranslationByDefault(translation)
+      self.settingsViewModel.setShowListeningTransliterationByDefault(transliteration)
       self.persistSessionState()
     }
     // The verse of the day turns with the day, while the app is open.
@@ -341,6 +364,20 @@ final class TVAppViewModel: ObservableObject {
       userDefaults: userDefaults
     )
     persistSessionState()
+  }
+
+  func selectTranslation(_ translation: TVQuranTranslation?) {
+    // Settings shows the choice, and draws from this model, not the Qur'an's.
+    objectWillChange.send()
+    quranViewModel.selectTranslation(translation)
+    TVTelemetry.logEvent(
+      "tvos_settings_changed",
+      metadata: [
+        "setting": "translation",
+        "value": translation?.id ?? TVQuranTranslationChoice.noneValue,
+      ],
+      userDefaults: userDefaults
+    )
   }
 
   func focusNavigation() {
@@ -1523,57 +1560,86 @@ final class TVQuranViewModel: ObservableObject {
   @Published private(set) var selectedAyahs: [TVQuranAyah]
   @Published var selectedSurah: TVQuranSurah
   @Published var selectedAyahIndex: Int = 0
-  @Published var selectedReciter: TVQuranReciter = .phoneDefault
+  @Published private(set) var selectedReciter: TVQuranReciter = .phoneDefault
+  /// The meaning shown under the Arabic, everywhere the Qur'an is read.
+  /// None is the Arabic and its reading alone.
+  @Published private(set) var translation: TVQuranTranslation?
   @Published var isListeningModePresented = false
-  @Published var showListeningTranslation = true
-  @Published var showListeningTransliteration = true
-  @Published var repeatCurrentAyah = false
+  @Published var isPlayerOptionsPresented = false
+  @Published private(set) var showListeningTranslation = true
+  @Published private(set) var showListeningTransliteration = true
+  @Published private(set) var repeatMode: TVQuranRepeat = .off
   @Published private(set) var isPlaying = false
+  /// Playing, and waiting for the recitation to arrive.
+  @Published private(set) var isBuffering = false
   @Published private(set) var playbackErrorMessage: String?
 
   var onDiagnosticsEvent: ((String, [String: String]) -> Void)?
   var onDiagnosticsError: ((String, String, [String: String]) -> Void)?
   var onReciterChosen: ((TVQuranReciter) -> Void)?
+  /// The viewer showed or hid the translation or the reading while
+  /// listening; what they chose is kept for the next time.
+  var onListeningTextChosen: ((_ translation: Bool, _ transliteration: Bool) -> Void)?
 
   private let userDefaults: UserDefaults
   private var verseOfTheDayIndex: Int
-  private let player = AVPlayer()
+  /// Plays the ayah being recited and holds the one after it ready, so that
+  /// one follows the other without a pause while it is fetched.
+  private let player = AVQueuePlayer()
+  /// The ayah being recited: its item, and which ayah it is.
+  private var current: (item: AVPlayerItem, ayahID: String)?
+  /// The ayah waiting behind it in the queue.
+  private var queued: (item: AVPlayerItem, surahNumber: Int, index: Int)?
+  /// How many times the ayah being recited has been heard through.
+  private var playsHeard = 0
   private var endObserver: NSObjectProtocol?
   private var failureObserver: NSObjectProtocol?
   private var itemStatusObservation: NSKeyValueObservation?
+  private var timeControlObservation: NSKeyValueObservation?
+  private var isAudioSessionActive = false
 
   init(userDefaults: UserDefaults = .standard, now: Date = TVClock.now()) {
     self.userDefaults = userDefaults
+    let translation = TVQuranTranslationChoice.load(from: userDefaults)
+    self.translation = translation
     // The reader opens where the viewer left it, and at the beginning the
     // first time.
     let kept = TVQuranPlace(key: userDefaults.string(forKey: Self.placeStorageKey))
     let surah = TVSeedRepository.surah(kept?.surahNumber ?? 1) ?? TVSeedRepository.quranSurahs.first!
     place = kept
     selectedSurah = surah
-    selectedAyahs = TVSeedRepository.ayahs(for: surah.number)
+    selectedAyahs = TVSeedRepository.ayahs(for: surah.number, translation: translation)
     selectedAyahIndex = (kept?.ayahNumber ?? 1) - 1
     verseOfTheDayIndex = TVQuranVerseOfTheDay.dayIndex(for: now)
-    dailyVerse = TVSeedRepository.dailyVerse(on: now)
+    dailyVerse = TVSeedRepository.dailyVerse(on: now, translation: translation)
+    player.automaticallyWaitsToMinimizeStalling = true
     endObserver = NotificationCenter.default.addObserver(
       forName: .AVPlayerItemDidPlayToEndTime,
       object: nil,
       queue: .main
     ) { [weak self] notification in
-      guard let self, self.isCurrentItem(notification.object) else { return }
-      if self.repeatCurrentAyah {
-        self.playSelectedAyah()
-      } else {
-        // The recitation stops at the end of a surah, as the phone's does.
-        self.step(by: 1, autoStart: true, crossesSurahs: false)
-      }
+      guard let self, let item = notification.object as? AVPlayerItem,
+            item === self.current?.item else { return }
+      self.ayahHeardThrough()
     }
     failureObserver = NotificationCenter.default.addObserver(
       forName: .AVPlayerItemFailedToPlayToEndTime,
       object: nil,
       queue: .main
     ) { [weak self] notification in
-      guard let self, self.isCurrentItem(notification.object) else { return }
+      guard let self, let item = notification.object as? AVPlayerItem,
+            item === self.current?.item || item === self.queued?.item else { return }
       self.reportPlaybackFailure()
+    }
+    timeControlObservation = player.observe(\.timeControlStatus) { [weak self] player, _ in
+      let waiting = player.timeControlStatus == .waitingToPlayAtSpecifiedRate
+      DispatchQueue.main.async {
+        guard let self else { return }
+        let buffering = waiting && self.isPlaying
+        if self.isBuffering != buffering {
+          self.isBuffering = buffering
+        }
+      }
     }
   }
 
@@ -1585,6 +1651,7 @@ final class TVQuranViewModel: ObservableObject {
       NotificationCenter.default.removeObserver(failureObserver)
     }
     itemStatusObservation?.invalidate()
+    timeControlObservation?.invalidate()
   }
 
   var selectedAyah: TVQuranAyah? {
@@ -1641,7 +1708,7 @@ final class TVQuranViewModel: ObservableObject {
     let index = TVQuranVerseOfTheDay.dayIndex(for: now)
     guard index != verseOfTheDayIndex else { return }
     verseOfTheDayIndex = index
-    dailyVerse = TVSeedRepository.dailyVerse(on: now)
+    dailyVerse = TVSeedRepository.dailyVerse(on: now, translation: translation)
   }
 
   var dailyVerseSummaryTitle: String {
@@ -1670,14 +1737,29 @@ final class TVQuranViewModel: ObservableObject {
     selectedAyahLine
   }
 
-  /// "Playing · Repeating this ayah · Mahmoud Khalil Al-Husary"
+  /// "Ayah 3 of 7"
+  var ayahProgressLine: String {
+    tvLocalized("Ayah %d of %d", selectedAyahIndex + 1, selectedAyahs.count)
+  }
+
+  /// "Playing · Mishary Rashid Alafasy", with the repeat when there is one.
   var listeningModeStatusLine: String {
-    var line = [isPlaying ? tvLocalized("Playing") : tvLocalized("Paused")]
-    if repeatCurrentAyah {
-      line.append(tvLocalized("Repeating this ayah"))
+    var line: [String] = []
+    if isBuffering {
+      line.append(tvLocalized("Loading"))
+    } else {
+      line.append(isPlaying ? tvLocalized("Playing") : tvLocalized("Paused"))
+    }
+    if repeatMode != .off {
+      line.append(repeatMode.shortTitle)
     }
     line.append(selectedReciter.displayName)
     return line.joined(separator: " · ")
+  }
+
+  /// The translation's name, or that there is none.
+  var translationTitle: String {
+    translation?.title ?? tvLocalized("No translation")
   }
 
   func collectionContainsSelectedSurah(_ collection: TVQuranBrowseCollection) -> Bool {
@@ -1693,7 +1775,7 @@ final class TVQuranViewModel: ObservableObject {
 
   func selectSurah(_ surah: TVQuranSurah) {
     selectedSurah = surah
-    selectedAyahs = TVSeedRepository.ayahs(for: surah.number)
+    selectedAyahs = TVSeedRepository.ayahs(for: surah.number, translation: translation)
     selectedAyahIndex = 0
     stopPlayback()
   }
@@ -1719,7 +1801,11 @@ final class TVQuranViewModel: ObservableObject {
   func playOrPauseAyah(at index: Int) {
     guard index >= 0 && index < selectedAyahs.count else { return }
     if index == selectedAyahIndex && isPlaying {
-      stopPlayback()
+      pausePlayback()
+      return
+    }
+    if index == selectedAyahIndex, canResume {
+      resumePlayback()
       return
     }
     selectedAyahIndex = index
@@ -1727,6 +1813,7 @@ final class TVQuranViewModel: ObservableObject {
   }
 
   func selectReciter(_ reciter: TVQuranReciter) {
+    guard reciter != selectedReciter else { return }
     selectedReciter = reciter
     onReciterChosen?(reciter)
     onDiagnosticsEvent?(
@@ -1737,6 +1824,30 @@ final class TVQuranViewModel: ObservableObject {
     )
     if isPlaying {
       playSelectedAyah()
+    } else {
+      // What was waiting to be resumed was in the other voice.
+      clearQueue()
+    }
+  }
+
+  /// Chooses the meaning shown under the Arabic, or none. It is kept on the
+  /// device, and the ayahs on screen are read again in it; what is being
+  /// recited carries on.
+  func selectTranslation(_ translation: TVQuranTranslation?) {
+    guard translation != self.translation else { return }
+    self.translation = translation
+    TVQuranTranslationChoice.save(translation, to: userDefaults)
+    selectedAyahs = TVSeedRepository.ayahs(for: selectedSurah.number, translation: translation)
+    dailyVerse = TVSeedRepository.dailyVerse(on: TVClock.now(), translation: translation)
+    onDiagnosticsEvent?(
+      "tvos_quran_translation_selected",
+      [
+        "translation": translation?.id ?? TVQuranTranslationChoice.noneValue,
+      ]
+    )
+    if translation != nil, !showListeningTranslation {
+      // Choosing a translation is asking to see it.
+      setShowListeningTranslation(true)
     }
   }
 
@@ -1753,17 +1864,20 @@ final class TVQuranViewModel: ObservableObject {
     showListeningTransliteration = showTransliteration
     if isPlaying && changesVoice {
       playSelectedAyah()
+    } else if changesVoice {
+      clearQueue()
     }
   }
 
   func togglePlayback() {
     guard selectedAyah != nil else { return }
     if isPlaying {
-      player.pause()
-      isPlaying = false
-      return
+      pausePlayback()
+    } else if canResume {
+      resumePlayback()
+    } else {
+      playSelectedAyah()
     }
-    playSelectedAyah()
   }
 
   func openListeningMode() {
@@ -1788,16 +1902,38 @@ final class TVQuranViewModel: ObservableObject {
     )
   }
 
-  func toggleRepeatCurrentAyah() {
-    repeatCurrentAyah.toggle()
+  func selectRepeat(_ mode: TVQuranRepeat) {
+    guard mode != repeatMode else { return }
+    repeatMode = mode
+    // The ayah in hand counts afresh, and what waits behind it may change.
+    playsHeard = 0
+    if isPlaying || canResume {
+      prepareWhatFollows()
+    }
+  }
+
+  func cycleRepeat() {
+    selectRepeat(repeatMode.next)
+  }
+
+  func setShowListeningTranslation(_ value: Bool) {
+    guard value != showListeningTranslation else { return }
+    showListeningTranslation = value
+    onListeningTextChosen?(showListeningTranslation, showListeningTransliteration)
+  }
+
+  func setShowListeningTransliteration(_ value: Bool) {
+    guard value != showListeningTransliteration else { return }
+    showListeningTransliteration = value
+    onListeningTextChosen?(showListeningTranslation, showListeningTransliteration)
   }
 
   func toggleListeningTranslation() {
-    showListeningTranslation.toggle()
+    setShowListeningTranslation(!showListeningTranslation)
   }
 
   func toggleListeningTransliteration() {
-    showListeningTransliteration.toggle()
+    setShowListeningTransliteration(!showListeningTransliteration)
   }
 
   /// The ayah before, which for the first ayah of a surah is the last of
@@ -1812,44 +1948,161 @@ final class TVQuranViewModel: ObservableObject {
     step(by: 1, autoStart: isPlaying, crossesSurahs: true)
   }
 
+  /// Recites the ayah in hand from its beginning.
   func playSelectedAyah() {
     guard let ayah = selectedAyah else { return }
-    guard let url = TVSeedRepository.audioURL(
-      reciter: selectedReciter,
-      surahNumber: ayah.surahNumber,
-      ayahNumber: ayah.ayahNumber
-    ) else {
-      playbackErrorMessage = tvLocalized("Couldn’t play this ayah. Check your connection and try again.")
-      onDiagnosticsError?(
-        "tvos_playback_error",
-        playbackErrorMessage ?? tvLocalized("Couldn’t play this ayah. Check your connection and try again."),
-        [
-          "reciter": selectedReciter.rawValue,
-          "surah": "\(ayah.surahNumber)",
-          "ayah": "\(ayah.ayahNumber)",
-        ]
-      )
+    guard let item = makeItem(surahNumber: ayah.surahNumber, ayahNumber: ayah.ayahNumber) else {
+      reportPlaybackFailure()
       return
     }
 
+    activateAudioSession()
     playbackErrorMessage = nil
     keepPlace(ayahID: ayah.id)
+    player.pause()
+    player.removeAllItems()
+    queued = nil
+    playsHeard = 0
+    player.insert(item, after: nil)
+    becomeCurrent(item, ayahID: ayah.id)
+    prepareWhatFollows()
+    player.play()
+    isPlaying = true
+    setScreenKeptAwake(true)
+  }
+
+  // MARK: - The recitation
+
+  /// There is an ayah paused part of the way through, and it is the one in
+  /// hand.
+  private var canResume: Bool {
+    guard let current, let ayah = selectedAyah else { return false }
+    return current.ayahID == ayah.id && player.currentItem === current.item
+  }
+
+  private func resumePlayback() {
+    activateAudioSession()
+    playbackErrorMessage = nil
+    player.play()
+    isPlaying = true
+    setScreenKeptAwake(true)
+  }
+
+  private func pausePlayback() {
+    player.pause()
+    isPlaying = false
+    isBuffering = false
+    setScreenKeptAwake(isListeningModePresented)
+  }
+
+  private func makeItem(surahNumber: Int, ayahNumber: Int) -> AVPlayerItem? {
+    guard let url = TVSeedRepository.audioURL(
+      reciter: selectedReciter,
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber
+    ) else {
+      return nil
+    }
     let item = AVPlayerItem(url: url)
+    // A recitation is speech: the first seconds are enough to begin.
+    item.preferredForwardBufferDuration = 4
+    return item
+  }
+
+  private func becomeCurrent(_ item: AVPlayerItem, ayahID: String) {
+    current = (item, ayahID)
     itemStatusObservation = item.observe(\.status) { [weak self] item, _ in
       guard item.status == .failed else { return }
       DispatchQueue.main.async {
-        guard let self, self.isCurrentItem(item) else { return }
+        guard let self, item === self.current?.item else { return }
         self.reportPlaybackFailure()
       }
     }
-    player.replaceCurrentItem(with: item)
-    player.play()
-    isPlaying = true
   }
 
-  private func isCurrentItem(_ object: Any?) -> Bool {
-    guard let item = object as? AVPlayerItem else { return false }
-    return item === player.currentItem
+  /// Once the ayah in hand is heard for the last time, the queue moves on
+  /// to what follows it; until then it waits at the end, to be heard again.
+  private func prepareWhatFollows() {
+    guard let ayah = selectedAyah else { return }
+    let isLastHearing: Bool
+    if let plays = repeatMode.playsPerAyah {
+      isLastHearing = playsHeard + 1 >= plays
+    } else {
+      isLastHearing = false
+    }
+
+    guard isLastHearing, let next = nextPlace(after: ayah) else {
+      player.actionAtItemEnd = .pause
+      if let queued {
+        player.remove(queued.item)
+        self.queued = nil
+      }
+      return
+    }
+    player.actionAtItemEnd = .advance
+    if let queued, queued.surahNumber == next.surahNumber, queued.index == next.index {
+      return
+    }
+    if let queued {
+      player.remove(queued.item)
+      self.queued = nil
+    }
+    guard let item = makeItem(surahNumber: next.surahNumber, ayahNumber: next.index + 1) else {
+      return
+    }
+    player.insert(item, after: current?.item)
+    queued = (item, next.surahNumber, next.index)
+  }
+
+  /// Where the recitation goes when it is left to itself: the next ayah of
+  /// the surah, and at its end the first again when the surah is repeated.
+  /// It stops at the end of a surah otherwise, as the phone's does.
+  private func nextPlace(after ayah: TVQuranAyah) -> (surahNumber: Int, index: Int)? {
+    let index = ayah.ayahNumber
+    if index < selectedAyahs.count {
+      return (ayah.surahNumber, index)
+    }
+    return repeatMode.loopsSurah ? (ayah.surahNumber, 0) : nil
+  }
+
+  /// The ayah in hand came to its end.
+  private func ayahHeardThrough() {
+    playsHeard += 1
+    let plays = repeatMode.playsPerAyah
+    if plays == nil || playsHeard < plays! {
+      // Heard again: from its beginning, without fetching it again.
+      player.seek(to: .zero) { [weak self] _ in
+        guard let self, self.isPlaying else { return }
+        self.player.play()
+      }
+      prepareWhatFollows()
+      return
+    }
+
+    guard let queued else {
+      // The end of the surah.
+      stopPlayback()
+      return
+    }
+    // The queue has already moved on to it.
+    self.queued = nil
+    playsHeard = 0
+    if queued.surahNumber == selectedSurah.number {
+      selectedAyahIndex = queued.index
+    }
+    guard let ayah = selectedAyah else {
+      stopPlayback()
+      return
+    }
+    keepPlace(ayahID: ayah.id)
+    becomeCurrent(queued.item, ayahID: ayah.id)
+    prepareWhatFollows()
+    if player.currentItem !== queued.item {
+      // It was taken off the queue, or the queue stopped: begin it again.
+      playSelectedAyah()
+    } else if player.rate == 0 {
+      player.play()
+    }
   }
 
   /// The recitation is streamed, so it can fail on any ayah: say so where
@@ -1879,7 +2132,7 @@ final class TVQuranViewModel: ObservableObject {
       selectedAyahIndex = index
     } else if crossesSurahs, let neighbour = TVSeedRepository.surah(selectedSurah.number + offset) {
       selectedSurah = neighbour
-      selectedAyahs = TVSeedRepository.ayahs(for: neighbour.number)
+      selectedAyahs = TVSeedRepository.ayahs(for: neighbour.number, translation: translation)
       selectedAyahIndex = offset > 0 ? 0 : max(selectedAyahs.count - 1, 0)
     } else {
       stopPlayback()
@@ -1895,5 +2148,43 @@ final class TVQuranViewModel: ObservableObject {
   private func stopPlayback() {
     player.pause()
     isPlaying = false
+    isBuffering = false
+    clearQueue()
+    setScreenKeptAwake(isListeningModePresented)
+  }
+
+  private func clearQueue() {
+    player.removeAllItems()
+    current = nil
+    queued = nil
+    playsHeard = 0
+    itemStatusObservation?.invalidate()
+    itemStatusObservation = nil
+  }
+
+  /// The recitation is the point of playing, so it is heard with the
+  /// television's sound whatever else is set, and speech is kept clear.
+  private func activateAudioSession() {
+    guard !isAudioSessionActive else { return }
+    let session = AVAudioSession.sharedInstance()
+    do {
+      try session.setCategory(.playback, mode: .spokenAudio)
+      try session.setActive(true)
+      isAudioSessionActive = true
+    } catch {
+      onDiagnosticsError?(
+        "tvos_audio_session_error",
+        error.localizedDescription,
+        [:]
+      )
+    }
+  }
+
+  /// While the Qur'an is recited, or open full screen to be read, the
+  /// television does not dim to its screen saver.
+  func setScreenKeptAwake(_ awake: Bool) {
+    #if canImport(UIKit)
+    UIApplication.shared.isIdleTimerDisabled = awake || isPlaying
+    #endif
   }
 }

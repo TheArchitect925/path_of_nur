@@ -110,8 +110,8 @@ struct TVSettingsScreen: View {
                   appViewModel.selectDefaultReciter(reciter)
                 } label: {
                   optionCard(
-                    title: reciter.displayName,
-                    subtitle: tvLocalized("Reciter"),
+                    title: reciter.name,
+                    subtitle: reciter.styleLabel,
                     systemImage: "music.note.list",
                     isSelected: viewModel.defaultReciter == reciter
                   )
@@ -119,6 +119,42 @@ struct TVSettingsScreen: View {
                 .buttonStyle(TVCardButtonStyle())
                 .tvFocusID($focusedSection, focusID)
               }
+            }
+            .padding(TVTheme.railBleed)
+          }
+          .tvRail()
+
+          ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: TVTheme.railSpacing) {
+              ForEach(TVQuranTranslation.all) { translation in
+                Button {
+                  appViewModel.selectTranslation(translation)
+                } label: {
+                  optionCard(
+                    title: translation.languageName,
+                    subtitle: translation.source.isEmpty
+                        ? tvLocalized("Translation")
+                        : translation.source,
+                    systemImage: "character.book.closed.fill",
+                    isSelected: appViewModel.quranViewModel.translation == translation
+                  )
+                }
+                .buttonStyle(TVCardButtonStyle())
+                .tvFocusID($focusedSection, "settings.listening.meaning.\(translation.id)")
+              }
+
+              Button {
+                appViewModel.selectTranslation(nil)
+              } label: {
+                optionCard(
+                  title: tvLocalized("No translation"),
+                  subtitle: tvLocalized("The Arabic and its reading"),
+                  systemImage: "character.book.closed",
+                  isSelected: appViewModel.quranViewModel.translation == nil
+                )
+              }
+              .buttonStyle(TVCardButtonStyle())
+              .tvFocusID($focusedSection, "settings.listening.meaning.none")
             }
             .padding(TVTheme.railBleed)
           }

@@ -551,28 +551,36 @@ final class ShellFocusTests: TVFocusTestCase {
   }
 
   func test77_theReciterChosenIsKept() {
-    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback"])
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback", "TV_SAMPLE_RECITER": "alafasy"])
     log("== The reciter is kept")
     expect(focus, "quran.playback", "opens on play, beside the reader")
-    expect(press(.up), "quran.playback.listening", "up to the hero")
-    expect(press(.left), "quran.playback.reciter.abdulbasit", "left to Basit")
+    expect(press(.up), "quran.playback.options", "up to the options in the hero")
+    press(.select)
+    sleep(2)
+    // Five repeats, two switches, eight translations and none, then the
+    // reciters: Alafasy, Husary, Husary teaching, Abdul Basit.
+    expect(press(.down, 19), "player.options.reciter.abdulbasit", "down to Abdul Basit")
     press(.select)
     sleep(1)
-    expect(value(of: "quran.playback.reciter.abdulbasit"), "Selected", "pressing it chooses Basit")
+    expect(value(of: "player.options.reciter.abdulbasit"), "Selected", "pressing him chooses Abdul Basit")
+    press(.menu)
+    sleep(2)
     app.terminate()
 
     launch(["TV_SAMPLE_ROUTE": "quran"], keeping: true)
-    expect(value(of: "quran.playback.reciter.abdulbasit"), "Selected", "opened again, Basit is still chosen")
+    let kept = (app.buttons["quran.playback.options"].value as? String ?? "").contains("Abdul Basit")
+    log("\(kept ? "PASS" : "FAIL")  opened again, Abdul Basit is still chosen")
+    XCTAssertTrue(kept, "the reciter is kept")
     app.terminate()
 
     launch(["TV_SAMPLE_ROUTE": "settings", "TV_SAMPLE_SECTION": "settings.listening"], keeping: true)
     note("Settings opens on", focus)
+    let card = app.buttons["settings.listening.reciter.abdulbasit"].exists
+    log("\(card ? "PASS" : "FAIL")  Settings lists Abdul Basit among the reciters")
+    XCTAssertTrue(card, "Settings lists the reciter")
+    app.terminate()
     // Put it back, so that the next run starts as this one did.
-    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback"], keeping: true)
-    press(.up)
-    expect(press(.left, 2), "quran.playback.reciter.alafasy", "left to Alafasy")
-    press(.select)
-    sleep(1)
-    expect(value(of: "quran.playback.reciter.alafasy"), "Selected", "Alafasy, the phone’s reciter, is chosen again")
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_RECITER": "alafasy"], keeping: true)
   }
+
 }

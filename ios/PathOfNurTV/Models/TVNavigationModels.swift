@@ -308,7 +308,5 @@ enum TVFocusSectionId {
   static let quranPlaybackNext = "quran.playback.next"
   static let quranPlaybackListening = "quran.playback.listening"
 
-  static func quranReciter(_ reciter: String) -> String {
-    "quran.playback.reciter.\(reciter)"
-  }
+  static let quranPlaybackOptions = "quran.playback.options"
 }

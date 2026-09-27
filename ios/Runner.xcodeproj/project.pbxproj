@@ -141,6 +141,12 @@
 		A30000000000000000000D0B /* TVQuranTranslation_en.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0B /* TVQuranTranslation_en.json */; };
 		A30000000000000000000D0C /* TVQuranTranslation_fr.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0C /* TVQuranTranslation_fr.json */; };
 		A30000000000000000000D0D /* TVQuranTranslation_ur.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0D /* TVQuranTranslation_ur.json */; };
+		A30000000000000000000D11 /* TVQuranTranslation_en_clear.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D11 /* TVQuranTranslation_en_clear.json */; };
+		A30000000000000000000D12 /* TVQuranTranslation_bn.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D12 /* TVQuranTranslation_bn.json */; };
+		A30000000000000000000D13 /* TVQuranTranslation_id.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D13 /* TVQuranTranslation_id.json */; };
+		A30000000000000000000D14 /* TVQuranTranslation_tr.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D14 /* TVQuranTranslation_tr.json */; };
+		A30000000000000000000D15 /* TVQuranTranslation_fa.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D15 /* TVQuranTranslation_fa.json */; };
+		A30000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift */; };
 		A30000000000000000000D0E /* TVQuranLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0E /* TVQuranLibrary.swift */; };
 		A30000000000000000000D0F /* TVQuranAyahLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D0F /* TVQuranAyahLayout.swift */; };
 		A30000000000000000000D10 /* TVUmmAlQuraTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D10 /* TVUmmAlQuraTable.swift */; };
@@ -400,6 +406,12 @@
 		A20000000000000000000D0B /* TVQuranTranslation_en.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_en.json; path = Quran/TVQuranTranslation_en.json; sourceTree = "<group>"; };
 		A20000000000000000000D0C /* TVQuranTranslation_fr.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_fr.json; path = Quran/TVQuranTranslation_fr.json; sourceTree = "<group>"; };
 		A20000000000000000000D0D /* TVQuranTranslation_ur.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_ur.json; path = Quran/TVQuranTranslation_ur.json; sourceTree = "<group>"; };
+		A20000000000000000000D11 /* TVQuranTranslation_en_clear.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_en_clear.json; path = Quran/TVQuranTranslation_en_clear.json; sourceTree = "<group>"; };
+		A20000000000000000000D12 /* TVQuranTranslation_bn.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_bn.json; path = Quran/TVQuranTranslation_bn.json; sourceTree = "<group>"; };
+		A20000000000000000000D13 /* TVQuranTranslation_id.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_id.json; path = Quran/TVQuranTranslation_id.json; sourceTree = "<group>"; };
+		A20000000000000000000D14 /* TVQuranTranslation_tr.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_tr.json; path = Quran/TVQuranTranslation_tr.json; sourceTree = "<group>"; };
+		A20000000000000000000D15 /* TVQuranTranslation_fa.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = TVQuranTranslation_fa.json; path = Quran/TVQuranTranslation_fa.json; sourceTree = "<group>"; };
+		A20000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranPlayerOptionsPanel.swift; sourceTree = "<group>"; };
 		A20000000000000000000D0E /* TVQuranLibrary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranLibrary.swift; sourceTree = "<group>"; };
 		A20000000000000000000D0F /* TVQuranAyahLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranAyahLayout.swift; sourceTree = "<group>"; };
 		A20000000000000000000D10 /* TVUmmAlQuraTable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVUmmAlQuraTable.swift; sourceTree = "<group>"; };
@@ -701,6 +713,7 @@
 				A2000000000000000000002E /* TVArabicScreen.swift */,
 				A20000000000000000000031 /* TVGamesScreen.swift */,
 				A20000000000000000000020 /* TVQuranListeningModeScreen.swift */,
+				A20000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift */,
 				A20000000000000000000022 /* TVLearnScreen.swift */,
 				A20000000000000000000026 /* TVPrayerScreen.swift */,
 				A20000000000000000000029 /* TVDhikrScreen.swift */,
@@ -781,6 +794,11 @@
 				A20000000000000000000D0B /* TVQuranTranslation_en.json */,
 				A20000000000000000000D0C /* TVQuranTranslation_fr.json */,
 				A20000000000000000000D0D /* TVQuranTranslation_ur.json */,
+				A20000000000000000000D11 /* TVQuranTranslation_en_clear.json */,
+				A20000000000000000000D12 /* TVQuranTranslation_bn.json */,
+				A20000000000000000000D13 /* TVQuranTranslation_id.json */,
+				A20000000000000000000D14 /* TVQuranTranslation_tr.json */,
+				A20000000000000000000D15 /* TVQuranTranslation_fa.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1115,6 +1133,11 @@
 				A30000000000000000000D0B /* TVQuranTranslation_en.json in Resources */,
 				A30000000000000000000D0C /* TVQuranTranslation_fr.json in Resources */,
 				A30000000000000000000D0D /* TVQuranTranslation_ur.json in Resources */,
+				A30000000000000000000D11 /* TVQuranTranslation_en_clear.json in Resources */,
+				A30000000000000000000D12 /* TVQuranTranslation_bn.json in Resources */,
+				A30000000000000000000D13 /* TVQuranTranslation_id.json in Resources */,
+				A30000000000000000000D14 /* TVQuranTranslation_tr.json in Resources */,
+				A30000000000000000000D15 /* TVQuranTranslation_fa.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1379,6 +1402,7 @@
 				A3000000000000000000000F /* TVQuranPlaybackControls.swift in Sources */,
 				A30000000000000000000019 /* TVQuranReaderSummaryCard.swift in Sources */,
 				A30000000000000000000020 /* TVQuranListeningModeScreen.swift in Sources */,
+				A30000000000000000000D16 /* TVQuranPlayerOptionsPanel.swift in Sources */,
 				A30000000000000000000021 /* TVLearnHubItemCard.swift in Sources */,
 				A30000000000000000000022 /* TVLearnScreen.swift in Sources */,
 				A30000000000000000000023 /* TVLearnStoryEntryCard.swift in Sources */,

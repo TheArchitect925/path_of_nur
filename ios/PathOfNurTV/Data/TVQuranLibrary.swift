@@ -59,13 +59,81 @@ final class TVQuranTextFile {
   }
 }
 
+/// A translation of the meaning the Apple TV carries: the phone's bundled
+/// set (`quranTranslationResources`), and the French the phone reads in
+/// French. `id` names its file, `TVQuranTranslation_<id>.json`.
+struct TVQuranTranslation: Hashable, Identifiable {
+  let id: String
+  /// The language it is in, in that language.
+  let languageName: String
+  /// Whose translation it is, where the source names them.
+  let source: String
+  /// Set right to left.
+  var isRightToLeft = false
+
+  static let all: [TVQuranTranslation] = [
+    TVQuranTranslation(id: "en", languageName: "English", source: "Sahih International"),
+    TVQuranTranslation(id: "en_clear", languageName: "English", source: "The Clear Quran"),
+    TVQuranTranslation(id: "fr", languageName: "Français", source: "Muhammad Hamidullah"),
+    TVQuranTranslation(id: "ur", languageName: "اردو", source: "", isRightToLeft: true),
+    TVQuranTranslation(id: "bn", languageName: "বাংলা", source: ""),
+    TVQuranTranslation(id: "id", languageName: "Bahasa Indonesia", source: ""),
+    TVQuranTranslation(id: "tr", languageName: "Türkçe", source: ""),
+    TVQuranTranslation(id: "fa", languageName: "دری", source: "", isRightToLeft: true),
+  ]
+
+  static func withID(_ id: String?) -> TVQuranTranslation? {
+    all.first { $0.id == id }
+  }
+
+  /// The translation a viewer reading in `language` is shown until they
+  /// choose one: their own where there is one, English where there is not,
+  /// and none for a viewer who reads the Arabic itself.
+  static func standard(forLanguage language: String) -> TVQuranTranslation? {
+    if language == "ar" {
+      return nil
+    }
+    return withID(language) ?? withID("en")
+  }
+
+  /// "English · Sahih International"
+  var title: String {
+    source.isEmpty ? languageName : "\(languageName) · \(source)"
+  }
+}
+
+/// The translation the viewer chose, kept on the device. Until they choose,
+/// it is `TVQuranTranslation.standard` for their language.
+enum TVQuranTranslationChoice {
+  static let storageKey = "PathOfNurTV.quran.translation"
+  /// Kept for a viewer who chose to read without a translation.
+  static let noneValue = "none"
+
+  static func load(
+    from userDefaults: UserDefaults = .standard,
+    language: String = Locale.current.languageCode ?? "en"
+  ) -> TVQuranTranslation? {
+    guard let stored = userDefaults.string(forKey: storageKey) else {
+      return .standard(forLanguage: language)
+    }
+    if stored == noneValue {
+      return nil
+    }
+    return .withID(stored) ?? .standard(forLanguage: language)
+  }
+
+  static func save(_ translation: TVQuranTranslation?, to userDefaults: UserDefaults = .standard) {
+    userDefaults.set(translation?.id ?? noneValue, forKey: storageKey)
+  }
+}
+
 /// The Qur'an the Apple TV shows: the Arabic, its reading, and its meaning in
 /// the languages the phone's sources carry.
 final class TVQuranLibrary {
   enum Text: Hashable {
     case arabic
     case transliteration
-    case translation(language: String)
+    case translation(id: String)
 
     var resourceName: String {
       switch self {
@@ -73,14 +141,11 @@ final class TVQuranLibrary {
         return "TVQuranArabic"
       case .transliteration:
         return "TVQuranTransliteration"
-      case .translation(let language):
-        return "TVQuranTranslation_\(language)"
+      case .translation(let id):
+        return "TVQuranTranslation_\(id)"
       }
     }
   }
-
-  /// English is what a language without a translation of its own falls back to.
-  static let translationLanguages = ["en", "fr", "ur"]
 
   static let shared = TVQuranLibrary(directory: Bundle.main.resourceURL)
 
@@ -96,17 +161,16 @@ final class TVQuranLibrary {
     file(for: text)?.verses(inSurah: number) ?? []
   }
 
-  /// The ayahs of one surah as a viewer reading in `language` is shown
-  /// them. The translation is in that language where the phone's sources
-  /// carry one, and in English where they do not. An Arabic reader is shown
-  /// the Arabic alone.
-  func ayahs(inSurah number: Int, language: String) -> [TVQuranAyah] {
+  /// The ayahs of one surah with the reading and the meaning chosen. No
+  /// translation is the Arabic and its reading alone.
+  func ayahs(
+    inSurah number: Int,
+    translation: TVQuranTranslation?,
+    showsTransliteration: Bool = true
+  ) -> [TVQuranAyah] {
     let arabic = verses(.arabic, inSurah: number)
-    let readsArabic = language == "ar"
-    let transliteration = readsArabic ? [] : verses(.transliteration, inSurah: number)
-    let translation = readsArabic
-      ? []
-      : verses(Self.translation(forLanguage: language), inSurah: number)
+    let transliteration = showsTransliteration ? verses(.transliteration, inSurah: number) : []
+    let meaning = translation.map { verses(.translation(id: $0.id), inSurah: number) } ?? []
     return arabic.enumerated().map { index, verse in
       TVQuranAyah(
         id: "\(number):\(index + 1)",
@@ -114,15 +178,19 @@ final class TVQuranLibrary {
         ayahNumber: index + 1,
         arabic: verse,
         transliteration: index < transliteration.count ? transliteration[index] : "",
-        translation: index < translation.count ? translation[index] : ""
+        translation: index < meaning.count ? meaning[index] : ""
       )
     }
   }
 
-  /// The translation a viewer reading in `language` is shown.
-  static func translation(forLanguage language: String) -> Text {
-    .translation(
-      language: translationLanguages.contains(language) ? language : "en"
+  /// The ayahs of one surah as a viewer reading in `language` is first
+  /// shown them (`TVQuranTranslation.standard`). An Arabic reader is shown
+  /// the Arabic alone.
+  func ayahs(inSurah number: Int, language: String) -> [TVQuranAyah] {
+    ayahs(
+      inSurah: number,
+      translation: TVQuranTranslation.standard(forLanguage: language),
+      showsTransliteration: language != "ar"
     )
   }
 

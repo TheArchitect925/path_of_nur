@@ -37,7 +37,7 @@ let verseOfTheDay = arguments.count > 3 ? arguments[3] : "tools/tv_verse_of_the_
 
 let texts: [TVQuranLibrary.Text] =
   [.arabic, .transliteration]
-  + TVQuranLibrary.translationLanguages.map { .translation(language: $0) }
+  + TVQuranTranslation.all.map { .translation(id: $0.id) }
 
 var failures: [String] = []
 
@@ -88,8 +88,14 @@ for number in [0, -1, TVQuranTextFile.surahCount + 1] {
     failures.append("surah \(number) does not exist and was read")
   }
 }
-if TVQuranLibrary.translation(forLanguage: "de") != .translation(language: "en") {
+if TVQuranTranslation.standard(forLanguage: "de")?.id != "en" {
   failures.append("a language without a translation does not fall back to English")
+}
+if TVQuranTranslation.standard(forLanguage: "ar") != nil {
+  failures.append("an Arabic reader is given a translation they did not choose")
+}
+if Set(TVQuranTranslation.all.map(\.id)).count != TVQuranTranslation.all.count {
+  failures.append("two translations share an id")
 }
 
 // MARK: - 2. The parts against the ayah
@@ -109,7 +115,7 @@ for name in ["AmiriQuran-Regular.ttf", "Figtree-Medium.ttf"] {
 let focusScale: CGFloat = 1.045
 let inset: CGFloat = 16
 let pane = CGSize(width: 692, height: 676)
-let stage = CGSize(width: 1616, height: 596)
+let stage = CGSize(width: 1632, height: 692)
 
 func joined(_ parts: [TVQuranAyahPart], _ text: KeyPath<TVQuranAyahPart, String>) -> String {
   parts.map { $0[keyPath: text] }.filter { !$0.isEmpty }.joined(separator: " ")
@@ -173,13 +179,20 @@ func tally(_ room: String, _ parts: [TVQuranAyahPart], _ ayah: TVQuranAyah) {
   }
 }
 
-// Arabic is read alone; German has no translation of its own and reads the
-// English; the rest read their own.
-for language in ["en", "fr", "ur", "ar"] {
+// Every translation a viewer can choose, with the reading, and the Arabic
+// alone. The interface's language sets only the Urdu line spacing.
+let readings: [(name: String, translation: TVQuranTranslation?, language: String)] =
+  TVQuranTranslation.all.map { ($0.id, $0, $0.id == "ur" ? "ur" : "en") }
+  + [("arabic alone", nil, "ar")]
+for (name, translation, language) in readings {
   for surah in TVQuranData.surahs {
-    let ayahs = library.ayahs(inSurah: surah.number, language: language)
+    let ayahs = library.ayahs(
+      inSurah: surah.number,
+      translation: translation,
+      showsTransliteration: language != "ar"
+    )
     if ayahs.count != surah.verseCount {
-      failures.append("\(language): surah \(surah.number) gives \(ayahs.count) ayahs")
+      failures.append("\(name): surah \(surah.number) gives \(ayahs.count) ayahs")
     }
     let reader = TVQuranAyahMetrics.reader(
       pane: pane,
@@ -189,8 +202,8 @@ for language in ["en", "fr", "ur", "ar"] {
     )
     for ayah in ayahs {
       let read = TVQuranAyahPlanner.plan(ayah, metrics: reader)
-      check(read, of: ayah, metrics: reader, in: "reader \(language)")
-      tally("reader \(language)", read, ayah)
+      check(read, of: ayah, metrics: reader, in: "reader \(name)")
+      tally("reader \(name)", read, ayah)
 
       let heard = TVQuranAyahPlanner.listeningPlan(
         for: ayah,
@@ -199,8 +212,8 @@ for language in ["en", "fr", "ur", "ar"] {
         focusScale: focusScale,
         language: language
       )
-      check(heard.parts, of: ayah, metrics: heard.metrics, in: "listening \(language)")
-      tally("listening \(language)", heard.parts, ayah)
+      check(heard.parts, of: ayah, metrics: heard.metrics, in: "listening \(name)")
+      tally("listening \(name)", heard.parts, ayah)
     }
   }
 }

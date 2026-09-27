@@ -105,9 +105,17 @@ than the screen, so a viewer deep in one still finds the other beside them.
   `PathOfNurTV.quran.place`). The app opens there, Home's Continue reading
   and Listen go on from there, and before anything has been read Home offers
   to start reading.
-- The reciter chosen beside the reader is the reciter from then on, as the
-  one chosen in Settings is. A new viewer hears the phone's
-  (`TVQuranReciter.phoneDefault`).
+- The reciter and the translation are chosen in Listening options (from the
+  reader's heading, or Options in the player) and in Settings, and are kept.
+  22 EveryAyah reciters; the phone's seven bundled translations and French,
+  or none (`TVQuranTranslation`, kept under `PathOfNurTV.quran.translation`).
+  A new viewer hears the phone's reciter (`TVQuranReciter.phoneDefault`) and
+  reads the translation of their language, English where there is none.
+- The recitation plays through an `AVQueuePlayer`: the next ayah is fetched
+  while this one plays, an ayah heard again is replayed from memory
+  (`TVQuranRepeat`: each ayah 3 or 5 times, one ayah or the whole surah
+  again and again), pause resumes mid-ayah, and the screen saver is held
+  off while the player is open or the recitation plays.
 - **Nothing that takes the focus is taller than its pane.** tvOS scrolls to
   what is in focus and cannot scroll within it, so the part of a card below
   the pane would never be seen. `Support/TVQuranAyahLayout.swift` measures
@@ -116,8 +124,10 @@ than the screen, so a viewer deep in one still finds the other beside them.
   divided at a pause mark where one is near, then the reading and the
   meaning. No word is dropped or moved. In English 379 of the 6,236 ayahs
   are set this way, the longest (2:282) in six parts.
-- Listening mode sets the ayah as large as its stage allows (56, 46 or 38
-  point Arabic) and in parts only when the smallest is still too tall.
+- Listening mode (the player) gives the screen to the ayah: one quiet
+  heading line, a slim control bar at the bottom that fades while the
+  recitation plays, and the ayah set as large as its stage allows (84 down
+  to 32 point Arabic), in parts only when the smallest is still too tall.
 - The panes wear `tvPane()`, the rail's feathered edge on a list that fills
   its height, and stand `TVTheme.railBleed` apart so that what fades at the
   side of one does not fade across the cards of the other.

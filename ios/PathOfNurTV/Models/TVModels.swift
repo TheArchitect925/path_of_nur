@@ -462,45 +462,240 @@ struct TVQuranAyahPart: Identifiable, Hashable {
   }
 }
 
-enum TVQuranReciter: String, CaseIterable {
-  case husary
+/// A voice the Qur'an is heard in. Every one reads each ayah on its own
+/// from EveryAyah, as the phone's three do (`QuranAudioRepository`). The
+/// raw values of the phone's three are the phone's reciter ids.
+enum TVQuranReciter: String, CaseIterable, Identifiable {
   case alafasy
+  case husary
+  case husaryMuallim = "husary_muallim"
   case abdulbasit
+  case abdulbasitMujawwad = "abdulbasit_mujawwad"
+  case minshawi
+  case minshawiMujawwad = "minshawi_mujawwad"
+  case sudais
+  case shuraim
+  case maher
+  case ghamdi
+  case hudhaify
+  case ayyub
+  case dossari
+  case shatri
+  case ajmi
+  case basfar
+  case jibreel
+  case budair
+  case fares
+  case rifai
+  case qatami
 
   /// The reciter a new viewer hears, which is the phone's
   /// (`QuranAudioRepository.defaultReciterId`).
   static let phoneDefault = TVQuranReciter.alafasy
 
+  var id: String { rawValue }
+
+  enum Style {
+    /// Measured, as in prayer.
+    case murattal
+    /// Slow and melodic, as in a gathering.
+    case mujawwad
+    /// Slowly, for learning.
+    case teaching
+  }
+
+  var style: Style {
+    switch self {
+    case .abdulbasitMujawwad, .minshawiMujawwad:
+      return .mujawwad
+    case .husaryMuallim:
+      return .teaching
+    default:
+      return .murattal
+    }
+  }
+
+  /// The reciter's name in Latin letters.
+  var latinName: String {
+    switch self {
+    case .alafasy: return "Mishary Rashid Alafasy"
+    case .husary, .husaryMuallim: return "Mahmoud Khalil Al-Husary"
+    case .abdulbasit, .abdulbasitMujawwad: return "Abdul Basit Abdus-Samad"
+    case .minshawi, .minshawiMujawwad: return "Mohamed Siddiq Al-Minshawi"
+    case .sudais: return "Abdur-Rahman As-Sudais"
+    case .shuraim: return "Saud Ash-Shuraim"
+    case .maher: return "Maher Al-Muaiqly"
+    case .ghamdi: return "Saad Al-Ghamdi"
+    case .hudhaify: return "Ali Al-Hudhaify"
+    case .ayyub: return "Muhammad Ayyub"
+    case .dossari: return "Yasser Ad-Dossari"
+    case .shatri: return "Abu Bakr Ash-Shatri"
+    case .ajmi: return "Ahmed Al-Ajmi"
+    case .basfar: return "Abdullah Basfar"
+    case .jibreel: return "Muhammad Jibreel"
+    case .budair: return "Salah Al-Budair"
+    case .fares: return "Fares Abbad"
+    case .rifai: return "Hani Ar-Rifai"
+    case .qatami: return "Nasser Al-Qatami"
+    }
+  }
+
+  /// The reciter's name in Arabic.
+  var arabicName: String {
+    switch self {
+    case .alafasy: return "مشاري راشد العفاسي"
+    case .husary, .husaryMuallim: return "محمود خليل الحصري"
+    case .abdulbasit, .abdulbasitMujawwad: return "عبد الباسط عبد الصمد"
+    case .minshawi, .minshawiMujawwad: return "محمد صديق المنشاوي"
+    case .sudais: return "عبد الرحمن السديس"
+    case .shuraim: return "سعود الشريم"
+    case .maher: return "ماهر المعيقلي"
+    case .ghamdi: return "سعد الغامدي"
+    case .hudhaify: return "علي الحذيفي"
+    case .ayyub: return "محمد أيوب"
+    case .dossari: return "ياسر الدوسري"
+    case .shatri: return "أبو بكر الشاطري"
+    case .ajmi: return "أحمد بن علي العجمي"
+    case .basfar: return "عبد الله بصفر"
+    case .jibreel: return "محمد جبريل"
+    case .budair: return "صلاح البدير"
+    case .fares: return "فارس عباد"
+    case .rifai: return "هاني الرفاعي"
+    case .qatami: return "ناصر القطامي"
+    }
+  }
+
+  /// The name as the viewer reads it: in Arabic letters where the interface
+  /// is in Arabic or Urdu, in Latin letters elsewhere.
+  var name: String {
+    let language = Locale.current.languageCode ?? "en"
+    return language == "ar" || language == "ur" ? arabicName : latinName
+  }
+
+  var styleLabel: String {
+    switch style {
+    case .murattal:
+      return tvLocalized("Murattal")
+    case .mujawwad:
+      return tvLocalized("Mujawwad")
+    case .teaching:
+      return tvLocalized("Teaching pace")
+    }
+  }
+
+  /// "Mahmoud Khalil Al-Husary · Teaching pace", where one reciter is heard
+  /// in two ways; the name alone where there is one.
   var displayName: String {
-    switch self {
-    case .husary:
-      return tvLocalized("Mahmoud Khalil Al-Husary")
-    case .alafasy:
-      return tvLocalized("Mishary Rashid Alafasy")
-    case .abdulbasit:
-      return tvLocalized("Abdul Basit Murattal")
-    }
+    let twoWays: Set<TVQuranReciter> = [
+      .husary, .husaryMuallim, .abdulbasit, .abdulbasitMujawwad, .minshawi, .minshawiMujawwad,
+    ]
+    return twoWays.contains(self) ? "\(name) · \(styleLabel)" : name
   }
 
-  var shortLabel: String {
-    switch self {
-    case .husary:
-      return tvLocalized("Husary")
-    case .alafasy:
-      return tvLocalized("Alafasy")
-    case .abdulbasit:
-      return tvLocalized("Basit")
-    }
-  }
-
+  /// The EveryAyah collection the ayahs are streamed from.
   var baseURL: String {
+    let folder: String
     switch self {
-    case .husary:
-      return "https://everyayah.com/data/Husary_128kbps"
-    case .alafasy:
-      return "https://everyayah.com/data/Alafasy_128kbps"
-    case .abdulbasit:
-      return "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps"
+    case .alafasy: folder = "Alafasy_128kbps"
+    case .husary: folder = "Husary_128kbps"
+    case .husaryMuallim: folder = "Husary_Muallim_128kbps"
+    case .abdulbasit: folder = "Abdul_Basit_Murattal_192kbps"
+    case .abdulbasitMujawwad: folder = "Abdul_Basit_Mujawwad_128kbps"
+    case .minshawi: folder = "Minshawy_Murattal_128kbps"
+    case .minshawiMujawwad: folder = "Minshawy_Mujawwad_192kbps"
+    case .sudais: folder = "Abdurrahmaan_As-Sudais_192kbps"
+    case .shuraim: folder = "Saood_ash-Shuraym_128kbps"
+    case .maher: folder = "MaherAlMuaiqly128kbps"
+    case .ghamdi: folder = "Ghamadi_40kbps"
+    case .hudhaify: folder = "Hudhaify_128kbps"
+    case .ayyub: folder = "Muhammad_Ayyoub_128kbps"
+    case .dossari: folder = "Yasser_Ad-Dussary_128kbps"
+    case .shatri: folder = "Abu_Bakr_Ash-Shaatree_128kbps"
+    case .ajmi: folder = "Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net"
+    case .basfar: folder = "Abdullah_Basfar_192kbps"
+    case .jibreel: folder = "Muhammad_Jibreel_128kbps"
+    case .budair: folder = "Salah_Al_Budair_128kbps"
+    case .fares: folder = "Fares_Abbad_64kbps"
+    case .rifai: folder = "Hani_Rifai_192kbps"
+    case .qatami: folder = "Nasser_Alqatami_128kbps"
     }
+    return "https://everyayah.com/data/\(folder)"
+  }
+}
+
+/// How often an ayah is heard before the recitation moves on.
+enum TVQuranRepeat: String, CaseIterable, Identifiable {
+  case off
+  case ayahThree = "ayah3"
+  case ayahFive = "ayah5"
+  case ayahAlways = "ayah"
+  case surah
+
+  var id: String { rawValue }
+
+  /// Times each ayah is heard; nothing for an ayah heard until the viewer
+  /// moves on.
+  var playsPerAyah: Int? {
+    switch self {
+    case .off, .surah:
+      return 1
+    case .ayahThree:
+      return 3
+    case .ayahFive:
+      return 5
+    case .ayahAlways:
+      return nil
+    }
+  }
+
+  /// Whether the surah begins again at its end.
+  var loopsSurah: Bool { self == .surah }
+
+  var title: String {
+    switch self {
+    case .off:
+      return tvLocalized("No repeat")
+    case .ayahThree:
+      return tvLocalized("Each ayah 3 times")
+    case .ayahFive:
+      return tvLocalized("Each ayah 5 times")
+    case .ayahAlways:
+      return tvLocalized("This ayah, again and again")
+    case .surah:
+      return tvLocalized("The whole surah, again")
+    }
+  }
+
+  /// The short form, beside the play button.
+  var shortTitle: String {
+    switch self {
+    case .off:
+      return tvLocalized("Repeat off")
+    case .ayahThree:
+      return tvLocalized("Ayah ×3")
+    case .ayahFive:
+      return tvLocalized("Ayah ×5")
+    case .ayahAlways:
+      return tvLocalized("Ayah ∞")
+    case .surah:
+      return tvLocalized("Surah ∞")
+    }
+  }
+
+  var systemImage: String {
+    switch self {
+    case .off:
+      return "repeat"
+    case .ayahAlways, .ayahThree, .ayahFive:
+      return "repeat.1"
+    case .surah:
+      return "repeat.circle.fill"
+    }
+  }
+
+  /// The next setting, for the one button that steps through them.
+  var next: TVQuranRepeat {
+    let all = Self.allCases
+    return all[(all.firstIndex(of: self)! + 1) % all.count]
   }
 }

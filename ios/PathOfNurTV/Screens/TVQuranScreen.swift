@@ -19,6 +19,7 @@ struct TVQuranScreen: View {
   @State private var followedAyahID: String?
   /// Where the viewer last was in the reader, to come back to.
   @State private var placeInReader: String?
+  @State private var isOptionsPresented = false
 
   /// A pane asked to bring what is selected into view.
   private struct ScrollRequest: Equatable {
@@ -52,7 +53,8 @@ struct TVQuranScreen: View {
         TVQuranListenBar(
           viewModel: viewModel,
           focusedSection: $focusedSection,
-          onLeaveTowardRail: { appViewModel.focusNavigation() }
+          onLeaveTowardRail: { appViewModel.focusNavigation() },
+          onOpenOptions: { isOptionsPresented = true }
         )
       }
       .focusSection()
@@ -78,6 +80,17 @@ struct TVQuranScreen: View {
     .fullScreenCover(isPresented: $viewModel.isListeningModePresented) {
       TVQuranListeningModeScreen(viewModel: viewModel)
         .environmentObject(themeController)
+    }
+    .fullScreenCover(isPresented: $isOptionsPresented) {
+      ZStack(alignment: .trailing) {
+        TVCoverBackground()
+        TVQuranPlayerOptionsPanel(viewModel: viewModel) {
+          isOptionsPresented = false
+        }
+        .padding(.vertical, 30)
+        .padding(.trailing, 44)
+      }
+      .environmentObject(themeController)
     }
     .onChange(of: appViewModel.contentFocusRequest) { _ in
       restorePreferredFocus()

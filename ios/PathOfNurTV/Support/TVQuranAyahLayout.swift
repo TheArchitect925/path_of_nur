@@ -113,15 +113,22 @@ final class TVQuranAyahPlanner {
   /// Type sizes: the Arabic, its reading, its meaning.
   typealias Sizes = (arabic: CGFloat, transliteration: CGFloat, translation: CGFloat)
 
-  /// The sizes listening mode tries, largest first.
+  /// The sizes listening mode tries, largest first. It is read from across
+  /// a room, on televisions of every size, so it starts large and comes
+  /// down only as far as an ayah needs.
   static let listeningSizes: [Sizes] = [
-    (56, 20, 22),
-    (46, 19, 21),
-    (38, 18, 20),
+    (84, 36, 40),
+    (72, 34, 38),
+    (62, 32, 36),
+    (54, 30, 33),
+    (47, 28, 31),
+    (41, 26, 29),
+    (36, 24, 27),
+    (32, 23, 25),
   ]
-  static let listeningStagePadding: CGFloat = 28
-  static let listeningArabicWidth: CGFloat = 1320
-  static let listeningBodyWidth: CGFloat = 1100
+  static let listeningStagePadding: CGFloat = 40
+  static let listeningArabicWidth: CGFloat = 1640
+  static let listeningBodyWidth: CGFloat = 1480
 
   /// The sizes Home's verse tries, largest first.
   static let homeSizes: [Sizes] = [
@@ -190,7 +197,7 @@ final class TVQuranAyahPlanner {
       bodyWidth: min(width, listeningBodyWidth),
       room: stage.height,
       chrome: listeningStagePadding * 2,
-      gap: 20,
+      gap: 28,
       partRoom: TVQuranAyahMetrics.tallestPart(
         inRoom: stage.height,
         inset: inset,

@@ -9,9 +9,13 @@ enum TVSeedRepository {
 
   /// The verse of the day, which is the phone's
   /// (`TVQuranVerseOfTheDay`).
-  static func dailyVerse(on date: Date) -> TVQuranDailyVerse {
+  static func dailyVerse(
+    on date: Date,
+    translation: TVQuranTranslation? = TVQuranTranslationChoice.load()
+  ) -> TVQuranDailyVerse {
     let place = TVQuranVerseOfTheDay.place(on: date)
-    let verse = ayah(surah: place.surahNumber, number: place.ayahNumber)
+    let verse = ayahs(for: place.surahNumber, translation: translation)
+      .first { $0.ayahNumber == place.ayahNumber }
     return TVQuranDailyVerse(
       surahNumber: place.surahNumber,
       ayahNumber: place.ayahNumber,
@@ -39,12 +43,17 @@ enum TVSeedRepository {
     ayahs(for: surah).first { $0.ayahNumber == number }
   }
 
-  /// The ayahs of one surah, read when they are asked for, in the viewer's
-  /// language.
-  static func ayahs(for surahNumber: Int) -> [TVQuranAyah] {
+  /// The ayahs of one surah, read when they are asked for, with the
+  /// translation the viewer chose. A viewer reading in Arabic is not shown
+  /// the reading in Latin letters.
+  static func ayahs(
+    for surahNumber: Int,
+    translation: TVQuranTranslation? = TVQuranTranslationChoice.load()
+  ) -> [TVQuranAyah] {
     TVQuranLibrary.shared.ayahs(
       inSurah: surahNumber,
-      language: Locale.current.languageCode ?? "en"
+      translation: translation,
+      showsTransliteration: (Locale.current.languageCode ?? "en") != "ar"
     )
   }
 

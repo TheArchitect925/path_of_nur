@@ -16,16 +16,23 @@ const tvQuranVerseOfTheDayPath = 'tools/tv_verse_of_the_day_reference.json';
 const tvQuranArabicFile = 'TVQuranArabic.json';
 const tvQuranTransliterationFile = 'TVQuranTransliteration.json';
 
-/// The translations the Apple TV carries, by language code, and the source
-/// each is taken from. English is what a language without one falls back to.
+/// The translations the Apple TV carries, by the id its files are named for,
+/// and the source each is taken from: the phone's bundled set
+/// (`quranTranslationResources`) and the French the phone reads in French.
+/// English (Sahih International) is what a language without one falls back
+/// to.
 const tvQuranTranslations = <String, q.Translation>{
   'en': q.Translation.enSaheeh,
+  'en_clear': q.Translation.enClearQuran,
   'fr': q.Translation.frHamidullah,
   'ur': q.Translation.urdu,
+  'bn': q.Translation.bengali,
+  'id': q.Translation.indonesian,
+  'tr': q.Translation.trSaheeh,
+  'fa': q.Translation.faHusseinDari,
 };
 
-String tvQuranTranslationFile(String language) =>
-    'TVQuranTranslation_$language.json';
+String tvQuranTranslationFile(String id) => 'TVQuranTranslation_$id.json';
 
 /// Every resource file the Apple TV target bundles, in a fixed order.
 List<String> get tvQuranResourceFiles => [

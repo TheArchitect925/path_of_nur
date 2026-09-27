@@ -62,12 +62,17 @@ RELEASED_FILES = (
     "Screens/TVPrayerCityPickerScreen.swift",
     "Screens/TVPrayerScreen.swift",
     "Screens/TVQuranListeningModeScreen.swift",
+    "Screens/TVQuranPlayerOptionsPanel.swift",
     "Screens/TVQuranScreen.swift",
     "Screens/TVSettingsScreen.swift",
     "Support/TVPrayerService.swift",
     "Theme/TVTheme.swift",
 )
 RELEASED_PARTS = {
+    "Models/TVModels.swift": (
+        "enum TVQuranReciter",
+        "enum TVQuranRepeat",
+    ),
     "ViewModels/TVAppViewModel.swift": (
         "final class TVSettingsViewModel",
         "final class TVPrayerViewModel",

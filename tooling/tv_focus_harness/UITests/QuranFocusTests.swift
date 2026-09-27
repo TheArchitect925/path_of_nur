@@ -259,8 +259,8 @@ final class QuranFocusTests: TVFocusTestCase {
     expect(press(.left), "quran.browse.1", "left again returns to the list")
     expect(press(.right), "quran.reader.1:1", "right returns to the reader")
     press(.up)
-    expect(press(.up), "quran.playback.listening", "up twice is the hero")
-    expect(press(.left, 3), "quran.playback.reciter.husary", "left along the reciters")
+    expect(press(.up), "quran.playback.options", "up twice is the hero, at its options")
+    expect(press(.left), "quran.playback.listening", "left to listening")
     expect(press(.left), "nav.quran", "left from the first goes to the rail")
   }
 
@@ -314,17 +314,16 @@ final class QuranFocusTests: TVFocusTestCase {
     launch(["TV_SAMPLE_ROUTE": "quran"])
     log("== Listening mode, opened from the hero")
     press(.up)
-    expect(press(.up), "quran.playback.reciter.husary", "up from the row of shortcuts is the hero")
-    expect(press(.right, 3), "quran.playback.listening", "right along the hero")
+    expect(press(.up), "quran.playback.listening", "up from the row of shortcuts is the hero")
     press(.select)
     sleep(3)
     expect(focus, "listening.playPause", "listening mode opens on play and pause")
     shot("40-listening")
     expect(press(.right), "listening.next", "right to next")
-    expect(press(.left, 2), "listening.previous", "left to previous")
-    expect(press(.left), "listening.transliteration", "left again to the switches")
-    expect(press(.up), "listening.exit", "up finds Close")
-    expect(press(.down), "listening.playPause", "down returns to play and pause")
+    expect(press(.right), "listening.options", "right again to the options")
+    expect(press(.left, 3), "listening.previous", "left to previous")
+    expect(press(.left), "listening.repeat", "left again to repeat")
+    expect(press(.right, 2), "listening.playPause", "back to play and pause")
     press(.menu)
     sleep(2)
     expect(focus, "quran.playback.listening", "Menu closes it, and the focus is where it was opened from")
@@ -356,29 +355,130 @@ final class QuranFocusTests: TVFocusTestCase {
     expect("\(ayahInHeading)", "\(opened)", "previous moves back")
   }
 
-  func test42_listeningModeSwitches() {
+  func test42_listeningModeOptions() {
     launch([
       "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "2", "TV_SAMPLE_AYAH": "255",
-      "TV_SAMPLE_LISTENING": "1",
+      "TV_SAMPLE_LISTENING": "1", "TV_SAMPLE_TRANSLATION": "en", "TV_SAMPLE_RECITER": "alafasy",
     ])
-    log("== Listening mode, its switches")
+    log("== Listening mode, its options")
     sleep(2)
     expect(focus, "listening.playPause", "opens on play and pause")
     shot("42-2-255-with-everything")
-    expect(press(.left, 3), "listening.translation", "left to the translation switch")
-    expect(label(of: "listening.translation"), "Translation on", "which is on")
+    expect(press(.right, 2), "listening.options", "right to the options")
     press(.select)
     sleep(1)
-    expect(label(of: "listening.translation"), "Translation off", "pressing it turns it off")
-    expect(press(.right), "listening.transliteration", "right to the transliteration switch")
+    expect(focus, "player.options.repeat.off", "the options open at the repeat chosen")
+    shot("42-options")
+    expect(press(.down, 5), "player.options.show.translation", "down past the repeats to the translation switch")
     press(.select)
     sleep(1)
-    expect(label(of: "listening.transliteration"), "Transliteration off", "pressing it turns it off")
+    expect(value(of: "player.options.show.translation"), "", "pressing it hides the translation")
+    expect(press(.down), "player.options.show.transliteration", "down to the transliteration switch")
+    press(.select)
+    sleep(1)
+    expect(value(of: "player.options.show.transliteration"), "", "pressing it hides the reading")
+    press(.menu)
+    sleep(1)
+    expect(focus, "listening.options", "Menu puts the options away")
     shot("42-2-255-arabic-alone")
-    expect(press(.left, 2), "listening.repeat", "left to the repeat switch")
     press(.select)
     sleep(1)
-    expect(label(of: "listening.repeat"), "Repeat ayah on", "pressing it turns it on")
+    // Put them back, so that the next run starts as this one did.
+    expect(press(.down, 5), "player.options.show.translation", "down to the translation switch again")
+    press(.select)
+    press(.down)
+    press(.select)
+    sleep(1)
+    expect(value(of: "player.options.show.translation"), "Selected", "the translation is shown again")
+    expect(value(of: "player.options.show.transliteration"), "Selected", "and the reading")
+    expect(press(.down), "player.options.translation.en", "down to the translations")
+    expect(press(.down, 4), "player.options.translation.bn", "down to Bengali")
+    press(.select)
+    sleep(1)
+    expect(value(of: "player.options.translation.bn"), "Selected", "Bengali is chosen")
+    press(.menu)
+    sleep(1)
+    shot("42-2-255-bengali")
+    press(.select)
+    sleep(1)
+    expect(press(.down, 7), "player.options.translation.en", "back to English")
+    press(.select)
+    sleep(1)
+    expect(value(of: "player.options.translation.en"), "Selected", "English is chosen again")
+    press(.menu)
+    sleep(1)
+    expect(press(.left, 4), "listening.repeat", "left to repeat")
+    press(.select)
+    sleep(1)
+    expect(value(of: "listening.repeat"), "Each ayah 3 times", "pressing it repeats each ayah three times")
+    for _ in 0..<4 { press(.select) }
+    sleep(1)
+    expect(value(of: "listening.repeat"), "No repeat", "and round again to no repeat")
+  }
+
+  /// Needs the network: the recitation is streamed.
+  func test44_anAyahIsHeardThreeTimes() {
+    launch([
+      "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "114", "TV_SAMPLE_AYAH": "3",
+      "TV_SAMPLE_LISTENING": "1",
+    ])
+    log("== Repeat, each ayah three times")
+    expect(focus, "listening.playPause", "opens on play and pause")
+    press(.select)
+    sleep(1)
+    expect(label(of: "listening.playPause"), "Play audio", "paused, to set the repeat first")
+    expect(press(.left, 2), "listening.repeat", "left to repeat")
+    press(.select)
+    sleep(1)
+    expect(value(of: "listening.repeat"), "Each ayah 3 times", "each ayah three times")
+    expect(press(.right), "listening.previous", "right to previous")
+    press(.select)
+    sleep(1)
+    let start = ayahInHeading
+    note("the ayah it begins at", "\(start)")
+    expect(press(.right), "listening.playPause", "back to play")
+    // Played from its beginning: an ayah of An-Nas takes three to five
+    // seconds, so heard three times it holds the screen for nine or more.
+    press(.select)
+    let began = Date()
+    var ayah = start
+    while ayah == start && Date().timeIntervalSince(began) < 60 {
+      sleep(1)
+      ayah = ayahInHeading
+    }
+    let held = Int(Date().timeIntervalSince(began))
+    note("seconds the ayah was held", "\(held)")
+    expect("\(ayah)", "\(start + 1)", "after its third hearing it moves on to the next")
+    expect("\(held >= 8)", "true", "and not before it was heard three times")
+    press(.select)
+  }
+
+  /// The translation chosen is kept, and shown in the reader too.
+  func test45_theTranslationChosenIsKept() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback", "TV_SAMPLE_TRANSLATION": "en"])
+    log("== The translation is kept")
+    expect(press(.up), "quran.playback.options", "up to the options in the hero")
+    press(.select)
+    sleep(2)
+    expect(focus, "player.options.repeat.off", "the options open")
+    expect(press(.down, 9), "player.options.translation.fr", "down to French")
+    press(.select)
+    sleep(1)
+    expect(value(of: "player.options.translation.fr"), "Selected", "French is chosen")
+    press(.menu)
+    sleep(2)
+    shot("45-reader-in-french")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback"], keeping: true)
+    let french = app.buttons["quran.playback.options"].exists
+      && (app.buttons["quran.playback.options"].value as? String ?? "").contains("Français")
+    log("\(french ? "PASS" : "FAIL")  opened again, French is still the translation")
+    XCTAssertTrue(french, "French is kept")
+    app.terminate()
+
+    // Put it back.
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_TRANSLATION": "en"], keeping: true)
   }
 
   func test43_listeningModeWithAnAyahInParts() {
@@ -403,12 +503,11 @@ final class QuranFocusTests: TVFocusTestCase {
     note("parts of 2:282 on the stage", "\(parts)")
     XCTAssertGreaterThan(parts, 1, "2:282 is in parts on the stage")
     expect(next, "listening.playPause", "down from the last part to the controls")
-    expect(press(.left, 4), "listening.repeat", "left along the controls")
+    expect(press(.left, 2), "listening.repeat", "left along the controls")
     expect(press(.up), "listening.part.0", "up from the first control begins the ayah")
-    expect(press(.up), "listening.exit", "up from the ayah to Close")
-    press(.select)
+    press(.menu)
     sleep(2)
-    XCTAssertFalse(focus.hasPrefix("listening."), "Close closes listening mode")
+    XCTAssertFalse(focus.hasPrefix("listening."), "Menu closes listening mode")
   }
 
   // MARK: - Arabic
