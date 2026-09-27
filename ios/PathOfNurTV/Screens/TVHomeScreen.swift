@@ -125,19 +125,23 @@ struct TVHomeScreen: View {
         Text(viewModel.verse.arabic)
           .font(TVTypography.arabicHero)
           .foregroundColor(TVTheme.textPrimary)
-          .frame(maxWidth: .infinity, alignment: .trailing)
+          .tvArabicLine()
           .tvReadableArabic()
 
-        Text(viewModel.verse.transliteration)
-          .font(TVTypography.bodySecondary.italic())
-          .italic()
-          .foregroundColor(TVTheme.textMuted)
-          .tvReadableBody()
+        if !viewModel.verse.transliteration.isEmpty {
+          Text(viewModel.verse.transliteration)
+            .font(TVTypography.bodySecondary.italic())
+            .italic()
+            .foregroundColor(TVTheme.textMuted)
+            .tvReadableBody()
+        }
 
-        Text(viewModel.verse.translation)
-          .font(TVTypography.body)
-          .foregroundColor(TVTheme.textSecondary)
-          .tvReadableBody()
+        if !viewModel.verse.translation.isEmpty {
+          Text(viewModel.verse.translation)
+            .font(TVTypography.body)
+            .foregroundColor(TVTheme.textSecondary)
+            .tvReadableBody()
+        }
 
         Text(viewModel.verse.locationLabel)
           .font(TVTypography.detail)

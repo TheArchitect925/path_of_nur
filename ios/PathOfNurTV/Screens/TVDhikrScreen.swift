@@ -72,7 +72,7 @@ struct TVDhikrScreen: View {
                 Text(step.arabic)
                   .font(TVTypography.arabicBody)
                   .foregroundColor(TVTheme.textPrimary)
-                  .frame(maxWidth: .infinity, alignment: .trailing)
+                  .tvArabicLine()
                   .tvReadableArabic()
 
                 Text(step.transliteration)

@@ -18,7 +18,7 @@ struct TVQuranScreen: View {
         ScrollView(.horizontal, showsIndicators: false) {
           Group {
             if hasSummaryContent {
-              LazyHStack(spacing: TVTheme.railSpacing) {
+              HStack(spacing: TVTheme.railSpacing) {
                 Button {
                   viewModel.selectSurah(
                     TVSeedRepository.quranSurahs.first(where: {
@@ -68,7 +68,9 @@ struct TVQuranScreen: View {
                 if viewModel.browseCollections.isEmpty {
                   emptyShelfCard()
                 } else {
-                  LazyHStack(spacing: TVTheme.railSpacing) {
+                  // Not lazy: a lazy row takes all the height it is offered,
+                  // and beside a long surah that is a great deal of height.
+                  HStack(spacing: TVTheme.railSpacing) {
                     ForEach(Array(viewModel.browseCollections.enumerated()), id: \.element.id) { index, collection in
                       let focusID = index == 0
                           ? TVFocusSectionId.quranBrowse

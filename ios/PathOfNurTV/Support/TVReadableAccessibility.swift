@@ -23,7 +23,25 @@ extension View {
   }
 }
 
+/// Arabic begins at the right of its card whichever way the interface reads.
+/// In a left-to-right interface that is the trailing edge; in Arabic and Urdu
+/// the interface is already turned, and it is the leading one.
+private struct TVArabicLine: ViewModifier {
+  @Environment(\.layoutDirection) private var layoutDirection
+
+  func body(content: Content) -> some View {
+    let isTurned = layoutDirection == .rightToLeft
+    return content
+      .multilineTextAlignment(isTurned ? .leading : .trailing)
+      .frame(maxWidth: .infinity, alignment: isTurned ? .leading : .trailing)
+  }
+}
+
 extension View {
+  func tvArabicLine() -> some View {
+    modifier(TVArabicLine())
+  }
+
   func tvCombinedAccessibility(
     label: String? = nil,
     hint: String? = nil,

@@ -1,50 +1,55 @@
 import Foundation
 
 enum TVSeedRepository {
+  // The Qur'an text is generated from the phone's sources (TVQuranData).
+  // Nothing of it is typed here: a verse is looked up, never written out.
+
+  static let quranSurahs: [TVQuranSurah] = TVQuranData.surahs
+
   static let continueReading = TVContinueReadingSummary(
     surahNumber: 1,
-    surahName: "Al-Fatihah",
+    surahName: surahName(1),
     ayahNumber: 5
   )
 
-  static let dailyVerse = TVQuranDailyVerse(
-    surahNumber: 2,
-    ayahNumber: 45,
-    arabic: "وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
-    transliteration: "Wastaeenu bis-sabri was-salah",
-    translation: "Seek help through patience and prayer.",
-    locationLabel: "Al-Baqarah 2:45"
-  )
+  static let dailyVerse: TVQuranDailyVerse = {
+    let verse = ayah(surah: 94, number: 5)
+    return TVQuranDailyVerse(
+      surahNumber: 94,
+      ayahNumber: 5,
+      arabic: verse?.arabic ?? "",
+      transliteration: verse?.transliteration ?? "",
+      translation: verse?.translation ?? "",
+      locationLabel: "\(surahName(94)) 94:5"
+    )
+  }()
 
-  static let quranSurahs: [TVQuranSurah] = [
-    TVQuranSurah(id: 1, number: 1, arabicName: "الفاتحة", transliteratedName: "Al-Fatihah", englishName: "The Opening", verseCount: 7, revelationPlace: "Makkah"),
-    TVQuranSurah(id: 94, number: 94, arabicName: "الشرح", transliteratedName: "Ash-Sharh", englishName: "The Expansion", verseCount: 8, revelationPlace: "Makkah"),
-    TVQuranSurah(id: 112, number: 112, arabicName: "الإخلاص", transliteratedName: "Al-Ikhlas", englishName: "Sincerity", verseCount: 4, revelationPlace: "Makkah"),
-    TVQuranSurah(id: 113, number: 113, arabicName: "الفلق", transliteratedName: "Al-Falaq", englishName: "Daybreak", verseCount: 5, revelationPlace: "Makkah"),
-    TVQuranSurah(id: 114, number: 114, arabicName: "الناس", transliteratedName: "An-Nas", englishName: "Mankind", verseCount: 6, revelationPlace: "Makkah"),
-  ]
+  static func surahName(_ number: Int) -> String {
+    quranSurahs.first { $0.number == number }?.transliteratedName ?? ""
+  }
 
-  private static let ayahMap: [Int: [TVQuranAyah]] = [
-    1: [
-      TVQuranAyah(id: "1:1", surahNumber: 1, ayahNumber: 1, arabic: "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ", transliteration: "Bismillahi ar-Rahmani ar-Rahim", translation: "In the name of Allah, the Entirely Merciful, the Especially Merciful."),
-      TVQuranAyah(id: "1:2", surahNumber: 1, ayahNumber: 2, arabic: "الْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِينَ", transliteration: "Alhamdu lillahi rabbil alamin", translation: "All praise is due to Allah, Lord of all worlds."),
-      TVQuranAyah(id: "1:5", surahNumber: 1, ayahNumber: 5, arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", transliteration: "Iyyaka naabudu wa iyyaka nastaeen", translation: "You alone we worship, and You alone we ask for help."),
-    ],
-    94: [
-      TVQuranAyah(id: "94:5", surahNumber: 94, ayahNumber: 5, arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", transliteration: "Fa inna ma al-usri yusra", translation: "Indeed, with hardship comes ease."),
-      TVQuranAyah(id: "94:6", surahNumber: 94, ayahNumber: 6, arabic: "إِنَّ مَعَ الْعُسْرِ يُسْرًا", transliteration: "Inna ma al-usri yusra", translation: "Surely, with hardship comes ease."),
-    ],
-    112: [
-      TVQuranAyah(id: "112:1", surahNumber: 112, ayahNumber: 1, arabic: "قُلْ هُوَ اللّٰهُ أَحَدٌ", transliteration: "Qul huwa Allahu ahad", translation: "Say, He is Allah, the One."),
-      TVQuranAyah(id: "112:2", surahNumber: 112, ayahNumber: 2, arabic: "اللّٰهُ الصَّمَدُ", transliteration: "Allahu as-samad", translation: "Allah, the Eternal Refuge."),
-    ],
-    113: [
-      TVQuranAyah(id: "113:1", surahNumber: 113, ayahNumber: 1, arabic: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ", transliteration: "Qul aoodhu birabbil falaq", translation: "Say: I seek refuge in the Lord of daybreak."),
-    ],
-    114: [
-      TVQuranAyah(id: "114:1", surahNumber: 114, ayahNumber: 1, arabic: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ", transliteration: "Qul aoodhu birabbin nas", translation: "Say: I seek refuge in the Lord of mankind."),
-    ],
-  ]
+  static func ayah(surah: Int, number: Int) -> TVQuranAyah? {
+    ayahs(for: surah).first { $0.ayahNumber == number }
+  }
+
+  /// The translation in the viewer's language where the phone's sources
+  /// carry one, and in English where they do not. An Arabic reader is shown
+  /// the Arabic alone.
+  static func ayahs(for surahNumber: Int) -> [TVQuranAyah] {
+    let language = Locale.current.languageCode ?? "en"
+    return (TVQuranData.verses[surahNumber] ?? []).map { verse in
+      TVQuranAyah(
+        id: "\(surahNumber):\(verse.ayahNumber)",
+        surahNumber: surahNumber,
+        ayahNumber: verse.ayahNumber,
+        arabic: verse.arabic,
+        transliteration: language == "ar" ? "" : verse.transliteration,
+        translation: language == "ar"
+          ? ""
+          : verse.translations[language] ?? verse.translations["en"] ?? ""
+      )
+    }
+  }
 
   static func homeHero(today: String) -> TVHeroContent {
     TVHeroContent(
@@ -251,11 +256,12 @@ enum TVSeedRepository {
   }
 
   static func homeVerse() -> TVHomeVerse {
-    TVHomeVerse(
-      arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
-      transliteration: "Iyyaka na'budu wa iyyaka nasta'in",
-      translation: "You alone we worship, and You alone we ask for help.",
-      locationLabel: "Al-Fatihah 1:5"
+    let verse = ayah(surah: 1, number: 5)
+    return TVHomeVerse(
+      arabic: verse?.arabic ?? "",
+      transliteration: verse?.transliteration ?? "",
+      translation: verse?.translation ?? "",
+      locationLabel: "\(surahName(1)) 1:5"
     )
   }
 
@@ -536,8 +542,9 @@ enum TVSeedRepository {
     ]
   }
 
-  static func ayahs(for surahNumber: Int) -> [TVQuranAyah] {
-    ayahMap[surahNumber] ?? []
+  /// "Al Ikhlas, Al Falaq and An Nas", joined the way the language joins.
+  static func surahNames(_ numbers: [Int]) -> String {
+    ListFormatter.localizedString(byJoining: numbers.map(surahName))
   }
 
   static func surahs(for numbers: [Int]) -> [TVQuranSurah] {
@@ -564,7 +571,7 @@ enum TVSeedRepository {
         id: "short_surahs",
         eyebrow: "",
         title: tvLocalized("Short surahs"),
-        subtitle: tvLocalized("Al-Ikhlas, Al-Falaq and An-Nas"),
+        subtitle: surahNames([112, 113, 114]),
         supportingLine: "",
         systemImage: "sparkles",
         surahNumbers: [112, 113, 114]
@@ -573,7 +580,7 @@ enum TVSeedRepository {
         id: "opening_and_relief",
         eyebrow: "",
         title: tvLocalized("Opening and relief"),
-        subtitle: tvLocalized("Al-Fatihah and Ash-Sharh"),
+        subtitle: surahNames([1, 94]),
         supportingLine: "",
         systemImage: "sun.max.fill",
         surahNumbers: [1, 94]

@@ -15,12 +15,32 @@ What is real today:
   city, under the five authorities and two Asr rules the phone offers
 - Dhikr routines, generated from the phone's catalog and guarded by
   `test/features/tvos/tvos_dhikr_routines_parity_test.dart`
-- Qur’an recitation, streamed ayah by ayah
+- five surahs of the Qur’an, whole, with recitation streamed ayah by ayah
 - appearance, startup, listening and prayer preferences, kept on the device
 
 What is not yet:
 
-- the Qur’an holds five surahs, not all of their ayahs
+- the other 109 surahs. The text is one line away
+  (`tvQuranSurahNumbers` in `lib/features/tvos/application/tvos_quran_export.dart`),
+  but the reader is not: the surah list and the ayahs share one scrolling
+  page, which holds for a short list beside a short surah and not for 114
+  beside Al-Baqarah. It wants two panes that scroll apart, built with a
+  remote in hand.
+
+## Qur’an text
+
+`Data/TVQuranData.swift` is generated. The Arabic and the translations come
+from `package:quran`, the transliteration from the phone's bundled table, the
+same sources the phone reads. Nothing of the Qur’an is typed into the Swift by
+hand: `TVSeedRepository` looks a verse up and never writes one out.
+
+```
+REGENERATE_TV_QURAN=1 flutter test test/features/tvos/tvos_quran_parity_test.dart
+```
+
+The translation follows the Apple TV's language where the sources carry one
+(English, French, Urdu) and is English otherwise. In Arabic the ayah stands
+alone.
 
 ## Prayer times
 

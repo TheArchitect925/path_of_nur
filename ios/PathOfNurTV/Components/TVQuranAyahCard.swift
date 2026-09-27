@@ -27,20 +27,23 @@ struct TVQuranAyahCard: View {
       Text(ayah.arabic)
         .font(TVTypography.arabicAyah)
         .foregroundColor(TVTheme.textPrimary)
-        .multilineTextAlignment(.trailing)
-        .frame(maxWidth: .infinity, alignment: .trailing)
+        .tvArabicLine()
         .tvReadableArabic()
 
-      Text(ayah.transliteration)
-        .font(TVTypography.bodySecondary.italic())
-        .italic()
-        .foregroundColor(TVTheme.textMuted)
-        .tvReadableBody()
+      if !ayah.transliteration.isEmpty {
+        Text(ayah.transliteration)
+          .font(TVTypography.bodySecondary.italic())
+          .italic()
+          .foregroundColor(TVTheme.textMuted)
+          .tvReadableBody()
+      }
 
-      Text(ayah.translation)
-        .font(TVTypography.body)
-        .foregroundColor(TVTheme.textSecondary)
-        .tvReadableBody()
+      if !ayah.translation.isEmpty {
+        Text(ayah.translation)
+          .font(TVTypography.body)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(24)
