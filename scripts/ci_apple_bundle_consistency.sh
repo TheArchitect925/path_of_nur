@@ -108,4 +108,82 @@ if [[ -n "$missing_sources" ]]; then
   exit 1
 fi
 
+# App Store validation rejects any shipping bundle whose Info.plist has no
+# CFBundleDisplayName. Build 51 was refused at upload with a 409 for exactly
+# this on the complications widget, so catch it here rather than at Apple.
+missing_display_names=""
+while IFS= read -r plist; do
+  [[ -f "$plist" ]] || continue
+  if ! /usr/bin/plutil -extract CFBundleDisplayName raw "$plist" >/dev/null 2>&1; then
+    missing_display_names+="  $plist"$'\n'
+  fi
+done <<'PLISTS'
+ios/Runner/Info.plist
+ios/PathOfNurWatch Watch App/Info.plist
+ios/PathOfNurWatchComplications/Info.plist
+ios/PathOfNurHomeWidgets/Info.plist
+ios/PrayerLiveActivityExtension/Info.plist
+ios/PathOfNurTV/Info.plist
+PLISTS
+
+if [[ -n "$missing_display_names" ]]; then
+  echo "Bundles missing CFBundleDisplayName (App Store upload will fail):" >&2
+  printf '%s' "$missing_display_names" >&2
+  exit 1
+fi
+
+# Font resources must resolve to a file that is actually there. The Apple TV
+# target once pointed its Fonts group at ios/PathOfNurTV/Fonts, a directory
+# that never existed, and failed on seven missing .ttf files. A basename check
+# would not have caught it — the files existed, just not where the group said —
+# so resolve each reference through its parent groups to a real path.
+missing_resources="$(python3 - "$PBXPROJ" <<'PYEOF'
+import json, os, subprocess, sys
+
+pbxproj = sys.argv[1]
+project_dir = os.path.dirname(os.path.dirname(pbxproj))  # ios/
+raw = subprocess.run(["plutil", "-convert", "json", "-o", "-", pbxproj],
+                     capture_output=True, check=True).stdout
+objs = json.loads(raw)["objects"]
+
+parent = {}
+for key, obj in objs.items():
+    if obj.get("isa") in ("PBXGroup", "PBXVariantGroup"):
+        for child in obj.get("children", []):
+            parent[child] = key
+
+def resolve(key):
+    """Directory path for a node, honouring sourceTree at each hop."""
+    obj = objs[key]
+    tree = obj.get("sourceTree")
+    path = obj.get("path", "")
+    if tree == "SOURCE_ROOT":
+        base = project_dir
+    elif tree == "<absolute>":
+        return path
+    elif key in parent:
+        base = resolve(parent[key])
+    else:
+        base = project_dir
+    return os.path.normpath(os.path.join(base, path)) if path else base
+
+for key, obj in objs.items():
+    if obj.get("isa") != "PBXFileReference":
+        continue
+    path = obj.get("path", "")
+    if not path.endswith(".ttf"):
+        continue
+    base = resolve(parent[key]) if key in parent else project_dir
+    resolved = os.path.normpath(os.path.join(base, path))
+    if not os.path.isfile(resolved):
+        print(f"{path} -> {resolved}")
+PYEOF
+)"
+
+if [[ -n "$missing_resources" ]]; then
+  echo "Project file references fonts that do not resolve to a file on disk:" >&2
+  echo "$missing_resources" | sed 's/^/  /' >&2
+  exit 1
+fi
+
 echo "Apple bundle/signing consistency check passed"
