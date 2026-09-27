@@ -195,6 +195,17 @@ class TVFocusTestCase: XCTestCase {
     XCTAssertTrue(fits, step)
   }
 
+  /// What is in focus lies wholly on the screen, inside the margin a
+  /// television may not show.
+  func expectFocusOnScreen(_ step: String) {
+    let frame: CGRect = focusedElement.frame
+    let screen = CGRect(x: 0, y: 0, width: 1920, height: 1080).insetBy(dx: 60, dy: 60)
+    let fits = Self.holds(screen, frame)
+        && frame.minX >= screen.minX - 0.5 && frame.maxX <= screen.maxX + 0.5
+    log("\(fits ? "PASS" : "FAIL")  \(step): \(Int(frame.minX))…\(Int(frame.maxX)) across, \(Int(frame.minY))…\(Int(frame.maxY)) down")
+    XCTAssertTrue(fits, step)
+  }
+
   // MARK: - The record
 
   /// Logs the step and holds it to what is expected.

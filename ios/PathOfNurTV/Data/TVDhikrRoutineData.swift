@@ -1,5 +1,6 @@
 // GENERATED FILE — do not edit by hand.
 // Source: lib/features/worship/application/dhikr_routine_catalog.dart
+//         lib/features/worship/domain/dhikr_preset.dart
 // Regenerate: REGENERATE_TV_DHIKR_ROUTINES=1 flutter test test/features/tvos/tvos_dhikr_routines_parity_test.dart
 
 import Foundation
@@ -210,6 +211,171 @@ enum TVDhikrRoutineData {
           translation: "O Allah, I submit myself to You, entrust my affair to You, turn my face to You, and rely on You in hope and fear of You. There is no refuge and no escape from You except to You. I believe in Your Book which You sent down and in Your Prophet whom You sent.",
           count: 1,
           sourceRef: "Sahih al-Bukhari 6313; Sahih Muslim 2710"
+        ),
+      ]
+    ),
+  ]
+
+  static let phrases: [TVDhikrRoutine] = [
+    TVDhikrRoutine(
+      id: "phrase.subhanallah",
+      kind: "phrase",
+      title: "SubhanAllah",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "subhanallah",
+          title: "SubhanAllah",
+          arabic: "سُبْحَانَ ٱللَّهِ",
+          transliteration: "SubhanAllah",
+          translation: tvLocalized("Glory be to Allah"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.alhamdulillah",
+      kind: "phrase",
+      title: "Alhamdulillah",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "alhamdulillah",
+          title: "Alhamdulillah",
+          arabic: "ٱلْحَمْدُ لِلَّهِ",
+          transliteration: "Alhamdulillah",
+          translation: tvLocalized("All praise is for Allah"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.allahukbar",
+      kind: "phrase",
+      title: "Allahu Akbar",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "allahukbar",
+          title: "Allahu Akbar",
+          arabic: "ٱللَّهُ أَكْبَرُ",
+          transliteration: "Allahu Akbar",
+          translation: tvLocalized("Allah is Most Great"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.astaghfirullah",
+      kind: "phrase",
+      title: "Astaghfirullah",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "astaghfirullah",
+          title: "Astaghfirullah",
+          arabic: "أَسْتَغْفِرُ ٱللَّهَ",
+          transliteration: "Astaghfirullah",
+          translation: tvLocalized("I seek forgiveness from Allah"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.laIlaha",
+      kind: "phrase",
+      title: "La ilaha illAllah",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "laIlaha",
+          title: "La ilaha illAllah",
+          arabic: "لَا إِلَهَ إِلَّا ٱللَّهُ",
+          transliteration: "La ilaha illAllah",
+          translation: tvLocalized("There is no god except Allah"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.salawat",
+      kind: "phrase",
+      title: "Salawat",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "salawat",
+          title: "Salawat",
+          arabic: "ٱللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ",
+          transliteration: "Allahumma salli ala Muhammad ﷺ",
+          translation: tvLocalized("O Allah, send blessings upon Muhammad ﷺ"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.subhanallahiWaBihamdihi",
+      kind: "phrase",
+      title: "SubhanAllahi wa bihamdihi",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "subhanallahiWaBihamdihi",
+          title: "SubhanAllahi wa bihamdihi",
+          arabic: "سُبْحَانَ ٱللَّهِ وَبِحَمْدِهِ",
+          transliteration: "SubhanAllahi wa bihamdihi",
+          translation: tvLocalized("Glory be to Allah and praise Him"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.laHawla",
+      kind: "phrase",
+      title: "La hawla wa la quwwata illa billah",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "laHawla",
+          title: "La hawla wa la quwwata illa billah",
+          arabic: "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِٱللَّهِ",
+          transliteration: "La hawla wa la quwwata illa billah",
+          translation: tvLocalized("There is no power nor strength except through Allah"),
+          count: 33,
+          sourceRef: ""
+        ),
+      ]
+    ),
+    TVDhikrRoutine(
+      id: "phrase.hasbunallah",
+      kind: "phrase",
+      title: "Hasbunallahu wa ni’mal wakil",
+      subtitle: "",
+      sourceRef: "",
+      steps: [
+        TVDhikrRoutineStep(
+          id: "hasbunallah",
+          title: "Hasbunallahu wa ni’mal wakil",
+          arabic: "حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
+          transliteration: "Hasbunallahu wa ni’mal wakil",
+          translation: tvLocalized("Allah is sufficient for us, and He is the best disposer of affairs"),
+          count: 33,
+          sourceRef: ""
         ),
       ]
     ),

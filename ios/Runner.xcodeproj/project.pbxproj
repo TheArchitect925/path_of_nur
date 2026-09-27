@@ -104,7 +104,7 @@
 		A30000000000000000000024 /* TVLearnVisualEntryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000024 /* TVLearnVisualEntryCard.swift */; };
 		A30000000000000000000025 /* TVPrayerFocusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000025 /* TVPrayerFocusCard.swift */; };
 		A30000000000000000000026 /* TVPrayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000026 /* TVPrayerScreen.swift */; };
-		A30000000000000000000027 /* TVDhikrModeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000027 /* TVDhikrModeCard.swift */; };
+		A30000000000000000000027 /* TVDhikrPhraseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000027 /* TVDhikrPhraseCard.swift */; };
 		A30000000000000000000028 /* TVDhikrSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000028 /* TVDhikrSupportCard.swift */; };
 		A30000000000000000000029 /* TVDhikrScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000029 /* TVDhikrScreen.swift */; };
 		A30000000000000000000D01 /* TVDhikrRoutineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D01 /* TVDhikrRoutineData.swift */; };
@@ -362,7 +362,7 @@
 		A20000000000000000000024 /* TVLearnVisualEntryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLearnVisualEntryCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000025 /* TVPrayerFocusCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerFocusCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000026 /* TVPrayerScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerScreen.swift; sourceTree = "<group>"; };
-		A20000000000000000000027 /* TVDhikrModeCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrModeCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000027 /* TVDhikrPhraseCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrPhraseCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000028 /* TVDhikrSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrSupportCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000029 /* TVDhikrScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrScreen.swift; sourceTree = "<group>"; };
 		A20000000000000000000D01 /* TVDhikrRoutineData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrRoutineData.swift; sourceTree = "<group>"; };
@@ -716,7 +716,7 @@
 				A2000000000000000000002C /* TVArabicLetterGroupCard.swift */,
 				A2000000000000000000002D /* TVArabicSupportCard.swift */,
 				A20000000000000000000017 /* TVContinueJourneyCard.swift */,
-				A20000000000000000000027 /* TVDhikrModeCard.swift */,
+				A20000000000000000000027 /* TVDhikrPhraseCard.swift */,
 				A20000000000000000000028 /* TVDhikrSupportCard.swift */,
 				A20000000000000000000033 /* TVFavoritesSupportCard.swift */,
 				A2000000000000000000002F /* TVGamesChallengeCard.swift */,
@@ -1382,7 +1382,7 @@
 				A30000000000000000000024 /* TVLearnVisualEntryCard.swift in Sources */,
 				A30000000000000000000025 /* TVPrayerFocusCard.swift in Sources */,
 				A30000000000000000000026 /* TVPrayerScreen.swift in Sources */,
-				A30000000000000000000027 /* TVDhikrModeCard.swift in Sources */,
+				A30000000000000000000027 /* TVDhikrPhraseCard.swift in Sources */,
 				A30000000000000000000028 /* TVDhikrSupportCard.swift in Sources */,
 				A30000000000000000000029 /* TVDhikrScreen.swift in Sources */,
 				A30000000000000000000D01 /* TVDhikrRoutineData.swift in Sources */,

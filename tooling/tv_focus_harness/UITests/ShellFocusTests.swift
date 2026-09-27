@@ -80,7 +80,7 @@ final class ShellFocusTests: TVFocusTestCase {
     expect(press(.right), "dhikr.routines", "right from the rail returns to the section")
     let phrases = press(.down)
     note("down from the routines", phrases)
-    XCTAssertTrue(phrases.hasPrefix("dhikr.modes"), "down reaches the phrases")
+    XCTAssertTrue(phrases.hasPrefix("dhikr.phrase"), "down reaches the phrases")
     expect(press(.up), "dhikr.routines", "up returns to the routines")
     press(.select)
     sleep(2)
@@ -330,6 +330,60 @@ final class ShellFocusTests: TVFocusTestCase {
     let cleared = !nextDay.contains("Done today")
     log("\(cleared ? "PASS" : "FAIL")  on another day it is not done")
     XCTAssertTrue(cleared, "Done today is of the day")
+  }
+
+  func test87_aPhraseIsCounted() {
+    launch(["TV_SAMPLE_ROUTE": "dhikr"])
+    log("== Dhikr, a phrase")
+    expect(press(.down), "dhikr.phrases", "down from the routines is the first phrase")
+    let first = "\(focusedElement.label) · \(focusedElement.value as? String ?? "")"
+    note("the card", first)
+    expect(first, "SubhanAllah · 33 times", "which is the phone’s first, said 33 times")
+    expect(press(.right), "dhikr.phrase.alhamdulillah", "right to the second")
+    expectFocusOnScreen("the second phrase is wholly on the screen")
+    press(.select)
+    sleep(2)
+    expect(focus, "routine.count", "pressing it opens the counter, on Count")
+    let texts = app.staticTexts.allElementsBoundByIndex.map(\.label)
+    let named = texts.contains("Alhamdulillah")
+    log("\(named ? "PASS" : "FAIL")  the counter is headed by the phrase")
+    XCTAssertTrue(named, "the counter is headed by the phrase")
+    let steps = texts.contains { $0.hasPrefix("Step ") || $0 == "Last step" }
+    log("\(steps ? "FAIL" : "PASS")  and says nothing of steps")
+    XCTAssertFalse(steps, "a phrase has no steps to speak of")
+    press(.select, 3)
+    let counted = app.staticTexts["3"].exists
+    log("\(counted ? "PASS" : "FAIL")  three presses count three")
+    XCTAssertTrue(counted, "three presses count three")
+    shot("87-phrase")
+    expect(press(.right, 2), "routine.undo", "right twice is Undo")
+    expect(press(.right), "routine.undo", "which is the last: there is no step to skip")
+    press(.menu)
+    sleep(2)
+    expect(focus, "dhikr.phrase.alhamdulillah", "Menu leaves the counter, and the focus is on its card")
+    expect(focusedElement.value as? String ?? "", "3 of 33 remembrances", "the card says how far it was taken")
+
+    press(.select)
+    sleep(2)
+    expect(focus, "routine.count", "opened again, it is on Count")
+    var presses = 0
+    while app.buttons["routine.count"].exists && presses < 40 {
+      press(.select)
+      presses += 1
+    }
+    expect("\(presses)", "30", "thirty more complete it")
+    expect(focus, "routine.done", "and the focus is on Done")
+    shot("87-phrase-complete")
+    press(.select)
+    sleep(2)
+    expect(focus, "dhikr.phrase.alhamdulillah", "Done returns to its card")
+    expect(focusedElement.value as? String ?? "", "Done today", "which says Done today")
+    expect(press(.right, 7), "dhikr.phrase.hasbunallah", "right to the last of the nine")
+    expectFocusOnScreen("the last phrase is wholly on the screen")
+    shot("87-last-phrase")
+    let above = press(.up)
+    note("up from it", above)
+    XCTAssertTrue(above.hasPrefix("dhikr.routines"), "up from it is a routine")
   }
 
   // MARK: - Home and the Qur'an

@@ -13,10 +13,13 @@ What is real today:
 
 - prayer times, calculated on the Apple TV for its own location or a chosen
   city, under the five authorities and two Asr rules the phone offers
-- Dhikr routines, generated from the phone's catalog and guarded by
-  `test/features/tvos/tvos_dhikr_routines_parity_test.dart`. A routine left
-  part way is taken up where it was left that day, as on the phone, and
-  "Done today" is of the day
+- Dhikr routines and the nine phrases of the phone's counter, generated
+  from the phone's catalog and guarded by
+  `test/features/tvos/tvos_dhikr_routines_parity_test.dart`. A phrase is a
+  routine of one step, said 33 times, the count the phone's counter begins
+  at, and the one player counts both. A routine or a phrase left part way
+  is taken up where it was left that day, as on the phone, and "Done today"
+  is of the day
 - the Qur’an, all 114 surahs, with recitation streamed ayah by ayah
 - the viewer's place in the Qur’an, kept between launches, and the verse of
   the day, which is the verse the phone shows that day. An app set to open
@@ -25,9 +28,10 @@ What is real today:
 
 What is not yet:
 
-- Dhikr's Phrases. The three groups and their phrases are written in
-  `TVSeedRepository`, not generated from the phone, and their cards do
-  nothing when pressed. They want the phone's own phrases and a counter.
+- a count of one's own for a phrase. The phone's counter can be set to 33,
+  99, 100 or 500; the television says every phrase 33 times.
+- the meaning of a routine's adhkar in any language but English. The
+  phrases' meanings are in the television's string tables, in all five.
 - anything shared with the phone. The Apple TV keeps its own place, its own
   settings and its own record of the day's routines: it reads nothing the
   phone has written. The phone itself shares prayer logs and dhikr between

@@ -967,8 +967,9 @@ final class TVPrayerViewModel: ObservableObject {
 
 final class TVDhikrViewModel: ObservableObject {
   @Published private(set) var hero: TVHeroContent = TVSeedRepository.dhikrHero()
-  @Published private(set) var modes: [TVDhikrModeCard] = TVSeedRepository.dhikrModes()
   @Published private(set) var routines: [TVDhikrRoutine] = TVDhikrRoutineData.routines
+  /// The phrases of the phone's counter, each a routine of one step.
+  @Published private(set) var phrases: [TVDhikrRoutine] = TVDhikrRoutineData.phrases
   @Published var isRoutinePlayerPresented = false
   @Published private(set) var activeRoutine: TVDhikrRoutine?
   @Published private(set) var routineStepIndex = 0
@@ -1214,12 +1215,9 @@ final class TVDhikrViewModel: ObservableObject {
     return formatter.string(from: date)
   }
 
-  @Published private(set) var selectedModeId: String
-
   init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
     today = Self.dayKey(for: TVClock.now())
-    selectedModeId = TVSeedRepository.dhikrModes().first?.id ?? ""
 
     let completed = userDefaults.dictionary(forKey: Self.completedRoutinesKey)
     completedDay = completed?["date"] as? String ?? ""
@@ -1248,21 +1246,12 @@ final class TVDhikrViewModel: ObservableObject {
     routinePaceTimer?.invalidate()
   }
 
-  var modesTitle: String {
+  var phrasesTitle: String {
     tvLocalized("Phrases")
   }
 
-  var selectedMode: TVDhikrModeCard? {
-    modes.first(where: { $0.id == selectedModeId }) ?? modes.first
-  }
-
-  var selectedModeSteps: [TVDhikrGuideStep] {
-    guard let selectedMode else { return [] }
-    return TVSeedRepository.dhikrSteps(for: selectedMode.id)
-  }
-
-  func selectMode(_ mode: TVDhikrModeCard) {
-    selectedModeId = mode.id
+  var phrasesSubtitle: String {
+    tvLocalized("The same phrases as your phone.")
   }
 }
 

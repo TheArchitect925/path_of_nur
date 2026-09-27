@@ -4,6 +4,9 @@ import SwiftUI
 /// large Arabic, a bead-style ring for the step, and a pace the room can
 /// follow without holding the remote. Select counts one; play/pause lets
 /// the TV count on its own.
+///
+/// A phrase of the counter is a routine of one step and is counted here
+/// too, without what speaks of steps.
 struct TVDhikrRoutinePlayerScreen: View {
   @ObservedObject var viewModel: TVDhikrViewModel
   @Environment(\.dismiss) private var dismiss
@@ -56,10 +59,12 @@ struct TVDhikrRoutinePlayerScreen: View {
           .foregroundColor(TVTheme.textPrimary)
           .tvReadableTitle()
 
-        Text(_stepLine)
-          .font(TVTypography.sectionSubtitle)
-          .foregroundColor(TVTheme.textSecondary)
-          .tvReadableBody()
+        if _hasSteps {
+          Text(_stepLine)
+            .font(TVTypography.sectionSubtitle)
+            .foregroundColor(TVTheme.textSecondary)
+            .tvReadableBody()
+        }
 
         Text(viewModel.isRoutinePacing ? tvLocalized("The TV is counting") : tvLocalized("Select counts one. Play/Pause lets the TV count."))
           .font(TVTypography.detail)
@@ -73,7 +78,7 @@ struct TVDhikrRoutinePlayerScreen: View {
         viewModel.closeRoutinePlayer()
         dismiss()
       } label: {
-        Label(tvLocalized("Leave routine"), systemImage: "xmark.circle.fill")
+        Label(_leaveTitle, systemImage: "xmark.circle.fill")
           .font(TVTypography.chip)
           .foregroundColor(TVTheme.textPrimary)
           .padding(.horizontal, 20)
@@ -82,8 +87,17 @@ struct TVDhikrRoutinePlayerScreen: View {
       }
       .buttonStyle(TVCardButtonStyle(shape: .capsule))
       .tvFocusID($focusedControl, "routine.exit")
-      .accessibilityLabel(tvLocalized("Leave routine"))
+      .accessibilityLabel(_leaveTitle)
     }
+  }
+
+  /// A routine has steps to speak of; a phrase is its own one step.
+  private var _hasSteps: Bool {
+    viewModel.activeRoutine?.isPhrase != true
+  }
+
+  private var _leaveTitle: String {
+    _hasSteps ? tvLocalized("Leave routine") : tvLocalized("Leave")
   }
 
   private var _stepLine: String {
@@ -95,10 +109,13 @@ struct TVDhikrRoutinePlayerScreen: View {
     HStack(alignment: .center, spacing: 40) {
       VStack(spacing: 22) {
         if let step = viewModel.routineStep {
-          Text(step.title)
-            .font(TVTypography.featureSubtitle)
-            .foregroundColor(TVTheme.accentStrong)
-            .tvReadableBody()
+          // A phrase's name is already the heading of the screen.
+          if _hasSteps {
+            Text(step.title)
+              .font(TVTypography.featureSubtitle)
+              .foregroundColor(TVTheme.accentStrong)
+              .tvReadableBody()
+          }
 
           ScrollView(.vertical, showsIndicators: false) {
             Text(step.arabic)
@@ -182,7 +199,7 @@ struct TVDhikrRoutinePlayerScreen: View {
           .lineLimit(2)
           .multilineTextAlignment(.center)
           .frame(maxWidth: 340)
-      } else {
+      } else if _hasSteps {
         Text(tvLocalized("Last step"))
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.textMuted)
@@ -215,12 +232,14 @@ struct TVDhikrRoutinePlayerScreen: View {
       ) {
         viewModel.undoRoutine()
       }
-      _controlButton(
-        title: tvLocalized("Skip step"),
-        systemImage: "forward.end.circle.fill",
-        focusID: "routine.skip"
-      ) {
-        viewModel.skipRoutineStep()
+      if _hasSteps {
+        _controlButton(
+          title: tvLocalized("Skip step"),
+          systemImage: "forward.end.circle.fill",
+          focusID: "routine.skip"
+        ) {
+          viewModel.skipRoutineStep()
+        }
       }
     }
     .padding(.horizontal, 28)
@@ -243,11 +262,13 @@ struct TVDhikrRoutinePlayerScreen: View {
       Text(tvLocalized("%d remembrances · %@", viewModel.activeRoutine?.totalCount ?? 0, viewModel.routineElapsedLabel))
         .font(TVTypography.sectionSubtitle)
         .foregroundColor(TVTheme.textSecondary)
-      Text(tvLocalized("Today’s routines are remembered on this Apple TV."))
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textMuted)
-        .multilineTextAlignment(.center)
-        .frame(maxWidth: 820)
+      if _hasSteps {
+        Text(tvLocalized("Today’s routines are remembered on this Apple TV."))
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.textMuted)
+          .multilineTextAlignment(.center)
+          .frame(maxWidth: 820)
+      }
 
       HStack(spacing: 20) {
         _controlButton(

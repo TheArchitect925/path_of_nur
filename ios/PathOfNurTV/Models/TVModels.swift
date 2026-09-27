@@ -155,24 +155,6 @@ struct TVPrayerFocusCard: Identifiable, Hashable {
   let systemImage: String
 }
 
-struct TVDhikrModeCard: Identifiable, Hashable {
-  let id: String
-  let eyebrow: String
-  let title: String
-  let subtitle: String
-  let supportingLine: String
-  let systemImage: String
-  let focusPhrases: [String]
-}
-
-struct TVDhikrGuideStep: Identifiable, Hashable {
-  let id: String
-  let arabic: String
-  let transliteration: String
-  let translation: String
-  let helperLine: String
-}
-
 struct TVDhikrRoutineStep: Identifiable, Hashable {
   let id: String
   let title: String
@@ -196,6 +178,9 @@ struct TVDhikrRoutine: Identifiable, Hashable {
   let steps: [TVDhikrRoutineStep]
 
   var totalCount: Int { steps.reduce(0) { $0 + $1.count } }
+
+  /// A phrase of the counter, which is a routine of one step.
+  var isPhrase: Bool { kind == "phrase" }
 
   var estimatedMinutes: Int {
     let seconds = steps.reduce(0) { $0 + $1.count * ($1.isLongText ? 20 : 2) }

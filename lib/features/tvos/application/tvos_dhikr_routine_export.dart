@@ -1,15 +1,26 @@
+import '../../worship/domain/dhikr_preset.dart';
 import '../../worship/domain/dhikr_routine.dart';
 
-/// Renders the phone's built-in dhikr routines as the Swift data file the
-/// Apple TV target compiles (`ios/PathOfNurTV/Data/TVDhikrRoutineData.swift`).
+/// Renders the phone's built-in dhikr routines, and the phrases of its
+/// counter, as the Swift data file the Apple TV target compiles
+/// (`ios/PathOfNurTV/Data/TVDhikrRoutineData.swift`).
 /// The TV has no live link to the phone, so it carries a generated copy;
 /// `tvos_dhikr_routines_parity_test.dart` keeps the two in step.
-String renderTvDhikrRoutinesSwift(List<DhikrRoutine> routines) {
+///
+/// A phrase is written as a routine of one step, said to [phraseTarget], the
+/// count the phone's counter begins at, so that the television's one player
+/// counts both.
+String renderTvDhikrRoutinesSwift(
+  List<DhikrRoutine> routines, {
+  List<DhikrPreset> phrases = const <DhikrPreset>[],
+  int phraseTarget = 33,
+}) {
   final buffer = StringBuffer()
     ..writeln('// GENERATED FILE — do not edit by hand.')
     ..writeln(
       '// Source: lib/features/worship/application/dhikr_routine_catalog.dart',
     )
+    ..writeln('//         lib/features/worship/domain/dhikr_preset.dart')
     ..writeln(
       '// Regenerate: REGENERATE_TV_DHIKR_ROUTINES=1 flutter test test/features/tvos/tvos_dhikr_routines_parity_test.dart',
     )
@@ -48,9 +59,45 @@ String renderTvDhikrRoutinesSwift(List<DhikrRoutine> routines) {
   }
   buffer
     ..writeln('  ]')
+    ..writeln()
+    ..writeln('  static let phrases: [TVDhikrRoutine] = [');
+  for (final phrase in phrases) {
+    buffer
+      ..writeln('    TVDhikrRoutine(')
+      ..writeln('      id: ${_swift(tvDhikrPhraseRoutineId(phrase))},')
+      ..writeln('      kind: "phrase",')
+      ..writeln('      title: ${_swift(_voice(phrase.label))},')
+      ..writeln('      subtitle: "",')
+      ..writeln('      sourceRef: "",')
+      ..writeln('      steps: [')
+      ..writeln('        TVDhikrRoutineStep(')
+      ..writeln('          id: ${_swift(phrase.id)},')
+      ..writeln('          title: ${_swift(_voice(phrase.label))},')
+      ..writeln('          arabic: ${_swift(phrase.phrase)},')
+      ..writeln(
+        '          transliteration: ${_swift(_voice(phrase.transliteration))},',
+      )
+      ..writeln(
+        '          translation: tvLocalized(${_swift(tvDhikrPhraseMeaning(phrase))}),',
+      )
+      ..writeln('          count: $phraseTarget,')
+      ..writeln('          sourceRef: ""')
+      ..writeln('        ),')
+      ..writeln('      ]')
+      ..writeln('    ),');
+  }
+  buffer
+    ..writeln('  ]')
     ..writeln('}');
   return buffer.toString();
 }
+
+/// A phrase's id among the routines: no built-in routine begins `phrase.`.
+String tvDhikrPhraseRoutineId(DhikrPreset phrase) => 'phrase.${phrase.id}';
+
+/// What the phrase means, as the television says it: the key of its line in
+/// the television's string tables, which carry it in the other languages.
+String tvDhikrPhraseMeaning(DhikrPreset phrase) => _voice(phrase.translation);
 
 String _title(DhikrRoutineKind kind) {
   switch (kind) {
@@ -87,6 +134,12 @@ String _subtitle(DhikrRoutine routine) {
 /// the system substitutes one and the word arrives as a single small glyph.
 /// The voice guide's English word is Allah, and that is what the TV shows.
 String _english(String value) => value.replaceAll('الله', 'Allah');
+
+/// The phone's words in the television's voice (docs/voice_and_copy_guide.md):
+/// Allah in Latin script, the one apostrophe, and ﷺ after the Prophet's name.
+String _voice(String value) => _english(value)
+    .replaceAll("'", '’')
+    .replaceAllMapped(RegExp(r'Muhammad(?! ﷺ)'), (_) => 'Muhammad ﷺ');
 
 String _swift(String value) {
   final escaped = value

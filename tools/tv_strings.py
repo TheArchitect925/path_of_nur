@@ -44,7 +44,7 @@ FORMAT_SPEC = re.compile(r"%(?:\d+\$)?[@dfs]")
 # also carry the sections still held back.
 RELEASED_FILES = (
     "Components/TVContinueJourneyCard.swift",
-    "Components/TVDhikrModeCard.swift",
+    "Components/TVDhikrPhraseCard.swift",
     "Components/TVEmptyStateCard.swift",
     "Components/TVHeroCard.swift",
     "Components/TVNavigationSidebar.swift",
@@ -80,8 +80,6 @@ RELEASED_PARTS = {
         "static func prayerHero",
         "static func dhikrHero",
         "static func settingsHero",
-        "static func dhikrModes",
-        "static func dhikrSteps",
         "static func homeContinueJourneyItems",
         "static func quranBrowseCollections",
     ),

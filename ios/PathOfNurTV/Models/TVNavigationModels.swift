@@ -221,8 +221,7 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     case .dhikr:
       return [
         TVFocusSectionId.dhikrRoutines,
-        TVFocusSectionId.dhikrModes,
-        TVFocusSectionId.dhikrGuidedFlow,
+        TVFocusSectionId.dhikrPhrases,
       ]
     case .kids:
       return [
@@ -278,9 +277,8 @@ enum TVFocusSectionId {
   static let gamesSupport = "games.support"
   static let prayerCurrentNext = "prayer.currentNext"
   static let prayerSchedule = "prayer.schedule"
-  static let dhikrModes = "dhikr.modes"
   static let dhikrRoutines = "dhikr.routines"
-  static let dhikrGuidedFlow = "dhikr.guidedFlow"
+  static let dhikrPhrases = "dhikr.phrases"
   static let kidsPrimary = "kids.primary"
   static let kidsStory = "kids.story"
   static let kidsSupport = "kids.support"

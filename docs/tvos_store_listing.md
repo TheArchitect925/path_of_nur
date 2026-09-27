@@ -277,8 +277,8 @@ Paste into the review notes for the tvOS version.
 > Qur’an, choose a surah and select an ayah: it is recited from there.
 > Play/Pause pauses it, and Open listening mode shows the ayah full screen.
 >
-> Dhikr: open Dhikr, select a routine. Select counts once; Play/Pause lets
-> the Apple TV count on its own.
+> Dhikr: open Dhikr, select a routine or a phrase. Select counts once;
+> Play/Pause lets the Apple TV count on its own.
 
 ## App privacy answers
 

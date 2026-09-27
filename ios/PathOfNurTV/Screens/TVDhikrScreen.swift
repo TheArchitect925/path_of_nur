@@ -38,52 +38,27 @@ struct TVDhikrScreen: View {
         .tvRail()
 
         TVSectionHeader(
-          title: viewModel.modesTitle,
-          subtitle: ""
+          title: viewModel.phrasesTitle,
+          subtitle: viewModel.phrasesSubtitle
         )
 
+        // A phrase opens in the player the routines open in, and is counted
+        // there.
         ScrollView(.horizontal, showsIndicators: false) {
           HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.modes.enumerated()), id: \.element.id) { index, item in
+            ForEach(Array(viewModel.phrases.enumerated()), id: \.element.id) { index, phrase in
+              let done = viewModel.isRoutineDoneToday(phrase)
               Button {
-                viewModel.selectMode(item)
+                viewModel.openRoutine(phrase)
               } label: {
-                TVDhikrModeCardView(item: item, isSelected: item.id == viewModel.selectedMode?.id)
+                TVDhikrPhraseCard(
+                  phrase: phrase,
+                  line: routineLine(phrase, done: done),
+                  isDone: done
+                )
               }
               .buttonStyle(TVCardButtonStyle())
-              .tvFocusID($focusedSection, index == 0 ? TVFocusSectionId.dhikrModes : "dhikr.modes.\(item.id)")
-            }
-          }
-          .padding(TVTheme.railBleed)
-        }
-        .tvRail()
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.selectedModeSteps.enumerated()), id: \.element.id) { index, step in
-              VStack(alignment: .leading, spacing: 16) {
-                Text(step.arabic)
-                  .font(TVTypography.arabicBody)
-                  .foregroundColor(TVTheme.textPrimary)
-                  .tvArabicLine()
-                  .tvReadableArabic()
-
-                Text(step.transliteration)
-                  .font(TVTypography.featureSubtitle)
-                  .foregroundColor(TVTheme.textSecondary)
-                  .tvReadableBody()
-
-                Text(step.translation)
-                  .font(TVTypography.detail)
-                  .foregroundColor(TVTheme.textPrimary)
-                  .tvReadableBody()
-              }
-              .frame(width: 360, height: 200, alignment: .leading)
-              .padding(TVTheme.cardPadding)
-              .tvSurfaceCard(elevated: true, emphasized: index == 0)
-              .tvFocusableCard()
-              .tvFocusID($focusedSection, index == 0 ? TVFocusSectionId.dhikrGuidedFlow : "dhikr.guidedFlow.\(step.id)")
-              .tvCombinedAccessibility(label: step.transliteration, hint: step.translation)
+              .tvFocusID($focusedSection, index == 0 ? TVFocusSectionId.dhikrPhrases : "dhikr.\(phrase.id)")
             }
           }
           .padding(TVTheme.railBleed)
@@ -154,6 +129,9 @@ struct TVDhikrScreen: View {
     }
     if let said = viewModel.remembrancesSaidToday(of: routine) {
       return tvLocalized("%d of %d remembrances", said, routine.totalCount)
+    }
+    if routine.isPhrase {
+      return tvLocalized("%d times", routine.totalCount)
     }
     return tvLocalized("%d remembrances · about %d min", routine.totalCount, routine.estimatedMinutes)
   }
