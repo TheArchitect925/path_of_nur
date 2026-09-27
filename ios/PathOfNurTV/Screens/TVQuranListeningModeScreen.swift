@@ -89,7 +89,7 @@ struct TVQuranListeningModeScreen: View {
   private var _ayahStage: some View {
     VStack(spacing: 22) {
       Text(viewModel.listeningModeArabicText)
-        .font(.system(size: 52, weight: .semibold, design: .rounded))
+        .font(TVTypography.arabicListening)
         .foregroundColor(TVTheme.textPrimary)
         .multilineTextAlignment(.trailing)
         .frame(maxWidth: 1180, alignment: .trailing)

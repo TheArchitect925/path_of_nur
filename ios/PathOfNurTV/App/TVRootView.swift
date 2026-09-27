@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TVRootView: View {
   @EnvironmentObject private var appViewModel: TVAppViewModel
+  @EnvironmentObject private var themeController: TVThemeController
 
   var body: some View {
     ZStack {
@@ -41,5 +42,9 @@ struct TVRootView: View {
       .padding(28)
     }
     .tint(TVTheme.accentStrong)
+    // Theme turnover (dawn, dusk, Friday, a Settings choice) is rare;
+    // rebuilding the tree by identity is how the static token facade
+    // repaints everywhere at once.
+    .id(themeController.renderToken)
   }
 }

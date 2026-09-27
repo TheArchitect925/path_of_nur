@@ -20,6 +20,16 @@ xcodebuild \
   CODE_SIGNING_ALLOWED=NO \
   build
 
+echo "== tvOS simulator build =="
+xcodebuild \
+  -project ios/Runner.xcodeproj \
+  -scheme PathOfNurTV \
+  -configuration Debug \
+  -sdk appletvsimulator \
+  -destination 'generic/platform=tvOS Simulator' \
+  CODE_SIGNING_ALLOWED=NO \
+  build
+
 echo "== Apple signing doctor =="
 bash scripts/apple_signing_doctor.sh
 

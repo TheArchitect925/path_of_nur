@@ -8,7 +8,7 @@ struct TVSectionHeader: View {
     VStack(alignment: .leading, spacing: 8) {
       Text(title)
         .font(TVTypography.sectionTitle)
-        .foregroundColor(TVTheme.textPrimary)
+        .foregroundColor(TVTheme.headerColor)
         .tvReadableTitle()
 
       Text(subtitle)

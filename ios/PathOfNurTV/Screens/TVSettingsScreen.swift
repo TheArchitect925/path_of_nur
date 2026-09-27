@@ -3,6 +3,7 @@ import SwiftUI
 struct TVSettingsScreen: View {
   @ObservedObject var viewModel: TVSettingsViewModel
   @EnvironmentObject private var appViewModel: TVAppViewModel
+  @EnvironmentObject private var themeController: TVThemeController
   @FocusState private var focusedSection: String?
 
   var body: some View {
@@ -53,6 +54,40 @@ struct TVSettingsScreen: View {
 
           detailRail
             .frame(width: 480, alignment: .top)
+        }
+
+        TVSectionHeader(
+          title: tvLocalized("Appearance"),
+          subtitle: tvLocalized(
+            "Choose how the room dresses — or let the evening and the calendar decide."
+          )
+        )
+
+        ScrollView(.horizontal, showsIndicators: false) {
+          HStack(spacing: TVTheme.railSpacing) {
+            ForEach(Array(TVAppearanceSetting.allCases.enumerated()), id: \.element.id) {
+              index, setting in
+              let focusID = index == 0
+                  ? TVFocusSectionId.settingsAppearance
+                  : "settings.appearance.\(setting.rawValue)"
+
+              Button {
+                themeController.selectAppearance(setting)
+              } label: {
+                optionCard(
+                  eyebrow: tvLocalized("Appearance"),
+                  title: tvLocalized(setting.titleKey),
+                  subtitle: tvLocalized(setting.subtitleKey),
+                  supportingLine: appearanceSupportingLine(for: setting),
+                  systemImage: setting.systemImage,
+                  isSelected: themeController.appearance == setting
+                )
+              }
+              .buttonStyle(.plain)
+              .focused($focusedSection, equals: focusID)
+            }
+          }
+          .padding(.vertical, 8)
         }
 
         TVSectionHeader(
@@ -173,6 +208,11 @@ struct TVSettingsScreen: View {
           TVFocusSectionId.settingsStartup,
           for: .settings
         )
+      } else if section.hasPrefix("settings.appearance") {
+        appViewModel.markContentSectionFocused(
+          TVFocusSectionId.settingsAppearance,
+          for: .settings
+        )
       } else if section.hasPrefix("settings.listening") {
         appViewModel.markContentSectionFocused(
           TVFocusSectionId.settingsListening,
@@ -202,7 +242,15 @@ struct TVSettingsScreen: View {
         .foregroundColor(TVTheme.textSecondary)
 
       VStack(alignment: .leading, spacing: 12) {
-        ForEach(viewModel.detailRailPoints, id: \.self) { point in
+        ForEach(
+          [
+            String(
+              format: tvLocalized("Appearance: %@"),
+              tvLocalized(themeController.appearance.titleKey)
+            )
+          ] + viewModel.detailRailPoints,
+          id: \.self
+        ) { point in
           HStack(alignment: .top, spacing: 10) {
             Circle()
               .fill(TVTheme.focus)
@@ -336,6 +384,23 @@ struct TVSettingsScreen: View {
     )
   }
 
+  private func appearanceSupportingLine(for setting: TVAppearanceSetting) -> String {
+    switch setting {
+    case .auto:
+      return tvLocalized("The Apple TV mirrors the phone's living atmosphere and occasion ladder on its own.")
+    case .noorGlass:
+      return tvLocalized("Keeps the daytime cream; after dark it rests into Midnight like the mobile app.")
+    case .midnight:
+      return tvLocalized("The signature night sanctuary, at any hour.")
+    case .candlelight:
+      return tvLocalized("A gentle evening room for wind-down recitation.")
+    case .jummah:
+      return tvLocalized("The Friday look, whenever the room wants it.")
+    case .ramadan:
+      return tvLocalized("The month's violet night, on demand.")
+    }
+  }
+
   private func startupSupportingLine(for preference: TVStartupPreference) -> String {
     switch preference {
     case .profiles:
@@ -358,6 +423,8 @@ struct TVSettingsScreen: View {
     let preferredSection = appViewModel.preferredContentSection(for: .settings)
     DispatchQueue.main.async {
       switch preferredSection {
+      case TVFocusSectionId.settingsAppearance:
+        focusedSection = TVFocusSectionId.settingsAppearance
       case TVFocusSectionId.settingsListening:
         focusedSection = TVFocusSectionId.settingsListening
       case TVFocusSectionId.settingsSupport:

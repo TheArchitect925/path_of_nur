@@ -3,6 +3,8 @@ import SwiftUI
 @main
 struct PathOfNurTVApp: App {
   @StateObject private var appViewModel = TVAppViewModel()
+  @StateObject private var themeController = TVThemeController()
+  @Environment(\.scenePhase) private var scenePhase
 
   init() {
     TVTelemetry.bootstrap()
@@ -12,7 +14,12 @@ struct PathOfNurTVApp: App {
     WindowGroup {
       TVRootView()
         .environmentObject(appViewModel)
-        .preferredColorScheme(.dark)
+        .environmentObject(themeController)
+        .preferredColorScheme(themeController.palette.isNight ? .dark : .light)
+        .onChange(of: scenePhase) { phase in
+          guard phase == .active else { return }
+          themeController.refresh()
+        }
     }
   }
 }

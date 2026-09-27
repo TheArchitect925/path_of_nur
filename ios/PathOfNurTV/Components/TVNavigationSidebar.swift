@@ -22,19 +22,24 @@ struct TVNavigationSidebar: View {
           .tvReadableBody()
       }
 
-      VStack(alignment: .leading, spacing: 16) {
-        ForEach(appViewModel.navigationItems) { item in
-          Button {
-            appViewModel.navigate(to: item.route, preferredColumn: .content)
-          } label: {
-            _itemLabel(for: item)
+      // The nav list scrolls inside the rail so the shell itself never
+      // exceeds the screen — otherwise tvOS pans the whole root (and the
+      // fixed atmosphere along with it) to chase focus.
+      ScrollView(.vertical, showsIndicators: false) {
+        VStack(alignment: .leading, spacing: 16) {
+          ForEach(appViewModel.navigationItems) { item in
+            Button {
+              appViewModel.navigate(to: item.route, preferredColumn: .content)
+            } label: {
+              _itemLabel(for: item)
+            }
+            .buttonStyle(.plain)
+            .focused($focusedRoute, equals: item.route)
           }
-          .buttonStyle(.plain)
-          .focused($focusedRoute, equals: item.route)
         }
+        .padding(.vertical, 8)
       }
-
-      Spacer()
+      .frame(maxHeight: .infinity)
 
       VStack(alignment: .leading, spacing: 8) {
         Text(tvLocalized("Current route"))
