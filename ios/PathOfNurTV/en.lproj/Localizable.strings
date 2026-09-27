@@ -5,7 +5,6 @@
 "Reader" = "Reader";
 "Current prayer: %@" = "Current prayer: %@";
 "Next prayer: %@" = "Next prayer: %@";
-"Begins at %@" = "Begins at %@";
 "Ends in %@" = "Ends in %@";
 "Ayah %d" = "Ayah %d";
 "No ayah selected" = "No ayah selected";
@@ -906,3 +905,6 @@
 "Ayah %d, part %d of %d" = "Ayah %d, part %d of %d";
 "Start reading" = "Start reading";
 "The rest is in the reader." = "The rest is in the reader.";
+"Jumu’ah" = "Jumu’ah";
+"Starts in %@" = "Starts in %@";
+"Tahajjud" = "Tahajjud";

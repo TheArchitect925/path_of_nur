@@ -137,6 +137,48 @@ final class ShellFocusTests: TVFocusTestCase {
     expect(focus, "settings.startup", "pressing it opens Settings")
   }
 
+  // MARK: - The day's prayers
+
+  func test66_onAFridayDhuhrIsJumuah() {
+    launch(["TV_SAMPLE_ROUTE": "prayer", "TV_SAMPLE_DATE": "2026-10-02T13:15"])
+    log("== Prayer, a Friday before Jumu’ah")
+    expect(focus, "prayer.currentNext", "opens on now and next")
+    expect(focusedElement.label, "Next prayer: Jumu’ah", "which is Jumu’ah")
+    expect(press(.down), "prayer.schedule.dhuhr", "down lands on it")
+    let card: String = focusedElement.label
+    note("the card", card)
+    let shown = card.hasPrefix("Jumu’ah") && card.contains("1:30")
+    log("\(shown ? "PASS" : "FAIL")  the card is Jumu’ah at half past one")
+    XCTAssertTrue(shown, "Jumu’ah at 1:30")
+    let counts = app.staticTexts.allElementsBoundByIndex.map(\.label).contains { $0.hasPrefix("Starts in") }
+    log("\(counts ? "PASS" : "FAIL")  and says how long until it starts")
+    XCTAssertTrue(counts, "a countdown is shown")
+    shot("66-friday")
+  }
+
+  func test67_atNightItIsIshaAndThenTahajjud() {
+    launch(["TV_SAMPLE_ROUTE": "prayer", "TV_SAMPLE_DATE": "2026-09-27T23:30"])
+    log("== Prayer, at night")
+    expect(focusedElement.label, "Current prayer: Isha", "before the last third of the night it is Isha")
+    expect(press(.down), "prayer.schedule.isha", "down lands on it")
+    expect(press(.right), "prayer.schedule.tahajjud", "and the night prayer follows it")
+    let card: String = focusedElement.label
+    note("the card", card)
+    XCTAssertTrue(card.hasPrefix("Tahajjud"), "Tahajjud is the sixth card")
+    expect(press(.right), "prayer.schedule.tahajjud", "it is the last")
+    shot("67-night")
+  }
+
+  func test68_inTheLastThirdOfTheNightItIsTahajjud() {
+    launch(["TV_SAMPLE_ROUTE": "prayer", "TV_SAMPLE_DATE": "2026-09-28T03:30"])
+    log("== Prayer, before dawn")
+    note("now and next", focusedElement.label)
+    // The day's list is the new day's, whose own night prayer is a day
+    // away: as on the phone, before Fajr it is no prayer's time.
+    expect(focusedElement.label, "Next prayer: Fajr", "before Fajr the next prayer is Fajr")
+    expect(press(.down), "prayer.schedule", "down lands on it")
+  }
+
   // MARK: - Home and the Qur'an
 
   func test70_theFirstTimeThereIsNoPlaceToGoOnFrom() {

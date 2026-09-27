@@ -127,6 +127,41 @@ room show the same minute. It is held there two ways:
   and checks it against every one of those days, to the minute. The macOS
   preflight runs it.
 
+The day is laid out as the phone lays it out (`TVPrayerSchedule`, from
+`buildCalculatedPrayerScheduleForDate` and `derivePrayerScheduleContext`):
+five prayers and Tahajjud after them, Isha having the first 66 parts in a
+hundred of the night; on a Friday Jumu’ah in Dhuhr's place, at half past one
+by the clock of the place, which is where the phone shows it until a viewer
+gives it their mosque's own time. The prayer it is time for and the prayer
+that is next are the phone's too: between sunrise and Dhuhr, and between
+midnight and Fajr, it is no prayer's time. The phone's answers for 25 days
+and 650 moments in them are in `tools/tv_prayer_schedule_reference.json`
+(`test/features/tvos/tvos_prayer_schedule_reference_test.dart`), and the same
+script holds the Swift to them.
+
+What the phone has and the television has not: a viewer's own offsets to
+each prayer, times entered by hand, and their mosque's time for Jumu’ah. A
+phone set up with any of these shows other times than the television
+beside it.
+
+### The Hijri date is not shown
+
+The phone reckons the Hijri date by arithmetic (`toHijriDate`), which is
+the civil tabular calendar. `TVHijriCalendar` is a port of it, held to the
+phone day by day from 2020 to 2040
+(`tools/tv_hijri_reference.json`,
+`test/features/tvos/tvos_hijri_reference_test.dart`), and it is what the
+automatic look uses to put on Ramadan on the day the phone does.
+
+It is not used to tell the viewer the date. Against the Umm al-Qura
+calendar, over those 7,671 days, it names the same day on 4,326, is a day
+behind on 2,868 and two behind on 87, and is a day ahead on 390. On 27
+September 2026 it says 14 Rabi’ al-Thani where Umm al-Qura says 16. The
+phone shows its date only when a viewer asks for the Islamic calendar, so
+the television without one is the phone as it comes. If the phone moves to
+Umm al-Qura, the television has it from the system
+(`Calendar(identifier: .islamicUmmAlQura)`) and one function changes.
+
 The Apple TV asks for its location once, on first launch
 (`TVPrayerService.startIfNeeded`). If it is refused or cannot be found, Settings
 offers a list of cities. Until there is a place, the app shows no times at all.
@@ -169,7 +204,7 @@ opened on the state that is wanted:
 | `TV_SAMPLE_LISTENING` | `1` for listening mode |
 | `TV_SAMPLE_FOCUS` | the focus on one control of the Qur’an, by its focus id: `quran.reader.2:282.p3` |
 | `TV_SAMPLE_FRESH` | `1` for the app as it is before anything has been read |
-| `TV_SAMPLE_DATE` | the day the verse of the day is chosen for: `2026-10-16` |
+| `TV_SAMPLE_DATE` | the day, or the day and hour by the Mac's clock: `2026-10-16`, `2026-10-02T13:15` |
 | `TV_SAMPLE_ROUTINE` | a routine in the player: `after-salah`, `morning`, `evening`, `sleep` |
 | `TV_SAMPLE_CITY_PICKER` | `1` for the list of cities |
 | `TV_SAMPLE_THEME`, `TV_SAMPLE_PHASE` | a look, and the hour it is dressed for |

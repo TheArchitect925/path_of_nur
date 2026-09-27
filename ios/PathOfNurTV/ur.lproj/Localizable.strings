@@ -5,7 +5,6 @@
 "Reader" = "ریڈر";
 "Current prayer: %@" = "موجودہ نماز: %@";
 "Next prayer: %@" = "اگلی نماز: %@";
-"Begins at %@" = "%@ پر شروع";
 "Ends in %@" = "%@ میں ختم";
 "Ayah %d" = "آیت %d";
 "No ayah selected" = "کوئی آیت منتخب نہیں";
@@ -472,3 +471,6 @@
 "Ayah %d, part %d of %d" = "آیت %d، حصہ %d از %d";
 "Start reading" = "پڑھنا شروع کریں";
 "The rest is in the reader." = "باقی ریڈر میں ہے۔";
+"Jumu’ah" = "جمعہ";
+"Starts in %@" = "%@ میں شروع";
+"Tahajjud" = "تہجد";

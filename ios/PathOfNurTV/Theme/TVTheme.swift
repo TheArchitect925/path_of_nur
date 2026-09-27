@@ -387,11 +387,13 @@ final class TVThemeController: ObservableObject {
       return phase == .night ? .midnight : .noorGlass
     case .auto:
       // Occasion ladder mirrors `resolveOccasionThemeMode` on the phone,
-      // with the tabular hijri calendar standing in for user Ramadan dates.
-      let hijri = Calendar(identifier: .islamicTabular)
-        .dateComponents([.month, .day], from: now)
+      // with the Hijri year as the phone counts it standing in for the
+      // viewer's own Ramadan dates, so that the two put on Ramadan on one
+      // day. The system's tabular calendar is counted from an epoch a day
+      // from the phone's, and named every day otherwise.
+      let hijri = TVHijriCalendar.date(of: now, in: Calendar.current)
       if hijri.month == 9 {
-        if phase == .night, let day = hijri.day, day >= 21, day % 2 == 1 {
+        if phase == .night, hijri.day >= 21, hijri.day % 2 == 1 {
           return .laylatAlQadr
         }
         return .ramadan

@@ -5,7 +5,6 @@
 "Reader" = "القارئ";
 "Current prayer: %@" = "الصلاة الحالية: %@";
 "Next prayer: %@" = "الصلاة القادمة: %@";
-"Begins at %@" = "تبدأ عند %@";
 "Ends in %@" = "تنتهي بعد %@";
 "Ayah %d" = "الآية %d";
 "No ayah selected" = "لم تُحدَّد آية";
@@ -472,3 +471,6 @@
 "Ayah %d, part %d of %d" = "الآية %d، المقطع %d من %d";
 "Start reading" = "ابدأ القراءة";
 "The rest is in the reader." = "الباقي في القارئ.";
+"Jumu’ah" = "الجمعة";
+"Starts in %@" = "تبدأ بعد %@";
+"Tahajjud" = "التهجد";

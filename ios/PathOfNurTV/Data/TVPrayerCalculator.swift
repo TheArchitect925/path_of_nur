@@ -500,3 +500,147 @@ private extension Double {
     return self - (360 * (self / 360).rounded())
   }
 }
+
+/// A date of the Hijri year.
+struct TVHijriDate: Equatable {
+  let year: Int
+  let month: Int
+  let day: Int
+}
+
+/// The Hijri calendar as the phone reckons it
+/// (`lib/shared/utils/hijri_date_utils.dart`): the arithmetic calendar of
+/// thirty-year cycles, counted from the civil epoch. It is ported, and not
+/// asked of the system, because the system's calendars are counted from
+/// epochs a day apart and the phone and the television must name one day.
+///
+/// It is used to choose the look of the season with the phone, and not to
+/// tell the viewer the date. An arithmetic calendar stands apart from the
+/// calendar people keep: from 2020 to 2040 this one names the day Umm
+/// al-Qura names on 4,326 days of 7,671, is a day behind it on 2,868 and two
+/// on 87, and is a day ahead on 390.
+enum TVHijriCalendar {
+  static func date(year: Int, month: Int, day: Int) -> TVHijriDate {
+    func floored(_ numerator: Int, _ denominator: Int) -> Int {
+      Int((Double(numerator) / Double(denominator)).rounded(.down))
+    }
+
+    let a = floored(14 - month, 12)
+    let y2 = year + 4800 - a
+    let m2 = month + 12 * a - 3
+    let julianDay = day
+      + floored(153 * m2 + 2, 5)
+      + 365 * y2
+      + floored(y2, 4)
+      - floored(y2, 100)
+      + floored(y2, 400)
+      - 32045
+
+    var l = julianDay - 1_948_440 + 10632
+    let n = floored(l - 1, 10631)
+    l = l - 10631 * n + 354
+    let j = floored(10985 - l, 5316) * floored(50 * l, 17719)
+      + floored(l, 5670) * floored(43 * l, 15238)
+    l = l
+      - floored(30 - j, 15) * floored(17719 * j, 50)
+      - floored(j, 16) * floored(15238 * j, 43)
+      + 29
+    let hijriMonth = floored(24 * l, 709)
+    let hijriDay = l - floored(709 * hijriMonth, 24)
+    let hijriYear = 30 * n + j - 30
+    return TVHijriDate(year: hijriYear, month: hijriMonth, day: hijriDay)
+  }
+
+  /// The Hijri date of the day it is at `date` in the calendar given,
+  /// which carries the time zone of the place.
+  static func date(of date: Date, in calendar: Calendar) -> TVHijriDate {
+    let day = calendar.dateComponents([.year, .month, .day], from: date)
+    return self.date(year: day.year ?? 1, month: day.month ?? 1, day: day.day ?? 1)
+  }
+}
+
+/// One prayer of the day and the time it may be offered in.
+struct TVPrayerWindow: Equatable {
+  /// fajr, dhuhr, asr, maghrib, isha or tahajjud.
+  let id: String
+  let start: Date
+  let end: Date
+}
+
+/// The day laid out as the phone lays it out
+/// (`lib/core/prayer/prayer_preferences.dart`), so that the phone and the
+/// television in one room name the same prayer as the one it is time for.
+enum TVPrayerSchedule {
+  /// When the phone shows Jumu'ah, by the clock of the place, until a
+  /// viewer has given it their mosque's own time. 13:30.
+  static let jumuahDisplayMinutes = 13 * 60 + 30
+
+  /// How far into the night Tahajjud begins: Isha has the first 66 parts in
+  /// a hundred of the time from Isha to the Fajr after it.
+  static let tahajjudShareOfNight = 0.66
+
+  /// The day's five prayers and the night prayer after them
+  /// (`buildCalculatedPrayerScheduleForDate`).
+  static func windows(day: TVPrayerDay, following: TVPrayerDay) -> [TVPrayerWindow] {
+    let night = following.fajr.timeIntervalSince(day.isha)
+    let tahajjud = day.isha.addingTimeInterval(
+      (Double(Int(night)) * tahajjudShareOfNight).rounded()
+    )
+    return [
+      TVPrayerWindow(id: "fajr", start: day.fajr, end: day.sunrise),
+      TVPrayerWindow(id: "dhuhr", start: day.dhuhr, end: day.asr),
+      TVPrayerWindow(id: "asr", start: day.asr, end: day.maghrib),
+      TVPrayerWindow(id: "maghrib", start: day.maghrib, end: day.isha),
+      TVPrayerWindow(id: "isha", start: day.isha, end: tahajjud),
+      TVPrayerWindow(id: "tahajjud", start: tahajjud, end: following.fajr),
+    ]
+  }
+
+  /// On a Friday, Dhuhr is shown as Jumu'ah at the hour Jumu'ah is held
+  /// (`_applyFridayJumuahDisplayOverride`). Its end is Dhuhr's.
+  static func showingJumuah(_ windows: [TVPrayerWindow], at jumuah: Date) -> [TVPrayerWindow] {
+    windows.map { window in
+      window.id == "dhuhr"
+        ? TVPrayerWindow(id: window.id, start: jumuah, end: window.end)
+        : window
+    }
+  }
+
+  struct Context: Equatable {
+    /// The prayer it is time for, if it is time for one.
+    let current: String?
+    let next: String
+    let nextStart: Date
+  }
+
+  /// Which prayer it is time for and which is next
+  /// (`derivePrayerScheduleContext`). After the last of the day's windows
+  /// the next is the first again, a day on.
+  static func context(_ windows: [TVPrayerWindow], at now: Date) -> Context? {
+    guard let first = windows.first, let last = windows.last else {
+      return nil
+    }
+    var current: TVPrayerWindow?
+    var next: TVPrayerWindow?
+    for (index, window) in windows.enumerated() {
+      if now >= window.start && now < window.end {
+        current = window
+        next = index + 1 < windows.count ? windows[index + 1] : nil
+        break
+      }
+      if now < window.start {
+        next = window
+        break
+      }
+    }
+    let following = next ?? first
+    if current == nil && now > last.end {
+      current = last
+    }
+    var nextStart = following.start
+    if nextStart <= now {
+      nextStart = nextStart.addingTimeInterval(86_400)
+    }
+    return Context(current: current?.id, next: following.id, nextStart: nextStart)
+  }
+}

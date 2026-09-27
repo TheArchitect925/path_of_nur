@@ -156,56 +156,71 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     formatter.timeZone = place.timeZone
     formatter.setLocalizedDateFormatFromTemplate("jm")
 
-    let prayers: [(id: String, name: String, arabic: String, start: Date, end: Date)] = [
-      ("fajr", tvLocalized("Fajr"), "الفجر", day.fajr, day.sunrise),
-      ("dhuhr", tvLocalized("Dhuhr"), "الظهر", day.dhuhr, day.asr),
-      ("asr", tvLocalized("Asr"), "العصر", day.asr, day.maghrib),
-      ("maghrib", tvLocalized("Maghrib"), "المغرب", day.maghrib, day.isha),
-      ("isha", tvLocalized("Isha"), "العشاء", day.isha, following.fajr),
-    ]
+    // The day is laid out as the phone lays it out: five prayers and the
+    // night prayer after them, and on a Friday Jumu'ah in Dhuhr's place.
+    var windows = TVPrayerSchedule.windows(day: day, following: following)
+    let isFriday = calendar.component(.weekday, from: now) == 6
+    if isFriday, let jumuah = calendar.date(
+      bySettingHour: TVPrayerSchedule.jumuahDisplayMinutes / 60,
+      minute: TVPrayerSchedule.jumuahDisplayMinutes % 60,
+      second: 0,
+      of: now
+    ) {
+      windows = TVPrayerSchedule.showingJumuah(windows, at: jumuah)
+    }
+    let context = TVPrayerSchedule.context(windows, at: now)
 
-    let currentIndex = prayers.lastIndex { $0.start <= now && now < $0.end }
-    let nextIndex = prayers.firstIndex { $0.start > now }
+    func name(_ id: String) -> (title: String, arabic: String) {
+      switch id {
+      case "fajr": return (tvLocalized("Fajr"), "الفجر")
+      case "dhuhr":
+        return isFriday ? (tvLocalized("Jumu’ah"), "الجمعة") : (tvLocalized("Dhuhr"), "الظهر")
+      case "asr": return (tvLocalized("Asr"), "العصر")
+      case "maghrib": return (tvLocalized("Maghrib"), "المغرب")
+      case "isha": return (tvLocalized("Isha"), "العشاء")
+      default: return (tvLocalized("Tahajjud"), "التهجد")
+      }
+    }
 
-    let cards = prayers.enumerated().map { index, prayer in
-      let isCurrent = currentIndex == index
-      let isNext = nextIndex == index
+    let cards = windows.map { window -> TVPrayerTime in
+      let isCurrent = context?.current == window.id
+      // The next prayer is the next on this list. After the last of them
+      // it is tomorrow's first, which is not on it.
+      let isNext = context?.next == window.id && window.start > now
       let statusLine: String
       if isCurrent {
-        statusLine = tvLocalized("Ends in %@", duration(from: now, to: prayer.end))
+        statusLine = tvLocalized("Ends in %@", duration(from: now, to: window.end))
       } else if isNext {
-        statusLine = tvLocalized("Begins at %@", formatter.string(from: prayer.start))
-      } else if prayer.start <= now {
+        statusLine = tvLocalized("Starts in %@", duration(from: now, to: window.start))
+      } else if window.start <= now {
         statusLine = tvLocalized("Earlier today")
       } else {
         statusLine = tvLocalized("Later today")
       }
       return TVPrayerTime(
-        id: prayer.id,
-        title: prayer.name,
-        arabicTitle: prayer.arabic,
-        timeLabel: formatter.string(from: prayer.start),
+        id: window.id,
+        title: name(window.id).title,
+        arabicTitle: name(window.id).arabic,
+        timeLabel: formatter.string(from: window.start),
         statusLine: statusLine,
         isCurrent: isCurrent,
         isNext: isNext
       )
     }
 
-    // After Isha the next prayer is tomorrow's Fajr.
-    let next: (name: String, start: Date) = nextIndex.map {
-      (prayers[$0].name, prayers[$0].start)
-    } ?? (tvLocalized("Fajr"), following.fajr)
+    let nextName = name(context?.next ?? "fajr").title
+    let nextStart = context?.nextStart ?? following.fajr
 
     let summaryLine: String
     let detailLine: String
-    if let currentIndex {
-      summaryLine = tvLocalized("Current prayer: %@", prayers[currentIndex].name)
+    if let current = context?.current {
+      summaryLine = tvLocalized("Current prayer: %@", name(current).title)
       detailLine = tvLocalized(
-        "%@ begins at %@", next.name, formatter.string(from: next.start)
+        "%@ begins at %@", nextName, formatter.string(from: nextStart)
       )
     } else {
-      summaryLine = tvLocalized("Next prayer: %@", next.name)
-      detailLine = tvLocalized("Begins at %@", formatter.string(from: next.start))
+      summaryLine = tvLocalized("Next prayer: %@", nextName)
+      detailLine = tvLocalized("Starts in %@", duration(from: now, to: nextStart))
     }
 
     return TVPrayerSnapshot(
@@ -217,11 +232,21 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     )
   }
 
-  /// The day at the place, as the place's own calendar names it.
+  /// The day at the place, in the calendar the prayer times are reckoned
+  /// by. The calendar is named: left to the language, Arabic as it is
+  /// written in Saudi Arabia would name the day in the Hijri year, under a
+  /// heading that gives the date the times are for.
+  ///
+  /// The Hijri date is not shown. The phone reckons it by arithmetic
+  /// (`TVHijriCalendar`), which stands a day or two from the Umm al-Qura
+  /// calendar on four days in nine: see the README.
   func todayLabel(at now: Date = Date()) -> String {
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = place?.timeZone ?? .current
     let formatter = DateFormatter()
     formatter.locale = .current
-    formatter.timeZone = place?.timeZone ?? .current
+    formatter.calendar = calendar
+    formatter.timeZone = calendar.timeZone
     formatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
     return formatter.string(from: now)
   }

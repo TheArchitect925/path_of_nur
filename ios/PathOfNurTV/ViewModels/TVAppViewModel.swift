@@ -2,6 +2,30 @@ import AVFoundation
 import Combine
 import Foundation
 
+/// The time. In the simulator it can be given, so that a Friday, a night or
+/// a day of the year can be looked at without waiting for it:
+/// TV_SAMPLE_DATE=2026-10-16, or 2026-10-02T13:15 by the machine's clock.
+enum TVClock {
+  static func now() -> Date {
+    sample ?? Date()
+  }
+
+  private static let sample: Date? = {
+    #if targetEnvironment(simulator)
+    guard let given = ProcessInfo.processInfo.environment["TV_SAMPLE_DATE"] else {
+      return nil
+    }
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
+    return formatter.date(from: given.contains("T") ? given : "\(given)T12:00")
+    #else
+    return nil
+    #endif
+  }()
+}
+
 final class TVAppViewModel: ObservableObject {
   @Published var selectedRoute: TVRoute
   @Published private(set) var activeColumn: TVShellColumn
@@ -903,7 +927,7 @@ final class TVPrayerViewModel: ObservableObject {
   init(prayerService: TVPrayerService) {
     self.prayerService = prayerService
     hero = TVSeedRepository.prayerHero(
-      today: prayerService.todayLabel(), place: "", method: ""
+      today: prayerService.todayLabel(at: TVClock.now()), place: "", method: ""
     )
     refresh()
     timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
@@ -920,7 +944,7 @@ final class TVPrayerViewModel: ObservableObject {
   }
 
   func refresh() {
-    let now = Date()
+    let now = TVClock.now()
     let snapshot = prayerService.snapshot(at: now)
     hero = TVSeedRepository.prayerHero(
       today: prayerService.todayLabel(at: now),
@@ -1221,7 +1245,7 @@ final class TVHomeViewModel: ObservableObject {
 
   init(prayerService: TVPrayerService) {
     self.prayerService = prayerService
-    hero = TVSeedRepository.homeHero(today: prayerService.todayLabel())
+    hero = TVSeedRepository.homeHero(today: prayerService.todayLabel(at: TVClock.now()))
     refresh()
     timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
       self?.refresh()
@@ -1236,7 +1260,7 @@ final class TVHomeViewModel: ObservableObject {
   }
 
   func refresh() {
-    let now = Date()
+    let now = TVClock.now()
     let snapshot = prayerService.snapshot(at: now)
     hero = TVSeedRepository.homeHero(today: prayerService.todayLabel(at: now))
     prayerSummaryLine = snapshot.summaryLine
@@ -1413,26 +1437,8 @@ final class TVQuranViewModel: ObservableObject {
   private var failureObserver: NSObjectProtocol?
   private var itemStatusObservation: NSKeyValueObservation?
 
-  /// Simulator-only, like TV_SAMPLE_ROUTE: TV_SAMPLE_DATE=2026-10-16 is the
-  /// day the verse of the day is chosen for.
-  private static let sampleDate: Date? = {
-    #if targetEnvironment(simulator)
-    guard let day = ProcessInfo.processInfo.environment["TV_SAMPLE_DATE"] else {
-      return nil
-    }
-    let formatter = DateFormatter()
-    formatter.calendar = Calendar(identifier: .gregorian)
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    formatter.dateFormat = "yyyy-MM-dd HH:mm"
-    return formatter.date(from: "\(day) 12:00")
-    #else
-    return nil
-    #endif
-  }()
-
-  init(userDefaults: UserDefaults = .standard, now: Date = Date()) {
+  init(userDefaults: UserDefaults = .standard, now: Date = TVClock.now()) {
     self.userDefaults = userDefaults
-    let now = Self.sampleDate ?? now
     // The reader opens where the viewer left it, and at the beginning the
     // first time.
     let kept = TVQuranPlace(key: userDefaults.string(forKey: Self.placeStorageKey))
@@ -1526,8 +1532,7 @@ final class TVQuranViewModel: ObservableObject {
   }
 
   /// The verse of the day turns with the day.
-  func refreshVerseOfTheDay(now: Date = Date()) {
-    let now = Self.sampleDate ?? now
+  func refreshVerseOfTheDay(now: Date = TVClock.now()) {
     let index = TVQuranVerseOfTheDay.dayIndex(for: now)
     guard index != verseOfTheDayIndex else { return }
     verseOfTheDayIndex = index
