@@ -387,8 +387,7 @@ final class TVThemeController: ObservableObject {
       // Occasion ladder mirrors `resolveOccasionThemeMode` on the phone,
       // with the Hijri year as the phone counts it standing in for the
       // viewer's own Ramadan dates, so that the two put on Ramadan on one
-      // day. The system's tabular calendar is counted from an epoch a day
-      // from the phone's, and named every day otherwise.
+      // day: Umm al-Qura, from the table the phone reads.
       let hijri = TVHijriCalendar.date(of: now, in: Calendar.current)
       if hijri.month == 9 {
         if phase == .night, hijri.day >= 21, hijri.day % 2 == 1 {

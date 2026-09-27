@@ -509,32 +509,90 @@ struct TVHijriDate: Equatable {
 }
 
 /// The Hijri calendar as the phone reckons it
-/// (`lib/shared/utils/hijri_date_utils.dart`): the arithmetic calendar of
-/// thirty-year cycles, counted from the civil epoch. It is ported, and not
-/// asked of the system, because the system's calendars are counted from
-/// epochs a day apart and the phone and the television must name one day.
+/// (`lib/shared/utils/hijri_date_utils.dart`): Umm al-Qura, read from the
+/// table the phone reads (`TVUmmAlQuraTable`, written with the phone's by
+/// `scripts/verify_hijri_table.sh`), and outside the table the arithmetic of
+/// the civil calendar. `scripts/verify_tv_prayer_times.sh` holds it to the
+/// phone day by day.
 ///
-/// It is used to choose the look of the season with the phone, and not to
-/// tell the viewer the date. An arithmetic calendar stands apart from the
-/// calendar people keep: from 2020 to 2040 this one names the day Umm
-/// al-Qura names on 4,326 days of 7,671, is a day behind it on 2,868 and two
-/// on 87, and is a day ahead on 390.
+/// The table is carried and the system's own calendar is not asked, so that
+/// the television and the phone name a day alike on whatever system each of
+/// them runs. The day is the day of the Gregorian date, begun at midnight,
+/// as it is on the phone.
 enum TVHijriCalendar {
   static func date(year: Int, month: Int, day: Int) -> TVHijriDate {
-    func floored(_ numerator: Int, _ denominator: Int) -> Int {
-      Int((Double(numerator) / Double(denominator)).rounded(.down))
-    }
+    let epochDay = julianDay(year: year, month: month, day: day) - julianDayOf1970
+    return ummAlQuraDate(onDay: epochDay)
+      ?? civilDate(year: year, month: month, day: day)
+  }
 
+  private static let julianDayOf1970 = 2_440_588
+
+  private static func floored(_ numerator: Int, _ denominator: Int) -> Int {
+    Int((Double(numerator) / Double(denominator)).rounded(.down))
+  }
+
+  private static func julianDay(year: Int, month: Int, day: Int) -> Int {
     let a = floored(14 - month, 12)
     let y2 = year + 4800 - a
     let m2 = month + 12 * a - 3
-    let julianDay = day
+    return day
       + floored(153 * m2 + 2, 5)
       + 365 * y2
       + floored(y2, 4)
       - floored(y2, 100)
       + floored(y2, 400)
       - 32045
+  }
+
+  /// The day each year of the table begins on, counted from 1 January 1970,
+  /// and the day after the last of them ends.
+  private static let yearStarts: [Int] = {
+    var starts = [TVUmmAlQuraTable.firstDay]
+    for months in TVUmmAlQuraTable.months {
+      let length = (0..<12).reduce(0) { $0 + lengthOf(months, month: $1) }
+      starts.append(starts[starts.count - 1] + length)
+    }
+    return starts
+  }()
+
+  private static func lengthOf(_ months: Int, month: Int) -> Int {
+    (months >> month) & 1 == 1 ? 30 : 29
+  }
+
+  /// The date of a day counted from 1 January 1970, or nil if the table
+  /// does not reach it.
+  static func ummAlQuraDate(onDay day: Int) -> TVHijriDate? {
+    guard let first = yearStarts.first, let end = yearStarts.last, day >= first, day < end else {
+      return nil
+    }
+    // The last year that begins on or before the day.
+    var low = 0
+    var high = yearStarts.count - 2
+    while low < high {
+      let middle = (low + high + 1) / 2
+      if yearStarts[middle] <= day {
+        low = middle
+      } else {
+        high = middle - 1
+      }
+    }
+    var left = day - yearStarts[low]
+    let months = TVUmmAlQuraTable.months[low]
+    for month in 0..<12 {
+      let length = lengthOf(months, month: month)
+      if left < length {
+        return TVHijriDate(year: TVUmmAlQuraTable.firstYear + low, month: month + 1, day: left + 1)
+      }
+      left -= length
+    }
+    return nil
+  }
+
+  /// The Hijri date by the arithmetic of the civil calendar: thirty years
+  /// of 354 and 355 days, in a fixed order.
+  static func civilDate(year: Int, month: Int, day: Int) -> TVHijriDate {
+    let julianDay = julianDay(year: year, month: month, day: day)
 
     var l = julianDay - 1_948_440 + 10632
     let n = floored(l - 1, 10631)

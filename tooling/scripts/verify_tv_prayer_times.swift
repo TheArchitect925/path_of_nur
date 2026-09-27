@@ -93,8 +93,11 @@ if
 {
   var gregorian = Calendar(identifier: .gregorian)
   gregorian.timeZone = TimeZone(identifier: "UTC")!
-  var tabular = Calendar(identifier: .islamicTabular)
-  tabular.timeZone = gregorian.timeZone
+  // The system's own Umm al-Qura calendar, which the table was copied
+  // from, on the system this runs on: they differ only if that calendar has
+  // been revised since (scripts/verify_hijri_table.sh).
+  var system = Calendar(identifier: .islamicUmmAlQura)
+  system.timeZone = gregorian.timeZone
   let first = gregorian.date(from: DateComponents(year: 2020, month: 1, day: 1, hour: 12))!
   for (offset, expected) in days.enumerated() {
     let date = gregorian.date(byAdding: .day, value: offset, to: first)!
@@ -106,8 +109,8 @@ if
         "Hijri: \(day.year!)-\(day.month!)-\(day.day!) is \(actual), the phone says \(expected)"
       )
     }
-    let system = tabular.dateComponents([.year, .month, .day], from: date)
-    if "\(system.year!)-\(system.month!)-\(system.day!)" != expected {
+    let bySystem = system.dateComponents([.year, .month, .day], from: date)
+    if "\(bySystem.year!)-\(bySystem.month!)-\(bySystem.day!)" != expected {
       systemDiffers += 1
     }
     named += 1
@@ -279,7 +282,7 @@ if failures.isEmpty {
   print("\(skies) moments of the sky are the phone's")
   print("\(laidOut) days are laid out as the phone lays them out, and \(moments) moments in them fall to the same prayer")
   print("\(named) days are named in the Hijri year as the phone names them")
-  print("  (the system's tabular calendar names \(systemDiffers) of them otherwise)")
+  print("  (this system's Umm al-Qura calendar names \(systemDiffers) of them otherwise)")
   exit(0)
 }
 for failure in failures.prefix(40) {

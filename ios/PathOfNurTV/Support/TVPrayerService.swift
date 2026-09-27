@@ -238,14 +238,13 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     )
   }
 
-  /// The day at the place, in the calendar the prayer times are reckoned
-  /// by. The calendar is named: left to the language, Arabic as it is
-  /// written in Saudi Arabia would name the day in the Hijri year, under a
-  /// heading that gives the date the times are for.
+  /// The day at the place: in the calendar the prayer times are reckoned
+  /// by, and then in the Hijri year.
   ///
-  /// The Hijri date is not shown. The phone reckons it by arithmetic
-  /// (`TVHijriCalendar`), which stands a day or two from the Umm al-Qura
-  /// calendar on four days in nine: see the README.
+  /// The first calendar is named. Left to the language, Arabic as it is
+  /// written in Saudi Arabia would name the day in the Hijri year, and the
+  /// heading would give that date twice and the date the times are for not
+  /// at all.
   func todayLabel(at now: Date = Date()) -> String {
     var calendar = Calendar(identifier: .gregorian)
     calendar.timeZone = place?.timeZone ?? .current
@@ -254,7 +253,40 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     formatter.calendar = calendar
     formatter.timeZone = calendar.timeZone
     formatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
-    return formatter.string(from: now)
+    return "\(formatter.string(from: now)) · \(hijriLabel(at: now))"
+  }
+
+  /// The day at the place in the Hijri year, as the phone names it: by the
+  /// Umm al-Qura calendar (`TVHijriCalendar`), the day begun at midnight.
+  func hijriLabel(at now: Date = Date()) -> String {
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = place?.timeZone ?? .current
+    let hijri = TVHijriCalendar.date(of: now, in: calendar)
+    // A year is not a quantity: 1448, and not 1,448.
+    let numbers = NumberFormatter()
+    numbers.locale = .current
+    numbers.usesGroupingSeparator = false
+    let day = numbers.string(from: NSNumber(value: hijri.day)) ?? "\(hijri.day)"
+    let year = numbers.string(from: NSNumber(value: hijri.year)) ?? "\(hijri.year)"
+    return tvLocalized("%@ %@ %@ AH", day, Self.hijriMonthName(hijri.month), year)
+  }
+
+  /// The months of the Hijri year, as the phone writes them.
+  static func hijriMonthName(_ month: Int) -> String {
+    switch month {
+    case 1: return tvLocalized("Muharram")
+    case 2: return tvLocalized("Safar")
+    case 3: return tvLocalized("Rabi al-Awwal")
+    case 4: return tvLocalized("Rabi al-Thani")
+    case 5: return tvLocalized("Jumada al-Awwal")
+    case 6: return tvLocalized("Jumada al-Thani")
+    case 7: return tvLocalized("Rajab")
+    case 8: return tvLocalized("Sha’ban")
+    case 9: return tvLocalized("Ramadan")
+    case 10: return tvLocalized("Shawwal")
+    case 11: return tvLocalized("Dhu al-Qi’dah")
+    default: return tvLocalized("Dhu al-Hijjah")
+    }
   }
 
   /// The same for the place that is kept, for what is made before the

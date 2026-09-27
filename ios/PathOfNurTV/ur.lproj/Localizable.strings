@@ -470,3 +470,16 @@
 "The same phrases as your phone." = "وہی اذکار جو آپ کے فون پر ہیں۔";
 "There is no god except Allah" = "اللہ کے سوا کوئی معبود نہیں";
 "There is no power nor strength except through Allah" = "اللہ کے سوا نہ کوئی طاقت ہے نہ قوت";
+"%@ %@ %@ AH" = "%@ %@ %@ ہجری";
+"Dhu al-Hijjah" = "ذوالحجہ";
+"Dhu al-Qi’dah" = "ذوالقعدہ";
+"Jumada al-Awwal" = "جمادی الاول";
+"Jumada al-Thani" = "جمادی الثانی";
+"Muharram" = "محرم";
+"Rabi al-Awwal" = "ربیع الاول";
+"Rabi al-Thani" = "ربیع الثانی";
+"Rajab" = "رجب";
+"Ramadan" = "رمضان";
+"Safar" = "صفر";
+"Shawwal" = "شوال";
+"Sha’ban" = "شعبان";

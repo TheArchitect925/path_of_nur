@@ -175,23 +175,38 @@ each prayer, times entered by hand, and their mosque's time for Jumu’ah. A
 phone set up with any of these shows other times than the television
 beside it.
 
-### The Hijri date is not shown
+### The Hijri date
 
-The phone reckons the Hijri date by arithmetic (`toHijriDate`), which is
-the civil tabular calendar. `TVHijriCalendar` is a port of it, held to the
-phone day by day from 2020 to 2040
+The date above the prayer times, and on Home, is given twice: in the
+calendar the times are reckoned by, and in the Hijri year
+(`TVPrayerService.todayLabel`, `hijriLabel`).
+
+The Hijri year is Umm al-Qura's, as it is on the phone (`toHijriDate`).
+Umm al-Qura is a table of months as they were observed and announced, and
+not a rule, so it cannot be worked out: it is copied from the system's own
+calendar by `bash scripts/verify_hijri_table.sh --write`, which writes the
+phone's table (`lib/shared/utils/umm_al_qura_table.dart`) and the
+television's (`Data/TVUmmAlQuraTable.swift`) from one reading. Without
+`--write` the script holds both to the calendar of the Mac it runs on.
+
+The television reads its table and does not ask its own system, so that
+the two name a day alike whatever system each runs on.
+`TVHijriCalendar` is held to the phone day by day from 2020 to 2040
 (`tools/tv_hijri_reference.json`,
-`test/features/tvos/tvos_hijri_reference_test.dart`), and it is what the
-automatic look uses to put on Ramadan on the day the phone does.
+`test/features/tvos/tvos_hijri_reference_test.dart`,
+`scripts/verify_tv_prayer_times.sh`), and the automatic look puts on
+Ramadan by it, on the day the phone does.
 
-It is not used to tell the viewer the date. Against the Umm al-Qura
-calendar, over those 7,671 days, it names the same day on 4,326, is a day
-behind on 2,868 and two behind on 87, and is a day ahead on 390. On 27
-September 2026 it says 14 Rabi’ al-Thani where Umm al-Qura says 16. The
-phone shows its date only when a viewer asks for the Islamic calendar, so
-the television without one is the phone as it comes. If the phone moves to
-Umm al-Qura, the television has it from the system
-(`Calendar(identifier: .islamicUmmAlQura)`) and one function changes.
+The table runs from 1300 AH to 1600. A day outside it is named by the
+arithmetic of the civil calendar, which is what named every day before.
+From 2020 to 2040 the arithmetic names the day Umm al-Qura names on 4,278
+days of 7,671. On the rest it is a day behind (2,864), two behind (87) or
+a day ahead (378), or names a thirtieth in a month that has twenty-nine
+(64). It began Shawwal, and so Eid al-Fitr, on another day in 13 of those
+22 years, and Ramadan in 5.
+
+The day is the day of the Gregorian date and begins at midnight, on the
+phone and here. It does not turn at sunset.
 
 The Apple TV asks for its location once, on first launch
 (`TVPrayerService.startIfNeeded`). If it is refused or cannot be found, Settings

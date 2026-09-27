@@ -46,7 +46,7 @@ DateTime? _parseDay(String? iso) {
 DateTime _dayOf(DateTime now) => DateTime.utc(now.year, now.month, now.day);
 
 /// 1-based day of Ramadan for [now]'s date, from the user's saved start
-/// date when available, otherwise the tabular hijri calendar. Null outside
+/// date when available, otherwise the Umm al-Qura calendar. Null outside
 /// the month.
 int? ramadanDayAt({
   String? ramadanStartIso,
@@ -116,7 +116,7 @@ bool isLaylatAlQadrNightAt({
 }
 
 /// Eid al-Fitr: the three days after the user's saved Ramadan end date, or
-/// 1–3 Shawwal by the tabular hijri calendar when no dates are saved.
+/// 1–3 Shawwal by the Umm al-Qura calendar when no dates are saved.
 bool isEidAlFitrAt({String? ramadanEndIso, required DateTime now}) {
   final end = _parseDay(ramadanEndIso);
   final today = _dayOf(now);
@@ -128,9 +128,9 @@ bool isEidAlFitrAt({String? ramadanEndIso, required DateTime now}) {
   return hijri.month == 10 && hijri.day <= 3;
 }
 
-/// Eid al-Adha: 10–12 Dhul-Hijjah by the tabular hijri calendar. The
-/// tabular date can sit a day off the sighted moon; dress-up is a consent
-/// the user can decline or end early.
+/// Eid al-Adha: 10–12 Dhul-Hijjah by the Umm al-Qura calendar. That can
+/// sit a day off the moon as it is sighted where the user is; dress-up is
+/// a consent the user can decline or end early.
 bool isEidAlAdhaAt(DateTime now) {
   final hijri = toHijriDate(DateTime(now.year, now.month, now.day));
   return hijri.month == 12 && hijri.day >= 10 && hijri.day <= 12;
