@@ -23,7 +23,9 @@ struct TVSettingsScreen: View {
           subtitle: ""
         )
 
-        HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
+        // As far from the summary as the row reaches past its own edge, so
+        // that its cards fade before the summary and not under it.
+        HStack(alignment: .top, spacing: TVTheme.railBleed) {
           VStack(alignment: .leading, spacing: 18) {
             ScrollView(.horizontal, showsIndicators: false) {
               HStack(spacing: TVTheme.railSpacing) {
@@ -44,7 +46,7 @@ struct TVSettingsScreen: View {
                     )
                   }
                   .buttonStyle(TVCardButtonStyle())
-                  .focused($focusedSection, equals: focusID)
+                  .tvFocusID($focusedSection, focusID)
                 }
               }
               .padding(TVTheme.railBleed)
@@ -83,7 +85,7 @@ struct TVSettingsScreen: View {
                 )
               }
               .buttonStyle(TVCardButtonStyle())
-              .focused($focusedSection, equals: focusID)
+              .tvFocusID($focusedSection, focusID)
             }
           }
           .padding(TVTheme.railBleed)
@@ -115,7 +117,7 @@ struct TVSettingsScreen: View {
                   )
                 }
                 .buttonStyle(TVCardButtonStyle())
-                .focused($focusedSection, equals: focusID)
+                .tvFocusID($focusedSection, focusID)
               }
             }
             .padding(TVTheme.railBleed)
@@ -138,7 +140,7 @@ struct TVSettingsScreen: View {
               )
             }
             .buttonStyle(TVCardButtonStyle())
-            .focused($focusedSection, equals: "settings.listening.translation")
+            .tvFocusID($focusedSection, "settings.listening.translation")
 
             Button {
               appViewModel.setShowListeningTransliterationByDefault(
@@ -155,7 +157,7 @@ struct TVSettingsScreen: View {
               )
             }
             .buttonStyle(TVCardButtonStyle())
-            .focused($focusedSection, equals: "settings.listening.transliteration")
+            .tvFocusID($focusedSection, "settings.listening.transliteration")
           }
         }
 
@@ -166,6 +168,7 @@ struct TVSettingsScreen: View {
       }
       .padding(TVTheme.outerPadding)
     }
+    .tvPreferredFocus($focusedSection, appViewModel.preferredContentSection(for: .settings))
     .onAppear {
       restorePreferredFocus()
     }
@@ -196,10 +199,6 @@ struct TVSettingsScreen: View {
         )
       }
     }
-    .onMoveCommand { direction in
-      guard direction == .left else { return }
-      appViewModel.focusNavigation()
-    }
     .fullScreenCover(isPresented: $isCityPickerPresented) {
       TVPrayerCityPickerScreen(
         prayerService: prayerService,
@@ -229,7 +228,7 @@ struct TVSettingsScreen: View {
           )
         }
         .buttonStyle(TVCardButtonStyle())
-        .focused($focusedSection, equals: TVFocusSectionId.settingsPrayer)
+        .tvFocusID($focusedSection, TVFocusSectionId.settingsPrayer)
 
         Button {
           isCityPickerPresented = true
@@ -244,7 +243,7 @@ struct TVSettingsScreen: View {
           )
         }
         .buttonStyle(TVCardButtonStyle())
-        .focused($focusedSection, equals: "settings.prayer.city")
+        .tvFocusID($focusedSection, "settings.prayer.city")
       }
       .padding(TVTheme.railBleed)
     }
@@ -264,7 +263,7 @@ struct TVSettingsScreen: View {
             )
           }
           .buttonStyle(TVCardButtonStyle())
-          .focused($focusedSection, equals: "settings.prayer.method.\(method.rawValue)")
+          .tvFocusID($focusedSection, "settings.prayer.method.\(method.rawValue)")
         }
       }
       .padding(TVTheme.railBleed)
@@ -285,7 +284,7 @@ struct TVSettingsScreen: View {
             )
           }
           .buttonStyle(TVCardButtonStyle())
-          .focused($focusedSection, equals: "settings.prayer.asr.\(rule.rawValue)")
+          .tvFocusID($focusedSection, "settings.prayer.asr.\(rule.rawValue)")
         }
       }
       .padding(TVTheme.railBleed)

@@ -194,6 +194,32 @@ button. A card that is not a button takes `.tvFocusableCard()`. Both draw the
 same ring, and rails leave `TVTheme.railBleed` at their edges so the focused
 card can grow without being cut.
 
+The rail and the section beside it are two focus sections (`TVRootView`,
+`TVNavigationSidebar`). The system moves the focus from the edge of one into
+the other, whichever side the rail is on, and Menu steps back from the
+section to the rail. Four rules keep that working:
+
+- **No screen sends the focus to the rail on a press.** A screen-wide
+  `onMoveCommand` is called for every press, not only the one that has
+  nowhere to go: "left goes to the rail" made every press to the left go
+  there, from the middle of a row too, and in Arabic and Urdu it was the
+  wrong way round. Where a press must do more than the system does, the
+  handler goes on the one control at the edge and asks the layout direction
+  (`MoveCommandDirection.towardRail(in:)`).
+- **A part of a screen says where it is entered**, with
+  `tvPreferredFocus`: the section at the part last used, the rail at the
+  section that is open, the prayer times at the prayer in hand. Without it
+  the focus lands on whatever is nearest.
+- **Nothing lazy stands below the fold with something eager after it.** A
+  lazy row that is wholly off the screen is not there for the focus to move
+  to, so a press down goes past it. Six prayer times are a `VStack`; 114
+  surahs are a `LazyVStack`, and nothing follows them.
+- **A rail and its neighbour stand `TVTheme.railBleed` apart**, since the
+  rail reaches that far past its own edge to fade.
+
+Name a control with `tvFocusID` and not `.focused`: it is the same focus
+id, and a test can then say where the focus is.
+
 ## Folder structure
 
 - `App/`: tvOS app entry and root tab shell

@@ -184,8 +184,11 @@ extension View {
   /// Where the focus lands when the viewer moves into this part of the
   /// screen, in place of whatever is nearest. Before tvOS 17 the system does
   /// not take a preference for a move the viewer makes, and nearest it is.
-  func tvPreferredFocus(_ focus: FocusState<String?>.Binding, _ id: String?) -> some View {
-    modifier(TVPreferredFocus(focus: focus, id: id))
+  func tvPreferredFocus<Value: Hashable>(
+    _ focus: FocusState<Value?>.Binding,
+    _ value: Value?
+  ) -> some View {
+    modifier(TVPreferredFocus(focus: focus, value: value))
   }
 
   /// Gives a control its place in the focus order, and the same name to
@@ -251,13 +254,13 @@ final class TVFocusSeeker {
   }
 }
 
-private struct TVPreferredFocus: ViewModifier {
-  let focus: FocusState<String?>.Binding
-  let id: String?
+private struct TVPreferredFocus<Value: Hashable>: ViewModifier {
+  let focus: FocusState<Value?>.Binding
+  let value: Value?
 
   func body(content: Content) -> some View {
     if #available(tvOS 17.0, *) {
-      content.defaultFocus(focus, id, priority: .userInitiated)
+      content.defaultFocus(focus, value, priority: .userInitiated)
     } else {
       content
     }

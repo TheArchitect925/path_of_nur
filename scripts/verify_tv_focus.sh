@@ -2,13 +2,13 @@
 # How the focus travels in the Apple TV app, checked by pressing the remote's
 # buttons in a simulator and reading back where the focus is.
 #
-#   bash scripts/verify_tv_focus.sh [simulator-udid] [test ...]
+#   bash scripts/verify_tv_focus.sh [simulator-udid] [Class/test ...]
 #
-# With no test named, every test in
-# tooling/tv_focus_harness/UITests/QuranFocusTests.swift is run, which takes
-# about a quarter of an hour. Name one or more to run those alone:
+# With no test named, every test in tooling/tv_focus_harness/UITests is run,
+# which takes about a quarter of an hour. Name one or more to run those
+# alone:
 #
-#   bash scripts/verify_tv_focus.sh "" test10_aLongAyahIsReadPartByPart
+#   bash scripts/verify_tv_focus.sh "" QuranFocusTests/test10_aLongAyahIsReadPartByPart
 #
 # The log and the screenshots are left in build/tvos/focus/. Two tests play
 # the recitation, which is streamed, so they need the network.
@@ -30,7 +30,7 @@ fi
 
 only=()
 for name in "$@"; do
-  only+=("-only-testing:TVFocusTests/QuranFocusTests/$name")
+  only+=("-only-testing:TVFocusTests/$name")
 done
 
 echo "== Build =="

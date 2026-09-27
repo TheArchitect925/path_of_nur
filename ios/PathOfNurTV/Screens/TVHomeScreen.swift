@@ -21,7 +21,10 @@ struct TVHomeScreen: View {
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
-          LazyHStack(spacing: TVTheme.railSpacing) {
+          // Not lazy, here or in the prayer times below. What is lazy and
+          // below the screen's edge is not yet there for the focus to move
+          // to, and a press down goes past it to whatever is.
+          HStack(spacing: TVTheme.railSpacing) {
             ForEach(Array(viewModel.continueJourneyItems.enumerated()), id: \.element.id) { index, item in
               let focusID = index == 0
                   ? TVFocusSectionId.homeContinueJourney
@@ -33,7 +36,7 @@ struct TVHomeScreen: View {
                 TVContinueJourneyCard(item: item)
               }
               .buttonStyle(TVCardButtonStyle())
-              .focused($focusedSection, equals: focusID)
+              .tvFocusID($focusedSection, focusID)
             }
           }
           .padding(TVTheme.railBleed)
@@ -51,15 +54,18 @@ struct TVHomeScreen: View {
             subtitle: viewModel.prayerSummaryDetail
           )
 
-          LazyVGrid(
-            columns: [
-              GridItem(.flexible(), spacing: 18),
-              GridItem(.flexible(), spacing: 18),
-            ],
-            spacing: 18
-          ) {
-            ForEach(viewModel.prayerTimes) { prayer in
-              TVPrayerTimeCard(prayer: prayer)
+          VStack(spacing: 18) {
+            ForEach(_prayerRows, id: \.first?.id) { row in
+              HStack(alignment: .top, spacing: 18) {
+                ForEach(row) { prayer in
+                  TVPrayerTimeCard(prayer: prayer)
+                    .tvFocusID($focusedSection, "home.prayer.\(prayer.id)")
+                }
+                // The last row of an odd number keeps its card to one column.
+                if row.count == 1 {
+                  Color.clear.frame(maxWidth: .infinity, maxHeight: 1)
+                }
+              }
             }
           }
         }
@@ -73,6 +79,7 @@ struct TVHomeScreen: View {
       }
       .padding(TVTheme.outerPadding)
     }
+    .tvPreferredFocus($focusedSection, appViewModel.preferredContentSection(for: .home))
     .onAppear {
       restorePreferredFocus()
     }
@@ -90,9 +97,13 @@ struct TVHomeScreen: View {
         appViewModel.markContentSectionFocused(section, for: .home)
       }
     }
-    .onMoveCommand { direction in
-      guard direction == .left else { return }
-      appViewModel.focusNavigation()
+  }
+
+  /// The prayer times two to a row.
+  private var _prayerRows: [[TVPrayerTime]] {
+    let times = viewModel.prayerTimes
+    return stride(from: 0, to: times.count, by: 2).map { start in
+      Array(times[start..<min(start + 2, times.count)])
     }
   }
 
@@ -152,7 +163,7 @@ struct TVHomeScreen: View {
       .tvSurfaceCard(elevated: true)
     }
     .buttonStyle(TVCardButtonStyle())
-    .focused($focusedSection, equals: TVFocusSectionId.homeVerse)
+    .tvFocusID($focusedSection, TVFocusSectionId.homeVerse)
     .tvFocusableCard()
     .accessibilityLabel(viewModel.verse.locationLabel)
     .accessibilityHint(tvLocalized("Opens the Qur’an."))

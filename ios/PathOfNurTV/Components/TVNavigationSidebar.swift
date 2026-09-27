@@ -34,6 +34,9 @@ struct TVNavigationSidebar: View {
       .tvRail()
       .frame(maxHeight: .infinity)
     }
+    .focusSection()
+    // Entered at the section that is open, wherever the focus came from.
+    .tvPreferredFocus($focusedRoute, appViewModel.selectedRoute)
     .frame(width: 360, alignment: .leading)
     .padding(.horizontal, 24)
     .padding(.vertical, 36)

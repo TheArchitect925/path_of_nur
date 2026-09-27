@@ -41,6 +41,15 @@ struct TVRootView: View {
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        // The rail and the section beside it are two parts of one screen.
+        // The system moves the focus from the edge of one into the other,
+        // whichever side the rail is on, and no screen has to send it.
+        .focusSection()
+        // Menu steps back to the rail. From the rail it leaves the app, as
+        // it does anywhere there is nothing further back.
+        .onExitCommand {
+          appViewModel.focusNavigation()
+        }
       }
       .padding(28)
     }

@@ -30,10 +30,7 @@ struct TVDhikrScreen: View {
                 routineCard(routine)
               }
               .buttonStyle(TVCardButtonStyle())
-              .focused(
-                $focusedSection,
-                equals: index == 0 ? TVFocusSectionId.dhikrRoutines : "dhikr.routines.\(routine.id)"
-              )
+              .tvFocusID($focusedSection, index == 0 ? TVFocusSectionId.dhikrRoutines : "dhikr.routines.\(routine.id)")
             }
           }
           .padding(TVTheme.railBleed)
@@ -54,10 +51,7 @@ struct TVDhikrScreen: View {
                 TVDhikrModeCardView(item: item, isSelected: item.id == viewModel.selectedMode?.id)
               }
               .buttonStyle(TVCardButtonStyle())
-              .focused(
-                $focusedSection,
-                equals: index == 0 ? TVFocusSectionId.dhikrModes : "dhikr.modes.\(item.id)"
-              )
+              .tvFocusID($focusedSection, index == 0 ? TVFocusSectionId.dhikrModes : "dhikr.modes.\(item.id)")
             }
           }
           .padding(TVTheme.railBleed)
@@ -88,10 +82,7 @@ struct TVDhikrScreen: View {
               .padding(TVTheme.cardPadding)
               .tvSurfaceCard(elevated: true, emphasized: index == 0)
               .tvFocusableCard()
-              .focused(
-                $focusedSection,
-                equals: index == 0 ? TVFocusSectionId.dhikrGuidedFlow : "dhikr.guidedFlow.\(step.id)"
-              )
+              .tvFocusID($focusedSection, index == 0 ? TVFocusSectionId.dhikrGuidedFlow : "dhikr.guidedFlow.\(step.id)")
               .tvCombinedAccessibility(label: step.transliteration, hint: step.translation)
             }
           }
@@ -101,6 +92,7 @@ struct TVDhikrScreen: View {
       }
       .padding(TVTheme.outerPadding)
     }
+    .tvPreferredFocus($focusedSection, appViewModel.preferredContentSection(for: .dhikr))
     .onAppear {
       restorePreferredFocus()
     }
@@ -116,10 +108,6 @@ struct TVDhikrScreen: View {
       } else if section.hasPrefix("dhikr.guidedFlow") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrGuidedFlow, for: .dhikr)
       }
-    }
-    .onMoveCommand { direction in
-      guard direction == .left else { return }
-      appViewModel.focusNavigation()
     }
     .fullScreenCover(isPresented: $viewModel.isRoutinePlayerPresented) {
       TVDhikrRoutinePlayerScreen(viewModel: viewModel)

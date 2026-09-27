@@ -7,6 +7,8 @@
 	objects = {
 		B10000000000000000000001 /* TVFocusHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000001 /* TVFocusHost.swift */; };
 		B10000000000000000000002 /* QuranFocusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000002 /* QuranFocusTests.swift */; };
+		B10000000000000000000003 /* ShellFocusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000005 /* ShellFocusTests.swift */; };
+		B10000000000000000000004 /* TVFocusTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000006 /* TVFocusTestCase.swift */; };
 		B30000000000000000000001 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B90000000000000000000001 /* Project object */;
@@ -16,6 +18,8 @@
 		};
 		B20000000000000000000001 /* TVFocusHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFocusHost.swift; sourceTree = "<group>"; };
 		B20000000000000000000002 /* QuranFocusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranFocusTests.swift; sourceTree = "<group>"; };
+		B20000000000000000000005 /* ShellFocusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellFocusTests.swift; sourceTree = "<group>"; };
+		B20000000000000000000006 /* TVFocusTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFocusTestCase.swift; sourceTree = "<group>"; };
 		B20000000000000000000003 /* TVFocusHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVFocusHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20000000000000000000004 /* TVFocusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVFocusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40000000000000000000001 /* Frameworks */ = {
@@ -53,6 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				B20000000000000000000002 /* QuranFocusTests.swift */,
+				B20000000000000000000005 /* ShellFocusTests.swift */,
+				B20000000000000000000006 /* TVFocusTestCase.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -144,6 +150,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B10000000000000000000002 /* QuranFocusTests.swift in Sources */,
+				B10000000000000000000003 /* ShellFocusTests.swift in Sources */,
+				B10000000000000000000004 /* TVFocusTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
