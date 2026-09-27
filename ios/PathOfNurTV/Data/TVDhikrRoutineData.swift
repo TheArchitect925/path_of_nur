@@ -19,7 +19,7 @@ enum TVDhikrRoutineData {
           title: "SubhanAllah",
           arabic: "سُبْحَانَ ٱللَّهِ",
           transliteration: "SubhanAllah",
-          translation: "Glory be to Allah",
+          translation: tvLocalized("Glory be to Allah"),
           count: 33,
           sourceRef: "Sahih Muslim 597"
         ),
@@ -28,7 +28,7 @@ enum TVDhikrRoutineData {
           title: "Alhamdulillah",
           arabic: "ٱلْحَمْدُ لِلَّهِ",
           transliteration: "Alhamdulillah",
-          translation: "All praise is for Allah",
+          translation: tvLocalized("All praise is for Allah"),
           count: 33,
           sourceRef: "Sahih Muslim 597"
         ),
@@ -37,7 +37,7 @@ enum TVDhikrRoutineData {
           title: "Allahu Akbar",
           arabic: "ٱللَّهُ أَكْبَرُ",
           transliteration: "Allahu Akbar",
-          translation: "Allah is Most Great",
+          translation: tvLocalized("Allah is Most Great"),
           count: 33,
           sourceRef: "Sahih Muslim 597"
         ),

@@ -30,8 +30,11 @@ What is not yet:
 
 - a count of one's own for a phrase. The phone's counter can be set to 33,
   99, 100 or 500; the television says every phrase 33 times.
-- the meaning of a routine's adhkar in any language but English. The
-  phrases' meanings are in the television's string tables, in all five.
+- the meaning of most of a routine's adhkar in any language but English.
+  The phrases' meanings are in the television's string tables, in all
+  five, and a step of a routine that is one of the phrases is said as the
+  phrase is. The longer adhkar come from the phone's catalog, which has
+  them in English only.
 - anything shared with the phone. The Apple TV keeps its own place, its own
   settings and its own record of the day's routines: it reads nothing the
   phone has written. The phone itself shares prayer logs and dhikr between
@@ -233,7 +236,8 @@ opened on the state that is wanted:
 | `TV_SAMPLE_FOCUS` | the focus on one control of the Qur’an, by its focus id: `quran.reader.2:282.p3` |
 | `TV_SAMPLE_FRESH` | `1` for the app as it is before anything has been read |
 | `TV_SAMPLE_DATE` | the day, or the day and hour by the Mac's clock: `2026-10-16`, `2026-10-02T13:15` |
-| `TV_SAMPLE_ROUTINE` | a routine in the player: `after-salah`, `morning`, `evening`, `sleep` |
+| `TV_SAMPLE_ROUTINE` | a routine in the player: `after-salah`, `morning`, `evening`, `sleep`, or a phrase: `phrase.subhanallah` |
+| `TV_SAMPLE_COUNT` | how far that routine has been counted: `12` |
 | `TV_SAMPLE_CITY_PICKER` | `1` for the list of cities |
 | `TV_SAMPLE_THEME`, `TV_SAMPLE_PHASE` | a look, and the hour it is dressed for |
 

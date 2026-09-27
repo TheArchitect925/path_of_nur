@@ -124,9 +124,16 @@ final class TVAppViewModel: ObservableObject {
     if let section = ProcessInfo.processInfo.environment["TV_SAMPLE_SECTION"] {
       markContentSectionFocused(section, for: selectedRoute)
     }
+    // TV_SAMPLE_ROUTINE=after-salah opens a routine in the player, or a
+    // phrase (phrase.subhanallah), and TV_SAMPLE_COUNT=12 counts that far.
     if let routineId = ProcessInfo.processInfo.environment["TV_SAMPLE_ROUTINE"],
-       let routine = dhikrViewModel.routines.first(where: { $0.id == routineId }) {
+       let routine = (dhikrViewModel.routines + dhikrViewModel.phrases)
+         .first(where: { $0.id == routineId }) {
       dhikrViewModel.openRoutine(routine)
+      let counted = ProcessInfo.processInfo.environment["TV_SAMPLE_COUNT"].flatMap(Int.init) ?? 0
+      for _ in 0..<max(min(counted, routine.totalCount - 1), 0) {
+        dhikrViewModel.countRoutine()
+      }
     }
     // TV_SAMPLE_SURAH=2 TV_SAMPLE_AYAH=282 opens the reader there, and
     // TV_SAMPLE_LISTENING=1 opens that ayah full screen.

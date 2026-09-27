@@ -69,7 +69,7 @@ SHOTS=(
   "03-quran quran TV_SAMPLE_THEME=midnight TV_SAMPLE_SURAH=1 TV_SAMPLE_SECTION=quran.reader"
   "04-listening quran TV_SAMPLE_THEME=midnight TV_SAMPLE_SURAH=1 TV_SAMPLE_LISTENING=1"
   "05-dhikr dhikr TV_SAMPLE_THEME=midnight"
-  "06-routine dhikr TV_SAMPLE_THEME=midnight TV_SAMPLE_ROUTINE=after-salah"
+  "06-routine dhikr TV_SAMPLE_THEME=midnight TV_SAMPLE_ROUTINE=after-salah TV_SAMPLE_COUNT=12"
   "07-settings settings TV_SAMPLE_THEME=midnight TV_SAMPLE_SECTION=settings.prayer"
   "09-cities settings TV_SAMPLE_THEME=midnight TV_SAMPLE_CITY_PICKER=1"
 )

@@ -47,7 +47,7 @@ String renderTvDhikrRoutinesSwift(
         ..writeln('          arabic: ${_swift(step.arabic)},')
         ..writeln('          transliteration: ${_swift(step.transliteration)},')
         ..writeln(
-          '          translation: ${_swift(_english(step.translation))},',
+          '          translation: ${_meaning(step.translation, phrases)},',
         )
         ..writeln('          count: ${step.count},')
         ..writeln('          sourceRef: ${_swift(step.sourceRef)}')
@@ -90,6 +90,19 @@ String renderTvDhikrRoutinesSwift(
     ..writeln('  ]')
     ..writeln('}');
   return buffer.toString();
+}
+
+/// What a step of a routine means. Where it is one of the counter's phrases
+/// and means the same, it is said as the phrase is, in the language of the
+/// television; the rest of the catalog is in English only.
+String _meaning(String translation, List<DhikrPreset> phrases) {
+  final english = _english(translation);
+  for (final phrase in phrases) {
+    if (tvDhikrPhraseMeaning(phrase) == english) {
+      return 'tvLocalized(${_swift(english)})';
+    }
+  }
+  return _swift(english);
 }
 
 /// A phrase's id among the routines: no built-in routine begins `phrase.`.
