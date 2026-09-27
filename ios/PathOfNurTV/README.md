@@ -11,17 +11,50 @@ content, and each one joins the rail when its content is real.
 
 What is real today:
 
+- prayer times, calculated on the Apple TV for its own location or a chosen
+  city, under the five authorities and two Asr rules the phone offers
 - Dhikr routines, generated from the phone's catalog and guarded by
   `test/features/tvos/tvos_dhikr_routines_parity_test.dart`
 - Qur’an recitation, streamed ayah by ayah
-- appearance, startup and listening preferences, kept on the device
+- appearance, startup, listening and prayer preferences, kept on the device
 
 What is not yet:
 
-- prayer times are fixed sample times in `TVSeedRepository.homePrayerSnapshot`,
-  the same for every place and date. They must be replaced before anyone
-  outside the team sees a build.
 - the Qur’an holds five surahs, not all of their ayahs
+
+## Prayer times
+
+`Data/TVPrayerCalculator.swift` is a port of the `adhan` Dart package, the
+library the phone calculates with, so the television and the phone in the same
+room show the same minute. It is held there two ways:
+
+- `tools/tv_prayer_reference.json` is what the Dart package answers for 4,340
+  days: fourteen places from the equator to the edge of the polar day, a year
+  and a leap day, every method, both Asr rules.
+  `test/features/tvos/tvos_prayer_reference_test.dart` fails if the package
+  stops answering that way.
+- `bash scripts/verify_tv_prayer_times.sh` compiles the Swift port on its own
+  and checks it against every one of those days, to the minute. The macOS
+  preflight runs it.
+
+The Apple TV asks for its location once, on first launch
+(`TVPrayerService.startIfNeeded`). If it is refused or cannot be found, Settings
+offers a list of cities. Until there is a place, the app shows no times at all.
+
+In the simulator, `SIMCTL_CHILD_TV_SAMPLE_CITY=<city id>` stands in a city
+without the prompt, and `xcrun simctl privacy <udid> grant location
+com.shahab.pathOfNur` with `xcrun simctl location <udid> set <lat>,<lon>`
+exercises the real path.
+
+## Shipping a build
+
+```
+bash scripts/build_apple_tv_ipa.sh
+```
+
+archives, signs at export, inspects the package and leaves it at
+`build/ios/ipa/path_of_nur_tv.ipa` for Transporter. The app shares the
+iPhone app's bundle id and App Store listing.
 
 ## Copy
 

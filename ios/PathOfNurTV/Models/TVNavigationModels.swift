@@ -190,6 +190,7 @@ enum TVRoute: String, CaseIterable, Hashable, Identifiable {
     case .settings:
       return [
         TVFocusSectionId.settingsStartup,
+        TVFocusSectionId.settingsPrayer,
         TVFocusSectionId.settingsAppearance,
         TVFocusSectionId.settingsListening,
       ]
@@ -262,6 +263,7 @@ enum TVFocusSectionId {
   static let favoritesSaved = "favorites.saved"
   static let favoritesSupport = "favorites.support"
   static let settingsStartup = "settings.startup"
+  static let settingsPrayer = "settings.prayer"
   static let settingsAppearance = "settings.appearance"
   static let settingsListening = "settings.listening"
   static let arabicPrimary = "arabic.primary"

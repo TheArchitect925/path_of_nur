@@ -1,11 +1,5 @@
 import Foundation
 
-struct TVPrayerSnapshot {
-  let summaryLine: String
-  let detailLine: String
-  let prayerTimes: [TVPrayerTime]
-}
-
 enum TVSeedRepository {
   static let continueReading = TVContinueReadingSummary(
     surahNumber: 1,
@@ -52,21 +46,21 @@ enum TVSeedRepository {
     ],
   ]
 
-  static func homeHero() -> TVHeroContent {
+  static func homeHero(today: String) -> TVHeroContent {
     TVHeroContent(
-      eyebrow: todayLabel(),
+      eyebrow: today,
       title: "Path of Nūr",
       subtitle: tvLocalized("Assalamu alaikum"),
       supportingLine: ""
     )
   }
 
-  static func prayerHero() -> TVHeroContent {
+  static func prayerHero(today: String, place: String, method: String) -> TVHeroContent {
     TVHeroContent(
-      eyebrow: todayLabel(),
+      eyebrow: today,
       title: tvLocalized("Prayer"),
-      subtitle: "",
-      supportingLine: ""
+      subtitle: place,
+      supportingLine: method
     )
   }
 
@@ -1600,113 +1594,5 @@ enum TVSeedRepository {
   ) -> URL? {
     let code = String(format: "%03d%03d", surahNumber, ayahNumber)
     return URL(string: "\(reciter.baseURL)/\(code).mp3")
-  }
-
-  static func homePrayerSnapshot(date: Date) -> TVPrayerSnapshot {
-    let calendar = Calendar.current
-    let locale = Locale.current
-    let formatter = homePrayerTimeFormatter
-    formatter.locale = locale
-
-    let prayerSeeds: [(String, String, String, Int, Int)] = [
-      ("fajr", "Fajr", "الفجر", 5, 18),
-      ("dhuhr", "Dhuhr", "الظهر", 13, 9),
-      ("asr", "Asr", "العصر", 16, 42),
-      ("maghrib", "Maghrib", "المغرب", 19, 18),
-      ("isha", "Isha", "العشاء", 20, 47),
-    ]
-
-    let datedSeeds = prayerSeeds.compactMap { seed -> (String, String, String, Date)? in
-      var components = calendar.dateComponents([.year, .month, .day], from: date)
-      components.hour = seed.3
-      components.minute = seed.4
-      guard let value = calendar.date(from: components) else { return nil }
-      return (seed.0, seed.1, seed.2, value)
-    }
-
-    let currentIndex = datedSeeds.lastIndex { $0.3 <= date }
-    let nextIndex = datedSeeds.firstIndex { $0.3 > date } ?? 0
-
-    let prayerTimes = datedSeeds.enumerated().map { index, item in
-      let isCurrent = currentIndex == index
-      let isNext = currentIndex == nil ? index == 0 : nextIndex == index
-
-      let statusLine: String
-      if isCurrent {
-        let nextDate = datedSeeds[min(index + 1, datedSeeds.count - 1)].3
-        statusLine = String(
-          format: tvLocalized("Ends in %@"),
-          relativeDuration(from: date, to: nextDate)
-        )
-      } else if isNext {
-        statusLine = String(
-          format: tvLocalized("Begins at %@"),
-          formatter.string(from: item.3)
-        )
-      } else if index < (currentIndex ?? 0) {
-        statusLine = tvLocalized("Earlier today")
-      } else {
-        statusLine = tvLocalized("Later today")
-      }
-
-      return TVPrayerTime(
-        id: item.0,
-        title: item.1,
-        arabicTitle: item.2,
-        timeLabel: formatter.string(from: item.3),
-        statusLine: statusLine,
-        isCurrent: isCurrent,
-        isNext: isNext
-      )
-    }
-
-    let summaryLine: String
-    let detailLine: String
-    if let currentIndex {
-      let currentPrayer = datedSeeds[currentIndex]
-      summaryLine = String(format: tvLocalized("Current prayer: %@"), currentPrayer.1)
-      let nextPrayer = datedSeeds[min(currentIndex + 1, datedSeeds.count - 1)]
-      detailLine = String(
-        format: tvLocalized("Next prayer: %@"),
-        formatter.string(from: nextPrayer.3)
-      )
-    } else {
-      let nextPrayer = datedSeeds[nextIndex]
-      summaryLine = String(format: tvLocalized("Next prayer: %@"), nextPrayer.1)
-      detailLine = String(
-        format: tvLocalized("Begins at %@"),
-        formatter.string(from: nextPrayer.3)
-      )
-    }
-
-    return TVPrayerSnapshot(
-      summaryLine: summaryLine,
-      detailLine: detailLine,
-      prayerTimes: prayerTimes
-    )
-  }
-
-  /// The day as the hero's eyebrow: "Sunday, September 27".
-  static func todayLabel(date: Date = Date()) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = Locale.current
-    formatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
-    return formatter.string(from: date)
-  }
-
-  private static let homePrayerTimeFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.setLocalizedDateFormatFromTemplate("jm")
-    return formatter
-  }()
-
-  private static func relativeDuration(from start: Date, to end: Date) -> String {
-    let interval = max(Int(end.timeIntervalSince(start)), 0)
-    let hours = interval / 3600
-    let minutes = (interval % 3600) / 60
-    if hours > 0 {
-      return "\(hours)h \(minutes)m"
-    }
-    return "\(minutes)m"
   }
 }

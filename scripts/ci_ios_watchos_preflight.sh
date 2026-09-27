@@ -30,6 +30,9 @@ xcodebuild \
   CODE_SIGNING_ALLOWED=NO \
   build
 
+echo "== Apple TV prayer times against the phone's =="
+bash scripts/verify_tv_prayer_times.sh
+
 echo "== Apple signing doctor =="
 bash scripts/apple_signing_doctor.sh
 

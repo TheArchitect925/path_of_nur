@@ -2,6 +2,8 @@ import SwiftUI
 
 struct TVSettingsScreen: View {
   @ObservedObject var viewModel: TVSettingsViewModel
+  @ObservedObject var prayerService: TVPrayerService
+  @State private var isCityPickerPresented = false
   @EnvironmentObject private var appViewModel: TVAppViewModel
   @EnvironmentObject private var themeController: TVThemeController
   @FocusState private var focusedSection: String?
@@ -55,6 +57,8 @@ struct TVSettingsScreen: View {
           detailRail
             .frame(width: 480, alignment: .top)
         }
+
+        prayerSection
 
         TVSectionHeader(
           title: tvLocalized("Appearance"),
@@ -178,6 +182,11 @@ struct TVSettingsScreen: View {
           TVFocusSectionId.settingsStartup,
           for: .settings
         )
+      } else if section.hasPrefix("settings.prayer") {
+        appViewModel.markContentSectionFocused(
+          TVFocusSectionId.settingsPrayer,
+          for: .settings
+        )
       } else if section.hasPrefix("settings.appearance") {
         appViewModel.markContentSectionFocused(
           TVFocusSectionId.settingsAppearance,
@@ -194,6 +203,115 @@ struct TVSettingsScreen: View {
       guard direction == .left else { return }
       appViewModel.focusNavigation()
     }
+    .fullScreenCover(isPresented: $isCityPickerPresented) {
+      TVPrayerCityPickerScreen(
+        prayerService: prayerService,
+        isPresented: $isCityPickerPresented
+      )
+    }
+  }
+
+  @ViewBuilder
+  private var prayerSection: some View {
+    TVSectionHeader(
+      title: tvLocalized("Prayer times"),
+      subtitle: tvLocalized("Calculated for where you are, the way your phone calculates them.")
+    )
+
+    ScrollView(.horizontal, showsIndicators: false) {
+      HStack(spacing: TVTheme.railSpacing) {
+        Button {
+          prayerService.useDeviceLocation()
+        } label: {
+          optionCard(
+            title: tvLocalized("This Apple TV’s location"),
+            subtitle: deviceLocationLine,
+            systemImage: "location.fill",
+            isSelected: prayerService.place?.source == .device
+          )
+        }
+        .buttonStyle(TVCardButtonStyle())
+        .focused($focusedSection, equals: TVFocusSectionId.settingsPrayer)
+
+        Button {
+          isCityPickerPresented = true
+        } label: {
+          optionCard(
+            title: tvLocalized("Choose a city"),
+            subtitle: prayerService.place?.source == .city
+                ? prayerService.place?.name ?? ""
+                : tvLocalized("Pick from the list."),
+            systemImage: "building.2.fill",
+            isSelected: prayerService.place?.source == .city
+          )
+        }
+        .buttonStyle(TVCardButtonStyle())
+        .focused($focusedSection, equals: "settings.prayer.city")
+      }
+      .padding(.vertical, 8)
+      .padding(.horizontal, TVTheme.railBleed)
+    }
+    .padding(.horizontal, -TVTheme.railBleed)
+
+    ScrollView(.horizontal, showsIndicators: false) {
+      HStack(spacing: TVTheme.railSpacing) {
+        ForEach(TVPrayerMethod.allCases) { method in
+          Button {
+            prayerService.selectMethod(method)
+          } label: {
+            optionCard(
+              title: tvLocalized(method.nameKey),
+              subtitle: method.anglesLine,
+              systemImage: method.systemImage,
+              isSelected: prayerService.method == method
+            )
+          }
+          .buttonStyle(TVCardButtonStyle())
+          .focused($focusedSection, equals: "settings.prayer.method.\(method.rawValue)")
+        }
+      }
+      .padding(.vertical, 8)
+      .padding(.horizontal, TVTheme.railBleed)
+    }
+    .padding(.horizontal, -TVTheme.railBleed)
+
+    ScrollView(.horizontal, showsIndicators: false) {
+      HStack(spacing: TVTheme.railSpacing) {
+        ForEach(TVAsrRule.allCases) { rule in
+          Button {
+            prayerService.selectAsr(rule)
+          } label: {
+            optionCard(
+              title: tvLocalized(rule.nameKey),
+              subtitle: tvLocalized(rule.detailKey),
+              systemImage: rule.systemImage,
+              isSelected: prayerService.asr == rule
+            )
+          }
+          .buttonStyle(TVCardButtonStyle())
+          .focused($focusedSection, equals: "settings.prayer.asr.\(rule.rawValue)")
+        }
+      }
+      .padding(.vertical, 8)
+      .padding(.horizontal, TVTheme.railBleed)
+    }
+    .padding(.horizontal, -TVTheme.railBleed)
+  }
+
+  private var deviceLocationLine: String {
+    switch prayerService.status {
+    case .locating:
+      return tvLocalized("Finding this Apple TV")
+    case .denied:
+      return tvLocalized("Location is off for Path of Nūr. Turn it on in the Apple TV’s Settings, or choose a city.")
+    case .failed:
+      return tvLocalized("Couldn’t find this Apple TV. Try again, or choose a city.")
+    case .unset, .ready:
+      if let place = prayerService.place, place.source == .device {
+        return place.name
+      }
+      return tvLocalized("Asks once, and stays on this Apple TV.")
+    }
   }
 
   private var detailRail: some View {
@@ -206,9 +324,13 @@ struct TVSettingsScreen: View {
         ForEach(
           [
             String(
+              format: tvLocalized("Prayer times: %@"),
+              prayerService.place?.name ?? tvLocalized("No place chosen")
+            ),
+            String(
               format: tvLocalized("Appearance: %@"),
               tvLocalized(themeController.appearance.titleKey)
-            )
+            ),
           ] + viewModel.detailRailPoints,
           id: \.self
         ) { point in
@@ -304,6 +426,8 @@ struct TVSettingsScreen: View {
     let preferredSection = appViewModel.preferredContentSection(for: .settings)
     DispatchQueue.main.async {
       switch preferredSection {
+      case TVFocusSectionId.settingsPrayer:
+        focusedSection = TVFocusSectionId.settingsPrayer
       case TVFocusSectionId.settingsAppearance:
         focusedSection = TVFocusSectionId.settingsAppearance
       case TVFocusSectionId.settingsListening:

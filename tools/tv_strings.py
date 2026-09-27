@@ -55,13 +55,16 @@ RELEASED_FILES = (
     "Components/TVQuranSurahRow.swift",
     "Components/TVSectionHeader.swift",
     "Data/TVDhikrRoutineData.swift",
+    "Data/TVPrayerCities.swift",
     "Screens/TVDhikrRoutinePlayerScreen.swift",
     "Screens/TVDhikrScreen.swift",
     "Screens/TVHomeScreen.swift",
+    "Screens/TVPrayerCityPickerScreen.swift",
     "Screens/TVPrayerScreen.swift",
     "Screens/TVQuranListeningModeScreen.swift",
     "Screens/TVQuranScreen.swift",
     "Screens/TVSettingsScreen.swift",
+    "Support/TVPrayerService.swift",
     "Theme/TVTheme.swift",
 )
 RELEASED_PARTS = {
@@ -81,7 +84,6 @@ RELEASED_PARTS = {
         "static func dhikrSteps",
         "static func homeContinueJourneyItems",
         "static func quranBrowseCollections",
-        "static func homePrayerSnapshot",
     ),
     "Models/TVModels.swift": ("enum TVQuranReciter",),
 }

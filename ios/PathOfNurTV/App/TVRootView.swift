@@ -22,7 +22,10 @@ struct TVRootView: View {
           case .favorites:
             TVFavoritesScreen(viewModel: appViewModel.favoritesViewModel)
           case .settings:
-            TVSettingsScreen(viewModel: appViewModel.settingsViewModel)
+            TVSettingsScreen(
+              viewModel: appViewModel.settingsViewModel,
+              prayerService: appViewModel.prayerService
+            )
           case .arabic:
             TVArabicScreen(viewModel: appViewModel.arabicViewModel)
           case .learn:

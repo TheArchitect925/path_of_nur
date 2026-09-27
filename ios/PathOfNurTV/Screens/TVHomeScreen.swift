@@ -104,10 +104,12 @@ struct TVHomeScreen: View {
         .foregroundColor(TVTheme.textPrimary)
         .tvReadableTitle()
 
-      Text(subtitle)
-        .font(TVTypography.summaryLine)
-        .foregroundColor(TVTheme.textSecondary)
-        .tvReadableBody()
+      if !subtitle.isEmpty {
+        Text(subtitle)
+          .font(TVTypography.summaryLine)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(TVTheme.cardPadding)

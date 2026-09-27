@@ -1,4 +1,5 @@
 import AVFoundation
+import Combine
 import Foundation
 
 final class TVAppViewModel: ObservableObject {
@@ -10,14 +11,15 @@ final class TVAppViewModel: ObservableObject {
   @Published private(set) var contentFocusRequest = 0
 
   let profilesViewModel: TVProfilesViewModel
-  let homeViewModel = TVHomeViewModel()
+  let prayerService: TVPrayerService
+  let homeViewModel: TVHomeViewModel
   let quranViewModel = TVQuranViewModel()
   let favoritesViewModel = TVFavoritesViewModel()
   let settingsViewModel: TVSettingsViewModel
   let arabicViewModel = TVArabicViewModel()
   let learnViewModel = TVLearnViewModel()
   let gamesViewModel = TVGamesViewModel()
-  let prayerViewModel = TVPrayerViewModel()
+  let prayerViewModel: TVPrayerViewModel
   let dhikrViewModel = TVDhikrViewModel()
   let kidsViewModel = TVKidsViewModel()
   private let userDefaults: UserDefaults
@@ -25,6 +27,10 @@ final class TVAppViewModel: ObservableObject {
   init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
     TVTelemetry.bootstrap(userDefaults: userDefaults)
+    let prayerService = TVPrayerService(userDefaults: userDefaults)
+    self.prayerService = prayerService
+    homeViewModel = TVHomeViewModel(prayerService: prayerService)
+    prayerViewModel = TVPrayerViewModel(prayerService: prayerService)
     navigationItems = TVRoute.released.map(TVNavigationItem.init)
     preferredContentSectionByRoute = Dictionary(
       uniqueKeysWithValues: TVRoute.allCases.map { ($0, $0.defaultContentSection) }
@@ -105,6 +111,7 @@ final class TVAppViewModel: ObservableObject {
       userDefaults: userDefaults
     )
     persistSessionState()
+    prayerService.startIfNeeded()
   }
 
   var selectedTab: TVTab {
@@ -835,7 +842,7 @@ final class TVArabicViewModel: ObservableObject {
 }
 
 final class TVPrayerViewModel: ObservableObject {
-  @Published private(set) var hero: TVHeroContent = TVSeedRepository.prayerHero()
+  @Published private(set) var hero: TVHeroContent
   @Published private(set) var summaryLine: String = ""
   @Published private(set) var detailLine: String = ""
   @Published private(set) var prayerTimes: [TVPrayerTime] = []
@@ -848,13 +855,23 @@ final class TVPrayerViewModel: ObservableObject {
     tvLocalized("Today")
   }
 
+  private let prayerService: TVPrayerService
   private var timer: Timer?
+  private var changes: AnyCancellable?
 
-  init() {
+  init(prayerService: TVPrayerService) {
+    self.prayerService = prayerService
+    hero = TVSeedRepository.prayerHero(
+      today: prayerService.todayLabel(), place: "", method: ""
+    )
     refresh()
     timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
       self?.refresh()
     }
+    // A new place or authority is a new day of times: show it at once.
+    changes = prayerService.objectWillChange
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] _ in self?.refresh() }
   }
 
   deinit {
@@ -863,8 +880,12 @@ final class TVPrayerViewModel: ObservableObject {
 
   func refresh() {
     let now = Date()
-    let snapshot = TVSeedRepository.homePrayerSnapshot(date: now)
-    hero = TVSeedRepository.prayerHero()
+    let snapshot = prayerService.snapshot(at: now)
+    hero = TVSeedRepository.prayerHero(
+      today: prayerService.todayLabel(at: now),
+      place: snapshot.placeLine,
+      method: snapshot.methodLine
+    )
     summaryLine = snapshot.summaryLine
     detailLine = snapshot.detailLine
     prayerTimes = snapshot.prayerTimes
@@ -1141,7 +1162,7 @@ final class TVKidsViewModel: ObservableObject {
 }
 
 final class TVHomeViewModel: ObservableObject {
-  @Published private(set) var hero: TVHeroContent = TVSeedRepository.homeHero()
+  @Published private(set) var hero: TVHeroContent
   @Published private(set) var verse: TVHomeVerse = TVSeedRepository.homeVerse()
   @Published private(set) var prayerSummaryLine: String = ""
   @Published private(set) var prayerSummaryDetail: String = ""
@@ -1154,13 +1175,20 @@ final class TVHomeViewModel: ObservableObject {
     tvLocalized("Continue")
   }
 
+  private let prayerService: TVPrayerService
   private var timer: Timer?
+  private var changes: AnyCancellable?
 
-  init() {
+  init(prayerService: TVPrayerService) {
+    self.prayerService = prayerService
+    hero = TVSeedRepository.homeHero(today: prayerService.todayLabel())
     refresh()
     timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
       self?.refresh()
     }
+    changes = prayerService.objectWillChange
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] _ in self?.refresh() }
   }
 
   deinit {
@@ -1168,8 +1196,9 @@ final class TVHomeViewModel: ObservableObject {
   }
 
   func refresh() {
-    let snapshot = TVSeedRepository.homePrayerSnapshot(date: Date())
-    hero = TVSeedRepository.homeHero()
+    let now = Date()
+    let snapshot = prayerService.snapshot(at: now)
+    hero = TVSeedRepository.homeHero(today: prayerService.todayLabel(at: now))
     prayerSummaryLine = snapshot.summaryLine
     prayerSummaryDetail = snapshot.detailLine
     prayerTimes = snapshot.prayerTimes

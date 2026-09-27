@@ -131,6 +131,10 @@
 		A3000000000000000000003D /* TVTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003D /* TVTelemetry.swift */; };
 		A3000000000000000000003E /* TVEmptyStateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003E /* TVEmptyStateCard.swift */; };
 		A30000000000000000000D03 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D03 /* PrivacyInfo.xcprivacy */; };
+		A30000000000000000000D04 /* TVPrayerCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D04 /* TVPrayerCalculator.swift */; };
+		A30000000000000000000D05 /* TVPrayerCities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D05 /* TVPrayerCities.swift */; };
+		A30000000000000000000D06 /* TVPrayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D06 /* TVPrayerService.swift */; };
+		A30000000000000000000D07 /* TVPrayerCityPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D07 /* TVPrayerCityPickerScreen.swift */; };
 		A363E5A80CDC795F50A08433 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */; };
 		AA2612948B1D47A3A21231A9 /* WatchStatChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D615B7BE91472306F2EBD29A /* WatchStatChip.swift */; };
 		AB5CC2B95B3840A21D765075 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 000000007C85662B5673B706 /* Localizable.strings */; };
@@ -377,6 +381,10 @@
 		A2000000000000000000003D /* TVTelemetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVTelemetry.swift; sourceTree = "<group>"; };
 		A2000000000000000000003E /* TVEmptyStateCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVEmptyStateCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000D03 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A20000000000000000000D04 /* TVPrayerCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerCalculator.swift; sourceTree = "<group>"; };
+		A20000000000000000000D05 /* TVPrayerCities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerCities.swift; sourceTree = "<group>"; };
+		A20000000000000000000D06 /* TVPrayerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerService.swift; sourceTree = "<group>"; };
+		A20000000000000000000D07 /* TVPrayerCityPickerScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerCityPickerScreen.swift; sourceTree = "<group>"; };
 		00000000661E798BF33F8B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0000000070299693B7B12BEB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00000000468A9DB134639793 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -680,6 +688,7 @@
 				A20000000000000000000029 /* TVDhikrScreen.swift */,
 				A20000000000000000000D02 /* TVDhikrRoutinePlayerScreen.swift */,
 				A2000000000000000000002B /* TVKidsScreen.swift */,
+				A20000000000000000000D07 /* TVPrayerCityPickerScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -744,6 +753,8 @@
 			children = (
 				A20000000000000000000009 /* TVSeedRepository.swift */,
 				A20000000000000000000D01 /* TVDhikrRoutineData.swift */,
+				A20000000000000000000D04 /* TVPrayerCalculator.swift */,
+				A20000000000000000000D05 /* TVPrayerCities.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -781,6 +792,7 @@
 				A20000000000000000000011 /* TVLocalized.swift */,
 				A20000000000000000000035 /* TVReadableAccessibility.swift */,
 				A2000000000000000000003D /* TVTelemetry.swift */,
+				A20000000000000000000D06 /* TVPrayerService.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1374,6 +1386,10 @@
 				A30000000000000000000015 /* TVNavigationModels.swift in Sources */,
 				A30000000000000000000016 /* TVNavigationSidebar.swift in Sources */,
 				A30000000000000000000017 /* TVContinueJourneyCard.swift in Sources */,
+				A30000000000000000000D04 /* TVPrayerCalculator.swift in Sources */,
+				A30000000000000000000D05 /* TVPrayerCities.swift in Sources */,
+				A30000000000000000000D06 /* TVPrayerService.swift in Sources */,
+				A30000000000000000000D07 /* TVPrayerCityPickerScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
