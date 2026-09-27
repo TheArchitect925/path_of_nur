@@ -460,6 +460,30 @@ struct TVQuranAyah: Identifiable, Hashable {
   let translation: String
 }
 
+/// One focus stop of an ayah. Most ayahs are a single part. One too long to
+/// be read in the room it is given is set in several, each of which fits:
+/// the Arabic first, then its reading and its meaning.
+struct TVQuranAyahPart: Identifiable, Hashable {
+  let ayahID: String
+  let ayahNumber: Int
+  /// From zero.
+  let index: Int
+  let count: Int
+  let arabic: String
+  let transliteration: String
+  let translation: String
+
+  var id: String {
+    index == 0 ? ayahID : "\(ayahID).p\(index + 1)"
+  }
+
+  var heading: String {
+    count > 1
+      ? tvLocalized("Ayah %d, part %d of %d", ayahNumber, index + 1, count)
+      : tvLocalized("Ayah %d", ayahNumber)
+  }
+}
+
 enum TVQuranReciter: String, CaseIterable {
   case husary
   case alafasy

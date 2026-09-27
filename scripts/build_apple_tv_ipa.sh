@@ -24,6 +24,7 @@ team_id="$(sed -n 's/^APPLE_DEVELOPMENT_TEAM = //p' ios/Flutter/AppConfig.xcconf
 echo "== Guards =="
 bash scripts/ci_apple_bundle_consistency.sh
 bash scripts/verify_tv_prayer_times.sh
+bash scripts/verify_tv_quran_library.sh
 
 echo "== Archive =="
 rm -rf "$ARCHIVE" "$EXPORT_DIR"

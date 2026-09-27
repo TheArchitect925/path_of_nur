@@ -1,7 +1,8 @@
 import Foundation
 
 enum TVSeedRepository {
-  // The Qur'an text is generated from the phone's sources (TVQuranData).
+  // The Qur'an text is generated from the phone's sources: the list of
+  // surahs in TVQuranData, the verses in the resources TVQuranLibrary reads.
   // Nothing of it is typed here: a verse is looked up, never written out.
 
   static let quranSurahs: [TVQuranSurah] = TVQuranData.surahs
@@ -24,31 +25,25 @@ enum TVSeedRepository {
     )
   }()
 
+  static func surah(_ number: Int) -> TVQuranSurah? {
+    quranSurahs.first { $0.number == number }
+  }
+
   static func surahName(_ number: Int) -> String {
-    quranSurahs.first { $0.number == number }?.transliteratedName ?? ""
+    surah(number)?.transliteratedName ?? ""
   }
 
   static func ayah(surah: Int, number: Int) -> TVQuranAyah? {
     ayahs(for: surah).first { $0.ayahNumber == number }
   }
 
-  /// The translation in the viewer's language where the phone's sources
-  /// carry one, and in English where they do not. An Arabic reader is shown
-  /// the Arabic alone.
+  /// The ayahs of one surah, read when they are asked for, in the viewer's
+  /// language.
   static func ayahs(for surahNumber: Int) -> [TVQuranAyah] {
-    let language = Locale.current.languageCode ?? "en"
-    return (TVQuranData.verses[surahNumber] ?? []).map { verse in
-      TVQuranAyah(
-        id: "\(surahNumber):\(verse.ayahNumber)",
-        surahNumber: surahNumber,
-        ayahNumber: verse.ayahNumber,
-        arabic: verse.arabic,
-        transliteration: language == "ar" ? "" : verse.transliteration,
-        translation: language == "ar"
-          ? ""
-          : verse.translations[language] ?? verse.translations["en"] ?? ""
-      )
-    }
+    TVQuranLibrary.shared.ayahs(
+      inSurah: surahNumber,
+      language: Locale.current.languageCode ?? "en"
+    )
   }
 
   static func homeHero(today: String) -> TVHeroContent {
@@ -551,22 +546,11 @@ enum TVSeedRepository {
     quranSurahs.filter { numbers.contains($0.number) }
   }
 
+  /// Groups of surahs the list can be opened at. Where the viewer left off
+  /// and the verse of the day stand beside them on the screen and open at
+  /// their ayah, so they are not groups here.
   static func quranBrowseCollections() -> [TVQuranBrowseCollection] {
     [
-      TVQuranBrowseCollection(
-        id: "continue_path",
-        eyebrow: "",
-        title: tvLocalized("Where you left off"),
-        subtitle: String(
-          format: tvLocalized("%@ %d:%d"),
-          continueReading.surahName,
-          continueReading.surahNumber,
-          continueReading.ayahNumber
-        ),
-        supportingLine: "",
-        systemImage: "bookmark.fill",
-        surahNumbers: [continueReading.surahNumber]
-      ),
       TVQuranBrowseCollection(
         id: "short_surahs",
         eyebrow: "",

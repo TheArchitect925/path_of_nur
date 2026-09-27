@@ -17,6 +17,16 @@ enum TVTypography {
     .custom("Figtree-SemiBold", size: size)
   }
 
+  /// The faces an ayah is set in, at the size the room allows
+  /// (see `TVQuranAyahMetrics`).
+  static func amiriQuran(_ size: CGFloat) -> Font {
+    .custom("AmiriQuran-Regular", size: size)
+  }
+
+  static func figtreeMedium(_ size: CGFloat) -> Font {
+    figtree(size)
+  }
+
   static let heroEyebrow = figtreeSemibold(17)
   static let heroTitle = lora(64)
   static let heroSubtitle = figtree(28)
@@ -26,6 +36,10 @@ enum TVTypography {
   static let sectionSubtitle = figtree(19)
 
   static let featureTitle = lora(29)
+  /// A row of a long list, and the title of a screen that keeps its height
+  /// for what is read below it.
+  static let listTitle = lora(25)
+  static let compactHeroTitle = lora(40)
   static let featureSubtitle = figtree(18)
   static let summaryTitle = lora(32)
   static let summaryLine = figtreeSemibold(20)

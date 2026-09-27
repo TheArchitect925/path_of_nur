@@ -26,6 +26,7 @@ struct TVNavigationSidebar: View {
             }
             .buttonStyle(TVCardButtonStyle())
             .focused($focusedRoute, equals: item.route)
+            .accessibilityIdentifier("nav.\(item.route.rawValue)")
           }
         }
         .padding(TVTheme.railBleed)

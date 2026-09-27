@@ -347,7 +347,6 @@
 "No ayahs here yet." = "Noch keine Ayas hier.";
 "No surahs here yet." = "Noch keine Suren hier.";
 "Now and next" = "Jetzt und als Nächstes";
-"Now playing" = "Läuft gerade";
 "Opens on the reader." = "Öffnet den Reader.";
 "Opens on today’s prayer times." = "Öffnet die heutigen Gebetszeiten.";
 "Opens on today’s prayers and verse." = "Öffnet die heutigen Gebete und den Vers.";
@@ -470,3 +469,4 @@
 "Umm al-Qura University" = "Umm-al-Qura-Universität";
 "University of Karachi" = "Universität Karatschi";
 "Vancouver, Canada" = "Vancouver, Kanada";
+"Ayah %d, part %d of %d" = "Aya %d, Teil %d von %d";

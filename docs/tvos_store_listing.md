@@ -9,7 +9,7 @@ there and are not repeated here. What the tvOS platform needs of its own is
 the text below and the screenshots.
 
 Every line follows `docs/voice_and_copy_guide.md`. It claims what the build
-does and nothing else: update the surah count when the reader holds more.
+does and nothing else.
 
 The German, French, Arabic and Urdu are machine translations. They want a
 native reader before the listing goes public.
@@ -61,10 +61,10 @@ Umm al-Qura University) and the Shafi’i or Hanafi rule for Asr. The Apple TV
 asks for its location once. If you prefer, choose your city from a list.
 
 QUR’AN
-Read Al Fatiha and four short surahs in large Arabic, with a transliteration
-and a translation in English, French or Urdu. Listen ayah by ayah with Mahmoud
-Khalil Al-Husary, Mishary Rashid Alafasy or Abdul Basit, and open any ayah
-full screen.
+Read all 114 surahs in large Arabic, with a transliteration and a translation
+in English, French or Urdu. Listen ayah by ayah with Mahmoud Khalil
+Al-Husary, Mishary Rashid Alafasy or Abdul Basit, and open any ayah full
+screen.
 
 DHIKR
 Four routines from the phone: after salah, morning, evening and before sleep.
@@ -107,9 +107,9 @@ Regel für Asr. Das Apple TV fragt einmal nach seinem Standort. Wenn Sie
 möchten, wählen Sie Ihre Stadt aus einer Liste.
 
 KORAN
-Lesen Sie Al-Fatiha und vier kurze Suren in großem Arabisch, mit Umschrift
-und Übersetzung. Hören Sie Aya für Aya mit Mahmoud Khalil Al-Husary, Mishary
-Rashid Alafasy oder Abdul Basit und öffnen Sie jede Aya im Vollbild.
+Lesen Sie alle 114 Suren in großem Arabisch, mit Umschrift und Übersetzung.
+Hören Sie Aya für Aya mit Mahmoud Khalil Al-Husary, Mishary Rashid Alafasy
+oder Abdul Basit und öffnen Sie jede Aya im Vollbild.
 
 DHIKR
 Vier Routinen vom Telefon: nach dem Salah, am Morgen, am Abend und vor dem
@@ -152,8 +152,8 @@ hanafite pour Asr. L’Apple TV demande sa position une seule fois. Si vous
 préférez, choisissez votre ville dans une liste.
 
 CORAN
-Lisez Al-Fatiha et quatre courtes sourates en grand arabe, avec une
-translittération et une traduction en français. Écoutez verset par verset
+Lisez les 114 sourates en grand arabe, avec une translittération et une
+traduction en français. Écoutez verset par verset
 avec Mahmoud Khalil Al-Husary, Mishary Rashid Alafasy ou Abdul Basit, et
 ouvrez chaque verset en plein écran.
 
@@ -196,7 +196,7 @@ horaires de prière,salah,coran,dhikr,adhkar,tasbih,musulman,islam,fajr,ramadan
 تختار مدينتك من قائمة.
 
 القرآن
-اقرأ الفاتحة وأربع سور قصار بخط عربي كبير. استمع آية آية بصوت محمود خليل
+اقرأ سور القرآن كلها، ١١٤ سورة، بخط عربي كبير. استمع آية آية بصوت محمود خليل
 الحصري أو مشاري راشد العفاسي أو عبد الباسط، وافتح أي آية بملء الشاشة.
 
 الذكر
@@ -238,7 +238,7 @@ English و Deutsch و Français والعربية و اردو.
 چاہیں تو فہرست میں سے اپنا شہر چن لیں۔
 
 قرآن
-الفاتحہ اور چار مختصر سورتیں بڑے عربی خط میں پڑھیں، نقل حرفی اور اردو ترجمے
+تمام 114 سورتیں بڑے عربی خط میں پڑھیں، نقل حرفی اور اردو ترجمے
 کے ساتھ۔ محمود خلیل الحصری، مشاری راشد العفاسی یا عبد الباسط کی آواز میں
 آیت بہ آیت سنیں، اور کوئی بھی آیت پوری اسکرین پر کھولیں۔
 
@@ -274,8 +274,8 @@ Paste into the review notes for the tvOS version.
 > city, and the rest of the app works without it.
 >
 > Audio: Qur’an recitation is streamed over HTTPS from everyayah.com. Open
-> Qur’an, select an ayah, then press Play/Pause, or select Open listening
-> mode.
+> Qur’an, choose a surah and select an ayah: it is recited from there.
+> Play/Pause pauses it, and Open listening mode shows the ayah full screen.
 >
 > Dhikr: open Dhikr, select a routine. Select counts once; Play/Pause lets
 > the Apple TV count on its own.

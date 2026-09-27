@@ -776,7 +776,6 @@
 "No ayahs here yet." = "No ayahs here yet.";
 "No surahs here yet." = "No surahs here yet.";
 "Now and next" = "Now and next";
-"Now playing" = "Now playing";
 "Opens on the reader." = "Opens on the reader.";
 "Opens on today’s prayer times." = "Opens on today’s prayer times.";
 "Opens on today’s prayers and verse." = "Opens on today’s prayers and verse.";
@@ -904,3 +903,4 @@
 "Umm al-Qura University" = "Umm al-Qura University";
 "University of Karachi" = "University of Karachi";
 "Vancouver, Canada" = "Vancouver, Canada";
+"Ayah %d, part %d of %d" = "Ayah %d, part %d of %d";

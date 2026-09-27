@@ -33,6 +33,9 @@ xcodebuild \
 echo "== Apple TV prayer times against the phone's =="
 bash scripts/verify_tv_prayer_times.sh
 
+echo "== Apple TV Qur'an reader against the files it reads =="
+bash scripts/verify_tv_quran_library.sh
+
 echo "== Apple signing doctor =="
 bash scripts/apple_signing_doctor.sh
 

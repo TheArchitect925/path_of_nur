@@ -347,7 +347,6 @@
 "No ayahs here yet." = "لا آيات هنا بعد.";
 "No surahs here yet." = "لا سور هنا بعد.";
 "Now and next" = "الآن والتالية";
-"Now playing" = "يُشغَّل الآن";
 "Opens on the reader." = "يفتح على صفحة القراءة.";
 "Opens on today’s prayer times." = "يفتح على أوقات صلاة اليوم.";
 "Opens on today’s prayers and verse." = "يفتح على صلوات اليوم وآيته.";
@@ -470,3 +469,4 @@
 "Umm al-Qura University" = "جامعة أم القرى";
 "University of Karachi" = "جامعة العلوم الإسلامية، كراتشي";
 "Vancouver, Canada" = "فانكوفر، كندا";
+"Ayah %d, part %d of %d" = "الآية %d، المقطع %d من %d";

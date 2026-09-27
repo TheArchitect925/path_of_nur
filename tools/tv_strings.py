@@ -51,7 +51,7 @@ RELEASED_FILES = (
     "Components/TVPrayerTimeCard.swift",
     "Components/TVQuranAyahCard.swift",
     "Components/TVQuranBrowseCollectionCard.swift",
-    "Components/TVQuranPlaybackCard.swift",
+    "Components/TVQuranPlaybackControls.swift",
     "Components/TVQuranSurahRow.swift",
     "Components/TVSectionHeader.swift",
     "Data/TVDhikrRoutineData.swift",

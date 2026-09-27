@@ -289,7 +289,28 @@ enum TVFocusSectionId {
     "quran.browse.\(surahId)"
   }
 
+  /// The first part of an ayah, which is the whole of most.
   static func quranAyah(_ ayahId: String) -> String {
     "quran.reader.\(ayahId)"
+  }
+
+  /// A part's id is its ayah's id for the first part, and the ayah's id with
+  /// the part's number after it for the rest.
+  static func quranAyahPart(_ partId: String) -> String {
+    "quran.reader.\(partId)"
+  }
+
+  static func quranCollection(_ collectionId: String) -> String {
+    "quran.browse.collection.\(collectionId)"
+  }
+
+  static let quranContinueReading = "quran.browse.shortcut.continue"
+  static let quranTodaysVerse = "quran.browse.shortcut.today"
+  static let quranPlaybackPrevious = "quran.playback.previous"
+  static let quranPlaybackNext = "quran.playback.next"
+  static let quranPlaybackListening = "quran.playback.listening"
+
+  static func quranReciter(_ reciter: String) -> String {
+    "quran.playback.reciter.\(reciter)"
   }
 }

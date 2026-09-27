@@ -121,6 +121,29 @@ private struct TVRail: ViewModifier {
   }
 }
 
+/// A pane is the rail turned on its side, with two differences.
+///
+/// A rail is a row in a page and takes its room back from the page above
+/// and below. A pane stands under a heading, so it reaches past its own
+/// edges only as far as the feather: what fades, fades in the space between
+/// the pane and the heading, and what is wholly inside the pane is wholly
+/// seen.
+///
+/// And a pane that fills the screen's height stops short of the screen's
+/// own margin below. A scroll view whose edge meets that margin is given
+/// the margin too: it grows to the bottom of the screen, and what takes the
+/// focus is then centred in a room taller than the one that is seen.
+private struct TVPane: ViewModifier {
+  func body(content: Content) -> some View {
+    content
+      .mask(TVRailFeather(axis: .horizontal))
+      .mask(TVRailFeather(axis: .vertical))
+      .padding(.horizontal, -TVTheme.railBleed)
+      .padding(.top, -TVTheme.railFeather)
+      .padding(.bottom, -(TVTheme.railFeather - TVTheme.railGap))
+  }
+}
+
 private struct TVRailFeather: View {
   let axis: Axis
 
@@ -149,5 +172,94 @@ extension View {
 
   func tvRail() -> some View {
     modifier(TVRail())
+  }
+
+  /// What a pane that scrolls up and down wears, outside its scroll view:
+  /// the rail's feathered edges on a list that fills the height it is given.
+  /// Inside, the content is padded by `TVTheme.railBleed` on every side.
+  func tvPane() -> some View {
+    modifier(TVPane())
+  }
+
+  /// Where the focus lands when the viewer moves into this part of the
+  /// screen, in place of whatever is nearest. Before tvOS 17 the system does
+  /// not take a preference for a move the viewer makes, and nearest it is.
+  func tvPreferredFocus(_ focus: FocusState<String?>.Binding, _ id: String?) -> some View {
+    modifier(TVPreferredFocus(focus: focus, id: id))
+  }
+
+  /// Gives a control its place in the focus order, and the same name to
+  /// anything that looks for it by name: VoiceOver's rotor, a UI test.
+  func tvFocusID(_ focus: FocusState<String?>.Binding, _ id: String) -> some View {
+    focused(focus, equals: id)
+      .accessibilityIdentifier(id)
+  }
+}
+
+/// Asks for the focus until it lands.
+///
+/// A control cannot take the focus before it is on screen: a row of a lazy
+/// list has to be scrolled to and built, a screen has to have appeared. A
+/// lazy list places a far row by estimate, so one scroll may stop short of
+/// it, and each scroll after measures more rows and stops nearer. And while
+/// a list scrolls, the row that had the focus is taken away, which leaves
+/// the system to put the focus on whatever is near.
+///
+/// So the target is brought into view and the focus asked for, again and
+/// again until the focus rests on it, for two seconds at most. A later
+/// request takes the place of an earlier one.
+final class TVFocusSeeker {
+  /// The control the focus is on its way to, until it lands.
+  private(set) var pending: String?
+
+  /// - Parameter bringIntoView: scrolls to the target, if it may be out of
+  ///   view. Called before the first ask, and again while the focus has not
+  ///   landed.
+  func seek(
+    _ target: String,
+    with focus: FocusState<String?>.Binding,
+    bringIntoView: (() -> Void)? = nil
+  ) {
+    pending = target
+    bringIntoView?()
+    ask(for: target, with: focus, attempt: 1, bringIntoView: bringIntoView)
+  }
+
+  private func ask(
+    for target: String,
+    with focus: FocusState<String?>.Binding,
+    attempt: Int,
+    bringIntoView: (() -> Void)?
+  ) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + (attempt == 1 ? 0.05 : 0.15)) { [weak self] in
+      guard let self, self.pending == target else { return }
+      if focus.wrappedValue == target || attempt > 14 {
+        self.pending = nil
+        return
+      }
+      focus.wrappedValue = target
+      // Asked and not given: on the next turn it is asked again, and on
+      // the turn after that the list is scrolled again first.
+      if attempt.isMultiple(of: 2) {
+        DispatchQueue.main.async {
+          guard self.pending == target, focus.wrappedValue != target else { return }
+          bringIntoView?()
+        }
+      }
+      self.ask(for: target, with: focus, attempt: attempt + 1, bringIntoView: bringIntoView)
+    }
+  }
+}
+
+private struct TVPreferredFocus: ViewModifier {
+  let focus: FocusState<String?>.Binding
+  let id: String?
+
+  func body(content: Content) -> some View {
+    if #available(tvOS 17.0, *) {
+      content.defaultFocus(focus, id, priority: .userInitiated)
+    } else {
+      content
+    }
   }
 }

@@ -87,9 +87,13 @@ final class TVAppViewModel: ObservableObject {
        let routine = dhikrViewModel.routines.first(where: { $0.id == routineId }) {
       dhikrViewModel.openRoutine(routine)
     }
-    if let number = ProcessInfo.processInfo.environment["TV_SAMPLE_SURAH"].flatMap(Int.init),
-       let surah = quranViewModel.surahs.first(where: { $0.number == number }) {
-      quranViewModel.selectSurah(surah)
+    // TV_SAMPLE_SURAH=2 TV_SAMPLE_AYAH=282 opens the reader there, and
+    // TV_SAMPLE_LISTENING=1 opens that ayah full screen.
+    if let surah = ProcessInfo.processInfo.environment["TV_SAMPLE_SURAH"].flatMap(Int.init) {
+      quranViewModel.select(
+        surahNumber: surah,
+        ayahNumber: ProcessInfo.processInfo.environment["TV_SAMPLE_AYAH"].flatMap(Int.init) ?? 1
+      )
     }
     if ProcessInfo.processInfo.environment["TV_SAMPLE_LISTENING"] == "1" {
       quranViewModel.openListeningMode()
@@ -1368,6 +1372,8 @@ final class TVQuranViewModel: ObservableObject {
 
   private let player = AVPlayer()
   private var endObserver: NSObjectProtocol?
+  private var failureObserver: NSObjectProtocol?
+  private var itemStatusObservation: NSKeyValueObservation?
 
   init() {
     selectedSurah = TVSeedRepository.quranSurahs.first!
@@ -1376,13 +1382,21 @@ final class TVQuranViewModel: ObservableObject {
       forName: .AVPlayerItemDidPlayToEndTime,
       object: nil,
       queue: .main
-    ) { [weak self] _ in
-      guard let self else { return }
+    ) { [weak self] notification in
+      guard let self, self.isCurrentItem(notification.object) else { return }
       if self.repeatCurrentAyah {
         self.playSelectedAyah()
       } else {
         self.playNextAyah(autoStart: true)
       }
+    }
+    failureObserver = NotificationCenter.default.addObserver(
+      forName: .AVPlayerItemFailedToPlayToEndTime,
+      object: nil,
+      queue: .main
+    ) { [weak self] notification in
+      guard let self, self.isCurrentItem(notification.object) else { return }
+      self.reportPlaybackFailure()
     }
   }
 
@@ -1390,6 +1404,10 @@ final class TVQuranViewModel: ObservableObject {
     if let endObserver {
       NotificationCenter.default.removeObserver(endObserver)
     }
+    if let failureObserver {
+      NotificationCenter.default.removeObserver(failureObserver)
+    }
+    itemStatusObservation?.invalidate()
   }
 
   var selectedAyah: TVQuranAyah? {
@@ -1438,26 +1456,14 @@ final class TVQuranViewModel: ObservableObject {
     selectedAyahLine
   }
 
+  /// "Playing · Repeating this ayah · Mahmoud Khalil Al-Husary"
   var listeningModeStatusLine: String {
-    let playbackLine = isPlaying
-        ? tvLocalized("Playing")
-        : tvLocalized("Paused")
+    var line = [isPlaying ? tvLocalized("Playing") : tvLocalized("Paused")]
     if repeatCurrentAyah {
-      return "\(playbackLine) · \(tvLocalized("Repeating this ayah"))"
+      line.append(tvLocalized("Repeating this ayah"))
     }
-    return playbackLine
-  }
-
-  var listeningModeArabicText: String {
-    selectedAyah?.arabic ?? tvLocalized("No ayah selected")
-  }
-
-  var listeningModeTransliterationText: String {
-    selectedAyah?.transliteration ?? ""
-  }
-
-  var listeningModeTranslationText: String {
-    selectedAyah?.translation ?? ""
+    line.append(selectedReciter.displayName)
+    return line.joined(separator: " · ")
   }
 
   func collectionContainsSelectedSurah(_ collection: TVQuranBrowseCollection) -> Bool {
@@ -1471,13 +1477,6 @@ final class TVQuranViewModel: ObservableObject {
     selectSurah(firstSurah)
   }
 
-  var playbackSummary: String {
-    guard selectedAyah != nil else {
-      return tvLocalized("No ayah selected")
-    }
-    return selectedAyahLine
-  }
-
   func selectSurah(_ surah: TVQuranSurah) {
     selectedSurah = surah
     selectedAyahs = TVSeedRepository.ayahs(for: surah.number)
@@ -1485,10 +1484,32 @@ final class TVQuranViewModel: ObservableObject {
     stopPlayback()
   }
 
+  /// Opens a surah at one of its ayahs. A surah already open keeps its place
+  /// in memory and is not read again.
+  func select(surahNumber: Int, ayahNumber: Int = 1) {
+    guard let surah = TVSeedRepository.surah(surahNumber) else { return }
+    if surah.id != selectedSurah.id {
+      selectSurah(surah)
+    }
+    selectAyah(at: ayahNumber - 1)
+  }
+
   func selectAyah(at index: Int) {
     guard index >= 0 && index < selectedAyahs.count else { return }
     selectedAyahIndex = index
     stopPlayback()
+  }
+
+  /// What pressing an ayah does: it is recited from there on, and pressing
+  /// the ayah being recited pauses it.
+  func playOrPauseAyah(at index: Int) {
+    guard index >= 0 && index < selectedAyahs.count else { return }
+    if index == selectedAyahIndex && isPlaying {
+      stopPlayback()
+      return
+    }
+    selectedAyahIndex = index
+    playSelectedAyah()
   }
 
   func selectReciter(_ reciter: TVQuranReciter) {
@@ -1591,9 +1612,38 @@ final class TVQuranViewModel: ObservableObject {
 
     playbackErrorMessage = nil
     let item = AVPlayerItem(url: url)
+    itemStatusObservation = item.observe(\.status) { [weak self] item, _ in
+      guard item.status == .failed else { return }
+      DispatchQueue.main.async {
+        guard let self, self.isCurrentItem(item) else { return }
+        self.reportPlaybackFailure()
+      }
+    }
     player.replaceCurrentItem(with: item)
     player.play()
     isPlaying = true
+  }
+
+  private func isCurrentItem(_ object: Any?) -> Bool {
+    guard let item = object as? AVPlayerItem else { return false }
+    return item === player.currentItem
+  }
+
+  /// The recitation is streamed, so it can fail on any ayah: say so where
+  /// the viewer is looking, and stop showing the ayah as playing.
+  private func reportPlaybackFailure() {
+    stopPlayback()
+    let message = tvLocalized("Couldn’t play this ayah. Check your connection and try again.")
+    playbackErrorMessage = message
+    onDiagnosticsError?(
+      "tvos_playback_error",
+      message,
+      [
+        "reciter": selectedReciter.rawValue,
+        "surah": "\(selectedSurah.number)",
+        "ayah": "\(selectedAyah?.ayahNumber ?? 0)",
+      ]
+    )
   }
 
   private func playPreviousAyah(autoStart: Bool) {
