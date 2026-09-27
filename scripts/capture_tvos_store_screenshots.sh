@@ -8,8 +8,14 @@
 # an alpha channel. These are 3840x2160 JPEGs, nine to a language, written to
 # build/store/tvos/<language>/. Nothing is uploaded.
 #
-# A television cannot be driven from a script, so each screen is reached with
-# the app's simulator-only launch overrides (TV_SAMPLE_ROUTE and the rest).
+# Each screen is reached with the app's simulator-only launch overrides
+# (TV_SAMPLE_ROUTE and the rest), which is quicker than walking to it with
+# the remote as scripts/verify_tv_focus.sh does.
+#
+# The app keeps the viewer's place in the Qur'an, and Home goes on from it.
+# So that Home reads the same in every language, each language begins with
+# nothing kept, is given a place, and has its two pictures of Home taken
+# before the pictures of the reader move the place.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -52,16 +58,19 @@ PLACES=(
   "ur ur_PK karachi"
 )
 
+# Where the viewer is taken to have been reading: Al Kahf, at its tenth ayah.
+PLACE="TV_SAMPLE_SURAH=18 TV_SAMPLE_AYAH=10 TV_SAMPLE_SECTION=quran.reader"
+
 # name  route  then any further overrides as KEY=value
 SHOTS=(
   "01-home home TV_SAMPLE_THEME=midnight"
+  "08-daylight home TV_SAMPLE_THEME=noorGlass TV_SAMPLE_PHASE=day"
   "02-prayer prayer TV_SAMPLE_THEME=midnight"
   "03-quran quran TV_SAMPLE_THEME=midnight TV_SAMPLE_SURAH=1 TV_SAMPLE_SECTION=quran.reader"
   "04-listening quran TV_SAMPLE_THEME=midnight TV_SAMPLE_SURAH=1 TV_SAMPLE_LISTENING=1"
   "05-dhikr dhikr TV_SAMPLE_THEME=midnight"
   "06-routine dhikr TV_SAMPLE_THEME=midnight TV_SAMPLE_ROUTINE=after-salah"
   "07-settings settings TV_SAMPLE_THEME=midnight TV_SAMPLE_SECTION=settings.prayer"
-  "08-daylight home TV_SAMPLE_THEME=noorGlass TV_SAMPLE_PHASE=day"
   "09-cities settings TV_SAMPLE_THEME=midnight TV_SAMPLE_CITY_PICKER=1"
 )
 
@@ -69,6 +78,19 @@ rm -rf "$OUTPUT"
 for place in "${PLACES[@]}"; do
   read -r language locale city <<<"$place"
   mkdir -p "$OUTPUT/$language"
+
+  xcrun simctl terminate "$DEVICE" "$BUNDLE_ID" >/dev/null 2>&1 || true
+  environment=(
+    "SIMCTL_CHILD_TV_SAMPLE_ROUTE=quran" "SIMCTL_CHILD_TV_SAMPLE_CITY=$city"
+    "SIMCTL_CHILD_TV_SAMPLE_THEME=midnight" "SIMCTL_CHILD_TV_SAMPLE_FRESH=1"
+  )
+  for override in $PLACE; do
+    environment+=("SIMCTL_CHILD_$override")
+  done
+  env "${environment[@]}" xcrun simctl launch "$DEVICE" "$BUNDLE_ID" \
+    -AppleLanguages "($language)" -AppleLocale "$locale" >/dev/null
+  sleep 5
+
   for shot in "${SHOTS[@]}"; do
     read -r name route overrides <<<"$shot"
     xcrun simctl terminate "$DEVICE" "$BUNDLE_ID" >/dev/null 2>&1 || true
