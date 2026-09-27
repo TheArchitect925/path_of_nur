@@ -176,28 +176,11 @@ struct TVSettingsScreen: View {
       restorePreferredFocus()
     }
     .onChange(of: focusedSection) { section in
-      guard let section else { return }
-      if section.hasPrefix("settings.startup") {
-        appViewModel.markContentSectionFocused(
-          TVFocusSectionId.settingsStartup,
-          for: .settings
-        )
-      } else if section.hasPrefix("settings.prayer") {
-        appViewModel.markContentSectionFocused(
-          TVFocusSectionId.settingsPrayer,
-          for: .settings
-        )
-      } else if section.hasPrefix("settings.appearance") {
-        appViewModel.markContentSectionFocused(
-          TVFocusSectionId.settingsAppearance,
-          for: .settings
-        )
-      } else if section.hasPrefix("settings.listening") {
-        appViewModel.markContentSectionFocused(
-          TVFocusSectionId.settingsListening,
-          for: .settings
-        )
-      }
+      guard let section, section.hasPrefix("settings.") else { return }
+      // The control itself, so that the focus returns to it and not to the
+      // first of its row: choosing a city can change the look, and the
+      // screen is then drawn again.
+      appViewModel.markContentSectionFocused(section, for: .settings)
     }
     .fullScreenCover(isPresented: $isCityPickerPresented) {
       TVPrayerCityPickerScreen(
@@ -425,19 +408,12 @@ struct TVSettingsScreen: View {
   }
 
   private func restorePreferredFocus() {
-    guard appViewModel.activeColumn == .content else { return }
-    let preferredSection = appViewModel.preferredContentSection(for: .settings)
+    guard appViewModel.selectedRoute == .settings, appViewModel.activeColumn == .content else {
+      return
+    }
+
     DispatchQueue.main.async {
-      switch preferredSection {
-      case TVFocusSectionId.settingsPrayer:
-        focusedSection = TVFocusSectionId.settingsPrayer
-      case TVFocusSectionId.settingsAppearance:
-        focusedSection = TVFocusSectionId.settingsAppearance
-      case TVFocusSectionId.settingsListening:
-        focusedSection = TVFocusSectionId.settingsListening
-      default:
-        focusedSection = TVFocusSectionId.settingsStartup
-      }
+      focusedSection = appViewModel.preferredContentSection(for: .settings)
     }
   }
 }

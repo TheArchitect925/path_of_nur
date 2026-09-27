@@ -18,4 +18,5 @@ env -u TOOLCHAINS xcrun swiftc -O \
 "$BUILD_DIR/verify" \
   tools/tv_prayer_reference.json \
   tools/tv_hijri_reference.json \
-  tools/tv_prayer_schedule_reference.json
+  tools/tv_prayer_schedule_reference.json \
+  tools/tv_sky_phase_reference.json

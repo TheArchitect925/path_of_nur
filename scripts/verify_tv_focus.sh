@@ -49,9 +49,13 @@ xcodebuild \
   }
 
 echo "== Install =="
-xcrun simctl boot "$DEVICE" 2>/dev/null || true
+# A restart clears any permission alert an earlier run left on the screen,
+# which would hold the focus through every test that followed.
+xcrun simctl shutdown "$DEVICE" 2>/dev/null || true
+xcrun simctl boot "$DEVICE"
 xcrun simctl bootstatus "$DEVICE" >/dev/null
 xcrun simctl install "$DEVICE" "$DERIVED/app/Build/Products/Debug-appletvsimulator/PathOfNurTV.app"
+xcrun simctl privacy "$DEVICE" grant location "$BUNDLE_ID"
 
 echo "== Focus =="
 rm -rf "$OUTPUT"

@@ -179,6 +179,159 @@ final class ShellFocusTests: TVFocusTestCase {
     expect(press(.down), "prayer.schedule", "down lands on it")
   }
 
+  func test69_theListOfCitiesOpensAtTheCityChosen() {
+    launch(["TV_SAMPLE_ROUTE": "settings", "TV_SAMPLE_SECTION": "settings.prayer"])
+    log("== Settings, the list of cities")
+    expect(focus, "settings.prayer", "opens on the Apple TV’s own location")
+    expect(press(.right), "settings.prayer.city", "right to Choose a city")
+    press(.select)
+    sleep(3)
+    expect(focus, "city.toronto", "the list opens at the city chosen, far down it")
+    let frame: CGRect = focusedElement.frame
+    let onScreen = frame.minY >= 60 && frame.maxY <= 1020
+    log("\(onScreen ? "PASS" : "FAIL")  which is wholly on the screen: \(Int(frame.minY))…\(Int(frame.maxY))")
+    XCTAssertTrue(onScreen, "the chosen city is on screen")
+    shot("69-cities")
+    let other = press(.up)
+    note("up", other)
+    XCTAssertTrue(other.hasPrefix("city.") && other != "city.toronto", "up moves to another city")
+    press(.select)
+    sleep(2)
+    expect(focus, "settings.prayer.city", "choosing it closes the list, and the focus is where it was opened from")
+    // The card names the city beneath its title, where a test cannot read
+    // it: that the list opens at the city again is what shows it was taken.
+    expect(value(of: "settings.prayer.city"), "Selected", "and a city is now what the times are reckoned for")
+    shot("69-city-chosen")
+    press(.select)
+    sleep(3)
+    expect(focus, other, "opened again, the list is at that city")
+    expect(press(.menu), "settings.prayer.city", "Menu closes the list")
+  }
+
+  func test59_withNoPlaceHomeLeadsToSettings() {
+    launch(["TV_SAMPLE_ROUTE": "home", "TV_SAMPLE_CITY": "none"])
+    log("== Home, with no place chosen")
+    expect(focus, "home.continueJourney", "opens on the first card")
+    expect(press(.down), "home.prayer.place", "down is the card that asks for a place")
+    note("the card", focusedElement.label)
+    shot("59-no-place")
+    press(.select)
+    sleep(2)
+    expect(focus, "settings.prayer", "pressing it opens Settings at the prayer times")
+    expect(press(.right), "settings.prayer.city", "with the list of cities beside it")
+  }
+
+  func test58_openingOnTheQuranOpensInTheReader() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader", "TV_SAMPLE_SURAH": "18", "TV_SAMPLE_AYAH": "10"])
+    log("== Opening on the Qur’an")
+    expect(focus, "quran.reader.18:10", "the viewer is at 18:10")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "settings"], keeping: true)
+    expect(focus, "settings.startup", "Settings opens on Where you left off")
+    expect(press(.right, 2), "settings.startup.quran", "right twice is Qur’an")
+    press(.select)
+    sleep(1)
+    expect(value(of: "settings.startup.quran"), "Selected", "pressing it chooses it")
+    app.terminate()
+
+    launch([:], keeping: true)
+    expect(focus, "quran.reader.18:10", "opened again, the app is in the reader where it was left")
+    shot("58-opens-in-the-reader")
+    app.terminate()
+
+    // Put back, so that the next run starts as this one did.
+    launch(["TV_SAMPLE_ROUTE": "settings"], keeping: true)
+    expect(focus, "settings.startup", "Settings opens on Where you left off")
+    press(.select)
+    sleep(1)
+    expect(value(of: "settings.startup"), "Selected", "and pressing it puts the choice back")
+  }
+
+  // MARK: - Dhikr
+
+  func test85_aRoutineIsTakenUpWhereItWasLeft() {
+    launch(["TV_SAMPLE_ROUTE": "dhikr"])
+    log("== Dhikr, a routine left part way")
+    expect(focus, "dhikr.routines", "opens on After salah")
+    note("the card", focusedElement.label)
+    press(.select)
+    sleep(2)
+    expect(focus, "routine.count", "pressing it opens the routine, on Count")
+    press(.select, 35)
+    // Thirty-three of the first phrase, and two of the second.
+    let step = app.staticTexts.allElementsBoundByIndex.map(\.label).first { $0.hasPrefix("Step ") } ?? ""
+    expect(step, "Step 2 of 4", "thirty-five counts reach the second phrase")
+    expect(press(.right, 2), "routine.undo", "right to Undo")
+    press(.select)
+    expect(press(.left, 2), "routine.count", "and back to Count")
+    press(.select)
+    press(.menu)
+    sleep(2)
+    expect(focus, "dhikr.routines", "Menu leaves the routine")
+    let card: String = focusedElement.label
+    note("the card", card)
+    let says = card.contains("35 of 100")
+    log("\(says ? "PASS" : "FAIL")  the card says how far it was taken: 35 of 100")
+    XCTAssertTrue(says, "the card says 35 of 100")
+    shot("85-left-part-way")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "dhikr"], keeping: true)
+    let again: String = focusedElement.label
+    let kept = again.contains("35 of 100")
+    log("\(kept ? "PASS" : "FAIL")  opened again, the card still says 35 of 100")
+    XCTAssertTrue(kept, "kept between launches")
+    press(.select)
+    sleep(2)
+    let resumed = app.staticTexts.allElementsBoundByIndex.map(\.label).first { $0.hasPrefix("Step ") } ?? ""
+    expect(resumed, "Step 2 of 4", "and the routine opens at the second phrase")
+    press(.menu)
+    sleep(1)
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "dhikr", "TV_SAMPLE_DATE": "2030-01-05"], keeping: true)
+    let nextDay: String = focusedElement.label
+    note("the card on another day", nextDay)
+    let fresh = !nextDay.contains("35 of 100")
+    log("\(fresh ? "PASS" : "FAIL")  on another day the routine begins again")
+    XCTAssertTrue(fresh, "yesterday’s progress is not today’s")
+  }
+
+  func test86_doneTodayIsOfTheDay() {
+    launch(["TV_SAMPLE_ROUTE": "dhikr"])
+    log("== Dhikr, done today")
+    expect(press(.right, 3), "dhikr.routines.sleep", "right to Before sleep")
+    press(.select)
+    sleep(2)
+    expect(focus, "routine.count", "it opens on Count")
+    var presses = 0
+    while app.buttons["routine.count"].exists && presses < 30 {
+      press(.select)
+      presses += 1
+    }
+    expect("\(presses)", "7", "seven counts complete it")
+    expect(focus, "routine.done", "and the focus is on Done")
+    shot("86-complete")
+    press(.select)
+    sleep(2)
+    expect(focus, "dhikr.routines.sleep", "Done returns to its card")
+    let card: String = focusedElement.label
+    note("the card", card)
+    let done = card.contains("Done today")
+    log("\(done ? "PASS" : "FAIL")  the card says Done today")
+    XCTAssertTrue(done, "Done today")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "dhikr", "TV_SAMPLE_DATE": "2030-01-05"], keeping: true)
+    press(.right, 3)
+    let nextDay: String = focusedElement.label
+    note("the card on another day", nextDay)
+    let cleared = !nextDay.contains("Done today")
+    log("\(cleared ? "PASS" : "FAIL")  on another day it is not done")
+    XCTAssertTrue(cleared, "Done today is of the day")
+  }
+
   // MARK: - Home and the Qur'an
 
   func test70_theFirstTimeThereIsNoPlaceToGoOnFrom() {
@@ -279,6 +432,8 @@ final class ShellFocusTests: TVFocusTestCase {
     press(.select)
     sleep(2)
     expect(focus, "quran.reader.2:282", "pressing it opens the reader at 2:282, part 1")
+    expectFocusWithinPane("part 1 of 2:282 is wholly in the pane")
+    shot("78-reader-2-282")
   }
 
   func test74_theQuranShowsTheSameVerseAsHome() {

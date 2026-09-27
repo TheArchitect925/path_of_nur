@@ -57,6 +57,21 @@ struct TVRootView: View {
       .padding(28)
     }
     .tint(TVTheme.accentStrong)
+    .onAppear {
+      // The sky turns by the prayer times of the place, as the phone's does.
+      guard themeController.prayerTimes == nil else { return }
+      let prayers = appViewModel.prayerService
+      themeController.prayerTimes = { [weak prayers] now in
+        prayers?.skyTimes(at: now)
+      }
+      themeController.refresh()
+    }
+    .onReceive(appViewModel.prayerService.objectWillChange) { _ in
+      // A new place is a new dawn and dusk.
+      DispatchQueue.main.async {
+        themeController.refresh()
+      }
+    }
     // Theme turnover (dawn, dusk, Friday, a Settings choice) is rare;
     // rebuilding the tree by identity is how the static token facade
     // repaints everywhere at once.

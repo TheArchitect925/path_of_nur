@@ -14,14 +14,20 @@ What is real today:
 - prayer times, calculated on the Apple TV for its own location or a chosen
   city, under the five authorities and two Asr rules the phone offers
 - Dhikr routines, generated from the phone's catalog and guarded by
-  `test/features/tvos/tvos_dhikr_routines_parity_test.dart`
+  `test/features/tvos/tvos_dhikr_routines_parity_test.dart`. A routine left
+  part way is taken up where it was left that day, as on the phone, and
+  "Done today" is of the day
 - the Qur’an, all 114 surahs, with recitation streamed ayah by ayah
 - the viewer's place in the Qur’an, kept between launches, and the verse of
-  the day, which is the verse the phone shows that day
+  the day, which is the verse the phone shows that day. An app set to open
+  on the Qur’an opens in the reader at that place, as Settings says it does
 - appearance, startup, listening and prayer preferences, kept on the device
 
 What is not yet:
 
+- Dhikr's Phrases. The three groups and their phrases are written in
+  `TVSeedRepository`, not generated from the phone, and their cards do
+  nothing when pressed. They want the phone's own phrases and a counter.
 - anything shared with the phone. The Apple TV keeps its own place, its own
   settings and its own record of the day's routines: it reads nothing the
   phone has written. The phone itself shares prayer logs and dhikr between
@@ -111,6 +117,16 @@ than the screen, so a viewer deep in one still finds the other beside them.
 - A row of a lazy list cannot take the focus until it is built, and a lazy
   list finds a far row by estimate. `TVFocusSeeker` brings the target into
   view and asks for the focus until it lands.
+- **An ayah the reader is sent to is brought to the top of the pane, and
+  carries its margin with it.** The television leaves a card it finds on
+  the screen where it is, and the top of a pane's scroll view is under the
+  pane's fading edge. So each ayah's row has the margin above it inside the
+  row, and the rows close up by as much (`ayahLead`). Three other ways were
+  tried and are not to be tried again: a row's own parts cannot be scrolled
+  to by name; held by its middle, an ayah in two parts about as tall as the
+  pane has its first part under the edge; and held by a point worked out to
+  put the first part in the middle, a far row is missed altogether, because
+  the list guesses the row's height and the point multiplies the guess.
 
 ## Prayer times
 
@@ -138,6 +154,14 @@ midnight and Fajr, it is no prayer's time. The phone's answers for 25 days
 and 650 moments in them are in `tools/tv_prayer_schedule_reference.json`
 (`test/features/tvos/tvos_prayer_schedule_reference_test.dart`), and the same
 script holds the Swift to them.
+
+The automatic look turns with the same times (`TVSkyPhase`, from
+`noorSkyPhaseAt`): night from Isha to Fajr, dawn for the hour and a half
+after Fajr, and Maghrib's sky from three quarters of an hour before it. Until
+the television has a place it turns by the hour, as the phone does.
+`tools/tv_sky_phase_reference.json` is the phone's answer for every five
+minutes of a long day and a short one
+(`test/features/tvos/tvos_sky_phase_reference_test.dart`).
 
 What the phone has and the television has not: a viewer's own offsets to
 each prayer, times entered by hand, and their mosque's time for Jumu’ah. A
@@ -199,7 +223,7 @@ opened on the state that is wanted:
 | --- | --- |
 | `TV_SAMPLE_ROUTE` | a section: `home`, `prayer`, `quran`, `dhikr`, `settings` |
 | `TV_SAMPLE_SECTION` | focus on a part of it, such as `settings.prayer` |
-| `TV_SAMPLE_CITY` | prayer times for a city, without the location prompt |
+| `TV_SAMPLE_CITY` | prayer times for a city, without the location prompt; `none` for no place at all |
 | `TV_SAMPLE_SURAH`, `TV_SAMPLE_AYAH` | a surah in the reader, and an ayah of it, by number |
 | `TV_SAMPLE_LISTENING` | `1` for listening mode |
 | `TV_SAMPLE_FOCUS` | the focus on one control of the Qur’an, by its focus id: `quran.reader.2:282.p3` |
@@ -219,11 +243,12 @@ presses the remote's buttons in the simulator (`XCUIRemote`) and reads back
 where the focus is. Every control of the Qur’an carries its focus id
 (`TVFocusSectionId`) as its accessibility identifier (`tvFocusID`), so a step
 reads "left from the reader returns to the selected surah:
-quran.browse.2". The tests are in
-`tooling/tv_focus_harness/UITests/QuranFocusTests.swift`, a project of its
-own so that the app's carries no test target. The run takes about a quarter
-of an hour and leaves its log and screenshots in `build/tvos/focus/`. It is
-not part of the preflight.
+quran.browse.2". The tests are in `tooling/tv_focus_harness/UITests/`
+(`QuranFocusTests` for the reader, `ShellFocusTests` for the rail and the
+other four sections), a project of its own so that the app's carries no test
+target. The run takes about half an hour, restarts the simulator before it
+begins and leaves its log and screenshots in `build/tvos/focus/`. It is not
+part of the preflight.
 
 It also holds what is in focus to its pane: the frame of the focused card
 must lie wholly inside the pane that scrolls it.
@@ -282,6 +307,11 @@ section to the rail. Four rules keep that working:
 
 Name a control with `tvFocusID` and not `.focused`: it is the same focus
 id, and a test can then say where the focus is.
+
+`.tvFocusableCard()` goes inside a button's label, or on a card that is not
+a button, and never on the button itself. On the button it wraps it in a
+second thing that takes the focus: the ring is drawn, and a press never
+reaches the button.
 
 ## Folder structure
 

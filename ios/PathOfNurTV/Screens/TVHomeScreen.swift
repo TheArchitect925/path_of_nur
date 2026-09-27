@@ -58,10 +58,26 @@ struct TVHomeScreen: View {
         )
 
         VStack(alignment: .leading, spacing: TVTheme.blockSpacing) {
-          _summaryCard(
-            title: viewModel.prayerSummaryLine,
-            subtitle: viewModel.prayerSummaryDetail
-          )
+          if viewModel.prayerTimes.isEmpty {
+            // With no place there are no times, and the card that says so
+            // is the way to choose one, as it is on Prayer.
+            Button {
+              appViewModel.markContentSectionFocused(TVFocusSectionId.settingsPrayer, for: .settings)
+              appViewModel.navigate(to: .settings, preferredColumn: .content)
+            } label: {
+              _summaryCard(
+                title: viewModel.prayerSummaryLine,
+                subtitle: viewModel.prayerSummaryDetail
+              )
+            }
+            .buttonStyle(TVCardButtonStyle())
+            .tvFocusID($focusedSection, "home.prayer.place")
+          } else {
+            _summaryCard(
+              title: viewModel.prayerSummaryLine,
+              subtitle: viewModel.prayerSummaryDetail
+            )
+          }
 
           VStack(spacing: 18) {
             ForEach(_prayerRows, id: \.first?.id) { row in

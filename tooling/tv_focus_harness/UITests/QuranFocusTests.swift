@@ -155,7 +155,9 @@ final class QuranFocusTests: TVFocusTestCase {
 
   func test14_theReaderOpensFarIntoASurah() {
     log("== Opening far into a surah")
-    for (surah, ayah) in [(2, 100), (2, 200), (2, 275), (7, 150), (26, 200), (37, 120)] {
+    // Among them ayahs read whole, and ayahs in parts that together stand
+    // shorter than the pane (2:54), about as tall (2:25) and far taller.
+    for (surah, ayah) in [(2, 25), (2, 54), (2, 84), (2, 100), (2, 200), (2, 275), (7, 150), (26, 200), (37, 120)] {
       launch([
         "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader",
         "TV_SAMPLE_SURAH": "\(surah)", "TV_SAMPLE_AYAH": "\(ayah)",
@@ -169,32 +171,66 @@ final class QuranFocusTests: TVFocusTestCase {
 
   // MARK: - The ways into the list
 
+  func test15_anAyahInPartsOpensAtItsFirst() {
+    log("== Opening at an ayah in parts")
+    // In Arabic these are read in two parts, which together stand within a
+    // few points of the pane's own height, and a little over it.
+    for ayah in [85, 61] {
+      launch(
+        [
+          "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader",
+          "TV_SAMPLE_SURAH": "2", "TV_SAMPLE_AYAH": "\(ayah)",
+        ],
+        arguments: ["-AppleLanguages", "(ar)", "-AppleLocale", "ar_SA"]
+      )
+      expect(focus, "quran.reader.2:\(ayah)", "opens at 2:\(ayah), its first part")
+      note("which reads", focusedElement.label)
+      expectFocusWithinPane("part 1 of 2:\(ayah) is wholly in the pane")
+      shot("15-2-\(ayah)-ar")
+      expect(press(.down), "quran.reader.2:\(ayah).p2", "down is its second part")
+      expectFocusWithinPane("part 2 of 2:\(ayah) is wholly in the pane")
+    }
+  }
+
   func test20_todaysVerseOpensAtItsAyah() {
-    launch(["TV_SAMPLE_ROUTE": "quran"])
+    // On 1 April, ninety days into the year, the verse of the day is Al
+    // Baqarah 2:84.
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_DATE": "2026-04-01"])
     log("== Today’s verse")
     expect(press(.up), "quran.browse.shortcut.continue", "up from the first surah")
     expect(press(.right), "quran.browse.shortcut.today", "right along the row")
+    expect(focusedElement.value as? String ?? "", "Al Baqarah 2:84", "which on 1 April is 2:84")
     press(.select)
     sleep(2)
-    expect(focus, "quran.reader.94:5", "Today’s verse opens at its ayah")
+    expect(focus, "quran.reader.2:84", "Today’s verse opens at its ayah")
+    expectFocusWithinPane("2:84 is wholly in the pane")
     shot("20-todays-verse")
-    expect(press(.menu), "quran.browse.94", "Menu returns to its surah in the list")
-    expectFocusWithinPane("surah 94 is wholly in the list")
+    expect(press(.menu), "quran.browse.2", "Menu returns to its surah in the list")
+    expectFocusWithinPane("surah 2 is wholly in the list")
   }
 
-  func test21_continueReadingOpensAtItsAyah() {
+  func test21_continueReadingOpensAtThePlaceKept() {
     launch([
       "TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader",
-      "TV_SAMPLE_SURAH": "2", "TV_SAMPLE_AYAH": "150",
+      "TV_SAMPLE_SURAH": "36", "TV_SAMPLE_AYAH": "7",
     ])
     log("== Continue reading, from another surah")
-    expect(focus, "quran.reader.2:150", "opens at 2:150")
-    expect(press(.menu), "quran.browse.2", "Menu to the list")
+    expect(focus, "quran.reader.36:7", "the viewer is at 36:7")
+    app.terminate()
+
+    // Opened again with another surah in the reader, and the focus in the
+    // list: the place is still where the viewer was.
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "2"], keeping: true)
+    expect(focus, "quran.browse.2", "opened again on Al Baqarah, in the list")
     expect(press(.up, 2), "quran.browse.shortcut.continue", "up to the row of shortcuts")
+    let card = "\(focusedElement.label) \(focusedElement.value as? String ?? "")"
+    note("the card", card)
+    XCTAssertTrue(card.contains("36:7"), "the card names the place kept")
     press(.select)
     sleep(2)
-    expect(focus, "quran.reader.1:5", "Continue reading opens 1:5")
-    expect(press(.left), "quran.browse.1", "left returns to its surah in the list")
+    expect(focus, "quran.reader.36:7", "Continue reading opens the place kept")
+    expectFocusWithinPane("36:7 is wholly in the pane")
+    expect(press(.left), "quran.browse.36", "left returns to its surah in the list")
   }
 
   func test22_aGroupOpensTheListAtItsFirstSurah() {

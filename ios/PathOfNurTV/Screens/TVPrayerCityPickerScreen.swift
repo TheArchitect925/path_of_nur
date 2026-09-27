@@ -5,6 +5,8 @@ struct TVPrayerCityPickerScreen: View {
   @ObservedObject var prayerService: TVPrayerService
   @Binding var isPresented: Bool
   @FocusState private var focusedCity: String?
+  @State private var focusSeeker = TVFocusSeeker()
+  @State private var scrollRequest = 0
 
   private let cities = TVPrayerCities.sorted
   private let columns = Array(
@@ -39,33 +41,48 @@ struct TVPrayerCityPickerScreen: View {
           .buttonStyle(TVCardButtonStyle(shape: .capsule))
         }
 
-        ScrollView {
-          LazyVGrid(columns: columns, alignment: .leading, spacing: TVTheme.railSpacing) {
-            ForEach(cities) { city in
-              Button {
-                prayerService.selectCity(city)
-                isPresented = false
-              } label: {
-                cityCard(city)
+        ScrollViewReader { proxy in
+          ScrollView {
+            LazyVGrid(columns: columns, alignment: .leading, spacing: TVTheme.railSpacing) {
+              ForEach(cities) { city in
+                Button {
+                  prayerService.selectCity(city)
+                  isPresented = false
+                } label: {
+                  cityCard(city)
+                }
+                .buttonStyle(TVCardButtonStyle())
+                .tvFocusID($focusedCity, Self.focusID(city.id))
+                .id(city.id)
               }
-              .buttonStyle(TVCardButtonStyle())
-              .focused($focusedCity, equals: city.id)
+            }
+            .padding(TVTheme.railBleed)
+          }
+          .onChange(of: scrollRequest) { _ in
+            if let chosen = prayerService.place?.cityId {
+              proxy.scrollTo(chosen, anchor: .center)
             }
           }
-          .padding(TVTheme.railBleed)
         }
         .tvRail()
       }
       .padding(TVTheme.outerPadding)
     }
     .onAppear {
-      DispatchQueue.main.async {
-        focusedCity = prayerService.place?.cityId ?? cities.first?.id
+      // The list opens at the city that is chosen, which may be far down
+      // it and not yet built.
+      guard let target = prayerService.place?.cityId ?? cities.first?.id else { return }
+      focusSeeker.seek(Self.focusID(target), with: $focusedCity) {
+        scrollRequest += 1
       }
     }
     .onExitCommand {
       isPresented = false
     }
+  }
+
+  private static func focusID(_ cityId: String) -> String {
+    "city.\(cityId)"
   }
 
   private func cityCard(_ city: TVPrayerCity) -> some View {

@@ -44,7 +44,7 @@ final class TVAppViewModel: ObservableObject {
   let learnViewModel = TVLearnViewModel()
   let gamesViewModel = TVGamesViewModel()
   let prayerViewModel: TVPrayerViewModel
-  let dhikrViewModel = TVDhikrViewModel()
+  let dhikrViewModel: TVDhikrViewModel
   let kidsViewModel = TVKidsViewModel()
   private let userDefaults: UserDefaults
 
@@ -58,8 +58,11 @@ final class TVAppViewModel: ObservableObject {
     // read, whatever an earlier launch left behind.
     if ProcessInfo.processInfo.environment["TV_SAMPLE_FRESH"] == "1" {
       userDefaults.removeObject(forKey: TVQuranViewModel.placeStorageKey)
+      userDefaults.removeObject(forKey: TVDhikrViewModel.completedRoutinesKey)
+      userDefaults.removeObject(forKey: TVDhikrViewModel.routineInProgressKey)
     }
     #endif
+    dhikrViewModel = TVDhikrViewModel(userDefaults: userDefaults)
     let quranViewModel = TVQuranViewModel(userDefaults: userDefaults)
     self.quranViewModel = quranViewModel
     homeViewModel = TVHomeViewModel(prayerService: prayerService)
@@ -106,6 +109,11 @@ final class TVAppViewModel: ObservableObject {
     selectedRoute = settingsViewModel.startupPreference.openingRoute(
       lastUsedRoute: profilesViewModel.routeForActiveProfile()
     )
+    // "Opens on the reader": a viewer who has chosen to open on the Qur'an
+    // opens in it, where they left it, and not on the list beside it.
+    if settingsViewModel.startupPreference == .quran, quranViewModel.place != nil {
+      preferredContentSectionByRoute[.quran] = TVFocusSectionId.quranReader
+    }
     #if targetEnvironment(simulator)
     // Simulator-only, like TV_SAMPLE_THEME: open straight on a route so a
     // screen can be screenshotted without driving the sidebar.
@@ -967,10 +975,28 @@ final class TVDhikrViewModel: ObservableObject {
   @Published private(set) var routineStepCount = 0
   @Published private(set) var isRoutinePacing = false
   @Published private(set) var routineCompletedAt: Date?
-  @Published private(set) var completedRoutineIdsToday: Set<String> = []
+  /// The day it is, which turns while the app is open.
+  @Published private(set) var today: String
+  /// The routines completed on `completedDay`, and the one left part way
+  /// through on `progress.day`. Both are of a day, and are nothing on the
+  /// day after.
+  @Published private(set) var completedRoutineIds: Set<String> = []
+  @Published private(set) var progress: RoutineProgress?
+  private var completedDay = ""
   private var routineStartedAt: Date?
   private var routinePaceTimer: Timer?
-  private static let completedRoutinesKey = "PathOfNurTV.dhikr.routinesCompleted"
+  private var dayTimer: Timer?
+  private let userDefaults: UserDefaults
+  static let completedRoutinesKey = "PathOfNurTV.dhikr.routinesCompleted"
+  static let routineInProgressKey = "PathOfNurTV.dhikr.routineInProgress"
+
+  /// Where a routine was left: the step, and the count within it.
+  struct RoutineProgress: Equatable {
+    let day: String
+    let routineId: String
+    let stepIndex: Int
+    let stepCount: Int
+  }
 
   var routinesTitle: String { tvLocalized("Routines") }
 
@@ -1001,14 +1027,35 @@ final class TVDhikrViewModel: ObservableObject {
   }
 
   func isRoutineDoneToday(_ routine: TVDhikrRoutine) -> Bool {
-    completedRoutineIdsToday.contains(routine.id)
+    completedDay == today && completedRoutineIds.contains(routine.id)
   }
 
+  /// How many remembrances of the routine have been said today, if it was
+  /// left part way through.
+  func remembrancesSaidToday(of routine: TVDhikrRoutine) -> Int? {
+    guard
+      let progress, progress.day == today, progress.routineId == routine.id,
+      routine.steps.indices.contains(progress.stepIndex)
+    else {
+      return nil
+    }
+    let said = routine.steps[..<progress.stepIndex].reduce(0) { $0 + $1.count } + progress.stepCount
+    return said > 0 ? said : nil
+  }
+
+  /// Opens a routine where it was left today, as the phone does, and at
+  /// its beginning otherwise.
   func openRoutine(_ routine: TVDhikrRoutine) {
     stopRoutinePacing()
+    refreshDay()
     activeRoutine = routine
-    routineStepIndex = 0
-    routineStepCount = 0
+    if remembrancesSaidToday(of: routine) != nil, let progress {
+      routineStepIndex = progress.stepIndex
+      routineStepCount = progress.stepCount
+    } else {
+      routineStepIndex = 0
+      routineStepCount = 0
+    }
     routineCompletedAt = nil
     routineStartedAt = Date()
     isRoutinePlayerPresented = true
@@ -1021,12 +1068,21 @@ final class TVDhikrViewModel: ObservableObject {
     routineCompletedAt = nil
   }
 
+  /// The day may have turned since the app was opened.
+  func refreshDay(now: Date = TVClock.now()) {
+    let day = Self.dayKey(for: now)
+    if day != today {
+      today = day
+    }
+  }
+
   /// One remembrance: counts the current step, moves on when it is full.
   func countRoutine() {
     guard let routine = activeRoutine, let step = routineStep, !isRoutineComplete else { return }
     let next = routineStepCount + 1
     if next < step.count {
       routineStepCount = next
+      keepProgress(of: routine)
       return
     }
     let isLast = routineStepIndex >= routine.steps.count - 1
@@ -1036,6 +1092,7 @@ final class TVDhikrViewModel: ObservableObject {
     } else {
       routineStepIndex += 1
       routineStepCount = 0
+      keepProgress(of: routine)
     }
   }
 
@@ -1047,6 +1104,7 @@ final class TVDhikrViewModel: ObservableObject {
     } else {
       routineStepIndex += 1
       routineStepCount = 0
+      keepProgress(of: routine)
     }
   }
 
@@ -1058,10 +1116,13 @@ final class TVDhikrViewModel: ObservableObject {
       routineStepIndex -= 1
       routineStepCount = max(routine.steps[routineStepIndex].count - 1, 0)
     }
+    keepProgress(of: routine)
   }
 
+  /// From the beginning, whatever was said before.
   func restartRoutine() {
     guard let routine = activeRoutine else { return }
+    forgetProgress(of: routine)
     openRoutine(routine)
   }
 
@@ -1105,38 +1166,86 @@ final class TVDhikrViewModel: ObservableObject {
   private func completeRoutine(_ routine: TVDhikrRoutine) {
     routineCompletedAt = Date()
     stopRoutinePacing()
-    completedRoutineIdsToday.insert(routine.id)
-    persistCompletedRoutines()
-  }
-
-  private func todayKey() -> String {
-    let formatter = DateFormatter()
-    formatter.calendar = Calendar(identifier: .gregorian)
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter.string(from: Date())
-  }
-
-  private func loadCompletedRoutines() {
-    let stored = UserDefaults.standard.dictionary(forKey: Self.completedRoutinesKey)
-    guard let day = stored?["date"] as? String, day == todayKey(),
-          let ids = stored?["ids"] as? [String] else {
-      completedRoutineIdsToday = []
-      return
+    refreshDay()
+    // Yesterday's are not today's.
+    if completedDay != today {
+      completedRoutineIds = []
+      completedDay = today
     }
-    completedRoutineIdsToday = Set(ids)
-  }
-
-  private func persistCompletedRoutines() {
-    UserDefaults.standard.set(
-      ["date": todayKey(), "ids": Array(completedRoutineIdsToday).sorted()],
+    completedRoutineIds.insert(routine.id)
+    userDefaults.set(
+      ["date": completedDay, "ids": Array(completedRoutineIds).sorted()],
       forKey: Self.completedRoutinesKey
     )
+    forgetProgress(of: routine)
   }
+
+  private func keepProgress(of routine: TVDhikrRoutine) {
+    refreshDay()
+    let kept = RoutineProgress(
+      day: today,
+      routineId: routine.id,
+      stepIndex: routineStepIndex,
+      stepCount: routineStepCount
+    )
+    progress = kept
+    userDefaults.set(
+      [
+        "date": kept.day,
+        "routine": kept.routineId,
+        "step": kept.stepIndex,
+        "count": kept.stepCount,
+      ],
+      forKey: Self.routineInProgressKey
+    )
+  }
+
+  private func forgetProgress(of routine: TVDhikrRoutine) {
+    guard progress?.routineId == routine.id else { return }
+    progress = nil
+    userDefaults.removeObject(forKey: Self.routineInProgressKey)
+  }
+
+  private static func dayKey(for date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter.string(from: date)
+  }
+
   @Published private(set) var selectedModeId: String
 
-  init() {
+  init(userDefaults: UserDefaults = .standard) {
+    self.userDefaults = userDefaults
+    today = Self.dayKey(for: TVClock.now())
     selectedModeId = TVSeedRepository.dhikrModes().first?.id ?? ""
-    loadCompletedRoutines()
+
+    let completed = userDefaults.dictionary(forKey: Self.completedRoutinesKey)
+    completedDay = completed?["date"] as? String ?? ""
+    completedRoutineIds = Set(completed?["ids"] as? [String] ?? [])
+
+    let left = userDefaults.dictionary(forKey: Self.routineInProgressKey)
+    if
+      let day = left?["date"] as? String,
+      let routineId = left?["routine"] as? String,
+      let stepIndex = left?["step"] as? Int,
+      let stepCount = left?["count"] as? Int
+    {
+      progress = RoutineProgress(
+        day: day, routineId: routineId, stepIndex: stepIndex, stepCount: stepCount
+      )
+    }
+
+    // "Done today" is of the day: it is looked at again as the day goes.
+    dayTimer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+      self?.refreshDay()
+    }
+  }
+
+  deinit {
+    dayTimer?.invalidate()
+    routinePaceTimer?.invalidate()
   }
 
   var modesTitle: String {

@@ -66,12 +66,10 @@ struct TVPrayerScreen: View {
       restorePreferredFocus()
     }
     .onChange(of: focusedSection) { section in
-      guard let section else { return }
-      if section.hasPrefix("prayer.currentNext") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.prayerCurrentNext, for: .prayer)
-      } else if section.hasPrefix("prayer.schedule") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.prayerSchedule, for: .prayer)
-      }
+      guard let section, section.hasPrefix("prayer.") else { return }
+      // The control itself, so that the focus returns to it and not to the
+      // first of its row.
+      appViewModel.markContentSectionFocused(section, for: .prayer)
     }
   }
 

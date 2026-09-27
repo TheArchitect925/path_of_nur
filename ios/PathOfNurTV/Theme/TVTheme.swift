@@ -217,21 +217,8 @@ extension Color {
 
 // MARK: - Sky phase
 
-/// Mirror of `NoorSkyPhase` in `lib/core/theme/living_atmosphere.dart`,
-/// using the phone's hour-bucket fallback (the TV has no computed prayer
-/// schedule yet).
-enum TVSkyPhase: String {
-  case dawn, day, maghrib, night
-
-  static func at(_ now: Date) -> TVSkyPhase {
-    let components = Calendar.current.dateComponents([.hour, .minute], from: now)
-    let hour = Double(components.hour ?? 12) + Double(components.minute ?? 0) / 60
-    if hour >= 21 || hour < 5 { return .night }
-    if hour < 8 { return .dawn }
-    if hour >= 17.5 { return .maghrib }
-    return .day
-  }
-}
+// `TVSkyPhase` is in Data/TVPrayerCalculator.swift, with the prayer times
+// it is reckoned by.
 
 // MARK: - Appearance setting
 
@@ -301,12 +288,17 @@ final class TVThemeController: ObservableObject {
   /// with the new palette (theme flips are rare — dawn, dusk, Friday).
   var renderToken: String { "\(palette.id).\(skyPhase.rawValue)" }
 
+  /// The day's Fajr, Maghrib and Isha where the television is, for the sky
+  /// to turn by. Until there is a place there are none, and the sky turns
+  /// by the hour.
+  var prayerTimes: ((Date) -> TVSkyPhase.Times?)?
+
   private let userDefaults: UserDefaults
   private var timer: Timer?
   private var forcedPaletteId: String?
   private static let appearanceStorageKey = "PathOfNurTV.appearance"
 
-  init(userDefaults: UserDefaults = .standard, now: Date = Date()) {
+  init(userDefaults: UserDefaults = .standard, now: Date = TVClock.now()) {
     self.userDefaults = userDefaults
     var stored = TVAppearanceSetting(
       rawValue: userDefaults.string(forKey: Self.appearanceStorageKey) ?? ""
@@ -321,7 +313,13 @@ final class TVThemeController: ObservableObject {
     }
     #endif
     appearance = stored
-    let phase = Self.effectivePhase(at: now)
+    // By the prayer times of the place that is kept, from the first screen.
+    // Chosen by the hour and then again by the prayers, the look would
+    // change a moment after the app opened, and the focus with it.
+    let phase = Self.effectivePhase(
+      at: now,
+      times: TVPrayerService.keptSkyTimes(in: userDefaults, at: now)
+    )
     skyPhase = phase
     let resolved = forcedPaletteId == "laylatAlQadr"
       ? TVPalette.laylatAlQadr
@@ -341,8 +339,8 @@ final class TVThemeController: ObservableObject {
     refresh()
   }
 
-  func refresh(now: Date = Date()) {
-    let phase = Self.effectivePhase(at: now)
+  func refresh(now: Date = TVClock.now()) {
+    let phase = Self.effectivePhase(at: now, times: prayerTimes?(now))
     let resolved = forcedPaletteId == "laylatAlQadr"
       ? TVPalette.laylatAlQadr
       : Self.resolvePalette(appearance: appearance, phase: phase, now: now)
@@ -352,14 +350,14 @@ final class TVThemeController: ObservableObject {
     TVTheme.current = resolved
   }
 
-  private static func effectivePhase(at now: Date) -> TVSkyPhase {
+  private static func effectivePhase(at now: Date, times: TVSkyPhase.Times?) -> TVSkyPhase {
     #if targetEnvironment(simulator)
     if let forced = ProcessInfo.processInfo.environment["TV_SAMPLE_PHASE"],
        let phase = TVSkyPhase(rawValue: forced) {
       return phase
     }
     #endif
-    return TVSkyPhase.at(now)
+    return TVSkyPhase.at(now, times: times)
   }
 
   private func startClock() {

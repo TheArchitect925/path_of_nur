@@ -32,6 +32,11 @@ struct TVQuranScreen: View {
   }
 
   private static let listWidth: CGFloat = 420
+  /// Between one ayah and the next.
+  private static let ayahSpacing: CGFloat = 16
+  /// Above each ayah, inside its row: the pane's margin, and a little more
+  /// for the tallest card, which grows the most when it takes the focus.
+  private static let ayahLead = TVTheme.railBleed + 6
   /// Between a pane and its heading: the room the pane's edge fades in.
   private static let paneSpacing = TVTheme.railFeather
   /// What a pane keeps clear inside its own edges for the focused card to
@@ -294,12 +299,19 @@ struct TVQuranScreen: View {
   private func ayahList(metrics: TVQuranAyahMetrics) -> some View {
     ScrollViewReader { proxy in
       ScrollView(.vertical, showsIndicators: false) {
-        LazyVStack(alignment: .leading, spacing: 16) {
+        // Each ayah carries the pane's own margin above it, inside its row,
+        // and the rows close up by as much, so that ayahs stand as far apart
+        // as before. A row brought to the top of the pane then has its card
+        // clear of the fading edge, where it would otherwise stand under it:
+        // the television finds such a card on the screen and leaves it there.
+        LazyVStack(alignment: .leading, spacing: Self.ayahSpacing - Self.ayahLead) {
           ForEach(Array(viewModel.selectedAyahs.enumerated()), id: \.element.id) { index, ayah in
             ayahParts(ayah, at: index, metrics: metrics)
+              .padding(.top, Self.ayahLead)
           }
         }
-        .padding(TVTheme.railBleed)
+        .padding(.horizontal, TVTheme.railBleed)
+        .padding(.bottom, TVTheme.railBleed)
       }
       // The ayahs are entered at the viewer's place from the controls above
       // them too, which are in the same pane. Said of the scroll view
@@ -361,6 +373,9 @@ struct TVQuranScreen: View {
     )
   }
 
+  /// Brings the ayah in hand to the top of the pane. It is held by its top
+  /// because that asks nothing of how tall it stands, which a list that
+  /// draws its rows as they are wanted does not know of a row far off.
   private func scrollReader(_ proxy: ScrollViewProxy, animated: Bool) {
     guard let ayah = viewModel.selectedAyah else { return }
     if animated {

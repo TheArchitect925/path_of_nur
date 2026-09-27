@@ -73,10 +73,16 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     #if targetEnvironment(simulator)
     // Simulator-only, like TV_SAMPLE_ROUTE: stand in a city without the
     // location prompt, so a screen can be screenshotted with real times.
-    if let forced = ProcessInfo.processInfo.environment["TV_SAMPLE_CITY"],
-       let city = TVPrayerCities.city(id: forced) {
-      place = Self.place(for: city)
-      status = .ready
+    if let forced = ProcessInfo.processInfo.environment["TV_SAMPLE_CITY"] {
+      if let city = TVPrayerCities.city(id: forced) {
+        place = Self.place(for: city)
+        status = .ready
+      } else if forced == "none" {
+        // An Apple TV that has been refused its location and has chosen
+        // no city.
+        place = nil
+        status = .denied
+      }
     }
     #endif
   }
@@ -249,6 +255,22 @@ final class TVPrayerService: NSObject, ObservableObject, CLLocationManagerDelega
     formatter.timeZone = calendar.timeZone
     formatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
     return formatter.string(from: now)
+  }
+
+  /// The same for the place that is kept, for what is made before the
+  /// service is: the look is chosen before the first screen is drawn.
+  static func keptSkyTimes(in userDefaults: UserDefaults, at now: Date) -> TVSkyPhase.Times? {
+    TVPrayerService(userDefaults: userDefaults).skyTimes(at: now)
+  }
+
+  /// The day's Fajr, Maghrib and Isha at the place, for the sky to turn by.
+  func skyTimes(at now: Date = Date()) -> TVSkyPhase.Times? {
+    guard let place else { return nil }
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = place.timeZone
+    let today = calendar.dateComponents([.year, .month, .day], from: now)
+    guard let day = prayerDay(today, at: place) else { return nil }
+    return TVSkyPhase.Times(fajr: day.fajr, maghrib: day.maghrib, isha: day.isha)
   }
 
   private func prayerDay(_ date: DateComponents, at place: TVPrayerPlace) -> TVPrayerDay? {

@@ -644,3 +644,43 @@ enum TVPrayerSchedule {
     return Context(current: current?.id, next: following.id, nextStart: nextStart)
   }
 }
+
+/// The sky at an hour of the day, as the phone has it (`noorSkyPhaseAt`,
+/// `lib/core/theme/living_atmosphere.dart`): it turns with the prayers.
+/// Night is from Isha to Fajr, dawn the hour and a half after Fajr, and the
+/// sky is Maghrib's from three quarters of an hour before it.
+enum TVSkyPhase: String {
+  case dawn, day, maghrib, night
+
+  struct Times: Equatable {
+    let fajr: Date
+    let maghrib: Date
+    let isha: Date
+  }
+
+  static func at(
+    _ now: Date,
+    times: Times?,
+    calendar: Calendar = .current
+  ) -> TVSkyPhase {
+    if let times {
+      if now < times.fajr || now >= times.isha {
+        return .night
+      }
+      if now < times.fajr.addingTimeInterval(90 * 60) {
+        return .dawn
+      }
+      if now >= times.maghrib.addingTimeInterval(-45 * 60) {
+        return .maghrib
+      }
+      return .day
+    }
+    // Where there are no prayer times yet, by the hour.
+    let components = calendar.dateComponents([.hour, .minute], from: now)
+    let hour = Double(components.hour ?? 12) + Double(components.minute ?? 0) / 60
+    if hour >= 21 || hour < 5 { return .night }
+    if hour < 8 { return .dawn }
+    if hour >= 17.5 { return .maghrib }
+    return .day
+  }
+}

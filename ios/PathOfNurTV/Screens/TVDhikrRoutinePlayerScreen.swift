@@ -8,6 +8,7 @@ struct TVDhikrRoutinePlayerScreen: View {
   @ObservedObject var viewModel: TVDhikrViewModel
   @Environment(\.dismiss) private var dismiss
   @FocusState private var focusedControl: String?
+  @State private var focusSeeker = TVFocusSeeker()
 
   var body: some View {
     ZStack {
@@ -36,9 +37,7 @@ struct TVDhikrRoutinePlayerScreen: View {
       .padding(.vertical, 42)
     }
     .onAppear {
-      DispatchQueue.main.async {
-        focusedControl = "routine.count"
-      }
+      focusSeeker.seek("routine.count", with: $focusedControl)
     }
     .onExitCommand {
       viewModel.closeRoutinePlayer()
@@ -82,8 +81,7 @@ struct TVDhikrRoutinePlayerScreen: View {
           .background(TVTheme.surfaceSoft, in: Capsule())
       }
       .buttonStyle(TVCardButtonStyle(shape: .capsule))
-      .tvFocusableCard()
-      .focused($focusedControl, equals: "routine.exit")
+      .tvFocusID($focusedControl, "routine.exit")
       .accessibilityLabel(tvLocalized("Leave routine"))
     }
   }
@@ -267,7 +265,7 @@ struct TVDhikrRoutinePlayerScreen: View {
           focusID: "routine.again"
         ) {
           viewModel.restartRoutine()
-          DispatchQueue.main.async { focusedControl = "routine.count" }
+          focusSeeker.seek("routine.count", with: $focusedControl)
         }
       }
     }
@@ -276,7 +274,7 @@ struct TVDhikrRoutinePlayerScreen: View {
     .padding(.vertical, 40)
     .tvSurfaceCard(elevated: true, emphasized: true)
     .onAppear {
-      DispatchQueue.main.async { focusedControl = "routine.done" }
+      focusSeeker.seek("routine.done", with: $focusedControl)
     }
   }
 
@@ -295,9 +293,10 @@ struct TVDhikrRoutinePlayerScreen: View {
         .padding(.vertical, 16)
         .background(emphasized ? TVTheme.accentStrong : TVTheme.surfaceSoft, in: Capsule())
     }
+    // The button takes the focus itself. Wrapped in a card that takes it,
+    // the card has the focus and a press never reaches the button.
     .buttonStyle(TVCardButtonStyle(shape: .capsule))
-    .tvFocusableCard()
-    .focused($focusedControl, equals: focusID)
+    .tvFocusID($focusedControl, focusID)
     .accessibilityLabel(title)
   }
 }

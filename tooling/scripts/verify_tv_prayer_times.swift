@@ -222,8 +222,61 @@ do {
   }
 }
 
+// The sky, against the phone's (tools/tv_sky_phase_reference.json).
+let skyPath = CommandLine.arguments.count > 4
+  ? CommandLine.arguments[4]
+  : "tools/tv_sky_phase_reference.json"
+var skies = 0
+if
+  let data = FileManager.default.contents(atPath: skyPath),
+  let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+  let cases = root["cases"] as? [[String: Any]]
+{
+  for entry in cases {
+    guard
+      let fajr = entry["fajr"] as? Int,
+      let maghrib = entry["maghrib"] as? Int,
+      let isha = entry["isha"] as? Int,
+      let rows = entry["moments"] as? [[Any]]
+    else {
+      failures.append("sky: unreadable case")
+      continue
+    }
+    let times = TVSkyPhase.Times(
+      fajr: Date(timeIntervalSince1970: Double(fajr)),
+      maghrib: Date(timeIntervalSince1970: Double(maghrib)),
+      isha: Date(timeIntervalSince1970: Double(isha))
+    )
+    for row in rows {
+      let moment = row[0] as? Int ?? 0
+      let expected = row[1] as? String ?? ""
+      let phase = TVSkyPhase.at(Date(timeIntervalSince1970: Double(moment)), times: times)
+      skies += 1
+      if phase.rawValue != expected {
+        failures.append("sky: at \(moment) it is \(phase.rawValue), the phone says \(expected)")
+      }
+    }
+  }
+} else {
+  failures.append("cannot read \(skyPath)")
+}
+
+// Where there are no prayer times, by the hour of the place.
+do {
+  var toronto = Calendar(identifier: .gregorian)
+  toronto.timeZone = TimeZone(identifier: "America/Toronto")!
+  for (hour, minute, expected) in [(4, 59, "night"), (5, 0, "dawn"), (7, 59, "dawn"), (8, 0, "day"), (17, 29, "day"), (17, 30, "maghrib"), (20, 59, "maghrib"), (21, 0, "night")] {
+    let now = toronto.date(from: DateComponents(year: 2026, month: 9, day: 27, hour: hour, minute: minute))!
+    let phase = TVSkyPhase.at(now, times: nil, calendar: toronto)
+    if phase.rawValue != expected {
+      failures.append("sky: by the hour, \(hour):\(minute) is \(phase.rawValue), not \(expected)")
+    }
+  }
+}
+
 if failures.isEmpty {
   print("\(checked) days agree with the phone to the minute")
+  print("\(skies) moments of the sky are the phone's")
   print("\(laidOut) days are laid out as the phone lays them out, and \(moments) moments in them fall to the same prayer")
   print("\(named) days are named in the Hijri year as the phone names them")
   print("  (the system's tabular calendar names \(systemDiffers) of them otherwise)")

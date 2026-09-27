@@ -94,20 +94,17 @@ struct TVDhikrScreen: View {
     }
     .tvPreferredFocus($focusedSection, appViewModel.preferredContentSection(for: .dhikr))
     .onAppear {
+      viewModel.refreshDay()
       restorePreferredFocus()
     }
     .onChange(of: appViewModel.contentFocusRequest) { _ in
       restorePreferredFocus()
     }
     .onChange(of: focusedSection) { section in
-      guard let section else { return }
-      if section.hasPrefix("dhikr.modes") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrModes, for: .dhikr)
-      } else if section.hasPrefix("dhikr.routines") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrRoutines, for: .dhikr)
-      } else if section.hasPrefix("dhikr.guidedFlow") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.dhikrGuidedFlow, for: .dhikr)
-      }
+      guard let section, section.hasPrefix("dhikr.") else { return }
+      // The control itself, so that the focus returns to it and not to the
+      // first of its row.
+      appViewModel.markContentSectionFocused(section, for: .dhikr)
     }
     .fullScreenCover(isPresented: $viewModel.isRoutinePlayerPresented) {
       TVDhikrRoutinePlayerScreen(viewModel: viewModel)
@@ -140,11 +137,7 @@ struct TVDhikrScreen: View {
 
       Spacer(minLength: 0)
 
-      Text(
-        done
-          ? tvLocalized("Done today")
-          : tvLocalized("%d remembrances · about %d min", routine.totalCount, routine.estimatedMinutes)
-      )
+      Text(routineLine(routine, done: done))
       .font(TVTypography.detail)
       .foregroundColor(TVTheme.textMuted)
     }
@@ -152,6 +145,17 @@ struct TVDhikrScreen: View {
     .padding(TVTheme.cardPadding)
     .tvSurfaceCard(elevated: true, emphasized: done)
     .tvFocusableCard()
+  }
+
+  /// What the card says of the day: done, left part way, or not yet begun.
+  private func routineLine(_ routine: TVDhikrRoutine, done: Bool) -> String {
+    if done {
+      return tvLocalized("Done today")
+    }
+    if let said = viewModel.remembrancesSaidToday(of: routine) {
+      return tvLocalized("%d of %d remembrances", said, routine.totalCount)
+    }
+    return tvLocalized("%d remembrances · about %d min", routine.totalCount, routine.estimatedMinutes)
   }
 
   private func restorePreferredFocus() {
