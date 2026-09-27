@@ -76,6 +76,34 @@ archives, signs at export, inspects the package and leaves it at
 `build/ios/ipa/path_of_nur_tv.ipa` for Transporter. The app shares the
 iPhone app's bundle id and App Store listing.
 
+```
+bash scripts/capture_tvos_store_screenshots.sh
+```
+
+takes the App Store screenshots, nine to a language, into
+`build/store/tvos/`. The listing text, the notes for App Review and the
+privacy answers are in `docs/tvos_store_listing.md`.
+
+## Looking at a screen without a remote
+
+A television cannot be driven from a script, so the app takes launch
+overrides in the simulator only (`SIMCTL_CHILD_<NAME>=<value> xcrun simctl
+launch …`):
+
+| Override | Opens |
+| --- | --- |
+| `TV_SAMPLE_ROUTE` | a section: `home`, `prayer`, `quran`, `dhikr`, `settings` |
+| `TV_SAMPLE_SECTION` | focus on a part of it, such as `settings.prayer` |
+| `TV_SAMPLE_CITY` | prayer times for a city, without the location prompt |
+| `TV_SAMPLE_SURAH` | a surah in the reader, by number |
+| `TV_SAMPLE_LISTENING` | `1` for listening mode |
+| `TV_SAMPLE_ROUTINE` | a routine in the player: `after-salah`, `morning`, `evening`, `sleep` |
+| `TV_SAMPLE_CITY_PICKER` | `1` for the list of cities |
+| `TV_SAMPLE_THEME`, `TV_SAMPLE_PHASE` | a look, and the hour it is dressed for |
+
+What these cannot show is how focus travels. That wants a person with a
+remote.
+
 ## Copy
 
 The app looks strings up by their English text. Every line a viewer can reach
