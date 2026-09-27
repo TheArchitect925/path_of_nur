@@ -14,7 +14,10 @@ struct TVRootView: View {
         Group {
           switch appViewModel.selectedRoute {
           case .home:
-            TVHomeScreen(viewModel: appViewModel.homeViewModel)
+            TVHomeScreen(
+              viewModel: appViewModel.homeViewModel,
+              quran: appViewModel.quranViewModel
+            )
           case .profiles:
             TVProfilesScreen(viewModel: appViewModel.profilesViewModel)
           case .quran:

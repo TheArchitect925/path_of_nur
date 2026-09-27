@@ -13,7 +13,7 @@ final class TVAppViewModel: ObservableObject {
   let profilesViewModel: TVProfilesViewModel
   let prayerService: TVPrayerService
   let homeViewModel: TVHomeViewModel
-  let quranViewModel = TVQuranViewModel()
+  let quranViewModel: TVQuranViewModel
   let favoritesViewModel = TVFavoritesViewModel()
   let settingsViewModel: TVSettingsViewModel
   let arabicViewModel = TVArabicViewModel()
@@ -29,6 +29,15 @@ final class TVAppViewModel: ObservableObject {
     TVTelemetry.bootstrap(userDefaults: userDefaults)
     let prayerService = TVPrayerService(userDefaults: userDefaults)
     self.prayerService = prayerService
+    #if targetEnvironment(simulator)
+    // TV_SAMPLE_FRESH=1 opens the app as it is before anything has been
+    // read, whatever an earlier launch left behind.
+    if ProcessInfo.processInfo.environment["TV_SAMPLE_FRESH"] == "1" {
+      userDefaults.removeObject(forKey: TVQuranViewModel.placeStorageKey)
+    }
+    #endif
+    let quranViewModel = TVQuranViewModel(userDefaults: userDefaults)
+    self.quranViewModel = quranViewModel
     homeViewModel = TVHomeViewModel(prayerService: prayerService)
     prayerViewModel = TVPrayerViewModel(prayerService: prayerService)
     navigationItems = TVRoute.released.map(TVNavigationItem.init)
@@ -102,6 +111,17 @@ final class TVAppViewModel: ObservableObject {
     quranViewModel.onDiagnosticsEvent = { [weak self] name, metadata in
       guard let self else { return }
       TVTelemetry.logEvent(name, metadata: metadata, userDefaults: self.userDefaults)
+    }
+    // The reciter chosen beside the reader is the reciter from then on, as
+    // the one chosen in Settings is.
+    quranViewModel.onReciterChosen = { [weak self] reciter in
+      guard let self else { return }
+      self.settingsViewModel.selectDefaultReciter(reciter)
+      self.persistSessionState()
+    }
+    // The verse of the day turns with the day, while the app is open.
+    homeViewModel.onRefresh = { [weak self] now in
+      self?.quranViewModel.refreshVerseOfTheDay(now: now)
     }
     quranViewModel.onDiagnosticsError = { [weak self] name, message, metadata in
       guard let self else { return }
@@ -178,6 +198,16 @@ final class TVAppViewModel: ObservableObject {
       focusContent(preferredSection: preferredContentSection(for: route))
     } else {
       focusNavigation()
+    }
+  }
+
+  /// Opens the Qur'an at a place: in the reader, or full screen to listen.
+  func openQuran(at place: TVQuranPlace, listening: Bool = false) {
+    quranViewModel.select(surahNumber: place.surahNumber, ayahNumber: place.ayahNumber)
+    preferredContentSectionByRoute[.quran] = TVFocusSectionId.quranReader
+    navigate(to: .quran, preferredColumn: .content)
+    if listening {
+      quranViewModel.openListeningMode()
     }
   }
 
@@ -411,7 +441,7 @@ final class TVSettingsViewModel: ObservableObject {
         storedStartup.flatMap { TVStartupPreference.released.contains($0) ? $0 : nil } ??
         .lastUsed
     defaultReciter =
-        TVQuranReciter(rawValue: defaultReciterRawValue ?? "") ?? .husary
+        TVQuranReciter(rawValue: defaultReciterRawValue ?? "") ?? .phoneDefault
     self.showListeningTranslationByDefault =
         showListeningTranslationByDefault ?? true
     self.showListeningTransliterationByDefault =
@@ -1174,13 +1204,12 @@ final class TVKidsViewModel: ObservableObject {
 
 final class TVHomeViewModel: ObservableObject {
   @Published private(set) var hero: TVHeroContent
-  @Published private(set) var verse: TVHomeVerse = TVSeedRepository.homeVerse()
   @Published private(set) var prayerSummaryLine: String = ""
   @Published private(set) var prayerSummaryDetail: String = ""
   @Published private(set) var prayerTimes: [TVPrayerTime] = []
-  @Published private(set) var continueJourneyItems: [TVContinueJourneyItem] =
-      TVSeedRepository.homeContinueJourneyItems()
-  @Published private(set) var continueReading: TVContinueReadingSummary = TVSeedRepository.continueReading
+
+  /// Called with the time whenever Home looks at the clock, once a minute.
+  var onRefresh: ((Date) -> Void)?
 
   var continueJourneySummaryTitle: String {
     tvLocalized("Continue")
@@ -1213,6 +1242,7 @@ final class TVHomeViewModel: ObservableObject {
     prayerSummaryLine = snapshot.summaryLine
     prayerSummaryDetail = snapshot.detailLine
     prayerTimes = snapshot.prayerTimes
+    onRefresh?(now)
   }
 }
 
@@ -1351,15 +1381,20 @@ final class TVLearnViewModel: ObservableObject {
 }
 
 final class TVQuranViewModel: ObservableObject {
+  static let placeStorageKey = "PathOfNurTV.quran.place"
+
   @Published private(set) var surahs: [TVQuranSurah] = TVSeedRepository.quranSurahs
-  @Published private(set) var dailyVerse: TVQuranDailyVerse = TVSeedRepository.dailyVerse
-  @Published private(set) var continueReading: TVContinueReadingSummary = TVSeedRepository.continueReading
+  /// The verse the phone shows today.
+  @Published private(set) var dailyVerse: TVQuranDailyVerse
+  /// Where the viewer last was, reading or listening, kept between
+  /// launches. There is none until something has been read.
+  @Published private(set) var place: TVQuranPlace?
   @Published private(set) var browseCollections: [TVQuranBrowseCollection] =
       TVSeedRepository.quranBrowseCollections()
   @Published private(set) var selectedAyahs: [TVQuranAyah]
   @Published var selectedSurah: TVQuranSurah
   @Published var selectedAyahIndex: Int = 0
-  @Published var selectedReciter: TVQuranReciter = .husary
+  @Published var selectedReciter: TVQuranReciter = .phoneDefault
   @Published var isListeningModePresented = false
   @Published var showListeningTranslation = true
   @Published var showListeningTransliteration = true
@@ -1369,15 +1404,45 @@ final class TVQuranViewModel: ObservableObject {
 
   var onDiagnosticsEvent: ((String, [String: String]) -> Void)?
   var onDiagnosticsError: ((String, String, [String: String]) -> Void)?
+  var onReciterChosen: ((TVQuranReciter) -> Void)?
 
+  private let userDefaults: UserDefaults
+  private var verseOfTheDayIndex: Int
   private let player = AVPlayer()
   private var endObserver: NSObjectProtocol?
   private var failureObserver: NSObjectProtocol?
   private var itemStatusObservation: NSKeyValueObservation?
 
-  init() {
-    selectedSurah = TVSeedRepository.quranSurahs.first!
-    selectedAyahs = TVSeedRepository.ayahs(for: TVSeedRepository.quranSurahs.first!.number)
+  /// Simulator-only, like TV_SAMPLE_ROUTE: TV_SAMPLE_DATE=2026-10-16 is the
+  /// day the verse of the day is chosen for.
+  private static let sampleDate: Date? = {
+    #if targetEnvironment(simulator)
+    guard let day = ProcessInfo.processInfo.environment["TV_SAMPLE_DATE"] else {
+      return nil
+    }
+    let formatter = DateFormatter()
+    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd HH:mm"
+    return formatter.date(from: "\(day) 12:00")
+    #else
+    return nil
+    #endif
+  }()
+
+  init(userDefaults: UserDefaults = .standard, now: Date = Date()) {
+    self.userDefaults = userDefaults
+    let now = Self.sampleDate ?? now
+    // The reader opens where the viewer left it, and at the beginning the
+    // first time.
+    let kept = TVQuranPlace(key: userDefaults.string(forKey: Self.placeStorageKey))
+    let surah = TVSeedRepository.surah(kept?.surahNumber ?? 1) ?? TVSeedRepository.quranSurahs.first!
+    place = kept
+    selectedSurah = surah
+    selectedAyahs = TVSeedRepository.ayahs(for: surah.number)
+    selectedAyahIndex = (kept?.ayahNumber ?? 1) - 1
+    verseOfTheDayIndex = TVQuranVerseOfTheDay.dayIndex(for: now)
+    dailyVerse = TVSeedRepository.dailyVerse(on: now)
     endObserver = NotificationCenter.default.addObserver(
       forName: .AVPlayerItemDidPlayToEndTime,
       object: nil,
@@ -1387,7 +1452,8 @@ final class TVQuranViewModel: ObservableObject {
       if self.repeatCurrentAyah {
         self.playSelectedAyah()
       } else {
-        self.playNextAyah(autoStart: true)
+        // The recitation stops at the end of a surah, as the phone's does.
+        self.step(by: 1, autoStart: true, crossesSurahs: false)
       }
     }
     failureObserver = NotificationCenter.default.addObserver(
@@ -1417,8 +1483,28 @@ final class TVQuranViewModel: ObservableObject {
     return selectedAyahs[selectedAyahIndex]
   }
 
+  /// The place to go on from: where the viewer was, or the beginning.
+  var continueReading: TVContinueReadingSummary {
+    let place = self.place ?? TVQuranPlace(surahNumber: 1, ayahNumber: 1)
+    return TVContinueReadingSummary(
+      surahNumber: place.surahNumber,
+      surahName: TVSeedRepository.surahName(place.surahNumber),
+      ayahNumber: place.ayahNumber
+    )
+  }
+
+  var continueReadingPlace: TVQuranPlace {
+    TVQuranPlace(
+      surahNumber: continueReading.surahNumber,
+      ayahNumber: continueReading.ayahNumber
+    )
+  }
+
   var continueReadingLine: String {
-    String(
+    guard place != nil else {
+      return continueReading.surahName
+    }
+    return String(
       format: tvLocalized("%@ %d:%d"),
       continueReading.surahName,
       continueReading.surahNumber,
@@ -1427,7 +1513,25 @@ final class TVQuranViewModel: ObservableObject {
   }
 
   var continueReadingSummaryTitle: String {
-    tvLocalized("Continue reading")
+    place == nil ? tvLocalized("Start reading") : tvLocalized("Continue reading")
+  }
+
+  /// The viewer is at this ayah, reading it or hearing it recited. Any part
+  /// of the ayah is the ayah: "2:282.p3" is 2:282.
+  func keepPlace(ayahID: String) {
+    let ayah = ayahID.split(separator: ".").first.map(String.init)
+    guard let kept = TVQuranPlace(key: ayah), kept != place else { return }
+    place = kept
+    userDefaults.set(kept.key, forKey: Self.placeStorageKey)
+  }
+
+  /// The verse of the day turns with the day.
+  func refreshVerseOfTheDay(now: Date = Date()) {
+    let now = Self.sampleDate ?? now
+    let index = TVQuranVerseOfTheDay.dayIndex(for: now)
+    guard index != verseOfTheDayIndex else { return }
+    verseOfTheDayIndex = index
+    dailyVerse = TVSeedRepository.dailyVerse(on: now)
   }
 
   var dailyVerseSummaryTitle: String {
@@ -1514,6 +1618,7 @@ final class TVQuranViewModel: ObservableObject {
 
   func selectReciter(_ reciter: TVQuranReciter) {
     selectedReciter = reciter
+    onReciterChosen?(reciter)
     onDiagnosticsEvent?(
       "tvos_quran_reciter_selected",
       [
@@ -1530,10 +1635,13 @@ final class TVQuranViewModel: ObservableObject {
     showTranslation: Bool,
     showTransliteration: Bool
   ) {
+    // Only a change of voice begins the ayah again. Showing or hiding a
+    // line of text does not interrupt the recitation.
+    let changesVoice = reciter != selectedReciter
     selectedReciter = reciter
     showListeningTranslation = showTranslation
     showListeningTransliteration = showTransliteration
-    if isPlaying {
+    if isPlaying && changesVoice {
       playSelectedAyah()
     }
   }
@@ -1582,12 +1690,16 @@ final class TVQuranViewModel: ObservableObject {
     showListeningTransliteration.toggle()
   }
 
+  /// The ayah before, which for the first ayah of a surah is the last of
+  /// the surah before it.
   func playPreviousAyah() {
-    playPreviousAyah(autoStart: isPlaying)
+    step(by: -1, autoStart: isPlaying, crossesSurahs: true)
   }
 
+  /// The ayah after, which for the last ayah of a surah is the first of
+  /// the surah after it.
   func playNextAyah() {
-    playNextAyah(autoStart: isPlaying)
+    step(by: 1, autoStart: isPlaying, crossesSurahs: true)
   }
 
   func playSelectedAyah() {
@@ -1611,6 +1723,7 @@ final class TVQuranViewModel: ObservableObject {
     }
 
     playbackErrorMessage = nil
+    keepPlace(ayahID: ayah.id)
     let item = AVPlayerItem(url: url)
     itemStatusObservation = item.observe(\.status) { [weak self] item, _ in
       guard item.status == .failed else { return }
@@ -1646,24 +1759,22 @@ final class TVQuranViewModel: ObservableObject {
     )
   }
 
-  private func playPreviousAyah(autoStart: Bool) {
+  /// Moves an ayah on or back. At either end of a surah the viewer's own
+  /// press crosses into its neighbour; the recitation, left to itself, stops
+  /// there. At either end of the Qur'an there is nowhere further.
+  private func step(by offset: Int, autoStart: Bool, crossesSurahs: Bool) {
     guard !selectedAyahs.isEmpty else { return }
-    selectedAyahIndex = max(selectedAyahIndex - 1, 0)
-    if autoStart {
-      playSelectedAyah()
+    let index = selectedAyahIndex + offset
+    if selectedAyahs.indices.contains(index) {
+      selectedAyahIndex = index
+    } else if crossesSurahs, let neighbour = TVSeedRepository.surah(selectedSurah.number + offset) {
+      selectedSurah = neighbour
+      selectedAyahs = TVSeedRepository.ayahs(for: neighbour.number)
+      selectedAyahIndex = offset > 0 ? 0 : max(selectedAyahs.count - 1, 0)
     } else {
-      stopPlayback()
-    }
-  }
-
-  private func playNextAyah(autoStart: Bool) {
-    guard !selectedAyahs.isEmpty else { return }
-    let nextIndex = min(selectedAyahIndex + 1, selectedAyahs.count - 1)
-    guard nextIndex != selectedAyahIndex || !autoStart else {
       stopPlayback()
       return
     }
-    selectedAyahIndex = nextIndex
     if autoStart {
       playSelectedAyah()
     } else {

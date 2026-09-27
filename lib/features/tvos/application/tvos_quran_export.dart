@@ -2,11 +2,16 @@ import 'dart:convert';
 
 import 'package:quran/quran.dart' as q;
 
+import '../../learn/quran/data/quran_repository.dart';
 import '../../learn/quran/data/quran_transliteration_local_data.dart';
 
 /// Where the Apple TV target keeps the Qur'an it shows.
 const tvQuranIndexPath = 'ios/PathOfNurTV/Data/TVQuranData.swift';
 const tvQuranResourceDirectory = 'ios/PathOfNurTV/Data/Quran';
+
+/// What the phone answers for the verse of the day, for the Swift to be held
+/// to (`scripts/verify_tv_quran_library.sh`). It is not bundled.
+const tvQuranVerseOfTheDayPath = 'tools/tv_verse_of_the_day_reference.json';
 
 const tvQuranArabicFile = 'TVQuranArabic.json';
 const tvQuranTransliterationFile = 'TVQuranTransliteration.json';
@@ -99,6 +104,36 @@ String tvQuranTransliteration(int surah, int ayah) {
 /// some verses carry at their ends.
 String tvQuranTranslation(int surah, int ayah, q.Translation translation) =>
     q.getVerseTranslation(surah, ayah, translation: translation).trim();
+
+/// The verse the phone shows on each day of a leap year, asked of the phone's
+/// own repository at noon, and the days it counts for a few moments that
+/// fall either side of a change of the clocks.
+String renderTvVerseOfTheDayReference() {
+  final repository = QuranRepository();
+  String verse(DateTime date) {
+    final answer = repository.getDailyVerse(
+      date: date,
+      translationCode: 'en.sahih',
+    );
+    return '${answer.surahNumber}:${answer.ayahNumber}';
+  }
+
+  final byDay = [
+    for (var day = 0; day < 366; day++) verse(DateTime(2028, 1, 1 + day, 12)),
+  ];
+  final buffer = StringBuffer('{\n')
+    ..writeln(
+      '  "source": "QuranRepository.getDailyVerse, package:quran ${q.totalVerseCount} verses",',
+    )
+    ..writeln('  "byDayIndex": [');
+  for (var day = 0; day < byDay.length; day++) {
+    buffer.writeln('    "${byDay[day]}"${day < byDay.length - 1 ? ',' : ''}');
+  }
+  buffer
+    ..writeln('  ]')
+    ..writeln('}');
+  return buffer.toString();
+}
 
 String _document(String Function(int surah, int ayah) verse) {
   final buffer = StringBuffer('[\n');

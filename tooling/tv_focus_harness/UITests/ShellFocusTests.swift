@@ -136,4 +136,192 @@ final class ShellFocusTests: TVFocusTestCase {
     sleep(2)
     expect(focus, "settings.startup", "pressing it opens Settings")
   }
+
+  // MARK: - Home and the Qur'an
+
+  func test70_theFirstTimeThereIsNoPlaceToGoOnFrom() {
+    launch(["TV_SAMPLE_ROUTE": "home"])
+    log("== Home, before anything has been read")
+    expect(focus, "home.continueJourney", "opens on the first card")
+    let card: String = focusedElement.label
+    note("the first card", card)
+    let starts = card.contains("Start reading") && card.contains("Al Fatiha") && !card.contains("1:")
+    log("\(starts ? "PASS" : "FAIL")  the first card offers to start reading, at Al Fatiha")
+    XCTAssertTrue(starts, "the first card offers to start reading")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.reader.1:1", "pressing it opens the reader at the beginning")
+  }
+
+  func test71_thePlaceIsKept() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader", "TV_SAMPLE_SURAH": "36"])
+    log("== The place is kept")
+    expect(focus, "quran.reader.36:1", "Yaseen is open")
+    expect(press(.down, 6), "quran.reader.36:7", "down six ayahs")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "home"], keeping: true)
+    expect(focus, "home.continueJourney", "opened again, on Home")
+    let card: String = focusedElement.label
+    note("the first card", card)
+    let goesOn = card.contains("Continue reading") && card.contains("36:7")
+    log("\(goesOn ? "PASS" : "FAIL")  the first card goes on from 36:7")
+    XCTAssertTrue(goesOn, "the first card goes on from 36:7")
+    shot("71-home-with-a-place")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.reader.36:7", "pressing it opens the reader there")
+    expectFocusWithinPane("36:7 is wholly in the pane")
+    expect(press(.left), "quran.browse.36", "and Yaseen is the surah in the list")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "quran"], keeping: true)
+    expect(focus, "quran.browse.36", "opened again on the Qur’an, the list is at Yaseen")
+    expect(press(.right), "quran.reader.36:7", "and the reader at 36:7")
+  }
+
+  func test72_homeListensFromThePlace() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader", "TV_SAMPLE_SURAH": "67", "TV_SAMPLE_AYAH": "3"])
+    log("== Home, Listen")
+    expect(focus, "quran.reader.67:3", "Al Mulk is open at its third ayah")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "home"], keeping: true)
+    expect(press(.right), "home.continueJourney.resume_listening", "right to Listen")
+    note("the card", focusedElement.label)
+    press(.select)
+    sleep(3)
+    expect(focus, "listening.playPause", "pressing it opens listening mode")
+    press(.select)
+    sleep(1)
+    expect("\(ayahInHeading)", "3", "at the ayah the viewer was on")
+    let names = app.staticTexts.allElementsBoundByIndex.map(\.label).contains { $0.contains("67:3") }
+    log("\(names ? "PASS" : "FAIL")  the heading names 67:3")
+    XCTAssertTrue(names, "the heading names 67:3")
+    shot("72-listening-from-home")
+  }
+
+  func test73_homeOpensTheVerseOfTheDay() {
+    launch(["TV_SAMPLE_ROUTE": "home", "TV_SAMPLE_SECTION": "home.verse"])
+    log("== Home, Today’s verse")
+    expect(focus, "home.verse", "opens on the verse")
+    let card: String = focusedElement.label
+    note("the verse", card)
+    // "Al Baqarah 2:263"
+    let place = card.split(separator: " ").last.map(String.init) ?? ""
+    XCTAssertTrue(place.contains(":"), "the verse says where it is from")
+    let frame: CGRect = focusedElement.frame
+    let fits = frame.minY >= 88 - 0.5 && frame.maxY <= Self.contentBottom + 0.5
+    log("\(fits ? "PASS" : "FAIL")  the verse is wholly on the screen: \(Int(frame.minY))…\(Int(frame.maxY))")
+    XCTAssertTrue(fits, "the verse is wholly on the screen")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.reader.\(place)", "pressing it opens the reader at the verse")
+    expect(press(.menu), "quran.browse.\(place.split(separator: ":").first ?? "")", "Menu returns to its surah")
+  }
+
+  func test78_aLongVerseOfTheDayFitsHome() {
+    launch(["TV_SAMPLE_ROUTE": "home", "TV_SAMPLE_SECTION": "home.verse", "TV_SAMPLE_DATE": "2026-10-16"])
+    log("== Home, a long verse of the day")
+    expect(focus, "home.verse", "opens on the verse")
+    expect(focusedElement.label, "Al Baqarah 2:282", "which on 16 October is 2:282")
+    let frame: CGRect = focusedElement.frame
+    let fits = frame.minY >= 88 - 0.5 && frame.maxY <= Self.contentBottom + 0.5
+    log("\(fits ? "PASS" : "FAIL")  the verse is wholly on the screen: \(Int(frame.minY))…\(Int(frame.maxY))")
+    XCTAssertTrue(fits, "the verse is wholly on the screen")
+    let says = app.staticTexts["The rest is in the reader."].exists
+        || (focusedElement.label + focusedElement.debugDescription).contains("The rest is in the reader.")
+    log("\(says ? "PASS" : "FAIL")  the card says that the rest is in the reader")
+    XCTAssertTrue(says, "the card says there is more")
+    shot("78-home-2-282")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.reader.2:282", "pressing it opens the reader at 2:282, part 1")
+  }
+
+  func test74_theQuranShowsTheSameVerseAsHome() {
+    launch(["TV_SAMPLE_ROUTE": "home", "TV_SAMPLE_SECTION": "home.verse"])
+    log("== One verse of the day")
+    let home = (focusedElement.label as String).split(separator: " ").last.map(String.init) ?? "?"
+    app.terminate()
+    launch(["TV_SAMPLE_ROUTE": "quran"])
+    press(.up)
+    expect(press(.right), "quran.browse.shortcut.today", "the Qur’an’s own shortcut")
+    let quran = "\(focusedElement.label) \(focusedElement.value as? String ?? "")"
+    note("Home", home)
+    note("Qur’an", quran)
+    let same = quran.contains(home)
+    log("\(same ? "PASS" : "FAIL")  the Qur’an names the verse Home shows: \(home)")
+    XCTAssertTrue(same, "one verse of the day")
+  }
+
+  func test75_nextAndPreviousCrossIntoTheNextSurah() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.reader", "TV_SAMPLE_SURAH": "1", "TV_SAMPLE_AYAH": "7"])
+    log("== From one surah into the next")
+    expect(focus, "quran.reader.1:7", "opens at the last ayah of Al Fatiha")
+    press(.left)
+    press(.right)
+    var presses = 0
+    while focus != "quran.playback" && presses < 10 {
+      press(.up)
+      presses += 1
+    }
+    expect(press(.right), "quran.playback.next", "to next")
+    press(.select)
+    sleep(2)
+    expect(focus, "quran.playback.next", "the focus stays on next")
+    let opened = app.buttons["quran.reader.2:1"].exists
+    log("\(opened ? "PASS" : "FAIL")  next from the last ayah opens the surah after, at its first")
+    XCTAssertTrue(opened, "Al Baqarah is open")
+    expect(value(of: "quran.browse.2"), "Selected", "and the list has moved to it")
+    shot("75-crossed")
+    expect(press(.left, 2), "quran.playback.previous", "to previous")
+    press(.select)
+    sleep(2)
+    let back = app.buttons["quran.reader.1:7"].exists
+    log("\(back ? "PASS" : "FAIL")  previous from the first ayah opens the surah before, at its last")
+    XCTAssertTrue(back, "Al Fatiha is open at its last ayah")
+    expect(press(.down), "quran.reader.1:7", "down from the controls is the ayah in hand")
+  }
+
+  func test76_theEndsOfTheQuran() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SURAH": "114", "TV_SAMPLE_AYAH": "6", "TV_SAMPLE_LISTENING": "1"])
+    log("== The end of the Qur’an")
+    expect(focus, "listening.playPause", "listening mode is open")
+    press(.select)
+    sleep(1)
+    expect("\(ayahInHeading)", "6", "at the last ayah")
+    expect(press(.right), "listening.next", "to next")
+    press(.select)
+    sleep(1)
+    let stays = app.staticTexts.allElementsBoundByIndex.map(\.label).contains { $0.contains("114:6") }
+    log("\(stays ? "PASS" : "FAIL")  next from the last ayah of the Qur’an stays there")
+    XCTAssertTrue(stays, "there is nowhere further")
+  }
+
+  func test77_theReciterChosenIsKept() {
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback"])
+    log("== The reciter is kept")
+    expect(focus, "quran.playback", "opens on play, beside the reader")
+    expect(press(.up), "quran.playback.listening", "up to the hero")
+    expect(press(.left), "quran.playback.reciter.abdulbasit", "left to Basit")
+    press(.select)
+    sleep(1)
+    expect(value(of: "quran.playback.reciter.abdulbasit"), "Selected", "pressing it chooses Basit")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "quran"], keeping: true)
+    expect(value(of: "quran.playback.reciter.abdulbasit"), "Selected", "opened again, Basit is still chosen")
+    app.terminate()
+
+    launch(["TV_SAMPLE_ROUTE": "settings", "TV_SAMPLE_SECTION": "settings.listening"], keeping: true)
+    note("Settings opens on", focus)
+    // Put it back, so that the next run starts as this one did.
+    launch(["TV_SAMPLE_ROUTE": "quran", "TV_SAMPLE_SECTION": "quran.playback"], keeping: true)
+    press(.up)
+    expect(press(.left, 2), "quran.playback.reciter.alafasy", "left to Alafasy")
+    press(.select)
+    sleep(1)
+    expect(value(of: "quran.playback.reciter.alafasy"), "Selected", "Alafasy, the phone’s reciter, is chosen again")
+  }
 }

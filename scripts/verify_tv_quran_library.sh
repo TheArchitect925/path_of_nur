@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # The television's Qur'an reader against the files it reads, surah by surah,
-# and the parts it sets a long ayah in against the ayah, word by word.
+# the parts it sets a long ayah in against the ayah, word by word, and the
+# verse of the day against the phone's, day by day.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -21,4 +22,4 @@ env -u TOOLCHAINS xcrun swiftc -O \
   "$BUILD_DIR/main.swift" \
   -o "$BUILD_DIR/verify"
 
-"$BUILD_DIR/verify" ios/PathOfNurTV/Data/Quran assets/fonts
+"$BUILD_DIR/verify" ios/PathOfNurTV/Data/Quran assets/fonts tools/tv_verse_of_the_day_reference.json

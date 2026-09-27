@@ -344,13 +344,6 @@ struct TVSystemStatusSnapshot: Hashable {
   let chips: [String]
 }
 
-struct TVHomeVerse: Hashable {
-  let arabic: String
-  let transliteration: String
-  let translation: String
-  let locationLabel: String
-}
-
 struct TVContinueReadingSummary: Hashable {
   let surahNumber: Int
   let surahName: String
@@ -488,6 +481,10 @@ enum TVQuranReciter: String, CaseIterable {
   case husary
   case alafasy
   case abdulbasit
+
+  /// The reciter a new viewer hears, which is the phone's
+  /// (`QuranAudioRepository.defaultReciterId`).
+  static let phoneDefault = TVQuranReciter.alafasy
 
   var displayName: String {
     switch self {

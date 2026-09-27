@@ -17,6 +17,7 @@ void main() {
 
   final generated = <String, String>{
     tvQuranIndexPath: renderTvQuranSwift(),
+    tvQuranVerseOfTheDayPath: renderTvVerseOfTheDayReference(),
     for (final entry in renderTvQuranResources().entries)
       '$tvQuranResourceDirectory/${entry.key}': entry.value,
   };

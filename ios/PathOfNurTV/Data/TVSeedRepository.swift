@@ -7,23 +7,25 @@ enum TVSeedRepository {
 
   static let quranSurahs: [TVQuranSurah] = TVQuranData.surahs
 
-  static let continueReading = TVContinueReadingSummary(
-    surahNumber: 1,
-    surahName: surahName(1),
-    ayahNumber: 5
-  )
-
-  static let dailyVerse: TVQuranDailyVerse = {
-    let verse = ayah(surah: 94, number: 5)
+  /// The verse of the day, which is the phone's
+  /// (`TVQuranVerseOfTheDay`).
+  static func dailyVerse(on date: Date) -> TVQuranDailyVerse {
+    let place = TVQuranVerseOfTheDay.place(on: date)
+    let verse = ayah(surah: place.surahNumber, number: place.ayahNumber)
     return TVQuranDailyVerse(
-      surahNumber: 94,
-      ayahNumber: 5,
+      surahNumber: place.surahNumber,
+      ayahNumber: place.ayahNumber,
       arabic: verse?.arabic ?? "",
       transliteration: verse?.transliteration ?? "",
       translation: verse?.translation ?? "",
-      locationLabel: "\(surahName(94)) 94:5"
+      locationLabel: String(
+        format: tvLocalized("%@ %d:%d"),
+        surahName(place.surahNumber),
+        place.surahNumber,
+        place.ayahNumber
+      )
     )
-  }()
+  }
 
   static func surah(_ number: Int) -> TVQuranSurah? {
     quranSurahs.first { $0.number == number }
@@ -248,16 +250,6 @@ enum TVSeedRepository {
     formatter.unitsStyle = .full
     let relative = formatter.localizedString(for: date, relativeTo: Date())
     return tvLocalized("Last opened %@ %@", tvLocalized(route.titleKey), relative)
-  }
-
-  static func homeVerse() -> TVHomeVerse {
-    let verse = ayah(surah: 1, number: 5)
-    return TVHomeVerse(
-      arabic: verse?.arabic ?? "",
-      transliteration: verse?.transliteration ?? "",
-      translation: verse?.translation ?? "",
-      locationLabel: "\(surahName(1)) 1:5"
-    )
   }
 
   static func favoritesPrimaryItems() -> [TVLearnHubItem] {
@@ -503,18 +495,15 @@ enum TVSeedRepository {
     }
   }
 
-  static func homeContinueJourneyItems() -> [TVContinueJourneyItem] {
+  /// What Home offers to go on with. The first two open the Qur'an where
+  /// the viewer left it, to read and to listen.
+  static func homeContinueJourneyItems(quran: TVQuranViewModel) -> [TVContinueJourneyItem] {
     [
       TVContinueJourneyItem(
         id: "continue_reading",
         eyebrow: tvLocalized("Qur’an"),
-        title: tvLocalized("Continue reading"),
-        subtitle: String(
-          format: tvLocalized("%@ %d:%d"),
-          continueReading.surahName,
-          continueReading.surahNumber,
-          continueReading.ayahNumber
-        ),
+        title: quran.continueReadingSummaryTitle,
+        subtitle: quran.continueReadingLine,
         supportingLine: "",
         systemImage: "book.closed.fill"
       ),
@@ -522,7 +511,9 @@ enum TVSeedRepository {
         id: "resume_listening",
         eyebrow: tvLocalized("Qur’an"),
         title: tvLocalized("Listen"),
-        subtitle: tvLocalized("Recitation, ayah by ayah"),
+        subtitle: quran.place == nil
+          ? tvLocalized("Recitation, ayah by ayah")
+          : quran.continueReadingLine,
         supportingLine: "",
         systemImage: "headphones"
       ),

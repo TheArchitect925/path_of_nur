@@ -67,6 +67,7 @@ struct TVQuranScreen: View {
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     .onAppear {
       followedAyahID = viewModel.selectedAyah?.id
+      viewModel.refreshVerseOfTheDay()
       restorePreferredFocus()
     }
     .fullScreenCover(isPresented: $viewModel.isListeningModePresented) {
@@ -95,6 +96,10 @@ struct TVQuranScreen: View {
       } else if section.hasPrefix(TVFocusSectionId.quranReader) {
         appViewModel.markContentSectionFocused(TVFocusSectionId.quranReader, for: .quran)
         placeInReader = section
+        // Where the focus rests in the reader is where the viewer is.
+        viewModel.keepPlace(
+          ayahID: String(section.dropFirst(TVFocusSectionId.quranReader.count + 1))
+        )
       }
     }
     .onChange(of: viewModel.selectedSurah.id) { _ in
@@ -171,10 +176,10 @@ struct TVQuranScreen: View {
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: TVTheme.railSpacing) {
         Button {
-          open(
-            surah: viewModel.continueReading.surahNumber,
-            ayah: viewModel.continueReading.ayahNumber
-          )
+          // Taken before the reader is entered: entering it moves the
+          // viewer's place.
+          let place = viewModel.continueReadingPlace
+          open(surah: place.surahNumber, ayah: place.ayahNumber)
         } label: {
           TVQuranBrowseCollectionCard(
             title: viewModel.continueReadingSummaryTitle,
@@ -296,6 +301,11 @@ struct TVQuranScreen: View {
         }
         .padding(TVTheme.railBleed)
       }
+      // The ayahs are entered at the viewer's place from the controls above
+      // them too, which are in the same pane. Said of the scroll view
+      // itself: said of what is outside its feathered edge, it is not heard.
+      .focusSection()
+      .tvPreferredFocus($focusedSection, placeInReader ?? selectedAyahFocusID)
       .onAppear {
         // A surah opened at its first ayah is already where it should be.
         if viewModel.selectedAyahIndex > 0 {

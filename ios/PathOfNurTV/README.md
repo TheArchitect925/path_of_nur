@@ -16,13 +16,17 @@ What is real today:
 - Dhikr routines, generated from the phone's catalog and guarded by
   `test/features/tvos/tvos_dhikr_routines_parity_test.dart`
 - the Qur’an, all 114 surahs, with recitation streamed ayah by ayah
+- the viewer's place in the Qur’an, kept between launches, and the verse of
+  the day, which is the verse the phone shows that day
 - appearance, startup, listening and prayer preferences, kept on the device
 
 What is not yet:
 
-- the viewer's place in the Qur’an. "Continue reading" and "Today’s verse"
-  are fixed (1:5 and 94:5): the place is not kept between launches, and the
-  verse of the day is not yet the phone's.
+- anything shared with the phone. The Apple TV keeps its own place, its own
+  settings and its own record of the day's routines: it reads nothing the
+  phone has written. The phone itself shares prayer logs and dhikr between
+  devices and not its place in the Qur’an or its prayer settings, so there is
+  nothing yet for the television to read.
 
 ## Qur’an text
 
@@ -59,6 +63,15 @@ The translation follows the Apple TV's language where the sources carry one
 (English, French, Urdu) and is English otherwise. In Arabic the ayah stands
 alone.
 
+The verse of the day is chosen as the phone chooses it
+(`TVQuranVerseOfTheDay`, from `QuranRepository.getDailyVerse`): the days
+since the year began, counted into the Qur’an from its first verse. The
+phone's answer for every day of a year is written to
+`tools/tv_verse_of_the_day_reference.json` by the same parity test, and the
+Swift is held to it. The phone counts whole days of elapsed time, so while
+summer time is kept the first hour after midnight still shows the verse of
+the day before. The television does the same, since the two must agree.
+
 ## The reader
 
 `Screens/TVQuranScreen.swift` is two panes under a compact hero: the list of
@@ -71,6 +84,17 @@ than the screen, so a viewer deep in one still finds the other beside them.
 - Pressing an ayah recites from there, and pressing the ayah being recited
   pauses it. The remote's Play/Pause does the same for the ayah in focus. The
   focus follows the recitation while it rests on the ayah being recited.
+- The recitation stops at the end of a surah, as the phone's does. Next
+  from the last ayah of a surah, and previous from the first, are the
+  viewer's own and cross into the surah beside it.
+- Where the focus rests in the reader, and what is recited, is the viewer's
+  place (`TVQuranViewModel.keepPlace`, kept under
+  `PathOfNurTV.quran.place`). The app opens there, Home's Continue reading
+  and Listen go on from there, and before anything has been read Home offers
+  to start reading.
+- The reciter chosen beside the reader is the reciter from then on, as the
+  one chosen in Settings is. A new viewer hears the phone's
+  (`TVQuranReciter.phoneDefault`).
 - **Nothing that takes the focus is taller than its pane.** tvOS scrolls to
   what is in focus and cannot scroll within it, so the part of a card below
   the pane would never be seen. `Support/TVQuranAyahLayout.swift` measures
@@ -144,6 +168,8 @@ opened on the state that is wanted:
 | `TV_SAMPLE_SURAH`, `TV_SAMPLE_AYAH` | a surah in the reader, and an ayah of it, by number |
 | `TV_SAMPLE_LISTENING` | `1` for listening mode |
 | `TV_SAMPLE_FOCUS` | the focus on one control of the Qur’an, by its focus id: `quran.reader.2:282.p3` |
+| `TV_SAMPLE_FRESH` | `1` for the app as it is before anything has been read |
+| `TV_SAMPLE_DATE` | the day the verse of the day is chosen for: `2026-10-16` |
 | `TV_SAMPLE_ROUTINE` | a routine in the player: `after-salah`, `morning`, `evening`, `sleep` |
 | `TV_SAMPLE_CITY_PICKER` | `1` for the list of cities |
 | `TV_SAMPLE_THEME`, `TV_SAMPLE_PHASE` | a look, and the hour it is dressed for |
@@ -209,7 +235,9 @@ section to the rail. Four rules keep that working:
 - **A part of a screen says where it is entered**, with
   `tvPreferredFocus`: the section at the part last used, the rail at the
   section that is open, the prayer times at the prayer in hand. Without it
-  the focus lands on whatever is nearest.
+  the focus lands on whatever is nearest. On a pane or a rail it is said
+  of the scroll view itself, before `tvPane()` or `tvRail()`: said outside
+  the feathered edge it has no effect.
 - **Nothing lazy stands below the fold with something eager after it.** A
   lazy row that is wholly off the screen is not there for the focus to move
   to, so a press down goes past it. Six prayer times are a `VStack`; 114

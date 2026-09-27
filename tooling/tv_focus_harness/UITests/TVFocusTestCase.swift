@@ -33,10 +33,17 @@ class TVFocusTestCase: XCTestCase {
 
   // MARK: - Driving the app
 
-  func launch(_ environment: [String: String], arguments: [String] = []) {
+  /// Opens the app. It is opened as it is before anything has been read,
+  /// unless `keeping` what an earlier launch left behind is the point.
+  func launch(
+    _ environment: [String: String],
+    arguments: [String] = [],
+    keeping: Bool = false
+  ) {
     app.launchEnvironment = [
       "TV_SAMPLE_CITY": "toronto",
       "TV_SAMPLE_THEME": "midnight",
+      "TV_SAMPLE_FRESH": keeping ? "0" : "1",
     ].merging(environment) { $1 }
     app.launchArguments = arguments
     app.launch()

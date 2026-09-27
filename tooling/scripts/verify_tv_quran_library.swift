@@ -16,6 +16,11 @@
 //    mode. The parts put back together must be the ayah, word for word, and
 //    no part may be taller than its room.
 //
+// 3. The verse of the day is chosen as the phone chooses it. The phone's
+//    answer for every day of a year is in
+//    tools/tv_verse_of_the_day_reference.json, written by the phone's own
+//    repository, and the Swift must give the same.
+//
 // test/features/tvos/tvos_quran_parity_test.dart holds the files themselves
 // to the phone's sources.
 
@@ -28,6 +33,7 @@ let directory = URL(
   fileURLWithPath: arguments.count > 1 ? arguments[1] : "ios/PathOfNurTV/Data/Quran"
 )
 let fonts = URL(fileURLWithPath: arguments.count > 2 ? arguments[2] : "assets/fonts")
+let verseOfTheDay = arguments.count > 3 ? arguments[3] : "tools/tv_verse_of_the_day_reference.json"
 
 let texts: [TVQuranLibrary.Text] =
   [.arabic, .transliteration]
@@ -199,8 +205,63 @@ for language in ["en", "fr", "ur", "ar"] {
   }
 }
 
+// MARK: - 3. The verse of the day against the phone's
+
+var days = 0
+if
+  let data = FileManager.default.contents(atPath: verseOfTheDay),
+  let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+  let byDay = root["byDayIndex"] as? [String]
+{
+  for (day, expected) in byDay.enumerated() {
+    let place = TVQuranVerseOfTheDay.place(dayIndex: day)
+    if place.key != expected {
+      failures.append("verse of the day: day \(day) is \(place.key), the phone says \(expected)")
+    }
+    days += 1
+  }
+} else {
+  failures.append("\(verseOfTheDay): cannot be read")
+}
+if TVQuranVerseOfTheDay.place(dayIndex: 6236).key != "1:1" {
+  failures.append("verse of the day: the Qur’an does not go round again at its end")
+}
+
+// The days counted, in a place that changes its clocks. The phone counts
+// the time since the year began in whole days, so in summer time the first
+// hour after midnight is still the day before.
+var toronto = Calendar(identifier: .gregorian)
+toronto.timeZone = TimeZone(identifier: "America/Toronto")!
+func moment(_ year: Int, _ month: Int, _ day: Int, _ hour: Int, _ minute: Int) -> Date {
+  toronto.date(
+    from: DateComponents(year: year, month: month, day: day, hour: hour, minute: minute)
+  )!
+}
+let counted: [(Date, Int, String)] = [
+  (moment(2026, 1, 1, 0, 0), 0, "midnight as the year begins"),
+  (moment(2026, 1, 1, 23, 59), 0, "the last minute of the first day"),
+  (moment(2026, 1, 2, 0, 0), 1, "midnight, in winter time"),
+  (moment(2026, 9, 27, 12, 0), 269, "noon on 27 September"),
+  (moment(2026, 7, 1, 0, 30), 180, "half past midnight in summer time, still the day before"),
+  (moment(2026, 7, 1, 1, 0), 181, "one in the morning in summer time"),
+  (moment(2028, 12, 31, 12, 0), 365, "the last day of a leap year"),
+]
+for (date, expected, what) in counted {
+  let index = TVQuranVerseOfTheDay.dayIndex(for: date, calendar: toronto)
+  if index != expected {
+    failures.append("verse of the day: \(what) is day \(index), not \(expected)")
+  }
+}
+
+for (key, isPlace) in [("2:255", true), ("2:287", false), ("115:1", false), ("0:1", false), ("", false), ("abc", false), ("114:6", true)] {
+  if (TVQuranPlace(key: key) != nil) != isPlace {
+    failures.append("place: “\(key)” is read \(isPlace ? "as no place" : "as a place")")
+  }
+}
+
 if failures.isEmpty {
   print("Apple TV Qur’an: \(verses) verses read across \(texts.count) files, a surah at a time.")
+  print("Apple TV Qur’an: the verse of the day is the phone’s on all \(days) days.")
   print("Apple TV Qur’an: \(planned) ayahs set, every word in place, every part within its room.")
   for room in inParts.keys.sorted() {
     let most = mostParts[room]!

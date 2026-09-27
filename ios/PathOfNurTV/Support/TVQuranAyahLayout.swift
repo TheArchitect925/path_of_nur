@@ -101,18 +101,20 @@ final class TVQuranAyahPlanner {
     return parts
   }
 
-  /// How listening mode sets an ayah on its stage: as large as the stage
-  /// allows, and in parts only when the smallest type is still too tall.
-  struct ListeningPlan {
+  /// An ayah fitted to a room: as large as the room allows, and in parts
+  /// only when the smallest type is still too tall.
+  struct Fitted {
     let metrics: TVQuranAyahMetrics
     let parts: [TVQuranAyahPart]
 
     var isWhole: Bool { parts.count == 1 }
   }
 
-  /// The sizes listening mode tries, largest first: the Arabic, its reading,
-  /// its meaning.
-  static let listeningSizes: [(arabic: CGFloat, transliteration: CGFloat, translation: CGFloat)] = [
+  /// Type sizes: the Arabic, its reading, its meaning.
+  typealias Sizes = (arabic: CGFloat, transliteration: CGFloat, translation: CGFloat)
+
+  /// The sizes listening mode tries, largest first.
+  static let listeningSizes: [Sizes] = [
     (56, 20, 22),
     (46, 19, 21),
     (38, 18, 20),
@@ -121,6 +123,56 @@ final class TVQuranAyahPlanner {
   static let listeningArabicWidth: CGFloat = 1320
   static let listeningBodyWidth: CGFloat = 1100
 
+  /// The sizes Home's verse tries, largest first.
+  static let homeSizes: [Sizes] = [
+    (40, 18, 20),
+    (34, 18, 20),
+  ]
+
+  /// Fits an ayah to a room. It is tried whole at each size in turn, in a
+  /// room `room` tall with `chrome` around the text. If it is too tall at
+  /// every size it is set in parts at the smallest, each no taller than
+  /// `partRoom` with `partChrome` around it.
+  static func fit(
+    _ ayah: TVQuranAyah,
+    sizes: [Sizes],
+    textWidth: CGFloat,
+    bodyWidth: CGFloat,
+    room: CGFloat,
+    chrome: CGFloat,
+    gap: CGFloat,
+    partRoom: CGFloat,
+    partChrome: CGFloat,
+    language: String
+  ) -> Fitted {
+    func metrics(_ size: Sizes, maxHeight: CGFloat, chrome: CGFloat) -> TVQuranAyahMetrics {
+      TVQuranAyahMetrics(
+        arabicSize: size.arabic,
+        transliterationSize: size.transliteration,
+        translationSize: size.translation,
+        textWidth: max(textWidth, 200).rounded(.down),
+        bodyWidth: max(bodyWidth, 200).rounded(.down),
+        maxHeight: maxHeight.rounded(.down),
+        chrome: chrome,
+        gap: gap,
+        translationLineSpacing: TVQuranAyahMetrics.translationLineSpacing(forLanguage: language)
+      )
+    }
+
+    for size in sizes {
+      let whole = metrics(size, maxHeight: room, chrome: chrome)
+      if height(of: ayah, metrics: whole) <= whole.maxHeight {
+        return Fitted(metrics: whole, parts: plan(ayah, metrics: whole))
+      }
+    }
+
+    let smallest = sizes[sizes.count - 1]
+    let inParts = metrics(smallest, maxHeight: partRoom, chrome: partChrome)
+    return Fitted(metrics: inParts, parts: plan(ayah, metrics: inParts))
+  }
+
+  /// How listening mode sets an ayah on its stage.
+  ///
   /// - Parameter inset: what the stage keeps clear at its top and bottom
   ///   for a focused part to grow into, when the ayah is in parts.
   static func listeningPlan(
@@ -129,45 +181,56 @@ final class TVQuranAyahPlanner {
     inset: CGFloat,
     focusScale: CGFloat,
     language: String
-  ) -> ListeningPlan {
+  ) -> Fitted {
     let width = stage.width - listeningStagePadding * 2
-    func metrics(
-      _ size: (arabic: CGFloat, transliteration: CGFloat, translation: CGFloat),
-      maxHeight: CGFloat,
-      chrome: CGFloat
-    ) -> TVQuranAyahMetrics {
-      TVQuranAyahMetrics(
-        arabicSize: size.arabic,
-        transliterationSize: size.transliteration,
-        translationSize: size.translation,
-        textWidth: max(min(width, listeningArabicWidth), 200).rounded(.down),
-        bodyWidth: max(min(width, listeningBodyWidth), 200).rounded(.down),
-        maxHeight: maxHeight.rounded(.down),
-        chrome: chrome,
-        gap: 20,
-        translationLineSpacing: TVQuranAyahMetrics.translationLineSpacing(forLanguage: language)
-      )
-    }
-
-    for size in listeningSizes {
-      let whole = metrics(size, maxHeight: stage.height, chrome: listeningStagePadding * 2)
-      if height(of: ayah, metrics: whole) <= whole.maxHeight {
-        return ListeningPlan(metrics: whole, parts: plan(ayah, metrics: whole))
-      }
-    }
-
-    // In parts, each of which takes the focus, so each must fit the stage
-    // with the ring around it.
-    let inParts = metrics(
-      listeningSizes[listeningSizes.count - 1],
-      maxHeight: TVQuranAyahMetrics.tallestPart(
+    return fit(
+      ayah,
+      sizes: listeningSizes,
+      textWidth: min(width, listeningArabicWidth),
+      bodyWidth: min(width, listeningBodyWidth),
+      room: stage.height,
+      chrome: listeningStagePadding * 2,
+      gap: 20,
+      partRoom: TVQuranAyahMetrics.tallestPart(
         inRoom: stage.height,
         inset: inset,
         focusScale: focusScale
       ),
-      chrome: TVQuranAyahMetrics.cardChrome
+      partChrome: TVQuranAyahMetrics.cardChrome,
+      language: language
     )
-    return ListeningPlan(metrics: inParts, parts: plan(ayah, metrics: inParts))
+  }
+
+  /// How Home sets the verse of the day in its card. `screen` is the room
+  /// Home scrolls in and `textWidth` the width of the card's text. A verse
+  /// too long for the screen is shown from its beginning, as much as fits,
+  /// and the card says that the rest is in the reader.
+  static func homePlan(
+    for ayah: TVQuranAyah,
+    screen: CGSize,
+    textWidth: CGFloat,
+    chrome: CGFloat,
+    inset: CGFloat,
+    focusScale: CGFloat,
+    language: String
+  ) -> Fitted {
+    let room = TVQuranAyahMetrics.tallestPart(
+      inRoom: screen.height,
+      inset: inset,
+      focusScale: focusScale
+    )
+    return fit(
+      ayah,
+      sizes: homeSizes,
+      textWidth: textWidth,
+      bodyWidth: min(textWidth, 1000),
+      room: room,
+      chrome: chrome,
+      gap: TVQuranAyahMetrics.cardSpacing,
+      partRoom: room,
+      partChrome: chrome,
+      language: language
+    )
   }
 
   /// How tall the ayah stands as a single card.

@@ -142,3 +142,72 @@ final class TVQuranLibrary {
     return file
   }
 }
+
+/// A place in the Qur'an: a surah and an ayah of it.
+struct TVQuranPlace: Hashable {
+  let surahNumber: Int
+  let ayahNumber: Int
+
+  /// "2:255", as it is kept on the device.
+  var key: String { "\(surahNumber):\(ayahNumber)" }
+
+  init(surahNumber: Int, ayahNumber: Int) {
+    self.surahNumber = surahNumber
+    self.ayahNumber = ayahNumber
+  }
+
+  /// A place read back from its key, if it is a place in the Qur'an.
+  init?(key: String?, surahs: [TVQuranSurah] = TVQuranData.surahs) {
+    let parts = (key ?? "").split(separator: ":").compactMap { Int($0) }
+    guard
+      parts.count == 2,
+      let surah = surahs.first(where: { $0.number == parts[0] }),
+      parts[1] >= 1, parts[1] <= surah.verseCount
+    else {
+      return nil
+    }
+    self.init(surahNumber: parts[0], ayahNumber: parts[1])
+  }
+}
+
+/// The verse of the day, chosen the way the phone chooses it
+/// (`QuranRepository.getDailyVerse`), so that the phone and the television
+/// in one room show one verse.
+enum TVQuranVerseOfTheDay {
+  /// The days that have passed since the year began, as the phone counts
+  /// them: the time since midnight on 1 January, in whole days. While
+  /// summer time is kept that is an hour short of the clock, so for the
+  /// first hour after midnight it is still the day before. The phone's
+  /// count is kept as it is: the two must agree.
+  static func dayIndex(for date: Date, calendar: Calendar = .current) -> Int {
+    let year = calendar.component(.year, from: date)
+    guard let start = calendar.date(from: DateComponents(year: year, month: 1, day: 1)) else {
+      return 0
+    }
+    return max(Int((date.timeIntervalSince(start) / 86_400).rounded(.down)), 0)
+  }
+
+  /// The verse that many verses into the Qur'an, going round again at its
+  /// end.
+  static func place(
+    dayIndex: Int,
+    surahs: [TVQuranSurah] = TVQuranData.surahs
+  ) -> TVQuranPlace {
+    let total = surahs.reduce(0) { $0 + $1.verseCount }
+    guard total > 0 else {
+      return TVQuranPlace(surahNumber: 1, ayahNumber: 1)
+    }
+    var remaining = dayIndex % total
+    for surah in surahs {
+      if remaining < surah.verseCount {
+        return TVQuranPlace(surahNumber: surah.number, ayahNumber: remaining + 1)
+      }
+      remaining -= surah.verseCount
+    }
+    return TVQuranPlace(surahNumber: 1, ayahNumber: 1)
+  }
+
+  static func place(on date: Date, calendar: Calendar = .current) -> TVQuranPlace {
+    place(dayIndex: dayIndex(for: date, calendar: calendar))
+  }
+}
