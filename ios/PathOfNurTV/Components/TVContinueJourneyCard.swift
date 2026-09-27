@@ -5,9 +5,11 @@ struct TVContinueJourneyCard: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 16) {
-      Text(item.eyebrow.uppercased())
-        .font(TVTypography.badge)
-        .foregroundColor(TVTheme.focus)
+      if !item.eyebrow.isEmpty {
+        Text(item.eyebrow.uppercased())
+          .font(TVTypography.badge)
+          .foregroundColor(TVTheme.focus)
+      }
 
       Image(systemName: item.systemImage)
         .font(.system(size: 28, weight: .semibold))
@@ -18,15 +20,19 @@ struct TVContinueJourneyCard: View {
           .font(TVTypography.featureTitle)
           .foregroundColor(TVTheme.textPrimary)
 
-        Text(item.subtitle)
-          .font(TVTypography.featureSubtitle)
-          .foregroundColor(TVTheme.textSecondary)
-          .lineLimit(3)
+        if !item.subtitle.isEmpty {
+          Text(item.subtitle)
+            .font(TVTypography.featureSubtitle)
+            .foregroundColor(TVTheme.textSecondary)
+            .lineLimit(3)
+        }
 
-        Text(item.supportingLine)
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.textMuted)
-          .lineLimit(2)
+        if !item.supportingLine.isEmpty {
+          Text(item.supportingLine)
+            .font(TVTypography.detail)
+            .foregroundColor(TVTheme.textMuted)
+            .lineLimit(2)
+        }
       }
     }
     .frame(width: 360, height: 250, alignment: .leading)

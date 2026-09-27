@@ -42,14 +42,16 @@ struct TVProfilesScreen: View {
                           isActive: viewModel.activeProfile?.id == profile.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -84,14 +86,16 @@ struct TVProfilesScreen: View {
                           isActive: viewModel.activeProfile?.id == item.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -115,7 +119,9 @@ struct TVProfilesScreen: View {
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
       }
       .padding(TVTheme.outerPadding)
     }

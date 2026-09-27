@@ -4,15 +4,47 @@ Canonical tvOS source for Path of Nūr lives in this folder and is compiled by t
 
 ## Current status
 
-- native SwiftUI tvOS V1 shell
-- current V1 scope:
-  - Home
-  - Qur'an
-- Home mirrors the mobile app direction with a prayer-focused homepage section adapted for tvOS focus navigation
-- Qur'an mirrors the mobile app direction with seeded browsing, reader, and audio playback structure adapted for tvOS
-- local seeded data only for now
-- no production prayer engine, sync, persistence, or release-grade Apple TV assets yet
-- the canonical tvOS target now has a concrete brand asset set and Top Shelf image so Xcode Release/TestFlight archive work can proceed without an empty app-icon catalog
+Five sections are in the rail: Home, Prayer, Qur’an, Dhikr and Settings
+(`TVRoute.released`). The other six screens (Profiles, Saved, Arabic, Learn,
+Games, Kids) are still compiled but cannot be reached: they run on sample
+content, and each one joins the rail when its content is real.
+
+What is real today:
+
+- Dhikr routines, generated from the phone's catalog and guarded by
+  `test/features/tvos/tvos_dhikr_routines_parity_test.dart`
+- Qur’an recitation, streamed ayah by ayah
+- appearance, startup and listening preferences, kept on the device
+
+What is not yet:
+
+- prayer times are fixed sample times in `TVSeedRepository.homePrayerSnapshot`,
+  the same for every place and date. They must be replaced before anyone
+  outside the team sees a build.
+- the Qur’an holds five surahs, not all of their ayahs
+
+## Copy
+
+The app looks strings up by their English text. Every line a viewer can reach
+follows `docs/voice_and_copy_guide.md` and is translated into German, Arabic,
+Urdu and French. After changing any string:
+
+```
+python3 tools/tv_strings.py --write --translations <file.json>
+python3 tools/tv_strings.py --lint
+```
+
+`test/app/tv_strings_ratchet_test.dart` fails when the tables fall out of step
+with the Swift, when released copy breaks the guide or lacks a translation, and
+when the held-back sections drift further from the guide than they are now.
+
+## Focus
+
+Wrap a card in a button with `.buttonStyle(TVCardButtonStyle())`, never
+`.plain`: the system's plain style lays a pale platter behind the focused
+button. A card that is not a button takes `.tvFocusableCard()`. Both draw the
+same ring, and rails leave `TVTheme.railBleed` at their edges so the focused
+card can grow without being cut.
 
 ## Folder structure
 

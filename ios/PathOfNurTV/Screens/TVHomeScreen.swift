@@ -17,7 +17,7 @@ struct TVHomeScreen: View {
 
         TVSectionHeader(
           title: viewModel.continueJourneySummaryTitle,
-          subtitle: viewModel.continueJourneySummarySubtitle
+          subtitle: ""
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
@@ -32,16 +32,18 @@ struct TVHomeScreen: View {
               } label: {
                 TVContinueJourneyCard(item: item)
               }
-              .buttonStyle(.plain)
+              .buttonStyle(TVCardButtonStyle())
               .focused($focusedSection, equals: focusID)
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
 
         TVSectionHeader(
-          title: tvLocalized("Prayer Times"),
-          subtitle: viewModel.prayerSectionSubtitle
+          title: tvLocalized("Prayer times"),
+          subtitle: ""
         )
 
         VStack(alignment: .leading, spacing: TVTheme.blockSpacing) {
@@ -64,49 +66,11 @@ struct TVHomeScreen: View {
         }
 
         TVSectionHeader(
-          title: tvLocalized("Today's Light"),
-          subtitle: viewModel.dailyLightSubtitle
+          title: tvLocalized("Today’s verse"),
+          subtitle: ""
         )
 
         _verseCard
-
-        TVSectionHeader(
-          title: tvLocalized("Featured Qur'an paths"),
-          subtitle: tvLocalized("Open the same Qur'an space from the home surface.")
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          LazyHStack(spacing: TVTheme.railSpacing) {
-            Button {
-              appViewModel.navigate(to: .quran, preferredColumn: .content)
-            } label: {
-              TVActionCard(
-                title: tvLocalized("Continue Reading"),
-                subtitle: tvLocalized(
-                  "Continue with %@ %d:%d",
-                  viewModel.continueReading.surahName,
-                  viewModel.continueReading.surahNumber,
-                  viewModel.continueReading.ayahNumber
-                ),
-                systemImage: "book.closed.fill"
-              )
-            }
-            .buttonStyle(.plain)
-            .focused($focusedSection, equals: TVFocusSectionId.homeContinueJourney)
-
-            ForEach(viewModel.actions) { item in
-              Button {
-                if item.id == "home_quran" {
-                  appViewModel.navigate(to: .quran, preferredColumn: .content)
-                }
-              } label: {
-                TVShelfCard(item: item)
-              }
-              .buttonStyle(.plain)
-            }
-          }
-          .padding(.vertical, 8)
-        }
       }
       .padding(TVTheme.outerPadding)
     }
@@ -182,11 +146,11 @@ struct TVHomeScreen: View {
       .padding(TVTheme.cardPadding)
       .tvSurfaceCard(elevated: true)
     }
-    .buttonStyle(.plain)
+    .buttonStyle(TVCardButtonStyle())
     .focused($focusedSection, equals: TVFocusSectionId.homeVerse)
     .tvFocusableCard()
     .accessibilityLabel(viewModel.verse.locationLabel)
-    .accessibilityHint(tvLocalized("Opens this ayah in the Qur'an route."))
+    .accessibilityHint(tvLocalized("Opens the Qur’an."))
   }
 
   private func restorePreferredFocus() {
@@ -201,10 +165,11 @@ struct TVHomeScreen: View {
 
   private func _handleContinueJourneyTap(for itemId: String) {
     switch itemId {
-    case "continue_reading", "resume_listening":
+    case "resume_listening":
       appViewModel.navigate(to: .quran, preferredColumn: .content)
-    case "prayer_focus":
-      focusedSection = TVFocusSectionId.homeContinueJourney
+      appViewModel.quranViewModel.openListeningMode()
+    case "dhikr_routines":
+      appViewModel.navigate(to: .dhikr, preferredColumn: .content)
     default:
       appViewModel.navigate(to: .quran, preferredColumn: .content)
     }

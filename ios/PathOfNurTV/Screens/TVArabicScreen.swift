@@ -41,14 +41,16 @@ struct TVArabicScreen: View {
                           isSelected: viewModel.selectedItem?.id == item.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -82,14 +84,16 @@ struct TVArabicScreen: View {
                           isSelected: viewModel.selectedLetterGroup?.id == group.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -113,7 +117,9 @@ struct TVArabicScreen: View {
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
       }
       .padding(TVTheme.outerPadding)
     }

@@ -18,14 +18,14 @@ struct TVSettingsScreen: View {
 
         TVSectionHeader(
           title: viewModel.startupTitle,
-          subtitle: viewModel.startupSubtitle
+          subtitle: ""
         )
 
         HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
           VStack(alignment: .leading, spacing: 18) {
             ScrollView(.horizontal, showsIndicators: false) {
               HStack(spacing: TVTheme.railSpacing) {
-                ForEach(Array(TVStartupPreference.allCases.enumerated()), id: \.element.id) {
+                ForEach(Array(TVStartupPreference.released.enumerated()), id: \.element.id) {
                   index, preference in
                   let focusID = index == 0
                       ? TVFocusSectionId.settingsStartup
@@ -35,20 +35,20 @@ struct TVSettingsScreen: View {
                     appViewModel.selectStartupPreference(preference)
                   } label: {
                     optionCard(
-                      eyebrow: tvLocalized("Startup"),
                       title: tvLocalized(preference.titleKey),
                       subtitle: tvLocalized(preference.subtitleKey),
-                      supportingLine: startupSupportingLine(for: preference),
                       systemImage: preference.systemImage,
                       isSelected: viewModel.startupPreference == preference
                     )
                   }
-                  .buttonStyle(.plain)
+                  .buttonStyle(TVCardButtonStyle())
                   .focused($focusedSection, equals: focusID)
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -58,9 +58,7 @@ struct TVSettingsScreen: View {
 
         TVSectionHeader(
           title: tvLocalized("Appearance"),
-          subtitle: tvLocalized(
-            "Choose how the room dresses — or let the evening and the calendar decide."
-          )
+          subtitle: tvLocalized("Pick a look, or let the time of day choose.")
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
@@ -75,24 +73,24 @@ struct TVSettingsScreen: View {
                 themeController.selectAppearance(setting)
               } label: {
                 optionCard(
-                  eyebrow: tvLocalized("Appearance"),
                   title: tvLocalized(setting.titleKey),
                   subtitle: tvLocalized(setting.subtitleKey),
-                  supportingLine: appearanceSupportingLine(for: setting),
                   systemImage: setting.systemImage,
                   isSelected: themeController.appearance == setting
                 )
               }
-              .buttonStyle(.plain)
+              .buttonStyle(TVCardButtonStyle())
               .focused($focusedSection, equals: focusID)
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
 
         TVSectionHeader(
           title: viewModel.listeningTitle,
-          subtitle: viewModel.listeningSubtitle
+          subtitle: ""
         )
 
         VStack(alignment: .leading, spacing: 24) {
@@ -108,23 +106,20 @@ struct TVSettingsScreen: View {
                   appViewModel.selectDefaultReciter(reciter)
                 } label: {
                   optionCard(
-                    eyebrow: tvLocalized("Default reciter"),
                     title: reciter.displayName,
-                    subtitle: String(
-                      format: tvLocalized("Use %@ when listening mode opens."),
-                      reciter.shortLabel
-                    ),
-                    supportingLine: tvLocalized("This affects the starting reciter for the shared tvOS Qur'an listening flow."),
+                    subtitle: tvLocalized("Reciter"),
                     systemImage: "music.note.list",
                     isSelected: viewModel.defaultReciter == reciter
                   )
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(TVCardButtonStyle())
                 .focused($focusedSection, equals: focusID)
               }
             }
             .padding(.vertical, 8)
+            .padding(.horizontal, TVTheme.railBleed)
           }
+          .padding(.horizontal, -TVTheme.railBleed)
 
           HStack(spacing: TVTheme.railSpacing) {
             Button {
@@ -133,17 +128,15 @@ struct TVSettingsScreen: View {
               )
             } label: {
               optionCard(
-                eyebrow: tvLocalized("Listening helper"),
-                title: tvLocalized("Show translation by default"),
+                title: tvLocalized("Translation"),
                 subtitle: viewModel.showListeningTranslationByDefault
-                    ? tvLocalized("Translation appears when full-screen listening mode opens.")
-                    : tvLocalized("Translation stays hidden until the room chooses to reveal it."),
-                supportingLine: tvLocalized("Keep this on when the room benefits from immediate meaning during recitation."),
+                    ? tvLocalized("Shown while listening")
+                    : tvLocalized("Hidden while listening"),
                 systemImage: "captions.bubble.fill",
                 isSelected: viewModel.showListeningTranslationByDefault
               )
             }
-            .buttonStyle(.plain)
+            .buttonStyle(TVCardButtonStyle())
             .focused($focusedSection, equals: "settings.listening.translation")
 
             Button {
@@ -152,46 +145,23 @@ struct TVSettingsScreen: View {
               )
             } label: {
               optionCard(
-                eyebrow: tvLocalized("Listening helper"),
-                title: tvLocalized("Show transliteration by default"),
+                title: tvLocalized("Transliteration"),
                 subtitle: viewModel.showListeningTransliterationByDefault
-                    ? tvLocalized("Transliteration appears when full-screen listening mode opens.")
-                    : tvLocalized("Transliteration stays hidden until the room chooses to reveal it."),
-                supportingLine: tvLocalized("Keep this on when the room needs pronunciation help without leaving the television flow."),
+                    ? tvLocalized("Shown while listening")
+                    : tvLocalized("Hidden while listening"),
                 systemImage: "textformat.abc",
                 isSelected: viewModel.showListeningTransliterationByDefault
               )
             }
-            .buttonStyle(.plain)
+            .buttonStyle(TVCardButtonStyle())
             .focused($focusedSection, equals: "settings.listening.transliteration")
           }
         }
 
-        TVSectionHeader(
-          title: viewModel.diagnosticsTitle,
-          subtitle: viewModel.diagnosticsSubtitle
-        )
-
-        TVDiagnosticsSummaryCard(summary: viewModel.diagnosticsSummary)
-          .focused($focusedSection, equals: "settings.support.diagnostics")
-
-        TVSectionHeader(
-          title: viewModel.supportTitle,
-          subtitle: viewModel.supportSubtitle
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.supportCards.enumerated()), id: \.element.id) { index, item in
-              supportCard(item)
-                .focused(
-                  $focusedSection,
-                  equals: index == 0 ? TVFocusSectionId.settingsSupport : "settings.support.\(item.id)"
-                )
-            }
-          }
-          .padding(.vertical, 8)
-        }
+        Text(viewModel.versionLine)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.textMuted)
+          .tvReadableBody()
       }
       .padding(TVTheme.outerPadding)
     }
@@ -218,11 +188,6 @@ struct TVSettingsScreen: View {
           TVFocusSectionId.settingsListening,
           for: .settings
         )
-      } else if section.hasPrefix("settings.support") {
-        appViewModel.markContentSectionFocused(
-          TVFocusSectionId.settingsSupport,
-          for: .settings
-        )
       }
     }
     .onMoveCommand { direction in
@@ -236,10 +201,6 @@ struct TVSettingsScreen: View {
       Text(viewModel.detailRailTitle)
         .font(TVTypography.summaryTitle)
         .foregroundColor(TVTheme.textPrimary)
-
-      Text(viewModel.detailRailSubtitle)
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textSecondary)
 
       VStack(alignment: .leading, spacing: 12) {
         ForEach(
@@ -270,10 +231,8 @@ struct TVSettingsScreen: View {
   }
 
   private func optionCard(
-    eyebrow: String,
     title: String,
     subtitle: String,
-    supportingLine: String,
     systemImage: String,
     isSelected: Bool
   ) -> some View {
@@ -303,28 +262,21 @@ struct TVSettingsScreen: View {
         }
       }
 
-      Text(eyebrow.uppercased())
-        .font(TVTypography.heroEyebrow)
-        .foregroundColor(TVTheme.focus)
-
       Text(title)
         .font(TVTypography.featureTitle)
         .foregroundColor(TVTheme.textPrimary)
+        .lineLimit(2)
         .tvReadableTitle()
 
       Text(subtitle)
         .font(TVTypography.featureSubtitle)
         .foregroundColor(TVTheme.textSecondary)
-        .lineLimit(4)
-        .tvReadableBody()
-
-      Text(supportingLine)
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textMuted)
         .lineLimit(3)
         .tvReadableBody()
+
+      Spacer(minLength: 0)
     }
-    .frame(width: 372, height: 294, alignment: .leading)
+    .frame(width: 372, height: 228, alignment: .topLeading)
     .padding(TVTheme.cardPadding)
     .background(
       RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
@@ -342,80 +294,9 @@ struct TVSettingsScreen: View {
     .tvFocusableCard()
     .tvCombinedAccessibility(
       label: title,
-      hint: "\(subtitle) \(supportingLine)",
+      hint: subtitle,
       value: isSelected ? tvLocalized("Selected") : nil
     )
-  }
-
-  private func supportCard(_ item: TVSettingsSupportCard) -> some View {
-    VStack(alignment: .leading, spacing: 16) {
-      Image(systemName: item.systemImage)
-        .font(.system(size: 28, weight: .semibold))
-        .foregroundColor(TVTheme.accentStrong)
-
-      Text(item.eyebrow.uppercased())
-        .font(TVTypography.heroEyebrow)
-        .foregroundColor(TVTheme.focus)
-
-      Text(item.title)
-        .font(TVTypography.featureTitle)
-        .foregroundColor(TVTheme.textPrimary)
-        .tvReadableTitle()
-
-      Text(item.subtitle)
-        .font(TVTypography.featureSubtitle)
-        .foregroundColor(TVTheme.textSecondary)
-        .lineLimit(4)
-        .tvReadableBody()
-
-      Text(item.supportingLine)
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textMuted)
-        .lineLimit(4)
-        .tvReadableBody()
-    }
-    .frame(width: 420, height: 260, alignment: .leading)
-    .padding(TVTheme.cardPadding)
-    .tvSurfaceCard()
-    .tvFocusableCard()
-    .tvCombinedAccessibility(
-      label: item.title,
-      hint: "\(item.subtitle) \(item.supportingLine)"
-    )
-  }
-
-  private func appearanceSupportingLine(for setting: TVAppearanceSetting) -> String {
-    switch setting {
-    case .auto:
-      return tvLocalized("The Apple TV mirrors the phone's living atmosphere and occasion ladder on its own.")
-    case .noorGlass:
-      return tvLocalized("Keeps the daytime cream; after dark it rests into Midnight like the mobile app.")
-    case .midnight:
-      return tvLocalized("The signature night sanctuary, at any hour.")
-    case .candlelight:
-      return tvLocalized("A gentle evening room for wind-down recitation.")
-    case .jummah:
-      return tvLocalized("The Friday look, whenever the room wants it.")
-    case .ramadan:
-      return tvLocalized("The month's violet night, on demand.")
-    }
-  }
-
-  private func startupSupportingLine(for preference: TVStartupPreference) -> String {
-    switch preference {
-    case .profiles:
-      return tvLocalized("Best for shared Apple TVs where the room should choose the right household context first.")
-    case .lastUsed:
-      return tvLocalized("Best for households that want the strongest return path without repeated setup.")
-    case .home:
-      return tvLocalized("Best for prayer-first family-room use and calm daily return.")
-    case .quran:
-      return tvLocalized("Best for homes that reopen Apple TV mainly for recitation and listening.")
-    case .prayer:
-      return tvLocalized("Best for salah-centered return when the room uses Apple TV around prayer times.")
-    case .learn:
-      return tvLocalized("Best for study circles, family sessions, and guided evening learning.")
-    }
   }
 
   private func restorePreferredFocus() {
@@ -427,8 +308,6 @@ struct TVSettingsScreen: View {
         focusedSection = TVFocusSectionId.settingsAppearance
       case TVFocusSectionId.settingsListening:
         focusedSection = TVFocusSectionId.settingsListening
-      case TVFocusSectionId.settingsSupport:
-        focusedSection = TVFocusSectionId.settingsSupport
       default:
         focusedSection = TVFocusSectionId.settingsStartup
       }

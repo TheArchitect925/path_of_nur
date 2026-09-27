@@ -12,15 +12,19 @@ struct TVEmptyStateCard: View {
         .foregroundColor(TVTheme.textPrimary)
         .tvReadableTitle()
 
-      Text(subtitle)
-        .font(TVTypography.featureSubtitle)
-        .foregroundColor(TVTheme.textSecondary)
-        .tvReadableBody()
+      if !subtitle.isEmpty {
+        Text(subtitle)
+          .font(TVTypography.featureSubtitle)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
+      }
 
-      Text(supportingLine)
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textMuted)
-        .tvReadableBody()
+      if !supportingLine.isEmpty {
+        Text(supportingLine)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.textMuted)
+          .tvReadableBody()
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .accessibilityElement(children: .combine)

@@ -39,14 +39,16 @@ struct TVLearnScreen: View {
                       isSelected: viewModel.selectedItem?.id == item.id
                     )
                   }
-                  .buttonStyle(.plain)
+                  .buttonStyle(TVCardButtonStyle())
                   .focused($focusedSection, equals: focusID)
                 }
               }
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
 
         HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
           LazyVStack(alignment: .leading, spacing: TVTheme.sectionSpacing) {
@@ -73,14 +75,16 @@ struct TVLearnScreen: View {
                               isSelected: viewModel.selectedItem?.id == item.id
                             )
                           }
-                          .buttonStyle(.plain)
+                          .buttonStyle(TVCardButtonStyle())
                           .focused($focusedSection, equals: focusID)
                         }
                       }
                     }
                   }
                   .padding(.vertical, 8)
+                  .padding(.horizontal, TVTheme.railBleed)
                 }
+                .padding(.horizontal, -TVTheme.railBleed)
               }
             }
           }
@@ -120,14 +124,16 @@ struct TVLearnScreen: View {
                           isSelected: viewModel.selectedStoryEntry?.id == entry.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -165,14 +171,16 @@ struct TVLearnScreen: View {
                           isSelected: viewModel.selectedVisualEntry?.id == entry.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 

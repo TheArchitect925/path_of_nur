@@ -9,7 +9,7 @@ struct TVQuranPlaybackCard: View {
     VStack(alignment: .leading, spacing: 18) {
       HStack(alignment: .top) {
         VStack(alignment: .leading, spacing: 6) {
-          Text(tvLocalized("Playback"))
+          Text(tvLocalized("Now playing"))
             .font(TVTypography.summaryTitle)
             .foregroundColor(TVTheme.textPrimary)
             .tvReadableTitle()
@@ -49,7 +49,7 @@ struct TVQuranPlaybackCard: View {
                 in: Capsule()
               )
           }
-          .buttonStyle(.plain)
+          .buttonStyle(TVCardButtonStyle(shape: .capsule))
           .accessibilityLabel(tvLocalized("Switch reciter to %@.", reciter.displayName))
         }
       }
@@ -86,10 +86,10 @@ struct TVQuranPlaybackCard: View {
         .padding(.vertical, 14)
         .background(TVTheme.surfaceSoft, in: Capsule())
       }
-      .buttonStyle(.plain)
+      .buttonStyle(TVCardButtonStyle(shape: .capsule))
       .tvFocusableCard()
       .accessibilityLabel(tvLocalized("Open listening mode"))
-      .accessibilityHint(tvLocalized("Opens full-screen listening controls."))
+      .accessibilityHint(tvLocalized("Opens the ayah full screen."))
 
       if let errorMessage = viewModel.playbackErrorMessage {
         Text(errorMessage)
@@ -120,7 +120,7 @@ struct TVQuranPlaybackCard: View {
             .fill(large ? TVTheme.accentSoft : TVTheme.surfaceSoft)
         )
     }
-    .buttonStyle(.plain)
+    .buttonStyle(TVCardButtonStyle(shape: .rounded(26)))
     .tvFocusableCard()
     .accessibilityLabel(_playbackAccessibilityLabel(systemName: systemName))
     .modifier(

@@ -6,9 +6,11 @@ struct TVDhikrModeCardView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 16) {
-      Text(item.eyebrow.uppercased())
-        .font(TVTypography.badge)
-        .foregroundColor(TVTheme.focus)
+      if !item.eyebrow.isEmpty {
+        Text(item.eyebrow.uppercased())
+          .font(TVTypography.badge)
+          .foregroundColor(TVTheme.focus)
+      }
 
       HStack(alignment: .top) {
         VStack(alignment: .leading, spacing: 8) {
@@ -16,10 +18,12 @@ struct TVDhikrModeCardView: View {
             .font(TVTypography.featureTitle)
             .foregroundColor(TVTheme.textPrimary)
 
-          Text(item.subtitle)
-            .font(TVTypography.featureSubtitle)
-            .foregroundColor(TVTheme.textSecondary)
-            .lineLimit(3)
+          if !item.subtitle.isEmpty {
+            Text(item.subtitle)
+              .font(TVTypography.featureSubtitle)
+              .foregroundColor(TVTheme.textSecondary)
+              .lineLimit(3)
+          }
         }
 
         Spacer(minLength: 0)
@@ -29,10 +33,12 @@ struct TVDhikrModeCardView: View {
           .foregroundColor(TVTheme.accentStrong)
       }
 
-      Text(item.supportingLine)
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textMuted)
-        .lineLimit(3)
+      if !item.supportingLine.isEmpty {
+        Text(item.supportingLine)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.textMuted)
+          .lineLimit(3)
+      }
 
       HStack(spacing: 10) {
         ForEach(item.focusPhrases, id: \.self) { phrase in

@@ -24,18 +24,23 @@ enum TVStartupPreference: String, CaseIterable, Hashable, Identifiable {
 
   var id: String { rawValue }
 
+  /// The choices Settings offers: the ones that open a released section.
+  static var released: [TVStartupPreference] {
+    allCases.filter { $0 == .lastUsed || $0.resolvedRoute(lastUsedRoute: .home).isReleased }
+  }
+
   var titleKey: String {
     switch self {
     case .profiles:
       return "Open Profiles first"
     case .lastUsed:
-      return "Resume last household route"
+      return "Where you left off"
     case .home:
-      return "Start on Home"
+      return "Home"
     case .quran:
-      return "Start on Qur'an"
+      return "Qur’an"
     case .prayer:
-      return "Start on Prayer"
+      return "Prayer"
     case .learn:
       return "Start on Learn"
     }
@@ -46,13 +51,13 @@ enum TVStartupPreference: String, CaseIterable, Hashable, Identifiable {
     case .profiles:
       return "Let the room choose the household context before content begins."
     case .lastUsed:
-      return "Return to the strongest route saved for the active household profile."
+      return "Opens the last section you used."
     case .home:
-      return "Begin with prayer rhythm and continue-your-journey guidance."
+      return "Opens on today’s prayers and verse."
     case .quran:
-      return "Open directly into reading, browsing, and listening."
+      return "Opens on the reader."
     case .prayer:
-      return "Open directly into current and next salah guidance."
+      return "Opens on today’s prayer times."
     case .learn:
       return "Open directly into the curated learning hub for shared study."
     }
@@ -73,6 +78,13 @@ enum TVStartupPreference: String, CaseIterable, Hashable, Identifiable {
     case .learn:
       return "graduationcap.fill"
     }
+  }
+
+  /// Where the app opens. A stored choice can name a section this build
+  /// does not show, so the answer is checked before it is used.
+  func openingRoute(lastUsedRoute: TVRoute) -> TVRoute {
+    let route = resolvedRoute(lastUsedRoute: lastUsedRoute)
+    return route.isReleased ? route : .home
   }
 
   func resolvedRoute(lastUsedRoute: TVRoute) -> TVRoute {

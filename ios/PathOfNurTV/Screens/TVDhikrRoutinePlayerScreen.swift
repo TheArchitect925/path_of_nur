@@ -69,7 +69,7 @@ struct TVDhikrRoutinePlayerScreen: View {
           .foregroundColor(TVTheme.textSecondary)
           .tvReadableBody()
 
-        Text(viewModel.isRoutinePacing ? tvLocalized("Pacing on · the TV counts for the room") : tvLocalized("Select counts one · play/pause lets the TV count"))
+        Text(viewModel.isRoutinePacing ? tvLocalized("The TV is counting") : tvLocalized("Select counts one. Play/Pause lets the TV count."))
           .font(TVTypography.detail)
           .foregroundColor(TVTheme.accentStrong)
           .tvReadableBody()
@@ -88,7 +88,7 @@ struct TVDhikrRoutinePlayerScreen: View {
           .padding(.vertical, 14)
           .background(TVTheme.surfaceSoft, in: Capsule())
       }
-      .buttonStyle(.plain)
+      .buttonStyle(TVCardButtonStyle(shape: .capsule))
       .tvFocusableCard()
       .focused($focusedControl, equals: "routine.exit")
       .accessibilityLabel(tvLocalized("Leave routine"))
@@ -211,7 +211,7 @@ struct TVDhikrRoutinePlayerScreen: View {
         viewModel.countRoutine()
       }
       _controlButton(
-        title: viewModel.isRoutinePacing ? tvLocalized("Pause pacing") : tvLocalized("Let the TV count"),
+        title: viewModel.isRoutinePacing ? tvLocalized("Pause") : tvLocalized("Let the TV count"),
         systemImage: viewModel.isRoutinePacing ? "pause.circle.fill" : "play.circle.fill",
         focusID: "routine.pace"
       ) {
@@ -249,10 +249,10 @@ struct TVDhikrRoutinePlayerScreen: View {
         .font(TVTypography.summaryTitle)
         .foregroundColor(TVTheme.textPrimary)
         .tvReadableTitle()
-      Text(tvLocalized("%d remembrances · %@ unhurried", viewModel.activeRoutine?.totalCount ?? 0, viewModel.routineElapsedLabel))
+      Text(tvLocalized("%d remembrances · %@", viewModel.activeRoutine?.totalCount ?? 0, viewModel.routineElapsedLabel))
         .font(TVTypography.sectionSubtitle)
         .foregroundColor(TVTheme.textSecondary)
-      Text(tvLocalized("The Apple TV remembers today's routines on this device; the phone and watch keep your full history."))
+      Text(tvLocalized("Today’s routines are remembered on this Apple TV."))
         .font(TVTypography.detail)
         .foregroundColor(TVTheme.textMuted)
         .multilineTextAlignment(.center)
@@ -302,7 +302,7 @@ struct TVDhikrRoutinePlayerScreen: View {
         .padding(.vertical, 16)
         .background(emphasized ? TVTheme.accentStrong : TVTheme.surfaceSoft, in: Capsule())
     }
-    .buttonStyle(.plain)
+    .buttonStyle(TVCardButtonStyle(shape: .capsule))
     .tvFocusableCard()
     .focused($focusedControl, equals: focusID)
     .accessibilityLabel(title)

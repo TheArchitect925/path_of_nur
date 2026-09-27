@@ -8,26 +8,32 @@ struct TVHeroCard: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 16) {
-      Text(eyebrow.uppercased())
-        .font(TVTypography.heroEyebrow)
-        .foregroundColor(TVTheme.focus)
-        .tvReadableBody()
+      if !eyebrow.isEmpty {
+        Text(eyebrow.uppercased())
+          .font(TVTypography.heroEyebrow)
+          .foregroundColor(TVTheme.focus)
+          .tvReadableBody()
+      }
 
       Text(title)
         .font(TVTypography.heroTitle)
         .foregroundColor(TVTheme.textPrimary)
         .tvReadableTitle()
 
-      Text(subtitle)
-        .font(TVTypography.heroSubtitle)
-        .foregroundColor(TVTheme.textSecondary)
-        .frame(maxWidth: 980, alignment: .leading)
-        .tvReadableBody()
+      if !subtitle.isEmpty {
+        Text(subtitle)
+          .font(TVTypography.heroSubtitle)
+          .foregroundColor(TVTheme.textSecondary)
+          .frame(maxWidth: 980, alignment: .leading)
+          .tvReadableBody()
+      }
 
-      Text(supportingLine)
-        .font(TVTypography.heroSupporting)
-        .foregroundColor(TVTheme.textMuted)
-        .tvReadableBody()
+      if !supportingLine.isEmpty {
+        Text(supportingLine)
+          .font(TVTypography.heroSupporting)
+          .foregroundColor(TVTheme.textMuted)
+          .tvReadableBody()
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(TVTheme.heroPadding)
@@ -50,7 +56,7 @@ struct TVHeroCard: View {
         .shadow(color: TVTheme.surfaceShadow, radius: 22, x: 0, y: 10)
     )
     .tvCombinedAccessibility(
-      label: "\(title). \(subtitle)",
+      label: subtitle.isEmpty ? title : "\(title). \(subtitle)",
       hint: supportingLine
     )
   }

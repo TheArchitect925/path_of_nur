@@ -11,11 +11,13 @@ struct TVSectionHeader: View {
         .foregroundColor(TVTheme.headerColor)
         .tvReadableTitle()
 
-      Text(subtitle)
-        .font(TVTypography.sectionSubtitle)
-        .foregroundColor(TVTheme.textSecondary)
-        .frame(maxWidth: 920, alignment: .leading)
-        .tvReadableBody()
+      if !subtitle.isEmpty {
+        Text(subtitle)
+          .font(TVTypography.sectionSubtitle)
+          .foregroundColor(TVTheme.textSecondary)
+          .frame(maxWidth: 920, alignment: .leading)
+          .tvReadableBody()
+      }
     }
     .tvCombinedAccessibility(label: title, hint: subtitle)
   }

@@ -17,42 +17,30 @@ struct TVPrayerScreen: View {
 
         TVSectionHeader(
           title: viewModel.currentNextTitle,
-          subtitle: viewModel.currentNextSubtitle
+          subtitle: ""
         )
 
-        HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
-          VStack(alignment: .leading, spacing: 18) {
-            Text(viewModel.summaryLine)
-              .font(TVTypography.summaryTitle)
-              .foregroundColor(TVTheme.textPrimary)
+        VStack(alignment: .leading, spacing: 18) {
+          Text(viewModel.summaryLine)
+            .font(TVTypography.summaryTitle)
+            .foregroundColor(TVTheme.textPrimary)
+            .tvReadableTitle()
 
-            Text(viewModel.detailLine)
-              .font(TVTypography.featureSubtitle)
-              .foregroundColor(TVTheme.textSecondary)
-          }
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(TVTheme.cardPadding)
-          .tvSurfaceCard(elevated: true, emphasized: true)
-          .tvFocusableCard()
-          .focused($focusedSection, equals: TVFocusSectionId.prayerCurrentNext)
-
-          VStack(alignment: .leading, spacing: 14) {
-            Text(tvLocalized("Prayer route note"))
-              .font(TVTypography.summaryTitle)
-              .foregroundColor(TVTheme.textPrimary)
-
-            Text(tvLocalized("Prayer on TV should lead with clarity and presence: current, next, then the day without burying the room in settings or calculations."))
-              .font(TVTypography.detail)
-              .foregroundColor(TVTheme.textSecondary)
-          }
-          .frame(width: 380, alignment: .leading)
-          .padding(TVTheme.cardPadding)
-          .tvSurfaceCard(elevated: true, emphasized: false)
+          Text(viewModel.detailLine)
+            .font(TVTypography.featureSubtitle)
+            .foregroundColor(TVTheme.textSecondary)
+            .tvReadableBody()
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(TVTheme.cardPadding)
+        .tvSurfaceCard(elevated: true, emphasized: true)
+        .tvFocusableCard()
+        .focused($focusedSection, equals: TVFocusSectionId.prayerCurrentNext)
+        .tvCombinedAccessibility(label: viewModel.summaryLine, hint: viewModel.detailLine)
 
         TVSectionHeader(
           title: viewModel.scheduleTitle,
-          subtitle: viewModel.scheduleSubtitle
+          subtitle: ""
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
@@ -67,25 +55,9 @@ struct TVPrayerScreen: View {
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
-
-        TVSectionHeader(
-          title: viewModel.companionTitle,
-          subtitle: viewModel.companionSubtitle
-        )
-
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
-            ForEach(Array(viewModel.focusCards.enumerated()), id: \.element.id) { index, item in
-              TVPrayerFocusCardView(item: item)
-                .focused(
-                  $focusedSection,
-                  equals: index == 0 ? TVFocusSectionId.prayerCompanion : "prayer.companion.\(item.id)"
-                )
-            }
-          }
-          .padding(.vertical, 8)
-        }
+        .padding(.horizontal, -TVTheme.railBleed)
       }
       .padding(TVTheme.outerPadding)
     }
@@ -101,8 +73,6 @@ struct TVPrayerScreen: View {
         appViewModel.markContentSectionFocused(TVFocusSectionId.prayerCurrentNext, for: .prayer)
       } else if section.hasPrefix("prayer.schedule") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.prayerSchedule, for: .prayer)
-      } else if section.hasPrefix("prayer.companion") {
-        appViewModel.markContentSectionFocused(TVFocusSectionId.prayerCompanion, for: .prayer)
       }
     }
     .onMoveCommand { direction in

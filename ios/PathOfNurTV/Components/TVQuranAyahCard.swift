@@ -64,7 +64,7 @@ struct TVQuranAyahCard: View {
     .tvCombinedAccessibility(
       label: tvLocalized("Ayah %d", ayah.ayahNumber),
       hint: ayah.translation,
-      value: isPlaying ? tvLocalized("Audio is playing") : (isSelected ? tvLocalized("Selected") : nil)
+      value: isPlaying ? tvLocalized("Playing") : (isSelected ? tvLocalized("Selected") : nil)
     )
   }
 }

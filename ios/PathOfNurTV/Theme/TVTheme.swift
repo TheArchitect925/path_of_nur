@@ -247,7 +247,7 @@ enum TVAppearanceSetting: String, CaseIterable, Identifiable {
 
   var titleKey: String {
     switch self {
-    case .auto: return "Living room auto"
+    case .auto: return "Automatic"
     case .noorGlass: return "Noor Glass"
     case .midnight: return "Midnight"
     case .candlelight: return "Candlelight"
@@ -259,17 +259,17 @@ enum TVAppearanceSetting: String, CaseIterable, Identifiable {
   var subtitleKey: String {
     switch self {
     case .auto:
-      return "Cream by day, the starry Midnight sky after dark, with Jumu'ah and Ramadan arriving on their own."
+      return "Cream by day and Midnight after dark. Jumu’ah and Ramadan arrive on their own."
     case .noorGlass:
-      return "The warm cream glass of the mobile app's daytime sanctuary."
+      return "Warm cream glass. Rests into Midnight after dark."
     case .midnight:
-      return "Deep indigo glass under a painted night sky and moon."
+      return "Deep indigo under a night sky and moon."
     case .candlelight:
-      return "A warm ember room lit softly from above."
+      return "A warm ember light from above."
     case .jummah:
-      return "Dome green crowned by the golden mihrab arch."
+      return "Dome green under a golden mihrab arch."
     case .ramadan:
-      return "The violet Layali night lit by a hanging fanoos."
+      return "A violet night lit by a hanging fanoos."
     }
   }
 
@@ -288,7 +288,7 @@ enum TVAppearanceSetting: String, CaseIterable, Identifiable {
 // MARK: - Theme controller
 
 /// Resolves the active palette the way the phone does: manual choices win,
-/// and "Living room auto" walks the occasion ladder (Laylat al-Qadr >
+/// and "Automatic" walks the occasion ladder (Laylat al-Qadr >
 /// Ramadan > Jumu'ah) before falling back to the living-atmosphere
 /// day/night rhythm. Noor Glass — manual or auto — becomes Midnight after
 /// dark, exactly like the phone's living sky.
@@ -444,5 +444,8 @@ enum TVTheme {
   static let cardPadding: CGFloat = 28
   static let heroPadding: CGFloat = 40
   static let focusScale: CGFloat = 1.045
+  /// Room a rail leaves at its edges so the focused card can grow into it
+  /// without being cut by the scroll view.
+  static let railBleed: CGFloat = 16
   static let focusShadowRadius: CGFloat = 22
 }

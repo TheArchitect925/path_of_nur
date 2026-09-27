@@ -6,9 +6,11 @@ struct TVQuranBrowseCollectionCard: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 14) {
-      Text(collection.eyebrow.uppercased())
-        .font(TVTypography.badge)
-        .foregroundColor(TVTheme.focus)
+      if !collection.eyebrow.isEmpty {
+        Text(collection.eyebrow.uppercased())
+          .font(TVTypography.badge)
+          .foregroundColor(TVTheme.focus)
+      }
 
       HStack(alignment: .top) {
         VStack(alignment: .leading, spacing: 8) {
@@ -16,10 +18,12 @@ struct TVQuranBrowseCollectionCard: View {
             .font(TVTypography.featureTitle)
             .foregroundColor(TVTheme.textPrimary)
 
-          Text(collection.subtitle)
-            .font(TVTypography.featureSubtitle)
-            .foregroundColor(TVTheme.textSecondary)
-            .lineLimit(2)
+          if !collection.subtitle.isEmpty {
+            Text(collection.subtitle)
+              .font(TVTypography.featureSubtitle)
+              .foregroundColor(TVTheme.textSecondary)
+              .lineLimit(2)
+          }
         }
 
         Spacer()
@@ -29,10 +33,12 @@ struct TVQuranBrowseCollectionCard: View {
           .foregroundColor(TVTheme.accentStrong)
       }
 
-      Text(collection.supportingLine)
-        .font(TVTypography.detail)
-        .foregroundColor(TVTheme.textMuted)
-        .lineLimit(2)
+      if !collection.supportingLine.isEmpty {
+        Text(collection.supportingLine)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.textMuted)
+          .lineLimit(2)
+      }
     }
     .frame(width: 330, height: 190, alignment: .leading)
     .padding(TVTheme.cardPadding)

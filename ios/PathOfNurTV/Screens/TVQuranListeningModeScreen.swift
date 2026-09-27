@@ -70,7 +70,7 @@ struct TVQuranListeningModeScreen: View {
         dismiss()
       } label: {
         Label(
-          tvLocalized("Exit listening mode"),
+          tvLocalized("Close"),
           systemImage: "xmark.circle.fill"
         )
         .font(TVTypography.chip)
@@ -79,10 +79,10 @@ struct TVQuranListeningModeScreen: View {
         .padding(.vertical, 14)
         .background(TVTheme.surfaceSoft, in: Capsule())
       }
-      .buttonStyle(.plain)
+      .buttonStyle(TVCardButtonStyle(shape: .capsule))
       .tvFocusableCard()
       .focused($focusedControl, equals: "listening.exit")
-      .accessibilityLabel(tvLocalized("Exit listening mode"))
+      .accessibilityLabel(tvLocalized("Close"))
     }
   }
 
@@ -120,7 +120,6 @@ struct TVQuranListeningModeScreen: View {
     .tvSurfaceCard(elevated: true, emphasized: true)
     .tvCombinedAccessibility(
       label: viewModel.listeningModeHeaderLine,
-      hint: viewModel.listeningModeTransportLine,
       value: viewModel.listeningModeStatusLine
     )
   }
@@ -160,15 +159,10 @@ struct TVQuranListeningModeScreen: View {
     VStack(alignment: .leading, spacing: 18) {
       HStack(alignment: .top) {
         VStack(alignment: .leading, spacing: 8) {
-          Text(tvLocalized("Audio controls"))
+          Text(tvLocalized("Reciter"))
             .font(TVTypography.summaryTitle)
             .foregroundColor(TVTheme.textPrimary)
             .tvReadableTitle()
-
-          Text(viewModel.listeningModeTransportLine)
-            .font(TVTypography.sectionSubtitle)
-            .foregroundColor(TVTheme.textSecondary)
-            .tvReadableBody()
         }
 
         Spacer()
@@ -200,7 +194,7 @@ struct TVQuranListeningModeScreen: View {
                 in: Capsule()
               )
           }
-          .buttonStyle(.plain)
+          .buttonStyle(TVCardButtonStyle(shape: .capsule))
           .tvFocusableCard()
           .accessibilityLabel(tvLocalized("Switch reciter to %@.", reciter.displayName))
         }
@@ -255,7 +249,7 @@ struct TVQuranListeningModeScreen: View {
         .padding(.vertical, 12)
         .background(TVTheme.surfaceSoft, in: Capsule())
     }
-    .buttonStyle(.plain)
+    .buttonStyle(TVCardButtonStyle(shape: .capsule))
     .tvFocusableCard()
     .focused($focusedControl, equals: focusID)
     .accessibilityLabel(label)
@@ -277,7 +271,7 @@ struct TVQuranListeningModeScreen: View {
             .fill(large ? TVTheme.accentSoft : TVTheme.surfaceSoft)
         )
     }
-    .buttonStyle(.plain)
+    .buttonStyle(TVCardButtonStyle(shape: .rounded(28)))
     .tvFocusableCard()
     .focused($focusedControl, equals: focusID)
     .accessibilityLabel(_transportAccessibilityLabel(systemName: systemName))

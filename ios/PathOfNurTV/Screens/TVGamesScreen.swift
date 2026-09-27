@@ -41,14 +41,16 @@ struct TVGamesScreen: View {
                           isSelected: viewModel.selectedPrimaryItem?.id == item.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -82,14 +84,16 @@ struct TVGamesScreen: View {
                           isSelected: viewModel.selectedChallenge?.id == item.id
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -113,7 +117,9 @@ struct TVGamesScreen: View {
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
       }
       .padding(TVTheme.outerPadding)
     }
@@ -248,7 +254,7 @@ struct TVGamesScreen: View {
                   )
               )
             }
-            .buttonStyle(.plain)
+            .buttonStyle(TVCardButtonStyle())
           }
         }
 

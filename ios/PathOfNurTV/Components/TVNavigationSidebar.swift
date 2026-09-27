@@ -6,21 +6,12 @@ struct TVNavigationSidebar: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 24) {
-      VStack(alignment: .leading, spacing: 10) {
-        Text("Path of Nūr")
-          .font(TVTypography.heroEyebrow)
-          .foregroundColor(TVTheme.focus)
-
-        Text(tvLocalized("Shared tvOS shell"))
-          .font(TVTypography.sectionTitle)
-          .foregroundColor(TVTheme.textPrimary)
-          .tvReadableTitle()
-
-        Text(tvLocalized("Built for remote-first navigation and curated Home, Profiles, Qur'an, Saved, Settings, Arabic, Learn, Games, Prayer, Dhikr, and Kids parity."))
-          .font(TVTypography.sectionSubtitle)
-          .foregroundColor(TVTheme.textMuted)
-          .tvReadableBody()
-      }
+      Text("Path of Nūr")
+        .font(TVTypography.sectionTitle)
+        .foregroundColor(TVTheme.focus)
+        .tvReadableTitle()
+        .padding(.horizontal, 20)
+        .accessibilityAddTraits(.isHeader)
 
       // The nav list scrolls inside the rail so the shell itself never
       // exceeds the screen — otherwise tvOS pans the whole root (and the
@@ -33,27 +24,15 @@ struct TVNavigationSidebar: View {
             } label: {
               _itemLabel(for: item)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(TVCardButtonStyle())
             .focused($focusedRoute, equals: item.route)
           }
         }
         .padding(.vertical, 8)
+        .padding(.horizontal, TVTheme.railBleed)
       }
+      .padding(.horizontal, -TVTheme.railBleed)
       .frame(maxHeight: .infinity)
-
-      VStack(alignment: .leading, spacing: 8) {
-        Text(tvLocalized("Current route"))
-          .font(TVTypography.detail)
-          .foregroundColor(TVTheme.textMuted)
-          .tvReadableBody()
-
-        Text(tvLocalized(appViewModel.selectedNavigationItem.pathLabelKey))
-          .font(TVTypography.summaryLine)
-          .foregroundColor(TVTheme.accentStrong)
-          .tvReadableBody()
-      }
-
-      TVSystemStatusCard(snapshot: appViewModel.systemStatusSnapshot)
     }
     .frame(width: 360, alignment: .leading)
     .padding(.horizontal, 24)

@@ -9,10 +9,10 @@ struct TVQuranScreen: View {
     ScrollView {
       VStack(alignment: .leading, spacing: TVTheme.sectionSpacing) {
         TVHeroCard(
-          eyebrow: tvLocalized("Qur'an"),
-          title: tvLocalized("Qur'an"),
-          subtitle: tvLocalized("A large-screen Qur'an route for calm browsing, reading, and supporting playback."),
-          supportingLine: tvLocalized("Qur'an keeps the same mobile-aligned direction here, but the interaction is rebuilt for remote focus and family-room reading.")
+          eyebrow: "",
+          title: tvLocalized("Qur’an"),
+          subtitle: tvLocalized("Read and listen"),
+          supportingLine: ""
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
@@ -28,11 +28,10 @@ struct TVQuranScreen: View {
                 } label: {
                   _summaryCard(
                     title: viewModel.continueReadingSummaryTitle,
-                    line: viewModel.continueReadingLine,
-                    detail: viewModel.continueReadingSummarySubtitle
+                    line: viewModel.continueReadingLine
                   )
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(TVCardButtonStyle())
 
                 Button {
                   viewModel.selectSurah(
@@ -43,24 +42,25 @@ struct TVQuranScreen: View {
                 } label: {
                   _summaryCard(
                     title: viewModel.dailyVerseSummaryTitle,
-                    line: viewModel.dailyVerse.locationLabel,
-                    detail: viewModel.dailyVerseSummarySubtitle
+                    line: viewModel.dailyVerse.locationLabel
                   )
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(TVCardButtonStyle())
               }
             } else {
               emptyShelfCard(emphasized: true)
             }
           }
           .padding(.vertical, 8)
+          .padding(.horizontal, TVTheme.railBleed)
         }
+        .padding(.horizontal, -TVTheme.railBleed)
 
         HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
           VStack(alignment: .leading, spacing: 16) {
             TVSectionHeader(
-              title: tvLocalized("Browse Surahs"),
-              subtitle: viewModel.browseShelfSubtitle
+              title: tvLocalized("Surahs"),
+              subtitle: ""
             )
 
             ScrollView(.horizontal, showsIndicators: false) {
@@ -82,24 +82,22 @@ struct TVQuranScreen: View {
                           isSelected: viewModel.collectionContainsSelectedSurah(collection)
                         )
                       }
-                      .buttonStyle(.plain)
+                      .buttonStyle(TVCardButtonStyle())
                       .focused($focusedSection, equals: focusID)
                     }
                   }
                 }
               }
               .padding(.vertical, 8)
+              .padding(.horizontal, TVTheme.railBleed)
             }
+            .padding(.horizontal, -TVTheme.railBleed)
 
             Group {
               if viewModel.surahs.isEmpty {
-                emptyRailCard(
-                  title: tvLocalized("Nothing ready yet"),
-                  subtitle: tvLocalized("This shelf is not available on the current Apple TV build."),
-                  supportingLine: tvLocalized("Keep exploring another section and return later.")
-                )
-                .padding(TVTheme.cardPadding)
-                .tvSurfaceCard(elevated: true, emphasized: false)
+                emptyCard(tvLocalized("No surahs here yet."))
+                  .padding(TVTheme.cardPadding)
+                  .tvSurfaceCard(elevated: true, emphasized: false)
               } else {
                 LazyVStack(spacing: 14) {
                   ForEach(viewModel.surahs) { surah in
@@ -111,7 +109,7 @@ struct TVQuranScreen: View {
                     } label: {
                       TVQuranSurahRow(surah: surah, isSelected: isSelected)
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(TVCardButtonStyle())
                     .focused($focusedSection, equals: focusID)
                   }
                 }
@@ -126,21 +124,10 @@ struct TVQuranScreen: View {
               subtitle: viewModel.readerSubtitle
             )
 
-            TVQuranReaderSummaryCard(
-              eyebrow: viewModel.readerStageTitle,
-              title: viewModel.selectedSurah.transliteratedName,
-              subtitle: viewModel.readerStageSubtitle,
-              supportingLine: viewModel.readerStageSupportingLine
-            )
-
             if viewModel.selectedAyahs.isEmpty {
-              emptyRailCard(
-                title: tvLocalized("Nothing ready yet"),
-                subtitle: tvLocalized("This shelf is not available on the current Apple TV build."),
-                supportingLine: tvLocalized("Keep exploring another section and return later.")
-              )
-              .padding(TVTheme.cardPadding)
-              .tvSurfaceCard(elevated: true, emphasized: true)
+              emptyCard(tvLocalized("No ayahs here yet."))
+                .padding(TVTheme.cardPadding)
+                .tvSurfaceCard(elevated: true, emphasized: true)
             } else {
               LazyVStack(spacing: 16) {
                 ForEach(Array(viewModel.selectedAyahs.enumerated()), id: \.element.id) { index, ayah in
@@ -157,7 +144,7 @@ struct TVQuranScreen: View {
                       isPlaying: isPlaying
                     )
                   }
-                  .buttonStyle(.plain)
+                  .buttonStyle(TVCardButtonStyle())
                   .focused($focusedSection, equals: focusID)
                 }
               }
@@ -167,8 +154,8 @@ struct TVQuranScreen: View {
         }
 
         TVSectionHeader(
-          title: tvLocalized("Playback"),
-          subtitle: viewModel.playbackSectionSubtitle
+          title: tvLocalized("Listen"),
+          subtitle: ""
         )
 
         TVQuranPlaybackCard(
@@ -192,7 +179,7 @@ struct TVQuranScreen: View {
       guard let section else { return }
       if section == TVFocusSectionId.quranPlayback {
         appViewModel.markContentSectionFocused(TVFocusSectionId.quranPlayback, for: .quran)
-      } else if section.hasPrefix("quran.browse.") {
+      } else if section == TVFocusSectionId.quranBrowse || section.hasPrefix("quran.browse.") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.quranBrowse, for: .quran)
       } else if section.hasPrefix("quran.reader.") {
         appViewModel.markContentSectionFocused(TVFocusSectionId.quranReader, for: .quran)
@@ -211,7 +198,7 @@ struct TVQuranScreen: View {
     }
   }
 
-  private func _summaryCard(title: String, line: String, detail: String) -> some View {
+  private func _summaryCard(title: String, line: String) -> some View {
     VStack(alignment: .leading, spacing: 10) {
       Text(title)
         .font(TVTypography.featureTitle)
@@ -222,18 +209,12 @@ struct TVQuranScreen: View {
         .font(TVTypography.summaryLine)
         .foregroundColor(TVTheme.accentStrong)
         .tvReadableBody()
-
-      Text(detail)
-        .font(TVTypography.featureSubtitle)
-        .foregroundColor(TVTheme.textSecondary)
-        .lineLimit(4)
-        .tvReadableBody()
     }
     .frame(width: 520, alignment: .leading)
     .padding(24)
     .tvSurfaceCard(elevated: true)
     .tvFocusableCard()
-    .tvCombinedAccessibility(label: title, hint: detail, value: line)
+    .tvCombinedAccessibility(label: title, value: line)
   }
 
   private func restorePreferredFocus() {
@@ -264,8 +245,8 @@ struct TVQuranScreen: View {
   private func focusTarget(for section: String) -> String {
     switch section {
     case TVFocusSectionId.quranBrowse:
-      if let firstCollection = viewModel.browseCollections.first {
-        return "quran.browse.collection.\(firstCollection.id)"
+      if !viewModel.browseCollections.isEmpty {
+        return TVFocusSectionId.quranBrowse
       }
       if let firstSurah = viewModel.surahs.first {
         return TVFocusSectionId.quranSurahRow(firstSurah.id)
@@ -286,21 +267,13 @@ struct TVQuranScreen: View {
   }
 
   private func emptyShelfCard(emphasized: Bool = false) -> some View {
-    TVEmptyStateCard(
-      title: tvLocalized("Nothing ready yet"),
-      subtitle: tvLocalized("This shelf is not available on the current Apple TV build."),
-      supportingLine: tvLocalized("Keep exploring another section and return later.")
-    )
-    .frame(width: 520, alignment: .leading)
-    .padding(TVTheme.cardPadding)
-    .tvSurfaceCard(elevated: true, emphasized: emphasized)
+    emptyCard(tvLocalized("No surahs here yet."))
+      .frame(width: 520, alignment: .leading)
+      .padding(TVTheme.cardPadding)
+      .tvSurfaceCard(elevated: true, emphasized: emphasized)
   }
 
-  private func emptyRailCard(title: String, subtitle: String, supportingLine: String) -> some View {
-    TVEmptyStateCard(
-      title: title,
-      subtitle: subtitle,
-      supportingLine: supportingLine
-    )
+  private func emptyCard(_ line: String) -> some View {
+    TVEmptyStateCard(title: line, subtitle: "", supportingLine: "")
   }
 }

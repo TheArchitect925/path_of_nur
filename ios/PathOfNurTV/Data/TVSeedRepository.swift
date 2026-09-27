@@ -54,28 +54,28 @@ enum TVSeedRepository {
 
   static func homeHero() -> TVHeroContent {
     TVHeroContent(
-      eyebrow: tvLocalized("Today's Home"),
+      eyebrow: todayLabel(),
       title: "Path of Nūr",
-      subtitle: tvLocalized("A calm Apple TV mirror of the current Path of Nūr experience."),
-      supportingLine: tvLocalized("Home keeps the prayer-first shape of the mobile app, with the Qur'an close at hand.")
+      subtitle: tvLocalized("Assalamu alaikum"),
+      supportingLine: ""
     )
   }
 
   static func prayerHero() -> TVHeroContent {
     TVHeroContent(
-      eyebrow: tvLocalized("Prayer"),
+      eyebrow: todayLabel(),
       title: tvLocalized("Prayer"),
-      subtitle: tvLocalized("A calm television prayer route built around the current, next, and full-day salah rhythm."),
-      supportingLine: tvLocalized("Prayer on tvOS keeps the mobile prayer-first direction, but adapts it into a glanceable family-room flow.")
+      subtitle: "",
+      supportingLine: ""
     )
   }
 
   static func dhikrHero() -> TVHeroContent {
     TVHeroContent(
-      eyebrow: tvLocalized("Dhikr"),
+      eyebrow: "",
       title: tvLocalized("Dhikr"),
-      subtitle: tvLocalized("A calm television dhikr route built for guided remembrance, simple family-room pacing, and minimal input."),
-      supportingLine: tvLocalized("Dhikr on tvOS stays aligned with the worship direction of the mobile app, but avoids touch-style counters and dense setup.")
+      subtitle: tvLocalized("Remembrance, phrase by phrase"),
+      supportingLine: ""
     )
   }
 
@@ -117,10 +117,10 @@ enum TVSeedRepository {
 
   static func settingsHero() -> TVHeroContent {
     TVHeroContent(
-      eyebrow: tvLocalized("Settings"),
+      eyebrow: "",
       title: tvLocalized("Settings"),
-      subtitle: tvLocalized("A calm tvOS settings route for startup behavior, listening defaults, and family-room-safe preferences."),
-      supportingLine: tvLocalized("Settings on tvOS stays aligned with the broader mobile settings direction, but keeps only television-safe preferences on Apple TV while deeper account, sync, and management controls remain on iPhone or iPad.")
+      subtitle: "",
+      supportingLine: ""
     )
   }
 
@@ -131,97 +131,6 @@ enum TVSeedRepository {
       subtitle: tvLocalized("A calm tvOS household route for profile switching, family-room continuity, and shared-device safety."),
       supportingLine: tvLocalized("Profiles on tvOS stays aligned with the mobile shared-device direction, but keeps the Apple TV flow focused on quick switching rather than dense account management.")
     )
-  }
-
-  static func systemStatus(for route: TVRoute) -> TVSystemStatusSnapshot {
-    switch route {
-    case .home, .quran, .favorites:
-      return TVSystemStatusSnapshot(
-        eyebrow: tvLocalized("Offline and sync"),
-        title: tvLocalized("Offline-ready Qur'an return"),
-        subtitle: tvLocalized("Qur'an reading, prayer rhythm, and saved return paths stay usable on Apple TV even when live sync is unavailable."),
-        supportingLine: tvLocalized("Use iPhone or iPad for backup, restore, and deeper sync changes until the tvOS settings phase ships."),
-        systemImage: "checkmark.icloud",
-        chips: [
-          tvLocalized("Offline ready"),
-          tvLocalized("Bundled and cached"),
-          tvLocalized("Companion sync"),
-        ]
-      )
-    case .profiles:
-      return TVSystemStatusSnapshot(
-        eyebrow: tvLocalized("Offline and sync"),
-        title: tvLocalized("Household continuity stays local-first"),
-        subtitle: tvLocalized("Profile switching and last-used room continuity stay available on Apple TV, while deeper account, backup, and permission changes remain on companion devices."),
-        supportingLine: tvLocalized("Use iPhone or iPad for account editing, backup management, and broader sync controls while tvOS keeps switching and resume behavior simple."),
-        systemImage: "person.3.sequence.fill",
-        chips: [
-          tvLocalized("Shared device"),
-          tvLocalized("Resume ready"),
-          tvLocalized("Companion managed"),
-        ]
-      )
-    case .settings:
-      return TVSystemStatusSnapshot(
-        eyebrow: tvLocalized("Offline and sync"),
-        title: tvLocalized("tvOS preferences stay local-first"),
-        subtitle: tvLocalized("Startup flow, listening defaults, and household-safe Apple TV preferences stay on this device without turning settings into a dense management surface."),
-        supportingLine: tvLocalized("Use iPhone or iPad for account editing, backup, restore, and broader sync controls while tvOS keeps only the strongest room-level preferences."),
-        systemImage: "gearshape.2.fill",
-        chips: [
-          tvLocalized("Device local"),
-          tvLocalized("Companion managed"),
-          tvLocalized("TV safe"),
-        ]
-      )
-    case .prayer, .dhikr:
-      return TVSystemStatusSnapshot(
-        eyebrow: tvLocalized("Offline and sync"),
-        title: tvLocalized("Calm worship continuity"),
-        subtitle: tvLocalized("Prayer and dhikr surfaces stay readable offline, with worship continuity designed to remain calm during connection or transport gaps."),
-        supportingLine: tvLocalized("This Apple TV experience favors dependable local viewing first and leaves backup or sync decisions to companion devices."),
-        systemImage: "moon.stars.fill",
-        chips: [
-          tvLocalized("Offline ready"),
-          tvLocalized("Worship-safe"),
-          tvLocalized("Sync deferred"),
-        ]
-      )
-    case .learn, .games, .kids, .arabic:
-      return TVSystemStatusSnapshot(
-        eyebrow: tvLocalized("Offline and sync"),
-        title: tvLocalized("Bundled learning remains ready"),
-        subtitle: tvLocalized("Learning shelves, stories, and remote-friendly practice remain available on TV through bundled or cache-safe content."),
-        supportingLine: tvLocalized("Progress sync and heavier editing can continue later on iPhone or iPad without turning tvOS into a typing-heavy management surface."),
-        systemImage: "books.vertical.fill",
-        chips: [
-          tvLocalized("Offline ready"),
-          tvLocalized("Learning cached"),
-          tvLocalized("Phone handoff"),
-        ]
-      )
-    }
-  }
-
-  static func settingsSupportCards() -> [TVSettingsSupportCard] {
-    [
-      TVSettingsSupportCard(
-        id: "companion_handoff",
-        eyebrow: tvLocalized("Companion handoff"),
-        title: tvLocalized("Keep deep management off the television"),
-        subtitle: tvLocalized("Apple TV should only hold the strongest room-level choices: where to start, how listening opens, and how the family room stays readable."),
-        supportingLine: tvLocalized("Backup review, account editing, restore, and denser sync controls still belong on iPhone or iPad."),
-        systemImage: "iphone.gen3"
-      ),
-      TVSettingsSupportCard(
-        id: "family_room_defaults",
-        eyebrow: tvLocalized("Family room"),
-        title: tvLocalized("Prefer calm defaults"),
-        subtitle: tvLocalized("Startup and listening preferences should reduce repeated setup while keeping the room simple for guests, children, and shared use."),
-        supportingLine: tvLocalized("Good tvOS settings should feel obvious at a distance and never depend on heavy typing or dense forms."),
-        systemImage: "sofa.fill"
-      ),
-    ]
   }
 
   static func householdProfiles() -> [TVHouseholdProfile] {
@@ -324,7 +233,7 @@ enum TVSeedRepository {
           lastOpenedAtByProfileId[profile.id],
           route: route
         ),
-        detailLine: tvLocalized("Best next return: %@", tvLocalized(route.pathLabelKey)),
+        detailLine: tvLocalized("Best next return: %@", tvLocalized(route.titleKey)),
         systemImage: route.systemImage,
         route: route,
         chips: [
@@ -476,60 +385,14 @@ enum TVSeedRepository {
     ]
   }
 
-  static func homeActions() -> [TVShelfItem] {
-    [
-      TVShelfItem(
-        id: "home_quran",
-        title: tvLocalized("Open Qur'an"),
-        subtitle: tvLocalized("Open the same Qur'an space from the home surface."),
-        systemImage: "book.closed.fill"
-      ),
-      TVShelfItem(
-        id: "home_rhythm",
-        title: tvLocalized("Daily prayer rhythm"),
-        subtitle: tvLocalized("See the current and next salah first, then scan the full day."),
-        systemImage: "clock.fill"
-      ),
-    ]
-  }
-
-  static func prayerFocusCards() -> [TVPrayerFocusCard] {
-    [
-      TVPrayerFocusCard(
-        id: "prepare",
-        eyebrow: tvLocalized("Before the prayer"),
-        title: tvLocalized("Prepare with calm"),
-        subtitle: tvLocalized("Let the room slow down before the adhan or iqamah with one simple preparation mindset."),
-        supportingLine: tvLocalized("A prayer route on TV should reduce scramble, not add more noise."),
-        systemImage: "sparkles"
-      ),
-      TVPrayerFocusCard(
-        id: "presence",
-        eyebrow: tvLocalized("During the prayer"),
-        title: tvLocalized("Protect presence"),
-        subtitle: tvLocalized("Keep the route centered on khushu, intention, and showing up to salah with attention."),
-        supportingLine: tvLocalized("The strongest prayer companion on TV is a calmer emotional tone, not more controls."),
-        systemImage: "heart.fill"
-      ),
-      TVPrayerFocusCard(
-        id: "after",
-        eyebrow: tvLocalized("After the prayer"),
-        title: tvLocalized("Return with intention"),
-        subtitle: tvLocalized("Use the next step after salah to move back into Qur'an, dhikr, or quiet family rhythm."),
-        supportingLine: tvLocalized("Prayer should remain the anchor that guides the rest of the evening."),
-        systemImage: "arrow.clockwise.circle.fill"
-      ),
-    ]
-  }
-
   static func dhikrModes() -> [TVDhikrModeCard] {
     [
       TVDhikrModeCard(
         id: "after_prayer",
-        eyebrow: tvLocalized("After salah"),
-        title: tvLocalized("Post-prayer remembrance"),
-        subtitle: tvLocalized("Keep the familiar tasbih flow close after salah without turning the TV into a counter screen."),
-        supportingLine: tvLocalized("Best for a gentle return after prayer when the room wants one simple remembrance lane."),
+        eyebrow: "",
+        title: tvLocalized("After salah"),
+        subtitle: tvLocalized("Tasbih, praise and takbir"),
+        supportingLine: "",
         systemImage: "clock.arrow.circlepath",
         focusPhrases: [
           tvLocalized("SubhanAllah"),
@@ -539,10 +402,10 @@ enum TVSeedRepository {
       ),
       TVDhikrModeCard(
         id: "seeking_forgiveness",
-        eyebrow: tvLocalized("Quiet return"),
+        eyebrow: "",
         title: tvLocalized("Seeking forgiveness"),
-        subtitle: tvLocalized("Use short istighfar phrases when the room needs humility, softness, and a reset of intention."),
-        supportingLine: tvLocalized("Best for evening reflection, moments after hardship, or a calmer close to the day."),
+        subtitle: tvLocalized("Short istighfar"),
+        supportingLine: "",
         systemImage: "heart.circle.fill",
         focusPhrases: [
           tvLocalized("Astaghfirullah"),
@@ -552,10 +415,10 @@ enum TVSeedRepository {
       ),
       TVDhikrModeCard(
         id: "family_remembrance",
-        eyebrow: tvLocalized("Family room"),
-        title: tvLocalized("Quiet family remembrance"),
-        subtitle: tvLocalized("Keep a few foundational adhkar visible so the room can remember Allah together without heavy input."),
-        supportingLine: tvLocalized("Best for short shared remembrance before bedtime, after recitation, or between evening routines."),
+        eyebrow: "",
+        title: tvLocalized("Together"),
+        subtitle: tvLocalized("For the family to say together"),
+        supportingLine: "",
         systemImage: "person.3.fill",
         focusPhrases: [
           tvLocalized("SubhanAllah"),
@@ -574,22 +437,22 @@ enum TVSeedRepository {
           id: "istighfar_1",
           arabic: "أَسْتَغْفِرُ اللّٰهَ",
           transliteration: tvLocalized("Astaghfirullah"),
-          translation: tvLocalized("I seek Allah's forgiveness."),
-          helperLine: tvLocalized("Begin with a short return that softens the heart and turns the room back toward Allah.")
+          translation: tvLocalized("I seek Allah’s forgiveness."),
+          helperLine: ""
         ),
         TVDhikrGuideStep(
           id: "istighfar_2",
           arabic: "أَسْتَغْفِرُ اللّٰهَ وَأَتُوبُ إِلَيْهِ",
           transliteration: tvLocalized("Astaghfirullah wa atubu ilayh"),
-          translation: tvLocalized("I seek Allah's forgiveness and turn to Him in repentance."),
-          helperLine: tvLocalized("Acknowledge need, ask forgiveness, and renew intention without adding complexity.")
+          translation: tvLocalized("I seek Allah’s forgiveness and turn to Him in repentance."),
+          helperLine: ""
         ),
         TVDhikrGuideStep(
           id: "istighfar_3",
           arabic: "لَا إِلَٰهَ إِلَّا اللّٰهُ",
           transliteration: tvLocalized("La ilaha illa Allah"),
           translation: tvLocalized("There is no god but Allah."),
-          helperLine: tvLocalized("Close with tawhid so repentance stays anchored in worship and sincerity.")
+          helperLine: ""
         ),
       ]
     case "family_remembrance":
@@ -599,21 +462,21 @@ enum TVSeedRepository {
           arabic: "سُبْحَانَ اللّٰهِ",
           transliteration: tvLocalized("SubhanAllah"),
           translation: tvLocalized("Glory be to Allah."),
-          helperLine: tvLocalized("A simple opening phrase that the whole room can follow together.")
+          helperLine: ""
         ),
         TVDhikrGuideStep(
           id: "family_2",
           arabic: "الْحَمْدُ لِلّٰهِ",
           transliteration: tvLocalized("Alhamdulillah"),
           translation: tvLocalized("All praise is for Allah."),
-          helperLine: tvLocalized("Move from glorification into gratitude without rushing the pace.")
+          helperLine: ""
         ),
         TVDhikrGuideStep(
           id: "family_3",
           arabic: "لَا إِلَٰهَ إِلَّا اللّٰهُ",
           transliteration: tvLocalized("La ilaha illa Allah"),
           translation: tvLocalized("There is no god but Allah."),
-          helperLine: tvLocalized("End with the remembrance that gathers the room back around tawhid.")
+          helperLine: ""
         ),
       ]
     case "after_prayer":
@@ -625,85 +488,56 @@ enum TVSeedRepository {
           arabic: "سُبْحَانَ اللّٰهِ",
           transliteration: tvLocalized("SubhanAllah"),
           translation: tvLocalized("Glory be to Allah."),
-          helperLine: tvLocalized("Begin with tasbih after salah in a calm, repeatable rhythm.")
+          helperLine: ""
         ),
         TVDhikrGuideStep(
           id: "post_prayer_2",
           arabic: "الْحَمْدُ لِلّٰهِ",
           transliteration: tvLocalized("Alhamdulillah"),
           translation: tvLocalized("All praise is for Allah."),
-          helperLine: tvLocalized("Move into gratitude so the end of prayer carries forward into remembrance.")
+          helperLine: ""
         ),
         TVDhikrGuideStep(
           id: "post_prayer_3",
           arabic: "اللّٰهُ أَكْبَرُ",
           transliteration: tvLocalized("Allahu Akbar"),
           translation: tvLocalized("Allah is the Greatest."),
-          helperLine: tvLocalized("Close with takbir and let the route hand the room back to stillness instead of more controls.")
+          helperLine: ""
         ),
       ]
     }
-  }
-
-  static func dhikrSupportCards() -> [TVDhikrSupportCard] {
-    [
-      TVDhikrSupportCard(
-        id: "presence",
-        eyebrow: tvLocalized("Sincerity"),
-        title: tvLocalized("Keep it sincere"),
-        subtitle: tvLocalized("Dhikr on TV should support remembrance, not become performance or distraction."),
-        supportingLine: tvLocalized("Large text and simple pacing matter more here than counts, streaks, or noisy effects."),
-        systemImage: "heart.fill"
-      ),
-      TVDhikrSupportCard(
-        id: "pace",
-        eyebrow: tvLocalized("Pacing"),
-        title: tvLocalized("Follow a calm pace"),
-        subtitle: tvLocalized("Let one phrase settle before moving to the next so the room can remember together."),
-        supportingLine: tvLocalized("This route is built for remote-first, audio-first calm rather than rapid input."),
-        systemImage: "waveform"
-      ),
-      TVDhikrSupportCard(
-        id: "return",
-        eyebrow: tvLocalized("Return"),
-        title: tvLocalized("Return after salah"),
-        subtitle: tvLocalized("Use Dhikr as a gentle handoff after prayer or recitation before the evening moves on."),
-        supportingLine: tvLocalized("The strongest tvOS worship flow is prayer, remembrance, then a quiet return to family rhythm."),
-        systemImage: "arrow.clockwise.circle.fill"
-      ),
-    ]
   }
 
   static func homeContinueJourneyItems() -> [TVContinueJourneyItem] {
     [
       TVContinueJourneyItem(
         id: "continue_reading",
-        eyebrow: tvLocalized("Continue your journey"),
+        eyebrow: tvLocalized("Qur’an"),
         title: tvLocalized("Continue reading"),
         subtitle: String(
-          format: tvLocalized("Continue with %@ %d:%d"),
+          format: tvLocalized("%@ %d:%d"),
           continueReading.surahName,
           continueReading.surahNumber,
           continueReading.ayahNumber
         ),
-        supportingLine: tvLocalized("Return to the same Qur'an route from the place you left off."),
+        supportingLine: "",
         systemImage: "book.closed.fill"
       ),
       TVContinueJourneyItem(
         id: "resume_listening",
-        eyebrow: tvLocalized("Continue your journey"),
-        title: tvLocalized("Resume listening"),
-        subtitle: tvLocalized("Re-enter the listening flow with calm playback controls and highlighted ayahs."),
-        supportingLine: tvLocalized("Best for family-room listening, reflection, and recitation."),
+        eyebrow: tvLocalized("Qur’an"),
+        title: tvLocalized("Listen"),
+        subtitle: tvLocalized("Recitation, ayah by ayah"),
+        supportingLine: "",
         systemImage: "headphones"
       ),
       TVContinueJourneyItem(
-        id: "prayer_focus",
-        eyebrow: tvLocalized("Next worship step"),
-        title: tvLocalized("Stay with today's prayer rhythm"),
-        subtitle: tvLocalized("See the current and next salah first, then return to the Qur'an with intention."),
-        supportingLine: tvLocalized("Prayer remains the first frame of the tvOS home experience."),
-        systemImage: "clock.fill"
+        id: "dhikr_routines",
+        eyebrow: tvLocalized("Dhikr"),
+        title: tvLocalized("Dhikr routines"),
+        subtitle: tvLocalized("Routines to follow together"),
+        supportingLine: "",
+        systemImage: "sparkles"
       ),
     ]
   }
@@ -720,33 +554,33 @@ enum TVSeedRepository {
     [
       TVQuranBrowseCollection(
         id: "continue_path",
-        eyebrow: tvLocalized("Continue your journey"),
-        title: tvLocalized("Resume where you left off"),
+        eyebrow: "",
+        title: tvLocalized("Where you left off"),
         subtitle: String(
-          format: tvLocalized("Continue with %@ %d:%d"),
+          format: tvLocalized("%@ %d:%d"),
           continueReading.surahName,
           continueReading.surahNumber,
           continueReading.ayahNumber
         ),
-        supportingLine: tvLocalized("Keeps the current mobile-aligned continue-reading path close to the first browse shelf."),
+        supportingLine: "",
         systemImage: "bookmark.fill",
         surahNumbers: [continueReading.surahNumber]
       ),
       TVQuranBrowseCollection(
         id: "short_surahs",
-        eyebrow: tvLocalized("Quick browse"),
-        title: tvLocalized("Short surahs for family reading"),
-        subtitle: tvLocalized("Move through Al-Ikhlas, Al-Falaq, and An-Nas in one calm shelf."),
-        supportingLine: tvLocalized("Best for short recitation, review, and shared listening in the room."),
+        eyebrow: "",
+        title: tvLocalized("Short surahs"),
+        subtitle: tvLocalized("Al-Ikhlas, Al-Falaq and An-Nas"),
+        supportingLine: "",
         systemImage: "sparkles",
         surahNumbers: [112, 113, 114]
       ),
       TVQuranBrowseCollection(
         id: "opening_and_relief",
-        eyebrow: tvLocalized("Reflection path"),
+        eyebrow: "",
         title: tvLocalized("Opening and relief"),
-        subtitle: tvLocalized("Keep Al-Fatihah and Ash-Sharh close for reading with focus and ease."),
-        supportingLine: tvLocalized("A simple large-screen reading path for reflection, comfort, and repetition."),
+        subtitle: tvLocalized("Al-Fatihah and Ash-Sharh"),
+        supportingLine: "",
         systemImage: "sun.max.fill",
         surahNumbers: [1, 94]
       ),
@@ -1810,9 +1644,9 @@ enum TVSeedRepository {
           formatter.string(from: item.3)
         )
       } else if index < (currentIndex ?? 0) {
-        statusLine = tvLocalized("Completed earlier today")
+        statusLine = tvLocalized("Earlier today")
       } else {
-        statusLine = tvLocalized("Upcoming later today")
+        statusLine = tvLocalized("Later today")
       }
 
       return TVPrayerTime(
@@ -1850,6 +1684,14 @@ enum TVSeedRepository {
       detailLine: detailLine,
       prayerTimes: prayerTimes
     )
+  }
+
+  /// The day as the hero's eyebrow: "Sunday, September 27".
+  static func todayLabel(date: Date = Date()) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
+    formatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
+    return formatter.string(from: date)
   }
 
   private static let homePrayerTimeFormatter: DateFormatter = {

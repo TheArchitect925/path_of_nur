@@ -25,7 +25,7 @@ final class TVAppViewModel: ObservableObject {
   init(userDefaults: UserDefaults = .standard) {
     self.userDefaults = userDefaults
     TVTelemetry.bootstrap(userDefaults: userDefaults)
-    navigationItems = TVRoute.allCases.map(TVNavigationItem.init)
+    navigationItems = TVRoute.released.map(TVNavigationItem.init)
     preferredContentSectionByRoute = Dictionary(
       uniqueKeysWithValues: TVRoute.allCases.map { ($0, $0.defaultContentSection) }
     )
@@ -64,7 +64,7 @@ final class TVAppViewModel: ObservableObject {
       showTransliteration:
           settingsViewModel.showListeningTransliterationByDefault
     )
-    selectedRoute = settingsViewModel.startupPreference.resolvedRoute(
+    selectedRoute = settingsViewModel.startupPreference.openingRoute(
       lastUsedRoute: profilesViewModel.routeForActiveProfile()
     )
     #if targetEnvironment(simulator)
@@ -143,11 +143,8 @@ final class TVAppViewModel: ObservableObject {
     navigationItems.first(where: { $0.route == selectedRoute }) ?? TVNavigationItem(route: .home)
   }
 
-  var systemStatusSnapshot: TVSystemStatusSnapshot {
-    TVSeedRepository.systemStatus(for: selectedRoute)
-  }
-
   func navigate(to route: TVRoute, preferredColumn: TVShellColumn = .content) {
+    let route = route.isReleased ? route : .home
     selectedRoute = route
     profilesViewModel.updateSession(route: route, now: Date())
     TVTelemetry.logEvent(
@@ -380,8 +377,6 @@ final class TVAppViewModel: ObservableObject {
 
 final class TVSettingsViewModel: ObservableObject {
   @Published private(set) var hero: TVHeroContent = TVSeedRepository.settingsHero()
-  @Published private(set) var supportCards: [TVSettingsSupportCard] =
-      TVSeedRepository.settingsSupportCards()
   @Published private(set) var startupPreference: TVStartupPreference
   @Published private(set) var defaultReciter: TVQuranReciter
   @Published private(set) var showListeningTranslationByDefault: Bool
@@ -393,8 +388,9 @@ final class TVSettingsViewModel: ObservableObject {
     showListeningTranslationByDefault: Bool?,
     showListeningTransliterationByDefault: Bool?
   ) {
+    let storedStartup = TVStartupPreference(rawValue: startupPreferenceRawValue ?? "")
     startupPreference =
-        TVStartupPreference(rawValue: startupPreferenceRawValue ?? "") ??
+        storedStartup.flatMap { TVStartupPreference.released.contains($0) ? $0 : nil } ??
         .lastUsed
     defaultReciter =
         TVQuranReciter(rawValue: defaultReciterRawValue ?? "") ?? .husary
@@ -405,76 +401,42 @@ final class TVSettingsViewModel: ObservableObject {
   }
 
   var startupTitle: String {
-    tvLocalized("Startup behavior")
-  }
-
-  var startupSubtitle: String {
-    tvLocalized(
-      "Choose what the room should see first when Apple TV opens Path of Nūr."
-    )
+    tvLocalized("When the app opens")
   }
 
   var listeningTitle: String {
-    tvLocalized("Listening defaults")
-  }
-
-  var listeningSubtitle: String {
-    tvLocalized(
-      "Set the default reciter and verse helpers for full-screen Qur'an listening mode."
-    )
-  }
-
-  var supportTitle: String {
-    tvLocalized("tvOS settings note")
-  }
-
-  var supportSubtitle: String {
-    tvLocalized(
-      "Keep only television-safe preferences here and leave denser management to companion devices."
-    )
+    tvLocalized("Listening")
   }
 
   var detailRailTitle: String {
-    tvLocalized("Current tvOS defaults")
-  }
-
-  var detailRailSubtitle: String {
-    tvLocalized(
-      "These choices shape startup and listening behavior across the current Apple TV experience."
-    )
-  }
-
-  var diagnosticsTitle: String {
-    tvLocalized("Diagnostics and quality")
-  }
-
-  var diagnosticsSubtitle: String {
-    tvLocalized("Keep route telemetry, crash buffering, and playback-failure visibility local-first on Apple TV.")
-  }
-
-  var diagnosticsSummary: TVDiagnosticsSummary {
-    TVTelemetry.diagnosticsSummary()
+    tvLocalized("Your settings")
   }
 
   var detailRailPoints: [String] {
     [
       String(
-        format: tvLocalized("Startup route: %@"),
+        format: tvLocalized("Opens on: %@"),
         tvLocalized(startupPreference.titleKey)
       ),
       String(
-        format: tvLocalized("Default reciter: %@"),
+        format: tvLocalized("Reciter: %@"),
         defaultReciter.displayName
       ),
       showListeningTranslationByDefault
-          ? tvLocalized("Translation shows by default in listening mode.")
-          : tvLocalized("Translation stays hidden by default in listening mode."),
+          ? tvLocalized("Translation shown while listening")
+          : tvLocalized("Translation hidden while listening"),
       showListeningTransliterationByDefault
-          ? tvLocalized("Transliteration shows by default in listening mode.")
-          : tvLocalized(
-              "Transliteration stays hidden by default in listening mode."
-            ),
+          ? tvLocalized("Transliteration shown while listening")
+          : tvLocalized("Transliteration hidden while listening"),
     ]
+  }
+
+  /// "Path of Nūr 1.3.0 (54)", so a tester can say which build they hold.
+  var versionLine: String {
+    let info = Bundle.main.infoDictionary
+    let version = info?["CFBundleShortVersionString"] as? String ?? ""
+    let build = info?["CFBundleVersion"] as? String ?? ""
+    return "Path of Nūr \(version) (\(build))"
   }
 
   func selectStartupPreference(_ preference: TVStartupPreference) {
@@ -877,31 +839,13 @@ final class TVPrayerViewModel: ObservableObject {
   @Published private(set) var summaryLine: String = ""
   @Published private(set) var detailLine: String = ""
   @Published private(set) var prayerTimes: [TVPrayerTime] = []
-  @Published private(set) var focusCards: [TVPrayerFocusCard] =
-      TVSeedRepository.prayerFocusCards()
 
   var currentNextTitle: String {
-    tvLocalized("Current and next salah")
-  }
-
-  var currentNextSubtitle: String {
-    tvLocalized("Begin with the strongest immediate prayer signal, then settle into the rest of the day.")
+    tvLocalized("Now and next")
   }
 
   var scheduleTitle: String {
-    tvLocalized("Today's prayer rhythm")
-  }
-
-  var scheduleSubtitle: String {
-    tvLocalized("Keep the full day visible without turning the route into a dense settings or calculation surface.")
-  }
-
-  var companionTitle: String {
-    tvLocalized("Prayer companion")
-  }
-
-  var companionSubtitle: String {
-    tvLocalized("Use calm reminders that guide preparation, presence, and return to worship after the screen is closed.")
+    tvLocalized("Today")
   }
 
   private var timer: Timer?
@@ -918,7 +862,9 @@ final class TVPrayerViewModel: ObservableObject {
   }
 
   func refresh() {
-    let snapshot = TVSeedRepository.homePrayerSnapshot(date: Date())
+    let now = Date()
+    let snapshot = TVSeedRepository.homePrayerSnapshot(date: now)
+    hero = TVSeedRepository.prayerHero()
     summaryLine = snapshot.summaryLine
     detailLine = snapshot.detailLine
     prayerTimes = snapshot.prayerTimes
@@ -943,7 +889,7 @@ final class TVDhikrViewModel: ObservableObject {
   var routinesTitle: String { tvLocalized("Routines") }
 
   var routinesSubtitle: String {
-    tvLocalized("The same guided sets as the phone. Select one to play it phrase by phrase, on your own pace or the room's.")
+    tvLocalized("The same routines as your phone.")
   }
 
   var routineStep: TVDhikrRoutineStep? {
@@ -1100,8 +1046,6 @@ final class TVDhikrViewModel: ObservableObject {
       forKey: Self.completedRoutinesKey
     )
   }
-  @Published private(set) var supportCards: [TVDhikrSupportCard] =
-      TVSeedRepository.dhikrSupportCards()
   @Published private(set) var selectedModeId: String
 
   init() {
@@ -1110,27 +1054,7 @@ final class TVDhikrViewModel: ObservableObject {
   }
 
   var modesTitle: String {
-    tvLocalized("Choose a remembrance path")
-  }
-
-  var modesSubtitle: String {
-    tvLocalized("Start with one calm mode built for the room: after prayer, seeking forgiveness, or a quiet family return.")
-  }
-
-  var guidedFlowTitle: String {
-    tvLocalized("Guided remembrance mode")
-  }
-
-  var guidedFlowSubtitle: String {
-    tvLocalized("Move phrase by phrase with large Arabic, simple meaning, and no counter-style pressure on the television.")
-  }
-
-  var companionTitle: String {
-    tvLocalized("Dhikr companion")
-  }
-
-  var companionSubtitle: String {
-    tvLocalized("Keep the route grounded in sincerity, calm pacing, and easy return after salah or at the end of the evening.")
+    tvLocalized("Phrases")
   }
 
   var selectedMode: TVDhikrModeCard? {
@@ -1224,23 +1148,10 @@ final class TVHomeViewModel: ObservableObject {
   @Published private(set) var prayerTimes: [TVPrayerTime] = []
   @Published private(set) var continueJourneyItems: [TVContinueJourneyItem] =
       TVSeedRepository.homeContinueJourneyItems()
-  @Published private(set) var actions: [TVShelfItem] = TVSeedRepository.homeActions()
   @Published private(set) var continueReading: TVContinueReadingSummary = TVSeedRepository.continueReading
 
   var continueJourneySummaryTitle: String {
-    tvLocalized("Continue your journey")
-  }
-
-  var continueJourneySummarySubtitle: String {
-    tvLocalized("Resume the strongest next step quickly: Qur'an reading, listening, or today's worship rhythm.")
-  }
-
-  var prayerSectionSubtitle: String {
-    tvLocalized("Prayer remains the calm first glance on TV: current, next, then the full day.")
-  }
-
-  var dailyLightSubtitle: String {
-    tvLocalized("Keep one verse close, then step back into the Qur'an when the room is ready.")
+    tvLocalized("Continue")
   }
 
   private var timer: Timer?
@@ -1258,6 +1169,7 @@ final class TVHomeViewModel: ObservableObject {
 
   func refresh() {
     let snapshot = TVSeedRepository.homePrayerSnapshot(date: Date())
+    hero = TVSeedRepository.homeHero()
     prayerSummaryLine = snapshot.summaryLine
     prayerSummaryDetail = snapshot.detailLine
     prayerTimes = snapshot.prayerTimes
@@ -1453,7 +1365,7 @@ final class TVQuranViewModel: ObservableObject {
 
   var continueReadingLine: String {
     String(
-      format: tvLocalized("Continue with %@ %d:%d"),
+      format: tvLocalized("%@ %d:%d"),
       continueReading.surahName,
       continueReading.surahNumber,
       continueReading.ayahNumber
@@ -1461,72 +1373,41 @@ final class TVQuranViewModel: ObservableObject {
   }
 
   var continueReadingSummaryTitle: String {
-    tvLocalized("Continue your reading")
-  }
-
-  var continueReadingSummarySubtitle: String {
-    tvLocalized("Return to the current reading path first, then browse or listen from the same place.")
+    tvLocalized("Continue reading")
   }
 
   var dailyVerseSummaryTitle: String {
-    tvLocalized("Today's verse")
-  }
-
-  var dailyVerseSummarySubtitle: String {
-    tvLocalized("Keep one ayah visible on TV, then step into reading with the same calm focus.")
+    tvLocalized("Today’s verse")
   }
 
   var readerSubtitle: String {
     let surah = selectedSurah
-    return "\(surah.transliteratedName) • \(surah.englishName) • \(surah.revelationPlace)"
+    return "\(surah.transliteratedName) · \(surah.englishName) · \(surah.revelationPlace)"
   }
 
-  var browseShelfSubtitle: String {
-    tvLocalized("Choose a guided shelf first, then move into the full surah list without leaving the reading route.")
-  }
-
-  var readerStageTitle: String {
-    tvLocalized("Reading now")
-  }
-
-  var readerStageSubtitle: String {
-    if let ayah = selectedAyah {
-      return String(
-        format: tvLocalized("Selected ayah: %@ %d:%d"),
-        selectedSurah.transliteratedName,
-        selectedSurah.number,
-        ayah.ayahNumber
-      )
-    }
-    return readerSubtitle
-  }
-
-  var readerStageSupportingLine: String {
-    tvLocalized("Browse on the left, then read on the right with large Arabic text, transliteration, and translation kept together.")
-  }
-
-  var playbackSectionSubtitle: String {
-    tvLocalized("Playback supports the reading flow here, with full listening mode ready for focused recitation on TV.")
-  }
-
-  var listeningModeHeaderLine: String {
+  /// "Al-Fatihah 1:5" for the ayah in hand, or the surah line when there is none.
+  var selectedAyahLine: String {
     guard let ayah = selectedAyah else {
       return readerSubtitle
     }
     return String(
-      format: tvLocalized("Listening with %@ %d:%d"),
+      format: tvLocalized("%@ %d:%d"),
       selectedSurah.transliteratedName,
       selectedSurah.number,
       ayah.ayahNumber
     )
   }
 
+  var listeningModeHeaderLine: String {
+    selectedAyahLine
+  }
+
   var listeningModeStatusLine: String {
     let playbackLine = isPlaying
-        ? tvLocalized("Audio is playing")
-        : tvLocalized("Audio is paused")
+        ? tvLocalized("Playing")
+        : tvLocalized("Paused")
     if repeatCurrentAyah {
-      return "\(playbackLine) • \(tvLocalized("Repeat current ayah is on"))"
+      return "\(playbackLine) · \(tvLocalized("Repeating this ayah"))"
     }
     return playbackLine
   }
@@ -1543,10 +1424,6 @@ final class TVQuranViewModel: ObservableObject {
     selectedAyah?.translation ?? ""
   }
 
-  var listeningModeTransportLine: String {
-    tvLocalized("Stay in a calm full-screen listening flow while switching reciters or moving ayah by ayah.")
-  }
-
   func collectionContainsSelectedSurah(_ collection: TVQuranBrowseCollection) -> Bool {
     collection.surahNumbers.contains(selectedSurah.number)
   }
@@ -1559,15 +1436,10 @@ final class TVQuranViewModel: ObservableObject {
   }
 
   var playbackSummary: String {
-    guard let ayah = selectedAyah else {
+    guard selectedAyah != nil else {
       return tvLocalized("No ayah selected")
     }
-    return String(
-      format: tvLocalized("Playback summary: %@ %d:%d"),
-      selectedSurah.transliteratedName,
-      selectedSurah.number,
-      ayah.ayahNumber
-    )
+    return selectedAyahLine
   }
 
   func selectSurah(_ surah: TVQuranSurah) {
@@ -1668,10 +1540,10 @@ final class TVQuranViewModel: ObservableObject {
       surahNumber: ayah.surahNumber,
       ayahNumber: ayah.ayahNumber
     ) else {
-      playbackErrorMessage = tvLocalized("Playback unavailable right now.")
+      playbackErrorMessage = tvLocalized("Couldn’t play this ayah. Check your connection and try again.")
       onDiagnosticsError?(
         "tvos_playback_error",
-        playbackErrorMessage ?? tvLocalized("Playback unavailable right now."),
+        playbackErrorMessage ?? tvLocalized("Couldn’t play this ayah. Check your connection and try again."),
         [
           "reciter": selectedReciter.rawValue,
           "surah": "\(ayah.surahNumber)",
