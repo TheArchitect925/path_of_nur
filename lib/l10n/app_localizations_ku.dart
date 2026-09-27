@@ -6186,7 +6186,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get quranWordReviewEasy => 'Easy';
 
   @override
-  String get quranNamesOfAllahTitle => '99 Names of الله';
+  String get quranNamesOfAllahTitle => '99 Names of Allah';
 
   @override
   String get quranCleanReadingMode => 'Clean mode';
@@ -17868,11 +17868,11 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get dhikrAntiRushVerseTranslation =>
-      'Be patient, and your patience is only through الله. (Quran 16:127)';
+      'Be patient, and your patience is only through Allah. (Quran 16:127)';
 
   @override
   String get dhikrAntiRushBody =>
-      'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to الله.';
+      'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to Allah.';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'I Understand';
@@ -36236,14 +36236,14 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get loadingGreetingMorningTranslation =>
-      'Ey الله, bi Te em dikevin sibehê';
+      'Ey Allah, bi Te em dikevin sibehê';
 
   @override
   String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
 
   @override
   String get loadingGreetingEveningTranslation =>
-      'Ey الله, bi Te em dikevin êvarê';
+      'Ey Allah, bi Te em dikevin êvarê';
 
   @override
   String get loadingWelcomeBack => 'Bi xêr hatî vegerî';

@@ -6140,7 +6140,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get quranWordReviewEasy => 'آسان';
 
   @override
-  String get quranNamesOfAllahTitle => '99 Names of الله';
+  String get quranNamesOfAllahTitle => 'اللہ کے 99 نام';
 
   @override
   String get quranCleanReadingMode => 'کلین موڈ';

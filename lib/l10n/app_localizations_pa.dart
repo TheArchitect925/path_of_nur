@@ -6168,7 +6168,7 @@ class AppLocalizationsPa extends AppLocalizations {
   String get quranWordReviewEasy => 'Easy';
 
   @override
-  String get quranNamesOfAllahTitle => '99 Names of الله';
+  String get quranNamesOfAllahTitle => '99 Names of Allah';
 
   @override
   String get quranCleanReadingMode => 'Clean mode';
@@ -17822,11 +17822,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get dhikrAntiRushVerseTranslation =>
-      'Be patient, and your patience is only through الله. (Quran 16:127)';
+      'Be patient, and your patience is only through Allah. (Quran 16:127)';
 
   @override
   String get dhikrAntiRushBody =>
-      'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to الله.';
+      'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to Allah.';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'I Understand';
@@ -36186,14 +36186,14 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get loadingGreetingMorningTranslation =>
-      'ਏ الله, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸਵੇਰ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ';
+      'ਏ ਅੱਲਾਹ, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸਵੇਰ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ';
 
   @override
   String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
 
   @override
   String get loadingGreetingEveningTranslation =>
-      'ਏ الله, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸ਼ਾਮ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ';
+      'ਏ ਅੱਲਾਹ, ਤੇਰੇ ਨਾਲ ਅਸੀਂ ਸ਼ਾਮ ਵਿੱਚ ਦਾਖ਼ਲ ਹੁੰਦੇ ਹਾਂ';
 
   @override
   String get loadingWelcomeBack => 'ਮੁੜ ਸੁਆਗਤ ਹੈ';

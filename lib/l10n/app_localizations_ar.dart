@@ -6131,7 +6131,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quranWordReviewEasy => 'سهل';
 
   @override
-  String get quranNamesOfAllahTitle => '99 Names of الله';
+  String get quranNamesOfAllahTitle => 'أسماء الله الحسنى';
 
   @override
   String get quranCleanReadingMode => 'الوضع النظيف';

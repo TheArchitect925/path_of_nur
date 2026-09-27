@@ -13,8 +13,8 @@ class QuranWordGloss {
 const Map<String, QuranWordGloss> _commonWordGlossary = {
   'الله': QuranWordGloss(
     arabic: 'الله',
-    gloss: 'الله (God)',
-    transliteration: 'الله',
+    gloss: 'Allah (God)',
+    transliteration: 'Allah',
   ),
   'رب': QuranWordGloss(arabic: 'رب', gloss: 'Lord', transliteration: 'Rabb'),
   'رحمن': QuranWordGloss(

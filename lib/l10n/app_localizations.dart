@@ -10823,7 +10823,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranNamesOfAllahTitle.
   ///
   /// In en, this message translates to:
-  /// **'99 Names of الله'**
+  /// **'99 Names of Allah'**
   String get quranNamesOfAllahTitle;
 
   /// No description provided for @quranCleanReadingMode.
@@ -29381,13 +29381,13 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrAntiRushVerseTranslation.
   ///
   /// In en, this message translates to:
-  /// **'Be patient, and your patience is only through الله. (Holy Qur’an 16:127)'**
+  /// **'Be patient, and your patience is only through Allah. (Holy Qur’an 16:127)'**
   String get dhikrAntiRushVerseTranslation;
 
   /// No description provided for @dhikrAntiRushBody.
   ///
   /// In en, this message translates to:
-  /// **'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to الله.'**
+  /// **'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to Allah.'**
   String get dhikrAntiRushBody;
 
   /// No description provided for @dhikrAntiRushAcknowledgeAction.

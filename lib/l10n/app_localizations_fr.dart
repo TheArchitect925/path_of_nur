@@ -6216,7 +6216,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quranWordReviewEasy => 'Easy';
 
   @override
-  String get quranNamesOfAllahTitle => '99 Names of الله';
+  String get quranNamesOfAllahTitle => 'Les 99 noms d’Allah';
 
   @override
   String get quranCleanReadingMode => 'Clean mode';
@@ -17932,11 +17932,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dhikrAntiRushVerseTranslation =>
-      'Sois patient, et ta patience ne vient que d’الله. (Saint Coran 16:127)';
+      'Sois patient, et ta patience ne vient que d’Allah. (Saint Coran 16:127)';
 
   @override
   String get dhikrAntiRushBody =>
-      'Doux rappel : le dhikr est affaire de présence, de sincérité et de ṣabr, non de vitesse seule. Prenez votre temps, avec intention, en recherchant ce qui agrée le plus الله.';
+      'Doux rappel : le dhikr est affaire de présence, de sincérité et de ṣabr, non de vitesse seule. Prenez votre temps, avec intention, en recherchant ce qui agrée le plus à Allah.';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'J’ai compris';

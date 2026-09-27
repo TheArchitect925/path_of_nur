@@ -245,7 +245,7 @@ class LearnCategoryCatalog {
     ),
     LearnCategoryItem(
       id: 'allah-names',
-      title: '99 Names of الله',
+      title: '99 Names of Allah',
       iconKey: 'allah_names',
       routeName: 'quranNamesOfAllah',
       searchKeywords: ['99 names', 'asma ul husna', 'names of allah'],

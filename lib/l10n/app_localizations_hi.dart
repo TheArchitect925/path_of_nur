@@ -6181,7 +6181,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get quranWordReviewEasy => 'Easy';
 
   @override
-  String get quranNamesOfAllahTitle => '99 Names of الله';
+  String get quranNamesOfAllahTitle => 'अल्लाह के 99 नाम';
 
   @override
   String get quranCleanReadingMode => 'Clean mode';
@@ -17862,11 +17862,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get dhikrAntiRushVerseTranslation =>
-      'धैर्य रखें, और आपका धैर्य केवल الله के माध्यम से है। (कुरान 16:127)';
+      'धैर्य रखें, और आपका धैर्य केवल अल्लाह के माध्यम से है। (कुरान 16:127)';
 
   @override
   String get dhikrAntiRushBody =>
-      'सौम्य अनुस्मारक: धिक्कार उपस्थिति, ईमानदारी और सब्र के बारे में है, न कि केवल गति के बारे में। इसे शांति से और इरादे से लें, उस चीज़ की तलाश करें जो الله के लिए सबसे अधिक सुखद हो।';
+      'सौम्य अनुस्मारक: धिक्कार उपस्थिति, ईमानदारी और सब्र के बारे में है, न कि केवल गति के बारे में। इसे शांति से और इरादे से लें, उस चीज़ की तलाश करें जो अल्लाह के लिए सबसे अधिक सुखद हो।';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'मैं समझता हूँ';

@@ -445,6 +445,80 @@ def unquoted_kids_dialogue() -> list[str]:
     return hits
 
 
+# The Name in Arabic script as a word of an English sentence ("Glory be to
+# الله"). A find-and-replace in March 2026 put it in some eighty strings; the
+# Latin faces have no Arabic, so the phone draws it in a fallback face, small
+# and off the line. An Arabic phrase that holds the Name (رضي الله عنه,
+# بسم الله) is not flagged: a word beside it is Arabic.
+_ARABIC_LETTER = re.compile(r"[ء-ؿف-يٱ-ۓ]")
+_ARABIC_MARKS = re.compile(r"[ـً-ٰٟۖ-ۭ]")
+_LATIN_LETTER = re.compile(r"[A-Za-z]")
+_NAME_IN_LINE = re.compile(r"[اٱ]ل\W*ل\W*ه")
+_DART_STRING = re.compile(r"""'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*\"""")
+# Fields that hold Latin script even when the whole value is the Name.
+_LATIN_FIELD = re.compile(r"\b(transliteration|translit|gloss|translation|meaning)\s*:\s*$", re.I)
+_ARABIC_FIELD = re.compile(r"\b\w*(arabic|Arabic|phrase|Ar)\s*:\s*$")
+_LATIN_KEY = re.compile(r"(Transliteration|Translit|Translation|Meaning|Gloss)$")
+
+
+def is_the_name(word: str) -> bool:
+    letters = "".join(_ARABIC_LETTER.findall(_ARABIC_MARKS.sub("", word)))
+    return letters.replace("ٱ", "ا") == "الله"
+
+
+def arabic_name_spans(text: str, latin_field: bool = False) -> list[tuple[int, int]]:
+    """Where the Name stands in Arabic script among Latin words: the (start,
+    end) of each such word in [text]. [latin_field] also counts the Name
+    alone, for a value that is meant to be Latin script (a transliteration)."""
+    ws = list(re.finditer(r"\S+", text))
+    spans: list[tuple[int, int]] = []
+    for i, w in enumerate(ws):
+        if not is_the_name(w.group()):
+            continue
+        before = ws[i - 1].group() if i else ""
+        after = ws[i + 1].group() if i + 1 < len(ws) else ""
+        if _ARABIC_LETTER.search(before) or _ARABIC_LETTER.search(after):
+            continue
+        if latin_field or _LATIN_LETTER.search(before + w.group() + after):
+            spans.append(w.span())
+    return spans
+
+
+def arabic_name_in_arb(strings: dict[str, str]) -> list[str]:
+    return [
+        k for k, v in strings.items()
+        if not k.endswith("Arabic") and arabic_name_spans(v, bool(_LATIN_KEY.search(k)))
+    ]
+
+
+def dart_literals_with_arabic_name(path: Path) -> list[tuple[int, re.Match[str], bool]]:
+    """(line, literal, latin_field) for each Dart string literal in [path]
+    that writes the Name in Arabic script among Latin words."""
+    found: list[tuple[int, re.Match[str], bool]] = []
+    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not _NAME_IN_LINE.search(line) or line.lstrip().startswith("//"):
+            continue
+        for literal in _DART_STRING.finditer(line):
+            lead = line[: literal.start()].rstrip("r")
+            if _ARABIC_FIELD.search(lead):
+                continue
+            latin_field = bool(_LATIN_FIELD.search(lead))
+            if arabic_name_spans(literal.group()[1:-1], latin_field):
+                found.append((number, literal, latin_field))
+    return found
+
+
+def arabic_name_in_dart() -> list[str]:
+    hits: list[str] = []
+    l10n = ROOT / "lib" / "l10n"
+    for path in sorted((ROOT / "lib").rglob("*.dart")):
+        if l10n in path.parents:
+            continue
+        for number, _literal, _field in dart_literals_with_arabic_name(path):
+            hits.append(f"{path.relative_to(ROOT)}:{number}")
+    return hits
+
+
 # ------------------------------------------------------------------ report
 
 def offenders(rule: Rule, strings: dict[str, str]) -> list[tuple[str, str]]:
@@ -458,6 +532,7 @@ def run(strings: dict[str, str] | None = None) -> dict[str, list[str]]:
         out[rule.id] = [k for k, _ in offenders(rule, strings)]
     out["dead-keys"] = dead_keys(strings)
     out["kids-dialogue-unquoted"] = unquoted_kids_dialogue()
+    out["allah-in-arabic-script"] = arabic_name_in_arb(strings) + arabic_name_in_dart()
     return out
 
 
@@ -468,6 +543,9 @@ def describe(rule_id: str) -> tuple[str, str]:
     if rule_id == "kids-dialogue-unquoted":
         return ("A kids story line of speech without quotation marks.",
                 "Mama said, “Bismillah.”")
+    if rule_id == "allah-in-arabic-script":
+        return ("The Name in Arabic script inside English (Glory be to الله), in the ARB or a Dart file.",
+                "Write Allah. Arabic phrases (بسم الله, رضي الله عنه) and arabic: fields are not flagged.")
     r = RULE_BY_ID[rule_id]
     return (r.description, r.fix)
 

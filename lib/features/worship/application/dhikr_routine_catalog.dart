@@ -62,7 +62,7 @@ DhikrRoutine buildAfterSalahRoutine() {
         transliteration:
             'La ilaha illAllahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa ala kulli shay\'in qadir',
         translation:
-            'There is no god but الله alone, without partner. His is the dominion and His is the praise, and He has power over all things.',
+            'There is no god but Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things.',
         count: 1,
         sourceRef: 'Sahih Muslim 597',
       ),

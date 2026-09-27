@@ -197,7 +197,7 @@ const _subcategories = <LifeSubcategory>[
   LifeSubcategory(
     id: 'hardship-prayer-trust',
     themeId: 'hardship-patience',
-    title: 'Prayer, Dua & Trust in الله',
+    title: 'Prayer, Dua & Trust in Allah',
     summary: 'Turning pain into worship and action.',
     lessonIds: ['hardship-prayer-anchor', 'hardship-tawakkul-action'],
     order: 2,
@@ -322,7 +322,7 @@ const _lessons = <LifeLesson>[
     overview:
         'This lesson focuses on daily service, gentle tone, and practical support for parents and elders.',
     quranicPerspective:
-        'Qur’anic ethics pair worship of الله with excellence toward parents. The emphasis is gratitude, respectful speech, and care over time.',
+        'Qur’anic ethics pair worship of Allah with excellence toward parents. The emphasis is gratitude, respectful speech, and care over time.',
     practicalTakeaway:
         'Schedule one weekly act of service, one check-in call, and one dua habit for your parents or elders.',
     keyConcepts: ['gratitude', 'service', 'respectful speech'],
@@ -464,7 +464,7 @@ const _lessons = <LifeLesson>[
     themeId: 'character',
     subcategoryId: 'character-intention',
     title: 'Integrity in Private and Public',
-    subtitle: 'Consistency builds trust with الله and people.',
+    subtitle: 'Consistency builds trust with Allah and people.',
     overview:
         'Integrity means aligning private choices with stated values and promises.',
     quranicPerspective:
@@ -548,7 +548,7 @@ const _lessons = <LifeLesson>[
     overview:
         'Explores ethical earning, avoiding exploitation, and aligning career choices with conscience.',
     quranicPerspective:
-        'Provision is from الله, but people are accountable for how they seek and earn it.',
+        'Provision is from Allah, but people are accountable for how they seek and earn it.',
     practicalTakeaway:
         'Audit your income stream for fairness, honesty, and harm reduction.',
     keyConcepts: ['halal earning', 'fair dealing', 'accountability'],
@@ -603,7 +603,7 @@ const _lessons = <LifeLesson>[
     overview:
         'Moves beyond occasional charity into consistent, dignified support of others.',
     quranicPerspective:
-        'Charity is tied to purification, solidarity, and trust in الله’s replacement of what is spent for good.',
+        'Charity is tied to purification, solidarity, and trust in Allah’s replacement of what is spent for good.',
     practicalTakeaway:
         'Set a recurring giving habit and include non-monetary service.',
     keyConcepts: ['charity', 'dignity', 'consistency'],
@@ -726,11 +726,11 @@ const _lessons = <LifeLesson>[
     themeId: 'hardship-patience',
     subcategoryId: 'hardship-prayer-trust',
     title: 'Tawakkul With Action',
-    subtitle: 'Trusting الله while taking means.',
+    subtitle: 'Trusting Allah while taking means.',
     overview:
         'Clarifies the difference between trust and avoidance of responsibility.',
     quranicPerspective:
-        'Qur’anic reliance includes planning, effort, and surrendering results to الله.',
+        'Qur’anic reliance includes planning, effort, and surrendering results to Allah.',
     practicalTakeaway:
         'For each major worry, write one dua and one practical step.',
     keyConcepts: ['tawakkul', 'effort', 'surrender of outcomes'],

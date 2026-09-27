@@ -96,13 +96,12 @@ String renderTvDhikrRoutinesSwift(
 /// and means the same, it is said as the phrase is, in the language of the
 /// television; the rest of the catalog is in English only.
 String _meaning(String translation, List<DhikrPreset> phrases) {
-  final english = _english(translation);
   for (final phrase in phrases) {
-    if (tvDhikrPhraseMeaning(phrase) == english) {
-      return 'tvLocalized(${_swift(english)})';
+    if (tvDhikrPhraseMeaning(phrase) == translation) {
+      return 'tvLocalized(${_swift(translation)})';
     }
   }
-  return _swift(english);
+  return _swift(translation);
 }
 
 /// A phrase's id among the routines: no built-in routine begins `phrase.`.
@@ -142,15 +141,9 @@ String _subtitle(DhikrRoutine routine) {
   }
 }
 
-/// The phone's catalog writes the Name in Arabic script inside its English
-/// translations. The television sets English in a face that has no Arabic, so
-/// the system substitutes one and the word arrives as a single small glyph.
-/// The voice guide's English word is Allah, and that is what the TV shows.
-String _english(String value) => value.replaceAll('الله', 'Allah');
-
 /// The phone's words in the television's voice (docs/voice_and_copy_guide.md):
-/// Allah in Latin script, the one apostrophe, and ﷺ after the Prophet's name.
-String _voice(String value) => _english(value)
+/// the one apostrophe, and ﷺ after the Prophet's name.
+String _voice(String value) => value
     .replaceAll("'", '’')
     .replaceAllMapped(RegExp(r'Muhammad(?! ﷺ)'), (_) => 'Muhammad ﷺ');
 

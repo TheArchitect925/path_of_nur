@@ -116,19 +116,19 @@ const quranSourceLessons = <QuranSourceLesson>[
   ),
   QuranSourceLesson(
     number: 15,
-    title: 'Slaughtering for other than الله',
+    title: 'Slaughtering for other than Allah',
     category: QuranSourceLessonCategory.aqidah,
     coverageNote: 'Not yet deeply covered; aqidah/fiqh extension needed',
   ),
   QuranSourceLesson(
     number: 16,
-    title: 'Vow to other than الله is shirk',
+    title: 'Vow to other than Allah is shirk',
     category: QuranSourceLessonCategory.aqidah,
     coverageNote: 'Not yet deeply covered; aqidah extension needed',
   ),
   QuranSourceLesson(
     number: 17,
-    title: 'Seeking refuge from other than الله',
+    title: 'Seeking refuge from other than Allah',
     category: QuranSourceLessonCategory.aqidah,
     coverageNote: 'Partially touched in tawhid reminders',
   ),
@@ -190,7 +190,7 @@ const quranSourceLessons = <QuranSourceLesson>[
   ),
   QuranSourceLesson(
     number: 26,
-    title: 'Intercession by الله’s permission',
+    title: 'Intercession by Allah’s permission',
     category: QuranSourceLessonCategory.aqidah,
     coverageNote: 'Not yet deep; aqidah extension needed',
   ),
@@ -224,7 +224,7 @@ const quranSourceLessons = <QuranSourceLesson>[
   ),
   QuranSourceLesson(
     number: 31,
-    title: 'Complete submission to الله',
+    title: 'Complete submission to Allah',
     category: QuranSourceLessonCategory.aqidah,
     mappedTopicId: 'new-muslim-path',
     coverageNote: 'Foundationally referenced',

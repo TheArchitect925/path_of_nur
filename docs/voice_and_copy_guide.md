@@ -117,7 +117,7 @@ on 21 mentions). Each rule below closes one of those gaps.
 | Makkah, Madinah, Seerah | Mecca, Medina, Sirah | |
 | Path of Nūr *or* Path of Nur (open, V1) | Noor | the home-screen name is Nūr (`CFBundleDisplayName`), the ARB app title is Nur; 43 strings mix them. Pick one in V1 and the lint will hold it |
 | the Prophet ﷺ, Muhammad ﷺ, the Messenger of Allah ﷺ | the Prophet, Prophet Muhammad, PBUH | every mention |
-| Allah | God, Allah ﷻ, SWT | |
+| Allah | God, Allah ﷻ, SWT, الله inside English | Latin script in English copy; the lint rule `allah-in-arabic-script` also reads the Dart content files. Arabic phrases keep it (بسم الله, رضي الله عنه) |
 | alhamdulillah, masha’Allah, insha’Allah, bismillah | Alhamdulilah, MashaAllah, InshAllah | lowercase when used as words |
 | days in a row · light | streak · XP | decision 1 |
 | memorization, color, practice (verb and noun) | memorisation, colour, practise | US spelling |

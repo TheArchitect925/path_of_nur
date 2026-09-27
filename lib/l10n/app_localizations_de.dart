@@ -6283,7 +6283,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get quranWordReviewEasy => 'Einfach';
 
   @override
-  String get quranNamesOfAllahTitle => 'Die 99 Namen الله';
+  String get quranNamesOfAllahTitle => 'Die 99 Namen Allahs';
 
   @override
   String get quranCleanReadingMode => 'Clean-Modus';
