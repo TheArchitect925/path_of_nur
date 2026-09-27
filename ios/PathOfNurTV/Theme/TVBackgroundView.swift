@@ -35,6 +35,18 @@ struct TVBackgroundView: View {
   }
 }
 
+/// What stands behind a full-screen cover: the palette's own ground, opaque,
+/// with the sky painted over it.
+struct TVCoverBackground: View {
+  var body: some View {
+    ZStack {
+      TVTheme.backgroundBottom
+      TVBackgroundView()
+    }
+    .ignoresSafeArea()
+  }
+}
+
 // MARK: - The open margin
 
 /// The rail takes one side of the screen and the cards take the middle, so

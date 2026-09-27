@@ -28,10 +28,9 @@ struct TVNavigationSidebar: View {
             .focused($focusedRoute, equals: item.route)
           }
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, TVTheme.railBleed)
+        .padding(TVTheme.railBleed)
       }
-      .padding(.horizontal, -TVTheme.railBleed)
+      .tvRail()
       .frame(maxHeight: .infinity)
     }
     .frame(width: 360, alignment: .leading)

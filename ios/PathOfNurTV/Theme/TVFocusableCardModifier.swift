@@ -103,8 +103,51 @@ private struct TVFocusableCardModifier: ViewModifier {
   }
 }
 
+/// What every scrolling row wears, outside its scroll view. Inside, the
+/// content is padded by `TVTheme.railBleed`; here the row takes that room
+/// back from the page, so cards line up with the headings above them.
+///
+/// A scroll view cuts what it holds at its own edge, and a card's shadow
+/// reaches further than any margin worth leaving. Cut square, the shadows
+/// of a row show as the outline of a box around it. So the row's edges are
+/// feathered: shadows, and cards on their way out, fade instead of stopping.
+private struct TVRail: ViewModifier {
+  func body(content: Content) -> some View {
+    content
+      .mask(TVRailFeather(axis: .horizontal))
+      .mask(TVRailFeather(axis: .vertical))
+      .padding(.horizontal, -TVTheme.railBleed)
+      .padding(.vertical, TVTheme.railGap - TVTheme.railBleed)
+  }
+}
+
+private struct TVRailFeather: View {
+  let axis: Axis
+
+  var body: some View {
+    GeometryReader { proxy in
+      let length = axis == .horizontal ? proxy.size.width : proxy.size.height
+      let edge = min(TVTheme.railFeather / max(length, 1), 0.5)
+      LinearGradient(
+        stops: [
+          .init(color: .clear, location: 0),
+          .init(color: .black, location: edge),
+          .init(color: .black, location: 1 - edge),
+          .init(color: .clear, location: 1),
+        ],
+        startPoint: axis == .horizontal ? .leading : .top,
+        endPoint: axis == .horizontal ? .trailing : .bottom
+      )
+    }
+  }
+}
+
 extension View {
   func tvFocusableCard() -> some View {
     modifier(TVFocusableCardModifier())
+  }
+
+  func tvRail() -> some View {
+    modifier(TVRail())
   }
 }

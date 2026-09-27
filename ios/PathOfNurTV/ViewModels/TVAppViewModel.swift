@@ -87,6 +87,13 @@ final class TVAppViewModel: ObservableObject {
        let routine = dhikrViewModel.routines.first(where: { $0.id == routineId }) {
       dhikrViewModel.openRoutine(routine)
     }
+    if let number = ProcessInfo.processInfo.environment["TV_SAMPLE_SURAH"].flatMap(Int.init),
+       let surah = quranViewModel.surahs.first(where: { $0.number == number }) {
+      quranViewModel.selectSurah(surah)
+    }
+    if ProcessInfo.processInfo.environment["TV_SAMPLE_LISTENING"] == "1" {
+      quranViewModel.openListeningMode()
+    }
     #endif
     quranViewModel.onDiagnosticsEvent = { [weak self] name, metadata in
       guard let self else { return }

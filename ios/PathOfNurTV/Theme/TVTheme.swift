@@ -444,8 +444,12 @@ enum TVTheme {
   static let cardPadding: CGFloat = 28
   static let heroPadding: CGFloat = 40
   static let focusScale: CGFloat = 1.045
-  /// Room a rail leaves at its edges so the focused card can grow into it
-  /// without being cut by the scroll view.
-  static let railBleed: CGFloat = 16
+  /// Room a rail leaves at its edges, so that the focused card can grow
+  /// into it and still stand clear of the feathered edge.
+  static let railBleed: CGFloat = 44
+  /// How much of that room fades out at the rail's edge.
+  static let railFeather: CGFloat = 28
+  /// The space a rail keeps above and below its cards in the page.
+  static let railGap: CGFloat = 8
   static let focusShadowRadius: CGFloat = 22
 }

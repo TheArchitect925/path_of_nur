@@ -11,16 +11,9 @@ struct TVDhikrRoutinePlayerScreen: View {
 
   var body: some View {
     ZStack {
-      LinearGradient(
-        colors: [
-          TVTheme.backgroundTop,
-          TVTheme.surfaceSoft,
-          TVTheme.backgroundBottom,
-        ],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
-      )
-      .ignoresSafeArea()
+      // The same sky as the page beneath, and nothing of the page itself: a
+      // cover drawn in the card colours is see-through, because they are.
+      TVCoverBackground()
 
       VStack(spacing: 28) {
         _header
@@ -113,8 +106,8 @@ struct TVDhikrRoutinePlayerScreen: View {
             Text(step.arabic)
               .font(step.isLongText ? TVTypography.arabicHero : TVTypography.arabicListening)
               .foregroundColor(TVTheme.textPrimary)
-              .multilineTextAlignment(.trailing)
-              .frame(maxWidth: 1000, alignment: .trailing)
+              .multilineTextAlignment(.center)
+              .frame(maxWidth: 1000, alignment: .center)
               .tvReadableArabic()
           }
           .frame(maxHeight: step.isLongText ? 300 : 180)

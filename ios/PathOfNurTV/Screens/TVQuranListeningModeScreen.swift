@@ -7,16 +7,9 @@ struct TVQuranListeningModeScreen: View {
 
   var body: some View {
     ZStack {
-      LinearGradient(
-        colors: [
-          TVTheme.backgroundTop,
-          TVTheme.surfaceSoft,
-          TVTheme.backgroundBottom,
-        ],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
-      )
-      .ignoresSafeArea()
+      // The same sky as the page beneath, and nothing of the page itself: a
+      // cover drawn in the card colours is see-through, because they are.
+      TVCoverBackground()
 
       VStack(spacing: 28) {
         _header
@@ -91,8 +84,8 @@ struct TVQuranListeningModeScreen: View {
       Text(viewModel.listeningModeArabicText)
         .font(TVTypography.arabicListening)
         .foregroundColor(TVTheme.textPrimary)
-        .multilineTextAlignment(.trailing)
-        .frame(maxWidth: 1180, alignment: .trailing)
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: 1180, alignment: .center)
         .tvReadableArabic()
 
       if viewModel.showListeningTransliteration {

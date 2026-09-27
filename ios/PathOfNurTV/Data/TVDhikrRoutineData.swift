@@ -18,7 +18,7 @@ enum TVDhikrRoutineData {
           title: "SubhanAllah",
           arabic: "سُبْحَانَ ٱللَّهِ",
           transliteration: "SubhanAllah",
-          translation: "Glory be to الله",
+          translation: "Glory be to Allah",
           count: 33,
           sourceRef: "Sahih Muslim 597"
         ),
@@ -27,7 +27,7 @@ enum TVDhikrRoutineData {
           title: "Alhamdulillah",
           arabic: "ٱلْحَمْدُ لِلَّهِ",
           transliteration: "Alhamdulillah",
-          translation: "All praise is for الله",
+          translation: "All praise is for Allah",
           count: 33,
           sourceRef: "Sahih Muslim 597"
         ),
@@ -36,7 +36,7 @@ enum TVDhikrRoutineData {
           title: "Allahu Akbar",
           arabic: "ٱللَّهُ أَكْبَرُ",
           transliteration: "Allahu Akbar",
-          translation: "الله is Most Great",
+          translation: "Allah is Most Great",
           count: 33,
           sourceRef: "Sahih Muslim 597"
         ),
@@ -45,7 +45,7 @@ enum TVDhikrRoutineData {
           title: "La ilaha illAllah (closing)",
           arabic: "لَا إِلَٰهَ إِلَّا ٱللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ ٱلْمُلْكُ وَلَهُ ٱلْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
           transliteration: "La ilaha illAllahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu wa huwa ala kulli shay'in qadir",
-          translation: "There is no god but الله alone, without partner. His is the dominion and His is the praise, and He has power over all things.",
+          translation: "There is no god but Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things.",
           count: 1,
           sourceRef: "Sahih Muslim 597"
         ),

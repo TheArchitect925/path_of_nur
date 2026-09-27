@@ -35,7 +35,9 @@ String renderTvDhikrRoutinesSwift(List<DhikrRoutine> routines) {
         ..writeln('          title: ${_swift(step.title)},')
         ..writeln('          arabic: ${_swift(step.arabic)},')
         ..writeln('          transliteration: ${_swift(step.transliteration)},')
-        ..writeln('          translation: ${_swift(step.translation)},')
+        ..writeln(
+          '          translation: ${_swift(_english(step.translation))},',
+        )
         ..writeln('          count: ${step.count},')
         ..writeln('          sourceRef: ${_swift(step.sourceRef)}')
         ..writeln('        ),');
@@ -79,6 +81,12 @@ String _subtitle(DhikrRoutine routine) {
       return '${routine.steps.length} steps';
   }
 }
+
+/// The phone's catalog writes the Name in Arabic script inside its English
+/// translations. The television sets English in a face that has no Arabic, so
+/// the system substitutes one and the word arrives as a single small glyph.
+/// The voice guide's English word is Allah, and that is what the TV shows.
+String _english(String value) => value.replaceAll('الله', 'Allah');
 
 String _swift(String value) {
   final escaped = value

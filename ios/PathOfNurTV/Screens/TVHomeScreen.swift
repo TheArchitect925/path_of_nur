@@ -36,10 +36,9 @@ struct TVHomeScreen: View {
               .focused($focusedSection, equals: focusID)
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
 
         TVSectionHeader(
           title: tvLocalized("Prayer times"),

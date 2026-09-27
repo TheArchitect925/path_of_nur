@@ -3,6 +3,7 @@ import SwiftUI
 struct TVQuranScreen: View {
   @ObservedObject var viewModel: TVQuranViewModel
   @EnvironmentObject private var appViewModel: TVAppViewModel
+  @EnvironmentObject private var themeController: TVThemeController
   @FocusState private var focusedSection: String?
 
   var body: some View {
@@ -51,10 +52,9 @@ struct TVQuranScreen: View {
               emptyShelfCard(emphasized: true)
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
 
         HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
           VStack(alignment: .leading, spacing: 16) {
@@ -90,10 +90,9 @@ struct TVQuranScreen: View {
                   }
                 }
               }
-              .padding(.vertical, 8)
-              .padding(.horizontal, TVTheme.railBleed)
+              .padding(TVTheme.railBleed)
             }
-            .padding(.horizontal, -TVTheme.railBleed)
+            .tvRail()
 
             Group {
               if viewModel.surahs.isEmpty {
@@ -173,6 +172,7 @@ struct TVQuranScreen: View {
     }
     .fullScreenCover(isPresented: $viewModel.isListeningModePresented) {
       TVQuranListeningModeScreen(viewModel: viewModel)
+        .environmentObject(themeController)
     }
     .onChange(of: appViewModel.contentFocusRequest) { _ in
       restorePreferredFocus()

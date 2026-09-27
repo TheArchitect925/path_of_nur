@@ -45,10 +45,9 @@ struct TVLearnScreen: View {
               }
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
 
         HStack(alignment: .top, spacing: TVTheme.columnSpacing) {
           LazyVStack(alignment: .leading, spacing: TVTheme.sectionSpacing) {
@@ -81,10 +80,9 @@ struct TVLearnScreen: View {
                       }
                     }
                   }
-                  .padding(.vertical, 8)
-                  .padding(.horizontal, TVTheme.railBleed)
+                  .padding(TVTheme.railBleed)
                 }
-                .padding(.horizontal, -TVTheme.railBleed)
+                .tvRail()
               }
             }
           }
@@ -130,10 +128,9 @@ struct TVLearnScreen: View {
                   }
                 }
               }
-              .padding(.vertical, 8)
-              .padding(.horizontal, TVTheme.railBleed)
+              .padding(TVTheme.railBleed)
             }
-            .padding(.horizontal, -TVTheme.railBleed)
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -177,10 +174,9 @@ struct TVLearnScreen: View {
                   }
                 }
               }
-              .padding(.vertical, 8)
-              .padding(.horizontal, TVTheme.railBleed)
+              .padding(TVTheme.railBleed)
             }
-            .padding(.horizontal, -TVTheme.railBleed)
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 

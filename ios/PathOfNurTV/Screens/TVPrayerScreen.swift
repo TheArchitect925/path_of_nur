@@ -50,10 +50,9 @@ struct TVPrayerScreen: View {
                   )
               }
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, TVTheme.railBleed)
+            .padding(TVTheme.railBleed)
           }
-          .padding(.horizontal, -TVTheme.railBleed)
+          .tvRail()
         }
       }
       .padding(TVTheme.outerPadding)

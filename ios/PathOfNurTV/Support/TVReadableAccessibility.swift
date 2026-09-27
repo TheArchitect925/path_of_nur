@@ -1,18 +1,27 @@
 import SwiftUI
 
+/// Urdu is set in Nastaliq, which hangs well below its baseline and climbs
+/// well above it. Two such lines stacked at Latin spacing run into each other,
+/// so in Urdu every line is given room of its own.
+private enum TVScript {
+  static let isNastaliq = Locale.current.languageCode == "ur"
+}
+
 extension View {
   func tvReadableTitle() -> some View {
     self
       .allowsTightening(true)
       .minimumScaleFactor(0.82)
-      .lineSpacing(2)
+      .lineSpacing(TVScript.isNastaliq ? 10 : 2)
+      .padding(.vertical, TVScript.isNastaliq ? 6 : 0)
   }
 
   func tvReadableBody() -> some View {
     self
       .allowsTightening(true)
       .minimumScaleFactor(0.88)
-      .lineSpacing(3)
+      .lineSpacing(TVScript.isNastaliq ? 9 : 3)
+      .padding(.vertical, TVScript.isNastaliq ? 4 : 0)
   }
 
   func tvReadableArabic() -> some View {

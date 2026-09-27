@@ -3,7 +3,7 @@ import SwiftUI
 struct TVSettingsScreen: View {
   @ObservedObject var viewModel: TVSettingsViewModel
   @ObservedObject var prayerService: TVPrayerService
-  @State private var isCityPickerPresented = false
+  @State private var isCityPickerPresented = TVSettingsScreen.opensOnCityPicker
   @EnvironmentObject private var appViewModel: TVAppViewModel
   @EnvironmentObject private var themeController: TVThemeController
   @FocusState private var focusedSection: String?
@@ -47,10 +47,9 @@ struct TVSettingsScreen: View {
                   .focused($focusedSection, equals: focusID)
                 }
               }
-              .padding(.vertical, 8)
-              .padding(.horizontal, TVTheme.railBleed)
+              .padding(TVTheme.railBleed)
             }
-            .padding(.horizontal, -TVTheme.railBleed)
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -87,10 +86,9 @@ struct TVSettingsScreen: View {
               .focused($focusedSection, equals: focusID)
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
 
         TVSectionHeader(
           title: viewModel.listeningTitle,
@@ -120,10 +118,9 @@ struct TVSettingsScreen: View {
                 .focused($focusedSection, equals: focusID)
               }
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, TVTheme.railBleed)
+            .padding(TVTheme.railBleed)
           }
-          .padding(.horizontal, -TVTheme.railBleed)
+          .tvRail()
 
           HStack(spacing: TVTheme.railSpacing) {
             Button {
@@ -208,6 +205,7 @@ struct TVSettingsScreen: View {
         prayerService: prayerService,
         isPresented: $isCityPickerPresented
       )
+      .environmentObject(themeController)
     }
   }
 
@@ -248,10 +246,9 @@ struct TVSettingsScreen: View {
         .buttonStyle(TVCardButtonStyle())
         .focused($focusedSection, equals: "settings.prayer.city")
       }
-      .padding(.vertical, 8)
-      .padding(.horizontal, TVTheme.railBleed)
+      .padding(TVTheme.railBleed)
     }
-    .padding(.horizontal, -TVTheme.railBleed)
+    .tvRail()
 
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: TVTheme.railSpacing) {
@@ -270,10 +267,9 @@ struct TVSettingsScreen: View {
           .focused($focusedSection, equals: "settings.prayer.method.\(method.rawValue)")
         }
       }
-      .padding(.vertical, 8)
-      .padding(.horizontal, TVTheme.railBleed)
+      .padding(TVTheme.railBleed)
     }
-    .padding(.horizontal, -TVTheme.railBleed)
+    .tvRail()
 
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: TVTheme.railSpacing) {
@@ -292,10 +288,18 @@ struct TVSettingsScreen: View {
           .focused($focusedSection, equals: "settings.prayer.asr.\(rule.rawValue)")
         }
       }
-      .padding(.vertical, 8)
-      .padding(.horizontal, TVTheme.railBleed)
+      .padding(TVTheme.railBleed)
     }
-    .padding(.horizontal, -TVTheme.railBleed)
+    .tvRail()
+  }
+
+  /// Simulator-only, like TV_SAMPLE_ROUTE: open on the list of cities.
+  private static var opensOnCityPicker: Bool {
+    #if targetEnvironment(simulator)
+    return ProcessInfo.processInfo.environment["TV_SAMPLE_CITY_PICKER"] == "1"
+    #else
+    return false
+    #endif
   }
 
   private var deviceLocationLine: String {

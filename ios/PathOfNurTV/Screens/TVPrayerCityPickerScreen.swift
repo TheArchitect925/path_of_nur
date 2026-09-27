@@ -14,7 +14,7 @@ struct TVPrayerCityPickerScreen: View {
 
   var body: some View {
     ZStack {
-      TVBackgroundView()
+      TVCoverBackground()
 
       VStack(alignment: .leading, spacing: TVTheme.blockSpacing) {
         HStack(alignment: .center) {
@@ -52,10 +52,9 @@ struct TVPrayerCityPickerScreen: View {
               .focused($focusedCity, equals: city.id)
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
       }
       .padding(TVTheme.outerPadding)
     }

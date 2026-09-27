@@ -47,10 +47,9 @@ struct TVGamesScreen: View {
                   }
                 }
               }
-              .padding(.vertical, 8)
-              .padding(.horizontal, TVTheme.railBleed)
+              .padding(TVTheme.railBleed)
             }
-            .padding(.horizontal, -TVTheme.railBleed)
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -90,10 +89,9 @@ struct TVGamesScreen: View {
                   }
                 }
               }
-              .padding(.vertical, 8)
-              .padding(.horizontal, TVTheme.railBleed)
+              .padding(TVTheme.railBleed)
             }
-            .padding(.horizontal, -TVTheme.railBleed)
+            .tvRail()
           }
           .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -116,10 +114,9 @@ struct TVGamesScreen: View {
                 )
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
       }
       .padding(TVTheme.outerPadding)
     }

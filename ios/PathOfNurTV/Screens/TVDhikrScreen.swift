@@ -3,6 +3,7 @@ import SwiftUI
 struct TVDhikrScreen: View {
   @ObservedObject var viewModel: TVDhikrViewModel
   @EnvironmentObject private var appViewModel: TVAppViewModel
+  @EnvironmentObject private var themeController: TVThemeController
   @FocusState private var focusedSection: String?
 
   var body: some View {
@@ -35,10 +36,9 @@ struct TVDhikrScreen: View {
               )
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
 
         TVSectionHeader(
           title: viewModel.modesTitle,
@@ -60,10 +60,9 @@ struct TVDhikrScreen: View {
               )
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
 
         ScrollView(.horizontal, showsIndicators: false) {
           HStack(spacing: TVTheme.railSpacing) {
@@ -96,10 +95,9 @@ struct TVDhikrScreen: View {
               .tvCombinedAccessibility(label: step.transliteration, hint: step.translation)
             }
           }
-          .padding(.vertical, 8)
-          .padding(.horizontal, TVTheme.railBleed)
+          .padding(TVTheme.railBleed)
         }
-        .padding(.horizontal, -TVTheme.railBleed)
+        .tvRail()
       }
       .padding(TVTheme.outerPadding)
     }
@@ -125,6 +123,7 @@ struct TVDhikrScreen: View {
     }
     .fullScreenCover(isPresented: $viewModel.isRoutinePlayerPresented) {
       TVDhikrRoutinePlayerScreen(viewModel: viewModel)
+        .environmentObject(themeController)
     }
   }
 
