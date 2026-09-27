@@ -35,6 +35,19 @@ struct TVBackgroundView: View {
   }
 }
 
+// MARK: - The open margin
+
+/// The rail takes one side of the screen and the cards take the middle, so
+/// the moon, the lantern and a band of stars live in the margin that is left.
+/// In Arabic and Urdu the rail is on the right and the open margin is on the
+/// left: the furniture crosses over, and only its position. The moon is not
+/// mirrored, because its lit side is the sky's and not the interface's.
+private enum TVSkyMargin {
+  static func x(_ fraction: CGFloat, in direction: LayoutDirection) -> CGFloat {
+    direction == .rightToLeft ? 1 - fraction : fraction
+  }
+}
+
 // MARK: - Noor Glass daytime skies
 
 /// The painted daytime skies from the approved Noor Glass OS board
@@ -178,6 +191,8 @@ private struct TVQadrBackground: View {
 /// Softly glowing stars kept to the top and bottom bands where no content
 /// sits. Deterministic layout (fixed-seed LCG) so frames never shimmer.
 private struct TVStarFieldCanvas: View {
+  @Environment(\.layoutDirection) private var layoutDirection
+
   var body: some View {
     Canvas { context, size in
       var seed: UInt64 = 19
@@ -194,8 +209,8 @@ private struct TVStarFieldCanvas: View {
       }
 
       // The TV's card grid covers most of the screen, so the stars live in
-      // the exposed sky bands: the strip above the content, the open right
-      // margin, and the strip below.
+      // the exposed sky bands: the strip above the content, the open margin
+      // beside it, and the strip below.
       var stars: [Star] = []
       for index in 0..<64 {
         let band = nextRandom()
@@ -205,7 +220,7 @@ private struct TVStarFieldCanvas: View {
           x = nextRandom() * size.width
           y = nextRandom() * size.height * 0.07
         } else if band < 0.85 {
-          x = size.width * (0.932 + nextRandom() * 0.06)
+          x = size.width * TVSkyMargin.x(0.932 + nextRandom() * 0.06, in: layoutDirection)
           y = nextRandom() * size.height * 0.62
         } else {
           x = nextRandom() * size.width
@@ -262,6 +277,7 @@ private struct TVStarFieldCanvas: View {
 private struct TVMoonCanvas: View {
   let moonFraction: CGPoint
   let shadowColor: Color
+  @Environment(\.layoutDirection) private var layoutDirection
 
   private static let synodicMonthDays = 29.53058867
   private static let litColor = Color(hex: 0xEDE5CE)
@@ -272,7 +288,7 @@ private struct TVMoonCanvas: View {
       let now = Date()
       let r = min(size.width, size.height) * 0.045
       let center = CGPoint(
-        x: size.width * moonFraction.x,
+        x: size.width * TVSkyMargin.x(moonFraction.x, in: layoutDirection),
         y: size.height * moonFraction.y
       )
       let age = Self.moonAgeDays(now)
@@ -426,10 +442,12 @@ private struct TVMihrabArchCanvas: View {
 /// The Ramadan fanoos hanging from the top of the screen, its glow warming
 /// as iftar draws near (same hour buckets as the phone).
 private struct TVFanoosCanvas: View {
+  @Environment(\.layoutDirection) private var layoutDirection
+
   var body: some View {
     Canvas { context, size in
       let glowStrength = Self.glowStrength(Date())
-      let x = size.width * 0.9535
+      let x = size.width * TVSkyMargin.x(0.9535, in: layoutDirection)
       let unit = size.width * 0.032
       let cordEnd = size.height * 0.052
       let bodyTop = cordEnd + unit * 0.16
