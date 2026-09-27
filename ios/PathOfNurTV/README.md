@@ -32,12 +32,18 @@ For mirrored surfaces, especially Home prayer content and the Qur'an page, futur
 
 ## Asset note
 
-The target now includes:
+`Assets.xcassets/AppIcon.brandassets` holds everything tvOS asks for:
 
-- accent color assets
-- a concrete `AppIcon.brandassets` set in the canonical tvOS target
-- a canonical `TopShelf.imageset`
+- `App Icon.imagestack` (400x240 at 1x and 2x) for the home screen
+- `App Icon - App Store.imagestack` (1280x768) for the store
+- `Top Shelf Image.imageset` (1920x720) and `Top Shelf Image Wide.imageset` (2320x720), each at 1x and 2x
 
-These assets are currently derived from existing Path of Nūr branding so the target can be archived and tested in Xcode/TestFlight without an empty catalog.
+Each stack has three layers: the lantern and book in front, the ring of light in the middle, the night sky behind. The sky is the only opaque layer. tvOS rounds the corners and moves the layers itself, so every image is square to its edges.
 
-They should still be treated as interim assets until final Apple TV-specific layered artwork is approved.
+Do not edit these files by hand. They are generated from the app icon source:
+
+```
+swift tooling/scripts/generate_tvos_brand_assets.swift
+```
+
+`scripts/ci_apple_bundle_consistency.sh` checks the catalog's shape, because the asset compiler does not: a catalog it cannot read is dropped without a warning and the app ships with no icon.

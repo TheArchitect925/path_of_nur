@@ -186,4 +186,93 @@ if [[ -n "$missing_resources" ]]; then
   exit 1
 fi
 
+# The Apple TV icon is not one image but a set: two layered stacks and two Top
+# Shelf images, each at an exact size. The catalog once listed four flat PNGs
+# under the icon role instead. The asset compiler dropped them without a
+# warning, the app built, and it shipped to the simulator with no icon at all.
+# Check the shape here, because the build will not.
+tv_icon_problems="$(python3 - "ios/PathOfNurTV/Assets.xcassets/AppIcon.brandassets" <<'PYEOF'
+import json, os, struct, sys
+
+catalog = sys.argv[1]
+required = {
+    ("primary-app-icon", "400x240"): (1, 2),
+    ("primary-app-icon", "1280x768"): (1,),
+    ("top-shelf-image", "1920x720"): (1, 2),
+    ("top-shelf-image-wide", "2320x720"): (1, 2),
+}
+
+def load(path):
+    try:
+        with open(path, encoding="utf-8") as handle:
+            return json.load(handle)
+    except (OSError, ValueError):
+        print(f"cannot read {path}")
+        return {}
+
+def png_header(path):
+    """(width, height, has_alpha) from the IHDR chunk."""
+    with open(path, "rb") as handle:
+        head = handle.read(26)
+    width, height = struct.unpack(">II", head[16:24])
+    return width, height, head[25] in (4, 6)
+
+def check_imageset(folder, size, scales, opaque):
+    width, height = (int(part) for part in size.split("x"))
+    images = {
+        image.get("scale"): image.get("filename")
+        for image in load(os.path.join(folder, "Contents.json")).get("images", [])
+    }
+    for scale in scales:
+        name = images.get(f"{scale}x")
+        path = os.path.join(folder, name) if name else None
+        if not path or not os.path.isfile(path):
+            print(f"{folder}: no image at {scale}x")
+            continue
+        found_width, found_height, has_alpha = png_header(path)
+        if (found_width, found_height) != (width * scale, height * scale):
+            print(f"{path}: is {found_width}x{found_height}, "
+                  f"expected {width * scale}x{height * scale}")
+        if opaque and has_alpha:
+            print(f"{path}: must be opaque")
+
+listed = {}
+for asset in load(os.path.join(catalog, "Contents.json")).get("assets", []):
+    listed[(asset.get("role"), asset.get("size"))] = asset.get("filename", "")
+
+for key, scales in required.items():
+    role, size = key
+    name = listed.get(key)
+    if not name:
+        print(f"no {role} at {size}")
+        continue
+    folder = os.path.join(catalog, name)
+    if not os.path.isdir(folder):
+        print(f"{name} is listed but is not in the catalog")
+        continue
+    if role != "primary-app-icon":
+        check_imageset(folder, size, scales, opaque=True)
+        continue
+    layers = [
+        layer.get("filename", "")
+        for layer in load(os.path.join(folder, "Contents.json")).get("layers", [])
+    ]
+    if not 2 <= len(layers) <= 5:
+        print(f"{name}: {len(layers)} layers, tvOS takes 2 to 5")
+    for index, layer in enumerate(layers):
+        check_imageset(
+            os.path.join(folder, layer, "Content.imageset"),
+            size,
+            scales,
+            opaque=index == len(layers) - 1,
+        )
+PYEOF
+)"
+
+if [[ -n "$tv_icon_problems" ]]; then
+  echo "Apple TV icon catalog is not in the shape tvOS compiles:" >&2
+  echo "$tv_icon_problems" | sed 's/^/  /' >&2
+  exit 1
+fi
+
 echo "Apple bundle/signing consistency check passed"
