@@ -141,7 +141,7 @@ Derived target bundle identifiers:
 - Live Activity extension: `$(APP_LIVE_ACTIVITY_BUNDLE_ID)` -> `$(APP_BUNDLE_ID_BASE).prayerliveactivity`
 - watch app: `$(APP_WATCH_APP_BUNDLE_ID)` -> `$(APP_BUNDLE_ID_BASE).watchkitapp`
 - watch extension: `$(APP_WATCH_EXTENSION_BUNDLE_ID)` -> `$(APP_WATCH_APP_BUNDLE_ID).watchkitextension`
-- tvOS app: `$(APP_TV_BUNDLE_ID)` -> `$(APP_BUNDLE_ID_BASE).tv`
+- tvOS app: `$(APP_TV_BUNDLE_ID)` -> `$(APP_BUNDLE_ID_BASE)` (the iPhone app's id: one App Store listing serves both)
 - URL identifier: `$(APP_URL_IDENTIFIER)` -> `$(APP_BUNDLE_ID_BASE)`
 
 Bundle-ID handoff rule:

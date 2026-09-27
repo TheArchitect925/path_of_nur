@@ -130,6 +130,7 @@
 		A3000000000000000000003C /* TVDiagnosticsSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003C /* TVDiagnosticsSummaryCard.swift */; };
 		A3000000000000000000003D /* TVTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003D /* TVTelemetry.swift */; };
 		A3000000000000000000003E /* TVEmptyStateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003E /* TVEmptyStateCard.swift */; };
+		A30000000000000000000D03 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000D03 /* PrivacyInfo.xcprivacy */; };
 		A363E5A80CDC795F50A08433 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */; };
 		AA2612948B1D47A3A21231A9 /* WatchStatChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D615B7BE91472306F2EBD29A /* WatchStatChip.swift */; };
 		AB5CC2B95B3840A21D765075 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 000000007C85662B5673B706 /* Localizable.strings */; };
@@ -375,6 +376,7 @@
 		A2000000000000000000003C /* TVDiagnosticsSummaryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDiagnosticsSummaryCard.swift; sourceTree = "<group>"; };
 		A2000000000000000000003D /* TVTelemetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVTelemetry.swift; sourceTree = "<group>"; };
 		A2000000000000000000003E /* TVEmptyStateCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVEmptyStateCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000D03 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		00000000661E798BF33F8B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0000000070299693B7B12BEB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00000000468A9DB134639793 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				A10000000000000000000007 /* Theme */,
 				A10000000000000000000008 /* Support */,
 				A1F00000000000000000F000 /* Fonts */,
+				A20000000000000000000D03 /* PrivacyInfo.xcprivacy */,
 			);
 			path = PathOfNurTV;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				A3F00000000000000000F005 /* Figtree-Medium.ttf in Resources */,
 				A3F00000000000000000F006 /* Figtree-SemiBold.ttf in Resources */,
 				A3F00000000000000000F007 /* AmiriQuran-Regular.ttf in Resources */,
+				A30000000000000000000D03 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1531,7 +1535,7 @@
 				APP_BUNDLE_ID_BASE = com.shahab.pathOfNur;
 				APP_LIVE_ACTIVITY_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).prayerliveactivity";
 				APP_TEST_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tests";
-				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tv";
+				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE)";
 				APP_URL_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
 				APP_WATCH_APP_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).watchkitapp";
 				APP_WATCH_EXTENSION_BUNDLE_ID = "$(APP_WATCH_APP_BUNDLE_ID).watchkitextension";
@@ -1819,7 +1823,7 @@
 				APP_BUNDLE_ID_BASE = com.shahab.pathOfNur;
 				APP_LIVE_ACTIVITY_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).prayerliveactivity";
 				APP_TEST_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tests";
-				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tv";
+				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE)";
 				APP_URL_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
 				APP_WATCH_APP_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).watchkitapp";
 				APP_WATCH_EXTENSION_BUNDLE_ID = "$(APP_WATCH_APP_BUNDLE_ID).watchkitextension";
@@ -1887,7 +1891,7 @@
 				APP_BUNDLE_ID_BASE = com.shahab.pathOfNur;
 				APP_LIVE_ACTIVITY_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).prayerliveactivity";
 				APP_TEST_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tests";
-				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tv";
+				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE)";
 				APP_URL_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
 				APP_WATCH_APP_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).watchkitapp";
 				APP_WATCH_EXTENSION_BUNDLE_ID = "$(APP_WATCH_APP_BUNDLE_ID).watchkitextension";
@@ -2253,7 +2257,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.tv;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TV_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";

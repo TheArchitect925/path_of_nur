@@ -63,6 +63,22 @@ if [[ "$runner_team_id" != "$team_id" ]]; then
   exit 1
 fi
 
+# The Apple TV app is sold on the iPhone app's listing (universal purchase),
+# and the App Store joins the two by bundle identifier: the television must
+# carry the phone's id exactly. It cannot be changed after the first upload.
+tv_bundle_id="$(xcodebuild -project ios/Runner.xcodeproj -target PathOfNurTV -configuration Release -showBuildSettings 2>/dev/null \
+  | sed -n 's/^[[:space:]]*PRODUCT_BUNDLE_IDENTIFIER = //p' | head -n1 | tr -d '[:space:]')"
+if [[ "$tv_bundle_id" != "$base_bundle_id" ]]; then
+  echo "Apple TV bundle identifier mismatch: expected $base_bundle_id, got $tv_bundle_id" >&2
+  exit 1
+fi
+
+if [[ ! -f ios/PathOfNurTV/PrivacyInfo.xcprivacy ]] \
+  || ! rg -q 'PrivacyInfo.xcprivacy in Resources' "$PBXPROJ"; then
+  echo "Apple TV target has no privacy manifest in its resources" >&2
+  exit 1
+fi
+
 if ! rg -F "\"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]\" = \"\$(APP_WATCH_APP_BUNDLE_ID)\";" "$PBXPROJ" >/dev/null; then
   echo 'Expected watch app watchOS override to use $(APP_WATCH_APP_BUNDLE_ID)' >&2
   exit 1

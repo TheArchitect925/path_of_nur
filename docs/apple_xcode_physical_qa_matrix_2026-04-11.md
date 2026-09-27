@@ -57,7 +57,7 @@ These warnings did not block the validated Release builds, but they should stay 
 
 - iPhone app: `com.shahab.pathOfNur`
 - Live activity extension: `com.shahab.pathOfNur.prayerliveactivity`
-- tvOS app: `com.shahab.pathOfNur.tv`
+- tvOS app: `com.shahab.pathOfNur` (the iPhone app's id: one App Store listing serves both)
 - watch app: `com.shahab.pathOfNur.watchkitapp`
 - watch extension: `com.shahab.pathOfNur.watchkitapp.watchkitextension`
 - watch complications: `com.shahab.pathOfNur.watchkitapp.watchkitextension.widgets`
