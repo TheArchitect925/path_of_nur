@@ -1674,6 +1674,11 @@ final quranReadingStatsProvider =
       (ref) => QuranReadingStatsNotifier(ref.watch(localStoreProvider)),
     );
 
+/// The clock the reader times reading sessions against; tests pin it.
+final quranReaderNowProvider = Provider<DateTime Function()>(
+  (ref) => DateTime.now,
+);
+
 final quranListeningStatsProvider =
     StateNotifierProvider<QuranListeningStatsNotifier, QuranListeningStats>(
       (ref) => QuranListeningStatsNotifier(ref.watch(localStoreProvider)),

@@ -130,6 +130,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
 
   bool _trackedOpen = false;
   late final AudioPlayer _audioPlayer;
+  late final DateTime Function() _now;
+  late final QuranReadingStatsNotifier _readingStats;
   DateTime? _readingSessionStartedAt;
   Duration _pendingReadingDuration = Duration.zero;
   bool _isLoopRunning = false;
@@ -170,6 +172,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _audioPlayer = ref.read(quranSharedAudioPlayerProvider);
+    _now = ref.read(quranReaderNowProvider);
+    _readingStats = ref.read(quranReadingStatsProvider.notifier);
     _bootstrapQuranLiveActivity();
     _scrollController = ScrollController();
     _scrollController.addListener(_handleScrollControllerChanged);
@@ -187,9 +191,12 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    // No `ref` here: the element is already unmounted, so a read throws. The
+    // flush uses what initState captured. Viewport progress is saved when a
+    // scroll settles and when the app pauses; by now the ayah cards are gone
+    // and there is nothing left to measure.
     _pauseReadingSession();
     _flushReadingSession();
-    _saveViewportReadingProgress();
     _userScrollSettledTimer?.cancel();
     _scrollController.removeListener(_handleScrollControllerChanged);
     _scrollController.dispose();
@@ -249,29 +256,33 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   }
 
   void _resumeReadingSession() {
-    _readingSessionStartedAt ??= DateTime.now();
+    _readingSessionStartedAt ??= _now();
   }
 
   void _pauseReadingSession() {
     final startedAt = _readingSessionStartedAt;
     if (startedAt == null) return;
-    final elapsed = DateTime.now().difference(startedAt);
+    final elapsed = _now().difference(startedAt);
     if (!elapsed.isNegative) {
       _pendingReadingDuration += elapsed;
     }
     _readingSessionStartedAt = null;
   }
 
+  /// Logs the reading time gathered so far as one session. The callers are
+  /// dispose and didUpdateWidget, where Riverpod refuses provider writes, so
+  /// the write waits a microtask.
   void _flushReadingSession() {
     final duration = _pendingReadingDuration;
-    if (duration < const Duration(seconds: 15)) {
-      _pendingReadingDuration = Duration.zero;
-      return;
-    }
-    ref
-        .read(quranReadingStatsProvider.notifier)
-        .logReadingSession(duration: duration);
     _pendingReadingDuration = Duration.zero;
+    if (duration < const Duration(seconds: 15)) return;
+    final readingStats = _readingStats;
+    final endedAt = _now();
+    scheduleMicrotask(() {
+      // The app can tear the provider container down in the same frame.
+      if (!readingStats.mounted) return;
+      readingStats.logReadingSession(duration: duration, completedAt: endedAt);
+    });
   }
 
   @override
