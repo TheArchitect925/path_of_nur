@@ -75,7 +75,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 15,
     summary:
-        'Al-Hijr reassures the Prophet that revelation is protected, warns deniers through earlier peoples, and anchors believers in worship and certainty.',
+        'Al-Hijr reassures the Prophet ﷺ that revelation is protected, warns deniers through earlier peoples, and anchors believers in worship and certainty.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 16,
@@ -235,7 +235,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 47,
     summary:
-        'Muhammad distinguishes sincere faith from hypocrisy and calls for steadfastness, sacrifice, and obedience when truth demands real commitment.',
+        'Surah Muhammad distinguishes sincere faith from hypocrisy and calls for steadfastness, sacrifice, and obedience when truth demands real commitment.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 48,
@@ -260,12 +260,12 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 52,
     summary:
-        'At-Tur warns of the Hereafter, refutes baseless denial, and comforts the Prophet with the assurance that Allah’s decree is wise and true.',
+        'At-Tur warns of the Hereafter, refutes baseless denial, and comforts the Prophet ﷺ with the assurance that Allah’s decree is wise and true.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 53,
     summary:
-        'An-Najm confirms the truth of revelation received by the Prophet and rejects false gods, self-will, and spiritual arrogance.',
+        'An-Najm confirms the truth of revelation received by the Prophet ﷺ and rejects false gods, self-will, and spiritual arrogance.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 54,
@@ -310,7 +310,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 62,
     summary:
-        'Al-Jumu‘ah honors revelation, the Prophet’s teaching mission, and the weekly call to leave distraction and gather for remembrance.',
+        'Al-Jumu‘ah honors revelation, the Prophet’s ﷺ teaching mission, and the weekly call to leave distraction and gather for remembrance.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 63,
@@ -340,7 +340,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 68,
     summary:
-        'Al-Qalam defends the Prophet’s character, warns the arrogant, and teaches patience and moral steadiness in the face of mockery.',
+        'Al-Qalam defends the Prophet’s ﷺ character, warns the arrogant, and teaches patience and moral steadiness in the face of mockery.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 69,
@@ -365,7 +365,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 73,
     summary:
-        'Al-Muzzammil prepares the Prophet and believers through night prayer, recitation, patience, and disciplined reliance on Allah.',
+        'Al-Muzzammil prepares the Prophet ﷺ and believers through night prayer, recitation, patience, and disciplined reliance on Allah.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 74,
@@ -465,12 +465,12 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 93,
     summary:
-        'Ad-Duha comforts the Prophet with assurance of Allah’s care and turns that comfort into gratitude, service, and kindness toward others.',
+        'Ad-Duha comforts the Prophet ﷺ with assurance of Allah’s care and turns that comfort into gratitude, service, and kindness toward others.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 94,
     summary:
-        'Ash-Sharh reminds the Prophet that difficulty is paired with ease and directs effort, hope, and longing back to Allah alone.',
+        'Ash-Sharh reminds the Prophet ﷺ that difficulty is paired with ease and directs effort, hope, and longing back to Allah alone.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 95,
@@ -540,7 +540,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 108,
     summary:
-        'Al-Kawthar grants the Prophet abundant good and answers insult by directing worship and sacrifice to Allah alone.',
+        'Al-Kawthar grants the Prophet ﷺ abundant good and answers insult by directing worship and sacrifice to Allah alone.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 109,

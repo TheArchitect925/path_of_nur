@@ -12,7 +12,7 @@ final BedtimeStorySeed fiveTimesADayBook = kidsPictureBook(
   title: 'Five Times a Day',
   shortTitle: 'Five Times a Day',
   summary:
-      'Safa\'s alarm, five prayers, and what happens when the whole world '
+      'Safa’s alarm, five prayers, and what happens when the whole world '
       'turns to Allah together.',
   category: BedtimeStoryCategory.foundations,
   collectionType: KidsIslamicStoryCollectionType.foundations,
@@ -91,7 +91,7 @@ final BedtimeStorySeed fiveTimesADayBook = kidsPictureBook(
   ),
   spreads: const [
     KidsBookSpread([
-      'Before the sun comes up, Safa\'s alarm rings.',
+      'Before the sun comes up, Safa’s alarm rings.',
       'Fajr. The first prayer of the day.',
     ], illustrationAsset: '$_scenes/steps_salah_dawn_window.webp'),
     KidsBookSpread(
@@ -147,7 +147,7 @@ final BedtimeStorySeed fiveTimesADayBook = kidsPictureBook(
       'Even one prayer is a start.',
     ], illustrationAsset: '$_scenes/steps_salah_kids_standing.webp'),
     KidsBookSpread(
-      ['When is the next prayer?', 'Let\'s look.'],
+      ['When is the next prayer?', 'Let’s look.'],
       illustrationAsset: '$_scenes/steps_salah_dawn_window.webp',
       tryItRoute: '/worship/prayer',
     ),

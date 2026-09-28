@@ -252,7 +252,7 @@ const quranSourceLessons = <QuranSourceLesson>[
   ),
   QuranSourceLesson(
     number: 35,
-    title: 'Engaging with the Holy Quran',
+    title: 'Engaging with the Holy Qur’an',
     category: QuranSourceLessonCategory.life,
     mappedTopicId: 'salah-learning-track',
     coverageNote: 'Linked to quran+practice flows',

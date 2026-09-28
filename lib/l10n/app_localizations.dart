@@ -12454,7 +12454,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageReciteMeaningSection1Body.
   ///
   /// In en, this message translates to:
-  /// **'SubhanAllah clears Allah of نقص and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.'**
+  /// **'SubhanAllah clears Allah of every flaw (naqs) and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.'**
   String get learningJourneyStageReciteMeaningSection1Body;
 
   /// No description provided for @learningJourneyStageReciteMeaningSection2Title.
@@ -56316,7 +56316,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMusaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trace courage, mission, du’a, and reliance through Musa عليه السلام.'**
+  /// **'Trace courage, mission, du’a, and reliance through Musa (peace be upon him).'**
   String get quranPathwayMusaSubtitle;
 
   /// No description provided for @quranPathwayMusaDescription.
@@ -56586,7 +56586,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMusaStepThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with the broad arc of Musa عليه السلام across the Qur’an.'**
+  /// **'Start with the broad arc of Musa (peace be upon him) across the Qur’an.'**
   String get quranPathwayMusaStepThemeSubtitle;
 
   /// No description provided for @quranPathwayMusaStepTahaTitle.

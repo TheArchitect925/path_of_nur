@@ -216,7 +216,7 @@ const seasonalReflectionPromptBank = <GrowthSeasonKind, List<String>>{
     'What does returning in these nights look like for you?',
   ],
   GrowthSeasonKind.friday: [
-    'What Sunnah of Friday can you hold with presence today?',
+    'What sunnah of Friday can you hold with presence today?',
     'How can your salawat soften your Friday?',
     'What du’a will you carry before Maghrib?',
   ],

@@ -32,6 +32,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import copy_prose  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 ARB = ROOT / "lib" / "l10n" / "app_en.arb"
 BASELINE = ROOT / "tools" / "copy_lint_baseline.json"
@@ -182,8 +185,8 @@ def cheer(key: str, value: str) -> bool:
 
 
 _HONORIFIC = re.compile(
-    r"(?:\bProphet Muhammad\b|\bMuhammad\b|\bthe Prophet(?:[’']s)?\b(?![’']s)(?! [A-Z])|"
-    r"\bthe Messenger of Allah\b|\bthe Messenger\b(?! of Allah)|\bFinal Messenger\b)"
+    r"(?:\bProphet Muhammad\b|(?<!Surah )\bMuhammad\b|\bthe Prophet(?:[’']s)?\b(?![’']s)(?! [A-Z])|"
+    r"\bthe Messenger of Allah\b|\bthe Messenger(?:[’']s)?\b(?![’']s)(?! of Allah)|\bFinal Messenger\b)"
     r"(?! ﷺ)(?!s\b)"
 )
 
@@ -198,9 +201,9 @@ _ABBREVIATION = re.compile(r"\b(Approx|etc|vs|No)\.$")
 
 
 TERM_CASING = re.compile(
-    r"(?<=[a-z,;:] )(?:Salah|Duas?|Dhikr|Hadiths?|Wudu|Ayahs?|Surahs|Sunnah|Qada|"
+    r"(?<=[a-z,;:] )(?!Salah al-Din)(?:Salah|Duas?|Dhikr|Hadiths?|Wudu|Ayahs?|Surahs|Sunnah|Qada|"
     r"Iftar|Suhoor|Adhan|Tajweed|Khushu|Fiqh|Aqidah|Tawbah|Taqwa|Ihsan|"
-    r"Sabr|Shukr|Ikhlas)\b(?! [A-Z\d])|(?<=[a-z,;:] )Surah\b(?! [A-Z\d])"
+    r"Sabr|Shukr|Ikhlas)\b(?! (?:[A-Z\d]|a[dhlnrstz]{1,2}-))|(?<=[a-z,;:] )Surah\b(?! (?:[A-Z\d]|a[dhlnrstz]{1,2}-))"
 )
 
 
@@ -519,6 +522,150 @@ def arabic_name_in_dart() -> list[str]:
     return hits
 
 
+# ------------------------------------------ prose outside the ARB (V3)
+#
+# tools/copy_prose.py finds the English prose in Dart content files and the
+# history JSON. The mechanics rules below hold it to the same glossary as
+# the ARB; the last four are V3's rewrites (studio vocabulary, roadmap,
+# tails, and lists in the card and summary fields people scan), counted so
+# the baseline can only go down.
+
+_APOSTROPHE_BETWEEN = re.compile(r"[A-Za-z]'[A-Za-z]")
+_ARABIC_SCRIPT = re.compile(r"[ء-يٱ-ۓ]")
+# ARB keys whose Arabic line is the point: the Fajr adhan's "prayer is
+# better than sleep".
+_ARABIC_IN_ENGLISH_KEYS = re.compile(r"^notificationsPrayerAtTimeFajrBody$")
+_CARD_FIELD = re.compile(
+    r"^(title|subtitle|label|summary|shortSummary|simpleSummary|shortTeachingSummary|"
+    r"themeSummary|storySummary|overview|description|shortDescription|tagline|"
+    r"caption|blurb|keyThemes|theme)$"
+)
+_CARD_KEY = re.compile(r"(Summary|Overview|Description)$")
+
+
+def _picture_book(v: "copy_prose.ProseValue") -> bool:
+    return v.path.startswith(copy_prose.PICTURE_BOOKS)
+
+
+def _arabic_in_english(text: str) -> bool:
+    return bool(_ARABIC_SCRIPT.search(text.replace("ﷺ", "")))
+
+
+# An Arabic honorific after a Latin name, even in a short value: a title,
+# a name, a history entity ("Abu Bakr رضي الله عنه").
+ARABIC_HONORIFIC = re.compile(
+    r"(عليه|عليها|عليهم|عليهما) السلام|رضي الله (عنه|عنها|عنهما|عنهم)|(رحمه|رحمها|رحمهم) الله"
+)
+
+
+def _arabic_honorific_after_latin(text: str) -> bool:
+    m = ARABIC_HONORIFIC.search(text)
+    return bool(m) and bool(re.search(r"[A-Za-z]", text[: m.start()]))
+
+
+@dataclass(frozen=True)
+class ProseRule:
+    id: str
+    description: str
+    fix: str
+    match: Callable[["copy_prose.ProseValue"], bool]
+    # ARB keys counted with the same rule (lesson prose the ARB carries).
+    arb: Callable[[str, str], bool] | None = None
+
+
+PROSE_RULES: list[ProseRule] = [
+    ProseRule(
+        "prose-apostrophe", "A straight apostrophe in prose outside the ARB.",
+        "Use the curly ’ (Qur’an, Allah’s).",
+        lambda v: bool(_APOSTROPHE_BETWEEN.search(v.value)),
+    ),
+    ProseRule(
+        "prose-quran-spelling", "Quran without the apostrophe, outside the ARB.", "Qur’an, Qur’anic.",
+        lambda v: RULE_BY_ID["quran-spelling"].match(v.field, v.value),
+    ),
+    ProseRule(
+        "prose-term-spelling", "A spelling the glossary does not use, outside the ARB.",
+        "See the glossary in docs/voice_and_copy_guide.md.",
+        lambda v: RULE_BY_ID["term-spelling"].match(v.field, v.value),
+    ),
+    ProseRule(
+        "prose-uk-spelling", "British spelling outside the ARB.", "US spelling throughout.",
+        lambda v: RULE_BY_ID["uk-spelling"].match(v.field, v.value),
+    ),
+    ProseRule(
+        "prose-term-casing", "An Islamic common noun capitalized mid-sentence, outside the ARB.",
+        "salah, du’a, dhikr, hadith, sunnah, wudu… in lowercase mid-sentence.",
+        lambda v: term_casing(v.field, v.value),
+    ),
+    ProseRule(
+        "prose-honorific", "The Prophet or Muhammad without ﷺ, outside the ARB.",
+        "ﷺ after every mention, possessives too. The picture books keep their own rule.",
+        lambda v: not _picture_book(v) and bool(_HONORIFIC.search(v.value)),
+    ),
+    ProseRule(
+        "prose-typo", "todays / a doubled word, outside the ARB.", "Fix the typo.",
+        lambda v: RULE_BY_ID["typo"].match(v.field, v.value),
+    ),
+    ProseRule(
+        "arabic-in-english", "Arabic script inside English (عليه السلام, رضي الله عنه, فساد).",
+        "Prophets: (peace be upon him) at the first mention in a passage, then the name. "
+        "Companions: (may Allah be pleased with him/her). Terms: transliterate and gloss, "
+        "fasad (corruption). Titles and names: the name alone.",
+        lambda v: not _picture_book(v) and (
+            (v.is_prose and _arabic_in_english(v.value)) or _arabic_honorific_after_latin(v.value)),
+        lambda k, v: (not k.endswith("Arabic") and not _ARABIC_IN_ENGLISH_KEYS.search(k)
+                      and ((copy_prose.is_english(v) and _arabic_in_english(v))
+                           or _arabic_honorific_after_latin(v))),
+    ),
+    ProseRule(
+        "prose-studio-vocabulary", "Studio vocabulary in prose outside the ARB (module, surface, layer…).",
+        "Say what the person sees: a lesson, a page, the reader.",
+        lambda v: RULE_BY_ID["studio-vocabulary"].match(v.field, v.value),
+    ),
+    ProseRule(
+        "prose-roadmap", "Roadmap talk in lesson prose (will appear here, coming soon, for now).",
+        "Say what is here.",
+        lambda v: RULE_BY_ID["roadmap-speak"].match(v.field, v.value),
+        lambda k, v: is_content(k) and not is_sacred(k) and RULE_BY_ID["roadmap-speak"].match(k, v),
+    ),
+    ProseRule(
+        "prose-tail", "A filler tail in lesson prose (right now, in one place, with intention).",
+        "Drop the tail unless the sentence is untrue without it.",
+        lambda v: tail(v.field, v.value),
+        lambda k, v: is_content(k) and not is_sacred(k) and tail(k, v),
+    ),
+    ProseRule(
+        "prose-list-of-three", "A list of three in a card or summary (title, summary, overview, description).",
+        "Name the purpose. Lesson bodies keep their lists (decision, 2026-09-27).",
+        lambda v: bool(_CARD_FIELD.match(v.field)) and RULE_BY_ID["tone-list-of-three"].match(v.field, v.value),
+        lambda k, v: (is_content(k) and not is_sacred(k) and bool(_CARD_KEY.search(k))
+                      and RULE_BY_ID["tone-list-of-three"].match(k, v)),
+    ),
+]
+PROSE_RULE_BY_ID = {r.id: r for r in PROSE_RULES}
+# where → text, for --list
+PROSE_TEXT: dict[str, str] = {}
+
+
+def prose_findings(strings: dict[str, str]) -> dict[str, list[str]]:
+    out: dict[str, list[str]] = {r.id: [] for r in PROSE_RULES}
+    for r in PROSE_RULES:
+        if r.arb:
+            out[r.id].extend(k for k, v in strings.items() if r.arb(k, v))
+    for v in copy_prose.prose_values():
+        for r in PROSE_RULES:
+            # Short values are names and labels, often matched in code; only
+            # the Arabic check reads them, and the apostrophe check in the
+            # picture books, where every line is text on a page.
+            if not v.is_prose and r.id != "arabic-in-english" and not (
+                r.id == "prose-apostrophe" and _picture_book(v)):
+                continue
+            if r.id not in v.allow and r.match(v):
+                out[r.id].append(v.where)
+                PROSE_TEXT[v.where] = v.value
+    return out
+
+
 # ------------------------------------------------------------------ report
 
 def offenders(rule: Rule, strings: dict[str, str]) -> list[tuple[str, str]]:
@@ -533,6 +680,7 @@ def run(strings: dict[str, str] | None = None) -> dict[str, list[str]]:
     out["dead-keys"] = dead_keys(strings)
     out["kids-dialogue-unquoted"] = unquoted_kids_dialogue()
     out["allah-in-arabic-script"] = arabic_name_in_arb(strings) + arabic_name_in_dart()
+    out.update(prose_findings(strings))
     return out
 
 
@@ -546,6 +694,9 @@ def describe(rule_id: str) -> tuple[str, str]:
     if rule_id == "allah-in-arabic-script":
         return ("The Name in Arabic script inside English (Glory be to الله), in the ARB or a Dart file.",
                 "Write Allah. Arabic phrases (بسم الله, رضي الله عنه) and arabic: fields are not flagged.")
+    if rule_id in PROSE_RULE_BY_ID:
+        p = PROSE_RULE_BY_ID[rule_id]
+        return (p.description, p.fix)
     r = RULE_BY_ID[rule_id]
     return (r.description, r.fix)
 
@@ -579,7 +730,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.limit:
             rows = rows[: args.limit]
         for k in rows:
-            print(f"  {k}: {strings[k][:160]}" if k in strings else f"  {k}")
+            text = strings.get(k, PROSE_TEXT.get(k))
+            print(f"  {k}: {text[:160]}" if text is not None else f"  {k}")
         print(f"\n{len(results[args.list])} total")
         return 0
 

@@ -7,7 +7,7 @@ final duaSeedDataset = DuaDataset(
   notes: <String>[
     'This file is designed for app integration and progressive completion.',
     'Core entries are populated and marked core_verified.',
-    'Qur\'anic dua entries now include an expanded source-backed completion batch.',
+    'Qur’anic dua entries now include an expanded source-backed completion batch.',
     'Daily-life adhkar now include a source-backed completion batch.',
     'Prayer-and-worship duas now include a source-backed completion batch.',
     'Situational and travel duas now include a source-backed completion batch.',
@@ -272,7 +272,7 @@ final duaSeedDataset = DuaDataset(
           arabic: 'رَبِّ زِدْنِي عِلْمًا',
           transliteration: 'Rabbi zidni \'ilma',
           translation: 'My Lord, increase me in knowledge.',
-          whenToSay: 'Before study, learning, or reading Qur\'an.',
+          whenToSay: 'Before study, learning, or reading Qur’an.',
           sourceType: 'quran',
           sourceRef: 'Qur\'an 20:114',
           difficulty: DuaDifficulty.beginner,
@@ -547,7 +547,7 @@ final duaSeedDataset = DuaDataset(
           transliteration:
               'Allahumma rabba hadhihid-da\'watit-tammah was-salatil-qa\'imah ati Muhammadanil-wasilata wal-fadilah wab\'athhu maqaman mahmudan alladhi wa\'adtah',
           translation:
-              'O Allah, Lord of this perfect call and established prayer, grant Muhammad the station of الوسيلة and virtue, and raise him to the praised station You promised him.',
+              'O Allah, Lord of this perfect call and established prayer, grant Muhammad the station of al-Wasilah and virtue, and raise him to the praised station You promised him.',
           whenToSay: 'After repeating the adhan.',
           sourceType: 'sunnah',
           sourceRef: 'Sahih al-Bukhari 614',
@@ -632,7 +632,7 @@ final duaSeedDataset = DuaDataset(
               'Allahumma ma asbaha bi min ni\'matin aw bi ahadim-min khalqika, fa minka wahdaka la sharika lak, fa lakal-hamdu wa lakash-shukr.',
           translation:
               'O Allah, all the favours that I or anyone from Your creation has received in the morning are from You alone. You have no partner. To You alone belong all praise and all thanks.',
-          whenToSay: 'In the morning to thank Allah for the day\'s blessings.',
+          whenToSay: 'In the morning to thank Allah for the day’s blessings.',
           sourceType: 'sunnah',
           sourceRef: 'Sunan Abi Dawud 5073',
           difficulty: DuaDifficulty.beginner,
@@ -737,8 +737,7 @@ final duaSeedDataset = DuaDataset(
               'Allahumma ma amsa bi min ni\'matin aw bi ahadin min khalqika, fa minka wahdaka la sharika lak, fa lakal-hamdu wa lakash-shukr.',
           translation:
               'O Allah, all the favours that I or anyone from Your creation has received in the evening are from You alone. You have no partner. To You alone belong all praise and all thanks.',
-          whenToSay:
-              'In the evening to thank Allah for the night\'s blessings.',
+          whenToSay: 'In the evening to thank Allah for the night’s blessings.',
           sourceType: 'sunnah',
           sourceRef: 'Sunan Abi Dawud 5073',
           difficulty: DuaDifficulty.beginner,
@@ -940,7 +939,7 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_017_daily_life_food',
           category: 'daily_life',
           subcategory: 'food',
-          title: 'Guest\'s Dua for the Host',
+          title: 'Guest’s Dua for the Host',
           arabic:
               'اَللّٰهُمَّ أَطْعِمْ مَنْ أَطْعَمَنِيْ وَاسْقِ مَنْ سَقَانِي.',
           transliteration: 'Allahumma at\'im man at\'amani, wasqi man saqani.',
@@ -1173,7 +1172,7 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_029_daily_life_daily',
           category: 'daily_life',
           subcategory: 'daily',
-          title: 'Salawat upon the Prophet',
+          title: 'Salawat upon the Prophet ﷺ',
           arabic:
               'اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ اٰلِ مُحَمَّدٍ.',
           transliteration:
@@ -1181,7 +1180,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'O Allah, honour and have mercy upon Muhammad and his household.',
           whenToSay:
-              'Daily, especially on Fridays and whenever sending blessings upon the Prophet.',
+              'Daily, especially on Fridays and whenever sending blessings upon the Prophet ﷺ.',
           sourceType: 'sunnah',
           sourceRef: 'Sunan an-Nasa\'i 1291',
           difficulty: DuaDifficulty.beginner,
@@ -1365,7 +1364,7 @@ final duaSeedDataset = DuaDataset(
           transliteration: 'A\'udhu billahi minash-shaytanir-rajim.',
           translation: 'I seek refuge in Allah from the accursed Shaytan.',
           whenToSay:
-              'Before beginning recitation of the Qur\'an, especially aloud.',
+              'Before beginning recitation of the Qur’an, especially aloud.',
           sourceType: 'quran',
           sourceRef: 'Qur\'an 16:98',
           difficulty: DuaDifficulty.beginner,
@@ -1379,7 +1378,8 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_039_prayer_and_worship_quran',
           category: 'prayer_and_worship',
           subcategory: 'quran',
-          title: 'Closing Dhikr after a Qur\'an Reading Gathering',
+          title:
+              'Closing Dhikr after a Qur’an Reading Gathering', // copy-lint: allow prose-term-casing
           arabic:
               'سُبْحَانَكَ اللّٰهُمَّ وَبِحَمْدِكَ ، أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا أَنْتَ ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ.',
           transliteration:
@@ -1387,7 +1387,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'How perfect You are, O Allah, and all praise is Yours. I bear witness that there is no god but You. I seek Your forgiveness and I repent to You.',
           whenToSay:
-              'As a general closing dhikr after a sitting of Qur\'an recitation or study. There is no fixed marfu\' dua established specifically for khatm al-Qur\'an.',
+              'As a general closing dhikr after a sitting of Qur’an recitation or study. There is no fixed marfu\' dua established specifically for khatm al-Qur’an.',
           sourceType: 'sunnah',
           sourceRef: 'Sunan Abi Dawud 4859; Jami\' at-Tirmidhi 3433',
           difficulty: DuaDifficulty.beginner,
@@ -1401,7 +1401,7 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_040_prayer_and_worship_adhan',
           category: 'prayer_and_worship',
           subcategory: 'adhan',
-          title: 'During Adhan: Repeat the Mu\'adhdhin',
+          title: 'During Adhan: Repeat the Mu’adhdhin',
           arabic:
               'يُقَالُ مِثْلُ مَا يَقُولُ الْمُؤَذِّنُ ، إِلَّا فِيْ حَيَّ عَلَى الصَّلَاةِ وَحَيَّ عَلَى الْفَلَاحِ ، فَيُقَالُ: لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ.',
           transliteration:
@@ -1422,7 +1422,7 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_041_prayer_and_worship_friday',
           category: 'prayer_and_worship',
           subcategory: 'friday',
-          title: 'On Friday: Send Blessings upon the Prophet',
+          title: 'On Friday: Send Blessings upon the Prophet ﷺ',
           arabic:
               'اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ اٰلِ مُحَمَّدٍ ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ اٰلِ إِبْرَاهِيمَ ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اَللّٰهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَّعَلَىٰ اٰلِ مُحَمَّدٍ ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ اٰلِ إِبْرَاهِيمَ ، إِنَّكَ حَمِيدٌ مَجِيدٌ.',
           transliteration:
@@ -1430,7 +1430,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'O Allah, send blessings upon Muhammad and the family of Muhammad as You sent blessings upon Ibrahim and the family of Ibrahim; surely You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad as You blessed Ibrahim and the family of Ibrahim; surely You are Praiseworthy, Glorious.',
           whenToSay:
-              'Frequently on Friday and the night before it. This replaces a non-fixed Jumu\'ah topic placeholder with a source-backed Friday practice.',
+              'Frequently on Friday and the night before it. This replaces a non-fixed Jumu’ah topic placeholder with a source-backed Friday practice.',
           sourceType: 'sunnah',
           sourceRef: 'Sahih al-Bukhari 3370; Sunan Abi Dawud 1047',
           difficulty: DuaDifficulty.intermediate,
@@ -1452,7 +1452,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'O Allah, I seek the better choice from You by Your knowledge, and I seek ability from You by Your power, and I ask You from Your immense bounty. You are fully capable while I am not, You know and I do not know, and You are the Knower of the unseen. O Allah, if You know this matter to be good for me in my religion, my livelihood, and the outcome of my affair, then decree it for me, make it easy for me, and bless it for me. And if You know this matter to be bad for me in my religion, my livelihood, and the outcome of my affair, then turn it away from me and turn me away from it, and decree for me the good wherever it may be, then make me pleased with it.',
           whenToSay:
-              'After praying two rak\'ahs of voluntary prayer when seeking Allah\'s guidance in a decision.',
+              'After praying two rak’ahs of voluntary prayer when seeking Allah’s guidance in a decision.',
           sourceType: 'sunnah',
           sourceRef: 'Sahih al-Bukhari 6382',
           difficulty: DuaDifficulty.advanced,
@@ -1466,7 +1466,7 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_043_prayer_and_worship_masjid',
           category: 'prayer_and_worship',
           subcategory: 'hajj_umrah',
-          title: 'At the Ka\'bah: Good in This Life and the Next',
+          title: 'At the Ka’bah: Good in This Life and the Next',
           arabic:
               'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',
           transliteration:
@@ -1474,7 +1474,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.',
           whenToSay:
-              'When making dua around the Ka\'bah, especially between the Yemeni Corner and the Black Stone. This replaces a weakly fixed “seeing the Ka\'bah” placeholder with a stronger attested supplication.',
+              'When making dua around the Ka’bah, especially between the Yemeni Corner and the Black Stone. This replaces a weakly fixed “seeing the Ka’bah” placeholder with a stronger attested supplication.',
           sourceType: 'quran_sunnah',
           sourceRef: 'Qur\'an 2:201; Sunan Abi Dawud 1892',
           difficulty: DuaDifficulty.beginner,
@@ -1518,7 +1518,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'Surely Safa and Marwah are among the symbols of Allah. I begin with what Allah began with. There is no god but Allah, and Allah is the Greatest. There is no god but Allah alone without partner; to Him belong dominion and praise, and He is over all things capable. There is no god but Allah alone; He fulfilled His promise, helped His servant, and defeated the confederates alone.',
           whenToSay:
-              'At Safa and Marwah during sa\'y, then one makes personal dua between repetitions.',
+              'At Safa and Marwah during sa’y, then one makes personal dua between repetitions.',
           sourceType: 'quran_sunnah',
           sourceRef: 'Qur\'an 2:158; Sahih Muslim 1218',
           difficulty: DuaDifficulty.advanced,
@@ -1602,7 +1602,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'I seek protection for you in the perfect words of Allah from every devil and harmful creature, and from every envious, blameworthy eye.',
           whenToSay:
-              'When making dua for one\'s children and asking Allah to protect them.',
+              'When making dua for one’s children and asking Allah to protect them.',
           sourceType: 'Hadith',
           sourceRef: 'Hisn al-Muslim 146; Al-Bukhari 4/119.',
           difficulty: DuaDifficulty.beginner,
@@ -1683,7 +1683,7 @@ final duaSeedDataset = DuaDataset(
           id: 'stub_053_home_and_family_home',
           category: 'home_and_family',
           subcategory: 'home',
-          title: 'Securing the Home at Night with Allah\'s Name',
+          title: 'Securing the Home at Night with Allah’s Name',
           arabic:
               'إِذَا كَانَ جُنْحُ اللَّيْلِ فَكُفُّوا صِبْيَانَكُمْ، وَأَغْلِقُوا الأَبْوَابَ وَاذْكُرُوا اسْمَ اللَّهِ، وَأَوْكُوا قِرَبَكُمْ وَاذْكُرُوا اسْمَ اللَّهِ، وَخَمِّرُوا آنِيَتَكُمْ وَاذْكُرُوا اسْمَ اللَّهِ، وَأَطْفِئُوا مَصَابِيحَكُمْ',
           transliteration:
@@ -1712,7 +1712,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'My Lord, have mercy on them as they raised me when I was small.',
           whenToSay:
-              'For one\'s living parents and in gratitude for their care.',
+              'For one’s living parents and in gratitude for their care.',
           sourceType: 'Qur\'an',
           sourceRef: 'Qur\'an 17:24.',
           difficulty: DuaDifficulty.beginner,
@@ -3110,7 +3110,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'My Lord, make this land secure and keep me and my children away from worshipping idols.',
           whenToSay:
-              'For safety, tawhid, and protection from shirk for oneself and one\'s family.',
+              'For safety, tawhid, and protection from shirk for oneself and one’s family.',
           sourceType: 'quran',
           sourceRef: 'Qur\'an 14:35',
           difficulty: DuaDifficulty.intermediate,
@@ -3670,7 +3670,7 @@ final duaSeedDataset = DuaDataset(
               'Bismillah, Allahumma jannibna al-shaytan wa jannib al-shaytana ma razaqtana.',
           translation:
               'In the name of Allah. O Allah, keep Satan away from us and keep Satan away from what You provide for us.',
-          whenToSay: 'Before marital relations with one\'s spouse.',
+          whenToSay: 'Before marital relations with one’s spouse.',
           sourceType: 'sunnah',
           sourceRef: 'Sahih al-Bukhari 6388; Sahih Muslim 1434',
           difficulty: DuaDifficulty.beginner,

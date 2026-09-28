@@ -21,6 +21,18 @@
     "subtitle-long": 166,
     "dead-keys": 0,
     "kids-dialogue-unquoted": 0,
-    "allah-in-arabic-script": 0
+    "allah-in-arabic-script": 0,
+    "prose-apostrophe": 0,
+    "prose-quran-spelling": 0,
+    "prose-term-spelling": 0,
+    "prose-uk-spelling": 0,
+    "prose-term-casing": 0,
+    "prose-honorific": 0,
+    "prose-typo": 0,
+    "arabic-in-english": 0,
+    "prose-studio-vocabulary": 203,
+    "prose-roadmap": 43,
+    "prose-tail": 272,
+    "prose-list-of-three": 872
   }
 }

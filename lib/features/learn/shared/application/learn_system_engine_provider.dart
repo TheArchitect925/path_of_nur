@@ -571,7 +571,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         relatedItemIds: const <String>[],
         reflectionPrompts: [surah.reflection],
         practiceActions: const [
-          'Play the surah in Learn Ayah and repeat it verse by verse.',
+          'Play the surah in Learn Ayah and repeat it verse by verse.', // copy-lint: allow prose-term-casing
         ],
         isFeatured:
             surah.id == 'al_fatihah' ||

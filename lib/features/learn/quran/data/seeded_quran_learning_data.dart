@@ -100,9 +100,9 @@ const List<QuranLearningVerse> seededQuranLearningVerses = [
         'قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا ... لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ',
     translation: 'Do not despair of the mercy of Allah.',
     explanation:
-        'A central Qur\'anic call to hope, repentance, and return after sin.',
+        'A central Qur’anic call to hope, repentance, and return after sin.',
     lessons: [
-      'Despair is not the believer\'s path.',
+      'Despair is not the believer’s path.',
       'Repentance remains open while life remains.',
       'Mercy calls for renewed obedience.',
     ],

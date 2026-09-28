@@ -3212,7 +3212,8 @@ QuranTeachingCatalog buildQuranTeachingCatalog() {
       id: 'sun_moon_letters_intro',
       moduleId: 'reading_rules',
       title: 'Sun and Moon Letters',
-      subtitle: 'What happens to ال at the beginning.',
+      subtitle:
+          'What happens to ال at the beginning.', // copy-lint: allow arabic-in-english
       summary: 'Some letters blend the l sound and some keep it clear.',
       kind: QuranTeachingLessonKind.standard,
       order: 0,

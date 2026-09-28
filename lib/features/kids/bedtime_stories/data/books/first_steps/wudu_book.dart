@@ -13,7 +13,7 @@ final BedtimeStorySeed wuduBook = kidsPictureBook(
   shortTitle: 'Getting Ready',
   summary:
       'Zayn rolls up his sleeves: hands, mouth, nose, face, arms, head, ears '
-      'and feet, and he\'s ready to pray.',
+      'and feet, and he’s ready to pray.',
   category: BedtimeStoryCategory.foundations,
   collectionType: KidsIslamicStoryCollectionType.foundations,
   storyType: KidsIslamicStoryType.foundations,
@@ -130,7 +130,7 @@ final BedtimeStorySeed wuduBook = kidsPictureBook(
     ),
     KidsBookSpread([
       'Wuḍūʾ stays until you sleep, or go to the toilet, or pass wind.',
-      'Then you wash again. That\'s all.',
+      'Then you wash again. That’s all.',
     ], illustrationAsset: '$_scenes/steps_wudu_ready.webp'),
     KidsBookSpread(
       ['Say Bismillah, and start with the hands.', 'Clean and ready.'],
@@ -138,7 +138,7 @@ final BedtimeStorySeed wuduBook = kidsPictureBook(
       isRefrain: true,
     ),
     KidsBookSpread(
-      ['Let\'s practise, step by step.', 'Tap on each step as you go.'],
+      ['Let’s practice, step by step.', 'Tap on each step as you go.'],
       illustrationAsset: '$_scenes/steps_wudu_kid_basin.webp',
       tryItRoute: '/learn/salah/wudu/trainer',
     ),

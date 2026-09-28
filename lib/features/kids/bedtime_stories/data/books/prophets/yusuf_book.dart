@@ -13,8 +13,8 @@ final BedtimeStorySeed yusufBook = kidsPictureBook(
   title: 'Yusuf and the Dream',
   shortTitle: 'Prophet Yusuf',
   summary:
-      'From a well to a prison to the king\'s storehouses, Yusuf stays '
-      'patient and honest, and Allah\'s plan comes true.',
+      'From a well to a prison to the king’s storehouses, Yusuf stays '
+      'patient and honest, and Allah’s plan comes true.',
   category: BedtimeStoryCategory.prophets,
   collectionType: KidsIslamicStoryCollectionType.prophets,
   storyType: KidsIslamicStoryType.prophet,
@@ -145,7 +145,7 @@ final BedtimeStorySeed yusufBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        'Yusuf\'s brothers were jealous.',
+        'Yusuf’s brothers were jealous.',
         'They took him far away and dropped him into a deep, dark well.',
       ],
       illustrationAsset: '$_scenes/yusuf_well.webp',
@@ -171,7 +171,7 @@ final BedtimeStorySeed yusufBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        'Yusuf grew up in a rich man\'s house, far from home.',
+        'Yusuf grew up in a rich man’s house, far from home.',
         'He stayed honest and kind.',
       ],
       atlasScene: KidsBookAtlasScene.cityMorning,

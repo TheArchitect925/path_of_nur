@@ -135,7 +135,7 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
         'The Prophet ﷺ showed mercy even toward many who had once opposed him.',
     correct: true,
     explanation:
-        'The Seerah repeatedly shows the Prophet’s mercy, patience, and restraint, especially in moments of power.',
+        'The Seerah repeatedly shows the Prophet’s ﷺ mercy, patience, and restraint, especially in moments of power.',
     tags: const ['seerah', 'mercy', 'character', 'beginner'],
     dailyEligible: true,
     beginnerFriendly: true,
@@ -165,7 +165,7 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     categoryId: 'seerah',
     difficulty: TriviaDifficulty.easy,
     prompt:
-        'Which quality is especially learned from the Prophet’s early years in Makkah?',
+        'Which quality is especially learned from the Prophet’s ﷺ early years in Makkah?',
     correctOptionId: 'c',
     options: const [
       ('a', 'Harshness'),
@@ -255,7 +255,7 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     categoryId: 'seerah',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'What broad lesson is often drawn from the Prophet’s treatment of people after the conquest of Makkah?',
+        'What broad lesson is often drawn from the Prophet’s ﷺ treatment of people after the conquest of Makkah?',
     correctOptionId: 'c',
     options: const [
       ('a', 'Leadership means revenge'),
@@ -274,7 +274,7 @@ final List<TriviaQuestion> seerahTriviaQuestions = [
     categoryId: 'seerah',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'Which city was the setting for the Prophet’s mission before the Hijrah?',
+        'Which city was the setting for the Prophet’s ﷺ mission before the Hijrah?',
     correctOptionId: 'a',
     options: const [
       ('a', 'Makkah'),

@@ -219,7 +219,7 @@ final List<TriviaQuestion> ramadanTriviaQuestions = [
     categoryId: 'ramadan',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'Why was the Qur’an being reviewed in Ramadan especially meaningful in the Prophet’s life?',
+        'Why was the Qur’an being reviewed in Ramadan especially meaningful in the Prophet’s ﷺ life?',
     correctOptionId: 'b',
     options: const [
       ('a', 'Because Ramadan replaced all other worship'),

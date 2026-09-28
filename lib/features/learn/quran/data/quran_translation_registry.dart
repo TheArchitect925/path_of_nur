@@ -62,7 +62,7 @@ const quranTranslationResources = <QuranTranslationResource>[
     labelToken: 'de.quran_foundation_candidate',
     translatorName: 'Frank Bubenheim and Nadeem Elyas',
     notes:
-        'Reserved German lane for a reviewed Quran Foundation translation resource using the Frank Bubenheim and Nadeem Elyas translation after exact resource selection and access setup.',
+        'Reserved German lane for a reviewed Qur’an Foundation translation resource using the Frank Bubenheim and Nadeem Elyas translation after exact resource selection and access setup.',
   ),
 ];
 

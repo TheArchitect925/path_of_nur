@@ -306,7 +306,7 @@ final wuduQuizControllerProvider =
     );
 
 final wuduQuizLocalizationsProvider = Provider<AppLocalizations>((ref) {
-  throw UnimplementedError('Override only in the Wudu quiz subtree.');
+  throw UnimplementedError('Override only in the wudu quiz subtree.');
 }, dependencies: const <ProviderOrFamily>[]);
 
 final wuduQuizContentProvider = Provider<WuduQuizContent>((ref) {

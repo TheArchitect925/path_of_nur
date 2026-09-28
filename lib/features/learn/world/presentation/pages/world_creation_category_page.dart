@@ -49,7 +49,7 @@ class WorldCreationCategoryPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Featured verse: Qur\'an ${categoryData.featuredVerse.referenceLabel}',
+                'Featured verse: Qur’an ${categoryData.featuredVerse.referenceLabel}',
               ),
               const SizedBox(height: 8),
               Text(

@@ -72,7 +72,9 @@ class DhikrPreset {
     ),
     DhikrPreset(
       id: 'hasbunallah',
-      label: 'Hasbunallahu wa ni\'mal wakil',
+      // The label keys the phrase's lifetime total (dhikr_phrase_totals).
+      label:
+          'Hasbunallahu wa ni\'mal wakil', // copy-lint: allow prose-apostrophe
       phrase: 'حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ',
       transliteration: 'Hasbunallahu wa ni\'mal wakil',
       translation:

@@ -241,9 +241,9 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
       domain: LearnDomainType.notes,
       lessonId: latest.id,
       title: latest.text.trim().isEmpty
-          ? 'Qur\'an note ${latest.surahNumber}:${latest.ayahNumber}'
+          ? 'Qur’an note ${latest.surahNumber}:${latest.ayahNumber}'
           : latest.text.split('\n').first.trim(),
-      subtitle: 'Linked to Qur\'an ${latest.surahNumber}:${latest.ayahNumber}',
+      subtitle: 'Linked to Qur’an ${latest.surahNumber}:${latest.ayahNumber}',
       routeName: 'quranReader',
       pathParameters: {'surahNumber': latest.surahNumber.toString()},
       queryParameters: {'ayah': latest.ayahNumber.toString()},
@@ -399,10 +399,10 @@ final learnUnifiedSummaryProvider = Provider<LearnUnifiedSummary>((ref) {
                 domain: LearnDomainType.notes,
                 lessonId: note.id,
                 title: note.text.trim().isEmpty
-                    ? 'Qur\'an note ${note.surahNumber}:${note.ayahNumber}'
+                    ? 'Qur’an note ${note.surahNumber}:${note.ayahNumber}'
                     : note.text.split('\n').first.trim(),
                 subtitle:
-                    'Linked to Qur\'an ${note.surahNumber}:${note.ayahNumber}',
+                    'Linked to Qur’an ${note.surahNumber}:${note.ayahNumber}',
                 routeName: 'quranReader',
                 pathParameters: {'surahNumber': note.surahNumber.toString()},
                 queryParameters: {'ayah': note.ayahNumber.toString()},
@@ -648,10 +648,10 @@ final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnR
       if (lesson == null) return const [];
       return [
         LearnCitation(
-          sourceTitle: 'Life Curriculum: Qur\'anic Theme Synthesis',
+          sourceTitle: 'Life Curriculum: Qur’anic Theme Synthesis',
           qualityBadge: 'Core',
           confidenceNote:
-              'Structured educational summary anchored to Qur\'anic values.',
+              'Structured educational summary anchored to Qur’anic values.',
           reference: lesson.id,
         ),
         ...lesson.comparativeInsights.map(
@@ -672,7 +672,7 @@ final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnR
           sourceTitle: 'World Curriculum: Reflective Observation Layer',
           qualityBadge: 'Core',
           confidenceNote:
-              'Observation prompts are pedagogical aids anchored to Qur\'anic signs.',
+              'Observation prompts are pedagogical aids anchored to Qur’anic signs.',
           reference: lesson.id,
         ),
         ...lesson.comparativeInsights.map(
@@ -700,7 +700,7 @@ final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnR
           sourceTitle: 'Related Qur\'anic Themes',
           qualityBadge: 'Cross-ref',
           confidenceNote:
-              'Qur\'anic alignment note for thematic grounding and context.',
+              'Qur’anic alignment note for thematic grounding and context.',
           reference: lesson.quranicConnection,
         ),
         ...lesson.comparativeInsights.map(

@@ -12,7 +12,7 @@ final BedtimeStorySeed fivePillarsBook = kidsPictureBook(
   title: 'A House With Five Pillars',
   shortTitle: 'Five Pillars',
   summary:
-      'Safa and Zayn\'s blanket house keeps falling down, until Baba shows '
+      'Safa and Zayn’s blanket house keeps falling down, until Baba shows '
       'them what holds a house, and what holds Islam, up.',
   category: BedtimeStoryCategory.foundations,
   collectionType: KidsIslamicStoryCollectionType.foundations,

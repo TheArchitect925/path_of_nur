@@ -7141,7 +7141,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteMeaningSection1Body =>
-      'SubhanAllah clears Allah of نقص and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.';
+      'SubhanAllah clears Allah of every flaw (naqs) and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Title =>
@@ -33907,7 +33907,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranPathwayMusaSubtitle =>
-      'Trace courage, mission, du’a, and reliance through Musa عليه السلام.';
+      'Trace courage, mission, du’a, and reliance through Musa (peace be upon him).';
 
   @override
   String get quranPathwayMusaDescription =>
@@ -34073,7 +34073,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranPathwayMusaStepThemeSubtitle =>
-      'Start with the broad arc of Musa عليه السلام across the Qur’an.';
+      'Start with the broad arc of Musa (peace be upon him) across the Qur’an.';
 
   @override
   String get quranPathwayMusaStepTahaTitle => 'Study Surah Taha';

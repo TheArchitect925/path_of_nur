@@ -173,7 +173,7 @@ const List<LearnContentPageData> _lifeTopics = [
       'Consistent salah learning',
       'Healthy community ties',
     ],
-    referencePlaceholders: ['Qur’an and Sunnah foundations'],
+    referencePlaceholders: ['Qur’an and sunnah foundations'],
     reflectionPrompt:
         'What is the one next step that feels realistic this week?',
     relatedTopics: [
@@ -284,7 +284,7 @@ const List<LearnContentPageData> _lifeTopics = [
     title: 'I\'tikaf Basics',
     subtitle: 'Purpose, preparation, and balanced worship focus.',
     overview:
-        'I\'tikaf is spiritual retreat in the mosque with focused worship, reduced distractions, and sincere intention.',
+        'I’tikaf is spiritual retreat in the mosque with focused worship, reduced distractions, and sincere intention.',
     keyThemes: [
       'Retreat with intention',
       'Simple worship plan',
@@ -292,7 +292,7 @@ const List<LearnContentPageData> _lifeTopics = [
     ],
     referencePlaceholders: ['I\'tikaf practice themes'],
     reflectionPrompt:
-        'If you were to do i\'tikaf, what would your simple daily worship plan be?',
+        'If you were to do i’tikaf, what would your simple daily worship plan be?',
     relatedTopics: [
       RelatedTopic(
         topicId: 'itikaaf-dos-donts',

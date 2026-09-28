@@ -23,17 +23,17 @@ ImportedQuranTranslationBundle parseImportedQuranTranslationBundleDocument(
 
   if (code == null || code.isEmpty) {
     throw const FormatException(
-      'Imported Qur\'an translation document is missing a non-empty code.',
+      'Imported Qur’an translation document is missing a non-empty code.',
     );
   }
   if (translatorName == null || translatorName.isEmpty) {
     throw const FormatException(
-      'Imported Qur\'an translation document is missing translatorName.',
+      'Imported Qur’an translation document is missing translatorName.',
     );
   }
   if (sourceProvider == null || sourceProvider.isEmpty) {
     throw const FormatException(
-      'Imported Qur\'an translation document is missing sourceProvider.',
+      'Imported Qur’an translation document is missing sourceProvider.',
     );
   }
 
@@ -81,7 +81,7 @@ Map<String, String> _parseVerseTextsByVerseKey(Map<String, dynamic> json) {
       final text = (rawValue as String).trim();
       if (verseKey.isEmpty) {
         throw const FormatException(
-          'Imported Qur\'an translation document contains an empty verse key.',
+          'Imported Qur’an translation document contains an empty verse key.',
         );
       }
       return MapEntry(verseKey, text);
@@ -91,7 +91,7 @@ Map<String, String> _parseVerseTextsByVerseKey(Map<String, dynamic> json) {
   final verseRows = json['verses'];
   if (verseRows is! List) {
     throw const FormatException(
-      'Imported Qur\'an translation document must contain versesByVerseKey or verses.',
+      'Imported Qur’an translation document must contain versesByVerseKey or verses.',
     );
   }
 
@@ -104,7 +104,7 @@ Map<String, String> _parseVerseTextsByVerseKey(Map<String, dynamic> json) {
   for (final row in rows) {
     if (!seenVerseKeys.add(row.verseKey)) {
       throw FormatException(
-        'Imported Qur\'an translation document contains a duplicate verse key: '
+        'Imported Qur’an translation document contains a duplicate verse key: '
         '${row.verseKey}.',
       );
     }
@@ -118,12 +118,12 @@ ImportedQuranTranslationEntry _parseVerseRow(Map<String, dynamic> row) {
   final text = (row['text'] as String?)?.trim();
   if (verseKey == null || verseKey.isEmpty) {
     throw const FormatException(
-      'Imported Qur\'an translation verse rows must include a non-empty verseKey.',
+      'Imported Qur’an translation verse rows must include a non-empty verseKey.',
     );
   }
   if (text == null) {
     throw const FormatException(
-      'Imported Qur\'an translation verse rows must include text.',
+      'Imported Qur’an translation verse rows must include text.',
     );
   }
   return ImportedQuranTranslationEntry(verseKey: verseKey, text: text);

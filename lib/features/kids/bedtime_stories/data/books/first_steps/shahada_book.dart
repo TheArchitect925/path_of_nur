@@ -132,7 +132,7 @@ final BedtimeStorySeed shahadaBook = kidsPictureBook(
     KidsBookSpread(
       [
         'Say it with me, softly: La ilaha illallah, Muhammadur rasulullah.',
-        'Now let\'s learn a duʿā to go with it.',
+        'Now let’s learn a duʿā to go with it.',
       ],
       illustrationAsset: '$_scenes/steps_words_arch.webp',
       isRefrain: true,

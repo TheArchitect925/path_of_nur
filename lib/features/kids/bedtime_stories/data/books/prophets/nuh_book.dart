@@ -191,7 +191,7 @@ final BedtimeStorySeed nuhBook = kidsPictureBook(
     KidsBookSpread(
       [
         'The ship floated on waves as high as mountains.',
-        'Inside, Nuh\'s family and the animals were safe.',
+        'Inside, Nuh’s family and the animals were safe.',
       ],
       illustrationAsset: '$_scenes/nuh_flood.webp',
       quranRef: QuranQuoteRef(surah: 11, ayah: 42),

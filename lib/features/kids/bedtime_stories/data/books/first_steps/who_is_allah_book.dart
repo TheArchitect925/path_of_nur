@@ -146,7 +146,7 @@ final BedtimeStorySeed whoIsAllahBook = kidsPictureBook(
     KidsBookSpread(
       [
         'Say it with me: Allah made it all.',
-        'Now, let\'s learn some of His beautiful names.',
+        'Now, let’s learn some of His beautiful names.',
       ],
       illustrationAsset: '$_scenes/steps_allah_names.webp',
       isRefrain: true,

@@ -3903,7 +3903,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         tag: settings.backgroundPlaybackEnabled
             ? MediaItem(
                 id: 'quran:sample:$reciterId',
-                album: 'Path of Nur • Quran sample',
+                album: 'Path of Nur • Qur’an sample',
                 title: 'Reciter sample',
                 artist: reciter.name,
               )

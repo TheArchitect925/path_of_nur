@@ -11,10 +11,10 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
     prompt:
         'Which famous hadith begins with “Actions are judged by intentions”?',
     options: const [
-      ('innama', 'Innama al-a\'malu bin-niyyat'),
+      ('innama', 'Innama al-a’malu bin-niyyat'),
       ('rahmah', 'Ar-Rahimuna yarhamuhum ar-Rahman'),
       ('nasihah', 'Ad-dinu an-nasihah'),
-      ('hayaa', 'Al-hayaa\'u min al-iman'),
+      ('hayaa', 'Al-hayaa’u min al-iman'),
     ],
     correctOptionId: 'innama',
     explanation:
@@ -30,10 +30,10 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
     categoryId: 'hadith',
     difficulty: TriviaDifficulty.easy,
     prompt:
-        'Sunnah only refers to optional deeds and never to the Prophet’s teachings more broadly.',
+        'Sunnah only refers to optional deeds and never to the Prophet’s ﷺ teachings more broadly.',
     correct: false,
     explanation:
-        'The Sunnah refers broadly to the Prophet’s teachings, example, and guidance. Some Sunnah acts are optional, but the term is wider than that.',
+        'The sunnah refers broadly to the Prophet’s ﷺ teachings, example, and guidance. Some sunnah acts are optional, but the term is wider than that.',
     sourceReference: 'General hadith sciences usage',
     tags: const ['hadith', 'sunnah', 'beginner'],
     beginnerFriendly: true,
@@ -44,7 +44,7 @@ final List<TriviaQuestion> hadithTriviaQuestions = [
     id: 'hadith_med_003',
     categoryId: 'hadith',
     difficulty: TriviaDifficulty.medium,
-    prompt: 'Which act was described by the Prophet as a form of charity?',
+    prompt: 'Which act was described by the Prophet ﷺ as a form of charity?',
     options: const [
       ('removing_harm', 'Removing harm from the road'),
       ('silent_fast', 'Keeping silent all day'),

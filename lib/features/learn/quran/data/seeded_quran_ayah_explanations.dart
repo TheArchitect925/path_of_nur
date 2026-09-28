@@ -101,11 +101,11 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 1,
     ayahNumber: 1,
-    simpleSummary: 'We begin with Allah\'s name and remember His wide mercy.',
+    simpleSummary: 'We begin with Allah’s name and remember His wide mercy.',
     standardExplanation:
-        'This opening teaches us to begin in Allah\'s name and to remember that His mercy surrounds His creation. It sets the tone of worship with praise, dependence, and hope.',
+        'This opening teaches us to begin in Allah’s name and to remember that His mercy surrounds His creation. It sets the tone of worship with praise, dependence, and hope.',
     deepExplanation:
-        'Classical tafsir explains that opening with Allah\'s name seeks His help and blessing, while mentioning both names of mercy teaches the servant to turn back to Allah with hope in His compassion.',
+        'Classical tafsir explains that opening with Allah’s name seeks His help and blessing, while mentioning both names of mercy teaches the servant to turn back to Allah with hope in His compassion.',
     kidsExplanation:
         'We start with Allah because He is kind and caring. Remembering Him helps our hearts trust Him.',
     keyLessons: <String>['Begin with Allah', 'Allah is full of mercy'],
@@ -136,10 +136,10 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah repeats His mercy so our hearts approach Him with hope.',
     standardExplanation:
-        'The repetition of Allah\'s mercy is a reminder that His care is constant and near. Worship is not built on fear alone; it is also built on hope in the mercy of our Lord.',
+        'The repetition of Allah’s mercy is a reminder that His care is constant and near. Worship is not built on fear alone; it is also built on hope in the mercy of our Lord.',
     kidsExplanation:
         'Allah is very, very merciful. He loves when we turn back to Him.',
-    keyLessons: <String>['Hope in Allah\'s mercy', 'Do not despair'],
+    keyLessons: <String>['Hope in Allah’s mercy', 'Do not despair'],
     reflectionPrompt:
         'When I feel weak, how can this verse help me return to Allah with hope?',
   ),
@@ -181,16 +181,16 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     kidsExplanation: 'We ask Allah to help us stay on the good path every day.',
     keyLessons: <String>[
       'Keep asking for guidance',
-      'Staying guided needs Allah\'s help',
+      'Staying guided needs Allah’s help',
     ],
     reflectionPrompt:
-        'What part of my life most needs Allah\'s guidance right now?',
+        'What part of my life most needs Allah’s guidance right now?',
   ),
   _entry(
     surahNumber: 1,
     ayahNumber: 7,
     simpleSummary:
-        'The straight path is the path of Allah\'s favor, not the path of rebellion or going astray.',
+        'The straight path is the path of Allah’s favor, not the path of rebellion or going astray.',
     standardExplanation:
         'Allah teaches us that guidance is known by following the people He favored with truth and obedience. We also ask to be protected from knowing the truth and rejecting it, or losing the truth through heedlessness.',
     deepExplanation:
@@ -208,11 +208,11 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 2,
     ayahNumber: 255,
     simpleSummary:
-        'Ayat al-Kursi teaches Allah\'s perfect life, knowledge, power, and protection.',
+        'Ayat al-Kursi teaches Allah’s perfect life, knowledge, power, and protection.',
     standardExplanation:
-        'This ayah declares Allah\'s absolute oneness and perfection. He is ever-living, never overcome by sleep or tiredness, owns everything in the heavens and earth, and surrounds all things with knowledge and authority.',
+        'This ayah declares Allah’s absolute oneness and perfection. He is ever-living, never overcome by sleep or tiredness, owns everything in the heavens and earth, and surrounds all things with knowledge and authority.',
     deepExplanation:
-        'The ayah gathers major meanings of tawhid together: Allah\'s perfect life, complete self-sufficiency, unrestricted ownership, permission over intercession, total knowledge of past and future, and His supreme exaltedness. It gives the servant security by teaching that Allah\'s care never weakens and His dominion is never challenged.',
+        'The ayah gathers major meanings of tawhid together: Allah’s perfect life, complete self-sufficiency, unrestricted ownership, permission over intercession, total knowledge of past and future, and His supreme exaltedness. It gives the servant security by teaching that Allah’s care never weakens and His dominion is never challenged.',
     kidsExplanation:
         'Allah is always alive, always watching with perfect knowledge, and always able to protect us. Nothing is too hard for Him.',
     keyLessons: <String>[
@@ -221,25 +221,25 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
       'Trust Allah\'s protection',
     ],
     reflectionPrompt:
-        'How can remembering Allah\'s perfect care calm a fear I am carrying?',
+        'How can remembering Allah’s perfect care calm a fear I am carrying?',
   ),
   _entry(
     surahNumber: 2,
     ayahNumber: 1,
     simpleSummary:
-        'These opening letters are part of the Qur\'an\'s revealed miracle, and Allah knows their fullest wisdom.',
+        'These opening letters are part of the Qur’an’s revealed miracle, and Allah knows their fullest wisdom.',
     standardExplanation:
-        'The surah opens with disjointed letters that remind us this Qur\'an is made of familiar letters, yet no one can produce anything like it. Their full meaning is with Allah, so they also teach humility before revelation.',
+        'The surah opens with disjointed letters that remind us this Qur’an is made of familiar letters, yet no one can produce anything like it. Their full meaning is with Allah, so they also teach humility before revelation.',
     deepExplanation:
-        'Classical tafsir treats these letters as part of the Qur\'an\'s miraculous opening and a reminder that this revelation is composed of the same letters people know, yet they cannot match it. The believer receives them with reverence, knowing that some divine wisdoms are made clear while others remain with Allah.',
+        'Classical tafsir treats these letters as part of the Qur’an’s miraculous opening and a reminder that this revelation is composed of the same letters people know, yet they cannot match it. The believer receives them with reverence, knowing that some divine wisdoms are made clear while others remain with Allah.',
     kidsExplanation:
-        'Allah opened this surah with special letters from His Book. They remind us that the Qur\'an is amazing and full of wisdom.',
+        'Allah opened this surah with special letters from His Book. They remind us that the Qur’an is amazing and full of wisdom.',
     keyLessons: <String>[
       'Honor what Allah revealed',
       'Some wisdoms remain with Allah',
     ],
     reflectionPrompt:
-        'How can this opening help me read the Qur\'an with more humility?',
+        'How can this opening help me read the Qur’an with more humility?',
     rolloutPack: QuranAyahExplanationRolloutPack.foundations,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -247,19 +247,19 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 2,
     ayahNumber: 2,
     simpleSummary:
-        'This Qur\'an is sure guidance for people who want to live with taqwa.',
+        'This Qur’an is sure guidance for people who want to live with taqwa.',
     standardExplanation:
-        'Allah describes the Qur\'an as a book without doubt in its truth and guidance. Its benefit is greatest for those whose hearts want to fear Allah, obey Him, and stay away from what displeases Him.',
+        'Allah describes the Qur’an as a book without doubt in its truth and guidance. Its benefit is greatest for those whose hearts want to fear Allah, obey Him, and stay away from what displeases Him.',
     deepExplanation:
-        'Tafsir explains that the Qur\'an itself is true and free of doubt, while the people who benefit most from it are the people of taqwa. This shows that guidance is not only about evidence being present, but also about the heart being ready to receive and follow that evidence.',
+        'Tafsir explains that the Qur’an itself is true and free of doubt, while the people who benefit most from it are the people of taqwa. This shows that guidance is not only about evidence being present, but also about the heart being ready to receive and follow that evidence.',
     kidsExplanation:
-        'The Qur\'an is Allah\'s true book, and it helps people who want to please Him.',
+        'The Qur’an is Allah’s true book, and it helps people who want to please Him.',
     keyLessons: <String>[
-      'The Qur\'an gives real guidance',
+      'The Qur’an gives real guidance',
       'A careful heart benefits most',
     ],
     reflectionPrompt:
-        'What would it look like to approach the Qur\'an as guidance for my real life?',
+        'What would it look like to approach the Qur’an as guidance for my real life?',
     rolloutPack: QuranAyahExplanationRolloutPack.foundations,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -287,15 +287,15 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 2,
     ayahNumber: 4,
     simpleSummary:
-        'The guided believers accept all of Allah\'s revelation and stay certain about the Hereafter.',
+        'The guided believers accept all of Allah’s revelation and stay certain about the Hereafter.',
     standardExplanation:
         'True guidance includes believing in what Allah revealed to Muhammad ﷺ and what He revealed before him. It also includes firm certainty that this life ends in return, judgment, and meeting Allah.',
     deepExplanation:
         'This verse shows that real faith is broad and connected: believers do not honor one revelation while rejecting another, and they do not live as if this world is all there is. Certainty about the Hereafter gives seriousness, patience, and direction to everything else in life.',
     kidsExplanation:
-        'Good believers trust all of Allah\'s messages and remember that they will return to Him.',
+        'Good believers trust all of Allah’s messages and remember that they will return to Him.',
     keyLessons: <String>[
-      'Believe in all Allah\'s revelations',
+      'Believe in all Allah’s revelations',
       'Remember the next life',
     ],
     reflectionPrompt:
@@ -307,14 +307,14 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 2,
     ayahNumber: 5,
     simpleSummary:
-        'These are the people truly upon Allah\'s guidance, and they are the successful ones.',
+        'These are the people truly upon Allah’s guidance, and they are the successful ones.',
     standardExplanation:
         'After describing their qualities, Allah confirms that these believers stand on real guidance from Him. Their success is not only worldly ease, but salvation, acceptance, and a good ending with Allah.',
     deepExplanation:
-        'The verse closes the opening portrait of the believers by connecting guidance to success. Tafsir points out that success here includes gaining what truly benefits and being saved from what destroys, which means the Qur\'an\'s guidance is not partial or temporary but leads to full well-being in this life and the next.',
+        'The verse closes the opening portrait of the believers by connecting guidance to success. Tafsir points out that success here includes gaining what truly benefits and being saved from what destroys, which means the Qur’an’s guidance is not partial or temporary but leads to full well-being in this life and the next.',
     kidsExplanation:
         'People who live with these qualities are on the right path, and Allah calls them successful.',
-    keyLessons: <String>['Real success comes from Allah\'s guidance'],
+    keyLessons: <String>['Real success comes from Allah’s guidance'],
     reflectionPrompt: 'Am I measuring success by what Allah calls success?',
     rolloutPack: QuranAyahExplanationRolloutPack.foundations,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
@@ -327,7 +327,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Fasting in Ramadan is not only about leaving food and drink. Allah teaches that it is a path to taqwa, where the heart learns self-control, obedience, and greater awareness of Him.',
     deepExplanation:
-        'Classical tafsir explains that fasting was prescribed for this ummah just as it was for earlier communities, showing it is a noble path of worship rather than a burden placed on one people alone. Its great aim is taqwa: training the soul to leave even permitted things for Allah\'s sake so it becomes stronger against sin and more ready for obedience.',
+        'Classical tafsir explains that fasting was prescribed for this ummah just as it was for earlier communities, showing it is a noble path of worship rather than a burden placed on one people alone. Its great aim is taqwa: training the soul to leave even permitted things for Allah’s sake so it becomes stronger against sin and more ready for obedience.',
     kidsExplanation:
         'Allah taught believers to fast so their hearts can become more careful and close to Him.',
     keyLessons: <String>['Fasting teaches self-control', 'The goal is taqwa'],
@@ -342,17 +342,17 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah set fasting for known days and gave mercy-based allowances to those with real difficulty.',
     standardExplanation:
-        'This verse shows that Allah\'s commands come with wisdom and mercy. Fasting is set for specific days, and those who face genuine hardship are not ignored; Allah also opens lawful ease and compensation.',
+        'This verse shows that Allah’s commands come with wisdom and mercy. Fasting is set for specific days, and those who face genuine hardship are not ignored; Allah also opens lawful ease and compensation.',
     deepExplanation:
         'Tafsir highlights that even in an obligation like fasting, Allah teaches discipline together with mercy. The verse reflects a pattern in the religion: worship is serious, but Allah does not close the door of compassion for the sick, the weak, and those facing conditions that make the command genuinely hard.',
     kidsExplanation:
         'Allah made fasting for special days, and He is gentle with people who truly have difficulty.',
     keyLessons: <String>[
-      'Allah\'s law includes mercy',
+      'Allah’s law includes mercy',
       'Worship has wisdom and balance',
     ],
     reflectionPrompt:
-        'How does this verse help me see mercy inside Allah\'s commands?',
+        'How does this verse help me see mercy inside Allah’s commands?',
     rolloutPack: QuranAyahExplanationRolloutPack.beginnerCoreAyahs,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -360,19 +360,19 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 2,
     ayahNumber: 185,
     simpleSummary:
-        'Ramadan is honored because the Qur\'an was sent down in it as guidance for people.',
+        'Ramadan is honored because the Qur’an was sent down in it as guidance for people.',
     standardExplanation:
-        'Allah connects fasting in Ramadan to the Qur\'an itself. This month is not only about restraint, but also about returning to revelation, seeking guidance, and thanking Allah for making His path clear.',
+        'Allah connects fasting in Ramadan to the Qur’an itself. This month is not only about restraint, but also about returning to revelation, seeking guidance, and thanking Allah for making His path clear.',
     deepExplanation:
-        'This verse places the Qur\'an at the center of Ramadan. Tafsir explains that the month is honored by the descent of revelation that distinguishes truth from falsehood, and that fasting and takbir at the close of the month are part of responding to that gift with obedience, gratitude, and magnifying Allah.',
+        'This verse places the Qur’an at the center of Ramadan. Tafsir explains that the month is honored by the descent of revelation that distinguishes truth from falsehood, and that fasting and takbir at the close of the month are part of responding to that gift with obedience, gratitude, and magnifying Allah.',
     kidsExplanation:
-        'Ramadan is special because Allah sent the Qur\'an as guidance and light for people.',
+        'Ramadan is special because Allah sent the Qur’an as guidance and light for people.',
     keyLessons: <String>[
-      'Ramadan and the Qur\'an belong together',
+      'Ramadan and the Qur’an belong together',
       'Thank Allah for guidance',
     ],
     reflectionPrompt:
-        'How can I make my Ramadan more connected to the Qur\'an itself?',
+        'How can I make my Ramadan more connected to the Qur’an itself?',
     rolloutPack: QuranAyahExplanationRolloutPack.foundations,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -384,7 +384,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Right in the middle of the fasting passage, Allah teaches closeness and dua. He is not distant from His servants; He calls them to respond to Him with faith and obedience while trusting that He hears them.',
     deepExplanation:
-        'The placement of this verse in the fasting passage is meaningful: worship, hunger, and restraint should lead the servant into deeper dua, not dryness. Mainstream tafsir explains that Allah\'s nearness here is a nearness of knowledge, mercy, and response, and that the servant is called to answer Allah through faith and obedience while hoping in His answer.',
+        'The placement of this verse in the fasting passage is meaningful: worship, hunger, and restraint should lead the servant into deeper dua, not dryness. Mainstream tafsir explains that Allah’s nearness here is a nearness of knowledge, mercy, and response, and that the servant is called to answer Allah through faith and obedience while hoping in His answer.',
     kidsExplanation:
         'Allah is near to us, and He hears us when we make dua to Him.',
     keyLessons: <String>['Make dua often', 'Allah is near and hears'],
@@ -399,7 +399,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah clarified the fasting rules with honesty, ease, and protection from going beyond His limits.',
     standardExplanation:
-        'This verse explains what is permitted during the nights of Ramadan and when the fast begins and ends. It also teaches that marriage is a place of closeness and protection, and that Allah\'s limits are made clear for our good.',
+        'This verse explains what is permitted during the nights of Ramadan and when the fast begins and ends. It also teaches that marriage is a place of closeness and protection, and that Allah’s limits are made clear for our good.',
     deepExplanation:
         'Classical tafsir explains that this verse brought relief after earlier hardship and clarified the lawful boundaries of the fasting day and night. Its wording about spouses being a garment for one another points to intimacy, protection, and closeness, while the ending reminds believers that clear limits are a mercy and should not be approached carelessly.',
     kidsExplanation:
@@ -409,7 +409,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
       'His limits protect us',
     ],
     reflectionPrompt:
-        'Do I see Allah\'s limits as a burden, or as guidance and protection?',
+        'Do I see Allah’s limits as a burden, or as guidance and protection?',
     rolloutPack: QuranAyahExplanationRolloutPack.beginnerCoreAyahs,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -421,7 +421,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'This verse reminds us that Allah owns the heavens and the earth and knows what is open and concealed. It humbles the heart and prepares the believer to turn to Allah with honesty, repentance, and dependence.',
     deepExplanation:
-        'Tafsir explains that this verse deeply affected the companions because it emphasized Allah\'s knowledge of what lies within the soul. The closing verses that follow show that Allah did not intend unbearable hardship, but rather truthful accountability that leads the servant into humility, repentance, and reliance on His mercy.',
+        'Tafsir explains that this verse deeply affected the companions because it emphasized Allah’s knowledge of what lies within the soul. The closing verses that follow show that Allah did not intend unbearable hardship, but rather truthful accountability that leads the servant into humility, repentance, and reliance on His mercy.',
     kidsExplanation:
         'Allah knows everything, even what we hide inside our hearts, so we should be truthful with Him.',
     keyLessons: <String>['Allah knows what is hidden', 'Turn to Him honestly'],
@@ -436,17 +436,17 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'The Messenger and the believers accept all that Allah revealed and submit to Him together.',
     standardExplanation:
-        'This verse gathers the core of faith: belief in Allah, His angels, His books, and His messengers without rejecting some and accepting others. It also shows the believer\'s attitude of hearing, obeying, and asking Allah for forgiveness.',
+        'This verse gathers the core of faith: belief in Allah, His angels, His books, and His messengers without rejecting some and accepting others. It also shows the believer’s attitude of hearing, obeying, and asking Allah for forgiveness.',
     deepExplanation:
-        'Mainstream tafsir presents this verse as a beautiful summary of complete iman and humble submission. The believers do not divide Allah\'s messengers, and their response to revelation is not argument or pride but obedience, repentance, and awareness that they are returning to Allah in the end.',
+        'Mainstream tafsir presents this verse as a beautiful summary of complete iman and humble submission. The believers do not divide Allah’s messengers, and their response to revelation is not argument or pride but obedience, repentance, and awareness that they are returning to Allah in the end.',
     kidsExplanation:
         'The Prophet and the believers trusted all that Allah revealed and said, "We hear and obey."',
     keyLessons: <String>[
-      'Accept Allah\'s revelation fully',
+      'Accept Allah’s revelation fully',
       'Answer with obedience and repentance',
     ],
     reflectionPrompt:
-        'Does my heart meet Allah\'s commands with surrender or resistance?',
+        'Does my heart meet Allah’s commands with surrender or resistance?',
     rolloutPack: QuranAyahExplanationRolloutPack.foundations,
     reviewStatus: QuranAyahExplanationReviewStatus.verified,
   ),
@@ -478,12 +478,12 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'This dua teaches that guidance is a gift we must keep asking Allah to preserve. Even after receiving truth, the believer stays humble and asks for firmness, mercy, and safety from deviation.',
     deepExplanation:
-        'The verse is one of the clearest prayers for steadfastness in the Qur\'an. Tafsir highlights that people of knowledge and faith do not become proud of their understanding; instead, they fear hearts turning after guidance and keep asking Allah, the Constant Bestower, to hold them firm by His mercy.',
+        'The verse is one of the clearest prayers for steadfastness in the Qur’an. Tafsir highlights that people of knowledge and faith do not become proud of their understanding; instead, they fear hearts turning after guidance and keep asking Allah, the Constant Bestower, to hold them firm by His mercy.',
     kidsExplanation:
         'We ask Allah to keep our hearts on the right path and to be merciful to us.',
     keyLessons: <String>[
       'Keep asking for steadfastness',
-      'Guidance needs Allah\'s mercy',
+      'Guidance needs Allah’s mercy',
     ],
     reflectionPrompt:
         'How often do I ask Allah not just for guidance, but for firmness upon it?',
@@ -496,9 +496,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah Himself testifies to His oneness, and the angels and people of knowledge testify with truth as well.',
     standardExplanation:
-        'This verse declares Allah\'s oneness with immense honor and clarity. It also raises the rank of true knowledge, because the people of knowledge are mentioned among the witnesses to the truth of tawhid and Allah\'s perfect justice.',
+        'This verse declares Allah’s oneness with immense honor and clarity. It also raises the rank of true knowledge, because the people of knowledge are mentioned among the witnesses to the truth of tawhid and Allah’s perfect justice.',
     deepExplanation:
-        'Mainstream tafsir explains that this is one of the greatest testimonies in the Qur\'an: Allah bears witness to His own oneness, then joins the testimony of the angels and the people of knowledge. The verse also links tawhid to justice, showing that Allah\'s perfect rule and perfect oneness belong together, and that sound knowledge should lead to reverence and truthfulness.',
+        'Mainstream tafsir explains that this is one of the greatest testimonies in the Qur’an: Allah bears witness to His own oneness, then joins the testimony of the angels and the people of knowledge. The verse also links tawhid to justice, showing that Allah’s perfect rule and perfect oneness belong together, and that sound knowledge should lead to reverence and truthfulness.',
     kidsExplanation:
         'Allah teaches that He alone deserves worship, and the angels and truthful people know this too.',
     keyLessons: <String>[
@@ -536,9 +536,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah alone gives and takes worldly power, honor, and provision according to His wisdom.',
     standardExplanation:
-        'This verse teaches that control belongs to Allah, not to people, status, or kingdoms. He gives authority, removes it, honors whom He wills, and humbles whom He wills, so the believer\'s heart stays attached to Him rather than to appearances.',
+        'This verse teaches that control belongs to Allah, not to people, status, or kingdoms. He gives authority, removes it, honors whom He wills, and humbles whom He wills, so the believer’s heart stays attached to Him rather than to appearances.',
     deepExplanation:
-        'Classical tafsir presents this verse as a correction of false ideas about who truly controls the world. Rule, honor, humiliation, and provision are all in Allah\'s hand, which teaches the believer not to be deceived by temporary power nor to despair when worldly conditions change, because Allah remains the true Owner and Disposer of affairs.',
+        'Classical tafsir presents this verse as a correction of false ideas about who truly controls the world. Rule, honor, humiliation, and provision are all in Allah’s hand, which teaches the believer not to be deceived by temporary power nor to despair when worldly conditions change, because Allah remains the true Owner and Disposer of affairs.',
     kidsExplanation:
         'Allah is the One who gives people strength, honor, and blessings, and He controls all things with wisdom.',
     keyLessons: <String>[
@@ -546,7 +546,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
       'Do not depend on worldly status',
     ],
     reflectionPrompt:
-        'What worldly thing have I been tempted to treat as more powerful than Allah\'s decree?',
+        'What worldly thing have I been tempted to treat as more powerful than Allah’s decree?',
     rolloutPack: QuranAyahExplanationRolloutPack.beginnerCoreAyahs,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -554,13 +554,13 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 12,
     ayahNumber: 87,
     simpleSummary:
-        'Ya\'qub told his sons not to despair of Allah\'s mercy, because only those cut off from faith lose hope in Him.',
+        'Ya’qub told his sons not to despair of Allah’s mercy, because only those cut off from faith lose hope in Him.',
     standardExplanation:
         'This verse teaches that even after long pain and uncertainty, a believer does not give up on Allah. Hope in His mercy is part of faith, and despair is not the way of hearts that truly know Him.',
     deepExplanation:
-        'In the story of Yusuf, this verse comes from a father carrying deep sorrow, yet still speaking with trust in Allah. Tafsir shows its great lesson clearly: hardship may be long and the road unclear, but a believer does not shut the door of hope, because Allah\'s mercy and unseen relief are greater than what the eye can currently see.',
+        'In the story of Yusuf, this verse comes from a father carrying deep sorrow, yet still speaking with trust in Allah. Tafsir shows its great lesson clearly: hardship may be long and the road unclear, but a believer does not shut the door of hope, because Allah’s mercy and unseen relief are greater than what the eye can currently see.',
     kidsExplanation:
-        'Never lose hope in Allah\'s mercy. Allah can bring relief even after a long hard time.',
+        'Never lose hope in Allah’s mercy. Allah can bring relief even after a long hard time.',
     keyLessons: <String>['Do not despair of Allah', 'Hope is part of faith'],
     reflectionPrompt:
         'Where do I most need to replace quiet despair with hope in Allah?',
@@ -582,7 +582,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 2,
     simpleSummary: 'Allah also swears by the stillness of the night.',
     standardExplanation:
-        'The quiet of the night is mentioned beside the morning as part of Allah\'s wise order. Both brightness and stillness are signs of His care and control.',
+        'The quiet of the night is mentioned beside the morning as part of Allah’s wise order. Both brightness and stillness are signs of His care and control.',
     kidsExplanation:
         'Allah also mentions the calm night, because both day and night are His signs.',
     keyLessons: <String>['Allah controls every moment'],
@@ -590,13 +590,13 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 93,
     ayahNumber: 3,
-    simpleSummary: 'Allah had not left the Prophet or hated him.',
+    simpleSummary: 'Allah had not left the Prophet ﷺ or hated him.',
     standardExplanation:
-        'This verse comforted the Prophet when revelation paused and false claims were made about him. Allah reassured him that he was neither abandoned nor disliked.',
+        'This verse comforted the Prophet ﷺ when revelation paused and false claims were made about him. Allah reassured him that he was neither abandoned nor disliked.',
     deepExplanation:
         'Mainstream tafsir explains this as a direct answer to the hurt caused by the pause in revelation and by the mockery of the disbelievers. Allah Himself reassured His Messenger that divine care had not been withdrawn.',
     kidsExplanation:
-        'Allah told the Prophet that He had not left him and did not dislike him.',
+        'Allah told the Prophet ﷺ that He had not left him and did not dislike him.',
     keyLessons: <String>[
       'Allah does not forget His servants',
       'Do not believe hopeless thoughts',
@@ -608,48 +608,48 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 93,
     ayahNumber: 4,
     simpleSummary:
-        'What comes later for the Prophet is better than what came before.',
+        'What comes later for the Prophet ﷺ is better than what came before.',
     standardExplanation:
-        'Allah promises the Prophet that what lies ahead for him is better than what has already passed. The verse teaches hope in Allah\'s unfolding mercy and wisdom.',
+        'Allah promises the Prophet ﷺ that what lies ahead for him is better than what has already passed. The verse teaches hope in Allah’s unfolding mercy and wisdom.',
     kidsExplanation:
-        'Allah promised the Prophet that what was coming would be even better.',
-    keyLessons: <String>['Hope in Allah\'s promise'],
+        'Allah promised the Prophet ﷺ that what was coming would be even better.',
+    keyLessons: <String>['Hope in Allah’s promise'],
   ),
   _entry(
     surahNumber: 93,
     ayahNumber: 5,
-    simpleSummary: 'Allah will keep giving until the Prophet is pleased.',
+    simpleSummary: 'Allah will keep giving until the Prophet ﷺ is pleased.',
     standardExplanation:
-        'Allah promises continued favor to His Messenger in this life and the next. This shows the great rank of the Prophet and the vast generosity of Allah.',
+        'Allah promises continued favor to His Messenger in this life and the next. This shows the great rank of the Prophet ﷺ and the vast generosity of Allah.',
     kidsExplanation:
-        'Allah promised to keep giving the Prophet good until he is pleased.',
+        'Allah promised to keep giving the Prophet ﷺ good until he is pleased.',
     keyLessons: <String>['Allah is generous to His Messenger'],
   ),
   _entry(
     surahNumber: 93,
     ayahNumber: 6,
-    simpleSummary: 'Allah found the Prophet an orphan and cared for him.',
+    simpleSummary: 'Allah found the Prophet ﷺ an orphan and cared for him.',
     standardExplanation:
-        'Allah reminds the Prophet of earlier mercy in his life, beginning with His care for him as an orphan. Remembering past help strengthens trust in Allah\'s future help.',
+        'Allah reminds the Prophet ﷺ of earlier mercy in his life, beginning with His care for him as an orphan. Remembering past help strengthens trust in Allah’s future help.',
     kidsExplanation: 'The Prophet was an orphan, and Allah cared for him.',
-    keyLessons: <String>['Remember Allah\'s past care'],
+    keyLessons: <String>['Remember Allah’s past care'],
   ),
   _entry(
     surahNumber: 93,
     ayahNumber: 7,
-    simpleSummary: 'Allah guided the Prophet.',
+    simpleSummary: 'Allah guided the Prophet ﷺ.',
     standardExplanation:
-        'Allah guided His Messenger to truth and revelation. The verse reminds us that guidance is one of Allah\'s greatest gifts.',
-    kidsExplanation: 'Allah guided the Prophet to the truth.',
+        'Allah guided His Messenger to truth and revelation. The verse reminds us that guidance is one of Allah’s greatest gifts.',
+    kidsExplanation: 'Allah guided the Prophet ﷺ to the truth.',
     keyLessons: <String>['Guidance is a gift from Allah'],
   ),
   _entry(
     surahNumber: 93,
     ayahNumber: 8,
-    simpleSummary: 'Allah found the Prophet in need and enriched him.',
+    simpleSummary: 'Allah found the Prophet ﷺ in need and enriched him.',
     standardExplanation:
         'Allah reminds His Messenger that He provided for him after need. The verse teaches gratitude and trust that provision comes from Allah.',
-    kidsExplanation: 'Allah gave the Prophet what he needed.',
+    kidsExplanation: 'Allah gave the Prophet ﷺ what he needed.',
     keyLessons: <String>['Provision comes from Allah'],
   ),
   _entry(
@@ -657,7 +657,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 9,
     simpleSummary: 'So do not be harsh with the orphan.',
     standardExplanation:
-        'Because Allah cared for the Prophet when he was vulnerable, he was commanded to show mercy to orphans. Gratitude to Allah should shape how we treat weak people.',
+        'Because Allah cared for the Prophet ﷺ when he was vulnerable, he was commanded to show mercy to orphans. Gratitude to Allah should shape how we treat weak people.',
     kidsExplanation: 'So be kind to orphans and do not treat them harshly.',
     keyLessons: <String>['Show mercy to orphans'],
   ),
@@ -675,9 +675,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 11,
     simpleSummary: 'Speak about the blessings of your Lord.',
     standardExplanation:
-        'The surah closes by calling the servant to speak gratefully about Allah\'s favors. Blessings should be remembered with gratitude, not arrogance.',
+        'The surah closes by calling the servant to speak gratefully about Allah’s favors. Blessings should be remembered with gratitude, not arrogance.',
     kidsExplanation:
-        'Remember Allah\'s blessings and speak about them with thanks.',
+        'Remember Allah’s blessings and speak about them with thanks.',
     keyLessons: <String>['Thank Allah for His blessings'],
     reflectionPrompt:
         'Which blessing from Allah should I remember more often with gratitude?',
@@ -685,10 +685,10 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 94,
     ayahNumber: 1,
-    simpleSummary: 'Allah expanded the Prophet\'s chest.',
+    simpleSummary: 'Allah expanded the Prophet’s ﷺ chest.',
     standardExplanation:
-        'Allah reminds His Messenger of the inner ease, strength, and reassurance He granted him. This is part of Allah\'s care for the burden of prophethood.',
-    kidsExplanation: 'Allah gave the Prophet inner ease and strength.',
+        'Allah reminds His Messenger of the inner ease, strength, and reassurance He granted him. This is part of Allah’s care for the burden of prophethood.',
+    kidsExplanation: 'Allah gave the Prophet ﷺ inner ease and strength.',
     keyLessons: <String>['Allah gives strength to carry hard things'],
   ),
   _entry(
@@ -696,8 +696,8 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 2,
     simpleSummary: 'Allah removed the burden from him.',
     standardExplanation:
-        'Allah lightened what had weighed heavily on the Prophet. The verse teaches that relief from burdens comes from Allah.',
-    kidsExplanation: 'Allah lifted the heavy burden from the Prophet.',
+        'Allah lightened what had weighed heavily on the Prophet ﷺ. The verse teaches that relief from burdens comes from Allah.',
+    kidsExplanation: 'Allah lifted the heavy burden from the Prophet ﷺ.',
     keyLessons: <String>['Allah can lighten burdens'],
   ),
   _entry(
@@ -705,7 +705,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 3,
     simpleSummary: 'It was a burden that weighed on his back.',
     standardExplanation:
-        'This describes how heavy that burden felt before Allah eased it. The verse deepens the believer\'s awareness that Allah knows the true weight of what we carry.',
+        'This describes how heavy that burden felt before Allah eased it. The verse deepens the believer’s awareness that Allah knows the true weight of what we carry.',
     kidsExplanation:
         'It was something very heavy to carry, and Allah knew that.',
     keyLessons: <String>['Allah knows our burdens'],
@@ -713,10 +713,10 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 94,
     ayahNumber: 4,
-    simpleSummary: 'Allah raised the Prophet\'s mention.',
+    simpleSummary: 'Allah raised the Prophet’s ﷺ mention.',
     standardExplanation:
         'Allah honored His Messenger by making his mention high and beloved among the believers. It reminds us that true honor comes from Allah alone.',
-    kidsExplanation: 'Allah gave the Prophet great honor.',
+    kidsExplanation: 'Allah gave the Prophet ﷺ great honor.',
     keyLessons: <String>['True honor comes from Allah'],
   ),
   _entry(
@@ -733,7 +733,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 6,
     simpleSummary: 'Again Allah says that with hardship comes ease.',
     standardExplanation:
-        'The repetition strengthens the promise and helps the heart trust it more deeply. Hardship should not make the believer despair of Allah\'s relief.',
+        'The repetition strengthens the promise and helps the heart trust it more deeply. Hardship should not make the believer despair of Allah’s relief.',
     kidsExplanation: 'Allah repeats this promise so we really believe it.',
     keyLessons: <String>['Do not despair of relief'],
     reflectionPrompt:
@@ -761,11 +761,11 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 97,
     ayahNumber: 1,
-    simpleSummary: 'Allah sent the Qur\'an down on the Night of Decree.',
+    simpleSummary: 'Allah sent the Qur’an down on the Night of Decree.',
     standardExplanation:
-        'This verse honors the night in which the Qur\'an began to descend. It teaches the greatness of revelation and the special rank of that night.',
-    kidsExplanation: 'The Qur\'an began to come down on a very special night.',
-    keyLessons: <String>['The Qur\'an is a great gift'],
+        'This verse honors the night in which the Qur’an began to descend. It teaches the greatness of revelation and the special rank of that night.',
+    kidsExplanation: 'The Qur’an began to come down on a very special night.',
+    keyLessons: <String>['The Qur’an is a great gift'],
   ),
   _entry(
     surahNumber: 97,
@@ -783,7 +783,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Worship on this night is better than worship across a very long span of time. The verse encourages believers to seek this night with devotion and hope.',
     deepExplanation:
-        'Mainstream tafsir explains that Allah gave this ummah a night of immense worth, making acts of worship in it weightier than a thousand months without it. This shows Allah\'s generosity in multiplying reward.',
+        'Mainstream tafsir explains that Allah gave this ummah a night of immense worth, making acts of worship in it weightier than a thousand months without it. This shows Allah’s generosity in multiplying reward.',
     kidsExplanation:
         'This night is better than many, many months because Allah made it so special.',
     keyLessons: <String>['Seek special times of worship'],
@@ -792,9 +792,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 97,
     ayahNumber: 4,
     simpleSummary:
-        'The angels and the Spirit come down on that night by Allah\'s permission.',
+        'The angels and the Spirit come down on that night by Allah’s permission.',
     standardExplanation:
-        'The descent of the angels on that night shows its blessing and greatness. Everything happens by Allah\'s command and permission.',
+        'The descent of the angels on that night shows its blessing and greatness. Everything happens by Allah’s command and permission.',
     kidsExplanation:
         'The angels come down on that special night because Allah allows it.',
     keyLessons: <String>['The night is full of blessing'],
@@ -808,7 +808,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     kidsExplanation: 'It is a peaceful and blessed night until morning comes.',
     keyLessons: <String>['Worship in blessed times with peace and hope'],
     reflectionPrompt:
-        'How can I honor the Qur\'an more deeply when blessed times arrive?',
+        'How can I honor the Qur’an more deeply when blessed times arrive?',
   ),
   _entry(
     surahNumber: 103,
@@ -865,7 +865,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Allah calls attention to a well-known event in which He protected His Sacred House from the army that came to destroy it. The verse teaches that Allah is fully able to defend His religion and His sanctuary.',
     kidsExplanation:
-        'Allah protected the Ka\'bah when a powerful army came against it.',
+        'Allah protected the Ka’bah when a powerful army came against it.',
     keyLessons: <String>[
       'Allah protects what He wills',
       'Power belongs to Allah',
@@ -876,9 +876,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 2,
     simpleSummary: 'Allah made their harmful plan fail.',
     standardExplanation:
-        'Their strategy, strength, and preparation did not help them against Allah\'s decree. The verse teaches that a plan built on wrongdoing cannot escape Allah\'s power.',
+        'Their strategy, strength, and preparation did not help them against Allah’s decree. The verse teaches that a plan built on wrongdoing cannot escape Allah’s power.',
     kidsExplanation: 'Their bad plan did not succeed because Allah stopped it.',
-    keyLessons: <String>['Wrongdoing does not defeat Allah\'s will'],
+    keyLessons: <String>['Wrongdoing does not defeat Allah’s will'],
   ),
   _entry(
     surahNumber: 105,
@@ -905,7 +905,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Their end was complete humiliation and destruction after all their pride and power. The verse warns against arrogance and reminds people that safety comes only from Allah.',
     deepExplanation:
-        'Classical tafsir highlights the contrast between the army\'s apparent strength and its final state of utter ruin. Allah turned a feared force into a sign of humiliation so people would know that the protection of the Sacred House came from Him alone.',
+        'Classical tafsir highlights the contrast between the army’s apparent strength and its final state of utter ruin. Allah turned a feared force into a sign of humiliation so people would know that the protection of the Sacred House came from Him alone.',
     kidsExplanation:
         'The army that looked strong became weak and ruined when Allah judged them.',
     keyLessons: <String>[
@@ -945,17 +945,17 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Because of these blessings, they should worship the Lord of this House.',
     standardExplanation:
-        'Since Allah gave them security and provision, they were commanded to worship the Lord of the Ka\'bah alone. Blessings should lead to tawhid and grateful worship, not heedlessness.',
+        'Since Allah gave them security and provision, they were commanded to worship the Lord of the Ka’bah alone. Blessings should lead to tawhid and grateful worship, not heedlessness.',
     deepExplanation:
         'The surah connects visible blessings to their true purpose: worship. Classical explanation emphasizes that the Lord who protected the House and sustained Quraysh is the One who deserves their obedience, not the idols placed around the sanctuary.',
     kidsExplanation:
         'Because Allah gave them so much, they should worship Him alone.',
     keyLessons: <String>[
       'Blessings should lead to worship',
-      'The Lord of the Ka\'bah alone deserves worship',
+      'The Lord of the Ka’bah alone deserves worship',
     ],
     reflectionPrompt:
-        'Do Allah\'s blessings make me more thankful and obedient, or only more comfortable?',
+        'Do Allah’s blessings make me more thankful and obedient, or only more comfortable?',
   ),
   _entry(
     surahNumber: 106,
@@ -1048,16 +1048,16 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
       'Faith should make us useful to others',
     ],
     reflectionPrompt:
-        'What simple act of help can I offer more freely for Allah\'s sake?',
+        'What simple act of help can I offer more freely for Allah’s sake?',
   ),
   _entry(
     surahNumber: 111,
     ayahNumber: 1,
-    simpleSummary: 'Abu Lahab\'s hands are ruined, and he himself is ruined.',
+    simpleSummary: 'Abu Lahab’s hands are ruined, and he himself is ruined.',
     standardExplanation:
-        'Allah declares loss and destruction for Abu Lahab because of his stubborn hostility to the Messenger of Allah. The verse shows that close family ties do not benefit a person who rejects truth.',
+        'Allah declares loss and destruction for Abu Lahab because of his stubborn hostility to the Messenger of Allah ﷺ. The verse shows that close family ties do not benefit a person who rejects truth.',
     kidsExplanation:
-        'Abu Lahab fought against the Prophet, and Allah declared his loss.',
+        'Abu Lahab fought against the Prophet ﷺ, and Allah declared his loss.',
     keyLessons: <String>['Opposing truth leads to loss'],
   ),
   _entry(
@@ -1065,9 +1065,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 2,
     simpleSummary: 'His wealth and gains will not save him.',
     standardExplanation:
-        'The things he relied on in worldly life could not protect him from Allah\'s judgment. Wealth without faith and obedience cannot rescue a person in the Hereafter.',
+        'The things he relied on in worldly life could not protect him from Allah’s judgment. Wealth without faith and obedience cannot rescue a person in the Hereafter.',
     kidsExplanation:
-        'Money and status could not save him from Allah\'s judgment.',
+        'Money and status could not save him from Allah’s judgment.',
     keyLessons: <String>['Wealth does not replace faith'],
   ),
   _entry(
@@ -1085,9 +1085,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 4,
     simpleSummary: 'His wife too carried harm and hostility.',
     standardExplanation:
-        'His wife shared in hostility and harm against the Prophet, so she is mentioned with him in blame. The verse shows that helping evil is itself a serious sin.',
+        'His wife shared in hostility and harm against the Prophet ﷺ, so she is mentioned with him in blame. The verse shows that helping evil is itself a serious sin.',
     kidsExplanation:
-        'His wife also helped in harm and hostility against the Prophet.',
+        'His wife also helped in harm and hostility against the Prophet ﷺ.',
     keyLessons: <String>['Helping wrongdoing is also blameworthy'],
   ),
   _entry(
@@ -1097,7 +1097,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'This verse completes the image of humiliation and punishment for her in the Hereafter. It is a warning that those who carry harm and hostility for the truth will meet disgrace before Allah.',
     deepExplanation:
-        'The surah closes with an image of humiliation that matches the harm she carried in this life. Mainstream tafsir treats it as a real warning and a sign that supporting opposition to the Prophet brings disgrace, not honor.',
+        'The surah closes with an image of humiliation that matches the harm she carried in this life. Mainstream tafsir treats it as a real warning and a sign that supporting opposition to the Prophet ﷺ brings disgrace, not honor.',
     kidsExplanation:
         'Allah warns that people who carry harm and hatred for the truth will face disgrace.',
     keyLessons: <String>[
@@ -1110,11 +1110,11 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 108,
     ayahNumber: 1,
-    simpleSummary: 'Allah has given the Prophet abundant goodness.',
+    simpleSummary: 'Allah has given the Prophet ﷺ abundant goodness.',
     standardExplanation:
-        'Allah comforts His Messenger by reminding him of the abundant gifts already granted to him in this world and the next. The verse teaches us to see Allah\'s generosity even when opponents speak with cruelty.',
+        'Allah comforts His Messenger by reminding him of the abundant gifts already granted to him in this world and the next. The verse teaches us to see Allah’s generosity even when opponents speak with cruelty.',
     kidsExplanation:
-        'Allah gave the Prophet many beautiful gifts and great honor.',
+        'Allah gave the Prophet ﷺ many beautiful gifts and great honor.',
     keyLessons: <String>['Notice Allah\'s gifts', 'Allah honors His Messenger'],
     reflectionPrompt:
         'How can gratitude protect the heart when people speak harshly?',
@@ -1137,11 +1137,11 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 108,
     ayahNumber: 3,
-    simpleSummary: 'Those who hate the Prophet are the ones truly cut off.',
+    simpleSummary: 'Those who hate the Prophet ﷺ are the ones truly cut off.',
     standardExplanation:
-        'Allah overturns the insults of the Prophet\'s enemies and declares that real loss belongs to the one cut off from goodness and honor. It reassures believers that truth is not diminished by mockery.',
+        'Allah overturns the insults of the Prophet’s ﷺ enemies and declares that real loss belongs to the one cut off from goodness and honor. It reassures believers that truth is not diminished by mockery.',
     kidsExplanation:
-        'People who mocked the Prophet did not take away the honor Allah gave him.',
+        'People who mocked the Prophet ﷺ did not take away the honor Allah gave him.',
     keyLessons: <String>[
       'Truth is not harmed by insults',
       'Allah defends His Messenger',
@@ -1156,7 +1156,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Allah instructs His Messenger to address the disbelievers openly and directly. The verse begins a firm declaration that faith cannot be mixed with false worship.',
     kidsExplanation:
-        'Allah teaches the Prophet to be clear and honest about the truth.',
+        'Allah teaches the Prophet ﷺ to be clear and honest about the truth.',
     keyLessons: <String>[
       'Be clear about faith',
       'Truth should be spoken with honesty',
@@ -1197,7 +1197,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 109,
     ayahNumber: 5,
     simpleSummary:
-        'They will not become worshippers in the way taught by the Prophet.',
+        'They will not become worshippers in the way taught by the Prophet ﷺ.',
     standardExplanation:
         'The verse confirms that false worship and true worship are not the same path. Guidance requires leaving shirk and following what Allah revealed.',
     kidsExplanation:
@@ -1225,9 +1225,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
   _entry(
     surahNumber: 110,
     ayahNumber: 1,
-    simpleSummary: 'Allah\'s help and victory come from Him alone.',
+    simpleSummary: 'Allah’s help and victory come from Him alone.',
     standardExplanation:
-        'When success comes, the believer remembers that it is Allah\'s support, not personal greatness. This verse points to divine opening and the spread of truth by Allah\'s permission.',
+        'When success comes, the believer remembers that it is Allah’s support, not personal greatness. This verse points to divine opening and the spread of truth by Allah’s permission.',
     kidsExplanation:
         'When something good happens, we remember Allah is the One who helped.',
     keyLessons: <String>['Success comes from Allah'],
@@ -1236,7 +1236,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     surahNumber: 110,
     ayahNumber: 2,
     simpleSummary:
-        'People entering Islam in groups shows Allah\'s religion becoming clear.',
+        'People entering Islam in groups shows Allah’s religion becoming clear.',
     standardExplanation:
         'The verse describes a moment when the truth became widely visible and people entered Islam in numbers. It teaches that guidance of hearts belongs to Allah.',
     kidsExplanation:
@@ -1251,7 +1251,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Allah teaches His Messenger that moments of success should lead to tasbih, praise, and repentance, not pride. Even after a victory, the heart stays humble before Allah.',
     deepExplanation:
-        'The scholars note the refinement in this command: victory does not end worship, it deepens it. Praise recognizes Allah\'s favor, and seeking forgiveness protects the servant from hidden pride and shortcomings.',
+        'The scholars note the refinement in this command: victory does not end worship, it deepens it. Praise recognizes Allah’s favor, and seeking forgiveness protects the servant from hidden pride and shortcomings.',
     kidsExplanation:
         'When Allah gives a win, say alhamdulillah and ask Him to forgive you. Good moments should make us humble.',
     keyLessons: <String>[
@@ -1266,9 +1266,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 1,
     simpleSummary: 'Allah is One, unique, and without partner.',
     standardExplanation:
-        'The surah begins with the clearest statement of Allah\'s oneness. He is one in His lordship, worship, names, and attributes, with no equal beside Him.',
+        'The surah begins with the clearest statement of Allah’s oneness. He is one in His lordship, worship, names, and attributes, with no equal beside Him.',
     deepExplanation:
-        'This opening rejects every form of shirk by affirming Allah\'s absolute uniqueness. Classical tafsir treats the surah as a concise summary of pure tawhid.',
+        'This opening rejects every form of shirk by affirming Allah’s absolute uniqueness. Classical tafsir treats the surah as a concise summary of pure tawhid.',
     kidsExplanation:
         'Allah is One. We love Him, worship Him, and never give His place to anyone else.',
     keyLessons: <String>['Allah is One', 'Do not give Allah partners'],
@@ -1313,7 +1313,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 1,
     simpleSummary: 'Allah teaches us to seek refuge in the Lord of daybreak.',
     standardExplanation:
-        'The verse opens by teaching the servant to actively seek Allah\'s protection. Mentioning daybreak points to His power to bring light after darkness and relief after fear.',
+        'The verse opens by teaching the servant to actively seek Allah’s protection. Mentioning daybreak points to His power to bring light after darkness and relief after fear.',
     kidsExplanation:
         'When we feel scared, we ask Allah to protect us because He brings light after darkness.',
     keyLessons: <String>['Seek Allah\'s protection', 'Allah brings relief'],
@@ -1344,7 +1344,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 4,
     simpleSummary: 'We seek refuge from harmful sorcery and evil actions.',
     standardExplanation:
-        'This verse teaches believers to seek Allah\'s protection from acts of sorcery and other hidden harms carried out by evil people. It acknowledges real harm while directing the heart to Allah, not superstition.',
+        'This verse teaches believers to seek Allah’s protection from acts of sorcery and other hidden harms carried out by evil people. It acknowledges real harm while directing the heart to Allah, not superstition.',
     kidsExplanation:
         'If people try to do evil in hidden ways, Allah can still protect us.',
     keyLessons: <String>['Do not fear hidden harm more than Allah'],
@@ -1354,7 +1354,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 5,
     simpleSummary: 'We seek refuge from envy when it turns into harm.',
     standardExplanation:
-        'Envy becomes dangerous when someone resents a blessing and wants it removed. The verse teaches us to seek Allah\'s protection from the evil that envy can produce.',
+        'Envy becomes dangerous when someone resents a blessing and wants it removed. The verse teaches us to seek Allah’s protection from the evil that envy can produce.',
     kidsExplanation:
         'If someone feels jealous in a bad way, we ask Allah to keep us safe and to clean our own hearts too.',
     keyLessons: <String>[
@@ -1389,7 +1389,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah alone is the God of people and the One worthy of worship.',
     standardExplanation:
-        'After mentioning Allah\'s lordship and kingship, the surah brings the heart to its goal: worship. The One who created and rules is also the only One who deserves devotion.',
+        'After mentioning Allah’s lordship and kingship, the surah brings the heart to its goal: worship. The One who created and rules is also the only One who deserves devotion.',
     kidsExplanation:
         'Because Allah made us and rules over us, we worship Him only.',
     keyLessons: <String>['Worship Allah alone'],
@@ -1422,7 +1422,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'The surah ends by teaching that harmful whispering may come from unseen devils and from people who invite others toward wrong. Protection is found in Allah through awareness, remembrance, and good company.',
     deepExplanation:
-        'Classical tafsir broadens the believer\'s vigilance here: whispering can come from jinn and from people. Seeking refuge in Allah includes guarding what we listen to and whose influence we follow.',
+        'Classical tafsir broadens the believer’s vigilance here: whispering can come from jinn and from people. Seeking refuge in Allah includes guarding what we listen to and whose influence we follow.',
     kidsExplanation:
         'Sometimes bad whispers come from shaytan, and sometimes from people who push us toward wrong. Allah can protect us from both.',
     keyLessons: <String>[
@@ -1438,7 +1438,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah swears by the fig and the olive, drawing attention to signs of His wisdom and blessing.',
     standardExplanation:
-        'This opening oath points to places and signs tied to Allah\'s revelation and care. It prepares the heart to listen carefully to the message that follows.',
+        'This opening oath points to places and signs tied to Allah’s revelation and care. It prepares the heart to listen carefully to the message that follows.',
     kidsExplanation:
         'Allah begins with special signs from His creation to help us pay attention.',
     keyLessons: <String>['Notice Allah\'s signs'],
@@ -1451,7 +1451,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah also swears by Mount Sinai, a place connected to revelation.',
     standardExplanation:
-        'Mount Sinai reminds us of Allah\'s guidance to His prophets. The verse ties this surah to the long chain of revelation that leads people back to truth.',
+        'Mount Sinai reminds us of Allah’s guidance to His prophets. The verse ties this surah to the long chain of revelation that leads people back to truth.',
     kidsExplanation:
         'Allah mentions a mountain where He gave guidance, so we remember His messages are a gift.',
     keyLessons: <String>['Guidance is a gift from Allah'],
@@ -1464,7 +1464,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'Allah swears by this secure city, the sacred city of Makkah.',
     standardExplanation:
-        'The secure city points to Makkah, the place of the Sacred House. The verse reminds people of Allah\'s protection, sacred signs, and the honor of places He chooses.',
+        'The secure city points to Makkah, the place of the Sacred House. The verse reminds people of Allah’s protection, sacred signs, and the honor of places He chooses.',
     kidsExplanation:
         'Allah mentions Makkah, the blessed city He made special and safe.',
     keyLessons: <String>['Honor what Allah made sacred'],
@@ -1531,7 +1531,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'After these signs, what still makes a person deny the Day of Recompense?',
     standardExplanation:
-        'When Allah\'s signs, revelation, and the reality of human life are all clear, denial of the final judgment becomes even less excusable. The verse calls the heart to honesty about accountability.',
+        'When Allah’s signs, revelation, and the reality of human life are all clear, denial of the final judgment becomes even less excusable. The verse calls the heart to honesty about accountability.',
     kidsExplanation:
         'After all these signs, why would someone still deny that they will answer to Allah?',
     keyLessons: <String>['Remember accountability'],
@@ -1548,7 +1548,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
         'Allah is the fairest and wisest Judge, and He never does wrong.',
     keyLessons: <String>['Allah judges with perfect justice'],
     reflectionPrompt:
-        'How does remembering Allah\'s perfect justice help me trust Him more?',
+        'How does remembering Allah’s perfect justice help me trust Him more?',
     rolloutPack: QuranAyahExplanationRolloutPack.kidsStarter,
     reviewStatus: QuranAyahExplanationReviewStatus.kidsReviewed,
   ),
@@ -1559,7 +1559,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'The first revealed command begins with knowledge tied to Allah, not separated from Him. Learning becomes a worshipful act when it starts in the name of the Lord who created.',
     deepExplanation:
-        'Classical tafsir treats this opening as the beginning of revelation and a sign that sacred knowledge starts with Allah\'s name, help, and authority. It joins reading with worship and reminds us that true knowledge should lead back to the Creator.',
+        'Classical tafsir treats this opening as the beginning of revelation and a sign that sacred knowledge starts with Allah’s name, help, and authority. It joins reading with worship and reminds us that true knowledge should lead back to the Creator.',
     kidsExplanation:
         'Allah taught us that learning should begin by remembering Him.',
     keyLessons: <String>[
@@ -1612,7 +1612,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 5,
     simpleSummary: 'Allah taught the human being what they did not know.',
     standardExplanation:
-        'Everything we truly know comes first from Allah\'s permission and teaching. The verse teaches humility, gratitude, and a love of beneficial knowledge.',
+        'Everything we truly know comes first from Allah’s permission and teaching. The verse teaches humility, gratitude, and a love of beneficial knowledge.',
     kidsExplanation:
         'Whatever good knowledge we have is something Allah helped us learn.',
     keyLessons: <String>[
@@ -1630,7 +1630,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     simpleSummary:
         'When the earth is shaken with its great final shaking, a new stage begins.',
     standardExplanation:
-        'This surah opens with the mighty earthquake of the Last Day. It reminds us that the world as we know it will end by Allah\'s command and that accountability is real.',
+        'This surah opens with the mighty earthquake of the Last Day. It reminds us that the world as we know it will end by Allah’s command and that accountability is real.',
     kidsExplanation:
         'One day Allah will shake the earth in a huge way, because the Last Day is real.',
     keyLessons: <String>['Remember the Last Day'],
@@ -1642,7 +1642,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 2,
     simpleSummary: 'The earth will bring out what is inside it.',
     standardExplanation:
-        'The earth will release its burdens and hidden contents by Allah\'s command. The verse deepens the sense that nothing remains concealed when the Hereafter begins.',
+        'The earth will release its burdens and hidden contents by Allah’s command. The verse deepens the sense that nothing remains concealed when the Hereafter begins.',
     kidsExplanation:
         'The earth will bring out what was hidden inside it because Allah commands it.',
     keyLessons: <String>['Nothing stays hidden from Allah'],
@@ -1654,7 +1654,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 3,
     simpleSummary: 'People will ask in shock what is happening to the earth.',
     standardExplanation:
-        'Human beings will be stunned by the events of that day. The verse captures the fear and amazement of seeing creation changed by Allah\'s command.',
+        'Human beings will be stunned by the events of that day. The verse captures the fear and amazement of seeing creation changed by Allah’s command.',
     kidsExplanation:
         'People will be shocked and wonder what is happening when the earth changes.',
     keyLessons: <String>['The Last Day will be overwhelming'],
@@ -1666,9 +1666,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 4,
     simpleSummary: 'That day the earth will tell its news.',
     standardExplanation:
-        'Allah will allow the earth to speak of what happened upon it. This teaches that creation itself can become a witness by Allah\'s permission.',
+        'Allah will allow the earth to speak of what happened upon it. This teaches that creation itself can become a witness by Allah’s permission.',
     deepExplanation:
-        'Mainstream tafsir explains that the earth will report what people did upon it because Allah wills it to bear witness. The verse strengthens the believer\'s awareness that deeds are not forgotten.',
+        'Mainstream tafsir explains that the earth will report what people did upon it because Allah wills it to bear witness. The verse strengthens the believer’s awareness that deeds are not forgotten.',
     kidsExplanation:
         'Allah can make the earth speak about what happened on it.',
     keyLessons: <String>['Your deeds are witnessed'],
@@ -1680,9 +1680,9 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     ayahNumber: 5,
     simpleSummary: 'It will do this because your Lord commanded it.',
     standardExplanation:
-        'The earth does not act on its own; it obeys Allah completely. This verse brings the heart back to the true center of the scene: Allah\'s command and authority over all creation.',
+        'The earth does not act on its own; it obeys Allah completely. This verse brings the heart back to the true center of the scene: Allah’s command and authority over all creation.',
     kidsExplanation: 'The earth will do this only because Allah tells it to.',
-    keyLessons: <String>['Everything obeys Allah\'s command'],
+    keyLessons: <String>['Everything obeys Allah’s command'],
     rolloutPack: QuranAyahExplanationRolloutPack.reflectionComfort,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -1795,7 +1795,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
     standardExplanation:
         'Allah teaches that deeds will matter and be weighed with justice. A heavy scale means a life filled with faith, sincerity, and righteous action.',
     kidsExplanation:
-        'If a person\'s good deeds are weighty, that is a sign of success with Allah.',
+        'If a person’s good deeds are weighty, that is a sign of success with Allah.',
     keyLessons: <String>['Good deeds have weight with Allah'],
     rolloutPack: QuranAyahExplanationRolloutPack.commonSalahSurahs,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
@@ -1832,7 +1832,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
         'This is a severe image of downfall and punishment for the one who failed before Allah. The verse is meant to wake the heart before that day comes.',
     kidsExplanation:
         'Allah warns of a terrible end for the one who turns away and comes with loss.',
-    keyLessons: <String>['Take Allah\'s warnings seriously'],
+    keyLessons: <String>['Take Allah’s warnings seriously'],
     rolloutPack: QuranAyahExplanationRolloutPack.commonSalahSurahs,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),
@@ -1935,7 +1935,7 @@ seededQuranAyahExplanations = <QuranAyahExplanationEntry>[
         'Allah gives a direct warning of the reality of punishment in the Hereafter. The purpose of the warning is not despair, but urgent repentance and seriousness.',
     kidsExplanation:
         'Allah warns people clearly so they turn back to Him before judgment comes.',
-    keyLessons: <String>['Take Allah\'s warning seriously'],
+    keyLessons: <String>['Take Allah’s warning seriously'],
     rolloutPack: QuranAyahExplanationRolloutPack.commonSalahSurahs,
     reviewStatus: QuranAyahExplanationReviewStatus.reviewed,
   ),

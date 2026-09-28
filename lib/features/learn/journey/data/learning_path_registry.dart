@@ -75,7 +75,7 @@ class LearningPathRegistry {
         LearningPathPhase(
           id: 'practicing-understanding',
           title: 'Understanding',
-          description: 'Connect Quran reading, meaning, and recurring words.',
+          description: 'Connect Qur’an reading, meaning, and recurring words.',
           order: 2,
           journeyIds: [
             'journey-quran',

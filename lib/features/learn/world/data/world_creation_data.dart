@@ -179,7 +179,7 @@ final worldCreationLessons = <WorldCreationLesson>[
       summary:
           'Day-night cycles derive from Earth’s rotation and influence circadian systems.',
       explanation:
-          'Light cues synchronize biological cycles in humans and other organisms, affecting sleep, hormones, and behavior.',
+          'Light cues synchronize biological cycles in humans and other organizms, affecting sleep, hormones, and behavior.',
       caution:
           'Scientific mechanisms do not replace spiritual meaning; they can deepen appreciation of created order.',
       diagramHint: 'earth-rotation-day-night',

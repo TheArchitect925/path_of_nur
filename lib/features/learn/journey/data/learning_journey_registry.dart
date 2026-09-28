@@ -22,7 +22,7 @@ class LearningJourneyRegistry {
     LearningJourneyIsland(
       id: 'practice-worship',
       title: 'Practice & Ibadah',
-      subtitle: 'Salah, Dhikr, and Duas for daily life.',
+      subtitle: 'Salah, dhikr, and duas for daily life.',
       description:
           'Learn the acts of ibadah that shape daily rhythm, remembrance, and presence.',
       order: 2,
@@ -285,10 +285,10 @@ class LearningJourneyRegistry {
       tags: ['seerah', 'prophet muhammad', 'messenger', 'madinah', 'makkah'],
       isFeatured: true,
       whyThisMatters:
-          'Seerah gives emotional and historical context to Qur’an, Hadith, and Muslim life.',
+          'Seerah gives emotional and historical context to Qur’an, hadith, and Muslim life.',
       relatedTools: [_seerahCompanionTool, _prophetsTool, _hadithLandingTool],
       mappingNotes:
-          'These stages now open real in-app Seerah lessons while still pointing users toward the existing Prophets and Hadith systems for adjacent exploration.',
+          'These stages now open real in-app Seerah lessons while still pointing users toward the existing Prophets and hadith systems for adjacent exploration.',
     ),
     LearningJourney(
       id: 'hadith-essentials',
@@ -317,7 +317,7 @@ class LearningJourneyRegistry {
         _hadithReviewTool,
       ],
       mappingNotes:
-          'Stages now use lesson-backed wrappers so the Hadith tools feel guided rather than menu-like.',
+          'Stages now use lesson-backed wrappers so the hadith tools feel guided rather than menu-like.',
     ),
     LearningJourney(
       id: 'salah-foundations',
@@ -620,7 +620,7 @@ class LearningJourneyRegistry {
         _characterCompanionTool,
       ],
       mappingNotes:
-          'This journey is lesson-backed and cross-links to Hadith, Seerah, and Daily Wisdom so character formation feels integrated rather than isolated.',
+          'This journey is lesson-backed and cross-links to hadith, Seerah, and Daily Wisdom so character formation feels integrated rather than isolated.',
     ),
     LearningJourney(
       id: 'arabic-alphabet',
@@ -739,7 +739,7 @@ class LearningJourneyRegistry {
           'Tajweed becomes sustainable when beginners learn it through clear listening, measured practice, and real Qur’an recitation.',
       relatedTools: [_quranArabicTool, _quranLearningHubTool],
       mappingNotes:
-          'This journey now uses lesson-backed stages so Tajweed can sit inside Learn as a real beginner path instead of a contained placeholder.',
+          'This journey now uses lesson-backed stages so tajweed can sit inside Learn as a real beginner path instead of a contained placeholder.',
     ),
     LearningJourney(
       id: 'trivia-knowledge-paths',
@@ -767,7 +767,7 @@ class LearningJourneyRegistry {
       title: 'Daily Wisdom',
       subtitle: 'Short learning moments that can become a daily rhythm.',
       description:
-          'Gather one daily item from Qur’an, Hadith, Prophets, reflection, or dhikr into one steady and uncluttered rhythm.',
+          'Gather one daily item from Qur’an, hadith, Prophets, reflection, or dhikr into one steady and uncluttered rhythm.',
       order: 2,
       stageIds: [
         'wisdom-daily-quote',
@@ -2666,7 +2666,7 @@ const _quranLearningHubTool = LearningJourneyToolLink(
 
 const _learnSalahHubTool = LearningJourneyToolLink(
   title: 'Salah Hub',
-  subtitle: 'Open the current Salah learning hub.',
+  subtitle: 'Open the current salah learning hub.',
   routeName: 'learnSalahHub',
 );
 

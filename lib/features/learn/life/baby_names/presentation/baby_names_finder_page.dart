@@ -229,7 +229,7 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
         if (suggestions.isEmpty)
           const PremiumCard(
             child: Text(
-              'No suggestions yet. Try choosing a meaning theme, changing gender, or disabling Quranic-only to broaden matches.',
+              'No suggestions yet. Try choosing a meaning theme, changing gender, or disabling Qur’anic-only to broaden matches.',
             ),
           ),
         ...suggestions.map(

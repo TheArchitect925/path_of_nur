@@ -141,12 +141,12 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
     options: const [
       ('east', 'East'),
       ('madinah', 'Toward Madinah'),
-      ('qiblah', 'The qiblah, toward the Ka\'bah'),
+      ('qiblah', 'The qiblah, toward the Ka’bah'),
       ('sun', 'Toward the sun'),
     ],
     correctOptionId: 'qiblah',
     explanation:
-        'Muslims face the qiblah, the direction of the Ka\'bah in Makkah, during prayer.',
+        'Muslims face the qiblah, the direction of the Ka’bah in Makkah, during prayer.',
     quranReference: 'Qur’an 2:144',
     tags: const ['salah', 'qiblah', 'conditions', 'beginner'],
     beginnerFriendly: true,
@@ -492,7 +492,7 @@ final List<TriviaQuestion> _beginnerSalahQuestions = [
         'Rawatib are regular voluntary prayers connected to the obligatory prayers.',
     correct: true,
     explanation:
-        'Rawatib are established Sunnah prayers associated with the daily obligatory prayers.',
+        'Rawatib are established sunnah prayers associated with the daily obligatory prayers.',
     tags: const ['salah', 'sunnah_prayer', 'rawatib', 'beginner'],
     beginnerFriendly: true,
     packId: _pack,
@@ -868,7 +868,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'Which of these is a regular Sunnah prayer connected to the obligatory prayers?',
+        'Which of these is a regular sunnah prayer connected to the obligatory prayers?',
     options: const [
       ('rawatib', 'Rawatib'),
       ('eid', 'Eid prayer'),
@@ -877,7 +877,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     ],
     correctOptionId: 'rawatib',
     explanation:
-        'Rawatib are the established Sunnah prayers attached to the daily obligatory prayers.',
+        'Rawatib are the established sunnah prayers attached to the daily obligatory prayers.',
     tags: const ['salah', 'rawatib', 'sunnah_prayer', 'intermediate'],
     packId: _pack,
     sortOrder: 105,
@@ -1015,7 +1015,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     categoryId: 'salah',
     difficulty: TriviaDifficulty.medium,
     prompt:
-        'What is one broad purpose of the regular Sunnah prayers around the obligatory prayers?',
+        'What is one broad purpose of the regular sunnah prayers around the obligatory prayers?',
     options: const [
       ('support', 'They support and beautify one’s daily worship'),
       ('replace', 'They replace the obligatory prayers'),
@@ -1024,7 +1024,7 @@ final List<TriviaQuestion> _intermediateSalahQuestions = [
     ],
     correctOptionId: 'support',
     explanation:
-        'The Sunnah prayers support the daily rhythm of worship and help strengthen one’s connection to prayer.',
+        'The sunnah prayers support the daily rhythm of worship and help strengthen one’s connection to prayer.',
     tags: const ['salah', 'rawatib', 'sunnah_prayer', 'intermediate'],
     reflectionFriendly: true,
     packId: _pack,

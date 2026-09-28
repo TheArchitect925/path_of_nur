@@ -23,7 +23,7 @@ final BedtimeStorySeed ramadanBook = kidsPictureBook(
   ],
   refrain: 'The month we wait for.',
   lesson:
-      'Ramadan is the month of the Qur\'an, of fasting, and of being kind. '
+      'Ramadan is the month of the Qur’an, of fasting, and of being kind. '
       'Wait for it, and love it.',
   bedtimeClosing:
       'Now close your eyes. The moon is thin tonight, and Ramadan is '
@@ -108,7 +108,7 @@ final BedtimeStorySeed ramadanBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        'Ramadan is the month the Qur\'an came down to the Prophet ﷺ.',
+        'Ramadan is the month the Qur’an came down to the Prophet ﷺ.',
         'The best month of the whole year.',
       ],
       illustrationAsset: '$_scenes/muhammad_cave_light.webp',
@@ -132,7 +132,7 @@ final BedtimeStorySeed ramadanBook = kidsPictureBook(
     ], illustrationAsset: '$_scenes/pillars_dates.webp'),
     KidsBookSpread([
       'At night the masjid is full and bright.',
-      'Long prayers, the Qur\'an read from beginning to end.',
+      'Long prayers, the Qur’an read from beginning to end.',
     ], illustrationAsset: '$_scenes/steps_ramadan_masjid_night.webp'),
     KidsBookSpread(
       [

@@ -18,7 +18,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'smile_and_sit',
         label: 'Smile, greet them, and offer them a seat beside you.',
         feedbackText:
-            'This matches the Hadith well. A warm smile and kind welcome can calm someone who feels alone.',
+            'This matches the hadith well. A warm smile and kind welcome can calm someone who feels alone.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -33,7 +33,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Keep joking with your friends and let the new student figure it out.',
         feedbackText:
-            'This needs reflection. The Hadith encourages active kindness, not leaving someone feeling unnoticed.',
+            'This needs reflection. The hadith encourages active kindness, not leaving someone feeling unnoticed.',
       ),
     ],
     tags: ['kindness', 'friendship', 'welcome'],
@@ -69,7 +69,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'ignore_once',
         label: 'Keep playing because it is only for a little while.',
         feedbackText:
-            'This is understandable but not the strongest response. The Hadith calls for considerate care, not just convenience.',
+            'This is understandable but not the strongest response. The hadith calls for considerate care, not just convenience.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
@@ -103,7 +103,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'help_first',
         label: 'Pause your game and help clear the table first.',
         feedbackText:
-            'This is best aligned. Helping at home reflects the example of the Prophet, peace and blessings be upon him.',
+            'This is best aligned. Helping at home reflects the example of the Prophet ﷺ.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -159,7 +159,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'mock_them',
         label: 'Tell them they are too little and should leave.',
         feedbackText:
-            'This conflicts with the Hadith. Mercy and respect are meant to shape our tone and actions.',
+            'This conflicts with the hadith. Mercy and respect are meant to shape our tone and actions.',
       ),
     ],
     tags: ['respect', 'mercy', 'character'],
@@ -200,7 +200,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'use_it_secretly',
         label: 'Use it quietly because maybe nobody will claim it.',
         feedbackText:
-            'This needs reflection. The Hadith teaches that honesty should guide us before convenience does.',
+            'This needs reflection. The hadith teaches that honesty should guide us before convenience does.',
       ),
     ],
     tags: ['honesty', 'trust', 'school'],
@@ -270,7 +270,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'share_half',
         label: 'Offer to share some of your snack with them.',
         feedbackText:
-            'This is best aligned. Wanting ease and care for someone else reflects the Hadith beautifully.',
+            'This is best aligned. Wanting ease and care for someone else reflects the hadith beautifully.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -284,7 +284,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'pretend_not_see',
         label: 'Pretend not to notice so you do not have to share.',
         feedbackText:
-            'This needs reflection. The Hadith calls us to active concern for others, not convenient silence.',
+            'This needs reflection. The hadith calls us to active concern for others, not convenient silence.',
       ),
     ],
     tags: ['kindness', 'sharing', 'friendship'],
@@ -326,7 +326,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'annoyed_ignore',
         label: 'Tell them not to bother you because your time matters more.',
         feedbackText:
-            'This needs reflection. The Hadith teaches us not to treat family care as an irritation.',
+            'This needs reflection. The hadith teaches us not to treat family care as an irritation.',
       ),
     ],
     tags: ['family', 'service', 'charity'],
@@ -367,7 +367,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'avoid_friend',
         label: 'Avoid them and hope they forget about it.',
         feedbackText:
-            'This weakens trust and does not match the Hadith’s call to honesty and responsibility.',
+            'This weakens trust and does not match the hadith’s call to honesty and responsibility.',
       ),
     ],
     tags: ['trust', 'honesty', 'friendship'],
@@ -437,7 +437,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Participate, renew your intention for Allah, and keep your heart under review.',
         feedbackText:
-            'This is best aligned. The Hadith does not ask you to abandon good deeds, but to purify why you do them.',
+            'This is best aligned. The hadith does not ask you to abandon good deeds, but to purify why you do them.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -451,7 +451,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'seek_recognition',
         label: 'Join mainly because it will improve how people see you.',
         feedbackText:
-            'This needs reflection. The outward act may look good, but the Hadith directs attention to the intention beneath it.',
+            'This needs reflection. The outward act may look good, but the hadith directs attention to the intention beneath it.',
       ),
     ],
     tags: ['sincerity', 'intentions', 'service'],
@@ -493,7 +493,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'quote_them_mockingly',
         label: 'Share their mistake so others can see why they are wrong.',
         feedbackText:
-            'This needs reflection. The Hadith points toward sincere concern, not public shaming.',
+            'This needs reflection. The hadith points toward sincere concern, not public shaming.',
       ),
     ],
     tags: ['community', 'advice', 'sincerity'],
@@ -522,7 +522,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Pause, ask detailed questions, and step away if the doubt remains.',
         feedbackText:
-            'This is best aligned. The Hadith encourages caution when the boundary is unclear and your conscience is unsettled.',
+            'This is best aligned. The hadith encourages caution when the boundary is unclear and your conscience is unsettled.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -538,7 +538,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Ignore the discomfort because the money is too useful to question.',
         feedbackText:
-            'This needs reflection. The Hadith teaches that uneasy grey areas are not where a believer should settle comfortably.',
+            'This needs reflection. The hadith teaches that uneasy grey areas are not where a believer should settle comfortably.',
       ),
     ],
     tags: ['integrity', 'halal', 'work'],
@@ -573,7 +573,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'read_only',
         label: 'Stay quiet and keep reading the conversation out of curiosity.',
         feedbackText:
-            'This avoids adding harm directly, but it still feeds attention into something the Hadith teaches you to leave.',
+            'This avoids adding harm directly, but it still feeds attention into something the hadith teaches you to leave.',
         isAcceptableChoice: true,
       ),
       HadithReflectionChoice(
@@ -610,7 +610,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Choose either a beneficial comment or silence until you can speak constructively.',
         feedbackText:
-            'This is best aligned. The Hadith gives a simple but demanding standard for speech.',
+            'This is best aligned. The hadith gives a simple but demanding standard for speech.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -652,7 +652,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'step_in_and_help',
         label: 'Offer concrete help and lighten one or two tasks immediately.',
         feedbackText:
-            'This is best aligned. The Hadith encourages practical support, not only kind feelings.',
+            'This is best aligned. The hadith encourages practical support, not only kind feelings.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -666,7 +666,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         id: 'criticize_management',
         label: 'Complain that the organizers should have planned better.',
         feedbackText:
-            'This needs reflection. Critique without support rarely embodies the help praised in the Hadith.',
+            'This needs reflection. Critique without support rarely embodies the help praised in the hadith.',
       ),
     ],
     tags: ['service', 'community', 'support'],
@@ -695,7 +695,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Turn back immediately with remorse, dua, and a fresh plan to avoid the sin.',
         feedbackText:
-            'This is best aligned. The Hadith strengthens hope and calls you back without delay.',
+            'This is best aligned. The hadith strengthens hope and calls you back without delay.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -711,7 +711,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Assume repeated failure means repentance is no longer sincere for you.',
         feedbackText:
-            'This needs reflection. Despair is not what the Hadith teaches; returning again is itself part of sincerity.',
+            'This needs reflection. Despair is not what the hadith teaches; returning again is itself part of sincerity.',
       ),
     ],
     tags: ['repentance', 'hope', 'self-accountability'],
@@ -740,7 +740,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Keep returning to Allah and strengthen the practical steps around your tawbah.',
         feedbackText:
-            'This is best aligned. The Hadith keeps the servant moving back toward Allah, not away in shame.',
+            'This is best aligned. The hadith keeps the servant moving back toward Allah, not away in shame.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -756,7 +756,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Assume this weakness will always define you, so there is no point in trying hard.',
         feedbackText:
-            'This needs reflection. The Hadith teaches ongoing access to repentance, not resignation.',
+            'This needs reflection. The hadith teaches ongoing access to repentance, not resignation.',
       ),
     ],
     tags: ['repentance', 'hope', 'struggle'],
@@ -785,7 +785,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Acknowledge the trust, review what is slipping, and make a practical plan to repair it.',
         feedbackText:
-            'This is best aligned. The Hadith frames responsibility as an amanah that deserves review and care.',
+            'This is best aligned. The hadith frames responsibility as an amanah that deserves review and care.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -874,7 +874,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Pause, hold your tongue, and turn to Allah before reacting publicly.',
         feedbackText:
-            'This is best aligned. The Hadith directs attention to the very first response when the heart is shaken.',
+            'This is best aligned. The hadith directs attention to the very first response when the heart is shaken.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -918,7 +918,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Review what is beneficial to learn, seek Allah’s help, and move forward with steadiness.',
         feedbackText:
-            'This is best aligned. The Hadith combines effort, reliance, and refusal to sink into unhelpful regret.',
+            'This is best aligned. The hadith combines effort, reliance, and refusal to sink into unhelpful regret.',
         isBestChoice: true,
       ),
       HadithReflectionChoice(
@@ -934,7 +934,7 @@ const List<HadithReflectionScenarioSeed> hadithReflectionScenarioSeeds = [
         label:
             'Assume failure means you should stop trying meaningful things for a while.',
         feedbackText:
-            'This needs reflection. The Hadith points toward resilient action with Allah’s help, not defeatism.',
+            'This needs reflection. The hadith points toward resilient action with Allah’s help, not defeatism.',
       ),
     ],
     tags: ['resilience', 'tawakkul', 'benefit'],

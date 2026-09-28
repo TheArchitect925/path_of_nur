@@ -61,7 +61,7 @@ const List<KidsSeerahJourneyStage> kKidsSeerahJourneyStages = [
     journeyId: 'journey_seerah_muhammad_kids_v1',
     title: 'First Revelation',
     description:
-        'Learn about Cave Hira, the first revelation, and the support of Khadijah رضي الله عنها.',
+        'Learn about Cave Hira, the first revelation, and the support of Khadijah (may Allah be pleased with her).',
     sortOrder: 2,
     unlockAfterStageId: 'seerah_stage_childhood',
     nodeIds: [
@@ -76,7 +76,7 @@ const List<KidsSeerahJourneyStage> kKidsSeerahJourneyStages = [
     journeyId: 'journey_seerah_muhammad_kids_v1',
     title: 'Migration to Madinah',
     description:
-        'Walk through the Hijrah with Abu Bakr رضي الله عنه and the building of a caring community.',
+        'Walk through the Hijrah with Abu Bakr (may Allah be pleased with him) and the building of a caring community.',
     sortOrder: 3,
     unlockAfterStageId: 'seerah_stage_revelation',
     nodeIds: [
@@ -92,7 +92,7 @@ const List<KidsSeerahJourneyStage> kKidsSeerahJourneyStages = [
     journeyId: 'journey_seerah_muhammad_kids_v1',
     title: 'Mercy, Patience, and the Final Message',
     description:
-        'See mercy in the return to Makkah, learn from Bilal رضي الله عنه, and close with a gentle reflection.',
+        'See mercy in the return to Makkah, learn from Bilal (may Allah be pleased with him), and close with a gentle reflection.',
     sortOrder: 4,
     unlockAfterStageId: 'seerah_stage_hijrah',
     nodeIds: [
@@ -146,9 +146,9 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
   KidsSeerahJourneyNode(
     nodeId: 'seerah_node_companion_khadijah',
     stageId: 'seerah_stage_revelation',
-    title: 'Companion Story: Khadijah رضي الله عنها',
+    title: 'Companion Story: Khadijah',
     description:
-        'Learn how Khadijah رضي الله عنها believed, supported, and comforted the Prophet ﷺ.',
+        'Learn how Khadijah (may Allah be pleased with her) believed, supported, and comforted the Prophet ﷺ.',
     nodeType: KidsSeerahJourneyNodeType.companionStory,
     sortOrder: 2,
     relatedStoryId: 'story_companion_khadijah_support_v1',
@@ -179,7 +179,7 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
   KidsSeerahJourneyNode(
     nodeId: 'seerah_node_companion_abu_bakr',
     stageId: 'seerah_stage_hijrah',
-    title: 'Companion Story: Abu Bakr رضي الله عنه',
+    title: 'Companion Story: Abu Bakr',
     description: 'See what loyalty and friendship looked like on the Hijrah.',
     nodeType: KidsSeerahJourneyNodeType.companionStory,
     sortOrder: 2,
@@ -216,7 +216,7 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
   KidsSeerahJourneyNode(
     nodeId: 'seerah_node_companion_bilal',
     stageId: 'seerah_stage_return',
-    title: 'Companion Story: Bilal رضي الله عنه',
+    title: 'Companion Story: Bilal',
     description:
         'Read a simple story about patience, faith, and staying firm with truth.',
     nodeType: KidsSeerahJourneyNodeType.companionStory,
@@ -268,7 +268,7 @@ const List<KidsSeerahJourneyNode> kKidsSeerahJourneyNodes = [
 const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
   KidsSeerahCompanionStoryLink(
     companionId: 'khadijah',
-    name: 'Khadijah رضي الله عنها',
+    name: 'Khadijah',
     title: 'The First to Believe',
     shortSummary:
         'A calm companion story about support, comfort, and early faith.',
@@ -280,7 +280,7 @@ const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
   ),
   KidsSeerahCompanionStoryLink(
     companionId: 'abu_bakr',
-    name: 'Abu Bakr رضي الله عنه',
+    name: 'Abu Bakr',
     title: 'A Loyal Friend on the Hijrah',
     shortSummary:
         'A companion story about loyalty, trust, and friendship during migration.',
@@ -292,7 +292,7 @@ const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
   ),
   KidsSeerahCompanionStoryLink(
     companionId: 'bilal',
-    name: 'Bilal رضي الله عنه',
+    name: 'Bilal',
     title: 'Patience and Faith',
     shortSummary:
         'A companion story about patience, faith, and holding tightly to truth.',

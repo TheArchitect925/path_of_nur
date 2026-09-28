@@ -427,7 +427,7 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
     storyId: 'story_ramadan_kindness_v1',
     prophetId: '',
     title: 'What We Learned at Iftar',
-    shortDescription: 'A gentle review of Dates for the Neighbours.',
+    shortDescription: 'A gentle review of Dates for the Neighbors.',
     ageGroup: BedtimeStoryAgeGroup.kids,
     sortOrder: 208,
     questions: [
@@ -453,7 +453,7 @@ final List<BedtimeStoryQuizSeed> kKidsIslamicStoryQuizzes = [
           _option('teacher', 'Their teacher'),
         ],
         correctId: 'neighbours',
-        explanation: 'Yes. They carried the tray to the neighbours’ door.',
+        explanation: 'Yes. They carried the tray to the neighbors’ door.',
       ),
       _question(
         id: 'ramadan_kindness_q3',

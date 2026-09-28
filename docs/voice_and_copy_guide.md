@@ -1,17 +1,18 @@
 # Path of Nur — Voice and Copy Guide
 
-Last updated: 2026-09-07
+Last updated: 2026-09-27
 
 Gentle, calm, kind, Islamic. As rules the copy follows, not words it uses.
 
 This guide is the source of truth for every English string in the app: the ARB
 (`lib/l10n/app_en.arb`), the Dart content files under `lib/features/*/data/`,
 and the Apple TV, Watch, complication and widget `.strings` tables.
-`tools/copy_lint.py` checks the ARB against it and
+`tools/copy_lint.py` checks the ARB and, through `tools/copy_prose.py`, the
+English prose in the Dart files and the history JSON against it;
 `test/app/copy_lint_ratchet_test.dart` fails CI when a rule's count rises.
 
 Audit and rationale: the Path of Nur Voice Audit artifact (2026-09-05).
-Decisions 1–4 below were made on 2026-09-07.
+Decisions 1–4 below were made on 2026-09-07, 5 and 6 on 2026-09-27.
 
 ## Why
 
@@ -103,6 +104,14 @@ on 21 mentions). Each rule below closes one of those gaps.
    picture books keep it in their first spread by their own rules.
 4. **Lesson prose (V3)** is edited for mechanics, studio vocabulary, lists and
    tails. Its substance and scholarship are kept.
+5. **Other prophets in English prose**: *(peace be upon him)* after the name at
+   its first mention in a passage, then the name alone: *Through Musa (peace be
+   upon him), this ayah shows…*. Never عليه السلام inside English. Titles,
+   names and labels carry the name alone. Scholars: *(may Allah have mercy on
+   him)*, the same way. The picture books keep their own rule.
+6. **Lists in V3**: rewritten in the prose people scan (titles, summaries,
+   overviews, descriptions, subtitles, themes). Lesson bodies keep their lists
+   unless one is plainly filler.
 
 ## Glossary
 
@@ -121,6 +130,7 @@ on 21 mentions). Each rule below closes one of those gaps.
 | alhamdulillah, masha’Allah, insha’Allah, bismillah | Alhamdulilah, MashaAllah, InshAllah | lowercase when used as words |
 | days in a row · light | streak · XP | decision 1 |
 | memorization, color, practice (verb and noun) | memorisation, colour, practise | US spelling |
+| Musa (peace be upon him) · Abu Bakr (may Allah be pleased with him) | Musa عليه السلام, Abu Bakr رضي الله عنه | decision 5; Arabic terms are transliterated and glossed: *fasad (corruption)*, *zulm (injustice)* |
 
 ## How the lint works
 
@@ -135,6 +145,23 @@ Scopes: *chrome* is every key that is not lesson prose (`…Body`,
 `…Description`, `…Takeaway1`, …) and not sacred text (`…Translation`,
 `…Meaning`, `…Arabic`, …). Tone rules run on chrome only; mechanics run on
 everything but sacred text; the apostrophe rule runs on everything.
+
+Outside the ARB, `tools/copy_prose.py` reads every Dart file under `lib/`
+(not generated l10n, the Apple TV target, the two sourced datasets or
+`*_localized_*` files) and `assets/data/historical_calendar_seed.json`. A
+*prose value* is one string of four English words or more whose field is not
+sacred or an id (`translation`, `transliteration`, `arabic…`, `meaning`,
+hadith and ayah quotations, `source…`, ids and paths are never read). The
+`prose-*` rules and `arabic-in-english` count those values; the mechanics
+ones are locked at zero, and `prose-studio-vocabulary`, `prose-roadmap`,
+`prose-tail` and `prose-list-of-three` are V3's rewrites, counted down.
+
+A line that is right as it is opts out of one rule with a trailing comment,
+so the exception is visible where it lives:
+
+```dart
+subtitle: 'What happens to ال at the beginning.', // copy-lint: allow arabic-in-english
+```
 
 The ratchet test fails when a count rises (new drift: fix the string) and when
 it falls (lock it: `--write-baseline`). Never raise a baseline by hand.
@@ -163,6 +190,6 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V0 · Foundation (done 2026-09-07) | this guide, the lint, the ratchet test, dead keys deleted, delta translation |
 | V1 · Mechanics | scripted, reviewed diff: apostrophes, terms, casing, honorifics, UK→US, typos, dashes, label periods, duplicate labels, kids dialogue quotes |
 | V2 · Chrome by exposure | (a) notifications, onboarding, home, navigation, settings, profile · (b) Learn hubs, Qur’an, Worship, Dhikr, Growth · (c) Kids · (d) games, circles, baby names, history, world, accounts |
-| V3 · Prose | the content keys and the Dart content files: mechanics, studio vocabulary, lists, tails |
+| V3 · Prose | the content keys and the Dart content files: (a) mechanics, done 2026-09-27 · (b) studio vocabulary and roadmap · (c) tails · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

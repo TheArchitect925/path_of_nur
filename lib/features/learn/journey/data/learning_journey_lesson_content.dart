@@ -123,7 +123,7 @@ _seerahLessons = <String, LearningJourneyLessonContent>{
       'Preparation often begins long before a public mission starts.',
     ],
     reflectionPrompt:
-        'Which quality of the Prophet’s early life would strengthen your own character right now?',
+        'Which quality of the Prophet’s ﷺ early life would strengthen your own character right now?',
     quranReferences: const ['Qur’an 93:6-8'],
     sourceReferences: const ['Trusted Seerah reports on the Makkan period'],
     relatedTools: const [_lessonProphetsTool, _lessonHadithHubTool],
@@ -268,7 +268,7 @@ _seerahLessons = <String, LearningJourneyLessonContent>{
     stageId: 'seerah-final-sermon',
     title: 'Final Sermon',
     introduction:
-        'The Farewell Sermon gathered major principles of dignity, justice, trust, and faithfulness near the end of the Prophet’s mission.',
+        'The Farewell Sermon gathered major principles of dignity, justice, trust, and faithfulness near the end of the Prophet’s ﷺ mission.',
     sections: [
       _section(
         title: 'Short narrative',
@@ -287,7 +287,7 @@ _seerahLessons = <String, LearningJourneyLessonContent>{
       'A believer holds firmly to revelation even after the Messenger ﷺ has passed on.',
     ],
     reflectionPrompt:
-        'Which principle from the Prophet’s final public guidance feels most urgent for our time?',
+        'Which principle from the Prophet’s ﷺ final public guidance feels most urgent for our time?',
     quranReferences: const ['Qur’an 5:3'],
     relatedTools: const [_lessonHadithHubTool, _lessonQuranReaderTool],
   ),
@@ -527,7 +527,7 @@ _dhikrLessons = <String, LearningJourneyLessonContent>{
       _section(
         title: 'When to use',
         body:
-            'Use salawat daily, on Fridays, after hearing the Prophet’s name ﷺ, and whenever you want to renew love and connection.',
+            'Use salawat daily, on Fridays, after hearing the Prophet’s ﷺ name, and whenever you want to renew love and connection.',
       ),
     ],
     invocations: const [
@@ -1390,7 +1390,7 @@ _quranPathLessons = <String, LearningJourneyLessonContent>{
       _section(
         title: 'Visual and word examples',
         body:
-            'Try simple patterns like بَ بِ بُ or رَ رِ رُ. Keep the eye on the mark first, then let the sound follow calmly.',
+            'Try simple patterns like بَ بِ بُ or رَ رِ رُ. Keep the eye on the mark first, then let the sound follow calmly.', // copy-lint: allow arabic-in-english
         bullets: [
           'Fatha: a short open sound.',
           'Kasra: a short lower front sound.',
@@ -2044,7 +2044,7 @@ const _lessonWuduGuideTool = LearningJourneyToolLink(
 
 const _lessonSalahHubTool = LearningJourneyToolLink(
   title: 'Salah Hub',
-  subtitle: 'Open the current Salah learning hub.',
+  subtitle: 'Open the current salah learning hub.',
   routeName: 'learnSalahHub',
 );
 

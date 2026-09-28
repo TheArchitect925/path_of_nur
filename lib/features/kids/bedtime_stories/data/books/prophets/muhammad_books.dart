@@ -580,7 +580,7 @@ final BedtimeStorySeed muhammadBook4 = kidsPictureBook(
       ],
       [
         'Folge ihm: vergib, sei gütig, sei gerecht.',
-        'Halt dich am Quran fest.',
+        'Halt dich am Qur’an fest.',
       ],
     ],
   ),

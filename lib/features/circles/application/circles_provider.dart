@@ -517,7 +517,7 @@ const stagedCircles = <CircleItem>[
     events: [
       CircleEventPreview(
         id: 'buddy-1',
-        title: 'Jumu\'ah buddy check-in',
+        title: 'Jumu’ah buddy check-in',
         dateHint: 'Friday',
       ),
       CircleEventPreview(
@@ -680,7 +680,7 @@ const stagedAccountabilityGroups = <AccountabilityGroup>[
     id: 'group-habits',
     title: 'Habit Builder Group',
     description:
-        'Track Qur\'an, dhikr, and reflections with trust-based reporting.',
+        'Track Qur’an, dhikr, and reflections with trust-based reporting.',
     privateGroup: true,
     focus: 'Habits',
     memberCount: 31,

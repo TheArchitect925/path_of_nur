@@ -106,7 +106,7 @@ final BedtimeStorySeed angelsBook = kidsPictureBook(
       quranRef: QuranQuoteRef(surah: 66, ayah: 6),
     ),
     KidsBookSpread([
-      'Jibreel brought the Qur\'an to the Prophet ﷺ.',
+      'Jibreel brought the Qur’an to the Prophet ﷺ.',
       'He is the greatest of the angels.',
     ], illustrationAsset: '$_scenes/muhammad_cave_light.webp'),
     KidsBookSpread([
@@ -131,14 +131,14 @@ final BedtimeStorySeed angelsBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        'Angels guard you, in front and behind, by Allah\'s command.',
+        'Angels guard you, in front and behind, by Allah’s command.',
         'Amina sleeps, and she is not alone.',
       ],
       illustrationAsset: '$_scenes/steps_angels_sleep.webp',
       quranRef: QuranQuoteRef(surah: 13, ayah: 11),
     ),
     KidsBookSpread([
-      'Angels come to listen when people read the Qur\'an.',
+      'Angels come to listen when people read the Qur’an.',
       'And they say ameen to your duʿā.',
     ], illustrationAsset: '$_scenes/steps_quran_stand.webp'),
     KidsBookSpread(
@@ -151,7 +151,7 @@ final BedtimeStorySeed angelsBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        'Let\'s learn the duʿā to say before you sleep.',
+        'Let’s learn the duʿā to say before you sleep.',
         'The angels will hear it.',
       ],
       illustrationAsset: '$_scenes/steps_angels_sleep.webp',

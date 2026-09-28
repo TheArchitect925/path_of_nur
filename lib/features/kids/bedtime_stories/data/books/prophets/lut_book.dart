@@ -111,7 +111,7 @@ final BedtimeStorySeed lutBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        'They were unkind to travellers and proud of bad things.',
+        'They were unkind to travelers and proud of bad things.',
         'Lut told them: stop, and fear Allah.',
       ],
       illustrationAsset: '$_scenes/lut_city.webp',

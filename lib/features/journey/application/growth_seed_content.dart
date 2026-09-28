@@ -271,7 +271,7 @@ const List<GrowthHabitContent> seededGrowthHabitContent = [
   GrowthHabitContent(
     habitId: 'h_sunnah_prayer',
     suggestedRecurrence: 'Most weekdays',
-    reminderCopy: 'Add one Sunnah salah today if you can.',
+    reminderCopy: 'Add one sunnah salah today if you can.',
   ),
   GrowthHabitContent(
     habitId: 'h_salawat',
@@ -311,7 +311,7 @@ const List<GrowthHabitContent> seededGrowthHabitContent = [
   GrowthHabitContent(
     habitId: 'h_sunnah_fasts',
     suggestedRecurrence: 'Weekly or bi-weekly',
-    reminderCopy: 'Prepare for your next Sunnah fast with intention.',
+    reminderCopy: 'Prepare for your next sunnah fast with intention.',
   ),
   GrowthHabitContent(
     habitId: 'h_memorize_quran',
@@ -383,7 +383,7 @@ const List<GrowthPathContent> seededGrowthPathContent = [
   ),
   GrowthPathContent(
     pathId: 'sunnah-revival',
-    whyItMatters: 'Revived Sunnah acts bring barakah to ordinary routines.',
+    whyItMatters: 'Revived sunnah acts bring barakah to ordinary routines.',
     stageLabel: 'Strengthening the Heart',
     milestoneNames: ['First Light', 'Steady Footsteps'],
   ),

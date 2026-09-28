@@ -33951,7 +33951,7 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get quranPathwayMusaSubtitle =>
-      'Trace courage, mission, du’a, and reliance through Musa عليه السلام.';
+      'Trace courage, mission, du’a, and reliance through Musa (peace be upon him).';
 
   @override
   String get quranPathwayMusaDescription =>
@@ -34117,7 +34117,7 @@ class AppLocalizationsTg extends AppLocalizations {
 
   @override
   String get quranPathwayMusaStepThemeSubtitle =>
-      'Start with the broad arc of Musa عليه السلام across the Qur’an.';
+      'Start with the broad arc of Musa (peace be upon him) across the Qur’an.';
 
   @override
   String get quranPathwayMusaStepTahaTitle => 'Study Surah Taha';

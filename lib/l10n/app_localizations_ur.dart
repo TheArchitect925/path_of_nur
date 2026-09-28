@@ -7097,7 +7097,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteMeaningSection1Body =>
-      'SubhanAllah clears Allah of نقص and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.';
+      'سبحان اللہ اللہ کو ہر نقص اور عیب سے پاک قرار دیتا ہے۔ الحمد للہ دل کو حمد اور شکر سے بھر دیتا ہے۔ مختصر ذکر اس لیے مؤثر ہے کہ یہ روزمرہ کے عام لمحوں میں بھی آپ کے ساتھ رہ سکتا ہے۔';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Title =>
@@ -33859,7 +33859,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranPathwayMusaSubtitle =>
-      'Trace courage, mission, du’a, and reliance through Musa عليه السلام.';
+      'موسیٰ علیہ السلام کی کہانی میں ہمت، رسالت، دعا اور توکل کو دیکھیں۔';
 
   @override
   String get quranPathwayMusaDescription =>
@@ -34025,7 +34025,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranPathwayMusaStepThemeSubtitle =>
-      'Start with the broad arc of Musa عليه السلام across the Qur’an.';
+      'قرآن میں موسیٰ علیہ السلام کی کہانی کے پورے سفر سے آغاز کریں۔';
 
   @override
   String get quranPathwayMusaStepTahaTitle => 'Study Surah Taha';

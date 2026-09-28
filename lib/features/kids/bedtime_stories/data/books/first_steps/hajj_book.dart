@@ -20,7 +20,7 @@ final BedtimeStorySeed hajjBook = kidsPictureBook(
   themes: const [KidsIslamicStoryTheme.trustInAllah],
   refrain: 'Labbayk, here I am.',
   lesson:
-      'Hajj is the journey to Allah\'s House, once in a life for those who '
+      'Hajj is the journey to Allah’s House, once in a life for those who '
       'can. Everyone equal, everyone saying: here I am.',
   bedtimeClosing:
       'Now close your eyes. The Kaʿbah stands in Makkah, and your heart can '
@@ -165,7 +165,7 @@ final BedtimeStorySeed hajjBook = kidsPictureBook(
     KidsBookSpread(
       [
         'Wherever you are, you can turn to the Kaʿbah right now.',
-        'Let\'s find the way.',
+        'Let’s find the way.',
       ],
       illustrationAsset: '$_scenes/steps_hajj_tawaf.webp',
       tryItRoute: '/qibla-finder',

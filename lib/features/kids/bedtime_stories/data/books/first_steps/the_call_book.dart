@@ -145,7 +145,7 @@ final BedtimeStorySeed theCallBook = kidsPictureBook(
     KidsBookSpread(
       [
         'Next time you hear it, stop, listen, and go.',
-        'Come to prayer. Let\'s learn how.',
+        'Come to prayer. Let’s learn how.',
       ],
       illustrationAsset: '$_scenes/steps_adhan_walk.webp',
       isRefrain: true,

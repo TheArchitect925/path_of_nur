@@ -25,7 +25,7 @@ final BedtimeStorySeed jannahBook = kidsPictureBook(
   ],
   refrain: 'Better than anything.',
   lesson:
-      'Jannah is Allah\'s reward for those who believe and do good. Ask Him '
+      'Jannah is Allah’s reward for those who believe and do good. Ask Him '
       'for it every day.',
   bedtimeClosing:
       'Now close your eyes. Jannah is waiting, better than anything. Good '
@@ -177,7 +177,7 @@ final BedtimeStorySeed jannahBook = kidsPictureBook(
     KidsBookSpread(
       [
         'Say SubhanAllah, Alhamdulillah, La ilaha illallah, Allahu Akbar.',
-        'The Prophet ﷺ loved these words. Let\'s say them now.',
+        'The Prophet ﷺ loved these words. Let’s say them now.',
       ],
       illustrationAsset: '$_scenes/steps_jannah_kids.webp',
       tryItRoute: '/worship/dhikr',

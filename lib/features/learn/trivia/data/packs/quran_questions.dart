@@ -49,7 +49,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     id: 'quran_easy_003',
     categoryId: 'quran',
     difficulty: TriviaDifficulty.easy,
-    prompt: 'Which angel brought revelation to the Prophet?',
+    prompt: 'Which angel brought revelation to the Prophet ﷺ?',
     options: const [
       ('jibril', 'Jibril'),
       ('mikail', 'Mikail'),
@@ -58,7 +58,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     ],
     correctOptionId: 'jibril',
     explanation:
-        'Jibril, peace be upon him, brought revelation from Allah to the Prophet Muhammad, peace and blessings be upon him.',
+        'Jibril, peace be upon him, brought revelation from Allah to the Prophet Muhammad ﷺ.',
     quranReference: 'Qur’an 2:97',
     tags: const ['quran', 'revelation', 'jibril', 'beginner'],
     beginnerFriendly: true,
@@ -268,7 +268,7 @@ final List<TriviaQuestion> _beginnerQuranQuestions = [
     prompt: 'The Qur’an and hadith are the exact same thing.',
     correct: false,
     explanation:
-        'The Qur’an is the revealed word of Allah, while hadith preserves the sayings, actions, and approvals of the Prophet.',
+        'The Qur’an is the revealed word of Allah, while hadith preserves the sayings, actions, and approvals of the Prophet ﷺ.',
     tags: const ['quran', 'hadith', 'beginner', 'structure'],
     beginnerFriendly: true,
     featured: true,
@@ -891,7 +891,7 @@ final List<TriviaQuestion> _intermediateQuranQuestions = [
     ],
     correctOptionId: 'strengthen',
     explanation:
-        'Gradual revelation supported belief, applied guidance to real life, and strengthened the Prophet and believers.',
+        'Gradual revelation supported belief, applied guidance to real life, and strengthened the Prophet ﷺ and believers.',
     quranReference: 'Qur’an 25:32',
     tags: const ['quran', 'revelation', 'guidance', 'reflection'],
     reflectionFriendly: true,

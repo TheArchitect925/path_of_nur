@@ -147,7 +147,7 @@ final BedtimeStorySeed ourProphetBook = kidsPictureBook(
     KidsBookSpread(
       [
         'His whole story is four books long.',
-        'Let\'s start at the beginning, in Makkah.',
+        'Let’s start at the beginning, in Makkah.',
       ],
       illustrationAsset: '$_scenes/muhammad_makkah_morning.webp',
       tryItRoute: '/learn/kids/stories/story_prophet_muhammad_part1_bedtime_v1',

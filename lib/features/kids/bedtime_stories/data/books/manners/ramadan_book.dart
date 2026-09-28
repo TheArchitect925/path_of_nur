@@ -8,11 +8,11 @@ const String _scenes = 'assets/images/kids_books/scenes';
 final BedtimeStorySeed ramadanKindnessBook = kidsPictureBook(
   id: 'story_ramadan_kindness_v1',
   storyFamilyId: 'ramadan_kindness',
-  title: 'Dates for the Neighbours',
+  title: 'Dates for the Neighbors',
   shortTitle: 'Ramadan Kindness',
   summary:
       'A gold sky, rumbling tummies, and a tray carried step by careful step '
-      'to the neighbours’ door.',
+      'to the neighbors’ door.',
   category: BedtimeStoryCategory.ramadanEid,
   collectionType: KidsIslamicStoryCollectionType.ramadanEid,
   storyType: KidsIslamicStoryType.ramadan,
@@ -22,7 +22,7 @@ final BedtimeStorySeed ramadanKindnessBook = kidsPictureBook(
       'Ramadan teaches us to care for others with generosity and soft '
       'hearts.',
   bedtimeClosing:
-      'Now close your eyes. Somewhere a neighbour is smiling because of a '
+      'Now close your eyes. Somewhere a neighbor is smiling because of a '
       'plate. Good night.',
   quranQuote:
       'O you who believe, fasting has been prescribed for you as it was '
@@ -102,7 +102,7 @@ final BedtimeStorySeed ramadanKindnessBook = kidsPictureBook(
     ], illustrationAsset: '$_scenes/steps_ramadan_suhoor.webp'),
     KidsBookSpread([
       '"Put three dates on each plate. Pour the water."',
-      '"These are for our neighbours."',
+      '"These are for our neighbors."',
     ], illustrationAsset: '$_scenes/steps_ramadan_suhoor.webp'),
     KidsBookSpread([
       'Safa counted dates. Zayn poured, slowly, no spills.',
@@ -111,7 +111,7 @@ final BedtimeStorySeed ramadanKindnessBook = kidsPictureBook(
       'They carried the tray to the door, step by careful step.',
     ], illustrationAsset: '$_scenes/ramadan_tray.webp'),
     KidsBookSpread([
-      '"JazakAllahu khayran!" said the neighbours.',
+      '"JazakAllahu khayran!" said the neighbors.',
       'Their faces shone like the sky.',
     ], atlasScene: KidsBookAtlasScene.homeEvening),
     KidsBookSpread([

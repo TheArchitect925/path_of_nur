@@ -645,13 +645,14 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Al-Hashr',
         surahNumber: 59,
         verseRange: '7',
-        label: 'Take what the Messenger gives you.',
+        label:
+            'Take what the Messenger gives you.', // copy-lint: allow prose-honorific
       ),
     ],
     meaning:
         'Prayer is learned through prophetic practice, not personal improvisation.',
     lessons: [
-      'Following Sunnah increases correctness and spiritual depth.',
+      'Following sunnah increases correctness and spiritual depth.',
       'Learning prayer details is part of honoring worship.',
       'Small prophetic practices elevate consistency.',
     ],
@@ -869,12 +870,12 @@ const List<HadithEntry> seededHadithEntries = [
         'Congregational prayer strengthens both personal devotion and communal unity.',
     lessons: [
       'Prayer is both individual worship and communal bond.',
-      'Regular jama\'ah builds discipline and belonging.',
+      'Regular jama’ah builds discipline and belonging.',
       'Shared worship increases consistency and reward.',
     ],
     reflectionPrompts: [
       'How often do I prioritize congregational prayer when possible?',
-      'What blocks me from joining jama\'ah more consistently?',
+      'What blocks me from joining jama’ah more consistently?',
       'How does praying with others affect my motivation?',
     ],
     practiceAction:
@@ -973,7 +974,7 @@ const List<HadithEntry> seededHadithEntries = [
     lessons: [
       'Good character is a core expression of religion.',
       'Spiritual growth must appear in behavior, not only knowledge.',
-      'Following the Sunnah includes refining conduct.',
+      'Following the sunnah includes refining conduct.',
     ],
     reflectionPrompts: [
       'Which part of my character needs the most refinement right now?',
@@ -1383,7 +1384,7 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Al-A\'raf',
         surahNumber: 7,
         verseRange: '156',
-        label: 'Allah\'s mercy encompasses all things.',
+        label: 'Allah’s mercy encompasses all things.',
       ),
       QuranConnection(
         surahName: 'Ali \'Imran',
@@ -1396,7 +1397,7 @@ const List<HadithEntry> seededHadithEntries = [
         'The hadith teaches reciprocity: mercy shown to others invites mercy from Allah.',
     lessons: [
       'Mercy is a spiritual obligation, not optional softness.',
-      'Hardness toward others harms one\'s own heart.',
+      'Hardness toward others harms one’s own heart.',
       'Compassion reflects sincerity of faith.',
     ],
     reflectionPrompts: [
@@ -1436,7 +1437,7 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Ali \'Imran',
         surahNumber: 3,
         verseRange: '159',
-        label: 'By Allah\'s mercy, you were gentle with them.',
+        label: 'By Allah’s mercy, you were gentle with them.',
       ),
       QuranConnection(
         surahName: 'An-Nahl',
@@ -1548,7 +1549,7 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Al-A\'raf',
         surahNumber: 7,
         verseRange: '156',
-        label: 'Allah\'s mercy is vast and encompassing.',
+        label: 'Allah’s mercy is vast and encompassing.',
       ),
     ],
     meaning: 'No sincere act of compassion is insignificant before Allah.',
@@ -1669,14 +1670,14 @@ const List<HadithEntry> seededHadithEntries = [
       'Where do I need more empathy in leadership or family roles?',
     ],
     practiceAction:
-        'In one shared setting today, make a considerate adjustment for someone\'s need.',
+        'In one shared setting today, make a considerate adjustment for someone’s need.',
     relatedHadithIds: ['conversation_with_lord', 'gentleness_all_matters'],
   ),
   HadithEntry(
     id: 'relieve_believer_hardship',
     themeId: _mercyThemeId,
     collectionIds: ['daily_sunnah', 'character_builder', essentialCollectionId],
-    title: 'Whoever Relieves a Believer\'s Hardship',
+    title: 'Whoever Relieves a Believer’s Hardship',
     excerpt:
         'Relieving others\' hardship is met by Allah relieving one\'s hardship in this life and the next.',
     hadithText:
@@ -2096,7 +2097,7 @@ const List<HadithEntry> seededHadithEntries = [
       'Where do I need more wisdom in applying what I know?',
     ],
     practiceAction:
-        'Identify one wise principle from Qur\'an/Sunnah study and apply it in a real decision today.',
+        'Identify one wise principle from Qur’an/Sunnah study and apply it in a real decision today.',
     relatedHadithIds: ['seek_knowledge', 'superiority_learned_worshipper'],
   ),
   HadithEntry(
@@ -2132,7 +2133,7 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Al-Furqan',
         surahNumber: 25,
         verseRange: '30',
-        label: 'Do not abandon the Qur\'an; remain attached to it.',
+        label: 'Do not abandon the Qur’an; remain attached to it.',
       ),
     ],
     meaning:
@@ -2140,12 +2141,12 @@ const List<HadithEntry> seededHadithEntries = [
     lessons: [
       'The best knowledge is that which connects directly to revelation.',
       'Teaching others multiplies reward and benefit.',
-      'Qur\'an learning should shape both recitation and character.',
+      'Qur’an learning should shape both recitation and character.',
     ],
     reflectionPrompts: [
-      'What is my current relationship with learning Qur\'an?',
-      'How can I share Qur\'anic learning with others appropriately?',
-      'Which small Qur\'an learning habit can I sustain this month?',
+      'What is my current relationship with learning Qur’an?',
+      'How can I share Qur’anic learning with others appropriately?',
+      'Which small Qur’an learning habit can I sustain this month?',
     ],
     practiceAction:
         'Review one short surah today and teach one reflection from it to a family member or friend.',
@@ -2451,7 +2452,7 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Ar-Ra\'d',
         surahNumber: 13,
         verseRange: '28',
-        label: 'Hearts find calm in Allah\'s remembrance.',
+        label: 'Hearts find calm in Allah’s remembrance.',
       ),
     ],
     meaning:
@@ -2462,9 +2463,9 @@ const List<HadithEntry> seededHadithEntries = [
       'Small private dhikr is deeply valued.',
     ],
     reflectionPrompts: [
-      'How present is Allah\'s remembrance in my private moments?',
+      'How present is Allah’s remembrance in my private moments?',
       'Do I carry hope in Allah while making duʿā?',
-      'What regular dhikr can become my heart\'s anchor?',
+      'What regular dhikr can become my heart’s anchor?',
     ],
     practiceAction:
         'Set aside two quiet minutes today for private dhikr with full attention.',
@@ -2577,7 +2578,7 @@ const List<HadithEntry> seededHadithEntries = [
       'How can I increase beneficial circles in my week?',
     ],
     practiceAction:
-        'Attend or initiate one short circle of Qur\'an or dhikr this week.',
+        'Attend or initiate one short circle of Qur’an or dhikr this week.',
     relatedHadithIds: [
       'allah_remembers_those_who_remember_him',
       'example_remembers_allah',
@@ -3055,7 +3056,8 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Al-Anfal',
         surahNumber: 8,
         verseRange: '27',
-        label: 'Do not betray Allah, the Messenger, and your trusts.',
+        label:
+            'Do not betray Allah, the Messenger, and your trusts.', // copy-lint: allow prose-honorific
       ),
     ],
     meaning:
@@ -3590,7 +3592,7 @@ const List<HadithEntry> seededHadithEntries = [
         surahName: 'Az-Zumar',
         surahNumber: 39,
         verseRange: '53',
-        label: 'Do not despair of Allah\'s mercy.',
+        label: 'Do not despair of Allah’s mercy.',
       ),
       QuranConnection(
         surahName: 'An-Nisa',
@@ -3770,7 +3772,7 @@ const List<HadithEntry> seededHadithEntries = [
         'Repeated sincere return is beloved to Allah; failure is not final when repentance is real.',
     lessons: [
       'Acknowledging sin is a mark of sincerity.',
-      'Allah\'s forgiveness is vast for those who keep returning.',
+      'Allah’s forgiveness is vast for those who keep returning.',
       'Shame should lead to tawbah, not despair.',
     ],
     reflectionPrompts: [
@@ -4150,7 +4152,7 @@ const List<HadithEntry> seededHadithEntries = [
     lessons: [
       'Comparison can erase awareness of blessings.',
       'Gratitude requires conscious perspective.',
-      'Contentment grows by seeing Allah\'s favors clearly.',
+      'Contentment grows by seeing Allah’s favors clearly.',
     ],
     reflectionPrompts: [
       'Where does comparison steal my gratitude?',
@@ -4213,7 +4215,7 @@ const List<HadithEntry> seededHadithEntries = [
       'What act of worship can become my gratitude habit?',
     ],
     practiceAction:
-        'Pray two extra rak\'ahs today as a private act of gratitude.',
+        'Pray two extra rak’ahs today as a private act of gratitude.',
     relatedHadithIds: ['look_at_those_below', 'patience_gratitude_balance'],
     isEssential: true,
   ),
@@ -4762,7 +4764,7 @@ const List<HadithEntry> seededHadithEntries = [
       'How can I reduce heedlessness in daily routine?',
     ],
     practiceAction:
-        'Set one recurring weekly act (charity, Quran, or service) as ongoing preparation for the hereafter.',
+        'Set one recurring weekly act (charity, Qur’an, or service) as ongoing preparation for the hereafter.',
     relatedHadithIds: [
       'visit_graves_reflection',
       'intelligent_prepares_after_death',
@@ -4951,7 +4953,7 @@ const List<HadithTheme> seededHadithThemes = [
         surahName: 'Al-A\'raf',
         surahNumber: 7,
         verseRange: '156',
-        label: 'Allah\'s mercy encompasses all things.',
+        label: 'Allah’s mercy encompasses all things.',
       ),
       QuranConnection(
         surahName: 'Ali \'Imran',
@@ -5052,7 +5054,7 @@ const List<HadithTheme> seededHadithThemes = [
         surahName: 'Ar-Ra\'d',
         surahNumber: 13,
         verseRange: '28',
-        label: 'Hearts find tranquility in Allah\'s remembrance.',
+        label: 'Hearts find tranquility in Allah’s remembrance.',
       ),
       QuranConnection(
         surahName: 'Ghafir',
@@ -5390,7 +5392,7 @@ const List<HadithCollection> seededHadithCollections = [
     id: 'daily_sunnah',
     title: 'Daily Life Sunnah',
     subtitle: 'Practical guidance for everyday conduct.',
-    description: 'Applied Sunnah in speech, family, worship, and trust.',
+    description: 'Applied sunnah in speech, family, worship, and trust.',
     hadithIds: [
       'allah_helps_servant_helps_brother',
       'anger_control_strength',

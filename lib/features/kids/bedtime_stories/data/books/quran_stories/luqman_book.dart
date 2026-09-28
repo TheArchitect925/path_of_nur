@@ -19,7 +19,7 @@ final BedtimeStorySeed luqmanBook = kidsPictureBook(
   themes: const [KidsIslamicStoryTheme.manners, KidsIslamicStoryTheme.family],
   refrain: 'O my son.',
   lesson:
-      'Worship Allah alone, honour your parents, pray, be patient, and walk '
+      'Worship Allah alone, honor your parents, pray, be patient, and walk '
       'gently.',
   bedtimeClosing:
       'Now close your eyes. Walk gently, speak softly, and sleep well. Good '

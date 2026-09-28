@@ -42,7 +42,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 2,
         label: 'Guidance for the God-conscious',
         whyItMatters:
-            'The surah opens by describing the Quran as guidance for hearts that approach it with taqwa.',
+            'The surah opens by describing the Qur’an as guidance for hearts that approach it with taqwa.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -58,7 +58,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 255,
         label: 'Ayat al-Kursi',
         whyItMatters:
-            'A central verse of tawhid and divine majesty, often studied for its description of Allah\'s perfect knowledge and dominion.',
+            'A central verse of tawhid and divine majesty, often studied for its description of Allah’s perfect knowledge and dominion.',
         evidenceLevel: QuranSurahContentEvidenceLevel
             .broadlyAcceptedClassicalUnderstanding,
       ),
@@ -118,7 +118,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 18,
         label: 'Witness to divine oneness',
         whyItMatters:
-            'A foundational testimony to Allah\'s justice and unique right to worship.',
+            'A foundational testimony to Allah’s justice and unique right to worship.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -219,7 +219,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 23,
         label: 'The repentance of Adam and Hawwa',
         whyItMatters:
-            'A concise Quranic model of repentance after error and returning to Allah with humility.',
+            'A concise Qur’anic model of repentance after error and returning to Allah with humility.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -366,7 +366,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
       QuranSurahNotableAyah(
         surahNumber: 12,
         ayahNumber: 87,
-        label: 'Do not despair of Allah\'s relief',
+        label: 'Do not despair of Allah’s relief',
         whyItMatters: 'A verse of hope and trust repeated often in hardship.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
@@ -375,7 +375,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 92,
         label: 'No blame upon you today',
         whyItMatters:
-            'Yusuf\'s words highlight mercy and forgiveness at the moment of power.',
+            'Yusuf’s words highlight mercy and forgiveness at the moment of power.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -411,7 +411,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 24,
         label: 'Kindness to parents',
         whyItMatters:
-            'These verses are central Quranic guidance on gentleness, service, and prayer for one\'s parents.',
+            'These verses are central Qur’anic guidance on gentleness, service, and prayer for one’s parents.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -424,9 +424,9 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
       QuranSurahNotableAyah(
         surahNumber: 17,
         ayahNumber: 82,
-        label: 'Healing and mercy in the Quran',
+        label: 'Healing and mercy in the Qur’an',
         whyItMatters:
-            'This verse describes the Quran as healing and mercy for believers.',
+            'This verse describes the Qur’an as healing and mercy for believers.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -515,7 +515,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 36,
         label: 'The speech of Isa in the cradle',
         whyItMatters:
-            'These verses affirm Isa\'s prophethood and servanthood to Allah.',
+            'These verses affirm Isa’s prophethood and servanthood to Allah.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -578,7 +578,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 88,
         label: 'The call of Yunus',
         whyItMatters:
-            'These verses are often remembered for repentance, humility, and Allah\'s rescue.',
+            'These verses are often remembered for repentance, humility, and Allah’s rescue.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
       QuranSurahNotableAyah(
@@ -586,7 +586,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         ayahNumber: 107,
         label: 'A mercy to the worlds',
         whyItMatters:
-            'A central verse describing the sending of the Prophet Muhammad.',
+            'A central verse describing the sending of the Prophet Muhammad ﷺ.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
     ],
@@ -770,7 +770,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
       QuranSurahNotableAyah(
         surahNumber: 33,
         ayahNumber: 56,
-        label: 'Sending blessings upon the Prophet',
+        label: 'Sending blessings upon the Prophet ﷺ',
         whyItMatters: 'A central verse of salawat and reverence.',
         evidenceLevel: QuranSurahContentEvidenceLevel.quranExplicit,
       ),
@@ -798,7 +798,7 @@ seededQuranSurahEnrichments1To38 = <QuranSurahEnrichmentSeed>[
         endAyahNumber: 44,
         label: 'The patience of Ayyub',
         whyItMatters:
-            'The passage highlights endurance in hardship and Allah\'s mercy after prolonged trial.',
+            'The passage highlights endurance in hardship and Allah’s mercy after prolonged trial.',
         evidenceLevel:
             QuranSurahContentEvidenceLevel.widelyTaughtThematicSummary,
       ),

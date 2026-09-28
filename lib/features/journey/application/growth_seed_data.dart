@@ -192,7 +192,7 @@ const List<GrowthHabit> seededGrowthHabits = [
     id: 'h_sunnah_prayer',
     title: 'Pray One Sunnah Salah',
     subtitle: 'Add one voluntary salah.',
-    description: 'Maintain one Sunnah salah with consistency.',
+    description: 'Maintain one sunnah salah with consistency.',
     category: GrowthHabitCategory.sunnahPractices,
     pathIds: ['core-muslim-habits', 'strengthening-heart', 'sunnah-revival'],
     recurrenceType: GrowthHabitRecurrenceType.weekdaysOnly,
@@ -695,7 +695,7 @@ const List<GrowthPath> seededGrowthPaths = [
   GrowthPath(
     id: 'sunnah-revival',
     title: 'Sunnah Revival',
-    subtitle: 'Small Sunnah acts restored.',
+    subtitle: 'Small sunnah acts restored.',
     description:
         'Revive prophetic daily practices with sustainable weekly commitment.',
     difficulty: GrowthPathDifficulty.steady,

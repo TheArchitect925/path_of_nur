@@ -7244,7 +7244,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyStageReciteMeaningSection1Body =>
-      'SubhanAllah spricht Allah von نقص und Unvollkommenheit frei. Alhamdulillah erfüllt das Herz mit Dankbarkeit. Allahu Akbar stellt alles andere in das rechte Verhältnis.';
+      'SubhanAllah spricht Allah von jedem Makel (naqs) und jeder Unvollkommenheit frei. Alhamdulillah erfüllt das Herz mit Dankbarkeit. Allahu Akbar stellt alles andere in das rechte Verhältnis.';
 
   @override
   String get learningJourneyStageReciteMeaningSection2Title =>
@@ -34361,7 +34361,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranPathwayMusaSubtitle =>
-      'Verfolgen Sie Mut, Sendung, Dua und Gottvertrauen durch Musa عليه السلام.';
+      'Verfolgen Sie Mut, Sendung, Dua und Gottvertrauen durch Musa (Friede sei mit ihm).';
 
   @override
   String get quranPathwayMusaDescription =>
@@ -34528,7 +34528,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranPathwayMusaStepThemeSubtitle =>
-      'Beginnen Sie mit dem großen Bogen von Musa عليه السلام durch den Koran.';
+      'Beginnen Sie mit dem großen Bogen von Musa (Friede sei mit ihm) durch den Koran.';
 
   @override
   String get quranPathwayMusaStepTahaTitle => 'Sure Ta-Ha studieren';

@@ -13,7 +13,7 @@ final BedtimeStorySeed sharingBook = kidsPictureBook(
   title: 'Sharing What Allah Gave',
   shortTitle: 'Sharing',
   summary:
-      'Amina\'s two biscuits, the seed that grows a hundred grains, and why '
+      'Amina’s two biscuits, the seed that grows a hundred grains, and why '
       'giving never makes you poorer.',
   category: BedtimeStoryCategory.foundations,
   collectionType: KidsIslamicStoryCollectionType.foundations,
@@ -134,7 +134,7 @@ final BedtimeStorySeed sharingBook = kidsPictureBook(
     ], illustrationAsset: '$_scenes/steps_share_give.webp'),
     KidsBookSpread(
       [
-        'Amina\'s biscuit was small. Her sadaqah was big.',
+        'Amina’s biscuit was small. Her sadaqah was big.',
         'Sharing makes it grow.',
       ],
       illustrationAsset: '$_scenes/steps_share_give.webp',
@@ -143,7 +143,7 @@ final BedtimeStorySeed sharingBook = kidsPictureBook(
     KidsBookSpread(
       [
         'What can you share today?',
-        'Zakah is one of the five pillars. Let\'s see the house again.',
+        'Zakah is one of the five pillars. Let’s see the house again.',
       ],
       illustrationAsset: '$_scenes/pillars_house.webp',
       tryItRoute: '/learn/kids/stories/book_first_steps_five_pillars_v1',

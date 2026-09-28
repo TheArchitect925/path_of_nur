@@ -133,7 +133,7 @@ const List<RevelationEra> seededRevelationEras = [
         id: 'false_confidence',
         title: 'False Confidence in Strength',
         summary:
-            'Material strength can create the illusion of safety from Allah\'s command.',
+            'Material strength can create the illusion of safety from Allah’s command.',
         prophetIds: ['hud', 'salih', 'shuayb'],
       ),
       RevelationHumanPattern(
@@ -268,7 +268,7 @@ const List<RevelationEra> seededRevelationEras = [
   RevelationEra(
     id: 'kingship_wisdom',
     title: 'Kingship and Wisdom',
-    summary: 'Authority, justice, and gratitude under Allah\'s trust.',
+    summary: 'Authority, justice, and gratitude under Allah’s trust.',
     regionLabel: 'Levant / Palestine region (traditional / approximate)',
     civilizationTitle: 'Kingship and Governance',
     civilizationSummary:
@@ -396,8 +396,7 @@ const List<RevelationEra> seededRevelationEras = [
       ),
       CoreMessageItem(
         id: 'final_completion',
-        text:
-            'Hold firmly to the completed guidance of the Qur\'an and Sunnah.',
+        text: 'Hold firmly to the completed guidance of the Qur’an and sunnah.',
       ),
     ],
     humanPatterns: [
@@ -417,7 +416,7 @@ const List<RevelationEra> seededRevelationEras = [
       ),
     ],
     reflectionPrompts: [
-      'How can the Sunnah shape your conduct this week?',
+      'How can the sunnah shape your conduct this week?',
       'Where can mercy become more visible in your daily life?',
       'What part of prophetic character do you want to practice now?',
     ],

@@ -247,7 +247,7 @@ class _BabyNamesGeneratorPageState
                 PremiumCard(
                   child: Text(
                     _attempted
-                        ? 'No generated suggestions. Try adjusting theme, origin, or Quranic-only filters.'
+                        ? 'No generated suggestions. Try adjusting theme, origin, or Qur’anic-only filters.'
                         : 'Tap "Generate Name" to get suggestions.',
                   ),
                 ),

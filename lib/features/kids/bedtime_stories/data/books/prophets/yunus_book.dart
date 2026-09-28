@@ -143,7 +143,7 @@ final BedtimeStorySeed yunusBook = kidsPictureBook(
     KidsBookSpread(
       [
         'Yunus grew tired and sad.',
-        'He left the city without waiting for Allah\'s command.',
+        'He left the city without waiting for Allah’s command.',
       ],
       atlasScene: KidsBookAtlasScene.desertRoad,
       quranRef: QuranQuoteRef(surah: 21, ayah: 87),
@@ -165,7 +165,7 @@ final BedtimeStorySeed yunusBook = kidsPictureBook(
     KidsBookSpread(
       [
         'The sailors drew lots.',
-        'Yunus\'s name came out. They drew again. Yunus.',
+        'Yunus’s name came out. They drew again. Yunus.',
         'And again. Yunus.',
       ],
       illustrationAsset: '$_scenes/yunus_storm.webp',

@@ -108,7 +108,7 @@ final BedtimeStorySeed cowBook = kidsPictureBook(
     ),
     KidsBookSpread(
       [
-        '"What colour?" they asked.',
+        '"What color?" they asked.',
         '"Bright yellow," Allah said, "a cow that pleases whoever sees it."',
       ],
       illustrationAsset: '$_scenes/cow_yellow.webp',

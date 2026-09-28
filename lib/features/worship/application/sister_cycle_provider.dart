@@ -136,7 +136,7 @@ final sisterCycleGuidanceProvider = Provider<SisterCycleGuidance>((ref) {
       summary: 'Regular worship tracking is active.',
       recommendedFocus: [
         'Maintain prayer on time.',
-        'Keep dhikr and Qur\'an reflection steady.',
+        'Keep dhikr and Qur’an reflection steady.',
       ],
     );
   }
@@ -160,8 +160,8 @@ final sisterCycleGuidanceProvider = Provider<SisterCycleGuidance>((ref) {
         : 'Salah and fasting are paused for this period. Keep ibadah through alternatives.',
     recommendedFocus: const [
       'Morning/evening dhikr',
-      'Du\'a and gratitude journaling',
-      'Qur\'an listening and tafsir reflection',
+      'Du’a and gratitude journaling',
+      'Qur’an listening and tafsir reflection',
       'Sadaqah and service intention',
     ],
   );

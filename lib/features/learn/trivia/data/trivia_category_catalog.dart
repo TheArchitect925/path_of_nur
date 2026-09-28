@@ -64,7 +64,7 @@ const List<TriviaCategory> triviaCategoryCatalog = [
   TriviaCategory(
     id: 'seerah',
     title: 'Seerah',
-    subtitle: 'The life and journey of the Messenger of Allah.',
+    subtitle: 'The life and journey of the Messenger of Allah ﷺ.',
     iconKey: 'seerah',
     displayOrder: 8,
   ),

@@ -120,8 +120,8 @@ final BedtimeStorySeed whatWeBelieveBook = kidsPictureBook(
       'Made of light, doing what Allah tells them.',
     ], illustrationAsset: '$_scenes/steps_angels_light.webp'),
     KidsBookSpread([
-      'Three: we believe in Allah\'s books.',
-      'The Tawrah, the Zabur, the Injil, and the Qur\'an.',
+      'Three: we believe in Allah’s books.',
+      'The Tawrah, the Zabur, the Injil, and the Qur’an.',
     ], illustrationAsset: '$_scenes/steps_iman_books.webp'),
     KidsBookSpread([
       'Four: we believe in the prophets.',

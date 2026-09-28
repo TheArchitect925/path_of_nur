@@ -94,7 +94,7 @@ const List<QuranAyahEnrichmentEntry> seededTawhidBeliefAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Shirk is the greatest wrong because it misdirects worship',
     summary:
-        'This ayah clearly warns against associating partners with Allah and names it as a tremendous ظلم.',
+        'This ayah clearly warns against associating partners with Allah and names it as a tremendous zulm (injustice).',
     body:
         'The verse teaches that shirk is not a small mistake in religious language. It is a deep injustice because it gives to creation what belongs only to Allah. The ayah protects the heart from misplaced devotion, fear, and dependence.',
     tags: [QuranAyahEnrichmentTag.guidance],
