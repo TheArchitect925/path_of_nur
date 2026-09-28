@@ -168,8 +168,10 @@ class NoorLiquidGlassCapability {
 
   static NoorLiquidGlassCapability current() {
     return NoorLiquidGlassCapability(
-      platformSupported: !kIsWeb,
-      shaderFilterSupported: ui.ImageFilter.isShaderFilterSupported,
+      platformSupported: true,
+      // The glass is a plain backdrop blur, not a custom shader, and the web
+      // renderer draws it as well.
+      shaderFilterSupported: kIsWeb || ui.ImageFilter.isShaderFilterSupported,
     );
   }
 }

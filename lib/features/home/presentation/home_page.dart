@@ -293,7 +293,7 @@ class _TopGreetingBlock extends StatelessWidget {
               ),
               const SizedBox(height: 3),
               Text(
-                '$_address ${userProfile.name}',
+                '$_address ${userProfile.name}'.trim(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,

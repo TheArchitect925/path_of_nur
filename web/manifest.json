@@ -1,11 +1,12 @@
 {
-    "name": "path_of_nur",
-    "short_name": "path_of_nur",
+    "name": "Path of Nur",
+    "short_name": "Path of Nur",
     "start_url": ".",
+    "scope": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#EFE7D8",
+    "theme_color": "#E6C491",
+    "description": "A companion for worship and learning.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

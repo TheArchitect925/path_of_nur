@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,7 @@ class AppNavigationBridge {
   StreamSubscription<String>? _routeSubscription;
 
   Future<void> bootstrap() async {
-    if (!Platform.isIOS || _initialized) return;
+    if (kIsWeb || !Platform.isIOS || _initialized) return;
     _initialized = true;
     _routeSubscription = PlatformRouteDispatcher.stream.listen(_openRoute);
     _channel.setMethodCallHandler((call) async {

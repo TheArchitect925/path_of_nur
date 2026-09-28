@@ -21,6 +21,7 @@ import '../application/onboarding_state_provider.dart';
 import '../domain/onboarding_preferences.dart';
 import '../../../core/theme/app_fonts.dart';
 import '../../../core/theme/app_icons.dart';
+import '../../../core/theme/app_palette.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -326,10 +327,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color(0xFFF4ECDD).withValues(alpha: 0.84),
-                border: Border.all(
-                  color: const Color(0xFFD8C49A).withValues(alpha: 0.45),
-                ),
+                // Theme surfaces, so the text stays legible on the night sky.
+                color: context.palette.surfaceSoft.withValues(alpha: 0.84),
+                border: Border.all(color: context.palette.border),
               ),
               child: Column(
                 children: [
@@ -378,10 +378,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
-                color: const Color(0xFFF7F1E7).withValues(alpha: 0.72),
-                border: Border.all(
-                  color: const Color(0xFFD8C49A).withValues(alpha: 0.34),
-                ),
+                color: context.palette.surfaceSoft.withValues(alpha: 0.72),
+                border: Border.all(color: context.palette.border),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

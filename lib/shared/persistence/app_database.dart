@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sqlite3/sqlite3.dart';
+import 'package:sqlite3/common.dart';
+
+import 'sqlite_opener.dart';
 
 const String defaultStructuredDataScopeId = '__default__';
 
@@ -17,14 +19,14 @@ class AppDatabase {
   }
 
   factory AppDatabase.openFile(String path) {
-    return AppDatabase._(sqlite3.open(path));
+    return AppDatabase._(openSqliteFile(path));
   }
 
   factory AppDatabase.inMemory() {
-    return AppDatabase._(sqlite3.openInMemory());
+    return AppDatabase._(openSqliteInMemory());
   }
 
-  final Database _db;
+  final CommonDatabase _db;
 
   void _ensureColumn({
     required String table,

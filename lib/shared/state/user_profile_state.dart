@@ -32,7 +32,9 @@ class UserProfileNotifier extends StateNotifier<UserProfileState> {
   UserProfileNotifier(this._store)
     : super(
         UserProfileState(
-          name: 'Shahab',
+          // The name is optional in setup; greetings fall back to the
+          // brother/sister address when it is empty.
+          name: '',
           sex: UserSex.brother,
           createdAtIso: DateTime.now().toIso8601String(),
         ),

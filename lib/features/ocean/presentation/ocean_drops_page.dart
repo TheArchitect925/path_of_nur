@@ -41,7 +41,11 @@ class OceanDropsPage extends ConsumerWidget {
       subtitle: l10n.oceanCommunitySubtitle,
       children: [
         CommunityOceanHero(
-          name: profile.name,
+          name: profile.name.isNotEmpty
+              ? profile.name
+              : profile.sex == UserSex.brother
+              ? l10n.profileBrother
+              : l10n.profileSister,
           personal: personal,
           community: community,
           personalStage: personalStage,

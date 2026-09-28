@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+
 import '../../../../shared/persistence/local_store.dart';
 
 class QuranWordTimingSegment {
@@ -40,11 +43,13 @@ class QuranWordTimingRepository {
     LocalStore? store,
     Uri Function(int recitationId, int surahNumber, int ayahNumber)?
     endpointBuilder,
-  }) : _client = client ?? HttpClient(),
+  }) : _injectedClient = client,
        _store = store,
        _endpointBuilder = endpointBuilder ?? _defaultEndpointBuilder;
 
-  final HttpClient _client;
+  final HttpClient? _injectedClient;
+  // Created on first native fetch; dart:io has no HttpClient on the web.
+  late final HttpClient _client = _injectedClient ?? HttpClient();
   final LocalStore? _store;
   final Uri Function(int recitationId, int surahNumber, int ayahNumber)
   _endpointBuilder;
@@ -86,14 +91,8 @@ class QuranWordTimingRepository {
     final url = _endpointBuilder(recitationId, surahNumber, ayahNumber);
 
     try {
-      final request = await _client
-          .getUrl(url)
-          .timeout(const Duration(seconds: 10));
-      final response = await request.close().timeout(
-        const Duration(seconds: 10),
-      );
-      if (response.statusCode != HttpStatus.ok) return const [];
-      final body = await response.transform(utf8.decoder).join();
+      final body = await _fetchBody(url);
+      if (body == null) return const [];
       final decoded = jsonDecode(body);
       if (decoded is! Map<String, dynamic>) return const [];
       final files = decoded['audio_files'];
@@ -130,6 +129,20 @@ class QuranWordTimingRepository {
     } catch (_) {
       return const [];
     }
+  }
+
+  /// The response body, or null when the server answers anything but 200.
+  Future<String?> _fetchBody(Uri url) async {
+    const timeout = Duration(seconds: 10);
+    if (kIsWeb) {
+      final response = await http.get(url).timeout(timeout);
+      if (response.statusCode != 200) return null;
+      return utf8.decode(response.bodyBytes);
+    }
+    final request = await _client.getUrl(url).timeout(timeout);
+    final response = await request.close().timeout(timeout);
+    if (response.statusCode != HttpStatus.ok) return null;
+    return response.transform(utf8.decoder).join();
   }
 
   static Uri _defaultEndpointBuilder(

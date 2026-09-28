@@ -160,10 +160,12 @@ class SettingsPage extends ConsumerWidget {
               contentPadding: EdgeInsets.zero,
               leading: const _HomepageProfileIcon(size: 42),
               title: Text(
-                l10n.settingsProfileDisplayNameSummary(
-                  _addressFromSex(userProfile.sex, l10n),
-                  userProfile.name,
-                ),
+                l10n
+                    .settingsProfileDisplayNameSummary(
+                      _addressFromSex(userProfile.sex, l10n),
+                      userProfile.name,
+                    )
+                    .trim(),
               ),
               subtitle: Text(
                 l10n.settingsProfileLevelUsageSummary(

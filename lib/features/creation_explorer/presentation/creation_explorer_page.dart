@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -133,7 +134,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   }
 
   ImageFormatGroup _preferredImageFormatGroup() {
-    if (Platform.isIOS) {
+    if (!kIsWeb && Platform.isIOS) {
       return ImageFormatGroup.bgra8888;
     }
     return ImageFormatGroup.nv21;

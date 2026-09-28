@@ -199,7 +199,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (!Platform.isIOS) return;
+    if (kIsWeb || !Platform.isIOS) return;
     if (state == AppLifecycleState.inactive ||
         state == AppLifecycleState.paused) {
       _pauseReadingSession();
@@ -2891,72 +2891,75 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             ],
           ),
         ),
-        const SizedBox(height: 10),
-        _SettingsGroupCard(
-          title: l10n.quranReaderDownloadsOfflineSectionTitle,
-          subtitle: l10n.quranReaderDownloadsOfflineSectionSubtitle,
-          child: FutureBuilder<bool>(
-            future: audioRepository.isSurahDownloaded(
-              reciterId: audioSettings.reciterId,
-              surahNumber: widget.surahNumber,
-            ),
-            builder: (context, snapshot) {
-              final fullyDownloaded = snapshot.data ?? false;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FilledButton.tonalIcon(
-                          onPressed: _isDownloadingSurah
-                              ? null
-                              : () => _downloadCurrentSurah(
-                                  context: context,
-                                  repository: audioRepository,
-                                  reciterId: audioSettings.reciterId,
-                                ),
-                          icon: const Icon(Icons.download_rounded),
-                          label: Text(
-                            _isDownloadingSurah
-                                ? l10n.quranReaderDownloadInProgressLabel(
-                                    _downloadedAyahs,
-                                    _downloadTotalAyahs,
-                                  )
-                                : l10n.quranReaderDownloadSurahAction,
+        // The web build streams every recitation; there is nothing to keep.
+        if (!kIsWeb) ...[
+          const SizedBox(height: 10),
+          _SettingsGroupCard(
+            title: l10n.quranReaderDownloadsOfflineSectionTitle,
+            subtitle: l10n.quranReaderDownloadsOfflineSectionSubtitle,
+            child: FutureBuilder<bool>(
+              future: audioRepository.isSurahDownloaded(
+                reciterId: audioSettings.reciterId,
+                surahNumber: widget.surahNumber,
+              ),
+              builder: (context, snapshot) {
+                final fullyDownloaded = snapshot.data ?? false;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: FilledButton.tonalIcon(
+                            onPressed: _isDownloadingSurah
+                                ? null
+                                : () => _downloadCurrentSurah(
+                                    context: context,
+                                    repository: audioRepository,
+                                    reciterId: audioSettings.reciterId,
+                                  ),
+                            icon: const Icon(Icons.download_rounded),
+                            label: Text(
+                              _isDownloadingSurah
+                                  ? l10n.quranReaderDownloadInProgressLabel(
+                                      _downloadedAyahs,
+                                      _downloadTotalAyahs,
+                                    )
+                                  : l10n.quranReaderDownloadSurahAction,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: OutlinedButton.icon(
-                          onPressed: fullyDownloaded
-                              ? () => _clearCurrentSurahDownload(
-                                  context: context,
-                                  repository: audioRepository,
-                                  reciterId: audioSettings.reciterId,
-                                )
-                              : null,
-                          icon: const Icon(Icons.delete_outline_rounded),
-                          label: Text(l10n.quranReaderRemoveDownloadAction),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: fullyDownloaded
+                                ? () => _clearCurrentSurahDownload(
+                                    context: context,
+                                    repository: audioRepository,
+                                    reciterId: audioSettings.reciterId,
+                                  )
+                                : null,
+                            icon: const Icon(Icons.delete_outline_rounded),
+                            label: Text(l10n.quranReaderRemoveDownloadAction),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    l10n.quranReaderAudioDownloadNote,
-                    style: TextStyle(
-                      color: context.palette.onSurfaceSubtle,
-                      fontSize: 12,
-                      height: 1.4,
+                      ],
                     ),
-                  ),
-                ],
-              );
-            },
+                    const SizedBox(height: 8),
+                    Text(
+                      l10n.quranReaderAudioDownloadNote,
+                      style: TextStyle(
+                        color: context.palette.onSurfaceSubtle,
+                        fontSize: 12,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ]);
     }
 
