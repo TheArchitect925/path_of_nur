@@ -1352,7 +1352,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get duaDetailPlannedBody =>
-      'This entry exists in the dua scaffold, but the source text and verification details have not been completed yet. It stays tracked so the final dua library can expand without changing the architecture.';
+      'The source text for this du’a has not been verified yet.';
 
   @override
   String get nextSalah => 'Next Salah';
@@ -2812,7 +2812,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'Keep prayer times, reminders, and quick follow-up actions in one flow.';
+      'Keep prayer times, reminders, and quick follow-up actions together.';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
@@ -2850,7 +2850,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpGuideLearningDescription =>
-      'Use the learning hub to move between guided topics, lessons, and review tools.';
+      'Use Learn to move between guided topics, lessons, and review tools.';
 
   @override
   String get helpGuideLearningStep1 =>
@@ -2862,7 +2862,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpGuideLearningStep3 =>
-      'Use search when you want a faster route to a topic, prophet, glossary term, or lesson.';
+      'Use search when you want to reach a topic, prophet, glossary term, or lesson faster.';
 
   @override
   String get helpGuideDhikrAdhkarTitle => 'Dhikr & Adhkar';
@@ -7561,7 +7561,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyIslandDiscoveryDescription =>
-      'Explore lighter entry points that still lead into real understanding and reflection.';
+      'Lighter ways in that still lead to real understanding and reflection.';
 
   @override
   String get learningJourneyIslandKidsLearningTitle => 'Kids Learning';
@@ -7572,7 +7572,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyIslandKidsLearningDescription =>
-      'Keep children’s learning in one dedicated island so future kids journeys, tools, and activities have a clear home.';
+      'Journeys and tools made for children.';
 
   @override
   String get learningJourneyIslandBrowseAllTitle => 'Browse All';
@@ -7583,29 +7583,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyIslandBrowseAllDescription =>
-      'Use one island as the front door to the full learning map when you want everything available in one place.';
+      'The full learning map, from one page.';
 
   @override
   String get learningJourneyIslandToolsOtherTitle => 'Tools & Other';
 
   @override
   String get learningJourneyIslandToolsOtherSubtitle =>
-      'Utilities, family tools, and supporting learning spaces.';
+      'Family tools and other helpful pages.';
 
   @override
   String get learningJourneyIslandToolsOtherDescription =>
-      'Keep non-journey utilities and supporting spaces in one dedicated island instead of scattering them across the legacy learning hub.';
+      'Tools that sit outside the journeys, like Baby Names.';
 
   @override
   String get learningJourneyIslandLegacyLearningTitle => 'Legacy Learning';
 
   @override
   String get learningJourneyIslandLegacyLearningSubtitle =>
-      'Older learning surfaces and migrated sections that still remain in use.';
+      'The original learning library.';
 
   @override
   String get learningJourneyIslandLegacyLearningDescription =>
-      'Keep the legacy learning library in one explicit island while the newer journey structure continues to absorb and replace it over time.';
+      'Lessons from the first version of Learn, kept as they were.';
 
   @override
   String get learningJourneyFeedbackFirstStageOpened =>
@@ -8479,7 +8479,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyDetailMissingBody =>
-      'Return to the island page and choose another journey.';
+      'Go back and choose another journey.';
 
   @override
   String get learningJourneyPlaceholderLearnLabel => 'What you’ll learn';
@@ -8671,7 +8671,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyToolProphetsSubtitle =>
-      'Open the current Prophets system.';
+      'The prophets’ stories and lessons.';
 
   @override
   String get learningJourneyToolWordsSubtitle =>
@@ -9852,7 +9852,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomDailyQuoteSection1Body =>
-      'Daily Wisdom brings short reminders from Qur’an, hadith, prophetic example, and reflection into one calm entry point. The goal is not volume. The goal is one truthful reminder that stays with you.';
+      'Daily Wisdom brings short reminders from Qur’an, hadith, prophetic example, and reflection together, one at a time. The goal is not volume. The goal is one truthful reminder that stays with you.';
 
   @override
   String get learningJourneyWisdomDailyQuoteSection2Title =>
@@ -9936,7 +9936,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomShortLessonTakeaway3 =>
-      'Daily Wisdom should naturally point into the wider journey system.';
+      'Daily Wisdom should lead naturally into the wider journeys.';
 
   @override
   String get learningJourneyWisdomShortLessonReflection =>
@@ -9987,7 +9987,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeTakeaway3 =>
-      'Daily Wisdom should send you back into the wider learning system.';
+      'Daily Wisdom should send you back into your wider learning.';
 
   @override
   String get learningJourneyWisdomPracticeReflection =>
@@ -10500,7 +10500,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyWuduJourneySubtitle =>
-      'Learn the sequence, sunnah elements, and practice flow of wudu.';
+      'Learn the order of wudu, its sunnah acts, and how to practice it.';
 
   @override
   String get learningJourneyWuduJourneyDescription =>
@@ -10601,7 +10601,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyReadingBasicsWhyThisMatters =>
-      'Users often need a middle layer between alphabet exposure and full recitation.';
+      'Between learning the letters and reciting whole ayahs, most people need a middle step.';
 
   @override
   String get learningJourneyTriviaPathsTitle => 'Trivia Knowledge Paths';
@@ -10628,7 +10628,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsWhyThisMatters =>
-      'Trivia can become a low-friction entry point into structured knowledge when it is staged well.';
+      'Well-staged trivia is an easy way into structured knowledge.';
 
   @override
   String get learningJourneyStageHadithEssentialCollectionTitle =>
@@ -10705,7 +10705,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Begin with wudu as preparation, purification, and readiness for salah.';
 
   @override
-  String get learningJourneyStageWuduPracticeTitle => 'Steps and practice flow';
+  String get learningJourneyStageWuduPracticeTitle => 'Steps and practice';
 
   @override
   String get learningJourneyStageWuduPracticeSummary =>
@@ -10891,7 +10891,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyToolGuidedPrayerSubtitle =>
-      'Open a guided salah flow.';
+      'Pray step by step with guidance.';
 
   @override
   String get learningJourneyToolEssentialHadithSubtitle =>
@@ -10906,12 +10906,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Revisit due or weak hadith material.';
 
   @override
-  String get learningJourneyToolDuaHubSubtitle =>
-      'Open the current verified dua hub.';
+  String get learningJourneyToolDuaHubSubtitle => 'Browse verified duas.';
 
   @override
   String get learningJourneyToolTriviaPathsSubtitle =>
-      'Open the guided trivia path system.';
+      'Quizzes that build step by step.';
 
   @override
   String get learningJourneyToolTriviaReviewSubtitle =>
@@ -11969,7 +11968,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsBullet3 =>
-      'Use paths as entry points into deeper learning.';
+      'Use paths as a way into deeper learning.';
 
   @override
   String get learningJourneyTriviaPathsTakeaway1 =>
@@ -12063,7 +12062,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaReviewBullet3 =>
-      'Let reinforcement lead back into the journey system.';
+      'Let review lead you back into the journeys.';
 
   @override
   String get learningJourneyTriviaReviewTakeaway1 =>
@@ -12436,7 +12435,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyQuranJourneyOutcome2 =>
-      'Build a first reading rhythm from clear entry points';
+      'Build a first reading rhythm from a clear starting point';
 
   @override
   String get learningJourneyQuranJourneyOutcome3 =>
@@ -12657,7 +12656,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyQuranOpenSection2Body =>
-      'Use one clear entry point, keep the reading gentle, and let curiosity grow after the relationship begins.';
+      'Start in one clear place, keep the reading gentle, and let curiosity grow after the relationship begins.';
 
   @override
   String get learningJourneyQuranOpenBullet1 =>
@@ -13306,7 +13305,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyReadingCompletionBullet3 =>
-      'Use Qur’an and salah journeys as the next layer.';
+      'Take the Qur’an and salah journeys next.';
 
   @override
   String get learningJourneyReadingCompletionTakeaway1 =>
@@ -14507,7 +14506,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningPathBeginnerDescription =>
-      'A calm first route through Islam, worship, and identity.';
+      'A first path through Islam, worship, and identity.';
 
   @override
   String get learningPathPracticingTitle => 'Building Consistency';
@@ -14521,7 +14520,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningPathSeekerDescription =>
-      'A more structured route through belief, history, and integration.';
+      'A more structured path through belief, history, and integration.';
 
   @override
   String get learningPathAdvancedTitle => 'Refinement';
@@ -14803,7 +14802,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learningJourneyStageUnavailableBody =>
-      'This stage cannot open its intended content at the moment. Use the fallback below or return to the journey and continue with another available step.';
+      'This stage cannot open its intended content at the moment. Use the option below or return to the journey and continue with another available step.';
 
   @override
   String get learningJourneyStageUnavailableFallbackTitle =>
@@ -17675,7 +17674,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nCurrent note: the app ships temporary offline fallback adhan variants derived from this bundled clip until the curated replacement set is swapped in.';
+      'Bundled adhan reminder clip source:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginal file URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuthor listed on source page: Jarih (own work)\nLicense: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nNote: the app’s Fajr adhan sounds use this same recording.';
 
   @override
   String get legalAttributionsWordTimingTitle => 'Word Timing (Live Sync Beta)';
@@ -17724,7 +17723,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'Cleaner surfaces and stronger contrast for focused reading. Recommended for longer reading sessions.';
+      'Plainer backgrounds and stronger contrast for focused reading. Recommended for longer reading sessions.';
 
   @override
   String get settingsThemeModeDarkDescription =>
@@ -21260,7 +21259,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get quranTeachingLevelKnowSomeLettersDescription =>
-      'Opens early modules together while still showing a recommended order.';
+      'Opens the early lessons together, still in a recommended order.';
 
   @override
   String get quranTeachingLevelReadSlowlyTitle => 'I can read slowly';
@@ -22032,15 +22031,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get adhanOptionFajrDefaultTitle => 'Fajr Default';
 
   @override
-  String get adhanOptionFajrDefaultSubtitle =>
-      'Temporary bundled fallback for Fajr-specific routing.';
+  String get adhanOptionFajrDefaultSubtitle => 'The adhan for Fajr.';
 
   @override
   String get adhanOptionFajrSoftTitle => 'Fajr Soft';
 
   @override
   String get adhanOptionFajrSoftSubtitle =>
-      'Temporary bundled fallback with a gentler Fajr label.';
+      'Same recording as the default Fajr adhan.';
 
   @override
   String get accountsSyncThisDeviceGeneric => 'This device';
@@ -30423,7 +30421,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionExploreHadithDescription =>
-      'Use the hadith surface to stay close to prophetic mercy, leadership, and character as the Seerah unfolds.';
+      'Read hadith to stay close to prophetic mercy, leadership, and character as the Seerah unfolds.';
 
   @override
   String get learnSeerahCompanionExploreQuranSubtitle =>
@@ -30657,7 +30655,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionTurningPointsDescription =>
-      'Use this module to connect Hudaybiyyah, the Conquest of Makkah, and the Farewell Hajj to the wider arc of patience, opening, and completion in the Seerah.';
+      'Connect Hudaybiyyah, the Conquest of Makkah, and the Farewell Hajj to the wider arc of patience, opening, and completion in the Seerah.';
 
   @override
   String get learnSeerahCompanionFinalSermonDescription =>
@@ -34535,7 +34533,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guidedPathSalahDescription =>
-      'A calmer beginner path into salah. Start with the meaning of prayer, then move into wudu, practice, and one guided prayer flow without needing to figure everything out at once.';
+      'A calmer beginner path into salah. Start with the meaning of prayer, then move into wudu, practice, and one guided prayer without needing to figure everything out at once.';
 
   @override
   String get guidedPathQuranBeginnerTitle => 'Qur’an Beginner Path';
@@ -34546,7 +34544,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guidedPathQuranBeginnerDescription =>
-      'A soft introduction to the canonical Qur’an experience. Start with reassurance and one calm entry point, then move into summary, reading, and deeper Qur’an pathways at your pace.';
+      'A first introduction to the Qur’an. Start with reassurance and one clear place to begin, then move into summaries, reading, and deeper Qur’an pathways.';
 
   @override
   String get guidedPathDailyDhikrTitle => 'Daily Dhikr Path';
@@ -35347,7 +35345,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDescription =>
-      'Warm Noor surfaces with solid premium containers, soft depth, and no glass transparency.';
+      'Warm Noor colors on solid cards, with soft depth and no glass transparency.';
 
   @override
   String get settingsThemeModeNoorGlassDarkDescription =>
@@ -35355,7 +35353,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'Warm, solid surfaces without transparency for a clean and grounded everyday view.';
+      'Warm, solid backgrounds without transparency for a clean and grounded everyday view.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
@@ -37420,7 +37418,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learnContainedStateBody =>
-      'This route is intentionally contained for now instead of presenting unfinished learning content as complete.';
+      'No lessons here yet. Choose another journey or lesson.';
 
   @override
   String get learnContainedStateBackToLearnAction => 'Back to Learn';
@@ -37737,7 +37735,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get salahTrainerPrayerJummahOverview =>
-      'Jumu’ah includes the khutbah before the prayer and two rakahs prayed in congregation. The guided flow here focuses on the two prayer rakahs and reminds the user of the khutbah context.';
+      'Jumu’ah includes the khutbah before the prayer and two rakahs prayed in congregation. This guide focuses on the two prayer rakahs and reminds you of the khutbah context.';
 
   @override
   String get salahTrainerJummahGuidanceHanafi =>

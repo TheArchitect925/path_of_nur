@@ -156,6 +156,19 @@ hadith and ayah quotations, `source…`, ids and paths are never read). The
 ones are locked at zero, and `prose-studio-vocabulary`, `prose-roadmap`,
 `prose-tail` and `prose-list-of-three` are V3's rewrites, counted down.
 
+In prose, studio vocabulary and roadmap talk are counted by *sense*, not by
+word: the World lessons' root systems and atmospheric layers, the Hijrah's
+migration, a scholar's legacy and "future generations" are English, not
+product talk. `prose-studio-vocabulary` counts the words that only mean the
+product (hub, module, fallback, payload, canonical, island…) and the
+ambiguous ones where they name a page ("the Prophets system", "a practice
+surface", "reading routes"); `prose-roadmap` counts promises ("a future
+update", "For now", "placeholder"). The chrome rules keep the plain word
+lists. Text nobody reads is out of scope: logs and exceptions, the watch's
+validation messages, editorial metadata no widget renders (`notes`,
+`mappingNotes`, `coverageNote`, `datasetName`, `editorialNote`) and the
+PIN-gated editorial dashboard.
+
 A line that is right as it is opts out of one rule with a trailing comment,
 so the exception is visible where it lives:
 
@@ -190,6 +203,6 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V0 · Foundation (done 2026-09-07) | this guide, the lint, the ratchet test, dead keys deleted, delta translation |
 | V1 · Mechanics | scripted, reviewed diff: apostrophes, terms, casing, honorifics, UK→US, typos, dashes, label periods, duplicate labels, kids dialogue quotes |
 | V2 · Chrome by exposure | (a) notifications, onboarding, home, navigation, settings, profile · (b) Learn hubs, Qur’an, Worship, Dhikr, Growth · (c) Kids · (d) games, circles, baby names, history, world, accounts |
-| V3 · Prose | the content keys and the Dart content files: (a) mechanics, done 2026-09-27 · (b) studio vocabulary and roadmap · (c) tails · (d) lists in cards and summaries |
+| V3 · Prose | the content keys and the Dart content files: (a) mechanics and (b) studio vocabulary and roadmap, done 2026-09-27 · (c) tails · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

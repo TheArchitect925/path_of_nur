@@ -290,7 +290,7 @@ RULES: list[Rule] = [
         rx(r"\b(streaks?|XP|points|badges?|level up|leaderboards?)\b"),
     ),
     Rule(
-        "studio-vocabulary", "prose",
+        "studio-vocabulary", "chrome",
         "Product or engineering words on screen: surface, island, hub, module, flow, layer, legacy, migration, parity, canonical, system.",
         "Say what the person sees: a page, a lesson, the reader.",
         rx_key_exempt(
@@ -531,6 +531,34 @@ def arabic_name_in_dart() -> list[str]:
 # the baseline can only go down.
 
 _APOSTROPHE_BETWEEN = re.compile(r"[A-Za-z]'[A-Za-z]")
+# Studio vocabulary in lesson prose. The chrome list would flag the World
+# lessons' root systems and atmospheric layers, the Hijrah's migration and a
+# scholar's legacy, so prose counts the studio *senses*: words that only ever
+# mean the product, and the ambiguous ones where they name a page or feature.
+PROSE_STUDIO = re.compile(
+    r"\b(?:hubs?|modules?|parity|scaffold(?:ing)?|entry[ -]points?|enrichment|datasets?|"
+    r"routing|toggles?|fallback|deprecated|payload|runtime|canonical|(?<!Dynamic )islands?|utilities)\b|"
+    r"\butility (?:surfaces?|tools?|pages?)\b|"
+    r"\b(?:legacy|older|migrated) (?:learning|library|hub|island|sections?|surfaces?|pages?|content)\b|"
+    r"\bduring migration\b|\bsurfaces\b|"
+    r"\b(?:learning|reflection|practice|companion|words|note-keeping|timeline|wisdom|hadith|dhikr|"
+    r"Prophets|top-words) surface\b|"
+    r"\b(?:Prophets|quiz|learning|journey|trivia path|timeline|worship|hadith|core|design) systems?\b|"
+    r"\b(?:guided|practice|quiz|capture|meaning|story|checklist practice|wisdom|guided salah|guided prayer) flows?\b|"
+    r"\bin one flow\b|"
+    r"\b(?:first|middle|next|daily|study|observation|translation) layers?\b|"
+    r"\b(?:reading|real|in-app|faster) routes?\b|\broute (?:indirection|through)\b|\bNo route is attached\b",
+    re.I,
+)
+# Roadmap talk in lesson prose: what the product will do later, not the
+# future the lesson speaks of (future generations, your future self).
+PROSE_ROADMAP = re.compile(
+    r"will appear here as|\bas (?:the |more )?(?:content|library|app|section|collection|lessons?|journeys?|features?) "
+    r"(?:grows?|expands?|matures?|(?:is|are) prepared)\b|"
+    r"\b(?:a|in a) future\b(?! mercy)|\bfuture (?:phases?|updates?|passes|releases?|versions?|kids journeys)\b|"
+    r"coming soon|placeholder|not fully available|intentionally contained|later passes|parity with|"
+    r"\bphased\b|\broadmap\b|\bFor now\b|\bcontained for now\b"
+)
 _ARABIC_SCRIPT = re.compile(r"[ء-يٱ-ۓ]")
 # ARB keys whose Arabic line is the point: the Fajr adhan's "prayer is
 # better than sleep".
@@ -618,15 +646,16 @@ PROSE_RULES: list[ProseRule] = [
                            or _arabic_honorific_after_latin(v))),
     ),
     ProseRule(
-        "prose-studio-vocabulary", "Studio vocabulary in prose outside the ARB (module, surface, layer…).",
-        "Say what the person sees: a lesson, a page, the reader.",
-        lambda v: RULE_BY_ID["studio-vocabulary"].match(v.field, v.value),
+        "prose-studio-vocabulary", "Studio vocabulary in lesson prose: the ARB's prose keys and the Dart content (hub, module, the Prophets system, a practice surface).",
+        "Say what the person sees: a lesson, a page, the reader. Science and history senses (root systems, legacy, migration) are not counted.",
+        lambda v: bool(PROSE_STUDIO.search(v.value)),
+        lambda k, v: is_content(k) and not is_sacred(k) and bool(PROSE_STUDIO.search(v)),
     ),
     ProseRule(
         "prose-roadmap", "Roadmap talk in lesson prose (will appear here, coming soon, for now).",
         "Say what is here.",
-        lambda v: RULE_BY_ID["roadmap-speak"].match(v.field, v.value),
-        lambda k, v: is_content(k) and not is_sacred(k) and RULE_BY_ID["roadmap-speak"].match(k, v),
+        lambda v: bool(PROSE_ROADMAP.search(v.value)),
+        lambda k, v: is_content(k) and not is_sacred(k) and bool(PROSE_ROADMAP.search(v)),
     ),
     ProseRule(
         "prose-tail", "A filler tail in lesson prose (right now, in one place, with intention).",

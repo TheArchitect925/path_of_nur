@@ -1351,7 +1351,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get duaDetailPlannedBody =>
-      'یہ اندراج دعا کے اسکافولڈ میں موجود ہے، لیکن ماخذ متن اور تصدیقی تفصیلات ابھی تک مکمل نہیں ہوئی ہیں۔ یہ ٹریک رہتا ہے تاکہ حتمی دعا لائبریری فن تعمیر کو تبدیل کیے بغیر پھیل سکے۔';
+      'اس دعا کے متن اور ماخذ کی ابھی تصدیق نہیں ہوئی۔';
 
   @override
   String get nextSalah => 'اگلی نماز';
@@ -2793,7 +2793,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'نماز کے اوقات، یاد دہانیوں، اور فوری پیروی کے اعمال کو ایک بہاؤ میں رکھیں۔';
+      'نماز کے اوقات، یاد دہانیاں اور فوری اگلے اقدامات ایک ساتھ رکھیں۔';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
@@ -2831,7 +2831,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get helpGuideLearningDescription =>
-      'رہنمائی والے عنوانات، اسباق اور جائزہ کے ٹولز کے درمیان منتقل ہونے کے لیے سیکھنے کے مرکز کا استعمال کریں۔';
+      'رہنمائی والے عنوانات، اسباق اور جائزے کے ٹولز کے درمیان جانے کے لیے سیکھنے کا حصہ استعمال کریں۔';
 
   @override
   String get helpGuideLearningStep1 =>
@@ -2843,7 +2843,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get helpGuideLearningStep3 =>
-      'جب آپ کسی موضوع، نبی، لغت کی اصطلاح، یا سبق کے لیے تیز تر راستہ چاہتے ہیں تو تلاش کا استعمال کریں۔';
+      'کسی موضوع، نبی، لغت کی اصطلاح یا سبق تک جلدی پہنچنے کے لیے تلاش استعمال کریں۔';
 
   @override
   String get helpGuideDhikrAdhkarTitle => 'ذکر اور اذکار';
@@ -7516,7 +7516,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyIslandDiscoveryDescription =>
-      'ہلکے داخلی مقامات کو دریافت کریں جو اب بھی حقیقی تفہیم اور غور و فکر کی طرف لے جاتے ہیں۔';
+      'ہلکے راستے جو پھر بھی حقیقی فہم اور غور و فکر تک لے جاتے ہیں۔';
 
   @override
   String get learningJourneyIslandKidsLearningTitle => 'بچے سیکھ رہے ہیں۔';
@@ -7527,7 +7527,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyIslandKidsLearningDescription =>
-      'بچوں کی تعلیم کو ایک مخصوص جزیرے میں رکھیں تاکہ بچوں کے مستقبل کے سفر، اوزار اور سرگرمیوں کا گھر صاف ہو۔';
+      'بچوں کے لیے بنائے گئے سفر اور ٹولز۔';
 
   @override
   String get learningJourneyIslandBrowseAllTitle => 'سبھی کو براؤز کریں۔';
@@ -7538,29 +7538,29 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyIslandBrowseAllDescription =>
-      'مکمل سیکھنے کے نقشے کے سامنے والے دروازے کے طور پر ایک جزیرے کا استعمال کریں جب آپ چاہتے ہیں کہ سب کچھ ایک جگہ پر دستیاب ہو۔';
+      'سیکھنے کا پورا نقشہ، ایک ہی صفحے پر۔';
 
   @override
   String get learningJourneyIslandToolsOtherTitle => 'ٹولز اور دیگر';
 
   @override
   String get learningJourneyIslandToolsOtherSubtitle =>
-      'یوٹیلیٹیز، فیملی ٹولز، اور سیکھنے کی معاون جگہیں۔';
+      'خاندانی ٹولز اور دیگر مفید صفحات۔';
 
   @override
   String get learningJourneyIslandToolsOtherDescription =>
-      'غیر سفری افادیت اور معاون جگہوں کو ایک وقف شدہ جزیرے میں رکھیں بجائے انہیں لیگیسی سیکھنے کے مرکز میں پھیلانے کے۔';
+      'سفروں سے باہر کے ٹولز، جیسے بچوں کے نام۔';
 
   @override
   String get learningJourneyIslandLegacyLearningTitle => 'لیگیسی سیکھنا';
 
   @override
   String get learningJourneyIslandLegacyLearningSubtitle =>
-      'پرانے سیکھنے کی سطحیں اور منتقل شدہ حصے جو اب بھی استعمال میں ہیں۔';
+      'سیکھنے کی اصل لائبریری۔';
 
   @override
   String get learningJourneyIslandLegacyLearningDescription =>
-      'میراثی سیکھنے کی لائبریری کو ایک واضح جزیرے میں رکھیں جب کہ سفر کا نیا ڈھانچہ وقت کے ساتھ ساتھ اسے جذب اور تبدیل کرتا رہتا ہے۔';
+      'سیکھنے کے حصے کے پہلے ورژن کے اسباق، جیسے تھے ویسے ہی محفوظ۔';
 
   @override
   String get learningJourneyFeedbackFirstStageOpened =>
@@ -8418,7 +8418,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyDetailMissingBody =>
-      'جزیرے کے صفحے پر واپس جائیں اور دوسرا سفر منتخب کریں۔';
+      'واپس جائیں اور کوئی اور سفر منتخب کریں۔';
 
   @override
   String get learningJourneyPlaceholderLearnLabel => 'جو آپ سیکھیں گے۔';
@@ -8610,7 +8610,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyToolProphetsSubtitle =>
-      'موجودہ انبیاء کے نظام کو کھولیں۔';
+      'انبیاء کے واقعات اور اسباق۔';
 
   @override
   String get learningJourneyToolWordsSubtitle =>
@@ -9792,7 +9792,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomDailyQuoteSection1Body =>
-      'روزانہ حکمت قرآن، حدیث، پیشن گوئی کی مثال، اور غور و فکر سے مختصر یاد دہانیوں کو ایک پرسکون داخلے کے مقام میں لاتا ہے۔ مقصد حجم نہیں ہے۔ مقصد ایک سچی یاد دہانی ہے جو آپ کے ساتھ رہتی ہے۔';
+      'روزانہ حکمت قرآن، حدیث، نبوی نمونے اور غور و فکر سے مختصر یاد دہانیاں ایک ایک کر کے لاتی ہے۔ مقصد مقدار نہیں۔ مقصد ایک سچی یاد دہانی ہے جو آپ کے ساتھ رہے۔';
 
   @override
   String get learningJourneyWisdomDailyQuoteSection2Title =>
@@ -9876,7 +9876,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomShortLessonTakeaway3 =>
-      'روزانہ کی حکمت کو قدرتی طور پر وسیع سفری نظام کی طرف اشارہ کرنا چاہیے۔';
+      'روزانہ حکمت کو فطری طور پر وسیع تر سفروں کی طرف لے جانا چاہیے۔';
 
   @override
   String get learningJourneyWisdomShortLessonReflection =>
@@ -9926,7 +9926,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeTakeaway3 =>
-      'روزانہ کی حکمت کو آپ کو وسیع تر تعلیمی نظام میں واپس بھیجنا چاہیے۔';
+      'روزانہ حکمت کو آپ کو اپنی وسیع تر تعلیم کی طرف واپس لانا چاہیے۔';
 
   @override
   String get learningJourneyWisdomPracticeReflection =>
@@ -10437,7 +10437,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduJourneySubtitle =>
-      'ترتیب، سنت کے عناصر، اور وضو کے بہاؤ کو سیکھیں۔';
+      'وضو کی ترتیب، اس کی سنتیں اور اس کی مشق کا طریقہ سیکھیں۔';
 
   @override
   String get learningJourneyWuduJourneyDescription =>
@@ -10538,7 +10538,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingBasicsWhyThisMatters =>
-      'صارفین کو اکثر حروف تہجی کی نمائش اور مکمل تلاوت کے درمیان درمیانی تہہ کی ضرورت ہوتی ہے۔';
+      'حروف سیکھنے اور پوری آیات کی تلاوت کے درمیان زیادہ تر لوگوں کو ایک درمیانی قدم کی ضرورت ہوتی ہے۔';
 
   @override
   String get learningJourneyTriviaPathsTitle => 'ٹریویا علم کے راستے';
@@ -10565,7 +10565,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsWhyThisMatters =>
-      'جب اسے اچھی طرح سے اسٹیج کیا جاتا ہے تو ٹریویا سٹرکچرڈ علم میں ایک کم رگڑ کا داخلی نقطہ بن سکتا ہے۔';
+      'اچھی ترتیب والا ٹریویا منظم علم تک پہنچنے کا آسان راستہ ہے۔';
 
   @override
   String get learningJourneyStageHadithEssentialCollectionTitle =>
@@ -10642,7 +10642,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'وضو کی تیاری، طہارت اور نماز کی تیاری کے طور پر شروع کریں۔';
 
   @override
-  String get learningJourneyStageWuduPracticeTitle => 'اقدامات اور مشق کا بہاؤ';
+  String get learningJourneyStageWuduPracticeTitle => 'اقدامات اور مشق';
 
   @override
   String get learningJourneyStageWuduPracticeSummary =>
@@ -10828,7 +10828,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyToolGuidedPrayerSubtitle =>
-      'ایک ہدایت شدہ صلاۃ کا بہاؤ کھولیں۔';
+      'رہنمائی کے ساتھ قدم بہ قدم نماز پڑھیں۔';
 
   @override
   String get learningJourneyToolEssentialHadithSubtitle =>
@@ -10843,12 +10843,11 @@ class AppLocalizationsUr extends AppLocalizations {
       'صحیح یا ضعیف حدیثی مواد پر نظر ثانی کریں۔';
 
   @override
-  String get learningJourneyToolDuaHubSubtitle =>
-      'موجودہ تصدیق شدہ دعا کا مرکز کھولیں۔';
+  String get learningJourneyToolDuaHubSubtitle => 'تصدیق شدہ دعائیں دیکھیں۔';
 
   @override
   String get learningJourneyToolTriviaPathsSubtitle =>
-      'گائیڈڈ ٹریویا پاتھ سسٹم کھولیں۔';
+      'کوئز جو قدم بہ قدم آگے بڑھتے ہیں۔';
 
   @override
   String get learningJourneyToolTriviaReviewSubtitle =>
@@ -11905,7 +11904,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsBullet3 =>
-      'گہرائی سے سیکھنے میں داخلے کے مقامات کے طور پر راستوں کا استعمال کریں۔';
+      'راستوں کو گہری تعلیم تک پہنچنے کا ذریعہ بنائیں۔';
 
   @override
   String get learningJourneyTriviaPathsTakeaway1 =>
@@ -12000,7 +11999,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaReviewBullet3 =>
-      'کمک کو سفر کے نظام میں واپس جانے دیں۔';
+      'جائزے کو آپ کو سفروں کی طرف واپس لے جانے دیں۔';
 
   @override
   String get learningJourneyTriviaReviewTakeaway1 =>
@@ -12373,7 +12372,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranJourneyOutcome2 =>
-      'واضح انٹری پوائنٹس سے پہلی پڑھنے کی تال بنائیں';
+      'ایک واضح آغاز سے پڑھنے کی پہلی لَے بنائیں';
 
   @override
   String get learningJourneyQuranJourneyOutcome3 =>
@@ -12595,7 +12594,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyQuranOpenSection2Body =>
-      'ایک واضح انٹری پوائنٹ استعمال کریں، پڑھنے کو نرم رکھیں، اور رشتہ شروع ہونے کے بعد تجسس کو بڑھنے دیں۔';
+      'ایک واضح جگہ سے شروع کریں، پڑھنے کو نرم رکھیں، اور تعلق شروع ہونے کے بعد تجسس کو بڑھنے دیں۔';
 
   @override
   String get learningJourneyQuranOpenBullet1 =>
@@ -13242,7 +13241,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyReadingCompletionBullet3 =>
-      'قرآن اور صلاۃ کے سفر کو اگلی پرت کے طور پر استعمال کریں۔';
+      'اس کے بعد قرآن اور نماز کے سفر شروع کریں۔';
 
   @override
   String get learningJourneyReadingCompletionTakeaway1 =>
@@ -14443,7 +14442,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningPathBeginnerDescription =>
-      'اسلام، عبادت اور شناخت کے ذریعے ایک پرسکون پہلا راستہ۔';
+      'اسلام، عبادت اور شناخت سے گزرتا ایک پہلا راستہ۔';
 
   @override
   String get learningPathPracticingTitle => 'تسلسل بنانا';
@@ -14738,7 +14737,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learningJourneyStageUnavailableBody =>
-      'یہ مرحلہ اس وقت اپنا مطلوبہ مواد نہیں کھول سکتا۔ نیچے دیے گئے فال بیک کا استعمال کریں یا سفر پر واپس جائیں اور ایک اور دستیاب مرحلہ کے ساتھ جاری رکھیں۔';
+      'یہ مرحلہ اس وقت اپنا مطلوبہ مواد نہیں کھول سکتا۔ نیچے دیا گیا اختیار استعمال کریں یا سفر پر واپس جائیں اور کسی اور دستیاب مرحلے کے ساتھ جاری رکھیں۔';
 
   @override
   String get learningJourneyStageUnavailableFallbackTitle => 'واپس اس سفر پر';
@@ -17624,7 +17623,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get legalAttributionsAdhanBody =>
-      'شامل شدہ اذان یاد دہانی کلپ کا ماخذ:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nاصل فائل کا URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nماخذ صفحے پر درج مصنف: Jarih (ذاتی کام)\nلائسنس: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nموجودہ نوٹ: ایپ اس شامل شدہ کلپ سے ماخوذ عارضی آف لائن فال بیک اذان کی اقسام فراہم کرتی ہے جب تک کہ منتخب متبادل سیٹ شامل نہ کر دیا جائے۔';
+      'شامل شدہ اذان یاد دہانی کلپ کا ماخذ:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nاصل فائل کا URL:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nماخذ صفحے پر درج مصنف: Jarih (ذاتی کام)\nلائسنس: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nنوٹ: ایپ میں فجر کی اذان کی آوازیں یہی ریکارڈنگ استعمال کرتی ہیں۔';
 
   @override
   String get legalAttributionsWordTimingTitle =>
@@ -17675,7 +17674,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'توجہ مرکوز پڑھنے کے لیے صاف ستھری سطحیں اور مضبوط کنٹراسٹ۔ طویل پڑھنے کے سیشن کے لیے تجویز کردہ۔';
+      'توجہ سے پڑھنے کے لیے سادہ پس منظر اور مضبوط کنٹراسٹ۔ طویل پڑھنے کے لیے تجویز کردہ۔';
 
   @override
   String get settingsThemeModeDarkDescription =>
@@ -21211,7 +21210,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranTeachingLevelKnowSomeLettersDescription =>
-      'Opens early modules together while still showing a recommended order.';
+      'ابتدائی اسباق ایک ساتھ کھولتا ہے، پھر بھی تجویز کردہ ترتیب کے ساتھ۔';
 
   @override
   String get quranTeachingLevelReadSlowlyTitle => 'I can read slowly';
@@ -21981,15 +21980,14 @@ class AppLocalizationsUr extends AppLocalizations {
   String get adhanOptionFajrDefaultTitle => 'فجر ڈیفالٹ';
 
   @override
-  String get adhanOptionFajrDefaultSubtitle =>
-      'فجر کے لیے مخصوص روٹنگ کے لیے عارضی بنڈل فال بیک۔';
+  String get adhanOptionFajrDefaultSubtitle => 'فجر کی اذان۔';
 
   @override
   String get adhanOptionFajrSoftTitle => 'فجر نرم';
 
   @override
   String get adhanOptionFajrSoftSubtitle =>
-      'نرم فجر لیبل کے ساتھ عارضی بنڈل فال بیک۔';
+      'فجر کی ڈیفالٹ اذان والی ریکارڈنگ ہی۔';
 
   @override
   String get accountsSyncThisDeviceGeneric => 'یہ ڈیوائس';
@@ -30382,7 +30380,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionExploreHadithDescription =>
-      'Use the Hadith surface to stay close to prophetic mercy, leadership, and character as the Seerah unfolds.';
+      'سیرت کے واقعات کے ساتھ ساتھ نبوی رحمت، قیادت اور اخلاق کے قریب رہنے کے لیے احادیث پڑھیں۔';
 
   @override
   String get learnSeerahCompanionExploreQuranSubtitle =>
@@ -30616,7 +30614,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionTurningPointsDescription =>
-      'Use this module to connect Hudaybiyyah, the Conquest of Makkah, and the Farewell Hajj to the wider arc of patience, opening, and completion in the Seerah.';
+      'حدیبیہ، فتحِ مکہ اور حجۃ الوداع کو سیرت میں صبر، فتح اور تکمیل کے وسیع سفر سے جوڑیں۔';
 
   @override
   String get learnSeerahCompanionFinalSermonDescription =>
@@ -34487,7 +34485,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get guidedPathSalahDescription =>
-      'A calmer beginner path into Salah. Start with the meaning of prayer, then move into wudu, practice, and one guided prayer flow without needing to figure everything out at once.';
+      'نماز کی طرف مبتدیوں کے لیے ایک پرسکون راستہ۔ نماز کے معنی سے شروع کریں، پھر وضو، مشق اور ایک رہنمائی والی نماز کی طرف بڑھیں، سب کچھ ایک ساتھ سمجھنے کی ضرورت کے بغیر۔';
 
   @override
   String get guidedPathQuranBeginnerTitle => 'Qur’an Beginner Path';
@@ -34498,7 +34496,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get guidedPathQuranBeginnerDescription =>
-      'A soft introduction to the canonical Qur’an experience. Start with reassurance and one calm entry point, then move into summary, reading, and deeper Qur’an pathways at your pace.';
+      'قرآن سے پہلا تعارف۔ اطمینان اور ایک واضح آغاز سے شروع کریں، پھر خلاصوں، تلاوت اور قرآن کے گہرے راستوں کی طرف بڑھیں۔';
 
   @override
   String get guidedPathDailyDhikrTitle => 'Daily Dhikr Path';
@@ -35298,7 +35296,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDescription =>
-      'Milky frosted glass with a soft pearled glow and gentle transparency.';
+      'ٹھوس کارڈز پر نور کے گرم رنگ، ہلکی گہرائی کے ساتھ اور شیشے جیسی شفافیت کے بغیر۔';
 
   @override
   String get settingsThemeModeNoorGlassDarkDescription =>
@@ -35306,7 +35304,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'شفافیت کے بغیر گرم اور solid surfaces، روزمرہ کے لیے ایک صاف اور متوازن منظر۔';
+      'شفافیت کے بغیر گرم اور ٹھوس پس منظر، روزمرہ کے لیے ایک صاف اور متوازن منظر۔';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
@@ -37369,7 +37367,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learnContainedStateBody =>
-      'This route is intentionally contained for now instead of presenting unfinished learning content as complete.';
+      'یہاں ابھی کوئی سبق نہیں۔ کوئی اور سفر یا سبق منتخب کریں۔';
 
   @override
   String get learnContainedStateBackToLearnAction => 'Back to Learn';
@@ -37684,7 +37682,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get salahTrainerPrayerJummahOverview =>
-      'جمعہ میں نماز سے پہلے خطبہ اور جماعت کے ساتھ دو رکعتیں شامل ہیں۔ یہاں رہنمائی شدہ طریقہ نماز کی دو رکعتوں پر توجہ دیتا ہے اور خطبے کے پس منظر کی یاد دہانی کراتا ہے۔';
+      'جمعہ میں نماز سے پہلے خطبہ اور جماعت کے ساتھ دو رکعتیں شامل ہیں۔ یہ رہنما نماز کی دو رکعتوں پر توجہ دیتا ہے اور خطبے کے پس منظر کی یاد دہانی کراتا ہے۔';
 
   @override
   String get salahTrainerJummahGuidanceHanafi =>

@@ -283,7 +283,7 @@ const List<KidsSeerahCompanionStoryLink> kKidsSeerahCompanionLinks = [
     name: 'Abu Bakr',
     title: 'A Loyal Friend on the Hijrah',
     shortSummary:
-        'A companion story about loyalty, trust, and friendship during migration.',
+        'A companion story about loyalty, trust, and friendship during the Hijrah.',
     lesson: 'A loyal friend stays close in hard moments and trusts Allah.',
     relatedSeerahEventIds: ['seerah_stage_hijrah'],
     storyId: 'story_companion_abu_bakr_friendship_v1',

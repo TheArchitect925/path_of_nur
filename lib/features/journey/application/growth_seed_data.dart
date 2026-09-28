@@ -546,7 +546,7 @@ const List<GrowthPath> seededGrowthPaths = [
     title: '21 Core Muslim Habits',
     subtitle: 'Structured habit foundations in 3 stages.',
     description:
-        'A complete core system that moves from foundations to excellence through steady, sincere practice.',
+        'A complete path from foundations to excellence through steady, sincere practice.',
     difficulty: GrowthPathDifficulty.steady,
     totalHabits: 21,
     estimatedCommitment: '15-30 min/day',
@@ -583,7 +583,7 @@ const List<GrowthPath> seededGrowthPaths = [
     title: 'Foundations of Light',
     subtitle: 'Build your base rhythm.',
     description:
-        'The first layer of consistency: prayer, Qur’an, adhkar, du’a, gratitude, and speech discipline.',
+        'The first step in consistency: prayer, Qur’an, adhkar, du’a, gratitude, and speech discipline.',
     difficulty: GrowthPathDifficulty.beginner,
     totalHabits: 7,
     estimatedCommitment: '10-18 min/day',

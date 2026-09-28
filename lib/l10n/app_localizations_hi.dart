@@ -7558,7 +7558,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyIslandDiscoveryDescription =>
-      'Explore lighter entry points that still lead into real understanding and reflection.';
+      'Lighter ways in that still lead to real understanding and reflection.';
 
   @override
   String get learningJourneyIslandKidsLearningTitle => 'बच्चे सीख रहे हैं';
@@ -8474,7 +8474,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyDetailMissingBody =>
-      'Return to the island page and choose another journey.';
+      'Go back and choose another journey.';
 
   @override
   String get learningJourneyPlaceholderLearnLabel => 'What you’ll learn';
@@ -8666,7 +8666,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyToolProphetsSubtitle =>
-      'Open the current Prophets system.';
+      'The prophets’ stories and lessons.';
 
   @override
   String get learningJourneyToolWordsSubtitle =>
@@ -9931,7 +9931,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomShortLessonTakeaway3 =>
-      'Daily Wisdom should naturally point into the wider journey system.';
+      'Daily Wisdom should lead naturally into the wider journeys.';
 
   @override
   String get learningJourneyWisdomShortLessonReflection =>
@@ -9982,7 +9982,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeTakeaway3 =>
-      'Daily Wisdom should send you back into the wider learning system.';
+      'Daily Wisdom should send you back into your wider learning.';
 
   @override
   String get learningJourneyWisdomPracticeReflection =>
@@ -21270,7 +21270,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get quranTeachingLevelKnowSomeLettersDescription =>
-      'Opens early modules together while still showing a recommended order.';
+      'Opens the early lessons together, still in a recommended order.';
 
   @override
   String get quranTeachingLevelReadSlowlyTitle => 'I can read slowly';
@@ -30669,7 +30669,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionTurningPointsDescription =>
-      'Use this module to connect Hudaybiyyah, the Conquest of Makkah, and the Farewell Hajj to the wider arc of patience, opening, and completion in the Seerah.';
+      'Connect Hudaybiyyah, the Conquest of Makkah, and the Farewell Hajj to the wider arc of patience, opening, and completion in the Seerah.';
 
   @override
   String get learnSeerahCompanionFinalSermonDescription =>
@@ -34553,7 +34553,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get guidedPathQuranBeginnerDescription =>
-      'A soft introduction to the canonical Qur’an experience. Start with reassurance and one calm entry point, then move into summary, reading, and deeper Qur’an pathways at your pace.';
+      'A first introduction to the Qur’an. Start with reassurance and one clear place to begin, then move into summaries, reading, and deeper Qur’an pathways.';
 
   @override
   String get guidedPathDailyDhikrTitle => 'Daily Dhikr Path';
@@ -37426,7 +37426,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learnContainedStateBody =>
-      'This route is intentionally contained for now instead of presenting unfinished learning content as complete.';
+      'No lessons here yet. Choose another journey or lesson.';
 
   @override
   String get learnContainedStateBackToLearnAction => 'Back to Learn';
@@ -37743,7 +37743,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get salahTrainerPrayerJummahOverview =>
-      'Jumu’ah includes the khutbah before the prayer and two rakahs prayed in congregation. The guided flow here focuses on the two prayer rakahs and reminds the user of the khutbah context.';
+      'Jumu’ah includes the khutbah before the prayer and two rakahs prayed in congregation. This guide focuses on the two prayer rakahs and reminds you of the khutbah context.';
 
   @override
   String get salahTrainerJummahGuidanceHanafi =>

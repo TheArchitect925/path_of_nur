@@ -138,7 +138,7 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
-                            'Sharing support will be added in a future update.',
+                            'Sharing isn’t available on this page.',
                           ),
                         ),
                       );

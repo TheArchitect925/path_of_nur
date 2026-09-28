@@ -632,12 +632,11 @@ final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnR
         LearnCitation(
           sourceTitle: 'Qur\'an Arabic Text',
           qualityBadge: 'Primary',
-          confidenceNote:
-              'Canonical source text with direct reading linkage in-app.',
+          confidenceNote: 'The Arabic text of the Qur’an, open in the reader.',
           reference: key.lessonId,
         ),
         const LearnCitation(
-          sourceTitle: 'In-app Translation Layers',
+          sourceTitle: 'Translations in the app',
           qualityBadge: 'Secondary',
           confidenceNote:
               'Translation wording varies by edition; use as study support.',
@@ -669,7 +668,7 @@ final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnR
       if (lesson == null) return const [];
       return [
         LearnCitation(
-          sourceTitle: 'World Curriculum: Reflective Observation Layer',
+          sourceTitle: 'World Curriculum: Reflective Observation',
           qualityBadge: 'Core',
           confidenceNote:
               'Observation prompts are pedagogical aids anchored to Qur’anic signs.',
@@ -690,7 +689,7 @@ final learnLessonCitationsProvider = Provider.family<List<LearnCitation>, LearnR
       if (lesson == null) return const [];
       return [
         LearnCitation(
-          sourceTitle: 'Hadith Curriculum: Thematic Study Layer',
+          sourceTitle: 'Hadith Curriculum: Thematic Study',
           qualityBadge: 'Core',
           confidenceNote:
               'Lesson language is educational and defers detailed grading to specialist study.',

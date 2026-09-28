@@ -565,7 +565,8 @@ final stagedCircleCalendarEvents = <CircleCalendarEvent>[
     dateIso: DateTime.now()
         .add(const Duration(days: 2, hours: 19))
         .toIso8601String(),
-    location: 'Islamic Learning Hub, Room B',
+    location:
+        'Islamic Learning Hub, Room B', // copy-lint: allow prose-studio-vocabulary
     capacity: 40,
     description:
         'Structured one-hour tafsir reading with partner reflection prompts.',

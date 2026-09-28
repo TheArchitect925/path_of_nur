@@ -57,7 +57,7 @@ class LearningJourneyRegistry {
       title: 'Discovery',
       subtitle: 'Trivia, daily wisdom, stories, and reflective exploration.',
       description:
-          'Explore lighter entry points that still lead into real understanding and reflection.',
+          'Lighter ways in that still lead to real understanding and reflection.',
       order: 5,
       icon: IslamicIcons.ninetyNine,
       color: Color(0xFFE9E0EB),
@@ -68,8 +68,7 @@ class LearningJourneyRegistry {
       title: 'Kids Learning',
       subtitle:
           'Stories, habits, memorization, and guided learning for children.',
-      description:
-          'Keep children’s learning in one dedicated island so future kids journeys, tools, and activities have a clear home.',
+      description: 'Journeys and tools made for children.',
       order: 6,
       icon: IslamicIcons.family,
       color: Color(0xFFFFE9CC),
@@ -81,8 +80,7 @@ class LearningJourneyRegistry {
       title: 'Browse All',
       subtitle:
           'See the wider map of journeys, tools, collections, and exploration.',
-      description:
-          'Use one island as the front door to the full learning map when you want everything available in one place.',
+      description: 'The full learning map, from one page.',
       order: 7,
       icon: IslamicIcons.community,
       color: Color(0xFFE4E7F5),
@@ -92,9 +90,8 @@ class LearningJourneyRegistry {
     LearningJourneyIsland(
       id: 'tools-other',
       title: 'Tools & Other',
-      subtitle: 'Utilities, family tools, and supporting learning spaces.',
-      description:
-          'Keep non-journey utilities and supporting spaces in one dedicated island instead of scattering them across the legacy learning hub.',
+      subtitle: 'Family tools and other helpful pages.',
+      description: 'Tools that sit outside the journeys, like Baby Names.',
       order: 8,
       icon: IslamicIcons.locationMosque,
       color: Color(0xFFE6EEF1),
@@ -104,10 +101,9 @@ class LearningJourneyRegistry {
     LearningJourneyIsland(
       id: 'legacy-learning',
       title: 'Legacy Learning',
-      subtitle:
-          'Older learning surfaces and migrated sections that still remain in use.',
+      subtitle: 'The original learning library.',
       description:
-          'Keep the legacy learning library in one explicit island while the newer journey structure continues to absorb and replace it over time.',
+          'Lessons from the first version of Learn, kept as they were.',
       order: 9,
       icon: IslamicIcons.kaaba,
       color: Color(0xFFF2E7DB),
@@ -163,7 +159,7 @@ class LearningJourneyRegistry {
       ],
       learningOutcomes: [
         'Understand how to approach the Qur’an as guidance',
-        'Build a first reading rhythm from clear entry points',
+        'Build a first reading rhythm from a clear starting point',
         'Use themes, notes, and tools as support rather than distraction',
       ],
       whyThisMatters:
@@ -355,7 +351,7 @@ class LearningJourneyRegistry {
       islandId: 'practice-worship',
       title: 'Journey of Wudu',
       subtitle:
-          'Learn the sequence, sunnah elements, and practice flow of wudu.',
+          'Learn the order of wudu, its sunnah acts, and how to practice it.',
       description:
           'Move from understanding wudu to practicing it, checking what breaks it, and avoiding common mistakes.',
       order: 2,
@@ -400,7 +396,7 @@ class LearningJourneyRegistry {
         'Use istighfar and salawat naturally in daily life',
       ],
       whyThisMatters:
-          'Dhikr is one of the gentlest ways to keep the heart alive, but beginners need a simple guided path rather than utilities alone.',
+          'Dhikr is one of the gentlest ways to keep the heart alive, but beginners need a simple guided path, not only a counter.',
       relatedTools: [_dhikrCounterTool],
       mappingNotes:
           'These stages now open real lesson content, while the Ibadah dhikr utility remains available as a supporting tool rather than the lesson itself.',
@@ -671,7 +667,7 @@ class LearningJourneyRegistry {
         'Use review loops before advancing into wider recitation',
       ],
       whyThisMatters:
-          'Users often need a middle layer between alphabet exposure and full recitation.',
+          'Between learning the letters and reciting whole ayahs, most people need a middle step.',
       relatedTools: [_quranArabicTool, _quranLearningHubTool],
       mappingNotes:
           'Reading Basics is now a fuller bridge from letters to reading and clearly points forward into understanding what is recited.',
@@ -756,7 +752,7 @@ class LearningJourneyRegistry {
         'Return from review into related journeys for depth',
       ],
       whyThisMatters:
-          'Trivia can become a low-friction entry point into structured knowledge when it is staged well.',
+          'Well-staged trivia is an easy way into structured knowledge.',
       relatedTools: [_triviaPathsTool, _triviaReviewTool],
       mappingNotes:
           'Trivia stages are now lesson-backed so the quiz system feels connected to the wider learning graph.',
@@ -780,7 +776,7 @@ class LearningJourneyRegistry {
         'Build a daily rhythm of reflection',
       ],
       whyThisMatters:
-          'Short daily wisdom can keep the learning system alive between deeper sessions.',
+          'A short daily reminder keeps learning alive between deeper sessions.',
       relatedTools: [
         _dailyWisdomCompanionTool,
         _hadithLandingTool,
@@ -1148,9 +1144,8 @@ class LearningJourneyRegistry {
     LearningJourneyStage(
       id: 'prophets-overview',
       journeyId: 'prophets-journey',
-      title: 'Open the Prophets hub',
-      summary:
-          'Enter the current Prophets system and begin with the story hub.',
+      title: 'Meet the prophets',
+      summary: 'Begin with the prophets’ stories.',
       order: 1,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -1171,8 +1166,7 @@ class LearningJourneyRegistry {
       id: 'prophets-quiz',
       journeyId: 'prophets-journey',
       title: 'Review with Prophets quiz',
-      summary:
-          'Use the current Prophets quiz flow to reinforce what you learned.',
+      summary: 'Take the prophets quiz to reinforce what you learned.',
       order: 3,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -1377,7 +1371,7 @@ class LearningJourneyRegistry {
     LearningJourneyStage(
       id: 'wudu-trainer',
       journeyId: 'journey-of-wudu',
-      title: 'Steps and practice flow',
+      title: 'Steps and practice',
       summary:
           'Walk through the sequence calmly and use guided practice to stabilize the order.',
       order: 2,
@@ -2006,7 +2000,7 @@ class LearningJourneyRegistry {
       journeyId: 'timeline-of-islam',
       title: 'Carry the timeline forward',
       summary:
-          'Finish by gathering the story flow and choosing where to study history more deeply next.',
+          'Finish by putting the story together and choosing where to study history more deeply next.',
       order: 7,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -2172,7 +2166,7 @@ class LearningJourneyRegistry {
       journeyId: '100-quranic-words',
       title: 'Patterns and meaning groups',
       summary:
-          'Revisit the current top-words surface with a patterns mindset and notice recurring clusters and meanings.',
+          'Return to the top words and look for patterns: clusters and meanings that recur.',
       order: 3,
       status: LearningJourneyStageStatus.partial,
       targetType: LearningJourneyStageTargetType.existingRoute,
@@ -2195,7 +2189,7 @@ class LearningJourneyRegistry {
       journeyId: 'understand-what-you-recite',
       title: 'Understand short surahs in prayer',
       summary:
-          'Use the current salah hub to connect recitation to meaning-rich repetition.',
+          'Use the salah lessons to connect what you recite to what it means.',
       order: 2,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -2416,8 +2410,7 @@ class LearningJourneyRegistry {
       id: 'reflection-notes',
       journeyId: 'reflection-mode',
       title: 'Write and revisit notes',
-      summary:
-          'Use the existing learn notes landing page as the current note-keeping surface.',
+      summary: 'Keep your notes on the Learn Notes page.',
       order: 2,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingRoute,
@@ -2550,7 +2543,7 @@ const _quranReaderTool = LearningJourneyToolLink(
 
 const _quranExplorerTool = LearningJourneyToolLink(
   title: 'Explorer',
-  subtitle: 'Browse surahs and open reading routes.',
+  subtitle: 'Browse surahs and pick one to read.',
   routeName: 'quranExplorer',
 );
 
@@ -2568,19 +2561,19 @@ const _wuduTrainerTool = LearningJourneyToolLink(
 
 const _duaHubTool = LearningJourneyToolLink(
   title: 'Dua Hub',
-  subtitle: 'Open the current verified dua hub.',
+  subtitle: 'Browse verified duas.',
   routeName: 'learnDuaHub',
 );
 
 const _dhikrCounterTool = LearningJourneyToolLink(
   title: 'Dhikr Counter',
-  subtitle: 'Open the live dhikr practice surface.',
+  subtitle: 'Count your dhikr.',
   routeName: 'worshipDhikrPage',
 );
 
 const _legacyLearnTool = LearningJourneyToolLink(
   title: 'Legacy Learning Material',
-  subtitle: 'Explore the original learning library during migration.',
+  subtitle: 'The original learning library.',
   // Retained as a broad fallback for older journey metadata where there is
   // not yet a one-to-one canonical destination.
   routeName: 'learnLegacy',
@@ -2588,20 +2581,20 @@ const _legacyLearnTool = LearningJourneyToolLink(
 
 const _seerahCompanionTool = LearningJourneyToolLink(
   title: 'Seerah Companion',
-  subtitle: 'Open the dedicated Seerah companion surface.',
+  subtitle: 'Key moments of the Seerah.',
   routeName: 'learnSeerahCompanion',
 );
 
 const _characterCompanionTool = LearningJourneyToolLink(
   title: 'Character Companion',
-  subtitle: 'Open the focused character and adab companion surface.',
+  subtitle: 'Lessons on character and adab.',
   routeName: 'learnCharacterCompanion',
   queryParameters: {'focus': 'ikhlas'},
 );
 
 const _dailyWisdomCompanionTool = LearningJourneyToolLink(
   title: 'Daily Wisdom',
-  subtitle: 'Open the owned daily wisdom and reflection surface.',
+  subtitle: 'A short reminder and reflection each day.',
   routeName: 'learnDailyWisdomCompanion',
   queryParameters: {'focus': 'gratitude'},
 );
@@ -2614,14 +2607,14 @@ const _namesOfAllahTool = LearningJourneyToolLink(
 
 const _prophetsTool = LearningJourneyToolLink(
   title: 'Prophets',
-  subtitle: 'Open the current Prophets system.',
+  subtitle: 'The prophets’ stories and lessons.',
   routeName: 'learnProphetsHub',
   queryParameters: {'tab': 'stories'},
 );
 
 const _prophetsTimelineTool = LearningJourneyToolLink(
   title: 'Prophets Timeline',
-  subtitle: 'Open the Prophets system and move through chronology.',
+  subtitle: 'Move through the prophets in order.',
   routeName: 'learnProphetsHub',
   queryParameters: {'tab': 'timeline'},
 );
@@ -2666,13 +2659,13 @@ const _quranLearningHubTool = LearningJourneyToolLink(
 
 const _learnSalahHubTool = LearningJourneyToolLink(
   title: 'Salah Hub',
-  subtitle: 'Open the current salah learning hub.',
+  subtitle: 'Learn salah step by step.',
   routeName: 'learnSalahHub',
 );
 
 const _guidedPrayerTool = LearningJourneyToolLink(
   title: 'Guided Salah',
-  subtitle: 'Open a guided salah flow.',
+  subtitle: 'Pray step by step with guidance.',
   routeName: 'learnSalahGuidedPrayer',
   pathParameters: {'prayerId': 'fajr'},
 );
@@ -2697,7 +2690,7 @@ const _hadithReviewTool = LearningJourneyToolLink(
 
 const _triviaPathsTool = LearningJourneyToolLink(
   title: 'Trivia Paths',
-  subtitle: 'Open the guided trivia path system.',
+  subtitle: 'Quizzes that build step by step.',
   routeName: 'learnTriviaKnowledgePaths',
 );
 
@@ -2709,7 +2702,7 @@ const _triviaReviewTool = LearningJourneyToolLink(
 
 const _worldLandingTool = LearningJourneyToolLink(
   title: 'World & Creation',
-  subtitle: 'Open the main world-and-creation hub.',
+  subtitle: 'Lessons on the world and creation.',
   routeName: 'learnWorldLanding',
 );
 
@@ -2739,7 +2732,7 @@ const _learnNotesTool = LearningJourneyToolLink(
 
 const _historyArchiveTool = LearningJourneyToolLink(
   title: 'History Archive',
-  subtitle: 'Open the main historical archive and timeline surface.',
+  subtitle: 'Events and dates across Islamic history.',
   routeName: 'learnHistoryArchive',
 );
 
@@ -2752,7 +2745,7 @@ const _knowledgeConstellationTool = LearningJourneyToolLink(
 const _browseAllLearningTool = LearningJourneyToolLink(
   title: 'Browse All Knowledge',
   subtitle:
-      'Open the wider map of islands, tools, collections, and exploration.',
+      'See the wider map of journeys, tools, collections, and exploration.',
   routeName: 'learnExploreAllKnowledge',
 );
 
@@ -2771,7 +2764,7 @@ const _babyNamesTool = LearningJourneyToolLink(
 
 const _legacyLearningIslandTool = LearningJourneyToolLink(
   title: 'Legacy Learning Material',
-  subtitle: 'Open the original learning library and older migrated sections.',
+  subtitle: 'The original learning library.',
   // The hidden legacy-learning island still points at the compatibility
   // library because its migrated sections do not yet have one replacement.
   routeName: 'learnLegacy',

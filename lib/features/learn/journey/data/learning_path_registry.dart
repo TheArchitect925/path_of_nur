@@ -7,7 +7,7 @@ class LearningPathRegistry {
       id: 'beginner-path',
       level: LearningPathLevel.beginner,
       title: 'Beginner Path',
-      description: 'A calm first route through Islam, worship, and identity.',
+      description: 'A first path through Islam, worship, and identity.',
       phases: [
         LearningPathPhase(
           id: 'beginner-foundations',
@@ -108,7 +108,7 @@ class LearningPathRegistry {
       level: LearningPathLevel.seeker,
       title: 'Knowledge Seeker Path',
       description:
-          'A more structured route through belief, history, and integration.',
+          'A more structured path through belief, history, and integration.',
       phases: [
         LearningPathPhase(
           id: 'seeker-foundations',

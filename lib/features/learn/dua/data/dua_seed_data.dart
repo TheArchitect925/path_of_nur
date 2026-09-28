@@ -1429,8 +1429,7 @@ final duaSeedDataset = DuaDataset(
               'Allahumma salli \'ala Muhammadin wa \'ala ali Muhammad, kama sallayta \'ala Ibrahima wa \'ala ali Ibrahim, innaka Hamidun Majid. Allahumma barik \'ala Muhammadin wa \'ala ali Muhammad, kama barakta \'ala Ibrahima wa \'ala ali Ibrahim, innaka Hamidun Majid.',
           translation:
               'O Allah, send blessings upon Muhammad and the family of Muhammad as You sent blessings upon Ibrahim and the family of Ibrahim; surely You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad as You blessed Ibrahim and the family of Ibrahim; surely You are Praiseworthy, Glorious.',
-          whenToSay:
-              'Frequently on Friday and the night before it. This replaces a non-fixed Jumu’ah topic placeholder with a source-backed Friday practice.',
+          whenToSay: 'Frequently on Friday and the night before it.',
           sourceType: 'sunnah',
           sourceRef: 'Sahih al-Bukhari 3370; Sunan Abi Dawud 1047',
           difficulty: DuaDifficulty.intermediate,
@@ -1474,7 +1473,7 @@ final duaSeedDataset = DuaDataset(
           translation:
               'Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.',
           whenToSay:
-              'When making dua around the Ka’bah, especially between the Yemeni Corner and the Black Stone. This replaces a weakly fixed “seeing the Ka’bah” placeholder with a stronger attested supplication.',
+              'When making dua around the Ka’bah, especially between the Yemeni Corner and the Black Stone.',
           sourceType: 'quran_sunnah',
           sourceRef: 'Qur\'an 2:201; Sunan Abi Dawud 1892',
           difficulty: DuaDifficulty.beginner,

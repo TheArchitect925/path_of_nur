@@ -102,7 +102,7 @@ class ProphetQuizPoolService {
         options: qArabicOptions,
         correctAnswerIndex: qArabicOptions.indexOf(prophet.honoredName),
         explanation:
-            '${prophet.titledHonoredName} is identified in the app dataset with the Arabic name ${detail.honoredArabicName}.',
+            'In Arabic, ${prophet.titledHonoredName} is named ${detail.honoredArabicName}.',
         relatedProphetId: prophet.id,
       ),
       ProphetQuizQuestion(

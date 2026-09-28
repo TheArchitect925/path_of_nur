@@ -20,8 +20,7 @@ class BabyNamesComparePage extends ConsumerWidget {
       children: [
         const PremiumCard(
           child: Text(
-            'This page is reserved for deeper side-by-side comparison. '
-            'For now, save names you like and open each detail page to review meanings, origins, and Qur’an relevance.',
+            'Save names you like, then open each one to compare meanings, origins, and Qur’an relevance.',
           ),
         ),
         const SizedBox(height: 10),

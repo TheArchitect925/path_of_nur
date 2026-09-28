@@ -5355,7 +5355,7 @@ const List<HadithCollection> seededHadithCollections = [
   HadithCollection(
     id: 'beginner_set',
     title: 'Beginner Set',
-    subtitle: 'Gentle entry point for new learners.',
+    subtitle: 'A first step for new learners.',
     description:
         'Simple, high-impact hadith for first steps in learning and practice.',
     hadithIds: [

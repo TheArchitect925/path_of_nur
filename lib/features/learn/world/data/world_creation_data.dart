@@ -1112,7 +1112,7 @@ final worldCreationCategories = <WorldCreationCategory>[
     id: WorldCreationCategoryId.exploreCreation,
     title: 'Explore Creation',
     description:
-        'Observation challenges, capture flow, and personal signs gallery.',
+        'Observation challenges, capturing a moment, and your own gallery of signs.',
     featuredVerse: _v(29, 'Al-Ankabut', 20),
     lessonIds: const <String>[],
     icon: 'explore',

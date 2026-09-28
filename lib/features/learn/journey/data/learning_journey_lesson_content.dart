@@ -1136,7 +1136,7 @@ _quranPathLessons = <String, LearningJourneyLessonContent>{
         'Al-Fatihah teaches praise, dependence, worship, and the constant need for right guidance.',
     sections: [
       _section(
-        title: 'A simplified meaning flow',
+        title: 'The meaning, step by step',
         body:
             'You begin by praising Allah as Lord of all worlds, then turn to Him as the Most Merciful, then affirm worship and dependence, and finally ask to be guided on the straight path.',
       ),
@@ -1763,12 +1763,12 @@ _dailyWisdomLessons = <String, LearningJourneyLessonContent>{
     stageId: 'wisdom-short-lesson',
     title: 'Short daily lesson',
     introduction:
-        'Daily wisdom becomes stronger when the app presents verse, hadith, prophetic, and reflection surfaces in one calmer rhythm.',
+        'Each day brings one short item: a verse, a hadith, a story from the prophets, or a reflection.',
     sections: [
       _section(
-        title: 'A unified flow',
+        title: 'One item a day',
         body:
-            'The app already contains daily verse, hadith reflection, prophet-based learning, and signs in creation. A unified daily wisdom flow helps these feel like one system instead of separate widgets.',
+            'The daily verse, hadith reflections, lessons from the prophets, and signs in creation come together here as one short item each day, so each reminder can lead into the next.',
       ),
       _section(
         title: 'How to use it',
@@ -1777,7 +1777,7 @@ _dailyWisdomLessons = <String, LearningJourneyLessonContent>{
       ),
     ],
     keyTakeaways: const [
-      'Daily wisdom should unify existing short-form learning surfaces.',
+      'One short item a day draws on verse, hadith, story, and reflection.',
       'Explanation should stay simple and calm.',
       'A daily item is an opening, not a demand for a long session.',
     ],
@@ -1805,7 +1805,7 @@ _dailyWisdomLessons = <String, LearningJourneyLessonContent>{
     keyTakeaways: const [
       'Daily wisdom should end in a small practice, not only a thought.',
       'Reflection deepens when written or acted on.',
-      'A light daily loop can keep the learning system alive between deeper journeys.',
+      'A light daily habit keeps learning alive between deeper journeys.',
     ],
     reflectionPrompt:
         'What is one small practice you can tie to today’s learning so it does not fade by evening?',
@@ -1962,7 +1962,7 @@ LearningJourneyLessonInvocation _invocationFromDua(DuaItem item) {
 
 const _lessonDuaHubTool = LearningJourneyToolLink(
   title: 'Dua Hub',
-  subtitle: 'Open the current verified dua hub.',
+  subtitle: 'Browse verified duas.',
   routeName: 'learnDuaHub',
 );
 
@@ -1982,7 +1982,7 @@ const _lessonSeerahMadinahTool = LearningJourneyToolLink(
 
 const _lessonDailyWisdomTool = LearningJourneyToolLink(
   title: 'Daily Wisdom',
-  subtitle: 'Open the daily wisdom and reflection surface.',
+  subtitle: 'A short reminder and reflection each day.',
   routeName: 'learnDailyWisdomCompanion',
   queryParameters: {'focus': 'gratitude'},
 );
@@ -1995,7 +1995,7 @@ const _lessonNamesOfAllahTool = LearningJourneyToolLink(
 
 const _lessonProphetsTool = LearningJourneyToolLink(
   title: 'Prophets',
-  subtitle: 'Open the current Prophets system.',
+  subtitle: 'The prophets’ stories and lessons.',
   routeName: 'learnProphetsHub',
 );
 
@@ -2044,7 +2044,7 @@ const _lessonWuduGuideTool = LearningJourneyToolLink(
 
 const _lessonSalahHubTool = LearningJourneyToolLink(
   title: 'Salah Hub',
-  subtitle: 'Open the current salah learning hub.',
+  subtitle: 'Learn salah step by step.',
   routeName: 'learnSalahHub',
 );
 
@@ -2056,7 +2056,7 @@ const _lessonHadithHubTool = LearningJourneyToolLink(
 
 const _lessonWorldLandingTool = LearningJourneyToolLink(
   title: 'World & Creation',
-  subtitle: 'Open the main world-and-creation hub.',
+  subtitle: 'Lessons on the world and creation.',
   routeName: 'learnWorldLanding',
 );
 
@@ -2074,6 +2074,6 @@ const _lessonLearnNotesTool = LearningJourneyToolLink(
 
 const _lessonHistoryArchiveTool = LearningJourneyToolLink(
   title: 'History Archive',
-  subtitle: 'Open the main historical archive and timeline surface.',
+  subtitle: 'Events and dates across Islamic history.',
   routeName: 'learnHistoryArchive',
 );

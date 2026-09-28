@@ -29,10 +29,11 @@ ROOT = Path(__file__).resolve().parent.parent
 JSON_FILES = ("assets/data/historical_calendar_seed.json",)
 
 # Not prose: generated l10n, the Apple TV target (V4 has its own string
-# tables), two sourced datasets, and files that carry other languages.
+# tables), the PIN-gated editorial dashboard (a staff tool), two sourced
+# datasets, and files that carry other languages.
 SKIP = re.compile(
-    r"^lib/(l10n|features/tvos)/|generated_hadith_foundation_data\.dart$|"
-    r"quran_transliteration_local_data\.dart$|_localized_"
+    r"^lib/(l10n|features/tvos|features/editorial_dashboard)/|"
+    r"generated_hadith_foundation_data\.dart$|quran_transliteration_local_data\.dart$|_localized_"
 )
 # The picture books follow docs/kids_picture_books_authoring_rules.md for
 # honorifics ("once in full, then the mark").
@@ -46,6 +47,14 @@ SACRED_FIELD = re.compile(
     r"id|slug|key|route\w*|path|asset\w*|image\w*|icon\w*|illustration\w*|"
     r"visualPrompt|visualHint|tags|categories|"
     r"de|ar|ur|fr|fa|fa_AF|hi|bn|tr|ms|ha|ku|pa|ps|tg)$"
+)
+# Text nobody reads on screen: logs, exceptions, validation messages sent to
+# the watch, and editorial metadata no widget renders (notes, mappingNotes,
+# coverageNote, datasetName, editorialNote).
+INTERNAL_FIELD = re.compile(
+    r"^(debugPrint|print|log|StateError|ArgumentError|UnimplementedError|UnsupportedError|"
+    r"FormatException|Exception|AssertionError|assert|WatchValidationIssue|"
+    r"notes|mappingNotes|coverageNote|datasetName|editorialNote|editorialNotes)$"
 )
 
 _EN = set("the a an and of to in is are you your he she it they we his her their "
@@ -168,13 +177,16 @@ def dart_values(path: Path) -> Iterator[ProseValue]:
     lines = src.split("\n")
     toks = list(dart_tokens(src))
     field = "?"
+    last_string: str | None = None
     i = 0
     while i < len(toks):
         t = toks[i]
         if t[0] == "code":
             tail = t[3].rstrip()
             m = _FIELD.search(tail[-160:]) if tail else None
-            if m:
+            if last_string is not None and re.fullmatch(r"\s*:\s*", t[3]):
+                field = last_string  # {'key': value}
+            elif m:
                 field = m.group(1) or m.group(2) or m.group(3)
             elif not tail.endswith(","):
                 m2 = _CALL.search(tail[-120:]) or _ASSIGN.search(tail[-120:])
@@ -190,8 +202,9 @@ def dart_values(path: Path) -> Iterator[ProseValue]:
             spans.append((nt[6], nt[7], nt[4][0], nt[5]))
             j += 2
         i = j
-        value = _INTERPOLATION.sub("{x}", "".join(parts))
-        if SACRED_FIELD.match(field) or not re.search(r"[A-Za-z]", value):
+        last_string = "".join(parts)
+        value = _INTERPOLATION.sub("{x}", last_string)
+        if SACRED_FIELD.match(field) or INTERNAL_FIELD.match(field) or not re.search(r"[A-Za-z]", value):
             continue
         first = src.count("\n", 0, t[1])
         last = src.count("\n", 0, spans[-1][1])
@@ -219,7 +232,7 @@ def json_values(path: Path) -> Iterator[ProseValue]:
             field = json.loads(f'"{m.group(1)}"')
             continue
         value = json.loads(f'"{m.group(1)}"')
-        if SACRED_FIELD.match(field) or not re.search(r"[A-Za-z]", value):
+        if SACRED_FIELD.match(field) or INTERNAL_FIELD.match(field) or not re.search(r"[A-Za-z]", value):
             continue
         yield ProseValue(rel, src.count("\n", 0, m.start()) + 1, field, value,
                          frozenset(), ((m.start(1), m.end(1), "json"),), is_english(value))

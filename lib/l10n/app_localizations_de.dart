@@ -1382,7 +1382,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get duaDetailPlannedBody =>
-      'Dieser Eintrag ist im Dua-Gerüst vorhanden, der Quelltext und die Verifizierungsdetails sind jedoch noch nicht vollständig. Es bleibt im Auge, sodass die endgültige Dua-Bibliothek erweitert werden kann, ohne die Architektur zu ändern.';
+      'Der Quelltext dieses Duas ist noch nicht überprüft.';
 
   @override
   String get nextSalah => 'Nächstes Gebet';
@@ -2864,7 +2864,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get helpGuideSalahRemindersDescription =>
-      'Behalten Sie Gebetszeiten, Erinnerungen und schnelle Folgeaktionen in einem Ablauf bei.';
+      'Behalten Sie Gebetszeiten, Erinnerungen und schnelle Folgeaktionen zusammen im Blick.';
 
   @override
   String get helpGuideSalahRemindersStep1 =>
@@ -2902,7 +2902,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get helpGuideLearningDescription =>
-      'Nutzen Sie den Lern-Hub, um zwischen geführten Themen, Lektionen und Überprüfungstools zu wechseln.';
+      'Nutzen Sie den Bereich Lernen, um zwischen geführten Themen, Lektionen und Überprüfungstools zu wechseln.';
 
   @override
   String get helpGuideLearningStep1 =>
@@ -7664,7 +7664,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyIslandDiscoveryDescription =>
-      'Entdecken Sie leichtere Einstiegspunkte, die dennoch zu echtem Verständnis und Reflexion führen.';
+      'Leichtere Zugänge, die dennoch zu echtem Verständnis und Nachdenken führen.';
 
   @override
   String get learningJourneyIslandKidsLearningTitle => 'Kinder lernen';
@@ -7675,7 +7675,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyIslandKidsLearningDescription =>
-      'Bewahren Sie das Lernen Ihrer Kinder auf einer einzigen Insel auf, damit künftige Kinderreisen, Werkzeuge und Aktivitäten ein klares Zuhause haben.';
+      'Reisen und Werkzeuge, gemacht für Kinder.';
 
   @override
   String get learningJourneyIslandBrowseAllTitle => 'Alle durchsuchen';
@@ -7686,29 +7686,29 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyIslandBrowseAllDescription =>
-      'Verwenden Sie eine Insel als Eingangstür zur vollständigen Lernkarte, wenn Sie möchten, dass alles an einem Ort verfügbar ist.';
+      'Die vollständige Lernkarte auf einer Seite.';
 
   @override
   String get learningJourneyIslandToolsOtherTitle => 'Werkzeuge und Sonstiges';
 
   @override
   String get learningJourneyIslandToolsOtherSubtitle =>
-      'Dienstprogramme, Familientools und unterstützende Lernräume.';
+      'Familienwerkzeuge und weitere hilfreiche Seiten.';
 
   @override
   String get learningJourneyIslandToolsOtherDescription =>
-      'Bewahren Sie nicht-reisebezogene Versorgungseinrichtungen und unterstützende Räume auf einer eigenen Insel auf, anstatt sie über den alten Lernknotenpunkt zu verstreuen.';
+      'Werkzeuge außerhalb der Reisen, etwa Babynamen.';
 
   @override
   String get learningJourneyIslandLegacyLearningTitle => 'Legacy-Lernen';
 
   @override
   String get learningJourneyIslandLegacyLearningSubtitle =>
-      'Ältere Lernoberflächen und migrierte Abschnitte, die weiterhin verwendet werden.';
+      'Die ursprüngliche Lernbibliothek.';
 
   @override
   String get learningJourneyIslandLegacyLearningDescription =>
-      'Behalten Sie die alte Lernbibliothek auf einer expliziten Insel, während die neuere Journey-Struktur sie im Laufe der Zeit weiterhin aufnimmt und ersetzt.';
+      'Lektionen aus der ersten Version von Lernen, so erhalten, wie sie waren.';
 
   @override
   String get learningJourneyFeedbackFirstStageOpened =>
@@ -8598,7 +8598,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyDetailMissingBody =>
-      'Kehren Sie zur Inselseite zurück und wählen Sie eine andere Reise.';
+      'Gehen Sie zurück und wählen Sie eine andere Reise.';
 
   @override
   String get learningJourneyPlaceholderLearnLabel => 'Was Sie lernen werden';
@@ -8793,7 +8793,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyToolProphetsSubtitle =>
-      'Öffnen Sie das aktuelle Prophets-System.';
+      'Geschichten und Lehren der Propheten.';
 
   @override
   String get learningJourneyToolWordsSubtitle =>
@@ -9987,7 +9987,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomDailyQuoteSection1Body =>
-      'Daily Wisdom vereint kurze Erinnerungen aus Koran, Hadith, prophetischen Beispielen und Reflexionen in einem ruhigen Einstiegspunkt. Das Ziel ist nicht Volumen. Das Ziel ist eine wahrheitsgetreue Erinnerung, die im Gedächtnis bleibt.';
+      'Daily Wisdom bringt kurze Erinnerungen aus Koran, Hadith, prophetischem Beispiel und Reflexion zusammen, eine nach der anderen. Das Ziel ist nicht Menge. Das Ziel ist eine wahre Erinnerung, die bei Ihnen bleibt.';
 
   @override
   String get learningJourneyWisdomDailyQuoteSection2Title =>
@@ -10071,7 +10071,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomShortLessonTakeaway3 =>
-      'Daily Wisdom sollte natürlich auf das umfassendere Reisesystem verweisen.';
+      'Daily Wisdom sollte ganz natürlich zu den umfassenderen Reisen führen.';
 
   @override
   String get learningJourneyWisdomShortLessonReflection =>
@@ -10122,7 +10122,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeTakeaway3 =>
-      'Daily Wisdom sollte Sie zurück in das umfassendere Lernsystem führen.';
+      'Daily Wisdom sollte Sie zurück zu Ihrem umfassenderen Lernen führen.';
 
   @override
   String get learningJourneyWisdomPracticeReflection =>
@@ -10635,7 +10635,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyWuduJourneySubtitle =>
-      'Lernen Sie den Ablauf, die Sunnah-Elemente und den Übungsablauf des Wudu.';
+      'Lernen Sie die Reihenfolge des Wudu, seine Sunnah-Handlungen und wie man es übt.';
 
   @override
   String get learningJourneyWuduJourneyDescription =>
@@ -10736,7 +10736,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyReadingBasicsWhyThisMatters =>
-      'Benutzer benötigen oft einen Mittelweg zwischen der Darstellung des Alphabets und der vollständigen Rezitation.';
+      'Zwischen dem Erlernen der Buchstaben und dem Rezitieren ganzer Verse brauchen die meisten einen Zwischenschritt.';
 
   @override
   String get learningJourneyTriviaPathsTitle => 'Trivia-Wissenspfade';
@@ -10763,7 +10763,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsWhyThisMatters =>
-      'Trivia kann bei guter Inszenierung zum reibungslosen Einstieg in strukturiertes Wissen werden.';
+      'Gut aufgebautes Trivia ist ein leichter Weg zu strukturiertem Wissen.';
 
   @override
   String get learningJourneyStageHadithEssentialCollectionTitle =>
@@ -10842,8 +10842,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Beginnen Sie mit dem Wudu als Vorbereitung, Reinigung und Vorbereitung auf das Gebet.';
 
   @override
-  String get learningJourneyStageWuduPracticeTitle =>
-      'Schritte und Übungsablauf';
+  String get learningJourneyStageWuduPracticeTitle => 'Schritte und Übung';
 
   @override
   String get learningJourneyStageWuduPracticeSummary =>
@@ -11032,7 +11031,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyToolGuidedPrayerSubtitle =>
-      'Öffnen Sie einen geführten Salah-Flow.';
+      'Beten Sie Schritt für Schritt mit Anleitung.';
 
   @override
   String get learningJourneyToolEssentialHadithSubtitle =>
@@ -11048,11 +11047,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyToolDuaHubSubtitle =>
-      'Öffnen Sie den aktuell verifizierten Dua-Hub.';
+      'Verifizierte Duas durchsuchen.';
 
   @override
   String get learningJourneyToolTriviaPathsSubtitle =>
-      'Öffnen Sie das geführte Trivia-Pfadsystem.';
+      'Quizze, die Schritt für Schritt aufbauen.';
 
   @override
   String get learningJourneyToolTriviaReviewSubtitle =>
@@ -12120,7 +12119,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaPathsBullet3 =>
-      'Nutzen Sie Pfade als Einstiegspunkte in tieferes Lernen.';
+      'Nutzen Sie Pfade als Weg zu tieferem Lernen.';
 
   @override
   String get learningJourneyTriviaPathsTakeaway1 =>
@@ -12215,7 +12214,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyTriviaReviewBullet3 =>
-      'Lassen Sie die Verstärkung zurück in das Reisesystem führen.';
+      'Lassen Sie die Wiederholung Sie zurück zu den Reisen führen.';
 
   @override
   String get learningJourneyTriviaReviewTakeaway1 =>
@@ -12588,7 +12587,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyQuranJourneyOutcome2 =>
-      'Bauen Sie anhand klarer Einstiegspunkte einen ersten Leserhythmus auf';
+      'Bauen Sie von einem klaren Anfang aus einen ersten Leserhythmus auf';
 
   @override
   String get learningJourneyQuranJourneyOutcome3 =>
@@ -12811,7 +12810,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyQuranOpenSection2Body =>
-      'Verwenden Sie einen klaren Einstiegspunkt, halten Sie die Lektüre sanft und lassen Sie die Neugier wachsen, nachdem die Beziehung begonnen hat.';
+      'Beginnen Sie an einem klaren Ort, halten Sie die Lektüre sanft und lassen Sie die Neugier wachsen, nachdem die Beziehung begonnen hat.';
 
   @override
   String get learningJourneyQuranOpenBullet1 =>
@@ -13464,7 +13463,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyReadingCompletionBullet3 =>
-      'Nutzen Sie Koran- und Salah-Reisen als nächste Ebene.';
+      'Gehen Sie als Nächstes die Koran- und Salah-Reisen an.';
 
   @override
   String get learningJourneyReadingCompletionTakeaway1 =>
@@ -14671,7 +14670,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningPathBeginnerDescription =>
-      'Ein ruhiger erster Weg durch Islam, Anbetung und Identität.';
+      'Ein erster Weg durch Islam, Anbetung und Identität.';
 
   @override
   String get learningPathPracticingTitle => 'Beständigkeit aufbauen';
@@ -14685,7 +14684,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningPathSeekerDescription =>
-      'Eine strukturiertere Route durch Glauben, Geschichte und Integration.';
+      'Ein strukturierterer Weg durch Glauben, Geschichte und Integration.';
 
   @override
   String get learningPathAdvancedTitle => 'Verfeinerung';
@@ -14967,7 +14966,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learningJourneyStageUnavailableBody =>
-      'Diese Phase kann derzeit nicht den beabsichtigten Inhalt öffnen. Nutzen Sie den Fallback unten oder kehren Sie zur Reise zurück und fahren Sie mit einem anderen verfügbaren Schritt fort.';
+      'Diese Phase kann derzeit nicht den beabsichtigten Inhalt öffnen. Nutzen Sie die Option unten oder kehren Sie zur Reise zurück und fahren Sie mit einem anderen verfügbaren Schritt fort.';
 
   @override
   String get learningJourneyStageUnavailableFallbackTitle =>
@@ -17896,7 +17895,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get legalAttributionsAdhanBody =>
-      'Quelle des enthaltenen Adhan-Erinnerungsclips:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginaldatei:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuf der Quellseite angegebener Autor: Jarih (eigenes Werk)\nLizenz: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nAktueller Hinweis: Die App verwendet vorübergehend offline verfügbare Adhan-Varianten, die aus diesem Clip abgeleitet sind, bis der kuratierte Ersatzsatz ausgetauscht wird.';
+      'Quelle des enthaltenen Adhan-Erinnerungsclips:\nhttps://commons.wikimedia.org/wiki/File:Adhan_wiki.oga\n\nOriginaldatei:\nhttps://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\nAuf der Quellseite angegebener Autor: Jarih (eigenes Werk)\nLizenz: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\nHinweis: Die Fajr-Adhan-Klänge der App verwenden dieselbe Aufnahme.';
 
   @override
   String get legalAttributionsWordTimingTitle => 'Wort-Timing (Live-Sync-Beta)';
@@ -17946,7 +17945,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'Sauberere Oberflächen und stärkerer Kontrast für konzentriertes Lesen. Empfohlen für längere Lesesitzungen.';
+      'Schlichtere Hintergründe und stärkerer Kontrast für konzentriertes Lesen. Empfohlen für längere Lesesitzungen.';
 
   @override
   String get settingsThemeModeDarkDescription =>
@@ -21541,7 +21540,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quranTeachingLevelKnowSomeLettersDescription =>
-      'Öffnet frühe Module gemeinsam und zeigt weiterhin eine empfohlene Reihenfolge.';
+      'Öffnet die ersten Lektionen gemeinsam, weiterhin in einer empfohlenen Reihenfolge.';
 
   @override
   String get quranTeachingLevelReadSlowlyTitle => 'Ich kann langsam lesen';
@@ -22325,15 +22324,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get adhanOptionFajrDefaultTitle => 'Fajr-Standard';
 
   @override
-  String get adhanOptionFajrDefaultSubtitle =>
-      'Temporärer gebündelter Fallback für Fajr-spezifisches Routing.';
+  String get adhanOptionFajrDefaultSubtitle => 'Der Adhan für Fajr.';
 
   @override
   String get adhanOptionFajrSoftTitle => 'Fajr Sanft';
 
   @override
   String get adhanOptionFajrSoftSubtitle =>
-      'Vorübergehender gebündelter Ersatz mit einem sanfteren Fajr-Label.';
+      'Dieselbe Aufnahme wie der Standard-Fajr-Adhan.';
 
   @override
   String get accountsSyncThisDeviceGeneric => 'Dieses Gerät';
@@ -30834,7 +30832,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionExploreHadithDescription =>
-      'Nutzen Sie den Hadith-Bereich, um prophetischer Barmherzigkeit, Führung und Charakter nahe zu bleiben, während sich die Sira entfaltet.';
+      'Lesen Sie Hadithe, um prophetischer Barmherzigkeit, Führung und Charakter nahe zu bleiben, während sich die Sira entfaltet.';
 
   @override
   String get learnSeerahCompanionExploreQuranSubtitle =>
@@ -31071,7 +31069,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionTurningPointsDescription =>
-      'Nutzen Sie dieses Modul, um Hudaibiya, die Öffnung Mekkas und die Abschiedswallfahrt mit dem größeren Bogen aus Geduld, Öffnung und Vollendung in der Sira zu verbinden.';
+      'Verbinden Sie Hudaibiya, die Öffnung Mekkas und die Abschiedswallfahrt mit dem größeren Bogen aus Geduld, Öffnung und Vollendung in der Sira.';
 
   @override
   String get learnSeerahCompanionFinalSermonDescription =>
@@ -34996,7 +34994,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guidedPathSalahDescription =>
-      'Ein ruhigerer Einstiegspfad in die Salah. Beginne mit der Bedeutung des Gebets und gehe dann in Wudu, Übung und einen geführten Gebetsablauf, ohne alles auf einmal herausfinden zu müssen.';
+      'Ein ruhigerer Einstiegspfad in die Salah. Beginne mit der Bedeutung des Gebets und gehe dann in Wudu, Übung und ein geführtes Gebet, ohne alles auf einmal herausfinden zu müssen.';
 
   @override
   String get guidedPathQuranBeginnerTitle => 'Qur’an-Einstiegspfad';
@@ -35007,7 +35005,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guidedPathQuranBeginnerDescription =>
-      'Ein sanfter Einstieg in die zentrale Koranerfahrung. Beginnen Sie mit Ermutigung und einem ruhigen Zugangspunkt und gehen Sie dann in Ihrem Tempo weiter zu Zusammenfassungen, Lesen und tieferen Koranpfaden.';
+      'Eine erste Einführung in den Koran. Beginnen Sie mit Ermutigung und einem klaren Anfang und gehen Sie dann zu Zusammenfassungen, zum Lesen und zu tieferen Koranpfaden über.';
 
   @override
   String get guidedPathDailyDhikrTitle => 'Pfad für tägliches Dhikr';
@@ -35819,7 +35817,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDescription =>
-      'Milky frosted glass with a soft pearled glow and gentle transparency.';
+      'Warme Noor-Farben auf festen Karten, mit sanfter Tiefe und ohne Glastransparenz.';
 
   @override
   String get settingsThemeModeNoorGlassDarkDescription =>
@@ -35827,7 +35825,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'Warme, feste Oberflächen ohne Transparenz für einen klaren und geerdeten Alltagsblick.';
+      'Warme, feste Hintergründe ohne Transparenz für einen klaren und geerdeten Alltagsblick.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
@@ -37930,7 +37928,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get learnContainedStateBody =>
-      'Diese Ansicht ist bewusst eingeschränkt, statt unfertige Lerninhalte als vollständig darzustellen.';
+      'Hier gibt es noch keine Lektionen. Wählen Sie eine andere Reise oder Lektion.';
 
   @override
   String get learnContainedStateBackToLearnAction => 'Zurück zu Lernen';
@@ -38247,7 +38245,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get salahTrainerPrayerJummahOverview =>
-      'Jumu’ah umfasst die Khutba vor dem Gebet und zwei Rakahs, die in Gemeinschaft verrichtet werden. Der geführte Ablauf hier konzentriert sich auf die beiden Gebets-Rakahs und erinnert an den Kontext der Khutba.';
+      'Jumu’ah umfasst die Khutba vor dem Gebet und zwei Rakahs, die in Gemeinschaft verrichtet werden. Diese Anleitung konzentriert sich auf die beiden Gebets-Rakahs und erinnert an den Kontext der Khutba.';
 
   @override
   String get salahTrainerJummahGuidanceHanafi =>

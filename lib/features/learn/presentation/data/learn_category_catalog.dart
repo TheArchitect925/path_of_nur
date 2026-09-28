@@ -553,7 +553,7 @@ class LearnCategoryCatalog {
       ],
       tags: ['search', 'trainer', 'salah'],
       sectionType: 'search-only',
-      description: 'Interactive guided and checklist practice flow.',
+      description: 'Interactive guided practice and checklist mode.',
     ),
   ];
 

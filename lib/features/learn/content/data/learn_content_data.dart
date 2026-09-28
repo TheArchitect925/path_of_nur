@@ -213,7 +213,7 @@ const List<LearnContentPageData> _lifeTopics = [
     id: 'hajj-full-journey',
     category: LearnTopicCategory.life,
     title: 'Hajj: Booking to Returning Home',
-    subtitle: 'A staged roadmap from planning to post-Hajj habits.',
+    subtitle: 'From planning to the habits you keep after Hajj.',
     overview:
         'A practical flow covering intentions, planning, documents, physical preparation, rites, and post-return consistency.',
     keyThemes: [
