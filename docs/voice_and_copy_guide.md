@@ -193,7 +193,10 @@ read, so it may list; two lists are the content itself (the platforms the app
 runs on, the occasions it dresses up for). And placeholder names (`{xp}`,
 `{streak}`) are code, not copy. These live in `MODE_NAME_KEYS` and
 `INDEX_LIST_KEYS` in `tools/copy_lint.py`; add a key there only when the same
-argument holds.
+argument holds. A search hint lists what can be searched (*Search by surah,
+number, or phrase*), so `…SearchHint` keys may list too. A surah lesson whose
+key ends in the surah's name (`quranSurahInsightLessonAlBaqarah…`) is lesson
+prose, not chrome (`CONTENT_KEYS`).
 
 A line that is right as it is opts out of one rule with a trailing comment,
 so the exception is visible where it lives:
@@ -237,7 +240,8 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V0 · Foundation (done 2026-09-07) | this guide, the lint, the ratchet test, dead keys deleted, delta translation |
 | V1 · Mechanics | scripted, reviewed diff: apostrophes, terms, casing, honorifics, UK→US, typos, dashes, label periods, duplicate labels, kids dialogue quotes |
 | V2a · First run (done 2026-09-27) | notifications, onboarding, home, navigation, settings, profile and page descriptions rewritten; one name for each number app-wide; de/fr/ar/ur translated by hand, and 320 translation errors in those screens fixed |
-| V2 · Chrome by exposure | (b) Learn hubs, Qur’an, Worship, Dhikr, Growth · (c) Kids · (d) games, circles, baby names, history, world, accounts |
+| V2b-1 · Qur’an (done 2026-09-27) | the Qur’an tab, reader, pathways, first-phrases and short-surah steps, Qur’anic Arabic lessons; *Ayah Insights* renamed *Ayah Lessons*; playback errors say what to do |
+| V2 · Chrome by exposure | (b-2) Learn hubs and journeys · (b-3) Growth, Worship, Dhikr, Salah, Wudu · (c) Kids · (d) games, circles, baby names, history, world, accounts |
 | V3 · Prose | the content keys and the Dart content files: (a) mechanics, (b) studio vocabulary and roadmap and (c) tails, done 2026-09-27 · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

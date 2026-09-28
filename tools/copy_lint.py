@@ -117,8 +117,14 @@ def is_sacred(key: str) -> bool:
     return bool(SACRED_SUFFIX.search(key))
 
 
+# V2b-1: surah lessons are prose; search hints index (2026-09-27). A surah lesson's key ends in the
+# surah's name (quranSurahInsightDescriptionAlBaqarah), so the suffix test
+# misses it; it is lesson prose all the same.
+CONTENT_KEYS = re.compile(r"^quranSurahInsight(Description|Lesson|Prompt|WhyItMatters|Theme)")
+
+
 def is_content(key: str) -> bool:
-    return bool(CONTENT_SUFFIX.search(key))
+    return bool(CONTENT_SUFFIX.search(key)) or bool(CONTENT_KEYS.match(key))
 
 
 def is_chrome(key: str) -> bool:
@@ -157,7 +163,7 @@ def rx(pattern: str, flags: int = 0) -> Callable[[str, str], bool]:
 # way a phone's own settings list reads); and two lists are the content itself.
 MODE_NAME_KEYS = r"^(profileGentleModeTitle|settingsCareModeGentleTitle)$"
 INDEX_LIST_KEYS = re.compile(
-    r"^(settingsCategory\w*Subtitle|onboardingOpeningPlatformFooter|settingsOccasionThemesSubtitle)$"
+    r"^(settingsCategory\w*Subtitle|\w*SearchHint|onboardingOpeningPlatformFooter|settingsOccasionThemesSubtitle)$"
 )
 
 

@@ -1054,7 +1054,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTabBookmarksSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your saved ayahs, notes, and reflections'**
+  /// **'Saved ayahs and notes'**
   String get quranTabBookmarksSubtitle;
 
   /// No description provided for @quranTabListenTitle.
@@ -1066,7 +1066,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTabListenSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reciters, focus recitation, and audio'**
+  /// **'Listen to recitation'**
   String get quranTabListenSubtitle;
 
   /// No description provided for @quranTabSummariesTitle.
@@ -1132,7 +1132,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTabMemorizationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Hifz review and gentle repetition'**
+  /// **'Hifz and review'**
   String get quranTabMemorizationSubtitle;
 
   /// No description provided for @quranTabWordPracticeTitle.
@@ -1156,7 +1156,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranKhatmPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm pace to complete the whole Qur’an.'**
+  /// **'A pace to finish the whole Qur’an.'**
   String get quranKhatmPageSubtitle;
 
   /// No description provided for @quranKhatmPaceTitle.
@@ -2182,7 +2182,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranHubStudySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use this page for explanation, reflection, guided paths, and memorization without leaving the Qur’an section.'**
+  /// **'Go deeper into what you read.'**
   String get quranHubStudySubtitle;
 
   /// No description provided for @quranHubTopicsSubtitle.
@@ -6082,7 +6082,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranThemeMapBrowseSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse a curated set of Qur’anic themes and begin from representative ayahs, surahs, and related learning paths.'**
+  /// **'Choose a theme, and begin from its key ayahs.'**
   String get quranThemeMapBrowseSubtitle;
 
   /// No description provided for @quranThemePatienceTitle.
@@ -6520,7 +6520,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReferenceDetailSourceOwnerTitle.
   ///
   /// In en, this message translates to:
-  /// **'Source owner'**
+  /// **'Source'**
   String get quranReferenceDetailSourceOwnerTitle;
 
   /// No description provided for @quranReferenceDetailOpenDestination.
@@ -6637,7 +6637,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderMemorizationFocusSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Repeat this ayah calmly while keeping its meaning and the strongest study links close below.'**
+  /// **'Repeat this ayah, with its meaning close by.'**
   String get quranReaderMemorizationFocusSubtitle;
 
   /// No description provided for @quranReaderMemorizationFocusOpenReview.
@@ -6673,7 +6673,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderModeReadingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep the page calmer and let study cues stay lighter while you move through the surah.'**
+  /// **'A plain page for reading through the surah.'**
   String get quranReaderModeReadingSubtitle;
 
   /// No description provided for @quranReaderModeReflectionLabel.
@@ -6685,7 +6685,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderModeReflectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep meaning and reflection cues closer to the ayah without turning the page into a study dashboard.'**
+  /// **'Meaning and reflection beside each ayah.'**
   String get quranReaderModeReflectionSubtitle;
 
   /// No description provided for @quranReaderModeStudyLabel.
@@ -6697,7 +6697,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderModeStudySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Bring ayah links, surah study, and deeper learning handoffs closer to the reading flow.'**
+  /// **'Links and study notes beside the text.'**
   String get quranReaderModeStudySubtitle;
 
   /// No description provided for @quranReaderModeMemorizationLabel.
@@ -6709,7 +6709,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderModeMemorizationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reduce study density, keep repetition clear, and leave meaning close enough to support retention.'**
+  /// **'Less on the page, so repetition comes first.'**
   String get quranReaderModeMemorizationSubtitle;
 
   /// No description provided for @quranReaderModeThemeLabel.
@@ -6721,7 +6721,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderModeThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep {themeTitle} in view so the ayah, surah, and related study links stay tied to one theme.'**
+  /// **'Read with {themeTitle} in view.'**
   String quranReaderModeThemeSubtitle(Object themeTitle);
 
   /// No description provided for @quranLearnMoreSectionTitle.
@@ -6823,7 +6823,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahActionDailySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read, reflect, and try one small action today.'**
+  /// **'Read, reflect, then try one small act.'**
   String get quranAyahActionDailySubtitle;
 
   /// No description provided for @quranAyahActionCompleteAction.
@@ -6877,7 +6877,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPersonalizationKidsTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle next ayah'**
+  /// **'Your next ayah'**
   String get quranPersonalizationKidsTitle;
 
   /// No description provided for @quranPersonalizationDismissAction.
@@ -6919,7 +6919,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPersonalizationReasonDailyAnchor.
   ///
   /// In en, this message translates to:
-  /// **'A steady ayah for today'**
+  /// **'An ayah to hold on to'**
   String get quranPersonalizationReasonDailyAnchor;
 
   /// No description provided for @quranPersonalizationReasonGuidedPathFocus.
@@ -6955,7 +6955,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPersonalizationReasonKidsFriendly.
   ///
   /// In en, this message translates to:
-  /// **'Gentle and easy to understand'**
+  /// **'Easy to understand'**
   String get quranPersonalizationReasonKidsFriendly;
 
   /// No description provided for @quranPersonalizationReasonKeepMomentum.
@@ -6967,7 +6967,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPersonalizationReasonGentleForToday.
   ///
   /// In en, this message translates to:
-  /// **'A gentle ayah for this moment'**
+  /// **'An ayah for this moment'**
   String get quranPersonalizationReasonGentleForToday;
 
   /// No description provided for @quranPersonalizationReasonGrowthFocus.
@@ -6991,7 +6991,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPersonalizationKidsReasonToday.
   ///
   /// In en, this message translates to:
-  /// **'A good ayah for today'**
+  /// **'An ayah for today'**
   String get quranPersonalizationKidsReasonToday;
 
   /// No description provided for @quranSpiritualMomentHomeTitle.
@@ -7009,7 +7009,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSpiritualMomentPrayerTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle reminder after prayer'**
+  /// **'A reminder after salah'**
   String get quranSpiritualMomentPrayerTitle;
 
   /// No description provided for @quranSpiritualMomentReaderTitle.
@@ -7021,25 +7021,25 @@ abstract class AppLocalizations {
   /// No description provided for @quranSpiritualMomentKidsTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle ayah for now'**
+  /// **'An ayah for this moment'**
   String get quranSpiritualMomentKidsTitle;
 
   /// No description provided for @quranSpiritualMomentReasonMorning.
   ///
   /// In en, this message translates to:
-  /// **'A calm ayah for your morning'**
+  /// **'An ayah for the morning'**
   String get quranSpiritualMomentReasonMorning;
 
   /// No description provided for @quranSpiritualMomentReasonPostPrayer.
   ///
   /// In en, this message translates to:
-  /// **'A gentle reminder after prayer'**
+  /// **'A reminder after salah'**
   String get quranSpiritualMomentReasonPostPrayer;
 
   /// No description provided for @quranSpiritualMomentReasonDhuhr.
   ///
   /// In en, this message translates to:
-  /// **'A quiet pause for the middle of the day'**
+  /// **'A pause in the middle of the day'**
   String get quranSpiritualMomentReasonDhuhr;
 
   /// No description provided for @quranSpiritualMomentReasonAsr.
@@ -7057,13 +7057,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranSpiritualMomentReasonIsha.
   ///
   /// In en, this message translates to:
-  /// **'A calm ayah for this evening'**
+  /// **'An ayah for the evening'**
   String get quranSpiritualMomentReasonIsha;
 
   /// No description provided for @quranSpiritualMomentReasonNight.
   ///
   /// In en, this message translates to:
-  /// **'A quiet reflection for tonight'**
+  /// **'A reflection before sleep'**
   String get quranSpiritualMomentReasonNight;
 
   /// No description provided for @quranSpiritualMomentReasonFriday.
@@ -7075,19 +7075,19 @@ abstract class AppLocalizations {
   /// No description provided for @quranSpiritualMomentReasonRamadan.
   ///
   /// In en, this message translates to:
-  /// **'A meaningful ayah for Ramadan'**
+  /// **'An ayah for Ramadan'**
   String get quranSpiritualMomentReasonRamadan;
 
   /// No description provided for @quranSpiritualMomentReasonKids.
   ///
   /// In en, this message translates to:
-  /// **'A gentle ayah for right now'**
+  /// **'An ayah for this moment'**
   String get quranSpiritualMomentReasonKids;
 
   /// No description provided for @quranLearnMoreInsightsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ayah Insights'**
+  /// **'Ayah Lessons'**
   String get quranLearnMoreInsightsTitle;
 
   /// No description provided for @quranAyahInsightsDomainSignsInCreation.
@@ -7141,7 +7141,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightsTypeAyahInsight.
   ///
   /// In en, this message translates to:
-  /// **'Ayah Insight'**
+  /// **'Ayah Lesson'**
   String get quranAyahInsightsTypeAyahInsight;
 
   /// No description provided for @quranAyahInsightsTypeSignsInCreation.
@@ -7201,7 +7201,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightsCautionLabel.
   ///
   /// In en, this message translates to:
-  /// **'Read with care'**
+  /// **'A word of caution'**
   String get quranAyahInsightsCautionLabel;
 
   /// No description provided for @quranAyahInsightsRelatedAyahsTitle.
@@ -7261,19 +7261,19 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightsBrowseTitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse Ayah Insights'**
+  /// **'Browse Ayah Lessons'**
   String get quranAyahInsightsBrowseTitle;
 
   /// No description provided for @quranAyahInsightsBrowseSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Explore Qur’anic insights by theme and follow them back into the reader.'**
+  /// **'Lessons from the Qur’an, by theme.'**
   String get quranAyahInsightsBrowseSubtitle;
 
   /// No description provided for @quranAyahInsightsBrowseEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Ayah Insights categories will appear here as enrichment content grows.'**
+  /// **'No lessons here yet.'**
   String get quranAyahInsightsBrowseEmpty;
 
   /// No description provided for @quranAyahInsightsBrowseHubAction.
@@ -7291,31 +7291,31 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightsBrowseSubtitleSignsInCreation.
   ///
   /// In en, this message translates to:
-  /// **'Creation, nature, and signs that call the heart to reflection.'**
+  /// **'Signs in creation that call for reflection.'**
   String get quranAyahInsightsBrowseSubtitleSignsInCreation;
 
   /// No description provided for @quranAyahInsightsBrowseSubtitleWorshipRemembrance.
   ///
   /// In en, this message translates to:
-  /// **'Prayer, dhikr, du’a, sincerity, and practical worshipful life.'**
+  /// **'Worship and remembrance in daily life.'**
   String get quranAyahInsightsBrowseSubtitleWorshipRemembrance;
 
   /// No description provided for @quranAyahInsightsBrowseSubtitleCharacterAdab.
   ///
   /// In en, this message translates to:
-  /// **'Conduct, restraint, mercy, justice, and daily adab.'**
+  /// **'Adab in daily life.'**
   String get quranAyahInsightsBrowseSubtitleCharacterAdab;
 
   /// No description provided for @quranAyahInsightsBrowseSubtitleTawhidBelief.
   ///
   /// In en, this message translates to:
-  /// **'Foundational belief, Tawhid, trust, and awareness of Allah.'**
+  /// **'Tawhid, and trust in Allah.'**
   String get quranAyahInsightsBrowseSubtitleTawhidBelief;
 
   /// No description provided for @quranAyahInsightsBrowseSubtitleAkhirahAccountability.
   ///
   /// In en, this message translates to:
-  /// **'Judgment, deeds, resurrection, and preparing for the Hereafter.'**
+  /// **'Preparing for the Hereafter.'**
   String get quranAyahInsightsBrowseSubtitleAkhirahAccountability;
 
   /// No description provided for @quranAyahInsightsBrowseSubtitleProphetsLessons.
@@ -7339,7 +7339,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightsDomainEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This category is ready for future enrichment, but it does not have browseable entries yet.'**
+  /// **'No lessons in this category yet.'**
   String get quranAyahInsightsDomainEmptySubtitle;
 
   /// No description provided for @quranAyahInsightsBrowseLessonTypeCoreLesson.
@@ -7501,7 +7501,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightPathsEntrySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through a small curated sequence of ayah insights instead of opening entries one by one.'**
+  /// **'A few ayah lessons, in order.'**
   String get quranAyahInsightPathsEntrySubtitle;
 
   /// No description provided for @quranAyahInsightPathsAction.
@@ -7513,19 +7513,19 @@ abstract class AppLocalizations {
   /// No description provided for @quranAyahInsightPathsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ayah Insight Paths'**
+  /// **'Ayah Lesson Paths'**
   String get quranAyahInsightPathsTitle;
 
   /// No description provided for @quranAyahInsightPathsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Short, curated Qur’anic learning sequences built from the Ayah Insights.'**
+  /// **'Short guided paths through the Ayah Lessons.'**
   String get quranAyahInsightPathsSubtitle;
 
   /// No description provided for @quranAyahInsightPathsEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Guided paths will appear here as curated Ayah Insights sequences expand.'**
+  /// **'No guided paths here yet.'**
   String get quranAyahInsightPathsEmpty;
 
   /// No description provided for @quranAyahInsightPathsReflectionFocusTitle.
@@ -7663,7 +7663,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSurahInsightsEntrySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See the main themes, lessons, and strongest Ayah Insights clusters for this surah.'**
+  /// **'The main themes and lessons of this surah.'**
   String get quranSurahInsightsEntrySubtitle;
 
   /// No description provided for @quranSurahInsightsEntryAction.
@@ -7675,19 +7675,19 @@ abstract class AppLocalizations {
   /// No description provided for @quranSurahInsightsBrowseTitle.
   ///
   /// In en, this message translates to:
-  /// **'Surah Themes & Insights'**
+  /// **'Surah Themes & Lessons'**
   String get quranSurahInsightsBrowseTitle;
 
   /// No description provided for @quranSurahInsightsBrowseSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Explore concise surah-level themes, lessons, and linked Ayah Insights clusters.'**
+  /// **'The main themes of each surah.'**
   String get quranSurahInsightsBrowseSubtitle;
 
   /// No description provided for @quranSurahInsightsEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Surah insight pages will appear here as curated surah summaries expand.'**
+  /// **'No surah lessons here yet.'**
   String get quranSurahInsightsEmpty;
 
   /// No description provided for @quranSurahInsightsOverviewTitle.
@@ -7723,7 +7723,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSurahInsightsClustersTitle.
   ///
   /// In en, this message translates to:
-  /// **'Insight clusters'**
+  /// **'Related ayah lessons'**
   String get quranSurahInsightsClustersTitle;
 
   /// No description provided for @quranSurahInsightsSuggestedPathsTitle.
@@ -7855,7 +7855,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSurahInsightThemeWorshipWithPresence.
   ///
   /// In en, this message translates to:
-  /// **'Worship with presence'**
+  /// **'Presence in worship'**
   String get quranSurahInsightThemeWorshipWithPresence;
 
   /// No description provided for @quranSurahInsightThemeDiscernmentAndReflection.
@@ -9329,7 +9329,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranExplorerSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse surahs and open your reading flow.'**
+  /// **'Browse the surahs and start reading.'**
   String get quranExplorerSubtitle;
 
   /// No description provided for @quranSearchTitle.
@@ -10427,7 +10427,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShowLearnMoreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Show related learning links and knowledge around the current ayah.'**
+  /// **'Show lessons related to the ayah you’re reading.'**
   String get quranShowLearnMoreSubtitle;
 
   /// No description provided for @kidsQuranExplanationShowTitle.
@@ -10487,7 +10487,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranWordTranslationBetaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This feature is currently in Beta and may still be refined.'**
+  /// **'Word meanings are still being checked. Some may be off.'**
   String get quranWordTranslationBetaSubtitle;
 
   /// No description provided for @quranRepeatFromLabel.
@@ -10559,7 +10559,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranMemorizationReviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to the ayahs you want to retain with meaning, themes, and light related study.'**
+  /// **'The ayahs you are memorizing, with their meaning.'**
   String get quranMemorizationReviewSubtitle;
 
   /// No description provided for @quranMemorizationReviewSummary.
@@ -10571,7 +10571,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranMemorizationReviewEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No ayahs are marked for memorization yet. Mark one from the reader to begin a calm review list.'**
+  /// **'No ayahs marked for memorization yet. Mark one in the reader to start.'**
   String get quranMemorizationReviewEmpty;
 
   /// No description provided for @quranMemorizationReviewContinueTitle.
@@ -10607,7 +10607,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranMemorizationReviewMeaningFallback.
   ///
   /// In en, this message translates to:
-  /// **'Translation is not available for this ayah right now.'**
+  /// **'No translation for this ayah yet.'**
   String get quranMemorizationReviewMeaningFallback;
 
   /// No description provided for @quranMemorizationReviewNextReview.
@@ -26065,7 +26065,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPlaybackFailureSourceMissing.
   ///
   /// In en, this message translates to:
-  /// **'This recitation source is unavailable right now.'**
+  /// **'This recitation isn’t available. Try another reciter.'**
   String get quranPlaybackFailureSourceMissing;
 
   /// No description provided for @quranPlaybackFailureSourceCorrupt.
@@ -26077,7 +26077,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPlaybackFailureReciterUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Unable to switch to this reciter right now.'**
+  /// **'This reciter couldn’t load. Try another.'**
   String get quranPlaybackFailureReciterUnavailable;
 
   /// No description provided for @quranPlaybackFailureBufferingTimeout.
@@ -26089,13 +26089,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranPlaybackFailureSessionRestore.
   ///
   /// In en, this message translates to:
-  /// **'Unable to resume the saved recitation right now.'**
+  /// **'The saved recitation couldn’t resume. Start it again.'**
   String get quranPlaybackFailureSessionRestore;
 
   /// No description provided for @quranPlaybackFailureUnknown.
   ///
   /// In en, this message translates to:
-  /// **'Playback could not continue right now.'**
+  /// **'Playback stopped. Try again.'**
   String get quranPlaybackFailureUnknown;
 
   /// No description provided for @profileWhatsNewChangelogTitle.
@@ -33999,7 +33999,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingDailyReviewEmptyStart.
   ///
   /// In en, this message translates to:
-  /// **'Start a few lessons and your daily review will appear here.'**
+  /// **'Finish a few lessons to start a daily review.'**
   String get quranTeachingDailyReviewEmptyStart;
 
   /// No description provided for @quranTeachingDailyReviewEmptyNoDue.
@@ -34077,7 +34077,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingListenOnlySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Low-distraction listening for walks, chores, bedtime review, and calm repetition.'**
+  /// **'Just listening, for when your hands are busy.'**
   String get quranTeachingListenOnlySubtitle;
 
   /// No description provided for @quranTeachingListenOnlyContentSetLabel.
@@ -34224,7 +34224,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm path for letters, sounds, forms, words, and short Qur’anic phrases.'**
+  /// **'From letters to short phrases of the Qur’an.'**
   String get quranTeachingSectionSubtitle;
 
   /// No description provided for @quranTeachingAlphabetOverviewTitle.
@@ -34236,7 +34236,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingAlphabetOverviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Browse all {count} letters from one shared Arabic foundation.'**
+  /// **'All {count} letters of the Arabic alphabet.'**
   String quranTeachingAlphabetOverviewSubtitle(int count);
 
   /// No description provided for @quranTeachingAlphabetOverviewCount.
@@ -34278,7 +34278,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingBeginnerWordsEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Beginner words will appear here when the shared set is ready.'**
+  /// **'No beginner words here yet.'**
   String get quranTeachingBeginnerWordsEmpty;
 
   /// No description provided for @quranTeachingBeginnerWordsHowToReadTitle.
@@ -34290,7 +34290,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingBeginnerWordsHowToReadSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Listen to the word, notice how each letter changes inside the word, then move calmly to the next example.'**
+  /// **'Listen, notice how each letter changes inside the word, then try the next.'**
   String get quranTeachingBeginnerWordsHowToReadSubtitle;
 
   /// No description provided for @quranTeachingBeginnerWordsCount.
@@ -34356,7 +34356,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingBeginnerWordsReadingHelperSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use these letters as a calm guide while you sound the word out.'**
+  /// **'Use these letters to sound the word out.'**
   String get quranTeachingBeginnerWordsReadingHelperSubtitle;
 
   /// No description provided for @quranTeachingBeginnerWordsPreviousAction.
@@ -34392,7 +34392,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingBeginnerWordsModuleSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use the shared beginner word set to connect letters, sound, and joined reading.'**
+  /// **'Short words that join letters into reading.'**
   String get quranTeachingBeginnerWordsModuleSubtitle;
 
   /// No description provided for @quranTeachingBeginnerWordsOpenInlineHint.
@@ -34410,7 +34410,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingPathSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose your level so lessons open in a calm and useful order.'**
+  /// **'Choose your level, and lessons open in the right order.'**
   String get quranTeachingPathSubtitle;
 
   /// No description provided for @quranTeachingPathActiveLevel.
@@ -34464,7 +34464,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingVisualModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Picture anchors and gentler prompts for visual learners.'**
+  /// **'Pictures and simpler prompts, for visual learners.'**
   String get quranTeachingVisualModeSubtitle;
 
   /// No description provided for @quranTeachingVisualModeToggle.
@@ -34488,7 +34488,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingReviewMistakesEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No review items right now.'**
+  /// **'Nothing to review.'**
   String get quranTeachingReviewMistakesEmpty;
 
   /// No description provided for @quranTeachingReviewMistakesSummary.
@@ -34566,7 +34566,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingPracticeRecommendationWeakAreaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A few recent misses suggest this area needs another calm pass.'**
+  /// **'A few recent misses. Another pass will help.'**
   String get quranTeachingPracticeRecommendationWeakAreaSubtitle;
 
   /// No description provided for @quranTeachingPracticeRecommendationHarakatTitle.
@@ -34638,7 +34638,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingPracticeAgainSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These lessons need one more calm pass.'**
+  /// **'These lessons need one more pass.'**
   String get quranTeachingPracticeAgainSubtitle;
 
   /// No description provided for @quranTeachingDailyReviewCardEmptyTitle.
@@ -34668,13 +34668,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingDailyReviewCardEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start a few lessons and your daily review will appear here.'**
+  /// **'Finish a few lessons to start a daily review.'**
   String get quranTeachingDailyReviewCardEmptySubtitle;
 
   /// No description provided for @quranTeachingDailyReviewCardNothingDueSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'No review due right now. A new lesson will build your next session.'**
+  /// **'Nothing to review today. A new lesson adds to your next review.'**
   String get quranTeachingDailyReviewCardNothingDueSubtitle;
 
   /// No description provided for @quranTeachingDailyReviewCardProgressSubtitle.
@@ -34858,7 +34858,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingReviewPageFilterEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No items match this review filter right now.'**
+  /// **'Nothing matches this filter.'**
   String get quranTeachingReviewPageFilterEmpty;
 
   /// No description provided for @quranTeachingReviewPageItemCounter.
@@ -34954,7 +34954,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingChooseLevelSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This helps Path of Nur open lessons in the right order and keep the pace calm for your level.'**
+  /// **'Lessons open in the right order for your level.'**
   String get quranTeachingChooseLevelSubtitle;
 
   /// No description provided for @quranTeachingModeGuided.
@@ -35155,7 +35155,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingLessonBackToModule.
   ///
   /// In en, this message translates to:
-  /// **'Back to module'**
+  /// **'Back to lessons'**
   String get quranTeachingLessonBackToModule;
 
   /// No description provided for @quranTeachingLessonNextLesson.
@@ -47901,7 +47901,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranDailyReflectionStarterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with one ayah, one gentle lesson, and one small reflection.'**
+  /// **'An ayah, a lesson and a moment to reflect.'**
   String get quranDailyReflectionStarterSubtitle;
 
   /// No description provided for @quranDailyReflectionSubtitle.
@@ -47919,13 +47919,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranDailyCompanionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'One ayah, one meaning cue, one small next step for today.'**
+  /// **'An ayah, its meaning and one small step.'**
   String get quranDailyCompanionSubtitle;
 
   /// No description provided for @quranDailyCompanionCardSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to today’s ayah with one clear reflection and one calm next step.'**
+  /// **'Today’s ayah, a reflection and one small step.'**
   String get quranDailyCompanionCardSubtitle;
 
   /// No description provided for @quranDailyCompanionOpenAction.
@@ -48111,7 +48111,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep ayahs, notes, and short reflection moments together.'**
+  /// **'Your saved ayahs and notes.'**
   String get quranReflectionsSubtitle;
 
   /// No description provided for @quranReflectionsEmptyTitle.
@@ -48123,7 +48123,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Save an ayah insight or daily reflection and it will appear here for later review.'**
+  /// **'Save an ayah lesson or a daily reflection to keep it here.'**
   String get quranReflectionsEmptySubtitle;
 
   /// No description provided for @quranReflectionsOpenAyahAction.
@@ -48243,7 +48243,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranLearningContinueEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Your recent ayah progress will appear here.'**
+  /// **'Open an ayah to start.'**
   String get quranLearningContinueEmptySubtitle;
 
   /// No description provided for @quranLearningResumePathAction.
@@ -48285,7 +48285,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranLearningSuggestedEmptySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Suggested ayahs will appear once you explore a little more.'**
+  /// **'Read a few ayahs to get suggestions.'**
   String get quranLearningSuggestedEmptySubtitle;
 
   /// No description provided for @quranLearningStartPathAction.
@@ -48399,7 +48399,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderLevelSheetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A level sets text size, helpers, and audio pace together. Every switch stays adjustable afterwards.'**
+  /// **'A level sets several reading options at once. You can still change each one.'**
   String get quranReaderLevelSheetSubtitle;
 
   /// No description provided for @quranReaderLevelNewReaderBody.
@@ -48429,7 +48429,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderTapAyahHint.
   ///
   /// In en, this message translates to:
-  /// **'Tap any ayah for meaning, audio, and study tools.'**
+  /// **'Tap an ayah to see its meaning and hear it.'**
   String get quranReaderTapAyahHint;
 
   /// No description provided for @quranReaderJumpSheetTitle.
@@ -48489,7 +48489,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderAdjacentSurahUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Unable to open that surah right now.'**
+  /// **'That surah couldn’t open. Try again.'**
   String get quranReaderAdjacentSurahUnavailable;
 
   /// No description provided for @quranReaderRepeatRangeSummary.
@@ -49123,7 +49123,7 @@ abstract class AppLocalizations {
   /// No description provided for @kidsQuranAyahInsightsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ayah Insights for Kids'**
+  /// **'Ayah Lessons for Kids'**
   String get kidsQuranAyahInsightsTitle;
 
   /// No description provided for @kidsQuranAyahInsightsSubtitle.
@@ -50488,7 +50488,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionExploreQuranDescription.
   ///
   /// In en, this message translates to:
-  /// **'Use Ayah Insights to follow Qur’anic guidance connected to prophetic struggle, trust, and community formation.'**
+  /// **'Use Ayah Lessons to follow Qur’anic guidance connected to prophetic struggle, trust, and community formation.'**
   String get learnSeerahCompanionExploreQuranDescription;
 
   /// No description provided for @learnCompanionContinueSubtitle.
@@ -51388,7 +51388,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionQuranSourceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open Ayah Insights when character and adab themes need Qur’anic guidance and reflection.'**
+  /// **'Open Ayah Lessons for Qur’anic guidance on character.'**
   String get learnCharacterCompanionQuranSourceSubtitle;
 
   /// No description provided for @learnDailyWisdomSourceSectionSubtitle.
@@ -51742,7 +51742,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranLearningPathsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow calm guided journeys through surahs, themes, reflection, and meaningful verses.'**
+  /// **'Guided paths through surahs and themes.'**
   String get quranLearningPathsSubtitle;
 
   /// No description provided for @quranLearningPathsContinueSubtitle.
@@ -51808,7 +51808,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranLearningPathIntensityGentle.
   ///
   /// In en, this message translates to:
-  /// **'Gentle'**
+  /// **'Light'**
   String get quranLearningPathIntensityGentle;
 
   /// No description provided for @quranLearningPathIntensityGuided.
@@ -52006,31 +52006,31 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessAdultPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use familiar Arabic phrases to recognize real Qur’anic verses calmly.'**
+  /// **'Recognize real ayahs from phrases you know.'**
   String get quranReadinessAdultPageSubtitle;
 
   /// No description provided for @quranReadinessKidsIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle bridge into Qur’an reading'**
+  /// **'Your first Qur’an phrases'**
   String get quranReadinessKidsIntroTitle;
 
   /// No description provided for @quranReadinessKidsIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These are real Qur’an phrases. Listen, look closely, and notice what already feels familiar.'**
+  /// **'These are real Qur’an phrases. Listen, and see what you already know.'**
   String get quranReadinessKidsIntroSubtitle;
 
   /// No description provided for @quranReadinessAdultIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm bridge into Qur’anic recognition'**
+  /// **'Recognizing the Qur’an'**
   String get quranReadinessAdultIntroTitle;
 
   /// No description provided for @quranReadinessAdultIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with very short real Qur’anic phrases, then notice how they sit inside the full ayah.'**
+  /// **'Start with short phrases, then see them inside the full ayah.'**
   String get quranReadinessAdultIntroSubtitle;
 
   /// No description provided for @quranReadinessCountValue.
@@ -52058,7 +52058,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessStartGently.
   ///
   /// In en, this message translates to:
-  /// **'Start gently'**
+  /// **'Start'**
   String get quranReadinessStartGently;
 
   /// No description provided for @quranReadinessPlaySnippetAction.
@@ -52076,7 +52076,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessProgressionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through short snippets in a calm order. You can still open any snippet at any time.'**
+  /// **'Short phrases, in order. Open any one whenever you like.'**
   String get quranReadinessProgressionSubtitle;
 
   /// No description provided for @quranReadinessLevelOneTitle.
@@ -52136,7 +52136,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessKnownPhraseAdultSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This phrase connects directly to your earlier Arabic work, so the verse feels less unfamiliar.'**
+  /// **'You know this phrase from your Arabic lessons.'**
   String get quranReadinessKnownPhraseAdultSubtitle;
 
   /// No description provided for @quranReadinessRecognitionKidsTitle.
@@ -52148,19 +52148,19 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessRecognitionKidsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Even if this is a new snippet, some of its sounds and words will start to feel easier to spot.'**
+  /// **'Even in a new phrase, some sounds and words will feel familiar.'**
   String get quranReadinessRecognitionKidsSubtitle;
 
   /// No description provided for @quranReadinessRecognitionAdultTitle.
   ///
   /// In en, this message translates to:
-  /// **'Build recognition calmly'**
+  /// **'Build recognition'**
   String get quranReadinessRecognitionAdultTitle;
 
   /// No description provided for @quranReadinessRecognitionAdultSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This snippet extends what you already know without needing full reader complexity.'**
+  /// **'This phrase builds on what you already know.'**
   String get quranReadinessRecognitionAdultSubtitle;
 
   /// No description provided for @quranReadinessPronunciationHintsTitle.
@@ -52172,7 +52172,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessPronunciationHintsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Use these small cues to notice careful recitation without turning this into a full tajweed lesson.'**
+  /// **'Small cues for careful recitation. Not a full tajweed lesson.'**
   String get quranReadinessPronunciationHintsSubtitle;
 
   /// No description provided for @quranReadinessPronunciationHintsOpenAction.
@@ -52196,7 +52196,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessHintStretchLabel.
   ///
   /// In en, this message translates to:
-  /// **'Stretch gently'**
+  /// **'Stretch the sound (madd)'**
   String get quranReadinessHintStretchLabel;
 
   /// No description provided for @quranReadinessHintStretchDescription.
@@ -52220,7 +52220,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessHintNasalLabel.
   ///
   /// In en, this message translates to:
-  /// **'Soft nasal sound'**
+  /// **'Nasal sound (ghunnah)'**
   String get quranReadinessHintNasalLabel;
 
   /// No description provided for @quranReadinessHintNasalDescription.
@@ -52268,7 +52268,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessAudioUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Audio is not available right now.'**
+  /// **'No audio for this yet.'**
   String get quranReadinessAudioUnavailable;
 
   /// No description provided for @quranReadinessKidsCardTitle.
@@ -52280,7 +52280,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessKidsCardStartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'When a few Arabic sounds feel familiar, these tiny Qur’an phrases help children say, “I know this.”'**
+  /// **'Tiny phrases from the Qur’an that help children say, “I know this.”'**
   String get quranReadinessKidsCardStartSubtitle;
 
   /// No description provided for @quranReadinessAdultCardTitle.
@@ -52298,7 +52298,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReadinessAdultCardStartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'After some Arabic letters and beginner words, these short Qur’anic phrases make recognition feel real.'**
+  /// **'Short phrases from the Qur’an, after your first Arabic letters and words.'**
   String get quranReadinessAdultCardStartSubtitle;
 
   /// No description provided for @quranReadinessAdultStartAction.
@@ -52328,7 +52328,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsKidsPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move from tiny Qur’an snippets into full short surahs, one calm step at a time.'**
+  /// **'From tiny Qur’an phrases to whole short surahs.'**
   String get quranShortSurahsKidsPageSubtitle;
 
   /// No description provided for @quranShortSurahsAdultPageTitle.
@@ -52352,19 +52352,19 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsKidsIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with one very short surah, listen carefully, and notice how the whole surah begins to feel familiar.'**
+  /// **'Start with one very short surah, and listen until it feels familiar.'**
   String get quranShortSurahsKidsIntroSubtitle;
 
   /// No description provided for @quranShortSurahsAdultIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle step into complete short surahs'**
+  /// **'Complete short surahs'**
   String get quranShortSurahsAdultIntroTitle;
 
   /// No description provided for @quranShortSurahsAdultIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These short surahs let you move from phrase recognition into full reading without opening the full reader first.'**
+  /// **'Read full short surahs before opening the reader.'**
   String get quranShortSurahsAdultIntroSubtitle;
 
   /// No description provided for @quranShortSurahsCountValue.
@@ -52400,7 +52400,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsProgressionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with the most familiar complete surah, then move into other very short surahs at your own pace.'**
+  /// **'Begin with the surah you know best, then the other short ones.'**
   String get quranShortSurahsProgressionSubtitle;
 
   /// No description provided for @quranShortSurahsStageOneTitle.
@@ -52412,13 +52412,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsStageOneSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start with a complete short surah that already overlaps your earlier snippet work.'**
+  /// **'Start with a short surah that shares words with the phrases you know.'**
   String get quranShortSurahsStageOneSubtitle;
 
   /// No description provided for @quranShortSurahsStageTwoTitle.
   ///
   /// In en, this message translates to:
-  /// **'Stage 2: Gentle expansion'**
+  /// **'Stage 2: A little further'**
   String get quranShortSurahsStageTwoTitle;
 
   /// No description provided for @quranShortSurahsStageTwoSubtitle.
@@ -52436,7 +52436,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsStageThreeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read familiar protection surahs with calm ayah-by-ayah support.'**
+  /// **'The surahs of protection, ayah by ayah.'**
   String get quranShortSurahsStageThreeSubtitle;
 
   /// No description provided for @quranShortSurahsSurahMeta.
@@ -52472,7 +52472,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsKnownSnippetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These are pieces you have already seen in the earlier Qur’an readiness bridge.'**
+  /// **'You have already seen these pieces in earlier lessons.'**
   String get quranShortSurahsKnownSnippetsSubtitle;
 
   /// No description provided for @quranShortSurahsKidsCardTitle.
@@ -52484,7 +52484,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsKidsCardStartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'After tiny Qur’an snippets, this is a calm next step into reading a whole short surah.'**
+  /// **'After tiny Qur’an phrases, a whole short surah.'**
   String get quranShortSurahsKidsCardStartSubtitle;
 
   /// No description provided for @quranShortSurahsKidsStartAction.
@@ -52520,7 +52520,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsAdultCardStartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'After phrase-level Qur’an recognition, this is the next calm step into complete short surah reading.'**
+  /// **'After Qur’an phrases, your first complete short surah.'**
   String get quranShortSurahsAdultCardStartSubtitle;
 
   /// No description provided for @quranShortSurahsAdultStartAction.
@@ -52544,7 +52544,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranShortSurahsBridgeKidsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'You have started recognizing Qur’an snippets. The next step is reading the full short surah {surahName}.'**
+  /// **'You recognize Qur’an phrases now. Next: the whole of {surahName}.'**
   String quranShortSurahsBridgeKidsSubtitle(Object surahName);
 
   /// No description provided for @quranShortSurahsBridgeAdultSubtitle.
@@ -53300,7 +53300,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranTeachingMiniAssessmentPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A short recognition check to reinforce recent letters, words, and phrases.'**
+  /// **'A short check on what you learned recently.'**
   String get quranTeachingMiniAssessmentPageSubtitle;
 
   /// No description provided for @arabicLearningMiniAssessmentIntroTitle.
@@ -53429,7 +53429,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesKidsPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Take one more calm step from very short surahs into slightly longer Qur’an reading.'**
+  /// **'One more step, from very short surahs to longer reading.'**
   String get quranGuidedPassagesKidsPageSubtitle;
 
   /// No description provided for @quranGuidedPassagesAdultPageTitle.
@@ -53441,31 +53441,31 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesAdultPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move from short surahs into slightly longer guided passages, still on the beginner bridge.'**
+  /// **'From short surahs into slightly longer passages, with support.'**
   String get quranGuidedPassagesAdultPageSubtitle;
 
   /// No description provided for @quranGuidedPassagesKidsIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle next reading step'**
+  /// **'Your next reading step'**
   String get quranGuidedPassagesKidsIntroTitle;
 
   /// No description provided for @quranGuidedPassagesKidsIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These passages stay short enough to feel safe, but long enough to help full Qur’an reading feel more real.'**
+  /// **'Short enough to feel easy, long enough to feel like real Qur’an reading.'**
   String get quranGuidedPassagesKidsIntroSubtitle;
 
   /// No description provided for @quranGuidedPassagesAdultIntroTitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm step into longer guided passages'**
+  /// **'Into longer passages'**
   String get quranGuidedPassagesAdultIntroTitle;
 
   /// No description provided for @quranGuidedPassagesAdultIntroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These selections extend the bridge beyond very short surahs while keeping ayah-by-ayah support, replay, and simple highlighting.'**
+  /// **'Longer passages, still with ayah-by-ayah support and replay.'**
   String get quranGuidedPassagesAdultIntroSubtitle;
 
   /// No description provided for @quranGuidedPassagesCountValue.
@@ -53501,7 +53501,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesProgressionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with a familiar opening from Al-Fatihah, then complete the rest, then read the full surah with calm support.'**
+  /// **'First the opening of Al-Fatihah, then the rest, then the whole surah.'**
   String get quranGuidedPassagesProgressionSubtitle;
 
   /// No description provided for @quranGuidedPassagesStageOneTitle.
@@ -53513,7 +53513,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesStageOneSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read the opening ayahs of Al-Fatihah using phrases you already know from the earlier bridge.'**
+  /// **'The opening ayahs of Al-Fatihah, using phrases you know.'**
   String get quranGuidedPassagesStageOneSubtitle;
 
   /// No description provided for @quranGuidedPassagesStageTwoTitle.
@@ -53525,7 +53525,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesStageTwoSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Add the closing ayahs so Al-Fatihah feels like one connected reading instead of separate snippets.'**
+  /// **'Add the closing ayahs, so Al-Fatihah reads as one.'**
   String get quranGuidedPassagesStageTwoSubtitle;
 
   /// No description provided for @quranGuidedPassagesStageThreeTitle.
@@ -53537,7 +53537,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesStageThreeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read the whole of Al-Fatihah in one guided flow with replay and highlighting.'**
+  /// **'The whole of Al-Fatihah, with replay and highlighting.'**
   String get quranGuidedPassagesStageThreeSubtitle;
 
   /// No description provided for @quranGuidedPassagesOpeningTitle.
@@ -53573,7 +53573,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesFullSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read the whole surah calmly from beginning to end with guided support.'**
+  /// **'Read the whole surah, start to finish, with support.'**
   String get quranGuidedPassagesFullSubtitle;
 
   /// No description provided for @quranGuidedPassagesPassageMeta.
@@ -53607,13 +53607,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesKnownSnippetsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Already familiar from earlier bridge steps'**
+  /// **'Already familiar from earlier lessons'**
   String get quranGuidedPassagesKnownSnippetsTitle;
 
   /// No description provided for @quranGuidedPassagesKnownSnippetsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'These are the shorter phrases you have already recognized before moving into this longer passage.'**
+  /// **'Phrases you already recognize from this passage.'**
   String get quranGuidedPassagesKnownSnippetsSubtitle;
 
   /// No description provided for @quranGuidedPassagesFlowHint.
@@ -53673,7 +53673,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranGuidedPassagesAdultCardStartSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'After snippets and very short surahs, this is the next calm step into slightly longer Qur’anic reading.'**
+  /// **'After short surahs, a slightly longer passage.'**
   String get quranGuidedPassagesAdultCardStartSubtitle;
 
   /// No description provided for @quranGuidedPassagesAdultStartAction.
@@ -53844,7 +53844,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderReadingDisplaySectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Adjust what stays visible and how the ayah text feels while you read.'**
+  /// **'What you see while you read.'**
   String get quranReaderReadingDisplaySectionSubtitle;
 
   /// No description provided for @quranReaderStudyToolsSectionTitle.
@@ -53856,7 +53856,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderStudyToolsSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Optional learning aids and beta helpers for deeper study.'**
+  /// **'Optional aids for deeper study.'**
   String get quranReaderStudyToolsSectionSubtitle;
 
   /// No description provided for @quranReaderAudioPlaybackSectionTitle.
@@ -53868,7 +53868,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderAudioPlaybackSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose the reciter and playback behavior without crowding the reading controls.'**
+  /// **'The reciter, and how recitation plays.'**
   String get quranReaderAudioPlaybackSectionSubtitle;
 
   /// No description provided for @quranReaderDownloadsOfflineSectionTitle.
@@ -53892,7 +53892,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderMemorizationReviewSectionSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep hifz-focused controls separate from everyday reading.'**
+  /// **'Settings for hifz and review.'**
   String get quranReaderMemorizationReviewSectionSubtitle;
 
   /// No description provided for @quranReaderRepeatPracticeTitle.
@@ -53916,7 +53916,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderLiveWordSyncSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Beta testing: timing and highlighting may be imperfect on some verses.'**
+  /// **'Still being refined. Timing may be off on some ayahs.'**
   String get quranReaderLiveWordSyncSubtitle;
 
   /// No description provided for @quranReaderRedDiacriticsTitle.
@@ -53934,13 +53934,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranReaderBackgroundPlaybackTitle.
   ///
   /// In en, this message translates to:
-  /// **'Background playback + lock-screen controls'**
+  /// **'Keep playing in the background'**
   String get quranReaderBackgroundPlaybackTitle;
 
   /// No description provided for @quranReaderBackgroundPlaybackSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enables media controls on lock screen / notification and Dynamic Island (iOS).'**
+  /// **'Shows playback controls on the lock screen and in the Dynamic Island.'**
   String get quranReaderBackgroundPlaybackSubtitle;
 
   /// No description provided for @quranReaderReciterLabel.
@@ -55644,7 +55644,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranSummaryNoResultsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try another surah name, number, Arabic spelling, or revelation filter.'**
+  /// **'Try another name or number.'**
   String get quranSummaryNoResultsSubtitle;
 
   /// No description provided for @quranSummaryHeroEyebrow.
@@ -55656,13 +55656,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranSummaryHeroTitle.
   ///
   /// In en, this message translates to:
-  /// **'Read the flow of the Holy Qur’an one surah at a time'**
+  /// **'The Qur’an, one surah at a time'**
   String get quranSummaryHeroTitle;
 
   /// No description provided for @quranSummaryHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm reference for themes, revelation setting, and quick orientation before you open the reader.'**
+  /// **'Each surah’s themes and setting, before you read.'**
   String get quranSummaryHeroSubtitle;
 
   /// No description provided for @quranSummaryRevelationMixed.
@@ -55926,7 +55926,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranThemeDiscoveryPageSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Curated themes, related surahs, key ayahs and gentle study pathways.'**
+  /// **'Follow a theme across the Qur’an.'**
   String get quranThemeDiscoveryPageSubtitle;
 
   /// No description provided for @quranThemeDiscoveryHeroEyebrow.
@@ -55944,7 +55944,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranThemeDiscoveryHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.'**
+  /// **'Follow a theme like mercy or patience across the surahs.'**
   String get quranThemeDiscoveryHeroSubtitle;
 
   /// No description provided for @quranThemeDiscoverySearchHint.
@@ -56010,7 +56010,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranThemeDiscoveryNoResultsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try another topic, prophet, event, or category.'**
+  /// **'Try another word or category.'**
   String get quranThemeDiscoveryNoResultsSubtitle;
 
   /// No description provided for @quranThemeDiscoveryMissingThemeTitle.
@@ -56088,13 +56088,13 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwaysHeroTitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through the Qur’an with calm structure'**
+  /// **'Paths through the Qur’an'**
   String get quranPathwaysHeroTitle;
 
   /// No description provided for @quranPathwaysHeroSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose a curated pathway when you want a gentler sequence through surahs, themes, key ayat, and reflection.'**
+  /// **'Follow a path through the Qur’an, one step at a time.'**
   String get quranPathwaysHeroSubtitle;
 
   /// No description provided for @quranPathwaysFeaturedTitle.
@@ -56274,7 +56274,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayPatienceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through sabr, prayer, hardship, and hopeful endurance.'**
+  /// **'Sabr through hardship.'**
   String get quranPathwayPatienceSubtitle;
 
   /// No description provided for @quranPathwayPatienceDescription.
@@ -56292,7 +56292,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayTawhidSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin with Allah’s oneness, majesty, and sole right to worship.'**
+  /// **'Begin with the oneness of Allah.'**
   String get quranPathwayTawhidSubtitle;
 
   /// No description provided for @quranPathwayTawhidDescription.
@@ -56310,7 +56310,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMercySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow mercy, repentance, welcome, and hopeful return to Allah.'**
+  /// **'Mercy, and the open door of repentance.'**
   String get quranPathwayMercySubtitle;
 
   /// No description provided for @quranPathwayMercyDescription.
@@ -56328,7 +56328,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMusaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trace courage, mission, du’a, and reliance through Musa (peace be upon him).'**
+  /// **'The courage and trust of Musa (peace be upon him).'**
   String get quranPathwayMusaSubtitle;
 
   /// No description provided for @quranPathwayMusaDescription.
@@ -56346,7 +56346,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayCreationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reflect on the heavens, earth, life, and the self as signs of Allah.'**
+  /// **'Creation, and ourselves, as signs of Allah.'**
   String get quranPathwayCreationSubtitle;
 
   /// No description provided for @quranPathwayCreationDescription.
@@ -56364,7 +56364,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayHereafterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Remember return, accountability, and the meeting with Allah.'**
+  /// **'Remember the return to Allah.'**
   String get quranPathwayHereafterSubtitle;
 
   /// No description provided for @quranPathwayHereafterDescription.
@@ -56382,7 +56382,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayGratitudeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Notice blessing, increase, and worshipful thankfulness.'**
+  /// **'Gratitude as worship.'**
   String get quranPathwayGratitudeSubtitle;
 
   /// No description provided for @quranPathwayGratitudeDescription.
@@ -56400,7 +56400,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayCharacterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow speech, manners, fairness, and life with others.'**
+  /// **'How the Qur’an teaches us to treat others.'**
   String get quranPathwayCharacterSubtitle;
 
   /// No description provided for @quranPathwayCharacterDescription.
@@ -56418,7 +56418,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayDuaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Move through nearness, asking Allah, and trusting Him after effort.'**
+  /// **'Asking Allah, and trusting Him after you try.'**
   String get quranPathwayDuaSubtitle;
 
   /// No description provided for @quranPathwayDuaDescription.
@@ -56436,7 +56436,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayHardTimesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Return to a few verses of ease, trust, and reassurance when life feels heavy.'**
+  /// **'Verses of ease for when life feels heavy.'**
   String get quranPathwayHardTimesSubtitle;
 
   /// No description provided for @quranPathwayHardTimesDescription.
@@ -56466,7 +56466,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayPatienceStepYusufSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Walk through hardship, family pain, and dignified trust in Allah.'**
+  /// **'Yusuf’s trust in Allah through family pain.'**
   String get quranPathwayPatienceStepYusufSubtitle;
 
   /// No description provided for @quranPathwayPatienceStepReaderTitle.
@@ -56478,7 +56478,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayPatienceStepReaderSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open the reader where reassurance is repeated with clarity.'**
+  /// **'Open the reader where reassurance is repeated.'**
   String get quranPathwayPatienceStepReaderSubtitle;
 
   /// No description provided for @quranPathwayPatienceStepReflectTitle.
@@ -56526,7 +56526,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayTawhidStepKursiSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reflect on Allah’s life, authority, and preservation.'**
+  /// **'Reflect on the greatest ayah.'**
   String get quranPathwayTawhidStepKursiSubtitle;
 
   /// No description provided for @quranPathwayTawhidStepReflectTitle.
@@ -56550,7 +56550,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMercyStepThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'See how mercy gathers hope, compassion, and return to Allah.'**
+  /// **'See how mercy opens the way back to Allah.'**
   String get quranPathwayMercyStepThemeSubtitle;
 
   /// No description provided for @quranPathwayMercyStepZumarTitle.
@@ -56562,7 +56562,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMercyStepZumarSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Open a well-known anchor against despair.'**
+  /// **'Open a verse that forbids despair.'**
   String get quranPathwayMercyStepZumarSubtitle;
 
   /// No description provided for @quranPathwayMercyStepRahmanTitle.
@@ -56610,7 +56610,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayMusaStepTahaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read a surah that holds mission, reassurance, and du’a together.'**
+  /// **'Read a surah of mission and reassurance.'**
   String get quranPathwayMusaStepTahaSubtitle;
 
   /// No description provided for @quranPathwayMusaStepDuaTitle.
@@ -56670,7 +56670,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayCreationStepMulkSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Look at order, design, and humility before divine power.'**
+  /// **'Look at the order in creation, and be humbled.'**
   String get quranPathwayCreationStepMulkSubtitle;
 
   /// No description provided for @quranPathwayCreationStepReflectTitle.
@@ -56766,7 +56766,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayGratitudeStepNahlSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Notice blessings, provision, and the call to recognize them.'**
+  /// **'Notice the blessings around you.'**
   String get quranPathwayGratitudeStepNahlSubtitle;
 
   /// No description provided for @quranPathwayGratitudeStepReflectTitle.
@@ -56790,7 +56790,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayCharacterStepHujuratSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Read a surah of speech, manners, and life with others.'**
+  /// **'Read a surah about living well with others.'**
   String get quranPathwayCharacterStepHujuratSubtitle;
 
   /// No description provided for @quranPathwayCharacterStepReaderTitle.
@@ -56838,7 +56838,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayDuaStepThemeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Start by seeing supplication as nearness, humility, and hope.'**
+  /// **'Start with du’a as nearness to Allah.'**
   String get quranPathwayDuaStepThemeSubtitle;
 
   /// No description provided for @quranPathwayDuaStepBaqarahTitle.
@@ -56862,7 +56862,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayDuaStepTrustSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow how tawakkul joins planning, effort, and surrender.'**
+  /// **'How tawakkul joins effort and trust.'**
   String get quranPathwayDuaStepTrustSubtitle;
 
   /// No description provided for @quranPathwayDuaStepRelianceTitle.
@@ -56874,7 +56874,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayDuaStepRelianceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'End with a verse that joins decision, effort, and trust.'**
+  /// **'End with a verse on effort and trust.'**
   String get quranPathwayDuaStepRelianceSubtitle;
 
   /// No description provided for @quranPathwayHardTimesStepInshirahTitle.
@@ -56922,7 +56922,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranPathwayHardTimesStepSharhSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Finish with a short surah of expansion, ease, and forward motion.'**
+  /// **'Finish with a short surah of ease.'**
   String get quranPathwayHardTimesStepSharhSubtitle;
 
   /// No description provided for @quranPathwayPatienceStepReflectPrompt.
@@ -57030,7 +57030,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsLibrarySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Revisit the notes and insights you wanted to keep from your Holy Qur’an journey.'**
+  /// **'The notes you kept while reading the Qur’an.'**
   String get quranReflectionsLibrarySubtitle;
 
   /// No description provided for @quranReflectionsSearchHint.
@@ -57048,7 +57048,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsNoMatchesSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Try another search term or switch filters to see more of your saved insights.'**
+  /// **'Try another word or filter.'**
   String get quranReflectionsNoMatchesSubtitle;
 
   /// No description provided for @quranReflectionsMissingTitle.
@@ -57066,7 +57066,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsSavedInsightSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A saved insight from your Holy Qur’an journey'**
+  /// **'A note you saved while reading'**
   String get quranReflectionsSavedInsightSubtitle;
 
   /// No description provided for @quranReflectionsYourReflectionTitle.
@@ -57204,7 +57204,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranReflectionsThemeHelper.
   ///
   /// In en, this message translates to:
-  /// **'What is {themeName} drawing your attention to right now?'**
+  /// **'What is {themeName} drawing your attention to?'**
   String quranReflectionsThemeHelper(Object themeName);
 
   /// No description provided for @quranReflectionsPathwayHelper.
@@ -63877,7 +63877,7 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrInsightsAction.
   ///
   /// In en, this message translates to:
-  /// **'Insights'**
+  /// **'Totals'**
   String get dhikrInsightsAction;
 
   /// No description provided for @dhikrHeatmapSummary.
@@ -64579,7 +64579,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranUniverseSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Connections between verses, prophets, themes, places, lessons, and habits.'**
+  /// **'How ayahs, prophets and themes connect.'**
   String get quranUniverseSubtitle;
 
   /// No description provided for @knowledgeConstellationSubtitle.
