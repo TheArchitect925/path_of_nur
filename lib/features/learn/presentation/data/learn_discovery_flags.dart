@@ -6,18 +6,16 @@ import '../models/learn_discovery_models.dart';
 // ("start", "basics", "gentle", "deeper", …). The copy it read was localized,
 // so German, French, Arabic and Urdu got a different Start here shelf and
 // ranking, and every copy edit could move an entry in or out. The sets below
-// are the English result of that guess, fixed on 2026-09-27; a flag now
-// changes only when an id is added here or removed. Guided paths carry their
-// own flags, and Foundations and Kids entries are beginner-safe by category.
+// started as the English result of that guess (2026-09-27), then lost the
+// entries where the word was about something else: a hadith's narration
+// ("he started reciting"), a du'a's timing ("at the start of the day"), a
+// rak'ah count ("the first two"), the salah surahs' memorization tag. A flag
+// now changes only when an id is added here or removed. Guided paths carry
+// their own flags, and Foundations and Kids entries are beginner-safe by
+// category.
 
 /// Knowledge entries on the Start here shelf (difficulty `startHere`).
 const Set<String> learnDiscoveryStartHereIds = <String>{
-  'dua:stub_003_daily_life_morning_evening',
-  'dua:stub_008_daily_life_morning_evening',
-  'dua:stub_036_prayer_and_worship_wudu',
-  'dua:stub_061_travel_and_movement_journey',
-  'dua:sunnah_before_eating_bismillah',
-  'dua:sunnah_if_forgot_bismillah',
   'faq:clarification_001',
   'faq:clarification_002',
   'faq:foundations_001',
@@ -32,11 +30,6 @@ const Set<String> learnDiscoveryStartHereIds = <String>{
   'faq:prophets_002',
   'faq:quran_004',
   'hadith:lesson:islam_built_on_five_prayer',
-  'hadith:lesson:riyadussalihin_1175',
-  'hadith:lesson:riyadussalihin_1179',
-  'hadith:lesson:riyadussalihin_1180',
-  'hadith:lesson:riyadussalihin_1561',
-  'hadith:lesson:riyadussalihin_727',
   'kids-dua-category:daily_basics',
   'kids-salah:astaghfirullah',
   'kids-story-library:book_first_steps_angels_v1',
@@ -53,9 +46,6 @@ const Set<String> learnDiscoveryStartHereIds = <String>{
   'kids-story-library:book_first_steps_what_we_believe_v1',
   'kids-story-library:book_first_steps_who_is_allah_v1',
   'kids-story-library:book_first_steps_wudu_v1',
-  'kids-story:story_bismillah',
-  'kids-story:story_travel_start',
-  'kids-story:story_when_it_rains',
   'quiz:hadith:quiz_essential_ch1',
   'quiz:hadith:quiz_essential_ch2',
   'subcategory:arabic-learning',
@@ -74,53 +64,18 @@ const Set<String> learnDiscoveryStartHereIds = <String>{
 
 /// Knowledge entries outside Foundations and Kids that are beginner-safe.
 const Set<String> learnDiscoveryBeginnerIds = <String>{
-  'dua:stub_003_daily_life_morning_evening',
-  'dua:stub_008_daily_life_morning_evening',
-  'dua:stub_033_prayer_and_worship_sujud',
   'dua:stub_036_prayer_and_worship_wudu',
-  'dua:stub_061_travel_and_movement_journey',
-  'dua:stub_097_special_days_dhul_hijjah',
-  'dua:stub_115_quran_5_114',
   'dua:sunnah_before_eating_bismillah',
-  'dua:sunnah_if_forgot_bismillah',
   'faq:modern_003',
-  'faq:quran_003',
   'faq:quran_004',
-  'hadith:lesson:first_account_prayer',
-  'hadith:lesson:gentleness_all_matters',
-  'hadith:lesson:grave_first_stage_hereafter',
-  'hadith:lesson:mercy_young_respect_elders',
-  'hadith:lesson:patience_first_strike',
-  'hadith:lesson:riyadussalihin_1021',
-  'hadith:lesson:riyadussalihin_1081',
-  'hadith:lesson:riyadussalihin_1084',
-  'hadith:lesson:riyadussalihin_1175',
-  'hadith:lesson:riyadussalihin_1179',
-  'hadith:lesson:riyadussalihin_1180',
-  'hadith:lesson:riyadussalihin_1200',
-  'hadith:lesson:riyadussalihin_1561',
-  'hadith:lesson:riyadussalihin_1617',
-  'hadith:lesson:riyadussalihin_1842',
-  'hadith:lesson:riyadussalihin_1845',
-  'hadith:lesson:riyadussalihin_1864',
-  'hadith:lesson:riyadussalihin_1882',
-  'hadith:lesson:riyadussalihin_723',
-  'hadith:lesson:riyadussalihin_727',
-  'hadith:lesson:riyadussalihin_855',
   'hadith_reflection:home',
   'history:archive',
-  'prophet:adam',
-  'prophet:harun',
-  'salah:prayer:isha',
-  'salah:prayer:maghrib',
   'subcategory:arabic-learning',
   'subcategory:discovery',
   'subcategory:islamic-trivia',
   'subcategory:search-tools',
   'trivia-path:foundations_of_islam',
-  'trivia-path:prophets_journey',
   'trivia-stage:foundations_of_islam:what_is_islam',
-  'trivia-stage:prophets_journey:first_prophets',
 };
 
 /// Knowledge entries marked Deeper (Start here wins when an id is in both).
@@ -130,17 +85,6 @@ const Set<String> learnDiscoveryDeeperIds = <String>{
   'kids-seerah-journey:journey_seerah_muhammad_kids_v1',
   'kids-seerah:hub',
   'quiz:prophets:mixed',
-  'salah:surah:al_falaq',
-  'salah:surah:al_fatihah',
-  'salah:surah:al_fil',
-  'salah:surah:al_ikhlas',
-  'salah:surah:al_kafirun',
-  'salah:surah:al_kawthar',
-  'salah:surah:al_masad',
-  'salah:surah:al_maun',
-  'salah:surah:an_nas',
-  'salah:surah:an_nasr',
-  'salah:surah:quraysh',
 };
 
 /// Tools that open as practice or reflection; every other tool is a tool.

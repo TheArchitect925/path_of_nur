@@ -201,6 +201,39 @@ void main() {
     expect(flagged.difference(ids), isEmpty);
   });
 
+  test(
+    'flags describe the entry, not a word that happens to be in it',
+    () async {
+      final container = await makeContainer();
+      final entries = container.read(learnDiscoveryIndexProvider);
+
+      // A narration that says "he started reciting", or a du'a said "at the
+      // start of the day", is not where someone new to Islam starts.
+      expect(
+        entries
+            .where(
+              (entry) =>
+                  entry.startHere &&
+                  (entry.id.startsWith('dua:') ||
+                      entry.id.startsWith('hadith:lesson:riyadussalihin_')),
+            )
+            .map((entry) => entry.id),
+        isEmpty,
+      );
+      // The surahs taught for salah are the first ones a Muslim learns.
+      expect(
+        entries
+            .where(
+              (entry) =>
+                  entry.id.startsWith('salah:surah:') &&
+                  entry.difficulty == LearnDiscoveryDifficulty.deeper,
+            )
+            .map((entry) => entry.id),
+        isEmpty,
+      );
+    },
+  );
+
   test('an Arabic query finds the Arabic-titled entry first', () async {
     final container = await makeContainer(locale: const Locale('ar'));
     final entries = container.read(learnDiscoveryIndexProvider);
