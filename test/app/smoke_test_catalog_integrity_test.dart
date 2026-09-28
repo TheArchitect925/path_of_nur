@@ -95,4 +95,37 @@ void main() {
           'work item on import.',
     );
   });
+
+  test('every smoke test row sits in one unbroken table', () {
+    // MCSnow's converter reads a table as its header, the --- separator and
+    // the rows after them, and stops at the first line that is not a row. A
+    // blank line between two batches of rows therefore ends the table, and
+    // every row below it is silently left out of the import.
+    final header = lines.indexWhere(
+      (line) => RegExp(r'^\|\s*ID\s*\|').hasMatch(line),
+    );
+    expect(
+      header,
+      isNot(-1),
+      reason: 'Expected the "| ID | Title | ..." header of the test table.',
+    );
+    var end = header + 2;
+    while (end < lines.length && lines[end].trimLeft().startsWith('|')) {
+      end++;
+    }
+    final testRow = RegExp(r'^\|\s*(PON-T-[A-Za-z0-9-]+)\s*\|');
+    final stranded = <String>[
+      for (var i = end; i < lines.length; i++)
+        if (testRow.firstMatch(lines[i]) case final match?) match.group(1)!,
+    ];
+    expect(
+      stranded,
+      isEmpty,
+      reason:
+          'The smoke test table ends at line ${end + 1}, so ${stranded.length} '
+          'rows below it never reach MCSnow (${stranded.take(5).join(', ')}'
+          '${stranded.length > 5 ? ', ...' : ''}). Remove the blank line and '
+          'append new rows directly under the last row.',
+    );
+  });
 }
