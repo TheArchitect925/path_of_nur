@@ -194,9 +194,7 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
               if (dailyStreak != null && dailyStreak.currentStreak > 0)
                 _chip(
                   context,
-                  l10n.wordSearchDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
-                  ),
+                  l10n.wordSearchDailyStreakLabel(dailyStreak.currentStreak),
                 ),
               if (pack != null) _chip(context, wordSearchPackTitle(l10n, pack)),
               if (progress.isPerfect)

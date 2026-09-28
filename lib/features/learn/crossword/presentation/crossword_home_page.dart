@@ -198,7 +198,7 @@ class CrosswordHomePage extends ConsumerWidget {
                             _chip(
                               context,
                               l10n.crosswordDailyStreakLabel(
-                                dailyStreak.currentStreak.toString(),
+                                dailyStreak.currentStreak,
                               ),
                             ),
                             if ((dailyProgress?.startedAtIso ?? '')
@@ -430,7 +430,7 @@ class CrosswordHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.crosswordDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

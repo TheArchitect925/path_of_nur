@@ -176,7 +176,7 @@ class MatchingHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.matchingDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

@@ -1,11 +1,11 @@
 {
   "@@locale": "ur",
   "appTitle": "پاتھ آف نور",
-  "notificationsFastingMomentsChannelName": "روزے کے لمحات",
-  "notificationsFastingMomentsChannelDescription": "سحری، افطار، اور روزے کے اہم لمحات کی یاددہانیاں۔",
-  "notificationsPrayerNotificationOnlyChannelName": "نماز یاد دہانیاں (اطلاع)",
-  "notificationsPrayerNotificationOnlyChannelDescription": "اذان کی آواز کے بغیر نماز کی یاد دہانی کی اطلاعات",
-  "notificationsPrayerAdhanChannelName": "نماز یاد دہانیاں ({adhanTitle})",
+  "notificationsFastingMomentsChannelName": "روزے کے اوقات",
+  "notificationsFastingMomentsChannelDescription": "روزہ کب شروع اور کب ختم ہوتا ہے",
+  "notificationsPrayerNotificationOnlyChannelName": "نماز کی یاددہانیاں (اذان کے بغیر)",
+  "notificationsPrayerNotificationOnlyChannelDescription": "اذان کے بغیر نماز کی یاددہانیاں",
+  "notificationsPrayerAdhanChannelName": "نماز کی یاددہانیاں ({adhanTitle})",
   "@notificationsPrayerAdhanChannelName": {
     "placeholders": {
       "adhanTitle": {
@@ -13,14 +13,14 @@
       }
     }
   },
-  "notificationsPrayerAdhanChannelDescription": "اذان کی آواز کے ساتھ نماز کی یاد دہانی کی اطلاعات",
+  "notificationsPrayerAdhanChannelDescription": "اذان کے ساتھ نماز کی یاددہانیاں",
   "notificationsPrayerBeforeQazaChannelName": "نماز یاد دہانیاں (قضا سے پہلے)",
-  "notificationsPrayerBeforeQazaChannelDescription": "نماز قضا ہونے سے پہلے یاد دہانی کی اطلاعات",
+  "notificationsPrayerBeforeQazaChannelDescription": "ہر نماز کا وقت ختم ہونے سے پہلے ایک یاددہانی",
   "notificationsDailyRemindersChannelName": "روزانہ یاددہانیاں",
-  "notificationsDailyRemindersChannelDescription": "روزمرہ عبادت اور فکر کی عمومی یاددہانیاں۔",
-  "notificationsGrowthRemindersChannelName": "نشوونما یاددہانیاں",
-  "notificationsGrowthRemindersQuietChannelName": "نرم نشوونما یاددہانیاں",
-  "notificationsGrowthRemindersChannelDescription": "پیش رفت، عادات، اور مستقل مزاجی کے لیے یاددہانیاں۔",
+  "notificationsDailyRemindersChannelDescription": "ذکر، قرآن اور غور و فکر کی یاددہانیاں",
+  "notificationsGrowthRemindersChannelName": "نمو کی یاددہانیاں",
+  "notificationsGrowthRemindersQuietChannelName": "نمو کی یاددہانیاں (خاموش)",
+  "notificationsGrowthRemindersChannelDescription": "ان عادتوں کی یاددہانیاں جو آپ «نمو» میں رکھتے ہیں",
   "notificationsPrayerAtTimeTitle": "{prayerName} نماز",
   "@notificationsPrayerAtTimeTitle": {
     "placeholders": {
@@ -29,7 +29,7 @@
       }
     }
   },
-  "notificationsPrayerBeforeQazaTitle": "{prayerName} وقت کی یاد دہانی",
+  "notificationsPrayerBeforeQazaTitle": "{prayerName} کا وقت ختم ہونے والا ہے",
   "@notificationsPrayerBeforeQazaTitle": {
     "placeholders": {
       "prayerName": {
@@ -37,15 +37,15 @@
       }
     }
   },
-  "notificationsDhikrTitle": "ذکر کا ایک لمحہ",
-  "notificationsQuranTitle": "قرآن کے ساتھ ایک لمحہ",
+  "notificationsDhikrTitle": "ذکر کا وقت",
+  "notificationsQuranTitle": "قرآن کی تلاوت",
   "notificationsReflectionTitle": "آج کی مختصر فکر",
-  "notificationsFastingTitle": "روزے کی یاددہانی",
+  "notificationsFastingTitle": "آج کا روزہ",
   "notificationsOnThisDayTitle": "آج کے دن",
-  "notificationsCycleCheckTitle": "آج کی حالت چیک کریں",
-  "notificationsMoonriseTitle": "چاند چڑھنا",
-  "notificationsMoonsetTitle": "چاندنی",
-  "notificationsPrayerAtTimeBody": "{prayerName} نماز کا وقت ہو گیا ہے۔ اپنی نماز سے جڑے رہیں۔",
+  "notificationsCycleCheckTitle": "ایام کی جانچ",
+  "notificationsMoonriseTitle": "چاند کا طلوع",
+  "notificationsMoonsetTitle": "چاند کا غروب",
+  "notificationsPrayerAtTimeBody": "{prayerName} کا وقت ہو گیا ہے۔",
   "@notificationsPrayerAtTimeBody": {
     "placeholders": {
       "prayerName": {
@@ -53,7 +53,7 @@
       }
     }
   },
-  "notificationsPrayerAtTimeFajrBody": "{prayerName} نماز کا وقت ہو گیا ہے۔\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ",
+  "notificationsPrayerAtTimeFajrBody": "{prayerName} کا وقت ہو گیا ہے۔",
   "@notificationsPrayerAtTimeFajrBody": {
     "placeholders": {
       "prayerName": {
@@ -61,7 +61,7 @@
       }
     }
   },
-  "notificationsPrayerBeforeQazaBody": "{prayerName} کا وقت ختم ہونے والا ہے۔ اسے قضا ہونے سے پہلے ادا کریں۔",
+  "notificationsPrayerBeforeQazaBody": "{prayerName} پڑھنے کا ابھی وقت ہے۔",
   "@notificationsPrayerBeforeQazaBody": {
     "placeholders": {
       "prayerName": {
@@ -69,15 +69,15 @@
       }
     }
   },
-  "notificationsDhikrBody": "آج چند لمحے ذکر کے لیے نکالیں۔",
-  "notificationsQuranBody": "آج قرآن کی چند آیات کے ساتھ بیٹھیں۔",
-  "notificationsReflectionBody": "آج کے دن پر مختصر غور کریں۔",
-  "notificationsFastingBody": "اپنی نیت، سحری، یا افطار کے وقت پر نظر رکھیں۔",
-  "notificationsOnThisDayBody": "آج کی تاریخی جھلک کھولیں اور اسلامی تاریخ کے ایک معنی خیز لمحے کو دوبارہ یاد کریں۔",
-  "notificationsCycleCheckBody": "اگر ضرورت ہو تو اپنی موجودہ حالت اپ ڈیٹ کریں۔",
+  "notificationsDhikrBody": "اللہ کو یاد کرنے کا ایک لمحہ۔",
+  "notificationsQuranBody": "قرآن وہیں سے کھولیں جہاں آپ نے چھوڑا تھا۔",
+  "notificationsReflectionBody": "دن ختم ہونے سے پہلے اس کے بارے میں ایک سطر لکھیں۔",
+  "notificationsFastingBody": "آج کے روزے کی نیت کر لیں۔",
+  "notificationsOnThisDayBody": "اسلامی تاریخ کا ایک لمحہ جو اسی دن پیش آیا۔",
+  "notificationsCycleCheckBody": "اگر آپ کے عذر کے دن ختم ہو گئے ہیں تو نماز کی یاددہانیاں دوبارہ شروع ہو سکتی ہیں۔",
   "notificationsMoonriseBody": "چاند اب طلوع ہو رہا ہے۔",
   "notificationsMoonsetBody": "اب چاند غروب ہو رہا ہے۔",
-  "notificationsRecoveredReminderBody": "یہ یاد دہانی آپ سے پہلے رہ گئی تھی۔ {body}",
+  "notificationsRecoveredReminderBody": "پہلے سے: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
       "body": {
@@ -85,17 +85,17 @@
       }
     }
   },
-  "notificationsPrayerActionSnooze5": "مجھے 5 منٹ میں یاد دلائیں۔",
-  "notificationsPrayerActionSnooze10": "مجھے 10 منٹ میں یاد دلائیں۔",
-  "notificationsPrayerActionMarkOffered": "نماز کو بطور پیشکش نشان زد کریں۔",
-  "notificationsPrayerActionDismiss": "برطرف کرنا",
-  "notificationsReflectionActionWrite": "غور و فکر لکھیں۔",
-  "notificationsReflectionActionRemind10": "مجھے 10 منٹ میں یاد دلائیں۔",
-  "notificationsReflectionActionDismiss": "برطرف کرنا",
+  "notificationsPrayerActionSnooze5": "5 منٹ بعد یاد دلائیں",
+  "notificationsPrayerActionSnooze10": "10 منٹ بعد یاد دلائیں",
+  "notificationsPrayerActionMarkOffered": "ادا کر لی",
+  "notificationsPrayerActionDismiss": "بند کریں",
+  "notificationsReflectionActionWrite": "لکھیں",
+  "notificationsReflectionActionRemind10": "10 منٹ بعد یاد دلائیں",
+  "notificationsReflectionActionDismiss": "بند کریں",
   "notificationsPrayerNameTahajjud": "تہجد",
   "notificationsGenericPrayerName": "نماز",
   "notificationsFastingBeginsNowTitle": "روزہ اب شروع ہوتا ہے",
-  "notificationsFastingBeginsNowBody": "اللہ آپ کی نیت اور کوشش قبول فرمائے۔",
+  "notificationsFastingBeginsNowBody": "فجر سے پہلے روزے کی نیت تازہ کریں۔ نیت دل میں ہوتی ہے۔",
   "notificationsIftarTimeTitle": "افطار کا وقت ہو گیا",
   "notificationsIftarTimeBody": "پیاس بجھ گئی، رگیں تر ہوگئیں، اور اجر ثابت ہوگیا، اگر اللہ چاہے۔",
   "notificationsFastingLiveFastBeginsTitle": "روزہ شروع ہوتا ہے",
@@ -103,12 +103,12 @@
   "notificationsFastingLiveStartsIn": "شروع ہونے میں",
   "notificationsFastingLiveRenewIntentionTitle": "نیت تازہ کریں",
   "notificationsFastingLiveRenewIntentionArabic": "",
-  "notificationsFastingLiveRenewIntentionTranslation": "میں کل کے روزے کی نیت کرتا ہوں۔",
+  "notificationsFastingLiveRenewIntentionTranslation": "یہاں کوئی مخصوص زبانی دعا ثابت نہیں۔ فجر سے پہلے دل میں روزے کی نیت کر لیں۔",
   "notificationsFastingLiveFastEndsTitle": "روزہ ختم ہوتا ہے",
   "notificationsFastingLiveFastEndsArabicTitle": "افطار کا وقت",
   "notificationsFastingLiveEndsIn": "ختم ہونے میں",
   "notificationsFastingLiveIftarDuaTitle": "افطار کی دعا",
-  "notificationsFastingLiveIftarDuaArabic": "پیاس بجھ گئی، رگیں تر ہوگئیں، اور اجر ثابت ہوگیا، اگر اللہ چاہے۔",
+  "notificationsFastingLiveIftarDuaArabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ العُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ",
   "notificationsFastingLiveIftarDuaTranslation": "پیاس بجھ گئی، رگیں تر ہوگئیں، اور اجر ثابت ہوگیا، اگر اللہ چاہے۔",
   "notificationsFastingLiveIftarTitle": "افطار",
   "notificationsFastingLiveIftarArabicTitle": "افطار کا وقت",
@@ -393,29 +393,23 @@
       }
     }
   },
-  "hadithCurrentStreakLabel": "موجودہ سلسلہ: {days} دن{suffix}",
+  "hadithCurrentStreakLabel": "{days, plural, =1{1 دن مسلسل} other{{days} دن مسلسل}}",
   "@hadithCurrentStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithBestStreakLabel": "بہترین سلسلہ: {days} دن{suffix}",
+  "hadithBestStreakLabel": "{days, plural, =1{سب سے زیادہ مسلسل: 1 دن} other{سب سے زیادہ مسلسل: {days} دن}}",
   "@hadithBestStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithReflectionCompletedXp": "غور و فکر مکمل • +{xp} XP",
+  "hadithReflectionCompletedXp": "غور و فکر مکمل · +{xp} نور",
   "@hadithReflectionCompletedXp": {
     "placeholders": {
       "xp": {
@@ -446,14 +440,11 @@
   },
   "hadithTitleLearningPaths": "حدیث سیکھنے کے راستے",
   "hadithSubtitleLearningPaths": "مسلسل پیشرفت کے ساتھ ایک منظم ترتیب میں حدیث کا مطالعہ کرنے کے لیے تیار کردہ راستوں پر عمل کریں۔",
-  "hadithPathStreakLabel": "راستے کا سلسلہ: {current} دن{suffix} • بہترین: {best}",
+  "hadithPathStreakLabel": "{current, plural, =1{1 دن مسلسل} other{{current} دن مسلسل}} · زیادہ سے زیادہ: {best}",
   "@hadithPathStreakLabel": {
     "placeholders": {
       "current": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       },
       "best": {
         "type": "int"
@@ -748,11 +739,11 @@
   "nextSalah": "اگلی نماز",
   "homePrayerSectionTitle": "نماز کے اوقات",
   "homePrayerDateToday": "آج",
-  "homePrayerDateYesterday": "کل",
-  "homePrayerDateTomorrow": "کل",
+  "homePrayerDateYesterday": "گزشتہ کل",
+  "homePrayerDateTomorrow": "آئندہ کل",
   "homePrayerPreviousDayTooltip": "پچھلا دن",
-  "homePrayerNextDayTooltip": "اگلے دن",
-  "homePrayerCompletedCountValue": "{completed} از {total} صلاۃ کے اندراجات پیش کیے گئے ہیں۔",
+  "homePrayerNextDayTooltip": "اگلا دن",
+  "homePrayerCompletedCountValue": "{total} میں سے {completed} ادا",
   "@homePrayerCompletedCountValue": {
     "placeholders": {
       "completed": {
@@ -765,20 +756,20 @@
   },
   "dhuhr": "ظہر",
   "atTime": "1:30 PM پر",
-  "homeOverviewHeroTitle": "روزنامہ نور کا جائزہ",
-  "homeOverviewHeroSubtitle": "عبادت، سیکھنے، اور ترقی کا ایک مختصر خلاصہ۔",
-  "homePrayerProgressTitle": "دعا ترقی",
-  "homeDhikrProgressTitle": "ذکر ترقی",
-  "homeCurrentStreakTitle": "موجودہ سلسلہ",
-  "homeXpLevelTitle": "لیول اور ایکس پی",
+  "homeOverviewHeroTitle": "ایک نظر میں",
+  "homeOverviewHeroSubtitle": "آپ کی عبادت اور سیکھنا، مختصر میں۔",
+  "homePrayerProgressTitle": "نماز کی پیش رفت",
+  "homeDhikrProgressTitle": "ذکر کی پیش رفت",
+  "homeCurrentStreakTitle": "مسلسل دن",
+  "homeXpLevelTitle": "لیول اور نور",
   "homeDaysLabel": "دن",
-  "homeWorshipSummaryTitle": "عبادات کا خلاصہ",
-  "homeWorshipSummarySubtitle": "نماز، ذکر، روزہ اور خشوع ایک جگہ۔",
+  "homeWorshipSummaryTitle": "آج کی عبادت",
+  "homeWorshipSummarySubtitle": "آج آپ کی عبادت کیسی جا رہی ہے۔",
   "homeFastingStatusTitle": "روزے کی حیثیت",
-  "homeFastingNotFasting": "روزہ نہیں رکھتے",
-  "homeFastingIntending": "روزہ کی نیت کرنا",
+  "homeFastingNotFasting": "روزہ نہیں",
+  "homeFastingIntending": "روزے کی نیت ہے",
   "homeFastingCompleted": "مکمل",
-  "homeFastingBroken": "چھوٹ گیا / ٹوٹا ہوا",
+  "homeFastingBroken": "چھوٹ گیا یا ٹوٹ گیا",
   "worshipPrayerHubTitle": "نماز",
   "worshipPrayerHubSubtitle": "اوقات، تاریخچہ، اور قضا کی منصوبہ بندی ایک جگہ۔",
   "worshipPrayerTabTimes": "اوقات",
@@ -944,7 +935,7 @@
   "worshipPrayerIslamicCalendarTitle": "اسلامی کیلنڈر",
   "worshipPrayerIslamicCalendarSubtitle": "ہجری تاریخ کے ساتھ",
   "settingsPrayerCalendarDisplayTitle": "کیلنڈر ڈسپلے",
-  "settingsPrayerCalendarDisplaySubtitle": "منتخب کریں کہ آیا جامع صلاۃ کی تاریخیں گریگورین یا ہجری فارمیٹ میں دکھائی گئی ہیں۔",
+  "settingsPrayerCalendarDisplaySubtitle": "تاریخیں عیسوی یا ہجری کیلنڈر میں دکھائیں۔",
   "worshipPrayerWeekLabel": "ہفتہ {weekNumber}",
   "@worshipPrayerWeekLabel": {
     "placeholders": {
@@ -963,16 +954,16 @@
   "worshipPrayerRecentPlacesTitle": "حالیہ مقامات",
   "worshipPrayerStartTypingToSearch": "تلاش کے لیے لکھنا شروع کریں",
   "worshipPrayerLocationSearchUnavailable": "مقام کی تلاش دستیاب نہیں",
-  "homeLearnSummaryTitle": "خلاصہ جانیں۔",
-  "homeLearnSummarySubtitle": "توجہ مرکوز پیش نظاروں کے ساتھ اپنے علم کا راستہ جاری رکھیں۔",
-  "homeLearnContinueQuran": "قرآن جاری رکھیں",
+  "homeLearnSummaryTitle": "سیکھنا",
+  "homeLearnSummarySubtitle": "وہیں سے شروع کریں جہاں چھوڑا تھا۔",
+  "homeLearnContinueQuran": "قرآن کی تلاوت جاری رکھیں",
   "homeLearnFeaturedLife": "نمایاں زندگی کا موضوع",
   "homeLearnFeaturedWorld": "نمایاں عالمی موضوع",
   "homeLearnFeaturedHadith": "نمایاں حدیث کا موضوع",
-  "homeJourneySummaryTitle": "سفر کا خلاصہ",
-  "homeJourneySummarySubtitle": "پیشرفت، رِنگز، اور اگلے انلاک کو ٹریک کریں۔",
-  "homeJourneyXpProgressTitle": "ایکس پی کی پیشرفت",
-  "homeJourneyNextUnlockTitle": "اگلا انلاک",
+  "homeJourneySummaryTitle": "آپ کا سفر",
+  "homeJourneySummarySubtitle": "آپ کا لیول، اور آگے کیا ہے۔",
+  "homeJourneyXpProgressTitle": "اگلے لیول تک نور",
+  "homeJourneyNextUnlockTitle": "اگلا سنگِ میل",
   "appQuickActionOpenToday": "آج کھولیں",
   "appQuickActionReadQuran": "قرآن پڑھیں",
   "appQuickActionDailyLearning": "روزانہ سیکھنا",
@@ -1057,9 +1048,9 @@
   "worshipQiblaLocationMakkah": "Makkah",
   "worshipQiblaLocationMadinah": "Madinah",
   "worshipQiblaLocationJerusalem": "Jerusalem",
-  "homeSearchTooltip": "ایپ تلاش کریں۔",
-  "homeSearchGuidanceHubTitle": "اسلامی رہنمائی مرکز",
-  "homeTimeRemainingToOffer": "{prayerName} نماز پڑھنے کا وقت باقی ہے۔",
+  "homeSearchTooltip": "ایپ میں تلاش کریں",
+  "homeSearchGuidanceHubTitle": "اسلامی رہنما",
+  "homeTimeRemainingToOffer": "{prayerName} پڑھنے کا باقی وقت",
   "@homeTimeRemainingToOffer": {
     "placeholders": {
       "prayerName": {}
@@ -1093,7 +1084,7 @@
     }
   },
   "homePrayerForbiddenSunrise": "نماز کی اجازت نہیں ہے • طلوع آفتاب",
-  "homePrayerForbiddenZenith": "نماز کی اجازت نہیں ہے • زینتھ",
+  "homePrayerForbiddenZenith": "نماز کی اجازت نہیں ہے • زوال",
   "homePrayerForbiddenSunset": "نماز کی اجازت نہیں ہے • غروب آفتاب",
   "homeLevelValue": "لیول {level}",
   "@homeLevelValue": {
@@ -1101,7 +1092,7 @@
       "level": {}
     }
   },
-  "homeXpValue": "{xp} پوائنٹس",
+  "homeXpValue": "{xp} نور",
   "@homeXpValue": {
     "placeholders": {
       "xp": {}
@@ -1124,9 +1115,9 @@
   "homeShortcutQiblaLabel": "قبلہ",
   "homeShortcutSalahLabel": "نماز",
   "homeShortcutDhikrLabel": "ذکر",
-  "homeShortcutDailyCaption": "آج کی توجہ",
+  "homeShortcutDailyCaption": "روزانہ",
   "homeSalahTahajjudBonusCaption": "روزانہ · +{count} تہجد",
-  "homeShortcutOpen": "کھولیں",
+  "homeShortcutOpen": "شارٹ کٹس",
   "homePrayerOfferedStatus": "ادا ہو گئی",
   "homePrayerBeginsAt": "شروع ہوتی ہے",
   "homeDurationHoursMinutes": "{hours} گھنٹے {minutes} منٹ",
@@ -1143,13 +1134,13 @@
   "durationCompactHourSuffix": "گھنٹے",
   "durationCompactMinuteSuffix": "منٹ",
   "homeTodayContentTitle": "آج",
-  "homeTodayContentSubtitle": "آج کی آیت، رہنمائی اور سیکھنے کو ایک پُرسکون جگہ میں ساتھ رکھیں۔",
+  "homeTodayContentSubtitle": "ہر روز ایک نئی آیت اور ایک سبق۔",
   "homeEditTitle": "ہوم کو اپنی مرضی کے مطابق بنائیں",
-  "homeEditSubtitle": "صرف وہی دکھائیں جو کام آئے۔ ترتیب بدلنے کے لیے کھینچیں، غیر ضروری بند کریں۔",
+  "homeEditSubtitle": "ترتیب بدلنے کے لیے گھسیٹیں۔ جو ضرورت نہ ہو اسے بند کر دیں۔",
   "homeEditHiddenTitle": "پوشیدہ",
   "homeEditAlwaysOnLabel": "ہمیشہ فعال",
   "homeEditEntryLabel": "ہوم میں ترمیم",
-  "homeEditTrackerFootnote": "نماز کے اوقات کا مکمل ٹریکر عبادت میں ہے، اوقات کی قطار سے ایک ٹیپ کے فاصلے پر۔",
+  "homeEditTrackerFootnote": "نماز کا مکمل ٹریکر «عبادت» میں ہے۔ کھولنے کے لیے نماز کے اوقات کی قطار پر ٹیپ کریں۔",
   "quickActionsTitle": "فوری اقدامات",
   "quickActionsContinueReading": "پڑھنا جاری رکھیں",
   "quickActionsMarkPrayer": "{prayer} ادا نشان زد کریں",
@@ -1187,71 +1178,71 @@
   "fastingSuhoorEndsAt": "سحری {time} پر ختم",
   "fastingIftarAt": "افطار {time} پر",
   "fastingCompletedThisMonth": "اس مہینے {count} روزے مکمل",
-  "fastingStreakDays": "{count} دن کی روزہ لڑی",
-  "homeModuleSalahHeroTitle": "نماز کا مرکزی کارڈ",
+  "fastingStreakDays": "{count, plural, =1{1 دن مسلسل روزہ} other{{count} دن مسلسل روزے}}",
+  "homeModuleSalahHeroTitle": "موجودہ نماز",
   "homeModulePrayerStripTitle": "نماز کے اوقات کی قطار",
-  "homeModulePrayerStripSubtitle": "پانچ نمازوں کی مختصر قطار جو عبادت کھولتی ہے۔",
+  "homeModulePrayerStripSubtitle": "پانچوں نمازیں ایک قطار میں۔ «عبادت» کھولنے کے لیے ٹیپ کریں۔",
   "homeModuleCelestialSubtitle": "چاند کی حالت، طلوع و غروبِ آفتاب۔",
   "homeTodayForYouChip": "آپ کے لیے: {location}",
   "homeTodayMomentChip": "ایک لمحہ: {location}",
-  "homeRightNowTitle": "ابھی کے لیے دعائیں",
+  "homeRightNowTitle": "اس وقت کی دعائیں",
   "homeRightNowSubtitle": "دن کے وقت کے مطابق دعائیں",
   "levelLabel": "سطح",
-  "streakLabel": "اسٹریک",
+  "streakLabel": "مسلسل دن",
   "worshipTitle": "عبادت",
   "learnTitle": "سیکھیں۔",
-  "homeTitle": "گھر",
+  "homeTitle": "ہوم",
   "journeyTitle": "نمو",
   "profileDisplayNameLabel": "ڈسپلے کا نام",
   "profileAddressMeAs": "مجھے اس طرح مخاطب کریں:",
   "profileBrother": "بھائی",
   "profileSister": "بہن",
-  "profilePrayerSettingsTitle": "نماز اور نماز وقت کی ترتیبات",
-  "profilePrayerSettingsSubtitle": "صلاۃ کے لیے مقام اور حساب کی ترجیحات طے کریں۔",
+  "profilePrayerSettingsTitle": "نماز کے اوقات",
+  "profilePrayerSettingsSubtitle": "مقام اور حساب کا طریقہ۔",
   "profileLocationLabel": "مقام",
-  "profileMadhabLabel": "مادھب",
+  "profileMadhabLabel": "فقہی مسلک",
   "profileCalculationMethodLabel": "نماز کے حساب کا طریقہ",
   "profileAppearanceTitle": "ظاہری شکل",
   "profileThemeModeLabel": "تھیم موڈ",
-  "profileThemeDark": "اندھیرا",
-  "profileReduceMotion": "حرکت کے اثرات کو کم کریں۔",
+  "profileThemeDark": "ڈارک",
+  "profileReduceMotion": "حرکتی اثرات کم کریں",
   "profileHighContrastText": "ہائی کنٹراسٹ ٹیکسٹ",
-  "profileRamadanModeTitle": "رمضان موڈ",
-  "profileRamadanModeSubtitle": "روزہ کی تال اور عقیدت مندی کو ترجیح دیں۔",
-  "profileLossModeTitle": "نقصان کا موڈ",
-  "profileLossModeSubtitle": "روحانی طور پر بھاری دنوں کے لیے نرم ڈھانچہ۔",
+  "profileRamadanModeTitle": "رمضان کی معاونت",
+  "profileRamadanModeSubtitle": "رمضان میں روزے اور قرآن کو پہلے رکھتا ہے۔",
+  "profileLossModeTitle": "غم و نقصان کی معاونت",
+  "profileLossModeSubtitle": "غم کے وقت کے لیے دعا اور تسلی کی آیات۔",
   "profileGentleModeTitle": "نرم موڈ",
   "profileTrackingPrivacyTitle": "ٹریکنگ اور رازداری",
-  "profileTrackingPrivacySubtitle": "یاد دہانیوں، خلاصوں اور ڈیٹا کے ارادے کے لیے کنٹرولز۔",
+  "profileTrackingPrivacySubtitle": "کیا ٹریک ہوتا ہے، اور کیا نجی رہتا ہے۔",
   "profileLocationWhileUsingApp": "ایپ استعمال کرتے وقت مقام",
-  "profileLocationEnabledSubtitle": "صرف پیش منظر کے استعمال کے لیے فعال ہے۔",
-  "profileLocationDisabledSubtitle": "صلاۃ کے اوقات کو درست رکھنے کے قابل بنائیں۔",
-  "profileOpenSettings": "ترتیبات کھولیں۔",
-  "profileAllow": "اجازت دیں۔",
+  "profileLocationEnabledSubtitle": "ایپ استعمال کرتے وقت آن۔",
+  "profileLocationDisabledSubtitle": "درست نماز کے اوقات کے لیے آن کریں۔",
+  "profileOpenSettings": "ترتیبات کھولیں",
+  "profileAllow": "اجازت دیں",
   "profilePrivateTrackingModeTitle": "پرائیویٹ ٹریکنگ موڈ",
-  "profilePrivateTrackingModeSubtitle": "پیشرفت کو صرف اس ڈیوائس پر دکھائی دیں۔",
+  "profilePrivateTrackingModeSubtitle": "پیش رفت صرف اسی ڈیوائس پر نظر آئے۔",
   "profileMinimalTrackingModeTitle": "کم سے کم ٹریکنگ موڈ",
-  "profileMinimalTrackingModeSubtitle": "کم میٹرکس کے ساتھ صرف کلیدی ضروری چیزوں کو ٹریک کریں۔",
-  "profileHideGrowthVisualsTitle": "نمو کے نظارے چھپائیں۔",
-  "profileHideGrowthVisualsSubtitle": "پرسکون تجربے کے لیے اسٹریک اور لیول ویژولز کو محدود کریں۔",
+  "profileMinimalTrackingModeSubtitle": "صرف ضروری چیزیں ٹریک کریں۔",
+  "profileHideGrowthVisualsTitle": "پیش رفت کے مناظر چھپائیں",
+  "profileHideGrowthVisualsSubtitle": "دنوں کی گنتی اور لیول چھپائیں۔",
   "profileReflectionOnlyModeTitle": "صرف غور و فکر موڈ",
-  "profileReflectionOnlyModeSubtitle": "پیش رفت کے بصریوں پر یاد دہانیوں اور نوٹوں کو ترجیح دیں۔",
+  "profileReflectionOnlyModeSubtitle": "یاددہانیاں اور نوٹس، پیش رفت کے چارٹس کے بغیر۔",
   "profileNotificationsTitle": "اطلاعات اور یاد دہانیاں",
-  "profileNotificationsSubtitle": "مستقبل کے شیڈولنگ کے لیے پلیس ہولڈر کنٹرولز۔",
-  "profilePrayerReminders": "دعا یاددہانی",
-  "profileDhikrReminders": "ذکر یاددہانی",
-  "profileQuranReminders": "قرآن کی یاددہانی",
+  "profileNotificationsSubtitle": "چنیں کہ آپ کو کون سی یاددہانیاں ملیں۔",
+  "profilePrayerReminders": "نماز کی یاددہانیاں",
+  "profileDhikrReminders": "ذکر کی یاددہانیاں",
+  "profileQuranReminders": "قرآن کی یاددہانیاں",
   "profileReflectionReminders": "غور و فکر یاد دہانیاں",
-  "profileFastingReminders": "روزہ کی یاددہانی",
+  "profileFastingReminders": "روزے کی یاددہانیاں",
   "profileOnThisDayReminders": "«آج کے دن» یاد دہانیاں",
-  "profileOnThisDayRemindersSubtitle": "جب آج کے دن کوئی تاریخی اسلامی واقعہ غور کرنے کے لیے ہو تو مجھے اطلاع دیں۔",
+  "profileOnThisDayRemindersSubtitle": "جب اس دن اسلامی تاریخ میں کچھ ہوا ہو۔",
   "profileMoonriseReminders": "چاند طلوع ہونے کی اطلاعات",
   "profileMoonriseRemindersSubtitle": "جب چاند طلوع ہو رہا ہو تو مجھے اطلاع دیں۔",
-  "profileMoonsetReminders": "چاند سیٹ کی اطلاعات",
+  "profileMoonsetReminders": "چاند غروب ہونے کی اطلاعات",
   "profileMoonsetRemindersSubtitle": "جب چاند غروب ہو رہا ہو تو مجھے مطلع کریں۔",
-  "profileLanguageExpandSubtitle": "ذیل میں زبان منتخب کریں۔",
+  "profileLanguageExpandSubtitle": "نیچے زبان منتخب کریں",
   "profileAboutTitle": "کے بارے میں",
-  "profilePlannedRemindersToday": "{count} آج منصوبہ بند یاد دہانیاں",
+  "profilePlannedRemindersToday": "آج {count} یاددہانیاں طے ہیں",
   "@profilePlannedRemindersToday": {
     "placeholders": {
       "count": {
@@ -1338,32 +1329,32 @@
   "worshipSectionLandingDuasSubtitle": "دعا کا مجموعہ کھولیں اور تلاش کریں کہ اس لمحے میں کیا مناسب ہے۔",
   "worshipSectionLandingFastingSubtitle": "اپنے روزے کی حالت، نیت اور اہم لمحات کا جائزہ لیں۔",
   "settingsLandingTitle": "ترتیبات",
-  "settingsCategoryAccountSyncSubtitle": "پروفائلز، بیک اپ، مطابقت پذیری کی حیثیت، اور اکاؤنٹ کی حفاظت۔",
-  "settingsCategoryAppearanceSubtitle": "تھیم، حرکت، کنٹراسٹ، اور پرسکون پڑھنے کی ترجیحات۔",
-  "settingsCategoryPrayerWorshipSubtitle": "نماز کے اوقات، اذان اور عبادات کا سیٹ اپ۔",
-  "settingsCategoryLearningSubtitle": "داخلہ پوائنٹس، خاندانی انتظام، اور مطالعہ سے متعلق ترتیبات سیکھنا۔",
-  "settingsCategoryNotificationsSubtitle": "دعا کی یاد دہانی اور عام یاد دہانی کے کنٹرول۔",
+  "settingsCategoryAccountSyncSubtitle": "پروفائلز، بیک اپ اور سنک",
+  "settingsCategoryAppearanceSubtitle": "تھیم، حرکت اور کنٹراسٹ",
+  "settingsCategoryPrayerWorshipSubtitle": "نماز کے اوقات اور اذان",
+  "settingsCategoryLearningSubtitle": "قرآن کا انداز، خاندان اور مطالعہ",
+  "settingsCategoryNotificationsSubtitle": "نماز اور دیگر یاددہانیاں",
   "settingsCategoryWidgetsWatchTitle": "وجیٹس، لائیو سرگرمیاں اور واچ",
-  "settingsCategoryWidgetsWatchSubtitle": "لاک اسکرین، ڈائنامک آئی لینڈ، اور منسلک گھڑی کی سطحوں کا نظم کریں۔",
-  "settingsWidgetsEnabledTitle": "ویجٹس فعال کریں",
-  "settingsWidgetsEnabledSubtitle": "ویجٹس اور لائیو ایکٹیویٹی سطحوں کو ایک ہی جگہ سے آن یا آف کریں۔",
-  "settingsCategoryLanguageDownloadsSubtitle": "زبان کے انتخاب اور ڈاؤن لوڈ کے لیے تیار مواد کی ترتیبات۔",
-  "settingsCategoryPrivacyDataSubtitle": "ٹریکنگ کی مرئیت، رازداری، اور ڈیٹا کے حساس رویے کو کنٹرول کریں۔",
+  "settingsCategoryWidgetsWatchSubtitle": "لاک اسکرین، Dynamic Island اور Apple Watch",
+  "settingsWidgetsEnabledTitle": "وجیٹس",
+  "settingsWidgetsEnabledSubtitle": "وجیٹس اور لائیو سرگرمیاں آن یا آف کریں۔",
+  "settingsCategoryLanguageDownloadsSubtitle": "زبان اور ڈاؤن لوڈز",
+  "settingsCategoryPrivacyDataSubtitle": "کیا ٹریک ہوتا ہے، اور کون دیکھتا ہے",
   "settingsHelpGuideTitle": "مدد اور رہنمائی",
-  "settingsHelpGuideSubtitle": "ایپ کی اہم خصوصیات کو اعتماد کے ساتھ استعمال کرنے کے لیے مختصر عملی رہنما۔",
-  "settingsCategoryHelpGuideSubtitle": "شروع کرنے، سیکھنے، یاد دہانیوں اور روزانہ ایپ کے استعمال کے لیے آسان اقدامات۔",
-  "settingsCategoryAboutSubtitle": "ورژن نوٹس، سپورٹ، قانونی تفصیلات، اور آگے کیا ہو رہا ہے۔",
-  "settingsHelpGuideSearchHint": "گائیڈز تلاش کریں۔",
-  "settingsHelpGuideBrowseTitle": "گائیڈ زمرہ جات",
+  "settingsHelpGuideSubtitle": "ایپ کے ہر حصے کے لیے مختصر رہنما۔",
+  "settingsCategoryHelpGuideSubtitle": "ایپ کے ہر حصے کے لیے مختصر رہنما",
+  "settingsCategoryAboutSubtitle": "نیا کیا ہے، مدد اور قانونی",
+  "settingsHelpGuideSearchHint": "گائیڈز تلاش کریں",
+  "settingsHelpGuideBrowseTitle": "موضوعات",
   "settingsHelpGuideBrowseSubtitle": "مختصر وضاحت اور آسان اقدامات دیکھنے کے لیے موضوع کھولیں۔",
-  "settingsHelpGuideSearchResultsTitle": "تلاش کے نتائج",
-  "settingsHelpGuideSearchResultsSubtitle": "گائیڈ کے عنوانات کو اپ ڈیٹ کرتے ہی آپ ٹائپ کریں۔",
-  "settingsHelpGuideSearchEmptyTitle": "کوئی مماثل رہنما نہیں ملے",
+  "settingsHelpGuideSearchResultsTitle": "نتائج",
+  "settingsHelpGuideSearchResultsSubtitle": "ٹائپ کرتے ہی عنوانات بدل جاتے ہیں۔",
+  "settingsHelpGuideSearchEmptyTitle": "کوئی رہنما نہیں ملا",
   "settingsHelpGuideSearchEmptySubtitle": "ایک آسان کلیدی لفظ آزمائیں یا تمام گائیڈ کیٹیگریز کو براؤز کرنے کے لیے اپنی تلاش کو صاف کریں۔",
-  "settingsHelpGuideStepsTitle": "اسے استعمال کرنے کا طریقہ",
-  "settingsHelpGuideStepsSubtitle": "ہر قدم کو سادہ رکھیں اور صرف وہی استعمال کریں جو آپ کی اس وقت مدد کرتا ہے۔",
+  "settingsHelpGuideStepsTitle": "استعمال کا طریقہ",
+  "settingsHelpGuideStepsSubtitle": "صرف وہ استعمال کریں جو مددگار ہو۔",
   "settingsHelpGuideNotFoundTitle": "گائیڈ نہیں ملا",
-  "settingsHelpGuideNotFoundSubtitle": "اس گائیڈ کو ابھی نہیں کھولا جا سکتا۔ ہیلپ اینڈ گائیڈ پر واپس جائیں اور کوئی اور موضوع آزمائیں۔",
+  "settingsHelpGuideNotFoundSubtitle": "یہ رہنما نہیں کھل سکا۔ کوئی اور موضوع آزمائیں۔",
   "helpGuideGettingStartedTitle": "شروع کرنا",
   "helpGuideGettingStartedDescription": "بنیادی باتیں ترتیب دیں تاکہ ایپ پہلے دن سے مفید محسوس کرے۔",
   "helpGuideGettingStartedStep1": "اپنے مقام، زبان اور ظاہری شکل کی ترجیحات کا انتخاب کرنے کے لیے ترتیبات کھولیں۔",
@@ -1390,8 +1381,8 @@
   "helpGuideDhikrAdhkarStep2": "ایک سیٹ منتخب کریں جو آپ کے لمحے سے میل کھاتا ہو، پھر بلٹ ان کاؤنٹر یا پڑھنے کے بہاؤ کو اپنی رفتار سے استعمال کریں۔",
   "helpGuideDhikrAdhkarStep3": "اپنے تال کو جاری رکھنے اور اپنی روزمرہ کی پیشرفت کا جائزہ لینے کے لیے بعد میں گھر یا عبادت پر واپس جائیں۔",
   "helpGuideGrowthProgressTitle": "نمو اور ترقی",
-  "helpGuideGrowthProgressDescription": "ایپ کو بھاری محسوس کیے بغیر مستقل عادات، لکیریں، XP، اور فوکسڈ راستوں کو ٹریک کریں۔",
-  "helpGuideGrowthProgressStep1": "اپنی موجودہ اسٹریک، XP، ترقی کے راستے اور آج کے فوکس ایریاز دیکھنے کے لیے سفر کھولیں۔",
+  "helpGuideGrowthProgressDescription": "اپنی عادتیں اور راستے ٹریک کریں، اور دیکھیں کتنے دن مسلسل۔",
+  "helpGuideGrowthProgressStep1": "اپنے مسلسل دن، اپنا نور اور آج کی توجہ دیکھنے کے لیے «نمو» کھولیں۔",
   "helpGuideGrowthProgressStep2": "ایک ساتھ سب کچھ کرنے کی کوشش کرنے کے بجائے ترقی کے ایک چھوٹے سے علاقے کو جاری رکھنے کے لیے راستے یا عادت کے حصوں کا استعمال کریں۔",
   "helpGuideGrowthProgressStep3": "فوری خلاصہ کے لیے ہوم چیک کریں جب آپ کو صرف یہ دیکھنا ہو کہ آج کیا زیر التواء ہے۔",
   "helpGuideNotificationsSettingsTitle": "اطلاعات اور ترتیبات",
@@ -1978,7 +1969,7 @@
     }
   },
   "triviaHomeSubtitle": "مختصر کوئزز کے ذریعے اپنے علم کو مضبوط کریں۔",
-  "triviaHomeCurrentStreakLabel": "موجودہ سلسلہ",
+  "triviaHomeCurrentStreakLabel": "مسلسل دن",
   "triviaHomeLongestStreakCaption": "سب سے لمبا {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
@@ -1992,7 +1983,7 @@
       "count": {}
     }
   },
-  "triviaHomeTriviaXpLabel": "ٹریویا XP",
+  "triviaHomeTriviaXpLabel": "کوئز کا نور",
   "triviaHomeQuizzesCompletedCount": "{count} کوئز مکمل ہو گئے۔",
   "@triviaHomeQuizzesCompletedCount": {
     "placeholders": {
@@ -2127,7 +2118,7 @@
   "triviaContinuePathAction": "راستہ جاری رکھیں",
   "triviaStagesTitle": "مراحل",
   "triviaStagesSubtitle": "قدم بہ قدم آگے بڑھیں۔",
-  "triviaKnowledgeStageSummary": "{count} درست • {xp} XP",
+  "triviaKnowledgeStageSummary": "{count} سوالات · +{xp} نور",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -2447,12 +2438,12 @@
   "quranSavedLocations": "محفوظ کردہ مقامات",
   "quranSavedNotes": "محفوظ شدہ نوٹ",
   "modeRamadanHomeTitle": "رمضان فوکس",
-  "modeRamadanHomeSubtitle": "مرکز آج روزہ، قرآن، اور نرم غور و فکر پر۔",
-  "modeRamadanActionFasting": "روزہ رکھنا",
+  "modeRamadanHomeSubtitle": "اس مہینے روزہ اور قرآن پہلے۔",
+  "modeRamadanActionFasting": "روزہ",
   "modeRamadanActionQuran": "قرآن",
   "modeRamadanActionReflect": "غور و فکر کرنا",
-  "modeLossHomeTitle": "نقصان کی حمایت",
-  "modeLossHomeSubtitle": "یاد، صبر اور رحم کے ساتھ آج نرمی سے چلو۔",
+  "modeLossHomeTitle": "غم و نقصان کی معاونت",
+  "modeLossHomeSubtitle": "غم کے دنوں کے لیے رحمت کی آیات اور ذکر۔",
   "modeLossActionDhikr": "ذکر",
   "modeLossActionMercy": "رحمت کی آیات",
   "learnContentTopicLabel": "موضوع",
@@ -2884,8 +2875,8 @@
       }
     }
   },
-  "homeEcosystemSummaryTitle": "نمو ماحولیاتی نظام",
-  "homeEcosystemSummarySubtitle": "سمندر، انعامات، حلقے، جریدہ، اور معاون پیش نظارے۔",
+  "homeEcosystemSummaryTitle": "ایپ میں اور جگہیں",
+  "homeEcosystemSummarySubtitle": "آپ کا سمندر، حلقے اور جرنل۔",
   "learnTrackBeginner": "مبتدی",
   "learnCitationPanelTitle": "ذرائع اور اعتماد کے نوٹس",
   "learnCompletionQualityTitle": "تکمیل کا معیار",
@@ -2901,7 +2892,7 @@
   "circlesModerationTitle": "اعتدال اور حفاظت",
   "circlesModerationSubtitle": "رپورٹنگ، اعتماد کی سطح، اور مواد کی پالیسی کی سطحیں۔",
   "circlesAccountabilityTitle": "احتسابی گروپس",
-  "circlesAccountabilitySubtitle": "نماز اور عادت کی لکیروں کے لیے پرائیویٹ سپورٹ گروپس۔",
+  "circlesAccountabilitySubtitle": "چھوٹے نجی حلقے جو ایک دوسرے کو جاری رکھنے میں مدد دیتے ہیں۔",
   "circlesNearbyMosquesTitle": "آس پاس کی مساجد",
   "circlesNearbyMosquesSubtitle": "مقامی نماز کا ٹائم ٹیبل درآمد کریں اور ایک کو منتخب رکھیں۔",
   "circlesOpen": "کھولیں۔",
@@ -2927,7 +2918,7 @@
   "circlesReportSubmitted": "رپورٹ اعتدال کے جائزے کے لیے پیش کی گئی۔",
   "circlesAccountabilityCheckIn": "چیک ان",
   "circlesAccountabilityJoined": "شامل ہو گئے۔",
-  "circlesAccountabilityStreak": "چیک ان کا سلسلہ",
+  "circlesAccountabilityStreak": "مسلسل حاضری",
   "circlesImportTimetable": "ٹائم ٹیبل درآمد کریں۔",
   "circlesImported": "درآمد شدہ",
   "circlesMosqueSelected": "منتخب مسجد کا ٹائم ٹیبل",
@@ -3250,7 +3241,7 @@
   "learningJourneyIslandLegacyLearningSubtitle": "سیکھنے کی اصل لائبریری۔",
   "learningJourneyIslandLegacyLearningDescription": "سیکھنے کے حصے کے پہلے ورژن کے اسباق، جیسے تھے ویسے ہی محفوظ۔",
   "learningJourneyFeedbackFirstStageOpened": "سیکھنا شروع ہو گیا۔ موجود رہیں اور صرف ایک بامعنی قدم اٹھائیں۔",
-  "learningJourneyFeedbackStageCompleted": "سٹیج مکمل۔ آپ {streak} دن کے سلسلے میں ہیں۔",
+  "learningJourneyFeedbackStageCompleted": "{streak, plural, =1{مرحلہ مکمل۔} other{مرحلہ مکمل۔ یہ {streak} دن مسلسل ہیں۔}}",
   "@learningJourneyFeedbackStageCompleted": {
     "placeholders": {
       "streak": {
@@ -3258,7 +3249,7 @@
       }
     }
   },
-  "learningJourneyHomeStreakMessage": "آپ {days} دن کے سیکھنے کے سلسلے میں ہیں۔",
+  "learningJourneyHomeStreakMessage": "{days, plural, =1{سیکھنے کا ایک دن۔} other{{days} دن مسلسل سیکھنا۔}}",
   "@learningJourneyHomeStreakMessage": {
     "placeholders": {
       "days": {
@@ -3646,7 +3637,7 @@
   },
   "kidsArabicParentReviewNotNeeded": "No review needed right now",
   "kidsArabicParentWeeklyConsistencyTitle": "Weekly consistency",
-  "kidsArabicParentWeeklyConsistencyBody": "{count} gentle Arabic day this week and a {streak} day streak.",
+  "kidsArabicParentWeeklyConsistencyBody": "اس ہفتے عربی کے دن: {count}۔ مسلسل دن: {streak}۔",
   "@kidsArabicParentWeeklyConsistencyBody": {
     "placeholders": {
       "count": {
@@ -5618,7 +5609,7 @@
       "journey": {}
     }
   },
-  "familyLearningStreakLabel": "سلسلہ: {days} دن",
+  "familyLearningStreakLabel": "{days, plural, =1{1 دن مسلسل} other{{days} دن مسلسل}}",
   "@familyLearningStreakLabel": {
     "placeholders": {
       "days": {
@@ -5792,7 +5783,7 @@
   },
   "settingsCurrentLocation": "موجودہ مقام",
   "settingsProfilePersonalizationTitle": "پروفائل اور پرسنلائزیشن",
-  "settingsProfilePersonalizationSubtitle": "اپنے نام، ایڈریس کی ترجیح، طریقوں، اور پروفائل سے متعلق شارٹ کٹس کو اب یہاں رکھیں کہ پروفائل اب اعلیٰ سطح کا ٹیب نہیں ہے۔",
+  "settingsProfilePersonalizationSubtitle": "ایپ آپ کو کیسے سلام کرے، اور نگہداشت کے موڈ۔",
   "settingsProfileDisplayNameSummary": "{title}: {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
@@ -5804,10 +5795,10 @@
       }
     }
   },
-  "settingsWhatsNewTitle": "نیا کیا ہے۔",
+  "settingsWhatsNewTitle": "نیا کیا ہے",
   "settingsWhatsNewSubtitle": "ایپ کی تازہ ترین تبدیلیاں اور سابقہ اپ ڈیٹس دیکھیں۔",
-  "settingsComingSoonTitle": "جلد آرہا ہے۔",
-  "settingsComingSoonSubtitle": "ایپ کے لیے منصوبہ بند اگلی بہتریوں کا جائزہ لیں۔",
+  "settingsComingSoonTitle": "زیرِ تیاری",
+  "settingsComingSoonSubtitle": "آگے کس پر کام ہو رہا ہے۔",
   "shellQuranMiniPlayerTitle": "Qur’an Playback",
   "shellQuranMiniPlayerPlaying": "Playing now",
   "shellQuranMiniPlayerPaused": "Paused",
@@ -5830,50 +5821,50 @@
   "quranPlaybackFailureSessionRestore": "Unable to resume the saved recitation right now.",
   "quranPlaybackFailureUnknown": "Playback could not continue right now.",
   "profileWhatsNewChangelogTitle": "نیا کیا ہے",
-  "profileWhatsNewChangelogSubtitle": "حالیہ تبدیلیاں اور بہتریاں دیکھیں۔",
+  "profileWhatsNewChangelogSubtitle": "تازہ ترین اپ ڈیٹ پہلے کھلتی ہے۔ پرانی اپ ڈیٹس تب تک بند رہتی ہیں جب تک آپ انہیں نہ کھولیں۔",
   "profileWhatsNewDateMarch2026": "مارچ 2026",
   "profileWhatsNewDateFebruary2026": "فروری 2026",
-  "profileWhatsNewEntry113Title": "ورژن 1.1.3",
-  "profileWhatsNewEntry113Summary": "استحکام، وضاحت اور روزمرہ کے بہاؤ میں بہتری۔",
-  "profileWhatsNewEntry113Item1": "اہم اسکرینوں پر لوکلائزیشن کی کوریج بہتر کی گئی۔",
-  "profileWhatsNewEntry113Item2": "ہوم اور عبادت کے خلاصوں میں متن کی یکسانیت بہتر کی گئی۔",
-  "profileWhatsNewEntry113Item3": "ترتیبات اور اکاؤنٹ کے بہاؤ میں وضاحت بڑھائی گئی۔",
-  "profileWhatsNewEntry113Item4": "نوٹیفکیشن اور یاددہانی کے متن کو بہتر کیا گیا۔",
-  "profileWhatsNewEntry113Item5": "چھوٹی بہتریاں اور بگ فکس شامل کی گئیں۔",
-  "profileWhatsNewEntry112Title": "مستند مآخذ پر مبنی قرآنی عربی کی بہتری",
-  "profileWhatsNewEntry112Summary": "«قرآنی عربی سیکھیں» کا مواد اب مآخذ کے سخت تر انتظام کا استعمال کرتا ہے تاکہ نظر آنے والی قرآنی مثالیں زیادہ قابلِ سراغ اور ہم آہنگ ہوں۔",
-  "profileWhatsNewEntry112Item1": "نماز سے متعلق اسٹیٹس اور خلاصے بہتر کیے گئے۔",
-  "profileWhatsNewEntry112Item2": "سیکھنے کی اسکرینوں میں واضح UI لیبل شامل کیے گئے۔",
-  "profileWhatsNewEntry112Item3": "قرآنی عربی کے ١٠٠ الفاظ کے بنیادی ڈیٹا سیٹ کو مآخذ سے منسلک کر دیا گیا تاکہ آئندہ اضافوں کے لیے مآخذ کی معلومات لازمی ہوں۔",
-  "profileWhatsNewEntry111Title": "ورژن 1.1.1",
-  "profileWhatsNewEntry111Summary": "ہم آہنگی، بیک اپ اور پروفائل مینجمنٹ کو بہتر کیا گیا۔",
-  "profileWhatsNewEntry111Item1": "سنک اسٹیٹس اور بیک اپ کے خلاصوں میں بہتری کی گئی۔",
-  "profileWhatsNewEntry111Item2": "پروفائل سوئچنگ کے بہاؤ کو واضح بنایا گیا۔",
-  "profileWhatsNewEntry111Item3": "شیئرڈ ڈیوائس حفاظتی آپشنز کو بہتر کیا گیا۔",
+  "profileWhatsNewEntry113Title": "سیٹ اپ، حرکت اور وجیٹس",
+  "profileWhatsNewEntry113Summary": "مختصر سیٹ اپ، ہموار صفحات اور زیادہ مستحکم نماز وجیٹس۔",
+  "profileWhatsNewEntry113Item1": "نام اور سلام اب ایک ہی قدم ہیں، اور نام اختیاری ہے۔",
+  "profileWhatsNewEntry113Item2": "عادتوں کی ٹریکنگ اب اختیاری ہے، اور آپ اسے بعد میں آن کر سکتے ہیں۔",
+  "profileWhatsNewEntry113Item3": "صفحات اب آہستہ سے ابھرتے ہیں، سوائے اس کے کہ Reduce Motion آن ہو۔",
+  "profileWhatsNewEntry113Item4": "لاک اسکرین پر نماز کی الٹی گنتی اب ہر سیکنڈ نہیں بدلتی۔",
+  "profileWhatsNewEntry113Item5": "Noor Glass اب پہلے سے طے شدہ انداز ہے۔",
+  "profileWhatsNewEntry112Title": "قرآنی عربی، حوالوں کے ساتھ",
+  "profileWhatsNewEntry112Summary": "عربی اسباق کی ہر قرآنی مثال اب اپنا ماخذ بتاتی ہے۔",
+  "profileWhatsNewEntry112Item1": "قرآنی عربی کی ہر مثال کو ایک معتبر ماخذ سے جانچا گیا۔",
+  "profileWhatsNewEntry112Item2": "ہر مثال اب اپنا ماخذ دکھاتی ہے۔",
+  "profileWhatsNewEntry112Item3": "نئے الفاظ اب صرف اپنے ماخذ کے ساتھ شامل ہو سکتے ہیں۔",
+  "profileWhatsNewEntry111Title": "اسلامی معلومات اور علمی راستے",
+  "profileWhatsNewEntry111Summary": "کوئز اب سیکھنے کا ذریعہ بن گیا، مجموعوں اور رہنما راستوں کے ساتھ۔",
+  "profileWhatsNewEntry111Item1": "نیا: اسلامی معلومات، روزانہ کوئز اور چھوٹے ہوئے سوالوں کے جائزے کے ساتھ۔",
+  "profileWhatsNewEntry111Item2": "نیا: علمی راستے، مختصر اسباق اور ہر ایک کے بعد ایک کوئز۔",
+  "profileWhatsNewEntry111Item3": "انبیاء، قرآن، نماز، رمضان اور سیرت پر سوالوں کے نئے مجموعے۔",
   "profileWhatsNewEntry110Title": "زیادہ ذہین قرآنی عربی کی مشق",
-  "profileWhatsNewEntry110Summary": "قرآنی عربی سیکھنا زیادہ موافق ہو گیا، اور پورے تدریسی سلسلے میں دہرائی اور رہنمائی زیادہ بامعنی ہو گئی۔",
-  "profileWhatsNewEntry110Item1": "نیویگیشن لیبلز کو مزید واضح بنایا گیا۔",
-  "profileWhatsNewEntry110Item2": "عام ٹول ٹپس اور شیل متن بہتر کیا گیا۔",
-  "profileWhatsNewEntry110Item3": "«قرآنی عربی سیکھیں» کو آسان دریافت کے لیے سیکھنے کے اپنے مخصوص حصے میں منتقل کیا گیا۔",
-  "profileComingSoonRoadmapTitle": "جلد آ رہا ہے",
-  "profileComingSoonRoadmapSubtitle": "آنے والی چیزوں پر ایک نظر۔",
-  "profileComingSoonCard1Title": "قرآنی عربی کی گہری رہنمائی",
-  "profileComingSoonCard1Description": "آپ کے سفر کے مطابق مزید حسبِ ضرورت اختیارات۔",
-  "profileComingSoonCard2Title": "گہری پیش رفت کی جھلکیاں",
-  "profileComingSoonCard2Description": "آپ کی عادات، مستقل مزاجی، اور بڑھوتری کے واضح خلاصے۔",
-  "profileComingSoonCard3Title": "بہتر سیکھنے کے راستے",
-  "profileComingSoonCard3Description": "مرحلہ وار سیکھنے کے لیے مزید منظم رہنمائی۔",
-  "profileComingSoonCard4Title": "آسان تر روزمرہ کی روانی",
-  "profileComingSoonCard4Description": "روزانہ کے استعمال کو مزید نرم اور واضح بنانے والی بہتریاں۔",
+  "profileWhatsNewEntry110Summary": "قرآنی عربی کی مشق اب آپ کے علم کے مطابق ڈھلتی ہے۔",
+  "profileWhatsNewEntry110Item1": "نیا: روزانہ جائزہ، جو وہ الفاظ واپس لاتا ہے جو آپ کے بھولنے کا زیادہ امکان ہے۔",
+  "profileWhatsNewEntry110Item2": "سیکھنے کا ڈیش بورڈ اب دکھاتا ہے کہ ہر لفظ کتنا یاد ہے۔",
+  "profileWhatsNewEntry110Item3": "«قرآنی عربی سیکھیں» کو اب «سیکھیں» میں اپنی الگ جگہ مل گئی ہے۔",
+  "profileComingSoonRoadmapTitle": "زیرِ تیاری",
+  "profileComingSoonRoadmapSubtitle": "آگے آنے والا، ان شاء اللہ۔",
+  "profileComingSoonCard1Title": "مزید قرآنی عربی",
+  "profileComingSoonCard1Description": "حوالوں کے ساتھ مزید مثالیں، اور ایک سبق سے دوسرے تک واضح قدم۔",
+  "profileComingSoonCard2Title": "کوئز کے مزید راستے",
+  "profileComingSoonCard2Description": "مزید راستے، اور چننے کو مزید موضوعات۔",
+  "profileComingSoonCard3Title": "زیادہ مستحکم نماز وجیٹس",
+  "profileComingSoonCard3Description": "لاک اسکرین اور Dynamic Island کے لیے زیادہ واضح وجیٹس۔",
+  "profileComingSoonCard4Title": "اسے اپنا بنانے کے مزید طریقے",
+  "profileComingSoonCard4Description": "سیٹ اپ اور آپ کی پروفائل میں چند مزید انتخاب۔",
   "settingsAccountsSyncTitle": "اکاؤنٹس، پروفائلز اور سنک",
-  "settingsAccountsSyncSubtitle": "مشترک ڈیوائسز، محفوظ پروفائلز، سنک موڈ اور بیک اپس کو اپنی موجودہ روحانی پیش رفت میں خلل ڈالے بغیر منظم کریں۔",
+  "settingsAccountsSyncSubtitle": "پروفائلز اور بیک اپ۔",
   "settingsCurrentProfileTitle": "موجودہ پروفائل",
-  "settingsNoProfileSelected": "کوئی پروفائل منتخب نہیں کیا گیا۔",
+  "settingsNoProfileSelected": "کوئی پروفائل منتخب نہیں",
   "settingsSyncStatusTitle": "سنک کی حالت",
   "settingsBackupRestoreTitle": "بیک اپ اور بحالی",
-  "settingsBackupRecommended": "بیک اپ کی سفارش کی گئی۔",
-  "settingsNoManualBackupYet": "ابھی تک کوئی دستی بیک اپ نہیں ہے۔",
-  "settingsLastExportRecorded": "آخری برآمد ریکارڈ کی گئی۔",
+  "settingsBackupRecommended": "بیک اپ کی سفارش ہے",
+  "settingsNoManualBackupYet": "ابھی کوئی دستی بیک اپ نہیں",
+  "settingsLastExportRecorded": "آخری ایکسپورٹ محفوظ ہے",
   "accountsSyncCurrentProfileSectionSubtitle": "دیکھیں کہ اس وقت کون فعال ہے اور یہ پروفائل کیسے محفوظ ہے۔",
   "accountsSyncNoActiveProfileTitle": "کوئی فعال پروفائل نہیں",
   "accountsSyncChooseProfileToBegin": "شروع کرنے کے لیے ایک پروفائل منتخب کریں۔",
@@ -6146,7 +6137,7 @@
   "accountsSyncRemoteDomainPrayer": "نماز کی ٹریکنگ",
   "accountsSyncRemoteDomainDhikr": "ذکر کی پیش رفت اور ریکارڈ",
   "accountsSyncRemoteDomainQuran": "قرآن کی پیش رفت اور حالیہ مقامات",
-  "accountsSyncRemoteDomainGrowth": "XP، قطرے، اور اوشن کی پیش رفت",
+  "accountsSyncRemoteDomainGrowth": "نور، قطرے اور سمندر",
   "accountsSyncRemoteDomainLearning": "سیکھنے کی پیش رفت",
   "accountsSyncRemoteDomainJournal": "جرنل اور نوٹس",
   "accountsSyncRemoteDomainReminders": "یاد دہانیاں اور نماز ترجیحات",
@@ -6465,7 +6456,7 @@
   "accountsSyncDevicePlatformWearOsWatch": "ویر او ایس واچ",
   "accountsSyncDevicePlatformAndroidTv": "اینڈرائیڈ ٹی وی",
   "settingsAdhanTitle": "اذان",
-  "settingsAdhanSubtitle": "فجر کی اذان کا انتخاب کریں، بنڈل کلپس کا پیش نظارہ کریں، اور نماز کی آڈیو کو آف لائن رکھیں۔",
+  "settingsAdhanSubtitle": "اذان چنیں، اور چننے سے پہلے سن لیں۔",
   "settingsPreviewVolumeTitle": "پیش نظارہ اور حجم",
   "settingsPercentValue": "{value}%",
   "@settingsPercentValue": {
@@ -6476,16 +6467,16 @@
     }
   },
   "settingsAdhanPickerFajrTitle": "فجر کے لیے اذان منتخب کریں",
-  "settingsAdhanPickerFajrSubtitle": "فجر کی اذان کے لیے آواز منتخب کریں۔",
-  "settingsAdhanPickerRegularTitle": "اذان منتخب کریں",
-  "settingsAdhanPickerRegularSubtitle": "عام نمازوں کے لیے اذان منتخب کریں۔",
+  "settingsAdhanPickerFajrSubtitle": "فجر کے وقت بجتی ہے۔",
+  "settingsAdhanPickerRegularTitle": "باقی نمازوں کی اذان منتخب کریں",
+  "settingsAdhanPickerRegularSubtitle": "باقی ہر نماز کے وقت بجتی ہے۔",
   "settingsAdhanPreviewStopTooltip": "پیش منظر روکیں",
   "settingsAdhanPreviewPlayTooltip": "پیش منظر چلائیں",
-  "settingsUseAppVolumeTitle": "ایپ والیوم استعمال کریں۔",
-  "settingsUseAppVolumeSubtitle": "پیش نظارہ پلے بیک کو ایپ والیوم لیول کے ساتھ منسلک رکھیں۔",
+  "settingsUseAppVolumeTitle": "ایپ کا والیوم استعمال کریں",
+  "settingsUseAppVolumeSubtitle": "پیش نظارے ایپ کے والیوم پر بجتے ہیں۔",
   "settingsAdhanPreviewVolume": "اذان پیش نظارہ والیوم",
   "settingsUsingAppVolume": "ایپ والیوم کا استعمال",
-  "settingsRestoreDefaultAdhanSettings": "ڈیفالٹ اذان کی ترتیبات کو بحال کریں۔",
+  "settingsRestoreDefaultAdhanSettings": "اذان کی ترتیبات بحال کریں",
   "settingsMadhabShafii": "شافعی",
   "settingsMadhabHanafi": "حنفی",
   "settingsMadhabMaliki": "مالکی",
@@ -6495,68 +6486,68 @@
   "settingsCalculationMethodIsna": "آئی ایس این اے",
   "settingsCalculationMethodKarachi": "کراچی",
   "settingsCalculationMethodUmmAlQura": "ام القریٰ",
-  "settingsStableDynamicIslandTitle": "مستحکم متحرک جزیرہ",
-  "settingsStableDynamicIslandSubtitle": "نماز کو متحرک جزیرے کو پرسکون، مقررہ ترتیب میں رکھیں۔",
+  "settingsStableDynamicIslandTitle": "مستقل Dynamic Island",
+  "settingsStableDynamicIslandSubtitle": "نماز والی Dynamic Island کو ایک ہی انداز میں رکھیں۔",
   "settingsStableLockScreenWidgetTitle": "مستحکم لاک اسکرین ویجیٹ",
-  "settingsStableLockScreenWidgetSubtitle": "نماز کی لاک اسکرین لائیو ایکٹیویٹی کو پرسکون، مقررہ ترتیب میں رکھیں۔",
+  "settingsStableLockScreenWidgetSubtitle": "لاک اسکرین پر نماز کی لائیو سرگرمی کو ایک ہی انداز میں رکھیں۔",
   "settingsThemeChoiceDefault": "طے شدہ",
-  "settingsThemeChoiceCalmBeautiful": "پُرسکون اور خوبصورت",
-  "settingsThemeChoiceEasyRead": "آسان پڑھنا",
-  "settingsThemeChangedSuccessfully": "تھیم کامیابی سے تبدیل ہو گئی۔",
+  "settingsThemeChoiceCalmBeautiful": "اصل",
+  "settingsThemeChoiceEasyRead": "آسان مطالعہ",
+  "settingsThemeChangedSuccessfully": "تھیم بدل گئی",
   "settingsVisualPreferencesTitle": "بصری ترجیحات",
-  "settingsDisableColoredGlassTitle": "رنگین شیشے کو غیر فعال کریں۔",
-  "settingsDisableColoredGlassSubtitle": "ٹنٹڈ کلر ٹریٹمنٹ کو ہٹاتے وقت شیشے کی سطحوں کو رکھیں۔",
-  "settingsVisualPreferenceUpdated": "بصری ترجیح کو اپ ڈیٹ کر دیا گیا۔",
-  "settingsDisableBackgroundTitle": "پس منظر کو غیر فعال کریں۔",
+  "settingsDisableColoredGlassTitle": "صاف شیشہ",
+  "settingsDisableColoredGlassSubtitle": "شیشہ رہے، رنگ کے بغیر۔",
+  "settingsVisualPreferenceUpdated": "بصری ترجیح بدل دی گئی",
+  "settingsDisableBackgroundTitle": "پس منظر چھپائیں",
   "settingsDisableBackgroundSubtitle": "صاف نظارے کے لیے آرائشی پس منظر کی تصویر چھپائیں۔",
   "settingsDefaultAppearanceActive": "پہلے سے طے شدہ ظاہری شکل فعال",
   "settingsAppearanceResetToDefault": "ظاہری شکل ڈیفالٹ پر دوبارہ ترتیب دی گئی۔",
-  "settingsResetAppearance": "ظاہری شکل کو دوبارہ ترتیب دیں۔",
-  "settingsPrayerNotificationsTitle": "دعا کی اطلاعات",
-  "settingsPrayerNotificationsSubtitle": "تمام صلاۃ یاد دہانی کے رویے کو ایک جگہ پر رکھیں، ہر نماز کے لیے ایک موڈ کے ساتھ۔",
-  "settingsPrayerRemindersToggleSubtitle": "اپنے محفوظ کردہ فی صلاۃ طریقوں کو تبدیل کیے بغیر تمام صلاۃ کی یاد دہانیوں کو آن یا آف کریں۔",
-  "settingsPrayerTimeModeTitle": "نماز وقت موڈ",
-  "settingsPrayerTimeModeSubtitle": "منتخب کریں کہ پاتھ آف نور آپ کے صلاۃ کے شیڈول کو کس طرح سنبھالتا ہے۔ زیادہ تر صارفین کو چاہیے کہ صلاۃ کے اوقات کا حساب رکھیں اور ضرورت پڑنے پر چھوٹی ایڈجسٹمنٹ کریں۔",
-  "settingsPrayerTimeModeCalculatedAdjustedTitle": "حساب شدہ اوقات + ایڈجسٹمنٹ",
-  "settingsPrayerTimeModeCalculatedAdjustedDescription": "زیادہ تر صارفین کے لیے بہترین۔ نور کا راستہ ہر روز آپ کے مقام اور طریقہ کے لیے صلاۃ کے اوقات کا حساب لگاتا ہے، پھر آپ کی محفوظ شدہ فی صلاۃ ایڈجسٹمنٹ کو خود بخود لاگو کرتا ہے۔",
-  "settingsPrayerTimeModeManualTitle": "مکمل طور پر دستی نماز کے اوقات",
-  "settingsPrayerTimeModeManualDescription": "صلاۃ کے عین اوقات استعمال کریں جو آپ خود داخل کریں۔ یہ ٹریک شدہ صلاۃ کے اوقات کے لیے معمول کی روزانہ کی صلاۃ کے حساب کتاب کو اوور رائیڈ کرتا ہے اور اسے صرف اس صورت میں استعمال کیا جانا چاہیے جب آپ جان بوجھ کر ایک مقررہ دستی شیڈول چاہتے ہیں۔",
-  "settingsManualTimesPrefilledFromToday": "دستی اوقات آج کے فعال نماز کے شیڈول سے پہلے سے بھرے ہوئے تھے۔",
-  "settingsPrayerTimeModeManualNote": "دستی موڈ ایک اعلی درجے کا اختیار ہے۔ اگر آپ کے مقامی صلاۃ کے اوقات موسمی طور پر بدلتے ہیں، تو آپ کو انہیں خود اپ ڈیٹ کرنے کی ضرورت پڑ سکتی ہے۔",
+  "settingsResetAppearance": "انداز ری سیٹ کریں",
+  "settingsPrayerNotificationsTitle": "نماز کی اطلاعات",
+  "settingsPrayerNotificationsSubtitle": "چنیں کہ ہر نماز آپ کو کیسے یاد دلائے۔",
+  "settingsPrayerRemindersToggleSubtitle": "نماز کی تمام یاددہانیاں آن یا آف کریں۔ ہر نماز کے لیے آپ کے انتخاب محفوظ رہتے ہیں۔",
+  "settingsPrayerTimeModeTitle": "نماز کے اوقات کا طریقہ",
+  "settingsPrayerTimeModeSubtitle": "اکثر لوگ حساب شدہ اوقات رکھتے ہیں اور انہیں چند منٹ آگے پیچھے کرتے ہیں۔",
+  "settingsPrayerTimeModeCalculatedAdjustedTitle": "حساب شدہ، ردوبدل کے ساتھ",
+  "settingsPrayerTimeModeCalculatedAdjustedDescription": "اکثر لوگوں کے لیے بہترین۔ اوقات ہر روز حساب ہوتے ہیں، پھر آپ کے ردوبدل شامل ہوتے ہیں۔",
+  "settingsPrayerTimeModeManualTitle": "دستی اوقات",
+  "settingsPrayerTimeModeManualDescription": "ہر وقت خود درج کریں۔ جب تک آپ نہ بدلیں، وہ ویسا ہی رہتا ہے۔",
+  "settingsManualTimesPrefilledFromToday": "آج کے حساب شدہ اوقات سے بھرے گئے۔",
+  "settingsPrayerTimeModeManualNote": "نماز کے اوقات موسموں کے ساتھ بدلتے ہیں، اس لیے دستی اوقات ہاتھ سے تازہ کرنے ہوں گے۔",
   "settingsRecommendedBadge": "تجویز کردہ",
-  "settingsPrayerTimeAdjustmentsTitle": "نماز وقت کی ایڈجسٹمنٹ",
-  "settingsPrayerTimeAdjustmentsSubtitle": "اپنے حسابی صلاۃ کے اوقات کو چند منٹوں میں ٹھیک کریں۔ نور کا راستہ آپ کے مقام اور طریقہ کے مطابق صلاۃ کے اوقات کا حساب لگاتا رہے گا، پھر اپنی محفوظ کردہ ایڈجسٹمنٹ کو خود بخود لاگو کریں۔",
-  "settingsPrayerTimeAdjustmentsExample": "اگر فجر کا حساب 5:00 AM کے حساب سے کیا جاتا ہے اور آپ اسے 4:55 AM میں تبدیل کرتے ہیں، تو ایپ فجر کے لیے -5 منٹ کی ایڈجسٹمنٹ کو بچاتی ہے۔ آئندہ فجر کی نماز کے اوقات بھی اسی محفوظ شدہ ایڈجسٹمنٹ کو استعمال کریں گے۔",
-  "settingsPrayerTimeAdjustmentsScope": "آپ کی ایڈجسٹمنٹ کو پوری ایپ میں صلاۃ ڈسپلے، یاد دہانیوں، الٹی گنتی، اور روزانہ صلاۃ سے باخبر رہنے کے لیے استعمال کیا جاتا ہے۔",
+  "settingsPrayerTimeAdjustmentsTitle": "نماز کے اوقات میں ردوبدل",
+  "settingsPrayerTimeAdjustmentsSubtitle": "اپنی مسجد کے مطابق حساب شدہ وقت کو چند منٹ آگے پیچھے کریں۔",
+  "settingsPrayerTimeAdjustmentsExample": "مثال کے طور پر، اگر فجر کا حساب 5:00 ہے اور آپ 4:55 رکھیں تو فجر ہر روز 5 منٹ پہلے ہوگی۔",
+  "settingsPrayerTimeAdjustmentsScope": "ردوبدل شدہ اوقات پوری ایپ میں استعمال ہوتے ہیں، یاددہانیوں سمیت۔",
   "settingsCustomAdjustmentsActive": "حسب ضرورت ایڈجسٹمنٹ فعال",
   "settingsResetAllAdjustmentsTitle": "تمام ایڈجسٹمنٹس کو دوبارہ ترتیب دیں؟",
-  "settingsResetAllAdjustmentsBody": "اس سے فجر، ظہر، عصر، مغرب اور عشاء اپنے مقررہ اوقات میں لوٹ آئیں گی۔",
-  "settingsResetAllAdjustments": "تمام ایڈجسٹمنٹ کو دوبارہ ترتیب دیں۔",
-  "settingsResetAdjustmentsNote": "ری سیٹ کرنے سے تمام محفوظ شدہ آفسیٹس ہٹ جاتے ہیں اور ہر صلاۃ کو اس کے مقررہ وقت پر لوٹا دیا جاتا ہے۔",
+  "settingsResetAllAdjustmentsBody": "اس سے فجر، ظہر، عصر، مغرب اور عشاء اپنے حساب شدہ اوقات پر لوٹ آئیں گی۔",
+  "settingsResetAllAdjustments": "تمام ردوبدل ری سیٹ کریں",
+  "settingsResetAdjustmentsNote": "ری سیٹ کرنے سے تمام محفوظ ردوبدل ہٹ جاتے ہیں اور ہر نماز اپنے حساب شدہ وقت پر لوٹ آتی ہے۔",
   "settingsManualPrayerTimesTitle": "دستی نماز کے اوقات",
-  "settingsManualPrayerTimesSubtitle": "دستی موڈ فعال ہونے کے دوران یہ دستی اوقات یاد دہانیوں، الٹی گنتی اور صلاۃ سے باخبر رہنے کے لیے پوری ایپ میں استعمال کیے جائیں گے۔",
-  "settingsUseTodaysCalculatedTimes": "آج کے حسابی اوقات کا استعمال کریں۔",
-  "settingsResetManualTimes": "دستی اوقات کو دوبارہ ترتیب دیں۔",
-  "settingsReturnToRecommendedMode": "تجویز کردہ موڈ پر واپس جائیں۔",
+  "settingsManualPrayerTimesSubtitle": "جب تک دستی موڈ آن ہے، یہی اوقات ہر جگہ استعمال ہوتے ہیں۔",
+  "settingsUseTodaysCalculatedTimes": "آج کے حساب شدہ اوقات استعمال کریں",
+  "settingsResetManualTimes": "دستی اوقات ری سیٹ کریں",
+  "settingsReturnToRecommendedMode": "تجویز کردہ موڈ پر واپس جائیں",
   "settingsMosqueTimeComparisonTitle": "مسجد کے وقت کا موازنہ",
-  "settingsMosqueTimeComparisonSubtitle": "اپنے مقامی مسجد کے ٹائم ٹیبل کا موازنہ پاتھ آف نور کے حساب شدہ اور ایڈجسٹ نماز کے اوقات سے کریں۔ یہ مقامی رہتا ہے اور آپ کو یہ جائزہ لینے میں مدد کرتا ہے کہ آپ کی موجودہ ایڈجسٹمنٹ کتنی قریب ہیں۔",
-  "settingsApplySuggestedAdjustments": "تجویز کردہ ایڈجسٹمنٹس کا اطلاق کریں۔",
+  "settingsMosqueTimeComparisonSubtitle": "اپنی مسجد کے اوقات کا ایپ کے اوقات سے موازنہ کریں۔ کچھ بھی آپ کے فون سے باہر نہیں جاتا۔",
+  "settingsApplySuggestedAdjustments": "تجویز کردہ ردوبدل لاگو کریں",
   "settingsJumuahSettingsTitle": "جمعہ کی ترتیبات",
-  "settingsJumuahSettingsSubtitle": "اگر آپ کا جمعہ کا وقت معیاری ظہر سے مختلف ہو تو جمعہ کے لیے مخصوص یاد دہانی کا وقت استعمال کریں۔",
-  "settingsEnableJumuahOverrideTitle": "جمعہ اوور رائڈ کو فعال کریں۔",
-  "settingsEnableJumuahOverrideSubtitle": "ٹریک شدہ نماز کے شیڈول کو تبدیل کیے بغیر جمعہ کی دوپہر کی یاد دہانی کا استعمال کریں۔",
+  "settingsJumuahSettingsSubtitle": "جب آپ کی مسجد میں جمعہ ظہر کے وقت نہ ہو۔",
+  "settingsEnableJumuahOverrideTitle": "میری مسجد کا جمعہ کا وقت استعمال کریں",
+  "settingsEnableJumuahOverrideSubtitle": "ظہر کی جگہ میری مسجد کے جمعہ کے وقت یاد دلائیں۔",
   "settingsJumuahTimeTitle": "جمعہ کا وقت",
-  "settingsJumuahTimeSubtitle": "منتخب ہونے پر جمعہ کی یاد دہانی کے رویے کے لیے استعمال کیا جاتا ہے۔",
-  "settingsNotSet": "سیٹ نہیں ہے۔",
+  "settingsJumuahTimeSubtitle": "آپ کی جمعہ کی یاددہانی یہی وقت استعمال کرتی ہے۔",
+  "settingsNotSet": "طے نہیں",
   "settingsUnavailable": "دستیاب نہیں",
-  "settingsNoChange": "کوئی تبدیلی نہیں۔",
+  "settingsNoChange": "کوئی تبدیلی نہیں",
   "settingsModified": "ترمیم شدہ",
-  "settingsApplySuggestedAdjustmentsTitle": "تجویز کردہ ایڈجسٹمنٹس کا اطلاق کریں۔",
-  "settingsApplySuggestedAdjustmentsSubtitle": "اپنے موجودہ حسابی وقت کی ایڈجسٹمنٹ کو تبدیل کرنے سے پہلے مجوزہ آفسیٹس کا جائزہ لیں۔",
-  "settingsPrayerAdjustmentEditorFutureUseNote": "یہ ایڈجسٹمنٹ اس صلاۃ کے لیے مستقبل کے حساب شدہ صلاۃ کے اوقات پر بھی لاگو ہو گی۔",
-  "settingsResetThisPrayer": "اس صلاۃ کو دوبارہ ترتیب دیں۔",
-  "settingsFridayReminderModeNormalDhuhr": "ظہر کا معمول کا وقت",
-  "settingsFridayReminderModeCustomJumuah": "اپنی مرضی کے مطابق جمعہ کا وقت",
+  "settingsApplySuggestedAdjustmentsTitle": "تجویز کردہ ردوبدل لاگو کریں",
+  "settingsApplySuggestedAdjustmentsSubtitle": "نئے اوقات آپ کے ردوبدل کی جگہ لیں اس سے پہلے انہیں دیکھ لیں۔",
+  "settingsPrayerAdjustmentEditorFutureUseNote": "یہ تبدیلی آنے والے دنوں پر بھی لاگو ہوتی ہے۔",
+  "settingsResetThisPrayer": "اس نماز کو ری سیٹ کریں",
+  "settingsFridayReminderModeNormalDhuhr": "ظہر کے وقت",
+  "settingsFridayReminderModeCustomJumuah": "میرے جمعہ کے وقت",
   "settingsPrayerNameFajr": "فجر",
   "settingsPrayerNameJumuah": "جمعہ",
   "settingsPrayerNameDhuhr": "ظہر",
@@ -6567,20 +6558,20 @@
   "settingsNotificationModeAdhan": "اذان",
   "settingsNotificationModeBeforeQaza": "قضا سے پہلے",
   "settingsAttributionsLicensesTitle": "انتسابات اور لائسنس",
-  "settingsSyncModePathOfNurCloud": "نور بادل کا راستہ",
+  "settingsSyncModePathOfNurCloud": "Path of Nūr کلاؤڈ",
   "settingsSyncModeICloud": "iCloud",
   "settingsSyncModeLocalOnly": "صرف مقامی",
   "settingsSyncModeManualBackupOnly": "صرف دستی بیک اپ",
-  "settingsSyncStateAllCaughtUp": "سب نے پکڑ لیا۔",
-  "settingsSyncStateSyncing": "مطابقت پذیری",
-  "settingsSyncStateOfflinePending": "زیر التواء تبدیلیوں کے ساتھ آف لائن",
-  "settingsSyncStateNeedsAttention": "توجہ کی ضرورت ہے۔",
+  "settingsSyncStateAllCaughtUp": "سب کچھ تازہ ہے",
+  "settingsSyncStateSyncing": "سنک ہو رہا ہے",
+  "settingsSyncStateOfflinePending": "آف لائن۔ تبدیلیاں بعد میں سنک ہوں گی۔",
+  "settingsSyncStateNeedsAttention": "توجہ درکار ہے",
   "settingsSyncStateLocalOnly": "صرف مقامی",
   "settingsSyncStateICloudActive": "iCloud فعال",
-  "settingsThemeModeDefaultDescription": "نور کا طے شدہ راستہ نرم، خوبصورت احساس اور نرم گہرائی کے ساتھ نظر آتا ہے۔",
-  "settingsThemeModeCalmBeautifulDescription": "Path of Nur کا پہلے والا پُرسکون انداز، نرم گرمی اور مانوس گہرائی کے ساتھ۔",
-  "settingsThemeModeEasyReadDescription": "توجہ سے پڑھنے کے لیے سادہ پس منظر اور مضبوط کنٹراسٹ۔ طویل پڑھنے کے لیے تجویز کردہ۔",
-  "settingsThemeModeDarkDescription": "رات کے استعمال کے لیے ایک پرسکون کم روشنی والی ظاہری شکل۔ کم روشنی والے ماحول کے لیے تجویز کردہ۔",
+  "settingsThemeModeDefaultDescription": "Path of Nūr کا روایتی انداز۔",
+  "settingsThemeModeCalmBeautifulDescription": "Path of Nūr کا پہلا انداز، گرم اور مانوس۔",
+  "settingsThemeModeEasyReadDescription": "لمبے مطالعے کے لیے سادہ سطحیں اور گہرا کنٹراسٹ۔",
+  "settingsThemeModeDarkDescription": "رات کے لیے ایک گہرا انداز۔",
   "settingsCurrentProfileSummary": "{name} — {syncMode}",
   "@settingsCurrentProfileSummary": {
     "placeholders": {
@@ -6659,7 +6650,7 @@
       }
     }
   },
-  "settingsFinalTimeLabel": "فائنل: {time}",
+  "settingsFinalTimeLabel": "حتمی: {time}",
   "@settingsFinalTimeLabel": {
     "placeholders": {
       "time": {
@@ -6667,7 +6658,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "بیس حساب شدہ وقت: {time}",
+  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "بنیادی حساب شدہ وقت: {time}",
   "@settingsPrayerAdjustmentEditorBaseCalculatedTime": {
     "placeholders": {
       "time": {
@@ -7538,7 +7529,7 @@
   "gardenPageLearningMeaningBody": "سیکھنا پھل بنتا ہے: بصیرت، سمجھ اور بہتر عمل۔",
   "gardenPageDropsMeaningTitle": "قطرے",
   "gardenPageDropsMeaningBody": "قطرے ہریالی اور زندگی لاتے ہیں، ایسے مخلصانہ اعمال کی نشاندہی کرتے ہیں جو پورے باغ کی پرورش کرتے ہیں۔",
-  "gardenPageNextUnlockTitle": "اگلا انلاک",
+  "gardenPageNextUnlockTitle": "اگلا سنگِ میل",
   "gardenPageAllUnlockedTitle": "گارڈن گیلری مکمل",
   "gardenPageAllUnlockedBody": "تمام دس V1 گارڈن امیجز غیر مقفل ہیں۔ مستقبل کے مراحل آپ کی ڈراپس کی تاریخ کو تبدیل کیے بغیر اس پرسکون بنیاد پر استوار کر سکتے ہیں۔",
   "gardenPageNextUnlockRequiredValue": "{count} ڈراپس پر کھلتا ہے۔",
@@ -7572,7 +7563,7 @@
   "gardenPageLearnerSectionTitle": "چائلڈ پروفائل",
   "gardenPageHeroBody": "آپ کا سیکھنا، یاد رکھنا، اور مستقل اچھی عادات اس باغ کو وقت کے ساتھ شکل دیتی ہیں۔",
   "gardenPageLevelLabel": "سطح",
-  "gardenPageXpLabel": "ایکس پی",
+  "gardenPageXpLabel": "نور",
   "gardenPageMaturityLabel": "باغ کی پختگی",
   "gardenPageMaturityValue": "{percent}%",
   "@gardenPageMaturityValue": {
@@ -7624,7 +7615,7 @@
   "gardenDimensionWaterTitle": "نیکیوں کا پانی",
   "gardenDimensionWaterBody": "سمندر کے قطرے باغ کو زندگی، ہریالی اور تازگی کے ساتھ پرورش دیتے ہیں۔",
   "gardenDimensionFruitTitle": "حکمت کے پھل",
-  "gardenDimensionFruitBody": "بیجز، سنگ میل اور پختگی سیکھنے کے ثمر کو ظاہر کرتی ہے۔",
+  "gardenDimensionFruitBody": "سنگِ میل سیکھنے کا پھل دکھاتے ہیں۔",
   "gardenDimensionConsistencyTitle": "مستقل مزاجی کا پھول",
   "gardenDimensionConsistencyBody": "باقاعدگی سے سیکھنے اور سونے کے وقت کی تال پورے باغ کو زندہ رکھنے میں مدد کرتی ہے۔",
   "gardenInsightPrayer": "آپ کی حالیہ مستحکم تال جڑوں کو مضبوط کر رہی ہے اور باغ کو مضبوط بنیاد فراہم کر رہی ہے۔",
@@ -7634,7 +7625,7 @@
   "gardenInsightFruit": "سنگ میل اور پختگی کھلنے میں پھل اور حکمت کے طور پر ظاہر ہونے لگی ہے۔",
   "gardenInsightConsistency": "آپ کی حالیہ مستقل مزاجی پورے باغ کو صحت مند اور بھرپور رہنے میں مدد دے رہی ہے۔",
   "homeModuleGardenTitle": "آپ کا باغ",
-  "homeModuleGardenSubtitle": "آپ کی عبادت کیسے بڑھ رہی ہے، اس کا زندہ منظر۔",
+  "homeModuleGardenSubtitle": "اپنی عبادت کو بڑھتے دیکھیں۔",
   "gardenElementCentralTreeTitle": "پاکیزہ درخت",
   "gardenElementCentralTreeMeaning": "پاکیزہ کلمہ پاکیزہ درخت کی مانند ہے: اس کی جڑ مضبوط اور شاخیں آسمان میں، ہر موسم میں پھل دیتا ہے۔",
   "gardenElementStreamTitle": "بہتا چشمہ",
@@ -8182,8 +8173,8 @@
   "triviaStatsCorrect": "درست",
   "triviaStatsIncorrect": "غلط",
   "triviaStatsOverallAccuracy": "مجموعی درستگی",
-  "triviaStatsDailyQuizStreak": "روزانہ کوئز سلسلہ",
-  "triviaStatsLongestStreak": "طویل ترین سلسلہ: {value}",
+  "triviaStatsDailyQuizStreak": "مسلسل روزانہ کوئز",
+  "triviaStatsLongestStreak": "سب سے زیادہ مسلسل دن: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -8191,7 +8182,7 @@
       }
     }
   },
-  "triviaStatsXp": "ٹریویا ایکس پی",
+  "triviaStatsXp": "کوئز کا نور",
   "triviaStatsOceanDrops": "سمندری قطرے",
   "triviaStatsPerformanceSnapshotTitle": "کارکردگی کی جھلک",
   "triviaStatsNotEnoughData": "ابھی کافی ڈیٹا نہیں",
@@ -9432,10 +9423,12 @@
       "light": {}
     }
   },
-  "kidsDuaStreakValue": "سلسلہ: {days} دن",
+  "kidsDuaStreakValue": "{days, plural, =1{1 دن مسلسل} other{{days} دن مسلسل}}",
   "@kidsDuaStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "kidsDuaLightSeedLabel": "نرم بیج",
@@ -9654,7 +9647,7 @@
   "xpLevelTitle98": "مستقل",
   "xpLevelTitle99": "روشن",
   "xpLevelTitle100": "نور کا راستہ",
-  "xpCardTitle": "پاتھ ایکس پی",
+  "xpCardTitle": "آپ کا نور",
   "xpCardLevelValue": "سطح {level} · {title}",
   "@xpCardLevelValue": {
     "placeholders": {
@@ -9662,7 +9655,7 @@
       "title": {}
     }
   },
-  "xpCardTotalXpValue": "{xp} کل XP",
+  "xpCardTotalXpValue": "کل {xp} نور",
   "@xpCardTotalXpValue": {
     "placeholders": {
       "xp": {}
@@ -9674,7 +9667,7 @@
       "title": {}
     }
   },
-  "xpCardRemainingValue": "{xp} XP باقی ہے۔",
+  "xpCardRemainingValue": "ابھی {xp} نور باقی",
   "@xpCardRemainingValue": {
     "placeholders": {
       "xp": {}
@@ -9750,9 +9743,9 @@
   "journeyStatsLessonsCompletedSubtitle": "مکمل سبق اور موضوع کی پیشرفت",
   "journeyStatsActiveDaysTitle": "فعال دن",
   "journeyStatsActiveDaysSubtitle": "ریکارڈ شدہ پیشرفت کے ساتھ دن",
-  "journeyStatsCurrentStreakTitle": "موجودہ اسٹریک",
+  "journeyStatsCurrentStreakTitle": "مسلسل دن",
   "journeyStatsCurrentStreakSubtitle": "آپ کی موجودہ مستحکم تال",
-  "journeyStatsBestStreakTitle": "بہترین اسٹریک",
+  "journeyStatsBestStreakTitle": "سب سے زیادہ مسلسل دن",
   "journeyStatsBestStreakSubtitle": "آپ کا سب سے مضبوط ریکارڈ شدہ رن",
   "journeyStatsMinutesValue": "{minutes} منٹ",
   "@journeyStatsMinutesValue": {
@@ -9827,58 +9820,58 @@
   "growthHabitSettingsSaveAction": "محفوظ کریں۔",
   "commonToday": "آج",
   "commonHistory": "تاریخ",
-  "pageDescriptionLearnHub": "قرآن، حدیث، کہانیوں، مشق، اور غور و فکر میں واضح سیکھنے کے راستوں پر عمل کریں۔",
-  "pageDescriptionLearnHubKids": "اسلام کو قدم بہ قدم کہانیوں، اسباق اور آسان عمل کے ساتھ سیکھیں۔",
-  "pageDescriptionQuranHub": "روزانہ رابطے کے لیے واضح راستوں کے ساتھ قرآن پڑھیں، مطالعہ کریں، حفظ کریں، اور واپس جائیں۔",
-  "pageDescriptionQuranHubKids": "قرآن کو پڑھیں، اس کے معنی سیکھیں، اور تھوڑی دیر میں اس پر واپس آئیں۔",
-  "pageDescriptionQuranStudyHub": "قرآن کی معنویت، رہنمائی کے ساتھ مطالعہ، حفظ، اور نظرثانی کے آلات کے ذریعے آہستہ کریں۔",
-  "pageDescriptionQuranStudyHubKids": "قرآن کے ساتھ اپنا وقت نکالیں، مزید سمجھیں، اور تھوڑا تھوڑا سیکھیں۔",
-  "pageDescriptionWorshipHub": "اپنی روزانہ کی عبادات کو نماز، ذکر، دعا، روزہ اور یاددہانی کے ساتھ مستحکم رکھیں۔",
-  "pageDescriptionWorshipHubKids": "نماز، ذکر، دعا اور آسان یاد دہانیوں کے ساتھ روزانہ کی اچھی عادات بنائیں۔",
-  "pageDescriptionGrowthToday": "آج کی تال دیکھیں، دیکھیں کہ کس چیز کی دیکھ بھال کی ضرورت ہے، اور اپنا اگلا مرحلہ واضح رکھیں۔",
+  "pageDescriptionLearnHub": "اسلام قدم بہ قدم سیکھیں۔",
+  "pageDescriptionLearnHubKids": "کہانیوں اور اسباق سے اسلام سیکھیں۔",
+  "pageDescriptionQuranHub": "قرآن پڑھیں، سمجھیں اور حفظ کریں۔",
+  "pageDescriptionQuranHubKids": "قرآن پڑھیں، اس کے معنی سیکھیں، اور تھوڑا تھوڑا کر کے اس کی طرف لوٹتے رہیں۔",
+  "pageDescriptionQuranStudyHub": "قرآن کو سمجھیں، ایک ایک حصہ کر کے۔",
+  "pageDescriptionQuranStudyHubKids": "تھوڑا تھوڑا کر کے قرآن کے معنی سیکھیں۔",
+  "pageDescriptionWorshipHub": "آپ کی روزانہ کی عبادت۔",
+  "pageDescriptionWorshipHubKids": "ہر روز نماز پڑھیں، اللہ کو یاد کریں اور دعا کریں۔",
+  "pageDescriptionGrowthToday": "آج کیسا جا رہا ہے، اور ایک اگلا قدم۔",
   "pageDescriptionGrowthTodayKids": "دیکھیں کہ آج کیسا گزر رہا ہے اور ایک اچھا اگلا مرحلہ منتخب کریں۔",
-  "pageDescriptionGrowthPaths": "متمرکز راستوں پر عمل کریں جو آپ کی مشق کے ایک حصے کو مستقل مزاجی کے ساتھ بڑھنے میں مدد کریں۔",
+  "pageDescriptionGrowthPaths": "اپنی عبادت کا ایک پہلو چنیں جسے بڑھانا ہے۔",
   "pageDescriptionGrowthPathsKids": "ایک چھوٹا سا راستہ چنیں اور ہر روز تھوڑا سا بڑھتے رہیں۔",
-  "pageDescriptionGrowthJourney": "اپنی پیشرفت، غیر مقفل سنگ میل، اور اپنے سفر کی مستحکم شکل کا جائزہ لیں۔",
+  "pageDescriptionGrowthJourney": "آپ کتنا آگے آئے، اور آپ کے سنگِ میل۔",
   "pageDescriptionGrowthJourneyKids": "دیکھیں کہ آپ کتنی دور آئے ہیں اور راستے میں آپ نے کیا کھولا۔",
-  "pageDescriptionGrowthReflection": "شکر گزاری، توبہ، اور دیانتدارانہ جائزہ کے لیے رکیں تاکہ دل دوبارہ بحال ہو سکے۔",
-  "pageDescriptionGrowthReflectionKids": "رکیں، شکریہ کہو، ایمانداری سے سوچیں، اور صاف دل کے ساتھ دوبارہ شروع کریں۔",
-  "pageDescriptionSettingsLanding": "ایڈجسٹ کریں کہ ایپ آپ کی نماز، سیکھنے، یاد دہانیوں، رازداری اور روزانہ کی تال کو کس طرح سپورٹ کرتی ہے۔",
-  "pageDescriptionSettingsLandingKids": "منتخب کریں کہ ایپ آپ کو ہر روز سیکھنے، دعا کرنے اور منظم رہنے میں کس طرح مدد کرتی ہے۔",
-  "pageDescriptionSettingsAccountSync": "مشترکہ رسائی پر واضح کنٹرول کے ساتھ پروفائلز، بیک اپ اور ڈیوائس کی مطابقت پذیری کا نظم کریں۔",
+  "pageDescriptionGrowthReflection": "شکر اور توبہ کا ایک لمحہ۔",
+  "pageDescriptionGrowthReflectionKids": "اللہ کا شکر ادا کریں، اور نئے سرے سے شروع کریں۔",
+  "pageDescriptionSettingsLanding": "ایپ کو اپنے دن کے مطابق بنائیں۔",
+  "pageDescriptionSettingsLandingKids": "ایپ کو اپنے کام کا بنائیں۔",
+  "pageDescriptionSettingsAccountSync": "پروفائلز اور بیک اپ۔",
   "pageDescriptionSettingsAccountSyncKids": "منتخب کریں کہ کون ایپ استعمال کر رہا ہے اور پروفائلز اور بیک اپس کو محفوظ رکھیں۔",
-  "pageDescriptionSettingsAppearance": "ایپ کی شکل، حرکت، کنٹراسٹ، اور پڑھنے کے آرام کو اپنے دن کے مطابق سیٹ کریں۔",
+  "pageDescriptionSettingsAppearance": "ایپ کیسی دکھتی اور حرکت کرتی ہے۔",
   "pageDescriptionSettingsAppearanceKids": "منتخب کریں کہ ایپ کیسی دکھتی اور محسوس کرتی ہے تاکہ اسے استعمال کرنا آسان ہو۔",
-  "pageDescriptionSettingsPrayerWorship": "نماز کے اوقات، اذان، وجیٹس اور روزانہ کی عبادت کی دوسری ترجیحات مرتب کریں۔",
-  "pageDescriptionSettingsPrayerWorshipKids": "اپنے نماز کے اوقات، یاد دہانیاں، اور مددگار عبادت کے اوزار مقرر کریں۔",
-  "pageDescriptionSettingsLearning": "پوری ایپ میں استعمال ہونے والی قرآن ڈسپلے، فیملی لرننگ، اور اسٹڈی سیٹنگز کو کنٹرول کریں۔",
-  "pageDescriptionSettingsLearningKids": "منتخب کریں کہ سیکھنا، قرآن، اور خاندانی مطالعہ کی خصوصیات کیسے ظاہر ہوتی ہیں۔",
-  "pageDescriptionSettingsNotifications": "فیصلہ کریں کہ کون سی یاد دہانی آپ تک پہنچتی ہے اور ایپ کو آپ کو کتنی بار اشارہ کرنا چاہیے۔",
+  "pageDescriptionSettingsPrayerWorship": "نماز کے اوقات اور اذان۔",
+  "pageDescriptionSettingsPrayerWorshipKids": "آپ کی نماز کے اوقات اور یاددہانیاں۔",
+  "pageDescriptionSettingsLearning": "قرآن اور اسباق کیسے دکھائے جائیں۔",
+  "pageDescriptionSettingsLearningKids": "اسباق اور قرآن کیسے دکھتے ہیں۔",
+  "pageDescriptionSettingsNotifications": "آپ کو کون سی یاددہانیاں ملیں، اور کب۔",
   "pageDescriptionSettingsNotificationsKids": "منتخب کریں کہ کون سی یاد دہانی آپ کو صحیح چیزوں کو یاد رکھنے میں مدد کرتی ہے۔",
-  "pageDescriptionSettingsWidgetsWatch": "روزانہ فوری رسائی کے لیے لاک اسکرین، ڈائنامک آئی لینڈ، اور دیکھنے کی سطحوں کا نظم کریں۔",
-  "pageDescriptionSettingsWidgetsWatchKids": "منتخب کریں کہ فوری دعا اور یاد دہانی کی معلومات آپ کی اسکرین یا گھڑی پر دکھاتی ہیں۔",
-  "pageDescriptionSettingsLanguage": "اپنی زبان اور دیگر ڈاؤن لوڈ کے لیے تیار پڑھنے کی ترجیحات کا انتخاب کریں۔",
+  "pageDescriptionSettingsWidgetsWatch": "لاک اسکرین اور گھڑی پر نماز کے اوقات۔",
+  "pageDescriptionSettingsWidgetsWatchKids": "منتخب کریں کہ نماز اور یاددہانی کی کون سی معلومات آپ کی اسکرین یا گھڑی پر نظر آئیں۔",
+  "pageDescriptionSettingsLanguage": "زبان اور ڈاؤن لوڈز۔",
   "pageDescriptionSettingsLanguageKids": "زبان اور پڑھنے کے اختیارات کا انتخاب کریں جو آپ کی سب سے زیادہ مدد کریں۔",
-  "pageDescriptionSettingsPrivacy": "پرسکون ڈیفالٹس کے ساتھ حساس ٹریکنگ، مرئیت، اور ڈیٹا کے رویے کو کنٹرول کریں۔",
+  "pageDescriptionSettingsPrivacy": "کیا ٹریک ہوتا ہے، اور کیا نجی رہتا ہے۔",
   "pageDescriptionSettingsPrivacyKids": "منتخب کریں کہ آپ اپنی معلومات اور سرگرمی کو کتنا نجی رکھنا چاہتے ہیں۔",
-  "pageDescriptionSettingsKidsFamily": "پوری ایپ میں عمر سے آگاہی سیکھنے اور خاندان کے موافق پیشکش کو ایڈجسٹ کریں۔",
-  "pageDescriptionSettingsKidsFamilyKids": "بچوں کے لیے موزوں سیکھنے اور خاندانی ترتیبات مرتب کریں جو آپ کے لیے صحیح محسوس کریں۔",
-  "pageDescriptionSettingsAbout": "ایپ میں سپورٹ، اپ ڈیٹس، قانونی تفصیلات اور کیا تبدیل ہو رہا ہے تلاش کریں۔",
-  "pageDescriptionSettingsAboutKids": "ایپ کی مدد، اپ ڈیٹس اور اہم معلومات ایک جگہ پر دیکھیں۔",
-  "pageDescriptionAssistant": "رہنمائی، غور و فکر کے اشارے، اور ایپ کا صحیح حصہ تلاش کرنے میں مدد طلب کریں۔",
-  "pageDescriptionAssistantKids": "آسان سوالات پوچھیں، آئیڈیاز حاصل کریں، اور آگے جانے کے لیے صحیح جگہ تلاش کریں۔",
-  "pageDescriptionJournalTimeline": "غور و فکر، مشاہدات، اور بامعنی لمحات رکھیں جہاں آپ ان کی طرف واپس جا سکیں۔",
-  "pageDescriptionJournalTimelineKids": "خیالات، نوٹس اور خاص لمحات کو محفوظ کریں تاکہ آپ بعد میں پیچھے دیکھ سکیں۔",
-  "pageDescriptionJournalCreate": "ایک غور و فکر، مشاہدہ، یا شکر گزار نوٹ لکھیں جب تک کہ لمحہ ابھی بھی واضح ہو۔",
-  "pageDescriptionJournalCreateKids": "لکھیں جو آپ نے محسوس کیا، محسوس کیا، یا آج کے لئے شکر گزار محسوس کیا۔",
+  "pageDescriptionSettingsKidsFamily": "آپ کے خاندان میں ہر عمر کے لیے سیکھنا۔",
+  "pageDescriptionSettingsKidsFamilyKids": "خاندان کے ساتھ سیکھنے کی ترتیبات۔",
+  "pageDescriptionSettingsAbout": "مدد اور نیا کیا ہے۔",
+  "pageDescriptionSettingsAboutKids": "مدد اور نیا کیا ہے۔",
+  "pageDescriptionAssistant": "کوئی سوال پوچھیں، یا ایپ میں راستہ تلاش کریں۔",
+  "pageDescriptionAssistantKids": "سوال پوچھیں، یا پوچھیں کہ کہاں جانا ہے۔",
+  "pageDescriptionJournalTimeline": "جو کچھ آپ نے لکھا۔",
+  "pageDescriptionJournalTimelineKids": "دیکھیں آپ نے کیا لکھا تھا۔",
+  "pageDescriptionJournalCreate": "تازہ ہو تو لکھ لیں۔",
+  "pageDescriptionJournalCreateKids": "کسی ایسی چیز کے بارے میں لکھیں جو آپ نے دیکھی۔",
   "pageDescriptionCreationExplorer": "تخلیق کا بغور مشاہدہ کریں اور جو کچھ آپ دیکھتے ہیں اسے قرآنی غور و فکر سے جوڑیں۔",
-  "pageDescriptionCreationExplorerKids": "Look closely at Allah’s creation and notice what it teaches you.",
-  "pageDescriptionCreationChallenges": "تخلیق کو زیادہ جان بوجھ کر دیکھنے اور احتیاط کے ساتھ غور و فکر کرنے کے لیے چھوٹے گائیڈڈ اشارے استعمال کریں۔",
-  "pageDescriptionCreationChallengesKids": "Try small challenges that help you notice the world Allah made.",
-  "pageDescriptionCelestialExplorer": "مقام سے آگاہ علامات کے ساتھ آسمان کو ٹریک کریں جو مشاہدے کو یاد میں بدل دیتے ہیں۔",
-  "pageDescriptionCelestialExplorerKids": "Watch the sky, learn what is happening, and remember Allah through it.",
-  "pageDescriptionKhusuFocus": "ایک پرسکون توجہ کی جگہ میں قدم رکھیں جو عبادت میں واپس آنے سے پہلے دل کو ٹھیک کرنے میں مدد کرتا ہے۔",
-  "pageDescriptionKhusuFocusKids": "ایک خاموش وقفہ لیں، آہستہ کریں، اور اپنے دل کو توجہ مرکوز کرنے کے لیے تیار کریں۔",
+  "pageDescriptionCreationExplorerKids": "اللہ کی تخلیق کو غور سے دیکھیں اور سوچیں کہ یہ آپ کو کیا سکھاتی ہے۔",
+  "pageDescriptionCreationChallenges": "اللہ کی تخلیق پر غور کے چھوٹے اشارے۔",
+  "pageDescriptionCreationChallengesKids": "چھوٹے چھوٹے چیلنج آزمائیں جو اللہ کی بنائی دنیا کو دیکھنے میں مدد دیں۔",
+  "pageDescriptionCelestialExplorer": "آپ کے اوپر کا آسمان، اللہ کی یاد دلاتا ہوا۔",
+  "pageDescriptionCelestialExplorerKids": "آسمان کو دیکھیں، جانیں کہ کیا ہو رہا ہے، اور اس کے ذریعے اللہ کو یاد کریں۔",
+  "pageDescriptionKhusuFocus": "نماز سے پہلے دل کو سکون دیں۔",
+  "pageDescriptionKhusuFocusKids": "آہستہ ہو جائیں، اور نماز کے لیے تیار ہو جائیں۔",
   "learnGlossaryTitle": "لغت",
   "learnGlossarySubtitle": "مختصر، ابتدائی دوستانہ وضاحتوں کے ذریعے عام اسلامی اصطلاحات سیکھیں جو آپ کسی بھی وقت کھول سکتے ہیں۔",
   "learnGlossaryCardTitle": "لغت",
@@ -9991,7 +9984,7 @@
       "xp": {}
     }
   },
-  "crosswordTodayXpLabel": "{xp} XP آج",
+  "crosswordTodayXpLabel": "آج {xp} نور",
   "@crosswordTodayDropsLabel": {
     "placeholders": {
       "drops": {}
@@ -10143,10 +10136,12 @@
   "crosswordCellCurrentWordHint": "موجودہ اشارے کا حصہ",
   "@crosswordDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
-  "crosswordDailyStreakLabel": "{count} دن کا سلسلہ",
+  "crosswordDailyStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "crosswordDailyCompleteBadge": "روزانہ کی پہیلی مکمل",
   "@crosswordDailyBonusAchievedLabel": {
     "placeholders": {
@@ -10266,10 +10261,12 @@
       "theme": {}
     }
   },
-  "wordSearchDailyStreakLabel": "{count} دن کا سلسلہ",
+  "wordSearchDailyStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@wordSearchDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "wordSearchDailyCompleteBadge": "روزانہ مکمل",
@@ -10289,7 +10286,7 @@
       "count": {}
     }
   },
-  "wordSearchXpLabel": "{count} XP",
+  "wordSearchXpLabel": "{count} نور",
   "@wordSearchXpLabel": {
     "placeholders": {
       "count": {}
@@ -10505,7 +10502,7 @@
       "count": {}
     }
   },
-  "matchingXpLabel": "{count} XP کمایا",
+  "matchingXpLabel": "{count} نور جمع ہوا",
   "@matchingXpLabel": {
     "placeholders": {
       "count": {}
@@ -10517,10 +10514,12 @@
       "count": {}
     }
   },
-  "matchingDailyStreakLabel": "{count} دن کا سلسلہ",
+  "matchingDailyStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@matchingDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "matchingDailyCompleteBadge": "روزانہ مکمل",
@@ -10679,10 +10678,12 @@
   },
   "ayahCompletionDailyHistoryTitle": "روزانہ کی حالیہ آیات",
   "ayahCompletionDailyHistorySubtitle": "آپ کی حالیہ تکمیل قرآن کی مشق پر ایک خاموش نظر۔",
-  "ayahCompletionDailyStreakLabel": "روزانہ کا سلسلہ {count}",
+  "ayahCompletionDailyStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@ayahCompletionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "ayahCompletionDailyCompleteBadge": "روزانہ مکمل",
@@ -10698,7 +10699,7 @@
       "count": {}
     }
   },
-  "ayahCompletionXpLabel": "{count} XP",
+  "ayahCompletionXpLabel": "{count} نور",
   "@ayahCompletionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10885,7 +10886,7 @@
       "count": {}
     }
   },
-  "hadithReflectionXpLabel": "{count} XP",
+  "hadithReflectionXpLabel": "{count} نور",
   "@hadithReflectionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10897,10 +10898,12 @@
       "count": {}
     }
   },
-  "hadithReflectionDailyStreakLabel": "{count} دن کا سلسلہ",
+  "hadithReflectionDailyStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@hadithReflectionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "hadithReflectionContinueSectionTitle": "غور و فکر جاری رکھیں",
@@ -10965,7 +10968,7 @@
   "hadithReflectionCompletionSubtitle": "آپ نے یہ غور و فکر مکمل کی اور اس کی تعلیم کا جائزہ لیا۔",
   "hadithReflectionCompletionBestSubtitle": "آپ نے جواب کا انتخاب کیا جو حدیث کی تعلیم کے ساتھ بالکل ہم آہنگ ہو۔",
   "hadithReflectionTakeawayTitle": "ٹیک اوے",
-  "hadithReflectionBestChoiceReward": "بہترین انتخاب کا بونس +{count} XP",
+  "hadithReflectionBestChoiceReward": "بہترین انتخاب · +{count} نور",
   "@hadithReflectionBestChoiceReward": {
     "placeholders": {
       "count": {}
@@ -11033,10 +11036,12 @@
       "total": {}
     }
   },
-  "dailyKnowledgeHubStreakLabel": "{count} دن کا بنڈل سلسلہ",
+  "dailyKnowledgeHubStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@dailyKnowledgeHubStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "dailyKnowledgeHubCompletedBadge": "بنڈل مکمل",
@@ -11103,10 +11108,12 @@
       "count": {}
     }
   },
-  "spiritualGrowthReflectionStreakLabel": "{count} دن کی غور و فکر کا سلسلہ",
+  "spiritualGrowthReflectionStreakLabel": "{count, plural, =1{1 دن مسلسل غور و فکر} other{{count} دن مسلسل غور و فکر}}",
   "@spiritualGrowthReflectionStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "spiritualGrowthDailyActionsTitle": "بامعنی اعمال",
@@ -11297,10 +11304,12 @@
       "total": {}
     }
   },
-  "learnGamesIslandDailyStreakLabel": "{count} دن کا سلسلہ",
+  "learnGamesIslandDailyStreakLabel": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@learnGamesIslandDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "learnGamesIslandDailyHistoryLabel": "{count} حالیہ دنوں کا پتہ لگایا گیا۔",
@@ -11807,12 +11816,12 @@
   "bedtimeParentContinueSeerahAction": "سیرت کھولیں۔",
   "bedtimeParentContinueDuaAction": "دعا کھولیں۔",
   "bedtimeParentContinueArabicAction": "Open Arabic",
-  "bedtimeParentCurrentStreakLabel": "موجودہ سلسلہ",
+  "bedtimeParentCurrentStreakLabel": "مسلسل دن",
   "bedtimeParentOverallStoriesLabel": "کہانیاں مکمل ہوئیں",
   "bedtimeParentOverallSeerahLabel": "سیرت کے مراحل",
   "bedtimeParentOverallDuasLabel": "دعائیں سیکھی ہیں۔",
   "bedtimeParentOverallArabicLabel": "عربی حروف",
-  "bedtimeParentOverallXpLabel": "بچوں کے سیکھنے میں XP",
+  "bedtimeParentOverallXpLabel": "بچوں کی ساری تعلیم کا نور",
   "bedtimeParentOverallDropsLabel": "بچوں کے سیکھنے میں سمندر کے قطرے",
   "bedtimeParentLearningAreasSectionTitle": "سیکھنے کے علاقے",
   "bedtimeParentLearningAreasEmpty": "بچوں کے سفر کا ہر حصہ شروع ہوتے ہی سیکھنے کے علاقے بھر جائیں گے۔",
@@ -11880,7 +11889,7 @@
       }
     }
   },
-  "bedtimeParentLearningAreaDuasSecondary": "{count} دن کی روشنی کا سلسلہ",
+  "bedtimeParentLearningAreaDuasSecondary": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@bedtimeParentLearningAreaDuasSecondary": {
     "placeholders": {
       "count": {
@@ -11905,7 +11914,7 @@
     }
   },
   "bedtimeParentHabitSectionTitle": "سونے کے وقت کی تال",
-  "bedtimeParentHabitCurrentStreak": "موجودہ سلسلہ: {days}",
+  "bedtimeParentHabitCurrentStreak": "مسلسل دن: {days}",
   "@bedtimeParentHabitCurrentStreak": {
     "placeholders": {
       "days": {
@@ -11913,7 +11922,7 @@
       }
     }
   },
-  "bedtimeParentHabitLongestStreak": "طویل ترین سلسلہ: {days}",
+  "bedtimeParentHabitLongestStreak": "سب سے زیادہ مسلسل دن: {days}",
   "@bedtimeParentHabitLongestStreak": {
     "placeholders": {
       "days": {
@@ -12256,7 +12265,7 @@
   "bedtimeRoutineStepReflectionSubtitle": "قریب رکھنے کے لیے ایک قسم کا سبق یا شکر گزاری کا خیال منتخب کریں۔",
   "bedtimeRoutineStepSleepReadyTitle": "نیند کے لیے تیار ختم",
   "bedtimeRoutineStepSleepReadySubtitle": "آہستہ سے ختم کریں اور آرام سے آرام کریں۔",
-  "progressionPageTitle": "پیشرفت اور بیجز",
+  "progressionPageTitle": "پیش رفت اور اسٹیکرز",
   "progressionPageSubtitle": "طویل مدتی سیکھنے کی ترقی کا ایک پرسکون نقطہ نظر۔",
   "progressionPageLearnerSectionTitle": "چائلڈ پروفائل",
   "progressionPageHeroTitle": "{name} کی پیشرفت",
@@ -12265,7 +12274,7 @@
       "name": {}
     }
   },
-  "progressionPageHeroSubtitle": "سطحیں، بیجز، اور سنگ میل مستقل سیکھنے کے ذریعے بڑھتے ہیں۔",
+  "progressionPageHeroSubtitle": "ہر سبق ان میں اضافہ کرتا ہے۔",
   "progressionPageOpenAction": "کھلی پیشرفت",
   "progressionPageOverviewTitle": "جائزہ",
   "progressionPageGardenTitle": "باغ",
@@ -12274,8 +12283,8 @@
   "progressionPageGardenAction": "کھلا باغ",
   "progressionPageMilestonesTitle": "سنگ میل",
   "progressionPageMilestonesEmpty": "سیکھنے کے بڑھنے کے ساتھ ہی سنگ میل ظاہر ہوں گے۔",
-  "progressionPageBadgesTitle": "بیجز",
-  "progressionPageBadgesEmpty": "بیجز پہلی بامعنی تکمیل کے بعد ظاہر ہوں گے۔",
+  "progressionPageBadgesTitle": "اسٹیکرز",
+  "progressionPageBadgesEmpty": "ابھی کوئی اسٹیکر نہیں۔ یہ مکمل اسباق کے ساتھ ملتے ہیں۔",
   "progressionPageLevelValue": "سطح {level} • {title}",
   "@progressionPageLevelValue": {
     "placeholders": {
@@ -12283,7 +12292,7 @@
       "title": {}
     }
   },
-  "progressionPageXpValue": "{xp} XP",
+  "progressionPageXpValue": "{xp} نور",
   "@progressionPageXpValue": {
     "placeholders": {
       "xp": {}
@@ -12301,8 +12310,8 @@
   "progressionOverviewDuasLabel": "دعائیں سیکھی ہیں۔",
   "progressionOverviewRoutinesLabel": "سونے کے وقت کے معمولات",
   "progressionOverviewDropsLabel": "اوقیانوس کے قطرے",
-  "progressionOverviewBadgesLabel": "بیجز حاصل کیے گئے۔",
-  "progressionParentRemainingValue": "{xp} اگلی سطح تک XP",
+  "progressionOverviewBadgesLabel": "ملے ہوئے اسٹیکرز",
+  "progressionParentRemainingValue": "اگلے لیول تک {xp} نور",
   "@progressionParentRemainingValue": {
     "placeholders": {
       "xp": {}
@@ -12340,7 +12349,7 @@
   "progressionMilestoneSeerahJourneyDescription": "ایک مکمل ہدایت یافتہ سیرت کا راستہ مکمل ہوا۔",
   "progressionMilestoneBedtimeWeekTitle": "سونے کے وقت کے 7 معمولات",
   "progressionMilestoneBedtimeWeekDescription": "سونے کے وقت کی ایک خوبصورت تال بن رہی ہے۔",
-  "progressionMilestoneLearningMonthTitle": "30 روزہ سیکھنے کا سلسلہ",
+  "progressionMilestoneLearningMonthTitle": "30 دن مسلسل سیکھنا",
   "progressionMilestoneLearningMonthDescription": "مستقل مزاجی سفر کا حصہ بن رہی ہے۔",
   "kidsArabicRepeatAfterMeTitle": "Listen and repeat",
   "kidsArabicRepeatAfterMeLetterSubtitle": "Hear the letter, pause, and say it gently after the audio.",
@@ -12351,8 +12360,8 @@
   "kidsArabicLatestAchievementTitle": "Latest achievement",
   "kidsArabicMilestonesSectionTitle": "Milestones",
   "kidsArabicMilestonesSectionSubtitle": "Calm milestone moments celebrate new parts of the journey without turning practice into pressure.",
-  "kidsArabicBadgesSectionTitle": "Badges",
-  "kidsArabicBadgesSectionSubtitle": "Badge stickers stay tied to real Arabic progress and unlock only once.",
+  "kidsArabicBadgesSectionTitle": "اسٹیکرز",
+  "kidsArabicBadgesSectionSubtitle": "ہر اسٹیکر ایک بار ملتا ہے، عربی سچ مچ سیکھنے پر۔",
   "kidsArabicAchievementCelebrateTitle": "A new celebration",
   "kidsArabicMilestoneThreeLettersTitle": "Three letters complete",
   "kidsArabicMilestoneThreeLettersSubtitle": "Three traced letters now belong to the journey.",
@@ -12362,10 +12371,12 @@
   "kidsArabicMilestoneFirstReviewSubtitle": "A calm review round helped one familiar letter feel stronger.",
   "kidsArabicMilestoneBeginnerSetTitle": "Beginner words set complete",
   "kidsArabicMilestoneBeginnerSetSubtitle": "The first short word set is complete and ready for gentle review.",
-  "kidsArabicBadgesUnlockedValue": "{count} badges unlocked",
+  "kidsArabicBadgesUnlockedValue": "{count, plural, =1{1 اسٹیکر ملا} other{{count} اسٹیکرز ملے}}",
   "@kidsArabicBadgesUnlockedValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "kidsArabicMilestonesUnlockedValue": "{count} milestones reached",
@@ -12512,7 +12523,7 @@
   "wuduQuizAdabExplanation": "اچھے ادب میں جگہ کو صاف ستھرا چھوڑنا اور پانی کو ضائع کیے بغیر احتیاط سے استعمال کرنا شامل ہے۔",
   "wuduQuizQuestionProgress": "سوال {current} از {total}",
   "wuduQuizScoreSummary": "آپ نے {score} میں سے {total} درست جواب دیے۔",
-  "wuduQuizRewardFeedback": "پہلی تکمیل کو شمار کیا گیا: +{xp} XP اور +{drops} اوشین ڈراپ۔",
+  "wuduQuizRewardFeedback": "پہلی بار مکمل: +{xp} نور اور +{drops} سمندری قطرہ۔",
   "wuduQuizStepOrderOptionCorrect": "{first} → {second} → {third}",
   "wuduQuizStepOrderOption": "{first} → {second} → {third}",
   "wuduQuizWhatComesNextQuestion": "{stepTitle} کے بعد کیا آتا ہے؟",
@@ -12592,7 +12603,7 @@
   "quranDailyReflectionOpenAyahAction": "آیت کھولو",
   "quranDailyReflectionCompletedAction": "مکمل",
   "quranDailyReflectionCompleteAction": "مکمل نشان زد کریں۔",
-  "quranDailyReflectionFirstTimeHint": "اپنی لکیر بنانے کے لیے چند غور و فکر مکمل کریں۔",
+  "quranDailyReflectionFirstTimeHint": "چند دن مسلسل غور کریں تو یہاں گنے جائیں گے۔",
   "quranReflectionsTitle": "قرآنی غور و فکر",
   "quranReflectionsSubtitle": "اپنے محفوظ شدہ قرآنی غور و فکر کو بعد میں دوبارہ دیکھیں۔",
   "quranReflectionsEmptyTitle": "ابھی تک کوئی قرآنی غور و فکر محفوظ نہیں",
@@ -12817,13 +12828,15 @@
   "kidsArabicPracticeTodayBody": "Open the next recommended practice step and keep momentum steady.",
   "kidsArabicPracticeTodayDoneBody": "Today’s recommended practice is complete.",
   "kidsArabicPracticeTodayDoneBadge": "Done today",
-  "quranDailyReflectionStreakValue": "{days} دن کا سلسلہ",
+  "quranDailyReflectionStreakValue": "{days, plural, =1{1 دن مسلسل} other{{days} دن مسلسل}}",
   "@quranDailyReflectionStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
-  "quranDailyReflectionBestStreakValue": "بہترین سلسلہ: {streak}",
+  "quranDailyReflectionBestStreakValue": "سب سے زیادہ مسلسل: {streak}",
   "@quranDailyReflectionBestStreakValue": {
     "placeholders": {
       "streak": {}
@@ -12919,7 +12932,7 @@
       "total": {}
     }
   },
-  "growthPathCurrentStreakValue": "موجودہ سلسلہ: {value}",
+  "growthPathCurrentStreakValue": "مسلسل دن: {value}",
   "@growthPathCurrentStreakValue": {
     "placeholders": {
       "value": {}
@@ -13231,14 +13244,14 @@
       "total": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpDrops": "+{xp} XP • +{drops} اوشین ڈراپ",
+  "wuduTrainerRewardFeedbackXpDrops": "+{xp} نور · +{drops} سمندری قطرہ",
   "@wuduTrainerRewardFeedbackXpDrops": {
     "placeholders": {
       "xp": {},
       "drops": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpOnly": "+{xp} XP",
+  "wuduTrainerRewardFeedbackXpOnly": "+{xp} نور",
   "@wuduTrainerRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13258,7 +13271,7 @@
       "total": {}
     }
   },
-  "wuduQuizRewardFeedbackXpOnly": "پہلی تکمیل شمار کی گئی: +{xp} XP۔",
+  "wuduQuizRewardFeedbackXpOnly": "پہلی بار مکمل: +{xp} نور۔",
   "@wuduQuizRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13780,10 +13793,12 @@
       "count": {}
     }
   },
-  "arabicLearningProgressKidsStreakValue": "{count} day streak",
+  "arabicLearningProgressKidsStreakValue": "{count, plural, =1{1 دن مسلسل} other{{count} دن مسلسل}}",
   "@arabicLearningProgressKidsStreakValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningProgressKidsHighlight": "Latest milestone: {title}",
@@ -14254,8 +14269,8 @@
   "celestialMoveSlowlyForHeading": "سمت کے لیے آہستہ چلیں",
   "celestialExplorerUnavailable": "اس وقت ایکسپلورر آسمانی منظر تیار نہیں کر سکا۔ مقام کی ترتیبات چیک کریں اور دوبارہ کوشش کریں۔",
   "creationChallengesPageTitle": "تخلیق کے چیلنجز",
-  "creationChallengesDailyStreakLabel": "روزانہ تسلسل",
-  "creationChallengesNewStreakBeginsToday": "آج ایک نیا تسلسل شروع ہوتا ہے۔",
+  "creationChallengesDailyStreakLabel": "مسلسل دن",
+  "creationChallengesNewStreakBeginsToday": "آج ایک نئی شروعات۔",
   "creationChallengesStreakDays": "{count} دن",
   "@creationChallengesStreakDays": {
     "placeholders": {
@@ -14352,77 +14367,77 @@
     }
   },
   "onboardingSettingsHintBody": "آپ اسے کسی بھی وقت سیٹنگز میں بدل سکتے ہیں۔",
-  "onboardingBeginJourneyAction": "اپنا سفر شروع کریں",
+  "onboardingBeginJourneyAction": "بسم اللہ سے شروع کریں",
   "onboardingContinueAction": "جاری رکھیں",
   "onboardingBismillahTransliteration": "بسم اللہ الرحمن الرحیم",
   "onboardingBismillahMeaningBody": "اللہ کے نام سے، جو نہایت مہربان، بے حد رحم والا ہے۔",
-  "onboardingOpeningBlessingBody": "اللہ کرے یہ سفر آپ کے لیے خیر، ثابت قدمی اور اللہ سے قرب کا ذریعہ بنے۔",
+  "onboardingOpeningBlessingBody": "اللہ اس راستے کو آپ کے لیے خیر کا راستہ بنائے۔",
   "onboardingLanguageTitle": "اپنی زبان منتخب کریں",
-  "onboardingLanguageSubtitle": "وہ زبان منتخب کریں جو آپ ایپ میں استعمال کرنا چاہتے ہیں۔",
+  "onboardingLanguageSubtitle": "آپ کے انتخاب کرتے ہی ایپ بدل جاتی ہے۔",
   "onboardingAgeRangeTitle": "آپ کس عمر کے درجے میں ہیں؟",
-  "onboardingAgeRangeSubtitle": "اس سے ہمیں مثالیں اور سفارشات آپ کی زندگی کے مرحلے کے مطابق رکھنے میں مدد ملتی ہے۔",
+  "onboardingAgeRangeSubtitle": "اسباق اور مثالیں اسی عمر کے مطابق ہوں گی۔",
   "onboardingAgeRangeUnder18": "0–6",
   "onboardingAgeRange18To24": "7–13",
   "onboardingAgeRange25To34": "14–20",
   "onboardingAgeRange35To44": "21+",
   "onboardingExperienceTitle": "اسلام کے ساتھ آپ کے سفر کو کون سی وضاحت سب سے بہتر بیان کرتی ہے؟",
-  "onboardingExperienceSubtitle": "ہم اس کی مدد سے آپ کے تجربے کے مطابق آغاز کی فضا، رفتار اور سیکھنے کی گہرائی بہتر بناتے ہیں۔ آپ کا انتخاب محفوظ ہوگا اور پوری ایپ میں رہنمائی کو اسی کے مطابق ڈھالا جائے گا۔",
+  "onboardingExperienceSubtitle": "یہ امتحان نہیں۔ اس سے طے ہوتا ہے کہ اسباق کہاں سے شروع ہوں۔ آپ اسے بعد میں بدل سکتے ہیں۔",
   "onboardingExperienceExploring": "اسلام کو جان رہا/رہی ہوں",
-  "onboardingExperienceNewToIslam": "اسلام میں نئے ہیں",
+  "onboardingExperienceNewToIslam": "اسلام میں نیا/نئی ہوں",
   "onboardingExperienceBornStillLearning": "پیدائشی مسلمان ہوں، ابھی سیکھ رہا/رہی ہوں",
   "onboardingExperiencePracticingRegularly": "باقاعدگی سے عمل کرتا/کرتی ہوں",
   "onboardingExperienceAdvanced": "تجربہ کار / اعلی درجے پر",
-  "onboardingSalahConsistencyTitle": "اس وقت آپ کی نماز میں کتنی پابندی ہے؟",
-  "onboardingSalahConsistencySubtitle": "وہ اختیار منتخب کریں جو آپ کی موجودہ حالت کو سب سے بہتر ظاہر کرتا ہو۔",
-  "onboardingSalahConsistencyAll": "میں تمام نمازیں پابندی سے پڑھتا/پڑھتی ہوں",
+  "onboardingSalahConsistencyTitle": "ان دنوں آپ کی نماز کیسی ہے؟",
+  "onboardingSalahConsistencySubtitle": "کوئی جواب غلط نہیں۔",
+  "onboardingSalahConsistencyAll": "میں پانچوں نمازیں پڑھتا/پڑھتی ہوں",
   "onboardingSalahConsistencyMost": "میں زیادہ تر نمازیں پڑھتا/پڑھتی ہوں",
   "onboardingSalahConsistencySometimes": "میں کبھی کبھی نماز پڑھتا/پڑھتی ہوں",
   "onboardingSalahConsistencyRarely": "میں بہت کم نماز پڑھتا/پڑھتی ہوں",
-  "onboardingSalahConsistencyJustStarted": "میں ابھی آغاز کر رہا/رہی ہوں",
-  "onboardingPrayerMethodTitle": "نماز کے اوقات کا حسابی طریقہ",
-  "onboardingPrayerMethodSubtitle": "اپنے مقام کے لیے نماز کے اوقات کے حساب کا طریقہ منتخب کریں۔",
+  "onboardingSalahConsistencyJustStarted": "میں ابھی شروع کر رہا/رہی ہوں",
+  "onboardingPrayerMethodTitle": "حساب کا طریقہ",
+  "onboardingPrayerMethodSubtitle": "اگر معلوم ہو تو وہ طریقہ چنیں جو آپ کی مسجد اپناتی ہے۔",
   "onboardingPrayerMethodMuslimWorldLeague": "رابطہ عالم اسلامی",
   "onboardingPrayerMethodIsna": "اسلامک سوسائٹی آف نارتھ امریکہ (ISNA)",
   "onboardingPrayerMethodUmmAlQura": "ام القریٰ یونیورسٹی",
   "onboardingPrayerMethodEgyptian": "مصری جنرل اتھارٹی آف سروے",
   "onboardingPrayerMethodKarachi": "یونیورسٹی آف اسلامک سائنسز، کراچی",
-  "onboardingMadhabTitle": "آپ کس مذہب کی پیروی کرتے ہیں؟",
-  "onboardingMadhabSubtitle": "اس سے عصر کی نماز کے وقت کے حساب پر اثر پڑتا ہے۔ اگر آپ کو یقین نہ ہو تو پہلے سے طے شدہ اختیار برقرار رکھ سکتے ہیں۔",
+  "onboardingMadhabTitle": "آپ کس فقہی مسلک کی پیروی کرتے ہیں؟",
+  "onboardingMadhabSubtitle": "اس سے عصر کا وقت طے ہوتا ہے۔ یقین نہ ہو تو پہلے سے طے شدہ رکھیں۔",
   "onboardingMadhabHanafi": "حنفی",
   "onboardingMadhabShafii": "شافعی",
   "onboardingMadhabMaliki": "مالکی",
   "onboardingMadhabHanbali": "حنبلی",
   "onboardingArabicReadModeTitle": "قرآن پڑھنے کے لیے آپ کی کیا ترجیح ہے؟",
-  "onboardingArabicReadModeSubtitle": "قرآن پڑھتے وقت وہ انداز منتخب کریں جو آپ کے لیے سب سے زیادہ آرام دہ محسوس ہو۔",
-  "onboardingArabicReadModeNoArabicYet": "میں ابھی عربی نہیں جانتا",
+  "onboardingArabicReadModeSubtitle": "وہ چنیں جو پڑھنے میں مدد دے۔ آپ اسے بعد میں بدل سکتے ہیں۔",
+  "onboardingArabicReadModeNoArabicYet": "میں ابھی عربی نہیں پڑھ سکتا/سکتی",
   "onboardingArabicReadModeArabicOnly": "صرف عربی",
-  "onboardingArabicReadModeArabicTransliteration": "عربی + تلفظی نقل",
+  "onboardingArabicReadModeArabicTransliteration": "عربی + تلفظ",
   "onboardingArabicReadModeArabicTranslation": "عربی + ترجمہ",
-  "onboardingArabicReadModeArabicTransliterationTranslation": "عربی + تلفظی نقل + ترجمہ",
-  "onboardingHarakatTitle": "حرکات / تلفظی نشان",
+  "onboardingArabicReadModeArabicTransliterationTranslation": "عربی + تلفظ + ترجمہ",
+  "onboardingHarakatTitle": "حرکات (اعراب)",
   "onboardingHarakatFull": "مکمل حرکات",
   "onboardingHarakatNone": "کوئی نہیں",
   "onboardingTextSizeTitle": "متن کا سائز",
   "onboardingRemindersTitle": "آپ کس طرح یاد دہانی لینا چاہیں گے؟",
-  "onboardingRemindersSubtitle": "نماز اور روزمرہ معمولات کے لیے ہلکی یاد دہانی کا انداز منتخب کریں۔ بعد میں آپ سب کچھ مزید بہتر کر سکتے ہیں۔",
+  "onboardingRemindersSubtitle": "سادہ شروع کریں۔ ہر نماز کو بعد میں الگ سے طے کر سکتے ہیں۔",
   "onboardingReminderNotificationOnly": "صرف نوٹیفکیشن",
   "onboardingReminderAdhanNotification": "اذان نوٹیفکیشن",
-  "onboardingDailyQuranReminderTitle": "روزانہ قرآن پڑھنے کی یاد دہانی",
+  "onboardingDailyQuranReminderTitle": "روزانہ قرآن کی یاددہانی",
   "onboardingDailyLessonReminderTitle": "روزانہ سبق کی یاد دہانی",
   "onboardingOptionMedium": "درمیانہ",
-  "onboardingIdentityTitle": "ہم آپ کو کیسے مخاطب کریں؟",
-  "onboardingIdentitySubtitle": "اپنی پسند کی سلام چنیں اور اگر چاہیں تو اپنا نام شامل کریں تاکہ خوش آمدید کہنا زیادہ ذاتی لگے۔",
+  "onboardingIdentityTitle": "آپ کو کیسے سلام کیا جائے؟",
+  "onboardingIdentitySubtitle": "چاہیں تو اپنا نام شامل کریں۔",
   "onboardingGreetingTitle": "سلام",
   "onboardingNameTitle": "نام",
   "onboardingOptionalHint": "اختیاری",
-  "onboardingNameHelperBody": "آپ کا نام اختیاری ہے اور اسے صرف ایپ میں آپ کے تجربے کو ذاتی بنانے کے لیے استعمال کیا جاتا ہے۔",
+  "onboardingNameHelperBody": "اختیاری۔ یہ صرف آپ کو سلام کرنے کے لیے ہے۔",
   "onboardingDefaultNameFallback": "دوست",
   "onboardingFocusSalahConsistency": "نماز میں استقامت",
   "onboardingFocusSalahReminders": "نماز کی یاد دہانیاں",
   "onboardingFinalWelcomeTitle": "Path of Nur میں خوش آمدید",
   "onboardingWelcomeGreeting": "السلام علیکم، {name}۔",
-  "onboardingFinalWelcomeBody": "آپ کا سفر نیت سے شروع ہوتا ہے اور چھوٹے مگر مستقل قدموں سے بڑھتا ہے۔ Path of Nur آپ کے سیکھنے، ذکر، غور و فکر، اور روزمرہ ترقی میں آپ کا ساتھی ہے۔",
-  "onboardingFocusListTitle": "آپ کے منتخب کردہ توجہ کے شعبے:",
+  "onboardingFinalWelcomeBody": "ہر نیک عمل نیت سے شروع ہوتا ہے۔ اللہ کو سب سے زیادہ محبوب وہ عمل ہیں جو پابندی سے کیے جائیں، چاہے تھوڑے ہوں۔",
+  "onboardingFocusListTitle": "آپ کی توجہ:",
   "onboardingKnowledgeDuaMeaning": "اے میرے رب، میرے علم میں اضافہ فرما۔",
   "onboardingLanguageEnglish": "انگریزی",
   "onboardingLanguageArabic": "عربی (العربية)",
@@ -15233,25 +15248,25 @@
   "settingsThemeChoiceNoGlassDark": "نو گلاس ڈارک",
   "settingsThemeChoiceNoorMidnightManuscript": "نور مڈنائٹ مخطوطہ",
   "settingsThemeChoiceNoorKids": "نور کڈز",
-  "settingsThemeModeNoorGlassDescription": "ٹھوس کارڈز پر نور کے گرم رنگ، ہلکی گہرائی کے ساتھ اور شیشے جیسی شفافیت کے بغیر۔",
-  "settingsThemeModeNoorGlassDarkDescription": "زیادہ گہرا Noor surface system جس میں solid containers، گرم accents اور رات کے لیے موزوں پُرسکون contrast ہے۔",
-  "settingsThemeModeNoGlassDescription": "شفافیت کے بغیر گرم اور ٹھوس پس منظر، روزمرہ کے لیے ایک صاف اور متوازن منظر۔",
-  "settingsThemeModeNoGlassDarkDescription": "گلاس اثرات کے بغیر کم روشنی میں استعمال کے لیے ایک dark solid-surface mode۔",
+  "settingsThemeModeNoorGlassDescription": "ہلکی گہرائی والے گرم، ٹھوس کارڈ، بغیر شفاف شیشے کے۔",
+  "settingsThemeModeNoorGlassDarkDescription": "گہرے رنگوں میں Noor Glass، رات کو آنکھوں کے لیے آرام دہ۔",
+  "settingsThemeModeNoGlassDescription": "شفافیت کے بغیر گرم، ٹھوس سطحیں۔",
+  "settingsThemeModeNoGlassDarkDescription": "کم روشنی کے لیے گہری، ٹھوس سطحیں۔",
   "settingsThemeModeMidnightManuscriptDescription": "گہرے سیاہی رنگ، گرم سنہری جھلکیاں، اور ایک پُرسکون مخطوطاتی ماحول۔",
-  "settingsThemeModeNoorMidnightManuscriptDescription": "Noor کی گرمی، سیاہی جیسی گہرائی اور نرم سنہری accents کے ساتھ روشن manuscript-style night mode۔",
-  "settingsThemeModeNoorKidsDescription": "خاندانی دوستانہ گرمی اور نرم خوشگوار accents کے ساتھ Noor کی زیادہ نرم palette۔",
-  "settingsThemeModePickerHelper": "وہ فضا منتخب کریں جو آپ کے سفر کے لیے سب سے زیادہ اپنائیت محسوس ہو۔",
-  "settingsThemeModeDefaultBestFor": "روزمرہ کے سکون اور متوازن استعمال کے لیے بہترین۔",
-  "settingsThemeModeCalmBeautifulBestFor": "اگر آپ Path of Nūr کی پہلے والی نرم فضا پسند کرتے ہیں تو یہ بہترین ہے۔",
-  "settingsThemeModeEasyReadBestFor": "لمبی پڑھائی اور زیادہ واضح کنٹراسٹ کے لیے بہترین۔",
-  "settingsThemeModeNoorGlassBestFor": "Best for airy glass depth and luminous everyday reading.",
-  "settingsThemeModeNoorGlassDarkBestFor": "شام کے استعمال کے لیے بہترین، جب آپ وہی نور سطحیں مگر زیادہ گہری فضا میں چاہتے ہوں۔",
-  "settingsThemeModeNoGlassBestFor": "کم بصری شفافیت کے ساتھ ایک مستحکم اور غیر شفاف انداز کے لیے بہترین۔",
-  "settingsThemeModeNoGlassDarkBestFor": "شیشے کے اثرات کے بغیر گہری مضبوط سطحوں کے لیے بہترین۔",
-  "settingsThemeModeDarkBestFor": "کم روشنی میں پڑھنے اور پُرسکون شاموں کے لیے بہترین۔",
-  "settingsThemeModeMidnightManuscriptBestFor": "شام کے غور و فکر اور قرآن کے مطالعے کے لیے بہترین۔",
-  "settingsThemeModeNoorMidnightManuscriptBestFor": "مخطوطاتی گرمی اور نور کی چمک کے ساتھ بھرپور رات کی قراءت کے لیے بہترین۔",
-  "settingsThemeModeNoorKidsBestFor": "ایسے خاندانوں کے لیے بہترین جو نور کی زیادہ ہلکی، گرم اور خوشگوار فضا چاہتے ہیں۔",
+  "settingsThemeModeNoorMidnightManuscriptDescription": "روشنائی کے گہرے رنگ اور ہلکا سنہرا، رات کو پڑھنے کے لیے۔",
+  "settingsThemeModeNoorKidsDescription": "خاندانوں کے لیے زیادہ روشن، گرم Noor رنگ۔",
+  "settingsThemeModePickerHelper": "وہ انداز چنیں جو آپ ہر روز کھولنا چاہیں۔",
+  "settingsThemeModeDefaultBestFor": "بہترین: سادہ، روایتی انداز",
+  "settingsThemeModeCalmBeautifulBestFor": "بہترین: ایپ کا پہلا انداز",
+  "settingsThemeModeEasyReadBestFor": "بہترین: لمبے مطالعے کے لیے",
+  "settingsThemeModeNoorGlassBestFor": "بہترین: ہر روز کے لیے",
+  "settingsThemeModeNoorGlassDarkBestFor": "بہترین: شام کے لیے",
+  "settingsThemeModeNoGlassBestFor": "بہترین: شفافیت کے بغیر ٹھوس انداز",
+  "settingsThemeModeNoGlassDarkBestFor": "بہترین: گہرا، ٹھوس انداز",
+  "settingsThemeModeDarkBestFor": "بہترین: کم روشنی میں پڑھنے کے لیے",
+  "settingsThemeModeMidnightManuscriptBestFor": "بہترین: شام کے غور و فکر اور قرآن کے مطالعے کے لیے",
+  "settingsThemeModeNoorMidnightManuscriptBestFor": "بہترین: رات کو پڑھنے کے لیے",
+  "settingsThemeModeNoorKidsBestFor": "بہترین: خاندانوں اور بچوں کے لیے",
   "editorialDashboardTitle": "Editorial Dashboard",
   "editorialDashboardSubtitle": "Internal content command center · version {version}",
   "@editorialDashboardSubtitle": {
@@ -15547,36 +15562,36 @@
   "loadingGreetingEveningTranslation": "اے اللہ، تیرے ہی سہارے ہم نے شام کی",
   "loadingWelcomeBack": "خوش آمدید",
   "loadingRestoringProgress": "آپ کی پیش رفت بحال کی جا رہی ہے",
-  "loadingStatusPreparing": "آپ کی جگہ تیار کی جا رہی ہے…",
+  "loadingStatusPreparing": "تیاری ہو رہی ہے…",
   "loadingStatusRestoring": "آپ کی پیش رفت بحال کی جا رہی ہے…",
-  "loadingStatusSyncing": "آپ کا سفر ہم آہنگ کیا جا رہا ہے…",
-  "loadingStatusFinalizing": "Finalizing…",
-  "onboardingOpeningTitle": "علم میں جڑی ہوئی ایک سفر",
+  "loadingStatusSyncing": "سنک ہو رہا ہے…",
+  "loadingStatusFinalizing": "بس تیار…",
+  "onboardingOpeningTitle": "علم میں جڑا ہوا ایک سفر",
   "onboardingOpeningHadithLead": "رسول اللہ ﷺ نے فرمایا:",
   "onboardingOpeningHadithQuote": "“علم حاصل کرنا ہر مسلمان پر فرض ہے۔”",
   "onboardingOpeningHadithSource": "سنن ابن ماجہ",
   "onboardingOpeningMissionBodyOne": "اسلام میں علم کوئی آسائش نہیں، بلکہ ذمہ داری ہے۔ اور جو چیز فرض ہو، وہ ہر ایک کی پہنچ میں ہونی چاہیے۔",
-  "onboardingOpeningMissionBodyTwo": "Path of Nur اسی یقین کے ساتھ بنایا گیا ہے تاکہ سیکھنا، ذکر، اور ترقی سب کے لیے مفت اور قابلِ رسائی رہیں۔",
-  "onboardingOpeningMissionBodyThree": "چاہے آپ ابتدا کر رہے ہوں، واپس لوٹ رہے ہوں، یا مستقل مزاجی قائم رکھنے کی کوشش کر رہے ہوں، ایپ ایک پُرسکون ساتھی محسوس ہونی چاہیے جو عبادت، غور و فکر، اور روزمرہ ترقی میں ساتھ دے۔",
-  "onboardingOpeningSupportLine": "یہ مختصر سی ترتیب آپ کے تجربے کو ذاتی بنائے گی۔",
+  "onboardingOpeningMissionBodyTwo": "اسی لیے Path of Nur مفت اور سب کے لیے کھلا ہے۔",
+  "onboardingOpeningMissionBodyThree": "چاہے آپ ابھی شروع کر رہے ہوں یا لوٹ کر آئے ہوں، یہاں آپ کا خیر مقدم ہے۔",
+  "onboardingOpeningSupportLine": "چند سوال، اور آپ تیار ہیں۔",
   "onboardingOpeningPlatformFooter": "iPhone، iPad، Apple Watch، Mac، Apple TV، Windows، اور Android پر دستیاب۔",
-  "onboardingFinalWelcomeClosingBody": "ایک وقت میں ایک مخلص قدم اٹھائیں۔ بامعنی پیش رفت چھوٹے مگر مستقل اعمال سے بنتی ہے۔",
-  "onboardingDisclaimerTitle": "A Gentle Note Before You Begin",
+  "onboardingFinalWelcomeClosingBody": "ایک ایک قدم بڑھائیں۔",
+  "onboardingDisclaimerTitle": "شروع کرنے سے پہلے",
   "onboardingDisclaimerIntroBody": "Path of Nur فتویٰ ایپ نہیں ہے۔\nیہ سیکھنے، غور و فکر، عبادت، اور نشوونما کا ایک رفیق ہے۔",
-  "onboardingDisclaimerSourcesBody": "ایپ قرآن اور حدیث سے رہنمائی لیتی ہے، جو اسلامی ہدایت کے بنیادی ذرائع ہیں، اور ساتھ ہی وسیع طور پر قبول شدہ بنیادی مواد سے بھی۔",
-  "onboardingDisclaimerNeutralBody": "مواد کو ایک وسیع اور غیر جانب دار انداز میں پیش کیا جاتا ہے، نہ کہ کسی مخصوص عالم یا امام کی ذاتی رہنمائی کے طور پر۔",
-  "onboardingDisclaimerNotRulingBody": "یہ کسی مستند عالم، امام، یا مفتی کی رہنمائی کا متبادل نہیں ہے، اور نہ ہی ذاتی شرعی احکام فراہم کرتی ہے۔",
-  "onboardingDisclaimerSeekScholarBody": "ذاتی، حساس، یا پیچیدہ معاملات میں صارفین کو کسی اہلِ علم سے رہنمائی لینی چاہیے۔",
-  "onboardingDisclaimerFeedbackBody": "رائے، تصحیحات، اور بہتری کی تجاویز ہمیشہ خوش آمدید ہیں اور Path of Nur کو وقت کے ساتھ بہتر بنانے میں مدد دیتی ہیں۔",
-  "onboardingDisclaimerFooter": "آپ کے سفر میں مدد کے لیے بنایا گیا ہے، علمائے کرام کا بدل نہیں۔",
+  "onboardingDisclaimerSourcesBody": "یہاں سب کچھ قرآن و حدیث اور وسیع طور پر مستند علم پر مبنی ہے۔",
+  "onboardingDisclaimerNeutralBody": "مواد وسیع طور پر مانے گئے مؤقف پر ہے، کسی ایک عالم یا امام کی رائے پر نہیں۔",
+  "onboardingDisclaimerNotRulingBody": "یہ ذاتی فتوے نہیں دیتا اور کسی مستند عالم یا امام کا متبادل نہیں۔",
+  "onboardingDisclaimerSeekScholarBody": "ذاتی یا حساس معاملات میں کسی مستند اہلِ علم سے رجوع کریں۔",
+  "onboardingDisclaimerFeedbackBody": "تصحیحات اور تجاویز کا ہمیشہ خیر مقدم ہے۔",
+  "onboardingDisclaimerFooter": "سیکھنے کا ساتھی، علماء کا متبادل نہیں۔",
   "onboardingThemeTitle": "اپنی تھیم منتخب کریں",
-  "onboardingThemeSubtitle": "وہ ماحول منتخب کریں جو آپ کے سفر میں سب سے زیادہ مانوس محسوس ہو۔ نیچے دی گئی جھلکیوں کو دیکھتے ہوئے تبدیلیاں فوراً لاگو ہوں گی۔",
+  "onboardingThemeSubtitle": "دیکھنے کے لیے کسی تھیم پر ٹیپ کریں۔ آپ اسے کبھی بھی بدل سکتے ہیں۔",
   "onboardingThemePreviewTitle": "براہِ راست پیش نظارہ",
-  "onboardingThemeSampleTitle": "آپ کے دن کے لیے ایک پُرسکون ساتھی",
+  "onboardingThemeSampleTitle": "السلام علیکم",
   "onboardingThemeSampleChipPrayer": "نماز",
   "onboardingThemeSampleChipReading": "مطالعہ",
   "onboardingThemeSampleChipReflection": "غور و فکر",
-  "onboardingThemeSampleCardTitle": "آج کی نرم توجہ",
+  "onboardingThemeSampleCardTitle": "آج کی توجہ",
   "mainPageSearchHint": "Search sections and tools",
   "learnHubLearningPathCardSubtitleNoPath": "Find your guided path",
   "learnPathLevelFoundationsTitle": "Foundations",
@@ -15586,17 +15601,17 @@
   "settingsPageTransitionsSubtitle": "منتخب کریں کہ صفحات ایپ میں کس طرح حرکت کریں۔",
   "settingsReduceMotionTransitionOverrideSubtitle": "Reduce Motion ایپ بھر میں اضافی منتقلی اثرات بند کر دیتا ہے۔",
   "settingsLearningLevelTitle": "سیکھنے کی سطح",
-  "settingsRunOnboardingTitle": "آن بورڈنگ دوبارہ چلائیں",
+  "settingsRunOnboardingTitle": "سیٹ اپ دوبارہ کریں",
   "settingsRunOnboardingSubtitle": "اپنے سیٹ اپ کے انتخاب کا جائزہ لیں اور انہیں تازہ کریں۔",
   "settingsPageTransitionStyleDefault": "ڈیفالٹ",
-  "settingsPageTransitionStyleGentleFade": "نرم دھندلاہٹ",
+  "settingsPageTransitionStyleGentleFade": "دھندلا کر",
   "settingsPageTransitionStyleIos": "iOS طرز",
   "settingsPageTransitionStyleNone": "کوئی نہیں",
   "onboardingRemindersDisableAllAction": "تمام نوٹیفکیشن بند کریں",
   "onboardingReminderNone": "کوئی نوٹیفکیشن نہیں",
-  "onboardingAccountOptionsTitle": "اختیاری سائن اِن اور بیک اپ",
-  "onboardingAccountOptionsBody": "Path of Nūr آپ کے سیکھنے کے ڈیٹا کو بطورِ ڈیفالٹ جمع نہیں کرتا۔ سائن اِن صرف بیک اپ، بحالی، اور جہاں دستیاب ہو وہاں مختلف ڈیوائسز کے درمیان مطابقت پذیری کے لیے ہے۔",
-  "onboardingAccountOptionsManualBackupBody": "آپ بعد میں Settings سے اپنے ڈیٹا کا دستی بیک اپ بھی لے سکتے ہیں۔",
+  "onboardingAccountOptionsTitle": "چاہیں تو سائن اِن کریں",
+  "onboardingAccountOptionsBody": "آپ کا سیکھنا اسی ڈیوائس پر رہتا ہے۔ سائن اِن صرف بیک اپ اور آپ کی ڈیوائسز کے درمیان سنک کے لیے ہے۔",
+  "onboardingAccountOptionsManualBackupBody": "آپ بعد میں ترتیبات سے اپنے ڈیٹا کا دستی بیک اپ بھی لے سکتے ہیں۔",
   "historyNoEventsForThisDate": "There are no events for this date.",
   "worshipQiblaUnavailableOnIpadTitle": "قبلہ تلاش کرنے والا iPad پر دستیاب نہیں",
   "worshipQiblaUnavailableOnIpadBody": "ہارڈویئر کی حدود کی وجہ سے قبلہ تلاش کرنے والا iPad پر درست کام نہیں کرتا۔",
@@ -15607,24 +15622,24 @@
   "learningJourneyLessonSectionProgressSubtitle": "Complete this section to save your progress.",
   "rewardQuietProgressSaved": "Progress saved.",
   "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} of {total} correct",
-  "rewardQuietCompletionSummaryXpDrops": "{xp} XP · {drops} drops saved",
-  "rewardQuietCompletionSummaryXpOnly": "{xp} XP saved",
+  "rewardQuietCompletionSummaryXpDrops": "{xp} نور · {drops} قطرے محفوظ",
+  "rewardQuietCompletionSummaryXpOnly": "{xp} نور محفوظ",
   "rewardQuietCompletionSummaryDropsOnly": "{drops} drops saved",
   "homeWidgetsNextPrayerTitle": "اگلی نماز",
-  "homeWidgetsPrayerOverviewTitle": "نماز کا خلاصہ",
+  "homeWidgetsPrayerOverviewTitle": "آج کی نمازیں",
   "homeWidgetsDhikrTitle": "روزانہ ذکر",
-  "homeWidgetsJourneyTitle": "سفر کی پیش رفت",
+  "homeWidgetsJourneyTitle": "آپ کا سفر",
   "homeWidgetsCurrentPrayerLabel": "موجودہ نماز",
   "homeWidgetsNextPrayerLabel": "اگلی نماز",
-  "homeWidgetsNoPrayerTimesTitle": "اوقاتِ نماز دستیاب نہیں",
-  "homeWidgetsNoPrayerTimesBody": "آج کے اوقاتِ نماز تازہ کرنے کے لیے Path of Nūr کھولیں۔",
+  "homeWidgetsNoPrayerTimesTitle": "ابھی نماز کے اوقات نہیں",
+  "homeWidgetsNoPrayerTimesBody": "آج کے اوقات تازہ کرنے کے لیے Path of Nūr کھولیں۔",
   "homeWidgetsDhikrTodayLabel": "آج",
   "homeWidgetsTargetLabel": "ہدف",
-  "homeWidgetsStreakLabel": "تسلسل",
-  "homeWidgetsLevelLabel": "درجہ",
-  "homeWidgetsTodayXpLabel": "آج کے پوائنٹس",
-  "homeWidgetsNoSpiritualContentTitle": "روحانی مواد دستیاب نہیں",
-  "homeWidgetsNoSpiritualContentBody": "آج کے روحانی مواد کو تازہ کرنے کے لیے Path of Nūr کھولیں۔",
+  "homeWidgetsStreakLabel": "مسلسل دن",
+  "homeWidgetsLevelLabel": "لیول",
+  "homeWidgetsTodayXpLabel": "آج کا نور",
+  "homeWidgetsNoSpiritualContentTitle": "ابھی دکھانے کو کچھ نہیں",
+  "homeWidgetsNoSpiritualContentBody": "آج کی آیت اور دعا لانے کے لیے Path of Nūr کھولیں۔",
   "homeWidgetsDuaTitle": "روزانہ دعا",
   "homeWidgetsMorningDuaReady": "صبح کی دعا تیار ہے",
   "homeWidgetsDailyDuaReady": "آج کی دعا تیار ہے",
@@ -15787,23 +15802,23 @@
   "hadithSectionRelatedDuas": "Related Duas",
   "quranReaderRelatedHadithTitle": "متعلقہ احادیث",
   "quranReaderRelatedDuasTitle": "متعلقہ دعائیں",
-  "allSearchTitle": "مجموعی تلاش",
-  "allSearchSubtitle": "قرآن، حدیث، دعائیں اور سیکھنے کا مواد ایک ساتھ تلاش کریں۔",
-  "allSearchHint": "‏Path of Nur میں تلاش کریں",
-  "allSearchEmptyTitle": "پوری ایپ میں تلاش کریں",
-  "allSearchEmptySubtitle": "ہم نتائج کو شعبے کے حساب سے ترتیب دیں گے تاکہ سب پُرسکون اور قابلِ اعتماد رہے۔",
-  "allSearchSuggestionsTitle": "Suggestions",
+  "allSearchTitle": "تلاش",
+  "allSearchSubtitle": "ایک تلاش، تمام حصوں میں۔",
+  "allSearchHint": "Path of Nur میں تلاش کریں",
+  "allSearchEmptyTitle": "سب کچھ تلاش کریں",
+  "allSearchEmptySubtitle": "کوئی لفظ لکھیں، جیسے رحمت یا صبر۔",
+  "allSearchSuggestionsTitle": "تجاویز",
   "allSearchRecentTitle": "حالیہ تلاشیں",
-  "allSearchClearRecent": "Clear",
+  "allSearchClearRecent": "صاف کریں",
   "allSearchNoRecent": "ابھی کوئی حالیہ تلاش نہیں۔",
-  "allSearchNoResultsTitle": "ابھی کوئی نتیجہ نہیں",
-  "allSearchNoResultsSubtitle": "ہمیں قرآن، حدیث، دعاؤں یا سیکھنے کے مواد میں کوئی مضبوط مماثلت نہیں ملی۔",
+  "allSearchNoResultsTitle": "کوئی نتیجہ نہیں",
+  "allSearchNoResultsSubtitle": "اس تلاش سے کچھ نہیں ملا۔",
   "allSearchNoResultsTipBroader": "کوئی مختصر یا وسیع تر عبارت آزمائیں۔",
-  "allSearchNoResultsTipDomain": "آپ مزید گہرائی کے لیے کسی مخصوص شعبے کی تلاش میں بھی جا سکتے ہیں۔",
-  "allSearchDomainQuran": "Qur’an",
-  "allSearchDomainHadith": "Hadith",
-  "allSearchDomainDua": "Duas",
-  "allSearchDomainLearn": "Learn",
+  "allSearchNoResultsTipDomain": "یا مزید کے لیے کسی ایک حصے میں تلاش کریں۔",
+  "allSearchDomainQuran": "قرآن",
+  "allSearchDomainHadith": "حدیث",
+  "allSearchDomainDua": "دعائیں",
+  "allSearchDomainLearn": "سیکھیں",
   "allSearchViewAllQuran": "قرآن میں سب دیکھیں",
   "allSearchViewAllHadith": "حدیث میں سب دیکھیں",
   "allSearchViewAllDua": "دعاؤں میں سب دیکھیں",
@@ -15822,7 +15837,7 @@
       "query": {}
     }
   },
-  "allSearchError": "تلاش دستیاب نہیں: {message}",
+  "allSearchError": "تلاش مکمل نہیں ہوئی: {message}",
   "@allSearchError": {
     "placeholders": {
       "message": {}
@@ -15979,31 +15994,31 @@
   "legalAttributionsWordTimingBody": "الفاظ کے اوقات کے حصے Quran.com API v4 سے طلب کیے جاتے ہیں۔\n\nماخذ کے لنکس:\nhttps://api-docs.quran.com/",
   "legalAttributionsWordTimingTitle": "الفاظ کا وقت (لائیو سنک بیٹا)",
   "settingsAdhanChoiceTitle": "اذان",
-  "settingsCareModeGentleBody": "اطلاعات کی شدت کم کریں اور مفید یاد دہانیاں برقرار رکھتے ہوئے دن کو پرسکون رکھیں۔",
+  "settingsCareModeGentleBody": "نماز کی یاددہانیاں بغیر آواز کے آتی ہیں اور فوکس موڈ کو نہیں توڑتیں۔",
   "settingsCareModeGentleTitle": "نرم موڈ کی معاونت",
-  "settingsCareModeLossBody": "جب غم بھاری محسوس ہو تو صبر، دعا، اور نرم یاد دہانیوں کے ساتھ اللہ کی طرف رجوع کریں۔",
+  "settingsCareModeLossBody": "جب غم بھاری ہو: صبر، دعا اور اللہ کی رحمت کی یاددہانیاں۔",
   "settingsCareModeLossHadith": "یاد دہانی: دل پر بھاری آزمائشیں بھی اگر صبر کے ساتھ برداشت کی جائیں تو رحمت اور گناہوں کی معافی کا ذریعہ بن سکتی ہیں۔",
   "settingsCareModeLossPrayer": "دعا: انا للہ وانا الیہ راجعون۔ اللھم اجرنی فی مصیبتی واخلف لی خیرا منھا۔",
   "settingsCareModeLossReference": "قرآن 2:156-157",
   "settingsCareModeLossTitle": "غم و نقصان کی معاونت",
-  "settingsCareModeRamadanBody": "رمضان کے دوران روزہ، سحری، افطار، اور نماز پر مرکوز رہنمائی قریب رکھیں۔",
+  "settingsCareModeRamadanBody": "رمضان میں سحری، افطار اور روزہ پہلے۔",
   "settingsCareModeRamadanReference": "قرآن 2:183",
   "settingsCareModeRamadanTitle": "رمضان کی معاونت",
-  "settingsCareModeUnwellBody": "بیماری کے دنوں میں اسے استعمال کریں تاکہ ایپ نرم رہے اور آپ کی اسٹریک کی حفاظت صحت یابی کے دنوں کا احاطہ کر سکے۔",
-  "settingsCareModeUnwellHadith": "یاد دہانی: بیماری، تھکاوٹ، اور تکلیف اگر صبر کے ساتھ برداشت کی جائیں تو اللہ کے ہاں ضائع نہیں ہوتیں۔",
-  "settingsCareModeUnwellPrayerEase": "نماز میں آسانی: جس طرح ممکن ہو نماز پڑھیں — کھڑے ہو کر، بیٹھ کر، یا ضرورت کے مطابق لیٹ کر۔",
+  "settingsCareModeUnwellBody": "بیماری کے دنوں کے لیے۔ چھوٹے ہوئے دن آپ کے مسلسل دنوں کو نہیں توڑتے۔",
+  "settingsCareModeUnwellHadith": "یاد دہانی: مومن کو کوئی تھکن یا بیماری نہیں پہنچتی مگر اللہ اس کے ذریعے اس کے کچھ گناہ مٹا دیتا ہے۔ (بخاری)",
+  "settingsCareModeUnwellPrayerEase": "کھڑے ہو کر نماز پڑھیں، نہ ہو سکے تو بیٹھ کر، اور یہ بھی نہ ہو سکے تو پہلو کے بل لیٹ کر۔ (بخاری)",
   "settingsCareModeUnwellTitle": "علالت کی معاونت",
-  "settingsCareModesSubtitle": "عبادت اور روزمرہ زندگی کے مختلف موسموں کے لیے پرسکون، معاون موڈز قریب رکھیں۔",
+  "settingsCareModesSubtitle": "مشکل دنوں کے لیے، اور رمضان کے لیے۔",
   "settingsCareModesTitle": "نگہداشت اور زندگی کے لمحات",
-  "settingsCycleDaysReminderSupport": "معاونت کا مرکز: ذکر، دعا، قرآن سننا، اور غور و فکر دستیاب رہتے ہیں۔",
-  "settingsCycleDaysStreakSupport": "اسٹریک کی معاونت: محفوظ دن ایامِ عذر کا احاطہ کریں گے تاکہ آپ کا سلسلہ ناحق نہ ٹوٹے۔",
-  "settingsCycleDaysSubtitle": "صرف بہنوں کے لیے۔ عذر کے دنوں میں عبادت کے تسلسل کی حفاظت کریں۔",
-  "settingsCycleDaysSupportBody": "یہ سائیکل سے آگاہ یاد دہانی کی معاونت کو فعال رکھتا ہے اور ان دنوں میں آپ کی اسٹریک کی حفاظت کرتا ہے جب نماز اور روزہ معاف ہوتے ہیں۔",
+  "settingsCycleDaysReminderSupport": "ذکر، دعا اور قرآن سننا آپ کے ساتھ رہتے ہیں۔",
+  "settingsCycleDaysStreakSupport": "عذر کے دن آپ کے مسلسل دنوں کو نہیں توڑتے۔",
+  "settingsCycleDaysSubtitle": "بہنوں کے لیے۔ عذر کے دن محفوظ ہیں۔",
+  "settingsCycleDaysSupportBody": "عذر کے دنوں میں نماز اور روزے کی یاددہانیاں رک جاتی ہیں، اور آپ کے مسلسل دن محفوظ رہتے ہیں۔",
   "settingsCycleDaysSupportTitle": "ایامِ ماہواری کی معاونت",
   "settingsCycleDaysTitle": "ایامِ ماہواری",
   "settingsFollowSystemThemeSubtitle": "ایپ کو اپنے ڈیوائس کی موجودہ لائٹ یا ڈارک ظاہری شکل سے ہم آہنگ کریں۔",
   "settingsFollowSystemThemeTitle": "فون کے دن/رات موڈ کی پیروی کریں",
-  "settingsGentleModeReducedNotificationsSubtitle": "اطلاعات کی شدت کم کریں اور یاد دہانیوں کو نرم رکھیں۔",
+  "settingsGentleModeReducedNotificationsSubtitle": "بغیر آواز کے نماز کی یاددہانیاں۔",
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "اذان آزمائیں",
   "settingsUnwellModeSubtitle": "جب بیماری عبادت کو مشکل بنا دے تو دن کی حفاظت کریں۔",
@@ -16036,7 +16051,7 @@
   "settingsJumuahTravelMinutesLabel": "سفر کا وقت",
   "settingsJumuahChooseMosque": "مسجد کا مقام چنیں",
   "settingsJumuahEstimatePrivacyNote": "اندازہ آپ کا مقام صرف ایپ کھلی ہونے پر استعمال کرتا ہے۔",
-  "settingsThemeChoiceRamadan": "رمضان — لیالی",
+  "settingsThemeChoiceRamadan": "رمضان · لیالی",
   "settingsThemeModeRamadanDescription": "چمکتی فانوس اور مہینے کے ہلال سے روشن بنفشی رمضان کی رات۔",
   "settingsThemeModeRamadanBestFor": "بہترین: بابرکت مہینے کے لیے، سحری سے تراویح تک",
   "settingsDressUpRamadanTitle": "رمضان کے لیے سجاوٹ",
@@ -16060,7 +16075,7 @@
   "occasionOfferJummahBody": "ہر جمعے ایپ کو مسجد زمرد میں سجائیں؟ دن کے اختتام پر آپ کی تھیم واپس آ جائے گی۔",
   "occasionOfferRamadanTitle": "رمضان شروع ہو گیا",
   "occasionOfferRamadanBody": "بابرکت مہینے بھر ایپ کو لیالی رات میں سجائیں؟ عید کے بعد آپ کی تھیم واپس آ جائے گی۔",
-  "occasionOfferEidTitle": "عید مبارک!",
+  "occasionOfferEidTitle": "عید مبارک",
   "occasionOfferEidBody": "عید کے دنوں میں ایپ کو تہوار کے لیے سجائیں؟ بعد میں آپ کی تھیم واپس آ جائے گی۔",
   "occasionOfferQadrTitle": "آخری دس راتیں",
   "occasionOfferQadrBody": "طاق راتوں کو لیلۃ القدر تھیم سے تعظیم دیں؟ ہزار مہینوں سے بہتر۔",
@@ -16068,13 +16083,13 @@
   "occasionOfferDecline": "ابھی نہیں",
   "homeGreetingEidMubarak": "عید مبارک",
   "settingsLivingSkyTitle": "زندہ آسمان",
-  "settingsLivingSkySubtitle": "نور گلاس دن کے ساتھ چلتا ہے — گلابی سنہری فجر، عنبری مغرب، اور اندھیرے کے بعد ستاروں بھری رات۔",
+  "settingsLivingSkySubtitle": "Noor Glass آسمان کے ساتھ بدلتا ہے، فجر سے مغرب کے بعد کے ستاروں تک۔",
   "settingsGroupYouTitle": "آپ",
   "settingsGroupWorshipTitle": "نماز اور یاد دہانیاں",
   "settingsGroupAppTitle": "ایپ",
   "settingsGroupSupportTitle": "مدد اور تعارف",
-  "settingsCategoryProfileSubtitle": "آپ کا نام، ایپ آپ کو کیسے مخاطب کرے، اور کیئر موڈز۔",
-  "settingsCategoryAdhanSubtitle": "اذان منتخب کریں، سن کر دیکھیں اور اس کی آواز مقرر کریں۔",
+  "settingsCategoryProfileSubtitle": "آپ کا نام، سلام اور نگہداشت کے موڈ",
+  "settingsCategoryAdhanSubtitle": "آواز اور اس کا والیوم چنیں",
   "settingsSearchTitle": "ترتیبات تلاش کریں",
   "settingsSearchSubtitle": "کوئی بھی ترتیب نام سے تلاش کریں۔",
   "settingsSearchHint": "ترتیبات تلاش کریں",
@@ -16096,10 +16111,10 @@
   "quickActionsSettingsSubtitle": "ظاہری شکل، اذان، یاد دہانیاں",
   "quickActionsSearchSubtitle": "قرآن، حدیث، دعا، اسباق",
   "settingsSalahCalculationTitle": "حساب",
-  "settingsSalahCalculationSubtitle": "آپ کی نماز کے اوقات نکالنے کے لیے استعمال ہونے والا طریقہ اور مذہب۔",
+  "settingsSalahCalculationSubtitle": "آپ کی نماز کے اوقات نکالنے کے لیے استعمال ہونے والا طریقہ اور فقہی مسلک۔",
   "settingsAdhanSoundTitle": "اذان کی آواز",
-  "settingsRemindersPerPrayerTitle": "ہر نماز کی یاد دہانیاں",
-  "settingsOtherRemindersTitle": "دیگر یاد دہانیاں",
+  "settingsRemindersPerPrayerTitle": "ہر نماز کی یاددہانیاں",
+  "settingsOtherRemindersTitle": "دیگر یاددہانیاں",
   "settingsPermissionsTitle": "اجازتیں",
   "settingsWhatOthersSeeTitle": "ایپ کیا دکھاتا ہے",
   "learnContainedStateIslandSubtitle": "This learning area is being kept calm and production-safe.",
@@ -16349,7 +16364,7 @@
   "dhikrFreeCountAction": "Free count",
   "dhikrFreeCountTitle": "Free count",
   "dhikrTodayOfGoal": "of {goal} today",
-  "dhikrStreakCaption": "day streak",
+  "dhikrStreakCaption": "مسلسل دن",
   "dhikrSessionsTodayCaption": "sessions today",
   "dhikrRoutinesTitle": "Routines",
   "dhikrRoutineAfterSalahTitle": "After salah",
@@ -16392,7 +16407,7 @@
   "dhikrInsightsSubtitleEmpty": "Your history begins with the first finished session.",
   "dhikrInsightsThisWeekCaption": "this week · last week {value}",
   "dhikrInsightsStreakValue": "{count} days",
-  "dhikrInsightsStreakCaption": "current streak · best {value}",
+  "dhikrInsightsStreakCaption": "مسلسل دن · زیادہ سے زیادہ {value}",
   "dhikrInsightsLifetimeCaption": "lifetime remembrances",
   "dhikrInsightsFavoriteCaption": "most repeated · {count}",
   "dhikrInsightsWeekTitle": "This week",
@@ -16533,7 +16548,7 @@
   "kidsStickerBookSubtitle": "Every story, letter and duʿā you finish earns one.",
   "kidsStickerBookEmptySubtitle": "Finish a story, a letter or a duʿā to earn your first one.",
   "kidsStickerBookSpecialSection": "Special stickers",
-  "kidsRewardStreakValue": "{days, plural, =0{No streak yet} =1{1 day streak} other{{days} day streak}}",
+  "kidsRewardStreakValue": "{days, plural, =0{ابھی شروع نہیں ہوا} =1{1 دن مسلسل} other{{days} دن مسلسل}}",
   "@kidsRewardStreakValue": {
     "placeholders": {
       "days": {

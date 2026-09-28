@@ -877,18 +877,30 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String hadithCurrentStreakLabel(int days, String suffix) {
-    return 'Current streak: $days day$suffix';
+  String hadithCurrentStreakLabel(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
-  String hadithBestStreakLabel(int days, String suffix) {
-    return 'Best streak: $days day$suffix';
+  String hadithBestStreakLabel(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Most in a row: $days days',
+      one: 'Most in a row: 1 day',
+    );
+    return '$_temp0';
   }
 
   @override
   String hadithReflectionCompletedXp(int xp) {
-    return 'Reflection completed • +$xp XP';
+    return 'Reflection complete · +$xp light';
   }
 
   @override
@@ -926,8 +938,14 @@ class AppLocalizationsKu extends AppLocalizations {
       'Follow curated paths to study hadith in a structured sequence with steady progress.';
 
   @override
-  String hadithPathStreakLabel(int current, String suffix, int best) {
-    return 'Path streak: $current day$suffix • Best: $best';
+  String hadithPathStreakLabel(int current, int best) {
+    String _temp0 = intl.Intl.pluralLogic(
+      current,
+      locale: localeName,
+      other: '$current days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0 · most: $best';
   }
 
   @override
@@ -1383,7 +1401,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String homePrayerCompletedCountValue(String completed, String total) {
-    return '$completed of $total salah entries offered';
+    return '$completed of $total prayed';
   }
 
   @override
@@ -1393,11 +1411,10 @@ class AppLocalizationsKu extends AppLocalizations {
   String get atTime => 'at 1:30 PM';
 
   @override
-  String get homeOverviewHeroTitle => 'Daily Nur Overview';
+  String get homeOverviewHeroTitle => 'At a Glance';
 
   @override
-  String get homeOverviewHeroSubtitle =>
-      'A compact summary of worship, learning, and growth.';
+  String get homeOverviewHeroSubtitle => 'Your worship and learning, in brief.';
 
   @override
   String get homePrayerProgressTitle => 'Salah progress';
@@ -1406,20 +1423,19 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeDhikrProgressTitle => 'Dhikr progress';
 
   @override
-  String get homeCurrentStreakTitle => 'Current streak';
+  String get homeCurrentStreakTitle => 'Days in a row';
 
   @override
-  String get homeXpLevelTitle => 'Level and XP';
+  String get homeXpLevelTitle => 'Level and light';
 
   @override
   String get homeDaysLabel => 'days';
 
   @override
-  String get homeWorshipSummaryTitle => 'Ibadah Summary';
+  String get homeWorshipSummaryTitle => 'Ibadah today';
 
   @override
-  String get homeWorshipSummarySubtitle =>
-      'Salah, dhikr, fasting, and Khusu in one place.';
+  String get homeWorshipSummarySubtitle => 'How today’s worship is going.';
 
   @override
   String get homeFastingStatusTitle => 'Fasting status';
@@ -1434,7 +1450,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeFastingCompleted => 'Completed';
 
   @override
-  String get homeFastingBroken => 'Missed / Broken';
+  String get homeFastingBroken => 'Missed or broken';
 
   @override
   String get worshipPrayerHubTitle => 'Navenda Salahê';
@@ -1747,11 +1763,10 @@ class AppLocalizationsKu extends AppLocalizations {
       'Niha nikarin cihan bibînin.';
 
   @override
-  String get homeLearnSummaryTitle => 'Learn Summary';
+  String get homeLearnSummaryTitle => 'Learning';
 
   @override
-  String get homeLearnSummarySubtitle =>
-      'Continue your knowledge path with focused previews.';
+  String get homeLearnSummarySubtitle => 'Pick up where you left off.';
 
   @override
   String get homeLearnContinueQuran => 'Continue Quran';
@@ -1766,17 +1781,16 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeLearnFeaturedHadith => 'Featured Hadith topic';
 
   @override
-  String get homeJourneySummaryTitle => 'Journey Summary';
+  String get homeJourneySummaryTitle => 'Your journey';
 
   @override
-  String get homeJourneySummarySubtitle =>
-      'Track progression, rings, and next unlocks.';
+  String get homeJourneySummarySubtitle => 'Your level, and what comes next.';
 
   @override
-  String get homeJourneyXpProgressTitle => 'XP progress';
+  String get homeJourneyXpProgressTitle => 'Light to the next level';
 
   @override
-  String get homeJourneyNextUnlockTitle => 'Next unlock';
+  String get homeJourneyNextUnlockTitle => 'Next milestone';
 
   @override
   String get appQuickActionOpenToday => 'Open Today';
@@ -1968,7 +1982,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String homeTimeRemainingToOffer(Object prayerName) {
-    return 'Time remaining to offer $prayerName salah';
+    return 'Time left to pray $prayerName';
   }
 
   @override
@@ -2007,7 +2021,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String homeXpValue(Object xp) {
-    return '$xp XP';
+    return '$xp light';
   }
 
   @override
@@ -2224,7 +2238,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String fastingStreakDays(Object count) {
+  String fastingStreakDays(int count) {
     return 'Zincîra rojiyê ya $count rojan';
   }
 
@@ -2261,7 +2275,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get levelLabel => 'Level';
 
   @override
-  String get streakLabel => 'Streak';
+  String get streakLabel => 'Days in a row';
 
   @override
   String get worshipTitle => 'Ibadah';
@@ -4715,7 +4729,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get triviaHomeTriviaXpLabel => 'Trivia XP';
+  String get triviaHomeTriviaXpLabel => 'Light from trivia';
 
   @override
   String triviaHomeQuizzesCompletedCount(Object count) {
@@ -5740,13 +5754,13 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get modeLossHomeSubtitle =>
-      'Move softly today with remembrance, patience, and mercy.';
+      'Verses of mercy and remembrance for days of grief.';
 
   @override
   String get modeLossActionDhikr => 'Dhikr';
 
   @override
-  String get modeLossActionMercy => 'Mercy Verses';
+  String get modeLossActionMercy => 'Verses of mercy';
 
   @override
   String get learnContentTopicLabel => 'Topic';
@@ -6578,11 +6592,10 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get homeEcosystemSummaryTitle => 'Growth ecosystem';
+  String get homeEcosystemSummaryTitle => 'Elsewhere in the app';
 
   @override
-  String get homeEcosystemSummarySubtitle =>
-      'Ocean, rewards, circles, journal, and assistant previews.';
+  String get homeEcosystemSummarySubtitle => 'Your ocean, circles and journal.';
 
   @override
   String get learnTrackBeginner => 'دەستپێکەر';
@@ -6636,7 +6649,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get circlesAccountabilitySubtitle =>
-      'Private support groups for prayer and habit streaks.';
+      'Small private groups that keep each other going.';
 
   @override
   String get circlesNearbyMosquesTitle => 'Nearby Mosques';
@@ -6718,7 +6731,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get circlesAccountabilityJoined => 'Joined';
 
   @override
-  String get circlesAccountabilityStreak => 'Check-in streak';
+  String get circlesAccountabilityStreak => 'Check-ins in a row';
 
   @override
   String get circlesImportTimetable => 'Import timetable';
@@ -7616,12 +7629,24 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String learningJourneyFeedbackStageCompleted(int streak) {
-    return 'Stage complete. You’re on a $streak day streak.';
+    String _temp0 = intl.Intl.pluralLogic(
+      streak,
+      locale: localeName,
+      other: 'Stage complete. That’s $streak days in a row.',
+      one: 'Stage complete.',
+    );
+    return '$_temp0';
   }
 
   @override
   String learningJourneyHomeStreakMessage(int days) {
-    return 'You’re on a $days day learning streak.';
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days of learning in a row.',
+      one: 'One day of learning.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -8290,7 +8315,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String kidsArabicParentWeeklyConsistencyBody(int count, int streak) {
-    return '$count gentle Arabic day this week and a $streak day streak.';
+    return 'Arabic on $count days this week, and $streak days in a row.';
   }
 
   @override
@@ -15329,7 +15354,13 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String familyLearningStreakLabel(int days) {
-    return 'Streak: $days days';
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -19083,7 +19114,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'Drops bring greenery and life, marking sincere acts that nourish the whole garden.';
 
   @override
-  String get gardenPageNextUnlockTitle => 'Next unlock';
+  String get gardenPageNextUnlockTitle => 'Next milestone';
 
   @override
   String get gardenPageAllUnlockedTitle => 'Garden gallery complete';
@@ -19122,7 +19153,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get gardenPageLevelLabel => 'Level';
 
   @override
-  String get gardenPageXpLabel => 'XP';
+  String get gardenPageXpLabel => 'Light';
 
   @override
   String get gardenPageMaturityLabel => 'Garden maturity';
@@ -19246,7 +19277,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get gardenDimensionFruitBody =>
-      'Badges, milestones, and maturity reveal the fruit of learning.';
+      'Milestones show the fruit of learning.';
 
   @override
   String get gardenDimensionConsistencyTitle => 'Bloom of consistency';
@@ -20439,7 +20470,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get triviaStatsXp => 'Trivia XP';
+  String get triviaStatsXp => 'Light from trivia';
 
   @override
   String get triviaStatsOceanDrops => 'Qetirên Ocean';
@@ -22539,8 +22570,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String kidsDuaStreakValue(Object days) {
-    return 'Streak: $days days';
+  String kidsDuaStreakValue(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -23117,7 +23154,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get xpLevelTitle100 => 'Path of Nūr';
 
   @override
-  String get xpCardTitle => 'Path XP';
+  String get xpCardTitle => 'Your light';
 
   @override
   String xpCardLevelValue(Object level, Object title) {
@@ -23126,7 +23163,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String xpCardTotalXpValue(Object xp) {
-    return '$xp total XP';
+    return '$xp light in all';
   }
 
   @override
@@ -23136,7 +23173,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String xpCardRemainingValue(Object xp) {
-    return '$xp XP to go';
+    return '$xp light to go';
   }
 
   @override
@@ -23291,13 +23328,13 @@ class AppLocalizationsKu extends AppLocalizations {
   String get journeyStatsActiveDaysSubtitle => 'Days with recorded progress';
 
   @override
-  String get journeyStatsCurrentStreakTitle => 'Current Streak';
+  String get journeyStatsCurrentStreakTitle => 'Days in a row';
 
   @override
   String get journeyStatsCurrentStreakSubtitle => 'Your current steady rhythm';
 
   @override
-  String get journeyStatsBestStreakTitle => 'Best Streak';
+  String get journeyStatsBestStreakTitle => 'Most days in a row';
 
   @override
   String get journeyStatsBestStreakSubtitle => 'Your strongest recorded run';
@@ -23461,11 +23498,10 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionLearnHubKids =>
-      'Learn Islam step by step with stories, lessons, and simple practice.';
+      'Learn Islam with stories and lessons.';
 
   @override
-  String get pageDescriptionQuranHub =>
-      'Read, study, memorize, and return to the Qur’an with clear paths for daily connection.';
+  String get pageDescriptionQuranHub => 'Read, study and memorize the Qur’an.';
 
   @override
   String get pageDescriptionQuranHubKids =>
@@ -23473,11 +23509,11 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionQuranStudyHub =>
-      'Slow down with the Qur’an through meaning, guided study, memorization, and review tools.';
+      'Understand the Qur’an, one passage at a time.';
 
   @override
   String get pageDescriptionQuranStudyHubKids =>
-      'Take your time with the Qur’an, understand more, and learn bit by bit.';
+      'Learn what the Qur’an means, bit by bit.';
 
   @override
   String get pageDescriptionWorshipHub =>
@@ -23489,7 +23525,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionGrowthToday =>
-      'See today’s rhythm, notice what needs care, and keep your next step clear.';
+      'How today is going, and one next step.';
 
   @override
   String get pageDescriptionGrowthTodayKids =>
@@ -23497,7 +23533,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionGrowthPaths =>
-      'Follow focused paths that help one part of your practice grow with consistency.';
+      'Choose one part of your practice to grow.';
 
   @override
   String get pageDescriptionGrowthPathsKids =>
@@ -23505,7 +23541,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionGrowthJourney =>
-      'Review your progress, unlocked milestones, and the steady shape of your journey.';
+      'How far you’ve come, and your milestones.';
 
   @override
   String get pageDescriptionGrowthJourneyKids =>
@@ -23513,19 +23549,18 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionGrowthReflection =>
-      'Pause for gratitude, tawbah, and honest review so the heart can realign.';
+      'A moment for gratitude and tawbah.';
 
   @override
   String get pageDescriptionGrowthReflectionKids =>
-      'Pause, say thank you, think honestly, and begin again with a clean heart.';
+      'Say thank you to Allah, and begin again.';
 
   @override
   String get pageDescriptionSettingsLanding =>
       'Adjust how the app supports your Salah, learning, reminders, privacy, and daily rhythm.';
 
   @override
-  String get pageDescriptionSettingsLandingKids =>
-      'Choose how the app helps you learn, pray, and stay organized each day.';
+  String get pageDescriptionSettingsLandingKids => 'Make the app work for you.';
 
   @override
   String get pageDescriptionSettingsAccountSync =>
@@ -23537,7 +23572,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionSettingsAppearance =>
-      'Set the app’s look, motion, contrast, and reading comfort to fit your day.';
+      'How the app looks and moves.';
 
   @override
   String get pageDescriptionSettingsAppearanceKids =>
@@ -23553,15 +23588,15 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionSettingsLearning =>
-      'Control Qur’an display, family learning, and the study settings used across the app.';
+      'How the Qur’an and lessons are shown.';
 
   @override
   String get pageDescriptionSettingsLearningKids =>
-      'Choose how learning, Qur’an text, and family study features appear.';
+      'How lessons and the Qur’an look.';
 
   @override
   String get pageDescriptionSettingsNotifications =>
-      'Decide which reminders reach you and how often the app should prompt you.';
+      'Which reminders you get, and when.';
 
   @override
   String get pageDescriptionSettingsNotificationsKids =>
@@ -23569,15 +23604,14 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionSettingsWidgetsWatch =>
-      'Manage lock screen, Dynamic Island, and watch surfaces for quick daily access.';
+      'Salah times on your lock screen and watch.';
 
   @override
   String get pageDescriptionSettingsWidgetsWatchKids =>
       'Choose what quick prayer and reminder info shows on your screen or watch.';
 
   @override
-  String get pageDescriptionSettingsLanguage =>
-      'Choose your language and other download-ready reading preferences.';
+  String get pageDescriptionSettingsLanguage => 'Language and downloads.';
 
   @override
   String get pageDescriptionSettingsLanguageKids =>
@@ -23585,7 +23619,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionSettingsPrivacy =>
-      'Control sensitive tracking, visibility, and data behavior with calm defaults.';
+      'What is tracked, and what stays private.';
 
   @override
   String get pageDescriptionSettingsPrivacyKids =>
@@ -23593,43 +23627,39 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionSettingsKidsFamily =>
-      'Adjust age-aware learning and family-friendly presentation across the app.';
+      'Learning for each age in your family.';
 
   @override
   String get pageDescriptionSettingsKidsFamilyKids =>
-      'Set up kid-friendly learning and family settings that feel right for you.';
+      'Settings for learning as a family.';
 
   @override
-  String get pageDescriptionSettingsAbout =>
-      'Find support, updates, legal details, and what is changing in the app.';
+  String get pageDescriptionSettingsAbout => 'Help and what’s new.';
 
   @override
-  String get pageDescriptionSettingsAboutKids =>
-      'See app help, updates, and important info in one place.';
+  String get pageDescriptionSettingsAboutKids => 'Help and what’s new.';
 
   @override
   String get pageDescriptionAssistant =>
-      'Ask for guidance, reflection prompts, and help finding the right part of the app.';
+      'Ask a question, or find your way around the app.';
 
   @override
   String get pageDescriptionAssistantKids =>
-      'Ask simple questions, get ideas, and find the right place to go next.';
+      'Ask a question, or ask where to go.';
 
   @override
-  String get pageDescriptionJournalTimeline =>
-      'Keep reflections, observations, and meaningful moments where you can return to them.';
+  String get pageDescriptionJournalTimeline => 'Everything you’ve written.';
 
   @override
   String get pageDescriptionJournalTimelineKids =>
-      'Save thoughts, notes, and special moments so you can look back later.';
+      'Look back at what you wrote.';
 
   @override
-  String get pageDescriptionJournalCreate =>
-      'Write a reflection, observation, or gratitude note while the moment is still clear.';
+  String get pageDescriptionJournalCreate => 'Write it down while it’s fresh.';
 
   @override
   String get pageDescriptionJournalCreateKids =>
-      'Write down what you noticed, felt, or felt thankful for today.';
+      'Write about something you noticed.';
 
   @override
   String get pageDescriptionCreationExplorer =>
@@ -23641,7 +23671,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionCreationChallenges =>
-      'Use small guided prompts to notice creation more intentionally and reflect with care.';
+      'Small prompts to notice Allah’s creation.';
 
   @override
   String get pageDescriptionCreationChallengesKids =>
@@ -23649,19 +23679,18 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get pageDescriptionCelestialExplorer =>
-      'Track the sky with location-aware signs that turn observation into remembrance.';
+      'The sky above you, as a reminder of Allah.';
 
   @override
   String get pageDescriptionCelestialExplorerKids =>
       'Watch the sky, learn what is happening, and remember Allah through it.';
 
   @override
-  String get pageDescriptionKhusuFocus =>
-      'Step into a quiet focus space that helps the heart settle before returning to worship.';
+  String get pageDescriptionKhusuFocus => 'Settle your heart before you pray.';
 
   @override
   String get pageDescriptionKhusuFocusKids =>
-      'Take a quiet pause, slow down, and get your heart ready to focus.';
+      'Slow down and get ready to pray.';
 
   @override
   String get learnGlossaryTitle => 'Glossary';
@@ -23948,7 +23977,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String crosswordTodayXpLabel(Object xp) {
-    return '$xp XP today';
+    return '$xp light today';
   }
 
   @override
@@ -24179,8 +24208,14 @@ class AppLocalizationsKu extends AppLocalizations {
   String get crosswordCellCurrentWordHint => 'Part of the current clue';
 
   @override
-  String crosswordDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String crosswordDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -24412,8 +24447,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String wordSearchDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String wordSearchDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -24443,7 +24484,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String wordSearchXpLabel(Object count) {
-    return '$count XP';
+    return '$count light';
   }
 
   @override
@@ -24827,7 +24868,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String matchingXpLabel(Object count) {
-    return '$count XP earned';
+    return '$count light gathered';
   }
 
   @override
@@ -24836,8 +24877,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String matchingDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String matchingDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25161,8 +25208,14 @@ class AppLocalizationsKu extends AppLocalizations {
       'A quiet look at your recent Qur’an completion practice.';
 
   @override
-  String ayahCompletionDailyStreakLabel(Object count) {
-    return 'Daily streak $count';
+  String ayahCompletionDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25180,7 +25233,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String ayahCompletionXpLabel(Object count) {
-    return '$count XP';
+    return '$count light';
   }
 
   @override
@@ -25514,7 +25567,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String hadithReflectionXpLabel(Object count) {
-    return '$count XP';
+    return '$count light';
   }
 
   @override
@@ -25523,8 +25576,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String hadithReflectionDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String hadithReflectionDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25651,7 +25710,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String hadithReflectionBestChoiceReward(Object count) {
-    return 'Best-choice bonus +$count XP';
+    return 'Best choice · +$count light';
   }
 
   @override
@@ -25825,8 +25884,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String dailyKnowledgeHubStreakLabel(Object count) {
-    return '$count-day bundle streak';
+  String dailyKnowledgeHubStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25974,8 +26039,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String spiritualGrowthReflectionStreakLabel(Object count) {
-    return '$count-day reflection streak';
+  String spiritualGrowthReflectionStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days of reflection in a row',
+      one: '1 day of reflection in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -26502,8 +26573,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String learnGamesIslandDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String learnGamesIslandDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -27461,7 +27538,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get bedtimeParentContinueArabicAction => 'Open Arabic';
 
   @override
-  String get bedtimeParentCurrentStreakLabel => 'Current streak';
+  String get bedtimeParentCurrentStreakLabel => 'Days in a row';
 
   @override
   String get bedtimeParentOverallStoriesLabel => 'Stories completed';
@@ -27476,7 +27553,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get bedtimeParentOverallArabicLabel => 'Arabic letters';
 
   @override
-  String get bedtimeParentOverallXpLabel => 'XP across kids learning';
+  String get bedtimeParentOverallXpLabel => 'Light across all kids learning';
 
   @override
   String get bedtimeParentOverallDropsLabel =>
@@ -27533,7 +27610,13 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String bedtimeParentLearningAreaDuasSecondary(int count) {
-    return '$count-day light streak';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -27551,12 +27634,12 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String bedtimeParentHabitCurrentStreak(int days) {
-    return 'Current streak: $days';
+    return 'Days in a row: $days';
   }
 
   @override
   String bedtimeParentHabitLongestStreak(int days) {
-    return 'Longest streak: $days';
+    return 'Most days in a row: $days';
   }
 
   @override
@@ -28088,7 +28171,7 @@ class AppLocalizationsKu extends AppLocalizations {
       'End gently and rest peacefully.';
 
   @override
-  String get progressionPageTitle => 'Progress & Badges';
+  String get progressionPageTitle => 'Progress & Stickers';
 
   @override
   String get progressionPageSubtitle =>
@@ -28103,8 +28186,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get progressionPageHeroSubtitle =>
-      'Levels, badges, and milestones grow through steady learning.';
+  String get progressionPageHeroSubtitle => 'Each lesson adds to these.';
 
   @override
   String get progressionPageOpenAction => 'Open progress';
@@ -28133,11 +28215,11 @@ class AppLocalizationsKu extends AppLocalizations {
       'Milestones will appear as learning grows.';
 
   @override
-  String get progressionPageBadgesTitle => 'Badges';
+  String get progressionPageBadgesTitle => 'Stickers';
 
   @override
   String get progressionPageBadgesEmpty =>
-      'Badges will appear after the first meaningful completions.';
+      'No stickers yet. They come with finished lessons.';
 
   @override
   String progressionPageLevelValue(Object level, Object title) {
@@ -28146,7 +28228,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String progressionPageXpValue(Object xp) {
-    return '$xp XP';
+    return '$xp light';
   }
 
   @override
@@ -28173,11 +28255,11 @@ class AppLocalizationsKu extends AppLocalizations {
   String get progressionOverviewDropsLabel => 'Ocean Drops';
 
   @override
-  String get progressionOverviewBadgesLabel => 'Badges earned';
+  String get progressionOverviewBadgesLabel => 'Stickers earned';
 
   @override
   String progressionParentRemainingValue(Object xp) {
-    return '$xp XP to the next level';
+    return '$xp light to the next level';
   }
 
   @override
@@ -28294,7 +28376,8 @@ class AppLocalizationsKu extends AppLocalizations {
       'A lovely bedtime rhythm is forming.';
 
   @override
-  String get progressionMilestoneLearningMonthTitle => '30-day learning streak';
+  String get progressionMilestoneLearningMonthTitle =>
+      '30 days of learning in a row';
 
   @override
   String get progressionMilestoneLearningMonthDescription =>
@@ -28332,11 +28415,11 @@ class AppLocalizationsKu extends AppLocalizations {
       'Calm milestone moments celebrate new parts of the journey without turning practice into pressure.';
 
   @override
-  String get kidsArabicBadgesSectionTitle => 'Badges';
+  String get kidsArabicBadgesSectionTitle => 'Stickers';
 
   @override
   String get kidsArabicBadgesSectionSubtitle =>
-      'Badge stickers stay tied to real Arabic progress and unlock only once.';
+      'Each sticker is earned once, by real Arabic learning.';
 
   @override
   String get kidsArabicAchievementCelebrateTitle => 'A new celebration';
@@ -28371,8 +28454,14 @@ class AppLocalizationsKu extends AppLocalizations {
       'The first short word set is complete and ready for gentle review.';
 
   @override
-  String kidsArabicBadgesUnlockedValue(Object count) {
-    return '$count badges unlocked';
+  String kidsArabicBadgesUnlockedValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stickers earned',
+      one: '1 sticker earned',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -28852,7 +28941,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String wuduQuizRewardFeedback(Object xp, Object drops) {
-    return 'First completion counted: +$xp XP and +$drops Ocean Drop.';
+    return 'First time finished: +$xp light and +$drops Ocean Drop.';
   }
 
   @override
@@ -28986,7 +29075,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get quranDailyReflectionFirstTimeHint =>
-      'Complete a few reflections to build your streak.';
+      'Reflect a few days in a row to see them counted here.';
 
   @override
   String get quranReflectionsTitle => 'Saved Reflections';
@@ -29544,13 +29633,19 @@ class AppLocalizationsKu extends AppLocalizations {
   String get kidsArabicPracticeTodayDoneBadge => 'Done today';
 
   @override
-  String quranDailyReflectionStreakValue(Object days) {
-    return '$days day streak';
+  String quranDailyReflectionStreakValue(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
   String quranDailyReflectionBestStreakValue(Object streak) {
-    return 'Best streak: $streak';
+    return 'Most in a row: $streak';
   }
 
   @override
@@ -29812,7 +29907,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String growthPathCurrentStreakValue(Object value) {
-    return 'Current streak: $value';
+    return 'Days in a row: $value';
   }
 
   @override
@@ -30299,12 +30394,12 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String wuduTrainerRewardFeedbackXpDrops(Object xp, Object drops) {
-    return '+$xp XP • +$drops Ocean Drop';
+    return '+$xp light · +$drops Ocean Drop';
   }
 
   @override
   String wuduTrainerRewardFeedbackXpOnly(Object xp) {
-    return '+$xp XP';
+    return '+$xp light';
   }
 
   @override
@@ -30323,7 +30418,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String wuduQuizRewardFeedbackXpOnly(Object xp) {
-    return 'First completion counted: +$xp XP.';
+    return 'First time finished: +$xp light.';
   }
 
   @override
@@ -31799,8 +31894,14 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String arabicLearningProgressKidsStreakValue(Object count) {
-    return '$count day streak';
+  String arabicLearningProgressKidsStreakValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days in a row',
+      one: '1 day in a row',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -32727,11 +32828,10 @@ class AppLocalizationsKu extends AppLocalizations {
   String get creationChallengesPageTitle => 'Creation Challenges';
 
   @override
-  String get creationChallengesDailyStreakLabel => 'Daily streak';
+  String get creationChallengesDailyStreakLabel => 'Days in a row';
 
   @override
-  String get creationChallengesNewStreakBeginsToday =>
-      'A new streak begins today.';
+  String get creationChallengesNewStreakBeginsToday => 'A fresh start today.';
 
   @override
   String creationChallengesStreakDays(int count) {
@@ -33159,7 +33259,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String onboardingWelcomeGreeting(String name) {
-    return 'Assalamu Alaikum, $name.';
+    return 'Assalamu alaikum, $name.';
   }
 
   @override
@@ -36464,12 +36564,12 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String rewardQuietCompletionSummaryXpDrops(Object xp, Object drops) {
-    return '$xp XP · $drops drops saved';
+    return '$xp light · $drops drops saved';
   }
 
   @override
   String rewardQuietCompletionSummaryXpOnly(Object xp) {
-    return '$xp XP saved';
+    return '$xp light saved';
   }
 
   @override
@@ -36481,13 +36581,13 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeWidgetsNextPrayerTitle => 'Next Prayer';
 
   @override
-  String get homeWidgetsPrayerOverviewTitle => 'Prayer Overview';
+  String get homeWidgetsPrayerOverviewTitle => 'Today’s prayers';
 
   @override
   String get homeWidgetsDhikrTitle => 'Daily Dhikr';
 
   @override
-  String get homeWidgetsJourneyTitle => 'Journey Progress';
+  String get homeWidgetsJourneyTitle => 'Your journey';
 
   @override
   String get homeWidgetsCurrentPrayerLabel => 'Current prayer';
@@ -36496,11 +36596,11 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeWidgetsNextPrayerLabel => 'Next prayer';
 
   @override
-  String get homeWidgetsNoPrayerTimesTitle => 'Prayer times unavailable';
+  String get homeWidgetsNoPrayerTimesTitle => 'No prayer times yet';
 
   @override
   String get homeWidgetsNoPrayerTimesBody =>
-      'Open Path of Nūr to refresh prayer times for today.';
+      'Open Path of Nūr to update today’s times.';
 
   @override
   String get homeWidgetsDhikrTodayLabel => 'Today';
@@ -36509,21 +36609,20 @@ class AppLocalizationsKu extends AppLocalizations {
   String get homeWidgetsTargetLabel => 'Target';
 
   @override
-  String get homeWidgetsStreakLabel => 'Streak';
+  String get homeWidgetsStreakLabel => 'Days in a row';
 
   @override
   String get homeWidgetsLevelLabel => 'Level';
 
   @override
-  String get homeWidgetsTodayXpLabel => 'Today XP';
+  String get homeWidgetsTodayXpLabel => 'Light today';
 
   @override
-  String get homeWidgetsNoSpiritualContentTitle =>
-      'Spiritual content unavailable';
+  String get homeWidgetsNoSpiritualContentTitle => 'Nothing to show yet';
 
   @override
   String get homeWidgetsNoSpiritualContentBody =>
-      'Open Path of Nūr to refresh today’s spiritual content.';
+      'Open Path of Nūr to load today’s ayah and dua.';
 
   @override
   String get homeWidgetsDuaTitle => 'Daily Dua';
@@ -38296,7 +38395,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get dhikrStreakCaption => 'day streak';
+  String get dhikrStreakCaption => 'days in a row';
 
   @override
   String get dhikrSessionsTodayCaption => 'sessions today';
@@ -38467,7 +38566,7 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String dhikrInsightsStreakCaption(String value) {
-    return 'current streak · best $value';
+    return 'days in a row · most $value';
   }
 
   @override
@@ -38919,9 +39018,9 @@ class AppLocalizationsKu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '$days day streak',
-      one: '1 day streak',
-      zero: 'No streak yet',
+      other: '$days days in a row',
+      one: '1 day in a row',
+      zero: 'Not started yet',
     );
     return '$_temp0';
   }

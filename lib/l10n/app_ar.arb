@@ -1,10 +1,10 @@
 {
   "@@locale": "ar",
   "appTitle": "طريق النور",
-  "notificationsFastingMomentsChannelName": "لحظات الصيام",
-  "notificationsFastingMomentsChannelDescription": "تذكيرات حساسة للوقت لبداية الصوم ونهايته",
-  "notificationsPrayerNotificationOnlyChannelName": "تذكيرات الصلاة (إشعار)",
-  "notificationsPrayerNotificationOnlyChannelDescription": "إشعارات تذكير بالصلاة من دون صوت الأذان",
+  "notificationsFastingMomentsChannelName": "مواقيت الصيام",
+  "notificationsFastingMomentsChannelDescription": "بداية الصيام ونهايته",
+  "notificationsPrayerNotificationOnlyChannelName": "تذكيرات الصلاة (دون أذان)",
+  "notificationsPrayerNotificationOnlyChannelDescription": "تذكيرات الصلاة دون أذان",
   "notificationsPrayerAdhanChannelName": "تذكيرات الصلاة ({adhanTitle})",
   "@notificationsPrayerAdhanChannelName": {
     "placeholders": {
@@ -13,14 +13,14 @@
       }
     }
   },
-  "notificationsPrayerAdhanChannelDescription": "إشعارات تذكير بالصلاة مع صوت الأذان",
+  "notificationsPrayerAdhanChannelDescription": "تذكيرات الصلاة مع الأذان",
   "notificationsPrayerBeforeQazaChannelName": "تذكيرات الصلاة (قبل القضاء)",
-  "notificationsPrayerBeforeQazaChannelDescription": "إشعارات تذكير بالصلاة قبل دخولها في القضاء",
+  "notificationsPrayerBeforeQazaChannelDescription": "تذكير قبل انتهاء وقت كل صلاة",
   "notificationsDailyRemindersChannelName": "التذكيرات اليومية",
   "notificationsDailyRemindersChannelDescription": "تذكيرات الذكر والقرآن والتأمل",
   "notificationsGrowthRemindersChannelName": "تذكيرات النمو",
-  "notificationsGrowthRemindersQuietChannelName": "تذكيرات النمو (هادئ)",
-  "notificationsGrowthRemindersChannelDescription": "تذكيرات لطيفة لعادات النمو",
+  "notificationsGrowthRemindersQuietChannelName": "تذكيرات النمو (هادئة)",
+  "notificationsGrowthRemindersChannelDescription": "تذكيرات بالعادات التي تتابعها في «النمو»",
   "notificationsPrayerAtTimeTitle": "صلاة {prayerName}",
   "@notificationsPrayerAtTimeTitle": {
     "placeholders": {
@@ -29,7 +29,7 @@
       }
     }
   },
-  "notificationsPrayerBeforeQazaTitle": "تذكير وقت {prayerName}",
+  "notificationsPrayerBeforeQazaTitle": "يقترب انتهاء وقت {prayerName}",
   "@notificationsPrayerBeforeQazaTitle": {
     "placeholders": {
       "prayerName": {
@@ -37,15 +37,15 @@
       }
     }
   },
-  "notificationsDhikrTitle": "تذكير بالذكر",
-  "notificationsQuranTitle": "تأمل قرآني",
+  "notificationsDhikrTitle": "وقت الذكر",
+  "notificationsQuranTitle": "تلاوة القرآن",
   "notificationsReflectionTitle": "تأمل يومي",
-  "notificationsFastingTitle": "تذكير بالصيام",
+  "notificationsFastingTitle": "صيام اليوم",
   "notificationsOnThisDayTitle": "في مثل هذا اليوم",
   "notificationsCycleCheckTitle": "متابعة الدورة",
   "notificationsMoonriseTitle": "طلوع القمر",
   "notificationsMoonsetTitle": "غروب القمر",
-  "notificationsPrayerAtTimeBody": "حان وقت صلاة {prayerName}. ابقَ موصولًا بصلاتك.",
+  "notificationsPrayerAtTimeBody": "حان وقت صلاة {prayerName}.",
   "@notificationsPrayerAtTimeBody": {
     "placeholders": {
       "prayerName": {
@@ -53,7 +53,7 @@
       }
     }
   },
-  "notificationsPrayerAtTimeFajrBody": "حان وقت صلاة {prayerName}.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ",
+  "notificationsPrayerAtTimeFajrBody": "حان وقت صلاة {prayerName}.",
   "@notificationsPrayerAtTimeFajrBody": {
     "placeholders": {
       "prayerName": {
@@ -61,7 +61,7 @@
       }
     }
   },
-  "notificationsPrayerBeforeQazaBody": "يوشك وقت {prayerName} على الانتهاء. أدِّها قبل أن تصبح قضاءً.",
+  "notificationsPrayerBeforeQazaBody": "ما زال هناك وقت لصلاة {prayerName}.",
   "@notificationsPrayerBeforeQazaBody": {
     "placeholders": {
       "prayerName": {
@@ -69,15 +69,15 @@
       }
     }
   },
-  "notificationsDhikrBody": "خذي لحظة هادئة للذكر.",
-  "notificationsQuranBody": "عد إلى تلاوتك للقرآن بنية صادقة.",
-  "notificationsReflectionBody": "دوّن تأملًا قصيرًا قبل أن ينتهي يومك.",
-  "notificationsFastingBody": "استعد لنية الصيام اليوم.",
-  "notificationsOnThisDayBody": "افتح تأمل اليوم التاريخي واستعد لحظة ذات معنى من التاريخ الإسلامي.",
-  "notificationsCycleCheckBody": "راجعي حالتك واستأنفي تذكيرات الصلاة عندما تكونين جاهزة.",
+  "notificationsDhikrBody": "لحظة لذكر الله.",
+  "notificationsQuranBody": "افتح المصحف حيث توقفت.",
+  "notificationsReflectionBody": "قبل أن ينتهي اليوم، اكتب عنه سطرًا.",
+  "notificationsFastingBody": "انوِ صيام اليوم.",
+  "notificationsOnThisDayBody": "لحظة من التاريخ الإسلامي وقعت في مثل هذا اليوم.",
+  "notificationsCycleCheckBody": "إذا انتهت أيام عذرك، يمكن أن تعود تذكيرات الصلاة.",
   "notificationsMoonriseBody": "القمر يطلع الآن.",
   "notificationsMoonsetBody": "القمر يغرب الآن.",
-  "notificationsRecoveredReminderBody": "فاتك هذا التذكير سابقًا. {body}",
+  "notificationsRecoveredReminderBody": "من قبل: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
       "body": {
@@ -87,15 +87,15 @@
   },
   "notificationsPrayerActionSnooze5": "ذكرني خلال 5 دقائق",
   "notificationsPrayerActionSnooze10": "ذكرني خلال 10 دقائق",
-  "notificationsPrayerActionMarkOffered": "وضع علامة الصلاة على أنه معروض",
-  "notificationsPrayerActionDismiss": "تجاهل",
-  "notificationsReflectionActionWrite": "اكتب التأمل",
+  "notificationsPrayerActionMarkOffered": "تمت الصلاة",
+  "notificationsPrayerActionDismiss": "إغلاق",
+  "notificationsReflectionActionWrite": "اكتب",
   "notificationsReflectionActionRemind10": "ذكّرني بعد 10 دقائق",
   "notificationsReflectionActionDismiss": "إغلاق",
   "notificationsPrayerNameTahajjud": "التهجد",
   "notificationsGenericPrayerName": "الصلاة",
   "notificationsFastingBeginsNowTitle": "يبدأ الصيام الآن",
-  "notificationsFastingBeginsNowBody": "جددي نية الصيام قبل الفجر. النية محلها القلب.",
+  "notificationsFastingBeginsNowBody": "جدِّد نية الصيام قبل الفجر، فالنية محلها القلب.",
   "notificationsIftarTimeTitle": "حان وقت الإفطار",
   "notificationsIftarTimeBody": "ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله.",
   "notificationsFastingLiveFastBeginsTitle": "بداية الصوم",
@@ -108,7 +108,7 @@
   "notificationsFastingLiveFastEndsArabicTitle": "وقت الإفطار",
   "notificationsFastingLiveEndsIn": "ينتهي خلال",
   "notificationsFastingLiveIftarDuaTitle": "دعاء الإفطار",
-  "notificationsFastingLiveIftarDuaArabic": "ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله",
+  "notificationsFastingLiveIftarDuaArabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ العُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ",
   "notificationsFastingLiveIftarDuaTranslation": "ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله.",
   "notificationsFastingLiveIftarTitle": "الإفطار",
   "notificationsFastingLiveIftarArabicTitle": "وقت الإفطار",
@@ -393,29 +393,23 @@
       }
     }
   },
-  "hadithCurrentStreakLabel": "السلسلة الحالية: {days} يوم{suffix}",
+  "hadithCurrentStreakLabel": "{days, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{days} أيام على التوالي} many{{days} يومًا على التوالي} other{{days} يوم على التوالي}}",
   "@hadithCurrentStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithBestStreakLabel": "أفضل سلسلة متتالية: {days} يوم{suffix}",
+  "hadithBestStreakLabel": "الأكثر على التوالي: {days, plural, =1{يوم واحد} =2{يومان} few{{days} أيام} many{{days} يومًا} other{{days} يوم}}",
   "@hadithBestStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithReflectionCompletedXp": "اكتمل التفكير • +{xp} XP",
+  "hadithReflectionCompletedXp": "اكتمل التأمل · +{xp} نور",
   "@hadithReflectionCompletedXp": {
     "placeholders": {
       "xp": {
@@ -446,14 +440,11 @@
   },
   "hadithTitleLearningPaths": "مسارات الحديث التعلم",
   "hadithSubtitleLearningPaths": "اتبع المسارات المنسقة لدراسة الحديث في تسلسل منظم مع تقدم مطرد.",
-  "hadithPathStreakLabel": "خط المسار: {current} يوم{suffix} • الأفضل: {best}",
+  "hadithPathStreakLabel": "{current, plural, =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{current} أيام على التوالي} many{{current} يومًا على التوالي} other{{current} يوم على التوالي}} · الأكثر: {best}",
   "@hadithPathStreakLabel": {
     "placeholders": {
       "current": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       },
       "best": {
         "type": "int"
@@ -746,13 +737,13 @@
   "duaDetailPlannedTitle": "المحتوى المخطط له",
   "duaDetailPlannedBody": "لم يُتحقَّق بعدُ من نص هذا الدعاء ومصدره.",
   "nextSalah": "التالي الصلاة",
-  "homePrayerSectionTitle": "الصلاة التوقيت",
+  "homePrayerSectionTitle": "مواقيت الصلاة",
   "homePrayerDateToday": "اليوم",
   "homePrayerDateYesterday": "أمس",
   "homePrayerDateTomorrow": "غدًا",
   "homePrayerPreviousDayTooltip": "اليوم السابق",
   "homePrayerNextDayTooltip": "اليوم التالي",
-  "homePrayerCompletedCountValue": "{completed} من {total} إدخالات صلاح متاحة",
+  "homePrayerCompletedCountValue": "أُدّيت {completed} من {total}",
   "@homePrayerCompletedCountValue": {
     "placeholders": {
       "completed": {
@@ -765,20 +756,20 @@
   },
   "dhuhr": "الظهر",
   "atTime": "الساعة 1:30 مساءً",
-  "homeOverviewHeroTitle": "نظرة عامة على نور اليومية",
-  "homeOverviewHeroSubtitle": "ملخص مدمج للعبادة والتعلم والنمو.",
-  "homePrayerProgressTitle": "الصلاة التقدم",
-  "homeDhikrProgressTitle": "الذكر التقدم",
-  "homeCurrentStreakTitle": "التتابع الحالي",
-  "homeXpLevelTitle": "المستوى و XP",
+  "homeOverviewHeroTitle": "لمحة سريعة",
+  "homeOverviewHeroSubtitle": "عبادتك وتعلّمك باختصار.",
+  "homePrayerProgressTitle": "التقدم في الصلاة",
+  "homeDhikrProgressTitle": "التقدم في الذكر",
+  "homeCurrentStreakTitle": "الأيام المتتالية",
+  "homeXpLevelTitle": "المستوى والنور",
   "homeDaysLabel": "أيام",
-  "homeWorshipSummaryTitle": "ملخص الإباضة",
-  "homeWorshipSummarySubtitle": "والذكر الصلاةوالصوم والخوسو في مكان واحد.",
+  "homeWorshipSummaryTitle": "عبادة اليوم",
+  "homeWorshipSummarySubtitle": "كيف تسير عبادتك اليوم.",
   "homeFastingStatusTitle": "حالة الصيام",
-  "homeFastingNotFasting": "عدم الصيام",
+  "homeFastingNotFasting": "غير صائم",
   "homeFastingIntending": "نية الصيام",
   "homeFastingCompleted": "مكتمل",
-  "homeFastingBroken": "مفقود / مكسور",
+  "homeFastingBroken": "فائت أو مُفطَر",
   "worshipPrayerHubTitle": "مركز الصلاة",
   "worshipPrayerHubSubtitle": "أوقات الصلاة، والتتبع، والثبات، والركعات، والإرشاد العملي في مسار واحد مركز.",
   "worshipPrayerTabTimes": "الأوقات",
@@ -944,7 +935,7 @@
   "worshipPrayerIslamicCalendarTitle": "التقويم الإسلامي (وضع العرض)",
   "worshipPrayerIslamicCalendarSubtitle": "يحوّل العرض إلى التاريخ الهجري مع بيانات اليوم المتتبعة نفسها.",
   "settingsPrayerCalendarDisplayTitle": "عرض التقويم",
-  "settingsPrayerCalendarDisplaySubtitle": "اختر ما إذا كانت تواريخ الصلاة المدمجة معروضة بالتنسيق الميلادي أو الهجري.",
+  "settingsPrayerCalendarDisplaySubtitle": "عرض التواريخ بالتقويم الميلادي أو الهجري.",
   "worshipPrayerWeekLabel": "الأسبوع {weekNumber}",
   "@worshipPrayerWeekLabel": {
     "placeholders": {
@@ -963,16 +954,16 @@
   "worshipPrayerRecentPlacesTitle": "الأماكن الأخيرة",
   "worshipPrayerStartTypingToSearch": "ابدأ الكتابة للبحث عن موقع.",
   "worshipPrayerLocationSearchUnavailable": "تعذر العثور على المواقع الآن.",
-  "homeLearnSummaryTitle": "ملخص التعلم",
-  "homeLearnSummarySubtitle": "استمر في مسار معرفتك من خلال المعاينات المركزة.",
-  "homeLearnContinueQuran": "متابعة القرآن",
-  "homeLearnFeaturedLife": "موضوع الحياة المميزة",
-  "homeLearnFeaturedWorld": "موضوع العالم المميز",
-  "homeLearnFeaturedHadith": "الحديث الموضوع المميز",
-  "homeJourneySummaryTitle": "ملخص الرحلة",
-  "homeJourneySummarySubtitle": "تتبع التقدم والحلقات والفتحات التالية.",
-  "homeJourneyXpProgressTitle": "تقدم XP",
-  "homeJourneyNextUnlockTitle": "الفتح التالي",
+  "homeLearnSummaryTitle": "التعلّم",
+  "homeLearnSummarySubtitle": "تابع من حيث توقفت.",
+  "homeLearnContinueQuran": "تابع قراءة القرآن",
+  "homeLearnFeaturedLife": "موضوع مختار من «الحياة»",
+  "homeLearnFeaturedWorld": "موضوع مختار من «العالم»",
+  "homeLearnFeaturedHadith": "موضوع حديث مختار",
+  "homeJourneySummaryTitle": "رحلتك",
+  "homeJourneySummarySubtitle": "مستواك، وما يأتي بعده.",
+  "homeJourneyXpProgressTitle": "النور حتى المستوى التالي",
+  "homeJourneyNextUnlockTitle": "المحطة التالية",
   "appQuickActionOpenToday": "افتح اليوم",
   "appQuickActionReadQuran": "اقرأ القرآن",
   "appQuickActionDailyLearning": "التعلّم اليومي",
@@ -1058,7 +1049,7 @@
   "worshipQiblaLocationMadinah": "Madinah",
   "worshipQiblaLocationJerusalem": "Jerusalem",
   "homeSearchTooltip": "البحث في التطبيق",
-  "homeSearchGuidanceHubTitle": "مركز الهداية الإسلامي",
+  "homeSearchGuidanceHubTitle": "أدلة إسلامية",
   "homeTimeRemainingToOffer": "الوقت المتبقي لصلاة {prayerName}",
   "@homeTimeRemainingToOffer": {
     "placeholders": {
@@ -1092,16 +1083,16 @@
       "time": {}
     }
   },
-  "homePrayerForbiddenSunrise": "الصلاة غير مسموح به الآن • شروق الشمس",
-  "homePrayerForbiddenZenith": "الصلاة غير مسموح به الآن • Zenith",
-  "homePrayerForbiddenSunset": "الصلاة غير مسموح به الآن • غروب الشمس",
+  "homePrayerForbiddenSunrise": "وقت نهي عن الصلاة • الشروق",
+  "homePrayerForbiddenZenith": "وقت نهي عن الصلاة • الزوال",
+  "homePrayerForbiddenSunset": "وقت نهي عن الصلاة • الغروب",
   "homeLevelValue": "المستوى {level}",
   "@homeLevelValue": {
     "placeholders": {
       "level": {}
     }
   },
-  "homeXpValue": "{xp} نقطة خبرة",
+  "homeXpValue": "{xp} نور",
   "@homeXpValue": {
     "placeholders": {
       "xp": {}
@@ -1124,9 +1115,9 @@
   "homeShortcutQiblaLabel": "القبلة",
   "homeShortcutSalahLabel": "الصلاة",
   "homeShortcutDhikrLabel": "أذكار",
-  "homeShortcutDailyCaption": "برنامجك اليومي",
+  "homeShortcutDailyCaption": "يوميًا",
   "homeSalahTahajjudBonusCaption": "يومي · +{count} تهجد",
-  "homeShortcutOpen": "فتح",
+  "homeShortcutOpen": "الاختصارات",
   "homePrayerOfferedStatus": "أُدّيت",
   "homePrayerBeginsAt": "تبدأ عند",
   "homeDurationHoursMinutes": "{hours} س {minutes} د",
@@ -1143,13 +1134,13 @@
   "durationCompactHourSuffix": "س",
   "durationCompactMinuteSuffix": "د",
   "homeTodayContentTitle": "اليوم",
-  "homeTodayContentSubtitle": "اجمع آية اليوم والهداية والتعلم في مكان هادئ واحد.",
+  "homeTodayContentSubtitle": "آية ودرس جديدان كل يوم.",
   "homeEditTitle": "تخصيص الرئيسية",
-  "homeEditSubtitle": "أظهر ما ينفعك فقط. اسحب لإعادة الترتيب وأطفئ ما لا تحتاجه.",
+  "homeEditSubtitle": "اسحب لإعادة الترتيب. أوقف ما لا تحتاج إليه.",
   "homeEditHiddenTitle": "مخفي",
   "homeEditAlwaysOnLabel": "دائمًا ظاهر",
   "homeEditEntryLabel": "تعديل الرئيسية",
-  "homeEditTrackerFootnote": "متتبع مواقيت الصلاة الكامل موجود في العبادة، على بعد نقرة من شريط المواقيت.",
+  "homeEditTrackerFootnote": "متابعة الصلاة الكاملة في «العبادة». المس شريط مواقيت الصلاة لفتحها.",
   "quickActionsTitle": "إجراءات سريعة",
   "quickActionsContinueReading": "متابعة القراءة",
   "quickActionsMarkPrayer": "تسجيل صلاة {prayer}",
@@ -1187,71 +1178,71 @@
   "fastingSuhoorEndsAt": "ينتهي السحور في {time}",
   "fastingIftarAt": "الإفطار في {time}",
   "fastingCompletedThisMonth": "{count} صيام مكتمل هذا الشهر",
-  "fastingStreakDays": "سلسلة صيام {count} يوم",
-  "homeModuleSalahHeroTitle": "بطاقة الصلاة الرئيسية",
+  "fastingStreakDays": "{count, plural, =0{لا أيام صيام بعد} =1{يوم صيام واحد على التوالي} =2{يوما صيام على التوالي} few{{count} أيام صيام على التوالي} many{{count} يوم صيام على التوالي} other{{count} يوم صيام على التوالي}}",
+  "homeModuleSalahHeroTitle": "الصلاة الحالية",
   "homeModulePrayerStripTitle": "شريط مواقيت الصلاة",
-  "homeModulePrayerStripSubtitle": "شريط مضغوط للصلوات الخمس يفتح العبادة.",
+  "homeModulePrayerStripSubtitle": "الصلوات الخمس في سطر واحد. المس لفتح «العبادة».",
   "homeModuleCelestialSubtitle": "طور القمر وشروق الشمس وغروبها.",
   "homeTodayForYouChip": "لك: {location}",
   "homeTodayMomentChip": "لحظة: {location}",
-  "homeRightNowTitle": "أدعية الآن",
+  "homeRightNowTitle": "أدعية هذا الوقت",
   "homeRightNowSubtitle": "أدعية مختارة حسب وقتك من اليوم",
   "levelLabel": "المستوى",
-  "streakLabel": "التتابع",
-  "worshipTitle": "الإباضة",
+  "streakLabel": "الأيام المتتالية",
+  "worshipTitle": "العبادة",
   "learnTitle": "تعلم",
   "homeTitle": "الصفحة الرئيسية",
   "journeyTitle": "النمو",
   "profileDisplayNameLabel": "الاسم المعروض",
   "profileAddressMeAs": "خاطبني على النحو التالي:",
-  "profileBrother": "الأخ",
+  "profileBrother": "أخ",
   "profileSister": "أخت",
-  "profilePrayerSettingsTitle": "الصلاة & إعدادات الصلاة الوقت",
-  "profilePrayerSettingsSubtitle": "تعيين تفضيلات الموقع والحساب لصلاح.",
+  "profilePrayerSettingsTitle": "مواقيت الصلاة",
+  "profilePrayerSettingsSubtitle": "الموقع وطريقة الحساب.",
   "profileLocationLabel": "الموقع",
-  "profileMadhabLabel": "مذهب",
-  "profileCalculationMethodLabel": "الصلاة طريقة الحساب",
+  "profileMadhabLabel": "المذهب",
+  "profileCalculationMethodLabel": "طريقة حساب مواقيت الصلاة",
   "profileAppearanceTitle": "المظهر",
   "profileThemeModeLabel": "وضع القالب",
   "profileThemeDark": "داكن",
   "profileReduceMotion": "تقليل تأثيرات الحركة",
   "profileHighContrastText": "نص عالي التباين",
-  "profileRamadanModeTitle": "الوضع الرمضاني",
-  "profileRamadanModeSubtitle": "إعطاء الأولوية لإيقاع الصيام والاتساق التعبدي.",
-  "profileLossModeTitle": "وضع الخسارة",
-  "profileLossModeSubtitle": "هيكل لطيف للأيام الثقيلة روحيا.",
+  "profileRamadanModeTitle": "دعم رمضان",
+  "profileRamadanModeSubtitle": "يقدّم الصيام والقرآن في رمضان.",
+  "profileLossModeTitle": "دعم الفقد",
+  "profileLossModeSubtitle": "دعاء وآيات مواساة في أوقات الفقد.",
   "profileGentleModeTitle": "الوضع اللطيف",
   "profileTrackingPrivacyTitle": "التتبع والخصوصية",
-  "profileTrackingPrivacySubtitle": "ضوابط للتذكيرات والملخصات ونية البيانات.",
+  "profileTrackingPrivacySubtitle": "ما يُتتبَّع، وما يبقى خاصًا.",
   "profileLocationWhileUsingApp": "الموقع أثناء استخدام التطبيق",
-  "profileLocationEnabledSubtitle": "ممكّن للاستخدام في المقدمة فقط.",
-  "profileLocationDisabledSubtitle": "تمكين للحفاظ على دقة أوقات صلاح.",
+  "profileLocationEnabledSubtitle": "مفعّل أثناء استخدامك للتطبيق.",
+  "profileLocationDisabledSubtitle": "فعّله لمواقيت صلاة دقيقة.",
   "profileOpenSettings": "فتح الإعدادات",
   "profileAllow": "السماح",
   "profilePrivateTrackingModeTitle": "وضع التتبع الخاص",
   "profilePrivateTrackingModeSubtitle": "اجعل التقدم مرئيًا فقط على هذا الجهاز.",
-  "profileMinimalTrackingModeTitle": "الحد الأدنى من وضع التتبع",
-  "profileMinimalTrackingModeSubtitle": "تتبع الأساسيات الرئيسية فقط باستخدام مقاييس مخفضة.",
+  "profileMinimalTrackingModeTitle": "وضع التتبع المختصر",
+  "profileMinimalTrackingModeSubtitle": "تتبّع الأساسيات فقط.",
   "profileHideGrowthVisualsTitle": "إخفاء مرئيات النمو",
-  "profileHideGrowthVisualsSubtitle": "قلل من الصور المتتالية والمستوية للحصول على تجربة أكثر هدوءًا.",
-  "profileReflectionOnlyModeTitle": "وضع التفكير فقط",
-  "profileReflectionOnlyModeSubtitle": "إعطاء الأولوية للتذكيرات والملاحظات على مرئيات التقدم.",
+  "profileHideGrowthVisualsSubtitle": "إخفاء عدّاد الأيام والمستويات.",
+  "profileReflectionOnlyModeTitle": "وضع التأمل فقط",
+  "profileReflectionOnlyModeSubtitle": "تذكيرات وملاحظات، دون رسوم التقدم.",
   "profileNotificationsTitle": "الإشعارات والتذكيرات",
-  "profileNotificationsSubtitle": "عناصر تحكم العنصر النائب للجدولة المستقبلية.",
-  "profilePrayerReminders": "الصلاة رسائل تذكير",
-  "profileDhikrReminders": "الذكر رسائل تذكير",
-  "profileQuranReminders": "آيات قرآنية",
-  "profileReflectionReminders": "تذكيرات التفكير",
-  "profileFastingReminders": "رسائل تذكير بالصيام",
+  "profileNotificationsSubtitle": "اختر التذكيرات التي تصلك.",
+  "profilePrayerReminders": "تذكيرات الصلاة",
+  "profileDhikrReminders": "تذكيرات الذكر",
+  "profileQuranReminders": "تذكيرات القرآن",
+  "profileReflectionReminders": "تذكيرات التأمل",
+  "profileFastingReminders": "تذكيرات الصيام",
   "profileOnThisDayReminders": "تذكيرات «في مثل هذا اليوم»",
-  "profileOnThisDayRemindersSubtitle": "نبّهني عندما يكون في اليوم حدث إسلامي تاريخي يستحق التأمل.",
+  "profileOnThisDayRemindersSubtitle": "عندما يوافق اليوم حدثًا من التاريخ الإسلامي.",
   "profileMoonriseReminders": "تنبيهات طلوع القمر",
   "profileMoonriseRemindersSubtitle": "أبلغني عندما يبدأ القمر في الطلوع.",
   "profileMoonsetReminders": "تنبيهات غروب القمر",
   "profileMoonsetRemindersSubtitle": "أبلغني عندما يبدأ القمر في الغروب.",
   "profileLanguageExpandSubtitle": "اختر اللغة أدناه",
   "profileAboutTitle": "حول",
-  "profilePlannedRemindersToday": "{count} التذكيرات المقررة اليوم",
+  "profilePlannedRemindersToday": "{count} تذكيرات مجدولة اليوم",
   "@profilePlannedRemindersToday": {
     "placeholders": {
       "count": {
@@ -1338,32 +1329,32 @@
   "worshipSectionLandingDuasSubtitle": "افتح مجموعة الدعاء وابحث عن ما يناسب اللحظة.",
   "worshipSectionLandingFastingSubtitle": "قم بمراجعة حالة الصيام والنية واللحظات الرئيسية.",
   "settingsLandingTitle": "الإعدادات",
-  "settingsCategoryAccountSyncSubtitle": "الملفات الشخصية والنسخ الاحتياطي وحالة المزامنة وأمان الحساب.",
-  "settingsCategoryAppearanceSubtitle": "تفضيلات الموضوع والحركة والتباين والقراءة الهادئة.",
-  "settingsCategoryPrayerWorshipSubtitle": "أوقات الصلاة والأذان وإعداد العبادة.",
-  "settingsCategoryLearningSubtitle": "نقاط الدخول للتعلم، وإدارة الأسرة، والإعدادات المتعلقة بالدراسة.",
-  "settingsCategoryNotificationsSubtitle": "تذكيرات الصلاة وضوابط التذكير العامة.",
-  "settingsCategoryWidgetsWatchTitle": "الحاجيات، والأنشطة الحية ومشاهدة",
-  "settingsCategoryWidgetsWatchSubtitle": "إدارة شاشة القفل والجزيرة الديناميكية وأسطح الساعة المتصلة.",
-  "settingsWidgetsEnabledTitle": "تفعيل الويدجت",
-  "settingsWidgetsEnabledSubtitle": "شغّل أو أوقف الويدجت والأنشطة الحية من مكان واحد.",
-  "settingsCategoryLanguageDownloadsSubtitle": "خيارات اللغة وإعدادات المحتوى الجاهزة للتنزيل.",
-  "settingsCategoryPrivacyDataSubtitle": "التحكم في تتبع الرؤية والخصوصية وسلوك البيانات الحساسة.",
+  "settingsCategoryAccountSyncSubtitle": "الملفات الشخصية والنسخ الاحتياطي والمزامنة",
+  "settingsCategoryAppearanceSubtitle": "السمة والحركة والتباين",
+  "settingsCategoryPrayerWorshipSubtitle": "مواقيت الصلاة والأذان",
+  "settingsCategoryLearningSubtitle": "عرض القرآن والعائلة والدراسة",
+  "settingsCategoryNotificationsSubtitle": "تذكيرات الصلاة وغيرها",
+  "settingsCategoryWidgetsWatchTitle": "الأدوات المصغّرة والأنشطة المباشرة والساعة",
+  "settingsCategoryWidgetsWatchSubtitle": "شاشة القفل والجزيرة الديناميكية وApple Watch",
+  "settingsWidgetsEnabledTitle": "الأدوات",
+  "settingsWidgetsEnabledSubtitle": "تشغيل الأدوات والأنشطة المباشرة أو إيقافها.",
+  "settingsCategoryLanguageDownloadsSubtitle": "اللغة والتنزيلات",
+  "settingsCategoryPrivacyDataSubtitle": "ما يُتتبَّع، ومن يراه",
   "settingsHelpGuideTitle": "مساعدة ودليل",
-  "settingsHelpGuideSubtitle": "أدلة عملية قصيرة لاستخدام ميزات التطبيق الرئيسية بثقة.",
-  "settingsCategoryHelpGuideSubtitle": "خطوات بسيطة للبدء والتعلم والتذكيرات والاستخدام اليومي للتطبيقات.",
-  "settingsCategoryAboutSubtitle": "ملاحظات الإصدار والدعم والتفاصيل القانونية وما سيأتي بعد ذلك.",
-  "settingsHelpGuideSearchHint": "أدلة البحث",
-  "settingsHelpGuideBrowseTitle": "فئات الدليل",
+  "settingsHelpGuideSubtitle": "أدلة قصيرة لكل جزء من التطبيق.",
+  "settingsCategoryHelpGuideSubtitle": "أدلة قصيرة لكل جزء من التطبيق",
+  "settingsCategoryAboutSubtitle": "ما الجديد والمساعدة والشؤون القانونية",
+  "settingsHelpGuideSearchHint": "ابحث في الأدلة",
+  "settingsHelpGuideBrowseTitle": "المواضيع",
   "settingsHelpGuideBrowseSubtitle": "افتح موضوعًا لترى شرحًا مختصرًا وخطوات بسيطة.",
-  "settingsHelpGuideSearchResultsTitle": "نتائج البحث",
-  "settingsHelpGuideSearchResultsSubtitle": "دليل المواضيع التحديث أثناء الكتابة.",
-  "settingsHelpGuideSearchEmptyTitle": "لم يتم العثور على أدلة مطابقة",
+  "settingsHelpGuideSearchResultsTitle": "النتائج",
+  "settingsHelpGuideSearchResultsSubtitle": "تتحدّث المواضيع أثناء الكتابة.",
+  "settingsHelpGuideSearchEmptyTitle": "لا أدلة مطابقة",
   "settingsHelpGuideSearchEmptySubtitle": "جرب كلمة رئيسية أبسط أو امسح بحثك لتصفح جميع فئات الدليل.",
-  "settingsHelpGuideStepsTitle": "كيفية استخدامه",
-  "settingsHelpGuideStepsSubtitle": "اجعل كل خطوة بسيطة واستخدم فقط ما يساعدك الآن.",
+  "settingsHelpGuideStepsTitle": "طريقة الاستخدام",
+  "settingsHelpGuideStepsSubtitle": "استخدم ما يفيدك فقط.",
   "settingsHelpGuideNotFoundTitle": "لم يتم العثور على الدليل",
-  "settingsHelpGuideNotFoundSubtitle": "لا يمكن فتح هذا الدليل الآن. ارجع إلى المساعدة والدليل وحاول موضوعًا آخر.",
+  "settingsHelpGuideNotFoundSubtitle": "تعذّر فتح هذا الدليل. جرّب موضوعًا آخر.",
   "helpGuideGettingStartedTitle": "البدء",
   "helpGuideGettingStartedDescription": "قم بإعداد الأساسيات حتى يصبح التطبيق مفيدًا منذ اليوم الأول.",
   "helpGuideGettingStartedStep1": "افتح الإعدادات لاختيار تفضيلات الموقع واللغة والمظهر.",
@@ -1390,8 +1381,8 @@
   "helpGuideDhikrAdhkarStep2": "اختر مجموعة تناسب لحظتك، ثم استخدم العداد المدمج أو تدفق القراءة بالسرعة التي تناسبك.",
   "helpGuideDhikrAdhkarStep3": "عد إلى المنزل أو العبادة لاحقًا لمواصلة إيقاعك ومراجعة تقدمك اليومي.",
   "helpGuideGrowthProgressTitle": "النمو والتقدم",
-  "helpGuideGrowthProgressDescription": "تتبع العادات الثابتة والخطوط ونقاط الخبرة والمسارات المركزة دون أن يشعر التطبيق بالثقل.",
-  "helpGuideGrowthProgressStep1": "افتح Journey لرؤية خطك الحالي ونقاط الخبرة ومسارات النمو ومجالات التركيز اليوم.",
+  "helpGuideGrowthProgressDescription": "تابع عاداتك ومساراتك، واعرف كم يومًا على التوالي.",
+  "helpGuideGrowthProgressStep1": "افتح «النمو» لترى أيامك المتتالية ونورك وتركيز اليوم.",
   "helpGuideGrowthProgressStep2": "استخدم أقسام المسار أو العادة لمواصلة منطقة صغيرة من النمو بدلاً من محاولة القيام بكل شيء مرة واحدة.",
   "helpGuideGrowthProgressStep3": "قم بزيارة الصفحة الرئيسية للحصول على ملخص سريع عندما تحتاج فقط إلى رؤية ما هو معلق اليوم.",
   "helpGuideNotificationsSettingsTitle": "الإخطارات والإعدادات",
@@ -1978,7 +1969,7 @@
     }
   },
   "triviaHomeSubtitle": "مساحة معرفية هادئة للاختبارات القصيرة والمراجعة اليومية والتثبيت اللطيف.",
-  "triviaHomeCurrentStreakLabel": "السلسلة الحالية",
+  "triviaHomeCurrentStreakLabel": "الأيام المتتالية",
   "triviaHomeLongestStreakCaption": "الأطول {count}",
   "@triviaHomeLongestStreakCaption": {
     "placeholders": {
@@ -1992,7 +1983,7 @@
       "count": {}
     }
   },
-  "triviaHomeTriviaXpLabel": "نقاط XP للاختبارات",
+  "triviaHomeTriviaXpLabel": "نور الأسئلة",
   "triviaHomeQuizzesCompletedCount": "تم إكمال {count} اختبارات",
   "@triviaHomeQuizzesCompletedCount": {
     "placeholders": {
@@ -2127,7 +2118,7 @@
   "triviaContinuePathAction": "أكمل المسار",
   "triviaStagesTitle": "المراحل",
   "triviaStagesSubtitle": "تحرك بالترتيب. كل مرحلة مكتملة تفتح المرحلة التالية.",
-  "triviaKnowledgeStageSummary": "{count} صحيحة • {xp} XP",
+  "triviaKnowledgeStageSummary": "{count} أسئلة · +{xp} نور",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -2447,13 +2438,13 @@
   "quranSavedLocations": "المواقع المحفوظة",
   "quranSavedNotes": "الملاحظات المحفوظة",
   "modeRamadanHomeTitle": "التركيز الرمضاني",
-  "modeRamadanHomeSubtitle": "ركز اليوم على الصيام والقرآن والتأمل اللطيف.",
+  "modeRamadanHomeSubtitle": "في هذا الشهر، الصيام والقرآن أولًا.",
   "modeRamadanActionFasting": "الصيام",
   "modeRamadanActionQuran": "القرآن",
-  "modeRamadanActionReflect": "تعكس",
-  "modeLossHomeTitle": "دعم الخسارة",
-  "modeLossHomeSubtitle": "تحرك اليوم بهدوء مع الذكر والصبر والرحمة.",
-  "modeLossActionDhikr": "الذاكرة",
+  "modeRamadanActionReflect": "تأمّل",
+  "modeLossHomeTitle": "دعم الفقد",
+  "modeLossHomeSubtitle": "آيات الرحمة والذكر لأيام الحزن.",
+  "modeLossActionDhikr": "الذكر",
   "modeLossActionMercy": "آيات الرحمة",
   "learnContentTopicLabel": "الموضوع",
   "learnContentNotFound": "لم يتم العثور على المحتوى.",
@@ -2884,8 +2875,8 @@
       }
     }
   },
-  "homeEcosystemSummaryTitle": "النظام البيئي للنمو",
-  "homeEcosystemSummarySubtitle": "معاينات المحيط والمكافآت والدوائر والمجلات والمساعد.",
+  "homeEcosystemSummaryTitle": "في أماكن أخرى من التطبيق",
+  "homeEcosystemSummarySubtitle": "محيطك ودوائرك ومذكراتك.",
   "learnTrackBeginner": "مبتدئ",
   "learnCitationPanelTitle": "المصادر وملاحظات الثقة",
   "learnCompletionQualityTitle": "جودة الإكمال",
@@ -2901,7 +2892,7 @@
   "circlesModerationTitle": "الاعتدال والسلامة",
   "circlesModerationSubtitle": "التقارير ومستوى الثقة وأسطح سياسة المحتوى.",
   "circlesAccountabilityTitle": "مجموعات المساءلة",
-  "circlesAccountabilitySubtitle": "مجموعات دعم خاصة لشرائط الصلاة والعادة.",
+  "circlesAccountabilitySubtitle": "مجموعات خاصة صغيرة يعين أفرادها بعضهم على الاستمرار.",
   "circlesNearbyMosquesTitle": "المساجد القريبة",
   "circlesNearbyMosquesSubtitle": "قم باستيراد جداول الصلاة المحلية واحتفظ بواحد محدد.",
   "circlesOpen": "مفتوح",
@@ -2927,7 +2918,7 @@
   "circlesReportSubmitted": "تم تقديم التقرير لمراجعة الاعتدال.",
   "circlesAccountabilityCheckIn": "تحقق في",
   "circlesAccountabilityJoined": "انضم",
-  "circlesAccountabilityStreak": "خط تسجيل الوصول",
+  "circlesAccountabilityStreak": "حضور متتالٍ",
   "circlesImportTimetable": "استيراد الجدول الزمني",
   "circlesImported": "مستورد",
   "circlesMosqueSelected": "الجدول الزمني المسجد مختارة",
@@ -3250,7 +3241,7 @@
   "learningJourneyIslandLegacyLearningSubtitle": "مكتبة التعلّم الأصلية.",
   "learningJourneyIslandLegacyLearningDescription": "دروس من النسخة الأولى من قسم التعلّم، محفوظة كما كانت.",
   "learningJourneyFeedbackFirstStageOpened": "بدأ التعلم. ابق حاضرًا واتخذ خطوة واحدة ذات معنى.",
-  "learningJourneyFeedbackStageCompleted": "اكتمل هذا المستوى. أنت الآن في سلسلة تعلم لمدة {streak} يوم.",
+  "learningJourneyFeedbackStageCompleted": "{streak, plural, =1{اكتملت المرحلة.} other{اكتملت المرحلة. هذه {streak} أيام على التوالي.}}",
   "@learningJourneyFeedbackStageCompleted": {
     "placeholders": {
       "streak": {
@@ -3258,7 +3249,7 @@
       }
     }
   },
-  "learningJourneyHomeStreakMessage": "أنت الآن في سلسلة تعلم مدتها {days} يوم.",
+  "learningJourneyHomeStreakMessage": "{days, plural, =1{يوم من التعلّم.} other{{days} أيام من التعلّم على التوالي.}}",
   "@learningJourneyHomeStreakMessage": {
     "placeholders": {
       "days": {
@@ -3646,7 +3637,7 @@
   },
   "kidsArabicParentReviewNotNeeded": "No review needed right now",
   "kidsArabicParentWeeklyConsistencyTitle": "الاستمرارية الأسبوعية",
-  "kidsArabicParentWeeklyConsistencyBody": "{count} gentle Arabic day this week and a {streak} day streak.",
+  "kidsArabicParentWeeklyConsistencyBody": "أيام العربية هذا الأسبوع: {count}. الأيام المتتالية: {streak}.",
   "@kidsArabicParentWeeklyConsistencyBody": {
     "placeholders": {
       "count": {
@@ -5618,7 +5609,7 @@
       "journey": {}
     }
   },
-  "familyLearningStreakLabel": "السلسلة: {days} يوم",
+  "familyLearningStreakLabel": "{days, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{days} أيام على التوالي} many{{days} يومًا على التوالي} other{{days} يوم على التوالي}}",
   "@familyLearningStreakLabel": {
     "placeholders": {
       "days": {
@@ -5792,7 +5783,7 @@
   },
   "settingsCurrentLocation": "الموقع الحالي",
   "settingsProfilePersonalizationTitle": "الملف الشخصي والتخصيص",
-  "settingsProfilePersonalizationSubtitle": "احتفظ باسمك وتفضيلات عنوانك وأوضاعك واختصاراتك المتعلقة بملفك الشخصي هنا الآن بعد أن لم يعد ملف التعريف علامة تبويب ذات مستوى أعلى.",
+  "settingsProfilePersonalizationSubtitle": "كيف يحيّيك التطبيق، وأوضاع الرعاية.",
   "settingsProfileDisplayNameSummary": "{title}: {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
@@ -5804,10 +5795,10 @@
       }
     }
   },
-  "settingsWhatsNewTitle": "ما هو الجديد",
+  "settingsWhatsNewTitle": "ما الجديد",
   "settingsWhatsNewSubtitle": "اطلع على آخر تغييرات التطبيق والتحديثات السابقة.",
-  "settingsComingSoonTitle": "قريبا",
-  "settingsComingSoonSubtitle": "قم بمعاينة التحسينات التالية المخطط لها للتطبيق.",
+  "settingsComingSoonTitle": "قيد الإعداد",
+  "settingsComingSoonSubtitle": "ما يُعمل عليه تاليًا.",
   "shellQuranMiniPlayerTitle": "Qur’an Playback",
   "shellQuranMiniPlayerPlaying": "Playing now",
   "shellQuranMiniPlayerPaused": "Paused",
@@ -5833,40 +5824,40 @@
   "profileWhatsNewChangelogSubtitle": "يظهر أحدث تحديث أولًا. تبقى التحديثات الأقدم مطوية حتى تقوم بتوسيعها.",
   "profileWhatsNewDateMarch2026": "مارس 2026",
   "profileWhatsNewDateFebruary2026": "فبراير 2026",
-  "profileWhatsNewEntry113Title": "تحسينات على الإعداد الأولي والحركة وويدجت الصلاة",
-  "profileWhatsNewEntry113Summary": "هذا التحديث حسّن الإعداد الأولي للتطبيق، ونعّم انتقالات الصفحات، وجعل ويدجت الصلاة أكثر هدوءًا وتحكمًا.",
-  "profileWhatsNewEntry113Item1": "تم دمج الاسم واختيار الأخ/الأخت في خطوة إعداد واحدة، مع ترك الاسم فارغًا افتراضيًا.",
-  "profileWhatsNewEntry113Item2": "أصبح تتبع العادات اختياريًا في البداية حتى يتمكن المستخدم من تفعيله لاحقًا بالوتيرة التي تناسبه.",
-  "profileWhatsNewEntry113Item3": "تمت إضافة حركة دخول خفيفة للصفحات المشتركة وصفحات الإعداد الأولي، مع احترام كامل لتقليل الحركة.",
-  "profileWhatsNewEntry113Item4": "تمت إزالة العد التنازلي ثانية بثانية من النشاط المباشر للصلاة، مع إضافة عناصر تحكم مستقرة منفصلة لـ Dynamic Island وويدجت شاشة القفل.",
-  "profileWhatsNewEntry113Item5": "تم تبسيط وضع السمة بحيث أصبح مظهر Path of Nūr الهادئ هو السمة الافتراضية.",
-  "profileWhatsNewEntry112Title": "تحسينات عربية قرآنية بمصادر موثوقة",
-  "profileWhatsNewEntry112Summary": "أصبح محتوى تعلّم العربية القرآنية يستخدم ضبطًا أشد للمصادر حتى تكون الأمثلة القرآنية الظاهرة أوضح مصدرًا وأكثر اتساقًا.",
-  "profileWhatsNewEntry112Item1": "تمت مراجعة الحروف وأمثلة الكلمات ودروس العبارات وأمثلة القواعد لاستخدام مراجع قرآنية موثوقة حيث يناسب ذلك.",
-  "profileWhatsNewEntry112Item2": "تمت إضافة المراجع المصدرية مباشرة داخل مسار الدرس حتى يمكن تتبع الأمثلة بوضوح.",
-  "profileWhatsNewEntry112Item3": "تم قفل مجموعة كلمات العربية القرآنية الأساسية ذات المئة كلمة على المصدر بحيث تتطلب الإضافات المستقبلية بيانات مصدر.",
+  "profileWhatsNewEntry113Title": "الإعداد والحركة والأدوات",
+  "profileWhatsNewEntry113Summary": "إعداد أقصر، وصفحات أنعم، وأدوات صلاة أكثر ثباتًا.",
+  "profileWhatsNewEntry113Item1": "صار الاسم والتحية خطوة واحدة، والاسم اختياري.",
+  "profileWhatsNewEntry113Item2": "صار تتبّع العادات اختياريًا، ويمكنك تفعيله لاحقًا.",
+  "profileWhatsNewEntry113Item3": "تظهر الصفحات الآن بالتلاشي، إلا إذا كان «تقليل الحركة» مفعّلًا.",
+  "profileWhatsNewEntry113Item4": "لم يعد العد التنازلي للصلاة على شاشة القفل يتغير كل ثانية.",
+  "profileWhatsNewEntry113Item5": "صار Noor Glass المظهر الافتراضي.",
+  "profileWhatsNewEntry112Title": "العربية القرآنية بمصادرها",
+  "profileWhatsNewEntry112Summary": "كل مثال قرآني في دروس العربية يذكر الآن مصدره.",
+  "profileWhatsNewEntry112Item1": "رُوجع كل مثال من العربية القرآنية على مصدر موثوق.",
+  "profileWhatsNewEntry112Item2": "يعرض كل مثال الآن مصدره.",
+  "profileWhatsNewEntry112Item3": "لا تُضاف الكلمات الجديدة إلا مع مصدرها.",
   "profileWhatsNewEntry111Title": "الأسئلة الإسلامية ومسارات المعرفة",
-  "profileWhatsNewEntry111Summary": "توسعت الأسئلة لتصبح ميزة تعلم أشمل مع مجموعات أسئلة منظمة ومسارات موضوعية موجهة.",
-  "profileWhatsNewEntry111Item1": "تمت إضافة الأسئلة الإسلامية مع أسئلة حسب الفئة، ومسار مراجعة، وسلوك اختبار يومي، وإحصاءات، وتكامل للمكافآت.",
-  "profileWhatsNewEntry111Item2": "تم تقديم مسارات المعرفة لرحلات تعلم موجهة تتضمن بطاقات تعليمية قصيرة واختبارات مرحلية.",
-  "profileWhatsNewEntry111Item3": "تم توسيع مجموعات الأسئلة المنتقاة لتشمل الأنبياء، وأساسيات القرآن، والصلاة، ورمضان، والدعاء، والسيرة، والتاريخ الإسلامي.",
+  "profileWhatsNewEntry111Summary": "صارت الأسئلة طريقة للتعلّم، بحزم ومسارات موجّهة.",
+  "profileWhatsNewEntry111Item1": "جديد: الأسئلة الإسلامية، مع سؤال يومي ومراجعة للأسئلة الفائتة.",
+  "profileWhatsNewEntry111Item2": "جديد: مسارات المعرفة، دروس قصيرة يتبع كلًّا منها اختبار.",
+  "profileWhatsNewEntry111Item3": "حزم أسئلة جديدة عن الأنبياء والقرآن والصلاة ورمضان والسيرة.",
   "profileWhatsNewEntry110Title": "ممارسة أذكى للعربية القرآنية",
-  "profileWhatsNewEntry110Summary": "أصبح تعلم العربية القرآنية أكثر تكيفًا، مع مراجعة أوضح وإرشاد أفضل عبر مسار التعليم.",
-  "profileWhatsNewEntry110Item1": "تمت إضافة نظام مراجعة يومية ذكي يعتمد على التكرار المتباعد واستهداف مواطن الضعف بشكل متكيف.",
-  "profileWhatsNewEntry110Item2": "تم تقديم تتبع قوة التذكر، وسجل المراجعة، وإظهار أهدأ للتقدم على لوحة التعلم.",
-  "profileWhatsNewEntry110Item3": "تم نقل تعلّم العربية القرآنية إلى وجهة تعلم مستقلة لتسهيل الوصول إليه.",
-  "profileComingSoonRoadmapTitle": "على خارطة الطريق",
-  "profileComingSoonRoadmapSubtitle": "هذه هي المجالات التالية التي يجري العمل على تشكيلها في التحديثات القادمة.",
-  "profileComingSoonCard1Title": "إرشاد أعمق في العربية القرآنية",
-  "profileComingSoonCard1Description": "يجري التخطيط لإضافة أمثلة أكثر موثوقية مرتبطة بالمصادر، ودعم مراجعة أقوى، وتسلسل أوضح للدروس.",
-  "profileComingSoonCard2Title": "رحلات أسئلة أوسع",
-  "profileComingSoonCard2Description": "يجري التخطيط لمسارات معرفية أكثر تنسيقًا، وتغطية أقوى للفئات، وتشخيص أفضل للمحتوى.",
-  "profileComingSoonCard3Title": "تحسينات أدق على ويدجت الصلاة",
-  "profileComingSoonCard3Description": "المزيد من الصقل لويدجت شاشة القفل وDynamic Island، مع عرض أدق وخيارات أكثر استقرارًا.",
-  "profileComingSoonCard4Title": "تخصيص ألطف",
-  "profileComingSoonCard4Description": "يجري التخطيط لمزيد من خيارات الإعداد الأولي والملف الشخصي حتى يتكيف التطبيق دون أن يشعر المستخدم بثقل.",
-  "settingsAccountsSyncTitle": "الحسابات والملفات الشخصية والمزامنة",
-  "settingsAccountsSyncSubtitle": "قم بإدارة الأجهزة المشتركة والملفات الشخصية المحمية ووضع المزامنة والنسخ الاحتياطية دون إزعاج رحلتك الحالية.",
+  "profileWhatsNewEntry110Summary": "صار تمرين العربية القرآنية يتكيف مع ما تعرفه.",
+  "profileWhatsNewEntry110Item1": "جديد: المراجعة اليومية، تعيد إليك الكلمات الأقرب إلى النسيان.",
+  "profileWhatsNewEntry110Item2": "تُظهر لوحة التعلّم الآن مدى رسوخ كل كلمة.",
+  "profileWhatsNewEntry110Item3": "«تعلّم العربية القرآنية» له الآن مكانه الخاص في «التعلّم».",
+  "profileComingSoonRoadmapTitle": "قيد الإعداد",
+  "profileComingSoonRoadmapSubtitle": "التالي، إن شاء الله.",
+  "profileComingSoonCard1Title": "مزيد من العربية القرآنية",
+  "profileComingSoonCard1Description": "أمثلة أكثر مع مصادرها، وخطوات أوضح من درس إلى درس.",
+  "profileComingSoonCard2Title": "مزيد من مسارات الأسئلة",
+  "profileComingSoonCard2Description": "مسارات أكثر، ومواضيع أكثر للاختيار.",
+  "profileComingSoonCard3Title": "أدوات صلاة أكثر ثباتًا",
+  "profileComingSoonCard3Description": "أدوات أوضح لشاشة القفل والجزيرة الديناميكية.",
+  "profileComingSoonCard4Title": "طرق أكثر لتجعله لك",
+  "profileComingSoonCard4Description": "خيارات إضافية قليلة في الإعداد وفي ملفك الشخصي.",
+  "settingsAccountsSyncTitle": "الحسابات والملفات الشخصية",
+  "settingsAccountsSyncSubtitle": "الملفات الشخصية والنسخ الاحتياطية.",
   "settingsCurrentProfileTitle": "الملف الشخصي الحالي",
   "settingsNoProfileSelected": "لم يتم تحديد أي ملف تعريف",
   "settingsSyncStatusTitle": "حالة المزامنة",
@@ -6146,7 +6137,7 @@
   "accountsSyncRemoteDomainPrayer": "تتبّع الصلاة",
   "accountsSyncRemoteDomainDhikr": "تقدم الذكر والسجل",
   "accountsSyncRemoteDomainQuran": "تقدم القرآن وآخر القراءات",
-  "accountsSyncRemoteDomainGrowth": "نقاط الخبرة والقطرات وتقدم المحيط",
+  "accountsSyncRemoteDomainGrowth": "النور والقطرات والمحيط",
   "accountsSyncRemoteDomainLearning": "تقدم التعلّم",
   "accountsSyncRemoteDomainJournal": "المذكرات والملاحظات",
   "accountsSyncRemoteDomainReminders": "التذكيرات وتفضيلات الصلاة",
@@ -6464,9 +6455,9 @@
   "accountsSyncDevicePlatformAndroidTablet": "جهاز أندرويد لوحي",
   "accountsSyncDevicePlatformWearOsWatch": "ساعة Wear OS",
   "accountsSyncDevicePlatformAndroidTv": "تلفزيون أندرويد",
-  "settingsAdhanTitle": "أذان",
-  "settingsAdhanSubtitle": "اختر أذان فجر مخصصًا، وقم بمعاينة المقاطع المجمعة، واحتفظ بصوت الصلاة دون اتصال بالإنترنت.",
-  "settingsPreviewVolumeTitle": "المعاينة والحجم",
+  "settingsAdhanTitle": "الأذان",
+  "settingsAdhanSubtitle": "اختر أذانًا، واستمع إليه قبل أن تختار.",
+  "settingsPreviewVolumeTitle": "المعاينة ومستوى الصوت",
   "settingsPercentValue": "{value}٪",
   "@settingsPercentValue": {
     "placeholders": {
@@ -6476,15 +6467,15 @@
     }
   },
   "settingsAdhanPickerFajrTitle": "اختر أذان الفجر",
-  "settingsAdhanPickerFajrSubtitle": "يُستخدم فقط لتشغيل أذان صلاة الفجر.",
+  "settingsAdhanPickerFajrSubtitle": "يُرفع عند الفجر.",
   "settingsAdhanPickerRegularTitle": "اختر الأذان العادي",
-  "settingsAdhanPickerRegularSubtitle": "يُستخدم للظهر والعصر والمغرب والعشاء.",
+  "settingsAdhanPickerRegularSubtitle": "يُرفع عند سائر الصلوات.",
   "settingsAdhanPreviewStopTooltip": "إيقاف المعاينة",
   "settingsAdhanPreviewPlayTooltip": "تشغيل المعاينة",
-  "settingsUseAppVolumeTitle": "استخدم حجم التطبيق",
-  "settingsUseAppVolumeSubtitle": "حافظ على محاذاة تشغيل المعاينة مع مستوى صوت التطبيق.",
-  "settingsAdhanPreviewVolume": "حجم معاينة الأذان",
-  "settingsUsingAppVolume": "باستخدام حجم التطبيق",
+  "settingsUseAppVolumeTitle": "استخدام مستوى صوت التطبيق",
+  "settingsUseAppVolumeSubtitle": "تُشغَّل المعاينات بمستوى صوت التطبيق.",
+  "settingsAdhanPreviewVolume": "مستوى صوت معاينة الأذان",
+  "settingsUsingAppVolume": "يُستخدم مستوى صوت التطبيق",
   "settingsRestoreDefaultAdhanSettings": "استعادة إعدادات الأذان الافتراضية",
   "settingsMadhabShafii": "الشافعي",
   "settingsMadhabHanafi": "حنفي",
@@ -6495,68 +6486,68 @@
   "settingsCalculationMethodIsna": "إيسنا",
   "settingsCalculationMethodKarachi": "كراتشي",
   "settingsCalculationMethodUmmAlQura": "ام القرى",
-  "settingsStableDynamicIslandTitle": "جزيرة ديناميكية مستقرة",
-  "settingsStableDynamicIslandSubtitle": "حافظ على جزيرة الصلاة الديناميكية في تصميم أكثر هدوءًا وثباتًا.",
-  "settingsStableLockScreenWidgetTitle": "القطعة شاشة القفل مستقرة",
-  "settingsStableLockScreenWidgetSubtitle": "احتفظ بالنشاط المباشر لشاشة قفل الصلاة في تصميم أكثر هدوءًا وثباتًا.",
+  "settingsStableDynamicIslandTitle": "الجزيرة الديناميكية بتصميم ثابت",
+  "settingsStableDynamicIslandSubtitle": "إبقاء الجزيرة الديناميكية للصلاة بتصميم ثابت.",
+  "settingsStableLockScreenWidgetTitle": "أداة شاشة القفل بتصميم ثابت",
+  "settingsStableLockScreenWidgetSubtitle": "إبقاء نشاط الصلاة المباشر على شاشة القفل بتصميم ثابت.",
   "settingsThemeChoiceDefault": "الافتراضي",
-  "settingsThemeChoiceCalmBeautiful": "هادئ وجميل",
+  "settingsThemeChoiceCalmBeautiful": "الأصلي",
   "settingsThemeChoiceEasyRead": "سهلة القراءة",
-  "settingsThemeChangedSuccessfully": "تم تغيير الموضوع بنجاح",
+  "settingsThemeChangedSuccessfully": "تغيّرت السمة",
   "settingsVisualPreferencesTitle": "التفضيلات المرئية",
-  "settingsDisableColoredGlassTitle": "تعطيل الزجاج الملوّن",
-  "settingsDisableColoredGlassSubtitle": "أبقِ الأسطح الزجاجية مع إزالة المعالجة اللونية الملوّنة.",
+  "settingsDisableColoredGlassTitle": "زجاج شفاف",
+  "settingsDisableColoredGlassSubtitle": "يبقى الزجاج، دون التلوين.",
   "settingsVisualPreferenceUpdated": "تم تحديث التفضيل المرئي",
-  "settingsDisableBackgroundTitle": "تعطيل الخلفية",
+  "settingsDisableBackgroundTitle": "إخفاء الخلفية",
   "settingsDisableBackgroundSubtitle": "إخفاء صور الخلفية المزخرفة للحصول على عرض أكثر وضوحًا.",
   "settingsDefaultAppearanceActive": "المظهر الافتراضي نشط",
   "settingsAppearanceResetToDefault": "إعادة تعيين المظهر إلى الوضع الافتراضي",
   "settingsResetAppearance": "إعادة ضبط المظهر",
   "settingsPrayerNotificationsTitle": "إشعارات الصلاة",
-  "settingsPrayerNotificationsSubtitle": "احتفظ بجميع سلوكيات تذكير الصلاة في مكان واحد، مع وضع واحد لكل صلاة.",
-  "settingsPrayerRemindersToggleSubtitle": "قم بتشغيل أو إيقاف تشغيل جميع تذكيرات الصلاة دون تغيير أوضاع الصلاة المحفوظة.",
+  "settingsPrayerNotificationsSubtitle": "اختر كيف تذكّرك كل صلاة.",
+  "settingsPrayerRemindersToggleSubtitle": "شغّل تذكيرات الصلاة كلها أو أوقفها. تبقى اختياراتك لكل صلاة محفوظة.",
   "settingsPrayerTimeModeTitle": "وضع وقت الصلاة",
-  "settingsPrayerTimeModeSubtitle": "اختر كيفية تعامل مسار نور مع جدول الصلاة الخاص بك. يجب على معظم المستخدمين الاحتفاظ بأوقات الصلاة المحسوبة وإجراء تعديلات صغيرة إذا لزم الأمر.",
-  "settingsPrayerTimeModeCalculatedAdjustedTitle": "الأوقات المحسوبة + التعديلات",
-  "settingsPrayerTimeModeCalculatedAdjustedDescription": "الأفضل بالنسبة لمعظم المستخدمين. يقوم Path of Nūr بحساب أوقات الصلاة لموقعك وطريقتك كل يوم، ثم يقوم بتطبيق التعديلات المحفوظة لكل صلاة تلقائيًا.",
-  "settingsPrayerTimeModeManualTitle": "أوقات الصلاة اليدوية بالكامل",
-  "settingsPrayerTimeModeManualDescription": "استخدم أوقات الصلاة المحددة التي تدخلها بنفسك. يتجاوز هذا حساب الصلاة اليومي العادي لأوقات الصلاة المتعقبة ويجب استخدامه فقط إذا كنت تريد جدولًا يدويًا ثابتًا عن عمد.",
-  "settingsManualTimesPrefilledFromToday": "تم ملء الأوقات اليدوية مسبقًا من جدول الصلاة النشط لهذا اليوم.",
-  "settingsPrayerTimeModeManualNote": "يعد الوضع اليدوي خيارًا متقدمًا. إذا تغيرت أوقات الصلاة المحلية لديك موسميًا، فقد تحتاج إلى تحديثها بنفسك.",
+  "settingsPrayerTimeModeSubtitle": "يُبقي أغلب الناس الأوقات المحسوبة ويعدّلونها بضع دقائق.",
+  "settingsPrayerTimeModeCalculatedAdjustedTitle": "محسوبة، مع التعديلات",
+  "settingsPrayerTimeModeCalculatedAdjustedDescription": "الأفضل لأغلب الناس. تُحسب الأوقات كل يوم، ثم تُضاف تعديلاتك.",
+  "settingsPrayerTimeModeManualTitle": "أوقات يدوية",
+  "settingsPrayerTimeModeManualDescription": "أدخل كل وقت بنفسك. يبقى ثابتًا حتى تغيّره.",
+  "settingsManualTimesPrefilledFromToday": "مأخوذة من الأوقات المحسوبة لليوم.",
+  "settingsPrayerTimeModeManualNote": "تتغير أوقات الصلاة مع الفصول، لذا تحتاج الأوقات اليدوية إلى تحديث بيدك.",
   "settingsRecommendedBadge": "موصى به",
   "settingsPrayerTimeAdjustmentsTitle": "تعديلات وقت الصلاة",
-  "settingsPrayerTimeAdjustmentsSubtitle": "قم بضبط أوقات الصلاة المحسوبة ببضع دقائق. سيستمر مسار نور في حساب أوقات الصلاة بشكل طبيعي لموقعك وطريقتك، ثم قم بتطبيق التعديلات المحفوظة تلقائيًا.",
-  "settingsPrayerTimeAdjustmentsExample": "إذا تم حساب الفجر على أنه الساعة 5:00 صباحًا وقمت بتغييره إلى 4:55 صباحًا، فسيحفظ التطبيق تعديلًا لمدة -5 دقائق لصلاة الفجر. ستستخدم أوقات صلاة الفجر المستقبلية أيضًا نفس التعديل المحفوظ.",
-  "settingsPrayerTimeAdjustmentsScope": "يتم استخدام تعديلاتك عبر التطبيق لعرض الصلاة والتذكيرات والعد التنازلي وتتبع الصلاة يوميًا.",
+  "settingsPrayerTimeAdjustmentsSubtitle": "حرّك وقتًا محسوبًا بضع دقائق ليوافق مسجدك.",
+  "settingsPrayerTimeAdjustmentsExample": "مثلًا، إذا حُسب الفجر عند 5:00 وضبطته على 4:55، يصير الفجر أبكر بخمس دقائق كل يوم.",
+  "settingsPrayerTimeAdjustmentsScope": "تُستخدم الأوقات المعدّلة في كل التطبيق، ومنها التذكيرات.",
   "settingsCustomAdjustmentsActive": "التعديلات المخصصة نشطة",
   "settingsResetAllAdjustmentsTitle": "إعادة تعيين كافة التعديلات؟",
   "settingsResetAllAdjustmentsBody": "سيؤدي هذا إلى إعادة الفجر والظهر والعصر والمغرب والعشاء إلى أوقاتهم المحسوبة.",
-  "settingsResetAllAdjustments": "إعادة ضبط كافة التعديلات",
+  "settingsResetAllAdjustments": "إعادة ضبط كل التعديلات",
   "settingsResetAdjustmentsNote": "تؤدي إعادة الضبط إلى إزالة جميع الإزاحات المحفوظة وإعادة كل صلاة إلى وقتها المحسوب.",
   "settingsManualPrayerTimesTitle": "أوقات الصلاة اليدوية",
-  "settingsManualPrayerTimesSubtitle": "سيتم استخدام هذه الأوقات اليدوية عبر التطبيق للتذكير والعد التنازلي وتتبع الصلاة أثناء تنشيط الوضع اليدوي.",
-  "settingsUseTodaysCalculatedTimes": "استخدم الأوقات المحسوبة اليوم",
+  "settingsManualPrayerTimesSubtitle": "ما دام الوضع اليدوي مفعّلًا، تُستخدم هذه الأوقات في كل مكان.",
+  "settingsUseTodaysCalculatedTimes": "استخدام أوقات اليوم المحسوبة",
   "settingsResetManualTimes": "إعادة ضبط الأوقات اليدوية",
   "settingsReturnToRecommendedMode": "العودة إلى الوضع الموصى به",
-  "settingsMosqueTimeComparisonTitle": "مسجد مقارنة الوقت",
-  "settingsMosqueTimeComparisonSubtitle": "قارن جدول مواعيد مسجدك المحلي مع أوقات الصلاة المحسوبة والمعدلة في تطبيق Path of Nūr. يظل هذا محليًا ويساعدك على مراجعة مدى قرب تعديلاتك الحالية.",
+  "settingsMosqueTimeComparisonTitle": "المقارنة بمواقيت المسجد",
+  "settingsMosqueTimeComparisonSubtitle": "قارن جدول مسجدك بأوقات التطبيق. لا يغادر شيء هاتفك.",
   "settingsApplySuggestedAdjustments": "تطبيق التعديلات المقترحة",
-  "settingsJumuahSettingsTitle": "إعدادات جمعة",
-  "settingsJumuahSettingsSubtitle": "استخدم وقت تذكير خاص بيوم الجمعة إذا كان توقيت الجمعة يختلف عن وقت الظهر القياسي.",
-  "settingsEnableJumuahOverrideTitle": "تمكين تجاوز جمعة",
-  "settingsEnableJumuahOverrideSubtitle": "استخدم تذكيرًا مخصصًا في منتصف نهار الجمعة دون تغيير جدول الصلاة الذي يتم تتبعه.",
+  "settingsJumuahSettingsTitle": "إعدادات الجمعة",
+  "settingsJumuahSettingsSubtitle": "إذا كانت جمعة مسجدك في غير وقت الظهر.",
+  "settingsEnableJumuahOverrideTitle": "استخدام موعد جمعة مسجدي",
+  "settingsEnableJumuahOverrideSubtitle": "ذكّرني بموعد جمعة مسجدي بدلًا من الظهر.",
   "settingsJumuahTimeTitle": "وقت الجمعة",
-  "settingsJumuahTimeSubtitle": "يُستخدم لسلوك تذكير يوم الجمعة عند تحديده.",
+  "settingsJumuahTimeSubtitle": "يستخدم تذكير الجمعة هذا الوقت.",
   "settingsNotSet": "لم يتم ضبطه",
   "settingsUnavailable": "غير متاح",
   "settingsNoChange": "لا تغيير",
   "settingsModified": "معدلة",
   "settingsApplySuggestedAdjustmentsTitle": "تطبيق التعديلات المقترحة",
-  "settingsApplySuggestedAdjustmentsSubtitle": "قم بمراجعة الإزاحات المقترحة قبل استبدال تعديلات الوقت المحسوبة الحالية.",
-  "settingsPrayerAdjustmentEditorFutureUseNote": "سيتم تطبيق هذا التعديل على أوقات الصلاة المحسوبة في المستقبل لهذه الصلاة أيضًا.",
-  "settingsResetThisPrayer": "إعادة تعيين هذا صلاح",
-  "settingsFridayReminderModeNormalDhuhr": "توقيت الظهر العادي",
-  "settingsFridayReminderModeCustomJumuah": "وقت جمعة مخصص",
+  "settingsApplySuggestedAdjustmentsSubtitle": "راجع الأوقات الجديدة قبل أن تحل محل تعديلاتك.",
+  "settingsPrayerAdjustmentEditorFutureUseNote": "ينطبق هذا التغيير على الأيام القادمة أيضًا.",
+  "settingsResetThisPrayer": "إعادة ضبط هذه الصلاة",
+  "settingsFridayReminderModeNormalDhuhr": "عند الظهر",
+  "settingsFridayReminderModeCustomJumuah": "عند موعد جمعتي",
   "settingsPrayerNameFajr": "الفجر",
   "settingsPrayerNameJumuah": "الجمعة",
   "settingsPrayerNameDhuhr": "الظهر",
@@ -6567,20 +6558,20 @@
   "settingsNotificationModeAdhan": "أذان",
   "settingsNotificationModeBeforeQaza": "قبل القضاء",
   "settingsAttributionsLicensesTitle": "السمات والتراخيص",
-  "settingsSyncModePathOfNurCloud": "مسار سحابة نور",
+  "settingsSyncModePathOfNurCloud": "سحابة Path of Nūr",
   "settingsSyncModeICloud": "آي كلاود",
   "settingsSyncModeLocalOnly": "محلي فقط",
   "settingsSyncModeManualBackupOnly": "النسخ الاحتياطي اليدوي فقط",
-  "settingsSyncStateAllCaughtUp": "جميع المحاصرين",
-  "settingsSyncStateSyncing": "المزامنة",
-  "settingsSyncStateOfflinePending": "غير متصل بالتغييرات المعلقة",
+  "settingsSyncStateAllCaughtUp": "كل شيء محدَّث",
+  "settingsSyncStateSyncing": "جارٍ المزامنة",
+  "settingsSyncStateOfflinePending": "غير متصل. ستُزامَن التغييرات لاحقًا.",
   "settingsSyncStateNeedsAttention": "يحتاج إلى اهتمام",
   "settingsSyncStateLocalOnly": "محلي فقط",
   "settingsSyncStateICloudActive": "آي كلاود نشط",
-  "settingsThemeModeDefaultDescription": "يبدو مسار نور الافتراضي ذو ملمس ناعم وأنيق وعمق لطيف.",
-  "settingsThemeModeCalmBeautifulDescription": "أسلوب Path of Nur الهادئ القديم بدفء ناعم وعمق مألوف.",
-  "settingsThemeModeEasyReadDescription": "خلفيات أبسط وتباين أقوى لقراءة مركّزة. يوصى بها لجلسات القراءة الأطول.",
-  "settingsThemeModeDarkDescription": "مظهر هادئ في الإضاءة المنخفضة للاستخدام الليلي. يوصى به للبيئات منخفضة الإضاءة.",
+  "settingsThemeModeDefaultDescription": "المظهر الكلاسيكي لـ Path of Nūr.",
+  "settingsThemeModeCalmBeautifulDescription": "المظهر الأول لـ Path of Nūr، دافئ ومألوف.",
+  "settingsThemeModeEasyReadDescription": "أسطح بسيطة وتباين قوي للقراءة الطويلة.",
+  "settingsThemeModeDarkDescription": "مظهر داكن للاستخدام ليلًا.",
   "settingsCurrentProfileSummary": "{name} — {syncMode}",
   "@settingsCurrentProfileSummary": {
     "placeholders": {
@@ -7538,7 +7529,7 @@
   "gardenPageLearningMeaningBody": "التعلّم ينضج ليصبح ثمراً: فهمًا وبصيرةً وعملًا أفضل.",
   "gardenPageDropsMeaningTitle": "القطرات",
   "gardenPageDropsMeaningBody": "القطرات تجلب الخضرة والحياة، وتُظهر الأعمال الصادقة التي تُغذّي الحديقة كلها.",
-  "gardenPageNextUnlockTitle": "المشهد التالي",
+  "gardenPageNextUnlockTitle": "المحطة التالية",
   "gardenPageAllUnlockedTitle": "اكتمل معرض الحديقة",
   "gardenPageAllUnlockedBody": "كل مشاهد الحديقة الأساسية مفتوحة الآن. ويمكن للمراحل القادمة أن تبني على هذا الأساس الهادئ.",
   "gardenPageNextUnlockRequiredValue": "يُفتح عند {count} قطرة",
@@ -7572,7 +7563,7 @@
   "gardenPageLearnerSectionTitle": "ملف الطفل",
   "gardenPageHeroBody": "التعلّم والذِّكر والعادات الطيبة الثابتة تُشكّل هذه الحديقة مع الوقت.",
   "gardenPageLevelLabel": "المستوى",
-  "gardenPageXpLabel": "نقاط الخبرة",
+  "gardenPageXpLabel": "النور",
   "gardenPageMaturityLabel": "نضج الحديقة",
   "gardenPageMaturityValue": "{percent}%",
   "@gardenPageMaturityValue": {
@@ -7624,7 +7615,7 @@
   "gardenDimensionWaterTitle": "ماء الأعمال الطيبة",
   "gardenDimensionWaterBody": "قطرات المحيط تُغذّي الحديقة بالحياة والخضرة والانتعاش.",
   "gardenDimensionFruitTitle": "ثمار الحكمة",
-  "gardenDimensionFruitBody": "الشارات والمحطات والنضج تُظهر ثمار التعلّم.",
+  "gardenDimensionFruitBody": "المحطات تُظهر ثمرة التعلّم.",
   "gardenDimensionConsistencyTitle": "ازدهار الثبات",
   "gardenDimensionConsistencyBody": "التعلّم المنتظم وروتين النوم يساعدان الحديقة كلها على البقاء حيّة.",
   "gardenInsightPrayer": "إيقاعك الثابت مؤخرًا يقوّي الجذور ويمنح الحديقة أساسًا أرسخ.",
@@ -7634,7 +7625,7 @@
   "gardenInsightFruit": "المحطات والنضج بدأا يظهران كثمرٍ وحكمةٍ مزهرة.",
   "gardenInsightConsistency": "ثباتك الأخير يساعد الحديقة كلها على البقاء صحيّة وممتلئة.",
   "homeModuleGardenTitle": "حديقتك",
-  "homeModuleGardenSubtitle": "مشهد حيّ لنمو عبادتك.",
+  "homeModuleGardenSubtitle": "انظر كيف تنمو عبادتك.",
   "gardenElementCentralTreeTitle": "الشجرة الطيبة",
   "gardenElementCentralTreeMeaning": "كلمة طيبة كشجرة طيبة: أصلها ثابت وفرعها في السماء، تؤتي أُكلها كل حين.",
   "gardenElementStreamTitle": "الجدول الجاري",
@@ -8182,8 +8173,8 @@
   "triviaStatsCorrect": "صحيحة",
   "triviaStatsIncorrect": "خاطئة",
   "triviaStatsOverallAccuracy": "الدقة العامة",
-  "triviaStatsDailyQuizStreak": "سلسلة الاختبار اليومي",
-  "triviaStatsLongestStreak": "أطول سلسلة: {value}",
+  "triviaStatsDailyQuizStreak": "الاختبارات اليومية المتتالية",
+  "triviaStatsLongestStreak": "أكثر الأيام المتتالية: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -8191,7 +8182,7 @@
       }
     }
   },
-  "triviaStatsXp": "نقاط XP للاختبارات",
+  "triviaStatsXp": "نور الأسئلة",
   "triviaStatsOceanDrops": "قطرات المحيط",
   "triviaStatsPerformanceSnapshotTitle": "لقطة الأداء",
   "triviaStatsNotEnoughData": "لا توجد بيانات كافية بعد",
@@ -9432,10 +9423,12 @@
       "light": {}
     }
   },
-  "kidsDuaStreakValue": "المداومة: {days} أيام",
+  "kidsDuaStreakValue": "{days, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{days} أيام على التوالي} many{{days} يومًا على التوالي} other{{days} يوم على التوالي}}",
   "@kidsDuaStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "kidsDuaLightSeedLabel": "بذرة لطيفة",
@@ -9654,7 +9647,7 @@
   "xpLevelTitle98": "الثابت",
   "xpLevelTitle99": "المضيئة",
   "xpLevelTitle100": "طريق نور",
-  "xpCardTitle": "مسار XP",
+  "xpCardTitle": "نورك",
   "xpCardLevelValue": "المستوى {level} · {title}",
   "@xpCardLevelValue": {
     "placeholders": {
@@ -9662,7 +9655,7 @@
       "title": {}
     }
   },
-  "xpCardTotalXpValue": "{xp} إجمالي نقاط الخبرة",
+  "xpCardTotalXpValue": "{xp} نور في المجموع",
   "@xpCardTotalXpValue": {
     "placeholders": {
       "xp": {}
@@ -9674,7 +9667,7 @@
       "title": {}
     }
   },
-  "xpCardRemainingValue": "{xp} نقاط الخبرة المتبقية",
+  "xpCardRemainingValue": "بقي {xp} نور",
   "@xpCardRemainingValue": {
     "placeholders": {
       "xp": {}
@@ -9750,9 +9743,9 @@
   "journeyStatsLessonsCompletedSubtitle": "الانتهاء من الدرس والتقدم في الموضوع",
   "journeyStatsActiveDaysTitle": "الأيام النشطة",
   "journeyStatsActiveDaysSubtitle": "أيام مع التقدم المسجل",
-  "journeyStatsCurrentStreakTitle": "الخط الحالي",
+  "journeyStatsCurrentStreakTitle": "الأيام المتتالية",
   "journeyStatsCurrentStreakSubtitle": "إيقاعك الثابت الحالي",
-  "journeyStatsBestStreakTitle": "أفضل خط",
+  "journeyStatsBestStreakTitle": "أكثر الأيام المتتالية",
   "journeyStatsBestStreakSubtitle": "أقوى جولة مسجلة لديك",
   "journeyStatsMinutesValue": "{minutes}م",
   "@journeyStatsMinutesValue": {
@@ -9827,58 +9820,58 @@
   "growthHabitSettingsSaveAction": "حفظ",
   "commonToday": "اليوم",
   "commonHistory": "التاريخ",
-  "pageDescriptionLearnHub": "اتبع مسارات تعليمية واضحة عبر القرآن والحديث والقصص والممارسة والتأمل.",
-  "pageDescriptionLearnHubKids": "تعلم الإسلام خطوة بخطوة مع القصص والدروس والممارسة البسيطة.",
-  "pageDescriptionQuranHub": "اقرأ وادرس واحفظ ثم ارجع إلى القرآن بطرق واضحة للتواصل اليومي.",
+  "pageDescriptionLearnHub": "تعلّم الإسلام خطوة بخطوة.",
+  "pageDescriptionLearnHubKids": "تعلّم الإسلام بالقصص والدروس.",
+  "pageDescriptionQuranHub": "اقرأ القرآن وتدبّره واحفظه.",
   "pageDescriptionQuranHubKids": "اقرأ القرآن، وتعلم معانيه، ثم ارجع إليه قليلاً.",
-  "pageDescriptionQuranStudyHub": "التمهل مع القرآن من خلال أدوات المعنى والمذاكرة والحفظ والمراجعة.",
-  "pageDescriptionQuranStudyHubKids": "خذ وقتك مع القرآن، وافهم أكثر، وتعلم شيئًا فشيئًا.",
-  "pageDescriptionWorshipHub": "حافظ على ثبات عبادتك اليومية مع الصلاة والذكر والأدعية والصيام والتذكير.",
-  "pageDescriptionWorshipHubKids": "قم ببناء عادات يومية جيدة من خلال الصلاة والذكر والأدعية والتذكيرات البسيطة.",
-  "pageDescriptionGrowthToday": "شاهد إيقاع اليوم، ولاحظ ما يحتاج إلى رعاية، وحافظ على خطوتك التالية واضحة.",
+  "pageDescriptionQuranStudyHub": "افهم القرآن، مقطعًا بعد مقطع.",
+  "pageDescriptionQuranStudyHubKids": "تعلّم معاني القرآن شيئًا فشيئًا.",
+  "pageDescriptionWorshipHub": "عبادتك اليومية.",
+  "pageDescriptionWorshipHubKids": "صلِّ واذكر الله وادعُه كل يوم.",
+  "pageDescriptionGrowthToday": "كيف يسير يومك، وخطوة تالية واحدة.",
   "pageDescriptionGrowthTodayKids": "انظر كيف يسير اليوم واختر خطوة تالية جيدة.",
-  "pageDescriptionGrowthPaths": "اتبع المسارات المركزة التي تساعد جزءًا واحدًا من ممارستك على النمو بشكل متسق.",
+  "pageDescriptionGrowthPaths": "اختر جانبًا من عبادتك لينمو.",
   "pageDescriptionGrowthPathsKids": "اختر طريقًا صغيرًا واستمر في النمو قليلًا كل يوم.",
-  "pageDescriptionGrowthJourney": "قم بمراجعة التقدم الذي أحرزته، والمعالم التي تم فتحها، والشكل الثابت لرحلتك.",
+  "pageDescriptionGrowthJourney": "كم قطعت من الطريق، ومحطاتك.",
   "pageDescriptionGrowthJourneyKids": "انظر إلى أي مدى وصلت وما فتحته على طول الطريق.",
-  "pageDescriptionGrowthReflection": "وقفة للشكر والتوبة والمراجعة الصادقة حتى ينتظم القلب.",
-  "pageDescriptionGrowthReflectionKids": "توقف وقل شكرًا لك، وفكر بصدق، وابدأ من جديد بقلب نظيف.",
-  "pageDescriptionSettingsLanding": "اضبط كيفية دعم التطبيق للصلاة والتعلم والتذكير والخصوصية والإيقاع اليومي.",
-  "pageDescriptionSettingsLandingKids": "اختر كيف يساعدك التطبيق على التعلم والصلاة والبقاء منظمًا كل يوم.",
-  "pageDescriptionSettingsAccountSync": "إدارة الملفات الشخصية والنسخ الاحتياطية ومزامنة الجهاز مع تحكم واضح في الوصول المشترك.",
+  "pageDescriptionGrowthReflection": "لحظة للشكر والتوبة.",
+  "pageDescriptionGrowthReflectionKids": "اشكر الله، وابدأ من جديد.",
+  "pageDescriptionSettingsLanding": "اجعل التطبيق يناسب يومك.",
+  "pageDescriptionSettingsLandingKids": "اجعل التطبيق يعمل لأجلك.",
+  "pageDescriptionSettingsAccountSync": "الملفات الشخصية والنسخ الاحتياطية.",
   "pageDescriptionSettingsAccountSyncKids": "اختر من يستخدم التطبيق واحتفظ بالملفات الشخصية والنسخ الاحتياطية آمنة.",
-  "pageDescriptionSettingsAppearance": "اضبط شكل التطبيق وحركته وتباينه وراحة القراءة بما يناسب يومك.",
+  "pageDescriptionSettingsAppearance": "مظهر التطبيق وحركته.",
   "pageDescriptionSettingsAppearanceKids": "اختر شكل التطبيق ومظهره بحيث يكون سهل الاستخدام.",
-  "pageDescriptionSettingsPrayerWorship": "قم بإعداد أوقات الصلاة والأذان والأدوات وتفضيلات العبادة اليومية الأخرى.",
-  "pageDescriptionSettingsPrayerWorshipKids": "اضبط أوقات الصلاة والتذكيرات وأدوات العبادة المفيدة.",
-  "pageDescriptionSettingsLearning": "التحكم في عرض القرآن والتعلم العائلي وإعدادات الدراسة المستخدمة عبر التطبيق.",
-  "pageDescriptionSettingsLearningKids": "اختر كيفية ظهور ميزات التعلم ونص القرآن والدراسة العائلية.",
-  "pageDescriptionSettingsNotifications": "حدد التذكيرات التي تصل إليك وعدد المرات التي يجب أن يطالبك فيها التطبيق بذلك.",
+  "pageDescriptionSettingsPrayerWorship": "مواقيت الصلاة والأذان.",
+  "pageDescriptionSettingsPrayerWorshipKids": "مواقيت صلاتك وتذكيراتك.",
+  "pageDescriptionSettingsLearning": "كيف يُعرض القرآن والدروس.",
+  "pageDescriptionSettingsLearningKids": "كيف تبدو الدروس والقرآن.",
+  "pageDescriptionSettingsNotifications": "التذكيرات التي تصلك، ومتى.",
   "pageDescriptionSettingsNotificationsKids": "اختر التذكيرات التي تساعدك على تذكر الأشياء الصحيحة.",
-  "pageDescriptionSettingsWidgetsWatch": "قم بإدارة شاشة القفل والجزيرة الديناميكية وأسطح المشاهدة للوصول اليومي السريع.",
+  "pageDescriptionSettingsWidgetsWatch": "مواقيت الصلاة على شاشة القفل والساعة.",
   "pageDescriptionSettingsWidgetsWatchKids": "اختر ما تظهره معلومات الصلاة والتذكير السريعة على شاشتك أو ساعتك.",
-  "pageDescriptionSettingsLanguage": "اختر لغتك وتفضيلات القراءة الأخرى الجاهزة للتنزيل.",
+  "pageDescriptionSettingsLanguage": "اللغة والتنزيلات.",
   "pageDescriptionSettingsLanguageKids": "اختر خيارات اللغة والقراءة التي تساعدك كثيرًا.",
-  "pageDescriptionSettingsPrivacy": "تحكم في التتبع الحساس والرؤية وسلوك البيانات من خلال الإعدادات الافتراضية الهادئة.",
+  "pageDescriptionSettingsPrivacy": "ما يُتتبَّع، وما يبقى خاصًا.",
   "pageDescriptionSettingsPrivacyKids": "اختر مدى الخصوصية التي تريد أن تظل بها معلوماتك ونشاطك.",
-  "pageDescriptionSettingsKidsFamily": "اضبط التعلم المراعي للعمر والعرض التقديمي المناسب للعائلة عبر التطبيق.",
-  "pageDescriptionSettingsKidsFamilyKids": "قم بإعداد إعدادات تعليمية وعائلية ملائمة للأطفال تناسبك.",
-  "pageDescriptionSettingsAbout": "ابحث عن الدعم والتحديثات والتفاصيل القانونية وما يتغير في التطبيق.",
-  "pageDescriptionSettingsAboutKids": "اطلع على تعليمات التطبيق وتحديثاته والمعلومات المهمة في مكان واحد.",
-  "pageDescriptionAssistant": "اطلب التوجيه ومطالبات التفكير والمساعدة في العثور على الجزء الصحيح من التطبيق.",
-  "pageDescriptionAssistantKids": "اطرح أسئلة بسيطة، واحصل على أفكار، واعثر على المكان المناسب للذهاب إليه بعد ذلك.",
-  "pageDescriptionJournalTimeline": "احتفظ بالتأملات والملاحظات واللحظات ذات المغزى حيث يمكنك العودة إليها.",
-  "pageDescriptionJournalTimelineKids": "احفظ الأفكار والملاحظات واللحظات الخاصة حتى تتمكن من الرجوع إليها لاحقًا.",
-  "pageDescriptionJournalCreate": "اكتب ملاحظة أو ملاحظة أو مذكرة امتنان بينما لا تزال اللحظة واضحة.",
-  "pageDescriptionJournalCreateKids": "اكتب ما لاحظته أو شعرت به أو شعرت بالامتنان له اليوم.",
+  "pageDescriptionSettingsKidsFamily": "التعلّم لكل عمر في أسرتك.",
+  "pageDescriptionSettingsKidsFamilyKids": "إعدادات للتعلّم مع العائلة.",
+  "pageDescriptionSettingsAbout": "المساعدة وما الجديد.",
+  "pageDescriptionSettingsAboutKids": "المساعدة وما الجديد.",
+  "pageDescriptionAssistant": "اسأل سؤالًا، أو اعرف طريقك في التطبيق.",
+  "pageDescriptionAssistantKids": "اسأل سؤالًا، أو اسأل إلى أين تذهب.",
+  "pageDescriptionJournalTimeline": "كل ما كتبته.",
+  "pageDescriptionJournalTimelineKids": "انظر إلى ما كتبته.",
+  "pageDescriptionJournalCreate": "اكتبها ما دامت حاضرة.",
+  "pageDescriptionJournalCreateKids": "اكتب عن شيء لاحظته.",
   "pageDescriptionCreationExplorer": "راقب الخلق بعناية واربط ما تلاحظه بالتأمل القرآني.",
-  "pageDescriptionCreationExplorerKids": "Look closely at Allah’s creation and notice what it teaches you.",
-  "pageDescriptionCreationChallenges": "استخدم المطالبات الموجهة الصغيرة لملاحظة عملية الإنشاء بشكل أكثر عمدًا والتفكير بعناية.",
-  "pageDescriptionCreationChallengesKids": "Try small challenges that help you notice the world Allah made.",
-  "pageDescriptionCelestialExplorer": "تتبع السماء باستخدام علامات تحديد الموقع التي تحول الملاحظة إلى ذكرى.",
-  "pageDescriptionCelestialExplorerKids": "Watch the sky, learn what is happening, and remember Allah through it.",
-  "pageDescriptionKhusuFocus": "ادخل إلى مساحة تركيز هادئة تساعد القلب على الاستقرار قبل العودة للعبادة.",
-  "pageDescriptionKhusuFocusKids": "خذ وقفة هادئة، وتمهل، واجعل قلبك جاهزًا للتركيز.",
+  "pageDescriptionCreationExplorerKids": "تأمّل خلق الله عن قرب، وانظر ماذا يعلّمك.",
+  "pageDescriptionCreationChallenges": "لفتات صغيرة لتتأمل خلق الله.",
+  "pageDescriptionCreationChallengesKids": "جرّب تحديات صغيرة تلفت نظرك إلى العالم الذي خلقه الله.",
+  "pageDescriptionCelestialExplorer": "السماء فوقك، تذكرة بالله.",
+  "pageDescriptionCelestialExplorerKids": "راقب السماء، وتعلّم ما يحدث فيها، واذكر الله.",
+  "pageDescriptionKhusuFocus": "هدّئ قلبك قبل أن تصلي.",
+  "pageDescriptionKhusuFocusKids": "تمهّل، واستعد للصلاة.",
   "learnGlossaryTitle": "مسرد",
   "learnGlossarySubtitle": "تعلم المصطلحات الإسلامية الشائعة من خلال شروحات قصيرة وسهلة للمبتدئين يمكنك فتحها في أي وقت.",
   "learnGlossaryCardTitle": "مسرد",
@@ -9991,7 +9984,7 @@
       "xp": {}
     }
   },
-  "crosswordTodayXpLabel": "{xp} خبرة اليوم",
+  "crosswordTodayXpLabel": "{xp} نور اليوم",
   "@crosswordTodayDropsLabel": {
     "placeholders": {
       "drops": {}
@@ -10143,10 +10136,12 @@
   "crosswordCellCurrentWordHint": "جزء من الدليل الحالي",
   "@crosswordDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
-  "crosswordDailyStreakLabel": "سلسلة {count} أيام",
+  "crosswordDailyStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "crosswordDailyCompleteBadge": "اكتمل لغز اليوم",
   "@crosswordDailyBonusAchievedLabel": {
     "placeholders": {
@@ -10266,10 +10261,12 @@
       "theme": {}
     }
   },
-  "wordSearchDailyStreakLabel": "سلسلة {count} أيام",
+  "wordSearchDailyStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@wordSearchDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "wordSearchDailyCompleteBadge": "اكتمل اليوم",
@@ -10289,7 +10286,7 @@
       "count": {}
     }
   },
-  "wordSearchXpLabel": "{count} خبرة",
+  "wordSearchXpLabel": "{count} نور",
   "@wordSearchXpLabel": {
     "placeholders": {
       "count": {}
@@ -10505,7 +10502,7 @@
       "count": {}
     }
   },
-  "matchingXpLabel": "{count} خبرة مكتسبة",
+  "matchingXpLabel": "{count} نور جُمع",
   "@matchingXpLabel": {
     "placeholders": {
       "count": {}
@@ -10517,10 +10514,12 @@
       "count": {}
     }
   },
-  "matchingDailyStreakLabel": "سلسلة {count} أيام",
+  "matchingDailyStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@matchingDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "matchingDailyCompleteBadge": "اكتمل اليومي",
@@ -10679,10 +10678,12 @@
   },
   "ayahCompletionDailyHistoryTitle": "آيات الأيام الأخيرة",
   "ayahCompletionDailyHistorySubtitle": "نظرة هادئة على مراجعتك القرآنية الأخيرة.",
-  "ayahCompletionDailyStreakLabel": "سلسلة يومية {count}",
+  "ayahCompletionDailyStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@ayahCompletionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "ayahCompletionDailyCompleteBadge": "اكتمل اليوم",
@@ -10698,7 +10699,7 @@
       "count": {}
     }
   },
-  "ayahCompletionXpLabel": "{count} نقطة XP",
+  "ayahCompletionXpLabel": "{count} نور",
   "@ayahCompletionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10885,7 +10886,7 @@
       "count": {}
     }
   },
-  "hadithReflectionXpLabel": "{count} XP",
+  "hadithReflectionXpLabel": "{count} نور",
   "@hadithReflectionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10897,10 +10898,12 @@
       "count": {}
     }
   },
-  "hadithReflectionDailyStreakLabel": "سلسلة {count} أيام",
+  "hadithReflectionDailyStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@hadithReflectionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "hadithReflectionContinueSectionTitle": "أكمل التأمل",
@@ -10965,7 +10968,7 @@
   "hadithReflectionCompletionSubtitle": "أكملت هذا التأمل وراجعت معناه.",
   "hadithReflectionCompletionBestSubtitle": "اخترت الجواب الأقرب إلى توجيه الحديث.",
   "hadithReflectionTakeawayTitle": "الخلاصة",
-  "hadithReflectionBestChoiceReward": "مكافأة الخيار الأفضل +{count} XP",
+  "hadithReflectionBestChoiceReward": "أفضل اختيار · +{count} نور",
   "@hadithReflectionBestChoiceReward": {
     "placeholders": {
       "count": {}
@@ -11033,10 +11036,12 @@
       "total": {}
     }
   },
-  "dailyKnowledgeHubStreakLabel": "سلسلة حزمة {count} أيام",
+  "dailyKnowledgeHubStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@dailyKnowledgeHubStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "dailyKnowledgeHubCompletedBadge": "اكتملت الحزمة",
@@ -11103,10 +11108,12 @@
       "count": {}
     }
   },
-  "spiritualGrowthReflectionStreakLabel": "سلسلة مراجعة {count} أيام",
+  "spiritualGrowthReflectionStreakLabel": "{count, plural, =0{لا أيام تأمل بعد} =1{يوم تأمل واحد على التوالي} =2{يوما تأمل على التوالي} few{{count} أيام تأمل على التوالي} many{{count} يوم تأمل على التوالي} other{{count} يوم تأمل على التوالي}}",
   "@spiritualGrowthReflectionStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "spiritualGrowthDailyActionsTitle": "أعمال ذات معنى",
@@ -11297,10 +11304,12 @@
       "total": {}
     }
   },
-  "learnGamesIslandDailyStreakLabel": "سلسلة {count} أيام",
+  "learnGamesIslandDailyStreakLabel": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@learnGamesIslandDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "learnGamesIslandDailyHistoryLabel": "تم تتبع {count} أيام أخيرة",
@@ -11807,12 +11816,12 @@
   "bedtimeParentContinueSeerahAction": "افتح السيرة",
   "bedtimeParentContinueDuaAction": "افتح الدعاء",
   "bedtimeParentContinueArabicAction": "افتح العربية",
-  "bedtimeParentCurrentStreakLabel": "السلسلة الحالية",
+  "bedtimeParentCurrentStreakLabel": "الأيام المتتالية",
   "bedtimeParentOverallStoriesLabel": "القصص المكتملة",
   "bedtimeParentOverallSeerahLabel": "مراحل السيرة",
   "bedtimeParentOverallDuasLabel": "الأدعية المتعلَّمة",
   "bedtimeParentOverallArabicLabel": "الحروف العربية",
-  "bedtimeParentOverallXpLabel": "نقاط الخبرة عبر تعلّم الأطفال",
+  "bedtimeParentOverallXpLabel": "النور في كل تعلّم الأطفال",
   "bedtimeParentOverallDropsLabel": "قطرات المحيط عبر تعلّم الأطفال",
   "bedtimeParentLearningAreasSectionTitle": "مجالات التعلّم",
   "bedtimeParentLearningAreasEmpty": "ستمتلئ مجالات التعلّم مع بدء كل جزء من رحلة الأطفال.",
@@ -11880,7 +11889,7 @@
       }
     }
   },
-  "bedtimeParentLearningAreaDuasSecondary": "سلسلة نور لمدة {count} أيام",
+  "bedtimeParentLearningAreaDuasSecondary": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@bedtimeParentLearningAreaDuasSecondary": {
     "placeholders": {
       "count": {
@@ -11905,7 +11914,7 @@
     }
   },
   "bedtimeParentHabitSectionTitle": "إيقاع وقت النوم",
-  "bedtimeParentHabitCurrentStreak": "السلسلة الحالية: {days}",
+  "bedtimeParentHabitCurrentStreak": "الأيام المتتالية: {days}",
   "@bedtimeParentHabitCurrentStreak": {
     "placeholders": {
       "days": {
@@ -11913,7 +11922,7 @@
       }
     }
   },
-  "bedtimeParentHabitLongestStreak": "أطول سلسلة: {days}",
+  "bedtimeParentHabitLongestStreak": "أكثر الأيام المتتالية: {days}",
   "@bedtimeParentHabitLongestStreak": {
     "placeholders": {
       "days": {
@@ -12256,7 +12265,7 @@
   "bedtimeRoutineStepReflectionSubtitle": "اختر درسًا لطيفًا أو فكرة شكر لتبقى قريبة من قلبك.",
   "bedtimeRoutineStepSleepReadyTitle": "ختام مهيّئ للنوم",
   "bedtimeRoutineStepSleepReadySubtitle": "اختم بلطف واسترح بسلام.",
-  "progressionPageTitle": "التقدّم والشارات",
+  "progressionPageTitle": "التقدّم والملصقات",
   "progressionPageSubtitle": "عرض هادئ للنمو التعليمي على المدى الطويل.",
   "progressionPageLearnerSectionTitle": "ملف الطفل",
   "progressionPageHeroTitle": "تقدّم {name}",
@@ -12265,7 +12274,7 @@
       "name": {}
     }
   },
-  "progressionPageHeroSubtitle": "تنمو المستويات والشارات والمحطات مع التعلّم الثابت.",
+  "progressionPageHeroSubtitle": "كل درس يضيف إليها.",
   "progressionPageOpenAction": "افتح التقدّم",
   "progressionPageOverviewTitle": "نظرة عامة",
   "progressionPageGardenTitle": "الحديقة",
@@ -12274,8 +12283,8 @@
   "progressionPageGardenAction": "افتح الحديقة",
   "progressionPageMilestonesTitle": "المحطات",
   "progressionPageMilestonesEmpty": "ستظهر المحطات مع نموّ التعلّم.",
-  "progressionPageBadgesTitle": "الشارات",
-  "progressionPageBadgesEmpty": "ستظهر الشارات بعد أولى الإنجازات المهمة.",
+  "progressionPageBadgesTitle": "الملصقات",
+  "progressionPageBadgesEmpty": "لا ملصقات بعد. تأتي مع الدروس المكتملة.",
   "progressionPageLevelValue": "المستوى {level} • {title}",
   "@progressionPageLevelValue": {
     "placeholders": {
@@ -12283,7 +12292,7 @@
       "title": {}
     }
   },
-  "progressionPageXpValue": "{xp} نقطة خبرة",
+  "progressionPageXpValue": "{xp} نور",
   "@progressionPageXpValue": {
     "placeholders": {
       "xp": {}
@@ -12301,8 +12310,8 @@
   "progressionOverviewDuasLabel": "الأدعية المتعلَّمة",
   "progressionOverviewRoutinesLabel": "روتينات النوم",
   "progressionOverviewDropsLabel": "قطرات المحيط",
-  "progressionOverviewBadgesLabel": "الشارات المكتسبة",
-  "progressionParentRemainingValue": "{xp} نقطة خبرة للمستوى التالي",
+  "progressionOverviewBadgesLabel": "الملصقات المكتسبة",
+  "progressionParentRemainingValue": "{xp} نور حتى المستوى التالي",
   "@progressionParentRemainingValue": {
     "placeholders": {
       "xp": {}
@@ -12340,7 +12349,7 @@
   "progressionMilestoneSeerahJourneyDescription": "اكتمل مسار سيرة موجّه كامل.",
   "progressionMilestoneBedtimeWeekTitle": "7 روتينات لوقت النوم",
   "progressionMilestoneBedtimeWeekDescription": "يتكوّن إيقاع جميل لوقت النوم.",
-  "progressionMilestoneLearningMonthTitle": "سلسلة تعلّم لمدة 30 يومًا",
+  "progressionMilestoneLearningMonthTitle": "30 يومًا من التعلّم على التوالي",
   "progressionMilestoneLearningMonthDescription": "أصبح الثبات جزءًا من الرحلة.",
   "kidsArabicRepeatAfterMeTitle": "استمع وكرر",
   "kidsArabicRepeatAfterMeLetterSubtitle": "استمع للرسالة، توقف مؤقتًا، ثم قلها بلطف بعد الصوت.",
@@ -12351,8 +12360,8 @@
   "kidsArabicLatestAchievementTitle": "أحدث الإنجاز",
   "kidsArabicMilestonesSectionTitle": "المعالم",
   "kidsArabicMilestonesSectionSubtitle": "تحتفل اللحظات المميزة الهادئة بأجزاء جديدة من الرحلة دون تحويل الممارسة إلى ضغط.",
-  "kidsArabicBadgesSectionTitle": "شارات",
-  "kidsArabicBadgesSectionSubtitle": "تظل ملصقات الشارات مرتبطة بالتقدم الحقيقي في اللغة العربية ويتم فتحها مرة واحدة فقط.",
+  "kidsArabicBadgesSectionTitle": "الملصقات",
+  "kidsArabicBadgesSectionSubtitle": "كل ملصق يُكسب مرة واحدة، بتعلّم العربية حقًا.",
   "kidsArabicAchievementCelebrateTitle": "احتفال جديد",
   "kidsArabicMilestoneThreeLettersTitle": "ثلاثة أحرف كاملة",
   "kidsArabicMilestoneThreeLettersSubtitle": "ثلاثة أحرف متتبعة تنتمي الآن إلى الرحلة.",
@@ -12362,10 +12371,12 @@
   "kidsArabicMilestoneFirstReviewSubtitle": "ساعدت جولة المراجعة الهادئة إحدى الرسائل المألوفة على الشعور بالقوة.",
   "kidsArabicMilestoneBeginnerSetTitle": "مجموعة كلمات المبتدئين كاملة",
   "kidsArabicMilestoneBeginnerSetSubtitle": "مجموعة الكلمات القصيرة الأولى كاملة وجاهزة للمراجعة اللطيفة.",
-  "kidsArabicBadgesUnlockedValue": "{count} تم فتح الشارات",
+  "kidsArabicBadgesUnlockedValue": "{count, plural, =0{لا ملصقات بعد} =1{ملصق واحد} =2{ملصقان} few{{count} ملصقات} many{{count} ملصقًا} other{{count} ملصق}}",
   "@kidsArabicBadgesUnlockedValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "kidsArabicMilestonesUnlockedValue": "تم الوصول إلى {count} من الإنجازات",
@@ -12512,7 +12523,7 @@
   "wuduQuizAdabExplanation": "ومن الأدب الجيد ترك المكان نظيفا واستخدام الماء بعناية دون إسراف.",
   "wuduQuizQuestionProgress": "السؤال {current} من {total}",
   "wuduQuizScoreSummary": "لقد أجبت على {score} من {total} بشكل صحيح.",
-  "wuduQuizRewardFeedback": "تم حساب الإكمال الأول: +{xp} XP و+{drops} Ocean Drop.",
+  "wuduQuizRewardFeedback": "أُنجز لأول مرة: +{xp} نور و+{drops} قطرة محيط.",
   "wuduQuizStepOrderOptionCorrect": "{first} → {second} → {third}",
   "wuduQuizStepOrderOption": "{first} → {second} → {third}",
   "wuduQuizWhatComesNextQuestion": "ماذا يأتي بعد {stepTitle}؟",
@@ -12592,7 +12603,7 @@
   "quranDailyReflectionOpenAyahAction": "فتح آية",
   "quranDailyReflectionCompletedAction": "مكتمل",
   "quranDailyReflectionCompleteAction": "وضع علامة مكتملة",
-  "quranDailyReflectionFirstTimeHint": "أكمل بعض الأفكار لبناء خطك.",
+  "quranDailyReflectionFirstTimeHint": "تأمّل بضعة أيام متتالية لتُحسب هنا.",
   "quranReflectionsTitle": "تدبرات القرآن",
   "quranReflectionsSubtitle": "راجع تدبراتك القرآنية المحفوظة لاحقًا.",
   "quranReflectionsEmptyTitle": "لا توجد تدبرات قرآنية محفوظة بعد",
@@ -12817,13 +12828,15 @@
   "kidsArabicPracticeTodayBody": "افتح خطوة التدريب التالية الموصى بها وحافظ على ثبات الزخم.",
   "kidsArabicPracticeTodayDoneBody": "اكتملت الممارسة الموصى بها اليوم.",
   "kidsArabicPracticeTodayDoneBadge": "تم اليوم",
-  "quranDailyReflectionStreakValue": "{days} يوم متتالي",
+  "quranDailyReflectionStreakValue": "{days, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{days} أيام على التوالي} many{{days} يومًا على التوالي} other{{days} يوم على التوالي}}",
   "@quranDailyReflectionStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
-  "quranDailyReflectionBestStreakValue": "أفضل خط: {streak}",
+  "quranDailyReflectionBestStreakValue": "الأكثر على التوالي: {streak}",
   "@quranDailyReflectionBestStreakValue": {
     "placeholders": {
       "streak": {}
@@ -12919,7 +12932,7 @@
       "total": {}
     }
   },
-  "growthPathCurrentStreakValue": "الخط الحالي: {value}",
+  "growthPathCurrentStreakValue": "الأيام المتتالية: {value}",
   "@growthPathCurrentStreakValue": {
     "placeholders": {
       "value": {}
@@ -13231,14 +13244,14 @@
       "total": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpDrops": "+{xp} XP • +{drops} قطرة المحيط",
+  "wuduTrainerRewardFeedbackXpDrops": "+{xp} نور · +{drops} قطرة محيط",
   "@wuduTrainerRewardFeedbackXpDrops": {
     "placeholders": {
       "xp": {},
       "drops": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpOnly": "+{xp} XP",
+  "wuduTrainerRewardFeedbackXpOnly": "+{xp} نور",
   "@wuduTrainerRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13258,7 +13271,7 @@
       "total": {}
     }
   },
-  "wuduQuizRewardFeedbackXpOnly": "تم حساب الإكمال الأول: +{xp} XP.",
+  "wuduQuizRewardFeedbackXpOnly": "أُنجز لأول مرة: +{xp} نور.",
   "@wuduQuizRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13780,10 +13793,12 @@
       "count": {}
     }
   },
-  "arabicLearningProgressKidsStreakValue": "{count} day streak",
+  "arabicLearningProgressKidsStreakValue": "{count, plural, =0{لا أيام بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{count} أيام على التوالي} many{{count} يومًا على التوالي} other{{count} يوم على التوالي}}",
   "@arabicLearningProgressKidsStreakValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningProgressKidsHighlight": "Latest milestone: {title}",
@@ -14254,8 +14269,8 @@
   "celestialMoveSlowlyForHeading": "تحرك ببطء لالتقاط الاتجاه",
   "celestialExplorerUnavailable": "تعذر على المستكشف إنشاء لقطة للسماء الآن. تحقق من إعدادات الموقع وحاول مرة أخرى.",
   "creationChallengesPageTitle": "تحديات الخلق",
-  "creationChallengesDailyStreakLabel": "سلسلة الأيام",
-  "creationChallengesNewStreakBeginsToday": "تبدأ سلسلة جديدة اليوم.",
+  "creationChallengesDailyStreakLabel": "الأيام المتتالية",
+  "creationChallengesNewStreakBeginsToday": "بداية جديدة اليوم.",
   "creationChallengesStreakDays": "{count} أيام",
   "@creationChallengesStreakDays": {
     "placeholders": {
@@ -14352,77 +14367,77 @@
     }
   },
   "onboardingSettingsHintBody": "يمكنك تغيير هذا في أي وقت من الإعدادات.",
-  "onboardingBeginJourneyAction": "ابدأ رحلتك",
+  "onboardingBeginJourneyAction": "ابدأ بسم الله",
   "onboardingContinueAction": "متابعة",
   "onboardingBismillahTransliteration": "بسم الله الرحمن الرحيم",
   "onboardingBismillahMeaningBody": "باسم الله الرحمن الرحيم.",
-  "onboardingOpeningBlessingBody": "نسأل الله أن تجعل هذه الرحلة خيرًا وثباتًا وقربًا منه.",
+  "onboardingOpeningBlessingBody": "جعل الله هذا الطريق طريق خير لك.",
   "onboardingLanguageTitle": "اختر لغتك",
-  "onboardingLanguageSubtitle": "اختر اللغة التي تريد استخدامها في التطبيق.",
+  "onboardingLanguageSubtitle": "يتغيّر التطبيق فور اختيارك.",
   "onboardingAgeRangeTitle": "ما الفئة العمرية التي تنتمي إليها؟",
-  "onboardingAgeRangeSubtitle": "يساعدنا هذا على إبقاء الأمثلة والتوصيات مناسبة لمرحلتك في الحياة.",
+  "onboardingAgeRangeSubtitle": "ستناسب الدروس والأمثلة هذا العمر.",
   "onboardingAgeRangeUnder18": "0–6",
   "onboardingAgeRange18To24": "7–13",
   "onboardingAgeRange25To34": "14–20",
   "onboardingAgeRange35To44": "21+",
   "onboardingExperienceTitle": "أي وصف يناسب رحلتك مع الإسلام أكثر؟",
-  "onboardingExperienceSubtitle": "نستخدم هذا لتحديد نبرة البداية والوتيرة وعمق التعلّم بما يناسب خبرتك. يُحفظ اختيارك ويُستخدم لتشكيل الإرشاد في أنحاء التطبيق.",
+  "onboardingExperienceSubtitle": "هذا ليس اختبارًا. إنه يحدد من أين تبدأ الدروس. يمكنك تغييره لاحقًا.",
   "onboardingExperienceExploring": "أستكشف الإسلام",
   "onboardingExperienceNewToIslam": "جديد على الإسلام",
   "onboardingExperienceBornStillLearning": "وُلدت مسلمًا وما زلت أتعلم",
   "onboardingExperiencePracticingRegularly": "ألتزم بالممارسة بانتظام",
   "onboardingExperienceAdvanced": "ذو خبرة / متقدم",
-  "onboardingSalahConsistencyTitle": "ما مدى انتظامك في الصلاة حاليًا؟",
-  "onboardingSalahConsistencySubtitle": "اختر الخيار الذي يعكس حالك الآن بأفضل صورة.",
-  "onboardingSalahConsistencyAll": "أصلي جميع الصلوات بانتظام",
+  "onboardingSalahConsistencyTitle": "كيف حال صلاتك هذه الأيام؟",
+  "onboardingSalahConsistencySubtitle": "لا توجد إجابة خاطئة.",
+  "onboardingSalahConsistencyAll": "أصلي الصلوات الخمس",
   "onboardingSalahConsistencyMost": "أصلي معظم الصلوات",
   "onboardingSalahConsistencySometimes": "أصلي أحيانًا",
   "onboardingSalahConsistencyRarely": "نادرًا ما أصلي",
-  "onboardingSalahConsistencyJustStarted": "أنا في بداية الطريق",
-  "onboardingPrayerMethodTitle": "طريقة حساب أوقات الصلاة",
-  "onboardingPrayerMethodSubtitle": "اختر الطريقة التي تُحسب بها أوقات الصلاة لموقعك.",
+  "onboardingSalahConsistencyJustStarted": "بدأت للتو",
+  "onboardingPrayerMethodTitle": "طريقة الحساب",
+  "onboardingPrayerMethodSubtitle": "اختر الطريقة التي يتبعها مسجدك، إن كنت تعرفها.",
   "onboardingPrayerMethodMuslimWorldLeague": "رابطة العالم الإسلامي",
   "onboardingPrayerMethodIsna": "الجمعية الإسلامية لأمريكا الشمالية (ISNA)",
   "onboardingPrayerMethodUmmAlQura": "جامعة أم القرى",
   "onboardingPrayerMethodEgyptian": "الهيئة المصرية العامة للمساحة",
   "onboardingPrayerMethodKarachi": "جامعة العلوم الإسلامية، كراتشي",
   "onboardingMadhabTitle": "أي مذهب تتبع؟",
-  "onboardingMadhabSubtitle": "يؤثر هذا في طريقة حساب وقت صلاة العصر. إذا لم تكن متأكدًا، يمكنك إبقاء الإعداد الافتراضي.",
+  "onboardingMadhabSubtitle": "يحدد وقت العصر. إن لم تكن متأكدًا، أبقِ الإعداد الافتراضي.",
   "onboardingMadhabHanafi": "حنفي",
   "onboardingMadhabShafii": "شافعي",
   "onboardingMadhabMaliki": "مالكي",
   "onboardingMadhabHanbali": "حنبلي",
   "onboardingArabicReadModeTitle": "ما تفضيلك لقراءة القرآن؟",
-  "onboardingArabicReadModeSubtitle": "اختر أسلوب القراءة الذي تشعر معه بأكبر قدر من الراحة عند قراءة القرآن.",
-  "onboardingArabicReadModeNoArabicYet": "لا أعرف العربية بعد",
+  "onboardingArabicReadModeSubtitle": "اختر ما يعينك على القراءة. يمكنك تغييره لاحقًا.",
+  "onboardingArabicReadModeNoArabicYet": "لا أقرأ العربية بعد",
   "onboardingArabicReadModeArabicOnly": "العربية فقط",
-  "onboardingArabicReadModeArabicTransliteration": "العربية + النقل الصوتي",
+  "onboardingArabicReadModeArabicTransliteration": "العربية + النطق اللاتيني",
   "onboardingArabicReadModeArabicTranslation": "العربية + الترجمة",
-  "onboardingArabicReadModeArabicTransliterationTranslation": "العربية + النقل الصوتي + الترجمة",
-  "onboardingHarakatTitle": "الحركات / علامات النطق",
+  "onboardingArabicReadModeArabicTransliterationTranslation": "العربية + النطق اللاتيني + الترجمة",
+  "onboardingHarakatTitle": "الحركات (التشكيل)",
   "onboardingHarakatFull": "حركات كاملة",
   "onboardingHarakatNone": "بدون",
   "onboardingTextSizeTitle": "حجم النص",
   "onboardingRemindersTitle": "كيف تود أن يتم تذكيرك؟",
-  "onboardingRemindersSubtitle": "اختر إعداد تذكير خفيف للصلاة والروتين اليومي. ويمكنك ضبط كل شيء لاحقًا بدقة.",
+  "onboardingRemindersSubtitle": "ابدأ ببساطة. يمكنك ضبط كل صلاة لاحقًا.",
   "onboardingReminderNotificationOnly": "إشعار فقط",
   "onboardingReminderAdhanNotification": "إشعار بالأذان",
-  "onboardingDailyQuranReminderTitle": "تذكير يومي بقراءة القرآن",
+  "onboardingDailyQuranReminderTitle": "تذكير يومي بالقرآن",
   "onboardingDailyLessonReminderTitle": "تذكير يومي بالدرس",
   "onboardingOptionMedium": "متوسط",
-  "onboardingIdentityTitle": "كيف تود أن نخاطبك؟",
-  "onboardingIdentitySubtitle": "اختر أسلوب التحية وأضف اسمك إذا أردت ترحيبًا أكثر خصوصية.",
+  "onboardingIdentityTitle": "كيف تحب أن نحيّيك؟",
+  "onboardingIdentitySubtitle": "أضف اسمك إن شئت.",
   "onboardingGreetingTitle": "التحية",
   "onboardingNameTitle": "الاسم",
   "onboardingOptionalHint": "اختياري",
-  "onboardingNameHelperBody": "اسمك اختياري، ويُستخدم فقط لتخصيص تجربتك داخل التطبيق.",
+  "onboardingNameHelperBody": "اختياري. يُستخدم لتحيّتك فقط.",
   "onboardingDefaultNameFallback": "صديقي",
   "onboardingFocusSalahConsistency": "الاستمرار على الصلاة",
   "onboardingFocusSalahReminders": "تذكيرات الصلاة",
   "onboardingFinalWelcomeTitle": "مرحبًا بك في Path of Nur",
   "onboardingWelcomeGreeting": "السلام عليكم، {name}.",
-  "onboardingFinalWelcomeBody": "تبدأ رحلتك بالنية، وتنمو بخطوات صغيرة ثابتة. Path of Nur هنا ليدعم تعلّمك وذكرك وتأملك وتقدمك اليومي.",
-  "onboardingFocusListTitle": "مجالات التركيز التي اخترتها:",
+  "onboardingFinalWelcomeBody": "كل عمل صالح يبدأ بنية. وأحب الأعمال إلى الله أدومها وإن قلّ.",
+  "onboardingFocusListTitle": "تركيزك:",
   "onboardingKnowledgeDuaMeaning": "رب زدني علمًا.",
   "onboardingLanguageEnglish": "الإنجليزية",
   "onboardingLanguageArabic": "العربية",
@@ -15228,30 +15243,30 @@
   "learnQuranBeginnerSoftBridgeBeginAction": "Let’s begin",
   "settingsThemeChoiceMidnightManuscript": "مخطوطة منتصف الليل",
   "settingsThemeChoiceNoorGlass": "Noor Glass",
-  "settingsThemeChoiceNoorGlassDark": "نور الزجاج الداكن",
+  "settingsThemeChoiceNoorGlassDark": "Noor Glass داكن",
   "settingsThemeChoiceNoGlass": "من دون زجاج",
   "settingsThemeChoiceNoGlassDark": "من دون زجاج داكن",
   "settingsThemeChoiceNoorMidnightManuscript": "نور مخطوطة منتصف الليل",
   "settingsThemeChoiceNoorKids": "نور للأطفال",
-  "settingsThemeModeNoorGlassDescription": "ألوان نور الدافئة على بطاقات ثابتة، بعمق ناعم ودون شفافية زجاجية.",
-  "settingsThemeModeNoorGlassDarkDescription": "نظام أسطح نور أغمق مع حاويات ثابتة ولمسات دافئة وتباين هادئ مناسب لليل.",
-  "settingsThemeModeNoGlassDescription": "خلفيات دافئة وثابتة بلا شفافية لمظهر يومي نظيف ومتزن.",
-  "settingsThemeModeNoGlassDarkDescription": "وضع أسطح داكنة وثابتة للاستخدام في الإضاءة المنخفضة من دون تأثيرات زجاجية.",
+  "settingsThemeModeNoorGlassDescription": "بطاقات دافئة مصمتة بعمق خفيف، دون زجاج شفاف.",
+  "settingsThemeModeNoorGlassDarkDescription": "Noor Glass بألوان أدكن، مريح للعين ليلًا.",
+  "settingsThemeModeNoGlassDescription": "أسطح دافئة مصمتة دون شفافية.",
+  "settingsThemeModeNoGlassDarkDescription": "أسطح داكنة مصمتة للإضاءة الخافتة.",
   "settingsThemeModeMidnightManuscriptDescription": "درجات حبر عميقة مع لمسات ذهبية دافئة وأجواء مخطوطة هادئة.",
-  "settingsThemeModeNoorMidnightManuscriptDescription": "وضع ليلي مضيء بطابع مخطوطة مع دفء نور وعمق حبر ولمسات ذهبية ناعمة.",
-  "settingsThemeModeNoorKidsDescription": "لوحة نور ألطف بدفء هادئ مناسب للعائلة ولمسات مرحة خفيفة.",
-  "settingsThemeModePickerHelper": "اختر الأجواء التي تشعر بأنها الأقرب إلى رحلتك.",
-  "settingsThemeModeDefaultBestFor": "الأفضل للهدوء اليومي والاستخدام المتوازن.",
-  "settingsThemeModeCalmBeautifulBestFor": "الأفضل إذا كنت تفضّل أجواء Path of Nūr الناعمة السابقة.",
-  "settingsThemeModeEasyReadBestFor": "الأفضل للقراءة الأطول وتباين أوضح.",
-  "settingsThemeModeNoorGlassBestFor": "Best for airy glass depth and luminous everyday reading.",
-  "settingsThemeModeNoorGlassDarkBestFor": "الأفضل للاستخدام المسائي عندما تريد أسطح نور نفسها ضمن أجواء أغمق.",
-  "settingsThemeModeNoGlassBestFor": "الأفضل لمظهر ثابت ومعتم مع شفافية بصرية أقل.",
-  "settingsThemeModeNoGlassDarkBestFor": "الأفضل لأسطح داكنة صلبة من دون تأثيرات زجاجية.",
-  "settingsThemeModeDarkBestFor": "الأفضل للقراءة في الإضاءة الخافتة ولأمسيات أكثر هدوءًا.",
-  "settingsThemeModeMidnightManuscriptBestFor": "الأفضل لتأملات المساء ودراسة القرآن.",
-  "settingsThemeModeNoorMidnightManuscriptBestFor": "الأفضل لقراءة ليلية غنية بدفء المخطوطة وتوهج نور.",
-  "settingsThemeModeNoorKidsBestFor": "الأفضل للعائلات التي تريد أجواء نور أخف وأدفأ وأكثر مرحًا.",
+  "settingsThemeModeNoorMidnightManuscriptDescription": "درجات حبر عميقة وذهب هادئ، للقراءة ليلًا.",
+  "settingsThemeModeNoorKidsDescription": "ألوان Noor أفتح وأدفأ للعائلات.",
+  "settingsThemeModePickerHelper": "اختر المظهر الذي تحب أن تفتحه كل يوم.",
+  "settingsThemeModeDefaultBestFor": "الأنسب لِـ: مظهر بسيط وكلاسيكي",
+  "settingsThemeModeCalmBeautifulBestFor": "الأنسب لِـ: المظهر الأول للتطبيق",
+  "settingsThemeModeEasyReadBestFor": "الأنسب لِـ: القراءة الطويلة",
+  "settingsThemeModeNoorGlassBestFor": "الأنسب لِـ: كل يوم",
+  "settingsThemeModeNoorGlassDarkBestFor": "الأنسب لِـ: المساء",
+  "settingsThemeModeNoGlassBestFor": "الأنسب لِـ: مظهر مصمت دون شفافية",
+  "settingsThemeModeNoGlassDarkBestFor": "الأنسب لِـ: مظهر داكن مصمت",
+  "settingsThemeModeDarkBestFor": "الأنسب لِـ: القراءة في الإضاءة الخافتة",
+  "settingsThemeModeMidnightManuscriptBestFor": "الأنسب لِـ: تأمل المساء ودراسة القرآن",
+  "settingsThemeModeNoorMidnightManuscriptBestFor": "الأنسب لِـ: القراءة ليلًا",
+  "settingsThemeModeNoorKidsBestFor": "الأنسب لِـ: العائلات والأطفال",
   "editorialDashboardTitle": "Editorial Dashboard",
   "editorialDashboardSubtitle": "Internal content command center · version {version}",
   "@editorialDashboardSubtitle": {
@@ -15545,38 +15560,38 @@
   "loadingGreetingMorningTranslation": "اللهم بك أصبحنا",
   "loadingGreetingEvening": "اللَّهُمَّ بِكَ أَمْسَيْنَا",
   "loadingGreetingEveningTranslation": "اللهم بك أمسينا",
-  "loadingWelcomeBack": "أهلًا بعودتك",
+  "loadingWelcomeBack": "مرحبًا بعودتك",
   "loadingRestoringProgress": "جارٍ استعادة تقدمك",
-  "loadingStatusPreparing": "جارٍ تهيئة مساحتك…",
+  "loadingStatusPreparing": "جارٍ التجهيز…",
   "loadingStatusRestoring": "جارٍ استعادة تقدمك…",
-  "loadingStatusSyncing": "جارٍ مزامنة رحلتك…",
-  "loadingStatusFinalizing": "Finalizing…",
+  "loadingStatusSyncing": "جارٍ المزامنة…",
+  "loadingStatusFinalizing": "أوشكنا…",
   "onboardingOpeningTitle": "رحلةٌ راسخة في العلم",
   "onboardingOpeningHadithLead": "قال رسول الله ﷺ:",
   "onboardingOpeningHadithQuote": "«طلب العلم فريضة على كل مسلم.»",
   "onboardingOpeningHadithSource": "سنن ابن ماجه",
   "onboardingOpeningMissionBodyOne": "في الإسلام، العلم ليس رفاهية، بل مسؤولية. وما كان واجبًا ينبغي أن يكون في متناول الجميع.",
-  "onboardingOpeningMissionBodyTwo": "أُنشئ Path of Nur على هذا الأساس، ليساعد في إبقاء التعلّم والذكر والنمو متاحًا ومجانيًا للجميع.",
-  "onboardingOpeningMissionBodyThree": "سواء كنت تبدأ، أو تعود من جديد، أو تحاول الثبات، ينبغي أن يبدو التطبيق رفيقًا هادئًا للعبادة والتأمل والتقدم اليومي.",
-  "onboardingOpeningSupportLine": "هذا الإعداد القصير سيجعل تجربتك أكثر خصوصية.",
+  "onboardingOpeningMissionBodyTwo": "ولهذا فإن Path of Nur مجاني ومتاح للجميع.",
+  "onboardingOpeningMissionBodyThree": "سواء كنت في البداية أو عائدًا من جديد، فأنت مرحّب بك هنا.",
+  "onboardingOpeningSupportLine": "بضعة أسئلة، ثم تكون جاهزًا.",
   "onboardingOpeningPlatformFooter": "متاح على iPhone وiPad وApple Watch وMac وApple TV وWindows وAndroid.",
-  "onboardingFinalWelcomeClosingBody": "خذها خطوة صادقة واحدة في كل مرة. فالتقدم الحقيقي يُبنى بأعمال صغيرة ثابتة.",
-  "onboardingDisclaimerTitle": "تنويه وملاحظة",
+  "onboardingFinalWelcomeClosingBody": "خطوة بعد خطوة.",
+  "onboardingDisclaimerTitle": "قبل أن نبدأ",
   "onboardingDisclaimerIntroBody": "Path of Nur ليس تطبيق فتاوى.\nبل هو رفيق للتعلّم والتأمل والعبادة والنمو.",
-  "onboardingDisclaimerSourcesBody": "يستند التطبيق إلى القرآن والحديث، وهما المصدران الأساسيان للهداية الإسلامية، إلى جانب مواد تأسيسية واسعة القبول.",
-  "onboardingDisclaimerNeutralBody": "يُقدَّم المحتوى بطريقة عامة ومحايدة، لا بوصفه توجيهًا شخصيًا من عالم أو إمام بعينه.",
-  "onboardingDisclaimerNotRulingBody": "وهو لا يغني عن توجيه عالم مؤهل أو إمام أو مفتٍ، ولا يقدّم فتاوى شخصية.",
-  "onboardingDisclaimerSeekScholarBody": "وفي المسائل الشخصية أو الحساسة أو المعقدة، ينبغي الرجوع إلى أهل العلم المؤهلين.",
-  "onboardingDisclaimerFeedbackBody": "نرحب دائمًا بالملاحظات والتصحيحات وطلبات التحسين، فهي تساعد Path of Nur على التطور بمرور الوقت.",
-  "onboardingDisclaimerFooter": "بُني ليعين رحلتك، لا ليحل محل العلم الشرعي.",
+  "onboardingDisclaimerSourcesBody": "كل ما هنا يستند إلى القرآن والحديث، وإلى العلم المعتمد على نطاق واسع.",
+  "onboardingDisclaimerNeutralBody": "يتبع المحتوى الأقوال المعتمدة على نطاق واسع، لا رأي عالم أو إمام واحد.",
+  "onboardingDisclaimerNotRulingBody": "لا يقدّم فتاوى شخصية، ولا يغني عن عالم أو إمام مؤهل.",
+  "onboardingDisclaimerSeekScholarBody": "في المسائل الشخصية أو الحساسة، يُرجى سؤال أهل العلم المؤهلين.",
+  "onboardingDisclaimerFeedbackBody": "التصحيحات والأفكار مرحّب بها دائمًا.",
+  "onboardingDisclaimerFooter": "رفيق للتعلّم، لا بديل عن العلماء.",
   "onboardingThemeTitle": "اختر سِمتك",
-  "onboardingThemeSubtitle": "اختر الأجواء التي تشعر أنها الأقرب إلى رحلتك. وستُطبَّق التغييرات فورًا أثناء استكشافك للمعاينات أدناه.",
+  "onboardingThemeSubtitle": "المس سمة لتراها. يمكنك تغييرها في أي وقت.",
   "onboardingThemePreviewTitle": "معاينة مباشرة",
-  "onboardingThemeSampleTitle": "رفيق هادئ ليومك",
+  "onboardingThemeSampleTitle": "السلام عليكم",
   "onboardingThemeSampleChipPrayer": "الصلاة",
   "onboardingThemeSampleChipReading": "القراءة",
   "onboardingThemeSampleChipReflection": "التأمل",
-  "onboardingThemeSampleCardTitle": "تركيز اليوم الهادئ",
+  "onboardingThemeSampleCardTitle": "تركيز اليوم",
   "mainPageSearchHint": "Search sections and tools",
   "learnHubLearningPathCardSubtitleNoPath": "Find your guided path",
   "learnPathLevelFoundationsTitle": "Foundations",
@@ -15586,16 +15601,16 @@
   "settingsPageTransitionsSubtitle": "اختر كيف تنتقل الصفحات داخل التطبيق.",
   "settingsReduceMotionTransitionOverrideSubtitle": "تقليل الحركة يوقف تأثيرات الانتقال الإضافية في أنحاء التطبيق.",
   "settingsLearningLevelTitle": "مستوى التعلّم",
-  "settingsRunOnboardingTitle": "إعادة تشغيل الإعداد الأولي",
+  "settingsRunOnboardingTitle": "إعادة خطوات الإعداد",
   "settingsRunOnboardingSubtitle": "راجع خيارات إعدادك وحدّثها.",
   "settingsPageTransitionStyleDefault": "افتراضي",
-  "settingsPageTransitionStyleGentleFade": "تلاشي لطيف",
+  "settingsPageTransitionStyleGentleFade": "تلاشٍ",
   "settingsPageTransitionStyleIos": "نمط iOS",
-  "settingsPageTransitionStyleNone": "بلا",
+  "settingsPageTransitionStyleNone": "بدون",
   "onboardingRemindersDisableAllAction": "إيقاف جميع الإشعارات",
   "onboardingReminderNone": "بدون إشعار",
-  "onboardingAccountOptionsTitle": "تسجيل دخول ونسخ احتياطي اختياري",
-  "onboardingAccountOptionsBody": "لا يجمع Path of Nūr بيانات تعلّمك افتراضيًا. ويُستخدم تسجيل الدخول فقط للنسخ الاحتياطي والاستعادة والمزامنة بين الأجهزة عند توفرها.",
+  "onboardingAccountOptionsTitle": "سجّل الدخول إن شئت",
+  "onboardingAccountOptionsBody": "يبقى تعلّمك على هذا الجهاز. تسجيل الدخول للنسخ الاحتياطي والمزامنة بين أجهزتك فقط.",
   "onboardingAccountOptionsManualBackupBody": "يمكنك أيضًا نسخ بياناتك احتياطيًا يدويًا لاحقًا من الإعدادات.",
   "historyNoEventsForThisDate": "There are no events for this date.",
   "worshipQiblaUnavailableOnIpadTitle": "الباحث عن القبلة غير متاح على iPad",
@@ -15607,24 +15622,24 @@
   "learningJourneyLessonSectionProgressSubtitle": "Complete this section to save your progress.",
   "rewardQuietProgressSaved": "Progress saved.",
   "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} of {total} correct",
-  "rewardQuietCompletionSummaryXpDrops": "{xp} XP · {drops} drops saved",
-  "rewardQuietCompletionSummaryXpOnly": "{xp} XP saved",
+  "rewardQuietCompletionSummaryXpDrops": "{xp} نور · حُفظت {drops} قطرات",
+  "rewardQuietCompletionSummaryXpOnly": "حُفظ {xp} نور",
   "rewardQuietCompletionSummaryDropsOnly": "{drops} drops saved",
   "homeWidgetsNextPrayerTitle": "الصلاة التالية",
-  "homeWidgetsPrayerOverviewTitle": "نظرة عامة على الصلاة",
+  "homeWidgetsPrayerOverviewTitle": "صلوات اليوم",
   "homeWidgetsDhikrTitle": "ذكر اليوم",
-  "homeWidgetsJourneyTitle": "تقدم الرحلة",
+  "homeWidgetsJourneyTitle": "رحلتك",
   "homeWidgetsCurrentPrayerLabel": "الصلاة الحالية",
   "homeWidgetsNextPrayerLabel": "الصلاة التالية",
-  "homeWidgetsNoPrayerTimesTitle": "مواقيت الصلاة غير متاحة",
-  "homeWidgetsNoPrayerTimesBody": "افتح Path of Nūr لتحديث مواقيت الصلاة لليوم.",
+  "homeWidgetsNoPrayerTimesTitle": "لا مواقيت بعد",
+  "homeWidgetsNoPrayerTimesBody": "افتح Path of Nūr لتحديث مواقيت اليوم.",
   "homeWidgetsDhikrTodayLabel": "اليوم",
   "homeWidgetsTargetLabel": "الهدف",
-  "homeWidgetsStreakLabel": "السلسلة",
+  "homeWidgetsStreakLabel": "أيام متتالية",
   "homeWidgetsLevelLabel": "المستوى",
-  "homeWidgetsTodayXpLabel": "نقاط اليوم",
-  "homeWidgetsNoSpiritualContentTitle": "المحتوى الإيماني غير متاح",
-  "homeWidgetsNoSpiritualContentBody": "افتح Path of Nūr لتحديث المحتوى الإيماني لليوم.",
+  "homeWidgetsTodayXpLabel": "نور اليوم",
+  "homeWidgetsNoSpiritualContentTitle": "لا شيء لعرضه بعد",
+  "homeWidgetsNoSpiritualContentBody": "افتح Path of Nūr لتحميل آية اليوم ودعائه.",
   "homeWidgetsDuaTitle": "دعاء اليوم",
   "homeWidgetsMorningDuaReady": "دعاء الصباح جاهز",
   "homeWidgetsDailyDuaReady": "دعاء اليوم جاهز",
@@ -15787,23 +15802,23 @@
   "hadithSectionRelatedDuas": "Related Duas",
   "quranReaderRelatedHadithTitle": "أحاديث ذات صلة",
   "quranReaderRelatedDuasTitle": "أدعية ذات صلة",
-  "allSearchTitle": "البحث الشامل",
-  "allSearchSubtitle": "ابحث في القرآن والحديث والأدعية ومحتوى التعلّم معًا.",
-  "allSearchHint": "ابحث في تطبيق Path of Nur",
-  "allSearchEmptyTitle": "ابحث في التطبيق كله",
-  "allSearchEmptySubtitle": "سنجمع النتائج حسب المجال لتبقى هادئة وسهلة الثقة.",
-  "allSearchSuggestionsTitle": "Suggestions",
+  "allSearchTitle": "البحث",
+  "allSearchSubtitle": "بحث واحد في جميع الأقسام.",
+  "allSearchHint": "ابحث في Path of Nur",
+  "allSearchEmptyTitle": "ابحث في كل شيء",
+  "allSearchEmptySubtitle": "اكتب كلمة، مثل الرحمة أو الصبر.",
+  "allSearchSuggestionsTitle": "اقتراحات",
   "allSearchRecentTitle": "عمليات البحث الأخيرة",
-  "allSearchClearRecent": "Clear",
+  "allSearchClearRecent": "مسح",
   "allSearchNoRecent": "لا توجد عمليات بحث حديثة بعد.",
-  "allSearchNoResultsTitle": "لا نتائج بعد",
-  "allSearchNoResultsSubtitle": "لم نعثر على تطابق قوي في القرآن أو الحديث أو الأدعية أو محتوى التعلّم.",
+  "allSearchNoResultsTitle": "لا نتائج",
+  "allSearchNoResultsSubtitle": "لا نتائج لهذا البحث.",
   "allSearchNoResultsTipBroader": "جرّب عبارة أقصر أو أوسع.",
-  "allSearchNoResultsTipDomain": "يمكنك أيضًا الانتقال إلى بحث مجال بعينه لمزيد من العمق.",
-  "allSearchDomainQuran": "Qur’an",
-  "allSearchDomainHadith": "Hadith",
-  "allSearchDomainDua": "Duas",
-  "allSearchDomainLearn": "Learn",
+  "allSearchNoResultsTipDomain": "أو ابحث داخل قسم واحد لمزيد من النتائج.",
+  "allSearchDomainQuran": "القرآن",
+  "allSearchDomainHadith": "الحديث",
+  "allSearchDomainDua": "الأدعية",
+  "allSearchDomainLearn": "التعلّم",
   "allSearchViewAllQuran": "اعرض الكل في القرآن",
   "allSearchViewAllHadith": "اعرض الكل في الحديث",
   "allSearchViewAllDua": "اعرض الكل في الأدعية",
@@ -15822,7 +15837,7 @@
       "query": {}
     }
   },
-  "allSearchError": "البحث غير متاح: {message}",
+  "allSearchError": "لم يكتمل البحث: {message}",
   "@allSearchError": {
     "placeholders": {
       "message": {}
@@ -15979,31 +15994,31 @@
   "legalAttributionsWordTimingBody": "يتم طلب مقاطع توقيت الكلمات من Quran.com API v4.\n\nروابط المصدر:\nhttps://api-docs.quran.com/",
   "legalAttributionsWordTimingTitle": "توقيت الكلمات (مزامنة مباشرة تجريبية)",
   "settingsAdhanChoiceTitle": "الأذان",
-  "settingsCareModeGentleBody": "خفّف حدة الإشعارات وحافظ على هدوء اليوم مع الإبقاء على التذكيرات المفيدة.",
+  "settingsCareModeGentleBody": "تصل تذكيرات الصلاة دون صوت، ولا تتخطى وضع التركيز.",
   "settingsCareModeGentleTitle": "دعم الوضع اللطيف",
-  "settingsCareModeLossBody": "عُد إلى الله بالصبر والدعاء والتذكيرات اللطيفة عندما يثقل الحزن على القلب.",
+  "settingsCareModeLossBody": "حين يثقل الحزن: صبر ودعاء وتذكير برحمة الله.",
   "settingsCareModeLossHadith": "تذكير: الابتلاءات التي تثقل القلب قد تصبح سببًا للرحمة وتكفير الذنوب إذا قوبلت بالصبر.",
   "settingsCareModeLossPrayer": "الدعاء: إنا لله وإنا إليه راجعون. اللهم أجرني في مصيبتي واخلف لي خيرًا منها.",
   "settingsCareModeLossReference": "القرآن 2:156-157",
   "settingsCareModeLossTitle": "دعم الفقد",
-  "settingsCareModeRamadanBody": "أبقِ إرشادات الصيام والسحور والإفطار والصلاة قريبة منك خلال رمضان.",
+  "settingsCareModeRamadanBody": "في رمضان، السحور والإفطار والصيام أولًا.",
   "settingsCareModeRamadanReference": "القرآن 2:183",
   "settingsCareModeRamadanTitle": "دعم رمضان",
-  "settingsCareModeUnwellBody": "استخدم هذا في أيام المرض ليبقى التطبيق لطيفًا ولتغطي حماية التتابع أيام التعافي.",
-  "settingsCareModeUnwellHadith": "تذكير: المرض والتعب والألم لا تضيع عند الله إذا احتُسبت بالصبر.",
-  "settingsCareModeUnwellPrayerEase": "تيسير الصلاة: صلِّ بالطريقة التي تستطيعها، قائمًا أو جالسًا أو مستلقيًا حسب الحاجة.",
+  "settingsCareModeUnwellBody": "لأيام المرض. الأيام الفائتة لا تقطع أيامك المتتالية.",
+  "settingsCareModeUnwellHadith": "تذكير: ما يصيب المؤمن من تعب ولا مرض إلا كفّر الله به من خطاياه. (البخاري)",
+  "settingsCareModeUnwellPrayerEase": "صلِّ قائمًا إن استطعت، فإن لم تستطع فقاعدًا، فإن لم تستطع فعلى جنب. (البخاري)",
   "settingsCareModeUnwellTitle": "دعم أيام المرض",
-  "settingsCareModesSubtitle": "أبقِ أوضاع الدعم الهادئة قريبة لمواسم العبادة والحياة اليومية المختلفة.",
+  "settingsCareModesSubtitle": "للأيام الصعبة، ولرمضان.",
   "settingsCareModesTitle": "الرعاية ولحظات الحياة",
-  "settingsCycleDaysReminderSupport": "محور الدعم: يبقى الذكر والدعاء والاستماع إلى القرآن والتأمل متاحًا.",
-  "settingsCycleDaysStreakSupport": "دعم التتابع: ستغطي الأيام المحمية أيام الدورة النشطة حتى لا ينقطع تتابعك ظلمًا.",
-  "settingsCycleDaysSubtitle": "للأخوات فقط. حماية استمرارية العبادة خلال أيام العذر.",
-  "settingsCycleDaysSupportBody": "يبقي هذا دعم التذكيرات المراعية للدورة نشطًا ويحمي تتابعك في الأيام التي تُعذرين فيها من الصلاة والصيام.",
+  "settingsCycleDaysReminderSupport": "الذكر والدعاء والاستماع إلى القرآن تبقى لك.",
+  "settingsCycleDaysStreakSupport": "أيام العذر لا تقطع أيامك المتتالية.",
+  "settingsCycleDaysSubtitle": "للأخوات. أيام العذر محفوظة.",
+  "settingsCycleDaysSupportBody": "تتوقف تذكيرات الصلاة والصيام في أيام العذر، وتبقى أيامك المتتالية محفوظة.",
   "settingsCycleDaysSupportTitle": "دعم أيام الدورة",
   "settingsCycleDaysTitle": "أيام الدورة",
   "settingsFollowSystemThemeSubtitle": "مطابقة التطبيق مع المظهر الفاتح أو الداكن الحالي لجهازك.",
   "settingsFollowSystemThemeTitle": "اتباع وضع النهار/الليل للهاتف",
-  "settingsGentleModeReducedNotificationsSubtitle": "خفّف حدة الإشعارات واجعل التذكيرات ألطف.",
+  "settingsGentleModeReducedNotificationsSubtitle": "تذكيرات الصلاة دون صوت.",
   "settingsProfileLevelUsageSummary": "{levelSummary} • {daysSummary}",
   "settingsTestAdhan": "تجربة الأذان",
   "settingsUnwellModeSubtitle": "احمِ يومك عندما يجعل المرض العبادة أصعب.",
@@ -16036,7 +16051,7 @@
   "settingsJumuahTravelMinutesLabel": "مدة التنقل",
   "settingsJumuahChooseMosque": "اختيار موقع المسجد",
   "settingsJumuahEstimatePrivacyNote": "يستخدم التقدير موقعك فقط أثناء فتح التطبيق.",
-  "settingsThemeChoiceRamadan": "رمضان — ليالي",
+  "settingsThemeChoiceRamadan": "رمضان · ليالي",
   "settingsThemeModeRamadanDescription": "ليل رمضاني بنفسجي يضيئه فانوس متوهج وهلال الشهر.",
   "settingsThemeModeRamadanBestFor": "الأنسب لـ: الشهر الفضيل، من السحور إلى التراويح",
   "settingsDressUpRamadanTitle": "تزيّن لرمضان",
@@ -16060,7 +16075,7 @@
   "occasionOfferJummahBody": "هل نُلبس التطبيق زمرد المسجد كل جمعة؟ يعود إلى سمتك بنهاية اليوم.",
   "occasionOfferRamadanTitle": "بدأ رمضان",
   "occasionOfferRamadanBody": "هل نُلبس التطبيق ليالي رمضان طوال الشهر الفضيل؟ يعود إلى سمتك بعد العيد.",
-  "occasionOfferEidTitle": "عيد مبارك!",
+  "occasionOfferEidTitle": "عيد مبارك",
   "occasionOfferEidBody": "هل نُلبس التطبيق ثوب العيد في أيامه؟ يعود إلى سمتك بعدها.",
   "occasionOfferQadrTitle": "العشر الأواخر",
   "occasionOfferQadrBody": "هل نُحيي الليالي الوترية بسمة ليلة القدر؟ خير من ألف شهر.",
@@ -16068,13 +16083,13 @@
   "occasionOfferDecline": "ليس الآن",
   "homeGreetingEidMubarak": "عيد مبارك",
   "settingsLivingSkyTitle": "سماء حيّة",
-  "settingsLivingSkySubtitle": "تتبع كريمة النور مسار اليوم — فجر وردي ذهبي، ومغرب كهرماني، وسماء مرصّعة بالنجوم بعد حلول الظلام.",
+  "settingsLivingSkySubtitle": "يتبع Noor Glass السماء، من الفجر إلى النجوم بعد المغرب.",
   "settingsGroupYouTitle": "أنت",
   "settingsGroupWorshipTitle": "الصلاة والتذكيرات",
   "settingsGroupAppTitle": "التطبيق",
   "settingsGroupSupportTitle": "المساعدة وحول التطبيق",
-  "settingsCategoryProfileSubtitle": "اسمك، وطريقة مخاطبة التطبيق لك، وأوضاع الرعاية.",
-  "settingsCategoryAdhanSubtitle": "اختر الأذان واستمع إليه واضبط مستوى صوته.",
+  "settingsCategoryProfileSubtitle": "اسمك وتحيتك وأوضاع الرعاية",
+  "settingsCategoryAdhanSubtitle": "اختر الصوت ومستواه",
   "settingsSearchTitle": "بحث في الإعدادات",
   "settingsSearchSubtitle": "ابحث عن أي إعداد بالاسم.",
   "settingsSearchHint": "ابحث في الإعدادات",
@@ -16098,7 +16113,7 @@
   "settingsSalahCalculationTitle": "طريقة الحساب",
   "settingsSalahCalculationSubtitle": "الطريقة والمذهب المستخدمان لحساب أوقات صلاتك.",
   "settingsAdhanSoundTitle": "صوت الأذان",
-  "settingsRemindersPerPrayerTitle": "تذكيرات كل صلاة",
+  "settingsRemindersPerPrayerTitle": "تذكيرات لكل صلاة",
   "settingsOtherRemindersTitle": "تذكيرات أخرى",
   "settingsPermissionsTitle": "الأذونات",
   "settingsWhatOthersSeeTitle": "ما يعرضه التطبيق",
@@ -16349,7 +16364,7 @@
   "dhikrFreeCountAction": "Free count",
   "dhikrFreeCountTitle": "Free count",
   "dhikrTodayOfGoal": "of {goal} today",
-  "dhikrStreakCaption": "day streak",
+  "dhikrStreakCaption": "أيام متتالية",
   "dhikrSessionsTodayCaption": "sessions today",
   "dhikrRoutinesTitle": "Routines",
   "dhikrRoutineAfterSalahTitle": "After salah",
@@ -16392,7 +16407,7 @@
   "dhikrInsightsSubtitleEmpty": "Your history begins with the first finished session.",
   "dhikrInsightsThisWeekCaption": "this week · last week {value}",
   "dhikrInsightsStreakValue": "{count} days",
-  "dhikrInsightsStreakCaption": "current streak · best {value}",
+  "dhikrInsightsStreakCaption": "أيام متتالية · الأكثر {value}",
   "dhikrInsightsLifetimeCaption": "lifetime remembrances",
   "dhikrInsightsFavoriteCaption": "most repeated · {count}",
   "dhikrInsightsWeekTitle": "This week",
@@ -16533,7 +16548,7 @@
   "kidsStickerBookSubtitle": "Every story, letter and duʿā you finish earns one.",
   "kidsStickerBookEmptySubtitle": "Finish a story, a letter or a duʿā to earn your first one.",
   "kidsStickerBookSpecialSection": "Special stickers",
-  "kidsRewardStreakValue": "{days, plural, =0{No streak yet} =1{1 day streak} other{{days} day streak}}",
+  "kidsRewardStreakValue": "{days, plural, =0{لم يبدأ بعد} =1{يوم واحد على التوالي} =2{يومان على التوالي} few{{days} أيام على التوالي} many{{days} يومًا على التوالي} other{{days} يوم على التوالي}}",
   "@kidsRewardStreakValue": {
     "placeholders": {
       "days": {

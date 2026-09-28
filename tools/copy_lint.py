@@ -152,6 +152,34 @@ def rx(pattern: str, flags: int = 0) -> Callable[[str, str], bool]:
     return lambda key, value: bool(compiled.search(value))
 
 
+# V2a: names and index lists (2026-09-27). A mode called Gentle mode is named, not
+# described; a settings category subtitle is an index of what is inside (the
+# way a phone's own settings list reads); and two lists are the content itself.
+MODE_NAME_KEYS = r"^(profileGentleModeTitle|settingsCareModeGentleTitle)$"
+INDEX_LIST_KEYS = re.compile(
+    r"^(settingsCategory\w*Subtitle|onboardingOpeningPlatformFooter|settingsOccasionThemesSubtitle)$"
+)
+
+
+def list_of_three(key: str, value: str) -> bool:
+    if INDEX_LIST_KEYS.match(key):
+        return False
+    return bool(_LIST_OF_THREE.search(value))
+
+
+_LIST_OF_THREE = re.compile(r"\b[\w’'-]+, [\w’'-]+(?: [\w’'-]+)?, (?:and|or) [\w’'-]+")
+# Game words in any case ("Streak", "Badges"); "points" only as a score
+# ("+10 points"), never the verb ("points to Allah’s wisdom").
+_GAMIFIED = re.compile(
+    r"\b(streaks?|XP|badges?|level up|leaderboards?)\b|(?:\d|\}) ?points\b", re.I
+)
+
+
+def gamified(key: str, value: str) -> bool:
+    # Placeholder names ({xp}, {streak}) are code, not copy.
+    return bool(_GAMIFIED.search(re.sub(r"\{\w+(?=[,}])", "{", value)))
+
+
 def rx_key_exempt(pattern: str, exempt_keys: str, flags: int = 0) -> Callable[[str, str], bool]:
     compiled = re.compile(pattern, flags)
     exempt = re.compile(exempt_keys)
@@ -261,15 +289,15 @@ RULES: list[Rule] = [
             r"\b(calm(?:ly|er|est)?|gentl(?:e|y|er)|quiet(?:ly|er)?|stead(?:y|ily|ier)|"
             r"soft(?:ly|er)?|peaceful(?:ly)?|meaningful(?:ly)?|intentional(?:ly)?|"
             r"mindful(?:ly)?|serene(?:ly)?)\b",
-            r"Channel|QuietHours|Silent|SoundQuiet",
+            r"Channel|QuietHours|Silent|SoundQuiet|" + MODE_NAME_KEYS,
             re.I,
         ),
     ),
     Rule(
         "tone-list-of-three", "chrome",
         "A list of three or more things in chrome copy (\"X, Y, and Z\").",
-        "Name the purpose, not the inventory.",
-        rx(r"\b[\w’'-]+, [\w’'-]+(?: [\w’'-]+)?, (?:and|or) [\w’'-]+"),
+        "Name the purpose, not the inventory. Settings category subtitles are indexes and may list.",
+        list_of_three,
     ),
     Rule(
         "tone-tail", "chrome",
@@ -287,7 +315,7 @@ RULES: list[Rule] = [
         "tone-gamified", "chrome",
         "Game vocabulary: streak, XP, points, badge, level up.",
         "Say days in a row, light, and what was actually done (decision 1, 2026-09-07).",
-        rx(r"\b(streaks?|XP|points|badges?|level up|leaderboards?)\b"),
+        gamified,
     ),
     Rule(
         "studio-vocabulary", "chrome",

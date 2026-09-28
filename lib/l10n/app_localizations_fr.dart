@@ -12,19 +12,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appTitle => 'Path of Nur';
 
   @override
-  String get notificationsFastingMomentsChannelName => 'Moments du jeûne';
+  String get notificationsFastingMomentsChannelName => 'Horaires du jeûne';
 
   @override
   String get notificationsFastingMomentsChannelDescription =>
-      'Rappels sensibles au temps pour le début et la fin du jeûne';
+      'Le début et la fin du jeûne';
 
   @override
   String get notificationsPrayerNotificationOnlyChannelName =>
-      'Rappels de prière (notification)';
+      'Rappels de prière (sans adhan)';
 
   @override
   String get notificationsPrayerNotificationOnlyChannelDescription =>
-      'Rappels de prière sans audio d’adhan';
+      'Rappels de prière sans l’adhan';
 
   @override
   String notificationsPrayerAdhanChannelName(String adhanTitle) {
@@ -33,7 +33,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get notificationsPrayerAdhanChannelDescription =>
-      'Rappels de prière avec audio d’adhan';
+      'Rappels de prière avec l’adhan';
 
   @override
   String get notificationsPrayerBeforeQazaChannelName =>
@@ -41,7 +41,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get notificationsPrayerBeforeQazaChannelDescription =>
-      'Rappels de prière avant qu’elle ne devienne qadā';
+      'Un rappel avant la fin du temps de chaque prière';
 
   @override
   String get notificationsDailyRemindersChannelName => 'Rappels quotidiens';
@@ -51,16 +51,15 @@ class AppLocalizationsFr extends AppLocalizations {
       'Rappels de dhikr, de Coran et de réflexion';
 
   @override
-  String get notificationsGrowthRemindersChannelName =>
-      'Rappels de progression';
+  String get notificationsGrowthRemindersChannelName => 'Rappels Croissance';
 
   @override
   String get notificationsGrowthRemindersQuietChannelName =>
-      'Rappels de progression (discrets)';
+      'Rappels Croissance (discrets)';
 
   @override
   String get notificationsGrowthRemindersChannelDescription =>
-      'Rappels doux pour vos habitudes de progression';
+      'Rappels pour les habitudes que vous suivez dans Croissance';
 
   @override
   String notificationsPrayerAtTimeTitle(String prayerName) {
@@ -69,20 +68,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String notificationsPrayerBeforeQazaTitle(String prayerName) {
-    return 'Rappel de la fenêtre de $prayerName';
+    return '$prayerName se termine bientôt';
   }
 
   @override
-  String get notificationsDhikrTitle => 'Rappel de dhikr';
+  String get notificationsDhikrTitle => 'L’heure du dhikr';
 
   @override
-  String get notificationsQuranTitle => 'Réflexion coranique';
+  String get notificationsQuranTitle => 'Lecture du Coran';
 
   @override
   String get notificationsReflectionTitle => 'Réflexion du jour';
 
   @override
-  String get notificationsFastingTitle => 'Rappel de jeûne';
+  String get notificationsFastingTitle => 'Le jeûne du jour';
 
   @override
   String get notificationsOnThisDayTitle => 'Ce jour-là';
@@ -91,49 +90,48 @@ class AppLocalizationsFr extends AppLocalizations {
   String get notificationsCycleCheckTitle => 'Point sur le cycle';
 
   @override
-  String get notificationsMoonriseTitle => 'Moonrise';
+  String get notificationsMoonriseTitle => 'Lever de lune';
 
   @override
-  String get notificationsMoonsetTitle => 'Moonset';
+  String get notificationsMoonsetTitle => 'Coucher de lune';
 
   @override
   String notificationsPrayerAtTimeBody(String prayerName) {
-    return 'C’est l’heure de la prière de $prayerName. Gardez le lien avec votre prière.';
+    return 'C’est l’heure de $prayerName.';
   }
 
   @override
   String notificationsPrayerAtTimeFajrBody(String prayerName) {
-    return 'It is time for $prayerName Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
+    return 'C’est l’heure de $prayerName.';
   }
 
   @override
   String notificationsPrayerBeforeQazaBody(String prayerName) {
-    return 'Le temps de $prayerName va s’achever. Accomplissez-la avant qu’elle ne devienne qadā.';
+    return 'Il est encore temps de prier $prayerName.';
   }
 
   @override
-  String get notificationsDhikrBody =>
-      'Prenez un moment paisible pour le dhikr.';
+  String get notificationsDhikrBody => 'Un moment pour se souvenir d’Allah.';
 
   @override
   String get notificationsQuranBody =>
-      'Revenez à votre lecture du Coran avec intention.';
+      'Reprenez le Coran là où vous vous êtes arrêté.';
 
   @override
   String get notificationsReflectionBody =>
-      'Notez une brève réflexion avant la fin de votre journée.';
+      'Avant la fin de la journée, écrivez-en une ligne.';
 
   @override
   String get notificationsFastingBody =>
-      'Préparez votre intention pour le jeûne d’aujourd’hui.';
+      'Formulez l’intention du jeûne d’aujourd’hui.';
 
   @override
   String get notificationsOnThisDayBody =>
-      'Ouvrez la réflexion historique du jour et revisitez un moment marquant de l’histoire islamique.';
+      'Un moment de l’histoire islamique survenu ce jour-là.';
 
   @override
   String get notificationsCycleCheckBody =>
-      'Vérifiez votre état et reprenez les rappels de prière lorsque vous serez prête.';
+      'Si vos jours d’excuse sont terminés, les rappels de prière peuvent reprendre.';
 
   @override
   String get notificationsMoonriseBody => 'La lune se lève en ce moment.';
@@ -143,7 +141,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String notificationsRecoveredReminderBody(String body) {
-    return 'Vous avez manqué ce rappel plus tôt. $body';
+    return 'Plus tôt : $body';
   }
 
   @override
@@ -153,20 +151,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get notificationsPrayerActionSnooze10 => 'Me rappeler dans 10 min';
 
   @override
-  String get notificationsPrayerActionMarkOffered =>
-      'Marquer la prière comme accomplie';
+  String get notificationsPrayerActionMarkOffered => 'Marquer comme accomplie';
 
   @override
-  String get notificationsPrayerActionDismiss => 'Dismiss';
+  String get notificationsPrayerActionDismiss => 'Fermer';
 
   @override
-  String get notificationsReflectionActionWrite => 'Écrire une réflexion';
+  String get notificationsReflectionActionWrite => 'Écrire';
 
   @override
   String get notificationsReflectionActionRemind10 => 'Me rappeler dans 10 min';
 
   @override
-  String get notificationsReflectionActionDismiss => 'Dismiss';
+  String get notificationsReflectionActionDismiss => 'Fermer';
 
   @override
   String get notificationsPrayerNameTahajjud => 'Tahajjud';
@@ -448,7 +445,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get navLearning => 'Learn';
+  String get navLearning => 'Apprendre';
 
   @override
   String get greetingArabic => 'السلام عليكم ورحمة الله وبركاته';
@@ -463,7 +460,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get ayahTranslation => 'Seek help through patience and prayer. (2:45)';
 
   @override
-  String get quranTitle => 'Holy Qur’an';
+  String get quranTitle => 'Saint Coran';
 
   @override
   String get quranAppHubTitle => 'The Holy Qur’an';
@@ -881,18 +878,30 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String hadithCurrentStreakLabel(int days, String suffix) {
-    return 'Current streak: $days day$suffix';
+  String hadithCurrentStreakLabel(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
-  String hadithBestStreakLabel(int days, String suffix) {
-    return 'Best streak: $days day$suffix';
+  String hadithBestStreakLabel(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Record d’affilée : $days jours',
+      one: 'Record d’affilée : 1 jour',
+    );
+    return '$_temp0';
   }
 
   @override
   String hadithReflectionCompletedXp(int xp) {
-    return 'Reflection completed • +$xp XP';
+    return 'Réflexion terminée · +$xp lumière';
   }
 
   @override
@@ -930,8 +939,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Follow curated paths to study hadith in a structured sequence with steady progress.';
 
   @override
-  String hadithPathStreakLabel(int current, String suffix, int best) {
-    return 'Path streak: $current day$suffix • Best: $best';
+  String hadithPathStreakLabel(int current, int best) {
+    String _temp0 = intl.Intl.pluralLogic(
+      current,
+      locale: localeName,
+      other: '$current jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0 · record : $best';
   }
 
   @override
@@ -1374,13 +1389,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homePrayerSectionTitle => 'Heures de prière';
 
   @override
-  String get homePrayerDateToday => 'Today';
+  String get homePrayerDateToday => 'Aujourd’hui';
 
   @override
-  String get homePrayerDateYesterday => 'Yesterday';
+  String get homePrayerDateYesterday => 'Hier';
 
   @override
-  String get homePrayerDateTomorrow => 'Tomorrow';
+  String get homePrayerDateTomorrow => 'Demain';
 
   @override
   String get homePrayerPreviousDayTooltip => 'Jour précédent';
@@ -1390,7 +1405,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String homePrayerCompletedCountValue(String completed, String total) {
-    return '$completed prières accomplies sur $total';
+    return '$completed sur $total accomplies';
   }
 
   @override
@@ -1400,11 +1415,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get atTime => 'at 1:30 PM';
 
   @override
-  String get homeOverviewHeroTitle => 'Aperçu quotidien Nur';
+  String get homeOverviewHeroTitle => 'En un coup d’œil';
 
   @override
   String get homeOverviewHeroSubtitle =>
-      'Un résumé compact de l’adoration, de l’apprentissage et de la progression.';
+      'Votre adoration et votre apprentissage, en bref.';
 
   @override
   String get homePrayerProgressTitle => 'Progression des prières';
@@ -1413,35 +1428,35 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeDhikrProgressTitle => 'Progression du dhikr';
 
   @override
-  String get homeCurrentStreakTitle => 'Série en cours';
+  String get homeCurrentStreakTitle => 'Jours d’affilée';
 
   @override
-  String get homeXpLevelTitle => 'Niveau et XP';
+  String get homeXpLevelTitle => 'Niveau et lumière';
 
   @override
-  String get homeDaysLabel => 'days';
+  String get homeDaysLabel => 'jours';
 
   @override
-  String get homeWorshipSummaryTitle => 'Résumé de l’ibadah';
+  String get homeWorshipSummaryTitle => 'Ibadah du jour';
 
   @override
   String get homeWorshipSummarySubtitle =>
-      'Prière, dhikr, jeûne et khushū’ en un seul endroit.';
+      'Comment se passe votre adoration aujourd’hui.';
 
   @override
   String get homeFastingStatusTitle => 'État du jeûne';
 
   @override
-  String get homeFastingNotFasting => 'Ne jeûne pas';
+  String get homeFastingNotFasting => 'Pas de jeûne';
 
   @override
   String get homeFastingIntending => 'Intention de jeûner';
 
   @override
-  String get homeFastingCompleted => 'Completed';
+  String get homeFastingCompleted => 'Terminé';
 
   @override
-  String get homeFastingBroken => 'Manqué / rompu';
+  String get homeFastingBroken => 'Manqué ou rompu';
 
   @override
   String get worshipPrayerHubTitle => 'Espace prière';
@@ -1715,7 +1730,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsPrayerCalendarDisplaySubtitle =>
-      'Choisissez si les dates compactes des prières s’affichent au format grégorien ou hégirien.';
+      'Afficher les dates dans le calendrier grégorien ou hégirien.';
 
   @override
   String worshipPrayerWeekLabel(int weekNumber) {
@@ -1757,14 +1772,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Impossible de trouver des lieux pour l’instant.';
 
   @override
-  String get homeLearnSummaryTitle => 'Résumé de l’apprentissage';
+  String get homeLearnSummaryTitle => 'Apprentissage';
 
   @override
   String get homeLearnSummarySubtitle =>
-      'Poursuivez votre parcours de savoir avec des aperçus ciblés.';
+      'Reprenez là où vous vous êtes arrêté.';
 
   @override
-  String get homeLearnContinueQuran => 'Poursuivre le Saint Coran';
+  String get homeLearnContinueQuran => 'Continuer la lecture du Coran';
 
   @override
   String get homeLearnFeaturedLife => 'Sujet Vie à la une';
@@ -1776,17 +1791,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeLearnFeaturedHadith => 'Sujet Hadith à la une';
 
   @override
-  String get homeJourneySummaryTitle => 'Résumé du parcours';
+  String get homeJourneySummaryTitle => 'Votre parcours';
 
   @override
   String get homeJourneySummarySubtitle =>
-      'Suivez la progression, les anneaux et les prochains déblocages.';
+      'Votre niveau, et ce qui vient ensuite.';
 
   @override
-  String get homeJourneyXpProgressTitle => 'Progression des XP';
+  String get homeJourneyXpProgressTitle => 'Lumière jusqu’au niveau suivant';
 
   @override
-  String get homeJourneyNextUnlockTitle => 'Prochain déblocage';
+  String get homeJourneyNextUnlockTitle => 'Prochaine étape';
 
   @override
   String get appQuickActionOpenToday => 'Ouvrir Aujourd’hui';
@@ -1976,11 +1991,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeSearchTooltip => 'Rechercher dans l’application';
 
   @override
-  String get homeSearchGuidanceHubTitle => 'Espace de guidance islamique';
+  String get homeSearchGuidanceHubTitle => 'Guides islamiques';
 
   @override
   String homeTimeRemainingToOffer(Object prayerName) {
-    return 'Temps restant pour accomplir la prière de $prayerName';
+    return 'Temps restant pour prier $prayerName';
   }
 
   @override
@@ -2007,7 +2022,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String homeUntilTime(Object time) {
-    return 'Until $time';
+    return 'Jusqu’à $time';
   }
 
   @override
@@ -2024,12 +2039,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String homeLevelValue(Object level) {
-    return 'Level $level';
+    return 'Niveau $level';
   }
 
   @override
   String homeXpValue(Object xp) {
-    return '$xp XP';
+    return '$xp lumière';
   }
 
   @override
@@ -2046,13 +2061,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeShortcutQiblaLabel => 'Qibla';
 
   @override
-  String get homeShortcutSalahLabel => 'Salah';
+  String get homeShortcutSalahLabel => 'Prière';
 
   @override
   String get homeShortcutDhikrLabel => 'Dhikr';
 
   @override
-  String get homeShortcutDailyCaption => 'Daily';
+  String get homeShortcutDailyCaption => 'Quotidien';
 
   @override
   String homeSalahTahajjudBonusCaption(String count) {
@@ -2060,10 +2075,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get homeShortcutOpen => 'Shortcuts';
+  String get homeShortcutOpen => 'Raccourcis';
 
   @override
-  String get homePrayerOfferedStatus => 'Offered';
+  String get homePrayerOfferedStatus => 'Accomplie';
 
   @override
   String get homePrayerBeginsAt => 'Commence à';
@@ -2080,21 +2095,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get durationCompactMinuteSuffix => 'm';
 
   @override
-  String get homeTodayContentTitle => 'Today';
+  String get homeTodayContentTitle => 'Aujourd’hui';
 
   @override
   String get homeTodayContentSubtitle =>
-      'Gardez le verset, les conseils et l’apprentissage du jour réunis dans un même endroit paisible.';
+      'Chaque jour, un nouveau verset et une leçon.';
 
   @override
   String get homeEditTitle => 'Personnaliser l’accueil';
 
   @override
   String get homeEditSubtitle =>
-      'N’affichez que ce qui vous sert. Glissez pour réordonner, désactivez ce dont vous n’avez pas besoin.';
+      'Faites glisser pour réorganiser. Désactivez ce dont vous n’avez pas besoin.';
 
   @override
-  String get homeEditHiddenTitle => 'Hidden';
+  String get homeEditHiddenTitle => 'Masqués';
 
   @override
   String get homeEditAlwaysOnLabel => 'Toujours actif';
@@ -2104,7 +2119,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get homeEditTrackerFootnote =>
-      'Le suivi complet des heures de prière se trouve dans Ibadah, à une touche de la rangée des heures de prière.';
+      'Le suivi complet des prières se trouve dans Ibadah. Touchez la rangée des heures de prière pour l’ouvrir.';
 
   @override
   String get quickActionsTitle => 'Quick actions';
@@ -2248,19 +2263,25 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String fastingStreakDays(Object count) {
-    return 'Série de jeûne de $count jours';
+  String fastingStreakDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours de jeûne d’affilée',
+      one: '1 jour de jeûne d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
-  String get homeModuleSalahHeroTitle => 'Bandeau prière';
+  String get homeModuleSalahHeroTitle => 'Prière en cours';
 
   @override
   String get homeModulePrayerStripTitle => 'Rangée des heures de prière';
 
   @override
   String get homeModulePrayerStripSubtitle =>
-      'Bandeau compact des cinq prières qui ouvre Ibadah.';
+      'Les cinq prières sur une ligne. Touchez pour ouvrir Ibadah.';
 
   @override
   String get homeModuleCelestialSubtitle =>
@@ -2277,7 +2298,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get homeRightNowTitle => 'Invocations pour maintenant';
+  String get homeRightNowTitle => 'Invocations du moment';
 
   @override
   String get homeRightNowSubtitle =>
@@ -2287,7 +2308,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get levelLabel => 'Level';
 
   @override
-  String get streakLabel => 'Streak';
+  String get streakLabel => 'Jours d’affilée';
 
   @override
   String get worshipTitle => 'Ibadah';
@@ -2296,10 +2317,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get learnTitle => 'Learn';
 
   @override
-  String get homeTitle => 'Home';
+  String get homeTitle => 'Accueil';
 
   @override
-  String get journeyTitle => 'Growth';
+  String get journeyTitle => 'Croissance';
 
   @override
   String get profileDisplayNameLabel => 'Nom affiché';
@@ -2308,20 +2329,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileAddressMeAs => 'S’adresser à moi comme :';
 
   @override
-  String get profileBrother => 'Brother';
+  String get profileBrother => 'Frère';
 
   @override
-  String get profileSister => 'Sister';
+  String get profileSister => 'Sœur';
 
   @override
-  String get profilePrayerSettingsTitle => 'Réglages de prière et d’horaires';
+  String get profilePrayerSettingsTitle => 'Heures de prière';
 
   @override
-  String get profilePrayerSettingsSubtitle =>
-      'Définissez le lieu et les préférences de calcul des prières.';
+  String get profilePrayerSettingsSubtitle => 'Position et méthode de calcul.';
 
   @override
-  String get profileLocationLabel => 'Location';
+  String get profileLocationLabel => 'Position';
 
   @override
   String get profileMadhabLabel => 'Madhab';
@@ -2330,13 +2350,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileCalculationMethodLabel => 'Méthode de calcul des prières';
 
   @override
-  String get profileAppearanceTitle => 'Appearance';
+  String get profileAppearanceTitle => 'Apparence';
 
   @override
   String get profileThemeModeLabel => 'Mode du thème';
 
   @override
-  String get profileThemeDark => 'Dark';
+  String get profileThemeDark => 'Sombre';
 
   @override
   String get profileReduceMotion => 'Réduire les effets de mouvement';
@@ -2345,18 +2365,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileHighContrastText => 'Texte à contraste élevé';
 
   @override
-  String get profileRamadanModeTitle => 'Mode Ramadan';
+  String get profileRamadanModeTitle => 'Accompagnement du Ramadan';
 
   @override
   String get profileRamadanModeSubtitle =>
-      'Des repères centrés sur le jeûne et un accompagnement propre au Ramadan.';
+      'Donne la priorité au jeûne et au Coran pendant le Ramadan.';
 
   @override
-  String get profileLossModeTitle => 'Mode Deuil';
+  String get profileLossModeTitle => 'Accompagnement dans le deuil';
 
   @override
   String get profileLossModeSubtitle =>
-      'Accompagnement, invocations et rappels coraniques face au deuil.';
+      'Invocations et versets de réconfort pour les temps de deuil.';
 
   @override
   String get profileGentleModeTitle => 'Mode Douceur';
@@ -2366,7 +2386,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileTrackingPrivacySubtitle =>
-      'Réglages des rappels, des résumés et de l’usage des données.';
+      'Ce qui est suivi, et ce qui reste privé.';
 
   @override
   String get profileLocationWhileUsingApp =>
@@ -2374,17 +2394,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileLocationEnabledSubtitle =>
-      'Activée uniquement au premier plan.';
+      'Active pendant l’utilisation de l’application.';
 
   @override
   String get profileLocationDisabledSubtitle =>
-      'Activez-la pour garder des heures de prière précises.';
+      'Activez-la pour des heures de prière exactes.';
 
   @override
   String get profileOpenSettings => 'Ouvrir les réglages';
 
   @override
-  String get profileAllow => 'Allow';
+  String get profileAllow => 'Autoriser';
 
   @override
   String get profilePrivateTrackingModeTitle => 'Mode de suivi privé';
@@ -2397,8 +2417,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileMinimalTrackingModeTitle => 'Mode de suivi minimal';
 
   @override
-  String get profileMinimalTrackingModeSubtitle =>
-      'Ne suivre que l’essentiel, avec moins d’indicateurs.';
+  String get profileMinimalTrackingModeSubtitle => 'Ne suivre que l’essentiel.';
 
   @override
   String get profileHideGrowthVisualsTitle =>
@@ -2406,21 +2425,21 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileHideGrowthVisualsSubtitle =>
-      'Limiter les visuels de série et de niveau pour une expérience plus calme.';
+      'Masquer les compteurs de jours et les niveaux.';
 
   @override
   String get profileReflectionOnlyModeTitle => 'Mode réflexion seule';
 
   @override
   String get profileReflectionOnlyModeSubtitle =>
-      'Privilégier les rappels et les notes plutôt que les visuels de progression.';
+      'Rappels et notes, sans graphiques de progression.';
 
   @override
   String get profileNotificationsTitle => 'Notifications et rappels';
 
   @override
   String get profileNotificationsSubtitle =>
-      'Réglages provisoires pour la planification à venir.';
+      'Choisissez les rappels que vous recevez.';
 
   @override
   String get profilePrayerReminders => 'Rappels de prière';
@@ -2442,7 +2461,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileOnThisDayRemindersSubtitle =>
-      'M’avertir lorsqu’un événement historique islamique du jour mérite réflexion.';
+      'Quand un événement de l’histoire islamique a eu lieu ce jour-là.';
 
   @override
   String get profileMoonriseReminders => 'Notifications de lever de lune';
@@ -2463,7 +2482,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Sélectionnez la langue ci-dessous';
 
   @override
-  String get profileAboutTitle => 'About';
+  String get profileAboutTitle => 'À propos';
 
   @override
   String profilePlannedRemindersToday(int count) {
@@ -2720,27 +2739,27 @@ class AppLocalizationsFr extends AppLocalizations {
       'Consultez votre état de jeûne, votre intention et les moments clés.';
 
   @override
-  String get settingsLandingTitle => 'Settings';
+  String get settingsLandingTitle => 'Réglages';
 
   @override
   String get settingsCategoryAccountSyncSubtitle =>
-      'Profils, sauvegarde, état de synchronisation et sécurité du compte.';
+      'Profils, sauvegarde et synchronisation';
 
   @override
   String get settingsCategoryAppearanceSubtitle =>
-      'Thème, mouvement, contraste et préférences de lecture paisible.';
+      'Thème, animations et contraste';
 
   @override
   String get settingsCategoryPrayerWorshipSubtitle =>
-      'Heures de prière, adhan et configuration de l’ibadah.';
+      'Heures de prière et adhan';
 
   @override
   String get settingsCategoryLearningSubtitle =>
-      'Points d’entrée de l’apprentissage, gestion familiale et réglages d’étude.';
+      'Affichage du Coran, famille et étude';
 
   @override
   String get settingsCategoryNotificationsSubtitle =>
-      'Rappels de prière et réglages généraux des rappels.';
+      'Rappels de prière et autres rappels';
 
   @override
   String get settingsCategoryWidgetsWatchTitle =>
@@ -2748,75 +2767,75 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsCategoryWidgetsWatchSubtitle =>
-      'Gérez l’écran verrouillé, la Dynamic Island et les surfaces de la montre connectée.';
+      'Écran verrouillé, Dynamic Island et Apple Watch';
 
   @override
-  String get settingsWidgetsEnabledTitle => 'Activer les widgets';
+  String get settingsWidgetsEnabledTitle => 'Widgets';
 
   @override
   String get settingsWidgetsEnabledSubtitle =>
-      'Activez ou désactivez les widgets et les activités en direct depuis un seul endroit.';
+      'Activer ou désactiver les widgets et les activités en direct.';
 
   @override
   String get settingsCategoryLanguageDownloadsSubtitle =>
-      'Choix de langue et réglages des contenus téléchargeables.';
+      'Langue et téléchargements';
 
   @override
   String get settingsCategoryPrivacyDataSubtitle =>
-      'Contrôlez la visibilité du suivi, la confidentialité et le traitement des données sensibles.';
+      'Ce qui est suivi, et qui le voit';
 
   @override
   String get settingsHelpGuideTitle => 'Aide et guide';
 
   @override
   String get settingsHelpGuideSubtitle =>
-      'De courts guides pratiques pour utiliser les fonctions principales en confiance.';
+      'De courts guides pour chaque partie de l’application.';
 
   @override
   String get settingsCategoryHelpGuideSubtitle =>
-      'Des étapes simples pour démarrer, apprendre, gérer les rappels et l’usage quotidien.';
+      'De courts guides pour chaque partie de l’application';
 
   @override
   String get settingsCategoryAboutSubtitle =>
-      'Notes de version, assistance, mentions légales et prochaines nouveautés.';
+      'Nouveautés, aide et mentions légales';
 
   @override
   String get settingsHelpGuideSearchHint => 'Rechercher dans les guides';
 
   @override
-  String get settingsHelpGuideBrowseTitle => 'Catégories de guides';
+  String get settingsHelpGuideBrowseTitle => 'Sujets';
 
   @override
   String get settingsHelpGuideBrowseSubtitle =>
       'Ouvrez un sujet pour voir une courte explication et des étapes simples.';
 
   @override
-  String get settingsHelpGuideSearchResultsTitle => 'Résultats de recherche';
+  String get settingsHelpGuideSearchResultsTitle => 'Résultats';
 
   @override
   String get settingsHelpGuideSearchResultsSubtitle =>
       'Les sujets se mettent à jour à mesure que vous tapez.';
 
   @override
-  String get settingsHelpGuideSearchEmptyTitle => 'Aucun guide correspondant';
+  String get settingsHelpGuideSearchEmptyTitle => 'Aucun guide trouvé';
 
   @override
   String get settingsHelpGuideSearchEmptySubtitle =>
       'Essayez un mot-clé plus simple ou effacez votre recherche pour parcourir toutes les catégories.';
 
   @override
-  String get settingsHelpGuideStepsTitle => 'Comment l’utiliser';
+  String get settingsHelpGuideStepsTitle => 'Mode d’emploi';
 
   @override
   String get settingsHelpGuideStepsSubtitle =>
-      'Gardez chaque étape simple et ne retenez que ce qui vous aide maintenant.';
+      'N’utilisez que ce qui vous aide.';
 
   @override
   String get settingsHelpGuideNotFoundTitle => 'Guide introuvable';
 
   @override
   String get settingsHelpGuideNotFoundSubtitle =>
-      'Ce guide n’a pas pu être ouvert. Revenez à Aide et guide et essayez un autre sujet.';
+      'Ce guide n’a pas pu s’ouvrir. Essayez un autre sujet.';
 
   @override
   String get helpGuideGettingStartedTitle => 'Premiers pas';
@@ -2918,11 +2937,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpGuideGrowthProgressDescription =>
-      'Suivez habitudes, séries, XP et parcours ciblés sans alourdir l’application.';
+      'Suivez vos habitudes et vos parcours, et voyez combien de jours d’affilée.';
 
   @override
   String get helpGuideGrowthProgressStep1 =>
-      'Ouvrez Parcours pour voir votre série en cours, vos XP, vos axes de progression et les priorités du jour.';
+      'Ouvrez Croissance pour voir vos jours d’affilée, votre lumière et la priorité du jour.';
 
   @override
   String get helpGuideGrowthProgressStep2 =>
@@ -4730,7 +4749,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'A calm knowledge space for short quizzes, daily review, and gentle reinforcement.';
 
   @override
-  String get triviaHomeCurrentStreakLabel => 'Current streak';
+  String get triviaHomeCurrentStreakLabel => 'Jours d’affilée';
 
   @override
   String triviaHomeLongestStreakCaption(Object count) {
@@ -4746,7 +4765,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get triviaHomeTriviaXpLabel => 'Trivia XP';
+  String get triviaHomeTriviaXpLabel => 'Lumière du quiz';
 
   @override
   String triviaHomeQuizzesCompletedCount(Object count) {
@@ -5018,7 +5037,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String triviaKnowledgeStageSummary(Object count, Object xp) {
-    return '$count questions • +$xp XP';
+    return '$count questions · +$xp lumière';
   }
 
   @override
@@ -5756,23 +5775,23 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get modeRamadanHomeSubtitle =>
-      'Centrez la journée sur le jeûne, le Saint Coran et une réflexion paisible.';
+      'Ce mois-ci, le jeûne et le Coran passent en premier.';
 
   @override
-  String get modeRamadanActionFasting => 'Fasting';
+  String get modeRamadanActionFasting => 'Jeûne';
 
   @override
-  String get modeRamadanActionQuran => 'Saint Coran';
+  String get modeRamadanActionQuran => 'Coran';
 
   @override
-  String get modeRamadanActionReflect => 'Reflect';
+  String get modeRamadanActionReflect => 'Méditer';
 
   @override
   String get modeLossHomeTitle => 'Soutien dans le deuil';
 
   @override
   String get modeLossHomeSubtitle =>
-      'Avancez doucement aujourd’hui, avec rappel, patience et miséricorde.';
+      'Versets de miséricorde et rappel d’Allah pour les jours de deuil.';
 
   @override
   String get modeLossActionDhikr => 'Dhikr';
@@ -6608,11 +6627,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get homeEcosystemSummaryTitle => 'Écosystème de croissance';
+  String get homeEcosystemSummaryTitle => 'Ailleurs dans l’application';
 
   @override
   String get homeEcosystemSummarySubtitle =>
-      'Aperçus de l’océan, des récompenses, des cercles, du journal et de l’assistant.';
+      'Votre océan, vos cercles et votre journal.';
 
   @override
   String get learnTrackBeginner => 'Beginner';
@@ -6665,7 +6684,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get circlesAccountabilitySubtitle =>
-      'Private support groups for prayer and habit streaks.';
+      'De petits groupes privés qui s’encouragent à continuer.';
 
   @override
   String get circlesNearbyMosquesTitle => 'Nearby Mosques';
@@ -6747,7 +6766,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get circlesAccountabilityJoined => 'Joined';
 
   @override
-  String get circlesAccountabilityStreak => 'Check-in streak';
+  String get circlesAccountabilityStreak => 'Présences d’affilée';
 
   @override
   String get circlesImportTimetable => 'Import timetable';
@@ -7645,12 +7664,24 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String learningJourneyFeedbackStageCompleted(int streak) {
-    return 'Stage complete. You’re on a $streak day streak.';
+    String _temp0 = intl.Intl.pluralLogic(
+      streak,
+      locale: localeName,
+      other: 'Étape terminée. Cela fait $streak jours d’affilée.',
+      one: 'Étape terminée.',
+    );
+    return '$_temp0';
   }
 
   @override
   String learningJourneyHomeStreakMessage(int days) {
-    return 'You’re on a $days day learning streak.';
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours d’apprentissage d’affilée.',
+      one: 'Un jour d’apprentissage.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -8319,7 +8350,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String kidsArabicParentWeeklyConsistencyBody(int count, int streak) {
-    return '$count gentle Arabic day this week and a $streak day streak.';
+    return 'Jours d’arabe cette semaine : $count. Jours d’affilée : $streak.';
   }
 
   @override
@@ -15358,7 +15389,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String familyLearningStreakLabel(int days) {
-    return 'Streak: $days days';
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -15746,7 +15783,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsProfilePersonalizationSubtitle =>
-      'Gardez ici votre nom, votre forme d’adresse, vos modes et les raccourcis liés au profil.';
+      'Comment l’application vous salue, et vos modes d’accompagnement.';
 
   @override
   String settingsProfileDisplayNameSummary(String title, String name) {
@@ -15769,11 +15806,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Découvrez les derniers changements et les mises à jour précédentes.';
 
   @override
-  String get settingsComingSoonTitle => 'Prochainement';
+  String get settingsComingSoonTitle => 'En préparation';
 
   @override
-  String get settingsComingSoonSubtitle =>
-      'Aperçu des prochaines améliorations prévues.';
+  String get settingsComingSoonSubtitle => 'Ce qui se prépare ensuite.';
 
   @override
   String get shellQuranMiniPlayerTitle => 'Qur’an Playback';
@@ -15848,7 +15884,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Playback could not continue right now.';
 
   @override
-  String get profileWhatsNewChangelogTitle => 'Changelog';
+  String get profileWhatsNewChangelogTitle => 'Historique des versions';
 
   @override
   String get profileWhatsNewChangelogSubtitle =>
@@ -15862,51 +15898,51 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileWhatsNewEntry113Title =>
-      'Intégration, animations et widgets de prière affinés';
+      'Configuration, animations et widgets';
 
   @override
   String get profileWhatsNewEntry113Summary =>
-      'Cette mise à jour resserre la configuration initiale, adoucit les transitions et rend les widgets de prière plus calmes et mieux maîtrisés.';
+      'Une configuration plus courte, des pages plus fluides et des widgets de prière plus stables.';
 
   @override
   String get profileWhatsNewEntry113Item1 =>
-      'Fusion du nom et du choix Frère/Sœur en une seule étape d’intégration, avec un nom vide par défaut.';
+      'Le prénom et la salutation tiennent désormais en une étape, et le prénom est facultatif.';
 
   @override
   String get profileWhatsNewEntry113Item2 =>
-      'Le suivi des habitudes devient facultatif au départ, pour l’activer plus tard à votre rythme.';
+      'Le suivi des habitudes est désormais facultatif, et vous pouvez l’activer plus tard.';
 
   @override
   String get profileWhatsNewEntry113Item3 =>
-      'Animation d’entrée discrète appliquée aux pages partagées et à l’intégration, dans le plein respect de la réduction des animations.';
+      'Les pages apparaissent en fondu, sauf si Réduire les animations est activé.';
 
   @override
   String get profileWhatsNewEntry113Item4 =>
-      'Suppression des décomptes seconde par seconde des activités en direct et ajout de réglages stables et distincts pour la Dynamic Island et l’écran verrouillé.';
+      'Les comptes à rebours de prière sur l’écran verrouillé ne défilent plus à la seconde.';
 
   @override
   String get profileWhatsNewEntry113Item5 =>
-      'Simplification du mode de thème : l’aspect paisible Path of Nūr devient le thème par défaut.';
+      'Noor Glass est désormais l’apparence par défaut.';
 
   @override
   String get profileWhatsNewEntry112Title =>
-      'Améliorations de l’arabe coranique fondées sur des sources fiables';
+      'L’arabe coranique, avec ses sources';
 
   @override
   String get profileWhatsNewEntry112Summary =>
-      'Le contenu « Apprendre l’arabe coranique » applique désormais un traitement plus strict des sources, pour des exemples plus traçables et cohérents.';
+      'Chaque exemple coranique des leçons d’arabe cite désormais sa source.';
 
   @override
   String get profileWhatsNewEntry112Item1 =>
-      'Audit des lettres, des exemples de mots, des leçons de phrases et des exemples de règles pour s’appuyer sur des références coraniques fiables.';
+      'Chaque exemple d’arabe coranique a été vérifié auprès d’une source fiable.';
 
   @override
   String get profileWhatsNewEntry112Item2 =>
-      'Ajout des références de source directement dans le fil de la leçon pour une traçabilité claire.';
+      'Chaque exemple indique désormais d’où il vient.';
 
   @override
   String get profileWhatsNewEntry112Item3 =>
-      'Verrouillage des sources du jeu de 100 mots d’arabe coranique : tout ajout futur exigera des métadonnées de source.';
+      'Les nouveaux mots ne peuvent être ajoutés qu’avec leur source.';
 
   @override
   String get profileWhatsNewEntry111Title =>
@@ -15914,19 +15950,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileWhatsNewEntry111Summary =>
-      'Le quiz devient une véritable fonction d’apprentissage, avec des lots de questions structurés et des parcours thématiques guidés.';
+      'Le quiz est devenu une façon d’apprendre, avec des lots et des parcours guidés.';
 
   @override
   String get profileWhatsNewEntry111Item1 =>
-      'Ajout du quiz islamique avec questions par catégorie, révision, quiz quotidien, statistiques et intégration des récompenses.';
+      'Nouveau : le quiz islamique, avec un quiz quotidien et une révision des questions manquées.';
 
   @override
   String get profileWhatsNewEntry111Item2 =>
-      'Introduction des parcours de savoir : des cheminements guidés avec de courtes cartes d’apprentissage et des quiz par étapes.';
+      'Nouveau : les parcours de savoir, de courtes leçons suivies chacune d’un quiz.';
 
   @override
   String get profileWhatsNewEntry111Item3 =>
-      'Enrichissement des lots thématiques : Prophètes, bases du Coran, prière, Ramadan, invocations, Sīra et histoire de l’islam.';
+      'De nouveaux lots de questions sur les prophètes, le Coran, la prière, le Ramadan et la Sîra.';
 
   @override
   String get profileWhatsNewEntry110Title =>
@@ -15934,76 +15970,75 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileWhatsNewEntry110Summary =>
-      'L’apprentissage de l’arabe coranique devient plus adaptatif, avec une révision et une guidance plus utiles tout au long du parcours.';
+      'La pratique de l’arabe coranique s’adapte désormais à ce que vous savez.';
 
   @override
   String get profileWhatsNewEntry110Item1 =>
-      'Ajout d’une révision quotidienne intelligente, avec répétition espacée et ciblage adaptatif des points faibles.';
+      'Nouveau : la révision quotidienne, qui ramène les mots que vous risquez le plus d’oublier.';
 
   @override
   String get profileWhatsNewEntry110Item2 =>
-      'Introduction du suivi de la force de mémoire, de l’historique de révision et d’un affichage plus calme de la progression.';
+      'Le tableau d’apprentissage montre désormais à quel point chaque mot est retenu.';
 
   @override
   String get profileWhatsNewEntry110Item3 =>
-      'Déplacement de « Apprendre l’arabe coranique » vers sa propre destination pour une découverte plus simple.';
+      '« Apprendre l’arabe coranique » a maintenant sa propre place dans Apprendre.';
 
   @override
-  String get profileComingSoonRoadmapTitle => 'Sur la feuille de route';
+  String get profileComingSoonRoadmapTitle => 'En préparation';
 
   @override
-  String get profileComingSoonRoadmapSubtitle =>
-      'Voici les prochains chantiers en préparation.';
+  String get profileComingSoonRoadmapSubtitle => 'Prochainement, in sha Allah.';
 
   @override
-  String get profileComingSoonCard1Title =>
-      'Guidance approfondie en arabe coranique';
+  String get profileComingSoonCard1Title => 'Plus d’arabe coranique';
 
   @override
   String get profileComingSoonCard1Description =>
-      'Davantage d’exemples liés à des sources vérifiées, un meilleur accompagnement de la révision et une progression plus claire des leçons.';
+      'Plus d’exemples avec leurs sources, et des étapes plus claires d’une leçon à l’autre.';
 
   @override
-  String get profileComingSoonCard2Title => 'Des parcours de quiz élargis';
+  String get profileComingSoonCard2Title => 'Plus de parcours de quiz';
 
   @override
   String get profileComingSoonCard2Description =>
-      'Plus de parcours de savoir, une meilleure couverture des catégories et de meilleurs diagnostics de contenu.';
+      'Plus de parcours, et plus de sujets au choix.';
 
   @override
-  String get profileComingSoonCard3Title => 'Widgets de prière affinés';
+  String get profileComingSoonCard3Title =>
+      'Des widgets de prière plus stables';
 
   @override
   String get profileComingSoonCard3Description =>
-      'Encore plus de finition sur l’écran verrouillé et la Dynamic Island, avec une présentation resserrée et des options d’affichage plus stables.';
+      'Des widgets plus clairs sur l’écran verrouillé et la Dynamic Island.';
 
   @override
-  String get profileComingSoonCard4Title => 'Une personnalisation plus douce';
+  String get profileComingSoonCard4Title =>
+      'Plus de façons de l’adapter à vous';
 
   @override
   String get profileComingSoonCard4Description =>
-      'Davantage de réglages facultatifs d’intégration et de profil, pour que l’application s’adapte sans devenir lourde.';
+      'Quelques choix de plus dans la configuration et votre profil.';
 
   @override
   String get settingsAccountsSyncTitle => 'Comptes et profils';
 
   @override
-  String get settingsAccountsSyncSubtitle =>
-      'Gérez les appareils partagés, les profils protégés et les sauvegardes sans perturber votre parcours en cours.';
+  String get settingsAccountsSyncSubtitle => 'Profils et sauvegardes.';
 
   @override
   String get settingsCareModesTitle => 'Accompagnement et moments de vie';
 
   @override
   String get settingsCareModesSubtitle =>
-      'Gardez à portée des modes calmes et bienveillants pour les différentes saisons de l’adoration et du quotidien.';
+      'Pour les jours difficiles, et pour le Ramadan.';
 
   @override
   String get settingsCareModeRamadanTitle => 'Accompagnement du Ramadan';
 
   @override
   String get settingsCareModeRamadanBody =>
-      'Gardez le jeûne, le suhoor, l’iftar et les repères de prière à portée pendant le Ramadan.';
+      'Pendant le Ramadan, le suhoor, l’iftar et le jeûne passent en premier.';
 
   @override
   String get settingsCareModeRamadanReference => 'Coran 2:183';
@@ -16013,7 +16048,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsCareModeLossBody =>
-      'Revenez à Allah avec patience, invocations et rappels doux lorsque le chagrin pèse.';
+      'Quand le deuil pèse : patience, invocation et rappels de la miséricorde d’Allah.';
 
   @override
   String get settingsCareModeLossPrayer =>
@@ -16031,11 +16066,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsCareModeGentleBody =>
-      'Réduisez l’intensité des notifications et gardez la journée plus calme, tout en conservant les rappels utiles.';
+      'Les rappels de prière arrivent sans son et ne traversent pas le mode Concentration.';
 
   @override
   String get settingsGentleModeReducedNotificationsSubtitle =>
-      'Réduire l’intensité des notifications et adoucir les rappels.';
+      'Rappels de prière sans son.';
 
   @override
   String get settingsUnwellModeTitle => 'Mode Maladie';
@@ -16049,22 +16084,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsCareModeUnwellBody =>
-      'Activez-le les jours de maladie pour que l’application reste douce et que la protection de série couvre les jours de convalescence.';
+      'Pour les jours de maladie. Les jours manqués ne rompent pas vos jours d’affilée.';
 
   @override
   String get settingsCareModeUnwellPrayerEase =>
-      'Facilité dans la prière : priez comme vous le pouvez, debout, assis ou allongé selon vos besoins.';
+      'Priez debout si vous le pouvez, assis sinon, et couché sur le côté s’il le faut. (Boukhari)';
 
   @override
   String get settingsCareModeUnwellHadith =>
-      'Rappel : la maladie, la fatigue et la douleur ne sont pas perdues auprès d’Allah lorsqu’elles sont supportées avec patience.';
+      'Rappel : aucune fatigue ni maladie n’atteint un croyant sans qu’Allah efface par elle une part de ses péchés. (Boukhari)';
 
   @override
   String get settingsCycleDaysTitle => 'Jours de cycle';
 
   @override
   String get settingsCycleDaysSubtitle =>
-      'Pour les sœurs uniquement. Préservez la continuité de l’adoration pendant les jours d’excuse.';
+      'Pour les sœurs. Les jours d’excuse sont protégés.';
 
   @override
   String get settingsCycleDaysSupportTitle =>
@@ -16072,15 +16107,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsCycleDaysSupportBody =>
-      'Cela maintient un accompagnement adapté au cycle et protège votre série les jours où la prière et le jeûne sont excusés.';
+      'Les rappels de prière et de jeûne sont suspendus les jours d’excuse, et vos jours d’affilée sont conservés.';
 
   @override
   String get settingsCycleDaysReminderSupport =>
-      'Focus de l’accompagnement : dhikr, invocations, écoute du Coran et réflexion restent disponibles.';
+      'Le dhikr, les invocations et l’écoute du Coran vous restent.';
 
   @override
   String get settingsCycleDaysStreakSupport =>
-      'Protection de série : les jours protégés couvriront les jours de cycle afin que votre série ne soit pas injustement rompue.';
+      'Les jours d’excuse ne rompent pas vos jours d’affilée.';
 
   @override
   String get settingsCurrentProfileTitle => 'Profil actuel';
@@ -16660,8 +16695,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Progression et lectures récentes du Coran';
 
   @override
-  String get accountsSyncRemoteDomainGrowth =>
-      'XP, gouttes et progression de l’océan';
+  String get accountsSyncRemoteDomainGrowth => 'Lumière, gouttes et océan';
 
   @override
   String get accountsSyncRemoteDomainLearning =>
@@ -17374,7 +17408,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsAdhanSubtitle =>
-      'Choisissez l’adhan inclus et écoutez-le avant sa lecture à l’heure de la prière.';
+      'Choisissez un adhan, et écoutez-le avant de décider.';
 
   @override
   String get settingsAdhanChoiceTitle => 'Adhan';
@@ -17391,15 +17425,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsAdhanPickerFajrTitle => 'Choisir l’adhan du Fajr';
 
   @override
-  String get settingsAdhanPickerFajrSubtitle =>
-      'Utilisé uniquement pour la prière du Fajr.';
+  String get settingsAdhanPickerFajrSubtitle => 'Retentit au Fajr.';
 
   @override
   String get settingsAdhanPickerRegularTitle => 'Choisir l’adhan habituel';
 
   @override
   String get settingsAdhanPickerRegularSubtitle =>
-      'Utilisé pour Dhuhr, Asr, Maghrib et Isha.';
+      'Retentit à toutes les autres prières.';
 
   @override
   String get settingsAdhanPreviewStopTooltip => 'Arrêter l’écoute';
@@ -17415,7 +17448,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsUseAppVolumeSubtitle =>
-      'Aligner l’écoute sur le niveau de volume de l’application.';
+      'Les écoutes suivent le volume de l’application.';
 
   @override
   String get settingsAdhanPreviewVolume => 'Volume d’écoute de l’adhan';
@@ -17425,7 +17458,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsRestoreDefaultAdhanSettings =>
-      'Rétablir les réglages d’adhan par défaut';
+      'Rétablir les réglages de l’adhan';
 
   @override
   String get settingsMadhabShafii => 'Shafi’i';
@@ -17444,7 +17477,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ligue islamique mondiale';
 
   @override
-  String get settingsCalculationMethodEgyptian => 'Egyptian';
+  String get settingsCalculationMethodEgyptian => 'Égyptienne';
 
   @override
   String get settingsCalculationMethodIsna => 'ISNA';
@@ -17460,7 +17493,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsStableDynamicIslandSubtitle =>
-      'Garder la Dynamic Island de prière dans une disposition fixe et plus calme.';
+      'Garder la Dynamic Island de prière dans une disposition fixe.';
 
   @override
   String get settingsStableLockScreenWidgetTitle =>
@@ -17468,36 +17501,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsStableLockScreenWidgetSubtitle =>
-      'Garder l’activité en direct de l’écran verrouillé dans une disposition fixe et plus calme.';
+      'Garder l’activité en direct de prière de l’écran verrouillé dans une disposition fixe.';
 
   @override
   String get settingsThemeChoiceDefault => 'Classique par défaut';
 
   @override
-  String get settingsThemeChoiceCalmBeautiful => 'Beauté paisible';
+  String get settingsThemeChoiceCalmBeautiful => 'Original';
 
   @override
   String get settingsThemeChoiceEasyRead => 'Lecture facile';
 
   @override
-  String get settingsThemeChangedSuccessfully => 'Thème modifié avec succès';
+  String get settingsThemeChangedSuccessfully => 'Thème changé';
 
   @override
   String get settingsVisualPreferencesTitle => 'Préférences visuelles';
 
   @override
-  String get settingsDisableColoredGlassTitle => 'Désactiver le verre coloré';
+  String get settingsDisableColoredGlassTitle => 'Verre clair';
 
   @override
   String get settingsDisableColoredGlassSubtitle =>
-      'Conserver les surfaces en verre en retirant la teinte colorée.';
+      'Garder le verre, sans la teinte.';
 
   @override
   String get settingsVisualPreferenceUpdated =>
       'Préférence visuelle mise à jour';
 
   @override
-  String get settingsDisableBackgroundTitle => 'Désactiver l’arrière-plan';
+  String get settingsDisableBackgroundTitle => 'Masquer l’arrière-plan';
 
   @override
   String get settingsDisableBackgroundSubtitle =>
@@ -17525,45 +17558,44 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsPrayerNotificationsSubtitle =>
-      'Gardez tous les rappels de prière au même endroit, avec un mode par prière.';
+      'Choisissez comment chaque prière vous est rappelée.';
 
   @override
   String get settingsPrayerRemindersToggleSubtitle =>
-      'Activez ou désactivez tous les rappels sans modifier vos modes enregistrés par prière.';
+      'Activez ou désactivez tous les rappels de prière. Vos choix pour chaque prière sont conservés.';
 
   @override
   String get settingsPrayerTimeModeTitle => 'Mode des heures de prière';
 
   @override
   String get settingsPrayerTimeModeSubtitle =>
-      'Choisissez comment Path of Nūr gère votre horaire de prière. La plupart des utilisateurs devraient garder les heures calculées et appliquer de petits ajustements si besoin.';
+      'La plupart gardent les horaires calculés et les ajustent de quelques minutes.';
 
   @override
   String get settingsPrayerTimeModeCalculatedAdjustedTitle =>
-      'Heures calculées + ajustements';
+      'Calculés, avec ajustements';
 
   @override
   String get settingsPrayerTimeModeCalculatedAdjustedDescription =>
-      'Recommandé pour la plupart des utilisateurs. Path of Nūr calcule chaque jour les heures selon votre lieu et votre méthode, puis applique automatiquement vos ajustements enregistrés.';
+      'Idéal pour la plupart. Les horaires sont calculés chaque jour, puis vos ajustements s’y ajoutent.';
 
   @override
-  String get settingsPrayerTimeModeManualTitle =>
-      'Heures de prière entièrement manuelles';
+  String get settingsPrayerTimeModeManualTitle => 'Horaires manuels';
 
   @override
   String get settingsPrayerTimeModeManualDescription =>
-      'Utilisez les heures exactes que vous saisissez vous-même. Cela remplace le calcul quotidien habituel et ne devrait être utilisé que si vous voulez délibérément un horaire fixe.';
+      'Saisissez chaque horaire vous-même. Il reste fixe jusqu’à ce que vous le changiez.';
 
   @override
   String get settingsManualTimesPrefilledFromToday =>
-      'Les heures manuelles ont été préremplies à partir de l’horaire actif du jour.';
+      'Repris des horaires calculés pour aujourd’hui.';
 
   @override
   String get settingsPrayerTimeModeManualNote =>
-      'Le mode manuel est une option avancée. Si vos heures locales changent selon la saison, vous devrez les mettre à jour vous-même.';
+      'Les heures de prière varient avec les saisons, les horaires manuels doivent donc être mis à jour à la main.';
 
   @override
-  String get settingsRecommendedBadge => 'Recommended';
+  String get settingsRecommendedBadge => 'Recommandé';
 
   @override
   String get settingsPrayerTimeAdjustmentsTitle =>
@@ -17571,15 +17603,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsPrayerTimeAdjustmentsSubtitle =>
-      'Affinez vos heures calculées de quelques minutes. Path of Nūr continuera de calculer normalement selon votre lieu et votre méthode, puis appliquera automatiquement vos ajustements.';
+      'Décalez un horaire calculé de quelques minutes pour suivre votre mosquée.';
 
   @override
   String get settingsPrayerTimeAdjustmentsExample =>
-      'Si le Fajr est calculé à 5h00 et que vous le passez à 4h55, l’application enregistre un ajustement de -5 minutes pour le Fajr. Les prochains Fajr utiliseront aussi cet ajustement.';
+      'Par exemple, si le Fajr est calculé à 5 h 00 et que vous choisissez 4 h 55, le Fajr sera 5 minutes plus tôt chaque jour.';
 
   @override
   String get settingsPrayerTimeAdjustmentsScope =>
-      'Vos ajustements sont utilisés dans toute l’application : affichage, rappels, décomptes et suivi quotidien.';
+      'Les horaires ajustés sont utilisés partout dans l’application, rappels compris.';
 
   @override
   String get settingsCustomAdjustmentsActive =>
@@ -17606,14 +17638,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsManualPrayerTimesSubtitle =>
-      'Ces heures manuelles seront utilisées dans toute l’application pour les rappels, les décomptes et le suivi tant que le mode manuel est actif.';
+      'Tant que le mode manuel est actif, ces horaires sont utilisés partout.';
 
   @override
   String get settingsUseTodaysCalculatedTimes =>
-      'Utiliser les heures calculées du jour';
+      'Utiliser les horaires calculés du jour';
 
   @override
-  String get settingsResetManualTimes => 'Réinitialiser les heures manuelles';
+  String get settingsResetManualTimes => 'Réinitialiser les horaires manuels';
 
   @override
   String get settingsReturnToRecommendedMode => 'Revenir au mode recommandé';
@@ -17623,7 +17655,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsMosqueTimeComparisonSubtitle =>
-      'Comparez l’horaire de votre mosquée avec les heures calculées et ajustées de Path of Nūr. Cela reste local et vous aide à voir si vos ajustements sont proches.';
+      'Comparez les horaires de votre mosquée à ceux de l’application. Rien ne quitte votre téléphone.';
 
   @override
   String get settingsApplySuggestedAdjustments =>
@@ -17634,33 +17666,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsJumuahSettingsSubtitle =>
-      'Utilisez une heure de rappel propre au vendredi si votre Jumu’a diffère du Dhuhr habituel.';
+      'Quand la Jumu’a de votre mosquée n’est pas à l’heure du Dhuhr.';
 
   @override
-  String get settingsEnableJumuahOverrideTitle => 'Activer le réglage Jumu’a';
+  String get settingsEnableJumuahOverrideTitle =>
+      'Utiliser l’heure de la Jumu’a de ma mosquée';
 
   @override
   String get settingsEnableJumuahOverrideSubtitle =>
-      'Utiliser un rappel de midi dédié au vendredi sans modifier l’horaire suivi.';
+      'Me rappeler à l’heure de la Jumu’a de ma mosquée plutôt qu’au Dhuhr.';
 
   @override
   String get settingsJumuahTimeTitle => 'Heure de la Jumu’a';
 
   @override
   String get settingsJumuahTimeSubtitle =>
-      'Utilisée pour le rappel du vendredi lorsqu’elle est sélectionnée.';
+      'Votre rappel du vendredi utilise cette heure.';
 
   @override
   String get settingsNotSet => 'Non défini';
 
   @override
-  String get settingsUnavailable => 'Unavailable';
+  String get settingsUnavailable => 'Indisponible';
 
   @override
   String get settingsNoChange => 'Aucun changement';
 
   @override
-  String get settingsModified => 'Modified';
+  String get settingsModified => 'Modifié';
 
   @override
   String get settingsApplySuggestedAdjustmentsTitle =>
@@ -17668,22 +17701,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsApplySuggestedAdjustmentsSubtitle =>
-      'Vérifiez les décalages proposés avant de remplacer vos ajustements actuels.';
+      'Vérifiez les nouveaux horaires avant qu’ils ne remplacent vos ajustements.';
 
   @override
   String get settingsPrayerAdjustmentEditorFutureUseNote =>
-      'Cet ajustement s’appliquera aussi aux futures heures calculées de cette prière.';
+      'Cette modification s’applique aussi aux jours suivants.';
 
   @override
   String get settingsResetThisPrayer => 'Réinitialiser cette prière';
 
   @override
-  String get settingsFridayReminderModeNormalDhuhr =>
-      'Heure habituelle du Dhuhr';
+  String get settingsFridayReminderModeNormalDhuhr => 'Au Dhuhr';
 
   @override
-  String get settingsFridayReminderModeCustomJumuah =>
-      'Heure de Jumu’a personnalisée';
+  String get settingsFridayReminderModeCustomJumuah => 'À l’heure de ma Jumu’a';
 
   @override
   String get settingsPrayerNameFajr => 'Fajr';
@@ -17772,11 +17803,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsSyncStateAllCaughtUp => 'Tout est à jour';
 
   @override
-  String get settingsSyncStateSyncing => 'Syncing';
+  String get settingsSyncStateSyncing => 'Synchronisation…';
 
   @override
   String get settingsSyncStateOfflinePending =>
-      'Hors ligne avec des changements en attente';
+      'Hors ligne. Les changements seront synchronisés plus tard.';
 
   @override
   String get settingsSyncStateNeedsAttention => 'Demande attention';
@@ -17789,19 +17820,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsThemeModeDefaultDescription =>
-      'L’aspect Path of Nūr par défaut, doux et élégant, avec une profondeur mesurée.';
+      'L’apparence classique de Path of Nūr.';
 
   @override
   String get settingsThemeModeCalmBeautifulDescription =>
-      'L’ancien style paisible de Path of Nūr, chaleureux et familier.';
+      'La première apparence de Path of Nūr, chaleureuse et familière.';
 
   @override
   String get settingsThemeModeEasyReadDescription =>
-      'Des fonds plus sobres et un contraste renforcé pour une lecture concentrée. Recommandé pour les longues sessions.';
+      'Des surfaces simples et un fort contraste pour lire longtemps.';
 
   @override
   String get settingsThemeModeDarkDescription =>
-      'Une apparence sobre pour la nuit. Recommandée en faible luminosité.';
+      'Une apparence sombre pour la nuit.';
 
   @override
   String settingsCurrentProfileSummary(String name, String syncMode) {
@@ -17815,27 +17846,27 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String settingsMosqueTimeLabel(String time) {
-    return 'Masjid: $time';
+    return 'Mosquée : $time';
   }
 
   @override
   String settingsCalculatedTimeLabel(String time) {
-    return 'Calculated: $time';
+    return 'Calculée : $time';
   }
 
   @override
   String settingsAdjustmentValueLabel(String value) {
-    return 'Adjustment: $value';
+    return 'Ajustement : $value';
   }
 
   @override
   String settingsEffectiveTimeLabel(String time) {
-    return 'Effective: $time';
+    return 'Effective : $time';
   }
 
   @override
   String settingsDifferenceValueLabel(String value) {
-    return 'Difference: $value';
+    return 'Différence : $value';
   }
 
   @override
@@ -17845,12 +17876,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String settingsBaseTimeLabel(String time) {
-    return 'Base: $time';
+    return 'Base : $time';
   }
 
   @override
   String settingsFinalTimeLabel(String time) {
-    return 'Final: $time';
+    return 'Finale : $time';
   }
 
   @override
@@ -19165,7 +19196,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les gouttes apportent verdure et vie, marquant les actes sincères qui nourrissent tout le jardin.';
 
   @override
-  String get gardenPageNextUnlockTitle => 'Prochain déblocage';
+  String get gardenPageNextUnlockTitle => 'Prochaine étape';
 
   @override
   String get gardenPageAllUnlockedTitle => 'Galerie du jardin complète';
@@ -19204,7 +19235,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get gardenPageLevelLabel => 'Level';
 
   @override
-  String get gardenPageXpLabel => 'XP';
+  String get gardenPageXpLabel => 'Lumière';
 
   @override
   String get gardenPageMaturityLabel => 'Maturité du jardin';
@@ -19328,7 +19359,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get gardenDimensionFruitBody =>
-      'Badges, jalons et maturité révèlent le fruit de l’apprentissage.';
+      'Les étapes montrent le fruit de l’apprentissage.';
 
   @override
   String get gardenDimensionConsistencyTitle => 'Floraison de la régularité';
@@ -19365,8 +19396,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeModuleGardenTitle => 'Votre jardin';
 
   @override
-  String get homeModuleGardenSubtitle =>
-      'Une vue vivante de la croissance de votre adoration.';
+  String get homeModuleGardenSubtitle => 'Voyez votre adoration grandir.';
 
   @override
   String get gardenElementCentralTreeTitle => 'L’arbre bon';
@@ -20521,15 +20551,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get triviaStatsOverallAccuracy => 'Overall accuracy';
 
   @override
-  String get triviaStatsDailyQuizStreak => 'Daily quiz streak';
+  String get triviaStatsDailyQuizStreak => 'Quiz quotidiens d’affilée';
 
   @override
   String triviaStatsLongestStreak(String value) {
-    return 'Longest streak: $value';
+    return 'Record de jours d’affilée : $value';
   }
 
   @override
-  String get triviaStatsXp => 'Trivia XP';
+  String get triviaStatsXp => 'Lumière du quiz';
 
   @override
   String get triviaStatsOceanDrops => 'Ocean drops';
@@ -22628,8 +22658,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String kidsDuaStreakValue(Object days) {
-    return 'Streak: $days days';
+  String kidsDuaStreakValue(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -23206,7 +23242,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get xpLevelTitle100 => 'Path of Nūr';
 
   @override
-  String get xpCardTitle => 'Path XP';
+  String get xpCardTitle => 'Votre lumière';
 
   @override
   String xpCardLevelValue(Object level, Object title) {
@@ -23215,7 +23251,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String xpCardTotalXpValue(Object xp) {
-    return '$xp total XP';
+    return '$xp lumière au total';
   }
 
   @override
@@ -23225,7 +23261,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String xpCardRemainingValue(Object xp) {
-    return '$xp XP to go';
+    return 'Encore $xp lumière';
   }
 
   @override
@@ -23388,14 +23424,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'Jours avec une progression enregistrée';
 
   @override
-  String get journeyStatsCurrentStreakTitle => 'Série en cours';
+  String get journeyStatsCurrentStreakTitle => 'Jours d’affilée';
 
   @override
   String get journeyStatsCurrentStreakSubtitle =>
       'Votre rythme régulier actuel';
 
   @override
-  String get journeyStatsBestStreakTitle => 'Meilleure série';
+  String get journeyStatsBestStreakTitle => 'Record de jours d’affilée';
 
   @override
   String get journeyStatsBestStreakSubtitle =>
@@ -23556,218 +23592,208 @@ class AppLocalizationsFr extends AppLocalizations {
   String get growthHabitSettingsSaveAction => 'Save';
 
   @override
-  String get commonToday => 'Today';
+  String get commonToday => 'Aujourd’hui';
 
   @override
-  String get commonHistory => 'History';
+  String get commonHistory => 'Historique';
 
   @override
-  String get pageDescriptionLearnHub =>
-      'Follow clear learning paths across Qur’an, Hadith, stories, practice, and reflection.';
+  String get pageDescriptionLearnHub => 'Apprendre l’islam pas à pas.';
 
   @override
   String get pageDescriptionLearnHubKids =>
-      'Learn Islam step by step with stories, lessons, and simple practice.';
+      'Apprendre l’islam avec des histoires et des leçons.';
 
   @override
-  String get pageDescriptionQuranHub =>
-      'Read, study, memorize, and return to the Qur’an with clear paths for daily connection.';
+  String get pageDescriptionQuranHub => 'Lire, étudier et mémoriser le Coran.';
 
   @override
   String get pageDescriptionQuranHubKids =>
-      'Read the Qur’an, learn its meaning, and come back to it a little at a time.';
+      'Lisez le Coran, apprenez son sens, et revenez-y petit à petit.';
 
   @override
   String get pageDescriptionQuranStudyHub =>
-      'Slow down with the Qur’an through meaning, guided study, memorization, and review tools.';
+      'Comprendre le Coran, un passage à la fois.';
 
   @override
   String get pageDescriptionQuranStudyHubKids =>
-      'Take your time with the Qur’an, understand more, and learn bit by bit.';
+      'Apprendre le sens du Coran, petit à petit.';
 
   @override
-  String get pageDescriptionWorshipHub =>
-      'Keep your daily ibadah steady with Salah, dhikr, duas, fasting, and reminders.';
+  String get pageDescriptionWorshipHub => 'Votre adoration quotidienne.';
 
   @override
   String get pageDescriptionWorshipHubKids =>
-      'Build good daily habits with Salah, dhikr, duas, and simple reminders.';
+      'Prier, se souvenir d’Allah et faire des invocations chaque jour.';
 
   @override
   String get pageDescriptionGrowthToday =>
-      'See today’s rhythm, notice what needs care, and keep your next step clear.';
+      'Comment se passe la journée, et une prochaine étape.';
 
   @override
   String get pageDescriptionGrowthTodayKids =>
-      'See how today is going and choose one good next step.';
+      'Voyez comment se passe la journée, et choisissez une bonne prochaine étape.';
 
   @override
   String get pageDescriptionGrowthPaths =>
-      'Follow focused paths that help one part of your practice grow with consistency.';
+      'Choisissez une part de votre pratique à faire grandir.';
 
   @override
   String get pageDescriptionGrowthPathsKids =>
-      'Pick one small path and keep growing a little each day.';
+      'Choisissez un petit chemin, et grandissez un peu chaque jour.';
 
   @override
   String get pageDescriptionGrowthJourney =>
-      'Review your progress, unlocked milestones, and the steady shape of your journey.';
+      'Le chemin parcouru, et vos étapes.';
 
   @override
   String get pageDescriptionGrowthJourneyKids =>
-      'See how far you have come and what you unlocked along the way.';
+      'Voyez le chemin parcouru et ce que vous avez débloqué en route.';
 
   @override
   String get pageDescriptionGrowthReflection =>
-      'Pause for gratitude, tawbah, and honest review so the heart can realign.';
+      'Un moment de gratitude et de tawba.';
 
   @override
   String get pageDescriptionGrowthReflectionKids =>
-      'Pause, say thank you, think honestly, and begin again with a clean heart.';
+      'Dites merci à Allah, et recommencez.';
 
   @override
   String get pageDescriptionSettingsLanding =>
-      'Adjust how the app supports your Salah, learning, reminders, privacy, and daily rhythm.';
+      'Adaptez l’application à votre journée.';
 
   @override
   String get pageDescriptionSettingsLandingKids =>
-      'Choose how the app helps you learn, pray, and stay organized each day.';
+      'Réglez l’application pour qu’elle vous aide.';
 
   @override
-  String get pageDescriptionSettingsAccountSync =>
-      'Manage profiles, backups, and device sync.';
+  String get pageDescriptionSettingsAccountSync => 'Profils et sauvegardes.';
 
   @override
   String get pageDescriptionSettingsAccountSyncKids =>
-      'Choose who is using the app and keep profiles and backups safe.';
+      'Choisissez qui utilise l’application, et gardez profils et sauvegardes en sécurité.';
 
   @override
   String get pageDescriptionSettingsAppearance =>
-      'Set the app’s look, motion, contrast, and reading comfort to fit your day.';
+      'L’apparence de l’application et ses animations.';
 
   @override
   String get pageDescriptionSettingsAppearanceKids =>
-      'Choose how the app looks and feels so it is easy to use.';
+      'Choisissez l’apparence de l’application pour qu’elle soit facile à utiliser.';
 
   @override
   String get pageDescriptionSettingsPrayerWorship =>
-      'Set up Salah times, adhan, widgets, and other daily ibadah preferences.';
+      'Heures de prière et adhan.';
 
   @override
   String get pageDescriptionSettingsPrayerWorshipKids =>
-      'Set your Salah times, reminders, and helpful worship tools.';
+      'Vos heures de prière et vos rappels.';
 
   @override
   String get pageDescriptionSettingsLearning =>
-      'Control Qur’an display, family learning, and the study settings used across the app.';
+      'L’affichage du Coran et des leçons.';
 
   @override
   String get pageDescriptionSettingsLearningKids =>
-      'Choose how learning, Qur’an text, and family study features appear.';
+      'L’apparence des leçons et du Coran.';
 
   @override
   String get pageDescriptionSettingsNotifications =>
-      'Decide which reminders reach you and how often the app should prompt you.';
+      'Les rappels que vous recevez, et quand.';
 
   @override
   String get pageDescriptionSettingsNotificationsKids =>
-      'Pick which reminders help you remember the right things.';
+      'Choisissez les rappels qui vous aident à vous souvenir de l’essentiel.';
 
   @override
   String get pageDescriptionSettingsWidgetsWatch =>
-      'Manage lock screen, Dynamic Island, and watch surfaces for quick daily access.';
+      'Les heures de prière sur l’écran verrouillé et la montre.';
 
   @override
   String get pageDescriptionSettingsWidgetsWatchKids =>
-      'Choose what quick prayer and reminder info shows on your screen or watch.';
+      'Choisissez les infos de prière et de rappel affichées sur l’écran ou la montre.';
 
   @override
-  String get pageDescriptionSettingsLanguage =>
-      'Choose your language and other download-ready reading preferences.';
+  String get pageDescriptionSettingsLanguage => 'Langue et téléchargements.';
 
   @override
   String get pageDescriptionSettingsLanguageKids =>
-      'Pick the language and reading options that help you most.';
+      'Choisissez la langue et les options de lecture qui vous aident le plus.';
 
   @override
   String get pageDescriptionSettingsPrivacy =>
-      'Control sensitive tracking, visibility, and data behavior with calm defaults.';
+      'Ce qui est suivi, et ce qui reste privé.';
 
   @override
   String get pageDescriptionSettingsPrivacyKids =>
-      'Choose how private you want your information and activity to stay.';
+      'Choisissez à quel point vos informations et votre activité restent privées.';
 
   @override
   String get pageDescriptionSettingsKidsFamily =>
-      'Adjust age-aware learning and family-friendly presentation across the app.';
+      'L’apprentissage pour chaque âge de votre famille.';
 
   @override
   String get pageDescriptionSettingsKidsFamilyKids =>
-      'Set up kid-friendly learning and family settings that feel right for you.';
+      'Les réglages pour apprendre en famille.';
 
   @override
-  String get pageDescriptionSettingsAbout =>
-      'Find support, updates, legal details, and what is changing in the app.';
+  String get pageDescriptionSettingsAbout => 'Aide et nouveautés.';
 
   @override
-  String get pageDescriptionSettingsAboutKids =>
-      'See app help, updates, and important info in one place.';
+  String get pageDescriptionSettingsAboutKids => 'Aide et nouveautés.';
 
   @override
   String get pageDescriptionAssistant =>
-      'Ask for guidance, reflection prompts, and help finding the right part of the app.';
+      'Posez une question, ou trouvez votre chemin dans l’application.';
 
   @override
   String get pageDescriptionAssistantKids =>
-      'Ask simple questions, get ideas, and find the right place to go next.';
+      'Posez une question, ou demandez où aller.';
 
   @override
-  String get pageDescriptionJournalTimeline =>
-      'Keep reflections, observations, and meaningful moments where you can return to them.';
+  String get pageDescriptionJournalTimeline => 'Tout ce que vous avez écrit.';
 
   @override
   String get pageDescriptionJournalTimelineKids =>
-      'Save thoughts, notes, and special moments so you can look back later.';
+      'Relisez ce que vous avez écrit.';
 
   @override
-  String get pageDescriptionJournalCreate =>
-      'Write a reflection, observation, or gratitude note while the moment is still clear.';
+  String get pageDescriptionJournalCreate => 'Écrivez-le tant que c’est frais.';
 
   @override
   String get pageDescriptionJournalCreateKids =>
-      'Write down what you noticed, felt, or felt thankful for today.';
+      'Écrivez sur quelque chose que vous avez remarqué.';
 
   @override
   String get pageDescriptionCreationExplorer =>
-      'Observe creation carefully and connect what you notice with Qur’anic reflection.';
+      'Observez la création avec attention, et reliez ce que vous remarquez au Coran.';
 
   @override
   String get pageDescriptionCreationExplorerKids =>
-      'Look closely at Allah’s creation and notice what it teaches you.';
+      'Regardez de près la création d’Allah, et voyez ce qu’elle vous apprend.';
 
   @override
   String get pageDescriptionCreationChallenges =>
-      'Use small guided prompts to notice creation more intentionally and reflect with care.';
+      'De petites pistes pour remarquer la création d’Allah.';
 
   @override
   String get pageDescriptionCreationChallengesKids =>
-      'Try small challenges that help you notice the world Allah made.';
+      'Relevez de petits défis pour remarquer le monde qu’Allah a créé.';
 
   @override
   String get pageDescriptionCelestialExplorer =>
-      'Track the sky with location-aware signs that turn observation into remembrance.';
+      'Le ciel au-dessus de vous, comme un rappel d’Allah.';
 
   @override
   String get pageDescriptionCelestialExplorerKids =>
-      'Watch the sky, learn what is happening, and remember Allah through it.';
+      'Observez le ciel, comprenez ce qui s’y passe, et souvenez-vous d’Allah.';
 
   @override
-  String get pageDescriptionKhusuFocus =>
-      'Step into a quiet focus space that helps the heart settle before returning to worship.';
+  String get pageDescriptionKhusuFocus => 'Apaisez votre cœur avant de prier.';
 
   @override
   String get pageDescriptionKhusuFocusKids =>
-      'Take a quiet pause, slow down, and get your heart ready to focus.';
+      'Ralentissez, et préparez-vous à prier.';
 
   @override
   String get learnGlossaryTitle => 'Glossary';
@@ -24054,7 +24080,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String crosswordTodayXpLabel(Object xp) {
-    return '$xp XP today';
+    return '$xp lumière aujourd’hui';
   }
 
   @override
@@ -24285,8 +24311,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get crosswordCellCurrentWordHint => 'Part of the current clue';
 
   @override
-  String crosswordDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String crosswordDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -24518,8 +24550,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String wordSearchDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String wordSearchDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -24549,7 +24587,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String wordSearchXpLabel(Object count) {
-    return '$count XP';
+    return '$count lumière';
   }
 
   @override
@@ -24933,7 +24971,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String matchingXpLabel(Object count) {
-    return '$count XP earned';
+    return '$count lumière recueillie';
   }
 
   @override
@@ -24942,8 +24980,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String matchingDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String matchingDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25267,8 +25311,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'A quiet look at your recent Qur’an completion practice.';
 
   @override
-  String ayahCompletionDailyStreakLabel(Object count) {
-    return 'Daily streak $count';
+  String ayahCompletionDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25286,7 +25336,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String ayahCompletionXpLabel(Object count) {
-    return '$count XP';
+    return '$count lumière';
   }
 
   @override
@@ -25620,7 +25670,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String hadithReflectionXpLabel(Object count) {
-    return '$count XP';
+    return '$count lumière';
   }
 
   @override
@@ -25629,8 +25679,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String hadithReflectionDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String hadithReflectionDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -25757,7 +25813,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String hadithReflectionBestChoiceReward(Object count) {
-    return 'Best-choice bonus +$count XP';
+    return 'Meilleur choix · +$count lumière';
   }
 
   @override
@@ -25931,8 +25987,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String dailyKnowledgeHubStreakLabel(Object count) {
-    return '$count-day bundle streak';
+  String dailyKnowledgeHubStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -26080,8 +26142,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String spiritualGrowthReflectionStreakLabel(Object count) {
-    return '$count-day reflection streak';
+  String spiritualGrowthReflectionStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours de réflexion d’affilée',
+      one: '1 jour de réflexion d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -26608,8 +26676,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String learnGamesIslandDailyStreakLabel(Object count) {
-    return '$count-day streak';
+  String learnGamesIslandDailyStreakLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -27567,7 +27641,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bedtimeParentContinueArabicAction => 'Open Arabic';
 
   @override
-  String get bedtimeParentCurrentStreakLabel => 'Current streak';
+  String get bedtimeParentCurrentStreakLabel => 'Jours d’affilée';
 
   @override
   String get bedtimeParentOverallStoriesLabel => 'Stories completed';
@@ -27582,7 +27656,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bedtimeParentOverallArabicLabel => 'Arabic letters';
 
   @override
-  String get bedtimeParentOverallXpLabel => 'XP across kids learning';
+  String get bedtimeParentOverallXpLabel =>
+      'Lumière sur tout l’apprentissage des enfants';
 
   @override
   String get bedtimeParentOverallDropsLabel =>
@@ -27639,7 +27714,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String bedtimeParentLearningAreaDuasSecondary(int count) {
-    return '$count-day light streak';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -27657,12 +27738,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String bedtimeParentHabitCurrentStreak(int days) {
-    return 'Current streak: $days';
+    return 'Jours d’affilée : $days';
   }
 
   @override
   String bedtimeParentHabitLongestStreak(int days) {
-    return 'Longest streak: $days';
+    return 'Record de jours d’affilée : $days';
   }
 
   @override
@@ -28194,7 +28275,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'End gently and rest peacefully.';
 
   @override
-  String get progressionPageTitle => 'Progress & Badges';
+  String get progressionPageTitle => 'Progression et autocollants';
 
   @override
   String get progressionPageSubtitle =>
@@ -28209,8 +28290,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get progressionPageHeroSubtitle =>
-      'Levels, badges, and milestones grow through steady learning.';
+  String get progressionPageHeroSubtitle => 'Chaque leçon y contribue.';
 
   @override
   String get progressionPageOpenAction => 'Open progress';
@@ -28239,11 +28319,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Milestones will appear as learning grows.';
 
   @override
-  String get progressionPageBadgesTitle => 'Badges';
+  String get progressionPageBadgesTitle => 'Autocollants';
 
   @override
   String get progressionPageBadgesEmpty =>
-      'Badges will appear after the first meaningful completions.';
+      'Pas encore d’autocollants. Ils viennent avec les leçons terminées.';
 
   @override
   String progressionPageLevelValue(Object level, Object title) {
@@ -28252,7 +28332,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String progressionPageXpValue(Object xp) {
-    return '$xp XP';
+    return '$xp lumière';
   }
 
   @override
@@ -28279,11 +28359,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get progressionOverviewDropsLabel => 'Ocean Drops';
 
   @override
-  String get progressionOverviewBadgesLabel => 'Badges earned';
+  String get progressionOverviewBadgesLabel => 'Autocollants gagnés';
 
   @override
   String progressionParentRemainingValue(Object xp) {
-    return '$xp XP to the next level';
+    return '$xp lumière jusqu’au niveau suivant';
   }
 
   @override
@@ -28400,7 +28480,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'A lovely bedtime rhythm is forming.';
 
   @override
-  String get progressionMilestoneLearningMonthTitle => '30-day learning streak';
+  String get progressionMilestoneLearningMonthTitle =>
+      '30 jours d’apprentissage d’affilée';
 
   @override
   String get progressionMilestoneLearningMonthDescription =>
@@ -28438,11 +28519,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Calm milestone moments celebrate new parts of the journey without turning practice into pressure.';
 
   @override
-  String get kidsArabicBadgesSectionTitle => 'Badges';
+  String get kidsArabicBadgesSectionTitle => 'Autocollants';
 
   @override
   String get kidsArabicBadgesSectionSubtitle =>
-      'Badge stickers stay tied to real Arabic progress and unlock only once.';
+      'Chaque autocollant se gagne une seule fois, en apprenant vraiment l’arabe.';
 
   @override
   String get kidsArabicAchievementCelebrateTitle => 'A new celebration';
@@ -28477,8 +28558,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'The first short word set is complete and ready for gentle review.';
 
   @override
-  String kidsArabicBadgesUnlockedValue(Object count) {
-    return '$count badges unlocked';
+  String kidsArabicBadgesUnlockedValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count autocollants gagnés',
+      one: '1 autocollant gagné',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -28958,7 +29045,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String wuduQuizRewardFeedback(Object xp, Object drops) {
-    return 'First completion counted: +$xp XP and +$drops Ocean Drop.';
+    return 'Réussi pour la première fois : +$xp lumière et +$drops goutte d’océan.';
   }
 
   @override
@@ -29092,7 +29179,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get quranDailyReflectionFirstTimeHint =>
-      'Complete a few reflections to build your streak.';
+      'Méditez quelques jours d’affilée pour les voir comptés ici.';
 
   @override
   String get quranReflectionsTitle => 'Saved Reflections';
@@ -29652,13 +29739,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get kidsArabicPracticeTodayDoneBadge => 'Done today';
 
   @override
-  String quranDailyReflectionStreakValue(Object days) {
-    return '$days day streak';
+  String quranDailyReflectionStreakValue(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
   String quranDailyReflectionBestStreakValue(Object streak) {
-    return 'Best streak: $streak';
+    return 'Record d’affilée : $streak';
   }
 
   @override
@@ -29920,7 +30013,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String growthPathCurrentStreakValue(Object value) {
-    return 'Série en cours : $value';
+    return 'Jours d’affilée : $value';
   }
 
   @override
@@ -30414,12 +30507,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String wuduTrainerRewardFeedbackXpDrops(Object xp, Object drops) {
-    return '+$xp XP • +$drops Ocean Drop';
+    return '+$xp lumière · +$drops goutte d’océan';
   }
 
   @override
   String wuduTrainerRewardFeedbackXpOnly(Object xp) {
-    return '+$xp XP';
+    return '+$xp lumière';
   }
 
   @override
@@ -30438,7 +30531,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String wuduQuizRewardFeedbackXpOnly(Object xp) {
-    return 'First completion counted: +$xp XP.';
+    return 'Réussi pour la première fois : +$xp lumière.';
   }
 
   @override
@@ -31914,8 +32007,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String arabicLearningProgressKidsStreakValue(Object count) {
-    return '$count day streak';
+  String arabicLearningProgressKidsStreakValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours d’affilée',
+      one: '1 jour d’affilée',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -32846,11 +32945,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get creationChallengesPageTitle => 'Creation Challenges';
 
   @override
-  String get creationChallengesDailyStreakLabel => 'Daily streak';
+  String get creationChallengesDailyStreakLabel => 'Jours d’affilée';
 
   @override
   String get creationChallengesNewStreakBeginsToday =>
-      'A new streak begins today.';
+      'Un nouveau départ aujourd’hui.';
 
   @override
   String creationChallengesStreakDays(int count) {
@@ -33036,7 +33135,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get onboardingSkipAction => 'Skip';
+  String get onboardingSkipAction => 'Passer';
 
   @override
   String onboardingProgressValue(Object current, Object total) {
@@ -33048,10 +33147,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Vous pouvez modifier cela à tout moment dans les réglages.';
 
   @override
-  String get onboardingBeginJourneyAction => 'Commencer votre parcours';
+  String get onboardingBeginJourneyAction => 'Commencer par bismillah';
 
   @override
-  String get onboardingContinueAction => 'Continue';
+  String get onboardingContinueAction => 'Continuer';
 
   @override
   String get onboardingBismillahTransliteration => 'Bismillahir-Rahmanir-Rahim';
@@ -33062,14 +33161,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingOpeningBlessingBody =>
-      'Que ce parcours apporte le khayr, la régularité et la proximité d’Allah.';
+      'Qu’Allah fasse de ce chemin une source de bien pour vous.';
 
   @override
   String get onboardingLanguageTitle => 'Choisissez votre langue';
 
   @override
   String get onboardingLanguageSubtitle =>
-      'Sélectionnez la langue que vous souhaitez utiliser dans l’application.';
+      'L’application change dès que vous choisissez.';
 
   @override
   String get onboardingAgeRangeTitle =>
@@ -33077,7 +33176,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'Cela nous aide à garder des exemples et des recommandations adaptés à votre étape de vie.';
+      'Les leçons et les exemples seront adaptés à cet âge.';
 
   @override
   String get onboardingAgeRangeUnder18 => '0–6';
@@ -33097,7 +33196,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingExperienceSubtitle =>
-      'Nous l’utilisons pour ajuster le ton, le rythme et la profondeur de votre expérience. Votre choix est enregistré et oriente la guidance dans toute l’application.';
+      'Ce n’est pas un test. Cela fixe le point de départ des leçons. Vous pourrez le changer plus tard.';
 
   @override
   String get onboardingExperienceExploring => 'Je découvre l’islam';
@@ -33118,15 +33217,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingSalahConsistencyTitle =>
-      'Quelle est votre régularité actuelle dans la prière ?';
+      'Où en est votre prière ces temps-ci ?';
 
   @override
   String get onboardingSalahConsistencySubtitle =>
-      'Choisissez l’option qui reflète le mieux où vous en êtes aujourd’hui.';
+      'Il n’y a pas de mauvaise réponse.';
 
   @override
-  String get onboardingSalahConsistencyAll =>
-      'J’accomplis toutes les prières régulièrement';
+  String get onboardingSalahConsistencyAll => 'Je fais les cinq prières';
 
   @override
   String get onboardingSalahConsistencyMost =>
@@ -33142,12 +33240,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onboardingSalahConsistencyJustStarted => 'Je commence tout juste';
 
   @override
-  String get onboardingPrayerMethodTitle =>
-      'Méthode de calcul des heures de prière';
+  String get onboardingPrayerMethodTitle => 'Méthode de calcul';
 
   @override
   String get onboardingPrayerMethodSubtitle =>
-      'Choisissez la manière de calculer les heures de prière pour votre lieu.';
+      'Prenez la méthode de votre mosquée, si vous la connaissez.';
 
   @override
   String get onboardingPrayerMethodMuslimWorldLeague =>
@@ -33173,7 +33270,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingMadhabSubtitle =>
-      'Cela influe sur le calcul de l’heure du Asr. En cas de doute, gardez la valeur par défaut.';
+      'Il fixe l’heure de l’Asr. En cas de doute, gardez le réglage par défaut.';
 
   @override
   String get onboardingMadhabHanafi => 'Hanafi';
@@ -33193,11 +33290,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingArabicReadModeSubtitle =>
-      'Choisissez la configuration de lecture la plus confortable pour vous.';
+      'Choisissez ce qui vous aide à lire. Vous pourrez le changer plus tard.';
 
   @override
   String get onboardingArabicReadModeNoArabicYet =>
-      'Je ne connais pas encore l’arabe';
+      'Je ne lis pas encore l’arabe';
 
   @override
   String get onboardingArabicReadModeArabicOnly => 'Arabe seul';
@@ -33214,13 +33311,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Arabe + translittération + traduction';
 
   @override
-  String get onboardingHarakatTitle => 'Harakāt / signes de prononciation';
+  String get onboardingHarakatTitle => 'Harakāt (voyelles)';
 
   @override
   String get onboardingHarakatFull => 'Harakāt complètes';
 
   @override
-  String get onboardingHarakatNone => 'None';
+  String get onboardingHarakatNone => 'Aucune';
 
   @override
   String get onboardingTextSizeTitle => 'Taille du texte';
@@ -33231,7 +33328,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingRemindersSubtitle =>
-      'Choisissez des rappels légers pour la prière et le quotidien. Vous pourrez tout affiner plus tard.';
+      'Commencez simplement. Vous pourrez régler chaque prière plus tard.';
 
   @override
   String get onboardingReminderNotificationOnly => 'Notification seule';
@@ -33240,38 +33337,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onboardingReminderAdhanNotification => 'Notification avec adhan';
 
   @override
-  String get onboardingDailyQuranReminderTitle =>
-      'Rappel quotidien de lecture du Coran';
+  String get onboardingDailyQuranReminderTitle => 'Rappel quotidien du Coran';
 
   @override
   String get onboardingDailyLessonReminderTitle => 'Rappel quotidien de leçon';
 
   @override
-  String get onboardingOptionMedium => 'Medium';
+  String get onboardingOptionMedium => 'Moyen';
 
   @override
-  String get onboardingIdentityTitle =>
-      'Comment devons-nous nous adresser à vous ?';
+  String get onboardingIdentityTitle => 'Comment souhaitez-vous être salué ?';
 
   @override
   String get onboardingIdentitySubtitle =>
-      'Choisissez votre formule d’accueil et ajoutez votre nom si vous souhaitez un accueil plus personnel.';
+      'Ajoutez votre prénom, si vous le souhaitez.';
 
   @override
-  String get onboardingGreetingTitle => 'Greeting';
+  String get onboardingGreetingTitle => 'Salutation';
 
   @override
-  String get onboardingNameTitle => 'Name';
+  String get onboardingNameTitle => 'Prénom';
 
   @override
-  String get onboardingOptionalHint => 'Optional';
+  String get onboardingOptionalHint => 'Facultatif';
 
   @override
   String get onboardingNameHelperBody =>
-      'Votre nom est facultatif et sert uniquement à personnaliser votre expérience dans l’application.';
+      'Facultatif. Il sert uniquement à vous saluer.';
 
   @override
-  String get onboardingDefaultNameFallback => 'Friend';
+  String get onboardingDefaultNameFallback => 'Ami';
 
   @override
   String get onboardingFocusSalahConsistency => 'Régularité dans la prière';
@@ -33284,25 +33379,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String onboardingWelcomeGreeting(String name) {
-    return 'Assalamu Alaikum, $name.';
+    return 'Assalamu alaikum, $name.';
   }
 
   @override
   String get onboardingFinalWelcomeBody =>
-      'Votre parcours commence par l’intention et grandit par de petits pas réguliers. Path of Nur est là pour soutenir votre apprentissage, votre rappel, votre réflexion et vos progrès quotidiens.';
+      'Toute bonne action commence par une intention. Les œuvres les plus aimées d’Allah sont les petites que l’on fait avec constance.';
 
   @override
-  String get onboardingFocusListTitle => 'Vos domaines de focus choisis :';
+  String get onboardingFocusListTitle => 'Votre priorité :';
 
   @override
   String get onboardingKnowledgeDuaMeaning =>
       'Mon Seigneur, augmente-moi en science.';
 
   @override
-  String get onboardingLanguageEnglish => 'English';
+  String get onboardingLanguageEnglish => 'Anglais';
 
   @override
-  String get onboardingLanguageArabic => 'Arabic (العربية)';
+  String get onboardingLanguageArabic => 'Arabe (العربية)';
 
   @override
   String get onboardingLanguageGerman => 'Allemand (Deutsch)';
@@ -33311,13 +33406,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onboardingLanguageFrench => 'Français';
 
   @override
-  String get onboardingLanguageUrdu => 'Urdu (اردو)';
+  String get onboardingLanguageUrdu => 'Ourdou (اردو)';
 
   @override
   String get onboardingInterestUnderstandingQuran => 'Comprendre le Coran';
 
   @override
-  String get onboardingInterestLearningHadith => 'Apprendre le hadith';
+  String get onboardingInterestLearningHadith => 'Apprendre les hadiths';
 
   @override
   String get onboardingInterestStoriesProphets => 'Les récits des prophètes';
@@ -33347,10 +33442,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onboardingInterestDailyInspiration => 'Inspiration quotidienne';
 
   @override
-  String get onboardingSizeSmall => 'Small';
+  String get onboardingSizeSmall => 'Petit';
 
   @override
-  String get onboardingSizeLarge => 'Large';
+  String get onboardingSizeLarge => 'Grand';
 
   @override
   String get onboardingSizeExtraLarge => 'Très grand';
@@ -35442,7 +35537,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsThemeChoiceMidnightManuscript => 'Manuscrit de minuit';
 
   @override
-  String get settingsThemeChoiceNoorGlass => 'Noor Glass - par défaut';
+  String get settingsThemeChoiceNoorGlass => 'Noor Glass (par défaut)';
 
   @override
   String get settingsThemeChoiceNoorGlassDark => 'Noor Glass sombre';
@@ -35462,19 +35557,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorGlassDescription =>
-      'Des couleurs Noor chaleureuses sur des cartes pleines, avec une profondeur douce et sans transparence.';
+      'Des cartes chaudes et pleines, avec une douce profondeur et sans verre transparent.';
 
   @override
   String get settingsThemeModeNoorGlassDarkDescription =>
-      'Un système de surfaces Noor plus sombre, avec des conteneurs pleins, des accents chauds et un contraste apaisant pour la nuit.';
+      'Noor Glass dans des tons plus sombres, doux pour les yeux la nuit.';
 
   @override
   String get settingsThemeModeNoGlassDescription =>
-      'Des fonds chaleureux et pleins, sans transparence, pour une vue nette et posée au quotidien.';
+      'Des surfaces chaudes et pleines, sans transparence.';
 
   @override
   String get settingsThemeModeNoGlassDarkDescription =>
-      'Un mode sombre à surfaces pleines pour un usage en faible luminosité, sans effets de verre.';
+      'Des surfaces sombres et pleines pour la pénombre.';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
@@ -35482,59 +35577,57 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptDescription =>
-      'Un mode nuit lumineux façon manuscrit, avec la chaleur Noor, la profondeur de l’encre et de doux accents dorés.';
+      'Des tons d’encre profonds et un or doux, pour lire la nuit.';
 
   @override
   String get settingsThemeModeNoorKidsDescription =>
-      'Une palette Noor plus douce, chaleureuse et familiale, avec des accents joyeux et discrets.';
+      'Une palette Noor plus claire et plus chaleureuse pour les familles.';
 
   @override
   String get settingsThemeModePickerHelper =>
-      'Choisissez l’atmosphère où vous vous sentez le plus chez vous.';
+      'Choisissez l’apparence que vous aimeriez ouvrir chaque jour.';
 
   @override
   String get settingsThemeModeDefaultBestFor =>
-      'Idéal pour un usage quotidien calme et équilibré.';
+      'Idéal pour : une apparence simple et classique';
 
   @override
   String get settingsThemeModeCalmBeautifulBestFor =>
-      'Idéal si vous préférez l’ancienne atmosphère douce de Path of Nūr.';
+      'Idéal pour : la première apparence de l’application';
 
   @override
   String get settingsThemeModeEasyReadBestFor =>
-      'Idéal pour les longues lectures et un contraste plus net.';
+      'Idéal pour : les longues lectures';
 
   @override
-  String get settingsThemeModeNoorGlassBestFor =>
-      'Idéal pour l’aspect principal de Path of Nūr, avec des conteneurs chauds et pleins.';
+  String get settingsThemeModeNoorGlassBestFor => 'Idéal pour : chaque jour';
 
   @override
-  String get settingsThemeModeNoorGlassDarkBestFor =>
-      'Idéal le soir, pour retrouver les mêmes surfaces Noor dans une atmosphère plus sombre.';
+  String get settingsThemeModeNoorGlassDarkBestFor => 'Idéal pour : le soir';
 
   @override
   String get settingsThemeModeNoGlassBestFor =>
-      'Idéal pour un rendu stable et opaque, avec moins de transparence.';
+      'Idéal pour : une apparence pleine, sans transparence';
 
   @override
   String get settingsThemeModeNoGlassDarkBestFor =>
-      'Idéal pour des surfaces sombres et pleines, sans effets de verre.';
+      'Idéal pour : une apparence sombre et pleine';
 
   @override
   String get settingsThemeModeDarkBestFor =>
-      'Idéal pour lire en faible lumière et pour les soirées calmes.';
+      'Idéal pour : lire dans la pénombre';
 
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
-      'Idéal pour la réflexion du soir et l’étude du Coran.';
+      'Idéal pour : la méditation du soir et l’étude du Coran';
 
   @override
   String get settingsThemeModeNoorMidnightManuscriptBestFor =>
-      'Idéal pour une lecture nocturne riche, entre chaleur de manuscrit et lueur Noor.';
+      'Idéal pour : lire la nuit';
 
   @override
   String get settingsThemeModeNoorKidsBestFor =>
-      'Idéal pour les familles qui veulent un Noor plus léger, plus chaleureux et plus enjoué.';
+      'Idéal pour : les familles et les enfants';
 
   @override
   String get editorialDashboardTitle => 'Editorial Dashboard';
@@ -36380,16 +36473,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get loadingRestoringProgress => 'Restauration de votre progression';
 
   @override
-  String get loadingStatusPreparing => 'Préparation de votre espace…';
+  String get loadingStatusPreparing => 'Préparation…';
 
   @override
   String get loadingStatusRestoring => 'Restauration de votre progression…';
 
   @override
-  String get loadingStatusSyncing => 'Synchronisation de votre parcours…';
+  String get loadingStatusSyncing => 'Synchronisation…';
 
   @override
-  String get loadingStatusFinalizing => 'Finalizing…';
+  String get loadingStatusFinalizing => 'Presque prêt…';
 
   @override
   String get onboardingOpeningTitle => 'Un parcours enraciné dans le savoir';
@@ -36410,15 +36503,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingOpeningMissionBodyTwo =>
-      'Path of Nur a été créé avec cette conviction au cœur : garder l’apprentissage, le rappel et la croissance libres et accessibles à tous.';
+      'C’est pourquoi Path of Nur est gratuit et ouvert à tous.';
 
   @override
   String get onboardingOpeningMissionBodyThree =>
-      'Que vous débutiez, que vous reveniez ou que vous cherchiez la régularité, l’application se veut un compagnon paisible pour l’adoration, la réflexion et les progrès du quotidien.';
+      'Que vous commenciez à peine ou que vous reveniez, vous êtes le bienvenu ici.';
 
   @override
   String get onboardingOpeningSupportLine =>
-      'Cette courte configuration personnalisera votre expérience.';
+      'Quelques questions, et vous êtes prêt.';
 
   @override
   String get onboardingOpeningPlatformFooter =>
@@ -36426,10 +36519,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingFinalWelcomeClosingBody =>
-      'Avancez un pas sincère à la fois. Les progrès qui comptent se construisent par de petits actes réguliers.';
+      'Avancez un pas après l’autre.';
 
   @override
-  String get onboardingDisclaimerTitle => 'Avertissement et remarque';
+  String get onboardingDisclaimerTitle => 'Avant de commencer';
 
   @override
   String get onboardingDisclaimerIntroBody =>
@@ -36437,53 +36530,52 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingDisclaimerSourcesBody =>
-      'L’application s’appuie sur le Coran et le hadith, sources premières de la guidance islamique, ainsi que sur des ouvrages fondamentaux largement acceptés.';
+      'Tout ici s’appuie sur le Coran et les hadiths, ainsi que sur un savoir largement reconnu.';
 
   @override
   String get onboardingDisclaimerNeutralBody =>
-      'Le contenu est présenté de façon large et neutre, et non comme la guidance personnelle d’un savant ou d’un imam en particulier.';
+      'Le contenu suit des positions largement admises, et non l’avis d’un seul savant ou imam.';
 
   @override
   String get onboardingDisclaimerNotRulingBody =>
-      'Elle ne remplace pas la guidance d’un savant, d’un imam ou d’un mufti qualifié, et ne délivre pas d’avis religieux personnels.';
+      'Elle ne donne aucun avis juridique personnel et ne remplace pas un savant ou un imam qualifié.';
 
   @override
   String get onboardingDisclaimerSeekScholarBody =>
-      'Pour les questions personnelles, sensibles ou complexes, adressez-vous à une personne de savoir qualifiée.';
+      'Pour les questions personnelles ou délicates, adressez-vous à une personne de savoir qualifiée.';
 
   @override
   String get onboardingDisclaimerFeedbackBody =>
-      'Les retours, corrections et demandes d’amélioration sont toujours les bienvenus et aident Path of Nur à progresser.';
+      'Les corrections et les idées sont toujours les bienvenues.';
 
   @override
   String get onboardingDisclaimerFooter =>
-      'Conçu pour soutenir votre parcours, non pour remplacer le savoir.';
+      'Un compagnon pour apprendre, pas un substitut aux savants.';
 
   @override
   String get onboardingThemeTitle => 'Choisissez votre thème';
 
   @override
   String get onboardingThemeSubtitle =>
-      'Choisissez l’atmosphère où vous vous sentez le plus chez vous. Les changements s’appliquent immédiatement dans les aperçus ci-dessous.';
+      'Touchez un thème pour le voir. Vous pourrez le changer à tout moment.';
 
   @override
   String get onboardingThemePreviewTitle => 'Aperçu en direct';
 
   @override
-  String get onboardingThemeSampleTitle =>
-      'Un compagnon paisible pour votre journée';
+  String get onboardingThemeSampleTitle => 'Assalamu alaikum';
 
   @override
-  String get onboardingThemeSampleChipPrayer => 'Prayer';
+  String get onboardingThemeSampleChipPrayer => 'Prière';
 
   @override
-  String get onboardingThemeSampleChipReading => 'Reading';
+  String get onboardingThemeSampleChipReading => 'Lecture';
 
   @override
-  String get onboardingThemeSampleChipReflection => 'Reflection';
+  String get onboardingThemeSampleChipReflection => 'Réflexion';
 
   @override
-  String get onboardingThemeSampleCardTitle => 'Le focus doux du jour';
+  String get onboardingThemeSampleCardTitle => 'La priorité du jour';
 
   @override
   String get mainPageSearchHint => 'Search sections and tools';
@@ -36515,23 +36607,23 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsLearningLevelTitle => 'Niveau d’apprentissage';
 
   @override
-  String get settingsRunOnboardingTitle => 'Relancer l’intégration';
+  String get settingsRunOnboardingTitle => 'Refaire la configuration';
 
   @override
   String get settingsRunOnboardingSubtitle =>
       'Revoyez et mettez à jour vos choix de configuration.';
 
   @override
-  String get settingsPageTransitionStyleDefault => 'Default';
+  String get settingsPageTransitionStyleDefault => 'Par défaut';
 
   @override
-  String get settingsPageTransitionStyleGentleFade => 'Fondu doux';
+  String get settingsPageTransitionStyleGentleFade => 'Fondu';
 
   @override
-  String get settingsPageTransitionStyleIos => 'iOS-style';
+  String get settingsPageTransitionStyleIos => 'Style iOS';
 
   @override
-  String get settingsPageTransitionStyleNone => 'None';
+  String get settingsPageTransitionStyleNone => 'Aucune';
 
   @override
   String get onboardingRemindersDisableAllAction =>
@@ -36542,11 +36634,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingAccountOptionsTitle =>
-      'Connexion et sauvegarde facultatives';
+      'Se connecter, si vous le souhaitez';
 
   @override
   String get onboardingAccountOptionsBody =>
-      'Path of Nūr ne collecte pas vos données d’apprentissage par défaut. La connexion sert uniquement à la sauvegarde, à la restauration et à la synchronisation entre appareils, lorsqu’elle est disponible.';
+      'Votre apprentissage reste sur cet appareil. La connexion sert uniquement à la sauvegarde et à la synchronisation entre vos appareils.';
 
   @override
   String get onboardingAccountOptionsManualBackupBody =>
@@ -36594,12 +36686,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String rewardQuietCompletionSummaryXpDrops(Object xp, Object drops) {
-    return '$xp XP · $drops drops saved';
+    return '$xp lumière · $drops gouttes enregistrées';
   }
 
   @override
   String rewardQuietCompletionSummaryXpOnly(Object xp) {
-    return '$xp XP saved';
+    return '$xp lumière enregistrée';
   }
 
   @override
@@ -36611,13 +36703,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeWidgetsNextPrayerTitle => 'Prochaine prière';
 
   @override
-  String get homeWidgetsPrayerOverviewTitle => 'Aperçu des prières';
+  String get homeWidgetsPrayerOverviewTitle => 'Les prières du jour';
 
   @override
   String get homeWidgetsDhikrTitle => 'Dhikr quotidien';
 
   @override
-  String get homeWidgetsJourneyTitle => 'Progression du parcours';
+  String get homeWidgetsJourneyTitle => 'Votre parcours';
 
   @override
   String get homeWidgetsCurrentPrayerLabel => 'Prière en cours';
@@ -36626,34 +36718,34 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeWidgetsNextPrayerLabel => 'Prochaine prière';
 
   @override
-  String get homeWidgetsNoPrayerTimesTitle => 'Heures de prière indisponibles';
+  String get homeWidgetsNoPrayerTimesTitle => 'Pas encore d’horaires';
 
   @override
   String get homeWidgetsNoPrayerTimesBody =>
-      'Ouvrez Path of Nūr pour actualiser les heures de prière du jour.';
+      'Ouvrez Path of Nūr pour mettre à jour les horaires du jour.';
 
   @override
-  String get homeWidgetsDhikrTodayLabel => 'Today';
+  String get homeWidgetsDhikrTodayLabel => 'Aujourd’hui';
 
   @override
-  String get homeWidgetsTargetLabel => 'Target';
+  String get homeWidgetsTargetLabel => 'Objectif';
 
   @override
-  String get homeWidgetsStreakLabel => 'Streak';
+  String get homeWidgetsStreakLabel => 'Jours d’affilée';
 
   @override
-  String get homeWidgetsLevelLabel => 'Level';
+  String get homeWidgetsLevelLabel => 'Niveau';
 
   @override
-  String get homeWidgetsTodayXpLabel => 'XP du jour';
+  String get homeWidgetsTodayXpLabel => 'Lumière du jour';
 
   @override
   String get homeWidgetsNoSpiritualContentTitle =>
-      'Contenu spirituel indisponible';
+      'Rien à afficher pour l’instant';
 
   @override
   String get homeWidgetsNoSpiritualContentBody =>
-      'Ouvrez Path of Nūr pour actualiser le contenu spirituel du jour.';
+      'Ouvrez Path of Nūr pour charger le verset et l’invocation du jour.';
 
   @override
   String get homeWidgetsDuaTitle => 'Invocation du jour';
@@ -36677,13 +36769,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeWidgetsHadithTodayInline => 'Hadith du jour';
 
   @override
-  String get homeWidgetsAyahTitle => 'Ayah';
+  String get homeWidgetsAyahTitle => 'Verset';
 
   @override
   String get homeWidgetsAyahTodayInline => 'Verset du jour';
 
   @override
-  String get homeWidgetsReflectionTitle => 'Reflection';
+  String get homeWidgetsReflectionTitle => 'Réflexion';
 
   @override
   String get homeWidgetsReflectionInline => 'Réflexion du jour';
@@ -36695,7 +36787,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get homeWidgetsNameOfAllahInline => 'Nom d’Allah';
 
   @override
-  String get homeWidgetsPrayerCountdownSoon => 'Soon';
+  String get homeWidgetsPrayerCountdownSoon => 'Bientôt';
 
   @override
   String homeWidgetsPrayerCountdownInMinutes(Object minutes) {
@@ -37001,21 +37093,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quranReaderRelatedDuasTitle => 'Invocations liées';
 
   @override
-  String get allSearchTitle => 'Recherche globale';
+  String get allSearchTitle => 'Recherche';
 
   @override
   String get allSearchSubtitle =>
-      'Rechercher ensemble dans le Coran, les hadiths, les invocations et l’apprentissage.';
+      'Une seule recherche dans toutes les sections.';
 
   @override
   String get allSearchHint => 'Rechercher dans Path of Nur';
 
   @override
-  String get allSearchEmptyTitle => 'Rechercher dans toute l’application';
+  String get allSearchEmptyTitle => 'Tout rechercher';
 
   @override
   String get allSearchEmptySubtitle =>
-      'Nous regrouperons les résultats par domaine pour que tout reste clair et fiable.';
+      'Tapez un mot, comme miséricorde ou patience.';
 
   @override
   String get allSearchSuggestionsTitle => 'Suggestions';
@@ -37024,17 +37116,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get allSearchRecentTitle => 'Recherches récentes';
 
   @override
-  String get allSearchClearRecent => 'Clear';
+  String get allSearchClearRecent => 'Effacer';
 
   @override
   String get allSearchNoRecent => 'Aucune recherche récente pour l’instant.';
 
   @override
-  String get allSearchNoResultsTitle => 'Aucun résultat pour l’instant';
+  String get allSearchNoResultsTitle => 'Aucun résultat';
 
   @override
   String get allSearchNoResultsSubtitle =>
-      'Nous n’avons pas trouvé de correspondance solide dans le Coran, les hadiths, les invocations ou l’apprentissage.';
+      'Aucun résultat pour cette recherche.';
 
   @override
   String get allSearchNoResultsTipBroader =>
@@ -37042,19 +37134,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get allSearchNoResultsTipDomain =>
-      'Vous pouvez aussi lancer une recherche par domaine pour aller plus loin.';
+      'Ou cherchez dans une seule section pour aller plus loin.';
 
   @override
-  String get allSearchDomainQuran => 'Qur’an';
+  String get allSearchDomainQuran => 'Coran';
 
   @override
   String get allSearchDomainHadith => 'Hadith';
 
   @override
-  String get allSearchDomainDua => 'Duas';
+  String get allSearchDomainDua => 'Invocations';
 
   @override
-  String get allSearchDomainLearn => 'Learn';
+  String get allSearchDomainLearn => 'Apprendre';
 
   @override
   String get allSearchViewAllQuran => 'Tout voir dans le Coran';
@@ -37099,7 +37191,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String allSearchError(Object message) {
-    return 'Recherche indisponible : $message';
+    return 'La recherche n’a pas abouti : $message';
   }
 
   @override
@@ -37272,7 +37364,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsJumuahLeaveReminderTitle => 'Rappel de départ';
 
   @override
-  String get settingsJumuahLeaveOff => 'Off';
+  String get settingsJumuahLeaveOff => 'Désactivé';
 
   @override
   String get settingsJumuahLeaveFixed => 'Temps de trajet fixe';
@@ -37292,7 +37384,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'L’estimation utilise votre position uniquement lorsque l’application est ouverte.';
 
   @override
-  String get settingsThemeChoiceRamadan => 'Ramadan — Layali';
+  String get settingsThemeChoiceRamadan => 'Ramadan · Layali';
 
   @override
   String get settingsThemeModeRamadanDescription =>
@@ -37385,7 +37477,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Parer l’application de la nuit Layali pendant le mois béni ? Elle revient à votre thème après l’Aïd.';
 
   @override
-  String get occasionOfferEidTitle => 'Aïd Moubarak !';
+  String get occasionOfferEidTitle => 'Aïd Moubarak';
 
   @override
   String get occasionOfferEidBody =>
@@ -37412,27 +37504,26 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsLivingSkySubtitle =>
-      'Noor Glass suit le jour — aube rose doré, Maghrib ambré et nuit étoilée après le crépuscule.';
+      'Noor Glass suit le ciel, de l’aube aux étoiles après le Maghrib.';
 
   @override
-  String get settingsGroupYouTitle => 'You';
+  String get settingsGroupYouTitle => 'Vous';
 
   @override
   String get settingsGroupWorshipTitle => 'Prière et rappels';
 
   @override
-  String get settingsGroupAppTitle => 'App';
+  String get settingsGroupAppTitle => 'Application';
 
   @override
   String get settingsGroupSupportTitle => 'Aide et à propos';
 
   @override
   String get settingsCategoryProfileSubtitle =>
-      'Votre nom, la façon dont l’application s’adresse à vous, et les modes d’accompagnement.';
+      'Prénom, salutation et modes d’accompagnement';
 
   @override
-  String get settingsCategoryAdhanSubtitle =>
-      'Choisissez l’adhan, écoutez-le et réglez son volume.';
+  String get settingsCategoryAdhanSubtitle => 'Choisir le son et son volume';
 
   @override
   String get settingsSearchTitle => 'Rechercher dans les réglages';
@@ -37482,10 +37573,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Obtenir de l’aide et signaler un problème.';
 
   @override
-  String get settingsLegalTitle => 'Legal';
+  String get settingsLegalTitle => 'Mentions légales';
 
   @override
-  String get settingsAccessibilityTitle => 'Accessibility';
+  String get settingsAccessibilityTitle => 'Accessibilité';
 
   @override
   String get settingsOccasionThemesTitle => 'Thèmes d’occasion';
@@ -37501,7 +37592,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quickActionsSearchSubtitle => 'Qur’an, hadith, du’a, lessons';
 
   @override
-  String get settingsSalahCalculationTitle => 'Calculation';
+  String get settingsSalahCalculationTitle => 'Calcul';
 
   @override
   String get settingsSalahCalculationSubtitle =>
@@ -37511,7 +37602,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsAdhanSoundTitle => 'Son de l’adhan';
 
   @override
-  String get settingsRemindersPerPrayerTitle => 'Rappels par prière';
+  String get settingsRemindersPerPrayerTitle => 'Rappels pour chaque prière';
 
   @override
   String get settingsOtherRemindersTitle => 'Autres rappels';
@@ -38611,7 +38702,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String dhikrInsightsStreakCaption(String value) {
-    return 'série en cours · record $value';
+    return 'jours d’affilée · record $value';
   }
 
   @override
@@ -39064,9 +39155,9 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       days,
       locale: localeName,
-      other: '$days day streak',
-      one: '1 day streak',
-      zero: 'No streak yet',
+      other: '$days jours d’affilée',
+      one: '1 jour d’affilée',
+      zero: 'Pas encore commencé',
     );
     return '$_temp0';
   }

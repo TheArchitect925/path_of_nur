@@ -94,7 +94,7 @@ class _DailyKnowledgeChallengeHubPageState
                             _chip(
                               context,
                               l10n.dailyKnowledgeHubStreakLabel(
-                                streak.currentStreak.toString(),
+                                streak.currentStreak,
                               ),
                             ),
                           if (bundleProgress.isCompleted)

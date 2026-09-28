@@ -93,7 +93,18 @@ on 21 mentions). Each rule below closes one of those gaps.
    features; the words go. *days in a row* for streak, *light* for XP, the
    thing actually done for a badge ("Ten stories read"). The Watch face
    follows. Drops, the garden and the ocean are the app’s visual metaphors and
-   stay.
+   stay. As shipped in V2a (2026-09-27), in one pass across the whole app so a
+   number never has two names:
+
+   | Was | Is | de · fr · ar · ur |
+   | --- | --- | --- |
+   | streak, current streak | days in a row | Tage in Folge · jours d’affilée · أيام متتالية / على التوالي · مسلسل دن |
+   | best / longest streak | most days in a row | die meisten Tage in Folge · record de jours d’affilée · أكثر الأيام المتتالية · سب سے زیادہ مسلسل دن |
+   | XP, +10 XP | light, +10 light | Licht · lumière · نور · نور |
+   | badges (the kids’ progress page) | stickers | Sticker · autocollants · ملصقات · اسٹیکرز |
+
+   Counters that name a number are ICU plurals ("1 day in a row", "3 days in a
+   row"); never glue an English "s" onto a word in code.
 2. **Sentence case** for buttons, section titles, subtitles, labels, hints and
    badges: *Continue reading*, *Start here*. Page titles keep Title Case (header
    redesign, decision C1, 2026-09-04).
@@ -169,6 +180,15 @@ validation messages, editorial metadata no widget renders (`notes`,
 `mappingNotes`, `coverageNote`, `datasetName`, `editorialNote`) and the
 PIN-gated editorial dashboard.
 
+Three things are not counted on purpose. A mode's *name* is not a
+description (*Gentle mode*). A settings category subtitle is an index of what
+sits inside it (*Profiles, backup, and sync*), the way a phone's own settings
+read, so it may list; two lists are the content itself (the platforms the app
+runs on, the occasions it dresses up for). And placeholder names (`{xp}`,
+`{streak}`) are code, not copy. These live in `MODE_NAME_KEYS` and
+`INDEX_LIST_KEYS` in `tools/copy_lint.py`; add a key there only when the same
+argument holds.
+
 A line that is right as it is opts out of one rule with a trailing comment,
 so the exception is visible where it lives:
 
@@ -180,6 +200,14 @@ The ratchet test fails when a count rises (new drift: fix the string) and when
 it falls (lock it: `--write-baseline`). Never raise a baseline by hand.
 
 ## Re-translating what you rewrote
+
+When `OPENAI_API_KEY` is not set (the case on the main development Mac), the
+rewritten keys are translated by hand for every shipping locale (de, fr, ar,
+ur) in the same commit, as V2a did. Read the locale's existing strings for the
+same screen first and keep its terms: German writes *Koran*, *Jumu’ah* and
+formal *Sie* (including page descriptions for children, which the gate checks);
+French writes *Coran* and *vous*; Urdu writes *فقہی مسلک* for madhab, because
+*مذہب* means religion.
 
 German, Arabic and Urdu ship, and `tools/localization_gate.py` allows at most
 5% of tier-A prose to sit in English. Every rewritten key is re-translated in
@@ -202,7 +230,8 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | --- | --- |
 | V0 · Foundation (done 2026-09-07) | this guide, the lint, the ratchet test, dead keys deleted, delta translation |
 | V1 · Mechanics | scripted, reviewed diff: apostrophes, terms, casing, honorifics, UK→US, typos, dashes, label periods, duplicate labels, kids dialogue quotes |
-| V2 · Chrome by exposure | (a) notifications, onboarding, home, navigation, settings, profile · (b) Learn hubs, Qur’an, Worship, Dhikr, Growth · (c) Kids · (d) games, circles, baby names, history, world, accounts |
+| V2a · First run (done 2026-09-27) | notifications, onboarding, home, navigation, settings, profile and page descriptions rewritten; one name for each number app-wide; de/fr/ar/ur translated by hand, and 320 translation errors in those screens fixed |
+| V2 · Chrome by exposure | (b) Learn hubs, Qur’an, Worship, Dhikr, Growth · (c) Kids · (d) games, circles, baby names, history, world, accounts |
 | V3 · Prose | the content keys and the Dart content files: (a) mechanics and (b) studio vocabulary and roadmap, done 2026-09-27 · (c) tails · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

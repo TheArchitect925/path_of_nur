@@ -6,8 +6,8 @@
 "watch.home.nextPrayer" = "الصلاة القادمة";
 "watch.home.allPrayersComplete" = "اكتملت صلوات اليوم";
 "watch.home.prayerSummary" = "الصلوات";
-"watch.common.streak" = "السلسلة";
-"watch.common.xp" = "نقاط الخبرة";
+"watch.common.streak" = "أيام متتالية";
+"watch.common.xp" = "النور";
 "watch.common.drops" = "القطرات";
 "watch.common.level" = "المستوى";
 "watch.common.progress" = "التقدم";

@@ -175,7 +175,7 @@ class WordSearchHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.wordSearchDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

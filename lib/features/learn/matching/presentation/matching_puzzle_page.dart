@@ -189,9 +189,7 @@ class _MatchingPuzzlePageState extends ConsumerState<MatchingPuzzlePage> {
               if (dailyStreak != null && dailyStreak.currentStreak > 0)
                 _chip(
                   context,
-                  l10n.matchingDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
-                  ),
+                  l10n.matchingDailyStreakLabel(dailyStreak.currentStreak),
                 ),
               if (pack != null) _chip(context, matchingPackTitle(l10n, pack)),
               if (progress.isPerfect) _chip(context, l10n.matchingPerfectBadge),

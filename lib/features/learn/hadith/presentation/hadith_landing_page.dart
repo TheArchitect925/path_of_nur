@@ -389,18 +389,12 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    l10n.hadithCurrentStreakLabel(
-                      dailyBundle.currentStreak,
-                      dailyBundle.currentStreak == 1 ? '' : 's',
-                    ),
+                    l10n.hadithCurrentStreakLabel(dailyBundle.currentStreak),
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    l10n.hadithBestStreakLabel(
-                      dailyBundle.bestStreak,
-                      dailyBundle.bestStreak == 1 ? '' : 's',
-                    ),
+                    l10n.hadithBestStreakLabel(dailyBundle.bestStreak),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: context.palette.onSurfaceSubtle,
                     ),
@@ -625,7 +619,6 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
             child: Text(
               l10n.hadithPathStreakLabel(
                 pathProgress.currentStreakDays,
-                pathProgress.currentStreakDays == 1 ? '' : 's',
                 pathProgress.bestStreakDays,
               ),
             ),

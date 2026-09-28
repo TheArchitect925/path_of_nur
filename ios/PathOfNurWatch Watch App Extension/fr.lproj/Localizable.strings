@@ -6,8 +6,8 @@
 "watch.home.nextPrayer" = "Prochaine prière";
 "watch.home.allPrayersComplete" = "Les prières du jour sont accomplies";
 "watch.home.prayerSummary" = "Prières";
-"watch.common.streak" = "Série";
-"watch.common.xp" = "XP";
+"watch.common.streak" = "Jours d’affilée";
+"watch.common.xp" = "Lumière";
 "watch.common.drops" = "Gouttes";
 "watch.common.level" = "Niveau";
 "watch.common.progress" = "Progression";

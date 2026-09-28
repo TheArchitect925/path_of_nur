@@ -138,7 +138,7 @@ class HadithReflectionHomePage extends ConsumerWidget {
                         _chip(
                           context,
                           l10n.hadithReflectionDailyStreakLabel(
-                            dailyStreak.currentStreak.toString(),
+                            dailyStreak.currentStreak,
                           ),
                         ),
                     ],

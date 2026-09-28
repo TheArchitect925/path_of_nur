@@ -192,7 +192,7 @@ class _HadithReflectionPuzzlePageState
                 _chip(
                   context,
                   l10n.hadithReflectionDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
+                    dailyStreak.currentStreak,
                   ),
                 ),
               if (progress.isBestChoice)

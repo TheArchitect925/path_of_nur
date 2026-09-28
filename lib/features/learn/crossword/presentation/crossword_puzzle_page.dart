@@ -237,9 +237,7 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
               if (dailyStreak != null && dailyStreak.currentStreak > 0)
                 _modeChip(
                   context,
-                  l10n.crosswordDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
-                  ),
+                  l10n.crosswordDailyStreakLabel(dailyStreak.currentStreak),
                 ),
               if (pack != null)
                 _modeChip(context, crosswordPackTitle(l10n, pack)),

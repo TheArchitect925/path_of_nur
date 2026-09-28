@@ -39,9 +39,9 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('Path XP'), findsOneWidget);
+    expect(find.text('Your light'), findsOneWidget);
     expect(find.textContaining('Level 1'), findsOneWidget);
-    expect(find.textContaining('10 total XP'), findsOneWidget);
-    expect(find.textContaining('25 XP to go'), findsOneWidget);
+    expect(find.textContaining('10 light in all'), findsOneWidget);
+    expect(find.textContaining('25 light to go'), findsOneWidget);
   });
 }

@@ -195,7 +195,7 @@ class _AyahCompletionPuzzlePageState
                 _chip(
                   context,
                   l10n.ayahCompletionDailyStreakLabel(
-                    dailyStreak.currentStreak.toString(),
+                    dailyStreak.currentStreak,
                   ),
                 ),
               if (pack != null)

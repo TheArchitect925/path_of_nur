@@ -98,7 +98,7 @@ class SpiritualGrowthPage extends ConsumerWidget {
                     _chip(
                       context,
                       l10n.spiritualGrowthReflectionStreakLabel(
-                        profile.reflectionStreak.toString(),
+                        profile.reflectionStreak,
                       ),
                     ),
                 ],

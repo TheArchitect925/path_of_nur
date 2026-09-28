@@ -77,7 +77,7 @@
   "notificationsCycleCheckBody": "Jika perlu, periksa dan perbarui status siklus Anda.",
   "notificationsMoonriseBody": "Bulan sedang terbit sekarang.",
   "notificationsMoonsetBody": "Bulan sedang terbenam sekarang.",
-  "notificationsRecoveredReminderBody": "You missed this reminder earlier. {body}",
+  "notificationsRecoveredReminderBody": "From earlier: {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
       "body": {
@@ -393,29 +393,23 @@
       }
     }
   },
-  "hadithCurrentStreakLabel": "Current streak: {days} day{suffix}",
+  "hadithCurrentStreakLabel": "{days, plural, =1{1 day in a row} other{{days} days in a row}}",
   "@hadithCurrentStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithBestStreakLabel": "Best streak: {days} day{suffix}",
+  "hadithBestStreakLabel": "{days, plural, =1{Most in a row: 1 day} other{Most in a row: {days} days}}",
   "@hadithBestStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithReflectionCompletedXp": "Reflection completed • +{xp} XP",
+  "hadithReflectionCompletedXp": "Reflection complete · +{xp} light",
   "@hadithReflectionCompletedXp": {
     "placeholders": {
       "xp": {
@@ -446,14 +440,11 @@
   },
   "hadithTitleLearningPaths": "Hadith Learning Paths",
   "hadithSubtitleLearningPaths": "Follow curated paths to study hadith in a structured sequence with steady progress.",
-  "hadithPathStreakLabel": "Path streak: {current} day{suffix} • Best: {best}",
+  "hadithPathStreakLabel": "{current, plural, =1{1 day in a row} other{{current} days in a row}} · most: {best}",
   "@hadithPathStreakLabel": {
     "placeholders": {
       "current": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       },
       "best": {
         "type": "int"
@@ -1101,7 +1092,7 @@
       "level": {}
     }
   },
-  "homeXpValue": "{xp} XP",
+  "homeXpValue": "{xp} light",
   "@homeXpValue": {
     "placeholders": {
       "xp": {}
@@ -1197,7 +1188,7 @@
   "homeRightNowTitle": "Doa untuk sekarang",
   "homeRightNowSubtitle": "Doa yang sesuai dengan waktu Anda",
   "levelLabel": "Level",
-  "streakLabel": "Streak",
+  "streakLabel": "Days in a row",
   "worshipTitle": "Ibadah",
   "learnTitle": "Learn",
   "homeTitle": "Beranda",
@@ -2127,7 +2118,7 @@
   "triviaContinuePathAction": "Lanjutkan jalur",
   "triviaStagesTitle": "Tahap",
   "triviaStagesSubtitle": "Selesaikan tahap satu per satu.",
-  "triviaKnowledgeStageSummary": "{count} questions • +{xp} XP",
+  "triviaKnowledgeStageSummary": "{count} questions · +{xp} light",
   "@triviaKnowledgeStageSummary": {
     "placeholders": {
       "count": {},
@@ -2452,9 +2443,9 @@
   "modeRamadanActionQuran": "Quran",
   "modeRamadanActionReflect": "Reflect",
   "modeLossHomeTitle": "Loss Support",
-  "modeLossHomeSubtitle": "Move softly today with remembrance, patience, and mercy.",
+  "modeLossHomeSubtitle": "Verses of mercy and remembrance for days of grief.",
   "modeLossActionDhikr": "Dhikr",
-  "modeLossActionMercy": "Mercy Verses",
+  "modeLossActionMercy": "Verses of mercy",
   "learnContentTopicLabel": "Topic",
   "learnContentNotFound": "Content not found.",
   "learnContentOverviewTitle": "Overview",
@@ -2901,7 +2892,7 @@
   "circlesModerationTitle": "Moderation & Safety",
   "circlesModerationSubtitle": "Reporting, trust level, and content policy surfaces.",
   "circlesAccountabilityTitle": "Accountability Groups",
-  "circlesAccountabilitySubtitle": "Private support groups for prayer and habit streaks.",
+  "circlesAccountabilitySubtitle": "Small private groups that keep each other going.",
   "circlesNearbyMosquesTitle": "Nearby Mosques",
   "circlesNearbyMosquesSubtitle": "Import local prayer timetables and keep one selected.",
   "circlesOpen": "Open",
@@ -2927,7 +2918,7 @@
   "circlesReportSubmitted": "Report submitted for moderation review.",
   "circlesAccountabilityCheckIn": "Check in",
   "circlesAccountabilityJoined": "Joined",
-  "circlesAccountabilityStreak": "Check-in streak",
+  "circlesAccountabilityStreak": "Check-ins in a row",
   "circlesImportTimetable": "Import timetable",
   "circlesImported": "Imported",
   "circlesMosqueSelected": "Selected mosque timetable",
@@ -3250,7 +3241,7 @@
   "learningJourneyIslandLegacyLearningSubtitle": "The original learning library.",
   "learningJourneyIslandLegacyLearningDescription": "Lessons from the first version of Learn, kept as they were.",
   "learningJourneyFeedbackFirstStageOpened": "Learning started. Stay present and take just one meaningful step.",
-  "learningJourneyFeedbackStageCompleted": "Stage complete. You’re on a {streak} day streak.",
+  "learningJourneyFeedbackStageCompleted": "{streak, plural, =1{Stage complete.} other{Stage complete. That’s {streak} days in a row.}}",
   "@learningJourneyFeedbackStageCompleted": {
     "placeholders": {
       "streak": {
@@ -3258,7 +3249,7 @@
       }
     }
   },
-  "learningJourneyHomeStreakMessage": "You’re on a {days} day learning streak.",
+  "learningJourneyHomeStreakMessage": "{days, plural, =1{One day of learning.} other{{days} days of learning in a row.}}",
   "@learningJourneyHomeStreakMessage": {
     "placeholders": {
       "days": {
@@ -5618,7 +5609,7 @@
       "journey": {}
     }
   },
-  "familyLearningStreakLabel": "Streak: {days} days",
+  "familyLearningStreakLabel": "{days, plural, =1{1 day in a row} other{{days} days in a row}}",
   "@familyLearningStreakLabel": {
     "placeholders": {
       "days": {
@@ -7538,7 +7529,7 @@
   "gardenPageLearningMeaningBody": "Learning matures into fruit: insight, understanding, and better action.",
   "gardenPageDropsMeaningTitle": "Drops",
   "gardenPageDropsMeaningBody": "Drops bring greenery and life, marking sincere acts that nourish the whole garden.",
-  "gardenPageNextUnlockTitle": "Next unlock",
+  "gardenPageNextUnlockTitle": "Next milestone",
   "gardenPageAllUnlockedTitle": "Garden gallery complete",
   "gardenPageAllUnlockedBody": "All ten V1 garden images are unlocked. Future phases can build on this calm foundation without changing your Drops history.",
   "gardenPageNextUnlockRequiredValue": "Unlocks at {count} drops",
@@ -7572,7 +7563,7 @@
   "gardenPageLearnerSectionTitle": "Child profile",
   "gardenPageHeroBody": "Your learning, remembrance, and steady good habits shape this garden over time.",
   "gardenPageLevelLabel": "Level",
-  "gardenPageXpLabel": "XP",
+  "gardenPageXpLabel": "Light",
   "gardenPageMaturityLabel": "Garden maturity",
   "gardenPageMaturityValue": "{percent}%",
   "@gardenPageMaturityValue": {
@@ -7624,7 +7615,7 @@
   "gardenDimensionWaterTitle": "Water of good deeds",
   "gardenDimensionWaterBody": "Ocean Drops nourish the garden with life, greenery, and freshness.",
   "gardenDimensionFruitTitle": "Fruits of wisdom",
-  "gardenDimensionFruitBody": "Badges, milestones, and maturity reveal the fruit of learning.",
+  "gardenDimensionFruitBody": "Milestones show the fruit of learning.",
   "gardenDimensionConsistencyTitle": "Bloom of consistency",
   "gardenDimensionConsistencyBody": "Regular learning and bedtime rhythm help the whole garden stay alive.",
   "gardenInsightPrayer": "Your recent steady rhythm is strengthening the roots and giving the garden a firmer foundation.",
@@ -8183,7 +8174,7 @@
   "triviaStatsIncorrect": "Salah",
   "triviaStatsOverallAccuracy": "Akurasi keseluruhan",
   "triviaStatsDailyQuizStreak": "Rangkaian kuis harian",
-  "triviaStatsLongestStreak": "Longest streak: {value}",
+  "triviaStatsLongestStreak": "Most days in a row: {value}",
   "@triviaStatsLongestStreak": {
     "placeholders": {
       "value": {
@@ -9432,10 +9423,12 @@
       "light": {}
     }
   },
-  "kidsDuaStreakValue": "Streak: {days} days",
+  "kidsDuaStreakValue": "{days, plural, =1{1 day in a row} other{{days} days in a row}}",
   "@kidsDuaStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "kidsDuaLightSeedLabel": "Gentle Seed",
@@ -9654,7 +9647,7 @@
   "xpLevelTitle98": "The Constant",
   "xpLevelTitle99": "The Illuminated",
   "xpLevelTitle100": "Path of Nūr",
-  "xpCardTitle": "Path XP",
+  "xpCardTitle": "Your light",
   "xpCardLevelValue": "Level {level} · {title}",
   "@xpCardLevelValue": {
     "placeholders": {
@@ -9662,7 +9655,7 @@
       "title": {}
     }
   },
-  "xpCardTotalXpValue": "{xp} total XP",
+  "xpCardTotalXpValue": "{xp} light in all",
   "@xpCardTotalXpValue": {
     "placeholders": {
       "xp": {}
@@ -9674,7 +9667,7 @@
       "title": {}
     }
   },
-  "xpCardRemainingValue": "{xp} XP to go",
+  "xpCardRemainingValue": "{xp} light to go",
   "@xpCardRemainingValue": {
     "placeholders": {
       "xp": {}
@@ -9750,9 +9743,9 @@
   "journeyStatsLessonsCompletedSubtitle": "Finished lesson and topic progress",
   "journeyStatsActiveDaysTitle": "Active Days",
   "journeyStatsActiveDaysSubtitle": "Days with recorded progress",
-  "journeyStatsCurrentStreakTitle": "Current Streak",
+  "journeyStatsCurrentStreakTitle": "Days in a row",
   "journeyStatsCurrentStreakSubtitle": "Your current steady rhythm",
-  "journeyStatsBestStreakTitle": "Best Streak",
+  "journeyStatsBestStreakTitle": "Most days in a row",
   "journeyStatsBestStreakSubtitle": "Your strongest recorded run",
   "journeyStatsMinutesValue": "{minutes}m",
   "@journeyStatsMinutesValue": {
@@ -9828,57 +9821,57 @@
   "commonToday": "Today",
   "commonHistory": "History",
   "pageDescriptionLearnHub": "Follow clear learning paths across Qur’an, Hadith, stories, practice, and reflection.",
-  "pageDescriptionLearnHubKids": "Learn Islam step by step with stories, lessons, and simple practice.",
-  "pageDescriptionQuranHub": "Read, study, memorize, and return to the Qur’an with clear paths for daily connection.",
+  "pageDescriptionLearnHubKids": "Learn Islam with stories and lessons.",
+  "pageDescriptionQuranHub": "Read, study and memorize the Qur’an.",
   "pageDescriptionQuranHubKids": "Read the Qur’an, learn its meaning, and come back to it a little at a time.",
-  "pageDescriptionQuranStudyHub": "Slow down with the Qur’an through meaning, guided study, memorization, and review tools.",
-  "pageDescriptionQuranStudyHubKids": "Take your time with the Qur’an, understand more, and learn bit by bit.",
+  "pageDescriptionQuranStudyHub": "Understand the Qur’an, one passage at a time.",
+  "pageDescriptionQuranStudyHubKids": "Learn what the Qur’an means, bit by bit.",
   "pageDescriptionWorshipHub": "Keep your daily ibadah steady with Salah, dhikr, duas, fasting, and reminders.",
   "pageDescriptionWorshipHubKids": "Build good daily habits with Salah, dhikr, duas, and simple reminders.",
-  "pageDescriptionGrowthToday": "See today’s rhythm, notice what needs care, and keep your next step clear.",
+  "pageDescriptionGrowthToday": "How today is going, and one next step.",
   "pageDescriptionGrowthTodayKids": "See how today is going and choose one good next step.",
-  "pageDescriptionGrowthPaths": "Follow focused paths that help one part of your practice grow with consistency.",
+  "pageDescriptionGrowthPaths": "Choose one part of your practice to grow.",
   "pageDescriptionGrowthPathsKids": "Pick one small path and keep growing a little each day.",
-  "pageDescriptionGrowthJourney": "Review your progress, unlocked milestones, and the steady shape of your journey.",
+  "pageDescriptionGrowthJourney": "How far you’ve come, and your milestones.",
   "pageDescriptionGrowthJourneyKids": "See how far you have come and what you unlocked along the way.",
-  "pageDescriptionGrowthReflection": "Pause for gratitude, tawbah, and honest review so the heart can realign.",
-  "pageDescriptionGrowthReflectionKids": "Pause, say thank you, think honestly, and begin again with a clean heart.",
+  "pageDescriptionGrowthReflection": "A moment for gratitude and tawbah.",
+  "pageDescriptionGrowthReflectionKids": "Say thank you to Allah, and begin again.",
   "pageDescriptionSettingsLanding": "Adjust how the app supports your Salah, learning, reminders, privacy, and daily rhythm.",
-  "pageDescriptionSettingsLandingKids": "Choose how the app helps you learn, pray, and stay organized each day.",
+  "pageDescriptionSettingsLandingKids": "Make the app work for you.",
   "pageDescriptionSettingsAccountSync": "Manage profiles, backups, and device sync with clear control over shared access.",
   "pageDescriptionSettingsAccountSyncKids": "Choose who is using the app and keep profiles and backups safe.",
-  "pageDescriptionSettingsAppearance": "Set the app’s look, motion, contrast, and reading comfort to fit your day.",
+  "pageDescriptionSettingsAppearance": "How the app looks and moves.",
   "pageDescriptionSettingsAppearanceKids": "Choose how the app looks and feels so it is easy to use.",
   "pageDescriptionSettingsPrayerWorship": "Set up Salah times, adhan, widgets, and other daily ibadah preferences.",
   "pageDescriptionSettingsPrayerWorshipKids": "Set your Salah times, reminders, and helpful worship tools.",
-  "pageDescriptionSettingsLearning": "Control Qur’an display, family learning, and the study settings used across the app.",
-  "pageDescriptionSettingsLearningKids": "Choose how learning, Qur’an text, and family study features appear.",
-  "pageDescriptionSettingsNotifications": "Decide which reminders reach you and how often the app should prompt you.",
+  "pageDescriptionSettingsLearning": "How the Qur’an and lessons are shown.",
+  "pageDescriptionSettingsLearningKids": "How lessons and the Qur’an look.",
+  "pageDescriptionSettingsNotifications": "Which reminders you get, and when.",
   "pageDescriptionSettingsNotificationsKids": "Pick which reminders help you remember the right things.",
-  "pageDescriptionSettingsWidgetsWatch": "Manage lock screen, Dynamic Island, and watch surfaces for quick daily access.",
+  "pageDescriptionSettingsWidgetsWatch": "Salah times on your lock screen and watch.",
   "pageDescriptionSettingsWidgetsWatchKids": "Choose what quick prayer and reminder info shows on your screen or watch.",
-  "pageDescriptionSettingsLanguage": "Choose your language and other download-ready reading preferences.",
+  "pageDescriptionSettingsLanguage": "Language and downloads.",
   "pageDescriptionSettingsLanguageKids": "Pick the language and reading options that help you most.",
-  "pageDescriptionSettingsPrivacy": "Control sensitive tracking, visibility, and data behavior with calm defaults.",
+  "pageDescriptionSettingsPrivacy": "What is tracked, and what stays private.",
   "pageDescriptionSettingsPrivacyKids": "Choose how private you want your information and activity to stay.",
-  "pageDescriptionSettingsKidsFamily": "Adjust age-aware learning and family-friendly presentation across the app.",
-  "pageDescriptionSettingsKidsFamilyKids": "Set up kid-friendly learning and family settings that feel right for you.",
-  "pageDescriptionSettingsAbout": "Find support, updates, legal details, and what is changing in the app.",
-  "pageDescriptionSettingsAboutKids": "See app help, updates, and important info in one place.",
-  "pageDescriptionAssistant": "Ask for guidance, reflection prompts, and help finding the right part of the app.",
-  "pageDescriptionAssistantKids": "Ask simple questions, get ideas, and find the right place to go next.",
-  "pageDescriptionJournalTimeline": "Keep reflections, observations, and meaningful moments where you can return to them.",
-  "pageDescriptionJournalTimelineKids": "Save thoughts, notes, and special moments so you can look back later.",
-  "pageDescriptionJournalCreate": "Write a reflection, observation, or gratitude note while the moment is still clear.",
-  "pageDescriptionJournalCreateKids": "Write down what you noticed, felt, or felt thankful for today.",
+  "pageDescriptionSettingsKidsFamily": "Learning for each age in your family.",
+  "pageDescriptionSettingsKidsFamilyKids": "Settings for learning as a family.",
+  "pageDescriptionSettingsAbout": "Help and what’s new.",
+  "pageDescriptionSettingsAboutKids": "Help and what’s new.",
+  "pageDescriptionAssistant": "Ask a question, or find your way around the app.",
+  "pageDescriptionAssistantKids": "Ask a question, or ask where to go.",
+  "pageDescriptionJournalTimeline": "Everything you’ve written.",
+  "pageDescriptionJournalTimelineKids": "Look back at what you wrote.",
+  "pageDescriptionJournalCreate": "Write it down while it’s fresh.",
+  "pageDescriptionJournalCreateKids": "Write about something you noticed.",
   "pageDescriptionCreationExplorer": "Observe creation carefully and connect what you notice with Qur’anic reflection.",
   "pageDescriptionCreationExplorerKids": "Look closely at Allah’s creation and notice what it teaches you.",
-  "pageDescriptionCreationChallenges": "Use small guided prompts to notice creation more intentionally and reflect with care.",
+  "pageDescriptionCreationChallenges": "Small prompts to notice Allah’s creation.",
   "pageDescriptionCreationChallengesKids": "Try small challenges that help you notice the world Allah made.",
-  "pageDescriptionCelestialExplorer": "Track the sky with location-aware signs that turn observation into remembrance.",
+  "pageDescriptionCelestialExplorer": "The sky above you, as a reminder of Allah.",
   "pageDescriptionCelestialExplorerKids": "Watch the sky, learn what is happening, and remember Allah through it.",
-  "pageDescriptionKhusuFocus": "Step into a quiet focus space that helps the heart settle before returning to worship.",
-  "pageDescriptionKhusuFocusKids": "Take a quiet pause, slow down, and get your heart ready to focus.",
+  "pageDescriptionKhusuFocus": "Settle your heart before you pray.",
+  "pageDescriptionKhusuFocusKids": "Slow down and get ready to pray.",
   "learnGlossaryTitle": "Glossary",
   "learnGlossarySubtitle": "Common Islamic terms in short, beginner-friendly explanations you can open any time.",
   "learnGlossaryCardTitle": "Glossary",
@@ -9991,7 +9984,7 @@
       "xp": {}
     }
   },
-  "crosswordTodayXpLabel": "{xp} XP today",
+  "crosswordTodayXpLabel": "{xp} light today",
   "@crosswordTodayDropsLabel": {
     "placeholders": {
       "drops": {}
@@ -10143,10 +10136,12 @@
   "crosswordCellCurrentWordHint": "Part of the current clue",
   "@crosswordDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
-  "crosswordDailyStreakLabel": "{count}-day streak",
+  "crosswordDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "crosswordDailyCompleteBadge": "Daily puzzle complete",
   "@crosswordDailyBonusAchievedLabel": {
     "placeholders": {
@@ -10266,10 +10261,12 @@
       "theme": {}
     }
   },
-  "wordSearchDailyStreakLabel": "{count}-day streak",
+  "wordSearchDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@wordSearchDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "wordSearchDailyCompleteBadge": "Daily complete",
@@ -10289,7 +10286,7 @@
       "count": {}
     }
   },
-  "wordSearchXpLabel": "{count} XP",
+  "wordSearchXpLabel": "{count} light",
   "@wordSearchXpLabel": {
     "placeholders": {
       "count": {}
@@ -10505,7 +10502,7 @@
       "count": {}
     }
   },
-  "matchingXpLabel": "{count} XP earned",
+  "matchingXpLabel": "{count} light gathered",
   "@matchingXpLabel": {
     "placeholders": {
       "count": {}
@@ -10517,10 +10514,12 @@
       "count": {}
     }
   },
-  "matchingDailyStreakLabel": "{count}-day streak",
+  "matchingDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@matchingDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "matchingDailyCompleteBadge": "Daily complete",
@@ -10679,10 +10678,12 @@
   },
   "ayahCompletionDailyHistoryTitle": "Recent daily ayahs",
   "ayahCompletionDailyHistorySubtitle": "A quiet look at your recent Qur’an completion practice.",
-  "ayahCompletionDailyStreakLabel": "Daily streak {count}",
+  "ayahCompletionDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@ayahCompletionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "ayahCompletionDailyCompleteBadge": "Daily complete",
@@ -10698,7 +10699,7 @@
       "count": {}
     }
   },
-  "ayahCompletionXpLabel": "{count} XP",
+  "ayahCompletionXpLabel": "{count} light",
   "@ayahCompletionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10885,7 +10886,7 @@
       "count": {}
     }
   },
-  "hadithReflectionXpLabel": "{count} XP",
+  "hadithReflectionXpLabel": "{count} light",
   "@hadithReflectionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10897,10 +10898,12 @@
       "count": {}
     }
   },
-  "hadithReflectionDailyStreakLabel": "{count}-day streak",
+  "hadithReflectionDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@hadithReflectionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "hadithReflectionContinueSectionTitle": "Continue reflecting",
@@ -10965,7 +10968,7 @@
   "hadithReflectionCompletionSubtitle": "You completed this reflection and reviewed its teaching.",
   "hadithReflectionCompletionBestSubtitle": "You chose the response most closely aligned with the Hadith’s teaching.",
   "hadithReflectionTakeawayTitle": "Takeaway",
-  "hadithReflectionBestChoiceReward": "Best-choice bonus +{count} XP",
+  "hadithReflectionBestChoiceReward": "Best choice · +{count} light",
   "@hadithReflectionBestChoiceReward": {
     "placeholders": {
       "count": {}
@@ -11033,10 +11036,12 @@
       "total": {}
     }
   },
-  "dailyKnowledgeHubStreakLabel": "{count}-day bundle streak",
+  "dailyKnowledgeHubStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@dailyKnowledgeHubStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "dailyKnowledgeHubCompletedBadge": "Bundle complete",
@@ -11103,10 +11108,12 @@
       "count": {}
     }
   },
-  "spiritualGrowthReflectionStreakLabel": "{count}-day reflection streak",
+  "spiritualGrowthReflectionStreakLabel": "{count, plural, =1{1 day of reflection in a row} other{{count} days of reflection in a row}}",
   "@spiritualGrowthReflectionStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "spiritualGrowthDailyActionsTitle": "Meaningful actions",
@@ -11297,10 +11304,12 @@
       "total": {}
     }
   },
-  "learnGamesIslandDailyStreakLabel": "{count}-day streak",
+  "learnGamesIslandDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@learnGamesIslandDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "learnGamesIslandDailyHistoryLabel": "{count} recent days tracked",
@@ -11807,12 +11816,12 @@
   "bedtimeParentContinueSeerahAction": "Open Seerah",
   "bedtimeParentContinueDuaAction": "Open dua",
   "bedtimeParentContinueArabicAction": "Open Arabic",
-  "bedtimeParentCurrentStreakLabel": "Current streak",
+  "bedtimeParentCurrentStreakLabel": "Days in a row",
   "bedtimeParentOverallStoriesLabel": "Stories completed",
   "bedtimeParentOverallSeerahLabel": "Seerah stages",
   "bedtimeParentOverallDuasLabel": "Duas learned",
   "bedtimeParentOverallArabicLabel": "Arabic letters",
-  "bedtimeParentOverallXpLabel": "XP across kids learning",
+  "bedtimeParentOverallXpLabel": "Light across all kids learning",
   "bedtimeParentOverallDropsLabel": "Ocean Drops across kids learning",
   "bedtimeParentLearningAreasSectionTitle": "Learning areas",
   "bedtimeParentLearningAreasEmpty": "Learning areas will fill in as each part of the kids journey begins.",
@@ -11880,7 +11889,7 @@
       }
     }
   },
-  "bedtimeParentLearningAreaDuasSecondary": "{count}-day light streak",
+  "bedtimeParentLearningAreaDuasSecondary": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@bedtimeParentLearningAreaDuasSecondary": {
     "placeholders": {
       "count": {
@@ -11905,7 +11914,7 @@
     }
   },
   "bedtimeParentHabitSectionTitle": "Bedtime rhythm",
-  "bedtimeParentHabitCurrentStreak": "Current streak: {days}",
+  "bedtimeParentHabitCurrentStreak": "Days in a row: {days}",
   "@bedtimeParentHabitCurrentStreak": {
     "placeholders": {
       "days": {
@@ -11913,7 +11922,7 @@
       }
     }
   },
-  "bedtimeParentHabitLongestStreak": "Longest streak: {days}",
+  "bedtimeParentHabitLongestStreak": "Most days in a row: {days}",
   "@bedtimeParentHabitLongestStreak": {
     "placeholders": {
       "days": {
@@ -12256,7 +12265,7 @@
   "bedtimeRoutineStepReflectionSubtitle": "Choose one kind lesson or gratitude thought to keep close.",
   "bedtimeRoutineStepSleepReadyTitle": "Sleep-ready finish",
   "bedtimeRoutineStepSleepReadySubtitle": "End gently and rest peacefully.",
-  "progressionPageTitle": "Progress & Badges",
+  "progressionPageTitle": "Progress & Stickers",
   "progressionPageSubtitle": "A calm view of long-term learning growth.",
   "progressionPageLearnerSectionTitle": "Child profile",
   "progressionPageHeroTitle": "{name}’s progress",
@@ -12265,7 +12274,7 @@
       "name": {}
     }
   },
-  "progressionPageHeroSubtitle": "Levels, badges, and milestones grow through steady learning.",
+  "progressionPageHeroSubtitle": "Each lesson adds to these.",
   "progressionPageOpenAction": "Open progress",
   "progressionPageOverviewTitle": "Overview",
   "progressionPageGardenTitle": "Garden",
@@ -12274,8 +12283,8 @@
   "progressionPageGardenAction": "Open garden",
   "progressionPageMilestonesTitle": "Milestones",
   "progressionPageMilestonesEmpty": "Milestones will appear as learning grows.",
-  "progressionPageBadgesTitle": "Badges",
-  "progressionPageBadgesEmpty": "Badges will appear after the first meaningful completions.",
+  "progressionPageBadgesTitle": "Stickers",
+  "progressionPageBadgesEmpty": "No stickers yet. They come with finished lessons.",
   "progressionPageLevelValue": "Level {level} • {title}",
   "@progressionPageLevelValue": {
     "placeholders": {
@@ -12283,7 +12292,7 @@
       "title": {}
     }
   },
-  "progressionPageXpValue": "{xp} XP",
+  "progressionPageXpValue": "{xp} light",
   "@progressionPageXpValue": {
     "placeholders": {
       "xp": {}
@@ -12301,8 +12310,8 @@
   "progressionOverviewDuasLabel": "Duas learned",
   "progressionOverviewRoutinesLabel": "Bedtime routines",
   "progressionOverviewDropsLabel": "Ocean Drops",
-  "progressionOverviewBadgesLabel": "Badges earned",
-  "progressionParentRemainingValue": "{xp} XP to the next level",
+  "progressionOverviewBadgesLabel": "Stickers earned",
+  "progressionParentRemainingValue": "{xp} light to the next level",
   "@progressionParentRemainingValue": {
     "placeholders": {
       "xp": {}
@@ -12340,7 +12349,7 @@
   "progressionMilestoneSeerahJourneyDescription": "A full guided Seerah path was completed.",
   "progressionMilestoneBedtimeWeekTitle": "7 bedtime routines",
   "progressionMilestoneBedtimeWeekDescription": "A lovely bedtime rhythm is forming.",
-  "progressionMilestoneLearningMonthTitle": "30-day learning streak",
+  "progressionMilestoneLearningMonthTitle": "30 days of learning in a row",
   "progressionMilestoneLearningMonthDescription": "Consistency is becoming part of the journey.",
   "kidsArabicRepeatAfterMeTitle": "Listen and repeat",
   "kidsArabicRepeatAfterMeLetterSubtitle": "Hear the letter, pause, and say it gently after the audio.",
@@ -12351,8 +12360,8 @@
   "kidsArabicLatestAchievementTitle": "Latest achievement",
   "kidsArabicMilestonesSectionTitle": "Milestones",
   "kidsArabicMilestonesSectionSubtitle": "Calm milestone moments celebrate new parts of the journey without turning practice into pressure.",
-  "kidsArabicBadgesSectionTitle": "Badges",
-  "kidsArabicBadgesSectionSubtitle": "Badge stickers stay tied to real Arabic progress and unlock only once.",
+  "kidsArabicBadgesSectionTitle": "Stickers",
+  "kidsArabicBadgesSectionSubtitle": "Each sticker is earned once, by real Arabic learning.",
   "kidsArabicAchievementCelebrateTitle": "A new celebration",
   "kidsArabicMilestoneThreeLettersTitle": "Three letters complete",
   "kidsArabicMilestoneThreeLettersSubtitle": "Three traced letters now belong to the journey.",
@@ -12362,10 +12371,12 @@
   "kidsArabicMilestoneFirstReviewSubtitle": "A calm review round helped one familiar letter feel stronger.",
   "kidsArabicMilestoneBeginnerSetTitle": "Beginner words set complete",
   "kidsArabicMilestoneBeginnerSetSubtitle": "The first short word set is complete and ready for gentle review.",
-  "kidsArabicBadgesUnlockedValue": "{count} badges unlocked",
+  "kidsArabicBadgesUnlockedValue": "{count, plural, =1{1 sticker earned} other{{count} stickers earned}}",
   "@kidsArabicBadgesUnlockedValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "kidsArabicMilestonesUnlockedValue": "{count} milestones reached",
@@ -12512,7 +12523,7 @@
   "wuduQuizAdabExplanation": "Good adab includes leaving the place clean and using water carefully without waste.",
   "wuduQuizQuestionProgress": "Question {current} of {total}",
   "wuduQuizScoreSummary": "You answered {score} out of {total} correctly.",
-  "wuduQuizRewardFeedback": "First completion counted: +{xp} XP and +{drops} Ocean Drop.",
+  "wuduQuizRewardFeedback": "First time finished: +{xp} light and +{drops} Ocean Drop.",
   "wuduQuizStepOrderOptionCorrect": "{first} → {second} → {third}",
   "wuduQuizStepOrderOption": "{first} → {second} → {third}",
   "wuduQuizWhatComesNextQuestion": "What comes next after {stepTitle}?",
@@ -12592,7 +12603,7 @@
   "quranDailyReflectionOpenAyahAction": "Open ayah",
   "quranDailyReflectionCompletedAction": "Completed",
   "quranDailyReflectionCompleteAction": "Mark complete",
-  "quranDailyReflectionFirstTimeHint": "Complete a few reflections to build your streak.",
+  "quranDailyReflectionFirstTimeHint": "Reflect a few days in a row to see them counted here.",
   "quranReflectionsTitle": "Saved Reflections",
   "quranReflectionsSubtitle": "Keep ayahs, notes, and short reflection moments together.",
   "quranReflectionsEmptyTitle": "No reflections saved yet",
@@ -12817,13 +12828,15 @@
   "kidsArabicPracticeTodayBody": "Open the next recommended practice step and keep momentum steady.",
   "kidsArabicPracticeTodayDoneBody": "Today’s recommended practice is complete.",
   "kidsArabicPracticeTodayDoneBadge": "Done today",
-  "quranDailyReflectionStreakValue": "{days} day streak",
+  "quranDailyReflectionStreakValue": "{days, plural, =1{1 day in a row} other{{days} days in a row}}",
   "@quranDailyReflectionStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
-  "quranDailyReflectionBestStreakValue": "Best streak: {streak}",
+  "quranDailyReflectionBestStreakValue": "Most in a row: {streak}",
   "@quranDailyReflectionBestStreakValue": {
     "placeholders": {
       "streak": {}
@@ -12919,7 +12932,7 @@
       "total": {}
     }
   },
-  "growthPathCurrentStreakValue": "Current streak: {value}",
+  "growthPathCurrentStreakValue": "Days in a row: {value}",
   "@growthPathCurrentStreakValue": {
     "placeholders": {
       "value": {}
@@ -13231,14 +13244,14 @@
       "total": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpDrops": "+{xp} XP • +{drops} Ocean Drop",
+  "wuduTrainerRewardFeedbackXpDrops": "+{xp} light · +{drops} Ocean Drop",
   "@wuduTrainerRewardFeedbackXpDrops": {
     "placeholders": {
       "xp": {},
       "drops": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpOnly": "+{xp} XP",
+  "wuduTrainerRewardFeedbackXpOnly": "+{xp} light",
   "@wuduTrainerRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13258,7 +13271,7 @@
       "total": {}
     }
   },
-  "wuduQuizRewardFeedbackXpOnly": "First completion counted: +{xp} XP.",
+  "wuduQuizRewardFeedbackXpOnly": "First time finished: +{xp} light.",
   "@wuduQuizRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13783,7 +13796,9 @@
   "arabicLearningProgressKidsStreakValue": "Rangkaian {count} hari",
   "@arabicLearningProgressKidsStreakValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningProgressKidsHighlight": "Pencapaian terbaru: {title}",
@@ -15607,8 +15622,8 @@
   "learningJourneyLessonSectionProgressSubtitle": "Complete this section to save your progress.",
   "rewardQuietProgressSaved": "Progress saved.",
   "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} of {total} correct",
-  "rewardQuietCompletionSummaryXpDrops": "{xp} XP · {drops} drops saved",
-  "rewardQuietCompletionSummaryXpOnly": "{xp} XP saved",
+  "rewardQuietCompletionSummaryXpDrops": "{xp} light · {drops} drops saved",
+  "rewardQuietCompletionSummaryXpOnly": "{xp} light saved",
   "rewardQuietCompletionSummaryDropsOnly": "{drops} drops saved",
   "homeWidgetsNextPrayerTitle": "Salat Berikutnya",
   "homeWidgetsPrayerOverviewTitle": "Ringkasan Salat",
@@ -16349,7 +16364,7 @@
   "dhikrFreeCountAction": "Free count",
   "dhikrFreeCountTitle": "Free count",
   "dhikrTodayOfGoal": "of {goal} today",
-  "dhikrStreakCaption": "day streak",
+  "dhikrStreakCaption": "days in a row",
   "dhikrSessionsTodayCaption": "sessions today",
   "dhikrRoutinesTitle": "Routines",
   "dhikrRoutineAfterSalahTitle": "After salah",
@@ -16392,7 +16407,7 @@
   "dhikrInsightsSubtitleEmpty": "Your history begins with the first finished session.",
   "dhikrInsightsThisWeekCaption": "this week · last week {value}",
   "dhikrInsightsStreakValue": "{count} days",
-  "dhikrInsightsStreakCaption": "current streak · best {value}",
+  "dhikrInsightsStreakCaption": "days in a row · most {value}",
   "dhikrInsightsLifetimeCaption": "lifetime remembrances",
   "dhikrInsightsFavoriteCaption": "most repeated · {count}",
   "dhikrInsightsWeekTitle": "This week",
@@ -16533,7 +16548,7 @@
   "kidsStickerBookSubtitle": "Every story, letter and duʿā you finish earns one.",
   "kidsStickerBookEmptySubtitle": "Finish a story, a letter or a duʿā to earn your first one.",
   "kidsStickerBookSpecialSection": "Special stickers",
-  "kidsRewardStreakValue": "{days, plural, =0{No streak yet} =1{1 day streak} other{{days} day streak}}",
+  "kidsRewardStreakValue": "{days, plural, =0{Not started yet} =1{1 day in a row} other{{days} days in a row}}",
   "@kidsRewardStreakValue": {
     "placeholders": {
       "days": {

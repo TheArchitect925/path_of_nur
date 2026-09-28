@@ -393,25 +393,19 @@
       }
     }
   },
-  "hadithCurrentStreakLabel": "वर्तमान स्ट्रीक: {days} दिन{suffix}",
+  "hadithCurrentStreakLabel": "{days, plural, =1{1 day in a row} other{{days} days in a row}}",
   "@hadithCurrentStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
-  "hadithBestStreakLabel": "सर्वोत्तम स्ट्रीक: {days} दिन{suffix}",
+  "hadithBestStreakLabel": "{days, plural, =1{Most in a row: 1 day} other{Most in a row: {days} days}}",
   "@hadithBestStreakLabel": {
     "placeholders": {
       "days": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       }
     }
   },
@@ -446,14 +440,11 @@
   },
   "hadithTitleLearningPaths": "हदीस सीखने के रास्ते",
   "hadithSubtitleLearningPaths": "स्थिर प्रगति के साथ संरचित अनुक्रम में हदीस का अध्ययन करने के लिए क्यूरेटेड पथों का पालन करें।",
-  "hadithPathStreakLabel": "पथ रेखा: {current} दिन{suffix} • सर्वोत्तम: {best}",
+  "hadithPathStreakLabel": "{current, plural, =1{1 day in a row} other{{current} days in a row}} · most: {best}",
   "@hadithPathStreakLabel": {
     "placeholders": {
       "current": {
         "type": "int"
-      },
-      "suffix": {
-        "type": "String"
       },
       "best": {
         "type": "int"
@@ -1197,7 +1188,7 @@
   "homeRightNowTitle": "अभी के लिए दुआएँ",
   "homeRightNowSubtitle": "दिन के समय के अनुसार दुआएँ",
   "levelLabel": "Level",
-  "streakLabel": "Streak",
+  "streakLabel": "Days in a row",
   "worshipTitle": "Ibadah",
   "learnTitle": "Learn",
   "homeTitle": "होम",
@@ -1244,7 +1235,7 @@
   "profileReflectionReminders": "प्रतिबिंब अनुस्मारक",
   "profileFastingReminders": "उपवास अनुस्मारक",
   "profileOnThisDayReminders": "On This Day reminders",
-  "profileOnThisDayRemindersSubtitle": "Notify me when today has a historical Islamic event to reflect on.",
+  "profileOnThisDayRemindersSubtitle": "When something in Islamic history happened on this day.",
   "profileMoonriseReminders": "चंद्रोदय सूचनाएं",
   "profileMoonriseRemindersSubtitle": "जब चंद्रमा उदय हो तो मुझे सूचित करें।",
   "profileMoonsetReminders": "चन्द्रास्त सूचनाएं",
@@ -2452,9 +2443,9 @@
   "modeRamadanActionQuran": "Quran",
   "modeRamadanActionReflect": "Reflect",
   "modeLossHomeTitle": "Loss Support",
-  "modeLossHomeSubtitle": "Move softly today with remembrance, patience, and mercy.",
+  "modeLossHomeSubtitle": "Verses of mercy and remembrance for days of grief.",
   "modeLossActionDhikr": "Dhikr",
-  "modeLossActionMercy": "Mercy Verses",
+  "modeLossActionMercy": "Verses of mercy",
   "learnContentTopicLabel": "Topic",
   "learnContentNotFound": "Content not found.",
   "learnContentOverviewTitle": "Overview",
@@ -2901,7 +2892,7 @@
   "circlesModerationTitle": "Moderation & Safety",
   "circlesModerationSubtitle": "Reporting, trust level, and content policy surfaces.",
   "circlesAccountabilityTitle": "Accountability Groups",
-  "circlesAccountabilitySubtitle": "Private support groups for prayer and habit streaks.",
+  "circlesAccountabilitySubtitle": "Small private groups that keep each other going.",
   "circlesNearbyMosquesTitle": "Nearby Mosques",
   "circlesNearbyMosquesSubtitle": "Import local prayer timetables and keep one selected.",
   "circlesOpen": "Open",
@@ -2927,7 +2918,7 @@
   "circlesReportSubmitted": "Report submitted for moderation review.",
   "circlesAccountabilityCheckIn": "Check in",
   "circlesAccountabilityJoined": "Joined",
-  "circlesAccountabilityStreak": "Check-in streak",
+  "circlesAccountabilityStreak": "Check-ins in a row",
   "circlesImportTimetable": "Import timetable",
   "circlesImported": "Imported",
   "circlesMosqueSelected": "Selected mosque timetable",
@@ -3250,7 +3241,7 @@
   "learningJourneyIslandLegacyLearningSubtitle": "पुरानी शिक्षा की सतहें और विस्थापित खंड जो अभी भी उपयोग में हैं।",
   "learningJourneyIslandLegacyLearningDescription": "विरासत शिक्षण पुस्तकालय को एक स्पष्ट द्वीप में रखें जबकि नई यात्रा संरचना समय के साथ इसे अवशोषित और प्रतिस्थापित करती रहती है।",
   "learningJourneyFeedbackFirstStageOpened": "Learning started. Stay present and take just one meaningful step.",
-  "learningJourneyFeedbackStageCompleted": "Stage complete. You’re on a {streak} day streak.",
+  "learningJourneyFeedbackStageCompleted": "{streak, plural, =1{Stage complete.} other{Stage complete. That’s {streak} days in a row.}}",
   "@learningJourneyFeedbackStageCompleted": {
     "placeholders": {
       "streak": {
@@ -3258,7 +3249,7 @@
       }
     }
   },
-  "learningJourneyHomeStreakMessage": "You’re on a {days} day learning streak.",
+  "learningJourneyHomeStreakMessage": "{days, plural, =1{One day of learning.} other{{days} days of learning in a row.}}",
   "@learningJourneyHomeStreakMessage": {
     "placeholders": {
       "days": {
@@ -3646,7 +3637,7 @@
   },
   "kidsArabicParentReviewNotNeeded": "No review needed right now",
   "kidsArabicParentWeeklyConsistencyTitle": "साप्ताहिक निरंतरता",
-  "kidsArabicParentWeeklyConsistencyBody": "{count} gentle Arabic day this week and a {streak} day streak.",
+  "kidsArabicParentWeeklyConsistencyBody": "Arabic on {count} days this week, and {streak} days in a row.",
   "@kidsArabicParentWeeklyConsistencyBody": {
     "placeholders": {
       "count": {
@@ -9435,7 +9426,9 @@
   "kidsDuaStreakValue": "स्ट्रीक: {days} दिन",
   "@kidsDuaStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
   "kidsDuaLightSeedLabel": "कोमल बीज",
@@ -10143,7 +10136,9 @@
   "crosswordCellCurrentWordHint": "वर्तमान सुराग का हिस्सा",
   "@crosswordDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "crosswordDailyStreakLabel": "{count}-दिन का सिलसिला",
@@ -10269,7 +10264,9 @@
   "wordSearchDailyStreakLabel": "{count}-दिन का सिलसिला",
   "@wordSearchDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "wordSearchDailyCompleteBadge": "दैनिक पूर्ण",
@@ -10289,7 +10286,7 @@
       "count": {}
     }
   },
-  "wordSearchXpLabel": "{count} XP",
+  "wordSearchXpLabel": "{count} light",
   "@wordSearchXpLabel": {
     "placeholders": {
       "count": {}
@@ -10520,7 +10517,9 @@
   "matchingDailyStreakLabel": "{count}-दिन का सिलसिला",
   "@matchingDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "matchingDailyCompleteBadge": "दैनिक पूर्ण",
@@ -10682,7 +10681,9 @@
   "ayahCompletionDailyStreakLabel": "दैनिक स्ट्रीक {count}",
   "@ayahCompletionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "ayahCompletionDailyCompleteBadge": "दैनिक पूर्ण",
@@ -10698,7 +10699,7 @@
       "count": {}
     }
   },
-  "ayahCompletionXpLabel": "{count} XP",
+  "ayahCompletionXpLabel": "{count} light",
   "@ayahCompletionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10885,7 +10886,7 @@
       "count": {}
     }
   },
-  "hadithReflectionXpLabel": "{count} XP",
+  "hadithReflectionXpLabel": "{count} light",
   "@hadithReflectionXpLabel": {
     "placeholders": {
       "count": {}
@@ -10900,7 +10901,9 @@
   "hadithReflectionDailyStreakLabel": "{count}-दिन का सिलसिला",
   "@hadithReflectionDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "hadithReflectionContinueSectionTitle": "चिंतन जारी रखें",
@@ -11036,7 +11039,9 @@
   "dailyKnowledgeHubStreakLabel": "{count}-दिवसीय बंडल स्ट्रीक",
   "@dailyKnowledgeHubStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "dailyKnowledgeHubCompletedBadge": "बंडल पूर्ण",
@@ -11106,7 +11111,9 @@
   "spiritualGrowthReflectionStreakLabel": "{count}-दिन की परावर्तन रेखा",
   "@spiritualGrowthReflectionStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "spiritualGrowthDailyActionsTitle": "सार्थक क्रियाएं",
@@ -11297,10 +11304,12 @@
       "total": {}
     }
   },
-  "learnGamesIslandDailyStreakLabel": "{count}-day streak",
+  "learnGamesIslandDailyStreakLabel": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@learnGamesIslandDailyStreakLabel": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "learnGamesIslandDailyHistoryLabel": "{count} recent days tracked",
@@ -12283,7 +12292,7 @@
       "title": {}
     }
   },
-  "progressionPageXpValue": "{xp} XP",
+  "progressionPageXpValue": "{xp} light",
   "@progressionPageXpValue": {
     "placeholders": {
       "xp": {}
@@ -12351,8 +12360,8 @@
   "kidsArabicLatestAchievementTitle": "Latest achievement",
   "kidsArabicMilestonesSectionTitle": "Milestones",
   "kidsArabicMilestonesSectionSubtitle": "Calm milestone moments celebrate new parts of the journey without turning practice into pressure.",
-  "kidsArabicBadgesSectionTitle": "Badges",
-  "kidsArabicBadgesSectionSubtitle": "Badge stickers stay tied to real Arabic progress and unlock only once.",
+  "kidsArabicBadgesSectionTitle": "Stickers",
+  "kidsArabicBadgesSectionSubtitle": "Each sticker is earned once, by real Arabic learning.",
   "kidsArabicAchievementCelebrateTitle": "A new celebration",
   "kidsArabicMilestoneThreeLettersTitle": "Three letters complete",
   "kidsArabicMilestoneThreeLettersSubtitle": "Three traced letters now belong to the journey.",
@@ -12362,10 +12371,12 @@
   "kidsArabicMilestoneFirstReviewSubtitle": "A calm review round helped one familiar letter feel stronger.",
   "kidsArabicMilestoneBeginnerSetTitle": "Beginner words set complete",
   "kidsArabicMilestoneBeginnerSetSubtitle": "The first short word set is complete and ready for gentle review.",
-  "kidsArabicBadgesUnlockedValue": "{count} badges unlocked",
+  "kidsArabicBadgesUnlockedValue": "{count, plural, =1{1 sticker earned} other{{count} stickers earned}}",
   "@kidsArabicBadgesUnlockedValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "kidsArabicMilestonesUnlockedValue": "{count} milestones reached",
@@ -12512,7 +12523,7 @@
   "wuduQuizAdabExplanation": "Good adab includes leaving the place clean and using water carefully without waste.",
   "wuduQuizQuestionProgress": "Question {current} of {total}",
   "wuduQuizScoreSummary": "You answered {score} out of {total} correctly.",
-  "wuduQuizRewardFeedback": "First completion counted: +{xp} XP and +{drops} Ocean Drop.",
+  "wuduQuizRewardFeedback": "First time finished: +{xp} light and +{drops} Ocean Drop.",
   "wuduQuizStepOrderOptionCorrect": "{first} → {second} → {third}",
   "wuduQuizStepOrderOption": "{first} → {second} → {third}",
   "wuduQuizWhatComesNextQuestion": "What comes next after {stepTitle}?",
@@ -12592,7 +12603,7 @@
   "quranDailyReflectionOpenAyahAction": "Open ayah",
   "quranDailyReflectionCompletedAction": "Completed",
   "quranDailyReflectionCompleteAction": "Mark complete",
-  "quranDailyReflectionFirstTimeHint": "Complete a few reflections to build your streak.",
+  "quranDailyReflectionFirstTimeHint": "Reflect a few days in a row to see them counted here.",
   "quranReflectionsTitle": "Saved Reflections",
   "quranReflectionsSubtitle": "Keep ayahs, notes, and short reflection moments together.",
   "quranReflectionsEmptyTitle": "No reflections saved yet",
@@ -12817,13 +12828,15 @@
   "kidsArabicPracticeTodayBody": "Open the next recommended practice step and keep momentum steady.",
   "kidsArabicPracticeTodayDoneBody": "Today’s recommended practice is complete.",
   "kidsArabicPracticeTodayDoneBadge": "Done today",
-  "quranDailyReflectionStreakValue": "{days} day streak",
+  "quranDailyReflectionStreakValue": "{days, plural, =1{1 day in a row} other{{days} days in a row}}",
   "@quranDailyReflectionStreakValue": {
     "placeholders": {
-      "days": {}
+      "days": {
+        "type": "int"
+      }
     }
   },
-  "quranDailyReflectionBestStreakValue": "Best streak: {streak}",
+  "quranDailyReflectionBestStreakValue": "Most in a row: {streak}",
   "@quranDailyReflectionBestStreakValue": {
     "placeholders": {
       "streak": {}
@@ -12919,7 +12932,7 @@
       "total": {}
     }
   },
-  "growthPathCurrentStreakValue": "Current streak: {value}",
+  "growthPathCurrentStreakValue": "Days in a row: {value}",
   "@growthPathCurrentStreakValue": {
     "placeholders": {
       "value": {}
@@ -13231,14 +13244,14 @@
       "total": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpDrops": "+{xp} XP • +{drops} Ocean Drop",
+  "wuduTrainerRewardFeedbackXpDrops": "+{xp} light · +{drops} Ocean Drop",
   "@wuduTrainerRewardFeedbackXpDrops": {
     "placeholders": {
       "xp": {},
       "drops": {}
     }
   },
-  "wuduTrainerRewardFeedbackXpOnly": "+{xp} XP",
+  "wuduTrainerRewardFeedbackXpOnly": "+{xp} light",
   "@wuduTrainerRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13258,7 +13271,7 @@
       "total": {}
     }
   },
-  "wuduQuizRewardFeedbackXpOnly": "First completion counted: +{xp} XP.",
+  "wuduQuizRewardFeedbackXpOnly": "First time finished: +{xp} light.",
   "@wuduQuizRewardFeedbackXpOnly": {
     "placeholders": {
       "xp": {}
@@ -13780,10 +13793,12 @@
       "count": {}
     }
   },
-  "arabicLearningProgressKidsStreakValue": "{count} day streak",
+  "arabicLearningProgressKidsStreakValue": "{count, plural, =1{1 day in a row} other{{count} days in a row}}",
   "@arabicLearningProgressKidsStreakValue": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "arabicLearningProgressKidsHighlight": "Latest milestone: {title}",
@@ -14254,8 +14269,8 @@
   "celestialMoveSlowlyForHeading": "Move slowly for heading",
   "celestialExplorerUnavailable": "The explorer could not build a sky snapshot right now. Check location settings and try again.",
   "creationChallengesPageTitle": "Creation Challenges",
-  "creationChallengesDailyStreakLabel": "Daily streak",
-  "creationChallengesNewStreakBeginsToday": "A new streak begins today.",
+  "creationChallengesDailyStreakLabel": "Days in a row",
+  "creationChallengesNewStreakBeginsToday": "A fresh start today.",
   "creationChallengesStreakDays": "{count} days",
   "@creationChallengesStreakDays": {
     "placeholders": {
@@ -15545,12 +15560,12 @@
   "loadingGreetingMorningTranslation": "O Allah, by You we enter the morning",
   "loadingGreetingEvening": "اللَّهُمَّ بِكَ أَمْسَيْنَا",
   "loadingGreetingEveningTranslation": "O Allah, by You we enter the evening",
-  "loadingWelcomeBack": "Welcome Back",
+  "loadingWelcomeBack": "Welcome back",
   "loadingRestoringProgress": "Restoring your progress",
-  "loadingStatusPreparing": "Preparing your space…",
+  "loadingStatusPreparing": "Getting ready…",
   "loadingStatusRestoring": "Restoring your progress…",
-  "loadingStatusSyncing": "Syncing your journey…",
-  "loadingStatusFinalizing": "Finalizing…",
+  "loadingStatusSyncing": "Syncing…",
+  "loadingStatusFinalizing": "Almost ready…",
   "onboardingOpeningTitle": "ज्ञान में जड़ा हुआ एक सफ़र",
   "onboardingOpeningHadithLead": "रसूलुल्लाह ﷺ ने फ़रमाया:",
   "onboardingOpeningHadithQuote": "“इल्म हासिल करना हर मुसलमान पर फ़र्ज़ है।”",
@@ -15607,8 +15622,8 @@
   "learningJourneyLessonSectionProgressSubtitle": "Complete this section to save your progress.",
   "rewardQuietProgressSaved": "Progress saved.",
   "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} of {total} correct",
-  "rewardQuietCompletionSummaryXpDrops": "{xp} XP · {drops} drops saved",
-  "rewardQuietCompletionSummaryXpOnly": "{xp} XP saved",
+  "rewardQuietCompletionSummaryXpDrops": "{xp} light · {drops} drops saved",
+  "rewardQuietCompletionSummaryXpOnly": "{xp} light saved",
   "rewardQuietCompletionSummaryDropsOnly": "{drops} drops saved",
   "homeWidgetsNextPrayerTitle": "अगली नमाज़",
   "homeWidgetsPrayerOverviewTitle": "नमाज़ अवलोकन",
@@ -15787,19 +15802,19 @@
   "hadithSectionRelatedDuas": "Related Duas",
   "quranReaderRelatedHadithTitle": "Related Hadith",
   "quranReaderRelatedDuasTitle": "Related Duas",
-  "allSearchTitle": "All Search",
-  "allSearchSubtitle": "Search Qur’an, hadith, duas, and learning content together.",
-  "allSearchHint": "Search across Path of Nur",
-  "allSearchEmptyTitle": "Search across the app",
-  "allSearchEmptySubtitle": "We’ll group results by domain so it stays calm and easy to trust.",
+  "allSearchTitle": "Search",
+  "allSearchSubtitle": "One search across every section.",
+  "allSearchHint": "Search Path of Nur",
+  "allSearchEmptyTitle": "Search everything",
+  "allSearchEmptySubtitle": "Type a word, like mercy or patience.",
   "allSearchSuggestionsTitle": "Suggestions",
   "allSearchRecentTitle": "Recent searches",
   "allSearchClearRecent": "Clear",
   "allSearchNoRecent": "No recent searches yet.",
-  "allSearchNoResultsTitle": "No results yet",
-  "allSearchNoResultsSubtitle": "We could not find a strong match across Qur’an, hadith, duas, or learn content.",
+  "allSearchNoResultsTitle": "No results",
+  "allSearchNoResultsSubtitle": "Nothing matched that search.",
   "allSearchNoResultsTipBroader": "Try a shorter or broader phrase.",
-  "allSearchNoResultsTipDomain": "You can also jump into a domain search for more depth.",
+  "allSearchNoResultsTipDomain": "Or search inside one section for more.",
   "allSearchDomainQuran": "Qur’an",
   "allSearchDomainHadith": "Hadith",
   "allSearchDomainDua": "Duas",
@@ -15822,7 +15837,7 @@
       "query": {}
     }
   },
-  "allSearchError": "Search unavailable: {message}",
+  "allSearchError": "Search didn’t finish: {message}",
   "@allSearchError": {
     "placeholders": {
       "message": {}
@@ -16349,7 +16364,7 @@
   "dhikrFreeCountAction": "Free count",
   "dhikrFreeCountTitle": "Free count",
   "dhikrTodayOfGoal": "of {goal} today",
-  "dhikrStreakCaption": "day streak",
+  "dhikrStreakCaption": "days in a row",
   "dhikrSessionsTodayCaption": "sessions today",
   "dhikrRoutinesTitle": "Routines",
   "dhikrRoutineAfterSalahTitle": "After salah",
@@ -16392,7 +16407,7 @@
   "dhikrInsightsSubtitleEmpty": "Your history begins with the first finished session.",
   "dhikrInsightsThisWeekCaption": "this week · last week {value}",
   "dhikrInsightsStreakValue": "{count} days",
-  "dhikrInsightsStreakCaption": "current streak · best {value}",
+  "dhikrInsightsStreakCaption": "days in a row · most {value}",
   "dhikrInsightsLifetimeCaption": "lifetime remembrances",
   "dhikrInsightsFavoriteCaption": "most repeated · {count}",
   "dhikrInsightsWeekTitle": "This week",
@@ -16533,7 +16548,7 @@
   "kidsStickerBookSubtitle": "Every story, letter and duʿā you finish earns one.",
   "kidsStickerBookEmptySubtitle": "Finish a story, a letter or a duʿā to earn your first one.",
   "kidsStickerBookSpecialSection": "Special stickers",
-  "kidsRewardStreakValue": "{days, plural, =0{No streak yet} =1{1 day streak} other{{days} day streak}}",
+  "kidsRewardStreakValue": "{days, plural, =0{Not started yet} =1{1 day in a row} other{{days} days in a row}}",
   "@kidsRewardStreakValue": {
     "placeholders": {
       "days": {

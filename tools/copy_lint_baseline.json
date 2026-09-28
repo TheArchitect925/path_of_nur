@@ -1,13 +1,13 @@
 {
   "note": "Copy-lint ratchet. Counts may only go down; lower them with `python3 tools/copy_lint.py --write-baseline` after a real fix.",
   "counts": {
-    "tone-self-described": 465,
-    "tone-list-of-three": 480,
-    "tone-tail": 134,
-    "tone-cheer": 8,
-    "tone-gamified": 72,
-    "studio-vocabulary": 104,
-    "roadmap-speak": 37,
+    "tone-self-described": 432,
+    "tone-list-of-three": 413,
+    "tone-tail": 124,
+    "tone-cheer": 7,
+    "tone-gamified": 0,
+    "studio-vocabulary": 98,
+    "roadmap-speak": 32,
     "apostrophe-straight": 0,
     "quran-spelling": 0,
     "term-spelling": 0,
@@ -18,7 +18,7 @@
     "dash": 0,
     "label-period": 0,
     "title-case-outside-titles": 0,
-    "subtitle-long": 166,
+    "subtitle-long": 155,
     "dead-keys": 0,
     "kids-dialogue-unquoted": 0,
     "allah-in-arabic-script": 0,
@@ -30,9 +30,9 @@
     "prose-honorific": 0,
     "prose-typo": 0,
     "arabic-in-english": 0,
-    "prose-studio-vocabulary": 0,
+    "prose-studio-vocabulary": 3,
     "prose-roadmap": 0,
-    "prose-tail": 269,
-    "prose-list-of-three": 866
+    "prose-tail": 265,
+    "prose-list-of-three": 863
   }
 }
