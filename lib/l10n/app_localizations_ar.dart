@@ -271,7 +271,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get historyArchiveHijriMonthLabel => 'الشهر الهجري';
 
   @override
-  String get historyArchiveLoadError => 'تعذر تحميل الأحداث التاريخية الآن.';
+  String get historyArchiveLoadError => 'تعذّر تحميل التاريخ. حاول مرة أخرى.';
 
   @override
   String historyArchiveResultsCount(int count) {
@@ -383,8 +383,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get historyOnThisDayMatchesTitle => 'في مثل هذا اليوم';
 
   @override
-  String get historyOnThisDaySubtitle =>
-      'تأمل تاريخي هادئ لتاريخ اليوم الميلادي والهجري.';
+  String get historyOnThisDaySubtitle => 'ما حدث في مثل هذا اليوم، بالتقويمين.';
 
   @override
   String get historyOnThisDayTitle => 'في مثل هذا اليوم';
@@ -440,7 +439,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get historyEmptyTodaySubtitle =>
-      'ما زلنا نضيف لحظات تاريخية لهذا اليوم. ويمكنك مع ذلك تصفح الأرشيف.';
+      'لا شيء مسجّل لهذا اليوم. في الأرشيف المزيد.';
 
   @override
   String get historyEmptyTodayTitle => 'ستضاف لحظات أخرى قريبًا';
@@ -4560,8 +4559,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaModeQuickChallenge => 'تحدٍ سريع';
 
   @override
-  String get triviaModeQuickChallengeSubtitle =>
-      'جلسة قصيرة متنوعة للتدريب المنتظم.';
+  String get triviaModeQuickChallengeSubtitle => 'مزيج قصير من الأسئلة.';
 
   @override
   String get triviaModeDeepDive => 'تعمق';
@@ -4638,8 +4636,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get triviaHomeSubtitle =>
-      'مساحة معرفية هادئة للاختبارات القصيرة والمراجعة اليومية والتثبيت اللطيف.';
+  String get triviaHomeSubtitle => 'اختبارات قصيرة ومراجعة يومية.';
 
   @override
   String get triviaHomeCurrentStreakLabel => 'الأيام المتتالية';
@@ -4718,7 +4715,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get triviaHomeStructuredLearningSubtitle =>
-      'تحرك عبر رحلات هادئة قائمة على الموضوع مرحلةً بعد مرحلة.';
+      'موضوعًا بعد موضوع، مرحلة بعد مرحلة.';
 
   @override
   String get triviaHomeOpenKnowledgePathsAction => 'افتح مسارات المعرفة';
@@ -4755,15 +4752,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaHomeRecentPerformanceTitle => 'الأداء الأخير';
 
   @override
-  String get triviaHomeRecentPerformanceSubtitle =>
-      'نظرة هادئة إلى جلساتك الأخيرة.';
+  String get triviaHomeRecentPerformanceSubtitle => 'آخر اختباراتك.';
 
   @override
   String get triviaHomeNoSessionsYetTitle => 'لا توجد جلسات بعد';
 
   @override
   String get triviaHomeNoSessionsYetSubtitle =>
-      'ابدأ اختبارًا قصيرًا وسيظهر تقدمك الأخير هنا.';
+      'لا اختبارات بعد. ابدأ اختبارًا قصيرًا.';
 
   @override
   String get triviaMixedLabel => 'متنوع';
@@ -4822,7 +4818,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get triviaReviewMistakesSubtitle =>
-      'الأسئلة التي أخطأت فيها تعود هنا بلطف حتى تصبح أكثر ثباتًا.';
+      'الأسئلة التي أخطأتها تعود إلى هنا حتى تتقنها.';
 
   @override
   String get triviaReviewDueNowLabel => 'مستحق الآن';
@@ -4838,7 +4834,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get triviaReviewNoQuestionsDueSubtitle =>
-      'واصل التدريب. ستظهر هنا الأسئلة التي تخطئ فيها لجولة أخرى.';
+      'لا شيء للمراجعة. الأسئلة التي تخطئها تعود إلى هنا.';
 
   @override
   String get triviaReviewStartSessionTitle => 'ابدأ جلسة مراجعة';
@@ -5058,8 +5054,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get babyNamesTitle => 'أسماء المواليد المسلمين';
 
   @override
-  String get babyNamesSubtitle =>
-      'مكتبة هادئة لأسماء المواليد بمعانيها وسياقها وإرشاداتها.';
+  String get babyNamesSubtitle => 'أسماء لطفلك، مع معانيها.';
 
   @override
   String get babyNamesNameOfDay => 'اسم اليوم';
@@ -5069,7 +5064,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get babyNamesBrowseSearchSubtitle =>
-      'استكشاف الأسماء حسب المعنى والمنطقة والأسلوب.';
+      'تصفّح الأسماء حسب المعنى أو الأصل.';
 
   @override
   String get babyNamesSmartFinderTitle => 'مكتشف الاسم الذكي';
@@ -5082,8 +5077,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get babyNamesFavoritesTitle => 'المفضلة والقائمة المختصرة';
 
   @override
-  String get babyNamesFavoritesSubtitle =>
-      'الأسماء المحفوظة والملاحظات الخاصة والاختيارات النهائية.';
+  String get babyNamesFavoritesSubtitle => 'الأسماء التي حفظتها، مع ملاحظاتك.';
 
   @override
   String get babyNamesCompareTitle => 'قارن الأسماء';
@@ -5140,14 +5134,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get babyNamesCollectionsLoadError =>
-      'Unable to load featured collections right now.';
+      'تعذّر تحميل المجموعات. حاول مرة أخرى.';
 
   @override
   String get babyNamesRecentSearchesTitle => 'Recent searches';
 
   @override
   String get babyNamesNoRecentSearches =>
-      'No recent searches yet. Search by meaning, origin, or a specific name.';
+      'لا عمليات بحث حديثة. جرّب معنى أو أصلًا أو اسمًا.';
 
   @override
   String get babyNamesRecentlyViewedTitle => 'Recently viewed';
@@ -6256,7 +6250,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get assistantEmptyState =>
-      'اطلب اقتراحًا للتركيز، أو مطالبة بالتفكير، أو إلى أين تتجه بعد ذلك.';
+      'اسأل عمّا تركّز عليه، أو إلى أين تذهب بعد ذلك.';
 
   @override
   String get assistantInputHint => 'اكتب رسالتك';
@@ -6265,7 +6259,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get circlesTitle => 'دوائر المجتمع';
 
   @override
-  String get circlesSubtitle => 'اكتشف دوائر للتعلم والتفكير والنمو المشترك.';
+  String get circlesSubtitle => 'تعلّم وتأمّل مع الآخرين.';
 
   @override
   String get circlesNotFound => 'لم يتم العثور على الدائرة.';
@@ -6294,8 +6288,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get journalTitle => 'المذكرات';
 
   @override
-  String get journalSubtitle =>
-      'احفظ خواطرك ودروسك وملاحظاتك الشخصية في مكان واحد.';
+  String get journalSubtitle => 'تأملاتك، مكتوبة.';
 
   @override
   String get journalTimelineIntro =>
@@ -6311,8 +6304,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get journalEmptyStateTitle => 'اكتب أول إدخال في المذكرات';
 
   @override
-  String get journalEmptyStateSubtitle =>
-      'دوّن يومك أو ما تعلمته أو ما في قلبك في إدخال شخصي.';
+  String get journalEmptyStateSubtitle => 'ابدأ بتأمّل قصير أو كلمة شكر.';
 
   @override
   String get journalUntitled => 'دخول بدون عنوان';
@@ -6337,7 +6329,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get journalPhotoReferenceHelper =>
-      'في الوقت الحالي، أضف مسارًا محليًا أو ملاحظة قصيرة تتضمن صورة.';
+      'أضف مسار ملف الصورة، أو ملاحظة قصيرة عنها.';
 
   @override
   String get journalTypeReflection => 'انعكاس';
@@ -6452,7 +6444,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesJoinedPageSubtitle =>
-      'دوائرك النشطة والمحفوظة في مكان واحد.';
+      'الحلقات التي انضممت إليها أو حفظتها.';
 
   @override
   String get circlesJoinedEmpty => 'لم تنضم إلى أية دوائر حتى الآن.';
@@ -6540,14 +6532,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesMosqueBuddyPrefsSubtitle =>
-      'ضبط المسافة وعادات الصلاة والاهتمامات ونوافذ التوفر.';
+      'متى تستطيع الذهاب إلى المسجد وإلى أي مسافة.';
 
   @override
   String get circlesModerationTitle => 'الاعتدال والسلامة';
 
   @override
-  String get circlesModerationSubtitle =>
-      'التقارير ومستوى الثقة وأسطح سياسة المحتوى.';
+  String get circlesModerationSubtitle => 'البلاغات وقواعد المجتمع.';
 
   @override
   String get circlesAccountabilityTitle => 'مجموعات المساءلة';
@@ -6576,7 +6567,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get circlesRsvpNotGoing => 'لن أذهب';
 
   @override
-  String get circlesNoEvents => 'لا توجد أحداث قادمة في الوقت الحالي.';
+  String get circlesNoEvents => 'لا فعاليات قادمة.';
 
   @override
   String get circlesBuddyDistance => 'المسافة القصوى';
@@ -6709,7 +6700,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get circlesCreateEventModerationHint =>
-      'الأحداث التي أنشأها المستخدم محلية في الوقت الحالي. يمكن للإصدارات المستقبلية تمكين سير عمل موافقة مشرف المسجد.';
+      'الفعاليات التي تنشئها تبقى على هذا الجهاز.';
 
   @override
   String get circlesCreateEventTitleLabel => 'عنوان الحدث';
@@ -6743,7 +6734,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get circlesCreateEventValidation => 'يرجى ملء العنوان والموقع والوصف.';
+  String get circlesCreateEventValidation => 'أضف عنوانًا ومكانًا ووصفًا.';
 
   @override
   String get circlesCreateEventSubmit => 'حفظ الحدث';
@@ -15115,8 +15106,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get familyLearningManagementTitle => 'التعلم العائلي';
 
   @override
-  String get familyLearningManagementSubtitle =>
-      'قم بإنشاء ملفات تعريف تعليمية للأطفال، وتوجيه مسارهم، وفصل التقدم على الأجهزة المشتركة.';
+  String get familyLearningManagementSubtitle => 'ملف ومسار لكل طفل.';
 
   @override
   String get familyLearningManagementUnavailable =>
@@ -15136,7 +15126,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningEmptySubtitle =>
-      'قم بإنشاء ملف تعريف للطفل لتعيين مسار تعليمي هادئ وفصل تقدمه.';
+      'أنشئ ملفًا لطفلك ليكون له مسار تعلّم خاص به.';
 
   @override
   String get familyLearningAddFirstChildAction => 'إنشاء ملف تعريف الطفل الأول';
@@ -15191,7 +15181,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningPromptDua =>
-      'قم بمراجعة هذا الدعاء معًا وتدرب على متى تقوله في الحياة الواقعية اليوم.';
+      'راجعا هذا الدعاء معًا، وابحثا عن لحظة لقوله.';
 
   @override
   String get familyLearningPromptDhikr =>
@@ -15229,7 +15219,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get familyLearningAllowTrivia => 'السماح بمسارات التوافه';
 
   @override
-  String get familyLearningAllowLegacy => 'السماح بالتعلم القديم';
+  String get familyLearningAllowLegacy => 'السماح بالدروس القديمة';
 
   @override
   String get familyLearningAllowAdvanced => 'السماح بالرحلات المتقدمة';
@@ -15262,7 +15252,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningHomeChildSubtitle =>
-      'يحافظ ملف تعريف الطفل هذا على التعلم بشكل أكثر هدوءًا ومسارًا أولًا ومناسبًا للعمر.';
+      'تعلّم يناسب عمر هذا الطفل، مسارًا بعد مسار.';
 
   @override
   String get familyLearningHomeGuardianTitle => 'التعلم العائلي';
@@ -15274,7 +15264,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningHomeGuardianEmptySubtitle =>
-      'قم بإنشاء ملف تعريف طفل عندما تريد توجيه التعلم على جهاز مشترك.';
+      'أنشئ ملفًا لطفلك لترافق تعلّمه على هذا الجهاز.';
 
   @override
   String get familyLearningSwitchAction => 'تبديل الملف الشخصي';
@@ -15299,7 +15289,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningGuidedHomeSubtitle =>
-      'يظل ملف تعريف الطفل هذا مركزًا على المسار المعين أولاً. يمكن فتح التصفح الإضافي لاحقًا إذا سمحت بذلك.';
+      'يبدأ هذا الملف بمساره المحدد. يمكنك السماح بالمزيد لاحقًا.';
 
   @override
   String get familyLearningContinueTogetherTitle => 'نواصل معا';
@@ -15318,14 +15308,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get familyLearningIslandReducedSubtitle =>
-      'تم تصغير هذه الجزيرة لملف تعريف الطفل الحالي. ارجع إلى المسار المعين للحصول على الخطوة التالية الأكثر وضوحًا.';
+      'هذا القسم محدود لهذا الطفل. الخطوة التالية في مساره.';
 
   @override
   String get familyLearningSettingsTitle => 'التعلم العائلي';
 
   @override
-  String get familyLearningSettingsSubtitle =>
-      'يمكنك إنشاء ملفات تعريف للأطفال، وتعيين المسارات، ومراجعة التقدم المحرز في التعلم عبر الأجهزة المشتركة.';
+  String get familyLearningSettingsSubtitle => 'هيّئ التعلّم لكل طفل.';
 
   @override
   String get kidsUiThemeSettingTitle => 'موضوع واجهة المستخدم للأطفال';
@@ -15928,7 +15917,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncProfilesInAccountCreateSubtitle =>
-      'أنشئ ملفات شخصية للبالغين أو الشباب أو الأطفال أو الضيوف.';
+      'ملف لكل شخص يستخدم Path of Nur.';
 
   @override
   String accountsSyncProfilesInAccountManageSubtitle(String accountName) {
@@ -15937,7 +15926,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncProfilesInAccountPageSubtitle =>
-      'أنشئ رحلات منفصلة للبالغين أو الشباب أو الأطفال أو الضيوف من دون خلط بياناتهم.';
+      'لكل شخص رحلته الخاصة، منفصلة عن غيره.';
 
   @override
   String get accountsSyncAccountsOnDeviceTitle => 'الحسابات على هذا الجهاز';
@@ -15975,7 +15964,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncConnectedDevicesSubtitle =>
-      'اعرف أي الهواتف والأجهزة اللوحية والساعات وأجهزة التلفاز المرتبطة بهذه الرحلة.';
+      'الأجهزة المرتبطة بهذه الرحلة.';
 
   @override
   String accountsSyncDeviceCount(int count) {
@@ -16036,7 +16025,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncChooseProfileSubtitle =>
-      'تم إعداد هذا الجهاز للاستخدام المشترك. اختر الملف الشخصي الذي تريد المتابعة به.';
+      'هذا الجهاز مشترك. اختر ملفك.';
 
   @override
   String accountsSyncProfileListSubtitle(
@@ -16051,8 +16040,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accountsSyncAddProfileTitle => 'إضافة ملف شخصي';
 
   @override
-  String get accountsSyncAddProfileSubtitle =>
-      'أنشئ ملفًا شخصيًا للبالغ أو الشاب أو الطفل أو الضيف.';
+  String get accountsSyncAddProfileSubtitle => 'أضف ملفًا لشخص آخر.';
 
   @override
   String get accountsSyncSignInAnotherAccountTitle => 'تسجيل الدخول بحساب آخر';
@@ -16088,7 +16076,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncAddProfileSectionSubtitle =>
-      'اختر نوع الملف الشخصي، والإحساس الذي تريده له، وكيفية حفظ بياناته.';
+      'اختر لمن هو، وأين تُحفظ بياناته.';
 
   @override
   String get accountsSyncDisplayNameLabel => 'الاسم الظاهر';
@@ -16509,7 +16497,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncAutoBackupSectionSubtitle =>
-      'انسخ رحلتك احتياطيًا تلقائيًا عند حدوث تقدم مهم. ويظل النسخ الاحتياطي اليدوي متاحًا في أي وقت.';
+      'ينسخ رحلتك احتياطيًا عندما يتغيّر تقدّمك.';
 
   @override
   String get accountsSyncAutoBackupEnabledTitle =>
@@ -16540,7 +16528,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncAutoBackupMeaningfulChangeTitle =>
-      'النسخ الاحتياطي عند حدوث تقدم مهم';
+      'انسخ احتياطيًا عند تغيّر التقدّم';
 
   @override
   String get accountsSyncAutoBackupBackgroundTitle =>
@@ -16591,7 +16579,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'تشغيل النسخ الاحتياطي التلقائي الآن';
 
   @override
-  String get accountsSyncAutoBackupReasonMeaningfulChange => 'تغير تقدم مهم';
+  String get accountsSyncAutoBackupReasonMeaningfulChange => 'تغيّر التقدّم';
 
   @override
   String get accountsSyncAutoBackupReasonOverdue => 'تأخر موعد النسخ الاحتياطي';
@@ -16622,11 +16610,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncAutoBackupEligibilityProviderUnavailable =>
-      'موفر النسخ الاحتياطي الحالي غير متاح الآن.';
+      'خدمة النسخ الاحتياطي غير متاحة. حاول لاحقًا.';
 
   @override
   String get accountsSyncAutoBackupEligibilityNoChanges =>
-      'لا توجد تغييرات مهمة جديدة تحتاج إلى نسخ احتياطي بعد.';
+      'لا جديد لنسخه احتياطيًا.';
 
   @override
   String get accountsSyncAutoBackupEligibilityThrottled =>
@@ -16645,7 +16633,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncScopeSectionSubtitle =>
-      'اختر الفئات التي ستتضمنها النسخ الاحتياطية البعيدة مستقبلًا. تبقى الفئات المستبعدة على هذا الجهاز ما لم تُصدّرها يدويًا.';
+      'اختر ما تتضمنه النسخ الاحتياطية على الإنترنت. والباقي يبقى على هذا الجهاز.';
 
   @override
   String get accountsSyncScopeCurrentSummaryTitle =>
@@ -16656,7 +16644,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncScopeEssentialSubtitle =>
-      'تبقى هذه الفئات ضمن النسخة الاحتياطية لأنها تحافظ على اتساق تقدمك في التعلّم والعبادة عند الاستعادة.';
+      'هذه تُنسخ دائمًا، حتى تعيد الاستعادةُ تقدّمك.';
 
   @override
   String get accountsSyncScopeOptionalTitle => 'المحتوى الشخصي والتفضيلات';
@@ -16823,11 +16811,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountsSyncImportBackupSubtitle =>
-      'استعدها كملف شخصي جديد أو ادمجها أو استبدل البيانات الموجودة.';
+      'استعد نسخة احتياطية على هذا الجهاز.';
 
   @override
   String get accountsSyncExportBackupPageSubtitle =>
-      'أنشئ نسخة قابلة للاستعادة من رحلتك يمكنك الاحتفاظ بها محليًا أو نقلها عبر AirDrop أو حفظها في الملفات.';
+      'نسخة من رحلتك يمكنك استعادتها لاحقًا.';
 
   @override
   String get accountsSyncCurrentProfileOnlyTitle => 'الملف الشخصي الحالي فقط';
@@ -16877,7 +16865,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'اختيار ملف النسخة الاحتياطية';
 
   @override
-  String get accountsSyncEncryptedPayloadTitle => 'حمولة مشفرة';
+  String get accountsSyncEncryptedPayloadTitle => 'نسخة احتياطية مشفّرة';
 
   @override
   String get accountsSyncPassphraseFieldLabel => 'عبارة المرور';
@@ -17475,8 +17463,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsAttributionsLicensesTitle => 'السمات والتراخيص';
 
   @override
-  String get legalAttributionsSubtitle =>
-      'نص القرآن والترجمات والنقل الصوتي والصوت واستخدام واجهات API.';
+  String get legalAttributionsSubtitle => 'مصادر نص القرآن والترجمات والصوت.';
 
   @override
   String get legalAttributionsQuranTitle => 'نص القرآن والترجمات';
@@ -19935,14 +19922,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaCategoryQuranTitle => 'القرآن';
 
   @override
-  String get triviaCategoryQuranSubtitle => 'آيات وسور وموضوعات وفهم للقرآن.';
+  String get triviaCategoryQuranSubtitle => 'السور ومعانيها.';
 
   @override
   String get triviaCategoryProphetsTitle => 'الأنبياء';
 
   @override
-  String get triviaCategoryProphetsSubtitle =>
-      'قصص الأنبياء ودروسهم وتسلسلهم الزمني.';
+  String get triviaCategoryProphetsSubtitle => 'قصص الأنبياء ودروسهم.';
 
   @override
   String get triviaCategoryHadithTitle => 'الحديث';
@@ -19955,7 +19941,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get triviaCategoryHistorySubtitle =>
-      'شخصيات وأماكن ومحطات مهمة في التاريخ الإسلامي.';
+      'أشخاص ولحظات من التاريخ الإسلامي.';
 
   @override
   String get triviaCategoryGeneralTitle => 'معلومات عامة';
@@ -19968,22 +19954,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaCategoryRamadanTitle => 'رمضان';
 
   @override
-  String get triviaCategoryRamadanSubtitle =>
-      'الصيام، والفضائل، والليالي، وممارسات رمضان.';
+  String get triviaCategoryRamadanSubtitle => 'الصيام والليالي المباركة.';
 
   @override
   String get triviaCategorySalahTitle => 'الصلاة';
 
   @override
-  String get triviaCategorySalahSubtitle =>
-      'أوقات الصلاة، والركعات، والشروط، والآداب.';
+  String get triviaCategorySalahSubtitle => 'كيف ومتى تصلي.';
 
   @override
   String get triviaCategoryDuaTitle => 'الدعاء';
 
   @override
-  String get triviaCategoryDuaSubtitle =>
-      'الدعاء، والذكر، وأدعية الحياة اليومية.';
+  String get triviaCategoryDuaSubtitle => 'أدعية لكل يوم.';
 
   @override
   String get triviaCategorySeerahTitle => 'السيرة';
@@ -19995,15 +19978,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaCategoryWomenInIslamTitle => 'المرأة في الإسلام';
 
   @override
-  String get triviaCategoryWomenInIslamSubtitle =>
-      'نساء بارزات، وقدوات، وإسهامات.';
+  String get triviaCategoryWomenInIslamSubtitle => 'نساء في تاريخ الإسلام.';
 
   @override
   String get triviaCategoryAkhlaqTitle => 'الأخلاق';
 
   @override
-  String get triviaCategoryAkhlaqSubtitle =>
-      'الآداب، والإخلاص، والصبر، والرحمة، وحسن السلوك.';
+  String get triviaCategoryAkhlaqSubtitle => 'الآداب والأخلاق.';
 
   @override
   String get triviaKnowledgePathsPageTitle => 'مسارات المعرفة';
@@ -20016,8 +19997,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaKnowledgePathsEmptyTitle => 'لا توجد مسارات معرفة بعد';
 
   @override
-  String get triviaKnowledgePathsEmptySubtitle =>
-      'ستظهر المسارات هنا عند إعداد وحدات الدراسة المنظمة.';
+  String get triviaKnowledgePathsEmptySubtitle => 'لا مسارات دراسة بعد.';
 
   @override
   String triviaKnowledgePathsProgressLabel(String completed, String total) {
@@ -20125,7 +20105,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get triviaSessionNoActiveSubtitle =>
-      'ابدأ اختبارًا من المركز أو استأنف جلستك السابقة من هناك.';
+      'ابدأ اختبارًا، أو أكمل آخر اختبار، من صفحة الاختبارات.';
 
   @override
   String get triviaSessionCorrectAnswer => 'الإجابة الصحيحة';
@@ -20159,8 +20139,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get triviaStatsTitle => 'إحصاءات الاختبارات';
 
   @override
-  String get triviaStatsSubtitle =>
-      'تابع إيقاع تعلمك وقوة مراجعتك وأداء الفئات.';
+  String get triviaStatsSubtitle => 'كيف تسير اختباراتك.';
 
   @override
   String get triviaStatsQuestionsAnswered => 'الأسئلة المُجاب عنها';
@@ -20312,8 +20291,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get batch9ProphetQuizTitle => 'مسابقة النبي';
 
   @override
-  String get batch9ProphetQuizSubtitle =>
-      'اختبار المعرفة بالقصص النبوية والأوقات والدروس والمراجع القرآنية.';
+  String get batch9ProphetQuizSubtitle => 'أسئلة عن قصص الأنبياء.';
 
   @override
   String get batch9HadithReviewQuizTitle => 'مسابقة مراجعة الحديث';
@@ -21244,7 +21222,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String batch9QuranWordsAllAyahsSubtitle(Object word) {
-    return 'افتح قائمة الآيات الكاملة لـ $word وانتقل إلى قارئ القرآن من أي مرجع.';
+    return 'كل آية فيها $word. كل واحدة تُفتح في القارئ.';
   }
 
   @override
@@ -21266,8 +21244,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get batch9NamesOfAllahSubtitle =>
-      'Arabic, transliteration, and concise meanings for reflection.';
+  String get batch9NamesOfAllahSubtitle => 'أسماء الله، مع معانيها.';
 
   @override
   String get batch9NamesOfAllahSearchHint =>
@@ -21282,8 +21259,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get batch9FaqTitle => 'أسئلة وأجوبة الإسلام';
 
   @override
-  String get batch9FaqSubtitle =>
-      'إجابات واضحة ولطيفة على الأسئلة الشائعة حول الإسلام، مع توضيح هادئ حيث توجد المفاهيم الخاطئة.';
+  String get batch9FaqSubtitle => 'أجوبة واضحة عن أسئلة شائعة حول الإسلام.';
 
   @override
   String get batch9FaqScholarNote =>
@@ -21327,7 +21303,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'Try a different keyword or browse categories instead.';
 
   @override
-  String get batch9FaqFeaturedEmpty => 'لا توجد أسئلة مميزة متاحة الآن.';
+  String get batch9FaqFeaturedEmpty => 'لا أسئلة مختارة.';
 
   @override
   String batch9FaqLoadError(String error) {
@@ -21340,8 +21316,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get batch9FaqCategoryEmptyFilter =>
-      'No questions match this filter right now.';
+  String get batch9FaqCategoryEmptyFilter => 'لا أسئلة تطابق هذا المرشِّح.';
 
   @override
   String get batch9FaqNotFound => 'FAQ item not found.';
@@ -21548,7 +21523,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get creationExplorerDetectionPromptTitle =>
-      'انظر إلى نبات أو حيوان أو طائر أو منظر طبيعي.';
+      'انظر إلى نبتة أو حيوان أو منظر.';
 
   @override
   String get creationExplorerDetectionPromptSubtitle =>
@@ -21575,7 +21550,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get creationExplorerAlsoExploreSkySubtitle =>
-      'إن Creation Explorer وSky Explorer متكاملان: أحدهما يلاحظ ما هو حولك، والآخر ما هو فوقك.';
+      'مستكشف الخلق ينظر حولك، ومستكشف السماء ينظر فوقك.';
 
   @override
   String get creationExplorerSkyExplorerAction => 'سكاي اكسبلورر';
@@ -22602,7 +22577,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get xpLevelTitle13 => 'حافظ الصلاة';
 
   @override
-  String get xpLevelTitle14 => 'ثابت في الذكر';
+  String get xpLevelTitle14 => 'المداوم على الذكر';
 
   @override
   String get xpLevelTitle15 => 'طالب العلم';
@@ -23611,7 +23586,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get crosswordHomeSubtitle =>
-      'ألعاب معرفية هادئة مبنية على محتوى التعلّم الموجود بالفعل في Path of Nūr.';
+      'كلمات متقاطعة مما تتعلّمه في Path of Nūr.';
 
   @override
   String get crosswordLoadErrorTitle => 'تعذّر تحميل ألغاز الكلمات المتقاطعة';
@@ -23624,15 +23599,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordKidsModeTitle => 'وضع الأطفال';
 
   @override
-  String get crosswordKidsModeSubtitle =>
-      'شبكات صغيرة بكلمات بسيطة من الحروف والعبادة والتعلّم المبكر.';
+  String get crosswordKidsModeSubtitle => 'شبكات صغيرة بكلمات بسيطة.';
 
   @override
   String get crosswordAdultModeTitle => 'وضع الكبار';
 
   @override
-  String get crosswordAdultModeSubtitle =>
-      'شبكات معرفية عبر الأنبياء والحديث والقرآن والأدعية.';
+  String get crosswordAdultModeSubtitle => 'شبكات أكبر فيما تعلّمته.';
 
   @override
   String get crosswordDailyModeTitle => 'لغز اليوم';
@@ -23699,10 +23672,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get crosswordDifficultyBeginner => 'هادئ';
+  String get crosswordDifficultyBeginner => 'بسيط';
 
   @override
-  String get crosswordDifficultySteady => 'ثابت';
+  String get crosswordDifficultySteady => 'متوسط';
 
   @override
   String get crosswordDifficultyReflective => 'تأملي';
@@ -23846,8 +23819,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordOverviewTitle => 'نظرة على التقدّم';
 
   @override
-  String get crosswordOverviewSubtitle =>
-      'ملخص هادئ لتقدّم مجموعات الكلمات المتقاطعة للأطفال وللكبار.';
+  String get crosswordOverviewSubtitle => 'كيف تسير كلماتك المتقاطعة.';
 
   @override
   String crosswordPerfectCountLabel(Object count) {
@@ -23942,8 +23914,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordDailyObjectiveHintFreeTitle => 'بدون تلميحات';
 
   @override
-  String get crosswordDailyObjectiveHintFreeSubtitle =>
-      'حلّه دون كشف حرف أو كلمة أو تلميح إضافي.';
+  String get crosswordDailyObjectiveHintFreeSubtitle => 'حُلّها دون أي تلميح.';
 
   @override
   String get crosswordDailyObjectiveQuickSolveTitle => 'إنجاز مركّز';
@@ -23957,8 +23928,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordDailyHistoryTitle => 'سجل الأيام الأخيرة';
 
   @override
-  String get crosswordDailyHistorySubtitle =>
-      'نظرة هادئة على تحديات الكلمات المتقاطعة الأخيرة.';
+  String get crosswordDailyHistorySubtitle => 'آخر كلماتك المتقاطعة اليومية.';
 
   @override
   String get crosswordOpenTodayAction => 'افتح لغز اليوم';
@@ -24017,8 +23987,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordPackKidsBasicsTitle => 'أساسيات الأطفال';
 
   @override
-  String get crosswordPackKidsBasicsSubtitle =>
-      'باقات افتتاحية لطيفة حول الحروف وكلمات العبادة والمفردات الإسلامية المبكرة.';
+  String get crosswordPackKidsBasicsSubtitle => 'أولى الكلمات: الحروف والصلاة.';
 
   @override
   String get crosswordPackAdultFoundationsTitle => 'أساسيات الكبار';
@@ -24038,22 +24007,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordPackQuranTitle => 'تأملات قرآنية';
 
   @override
-  String get crosswordPackQuranSubtitle =>
-      'ألغاز مبنية على الكلمات القرآنية والهداية والرحمة وموضوعات التأمل.';
+  String get crosswordPackQuranSubtitle => 'كلمات من القرآن.';
 
   @override
   String get crosswordPackHadithTitle => 'تأملات الحديث';
 
   @override
-  String get crosswordPackHadithSubtitle =>
-      'مجموعات تلميحات تتمحور حول أساسيات الحديث والإخلاص والحلال والإحسان.';
+  String get crosswordPackHadithSubtitle => 'تلميحات من الأحاديث.';
 
   @override
   String get crosswordPackProphetsTitle => 'قصص الأنبياء';
 
   @override
-  String get crosswordPackProphetsSubtitle =>
-      'ألواح كلمات متقاطعة مستمدة من أسماء الأنبياء ودروسهم وإشارات قصصهم.';
+  String get crosswordPackProphetsSubtitle => 'أسماء الأنبياء وقصصهم.';
 
   @override
   String get crosswordPackDuasTitle => 'كلمات الأدعية';
@@ -24073,22 +24039,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get crosswordPackCharacterTitle => 'الخلق والأدب';
 
   @override
-  String get crosswordPackCharacterSubtitle =>
-      'مجموعة أخف تركيزاً على الخلق مبنية على الحلال والإحسان وإشارات التعلّم المرتبطة بالأدب.';
+  String get crosswordPackCharacterSubtitle => 'مجموعة أخفّ عن الأخلاق والأدب.';
 
   @override
   String get crosswordPackMixedTitle => 'التحدي المتنوع';
 
   @override
-  String get crosswordPackMixedSubtitle =>
-      'مجموعة أعمق ومتنوعة تجمع التاريخ والوحي وكلمات المعرفة الأوسع.';
+  String get crosswordPackMixedSubtitle => 'مزيج أصعب من كل ما تعلّمته.';
 
   @override
   String get wordSearchHomeTitle => 'بحث الكلمات';
 
   @override
-  String get wordSearchHomeSubtitle =>
-      'ابحث عن كلمات إسلامية ذات معنى في تجربة يومية هادئة.';
+  String get wordSearchHomeSubtitle => 'ابحث عن كلمات إسلامية في الشبكة.';
 
   @override
   String get wordSearchLoadErrorTitle => 'تعذّر تحميل بحث الكلمات';
@@ -24100,22 +24063,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchKidsModeTitle => 'بحث الكلمات للأطفال';
 
   @override
-  String get wordSearchKidsModeSubtitle =>
-      'كلمات أقصر وشبكات ألطف وبداية موجهة.';
+  String get wordSearchKidsModeSubtitle => 'كلمات قصيرة وشبكات صغيرة.';
 
   @override
   String get wordSearchAdultModeTitle => 'بحث الكلمات للكبار';
 
   @override
-  String get wordSearchAdultModeSubtitle =>
-      'موضوعات أعمق ولوحات أكثف وممارسة تأملية.';
+  String get wordSearchAdultModeSubtitle => 'شبكات أكبر وموضوعات أعمق.';
 
   @override
   String get wordSearchDailyModeTitle => 'بحث الكلمات اليومي';
 
   @override
-  String get wordSearchDailyModeSubtitle =>
-      'عد كل يوم لتحدٍّ ثابت بموضوع متجدّد.';
+  String get wordSearchDailyModeSubtitle => 'لغز جديد بموضوع كل يوم.';
 
   @override
   String wordSearchDailyCompletedSubtitle(Object theme) {
@@ -24194,15 +24154,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchFeaturedPacksTitle => 'باقات مميزة';
 
   @override
-  String get wordSearchFeaturedPacksSubtitle =>
-      'ابدأ بباقات هادئة ومختارة لكل نمط.';
+  String get wordSearchFeaturedPacksSubtitle => 'بدايات جيدة.';
 
   @override
   String get wordSearchThemesTitle => 'الموضوعات';
 
   @override
-  String get wordSearchThemesSubtitle =>
-      'تصفّح بحسب العبادة والأنبياء وموضوعات القرآن وغيرها.';
+  String get wordSearchThemesSubtitle => 'تصفّح حسب الموضوع.';
 
   @override
   String get wordSearchLoadingSubtitle => 'جاري تحميل بحث الكلمات';
@@ -24211,7 +24169,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchNotFoundTitle => 'اللغز غير موجود';
 
   @override
-  String get wordSearchNotFoundSubtitle => 'هذا اللغز غير متاح الآن.';
+  String get wordSearchNotFoundSubtitle =>
+      'لعبة البحث عن الكلمات هذه غير متاحة.';
 
   @override
   String get wordSearchKidsOnlyTitle =>
@@ -24302,10 +24261,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchCategoryMixed => 'متنوع';
 
   @override
-  String get wordSearchDifficultyGentle => 'هادئ';
+  String get wordSearchDifficultyGentle => 'بسيط';
 
   @override
-  String get wordSearchDifficultySteady => 'متدرج';
+  String get wordSearchDifficultySteady => 'متوسط';
 
   @override
   String get wordSearchDifficultyFocused => 'مركز';
@@ -24394,7 +24353,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wordSearchPackKidsStarterSubtitle =>
-      'باقة افتتاحية هادئة لكلمات إسلامية مألوفة.';
+      'مجموعة أولى من كلمات إسلامية مألوفة.';
 
   @override
   String get wordSearchPackLettersTitle => 'مكتشف الحروف العربية';
@@ -24407,8 +24366,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchPackPrayerTitle => 'كلمات الصلاة';
 
   @override
-  String get wordSearchPackPrayerSubtitle =>
-      'كلمات تتصل بالصلاة والوضوء والممارسة المباركة.';
+  String get wordSearchPackPrayerSubtitle => 'كلمات من الصلاة والوضوء.';
 
   @override
   String get wordSearchPackAdultTitle => 'أساسيات الكبار';
@@ -24421,8 +24379,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchPackQuranTitle => 'موضوعات قرآنية';
 
   @override
-  String get wordSearchPackQuranSubtitle =>
-      'كلمات مرتبطة بالهداية والرحمة والوحي.';
+  String get wordSearchPackQuranSubtitle => 'كلمات من القرآن.';
 
   @override
   String get wordSearchPackHadithTitle => 'كلمات الحديث';
@@ -24442,8 +24399,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wordSearchPackDuaTitle => 'الأدعية والمعاني';
 
   @override
-  String get wordSearchPackDuaSubtitle =>
-      'كلمات تشكلها الدعاء والرحمة والتوبة.';
+  String get wordSearchPackDuaSubtitle => 'كلمات من الأدعية.';
 
   @override
   String get wordSearchPackCharacterTitle => 'الخلق والأدب';
@@ -24471,11 +24427,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get matchingHomeTitle => 'لعبة المطابقة';
 
   @override
-  String get matchingHomeSubtitle =>
-      'طابق بين الكلمات والمعاني والدروس الإسلامية الهادفة.';
+  String get matchingHomeSubtitle => 'صِل الكلمات الإسلامية بمعانيها.';
 
   @override
-  String get matchingLoadErrorTitle => 'تعذر تحميل لعبة المطابقة الآن.';
+  String get matchingLoadErrorTitle => 'تعذّر تحميل لعبة المطابقة';
 
   @override
   String get matchingLoadErrorSubtitle =>
@@ -24498,15 +24453,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get matchingKidsModeTitle => 'مطابقة الأطفال';
 
   @override
-  String get matchingKidsModeSubtitle =>
-      'مطابقة هادئة لكلمات وأفكار إسلامية مبسطة.';
+  String get matchingKidsModeSubtitle => 'صِل أولى الكلمات الإسلامية.';
 
   @override
   String get matchingAdultModeTitle => 'مطابقة الكبار';
 
   @override
-  String get matchingAdultModeSubtitle =>
-      'مطابقات أعمق للمعاني والمفاهيم والدروس.';
+  String get matchingAdultModeSubtitle => 'صِل الأفكار بمعانيها.';
 
   @override
   String get matchingDailyModeTitle => 'مطابقة اليوم';
@@ -24642,10 +24595,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get matchingDifficultyGentle => 'لطيف';
+  String get matchingDifficultyGentle => 'بسيط';
 
   @override
-  String get matchingDifficultySteady => 'ثابت';
+  String get matchingDifficultySteady => 'متوسط';
 
   @override
   String get matchingDifficultyFocused => 'مركّز';
@@ -24816,11 +24769,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ayahCompletionHomeTitle => 'إكمال الآية';
 
   @override
-  String get ayahCompletionHomeSubtitle =>
-      'أكمل الكلمات الناقصة من آيات موثقة في تجربة هادئة للمراجعة والحفظ.';
+  String get ayahCompletionHomeSubtitle => 'أكمل الكلمات الناقصة في آية.';
 
   @override
-  String get ayahCompletionLoadErrorTitle => 'تعذّر تحميل إكمال الآية الآن.';
+  String get ayahCompletionLoadErrorTitle => 'تعذّر تحميل إكمال الآية';
 
   @override
   String get ayahCompletionLoadErrorSubtitle =>
@@ -24834,7 +24786,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ayahCompletionNotFoundTitle => 'لم يتم العثور على هذا التمرين.';
 
   @override
-  String get ayahCompletionNotFoundSubtitle => 'هذه المجموعة غير متاحة الآن.';
+  String get ayahCompletionNotFoundSubtitle => 'مجموعة الآيات هذه غير متاحة.';
 
   @override
   String get ayahCompletionKidsOnlyTitle =>
@@ -24844,22 +24796,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ayahCompletionKidsModeTitle => 'آيات الأطفال';
 
   @override
-  String get ayahCompletionKidsModeSubtitle =>
-      'آيات قصيرة مع كلمة ناقصة واحدة وإرشاد لطيف.';
+  String get ayahCompletionKidsModeSubtitle => 'آيات قصيرة، وكلمة واحدة ناقصة.';
 
   @override
   String get ayahCompletionAdultModeTitle => 'آيات الكبار';
 
   @override
-  String get ayahCompletionAdultModeSubtitle =>
-      'آيات تأملية مع أكثر من فراغ لمراجعة أرسخ.';
+  String get ayahCompletionAdultModeSubtitle => 'آيات أطول فيها عدة فراغات.';
 
   @override
   String get ayahCompletionDailyModeTitle => 'آية اليوم';
 
   @override
-  String get ayahCompletionDailyModeSubtitle =>
-      'آية واحدة لليوم مع تكرار هادئ ومكافأة يومية خفيفة.';
+  String get ayahCompletionDailyModeSubtitle => 'آية واحدة كل يوم.';
 
   @override
   String ayahCompletionDailyCompletedSubtitle(Object theme) {
@@ -24880,8 +24829,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ayahCompletionDailyHistoryTitle => 'آيات الأيام الأخيرة';
 
   @override
-  String get ayahCompletionDailyHistorySubtitle =>
-      'نظرة هادئة على مراجعتك القرآنية الأخيرة.';
+  String get ayahCompletionDailyHistorySubtitle => 'آخر آياتك اليومية.';
 
   @override
   String ayahCompletionDailyStreakLabel(int count) {
@@ -24925,22 +24873,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ayahCompletionContinueSectionTitle => 'تابع الحفظ';
 
   @override
-  String get ayahCompletionContinueSectionSubtitle =>
-      'ارجع إلى آخر آية فتحتها وحافظ على الوتيرة.';
+  String get ayahCompletionContinueSectionSubtitle => 'عُد إلى آخر آية فتحتها.';
 
   @override
   String get ayahCompletionFeaturedPacksTitle => 'مجموعات آيات مميزة';
 
   @override
-  String get ayahCompletionFeaturedPacksSubtitle =>
-      'ابدأ بمجموعات قصيرة وثابتة للحفظ والتأمل.';
+  String get ayahCompletionFeaturedPacksSubtitle => 'مجموعات قصيرة للبداية.';
 
   @override
   String get ayahCompletionThemesTitle => 'الموضوعات والمجموعات';
 
   @override
-  String get ayahCompletionThemesSubtitle =>
-      'تصفح الآيات حسب الموضوع والحفظ والاستخدام اليومي.';
+  String get ayahCompletionThemesSubtitle => 'تصفّح الآيات حسب الموضوع.';
 
   @override
   String ayahCompletionProgressCountLabel(Object done, Object total) {
@@ -25085,10 +25030,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get ayahCompletionCategoryMixed => 'متنوع';
 
   @override
-  String get ayahCompletionDifficultyGentle => 'لطيف';
+  String get ayahCompletionDifficultyGentle => 'بسيط';
 
   @override
-  String get ayahCompletionDifficultySteady => 'ثابت';
+  String get ayahCompletionDifficultySteady => 'متوسط';
 
   @override
   String get ayahCompletionDifficultyReflective => 'تأملي';
@@ -25108,7 +25053,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ayahCompletionPackKidsMemorizationSubtitle =>
-      'مجموعة صغيرة لتكرار الآيات المألوفة بهدوء.';
+      'مجموعة صغيرة من آيات مألوفة للترديد.';
 
   @override
   String get ayahCompletionPackAdultShortSurahsTitle => 'السور القصيرة للكبار';
@@ -25122,7 +25067,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ayahCompletionPackAdultDailyDuasSubtitle =>
-      'Ayahs often revisited in dua, hope, and personal turning to Allah.';
+      'آيات كثيرًا ما يُدعى بها.';
 
   @override
   String get ayahCompletionPackAdultMercyTitle => 'آيات الرحمة';
@@ -25136,21 +25081,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ayahCompletionPackAdultPatienceSubtitle =>
-      'آيات للصبر والثبات والتوكل عند الشدة.';
+      'آيات عن الصبر والتوكل في الشدائد.';
 
   @override
   String get ayahCompletionPackAdultGratitudeTitle => 'آيات الشكر';
 
   @override
   String get ayahCompletionPackAdultGratitudeSubtitle =>
-      'آيات تعزز الشكر والذكر والحياة الممتنة.';
+      'آيات عن الشكر والذكر.';
 
   @override
   String get ayahCompletionPackAdultMemorizationTitle => 'مجموعة الحفظ';
 
   @override
   String get ayahCompletionPackAdultMemorizationSubtitle =>
-      'آيات أساسية للمراجعة الثابتة والثقة في التلاوة.';
+      'آيات أساسية تراجعها حتى تتقنها.';
 
   @override
   String get ayahCompletionPackDailyMixedTitle => 'اليومي المتنوع';
@@ -25600,8 +25545,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'تدريب على التعرّف من خلال شبكات كلمات ذات موضوعات.';
 
   @override
-  String get dailyKnowledgeHubGameSubtitleMatching =>
-      'قوِّ الربط بين المصطلحات والمعاني والأفكار.';
+  String get dailyKnowledgeHubGameSubtitleMatching => 'صِل الكلمات بمعانيها.';
 
   @override
   String get dailyKnowledgeHubGameSubtitleAyahCompletion =>
@@ -25615,8 +25559,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dailyKnowledgeHubCompletionTitle => 'اكتملت الرحلة اليومية';
 
   @override
-  String get dailyKnowledgeHubCompletionSubtitle =>
-      'أكملت حزمة المعرفة اليومية الكاملة لهذا اليوم.';
+  String get dailyKnowledgeHubCompletionSubtitle => 'أنهيت ألعاب اليوم.';
 
   @override
   String get dailyKnowledgeHubHistoryTitle => 'سجل الحزم الأخير';
@@ -25640,7 +25583,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dailyKnowledgeHubAdaptiveSubtitle =>
-      'حزمة اليوم تتكيّف بلطف مع الألعاب التي تحتاج دعماً أكبر والألعاب التي أصبحت أقوى فيها.';
+      'ألعاب اليوم تميل إلى ما تجده أصعب.';
 
   @override
   String dailyKnowledgeHubAdaptiveSupportLabel(Object game) {
@@ -27831,8 +27774,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get progressionPageTitle => 'التقدّم والملصقات';
 
   @override
-  String get progressionPageSubtitle =>
-      'عرض هادئ للنمو التعليمي على المدى الطويل.';
+  String get progressionPageSubtitle => 'كيف نما تعلّمك.';
 
   @override
   String get progressionPageLearnerSectionTitle => 'ملف الطفل';
@@ -27859,7 +27801,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get progressionPageGardenCardSubtitle =>
-      'افتح الحديقة الرمزية التي تُشكّلها وتيرة العبادة والتعلّم والذكر والقطرات.';
+      'الحديقة التي أنبتتها قطراتك.';
 
   @override
   String get progressionPageGardenAction => 'افتح الحديقة';
@@ -27868,7 +27810,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get progressionPageMilestonesTitle => 'المحطات';
 
   @override
-  String get progressionPageMilestonesEmpty => 'ستظهر المحطات مع نموّ التعلّم.';
+  String get progressionPageMilestonesEmpty => 'لا محطات بعد.';
 
   @override
   String get progressionPageBadgesTitle => 'الملصقات';
@@ -32330,7 +32272,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get celestialUnavailableTitle => 'بيانات السماء غير متاحة الآن';
+  String get celestialUnavailableTitle => 'بيانات السماء غير متاحة';
 
   @override
   String get celestialUnavailableSubtitle =>
@@ -32400,7 +32342,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get celestialJournalMomentTitle => 'دوّن هذه اللحظة';
 
   @override
-  String get celestialJournalPromptHint => 'ما الذي جعلك السماء تلاحظه اليوم؟';
+  String get celestialJournalPromptHint => 'ماذا جعلتك السماء تلاحظ؟';
 
   @override
   String get celestialCompassUnavailable => 'البوصلة غير متاحة';
@@ -32415,8 +32357,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'المواضع تقديرات محسوبة. قد تكون قراءات المستشعر غير دقيقة داخل المباني.';
 
   @override
-  String get celestialJournalEmptyState =>
-      'ستظهر تأملات السماء المحفوظة هنا عندما تبدأ في التدوين.';
+  String get celestialJournalEmptyState => 'لا ملاحظات عن السماء بعد.';
 
   @override
   String celestialApproximatePositionLabel(int azimuth, int altitude) {
@@ -32929,8 +32870,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get worldLandingTitle => 'World & Creation';
 
   @override
-  String get worldLandingSubtitle =>
-      'Explore the signs of Allah in the universe, nature, life, and the world around you.';
+  String get worldLandingSubtitle => 'آيات الله في العالم من حولك.';
 
   @override
   String get worldLandingMetricCompleted => 'Completed';
@@ -32955,7 +32895,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get worldLandingExploreCreationSubtitle =>
-      'Move from reading to direct observation with guided prompts, private capture, and reflection.';
+      'اخرج وتأمّل عن قرب، مع إرشادات تدلّك.';
 
   @override
   String get worldLandingExploreCreationAction => 'Explore Creation';
@@ -32973,7 +32913,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get worldLandingDeepOceanAction => 'Deep Ocean';
 
   @override
-  String get worldLandingAtmosphereLayersAction => 'Atmosphere Layers';
+  String get worldLandingAtmosphereLayersAction => 'الغلاف الجوي';
 
   @override
   String get worldLandingExploreDomainsTitle => 'Explore Domains';
@@ -32983,7 +32923,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get worldLandingReflectionModeSubtitle =>
-      'A quiet reading experience with verse, observation, and reflection, designed for slow contemplative review.';
+      'اقرأ بتمهّل: آية، وملاحظة، وتأمّل.';
 
   @override
   String get worldLandingStartReflectionModeAction => 'Start Reflection Mode';
@@ -32993,7 +32933,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get worldLandingMuslimScientistsSubtitle =>
-      'How Qur’anic curiosity inspired inquiry, observation, and learning.';
+      'كيف دفع القرآن المسلمين إلى دراسة العالم.';
 
   @override
   String get worldLandingTabExplore => 'Explore';
@@ -38377,7 +38317,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get divineLifeReflectionModeTitle => 'Reflection Mode';
 
   @override
-  String get divineLifeReflectionModeSubtitle => 'Quiet, focused reading';
+  String get divineLifeReflectionModeSubtitle => 'قراءة بلا مشتتات';
 
   @override
   String get worldAtmosphereLayersSubtitle =>
@@ -38391,8 +38331,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get worldDeepOceanTitle => 'Deep Ocean Explorer';
 
   @override
-  String get worldDeepOceanSubtitle =>
-      'A vertical reflection on depth, darkness, and hidden life.';
+  String get worldDeepOceanSubtitle => 'الظلمات والحياة الخفية في أعماق البحر.';
 
   @override
   String get worldCosmicScaleTitle => 'Cosmic Scale Explorer';
@@ -38402,8 +38341,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'From tiny to vast, observe proportion and perspective.';
 
   @override
-  String get worldMuslimScientistsSubtitle =>
-      'Curiosity, observation, and disciplined inquiry in Muslim scholarship.';
+  String get worldMuslimScientistsSubtitle => 'علماء مسلمون درسوا العالم.';
 
   @override
   String worldReflectionModeProgress(int current, int total) {
@@ -38422,7 +38360,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get knowledgeConstellationSubtitle =>
-      'An interactive map linking Qur’an, Hadith, Prophets, and Themes.';
+      'خريطة تُظهر كيف يترابط كل ما تتعلّمه.';
 
   @override
   String get babyNamesDetailUnavailable => 'Unable to open details.';

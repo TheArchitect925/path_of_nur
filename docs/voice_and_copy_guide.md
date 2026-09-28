@@ -251,7 +251,7 @@ Then `flutter gen-l10n`, then `python3 tools/localization_gate.py
 | V2b-2 · Learn (done 2026-09-27) | the Learn landing, hubs, learning journeys and areas, the games area, the Seerah companion; *Learning Hub* is *Learn*, *islands* are *learning areas*, *Salah Hub* / *Dua Hub* / *Hadith Hub* take their plain names |
 | V2b-3 · Growth and worship (done 2026-09-27) | hadith, du’a, salah, qibla, fasting, wudu, dhikr and khushu, Growth and spiritual growth, garden and ocean, prophets, Arabic learning, guided paths; *gentle return days* are *grace days*; encouragement says the fact, or alhamdulillah |
 | V2c · Kids (done 2026-09-27) | Kids home and journeys, kids Qur’an, hadith, Seerah, du’a and Arabic, the bedtime companion and stories, the parent views; cheering becomes *masha’Allah* / *alhamdulillah*; the du’a light stages are *Little seed … Shining star*; German speaks to the child as *du* |
-| V2 · Chrome by exposure | (d) games, circles, baby names, history, world, accounts |
+| V2d · Long tail (done 2026-09-27) | the knowledge games (crossword, word search, matching, ayah completion, trivia), circles, journal, family learning, accounts and backup, baby names, history, world and sky; game difficulty reads *Simple / Moderate / Reflective / Deep*. Left as written: the editorial dashboard and content builder (staff tools), narrator biographies, madhhab summaries, glossary definitions |
 | V3 · Prose | the content keys and the Dart content files: (a) mechanics, (b) studio vocabulary and roadmap and (c) tails, done 2026-09-27 · (d) lists in cards and summaries |
 | V4 · Native | Apple TV, Watch, complications, widgets |
 | V5 · Lock | baselines to zero, lint blocks CI on its own step |

@@ -5134,8 +5134,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get babyNamesTitle => 'Muslim Baby Names';
 
   @override
-  String get babyNamesSubtitle =>
-      'A calm family naming library with meaning, context, and guidance.';
+  String get babyNamesSubtitle => 'Names for your child, with their meanings.';
 
   @override
   String get babyNamesNameOfDay => 'Name of the Day';
@@ -5145,7 +5144,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get babyNamesBrowseSearchSubtitle =>
-      'Explore names by meaning, region, and style.';
+      'Browse names by meaning or origin.';
 
   @override
   String get babyNamesSmartFinderTitle => 'Smart Name Finder';
@@ -5159,7 +5158,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get babyNamesFavoritesSubtitle =>
-      'Your saved names, private notes, and final picks.';
+      'The names you saved, with your notes.';
 
   @override
   String get babyNamesCompareTitle => 'Compare Names';
@@ -5216,14 +5215,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get babyNamesCollectionsLoadError =>
-      'Unable to load featured collections right now.';
+      'Couldn’t load the collections. Try again.';
 
   @override
   String get babyNamesRecentSearchesTitle => 'Recent searches';
 
   @override
   String get babyNamesNoRecentSearches =>
-      'No recent searches yet. Search by meaning, origin, or a specific name.';
+      'No recent searches. Try a meaning, an origin or a name.';
 
   @override
   String get babyNamesRecentlyViewedTitle => 'Recently viewed';
@@ -6350,7 +6349,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get assistantEmptyState =>
-      'Ask for a focus suggestion, reflection prompt, or where to go next.';
+      'Ask what to focus on, or where to go next.';
 
   @override
   String get assistantInputHint => 'Type your message';
@@ -6359,8 +6358,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get circlesTitle => 'Community Circles';
 
   @override
-  String get circlesSubtitle =>
-      'Discover circles for learning, reflection, and shared growth.';
+  String get circlesSubtitle => 'Learn and reflect with others.';
 
   @override
   String get circlesNotFound => 'Circle not found.';
@@ -6389,8 +6387,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get journalTitle => 'Journal & Timeline';
 
   @override
-  String get journalSubtitle =>
-      'Record reflections, observations, and memory moments.';
+  String get journalSubtitle => 'Your reflections, written down.';
 
   @override
   String get journalTimelineIntro =>
@@ -6407,7 +6404,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get journalEmptyStateSubtitle =>
-      'Start with one short reflection, gratitude note, or learning memory and return to it later.';
+      'Start with one short reflection or a note of thanks.';
 
   @override
   String get journalUntitled => 'Untitled entry';
@@ -6432,7 +6429,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get journalPhotoReferenceHelper =>
-      'For now, add a local path or short photo note.';
+      'Add the photo’s file path, or a short note about it.';
 
   @override
   String get journalTypeReflection => 'Reflection';
@@ -6546,8 +6543,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get circlesJoinedPageTitle => 'Joined Circles';
 
   @override
-  String get circlesJoinedPageSubtitle =>
-      'Your active and saved circles in one place.';
+  String get circlesJoinedPageSubtitle => 'Circles you joined or saved.';
 
   @override
   String get circlesJoinedEmpty => 'You have not joined any circles yet.';
@@ -6636,14 +6632,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get circlesMosqueBuddyPrefsSubtitle =>
-      'Set distance, prayer habits, interests, and availability windows.';
+      'When and how far you can go to the masjid.';
 
   @override
   String get circlesModerationTitle => 'Moderation & Safety';
 
   @override
-  String get circlesModerationSubtitle =>
-      'Reporting, trust level, and content policy surfaces.';
+  String get circlesModerationSubtitle => 'Reporting and community rules.';
 
   @override
   String get circlesAccountabilityTitle => 'Accountability Groups';
@@ -6672,7 +6667,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get circlesRsvpNotGoing => 'Not going';
 
   @override
-  String get circlesNoEvents => 'No upcoming events right now.';
+  String get circlesNoEvents => 'No upcoming events.';
 
   @override
   String get circlesBuddyDistance => 'Max distance';
@@ -6806,7 +6801,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get circlesCreateEventModerationHint =>
-      'User-created events are local for now. Future releases can enable mosque moderator approval workflows.';
+      'Events you create stay on this device.';
 
   @override
   String get circlesCreateEventTitleLabel => 'Event title';
@@ -6841,7 +6836,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get circlesCreateEventValidation =>
-      'Please fill title, location, and description.';
+      'Add a title, a place and a description.';
 
   @override
   String get circlesCreateEventSubmit => 'Save event';
@@ -21619,8 +21614,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get batch9FaqCategoryEmptyFilter =>
-      'No questions match this filter right now.';
+  String get batch9FaqCategoryEmptyFilter => 'No questions match this filter.';
 
   @override
   String get batch9FaqNotFound => 'FAQ item not found.';
@@ -32654,8 +32648,7 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get celestialUnavailableTitle =>
-      'Celestial data is unavailable right now';
+  String get celestialUnavailableTitle => 'Sky data isn’t available';
 
   @override
   String get celestialUnavailableSubtitle =>
@@ -32725,8 +32718,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get celestialJournalMomentTitle => 'Journal this moment';
 
   @override
-  String get celestialJournalPromptHint =>
-      'What did the sky make you notice today?';
+  String get celestialJournalPromptHint => 'What did the sky make you notice?';
 
   @override
   String get celestialCompassUnavailable => 'Compass unavailable';
@@ -32741,8 +32733,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'Positions are calculated estimates. Sensor readings may be noisy indoors.';
 
   @override
-  String get celestialJournalEmptyState =>
-      'Saved sky reflections will appear here once you begin journaling.';
+  String get celestialJournalEmptyState => 'No sky reflections yet.';
 
   @override
   String celestialApproximatePositionLabel(int azimuth, int altitude) {
@@ -33277,7 +33268,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get worldLandingSubtitle =>
-      'Explore the signs of Allah in the universe, nature, life, and the world around you.';
+      'The signs of Allah in the world around you.';
 
   @override
   String get worldLandingMetricCompleted => 'Completed';
@@ -33302,7 +33293,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get worldLandingExploreCreationSubtitle =>
-      'Move from reading to direct observation with guided prompts, private capture, and reflection.';
+      'Go outside and look closely, with prompts to guide you.';
 
   @override
   String get worldLandingExploreCreationAction => 'Explore Creation';
@@ -33330,7 +33321,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get worldLandingReflectionModeSubtitle =>
-      'A quiet reading experience with verse, observation, and reflection, designed for slow contemplative review.';
+      'Read slowly: an ayah, an observation, a reflection.';
 
   @override
   String get worldLandingStartReflectionModeAction => 'Start Reflection Mode';
@@ -33340,7 +33331,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get worldLandingMuslimScientistsSubtitle =>
-      'How Qur’anic curiosity inspired inquiry, observation, and learning.';
+      'How the Qur’an moved Muslims to study the world.';
 
   @override
   String get worldLandingTabExplore => 'Explore';
@@ -38782,7 +38773,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get divineLifeReflectionModeTitle => 'Reflection Mode';
 
   @override
-  String get divineLifeReflectionModeSubtitle => 'Quiet, focused reading';
+  String get divineLifeReflectionModeSubtitle => 'Reading without distractions';
 
   @override
   String get worldAtmosphereLayersSubtitle =>
@@ -38797,7 +38788,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get worldDeepOceanSubtitle =>
-      'A vertical reflection on depth, darkness, and hidden life.';
+      'Darkness and hidden life in the deep sea.';
 
   @override
   String get worldCosmicScaleTitle => 'Cosmic Scale Explorer';
@@ -38808,7 +38799,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get worldMuslimScientistsSubtitle =>
-      'Curiosity, observation, and disciplined inquiry in Muslim scholarship.';
+      'Muslim scholars who studied the world.';
 
   @override
   String worldReflectionModeProgress(int current, int total) {
