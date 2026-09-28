@@ -51,8 +51,7 @@ class LearnCategoryCatalog {
       tags: ['quran', 'core', 'hub'],
       sectionType: 'hub',
       categoryGroup: 'core',
-      description:
-          'Reader, reciter, bookmarks, search, and juz browsing in one focused space.',
+      description: 'Reader, reciter, bookmarks, search, and juz browsing.',
     ),
     LearnCategoryItem(
       id: 'quran-learning',

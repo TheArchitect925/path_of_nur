@@ -608,7 +608,7 @@ const List<HadithEntry> seededHadithEntries = [
       'How can I prepare for prayer before takbir?',
     ],
     practiceAction:
-        'Before one prayer today, sit quietly for one minute to enter with intention and presence.',
+        'Before one prayer today, sit quietly for one minute to renew your niyyah and settle your heart.',
     relatedHadithIds: ['islam_built_on_five_prayer', 'closest_in_sujud'],
     isEssential: true,
   ),

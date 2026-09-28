@@ -1601,7 +1601,7 @@ final List<TriviaQuestion> _advancedProphetsQuestions = [
     categoryId: 'prophets',
     difficulty: TriviaDifficulty.hard,
     prompt:
-        'Every prophet mentioned in the Qur’an has a full extended story told in one place.',
+        'Every prophet mentioned in the Qur’an has a full extended story told in one place.', // copy-lint: allow prose-tail
     correct: false,
     explanation:
         'Some prophets have extensive narratives, while others are mentioned briefly and across different passages.',

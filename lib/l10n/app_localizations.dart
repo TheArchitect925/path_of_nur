@@ -5026,7 +5026,7 @@ abstract class AppLocalizations {
   /// No description provided for @helpGuideQuranStep3.
   ///
   /// In en, this message translates to:
-  /// **'Adjust Arabic, transliteration, and translation settings from Settings > Learning when you need a different reading layout.'**
+  /// **'Change how Arabic, transliteration, and translation appear in Settings > Learning.'**
   String get helpGuideQuranStep3;
 
   /// No description provided for @helpGuideLearningTitle.
@@ -5056,7 +5056,7 @@ abstract class AppLocalizations {
   /// No description provided for @helpGuideLearningStep3.
   ///
   /// In en, this message translates to:
-  /// **'Use search when you want to reach a topic, prophet, glossary term, or lesson faster.'**
+  /// **'Use search to reach a topic, prophet, glossary term, or lesson faster.'**
   String get helpGuideLearningStep3;
 
   /// No description provided for @helpGuideDhikrAdhkarTitle.
@@ -5080,7 +5080,7 @@ abstract class AppLocalizations {
   /// No description provided for @helpGuideDhikrAdhkarStep2.
   ///
   /// In en, this message translates to:
-  /// **'Choose a set that matches your moment, then use the built-in counter or reading flow at your own pace.'**
+  /// **'Choose a set that matches your moment, then count with the built-in counter or read it through.'**
   String get helpGuideDhikrAdhkarStep2;
 
   /// No description provided for @helpGuideDhikrAdhkarStep3.
@@ -5128,7 +5128,7 @@ abstract class AppLocalizations {
   /// No description provided for @helpGuideNotificationsSettingsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Adjust reminders, visuals, widgets, language, and account preferences in one place.'**
+  /// **'Adjust reminders, visuals, widgets, language, and account preferences.'**
   String get helpGuideNotificationsSettingsDescription;
 
   /// No description provided for @helpGuideNotificationsSettingsStep1.
@@ -5140,13 +5140,13 @@ abstract class AppLocalizations {
   /// No description provided for @helpGuideNotificationsSettingsStep2.
   ///
   /// In en, this message translates to:
-  /// **'Use the notification and widget sections when you want calmer alerts, live activity behavior, or lock screen changes.'**
+  /// **'Use the notification and widget sections for calmer alerts, live activity behavior, or lock screen changes.'**
   String get helpGuideNotificationsSettingsStep2;
 
   /// No description provided for @helpGuideNotificationsSettingsStep3.
   ///
   /// In en, this message translates to:
-  /// **'Use Account Sync and Privacy & Data when you need backup, connected-device, or sync-related controls.'**
+  /// **'Use Account Sync and Privacy & Data for backup, connected-device, and sync controls.'**
   String get helpGuideNotificationsSettingsStep3;
 
   /// No description provided for @learnHubGuidedPathsTitle.
@@ -13096,7 +13096,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyIslandUnderstandingIslamDescription.
   ///
   /// In en, this message translates to:
-  /// **'Understand the essentials of belief, practice, and historical development with clarity.'**
+  /// **'Understand the essentials of belief, practice, and historical development.'**
   String get learningJourneyIslandUnderstandingIslamDescription;
 
   /// No description provided for @learningJourneyIslandArabicLearningTitle.
@@ -16108,7 +16108,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDhikrSalawatSection2Body.
   ///
   /// In en, this message translates to:
-  /// **'Use a short form daily, after hearing the Prophet’s ﷺ name, on Fridays, and in quiet moments when you want to renew love for his guidance.'**
+  /// **'Use a short form daily, after hearing the Prophet’s ﷺ name, on Fridays, and in quiet moments to renew your love for his guidance.'**
   String get learningJourneyDhikrSalawatSection2Body;
 
   /// No description provided for @learningJourneyDhikrSalawatBullet1.
@@ -17008,7 +17008,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyWisdomPracticeBullet3.
   ///
   /// In en, this message translates to:
-  /// **'Use related journeys when you want depth.'**
+  /// **'Use related journeys to go deeper.'**
   String get learningJourneyWisdomPracticeBullet3;
 
   /// No description provided for @learningJourneyWisdomPracticeTakeaway1.
@@ -19168,7 +19168,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyWuduWhySection1Body.
   ///
   /// In en, this message translates to:
-  /// **'Wudu is physical preparation, but it also slows the body down and signals that prayer is approaching. It helps you enter worship with intention.'**
+  /// **'Wudu is physical preparation, but it also slows the body down and signals that prayer is approaching. It helps you enter worship with a clear niyyah.'**
   String get learningJourneyWuduWhySection1Body;
 
   /// No description provided for @learningJourneyWuduWhySection2Title.
@@ -20296,7 +20296,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyRamadanWhatIsBullet3.
   ///
   /// In en, this message translates to:
-  /// **'You enter it best with intention and humility.'**
+  /// **'You enter it best with a sincere niyyah and humility.'**
   String get learningJourneyRamadanWhatIsBullet3;
 
   /// No description provided for @learningJourneyRamadanWhatIsTakeaway1.
@@ -20410,7 +20410,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyRamadanSuhoorIftarSection1Body.
   ///
   /// In en, this message translates to:
-  /// **'Suhoor gives strength and barakah. Beginning the day with intention, prayer, and remembrance helps the fast start with steadiness.'**
+  /// **'Suhoor gives strength and barakah. Beginning the day with the niyyah to fast, prayer, and remembrance helps the fast start with steadiness.'**
   String get learningJourneyRamadanSuhoorIftarSection1Body;
 
   /// No description provided for @learningJourneyRamadanSuhoorIftarSection2Title.
@@ -20902,7 +20902,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageQuranReadTitle.
   ///
   /// In en, this message translates to:
-  /// **'Begin reading with clarity'**
+  /// **'Begin reading'**
   String get learningJourneyStageQuranReadTitle;
 
   /// No description provided for @learningJourneyStageQuranReadSummary.
@@ -24184,7 +24184,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningPathPhaseAdvancedRefinementDescription.
   ///
   /// In en, this message translates to:
-  /// **'Refine recitation and deepen understanding with intention.'**
+  /// **'Refine recitation and deepen understanding.'**
   String get learningPathPhaseAdvancedRefinementDescription;
 
   /// No description provided for @learningPathPhaseAdvancedCharacterActionTitle.
@@ -24616,13 +24616,13 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyStageDailyRoutinesStartDayTitle.
   ///
   /// In en, this message translates to:
-  /// **'Start your day with intention'**
+  /// **'Start your day with a niyyah'**
   String get learningJourneyStageDailyRoutinesStartDayTitle;
 
   /// No description provided for @learningJourneyStageDailyRoutinesStartDaySummary.
   ///
   /// In en, this message translates to:
-  /// **'Build a gentle opening rhythm that begins with intention, remembrance, and a realistic first step.'**
+  /// **'Build a gentle opening rhythm that begins with a niyyah, remembrance, and a realistic first step.'**
   String get learningJourneyStageDailyRoutinesStartDaySummary;
 
   /// No description provided for @learningJourneyStageDailyRoutinesPrayerAnchorTitle.
@@ -24940,7 +24940,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDailyRoutinesStartDayIntro.
   ///
   /// In en, this message translates to:
-  /// **'A daily routine becomes easier when the day starts with intention rather than reacting to whatever comes first.'**
+  /// **'A daily routine becomes easier when you start the day on purpose rather than reacting to whatever comes first.'**
   String get learningJourneyDailyRoutinesStartDayIntro;
 
   /// No description provided for @learningJourneyDailyRoutinesStartDaySection1Body.
@@ -25036,7 +25036,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDailyRoutinesQuranAnchorSection2Body.
   ///
   /// In en, this message translates to:
-  /// **'The point is consistency with presence. A short steady relationship with the Qur’an is better than waiting for rare ideal moments.'**
+  /// **'The point is consistency with an attentive heart. A short steady relationship with the Qur’an is better than waiting for rare ideal moments.'**
   String get learningJourneyDailyRoutinesQuranAnchorSection2Body;
 
   /// No description provided for @learningJourneyDailyRoutinesQuranAnchorTakeaway1.
@@ -25072,7 +25072,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningJourneyDailyRoutinesEveningResetSection1Body.
   ///
   /// In en, this message translates to:
-  /// **'Use evening adhkar, a bedtime dua, or one quiet moment of gratitude and istighfar to close the day with intention rather than exhaustion alone.'**
+  /// **'Use evening adhkar, a bedtime dua, or one quiet moment of gratitude and istighfar to close the day on purpose rather than in exhaustion alone.'**
   String get learningJourneyDailyRoutinesEveningResetSection1Body;
 
   /// No description provided for @learningJourneyDailyRoutinesEveningResetSection2Body.
@@ -29399,7 +29399,7 @@ abstract class AppLocalizations {
   /// No description provided for @dhikrAntiRushBody.
   ///
   /// In en, this message translates to:
-  /// **'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it calmly and with intention, seeking what is most pleasing to Allah.'**
+  /// **'Gentle reminder: dhikr is about presence, sincerity, and sabr, not speed alone. Take it slowly, seeking what is most pleasing to Allah.'**
   String get dhikrAntiRushBody;
 
   /// No description provided for @dhikrAntiRushAcknowledgeAction.
@@ -47177,7 +47177,7 @@ abstract class AppLocalizations {
   /// No description provided for @growthStatisticsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Review your recent worship, learning, and reward progress in one place.'**
+  /// **'Review your recent worship, learning, and reward progress.'**
   String get growthStatisticsSubtitle;
 
   /// No description provided for @wuduTrainerPageTitle.
@@ -50344,7 +50344,7 @@ abstract class AppLocalizations {
   /// No description provided for @wuduGuideWhyBody.
   ///
   /// In en, this message translates to:
-  /// **'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with presence and humility.'**
+  /// **'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with khushu and humility.'**
   String get wuduGuideWhyBody;
 
   /// No description provided for @wuduGuideQuranVerseTranslation.
@@ -50980,7 +50980,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnSeerahCompanionExploreJourneyDescription.
   ///
   /// In en, this message translates to:
-  /// **'Reopen the full guided Seerah path when you want the whole story in order.'**
+  /// **'Reopen the full guided Seerah path for the whole story in order.'**
   String get learnSeerahCompanionExploreJourneyDescription;
 
   /// No description provided for @learnSeerahCompanionExploreTimelineDescription.
@@ -51244,7 +51244,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionScenarioSpeechNextStep.
   ///
   /// In en, this message translates to:
-  /// **'Open Qur’an reflection on character and adab when you need ayah-guided restraint, timing, and mercy in speech.'**
+  /// **'Open Qur’an reflection on character and adab for ayah-guided restraint, timing, and mercy in speech.'**
   String get learnCharacterCompanionScenarioSpeechNextStep;
 
   /// No description provided for @learnCharacterCompanionScenarioNeighborsDescription.
@@ -51280,7 +51280,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionScenarioConsistencyNextStep.
   ///
   /// In en, this message translates to:
-  /// **'Open Qur’an guidance for daily life when you need revelation-shaped steadiness in worship, manners, and routine conduct during changing seasons of energy.'**
+  /// **'Open Qur’an guidance for daily life to find steadiness in worship, manners, and routine conduct as your energy rises and falls.'**
   String get learnCharacterCompanionScenarioConsistencyNextStep;
 
   /// No description provided for @learnCharacterCompanionScenarioWorkStudyTitle.
@@ -51370,7 +51370,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnCharacterCompanionScenarioAngerNextStep.
   ///
   /// In en, this message translates to:
-  /// **'Open the hadith character and manners theme when you need direct prophetic guidance on restraint, gentleness, and measured strength.'**
+  /// **'Open the hadith character and manners theme for direct prophetic guidance on restraint, gentleness, and measured strength.'**
   String get learnCharacterCompanionScenarioAngerNextStep;
 
   /// No description provided for @learnCharacterCompanionHadithSourceSubtitle.
@@ -63181,7 +63181,7 @@ abstract class AppLocalizations {
   /// No description provided for @salahTrainerEssentialIntentionTimingSummary.
   ///
   /// In en, this message translates to:
-  /// **'Salah is strongest when offered on time with presence.'**
+  /// **'Salah is strongest when offered on time and with khushu.'**
   String get salahTrainerEssentialIntentionTimingSummary;
 
   /// No description provided for @salahTrainerEssentialIntentionTimingBullet1.

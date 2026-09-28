@@ -2904,7 +2904,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpGuideQuranStep3 =>
-      'Ajustez l’arabe, la translittération et la traduction depuis Réglages > Apprentissage lorsque vous voulez une autre mise en page de lecture.';
+      'Choisissez l’affichage de l’arabe, de la translittération et de la traduction dans Réglages > Apprentissage.';
 
   @override
   String get helpGuideLearningTitle => 'Learning';
@@ -2938,7 +2938,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpGuideDhikrAdhkarStep2 =>
-      'Choisissez une série adaptée à votre moment, puis utilisez le compteur intégré ou la lecture à votre rythme.';
+      'Choisissez une série adaptée à votre moment, puis comptez avec le compteur intégré ou lisez-la en entier.';
 
   @override
   String get helpGuideDhikrAdhkarStep3 =>
@@ -2968,7 +2968,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpGuideNotificationsSettingsDescription =>
-      'Ajustez rappels, visuels, widgets, langue et préférences de compte au même endroit.';
+      'Ajustez rappels, visuels, widgets, langue et préférences de compte.';
 
   @override
   String get helpGuideNotificationsSettingsStep1 =>
@@ -7602,7 +7602,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyIslandUnderstandingIslamDescription =>
-      'Understand the essentials of belief, practice, and historical development with clarity.';
+      'Understand the essentials of belief, practice, and historical development.';
 
   @override
   String get learningJourneyIslandArabicLearningTitle => 'Arabic Learning';
@@ -9461,7 +9461,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrSalawatSection2Body =>
-      'Use a short form daily, after hearing the Prophet’s name ﷺ, on Fridays, and in quiet moments when you want to renew love for his guidance.';
+      'Utilisez une forme courte chaque jour, après avoir entendu le nom du Prophète ﷺ, le vendredi et dans les moments calmes, pour renouveler votre amour pour sa guidance.';
 
   @override
   String get learningJourneyDhikrSalawatBullet1 =>
@@ -10034,7 +10034,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeBullet3 =>
-      'Use related journeys when you want depth.';
+      'Use related journeys to go deeper.';
 
   @override
   String get learningJourneyWisdomPracticeTakeaway1 =>
@@ -11433,7 +11433,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduWhySection1Body =>
-      'Wudu is physical preparation, but it also slows the body down and signals that prayer is approaching. It helps you enter worship with intention.';
+      'Wudu is physical preparation, but it also slows the body down and signals that prayer is approaching. It helps you enter worship with a clear niyyah.';
 
   @override
   String get learningJourneyWuduWhySection2Title => 'A calm beginner frame';
@@ -12169,7 +12169,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanWhatIsBullet3 =>
-      'You enter it best with intention and humility.';
+      'You enter it best with a sincere niyyah and humility.';
 
   @override
   String get learningJourneyRamadanWhatIsTakeaway1 =>
@@ -12245,7 +12245,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection1Body =>
-      'Suhoor gives strength and barakah. Beginning the day with intention, prayer, and remembrance helps the fast start with steadiness.';
+      'Suhoor gives strength and barakah. Beginning the day with the niyyah to fast, prayer, and remembrance helps the fast start with steadiness.';
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection2Title =>
@@ -12566,7 +12566,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Begin with a simple frame for reading the Qur’an as guidance, worship, and daily return.';
 
   @override
-  String get learningJourneyStageQuranReadTitle => 'Begin reading with clarity';
+  String get learningJourneyStageQuranReadTitle => 'Begin reading';
 
   @override
   String get learningJourneyStageQuranReadSummary =>
@@ -14684,7 +14684,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningPathPhaseAdvancedRefinementDescription =>
-      'Refine recitation and deepen understanding with intention.';
+      'Refine recitation and deepen understanding.';
 
   @override
   String get learningPathPhaseAdvancedCharacterActionTitle =>
@@ -14963,11 +14963,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyStageDailyRoutinesStartDayTitle =>
-      'Start your day with intention';
+      'Start your day with a niyyah';
 
   @override
   String get learningJourneyStageDailyRoutinesStartDaySummary =>
-      'Build a gentle opening rhythm that begins with intention, remembrance, and a realistic first step.';
+      'Build a gentle opening rhythm that begins with a niyyah, remembrance, and a realistic first step.';
 
   @override
   String get learningJourneyStageDailyRoutinesPrayerAnchorTitle =>
@@ -15173,7 +15173,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesStartDayIntro =>
-      'A daily routine becomes easier when the day starts with intention rather than reacting to whatever comes first.';
+      'A daily routine becomes easier when you start the day on purpose rather than reacting to whatever comes first.';
 
   @override
   String get learningJourneyDailyRoutinesStartDaySection1Body =>
@@ -15237,7 +15237,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorSection2Body =>
-      'The point is consistency with presence. A short steady relationship with the Qur’an is better than waiting for rare ideal moments.';
+      'The point is consistency with an attentive heart. A short steady relationship with the Qur’an is better than waiting for rare ideal moments.';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorTakeaway1 =>
@@ -15261,7 +15261,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection1Body =>
-      'Use evening adhkar, a bedtime dua, or one quiet moment of gratitude and istighfar to close the day with intention rather than exhaustion alone.';
+      'Use evening adhkar, a bedtime dua, or one quiet moment of gratitude and istighfar to close the day on purpose rather than in exhaustion alone.';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection2Body =>
@@ -17978,7 +17978,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dhikrAntiRushBody =>
-      'Doux rappel : le dhikr est affaire de présence, de sincérité et de ṣabr, non de vitesse seule. Prenez votre temps, avec intention, en recherchant ce qui agrée le plus à Allah.';
+      'Doux rappel : le dhikr est affaire de présence, de sincérité et de ṣabr, non de vitesse seule. Prenez votre temps, en recherchant ce qui agrée le plus à Allah.';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'J’ai compris';
@@ -28660,7 +28660,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get growthStatisticsSubtitle =>
-      'Revoyez au même endroit vos progrès récents en adoration, apprentissage et récompenses.';
+      'Revoyez vos progrès récents en adoration, apprentissage et récompenses.';
 
   @override
   String get wuduTrainerPageTitle => 'Wudu Trainer';
@@ -30557,7 +30557,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get wuduGuideWhyBody =>
-      'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with presence and humility.';
+      'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with khushu and humility.';
 
   @override
   String get wuduGuideQuranVerseTranslation =>
@@ -30943,7 +30943,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionExploreJourneyDescription =>
-      'Reopen the full guided Seerah path when you want the whole story in order.';
+      'Reopen the full guided Seerah path for the whole story in order.';
 
   @override
   String get learnSeerahCompanionExploreTimelineDescription =>
@@ -31116,7 +31116,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioSpeechNextStep =>
-      'Open Qur’an reflection on character and adab when you need ayah-guided restraint, timing, and mercy in speech.';
+      'Open Qur’an reflection on character and adab for ayah-guided restraint, timing, and mercy in speech.';
 
   @override
   String get learnCharacterCompanionScenarioNeighborsDescription =>
@@ -31140,7 +31140,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioConsistencyNextStep =>
-      'Open Qur’an guidance for daily life when you need revelation-shaped steadiness in worship, manners, and routine conduct during changing seasons of energy.';
+      'Open Qur’an guidance for daily life to find steadiness in worship, manners, and routine conduct as your energy rises and falls.';
 
   @override
   String get learnCharacterCompanionScenarioWorkStudyTitle =>
@@ -31199,7 +31199,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioAngerNextStep =>
-      'Open the Hadith character and manners theme when you need direct prophetic guidance on restraint, gentleness, and measured strength.';
+      'Ouvrez le thème des hadiths sur le caractère et les bonnes manières pour une guidance prophétique directe sur la retenue, la douceur et la force maîtrisée.';
 
   @override
   String get learnCharacterCompanionHadithSourceSubtitle =>
@@ -38168,7 +38168,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get salahTrainerEssentialIntentionTimingSummary =>
-      'La salah est la plus forte quand elle est accomplie à l’heure, avec présence.';
+      'La salah est la plus forte quand elle est accomplie à l’heure, avec khushu.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet1 =>

@@ -186,7 +186,7 @@ final creationChallengePool = <CreationChallenge>[
     title: 'Notice water today',
     subtitle: 'A source of life',
     description:
-        'Observe a river, lake, rain, stream, or even flowing water with intention.',
+        'Observe a river, lake, rain, stream, or even flowing water closely.',
     type: CreationChallengeType.observe,
     rule: CreationChallengeRuleType.manualConfirm,
     icon: Icons.water_drop_rounded,
@@ -224,7 +224,7 @@ final creationChallengePool = <CreationChallenge>[
   _challenge(
     id: 'sky_open_001',
     title: 'Open Sky Explorer',
-    subtitle: 'Look upward with intention',
+    subtitle: 'Look up at the sky',
     description: 'Open Sky Explorer and spend a moment with the sky dashboard.',
     type: CreationChallengeType.skyEvent,
     rule: CreationChallengeRuleType.openExplorer,

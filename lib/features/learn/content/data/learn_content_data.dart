@@ -539,7 +539,7 @@ const List<LearnContentPageData> _lifeTopics = [
     id: 'health-body-mind-trust',
     category: LearnTopicCategory.life,
     title: 'Health as a Trust',
-    subtitle: 'Protect physical and mental wellness with intention.',
+    subtitle: 'Protect your physical and mental wellness.',
     overview:
         'One source lesson highlights preserving physical and mental health. The body and mind are trusts that support worship, work, and service.',
     keyThemes: ['Body as amanah', 'Mental steadiness', 'Balanced routines'],

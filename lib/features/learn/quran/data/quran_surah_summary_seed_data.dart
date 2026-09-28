@@ -100,7 +100,7 @@ seededQuranSurahSummaries = <QuranSurahSummarySeed>[
   QuranSurahSummarySeed(
     surahNumber: 20,
     summary:
-        'Ta Ha centers revelation, the mission of Musa, and worship with presence, reminding believers to remember Allah and ask Him for beneficial knowledge.',
+        'Ta Ha centers revelation, the mission of Musa, and attentive worship, reminding believers to remember Allah and ask Him for beneficial knowledge.',
   ),
   QuranSurahSummarySeed(
     surahNumber: 21,

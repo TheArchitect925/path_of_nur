@@ -35,7 +35,7 @@ class LearningJourneyRegistry {
       title: 'Understanding Islam',
       subtitle: 'Faith, fiqh, and the larger historical frame.',
       description:
-          'Understand the essentials of belief, practice, and historical development with clarity.',
+          'Understand the essentials of belief, practice, and historical development.',
       order: 3,
       icon: AppIcons.mosque,
       color: Color(0xFFF0E4D8),
@@ -804,7 +804,7 @@ class LearningJourneyRegistry {
         'stories-completion',
       ],
       learningOutcomes: [
-        'See Qur’anic signs in creation with clarity',
+        'Recognize Qur’anic signs in creation',
         'Reflect on what those signs mean for the heart and daily life',
         'Use wonder as a doorway into deeper knowledge and gratitude',
       ],
@@ -911,9 +911,9 @@ class LearningJourneyRegistry {
     LearningJourneyStage(
       id: 'daily-routines-start-day',
       journeyId: 'daily-routines',
-      title: 'Start your day with intention',
+      title: 'Start your day with a niyyah',
       summary:
-          'Build a gentle opening rhythm that begins with intention, remembrance, and a realistic first step.',
+          'Build a gentle opening rhythm that begins with a niyyah, remembrance, and a realistic first step.',
       order: 1,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -993,7 +993,7 @@ class LearningJourneyRegistry {
     LearningJourneyStage(
       id: 'quran-read',
       journeyId: 'journey-quran',
-      title: 'Begin reading with clarity',
+      title: 'Begin reading',
       summary:
           'Start from Al-Fatihah and learn how to make a first reading rhythm feel realistic.',
       order: 2,

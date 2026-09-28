@@ -229,7 +229,7 @@ const List<HadithLearningPath> seededHadithLearningPaths = [
     id: 'living_with_purpose',
     title: 'Living With Purpose',
     description:
-        'Reconnect intention, knowledge, accountability, and the hereafter to live with clarity and direction.',
+        'Reconnect intention, knowledge, accountability, and the hereafter to live with direction.',
     lessonIds: [
       'intentions_core',
       'lawful_unlawful_clear',

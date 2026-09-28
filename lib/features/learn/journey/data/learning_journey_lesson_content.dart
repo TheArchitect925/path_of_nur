@@ -1873,7 +1873,7 @@ _storiesSignsLessons = <String, LearningJourneyLessonContent>{
     stageId: 'stories-prophetic-signs',
     title: 'Day, night, and prophetic reflection',
     introduction:
-        'Signs in creation and stories of the prophets meet in one place: both teach the heart to notice Allah more carefully.',
+        'Signs in creation and stories of the prophets meet here: both teach the heart to notice Allah more carefully.',
     sections: [
       _section(
         title: 'Day and night',

@@ -587,6 +587,18 @@ PROSE_ROADMAP = re.compile(
     r"coming soon|placeholder|not fully available|intentionally contained|later passes|parity with|"
     r"\bphased\b|\broadmap\b|\bFor now\b|\bcontained for now\b"
 )
+# Filler tails in lesson prose. A closing "today" or "right now" is the point
+# of a reflection prompt or a practice ("When did your heart feel most awake
+# today?"), and "with care" / "with ease" / "when you need help" are usually
+# meant (treat doubtful matters with care; with hardship comes ease), so
+# prose counts only the habits that add nothing: "in one place", "at your own
+# pace", "with clarity", "with intention" and "with presence" as bare
+# adverbs, and "when you want/need" in an instruction to use a page.
+PROSE_TAIL = re.compile(
+    r"\bin one (?:calm |focused |quiet )?(?:place|flow|view|space|screen|dashboard)\b|"
+    r"\bat your own pace\b|\bwith (?:clarity|intention|presence)\b|"
+    r"\b(?:Use|Open|Reopen|Adjust|Choose|Visit)\b[^.]{0,140}\bwhen you (?:want|need)\b"
+)
 _ARABIC_SCRIPT = re.compile(r"[ء-يٱ-ۓ]")
 # ARB keys whose Arabic line is the point: the Fajr adhan's "prayer is
 # better than sleep".
@@ -686,10 +698,10 @@ PROSE_RULES: list[ProseRule] = [
         lambda k, v: is_content(k) and not is_sacred(k) and bool(PROSE_ROADMAP.search(v)),
     ),
     ProseRule(
-        "prose-tail", "A filler tail in lesson prose (right now, in one place, with intention).",
-        "Drop the tail unless the sentence is untrue without it.",
-        lambda v: tail(v.field, v.value),
-        lambda k, v: is_content(k) and not is_sacred(k) and tail(k, v),
+        "prose-tail", "A filler tail in lesson prose (in one place, at your own pace, with clarity, with intention).",
+        "Drop the tail. Where intention means niyyah or presence means khushu, say so.",
+        lambda v: bool(PROSE_TAIL.search(v.value)),
+        lambda k, v: is_content(k) and not is_sacred(k) and bool(PROSE_TAIL.search(v)),
     ),
     ProseRule(
         "prose-list-of-three", "A list of three in a card or summary (title, summary, overview, description).",

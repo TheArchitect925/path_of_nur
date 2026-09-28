@@ -129,7 +129,7 @@ class FaqRepository {
       case 'afterlife_and_purpose':
         return 'Purpose, accountability, and what comes after death.';
       case 'islam_in_the_modern_world':
-        return 'Living Islam with clarity in contemporary life.';
+        return 'Living Islam in contemporary life.';
       default:
         return 'Browse common questions in this area.';
     }

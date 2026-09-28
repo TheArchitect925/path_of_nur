@@ -2845,7 +2845,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get helpGuideQuranStep3 =>
-      'اضبط إعدادات العربية والنقل الصوتي والترجمة من الإعدادات < التعلّم عندما تحتاج إلى تخطيط قراءة مختلف.';
+      'غيّر طريقة عرض العربية والنقل الصوتي والترجمة من الإعدادات < التعلّم.';
 
   @override
   String get helpGuideLearningTitle => 'التعلم';
@@ -2879,7 +2879,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get helpGuideDhikrAdhkarStep2 =>
-      'اختر مجموعة تناسب لحظتك، ثم استخدم العداد المدمج أو تدفق القراءة بالسرعة التي تناسبك.';
+      'اختر مجموعة تناسب لحظتك، ثم عُدّ بالعداد المدمج أو اقرأها كاملة.';
 
   @override
   String get helpGuideDhikrAdhkarStep3 =>
@@ -2909,7 +2909,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get helpGuideNotificationsSettingsDescription =>
-      'اضبط التذكيرات والمرئيات والأدوات واللغة وتفضيلات الحساب في مكان واحد.';
+      'اضبط التذكيرات والمرئيات والأدوات واللغة وتفضيلات الحساب.';
 
   @override
   String get helpGuideNotificationsSettingsStep1 =>
@@ -2917,11 +2917,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get helpGuideNotificationsSettingsStep2 =>
-      'استخدم قسمي الإشعارات والأدوات عندما تريد تنبيهات أكثر هدوءًا، أو سلوك النشاط المباشر، أو تغييرات شاشة القفل.';
+      'استخدم قسمي الإشعارات والأدوات لتنبيهات أكثر هدوءًا، أو سلوك النشاط المباشر، أو تغييرات شاشة القفل.';
 
   @override
   String get helpGuideNotificationsSettingsStep3 =>
-      'استخدم مزامنة الحساب والخصوصية والبيانات عندما تحتاج إلى نسخ احتياطي أو جهاز متصل أو عناصر تحكم مرتبطة بالمزامنة.';
+      'استخدم مزامنة الحساب والخصوصية والبيانات للنسخ الاحتياطي والأجهزة المتصلة وعناصر التحكم في المزامنة.';
 
   @override
   String get learnHubGuidedPathsTitle => 'المسارات الموجّهة';
@@ -7495,7 +7495,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyIslandUnderstandingIslamDescription =>
-      'فهم أساسيات الإيمان والممارسة والتطور التاريخي بوضوح.';
+      'افهم أساسيات الإيمان والممارسة والتطور التاريخي.';
 
   @override
   String get learningJourneyIslandArabicLearningTitle => 'العربية التعلم';
@@ -9343,7 +9343,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDhikrSalawatSection2Body =>
-      'استخدم صيغة قصيرة يوميًا، بعد سماع اسم النبي ﷺ، وأيام الجمعة، وفي لحظات الهدوء عندما تريد تجديد الحب لهدايته.';
+      'استخدم صيغة قصيرة يوميًا، بعد سماع اسم النبي ﷺ، وأيام الجمعة، وفي لحظات الهدوء لتجديد حبك لهديه.';
 
   @override
   String get learningJourneyDhikrSalawatBullet1 =>
@@ -9913,7 +9913,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeBullet3 =>
-      'استخدم الرحلات ذات الصلة عندما تريد العمق.';
+      'استخدم الرحلات ذات الصلة للتعمّق أكثر.';
 
   @override
   String get learningJourneyWisdomPracticeTakeaway1 =>
@@ -11290,7 +11290,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyWuduWhySection1Body =>
-      'الوضوء هو إعداد بدني، ولكنه يبطئ الجسم أيضًا ويشير إلى اقتراب الصلاة. يعينك على دخول العبادة بالنية.';
+      'الوضوء هو إعداد بدني، ولكنه يبطئ الجسم أيضًا ويشير إلى اقتراب الصلاة. يعينك على دخول العبادة بنية واضحة.';
 
   @override
   String get learningJourneyWuduWhySection2Title => 'إطار مبتدئ هادئ';
@@ -12015,7 +12015,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanWhatIsBullet3 =>
-      'من الأفضل أن تدخلها بنية وتواضع.';
+      'أفضل ما تدخله به نية صادقة وتواضع.';
 
   @override
   String get learningJourneyRamadanWhatIsTakeaway1 =>
@@ -12089,7 +12089,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection1Body =>
-      'السحور يعطي القوة والبركة. وبدء النهار بالنية والصلاة والذكر يعين الصيام على الثبات.';
+      'السحور يعطي القوة والبركة. وبدء النهار بنية الصيام والصلاة والذكر يعين الصيام على الثبات.';
 
   @override
   String get learningJourneyRamadanSuhoorIftarSection2Title =>
@@ -12405,7 +12405,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'ابدأ بإطار بسيط لقراءة القرآن هدى وعبادة وعود يومي.';
 
   @override
-  String get learningJourneyStageQuranReadTitle => 'ابدأ القراءة بوضوح';
+  String get learningJourneyStageQuranReadTitle => 'ابدأ القراءة';
 
   @override
   String get learningJourneyStageQuranReadSummary =>
@@ -14509,7 +14509,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningPathPhaseAdvancedRefinementDescription =>
-      'هذّب التلاوة وعمّق الفهم بنيّة واضحة.';
+      'هذّب التلاوة وعمّق الفهم.';
 
   @override
   String get learningPathPhaseAdvancedCharacterActionTitle => 'الخلق والعمل';
@@ -14790,7 +14790,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyStageDailyRoutinesStartDaySummary =>
-      'قم ببناء إيقاع افتتاحي لطيف يبدأ بالنية والتذكر والخطوة الأولى الواقعية.';
+      'ابنِ إيقاعًا افتتاحيًا لطيفًا يبدأ بنية وذكر وخطوة أولى واقعية.';
 
   @override
   String get learningJourneyStageDailyRoutinesPrayerAnchorTitle =>
@@ -14996,7 +14996,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesStartDayIntro =>
-      'يصبح الروتين اليومي أسهل عندما يبدأ اليوم بالنية بدلاً من الرد على ما يأتي أولاً.';
+      'يصبح الروتين اليومي أسهل عندما تبدأ يومك عن قصد بدلًا من الاستجابة لما يأتي أولًا.';
 
   @override
   String get learningJourneyDailyRoutinesStartDaySection1Body =>
@@ -15060,7 +15060,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorSection2Body =>
-      'النقطة المهمة هي الاتساق مع الحضور. علاقة قصيرة ثابتة مع القرآن خير من انتظار لحظات مثالية نادرة.';
+      'المهم هو الاستمرار بقلب حاضر. علاقة قصيرة ثابتة مع القرآن خير من انتظار لحظات مثالية نادرة.';
 
   @override
   String get learningJourneyDailyRoutinesQuranAnchorTakeaway1 =>
@@ -15084,7 +15084,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection1Body =>
-      'استخدم أذكار المساء، أو دعاء قبل النوم، أو لحظة واحدة هادئة من الامتنان والاستغفار لاختتام يومك بنية بدلاً من الإرهاق وحده.';
+      'استخدم أذكار المساء، أو دعاء قبل النوم، أو لحظة هادئة من الشكر والاستغفار لتختم يومك عن قصد لا بالإرهاق وحده.';
 
   @override
   String get learningJourneyDailyRoutinesEveningResetSection2Body =>
@@ -17758,7 +17758,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dhikrAntiRushBody =>
-      'تذكير لطيف: الذكر يدور حول الحضور والإخلاص والصبر، وليس السرعة وحدها. خذ الأمر بهدوء وقصد، ابتغاء مرضاة الله.';
+      'تذكير لطيف: الذكر يدور حول الحضور والإخلاص والصبر، وليس السرعة وحدها. تمهّل فيه، ابتغاء مرضاة الله.';
 
   @override
   String get dhikrAntiRushAcknowledgeAction => 'أنا أفهم';
@@ -28359,7 +28359,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get growthStatisticsSubtitle =>
-      'قم بمراجعة تقدمك الأخير في العبادة والتعلم والمكافأة في مكان واحد.';
+      'راجع تقدمك الأخير في العبادة والتعلّم والمكافآت.';
 
   @override
   String get wuduTrainerPageTitle => 'الوضوء المدرب';
@@ -30239,7 +30239,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get wuduGuideWhyBody =>
-      'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with presence and humility.';
+      'الوضوء يهيّئ الجسد والقلب قبل الصلاة، ويمنح التركيز والطهارة والاستعداد للوقوف بين يدي الله بخشوع وتواضع.';
 
   @override
   String get wuduGuideQuranVerseTranslation =>
@@ -30625,7 +30625,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionExploreJourneyDescription =>
-      'Reopen the full guided Seerah path when you want the whole story in order.';
+      'أعد فتح مسار السيرة الموجَّه كاملًا لقراءة القصة كلها بترتيبها.';
 
   @override
   String get learnSeerahCompanionExploreTimelineDescription =>
@@ -30798,7 +30798,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioSpeechNextStep =>
-      'Open Qur’an reflection on character and adab when you need ayah-guided restraint, timing, and mercy in speech.';
+      'افتح تأملات القرآن في الأخلاق والأدب لضبط الكلام وتوقيته والرحمة فيه بهدي الآيات.';
 
   @override
   String get learnCharacterCompanionScenarioNeighborsDescription =>
@@ -30822,7 +30822,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioConsistencyNextStep =>
-      'Open Qur’an guidance for daily life when you need revelation-shaped steadiness in worship, manners, and routine conduct during changing seasons of energy.';
+      'افتح هدي القرآن للحياة اليومية لتجد الثبات في العبادة والأخلاق والسلوك اليومي مع تقلّب طاقتك.';
 
   @override
   String get learnCharacterCompanionScenarioWorkStudyTitle =>
@@ -30881,7 +30881,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioAngerNextStep =>
-      'Open the Hadith character and manners theme when you need direct prophetic guidance on restraint, gentleness, and measured strength.';
+      'افتح موضوع الحديث عن الأخلاق والآداب لتوجيه نبوي مباشر في ضبط النفس واللين والقوة المتزنة.';
 
   @override
   String get learnCharacterCompanionHadithSourceSubtitle =>
@@ -37783,7 +37783,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get salahTrainerEssentialIntentionTimingSummary =>
-      'تكون الصلاة أقوى حين تُؤدى في وقتها بحضور قلب.';
+      'تكون الصلاة أقوى حين تُؤدى في وقتها بخشوع.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet1 =>

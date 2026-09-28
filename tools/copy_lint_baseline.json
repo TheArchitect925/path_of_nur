@@ -3,7 +3,7 @@
   "counts": {
     "tone-self-described": 432,
     "tone-list-of-three": 413,
-    "tone-tail": 124,
+    "tone-tail": 121,
     "tone-cheer": 7,
     "tone-gamified": 0,
     "studio-vocabulary": 98,
@@ -32,7 +32,7 @@
     "arabic-in-english": 0,
     "prose-studio-vocabulary": 3,
     "prose-roadmap": 0,
-    "prose-tail": 265,
+    "prose-tail": 0,
     "prose-list-of-three": 863
   }
 }

@@ -169,8 +169,7 @@ class LearningPathRegistry {
         LearningPathPhase(
           id: 'advanced-refinement',
           title: 'Refinement',
-          description:
-              'Refine recitation and deepen understanding with intention.',
+          description: 'Refine recitation and deepen understanding.',
           order: 2,
           journeyIds: ['tajweed-basics', 'journey-quran'],
           triviaPathId: 'understanding_the_quran',

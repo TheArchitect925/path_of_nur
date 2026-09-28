@@ -236,7 +236,7 @@ const List<GrowthHabitContent> seededGrowthHabitContent = [
   GrowthHabitContent(
     habitId: 'h_pray_five',
     suggestedRecurrence: 'Daily at salah times',
-    reminderCopy: 'Salah time is near. Continue your path with presence.',
+    reminderCopy: 'Salah time is near. Take a moment to prepare.',
   ),
   GrowthHabitContent(
     habitId: 'h_read_quran',
@@ -311,7 +311,7 @@ const List<GrowthHabitContent> seededGrowthHabitContent = [
   GrowthHabitContent(
     habitId: 'h_sunnah_fasts',
     suggestedRecurrence: 'Weekly or bi-weekly',
-    reminderCopy: 'Prepare for your next sunnah fast with intention.',
+    reminderCopy: 'Prepare for your next sunnah fast and make your niyyah.',
   ),
   GrowthHabitContent(
     habitId: 'h_memorize_quran',
@@ -473,7 +473,7 @@ const GrowthEncouragementCopy seededGrowthEncouragementCopy =
       ],
       returning: [
         'Return gently. Begin again today.',
-        'No day is wasted when you come back with intention.',
+        'No day is wasted when you come back sincerely.',
         'Small steps matter, especially on returning days.',
       ],
       streak: [

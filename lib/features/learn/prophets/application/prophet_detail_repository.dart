@@ -45,7 +45,7 @@ class SeededProphetDetailRepository extends ProphetDetailRepository {
       reflectionPrompts: [
         'Which quality from ${prophet.titledHonoredName} can you carry into this week?',
         'What one step can help your worship feel more sincere today?',
-        'Where can you return gently to Allah with intention and gratitude?',
+        'Where can you return to Allah with gratitude?',
       ],
       relatedProphetIds: const [],
       relatedLifeLessonIds: const [],

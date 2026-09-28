@@ -91,7 +91,7 @@ const List<LearnTopicCatalogItem> learnExpansionCatalog = [
     tags: ['hadith', 'practice', 'intention'],
     reflectionPrompts: [
       'Which lesson can become a daily routine?',
-      'What habit can you purify with intention today?',
+      'What habit can you purify for Allah today?',
     ],
     kidsSnippet: 'The Prophet taught us to be truthful and kind every day.',
     relatedHadithRef: 'Hadith reference placeholder',

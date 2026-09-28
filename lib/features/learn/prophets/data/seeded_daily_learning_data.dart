@@ -364,7 +364,7 @@ const List<DailyLearningItem> seededFridayDailyLearningItems = [
     id: 'seasonal_friday_salawat',
     type: DailyLearningItemType.lesson,
     title: 'Friday Reminder',
-    subtitle: 'Send salawat with presence',
+    subtitle: 'Send salawat on the Prophet ﷺ',
     body:
         'Friday is a weekly renewal. Keep your tongue moist with salawat and your heart attentive.',
     linkedProphetId: 'muhammad',

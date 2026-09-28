@@ -7565,7 +7565,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyIslandUnderstandingIslamDescription =>
-      'Understand the essentials of belief, practice, and historical development with clarity.';
+      'Understand the essentials of belief, practice, and historical development.';
 
   @override
   String get learningJourneyIslandArabicLearningTitle => 'Arabic Learning';
@@ -10010,7 +10010,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningJourneyWisdomPracticeBullet3 =>
-      'Use related journeys when you want depth.';
+      'Use related journeys to go deeper.';
 
   @override
   String get learningJourneyWisdomPracticeTakeaway1 =>
@@ -28524,7 +28524,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get growthStatisticsSubtitle =>
-      'Review your recent worship, learning, and reward progress in one place.';
+      'Review your recent worship, learning, and reward progress.';
 
   @override
   String get wuduTrainerPageTitle => 'Wudu Trainer';
@@ -30412,7 +30412,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get wuduGuideWhyBody =>
-      'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with presence and humility.';
+      'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before Allah with khushu and humility.';
 
   @override
   String get wuduGuideQuranVerseTranslation =>
@@ -30798,7 +30798,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learnSeerahCompanionExploreJourneyDescription =>
-      'Reopen the full guided Seerah path when you want the whole story in order.';
+      'Reopen the full guided Seerah path for the whole story in order.';
 
   @override
   String get learnSeerahCompanionExploreTimelineDescription =>
@@ -30971,7 +30971,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioSpeechNextStep =>
-      'Open Qur’an reflection on character and adab when you need ayah-guided restraint, timing, and mercy in speech.';
+      'Open Qur’an reflection on character and adab for ayah-guided restraint, timing, and mercy in speech.';
 
   @override
   String get learnCharacterCompanionScenarioNeighborsDescription =>
@@ -30995,7 +30995,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learnCharacterCompanionScenarioConsistencyNextStep =>
-      'Open Qur’an guidance for daily life when you need revelation-shaped steadiness in worship, manners, and routine conduct during changing seasons of energy.';
+      'Open Qur’an guidance for daily life to find steadiness in worship, manners, and routine conduct as your energy rises and falls.';
 
   @override
   String get learnCharacterCompanionScenarioWorkStudyTitle =>
@@ -38000,7 +38000,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get salahTrainerEssentialIntentionTimingSummary =>
-      'Salah is strongest when offered on time with presence.';
+      'Salah is strongest when offered on time and with khushu.';
 
   @override
   String get salahTrainerEssentialIntentionTimingBullet1 =>
